@@ -1,6 +1,6 @@
 ## Introduction
 
-Muscat is a framework for cataloging music documents (handwritten and printed music scores). It is a Rails application that provides facilities for creating and managing Marc21 records with a focus on music. The project was initiated by the United Kingdom working group of the Répertoire International des Sources Musicales (RISM) and then developed further by the Swiss working group. It will now be released as an open-source project.
+Muscat is a framework for cataloging music documents (handwritten and printed music scores). It is a Rails application that provides facilities for creating and managing Marc21 records with a focus on music. The project was initiated by the United Kingdom working group of the Répertoire International des Sources Musicales (RISM) and then developed further by the Swiss working group. It is now an open-source project developed together with the RISM Central Office in Germany.
 
 ### Links
 
