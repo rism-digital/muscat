@@ -45,3 +45,6 @@ end
 # gem 'debugger', group: [:development, :test
 
 gem 'activeadmin', github: 'gregbell/active_admin'
+
+gem 'sunspot_rails'
+gem 'sunspot_solr'
