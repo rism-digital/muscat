@@ -1,0 +1,52 @@
+= muscat Introduction
+
+*muscat* is a framework for cataloging music documents (handwritten and printed music scores). It is a Rails application that provides facilities for creating and managing Marc21 records with a focus on music. The project was initiated by the United Kingdom working group of the Répertoire International des Sources Musicales (RISM) and then developed further by the Swiss working group. It will now be released as an open-source project.
+
+== Source code and further documentation
+
+The source code will be available from the google project page http://code.google.com/p/muscat-project/
+
+The documentation for version 1.0 is available at http://docs.rism-ch.org/muscat/1.0/
+
+== Application structure
+
+The basic entity in muscat is the Source class, which describes a single source. The Marc21 data is stored directly in the database, and is parsed to a Marc object with holding MarcNodes recursively. A MarcNode is a field at the first level of recursion and a subfield at the second level. Relevant information (such as author name) is also extracted from the Marc record and stored in the same database row. A the same time, a Source is put in relation with the authority data, or foreign classes, stored directly in the database. The foreign classes representing data are:
+* People (Contributors)
+* Libraries
+* StandardTerms
+* StandardTitles
+* LiturgicalFeasts
+* Catalogues
+* Places
+* Institutions
+
+This way all the basic information related to a Manuscript is always available on the database. Marc21 records and these classes are automatically kept in sync, using UUIDS to relate the various entities.
+
+The web interface is a standard Rails 3 application following the MVC paradigm. The creation of all the dynamic forms, used for showing and editing the single elements in the database, is made using the CuttersWheel plugin. The various strategies for CuttersWheel are in <tt>controller_strategies</tt> and define exactly how the listing, searching, filtering, display and editing of every model is managed.
+
+Full-text search on the data is handled using the Ferret full-text index. Every time a Manuscript is saved, relevant data is extracted and sent to the index. How the various fields and Marc tags are indexed is controlled by the configuration file in <tt>config/ferret/manuscript_index.1.0.yml</tt>.
+
+How the Marc21 data is managed, and how the interaction between Marc records and database-stored elements is configured in the tag configuration, in <tt>config/marc/tag_configurtion.yml</tt>. This also defines how records should be handled by the system (for example, if a tag is repeated).
+
+The behavior of the show/edit pages for Marc records is controlled in the config/editor_profiles directory, using the EditorConfiguration, which, on the base of the MarcConfig (described above), decide which/how tags are shown or edited.
+
+Lastly, an implementation of METS (http://www.loc.gov/standards/mets) permits the linking of Digital Objects (Do* classes) to each manuscript. For the moment, only linking and showing images (using DoFile and DoImage) is implemented, but the system is designed to accept othe media types.
+
+== Notes
+
+The files cw.js, wf.js (formerly work_folders) and cw.css files are served by wheel_controller using special routes. The files
+themselves live in vendor/plugins/cw/resources and are part of the separate svn cw archive. [access to be provided]
+
+This HTML documentation is generated with the <tt>./script/generate_doc.sh</tt> script.
+
+== Contributors
+
+The following people contribute (or have contributed) to muscat:
+* Yvonne Babioch (design and guidelines)
+* Claudio Bacciagaluppi (guidelines)
+* Cédric Güggi (guidelines)
+* Gabriella Hanke-Knaus (design)
+* Laurent Pugin (design and implementation)
+* Chad Thatcher (design and implementation)
+* Sandra Tuppen (design)
+* Rodolfo Zitellini (implementation)

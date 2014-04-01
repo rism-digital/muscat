@@ -1,0 +1,70 @@
+= Importing MARC records into the application
+
+Marc records can be imported into muscat. They can be fed and imported using the command line script:
+
+	./script/runner housekeeping/import/import_from_marc.rb $FILE
+	
+<tt>$FILE</tt> should contain all the Marc records in text format (see below). 
+Since the import procedure is complex and lengthy, it is advisable to split the Marc dataset in chunks og 5000/7000 records, even though this is not a requirement. 
+The separate chunks can then be fed for the import. For example, if the Marc files are numbered from 0000.marc to 0200.marc and placed into a marc/ subdirectory, a simple <tt>for</tt> loop in Bash can be
+used:
+
+	 for a in `ls marc/*.marc`; do ./script/runner housekeeping/import/import_from_marc.rb $a; done
+	 
+== Marc Formatting
+
+The Marc files should contain valid Marc records, with the basic control fields. It has to be in ASCII format as follow:
+
+ =000  00000ncm a22001817  4500
+ =001  20040806000001
+ =035  ##$a(Uk)004503318
+ =003  Uk
+ =005  20110523122820.0
+ =008  930323s1596 be ||z n ita
+ =040  ##$aUk$beng$cUk
+ =041  ##$aita$gita
+ =245  00$aMadrigali a otto voci /$cDe diuersi eccellenti et famosi autori. Con alcuni dialoghi, & echo, per cantar & sonar à due chori. [...]
+ =260  ##$aIn Anuersa :$bappresso Pietro Phalesio$c1596
+ =300  ##$a8 part books ;$c16 x 21 cm (obl. 4to)
+ =500  ##$aWith a dedication by the publisher to Pierre François Sweerts in Italian, signed ’20. di Luglio 1596’
+ =510  4#$aRISM B/I$c1596 ⁸
+ =650  #0$aMadrigals, Italian$vParts
+ =700  1#$aPhalèse, Pierre$db. ca. 1510$eprinter
+ =700  1#$aSweerts, Pierre François$d1567-1629$ededicatee
+ =700  1#$aVecchi, Orazio$d1550-1605$ecomposer
+ =752  ##$aBelgium$dAntwerp
+ =852  41$aGB Lbl$pA.234$qCopy at A.234. Imperfect: the tenor part book only
+
+The simplest way to obtain Marc records in such a format is to use the <tt>marcxml2marctxt</tt> XSL stylesheet available in the <tt>./public/xsl/</tt> directory. A sample MarcXML file is provided (+./housekeeping/import/sample.xml+). Records can be converted with a XSLT 1.0 processor, for example with the following command:
+
+ xsltproc marcxml2marctxt.xsl input.xml > ouput.txt
+
+Marc records in binary format can be converted to ASCII with standard tools such as MARCBreaker (http://www.loc.gov/marc/makrbrkr.html#download) or MARConvert™ (http://www.systemsplanning.com/marconvert/). Marc tools are listed on the Library of Congress webpage (http://www.loc.gov/marc/marctools.html).
+
+How the Marc records, tags and subfields are interpreted 
+bye the software id controlled in <tt>config/marc/tag_config.yml</tt>. In Particular, tags like 100 or the 700, are linked
+to specific data into foreign tables in the database (to build up autority files). For example, the 100 Name tag is related to
+the Person object, and when importing a Person having the same name as in $0 is looked up. If the entry does not exist, it will be created
+(along with life_dates from $d).
+
+=== Authority files
+
+During the import, all fields with a $0 (100, 240, 852), this value will be used to check if the entry already exists in the database. It means that for People values, the same name with a different $0 will generate a duplicate (which is the expected behavior since we can have people with the same name). With other authorities, duplicates will cause the import to fail since duplicates are not allowed. The data should be checked before the import.
+
+For imported fields without $0, a match will be search on the other fields (name, dates, etc.).
+
+For the StandardTitle authority, fields without a $0 (e.g., 740) can create problems during the import if a StandardTitle without $0 (740) is imported before a value with a $0 (e.g., 240). The first one will cause a new ext_id to be generated which will then cause a duplicates validation error with the one with the ext_id. The fix is either to temporarily allow duplicates in the StandardTitle class, or to add a $0 value to the 740 field to the data to be imported.
+
+== Source count
+Many object, like Person, Library, StandardTitle, ... cointain a field <tt>src_count</tt> which caches the total Sources
+related to any of them. This field is not updated during import, and a separate script needs to be run afterwards:
+
+	./script/runner housekeeping/correct/27_update_mscount.rb
+	
+It will update all the ms_counts for each class. 
+
+== Importing from the web interface
+
+Marc records can also be imported from the  web interface. In the "new source" menu, select "Import sources". The record file has to be in a zip archive. The records will be imported as a background job. The import job will create a folder with the name "Imp. date/time" that will contain all the imported manuscripts. The note of the folder will contain the log of the process, including the list of fields or subfields missing in the +config/marc/tag_config.yml+ configuration.
+
+-- To be further documented --

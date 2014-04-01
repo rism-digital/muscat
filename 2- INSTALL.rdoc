@@ -1,0 +1,173 @@
+= Installation instructions
+
+This document describes how to bootstrap into the webapplication.
+
+* ruby: 1.9.3
+
+This document describes the installation process on FreeBSD using ports, other systems are tested (MacOS X and Linux), 
+and it is important that the various package versions match.
+
+== Preliminaries
+
+The following other libraries and programs are needed
+
+* Apache 2.2
+* MySQL > 5.0
+* iconv
+* Subversion
+
+Subversion is necessary for checking out the repo, so install it if necessary:
+
+	cd /usr/ports/devel/subversion
+	sudo make install clean
+
+Install iconv (for rails, used by ruby-iconv):
+
+	cd /usr/ports/converters/iconv
+	sudo make install clean
+	# gem is dumb, need symlinks....
+	ln -s /usr/local/lib/libiconv.* /usr/lib
+	ln -s /usr/local/include/iconv.h /usr/include/
+
+Install MySQL:
+
+	cd /usr/ports/databases/mysql51-server
+	make install clean
+	# Remember to enable it in /etc/rc.conf
+	# mysql_enable="YES"
+	# and launch it:
+	/usr/local/etc/rc.d/mysql-server start
+
+Install Apache 2.2:
+
+	cd /usr/ports/www/apache22
+	make install clean
+	# Edit /etc/rc.conf and add for automatic startup:
+	# accf_http_load="YES"     
+	# apache22_enable="YES"
+
+== Ruby and Rails
+
+Version 1.9.3 of Ruby is used. On FreeBSD:
+
+	cd /usr/ports/lang/ruby19/
+	sudo make install clean
+
+Install Gem:
+
+	cd /usr/ports/devel/ruby-gems
+	sudo make install clean
+
+Install rails (4.0):
+
+	sudo gem install rails
+
+Lastly install Passenger (3.0):
+
+	gem install passenger
+	passenger-install-apache2-module
+
+== Bootstrap the application
+
+Get the sources if necessary:
+
+	svn co svn://rism-ch.org/webapp/trunk
+	svn co svn://rism-ch.org/cw/trunk vendor/plugins/cw
+
+Use bundle to install all the gems for the app:
+
+	sudo bundle install
+
+Install base configuration:
+
+	cd 10.02/config
+	cp sample_database.yml database.yml
+	cp sample_application.rb application.rb
+	
+Se up databases access:
+
+	mysql
+	> CREATE DATABASE rism_ch_development CHARACTER SET utf8 COLLATE utf8_general_ci;
+	> CREATE USER 'username'@'localhost';
+	> SET PASSWORD FOR 'username'@'localhost' = PASSWORD('pass');
+	> GRANT ALL ON muscat_development.* TO 'username'@'localhost';
+	# Remember
+	# username and pass should be the same as in database.yml
+
+Migrate the database:
+
+	cd trunk/
+	rake db:migrate
+	
+
+Add basic dataset:
+
+	rake db:seed
+
+Test startup:
+
+	./scripts/ferretd/start
+	./scripts/server
+	=> Booting WEBrick...
+	=> Rails 2.2.2 application started on http://0.0.0.0:3000
+	=> Ctrl-C to shutdown server; call with --help for options
+	
+Try to open ::
+
+	http://ip:3000/
+
+==== Updating from an older version of Muscat
+
+For upgrading from an older version, see the {5- UPGRADE}[link:5-%20UPGRADE_rdoc.html] page.
+	 
+==== To install on Mac OS X Lion
+
+With MySQL 64 bit binaries, add:
+
+	export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
+
+
+== Basic Apache configuration
+
+Example Apache configuration:
+
+	# create /usr/local/etc/apache22/Includes/default.conf
+	# and add default site:
+	<VirtualHost *:80>
+	        # ServerName www..org
+	        DocumentRoot /var/rails/rism-ch/public
+	        <Directory "/var/rails/rism-ch/public">
+	                Options All -Indexes +ExecCGI -Includes +MultiViews
+	                AllowOverride All
+	                Order allow,deny
+	                Allow from all
+	        </Directory>
+	        RailsEnv development
+	</VirtualHost>
+	
+Double check permissions:
+
+	# Create /var/rails and populate with software
+	mkdir /var/rails
+	<command to checkout as needed TBD>
+	chown -R www /var/rails
+
+Start Apache and Ferretd:
+
+	# REMEMBER, check that the hostname resolves!
+	/usr/local/etc/rc.d/apache22 start
+	cd /var/rails/rism-ch/
+	./script/ferretd/start
+	
+If all this works, you can access the rism application ::
+
+	<tt>http://ip</tt>
+	
+== Adding users
+
+The first user needs to be set from the commandline:
+
+	cd housekeeping/admin
+	ruby create_admin_users.rb -a --username USER --password PASS --email EMAIL
+	
+the <tt>-a</tt> flag marks the user as admin
