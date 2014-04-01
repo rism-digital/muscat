@@ -48,3 +48,4 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'
+gem 'awesome_print'
