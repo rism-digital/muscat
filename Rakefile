@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-MuscatGit::Application.load_tasks
+Muscat::Application.load_tasks
