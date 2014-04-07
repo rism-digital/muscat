@@ -1,0 +1,11 @@
+
+// make active admin fields more compact
+body.active_admin table.index_table td {
+	padding-top: 6px !important;
+	padding-bottom: 4px !important;
+}
+
+body.active_admin form fieldset ol > li {
+	padding-top: 4px !important;
+	padding-bottom: 4px !important;
+}
