@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  file_name: MyString
+  page_name: MyString
+  label: MyString
+  notes: MyText
+  width: 1
+  height: 1
+  exif: MyText
+  software: MyText
+  orientation: MyString
+  res_number: 1
+  tile_width: 1
+  tile_height: 1
+  file_type: MyString
+
+two:
+  file_name: MyString
+  page_name: MyString
+  label: MyString
+  notes: MyText
+  width: 1
+  height: 1
+  exif: MyText
+  software: MyText
+  orientation: MyString
+  res_number: 1
+  tile_width: 1
+  tile_height: 1
+  file_type: MyString

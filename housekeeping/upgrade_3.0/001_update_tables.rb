@@ -1,8 +1,8 @@
 class UpdateTables < ActiveRecord::Migration
 
 @drop_tables = 
-  [:configurations, :do_div_files, :do_divs, :do_file_groups, :do_files, :do_images, :do_items, 
-    :editor_profiles, :folders, :jobs, :menu_items, :pages, :users, :folder_items, 
+  [:configurations, :editor_profiles, :folders, :jobs, 
+    :menu_items, :pages, :users, :folder_items, 
     :catalogue_old_versions, 
     :institution_old_versions, 
     :library_old_versions, 
@@ -19,7 +19,8 @@ class UpdateTables < ActiveRecord::Migration
   :standard_terms, :standard_titles, :work_incipits, :works]
 
 @update_tables =   
-  [:catalogues, :libraries, :liturgical_feasts, :people, :places, 
+  [:catalogues, :do_div_files, :do_divs, :do_file_groups, :do_files, :do_images, :do_items,
+  :libraries, :liturgical_feasts, :people, :places, 
   :standard_terms, :standard_titles, :works]
 
 def self.up
@@ -37,7 +38,7 @@ def self.up
   execute "ALTER TABLE sources CHANGE ms_lib_siglums lib_siglum VARCHAR(255)  NULL  DEFAULT NULL"
   execute "ALTER TABLE sources CHANGE manuscript_id source_id INT(11)  NULL  DEFAULT NULL"
   
-  # Rename columns is works
+  # Rename columns in works
   execute "ALTER TABLE work_incipits CHANGE instrument_or_voice instrument_voice VARCHAR(255)  NULL  DEFAULT NULL"
   execute "ALTER TABLE work_incipits CHANGE key_or_mode key_mode VARCHAR(255)  NULL  DEFAULT NULL"
   
@@ -94,7 +95,19 @@ def self.up
   execute "ALTER TABLE sources_standard_titles ADD CONSTRAINT sources_standard_titles_fk2 FOREIGN KEY (standard_title_id) REFERENCES standard_titles (id) ON UPDATE CASCADE"
   execute "ALTER TABLE sources_works ADD CONSTRAINT sources_works_fk2 FOREIGN KEY (work_id) REFERENCES works (id) ON UPDATE CASCADE"
 
+  # Relations for works
   execute "ALTER TABLE work_incipits ADD CONSTRAINT work_incipits_fk1 FOREIGN KEY (work_id) REFERENCES works (id) ON UPDATE CASCADE"
+  
+  # Fix do_divs
+  execute "ALTER TABLE do_divs CHANGE do_item_id do_item_id INT(11)  NULL  DEFAULT NULL"
+  
+  # Relations for Digital Objects
+  execute "ALTER TABLE do_div_files ADD CONSTRAINT do_file_fk1 FOREIGN KEY (do_file_id) REFERENCES do_files (id) ON UPDATE CASCADE"
+  execute "ALTER TABLE do_div_files ADD CONSTRAINT do_div_fk1 FOREIGN KEY (do_div_id) REFERENCES do_divs (id) ON UPDATE CASCADE"
+  execute "ALTER TABLE do_divs ADD CONSTRAINT do_item_fk1 FOREIGN KEY (do_item_id) REFERENCES do_items (id) ON UPDATE CASCADE"
+  execute "ALTER TABLE do_file_groups ADD CONSTRAINT do_item_fg_fk1 FOREIGN KEY (do_item_id) REFERENCES do_items (id) ON UPDATE CASCADE"
+  execute "ALTER TABLE do_files ADD CONSTRAINT do_file_group_fk1 FOREIGN KEY (do_file_group_id) REFERENCES do_file_groups (id) ON UPDATE CASCADE"
+  execute "ALTER TABLE do_files ADD CONSTRAINT do_image_fk1 FOREIGN KEY (do_image_id) REFERENCES do_images (id) ON UPDATE CASCADE"
   
   # update source_id in sources
   execute "UPDATE sources s, (SELECT DISTINCT id, ext_id FROM sources) t1 SET s.source_id = t1.ext_id WHERE s.source_id = t1.id;"
