@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  do_file_id: 1
+  do_div_id: 1
+  file_order: 1
+
+two:
+  do_file_id: 1
+  do_div_id: 1
+  file_order: 1

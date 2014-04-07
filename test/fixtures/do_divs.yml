@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  do_item_id: 1
+  title_string: MyString
+  subdiv_id: 1
+  subdiv_type: MyString
+
+two:
+  do_item_id: 1
+  title_string: MyString
+  subdiv_id: 1
+  subdiv_type: MyString

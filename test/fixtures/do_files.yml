@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  do_file_group_id: 1
+  do_image_id: 1
+  title: MyString
+
+two:
+  do_file_group_id: 1
+  do_image_id: 1
+  title: MyString
