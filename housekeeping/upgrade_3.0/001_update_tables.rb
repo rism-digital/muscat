@@ -20,7 +20,7 @@ class UpdateTables < ActiveRecord::Migration
 
 @update_tables =   
   [:catalogues, :libraries, :liturgical_feasts, :people, :places, 
-  :standard_terms, :standard_titles,, :works]
+  :standard_terms, :standard_titles, :works]
 
 def self.up
   
@@ -105,8 +105,27 @@ def self.up
     execute "ALTER TABLE #{t} DROP COLUMN ext_id"
   end 
   
-#/* 13:12:57 root@localhost */ ALTER TABLE `catalogues` CHANGE `ms_count` `source_count` INT(11)  NULL  DEFAULT '0';
+  # Quirk of the day
+  # is it better to call the migration or
+  # duplicate the migration code?
+  require './db/migrate/20140331105618_devise_create_admin_users.rb'
+  DeviseCreateAdminUsers.new.migrate(:up)
   
+  # This column is added in 2.1/trunk/muscat3
+  # compatibility check for 2.0
+#  unless column_exists? :catalogues, :abbrev
+#    add_column :catalogues, :abbrev, :string
+#    # Put it in the right place
+#    change_column :catalogues, :abbrev, :string, after: :pages
+#  end
+  
+  # Fix the schema migration
+  execute "TRUNCATE TABLE schema_migrations;"
+  Dir.open('db/migrate').each do |fname|
+      i = fname.split('_').first.to_i
+      next if i == 0
+      execute "INSERT INTO schema_migrations (version) VALUES(#{i});"
+  end  
   
 end
 
