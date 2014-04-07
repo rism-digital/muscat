@@ -25,6 +25,8 @@ module Muscat
 end
 
 module RISM
+  # Select the configuration for the editor profiles to load
+  EDITOR_PROFILE = ""
 end
 
 #####################################################################################################################
