@@ -142,6 +142,10 @@ ActiveAdmin.setup do |config|
   #
   # config.before_filter :do_something_awesome
   
+  # LP - for caching filters, pagination and order
+  config.before_filter :restore_search_filters
+  config.after_filter :save_search_filters
+  
   
   # == Setting a Favicon
   #
@@ -241,4 +245,12 @@ ActiveAdmin.setup do |config|
   #
   # config.filters = true
 
+end
+
+# LP - added for caching filters, pagination and order
+require 'active_admin/filter_saver/controller'
+ 
+ActiveAdmin.before_load do |app|
+  # Add our Extensions
+  ActiveAdmin::BaseController.send :include, ActiveAdmin::FilterSaver::Controller
 end
