@@ -1,4 +1,4 @@
-ActiveAdmin.register StandardTitle do
+ActiveAdmin.register Institution do
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -15,10 +15,10 @@ ActiveAdmin.register StandardTitle do
   ###########
   
   # temporary, to be replaced by Solr
-  filter :title_contains, :as => :string
+  filter :name_or_alternates_contains, :as => :string
   
   index do
-    column (I18n.t :filter_title), :title
+    column (I18n.t :filter_name), :name
     column (I18n.t :filter_sources), :src_count
     actions
   end
@@ -29,10 +29,11 @@ ActiveAdmin.register StandardTitle do
   
   show do   
     attributes_table do
-      row (I18n.t :filter_title) { |r| r.title }
+      row (I18n.t :filter_name) { |r| r.name }
+      row (I18n.t :filter_alternates) { |r| r.alternates }
       row (I18n.t :filter_notes) { |r| r.notes }  
     end
-    active_admin_embedded_source_list( self, standard_title, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, institution, params[:q], params[:src_list_page] )
   end
   
 =begin
@@ -47,7 +48,8 @@ ActiveAdmin.register StandardTitle do
   
   form do |f|
     f.inputs do
-      f.input :title, :label => (I18n.t :filter_title) 
+      f.input :name, :label => (I18n.t :filter_name) 
+      f.input :alternates, :label => (I18n.t :filter_alternates) 
       f.input :notes, :label => (I18n.t :filter_notes) 
     end
     f.actions

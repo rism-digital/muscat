@@ -21,7 +21,7 @@ ActiveAdmin.register Library do
   index do
     column (I18n.t :filter_siglum), :siglum
     column (I18n.t :filter_location_and_name), :name
-    column (I18n.t :filter_sources), :ms_count
+    column (I18n.t :filter_sources), :src_count
     actions
   end
   

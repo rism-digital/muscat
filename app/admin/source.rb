@@ -8,30 +8,29 @@ ActiveAdmin.register Source do
     def permitted_params
       params.permit!
     end
+    
+    def show
+      @editor_profile = EditorConfiguration.get_show_layout
+      @item = Source.find(params[:id])
+    end
+    
   end
   
   # temporary, to be replaced by Solr
-  filter :name_or_description_starts_with, :as => :string
-  filter :author_contains, :as => :string
+  filter :composer_or_title_contains, :as => :string
+  filter :lib_siglum_contains, :as => :string
   
   index do
-    column (I18n.t :filter_name), :name
-    column (I18n.t :filter_author), :author
-    column (I18n.t :filter_sources), :ms_count
+    column (I18n.t :filter_composer), :composer
+    column (I18n.t :filter_std_title), :std_title
+    column (I18n.t :filter_title), :title
+    column (I18n.t :filter_lib_siglum), :lib_siglum
+    column (I18n.t :filter_shelf_mark), :shelf_mark
     actions
   end
   
-  show do   
-    attributes_table do
-      row (I18n.t :filter_name) { |r| r.name }
-      row (I18n.t :filter_author) { |r| r.author }
-      row (I18n.t :filter_description) { |r| r.description }
-      row (I18n.t :filter_title) { |r| r.title }
-      row (I18n.t :filter_volume) { |r| r.volume }
-      row (I18n.t :filter_date) { |r| r.date }
-      row (I18n.t :filter_pages) { |r| r.pages }     
-    end
-    active_admin_embedded_source_list( self, catalogue, params[:q], params[:src_list_page] )
+  show do
+    render :partial => "marc/show"
   end
   
 =begin

@@ -20,7 +20,7 @@ ActiveAdmin.register Place do
   index do
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_country), :country
-    column (I18n.t :filter_sources), :ms_count
+    column (I18n.t :filter_sources), :src_count
     actions
   end
   

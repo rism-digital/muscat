@@ -20,7 +20,7 @@ ActiveAdmin.register StandardTerm do
   index do
     column (I18n.t :filter_term), :term
     column (I18n.t :filter_alternate_terms), :alternate_terms
-    column (I18n.t :filter_sources), :ms_count
+    column (I18n.t :filter_sources), :src_count
     actions
   end
   

@@ -21,7 +21,7 @@ ActiveAdmin.register Catalogue do
   index do
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_author), :author
-    column (I18n.t :filter_sources), :ms_count
+    column (I18n.t :filter_sources), :src_count
     actions
   end
   

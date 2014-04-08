@@ -43,6 +43,8 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :liturgical_feasts
   has_and_belongs_to_many :places
   has_and_belongs_to_many :works
+  
+  composed_of :marc, :class_name => "Marc", :mapping => %w(marc_source)
 
   searchable do
     text :std_title

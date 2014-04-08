@@ -20,7 +20,7 @@ ActiveAdmin.register Person do
   index do
     column (I18n.t :filter_full_name), :full_name
     column (I18n.t :filter_life_dates), :life_dates
-    column (I18n.t :filter_sources), :ms_count
+    column (I18n.t :filter_sources), :src_count
     actions
   end
   
