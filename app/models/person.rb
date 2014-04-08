@@ -28,8 +28,10 @@ class Person < ActiveRecord::Base
   
   # before_destroy, will delete Person only if it has no Source and no Work
   def check_dependencies
-    return false if self.sources.count > 0
-    return false if self.works.count > 0
+    if (self.sources.count > 0) || (self.works.count > 0)
+      errors.add :base, "The person could not be deleted because it is used"
+      return false
+    end
   end
   
 end

@@ -10,6 +10,10 @@ ActiveAdmin.register StandardTerm do
     end
   end
   
+  ###########
+  ## Index ##
+  ###########
+  
   # temporary, to be replaced by Solr
   filter :term_contains, :as => :string
   
@@ -19,6 +23,10 @@ ActiveAdmin.register StandardTerm do
     column (I18n.t :filter_sources), :ms_count
     actions
   end
+  
+  ##########
+  ## Show ##
+  ##########
   
   show do   
     attributes_table do
@@ -34,5 +42,17 @@ ActiveAdmin.register StandardTerm do
     render("activeadmin/src_search") # Calls a partial
   end
 =end
+  
+  ##########
+  ## Edit ##
+  ##########
+  
+  form do |f|
+    f.inputs do
+      f.input :term, :label => (I18n.t :filter_term) 
+      f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
+    end
+    f.actions
+  end
   
 end

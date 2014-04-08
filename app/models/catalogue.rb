@@ -25,7 +25,10 @@ class Catalogue < ActiveRecord::Base
   before_destroy :check_dependencies
     
   def check_dependencies
-    return false if self.sources.count > 0
+    if (self.sources.count > 0)
+      errors.add :base, "The catalogue could not be deleted because it is used"
+      return false
+    end
   end
   
 end
