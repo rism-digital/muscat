@@ -112,28 +112,37 @@ class Marc
 
   # Load marc data from hash, handy for json reading
   def load_from_hash(hash, resolve = true)
-    leader = hash['leader']
-    @root << MarcNode.new("000", leader, nil)
+    @root << MarcNode.new("000", hash['leader'], nil) if hash['leader']
     
     if hash['fields']
-      hash['fields'].each do |toplevel|
-        toplevel.each_pair do |tag, field|
-          if field.is_a?(Hash)
-            ind = field['ind1'] + field['ind2']
-            ind.gsub!(" ", "#")
-            tag_group = @root << MarcNode.new(tag, nil, ind)
-            field['subfields'].each do | pos |
-              pos.each_pair do |code, value|
-                value.gsub!(DOLLAR_STRING, "$")
-                tag_group << MarcNode.new(code, value, nil)
-              end
-            end
-          else
-            @root << MarcNode.new(tag, field, nil)
-          end
-        end
+      grouped_tags = {}
+      hash['fields'].each do |s|
+        k = s.to_a[0][0]
+        grouped_tags[k] = [] if !grouped_tags.has_key?(k)
+        grouped_tags[k] << s
       end
-    end 
+      
+      grouped_tags.keys.sort.each do |tag_key|
+        grouped_tags[tag_key].each do |toplevel|
+          toplevel.each_pair do |tag, field|
+            if field.is_a?(Hash)
+              ind = field['ind1'] + field['ind2']
+              ind.gsub!(" ", "#")
+              tag_group = @root << MarcNode.new(tag, nil, ind)
+              field['subfields'].each do | pos |
+                pos.each_pair do |code, value|
+                  value.gsub!(DOLLAR_STRING, "$")
+                  tag_group << MarcNode.new(code, value, nil)
+                end
+              end
+            else
+              @root << MarcNode.new(tag, field, nil)
+            end # field.is_a?(Hash)
+          end # toplevel.each_pair
+        end # grouped_tags[tag_key].each
+      end # grouped_tags.keys.sort.each
+      
+    end # if hash['fields']
     
     @loaded = true
     @source = to_marc
