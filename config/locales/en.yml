@@ -1,23 +1,325 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  switch_language: "Switch language" 
+  this_file_language: "English"
+
+  #################### PAGE TITLES
+  
+  page_presentation: "Presentation"
+  page_indexes: "Indexes"
+  page_cataloging: "Cataloging"
+  page_projects: "Projects"
+  page_repertorium: "Repertory of 19th century's swiss composers"
+  page_snb: "Unpublished works and prints of composers at the Swiss National Library"
+  page_huber: "Collection Ferdinand Fürchtegott Huber (1791-1863)"
+  page_monasteries: "Music from the monasteries in Switzerland"
+  page_informationspool: "Informationspool „Repertory of 19th century's swiss composers”"
+  page_cd: "CD - Swiss Monasteries Music"
+  page_inventories: "Historical music inventory database (1500-1800)"
+  page_kapellmeisterbuch: "The ‘Kapellmeisterbuch’ of Einsiedeln"
+  page_publications: "Publications"
+  page_past_projects: "Past projects"
+  page_past_cataloging_projects: "Past cataloging projects"
+  page_musicians: "Information for musicians"
+  page_links: "Links and documentation"
+  page_ch_people_a_e: "Swiss collections - People (A-E)"
+  page_ch_people_f_k: "Swiss collections - People (F-K)"
+  page_ch_people_l_q: "Swiss collections - People (L-Q)"
+  page_ch_people_r_z: "Swiss collections - People (R-Z)"
+  page_ch_institutions: "Swiss collections - Institutions and editor archives"
+  page_links_int: "Links - International institutions und projects"
+  page_links_int_ch: "Links - Swiss institutions aund projects"
+  page_links_finding_aid: "Links - Finding aid (Switzerland)"
+  page_links_source_cat: "Links - Source catalogues"
+  page_links_digitisation: "Links - Digitisation"
+  page_links_repertoire: "Links - Repertoire"
+  page_links_people: "Links - People"
+  page_links_editions: "Links - Editions"
+  page_links_e_texts: "Links - E-Texts"
+  page_links_varia: "Links - Varia"
+  page_about_us: "Abouts us"
+  page_committee: "Steering committee"
+  page_association: "Association"
+  page_rism_contacts: "Swiss RISM Office - Contact"
+  page_help: "Help"
+  page_database: "Database" 
+  page_advanced_search: "Advanced search" 
+  
+  #################### MENUS
+  
+  menu_home: "Home"
+  menu_browse: "Sources"
+  menu_advanced_search: "Advanced search"
+  menu_indexes: "Index search"
+  menu_people: "People"
+  menu_institutions: "Printers / Publishers"
+  menu_titles: "Standard titles"
+  menu_subjects: "Subjects"
+  menu_library_sigla: "Library sigla"
+  menu_catalogues: "Catalogues"
+  menu_liturgical_feasts: "Liturgical feasts"
+  menu_places: "Places"
+  menu_help: "Help"
+  menu_works: "Works"
+  menu_incipits: "Musical Incipits"
+  
+  menu_cataloging: "Cataloging"
+  menu_repertorium: "Repertorium"
+  menu_snb: "National Library"
+  menu_huber: "Collection F. F. Huber"
+    
+  menu_projects: "Projects"
+  menu_monasteries: "Swiss monasteries"
+  menu_informationspool: "Informationspool"
+  menu_cd: "CD"
+  menu_inventories: "Historical inventories"
+  menu_kapellmeisterbuch: "The ‘Kapellmeisterbuch’"
+  menu_publications: "Publications"
+  menu_past_projects: "Projects terminated"
+  
+  menu_links: "Links / Documentation"
+  menu_collection_p: "Collections - People"
+  menu_ch_institutions: "Collections - Institutions"
+
+  menu_musicians: "Musicians" 
+  
+  menu_about_us: "About us"
+  menu_committee: "Steering committee"
+  menu_contact: "Office / Contacts"
+  menu_contact_top: "Contact"
+  menu_association: "Association"
+  menu_rism_central_office: "RISM central office"
+  
+  menu_database: "Database"
+
+  # quicksearch
+  quick_search: "Quick search"
+  tips_on_quick_search: "Tips on quick search:"
+  tips_on_dist_search: "Tips on distribution search:"
+  tips_on_incipit_search: "Tips on incipit search:"
+  
+  # advanced search
+  admin_search: "Administration"
+  btn_add_another_search_term: "Add another search term"
+  btn_add_incipit_search: "Add incipit search"
+  btn_search: "Search"
+  in_preparation: "in preparation"
+  
+  ############ links
+
+  http_rism_central_office: "http://www.rism.info" 
+  
+  redirection: "You have been redirected from:<br><br><center><b>%{url}</b></center><br>The domain name is no longer in use. Our domain name is now:<br><br><center><b>www.rism-ch.org</b></center><br>Please update your bookmarks if necessary."
+
+  #################### CONTROLLER STRATEGIES
+  
+  ############ page names
+  page_name_catalogues: "Catalogues and references"
+  page_name_institutions: "Institutions"
+  page_name_libraries: "Libraries"
+  page_name_liturgical_feasts: "Liturgical feasts"
+  page_name_manuscripts: "Sources"
+  page_name_people: "People"
+  page_name_places: "Places"
+  page_name_standard_terms: "Subjects"
+  page_name_standard_titles: "Titles and text incipits"
+  
+  ############ filters
+  filter_address: "Address"
+  filter_alternate_dates: "Alternate dates"
+  filter_alternate_names: "Alternate names"
+  filter_alternate_terms: "Alternate terms"
+  filter_any_field: "Any field"
+  filter_author: "Author"
+  filter_autograph_of: "Autograph of"
+  filter_birth_place: "Birth place"
+  filter_collection: "Collection"
+  filter_comments: "Comments"
+  filter_composer: "Composer"
+  filter_country: "Country"
+  filter_creation_date: "Creation date"
+  filter_date: "Date"
+  filter_date_from: "Date from"
+  filter_date_to: "Date to"
+  filter_description: "Description"
+  filter_digital_objects: "Digital Objects"
+  filter_district: "District"
+  filter_email: "E-mail"
+  filter_full_name: "Name"
+  filter_gender: "Gender"
+  filter_id: "ID"
+  filter_incipits: "Incipits"
+  filter_incipits_ng: "Incipits (ngrams)"
+  filter_incipits_tf: "Incipits (themefinder)"
+  filter_incipit_key: "Incipit key"
+  filter_institutions: "Institutions"
+  filter_key: "Key"
+  filter_language: "Language"
+  filter_last_updated: "Last updated"
+  filter_library_sigla: "Library sigla"
+  filter_life_dates: "Life dates"
+  filter_links: "Links"
+  filter_liturgical_feast: "Liturgical feast"
+  filter_location_and_name: "Name and location"
+  filter_manuscript_no: "Shelfmark"
+  filter_ms_no: "Shelfmark"
+  filter_name: "Name"
+  filter_notes: "Notes"
+  filter_old_versions: "Old versions"
+  filter_owner: "Owner"
+  filter_pages: "Pages"
+  filter_people: "People"
+  filter_phone: "Phone"
+  filter_place: "Place"
+  filter_revue_title: "Revue title"
+  filter_ext_id: "RISM ID"
+  filter_ext_id_no: "RISM ID"
+  filter_siglum: "Siglum"
+  filter_source: "Source"
+  filter_sources: "Sources"
+  filter_standardised_title: "Standardised title"
+  filter_subjects: "Subjects"
+  filter_term: "Term"
+  filter_thematic_opus: "Thematic cat. / Opus no."
+  filter_title: "Title"
+  filter_titles: "Titles"
+  filter_title_on_ms: "Title on source"
+  filter_url: "Internet address"
+  filter_variants: "Variants"
+  filter_versions: "Versions"
+  filter_volume: "Volume"
+  filter_wf: "WF"
+  filter_wf_audit: "WF audit"
+  filter_wf_stage: "WF stage"
+  filter_distribution: "Scoring"
+  filter_dist_exclude: "Exclude"
+  filter_dist_594a: "Vocal parts (solo)"
+  filter_dist_594b: "Other vocal parts (solo)"
+  filter_dist_594c: "Vocal parts (coro)"
+  filter_dist_594d: "Other vocal parts (coro)"
+  filter_dist_594e: "Solo instrument"
+  filter_dist_594f: "Strings"
+  filter_dist_594g: "Woodwinds"
+  filter_dist_594h: "Brasses"
+  filter_dist_594i: "Plucked instruments"
+  filter_dist_594k: "Percussion instruments"
+  filter_dist_594l: "Keyboard instruments"
+  filter_dist_594m: "Other instruments"
+  filter_dist_594n: "Basso continuo instruments"
+  
+  rism_any_key: "Any key"
+  rism_a_flat: "A flat major/minor"
+  rism_a: "A major/minor"
+  rism_b_flat: "B flat major/minor"
+  rism_b: "B major/minor"
+  rism_c: "C major/minor"
+  rism_c_sharp: "C sharp major/minor"
+  rism_d_flat: "D flat major/minor"
+  rism_d: "D major/minor"
+  rism_e_flat: "E flat major/minor"
+  rism_e: "E major/minor"
+  rism_f: "F major/minor"
+  rism_f_sharp: "F sharp major/minor"
+  rism_g: "G major/minor"
+  rism_g_sharp: "G sharp major/minor"
+  
+  #
+  entry:
+     one: "entry"
+     other: "entries"
+  catalogue:
+    one: "catalogue"
+    other: "catalogues"
+  institution: 
+     one: "institution"
+     other: "institutions"
+  library: 
+     one: "library"
+     other: "libraries"
+  liturgicalfeast: 
+    one: "litrugical feast"
+    other: "liturgical feasts"
+  manuscript:
+    one: "source"
+    other: "sources"
+  place:
+    one: "place"
+    other: "places"
+  person: 
+     one: "person"
+     other: "poeple"
+  standardterm:
+    one: "subject"
+    other: "subjects" 
+  standardtitle:
+    one: "title or text incipit"
+    other: "titles or text incipits" 
+  # missing in others
+  user:
+    one: "user"
+    other: "users" 
+  job:
+    one: "job"
+    other: "jobs"
+  folder:
+    one: "folder"
+    other: "folders"
+
+  will_paginate:
+    page_entries_info:
+      single_page_html:
+        zero: "No %{model} found" 
+        one: "Displaying <b>1</b> %{model}"
+        other: "Displaying <b>all %{count}</b> %{model}"
+      multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
+  
+  manuscript_links:
+     one: "1 source"
+     other: "%{count} sources" 
+     
+  # themefinder
+  themefinder_c: "pitch refined contour"
+  themefinder_C: "pitch gross contour"
+  themefinder_d: "diatonic scale degree"
+  themefinder_i: "twelwe-tone interval"
+  themefinder_I: "diatonic interval"
+  themefinder_p: "diatonic pitch class"
+  themefinder_P: "twelwe-tone pitch class"
+  themefinder_p0: "no pitch search"
+
+  themefinder_u: "exact duration"
+  themefinder_r: "duration refined contour"
+  themefinder_R: "duration gross contour"
+  themefinder_d0: "no duration search"
+  
+  themefinder_L: "metric level"
+  themefinder_l: "metric position"
+  themefinder_e: "metric refined contour"
+  themefinder_E: "metric gross contour"
+  themefinder_b: "beat level"
+  themefinder_m0: "no metric search"
+  
+  tf_pitch_search: "Pitch"
+  tf_duration_search: "Duration"
+  tf_metric_search: "Metric"
+  tf_meter: "Meter"
+  tf_anchor: "Search only at the begining of the incipit"
+  
+  tf_pitch_help: "Tips for pitch search"
+  tf_duration_help: "Tips for duration search"
+  tf_metric_help: "Tips for metric help"
+  
+  tf_anchor_help: "Anchored searching tips"
+  tf_timesig_help: "Time signature help"
+  btn_themefinder_reset: "Reset"
+  
+  tf_acknowledgments: "Incipits search is performed with <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> developed by the <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
+
+  hls_link_lang: "d"
+  hls_link_name: "HDS"
+  
+  do_link_lang: "ENG"
+  do_media_files_title: "Multimedia files"
+  do_ext_res_link: "External resources:"
+  do_ext_link_not_avail: "(Audio files not available from this location)"
+  do_images_title: "Images"

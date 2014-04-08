@@ -1,0 +1,40 @@
+
+en:
+
+   #################### PAGE TITLES
+   page_beromuenster: "Beromünster"
+   page_st_urban: "St Urban"
+
+   #################### MENUS
+   menu_beromuenster: "Beromünster"
+   menu_st_urban: "St Urban"
+   # redifinition
+   menu_library_sigla: "Inventories"
+   
+   #################### GROUPS
+   group_adminstration: "Administration"
+   group_identification: "Identification"
+   group_references: "References"
+   group_transcription: "Transcription"
+   
+   #################### CONTROLLER STRATEGIES
+
+   ############ page names
+   page_name_libraries: "Inventories"
+
+
+   ############ filters
+   filter_library_sigla: "Inventory siglum"
+   filter_location_and_name: "Title"
+   filter_address: "Library"
+   filter_phone: "Year"
+   filter_email: "Institution"
+   filter_siglum: "Inventory siglum"
+   filter_standardised_title: "Title"
+   filter_url: "Description"
+
+   #
+   library: 
+      one: "inventory"
+      other: "inventories"
+
