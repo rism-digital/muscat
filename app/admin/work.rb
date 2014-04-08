@@ -10,6 +10,10 @@ ActiveAdmin.register Work do
     end
   end
   
+  ###########
+  ## Index ##
+  ###########
+  
   # temporary, to be replaced by Solr
   filter :title_or_form_contains, :as => :string
   

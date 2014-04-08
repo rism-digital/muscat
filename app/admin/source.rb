@@ -31,7 +31,7 @@ ActiveAdmin.register Source do
       row (I18n.t :filter_date) { |r| r.date }
       row (I18n.t :filter_pages) { |r| r.pages }     
     end
-    active_admin_views_helper_embedded_source_list( self, catalogue, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, catalogue, params[:q], params[:src_list_page] )
   end
   
 =begin

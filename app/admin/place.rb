@@ -10,6 +10,10 @@ ActiveAdmin.register Place do
     end
   end
   
+  ###########
+  ## Index ##
+  ###########
+  
   # temporary, to be replaced by Solr
   filter :name_or_country_contains, :as => :string
   
@@ -20,13 +24,17 @@ ActiveAdmin.register Place do
     actions
   end
   
+  ##########
+  ## Show ##
+  ##########
+  
   show do   
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_country) { |r| r.country }
       row (I18n.t :filter_district) { |r| r.district }    
     end
-    active_admin_views_helper_embedded_source_list( self, place, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, place, params[:q], params[:src_list_page] )
   end
   
 =begin
@@ -34,5 +42,18 @@ ActiveAdmin.register Place do
     render("activeadmin/src_search") # Calls a partial
   end
 =end
+  
+  ##########
+  ## Edit ##
+  ##########
+  
+  form do |f|
+    f.inputs do
+      f.input :name, :label => (I18n.t :filter_name)
+      f.input :country, :label => (I18n.t :filter_country), :as => :string # otherwise country-select assumed
+      f.input :district, :label => (I18n.t :filter_district) 
+    end
+    f.actions
+  end
 
 end

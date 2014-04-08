@@ -10,6 +10,10 @@ ActiveAdmin.register Person do
     end
   end
   
+  ###########
+  ## Index ##
+  ###########
+  
   # temporary, to be replaced by Solr
   filter :full_name_contains, :as => :string
   
@@ -19,6 +23,10 @@ ActiveAdmin.register Person do
     column (I18n.t :filter_sources), :ms_count
     actions
   end
+  
+  ##########
+  ## Show ##
+  ##########
   
   show do   
     attributes_table do
@@ -32,7 +40,7 @@ ActiveAdmin.register Person do
       row (I18n.t :filter_alternate_names) { |r| r.alternate_names }   
       row (I18n.t :filter_alternate_dates) { |r| r.alternate_dates }    
     end
-    active_admin_views_helper_embedded_source_list( self, person, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, person, params[:q], params[:src_list_page] )
   end
   
 =begin
@@ -40,5 +48,24 @@ ActiveAdmin.register Person do
     render("activeadmin/src_search") # Calls a partial
   end
 =end
+  
+  ##########
+  ## Edit ##
+  ##########
+  
+  form do |f|
+    f.inputs do
+      f.input :full_name, :label => (I18n.t :filter_full_name)
+      f.input :life_dates, :label => (I18n.t :filter_life_dates) 
+      f.input :birth_place, :label => (I18n.t :filter_birth_place)
+      f.input :gender, :label => (I18n.t :filter_gender) 
+      f.input :composer, :label => (I18n.t :filter_composer)  
+      f.input :source, :label => (I18n.t :filter_source) 
+      f.input :comments, :label => (I18n.t :filter_comments) 
+      f.input :alternate_names, :label => (I18n.t :filter_alternate_names)
+      f.input :alternate_dates, :label => (I18n.t :filter_alternate_dates)   
+    end
+    f.actions
+  end
 
 end

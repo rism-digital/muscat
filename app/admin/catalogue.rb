@@ -10,6 +10,10 @@ ActiveAdmin.register Catalogue do
     end
   end
   
+  ###########
+  ## Index ##
+  ###########
+  
   # temporary, to be replaced by Solr
   filter :name_or_description_starts_with, :as => :string
   filter :author_contains, :as => :string
@@ -21,17 +25,21 @@ ActiveAdmin.register Catalogue do
     actions
   end
   
+  ##########
+  ## Show ##
+  ##########
+  
   show do   
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_author) { |r| r.author }
       row (I18n.t :filter_description) { |r| r.description }
-      row (I18n.t :filter_title) { |r| r.title }
+      row (I18n.t :filter_revue_title) { |r| r.revue_title }
       row (I18n.t :filter_volume) { |r| r.volume }
       row (I18n.t :filter_date) { |r| r.date }
       row (I18n.t :filter_pages) { |r| r.pages }     
     end
-    active_admin_views_helper_embedded_source_list( self, catalogue, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, catalogue, params[:q], params[:src_list_page] )
   end
   
 =begin
@@ -39,5 +47,22 @@ ActiveAdmin.register Catalogue do
     render("activeadmin/src_search") # Calls a partial
   end
 =end
+  
+  ##########
+  ## Edit ##
+  ##########
+  
+  form do |f|
+    f.inputs do
+      f.input :name, :label => (I18n.t :filter_name)
+      f.input :author, :label => (I18n.t :filter_author)
+      f.input :description, :label => (I18n.t :filter_description)
+      f.input :revue_title, :label => (I18n.t :filter_revue_title)
+      f.input :volume, :label => (I18n.t :filter_volume)
+      f.input :date, :label => (I18n.t :filter_date)
+      f.input :pages, :label => (I18n.t :filter_pages)
+    end
+    f.actions
+  end
   
 end

@@ -10,6 +10,10 @@ ActiveAdmin.register Library do
     end
   end
   
+  ###########
+  ## Index ##
+  ###########
+  
   # temporary, to be replaced by Solr
   filter :siglum_or_name_starts_with, :as => :string
   filter :address
@@ -21,6 +25,10 @@ ActiveAdmin.register Library do
     actions
   end
   
+  ##########
+  ## Show ##
+  ##########
+  
   show do   
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
@@ -30,27 +38,27 @@ ActiveAdmin.register Library do
       row (I18n.t :filter_phone) { |r| r.phone }
       row (I18n.t :filter_email) { |r| r.email }    
     end
-    active_admin_views_helper_embedded_source_list( self, library, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, library, params[:q], params[:src_list_page] )
   end
- 
-  form do |f|
-    f.inputs "Details" do
-      f.input :siglum
-      f.input :name
-      f.input :address
-    end
-    f.inputs "Content" do
-      f.input :url
-      f.input :phone
-      f.input :email
-    end
-    f.actions
-  end
-
+  
 =begin
   sidebar "Search sources", :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
 =end
+ 
+  form do |f|
+    f.inputs "Details" do
+      f.input :siglum, :label => (I18n.t :filter_siglum)
+      f.input :name, :label => (I18n.t :filter_name)
+      f.input :address, :label => (I18n.t :filter_address)
+    end
+    f.inputs "Content" do
+      f.input :url, :label => (I18n.t :filter_url)
+      f.input :phone, :label => (I18n.t :filter_phone)
+      f.input :email, :label => (I18n.t :filter_email)
+    end
+    f.actions
+  end
   
 end

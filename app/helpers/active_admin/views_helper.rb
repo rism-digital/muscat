@@ -1,6 +1,6 @@
 module ActiveAdmin::ViewsHelper
   
-  def active_admin_views_helper_embedded_source_list( context, item, query, src_list_page )
+  def active_admin_embedded_source_list( context, item, query, src_list_page )
     # get the list of sources for the item
     c = item.sources
     # do not display the panel if no source attached

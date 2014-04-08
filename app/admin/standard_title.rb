@@ -10,6 +10,10 @@ ActiveAdmin.register StandardTitle do
     end
   end
   
+  ###########
+  ## Index ##
+  ###########
+  
   # temporary, to be replaced by Solr
   filter :title_contains, :as => :string
   
@@ -19,12 +23,16 @@ ActiveAdmin.register StandardTitle do
     actions
   end
   
+  ##########
+  ## Show ##
+  ##########
+  
   show do   
     attributes_table do
       row (I18n.t :filter_title) { |r| r.title }
       row (I18n.t :filter_notes) { |r| r.notes }  
     end
-    active_admin_views_helper_embedded_source_list( self, catalogue, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, standard_title, params[:q], params[:src_list_page] )
   end
   
 =begin
@@ -32,5 +40,17 @@ ActiveAdmin.register StandardTitle do
     render("activeadmin/src_search") # Calls a partial
   end
 =end
+  
+  ##########
+  ## Edit ##
+  ##########
+  
+  form do |f|
+    f.inputs do
+      f.input :title, :label => (I18n.t :filter_title) 
+      f.input :notes, :label => (I18n.t :filter_notes) 
+    end
+    f.actions
+  end
   
 end
