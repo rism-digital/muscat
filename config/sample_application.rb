@@ -52,6 +52,9 @@ PATH_TO_UPLOADED_IMAGES = '/Users/laurent/data/in_upload'
 
 
 #Globals used for incipits
+INCIPIT_BINARIES = "/path_to_incipit_binaries"
+# The pae2kern binary (see http://museinfo.sapp.org)
+PAE2KERN = "#{INCIPIT_BINARIES}/pae2kern"
 # Path to the Verovio binary, if used to generate incipits by RISM::USE_VEROVIO=true
 VEROVIO = "/usr/local/bin/verovio"
 # Path do the Aruspix helper data
