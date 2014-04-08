@@ -1,0 +1,11 @@
+<% group_tags = item.marc.by_tags_with_order(group[:tags]) -%>
+
+<% unless group_tags.empty? -%>
+
+	<div class="show_group_head">
+		<p><span><%= group[:title] %></span></p>
+	</div>
+
+	<%= render :partial => "show_tags", :locals => { :tags => group_tags, :templates => group[:tag_templates] } %>
+	
+<% end -%>

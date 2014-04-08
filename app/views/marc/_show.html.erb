@@ -1,0 +1,12 @@
+<div id="manuscripts-content">
+	<%- 
+		layout_config = @editor_profile.layout_config
+		layout_config["group_order"].each do |group_name|
+			group = layout_config["groups"][group_name]
+			grouping = { :title => @editor_profile.get_label(group_name), :tags => group["all_tags"], :tag_templates => group["all_tag_templates"]  }					
+	-%>	
+		<% unless group["admin_only"] and not role_at_least? :cataloguer -%>
+			<%= render :partial => (group["template"] ? group["template"] : "marc/show_group" ), :locals => { :item => @item, :group => grouping  } %>
+		<% end -%>
+	<%- end -%>
+</div>
