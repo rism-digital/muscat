@@ -110,6 +110,38 @@ class Marc
     end
   end
 
+  # Load marc data from hash, handy for json reading
+  def load_from_hash(hash, resolve = true)
+    leader = hash['leader']
+    @root << MarcNode.new("000", leader, nil)
+    
+    if hash['fields']
+      hash['fields'].each do |toplevel|
+        toplevel.each_pair do |tag, field|
+          if field.is_a?(Hash)
+            ind = field['ind1'] + field['ind2']
+            ind.gsub!(" ", "#")
+            tag_group = @root << MarcNode.new(tag, nil, ind)
+            field['subfields'].each do | pos |
+              pos.each_pair do |code, value|
+                value.gsub!(DOLLAR_STRING, "$")
+                tag_group << MarcNode.new(code, value, nil)
+              end
+            end
+          else
+            @root << MarcNode.new(tag, field, nil)
+          end
+        end
+      end
+    end 
+    
+    @loaded = true
+    @source = to_marc
+    @source_id = first_occurance("001").content || nil rescue @source_id = nil
+    # when importing we do not want to resolve externals since source has ext_id (and not db_id)
+    @root.resolve_externals unless !resolve
+  end
+
   # Get all the foreign fields for this Marc object. Foreign fields are the one referred by ext_id ($0) in the marc record
   def get_all_foreign_associations
     if @all_foreign_associations.empty?
