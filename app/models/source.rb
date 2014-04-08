@@ -50,6 +50,13 @@ class Source < ActiveRecord::Base
     text :std_title
     text :composer
     text :source
+    integer :date_from
+    integer :date_to
+    
+    integer :catalogues, :multiple => true do
+          catalogues.map { |catalogue| catalogue.id }
+    end
+    
   end
     
 end

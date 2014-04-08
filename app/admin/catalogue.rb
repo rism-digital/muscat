@@ -42,11 +42,11 @@ ActiveAdmin.register Catalogue do
     active_admin_embedded_source_list( self, catalogue, params[:q], params[:src_list_page] )
   end
   
-=begin
+begin
   sidebar "Search sources", :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
-=end
+end
   
   ##########
   ## Edit ##
