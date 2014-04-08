@@ -6,6 +6,15 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
+module RISM
+  # The project letters (e.g., uk, ch)
+  BASE = "ch"
+  # The MARC letters (used in the new_from.rhtml and in the manuscript_controller for the templates) 
+  MARC = "ch"
+  # Select the configuration for the editor profiles to load
+  EDITOR_PROFILE = ""
+end
+
 module Muscat
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -19,15 +28,12 @@ module Muscat
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", RISM::BASE, '*.{rb,yml}'))]
     
     config.autoload_paths << "#{Rails.root}/lib"
   end
 end
 
-module RISM
-  # Select the configuration for the editor profiles to load
-  EDITOR_PROFILE = ""
-end
 
 #####################################################################################################################
 # Globals used for Digital Object displaying
@@ -46,21 +52,6 @@ PATH_TO_UPLOADED_IMAGES = '/Users/laurent/data/in_upload'
 
 
 #Globals used for incipits
-# Path to the directory where the PAE -> ABC -> PNG convertors are installed (if selected by RISM::USE_VEROVIO=false)
-INCIPIT_BINARIES = "/path_to_incipit_binaries"
-# The pae2kern binary (see http://museinfo.sapp.org)
-PAE2KERN = "#{INCIPIT_BINARIES}/pae2kern"
-# The hum2abc binary (see http://museinfo.sapp.org)
-HUM2ABC = "#{INCIPIT_BINARIES}/hum2abc"
-# The abcm2ps binary (see http://moinejf.free.fr/)
-ABCM2PS = "#{INCIPIT_BINARIES}/abcm2ps"
-# The eps2png script (see http://search.cpan.org/dist/eps2png/)
-EPS2PNG = "#{INCIPIT_BINARIES}/eps2png"
-# The eps2pdf binary -  the shebang for perl needs to be added in the script and it can be tested with irb (see http://www.ctan.org/pkg/epstopdf)
-EPS2PDF = "#{INCIPIT_BINARIES}/epstopdf" 
-# The krn2json binary (undocumented)
-KRN2JSON = "#{INCIPIT_BINARIES}/krn2json"
-
 # Path to the Verovio binary, if used to generate incipits by RISM::USE_VEROVIO=true
 VEROVIO = "/usr/local/bin/verovio"
 # Path do the Aruspix helper data

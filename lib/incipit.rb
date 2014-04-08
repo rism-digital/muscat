@@ -115,31 +115,20 @@ class IncipitCH
   # The return value is "" in case of error or "[OK]" + file name in case of success.
 
   def generate_png
-    abcm2ps_file = "#{Rails.root}/config/abcm2ps.fmt"
     #puts abcm2ps_file
     # 
     write_pae_input
     # go through the conversion steps
-    if RISM::USE_VEROVIO == true
-      if @code == "darms"
-        write_darms_input
-        # Works only with Verovio + rsvg
-        return "" if !_do "#{VEROVIO} --adjust-page-height --page-width=1570 -s 40 -f darms -r #{VEROVIO_DATA} -o #{@tmp_path}#{@file_name}.svg #{@tmp_path}#{@file_name}.darms", 10
-  	    return "" if !_do "#{RSVG} #{@tmp_path}#{@file_name}.svg #{@out_path}#{@file_name}.png", 20
-      else
-      	return "" if !_do "#{VEROVIO} --adjust-page-height --page-width=1570 -s 40 -f pae -r #{VEROVIO_DATA} -o #{@tmp_path}#{@file_name}.svg #{@tmp_path}#{@file_name}.pae", 10
-      	return "" if !_do "#{RSVG} #{@tmp_path}#{@file_name}.svg #{@out_path}#{@file_name}.png", 20
-      end
+    if @code == "darms"
+      write_darms_input
+      # Works only with Verovio + rsvg
+      return "" if !_do "#{VEROVIO} --adjust-page-height --page-width=1570 -s 40 -f darms -r #{VEROVIO_DATA} -o #{@tmp_path}#{@file_name}.svg #{@tmp_path}#{@file_name}.darms", 10
+	    return "" if !_do "#{RSVG} #{@tmp_path}#{@file_name}.svg #{@out_path}#{@file_name}.png", 20
     else
-    	return "" if !_do "#{PAE2KERN} -a '-n -1 -Q \"\" --spacing 2.0' -d #{@tmp_path} #{@tmp_path}#{@file_name}.pae", 2
-    	return "" if !_do "#{HUM2ABC} -M none -T \" \" #{@tmp_path}#{@file_name}.krn > #{@tmp_path}#{@file_name}.abc", 2
-    	return "" if !_do "#{ABCM2PS} -F #{abcm2ps_file} -E -O #{@tmp_path}#{@file_name}.eps #{@tmp_path}#{@file_name}.abc", 2
-    	return "" if !_do "#{EPS2PNG} --antialias 4 --scale 1.25 --output #{@out_path}#{@file_name}.png #{@tmp_path}#{@file_name}001.eps", 2 
-    	# catalog 
-    	#return "" if !_do "#{EPS2PNG} --antialias 4 --resolution 300 --scale 0.65 --output #{@out_path}#{@file_name}.png #{@tmp_path}#{@file_name}001.eps", 2  
-    	#return "" if !_do "#{EPS2PDF} --outfile=#{@out_path}#{@file_name}.pdf #{@tmp_path}#{@file_name}001.eps", 2  
+    	return "" if !_do "#{VEROVIO} --adjust-page-height --page-width=1570 -s 40 -f pae -r #{VEROVIO_DATA} -o #{@tmp_path}#{@file_name}.svg #{@tmp_path}#{@file_name}.pae", 10
+    	return "" if !_do "#{RSVG} #{@tmp_path}#{@file_name}.svg #{@out_path}#{@file_name}.png", 20
     end
-    
+
     # remove temporary files
     begin
       FileUtils.rm "#{@tmp_path}#{@file_name}.svg"
@@ -171,20 +160,7 @@ class IncipitCH
     @results += "[ OK ] #{@file_name}.mei"
     @file_name
   end
-  
-  # Uses pae2kern to write a humdrum file
-  def generate_humdrum
-    # cleanup output directory
-    # FileUtils.rm Dir.glob("#{@out_path}*")  
-    # 
-    write_pae_input
-    # go through the conversion steps
-    return "" if !_do "#{PAE2KERN} -a '-n -1 -Q \"\" --spacing 2.0' -d #{@out_path} #{@tmp_path}#{@file_name}.pae", 2
-    # remove temporary files
-    #FileUtils.rm Dir.glob("#{@tmp_path}*")
-    @file_name
-  end
-  
+    
   # private function to execute a system command.
   def _do cmd_val, timeout_val
     process = IO.popen(cmd_val)
