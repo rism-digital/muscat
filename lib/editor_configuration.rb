@@ -3,7 +3,7 @@
 # and retains the full functionality.
 # An editor configuration is comprised of a set of layout rules: i.e. which tags show and in which order. It enables to define labels in the same way.
 # Layout options define how the editor fields will be constructed.
-# Each EditorConfiguration can be applied only to a Manuscript that has certain features, i.e. a regex match with the leader, the presence of a tag
+# Each EditorConfiguration can be applied only to a Source that has certain features, i.e. a regex match with the leader, the presence of a tag
 # or the absence of a tag. Each of these rules is configured in the :filter field of the configuration file.
 # The default configuration is in editor_profiles/defaul/profiles.yml; If an application wants to override it, it can define a new directory,
 # e.g. editor_profiles/ch, and configure RISM::EDITOR_PROFILE="ch", for example. The new profiles completely overrides the default one.
@@ -27,8 +27,8 @@
 # * <tt>default</tt> - set to true so this profile will be used as default, in case no other matches (for showing and editing)
 # * <tt>show</tt> - set to true indicates that this is the default profile used for showing a ms
 # * <tt>leader</tt> - Match the MARC Leader with a regexp: should be in the form <tt>leader: !ruby/regexp /.....npd.............../</tt>
-# * <tt>tag</tt> - Will match only Manuscripts that have this tag, ex. <tt>tag: "120"</tt>
-# * <tt>no_tag</tt> - the reverse of the above, match Manuscripts that do NOT have a tag
+# * <tt>tag</tt> - Will match only Sources that have this tag, ex. <tt>tag: "120"</tt>
+# * <tt>no_tag</tt> - the reverse of the above, match Sources that do NOT have a tag
 # * <tt>show_all</tt> - set to true to indicate that all tags, even the ones not configured, should be shown.
 #
 class EditorConfiguration
@@ -293,7 +293,7 @@ class EditorConfiguration
     return @filter["show_all"]
   end
   
-  # Used from the ManuscriptController, finds a layout that is applicabile for the current Manuscript item
+  # Used from the SourceController, finds a layout that is applicabile for the current Source item
   # refer to _layout_is_applicable. It is filtered in base of the MARC leader or <tt>tag</tt> item.
   def self.get_applicable_layout(manuscript)
     profiles = EditorConfiguration.profiles

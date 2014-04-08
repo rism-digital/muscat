@@ -1,7 +1,7 @@
 require 'timeout'
 require 'fileutils'
 
-# Create and fetch incipit images for each example in a Manuscript.
+# Create and fetch incipit images for each example in a Source.
 # It used instead of the old Incipit class as this class uses external programs
 # to interpret PAE and for image generation.
 # This class just runs all the steps to generate the images in <tt>/public/incipits</tt>
@@ -16,12 +16,12 @@ require 'fileutils'
 # The spelling of generate_png, generate_svg and generate_mei is not casual, as these
 # functions are called dinamically and the name is generated_ + filetype. For example, 
 # a generator for midi should be called generate_midi, so it will be invoked as
-# generate([:midi, :png]) from the Manuscript model.
+# generate([:midi, :png]) from the Source model.
 
 class IncipitCH
   attr_accessor :results
   
-  # Initialize the class. mixed is a MarcNode 031, id is the RISM id for the Manuscript
+  # Initialize the class. mixed is a MarcNode 031, id is the RISM id for the Source
   # The output images end up in <tt>/public/incipits/[00...99]/</tt> divided in base of
   # their last two digits. This is, because incipits are many thousands, not to
   # fill up a single directory with too many files.

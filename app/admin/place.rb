@@ -10,4 +10,29 @@ ActiveAdmin.register Place do
     end
   end
   
+  # temporary, to be replaced by Solr
+  filter :name_or_country_contains, :as => :string
+  
+  index do
+    column (I18n.t :filter_name), :name
+    column (I18n.t :filter_country), :country
+    column (I18n.t :filter_sources), :ms_count
+    actions
+  end
+  
+  show do   
+    attributes_table do
+      row (I18n.t :filter_name) { |r| r.name }
+      row (I18n.t :filter_country) { |r| r.country }
+      row (I18n.t :filter_district) { |r| r.district }    
+    end
+    active_admin_views_helper_embedded_source_list( self, place, params[:q], params[:src_list_page] )
+  end
+  
+=begin
+  sidebar "Search sources", :only => :show do
+    render("activeadmin/src_search") # Calls a partial
+  end
+=end
+
 end
