@@ -1,0 +1,24 @@
+<tr class="row">
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_sub_label(tag.tag, subfield.tag) %>
+		<%- end %>
+	</th>
+	<td>
+	<% 
+		content = MarcConfig.is_foreign?(tag.tag, subfield.tag) ? subfield.looked_up_content : subfield.content
+		browse_helper = MarcConfig.get_browse_helper(tag.tag, subfield.tag)
+	-%>
+	<% if browse_helper -%>
+	   <%= raw method(browse_helper).call( content, subfield) %>
+	<% else -%>
+		<% #NEED TO DISCUSS THIS! removed h BUT HTML NOT SANITIZED only for PSMD!!! %>
+		<% if RISM::BASE == "pr" -%>
+	   		<%= content %>
+	   <% else %>
+	   		<%= h content %>
+	   <%- end -%>
+	<%- end %>
+	</td>					    
+</tr>
+

@@ -1,0 +1,81 @@
+<%-
+	number_a = tag.fetch_first_by_tag('a')
+	number_b = tag.fetch_first_by_tag('b')	
+	number_c = tag.fetch_first_by_tag('c')	
+	
+	if RISM::BASE == "uk"
+		incipit_number = "#{(number_a ? number_a.content : "na")}-#{(number_b ? number_b.content : "nb")}-#{(number_c ? number_c.content : "nc")}"
+	elsif RISM::BASE == "pr"
+		# no nothing
+	else
+		incipit_number = "#{(number_a ? number_a.content : "?")}.#{(number_b ? number_b.content : "?")}.#{(number_c ? number_c.content : "?")}"
+	end
+	pae_subfield = tag.fetch_first_by_tag('p')
+	has_image = false
+	last_tag = ""	
+
+	if number_a && pae_subfield
+		# MC3
+		# image = get_incipit_image( @item.id, incipit_number )
+		image = ""
+	end
+	## ! for testing, reatime rendering with verovio
+	## incipit_number = "#{(number_a ? number_a.content : "x")}#{(number_b ? number_b.content : "x")}#{(number_c ? number_c.content : "x")}"
+	## image = "incipit_#{incipit_number}#{@item.ext_id}"
+%>
+
+<tr class="row">
+	<th><%= @editor_profile.get_sub_label(tag.tag, "a") %></th>
+	<td><%= incipit_number %></td>
+</tr>
+
+<% tag.children do |subfield| -%>
+	<% next if MarcConfig.always_hide?(tag.tag, subfield.tag) || !(@editor_profile.show_all? || MarcConfig.show_in_browse?(tag.tag, subfield.tag)) -%>
+	<%= render :partial => "marc/show_subfield", :locals => { :tag => tag, :subfield => subfield, 
+		:no_label => (last_tag == tag.tag + subfield.tag) } %>
+	<%- last_tag = tag.tag + subfield.tag %>
+<% end -%>
+
+<!-- these are the subfields we can hide if we have an image -->			
+<% [:g, :n, :o, :p].each do |s|
+	subfield = tag.fetch_first_by_tag(s)
+	next unless subfield			
+	css_classes = cycle('', ' class="odd"')
+	%>
+	<tr class="row">
+		<th><%= @editor_profile.get_sub_label(tag.tag, subfield.tag) %></th>
+		<td><%= subfield.content %></td>					    
+	</tr>
+<% end -%>
+
+<!-- Incipit image and incipit searching			
+<%	if (pae_subfield && pae_subfield.content ) %>
+	<tr class="row">
+		<td>
+			<%-
+			   tag_n = tag.fetch_first_by_tag(:n)
+			   key_sig = (tag_n && tag_n.content) ? "$#{tag_n.content}" : ""
+			   tag_r = tag.fetch_first_by_tag(:r)
+			   mode = (tag_r && tag_r.content) ? tag_r.content : ""
+			   tag_o = tag.fetch_first_by_tag(:o)
+			   time_sig = "" # MS3 (tag_o && tag_o.content) ? get_timesig(tag_o.content) : ["", ""]
+			   query = "#{key_sig} "
+			   query += (pae_subfield && pae_subfield.content )? pae_subfield.content : ""
+			%>
+			<a href="/manuscripts/search?strategy=index
+				&incipit=<%= URI.escape(query, "+") -%>&mode=<%= mode -%>&timesig_num=<%= time_sig[0] -%>&timesig_den=<%= time_sig[1] -%>">
+				<img src="/images/search.png" style="padding-top:30px; padding-left: 10px; padding-right:10px;"/>
+			</a>
+		</td>
+		<td width="100%">
+			<img src="<%= image %>" />
+		</td>
+	<tr>
+	</tr>
+		<th></th>
+		<td style="text-align: left; padding-left:0px; padding-bottom: 20px;">
+			<%= link_to_function("Plain & Easy", "$('#incipit#{incipit_number.gsub(/\./,"")}').toggle(\"slow\");" ) -%>
+		</td>
+	</tr>
+<% end -%>
+-->

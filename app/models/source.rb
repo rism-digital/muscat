@@ -45,6 +45,8 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :works
   
   composed_of :marc, :class_name => "Marc", :mapping => %w(marc_source)
+  
+  before_destroy :check_dependencies
 
   searchable do
     text :std_title
@@ -56,7 +58,14 @@ class Source < ActiveRecord::Base
     integer :catalogues, :multiple => true do
           catalogues.map { |catalogue| catalogue.id }
     end
-    
   end
+    
+  def check_dependencies
+    if (self.sources.count > 0)
+      errors.add :base, "The source could not be deleted because it is used"
+      return false
+    end
+  end
+  
     
 end

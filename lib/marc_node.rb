@@ -38,8 +38,8 @@ class MarcNode
         unless master.foreign_object
           master.set_foreign_object
           master.foreign_host = true
-          # also update the ext_id - it might have changed or be missing (when submitted from the editor)
-          master.content = master.foreign_object.ext_id
+          # also update the id - it might have changed or be missing (when submitted from the editor)
+          master.content = master.foreign_object.id
         end
         # now add or update the dependant fields
         if dependants = MarcConfig.get_foreign_dependants(self.tag, master.tag)
@@ -79,7 +79,7 @@ class MarcNode
   end
 
 
-  # Try to get a foreign object using the ext_id. If the object does not exist,
+  # Try to get a foreign object using the id. If the object does not exist,
   # create it. It is used during import of a Marc record, so relations (ex People or Library)
   # are established and in case created
   def find_or_new_foreign_object_by_foreign_field(class_name, field_name, search_value)
@@ -95,7 +95,7 @@ class MarcNode
     return new_foreign_object
   end
 
-  # This works as find_or_new_foreign_object_by_foreign_field but instead of $0 ext_id
+  # This works as find_or_new_foreign_object_by_foreign_field but instead of $0 id
   # it tries to use another field for the relation, as specified from the MarcConfig.
   def find_or_new_foreign_object_by_all_foreign_fields(class_name, tag, nmasters)
     new_foreign_object = nil
@@ -134,9 +134,9 @@ class MarcNode
   
   # Once the Marc data is parsed to MarcNodes, it can be
   # inspected to create the relations with the external classes
-  # ex. People. This function does this. If the tag has a $0 with an ext_id
+  # ex. People. This function does this. If the tag has a $0 with an id
   # (the field is returned by get_master_foreign_subfield) it will try
-  # to get the corrensponding object from the DB. If no ext_id ($0) is present
+  # to get the corrensponding object from the DB. If no id ($0) is present
   # it will try to look it up
   def import(overwrite = false)
     foreign_associations = {}
@@ -167,7 +167,7 @@ class MarcNode
         # if not, there will be one or more non master fields, we can use to make a lookup and see if this 
         # object already exists
         elsif nmasters.size > 0
-          # we will need to add a master (ext_id), but only if the master if $0 (e.g., for 740, we don't add a $0 master)
+          # we will need to add a master (id), but only if the master if $0 (e.g., for 740, we don't add a $0 master)
           master_tag = MarcConfig.get_master( self.tag )
           add_master = true if master_tag == "0"
           self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( MarcConfig.get_foreign_class(tag, master_tag), tag, nmasters )
@@ -177,7 +177,7 @@ class MarcNode
         if self.foreign_object.new_record? or overwrite
           populate_master( )
           self.foreign_object.suppress_reindex
-          # PROBLEM: if an element has an incorrect ext_id, but a field that is unique already is in the DB
+          # PROBLEM: if an element has an incorrect id, but a field that is unique already is in the DB
           # the save will creash because of the duplicate field. In this case, we try an extreme remedy:
           # we try the lookup using non-masters so hopefully we can match the field to the one already there
           # and avoid the duplication crash
@@ -191,14 +191,14 @@ class MarcNode
             #puts "Foreign object could not be saved, no recovery from here." if !self.foreign_object.save
           end
         end 
-        # now add the master subfield $0 with the ext_id value
+        # now add the master subfield $0 with the id value
         if add_master
           master = MarcNode.new( "0", nil, nil )
-          master.content = self.foreign_object.ext_id
+          master.content = self.foreign_object.id
           add( master )
         end
         # populate the foreign associations hash
-        foreign_associations["#{self.foreign_object.class.name}-#{self.foreign_object.ext_id}"] = self.foreign_object   
+        foreign_associations["#{self.foreign_object.class.name}-#{self.foreign_object.id}"] = self.foreign_object   
         # set the foreign object for all the subfields
         get_foreign_subfields.each do |subfield|
           subfield.set_foreign_object
@@ -247,7 +247,10 @@ class MarcNode
   def set_foreign_object
     foreign_class = MarcConfig.get_foreign_class(self.parent.tag, self.tag)
     if parent.foreign_object == nil
-      db_node = parent.fetch_first_by_tag("_")
+      #db_node = parent.fetch_first_by_tag("0")
+      puts parent.tag
+      puts parent.get_master_foreign_subfield.tag
+      db_node = parent.fetch_first_by_tag(parent.get_master_foreign_subfield.tag)
       parent.foreign_object = foreign_class.constantize.send("find", db_node.content)
     end
     self.foreign_field = MarcConfig.get_foreign_field(self.parent.tag, self.tag)
@@ -257,7 +260,7 @@ class MarcNode
   # Return the content of this tag.
   def content
     if @foreign_object and @foreign_host
-      return @foreign_object.ext_id
+      return @foreign_object.id
     else
       return @content
     end

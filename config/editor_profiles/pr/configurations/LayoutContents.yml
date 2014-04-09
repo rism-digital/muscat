@@ -1,0 +1,80 @@
+--- !map:Settings 
+group_order: 
+- group_identification
+- group_location
+- group_physical
+- group_identification_notes
+- group_references
+- group_linking
+- group_works
+- bibliographical_reference
+- group_administration
+- group_mod_dates
+groups: 
+  group_administration: 
+    all_tags: 
+    - "000"
+    - "001"
+    - "003"
+    - 008
+    - "040"
+    - "599"
+    admin_only: true
+  group_linking: 
+    all_tag_templates: 
+      "775": show_related_editions
+    all_tags: 
+    - "775"
+  group_works: 
+    all_tag_templates: 
+      "600": show_work
+    all_tags: 
+    - "600"
+  group_physical: 
+    all_tag_templates: 
+      "300": show_phys
+    all_tags: 
+    - "300"
+    - "340"
+  group_location: 
+    all_tag_templates: 
+      "852": show_libraries
+    all_tags: 
+    - "852"
+  group_identification_notes: 
+    all_tags: 
+    - "245"
+    - "508"
+    - "505"
+    template: show_group
+  group_identification: 
+    all_tag_templates: 
+      "260": show_impressum
+      "100": show_person
+      "510": show_rism
+    all_tags: 
+    - "100"
+    - "240"
+    - "260"
+    - "510"
+    - "500"
+    - "033"
+  bibliographical_reference: 
+    all_tag_templates: 
+      "690": show_catalogue
+      "691": show_bibliography
+    all_tags: 
+    - "596"
+    - "690"
+    - "691"
+  group_references: 
+    all_tag_templates: 
+      "710": show_institution
+      "700": show_person
+    all_tags: 
+    - "700"
+    - "710"
+  group_mod_dates: 
+    all_tags: 
+    - "005"
+    template: show_500_field

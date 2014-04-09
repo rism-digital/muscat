@@ -1,0 +1,688 @@
+--- !map:Settings 
+"000": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Leader
+"001": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: RISM ID No.
+001_conv: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Convolutum
+001_print: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Print
+002_ms_col: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Manuscript Collection
+"003": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Control number identifier
+003_pr_col: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Printed Collection
+"005": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Date and time of last transaction
+"007": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Physical description fixed field
+008: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Coded bibliographic data
+01_codes_artistic: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Artistic production
+02_codes_performing: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Performance
+"033": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Formatted Date
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Formatted Date
+03_codes_technical: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Technical production
+"040": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Cataloguing agency
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Original cataloguing agency
+    b: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Language of cataloguing
+      edit_label: !map:HashWithIndifferentAccess 
+        en: Cat. language
+    c: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Transcribing agency
+    d: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Modifying agency
+04_codes_other: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Other
+"100": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Composer/Author
+  accepts: 
+  - "700"
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Name
+    d: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Life dates
+    j: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Attribution qualifier
+      edit_label: !map:HashWithIndifferentAccess 
+        en: Dubious
+100_ms: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Music manuscripts
+101_ms_anon_work: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Anonymous work
+102_ms_anon_work_col: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Anonymous work in collection
+103_ms_attr_work: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Attributed work
+104_ms_attr_work_col: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Attributed work in collection
+1st: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: First known issue
+200_pr: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Music prints
+201_pr_anon_work: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Anonymous work
+202_pr_anon_work_col: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Anonymous work in collection
+203_pr_attr_work: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Attributed work
+204_pr_attr_work_col: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Attributed work in collection
+"240": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Standardized Title
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Standardized Title
+    b: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Subtitle
+    c: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Name(s) on manuscript
+"245": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Title on Source
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Title on Source
+      edit_label: !map:HashWithIndifferentAccess 
+        en: ""
+"246": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Transcription
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Transcription
+      edit_label: !map:HashWithIndifferentAccess 
+        en: ""
+"260": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Imprint
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Place
+    b: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Atelier name
+    c: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Date
+    e: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Printing place
+    f: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Printing office
+    "3": !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Set
+"300": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Material
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Description
+    b: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Other physical details
+    c: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Dimensions
+    "3": !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Title
+300_lib: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Libretti
+301_lib_ms_anon: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Libretto anonymous, manuscript
+302_lib_pr_anon: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Libretto anonymous, printed
+303_lib_ms_attr: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Libretto attributed, manuscript
+304_lib_pr_attr: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Libretto attributed, printed
+"340": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Printing Technique
+  fields: !map:HashWithIndifferentAccess 
+    d: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Printing Technique
+400_th: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Theoretica
+401_th_anon: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Theoretica anonymous
+402_th_attr: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Theoretica attributed
+"500": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: General note
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: General note
+      edit_label: !map:HashWithIndifferentAccess 
+        en: ""
+"505": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Table of contents
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Table of contents
+      edit_label: !map:HashWithIndifferentAccess 
+        en: ""
+"508": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Content transcription
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Content transcription
+      edit_label: !map:HashWithIndifferentAccess 
+        en: ""
+"510": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: RISM Sigla
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: RISM Series
+    c: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: RISM Sigla
+"593": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Type of source
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Type of source
+      edit_label: !map:HashWithIndifferentAccess 
+        en: ""
+"596": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: RISM Series A/I and B references
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: RISM Series A/I and B references
+      edit_label: !map:HashWithIndifferentAccess 
+        en: ""
+"599": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Internal note
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Internal note
+      edit_label: !map:HashWithIndifferentAccess 
+        en: ""
+"600": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Related Works
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Author
+    "0": !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: UUID
+    g: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Form
+    t: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Title
+"650": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Subject heading
+  fields: !map:HashWithIndifferentAccess 
+    v: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Form subdivision
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Subject heading
+    x: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Subheading General subdivision
+    y: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Chronological subdivision
+    z: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Geographic subdivision
+"690": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Catalogue
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Catalogue name
+    n: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Number/page
+"691": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Bibliographical reference
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Bibliographical reference
+    n: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Number/page
+"700": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Additional personal names
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Name
+    d: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Life dates
+    "3": !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Set
+    "4": !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Function
+"710": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Printer / Publisher
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Name
+    b: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Subordinate unit
+    "4": !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Function
+"720": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Additional institution names
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Name
+    b: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Subordinate unit
+    e: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Function
+"775": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Relations
+  fields: !map:HashWithIndifferentAccess 
+    w: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Print ID
+    "4": !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Relation Type
+"786": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Inventoried source
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Author
+    n: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Preserved source
+    d: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Impressum
+    o: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Bibliographical reference
+    i: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Idenfication status
+    t: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Title
+"852": !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Library Sigla
+  fields: !map:HashWithIndifferentAccess 
+    a: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Library Sigla
+    b: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Sublocation
+    d: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Shelf number in the inventory
+    z: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Source used for entry
+    e: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Inventory
+    p: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Shelfmark
+    u: !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: URL
+    "3": !map:HashWithIndifferentAccess 
+      label: !map:HashWithIndifferentAccess 
+        en: Preserved parts
+added_entry: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Added entry fields
+added_entry_name: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Added entry personal name
+added_series: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Series added entry fields
+administration: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Administration
+arr: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Arranger
+art: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Artist
+asn: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Associated name
+aut: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Author
+bibliographical_reference: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Bibliographical References
+bnd: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Binder
+bsl: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Bookseller
+ccp: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Conceptor
+chr: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Choreographer
+clb: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Collaborator
+cmp: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Composer
+cnd: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Conductor
+cns: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Censor
+codes: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Numbers and code fields
+com: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Compiler
+content: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Content description
+control: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Control Fields
+corporate_name: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Corporate names
+cst: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Costume designer
+date: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Dates
+description: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Physical description, etc. fields
+diplomatic_title: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Diplomatic title
+dnc: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Dancer
+dnr: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Donor
+doc_authorities: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Authority files
+doc_examples: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Examples
+doc_help: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Input help
+doc_introduction: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Introduction
+doc_masks: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Input fields
+doc_tag_index: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: MARC Tag Index
+dte: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Dedicatee
+dub: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Dubious
+edition: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Edition, imprint, etc. fields
+edt: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Editor
+egr: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Engraver
+fmo: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Former owner
+group_administration: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Administration
+group_identification: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: General Information
+group_identification_notes: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Contents
+group_linking: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Related Edition(s)
+group_links: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: First Edition
+group_location: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Location
+group_mod_dates: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Record Information
+group_physical: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Physical Description
+group_references: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: References
+group_works: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Works
+holding: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Holdings, location, etc. fields
+identification: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Identification
+ill: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Illustrator
+incipit: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Incipits
+itr: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Instrumentalist
+lbt: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Librettist
+led: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Later Edition / Issue
+library: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Library information
+linkage: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Linkage
+linking: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Linking entry fields
+ltg: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Lithograph
+lyr: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Lyricist
+main: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Main entry fields
+notes: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Note fields
+other: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Miscellaneous
+otm: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Event organizer
+pat: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Patron
+pbl: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Publisher
+performance: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Performances
+physical_description: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Physical description
+ppm: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Paper maker
+prd: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Production personnel
+prf: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Performer
+provenance: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Provenance
+prt: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Printer
+references: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: References
+scr: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Scribe
+series: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Series statement fields
+subject: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Subject access fields
+title: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Title and title-related fields
+transcription: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Transcription
+trl: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Translater
+voc: !map:HashWithIndifferentAccess 
+  label: !map:HashWithIndifferentAccess 
+    en: Vocalist

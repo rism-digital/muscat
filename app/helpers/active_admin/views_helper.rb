@@ -1,5 +1,10 @@
 module ActiveAdmin::ViewsHelper
   
+  # embedds a list of sources from a foreign (authority) model
+  # - context is the show context is the AA
+  # - item is the instance of the model
+  # - query is the fitler for the source list
+  # - src_list_page is the pagination
   def active_admin_embedded_source_list( context, item, query, src_list_page )
     # get the list of sources for the item
     c = item.sources
@@ -27,5 +32,13 @@ module ActiveAdmin::ViewsHelper
       end
     end
   end 
+  
+  # formats the string for the source show title
+  def active_admin_source_show_title( composer, std_title, id )
+    return "[#{id}]" if composer.empty? and std_title.empty?
+    return "#{std_title} [#{id}]" if composer.empty? and !std_title.empty?
+    return "#{composer} [#{id}]" if std_title.empty?
+    return "#{composer} : #{std_title} [#{id}]"
+  end
   
 end

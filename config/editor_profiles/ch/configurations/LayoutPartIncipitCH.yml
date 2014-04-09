@@ -1,0 +1,6 @@
+--- !map:Settings 
+groups: 
+  incipit: 
+    all_tags: 
+    - "031"
+    template: show_incipit

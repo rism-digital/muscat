@@ -1,0 +1,12 @@
+--- !map:Settings 
+groups: 
+  administration: 
+    all_tags: 
+    - "000"
+    - "001"
+    - "003"
+    - "005"
+    - "007"
+    - 008
+    - "040"
+    - "599"

@@ -15,11 +15,11 @@ class UpdateTables < ActiveRecord::Migration
     :old_versions]
 
 @rename_mscount_tables =   
-  [:catalogues, :libraries, :liturgical_feasts, :people, :places, 
+  [:catalogues, :institutions, :libraries, :liturgical_feasts, :people, :places, 
   :standard_terms, :standard_titles, :work_incipits, :works]
 
 @update_tables =   
-  [:catalogues, :do_div_files, :do_divs, :do_file_groups, :do_files, :do_images, :do_items,
+  [:catalogues, :institutions, :do_div_files, :do_divs, :do_file_groups, :do_files, :do_images, :do_items,
   :libraries, :liturgical_feasts, :people, :places, 
   :standard_terms, :standard_titles, :works]
 
@@ -32,6 +32,7 @@ def self.up
   # Update schema for sources/manuscripts
   execute "RENAME TABLE manuscripts TO sources"
   execute "ALTER TABLE sources CHANGE ext_id ext_id INT(11) NOT NULL;"
+  execute "ALTER TABLE sources CHANGE source marc_source TEXT;"
   execute "ALTER TABLE sources CHANGE ms_title title VARCHAR(255)  NULL  DEFAULT NULL"
   execute "ALTER TABLE sources CHANGE ms_title_d title_d VARCHAR(128)  NULL  DEFAULT NULL"
   execute "ALTER TABLE sources CHANGE ms_no shelf_mark VARCHAR(255)  NULL  DEFAULT NULL"
@@ -117,6 +118,11 @@ def self.up
     execute "UPDATE #{t} SET id = ext_id"
     execute "ALTER TABLE #{t} DROP COLUMN ext_id"
   end 
+  
+  # update sources
+  execute "UPDATE sources SET id = id + 1000000000"
+  execute "UPDATE sources SET id = CONVERT(ext_id, SIGNED INTEGER)"
+  execute "ALTER TABLE sources DROP COLUMN ext_id"
   
   # Quirk of the day
   # is it better to call the migration or

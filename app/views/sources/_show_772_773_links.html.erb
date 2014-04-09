@@ -1,0 +1,40 @@
+<% children = @item.sources.select { |m| m.record_type != 2} %>
+<% if @item.source || children.count > 0 %>
+	<div class="panel">
+		<h3><%= group[:title] %></h3>
+		<div class="panel_contents">
+			<div class="attributes_table">
+			<% if @item.source %>
+				<table border="0" cellpadding="0" cellspacing="0">
+		        	<tr class="row">
+		                <th>
+							<%= @editor_profile.get_sub_label("773", "w") %>
+		                </th>
+		                <td valign="top">
+							<%= application_helper_link_source_id(@item.source.id).html_safe %>
+							<%= " #{@item.source.composer}" if @item.source.composer %><%= ": " if (@item.source.composer && @item.source.std_title)%><i><%= "#{@item.source.std_title}" if @item.source.std_title %></i>
+						</td>
+		        	</tr>
+				</table>
+			<% end %>
+			<% if children.count > 0 %>
+				<table border="0" cellpadding="0" cellspacing="0">
+				<% count = 0 %>
+				<% children.each do |child| %>
+		        	<tr class="row">
+		                <th>
+							<%= count == 0 ? @editor_profile.get_label("772") : "&nbsp;".html_safe %>
+		                </th>
+		                <td>
+							<%= application_helper_link_source_id(child.id).html_safe %>
+							<%= " #{child.composer}" if child.composer != "" %><%= ": " if (child.composer != "" && child.std_title != "") %><i><%= "#{child.std_title}" if child.std_title != "" %></i>
+						</td>
+		        	</tr>
+				<% count = count + 1 %>
+				<% end %>
+				</table>
+			<% end %>
+			</div>
+		</div>
+	</div>
+<% end %>

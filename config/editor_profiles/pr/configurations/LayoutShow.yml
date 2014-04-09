@@ -1,0 +1,4 @@
+--- !map:Settings 
+application: 
+  show_all: false
+  show: true

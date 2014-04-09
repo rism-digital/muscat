@@ -1,0 +1,598 @@
+--- !map:Settings 
+"000": 
+  tag_params: 
+    read_only: true
+  tag: tag_no_subfield
+  tag_header: none
+"001": 
+  tag_params: 
+    read_only: true
+  tag: tag_no_subfield
+  tag_header: none
+"003": 
+  tag_params: 
+    read_only: true
+  tag: tag_no_subfield
+  tag_header: none
+"005": 
+  tag_params: 
+    read_only: true
+  tag: tag_no_subfield
+  tag_header: none
+"007": 
+  tag_params: 
+    maskedinput: 
+      mask: aa
+  tag: tag_no_subfield
+008: 
+  tag_params: 
+    maskedinput: 
+      definitions: "['~']='[|0-9]'"
+      mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
+  tag: tag_no_subfield
+  tag_header: none
+028: 
+  layout: 
+    fields: 
+    - - a
+      - cols: 1
+"031": 
+  layout: 
+    fields: 
+    - - a
+      - validate: 
+        - msg: the format must be 1.x.x
+          value: "'^1\\.[0-9][0-9]*\\.[0-9][0-9]*$'"
+          rule: regex
+        - msg: the field is required
+          value: true
+          rule: required
+        cols: 1
+    - - d
+      - cols: 2
+    - - m
+      - cols: 1
+    - - e
+      - cols: 1
+    - - t
+      - growfield: true
+        cols: 5
+    - - r
+      - cols: 1
+    - - o
+      - cols: 1
+    - - g
+      - cols: 1
+    - - n
+      - cols: 1
+    - - s
+      - validate: 
+        - msg: the field can contain 't', '+' or '?'
+          value: "'^[t\\+\\?][t\\+\\?]?[t\\+\\?]?$'"
+          rule: regex
+        cols: 1
+    - - p
+      - cols: 5
+        editor_partial: subfield_pae
+    - - q
+      - cols: 5
+    columns: 5
+  tag_params: 
+    timesig: 
+      s_iterator: -400
+      subfield: o
+    keysig: 
+      s_iterator: -200
+      subfield: n
+    clef: 
+      s_iterator: -300
+      subfield: g
+"033": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 7
+    columns: 7
+"040": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 3
+    - - c
+      - cols: 2
+    - - d
+      - cols: 2
+    - - b
+      - cols: 2
+    columns: 9
+"041": 
+  layout: 
+    fields: 
+    - - indicator
+      - cols: 1
+        editor_partial: subfield_indicator
+    - - a
+      - cols: 2
+    - - e
+      - cols: 2
+    - - h
+      - cols: 2
+    columns: 7
+"100": 
+  layout: 
+    fields: 
+    - - a
+      - type: person
+        cols: 4
+        editor_partial: subfield_secondary
+    - - j
+      - value: Attributed to
+        cols: 1
+        editor_partial: subfield_checkbox
+    columns: 5
+"110": 
+  layout: 
+    fields: 
+    - - a
+      - type: institution
+        cols: 2
+        editor_partial: subfield_secondary
+    - - b
+      - cols: 1
+    columns: 3
+"130": 
+  layout: 
+    fields: 
+    - - a
+      - type: standard_title
+        cols: 7
+        editor_partial: subfield_secondary
+    - - k
+      - cols: 3
+    - - o
+      - cols: 2
+    - - r
+      - cols: 2
+    - - n
+      - cols: 4
+    - - m
+      - cols: 3
+    columns: 7
+"240": 
+  layout: 
+    fields: 
+    - - a
+      - type: standard_title
+        cols: 7
+        editor_partial: subfield_secondary
+    columns: 7
+  extended_help: 240_custom
+"245": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+        cols: 1
+    - - c
+      - cols: 1
+        hidden: true
+"260": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 5
+    - - b
+      - cols: 5
+    - - e
+      - cols: 4
+    - - f
+      - cols: 4
+    - - c
+      - cols: 2
+    - - "3"
+      - cols: 10
+        hidden: true
+    columns: 10
+"300": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+        cols: 5
+    - - b
+      - cols: 3
+    - - c
+      - cols: 2
+    - - "3"
+      - cols: 5
+    columns: 5
+"340": 
+  layout: 
+    fields: 
+    - - d
+      - values: 
+        - Typography
+        - Engraving
+        editor_partial: subfield_select
+"351": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+        cols: 8
+    - - "3"
+      - editor_partial: subfield_material
+        cols: 2
+    columns: 10
+"508": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+      - values: 
+        - "Arranger: "
+        - "Artist: "
+        - "Associated name: "
+        - "Binder: "
+        - "Bookseller: "
+        - "Conceptor: "
+        - "Choreographer: "
+        - "Collaborator: "
+        - "Composer: "
+        - "Compiler: "
+        - "Conductor: "
+        - "Censor: "
+        - "Costume designer: "
+        - "Dancer: "
+        - "Donor: "
+        - "Dedicatee: "
+        - "Dubious author: "
+        - "Editor: "
+        - "Engraver: "
+        - "Former owner: "
+        - "Illustrator: "
+        - "Instrumentalist: "
+        - "Librettist: "
+        - "Lithograph: "
+        - "Lyricist: "
+        - "Patron: "
+        - "Paper maker: "
+        - "Production personnel: "
+        - "Performer: "
+        - "Printer: "
+        - "Scribe: "
+        - "Translater: "
+        - "Vocalist: "
+        cols: 1
+        editor_partial: subfield_autocomplete
+"510": 
+  layout: 
+    fields: 
+    - - a
+      - values: 
+        - RISM A
+        - RISM B
+        - RISM B.II
+        - RISM B.VIII.1
+        - RISM A (incorrect)
+        - RISM B (incorrect)
+        cols: 2
+        editor_partial: subfield_select
+    - - c
+      - cols: 2
+    columns: 4
+"518": 
+  layout: 
+    fields: 
+    - - a
+      - values: 
+        - "Composition date: "
+        - "First performance date: "
+        - "Performance date: "
+        cols: 1
+        editor_partial: subfield_autocomplete
+"541": 
+  layout: 
+    fields: 
+    - - c
+      - growfield: true
+        cols: 5
+    - - a
+      - cols: 4
+    - - d
+      - cols: 1
+    columns: 5
+"590": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+        cols: 4
+    - - "3"
+      - editor_partial: subfield_material
+        cols: 1
+    - - b
+      - growfield: true
+        cols: 5
+    columns: 5
+"592": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    - - "3"
+      - editor_partial: subfield_material
+        cols: 1
+    columns: 5
+"593": 
+  layout: 
+    fields: 
+    - - a
+      - values: 
+        - Print
+        - Manuscript
+        - Uncertain
+        editor_partial: subfield_select
+"594": 
+  layout: 
+    fields: 
+    - - a
+      - validate: 
+        - msg: this field must be 4 characters
+          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
+          rule: regex
+        cols: 3
+    - - b
+      - cols: 3
+    - - c
+      - validate: 
+        - msg: this field must be 4 characters
+          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
+          rule: regex
+        cols: 3
+    - - d
+      - cols: 3
+    - - e
+      - cols: 3
+    - - f
+      - validate: 
+        - msg: this field must be 5 characters
+          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
+          rule: regex
+        cols: 3
+    - - g
+      - validate: 
+        - msg: this field must be 4 characters
+          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
+          rule: regex
+        cols: 3
+    - - h
+      - validate: 
+        - msg: this field must be 3 characters
+          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
+          rule: regex
+        cols: 3
+    - - i
+      - cols: 3
+    - - k
+      - cols: 3
+    - - l
+      - cols: 5
+    - - m
+      - cols: 5
+    - - n
+      - cols: 5
+    columns: 15
+"599":
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+        editor_partial: subfield_select_psmd_institution
+    columns: 4
+"600": 
+  layout: 
+    hide_add_button: true
+    fields: 
+    - - "_"
+      - cols: 4
+        hidden: true
+    - - "0"
+      - cols: 4
+        hidden: true
+    - - a
+      - read_only: true
+        cols: 2
+    - - g
+      - read_only: true
+        cols: 2
+    - - t
+      - read_only: true
+        cols: 4
+    columns: 4
+"690": 
+  layout: 
+    fields: 
+    - - a
+      - type: catalogue
+        cols: 1
+        editor_partial: subfield_secondary
+    - - n
+      - cols: 1
+    columns: 2
+"691": 
+  layout: 
+    fields: 
+    - - a
+      - type: catalogue
+        cols: 1
+        editor_partial: subfield_secondary
+    - - n
+      - cols: 1
+    columns: 2
+"700": 
+  layout: 
+    fields: 
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+        cols: 1
+    - - "4"
+      - editor_partial: subfield_relator_codes_710
+        cols: 1
+    columns: 2
+  tag_params: 
+    codes: 
+    - fmo
+    - dnr
+    - dte
+    - prf
+    - otm
+    - ppm
+    - prt
+    - pbl
+    - edt
+    - bsl
+    - asn
+    - dub
+"710": 
+  layout: 
+    fields: 
+    - - a
+      - type: institution
+        editor_partial: subfield_secondary
+        cols: 1
+    - - "4"
+      - editor_partial: subfield_relator_codes_710
+        cols: 1
+    columns: 2
+  tag_params: 
+    codes: 
+    - fmo
+    - dnr
+    - dte
+    - prf
+    - otm
+    - ppm
+    - prt
+    - pbl
+    - edt
+    - bsl
+    - asn
+    - dub
+"730": 
+  layout: 
+    fields: 
+    - - a
+      - type: standard_title
+        editor_partial: subfield_secondary
+        cols: 6
+    - - k
+      - cols: 2
+    - - o
+      - cols: 2
+    - - r
+      - cols: 2
+    - - n
+      - cols: 3
+    - - m
+      - cols: 3
+    columns: 6
+"740": 
+  layout: 
+    fields: 
+    - - a
+      - type: standard_title
+        editor_partial: subfield_secondary
+        cols: 2
+    - - n
+      - cols: 1
+    - - p
+      - cols: 1
+    columns: 2
+"772": 
+  layout: 
+    fields: 
+    - - w
+      - cols: 1
+"773": 
+  layout: 
+    fields: 
+    - - w
+      - cols: 1
+"775": 
+  layout: 
+    fields: 
+    - - w
+      - cols: 2
+    - - "4"
+      - editor_partial: subfield_relator_codes_710
+        cols: 2
+    columns: 4
+  tag_params: 
+    codes: 
+    - 1st
+    - led
+"786": 
+  layout: 
+    fields: 
+    - - i
+      - values: 
+        - Identified source
+        - Possibly identified source
+        - Unknown source
+        editor_partial: subfield_select
+        cols: 2
+    - - o
+      - growfield: true
+        cols: 3
+    - - n
+      - growfield: true
+        cols: 2
+    - - a
+      - cols: 3
+    - - d
+      - cols: 4
+    - - t
+      - growfield: true
+        cols: 7
+    columns: 7
+"787": 
+  layout: 
+    fields: 
+    - - g
+      - cols: 2
+    - - n
+      - cols: 5
+    - - s
+      - cols: 4
+    - - w
+      - cols: 3
+    columns: 7
+"852": 
+  layout: 
+    fields: 
+    - - a
+      - nowrap: true
+        type: library
+        editor_partial: subfield_secondary
+        cols: 4
+    - - p
+      - growfield: true
+        cols: 6
+    - - z
+      - values: 
+        - Original
+        - Reproduction
+        - Secondary Literature
+        cols: 6
+        editor_partial: subfield_select
+    - - "3"
+      - growfield: true
+        cols: 4
+    - - "u"
+      - growfield: true
+        cols: 10
+    columns: 10
+ui: 
+  hide_marc_identifiers: true

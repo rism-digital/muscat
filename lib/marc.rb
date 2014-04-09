@@ -158,7 +158,7 @@ class Marc
         if MarcConfig.has_foreign_subfields(child.tag)
           if master = child.get_master_foreign_subfield
             master.set_foreign_object
-            @all_foreign_associations[master.foreign_object.ext_id] = master.foreign_object
+            @all_foreign_associations[master.foreign_object.id] = master.foreign_object
           end
         end
       end
@@ -437,17 +437,17 @@ class Marc
       parent_manuscript_id = parent_tags[0].fetch_first_by_tag(:w)
       # puts parent_manuscript_id
       return if !parent_manuscript_id
-      parent_manuscript = Source.find_by_ext_id(parent_manuscript_id.content)
+      parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
       return if !parent_manuscript
       
       # check if the 775 tag already exists in the parent
       parent_manuscript.marc.each_data_tag_from_tag("775") do |tag|
         subfield = tag.fetch_first_by_tag("w")
-        return if subfield && subfield.content == get_ext_id
+        return if subfield && subfield.content == get_id
       end
       # nothing found, add it in the parent manuscript
       _775_w = MarcNode.new("775", "", MarcConfig.get_default_indicator("775"))
-      _775_w.add_at(MarcNode.new("w", get_ext_id, nil), 0 )
+      _775_w.add_at(MarcNode.new("w", get_id, nil), 0 )
       _775_w.add_at(MarcNode.new("4", "led", nil), 1 )
       parent_manuscript.marc.root.add_at(_775_w, parent_manuscript.marc.get_insert_position("775") )
       parent_manuscript.suppress_create_incipit
@@ -457,16 +457,16 @@ class Marc
       # do we have a parent manuscript?
       parent_manuscript_id = first_occurance("773", "w")
       return if !parent_manuscript_id
-      parent_manuscript = Source.find_by_ext_id(parent_manuscript_id.content)
+      parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
       return if !parent_manuscript
       # check if the 772 tag already exists
       parent_manuscript.marc.each_data_tag_from_tag("772") do |tag|
         subfield = tag.fetch_first_by_tag("w")
-        return if subfield && subfield.content == get_ext_id
+        return if subfield && subfield.content == get_id
       end
       # nothing found, add it in the parent manuscript
       _772_w = MarcNode.new("772", "", MarcConfig.get_default_indicator("772"))
-      _772_w.add_at(MarcNode.new("w", get_ext_id, nil), 0 )
+      _772_w.add_at(MarcNode.new("w", get_id, nil), 0 )
       parent_manuscript.marc.root.add_at(_772_w, parent_manuscript.marc.get_insert_position("772") )
       parent_manuscript.suppress_create_incipit
       parent_manuscript.suppress_update_77x
@@ -476,10 +476,10 @@ class Marc
   end
 
   # Set the RISM ID in the 001 field
-  def set_ext_id(ext_id)
-    ext_id_tag = first_occurance("001")
-    if ext_id_tag
-      ext_id_tag.content = ext_id
+  def set_id(id)
+    id_tag = first_occurance("001")
+    if id_tag
+      id_tag.content = id
       # puts @root.to_marc
     else
       save_at = 0
@@ -490,11 +490,11 @@ class Marc
         end
         index += 1
       end
-      @root.add_at(MarcNode.new("001", ext_id, nil), save_at + 1)
+      @root.add_at(MarcNode.new("001",_id, nil), save_at + 1)
     end
   end
   
-  def get_ext_id
+  def get_id
     rism_id = nil
     if node = first_occurance("001")
       rism_id = node.content

@@ -1,4 +1,6 @@
 ActiveAdmin.register Source do
+  
+   actions :all, except: [:edit] 
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -29,7 +31,9 @@ ActiveAdmin.register Source do
     actions
   end
   
-  show do
+  show :title => proc{ active_admin_source_show_title( @item.composer, @item.std_title, @item.id) } do
+    # @item go from the controller is not available there. We need to get it from the @arbre_context
+    @item = @arbre_context.assigns[:item]
     render :partial => "marc/show"
   end
   

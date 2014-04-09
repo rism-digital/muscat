@@ -1,0 +1,21 @@
+<%
+    a_tag = tag.fetch_first_by_tag(:a)
+    four_tags = tag.fetch_all_by_tag(:"4")
+	institution = (a_tag ? a_tag.looked_up_content : "")
+-%>
+<tr class="row">
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td>		
+		<%= link_to institution, { :action => "index", :controller => "institutions", 
+			:filter => I18n.t(:filter_name),
+			:operator => "6",
+			:search => "\"#{institution}\""} -%>
+		<%- four_tags.each do |four_tag| %> 
+			<%= " [#{@editor_profile.get_label(four_tag.content)}]" if (four_tag && four_tag.content) -%>
+		<%- end %>
+	</td>
+</tr>

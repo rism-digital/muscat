@@ -1,0 +1,17 @@
+<%
+    a_tag = tag.fetch_first_by_tag(:a)
+	subject = (a_tag ? a_tag.looked_up_content : "")
+-%>
+<tr class="row">
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_sub_label(tag.tag, "a") %>
+		<%- end %>
+	</th>
+	<td>		
+		<%= link_to subject, { :action => "index", :controller => "standard_terms", 
+			:filter => I18n.t(:filter_any_field),
+			:operator => "6",
+			:search => "\"#{subject}\""} %>
+	</td>
+</tr>

@@ -1,0 +1,14 @@
+--- !map:Settings 
+group_order: 
+- library
+- provenance
+- linkage
+- diplomatic_title
+- physical_description
+- content
+- incipit
+- bibliographical_reference
+- added_entries
+- performance
+- date
+- administration

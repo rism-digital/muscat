@@ -1,0 +1,270 @@
+--- 
+###
+- :id: DefaultCH
+  :name: Default (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutDefaultCH
+  :filter: 
+    default: true
+###
+- :id: ConvolutumCH
+  :name: Convolutum (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutPartAdministrationCH
+  - LayoutPartLibraryConvolutumCH
+  - LayoutPartProvenanceCH
+  - LayoutPartAddedEntriesCH
+  - LayoutPartDiplomaticTitleCH
+  - LayoutPartBibRefAttributedCH
+  - LayoutPartLinkageConvolutumCH
+  - LayoutPartDateCH
+  - LayoutConvolutumCH
+  :filter: 
+    leader: !ruby/regexp /.....npd.............../
+###
+- :id: CollectionCH
+  :name: Collection (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutPartAdministrationCH
+  - LayoutPartLibraryCollectionCH
+  - LayoutPartProvenanceCH
+  - LayoutPartDiplomaticTitleCH
+  - LayoutPartPhysicalDescriptionMusicCH
+  - LayoutPartContentCollectionCH
+  - LayoutPartAddedEntriesCH
+  - LayoutPartBibRefAttributedCH
+  - LayoutPartLinkageCollectionCH
+  - LayoutPartDateCH
+  - LayoutCollectionCH
+  :filter: 
+    leader: !ruby/regexp /.....n[dc]c.............../
+    tag: "110"
+###
+- :id: LibrettoAnonymousCH
+  :name: Libretto Anonymous (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutPartAdministrationCH
+  - LayoutPartLibraryCH
+  - LayoutPartProvenanceCH
+  - LayoutPartDiplomaticTitleCH
+  - LayoutPartPhysicalDescriptionLibrettoCH
+  - LayoutPartContentLibrettoAnonymousCH
+  - LayoutPartAddedEntriesCH
+  - LayoutPartDateCH
+  - LayoutPartPerformanceCH
+  - LayoutPartBibRefLibrettoAnonymousCH
+  - LayoutLibrettoAnonymousCH
+  :filter: 
+    leader: !ruby/regexp /.....n[at]m.............../
+    tag: "130"
+###
+- :id: LibrettoAttributedCH
+  :name: Libretto Attributed (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutPartAdministrationCH
+  - LayoutPartLibraryCH
+  - LayoutPartProvenanceCH
+  - LayoutPartDiplomaticTitleCH
+  - LayoutPartPhysicalDescriptionLibrettoCH
+  - LayoutPartContentLibrettoAttributedCH
+  - LayoutPartAddedEntriesCH
+  - LayoutPartDateCH
+  - LayoutPartPerformanceCH
+  - LayoutPartBibRefLibrettoAttributedCH
+  - LayoutLibrettoAttributedCH
+  :filter: 
+    leader: !ruby/regexp /.....n[at]m.............../
+    tag: "100"
+###
+- :id: AnonymousWorkCH
+  :name: Anonymous Work (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutPartAdministrationCH
+  - LayoutPartLibraryCH
+  - LayoutPartProvenanceCH
+  - LayoutPartDiplomaticTitleCH
+  - LayoutPartPhysicalDescriptionMusicCH
+  - LayoutPartContentAnonymousWorkCH
+  - LayoutPartIncipitCH
+  - LayoutPartAddedEntriesCH
+  - LayoutPartDateCH
+  - LayoutPartPerformanceCH
+  - LayoutPartBibRefAnonymousCH
+  - LayoutPartLinkageWorkCH
+  - LayoutAnonymousWorkCH
+  :filter: 
+    leader: !ruby/regexp /.....n[dc]m.............../
+    tag: "130"
+###
+- :id: AnonymousWorkinCollectionCH
+  :name: Anonymous Work in Collection (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutPartAdministrationCH
+  - LayoutPartLibraryCH
+  - LayoutPartProvenanceCH
+  - LayoutPartDiplomaticTitleCH
+  - LayoutPartPhysicalDescriptionMusicCH
+  - LayoutPartContentAnonymousWorkCH
+  - LayoutPartIncipitCH
+  - LayoutPartAddedEntriesCH
+  - LayoutPartDateCH
+  - LayoutPartPerformanceCH
+  - LayoutPartBibRefAnonymousCH
+  - LayoutPartLinkageWorkCollectionCH
+  - LayoutAnonymousWorkCollectionCH
+  :filter: 
+    leader: !ruby/regexp /.....n[dc]d.............../
+    tag: "130"
+###
+- :id: AttributedWorkCH
+  :name: Attributed Work (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutPartAdministrationCH
+  - LayoutPartLibraryCH
+  - LayoutPartProvenanceCH
+  - LayoutPartDiplomaticTitleCH
+  - LayoutPartPhysicalDescriptionMusicCH
+  - LayoutPartContentAttributedWorkCH
+  - LayoutPartIncipitCH
+  - LayoutPartAddedEntriesCH
+  - LayoutPartDateCH
+  - LayoutPartPerformanceCH
+  - LayoutPartBibRefAttributedCH
+  - LayoutPartLinkageWorkCH
+  - LayoutAttributedWorkCH
+  :filter: 
+    leader: !ruby/regexp /.....n[dc]m.............../
+    tag: "100"
+###
+- :id: AttributedWorkinCollectionCH
+  :name: Attributed Work in Collection (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutPartAdministrationCH
+  - LayoutPartLibraryCH
+  - LayoutPartProvenanceCH
+  - LayoutPartDiplomaticTitleCH
+  - LayoutPartPhysicalDescriptionMusicCH
+  - LayoutPartContentAttributedWorkCH
+  - LayoutPartIncipitCH
+  - LayoutPartAddedEntriesCH
+  - LayoutPartDateCH
+  - LayoutPartPerformanceCH
+  - LayoutPartBibRefAttributedCH
+  - LayoutPartLinkageWorkCollectionCH
+  - LayoutAttributedWorkCollectionCH
+  :filter: 
+    leader: !ruby/regexp /.....n[dc]d.............../
+    tag: "100"
+###
+- :id: TheoreticaAnonymousCH
+  :name: Theoretica Anonymous (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutPartAdministrationCH
+  - LayoutPartLibraryCH
+  - LayoutPartProvenanceCH
+  - LayoutPartDiplomaticTitleCH
+  - LayoutPartPhysicalDescriptionTheoreticaCH
+  - LayoutPartContentTheoreticaAnonymousCH
+  - LayoutPartIncipitCH
+  - LayoutPartAddedEntriesCH
+  - LayoutPartBibRefTheoreticaCH
+  - LayoutTheoreticaAnonymousCH
+  :filter: 
+    leader: !ruby/regexp /.....npm.............../
+    tag: "130"
+###
+- :id: TheoreticaAttributedCH
+  :name: Theoretica Attributed (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutPartAdministrationCH
+  - LayoutPartLibraryCH
+  - LayoutPartProvenanceCH
+  - LayoutPartDiplomaticTitleCH
+  - LayoutPartPhysicalDescriptionTheoreticaCH
+  - LayoutPartContentTheoreticaAttributedCH
+  - LayoutPartIncipitCH
+  - LayoutPartAddedEntriesCH
+  - LayoutPartBibRefTheoreticaCH
+  - LayoutTheoreticaAttributedCH
+  :filter: 
+    leader: !ruby/regexp /.....npm.............../
+    tag: "100"
+- :id: ShowCH
+  :name: Show (CH)
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - BasicFormOptions
+  :layout: 
+  - LayoutShowCH
+  :filter: 
+    show_all: false
+    show: true

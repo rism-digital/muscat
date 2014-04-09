@@ -68,7 +68,6 @@
       - :no_browse: true
   "004": 
     # this is a special used internally for holding records
-    # case because the tag is empty (no subfield), linking is done through object id (and not ext_id)
     :master: ""
     :indicator: ""
     :occurances: "?"
@@ -218,7 +217,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: Person
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -240,7 +239,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: Institution
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -266,7 +265,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: StandardTitle
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -292,7 +291,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: StandardTitle
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -410,7 +409,7 @@
     :fields: 
     - - a
       - :occurances: "?"
-        :browse_helper: link_http
+        :browse_helper: application_helper_link_http
     - - "5"
       - :occurances: "?"
         :no_browse: true
@@ -667,7 +666,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: Person
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -689,7 +688,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: StandardTerm
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -718,7 +717,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: Place
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -743,7 +742,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: LiturgicalFeast
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -761,7 +760,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: Catalogue
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -781,7 +780,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: Catalogue
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -801,7 +800,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: Person
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -833,7 +832,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: Institution
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -864,7 +863,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: StandardTitle
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -889,8 +888,6 @@
      :fields: 
      - - a
        - :occurances: "?"
-         :foreign_class: StandardTitle
-         :foreign_field: title
      - - n
        - :occurances: "*"
      - - p
@@ -903,7 +900,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: Place
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "?"
@@ -920,7 +917,7 @@
     :fields: 
     - - w
       - :occurances: "1"
-        :browse_helper: link_source_id
+        :browse_helper: application_helper_link_source_id
     - - "7"
       - :occurances: "0"
         :no_browse: true
@@ -932,9 +929,9 @@
     - - w
       - :occurances: "1"
         :foreign_class: Source
-        :foreign_field: ext_id
+        :foreign_field: id
         :zero_padding: "14"
-        :browse_helper: link_source_id
+        :browse_helper: application_helper_link_source_id
     - - i
       - :occurances: "?"
     - - "7"
@@ -950,9 +947,9 @@
     - - w
       - :occurances: "1"
         :foreign_class: Source
-        :foreign_field: ext_id
+        :foreign_field: id
         :zero_padding: "14"
-        :browse_helper: link_source_id
+        :browse_helper: application_helper_link_source_id
 
   "786": 
     :master: a
@@ -978,7 +975,7 @@
     :fields: 
     - - a
       - :occurances: "?"        
-        :browse_helper: link_source_id
+        :browse_helper: application_helper_link_source_id
     - - g
       - :occurances: "*"        
         :no_browse: true
@@ -990,7 +987,7 @@
         :no_browse: true
     - - w
       - :occurances: "*"
-        :browse_helper: link_source_id
+        :browse_helper: application_helper_link_source_id
     - - "7"
       - :occurances: "0"
         :no_browse: true
@@ -1030,7 +1027,7 @@
     - - "0"
       - :occurances: "?"
         :foreign_class: Library
-        :foreign_field: ext_id
+        :foreign_field: id
         :no_show: true
     - - a
       - :occurances: "1"
@@ -1062,7 +1059,7 @@
     :fields: 
     - - u
       - :occurances: "*"
-        :browse_helper: link_http
+        :browse_helper: application_helper_link_http
     - - z
       - :occurances: "*"
   

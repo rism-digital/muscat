@@ -1,0 +1,27 @@
+<%
+   a_tag = tag.fetch_first_by_tag(:a)
+   d_tag = tag.fetch_first_by_tag(:d)
+   city = (d_tag ? d_tag.looked_up_content : nil)
+   country = (a_tag ? a_tag.looked_up_content : "")
+-%>
+<tr class="row">
+	<th>
+	  <% if (no_label == false) -%>
+	      <%= @editor_profile.get_label(tag.tag) %>
+	  <%- end %>
+	</th>
+	<td>
+	  <%- if country %>
+	      <%= link_to "#{country}", {:action => "index", :controller => "places",
+	                                 :filter => I18n.t(:filter_country),
+	                                 :operator => "6",
+	                                 :search => "\"#{country}\""} -%>
+	      <%= ", " %>
+	  <%- end %>
+
+	  <%= link_to city, {:action => "index", :controller => "places",
+	                     :filter => I18n.t(:filter_name),
+	                     :operator => "6",
+	                     :search => "\"#{city}\""} -%>
+	</td>
+</tr>

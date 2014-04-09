@@ -1,0 +1,57 @@
+--- 
+- :id: Default
+  :name: Default
+  :labels: 
+  - Labels
+  :rules: 
+  - CataloguingRules
+  :options: 
+  - FormOptions
+  :layout: 
+  - LayoutDefault
+  :filter: 
+    default: true
+    
+###
+- :id: Print
+  :name: Print
+  :labels: 
+  - Labels
+  :rules: 
+  - CataloguingRules
+  :options: 
+  - FormOptions
+  :layout:
+  - LayoutPrint
+  :filter: 
+    leader: !ruby/regexp /.....(ccm|ncm).............../
+    tag: "100"
+    
+###
+- :id: Show
+  :name: Show
+  :labels: 
+  - Labels
+  :rules: 
+  - CataloguingRules
+  :options: 
+  - FormOptions
+  :layout: 
+  - LayoutShow
+  :filter: 
+    show_all: false
+    show: true
+    
+###
+- :id: Holding
+  :name: holding
+  :labels: 
+  - Labels
+  :rules: 
+  - CataloguingRules
+  :options: 
+  - FormOptions
+  :layout: 
+  - LayoutHolding
+  :filter: 
+    holding: true
