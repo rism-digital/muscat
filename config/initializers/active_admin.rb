@@ -249,6 +249,8 @@ end
 
 # LP - added for caching filters, pagination and order
 require 'active_admin/filter_saver/controller'
+# LP - added for forcing kaminari to always include page param (necessary for FilterSaver)
+require "kaminari/helpers/tag"
  
 ActiveAdmin.before_load do |app|
   # Add our Extensions
