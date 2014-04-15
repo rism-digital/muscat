@@ -12,7 +12,7 @@
 		                </th>
 		                <td valign="top">
 							<%= application_helper_link_source_id(@item.source.id).html_safe %>
-							<%= " #{@item.source.composer}" if @item.source.composer %><%= ": " if (@item.source.composer && @item.source.std_title)%><i><%= "#{@item.source.std_title}" if @item.source.std_title %></i>
+							<%= " #{@item.source.composer}" if @item.source.composer != "" %><%= ": " if (@item.source.composer != "" && @item.source.std_title)%><i><%= "#{@item.source.std_title}" if @item.source.std_title %></i>
 						</td>
 		        	</tr>
 				</table>
