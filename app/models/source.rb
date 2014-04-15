@@ -50,13 +50,48 @@ class Source < ActiveRecord::Base
 
   searchable do
     text :std_title
+    text :std_title_d
     text :composer
-    text :source
+    text :composer_d
+    text :marc_source
+    text :title
+    text :title_d
+    text :shelf_mark
+    text :lib_siglum
+    
     integer :date_from
     integer :date_to
     
     integer :catalogues, :multiple => true do
           catalogues.map { |catalogue| catalogue.id }
+    end
+    
+    integer :people, :multiple => true do
+          people.map { |person| person.id }
+    end
+    
+    integer :libraries, :multiple => true do
+          libraries.map { |library| library.id }
+    end
+    
+    integer :institutions, :multiple => true do
+          institutions.map { |institution| institution.id }
+    end
+    
+    integer :liturgical_feasts, :multiple => true do
+          liturgical_feasts.map { |lf| lf.id }
+    end
+    
+    integer :standard_terms, :multiple => true do
+          standard_terms.map { |st| st.id }
+    end
+    
+    integer :standard_titles, :multiple => true do
+          standard_titles.map { |stit| stit.id }
+    end
+    
+    integer :works, :multiple => true do
+          works.map { |work| work.id }
     end
   end
     

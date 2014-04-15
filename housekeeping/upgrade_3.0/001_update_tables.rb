@@ -130,14 +130,6 @@ def self.up
   require './db/migrate/20140331105618_devise_create_admin_users.rb'
   DeviseCreateAdminUsers.new.migrate(:up)
   
-  # This column is added in 2.1/trunk/muscat3
-  # compatibility check for 2.0
-#  unless column_exists? :catalogues, :abbrev
-#    add_column :catalogues, :abbrev, :string
-#    # Put it in the right place
-#    change_column :catalogues, :abbrev, :string, after: :pages
-#  end
-  
   # Fix the schema migration
   execute "TRUNCATE TABLE schema_migrations;"
   Dir.open('db/migrate').each do |fname|

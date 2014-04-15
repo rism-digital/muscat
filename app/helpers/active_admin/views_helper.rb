@@ -1,3 +1,6 @@
+# include the override for group_values
+require 'sunspot_extensions.rb'
+
 module ActiveAdmin::ViewsHelper
   
   # embedds a list of sources from a foreign (authority) model
@@ -17,9 +20,9 @@ module ActiveAdmin::ViewsHelper
       c = Source.solr_search do
         fulltext query
         with :catalogues, item.id
-        paginate :page => src_list_page, :per_page => 15
-        
+        paginate :page => src_list_page, :per_page => 15 
       end
+      
       #context.paginated_collection(c.page(src_list_page).per(15), param_name: 'src_list_page',  download_links: false) do
       context.paginated_collection(c.results, param_name: 'src_list_page',  download_links: false) do
         context.table_for(context.collection) do |cr|
