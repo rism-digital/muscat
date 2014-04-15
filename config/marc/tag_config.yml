@@ -148,7 +148,7 @@
         # ["0#", "1#", "2#"]
   "033": 
     :master: a
-    :indicator: "0#"
+    :indicator: ["2#", "1#", "0#"]
     :occurances: "*"
     :fields: 
     - - a
