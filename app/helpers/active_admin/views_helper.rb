@@ -27,10 +27,17 @@ module ActiveAdmin::ViewsHelper
       context.paginated_collection(c.results, param_name: 'src_list_page',  download_links: false) do
         context.table_for(context.collection) do |cr|
           context.column (I18n.t :filter_composer), :composer
-          context.column (I18n.t :filter_standardised_title), :std_title
+          context.column (I18n.t :filter_std_title), :std_title
           context.column (I18n.t :filter_title), :title
           context.column (I18n.t :filter_lib_siglum), :lib_siglum
           context.column (I18n.t :filter_shelf_mark), :shelf_mark
+          context.column "" do |source|
+            link_to "View", controller: :sources, action: :show, id: source.id
+          end
+        end
+      end
+    end
+  end 
         end
       end
     end
