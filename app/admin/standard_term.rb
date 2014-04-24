@@ -28,7 +28,7 @@ ActiveAdmin.register StandardTerm do
   ## Show ##
   ##########
   
-  show do   
+  show :title => :term do   
     attributes_table do
       row (I18n.t :filter_term) { |r| r.term }
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
