@@ -38,6 +38,19 @@ module ActiveAdmin::ViewsHelper
       end
     end
   end 
+  
+  def active_admin_navigation_bar( context )
+    context.div class: :table_tools do
+      context.ul class: :table_tools_segmented_control do
+        context.li class: :scope do
+          context.a href: "test", class: :table_tools_button do
+            context.text_node "Previous"
+          end
+        end
+        context.li class: :scope do
+          context.a href: "test", class: :table_tools_button do
+            context.text_node "Next"
+          end
         end
       end
     end
