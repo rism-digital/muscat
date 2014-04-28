@@ -124,6 +124,12 @@ def self.up
   execute "UPDATE sources SET id = CONVERT(ext_id, SIGNED INTEGER)"
   execute "ALTER TABLE sources DROP COLUMN ext_id"
   
+  # Source 403011516 has a 1C char in 028, manually fix
+  s = Source.find(403011516)
+  s.marc_source.delete! 28.chr
+  s.suppress_reindex
+  s.save!
+  
   # Quirk of the day
   # is it better to call the migration or
   # duplicate the migration code?

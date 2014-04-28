@@ -47,8 +47,21 @@ class Source < ActiveRecord::Base
   composed_of :marc, :class_name => "Marc", :mapping => %w(marc_source)
   
   before_destroy :check_dependencies
+  after_save :reindex
+  
+  attr_accessor :suppress_reindex_trigger
+  
+  # Suppresses the solr reindex
+  def suppress_reindex
+    self.suppress_reindex_trigger = true
+  end
+  
+  def reindex
+    return if self.suppress_reindex_trigger == true
+    self.index
+  end
 
-  searchable do
+  searchable :auto_index => false do
     text :std_title
     text :std_title_d
     text :composer
@@ -102,5 +115,8 @@ class Source < ActiveRecord::Base
     end
   end
   
+  def should_index?
+    false
+  end
     
 end

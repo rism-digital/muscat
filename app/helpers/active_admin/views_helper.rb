@@ -19,7 +19,7 @@ module ActiveAdmin::ViewsHelper
       # c = item.sources.where("std_title like ?", "%#{query}%") unless query.blank?
       c = Source.solr_search do
         fulltext query
-        with :catalogues, item.id
+        with item.class.name.underscore.pluralize.to_sym, item.id
         paginate :page => src_list_page, :per_page => 15 
       end
       
