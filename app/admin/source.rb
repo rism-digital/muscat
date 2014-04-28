@@ -1,6 +1,6 @@
 ActiveAdmin.register Source do
   
-   actions :all, except: [:edit] 
+  actions :all, except: [:edit] 
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -18,11 +18,21 @@ ActiveAdmin.register Source do
     
   end
   
+  #scope :all, :default => true 
+  #scope :published do |sources|
+  #  sources.where(:wf_stage => 'published')
+  #end
+  
+  ###########
+  ## Index ##
+  ###########
+  
   # temporary, to be replaced by Solr
   filter :composer_or_title_contains, :as => :string
   filter :lib_siglum_contains, :as => :string
   
   index do
+    column (I18n.t :filter_id), :id  
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title
     column (I18n.t :filter_title), :title
@@ -31,16 +41,14 @@ ActiveAdmin.register Source do
     actions
   end
   
+  ##########
+  ## Show ##
+  ##########
+  
   show :title => proc{ active_admin_source_show_title( @item.composer, @item.std_title, @item.id) } do
     # @item go from the controller is not available there. We need to get it from the @arbre_context
     @item = @arbre_context.assigns[:item]
     render :partial => "marc/show"
   end
-  
-=begin
-  sidebar "Search sources", :only => :show do
-    render("activeadmin/src_search") # Calls a partial
-  end
-=end
   
 end

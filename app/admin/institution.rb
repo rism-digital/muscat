@@ -18,6 +18,7 @@ ActiveAdmin.register Institution do
   filter :name_or_alternates_contains, :as => :string
   
   index do
+    column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_sources), :src_count
     actions

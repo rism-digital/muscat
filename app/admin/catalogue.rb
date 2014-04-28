@@ -14,11 +14,18 @@ ActiveAdmin.register Catalogue do
   ## Index ##
   ###########
   
+  #scope :all, :default => true 
+  #scope :published do |catalogues|
+  #  catalogues.where(:wf_stage => 'published')
+  #end
+  
   # temporary, to be replaced by Solr
   filter :name_or_description_starts_with, :as => :string
   filter :author_contains, :as => :string
   
   index do
+    selectable_column
+    column (I18n.t :filter_id), :id    
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count
@@ -29,7 +36,8 @@ ActiveAdmin.register Catalogue do
   ## Show ##
   ##########
   
-  show do   
+  show do 
+    #active_admin_navigation_bar( self )
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_author) { |r| r.author }
@@ -42,7 +50,7 @@ ActiveAdmin.register Catalogue do
     active_admin_embedded_source_list( self, catalogue, params[:q], params[:src_list_page] )
   end
   
-begin
+begin  
   sidebar "Search sources", :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end

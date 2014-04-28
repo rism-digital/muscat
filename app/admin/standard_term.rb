@@ -18,6 +18,7 @@ ActiveAdmin.register StandardTerm do
   filter :term_contains, :as => :string
   
   index do
+    column (I18n.t :filter_id), :id  
     column (I18n.t :filter_term), :term
     column (I18n.t :filter_alternate_terms), :alternate_terms
     column (I18n.t :filter_sources), :src_count
@@ -28,7 +29,7 @@ ActiveAdmin.register StandardTerm do
   ## Show ##
   ##########
   
-  show do   
+  show :title => :term do   
     attributes_table do
       row (I18n.t :filter_term) { |r| r.term }
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }

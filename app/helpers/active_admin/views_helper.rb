@@ -39,7 +39,9 @@ module ActiveAdmin::ViewsHelper
     end
   end 
   
+  # displays the navigation button on top of a show panel
   def active_admin_navigation_bar( context )
+    # puts "***", session[:last_search_filter][controller_name]  
     context.div class: :table_tools do
       context.ul class: :table_tools_segmented_control do
         context.li class: :scope do
