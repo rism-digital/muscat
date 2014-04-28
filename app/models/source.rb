@@ -114,9 +114,5 @@ class Source < ActiveRecord::Base
       return false
     end
   end
-  
-  def should_index?
-    false
-  end
     
 end

@@ -128,7 +128,13 @@ def self.up
   s = Source.find(403011516)
   s.marc_source.delete! 28.chr
   s.suppress_reindex
+  # Turn off partial writes or marc_record
+  # will not be written, as it ignores non
+  # printing chars
+  ActiveRecord::Base.partial_writes = false
   s.save!
+  # Turn it on as default
+  ActiveRecord::Base.partial_writes = true
   
   # Quirk of the day
   # is it better to call the migration or
