@@ -247,9 +247,6 @@ class MarcNode
   def set_foreign_object
     foreign_class = MarcConfig.get_foreign_class(self.parent.tag, self.tag)
     if parent.foreign_object == nil
-      #db_node = parent.fetch_first_by_tag("0")
-      puts parent.tag
-      puts parent.get_master_foreign_subfield.tag
       db_node = parent.fetch_first_by_tag(parent.get_master_foreign_subfield.tag)
       parent.foreign_object = foreign_class.constantize.send("find", db_node.content)
     end
