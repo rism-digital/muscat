@@ -18,6 +18,7 @@ ActiveAdmin.register Person do
   filter :full_name_contains, :as => :string
   
   index do
+    column (I18n.t :filter_id), :id  
     column (I18n.t :filter_full_name), :full_name
     column (I18n.t :filter_life_dates), :life_dates
     column (I18n.t :filter_sources), :src_count

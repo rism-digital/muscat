@@ -19,6 +19,7 @@ ActiveAdmin.register Library do
   filter :address
   
   index do
+    column (I18n.t :filter_id), :id  
     column (I18n.t :filter_siglum), :siglum
     column (I18n.t :filter_location_and_name), :name
     column (I18n.t :filter_sources), :src_count

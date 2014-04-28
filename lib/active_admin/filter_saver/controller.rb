@@ -10,28 +10,29 @@ module ActiveAdmin
  
       private
  
-      SAVED_FILTER_KEY = :last_search_filter
-      SAVED_PAGINATION_KEY = :last_search_page
-      SAVED_ORDER_KEY = :last_order_page
- 
       def restore_search_filters
-        filter_storage = session[SAVED_FILTER_KEY]
-        pagination_storage = session[SAVED_PAGINATION_KEY]
-        order_storage = session[SAVED_ORDER_KEY]
+        filter_storage = session[:last_search_filter]
+        pagination_storage = session[:last_search_page]
+        order_storage = session[:last_order_page]
+        scope_storage = session[:last_scope]
         if params[:clear_filters].present?
           params.delete :clear_filters
           if filter_storage
-            #logger.info "clearing filter storage for #{controller_key}"
-            filter_storage.delete controller_key
+            #logger.info "clearing filter storage for #{controller_name}"
+            filter_storage.delete controller_name
           end
           if pagination_storage
-            #logger.info "clearing pagination storage for #{controller_key}"
-            pagination_storage.delete controller_key
+            #logger.info "clearing pagination storage for #{controller_name}"
+            pagination_storage.delete controller_name
+          end
+          # comment this to avoid resetting scoping when resetting filters
+          if scope_storage
+            scope_storage.delete controller_name
           end
           # uncomment this to also reset order
           #if order_storage
-          #  logger.info "clearing order storage for #{controller_key}"
-          #  order_storage.delete controller_key
+          #  logger.info "clearing order storage for #{controller_name}"
+          #  order_storage.delete controller_name
           #end
           if request.post?
             # we were requested via an ajax post from our custom JS
@@ -40,11 +41,12 @@ module ActiveAdmin
           end
         else
           restore_page = true
-          if params[:action].to_sym == :index
+          # we also restor filter in :show for updating the navigation values (in preparation)
+          if params[:action].to_sym == :index || params[:action].to_sym == :show
             # we have stored filters
             if filter_storage 
               # get the store filter for the controller
-              saved_filters = filter_storage[controller_key]
+              saved_filters = filter_storage[controller_name]
               # we have nothing in the query, retore if not empty
               if params[:q].blank?
                 unless saved_filters.blank?
@@ -57,16 +59,23 @@ module ActiveAdmin
             end
             # restore the pagination in the same way
             if pagination_storage && params[:page].blank? && restore_page
-              saved_page = pagination_storage[controller_key]
+              saved_page = pagination_storage[controller_name]
               unless saved_page.blank?
                 params[:page] = saved_page
               end
             end
             # and order too
             if order_storage && params[:order].blank?
-              saved_order = order_storage[controller_key]
+              saved_order = order_storage[controller_name]
               unless saved_order.blank?
                 params[:order] = saved_order
+              end
+            end
+            # and scope too
+            if scope_storage && params[:scope].blank?
+              saved_scope = scope_storage[controller_name]
+              unless saved_scope.blank?
+                params[:scope] = saved_scope
               end
             end
           end
@@ -75,21 +84,15 @@ module ActiveAdmin
  
       def save_search_filters
         if params[:action].to_sym == :index
-          session[SAVED_FILTER_KEY] ||= Hash.new
-          session[SAVED_FILTER_KEY][controller_key] = params[:q]
-          session[SAVED_PAGINATION_KEY] ||= Hash.new
-          session[SAVED_PAGINATION_KEY][controller_key] = params[:page]
-          session[SAVED_ORDER_KEY] ||= Hash.new
-          session[SAVED_ORDER_KEY][controller_key] = params[:order]
+          session[:last_search_filter] ||= Hash.new
+          session[:last_search_filter][controller_name] = params[:q]
+          session[:last_search_page] ||= Hash.new
+          session[:last_search_page][controller_name] = params[:page]
+          session[:last_order_page] ||= Hash.new
+          session[:last_order_page][controller_name] = params[:order]
+          session[:last_scope] ||= Hash.new
+          session[:last_scope][controller_name] = params[:scope]
         end
-      end
- 
-      # Get a symbol for keying the current controller in the saved-filter session storage.
-      def controller_key
-        #params[:controller].gsub(/\//, '_').to_sym
-        current_path = request.env['PATH_INFO']
-        current_route = Rails.application.routes.recognize_path(current_path)
-        current_route.sort.flatten.join('-').gsub(/\//, '_').to_sym
       end
  
     end
