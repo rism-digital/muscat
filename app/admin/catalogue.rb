@@ -14,6 +14,11 @@ ActiveAdmin.register Catalogue do
   ## Index ##
   ###########
   
+  scope :all, :default => true 
+  scope :published do |catalogues|
+    catalogues.where(:wf_stage => 'published')
+  end
+  
   # temporary, to be replaced by Solr
   filter :name_or_description_starts_with, :as => :string
   filter :author_contains, :as => :string

@@ -18,6 +18,11 @@ ActiveAdmin.register Source do
     
   end
   
+  scope :all, :default => true 
+  scope :published do |sources|
+    sources.where(:wf_stage => 'published')
+  end
+  
   # temporary, to be replaced by Solr
   filter :composer_or_title_contains, :as => :string
   filter :lib_siglum_contains, :as => :string
