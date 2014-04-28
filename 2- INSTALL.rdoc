@@ -14,11 +14,11 @@ The following other libraries and programs are needed
 * Apache 2.2
 * MySQL > 5.0
 * iconv
-* Subversion
+* Git
 
-Subversion is necessary for checking out the repo, so install it if necessary:
+Git is necessary for checking out the repo, so install it if necessary:
 
-	cd /usr/ports/devel/subversion
+	cd /usr/ports/devel/git
 	sudo make install clean
 
 Install iconv (for rails, used by ruby-iconv):
@@ -69,10 +69,9 @@ Lastly install Passenger (3.0):
 
 == Bootstrap the application
 
-Get the sources if necessary:
+Get the sources if necessary (https://github.com/rism-ch/muscat):
 
-	svn co svn://rism-ch.org/webapp/trunk
-	svn co svn://rism-ch.org/cw/trunk vendor/plugins/cw
+	git clone https://github.com/rism-ch/muscat.git
 
 Use bundle to install all the gems for the app:
 
@@ -80,10 +79,17 @@ Use bundle to install all the gems for the app:
 
 Install base configuration:
 
-	cd 10.02/config
+	cd muscat/config
 	cp sample_database.yml database.yml
 	cp sample_application.rb application.rb
+
+Install the base css:
+
+	cd app/assets/stylesheets/
+	cp muscat-custom-sample.scss muscat-custom.scss
 	
+Edit muscat-custom.scss to enable at least one color.
+
 Se up databases access:
 
 	mysql

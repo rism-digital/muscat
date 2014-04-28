@@ -1,0 +1,12 @@
+<%= form_for @search, url: collection_path,
+          as: :filters,
+          builder: ActiveAdmin::Filters::CustomFormBuilder,
+          html: {method: :get, class: :filter_form} do |f| %>
+			  
+      <%= f.input :title, as: :string %>
+	  <%= f.input :composer, as: :string %>
+	  <%= f.input :date_from, as: :string %>
+	  
+	  <%= f.actions %>
+	
+  <% end %>

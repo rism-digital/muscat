@@ -2,6 +2,8 @@ ActiveAdmin.register Source do
   
   actions :all, except: [:edit] 
 
+  config.filters = false 
+
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -16,6 +18,26 @@ ActiveAdmin.register Source do
       @item = Source.find(params[:id])
     end
     
+    def index
+      options = params[:filters]
+      
+      @sunspot_search = Source.solr_search do |s|
+       # FIXME For experimenting
+       if options
+         options.keys.each do |k|
+           ap k
+           ap options[k]
+           s.fulltext options[k], :fields => [k.to_sym]
+         end
+       end
+      end
+      
+      index! do |format|
+       @sources = @sunspot_search.results
+       format.html
+      end
+    end
+    
   end
   
   #scope :all, :default => true 
@@ -27,9 +49,15 @@ ActiveAdmin.register Source do
   ## Index ##
   ###########
   
+  config.clear_sidebar_sections!
+ 
+    sidebar :filters do
+      render partial: 'search'
+    end
+  
   # temporary, to be replaced by Solr
-  filter :composer_or_title_contains, :as => :string
-  filter :lib_siglum_contains, :as => :string
+  #filter :composer_or_title_contains, :as => :string
+  #filter :lib_siglum_contains, :as => :string
   
   index do
     column (I18n.t :filter_id), :id  
