@@ -6,24 +6,46 @@ module Muscat
         MAX_PER_PAGE = 30
   
         def search_as_ransack(params)
-          return nil if !params.has_key?(:q)
           fields, order, page = unpack_params(params)
           search_with_solr(fields, order, page)
         end
       
-        def previous_as_ransack(params, item)
-          results = search_with_solr_or_activerecord(params)
+        def near_items_as_ransack(params, item)
+          prev_id = nil
+          next_id = nil
+          fields, order, page = unpack_params(params)
+          results = search_with_solr(fields, order, page)
           
           position = results.index(item)
           
-          return nil if position == 0 && results.first_page?
+          return nil, nil if position == nil
           
+          # Find the previous and next items
+          # It could be condensed in one
+          # but it is easyer to read like this
+          
+          # Get the prev item in the searc
           if position == 0
-            results = search_with_solr_or_activerecord(params, results.previous_page)
-            item = results.last
+            if !results.first_page?
+              results_prev_page = search_with_solr(fields, order, results.previous_page)
+              prev_id = results_prev_page.last
+            end
           else
-            item = results[position - 1]
+            prev_id = results[position - 1]
           end
+          
+          # get the next item in the search
+          if position == MAX_PER_PAGE - 1
+            if !results.last_page?
+              results_next_page = search_with_solr(fields, order, results.next_page)
+              next_id = results_next_page.first
+            end
+          else
+            next_id = results[position + 1]
+          end
+          
+          return prev_id, next_id
+          
         end
             
       private
@@ -54,9 +76,6 @@ module Muscat
           order = {}
           page = params.has_key?(:page) ? params[:page] : 1
           
-          options = params[:q]
-          return fields, order, page if !options
-          
           if params.has_key?(:order)
             order = params[:order].include?("_asc") ? "asc" : "desc"
             field = params[:order].gsub("_#{order}", "")
@@ -64,42 +83,35 @@ module Muscat
             order = {:field => field.underscore.to_sym, :order => order.to_sym}      
           end
           
-          options.keys.each do |k|
-            # to have it dynamic:
-            #:fields => [k.to_sym]
-            f = []
-            if k == :title_or_std_title_contains
-              f = [:title, :std_title]
-            elsif k == :composer_contains
-              f = [:composer]
-            elsif k == :lib_siglum_contains
-              f = [:lib_siglum]
-            end
+          options = params[:q]
+          if options
+            options.keys.each do |k|
+              # to have it dynamic:
+              #:fields => [k.to_sym]
+              f = []
+              if k == :title_or_std_title_contains
+                f = [:title, :std_title]
+              elsif k == :composer_contains
+                f = [:composer]
+              elsif k == :lib_siglum_contains
+                f = [:lib_siglum]
+              end
             
-            fields << {:fields => f, :value => options[k]}
+              fields << {:fields => f, :value => options[k]}
+            end
+          else
+            # if no field is specified
+            # return all elements
+            fields <<{:fields => [], :value => "*"}
+            # If ordering is not given
+            # order by id, default in sunspot is
+            # by :score
+            if order.empty?
+              order = {:field => :id, :order => :asc}
+            end
           end
           
           return fields, order, page
-        end
-        
-        def search_with_solr_or_activerecord(params, page = 0)
-          results = nil
-          ap params
-          purged_params = params.except(:id)
-          if !params.has_key?(:q) && 1==0# No query.
-            if page != 0
-              results = self.search.result.page(page).per(MAX_PER_PAGE)
-            else
-              param_page = params.has_key?(:page) ? params[:page] : 1
-              results = self.search.result.page(param_page).per(MAX_PER_PAGE)
-            end
-          else
-            fields, order, param_page = unpack_params(params)
-            param_page = page == 0 ? param_page : page
-            results = search_with_solr(fields, order, param_page)
-          end
-          
-          return results
         end
         
       end
