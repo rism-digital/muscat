@@ -41,16 +41,18 @@ module ActiveAdmin::ViewsHelper
   
   # displays the navigation button on top of a show panel
   def active_admin_navigation_bar( context )
-    # puts "***", session[:last_search_filter][controller_name]  
+    # puts "***", session[:last_search_filter][controller_name]
+    prev_id = @prev_item != nil ? @prev_item.id : ""
+    next_id = @next_item != nil ? @next_item.id : ""
     context.div class: :table_tools do
       context.ul class: :table_tools_segmented_control do
         context.li class: :scope do
-          context.a href: "test", class: :table_tools_button do
+          context.a href: prev_id, class: :table_tools_button do
             context.text_node "Previous"
           end
         end
         context.li class: :scope do
-          context.a href: "test", class: :table_tools_button do
+          context.a href: next_id, class: :table_tools_button do
             context.text_node "Next"
           end
         end
