@@ -21,40 +21,51 @@ ActiveAdmin.register Source do
     def index
       options = params[:q]
       
-      @sunspot_search = Source.solr_search do |s|
+      page = params.has_key?(:page) ? params[:page] : 1
       
-        if params.has_key?(:order)
-          order = params[:order].include?("_asc") ? "asc" : "desc"
-          field = params[:order].gsub("_#{order}", "")
+      if options
+        solr_results = Source.solr_search do
+    
+          if params.has_key?(:order)
+            order = params[:order].include?("_asc") ? "asc" : "desc"
+            field = params[:order].gsub("_#{order}", "")
+     
+            order_by field.underscore.to_sym, order.to_sym      
+          end
+    
+          options.keys.each do |k|
+            # to have it dynamic:
+            #:fields => [k.to_sym]
+            fields = [] # by default on all fields
+            if k == :title_or_std_title_contains
+              fields = [:title, :std_title]
+            elsif k == :composer_contains
+              fields = [:composer]
+            elsif k == :lib_siglum_contains
+              fields = [:lib_siglum]
+            end
+
+            if fields.empty?
+              fulltext options[k]
+            else
+              fulltext options[k], :fields => fields
+            end
+          end
+
        
-          s.order_by field.underscore.to_sym, order.to_sym      
+          paginate :page => page, :per_page => 30
         end
-      
-       if options
-         options.keys.each do |k|
-           # to have it dynamic:
-           #:fields => [k.to_sym]
-           fields = [] # by default on all fields
-           if k == :title_or_std_title_contains
-             fields = [:title, :std_title]
-           elsif k == :composer_contains
-             fields = [:composer]
-           elsif k == :lib_siglum_contains
-             fields = [:lib_siglum]
-           end
-           
-           if fields.empty?
-             s.fulltext options[k]
-           else
-             s.fulltext options[k], :fields => fields
-           end
-         end
-       end     
+        @results = solr_results.results
+      else
+        #@results = Source.page(page).per(30)
+        # Just use the default method
+        super.index
+        return
       end
-      
+
       index! do |format|
-       @sources = @sunspot_search.results
-       format.html
+        @sources = @results
+        format.html
       end
     end
 
