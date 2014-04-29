@@ -16,6 +16,7 @@ ActiveAdmin.register Source do
     def show
       @editor_profile = EditorConfiguration.get_show_layout
       @item = Source.find(params[:id])
+      ap Source.previous_as_ransack(params, @item)
     end
 
     def index
