@@ -45,12 +45,11 @@ ActiveAdmin.register Source do
 #    end
 
   # temporary, to be replaced by Solr
-  filter :title_or_std_title_contains, :as => :string
+  filter :title_contains, :as => :string
+  filter :std_title_contains, :as => :string
   filter :composer_contains, :as => :string
   filter :lib_siglum_contains, :label => "Library sigla contains", :as => :string
-  filter :title_contains, :label => "Any field contains", :as => :string
-  #filter :fulltext_in, :as => :string
-  #filter :lib_siglum_contains, :as => :string
+  filter :title_equals, :label => "Any field contains", :as => :string
   
   index do
     column (I18n.t :filter_id), :id  

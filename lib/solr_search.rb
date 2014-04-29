@@ -80,24 +80,33 @@ module Muscat
             order = params[:order].include?("_asc") ? "asc" : "desc"
             field = params[:order].gsub("_#{order}", "")
 
+            if field != "id"
+              field = field + "_order"
+            end
+
             order = {:field => field.underscore.to_sym, :order => order.to_sym}      
           end
           
           options = params[:q]
           if options
             options.keys.each do |k|
-              # to have it dynamic:
-              #:fields => [k.to_sym]
+              
+              # Barebones field parser
+              # Accepts only one field name
+              # Whith the _contains predicate
+              # E.g. :full_title_contains
+              # Strip the ransack predicate
+              # To do any field searches,
+              # just use another predicate
+              # and no field will be used
               f = []
-              if k == :title_or_std_title_contains
-                f = [:title, :std_title]
-              elsif k == :composer_contains
-                f = [:composer]
-              elsif k == :lib_siglum_contains
-                f = [:lib_siglum]
+              if k.to_s.match("contains")
+                field = k.to_s.gsub("_contains", "")
+                f << field.underscore.to_sym
               end
-            
+                          
               fields << {:fields => f, :value => options[k]}
+              
             end
           else
             # if no field is specified

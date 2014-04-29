@@ -68,15 +68,36 @@ class Source < ActiveRecord::Base
 
   searchable :auto_index => false do
     integer :id
-    string :std_title
+    
+    string :std_title_order do 
+      std_title
+    end
+    text :std_title
     text :std_title_d
-    string :composer
+    
+    string :composer_order do 
+      composer
+    end
+    text :composer
     text :composer_d
+    
     text :marc_source
-    string :title
+    
+    string :title_order do 
+      title
+    end
+    text :title
     text :title_d
-    string :shelf_mark
-    string :lib_siglum
+    
+    string :shelf_mark_order do 
+      shelf_mark
+    end
+    text :shelf_mark
+    
+    string :lib_siglum_order do
+      lib_siglum
+    end
+    text :lib_siglum
     
     integer :date_from
     integer :date_to

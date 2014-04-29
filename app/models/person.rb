@@ -28,10 +28,18 @@ class Person < ActiveRecord::Base
   
   searchable do
     integer :id
-    string :full_name
+    string :full_name_order do
+      full_name
+    end
+    text :full_name
     text :full_name_d
-    string :life_dates
-    string :birth_place
+    
+    string :life_dates_order do
+      life_dates
+    end
+    text :life_dates
+    
+    text :birth_place
     text :source
     text :alternate_names
     text :alternate_dates
