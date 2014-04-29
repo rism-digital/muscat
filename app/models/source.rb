@@ -62,15 +62,15 @@ class Source < ActiveRecord::Base
   end
 
   searchable :auto_index => false do
-    text :std_title
+    string :std_title
     text :std_title_d
-    text :composer
+    string :composer
     text :composer_d
     text :marc_source
-    text :title
+    string :title
     text :title_d
-    text :shelf_mark
-    text :lib_siglum
+    string :shelf_mark
+    string :lib_siglum
     
     integer :date_from
     integer :date_to
@@ -114,5 +114,19 @@ class Source < ActiveRecord::Base
       return false
     end
   end
-    
+  
+  # define our custom search method
+    ransacker :fulltext, formatter: proc { |v|
+      total_sources = Source.count
+      data = Source.solr_search do
+        fulltext v
+        # Sunspot only returns paginated data!
+        paginate :page => 1, :per_page => total_sources
+      end
+      data.total > 0 ? data.results.map(&:id) : nil
+    } do |parent|
+      #ap parent
+      parent.table[:id]
+    end
+  
 end

@@ -2,7 +2,7 @@ ActiveAdmin.register Source do
   
   actions :all, except: [:edit] 
 
-  config.filters = false 
+  #config.filters = false 
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -17,19 +17,39 @@ ActiveAdmin.register Source do
       @editor_profile = EditorConfiguration.get_show_layout
       @item = Source.find(params[:id])
     end
-    
+
     def index
-      options = params[:filters]
+      options = params[:q]
       
       @sunspot_search = Source.solr_search do |s|
-       # FIXME For experimenting
+      
+        if params.has_key?(:order)
+          order = params[:order].include?("_asc") ? "asc" : "desc"
+          field = params[:order].gsub("_#{order}", "")
+       
+          s.order_by field.underscore.to_sym, order.to_sym      
+        end
+      
        if options
          options.keys.each do |k|
-           ap k
-           ap options[k]
-           s.fulltext options[k], :fields => [k.to_sym]
+           # to have it dynamic:
+           #:fields => [k.to_sym]
+           fields = [] # by default on all fields
+           if k == :title_or_std_title_contains
+             fields = [:title, :std_title]
+           elsif k == :composer_contains
+             fields = [:composer]
+           elsif k == :lib_siglum_contains
+             fields = [:lib_siglum]
+           end
+           
+           if fields.empty?
+             s.fulltext options[k]
+           else
+             s.fulltext options[k], :fields => fields
+           end
          end
-       end
+       end     
       end
       
       index! do |format|
@@ -37,7 +57,7 @@ ActiveAdmin.register Source do
        format.html
       end
     end
-    
+
   end
   
   #scope :all, :default => true 
@@ -49,14 +69,17 @@ ActiveAdmin.register Source do
   ## Index ##
   ###########
   
-  config.clear_sidebar_sections!
- 
-    sidebar :filters do
-      render partial: 'search'
-    end
+#  config.clear_sidebar_sections!
+#    sidebar :filters do
+#      render partial: 'search'
+#    end
   
   # temporary, to be replaced by Solr
-  #filter :composer_or_title_contains, :as => :string
+  filter :title_or_std_title_contains, :as => :string
+  filter :composer_contains, :as => :string
+  filter :lib_siglum_contains, :label => "Library sigla contains", :as => :string
+  filter :title_contains, :label => "Any field contains", :as => :string
+  #filter :fulltext_in, :as => :string
   #filter :lib_siglum_contains, :as => :string
   
   index do
