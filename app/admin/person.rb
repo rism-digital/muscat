@@ -8,6 +8,16 @@ ActiveAdmin.register Person do
     def permitted_params
       params.permit!
     end
+    
+    def index
+      @results = Person.search_as_ransack(params)
+      
+      index! do |format|
+        @people = @results
+        format.html
+      end
+    end
+    
   end
   
   ###########

@@ -26,6 +26,17 @@ class Person < ActiveRecord::Base
   
   before_destroy :check_dependencies
   
+  searchable do
+    integer :id
+    string :full_name
+    text :full_name_d
+    string :life_dates
+    string :birth_place
+    text :source
+    text :alternate_names
+    text :alternate_dates
+  end
+  
   # before_destroy, will delete Person only if it has no Source and no Work
   def check_dependencies
     if (self.sources.count > 0) || (self.works.count > 0)

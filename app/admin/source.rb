@@ -19,52 +19,10 @@ ActiveAdmin.register Source do
     end
 
     def index
-      options = params[:q]
+      @results = Source.search_as_ransack(params)
       
-      page = params.has_key?(:page) ? params[:page] : 1
-      
-      if options
-        solr_results = Source.solr_search do
-    
-          if params.has_key?(:order)
-            order = params[:order].include?("_asc") ? "asc" : "desc"
-            field = params[:order].gsub("_#{order}", "")
-     
-            order_by field.underscore.to_sym, order.to_sym      
-          end
-    
-          options.keys.each do |k|
-            # to have it dynamic:
-            #:fields => [k.to_sym]
-            fields = [] # by default on all fields
-            if k == :title_or_std_title_contains
-              fields = [:title, :std_title]
-            elsif k == :composer_contains
-              fields = [:composer]
-            elsif k == :lib_siglum_contains
-              fields = [:lib_siglum]
-            end
-
-            if fields.empty?
-              fulltext options[k]
-            else
-              fulltext options[k], :fields => fields
-            end
-          end
-
-       
-          paginate :page => page, :per_page => 30
-        end
-        @results = solr_results.results
-      else
-        #@results = Source.page(page).per(30)
-        # Just use the default method
-        super.index
-        return
-      end
-
       index! do |format|
-        @sources = @results
+       @sources = @results
         format.html
       end
     end
@@ -84,7 +42,7 @@ ActiveAdmin.register Source do
 #    sidebar :filters do
 #      render partial: 'search'
 #    end
-  
+
   # temporary, to be replaced by Solr
   filter :title_or_std_title_contains, :as => :string
   filter :composer_contains, :as => :string

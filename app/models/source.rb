@@ -30,7 +30,12 @@
 # Database is UTF8 and collation utf8_general_ci which is NOT the strict UTF collation but rather one that
 # is more suitable for english speakers.
 
+
+
 class Source < ActiveRecord::Base
+  
+  # include the override for group_values
+  require 'solr_search.rb'
   
   belongs_to :source
   has_many :sources
@@ -62,6 +67,7 @@ class Source < ActiveRecord::Base
   end
 
   searchable :auto_index => false do
+    integer :id
     string :std_title
     text :std_title_d
     string :composer
@@ -114,19 +120,5 @@ class Source < ActiveRecord::Base
       return false
     end
   end
-  
-  # define our custom search method
-    ransacker :fulltext, formatter: proc { |v|
-      total_sources = Source.count
-      data = Source.solr_search do
-        fulltext v
-        # Sunspot only returns paginated data!
-        paginate :page => 1, :per_page => total_sources
-      end
-      data.total > 0 ? data.results.map(&:id) : nil
-    } do |parent|
-      #ap parent
-      parent.table[:id]
-    end
-  
+    
 end
