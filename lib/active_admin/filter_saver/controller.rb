@@ -15,8 +15,7 @@ module ActiveAdmin
         pagination_storage = session[:last_search_page]
         order_storage = session[:last_order_page]
         scope_storage = session[:last_scope]
-        if params[:clear_filters].present?
-          params.delete :clear_filters
+        if params[:clear_filters]
           if filter_storage
             #logger.info "clearing filter storage for #{controller_name}"
             filter_storage.delete controller_name
@@ -34,11 +33,6 @@ module ActiveAdmin
           #  logger.info "clearing order storage for #{controller_name}"
           #  order_storage.delete controller_name
           #end
-          if request.post?
-            # we were requested via an ajax post from our custom JS
-            # this render will abort the request, which is ok, since a GET request will immediately follow
-            render json: { filters_cleared: true }
-          end
         else
           restore_page = true
           # we also restor filter in :show for updating the navigation values (in preparation)
