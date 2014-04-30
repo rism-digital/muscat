@@ -18,6 +18,7 @@ ActiveAdmin.register Place do
   filter :name_or_country_contains, :as => :string
   
   index do
+    selectable_column
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_country), :country

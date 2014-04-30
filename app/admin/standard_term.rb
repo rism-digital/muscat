@@ -18,6 +18,7 @@ ActiveAdmin.register StandardTerm do
   filter :term_contains, :as => :string
   
   index do
+    selectable_column
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_term), :term
     column (I18n.t :filter_alternate_terms), :alternate_terms

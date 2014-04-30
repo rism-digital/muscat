@@ -52,6 +52,7 @@ ActiveAdmin.register Source do
   filter :title_equals, :label => "Any field contains", :as => :string
   
   index do
+    selectable_column
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title

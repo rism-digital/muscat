@@ -18,6 +18,7 @@ ActiveAdmin.register StandardTitle do
   filter :title_contains, :as => :string
   
   index do
+    selectable_column
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_sources), :src_count
