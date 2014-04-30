@@ -9,6 +9,12 @@ ActiveAdmin.register Person do
       params.permit!
     end
     
+    def show
+      @person = Person.find(params[:id])
+      @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
+    end
+    
+    
     def index
       @results = Person.search_as_ransack(params)
       
@@ -39,7 +45,8 @@ ActiveAdmin.register Person do
   ## Show ##
   ##########
   
-  show do   
+  show do
+    active_admin_navigation_bar( self )   
     attributes_table do
       row (I18n.t :filter_full_name) { |r| r.full_name }
       row (I18n.t :filter_life_dates) { |r| r.life_dates }
