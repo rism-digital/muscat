@@ -40,20 +40,29 @@ module ActiveAdmin::ViewsHelper
   end 
   
   # displays the navigation button on top of a show panel
+  # this helper uses the controller member variables @prev_item, @next_item, @prev_page and @next_page
+  # the values should be instanciated with the near_items_as_ransack from the
   def active_admin_navigation_bar( context )
-    # puts "***", session[:last_search_filter][controller_name]
-    prev_id = @prev_item != nil ? @prev_item.id : ""
-    next_id = @next_item != nil ? @next_item.id : ""
+    # do not display navigation if both previous and next are not available
+    return if (!@prev_item && !@next_item)
+    prev_id = @prev_item != nil ? @prev_item.id.to_s : ""
+    next_id = @next_item != nil ? @next_item.id.to_s : ""
+    prev_id += "?page=#{@prev_page}" if @prev_page != 0
+    next_id += "?page=#{@next_page}" if @next_page != 0
     context.div class: :table_tools do
       context.ul class: :table_tools_segmented_control do
         context.li class: :scope do
-          context.a href: prev_id, class: :table_tools_button do
-            context.text_node "Previous"
+          if @prev_item != nil
+            context.a href: prev_id, class: :table_tools_button do  context.text_node "Previous"  end
+          else
+            context.a class: "table_tools_button disabled" do context.text_node "Previous" end
           end
         end
         context.li class: :scope do
-          context.a href: next_id, class: :table_tools_button do
-            context.text_node "Next"
+          if @next_item != nil
+            context.a href: next_id, class: :table_tools_button do  context.text_node "Next"  end
+          else
+            context.a class: "table_tools_button disabled" do context.text_node "Next" end
           end
         end
       end

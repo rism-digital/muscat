@@ -11,14 +11,18 @@ module Muscat
         end
       
         def near_items_as_ransack(params, item)
-          prev_id = nil
-          next_id = nil
+          prev_item = nil
+          next_item = nil
+          # page values will be 0 if the prev/next item are on the same result page
+          prev_page = 0
+          next_page = 0
           fields, order, page = unpack_params(params)
           results = search_with_solr(fields, order, page)
           
           position = results.index(item)
           
-          return nil, nil if position == nil
+          # The current item was not found, we must be coming from somewhere else...
+          return prev_item, next_item, prev_page, next_page if position == nil
           
           # Find the previous and next items
           # It could be condensed in one
@@ -28,24 +32,27 @@ module Muscat
           if position == 0
             if !results.first_page?
               results_prev_page = search_with_solr(fields, order, results.previous_page)
-              prev_id = results_prev_page.last
+              prev_item = results_prev_page.last
+              # the previous item is one the previous page, we also need to return the page nb
+              prev_page = results.previous_page
             end
           else
-            prev_id = results[position - 1]
+            prev_item = results[position - 1]
           end
           
           # get the next item in the search
           if position == MAX_PER_PAGE - 1
             if !results.last_page?
               results_next_page = search_with_solr(fields, order, results.next_page)
-              next_id = results_next_page.first
+              next_item = results_next_page.first
+              # return the page number too
+              next_page = results.next_page
             end
           else
-            next_id = results[position + 1]
+            next_item = results[position + 1]
           end
           
-          return prev_id, next_id
-          
+          return prev_item, next_item, prev_page, next_page
         end
             
       private

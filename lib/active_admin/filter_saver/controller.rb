@@ -16,6 +16,7 @@ module ActiveAdmin
         order_storage = session[:last_order_page]
         scope_storage = session[:last_scope]
         if params[:clear_filters]
+          params.delete :clear_filters
           if filter_storage
             #logger.info "clearing filter storage for #{controller_name}"
             filter_storage.delete controller_name
@@ -33,6 +34,13 @@ module ActiveAdmin
           #  logger.info "clearing order storage for #{controller_name}"
           #  order_storage.delete controller_name
           #end
+          # oppositely, we want to restore the order (if not changed)
+          if order_storage && params[:order].blank?
+            saved_order = order_storage[controller_name]
+            unless saved_order.blank?
+              params[:order] = saved_order
+            end
+          end
         else
           restore_page = true
           # we also restor filter in :show for updating the navigation values (in preparation)
@@ -86,6 +94,11 @@ module ActiveAdmin
           session[:last_order_page][controller_name] = params[:order]
           session[:last_scope] ||= Hash.new
           session[:last_scope][controller_name] = params[:scope]
+        # We also need to save the page param in show because it might be change 
+        # by the prev/next navigation 
+        elsif params[:action].to_sym == :show
+          session[:last_search_page] ||= Hash.new
+          session[:last_search_page][controller_name] = params[:page]
         end
       end
  

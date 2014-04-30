@@ -16,7 +16,7 @@ ActiveAdmin.register Source do
     def show
       @editor_profile = EditorConfiguration.get_show_layout
       @item = Source.find(params[:id])
-      @prev_item, @next_item = Source.near_items_as_ransack(params, @item)
+      @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
     end
 
     def index
@@ -66,10 +66,11 @@ ActiveAdmin.register Source do
   ##########
   
   show :title => proc{ active_admin_source_show_title( @item.composer, @item.std_title, @item.id) } do
-    # @item go from the controller is not available there. We need to get it from the @arbre_context
+    # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]
     render :partial => "marc/show"
+    active_admin_navigation_bar( self )
   end
   
 end
