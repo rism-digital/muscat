@@ -85,15 +85,13 @@ Install base configuration:
 
 Install the base css:
 
-	cd app/assets/stylesheets/
-	cp muscat-custom-sample.scss muscat-custom.scss
-	
-Edit muscat-custom.scss to enable at least one color.
+	cd muscat/config
+	cp muscat-custom-sample.scss ../app/assets/stylesheets/muscat-custom.scss
 
-Se up databases access:
+Set up databases access:
 
 	mysql
-	> CREATE DATABASE rism_ch_development CHARACTER SET utf8 COLLATE utf8_general_ci;
+	> CREATE DATABASE muscat_development CHARACTER SET utf8 COLLATE utf8_general_ci;
 	> CREATE USER 'username'@'localhost';
 	> SET PASSWORD FOR 'username'@'localhost' = PASSWORD('pass');
 	> GRANT ALL ON muscat_development.* TO 'username'@'localhost';
@@ -109,14 +107,17 @@ Migrate the database:
 Add basic dataset:
 
 	rake db:seed
+	
+Default (development) startup:
 
-Test startup:
+	./bundle exec rake sunspot:solr:start
+	./rails s -e
 
-	./scripts/ferretd/start
-	./scripts/server
-	=> Booting WEBrick...
-	=> Rails 2.2.2 application started on http://0.0.0.0:3000
-	=> Ctrl-C to shutdown server; call with --help for options
+For startup in production mode:
+
+	./bundle exec rake RAILS_ENV=production assets:precompile
+	./bundle exec rake RAILS_ENV=production sunspot:solr:start
+	./rails s -e production
 	
 Try to open ::
 
