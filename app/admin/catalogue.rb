@@ -8,6 +8,16 @@ ActiveAdmin.register Catalogue do
     def permitted_params
       params.permit!
     end
+    
+    def index
+      @results = Catalogue.search_as_ransack(params)
+      
+      index! do |format|
+        @catalogues = @results
+        format.html
+      end
+    end
+    
   end
   
   ###########
@@ -19,9 +29,8 @@ ActiveAdmin.register Catalogue do
   #  catalogues.where(:wf_stage => 'published')
   #end
   
-  # temporary, to be replaced by Solr
-  filter :name_or_description_starts_with, :as => :string
-  filter :author_contains, :as => :string
+  # Solr search all fields: "_equal"
+  filter :name_equals, :label => "Any field contains", :as => :string
   
   index do
     selectable_column

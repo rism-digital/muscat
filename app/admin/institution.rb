@@ -8,14 +8,24 @@ ActiveAdmin.register Institution do
     def permitted_params
       params.permit!
     end
+    
+    def index
+      @results = Institution.search_as_ransack(params)
+      
+      index! do |format|
+        @institutions = @results
+        format.html
+      end
+    end
+    
   end
   
   ###########
   ## Index ##
   ###########
   
-  # temporary, to be replaced by Solr
-  filter :name_or_alternates_contains, :as => :string
+  # Solr search all fields: "_equal"
+  filter :name_equals, :label => "Any field contains", :as => :string
   
   index do
     selectable_column

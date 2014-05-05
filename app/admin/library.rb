@@ -8,15 +8,24 @@ ActiveAdmin.register Library do
     def permitted_params
       params.permit!
     end
+    
+    def index
+      @results = Library.search_as_ransack(params)
+      
+      index! do |format|
+        @libraries = @results
+        format.html
+      end
+    end
+    
   end
   
   ###########
   ## Index ##
   ###########
   
-  # temporary, to be replaced by Solr
-  filter :siglum_or_name_starts_with, :as => :string
-  filter :address
+  # Solr search all fields: "_equal"
+  filter :name_equals, :label => "Any field contains", :as => :string
   
   index do
     selectable_column

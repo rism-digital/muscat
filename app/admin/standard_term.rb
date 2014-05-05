@@ -8,14 +8,24 @@ ActiveAdmin.register StandardTerm do
     def permitted_params
       params.permit!
     end
+    
+    def index
+      @results = StandardTerm.search_as_ransack(params)
+      
+      index! do |format|
+        @standard_terms = @results
+        format.html
+      end
+    end
+    
   end
   
   ###########
   ## Index ##
   ###########
   
-  # temporary, to be replaced by Solr
-  filter :term_contains, :as => :string
+  # Solr search all fields: "_equal"
+  filter :term_equals, :label => "Any field contains", :as => :string
   
   index do
     selectable_column

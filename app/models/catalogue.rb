@@ -23,7 +23,27 @@ class Catalogue < ActiveRecord::Base
   validates_uniqueness_of :name
     
   before_destroy :check_dependencies
+  
+  searchable do
+    integer :id
+    string :name_order do
+      name
+    end
+    text :name
     
+    string :author_order do
+      author
+    end
+    text :author
+    
+    text :description
+    text :revue_title
+    text :volume
+    text :place
+    text :date
+    text :pages
+  end
+  
   def check_dependencies
     if (self.sources.count > 0)
       errors.add :base, "The catalogue could not be deleted because it is used"

@@ -6,6 +6,16 @@ class Work < ActiveRecord::Base
    
   before_destroy :check_dependencies
 
+  searchable do
+    integer :id
+    string :title_order do
+      title
+    end
+    text :title
+    text :form
+    text :notes
+  end
+
   def check_dependencies
      return false if self.sources.count > 0
   end

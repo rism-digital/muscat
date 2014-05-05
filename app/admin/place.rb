@@ -8,14 +8,24 @@ ActiveAdmin.register Place do
     def permitted_params
       params.permit!
     end
+    
+    def index
+      @results = Place.search_as_ransack(params)
+      
+      index! do |format|
+        @places = @results
+        format.html
+      end
+    end
+    
   end
   
   ###########
   ## Index ##
   ###########
   
-  # temporary, to be replaced by Solr
-  filter :name_or_country_contains, :as => :string
+  # Solr search all fields: "_equal"
+  filter :name_equals, :label => "Any field contains", :as => :string
   
   index do
     selectable_column

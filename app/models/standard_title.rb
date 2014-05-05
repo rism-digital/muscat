@@ -18,6 +18,17 @@ class StandardTitle < ActiveRecord::Base
     
   before_destroy :check_dependencies
     
+  searchable do
+    integer :id
+    string :title_order do
+      title
+    end
+    text :title
+    text :title_d
+    
+    text :notes
+  end
+  
   def check_dependencies
     if (self.sources.count > 0)
       errors.add :base, "The standard title could not be deleted because it is used"

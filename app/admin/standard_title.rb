@@ -8,14 +8,24 @@ ActiveAdmin.register StandardTitle do
     def permitted_params
       params.permit!
     end
+    
+    def index
+      @results = StandardTitle.search_as_ransack(params)
+      
+      index! do |format|
+        @standard_titles = @results
+        format.html
+      end
+    end
+    
   end
   
   ###########
   ## Index ##
   ###########
   
-  # temporary, to be replaced by Solr
-  filter :title_contains, :as => :string
+  # Solr search all fields: "_equal"
+  filter :title_equals, :label => "Any field contains", :as => :string
   
   index do
     selectable_column

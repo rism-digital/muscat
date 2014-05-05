@@ -17,7 +17,18 @@ class Institution < ActiveRecord::Base
   validates_presence_of :name  
     
   before_destroy :check_dependencies
-    
+  
+  searchable do
+    integer :id
+    string :name_order do
+      name
+    end
+    text :name
+  
+    text :alternates  
+    text :notes
+  end
+  
   def check_dependencies
     if (self.sources.count > 0)
       errors.add :base, "The institution could not be deleted because it is used"

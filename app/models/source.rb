@@ -50,6 +50,7 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :works
   
   composed_of :marc, :class_name => "Marc", :mapping => %w(marc_source)
+  alias_attribute :id_for_fulltext, :id
   
   before_destroy :check_dependencies
   after_save :reindex
@@ -68,6 +69,12 @@ class Source < ActiveRecord::Base
 
   searchable :auto_index => false do
     integer :id
+    
+    text :id_fulltext do
+      id_for_fulltext
+    end
+    
+    text :source_id
     
     string :std_title_order do 
       std_title

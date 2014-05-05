@@ -21,7 +21,25 @@ class Library < ActiveRecord::Base
   validates_uniqueness_of :siglum
     
   before_destroy :check_dependencies
+
+  searchable do
+    integer :id
+    string :siglum_order do
+      siglum
+    end
+    text :siglum
     
+    string :name_order do
+      name
+    end
+    text :name
+    
+    text :address
+    text :url
+    text :phone
+    text :email
+  end
+  
   def check_dependencies
     if (self.sources.count > 0)
       errors.add :base, "The library could not be deleted because it is used"

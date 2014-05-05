@@ -18,7 +18,23 @@ class Place < ActiveRecord::Base
   validates_uniqueness_of :name
     
   before_destroy :check_dependencies
+  
+  searchable do
+    integer :id
+    string :name_order do
+      name
+    end
+    text :name
     
+    string :country_order do
+      country
+    end
+    text :country
+    
+    text :notes
+    text :district
+  end
+  
   def check_dependencies
     if (self.sources.count > 0)
       errors.add :base, "The place could not be deleted because it is used"

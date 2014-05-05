@@ -19,6 +19,21 @@ class StandardTerm < ActiveRecord::Base
     
   before_destroy :check_dependencies
     
+  searchable do
+    integer :id
+    string :term_order do
+      term
+    end
+    text :term
+    
+    string :alternate_terms_order do
+      alternate_terms
+    end
+    text :alternate_terms
+    
+    text :notes
+  end
+  
   def check_dependencies
     if (self.sources.count > 0)
       errors.add :base, "The standard term could not be deleted because it is used"
