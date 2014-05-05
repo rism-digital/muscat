@@ -52,7 +52,7 @@ ActiveAdmin.register Place do
       row (I18n.t :filter_country) { |r| r.country }
       row (I18n.t :filter_district) { |r| r.district }    
     end
-    active_admin_embedded_source_list( self, place, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, place, params[:qe], params[:src_list_page] )
   end
   
   sidebar "Search sources", :only => :show do

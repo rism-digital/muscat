@@ -50,7 +50,7 @@ ActiveAdmin.register StandardTitle do
       row (I18n.t :filter_title) { |r| r.title }
       row (I18n.t :filter_notes) { |r| r.notes }  
     end
-    active_admin_embedded_source_list( self, standard_title, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, standard_title, params[:qe], params[:src_list_page] )
   end
   
   sidebar "Search sources", :only => :show do

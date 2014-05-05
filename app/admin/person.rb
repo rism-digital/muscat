@@ -59,7 +59,7 @@ ActiveAdmin.register Person do
       row (I18n.t :filter_alternate_names) { |r| r.alternate_names }   
       row (I18n.t :filter_alternate_dates) { |r| r.alternate_dates }    
     end
-    active_admin_embedded_source_list( self, person, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, person, params[:qe], params[:src_list_page] )
   end
   
   sidebar "Search sources", :only => :show do

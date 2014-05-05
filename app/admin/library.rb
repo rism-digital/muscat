@@ -56,7 +56,7 @@ ActiveAdmin.register Library do
       row (I18n.t :filter_phone) { |r| r.phone }
       row (I18n.t :filter_email) { |r| r.email }    
     end
-    active_admin_embedded_source_list( self, library, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, library, params[:qe], params[:src_list_page] )
   end
   
   sidebar "Search sources", :only => :show do

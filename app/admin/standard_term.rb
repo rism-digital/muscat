@@ -53,7 +53,7 @@ ActiveAdmin.register StandardTerm do
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
       row (I18n.t :filter_notes) { |r| r.notes }    
     end
-    active_admin_embedded_source_list( self, standard_term, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, standard_term, params[:qe], params[:src_list_page] )
   end
   
   sidebar "Search sources", :only => :show do

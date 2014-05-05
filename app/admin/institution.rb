@@ -51,7 +51,7 @@ ActiveAdmin.register Institution do
       row (I18n.t :filter_alternates) { |r| r.alternates }
       row (I18n.t :filter_notes) { |r| r.notes }  
     end
-    active_admin_embedded_source_list( self, institution, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, institution, params[:qe], params[:src_list_page] )
   end
   
   sidebar "Search sources", :only => :show do

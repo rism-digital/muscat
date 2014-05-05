@@ -50,7 +50,7 @@ ActiveAdmin.register LiturgicalFeast do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_notes) { |r| r.notes }    
     end
-    active_admin_embedded_source_list( self, liturgical_feast, params[:q], params[:src_list_page] )
+    active_admin_embedded_source_list( self, liturgical_feast, params[:qe], params[:src_list_page] )
   end
   
   sidebar "Search sources", :only => :show do
