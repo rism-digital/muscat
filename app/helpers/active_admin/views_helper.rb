@@ -14,6 +14,12 @@ module ActiveAdmin::ViewsHelper
     # do not display the panel if no source attached
     return if c.empty?
     context.panel (I18n.t :filter_sources), :class => "muscat_panel"  do
+      
+      # Sometimes if a query is already present query comes with the
+      # parameters for ransack, filter this out so only text queries
+      # pass
+      query = "*" if !query.is_a? String
+      
       # filter the list of sources
       # todo - Solr searching instead of active model searching
       # c = item.sources.where("std_title like ?", "%#{query}%") unless query.blank?
@@ -23,7 +29,6 @@ module ActiveAdmin::ViewsHelper
         paginate :page => src_list_page, :per_page => 15 
       end
       
-      #context.paginated_collection(c.page(src_list_page).per(15), param_name: 'src_list_page',  download_links: false) do
       context.paginated_collection(c.results, param_name: 'src_list_page',  download_links: false) do
         context.table_for(context.collection) do |cr|
           context.column (I18n.t :filter_composer), :composer
