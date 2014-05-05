@@ -59,7 +59,7 @@ For the StandardTitle authority, fields without a $0 (e.g., 740) can create prob
 Many object, like Person, Library, StandardTitle, ... cointain a field <tt>src_count</tt> which caches the total Sources
 related to any of them. This field is not updated during import, and a separate script needs to be run afterwards:
 
-	./script/runner housekeeping/correct/27_update_mscount.rb
+	rails r housekeeping/correct/01_update_src_count.rb
 	
 It will update all the ms_counts for each class. 
 
