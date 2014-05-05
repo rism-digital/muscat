@@ -24,18 +24,12 @@ groups:
     - "599"
     admin_only: true
   group_works: 
-    all_tag_templates: 
-      "600": show_work
     all_tags: 
     - "600"
   group_location: 
-    all_tag_templates: 
-      "852": show_libraries
     all_tags: 
     - "852"
   group_physical: 
-    all_tag_templates: 
-      "300": show_phys
     all_tags: 
     - "300"
     - "340"
