@@ -122,8 +122,10 @@ module Muscat
             # If ordering is not given
             # order by id, default in sunspot is
             # by :score
+            # Order descending as this is the default
+            # ordering for columns in activerails
             if order.empty?
-              order = {:field => :id, :order => :asc}
+              order = {:field => :id, :order => :desc}
             end
           end
           
