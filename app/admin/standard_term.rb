@@ -9,6 +9,12 @@ ActiveAdmin.register StandardTerm do
       params.permit!
     end
     
+    def show
+      @standard_term = StandardTerm.find(params[:id])
+      @prev_item, @next_item, @prev_page, @next_page = StandardTerm.near_items_as_ransack(params, @standard_term)
+    end
+    
+    
     def index
       @results = StandardTerm.search_as_ransack(params)
       
@@ -40,7 +46,8 @@ ActiveAdmin.register StandardTerm do
   ## Show ##
   ##########
   
-  show :title => :term do   
+  show :title => :term do
+    active_admin_navigation_bar( self ) 
     attributes_table do
       row (I18n.t :filter_term) { |r| r.term }
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
@@ -49,11 +56,9 @@ ActiveAdmin.register StandardTerm do
     active_admin_embedded_source_list( self, standard_term, params[:q], params[:src_list_page] )
   end
   
-=begin
   sidebar "Search sources", :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
-=end
   
   ##########
   ## Edit ##

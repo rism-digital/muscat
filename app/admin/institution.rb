@@ -9,6 +9,11 @@ ActiveAdmin.register Institution do
       params.permit!
     end
     
+    def show
+      @institution = Institution.find(params[:id])
+      @prev_item, @next_item, @prev_page, @next_page = Institution.near_items_as_ransack(params, @institution)
+    end
+    
     def index
       @results = Institution.search_as_ransack(params)
       
@@ -39,7 +44,8 @@ ActiveAdmin.register Institution do
   ## Show ##
   ##########
   
-  show do   
+  show do
+    active_admin_navigation_bar( self )
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_alternates) { |r| r.alternates }
@@ -48,11 +54,9 @@ ActiveAdmin.register Institution do
     active_admin_embedded_source_list( self, institution, params[:q], params[:src_list_page] )
   end
   
-=begin
   sidebar "Search sources", :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
-=end
   
   ##########
   ## Edit ##

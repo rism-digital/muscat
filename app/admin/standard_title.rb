@@ -9,6 +9,11 @@ ActiveAdmin.register StandardTitle do
       params.permit!
     end
     
+    def show
+      @standard_title = StandardTitle.find(params[:id])
+      @prev_item, @next_item, @prev_page, @next_page = StandardTitle.near_items_as_ransack(params, @standard_title)
+    end
+    
     def index
       @results = StandardTitle.search_as_ransack(params)
       
@@ -39,7 +44,8 @@ ActiveAdmin.register StandardTitle do
   ## Show ##
   ##########
   
-  show do   
+  show do
+    active_admin_navigation_bar( self )
     attributes_table do
       row (I18n.t :filter_title) { |r| r.title }
       row (I18n.t :filter_notes) { |r| r.notes }  
@@ -47,11 +53,9 @@ ActiveAdmin.register StandardTitle do
     active_admin_embedded_source_list( self, standard_title, params[:q], params[:src_list_page] )
   end
   
-=begin
   sidebar "Search sources", :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
-=end
   
   ##########
   ## Edit ##

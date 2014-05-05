@@ -9,6 +9,11 @@ ActiveAdmin.register LiturgicalFeast do
       params.permit!
     end
     
+    def show
+      @liturgical_feast = LiturgicalFeast.find(params[:id])
+      @prev_item, @next_item, @prev_page, @next_page = LiturgicalFeast.near_items_as_ransack(params, @liturgical_feast)
+    end
+    
     def index
       @results = LiturgicalFeast.search_as_ransack(params)
       
@@ -39,7 +44,8 @@ ActiveAdmin.register LiturgicalFeast do
   ## Show ##
   ##########
   
-  show do   
+  show do
+    active_admin_navigation_bar( self )
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_notes) { |r| r.notes }    
@@ -47,11 +53,9 @@ ActiveAdmin.register LiturgicalFeast do
     active_admin_embedded_source_list( self, liturgical_feast, params[:q], params[:src_list_page] )
   end
   
-=begin
   sidebar "Search sources", :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
-=end
   
   ##########
   ## Edit ##

@@ -9,6 +9,11 @@ ActiveAdmin.register Catalogue do
       params.permit!
     end
     
+    def show
+      @catalogue = Catalogue.find(params[:id])
+      @prev_item, @next_item, @prev_page, @next_page = Catalogue.near_items_as_ransack(params, @catalogue)
+    end
+    
     def index
       @results = Catalogue.search_as_ransack(params)
       
@@ -46,7 +51,7 @@ ActiveAdmin.register Catalogue do
   ##########
   
   show do 
-    #active_admin_navigation_bar( self )
+    active_admin_navigation_bar( self )
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_author) { |r| r.author }

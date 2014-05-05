@@ -62,11 +62,9 @@ ActiveAdmin.register Person do
     active_admin_embedded_source_list( self, person, params[:q], params[:src_list_page] )
   end
   
-=begin
   sidebar "Search sources", :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
-=end
   
   ##########
   ## Edit ##

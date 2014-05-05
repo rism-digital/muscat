@@ -11,6 +11,11 @@ ActiveAdmin.register Work do
       params.permit!
     end
     
+    def show
+      @work = Work.find(params[:id])
+      @prev_item, @next_item, @prev_page, @next_page = Work.near_items_as_ransack(params, @work)
+    end
+    
     def index
       @results = Work.search_as_ransack(params)
       
