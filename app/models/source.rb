@@ -117,6 +117,10 @@ class Source < ActiveRecord::Base
           people.map { |person| person.id }
     end
     
+    integer :places, :multiple => true do
+          places.map { |place| place.id }
+    end
+    
     integer :libraries, :multiple => true do
           libraries.map { |library| library.id }
     end
