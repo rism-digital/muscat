@@ -43,6 +43,10 @@ class Person < ActiveRecord::Base
     text :source
     text :alternate_names
     text :alternate_dates
+    
+    integer :src_count_order do 
+      src_count
+    end
   end
   
   # before_destroy, will delete Person only if it has no Source and no Work

@@ -27,6 +27,10 @@ class Institution < ActiveRecord::Base
   
     text :alternates  
     text :notes
+    
+    integer :src_count_order do 
+      src_count
+    end
   end
   
   def check_dependencies

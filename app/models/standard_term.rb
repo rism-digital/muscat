@@ -32,6 +32,10 @@ class StandardTerm < ActiveRecord::Base
     text :alternate_terms
     
     text :notes
+    
+    integer :src_count_order do 
+      src_count
+    end
   end
   
   def check_dependencies

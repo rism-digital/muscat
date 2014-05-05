@@ -42,6 +42,10 @@ class Catalogue < ActiveRecord::Base
     text :place
     text :date
     text :pages
+    
+    integer :src_count_order do 
+      src_count
+    end
   end
   
   def check_dependencies
