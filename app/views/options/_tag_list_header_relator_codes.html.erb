@@ -1,0 +1,20 @@
+<%-	tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
+<script>
+	var code_list_<%= tag_name -%> = [
+		<%- tag_params["groups"].each do |key, values| %>
+			{'When':'<%= key -%>','Value':'','Text':'--- Function ---'},	
+			<%- values.each do |code| %>
+			{'When':'<%= key -%>','Value':'<%= code -%>','Text':"<%= @editor_profile.get_label(code).gsub(/([\\\"])/, ' ') -%>"},	
+			<%- end %>
+		<%- end %>
+		{'When':'-','Value':'','Text':'---'}
+		];
+
+	function commonTemplate(item) {
+		return "<option value='" + item.Value + "'>" + item.Text + "</option>"; 
+	};
+	
+	function commonMatch(selectedValue) {
+		return this.When == selectedValue; 
+	};
+</script>

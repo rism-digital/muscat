@@ -1,0 +1,26 @@
+<%-	tag_id = pe_field_name(tag_name, iterator, subfield, s_iterator ) %>
+<%- if (params['width']==100 || params['growfield'])  %>
+	<textarea cols="100" class="pe_growfield subfield_entry" id="<%= tag_id %>" name="<%= tag_id %>" rows="1"><%= h marc_subfield.content %></textarea>
+<%- else %>
+	<input class="subfield_entry" size="100" type="text" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h marc_subfield.content %>" />
+<%- end %>
+
+<script>
+	jquery_tag_id = "<%= tag_id -%>".replace(/(\[|\])/g, '\\$1');
+	var valuesArray = [
+	<%- params['values'].each do |val| -%>
+		{label: "<%=val%>", value: "<%=val%>"},
+	<%- end -%>
+	];
+	$("#" + jquery_tag_id ).autocomplete(
+			{
+				source: valuesArray,
+				delay:10,
+				minChars:0,
+				matchSubset:0,
+				autoFill:true,
+				maxItemsToShow:10
+			}
+		);
+</script>
+

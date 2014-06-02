@@ -1,0 +1,27 @@
+<%
+	tag_id = pe_field_name(tag_name, iterator, subfield, s_iterator)
+	code_group_tag_id = "code_group_#{tag_id}"
+	code_tag_id = "code_#{tag_id}"
+	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
+%>
+<input class="ac_popup_edit" disabled="disabled" size="4" type="text" id="in_<%= tag_id %>" value="<%= h marc_subfield.content %>" />
+<input type="hidden" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h marc_subfield.content %>">
+<select id="<%= code_group_tag_id %>" name="<%= code_group_tag_id %>" width="100">
+	<option value="-">--- Select ---</option>
+	<%- tag_params["groups"].keys.sort.each do |key| %>
+    	<option value="<%= key -%>"><%= @editor_profile.get_label(key) -%></option>	
+	<%- end %>
+</select>
+<select id="<%= code_tag_id %>" name="<%= code_tag_id %>" width="100"
+	onchange="pe_set_value('<%= tag_id %>', '<%= render_panel %>', this.value)">
+	<option value="-">---</option>
+</select>
+<script>
+	parent = "<%= code_group_tag_id %>".replace(/(\[|\])/g, '\\$1');
+	child = "<%= code_tag_id %>".replace(/(\[|\])/g, '\\$1');
+	$("#" + child).cascade("#" + parent, {					
+				list: code_list_<%= tag_name -%>,
+				template: commonTemplate,
+				match: commonMatch	
+			});
+</script>

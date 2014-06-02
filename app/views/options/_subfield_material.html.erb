@@ -1,0 +1,8 @@
+<%	tag_id = pe_field_name(tag_name, iterator, subfield, s_iterator) %>
+<select id="<%= tag_id %>" name="<%= tag_id %>">
+	<option value="">[unspecified]</option>
+	<%- (1..10).each do |m| %>
+	    <%- mat = "Material #{m}" %>
+		<option value="<%= mat -%>" <%= (mat == marc_subfield.content) ? "selected=\"selected\"".html_safe : "" -%>><%= mat -%></option>
+	<%- end %>
+</select>
