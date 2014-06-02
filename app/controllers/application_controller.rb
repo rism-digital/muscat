@@ -8,5 +8,5 @@ class ApplicationController < ActionController::Base
   
   def save_search_filters  
   end
-  
+    
 end

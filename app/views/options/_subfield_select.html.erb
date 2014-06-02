@@ -1,0 +1,15 @@
+<%
+	tag_id = pe_field_name(tag_name, iterator, subfield, s_iterator)
+	val = marc_subfield.content ? marc_subfield.content : ""
+%>
+
+<%- if (!val.empty?) && (!params['values'].include?( marc_subfield.content ))   %>
+	<input class="subfield_entry"  size="<%= params['width'] -%>" type="text" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h marc_subfield.content %>"/>
+<%- else %>
+	<select id="<%= tag_id %>" name="<%= tag_id %>" width="100">
+		<option value="">--- Select ---</option>
+		<%- params["values"].each do |value| %>
+	    	<option value="<%= value -%>"<%= (value == marc_subfield.content) ? "selected=\"selected\"".html_safe : "" -%>><%= value -%></option>	
+		<%- end %>
+	</select>
+<%- end %>

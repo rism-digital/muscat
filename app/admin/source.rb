@@ -1,6 +1,6 @@
 ActiveAdmin.register Source do
   
-  actions :all, except: [:edit, :new] 
+  #actions :all, except: [:edit, :new] 
   
   menu :priority => 3
 
@@ -17,6 +17,11 @@ ActiveAdmin.register Source do
       @editor_profile = EditorConfiguration.get_show_layout
       @item = Source.find(params[:id])
       @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
+    end
+
+    def edit
+      @item = Source.find(params[:id])
+      @editor_profile = EditorConfiguration.get_applicable_layout @item
     end
 
     def index
@@ -71,6 +76,14 @@ ActiveAdmin.register Source do
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]
     render :partial => "marc/show"
+    active_admin_navigation_bar( self )
+  end
+  
+  form do
+    # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
+    active_admin_navigation_bar( self )
+    @item = @arbre_context.assigns[:item]
+    render :partial => "editor/edit_wide"
     active_admin_navigation_bar( self )
   end
   

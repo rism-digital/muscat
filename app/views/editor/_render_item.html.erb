@@ -1,0 +1,21 @@
+<div id="<%= render_panel -%>">
+	<!-- <ul>
+		<li><a href="#pe_tab_1_<%= render_panel -%>"><span><%= t :form -%></span></a></li>
+		<li><a href="#pe_tab_3_<%= render_panel -%>"><span><%= t :marc21_editor -%></span></a></li>
+	</ul> -->
+
+	<div class="cw_page_title_container ui-corner-all ui-widget-content" style="margin-top: 5px; margin-bottom: 10px !important; border: 1px solid #CCC">
+		<div class="ui-helper-clearfix" style="padding: 4px;">
+			<strong>Source <%= @item.id -%></strong> - <%= @editor_profile.name -%><br />
+			<em><%= @item.std_title -%></em>
+		</div>
+	</div>
+
+	<div id="pe_tab_1_<%= render_panel -%>">
+		<%= render :partial => "editor/item_form", :locals => { :render_panel => render_panel } -%>
+	</div>
+	
+	<div id="pe_tab_3_<%= render_panel -%>">
+		<%#= render :partial => "editor/item_raw_editor", :locals => { :render_panel => render_panel } -%>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+<div id="pe_float_place_holder"></div>
+<div id="pe_page" style="width: 800px; float: left">
+	<div id="cw_work">
+	</div>
+	<div id="pe_main">
+		<%= render :partial => "editor/render_item", :locals => { :render_panel => "pe_right_main_panel" } -%>
+	</div>
+</div>
+
+<!-- TOOLBAR REMOVED -->
+
+<script type="text/javascript">
+
+	pe_init_tags($('#pe_right_main_panel'));	
+	
+	// secondary - old versions caroussel
+	$('#pe_left').carousel({
+		circular: false,
+		visible: 1,
+		start: 0,
+	});
+	
+	// pe_set_locale("<%= I18n.locale.to_s -%>");
+	
+	jQuery(function($){
+		$(window).bind(
+			"scroll resize",
+			function(){
+				var placeholderTop = $("#pe_float_place_holder").offset().top;
+				var viewTop = $(window).scrollTop();
+				if (viewTop > placeholderTop) {
+					$("#pe_float_menu").animate({marginTop: (viewTop - placeholderTop + 44) + "px"}, 0, 'linear');
+				} else {
+					$("#pe_float_menu").animate({marginTop: "0px"}, 0, 'linear');
+				}
+
+		});
+ 
+	});
+		
+	// avoid user to accidently leave the page when the form was modify 
+	// will ask for a confirmation
+	window.onbeforeunload = pe_discard_changes_leaving;	
+
+
+	$.ajax 
+		
+</script>

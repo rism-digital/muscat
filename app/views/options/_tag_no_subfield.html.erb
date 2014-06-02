@@ -1,0 +1,21 @@
+<%- tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
+<%- tag_id = pe_field_name(tag_name, iterator, "", 1) %>
+<% node = marc_tag || MarcNode.new -%>
+<%- if  tag_params.has_key?("read_only") or (tag_params.has_key?("editor_only") and !role_at_least?(:level1)) or (tag_params.has_key?("admin_only") and !role_at_least?(:level0)) %>
+<input style="margin-top:6px" disabled="disabled" class="subfield_entry" type="text" value="<%= h node.content %>" />
+<input type="hidden" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h node.content %>">
+<%- else %>
+<input style="margin-top:6px" class="subfield_entry" id="<%= tag_id %>" name="<%= tag_id %>" type="text" value="<%= h node.content %>" />
+<% end %>	
+<%- if tag_params.has_key?("maskedinput") %>
+	<script>
+	jQuery(function($){
+		jquery_id = "<%= tag_id %>".replace(/(\[|\])/g, '\\$1');
+	  	<%- if tag_params["maskedinput"].has_key?("definitions") %>	
+	   		$.mask.definitions<%= raw tag_params["maskedinput"]["definitions"] -%>;
+		<%- end %>
+	   	$("#" + jquery_id).mask("<%= raw tag_params["maskedinput"]["mask"]-%>",{placeholder:" "});
+		
+	});
+	</script>
+<%- end %>

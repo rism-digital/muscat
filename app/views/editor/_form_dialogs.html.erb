@@ -1,0 +1,111 @@
+<script>
+
+	function resetPosition( element ) {
+		$(this).parent().css('position', 'fixed');
+		top_pos = 10;
+		if ( $.cookie( element.id + "_top" ) ) {	
+			top_pos = parseInt( $.cookie( element.id + "_top" ) );	
+		}
+		$(element).parent().css('top', top_pos ); 
+		left_pos = 10;
+		if ( $.cookie( element.id + "_left" ) ) {
+			left_pos = parseInt( $.cookie( element.id + "_left" ) ) ; 
+		}
+		$(element).parent().css('left', left_pos );
+	}
+
+	function resetSize( element ) {
+		if ( $.cookie( element.id + "_w" ) ) {	
+			w = parseInt( $.cookie( element.id + "_w" ) );
+			$(element).parent().css('width', w );	
+		}
+		if ( $.cookie( element.id + "_h" ) ) {	
+			h = parseInt( $.cookie( element.id + "_h" ) );
+			$(element).parent().css('height', h );	
+		}
+	}
+
+	$('.pe_non_modal_dialogs').dialog({
+		'bgiframe': true,
+		'resizable': false,
+		'autoOpen': false,
+		'modal': false,
+		dragStop: function(event, ui) {	
+			top_pos = ui.position.top;
+			left_pos = ui.position.left;
+			//console.log("top %d, left %d, scrollTop %d, scrollLeft %d ", top, left, $(window).scrollTop(), $(window).scrollLeft());
+			$.cookie( this.id + "_top", top_pos, { expires: 31, path: '/' });
+			$.cookie( this.id + "_left", left_pos, { expires: 31, path: '/' });
+		},
+		resizeStop: function(event, ui) {
+			// save the size	
+			w = ui.position.width;
+			h = ui.position.height;
+			$.cookie( this.id + "_width", w, { expires: 31, path: '/' });
+			$.cookie( this.id + "_height", h, { expires: 31, path: '/' });
+			// hack - removed while resizing
+			$(this).parent().css('position', 'fixed');
+			resetPosition(this);
+		},
+		open: function(){
+			resetSize(this);
+			resetPosition(this);
+		},
+	});
+	// fixed, 
+	$('.pe_non_modal_dialogs').parent().css('position', 'fixed');
+	
+	// titles - TO BE TRANSLATED
+	$("#dialog_validation").dialog( 'option', 'title', "Validation" );
+	$("#dialog_preview").dialog( 'option', 'title', "Preview" );
+	$("#dialog_help").dialog( 'option', 'title', "Help" );
+	
+	// preview
+	$("#dialog_preview").dialog( 'option', 'resizable', true );
+	$("#dialog_preview").dialog( 'option', 'height', 370 );
+	$("#dialog_preview").dialog( 'option', 'width', 792 );
+	
+	// help
+	$("#dialog_help").dialog( 'option', 'height', 500 );
+	$("#dialog_help").dialog( 'option', 'width', 400 );
+	$("#dialog_help").dialog( 'option', 'resizable', true );
+
+	var pe_form_changed = false;
+	var options= {
+	    trimText:true,
+	    fieldChangeCallback: function(originalValue,isDirty) {
+	        pe_form_changed = true;
+	    }
+	};	
+	$("#<%= "pe_form_#{render_panel}" -%>").dirtyFields(options);	
+	$("#<%= "pe_form_#{render_panel}" -%>").validate({
+		errorLabelContainer: $("#dialog_validation div.error"),
+		invalidHandler: function(form, validator) {
+			$('#dialog_validation').dialog('open');
+	  	},
+		highlight: function( element, errorClass, validClass ) {
+			$("#dialog_validation div.valid").hide();
+			$(element).addClass(errorClass).removeClass(validClass);
+			$('#dialog_validation').dialog('open');
+			$(element).toggle( "highlight" );
+			$(element).focus();
+	  	},	
+		unhighlight: function(element, errorClass, validClass) {
+			if (this.numberOfInvalids() == 0) {
+				$("#dialog_validation div.valid").show();
+			}
+		    $(element).removeClass(errorClass).addClass(validClass);
+			//$(element).focus();
+		}  
+	});	
+	$.validator.addMethod(
+	        "regex",
+	        function(value, element, regexp) {
+	            var check = false;
+	            var re = new RegExp(regexp);
+	            return this.optional(element) || re.test(value);
+	        },
+	        "Check this input"
+	);
+	
+</script>
