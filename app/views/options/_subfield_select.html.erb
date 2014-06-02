@@ -4,9 +4,9 @@
 %>
 
 <%- if (!val.empty?) && (!params['values'].include?( marc_subfield.content ))   %>
-	<input class="subfield_entry"  size="<%= params['width'] -%>" type="text" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h marc_subfield.content %>"/>
+	<input class="subfield_entry serialize_marc"  size="<%= params['width'] -%>" type="text" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h marc_subfield.content %>"/>
 <%- else %>
-	<select id="<%= tag_id %>" name="<%= tag_id %>" width="100">
+	<select id="<%= tag_id %>" name="<%= tag_id %>" class="serialize_marc" width="100">
 		<option value="">--- Select ---</option>
 		<%- params["values"].each do |value| %>
 	    	<option value="<%= value -%>"<%= (value == marc_subfield.content) ? "selected=\"selected\"".html_safe : "" -%>><%= value -%></option>	

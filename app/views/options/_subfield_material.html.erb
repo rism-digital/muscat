@@ -1,5 +1,5 @@
 <%	tag_id = pe_field_name(tag_name, iterator, subfield, s_iterator) %>
-<select id="<%= tag_id %>" name="<%= tag_id %>">
+<select id="<%= tag_id %>" name="<%= tag_id %>" class="serialize_marc">
 	<option value="">[unspecified]</option>
 	<%- (1..10).each do |m| %>
 	    <%- mat = "Material #{m}" %>

@@ -26,7 +26,8 @@ module ApplicationHelper
   def pe_field_name(tag_name, iterator, subfield, s_iterator)
     it = sprintf("%03d", iterator)
     s_it = sprintf("%04d", s_iterator)
-    "marc[#{tag_name}-#{it}][#{subfield}-#{s_it}]"  
+    #"marc[#{tag_name}-#{it}][#{subfield}-#{s_it}]"
+    "marc:#{tag_name}-#{it}:#{subfield}:#{s_it}"
   end
   
   def pe_ind_name(tag_name, iterator)

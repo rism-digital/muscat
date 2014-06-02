@@ -7,5 +7,5 @@
 		<option value="<%= ind -%>" <%= (val == ind) ? "selected=\"selected\"".html_safe : "" -%>><%= @editor_profile.get_sub_label(tag_name, ind).force_encoding('UTF-8') -%></option>
 	<%- end %>
 </select>
-<!--<input class="subfield_entry" type="radio" id="<%= tag_id %>" name="<%= tag_id %>" value="0#" <%= (val == "0#") ? "checked" : "" -%> />No
-<input class="subfield_entry" type="radio" id="<%= tag_id %>" name="<%= tag_id %>" value="1#" <%= (val == "1#") ? "checked" : "" -%> />Yes-->
+<!--<input class="subfield_entry serialize_marc" type="radio" id="<%= tag_id %>" name="<%= tag_id %>" value="0#" <%= (val == "0#") ? "checked" : "" -%> />No
+<input class="subfield_entry serialize_marc" type="radio" id="<%= tag_id %>" name="<%= tag_id %>" value="1#" <%= (val == "1#") ? "checked" : "" -%> />Yes-->

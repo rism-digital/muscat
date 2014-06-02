@@ -6,6 +6,6 @@
 			<% end %>
 		</div>
 		<% field_id = generate_field_name(tag_div, iterator, subfield) %>
-		<div><input class="subfield_entry" size="10" type="text" id="<%= field_id %>" name="<%= field_id %>" value="<%= h node.content %>" /></div>
+		<div><input class="subfield_entry serialize_marc" size="10" type="text" id="<%= field_id %>" name="<%= field_id %>" value="<%= h node.content %>" /></div>
 	</span>
 </li>
