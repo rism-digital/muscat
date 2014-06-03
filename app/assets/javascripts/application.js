@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require pe
+//= require marc_json
 //= require_tree .

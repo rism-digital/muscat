@@ -176,6 +176,7 @@ ActiveAdmin.setup do |config|
   #   config.register_javascript 'my_javascript.js'
   config.register_stylesheet 'jquery.ui.theme.css'
   config.register_javascript 'pe.js'
+  config.register_javascript 'marc_json.js'
 
   # == CSV options
   #
