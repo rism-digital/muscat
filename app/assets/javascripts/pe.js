@@ -609,7 +609,7 @@ function pe_add_subfield(destination_column, call_type) {
 function pe_add_tag(destination_column, call_type) {
 
 	var call_parts = call_type.split(':');
-	var url = "/manuscripts/pe_add_tag";
+	var url = "/sources/pe_add_tag";
 	var data = "pe_dest=" + destination_column;
 
 	$('#' + destination_column).block({ message: "Loading..." });	

@@ -1,6 +1,12 @@
 Muscat::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  
+  # Setup routes for source inline editor
+  match '/sources/pe_add_tag', to: 'sources#pe_add_tag', via: [:get, :post]
+  match '/sources/pe_add_subfield', to: 'sources#pe_add_subfield', via: [:get, :post]
+  match '/sources/pe_secondary_dialog', to: 'sources#pe_secondary_dialog', via: [:get, :post]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

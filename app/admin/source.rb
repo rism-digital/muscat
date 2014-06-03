@@ -14,6 +14,7 @@ ActiveAdmin.register Source do
     end
     
     def show
+      puts "^&&%%^$%$%#^FGFFHGFGHFGHF}"
       @editor_profile = EditorConfiguration.get_show_layout
       @item = Source.find(params[:id])
       @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
@@ -33,6 +34,14 @@ ActiveAdmin.register Source do
       end
     end
 
+  end
+  
+  collection_action :pe_add_tag, :method => :get do
+    @editor_profile = EditorConfiguration.find_by_id(params[:profile_id])    
+    #render :template => "editor/pe_add_tag"
+    respond_to do |format|
+       format.js { render  "editor/pe_add_tag" }
+     end
   end
   
   #scope :all, :default => true 

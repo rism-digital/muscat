@@ -1,3 +1,22 @@
+<div class="pe_dialogs" id="dialog">
+</div>
+<div class="pe_dialogs" id="dialog_edition">
+</div>
+<div class="pe_non_modal_dialogs" id="dialog_preview">
+</div>
+<div class="pe_non_modal_dialogs" id="dialog_validation">
+	<div class="valid" style="margin-top: 15px; display: none;">
+		<table style="width: 100%;"border="0" cellpadding="2" cellspacing="2">
+			<tr>
+				<td style="text-align: center; margin-top:15px;"><img src="/images/big_tick.png"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="error"></div>
+</div>
+<div class="pe_non_modal_dialogs" id="dialog_help">
+</div>
+
 <div id="pe_float_place_holder"></div>
 <div id="pe_page" style="width: 800px; float: left">
 	<div id="cw_work">
@@ -6,6 +25,8 @@
 		<%= render :partial => "editor/render_item", :locals => { :render_panel => "pe_right_main_panel" } -%>
 	</div>
 </div>
+
+
 
 BUTTON
 <%= action_button("Save", "ui-icon-check", "pe_send_form('pe_right_main_panel','pe_right_main_panel', 0, '')", "", :right, :all, "", true )	-%>
@@ -17,11 +38,7 @@ BUTTON
 	pe_init_tags($('#pe_right_main_panel'));	
 	
 	// secondary - old versions caroussel
-	$('#pe_left').carousel({
-		circular: false,
-		visible: 1,
-		start: 0,
-	});
+	// REMOVED in muscat 3
 	
 	// pe_set_locale("<%= I18n.locale.to_s -%>");
 	

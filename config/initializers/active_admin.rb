@@ -175,8 +175,13 @@ ActiveAdmin.setup do |config|
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
   config.register_stylesheet 'jquery.ui.theme.css'
-  config.register_javascript 'pe.js'
-  config.register_javascript 'marc_json.js'
+  #config.register_javascript 'pe.js'
+  #config.register_javascript 'marc_json.js'
+  #config.register_javascript 'jquery.blockUI.js'
+  #config.register_javascript 'jquery.cascade.js'
+  #config.register_javascript 'jquery.dirtyFields.js'
+  #config.register_javascript 'jquery.maskedinput.js'
+  #config.register_javascript 'jquery.validate.js'
 
   # == CSV options
   #
