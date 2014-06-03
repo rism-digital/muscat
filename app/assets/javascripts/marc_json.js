@@ -93,7 +93,11 @@ function order_subfields(fields) {
 	for (var i = 0; i < keys.length; i++) { // it seems I cannot iterate on an array?
 		key = keys[i];
 		f = {};
-		f[key] = fields[key];
+		// At this point, split the
+		// XX-XXXX field and keep
+		// only the first part
+		key_tag = key.split("-")[0]
+		f[key_tag] = fields[key];
 		ordered_fields.push(f);
 	}
 	
@@ -126,7 +130,10 @@ function serialize_dt_element( dt, json_marc ) {
 		// in the first case we get two fields
 		// in the second one the first is an
 		// empty string, for control tags
-		field = parts[2].split("-")[0];
+		// Keep the whole field for sorted duplicates
+		field = parts[2];//.split("-")[0];
+		// extract the first part to see if control field
+		field_tag = parts[2].split("-")[0]
 
 		if ($(this).val() == null || $(this).val() == "") {
 			return;
@@ -134,7 +141,7 @@ function serialize_dt_element( dt, json_marc ) {
 		
 		// Control fields do not have tags, so we
 		// put it into a special container
-		if (field == "") {
+		if (field_tag == "") {
 			controlfield[tag] = $(this).val();
 		} else {
 			// This is a norma subfield, eg. $a
