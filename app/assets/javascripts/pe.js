@@ -167,7 +167,8 @@ function pe_add_tag_from_list(destination_column, call_type, list )
 // pe_do_delete_tag if yes 
 function pe_delete_tag(destination_column, group, tag_name, iterator) {
 	
-	$('#dialog').html('<p>' + delete_field_confirm + '</p>');		
+	$('#dialog').html('<p>' + delete_field_confirm + '</p>');
+	$("#dialog").dialog();
 	$("#dialog").dialog( 'option', 'title', delete_msg );
 	$("#dialog").dialog( 'option', 'width', 300);
 	$("#dialog").dialog( 'option', 'buttons', {
@@ -212,6 +213,7 @@ function pe_secondary_value( render_panel, target, ac_type, controller, no_new )
 	
 	// we need to escape brackets in jquery, otherwise they are interpreted as selectors
 	jquery_target = target.replace(/(\[|\])/g, '\\$1');
+	$("#dialog").dialog();
 	$("#dialog").dialog( 'option', 'title', select_msg );
 	$("#dialog").dialog( 'option', 'width', 370 );
 	if (no_new == false) {
@@ -386,7 +388,7 @@ function pe_edit_inline( destination_column, id, tag_name )
 
 function pe_secondary_dialog(destination_column, target, ac_type, no_new)
 {
-	var url = "/manuscripts/pe_secondary_dialog";
+	var url = "/sources/pe_secondary_dialog";
 	var data = "pe_dest=" + destination_column;	
 
 	if (no_new == undefined) no_new = false;
@@ -574,7 +576,7 @@ function pe_populate(destination_column, call_type) {
 function pe_add_subfield(destination_column, call_type) {
 
 	var call_parts = call_type.split(':'); // profile_id:group:tag_name:iterator:subfield_name
-	var url = "/manuscripts/pe_add_subfield";
+	var url = "/sources/pe_add_subfield";
 	var data = "pe_dest=" + destination_column;
 	var list = destination_column + "_subfield_" + call_parts[2] + "-" + call_parts[3]  + "-" + call_parts[4];
 
