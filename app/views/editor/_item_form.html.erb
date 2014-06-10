@@ -4,6 +4,7 @@
 <%= form_tag( {:action => 'update'}, {:id => "pe_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>
 	<%= hidden_field_tag 'id', @item.id -%>
 	<%- @editor_profile.layout_config["group_order"].each do |group| -%>
+	<%# The default partial is editor/group %>
 		<%= render :partial => @editor_profile.get_group_partial(group), 
 			:locals => { :render_panel => render_panel , :group => group } -%>
 	<%- end -%>

@@ -657,21 +657,16 @@ function pe_help( url ) {
 	});
 }
 
-
-function pe_send_form( source_column, destination_column, form_type, wheel ) {
-	form = $('form', "#" + source_column);
-	serialize_pe_form(form);
-}
-
 /*
  * form_type: 0 = save, 1 = preview, 2 = inline save
  */
-function OLDpe_send_form( source_column, destination_column, form_type, wheel ) {
+function pe_send_form( source_column, destination_column, form_type, wheel ) {
    
 	form = $('form', "#" + source_column);
+	json_marc = serialize_pe_form(form);
 	
 	//$(form).valid();
-	url = "/manuscripts/pe_save"; ///form.attr("action");
+	url = "/sources/pe_save"; ///form.attr("action");
 	if ( form_type == 1) {
 		url = "/manuscripts/pe_preview";
 	}
@@ -679,14 +674,14 @@ function OLDpe_send_form( source_column, destination_column, form_type, wheel ) 
 		url = "/manuscripts/pe_save_inline";
 	}
 	var data = "pe_dest=" + destination_column;
-	data = data + "&wheel=" + wheel;
-	data = data + "&" + form.formSerialize();
+	data = data + "&" + JSON.stringify(json_marc);
 	
 	$('#' + destination_column).block({ message: "Loading..." });
 	
 	$.ajax({
 		success: function() { 
 		   $('#' + destination_column).unblock();
+		   location.reload();
 		   if (form_type == 0) {
 		      pe_form_changed = false;
 		   } else if (form_type == 1) {
@@ -695,8 +690,8 @@ function OLDpe_send_form( source_column, destination_column, form_type, wheel ) 
 		      //$('#dialog_preview').parent().css('position', 'fixed');
 		   }
 		},
-		data: data,
-		dataType: 'script',
+		data: {marc: JSON.stringify(json_marc), pe_dest: destination_column},
+		//dataType: 'script',
 		timeout: 20000, 
 		type: 'post',
 		url: url, 
@@ -706,13 +701,6 @@ function OLDpe_send_form( source_column, destination_column, form_type, wheel ) 
 					+ errorThrown);
 			location.reload();
 		}
-		/*
-		converters: {
-		        "text script": function(value) {
-					jQuery.globalEval( value );
-					return value;
-		        }},*/
-		
 	});
 }
 

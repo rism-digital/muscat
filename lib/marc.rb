@@ -126,8 +126,15 @@ class Marc
         grouped_tags[tag_key].each do |toplevel|
           toplevel.each_pair do |tag, field|
             if field.is_a?(Hash)
-              ind = field['ind1'] + field['ind2']
-              ind.gsub!(" ", "#")
+              ind = ""
+              
+              if !field.has_key?('ind1') || !field.has_key?('ind2')
+                ind = MarcConfig.get_default_indicator tag
+              else
+                ind = field['ind1'] + field['ind2']
+                ind.gsub!(" ", "#")
+              end
+              
               tag_group = @root << MarcNode.new(tag, nil, ind)
               field['subfields'].each do | pos |
                 pos.each_pair do |code, value|
@@ -792,7 +799,7 @@ class Marc
 
   end
 =end
-  
+
   def ==(other)
     load_source unless @loaded
     @source_id == other.get_source_id
@@ -807,8 +814,8 @@ class Marc
     load_source unless @loaded
     @source_id.to_i <=> other.get_source_id.to_i
   end
-  
+
   alias to_s to_marc
-  alias source to_marc
+  alias marc_source to_marc 
   
 end

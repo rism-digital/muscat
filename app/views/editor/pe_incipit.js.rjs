@@ -1,0 +1,30 @@
+# In order to reduce the blinking time, I tried to load the image into a hidden div
+# and then swap with the other one that contains the previous image.
+# It does not seem to do that much of difference in term of blinking time...
+# So I get stick with the simple one (below)
+#page << "if ($('incipit_rendering_0').style.visibility == 'hidden') {" 
+#  page.replace_html( "incipit_rendering_0", "<img src=\"#{@img}\">")
+#  page.replace_html( "incipit_rendering_1", "")
+#  page['incipit_rendering_1']['style']['visibility']='hidden'
+#  page['incipit_rendering_0']['style']['visibility']='visible'
+#page << '} else {'
+#  page.replace_html( "incipit_rendering_1", "<img src=\"#{@img}\">")
+#  page.replace_html( "incipit_rendering_0", "")
+#  page['incipit_rendering_0']['style']['visibility']='hidden'
+#  page['incipit_rendering_1']['style']['visibility']='visible'
+#page << '}'
+
+# With only one div, we would do...
+
+target = params[:target]
+#target = target.gsub(/\\/,"")
+#page << "$('##{target}').css('height', $(\"#prout_img\").height());"
+#page.hide(target)
+#page.replace_html( target, "<img id=\"prout_img\" src=\"#{@img}\">")
+#page << "$('##{target}').html(\"<img id='prout_img' src='#{@img}'>\");"
+#page << "$('##{target}').css('height', $(\"#prout_img\").height());"
+#page << "$('##{target}').css('height', '');"
+#page << "alert($(\"#prout_img\").height());"
+#page.show(target)
+
+page << "pe_incipit_image( '#{target}', '#{@img}' );"

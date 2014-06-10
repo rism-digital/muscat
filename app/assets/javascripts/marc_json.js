@@ -227,5 +227,6 @@ function serialize_pe_form( form ) {
 	});
 	
 	console.log(JSON.stringify(json_marc));
+	return json_marc;
 	
 }

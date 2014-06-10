@@ -1,0 +1,7 @@
+render_panel = params[:pe_dest]
+
+page.call "$('##{render_panel}').html", render(:partial => 'editor/render_item', :locals => { :render_panel => render_panel })
+
+page << "pe_init_tags($('##{render_panel}'))"
+
+flash.discard
