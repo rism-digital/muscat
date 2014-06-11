@@ -22,6 +22,7 @@ ActiveAdmin.register Source do
     def edit
       @item = Source.find(params[:id])
       @editor_profile = EditorConfiguration.get_applicable_layout @item
+      @page_title = "Edit #{@editor_profile.name} [#{@item.id}]"
     end
 
     def index
@@ -138,10 +139,10 @@ ActiveAdmin.register Source do
   
   form do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
-    active_admin_navigation_bar( self )
+    active_admin_edition_bar( self )
     @item = @arbre_context.assigns[:item]
     render :partial => "editor/edit_wide"
-    active_admin_navigation_bar( self )
+    active_admin_edition_bar( self )
   end
   
 end

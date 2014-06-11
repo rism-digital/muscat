@@ -1,67 +1,12 @@
-<div class="marc_editor_dialogs" id="dialog">
-</div>
-<div class="marc_editor_dialogs" id="dialog_edition">
-</div>
-<div class="marc_editor_non_modal_dialogs" id="dialog_preview">
-</div>
-<div class="marc_editor_non_modal_dialogs" id="dialog_validation">
-	<div class="valid" style="margin-top: 15px; display: none;">
-		<table style="width: 100%;"border="0" cellpadding="2" cellspacing="2">
-			<tr>
-				<td style="text-align: center; margin-top:15px;"><!--img src="/images/big_tick.png"--></td>
-			</tr>
-		</table>
-	</div>
-	<div class="error"></div>
-</div>
-<div class="marc_editor_non_modal_dialogs" id="dialog_help">
-</div>
-
-<div id="marc_editor_float_place_holder"></div>
-<div id="marc_editor_page" style="float: left">
-	<div id="cw_work">
-	</div>
-	<div id="marc_editor_main">
-		<%= render :partial => "editor/render_item", :locals => { :render_panel => "marc_editor_right_main_panel" } -%>
-	</div>
-</div>
-
-
-
-BUTTON
-<%= action_button("Save", "ui-icon-check", "marc_editor_send_form('marc_editor_right_main_panel','marc_editor_right_main_panel', 0, '')", "", :right, :all, "", true )	-%>
-
-<!-- TOOLBAR REMOVED -->
+<%= render :partial => "editor/item_form", :locals => { :render_panel => "marc_editor_panel" } -%>
 
 <script type="text/javascript">
 
-	marc_editor_init_tags($('#marc_editor_right_main_panel'));	
+	marc_editor_init_tags($('#marc_editor_panel'));	
 	
-	// secondary - old versions caroussel
-	// REMOVED in muscat 3
-	
-	// marc_editor_set_locale("<%= I18n.locale.to_s -%>");
-	
-	jQuery(function($){
-		$(window).bind(
-			"scroll resize",
-			function(){
-				var placeholderTop = $("#marc_editor_float_place_holder").offset().top;
-				var viewTop = $(window).scrollTop();
-				if (viewTop > placeholderTop) {
-					$("#marc_editor_float_menu").animate({marginTop: (viewTop - placeholderTop + 44) + "px"}, 0, 'linear');
-				} else {
-					$("#marc_editor_float_menu").animate({marginTop: "0px"}, 0, 'linear');
-				}
-
-		});
- 
-	});
-		
 	// avoid user to accidently leave the page when the form was modify 
 	// will ask for a confirmation
 	window.onbeforeunload = marc_editor_discard_changes_leaving;	
-
 
 	$.ajax 
 		

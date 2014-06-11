@@ -9,7 +9,7 @@ new_tag = MarcNode.new
 // temporary div and replace it with the new content
 $('#<%= render_panel %>_tag_list_<%= tag_name %>').append('<div id=\"add_tag_tmp\"></div>');
   
-$('#add_tag_tmp').replaceWith("<%= escamarc_editor_javascript(render(:partial => 'editor/tag_dt', :locals => { :render_panel => render_panel, :group => group, :tag_name => tag_name, :marc_tag => new_tag, :iterator => iterator }))%>");
+$('#add_tag_tmp').replaceWith("<%= escape_javascript(render(:partial => 'editor/tag_dt', :locals => { :render_panel => render_panel, :group => group, :tag_name => tag_name, :marc_tag => new_tag, :iterator => iterator }))%>");
 
 
 // make sure the tag_div is visible

@@ -1,271 +1,3 @@
-/* Everything should branch off ID marc_editor_page so it overrides all other css */
-#marc_editor_page {
-	width: 990px;
-	padding: 0;
-	margin: 0;
-	margin-left: 2px;
-}
-
-#marc_editor_left {
-	float: left;
-	width: 490px;
-	/*padding-right: 2px;*/
-}
-
-#marc_editor_left_secondary {
-	float: left;
-	width: 490px;
-	/*padding-right: 2px;*/
-	/*left-right: 2px;*/
-}
-
-#marc_editor_right_main {
-	float: right;
-	width: 490px;
-	margin: 0;
-	padding: 0;
-}
-
-#marc_editor_left_old_versions {
-	float: right;
-	width: 490px;
-	margin: 0;
-}
-
-#marc_editor_navigation_panels {
-	margin-bottom: 3px
-}
-
-#marc_editor_navigation_panel1,
-#marc_editor_navigation_panel2 {
-	width: 990px;
-	padding: 0;
-	margin-bottom: 3px
-}
-
-
-.marc_editor_column_toggle {
-	text-align: right;
-	height: 6px;
-}
-.marc_editor_column_toggle a {
-	line-height: 4px;
-	text-decoration: none;
-	position: relative;
-	top: -5px;
-	left: -5px;
-	padding: 0;
-	margin-top: -6px;
-}
-
-#marc_editor_page table.marc_editor_grid {
-	width: 484px;
-	max-width: 484px;
-}
-
-table.marc_editor_grid,
-table.marc_editor_grid_header {
-	padding: 0;
-	margin: 0;
-	border-collapse: collapse;
-	width: 484px;
-}
-
-table.marc_editor_grid_footer {
-	margin-top: 4px;
-}
-
-table.marc_editor_grid_header td {
-	padding: 1px;
-}
-
-table.marc_editor_grid_header {
-	padding: 5px;
-	margin: 0;
-	border-bottom: 0;	
-}
-
-#marc_editor_column_1 table.marc_editor_grid_header {
-	background-color:#E5D5D5;
-}
-#marc_editor_column_2 table.marc_editor_grid_header {
-	background-color:#D5D9E5;
-}
-table.marc_editor_grid_header p.cw_title {
-	font-size: 1.1em;
-	font-weight: bold;
-	color: #555;
-	padding: 4px;
-}
-table.marc_editor_grid_header span.cw_pager {
-	padding: 4px;
-	color: #555;
-	font-size: 0.9em;
-}
-
-.marc_editor_grid th {
-	width: 100%;
-	text-align: left;
-/*	border-right: 2px solid #CCC;*/
-}
-
-.marc_editor_grid th.last {
-	border-right: 0;
-}
-
-.marc_editor_grid th a {
-	padding-left: 4px;
-	padding-right: 16px;
-	background-color:#555555;
-	display:block;
-	color: white;
-	text-decoration: none;
-	font-size-adjust:none;
-	font-stretch:normal;
-	font-style:normal;
-	font-variant:normal;
-	font-weight:normal;
-	line-height:normal;
-}
-.marc_editor_grid th a:hover {
-	background-color: #000;
-	color: #fff;
-}
-
-.marc_editor_grid th.nosort {
-	padding-left: 4px;
-	background-color:#777;
-	color: white;
-}
-.marc_editor_grid th.sorted {
-	background-color: #333;
-}
-
-.marc_editor_grid th.asc a,
-.marc_editor_grid th.asc a:hover {
-	background: #333 url(/images/arrow_up.gif) right 50% no-repeat;
-}
-
-.marc_editor_grid th.desc a,
-.marc_editor_grid th.desc a:hover {
-	background: #333 url(/images/arrow_down.gif) right 50% no-repeat;
-}
-
-.marc_editor_grid th.loading a,
-.marc_editor_grid th.loading a:hover {
-	background: #333 url(/images/spinner_small.gif) right 50% no-repeat;
-}
-
-.marc_editor_grid td {
-	padding: 0px;
-	margin: 0px;
-}
-
-.marc_editor_grid td a {
-	color: #3C6491;
-	text-decoration: none;
-	font-size-adjust:none;
-	font-stretch:normal;
-	font-style:normal;
-	font-variant:normal;
-	font-weight:normal;
-	line-height:normal;
-}
-
-.marc_editor_grid tr.evenrow,
-table.marc_editor_grid tr.evenrow td.sorted {
-	background-color: #fff2f2;
-}
-
-.marc_editor_grid tr.oddrow,
-table.marc_editor_grid tr.oddrow td.sorted {
-	background-color: #fffafa;	
-}
-
-.marc_editor_grid tr.evenrow,
-table.marc_editor_grid tr.evenrow td.sorted {
-	background-color: #F6F8FF;
-}
-
-.marc_editor_grid tr.oddrow,
-table.marc_editor_grid tr.oddrow td.sorted {
-	background-color: #EDEFFD;	
-}
-
-
-.marc_editor_grid tr.evenrow td {
-	padding: 4px;
-}
-
-.marc_editor_grid tr.oddrow td {
-	padding: 4px;
-}
-
-table.marc_editor_grid tr.evenrow td {
-	padding: 4px;
-}
-
-table.marc_editor_grid tr.oddrow td {
-	padding: 4px;
-}
-
-.marc_editor_marc_editor {
-   margin-top: 10px;
-	width: 800px;
-	height: 400px;
-}
-
-/* grid */
-
-dl.marc_editor_tags {
-	width: 464px;
-/*	background-color: red;*/
-}
-
-dl.marc_editor_tags dt {
-	margin-bottom: 10px;
-	background-color: #f8f8f8;
-}
-
-dl.marc_editor_tags input {
-	width: 100%;
-	background-color: #f9f1f1;
-/*	padding: 2px;*/
-	border: 1px solid #999;
-	margin: 0;
-}
-
-dl.marc_editor_tags label {
-	width: 100%;
-/*	background-color: #efefff;*/
-	padding: 2px;
-}
-
-.marc_editor_tag_label {
-	background-color: #ddd;
-}
-
-
-/* tables */ 
-
-/* tag block */
-
-table._lp_tag_list_header {
-	width: 100%;
-	background-color: #FFCCB3;
-}
-
-table._lp_tag_list_footer {
-	width: 100%;
-	background-color: #ffeee5;
-	/*margin-bottom: 8px;*/
-}
-
-table._lp_tag_block {
-	width: 100%;
-	padding: 0px;
-	margin: 0;
-}
 
 dl._lp_tag_block {
 	width: 100%;
@@ -273,32 +5,11 @@ dl._lp_tag_block {
 	margin: 0;
 }
 
-table._lp_add {
-	width: 100%;
-}
-
-/* tag */
-
-table._lp_tag_header {
-	width: 100%;
-	background-color: #ffeee5;
-}
-
 dl._lp_tag_block dt {
 	margin: 0px;
 	padding: 0px;
-	background-color: #f8f8f8;
+	background-color: #ebebeb;
 }
-
-/*
-dl._lp_tag_block input {
-	width: 100%;
-	background-color: #f9f1f1;
-//	padding: 2px;
-	border: 1px solid #999;
-	margin: 0;
-}
-*/
 
 dl._lp_tag_block label {
 	width: 100%;
@@ -306,56 +17,19 @@ dl._lp_tag_block label {
 	padding: 2px;
 }
 
-.marc_editor_tag_label {
-	background-color: #ddd;
-}
-
-table.marc_editor_tag_label {
-	width: 100%;
-}
-
-.marc_editor_tag_label {
-	background-color: #ddd;
-}
-
-table._lp_tag_list_header td._lp_tag_help {
-	text-align: right;
-}
-
-._lp_toolbar_title { 
-   outline: 0; 
-   margin:0 4px 0 0; 
-   padding: .2em .6em; 
-	 font-weight: bold;
-}
-
-.marc_editor_info a {
-	vertical-align: center;
-}
-
-.marc_editor_button {
-	 width: 10px;
-}
-
-
-/* PE CELL - for grid layout */
 .marc_editor_grid_panel {
 	padding: 12px !important;
 	padding-top: 6px !important;
 	border: 1px solid #aaa;
-	margin: 18px 18px 4px 18px !important;
+	margin: 18px 2px 4px 2px !important;
 }
 .marc_editor_grid_panel table.tag_grid {
 	width: 100%;
-/*	background-color: orange;*/
 }
 .marc_editor_grid_panel table.tag_grid td {
 	vertical-align: top;
 }
-/*.marc_editor_grid_panel table td[rowspan="1"] {
-	vertical-align: bottom;
-}
-*/
+
 .marc_editor_grid_panel table.tag_grid th, 
 .marc_editor_grid_panel table.tag_grid td {
 	padding-right: 4px;
@@ -425,23 +99,6 @@ table._lp_tag_list_header td._lp_tag_help {
 }
 .marc_editor_pae_info { margin-left: 1px; margin-top: 3px; border: #aaa solid 1px; height: 2em; background-color: white }
 
-.marc_editor_group_title {
-	font-size: 1.2em;
-/*	font-variant: small-caps;*/
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	background-color: #cdb3a5;
-	border-bottom: #9d8375 1px solid;
-	line-height: 1.9em;
-}
-.marc_editor_group_panel {
-	border: 1px solid #cdb3a5;
-	margin-top: 6px;
-	margin-bottom: 30px;
-	background-color: #f8e6df;
-	padding-bottom: 12px;
-}
-
 .marc_editor_grid_tag_tab {
 	position: relative;
 	top: -7px;
@@ -457,10 +114,6 @@ table._lp_tag_list_header td._lp_tag_help {
 }
 .marc_editor_grid_tag_tab span {
 	padding-left: 8px;
-}
-.marc_editor_group_actions {
-	padding: 7px;
-	background-color: #FFCCB3;
 }
 
 .marc_editor_button_pad_left {
@@ -487,26 +140,6 @@ table._lp_tag_list_header td._lp_tag_help {
 
 .marc_editor_inline_panel_content p {
 	margin-bottom: 2px;
-}
-
-#marc_editor_float_menu {
-	float: right;
-	width: 166px;
-	max-width: 166px;
-	background-color: #FFCCB3;
-	padding: 6px;
-	border: 1px solid #AAA;
-}
-#marc_editor_float_menu ul {
-   padding: 0;
-	list-style-image:none;
-	list-style-position:outside;
-	list-style-type:none;	
-
-}
-#marc_editor_float_menu a,
-a.marc_editor_a_name {
-	text-decoration: none;
 }
 
 // This stuff is copied from cutters wheels

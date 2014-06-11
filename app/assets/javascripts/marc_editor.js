@@ -318,7 +318,7 @@ function marc_editor_toggle_old_versions(call_type) {
 	$('#marc_editor_old_versions_btn').hide(0);
 	$('#marc_editor_preview_btn').show(0);
 	// select the marc tab in the main
-	$('#marc_editor_right_main_panel').tabs( 'select' , 1 );*/
+	$('#marc_editor_panel').tabs( 'select' , 1 );*/
 	// load old version
 	//if ($('#marc_editor_left_old_versions_panel').hasClass('marc_editor_left_old_versions_panel')) {
 	// we're done...
@@ -337,9 +337,9 @@ function marc_editor_toggle_preview() {
 	$('#marc_editor_old_versions_btn').show(0);
 	$('#marc_editor_preview_btn').hide(0);
 	// select the form tab in the main
-	$('#marc_editor_right_main_panel').tabs( 'select' , 0 );*/
+	$('#marc_editor_panel').tabs( 'select' , 0 );*/
 	// load the form
-	marc_editor_send_form('marc_editor_right_main_panel','marc_editor_left_preview_panel', 1, "");
+	marc_editor_send_form('marc_editor_panel','marc_editor_left_preview_panel', 1, "");
 	//marc_editor_populate_versions("marc_editor_left_old_versions_panel", call_type );
 }
 
@@ -351,7 +351,7 @@ function marc_editor_populate_versions(destination_column, call_type) {
 	var data = "marc_editor_dest=" + destination_column;
 
 	data = data + "&wheel=" + call_parts[0];		
-	data = data + "&id=" + $('#marc_editor_right_main_panel form :input#id').attr("value");
+	data = data + "&id=" + $('#marc_editor_panel form :input#id').attr("value");
 
 	$('#' + destination_column).block({ message: "Loading..." });			
 
@@ -549,12 +549,12 @@ function marc_editor_populate(destination_column, call_type) {
 		data = data + "&id=previous";
 	}
 	
-	if (destination_column == 'marc_editor_right_main_panel') {
+	if (destination_column == 'marc_editor_panel') {
 		//marc_editor_toggle_old_versions(false);
 		if ($('#marc_editor_lock_btn').is(':visible'))	{
 			// get the previous item for the left secondary panel
 			//data = data + "&previous_item=1";
-			marc_editor_send_form('marc_editor_right_main_panel','marc_editor_left_secondary_panel', 1, "");
+			marc_editor_send_form('marc_editor_panel','marc_editor_left_secondary_panel', 1, "");
 		}
 	}
 	

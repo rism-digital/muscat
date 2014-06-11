@@ -13,7 +13,7 @@ $('#<%=render_panel%>_subfield_<%=tag_name%>-<%=iterator%>-<%=@column[0]%>').app
 
 <%
 
-div_data = escamarc_editor_javascript(render(:partial => 'editor/subfield_li', :locals => { :column => @column, :render_panel => render_panel, :group => group, 
+div_data = escape_javascript(:partial => 'editor/subfield_li', :locals => { :column => @column, :render_panel => render_panel, :group => group, 
 			:iterator => iterator, :marc_tag => new_tag, :tag_name => tag_name, 
 			:s_iterator => s_iterator, :marc_subfield => new_subfield }))
 
