@@ -1,0 +1,228 @@
+
+dl._lp_tag_block {
+	width: 100%;
+	padding: 0px;
+	margin: 0;
+}
+
+dl._lp_tag_block dt {
+	margin: 0px;
+	padding: 0px;
+	background-color: #ebebeb;
+}
+
+dl._lp_tag_block label {
+	width: 100%;
+	/* background-color: #efefff; */
+	padding: 2px;
+}
+
+.marc_editor_grid_panel {
+	padding: 12px !important;
+	padding-top: 6px !important;
+	border: 1px solid #aaa;
+	margin: 18px 2px 4px 2px !important;
+}
+.marc_editor_grid_panel table.tag_grid {
+	width: 100%;
+}
+.marc_editor_grid_panel table.tag_grid td {
+	vertical-align: top;
+}
+
+.marc_editor_grid_panel table.tag_grid th, 
+.marc_editor_grid_panel table.tag_grid td {
+	padding-right: 4px;
+	padding-left: 4px;
+
+}
+.marc_editor_grid_panel input,
+.marc_editor_grid_panel select,
+.marc_editor_grid_panel textarea {
+	width: 100%;
+	border:1px solid #888;
+	border-right:1px solid #b6b6b6;
+	border-bottom:1px solid #b6b6b6;
+}
+
+.marc_editor_grid_panel input,
+.marc_editor_grid_panel select {
+	font-size: 1em;
+	
+}
+
+.marc_editor_grid_panel select {
+	padding: 1px 0px 0px 0px;
+}
+
+.marc_editor_grid_panel input {
+	padding: 1px 0px 2px 0px;
+}
+
+.marc_editor_grid_panel .mini_cell {
+	padding: 4px;
+}
+.marc_editor_grid_panel .mini_header {
+	padding: 2px;
+	overflow: none;
+/*	letter-spacing: 0.02em;*/
+	color: #555;
+	font-weight: bold;
+	padding-bottom: 5px !important;
+}
+
+.marc_editor_grid_panel .mini_header a {
+	text-decoration: none;
+}
+
+.ac_popup_edit {
+	background-image:url('/images/textfield_key.png');
+	background-repeat: no-repeat;
+	background-position: center right;
+	color: #000000;
+}
+.ac_popup_button a {
+/*	top: -3px;*/
+	margin: 0 0 0 3px;
+	height: 10px;
+}
+
+.marc_editor_grid_internal_layout {
+	width: 100%;
+	padding: 0px !important; 
+	margin: 0px !important;
+}
+.marc_editor_grid_panel table.marc_editor_grid_internal_layout tr,
+.marc_editor_grid_panel table.marc_editor_grid_internal_layout td {
+	padding: 0;
+	margin: 0;
+}
+.marc_editor_pae_info { margin-left: 1px; margin-top: 3px; border: #aaa solid 1px; height: 2em; background-color: white }
+
+.marc_editor_grid_tag_tab {
+	position: relative;
+	top: -7px;
+	left: -13px;
+	height: 30px;
+	max-height: 30px;
+	line-height: 28px;
+	background-color: #bbb;
+	width: 300px;
+	background-image:url('/images/tagtab.gif');
+	background-repeat: no-repeat;
+	background-position: center right;
+}
+.marc_editor_grid_tag_tab span {
+	padding-left: 8px;
+}
+
+.marc_editor_button_pad_left {
+	margin-left: 4px !important;
+}
+
+.marc_editor_inline_panel {
+	border: 1px solid #CCC;
+	margin-bottom: 8px;
+	min-height: 30px;
+	background-color: #E1E1E1;
+	padding: 6px 0px;
+}
+
+.marc_editor_inline_panel_buttons {
+	clear: both; 
+	float: right; 
+	margin: 0px 6px;
+}
+
+.marc_editor_inline_panel_content {
+	margin: 4px 24px;
+}
+
+.marc_editor_inline_panel_content p {
+	margin-bottom: 2px;
+}
+
+// This stuff is copied from cutters wheels
+// should be replaced at some point
+
+/****************************/
+/* JQUERY UI BUTTONS 		*/
+/****************************/
+/* UI THEMED BUTTONS/LINKS based on http://www.filamentgroup.com/examples/buttonFrameworkCSS/ -- http://www.filamentgroup.com/lab/styling_buttons_and_toolbars_with_the_jquery_ui_css_framework/ */
+
+.abutton,
+.abutton_condensed { 
+   outline: 0; 
+   margin:0 4px 0 0; 
+   padding: .35em .6em; 
+   text-decoration:none !important; 
+   cursor:pointer; 
+   position: relative; 
+/*   text-align: center;*/
+   zoom: 1;
+   /* So the buttons are always the same height */
+   line-height: 1.2em;
+}
+
+
+
+.abutton .ui-icon,
+.abutton_condensed .ui-icon { 
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	left: 50%;
+	margin-left: -8px;
+}
+
+a.abutton { float: left; }
+
+/* remove extra button width in IE */
+button.abutton { width:auto; overflow:visible; }
+button.abutton_condensed { 
+	width:auto;
+	overflow:visible;
+	height: 22px;
+	width: 22px !important;
+	padding: 0;
+	margin: 0;
+}
+button.abutton_condensed .ui-icon {
+/*	position: relative;*/
+	left: 7px !important;
+	top: 7px !important;
+}
+.abutton_condensed { 
+   margin: 0;
+/*height: 18px;*/
+   padding: 3px;
+}
+
+.abutton-icon-left { padding-left: 2.1em; }
+.abutton-icon-right { padding-right: 2.1em; }
+.abutton-icon-left .ui-icon { right: auto; left: .2em; margin-left: 0; }
+.abutton-icon-right .ui-icon { left: auto; right: .2em; margin-left: 0; }
+
+.abutton-icon-solo { display:block; width:8px; text-indent: -9999px; } /* solo icon buttons must have block properties for the text-indent to work */
+
+button.abutton-icon-left .ui-icon {left: -0.1em;}
+button.abutton-icon-right .ui-icon {right: 1.7em;}
+button.abutton-icon-solo .ui-icon {left: 0;} 
+
+.abuttonset { float:left; }
+.abuttonset .abutton { float: left; }
+.abuttonset-single .abutton,
+.abuttonset-multi .abutton { margin-right: -1px; }
+
+.atoolbar { padding: .5em; margin: 0; }
+.atoolbar .abuttonset { margin-right:1.5em; padding-left: 1px; }
+.atoolbar .abutton { font-size: 1em; }
+
+.atooltext { float: left; }
+
+
+.bbutton {
+	height: 22px !important;
+	width: 22px !important;
+
+}

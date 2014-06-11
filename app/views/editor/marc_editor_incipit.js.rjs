@@ -27,4 +27,4 @@ target = params[:target]
 #page << "alert($(\"#prout_img\").height());"
 #page.show(target)
 
-page << "pe_incipit_image( '#{target}', '#{@img}' );"
+page << "marc_editor_incipit_image( '#{target}', '#{@img}' );"

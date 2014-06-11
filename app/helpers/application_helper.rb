@@ -23,14 +23,14 @@ module ApplicationHelper
   #################
   # These methods are placed here for compatibility with muscat 2
   
-  def pe_field_name(tag_name, iterator, subfield, s_iterator)
+  def marc_editor_field_name(tag_name, iterator, subfield, s_iterator)
     it = sprintf("%03d", iterator)
     s_it = sprintf("%04d", s_iterator)
     #"marc[#{tag_name}-#{it}][#{subfield}-#{s_it}]"
     "marc:#{tag_name}-#{it}:#{subfield}-#{s_it}"
   end
   
-  def pe_ind_name(tag_name, iterator)
+  def marc_editor_ind_name(tag_name, iterator)
     it = sprintf("%03d", iterator)
     "#{tag_name}-#{it}-indicator"  
   end

@@ -1,14 +1,14 @@
 <%
-	tag_id = pe_field_name(tag_name, iterator, subfield, s_iterator)
+	tag_id = marc_editor_field_name(tag_name, iterator, subfield, s_iterator)
 	code_tag_id = "code_#{tag_id}"
 	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
 %>
-<table class="pe_grid_internal_layout" cellpadding="0" cellspacing="0"><tr><td width="25%">
+<table class="marc_editor_grid_internal_layout" cellpadding="0" cellspacing="0"><tr><td width="25%">
 <input class="ac_popup_edit" disabled="disabled" size="4" type="text" id="in_<%= tag_id %>" value="<%= h marc_subfield.content %>" />
 <input type="hidden" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h marc_subfield.content %>">
 </td><td>
 <select id="<%= code_tag_id %>" name="<%= code_tag_id %>" width="100"
-	onchange="pe_set_value('<%= tag_id %>', '<%= render_panel %>', this.value)">
+	onchange="marc_editor_set_value('<%= tag_id %>', '<%= render_panel %>', this.value)">
 	<option value="">--- Function ---</option>
 	<%- tag_params["codes"].each do |code| %>
     	<option value="<%= code -%>"><%= @editor_profile.get_label(code) -%></option>	

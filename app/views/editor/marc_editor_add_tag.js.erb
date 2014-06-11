@@ -1,6 +1,6 @@
 <%
 tag_name = params[:tag_name]
-render_panel = params[:pe_dest]
+render_panel = params[:marc_editor_dest]
 group = params[:group]
 iterator = params[:iterator]
 new_tag = MarcNode.new 
@@ -15,7 +15,7 @@ $('#add_tag_tmp').replaceWith("<%= escape_javascript(render(:partial => 'editor/
 // make sure the tag_div is visible
 $('#<%=render_panel%>_tag_div_<%=tag_name%>').show();
 // make sure the tag_list is visible
-pe_toggle( $('#<%=render_panel%>_tag_list_<%=tag_name%>'), 1 );
+marc_editor_toggle( $('#<%=render_panel%>_tag_list_<%=tag_name%>'), 1 );
 
 // reset tag
-pe_reset_tag_div( $('#<%=render_panel%>_tag_div_<%=tag_name%>') );
+marc_editor_reset_tag_div( $('#<%=render_panel%>_tag_div_<%=tag_name%>') );

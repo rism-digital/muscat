@@ -1,15 +1,16 @@
+<div id="<%= render_panel -%>">
+	<%# we don't want the form to be submitted directly (with enter for example), so the 'onSubmit return false %>
 
-<%# we don't want the form to be submitted directly (with enter for example), so the 'onSubmit return false %>
-
-<%= form_tag( {:action => 'update'}, {:id => "pe_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>
-	<%= hidden_field_tag 'id', @item.id -%>
-	<%- @editor_profile.layout_config["group_order"].each do |group| -%>
-	<%# The default partial is editor/group %>
-		<%= render :partial => @editor_profile.get_group_partial(group), 
-			:locals => { :render_panel => render_panel , :group => group } -%>
-	<%- end -%>
-	<!-- get all tags not included in the group into an 'other' group -->
-	<%= render :partial => @editor_profile.get_group_partial("other"), 
-		:locals => { :render_panel => render_panel , :group => "other" } -%>
-<% end %>
-<%= render :partial => "editor/form_dialogs", :locals => { :render_panel => render_panel } -%>
+	<%= form_tag( {:action => 'update'}, {:id => "marc_editor_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>
+		<%= hidden_field_tag 'id', @item.id -%>
+		<%- @editor_profile.layout_config["group_order"].each do |group| -%>
+		<%# The default partial is editor/group %>
+			<%= render :partial => @editor_profile.get_group_partial(group), 
+				:locals => { :render_panel => render_panel , :group => group } -%>
+		<%- end -%>
+		<!-- get all tags not included in the group into an 'other' group -->
+		<%= render :partial => @editor_profile.get_group_partial("other"), 
+			:locals => { :render_panel => render_panel , :group => "other" } -%>
+	<% end %>
+	<%= render :partial => "editor/form_dialogs", :locals => { :render_panel => render_panel } -%>
+</div>

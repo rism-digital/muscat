@@ -1,6 +1,6 @@
 <%
 tag_name = params[:tag_name]
-render_panel = params[:pe_dest]
+render_panel = params[:marc_editor_dest]
 group = params[:group]
 iterator = params[:iterator]
 s_iterator = params[:s_iterator]
@@ -13,7 +13,7 @@ $('#<%=render_panel%>_subfield_<%=tag_name%>-<%=iterator%>-<%=@column[0]%>').app
 
 <%
 
-div_data = escape_javascript(render(:partial => 'editor/subfield_li', :locals => { :column => @column, :render_panel => render_panel, :group => group, 
+div_data = escape_javascript(:partial => 'editor/subfield_li', :locals => { :column => @column, :render_panel => render_panel, :group => group, 
 			:iterator => iterator, :marc_tag => new_tag, :tag_name => tag_name, 
 			:s_iterator => s_iterator, :marc_subfield => new_subfield }))
 
@@ -22,4 +22,4 @@ div_data = escape_javascript(render(:partial => 'editor/subfield_li', :locals =>
 $('#add_tag_tmp').replaceWith("<%=div_data%>")
 
 // reset tag
-pe_reset_tag_div( $('#<%=render_panel%>_tag_div_<%=tag_name%>') );	
+marc_editor_reset_tag_div( $('#<%=render_panel%>_tag_div_<%=tag_name%>') );	

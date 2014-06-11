@@ -1,6 +1,6 @@
-<%-	tag_id = pe_field_name(tag_name, iterator, subfield, s_iterator ) %>
+<%-	tag_id = marc_editor_field_name(tag_name, iterator, subfield, s_iterator ) %>
 <%- if (params['width']==100 || params['growfield'])  %>
-	<textarea cols="100" class="pe_growfield subfield_entry serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>" rows="1"><%= h marc_subfield.content %></textarea>
+	<textarea cols="100" class="marc_editor_growfield subfield_entry serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>" rows="1"><%= h marc_subfield.content %></textarea>
 <%- else %>
 	<input class="subfield_entry serialize_marc" size="100" type="text" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h marc_subfield.content %>" />
 <%- end %>

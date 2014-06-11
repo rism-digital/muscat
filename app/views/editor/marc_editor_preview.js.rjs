@@ -1,5 +1,5 @@
 
-#render_panel = params[:pe_dest]
+#render_panel = params[:marc_editor_dest]
 ##page.replace("#{render_panel}", :partial => "editor/render_no_item", :locals => { :render_panel => "#{render_panel}" })
 #page << "$('##{render_panel}').html('<div id=\"preview_tmp\"></div>');"
 #page << "$('##{render_panel}').hide('');"
@@ -7,7 +7,7 @@
 #page << "$('##{render_panel}').fadeIn();"
 
 ## remove height value in li of the carousel - hack
-#page.call("$('#pe_left li').css", { 'height' => ''})
+#page.call("$('#marc_editor_left li').css", { 'height' => ''})
 
 
 render_panel = "dialog_preview"

@@ -1,0 +1,14 @@
+
+# currently unused but kept 
+
+page.replace("marc_editor_left_old_versions_panel", :partial => "editor/render_no_item", :locals => { :render_panel => "marc_editor_left_old_versions_panel" })
+page.replace("marc_editor_left_old_versions_panel", :partial => "editor/render_versions", :locals => { :render_panel => "marc_editor_left_old_versions_panel" }) 
+# if we have the biggest (most recent) old version number in the @item, we can use it for the start of the carousel
+# if number of old version > 0 # do not load the caroussel if no old versions
+if @old_items.size > 0
+  page.call("$('#marc_editor_left_old_versions_panel').carousel", { 'circular' => false, 'visible' => 1, 'start' => @old_items.size - 1})
+end
+
+# remove height value in li of the carousel - hack
+page.call("$('#marc_editor_left li').css", { 'height' => ''})
+#page.call("$('#marc_editor_left_old_versions li').css", { 'height' => ''})
