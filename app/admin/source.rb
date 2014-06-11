@@ -57,6 +57,41 @@ ActiveAdmin.register Source do
      end
   end
   
+  collection_action :pe_save, :method => :post do
+    #unless role_at_least? :cataloguer
+    #  render :template => 'shared/no_privileges'
+    #else
+  
+    marc_hash = JSON.parse params[:marc]
+    new_marc = Marc.new()
+    new_marc.load_from_hash(marc_hash)
+  
+    @item = nil
+    if new_marc.get_source_id != "__TEMP__" 
+      @item = Source.find(new_marc.get_source_id)
+    end
+    
+    if !@item
+      @item = Source.new( )
+      #@item.user = current_user
+    end
+    @item.marc = new_marc
+
+    #begin
+      @item.save
+      flash[:notice] = "Source #{@item.id} was successfully saved." 
+      #redirect_to :action => 'edit', :id => @item
+      # render :action => 'edit'
+    #rescue
+      #flash[:error] = "Manuscript #{@item.ext_id} could not be saved." 
+    #end
+    
+    @editor_profile = EditorConfiguration.get_applicable_layout @item
+    redirect_to :action => 'edit', :id => @item
+      #end
+  
+  end
+  
   #scope :all, :default => true 
   #scope :published do |sources|
   #  sources.where(:wf_stage => 'published')

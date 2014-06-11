@@ -30,11 +30,12 @@ class MarcNode
         child.resolve_externals
       end
     else
-      if MarcConfig.has_foreign_subfields(self.tag) && @children.find{ |t| t.tag == "_" }
-        if !master = get_master_foreign_subfield
-          # the master tag is missing in the source - this is the case when data was submitted from the editor
-          master = add(MarcNode.new( MarcConfig.get_master( self.tag ) , "", nil))
-        end
+      if MarcConfig.has_foreign_subfields(self.tag) #&& @children.find{ |t| t.tag == "_" }
+        #if !master = get_master_foreign_subfield
+        #  # the master tag is missing in the source - this is the case when data was submitted from the editor
+        #  master = add(MarcNode.new( MarcConfig.get_master( self.tag ) , "", nil))
+        #end
+        master = get_master_foreign_subfield
         unless master.foreign_object
           master.set_foreign_object
           master.foreign_host = true
@@ -204,11 +205,11 @@ class MarcNode
           subfield.set_foreign_object
         end
         # add the db_master subfield with the object id
-        if add_db_master
-          db_master = MarcNode.new( "_", nil, nil )
-          db_master.content = self.foreign_object.id
-          add( db_master )
-        end
+        #if add_db_master
+        #  db_master = MarcNode.new( "_", nil, nil )
+        #  db_master.content = self.foreign_object.id
+        #  add( db_master )
+        #end
       end
     end
     return foreign_associations
@@ -288,7 +289,7 @@ class MarcNode
   def to_marc(no_db_id = false)
     out = String.new
     # skip the $_ tags (db_id)
-    return "" if tag == "_" and no_db_id
+    #return "" if tag == "_" and no_db_id
     value = looked_up_content # if looked_up_content
     if @tag =~ /^[\d\w]$/
       # subfield
@@ -325,7 +326,7 @@ class MarcNode
   # Export to MarcXML
   def to_xml
     # skip the $_ (db_id)
-    return "" if tag == "_"
+    #return "" if tag == "_"
     out = String.new
     content = looked_up_content if looked_up_content
     if @tag =~ /^[\d]{3,3}$/
