@@ -1,5 +1,4 @@
 <%- master = MarcConfig.get_master(tag_name) %>
-<%- #master = "_" %>
 <%-	marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new %>
 <%-	tag_id = pe_field_name(tag_name, iterator, master, s_iterator ) %>
 <%- no_new = params.include?("no_new") ? params["no_new"] : false %>
