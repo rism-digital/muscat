@@ -119,6 +119,11 @@ For startup in production mode:
 	./bundle exec rake RAILS_ENV=production sunspot:solr:start
 	./rails s -e production
 	
+For refreshing an installation in production mode:
+
+	sudo -u www rake assets:clean
+	sudo -u www rake assets:precompile
+	
 Try to open ::
 
 	http://ip:3000/
