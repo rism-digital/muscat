@@ -21,27 +21,27 @@
 
 var vrvToolkit = null;
 
-function pe_discard_changes_leaving( ) {
-	if (pe_form_changed) {
+function marc_editor_discard_changes_leaving( ) {
+	if (marc_editor_form_changed) {
 	   return "The modifications on the title will be lost";
    }
 }
 
-function pe_discard_changes( ) {
-   if (!pe_form_changed) {
+function marc_editor_discard_changes( ) {
+   if (!marc_editor_form_changed) {
       return true;     
    }
    var x = window.confirm("Are you sure you want to navigate away from this page?\n\nThe modifications on the title will be lost\n\nPress OK to continue, or Cancel to stay on the current page.");
    return x;
 }
 
-function pe_cancel_inline( div_id ) {
+function marc_editor_cancel_inline( div_id ) {
    cancel_div_id = div_id.slice( 0, -5 ); // remove the _form ad the end of the id
    $( '#' + cancel_div_id ).show();
    $('#' + div_id ).html("");
 }
 
-function pe_toggle( id, value ) {
+function marc_editor_toggle( id, value ) {
 	if (value == null) {
 	// toggle
 		id.slideToggle(0);
@@ -61,28 +61,28 @@ function pe_toggle( id, value ) {
 
 // init the tags
 // called from the edit_wide.rhtml partial and edit_wide.rjs
-function pe_init_tags( id ) {
+function marc_editor_init_tags( id ) {
 	$(".sortable").sortable({
 	   //'handle': 'table._lp_tag_header', 
 		stop: function(event, ui) {
-			pe_reset_tag_order(ui.item.context.parentNode);
+			marc_editor_reset_tag_order(ui.item.context.parentNode);
 			//alert(ui.item.context.parentNode);
 		}	
 	});
 	
-	pe_reset_tag_div( id );
+	marc_editor_reset_tag_div( id );
 }
 
-function pe_reset_tag_div( id ) {
+function marc_editor_reset_tag_div( id ) {
 
-//	$('textarea.pe_growfield', id).elastic();	
+//	$('textarea.marc_editor_growfield', id).elastic();	
 	// this is not great either...
 	$(".sortable", id).each(function () {
-		pe_reset_tag_order( this )
+		marc_editor_reset_tag_order( this )
   });
 }
 
-function pe_reset_tag_order( id ) {
+function marc_editor_reset_tag_order( id ) {
 	tag_order = new Array();
 	
 	$("dt", id).each(function (i) {
@@ -97,14 +97,14 @@ function pe_reset_tag_order( id ) {
    });
 	if (tag_order.length > 0) {
 		// if any, put them as value in the parent ordering field
-		ordering = $(".pe_ordering", id.parentNode)
+		ordering = $(".marc_editor_ordering", id.parentNode)
 		ordering.attr("value",tag_order.join(";"));
 	}
 	// grow field, nothing to do with the function,... but done here
-	//$("textarea.pe_growfield", id).growfield({'restore': true});
+	//$("textarea.marc_editor_growfield", id).growfield({'restore': true});
 }
 
-function pe_set_locale( lang ){
+function marc_editor_set_locale( lang ){
       if (lang == null) {
          lang = 'en'; 
       }
@@ -118,7 +118,7 @@ function pe_set_locale( lang ){
 
 // load the image into the incipit target
 // make sure the size of the div is correct
-function pe_incipit_image( target, image ) {
+function marc_editor_incipit_image( target, image ) {
 	
   var img = new Image();
   $(img)
@@ -152,7 +152,7 @@ function pe_incipit_image( target, image ) {
     .css('display', 'inline');	
 }
 
-function pe_add_tag_from_list(destination_column, call_type, list )
+function marc_editor_add_tag_from_list(destination_column, call_type, list )
 {
 	val = list.val();
 	if (val == '-') {
@@ -160,12 +160,12 @@ function pe_add_tag_from_list(destination_column, call_type, list )
 	}
 	list.find("[value=" + val + "]").attr('disabled',"disabled");
 	list.find("[value=-]").attr('selected','selected');
-	pe_add_tag(destination_column, call_type + val );
+	marc_editor_add_tag(destination_column, call_type + val );
 }
 
 // confirmation message for delete
-// pe_do_delete_tag if yes 
-function pe_delete_tag(destination_column, group, tag_name, iterator) {
+// marc_editor_do_delete_tag if yes 
+function marc_editor_delete_tag(destination_column, group, tag_name, iterator) {
 	
 	$('#dialog').html('<p>' + delete_field_confirm + '</p>');
 	$("#dialog").dialog();
@@ -173,7 +173,7 @@ function pe_delete_tag(destination_column, group, tag_name, iterator) {
 	$("#dialog").dialog( 'option', 'width', 300);
 	$("#dialog").dialog( 'option', 'buttons', {
 				OK: function() {
-					pe_do_delete_tag(destination_column, group, tag_name, iterator)
+					marc_editor_do_delete_tag(destination_column, group, tag_name, iterator)
 					$(this).dialog('close');
 				},
 				Cancel: function() { $(this).dialog('close');	}
@@ -181,7 +181,7 @@ function pe_delete_tag(destination_column, group, tag_name, iterator) {
 	$("#dialog").dialog('open');
 }
 	
-function pe_do_delete_tag(destination_column, group, tag_name, iterator) {
+function marc_editor_do_delete_tag(destination_column, group, tag_name, iterator) {
 
 	base = "#" + destination_column + "_tag_dt_" + tag_name;
 	base_div = "#" + destination_column + "_tag_div_" + tag_name;
@@ -195,11 +195,11 @@ function pe_do_delete_tag(destination_column, group, tag_name, iterator) {
 		$(base_div).hide();
 		$("#" + destination_column + "_add_tag_" + group).find("[value=" + tag_name + "]").removeAttr("disabled");
 	} else {
-		pe_reset_tag_div( base_div );
+		marc_editor_reset_tag_div( base_div );
 	}
 }
 
-function pe_set_value( target, render_panel, value ) {
+function marc_editor_set_value( target, render_panel, value ) {
 	// we need to escape brackets in jquery, otherwise they are interpreted as selectors
 	jquery_target = target.replace(/(\[|\])/g, '\\$1');
 	$('#' + jquery_target, '#' + render_panel).val(value);
@@ -207,7 +207,7 @@ function pe_set_value( target, render_panel, value ) {
 }
 
 // 
-function pe_secondary_value( render_panel, target, ac_type, controller, no_new ) {
+function marc_editor_secondary_value( render_panel, target, ac_type, controller, no_new ) {
 	
 	if (no_new == undefined) no_new = false;
 	
@@ -219,16 +219,16 @@ function pe_secondary_value( render_panel, target, ac_type, controller, no_new )
 	if (no_new == false) {
 	$("#dialog").dialog( 'option', 'buttons', {
 				Select: function() {
-					pe_do_secondary_value( render_panel, jquery_target, ac_type )
+					marc_editor_do_secondary_value( render_panel, jquery_target, ac_type )
 					$(this).dialog('close');
 				},
 				Cancel: function() { $(this).dialog('close');	},
-				New: function() { pe_show_secondary( controller, 0, true);	}
+				New: function() { marc_editor_show_secondary( controller, 0, true);	}
 			});
 	} else {
 		$("#dialog").dialog( 'option', 'buttons', {
 					Select: function() {
-						pe_do_secondary_value( render_panel, jquery_target, ac_type )
+						marc_editor_do_secondary_value( render_panel, jquery_target, ac_type )
 						$(this).dialog('close');
 					},
 					Cancel: function() { $(this).dialog('close');}
@@ -269,7 +269,7 @@ function pe_secondary_value( render_panel, target, ac_type, controller, no_new )
 	$("#dialog").dialog('open');
 }
 
-function pe_do_secondary_value( render_panel, target, ac_type ) {
+function marc_editor_do_secondary_value( render_panel, target, ac_type ) {
 	val = $('#' + ac_type, '#dialog').val();
 	uuid = $('#ac_dialog_value', '#dialog').val();
 	if (uuid.length == 0) {
@@ -280,78 +280,78 @@ function pe_do_secondary_value( render_panel, target, ac_type ) {
 	$('#' + target).val(uuid);
 }
 
-function pe_toggle_lock(force_unlock) {
+function marc_editor_toggle_lock(force_unlock) {
 	if (force_unlock)	{
-		$('#pe_lock_btn').show(0);
-		$('#pe_unlock_btn').hide(0);
+		$('#marc_editor_lock_btn').show(0);
+		$('#marc_editor_unlock_btn').hide(0);
 	} else {
-		$('#pe_lock_btn').toggle(0);
-		$('#pe_unlock_btn').toggle(0);				
+		$('#marc_editor_lock_btn').toggle(0);
+		$('#marc_editor_unlock_btn').toggle(0);				
 	}
 }
 
 // navigate in the old version
 // item is 'next' or 'prev'
-function pe_old_version(item) {
-	$('#pe_left_old_versions_panel').carousel(item);
+function marc_editor_old_version(item) {
+	$('#marc_editor_left_old_versions_panel').carousel(item);
 }
 
 // toggle the secondary context
 // loads with preview when opening
-function pe_toggle_sec_context() {
+function marc_editor_toggle_sec_context() {
 	// get the old versions
-	/*$('#pe_left').carousel('view', 0);
-	$('#pe_sec_context_btn').hide(0);
-	$('#pe_old_versions_btn').show(0);
-	$('#pe_preview_btn').show(0);/*
+	/*$('#marc_editor_left').carousel('view', 0);
+	$('#marc_editor_sec_context_btn').hide(0);
+	$('#marc_editor_old_versions_btn').show(0);
+	$('#marc_editor_preview_btn').show(0);/*
 	// TODO
 }
 
 // toggle the old version panel
-// loads with pe_populate_versions when opening
+// loads with marc_editor_populate_versions when opening
 // session is required to populate, not to hide
-function pe_toggle_old_versions(call_type) {
+function marc_editor_toggle_old_versions(call_type) {
 	// get the old versions
-	//$('#pe_left').carousel('next');
-	/*$('#pe_left').carousel('view', 1);
-	$('#pe_sec_context_btn').show(0);
-	$('#pe_old_versions_btn').hide(0);
-	$('#pe_preview_btn').show(0);
+	//$('#marc_editor_left').carousel('next');
+	/*$('#marc_editor_left').carousel('view', 1);
+	$('#marc_editor_sec_context_btn').show(0);
+	$('#marc_editor_old_versions_btn').hide(0);
+	$('#marc_editor_preview_btn').show(0);
 	// select the marc tab in the main
-	$('#pe_right_main_panel').tabs( 'select' , 1 );*/
+	$('#marc_editor_right_main_panel').tabs( 'select' , 1 );*/
 	// load old version
-	//if ($('#pe_left_old_versions_panel').hasClass('pe_left_old_versions_panel')) {
+	//if ($('#marc_editor_left_old_versions_panel').hasClass('marc_editor_left_old_versions_panel')) {
 	// we're done...
 	//	return; // would avoid to reload when shown again, but does not work very wel (carousel)
 	//}
 	// ... otherwise load the old versions
-	pe_populate_versions("pe_left_old_versions_panel", call_type );
+	marc_editor_populate_versions("marc_editor_left_old_versions_panel", call_type );
 }
 
 // toggle the preview
 // loads with preview when opening
-function pe_toggle_preview() {
+function marc_editor_toggle_preview() {
 	// get the old versions
-	/*$('#pe_left').carousel('view', 2);
-	$('#pe_sec_context_btn').show(0);
-	$('#pe_old_versions_btn').show(0);
-	$('#pe_preview_btn').hide(0);
+	/*$('#marc_editor_left').carousel('view', 2);
+	$('#marc_editor_sec_context_btn').show(0);
+	$('#marc_editor_old_versions_btn').show(0);
+	$('#marc_editor_preview_btn').hide(0);
 	// select the form tab in the main
-	$('#pe_right_main_panel').tabs( 'select' , 0 );*/
+	$('#marc_editor_right_main_panel').tabs( 'select' , 0 );*/
 	// load the form
-	pe_send_form('pe_right_main_panel','pe_left_preview_panel', 1, "");
-	//pe_populate_versions("pe_left_old_versions_panel", call_type );
+	marc_editor_send_form('marc_editor_right_main_panel','marc_editor_left_preview_panel', 1, "");
+	//marc_editor_populate_versions("marc_editor_left_old_versions_panel", call_type );
 }
 
 // performs a ajax query to get the old versions of a record
-function pe_populate_versions(destination_column, call_type) {
+function marc_editor_populate_versions(destination_column, call_type) {
 
 	var call_parts = call_type.split(':');
-	var url = "/manuscripts/pe_old_versions";
-	var data = "pe_dest=" + destination_column;
+	var url = "/manuscripts/marc_editor_old_versions";
+	var data = "marc_editor_dest=" + destination_column;
 
 	data = data + "&wheel=" + call_parts[0];		
-	data = data + "&id=" + $('#pe_right_main_panel form :input#id').attr("value");
+	data = data + "&id=" + $('#marc_editor_right_main_panel form :input#id').attr("value");
 
 	$('#' + destination_column).block({ message: "Loading..." });			
 
@@ -367,10 +367,10 @@ function pe_populate_versions(destination_column, call_type) {
 }
 
 
-function pe_edit_inline( destination_column, id, tag_name )
+function marc_editor_edit_inline( destination_column, id, tag_name )
 {
-	url = "/manuscripts/pe_edit_inline";
-	var data = "pe_dest=" + destination_column;
+	url = "/manuscripts/marc_editor_edit_inline";
+	var data = "marc_editor_dest=" + destination_column;
 	data = data + "&id=" + id;
 	data = data + "&tag_name=" + tag_name;
 	
@@ -386,10 +386,10 @@ function pe_edit_inline( destination_column, id, tag_name )
 }
 
 
-function pe_secondary_dialog(destination_column, target, ac_type, no_new)
+function marc_editor_secondary_dialog(destination_column, target, ac_type, no_new)
 {
-	var url = "/sources/pe_secondary_dialog";
-	var data = "pe_dest=" + destination_column;	
+	var url = "/sources/marc_editor_secondary_dialog";
+	var data = "marc_editor_dest=" + destination_column;	
 
 	if (no_new == undefined) no_new = false;
 
@@ -408,10 +408,10 @@ function pe_secondary_dialog(destination_column, target, ac_type, no_new)
 
 }
 
-function pe_new_inline( destination_column, parent_id, tag_name )
+function marc_editor_new_inline( destination_column, parent_id, tag_name )
 {
-	url = "/manuscripts/pe_new_inline";
-	var data = "pe_dest=" + destination_column;
+	url = "/manuscripts/marc_editor_new_inline";
+	var data = "marc_editor_dest=" + destination_column;
 	data = data + "&parent_id=" + parent_id;
 	data = data + "&tag_name=" + tag_name;
 	
@@ -481,7 +481,7 @@ function render_music( music, format, target )
 	$('#' + target).html(svg);
 };
 
-function pe_incipit(destination_column, clef, keysig, timesig, incipit, target)
+function marc_editor_incipit(destination_column, clef, keysig, timesig, incipit, target)
 {
 	
 	jquery_clef = clef.replace(/(\[|\])/g, '\\$1');
@@ -509,8 +509,8 @@ function pe_incipit(destination_column, clef, keysig, timesig, incipit, target)
 	jquery_keysig = keysig.replace(/(\[|\])/g, '\\$1');
 	jquery_timesig = timesig.replace(/(\[|\])/g, '\\$1');
 	jquery_incipit = incipit.replace(/(\[|\])/g, '\\$1');
-	var url = "/manuscripts/pe_incipit";
-	var data = "pe_dest=" + destination_column;	
+	var url = "/manuscripts/marc_editor_incipit";
+	var data = "marc_editor_dest=" + destination_column;	
 	data = data + "&clef=" + $('#' + jquery_clef).val();
 	data = data + "&keysig=" + $('#' + jquery_keysig).val();
 	data = data + "&timesig=" + $('#' + jquery_timesig).val();
@@ -529,32 +529,32 @@ function pe_incipit(destination_column, clef, keysig, timesig, incipit, target)
 	*/
 }
 
-function pe_populate(destination_column, call_type) {
+function marc_editor_populate(destination_column, call_type) {
 
 	var call_parts = call_type.split(':');
 	// To be fixed
-	var url = "/manuscripts/pe_edit";
-	var data = "pe_dest=" + destination_column;		
+	var url = "/manuscripts/marc_editor_edit";
+	var data = "marc_editor_dest=" + destination_column;		
 	
 	data = data + "&wheel=" + call_parts[0];
 	if (call_parts[1] == "next") {
-	   if (!pe_discard_changes()) {
+	   if (!marc_editor_discard_changes()) {
 	      return;
 	   }
 		data = data + "&id=next";
 	} else if (call_parts[1] == "previous") {
-	   if (!pe_discard_changes()) {
+	   if (!marc_editor_discard_changes()) {
 	      return;
 	   }
 		data = data + "&id=previous";
 	}
 	
-	if (destination_column == 'pe_right_main_panel') {
-		//pe_toggle_old_versions(false);
-		if ($('#pe_lock_btn').is(':visible'))	{
+	if (destination_column == 'marc_editor_right_main_panel') {
+		//marc_editor_toggle_old_versions(false);
+		if ($('#marc_editor_lock_btn').is(':visible'))	{
 			// get the previous item for the left secondary panel
 			//data = data + "&previous_item=1";
-			pe_send_form('pe_right_main_panel','pe_left_secondary_panel', 1, "");
+			marc_editor_send_form('marc_editor_right_main_panel','marc_editor_left_secondary_panel', 1, "");
 		}
 	}
 	
@@ -573,11 +573,11 @@ function pe_populate(destination_column, call_type) {
 }
 
 // performs a ajax query to get the old versions of a record
-function pe_add_subfield(destination_column, call_type) {
+function marc_editor_add_subfield(destination_column, call_type) {
 
 	var call_parts = call_type.split(':'); // profile_id:group:tag_name:iterator:subfield_name
-	var url = "/sources/pe_add_subfield";
-	var data = "pe_dest=" + destination_column;
+	var url = "/sources/marc_editor_add_subfield";
+	var data = "marc_editor_dest=" + destination_column;
 	var list = destination_column + "_subfield_" + call_parts[2] + "-" + call_parts[3]  + "-" + call_parts[4];
 
 	//$('#' + destination_column).block({ message: "Loading..." });	
@@ -608,11 +608,11 @@ function pe_add_subfield(destination_column, call_type) {
 }
 
 // performs a ajax query to get the old versions of a record
-function pe_add_tag(destination_column, call_type) {
+function marc_editor_add_tag(destination_column, call_type) {
 
 	var call_parts = call_type.split(':');
-	var url = "/sources/pe_add_tag";
-	var data = "pe_dest=" + destination_column;
+	var url = "/sources/marc_editor_add_tag";
+	var data = "marc_editor_dest=" + destination_column;
 
 	$('#' + destination_column).block({ message: "Loading..." });	
 	
@@ -643,7 +643,7 @@ function pe_add_tag(destination_column, call_type) {
 
 }
 
-function pe_help( url ) {
+function marc_editor_help( url ) {
    	
 	$.ajax({
 		success: function(data) {
@@ -660,20 +660,20 @@ function pe_help( url ) {
 /*
  * form_type: 0 = save, 1 = preview, 2 = inline save
  */
-function pe_send_form( source_column, destination_column, form_type, wheel ) {
+function marc_editor_send_form( source_column, destination_column, form_type, wheel ) {
    
 	form = $('form', "#" + source_column);
-	json_marc = serialize_pe_form(form);
+	json_marc = serialize_marc_editor_form(form);
 	
 	//$(form).valid();
-	url = "/sources/pe_save"; ///form.attr("action");
+	url = "/sources/marc_editor_save"; ///form.attr("action");
 	if ( form_type == 1) {
-		url = "/manuscripts/pe_preview";
+		url = "/manuscripts/marc_editor_preview";
 	}
 	else if ( form_type == 2) {
-		url = "/manuscripts/pe_save_inline";
+		url = "/manuscripts/marc_editor_save_inline";
 	}
-	var data = "pe_dest=" + destination_column;
+	var data = "marc_editor_dest=" + destination_column;
 	data = data + "&" + JSON.stringify(json_marc);
 	
 	$('#' + destination_column).block({ message: "Loading..." });
@@ -683,14 +683,14 @@ function pe_send_form( source_column, destination_column, form_type, wheel ) {
 		   $('#' + destination_column).unblock();
 		   location.reload();
 		   if (form_type == 0) {
-		      pe_form_changed = false;
+		      marc_editor_form_changed = false;
 		   } else if (form_type == 1) {
 		      $('#dialog_preview').parent().css('position', 'fixed');
 		      $("#dialog_preview").dialog('open');
 		      //$('#dialog_preview').parent().css('position', 'fixed');
 		   }
 		},
-		data: {marc: JSON.stringify(json_marc), pe_dest: destination_column},
+		data: {marc: JSON.stringify(json_marc), marc_editor_dest: destination_column},
 		//dataType: 'script',
 		timeout: 20000, 
 		type: 'post',
@@ -704,7 +704,7 @@ function pe_send_form( source_column, destination_column, form_type, wheel ) {
 	});
 }
 
-function pe_show_secondary( type, id, create ) {
+function marc_editor_show_secondary( type, id, create ) {
 
 	$("#dialog_edition").dialog( 'option', 'width', 792 );
    url = "/" + type;
@@ -731,7 +731,7 @@ function pe_show_secondary( type, id, create ) {
 }
 
 function quick_search_form( base, lang ) {
-   pe_set_locale( lang );
+   marc_editor_set_locale( lang );
    output = "\
    <div id=\"searchform\" class=\"ui-corner-all\" style=\"width: 350px;\">\
    	<table cellpadding=\"0\" cellspacing=\"\">\

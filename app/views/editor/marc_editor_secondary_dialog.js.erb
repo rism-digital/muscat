@@ -1,0 +1,11 @@
+<%
+target = params[:target]
+render_panel = params[:marc_editor_dest]
+ac_type = params[:ac_type]
+no_new = params[:no_new]
+%>
+
+$('#dialog').html("<%= escamarc_editor_javascript(render(:partial => 'editor/secondary_dialog', :locals => { :render_panel => render_panel, :target => target, :ac_type => ac_type }))%>");
+
+marc_editor_secondary_value('<%=render_panel%>','<%=target%>','<%=ac_type%>','<%=ac_type.pluralize%>', <%=no_new%>);
+

@@ -25,7 +25,7 @@
 		}
 	}
 
-	$('.pe_non_modal_dialogs').dialog({
+	$('.marc_editor_non_modal_dialogs').dialog({
 		'bgiframe': true,
 		'resizable': false,
 		'autoOpen': false,
@@ -53,7 +53,7 @@
 		},
 	});
 	// fixed, 
-	$('.pe_non_modal_dialogs').parent().css('position', 'fixed');
+	$('.marc_editor_non_modal_dialogs').parent().css('position', 'fixed');
 	
 	// titles - TO BE TRANSLATED
 	$("#dialog_validation").dialog( 'option', 'title', "Validation" );
@@ -70,15 +70,15 @@
 	$("#dialog_help").dialog( 'option', 'width', 400 );
 	$("#dialog_help").dialog( 'option', 'resizable', true );
 
-	var pe_form_changed = false;
+	var marc_editor_form_changed = false;
 	var options= {
 	    trimText:true,
 	    fieldChangeCallback: function(originalValue,isDirty) {
-	        pe_form_changed = true;
+	        marc_editor_form_changed = true;
 	    }
 	};	
-	$("#<%= "pe_form_#{render_panel}" -%>").dirtyFields(options);	
-	$("#<%= "pe_form_#{render_panel}" -%>").validate({
+	$("#<%= "marc_editor_form_#{render_panel}" -%>").dirtyFields(options);	
+	$("#<%= "marc_editor_form_#{render_panel}" -%>").validate({
 		errorLabelContainer: $("#dialog_validation div.error"),
 		invalidHandler: function(form, validator) {
 			$('#dialog_validation').dialog('open');

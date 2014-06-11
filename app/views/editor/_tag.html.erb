@@ -31,7 +31,7 @@
 
 		if MarcConfig.multiples_allowed?(tag_name, subfield)
 			#TODO: need to multi-lang this (see :title)
-			extra_leader = safe_link_to_function_stub "+", "pe_add_subfield('#{render_panel}','#{@editor_profile.id}:#{group}:#{tag_name}:#{iterator}:#{subfield}')", :title => "Add another instance of this subfield"
+			extra_leader = safe_link_to_function_stub "+", "marc_editor_add_subfield('#{render_panel}','#{@editor_profile.id}:#{group}:#{tag_name}:#{iterator}:#{subfield}')", :title => "Add another instance of this subfield"
 		end
 		
 		if @editor_profile.has_sub_label?(tag_name, subfield)

@@ -1,5 +1,5 @@
 <%- tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
-<%- tag_id = pe_field_name(tag_name, iterator, "", 1) %>
+<%- tag_id = marc_editor_field_name(tag_name, iterator, "", 1) %>
 <% node = marc_tag || MarcNode.new -%>
 <%- if  tag_params.has_key?("read_only") or (tag_params.has_key?("editor_only")) or (tag_params.has_key?("admin_only")) %> <!-- removed "and !role_at_least?(:level1)" and "and !role_at_least?(:level0)" -->
 <input style="margin-top:6px" disabled="disabled" class="subfield_entry" type="text" value="<%= h node.content %>" />

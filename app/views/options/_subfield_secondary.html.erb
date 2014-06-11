@@ -1,9 +1,9 @@
 <%- master = MarcConfig.get_master(tag_name) %>
 <%- #master = "_" %>
 <%-	marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new %>
-<%-	tag_id = pe_field_name(tag_name, iterator, master, s_iterator ) %>
+<%-	tag_id = marc_editor_field_name(tag_name, iterator, master, s_iterator ) %>
 <%- no_new = params.include?("no_new") ? params["no_new"] : false %>
 <input type="hidden" class="serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= marc_subfield_m.content %>">
-<table class="pe_grid_internal_layout" cellpadding="0" cellspacing="0"><tr><td width="100%"><input class="subfield_entry serialize_marc ac_popup_edit" disabled="disabled" type="text" id="ac_<%= tag_id %>" name="ac_<%= tag_id %>" value="<%= h marc_subfield.looked_up_content %>" />
-</td><td><div class="ac_popup_button"><%= action_button(["", "Edit value"], "ui-icon-pencil", "pe_secondary_dialog('#{render_panel}','#{tag_id}','#{params['type']}', '#{no_new}')", "", :right, :all, "", true )	-%></div>
+<table class="marc_editor_grid_internal_layout" cellpadding="0" cellspacing="0"><tr><td width="100%"><input class="subfield_entry serialize_marc ac_popup_edit" disabled="disabled" type="text" id="ac_<%= tag_id %>" name="ac_<%= tag_id %>" value="<%= h marc_subfield.looked_up_content %>" />
+</td><td><div class="ac_popup_button"><%= action_button(["", "Edit value"], "ui-icon-pencil", "marc_editor_secondary_dialog('#{render_panel}','#{tag_id}','#{params['type']}', '#{no_new}')", "", :right, :all, "", true )	-%></div>
 </td></tr></table>

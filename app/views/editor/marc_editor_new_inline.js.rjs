@@ -1,10 +1,10 @@
 
-cancel_panel = params[:pe_dest] # the panel containing the field to be edited and to keep (hide) if operation is cancel
-render_panel = "#{params[:pe_dest]}_form" # the panel to load the form
+cancel_panel = params[:marc_editor_dest] # the panel containing the field to be edited and to keep (hide) if operation is cancel
+render_panel = "#{params[:marc_editor_dest]}_form" # the panel to load the form
 tag_name = params[:tag_name]
 parent_id = params.include?(:parent_id) ? params[:parent_id] : nil
 
 page.call "$('##{render_panel}').html", render(:partial => 'editor/item_form_tag', :locals => { :render_panel => render_panel, :inline_tag_name => tag_name, :parent_id => parent_id })
 
-page << "pe_init_tags($('##{render_panel}'))"
+page << "marc_editor_init_tags($('##{render_panel}'))"
 

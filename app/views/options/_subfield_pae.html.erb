@@ -1,13 +1,13 @@
 <%
 	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
-	tag_id = pe_field_name(tag_name, iterator, subfield, s_iterator)
-	tag_id_clef = pe_field_name(tag_name, iterator, tag_params["clef"]["subfield"], s_iterator + tag_params["clef"]["s_iterator"])
-	tag_id_keysig = pe_field_name(tag_name, iterator, tag_params["keysig"]["subfield"], s_iterator + tag_params["keysig"]["s_iterator"])
-	tag_id_timesig = pe_field_name(tag_name, iterator, tag_params["timesig"]["subfield"], s_iterator + tag_params["timesig"]["s_iterator"])
+	tag_id = marc_editor_field_name(tag_name, iterator, subfield, s_iterator)
+	tag_id_clef = marc_editor_field_name(tag_name, iterator, tag_params["clef"]["subfield"], s_iterator + tag_params["clef"]["s_iterator"])
+	tag_id_keysig = marc_editor_field_name(tag_name, iterator, tag_params["keysig"]["subfield"], s_iterator + tag_params["keysig"]["s_iterator"])
+	tag_id_timesig = marc_editor_field_name(tag_name, iterator, tag_params["timesig"]["subfield"], s_iterator + tag_params["timesig"]["s_iterator"])
 	render_id = "render_" + tag_id.gsub(/[\[\]]/,'')
 %>
 <textarea class="subfield_entry serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>"><%= h marc_subfield.content %></textarea>
-	<table class="pe_pae_info"  style="display: none;" cellpadding="0" cellspacing="0"><tr>
+	<table class="marc_editor_pae_info"  style="display: none;" cellpadding="0" cellspacing="0"><tr>
 		<td width="100%"><div id="<%= render_id %>">Loading...&nbsp;</div></td>
 		<td width="16"><div id="spinner_<%= tag_id %>" style="visibility:hidden;"><img src="/images/spinner_small.gif" /></div></td>	
 	</tr></table>
@@ -19,7 +19,7 @@
 		//{
 	        //alert("<%= render_id %>");
 			//alert('+  +')
-			pe_incipit('', 
+			marc_editor_incipit('', 
 				"<%= tag_id_clef %>",
 				"<%= tag_id_keysig %>",
 				"<%= tag_id_timesig %>",

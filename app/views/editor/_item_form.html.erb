@@ -1,7 +1,7 @@
 
 <%# we don't want the form to be submitted directly (with enter for example), so the 'onSubmit return false %>
 
-<%= form_tag( {:action => 'update'}, {:id => "pe_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>
+<%= form_tag( {:action => 'update'}, {:id => "marc_editor_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>
 	<%= hidden_field_tag 'id', @item.id -%>
 	<%- @editor_profile.layout_config["group_order"].each do |group| -%>
 	<%# The default partial is editor/group %>

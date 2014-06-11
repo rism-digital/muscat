@@ -35,29 +35,29 @@ ActiveAdmin.register Source do
 
   end
   
-  collection_action :pe_add_tag, :method => :get do
+  collection_action :marc_editor_add_tag, :method => :get do
     @editor_profile = EditorConfiguration.find_by_id(params[:profile_id])    
-    #render :template => "editor/pe_add_tag"
+    #render :template => "editor/marc_editor_add_tag"
     respond_to do |format|
-       format.js { render  "editor/pe_add_tag" }
+       format.js { render  "editor/marc_editor_add_tag" }
      end
   end
   
-  collection_action :pe_secondary_dialog, :method => :get do
+  collection_action :marc_editor_secondary_dialog, :method => :get do
     respond_to do |format|
-       format.js { render  "editor/pe_secondary_dialog" }
+       format.js { render  "editor/marc_editor_secondary_dialog" }
      end
   end
   
-  collection_action :pe_add_subfield, :method => :get do
+  collection_action :marc_editor_add_subfield, :method => :get do
     @editor_profile = EditorConfiguration.find_by_id(params[:profile_id])  
     @column = @editor_profile.get_column_for(params[:tag_name],params[:subfield_name]) 
     respond_to do |format|
-       format.js { render  "editor/pe_add_subfield" }
+       format.js { render  "editor/marc_editor_add_subfield" }
      end
   end
   
-  collection_action :pe_save, :method => :post do
+  collection_action :marc_editor_save, :method => :post do
     #unless role_at_least? :cataloguer
     #  render :template => 'shared/no_privileges'
     #else
@@ -86,9 +86,9 @@ ActiveAdmin.register Source do
       #flash[:error] = "Manuscript #{@item.ext_id} could not be saved." 
     #end
     
-    @editor_profile = EditorConfiguration.get_applicable_layout @item
+    #@editor_profile = EditorConfiguration.get_applicable_layout @item
     redirect_to :action => 'edit', :id => @item
-      #end
+    #end
   
   end
   

@@ -1,4 +1,4 @@
-<%	tag_id = pe_field_name(tag_name, iterator, subfield, s_iterator) %>
+<%	tag_id = marc_editor_field_name(tag_name, iterator, subfield, s_iterator) %>
 <%
 	read_only = false
 	@editor_profile.each_subfield_for(tag_name) do |subfieldopt, field_settings|
@@ -8,7 +8,7 @@
 	end	
 %>
 <%- if (params['growfield'])  %>
-	<textarea cols="100" class="pe_growfield subfield_entry serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>"><%= h marc_subfield.content %></textarea>
+	<textarea cols="100" class="marc_editor_growfield subfield_entry serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>"><%= h marc_subfield.content %></textarea>
 <%- else %>
 	<% if read_only %>
 			<input class="subfield_entry"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h marc_subfield.content %>"/>

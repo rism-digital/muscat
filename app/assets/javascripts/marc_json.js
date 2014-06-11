@@ -192,13 +192,13 @@ function serialize_dt_element( dt, json_marc ) {
 
 
 /* Serialize the pe form to marc-json */
-function serialize_pe_form( form ) {
+function serialize_marc_editor_form( form ) {
 
 	var json_marc = {};
 	json_marc["fields"] = [];
 	
 	// Each group contents contain the <div> for each marc tag
-	$(".pe_group_contents", form).each(function (index, elem) {
+	$(".marc_editor_group_contents", form).each(function (index, elem) {
 		a =  $(elem).contents();
 		
 		// only <div> in here, iterathe tru them

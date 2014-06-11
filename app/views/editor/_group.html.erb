@@ -12,10 +12,10 @@ group
 -->
 <%- 
 	group_title = @editor_profile.get_label(group)
-	## removed in muscat 3@strategy.config[:pe_group_links] << group_title
+	## removed in muscat 3@strategy.config[:marc_editor_group_links] << group_title
 -%>
-<div class="pe_group_panel ui-corner-all">
-<div class="pe_group_title ui-corner-top"><div style="float: left; padding-left: 10px"><a class="pe_a_name" name="<%= group_title.gsub(/ /, "_") -%>"><%= group_title -%></a></div><div style="float: right; padding-right: 10px"><a class="pe_a_name" name="<%= group_title.gsub(/ /, "_") -%>"><%= group_title -%></a></div><div style="clear:both;"></div></div>
+<div class="marc_editor_group_panel ui-corner-all">
+<div class="marc_editor_group_title ui-corner-top"><div style="float: left; padding-left: 10px"><a class="marc_editor_a_name" name="<%= group_title.gsub(/ /, "_") -%>"><%= group_title -%></a></div><div style="float: right; padding-right: 10px"><a class="marc_editor_a_name" name="<%= group_title.gsub(/ /, "_") -%>"><%= group_title -%></a></div><div style="clear:both;"></div></div>
 <%- 
 	### temporary, must probably be moved into the editor_profile model
 	tag_names = Array.new
@@ -31,8 +31,8 @@ group
 	####
 -%>
 
-<div class="pe_group_actions"><%= render :partial => "editor/group_add_tag", :locals => { :render_panel => render_panel, :group => group, :tag_names => tag_names } %><div style="clear:both;"></div></div>
-<div class="pe_group_contents">
+<div class="marc_editor_group_actions"><%= render :partial => "editor/group_add_tag", :locals => { :render_panel => render_panel, :group => group, :tag_names => tag_names } %><div style="clear:both;"></div></div>
+<div class="marc_editor_group_contents">
 	<%- tag_names.each do |tag_name| -%>
 		<%= render :partial => "editor/tag_list_div",
 			:locals => { :render_panel => render_panel, :group => group, :tag_name => tag_name,  } 

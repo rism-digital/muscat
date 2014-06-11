@@ -2,7 +2,7 @@
 <table class="_lp_add_tag_">
 	<tr>
 		<td>
-			<select onchange="pe_add_tag_from_list('<%= render_panel -%>',
+			<select onchange="marc_editor_add_tag_from_list('<%= render_panel -%>',
 				'<%= @editor_profile.id -%>:<%= group -%>:', $('#<%= render_panel -%>_add_tag_<%= group -%>'));" id="<%= render_panel -%>_add_tag_<%= group -%>" class="function_entry">
 				<option value="-" selected="selected">--- Add field ---</option>
 				<%- tag_names.each do |tag_name| -%>
