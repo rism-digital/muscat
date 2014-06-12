@@ -145,15 +145,32 @@ function serialize_dt_element( dt, json_marc ) {
 			controlfield[tag] = $(this).val();
 		} else {
 			// This is a norma subfield, eg. $a
-			// needs to be done in two steps?
-			//f = {};
-			///f[field] = $(this).val();
-
-			//subfields.push(f);
 			subfields_unordered[field] = $(this).val();
 		}
 		
 	});
+	
+	// Sometimes JavaScript leaves me speachless
+	// so JS does not have real hashes, but only
+	// objects with properties. This means there
+	// is no built in way to count the properties
+	// of an object. To see if these two objs
+	// have any propertyes, I have to use this
+	// trick: get the first element and see if
+	// it is null or not. Pretty bruteforce but
+	// it seems the accepted way to do this
+	for (var f1 in subfields_unordered) break;
+	for (var f2 in controlfield) break;
+	
+	// If both subfields_unordered and controlfield
+	// are empty it means the user added to subtags
+	// to a tag. Just skip it completely.
+	// f1 and f2 come from the above two fors and
+	// point to the first property in the object,
+	// if it is not empty.
+	if (!f1 && !f2) {
+		return;
+	}
 	
 	// Place the leader in the correct spot
 	if (tag == "000") {
