@@ -1,7 +1,8 @@
 <%- 
+	layout_key = is_new ? "layout_new" : "layout"
 	ocfg = @editor_profile.options_config
 	s_iterator = 1
-	cols = ((ocfg[tag_name] and ocfg[tag_name]["layout"].include?("columns")) ? ocfg[tag_name]["layout"]["columns"].to_i : 1)
+	cols = ((ocfg[tag_name] and ocfg[tag_name][layout_key].include?("columns")) ? ocfg[tag_name][layout_key]["columns"].to_i : 1)
 	cur_col = 1
 	hiddens = [] 
 	dims = []
@@ -11,7 +12,7 @@
 -%>
 <table class="tag_grid" cellpadding="0" cellspacing="0"><tbody><tr><%= dims.join('').html_safe %></tr>
 <tr>
-<%- @editor_profile.each_subfield_for(tag_name) do |subfield, field_settings|
+<%- @editor_profile.each_subfield_for(tag_name, is_new) do |subfield, field_settings|
 		# if field_settings[:type] == :hidden
 		# 	hiddens << [field_name, field_settings]
 		# 	next

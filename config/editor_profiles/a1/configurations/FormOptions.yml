@@ -516,7 +516,6 @@
       - cols: 2
         type: manuscript
         editor_partial: subfield_secondary
-        no_new: true
 "786":
   layout: 
     fields: 

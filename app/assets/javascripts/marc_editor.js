@@ -664,3 +664,22 @@ function quick_search_form( base, lang ) {
    </div>";
    return output;
 }
+
+function marc_editor_swap_dt(base_id, editing) {
+	
+	if (editing) {
+		var this_suffix = "-edit";
+		var other_suffix = "-new";
+	} else {
+		var this_suffix = "-new";
+		var other_suffix = "-edit";
+	}
+	
+	
+	//$("#" + base_id + this_suffix).hide();
+	//$("#" + base_id + other_suffix).show();
+	
+    $("#" + base_id + this_suffix).fadeOut('fast', function(){
+        $("#" + base_id + other_suffix).fadeIn('fast');
+    });
+}

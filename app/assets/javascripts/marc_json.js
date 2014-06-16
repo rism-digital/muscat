@@ -235,6 +235,12 @@ function serialize_marc_editor_form( form ) {
 			// marc tag
 			$('dt', this).each(function() {
 				// Serialize each elem and convert it to json_marc
+				// If it is hidden skip it, it is used for
+				// new items
+				if ($(this).css("display") == "none") {
+					return;
+				}
+				
 				serialize_dt_element(this, json_marc);
 				
 			});

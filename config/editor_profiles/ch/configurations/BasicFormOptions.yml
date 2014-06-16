@@ -489,8 +489,9 @@
     - - n
       - cols: 1
     columns: 2
-"700": 
-  layout: 
+"700":
+  allow_new: true 
+  layout:
     fields: 
     - - a
       - type: person
@@ -500,6 +501,24 @@
       - cols: 1
         editor_partial: subfield_relator_codes_700
     columns: 2
+  layout_new:
+    fields: 
+    - - a
+      - type: person
+        cols: 4
+    - - d
+      - cols: 2
+        only_new: true
+    - - e
+      - cols: 2
+        only_new: true
+    - - t
+      - cols: 2
+        only_new: true
+    - - "4"
+      - cols: 2
+        editor_partial: subfield_relator_codes_700
+    columns: 6
   tag_list_header: tag_list_header_relator_codes
   tag_params: 
     groups: 
@@ -604,7 +623,6 @@
     fields: 
     - - w
       - cols: 2
-        no_new: true
         read_only: true
 "773": 
   layout: 
@@ -613,7 +631,6 @@
       - cols: 2
         type: manuscript
         editor_partial: subfield_secondary
-        no_new: true
 "787": 
   layout: 
     fields: 

@@ -1521,6 +1521,12 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Dates de vie
         de: Geburts- und Todesdaten
         en: Life dates
+    e: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Relator term
+    t: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Title of a work
     "3": !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Gruppo di materiale
