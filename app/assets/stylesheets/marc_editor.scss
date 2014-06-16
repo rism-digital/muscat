@@ -7,10 +7,9 @@ dl.marc_editor_tag_block dt {
 	padding: 12px !important;
 	padding-top: 6px !important;
 	border: 1px solid #ccc;
-	margin: 18px 2px 4px 2px !important;
 }
 .marc_editor_grid_panel table.tag_grid {
-	width: 100%;
+	margin-bottom: 0px !important;
 }
 .marc_editor_grid_panel table.tag_grid td {
 	vertical-align: top;
@@ -18,14 +17,13 @@ dl.marc_editor_tag_block dt {
 
 .marc_editor_grid_panel table.tag_grid th, 
 .marc_editor_grid_panel table.tag_grid td {
-	padding-right: 4px;
-	padding-left: 4px;
+	padding: 0px 4px !important;
 
 }
 .marc_editor_grid_panel input,
 .marc_editor_grid_panel select,
 .marc_editor_grid_panel textarea {
-	width: calc(100% - 20px) !important;
+	width: calc(100% - 15px) !important;
 }
 
 .marc_editor_grid_panel input,
