@@ -12,7 +12,7 @@ group
 -->
 <%- 
 	group_title = @editor_profile.get_label(group)
-	## removed in muscat 3@strategy.config[:marc_editor_group_links] << group_title
+	@editor_profile.layout_config[:marc_editor_group_links] << group_title
 -%>
 <%- 
 	### temporary, must probably be moved into the editor_profile model

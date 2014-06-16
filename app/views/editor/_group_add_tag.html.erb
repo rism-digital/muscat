@@ -1,8 +1,8 @@
-<table>
+<table class="marc_editor_add_tag">
 	<tr>
 		<td>
 			<select onchange="marc_editor_add_tag_from_list('<%= render_panel -%>',
-				'<%= @editor_profile.id -%>:<%= group -%>:', $('#<%= render_panel -%>_add_tag_<%= group -%>'));" id="<%= render_panel -%>_add_tag_<%= group -%>" class="function_entry">
+				'<%= @editor_profile.id -%>:<%= group -%>:', $('#<%= render_panel -%>_add_tag_<%= group -%>'));" id="<%= render_panel -%>_add_tag_<%= group -%>">
 				<option value="-" selected="selected">--- Add field ---</option>
 				<%- tag_names.each do |tag_name| -%>
 					<%

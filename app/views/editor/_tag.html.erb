@@ -51,8 +51,8 @@
 	<%- if (subfield != "__blank") -%>
 		<%- if !field_settings["hidden"] || !field_settings["hidden"]==true -%>
 		<td colspan="<%= col_span -%>" rowspan="<%= row_span -%>"<%= extra_td_options -%>>
-			<div class="mini_cell">
-				<div class="mini_header">
+			<div class="grid_cell">
+				<div class="grid_cell_header">
 					<%= extra_leader -%>
 					<%= field_label.html_safe %>
 				</div>

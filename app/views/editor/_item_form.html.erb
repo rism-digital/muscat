@@ -1,6 +1,6 @@
 <div id="<%= render_panel -%>">
 	<%# we don't want the form to be submitted directly (with enter for example), so the 'onSubmit return false %>
-
+	<%- @editor_profile.layout_config[:marc_editor_group_links] = [] -%>
 	<%= form_tag( {:action => 'update'}, {:id => "marc_editor_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>
 		<%= hidden_field_tag 'id', @item.id -%>
 		<%- @editor_profile.layout_config["group_order"].each do |group| -%>

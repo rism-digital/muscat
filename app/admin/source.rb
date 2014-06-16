@@ -136,6 +136,14 @@ ActiveAdmin.register Source do
     active_admin_navigation_bar( self )
   end
   
+  ##########
+  ## Edit ##
+  ##########
+  
+  sidebar "Sections", :only => :edit do
+    render("editor/section_sidebar") # Calls a partial
+  end
+  
   form do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_edition_bar( self )

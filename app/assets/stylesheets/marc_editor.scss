@@ -1,16 +1,27 @@
 
+table.marc_editor_add_tag {
+	margin-bottom: 0px !important;
+}
+
+.marc_editor_grid_panel {
+	padding: 13px !important;
+	padding-top: 6px !important;
+	margin-top: 12px !important;
+	border: 1px solid #ccc;
+}
+
+.marc_editor_grid_panel table.tag_grid {
+	margin-bottom: 0px !important;
+}
+
+dl.marc_editor_tag_block {
+	margin-bottom: 0px !important;
+}
+
 dl.marc_editor_tag_block dt {
 	background-color: #ebebeb;
 }
 
-.marc_editor_grid_panel {
-	padding: 12px !important;
-	padding-top: 6px !important;
-	border: 1px solid #ccc;
-}
-.marc_editor_grid_panel table.tag_grid {
-	margin-bottom: 0px !important;
-}
 .marc_editor_grid_panel table.tag_grid td {
 	vertical-align: top;
 }
@@ -36,19 +47,19 @@ dl.marc_editor_tag_block dt {
 	width: calc(100%) !important;
 }
 
-.marc_editor_grid_panel .mini_cell {
+.marc_editor_grid_panel .grid_cell {
 	padding: 4px;
 }
-.marc_editor_grid_panel .mini_header {
+.marc_editor_grid_panel .grid_cell_header {
 	padding: 2px;
 	overflow: none;
 /*	letter-spacing: 0.02em;*/
-	color: #555;
+	color: #5e6469;
 	font-weight: bold;
 	padding-bottom: 5px !important;
 }
 
-.marc_editor_grid_panel .mini_header a {
+.marc_editor_grid_panel .grid_cell_header a {
 	text-decoration: none;
 }
 
@@ -83,6 +94,16 @@ dl.marc_editor_tag_block dt {
 
 .marc_editor_button_pad_left {
 	margin-left: 4px !important;
+}
+
+.sidebar_section {
+	position: fixed;
+	width: 270px;
+}
+
+.sidebar_section ul {
+	list-style-type: none;
+	padding-left: 0px;
 }
 
 // This stuff is copied from cutters wheels
