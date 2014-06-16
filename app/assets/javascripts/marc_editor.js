@@ -64,9 +64,24 @@ function marc_editor_toggle( id, value ) {
 function marc_editor_init_tags( id ) {
 	$(".sortable").sortable({
 	   //'handle': 'table._lp_tag_header', 
-		stop: function(event, ui) {
+		update: function(event, ui) {
 			marc_editor_reset_tag_order(ui.item.context.parentNode);
-			//alert(ui.item.context.parentNode);
+			
+			// Sort also the 
+			func = ui.item.data("function");
+			id = ui.item.data("name");
+			
+			if (func == "edit") {
+				new_dt = $("#" + id + "-new");
+				//if (!new_dt) return;
+				
+				$("#" + id + "-new").insertAfter( $("#" + id + "-edit") );
+			} else {
+				edit_dt = $("#" + id + "-edit");
+				if (!edit_dt) return;
+				
+				edit_dt.insertBefore( $("#" + id + "-new") );
+			}
 		}	
 	});
 	

@@ -1,7 +1,7 @@
 <% function = is_new ? "new" : "edit"%>
 <% style_hide = is_new ? "style=\"display: none\"".html_safe : "style=\"display: block\"".html_safe %>
 <% dt_name ="#{render_panel}_tag_dt_#{tag_name}-#{iterator}" %>
-<dt id="<%= dt_name %>-<%= function %>" class="tag_<%= tag_name -%> marc_editor_grid_panel ui-corner-all" <%= style_hide -%> >
+<dt id="<%= dt_name %>-<%= function %>" data-name="<%= dt_name %>" data-function="<%= function %>" class="tag_<%= tag_name -%> marc_editor_grid_panel ui-corner-all" <%= style_hide -%> >
 	<%= render :partial => @editor_profile.get_tag_partial("tag_header", tag_name), 
 		:locals => { :render_panel => render_panel, :group => group, :tag_name => tag_name, :marc_tag => marc_tag, :iterator => iterator, :is_new => is_new, :base_dt_name => dt_name  } %>
 	<div class="marc_editor_grid_tag_tab ui-corner-tl"><span style="color: green"><%= tag_name %></span><span style="color: #444"><strong><%= @editor_profile.get_label(tag_name) -%></strong></span></div>
