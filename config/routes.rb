@@ -1,12 +1,7 @@
 Muscat::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  
-  # Setup routes for source inline editor
-  #match '/sources/marc_editor_add_tag', to: 'sources#marc_editor_add_tag', via: [:get, :post]
-  #match '/sources/marc_editor_add_subfield', to: 'sources#marc_editor_add_subfield', via: [:get, :post]
-  #match '/sources/marc_editor_secondary_dialog', to: 'sources#marc_editor_secondary_dialog', via: [:get, :post]
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

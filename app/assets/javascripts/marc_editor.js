@@ -206,79 +206,10 @@ function marc_editor_set_value( target, render_panel, value ) {
 	$('#in_' + jquery_target, '#' + render_panel).val(value);
 }
 
-// 
-function marc_editor_secondary_value( render_panel, target, ac_type, controller, no_new ) {
-	
-	if (no_new == undefined) no_new = false;
-	
-	// we need to escape brackets in jquery, otherwise they are interpreted as selectors
-	jquery_target = target.replace(/(\[|\])/g, '\\$1');
-	$("#dialog").dialog();
-	$("#dialog").dialog( 'option', 'title', select_msg );
-	$("#dialog").dialog( 'option', 'width', 370 );
-	if (no_new == false) {
-	$("#dialog").dialog( 'option', 'buttons', {
-				Select: function() {
-					marc_editor_do_secondary_value( render_panel, jquery_target, ac_type )
-					$(this).dialog('close');
-				},
-				Cancel: function() { $(this).dialog('close');	},
-				New: function() { marc_editor_show_secondary( controller, 0, true);	}
-			});
-	} else {
-		$("#dialog").dialog( 'option', 'buttons', {
-					Select: function() {
-						marc_editor_do_secondary_value( render_panel, jquery_target, ac_type )
-						$(this).dialog('close');
-					},
-					Cancel: function() { $(this).dialog('close');}
-				});
-	}
-	
-	$("input#" + ac_type ).autocomplete({
-      minLength: 1,
-	  select: function(event, ui) {
-		$('#' + ac_type, '#dialog').val( ui.item.value);
-		$('#ac_dialog_value', '#dialog').val( ui.item.id);
-		$('#dialog').closest('.ui-dialog').find('.ui-dialog-buttonpane button:eq(0)').focus();
-	  },
-        source: function(req, add){ 
-            //pass request to server  
-            $.getJSON("/manuscripts/auto_complete_for_" + ac_type + "?term=", { term: req.term, }, function(data) {  
-                //create array for response objects  
-                var suggestions = [];  
-                //process response  
-                $.each(data, function(i, val){  
-                suggestions.push({ value: val.value, label: val.label, id: val.id });  
-            });  
-            //pass array to callback  
-            add(suggestions);  
-        });
-	  }, 
+// Removed in Muscat 3 
+// function marc_editor_secondary_value( render_panel, target, ac_type, controller, no_new ) {
+// function marc_editor_do_secondary_value( render_panel, target, ac_type ) {
 
-	})
-	// We need to override this function so if we include HTML in our label
-	// it does not get escaped by the autocomplete - yuk!
-    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-      return $( "<li>" )
-        .append( "<a>" + item.label + "</a>")
-        .appendTo( ul );
-    };
-
-
-	$("#dialog").dialog('open');
-}
-
-function marc_editor_do_secondary_value( render_panel, target, ac_type ) {
-	val = $('#' + ac_type, '#dialog').val();
-	uuid = $('#ac_dialog_value', '#dialog').val();
-	if (uuid.length == 0) {
-		return;
-	}
-
-	$('#ac_' + target).val(val);
-	$('#' + target).val(uuid);
-}
 
 function marc_editor_toggle_lock(force_unlock) {
 	if (force_unlock)	{
@@ -385,28 +316,9 @@ function marc_editor_edit_inline( destination_column, id, tag_name )
 	});
 }
 
+// Deleted in Muscat 3
+// function marc_editor_secondary_dialog(destination_column, target, ac_type, no_new)
 
-function marc_editor_secondary_dialog(destination_column, target, ac_type, no_new)
-{
-	var url = "/sources/marc_editor_secondary_dialog";
-	var data = "marc_editor_dest=" + destination_column;	
-
-	if (no_new == undefined) no_new = false;
-
-	data = data + "&target=" + target;
-	data = data + "&ac_type=" + ac_type;
-	data = data + "&no_new=" + no_new;
-
-	$.ajax({
-		success: function() { },
-		data: data,
-		timeout: 5000, 
-		dataType: 'script',
-		type: 'get',
-		url: url
-	});
-
-}
 
 function marc_editor_new_inline( destination_column, parent_id, tag_name )
 {

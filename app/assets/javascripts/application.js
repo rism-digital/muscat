@@ -21,3 +21,4 @@
 //= require jquery.maskedinput
 //= require jquery.validate
 //= require_tree .
+//= require autocomplete-rails

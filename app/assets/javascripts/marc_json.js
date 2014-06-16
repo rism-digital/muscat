@@ -115,7 +115,7 @@ function serialize_dt_element( dt, json_marc ) {
 	
 	// Navigate the single emenets in this tag group
 	$('.serialize_marc', dt).each(function() {
-		parts = $(this).attr("id").split(":");
+		parts = $(this).attr("id").split("_");
 		
 		// skip ac_marc tags only for display (?)
 		if (parts[0] != "marc") {

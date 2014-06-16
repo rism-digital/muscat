@@ -12,4 +12,4 @@
 #= require jquery.maskedinput
 #= require jquery.validate
 #= require rism.localisation
-
+#= require autocomplete-rails

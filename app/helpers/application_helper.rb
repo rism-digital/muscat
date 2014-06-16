@@ -1,6 +1,38 @@
 module ApplicationHelper
   
+  def catalogue_default_autocomplete
+    autocomplete_catalogue_name_catalogues_path
+  end
   
+  def institution_default_autocomplete
+    autocomplete_institution_name_institutions_path
+  end
+  
+  def library_default_autocomplete
+    autocomplete_library_siglum_libraries_path
+  end
+  
+  def liturgical_feast_default_autocomplete
+    autocomplete_liturgical_feast_name_liturgical_feasts_path
+  end
+  
+  def person_default_autocomplete
+    autocomplete_person_full_name_people_path
+  end
+  
+  def place_default_autocomplete
+    autocomplete_place_name_places_path
+  end
+  
+  def standard_term_default_autocomplete
+    autocomplete_standard_term_term_standard_terms_path
+  end
+  
+  def standard_title_default_autocomplete
+    autocomplete_standard_title_title_standard_titles_path
+  end
+  
+
   # Create a link for a page in a new window
   def application_helper_link_http(value, node)
     result = []
@@ -27,7 +59,7 @@ module ApplicationHelper
     it = sprintf("%03d", iterator)
     s_it = sprintf("%04d", s_iterator)
     #"marc[#{tag_name}-#{it}][#{subfield}-#{s_it}]"
-    "marc:#{tag_name}-#{it}:#{subfield}-#{s_it}"
+    "marc_#{tag_name}-#{it}_#{subfield}-#{s_it}"
   end
   
   def marc_editor_ind_name(tag_name, iterator)
