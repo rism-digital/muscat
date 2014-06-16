@@ -24,6 +24,10 @@ module ApplicationHelper
     autocomplete_place_name_places_path
   end
   
+  def source_default_autocomplete
+    autocomplete_source_std_title_sources_path
+  end
+  
   def standard_term_default_autocomplete
     autocomplete_standard_term_term_standard_terms_path
   end

@@ -629,7 +629,7 @@
     fields: 
     - - w
       - cols: 2
-        type: manuscript
+        type: source
         editor_partial: subfield_secondary
 "787": 
   layout: 

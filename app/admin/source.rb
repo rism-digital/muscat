@@ -1,5 +1,7 @@
 ActiveAdmin.register Source do
   
+  collection_action :autocomplete_source_std_title, :method => :get
+  
   #actions :all, except: [:edit, :new] 
   
   menu :priority => 3
@@ -9,6 +11,9 @@ ActiveAdmin.register Source do
   #
   # temporarily allow all parameters
   controller do
+    
+    autocomplete :source, :std_title
+    
     def permitted_params
       params.permit!
     end

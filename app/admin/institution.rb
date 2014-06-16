@@ -1,6 +1,6 @@
 ActiveAdmin.register Institution do
 
-  collection_action :autocomplete_intitution_name, :method => :get
+  collection_action :autocomplete_institution_name, :method => :get
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
