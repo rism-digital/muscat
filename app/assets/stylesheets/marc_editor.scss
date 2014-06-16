@@ -96,6 +96,10 @@ dl.marc_editor_tag_block dt {
 	margin-left: 4px !important;
 }
 
+/***********************/
+/* Navigation side bar */
+/***********************/
+
 .sidebar_section {
 	position: fixed;
 	width: 270px;
@@ -105,9 +109,6 @@ dl.marc_editor_tag_block dt {
 	list-style-type: none;
 	padding-left: 0px;
 }
-
-// This stuff is copied from cutters wheels
-// should be replaced at some point
 
 /****************************/
 /* JQUERY UI BUTTONS 		*/

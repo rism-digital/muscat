@@ -62,61 +62,7 @@ function marc_editor_toggle( id, value ) {
 // init the tags
 // called from the edit_wide.rhtml partial and edit_wide.rjs
 function marc_editor_init_tags( id ) {
-	$(".sortable").sortable({
-	   //'handle': 'table._lp_tag_header', 
-		update: function(event, ui) {
-			marc_editor_reset_tag_order(ui.item.context.parentNode);
-			
-			// Sort also the 
-			func = ui.item.data("function");
-			id = ui.item.data("name");
-			
-			if (func == "edit") {
-				new_dt = $("#" + id + "-new");
-				//if (!new_dt) return;
-				
-				$("#" + id + "-new").insertAfter( $("#" + id + "-edit") );
-			} else {
-				edit_dt = $("#" + id + "-edit");
-				if (!edit_dt) return;
-				
-				edit_dt.insertBefore( $("#" + id + "-new") );
-			}
-		}	
-	});
-	
-	marc_editor_reset_tag_div( id );
-}
-
-function marc_editor_reset_tag_div( id ) {
-
-//	$('textarea.marc_editor_growfield', id).elastic();	
-	// this is not great either...
-	$(".sortable", id).each(function () {
-		marc_editor_reset_tag_order( this )
-  });
-}
-
-function marc_editor_reset_tag_order( id ) {
-	tag_order = new Array();
-	
-	$("dt", id).each(function (i) {
-    i = i+1;
-    $("._lp_tag_header label", this).text( "No. " + i );
-		// get order of the tags - pretty bad way:
-		// get the iterator number (used to create the id of the input)
-    parts = this.id.split("-");
-		iterator = parseInt(parts[1]);
-		tag_order.push(iterator);
-		//tag_order.push(String("000" + iterator).slice(-3));
-   });
-	if (tag_order.length > 0) {
-		// if any, put them as value in the parent ordering field
-		ordering = $(".marc_editor_ordering", id.parentNode)
-		ordering.attr("value",tag_order.join(";"));
-	}
-	// grow field, nothing to do with the function,... but done here
-	//$("textarea.marc_editor_growfield", id).growfield({'restore': true});
+	$(".sortable").sortable();
 }
 
 function marc_editor_set_locale( lang ){
@@ -187,12 +133,12 @@ function marc_editor_delete_tag(destination_column, group, tag_name, iterator) {
 	$("#dialog").dialog( 'option', 'title', delete_msg );
 	$("#dialog").dialog( 'option', 'width', 300);
 	$("#dialog").dialog( 'option', 'buttons', {
-				OK: function() {
-					marc_editor_do_delete_tag(destination_column, group, tag_name, iterator)
-					$(this).dialog('close');
-				},
-				Cancel: function() { $(this).dialog('close');	}
-			});
+		OK: function() {
+			marc_editor_do_delete_tag(destination_column, group, tag_name, iterator)
+			$(this).dialog('close');
+		},
+		Cancel: function() { $(this).dialog('close');	}
+		});
 	$("#dialog").dialog('open');
 }
 	
@@ -200,8 +146,9 @@ function marc_editor_do_delete_tag(destination_column, group, tag_name, iterator
 
 	base = "#" + destination_column + "_tag_dt_" + tag_name;
 	base_div = "#" + destination_column + "_tag_div_" + tag_name;
+	console.log( base_div );
  	if (iterator != -1) {
-		$(base + "-" + iterator).remove();
+		$(base + "-" + iterator + "-edit").remove();
 	} else { // single tag
 		$(base_div + " dt:first").remove();
 	}
@@ -209,8 +156,6 @@ function marc_editor_do_delete_tag(destination_column, group, tag_name, iterator
 	if ($(base_div + " dt").size() == 0) {
 		$(base_div).hide();
 		$("#" + destination_column + "_add_tag_" + group).find("[value=" + tag_name + "]").removeAttr("disabled");
-	} else {
-		marc_editor_reset_tag_div( base_div );
 	}
 }
 
@@ -220,98 +165,6 @@ function marc_editor_set_value( target, render_panel, value ) {
 	$('#' + jquery_target, '#' + render_panel).val(value);
 	$('#in_' + jquery_target, '#' + render_panel).val(value);
 }
-
-// Removed in Muscat 3 
-// function marc_editor_secondary_value( render_panel, target, ac_type, controller, no_new ) {
-// function marc_editor_do_secondary_value( render_panel, target, ac_type ) {
-
-
-function marc_editor_toggle_lock(force_unlock) {
-	if (force_unlock)	{
-		$('#marc_editor_lock_btn').show(0);
-		$('#marc_editor_unlock_btn').hide(0);
-	} else {
-		$('#marc_editor_lock_btn').toggle(0);
-		$('#marc_editor_unlock_btn').toggle(0);				
-	}
-}
-
-// navigate in the old version
-// item is 'next' or 'prev'
-function marc_editor_old_version(item) {
-	$('#marc_editor_left_old_versions_panel').carousel(item);
-}
-
-// toggle the secondary context
-// loads with preview when opening
-function marc_editor_toggle_sec_context() {
-	// get the old versions
-	/*$('#marc_editor_left').carousel('view', 0);
-	$('#marc_editor_sec_context_btn').hide(0);
-	$('#marc_editor_old_versions_btn').show(0);
-	$('#marc_editor_preview_btn').show(0);/*
-	// TODO
-}
-
-// toggle the old version panel
-// loads with marc_editor_populate_versions when opening
-// session is required to populate, not to hide
-function marc_editor_toggle_old_versions(call_type) {
-	// get the old versions
-	//$('#marc_editor_left').carousel('next');
-	/*$('#marc_editor_left').carousel('view', 1);
-	$('#marc_editor_sec_context_btn').show(0);
-	$('#marc_editor_old_versions_btn').hide(0);
-	$('#marc_editor_preview_btn').show(0);
-	// select the marc tab in the main
-	$('#marc_editor_panel').tabs( 'select' , 1 );*/
-	// load old version
-	//if ($('#marc_editor_left_old_versions_panel').hasClass('marc_editor_left_old_versions_panel')) {
-	// we're done...
-	//	return; // would avoid to reload when shown again, but does not work very wel (carousel)
-	//}
-	// ... otherwise load the old versions
-	marc_editor_populate_versions("marc_editor_left_old_versions_panel", call_type );
-}
-
-// toggle the preview
-// loads with preview when opening
-function marc_editor_toggle_preview() {
-	// get the old versions
-	/*$('#marc_editor_left').carousel('view', 2);
-	$('#marc_editor_sec_context_btn').show(0);
-	$('#marc_editor_old_versions_btn').show(0);
-	$('#marc_editor_preview_btn').hide(0);
-	// select the form tab in the main
-	$('#marc_editor_panel').tabs( 'select' , 0 );*/
-	// load the form
-	marc_editor_send_form('marc_editor_panel','marc_editor_left_preview_panel', 1, "");
-	//marc_editor_populate_versions("marc_editor_left_old_versions_panel", call_type );
-}
-
-// performs a ajax query to get the old versions of a record
-function marc_editor_populate_versions(destination_column, call_type) {
-
-	var call_parts = call_type.split(':');
-	var url = "/manuscripts/marc_editor_old_versions";
-	var data = "marc_editor_dest=" + destination_column;
-
-	data = data + "&wheel=" + call_parts[0];		
-	data = data + "&id=" + $('#marc_editor_panel form :input#id').attr("value");
-
-	$('#' + destination_column).block({ message: "Loading..." });			
-
-	$.ajax({
-		success: function() { $('#' + destination_column).unblock(); },
-		data: data,
-		dataType: 'script',
-		timeout: 5000, 
-		type: 'get',
-		url: url
-	});
-
-}
-
 
 function marc_editor_edit_inline( destination_column, id, tag_name )
 {
@@ -330,10 +183,6 @@ function marc_editor_edit_inline( destination_column, id, tag_name )
 		url: url
 	});
 }
-
-// Deleted in Muscat 3
-// function marc_editor_secondary_dialog(destination_column, target, ac_type, no_new)
-
 
 function marc_editor_new_inline( destination_column, parent_id, tag_name )
 {
@@ -454,49 +303,6 @@ function marc_editor_incipit(destination_column, clef, keysig, timesig, incipit,
 		url: url
 	});
 	*/
-}
-
-function marc_editor_populate(destination_column, call_type) {
-
-	var call_parts = call_type.split(':');
-	// To be fixed
-	var url = "/manuscripts/marc_editor_edit";
-	var data = "marc_editor_dest=" + destination_column;		
-	
-	data = data + "&wheel=" + call_parts[0];
-	if (call_parts[1] == "next") {
-	   if (!marc_editor_discard_changes()) {
-	      return;
-	   }
-		data = data + "&id=next";
-	} else if (call_parts[1] == "previous") {
-	   if (!marc_editor_discard_changes()) {
-	      return;
-	   }
-		data = data + "&id=previous";
-	}
-	
-	if (destination_column == 'marc_editor_panel') {
-		//marc_editor_toggle_old_versions(false);
-		if ($('#marc_editor_lock_btn').is(':visible'))	{
-			// get the previous item for the left secondary panel
-			//data = data + "&previous_item=1";
-			marc_editor_send_form('marc_editor_panel','marc_editor_left_secondary_panel', 1, "");
-		}
-	}
-	
-	$('#' + destination_column).block({ message: "Loading..." });	
-	
-	
-	$.ajax({
-		success: function() { $('#' + destination_column).unblock(); },
-		data: data,
-		timeout: 10000, 
-		dataType: 'script',
-		type: 'get',
-		url: url
-	});
-
 }
 
 // performs a ajax query to get the old versions of a record
@@ -631,32 +437,6 @@ function marc_editor_send_form( source_column, destination_column, form_type, wh
 	});
 }
 
-function marc_editor_show_secondary( type, id, create ) {
-
-	$("#dialog_edition").dialog( 'option', 'width', 792 );
-   url = "/" + type;
-   
-   if (create == true) {
-      url += "/new";
-      $("#dialog_edition").dialog( 'option', 'title', new_secondary );
-   } else {    
-   	url += "/show/" + id; 
-   	$("#dialog_edition").dialog( 'option', 'title', view_secondary ); 
-   }
-	
-	$.ajax({
-		success: function() {
-		   $('#dialog').dialog('close'); 
-		   $("#dialog_edition").dialog('open');
-      },
-		data: "secondary=true",
-		dataType: 'script',
-		timeout: 20000, 
-		type: 'post',
-		url: url
-	});
-}
-
 function quick_search_form( base, lang ) {
    marc_editor_set_locale( lang );
    output = "\
@@ -689,7 +469,6 @@ function marc_editor_swap_dt(base_id, editing) {
 		var this_suffix = "-new";
 		var other_suffix = "-edit";
 	}
-	
 	
 	//$("#" + base_id + this_suffix).hide();
 	//$("#" + base_id + other_suffix).show();

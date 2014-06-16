@@ -20,6 +20,3 @@ div_data = escape_javascript(:partial => 'editor/subfield_li', :locals => { :col
 %>
  
 $('#add_tag_tmp').replaceWith("<%=div_data%>")
-
-// reset tag
-marc_editor_reset_tag_div( $('#<%=render_panel%>_tag_div_<%=tag_name%>') );	

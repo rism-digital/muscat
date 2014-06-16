@@ -16,6 +16,3 @@ $('#add_tag_tmp').replaceWith("<%= escape_javascript(render(:partial => 'editor/
 $('#<%=render_panel%>_tag_div_<%=tag_name%>').show();
 // make sure the tag_list is visible
 marc_editor_toggle( $('#<%=render_panel%>_tag_list_<%=tag_name%>'), 1 );
-
-// reset tag
-marc_editor_reset_tag_div( $('#<%=render_panel%>_tag_div_<%=tag_name%>') );
