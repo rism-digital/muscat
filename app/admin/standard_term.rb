@@ -1,5 +1,7 @@
 ActiveAdmin.register StandardTerm do
 
+  menu :parent => "Authorities"
+
   collection_action :autocomplete_standard_term_term, :method => :get
 
   # See permitted parameters documentation:

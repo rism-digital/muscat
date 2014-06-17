@@ -1,4 +1,6 @@
 ActiveAdmin.register Catalogue do
+  
+  menu :parent => "Authorities"
 
   collection_action :autocomplete_catalogue_name, :method => :get
 

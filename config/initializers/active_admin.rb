@@ -212,7 +212,13 @@ ActiveAdmin.setup do |config|
   #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
   #     end
   #   end
-
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add :label => "Administration", :priority => 1
+      menu.add :label => "Sources", :priority => 10
+      menu.add :label => "Authorities", :priority => 20
+    end
+  end
 
   # == Download Links
   #

@@ -1,5 +1,6 @@
 ActiveAdmin.register StandardTitle do
 
+  menu :parent => "Authorities"
 
   collection_action :autocomplete_standard_title_title, :method => :get
 

@@ -1,4 +1,6 @@
 ActiveAdmin.register Library do
+  
+  menu :parent => "Authorities"
 
   collection_action :autocomplete_library_siglum, :method => :get
 

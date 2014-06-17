@@ -148,7 +148,7 @@ function marc_editor_do_delete_tag(destination_column, group, tag_name, iterator
 	base_div = "#" + destination_column + "_tag_div_" + tag_name;
 	console.log( base_div );
  	if (iterator != -1) {
-		$(base + "-" + iterator + "-edit").remove();
+		$(base + "-" + iterator + "-	edit").remove();
 	} else { // single tag
 		$(base_div + " dt:first").remove();
 	}

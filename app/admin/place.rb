@@ -1,5 +1,7 @@
 ActiveAdmin.register Place do
 
+  menu :parent => "Authorities"
+
   collection_action :autocomplete_place_name, :method => :get
 
   # See permitted parameters documentation:

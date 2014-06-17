@@ -1,4 +1,6 @@
 ActiveAdmin.register LiturgicalFeast do
+  
+  menu :parent => "Authorities"
 
   collection_action :autocomplete_liturgical_feast_name, :method => :get
 

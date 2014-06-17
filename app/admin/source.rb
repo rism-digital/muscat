@@ -2,9 +2,7 @@ ActiveAdmin.register Source do
   
   collection_action :autocomplete_source_std_title, :method => :get
   
-  #actions :all, except: [:edit, :new] 
-  
-  menu :priority => 3
+  menu :priority => 10
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -31,8 +29,7 @@ ActiveAdmin.register Source do
     end
 
     def index
-      @results = Source.search_as_ransack(params)
-      
+      @results = Source.search_as_ransack(params)     
       index! do |format|
        @sources = @results
         format.html
@@ -99,14 +96,9 @@ ActiveAdmin.register Source do
   
   ###########
   ## Index ##
-  ###########
-  
-#  config.clear_sidebar_sections!
-#    sidebar :filters do
-#      render partial: 'search'
-#    end
+  ###########  
 
-  # temporary, to be replaced by Solr
+  # filers
   filter :title_contains, :as => :string
   filter :std_title_contains, :as => :string
   filter :composer_contains, :as => :string

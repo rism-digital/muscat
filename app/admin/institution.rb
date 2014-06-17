@@ -1,4 +1,6 @@
 ActiveAdmin.register Institution do
+  
+  menu :parent => "Authorities"
 
   collection_action :autocomplete_institution_name, :method => :get
 

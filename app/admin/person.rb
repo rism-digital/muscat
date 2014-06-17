@@ -1,5 +1,7 @@
 ActiveAdmin.register Person do
 
+  menu :parent => "Authorities"
+
   collection_action :autocomplete_person_full_name, :method => :get
   
   # See permitted parameters documentation:

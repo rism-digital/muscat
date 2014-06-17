@@ -7,7 +7,7 @@ module ActiveAdmin
         super :style => "text-align: left;"                                     
 
         div do                                                                   
-          small "Muscat footer #{Date.today.year}"                                       
+          small "Muscat #{Date.today.year}"                                       
         end
       end
 
