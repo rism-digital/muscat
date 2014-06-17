@@ -62,7 +62,36 @@ function marc_editor_toggle( id, value ) {
 // init the tags
 // called from the edit_wide.rhtml partial and edit_wide.rjs
 function marc_editor_init_tags( id ) {
-	$(".sortable").sortable();
+	$(".sortable").sortable({
+	   // Add handler to keep sorted tags in correct order
+		update: function(event, ui) {
+			// Go through all elements in the dl
+			// for each tag all sortables are groupeg
+			// together. Then make sure the hidden dt is
+			// after if "new" or before if "edit"
+			// we only move the hidden dt to the correct
+			// position
+			ui.item.parent().children().each(function () {
+				if ($(this).css("display") == "none") {
+					return;
+				}
+				
+				if ($(this).data("function") == "edit") {
+					new_dt = $("#" + $(this).data("name") + "-new");
+					if (!new_dt) return;
+					
+					new_dt.insertAfter( $(this) );
+				} else {
+					edit_dt = $("#" + $(this).data("name") + "-edit");
+					if (!edit_dt) return;
+					
+					edit_dt.insertBefore( $(this) );
+				}
+				
+			});
+		}	
+	});
+
 }
 
 function marc_editor_set_locale( lang ){
