@@ -7,13 +7,13 @@
 	end	
 %>
 <%- if (params['growfield'])  %>
-	<textarea cols="100" class="marc_editor_growfield subfield_entry serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield_iterator="<%=s_iterator%>"> <%= h marc_subfield.content %></textarea>
+	<textarea cols="100" class="marc_editor_growfield subfield_entry serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>"> <%= h marc_subfield.content %></textarea>
 <%- else %>
 	<% if read_only %>
 			<input class="subfield_entry"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h marc_subfield.content %>"/>
-			<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield_iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>"/>
+			<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>"/>
 	<% else %>
-		<input class="subfield_entry serialize_marc" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield_iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>"/>
+		<input class="subfield_entry serialize_marc" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>"/>
 	<% end %>
 <%- end %>
 

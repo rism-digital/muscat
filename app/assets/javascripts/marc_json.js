@@ -104,36 +104,23 @@ function order_subfields(fields) {
 	return ordered_fields;
 }
 
-function serialize_dt_element( dt, json_marc ) {
+function serialize_element( element, tag, json_marc ) {
 	//console.log(this);
 	
 	var subfields = [];
 	var controlfield = {};
 	var subfields_unordered = {};
-	var tag;
 	var index;
 	
 	// Navigate the single emenets in this tag group
-	$('.serialize_marc', dt).each(function() {
-		parts = $(this).attr("id").split("_");
-		
-		// skip ac_marc tags only for display (?)
-		if (parts[0] != "marc") {
-			return;
-		}
-		
-		// should never change! gust repeated many times
-		//XXX-XXX
-		tag = parts[1].split("-")[0];
-		index = parts[1].split("-")[1];
+	$('.serialize_marc', element).each(function() {
 		// X-XXXX or -XXXX
 		// in the first case we get two fields
 		// in the second one the first is an
 		// empty string, for control tags
 		// Keep the whole field for sorted duplicates
-		field = parts[2];//.split("-")[0];
-		// extract the first part to see if control field
-		field_tag = parts[2].split("-")[0]
+		field = $(this).data("subfield")
+		index = $(this).data("subfield-iterator")
 
 		if ($(this).val() == null || $(this).val() == "") {
 			return;
@@ -141,11 +128,11 @@ function serialize_dt_element( dt, json_marc ) {
 		
 		// Control fields do not have tags, so we
 		// put it into a special container
-		if (field_tag == "") {
+		if (!field) {
 			controlfield[tag] = $(this).val();
 		} else {
 			// This is a norma subfield, eg. $a
-			subfields_unordered[field] = $(this).val();
+			subfields_unordered[field + "-" + index] = $(this).val();
 		}
 		
 	});
@@ -215,15 +202,15 @@ function serialize_marc_editor_form( form ) {
 	json_marc["fields"] = [];
 	
 	// Each group contents contain the <div> for each marc tag
-	$(".marc_editor_group_contents", form).each(function (index, elem) {
-		a =  $(elem).contents();
+	//$(".marc_editor_group_contents", form).each(function (index, elem) {
+		//a =  $(elem).contents();
 		
 		// only <div> in here, iterathe tru them
 		// and skip hidden ones, which have no contents
 		// eache of there contains a dt with the
 		// contents of each tag, in the correct order
 		// and indexed
-		$(elem).children().each(function () {
+		$(".tag_group", form).each(function () {
 			if ($(this).css("display") == "none") {
 				return;
 			}			
@@ -233,7 +220,9 @@ function serialize_marc_editor_form( form ) {
 			// to one marc tag. dt come in the correct order
 			// so each time we get a dt we can create a new
 			// marc tag
-			$('dt', this).each(function() {
+			$('.tag_container', this).each(function() {
+				marc_tag = $(this).data("tag");
+				
 				// Serialize each elem and convert it to json_marc
 				// If it is hidden skip it, it is used for
 				// new items
@@ -241,13 +230,13 @@ function serialize_marc_editor_form( form ) {
 					return;
 				}
 				
-				serialize_dt_element(this, json_marc);
+				serialize_element(this, marc_tag, json_marc);
 				
 			});
 			
 		});
 		
-	});
+		//});
 	
 	console.log(JSON.stringify(json_marc));
 	return json_marc;

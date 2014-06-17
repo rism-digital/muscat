@@ -4,7 +4,7 @@
 	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
 %>
 <input class="ac_popup_edit" disabled="disabled" size="4" type="text" id="in_ID" value="<%= h marc_subfield.content %>" />
-<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield_iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>">
+<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>">
 <select id="<%= code_group_tag_id %>" name="<%= code_group_tag_id %>" width="100">
 	<option value="-">--- Select ---</option>
 	<%- tag_params["groups"].keys.sort.each do |key| %>

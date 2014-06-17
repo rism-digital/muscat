@@ -2,7 +2,7 @@
 <%-	marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new %>
 <%- no_new = params.include?("no_new") ? params["no_new"] : false %>
 <%- ac_path = send(params['type'] + "_default_autocomplete")%>
-<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield_iterator="<%=s_iterator%>" value="<%= marc_subfield_m.content %>">
+<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= marc_subfield_m.content %>">
 
 <table class="marc_editor_grid_internal_layout" cellpadding="0" cellspacing="0">
 	<tr>

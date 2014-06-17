@@ -6,7 +6,7 @@
 	tag_id_timesig = marc_editor_field_name(tag_name, 0, tag_params["timesig"]["subfield"], s_iterator + tag_params["timesig"]["s_iterator"])
 	render_id = "render_INCIPIT" #FIXME
 %>
-<textarea class="subfield_entry serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield_iterator="<%=s_iterator%>"> <%= h marc_subfield.content %></textarea>
+<textarea class="subfield_entry serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>"> <%= h marc_subfield.content %></textarea>
 	<table class="marc_editor_pae_info"  style="display: none;" cellpadding="0" cellspacing="0"><tr>
 		<td width="100%"><div id="<%= render_id %>">Loading...&nbsp;</div></td>
 		<td width="16"><div style="visibility:hidden;"><img src="/images/spinner_small.gif" /></div></td>	
