@@ -1,19 +1,18 @@
 <%
 	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
-	tag_id = marc_editor_field_name(tag_name, iterator, subfield, s_iterator)
-	tag_id_clef = marc_editor_field_name(tag_name, iterator, tag_params["clef"]["subfield"], s_iterator + tag_params["clef"]["s_iterator"])
-	tag_id_keysig = marc_editor_field_name(tag_name, iterator, tag_params["keysig"]["subfield"], s_iterator + tag_params["keysig"]["s_iterator"])
-	tag_id_timesig = marc_editor_field_name(tag_name, iterator, tag_params["timesig"]["subfield"], s_iterator + tag_params["timesig"]["s_iterator"])
-	render_id = "render_" + tag_id.gsub(/[\[\]]/,'')
+
+	tag_id_clef = marc_editor_field_name(tag_name, 0, tag_params["clef"]["subfield"], s_iterator + tag_params["clef"]["s_iterator"])
+	tag_id_keysig = marc_editor_field_name(tag_name, 0, tag_params["keysig"]["subfield"], s_iterator + tag_params["keysig"]["s_iterator"])
+	tag_id_timesig = marc_editor_field_name(tag_name, 0, tag_params["timesig"]["subfield"], s_iterator + tag_params["timesig"]["s_iterator"])
+	render_id = "render_INCIPIT" #FIXME
 %>
-<textarea class="subfield_entry serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>"><%= h marc_subfield.content %></textarea>
+<textarea class="subfield_entry serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield_iterator="<%=s_iterator%>"> <%= h marc_subfield.content %></textarea>
 	<table class="marc_editor_pae_info"  style="display: none;" cellpadding="0" cellspacing="0"><tr>
 		<td width="100%"><div id="<%= render_id %>">Loading...&nbsp;</div></td>
-		<td width="16"><div id="spinner_<%= tag_id %>" style="visibility:hidden;"><img src="/images/spinner_small.gif" /></div></td>	
+		<td width="16"><div style="visibility:hidden;"><img src="/images/spinner_small.gif" /></div></td>	
 	</tr></table>
 <script>
-	//incipit = "<%= tag_id %>".replace(/(\[|\])/g, '\\$1');
-	incipit = "<%= render_panel -%>_tag_<%= tag_name -%>-<%= iterator -%>"
+	incipit = "FIXME"
 	$("#" + incipit).keyup(function(event){
 	    //if (event.keyCode == 27) 
 		//{
@@ -23,7 +22,7 @@
 				"<%= tag_id_clef %>",
 				"<%= tag_id_keysig %>",
 				"<%= tag_id_timesig %>",
-				"<%= tag_id %>",
+				"", //FIXME tag it
 				"<%= render_id %>");
 	    		
 				$('#' + "<%= render_id %>" ).parents('table').show();

@@ -1,6 +1,6 @@
-<li id="<%= render_panel -%>_<%= tag_name -%>_<%= iterator -%>_<%= column[0] %>-<%= s_iterator -%>">
+<li>
 	<%= render :partial => (column[1].has_key?('editor_partial') ? "options/#{column[1]['editor_partial']}" : "editor/subfield"), 
-		:locals => { :render_panel => render_panel, :group => group, 
-			:iterator => iterator, :marc_tag => marc_tag, :tag_name => tag_name, 
+		:locals => { :group => group, 
+			:marc_tag => marc_tag, :tag_name => tag_name, 
 			:s_iterator => s_iterator, :marc_subfield => marc_subfield, :subfield => column[0], :params => column[1] } %>			
 </li>

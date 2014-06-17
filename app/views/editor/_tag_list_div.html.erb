@@ -1,10 +1,8 @@
-<div id="<%= render_panel -%>_tag_div_<%= tag_name -%>" <%= @item.marc.has_tag?(tag_name) ? "" : " style=\"display: none;\"".html_safe %>>
+<div class"tag_group" data-tag="<%= tag_name %> " <%= @item.marc.has_tag?(tag_name) ? "" : " style=\"display: none;\"".html_safe %>>
 	<%= render :partial => @editor_profile.get_tag_partial("tag_list_header", tag_name), 
-		:locals => { :render_panel => render_panel, :group => group, :tag_name => tag_name } %>
-	<div id="<%= render_panel -%>_tag_list_content_<%= tag_name -%>">
+			:locals => { :group => group, :tag_name => tag_name } %>
 		<%= render :partial => @editor_profile.get_tag_partial("tag_list",tag_name), 
-			:locals => { :render_panel => render_panel, :group => group, :tag_name => tag_name } %>
+			:locals => { :group => group, :tag_name => tag_name } %>
 		<% render :partial => @editor_profile.get_tag_partial("tag_list_footer", tag_name),  
-			:locals => { :render_panel => render_panel, :group => group, :tag_name => tag_name } %>
-	</div>
+			:locals => { :group => group, :tag_name => tag_name } %>
 </div>

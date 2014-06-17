@@ -155,15 +155,15 @@ function marc_editor_add_tag_from_list(destination_column, call_type, list )
 
 // confirmation message for delete
 // marc_editor_do_delete_tag if yes 
-function marc_editor_delete_tag(destination_column, group, tag_name, iterator) {
-	
+function marc_editor_delete_tag(child_id) {
+		
 	$('#dialog').html('<p>' + delete_field_confirm + '</p>');
 	$("#dialog").dialog();
 	$("#dialog").dialog( 'option', 'title', delete_msg );
 	$("#dialog").dialog( 'option', 'width', 300);
 	$("#dialog").dialog( 'option', 'buttons', {
 		OK: function() {
-			marc_editor_do_delete_tag(destination_column, group, tag_name, iterator)
+			marc_editor_do_delete_tag(child_id)
 			$(this).dialog('close');
 		},
 		Cancel: function() { $(this).dialog('close');	}
@@ -171,21 +171,17 @@ function marc_editor_delete_tag(destination_column, group, tag_name, iterator) {
 	$("#dialog").dialog('open');
 }
 	
-function marc_editor_do_delete_tag(destination_column, group, tag_name, iterator) {
-
-	base = "#" + destination_column + "_tag_dt_" + tag_name;
-	base_div = "#" + destination_column + "_tag_div_" + tag_name;
-	console.log( base_div );
- 	if (iterator != -1) {
-		$(base + "-" + iterator + "-	edit").remove();
-	} else { // single tag
-		$(base_div + " dt:first").remove();
-	}
-	// hide tag_div and reset add tag select if empty
-	if ($(base_div + " dt").size() == 0) {
-		$(base_div).hide();
-		$("#" + destination_column + "_add_tag_" + group).find("[value=" + tag_name + "]").removeAttr("disabled");
-	}
+function marc_editor_do_delete_tag(child_id) {
+	
+	dt_id = child_id.parents(".tag_toplevel_container");
+	tag = dt_id.data("tag");
+	
+	// Enable the tag menu
+	tag_menu = dt_id.parents(".panel_content");
+	tag_menu.find("[value=" + tag + "]").removeAttr("disabled");
+	
+	dt_id.remove();
+	
 }
 
 function marc_editor_set_value( target, render_panel, value ) {

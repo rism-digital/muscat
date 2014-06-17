@@ -1,14 +1,13 @@
 <%- master = MarcConfig.get_master(tag_name) %>
 <%-	marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new %>
-<%-	tag_id = marc_editor_field_name(tag_name, iterator, master, s_iterator ) %>
 <%- no_new = params.include?("no_new") ? params["no_new"] : false %>
 <%- ac_path = send(params['type'] + "_default_autocomplete")%>
-<input type="hidden" class="serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= marc_subfield_m.content %>">
+<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield_iterator="<%=s_iterator%>" value="<%= marc_subfield_m.content %>">
 
 <table class="marc_editor_grid_internal_layout" cellpadding="0" cellspacing="0">
 	<tr>
 	<td width="100%">
-	<%= autocomplete_field_tag "ac_#{tag_id}", marc_subfield.looked_up_content, ac_path, :size => 75, :id_element => "##{tag_id}" %>
+	<%= autocomplete_field_tag "ac_ID", marc_subfield.looked_up_content, ac_path, :size => 75, :id_element => "#FIXME" %>
 </td>
 
 </tr>

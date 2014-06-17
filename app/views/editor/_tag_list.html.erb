@@ -1,17 +1,17 @@
 <%
 	allow_new = @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name].include?("layout_new") ? true : false
 %>
-<dl id="<%= render_panel -%>_tag_list_<%= tag_name -%>"	class="<%= (MarcConfig.multiples_allowed? tag_name) ? "sortable" : "" %> marc_editor_tag_block tags_<%= tag_name -%>">
-<%- iterator = 1 %>
+<dl class="marc_editor_tag_block <%= (MarcConfig.multiples_allowed? tag_name) ? "sortable" : "" %>" data-tag="<%= tag_name %>">
+
 <%- @item.marc.each_by_tag(tag_name) do |marc_tag| %>
-	<%= render :partial => "editor/tag_dt",
-		:locals => { :render_panel => render_panel, :group => group, :tag_name => tag_name, :marc_tag => marc_tag, :iterator => iterator, :is_new => false} %>
-		
-	<% if allow_new %>
+	<dt class="tag_toplevel_container" data-tag="<%= tag_name %>">
 		<%= render :partial => "editor/tag_dt",
-			:locals => { :render_panel => render_panel, :group => group, :tag_name => tag_name, :marc_tag => marc_tag, :iterator => iterator, :is_new => true } %>
-	<% end %>
+			:locals => { :group => group, :tag_name => tag_name, :marc_tag => marc_tag , :is_new => false} %>
 		
-	<%- iterator += 1 %>
+		<% if allow_new %>
+			<%= render :partial => "editor/tag_dt",
+				:locals => { :group => group, :tag_name => tag_name, :marc_tag => marc_tag, :is_new => true } %>
+		<% end %>
+	</dt>
 <%- end -%>
 </dl>
