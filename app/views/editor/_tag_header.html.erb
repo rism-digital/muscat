@@ -32,7 +32,7 @@
 		<%- if MarcConfig.multiples_allowed?(tag_name) -%>
 			<input class="marc_editor_ordering" type="hidden" name="<%= tag_name %>-ordering" id="<%= tag_name %>-ordering" value=""/>
 			<%- if !no_add -%>
-			<%= action_button(["", "Add tag"], "ui-icon-plus", "marc_editor_add_tag(FIXME)", "marc_editor_button_pad_left", :right, :all, "", true ) -%>
+			<%= action_button(["", "Add tag"], "ui-icon-plus", "marc_editor_add_tag($(this))", "marc_editor_button_pad_left", :right, :all, "", true ) -%>
 			<%- end -%>	
 		<%- end -%>	
 		<%- if !no_delete -%>

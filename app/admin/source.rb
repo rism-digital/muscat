@@ -38,14 +38,6 @@ ActiveAdmin.register Source do
 
   end
   
-  collection_action :marc_editor_add_tag, :method => :get do
-    @editor_profile = EditorConfiguration.find_by_id(params[:profile_id])    
-    #render :template => "editor/marc_editor_add_tag"
-    respond_to do |format|
-       format.js { render  "editor/marc_editor_add_tag" }
-     end
-  end
-
   collection_action :marc_editor_add_subfield, :method => :get do
     @editor_profile = EditorConfiguration.find_by_id(params[:profile_id])  
     @column = @editor_profile.get_column_for(params[:tag_name],params[:subfield_name]) 
