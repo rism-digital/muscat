@@ -39,7 +39,7 @@ group
 		<div class="marc_editor_group_contents">
 			<%- tag_names.each do |tag_name| -%>
 				<%= render :partial => "editor/tag_list_div",
-					:locals => {:group => group, :tag_name => tag_name,  } 
+					:locals => { :tag_name => tag_name,  } 
 					%>
 			<%- end -%>
 		</div>	

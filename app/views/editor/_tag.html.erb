@@ -63,7 +63,7 @@
 						subfield_collection << MarcNode.new if subfield_collection.empty?
 					  	subfield_collection.each do |marc_subfield| %>
 						<%= render :partial => "editor/subfield_li", 
-							:locals => { :column => [subfield, field_settings], :group => group, 
+							:locals => { :column => [subfield, field_settings], 
 									:marc_tag => marc_tag, :tag_name => tag_name, 
 									:s_iterator => s_iterator, :marc_subfield => marc_subfield } %>
 						<%- s_iterator += 1 %>
@@ -79,8 +79,7 @@
 					subfield_collection << MarcNode.new if subfield_collection.empty?
 				  	subfield_collection.each do |marc_subfield| %>
 					<%= render :partial => (field_settings.has_key?('editor_partial') ? "options/#{field_settings['editor_partial']}" : "editor/subfield"), 
-						:locals => { :group => group, 
-							:marc_tag => marc_tag, :tag_name => tag_name, 
+						:locals => { :marc_tag => marc_tag, :tag_name => tag_name, 
 							:s_iterator => s_iterator, :marc_subfield => marc_subfield, :subfield => subfield, :params => field_settings, :read_only => field_settings["read_only"] } %>		
 						<%- s_iterator += 1 %>
 				<%- end %>

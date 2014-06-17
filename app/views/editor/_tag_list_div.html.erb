@@ -1,8 +1,8 @@
 <div class"tag_group" data-tag="<%= tag_name %> " <%= @item.marc.has_tag?(tag_name) ? "" : " style=\"display: none;\"".html_safe %>>
 	<%= render :partial => @editor_profile.get_tag_partial("tag_list_header", tag_name), 
-			:locals => { :group => group, :tag_name => tag_name } %>
+			:locals => { :tag_name => tag_name } %>
 		<%= render :partial => @editor_profile.get_tag_partial("tag_list",tag_name), 
-			:locals => { :group => group, :tag_name => tag_name } %>
+			:locals => { :tag_name => tag_name } %>
 		<% render :partial => @editor_profile.get_tag_partial("tag_list_footer", tag_name),  
-			:locals => { :group => group, :tag_name => tag_name } %>
+			:locals => { :tag_name => tag_name } %>
 </div>

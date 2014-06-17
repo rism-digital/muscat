@@ -6,11 +6,11 @@
 <%- @item.marc.each_by_tag(tag_name) do |marc_tag| %>
 	<dt class="tag_toplevel_container" data-tag="<%= tag_name %>">
 		<%= render :partial => "editor/tag_dt",
-			:locals => { :group => group, :tag_name => tag_name, :marc_tag => marc_tag , :is_new => false} %>
+			:locals => { :tag_name => tag_name, :marc_tag => marc_tag , :is_new => false} %>
 		
 		<% if allow_new %>
 			<%= render :partial => "editor/tag_dt",
-				:locals => { :group => group, :tag_name => tag_name, :marc_tag => marc_tag, :is_new => true } %>
+				:locals => { :tag_name => tag_name, :marc_tag => marc_tag, :is_new => true } %>
 		<% end %>
 	</dt>
 <%- end -%>
