@@ -443,7 +443,7 @@ function marc_editor_send_form( source_column, destination_column, form_type, wh
 	$.ajax({
 		success: function() { 
 		   $('#' + destination_column).unblock();
-		   location.reload();
+		   //location.reload();
 		   if (form_type == 0) {
 		      marc_editor_form_changed = false;
 		   } else if (form_type == 1) {
@@ -461,7 +461,7 @@ function marc_editor_send_form( source_column, destination_column, form_type, wh
 			alert ("Editor reload failed (but data saved). Page will be reloaded. (" 
 					+ textStatus + " " 
 					+ errorThrown);
-			location.reload();
+			//location.reload();
 		}
 	});
 }
