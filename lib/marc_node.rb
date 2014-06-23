@@ -177,7 +177,7 @@ class MarcNode
         # We have the foreign object. Check if it needs to be populated and saved
         if self.foreign_object.new_record? or overwrite
           populate_master( )
-          self.foreign_object.suppress_reindex
+          #FIXME self.foreign_object.suppress_reindex
           # PROBLEM: if an element has an incorrect id, but a field that is unique already is in the DB
           # the save will creash because of the duplicate field. In this case, we try an extreme remedy:
           # we try the lookup using non-masters so hopefully we can match the field to the one already there

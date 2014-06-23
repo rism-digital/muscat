@@ -152,6 +152,7 @@ class Marc
     end # if hash['fields']
     
     @loaded = true
+    import
     @source = to_marc
     @source_id = first_occurance("001").content || nil rescue @source_id = nil
     # when importing we do not want to resolve externals since source has ext_id (and not db_id)
