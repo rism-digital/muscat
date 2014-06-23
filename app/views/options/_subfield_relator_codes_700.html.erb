@@ -1,11 +1,10 @@
 <%
-	tag_id = marc_editor_field_name(tag_name, iterator, subfield, s_iterator)
-	code_group_tag_id = "code_group_#{tag_id}"
-	code_tag_id = "code_#{tag_id}"
+	code_group_tag_id = "code_group_ID" # FIXME
+	code_tag_id = "code_ID"
 	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
 %>
-<input class="ac_popup_edit" disabled="disabled" size="4" type="text" id="in_<%= tag_id %>" value="<%= h marc_subfield.content %>" />
-<input type="hidden" class="serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h marc_subfield.content %>">
+<input class="ac_popup_edit" disabled="disabled" size="4" type="text" id="in_ID" value="<%= h marc_subfield.content %>" />
+<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>">
 <select id="<%= code_group_tag_id %>" name="<%= code_group_tag_id %>" width="100">
 	<option value="-">--- Select ---</option>
 	<%- tag_params["groups"].keys.sort.each do |key| %>
@@ -13,7 +12,7 @@
 	<%- end %>
 </select>
 <select id="<%= code_tag_id %>" name="<%= code_tag_id %>" width="100"
-	onchange="marc_editor_set_value('<%= tag_id %>', '<%= render_panel %>', this.value)">
+	onchange="marc_editor_set_value('', 'FIXME', this.value) //FIXME">
 	<option value="-">---</option>
 </select>
 <script>

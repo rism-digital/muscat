@@ -1,12 +1,12 @@
-<%-	tag_id = marc_editor_field_name(tag_name, iterator, subfield, s_iterator ) %>
 <%- if (params['width']==100 || params['growfield'])  %>
-	<textarea cols="100" class="marc_editor_growfield subfield_entry serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>" rows="1"><%= h marc_subfield.content %></textarea>
+	<textarea cols="100" class="marc_editor_growfield subfield_entry serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" rows="1"><%= h marc_subfield.content %></textarea>
 <%- else %>
-	<input class="subfield_entry serialize_marc" size="100" type="text" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h marc_subfield.content %>" />
+	<input class="subfield_entry serialize_marc" size="100" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>" />
 <%- end %>
 
 <script>
-	jquery_tag_id = "<%= tag_id -%>".replace(/(\[|\])/g, '\\$1');
+/* FIXME
+	jquery_tag_id = "<%# tag_id -%>".replace(/(\[|\])/g, '\\$1');
 	var valuesArray = [
 	<%- params['values'].each do |val| -%>
 		{label: "<%=val%>", value: "<%=val%>"},
@@ -22,5 +22,6 @@
 				maxItemsToShow:10
 			}
 		);
+*/
 </script>
 

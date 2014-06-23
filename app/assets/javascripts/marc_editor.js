@@ -41,56 +41,56 @@ function marc_editor_cancel_inline( div_id ) {
    $('#' + div_id ).html("");
 }
 
-function marc_editor_toggle( id, value ) {
+function marc_editor_toggle( id, value) {
+	
+	tag_container = id.parents(".tag_container");
+	collapsable = tag_container.children(".tag_content_collapsable");
+	
 	if (value == null) {
 	// toggle
-		id.slideToggle(0);
+		collapsable.slideToggle(0);
 	} else if (value == 0) {
-		id.hide();
+		collapsable.hide();
 	} else {
-		id.show();
+		collapsable.show();
 	}
-	if (id.css("display") == "none") {
-		eval( "$('" + id.selector + "_btn span').removeClass('ui-icon-triangle-1-s')");
-		eval( "$('" + id.selector + "_btn span').addClass('ui-icon-triangle-1-w')");
+	
+	span = id.children("span");
+	
+	if (collapsable.css("display") == "none") {
+		span.removeClass('ui-icon-triangle-1-s');
+		span.addClass('ui-icon-triangle-1-w');
 	} else {
-		eval( "$('" + id.selector + "_btn span').removeClass('ui-icon-triangle-1-w')");
-		eval( "$('" + id.selector + "_btn span').addClass('ui-icon-triangle-1-s')");
+		span.removeClass('ui-icon-triangle-1-w');
+		span.addClass('ui-icon-triangle-1-s');
 	}
 }
 
 // init the tags
 // called from the edit_wide.rhtml partial and edit_wide.rjs
 function marc_editor_init_tags( id ) {
-	$(".sortable").sortable({
-	   // Add handler to keep sorted tags in correct order
-		update: function(event, ui) {
-			// Go through all elements in the dl
-			// for each tag all sortables are groupeg
-			// together. Then make sure the hidden dt is
-			// after if "new" or before if "edit"
-			// we only move the hidden dt to the correct
-			// position
-			ui.item.parent().children().each(function () {
-				if ($(this).css("display") == "none") {
-					return;
-				}
-				
-				if ($(this).data("function") == "edit") {
-					new_dt = $("#" + $(this).data("name") + "-new");
-					if (!new_dt) return;
-					
-					new_dt.insertAfter( $(this) );
-				} else {
-					edit_dt = $("#" + $(this).data("name") + "-edit");
-					if (!edit_dt) return;
-					
-					edit_dt.insertBefore( $(this) );
-				}
-				
-			});
-		}	
-	});
+	$(".sortable").sortable();
+
+	/* Bind to the global railsAutocomplete. event, thrown when someone selects
+	   from an autocomplete field. It is a delegated method so dynamically added
+	   forms can handle it
+	*/
+	$("#marc_editor_panel").on('railsAutocomplete.select', 'input.ui-autocomplete-input', function(event, data){
+		input = $(event.target); // Get the autocomplete id
+		
+		// havigate up to the <li> and down to the hidden elem
+		toplevel_li = input.parents("li");
+		hidden = toplevel_li.children(".autocomplete_target")
+		
+		// Set the value from the id of the autocompleted elem
+		if (data.item.id == "") {
+			alert("Please select a valid item from the list");
+			input.val("");
+			hidden.val("");
+		} else {
+			hidden.val(data.item.id);
+		}
+	})
 
 }
 
@@ -142,7 +142,7 @@ function marc_editor_incipit_image( target, image ) {
     .css('display', 'inline');	
 }
 
-function marc_editor_add_tag_from_list(destination_column, call_type, list )
+function marc_editor_add_tag_from_list( list )
 {
 	val = list.val();
 	if (val == '-') {
@@ -150,20 +150,33 @@ function marc_editor_add_tag_from_list(destination_column, call_type, list )
 	}
 	list.find("[value=" + val + "]").attr('disabled',"disabled");
 	list.find("[value=-]").attr('selected','selected');
-	marc_editor_add_tag(destination_column, call_type + val );
+	
+	toplevel = list.parents(".panel_content")//.children(".tag_group")
+	
+	tg = toplevel.find(".tag_group[data-tag='" + val +"']");
+	
+	placeholder = tg.children(".tag_placeholders");
+	dl = tg.children(".marc_editor_tag_block");
+	
+	new_dt = placeholder.clone()
+	new_dt.toggleClass('tag_placeholders tag_toplevel_container');
+	new_dt.appendTo(dl);
+	new_dt.show()
+	
+	tg.fadeIn();
 }
 
 // confirmation message for delete
 // marc_editor_do_delete_tag if yes 
-function marc_editor_delete_tag(destination_column, group, tag_name, iterator) {
-	
+function marc_editor_delete_tag(child_id) {
+		
 	$('#dialog').html('<p>' + delete_field_confirm + '</p>');
 	$("#dialog").dialog();
 	$("#dialog").dialog( 'option', 'title', delete_msg );
 	$("#dialog").dialog( 'option', 'width', 300);
 	$("#dialog").dialog( 'option', 'buttons', {
 		OK: function() {
-			marc_editor_do_delete_tag(destination_column, group, tag_name, iterator)
+			marc_editor_do_delete_tag(child_id)
 			$(this).dialog('close');
 		},
 		Cancel: function() { $(this).dialog('close');	}
@@ -171,21 +184,20 @@ function marc_editor_delete_tag(destination_column, group, tag_name, iterator) {
 	$("#dialog").dialog('open');
 }
 	
-function marc_editor_do_delete_tag(destination_column, group, tag_name, iterator) {
-
-	base = "#" + destination_column + "_tag_dt_" + tag_name;
-	base_div = "#" + destination_column + "_tag_div_" + tag_name;
-	console.log( base_div );
- 	if (iterator != -1) {
-		$(base + "-" + iterator + "-	edit").remove();
-	} else { // single tag
-		$(base_div + " dt:first").remove();
-	}
-	// hide tag_div and reset add tag select if empty
-	if ($(base_div + " dt").size() == 0) {
-		$(base_div).hide();
-		$("#" + destination_column + "_add_tag_" + group).find("[value=" + tag_name + "]").removeAttr("disabled");
-	}
+function marc_editor_do_delete_tag(child_id) {
+	
+	dt_id = child_id.parents(".tag_toplevel_container");
+	tag = dt_id.data("tag");
+	
+	// Enable the tag menu
+	tag_menu = dt_id.parents(".panel_content");
+	tag_menu.find("[value=" + tag + "]").removeAttr("disabled");
+	
+	dt_id.fadeOut('fast', function() {
+		dt_id.remove();
+	});
+	
+	
 }
 
 function marc_editor_set_value( target, render_panel, value ) {
@@ -370,39 +382,14 @@ function marc_editor_add_subfield(destination_column, call_type) {
 }
 
 // performs a ajax query to get the old versions of a record
-function marc_editor_add_tag(destination_column, call_type) {
-
-	var call_parts = call_type.split(':');
-	var url = "/sources/marc_editor_add_tag";
-	var data = "marc_editor_dest=" + destination_column;
-
-	$('#' + destination_column).block({ message: "Loading..." });	
+function marc_editor_add_tag(current_tag) {
+	placeholder = current_tag.parents(".tag_group").children(".tag_placeholders");
+	current_dt = current_tag.parents(".tag_toplevel_container");
 	
-	// get the number of tag currently in the tag list
-	i = 0;
-	$("dt > div", "#" + destination_column + "_tag_list_" + call_parts[2]).each(function () {
-    parts = this.id.split("-");
-		iterator = parseInt(parts[1]);
-		if (iterator > i) {
-			i = iterator
-		}
-  });
-	//i = eval("$('#" + destination_column + "_tag_list_" + call_parts[1] + " dt').size()");
-	
-	data = data + "&iterator=" + (i + 1);
-	data = data + "&profile_id=" + call_parts[0];
-	data = data + "&group=" + call_parts[1];
-	data = data + "&tag_name=" + call_parts[2];
-
-	$.ajax({
-		success: function() { $('#' + destination_column).unblock(); },
-		data: data,
-		dataType: 'script',
-		timeout: 5000, 
-		type: 'get',
-		url: url
-	});
-
+	new_dt = placeholder.clone()
+	new_dt.toggleClass('tag_placeholders tag_toplevel_container');
+	new_dt.insertAfter(current_dt);
+	new_dt.fadeIn('fast');
 }
 
 function marc_editor_help( url ) {
@@ -489,20 +476,19 @@ function quick_search_form( base, lang ) {
    return output;
 }
 
-function marc_editor_swap_dt(base_id, editing) {
+function marc_editor_swap(id, editing) {
+	
+	dt = id.parents(".tag_toplevel_container");
 	
 	if (editing) {
-		var this_suffix = "-edit";
-		var other_suffix = "-new";
+		var show_id = dt.find('.tag_container[data-function="new"]');
+		var hide_id = dt.find('.tag_container[data-function="edit"]');
 	} else {
-		var this_suffix = "-new";
-		var other_suffix = "-edit";
+		var show_id = dt.find('.tag_container[data-function="edit"]');
+		var hide_id = dt.find('.tag_container[data-function="new"]');
 	}
-	
-	//$("#" + base_id + this_suffix).hide();
-	//$("#" + base_id + other_suffix).show();
-	
-    $("#" + base_id + this_suffix).fadeOut('fast', function(){
-        $("#" + base_id + other_suffix).fadeIn('fast');
+		
+    $(hide_id).fadeOut('fast', function(){
+        $(show_id).fadeIn('fast');
     });
 }

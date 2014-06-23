@@ -1,3 +1,3 @@
-<%-	tag_id = marc_editor_field_name(tag_name, iterator, subfield, s_iterator ) %>
+<%-	tag_id = marc_editor_field_name(tag_name, 0, subfield, s_iterator ) %>
 <input type="checkbox" style="width: 20px;" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= params['value'] -%>"
  	<%= (params['value'] == marc_subfield.content) ? "checked" : "" -%> />

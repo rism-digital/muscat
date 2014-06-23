@@ -1,6 +1,6 @@
 <%
 	val = marc_tag.indicator || MarcConfig.get_default_indicator(tag_name)
-	tag_id = marc_editor_ind_name(tag_name, iterator)
+	tag_id = marc_editor_ind_name(tag_name, 0) #FIXME
 %>
 <select id="<%= tag_id %>" name="<%= tag_id %>">
 	<%- MarcConfig.each_indicator(tag_name) do |ind| %>

@@ -2,6 +2,7 @@
 	layout_key = is_new ? "layout_new" : "layout"
 	ocfg = @editor_profile.options_config
 	s_iterator = 1
+	puts tag_name
 	cols = ((ocfg[tag_name] and ocfg[tag_name][layout_key].include?("columns")) ? ocfg[tag_name][layout_key]["columns"].to_i : 1)
 	cur_col = 1
 	hiddens = [] 
@@ -32,7 +33,7 @@
 
 		if MarcConfig.multiples_allowed?(tag_name, subfield)
 			#TODO: need to multi-lang this (see :title)
-			extra_leader = safe_link_to_function_stub "+", "marc_editor_add_subfield('#{render_panel}','#{@editor_profile.id}:#{group}:#{tag_name}:#{iterator}:#{subfield}')", :title => "Add another instance of this subfield"
+			extra_leader = safe_link_to_function_stub "+", "marc_editor_add_subfield('FIXME)", :title => "Add another instance of this subfield"
 		end
 		
 		if @editor_profile.has_sub_label?(tag_name, subfield)
@@ -57,13 +58,13 @@
 					<%= field_label.html_safe %>
 				</div>
 				<div style="vertical-align: bottom; background-color: transparent">
-					<ul class="repeating_subfield" id="<%= render_panel -%>_subfield_<%= tag_name -%>-<%= iterator -%>-<%= subfield -%>">
+					<ul class="repeating_subfield">
 					<%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
 						subfield_collection << MarcNode.new if subfield_collection.empty?
 					  	subfield_collection.each do |marc_subfield| %>
 						<%= render :partial => "editor/subfield_li", 
-							:locals => { :column => [subfield, field_settings], :render_panel => render_panel, :group => group, 
-									:iterator => iterator, :marc_tag => marc_tag, :tag_name => tag_name, 
+							:locals => { :column => [subfield, field_settings], 
+									:marc_tag => marc_tag, :tag_name => tag_name, 
 									:s_iterator => s_iterator, :marc_subfield => marc_subfield } %>
 						<%- s_iterator += 1 %>
 					<%- end %>
@@ -78,8 +79,7 @@
 					subfield_collection << MarcNode.new if subfield_collection.empty?
 				  	subfield_collection.each do |marc_subfield| %>
 					<%= render :partial => (field_settings.has_key?('editor_partial') ? "options/#{field_settings['editor_partial']}" : "editor/subfield"), 
-						:locals => { :render_panel => render_panel, :group => group, 
-							:iterator => iterator, :marc_tag => marc_tag, :tag_name => tag_name, 
+						:locals => { :marc_tag => marc_tag, :tag_name => tag_name, 
 							:s_iterator => s_iterator, :marc_subfield => marc_subfield, :subfield => subfield, :params => field_settings, :read_only => field_settings["read_only"] } %>		
 						<%- s_iterator += 1 %>
 				<%- end %>

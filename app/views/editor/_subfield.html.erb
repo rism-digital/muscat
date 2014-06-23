@@ -1,4 +1,3 @@
-<%	tag_id = marc_editor_field_name(tag_name, iterator, subfield, s_iterator) %>
 <%
 	read_only = false
 	@editor_profile.each_subfield_for(tag_name) do |subfieldopt, field_settings|
@@ -8,29 +7,24 @@
 	end	
 %>
 <%- if (params['growfield'])  %>
-	<textarea cols="100" class="marc_editor_growfield subfield_entry serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>"><%= h marc_subfield.content %></textarea>
+	<textarea cols="100" class="marc_editor_growfield subfield_entry serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>"> <%= h marc_subfield.content %></textarea>
 <%- else %>
 	<% if read_only %>
 			<input class="subfield_entry"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h marc_subfield.content %>"/>
-			<input type="hidden" class="serialize_marc" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h marc_subfield.content %>"/>
+			<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>"/>
 	<% else %>
-		<input class="subfield_entry serialize_marc" size="<%= params['width'] -%>" type="text" id="<%= tag_id %>" name="<%= tag_id %>" value="<%= h marc_subfield.content %>"/>
+		<input class="subfield_entry serialize_marc" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>"/>
 	<% end %>
 <%- end %>
 
-<script>
-jQuery(function($){
-	jquery_id = "<%= tag_id %>".replace(/(\[|\])/g, '\\$1');
-   	$("#" + jquery_id).enableSelection();
-});
-</script>
 
 <%- if (params['maskedinput']) %>
 	<script>
-	jQuery(function($){
-		jquery_id = "<%= tag_id %>".replace(/(\[|\])/g, '\\$1');
-	   	$("#" + jquery_id).mask("<%= params['maskedinput'].html_safe-%>", {placeholder:" "});
-	});
+	// FIXME
+	//jQuery(function($){
+	//	jquery_id = "<%= tag_id %>".replace(/(\[|\])/g, '\\$1');
+	//  	$("#" + jquery_id).mask("<%= params['maskedinput'].html_safe-%>", {placeholder:" "});
+	//});
 	</script>
 	
 <%- elsif (params['validate']) %>

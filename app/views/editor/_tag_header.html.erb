@@ -20,9 +20,9 @@
 	<div  class="abuttonset abuttonset-multi">
 		<% if allow_new %>
 			<% if is_new %>
-				<%= action_button(["", "Hide New"], "ui-icon-close", "marc_editor_swap_dt('#{base_dt_name}', false)", "", :right, :all, "", true ) -%>
+				<%= action_button(["", "Hide New"], "ui-icon-close", "marc_editor_swap($(this), false)", "", :right, :all, "", true ) -%>
 			<% else %>
-				<%= action_button(["", "Create New"], "ui-icon-unlocked", "marc_editor_swap_dt('#{base_dt_name}', true)", "", :right, :all, "", true ) -%>
+				<%= action_button(["", "Create New"], "ui-icon-unlocked", "marc_editor_swap($(this), true)", "", :right, :all, "", true ) -%>
 			<% end %>
 		<% end %>
 		
@@ -32,12 +32,12 @@
 		<%- if MarcConfig.multiples_allowed?(tag_name) -%>
 			<input class="marc_editor_ordering" type="hidden" name="<%= tag_name %>-ordering" id="<%= tag_name %>-ordering" value=""/>
 			<%- if !no_add -%>
-			<%= action_button(["", "Add tag"], "ui-icon-plus", "marc_editor_add_tag('#{render_panel}','#{@editor_profile.id}:#{group}:#{tag_name}')", "marc_editor_button_pad_left", :right, :all, "", true ) -%>
+			<%= action_button(["", "Add tag"], "ui-icon-plus", "marc_editor_add_tag($(this))", "marc_editor_button_pad_left", :right, :all, "", true ) -%>
 			<%- end -%>	
 		<%- end -%>	
 		<%- if !no_delete -%>
-			<%= action_button(["", "Delete"], "ui-icon-trash", "marc_editor_delete_tag('#{render_panel}','#{group}','#{tag_name}',#{iterator})", "marc_editor_button_pad_left", :right, :all, "", true ) if !@inline -%>
+			<%= action_button(["", "Delete"], "ui-icon-trash", "marc_editor_delete_tag($(this))", "marc_editor_button_pad_left", :right, :all, "", true ) if !@inline -%>
 		<% end %>
-		<%= action_button(["", "Toggle"], "ui-icon-triangle-1-s", "marc_editor_toggle($('##{render_panel}_tag_#{tag_name}-#{iterator}'))", "marc_editor_button_pad_left", :right, :all, "#{render_panel}_tag_#{tag_name}-#{iterator}_btn", true )	if !@inline -%>
+		<%= action_button(["", "Toggle"], "ui-icon-triangle-1-s", "marc_editor_toggle($(this))", "marc_editor_button_pad_left", :right, :all, "", true )	if !@inline -%>
 	</div>
 </div>
