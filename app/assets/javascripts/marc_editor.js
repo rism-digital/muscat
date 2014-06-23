@@ -41,56 +41,56 @@ function marc_editor_cancel_inline( div_id ) {
    $('#' + div_id ).html("");
 }
 
-function marc_editor_toggle( id, value ) {
+function marc_editor_toggle( id, value) {
+	
+	tag_container = id.parents(".tag_container");
+	collapsable = tag_container.children(".tag_content_collapsable");
+	
 	if (value == null) {
 	// toggle
-		id.slideToggle(0);
+		collapsable.slideToggle(0);
 	} else if (value == 0) {
-		id.hide();
+		collapsable.hide();
 	} else {
-		id.show();
+		collapsable.show();
 	}
-	if (id.css("display") == "none") {
-		eval( "$('" + id.selector + "_btn span').removeClass('ui-icon-triangle-1-s')");
-		eval( "$('" + id.selector + "_btn span').addClass('ui-icon-triangle-1-w')");
+	
+	span = id.children("span");
+	
+	if (collapsable.css("display") == "none") {
+		span.removeClass('ui-icon-triangle-1-s');
+		span.addClass('ui-icon-triangle-1-w');
 	} else {
-		eval( "$('" + id.selector + "_btn span').removeClass('ui-icon-triangle-1-w')");
-		eval( "$('" + id.selector + "_btn span').addClass('ui-icon-triangle-1-s')");
+		span.removeClass('ui-icon-triangle-1-w');
+		span.addClass('ui-icon-triangle-1-s');
 	}
 }
 
 // init the tags
 // called from the edit_wide.rhtml partial and edit_wide.rjs
 function marc_editor_init_tags( id ) {
-	$(".sortable").sortable({
-	   // Add handler to keep sorted tags in correct order
-		update: function(event, ui) {
-			// Go through all elements in the dl
-			// for each tag all sortables are groupeg
-			// together. Then make sure the hidden dt is
-			// after if "new" or before if "edit"
-			// we only move the hidden dt to the correct
-			// position
-			ui.item.parent().children().each(function () {
-				if ($(this).css("display") == "none") {
-					return;
-				}
-				
-				if ($(this).data("function") == "edit") {
-					new_dt = $("#" + $(this).data("name") + "-new");
-					if (!new_dt) return;
-					
-					new_dt.insertAfter( $(this) );
-				} else {
-					edit_dt = $("#" + $(this).data("name") + "-edit");
-					if (!edit_dt) return;
-					
-					edit_dt.insertBefore( $(this) );
-				}
-				
-			});
-		}	
-	});
+	$(".sortable").sortable();
+
+	/* Bind to the global railsAutocomplete. event, thrown when someone selects
+	   from an autocomplete field. It is a delegated method so dynamically added
+	   forms can handle it
+	*/
+	$("#marc_editor_panel").on('railsAutocomplete.select', 'input.ui-autocomplete-input', function(event, data){
+		input = $(event.target); // Get the autocomplete id
+		
+		// havigate up to the <li> and down to the hidden elem
+		toplevel_li = input.parents("li");
+		hidden = toplevel_li.children(".autocomplete_target")
+		
+		// Set the value from the id of the autocompleted elem
+		if (data.item.id == "") {
+			alert("Please select a valid item from the list");
+			input.val("");
+			hidden.val("");
+		} else {
+			hidden.val(data.item.id);
+		}
+	})
 
 }
 
@@ -476,20 +476,19 @@ function quick_search_form( base, lang ) {
    return output;
 }
 
-function marc_editor_swap_dt(base_id, editing) {
+function marc_editor_swap(id, editing) {
+	
+	dt = id.parents(".tag_toplevel_container");
 	
 	if (editing) {
-		var this_suffix = "-edit";
-		var other_suffix = "-new";
+		var show_id = dt.find('.tag_container[data-function="new"]');
+		var hide_id = dt.find('.tag_container[data-function="edit"]');
 	} else {
-		var this_suffix = "-new";
-		var other_suffix = "-edit";
+		var show_id = dt.find('.tag_container[data-function="edit"]');
+		var hide_id = dt.find('.tag_container[data-function="new"]');
 	}
-	
-	//$("#" + base_id + this_suffix).hide();
-	//$("#" + base_id + other_suffix).show();
-	
-    $("#" + base_id + this_suffix).fadeOut('fast', function(){
-        $("#" + base_id + other_suffix).fadeIn('fast');
+		
+    $(hide_id).fadeOut('fast', function(){
+        $(show_id).fadeIn('fast');
     });
 }
