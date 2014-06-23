@@ -347,37 +347,25 @@ function marc_editor_incipit(destination_column, clef, keysig, timesig, incipit,
 }
 
 // performs a ajax query to get the old versions of a record
-function marc_editor_add_subfield(destination_column, call_type) {
+function marc_editor_add_subfield(id) {
 
-	var call_parts = call_type.split(':'); // profile_id:group:tag_name:iterator:subfield_name
-	var url = "/sources/marc_editor_add_subfield";
-	var data = "marc_editor_dest=" + destination_column;
-	var list = destination_column + "_subfield_" + call_parts[2] + "-" + call_parts[3]  + "-" + call_parts[4];
-
-	//$('#' + destination_column).block({ message: "Loading..." });	
+	grid = id.parents(".grid_cell");
+	//ul = grid.siblings(".repeating_subfield");
+	ul = $(".repeating_subfield", grid);
 	
-	// get the number of tag currently in the tag list
-	last = $("li:last", "#" + list);
-	parts = last[0].id.split("-");
-	s_iterator = parseInt(parts[1]);
-
-	//i = eval("$('#" + destination_column + "_tag_list_" + call_parts[1] + " dt').size()");
+	li_all = $("li", ul);
 	
-	data = data + "&profile_id=" + call_parts[0];
-	data = data + "&group=" + call_parts[1];
-	data = data + "&tag_name=" + call_parts[2];
-	data = data + "&iterator=" + call_parts[3];
-	data = data + "&subfield_name=" + call_parts[4];
-	data = data + "&s_iterator=" + (s_iterator + 1);
-
-	$.ajax({
-		success: function() { /*$('#' + destination_column).unblock();*/ },
-		data: data,
-		dataType: 'script',
-		timeout: 5000, 
-		type: 'get',
-		url: url
+	li_original = $(li_all[li_all.length - 1]);
+	
+	new_li = li_original.clone();
+	$(".serialize_marc", new_li).each(function() {
+		$(this).val("");
+		iterator = $(this).data("subfield-iterator");
+		$(this).removeData("subfield-iterator");
+		$(this).data("subfield-iterator", iterator + 1);
 	});
+	ul.append(new_li);
+	new_li.fadeIn('fast');
 
 }
 
@@ -386,7 +374,7 @@ function marc_editor_add_tag(current_tag) {
 	placeholder = current_tag.parents(".tag_group").children(".tag_placeholders");
 	current_dt = current_tag.parents(".tag_toplevel_container");
 	
-	new_dt = placeholder.clone()
+	new_dt = placeholder.clone();
 	new_dt.toggleClass('tag_placeholders tag_toplevel_container');
 	new_dt.insertAfter(current_dt);
 	new_dt.fadeIn('fast');
