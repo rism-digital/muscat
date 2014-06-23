@@ -360,10 +360,16 @@ function marc_editor_add_subfield(id) {
 	new_li = li_original.clone();
 	$(".serialize_marc", new_li).each(function() {
 		$(this).val("");
-		iterator = $(this).data("subfield-iterator");
-		$(this).removeData("subfield-iterator");
-		$(this).data("subfield-iterator", iterator + 1);
+		/* JQuery data vs arrt
+		 The data- attributes are pulled in the first time the data property 
+		 is accessed and then are no longer accessed or mutated (all data 
+		 values are then stored internally in jQuery).
+		*/
+		iterator = new Number($(this).attr("data-subfield-iterator"));
+		$(this).attr("data-subfield-iterator", iterator + 1);
 	});
+	
+	
 	ul.append(new_li);
 	new_li.fadeIn('fast');
 
