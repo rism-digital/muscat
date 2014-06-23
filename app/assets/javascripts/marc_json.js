@@ -119,8 +119,8 @@ function serialize_element( element, tag, json_marc ) {
 		// in the second one the first is an
 		// empty string, for control tags
 		// Keep the whole field for sorted duplicates
-		field = $(this).data("subfield")
-		index = $(this).data("subfield-iterator")
+		field = new String($(this).data("subfield"));
+		index = $(this).data("subfield-iterator");
 
 		if ($(this).val() == null || $(this).val() == "") {
 			return;
@@ -128,7 +128,7 @@ function serialize_element( element, tag, json_marc ) {
 		
 		// Control fields do not have tags, so we
 		// put it into a special container
-		if (!field) {
+		if (field == null || field == "" || field == "undefined") {
 			controlfield[tag] = $(this).val();
 		} else {
 			// This is a norma subfield, eg. $a
@@ -213,27 +213,28 @@ function serialize_marc_editor_form( form ) {
 		$(".tag_group", form).each(function () {
 			if ($(this).css("display") == "none") {
 				return;
-			}			
-			//console.log(this);
-			
-			// each dt contains the inputs related
-			// to one marc tag. dt come in the correct order
-			// so each time we get a dt we can create a new
-			// marc tag
-			$('.tag_container', this).each(function() {
-				marc_tag = $(this).data("tag");
+			}
+			// Go into the toplevel container dt
+			// This way we skip placeholders
+			$(".tag_toplevel_container", this).each(function() {
+				// each dt contains the inputs related
+				// to one marc tag. dt come in the correct order
+				// so each time we get a dt we can create a new
+				// marc tag
+				$('.tag_container', this).each(function() {
+					marc_tag = $(this).data("tag");
 				
-				// Serialize each elem and convert it to json_marc
-				// If it is hidden skip it, it is used for
-				// new items
-				if ($(this).css("display") == "none") {
-					return;
-				}
+					// Serialize each elem and convert it to json_marc
+					// If it is hidden skip it, it is used for
+					// new items
+					if ($(this).css("display") == "none") {
+						return;
+					}
 				
-				serialize_element(this, marc_tag, json_marc);
+					serialize_element(this, marc_tag, json_marc);
 				
-			});
-			
+				});
+			})
 		});
 		
 		//});
