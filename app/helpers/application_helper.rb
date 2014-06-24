@@ -80,4 +80,7 @@ module ApplicationHelper
   end
   
   
+  def edit_user_registration_path
+  end
+  
 end
