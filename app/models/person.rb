@@ -18,7 +18,7 @@
 # Other wf_* fields are not shown
 
 class Person < ActiveRecord::Base
-  
+  resourcify 
   has_many :works
   has_and_belongs_to_many :sources
   

@@ -1,4 +1,4 @@
 config/application.rb
 config/database.yml
 development.log
-
+/tmp

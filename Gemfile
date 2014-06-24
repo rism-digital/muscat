@@ -52,3 +52,5 @@ gem 'sunspot_solr'
 gem 'awesome_print'
 gem 'progress_bar'
 gem "rails3-jquery-autocomplete"
+gem "cancan"
+gem "rolify"
