@@ -20,24 +20,29 @@
 	<div  class="abuttonset abuttonset-multi">
 		<% if allow_new %>
 			<% if is_new %>
-				<%= action_button(["", "Hide New"], "ui-icon-close", "marc_editor_swap($(this), false)", "", :right, :all, "", true ) -%>
+				<a class="abutton ui-state-default abutton-icon-solo ui-corner-all" href="#" data-header-button="edit" title="Edit existing Auth file"><span class="ui-icon ui-icon-locked"></span>_</a>
 			<% else %>
-				<%= action_button(["", "Create New"], "ui-icon-unlocked", "marc_editor_swap($(this), true)", "", :right, :all, "", true ) -%>
+				<a class="abutton ui-state-default abutton-icon-solo ui-corner-all" href="#" data-header-button="new" title="Create New Auth File"><span class="ui-icon ui-icon-unlocked"></span>_</a>
 			<% end %>
 		<% end %>
-		
+
+<!-- FIXME fix extended help
 		<%- if !extended_help.empty? %>
 			<%= action_button(["", "Help"], "ui-icon-help", "marc_editor_help('#{extended_help}')", "", :right, :all, "", true ) -%>
 		<%- end %>
-		<%- if MarcConfig.multiples_allowed?(tag_name) -%>
-			<input class="marc_editor_ordering" type="hidden" name="<%= tag_name %>-ordering" id="<%= tag_name %>-ordering" value=""/>
-			<%- if !no_add -%>
-			<%= action_button(["", "Add tag"], "ui-icon-plus", "marc_editor_add_tag($(this))", "marc_editor_button_pad_left", :right, :all, "", true ) -%>
-			<%- end -%>	
-		<%- end -%>	
-		<%- if !no_delete -%>
-			<%= action_button(["", "Delete"], "ui-icon-trash", "marc_editor_delete_tag($(this))", "marc_editor_button_pad_left", :right, :all, "", true ) if !@inline -%>
-		<% end %>
-		<%= action_button(["", "Toggle"], "ui-icon-triangle-1-s", "marc_editor_toggle($(this))", "marc_editor_button_pad_left", :right, :all, "", true )	if !@inline -%>
+-->	
+		
+	<%- if MarcConfig.multiples_allowed?(tag_name) && no_add == false-%>
+
+		<a class="abutton ui-state-default marc_editor_button_pad_left abutton-icon-solo ui-corner-all" href="#" data-header-button="add" title="Add tag"><span class="ui-icon ui-icon-plus"></span>_</a>
+
+	<%- end -%>	
+		
+	<%- if !no_delete -%>
+		<a class="abutton ui-state-default marc_editor_button_pad_left abutton-icon-solo ui-corner-all" href="#" data-header-button="delete" title="Delete"><span class="ui-icon ui-icon-trash"></span>_</a>
+	<% end %>
+
+	<a class="abutton ui-state-default marc_editor_button_pad_left abutton-icon-solo ui-corner-all" href="#" data-header-button="toggle"  title="Toggle"><span class="ui-icon ui-icon-triangle-1-s"></span>_</a>
+		
 	</div>
 </div>
