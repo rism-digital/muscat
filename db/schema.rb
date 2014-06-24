@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407142158) do
+ActiveRecord::Schema.define(version: 20140624092937) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -125,21 +125,19 @@ ActiveRecord::Schema.define(version: 20140407142158) do
   add_index "do_items", ["item_type"], name: "index_do_items_on_item_type", using: :btree
 
   create_table "institutions", force: true do |t|
-    t.integer  "ext_id",                                        null: false
     t.string   "name",                                          null: false
     t.text     "alternates"
     t.text     "notes"
     t.string   "wf_notes"
     t.integer  "wf_owner",              default: 0
     t.integer  "wf_version",            default: 0
-    t.integer  "ms_count",              default: 0
+    t.integer  "src_count",             default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "wf_audit",   limit: 16, default: "unapproved"
     t.string   "wf_stage",   limit: 16, default: "unpublished"
   end
 
-  add_index "institutions", ["ext_id"], name: "institutions_ext_id_unique", unique: true, using: :btree
   add_index "institutions", ["wf_stage"], name: "index_institutions_on_wf_stage", using: :btree
 
   create_table "institutions_sources", id: false, force: true do |t|
@@ -256,6 +254,17 @@ ActiveRecord::Schema.define(version: 20140407142158) do
   add_index "places_sources", ["place_id"], name: "place_index", using: :btree
   add_index "places_sources", ["source_id"], name: "manuscript_index", using: :btree
 
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false
     t.text     "data"
@@ -267,7 +276,6 @@ ActiveRecord::Schema.define(version: 20140407142158) do
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "sources", force: true do |t|
-    t.integer  "ext_id",                                          null: false
     t.integer  "source_id"
     t.string   "std_title"
     t.string   "std_title_d", limit: 128
@@ -280,7 +288,7 @@ ActiveRecord::Schema.define(version: 20140407142158) do
     t.integer  "date_from"
     t.integer  "date_to"
     t.string   "lib_siglum"
-    t.text     "source"
+    t.text     "marc_source"
     t.string   "wf_notes"
     t.integer  "wf_owner",                default: 0
     t.integer  "wf_version",              default: 0
@@ -291,7 +299,6 @@ ActiveRecord::Schema.define(version: 20140407142158) do
     t.integer  "record_type", limit: 1,   default: 0
   end
 
-  add_index "sources", ["ext_id"], name: "manuscripts_ext_id_unique", unique: true, using: :btree
   add_index "sources", ["source_id"], name: "index_manuscripts_on_manuscript_id", using: :btree
   add_index "sources", ["wf_stage"], name: "index_manuscripts_on_wf_stage", using: :btree
 
@@ -355,6 +362,31 @@ ActiveRecord::Schema.define(version: 20140407142158) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users_roles", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   create_table "work_incipits", force: true do |t|
     t.integer  "work_id"

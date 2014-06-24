@@ -1,7 +1,11 @@
-ActiveAdmin.register AdminUser do
-  
+ActiveAdmin.register User do
+
+
+
+
   menu :parent => "Administration"
-  
+
+
   permit_params :email, :password, :password_confirmation
 
   index do
@@ -20,10 +24,11 @@ ActiveAdmin.register AdminUser do
   filter :created_at
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs "User Details" do
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :roles, as: :check_boxes, multiple: true, collection: Role.all
     end
     f.actions
   end

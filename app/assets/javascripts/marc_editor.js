@@ -1,24 +1,4 @@
 
-// This is a slight variation of Henrik Nyh’s code, which fixes an issue with IE6 that makes all Ajax requests use POST in IE6.
-// 
-// In application.html.erb, or whatever layout file you’re using, put:
-// 
-//    1  <%= javascript_tag "window.AUTH_TOKEN = '#{form_authenticity_token}';" %>
-// 
-// In application.js, or whatever JavaScript file you’re using, put:
-// 
-//    1  $(document).ajaxSend(function(event, request, settings) {
-//    2    if (typeof(window.AUTH_TOKEN) == "undefined") return;
-//    3    // IE6 fix for http://dev.jquery.com/ticket/3155
-//    4    if (settings.type == 'GET' || settings.type == 'get') return;
-//    5  
-//    6    settings.data = settings.data || "";
-//    7    settings.data += (settings.data ? "&" : "") + "authenticity_token=" + encodeURIComponent(window.AUTH_TOKEN);
-//    8  });
-
-
-// confirmation message for leaving the window
-
 var vrvToolkit = null;
 
 // Patch into the global ready function
