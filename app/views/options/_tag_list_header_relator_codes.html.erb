@@ -1,20 +1,15 @@
-<%-	tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
-<script>
-	var code_list_<%= tag_name -%> = [
-		<%- tag_params["groups"].each do |key, values| %>
-			{'When':'<%= key -%>','Value':'','Text':'--- Function ---'},	
-			<%- values.each do |code| %>
-			{'When':'<%= key -%>','Value':'<%= code -%>','Text':"<%= @editor_profile.get_label(code).gsub(/([\\\"])/, ' ') -%>"},	
-			<%- end %>
-		<%- end %>
-		{'When':'-','Value':'','Text':'---'}
-		];
+<%-	
+	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
 
-	function commonTemplate(item) {
-		return "<option value='" + item.Value + "'>" + item.Text + "</option>"; 
-	};
-	
-	function commonMatch(selectedValue) {
-		return this.When == selectedValue; 
-	};
-</script>
+	data = []
+
+	tag_params["groups"].each do |key, values| 
+		data << {'When' => key,'Value' => '', 'Text' => '--- Function ---'}
+		values.each do |code|
+			data << {'When' => key, 'Value' => code,'Text' => @editor_profile.get_label(code).gsub(/([\\\"])/, ' ')}
+		end
+	end
+	data << {'When' => '-', 'Value' => '', 'Text' => '---'}
+%>
+
+<div data-select-code-list="<%= data.to_json %>"></div>

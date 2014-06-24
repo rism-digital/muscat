@@ -20,5 +20,7 @@
 //= require jquery.dirtyFields
 //= require jquery.maskedinput
 //= require jquery.validate
+//= require relator_codes_cascade_ujs
+//= relator_codes_single_ujs
 //= require_tree .
 //= require autocomplete-rails

@@ -13,3 +13,5 @@
 #= require jquery.validate
 #= require rism.localisation
 #= require autocomplete-rails
+#= require relator_codes_cascade_ujs
+#= require relator_codes_single_ujs

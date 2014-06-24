@@ -1,26 +1,14 @@
-<%
-	code_group_tag_id = "code_group_ID" # FIXME
-	code_tag_id = "code_ID"
-	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
-%>
-<input class="ac_popup_edit" disabled="disabled" size="4" type="text" id="in_ID" value="<%= h marc_subfield.content %>" />
-<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>">
-<select id="<%= code_group_tag_id %>" name="<%= code_group_tag_id %>" width="100">
+<%	tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
+
+<input type="hidden" class="serialize_marc cascade_select_target" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>">
+
+<select class="top_cascade_select" width="100">
 	<option value="-">--- Select ---</option>
 	<%- tag_params["groups"].keys.sort.each do |key| %>
     	<option value="<%= key -%>"><%= @editor_profile.get_label(key) -%></option>	
 	<%- end %>
 </select>
-<select id="<%= code_tag_id %>" name="<%= code_tag_id %>" width="100"
-	onchange="marc_editor_set_value('', 'FIXME', this.value) //FIXME">
+
+<select class="bottom_cascade_select" width="100">
 	<option value="-">---</option>
 </select>
-<script>
-	parent = "<%= code_group_tag_id %>".replace(/(\[|\])/g, '\\$1');
-	child = "<%= code_tag_id %>".replace(/(\[|\])/g, '\\$1');
-	$("#" + child).cascade("#" + parent, {					
-				list: code_list_<%= tag_name -%>,
-				template: commonTemplate,
-				match: commonMatch	
-			});
-</script>

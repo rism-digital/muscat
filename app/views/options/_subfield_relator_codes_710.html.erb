@@ -1,16 +1,11 @@
-<%
-	code_tag_id = "code_ID" #FIXME
-	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
-%>
-<table class="marc_editor_grid_internal_layout" cellpadding="0" cellspacing="0"><tr><td width="25%">
-<input class="ac_popup_edit" disabled="disabled" size="4" type="text" id="in_FIXME" value="<%= h marc_subfield.content %>" />
-<input type="hidden" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>"> value="<%= h marc_subfield.content %>">
-</td><td>
-<select id="<%= code_tag_id %>" name="<%= code_tag_id %>" width="100"
-	onchange="marc_editor_set_value(FIXME)">
+<% tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
+
+<input class="serialize_marc single_select_target" type="hidden" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>">
+
+<select class="single_relator_select" width="100">
 	<option value="">--- Function ---</option>
 	<%- tag_params["codes"].each do |code| %>
     	<option value="<%= code -%>"><%= @editor_profile.get_label(code) -%></option>	
 	<%- end %>
 </select>
-</td></tr></table>
+

@@ -21,6 +21,23 @@
 
 var vrvToolkit = null;
 
+// Patch into the global ready function
+/*
+* Unobtrusive autocomplete
+*
+* To use it, you just have to include the HTML attribute autocomplete
+* with the autocomplete URL as the value
+*
+*   Example:
+*       <input type="text" data-autocomplete="/url/to/autocomplete">
+*
+* Optionally, you can use a jQuery selector to specify a field that can
+* be updated with the element id whenever you find a matching value
+*
+*   Example:
+*       <input type="text" data-autocomplete="/url/to/autocomplete" data-id-element="#id_field">
+*/
+
 function marc_editor_discard_changes_leaving( ) {
 	if (marc_editor_form_changed) {
 	   return "The modifications on the title will be lost";
@@ -198,13 +215,6 @@ function marc_editor_do_delete_tag(child_id) {
 	});
 	
 	
-}
-
-function marc_editor_set_value( target, render_panel, value ) {
-	// we need to escape brackets in jquery, otherwise they are interpreted as selectors
-	jquery_target = target.replace(/(\[|\])/g, '\\$1');
-	$('#' + jquery_target, '#' + render_panel).val(value);
-	$('#in_' + jquery_target, '#' + render_panel).val(value);
 }
 
 function marc_editor_edit_inline( destination_column, id, tag_name )
