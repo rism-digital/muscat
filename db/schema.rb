@@ -69,14 +69,19 @@ ActiveRecord::Schema.define(version: 20140624092937) do
     t.datetime "updated_at"
   end
 
+  add_index "do_div_files", ["do_div_id"], name: "do_div_fk1", using: :btree
+  add_index "do_div_files", ["do_file_id"], name: "do_file_fk1", using: :btree
+
   create_table "do_divs", force: true do |t|
     t.integer  "do_item_id"
-    t.string   "title_string"
+    t.string   "title"
     t.integer  "subdiv_id"
     t.string   "subdiv_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "do_divs", ["do_item_id"], name: "do_item_fk1", using: :btree
 
   create_table "do_file_groups", force: true do |t|
     t.integer  "do_item_id"
@@ -85,6 +90,8 @@ ActiveRecord::Schema.define(version: 20140624092937) do
     t.datetime "updated_at"
   end
 
+  add_index "do_file_groups", ["do_item_id"], name: "do_item_fg_fk1", using: :btree
+
   create_table "do_files", force: true do |t|
     t.integer  "do_file_group_id"
     t.integer  "do_image_id"
@@ -92,6 +99,9 @@ ActiveRecord::Schema.define(version: 20140624092937) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "do_files", ["do_file_group_id"], name: "do_file_group_fk1", using: :btree
+  add_index "do_files", ["do_image_id"], name: "do_image_fk1", using: :btree
 
   create_table "do_images", force: true do |t|
     t.string   "file_name"
@@ -106,23 +116,27 @@ ActiveRecord::Schema.define(version: 20140624092937) do
     t.integer  "res_number"
     t.integer  "tile_width"
     t.integer  "tile_height"
-    t.string   "file_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "file_type",   limit: 16
   end
 
-  add_index "do_images", ["file_type"], name: "index_do_images_on_file_type", using: :btree
+  add_index "do_images", ["file_type"], name: "type_index", using: :btree
 
   create_table "do_items", force: true do |t|
-    t.string   "item_id"
+    t.string   "item_ext_id", limit: 14
     t.string   "title"
-    t.string   "item_type"
+    t.string   "wf_audit",    limit: 16, default: "unapproved"
+    t.string   "wf_stage",    limit: 16, default: "unpublished"
+    t.string   "wf_notes"
+    t.integer  "wf_owner",               default: 0
+    t.integer  "wf_version",             default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "item_type"
   end
 
-  add_index "do_items", ["item_id"], name: "index_do_items_on_item_id", using: :btree
-  add_index "do_items", ["item_type"], name: "index_do_items_on_item_type", using: :btree
+  add_index "do_items", ["item_type"], name: "type_index", using: :btree
 
   create_table "institutions", force: true do |t|
     t.string   "name",                                          null: false
@@ -217,6 +231,7 @@ ActiveRecord::Schema.define(version: 20140624092937) do
     t.datetime "updated_at"
     t.string   "wf_audit",        limit: 16,  default: "unapproved"
     t.string   "wf_stage",        limit: 16,  default: "unpublished"
+    t.text     "marc_source"
   end
 
   add_index "people", ["wf_stage"], name: "index_people_on_wf_stage", using: :btree
