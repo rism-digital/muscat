@@ -11,6 +11,10 @@
 
 // Active Admin's got SASS!
 @import "active_admin/mixins";
+
+// We override some mixins (e.g., for the buttons)
+@import "muscat-mixins";
+
 @import "active_admin/base";
 
 // Overriding any non-variable SASS must be done after the fact.

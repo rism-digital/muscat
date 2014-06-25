@@ -1,3 +1,17 @@
-@import 'bootstrap';
 
+// Colors, etc
+@import "muscat-custom";
+
+// Import the active_admin mixins, e.g., for gradient definitions
+@import "active_admin/mixins";
+
+// gradient for header-navbar
+#header-navbar { 
+	@include primary-gradient;
+}
+
+// default button color set to primary color
+$btn-primary-bg: $primary-color;
+
+@import 'bootstrap';
 @import 'blacklight/blacklight';

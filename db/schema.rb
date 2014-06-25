@@ -81,19 +81,14 @@ ActiveRecord::Schema.define(version: 20140624151539) do
     t.datetime "updated_at"
   end
 
-  add_index "do_div_files", ["do_div_id"], name: "do_div_fk1", using: :btree
-  add_index "do_div_files", ["do_file_id"], name: "do_file_fk1", using: :btree
-
   create_table "do_divs", force: true do |t|
     t.integer  "do_item_id"
-    t.string   "title"
+    t.string   "title_string"
     t.integer  "subdiv_id"
     t.string   "subdiv_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "do_divs", ["do_item_id"], name: "do_item_fk1", using: :btree
 
   create_table "do_file_groups", force: true do |t|
     t.integer  "do_item_id"
