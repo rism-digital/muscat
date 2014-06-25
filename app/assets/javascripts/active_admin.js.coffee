@@ -15,3 +15,4 @@
 #= require autocomplete-rails
 #= require relator_codes_cascade_ujs
 #= require relator_codes_single_ujs
+#= require tag_header_events

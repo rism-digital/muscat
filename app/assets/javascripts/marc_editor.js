@@ -38,31 +38,6 @@ function marc_editor_cancel_inline( div_id ) {
    $('#' + div_id ).html("");
 }
 
-function marc_editor_toggle( id, value) {
-	
-	tag_container = id.parents(".tag_container");
-	collapsable = tag_container.children(".tag_content_collapsable");
-	
-	if (value == null) {
-	// toggle
-		collapsable.slideToggle(0);
-	} else if (value == 0) {
-		collapsable.hide();
-	} else {
-		collapsable.show();
-	}
-	
-	span = id.children("span");
-	
-	if (collapsable.css("display") == "none") {
-		span.removeClass('ui-icon-triangle-1-s');
-		span.addClass('ui-icon-triangle-1-w');
-	} else {
-		span.removeClass('ui-icon-triangle-1-w');
-		span.addClass('ui-icon-triangle-1-s');
-	}
-}
-
 // init the tags
 // called from the edit_wide.rhtml partial and edit_wide.rjs
 function marc_editor_init_tags( id ) {
@@ -161,40 +136,6 @@ function marc_editor_add_tag_from_list( list )
 	new_dt.show()
 	
 	tg.fadeIn();
-}
-
-// confirmation message for delete
-// marc_editor_do_delete_tag if yes 
-function marc_editor_delete_tag(child_id) {
-		
-	$('#dialog').html('<p>' + delete_field_confirm + '</p>');
-	$("#dialog").dialog();
-	$("#dialog").dialog( 'option', 'title', delete_msg );
-	$("#dialog").dialog( 'option', 'width', 300);
-	$("#dialog").dialog( 'option', 'buttons', {
-		OK: function() {
-			marc_editor_do_delete_tag(child_id)
-			$(this).dialog('close');
-		},
-		Cancel: function() { $(this).dialog('close');	}
-		});
-	$("#dialog").dialog('open');
-}
-	
-function marc_editor_do_delete_tag(child_id) {
-	
-	dt_id = child_id.parents(".tag_toplevel_container");
-	tag = dt_id.data("tag");
-	
-	// Enable the tag menu
-	tag_menu = dt_id.parents(".panel_content");
-	tag_menu.find("[value=" + tag + "]").removeAttr("disabled");
-	
-	dt_id.fadeOut('fast', function() {
-		dt_id.remove();
-	});
-	
-	
 }
 
 function marc_editor_edit_inline( destination_column, id, tag_name )
@@ -365,17 +306,6 @@ function marc_editor_add_subfield(id) {
 
 }
 
-// performs a ajax query to get the old versions of a record
-function marc_editor_add_tag(current_tag) {
-	placeholder = current_tag.parents(".tag_group").children(".tag_placeholders");
-	current_dt = current_tag.parents(".tag_toplevel_container");
-	
-	new_dt = placeholder.clone();
-	new_dt.toggleClass('tag_placeholders tag_toplevel_container');
-	new_dt.insertAfter(current_dt);
-	new_dt.fadeIn('fast');
-}
-
 function marc_editor_help( url ) {
    	
 	$.ajax({
@@ -458,21 +388,4 @@ function quick_search_form( base, lang ) {
    	</form>\
    </div>";
    return output;
-}
-
-function marc_editor_swap(id, editing) {
-	
-	dt = id.parents(".tag_toplevel_container");
-	
-	if (editing) {
-		var show_id = dt.find('.tag_container[data-function="new"]');
-		var hide_id = dt.find('.tag_container[data-function="edit"]');
-	} else {
-		var show_id = dt.find('.tag_container[data-function="edit"]');
-		var hide_id = dt.find('.tag_container[data-function="new"]');
-	}
-		
-    $(hide_id).fadeOut('fast', function(){
-        $(show_id).fadeIn('fast');
-    });
 }
