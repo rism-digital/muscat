@@ -6,6 +6,11 @@ class Ability
       can :manage, :all
     elsif user.has_role? :guest
       can :read, :all
+      can :read, ActiveAdmin::Page, :name => "Dashboard"
+    elsif user.has_role?(:editor, Person)
+      can :read, Person
+      can :read, ActiveAdmin::Page, :name => "Dashboard"
+      #cannot :read, User
     end
     #can :read, User
     #can :manage, User, :id => user.id
