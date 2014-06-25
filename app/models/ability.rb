@@ -11,7 +11,7 @@ class Ability
       can :read, Person
       can :read, Source
       can :update, Source do |source|
-        source.lib_siglum.split('-').first == user.workgroup
+        source.lib_siglum.start_with?(user.workgroup)
       end
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       #cannot :read, User

@@ -2,3 +2,6 @@ config/application.rb
 config/database.yml
 development.log
 /tmp
+/solr/default
+/solr/pids
+log/sunspot-solr-development.log
