@@ -36,6 +36,7 @@ class Source < ActiveRecord::Base
   
   # include the override for group_values
   require 'solr_search.rb'
+  resourcify
   
   belongs_to :source
   has_many :sources
@@ -54,7 +55,7 @@ class Source < ActiveRecord::Base
   
   before_destroy :check_dependencies
   after_save :reindex
-  
+ 
   attr_accessor :suppress_reindex_trigger
   
   # Suppresses the solr reindex

@@ -13,6 +13,7 @@
 # The class provides the same functionality as similar models, see Catalogue
 
 class Library < ActiveRecord::Base
+  resourcify
   
   has_and_belongs_to_many :sources
     

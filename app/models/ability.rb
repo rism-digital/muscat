@@ -9,6 +9,10 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "Dashboard"
     elsif user.has_role?(:editor, Person)
       can :read, Person
+      can :read, Source
+      can :update, Source do |source|
+        source.lib_siglum.split('-').first == user.workgroup
+      end
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       #cannot :read, User
     end
