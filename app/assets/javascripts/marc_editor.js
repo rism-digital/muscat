@@ -39,7 +39,7 @@ function marc_editor_cancel_inline( div_id ) {
 }
 
 // init the tags
-// called from the edit_wide.rhtml partial and edit_wide.rjs
+// called from the edit_wide.rhtml partial
 function marc_editor_init_tags( id ) {
 	$(".sortable").sortable();
 
@@ -291,7 +291,7 @@ function marc_editor_add_subfield(id) {
 	new_li = li_original.clone();
 	$(".serialize_marc", new_li).each(function() {
 		$(this).val("");
-		/* JQuery data vs arrt
+		/* JQuery data vs attr
 		 The data- attributes are pulled in the first time the data property 
 		 is accessed and then are no longer accessed or mutated (all data 
 		 values are then stored internally in jQuery).

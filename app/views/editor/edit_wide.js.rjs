@@ -1,7 +1,0 @@
-render_panel = params[:marc_editor_dest]
-
-page.call "$('##{render_panel}').html", render(:partial => 'editor/render_item', :locals => { :render_panel => render_panel })
-
-page << "marc_editor_init_tags($('##{render_panel}'))"
-
-flash.discard

@@ -38,14 +38,6 @@ ActiveAdmin.register Source do
 
   end
   
-  collection_action :marc_editor_add_subfield, :method => :get do
-    @editor_profile = EditorConfiguration.find_by_id(params[:profile_id])  
-    @column = @editor_profile.get_column_for(params[:tag_name],params[:subfield_name]) 
-    respond_to do |format|
-       format.js { render  "editor/marc_editor_add_subfield" }
-     end
-  end
-  
   collection_action :marc_editor_save, :method => :post do
     #unless role_at_least? :cataloguer
     #  render :template => 'shared/no_privileges'
