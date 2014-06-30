@@ -11,6 +11,7 @@ ActiveAdmin.register Person do
   controller do
     
     autocomplete :person, :full_name
+    after_destroy :check_model_errors
     
     def permitted_params
       params.permit!
@@ -21,7 +22,6 @@ ActiveAdmin.register Person do
       @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
     end
     
-    
     def index
       @results = Person.search_as_ransack(params)
       
@@ -29,6 +29,12 @@ ActiveAdmin.register Person do
         @people = @results
         format.html
       end
+    end
+    
+    def check_model_errors(object)                                                                                                                                                                                                                                                                                                                                                                        
+      return unless object.errors.any?
+      flash[:error] ||= []                                                                                                                                                                        
+      flash[:error].concat(object.errors.full_messages)
     end
     
   end
@@ -79,6 +85,7 @@ ActiveAdmin.register Person do
   
   form do |f|
     f.inputs do
+      f.semantic_errors :base
       f.input :full_name, :label => (I18n.t :filter_full_name)
       f.input :life_dates, :label => (I18n.t :filter_life_dates) 
       f.input :birth_place, :label => (I18n.t :filter_birth_place)
