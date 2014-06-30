@@ -142,6 +142,9 @@ def self.up
   require './db/migrate/20140331105619_devise_create_users.rb'
   DeviseCreateUsers.new.migrate(:up)
   
+  require './db/migrate/20140624092937_rolify_create_roles.rb'
+  RolifyCreateRoles.new.migrate(:up)
+  
   # Fix the schema migration
   execute "TRUNCATE TABLE schema_migrations;"
   Dir.open('db/migrate').each do |fname|
