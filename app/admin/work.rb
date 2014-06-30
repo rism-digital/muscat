@@ -11,6 +11,13 @@ ActiveAdmin.register Work do
       params.permit!
     end
     
+    after_destroy :check_model_errors
+    def check_model_errors(object)                                                                                                                                                                                                                                                                                                                                                                        
+      return unless object.errors.any?
+      flash[:error] ||= []                                                                                                                                                                        
+      flash[:error].concat(object.errors.full_messages)
+    end
+    
     def show
       @work = Work.find(params[:id])
       @prev_item, @next_item, @prev_page, @next_page = Work.near_items_as_ransack(params, @work)

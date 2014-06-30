@@ -12,6 +12,13 @@ ActiveAdmin.register Place do
     
     autocomplete :place, :name
     
+    after_destroy :check_model_errors
+    def check_model_errors(object)                                                                                                                                                                                                                                                                                                                                                                        
+      return unless object.errors.any?
+      flash[:error] ||= []                                                                                                                                                                        
+      flash[:error].concat(object.errors.full_messages)
+    end
+    
     def permitted_params
       params.permit!
     end
