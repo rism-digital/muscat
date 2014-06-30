@@ -21,6 +21,7 @@
 //= require jquery.maskedinput
 //= require jquery.validate
 //= require relator_codes_cascade_ujs
-//= relator_codes_single_ujs
+//= require relator_codes_single_ujs
+//= require jquery.scrollTo.js
 //= require_tree .
 //= require autocomplete-rails

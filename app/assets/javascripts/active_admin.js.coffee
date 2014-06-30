@@ -11,8 +11,10 @@
 #= require jquery.dirtyFields
 #= require jquery.maskedinput
 #= require jquery.validate
+#= require jquery.scrollTo.js
 #= require rism.localisation
 #= require autocomplete-rails
 #= require relator_codes_cascade_ujs
 #= require relator_codes_single_ujs
 #= require tag_header_events
+#= require section_sidebar_ujs.js

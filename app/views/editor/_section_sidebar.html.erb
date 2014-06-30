@@ -1,5 +1,5 @@
 <ul>
 <%- @editor_profile.layout_config[:marc_editor_group_links].each do |gl| -%>
-	<li><a onclick="$.scrollTo($('[name=<%= gl.gsub(/ /, "_") -%>]'), 100, {offset: -10});"><%= gl -%></a></li>
+	<li><a data-scroll-target="<%= gl.gsub(/ /, "_") -%>"><%= gl -%></a></li>
 <%- end -%>
 </ul>
