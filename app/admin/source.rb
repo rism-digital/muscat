@@ -58,17 +58,19 @@ ActiveAdmin.register Source do
     end
     @item.marc = new_marc
 
-    #begin
+    begin
       @item.save
       flash[:notice] = "Source #{@item.id} was successfully saved." 
       #redirect_to :action => 'edit', :id => @item
       # render :action => 'edit'
-    #rescue
-      #flash[:error] = "Manuscript #{@item.ext_id} could not be saved." 
-    #end
+    rescue
+      flash[:error] = "Source #{@item.ext_id} could not be saved." 
+    end
     
-    #@editor_profile = EditorConfiguration.get_applicable_layout @item
-    redirect_to :action => 'edit', :id => @item
+    @editor_profile = EditorConfiguration.get_applicable_layout @item
+    @source = @item
+    #redirect_to :action => 'edit', :id => @item
+    render :template => 'editor/reload_editor'
     #end
   
   end

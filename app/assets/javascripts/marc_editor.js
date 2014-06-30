@@ -353,7 +353,7 @@ function marc_editor_send_form( source_column, destination_column, form_type, wh
 		      //$('#dialog_preview').parent().css('position', 'fixed');
 		   }
 		},
-		data: {marc: JSON.stringify(json_marc), marc_editor_dest: destination_column},
+		data: {marc: JSON.stringify(json_marc), marc_editor_dest: destination_column, id: $('#id').val()},
 		//dataType: 'script',
 		timeout: 20000, 
 		type: 'post',
