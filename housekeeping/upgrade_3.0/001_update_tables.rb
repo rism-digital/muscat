@@ -139,8 +139,8 @@ def self.up
   # Quirk of the day
   # is it better to call the migration or
   # duplicate the migration code?
-  require './db/migrate/20140331105618_devise_create_admin_users.rb'
-  DeviseCreateAdminUsers.new.migrate(:up)
+  require './db/migrate/20140331105619_devise_create_users.rb'
+  DeviseCreateUsers.new.migrate(:up)
   
   # Fix the schema migration
   execute "TRUNCATE TABLE schema_migrations;"
