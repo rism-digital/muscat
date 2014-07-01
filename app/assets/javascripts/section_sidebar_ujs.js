@@ -9,37 +9,18 @@ var init_sidebar_actions = function () {
 			// Hide all the other panels
 			$( ".tab_panel" ).each(function() {
 				if ($(this).attr("name") != tname) {
-				
-					// If we have already an item shown, postpone
-					// the hiding so we can cross fade it
-					if ($(this).data("current-item") == true) {
-						current_item = $(this);
-					} else {
-						$(this).hide();
-					}
-				
-					$(this).removeData("current-item");
+					$(this).hide();
 				} else {
-					new_item = $(this);
-					new_item.data("current-item", true);
+					$(this).show();
+
 				}
-			})
-		
-			// If a group is already visible, cross fade
-			if (current_item) {
-			    current_item.fadeOut('fast', function(){
-			        new_item.fadeIn('fast');
-			    });
-			} else {
-				// No group already there
-				new_item.fadeIn("fast");
-			}
+			});
 			//$.scrollTo($("[name=" + tname + "]"), 100, {offset: -10});
 		} // function
 		
 		function show_all_tab_groups() {
 			$( ".tab_panel" ).each(function() {
-				$(this).fadeIn("fast");
+				$(this).show();
 				$(this).removeData("current-item");
 			})
 		} // function
