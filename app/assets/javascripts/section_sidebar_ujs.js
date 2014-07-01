@@ -1,4 +1,4 @@
-$(document).ready(function(){
+var init_sidebar_actions = function () {
 	$('a[data-scroll-target]').click(function(e){
 		e.preventDefault();
 		
@@ -52,5 +52,9 @@ $(document).ready(function(){
 			show_tab_group(tname);
 		}
 
-	})
-})
+	});
+};
+
+$(document).ready(init_sidebar_actions);
+// Fix for turbolinks: it will not call againg document.ready
+$(document).on('page:load', init_sidebar_actions);

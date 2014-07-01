@@ -2,7 +2,6 @@
 	layout_key = is_new ? "layout_new" : "layout"
 	ocfg = @editor_profile.options_config
 	s_iterator = 1
-	puts tag_name
 	cols = ((ocfg[tag_name] and ocfg[tag_name][layout_key].include?("columns")) ? ocfg[tag_name][layout_key]["columns"].to_i : 1)
 	cur_col = 1
 	hiddens = [] 
