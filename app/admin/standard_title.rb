@@ -13,9 +13,10 @@ ActiveAdmin.register StandardTitle do
     autocomplete :standard_title, :title
  
     after_destroy :check_model_errors
-    def check_model_errors(object)                                                                                                                                                                                                                                                                                                                                                                        
+    
+    def check_model_errors(object)
       return unless object.errors.any?
-      flash[:error] ||= []                                                                                                                                                                        
+      flash[:error] ||= []
       flash[:error].concat(object.errors.full_messages)
     end
  
