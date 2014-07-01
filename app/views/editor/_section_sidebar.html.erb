@@ -2,4 +2,6 @@
 <%- @editor_profile.layout_config[:marc_editor_group_links].each do |gl| -%>
 	<li><a data-scroll-target="<%= gl.gsub(/ /, "_") -%>"><%= gl -%></a></li>
 <%- end -%>
+	<li>&nbsp;</li>
+	<li><a data-scroll-target="show_all_groups">Show All Groups</a></li>
 </ul>
