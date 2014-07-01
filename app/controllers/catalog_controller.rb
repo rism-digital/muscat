@@ -8,7 +8,8 @@ class CatalogController < ApplicationController
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = { 
       :q => 'search',
-      :rows => 10 
+      :rows => 10,
+      :defType => 'dismax'
     }
     
     # solr path which will be added to solr base url before the other solr params.
@@ -20,17 +21,17 @@ class CatalogController < ApplicationController
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SolrHelper#solr_doc_params) or 
     ## parameters included in the Blacklight-jetty document requestHandler.
     #
-    #config.default_document_solr_params = {
-    #  :qt => 'document',
-    #  ## These are hard-coded in the blacklight 'document' requestHandler
-    #  # :fl => '*',
-    #  # :rows => 1
-    #  # :q => '{!raw f=id v=$id}' 
-    #}
+    config.default_document_solr_params = {
+      :qt => 'document',
+      ## These are hard-coded in the blacklight 'document' requestHandler
+      # :fl => '*',
+      # :rows => 1
+      # :q => '{!raw f=id v=$id}' 
+    }
 
     # solr field configuration for search results/index views
-    config.index.title_field = 'title_display'
-    config.index.display_type_field = 'format'
+    config.index.title_field = 'std_title_texts'
+    config.index.display_type_field = 'composer_order_s'
 
     # solr field configuration for document/show views
     #config.show.title_field = 'title_display'
@@ -55,8 +56,10 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
-    #config.add_facet_field 'format', :label => 'Format'
-    #config.add_facet_field 'pub_date', :label => 'Publication Year', :single => true
+    config.add_facet_field 'composer_order_s', :label => 'Composer', :limit => 10
+    config.add_facet_field 'std_title_order_s', :label => 'Standard Title', :limit => 10
+    config.add_facet_field 'date_to_i', :label => "Date", :limit => 5
+    #config.add_facet_field 'title_order', :label => 'Standard Title', :single => true
     #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     #config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
     #config.add_facet_field 'lc_1letter_facet', :label => 'Call Number' 
@@ -75,23 +78,23 @@ class CatalogController < ApplicationController
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
     # handler defaults, or have no facets.
-    #config.add_facet_fields_to_solr_request!
+    config.add_facet_fields_to_solr_request!
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display 
-    config.add_index_field 'title_display', :label => 'Title'
-    #config.add_index_field 'title_vern_display', :label => 'Title'
-    #config.add_index_field 'author_display', :label => 'Author'
-    #config.add_index_field 'author_vern_display', :label => 'Author'
-    #config.add_index_field 'format', :label => 'Format'
-    #config.add_index_field 'language_facet', :label => 'Language'
-    #config.add_index_field 'published_display', :label => 'Published'
-    #config.add_index_field 'published_vern_display', :label => 'Published'
-    #config.add_index_field 'lc_callnum_display', :label => 'Call number'
+    config.add_index_field 'std_title_texts', :label => 'Title'
+    config.add_index_field 'title_texts', :label => 'Title on Source'
+    config.add_index_field 'author_display', :label => 'Author'
+    config.add_index_field 'author_vern_display', :label => 'Author'
+    config.add_index_field 'format', :label => 'Format'
+    config.add_index_field 'language_facet', :label => 'Language'
+    config.add_index_field 'published_display', :label => 'Published'
+    config.add_index_field 'published_vern_display', :label => 'Published'
+    config.add_index_field 'lc_callnum_display', :label => 'Call number'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display 
-    config.add_show_field 'title_display', :label => 'Title'
+    config.add_show_field 'source_id_text', :label => 'Title'
     #config.add_show_field 'title_vern_display', :label => 'Title'
     #config.add_show_field 'subtitle_display', :label => 'Subtitle'
     #config.add_show_field 'subtitle_vern_display', :label => 'Subtitle'
@@ -133,15 +136,20 @@ class CatalogController < ApplicationController
     
     config.add_search_field('title') do |field|
       # solr_parameters hash are sent to Solr as ordinary url query params. 
-      field.solr_parameters = { :'spellcheck.dictionary' => 'title' }
+      #field.solr_parameters = { :'spellcheck.dictionary' => 'title_d_text' }
 
       # :solr_local_parameters will be sent using Solr LocalParams
       # syntax, as eg {! qf=$title_qf }. This is neccesary to use
       # Solr parameter de-referencing like $title_qf.
       # See: http://wiki.apache.org/solr/LocalParams
       field.solr_local_parameters = { 
-        :qf => '$title_qf',
-        :pf => '$title_pf'
+        :qf => 'title_texts',
+      }
+    end
+    
+    config.add_search_field('composer') do |field|
+      field.solr_local_parameters = { 
+        :qf => 'composer_texts',
       }
     end
     
@@ -169,6 +177,7 @@ class CatalogController < ApplicationController
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
+    config.add_sort_field 'std_title_order_s asc', :label => 'name';
     #config.add_sort_field 'score desc, pub_date_sort desc, title_sort asc', :label => 'relevance'
     #config.add_sort_field 'pub_date_sort desc, title_sort asc', :label => 'year'
     #config.add_sort_field 'author_sort asc, title_sort asc', :label => 'author'

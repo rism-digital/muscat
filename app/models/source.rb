@@ -79,13 +79,13 @@ class Source < ActiveRecord::Base
     string :std_title_order do 
       std_title
     end
-    text :std_title
+    text :std_title, :stored => true
     text :std_title_d
     
     string :composer_order do 
       composer
     end
-    text :composer
+    text :composer, :stored => true
     text :composer_d
     
     text :marc_source
@@ -93,13 +93,13 @@ class Source < ActiveRecord::Base
     string :title_order do 
       title
     end
-    text :title
+    text :title, :stored => true
     text :title_d
     
     string :shelf_mark_order do 
       shelf_mark
     end
-    text :shelf_mark
+    text :shelf_mark, :stored => true
     
     string :lib_siglum_order do
       lib_siglum
