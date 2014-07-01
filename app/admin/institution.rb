@@ -80,7 +80,7 @@ ActiveAdmin.register Institution do
   form do |f|
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name) 
-      f.input :alternates, :label => (I18n.t :filter_alternates) 
+      f.input :alternates, :label => (I18n.t :filter_alternates), :input_html => { :rows => 3 }
       f.input :notes, :label => (I18n.t :filter_notes) 
     end
     f.actions

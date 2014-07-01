@@ -65,7 +65,7 @@ ActiveAdmin.register StandardTerm do
     active_admin_navigation_bar( self ) 
     attributes_table do
       row (I18n.t :filter_term) { |r| r.term }
-      row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
+      row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }, :input_html => { :rows => 3 }
       row (I18n.t :filter_notes) { |r| r.notes }    
     end
     active_admin_embedded_source_list( self, standard_term, params[:qe], params[:src_list_page] )

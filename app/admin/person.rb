@@ -94,9 +94,9 @@ ActiveAdmin.register Person do
       f.input :gender, :label => (I18n.t :filter_gender) 
       f.input :composer, :label => (I18n.t :filter_composer)
       f.input :source, :label => (I18n.t :filter_source)
-      f.input :comments, :label => (I18n.t :filter_comments) 
-      f.input :alternate_names, :label => (I18n.t :filter_alternate_names)
-      f.input :alternate_dates, :label => (I18n.t :filter_alternate_dates)   
+      f.input :comments, :label => (I18n.t :filter_comments)
+      f.input :alternate_names, :label => (I18n.t :filter_alternate_names), :input_html => { :rows => 3 }
+      f.input :alternate_dates, :label => (I18n.t :filter_alternate_dates), :input_html => { :rows => 3 }  
     end
     f.actions
   end
