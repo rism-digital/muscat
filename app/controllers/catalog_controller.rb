@@ -56,9 +56,9 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
-    config.add_facet_field 'composer_order_s', :label => 'Composer', :limit => 10
-    config.add_facet_field 'std_title_order_s', :label => 'Standard Title', :limit => 10
-    config.add_facet_field 'date_to_i', :label => "Date", :limit => 5
+    config.add_facet_field 'composer_order_s', :label => 'Composer', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'std_title_order_s', :label => 'Standard Title', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'date_to_i', :label => "Date", :limit => 5, solr_params: { 'facet.mincount' => 1 }
     #config.add_facet_field 'title_order', :label => 'Standard Title', :single => true
     #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     #config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
