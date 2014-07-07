@@ -75,7 +75,7 @@ Get the sources if necessary (https://github.com/rism-ch/muscat):
 
 Use bundle to install all the gems for the app:
 
-	sudo bundle install
+	sudo bundle install --deployment
 
 Install base configuration:
 

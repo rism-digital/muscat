@@ -1,0 +1,16 @@
+// SASS variable overrides must be declared before loading up Active Admin's styles.
+@import "muscat-custom";
+
+// Active Admin SASS
+@import "active_admin/mixins";
+// We override some Active Admin's mixins (e.g., for the buttons)
+@import "muscat-mixins";
+@import "active_admin/base";
+
+@import "muscat";
+
+// Import the marc editor css
+@import "marc_editor";
+
+@import "jquery.ui.all";
+@import "jquery.ui.theme";
