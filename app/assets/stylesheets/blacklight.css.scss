@@ -11,7 +11,18 @@
 }
 
 // default button color set to primary color
-$btn-primary-bg: $primary-color;
+$brand-primary: $primary-color;
+
+// Font size
+$font-size-base: 12px !default;
+
+// Text color in the menu bar
+$navbar-inverse-link-color: #cdcdcd;
+//$navbar-inverse-link-hover-bg: #f00;
 
 @import 'bootstrap';
 @import 'blacklight/blacklight';
+
+.pagination li a {
+	padding: 3px 10px;
+}

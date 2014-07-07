@@ -2,13 +2,17 @@
 // We redefine active admin before including the components
 // All modification are marked with /// (beginning or end of the line)
 
+// remove all the text shadows
+@mixin text-shadow($color: #fff, $x: 0, $y: 1px, $blur: 0) {
+}
+
 @mixin basic-button {
   ///@include rounded(200px);
   @include rounded(4px);///
   display: inline-block;
-  font-weight: bold;
+  ///font-weight: bold;
   ///font-size: 1.0em;
-  font-size: 1.0em;///
+  font-size: 100%;
   @include sans-family;
   line-height: 12px;
   margin-right: 3px;
@@ -28,7 +32,7 @@
   @include basic-button;
   ///@include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
   background: lighten($primary-color, 0%);///
-  ///@include text-shadow(#000);
+  	@include text-shadow(#000);
   ///box-shadow: 0 1px 1px rgba(0,0,0,0.10), 0 1px 0 0px rgba(255,255,255, 0.2) inset;
   ///border: solid 1px #484e53;
   border: solid 1px darken($primary-color, 5%);///
@@ -59,6 +63,7 @@
   @include border-colors(#d3d3d3, #c7c7c7, #c2c2c2);
   @include text-shadow;
   color: $primary-color;
+  padding: 7px 16px 8px;///
 
   &:not(.disabled) {
     &:hover {
