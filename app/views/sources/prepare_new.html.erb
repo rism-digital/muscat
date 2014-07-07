@@ -1,0 +1,47 @@
+<%- profile = EditorConfiguration.profiles[0] #EditorProfile.find(:first) %>
+
+<%= form_tag("/sources/new", {method: "get"}) do %>
+	<div>
+		<h3>Please select a template:</h3>
+		<ul>
+			<li>
+			<select name="new_type">
+			<!--	<option value="blank">Blank (control tags only)</option> -->
+				<%- Dir.glob("#{Rails.root}/config/marc/source/#{RISM::MARC}/*").sort.each do |f| %>
+					<%- if File.directory?(f) %>
+						<optgroup label="<%= profile.get_label(File.basename(f,'.marc')) -%>">
+						<%- Dir.glob("#{f}/*.marc").sort.each do |ff| %>
+							<option value="<%= File.basename(f) + "/" + File.basename(ff,'.marc') -%>"><%= profile.get_label(File.basename(ff,'.marc')) -%></option>
+						<%- end %>
+						</optgroup>
+					<%- else %>
+						<option value="<%= File.basename(f,'.marc') -%>"><%= profile.get_label(File.basename(f,'.marc')) -%></option>
+					<%- end %>
+				<%- end %>
+			</select>
+			</li>
+		</ul>
+	</div>
+
+
+  <div>
+    <h3>Existing title:</h3>
+
+    <div style="padding: 5px">
+      <input name="existing_title" size="20" type="text"/>
+    </div>
+  </div>
+
+  <div>
+    <h3>Supplied Marc Source:</h3>
+
+    <div style="padding: 5px">
+      <textarea name="from_source" rows="14" style="width: 500px;" wrap="nowrap"></textarea>
+    </div>
+  </div>
+
+	<div class="buttons">
+ 	 	<%= submit_tag("Create") %>
+	</div>
+
+<%end%>

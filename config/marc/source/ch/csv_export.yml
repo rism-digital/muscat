@@ -1,0 +1,79 @@
+--- !map:HashWithIndifferentAccess
+
+tags:
+- tag: "001"
+  function: "function_001"
+- tag: "041"
+  subfields:
+  - a
+  - e
+  - h
+- tag: "130"
+  subfields:
+  - a
+  - k
+  - o
+  - r
+  - n
+  - m
+- tag: "240"
+  subfields:
+  - a
+  - k
+  - o
+  - r
+  - n
+  - m
+- tag: "245"
+  subfields:
+  - a
+- tag: "246"
+  subfields:
+  - a
+- tag: "260"
+  subfields:
+  - a
+  - b
+  - c
+- tag: "300"
+  subfields:
+  - a
+  - b
+  - c
+- tag: "500"
+  subfields:
+  - a
+- tag: "561"
+  subfields:
+  - a
+- tag: "546"
+  subfields:
+  - a
+- tag: "510"
+  subfields:
+  - a
+- tag: "505"
+  subfields:
+  - a
+- tag: "650"
+  subfields:
+  - a
+- tag: "700"
+  subfields:
+  - a
+  - "4"
+- tag: "700"
+  subfields:
+  - a
+  - b
+  - "4"
+- tag: "752"
+  subfields:
+  - a
+- tag: "852"
+  subfields:
+  - a
+  - p
+- tag: "856"
+  subfields:
+  - a

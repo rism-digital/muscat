@@ -67,6 +67,8 @@ ActiveAdmin.register Source do
 
   end
   
+  collection_action :prepare_new, :method => :get
+  
   collection_action :marc_editor_save, :method => :post do
     #unless role_at_least? :cataloguer
     #  render :template => 'shared/no_privileges'
@@ -110,6 +112,35 @@ ActiveAdmin.register Source do
   #scope :published do |sources|
   #  sources.where(:wf_stage => 'published')
   #end
+  
+  # See https://github.com/gregbell/active_admin/issues/760
+  # and https://github.com/gregbell/active_admin/pull/3091
+  # We reset all the action buttons so we can override the behaivour
+  # of the 'new' button
+  config.clear_action_items!
+  action_item :except => [:new, :show, :prepare_new] do
+      # New link, FIXME find a way not to hard-code the path!
+      if controller.current_ability.can?( :create, active_admin_config.resource_class ) and controller.action_methods.include?('prepare_new')
+        link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), "/sources/prepare_new")
+      end
+    end
+
+  action_item :only => [:show] do
+    # Edit link on show
+    if controller.current_ability.can?( :update, resource ) and controller.action_methods.include?('edit')
+      link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path(resource))
+    end
+  end
+
+  action_item :only => [:show] do
+    # # Destroy link on show
+    if controller.current_ability.can?( :destroy, resource ) and controller.action_methods.include?("destroy")
+      link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name),
+        resource_path(resource),
+        :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'))
+    end
+  end
+
   
   ###########
   ## Index ##
