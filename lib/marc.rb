@@ -251,7 +251,7 @@ class Marc
   end
   
   # Get the Library and shelfmarc for a MARC record
-  def get_siglum_and_ms_no
+  def get_siglum_and_shelf_mark
     siglum = "" 
     ms_no = ""
     
@@ -285,7 +285,7 @@ class Marc
   end
   
   # For bibliographic records, set the ms_title and ms_title_d field fromMARC 245 or 246
-  def get_ms_title
+  def get_source_title
     ms_title = "[unset]"  
     ms_title_field = (RISM::BASE == "in") ? "246" : "245" # one day the ms_title field (and std_title field) should be put in the environmnent.rb file
     if node = first_occurance(ms_title_field, "a")
@@ -409,15 +409,6 @@ class Marc
       insert_at += 1
     end
     insert_at
-  end
-  
-  # Return the ID from field 001
-  def get_source_id
-    source_id = nil
-    if node = first_occurance("001")
-      source_id = node.content
-    end
-    return source_id
   end
   
   # Update the last transaction field, 005.
@@ -803,17 +794,17 @@ class Marc
 
   def ==(other)
     load_source unless @loaded
-    @source_id == other.get_source_id
+    @source_id == other.get_marc_source_id
   end
 
   #TODO: This needs to compare the actual data hashes and not source_id
   #def ===(other)
-  #  @source_id == other.get_source_id
+  #  @source_id == other.get_marc_source_id
   #end
 
   def <=>(other)
     load_source unless @loaded
-    @source_id.to_i <=> other.get_source_id.to_i
+    @source_id.to_i <=> other.get_marc_source_id.to_i
   end
 
   alias to_s to_marc
