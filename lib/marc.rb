@@ -808,6 +808,53 @@ class Marc
   end
 
   alias to_s to_marc
-  alias marc_source to_marc 
+  alias marc_source to_marc
+  
+  private
+  
+  def marc_helper_get_008_language(value)
+    # language is 35-37
+    if value.length <= 35
+      marc_get_range(value, value.length - 5, 3)
+    else
+      field = marc_get_range(value, 35, 3)
+      if field
+        field = field.to_s
+      end
+    end
+    return field
+  end
+  
+  # Get the first date from MARC 008
+  def marc_helper_get_008_date1(value)
+    # date1 is 07-10
+    field = marc_get_range(value, 7, 4)
+    if field
+      field = field.to_i
+    end
+    return field
+  end
+
+  # Get the second date from MARC 008
+  def marc_helper_get_008_date2(value)
+    # date2 is 11-14
+    field = marc_get_range(value, 11, 4)
+    if field
+      field = field.to_i
+    end
+    return field
+  end
+  
+  # Return the string from the given start for lenght in a 008 MARC record
+  def marc_get_range(value, start, length)
+    if value.length <= start
+      return nil
+    end
+    field = value[start, length]
+    if field.match(/x+/i)
+      return nil
+    end
+    return field
+  end
   
 end

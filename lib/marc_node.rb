@@ -36,6 +36,10 @@ class MarcNode
         #  master = add(MarcNode.new( MarcConfig.get_master( self.tag ) , "", nil))
         #end
         master = get_master_foreign_subfield
+        if !master
+          raise NoMethodError, "#{self.tag} #{self.to_s} master searched but not found"
+        end
+        
         unless master.foreign_object
           master.set_foreign_object
           master.foreign_host = true

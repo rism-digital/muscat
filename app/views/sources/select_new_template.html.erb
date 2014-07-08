@@ -1,0 +1,44 @@
+<%- templates = EditorConfiguration.get_profile_templates("source") %>
+
+<div class="panel">
+	<h3>Available templates</h3>
+	<div class="panel_contents">
+		<div class="attributes_table">
+			<table border="0" cellpadding="0" cellspacing="0">
+			
+				<% templates.each do |name, value|%>
+					<% if value.is_a?(Hash) %>
+
+						<% value.keys.each do |file|%>
+							<tr class="row">
+							<th><%= value.keys.index(file) == 0 ? name : "" %></th>
+						        <td><%= link_to(value[file], new_resource_path(:new_type => file))  %></td>
+							</tr>
+						<%end%>
+					<%else%>
+						<tr class="row">
+							<td><%= link_to(value, new_resource_path(:new_type => name)) %></td>
+						</tr>
+					<%end%>
+				<%end%>
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<%= form_tag(new_resource_path, {method: "get", :class => 'filter_form'}) do %>
+<div class="panel">
+	<h3>From existing source</h3>
+	<div class="panel_contents">
+	    <div class="form-group">
+	      <input name="existing_title" size="20" type="text"/>
+	    </div>
+	  </div>
+
+		<div class="buttons">
+	 	 	<%= submit_tag("Create from existing") %>
+		</div>
+	</div>
+</div>
+<%end%>

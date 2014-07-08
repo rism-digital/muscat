@@ -403,4 +403,26 @@ class EditorConfiguration
     nil
   end
   
+  def self.get_profile_templates(model)
+    templates = {}
+    # We just need to access the BasicLabels for the current RISM::MARC
+    profile = EditorConfiguration.profiles[0]
+		Dir.glob("#{Rails.root}/config/marc/#{RISM::MARC}/#{model}/*").sort.each do |f|
+			if File.directory?(f)
+				category = profile.get_label(File.basename(f,'.marc'))
+        templates[category] = {}
+				Dir.glob("#{f}/*.marc").sort.each do |ff|
+					file_dir = File.basename(f) + "/" + File.basename(ff,'.marc')
+          file_label = profile.get_label(File.basename(ff,'.marc'))
+          templates[category][file_dir] = file_label
+				end
+			else
+				file_dir = File.basename(f,'.marc')
+        file_label = profile.get_label(File.basename(f,'.marc'))
+        templates[file_dir] = file_label
+			end
+		end
+    return templates
+  end
+  
 end

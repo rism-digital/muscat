@@ -37,25 +37,24 @@ ActiveAdmin.register Source do
     end
 
     def new
-      load_template = nil
       @source = Source.new
       @based_on = String.new
 
-      if params[:from_source] and !params[:from_source].empty?
-        @based_on = "user source"
-        new_marc = Marc.new(params[:from_source])
-        new_marc.load_source # this will need to be fixed
-        @source.marc = new_marc
-      elsif params[:existing_title] and !params[:existing_title].empty?
+      if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_type] || params[:new_type].empty?)
+        redirect_to action: :select_new_template
+        return
+      end
+
+      if params[:existing_title] and !params[:existing_title].empty?
         @based_on = "exsiting title"
-        base_item = Manuscript.find_by_ext_id(params[:existing_title])
-        new_marc = Marc.new(base_item.marc.source)
-        new_marc.load_source # this will need to be fixed
+        base_item = Source.find(params[:existing_title])
+        new_marc = Marc.new(base_item.marc.marc_source)
+        new_marc.load_source false # this will need to be fixed
         new_marc.first_occurance("001").content = "__TEMP__"
         @source.marc = new_marc
-      elsif File.exists?("#{Rails.root}/config/marc/source/#{RISM::BASE}/" + params[:new_type] + '.marc')
+      elsif File.exists?("#{Rails.root}/config/marc/#{RISM::BASE}/source/" + params[:new_type] + '.marc')
         @based_on = params[:new_type]
-        new_marc = Marc.new(File.read("#{Rails.root}/config/marc/source/#{RISM::BASE}/" +params[:new_type] + '.marc'))
+        new_marc = Marc.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/source/" +params[:new_type] + '.marc'))
         new_marc.load_source false # this will need to be fixed
         @source.marc = new_marc
       end
@@ -67,7 +66,7 @@ ActiveAdmin.register Source do
 
   end
   
-  collection_action :prepare_new, :method => :get
+  collection_action :select_new_template, :method => :get
   
   collection_action :marc_editor_save, :method => :post do
     #unless role_at_least? :cataloguer
@@ -112,35 +111,6 @@ ActiveAdmin.register Source do
   #scope :published do |sources|
   #  sources.where(:wf_stage => 'published')
   #end
-  
-  # See https://github.com/gregbell/active_admin/issues/760
-  # and https://github.com/gregbell/active_admin/pull/3091
-  # We reset all the action buttons so we can override the behaivour
-  # of the 'new' button
-  config.clear_action_items!
-  action_item :except => [:new, :show, :prepare_new] do
-      # New link, FIXME find a way not to hard-code the path!
-      if controller.current_ability.can?( :create, active_admin_config.resource_class ) and controller.action_methods.include?('prepare_new')
-        link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), "/sources/prepare_new")
-      end
-    end
-
-  action_item :only => [:show] do
-    # Edit link on show
-    if controller.current_ability.can?( :update, resource ) and controller.action_methods.include?('edit')
-      link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path(resource))
-    end
-  end
-
-  action_item :only => [:show] do
-    # # Destroy link on show
-    if controller.current_ability.can?( :destroy, resource ) and controller.action_methods.include?("destroy")
-      link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name),
-        resource_path(resource),
-        :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'))
-    end
-  end
-
   
   ###########
   ## Index ##
