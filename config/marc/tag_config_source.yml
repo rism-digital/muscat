@@ -42,7 +42,7 @@
 # inserted or updated in the masters table. See search_config.X.X.yml for more details on search functionality
 # and the fulltext index.
 
-
+:model: source
 :tags:
   "000": 
     :master: ""

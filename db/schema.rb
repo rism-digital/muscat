@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624151539) do
+ActiveRecord::Schema.define(version: 20140721142652) do
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id",       null: false
@@ -225,6 +225,7 @@ ActiveRecord::Schema.define(version: 20140624151539) do
     t.datetime "updated_at"
     t.string   "wf_audit",        limit: 16,  default: "unapproved"
     t.string   "wf_stage",        limit: 16,  default: "unpublished"
+    t.text     "marc_source"
   end
 
   add_index "people", ["wf_stage"], name: "index_people_on_wf_stage", using: :btree

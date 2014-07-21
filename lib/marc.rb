@@ -26,8 +26,8 @@ class Marc
   
   DOLLAR_STRING = "_DOLLAR_"
   
-  def initialize(source = nil)
-    @root = MarcNode.new
+  def initialize(model, source = nil)
+    @root = MarcNode.new(model)
     @marc21 = Regexp.new('^[\=]([\d]{3,3})[\s]+(.*)$')
     @loaded = false
     @resolved = false
@@ -35,6 +35,8 @@ class Marc
     @tag = nil
     @source = source
     @results = Array.new
+    @model = model
+    @marc_configuration = MarcConfigCache.get_configuration model
   end
   
   # Returns the root MarcNode
@@ -73,16 +75,16 @@ class Marc
   def parse_marc21(tag, data)
     # Warning! we are skipping the tag that are not included in MarcConfig
     # It would probably be wise to notify the user 
-    if !MarcConfig.has_tag? tag
+    if !@marc_configuration.has_tag? tag
       @results << "Tag #{tag} missing in the marc configuration"
       return
     end
     
     # control fields
-    if MarcConfig.is_tagless? tag
+    if @marc_configuration.is_tagless? tag
       if data =~ /^[\s]*(.+)$/
         content = $1
-        tag_group = @root << MarcNode.new(tag, content, nil)
+        tag_group = @root << MarcNode.new(@model, tag, content, nil)
       end
     # normal fields
     else
@@ -93,7 +95,7 @@ class Marc
       end
        #p indicator
        #p record
-      tag_group = @root << MarcNode.new(tag, nil, indicator)
+      tag_group = @root << MarcNode.new(@model, tag, nil, indicator)
       # iterate trough the subfields
       while record =~ /^[$]([\d\w]{1,1})([^$]*)(.*)$/
         subtag  = $1
@@ -103,16 +105,16 @@ class Marc
         content.gsub!(DOLLAR_STRING, "$")
       
         # missing subtag 
-        @results << "Subfield #{tag} $#{subtag} missing in the marc configuration" if !MarcConfig.has_subfield? tag, subtag
+        @results << "Subfield #{tag} $#{subtag} missing in the marc configuration" if !@marc_configuration.has_subfield? tag, subtag
         
-        subtag = tag_group << MarcNode.new(subtag, content, nil)
+        subtag = tag_group << MarcNode.new(@model, subtag, content, nil)
       end
     end
   end
 
   # Load marc data from hash, handy for json reading
   def load_from_hash(hash, resolve = true)
-    @root << MarcNode.new("000", hash['leader'], nil) if hash['leader']
+    @root << MarcNode.new(@model, "000", hash['leader'], nil) if hash['leader']
     
     if hash['fields']
       grouped_tags = {}
@@ -129,21 +131,21 @@ class Marc
               ind = ""
               
               if !field.has_key?('ind1') || !field.has_key?('ind2')
-                ind = MarcConfig.get_default_indicator tag
+                ind = @marc_configuration.get_default_indicator tag
               else
                 ind = field['ind1'] + field['ind2']
                 ind.gsub!(" ", "#")
               end
               
-              tag_group = @root << MarcNode.new(tag, nil, ind)
+              tag_group = @root << MarcNode.new(@model, tag, nil, ind)
               field['subfields'].each do | pos |
                 pos.each_pair do |code, value|
                   value.gsub!(DOLLAR_STRING, "$")
-                  tag_group << MarcNode.new(code, value, nil)
+                  tag_group << MarcNode.new(@model, code, value, nil)
                 end
               end
             else
-              @root << MarcNode.new(tag, field, nil)
+              @root << MarcNode.new(@model, tag, field, nil)
             end # field.is_a?(Hash)
           end # toplevel.each_pair
         end # grouped_tags[tag_key].each
@@ -159,11 +161,15 @@ class Marc
     @root.resolve_externals unless !resolve
   end
 
+  def get_model
+    return @model.to_s
+  end
+
   # Get all the foreign fields for this Marc object. Foreign fields are the one referred by ext_id ($0) in the marc record
   def get_all_foreign_associations
     if @all_foreign_associations.empty?
       for child in @root.children
-        if MarcConfig.has_foreign_subfields(child.tag)
+        if @marc_configuration.has_foreign_subfields(child.tag)
           if master = child.get_master_foreign_subfield
             master.set_foreign_object
             @all_foreign_associations[master.foreign_object.id] = master.foreign_object
@@ -176,12 +182,12 @@ class Marc
 
   # Test if the root element starts with =xxx where xxx are digits
   # Also check (and correct) zero padding for fields and subfield with zero-padding requirement (e.g., IDs)
-  def is_valid?
+  def is_valid?(pad = true)
     load_source unless @loaded
     begin
       # loop through all the children to check and correct the zero-padding
       for child in @root.children
-        child.check_padding( child.tag, "" )
+        child.check_padding( child.tag, "" ) if pad
       end
       if @root.to_marc =~ /^=[\d]{3,3}.*/
         return true
@@ -192,209 +198,6 @@ class Marc
     return false
   end
 
-  # Get the std_title and std_title_d values
-  def get_std_title  
-    std_title = ""
-    std_title_d = ""
-    
-    # try to get the title (130)
-    node = first_occurance("130", "a")
-    # get 240 if nothing or PSMD
-    if !node || RISM::BASE == "pr"
-      node = first_occurance("240", "a")
-    end
-    # get 245 if INVENTORIES
-    if RISM::BASE == "in"
-      node = first_occurance("245", "a")
-    end
-    standard_title = node.foreign_object if node 
-   
-    # we found one
-    if standard_title
-      # specific for inventories
-      if RISM::BASE == "in"
-        std_title = pretty_truncate(standard_title.title, 50)
-        std_title_d = DictionaryOrder::normalize(std_title)
-      else
-        std_title = standard_title.title
-        std_title_d = standard_title.title_d
-      end
-    # or not
-    else
-      if is_convolutum?
-        std_title = "[Convolutum]"  
-        std_title_d = '+'      
-      elsif is_holding?
-        std_title = "[Holding]"  
-        std_title_d = '+' 
-      else
-        std_title = "[Collection]"
-        std_title_d = '-' 
-      end
-    end
-    
-    [std_title, std_title_d]
-  end
-  
-  # Get the composer and composer_d values
-  def get_composer
-    composer = ""
-    composer_d = ""
-
-    if node = first_occurance("100", "a")
-      person = node.foreign_object
-      composer = person.full_name
-      composer_d = person.full_name_d
-    end
-    
-    [composer, composer_d]
-  end
-  
-  # Get the Library and shelfmarc for a MARC record
-  def get_siglum_and_shelf_mark
-    siglum = "" 
-    ms_no = ""
-    
-
-    tags_852 = by_tags(["852"])    
-    if tags_852.length > 1 # we have multiple copies
-      tags_852.each do |tag|
-        a_tag = tag.fetch_first_by_tag("a").content
-        siglum = siglum == "" ? "#{a_tag}" : "#{siglum}, #{a_tag}"
-      end
-      #siglum = "[multiple copies]"
-      ms_no = "[multiple copies]"
-          
-    elsif tags_852.length == 1 # single copy
-      if node = first_occurance("852", "a")
-        siglum = node.foreign_object.siglum
-      end
-      if node = first_occurance("852", "p")
-        ms_no = node.content
-      end
-    end
-    
-    return [siglum, ms_no]
-  end
-  
-  # On RISM A/1 ms_no contains the OLD RISM ID, get it from 035
-  def get_book_rism_id
-    if node = first_occurance("035", "a")
-      return node.content
-    end
-  end
-  
-  # For bibliographic records, set the ms_title and ms_title_d field fromMARC 245 or 246
-  def get_source_title
-    ms_title = "[unset]"  
-    ms_title_field = (RISM::BASE == "in") ? "246" : "245" # one day the ms_title field (and std_title field) should be put in the environmnent.rb file
-    if node = first_occurance(ms_title_field, "a")
-      ms_title = node.content
-    end
-    
-    # Special quirk for a-1
-    # Reprints not always have 245 set, so we copied the 245 from the parent
-    # into the 246. Since only reprints have 246, we can safely copy it from
-    # there so it shows the [previous entry:] tag.
-    # Quirky because it will re-read the marc data
-    if RISM::BASE == "a1"
-      if node = first_occurance("246", "a")
-        ms_title = node.content
-      end
-    end
-    
-    ms_title_d = DictionaryOrder::normalize(ms_title)
-   
-    return [ms_title, ms_title_d]
-  end
-  
-  # For holding records, set the condition and the urls (aliases)
-  def get_ms_condition_and_urls
-    ms_condition = "" 
-    urls = ""
-    image_urls = ""
-    
-    tag_852 = first_occurance( "852" )
-    if tag_852
-      q_tag = tag_852.fetch_first_by_tag("q")
-      ms_condition = q_tag.content if q_tag
-    
-      url_tags = tag_852.fetch_all_by_tag("u")
-      url_tags.each do |u|
-        image_urls += "#{u.content}\n"
-      end
-      
-      url_tags = tag_852.fetch_all_by_tag("z")
-      url_tags.each do |u|
-        urls += "#{u.content}\n"
-      end
-      
-    end
-    
-    return [ms_condition, urls, image_urls]
-  end
-  
-  # Set miscallaneous values
-  def get_miscellaneous_values
-    
-    # In a1 is only in 033
-    if RISM::BASE == "a1"
-      language = "Unknown"
-      date_from = nil
-      date_to = nil
-
-      # Try to extract all the text from 260
-      if node = first_occurance("260")
-        tag = node.fetch_first_by_tag(:c)
-        if tag && tag.content
-          toks = tag.content.split(/(\d+)/)
-          first = true
-          toks.each do |tk|
-            next if tk.to_i == 0
-            
-            if first          
-              date_from = tk.to_i
-              first = false
-            else
-              date_to = tk.to_i
-            end
-            
-          end
-        end
-      end
-      return [language, date_from, date_to]
-      
-    else
-      #FIXME!!! move to 033 for others?
-      language = "Unknown"
-      date_from = nil
-      date_to = nil
-
-      if node = first_occurance("008")
-        unless node.content.empty?
-          language = LANGUAGES[marc_helper_get_008_language(node.content)] || "Unknown"
-          date_from = marc_helper_get_008_date1(node.content) || nil
-          date_to = marc_helper_get_008_date2(node.content) || nil
-        end
-      end
-
-      return [language, date_from, date_to]
-    end
-    
-  end
-  
-  # Return if the MARC leader matches npd, i.e. convolutum
-  def is_convolutum?
-    return false unless get_leader.match(/^.....npd.*$/i)
-    return true
-  end
-
-  # Return if the MARC leader matches nu, i.e. holding
-  def is_holding?
-    return false unless get_leader.match(/^.....nu.*$/i)
-    return true
-  end
-  
   # Return the MARC leader
   def get_leader
     control000 = first_occurance("000").content || "" rescue control000 = ""
@@ -411,6 +214,15 @@ class Marc
     insert_at
   end
   
+  # Return the ID from field 001
+  def get_marc_source_id
+    source_id = nil
+    if node = first_occurance("001")
+      source_id = node.content
+    end
+    return source_id
+  end
+  
   # Update the last transaction field, 005.
   def update_005
     last_transcation = Time.now.utc.strftime("%Y%m%d%H%M%S") + ".0"
@@ -418,62 +230,10 @@ class Marc
     if _005_tag
       _005_tag.content = last_transcation
     else
-      @root.add_at(MarcNode.new("005", last_transcation, nil), get_insert_position("005") )
+      @root.add_at(MarcNode.new(@model, "005", last_transcation, nil), get_insert_position("005") )
     end
   end
   
-  # If this manuscript is linked with another via 772/773, update if it is our parent
-  def update_77x
-    # copy & pasted for now
-    if (RISM::BASE == "pr")
-      
-      # See if we have a 1st relation in the 775
-      parent_tags = by_tags_with_subtag("775", "4", "1st")
-      return if parent_tags.count == 0 # no, return
-      
-      # We should NOT have more than one 775 1st tag, in every case
-      # we will get only the fist and ignore the eventual others
-      parent_manuscript_id = parent_tags[0].fetch_first_by_tag(:w)
-      # puts parent_manuscript_id
-      return if !parent_manuscript_id
-      parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
-      return if !parent_manuscript
-      
-      # check if the 775 tag already exists in the parent
-      parent_manuscript.marc.each_data_tag_from_tag("775") do |tag|
-        subfield = tag.fetch_first_by_tag("w")
-        return if subfield && subfield.content == get_id
-      end
-      # nothing found, add it in the parent manuscript
-      _775_w = MarcNode.new("775", "", MarcConfig.get_default_indicator("775"))
-      _775_w.add_at(MarcNode.new("w", get_id, nil), 0 )
-      _775_w.add_at(MarcNode.new("4", "led", nil), 1 )
-      parent_manuscript.marc.root.add_at(_775_w, parent_manuscript.marc.get_insert_position("775") )
-      parent_manuscript.suppress_create_incipit
-      parent_manuscript.suppress_update_77x
-      parent_manuscript.save
-    else
-      # do we have a parent manuscript?
-      parent_manuscript_id = first_occurance("773", "w")
-      return if !parent_manuscript_id
-      parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
-      return if !parent_manuscript
-      # check if the 772 tag already exists
-      parent_manuscript.marc.each_data_tag_from_tag("772") do |tag|
-        subfield = tag.fetch_first_by_tag("w")
-        return if subfield && subfield.content == get_id
-      end
-      # nothing found, add it in the parent manuscript
-      _772_w = MarcNode.new("772", "", MarcConfig.get_default_indicator("772"))
-      _772_w.add_at(MarcNode.new("w", get_id, nil), 0 )
-      parent_manuscript.marc.root.add_at(_772_w, parent_manuscript.marc.get_insert_position("772") )
-      parent_manuscript.suppress_create_incipit
-      parent_manuscript.suppress_update_77x
-      parent_manuscript.save
-    end
-    return
-  end
-
   # Set the RISM ID in the 001 field
   def set_id(id)
     id_tag = first_occurance("001")
@@ -489,7 +249,7 @@ class Marc
         end
         index += 1
       end
-      @root.add_at(MarcNode.new("001",_id, nil), save_at + 1)
+      @root.add_at(MarcNode.new(@model, "001",_id, nil), save_at + 1)
     end
   end
   
@@ -625,7 +385,7 @@ class Marc
     load_source unless @loaded
     seen = Hash.new
     for child in @root.children
-      unless (MarcConfig.is_tagless? child.tag) && no_control
+      unless (@marc_configuration.is_tagless? child.tag) && no_control
         seen[child.tag] = 1
       end
     end
@@ -671,7 +431,7 @@ class Marc
 
   # Get the value of a tag, from the foreign object if necessary
   def get_real_value(parent, child)
-    if MarcConfig.is_foreign?(parent.tag, child.tag)
+    if @marc_configuration.is_foreign?(parent.tag, child.tag)
       child.set_foreign_object unless child.foreign_object
       #allfields[child.tag + grandchild.tag] = grandchild.looked_up_content
       value = child.looked_up_content

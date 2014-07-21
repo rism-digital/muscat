@@ -59,7 +59,7 @@
 				<div style="vertical-align: bottom; background-color: transparent">
 					<ul class="repeating_subfield">
 					<%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
-						subfield_collection << MarcNode.new if subfield_collection.empty?
+						subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
 					  	subfield_collection.each do |marc_subfield| %>
 						<%= render :partial => "editor/subfield_li", 
 							:locals => { :column => [subfield, field_settings], 
@@ -75,7 +75,7 @@
 			<td colspan="<%= col_span -%>" rowspan="<%= row_span -%>">
 			<div style="visibility: hidden; height: 0px;">
 				<%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
-					subfield_collection << MarcNode.new if subfield_collection.empty?
+					subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
 				  	subfield_collection.each do |marc_subfield| %>
 					<%= render :partial => (field_settings.has_key?('editor_partial') ? "options/#{field_settings['editor_partial']}" : "editor/subfield"), 
 						:locals => { :marc_tag => marc_tag, :tag_name => tag_name, 

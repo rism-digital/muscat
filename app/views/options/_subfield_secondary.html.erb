@@ -1,5 +1,5 @@
 <%- master = MarcConfig.get_master(tag_name) %>
-<%-	marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new %>
+<%-	marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new(@item.marc.get_model) %>
 <%- no_new = params.include?("no_new") ? params["no_new"] : false %>
 <%- ac_path = send(params['type'] + "_default_autocomplete")%>
 <input type="hidden" class="autocomplete_target serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-subfield-iterator="<%=s_iterator%>" value="<%= marc_subfield_m.content %>">

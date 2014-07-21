@@ -22,9 +22,12 @@ class Person < ActiveRecord::Base
   has_many :works
   has_and_belongs_to_many :sources
   
+  composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
+  
   validates_presence_of :full_name  
   
   before_destroy :check_dependencies
+  before_save :set_object_fields
   
   searchable do
     integer :id
@@ -55,6 +58,23 @@ class Person < ActiveRecord::Base
       errors.add :base, "The person could not be deleted because it is used"
       return false
     end
+  end
+  
+  def set_object_fields
+
+    # update last transcation
+    marc.update_005
+    
+    # source id
+    ##marc_source_id = marc.get_marc_source_id
+    ##self.id = marc_source_id if marc_source_id
+    # FIXME how do we generate ids?
+    #self.marc.set_id self.id
+
+    # std_title
+    self.full_name, self.full_name_d = marc.get_full_name
+    
+    self.marc_source = self.marc.to_marc
   end
   
 end
