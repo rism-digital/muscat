@@ -35,9 +35,9 @@ The Marc files should contain valid Marc records, with the basic control fields.
  =752  ##$aBelgium$dAntwerp
  =852  41$aGB Lbl$pA.234$qCopy at A.234. Imperfect: the tenor part book only
 
-The simplest way to obtain Marc records in such a format is to use the <tt>marcxml2marctxt</tt> XSL stylesheet available in the <tt>./public/xsl/</tt> directory. A sample MarcXML file is provided (+./housekeeping/import/sample.xml+). Records can be converted with a XSLT 1.0 processor, for example with the following command:
+The simplest way to obtain Marc records in such a format is to use the <tt>marcxml2marctxt</tt> XSL stylesheet available in the <tt>./housekeeping/import/</tt> directory. A sample MarcXML file is provided (+./housekeeping/import/sample.xml+). Records can be converted with a XSLT 2.0 processor, for example with the following command:
 
- xsltproc marcxml2marctxt.xsl input.xml > ouput.txt
+ java -Xmx120000m net.sf.saxon.Transform -o:output.txt -s:input.xml -xsl:marcxml2marctxt.xsl
 
 Marc records in binary format can be converted to ASCII with standard tools such as MARCBreaker (http://www.loc.gov/marc/makrbrkr.html#download) or MARConvert™ (http://www.systemsplanning.com/marconvert/). Marc tools are listed on the Library of Congress webpage (http://www.loc.gov/marc/marctools.html).
 
