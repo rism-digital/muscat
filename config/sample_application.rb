@@ -13,6 +13,10 @@ module RISM
   MARC = "ch"
   # Select the configuration for the editor profiles to load
   EDITOR_PROFILE = ""
+  
+  BASE_ID = "00000400"
+  # The base id for generating new holding IDs
+  BASE_HOLDING_ID = "00002"
 end
 
 module Muscat

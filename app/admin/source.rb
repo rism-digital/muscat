@@ -36,7 +36,37 @@ ActiveAdmin.register Source do
       end
     end
 
+    def new
+      @source = Source.new
+      @based_on = String.new
+
+      if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_type] || params[:new_type].empty?)
+        redirect_to action: :select_new_template
+        return
+      end
+
+      if params[:existing_title] and !params[:existing_title].empty?
+        @based_on = "exsiting title"
+        base_item = Source.find(params[:existing_title])
+        new_marc = Marc.new(base_item.marc.marc_source)
+        new_marc.load_source false # this will need to be fixed
+        new_marc.first_occurance("001").content = "__TEMP__"
+        @source.marc = new_marc
+      elsif File.exists?("#{Rails.root}/config/marc/#{RISM::BASE}/source/" + params[:new_type] + '.marc')
+        @based_on = params[:new_type]
+        new_marc = Marc.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/source/" +params[:new_type] + '.marc'))
+        new_marc.load_source false # this will need to be fixed
+        @source.marc = new_marc
+      end
+      @page_title = "New source"
+      @editor_profile = EditorConfiguration.get_applicable_layout @source
+      #To transmit correctly @item we need to have @source initialized
+      @item = @source
+    end
+
   end
+  
+  collection_action :select_new_template, :method => :get
   
   collection_action :marc_editor_save, :method => :post do
     #unless role_at_least? :cataloguer
@@ -50,12 +80,12 @@ ActiveAdmin.register Source do
       new_marc.load_from_hash(marc_hash)
   
       @item = nil
-      if new_marc.get_source_id != "__TEMP__" 
-        @item = Source.find(new_marc.get_source_id)
+      if new_marc.get_id != "__TEMP__" 
+        @item = Source.find(new_marc.get_marc_source_id)
       end
     
       if !@item
-        @item = Source.new( )
+        @item = Source.new
         #@item.user = current_user
       end
       @item.marc = new_marc
@@ -120,14 +150,14 @@ ActiveAdmin.register Source do
   ## Edit ##
   ##########
   
-  sidebar "Sections", :only => :edit do
+  sidebar "Sections", :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
   end
   
   form do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_edition_bar( self )
-    @item = @arbre_context.assigns[:item]
+    @item =  @arbre_context.assigns[:item]
     render :partial => "editor/edit_wide"
     active_admin_edition_bar( self )
   end

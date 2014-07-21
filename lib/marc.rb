@@ -251,7 +251,7 @@ class Marc
   end
   
   # Get the Library and shelfmarc for a MARC record
-  def get_siglum_and_ms_no
+  def get_siglum_and_shelf_mark
     siglum = "" 
     ms_no = ""
     
@@ -285,7 +285,7 @@ class Marc
   end
   
   # For bibliographic records, set the ms_title and ms_title_d field fromMARC 245 or 246
-  def get_ms_title
+  def get_source_title
     ms_title = "[unset]"  
     ms_title_field = (RISM::BASE == "in") ? "246" : "245" # one day the ms_title field (and std_title field) should be put in the environmnent.rb file
     if node = first_occurance(ms_title_field, "a")
@@ -409,15 +409,6 @@ class Marc
       insert_at += 1
     end
     insert_at
-  end
-  
-  # Return the ID from field 001
-  def get_source_id
-    source_id = nil
-    if node = first_occurance("001")
-      source_id = node.content
-    end
-    return source_id
   end
   
   # Update the last transaction field, 005.
@@ -803,20 +794,67 @@ class Marc
 
   def ==(other)
     load_source unless @loaded
-    @source_id == other.get_source_id
+    @source_id == other.get_marc_source_id
   end
 
   #TODO: This needs to compare the actual data hashes and not source_id
   #def ===(other)
-  #  @source_id == other.get_source_id
+  #  @source_id == other.get_marc_source_id
   #end
 
   def <=>(other)
     load_source unless @loaded
-    @source_id.to_i <=> other.get_source_id.to_i
+    @source_id.to_i <=> other.get_marc_source_id.to_i
   end
 
   alias to_s to_marc
-  alias marc_source to_marc 
+  alias marc_source to_marc
+  
+  private
+  
+  def marc_helper_get_008_language(value)
+    # language is 35-37
+    if value.length <= 35
+      marc_get_range(value, value.length - 5, 3)
+    else
+      field = marc_get_range(value, 35, 3)
+      if field
+        field = field.to_s
+      end
+    end
+    return field
+  end
+  
+  # Get the first date from MARC 008
+  def marc_helper_get_008_date1(value)
+    # date1 is 07-10
+    field = marc_get_range(value, 7, 4)
+    if field
+      field = field.to_i
+    end
+    return field
+  end
+
+  # Get the second date from MARC 008
+  def marc_helper_get_008_date2(value)
+    # date2 is 11-14
+    field = marc_get_range(value, 11, 4)
+    if field
+      field = field.to_i
+    end
+    return field
+  end
+  
+  # Return the string from the given start for lenght in a 008 MARC record
+  def marc_get_range(value, start, length)
+    if value.length <= start
+      return nil
+    end
+    field = value[start, length]
+    if field.match(/x+/i)
+      return nil
+    end
+    return field
+  end
   
 end

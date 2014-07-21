@@ -53,10 +53,45 @@ class Source < ActiveRecord::Base
   composed_of :marc, :class_name => "Marc", :mapping => %w(marc_source)
   alias_attribute :id_for_fulltext, :id
   
+  # FIXME id generation
+  before_create :generate_id
   before_destroy :check_dependencies
+  before_save :set_object_fields
   after_save :reindex
- 
+  
+  # alias for holding records
+  alias_attribute :ms_condition, :title  
+  alias_attribute :image_urls, :title_d
+  alias_attribute :urls, :composer_d
+  # For bibliografic records in A/1, the old rism id goes into ms_no
+  alias_attribute :book_id, :shelf_mark
+  
   attr_accessor :suppress_reindex_trigger
+  
+  # Sets the initial values for the ms. on creation. In particular it creates a id,
+  # made of BASE_ID + USER_RISM_NO + maximum id
+  # for holding records, made of BASE_HOLDING_ID + maximum id 
+  def generate_id
+
+    if !self.id or self.id == "__TEMP__" or self.id == "__TEMP_HOLDING__"
+      # lower and upper boundary of the server
+      user = 9 #
+      lowest_base_id = "#{RISM::BASE_ID.to_i + user}000000".to_i
+      upper_base_id = ((RISM::BASE_ID.to_i + 1 + user).to_s + "000000").to_i  
+      if self.id == "__TEMP_HOLDING__"
+        lowest_base_id = "#{RISM::BASE_HOLDING_ID}000000000".to_i
+        upper_base_id =  "#{RISM::BASE_HOLDING_ID}999999999".to_i
+      end
+      highest_id = Source.maximum(:id, :conditions => ['id < ?', ("%014d" % upper_base_id)]).to_i + 1
+      # we want at least the lower boundary
+      highest_id = lowest_base_id if highest_id < lowest_base_id
+      self.id = "%014d" % highest_id
+      self.marc.set_id self.id
+      self.marc_source = self.marc.to_marc
+    elsif self.id && self.id.length != 14
+      self.id = "%014d" % self.id.to_i
+    end
+  end
   
   # Suppresses the solr reindex
   def suppress_reindex
@@ -80,13 +115,13 @@ class Source < ActiveRecord::Base
     string :std_title_order do 
       std_title
     end
-    text :std_title
+    text :std_title, :stored => true
     text :std_title_d
     
     string :composer_order do 
       composer
     end
-    text :composer
+    text :composer, :stored => true
     text :composer_d
     
     text :marc_source
@@ -94,13 +129,13 @@ class Source < ActiveRecord::Base
     string :title_order do 
       title
     end
-    text :title
+    text :title, :stored => true
     text :title_d
     
     string :shelf_mark_order do 
       shelf_mark
     end
-    text :shelf_mark
+    text :shelf_mark, :stored => true
     
     string :lib_siglum_order do
       lib_siglum
@@ -154,4 +189,67 @@ class Source < ActiveRecord::Base
     end
   end
     
+  # Method: set_object_fields
+  # Parameters: none
+  # Return: none
+  #
+  # Brings in the real data into the fields from marc structure
+  # seeing as all other models are involved in x-many-x relationships and ids
+  # are stored outside of the manuscripts table.
+  # 
+  # Fields are:
+  #  std_title
+  #  std_title_d
+  #  composer
+  #  composer_d
+  #  ms_title
+  #  ms_title_d
+  # 
+  # the _d variant fields store a normalized lower case version with accents removed
+  # the _d columns are used for western dictionary sorting in list forms
+  def set_object_fields
+
+    # update last transcation
+    marc.update_005
+    
+    # source id
+    ##marc_source_id = marc.get_marc_source_id
+    ##self.id = marc_source_id if marc_source_id
+    # FIXME how do we generate ids?
+    #self.marc.set_id self.id
+    
+    # parent source
+    parent = marc.get_parent
+    self.source_id = parent.id if parent
+    
+    # record type
+    self.record_type = 2 if marc.is_holding?
+    
+    # std_title
+    self.std_title, self.std_title_d = marc.get_std_title
+    
+    # composer
+    self.composer, self.composer_d = marc.get_composer
+    
+    # siglum and ms_no
+    # in A/1 we do not have 852 in the bibliographic data
+    # instead we store in ms_no the Book RISM ID (old rism id)
+    if RISM::BASE == "a1" and record_type == 0
+      self.book_id = marc.get_book_rism_id
+    else
+      self.lib_siglum, self.shelf_mark = marc.get_siglum_and_shelf_mark
+    end
+    
+    # ms_title for bibliographic records
+    self.title, self.title_d = marc.get_source_title if self.record_type != 2
+    
+    # physical_condition and urls for holding records
+    self.ms_condition, self.urls, self.image_urls = marc.get_ms_condition_and_urls if self.record_type == 2
+    
+    # miscallaneous
+    self.language, self.date_from, self.date_to = marc.get_miscellaneous_values
+
+    self.marc_source = self.marc.to_marc
+  end
+  
 end

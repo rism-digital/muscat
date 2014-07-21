@@ -1,3 +1,7 @@
+body {
+  font-size: 12px !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
 
 .muscat_panel {
   	padding-bottom: 25px !important;
@@ -12,4 +16,17 @@ body.active_admin table.index_table td {
 body.active_admin form fieldset ol > li {
 	padding-top: 4px !important;
 	padding-bottom: 4px !important;
+}
+
+// reduce the title bar h2 size and vertical padding
+#title_bar h2 {
+	font-size: 1.8em;
+}
+
+#title_bar {
+	padding: 8px 30px;
+}
+
+#titlebar_left, #titlebar_right {
+	height: 45px !important;
 }
