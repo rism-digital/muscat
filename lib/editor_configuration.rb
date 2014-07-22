@@ -64,6 +64,7 @@ class EditorConfiguration
     @name = conf[:name]
     @id = conf[:id]
     @filter = conf[:filter]
+    @model = conf[:model]
     @squeezed_labels_config = squeeze(conf[:labels])
     @squeezed_rules_config = squeeze(conf[:rules])
     @squeezed_options_config = squeeze(conf[:options])
@@ -83,6 +84,11 @@ class EditorConfiguration
   # Get the :filter Hash for this EditorConfiguration
   def filter
     @filter
+  end
+  
+  # Get the model for which this conf is applicable
+  def model
+    @model
   end
   
   #################################
@@ -296,14 +302,18 @@ class EditorConfiguration
   
   # Used from the SourceController, finds a layout that is applicabile for the current Source item
   # refer to _layout_is_applicable. It is filtered in base of the MARC leader or <tt>tag</tt> item.
-  def self.get_applicable_layout(manuscript)
+  def self.get_applicable_layout(model)
     profiles = EditorConfiguration.profiles
     default = nil
+    model_name = model.class.to_s.downcase
     profiles.each do |p|
+      
+      next if model_name != p.model
+      
       # we keep the default profile while looping in case we don't find an applicable one
       default = p if p.filter && p.filter["default"]
       # we got it
-      return p if self._layout_is_applicable manuscript, p
+      return p if self._layout_is_applicable model, p
     end
     return default
   end

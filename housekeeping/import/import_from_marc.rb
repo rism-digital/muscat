@@ -53,7 +53,7 @@ class Marc21Import
     buffer.gsub!(/ (=[0-9]{3,3})/, "\n\\1")
     
     if @total_records >= @from
-      marc = Marc.new(buffer)
+      marc = MarcPerson.new(buffer)
       # load the source but without resolving externals
       marc.load_source(false)
 

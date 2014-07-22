@@ -141,6 +141,7 @@ class MarcConfig
   
   # Check if a tag or subtag can be repeated (* or + mean it is)
   def multiples_allowed?(tag, subtag = "")
+    ap tag
     if subtag.empty?
         occurances = @tag_config[tag][:occurances]
     else

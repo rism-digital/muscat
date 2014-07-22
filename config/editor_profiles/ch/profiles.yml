@@ -2,6 +2,7 @@
 ###
 - :id: DefaultCH
   :name: Default (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -15,6 +16,7 @@
 ###
 - :id: ConvolutumCH
   :name: Convolutum (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -31,11 +33,12 @@
   - LayoutPartLinkageConvolutumCH
   - LayoutPartDateCH
   - LayoutConvolutumCH
-  :filter: 
+  :filter:
     leader: !ruby/regexp /.....npd.............../
 ###
 - :id: CollectionCH
   :name: Collection (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -54,12 +57,13 @@
   - LayoutPartLinkageCollectionCH
   - LayoutPartDateCH
   - LayoutCollectionCH
-  :filter: 
+  :filter:
     leader: !ruby/regexp /.....n[dc]c.............../
     tag: "110"
 ###
 - :id: LibrettoAnonymousCH
   :name: Libretto Anonymous (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -78,12 +82,13 @@
   - LayoutPartPerformanceCH
   - LayoutPartBibRefLibrettoAnonymousCH
   - LayoutLibrettoAnonymousCH
-  :filter: 
+  :filter:
     leader: !ruby/regexp /.....n[at]m.............../
     tag: "130"
 ###
 - :id: LibrettoAttributedCH
   :name: Libretto Attributed (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -102,12 +107,13 @@
   - LayoutPartPerformanceCH
   - LayoutPartBibRefLibrettoAttributedCH
   - LayoutLibrettoAttributedCH
-  :filter: 
+  :filter:
     leader: !ruby/regexp /.....n[at]m.............../
     tag: "100"
 ###
 - :id: AnonymousWorkCH
   :name: Anonymous Work (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -128,12 +134,13 @@
   - LayoutPartBibRefAnonymousCH
   - LayoutPartLinkageWorkCH
   - LayoutAnonymousWorkCH
-  :filter: 
+  :filter:
     leader: !ruby/regexp /.....n[dc]m.............../
     tag: "130"
 ###
 - :id: AnonymousWorkinCollectionCH
   :name: Anonymous Work in Collection (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -154,12 +161,13 @@
   - LayoutPartBibRefAnonymousCH
   - LayoutPartLinkageWorkCollectionCH
   - LayoutAnonymousWorkCollectionCH
-  :filter: 
+  :filter:
     leader: !ruby/regexp /.....n[dc]d.............../
     tag: "130"
 ###
 - :id: AttributedWorkCH
   :name: Attributed Work (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -180,12 +188,13 @@
   - LayoutPartBibRefAttributedCH
   - LayoutPartLinkageWorkCH
   - LayoutAttributedWorkCH
-  :filter: 
+  :filter:
     leader: !ruby/regexp /.....n[dc]m.............../
     tag: "100"
 ###
 - :id: AttributedWorkinCollectionCH
   :name: Attributed Work in Collection (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -206,12 +215,13 @@
   - LayoutPartBibRefAttributedCH
   - LayoutPartLinkageWorkCollectionCH
   - LayoutAttributedWorkCollectionCH
-  :filter: 
+  :filter:
     leader: !ruby/regexp /.....n[dc]d.............../
     tag: "100"
 ###
 - :id: TheoreticaAnonymousCH
   :name: Theoretica Anonymous (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -229,12 +239,13 @@
   - LayoutPartAddedEntriesCH
   - LayoutPartBibRefTheoreticaCH
   - LayoutTheoreticaAnonymousCH
-  :filter: 
+  :filter:
     leader: !ruby/regexp /.....npm.............../
     tag: "130"
 ###
 - :id: TheoreticaAttributedCH
   :name: Theoretica Attributed (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -252,11 +263,12 @@
   - LayoutPartAddedEntriesCH
   - LayoutPartBibRefTheoreticaCH
   - LayoutTheoreticaAttributedCH
-  :filter: 
+  :filter:
     leader: !ruby/regexp /.....npm.............../
     tag: "100"
 - :id: ShowCH
   :name: Show (CH)
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -265,6 +277,35 @@
   - BasicFormOptions
   :layout: 
   - LayoutShowCH
+  :filter:
+    show_all: false
+    show: true
+
+# Configuration for person
+- :id: DefaultPerson
+  :name: Default Person
+  :model: person
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - PersonBasicFormOptions
+  :layout: 
+  - PersonLayoutDefault
   :filter: 
+    default: true
+- :id: ShowPerson
+  :name: Show Person
+  :model: person
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - PersonBasicFormOptions
+  :layout: 
+  - PersonLayoutShow
+  :filter:
     show_all: false
     show: true

@@ -24,6 +24,12 @@ ActiveAdmin.register Person do
       params.permit!
     end
     
+    def edit
+      @item = Person.find(params[:id])
+      @editor_profile = EditorConfiguration.get_applicable_layout @item
+      @page_title = "Edit #{@editor_profile.name} [#{@item.id}]"
+    end
+    
     def show
       @person = Person.find(params[:id])
       @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
@@ -84,7 +90,8 @@ ActiveAdmin.register Person do
   ##########
   ## Edit ##
   ##########
-  
+
+=begin  
   form do |f|
     f.inputs do
       f.semantic_errors :base
@@ -99,6 +106,19 @@ ActiveAdmin.register Person do
       f.input :alternate_dates, :label => (I18n.t :filter_alternate_dates), :input_html => { :rows => 3 }  
     end
     f.actions
+  end
+=end
+  
+  sidebar "Sections", :only => [:edit, :new] do
+    render("editor/section_sidebar") # Calls a partial
+  end
+  
+  form do
+    # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
+    active_admin_edition_bar( self )
+    @item =  @arbre_context.assigns[:item]
+    render :partial => "editor/edit_wide"
+    active_admin_edition_bar( self )
   end
 
 end

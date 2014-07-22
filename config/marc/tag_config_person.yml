@@ -110,7 +110,6 @@
       - :occurances: "?"
     - - d
       - :occurances: "?"
-        :browse_inline: true
 # This is a linked field
   "509": 
     :master: "0"
