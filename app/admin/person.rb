@@ -31,7 +31,8 @@ ActiveAdmin.register Person do
     end
     
     def show
-      @person = Person.find(params[:id])
+      @item = @person = Person.find(params[:id])
+      @editor_profile = EditorConfiguration.get_show_layout @person
       @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
     end
     
@@ -66,7 +67,8 @@ ActiveAdmin.register Person do
   ##########
   ## Show ##
   ##########
-  
+ 
+=begin 
   show do
     active_admin_navigation_bar( self )   
     attributes_table do
@@ -82,8 +84,17 @@ ActiveAdmin.register Person do
     end
     active_admin_embedded_source_list( self, person, params[:qe], params[:src_list_page] )
   end
+=end
   
-  sidebar "Search sources", :only => :show do
+  show :title => proc{ active_admin_source_show_title( @item.full_name, @item.life_dates, @item.id) } do
+    # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
+    active_admin_navigation_bar( self )
+    @item = @arbre_context.assigns[:item]
+    render :partial => "marc/show"
+    active_admin_navigation_bar( self )
+  end
+  
+  sidebar "Search people", :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
   

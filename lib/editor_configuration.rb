@@ -319,9 +319,13 @@ class EditorConfiguration
   end
   
   # Gets the default show layout. This is a configuration in which <tt>show</tt> in the <tt>filter</tt> is true.
-  def self.get_show_layout
+  def self.get_show_layout(model)
     profiles = EditorConfiguration.profiles
+    model_name = model.class.to_s.downcase
     profiles.each do |p|
+      
+      next if model_name != p.model
+      
       return p if p.filter && p.filter["show"]
     end
     return nil

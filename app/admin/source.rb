@@ -17,8 +17,8 @@ ActiveAdmin.register Source do
     end
     
     def show
-      @editor_profile = EditorConfiguration.get_show_layout
       @item = Source.find(params[:id])
+      @editor_profile = EditorConfiguration.get_show_layout @item
       @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
     end
 
