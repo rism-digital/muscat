@@ -6,8 +6,8 @@
 	</th>
 	<td>
 	<% 
-		content = MarcConfig.is_foreign?(tag.tag, subfield.tag) ? subfield.looked_up_content : subfield.content
-		browse_helper = MarcConfig.get_browse_helper(tag.tag, subfield.tag)
+		content = @item.marc.config.is_foreign?(tag.tag, subfield.tag) ? subfield.looked_up_content : subfield.content
+		browse_helper = @item.marc.config.get_browse_helper(tag.tag, subfield.tag)
 	-%>
 	<% if browse_helper -%>
 	   <%= raw method(browse_helper).call( content, subfield) %>

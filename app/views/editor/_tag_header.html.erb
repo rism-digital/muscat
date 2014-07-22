@@ -32,7 +32,7 @@
 		<%- end %>
 -->	
 		
-	<%- if MarcConfig.multiples_allowed?(tag_name) && no_add == false-%>
+	<%- if @item.marc.config.multiples_allowed?(tag_name) && no_add == false-%>
 
 		<a class="abutton ui-state-default marc_editor_button_pad_left abutton-icon-solo ui-corner-all" href="#" data-header-button="add" title="Add tag"><span class="ui-icon ui-icon-plus"></span>_</a>
 

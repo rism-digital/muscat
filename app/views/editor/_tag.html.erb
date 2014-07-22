@@ -30,7 +30,7 @@
 			col_span = 1
 		end
 
-		if MarcConfig.multiples_allowed?(tag_name, subfield)
+		if @item.marc.config.multiples_allowed?(tag_name, subfield)
 			#TODO: need to multi-lang this (see :title)
 			extra_leader = safe_link_to_function_stub "+", "marc_editor_add_subfield($(this))", :title => "Add another instance of this subfield"
 		end

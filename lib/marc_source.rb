@@ -229,7 +229,7 @@ class MarcSource < Marc
         return if subfield && subfield.content == get_id
       end
       # nothing found, add it in the parent manuscript
-      _775_w = MarcNode.new(@model, "775", "", MarcConfig.get_default_indicator("775"))
+      _775_w = MarcNode.new(@model, "775", "", @marc_configuration.get_default_indicator("775"))
       _775_w.add_at(MarcNode.new(@model, "w", get_id, nil), 0 )
       _775_w.add_at(MarcNode.new(@model, "4", "led", nil), 1 )
       parent_manuscript.marc.root.add_at(_775_w, parent_manuscript.marc.get_insert_position("775") )
@@ -248,7 +248,7 @@ class MarcSource < Marc
         return if subfield && subfield.content == get_id
       end
       # nothing found, add it in the parent manuscript
-      _772_w = MarcNode.new("772", "", MarcConfig.get_default_indicator("772"))
+      _772_w = MarcNode.new("772", "", @marc_configuration.get_default_indicator("772"))
       _772_w.add_at(MarcNode.new("w", get_id, nil), 0 )
       parent_manuscript.marc.root.add_at(_772_w, parent_manuscript.marc.get_insert_position("772") )
       parent_manuscript.suppress_create_incipit

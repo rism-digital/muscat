@@ -164,6 +164,10 @@ class Marc
   def get_model
     return @model.to_s
   end
+  
+  def config
+    return @marc_configuration
+  end
 
   # Get all the foreign fields for this Marc object. Foreign fields are the one referred by ext_id ($0) in the marc record
   def get_all_foreign_associations
