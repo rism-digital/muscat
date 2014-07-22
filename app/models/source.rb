@@ -84,11 +84,9 @@ class Source < ActiveRecord::Base
       highest_id = Source.maximum(:id, :conditions => ['id < ?', ("%014d" % upper_base_id)]).to_i + 1
       # we want at least the lower boundary
       highest_id = lowest_base_id if highest_id < lowest_base_id
-      self.id = "%014d" % highest_id
+      self.id = highest_id
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-    elsif self.id && self.id.length != 14
-      self.id = "%014d" % self.id.to_i
     end
   end
   
