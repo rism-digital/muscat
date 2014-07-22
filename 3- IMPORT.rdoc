@@ -5,11 +5,6 @@ Marc records can be imported into muscat. They can be fed and imported using the
 	./script/runner housekeeping/import/import_from_marc.rb $FILE
 	
 <tt>$FILE</tt> should contain all the Marc records in text format (see below). 
-Since the import procedure is complex and lengthy, it is advisable to split the Marc dataset in chunks og 5000/7000 records, even though this is not a requirement. 
-The separate chunks can then be fed for the import. For example, if the Marc files are numbered from 0000.marc to 0200.marc and placed into a marc/ subdirectory, a simple <tt>for</tt> loop in Bash can be
-used:
-
-	 for a in `ls marc/*.marc`; do ./script/runner housekeeping/import/import_from_marc.rb $a; done
 	 
 == Marc Formatting
 
@@ -46,6 +41,24 @@ bye the software id controlled in <tt>config/marc/tag_config.yml</tt>. In Partic
 to specific data into foreign tables in the database (to build up autority files). For example, the 100 Name tag is related to
 the Person object, and when importing a Person having the same name as in $0 is looked up. If the entry does not exist, it will be created
 (along with life_dates from $d).
+
+
+=== Splitting large files
+
+Since the import procedure is complex and lengthy, it is advisable to split the Marc dataset in chunks og 5000/7000 records, even though this is not a requirement.
+
+The separate chunks can then be fed for the import. For example, if the Marc files are numbered from 0000.marc to 0200.marc and placed into a marc/ subdirectory, a simple <tt>for</tt> loop in Bash can be
+used:
+
+	for a in `ls marc/*.marc`; do ./script/runner housekeeping/import/import_from_marc.rb $a; done
+	
+For splitting the MarcXML file (before the conversion to text), it is possible to use the <tt>splitmarcxml</tt> XSL stylesheet available in the <tt>./housekeeping/import/</tt> directory. The <tt>recordNumber</tt> parameter can be used to specify the number of record per file desired (default is 100,000). Records can be splitted with a XSLT 2.0 processor, for example with the following command:
+
+	java -Xmx120000m net.sf.saxon.Transform -ext:on -o:unused -s:input.xml -xsl:splitmarcxml.xsl recordNumber=200000
+
+Alternatively, the marc text files (after the conversion from MarcXML) can be easily splitting with the awk command:
+
+	awk '/^=000/ { if(!(c%s)) { count+=1; o=("split-"count".txt")} c+=1 } {print > o}' c=0 count=0 o=split-0.txt s=100000 < marc.txt
 
 === Authority files
 
