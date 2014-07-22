@@ -189,14 +189,18 @@ class MarcNode
           # we try the lookup using non-masters so hopefully we can match the field to the one already there
           # and avoid the duplication crash
           self.foreign_object.suppress_reindex if reindex == false
-          if !self.foreign_object.save
-            puts "Foreign object could not be saved, possible duplicate?" # Try again not using master field lookup"
-            # NOTE: THe code above is commented to allow duplicate entries in people/institutions for RISM A/I
-            # see the Institutions model
-            #master_tag = @marc_configuration.get_master( self.tag )
-            #add_master = true if master_tag == "0"
-            #self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters )
-            #puts "Foreign object could not be saved, no recovery from here." if !self.foreign_object.save
+          begin
+            if !self.foreign_object.save
+              puts "Foreign object could not be saved, possible duplicate?" # Try again not using master field lookup"
+              # NOTE: THe code above is commented to allow duplicate entries in people/institutions for RISM A/I
+              # see the Institutions model
+              #master_tag = @marc_configuration.get_master( self.tag )
+              #add_master = true if master_tag == "0"
+              #self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters )
+              #puts "Foreign object could not be saved, no recovery from here." if !self.foreign_object.save
+            end
+          rescue
+            $stderr.puts "Failed to save foreign object #{self.foreign_object.to_yaml}"
           end
         end 
         # now add the master subfield $0 with the id value
