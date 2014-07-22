@@ -44,7 +44,14 @@ class Person < ActiveRecord::Base
   
   def scaffold_marc
     new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/person/default.marc"))
-    new_marc.load_source true # this will need to be fixed
+    new_marc.load_source true
+    
+    new_100 = MarcNode.new("person", "100", "", "1#")
+    new_100.add_at(MarcNode.new("person", "a", self.full_name, nil), 0)
+    
+    pi = new_marc.get_insert_position("100")
+    new_marc.root.children.insert(pi, new_100)
+    
     self.marc_source = new_marc.to_marc
   end
   
