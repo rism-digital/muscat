@@ -145,7 +145,7 @@ class MarcNode
   # (the field is returned by get_master_foreign_subfield) it will try
   # to get the corrensponding object from the DB. If no id ($0) is present
   # it will try to look it up
-  def import(overwrite = false, rendex = false)
+  def import(overwrite = false, reindex = false)
     foreign_associations = {}
     if parent == nil
       @children.each do |child|
