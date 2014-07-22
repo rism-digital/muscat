@@ -72,7 +72,6 @@ class Source < ActiveRecord::Base
   # made of BASE_ID + USER_RISM_NO + maximum id
   # for holding records, made of BASE_HOLDING_ID + maximum id 
   def generate_id
-
     if !self.id or self.id == "__TEMP__" or self.id == "__TEMP_HOLDING__"
       # lower and upper boundary of the server
       user = 9 #

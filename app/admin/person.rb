@@ -45,9 +45,24 @@ ActiveAdmin.register Person do
       end
     end
     
+    def new
+      @person = Person.new
+      
+      new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/person/default.marc"))
+      new_marc.load_source false # this will need to be fixed
+      @person.marc = new_marc
+
+      @page_title = "New person"
+      @editor_profile = EditorConfiguration.get_applicable_layout @person
+      #To transmit correctly @item we need to have @source initialized
+      @item = @person
+    end
 
   end
   
+  # Include the MARC extensions
+  include MarcControllerActions
+    
   ###########
   ## Index ##
   ###########
@@ -67,24 +82,6 @@ ActiveAdmin.register Person do
   ##########
   ## Show ##
   ##########
- 
-=begin 
-  show do
-    active_admin_navigation_bar( self )   
-    attributes_table do
-      row (I18n.t :filter_full_name) { |r| r.full_name }
-      row (I18n.t :filter_life_dates) { |r| r.life_dates }
-      row (I18n.t :filter_birth_place) { |r| r.birth_place }
-      row (I18n.t :filter_gender) { |r| r.gender }
-      row (I18n.t :filter_composer) { |r| r.composer }
-      row (I18n.t :filter_source) { |r| r.source }
-      row (I18n.t :filter_comments) { |r| r.comments }  
-      row (I18n.t :filter_alternate_names) { |r| r.alternate_names }   
-      row (I18n.t :filter_alternate_dates) { |r| r.alternate_dates }    
-    end
-    active_admin_embedded_source_list( self, person, params[:qe], params[:src_list_page] )
-  end
-=end
   
   show :title => proc{ active_admin_source_show_title( @item.full_name, @item.life_dates, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
@@ -101,24 +98,6 @@ ActiveAdmin.register Person do
   ##########
   ## Edit ##
   ##########
-
-=begin  
-  form do |f|
-    f.inputs do
-      f.semantic_errors :base
-      f.input :full_name, :label => (I18n.t :filter_full_name)
-      f.input :life_dates, :label => (I18n.t :filter_life_dates) 
-      f.input :birth_place, :label => (I18n.t :filter_birth_place)
-      f.input :gender, :label => (I18n.t :filter_gender) 
-      f.input :composer, :label => (I18n.t :filter_composer)
-      f.input :source, :label => (I18n.t :filter_source)
-      f.input :comments, :label => (I18n.t :filter_comments)
-      f.input :alternate_names, :label => (I18n.t :filter_alternate_names), :input_html => { :rows => 3 }
-      f.input :alternate_dates, :label => (I18n.t :filter_alternate_dates), :input_html => { :rows => 3 }  
-    end
-    f.actions
-  end
-=end
   
   sidebar "Sections", :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial

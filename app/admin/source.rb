@@ -48,13 +48,13 @@ ActiveAdmin.register Source do
       if params[:existing_title] and !params[:existing_title].empty?
         @based_on = "exsiting title"
         base_item = Source.find(params[:existing_title])
-        new_marc = Marc.new(base_item.marc.marc_source)
+        new_marc = MarcSource.new(base_item.marc.marc_source)
         new_marc.load_source false # this will need to be fixed
         new_marc.first_occurance("001").content = "__TEMP__"
         @source.marc = new_marc
       elsif File.exists?("#{Rails.root}/config/marc/#{RISM::BASE}/source/" + params[:new_type] + '.marc')
         @based_on = params[:new_type]
-        new_marc = Marc.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/source/" +params[:new_type] + '.marc'))
+        new_marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/source/" +params[:new_type] + '.marc'))
         new_marc.load_source false # this will need to be fixed
         @source.marc = new_marc
       end
@@ -66,46 +66,11 @@ ActiveAdmin.register Source do
 
   end
   
+  # Include the MARC extensions
+  include MarcControllerActions
+  
   collection_action :select_new_template, :method => :get
-  
-  collection_action :marc_editor_save, :method => :post do
-    #unless role_at_least? :cataloguer
-    #  render :template => 'shared/no_privileges'
-    #else
-    
-    #begin
-  
-      marc_hash = JSON.parse params[:marc]
-      new_marc = Marc.new()
-      new_marc.load_from_hash(marc_hash)
-  
-      @item = nil
-      if new_marc.get_id != "__TEMP__" 
-        @item = Source.find(new_marc.get_marc_source_id)
-      end
-    
-      if !@item
-        @item = Source.new
-        #@item.user = current_user
-      end
-      @item.marc = new_marc
 
-    
-      @item.save
-      flash[:notice] = "Source #{@item.id} was successfully saved." 
-      #redirect_to :action => 'edit', :id => @item
-      # render :action => 'edit'
-    
-      @editor_profile = EditorConfiguration.get_applicable_layout @item
-      @source = @item
-      #redirect_to :action => 'edit', :id => @item
-      render :template => 'editor/reload_editor'
-    #rescue
-      #flash[:error] = "The Source could not be saved."
-      #render :template => 'editor/reload_editor'
-    #end
-  
-  end
   
   #scope :all, :default => true 
   #scope :published do |sources|

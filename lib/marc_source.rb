@@ -1,5 +1,5 @@
 class MarcSource < Marc
-  def initialize(source)
+  def initialize(source = nil)
     super("source", source)
   end
   

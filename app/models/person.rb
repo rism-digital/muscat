@@ -24,13 +24,24 @@ class Person < ActiveRecord::Base
   
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
   
-  validates_presence_of :full_name  
+#  validates_presence_of :full_name  
   
+  before_create :generate_id
   before_destroy :check_dependencies
   before_save :set_object_fields
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
+  
+  def generate_id
+    if !self.id or self.id == "__TEMP__"
+      highest_id = Person.maximum(:id).to_i + 1
+      
+      self.id = highest_id
+      self.marc.set_id self.id
+      self.marc_source = self.marc.to_marc
+    end
+  end
   
   # Suppresses the solr reindex
   def suppress_reindex
@@ -64,7 +75,7 @@ class Person < ActiveRecord::Base
       src_count
     end
   end
-  
+    
   # before_destroy, will delete Person only if it has no Source and no Work
   def check_dependencies
     if (self.sources.count > 0) || (self.works.count > 0)

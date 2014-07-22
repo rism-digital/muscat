@@ -1,5 +1,5 @@
 class MarcPerson < Marc
-  def initialize(source)
+  def initialize(source = nil)
     super("person", source)
   end
   
@@ -16,8 +16,5 @@ class MarcPerson < Marc
     
     [composer, composer_d]
   end
-  
-
-  
   
 end

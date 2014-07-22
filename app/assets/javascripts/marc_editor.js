@@ -323,13 +323,13 @@ function marc_editor_help( url ) {
 /*
  * form_type: 0 = save, 1 = preview, 2 = inline save
  */
-function marc_editor_send_form( source_column, destination_column, form_type, wheel ) {
+function marc_editor_send_form( source_column, destination_column, form_type, rails_model ) {
    
 	form = $('form', "#" + source_column);
 	json_marc = serialize_marc_editor_form(form);
 	
 	//$(form).valid();
-	url = "/sources/marc_editor_save"; ///form.attr("action");
+	url = "/" + rails_model + "/marc_editor_save"; ///form.attr("action");
 	if ( form_type == 1) {
 		url = "/manuscripts/marc_editor_preview";
 	}
