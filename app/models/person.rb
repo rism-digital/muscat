@@ -37,6 +37,10 @@ class Person < ActiveRecord::Base
     if !self.id or self.id == "__TEMP__"
       highest_id = Person.maximum(:id).to_i + 1      
       self.id = highest_id
+      
+      # If there is no marc, do not update it
+      return if marc_source == nil
+      
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
     end
@@ -97,7 +101,9 @@ class Person < ActiveRecord::Base
   end
   
   def set_object_fields
-    scaffold_marc if marc_source == nil
+    # do not scaffold if no marc
+    return if marc_source == nil
+    #scaffold_marc if marc_source == nil
 
     # update last transcation
     marc.update_005
