@@ -35,10 +35,7 @@ class Person < ActiveRecord::Base
   
   def generate_id
     if !self.id or self.id == "__TEMP__"
-      highest_id = Person.maximum(:id).to_i + 1
-      
-      scaffold_marc if marc_source == nil
-      
+      highest_id = Person.maximum(:id).to_i + 1      
       self.id = highest_id
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
@@ -47,8 +44,8 @@ class Person < ActiveRecord::Base
   
   def scaffold_marc
     new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/person/default.marc"))
-    new_marc.load_source false # this will need to be fixed
-    marc = new_marc
+    new_marc.load_source true # this will need to be fixed
+    self.marc_source = new_marc.to_marc
   end
   
   # Suppresses the solr reindex
@@ -93,6 +90,7 @@ class Person < ActiveRecord::Base
   end
   
   def set_object_fields
+    scaffold_marc if marc_source == nil
 
     # update last transcation
     marc.update_005
