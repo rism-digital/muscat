@@ -188,7 +188,7 @@ class MarcNode
           # the save will creash because of the duplicate field. In this case, we try an extreme remedy:
           # we try the lookup using non-masters so hopefully we can match the field to the one already there
           # and avoid the duplication crash
-          self.foreign_object.suppress_reindex if reindex = false
+          self.foreign_object.suppress_reindex if reindex == false
           if !self.foreign_object.save
             puts "Foreign object could not be saved, possible duplicate?" # Try again not using master field lookup"
             # NOTE: THe code above is commented to allow duplicate entries in people/institutions for RISM A/I
