@@ -20,8 +20,18 @@ class StandardTitle < ActiveRecord::Base
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
-    
-  searchable do
+  
+  # Suppresses the solr reindex
+  def suppress_reindex
+    self.suppress_reindex_trigger = true
+  end
+  
+  def reindex
+    return if self.suppress_reindex_trigger == true
+    self.index
+  end
+
+  searchable :auto_index => false do
     integer :id
     string :title_order do
       title
