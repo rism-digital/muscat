@@ -17,6 +17,9 @@ class StandardTitle < ActiveRecord::Base
   validates_presence_of :title
     
   before_destroy :check_dependencies
+  after_save :reindex
+  
+  attr_accessor :suppress_reindex_trigger
     
   searchable do
     integer :id

@@ -28,8 +28,21 @@ class Person < ActiveRecord::Base
   
   before_destroy :check_dependencies
   before_save :set_object_fields
+  after_save :reindex
   
-  searchable do
+  attr_accessor :suppress_reindex_trigger
+  
+  # Suppresses the solr reindex
+  def suppress_reindex
+    self.suppress_reindex_trigger = true
+  end
+  
+  def reindex
+    return if self.suppress_reindex_trigger == true
+    self.index
+  end
+
+  searchable :auto_index => false do
     integer :id
     string :full_name_order do
       full_name

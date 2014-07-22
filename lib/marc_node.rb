@@ -145,7 +145,7 @@ class MarcNode
   # (the field is returned by get_master_foreign_subfield) it will try
   # to get the corrensponding object from the DB. If no id ($0) is present
   # it will try to look it up
-  def import(overwrite = false)
+  def import(overwrite = false, rendex = false)
     foreign_associations = {}
     if parent == nil
       @children.each do |child|
@@ -188,6 +188,7 @@ class MarcNode
           # the save will creash because of the duplicate field. In this case, we try an extreme remedy:
           # we try the lookup using non-masters so hopefully we can match the field to the one already there
           # and avoid the duplication crash
+          self.foreign_object.suppress_reindex if reindex = false
           if !self.foreign_object.save
             puts "Foreign object could not be saved, possible duplicate?" # Try again not using master field lookup"
             # NOTE: THe code above is commented to allow duplicate entries in people/institutions for RISM A/I

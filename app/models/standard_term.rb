@@ -18,8 +18,21 @@ class StandardTerm < ActiveRecord::Base
   validates_uniqueness_of :term
     
   before_destroy :check_dependencies
+  after_save :reindex
+  
+  attr_accessor :suppress_reindex_trigger
     
-  searchable do
+  # Suppresses the solr reindex
+  def suppress_reindex
+    self.suppress_reindex_trigger = true
+  end
+  
+  def reindex
+    return if self.suppress_reindex_trigger == true
+    self.index
+  end
+
+  searchable :auto_index => false do
     integer :id
     string :term_order do
       term
