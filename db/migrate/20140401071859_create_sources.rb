@@ -8,21 +8,21 @@ class CreateSources < ActiveRecord::Migration
       t.column :record_type,        :tinyint, :default => 0
 
       t.column :std_title,          :string
-      t.column :std_title_d,        :string, { :limit => 128 }
+      t.column :std_title_d,        :string
 
       t.column :composer,           :string
-      t.column :composer_d,         :string, { :limit => 128 }
+      t.column :composer_d,         :string
 
       t.column :title,              :string
-      t.column :title_d,            :string, { :limit => 128 }
+      t.column :title_d,            :string
 
       t.column :shelf_mark,         :string
       t.column :language,           :string, :limit => 16
       t.column :date_from,          :integer
       t.column :date_to,            :integer
-      t.column :lib_siglums,        :string
+      t.column :lib_siglum,        :string
     
-      t.column :source,             :text
+      t.column :marc_source,        :text
 
       # this fields are kept for now - to be decided
       t.column :wf_audit,           :string, { :limit => 16, :default => "unapproved" }
