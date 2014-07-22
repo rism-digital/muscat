@@ -62,10 +62,10 @@ class Marc21Import
         # exit
         
         # step 1.  update or create a new manuscript
-        manuscript = Source.find_by_id( marc.get_marc_source_id )
-        if !manuscript
-          manuscript = Source.new(:wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
-        end
+        #manuscript = Source.find_by_id( marc.get_marc_source_id )
+        #if !manuscript
+          manuscript = Source.new(:id => marc.get_id, :wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
+        #end
           
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
         marc.import
