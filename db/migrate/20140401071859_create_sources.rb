@@ -13,8 +13,8 @@ class CreateSources < ActiveRecord::Migration
       t.column :composer,           :string
       t.column :composer_d,         :string
 
-      t.column :title,              :string
-      t.column :title_d,            :string
+      t.column :title,              :string, { :limit => 2048 }
+      t.column :title_d,            :string, { :limit => 2048 }
 
       t.column :shelf_mark,         :string
       t.column :language,           :string, :limit => 16

@@ -22,6 +22,9 @@ class CreateStandardTerms < ActiveRecord::Migration
       t.column :standard_term_id, :integer
       t.column :source_id, :integer      
     end
+    
+    add_index :standard_terms, :term
+    
   end
 
   def self.down
