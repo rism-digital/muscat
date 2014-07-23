@@ -115,7 +115,7 @@ ActiveAdmin.register Source do
   ## Edit ##
   ##########
   
-  sidebar "Sections", :only => [:edit, :new] do
+  sidebar "Sections", :class => "sidebar_tabs", :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
   end
   
