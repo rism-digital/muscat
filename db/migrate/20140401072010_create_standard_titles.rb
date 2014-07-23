@@ -24,6 +24,7 @@ class CreateStandardTitles < ActiveRecord::Migration
     end
     
     add_index :standard_titles, :title
+    add_index :standard_titles, :wf_stage
     
   end
 

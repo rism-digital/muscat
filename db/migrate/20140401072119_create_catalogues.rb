@@ -23,6 +23,9 @@ class CreateCatalogues < ActiveRecord::Migration
       t.column :updated_at,         :datetime     
     end
     
+    add_index :catalogues, :name
+    add_index :catalogues, :wf_stage
+    
     create_table :catalogues_sources, :id => false do |t|
       t.column :catalogue_id, :integer
       t.column :source_id, :integer      

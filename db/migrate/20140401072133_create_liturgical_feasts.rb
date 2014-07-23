@@ -17,6 +17,9 @@ class CreateLiturgicalFeasts < ActiveRecord::Migration
       t.column :updated_at,         :datetime     
     end
 
+    add_index :liturgical_feasts, :name
+    add_index :liturgical_feasts, :wf_stage
+
     create_table :liturgical_feasts_sources, :id => false do |t|
       t.column :liturgical_feast_id, :integer
       t.column :source_id, :integer      

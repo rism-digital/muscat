@@ -19,6 +19,9 @@ class CreatePlaces < ActiveRecord::Migration
       t.column :updated_at,         :datetime     
     end
     
+    add_index :places, :name
+    add_index :places, :wf_stage
+    
     create_table :places_sources, :id => false do |t|
       t.column :place_id, :integer
       t.column :source_id, :integer      

@@ -21,12 +21,14 @@ class CreateLibraries < ActiveRecord::Migration
       t.column :updated_at,         :datetime  
     end
     
+    add_index :libraries, :siglum
+    add_index :libraries, :wf_stage
+    
     create_table(:libraries_sources, :id => false) do |t|
       t.column :library_id, :integer
       t.column :source_id, :integer      
     end
     
-    add_index :libraries, :siglum
   end
 
   def self.down

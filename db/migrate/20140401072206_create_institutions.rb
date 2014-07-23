@@ -18,6 +18,9 @@ class CreateInstitutions < ActiveRecord::Migration
       t.column :updated_at,         :datetime     
     end
     
+    add_index :institutions, :name
+    add_index :institutions, :wf_stage
+    
     create_table :institutions_sources, :id => false do |t|
       t.column :institution_id, :integer
       t.column :source_id, :integer      

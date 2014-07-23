@@ -24,6 +24,7 @@ class CreateStandardTerms < ActiveRecord::Migration
     end
     
     add_index :standard_terms, :term
+    add_index :standard_terms, :wf_stage
     
   end
 

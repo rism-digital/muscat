@@ -25,14 +25,15 @@ class CreatePeople < ActiveRecord::Migration
       t.column :created_at,         :datetime
       t.column :updated_at,         :datetime  
     end   
+    
+    add_index :people, :full_name
+    add_index :people, :wf_stage
       
     create_table(:people_sources, :id => false) do |t|
       t.column :person_id, :integer
       t.column :source_id, :integer 
     end
-
-    add_index :people, :full_name
-
+    
   end
 
   def self.down

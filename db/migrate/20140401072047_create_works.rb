@@ -20,6 +20,9 @@ class CreateWorks < ActiveRecord::Migration
       t.column :updated_at,         :datetime
     end
     
+    add_index :works, :title
+    add_index :works, :wf_stage
+    
     create_table :sources_works, :id => false do |t| # id was removed
       t.column :source_id, :integer 
       t.column :work_id, :integer      

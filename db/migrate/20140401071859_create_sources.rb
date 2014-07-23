@@ -36,6 +36,11 @@ class CreateSources < ActiveRecord::Migration
       t.column :created_at,         :datetime
       t.column :updated_at,         :datetime     
     end
+    
+    add_index :sources, :source_id
+    add_index :sources, :record_type
+    add_index :sources, :wf_stage
+    
   end
 
   def self.down
