@@ -15,7 +15,9 @@ class Institution < ActiveRecord::Base
   has_and_belongs_to_many :sources
   
   validates_presence_of :name  
-    
+  
+  include NewIds
+  before_create :generate_new_id
   before_destroy :check_dependencies
   after_save :reindex
   

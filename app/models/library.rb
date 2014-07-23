@@ -20,7 +20,9 @@ class Library < ActiveRecord::Base
   validates_presence_of :siglum    
   
   validates_uniqueness_of :siglum
-    
+  
+  include NewIds
+  before_create :generate_new_id
   before_destroy :check_dependencies
   after_save :reindex
   

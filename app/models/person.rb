@@ -26,6 +26,7 @@ class Person < ActiveRecord::Base
   
 #  validates_presence_of :full_name  
   
+  include NewIds
   before_create :generate_id
   before_destroy :check_dependencies
   before_save :set_object_fields
@@ -34,16 +35,12 @@ class Person < ActiveRecord::Base
   attr_accessor :suppress_reindex_trigger
   
   def generate_id
-    if !self.id or self.id == "__TEMP__"
-      highest_id = Person.maximum(:id).to_i + 1      
-      self.id = highest_id
-      
-      # If there is no marc, do not update it
-      return if marc_source == nil
-      
-      self.marc.set_id self.id
-      self.marc_source = self.marc.to_marc
-    end
+    generate_new_id
+    # If there is no marc, do not update it
+    return if marc_source == nil
+    
+    self.marc.set_id self.id
+    self.marc_source = self.marc.to_marc
   end
   
   def scaffold_marc

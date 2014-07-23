@@ -15,7 +15,9 @@ class LiturgicalFeast < ActiveRecord::Base
   validates_presence_of :name
   
   validates_uniqueness_of :name
-    
+  
+  include NewIds
+  before_create :generate_new_id
   before_destroy :check_dependencies
   after_save :reindex
   

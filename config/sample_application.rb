@@ -15,6 +15,7 @@ module RISM
   EDITOR_PROFILE = ""
   
   BASE_ID = "00000400"
+  BASE_NEW_ID = 100000000
   # The base id for generating new holding IDs
   BASE_HOLDING_ID = "00002"
 end

@@ -16,7 +16,9 @@ class StandardTerm < ActiveRecord::Base
   validates_presence_of :term
   
   validates_uniqueness_of :term
-    
+  
+  include NewIds
+  before_create :generate_new_id
   before_destroy :check_dependencies
   after_save :reindex
   
