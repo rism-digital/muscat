@@ -81,7 +81,7 @@ class Marc21Import
         #manuscript.suppress_create_incipit
         #manuscript.suppress_create_incipit
         manuscript.suppress_reindex
-        manuscript.save #rescue puts "save failed"
+        manuscript.save rescue $stderr.puts "Failed to save SOURCE #{manuscript.to_yaml}"
 
         puts "Last offset: #{@total_records}, Last RISM ID: #{marc.first_occurance('001').content}"
       else
