@@ -22,6 +22,9 @@ class CreateStandardTitles < ActiveRecord::Migration
       t.column :standard_title_id, :integer
       t.column :source_id, :integer
     end
+    
+    add_index :standard_titles, :title
+    
   end
 
   def self.down

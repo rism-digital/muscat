@@ -25,7 +25,8 @@ class CreateLibraries < ActiveRecord::Migration
       t.column :library_id, :integer
       t.column :source_id, :integer      
     end
-       
+    
+    add_index :libraries, :siglum
   end
 
   def self.down

@@ -31,6 +31,8 @@ class CreatePeople < ActiveRecord::Migration
       t.column :source_id, :integer 
     end
 
+    add_index :people, :full_name
+
   end
 
   def self.down
