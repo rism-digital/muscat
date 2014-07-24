@@ -110,6 +110,17 @@ dl.marc_editor_tag_block dt {
 	padding-left: 0px;
 }
 
+/*******************/
+/* Save and cancel */
+/*******************/
+
+a.marc_save_btn { 
+	@include default-button; 
+}
+a.marc_cancel_btn { 
+	@include light-button; 
+}
+
 /****************************/
 /* JQUERY UI BUTTONS 		*/
 /****************************/

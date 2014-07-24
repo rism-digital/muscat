@@ -108,7 +108,7 @@ ActiveAdmin.register Person do
     active_admin_edition_bar( self )
     @item =  @arbre_context.assigns[:item]
     render :partial => "editor/edit_wide"
-    active_admin_edition_bar( self )
+    active_admin_submit_bar( self )
   end
 
 end
