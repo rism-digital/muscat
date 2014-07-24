@@ -6,6 +6,8 @@ require 'resource_dsl_extensions.rb'
 # https://github.com/gregbell/active_admin/wiki/Content-rendering-API
 module MarcControllerActions
   
+  
+  
   def self.included(dsl)
     # THIS IS OVERRIDEN from resource_dsl_extensions.rb
     dsl.collection_action :marc_editor_save, :method => :post do
@@ -43,6 +45,13 @@ module MarcControllerActions
       render :template => 'editor/reload_editor'
 
     end
+    
+    # This can be used to add a button in the title bar
+    #dsl.action_item :only => [:edit, :new] do
+    #    link_to('View on site', "javascript:marc_editor_send_form('marc_editor_panel','marc_editor_panel', 0, '#{self.resource_class.to_s.pluralize.downcase}')")
+    #end
+  
   end
+  
   
 end
