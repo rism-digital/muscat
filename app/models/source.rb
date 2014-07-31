@@ -54,9 +54,10 @@ class Source < ActiveRecord::Base
   alias_attribute :id_for_fulltext, :id
   
   # FIXME id generation
-  before_create :generate_id
   before_destroy :check_dependencies
+  
   before_save :set_object_fields
+  before_create :generate_id
   after_save :reindex
   
   # alias for holding records

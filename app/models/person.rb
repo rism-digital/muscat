@@ -27,28 +27,45 @@ class Person < ActiveRecord::Base
 #  validates_presence_of :full_name  
   
   include NewIds
-  before_create :generate_id
+  
   before_destroy :check_dependencies
-  before_save :set_object_fields
+  
+  before_save :scaffold_marc, :set_object_fields
+  before_create :generate_id
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
+  attr_accessor :suppress_scaffold_marc_trigger
+  
+  # Suppresses the marc scaffolding
+  def suppress_scaffold_marc
+    self.suppress_scaffold_marc_trigger = true
+  end
   
   def generate_id
     generate_new_id
-    # If there is no marc, do not update it
+    # If there is no marc, do not add the id
     return if marc_source == nil
-    
+
     self.marc.set_id self.id
     self.marc_source = self.marc.to_marc
   end
   
   def scaffold_marc
+    return if self.marc_source != nil
+    
+    ap self.suppress_scaffold_marc_trigger
+    return if self.suppress_scaffold_marc_trigger == true
+        
     new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/person/default.marc"))
     new_marc.load_source true
     
     new_100 = MarcNode.new("person", "100", "", "1#")
     new_100.add_at(MarcNode.new("person", "a", self.full_name, nil), 0)
+    
+    if self.life_dates
+      new_100.add_at(MarcNode.new("person", "d", self.life_dates, nil), 1)
+    end
     
     pi = new_marc.get_insert_position("100")
     new_marc.root.children.insert(pi, new_100)
@@ -98,9 +115,10 @@ class Person < ActiveRecord::Base
   end
   
   def set_object_fields
-    # do not scaffold if no marc
+    # This is called always after we tried to add MARC
+    # if it was suppressed we do not update it as it
+    # will be nil
     return if marc_source == nil
-    #scaffold_marc if marc_source == nil
 
     # update last transcation
     marc.update_005
@@ -112,7 +130,7 @@ class Person < ActiveRecord::Base
     #self.marc.set_id self.id
 
     # std_title
-    self.full_name, self.full_name_d = marc.get_full_name
+    self.full_name, self.full_name_d, self.life_dates = marc.get_full_name_and_dates
     
     self.marc_source = self.marc.to_marc
   end
