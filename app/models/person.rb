@@ -54,7 +54,6 @@ class Person < ActiveRecord::Base
   def scaffold_marc
     return if self.marc_source != nil
     
-    ap self.suppress_scaffold_marc_trigger
     return if self.suppress_scaffold_marc_trigger == true
         
     new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/person/default.marc"))
@@ -69,6 +68,14 @@ class Person < ActiveRecord::Base
     
     pi = new_marc.get_insert_position("100")
     new_marc.root.children.insert(pi, new_100)
+    
+    if self.full_name == ""
+      YDTDGFHGJ
+    end
+    
+    if self.id != nil
+      new_marc  .set_id self.id
+    end
     
     self.marc_source = new_marc.to_marc
   end
@@ -124,8 +131,11 @@ class Person < ActiveRecord::Base
     marc.update_005
     
     # source id
-    ##marc_source_id = marc.get_marc_source_id
-    ##self.id = marc_source_id if marc_source_id
+    # If the source is new il will be __TEMP__
+    # and the new ID will be create afterwards by
+    # generate_id
+    marc_source_id = marc.get_marc_source_id
+    self.id = marc_source_id if marc_source_id
     # FIXME how do we generate ids?
     #self.marc.set_id self.id
 
