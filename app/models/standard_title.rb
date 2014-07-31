@@ -16,11 +16,11 @@ class StandardTitle < ActiveRecord::Base
     
   validates_presence_of :title
   
-  include NewIds
+  #include NewIds
   
   before_destroy :check_dependencies
   
-  before_create :generate_new_id
+  #before_create :generate_new_id
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger

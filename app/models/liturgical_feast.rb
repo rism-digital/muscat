@@ -16,11 +16,11 @@ class LiturgicalFeast < ActiveRecord::Base
   
   validates_uniqueness_of :name
   
-  include NewIds
+  #include NewIds
   
   before_destroy :check_dependencies
   
-  before_create :generate_new_id
+  #before_create :generate_new_id
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger

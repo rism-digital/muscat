@@ -26,6 +26,8 @@ class CreateStandardTitles < ActiveRecord::Migration
     add_index :standard_titles, :title
     add_index :standard_titles, :wf_stage
     
+    execute "ALTER TABLE standard_titles AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    
   end
 
   def self.down

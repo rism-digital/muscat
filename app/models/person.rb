@@ -26,7 +26,7 @@ class Person < ActiveRecord::Base
   
 #  validates_presence_of :full_name  
   
-  include NewIds
+  #include NewIds
   
   before_destroy :check_dependencies
   
@@ -43,7 +43,7 @@ class Person < ActiveRecord::Base
   end
   
   def generate_id
-    generate_new_id
+    #generate_new_id
     # If there is no marc, do not add the id
     return if marc_source == nil
 
@@ -67,13 +67,10 @@ class Person < ActiveRecord::Base
     
     pi = new_marc.get_insert_position("100")
     new_marc.root.children.insert(pi, new_100)
-    
-    if self.full_name == ""
-      YDTDGFHGJ
-    end
+
     
     if self.id != nil
-      new_marc  .set_id self.id
+      new_marc.set_id self.id
     end
     
     self.marc_source = new_marc.to_marc
@@ -133,8 +130,9 @@ class Person < ActiveRecord::Base
     # If the source is new il will be __TEMP__
     # and the new ID will be create afterwards by
     # generate_id
+
     marc_source_id = marc.get_marc_source_id
-    self.id = marc_source_id if marc_source_id
+    self.id = marc_source_id if marc_source_id if marc_source_id != "__TEMP__"
     # FIXME how do we generate ids?
     #self.marc.set_id self.id
 

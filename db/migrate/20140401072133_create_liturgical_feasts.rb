@@ -24,6 +24,9 @@ class CreateLiturgicalFeasts < ActiveRecord::Migration
       t.column :liturgical_feast_id, :integer
       t.column :source_id, :integer      
     end
+    
+    execute "ALTER TABLE liturgical_feasts AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    
   end
 
   def self.down

@@ -27,6 +27,9 @@ class CreateWorks < ActiveRecord::Migration
       t.column :source_id, :integer 
       t.column :work_id, :integer      
     end
+    
+    execute "ALTER TABLE works AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    
   end
 
   def self.down

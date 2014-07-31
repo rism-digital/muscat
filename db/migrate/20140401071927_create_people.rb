@@ -34,6 +34,8 @@ class CreatePeople < ActiveRecord::Migration
       t.column :source_id, :integer 
     end
     
+    execute "ALTER TABLE people AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    
   end
 
   def self.down

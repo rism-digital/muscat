@@ -26,6 +26,8 @@ class CreateStandardTerms < ActiveRecord::Migration
     add_index :standard_terms, :term
     add_index :standard_terms, :wf_stage
     
+    execute "ALTER TABLE standard_terms AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    
   end
 
   def self.down

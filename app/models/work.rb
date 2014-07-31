@@ -4,8 +4,8 @@ class Work < ActiveRecord::Base
   has_many :sources 
   has_many :work_incipits   
   
-  include NewIds
-  before_create :generate_new_id
+  #include NewIds
+  #before_create :generate_new_id
   before_destroy :check_dependencies
   
   attr_accessor :suppress_reindex_trigger

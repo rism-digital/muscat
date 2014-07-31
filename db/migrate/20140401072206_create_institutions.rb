@@ -25,6 +25,9 @@ class CreateInstitutions < ActiveRecord::Migration
       t.column :institution_id, :integer
       t.column :source_id, :integer      
     end
+    
+    execute "ALTER TABLE institutions AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    
   end
 
   def self.down

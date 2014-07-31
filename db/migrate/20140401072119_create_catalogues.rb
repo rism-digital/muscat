@@ -30,6 +30,9 @@ class CreateCatalogues < ActiveRecord::Migration
       t.column :catalogue_id, :integer
       t.column :source_id, :integer      
     end
+    
+    execute "ALTER TABLE catalogues AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    
   end
 
   def self.down
