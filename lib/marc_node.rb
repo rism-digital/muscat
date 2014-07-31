@@ -190,6 +190,8 @@ class MarcNode
           # and avoid the duplication crash
           self.foreign_object.suppress_reindex if reindex == false
           begin
+            # If this is a marc auth file suppress scaffolding
+            self.foreign_object.suppress_scaffold_marc if self.foreign_object.respond_to?(:suppress_scaffold_marc)
             if !self.foreign_object.save
               puts "Foreign object could not be saved, possible duplicate?" # Try again not using master field lookup"
               # NOTE: THe code above is commented to allow duplicate entries in people/institutions for RISM A/I

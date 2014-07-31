@@ -52,10 +52,9 @@ class Person < ActiveRecord::Base
   end
   
   def scaffold_marc
-    return if self.marc_source != nil
-    
+    return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
-        
+  
     new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/person/default.marc"))
     new_marc.load_source true
     
