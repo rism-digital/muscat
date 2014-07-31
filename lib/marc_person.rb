@@ -3,9 +3,10 @@ class MarcPerson < Marc
     super("person", source)
   end
   
-  def get_full_name
+  def get_full_name_and_dates
     composer = ""
     composer_d = ""
+    dates = nil
 
     if node = first_occurance("100", "a")
       if node.content
@@ -14,7 +15,13 @@ class MarcPerson < Marc
       end
     end
     
-    [composer, composer_d]
+    if node = first_occurance("100", "d")
+      if node.content
+        dates = node.content
+      end
+    end
+    
+    [composer, composer_d, dates]
   end
   
 end
