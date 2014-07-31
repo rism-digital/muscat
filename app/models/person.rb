@@ -30,8 +30,9 @@ class Person < ActiveRecord::Base
   
   before_destroy :check_dependencies
   
-  before_save :scaffold_marc, :set_object_fields
+  before_save :set_object_fields
   before_create :generate_id
+  after_create :scaffold_marc
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
@@ -51,6 +52,8 @@ class Person < ActiveRecord::Base
     self.marc_source = self.marc.to_marc
   end
   
+  # Do it in two steps
+  # The second time it creates all the MARC necessary
   def scaffold_marc
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
@@ -68,12 +71,12 @@ class Person < ActiveRecord::Base
     pi = new_marc.get_insert_position("100")
     new_marc.root.children.insert(pi, new_100)
 
-    
     if self.id != nil
       new_marc.set_id self.id
     end
     
     self.marc_source = new_marc.to_marc
+    self.save!
   end
   
   # Suppresses the solr reindex
@@ -132,7 +135,7 @@ class Person < ActiveRecord::Base
     # generate_id
 
     marc_source_id = marc.get_marc_source_id
-    self.id = marc_source_id if marc_source_id if marc_source_id != "__TEMP__"
+    self.id = marc_source_id if marc_source_id and marc_source_id != "__TEMP__"
     # FIXME how do we generate ids?
     #self.marc.set_id self.id
 
