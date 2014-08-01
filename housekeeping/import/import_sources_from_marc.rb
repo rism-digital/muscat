@@ -58,9 +58,7 @@ class Marc21Import
       marc.load_source(false)
 
       if marc.is_valid?(false)
-        # p marc.to_s
-        # exit
-        
+                
         # step 1.  update or create a new manuscript
         #manuscript = Source.find_by_id( marc.get_marc_source_id )
         #if !manuscript
@@ -77,8 +75,8 @@ class Marc21Import
         @import_results = @import_results.uniq
 
         # step 4. insert Manuscript into database
-        #manuscript.suppress_update_77x # we should not need to update the 772/773 relationships during the import
-        #manuscript.suppress_create_incipit
+        manuscript.suppress_update_77x # we should not need to update the 772/773 relationships during the import
+        manuscript.suppress_update_count # Do not update the count for the foreign objects
         #manuscript.suppress_create_incipit
         manuscript.suppress_reindex
         manuscript.save rescue $stderr.puts "Failed to save SOURCE #{manuscript.to_yaml}"

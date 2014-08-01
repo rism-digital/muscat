@@ -48,6 +48,9 @@ def self.up
     execute "ALTER TABLE #{t} CHANGE ms_count src_count INT(11) NULL DEFAULT 0"
   end
   
+  # Add marc source columns
+  execute "ALTER TABLE people ADD marc_source TEXT"
+  
   # Rename relation tables
   execute "RENAME TABLE catalogues_manuscripts TO catalogues_sources"
   execute "ALTER TABLE catalogues_sources CHANGE manuscript_id source_id INT(11)  NULL  DEFAULT NULL"
@@ -128,6 +131,8 @@ def self.up
   s = Source.find(403011516)
   s.marc_source.delete! 28.chr
   s.suppress_reindex
+  s.suppress_recreate
+  s.suppress_update_77x
   # Turn off partial writes or marc_record
   # will not be written, as it ignores non
   # printing chars
@@ -152,6 +157,18 @@ def self.up
       next if i == 0
       execute "INSERT INTO schema_migrations (version) VALUES(#{i});"
   end  
+  
+  # Setup the autoincrements
+  ["Catalogue", "Institution", "Library", "LiturgicalFeast", "Person", "Place", "StandardTerm", "StandardTitle", "Work"].each do |classname|
+    model = Kernel.const_get(classname)
+    max_id = model.maximum(:id)
+    max_id = max_id != nil ? max_id : 0 # WHY can't you just return 0???!
+    
+    # If the ids in the table already overflowed the BASE_ID use the existing id for autoincrement
+    autoincrement_id = max_id < RISM::BASE_NEW_ID ? RISM::BASE_NEW_ID : max_id + 1
+    
+    execute "ALTER TABLE #{classname.tableize} AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+  end
   
 end
 
