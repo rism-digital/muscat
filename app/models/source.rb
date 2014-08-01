@@ -164,12 +164,14 @@ class Source < ActiveRecord::Base
     [ people, standard_titles, standard_terms, institutions, catalogues, liturgical_feasts, libraries, places].each do |foreign|
       links = foreign.all
       foreign.delete(links)
-            
-      links.each do |link|
-        ## RZ TODO CAVEAT test me!
-        item = eval(link.class.model_name).find_by_id( link.id )
-        item.suppress_reindex
-        item.update_attribute( :src_count, item.sources.count )
+      
+      if self.suppress_update_count_trigger != true
+        links.each do |link|
+          ## RZ TODO CAVEAT test me!
+          item = eval(link.class.model_name).find_by_id( link.id )
+          item.suppress_reindex
+          item.update_attribute( :src_count, item.sources.count )
+        end
       end
     end
 # FIXME add support for works, need to port the ManuscriptsWork model, if this will be
