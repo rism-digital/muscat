@@ -27,6 +27,9 @@ class CreatePlaces < ActiveRecord::Migration
       t.column :source_id, :integer      
     end
     
+    add_index :places_sources, :place_id
+    add_index :places_sources, :source_id
+    
     execute "ALTER TABLE places AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
     
   end

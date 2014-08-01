@@ -25,6 +25,9 @@ class CreateLiturgicalFeasts < ActiveRecord::Migration
       t.column :source_id, :integer      
     end
     
+    add_index :liturgical_feasts_sources, :liturgical_feast_id
+    add_index :liturgical_feasts_sources, :source_id
+    
     execute "ALTER TABLE liturgical_feasts AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
     
   end

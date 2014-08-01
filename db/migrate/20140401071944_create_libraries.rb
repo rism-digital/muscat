@@ -29,6 +29,9 @@ class CreateLibraries < ActiveRecord::Migration
       t.column :source_id, :integer      
     end
     
+    add_index :libraries_sources, :library_id
+    add_index :libraries_sources, :source_id
+    
     execute "ALTER TABLE libraries AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
     
   end

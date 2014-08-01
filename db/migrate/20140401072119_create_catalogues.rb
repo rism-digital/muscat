@@ -31,6 +31,9 @@ class CreateCatalogues < ActiveRecord::Migration
       t.column :source_id, :integer      
     end
     
+    add_index :catalogues_sources, :catalogue_id
+    add_index :catalogues_sources, :source_id
+    
     execute "ALTER TABLE catalogues AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
     
   end

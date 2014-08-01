@@ -67,6 +67,9 @@ ActiveRecord::Schema.define(version: 20140721142652) do
     t.integer "source_id"
   end
 
+  add_index "catalogues_sources", ["catalogue_id"], name: "index_catalogues_sources_on_catalogue_id", using: :btree
+  add_index "catalogues_sources", ["source_id"], name: "index_catalogues_sources_on_source_id", using: :btree
+
   create_table "do_div_files", force: true do |t|
     t.integer  "do_file_id"
     t.integer  "do_div_id"
@@ -152,6 +155,9 @@ ActiveRecord::Schema.define(version: 20140721142652) do
     t.integer "source_id"
   end
 
+  add_index "institutions_sources", ["institution_id"], name: "index_institutions_sources_on_institution_id", using: :btree
+  add_index "institutions_sources", ["source_id"], name: "index_institutions_sources_on_source_id", using: :btree
+
   create_table "libraries", force: true do |t|
     t.string   "siglum",     limit: 32,                         null: false
     t.string   "name"
@@ -177,6 +183,9 @@ ActiveRecord::Schema.define(version: 20140721142652) do
     t.integer "source_id"
   end
 
+  add_index "libraries_sources", ["library_id"], name: "index_libraries_sources_on_library_id", using: :btree
+  add_index "libraries_sources", ["source_id"], name: "index_libraries_sources_on_source_id", using: :btree
+
   create_table "liturgical_feasts", force: true do |t|
     t.string   "name",                                          null: false
     t.string   "notes"
@@ -197,6 +206,9 @@ ActiveRecord::Schema.define(version: 20140721142652) do
     t.integer "liturgical_feast_id"
     t.integer "source_id"
   end
+
+  add_index "liturgical_feasts_sources", ["liturgical_feast_id"], name: "index_liturgical_feasts_sources_on_liturgical_feast_id", using: :btree
+  add_index "liturgical_feasts_sources", ["source_id"], name: "index_liturgical_feasts_sources_on_source_id", using: :btree
 
   create_table "people", force: true do |t|
     t.string   "full_name",       limit: 128,                         null: false
@@ -228,6 +240,9 @@ ActiveRecord::Schema.define(version: 20140721142652) do
     t.integer "source_id"
   end
 
+  add_index "people_sources", ["person_id"], name: "index_people_sources_on_person_id", using: :btree
+  add_index "people_sources", ["source_id"], name: "index_people_sources_on_source_id", using: :btree
+
   create_table "places", force: true do |t|
     t.string   "name",                                          null: false
     t.string   "country"
@@ -250,6 +265,9 @@ ActiveRecord::Schema.define(version: 20140721142652) do
     t.integer "place_id"
     t.integer "source_id"
   end
+
+  add_index "places_sources", ["place_id"], name: "index_places_sources_on_place_id", using: :btree
+  add_index "places_sources", ["source_id"], name: "index_places_sources_on_source_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -305,15 +323,24 @@ ActiveRecord::Schema.define(version: 20140721142652) do
     t.integer "source_id"
   end
 
+  add_index "sources_standard_terms", ["source_id"], name: "index_sources_standard_terms_on_source_id", using: :btree
+  add_index "sources_standard_terms", ["standard_term_id"], name: "index_sources_standard_terms_on_standard_term_id", using: :btree
+
   create_table "sources_standard_titles", id: false, force: true do |t|
     t.integer "standard_title_id"
     t.integer "source_id"
   end
 
+  add_index "sources_standard_titles", ["source_id"], name: "index_sources_standard_titles_on_source_id", using: :btree
+  add_index "sources_standard_titles", ["standard_title_id"], name: "index_sources_standard_titles_on_standard_title_id", using: :btree
+
   create_table "sources_works", id: false, force: true do |t|
     t.integer "source_id"
     t.integer "work_id"
   end
+
+  add_index "sources_works", ["source_id"], name: "index_sources_works_on_source_id", using: :btree
+  add_index "sources_works", ["work_id"], name: "index_sources_works_on_work_id", using: :btree
 
   create_table "standard_terms", force: true do |t|
     t.string   "term",                                               null: false
