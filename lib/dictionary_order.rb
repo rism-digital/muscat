@@ -208,7 +208,7 @@ module DictionaryOrder
 
   # Normalize a string, go downcase and convert all chars to ASCII
   def self.normalize(src)
-    new_str = src.downcase
+    new_str = src.to_s.downcase
     new_str.gsub!('\'', '')
     MAP.each do |ac,rep|
       ac.each do |s|

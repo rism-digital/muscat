@@ -450,111 +450,148 @@ class Marc
     end
   end
 
-=begin
-  # Index the fields in this MARC element with Ferret
-  def index(special_fields)
-    # NOTE :index_helper is ONLY for tags 000-008
-    # Data tags 010+ must use :ceded_index_helper to which the entire tag (reference) is sent not just the subfield value
-
-    load_source unless @loaded
-    
-    # Now handled by the daemons' write() method
-    # REMOTE_INDEX.delete id
-    
-    ceded = Hash.new
-    if RISM::INCIPIT_STRATEGY == "Incipit031"
-      ceded[:p_field] = Array.new
+  # Run a helper function with data and an optional data2 parameters
+  def run_helper(helper_name, data, data2 = nil)
+    if data2
+      if (helper = method(helper_name))
+        helper.call(data, data2)
+      end
     else
-      ceded[:h_field] = Array.new
+      if (helper = method(helper_name))
+        helper.call(data)
+      end
     end
-    ceded[:index_keys] = Array.new
-    ceded[:index_x4_ngrams] = Array.new
-    ceded[:index_x5_ngrams] = Array.new
-    ceded[:index_x6_ngrams] = Array.new
-    ceded[:index_x4_noz_ngrams] = Array.new
-    ceded[:index_x5_noz_ngrams] = Array.new
-    ceded[:index_x6_noz_ngrams] = Array.new
-    
-    allfields = Hash.new
-    group_collect = Hash.new
-    for child in @root.children
+  end
+  
+  
+  def extract_search_fields_from_008(value)
+    new_fields = Hash.new
+    new_fields["date_from"] = marc_helper_get_008_date1(value)
+    new_fields["date_to"] = marc_helper_get_008_date2(value)
 
-      if child.has_children?
-        for grandchild in child.children
-          if IndexConfig.is_indexable?(child.tag, grandchild.tag)
-            
-            if IndexConfig.has_helper?(child.tag, grandchild.tag)              
-              tokens = run_helper(IndexConfig.get_helper(child.tag, grandchild.tag), child)
-              if tokens.is_a? Hash
-                tokens.each do |key, grouping|
-                  # p key 
-                  # p "xxxxxx"
-                  # p grouping
-                  if grouping
-                    grouping.each do |value|
-                      ceded[key] << value unless value.empty? or ceded[key].include?(value)
-                    end
-                  end
-                end
-              else
-                group_collect.merge!(tokens) if tokens and not tokens.empty?
-              end
-            else
-              unless group_collect.has_key? child.tag + grandchild.tag
-                group_collect[child.tag + grandchild.tag] = Array.new
-              end
+    forward = {
+    	'lat' => 'Latin',
+    	'la' => 'Latin',
 
-              group_collect[child.tag + grandchild.tag] << get_real_value(child, grandchild)
-            end
-          end
-        end
+    	'eng' => 'English',
+    	'en' => 'English',
 
-      else
+    	'ita' => 'Italian',
+    	'it' => 'Italian',
 
-        if IndexConfig.is_indexable?(child.tag, '')      
-          value = child.content
-          
-          if IndexConfig.has_helper?(child.tag, '')
-            tokens = run_helper(IndexConfig.get_helper(child.tag, ''), value)
-            group_collect.merge!(tokens)
-          else
-            
-            unless group_collect.has_key? child.tag
-              group_collect[child.tag] = Array.new
-            end
-            
-            group_collect[child.tag] << DictionaryOrder::normalize(value)
-          
-          end
-        end
+    	'ger' => 'German',
+    	'ge' => 'German',
+
+    	'spa' => 'Spanish',
+    	'sp' => 'Spanish',
+
+    	'fre' => 'French',
+    	'fr' => 'French',
+
+    	'sco' => 'Scots',
+    	'sc' => 'Scots',
+
+    	'wel' => 'Welsh',
+    	'we' => 'Welsh',
+
+    	'rus' => 'Russian',
+    	'ru' => 'Russian'
+    }
+
+    reverse = {
+    	'Latin'   => 'lat',
+    	'English' => 'eng',
+    	'Italian' => 'ita',
+    	'German'  => 'ger',
+    	'Spanish' => 'spa',
+    	'French'  => 'fre',
+    	'Scots'   => 'sco',
+    	'Welsh'   => 'wel',
+    	'Russian' => 'rus'
+    }
+
+    if value =~ /^[^|]+[|]+([^|]+).+$/
+      if forward.has_key?($1)
+        new_fields["language"] = Array.new
+        new_fields["language"] << forward[$1]
+        new_fields["language"] << reverse[forward[$1]]
       end
     end
 
-    group_collect.each do |key, group|
-      allfields[key.intern] = group#.join(" ")
-    end
-    
-    allfields[:id] = special_fields[:id].to_s
-    special_fields.each { |key, value| allfields[key] = value unless key == :id }
-    
-    if RISM::INCIPIT_STRATEGY == "Incipit031"
-      allfields[:"031p"] = ceded[:p_field] unless ceded[:p_field] and ceded[:p_field].empty?
-    else
-      allfields[:"789h"] = ceded[:h_field] unless ceded[:h_field] and ceded[:h_field].empty?      
-    end
-    allfields[:keys] = ceded[:index_keys] unless ceded[:index_keys].empty?    
-    allfields[:ngramsx4] = ceded[:index_x4_ngrams] unless ceded[:index_x4_ngrams].empty?
-    allfields[:ngramsx5] = ceded[:index_x5_ngrams] unless ceded[:index_x5_ngrams].empty?
-    allfields[:ngramsx6] = ceded[:index_x6_ngrams] unless ceded[:index_x6_ngrams].empty?
-    allfields[:ngramsx4noz] = ceded[:index_x4_noz_ngrams] unless ceded[:index_x4_noz_ngrams].empty?
-    allfields[:ngramsx5noz] = ceded[:index_x5_noz_ngrams] unless ceded[:index_x5_noz_ngrams].empty?
-    allfields[:ngramsx6noz] = ceded[:index_x6_noz_ngrams] unless ceded[:index_x6_noz_ngrams].empty?
-      
-    #puts allfields.to_yaml  
-    REMOTE_INDEX.write(allfields)
+    return new_fields
 
   end
-=end
+
+  def marc_index(marc)
+    
+      allfields = Hash.new
+      group_collect = Hash.new
+      for child in @root.children
+
+        if child.has_children?
+          for grandchild in child.children
+            if IndexConfig.is_indexable?(child.tag, grandchild.tag)
+            
+              if IndexConfig.has_helper?(child.tag, grandchild.tag)              
+                tokens = run_helper(IndexConfig.get_helper(child.tag, grandchild.tag), child)
+                if tokens.is_a? Hash
+                  tokens.each do |key, grouping|
+                    # p key 
+                    # p "xxxxxx"
+                    # p grouping
+                    if grouping
+                      grouping.each do |value|
+                        ceded[key] << value unless value.empty? or ceded[key].include?(value)
+                      end
+                    end
+                  end
+                else
+                  group_collect.merge!(tokens) if tokens and not tokens.empty?
+                end
+              else
+                unless group_collect.has_key? child.tag + grandchild.tag
+                  group_collect[child.tag + grandchild.tag] = Array.new
+                end
+
+                group_collect[child.tag + grandchild.tag] << get_real_value(child, grandchild)
+              end
+            end
+          end
+
+        else
+
+          if IndexConfig.is_indexable?(child.tag, '')      
+            value = child.content
+          
+            if IndexConfig.has_helper?(child.tag, '')
+              tokens = run_helper(IndexConfig.get_helper(child.tag, ''), value)
+              group_collect.merge!(tokens)
+            else
+            
+              unless group_collect.has_key? child.tag
+                group_collect[child.tag] = Array.new
+              end
+            
+              group_collect[child.tag] << DictionaryOrder::normalize(value)
+          
+            end
+          end
+        end
+      end
+
+      group_collect.each do |key, group|
+        allfields[key.intern] = group#.join(" ")
+      end
+        
+      #if RISM::INCIPIT_STRATEGY == "Incipit031"
+        #allfields[:"031p"] = ceded[:p_field] unless ceded[:p_field] and ceded[:p_field].empty?
+        #else
+        #allfields[:"789h"] = ceded[:h_field] unless ceded[:h_field] and ceded[:h_field].empty?      
+        #end
+
+      ap allfields
+
+    end
 
   def ==(other)
     load_source unless @loaded

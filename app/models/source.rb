@@ -36,6 +36,7 @@ class Source < ActiveRecord::Base
   
   # include the override for group_values
   require 'solr_search.rb'
+  include MarcIndex
   resourcify
   
   belongs_to :source
@@ -197,6 +198,8 @@ class Source < ActiveRecord::Base
     self.index
   end
 
+  
+
   searchable :auto_index => false do
     integer :id
     
@@ -274,6 +277,21 @@ class Source < ActiveRecord::Base
     integer :works, :multiple => true do
           works.map { |work| work.id }
     end
+    
+    # It seems this thig here can *NOT*
+    # be put in a funciton, because
+    # I have the pointer to the current scope only
+    # into the "string do" block
+    IndexConfig.get_fields("source").each do |k, v|
+      store = v && v.has_key?(:store) ? v[:store] : false
+      boost = v && v.has_key?(:boost) ? v[:boost] : 1.0
+      type = v && v.has_key?(:type) ? v[:type] : 'string'
+      
+      string k, :multiple => true, :stored => store do
+        marc_index_tag(k, v, marc, self)
+      end
+    end
+    
   end
     
   def check_dependencies
