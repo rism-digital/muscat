@@ -10,14 +10,14 @@ class MarcPerson < Marc
 
     if node = first_occurance("100", "a")
       if node.content
-        composer = node.content
-        composer_d = node.content.downcase
+        composer = node.content.truncate(128)
+        composer_d = node.content.downcase.truncate(128)
       end
     end
     
     if node = first_occurance("100", "d")
       if node.content
-        dates = node.content
+        dates = node.content.truncate(24)
       end
     end
     
