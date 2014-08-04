@@ -111,8 +111,6 @@ class MarcConfig
   
   # Get the foreign field that is connected to a foreign class
   def get_foreign_field(tag, subtag)
-    # p tag
-    # p subtag
     @tag_config[tag][:fields].assoc(subtag)[1][:foreign_field]
   end
 

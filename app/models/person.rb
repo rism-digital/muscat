@@ -28,6 +28,7 @@ class Person < ActiveRecord::Base
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
   
 #  validates_presence_of :full_name  
+  validate :field_lenght
   
   #include NewIds
   
@@ -178,6 +179,11 @@ class Person < ActiveRecord::Base
     self.full_name, self.full_name_d, self.life_dates = marc.get_full_name_and_dates
     
     self.marc_source = self.marc.to_marc
+  end
+  
+  def field_lenght
+    self.life_dates = self.life_dates.truncate(24) if self.life_dates and self.life_dates.length > 24
+    self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
   end
   
 end
