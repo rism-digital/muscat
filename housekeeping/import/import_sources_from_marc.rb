@@ -59,29 +59,30 @@ class Marc21Import
 
       if marc.is_valid?(false)
                 
-        # step 1.  update or create a new manuscript
-        #manuscript = Source.find_by_id( marc.get_marc_source_id )
-        #if !manuscript
-          manuscript = Source.new(:id => marc.get_id, :wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
+        # step 1.  update or create a new source
+        #source = Source.find_by_id( marc.get_marc_source_id )
+        #if !source
+          source = Source.new(:id => marc.get_id, :wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
         #end
           
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
         marc.import
 
         # step 3. associate Marc with Manuscript
-        manuscript.marc = marc
+        source.marc = marc
 
         @import_results.concat( marc.results )
         @import_results = @import_results.uniq
 
         # step 4. insert Manuscript into database
-        manuscript.suppress_update_77x # we should not need to update the 772/773 relationships during the import
-        manuscript.suppress_update_count # Do not update the count for the foreign objects
-        #manuscript.suppress_create_incipit
-        manuscript.suppress_reindex
-        manuscript.save rescue $stderr.puts "Failed to save SOURCE #{manuscript.to_yaml}"
+        source.suppress_update_77x # we should not need to update the 772/773 relationships during the import
+        source.suppress_update_count # Do not update the count for the foreign objects
+        #source.suppress_create_incipit
+        source.suppress_reindex
+        source.suppress_recreate
+        source.save rescue $stderr.puts "Failed to save SOURCE #{source.to_yaml}"
 
-        puts "Last offset: #{@total_records}, Last RISM ID: #{marc.first_occurance('001').content}"
+        puts "Last offset: #{@total_records}, Last RISM ID: #{source.id}" #"#{marc.first_occurance('001').content}"
       else
         puts "failed to import marc record leading up to line #{line_number}"
       end
