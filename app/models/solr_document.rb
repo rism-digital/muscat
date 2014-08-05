@@ -18,4 +18,6 @@ class SolrDocument
   # Recommendation: Use field names from Dublin Core
   use_extension( Blacklight::Solr::Document::DublinCore)    
 
+  #self.unique_key = 'std_title_texts'
+
 end

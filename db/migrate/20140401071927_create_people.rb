@@ -13,6 +13,7 @@ class CreatePeople < ActiveRecord::Migration
       t.column :alternate_names,    :text
       t.column :alternate_dates,    :text
       t.column :comments,           :text
+      t.column :people, :marc_source, :text
       
       t.column :wf_audit,           :string, { :limit => 16, :default => "unapproved" }
       t.column :wf_stage,           :string, { :limit => 16, :default => "unpublished" }

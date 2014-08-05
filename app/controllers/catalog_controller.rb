@@ -24,9 +24,11 @@ class CatalogController < ApplicationController
     config.default_document_solr_params = {
       :qt => 'document',
       ## These are hard-coded in the blacklight 'document' requestHandler
-      # :fl => '*',
-      # :rows => 1
-      # :q => '{!raw f=id v=$id}' 
+       :fl => '*',
+       :rows => 1,
+       :q => '{!raw f=id v=$id}' ,
+      # Added by RZ
+      :defType => 'dismax',
     }
 
     # solr field configuration for search results/index views
@@ -58,7 +60,7 @@ class CatalogController < ApplicationController
     # facet bar
     config.add_facet_field 'composer_order_s', :label => 'Composer', :limit => 10, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field 'std_title_order_s', :label => 'Standard Title', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field 'date_to_i', :label => "Date", :limit => 5, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'date_from_i', :label => "Date", :limit => 5, solr_params: { 'facet.mincount' => 1 }
     #config.add_facet_field 'title_order', :label => 'Standard Title', :single => true
     #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     #config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
