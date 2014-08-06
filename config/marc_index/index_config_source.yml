@@ -15,7 +15,7 @@ fields:
   "031e":
   "031m":
   "031p":
-      :store: :yes
+      :store: true
 #      :ceded_index_helper: :create_incipit_ch
   "031q":
   "031t":
@@ -32,18 +32,20 @@ fields:
   "130k":
   "130m":
   "130n":
-      :store: :yes
+      :store: true
   "130o":
   "130p":
   "130r":
   "240a":
   "240k":
   "240m":
+      :store: true
   "240n":
-      :store: :yes
+      :store: true
   "240o":
   "240p":
   "240r":
+      :store: true
   "245a":
   "245b":
   "245c":
@@ -94,6 +96,7 @@ fields:
   "591a":
   "592a":
   "593a":
+      :store: true
   "594a":
   "594b":
   "594c":
@@ -113,7 +116,7 @@ fields:
   "598a":
   "599a":
   "600a":
-      :store: :yes
+      :store: true
   "650a":
   "651a":
   "653a":
@@ -136,7 +139,7 @@ fields:
   "730k":
   "730m":
   "730n":
-      :store: :yes
+      :store: true
   "730o":
   "730p":
   "730r":
@@ -163,7 +166,7 @@ fields:
   "852d":
   "852e":
   "852p":
-      :store: :yes
+      :store: true
   "852q":
   "852z":
   "856u":

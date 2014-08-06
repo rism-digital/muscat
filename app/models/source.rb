@@ -237,7 +237,7 @@ class Source < ActiveRecord::Base
     string :lib_siglum_order do
       lib_siglum
     end
-    text :lib_siglum
+    text :lib_siglum, :stored =>true
     
     integer :date_from
     integer :date_to

@@ -32,7 +32,9 @@ class CatalogController < ApplicationController
     }
 
     # solr field configuration for search results/index views
-    config.index.title_field = 'std_title_texts'
+    #config.index.title_field = 'std_title_texts'
+    # Set it as in RISM A/2 OPAC
+    config.index.title_field = 'composer_texts'
     config.index.display_type_field = 'composer_order_s'
 
     # solr field configuration for document/show views
@@ -58,9 +60,12 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
-    config.add_facet_field 'composer_order_s', :label => 'Composer', :limit => 10, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field 'std_title_order_s', :label => 'Standard Title', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field 'date_from_i', :label => "Date", :limit => 5, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'composer_order_s', :label => 'Composer', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field '593a_sms', :label => 'Material', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field '240m_sms', :label => 'Scoring Summary', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'date_from_i', :label => "Date", :range => true #, :limit => 5, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'lib_siglum_order_s', :label => 'Library', :limit => 10, solr_params: { 'facet.mincount' => 1 }
     #config.add_facet_field 'title_order', :label => 'Standard Title', :single => true
     #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     #config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
@@ -83,16 +88,14 @@ class CatalogController < ApplicationController
     config.add_facet_fields_to_solr_request!
 
     # solr fields to be displayed in the index (search results) view
-    #   The ordering of the field names is the order of the display 
-    config.add_index_field 'std_title_texts', :label => 'Title'
-    config.add_index_field 'title_texts', :label => 'Title on Source'
-    config.add_index_field 'author_display', :label => 'Author'
-    config.add_index_field 'author_vern_display', :label => 'Author'
-    config.add_index_field 'format', :label => 'Format'
-    config.add_index_field 'language_facet', :label => 'Language'
-    config.add_index_field 'published_display', :label => 'Published'
-    config.add_index_field 'published_vern_display', :label => 'Published'
-    config.add_index_field 'lc_callnum_display', :label => 'Call number'
+    #   The ordering of the field names is the order of the display
+    config.add_index_field 'std_title_texts', :label => 'Standard Title'
+    config.add_index_field '240m_sms', :label => 'Scoring Summary'
+    config.add_index_field 'lib_siglum_texts', :label => 'Siglum'
+    config.add_index_field 'shelf_mark_texts', :label => 'Shelf Mark'
+    config.add_index_field '593a_sms', :label => 'Material'
+    config.add_index_field '240n_sms', :label => 'Thematic catalogue no./Opus'
+    config.add_index_field '240r_sms', :label => 'Key'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display 

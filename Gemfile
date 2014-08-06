@@ -47,7 +47,7 @@ end
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
-gem 'sunspot_rails'
+gem 'sunspot_rails', github: 'sunspot/sunspot'
 gem 'sunspot_solr'
 gem 'awesome_print'
 gem 'progress_bar'
@@ -58,4 +58,7 @@ group :development do
     gem 'webrick', '~> 1.3.1'
 end
 gem 'blacklight', ">= 5.3.0"
+# For nice date ranges
+#https://github.com/projectblacklight/blacklight_range_limit
+gem "blacklight_range_limit"
 gem 'devise'

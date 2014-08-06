@@ -16,6 +16,18 @@ GIT
       ransack (~> 1.0)
       sass-rails
 
+GIT
+  remote: git://github.com/sunspot/sunspot.git
+  revision: 04e613ab542108a1ac4f6c738e0c64c7d21e74c9
+  specs:
+    sunspot (2.1.1)
+      pr_geohash (~> 1.0)
+      rsolr (~> 1.0.7)
+    sunspot_rails (2.1.1)
+      nokogiri
+      rails (>= 3)
+      sunspot (= 2.1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,6 +68,10 @@ GEM
       nokogiri (~> 1.6)
       rails (>= 3.2.6, < 5)
       rsolr (~> 1.0.6)
+    blacklight_range_limit (5.0.1)
+      blacklight (>= 5.0.0.pre4, < 6)
+      jquery-rails
+      rails (>= 3.0, < 5.0)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     bourbon (3.1.8)
@@ -172,13 +188,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sunspot (2.1.0)
-      pr_geohash (~> 1.0)
-      rsolr (~> 1.0.7)
-    sunspot_rails (2.1.0)
-      nokogiri
-      rails (>= 3)
-      sunspot (= 2.1.0)
     sunspot_solr (2.1.0)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
@@ -207,6 +216,7 @@ DEPENDENCIES
   activeadmin!
   awesome_print
   blacklight (>= 5.3.0)
+  blacklight_range_limit
   cancan
   coffee-rails (~> 4.0.0)
   devise
@@ -220,7 +230,7 @@ DEPENDENCIES
   rolify
   sass-rails (~> 4.0.0)
   sdoc
-  sunspot_rails
+  sunspot_rails!
   sunspot_solr
   therubyracer
   turbolinks
