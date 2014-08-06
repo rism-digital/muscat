@@ -64,7 +64,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'composer_order_s', :label => 'Composer', :limit => 10, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field '593a_sms', :label => 'Material', :limit => 10, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field '240m_sms', :label => 'Scoring Summary', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field 'date_from_i', :label => "Date", :range => true #, :limit => 5, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'date_from_i', :label => "Year", :range => true #, :limit => 5, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field 'lib_siglum_order_s', :label => 'Library', :limit => 10, solr_params: { 'facet.mincount' => 1 }
     #config.add_facet_field 'title_order', :label => 'Standard Title', :single => true
     #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
@@ -182,7 +182,9 @@ class CatalogController < ApplicationController
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
-    config.add_sort_field 'std_title_order_s asc', :label => 'name';
+    config.add_sort_field 'std_title_order_s asc', :label => 'Standard Title';
+    config.add_sort_field ':date_from_i asc', :label => 'Year';
+    config.add_sort_field ':composer_order_s asc', :label => 'Composer';
     #config.add_sort_field 'score desc, pub_date_sort desc, title_sort asc', :label => 'relevance'
     #config.add_sort_field 'pub_date_sort desc, title_sort asc', :label => 'year'
     #config.add_sort_field 'author_sort asc, title_sort asc', :label => 'author'
