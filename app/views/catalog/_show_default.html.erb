@@ -1,0 +1,9 @@
+<%# default partial to display solr document fields in catalog show view -%>
+<%
+	#prepend_view_path "app/views/sources"
+	@item = Source.find(@document.id.split(" ")[1]) # hackady-hack!
+	@editor_profile = EditorConfiguration.get_show_layout @item
+%>
+<dl class="dl-horizontal  dl-invert">
+	<%= render :partial => "marc/show" %>
+</dl>

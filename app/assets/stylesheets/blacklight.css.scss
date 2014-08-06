@@ -26,3 +26,9 @@ $navbar-inverse-link-color: #cdcdcd;
 .pagination li a {
 	padding: 3px 10px;
 }
+
+#header-navbar .navbar-brand {
+  /* The main logo image for the Blacklight instance */
+  background: transparent url('/images/logo/in.png') no-repeat top left;
+
+}
