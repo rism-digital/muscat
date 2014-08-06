@@ -188,7 +188,11 @@ class MarcSource < Marc
           date_to = marc_helper_get_008_date2(node.content) || nil
         end
       end
-
+      
+      # Force it to nil if 0, this used to work in the past
+      date_from = nil if date_from == 0
+      date_to = nil if date_to == 0
+      
       return [language, date_from, date_to]
     end
     
