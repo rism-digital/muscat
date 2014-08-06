@@ -1,7 +1,7 @@
-<%# default partial to display solr document fields in catalog show view -%>
+<%# See https://github.com/projectblacklight/blacklight/wiki/Providing-your-own-view-templates 
+  This is pretty hackish for now - figure out a better way to do this into the CatalogController! -%>
 <%
-	#prepend_view_path "app/views/sources"
-	@item = Source.find(@document.id.split(" ")[1]) # hackady-hack!
+	@item = Source.find(@document.id.split(" ")[1]) # hackady-hack! Source 1234567 -> 1234567
 	@editor_profile = EditorConfiguration.get_show_layout @item
 %>
 <dl class="dl-horizontal  dl-invert">
