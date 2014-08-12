@@ -1,6 +1,12 @@
 = Upgrade from version 2.0
 
-This section describes how to upgrade an existing 2.0 version to 3.0.
+The data using the 2.0 database layout can be converted with the script:
+
+ housekeeping/upgrade_3.0/001_update_tables.rb
+ 
+which takes care of all the data upgrading necessary, renames all the tables to the new layout, generates the new ones and updates the data. After the script is run, the index should be recreated:
+
+ bundle exec rake sunspot:solr:reindex
 
 == Code
 

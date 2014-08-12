@@ -2,7 +2,7 @@
 
 This document describes how to bootstrap into the webapplication.
 
-* ruby: 1.9.3
+* ruby: > 1.9.3
 
 This document describes the installation process on FreeBSD using ports, other systems are tested (MacOS X and Linux), 
 and it is important that the various package versions match.
