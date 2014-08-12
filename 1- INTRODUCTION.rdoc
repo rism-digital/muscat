@@ -1,16 +1,17 @@
-= muscat Introduction
+= Muscat Introduction
 
 *muscat* is a framework for cataloging music documents (handwritten and printed music scores). It is a Rails application that provides facilities for creating and managing Marc21 records with a focus on music. The project was initiated by the United Kingdom working group of the Répertoire International des Sources Musicales (RISM) and then developed further by the Swiss working group. It will now be released as an open-source project.
 
 == Source code and further documentation
 
-The source code will be available from the google project page http://code.google.com/p/muscat-project/
+Source code is available on GitHub https://github.com/rism-ch/muscat
 
-The documentation for version 1.0 is available at http://docs.rism-ch.org/muscat/1.0/
+The documentation for version 1.0 and 2.0 (legacy) is available at http://docs.rism-ch.org/muscat/1.0/
 
 == Application structure
 
 The basic entity in muscat is the Source class, which describes a single source. The Marc21 data is stored directly in the database, and is parsed to a Marc object with holding MarcNodes recursively. A MarcNode is a field at the first level of recursion and a subfield at the second level. Relevant information (such as author name) is also extracted from the Marc record and stored in the same database row. A the same time, a Source is put in relation with the authority data, or foreign classes, stored directly in the database. The foreign classes representing data are:
+
 * People (Contributors)
 * Libraries
 * StandardTerms
