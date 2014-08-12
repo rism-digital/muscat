@@ -18,127 +18,127 @@ The following other libraries and programs are needed
 
 Git is necessary for checking out the repo, so install it if necessary:
 
-	cd /usr/ports/devel/git
-	sudo make install clean
+ cd /usr/ports/devel/git
+ sudo make install clean
 
 Install iconv (for rails, used by ruby-iconv):
 
-	cd /usr/ports/converters/iconv
-	sudo make install clean
-	# gem is dumb, need symlinks....
-	ln -s /usr/local/lib/libiconv.* /usr/lib
-	ln -s /usr/local/include/iconv.h /usr/include/
+ cd /usr/ports/converters/iconv
+ sudo make install clean
+ # gem is dumb, need symlinks....
+ ln -s /usr/local/lib/libiconv.* /usr/lib
+ ln -s /usr/local/include/iconv.h /usr/include/
 
 Install MySQL:
 
-	cd /usr/ports/databases/mysql51-server
-	make install clean
-	# Remember to enable it in /etc/rc.conf
-	# mysql_enable="YES"
-	# and launch it:
-	/usr/local/etc/rc.d/mysql-server start
+ cd /usr/ports/databases/mysql51-server
+ make install clean
+ # Remember to enable it in /etc/rc.conf
+ # mysql_enable="YES"
+ # and launch it:
+ /usr/local/etc/rc.d/mysql-server start
 
 Install Apache 2.2:
 
-	cd /usr/ports/www/apache22
-	make install clean
-	# Edit /etc/rc.conf and add for automatic startup:
-	# accf_http_load="YES"     
-	# apache22_enable="YES"
+ cd /usr/ports/www/apache22
+ make install clean
+ # Edit /etc/rc.conf and add for automatic startup:
+ # accf_http_load="YES"     
+ # apache22_enable="YES"
 
 == Ruby and Rails
 
 Version 1.9.3 of Ruby is used. On FreeBSD:
 
-	cd /usr/ports/lang/ruby19/
-	sudo make install clean
+ cd /usr/ports/lang/ruby19/
+ sudo make install clean
 
 Install Gem:
 
-	cd /usr/ports/devel/ruby-gems
-	sudo make install clean
+ cd /usr/ports/devel/ruby-gems
+ sudo make install clean
 
 Install rails (4.0):
 
-	sudo gem install rails
+ sudo gem install rails
 
 Lastly install Passenger (3.0):
 
-	gem install passenger
-	passenger-install-apache2-module
+ gem install passenger
+ passenger-install-apache2-module
 
 == Bootstrap the application
 
 Get the sources if necessary (https://github.com/rism-ch/muscat):
 
-	git clone https://github.com/rism-ch/muscat.git
+ git clone https://github.com/rism-ch/muscat.git
 
 Use bundle to install all the gems for the app:
 
-	sudo bundle install --deployment
+ sudo bundle install --deployment
 
 Install base configuration:
 
-	cd muscat/config
-	cp sample_database.yml database.yml
-	cp sample_application.rb application.rb
+ cd muscat/config
+ cp sample_database.yml database.yml
+ cp sample_application.rb application.rb
 
 Install the base css:
 
-	cd muscat/config
-	cp muscat-custom-sample.scss ../app/assets/stylesheets/muscat-custom.scss
+ cd muscat/config
+ cp muscat-custom-sample.scss ../app/assets/stylesheets/muscat-custom.scss
 
 Set up databases access:
 
-	mysql
-	> CREATE DATABASE muscat_development CHARACTER SET utf8 COLLATE utf8_general_ci;
-	> CREATE USER 'username'@'localhost';
-	> SET PASSWORD FOR 'username'@'localhost' = PASSWORD('pass');
-	> GRANT ALL ON muscat_development.* TO 'username'@'localhost';
-	# Remember
-	# username and pass should be the same as in database.yml
+ mysql
+ > CREATE DATABASE muscat_development CHARACTER SET utf8 COLLATE utf8_general_ci;
+ > CREATE USER 'username'@'localhost';
+ > SET PASSWORD FOR 'username'@'localhost' = PASSWORD('pass');
+ > GRANT ALL ON muscat_development.* TO 'username'@'localhost';
+ # Remember
+ # username and pass should be the same as in database.yml
 
 Migrate the database:
 
-	cd trunk/
-	rake db:migrate
+ cd trunk/
+ rake db:migrate
 	
 
 Add basic dataset:
 
-	rake db:seed
+ rake db:seed
 	
 Default (development) startup:
 
-	./bundle exec rake sunspot:solr:start
-	./rails s -e
+ ./bundle exec rake sunspot:solr:start
+ ./rails s -e
 
 For startup in production mode:
 
-	./bundle exec rake RAILS_ENV=production assets:precompile
-	./bundle exec rake RAILS_ENV=production sunspot:solr:start
-	./rails s -e production
+ ./bundle exec rake RAILS_ENV=production assets:precompile
+ ./bundle exec rake RAILS_ENV=production sunspot:solr:start
+ ./rails s -e production
 	
 For refreshing an installation in production mode:
 
-	sudo -u www rake assets:clean
-	sudo -u www rake assets:precompile
-	
-Try to open ::
+ sudo -u www rake assets:clean
+ sudo -u www rake assets:precompile
 
-	http://ip:3000/
+Try to open :
+
+ http://ip:3000/
 
 ==== Index rebuilding:
 
-	rake sunspot:reindex
+ rake sunspot:reindex
 
 Specify only a model:
 
-	rake sunspot:reindex[,Person]
+ rake sunspot:reindex[,Person]
 	
 Do reindex in 1 record batches, useful if reindex crashes to see in which one (very slow to start)
 
-	rake sunspot:reindex[1]
+ rake sunspot:reindex[1]
 
 ==== Updating from an older version of Muscat
 
@@ -148,50 +148,50 @@ For upgrading from an older version, see the {5- UPGRADE}[link:5-%20UPGRADE_rdoc
 
 With MySQL 64 bit binaries, add:
 
-	export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
+ export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
 
 
 == Basic Apache configuration
 
 Example Apache configuration:
 
-	# create /usr/local/etc/apache22/Includes/default.conf
-	# and add default site:
-	<VirtualHost *:80>
-	        # ServerName www..org
-	        DocumentRoot /var/rails/rism-ch/public
-	        <Directory "/var/rails/rism-ch/public">
-	                Options All -Indexes +ExecCGI -Includes +MultiViews
-	                AllowOverride All
-	                Order allow,deny
-	                Allow from all
-	        </Directory>
-	        RailsEnv development
-	</VirtualHost>
+ # create /usr/local/etc/apache22/Includes/default.conf
+ # and add default site:
+ <VirtualHost *:80>
+         # ServerName www..org
+         DocumentRoot /var/rails/rism-ch/public
+         <Directory "/var/rails/rism-ch/public">
+                 Options All -Indexes +ExecCGI -Includes +MultiViews
+                 AllowOverride All
+                 Order allow,deny
+                 Allow from all
+         </Directory>
+         RailsEnv development
+ </VirtualHost>
 	
 Double check permissions:
 
-	# Create /var/rails and populate with software
-	mkdir /var/rails
-	<command to checkout as needed TBD>
-	chown -R www /var/rails
+ # Create /var/rails and populate with software
+ mkdir /var/rails
+ <command to checkout as needed TBD>
+ chown -R www /var/rails
 
 Start Apache and Ferretd:
 
-	# REMEMBER, check that the hostname resolves!
-	/usr/local/etc/rc.d/apache22 start
-	cd /var/rails/rism-ch/
-	./script/ferretd/start
+ # REMEMBER, check that the hostname resolves!
+ /usr/local/etc/rc.d/apache22 start
+ cd /var/rails/rism-ch/
+ ./script/ferretd/start
 	
-If all this works, you can access the rism application ::
+If all this works, you can access the rism application:
 
-	<tt>http://ip</tt>
+ http://IP
 	
 == Adding users
 
 The first user needs to be set from the commandline:
 
-	cd housekeeping/admin
-	ruby create_admin_users.rb -a --username USER --password PASS --email EMAIL
+ cd housekeeping/admin
+ ruby create_admin_users.rb -a --username USER --password PASS --email EMAIL
 	
 the <tt>-a</tt> flag marks the user as admin

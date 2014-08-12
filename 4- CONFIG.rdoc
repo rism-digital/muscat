@@ -10,21 +10,21 @@ An EditorConfgiuration is attached to a Source py parsing its leader, of falling
 
 === Default configuration
 
-The default behaivour of the EditorConfiguration is loaded from YAML files in <tt>config/editor_profiles/profiles.yml</tt>. This file contains a list of configuration stacks, eg:<p>
-	
-	---
-	- :id: DefaultCH
-	  :name: Default (CH)
-	  :labels: 
-	  - BasicLabels
-	  :rules: 
-	  - BasicCataloguingRules
-	  :options: 
-	  - BasicFormOptions
-	  :layout: 
-	  - LayoutDefaultCH
-	  :filter: 
-	    default: true
+The default behaivour of the EditorConfiguration is loaded from YAML files in <tt>config/editor_profiles/profiles.yml</tt>. This file contains a list of configuration stacks, eg:
+
+ ---
+ - :id: DefaultCH
+   :name: Default (CH)
+   :labels:
+   - BasicLabels
+   :rules:
+   - BasicCataloguingRules
+   :options:
+   - BasicFormOptions
+   :layout:
+   - LayoutDefaultCH
+   :filter:
+     default: true
 
 
 This example configures the default fallback. The main elements are:
@@ -35,7 +35,7 @@ This example configures the default fallback. The main elements are:
 * <tt>options</tt> - idem, for the options
 * <tt>layout</tt> - idem, for the layout
 * <tt>filter</tt> - Specifies the filter to see which Sources should be shown with this stack. Refer to EditorConfiguration for more details.
-<p>
+
 Each of the YAML files abobe (in the list without .yml extension) will be searched in config/editor_profiles/configurations
 
 === Configuration customization
@@ -49,10 +49,10 @@ On operning the display/edit of a Source, the EditorConfigurations are cicled: i
 
 The first setting in the configuration shoul be the <tt>group_order</tt>, which specifies the display order of the various display/edit groups.
 
-	--- !map:Settings 
-	group_order: 
-	- control
-	[snip...]
+ --- !map:Settings 
+ group_order: 
+ - control
+ [snip...]
 	
 So the EditorConfiguration that is loaded will be the first one that matches the Source leader, or the first one that is default. Once it is selected, all the other staks are loaded. Each stack can specify one or more YAML files, but generally Rules, Options and Labels are shared between all views.
 
@@ -62,37 +62,38 @@ Do not use tabs. Use 2 spaces for each level of indentation
 Mismatched indentation is a common source of bugs
 Lists always start on the next line (below the element name) and are lined up with the beginning of the element name. Each member of a list is prefixed with "- " (a dash followed by a space) e.g.:
 
-	--- !map:Settings
-	groups:
-	  dates:
-	    all_tags:
-	    - "033"
-	    - "518"
+ --- !map:Settings
+ groups:
+   dates:
+     all_tags:
+     - "033"
+     - "518"
 		
 To override an element from a configuration higher up in the stack simply set the element to the desired value.
 Stacking is non-destructive. For example:
 
 config A:
 
-	--- !map:Settings
-	"123":
-	  label: A label
-	  role_at_least: "administrator" 
-	config B:
+ --- !map:Settings
+ "123":
+   label: A label
+   role_at_least: "administrator" 
+   
+config B:
 
-	--- !map:Settings
-	"123":
-	  label: B label
+ --- !map:Settings
+ "123":
+   label: B label
 	  
 Config B is further down in the stack and so is applied later meaning the tag will ultimately use the label "B label". However, the tag will still be restricted to administrator access as config B did not override that value and omitting it does not remove it.
 
 == Rules
 They are the basic cataloguing rules, this is the default configuration:
 	
-	--- !map:Settings 
-	cataloguer: 
-	  published_state_after_save: unpublished
-	  published_state_after_create: unpublished
+ --- !map:Settings 
+ cataloguer: 
+   published_state_after_save: unpublished
+   published_state_after_create: unpublished
 	
 At the top level a Rules configuration may contain one of these three elements in addition to its normal settings:
 
@@ -113,66 +114,67 @@ Labels for tag field/subfield names and group namesmust be quoted wherever they 
 
 Example:
 
-	--- !map:Settings 
+ --- !map:Settings 
+ 
+ "doc_abbreviations": !map:HashWithIndifferentAccess 
+   label: !map:HashWithIndifferentAccess 
+     de: "Abkürzungen"
+     en: "Abbreviations"
+ 028: !map:HashWithIndifferentAccess 
+   label: !map:HashWithIndifferentAccess 
+     it: Numero dell'editore
+     fr: "Num\xC3\xA9ro d'\xC3\xA9diteur"
+     de: Verlagsnummer
+     en: Publisher Number
+   fields: !map:HashWithIndifferentAccess 
+     a: !map:HashWithIndifferentAccess 
+       label: !map:HashWithIndifferentAccess 
+         it: Numero di lastra
+         fr: "Num\xC3\xA9ro de plaque"
+         de: Plattennummer
+         en: Plate number
+ "100": !map:HashWithIndifferentAccess 
+   label: !map:HashWithIndifferentAccess 
+     it: Compositore/Autore
+     fr: Compositeur/Auteur
+     de: Komponist/Autor
+     en: Composer/Author
+   accepts: 
+   - "700"
+   fields: !map:HashWithIndifferentAccess 
+     a: !map:HashWithIndifferentAccess 
+       label: !map:HashWithIndifferentAccess 
+         it: Nome
+         fr: Nom
+         de: Name
+         en: Name
 
-	"doc_abbreviations": !map:HashWithIndifferentAccess 
-	  label: !map:HashWithIndifferentAccess 
-	    de: "Abkürzungen"
-	    en: "Abbreviations"
-	028: !map:HashWithIndifferentAccess 
-	  label: !map:HashWithIndifferentAccess 
-	    it: Numero dell'editore
-	    fr: "Num\xC3\xA9ro d'\xC3\xA9diteur"
-	    de: Verlagsnummer
-	    en: Publisher Number
-	  fields: !map:HashWithIndifferentAccess 
-	    a: !map:HashWithIndifferentAccess 
-	      label: !map:HashWithIndifferentAccess 
-	        it: Numero di lastra
-	        fr: "Num\xC3\xA9ro de plaque"
-	        de: Plattennummer
-	        en: Plate number
-	"100": !map:HashWithIndifferentAccess 
-	  label: !map:HashWithIndifferentAccess 
-	    it: Compositore/Autore
-	    fr: Compositeur/Auteur
-	    de: Komponist/Autor
-	    en: Composer/Author
-	  accepts: 
-	  - "700"
-	  fields: !map:HashWithIndifferentAccess 
-	    a: !map:HashWithIndifferentAccess 
-	      label: !map:HashWithIndifferentAccess 
-	        it: Nome
-	        fr: Nom
-	        de: Name
-	        en: Name
 == Options
 hide_marc_identifiers: <true or false>
 
 Example:
 
-	--- !map:Settings 
-	"000": 
-	  tag: tag_no_subfield
-	  tag_params: 
-	    editor_only: true
-	  tag_header: none
-	"001": 
-	  tag: tag_no_subfield
-	  tag_params: 
-	    read_only: true
-	  tag_header: none
-	"110": 
-	  layout: 
-	    fields: 
-	    - - a
-	      - type: institution
-	        editor_partial: subfield_secondary
-	        cols: 2
-	    - - b
-	      - cols: 1
-	    columns: 3
+ --- !map:Settings 
+ "000": 
+   tag: tag_no_subfield
+   tag_params: 
+     editor_only: true
+   tag_header: none
+ "001": 
+   tag: tag_no_subfield
+   tag_params: 
+     read_only: true
+   tag_header: none
+ "110": 
+   layout: 
+     fields: 
+     - - a
+       - type: institution
+         editor_partial: subfield_secondary
+         cols: 2
+     - - b
+       - cols: 1
+     columns: 3
 		
 == Layout:
 At the top level a Layout contains settings that pertain to the overall layout:
@@ -189,23 +191,23 @@ The groups: section defines the groups of tags that will run together in the for
 
 Example: 
 
-	groups: 
-	  group_administration: 
-	    all_tags: 
-	    - "000"
-	    - "001"
-	    - "003"
-	    - 008
-	    - "040"
-	    - "599"
-	    admin_only: true
-	  group_linking: 
-	    all_tag_templates: 
-	      "775": show_related_editions
-	    all_tags: 
-	    - "775"
-	  group_works: 
-	    all_tag_templates: 
-	      "600": show_work
-	    all_tags: 
-	    - "600"
+ groups: 
+   group_administration: 
+     all_tags: 
+     - "000"
+     - "001"
+     - "003"
+     - 008
+     - "040"
+     - "599"
+     admin_only: true
+   group_linking: 
+     all_tag_templates: 
+       "775": show_related_editions
+     all_tags: 
+     - "775"
+   group_works: 
+     all_tag_templates: 
+       "600": show_work
+     all_tags: 
+     - "600"
