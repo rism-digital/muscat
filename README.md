@@ -4,7 +4,8 @@ Muscat is a framework for cataloging music documents (handwritten and printed mu
 
 ### Links
 
-* [Code documentation](http://docs.rism-ch.org/muscat/trunk/)
+* [RDoc documentation root](http://rdoc.info/github/rism-ch/muscat/)
+* [RDoc code documentation ](http://rdoc.info/github/rism-ch/muscat/master/file/1-%20INTRODUCTION.rdoc)
 * [Example (RISM UK)](http://www.rism.org.uk)
 * [Example (RISM Switzerland)](http://www.rism-ch.org)
 * [RailsConf presentation](http://docs.rism-ch.org/thatcher2007railsconf.pdf)
@@ -13,6 +14,7 @@ Muscat is a framework for cataloging music documents (handwritten and printed mu
 ### Contributors
 
 The following people contribute (or have contributed) to Muscat:
+
  * Yvonne Babioch (design and guidelines)
  * Claudio Bacciagaluppi (guidelines)
  * Cédric Güggi (guidelines)
