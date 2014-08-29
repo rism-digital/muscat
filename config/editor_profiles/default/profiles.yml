@@ -1,6 +1,7 @@
 --- 
 - :id: Default
   :name: Default
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -13,6 +14,7 @@
     default: true
 - :id: Print
   :name: Print
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -20,12 +22,13 @@
   :options: 
   - BasicFormOptions
   :layout: 
-  - LayoutContents
+  - LayoutShow
   :filter: 
-    leader: !ruby/regexp /.....ncm.............../
+    leader: !ruby/regexp /.....cdd|ncm.............../
     tag: "100"
 - :id: Show
   :name: Show
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -33,12 +36,14 @@
   :options: 
   - BasicFormOptions
   :layout: 
-  - LayoutContents
+  - LayoutShow
   :filter: 
     show_all: false
     show: true
+
 - :id: Holding
   :name: holding
+  :model: source
   :labels: 
   - BasicLabels
   :rules: 
@@ -49,3 +54,32 @@
   - LayoutHolding
   :filter: 
     holding: true
+
+# Configuration for person
+- :id: DefaultPerson
+  :name: Default Person
+  :model: person
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - PersonBasicFormOptions
+  :layout: 
+  - PersonLayoutDefault
+  :filter: 
+    default: true
+- :id: ShowPerson
+  :name: Show Person
+  :model: person
+  :labels: 
+  - BasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - PersonBasicFormOptions
+  :layout: 
+  - PersonLayoutShow
+  :filter:
+    show_all: false
+    show: true

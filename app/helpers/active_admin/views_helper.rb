@@ -94,7 +94,7 @@ module ActiveAdmin::ViewsHelper
   def active_admin_source_show_title( composer, std_title, id )
     return "[#{id}]" if composer.empty? and std_title.empty?
     return "#{std_title} [#{id}]" if composer.empty? and !std_title.empty?
-    return "#{composer} [#{id}]" if std_title.empty?
+    return "#{composer} [#{id}]" if (std_title.nil? or std_title.empty?)
     return "#{composer} : #{std_title} [#{id}]"
   end
   

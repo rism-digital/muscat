@@ -95,7 +95,7 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_std_title), :std_title
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_lib_siglum), :lib_siglum
-    column (I18n.t :filter_shelf_mark), :shelf_mark
+    #column (I18n.t :filter_shelf_mark), :shelf_mark
     actions
   end
   
@@ -109,6 +109,7 @@ ActiveAdmin.register Source do
     @item = @arbre_context.assigns[:item]
     render :partial => "marc/show"
     active_admin_navigation_bar( self )
+    active_admin_comments
   end
   
   ##########

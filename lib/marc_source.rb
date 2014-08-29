@@ -51,15 +51,20 @@ class MarcSource < Marc
   def get_composer
     composer = ""
     composer_d = ""
-
     if node = first_occurance("100", "a")
       person = node.foreign_object
       composer = person.full_name
       composer_d = person.full_name_d
     end
-    
     [composer, composer_d]
   end
+
+  def get_siglum
+    if node = first_occurance("852", "a")
+      return node.content
+    end
+  end
+  
   
   # Get the Library and shelfmarc for a MARC record
   def get_siglum_and_shelf_mark
