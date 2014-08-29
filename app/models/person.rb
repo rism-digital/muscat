@@ -19,7 +19,7 @@
 
 class Person < ActiveRecord::Base
   
-  include MarcIndex
+#  include MarcIndex
   
   resourcify 
   has_many :works
@@ -112,41 +112,29 @@ class Person < ActiveRecord::Base
     self.index
   end
 
-  searchable :auto_index => false do
-    integer :id
-    string :full_name_order do
+  searchable :auto_index => false do |sunspot_dsl|
+    sunspot_dsl.integer :id
+    sunspot_dsl.string :full_name_order do
       full_name
     end
-    text :full_name
-    text :full_name_d
+    sunspot_dsl.text :full_name
+    sunspot_dsl.text :full_name_d
     
-    string :life_dates_order do
+    sunspot_dsl.string :life_dates_order do
       life_dates
     end
-    text :life_dates
+    sunspot_dsl.text :life_dates
     
-    text :birth_place
-    text :source
-    text :alternate_names
-    text :alternate_dates
+    sunspot_dsl.text :birth_place
+    sunspot_dsl.text :source
+    sunspot_dsl.text :alternate_names
+    sunspot_dsl.text :alternate_dates
     
-    integer :src_count_order do 
+    sunspot_dsl.integer :src_count_order do 
       src_count
     end
     
-    # It seems this thig here can *NOT*
-    # be put in a funciton, because
-    # I have the pointer to the current scope only
-    # into the "string do" block
-    IndexConfig.get_fields("person").each do |k, v|
-      store = v && v.has_key?(:store) ? v[:store] : false
-      boost = v && v.has_key?(:boost) ? v[:boost] : 1.0
-      type = v && v.has_key?(:type) ? v[:type] : 'string'
-      
-      string k, :multiple => true, :stored => store do
-        marc_index_tag(k, v, marc, self)
-      end
-    end
+    MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
   end
     

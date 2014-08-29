@@ -7,8 +7,15 @@ config:
 
 fields:  
   "001":
-  "008":
-      :index_helper: :extract_search_fields_from_008
+  "008_date1":
+      :tag: 008
+      :index_helper: :marc_helper_get_008_date1
+  "008_date2":
+      :tag: 008
+      :index_helper: :marc_helper_get_008_date2
+  "008_language":
+      :tag: 008
+      :index_helper: :marc_helper_get_008_language
   "028a":
   "028b":
   "031d":
@@ -16,7 +23,6 @@ fields:
   "031m":
   "031p":
       :store: true
-#      :ceded_index_helper: :create_incipit_ch
   "031q":
   "031t":
   "033a":
@@ -47,6 +53,7 @@ fields:
   "240r":
       :store: true
   "245a":
+      :type: text
   "245b":
   "245c":
   "246a":
@@ -64,9 +71,7 @@ fields:
   "340c":
   "340d":
   "351a":
-      :no_index_value: xxxx
   "500a":
-      :no_index_value: xxxx
   "5005":
   "505a":
   "506a":
@@ -85,7 +90,6 @@ fields:
   "546a":
   "555a":
   "561a":
-      :no_index_value: xxxx
   "5615":
   "562a":
   "5625":
@@ -139,7 +143,6 @@ fields:
   "730k":
   "730m":
   "730n":
-      :store: true
   "730o":
   "730p":
   "730r":

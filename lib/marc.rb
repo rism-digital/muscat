@@ -503,6 +503,60 @@ class Marc
     return field
   end
   
+  def marc_helper_get_008_language(value)
+    codes = Array.new
+    
+    forward = {
+    	'lat' => 'Latin',
+    	'la' => 'Latin',
+
+    	'eng' => 'English',
+    	'en' => 'English',
+
+    	'ita' => 'Italian',
+    	'it' => 'Italian',
+
+    	'ger' => 'German',
+    	'ge' => 'German',
+
+    	'spa' => 'Spanish',
+    	'sp' => 'Spanish',
+
+    	'fre' => 'French',
+    	'fr' => 'French',
+
+    	'sco' => 'Scots',
+    	'sc' => 'Scots',
+
+    	'wel' => 'Welsh',
+    	'we' => 'Welsh',
+
+    	'rus' => 'Russian',
+    	'ru' => 'Russian'
+    }
+
+    reverse = {
+    	'Latin'   => 'lat',
+    	'English' => 'eng',
+    	'Italian' => 'ita',
+    	'German'  => 'ger',
+    	'Spanish' => 'spa',
+    	'French'  => 'fre',
+    	'Scots'   => 'sco',
+    	'Welsh'   => 'wel',
+    	'Russian' => 'rus'
+    }
+
+    if value =~ /^[^|]+[|]+([^|]+).+$/
+      if forward.has_key?($1)
+        codes << forward[$1]
+        codes << reverse[forward[$1]]
+      end
+    end
+
+    return codes
+  end
+  
   # Return the string from the given start for lenght in a 008 MARC record
   def marc_get_range(value, start, length)
     if value.length <= start

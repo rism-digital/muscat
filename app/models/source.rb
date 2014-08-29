@@ -36,7 +36,7 @@ class Source < ActiveRecord::Base
   
   # include the override for group_values
   require 'solr_search.rb'
-  include MarcIndex
+#  include MarcIndex
   resourcify
   
   belongs_to :source
@@ -198,100 +198,86 @@ class Source < ActiveRecord::Base
     self.index
   end
 
-  
 
-  searchable :auto_index => false do
-    integer :id
-    
-    text :id_fulltext do
+  searchable :auto_index => false do |sunspot_dsl|
+   sunspot_dsl.integer :id
+
+    sunspot_dsl.text :id_fulltext do
       id_for_fulltext
     end
     
-    text :source_id
+    sunspot_dsl.text :source_id
     
-    string :std_title_order do 
+    sunspot_dsl.string :std_title_order do 
       std_title
     end
-    text :std_title, :stored => true
-    text :std_title_d
+    sunspot_dsl.text :std_title, :stored => true
+    sunspot_dsl.text :std_title_d
     
-    string :composer_order do 
+    sunspot_dsl.string :composer_order do 
       composer
     end
-    text :composer, :stored => true
-    text :composer_d
+    sunspot_dsl.text :composer, :stored => true
+    sunspot_dsl.text :composer_d
     
-    text :marc_source
+    sunspot_dsl.text :marc_source
     
-    string :title_order do 
+    sunspot_dsl. string :title_order do 
       title
     end
-    text :title, :stored => true
-    text :title_d
+    sunspot_dsl. text :title, :stored => true
+    sunspot_dsl. text :title_d
     
-    string :shelf_mark_order do 
+    sunspot_dsl.string :shelf_mark_order do 
       shelf_mark
     end
-    text :shelf_mark, :stored => true
+    sunspot_dsl.text :shelf_mark, :stored => true
     
-    string :lib_siglum_order do
+    sunspot_dsl.string :lib_siglum_order do
       lib_siglum
     end
-    text :lib_siglum, :stored =>true
+    sunspot_dsl.text :lib_siglum, :stored =>true
     
-    integer :date_from
-    integer :date_to
+    sunspot_dsl.integer :date_from
+    sunspot_dsl.integer :date_to
     
-    integer :catalogues, :multiple => true do
+    sunspot_dsl.integer :catalogues, :multiple => true do
           catalogues.map { |catalogue| catalogue.id }
     end
     
-    integer :people, :multiple => true do
+    sunspot_dsl.integer :people, :multiple => true do
           people.map { |person| person.id }
     end
     
-    integer :places, :multiple => true do
+    sunspot_dsl.integer :places, :multiple => true do
           places.map { |place| place.id }
     end
     
-    integer :libraries, :multiple => true do
+    sunspot_dsl.integer :libraries, :multiple => true do
           libraries.map { |library| library.id }
     end
     
-    integer :institutions, :multiple => true do
+    sunspot_dsl.integer :institutions, :multiple => true do
           institutions.map { |institution| institution.id }
     end
     
-    integer :liturgical_feasts, :multiple => true do
+    sunspot_dsl.integer :liturgical_feasts, :multiple => true do
           liturgical_feasts.map { |lf| lf.id }
     end
     
-    integer :standard_terms, :multiple => true do
+    sunspot_dsl.integer :standard_terms, :multiple => true do
           standard_terms.map { |st| st.id }
     end
     
-    integer :standard_titles, :multiple => true do
+    sunspot_dsl.integer :standard_titles, :multiple => true do
           standard_titles.map { |stit| stit.id }
     end
     
-    integer :works, :multiple => true do
+    sunspot_dsl.integer :works, :multiple => true do
           works.map { |work| work.id }
     end
-    
-    # It seems this thig here can *NOT*
-    # be put in a funciton, because
-    # I have the pointer to the current scope only
-    # into the "string do" block
-    IndexConfig.get_fields("source").each do |k, v|
-      store = v && v.has_key?(:store) ? v[:store] : false
-      boost = v && v.has_key?(:boost) ? v[:boost] : 1.0
-      type = v && v.has_key?(:type) ? v[:type] : 'string'
-      
-      string k, :multiple => true, :stored => store do
-        marc_index_tag(k, v, marc, self)
-      end
-    end
-    
+
+    MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
     
   def check_dependencies
