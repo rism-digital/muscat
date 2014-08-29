@@ -1,0 +1,140 @@
+--- !map:Settings 
+"000": 
+  tag: tag_no_subfield
+  tag_params: 
+    editor_only: true
+  tag_header: none
+"001": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+  tag_header: none
+"003": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+  tag_header: none
+"005": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+  tag_header: none
+008: 
+  tag: tag_no_subfield
+  tag_params: 
+    maskedinput: 
+      definitions: "['~']='[|0-9]'"
+      mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
+  tag_header: none
+"035": 
+    layout: 
+      fields: 
+      - - a
+        - cols: 4
+      columns: 4
+"039": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+"040": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - c
+      - cols: 2
+    - - d
+      - cols: 2
+    - - b
+      - cols: 2
+    columns: 4
+"043": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    - - b
+      - cols: 2
+    - - c
+      - cols: 2
+    columns: 4
+"100": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - d
+      - cols: 2
+    columns: 4
+"400": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - d
+      - cols: 2
+    columns: 4
+"509": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    columns: 2
+"549": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    columns: 2
+"559": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    columns: 2
+"569": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    columns: 2
+"670": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - b
+      - cols: 2
+    - - u
+      - cols: 4
+    columns: 4
+"678": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - b
+      - cols: 2
+    - - u
+      - cols: 4
+    columns: 4
+"680": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - i
+      - cols: 2
+    - - "5"
+      - cols: 4
+    columns: 4
+"684": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - j
+      - cols: 2
+    columns: 4
