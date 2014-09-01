@@ -1,0 +1,24 @@
+
+:version:
+  :name: tag_config
+  :current: 1.0
+  :authors: ["Rodolfo Zitellini"]
+
+:model: source
+:tags:
+  "773":
+    :master: a
+    :indicator: "18"
+    :occurances: "?"
+    :fields:
+    - - a
+      - :occurances: "1"
+        :foreign_class: Source
+        :foreign_field: id
+        :zero_padding: "14"
+        :browse_helper: application_helper_link_source_id
+    - - i
+      - :occurances: "?"
+    - - "7"
+      - :occurances: "0"
+        :no_browse: true
