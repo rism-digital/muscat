@@ -1,5 +1,3 @@
-#TODO! CACHE THIS ENTIRE CLASS IN environment.rb
-
 require 'yaml'
 
 # Load the Marc Configuration. It is used to define how various tags should be handles
@@ -8,22 +6,22 @@ require 'yaml'
 #
 class MarcConfig
 
-  def initialize(tag_config_file)
-    @model = load_config tag_config_file
+  def initialize(tag_config_file_path)
+    @model = load_config tag_config_file_path
   end
 
   private
 
-  def load_config( tag_config_file  )
+  def load_config( tag_config_file_path  )
 
-    @whole_config = Settings.new( YAML::load(File.open(tag_config_file)) )
+    @whole_config = Settings.new( YAML::load(File.open(tag_config_file_path)) )
 
-    # if we have a custom tag config, load it and override the default one
-    # FIXME
-    if (defined?(RISM::CUSTOM_TAG_CONFIG) && RISM::CUSTOM_TAG_CONFIG)
-      @whole_config.squeeze(Settings.new(YAML::load(File.open("#{Rails.root}/config/marc/#{RISM::CUSTOM_TAG_CONFIG}"))))
+    config_file = File.basename(tag_config_file_path) 
+    overlay_file = File.join(Rails.root, 'config', 'marc', RISM::MARC, 'local_' + config_file)
+    if File.exists?(overlay_file)
+      @whole_config.squeeze(Settings.new(YAML::load(File.open(overlay_file))))
     end
-
+    
     @tag_config = @whole_config[:tags]
     # @indexed_tags = Array.new
     @foreign_tags = Array.new
