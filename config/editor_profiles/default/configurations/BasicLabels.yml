@@ -1,704 +1,2293 @@
 --- !map:Settings 
+doc_abbreviations: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: "Abk\xC3\xBCrzungen"
+    en: Abbreviations
+doc_aid: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: Arbeitshilfen
+    en: Aide
+doc_cataloguing_collections: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: Erfassung von Sammlungen
+    en: Cataloging collection and convoluta
+doc_functions: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: "Grund\xC3\xA4tzliche Funktionen"
+    en: Basic functions
+doc_introduction: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: Einleitung
+    en: Introduction
+doc_masks: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: Masken
+    en: Cataloging forms
+doc_tag_index: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: MARC Tag Index
+    en: MARC tag index
+doc_templates: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: Templates
+    en: Templates
 "000": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Leader
+    fr: Guide
+    de: Leader
     en: Leader
 "001": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Numero documento RISM
+    fr: No. RISM
+    de: RISM Dokumentnummer
     en: RISM ID No.
 001_conv: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Raccolta di miscellanee
+    fr: Convolutum
+    de: Convolutum
     en: Convolutum
-001_print: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Print
 002_ms_col: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Manoscritto miscellaneo
+    fr: Collection manuscrite
+    de: Sammelhandschrift
     en: Manuscript Collection
 "003": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Identificatore del numero di controllo
+    fr: "Identit\xC3\xA9 du num\xC3\xA9ro de contr\xC3\xB4le"
+    de: Kontrollnummer-Bezeichnung
     en: Control number identifier
 003_pr_col: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Raccolta a stampa
+    fr: "Collection imprim\xC3\xA9es"
+    de: Sammeldruck
     en: Printed Collection
 "005": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Data e ora dell'ultima transazione
+    fr: "Date/heure de la derni\xC3\xA8re transaction"
+    de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
 "007": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Campo fisso per la descrizione fisica
+    fr: "Zone fixe de description mat\xC3\xA9rielle"
+    de: Codierte Form der Materialbeschreibung
     en: Physical description fixed field
 008: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Dati bibliografici di lunghezza fissa
+    fr: "Donn\xC3\xA9es bibliographiques cod\xC3\xA9es"
+    de: "Datenelemente fixer L\xC3\xA4nge"
     en: Coded bibliographic data
 01_codes_artistic: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore
+    fr: Auteur
+    de: Verfasser
     en: Artistic production
+028: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Numero dell'editore
+    fr: "Num\xC3\xA9ro d'\xC3\xA9diteur"
+    de: Verlagsnummer
+    en: Publisher Number
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Numero di lastra
+        fr: "Num\xC3\xA9ro de plaque"
+        de: Plattennummer
+        en: Plate number
 02_codes_performing: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Partecipanti
+    fr: Performance
+    de: Mitwirkende
     en: Performance
+"031": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Incipit musicale
+    fr: Incipit musical
+    de: Musikincipit
+    en: Musical Incipit
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Numero dell'incipit
+        fr: "Num\xC3\xA9ro de l'\xC5\x93uvre"
+        de: Incipitnummer
+        en: Number of work
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Numero
+        fr: "Num\xC3\xA9ro"
+        de: Nummer
+        en: Nb work
+    b: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Number of movement
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Nb. movement
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Number of excerpt
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Nb excerpt
+    m: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Organico
+        fr: Voix/instrument
+        de: Besetzung
+        en: Voice/instrument
+    n: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Armatura di chiave
+        fr: Armure
+        de: Akzidentien
+        en: Key signature
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Armat.
+        fr: Armure
+        de: Akzid.
+        en: Key g.
+    d: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Intestazione, Tempo
+        fr: Titre/tempo
+        de: Satztitel, Tempo
+        en: Caption of heading
+    o: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Misura
+        fr: Indication de mesure
+        de: Metrum
+        en: Time signature
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Misura
+        fr: Mes.
+        de: Metrum
+        en: Time s.
+    e: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Ruolo
+        fr: "R\xC3\xB4le"
+        de: Rolle
+        en: Role
+    p: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Incipit musicale
+        fr: Notation musicale
+        de: Musikincipit
+        en: Musical notation
+    q: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Commento all'incipit mus.
+        fr: "Note g\xC3\xA9n\xC3\xA9rale"
+        de: Kommentar zum Musikincipit
+        en: General note
+    g: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Chiave
+        fr: "Cl\xC3\xA9"
+        de: "Schl\xC3\xBCssel"
+        en: Clef
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Chiave
+        fr: "Cl\xC3\xA9"
+        de: "Schl\xC3\xBCss."
+        en: Clef
+    r: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: "Tonalit\xC3\xA0, modo"
+        fr: "Tonalit\xC3\xA9, mode"
+        de: Tonart, Modus
+        en: Key or mode
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: "Tonalit\xC3\xA0"
+        fr: "Tonalit\xC3\xA9"
+        de: Tonart
+        en: Key
+    s: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: "Validit\xC3\xA0"
+        fr: "Validit\xC3\xA9"
+        de: "G\xC3\xBCltigkeit"
+        en: Validity
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Val.
+        fr: Val.
+        de: "G\xC3\xBCl."
+        en: Val.
+    t: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Incipit testuale
+        fr: Incipit du texte
+        de: Textincipit
+        en: Text incipit
 "033": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Formatted Date
+    it: Data
+    fr: Date
+    de: Datum
+    en: Date
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Formatted Date
+        it: Data e luogo di un evento
+        fr: "Date/heure et lieu d'un \xC3\xA9v\xC3\xA9nement"
+        de: Datum und Ort eines Ereignisses (codiert)
+        en: Coded date, time and place of an event
+    indicator: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Tipo di datazione
+        fr: Type de date
+        de: Datierungtypus
+        en: Date type
+    2#: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Ambito di datazione
+        fr: Intervalle de dates
+        de: Datierungsbereich
+        en: Range of dates
+    1#: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Date singole multiple
+        fr: Dates uniques multiples
+        de: Mehrere Einzeldaten
+        en: Multiple single dates
+    0#: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Data singola
+        fr: Date unique
+        de: Einzeldatum
+        en: Single date
 "035": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: A/1 Book ID
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: A/1 Book ID
+        it: Num. locale
+        fr: No. local
+        en: Local ID no.
 03_codes_technical: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Produttore
+    fr: "Cr\xC3\xA9ation"
+    de: Hersteller
     en: Technical production
 "040": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Fonte della catalogazione
+    fr: Source du catalogage
+    de: Katalogisierungsquelle
     en: Cataloguing agency
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Agenzia catalografica originale
+        fr: Orgranisme du catalogage original
+        de: Original-Katalogisierungsstelle
         en: Original cataloguing agency
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Lingua della catalogazione
+        fr: Langue de catalogage
+        de: Katalogisierungssprache
         en: Language of cataloguing
-      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Cat. language
     c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Agenzia della trascrizione
+        fr: Organisme de la transcription
+        de: "\xC3\x9Cbertragende Katalogisierungsstelle"
         en: Transcribing agency
     d: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Agenzia della modifica
+        fr: Organisme de la modification
+        de: Modifizierende Katalogisierungsstelle
         en: Modifying agency
+"041": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Codice di lingua
+    fr: Code de langue
+    de: Sprachcode
+    en: Language code
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Lingua del testo cantato
+        fr: "Langue du texte chant\xC3\xA9"
+        de: Sprachcode
+        en: Language of sung text
+    e: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Lingua del libretto
+        fr: Langue du livret
+        de: Sprachcode von Libretti
+        en: Language code of libretto
+    indicator: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Traduzione
+        fr: Traduction
+        de: "\xC3\x9Cbersetzung"
+        en: Translation
+    1#: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: "S\xC3\xAC"
+        fr: Oui
+        de: Ja
+        en: "Yes"
+    h: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Lingua del testo originale
+        fr: Langue du texte original
+        de: Sprachcode des Originaltextes
+        en: Language of original text
+    0#: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: "No"
+        fr: Non
+        de: Nein
+        en: "No"
 04_codes_other: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Altri
+    fr: Autre
+    de: Weitere
     en: Other
 "100": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Compositore/Autore
+    fr: Compositeur/Auteur
+    de: Komponist/Autor
     en: Composer/Author
   accepts: 
   - "700"
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nome
+        fr: Nom
+        de: Name
         en: Name
     d: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Data di nascita e di morte
+        fr: Dates de vie
+        de: Geburts- und Todesdaten
         en: Life dates
     j: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Qualificazione d'attribuzione
+        fr: Qualificatif d'attribution'
+        de: Attribution qualifier
         en: Attribution qualifier
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Dubbio
+        fr: Douteux
+        de: Zweifelhaft
         en: Dubious
 100_ms: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Manoscritti musicali
+    fr: Manuscrits musicaux
+    de: Handschriftliche Musikwerke
     en: Music manuscripts
 101_ms_anon_work: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Opera anonima
+    fr: Oeuvre anonyme
+    de: Anonymes Werk
     en: Anonymous work
 102_ms_anon_work_col: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Opera anonima in raccolta
+    fr: Oeuvre anonyme dans une collection
+    de: Anonymes Werk in Sammlung
     en: Anonymous work in collection
 103_ms_attr_work: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Opera attribuita
+    fr: "Oeuvre attribu\xC3\xA9e"
+    de: Zugeschriebenes Werk
     en: Attributed work
 104_ms_attr_work_col: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Opera attribuita in raccolta
+    fr: "Oeuvre attribu\xC3\xA9e dans une collection"
+    de: Zugeschriebenes Werk in Sammlung
     en: Attributed work in collection
-1st: !map:ActiveSupport::HashWithIndifferentAccess 
+"110": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: First known issue
+    it: Nome di ente
+    fr: "Nom de la collectivit\xC3\xA9"
+    de: "K\xC3\xB6rperschaftsname"
+    en: Holding institution
+  accepts: 
+  - "710"
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nome di ente
+        fr: "Nom de la collectivit\xC3\xA9"
+        de: "K\xC3\xB6rperschaftsname"
+        en: Holding institution
+    b: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Ente subordinato
+        fr: "Collectivit\xC3\xA9 subordonn\xC3\xA9e"
+        de: "Untergeordnete K\xC3\xB6rperschaft"
+        en: Subordinate unit
+"130": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Titolo uniforme
+    fr: Titre uniforme
+    de: Einordnungstitel
+    en: Standardised title
+  accepts: 
+  - "240"
+  - "245"
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    k: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: suddivisione formale
+        fr: Sous-vedette de forme
+        de: Unterteilung nach der Form
+        en: Subheading
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Titolo uniforme
+        fr: Titre uniforme
+        de: Einordnungstitel
+        en: Standardised title
+    m: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Organico sintetico
+        fr: Distribution
+        de: Besetzungshinweis
+        en: Scoring summary
+    n: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Num. di catalogo/d'opera
+        fr: "Opus/no. de catalogue th\xC3\xA9matique"
+        de: Werkverzeichnis/Opus
+        en: Thematic catalogue no./Opus
+    o: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Arrangiamento
+        fr: Mention d'arrangement
+        de: Bearbeitung
+        en: Arrangement statement
+    p: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Titolo della sezione o parte
+        fr: Nom de la partie/section
+        en: Title of section or part
+    r: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: "Tonalit\xC3\xA0"
+        fr: "Tonalit\xC3\xA9"
+        de: Tonart
+        en: Key
 200_pr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Musica a stampa
+    fr: "Imprim\xC3\xA9s musicaux"
+    de: Gedruckte Musikwerke
     en: Music prints
 201_pr_anon_work: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Opera anonima
+    fr: Oeuvre anonyme
+    de: Anonymes Werk
     en: Anonymous work
 202_pr_anon_work_col: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Opera anonima in raccolta
+    fr: Oeuvre anonyme dans une collection
+    de: Anonymes Werk in Sammlung
     en: Anonymous work in collection
 203_pr_attr_work: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Opera attribuita
+    fr: "Oeuvre attribu\xC3\xA9e"
+    de: Zugeschriebenes Werk
     en: Attributed work
 204_pr_attr_work_col: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Opera attribuita in raccolta
+    fr: "Oeuvre attribu\xC3\xA9e dans une collection"
+    de: Zugeschriebenes Werk in Sammlung
     en: Attributed work in collection
 "240": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Standardised Title
+    it: Titolo uniforme
+    fr: Titre uniforme
+    de: Einordnungstitel
+    en: Standardised title
+  accepts: 
+  - "130"
+  - "245"
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    k: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Suddivisione formale
+        fr: Sous-vedette de forme
+        de: Unterteilung nach der Form
+        en: Subheading
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Titolo uniforme
+        fr: Titre uniforme
+        de: Einordnungstitel
+        en: Standardised title
+    m: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Organico sintetico
+        fr: Distribution
+        de: Besetzungshinweis
+        en: Scoring summary
+    n: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Num. di catalogo/d'opera
+        fr: "No. de cat. thématique/Opus"
+        de: Werkverzeichnis/Opus
+        en: Thematic catalogue no./Opus
+    o: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Arrangiamento
+        fr: Mention d'arrangement
+        de: Bearbeitung
+        en: Arrangement statement
+    p: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Titolo della sezione o parte
+        fr: Nom de la partie/section
+        en: Title of section or part
+    r: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: "Tonalit\xC3\xA0"
+        fr: "Tonalit\xC3\xA9"
+        de: Tonart
+        en: Key
+"245": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Titolo diplomatico
+    fr: Titre diplomatique
+    de: Diplomatischer Titel
+    en: Title on manuscript
+  accepts: 
+  - "130"
+  - "240"
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Standardised Title
+        it: Titolo diplomatico
+        fr: Titre diplomatique
+        de: Diplomatischer Titel
+        en: Title on manuscript
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Sottotitolo
+        fr: Sous-titre
         en: Subtitle
     c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nome/i nel titolo diplomatico
+        fr: Noms(s) dans le titre
+        de: Name(n) im diplomatischen Titel
         en: Name(s) on manuscript
-    m: !map:HashWithIndifferentAccess 
-      label: !map:HashWithIndifferentAccess 
-        en: Scoring summary
-"245": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Title on Source
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Title on Source
-      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: ""
 "246": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Transcription
+    it: Varianti del titolo diplomatico
+    fr: Variante du titre diplomatique
+    de: Weiterer diplomatischer Titel
+    en: Variant title on manuscript
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Transcription
+        it: Varianti del titolo diplomatico
+        fr: Variante du titre diplomatique
+        de: Weiterer diplomatischer Titel
+        en: Variant title on manuscript
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"254": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Consistenza codicologica
+    fr: "Pr\xC3\xA9sentation musicale"
+    de: Musikalische Ausgabeform
+    en: Musical presentation statement
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Consistenza codicologica
+        fr: "Pr\xC3\xA9sentation musicale"
+        de: Musikalische Ausgabeform
+        en: Musical presentation statement
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
 "260": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Imprint
+    it: Copia o dati editoriali
+    fr: Copie ou impressum
+    de: Abschrift oder Impressum
+    en: Copy of masthead
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Luogo
+        fr: Lieu
+        de: Ort
         en: Place
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Copista, editore, casa editrice
+        fr: "Copiste ou maison d'\xC3\xA9dition"
+        de: Schreiber, Verleger, Verlag
         en: Atelier name
     c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Anno
+        fr: "Ann\xC3\xA9e"
+        de: Jahr
         en: Date
     e: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Luogo di stampa
+        fr: Lieu d'impression
+        de: Druckort
         en: Printing place
     f: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Stampatore, stamperia
+        fr: Imprimeur, imprimerie
+        de: Drucker, Druckerei
         en: Printing office
     "3": !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
         en: Set
+"270": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Indirizzo nella fonte
+    fr: Adresse sur la source
+    en: Address on manuscript
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Indirizzo nella fonte
+        fr: Adresse sur la source
+        en: Address on manuscript
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
 "300": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Materiale
+    fr: "Mat\xC3\xA9riel"
+    de: Material
     en: Material
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Description
+        it: Categoria di fonte, estensione
+        fr: Type de source
+        de: Quellenart, Umfang
+        en: Description/Extent
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Altri particolari fisici
+        fr: "Autres d\xC3\xA9tails physiques"
+        de: Andere physische Details
         en: Other physical details
     c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Dimensioni
+        fr: Dimension
+        de: Format
         en: Dimensions
     "3": !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Title
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
 300_lib: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Libretti
+    fr: Libretti
+    de: Libretti
     en: Libretti
 301_lib_ms_anon: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Libretto anonimo manoscritto
+    fr: Libretto anonyme, manuscrit
+    de: Libretto anonym, handschriflich
     en: Libretto anonymous, manuscript
 302_lib_pr_anon: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Libretto anonimo a stampa
+    fr: "Libretto anonyme imprm\xC3\xA9"
+    de: Libretto anonym, gedruckt
     en: Libretto anonymous, printed
 303_lib_ms_attr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Libretto attribuito manoscritto
+    fr: "Libretto attribu\xC3\xA9, manuscrit"
+    de: Libretto zugeschrieben, handschriflich
     en: Libretto attributed, manuscript
 304_lib_pr_attr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Libretto attribuito a stampa
+    fr: "Libretto attribu\xC3\xA9, imprim\xC3\xA9"
+    de: Libretto zugeschrieben, gedruckt
     en: Libretto attributed, printed
 "340": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Printing Technique
+    it: Supporto fisico
+    fr: "Support mat\xC3\xA9riel"
+    de: Physisches Medium
+    en: Physical medium
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Materiale
+        fr: "Substances appliqu\xC3\xA9es"
+        de: Physisches Medium
+        en: Material
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Materiali applicati
+        fr: "Substances appliqu\xC3\xA9es"
+        de: Physisches Medium
+        en: Materials applied
     d: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Printing Technique
+        it: Tecnica di produzione
+        fr: Technique de production
+        de: Herstellungsverfahren
+        en: Recording technique
+    "3": !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
+"351": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Distribuzione delle parti
+    fr: "Arrangement du mat\xC3\xA9riel"
+    de: Anordnung der Stimmen
+    en: Physical arrangement
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Distribuzione delle parti
+        fr: "Arrangement du mat\xC3\xA9riel"
+        de: Anordnung der Stimmen
+        en: Physical arrangement
+    "3": !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
 400_th: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Trattati
+    fr: "Trait\xC3\xA9s"
+    de: Theoretica
     en: Theoretica
 401_th_anon: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Trattato anonimo
+    fr: "Trait\xC3\xA9 anonyme"
+    de: Theoretica anonym
     en: Theoretica anonymous
 402_th_attr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Trattato attribuito
+    fr: "Trait\xC3\xA9 attribu\xC3\xA9"
+    de: Theoretica zugeschrieben
     en: Theoretica attributed
 "500": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Osservazioni
+    fr: "Remarque g\xC3\xA9n\xC3\xA9rale"
+    de: Bemerkungen
     en: General note
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Osservazioni
+        fr: "Remarque g\xC3\xA9n\xC3\xA9rale"
+        de: Bemerkungen
         en: General note
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
 "505": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Table of contents
+    it: Nota di contenuto
+    fr: Remarque sur le contenu
+    de: Bemerkungen zu Inhaltsangaben
+    en: Note on content
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Table of contents
+        it: Nota di contenuto
+        fr: Remarque sur le contenu
+        de: Bemerkungen zu Inhaltsangaben
+        en: Note on content
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"506": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Restrizioni all'accesso
+    de: "Zugangsbeschr\xC3\xA4nkungen"
+    en: Access restriction
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Restrizioni all'accesso
+        de: "Zugangsbeschr\xC3\xA4nkungen"
+        en: Access restriction
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
 "508": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Content transcription
+    it: Nota sui crediti di creazione/produzione
+    fr: "Remarque sur la cr\xC3\xA9ation/production"
+    de: Bemerkung zur Person / Institution
+    en: Creation/production note
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Content transcription
+        it: Nota sui crediti di creazione/produzione
+        fr: "Note sur la cr\xC3\xA9ation/production"
+        de: Bemerkung zur Person / Institution
+        en: Creation/production note
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
 "510": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: RISM Sigla
+    it: Riferimenti
+    fr: "R\xC3\xA9f\xC3\xA9rences"
+    en: References
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: RISM Series
-    c: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: RISM Sigla
-"593": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Type of source
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Type of source
+        it: Riferimenti
+        fr: "R\xC3\xA9f\xC3\xA9rences"
+        en: References
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
+"511": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Nota sui interpreti
+    fr: "Remarque sur les interpr\xC3\xA8tes"
+    de: "Bemerkungen zu den Auff\xC3\xBChrungen"
+    en: Performer note
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nota sui interpreti
+        fr: "Remarque sur les interpr\xC3\xA8tes"
+        de: "Bemerkungen zu den Auff\xC3\xBChrungen"
+        en: Performer note
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"518": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Nota sulla data
+    fr: Remarque sur une date
+    de: Bermerkungen zu Datumsangaben
+    en: Note on a date
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nota sulla data
+        fr: Remarque a sur une date
+        de: Bermerkungen zu Datumsangaben
+        en: Note on a date
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"520": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Riassunto
+    fr: "R\xC3\xA9sum\xC3\xA9"
+    en: Summary description
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Riassunto
+        fr: "R\xC3\xA9sum\xC3\xA9"
+        en: Summary description
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"525": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Materiali allegati
+    fr: "Mat\xC3\xA9riel suppl\xC3\xA9mentaire"
+    de: Beigelegtes Material, Addenda
+    en: Supplementary material
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Materiali allegati
+        fr: "Mat\xC3\xA9triel suppl\xC3\xA9mentaire"
+        de: Beigelegtes Material, Addenda
+        en: Supplementary material
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"533": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Nota di riproduzione
+    fr: Note de reproduction
+    en: Reproduction note
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nota di riproduzione
+        fr: Note de reproduction
+        en: Reproduction note
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"541": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Fonte immediata d'acquisto
+    fr: Source d'acquisition
+    de: Unmittelbare Beschaffungsquelle
+    en: Source of acquisition
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nota sulla fonte d'acquisto
+        fr: Source d'acquisition
+        de: Beschaffungsquelle
+        en: Source of acquisition note
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Metodo d'acquisto
+        fr: "M\xC3\xA9thode d'acquisition"
+        de: Beschaffungsart
+        en: Method of acquisition
+    d: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Data d'acquisto
+        fr: Date d'acquisition
+        de: Beschaffungsdatum
+        en: Date of acquisition
+"545": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Dati biografici o storici
+    fr: "Donn\xC3\xA9es biographiques ou historiques"
+    de: Biographische oder geschichtliche Daten
+    en: Biographical note
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Dati biografici o storici
+        fr: "Donn\xC3\xA9es biographiques ou historiques"
+        de: Biographische oder geschichtliche Daten
+        en: Biographical note
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"546": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Nota sulla lingua
+    fr: Note sur la langue
+    de: Sprachenvermerk
+    en: Language note
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nota sulla lingua
+        fr: Note sur la langue
+        de: Sprachenvermerk
+        en: Language note
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"555": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    en: Unpublished finding aid
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Unpublished finding aid
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"561": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Provenienza
+    fr: Provenance
+    de: Herkunft der Quelle
+    en: Provenance
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Provenienza
+        fr: Provenance
+        de: Herkunft der Quelle
+        en: Provenance
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"563": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Rilegatura
+    fr: Reliure
+    de: Einband
+    en: Binding note
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Rilegatura
+        fr: Reliure
+        de: Einband
+        en: Binding note
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"580": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Nota di collegamento complesso
+    fr: Note de liaison complexe des vedettes
+    de: Beziehung von komplexen Eintragungen
+    en: Linking entry complexity note
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nota di collegamento complesso
+        fr: Note de liaison complexe des vedettes
+        de: Beziehung von komplexen Eintragungen
+        en: Linking entry complexity note
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"590": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Parti staccate
+    fr: Parties
+    de: Stimmenmaterial
+    en: Parts held
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Parti staccate esistenti
+        fr: Parties existantes
+        de: Vorhandene Stimmen
+        en: Parts held
+    b: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Parti staccate mancanti
+        fr: Parties manquantes
+        de: Fehlendes Stimmenmaterial
+        en: Parts missing
+    "3": !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
+"591": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Segnatura precedente
+    fr: Ancienne cote
+    en: Former MS number
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Segnatura precedente
+        fr: Ancienne cote
+        en: Former MS number
+    "4": !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Categoria di segnatura
+        fr: Type de cote
+        en: Shelf mark type
+"592": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Filigrana
+    fr: Filigrane
+    de: Wasserzeichen
+    en: Watermark note
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Filigrana
+        fr: Filigrane
+        de: Wasserzeichen
+        en: Watermark note
+    "3": !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
+"593": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Categoria di fonte
+    fr: Type de source
+    de: Quellentyp
+    en: Autograph note
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Categoria
+        fr: Type
+        de: Typ
+        en: Type
+    "3": !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
+"594": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Organico completo
+    fr: Instrumentation
+    de: "Vollst\xC3\xA4ndige Besetzung"
+    en: Scoring (coded instrumentation)
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    k: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Strumenti a percussione
+        fr: Percussions
+        de: Schlaginstrumente
+        en: Precussion
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: stck
+        fr: stck
+        de: stck
+        en: stck
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Voce solista
+        fr: Voix seule
+        de: Solostimme
+        en: Solo voice
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Vsolo
+        fr: Vsolo
+        de: Vsolo
+        en: Vsolo
+    l: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Strumenti a tastiera
+        fr: "Instruments \xC3\xA0 clavier"
+        de: Tasteninstrumente
+        en: Keyboards
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: keyb
+        fr: keby
+        de: keyb
+        en: keyb
+    b: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Voce solista aggiuntiva
+        fr: Voix seule additionnelle
+        de: "Zus\xC3\xA4tzliche Solostimme"
+        en: Additional solo voice
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Vsolo
+        fr: Vsolo
+        de: Vsolo
+        en: Vsolo
+    m: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Altri strumenti
+        fr: Autres instruments
+        de: Weitere Instrumente
+        en: Other instruments
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: other instr.
+        fr: other instr.
+        de: other instr.
+        en: other instr.
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Voci di coro
+        fr: Voix de choeur
+        de: Chorstimmen
+        en: Choir voice
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Coro
+        fr: Coro
+        de: Coro
+        en: Coro
+    n: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Basso continuo
+        fr: Basso continuo
+        de: Basso continuo
+        en: Basso continuo
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: B.c.
+        fr: B.c.
+        de: B.c.
+        en: B.c.
+    d: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Voci di coro aggiuntive
+        fr: Voix de choeur additionnelles
+        de: "Zus\xC3\xA4tzliche Chorstimmen"
+        en: Additional choir voice
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Coro
+        fr: Coro
+        de: Coro
+        en: Coro
+    e: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Strumento solista
+        fr: Instrument soliste
+        de: Solistisches Instrument
+        en: Soloist intrument
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: iSol
+        fr: iSol
+        de: iSol
+        en: iSol
+    f: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Archi
+        fr: Cordes
+        de: Streichinstrumente
+        en: Strings
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: strings
+        fr: strings
+        de: strings
+        en: strings
+    g: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Legni
+        fr: Bois
+        de: Holzblasinstrumente
+        en: Woodwinds
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: woodwinds
+        fr: woodwinds
+        de: woodwinds
+        en: woodwinds
+    h: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Ottoni
+        fr: Cuivres
+        de: Blechblasinstrumente
+        en: Brasses
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: brasses
+        fr: brasses
+        de: brasses
+        en: brasses
+    i: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Strumenti a pizzico
+        fr: "Instruments \xC3\xA0 cordes pinc\xC3\xA9es"
+        de: Zupfinstrumente
+        en: Plucked instruments
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: plck
+        fr: plck
+        de: plck
+        en: plck
+"595": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Ruoli: nomi originali dei personaggi"
+    fr: "R\xC3\xB4les: noms originaux"
+    de: "Rollennamen: Originale Schreibweise"
+    en: Dramatic roles named
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: "Ruoli: nomi originali dei personaggi"
+        fr: "R\xC3\xB4le: noms originaux"
+        de: "Rollennamen: Originale Schreibweise"
+        en: Dramatic roles named
 "596": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Rimandi a RISM A/I e RISM B
+    fr: "R\xC3\xA9f\xC3\xA9rence au RISM A/I et B"
+    de: Querverweise zu RISM A/I und RISM B
     en: RISM Series A/I and B references
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Rimandi a RISM A/I e RISM B
+        fr: "R\xC3\xA9f\xC3\xA9rences au RISM A/I et B"
+        de: Querverweise zu RISM A/I und RISM B
         en: RISM Series A/I and B references
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"597": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Rilegatura
+    fr: Reliure
+    en: Binding
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Rilegatura
+        fr: Reliure
+        en: Binding
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"598": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Denominazioni originali delle parti
+    fr: Nom original des parties
+    en: Original names of parts
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Denominazioni originali delle parti
+        fr: Nom original des parties
+        en: Original names of parts
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
 "599": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Internal note
+    it: Commenti interni
+    fr: Commentaires internes
+    de: Interne Fussnoten
+    en: Local notes field
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Internal note
+        it: Commenti interni
+        fr: Commentaires internes
+        de: Interne Fussnoten
+        en: Local notes field
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
 "600": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Related Works
+    it: Accesso aggiunto di soggetto - nome di persona
+    fr: "Vedette mati\xC3\xA8re - nom de personne"
+    de: Schlagworteintragung - Personenname
+    en: Subject added entry - personal name
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    "0": !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: UUID
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Author
-    g: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Form
-    t: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Title
+        it: Nome di persona
+        fr: Nom de personne
+        de: Personenname
+        en: Personal name
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
 "650": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Parola chiave
+    fr: Sujets
+    de: Schlagworteintragung
     en: Subject heading
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     v: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Suddivisione formale
+        fr: Subdivision de forme
+        de: Unterteilung nach der Form
         en: Form subdivision
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Parola chiave
+        de: Sachschlagwort
+        fr: Sujet
         en: Subject heading
     x: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Suddivisione generale
+        fr: "Subdivision g\xC3\xA9n\xC3\xA9rale"
+        de: Allgemeine Unterteilung
         en: Subheading General subdivision
     y: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Suddivisione cronologica
+        fr: Subdivision chronologique
+        de: Chronologische Unterteilung
         en: Chronological subdivision
     z: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Suddivisione geografica
+        fr: "Subdivision g\xC3\xA9ographique"
+        de: Geographische Unterteilung
         en: Geographic subdivision
-"690": !map:ActiveSupport::HashWithIndifferentAccess 
+"651": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Catalogue
+    it: Luogo di un evento
+    fr: "Lieu d'un \xC3\xA9v\xC3\xA9nement"
+    de: "Auff\xC3\xBChrungsort"
+    en: Place of an event
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Luogo di un evento
+        fr: "Lieu d'un \xC3\xA9v\xC3\xA9nement"
+        de: "Auff\xC3\xBChrungsort"
+        en: Place of an event
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"653": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Nomi di ruoli standardizzati
+    fr: "Noms de r\xC3\xB4les standardis\xC3\xA9s"
+    de: Rollennamen, normiert Schreibweise
+    en: Role names, standardised
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nomi di ruoli standardizzati
+        fr: "Noms de r\xC3\xB4les standardis\xC3\xA9s"
+        de: Rollennamen, standardisierte Schreibweise
+        en: Role names, standardised
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"657": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Feste liturgiche
+    fr: "F\xC3\xAAte liturgique"
+    de: Liturgische Feste
+    en: Liturgical feasts
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Feste liturgiche
+        fr: "F\xC3\xAAte liturgique"
+        de: Liturgische Feste
+        en: Liturgical feasts
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"690": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Catalogo tematico
+    fr: Nome de catalgue
+    de: Werkverzeichnis
+    en: Catalogue name
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Catalogo tematico
+        fr: Nom de catalogue
+        de: Werkverzeichnis
         en: Catalogue name
     n: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Numero/pagina
+        fr: "Num\xC3\xA9ro/page"
+        de: Nummer/Seitenzahl
         en: Number/page
 "691": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Riferimenti bibliografici
+    fr: "R\xC3\xA9f\xC3\xA9rence bibliographique"
+    de: Literaturverweis
     en: Bibliographical reference
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Bibliografia
+        fr: "R\xC3\xA9f\xC3\xA9rence bibliographique"
+        de: Literatur
         en: Bibliographical reference
     n: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Numero/pagina
+        fr: "Num\xC3\xA9ro/page"
+        de: Fundstelle
         en: Number/page
 "700": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Nomi di persone aggiuntivi
+    fr: Noms de personnes additionnels
+    de: Nebeneintragung Personen
     en: Additional personal names
+  accepts: 
+  - "100"
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nome
+        fr: Nom
+        de: Personenname
         en: Name
     d: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Date di nascita e di morte
+        fr: Dates de vie
+        de: Geburts- und Todesdaten
         en: Life dates
+    e: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Relator term
+    t: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Title of a work
     "3": !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
         en: Set
     "4": !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Funzione
+        fr: Function
+        de: Funktionsbezeichnung
         en: Function
 "710": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Printer / Publisher
+    it: Nome di ente
+    fr: "Nom de la collectivit\xC3\xA9"
+    de: Nebeneintragung Institutionen
+    en: Holding institution
+  accepts: 
+  - "110"
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    k: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nome di ente
+        fr: Nom de l'institution
+        de: Institutionsname
+        en: Holding institution
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Name
+        it: Nome di ente
+        fr: "Nom de la collectivit\xC3\xA9"
+        de: Institutionsname
+        en: Holding institution
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Ente subordinato
+        fr: "Collectivit\xC3\xA9 subordonn\xC3\xA9e"
+        de: Untergeordnete Institution
         en: Subordinate unit
+    "3": !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
     "4": !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Funzione
+        fr: Function
+        de: Funktionsbezeichnung
         en: Function
-"720": !map:ActiveSupport::HashWithIndifferentAccess 
+"730": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Additional institution names
+    it: Titolo uniforme alternativo
+    fr: Titres uniformes additionnels
+    de: Alternativer Einordnungstitel
+    en: Additional title
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    k: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Suddivisione formale
+        fr: Sous-vedette de forme
+        de: Unterteilung nach der Form
+        en: Subheading
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Titolo uniforme alternativo
+        fr: Titres uniformes additionnels
+        de: Alternativer Einordnungstitel
+        en: Additional title
+    m: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Organico sintetico
+        fr: Distribution
+        de: Besetzungshinweis
+        en: Scoring summary
+    n: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Catalogo/Numero d'opera
+        fr: "No. de catalogue thématique/Opus"
+        de: Werkverzeichnis/Opus
+        en: Thematic catalogue no./Opus
+    o: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Arrangiamento
+        fr: Mention d'arrangement
+        de: Bearbeitung
+        en: Arrangement statement
+    p: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Titolo di sezione o parte
+        fr: Nom de la partie/section
+        en: Title of section or part
+    r: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: "Tonalit\xC3\xA0"
+        fr: "Tonalit\xC3\xA9"
+        de: Tonart
+        en: Key
+"740": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Testo
+    fr: Texte
+    de: Text
+    en: Text
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Name
-    b: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Testo
+        fr: Texte
+        de: Text
+        en: Text
+    n: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Subordinate unit
-    e: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Atto o sezione, intestazione
+        fr: "Num\xC3\xA9ro de la partie ou section"
+        de: "Aktnummer/Fundstelle, \xC3\x9Cberschrift"
+        en: Number of part or section
+    p: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Function
-"775": !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Denominazione della parte o sezione
+        fr: Nom de la partie ou section
+        de: Name des Werkteils
+        en: Name of part or section
+"772": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Relations
+    it: Singoli items
+    fr: Contenu de la source
+    de: Untergeordnete Einträge
+    en: Items in this source
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     w: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Print ID
-    "4": !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Singolo item
+        fr: Source dans cette collection
+        de: Untergeordneter Eintrag
+        en: Item in this collection
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+    "7": !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Relation Type
-"786": !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Parent record entry
+"773": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Inventoried source
+    it: Item principale
+    fr: Source principale
+    de: Übergeordneter Eintrag
+    en: Volume containing this item
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
+    w: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Author
-    n: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Item principale
+        fr: Source principale
+        de: Übergeordneter Eintrag
+        en: Volume containing this item
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+    "7": !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Preserved source
-    o: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Bibliographical reference
-    d: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Impressum
-    t: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Title
+        en: Host record entry
     i: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Idenfication status
-"852": !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Note
+"787": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Library Sigla
+    it: Inserimenti
+    fr: Insertions
+    de: Einlagen
+    en: Related work/Insertions
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Library Sigla
+        it: Inserimenti
+        fr: Insertions
+        de: Einlagen
+        en: Related work/Insertions
+    w: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Numero RISM dell'opera principale
+        fr: "Num\xC3\xA9ro RISM de la source"
+        de: RISM Dokumentnummer des Hauptwerks
+        en: RISM ID
+    "7": !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: Non-specific rel. entry
+    n: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Collocazione dell'inserimento nell'opera principale
+        fr: Remarque sur l'endroit de l'insertion
+        de: Stelle der Einlage im Hauptwerk
+        en: Note about the insertion place
+    g: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Incipit num.
+        fr: No. d'incipit
+        de: Incipitnummer
+        en: Incipit Nr.
+    s: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Titolo uniforme
+        fr: Titre uniforme
+        de: Einordnungstitel des Hauptwerks
+        en: Standardised title
+"789": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Incipit
+    fr: Incipit
+    en: Incipit
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Incipit
+        fr: Incipit
+        en: Incipit
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Sublocation
-    z: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Voce/strumento
+        fr: Voix/instrument
+        en: Voice/instrument
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Source used for entry
-    d: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Intestazione/tempo del movimento
+        fr: Mouvemement/tempo
+        en: Movement title/tempo mark
+    n: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Shelf number in the inventory
-    p: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: "Tonalit\xC3\xA0"
+        fr: "Tonalit\xC3\xA9"
+        en: Key
+    o: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Shelfmark
+        it: Codice di commento
+        fr: Commentaire
+        en: Commentary code
     e: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Inventory
-    q: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Chiave
+        fr: Clef
+        en: Clef
+    f: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Condition
-    u: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Armatura di chiave
+        fr: Armure
+        en: Key signature
+    g: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: URL
+        it: Indicazioni del tempo
+        fr: Indication de mesure
+        en: Time signature
+    h: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Incipit musicale codificato
+        fr: "Incipit cod\xC3\xA9"
+        en: Coded musical incipit
+    i: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Incipit num.
+        fr: No. d'incipit
+        en: Incipit ID no.
+    t: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Incipit testuale trascritto
+        fr: Text d'incipit
+        en: Text incipit as transcribed
+"852": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Sigla della biblioteca
+    fr: "Sigle de biblioth\xC3\xA8que"
+    de: Bibliothekssigel
+    en: Library siglum
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Sigla della biblioteca
+        fr: "Sigle de biblioth\xC3\xA8que"
+        de: Bibliothekssigel
+        en: Library siglum
+    b: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Dipartimento
+        fr: Section
+        de: Abteilung
+        en: Sublocation
+    d: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Segnatura vecchia (olim)
+        fr: Ancienne cote (olim)
+        de: Alte Signatur (olim)
+        en: Former shelf mark
     z: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Public note
-    "3": !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nome del fondo
+        fr: Fonds
+        de: Bestandsname
+        en: Collection
+    e: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: Preserved parts
+        it: Biblioteca
+        fr: "Biblioth\xC3\xA8que"
+        de: Bibliothek
+        en: Library
+    p: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Segnatura
+        fr: Cote
+        de: Signatur
+        en: Shelf mark
+"856": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Localizzazione e accesso elettronico
+    fr: "Ressource \xC3\xA9lectronique externe"
+    de: Elektronische Lokalisierung und Zugriff
+    en: External resource
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    z: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nota destinata al pubblico
+        fr: Remarque sur la ressource externe
+        de: "F\xC3\xBCr das Publikum bestimmte Fussnote"
+        en: Note about external resource
+    u: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Risorsa esterna
+        fr: Ressource externe
+        de: Uniform Resource Identifier
+        en: External resource
 added_entry: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Note secondarie
+    fr: "Entr\xC3\xA9es secondaires"
+    de: Nebeneintragungen
     en: Added entry fields
-added_entry_name: !map:ActiveSupport::HashWithIndifferentAccess 
+added_entries: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Added entry personal name
+    it: Nomi secondari
+    fr: Noms secondaires
+    de: Nebeneintragungen
+    en: Added entry name
 added_series: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Note secondarie sul titolo generale
+    fr: "Entr\xC3\xA9es de collection"
+    de: Nebeneintragungen Gesamttitel
     en: Series added entry fields
 administration: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Amministrazione
+    fr: Administration
+    de: Administration
     en: Administration
 arr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Arrangiatore
+    fr: Arrangeur
+    de: Bearbeiter
     en: Arranger
 art: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Scenografo
+    fr: "Metteur en sc\xC3\xA8ne"
+    de: "B\xC3\xBChnenbildner"
     en: Artist
 asn: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Altro nome
+    fr: Autre nom
+    de: Weiterer Name
     en: Associated name
 aut: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore
+    fr: Auteur
+    de: Autor
     en: Author
 bibliographical_reference: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Bibliografia
+    fr: "R\xC3\xA9f\xC3\xA9rences"
+    de: Literatur
     en: References
 bnd: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Rilegatore
+    fr: Relieur
+    de: Buchbinder
     en: Binder
 bsl: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Libraio musicale
+    fr: Libraire
+    de: "Musikalienh\xC3\xA4ndler"
     en: Bookseller
 ccp: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore della fonte letteraria
+    fr: Auteur du texte
+    de: Autor der Textvorlage
     en: Conceptor
 chr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Coreografo
+    fr: "Chor\xC3\xA9graphe"
+    de: Choreograph
     en: Choreographer
 clb: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore secondario
+    fr: Collabarateur
+    de: Mitverfasser
     en: Collaborator
 cmp: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Compositore/Compositore secondario
+    fr: Compositeur / Co-compositeur
+    de: Komponist / Mitkomponist
     en: Composer
 cnd: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Direttore d'orchestra
+    fr: Chef d'orchestre
+    de: Dirigent
     en: Conductor
 cns: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Censore
+    fr: Censeur
+    de: Zensor
     en: Censor
 codes: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Numeri e codici
+    fr: "Num\xC3\xA9ros et codes"
+    de: Nummern und Codes
     en: Numbers and code fields
 com: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Compilatore
+    fr: Compilateur
+    de: Kompilator
     en: Compiler
 content: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Descrizione del contenuto
+    fr: Description du contenu
+    de: Inhaltsangaben
     en: Content description
 control: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    fr: "Champs de contr\xC3\xB4le"
+    de: Kontrollfelder
+    ot: Campi di controllo
     en: Control Fields
-corporate_name: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Corporate names
 cst: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Costumista
+    fr: Costumier
+    de: "Kost\xC3\xBCmbildner"
     en: Costume designer
 date: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Date
+    fr: Dates
+    de: Daten
     en: Dates
 description: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Campi per la descrizione fisica
+    fr: "Description mat\xC3\xA9rielle"
+    de: "Felder f\xC3\xBCr die physische Beschreibung"
     en: Physical description, etc. fields
 diplomatic_title: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Titolo diplomatico
+    fr: Titre diplomatique
+    de: Diplomatischer Titel
     en: Diplomatic title
 dnc: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Ballerino
+    fr: Danceur
+    de: "T\xC3\xA4nzer"
     en: Dancer
 dnr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Donatore
+    fr: Donateur
+    de: Donator
     en: Donor
-doc_authorities: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Authority files
-doc_examples: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Examples
-doc_help: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Input help
-doc_introduction: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Introduction
-doc_masks: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Input fields
-doc_tag_index: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: MARC Tag Index
 dte: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Dedicatario
+    fr: "D\xC3\xA9dicataire"
+    de: "Widmungstr\xC3\xA4ger"
     en: Dedicatee
 dub: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Dubbio
+    fr: Douteux
+    de: Zweifelhaft
     en: Dubious
 edition: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Campi per i dati editoriali
+    fr: Edition, adresse bibliographique, etc.
+    de: Ausgabe- und Impressumsfelder
     en: Edition, imprint, etc. fields
 edt: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Curatore
+    fr: Editeur
+    de: Herausgeber
     en: Editor
 egr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Incisore
+    fr: Graveur
+    de: Stecher
     en: Engraver
 fmo: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Proprietario precedente
+    fr: "Propri\xC3\xA9taire pr\xC3\xA9c\xC3\xA9dent"
+    de: Vorbesitzer
     en: Former owner
-group_administration: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Administration
-group_identification: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: General Information
-group_identification_notes: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Contents
-group_linking: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Related Edition(s)
-group_links: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: First Edition
-group_location: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Copies
-group_mod_dates: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Record Information
-group_physical: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Physical Description
-group_references: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: References
-group_works: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Works
 holding: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Informazioni sul fondo
+    fr: "Donn\xC3\xA9es bibliographiques, fonds, etc."
+    de: Bestandsdaten
     en: Holdings, location, etc. fields
-identification: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Identification
 ill: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Disegnatore
+    fr: Illustrateur
+    de: Illustrator
     en: Illustrator
 incipit: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Incipit
+    fr: Incipits
+    de: Incipits
     en: Incipits
 itr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Strumentista
+    fr: Instrumentiste
+    de: Instrumentalist
     en: Instrumentalist
 lbt: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Librettista
+    fr: Librettiste
+    de: Librettist
     en: Librettist
-led: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Later Edition / Issue
 library: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Biblioteca
+    fr: "Biblioth\xC3\xA8que"
+    de: Besitzerangaben
     en: Library information
 linkage: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Collegamento
+    fr: Liens
+    de: Verlinkung
     en: Linkage
 linking: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Note su collegamenti
+    fr: "Entr\xC3\xA9es de liens"
+    de: "Verkn\xC3\xBCpfungseintragungen"
     en: Linking entry fields
 ltg: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Litografo
+    fr: Litographe
+    de: Lithograph
     en: Lithograph
 lyr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Poeta
+    fr: Parolier
+    de: Textdichter
     en: Lyricist
 main: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Registrazioni principali
+    fr: "Entr\xC3\xA9es principales"
+    de: Haupteintragungen
     en: Main entry fields
 notes: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Note
+    fr: Notes
+    de: Fussnoten
     en: Note fields
 other: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Varia
+    fr: Divers
+    de: Verschiedenes
     en: Miscellaneous
 otm: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Organizzatore
+    fr: Organisateur
+    de: Veranstalter
     en: Event organizer
 pat: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Committente
+    fr: "M\xC3\xA9c\xC3\xA8ne"
+    de: "M\xC3\xA4zen/Auftraggeber"
     en: Patron
 pbl: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Editore
+    fr: Editeur
+    de: Verleger
     en: Publisher
 performance: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Rappresentazioni
+    fr: Performances
+    de: "Auff\xC3\xBChrungen"
     en: Performances
 physical_description: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Descrizione fisica
+    fr: "Description mat\xC3\xA9rielle"
+    de: Physische Beschreibung
     en: Physical description
 ppm: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Fabbricante di carta
+    fr: Papetier
+    de: Papierhersteller
     en: Paper maker
 prd: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Personale alla produzione
+    fr: "Personnel de r\xC3\xA9alisation"
+    de: Produktionspersonal
     en: Production personnel
 prf: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Interprete
+    fr: "Interpr\xC3\xA8te"
+    de: Interpret
     en: Performer
 provenance: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Provenienza
+    fr: Provenance
+    de: Provenienz
     en: Provenance
 prt: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Stampatore
+    fr: Imprimeur
+    de: Drucker
     en: Printer
-references: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: References
 scr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Copista
+    fr: Scribe
+    de: Schreiber
     en: Scribe
 series: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Informazioni sul titolo generale
+    fr: Mentions de collection
+    de: Gesamttitelangaben
     en: Series statement fields
+show_admin: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Amministrazione
+    fr: Administration
+    de: Administration
+    en: Administration
+show_content: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Contenuto
+    fr: Contenu
+    de: Inhalt
+    en: Content
+show_details: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Descrizione fisica
+    fr: "D\xC3\xA9tail de la source"
+    de: Physische Beschreibung
+    en: Source details
+show_distribution: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Organico
+    fr: Formation
+    de: Besetzung
+    en: Distribution
+show_information: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Note
+    fr: "Information suppl\xC3\xA9mentaire"
+    de: Anmerkungen
+    en: Further information
+show_library: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Biblioteca
+    fr: "Biblioth\xC3\xA8que"
+    de: Besitzerangaben
+    en: Library information
+show_links: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Titoli connessi
+    fr: Titres connexes
+    de: Verlinkungen
+    en: Related Titles
+show_references: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Bibliografia
+    fr: "R\xC3\xA9f\xC3\xA9rences"
+    de: Literatur
+    en: References
+show_resources: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Collegamenti
+    fr: Liens
+    de: Links
+    en: Related resources
+show_summary: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Riassunto
+    fr: "R\xC3\xA9sum\xC3\xA9"
+    de: Zusammenfassung
+    en: Summary
+show_terms: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Descrittori
+    fr: Termes
+    de: Deskriptoren
+    en: Index terms
 subject: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Note sul sitolo uniforme
+    fr: "Entr\xC3\xA9es de sujets"
+    de: Schlagworteintragungen
     en: Subject access fields
 title: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Titolo e campi correlati
+    fr: "Titre et champs associ\xC3\xA9s"
+    de: Titel- und damit verbundene Felder
     en: Title and title-related fields
-transcription: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    en: Transcription
 trl: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Traduttore
+    fr: Traducteur
+    de: "\xC3\x9Cbersetzer"
     en: Translater
 voc: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Cantante
+    fr: Vocaliste
+    de: "S\xC3\xA4nger"
     en: Vocalist

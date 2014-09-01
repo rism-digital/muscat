@@ -1,3 +1,4 @@
+<%# p EditorConfiguration %>
 <%- 
 	layout_config = @editor_profile.layout_config
 	layout_config["group_order"].each do |group_name|
@@ -7,4 +8,5 @@
 	<%# unless group["admin_only"] and not role_at_least? :cataloguer -%>
 		<%= render :partial => (group["template"] ? group["template"] : "marc/show_group" ), :locals => { :item => @item, :group => grouping  } %>
 	<%# end -%>
-<%- end -%>
+  <%- end -%>
+

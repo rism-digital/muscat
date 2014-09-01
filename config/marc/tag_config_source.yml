@@ -926,6 +926,13 @@
     :indicator: "18"
     :occurances: "?"
     :fields: 
+    - - "a"
+      - :occurances: "1"
+        :foreign_class: Source
+        :foreign_field: id
+        :zero_padding: "14"
+        :browse_helper: application_helper_link_source_id
+
     - - w
       - :occurances: "1"
         :foreign_class: Source
