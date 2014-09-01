@@ -34,9 +34,9 @@ Is expressed as
 
  MarcNode tag = 700
   children:
-	 MarcNode tag = a, content = Vecchi, Orazio
-	 MarcNode tag = d, content = 1550-1605
-	 MarcNode tag = e, content = composer
+     MarcNode tag = a, content = Vecchi, Orazio
+     MarcNode tag = d, content = 1550-1605
+     MarcNode tag = e, content = composer
 	 
 Both Marc and MarcNode provide functions to navigate, search, add or delete the single tags or subtags.
 
