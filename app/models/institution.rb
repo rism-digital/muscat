@@ -13,6 +13,8 @@
 class Institution < ActiveRecord::Base
   
   has_and_belongs_to_many :sources
+  has_and_belongs_to_many :users
+  has_and_belongs_to_many :libraries
   
   validates_presence_of :name  
   
@@ -55,6 +57,18 @@ class Institution < ActiveRecord::Base
       errors.add :base, "The institution could not be deleted because it is used"
       return false
     end
+  end
+
+  def get_libraries
+    self.libraries.map {|lib| lib}
+  end
+
+  def add_library(siglum)
+    self.libraries << Library.where("siglum like ?", "%#{siglum}%")
+  end
+
+  def remove_library(siglum)
+    self.libraries.delete(Library.where("siglum like ?", "%#{siglum}%"))
   end
   
 end

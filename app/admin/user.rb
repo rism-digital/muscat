@@ -1,13 +1,17 @@
 ActiveAdmin.register User do
 
   menu :parent => "Administration"
-  permit_params :email, :password, :password_confirmation, :name, :workgroup, role_ids: []
+  permit_params :email, :password, :password_confirmation, :name, institution_ids: [], role_ids: []
   
   index do
     selectable_column
     id_column
     column :name
     column :email
+    column "Workgroups" do |user|
+         user.get_workgroups.join(", ")
+    end
+    #column :institutions
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
@@ -24,7 +28,7 @@ ActiveAdmin.register User do
     f.inputs "User Details" do
       f.input :name
       f.input :email
-      f.input :workgroup
+      f.input :institutions, as: :select, multiple: true, collection: Institution.joins(:libraries).uniq
       f.input :password
       f.input :password_confirmation
       f.input :roles, as: :check_boxes, multiple: true, collection: Role.all

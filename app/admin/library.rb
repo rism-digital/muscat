@@ -53,6 +53,9 @@ ActiveAdmin.register Library do
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_siglum), :siglum
     column (I18n.t :filter_location_and_name), :name
+    column "Workgroup" do |lib|
+         (lib.institutions.map {|l| l.name}).join(", ")
+    end
     column (I18n.t :filter_sources), :src_count
     actions
   end
@@ -83,6 +86,8 @@ ActiveAdmin.register Library do
       f.input :siglum, :label => (I18n.t :filter_siglum)
       f.input :name, :label => (I18n.t :filter_name)
       f.input :address, :label => (I18n.t :filter_address)
+      f.input :institutions, as: :select, multiple: true, collection: Institution.joins(:libraries).uniq
+
     end
     f.inputs "Content" do
       f.input :url, :label => (I18n.t :filter_url)

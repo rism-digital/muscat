@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 
+  has_and_belongs_to_many :institutions
   attr_accessible :email, :password, :password_confirmation if Rails::VERSION::MAJOR < 4
 # Connects this user object to Blacklights Bookmarks. 
   include Blacklight::User
@@ -8,4 +9,12 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
+
+  def can_edit?(source)
+    (source.libraries & (self.institutions.map {|ins| ins.get_libraries}).flatten).any?
+  end
+
+  def get_workgroups
+    self.institutions.map {|ins| ins.name}
+  end
 end

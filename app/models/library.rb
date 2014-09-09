@@ -16,6 +16,7 @@ class Library < ActiveRecord::Base
   resourcify
   
   has_and_belongs_to_many :sources
+  has_and_belongs_to_many :institutions
     
   validates_presence_of :siglum    
   
