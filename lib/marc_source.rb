@@ -121,7 +121,7 @@ class MarcSource < Marc
     
     ms_title_d = DictionaryOrder::normalize(ms_title)
    
-    return [ms_title.truncate(2048), ms_title_d.truncate(2048)]
+    return [ms_title.truncate(256), ms_title_d.truncate(256)]
   end
   
   # For holding records, set the condition and the urls (aliases)
