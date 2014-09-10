@@ -195,3 +195,18 @@ The first user needs to be set from the commandline:
  ruby create_admin_users.rb -a --username USER --password PASS --email EMAIL
 	
 the <tt>-a</tt> flag marks the user as admin
+
+
+== Installation on Ubuntu 14.04
+ 
+Install the necessary packages 
+ 
+ sudo apt-get install ruby1.9.3 git ruby-passenger apache2 mysql-server openjdk-7-jre libapache2-mod-passenger make libmysqlclient-dev g++
+
+Clone GIT repo in /var/www/rails (instead ad /usr/local/www as used on FreeBSD). Remember to remove the default html site.
+
+ cd /var/www/rails/$DIR
+ sudo gem install rails
+ sudo bundle install
+
+Use the above example apache conf in /etc/httpd/sites-enabled, create the DB and start Solr as above.
