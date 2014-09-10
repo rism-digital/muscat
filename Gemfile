@@ -62,3 +62,7 @@ gem 'blacklight', ">= 5.3.0"
 #https://github.com/projectblacklight/blacklight_range_limit
 gem "blacklight_range_limit"
 gem 'devise'
+
+# Uncomment this to test the webpage saving
+# in housekeeping/selenium_webdriver
+#gem 'selenium-webdriver'
