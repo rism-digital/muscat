@@ -90,7 +90,7 @@ class MarcSource < Marc
       end
     end
     
-    return [siglum, ms_no]
+    return [siglum.truncate(255), ms_no.truncate(255)]
   end
   
   # On RISM A/1 ms_no contains the OLD RISM ID, get it from 035
@@ -121,7 +121,7 @@ class MarcSource < Marc
     
     ms_title_d = DictionaryOrder::normalize(ms_title)
    
-    return [ms_title.truncate(256), ms_title_d.truncate(256)]
+    return [ms_title.truncate(255), ms_title_d.truncate(255)]
   end
   
   # For holding records, set the condition and the urls (aliases)
@@ -147,7 +147,7 @@ class MarcSource < Marc
       
     end
     
-    return [ms_condition, urls, image_urls]
+    return [ms_condition.truncate(255), urls.truncate(128), image_urls.truncate(255)]
   end
   
   # Set miscallaneous values
@@ -198,7 +198,7 @@ class MarcSource < Marc
       date_from = nil if date_from == 0
       date_to = nil if date_to == 0
       
-      return [language, date_from, date_to]
+      return [language.truncate(16), date_from, date_to]
     end
     
   end
