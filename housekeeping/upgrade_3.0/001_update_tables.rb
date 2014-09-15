@@ -147,8 +147,20 @@ def self.up
   require './db/migrate/20140331105619_devise_create_users.rb'
   DeviseCreateUsers.new.migrate(:up)
   
+  require './db/migrate/20140331105622_create_active_admin_comments.rb'
+  CreateActiveAdminComments.new.migrate(:up)
+  
   require './db/migrate/20140624092937_rolify_create_roles.rb'
   RolifyCreateRoles.new.migrate(:up)
+  
+  require './db/migrate/20140624151537_create_searches.blacklight.rb'
+  CreateSearches.new.migrate(:up)
+  
+  require './db/migrate/20140624151538_create_bookmarks.blacklight.rb'
+  CreateBookmarks.new.migrate(:up)
+  
+  require './db/migrate/20140624151539_add_polymorphic_type_to_bookmarks.blacklight.rb'
+  AddPolymorphicTypeToBookmarks.new.migrate(:up)
   
   # Fix the schema migration
   execute "TRUNCATE TABLE schema_migrations;"
