@@ -149,7 +149,7 @@ class MarcNode
     foreign_associations = {}
     if parent == nil
       @children.each do |child|
-        child_foreign_associations = child.import(overwrite)
+        child_foreign_associations = child.import(overwrite, reindex)
         foreign_associations.merge!(child_foreign_associations) unless !child_foreign_associations
       end
     else

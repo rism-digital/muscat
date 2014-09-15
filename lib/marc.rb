@@ -51,8 +51,8 @@ class Marc
 
   # After a Marc file is loaded an parsed, read all the foreign references
   # and link them. In case they do not exist they will be created (upon saving the manuscript). 
-  def import
-    @all_foreign_associations = @root.import
+  def import(reindex = false)
+    @all_foreign_associations = @root.import(false, reindex)
   end
   
   # Creates a Marc object from the <tt>source</tt> field in the Source record
@@ -113,7 +113,10 @@ class Marc
   end
 
   # Load marc data from hash, handy for json reading
-  def load_from_hash(hash, resolve = true)
+  # This function by default uses marc_node.import to
+  # create the relations with the foreign object and create
+  # them in the DB. It will also call a reindex on them
+  def load_from_hash(hash)
     @root << MarcNode.new(@model, "000", hash['leader'], nil) if hash['leader']
     
     if hash['fields']
@@ -154,11 +157,11 @@ class Marc
     end # if hash['fields']
     
     @loaded = true
-    import
+    import(true) # Import, reindexing
     @source = to_marc
     @source_id = first_occurance("001").content || nil rescue @source_id = nil
-    # when importing we do not want to resolve externals since source has ext_id (and not db_id)
-    @root.resolve_externals unless !resolve
+    # When importing externals are not resolved, do it here
+    @root.resolve_externals
   end
 
   def get_model

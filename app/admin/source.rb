@@ -29,7 +29,7 @@ ActiveAdmin.register Source do
     end
 
     def index
-      @results = Source.search_as_ransack(params)     
+      @results = Source.search_as_ransack(params)
       index! do |format|
        @sources = @results
         format.html
