@@ -39,7 +39,7 @@ class MarcNode
         #end
         master = get_master_foreign_subfield
         if !master
-          raise NoMethodError, "#{self.tag} #{self.to_s} master searched but not found"
+          raise NoMethodError, "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
         end
         
         unless master.foreign_object
