@@ -87,7 +87,11 @@ ActiveAdmin.register Person do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]
-    render :partial => "marc/show"
+    if @item.marc_source == nil
+      render :partial => "marc_missing"
+    else
+      render :partial => "marc/show"
+    end
     active_admin_navigation_bar( self )
   end
   
