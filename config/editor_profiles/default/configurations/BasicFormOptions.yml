@@ -168,6 +168,7 @@
       - cols: 2
     columns: 4
 "100": 
+  allow_new: true
   layout: 
     fields: 
     - - a
@@ -179,7 +180,19 @@
         editor_partial: subfield_checkbox
         cols: 1
     columns: 5
-"110": 
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 4
+    - - d
+      - cols: 3
+    - - j
+      - value: Attributed to
+        editor_partial: subfield_checkbox
+        cols: 1
+    columns: 8
+"110":
+  allow_new: true
   layout: 
     fields: 
     - - a
@@ -189,13 +202,36 @@
     - - b
       - cols: 1
     columns: 3
-"130": 
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 2
+    - - b
+      - cols: 1
+    columns: 3
+"130":
+  allow_new: true
   layout: 
     fields: 
     - - a
       - type: standard_title
         editor_partial: subfield_secondary
         cols: 7
+    - - k
+      - cols: 3
+    - - o
+      - cols: 2
+    - - r
+      - cols: 2
+    - - n
+      - cols: 4
+    - - m
+      - cols: 3
+    columns: 7
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 7
     - - k
       - cols: 3
     - - o
@@ -214,6 +250,21 @@
       - type: standard_title
         editor_partial: subfield_secondary
         cols: 7
+    - - k
+      - cols: 3
+    - - o
+      - cols: 2
+    - - r
+      - cols: 2
+    - - n
+      - cols: 4
+    - - m
+      - cols: 3
+    columns: 7
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 7
     - - k
       - cols: 3
     - - o
@@ -438,14 +489,20 @@
     - - n
       - cols: 5
     columns: 15
-"600": 
+"600":
+  allow_new: true
   layout: 
     fields: 
     - - a
       - type: person
         editor_partial: subfield_secondary
         cols: 1
-"650": 
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 1
+"650":
+  allow_new: true
   layout: 
     fields: 
     - - a
@@ -455,21 +512,39 @@
     - - indicator
       - editor_partial: subfield_650_indicator
         hidden: true
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 1
+    - - indicator
+      - editor_partial: subfield_650_indicator
+        hidden: true
 "651": 
+  allow_new: true
   layout: 
     fields: 
     - - a
       - type: place
         cols: 1
         editor_partial: subfield_secondary
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 1
 "657": 
+  allow_new: true
   layout: 
     fields: 
     - - a
       - type: liturgical_feast
         cols: 1
         editor_partial: subfield_secondary
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 1
 "690": 
+  allow_new: true
   layout: 
     fields: 
     - - a
@@ -479,13 +554,28 @@
     - - n
       - cols: 1
     columns: 2
-"691": 
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 1
+    - - n
+      - cols: 1
+    columns: 2
+"691":
+  allow_new: true
   layout: 
     fields: 
     - - a
       - type: catalogue
         cols: 1
         editor_partial: subfield_secondary
+    - - n
+      - cols: 1
+    columns: 2
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 1
     - - n
       - cols: 1
     columns: 2
@@ -504,17 +594,13 @@
   layout_new:
     fields: 
     - - a
-      - type: person
-        cols: 4
+      - cols: 4
     - - d
       - cols: 2
-        only_new: true
     - - e
       - cols: 2
-        only_new: true
     - - t
       - cols: 2
-        only_new: true
     - - "4"
       - cols: 2
         editor_partial: subfield_relator_codes_700
@@ -561,13 +647,24 @@
       - pbl
       - edt
       - bnd
-"710": 
+"710":
+  allow_new: true
   layout: 
     fields: 
     - - a
       - type: institution
         cols: 2
         editor_partial: subfield_secondary
+    - - b
+      - cols: 1
+    - - "4"
+      - cols: 1
+        editor_partial: subfield_relator_codes_710
+    columns: 2
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 2
     - - b
       - cols: 1
     - - "4"
@@ -588,7 +685,8 @@
     - bsl
     - asn
     - dub
-"730": 
+"730":
+  allow_new: true
   layout: 
     fields: 
     - - a
@@ -606,13 +704,38 @@
     - - m
       - cols: 3
     columns: 6
-"740": 
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 6
+    - - k
+      - cols: 2
+    - - o
+      - cols: 2
+    - - r
+      - cols: 2
+    - - n
+      - cols: 3
+    - - m
+      - cols: 3
+    columns: 6
+"740":
+  allow_new: true
   layout: 
     fields: 
     - - a
       - type: standard_title
         cols: 2
         editor_partial: subfield_secondary
+    - - n
+      - cols: 1
+    - - p
+      - cols: 1
+    columns: 2
+  layout_new: 
+    fields: 
+    - - a
+      - cols: 2
     - - n
       - cols: 1
     - - p
@@ -644,6 +767,7 @@
       - cols: 3
     columns: 7
 "852": 
+  allow_new: true
   layout: 
     fields: 
     - - a
@@ -651,6 +775,21 @@
         type: library
         cols: 2
         editor_partial: subfield_secondary
+    - - b
+      - cols: 8
+    - - p
+      - growfield: true
+        cols: 3
+    - - d
+      - cols: 3
+    - - z
+      - cols: 4
+    columns: 10
+  layout_new: 
+    fields: 
+    - - a
+      - nowrap: true
+        cols: 2
     - - b
       - cols: 8
     - - p
