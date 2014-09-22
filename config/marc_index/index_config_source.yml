@@ -8,13 +8,13 @@ config:
 fields:  
   "001":
   "008_date1":
-      :tag: 008
+      :from_tag: 008
       :index_helper: :marc_helper_get_008_date1
   "008_date2":
-      :tag: 008
+      :from_tag: 008
       :index_helper: :marc_helper_get_008_date2
   "008_language":
-      :tag: 008
+      :from_tag: 008
       :index_helper: :marc_helper_get_008_language
   "028a":
   "028b":
@@ -48,6 +48,7 @@ fields:
       :store: true
   "240n":
       :store: true
+      :type: text
   "240o":
   "240p":
   "240r":
@@ -126,6 +127,14 @@ fields:
   "653a":
   "657a":
   "690a":
+  "690a_fulltext":
+      :from_tag: "690"
+      :from_subtag: "a"
+      :type: text
+  "690n_fulltext":
+      :from_tag: "690"
+      :from_subtag: "n"
+      :type: text
   "691a":
   "700a":
   "700d":
