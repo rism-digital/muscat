@@ -7,6 +7,9 @@
 	lifedates = (d_tag ? d_tag.looked_up_content : nil)
 	content = (a_tag ? a_tag.looked_up_content : "")
 	
+	master_tag = @item.marc.config.get_master(tag.tag) rescue master_tag = ""
+	person_id = tag.fetch_first_by_tag(master_tag).content rescue person_id = ""
+	
 	hls_lang = I18n.t(:hls_link_lang)
 	hls_name = I18n.t(:hls_link_name)
 	hls_link = nil
@@ -34,11 +37,8 @@
 			<%= @editor_profile.get_sub_label(tag.tag, "a") %>
 		<%- end %>
 	</th>
-	<td>
-		<%= link_to content, { :action => "index", :controller => "people", 
-			:filter => I18n.t(:filter_name),
-			:operator => "6",
-			:search => "\"#{content}\""} %>
+	<td>	
+		<%= link_to content, person_path(person_id) %>
 			
 		<%= " (#{lifedates})" if lifedates %>
 		<%- four_tags.each do |four_tag| %> 
