@@ -44,7 +44,7 @@ module ActiveAdmin
         else
           restore_page = true
           # we also restor filter in :show for updating the navigation values (in preparation)
-          if params[:action].to_sym == :index || params[:action].to_sym == :show
+          if params[:action].to_sym == :index || params[:action].to_sym == :show || params[:action].to_sym == :batch_action
             # we have stored filters
             if filter_storage 
               # get the store filter for the controller

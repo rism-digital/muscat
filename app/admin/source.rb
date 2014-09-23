@@ -66,6 +66,11 @@ ActiveAdmin.register Source do
 
   end
   
+  batch_action :unpublish do |selection|
+    puts params
+    redirect_to collection_path, :notice => "Sources unpublished"
+  end
+  
   # Include the MARC extensions
   include MarcControllerActions
   
@@ -91,6 +96,7 @@ ActiveAdmin.register Source do
   index do
     selectable_column
     column (I18n.t :filter_id), :id  
+    column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage)} 
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title
     column (I18n.t :filter_title), :title
