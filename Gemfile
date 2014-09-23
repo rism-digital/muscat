@@ -47,7 +47,7 @@ end
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
-gem 'sunspot_rails', github: 'sunspot/sunspot'
+gem 'sunspot_rails', git: 'https://github.com/sunspot/sunspot.git'
 gem 'sunspot_solr'
 gem 'awesome_print'
 gem 'progress_bar'
@@ -65,4 +65,4 @@ gem 'devise'
 
 # Uncomment this to test the webpage saving
 # in housekeeping/selenium_webdriver
-#gem 'selenium-webdriver'
+# gem 'selenium-webdriver'
