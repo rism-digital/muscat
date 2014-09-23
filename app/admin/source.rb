@@ -67,7 +67,21 @@ ActiveAdmin.register Source do
   end
   
   batch_action :unpublish do |selection|
-    puts params
+    
+    # Pagination is on as default! wahooo!
+    params[:per_page] = 1000
+    results = Source.search_as_ransack(params)
+
+    f = Folder.create(:name => "Sources folder", :folder_type => "Source")
+    
+    results.each { |s| f.add_item(s) }
+    
+    for page in 2..results.total_pages
+      params[:page] = page
+      r = Source.search_as_ransack(params)
+      r.each { |s| f.add_item(s) }
+    end
+    
     redirect_to collection_path, :notice => "Sources unpublished"
   end
   
