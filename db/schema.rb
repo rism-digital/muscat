@@ -149,14 +149,15 @@ ActiveRecord::Schema.define(version: 20140923105654) do
 
   create_table "folder_items", force: true do |t|
     t.integer  "folder_id"
-    t.integer  "source_id"
+    t.integer  "item_id"
+    t.string   "item_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "folders", force: true do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "folder_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
