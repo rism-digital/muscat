@@ -1,5 +1,11 @@
 
 en:
+  active_admin:
+    batch_actions:
+      labels:
+        folder: "Create Folder with"
+    
+    
   switch_language: "Switch language" 
   this_file_language: "English"
 

@@ -71,6 +71,14 @@ ActiveAdmin.register Source do
     redirect_to collection_path, :notice => "Sources unpublished"
   end
   
+  batch_action :folder, form: {
+    name:   :text,
+    hide:   :checkbox
+  } do |ids, inputs|
+    # inputs is a hash of all the form fields you requested
+    redirect_to collection_path, notice: [ids, inputs].to_s
+  end
+  
   # Include the MARC extensions
   include MarcControllerActions
   
