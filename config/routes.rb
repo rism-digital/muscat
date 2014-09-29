@@ -3,6 +3,9 @@ Muscat::Application.routes.draw do
   blacklight_for :catalog
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  
+  get "/manuscripts", to: redirect('/sources')
+  get "/manuscripts/:name", to: redirect('/sources/%{name}')
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
