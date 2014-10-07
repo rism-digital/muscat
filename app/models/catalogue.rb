@@ -72,4 +72,12 @@ class Catalogue < ActiveRecord::Base
     end
   end
   
+  def self.find_recent_updated(limit)
+      where("updated_at > ?", 5.days.ago).limit(limit)
+  end
+  
+  def self.find_recent_created(limit)
+      where("created_at > ?", 5.days.ago).limit(limit)
+  end
+
 end
