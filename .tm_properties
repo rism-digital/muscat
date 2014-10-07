@@ -1,0 +1,3 @@
+excludeInFolderSearch = "{$excludeInFolderSearch,$extraExcludes,solr}"
+excludeInFolderSearch = "{$excludeInFolderSearch,$extraExcludes,tmp}"  
+excludeInFolderSearch = "{$excludeInFolderSearch,$extraExcludes,log}"  
