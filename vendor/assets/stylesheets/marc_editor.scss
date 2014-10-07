@@ -7,7 +7,7 @@ table.marc_editor_add_tag {
 	padding: 13px !important;
 	padding-top: 6px !important;
 	margin-top: 12px !important;
-	border: 1px solid #ccc;
+	border: 3px solid #dfe1e2;
 }
 
 .marc_editor_grid_panel table.tag_grid {
@@ -19,7 +19,8 @@ dl.marc_editor_tag_block {
 }
 
 dl.marc_editor_tag_block dt {
-	background-color: #ebebeb;
+	//background-color: #ebebeb;
+    background-color: #fff;
 }
 
 .marc_editor_grid_panel table.tag_grid td {
