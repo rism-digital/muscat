@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901093021) do
+ActiveRecord::Schema.define(version: 20141008133403) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -201,6 +201,14 @@ ActiveRecord::Schema.define(version: 20140901093021) do
 
   add_index "libraries_sources", ["library_id"], name: "index_libraries_sources_on_library_id", using: :btree
   add_index "libraries_sources", ["source_id"], name: "index_libraries_sources_on_source_id", using: :btree
+
+  create_table "libraries_workgroups", id: false, force: true do |t|
+    t.integer "workgroup_id"
+    t.integer "library_id"
+  end
+
+  add_index "libraries_workgroups", ["library_id"], name: "index_workgroups_libraries_on_library_id", using: :btree
+  add_index "libraries_workgroups", ["workgroup_id"], name: "index_workgroups_libraries_on_workgroup_id", using: :btree
 
   create_table "liturgical_feasts", force: true do |t|
     t.string   "name",                                          null: false
@@ -398,7 +406,6 @@ ActiveRecord::Schema.define(version: 20140901093021) do
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false
-    t.string   "workgroup",              default: "", null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -422,6 +429,14 @@ ActiveRecord::Schema.define(version: 20140901093021) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "users_workgroups", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "workgroup_id"
+  end
+
+  add_index "users_workgroups", ["user_id"], name: "index_workgroups_users_on_user_id", using: :btree
+  add_index "users_workgroups", ["workgroup_id"], name: "index_workgroups_users_on_workgroup_id", using: :btree
 
   create_table "work_incipits", force: true do |t|
     t.integer  "work_id"
@@ -449,6 +464,13 @@ ActiveRecord::Schema.define(version: 20140901093021) do
     t.integer  "wf_owner",                    default: 0
     t.integer  "wf_version",                  default: 0
     t.integer  "src_count",                   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "workgroups", force: true do |t|
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

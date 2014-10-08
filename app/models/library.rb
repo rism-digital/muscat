@@ -17,6 +17,7 @@ class Library < ActiveRecord::Base
   
   has_and_belongs_to_many :sources
   has_and_belongs_to_many :institutions
+  has_and_belongs_to_many :workgroups
     
   validates_presence_of :siglum    
   
