@@ -7,7 +7,8 @@ module Muscat
   
         def search_as_ransack(params)
           fields, order, page = unpack_params(params)
-          search_with_solr(fields, order, page)
+          per_page = params.has_key?(:per_page) ? params[:per_page] : MAX_PER_PAGE
+          search_with_solr(fields, order, page, per_page)
         end
       
         def near_items_as_ransack(params, item)
@@ -57,7 +58,7 @@ module Muscat
             
       private
         
-        def search_with_solr(fields = [], order = {}, page = 1)
+        def search_with_solr(fields = [], order = {}, page = 1, per_page = MAX_PER_PAGE)
         
           solr_results = self.solr_search do
             if !order.empty?
@@ -72,7 +73,7 @@ module Muscat
               end
             end
 
-            paginate :page => page, :per_page => MAX_PER_PAGE
+            paginate :page => page, :per_page => per_page
           end
           return solr_results.results
 

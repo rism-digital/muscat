@@ -66,6 +66,34 @@ ActiveAdmin.register Source do
 
   end
   
+  #batch_action :unpublish do |selection|
+  #end
+  
+  batch_action :folder, form: {
+    name:   :text,
+    hide:   :checkbox
+  } do |ids, inputs|
+    puts inputs
+    # inputs is a hash of all the form fields you requested
+    f = Folder.create(:name => inputs[:name], :folder_type => "Source")
+    # Pagination is on as default! wahooo!
+    params[:per_page] = 1000
+    results = Source.search_as_ransack(params)
+
+    # do everything in one transaction - however, we should put a limit on this
+    ActiveRecord::Base.transaction do
+      results.each { |s| f.add_item(s) }
+      # insert the next ones
+      for page in 2..results.total_pages
+        params[:page] = page
+        r = Source.search_as_ransack(params)
+        r.each { |s| f.add_item(s) }
+      end
+    end
+    
+    redirect_to collection_path, :notice => "Folder #{inputs[:name]} created with #{results.total_entries} items"
+  end
+  
   # Include the MARC extensions
   include MarcControllerActions
   
@@ -91,6 +119,7 @@ ActiveAdmin.register Source do
   index do
     selectable_column
     column (I18n.t :filter_id), :id  
+    column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage)} 
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title
     column (I18n.t :filter_title), :title

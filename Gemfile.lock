@@ -17,8 +17,8 @@ GIT
       sass-rails
 
 GIT
-  remote: git://github.com/sunspot/sunspot.git
-  revision: 04e613ab542108a1ac4f6c738e0c64c7d21e74c9
+  remote: https://github.com/sunspot/sunspot.git
+  revision: 691b42e73beae37e2e05953a1110f4247ec0065c
   specs:
     sunspot (2.1.1)
       pr_geohash (~> 1.0)
