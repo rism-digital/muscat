@@ -162,6 +162,12 @@ def self.up
   require './db/migrate/20140624151539_add_polymorphic_type_to_bookmarks.blacklight.rb'
   AddPolymorphicTypeToBookmarks.new.migrate(:up)
   
+  require './db/migrate/20140923105500_create_folders.rb'
+  CreateFolders.new.migrate(:up)
+  
+  require './db/migrate/20140923105654_create_folder_items.rb'
+  CreateFolderItems.new.migrate(:up)
+  
   # Fix the schema migration
   execute "TRUNCATE TABLE schema_migrations;"
   Dir.open('db/migrate').each do |fname|
