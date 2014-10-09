@@ -51,7 +51,8 @@ ActiveAdmin.register Workgroup do
     selectable_column
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
-    column :workgroups do |wg|
+    column (I18n.t :filter_pattern), :libpatterns
+    column "Connected libraries", :workgroups do |wg|
              wg.libraries.map(&:siglum).join(", ").html_safe
        end
 
@@ -67,7 +68,8 @@ ActiveAdmin.register Workgroup do
     active_admin_navigation_bar( self )
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
-      row 'Libraries' do |n|
+      row (I18n.t :filter_pattern) { |r| r.libpatterns }
+      row 'Connected libraries' do |n|
              workgroup.libraries.map(&:siglum).join(", ").html_safe
                end
      # row (I18n.t :filter_alternates) { |r| r.alternates }
@@ -87,6 +89,7 @@ ActiveAdmin.register Workgroup do
   form do |f|
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name) 
+      f.input :libpatterns, :label => (I18n.t :filter_pattern)
       #f.input :alternates, :label => (I18n.t :filter_alternates), :input_html => { :rows => 3 }
       #f.input :notes, :label => (I18n.t :filter_notes) 
     end

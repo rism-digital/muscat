@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
 
-  has_and_belongs_to_many :institutions
   has_and_belongs_to_many :workgroups
   attr_accessible :email, :password, :password_confirmation if Rails::VERSION::MAJOR < 4
 # Connects this user object to Blacklights Bookmarks. 

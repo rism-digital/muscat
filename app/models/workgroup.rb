@@ -2,35 +2,36 @@ class Workgroup < ActiveRecord::Base
 
     has_and_belongs_to_many :users
     has_and_belongs_to_many :libraries
-  
+    after_save :change_libraries
     validates_presence_of :name 
+    before_destroy :check_dependencies
 
    searchable :auto_index => false do
     integer :id
-    string :name_order do
-      name
-    end
     text :name
-  
-    text :alternates  
-    text :notes
-    
-    integer :src_count_order do 
-      src_count
-    end
   end
  
   def get_libraries
     self.libraries.map {|lib| lib}
   end
 
-  def add_library(siglum)
-    self.libraries << Library.where("siglum like ?", "%#{siglum}%")
+  def check_dependencies
+    if self.users.size > 0
+      errors.add :base, "The workgroup could not be deleted because it is used"
+      return false
+    end
   end
 
-  def remove_library(siglum)
-    self.libraries.delete(Library.where("siglum like ?", "%#{siglum}%"))
+
+  def change_libraries
+    self.libraries.delete_all
+    pattern_list=self.libpatterns.split(",")
+    if libpatterns
+      pattern_list.each do |siglum|
+
+        self.libraries << Library.where("siglum like ?", "%#{siglum.gsub("*", "").strip}%")
+      end
+    end
   end
- 
  
 end

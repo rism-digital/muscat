@@ -169,6 +169,7 @@ en:
   filter_old_versions: "Old versions"
   filter_owner: "Owner"
   filter_pages: "Pages"
+  filter_pattern: "Siglum patterns"
   filter_people: "People"
   filter_phone: "Phone"
   filter_place: "Place"
