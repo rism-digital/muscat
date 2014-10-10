@@ -94,8 +94,13 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title
     column (I18n.t :filter_title), :title
-    column (I18n.t :filter_lib_siglum), :lib_siglum
+    column (I18n.t :filter_lib_siglum) do |source|
+      source.sources.map(&:lib_siglum).join(", ").html_safe
+    end
+    #column (I18n.t :filter_lib_siglum), :lib_siglum
     #column (I18n.t :filter_shelf_mark), :shelf_mark
+    
+    
     actions
   end
   

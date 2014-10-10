@@ -11,7 +11,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def can_edit?(source)
-    (source.libraries & (self.workgroups.map {|ins| ins.get_libraries}).flatten).any?
+    if source.respond_to? :sources
+      libs=[]
+      source.sources.each do |so| 
+        so.libraries.each do |l|
+          libs<<l
+        end
+      end
+      (libs & (self.workgroups.map {|ins| ins.get_libraries}).flatten).any?
+    else
+      (source.libraries & (self.workgroups.map {|ins| ins.get_libraries}).flatten).any?
+    end
   end
 
   def get_workgroups
