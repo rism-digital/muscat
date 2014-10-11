@@ -402,6 +402,13 @@
     - - "3"
       - :occurances: "?"
         :no_browse: true
+  "490": 
+    :master: a
+    :indicator: "2#"
+    :occurances: "*"
+    :fields: 
+    - - a
+      - :occurances: "?"
   "500": 
     :master: a
     :indicator: "##"

@@ -15,53 +15,57 @@ sources.each do |ms_iterator|
 
   modified = false
 
-  holdings = source.marc.by_tags(["852"])
-  holdings.each do |holding_tag|
+  if source.marc.has_tag?("490")
+     holdings = source.marc.by_tags(["852"])
+     holdings.each do |holding_tag|
+       
+       marc = MarcSource.new(File.read( "#{Rails.root}/housekeeping/import/holding.marc" ) )
+       # load the source but without resolving externals
+       marc.load_source(false)
+       # Create the 004 tag for link with the ms
+       marc.root.add( MarcNode.new("source", "004", source.id, nil) ) 
+       # Extract the 852 tag from ms
+       tag_852 = holding_tag.deep_copy
+       #tag_852.parent = nil
+       
+       #... and place it into the Marc record
+       ip = marc.get_insert_position("852")
+       marc.root.children.insert(ip, tag_852)
+       
+       # Force an import, this will resolve all the externals and put them into @all_foreign_associations
+       marc.import
+       
+       # Update or create a new holding record
+       holding = Source.new(:wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
+       # associate the marc
+       holding.marc = marc
     
-    #arc = MarcSource.new()
-    marc = MarcSource.new(File.read( "#{Rails.root}/housekeeping/import/holding.marc" ) )
-    # load the source but without resolving externals
-    marc.load_source(false)
-    p marc 
-    # Create the 004 tag for link with the ms
-    marc.root.add( MarcNode.new("source", "004", source.id, nil) ) 
-    p marc
-    # Extract the 852 tag from ms
-    tag_852 = holding_tag.deep_copy
-    #tag_852.parent = nil
+       # Since MS is not saved yet, get the siglum from 852
+       user = nil
+       siglum = tag_852.fetch_first_by_tag("a")
+       #user = User.find_by_login(siglum.content) if siglum.content
+       
+       # Set the user
+       if user
+         holding.wf_owner = user.id 
+       end
     
-    #... and place it into the Marc record
-    ip = marc.get_insert_position("852")
-    marc.root.children.insert(ip, tag_852)
+       # Save holding record
+       holding.suppress_reindex
+       #holding.suppress_create_incipit
+       begin
+         holding.save
+       rescue Exception => e
+         p holding
+         p e.class
+       end
     
-    # Force an import, this will resolve all the externals and put them into @all_foreign_associations
-    marc.import
+       holding_tag.destroy_yourself
+       
+       modified = true
     
-    # Update or create a new holding record
-    holding = Source.new(:wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
-    # associate the marc
-    holding.marc = marc
-
-    # Since MS is not saved yet, get the siglum from 852
-    user = nil
-    siglum = tag_852.fetch_first_by_tag("a")
-    #user = User.find_by_login(siglum.content) if siglum.content
-    
-    # Set the user
-    if user
-      holding.wf_owner = user.id 
-    end
-
-    # Save holding record
-    holding.suppress_reindex
-    #holding.suppress_create_incipit
-    holding.save
-    holding_tag.destroy_yourself
-    
-    modified = true
-
-  end
-  
+     end
+  end 
   if source.source
     # Set the 246 tag if this is a reissue of a print
     parent_245 = source.source.marc.first_occurance("245")

@@ -234,10 +234,6 @@ ActiveRecord::Schema.define(version: 20141009061155) do
   add_index "liturgical_feasts_sources", ["liturgical_feast_id"], name: "index_liturgical_feasts_sources_on_liturgical_feast_id", using: :btree
   add_index "liturgical_feasts_sources", ["source_id"], name: "index_liturgical_feasts_sources_on_source_id", using: :btree
 
-  create_table "my_arrays", id: false, force: true do |t|
-    t.text "stuff"
-  end
-
   create_table "people", force: true do |t|
     t.string   "full_name",       limit: 128,                         null: false
     t.string   "full_name_d",     limit: 128
@@ -466,11 +462,6 @@ ActiveRecord::Schema.define(version: 20141009061155) do
     t.integer  "src_count",                   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "workgroup_libraries", id: false, force: true do |t|
-    t.integer "workgroup_id"
-    t.integer "library_id"
   end
 
   create_table "workgroups", force: true do |t|

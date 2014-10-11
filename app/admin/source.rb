@@ -1,5 +1,6 @@
 ActiveAdmin.register Source do
   
+
   collection_action :autocomplete_source_std_title, :method => :get
   
   menu :priority => 10
@@ -9,7 +10,11 @@ ActiveAdmin.register Source do
   #
   # temporarily allow all parameters
   controller do
-    
+    before_filter :only => [:index] do
+        if params['commit'].blank?
+                 #params['q'] = {:std_title_contains => "[Holding]"} 
+        end
+    end
     autocomplete :source, :std_title
     
     def permitted_params
@@ -95,9 +100,12 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_std_title), :std_title
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_lib_siglum) do |source|
-      source.sources.map(&:lib_siglum).join(", ").html_safe
+      if source.sources.count>0
+         source.sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
+      else
+        source.lib_siglum
+      end
     end
-    #column (I18n.t :filter_lib_siglum), :lib_siglum
     #column (I18n.t :filter_shelf_mark), :shelf_mark
     
     

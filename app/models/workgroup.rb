@@ -22,13 +22,11 @@ class Workgroup < ActiveRecord::Base
     end
   end
 
-
   def change_libraries
     self.libraries.delete_all
     pattern_list=self.libpatterns.split(",")
     if libpatterns
       pattern_list.each do |siglum|
-
         self.libraries << Library.where("siglum like ?", "%#{siglum.gsub("*", "").strip}%")
       end
     end
