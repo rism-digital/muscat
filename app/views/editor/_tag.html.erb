@@ -4,6 +4,8 @@
 	s_iterator = 1
 	cols = ((ocfg[tag_name] and ocfg[tag_name][layout_key].include?("columns")) ? ocfg[tag_name][layout_key]["columns"].to_i : 1)
 	cur_col = 1
+    # Muscat 3 temporary layout - always 4 (1 for the label and 3 for the field)
+    cols = 4
 	hiddens = [] 
 	dims = []
 	p = 100/cols
@@ -12,7 +14,6 @@
 -%>
 <table class="tag_grid" cellpadding="0" cellspacing="0">
     <tr><%= dims.join('').html_safe %></tr>
-    <tr>
     <%- @editor_profile.each_subfield_for(tag_name, is_new) do |subfield, field_settings|
     		# if field_settings[:type] == :hidden
     		# 	hiddens << [field_name, field_settings]
@@ -38,7 +39,7 @@
 		
     		if @editor_profile.has_sub_label?(tag_name, subfield)
     			sub_label = @editor_profile.get_sub_label(tag_name, subfield, true)
-    			field_label =  "<span style=\"color: green; font-weight: normal;\">$#{subfield}</span> #{sub_label}" if !sub_label.empty?
+    			field_label =  "#{sub_label}" if !sub_label.empty?
     			# field_label = @editor_profile.get_sub_label(tag_name, subfield, true)
     		end
 		
@@ -51,29 +52,34 @@
     	-%>
     	<%- if (subfield != "__blank") -%>
     		<%- if !field_settings["hidden"] || !field_settings["hidden"]==true -%>
-    		<td colspan="<%= col_span -%>" rowspan="<%= row_span -%>"<%= extra_td_options -%>>
-    			<div class="grid_cell">
-    				<div class="grid_cell_header">
-    					<%= extra_leader -%>
+            <tr>
+        		<td rowspan="<%= row_span -%>">
+        			<div class="grid_cell_header">
     					<%= field_label.html_safe %>
-    				</div>
-    				<div style="vertical-align: bottom; background-color: transparent">
-    					<ul class="repeating_subfield">
-    					<%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
-    						subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
-    					  	subfield_collection.each do |marc_subfield| %>
-    						<%= render :partial => "editor/subfield_li", 
-    							:locals => { :column => [subfield, field_settings], 
-    									:marc_tag => marc_tag, :tag_name => tag_name, 
-    									:s_iterator => s_iterator, :marc_subfield => marc_subfield } %>
-    						<%- s_iterator += 1 %>
-    					<%- end %>
-    					</ul>
-    				</div>
-    			</div>
-    		</td>
+                        <%= extra_leader -%>
+                    </div>
+                </td>
+        		<td colspan="<%= 3 -%>" rowspan="<%= row_span -%>"<%= extra_td_options -%>>
+        			<div class="grid_cell">
+        				<div style="vertical-align: bottom; background-color: transparent">
+        					<ul class="repeating_subfield">
+        					<%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
+        						subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
+        					  	subfield_collection.each do |marc_subfield| %>
+        						<%= render :partial => "editor/subfield_li", 
+        							:locals => { :column => [subfield, field_settings], 
+        									:marc_tag => marc_tag, :tag_name => tag_name, 
+        									:s_iterator => s_iterator, :marc_subfield => marc_subfield } %>
+        						<%- s_iterator += 1 %>
+        					<%- end %>
+        					</ul>
+        				</div>
+        			</div>
+        		</td>
+            </tr>
     		<%- else -%>
-    			<td colspan="<%= col_span -%>" rowspan="<%= row_span -%>">
+            <tr>
+    			<td colspan="<%= 4 -%>" rowspan="<%= row_span -%>">
     			<div style="visibility: hidden; height: 0px;">
     				<%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
     					subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
@@ -85,17 +91,13 @@
     				<%- end %>
     			</div>
     			<td>
+            </tr>
     		<%- end -%>
-    	<%- end -%>
-			
-    	<%- if cur_col > cols -%>
-    		<%- cur_col = 1 -%>
-    		</tr><tr>
     	<%- end -%>
 
     	<%- s_iterator = (s_iterator / 100 * 100) + 100 %>		
     <%- end -%>
-    </tr>
+
 </table>
 <%#= hiddens.collect { |h| edit_field(h[0], h[1], @strategy.item, panel_settings) }.join("\n") unless hiddens.empty? -%>
 <%#- end -%>

@@ -10,7 +10,7 @@
         .tag_container {
             
             margin-top: 10px;
-            * table {
+            table {
                 margin-bottom: 0px;
             }
         
@@ -34,8 +34,8 @@
               
                 input {
                 	width: calc(100% - 15px) !important;
-                  padding: 4px 5px 4px 5px;
-                  margin: 5px 0px;
+                  padding: 2px 5px 2px 5px;
+                  margin: 4px 0px 0px 0px;
                   font-size: 1.1em;
                 }
             }
@@ -52,13 +52,16 @@
               * select,
               * textarea {
               	width: calc(100% - 15px) !important;
-                padding: 4px 5px 4px 5px;
-                margin: 5px 0px;
+                padding: 2px 5px 2px 5px;
+                margin: 4px 0px 0px 0px;
                 font-size: 1.1em;
               }
           
               * .grid_cell_header { 
-                  margin-top: 3px;
+                  font-size: 1.0em;
+                  font-weight: bold;
+                  color: $form-label-color;
+                  margin-top: 5px;
                   padding-left: 3px;
             }
           
