@@ -123,7 +123,7 @@ function marc_editor_add_tag_from_list( list )
 	list.find("[value=" + val + "]").attr('disabled',"disabled");
 	list.find("[value=-]").attr('selected','selected');
 	
-	toplevel = list.parents(".panel_content")//.children(".tag_group")
+	toplevel = list.parents(".marc_editor_panel_content")//.children(".tag_group")
 	
 	tg = toplevel.find(".tag_group[data-tag='" + val +"']");
 	
