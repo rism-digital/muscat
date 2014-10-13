@@ -60,7 +60,7 @@ class Source < ActiveRecord::Base
   
   before_save :set_object_fields
   before_create :generate_id
-  after_save :destroy_links, :create_links, :reindex
+  after_save :update_links, :reindex
   before_destroy :destroy_links
   
   # alias for holding records
@@ -111,6 +111,8 @@ class Source < ActiveRecord::Base
     self.suppress_update_count_trigger = true
   end
   
+=begin
+  Substituted create and delete with update
   # On creation, it inspects this Ms ad created all the links to
   # Person, Title, StandardTerm, Institution, Catalogue, LiturgicalFeast, Place and Library
   # Used for example when importing marc records to tie all these elements with the ms.
@@ -153,7 +155,8 @@ class Source < ActiveRecord::Base
       if !object.is_a? Source and self.suppress_update_count_trigger != true
         o = object.class.send("find_by_id", object.id)
         o.suppress_reindex
-        o.update_attribute(:src_count, o.sources.count)
+        src_count_new = o.sources.count
+        o.update_attribute(:src_count, o.sources.count) 
       end
     end
     # update the parent manuscript when having 773/772 relationships
@@ -163,7 +166,7 @@ class Source < ActiveRecord::Base
   # Deletes all the links from Person, Title, StandardTerm, Institution, Catalogue, LiturgicalFeast, Place and Library
   def destroy_links
     return if self.suppress_recreate_trigger == true
-    [ people, standard_titles, standard_terms, institutions, catalogues, liturgical_feasts, libraries, places].each do |foreign|
+    [people, standard_titles, standard_terms, institutions, catalogues, liturgical_feasts, libraries, places].each do |foreign|
       links = foreign.all
       foreign.delete(links)
       
@@ -172,7 +175,8 @@ class Source < ActiveRecord::Base
           ## RZ TODO CAVEAT test me!
           item = eval(link.class.model_name).find_by_id( link.id )
           item.suppress_reindex
-          item.update_attribute( :src_count, item.sources.count )
+          src_count_new = item.sources.count
+          item.update_attribute( :src_count, item.sources.count )if src_count_new != item.src_count
         end
       end
     end
@@ -187,6 +191,76 @@ class Source < ActiveRecord::Base
 #      w.update_attribute( :src_count, w.sources.count )
 #    end
     
+  end
+=end
+  
+  # Sync all the links from MARC data foreign relations
+  # To the DB data cache. It will update on the DB
+  # only those objects that are added or removed from
+  # the foreign relation. This function does *not* update
+  # the contents of the objects themselves, but it only
+  # updates the relationship link tables on the DB.
+  # It will update src_count if needed.
+  # This trigger is disables with suppress_recreate
+  # src_count update is disabled with suppress_update_count
+  # It will also update the 77x relations in MARC data
+  # unless suppress_update_77x is set
+  def update_links
+    return if self.suppress_recreate_trigger == true
+    
+    marc_foreign_objects = Hash.new
+    
+    # All the allowed relation types *must* be in this array or they will be dropped
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "libraries", "places"]
+    
+    # Group all the foreign associations by class, get_all_foreign_associations will just return
+    # a flat list of objects
+    marc.get_all_foreign_associations.each do |object_id, object|
+      next if object.is_a? Source
+      
+      foreign_class = object.class.name.pluralize.underscore
+      marc_foreign_objects[foreign_class] = [] if !marc_foreign_objects.include? (foreign_class)
+      
+      marc_foreign_objects[foreign_class] << object
+      
+    end
+    
+    # allowed_relations explicitly needs to contain the classes we will repond to
+    # Log if in the Marc there are "unknown" classes, should never happen
+    unknown_classes = marc_foreign_objects.keys - allowed_relations
+    # If there are unknown classes purge them
+    related_classes = marc_foreign_objects.keys - unknown_classes
+    
+    if !unknown_classes.empty?
+      puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')}"
+    end
+    
+    related_classes.each do |foreign_class|
+      relation = self.send(foreign_class)
+      
+      # The foreign class array holds the correct number of object
+      # We want to delete or add only the difference betweend
+      # what is in marc and what is in the DB relations
+      new_items = marc_foreign_objects[foreign_class] - relation.to_a
+      remove_items = relation.to_a - marc_foreign_objects[foreign_class]
+      
+      # Delete or add to the DB relation
+      relation.delete(remove_items)
+      relation << new_items
+
+      # If this item was manipulated, update also the src count
+      # Unless the suppress_update_count is set
+      if !self.suppress_update_count_trigger
+        (new_items + remove_items).each do |o|
+          o.update_attribute( :src_count, o.sources.count )
+          puts o.sources.count
+        end
+      end
+      
+    end
+    
+    # update the parent manuscript when having 773/772 relationships
+    marc.update_77x unless self.suppress_update_77x_trigger == true 
   end
   
   # Suppresses the solr reindex
