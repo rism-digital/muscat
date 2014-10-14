@@ -215,9 +215,10 @@ function render_music( music, format, target )
 	options = JSON.stringify({
 				inputFormat: 'pae',
 				//pageHeight: 250,
-				pageWidth: 1350,
-				border: 0,
-				scale: 50,
+				pageWidth: 1800,
+                spacingStaff: 1,
+				border: 10,
+				scale: 40,
 				ignoreLayout: 0,
 				adjustPageHeight: 1
 			});
