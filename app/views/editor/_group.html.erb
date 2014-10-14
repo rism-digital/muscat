@@ -31,7 +31,7 @@ group
 <div class="panel tab_panel" name="<%= group_title.gsub(/ /, "_") %>">
 	<h3><%= group_title -%></h3>
 	
-	<div class="panel_content">
+	<div class="marc_editor_panel_content">
 		
 		<%= render :partial => "editor/group_add_tag", :locals => { :render_panel => render_panel, :group => group, :tag_names => tag_names } %>
 		<div style="clear:both;"></div>

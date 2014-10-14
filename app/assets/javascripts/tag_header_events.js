@@ -41,7 +41,7 @@ used for _tag_header partial
 				tag = dt_id.data("tag");
 	
 				// Enable the tag menu
-				tag_menu = dt_id.parents(".panel_content");
+				tag_menu = dt_id.parents(".marc_editor_panel_content");
 				tag_menu.find("[value=" + tag + "]").removeAttr("disabled");
 	
 				dt_id.fadeOut('fast', function() {

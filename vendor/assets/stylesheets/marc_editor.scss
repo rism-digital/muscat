@@ -1,100 +1,78 @@
+.marc_editor_panel_content {
+    * dl {margin-bottom: 0px;}
+    
+    table.add_tag {
+       margin-bottom: 0px;
+    }
 
-table.marc_editor_add_tag {
-	margin-bottom: 0px !important;
-}
-
-.marc_editor_grid_panel {
-	padding: 13px !important;
-	padding-top: 6px !important;
-	margin-top: 12px !important;
-	border: 3px solid #dfe1e2;
-}
-
-.marc_editor_grid_panel table.tag_grid {
-	margin-bottom: 0px !important;
-}
-
-dl.marc_editor_tag_block {
-	margin-bottom: 0px !important;
-}
-
-dl.marc_editor_tag_block dt {
-    background-color: #fff;
-}
-
-.marc_editor_grid_panel table.tag_grid td {
-	vertical-align: top;
-}
-
-.marc_editor_grid_panel table.tag_grid th, 
-.marc_editor_grid_panel table.tag_grid td {
-	padding: 0px 4px !important;
-
-}
-.marc_editor_grid_panel input,
-.marc_editor_grid_panel select,
-.marc_editor_grid_panel textarea {
-	width: calc(100% - 15px) !important;
-}
-
-.marc_editor_grid_panel input,
-.marc_editor_grid_panel select {
-	font-size: 1.2em !important;
-}
-
-.marc_editor_grid_panel select {
-	margin-top: 5px;
-	width: calc(100%) !important;
-}
-
-.marc_editor_grid_panel .grid_cell {
-	padding: 4px;
-}
-.marc_editor_grid_panel .grid_cell_header {
-	padding: 2px;
-	overflow: none;
-/*	letter-spacing: 0.02em;*/
-	color: #5e6469;
-	font-weight: bold;
-	padding-bottom: 5px !important;
-}
-
-.marc_editor_grid_panel .grid_cell_header a {
-	text-decoration: none;
-}
-
-.marc_editor_grid_internal_layout {
-	width: 100%;
-	padding: 0px !important; 
-	margin: 0px !important;
-}
-.marc_editor_grid_panel table.marc_editor_grid_internal_layout tr,
-.marc_editor_grid_panel table.marc_editor_grid_internal_layout td {
-	padding: 0;
-	margin: 0;
-}
-.marc_editor_pae_info { margin-left: 1px; margin-top: 3px; border: #aaa solid 1px; height: 2em; background-color: white }
-
-.marc_editor_grid_tag_tab {
-	position: relative;
-	top: -7px;
-	left: -13px;
-	height: 30px;
-	max-height: 30px;
-	line-height: 28px;
-	background-color: #bbb;
-	width: 300px;
-	background-image:url('/images/tagtab.gif');
-	background-repeat: no-repeat;
-	background-position: center right;
-}
-.marc_editor_grid_tag_tab span {
-	padding-left: 8px;
+    .marc_editor_group_contents {
+            
+        .tag_container {
+            
+            margin-top: 10px;
+            table {
+                margin-bottom: 0px;
+            }
+        
+            table.tag_header {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                    th {
+                        padding: 2px 0px 10px 2px;
+                        background: none;
+                        color: $primary-color;
+                        @include no-shadow;
+                        @include text-shadow;
+                        text-transform: uppercase;
+                        border-bottom: 1px solid #ccc;
+                    }
+                    * a.marc_editor_button_left { margin-left: 4px !important; }
+          }
+          
+          
+          div.tag_content_collapsable {
+              
+                input {
+                	width: calc(100% - 15px) !important;
+                  padding: 2px 5px 2px 5px;
+                  margin: 4px 0px 0px 0px;
+                  font-size: 1.1em;
+                }
+            }
+      
+          * table.tag_grid {
+              margin-bottom: 0px;
+          
+              th { padding: 0px; }
+              tr td { padding: 0px;}
+              //tr td { background: darken($table-stripe-color, 3%); }
+              //border-bottom: 1px solid #ccc;
+          
+              * input,
+              * select,
+              * textarea {
+              	width: calc(100% - 15px) !important;
+                padding: 2px 5px 2px 5px;
+                margin: 4px 0px 0px 0px;
+                font-size: 1.1em;
+              }
+          
+              * .grid_cell_header { 
+                  font-size: 1.0em;
+                  font-weight: bold;
+                  color: $form-label-color;
+                  margin-top: 5px;
+                  padding-left: 3px;
+            }
+          
+          }
+          
+      }
+      
+    }
 }
 
-.marc_editor_button_pad_left {
-	margin-left: 4px !important;
-}
+
 
 /***********************/
 /* Navigation side bar */

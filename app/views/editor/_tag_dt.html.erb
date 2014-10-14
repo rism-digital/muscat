@@ -1,10 +1,20 @@
 <% function = is_new ? "new" : "edit"%>
 <% style_hide = is_new ? "style=\"display: none\"".html_safe : "style=\"display: block\"".html_safe %>
 
-<div class="tag_container marc_editor_grid_panel ui-corner-all" data-tag="<%= tag_name %>" data-function="<%= function %>" <%= style_hide -%>>
-	<%= render :partial => @editor_profile.get_tag_partial("tag_header", tag_name), 
+<div class="tag_container" data-tag="<%= tag_name %>" data-function="<%= function %>" <%= style_hide -%>>
+    <table  class="tag_header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <th class="col">
+                <%= @editor_profile.get_label(tag_name) -%> (<%= tag_name %>)
+            </th>
+            <th class="col">
+                <%= render :partial => @editor_profile.get_tag_partial("tag_header", tag_name), 
 		:locals => { :tag_name => tag_name, :marc_tag => marc_tag, :is_new => is_new  } %>
-	<div class="marc_editor_grid_tag_tab ui-corner-tl"><span style="color: green"><%= tag_name %></span><span style="color: #444"><strong><%= @editor_profile.get_label(tag_name) -%></strong></span></div>
+            </th>
+        </tr>
+    </table>
+    
+	
 	<div class="tag_content_collapsable">
 		<%= render :partial => @editor_profile.get_tag_partial("tag", tag_name), 
 			:locals => { :tag_name => tag_name, :marc_tag => marc_tag, :is_new => is_new  } %>
