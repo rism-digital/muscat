@@ -1,33 +1,8 @@
 <%
 	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
-	render_id = "pae_render_#{s_iterator}"
 %>
 <textarea class="subfield_entry serialize_marc pae_input" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>"><%=h marc_subfield.content %></textarea>
 	<table class="marc_editor_pae_info"  style="display: none;" cellpadding="0" cellspacing="0"><tr>
-		<td width="100%"><div id="<%= render_id %>">Loading...&nbsp;</div></td>
+		<td width="100%"><div class="pae_incipit_target">Loading...&nbsp;</div></td>
 		<td width="16"><div style="visibility:hidden;"><img src="/images/spinner_small.gif" /></div></td>	
 	</tr></table>
-<script>
-// Use the iterator on the element to get the correct one
-	$(".pae_input[data-subfield-iterator=\"<%=s_iterator%>\"]").keyup(function(event) {
-
-		grid = $(this).parents(".tag_grid");
-		//ul = grid.siblings(".repeating_subfield");
-		pae_key = $(".subfield_entry[data-subfield='r']", grid).val();
-		pae_time = $(".subfield_entry[data-subfield='o']", grid).val();
-		pae_clef = $(".subfield_entry[data-subfield='g']", grid).val();
-
-        pae_data = $(".pae_input[data-subfield-iterator=\"<%=s_iterator%>\"]").val()
-		
-		marc_editor_incipit(
-			pae_clef,
-			pae_key,
-			pae_time,
-			pae_data,
-			"<%= render_id %>");
-    		
-			$('#' + "<%= render_id %>" ).parents('table').show();
-			$('#' + "<%= render_id %>").show();
-
-	});
-</script>

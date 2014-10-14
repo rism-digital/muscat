@@ -26,6 +26,7 @@
 //= require relator_codes_cascade_ujs
 //= require relator_codes_single_ujs
 //= require jquery.scrollTo.js
+//= require pae_incipit_render_ujs
 //= require_tree .
 //= require autocomplete-rails
 

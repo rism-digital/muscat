@@ -18,4 +18,5 @@
 #= require relator_codes_single_ujs
 #= require tag_header_events
 #= require section_sidebar_ujs.js
+#= require pae_incipit_render_ujs.js
 #= blacklight_range_limit

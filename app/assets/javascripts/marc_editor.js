@@ -226,7 +226,7 @@ function render_music( music, format, target )
 	svg = vrvToolkit.renderPage(1, "");
 	
 	//alert(svg);
-	$('#' + target).html(svg);
+	$(target).html(svg);
 };
 
 function marc_editor_incipit(clef, keysig, timesig, incipit, target)
