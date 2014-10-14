@@ -245,7 +245,7 @@ function marc_editor_incipit(clef, keysig, timesig, incipit, target)
 // performs a ajax query to get the old versions of a record
 function marc_editor_add_subfield(id) {
 
-	grid = id.parents(".grid_cell");
+	grid = id.parents("tr");
 	//ul = grid.siblings(".repeating_subfield");
 	ul = $(".repeating_subfield", grid);
 	
