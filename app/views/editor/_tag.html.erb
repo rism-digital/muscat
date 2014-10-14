@@ -34,7 +34,7 @@
 
     		if @item.marc.config.multiples_allowed?(tag_name, subfield)
     			#TODO: need to multi-lang this (see :title)
-    			extra_leader = safe_link_to_function_stub "+", "marc_editor_add_subfield($(this))", :title => "Add another instance of this subfield"
+    			extra_leader = safe_link_to_function_stub "<div class=\"add_subfield_button\">+</div>".html_safe, "marc_editor_add_subfield($(this))", :title => "Add another instance of this subfield"
     		end
 		
     		if @editor_profile.has_sub_label?(tag_name, subfield)

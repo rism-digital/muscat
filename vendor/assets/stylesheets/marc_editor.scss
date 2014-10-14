@@ -47,6 +47,12 @@
               tr td { padding: 0px;}
               //tr td { background: darken($table-stripe-color, 3%); }
               //border-bottom: 1px solid #ccc;
+              
+              div.add_subfield_button {
+                  float: right; 
+                  padding-right: 5px;
+                  font-size: 1.3em;
+              }
           
               * input,
               * select,
@@ -54,6 +60,10 @@
               	width: calc(100% - 15px) !important;
                 padding: 2px 5px 2px 5px;
                 margin: 4px 0px 0px 0px;
+              }
+              
+              * input,
+              * textarea {
                 font-size: 1.1em;
               }
           
