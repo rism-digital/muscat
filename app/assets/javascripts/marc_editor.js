@@ -229,52 +229,16 @@ function render_music( music, format, target )
 	$('#' + target).html(svg);
 };
 
-function marc_editor_incipit(destination_column, clef, keysig, timesig, incipit, target)
+function marc_editor_incipit(clef, keysig, timesig, incipit, target)
 {
-	
-	jquery_clef = clef.replace(/(\[|\])/g, '\\$1');
-	jquery_keysig = keysig.replace(/(\[|\])/g, '\\$1');
-	jquery_timesig = timesig.replace(/(\[|\])/g, '\\$1');
-	jquery_incipit = incipit.replace(/(\[|\])/g, '\\$1');
-
-	pae_clef = $('#' + jquery_clef).val();
-	pae_keysig =  $('#' + jquery_keysig).val();
-	pae_timesig = $('#' + jquery_timesig).val();
-	pae_incipit = $('#' + jquery_incipit).val();
-
-
 	pae = "@start:pae-file\n";
-	pae = pae + "@clef:" + pae_clef + "\n";
-	pae = pae + "@keysig:" + pae_keysig + "\n";
+	pae = pae + "@clef:" + clef + "\n";
+	pae = pae + "@keysig:" + keysig + "\n";
 	pae = pae + "@key:\n";
-	pae = pae + "@timesig:" + pae_timesig + "\n";
-	pae = pae + "@data: " + pae_incipit + "\n";
-	pae = pae + "@end:pae-file\n"
+	pae = pae + "@timesig:" + timesig + "\n";
+	pae = pae + "@data: " + incipit + "\n";
+	pae = pae + "@end:pae-file\n";
 	render_music(pae, 'pae', target);
-	
-	/*
-	jquery_clef = clef.replace(/(\[|\])/g, '\\$1');
-	jquery_keysig = keysig.replace(/(\[|\])/g, '\\$1');
-	jquery_timesig = timesig.replace(/(\[|\])/g, '\\$1');
-	jquery_incipit = incipit.replace(/(\[|\])/g, '\\$1');
-	var url = "/manuscripts/marc_editor_incipit";
-	var data = "marc_editor_dest=" + destination_column;	
-	data = data + "&clef=" + $('#' + jquery_clef).val();
-	data = data + "&keysig=" + $('#' + jquery_keysig).val();
-	data = data + "&timesig=" + $('#' + jquery_timesig).val();
-	data = data + "&incipit=" + $('#' + jquery_incipit).val();
-	data = data + "&target=" + target;
-	//alert($('#' + jquery_incipit).val());
-
-	$.ajax({
-		success: function() { },
-		data: data,
-		timeout: 5000, 
-		dataType: 'script',
-		type: 'post',
-		url: url
-	});
-	*/
 }
 
 // performs a ajax query to get the old versions of a record
