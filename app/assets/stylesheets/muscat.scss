@@ -30,3 +30,7 @@ body.active_admin form fieldset ol > li {
 #titlebar_left, #titlebar_right {
 	height: 45px !important;
 }
+
+body.active_admin {
+    min-width: 960px;
+}
