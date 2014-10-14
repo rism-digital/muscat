@@ -1,18 +1,10 @@
 --- !map:Settings 
 group_order: 
-- control
-- codes
-- main
+- main_person
 - notes
 - subject
+- codes
 groups: 
-  control: 
-    all_tags: 
-    - "000"
-    - "001"
-    - "003"
-    - "005"
-    - 008
   notes: 
     all_tags: 
     - "509"
@@ -25,7 +17,7 @@ groups:
     - "678"
     - "680"
     - "684"
-  main: 
+  main_person: 
     all_tags: 
     - "100"
     - "400"

@@ -2117,6 +2117,12 @@ main: !map:ActiveSupport::HashWithIndifferentAccess
     fr: "Entr\xC3\xA9es principales"
     de: Haupteintragungen
     en: Main entry fields
+main_person: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Descrizione della persona
+    fr: "Entr\xC3\xA9es principales Person"
+    de: Haupteintragungen Person
+    en: Person Description
 notes: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Note
