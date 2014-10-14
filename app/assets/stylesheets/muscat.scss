@@ -31,6 +31,11 @@ body.active_admin form fieldset ol > li {
 	height: 45px !important;
 }
 
+
 body.active_admin {
     min-width: 960px;
+}
+
+#main_content_wrapper {
+    max-width: 1500px;
 }
