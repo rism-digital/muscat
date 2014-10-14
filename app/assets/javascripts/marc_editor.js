@@ -183,7 +183,7 @@ function finalize_verovio () {
 	
 	for (var i = 0; i < deferred_render_data.length; i++) {
 	    data = deferred_render_data[i];
-		render_music(data.music, data.format, data.target);
+		render_music(data.music, data.format, data.target, data.width);
 	}
 }
 
@@ -203,11 +203,12 @@ function load_verovio() {
 
 }
 
-function render_music( music, format, target )
+function render_music( music, format, target, width )
 {	
+	width = typeof width !== 'undefined' ? width : 720;
 	
 	if (vrvToolkit == null) {
-		deferred_render_data.push({music: music, format: format, target: target});
+		deferred_render_data.push({music: music, format: format, target: target, width: width});
 		load_verovio();
 		return;
 	}
@@ -215,7 +216,7 @@ function render_music( music, format, target )
 	options = JSON.stringify({
 				inputFormat: 'pae',
 				//pageHeight: 250,
-				pageWidth: 1800,
+				pageWidth: width / 0.4,
                 spacingStaff: 1,
 				border: 10,
 				scale: 40,
@@ -230,8 +231,11 @@ function render_music( music, format, target )
 	$(target).html(svg);
 };
 
-function marc_editor_incipit(clef, keysig, timesig, incipit, target)
+function marc_editor_incipit(clef, keysig, timesig, incipit, target, width)
 {
+	// width is option
+	width = typeof width !== 'undefined' ? width : 720;
+	
 	pae = "@start:pae-file\n";
 	pae = pae + "@clef:" + clef + "\n";
 	pae = pae + "@keysig:" + keysig + "\n";
@@ -239,7 +243,7 @@ function marc_editor_incipit(clef, keysig, timesig, incipit, target)
 	pae = pae + "@timesig:" + timesig + "\n";
 	pae = pae + "@data: " + incipit + "\n";
 	pae = pae + "@end:pae-file\n";
-	render_music(pae, 'pae', target);
+	render_music(pae, 'pae', target, width);
 }
 
 // performs a ajax query to get the old versions of a record

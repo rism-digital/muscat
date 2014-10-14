@@ -41,6 +41,7 @@
 				pae_time = $(".subfield_entry[data-subfield='o']", grid).val();
 				pae_clef = $(".subfield_entry[data-subfield='g']", grid).val();
 		        pae_data = $(this).val();
+				width = $(this).width(); // Get the parent textbox with so the image is the same
 			
 				target_div = $('.pae_incipit_target', grid);
 
@@ -49,7 +50,7 @@
 					pae_key,
 					pae_time,
 					pae_data,
-					target_div);
+					target_div, width);
     		
 					$(target_div).parents('table').show();
 					$(target_div).show();
