@@ -2,26 +2,14 @@
 	number_a = tag.fetch_first_by_tag('a')
 	number_b = tag.fetch_first_by_tag('b')	
 	number_c = tag.fetch_first_by_tag('c')	
-	
-	if RISM::BASE == "uk"
-		incipit_number = "#{(number_a ? number_a.content : "na")}-#{(number_b ? number_b.content : "nb")}-#{(number_c ? number_c.content : "nc")}"
-	elsif RISM::BASE == "pr"
-		# no nothing
-	else
-		incipit_number = "#{(number_a ? number_a.content : "?")}.#{(number_b ? number_b.content : "?")}.#{(number_c ? number_c.content : "?")}"
-	end
+
 	pae_subfield = tag.fetch_first_by_tag('p')
 	has_image = false
 	last_tag = ""	
 
-	if number_a && pae_subfield
-		# MC3
-		# image = get_incipit_image( @item.id, incipit_number )
-		image = ""
-	end
 	## ! for testing, reatime rendering with verovio
-	## incipit_number = "#{(number_a ? number_a.content : "x")}#{(number_b ? number_b.content : "x")}#{(number_c ? number_c.content : "x")}"
-	## image = "incipit_#{incipit_number}#{@item.ext_id}"
+	 incipit_number = "#{(number_a ? number_a.content : "x")}#{(number_b ? number_b.content : "x")}#{(number_c ? number_c.content : "x")}"
+	 image_render_div = "incipit_#{incipit_number}#{@item.id}"
 %>
 
 <tr class="row">
@@ -36,7 +24,8 @@
 	<%- last_tag = tag.tag + subfield.tag %>
 <% end -%>
 
-<!-- these are the subfields we can hide if we have an image -->			
+<!-- these are the subfields we can hide if we have an image -->
+
 <% [:g, :n, :o, :p].each do |s|
 	subfield = tag.fetch_first_by_tag(s)
 	next unless subfield			
@@ -48,34 +37,42 @@
 	</tr>
 <% end -%>
 
-<!-- Incipit image and incipit searching			
+
+			
 <%	if (pae_subfield && pae_subfield.content ) %>
 	<tr class="row">
 		<td>
-			<%-
-			   tag_n = tag.fetch_first_by_tag(:n)
-			   key_sig = (tag_n && tag_n.content) ? "$#{tag_n.content}" : ""
-			   tag_r = tag.fetch_first_by_tag(:r)
-			   mode = (tag_r && tag_r.content) ? tag_r.content : ""
-			   tag_o = tag.fetch_first_by_tag(:o)
-			   time_sig = "" # MS3 (tag_o && tag_o.content) ? get_timesig(tag_o.content) : ["", ""]
-			   query = "#{key_sig} "
-			   query += (pae_subfield && pae_subfield.content )? pae_subfield.content : ""
-			%>
-			<a href="/manuscripts/search?strategy=index
-				&incipit=<%= URI.escape(query, "+") -%>&mode=<%= mode -%>&timesig_num=<%= time_sig[0] -%>&timesig_den=<%= time_sig[1] -%>">
-				<img src="/images/search.png" style="padding-top:30px; padding-left: 10px; padding-right:10px;"/>
-			</a>
-		</td>
 		<td width="100%">
-			<img src="<%= image %>" />
+			<div id="<%= image_render_div %>" />
 		</td>
 	<tr>
-	</tr>
-		<th></th>
-		<td style="text-align: left; padding-left:0px; padding-bottom: 20px;">
-			<%= link_to_function("Plain & Easy", "$('#incipit#{incipit_number.gsub(/\./,"")}').toggle(\"slow\");" ) -%>
-		</td>
-	</tr>
+<%-
+   tag_g = tag.fetch_first_by_tag(:g)
+   clef = (tag_g && tag_g.content) ? tag_g.content.html_safe : ""
+   
+   tag_r = tag.fetch_first_by_tag(:r)
+   key = (tag_r && tag_r.content) ? tag_r.content.html_safe : ""
+
+   tag_o = tag.fetch_first_by_tag(:o)
+   time = (tag_o && tag_o.content) ? tag_o.content.html_safe : ""
+
+   tag_p = tag.fetch_first_by_tag(:p)
+   notation = (tag_p && tag_p.content) ? tag_p.content.html_safe : ""
+
+%>
+
+<script>
+
+	pae = "@start:pae-file\n";
+	pae = pae + "@clef:<%= clef %>\n";
+	pae = pae + "@keysig:<%= key %>\n";
+	pae = pae + "@key:\n";
+	pae = pae + "@timesig:<%= time %>\n";
+	pae = pae + "@data: <%= notation %>\n";
+	pae = pae + "@end:pae-file\n"
+	render_music(pae, 'pae', $("#" + "<%=image_render_div%>"));
+
+</script>
+	
 <% end -%>
--->
+
