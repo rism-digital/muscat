@@ -150,13 +150,15 @@ button.abutton_condensed {
 	padding: 0;
 	margin: 0;
 }
+
 button.abutton_condensed .ui-icon {
 	left: 7px !important;
 	top: 7px !important;
 }
 .abutton_condensed { 
-   margin: 0;
-   padding: 3px;
+   padding: 1px;
+   height: 12px;
+   line-height: 0.8em;
 }
 
 .abutton-icon-left { padding-left: 2.1em; }
