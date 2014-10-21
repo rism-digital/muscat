@@ -367,6 +367,16 @@ class Marc
     return out
   end
   
+  # Return all tags
+  def all_tags()
+    load_source unless @loaded
+    tags = Array.new
+    for child in @root.children
+      tags << child
+    end
+    return tags
+  end
+  
   # Return all the tags with a given name
   def by_tags(tag_names)
     load_source unless @loaded
