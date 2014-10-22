@@ -10,6 +10,7 @@ class Ability
     elsif user.has_role?(:editor, Person)
       can :read, Person
       can :read, Source
+      can [:read, :create], ActiveAdmin::Comment
       can :update, Source do |source|
         user.can_edit? source
        end
