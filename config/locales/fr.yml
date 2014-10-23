@@ -69,7 +69,7 @@ fr:
       action_label: "%{title} les éléments sélectionnés"
       labels:
         destroy: "Supprimer"
-        folder: "Create Folder with"
+        folder: "Créer un dossier avec"
     comments:
       body: "Corps"
       author: "Auteur"
@@ -258,7 +258,7 @@ fr:
   filter_digital_objects: "Digital Objects"
   filter_district: "District / Canton"
   filter_email: "E-mail"
-  filter_folder_type: "Folder Type"
+  filter_folder_type: "Type de dossier"
   filter_full_name: "Nom"
   filter_gender: "Genre"
   filter_incipits: "Incipits"
