@@ -1,5 +1,123 @@
 
 de:
+  active_admin: 
+    dashboard: Übersicht
+    dashboard_welcome:
+      welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
+      call_to_action: "Siehe 'app/admin/dashboard.rb', um Übersichts-Bereiche hinzuzufügen."
+    view: "Anzeigen"
+    edit: "Bearbeiten"
+    delete: "Löschen"
+    delete_confirmation: "Wollen Sie dieses Element wirklich löschen?"
+    new_model: "%{model} erstellen"
+    create_model: "%{model} erstellen"
+    edit_model: "%{model} bearbeiten"
+    update_model: "%{model} bearbeiten"
+    delete_model: "%{model} löschen"
+    details: "%{model} Details"
+    cancel: "Abbrechen"
+    empty: "Leer"
+    previous: "Zurück"
+    next: "Weiter"
+    download: "Herunterladen:"
+    has_many_new: "%{model} hinzufügen"
+    has_many_delete: "Löschen"
+    has_many_remove: "Entfernen"
+    filters:
+      buttons:
+        filter: "Filtern"
+        clear: "Filter entfernen"
+      predicates:
+        contains: "Enthält"
+        equals: "Gleich"
+        starts_with: "Beginnt mit"
+        ends_with: "Endet mit"
+        greater_than: "Größer als"
+        less_than: "Kleiner als"
+    status_tag:
+      "yes": "Ja"
+      "no": "Nein"
+    main_content: "Bitte implementieren Sie %{model}#main_content, um Inhalte anzuzeigen."
+    logout: "Abmelden"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Filter"
+    pagination:
+      empty: "Keine %{model} gefunden"
+      one: "Zeige <b>1</b> %{model}"
+      one_page: "Zeige <b>alle %{n}</b> %{model}"
+      multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
+      multiple_without_total: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
+      entry:
+        one: "Eintrag"
+        other: "Einträge"
+    any: "Alle"
+    blank_slate:
+      content: "Es gibt noch keine %{resource_name}."
+      link: "Erstellen"
+    dropdown_actions:
+      button_label: "Aktionen"
+    batch_actions:
+      button_label: "Stapelverarbeitung"
+      default_confirmation: "Bist du sicher, dass Sie dies tun wollen?"
+      delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen?"
+      succesfully_destroyed:
+        one: "Erfolgreich 1 %{model} gelöscht"
+        other: "Erfolgreich %{count} %{plural_model} gelöscht"
+      selection_toggle_explanation: "(Auswahl umschalten)"
+      link: "erstellen"
+      action_label: "%{title} ausgewählte"
+      labels:
+        destroy: "Lösche"
+        folder: "Erstelle Ordner mit"
+    comments:
+      resource_type: "Res­sour­cen-Typ"
+      author_type: "Autor-Typ"
+      body: "Inhalt"
+      author: "Autor"
+      title: "Kommentar"
+      add: "Kommentar hinzufügen"
+      resource: "Res­sour­ce"
+      no_comments_yet: "Es gibt noch keine Kommentare."
+      author_missing: "Unbekannt"
+      title_content: "Kommentare (%{count})"
+      errors:
+        empty_text: "Der Kommentar wurde nicht gespeichert, da der Text fehlt."
+    devise:
+      username:
+        title: "Benutzername"
+      email:
+        title: "E-Mail-Adresse"
+      subdomain:
+        title: "Subdomain"
+      password:
+        title: "Passwort"
+      sign_up:
+        title: "Registrieren"
+        submit: "Registrieren"
+      login:
+        title: "Login"
+        remember_me: "Angemeldet bleiben"
+        submit: "Login"
+      reset_password:
+        title: "Passwort vergessen?"
+        submit: "Mein Passwort zurücksetzen"
+      change_password:
+        title: "Ändern Sie Ihr Passwort"
+        submit: "Mein Passwort ändern"
+      resend_confirmation_instructions:
+        title: "Anleitung zur Bestätigung noch mal schicken"
+        submit: "Anleitung zur Bestätigung noch mal schicken"
+      links:
+        sign_in: "Anmeldung"
+        forgot_your_password: "Passwort vergessen?"
+        sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
+    unsupported_browser:
+      headline: "ActiveAdmin unterstützt nicht länger den Internet Explorer in Version 8 oder niedriger."
+      recommendation: "Wir empfehlen die Nutzung von <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, oder <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Wenn sie IE 9 oder neuer benutzen, stellen sie sicher das sie den <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Kompatibilitätsansicht\" ausgeschaltet</a> haben."
+    access_denied:
+      message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen." 
   switch_language: "Sprache ändern" 
   this_file_language: "Deutsch"
   
@@ -145,6 +263,7 @@ de:
   filter_digital_objects: "Digital Objects"
   filter_district: "Provinz/Kanton"
   filter_email: "E-Mail"
+  filter_folder_type: "Ordner Typ"
   filter_full_name: "Name"
   filter_gender: "Geschlecht"
   filter_incipits: "Incipits"
