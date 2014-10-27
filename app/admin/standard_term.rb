@@ -1,6 +1,6 @@
 ActiveAdmin.register StandardTerm do
 
-  menu :parent => "Authorities"
+  menu :parent => "Authorities", url: ->{ standard_terms_path(locale: I18n.locale) }
 
   collection_action :autocomplete_standard_term_term, :method => :get
 

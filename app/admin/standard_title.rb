@@ -1,6 +1,6 @@
 ActiveAdmin.register StandardTitle do
 
-  menu :parent => "Authorities"
+  menu :parent => "Authorities", url: ->{ standard_titles_path(locale: I18n.locale) }
 
   collection_action :autocomplete_standard_title_title, :method => :get
 

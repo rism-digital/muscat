@@ -1,6 +1,7 @@
 ActiveAdmin.register User do
 
-  menu :parent => "Administration"
+  menu :parent => "Administration", url: ->{ users_path(locale: I18n.locale) }
+  
   permit_params :email, :password, :password_confirmation, :name, :workgroup, role_ids: []
   
   index do

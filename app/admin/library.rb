@@ -1,6 +1,6 @@
 ActiveAdmin.register Library do
   
-  menu :parent => "Authorities"
+  menu :parent => "Authorities", url: ->{ libraries_path(locale: I18n.locale) }
 
   collection_action :autocomplete_library_siglum, :method => :get
 

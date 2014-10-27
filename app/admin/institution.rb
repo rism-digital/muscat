@@ -1,6 +1,6 @@
 ActiveAdmin.register Institution do
   
-  menu :parent => "Authorities"
+  menu :parent => "Authorities", url: ->{ institutions_path(locale: I18n.locale) }
 
   collection_action :autocomplete_institution_name, :method => :get
 

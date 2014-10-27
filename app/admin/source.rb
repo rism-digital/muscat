@@ -2,7 +2,7 @@ ActiveAdmin.register Source do
   
   collection_action :autocomplete_source_std_title, :method => :get
   
-  menu :priority => 10
+  menu :priority => 10, url: ->{ sources_path(locale: I18n.locale) }
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

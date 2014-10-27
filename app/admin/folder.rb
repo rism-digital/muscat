@@ -1,5 +1,6 @@
 ActiveAdmin.register Folder do
   
+  menu url: ->{ folders_path(locale: I18n.locale) }
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

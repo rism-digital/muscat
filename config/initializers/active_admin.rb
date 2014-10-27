@@ -212,12 +212,27 @@ ActiveAdmin.setup do |config|
   #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
   #     end
   #   end
-  config.namespace :admin do |admin|
-    admin.build_menu do |menu|
+  # UNDOCUMENTED! UNDOCUMENTED!
+  # SInce we do not use default namespace
+  # we need to use :root instead of :admin
+  config.namespace :root do |admin|
+    admin.build_menu :default do |menu|
       menu.add :label => "Administration", :priority => 1
       menu.add :label => "Sources", :priority => 10
       menu.add :label => "Authorities", :priority => 20
     end
+    
+    admin.build_menu :utility_navigation do |menu|
+      menu.add :label => "Languages" do |lang|
+        lang.add :label => "EN", :url => proc { url_for(:locale => 'en') }, id: 'i18n-en', :priority => 1
+        lang.add :label => "DE", :url => proc { url_for(:locale => 'de') }, id: 'i18n-de', :priority => 2
+        lang.add :label => "FR", :url => proc { url_for(:locale => 'fr') }, id: 'i18n-fr', :priority => 3
+        lang.add :label => "IT", :url => proc { url_for(:locale => 'it') }, id: 'i18n-it', :priority => 4
+      end
+
+      admin.add_logout_button_to_menu menu
+    end
+    
   end
 
   # == Download Links

@@ -1,6 +1,6 @@
 ActiveAdmin.register Place do
 
-  menu :parent => "Authorities"
+  menu :parent => "Authorities", url: ->{ places_path(locale: I18n.locale) }
 
   collection_action :autocomplete_place_name, :method => :get
 

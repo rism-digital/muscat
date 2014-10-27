@@ -4,6 +4,10 @@ Muscat::Application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
+  #scope ':locale', locale: I18n.locale do
+  #  ActiveAdmin.routes(self)
+  #end 
+  
   get "/manuscripts", to: redirect('/sources')
   get "/manuscripts/:name", to: redirect('/sources/%{name}')
 

@@ -1,6 +1,6 @@
 ActiveAdmin.register LiturgicalFeast do
   
-  menu :parent => "Authorities"
+  menu :parent => "Authorities", url: ->{ liturgical_feasts_path(locale: I18n.locale) }
 
   collection_action :autocomplete_liturgical_feast_name, :method => :get
 

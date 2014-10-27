@@ -1,6 +1,6 @@
 ActiveAdmin.register Person do
 
-  menu :parent => "Authorities"
+  menu :parent => "Authorities", url: ->{ people_path(locale: I18n.locale) }
 
   collection_action :autocomplete_person_full_name, :method => :get
   
