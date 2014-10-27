@@ -51,7 +51,7 @@ class Marc21Import
     @total_records += 1
     buffer.gsub!(/[\r\n]+/, ' ')
     buffer.gsub!(/ (=[0-9]{3,3})/, "\n\\1")
-    
+
     if @total_records >= @from
       marc = MarcSource.new(buffer)
       # load the source but without resolving externals
@@ -78,8 +78,8 @@ class Marc21Import
         source.suppress_update_77x # we should not need to update the 772/773 relationships during the import
         source.suppress_update_count # Do not update the count for the foreign objects
         #source.suppress_create_incipit
-        source.suppress_reindex
-        source.suppress_recreate
+        #source.suppress_reindex
+        #source.suppress_recreate
         source.save rescue $stderr.puts "Failed to save SOURCE #{source.to_yaml}"
 
         puts "Last offset: #{@total_records}, Last RISM ID: #{source.id}" #"#{marc.first_occurance('001').content}"

@@ -133,21 +133,6 @@ ActiveRecord::Schema.define(version: 20141009061155) do
   add_index "do_items", ["item_id"], name: "index_do_items_on_item_id", using: :btree
   add_index "do_items", ["item_type"], name: "index_do_items_on_item_type", using: :btree
 
-  create_table "folder_items", force: true do |t|
-    t.integer  "folder_id"
-    t.integer  "item_id"
-    t.string   "item_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "folders", force: true do |t|
-    t.string   "name"
-    t.string   "folder_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "institutions", force: true do |t|
     t.string   "name",                                          null: false
     t.text     "alternates"

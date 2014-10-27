@@ -83,6 +83,7 @@ ActiveAdmin.register Library do
       f.input :siglum, :label => (I18n.t :filter_siglum)
       f.input :name, :label => (I18n.t :filter_name)
       f.input :address, :label => (I18n.t :filter_address)
+
     end
     f.inputs "Content" do
       f.input :url, :label => (I18n.t :filter_url)

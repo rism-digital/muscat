@@ -286,6 +286,7 @@ it:
   filter_old_versions: "Versioni vecchie"
   filter_owner: "Proprietario"
   filter_pages: "Pagine"
+  filter_pattern: "Siglum patterns"
   filter_people: "Persone"
   filter_phone: "Telefono"
   filter_place: "Luogo"

@@ -281,6 +281,7 @@ fr:
   filter_old_versions: "Anciennes versions"
   filter_owner: "Propriétaire"
   filter_pages: "Pages"
+  filter_pattern: "Modèle de sigle"
   filter_people: "Personnes"
   filter_phone: "Téléphone"
   filter_place: "Endroit"

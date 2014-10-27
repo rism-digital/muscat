@@ -64,8 +64,7 @@ class MarcSource < Marc
       return node.content
     end
   end
-  
-  
+    
   # Get the Library and shelfmarc for a MARC record
   def get_siglum_and_shelf_mark
     siglum = "" 

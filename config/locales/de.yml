@@ -287,6 +287,7 @@ de:
   filter_old_versions: "Alte Versionen"
   filter_owner: "Besitzer"
   filter_pages: "Seiten"
+  filter_pattern: "Sigel Muster"
   filter_people: "Personen"
   filter_phone: "Telefon"
   filter_place: "Ort"

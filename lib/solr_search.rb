@@ -59,7 +59,9 @@ module Muscat
       private
         
         def search_with_solr(fields = [], order = {}, page = 1, per_page = MAX_PER_PAGE)
-        
+
+          model=self.to_s
+
           solr_results = self.solr_search do
             if !order.empty?
               order_by order[:field], order[:order]
@@ -67,8 +69,10 @@ module Muscat
             
             fields.each do |f|
               if f[:fields].empty?
+                without(:record_type, 2) if model=="Source"
                 fulltext f[:value]
               else
+                without(:record_type, 2) if model=="Source"
                 fulltext f[:value], :fields => f[:fields]
               end
             end
