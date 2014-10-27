@@ -1,7 +1,7 @@
 
 it:
   active_admin:
-    dashboard: Dashboard
+    dashboard: Pannello
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
       call_to_action: "Per aggiungere sezioni alla dashboard controlla il file 'app/admin/dashboard.rb'"
@@ -120,56 +120,12 @@ it:
       grid: "Griglia"
       blog: "Blog"
   switch_language: "Cambia lingua" 
-  this_file_language: "Italiano" 
-  
-  #################### PAGE TITLES
-  
-  page_presentation: "Presentazione"
-  page_indexes: "Indici"
-  page_cataloging: "Catalogazione"
-  page_projects: "Progetti"
-  page_repertorium: "Repertorio dei compositori svizzeri dell'Ottocento"
-  page_snb: "Fondi di compositori nella Biblioteca nazionale svizzera"
-  page_huber: "Fondo Ferdinand Fürchtegott Huber (1791-1863)"
-  page_monasteries: "Musica dei Monasteri Svizzeri"
-  page_informationspool: "Informationspool „Repertorio dei compositori svizzeri dell'Ottocento”"
-  page_cd: "CD - Musik aus Schweizer Klöstern"
-  page_inventories: "Banca-dati per gli inventari musicali storici (1500-1800)"
-  page_kapellmeisterbuch: "Il ‘Kapellmeisterbuch’ di Einsiedeln"
-  page_publications: "Pubblicazioni"  
-  page_past_projects: "Altri progetti"
-  page_past_cataloging_projects: "Altri progetti di catalogazione"
-  page_musicians: "Informazione per i musicisti"
-  page_links: "Links e documentazione"
-  page_ch_people_a_e: "Lasciti svizzeri - Persone (A-E)"
-  page_ch_people_f_k: "Lasciti svizzeri - Persone (F-K)"
-  page_ch_people_l_q: "Lasciti svizzeri - Persone (L-Q)"
-  page_ch_people_r_z: "Lasciti svizzeri - Persone (R-Z)"
-  page_ch_institutions: "Lasciti svizzeri - Istituzioni e archivi di case editrici"
-  page_links_int: "Links - Istituzioni e progetti internazionali"
-  page_links_int_ch: "Links - Istituzioni e progetti svizzeri"
-  page_links_finding_aid: "Links - Guida alla ricerca (Svizzera)"
-  page_links_source_cat: "Links - Cataloghi di fonti"
-  page_links_digitisation: "Links - Digitalizzazione"
-  page_links_repertoire: "Links - Repertorio"
-  page_links_people: "Links - Persone"
-  page_links_editions: "Links - Edizioni"
-  page_links_e_texts: "Links - Testi online"
-  page_links_varia: "Links - Varia"
-  page_about_us: "Presentazione"
-  page_committee: "Comitato"
-  page_association: "Associazione"
-  page_rism_contacts: "Ufficio svizzero RISM - Contatti"
-  page_help: "Aiuto" 
-  page_database: "Banca di dati"
-  page_advanced_search: "Ricerca avanzata"
-    
+  this_file_language: "Italiano"
   #################### MENUS
   
   menu_home: "Home"
-  menu_browse: "Fonti"
-  menu_advanced_search: "Ricerca avanzata"
-  menu_indexes: "Ricerca per indici"
+  menu_sources: "Fonti"
+  menu_indexes: "Indici"
   menu_people: "Persone"
   menu_institutions: "Istituzioni"
   menu_titles: "Titolo / Incipit testuale"
@@ -179,67 +135,15 @@ it:
   menu_liturgical_feasts: "Feste liturgiche"
   menu_places: "Luoghi"
   menu_help: "Aiuto"
+  menu_folders: "Cartelle"
+  menu_users: "Utenti"
+  menu_workgroups: "Gruppi"
+  menu_administration: "Amministrazione"
+  menu_languages: "Lingue"
   
-  menu_cataloging: "Catalogazione"
-  menu_repertorium: "Repertorio"
-  menu_snb: "Biblioteca nazionale"
-  menu_huber: "Fondo F. F. Huber"
 
-  menu_projects: "Progetti"
-  menu_monasteries: "Monasteri Svizzeri"
-  menu_informationspool: "Informationspool"
-  menu_cd: "CD"
-  menu_inventories: "Inventari storici"
-  menu_kapellmeisterbuch: "Il ‘Kapellmeisterbuch’"
-  menu_publications: "Pubblicazioni"
-  menu_past_projects: "Altri progetti"
-  
-  menu_links: "Links / Documentazione"
-  menu_collection_p: "Fondi - Persone"
-  menu_ch_institutions: "Fondi - Istituzioni"
-  
-  menu_musicians: "Musicisti"
-  
-  menu_about_us: "Presentazione"
-  menu_committee: "Comitato"
-  menu_contact: "Ufficio / Contatti"
-  menu_contact_top: "Contatti"
-  menu_association: "Associazione"
-  menu_rism_central_office: "RISM - Ufficio centrale"
-  
-  menu_database: "Banca di dati"
-  
-  # quicksearch  
-  quick_search: "Ricerca rapida"
-  tips_on_quick_search: "Aiuto per la ricerca rapida:"
-  tips_on_dist_search: "Aiuto per la ricerca:"
-  tips_on_incipit_search: "Aiuto per la ricerca:"
-  
-  # advanced search
-  admin_search: "Administration"
-  btn_add_another_search_term: "Aggiungi un altro termine di ricerca"
-  btn_add_incipit_search: "Incipit"
-  btn_search: "Cerca"
-  in_preparation: "in preparazione"
-  
-  ############ links
-
-  http_rism_central_office: "http://www.rism.info"
-
-  redirection: "You have been redirected from:<br><br><center><b>%{url}</b></center><br>The domain name is no longer in use. Our domain name is now:<br><br><center><b>www.rism-ch.org</b></center><br>Please update your bookmarks if necessary."
-  
   #################### CONTROLLER STRATEGIES
   
-  ############ page names
-  page_name_catalogues: "Cataloghi e bibliografia"
-  page_name_institutions: "Istituzioni"
-  page_name_libraries: "Biblioteche"
-  page_name_liturgical_feasts: "Feste liturgiche"
-  page_name_manuscripts: "Fonti"
-  page_name_people: "Persone"
-  page_name_places: "Luoghi"
-  page_name_standard_terms: "Soggetti"
-  page_name_standard_titles: "Titoli e incipit testuali"
   
   ############ filters
   filter_address: "Indirizzo"
