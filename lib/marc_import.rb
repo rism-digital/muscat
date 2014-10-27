@@ -22,6 +22,7 @@ class MarcImport
         # Use external XSLT 1.0 file for converting to MARC21 text
         xslt  = Nokogiri::XSLT(File.read(Rails.root.join('housekeeping/import/', 'marcxml2marctxt_record.xsl')))
         marctext=xslt.transform(rec).to_s
+        #print marctext
         create_record(marctext)    
       end
     puts @import_results
@@ -36,11 +37,16 @@ class MarcImport
       # load the text source but without resolving externals
       marc.load_source(false)
       if marc.is_valid?(false)
-
+        #p marc.get_marc_source_id
         # step 1.  update or create a new object
         model = Object.const_get(@model).find_by_id( marc.get_marc_source_id )
         if !model
-          model = Object.const_get(@model).new(:wf_owner => 1, :wf_stage => "unpublished", :wf_audit => "approved")
+          if @model!="Source"
+            model = Object.const_get(@model).new(:wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
+          else
+            model = Object.const_get(@model).new(:id => marc.get_id, :lib_siglum => marc.get_siglum, :wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
+          end
+
         end
           
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
