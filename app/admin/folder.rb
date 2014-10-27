@@ -27,7 +27,7 @@ ActiveAdmin.register Folder do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => "Any field contains", :as => :string
+  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
   index do
     selectable_column
@@ -50,7 +50,7 @@ ActiveAdmin.register Folder do
   
  
   form do |f|
-    f.inputs "Contents" do
+    f.inputs I18n.t(:contents) do
       f.input :name, :label => (I18n.t :filter_name)
     end
     f.actions

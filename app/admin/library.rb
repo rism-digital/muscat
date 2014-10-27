@@ -46,7 +46,7 @@ ActiveAdmin.register Library do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => "Any field contains", :as => :string
+  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
   index do
     selectable_column
@@ -74,18 +74,18 @@ ActiveAdmin.register Library do
     active_admin_embedded_source_list( self, library, params[:qe], params[:src_list_page] )
   end
   
-  sidebar "Search sources", :only => :show do
+  sidebar I18n.t(:search_sources), :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
  
   form do |f|
-    f.inputs "Details" do
+    f.inputs I18n.t(:details) do
       f.input :siglum, :label => (I18n.t :filter_siglum)
       f.input :name, :label => (I18n.t :filter_name)
       f.input :address, :label => (I18n.t :filter_address)
 
     end
-    f.inputs "Content" do
+    f.inputs I18n.t(:content) do
       f.input :url, :label => (I18n.t :filter_url)
       f.input :phone, :label => (I18n.t :filter_phone)
       f.input :email, :label => (I18n.t :filter_email)

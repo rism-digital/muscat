@@ -121,6 +121,13 @@ it:
       blog: "Blog"
   switch_language: "Cambia lingua" 
   this_file_language: "Italiano"
+  
+  time:
+    formats:
+      default: "%H:%M"
+      short: "%H:%M"
+      long: "%H:%M"
+  
   #################### MENUS
   
   menu_home: "Home"
@@ -141,6 +148,14 @@ it:
   menu_administration: "Amministrazione"
   menu_languages: "Lingue"
   
+  ### VARIOUS ELEMENTS
+  recent_sources: "Fonti modificate di recente"
+  any_field_contains: "Qualsiasi campo contiene"
+  workgroups: "Gruppi"
+  user_details: "Dettagli per l'Utente"
+  sections: "Sezioni"
+  edit: "Modifica"
+  search_sources: "Cerca Fonti"
 
   #################### CONTROLLER STRATEGIES
   

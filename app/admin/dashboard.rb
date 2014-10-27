@@ -9,7 +9,7 @@ ActiveAdmin.register_page "Dashboard" do
     if Source.find_recent_updated(limit).size > 0
       columns do
         column do
-          panel "Recently modified Sources" do
+          panel I18n.t(:recent_sources) do
             table_for Source.find_recent_updated(limit).map do
               column(I18n.t :filter_id) {|source| link_to(source.id, source_path(source)) }
               column(I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage) } 
@@ -24,7 +24,7 @@ ActiveAdmin.register_page "Dashboard" do
     if Catalogue.find_recent_updated(limit).size > 0
       columns do
         column do
-          panel "Recently modified Catalogues" do
+          panel I18n.t(:recent_catalogues) do
             table_for Catalogue.find_recent_updated(limit).map do
               column(I18n.t :filter_id) {|catalogue| link_to(catalogue.id, catalogue_path(catalogue)) }
               column(I18n.t :filter_wf_stage) {|catalogue| status_tag(catalogue.wf_stage) } 
@@ -40,7 +40,7 @@ ActiveAdmin.register_page "Dashboard" do
     if Person.find_recent_updated(limit).size > 0
       columns do
         column do
-          panel "Recently modified People" do
+          panel I18n.t(:recent_people) do
             table_for Person.find_recent_updated(limit).map do
               column(I18n.t :filter_id) {|person| link_to(person.id, person_path(person)) }
               column(I18n.t :filter_wf_stage) {|person| status_tag(person.wf_stage) } 

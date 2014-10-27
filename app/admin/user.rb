@@ -9,7 +9,7 @@ ActiveAdmin.register User do
     id_column
     column :name
     column :email
-    column "Workgroups" do |user|
+    column I18n.t(:workgroups) do |user|
          user.get_workgroups.join(", ")
     end
     #column :institutions
@@ -26,7 +26,7 @@ ActiveAdmin.register User do
   filter :created_at
 
   form do |f|
-    f.inputs "User Details" do
+    f.inputs I18n.t(:user_details) do
       f.input :name
       f.input :email
       f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all
@@ -41,7 +41,7 @@ ActiveAdmin.register User do
     attributes_table do 
       row :name
       row :email
-      row 'workgroups' do |n|
+      row I18n.t(:workgroups) do |n|
              user.workgroups.map(&:name).join(", ").html_safe
       end
       row :sign_in_count

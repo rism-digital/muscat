@@ -27,7 +27,7 @@ ActiveAdmin.register Person do
     def edit
       @item = Person.find(params[:id])
       @editor_profile = EditorConfiguration.get_applicable_layout @item
-      @page_title = "Edit #{@editor_profile.name} [#{@item.id}]"
+      @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
     end
     
     def show
@@ -52,7 +52,7 @@ ActiveAdmin.register Person do
       new_marc.load_source false # this will need to be fixed
       @person.marc = new_marc
 
-      @page_title = "New person"
+      @page_title = I18n.t(:new_person)
       @editor_profile = EditorConfiguration.get_applicable_layout @person
       #To transmit correctly @item we need to have @source initialized
       @item = @person
@@ -68,7 +68,7 @@ ActiveAdmin.register Person do
   ###########
   
   # temporary, to be replaced by Solr
-  filter :full_name_equals, :label => "Any Field contains", :as => :string
+  filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
   index do
     selectable_column
@@ -96,7 +96,7 @@ ActiveAdmin.register Person do
     active_admin_navigation_bar( self )
   end
   
-  sidebar "Search sources", :only => :show do
+  sidebar I18n.t(:search_sources), :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
   
@@ -104,7 +104,7 @@ ActiveAdmin.register Person do
   ## Edit ##
   ##########
   
-  sidebar "Sections", :only => [:edit, :new] do
+  sidebar I18n.t(:sections), :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
   end
   

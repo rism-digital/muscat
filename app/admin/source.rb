@@ -30,7 +30,7 @@ ActiveAdmin.register Source do
     def edit
       @item = Source.find(params[:id])
       @editor_profile = EditorConfiguration.get_applicable_layout @item
-      @page_title = "Edit #{@editor_profile.name} [#{@item.id}]"
+      @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
     end
 
     def index
@@ -63,7 +63,7 @@ ActiveAdmin.register Source do
         new_marc.load_source false # this will need to be fixed
         @source.marc = new_marc
       end
-      @page_title = "New source"
+      @page_title = I18n.t(:new_source)
       @editor_profile = EditorConfiguration.get_applicable_layout @source
       #To transmit correctly @item we need to have @source initialized
       @item = @source
@@ -118,8 +118,8 @@ ActiveAdmin.register Source do
   filter :title_contains, :as => :string
   filter :std_title_contains, :as => :string
   filter :composer_contains, :as => :string
-  filter :lib_siglum_contains, :label => "Library sigla contains", :as => :string
-  filter :title_equals, :label => "Any field contains", :as => :string
+  filter :lib_siglum_contains, :label => I18n.t(:library_sigla_contains), :as => :string
+  filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
   index do
     selectable_column
@@ -158,7 +158,7 @@ ActiveAdmin.register Source do
   ## Edit ##
   ##########
   
-  sidebar "Sections", :class => "sidebar_tabs", :only => [:edit, :new] do
+  sidebar I18n.t(:sections), :class => "sidebar_tabs", :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
   end
   

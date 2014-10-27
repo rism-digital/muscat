@@ -45,7 +45,7 @@ ActiveAdmin.register Place do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => "Any field contains", :as => :string
+  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
   index do
     selectable_column
@@ -70,7 +70,7 @@ ActiveAdmin.register Place do
     active_admin_embedded_source_list( self, place, params[:qe], params[:src_list_page] )
   end
   
-  sidebar "Search sources", :only => :show do
+  sidebar I18n.t(:search_sources), :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
   
