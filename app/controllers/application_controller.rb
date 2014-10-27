@@ -25,8 +25,9 @@ class ApplicationController < ActionController::Base
   
   def save_search_filters  
   end
+  
   def set_admin_locale
-    I18n.locale = :en
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 
 
