@@ -1,6 +1,6 @@
 ActiveAdmin.register Folder do
   
-  menu url: ->{ folders_path(locale: I18n.locale) }
+  menu url: ->{ folders_path(locale: I18n.locale) }, :label => proc {I18n.t(:menu_folders)}
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

@@ -1,6 +1,6 @@
 ActiveAdmin.register Workgroup do
   
-  menu :parent => "Administration"
+  menu :parent => "admin_menu", url: ->{ workgroups_path(locale: I18n.locale) }, :label => proc {I18n.t(:menu_workgroups)}
 
   collection_action :autocomplete_workgroup_name, :method => :get
 

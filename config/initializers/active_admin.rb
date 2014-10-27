@@ -217,13 +217,12 @@ ActiveAdmin.setup do |config|
   # we need to use :root instead of :admin
   config.namespace :root do |admin|
     admin.build_menu :default do |menu|
-      menu.add :label => "Administration", :priority => 1
-      menu.add :label => "Sources", :priority => 10
-      menu.add :label => "Authorities", :priority => 20
+      menu.add :label => proc {I18n.t(:menu_administration)}, id: 'admin_menu', :priority => 1
+      menu.add :label => proc {I18n.t(:menu_indexes)}, id: 'indexes_menu', :priority => 20
     end
     
     admin.build_menu :utility_navigation do |menu|
-      menu.add :label => "Languages" do |lang|
+      menu.add  :label => proc {I18n.t(:menu_languages)}, id: 'lang_menu' do |lang|
         lang.add :label => "EN", :url => proc { url_for(:locale => 'en') }, id: 'i18n-en', :priority => 1
         lang.add :label => "DE", :url => proc { url_for(:locale => 'de') }, id: 'i18n-de', :priority => 2
         lang.add :label => "FR", :url => proc { url_for(:locale => 'fr') }, id: 'i18n-fr', :priority => 3
