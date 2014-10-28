@@ -36,19 +36,6 @@ class MarcImport
         marctext=xslt.transform(rec).to_s
         create_record(marctext)
     }
-
-
-    #doc   = Nokogiri::XML(File.read(@source_file))
-    #marcblock=doc.xpath("//record")
-    #marcblock.each do |record|
-     #   rec=Nokogiri::XML(record.to_s)
-
-        # Use external XSLT 1.0 file for converting to MARC21 text
-      #  xslt  = Nokogiri::XSLT(File.read(Rails.root.join('housekeeping/import/', 'marcxml2marctxt_record.xsl')))
-#        marctext=xslt.transform(rec).to_s
-        #print marctext
- #       create_record(marctext)    
-#      end
     puts @import_results
   end
 
