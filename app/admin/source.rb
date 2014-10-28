@@ -78,9 +78,26 @@ ActiveAdmin.register Source do
     name:   :text,
     hide:   :checkbox
   } do |ids, inputs|
-    puts inputs
+
     # inputs is a hash of all the form fields you requested
     f = Folder.create(:name => inputs[:name], :folder_type => "Source")
+    # Pagination is on as default! wahooo!
+    params[:per_page] = 1000
+    results = Source.find(ids)
+
+    results.each { |s| f.add_item(s) }
+    
+    redirect_to collection_path, :notice => "Folder #{inputs[:name]} created with #{results.count} items"
+  end
+    
+  # Include the MARC extensions
+  include MarcControllerActions
+  
+  collection_action :select_new_template, :method => :get
+
+  collection_action :save_to_folder, :method => :get do
+    # inputs is a hash of all the form fields you requested
+    f = Folder.create(:name => "Folder #{Folder.count}", :folder_type => "Source")
     # Pagination is on as default! wahooo!
     params[:per_page] = 1000
     results = Source.search_as_ransack(params)
@@ -96,13 +113,16 @@ ActiveAdmin.register Source do
       end
     end
     
-    redirect_to collection_path, :notice => "Folder #{inputs[:name]} created with #{results.total_entries} items"
+    redirect_to collection_path, :notice => "Folder \"#{f.name}\" created with #{results.total_entries} items"
   end
-  
-  # Include the MARC extensions
-  include MarcControllerActions
-  
-  collection_action :select_new_template, :method => :get
+
+  action_item :if => proc {params.include?(:q)}, form: {
+    name:   :text,
+    hide:   :checkbox
+  } do
+
+      link_to('Save results to Folder', save_to_folder_sources_path(params))
+  end
 
   
   #scope :all, :default => true 
@@ -136,7 +156,6 @@ ActiveAdmin.register Source do
       end
     end
     #column (I18n.t :filter_shelf_mark), :shelf_mark
-    
     
     actions
   end
