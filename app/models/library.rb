@@ -29,6 +29,7 @@ class Library < ActiveRecord::Base
   
   #before_create :generate_new_id
   after_save :reindex
+  after_create :update_workgroups
   
   attr_accessor :suppress_reindex_trigger
 
@@ -68,6 +69,14 @@ class Library < ActiveRecord::Base
     if (self.sources.count > 0)
       errors.add :base, "The library could not be deleted because it is used"
       return false
+    end
+  end
+
+  def update_workgroups
+    Workgroup.all.each do |wg|
+      if Regexp.new(wg.libpatterns).match(self.siglum)
+        wg.save
+      end
     end
   end
   

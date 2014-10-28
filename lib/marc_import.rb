@@ -1,10 +1,12 @@
 # Reads from a MARCXML file and imports the records into the database
 
 require 'nokogiri'
+require 'logger' 
 
 class MarcImport
   
   def initialize(source_file, model, from = 0)
+    @log = Logger.new(Rails.root.join('log/', 'import.log'), 'daily')
     @from = from
     @source_file = source_file
     @model = model
@@ -12,19 +14,28 @@ class MarcImport
     @import_results = Array.new
   end
 
+  #Helper method to parse huge files with nokogiri
+  def each_record(filename, &block)
+    File.open(filename) do |file|
+      Nokogiri::XML::Reader.from_io(file).each do |node|
+        if node.name == 'record' and node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
+          yield(Nokogiri::XML(node.outer_xml).root)
+        end
+      end
+    end
+  end
+
   def import
     #line_number = 0
-    doc   = Nokogiri::XML(File.read(@source_file))
-    marcblock=doc.xpath("//record")
-    marcblock.each do |record|
+    each_record(@source_file) { |record|         
+
         rec=Nokogiri::XML(record.to_s)
 
         # Use external XSLT 1.0 file for converting to MARC21 text
         xslt  = Nokogiri::XSLT(File.read(Rails.root.join('housekeeping/import/', 'marcxml2marctxt_record.xsl')))
         marctext=xslt.transform(rec).to_s
-        #print marctext
-        create_record(marctext)    
-      end
+        create_record(marctext)
+    }
     puts @import_results
   end
 
@@ -41,11 +52,14 @@ class MarcImport
         # step 1.  update or create a new object
         model = Object.const_get(@model).find_by_id( marc.get_marc_source_id )
         if !model
+          status="created"
           if @model!="Source"
             model = Object.const_get(@model).new(:wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
           else
             model = Object.const_get(@model).new(:id => marc.get_id, :lib_siglum => marc.get_siglum, :wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
           end
+        else
+          status="updated"
 
         end
           
@@ -61,7 +75,12 @@ class MarcImport
         #model.suppress_create_incipit
         #model.suppress_create_incipit
         #model.suppress_reindex
-        model.save #rescue puts "save failed"
+        begin
+          model.save #
+          @log.info(@model+" record "+marc.get_id.to_s+" "+status)
+        rescue ActiveRecord::RecordNotUnique
+          @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
+        end
         puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"
       else
         puts "failed to import marc record leading up to line #{line_number}"

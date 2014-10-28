@@ -249,6 +249,7 @@ fr:
   filter_collection: "Collection"
   filter_comments: "Commentaires"
   filter_composer: "Compositeur"
+  filter_connected_libraries: "Libraries"
   filter_country: "Pays"
   filter_creation_date: "Date de création"
   filter_date: "Date"

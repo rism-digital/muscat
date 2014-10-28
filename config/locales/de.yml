@@ -254,6 +254,7 @@ de:
   filter_collection: "Sammlung"
   filter_comments: "Kommentare"
   filter_composer: "Komponist"
+  filter_connected_libraries: "Bibliotheken"
   filter_country: "Land"
   filter_creation_date: "Erfassungsdatum"
   filter_date: "Datum"
@@ -432,3 +433,4 @@ de:
   do_ext_res_link: "External resources:"
   do_ext_link_not_avail: "(Audio files not available from this location)"
   do_images_title: "Images"
+  connected_libraries: "Bibliotheken"

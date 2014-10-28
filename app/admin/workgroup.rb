@@ -52,7 +52,7 @@ ActiveAdmin.register Workgroup do
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_pattern), :libpatterns
-    column I18n.t(:connected_libraries), :workgroups do |wg|
+    column I18n.t(:filter_connected_libraries), :workgroups do |wg|
              wg.libraries.map(&:siglum).join(", ").html_safe
        end
 
