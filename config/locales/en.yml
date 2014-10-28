@@ -175,6 +175,7 @@ en:
   filter_collection: "Collection"
   filter_comments: "Comments"
   filter_composer: "Composer"
+  filter_connected_libraries: "Libraries"
   filter_country: "Country"
   filter_creation_date: "Creation date"
   filter_date: "Date"
