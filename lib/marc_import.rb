@@ -10,8 +10,10 @@ class MarcImport
     @from = from
     @source_file = source_file
     @model = model
-    @total_records = 0
+    @total_records = open(source_file) { |f| f.grep(/001">/) }.size
     @import_results = Array.new
+    @cnt=0
+    @start_time=Time.now
   end
 
   #Helper method to parse huge files with nokogiri
@@ -28,7 +30,6 @@ class MarcImport
   def import
     #line_number = 0
     each_record(@source_file) { |record|         
-
         rec=Nokogiri::XML(record.to_s)
 
         # Use external XSLT 1.0 file for converting to MARC21 text
@@ -40,7 +41,8 @@ class MarcImport
   end
 
   def create_record(buffer, line_number=0)
-    @total_records += 1
+    @cnt+=1
+    #@total_records += 1
     buffer.gsub!(/[\r\n]+/, ' ')
     buffer.gsub!(/ (=[0-9]{3,3})/, "\n\\1")
     if @total_records >= @from
@@ -81,7 +83,8 @@ class MarcImport
         rescue ActiveRecord::RecordNotUnique
           @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
         end
-        puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"
+        print "\rStarted: "+@start_time.strftime("%Y-%m-%d %H:%M:%S")+" -- Record #{@cnt} of #{@total_records} processed"
+        #puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"
       else
         puts "failed to import marc record leading up to line #{line_number}"
       end
