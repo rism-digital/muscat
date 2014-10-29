@@ -53,6 +53,7 @@ ActiveAdmin.register Library do
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_siglum), :siglum
     column (I18n.t :filter_location_and_name), :name
+    column (I18n.t :filter_place), :place
     column (I18n.t :filter_sources), :src_count
     actions
   end
@@ -65,6 +66,7 @@ ActiveAdmin.register Library do
     active_admin_navigation_bar( self )
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
+      row (I18n.t :filter_place) { |r| r.place }
       row (I18n.t :filter_siglum) { |r| r.siglum }
       row (I18n.t :filter_address) { |r| r.address }
       row (I18n.t :filter_url) { |r| r.url }

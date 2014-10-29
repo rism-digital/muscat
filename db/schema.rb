@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009061155) do
+ActiveRecord::Schema.define(version: 20141029132144) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -175,20 +175,23 @@ ActiveRecord::Schema.define(version: 20141009061155) do
   add_index "institutions_users", ["user_id"], name: "index_institutions_users_on_user_id", using: :btree
 
   create_table "libraries", force: true do |t|
-    t.string   "siglum",     limit: 32,                         null: false
+    t.string   "siglum",      limit: 32,                         null: false
     t.string   "name"
     t.string   "address"
     t.string   "url"
     t.string   "phone"
     t.string   "email"
-    t.string   "wf_audit",   limit: 16, default: "unapproved"
-    t.string   "wf_stage",   limit: 16, default: "unpublished"
+    t.string   "wf_audit",    limit: 16, default: "unapproved"
+    t.string   "wf_stage",    limit: 16, default: "unpublished"
     t.string   "wf_notes"
-    t.integer  "wf_owner",              default: 0
-    t.integer  "wf_version",            default: 0
-    t.integer  "src_count",             default: 0
+    t.integer  "wf_owner",               default: 0
+    t.integer  "wf_version",             default: 0
+    t.integer  "src_count",              default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "place"
+    t.text     "marc_source"
+    t.text     "comments"
   end
 
   add_index "libraries", ["siglum"], name: "index_libraries_on_siglum", using: :btree

@@ -1,0 +1,38 @@
+--- !map:Settings 
+group_order: 
+- control
+- codes
+- main
+- notes
+- subject
+groups: 
+  control: 
+    all_tags: 
+    - "000"
+    - "001"
+    - "003"
+    - "005"
+    - 008
+  notes: 
+    all_tags: 
+    - "509"
+    - "549"
+    - "559"
+    - "569"
+    - "856"
+  subject: 
+    all_tags: 
+    - "670"
+    - "678"
+    - "680"
+    - "684"
+  main: 
+    all_tags: 
+    - "110"
+    - "410"
+  codes: 
+    all_tags: 
+    - "035"
+    - "039"
+    - "040"
+    - "043"
