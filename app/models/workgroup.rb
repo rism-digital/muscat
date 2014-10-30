@@ -1,8 +1,8 @@
 class Workgroup < ActiveRecord::Base
 
     has_and_belongs_to_many :users
-    has_and_belongs_to_many :libraries
-    after_save :change_libraries
+    has_and_belongs_to_many :institutions
+    after_save :change_institutions
     validates_presence_of :name 
     before_destroy :check_dependencies
 
@@ -11,8 +11,8 @@ class Workgroup < ActiveRecord::Base
     text :name
   end
  
-  def get_libraries
-    self.libraries.map {|lib| lib}
+  def get_institutions
+    self.institutions.map {|lib| lib}
   end
 
   def check_dependencies
@@ -22,12 +22,12 @@ class Workgroup < ActiveRecord::Base
     end
   end
 
-  def change_libraries
-    self.libraries.delete_all
+  def change_institutions
+    self.institutions.delete_all
     pattern_list=self.libpatterns.split(",")
     if libpatterns
       pattern_list.each do |siglum|
-        self.libraries << Library.where("siglum like ?", "%#{siglum.gsub("*", "").strip}%")
+        self.institutions << Institution.where("siglum like ?", "%#{siglum.gsub("*", "").strip}%")
       end
     end
   end

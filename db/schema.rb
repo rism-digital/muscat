@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029132144) do
+ActiveRecord::Schema.define(version: 20141030182144) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -134,48 +134,7 @@ ActiveRecord::Schema.define(version: 20141029132144) do
   add_index "do_items", ["item_type"], name: "index_do_items_on_item_type", using: :btree
 
   create_table "institutions", force: true do |t|
-    t.string   "name",                                          null: false
-    t.text     "alternates"
-    t.text     "notes"
-    t.string   "wf_audit",   limit: 16, default: "unapproved"
-    t.string   "wf_stage",   limit: 16, default: "unpublished"
-    t.string   "wf_notes"
-    t.integer  "wf_owner",              default: 0
-    t.integer  "wf_version",            default: 0
-    t.integer  "src_count",             default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "institutions", ["name"], name: "index_institutions_on_name", using: :btree
-  add_index "institutions", ["wf_stage"], name: "index_institutions_on_wf_stage", using: :btree
-
-  create_table "institutions_libraries", id: false, force: true do |t|
-    t.integer "institution_id"
-    t.integer "library_id"
-  end
-
-  add_index "institutions_libraries", ["institution_id"], name: "index_institutions_libraries_on_institution_id", using: :btree
-  add_index "institutions_libraries", ["library_id"], name: "index_institutions_libraries_on_library_id", using: :btree
-
-  create_table "institutions_sources", id: false, force: true do |t|
-    t.integer "institution_id"
-    t.integer "source_id"
-  end
-
-  add_index "institutions_sources", ["institution_id"], name: "index_institutions_sources_on_institution_id", using: :btree
-  add_index "institutions_sources", ["source_id"], name: "index_institutions_sources_on_source_id", using: :btree
-
-  create_table "institutions_users", id: false, force: true do |t|
-    t.integer "user_id"
-    t.integer "institution_id"
-  end
-
-  add_index "institutions_users", ["institution_id"], name: "index_institutions_users_on_institution_id", using: :btree
-  add_index "institutions_users", ["user_id"], name: "index_institutions_users_on_user_id", using: :btree
-
-  create_table "libraries", force: true do |t|
-    t.string   "siglum",      limit: 32,                         null: false
+    t.string   "siglum",      limit: 32
     t.string   "name"
     t.string   "address"
     t.string   "url"
@@ -194,24 +153,24 @@ ActiveRecord::Schema.define(version: 20141029132144) do
     t.text     "comments"
   end
 
-  add_index "libraries", ["siglum"], name: "index_libraries_on_siglum", using: :btree
-  add_index "libraries", ["wf_stage"], name: "index_libraries_on_wf_stage", using: :btree
+  add_index "institutions", ["siglum"], name: "index_institutions_on_siglum", using: :btree
+  add_index "institutions", ["wf_stage"], name: "index_institutions_on_wf_stage", using: :btree
 
-  create_table "libraries_sources", id: false, force: true do |t|
-    t.integer "library_id"
+  create_table "institutions_sources", id: false, force: true do |t|
+    t.integer "institution_id"
     t.integer "source_id"
   end
 
-  add_index "libraries_sources", ["library_id"], name: "index_libraries_sources_on_library_id", using: :btree
-  add_index "libraries_sources", ["source_id"], name: "index_libraries_sources_on_source_id", using: :btree
+  add_index "institutions_sources", ["institution_id"], name: "index_institutions_sources_on_institution_id", using: :btree
+  add_index "institutions_sources", ["source_id"], name: "index_institutions_sources_on_source_id", using: :btree
 
-  create_table "libraries_workgroups", id: false, force: true do |t|
+  create_table "institutions_workgroups", id: false, force: true do |t|
     t.integer "workgroup_id"
-    t.integer "library_id"
+    t.integer "institution_id"
   end
 
-  add_index "libraries_workgroups", ["library_id"], name: "index_workgroups_libraries_on_library_id", using: :btree
-  add_index "libraries_workgroups", ["workgroup_id"], name: "index_workgroups_libraries_on_workgroup_id", using: :btree
+  add_index "institutions_workgroups", ["institution_id"], name: "index_workgroups_institutions_on_library_id", using: :btree
+  add_index "institutions_workgroups", ["workgroup_id"], name: "index_workgroups_institutions_on_workgroup_id", using: :btree
 
   create_table "liturgical_feasts", force: true do |t|
     t.string   "name",                                          null: false

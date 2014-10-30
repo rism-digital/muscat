@@ -1,4 +1,4 @@
-class MarcLibrary < Marc
+class MarcInstitution < Marc
   def initialize(source = nil)
     super("library", source)
   end
@@ -24,7 +24,7 @@ class MarcLibrary < Marc
   def get_siglum
     if node = first_occurance("110", "g")
       if node.content
-        node.content.truncate(128)
+        node.content.truncate(32)
       end
     end
   end

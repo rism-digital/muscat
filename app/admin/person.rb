@@ -69,6 +69,7 @@ ActiveAdmin.register Person do
   
   # temporary, to be replaced by Solr
   filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+#  filter :name_contains, :as => :string
   
   index do
     selectable_column

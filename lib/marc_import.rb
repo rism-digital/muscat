@@ -52,7 +52,7 @@ class MarcImport
       if marc.is_valid?(false)
         #p marc.get_marc_source_id
         # step 1.  update or create a new object
-        model = Object.const_get(@model).find_by_id( marc.get_marc_source_id )
+        model = Object.const_get(@model).find_by_id( marc.get_id )
         if !model
           status="created"
           if @model!="Source"
