@@ -7,7 +7,7 @@
 
 # People auth data
 
-:model: library
+:model: institution
 :tags:
   "000": 
     :master: ""
@@ -46,14 +46,10 @@
     - - ""
       - :no_browse: true
   "043": 
-    :master: a
+    :master: c
     :indicator: "##"
     :occurances: "*"
     :fields: 
-    - - a
-      - :occurances: "*"
-    - - b
-      - :occurances: "*"
     - - c
       - :occurances: "*"
   "110": 

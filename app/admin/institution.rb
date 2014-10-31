@@ -23,13 +23,19 @@ ActiveAdmin.register Institution do
     def permitted_params
       params.permit!
     end
-    
-    def show
-      @institution = Institution.find(params[:id])
-      @prev_item, @next_item, @prev_page, @next_page = Institution.near_items_as_ransack(params, @institution)
+
+    def edit
+      @item = Institution.find(params[:id])
+      @editor_profile = EditorConfiguration.get_applicable_layout @item
+      @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
     end
     
-    
+    def show
+      @item = @institution = Institution.find(params[:id])
+      @editor_profile = EditorConfiguration.get_show_layout @institution
+      @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
+    end
+   
     def index
       @results = Institution.search_as_ransack(params)
       
@@ -41,6 +47,7 @@ ActiveAdmin.register Institution do
     
   end
   
+  include MarcControllerActions
   ###########
   ## Index ##
   ###########
@@ -79,7 +86,20 @@ ActiveAdmin.register Institution do
   sidebar I18n.t(:search_sources), :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
- 
+
+  ##########
+  ## Edit ##
+  ##########
+
+  form do
+    # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
+    active_admin_edition_bar( self )
+    @item =  @arbre_context.assigns[:item]
+    render :partial => "editor/edit_wide"
+    active_admin_submit_bar( self )
+  end
+
+=begin
   form do |f|
     f.inputs I18n.t(:details) do
       f.input :siglum, :label => (I18n.t :filter_siglum)
@@ -94,5 +114,5 @@ ActiveAdmin.register Institution do
     end
     f.actions
   end
-  
+=end
 end

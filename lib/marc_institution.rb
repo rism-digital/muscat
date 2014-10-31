@@ -1,6 +1,6 @@
 class MarcInstitution < Marc
   def initialize(source = nil)
-    super("library", source)
+    super("institution", source)
   end
   
   def get_name_and_place

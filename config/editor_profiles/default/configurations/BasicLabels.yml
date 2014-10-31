@@ -426,7 +426,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     it: Nome di ente
     fr: "Nom de la collectivit\xC3\xA9"
     de: "K\xC3\xB6rperschaftsname"
-    en: Holding institution
+    en: Institution
   accepts: 
   - "710"
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -435,13 +435,20 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         it: Nome di ente
         fr: "Nom de la collectivit\xC3\xA9"
         de: "K\xC3\xB6rperschaftsname"
-        en: Holding institution
+        en: Institution
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Ente subordinato
         fr: "Collectivit\xC3\xA9 subordonn\xC3\xA9e"
         de: "Untergeordnete K\xC3\xB6rperschaft"
         en: Subordinate unit
+    g: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Ente subordinato
+        fr: "Siglum"
+        de: "Sigel"
+        en: Siglum
+
 "130": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Titolo uniforme
