@@ -1,8 +1,8 @@
 --- !map:Settings 
 group_order: 
-- control
-- codes
 - main
+- codes
+- control
 - notes
 groups: 
   control: 

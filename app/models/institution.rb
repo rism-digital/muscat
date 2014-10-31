@@ -82,6 +82,7 @@ class Institution < ActiveRecord::Base
 
     # std_title
     self.name, self.place = marc.get_name_and_place
+    self.address, self.url = marc.get_address_and_url
     self.siglum = marc.get_siglum
     self.marc_source = self.marc.to_marc
   end

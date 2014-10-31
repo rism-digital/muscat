@@ -20,6 +20,23 @@ class MarcInstitution < Marc
     end
     [name, place]
   end
+  def get_address_and_url
+    address = ""
+    url = ""
+
+    if node = first_occurance("622", "e")
+      if node.content
+        address = node.content.truncate(128)
+      end
+    end
+    
+    if node = first_occurance("622", "u")
+      if node.content
+        url = node.content.truncate(24)
+      end
+    end
+    [address, url]
+  end
  
   def get_siglum
     if node = first_occurance("110", "g")
