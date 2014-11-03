@@ -160,6 +160,11 @@ en:
   edit: "Edit"
   search_sources: "Search Sources"
   
+  #### FOLDER MESSAGES
+  folders:
+    save: "Save results to Folder"
+    success: "Folder %{name} created with %{count} items"
+  
   #################### CONTROLLER STRATEGIES
   
   ############ filters

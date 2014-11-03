@@ -20,7 +20,7 @@ module MarcControllerActions
       # This is the tricky part. Get the MARC subclass
       # e.g. MarcSource or MarcPerson
       classname = "Marc" + model.to_s
-      # Let it crash is the class is nor fond
+      # Let it crash is the class is not fond
       dyna_marc_class = Kernel.const_get(classname)
       
       new_marc = dyna_marc_class.new()

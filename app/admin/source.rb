@@ -74,56 +74,14 @@ ActiveAdmin.register Source do
   #batch_action :unpublish do |selection|
   #end
   
-  batch_action :folder, form: {
-    name:   :text,
-    hide:   :checkbox
-  } do |ids, inputs|
-
-    # inputs is a hash of all the form fields you requested
-    f = Folder.create(:name => inputs[:name], :folder_type => "Source")
-    # Pagination is on as default! wahooo!
-    params[:per_page] = 1000
-    results = Source.find(ids)
-
-    results.each { |s| f.add_item(s) }
-    
-    redirect_to collection_path, :notice => "Folder #{inputs[:name]} created with #{results.count} items"
-  end
-    
+  
   # Include the MARC extensions
   include MarcControllerActions
   
+  # Include the folder actions
+  include FolderControllerActions
+  
   collection_action :select_new_template, :method => :get
-
-  collection_action :save_to_folder, :method => :get do
-    # inputs is a hash of all the form fields you requested
-    f = Folder.create(:name => "Folder #{Folder.count}", :folder_type => "Source")
-    # Pagination is on as default! wahooo!
-    params[:per_page] = 1000
-    results = Source.search_as_ransack(params)
-
-    # do everything in one transaction - however, we should put a limit on this
-    ActiveRecord::Base.transaction do
-      results.each { |s| f.add_item(s) }
-      # insert the next ones
-      for page in 2..results.total_pages
-        params[:page] = page
-        r = Source.search_as_ransack(params)
-        r.each { |s| f.add_item(s) }
-      end
-    end
-    
-    redirect_to collection_path, :notice => "Folder \"#{f.name}\" created with #{results.total_entries} items"
-  end
-
-  action_item :if => proc {params.include?(:q)}, form: {
-    name:   :text,
-    hide:   :checkbox
-  } do
-
-      link_to('Save results to Folder', save_to_folder_sources_path(params))
-  end
-
   
   #scope :all, :default => true 
   #scope :published do |sources|

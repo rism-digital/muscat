@@ -433,4 +433,8 @@ class Source < ActiveRecord::Base
   def self.find_recent_created(limit)
       where("created_at > ?", 5.days.ago).limit(limit)
   end
+  
+  def name
+    "#{composer} - #{std_title}"
+  end
 end
