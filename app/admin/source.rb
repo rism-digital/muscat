@@ -97,7 +97,13 @@ ActiveAdmin.register Source do
   filter :std_title_contains, :as => :string
   filter :composer_contains, :as => :string
   filter :lib_siglum_contains, :label => I18n.t(:library_sigla_contains), :as => :string
+  # This filter is the "any field" one
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  # This filter passes the value to the with() function in seach
+  # see config/initializers/ransack.rb
+  # Use it to filter sources by folder
+  filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
+         collection: proc{Folder.where(folder_type: "Source").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
   index do
     selectable_column

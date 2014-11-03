@@ -353,6 +353,10 @@ class Source < ActiveRecord::Base
           works.map { |work| work.id }
     end
 
+    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
+              :join => { :from => :item_id, :to => :id })
+
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
     

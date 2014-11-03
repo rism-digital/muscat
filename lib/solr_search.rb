@@ -6,9 +6,9 @@ module Muscat
         MAX_PER_PAGE = 30
   
         def search_as_ransack(params)
-          fields, order, page = unpack_params(params)
+          fields, order, with, page = unpack_params(params)
           per_page = params.has_key?(:per_page) ? params[:per_page] : MAX_PER_PAGE
-          search_with_solr(fields, order, page, per_page)
+          search_with_solr(fields, order, with, page, per_page)
         end
       
         def near_items_as_ransack(params, item)
@@ -17,8 +17,8 @@ module Muscat
           # page values will be 0 if the prev/next item are on the same result page
           prev_page = 0
           next_page = 0
-          fields, order, page = unpack_params(params)
-          results = search_with_solr(fields, order, page)
+          fields, order, with, page = unpack_params(params)
+          results = search_with_solr(fields, order, with, page)
           
           position = results.index(item)
           
@@ -32,7 +32,7 @@ module Muscat
           # Get the prev item in the searc
           if position == 0
             if !results.first_page?
-              results_prev_page = search_with_solr(fields, order, results.previous_page)
+              results_prev_page = search_with_solr(fields, order, with, results.previous_page)
               prev_item = results_prev_page.last
               # the previous item is one the previous page, we also need to return the page nb
               prev_page = results.previous_page
@@ -44,7 +44,7 @@ module Muscat
           # get the next item in the search
           if position == MAX_PER_PAGE - 1
             if !results.last_page?
-              results_next_page = search_with_solr(fields, order, results.next_page)
+              results_next_page = search_with_solr(fields, order, with, results.next_page)
               next_item = results_next_page.first
               # return the page number too
               next_page = results.next_page
@@ -58,7 +58,7 @@ module Muscat
             
       private
         
-        def search_with_solr(fields = [], order = {}, page = 1, per_page = MAX_PER_PAGE)
+        def search_with_solr(fields = [], order = {}, with_filter = {}, page = 1, per_page = MAX_PER_PAGE)
 
           model=self.to_s
 
@@ -77,6 +77,10 @@ module Muscat
               end
             end
 
+            with_filter.each do |field, value|
+              with(field, value)
+            end
+            
             paginate :page => page, :per_page => per_page
           end
           return solr_results.results
@@ -86,6 +90,7 @@ module Muscat
         def unpack_params(params)
           fields = []
           order = {}
+          with = {}
           page = params.has_key?(:page) ? params[:page] : 1
           
           if params.has_key?(:order)
@@ -96,7 +101,7 @@ module Muscat
               field = field + "_order"
             end
 
-            order = {:field => field.underscore.to_sym, :order => order.to_sym}      
+            order = {:field => field.underscore.to_sym, :order => order.to_sym}
           end
           
           options = params[:q]
@@ -112,12 +117,20 @@ module Muscat
               # just use another predicate
               # and no field will be used
               f = []
-              if k.to_s.match("contains")
+              if k.to_s.match("contains") # :filter xxx_contains
                 field = k.to_s.gsub("_contains", "")
                 f << field.underscore.to_sym
+                fields << {:fields => f, :value => options[k]}
+              elsif k.to_s.match("with_integer") # :filter zzz_with_integer
+                # The field to filter with is
+                # in the value
+                field, id = options[k].split(":")
+                with[field] = id
+              else # all the other ransack predicates
+                # make an "any" search, field is empty
+                # so the value is applied to all
+                fields << {:fields => [], :value => options[k]}
               end
-                          
-              fields << {:fields => f, :value => options[k]}
               
             end
           else
@@ -133,8 +146,8 @@ module Muscat
               order = {:field => :id, :order => :desc}
             end
           end
-          
-          return fields, order, page
+                  
+          return fields, order, with, page
         end
         
       end
