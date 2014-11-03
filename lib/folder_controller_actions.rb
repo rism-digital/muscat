@@ -24,6 +24,9 @@ module FolderControllerActions
 
       results.each { |s| f.add_item(s) }
 
+      Sunspot.index f.folder_items
+      Sunspot.commit
+
       redirect_to collection_path, :notice => I18n.t(:success, scope: :folders, name: inputs[:name], count: results.count)
     end
     
@@ -49,6 +52,9 @@ module FolderControllerActions
           r.each { |s| f.add_item(s) }
         end
       end
+    
+      Sunspot.index f.folder_items
+      Sunspot.commit
     
       redirect_to collection_path, :notice => I18n.t(:success, scope: :folders, name: "\"#{f.name}\"", count: results.total_entries)
     end
