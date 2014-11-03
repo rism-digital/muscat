@@ -52,7 +52,7 @@ ActiveAdmin.register Folder do
       
       fitems = folder.folder_items
       
-      paginated_collection(fitems.page(params[:page]).per(10), param_name: 'src_list_page',  download_links: false) do
+      paginated_collection(fitems.page(params[:src_list_page]).per(10), param_name: 'src_list_page',  download_links: false) do
         table_for(collection) do |cr|
           column ("Name") {|fitem| fitem.item.name}
           column ("Id") {|fitem| fitem.item.id}
