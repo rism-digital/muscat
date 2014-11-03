@@ -4,7 +4,6 @@ group_order:
 - codes
 - main
 - notes
-- subject
 groups: 
   control: 
     all_tags: 
@@ -20,12 +19,6 @@ groups:
     - "559"
     - "569"
     - "856"
-  subject: 
-    all_tags: 
-    - "670"
-    - "678"
-    - "680"
-    - "684"
   main: 
     all_tags: 
     - "110"

@@ -134,3 +134,34 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         de: URL
         en: URL
 
+main: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Registrazioni principali
+    fr: "Entr\xC3\xA9es principales"
+    de: Haupteintragungen
+    en: Main entry fields
+codes: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Numeri e codici
+    fr: "Num\xC3\xA9ros et codes"
+    de: Nummern und Codes
+    en: Numbers and code fields
+control: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    fr: "Champs de contr\xC3\xB4le"
+    de: Kontrollfelder
+    ot: Campi di controllo
+    en: Control Fields
+notes: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Note
+    fr: Notes
+    de: Fussnoten
+    en: Note fields
+other: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Varia
+    fr: Divers
+    de: Verschiedenes
+    en: Miscellaneous
+

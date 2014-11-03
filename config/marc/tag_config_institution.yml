@@ -79,3 +79,4 @@
       - :occurances: "?"
     - - u
       - :occurances: "?"
+        :validation: "^http*"
