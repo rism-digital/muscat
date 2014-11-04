@@ -62,4 +62,8 @@ class StandardTerm < ActiveRecord::Base
     end
   end
   
+  def name
+    return term
+  end
+  
 end

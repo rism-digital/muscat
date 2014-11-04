@@ -62,7 +62,10 @@ ActiveAdmin.register Person do
   
   # Include the MARC extensions
   include MarcControllerActions
-    
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ###########
   ## Index ##
   ###########

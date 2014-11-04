@@ -42,7 +42,8 @@ ActiveAdmin.register StandardTitle do
     
   end
   
-  
+  # Include the folder actions
+  include FolderControllerActions
   
   ###########
   ## Index ##

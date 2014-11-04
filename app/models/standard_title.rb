@@ -57,4 +57,7 @@ class StandardTitle < ActiveRecord::Base
     end
   end
    
+  def name
+    return title
+  end
 end

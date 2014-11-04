@@ -60,7 +60,6 @@ module FolderControllerActions
       # inputs is a hash of all the form fields you requested
       f = Folder.create(:name => "Folder #{Folder.count + 1}", :folder_type => model.to_s)
 
-      # do everything in one transaction - however, we should put a limit on this
       all_items = []
       results.each { |s| all_items << s }
       # insert the next ones
@@ -82,7 +81,7 @@ module FolderControllerActions
 
     dsl.action_item :if => proc {params.include?(:q)} do
       # Build the dynamic path function, then call it with send
-      model = self.resource_class.to_s.pluralize.downcase
+      model = self.resource_class.to_s.pluralize.underscore.downcase
       link_function = "save_to_folder_#{model}_path"
       
       link_to(I18n.t(:save, scope: :folders), send(link_function, params))

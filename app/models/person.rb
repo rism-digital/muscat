@@ -181,4 +181,8 @@ class Person < ActiveRecord::Base
   def self.find_recent_created(limit)
       where("created_at > ?", 5.days.ago).limit(limit)
   end
+  
+  def name
+    return full_name
+  end
 end
