@@ -2,6 +2,8 @@
 # from activeadmin lib/active_admin/resource_dsl.rb
 require 'resource_dsl_extensions.rb'
 
+MAX_FOLDER_ITEMS = 10000
+
 # Extension module, see
 # https://github.com/gregbell/active_admin/wiki/Content-rendering-API
 module FolderControllerActions
@@ -22,7 +24,7 @@ module FolderControllerActions
       params[:per_page] = 1000
       results = model.find(ids)
 
-      results.each { |s| f.add_item(s) }
+      f.add_items(results)
       # Quirk'o'matic of the day
       # If I call index directly on the folder items I just created
       # the index time is INFINITE, For example, on 5k folder_items:
@@ -50,8 +52,8 @@ module FolderControllerActions
       params[:per_page] = 1000
       results = model.search_as_ransack(params)
       
-      if results.total_entries > 5000
-        redirect_to collection_path, :alert => "You cannot save more than 5000 elements in a folder"
+      if results.total_entries > MAX_FOLDER_ITEMS
+        redirect_to collection_path, :alert => I18n.t(:too_many, scope: :folders, max: MAX_FOLDER_ITEMS, count: results.total_entries)
         return
       end
       
@@ -59,15 +61,16 @@ module FolderControllerActions
       f = Folder.create(:name => "Folder #{Folder.count + 1}", :folder_type => model.to_s)
 
       # do everything in one transaction - however, we should put a limit on this
-      ActiveRecord::Base.transaction do
-        results.each { |s| f.add_item(s) }
-        # insert the next ones
-        for page in 2..results.total_pages
-          params[:page] = page
-          r = Source.search_as_ransack(params)
-          r.each { |s| f.add_item(s) }
-        end
+      all_items = []
+      results.each { |s| all_items << s }
+      # insert the next ones
+      for page in 2..results.total_pages
+        params[:page] = page
+        r = Source.search_as_ransack(params)
+        results.each { |s| all_items << s }
       end
+      
+      f.add_items(all_items)
       
       # Hack, see above
       f2 = Folder.find(f.id)

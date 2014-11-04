@@ -164,7 +164,8 @@ en:
   #### FOLDER MESSAGES
   folders:
     save: "Save results to Folder"
-    success: "Folder %{name} created with %{count} items"
+    success: "Folder %{name} created with %{count} items."
+    too_many: "Cannot add more than %{max} items (you selected %{count})."
   
   #################### CONTROLLER STRATEGIES
   

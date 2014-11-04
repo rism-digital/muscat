@@ -16,5 +16,20 @@ class Folder < ActiveRecord::Base
     return true
   end
   
+  # Add an array of items
+  # It uses activerecord-import and does it using a single
+  # SQL IMPORT it has a dramatic improvement (on 5000 new items):
+  # Using inserts   25.113613
+  # Using Import    3.100459
+  def add_items(items)    
+    new_fi = []
+    items.each do |item|
+        return false if item.class.name != folder_type
+        new_fi << FolderItem.new(:folder_id => id, :item => item)
+    end
+  
+    FolderItem.import new_fi
+    return true
+  end
     
 end

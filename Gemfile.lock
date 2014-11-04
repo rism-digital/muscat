@@ -49,6 +49,8 @@ GEM
       activesupport (= 4.0.0)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
+    activerecord-import (0.6.0)
+      activerecord (>= 3.0)
     activesupport (4.0.0)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
@@ -214,6 +216,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  activerecord-import (>= 0.4.0)
   awesome_print
   blacklight (>= 5.3.0)
   blacklight_range_limit

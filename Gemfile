@@ -63,6 +63,10 @@ gem 'blacklight', ">= 5.3.0"
 gem "blacklight_range_limit"
 gem 'devise'
 
+# https://github.com/zdennis/activerecord-import/wiki
+# For bulk import SQL data
+gem 'activerecord-import', ">= 0.4.0"
+
 # Uncomment this to test the webpage saving
 # in housekeeping/selenium_webdriver
 # gem 'selenium-webdriver'
