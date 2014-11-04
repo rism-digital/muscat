@@ -15,7 +15,7 @@ Ransack.configure do |config|
   # will crash
   config.add_predicate 'with_integer', # Name your predicate
     # What non-compound ARel predicate will it use? (eq, matches, etc)
-    arel_predicate: 'eq'
+    arel_predicate: 'eq',
     # Format incoming values as you see fit. (Default: Don't do formatting)
     #formatter: proc { |v| "#{v}-diddly" },
     
@@ -30,5 +30,11 @@ Ransack.configure do |config|
     
     # Force a specific column type for type-casting of supplied values.
     # (Default: use type from DB column)
-   # type: :string
+    # RZ Oh the humanity! if you do NOT set this and pass a string
+    # it will silently convert it to and int of value '0' and
+    # as you may guess, after a *VERY* convulted series of calls,
+    # lookcups, magic and horrible nightmares the form in the
+    # filter page will *not* remember the select value when you
+    # submit it. Good luck debgging it next time.
+    type: :string
 end
