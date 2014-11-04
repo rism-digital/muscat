@@ -108,6 +108,10 @@ module Muscat
           if options
             options.keys.each do |k|
               
+              # Skip to the next one if the value
+              # for this query is empty
+              next if options[k] == ""
+              
               # Barebones field parser
               # Accepts only one field name
               # Whith the _contains predicate
