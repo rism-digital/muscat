@@ -7,7 +7,6 @@ class FolderItem < ActiveRecord::Base
     integer :id
     integer :folder_id
     integer :item_id
-    string :item_type
   end
   
 end

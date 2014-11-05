@@ -66,7 +66,7 @@ module FolderControllerActions
       for page in 2..results.total_pages
         params[:page] = page
         r = Source.search_as_ransack(params)
-        results.each { |s| all_items << s }
+        r.each { |s| all_items << s }
       end
       
       f.add_items(all_items)
@@ -76,7 +76,7 @@ module FolderControllerActions
       Sunspot.index f2.folder_items
       Sunspot.commit
     
-      redirect_to collection_path, :notice => I18n.t(:success, scope: :folders, name: "\"#{f.name}\"", count: results.total_entries)
+      redirect_to collection_path, :notice => I18n.t(:success, scope: :folders, name: "\"#{f.name}\"", count: all_items.count)
     end
 
     dsl.action_item :if => proc {params.include?(:q)} do

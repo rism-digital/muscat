@@ -18,6 +18,7 @@ class Library < ActiveRecord::Base
   has_and_belongs_to_many :sources
   has_and_belongs_to_many :institutions
   has_and_belongs_to_many :workgroups
+  has_many :folder_items, :as => :item
     
   validates_presence_of :siglum    
   
@@ -59,6 +60,9 @@ class Library < ActiveRecord::Base
     text :url
     text :phone
     text :email
+    
+    join(:folder_id, :target => FolderItem, :type => :integer, 
+              :join => { :from => :item_id, :to => :id })
     
     integer :src_count_order do 
       src_count

@@ -13,6 +13,7 @@
 class StandardTitle < ActiveRecord::Base
 
   has_and_belongs_to_many :sources
+  has_many :folder_items, :as => :item
     
   validates_presence_of :title
   
@@ -44,6 +45,9 @@ class StandardTitle < ActiveRecord::Base
     text :title_d
     
     text :notes
+    
+    join(:folder_id, :target => FolderItem, :type => :integer, 
+              :join => { :from => :item_id, :to => :id })
     
     integer :src_count_order do 
       src_count

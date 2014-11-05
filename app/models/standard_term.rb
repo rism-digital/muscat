@@ -12,6 +12,7 @@
 class StandardTerm < ActiveRecord::Base
   
   has_and_belongs_to_many :sources
+  has_many :folder_items, :as => :item
     
   validates_presence_of :term
   
@@ -49,6 +50,9 @@ class StandardTerm < ActiveRecord::Base
     text :alternate_terms
     
     text :notes
+    
+    join(:folder_id, :target => FolderItem, :type => :integer, 
+              :join => { :from => :item_id, :to => :id })
     
     integer :src_count_order do 
       src_count

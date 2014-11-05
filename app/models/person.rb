@@ -24,6 +24,7 @@ class Person < ActiveRecord::Base
   resourcify 
   has_many :works
   has_and_belongs_to_many :sources
+  has_many :folder_items, :as => :item
   
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
   
@@ -129,6 +130,9 @@ class Person < ActiveRecord::Base
     sunspot_dsl.text :source
     sunspot_dsl.text :alternate_names
     sunspot_dsl.text :alternate_dates
+    
+    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
+              :join => { :from => :item_id, :to => :id })
     
     sunspot_dsl.integer :src_count_order do 
       src_count
