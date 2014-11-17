@@ -3,7 +3,7 @@
 #= require jquery
 #= require jquery.ui.all
 #= require jquery_ujs
-#= require turbolinks
+
 #= require marc_editor
 #= require marc_json
 #= require jquery.blockUI
