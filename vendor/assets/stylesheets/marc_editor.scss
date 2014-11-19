@@ -3,7 +3,7 @@
     * dl {
         margin-bottom: 0px;
         dt {
-            border-bottom: 1px solid #cdcdcd;
+            border-bottom: 2px solid #dfe1e2;
         }
         dt:last-child {
             border-bottom: none;
@@ -21,7 +21,7 @@
     .marc_editor_group_contents {
         .tag_group {
             //border-bottom: 1px solid lighten($primary-color, 10%);
-            border-bottom: 3px solid #cdcdcd;
+            border-bottom: 4px solid #dfe1e2;
             .tag_container {
                 margin-bottom: 7px;
                 table.tag_header {
