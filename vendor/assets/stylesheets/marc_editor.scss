@@ -1,84 +1,94 @@
 .marc_editor_panel_content {
-    * dl {margin-bottom: 0px;}
-    
+    padding-bottom: 5px !important;
+    * dl {
+        margin-bottom: 0px;
+        dt {
+            border-bottom: 1px solid #cdcdcd;
+        }
+        dt:last-child {
+            border-bottom: none;
+        }
+        dt:not(:first-child) {
+            * th.col-label {
+                opacity: 0.0;
+                color: #ccc !important;
+            }
+        }
+    }  
     table.add_tag {
        margin-bottom: 0px;
     }
-
     .marc_editor_group_contents {
-            
-        .tag_container {
-            
-            margin-top: 10px;
-            table {
-                margin-bottom: 0px;
-            }
-        
-            table.tag_header {
-                margin-top: 0px;
-                margin-bottom: 0px;
+        .tag_group {
+            //border-bottom: 1px solid lighten($primary-color, 10%);
+            border-bottom: 3px solid #cdcdcd;
+            .tag_container {
+                margin-bottom: 7px;
+                table.tag_header {
+                    margin-top: 0px;
+                    margin-bottom: 0px;
                     th {
-                        padding: 2px 0px 10px 2px;
+                        padding: 8px 4px 2px 0px;
                         background: none;
                         color: $primary-color;
                         @include no-shadow;
                         @include text-shadow;
                         text-transform: uppercase;
-                        border-bottom: 1px solid #ccc;
                     }
-                    * a.marc_editor_button_left { margin-left: 4px !important; }
-          }
-          
-          
-          div.tag_content_collapsable {
-              
-                input {
-                	width: calc(100% - 15px) !important;
-                  padding: 2px 5px 2px 5px;
-                  margin: 4px 0px 0px 0px;
-                  font-size: 1.1em;
+                    * a.marc_editor_button_left { 
+                        margin-left: 4px !important; 
+                    }
                 }
-            }
-      
-          * table.tag_grid {
-              margin-bottom: 0px;
-          
-              th { padding: 0px; }
-              tr td { padding: 0px;}
-              //tr td { background: darken($table-stripe-color, 3%); }
-              //border-bottom: 1px solid #ccc;
-              
-              div.add_subfield_button {
-                  float: right; 
-                  padding-right: 5px;
-                  font-size: 1.3em;
-              }
-          
-              * input,
-              * select,
-              * textarea {
-              	width: calc(100% - 15px) !important;
-                padding: 2px 5px 2px 5px;
-                margin: 4px 0px 0px 0px;
-              }
-              
-              * input,
-              * textarea {
-                font-size: 1.1em;
-              }
-          
-              * .grid_cell_header { 
-                  font-size: 1.0em;
-                  font-weight: bold;
-                  color: $form-label-color;
-                  margin-top: 5px;
-                  padding-left: 3px;
-            }
-          
-          }
-          
-      }
-      
+                table {
+                    margin-bottom: 1px;
+                }
+                div.tag_content_collapsable {
+                    //border-top: 1px solid #eee;
+                    //padding-bottom: 30px;
+                    input {
+                    	width: calc(100% - 15px) !important;
+                        padding: 2px 5px 2px 5px;
+                        margin: 4px 0px 0px 0px;
+                        font-size: 1.1em;
+                    }
+                }
+                * table.tag_grid {
+                    margin-bottom: 0px;
+                    th { 
+                        padding: 0px; 
+                    }
+                    tr td { 
+                        padding: 0px;
+                    }
+                    div.add_subfield_button {
+                        float: right; 
+                        padding-right: 5px;
+                        font-size: 1.3em;
+                    }          
+                    * input,
+                    * select,
+                    * textarea {
+                        width: calc(100% - 15px) !important;
+                        padding: 2px 5px 2px 5px;
+                        margin: 4px 0px 3px 0px;
+                    }
+                    * input,
+                    * textarea {
+                        font-size: 1.1em;
+                    }
+                    * .grid_cell_header { 
+                        font-size: 1.0em;
+                        font-weight: bold;
+                        color: $form-label-color;
+                        margin-top: 5px;
+                        padding-left: 3px;
+                    }
+                }
+            } 
+        }
+        .tag_group:last-child {
+            border-bottom: none;
+        }
     }
 }
 
