@@ -129,7 +129,6 @@ it:
       long: "%H:%M"
   
   #################### MENUS
-  
   menu_home: "Home"
   menu_sources: "Fonti"
   menu_indexes: "Indici"
@@ -151,15 +150,19 @@ it:
   ### VARIOUS ELEMENTS
   recent_sources: "Fonti modificate di recente"
   any_field_contains: "Qualsiasi campo contiene"
+  is_in_folder: "IS IN FOLDER"
   workgroups: "Gruppi"
   user_details: "Dettagli per l'Utente"
   sections: "Sezioni"
   edit: "Modifica"
   search_sources: "Cerca Fonti"
-
-  #################### CONTROLLER STRATEGIES
   
-  
+  #### FOLDER MESSAGES
+  folders:
+    save: "SAVE RESULTS TO FOLDER"
+    success: "FOLDER %{name} CREATED WITH %{count} ITEMS."
+    too_many: "CANNOT ADD MORE THAN %{max} ITEMS (%{count} SELECTED)."
+    
   ############ filters
   filter_address: "Indirizzo"
   filter_alternate_dates: "Date alternative"
@@ -305,7 +308,6 @@ it:
       person: 
         one: "persona"
         other: "persone"
-
   
   manuscript_links:
      one: "1 fonte"

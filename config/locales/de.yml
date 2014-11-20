@@ -120,53 +120,16 @@ de:
       message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen." 
   switch_language: "Sprache ändern" 
   this_file_language: "Deutsch"
-  
-  #################### PAGE TITLES
-  
-  page_presentation: "Präsentation"
-  page_indexes: "Indizes"
-  page_cataloging: "Katalogisierung"
-  page_projects: "Projekte"
-  page_repertorium: "Repertorium Schweizer Komponisten des 19. Jahrhunderts"
-  page_snb: "Komponistennachlässe der Schweizerischen Nationalbibliothek"
-  page_huber: "Nachlass Ferdinand Fürchtegott Huber (1791-1863)"
-  page_monasteries: "Musik aus Schweizer Klöstern"
-  page_informationspool: "Informationspool „Repertorium Schweizer Komponisten des 19. Jahrhunderts”"
-  page_cd: "CD - Musik aus Schweizer Klöstern"
-  page_inventories: "Datenbank für historische Musikkataloge (1500-1800)"
-  page_kapellmeisterbuch: "Das Einsiedler ‘Kapellmeisterbuch’"
-  page_publications: "Publikationen"
-  page_past_projects: "Abgeschlossene Projekte"
-  page_past_cataloging_projects: "Abgeschlossene Katalogisierungsprojekte"
-  page_musicians: "Informationen für Musiker"
-  page_links: "Links und Dokumentation"
-  page_ch_people_a_e: "Schweizerische Bestände - Personen (A-E)"
-  page_ch_people_f_k: "Schweizerische Bestände - Personen (F-K)"
-  page_ch_people_l_q: "Schweizerische Bestände - Personen (L-Q)"
-  page_ch_people_r_z: "Schweizerische Bestände - Personen (R-Z)"
-  page_ch_institutions: "Schweizerische Bestände - Körperschaften und Verlagsarchive"
-  page_links_int: "Links - Internationale Institutionen und Projekte"
-  page_links_int_ch: "Links - Schweizerische Institutionen und Projekte"
-  page_links_finding_aid: "Links - Allgemeine Findmittel (Schweiz)"
-  page_links_source_cat: "Links - Quellenverzeichnisse"
-  page_links_digitisation: "Links - Digitalisierung"
-  page_links_repertoire: "Links - Repertoire"
-  page_links_people: "Links - Personen"
-  page_links_editions: "Links - Editionen"
-  page_links_e_texts: "Links - E-Texte"
-  page_links_varia: "Links - Varia"
-  page_about_us: "Über uns"
-  page_committee: "Vorstand"
-  page_association: "Verein"
-  page_rism_contacts: "Arbeitsstelle Schweiz des RISM - Kontakt"
-  page_help: "Hilfe"
-  page_database: "Datenbank"
-  page_advanced_search: "Erweiterte Suche" 
+
+  time:
+    formats:
+      default: "%H:%M"
+      short: "%H:%M"
+      long: "%H:%M"
   
   #################### MENUS
-  
   menu_home: "Home"
-  menu_browse: "Quellen"
+  menu_sources: "Quellen"
   menu_advanced_search: "Erweiterte Suche"
   menu_indexes: "Indexsuche"
   menu_people: "Personen"
@@ -178,69 +141,28 @@ de:
   menu_liturgical_feasts: "Liturgische Feste"
   menu_places: "Orte"
   menu_help: "Hilfe"
+  menu_folders: "Ordner"
+  menu_users: "Benutzer"
+  menu_workgroups: "WORKGROUPS"
+  menu_administration: "ADMINISTRATION"
+  menu_languages: "Sprache"
   
-  menu_cataloging: "Katalogisierung"
-  menu_repertorium: "Repertorium"
-  menu_snb: "Nationalbibliothek"
-  menu_huber: "Nachlass F. F. Huber"
+  ### VARIOUS ELEMENTS
+  recent_sources: "RECENT SOURCES"
+  any_field_contains: "ANY FIELD CONTAINS"
+  is_in_folder: "IS IN FOLDER"
+  workgroups: "WORKGROUPS"
+  user_details: "USER DETAILS"
+  sections: "SECTIONS"
+  edit: "EDIT"
+  search_sources: "SEARCH SOURCES"
   
-  menu_projects: "Projekte"
-  menu_monasteries: "Schweizer Klöster"
-  menu_informationspool: "Informationspool"
-  menu_cd: "CD"
-  menu_inventories: "Historische Kataloge"
-  menu_kapellmeisterbuch: "Das ‘Kapellmeisterbuch’"
-  menu_publications: "Publikationen"
-  
-  menu_past_projects: "Abgeschlossene Projekte"
-  
-  menu_links: "Links / Dokumentation"
-  menu_collection_p: "Bestände - Personen"
-  menu_ch_institutions: "Bestände - Institutionen"
-  
-  menu_musicians: "Musiker"
-  
-  menu_about_us: "Über uns"
-  menu_committee: "Vorstand"
-  menu_contact: "Arbeitstelle / Kontakt"
-  menu_contact_top: "Kontakt"
-  menu_association: "Verein"
-  menu_rism_central_office: "RISM Zentralredaktion"
-  
-  menu_database: "Datenbank"
-  
-  # quicksearch  
-  quick_search: "Schnellsuche"
-  tips_on_quick_search: "Tipps für die Schnellsuche:"
-  tips_on_dist_search: "Tipps für die Besetzungssuche:"
-  tips_on_incipit_search: "Tipps für die Incipitssuche:"
-    
-  # advanced search
-  admin_search: "Administration"
-  btn_add_another_search_term: "Suchbegriff hinzufügen"
-  btn_add_incipit_search: "Incipit Suche"
-  btn_search: "suchen"
-  in_preparation: "in Vorbereitung"
-  
-  ############ links
+  #### FOLDER MESSAGES
+  folders:
+    save: "SAVE RESULTS TO FOLDER"
+    success: "FOLDER %{name} CREATED WITH %{count} ITEMS."
+    too_many: "CANNOT ADD MORE THAN %{max} ITEMS (%{count} SELECTED)."
 
-  http_rism_central_office: "http://www.rism.info"
-
-  redirection: "Sie wurden von: <br><br><center><b>%{url}</b></center><br>weitergeleitet. Dieser Domain-Name wird nicht mehr verwendet. Unser Domain-Name ist jetzt:<br><br><center><b>www.rism-ch.org</b></center><br>Bitte passen Sie Ihre Lesezeichen an falls nötig."
-
-  #################### CONTROLLER STRATEGIES
-  
-  ############ page names
-  page_name_catalogues: "Werkverzeichnisse und Kataloge"
-  page_name_institutions: "Institutionen"
-  page_name_libraries: "Bibliotheken"
-  page_name_liturgical_feasts: "Liturgische Feste"
-  page_name_manuscripts: "Quellen"
-  page_name_people: "Personen"
-  page_name_places: "Orte"
-  page_name_standard_terms: "Schlagworte"
-  page_name_standard_titles: "Titel und Textincipits"
-  
   ############ filters
   filter_address: "Adresse"
   filter_alternate_dates: "Andere Daten"
