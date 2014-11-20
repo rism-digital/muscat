@@ -295,13 +295,13 @@
       - cols: 3
     - - c
       - cols: 2
-    - - "3"
-      - editor_partial: subfield_material
-        cols: 2
     - - e
       - cols: 5
     - - f
       - cols: 5
+    - - "3"
+      - editor_partial: subfield_material
+        cols: 2
     columns: 10
 "300": 
   layout: 
@@ -309,13 +309,13 @@
     - - a
       - growfield: true
         cols: 8
+    - - c
+      - cols: 4
+    - - b
+      - cols: 6
     - - "3"
       - editor_partial: subfield_material
         cols: 2
-    - - b
-      - cols: 6
-    - - c
-      - cols: 4
     columns: 10
 "340": 
   layout: 
@@ -407,12 +407,12 @@
     - - a
       - growfield: true
         cols: 4
-    - - "3"
-      - cols: 1
-        editor_partial: subfield_material
     - - b
       - growfield: true
         cols: 5
+    - - "3"
+      - cols: 1
+        editor_partial: subfield_material
     columns: 5
 "592": 
   layout: 
@@ -777,13 +777,13 @@
         editor_partial: subfield_secondary
     - - b
       - cols: 8
+    - - z
+      - cols: 4
     - - p
       - growfield: true
         cols: 3
     - - d
       - cols: 3
-    - - z
-      - cols: 4
     columns: 10
   layout_new: 
     fields: 
