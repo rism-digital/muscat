@@ -42,16 +42,6 @@
                 table {
                     margin-bottom: 1px;
                 }
-                div.tag_content_collapsable {
-                    //border-top: 1px solid #eee;
-                    //padding-bottom: 30px;
-                    input {
-                    	width: calc(100% - 15px) !important;
-                        padding: 2px 5px 2px 5px;
-                        margin: 4px 0px 0px 0px;
-                        font-size: 1.1em;
-                    }
-                }
                 * table.tag_grid {
                     margin-bottom: 0px;
                     th { 
@@ -68,9 +58,13 @@
                     * input,
                     * select,
                     * textarea {
-                        width: calc(100% - 15px) !important;
                         padding: 2px 5px 2px 5px;
                         margin: 4px 0px 3px 0px;
+                    }
+                    * input[type='text'],
+                    * select,
+                    * textarea {
+                        width: calc(100% - 15px) !important;
                     }
                     * input,
                     * textarea {
