@@ -127,6 +127,13 @@ it:
       default: "%H:%M"
       short: "%H:%M"
       long: "%H:%M"
+      
+  #################### MODELS      
+  activerecord:
+    models:
+      liturgical_feast:
+        one: "LITURGICAL FEAST"
+        other: "LITURGICAL FEASTS"
   
   #################### MENUS
   menu_home: "Home"

@@ -122,6 +122,13 @@ fr:
       default: "%H:%M"
       short: "%H:%M"
       long: "%H:%M"
+      
+  #################### MODELS      
+  activerecord:
+    models:
+      liturgical_feast:
+        one: "Fête liturgique"
+        other: "Fêtes liturgiques
 
   #################### MENUS
   menu_home: "Home"
