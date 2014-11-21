@@ -1,6 +1,6 @@
 ActiveAdmin.register Place do
 
-  menu :parent => "indexes_menu", url: ->{ places_path(locale: I18n.locale) }, :label => proc {I18n.t(:menu_places)}
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_places)}
 
   collection_action :autocomplete_place_name, :method => :get
 
