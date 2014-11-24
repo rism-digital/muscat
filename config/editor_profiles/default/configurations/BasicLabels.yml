@@ -58,31 +58,31 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "003": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Identificatore del numero di controllo
-    fr: "Identit\xC3\xA9 du num\xC3\xA9ro de contr\xC3\xB4le"
+    fr: "Identité du numéro de contrôle"
     de: Kontrollnummer-Bezeichnung
     en: Control number identifier
 003_pr_col: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Raccolta a stampa
-    fr: "Collection imprim\xC3\xA9es"
+    fr: "Collection imprimées"
     de: Sammeldruck
     en: Printed Collection
 "005": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Data e ora dell'ultima transazione
-    fr: "Date/heure de la derni\xC3\xA8re transaction"
+    fr: "Date/heure de la dernière transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
 "007": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Campo fisso per la descrizione fisica
-    fr: "Zone fixe de description mat\xC3\xA9rielle"
+    fr: "Zone fixe de description matérielle"
     de: Codierte Form der Materialbeschreibung
     en: Physical description fixed field
 008: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Dati bibliografici di lunghezza fissa
-    fr: "Donn\xC3\xA9es bibliographiques cod\xC3\xA9es"
+    fr: "Données bibliographiques codées"
     de: "Datenelemente fixer Länge"
     en: Coded bibliographic data
 01_codes_artistic: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -94,14 +94,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 028: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Numero dell'editore
-    fr: "Num\xC3\xA9ro d'\xC3\xA9diteur"
+    fr: "Numéro d'éditeur"
     de: Verlagsnummer
     en: Publisher Number
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Numero di lastra
-        fr: "Num\xC3\xA9ro de plaque"
+        fr: "Numéro de plaque"
         de: Plattennummer
         en: Plate number
 02_codes_performing: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -120,12 +120,12 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Numero dell'incipit
-        fr: "Num\xC3\xA9ro de l'\xC5\x93uvre"
+        fr: "Numéro de l'\xC5\x93uvre"
         de: Incipitnummer
         en: Number of work
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Numero
-        fr: "Num\xC3\xA9ro"
+        fr: "Numéro"
         de: Nummer
         en: Nb work
     b: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -175,7 +175,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     e: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Ruolo
-        fr: "R\xC3\xB4le"
+        fr: "Rôle"
         de: Rolle
         en: Role
     p: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -187,35 +187,35 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     q: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Commento all'incipit mus.
-        fr: "Note g\xC3\xA9n\xC3\xA9rale"
+        fr: "Note générale"
         de: Kommentar zum Musikincipit
         en: General note
     g: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Chiave
-        fr: "Cl\xC3\xA9"
+        fr: "Clé"
         de: "Schlüssel"
         en: Clef
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Chiave
-        fr: "Cl\xC3\xA9"
+        fr: "Clé"
         de: "Schlüss."
         en: Clef
     r: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: "Tonalit\xC3\xA0, modo"
-        fr: "Tonalit\xC3\xA9, mode"
+        it: "Tonalità, modo"
+        fr: "Tonalité, mode"
         de: Tonart, Modus
         en: Key or mode
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: "Tonalit\xC3\xA0"
-        fr: "Tonalit\xC3\xA9"
+        it: "Tonalità"
+        fr: "Tonalité"
         de: Tonart
         en: Key
     s: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: "Validit\xC3\xA0"
-        fr: "Validit\xC3\xA9"
+        it: "Validità"
+        fr: "Validité"
         de: "Gültigkeit"
         en: Validity
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -239,7 +239,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Data e luogo di un evento
-        fr: "Date/heure et lieu d'un \xC3\xA9v\xC3\xA9nement"
+        fr: "Date/heure et lieu d'un événement"
         de: Datum und Ort eines Ereignisses (codiert)
         en: Coded date, time and place of an event
     indicator: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -276,7 +276,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 03_codes_technical: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Produttore
-    fr: "Cr\xC3\xA9ation"
+    fr: "Création"
     de: Hersteller
     en: Technical production
 "040": !map:ActiveSupport::HashWithIndifferentAccess 
@@ -320,7 +320,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Lingua del testo cantato
-        fr: "Langue du texte chant\xC3\xA9"
+        fr: "Langue du texte chanté"
         de: Sprachcode
         en: Language of sung text
     e: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -412,19 +412,19 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 103_ms_attr_work: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Opera attribuita
-    fr: "Oeuvre attribu\xC3\xA9e"
+    fr: "Oeuvre attribuée"
     de: Zugeschriebenes Werk
     en: Attributed work
 104_ms_attr_work_col: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Opera attribuita in raccolta
-    fr: "Oeuvre attribu\xC3\xA9e dans une collection"
+    fr: "Oeuvre attribuée dans une collection"
     de: Zugeschriebenes Werk in Sammlung
     en: Attributed work in collection
 "110": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Nome di ente
-    fr: "Nom de la collectivit\xC3\xA9"
+    fr: "Nom de la collectivité"
     de: "Körperschaftsname"
     en: Holding institution
   accepts: 
@@ -433,13 +433,13 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Nome di ente
-        fr: "Nom de la collectivit\xC3\xA9"
+        fr: "Nom de la collectivité"
         de: "Körperschaftsname"
         en: Holding institution
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Ente subordinato
-        fr: "Collectivit\xC3\xA9 subordonn\xC3\xA9e"
+        fr: "Collectivité subordonnée"
         de: "Untergeordnete Körperschaft"
         en: Subordinate unit
 "130": !map:ActiveSupport::HashWithIndifferentAccess 
@@ -473,7 +473,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     n: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Num. di catalogo/d'opera
-        fr: "Opus/no. de catalogue th\xC3\xA9matique"
+        fr: "Opus/no. de catalogue thématique"
         de: Werkverzeichnis/Opus
         en: Thematic catalogue no./Opus
     o: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -489,14 +489,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Title of section or part
     r: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: "Tonalit\xC3\xA0"
-        fr: "Tonalit\xC3\xA9"
+        it: "Tonalità"
+        fr: "Tonalité"
         de: Tonart
         en: Key
 200_pr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Musica a stampa
-    fr: "Imprim\xC3\xA9s musicaux"
+    fr: "Imprimés musicaux"
     de: Gedruckte Musikwerke
     en: Music prints
 201_pr_anon_work: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -514,13 +514,13 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 203_pr_attr_work: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Opera attribuita
-    fr: "Oeuvre attribu\xC3\xA9e"
+    fr: "Oeuvre attribuée"
     de: Zugeschriebenes Werk
     en: Attributed work
 204_pr_attr_work_col: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Opera attribuita in raccolta
-    fr: "Oeuvre attribu\xC3\xA9e dans une collection"
+    fr: "Oeuvre attribuée dans une collection"
     de: Zugeschriebenes Werk in Sammlung
     en: Attributed work in collection
 "240": !map:ActiveSupport::HashWithIndifferentAccess 
@@ -570,8 +570,8 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Title of section or part
     r: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: "Tonalit\xC3\xA0"
-        fr: "Tonalit\xC3\xA9"
+        it: "Tonalità"
+        fr: "Tonalité"
         de: Tonart
         en: Key
 "245": !map:ActiveSupport::HashWithIndifferentAccess 
@@ -619,14 +619,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "254": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Consistenza codicologica
-    fr: "Pr\xC3\xA9sentation musicale"
+    fr: "Présentation musicale"
     de: Musikalische Ausgabeform
     en: Musical presentation statement
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Consistenza codicologica
-        fr: "Pr\xC3\xA9sentation musicale"
+        fr: "Présentation musicale"
         de: Musikalische Ausgabeform
         en: Musical presentation statement
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -647,13 +647,13 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Copista, editore, casa editrice
-        fr: "Copiste ou maison d'\xC3\xA9dition"
+        fr: "Copiste ou maison d'édition"
         de: Schreiber, Verleger, Verlag
         en: Atelier name
     c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Anno
-        fr: "Ann\xC3\xA9e"
+        fr: "Année"
         de: Jahr
         en: Date
     e: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -690,7 +690,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "300": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Materiale
-    fr: "Mat\xC3\xA9riel"
+    fr: "Matériel"
     de: Material
     en: Material
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -703,7 +703,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Altri particolari fisici
-        fr: "Autres d\xC3\xA9tails physiques"
+        fr: "Autres détails physiques"
         de: Andere physische Details
         en: Other physical details
     c: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -733,38 +733,38 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 302_lib_pr_anon: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Libretto anonimo a stampa
-    fr: "Libretto anonyme imprm\xC3\xA9"
+    fr: "Libretto anonyme imprmé"
     de: Libretto anonym, gedruckt
     en: Libretto anonymous, printed
 303_lib_ms_attr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Libretto attribuito manoscritto
-    fr: "Libretto attribu\xC3\xA9, manuscrit"
+    fr: "Libretto attribué, manuscrit"
     de: Libretto zugeschrieben, handschriflich
     en: Libretto attributed, manuscript
 304_lib_pr_attr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Libretto attribuito a stampa
-    fr: "Libretto attribu\xC3\xA9, imprim\xC3\xA9"
+    fr: "Libretto attribué, imprimé"
     de: Libretto zugeschrieben, gedruckt
     en: Libretto attributed, printed
 "340": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Supporto fisico
-    fr: "Support mat\xC3\xA9riel"
+    fr: "Support matériel"
     de: Physisches Medium
     en: Physical medium
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Materiale
-        fr: "Substances appliqu\xC3\xA9es"
+        fr: "Substances appliquées"
         de: Physisches Medium
         en: Material
     c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Materiali applicati
-        fr: "Substances appliqu\xC3\xA9es"
+        fr: "Substances appliquées"
         de: Physisches Medium
         en: Materials applied
     d: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -782,14 +782,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "351": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Distribuzione delle parti
-    fr: "Arrangement du mat\xC3\xA9riel"
+    fr: "Arrangement du matériel"
     de: Anordnung der Stimmen
     en: Physical arrangement
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Distribuzione delle parti
-        fr: "Arrangement du mat\xC3\xA9riel"
+        fr: "Arrangement du matériel"
         de: Anordnung der Stimmen
         en: Physical arrangement
     "3": !map:ActiveSupport::HashWithIndifferentAccess 
@@ -801,32 +801,32 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 400_th: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Trattati
-    fr: "Trait\xC3\xA9s"
+    fr: "Traités"
     de: Theoretica
     en: Theoretica
 401_th_anon: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Trattato anonimo
-    fr: "Trait\xC3\xA9 anonyme"
+    fr: "Traité anonyme"
     de: Theoretica anonym
     en: Theoretica anonymous
 402_th_attr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Trattato attribuito
-    fr: "Trait\xC3\xA9 attribu\xC3\xA9"
+    fr: "Traité attribué"
     de: Theoretica zugeschrieben
     en: Theoretica attributed
 "500": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Osservazioni
-    fr: "Remarque g\xC3\xA9n\xC3\xA9rale"
+    fr: "Remarque générale"
     de: Bemerkungen
     en: General note
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Osservazioni
-        fr: "Remarque g\xC3\xA9n\xC3\xA9rale"
+        fr: "Remarque générale"
         de: Bemerkungen
         en: General note
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -862,14 +862,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "508": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Nota sui crediti di creazione/produzione
-    fr: "Remarque sur la cr\xC3\xA9ation/production"
+    fr: "Remarque sur la création/production"
     de: Bemerkung zur Person / Institution
     en: Creation/production note
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Nota sui crediti di creazione/produzione
-        fr: "Note sur la cr\xC3\xA9ation/production"
+        fr: "Note sur la création/production"
         de: Bemerkung zur Person / Institution
         en: Creation/production note
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -877,27 +877,27 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "510": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Riferimenti
-    fr: "R\xC3\xA9f\xC3\xA9rences"
+    fr: "Références"
     en: References
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Riferimenti
-        fr: "R\xC3\xA9f\xC3\xA9rences"
+        fr: "Références"
         en: References
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
 "511": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Nota sui interpreti
-    fr: "Remarque sur les interpr\xC3\xA8tes"
+    fr: "Remarque sur les interprètes"
     de: "Bemerkungen zu den Aufführungen"
     en: Performer note
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Nota sui interpreti
-        fr: "Remarque sur les interpr\xC3\xA8tes"
+        fr: "Remarque sur les interprètes"
         de: "Bemerkungen zu den Aufführungen"
         en: Performer note
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -920,27 +920,27 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "520": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Riassunto
-    fr: "R\xC3\xA9sum\xC3\xA9"
+    fr: "Résumé"
     en: Summary description
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Riassunto
-        fr: "R\xC3\xA9sum\xC3\xA9"
+        fr: "Résumé"
         en: Summary description
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
 "525": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Materiali allegati
-    fr: "Mat\xC3\xA9riel suppl\xC3\xA9mentaire"
+    fr: "Matériel supplémentaire"
     de: Beigelegtes Material, Addenda
     en: Supplementary material
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Materiali allegati
-        fr: "Mat\xC3\xA9triel suppl\xC3\xA9mentaire"
+        fr: "Matétriel supplémentaire"
         de: Beigelegtes Material, Addenda
         en: Supplementary material
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -974,7 +974,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Metodo d'acquisto
-        fr: "M\xC3\xA9thode d'acquisition"
+        fr: "Méthode d'acquisition"
         de: Beschaffungsart
         en: Method of acquisition
     d: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -986,14 +986,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "545": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Dati biografici o storici
-    fr: "Donn\xC3\xA9es biographiques ou historiques"
+    fr: "Données biographiques ou historiques"
     de: Biographische oder geschichtliche Daten
     en: Biographical note
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Dati biografici o storici
-        fr: "Donn\xC3\xA9es biographiques ou historiques"
+        fr: "Données biographiques ou historiques"
         de: Biographische oder geschichtliche Daten
         en: Biographical note
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1178,7 +1178,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     l: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Strumenti a tastiera
-        fr: "Instruments \xC3\xA0 clavier"
+        fr: "Instruments à clavier"
         de: Tasteninstrumente
         en: Keyboards
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1288,7 +1288,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     i: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Strumenti a pizzico
-        fr: "Instruments \xC3\xA0 cordes pinc\xC3\xA9es"
+        fr: "Instruments à cordes pincées"
         de: Zupfinstrumente
         en: Plucked instruments
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1299,27 +1299,27 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "595": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: "Ruoli: nomi originali dei personaggi"
-    fr: "R\xC3\xB4les: noms originaux"
+    fr: "Rôles: noms originaux"
     de: "Rollennamen: Originale Schreibweise"
     en: Dramatic roles named
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: "Ruoli: nomi originali dei personaggi"
-        fr: "R\xC3\xB4le: noms originaux"
+        fr: "Rôle: noms originaux"
         de: "Rollennamen: Originale Schreibweise"
         en: Dramatic roles named
 "596": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Rimandi a RISM A/I e RISM B
-    fr: "R\xC3\xA9f\xC3\xA9rence au RISM A/I et B"
+    fr: "Référence au RISM A/I et B"
     de: Querverweise zu RISM A/I und RISM B
     en: RISM Series A/I and B references
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Rimandi a RISM A/I e RISM B
-        fr: "R\xC3\xA9f\xC3\xA9rences au RISM A/I et B"
+        fr: "Références au RISM A/I et B"
         de: Querverweise zu RISM A/I und RISM B
         en: RISM Series A/I and B references
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1368,7 +1368,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "600": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Accesso aggiunto di soggetto - nome di persona
-    fr: "Vedette mati\xC3\xA8re - nom de personne"
+    fr: "Vedette matière - nom de personne"
     de: Schlagworteintragung - Personenname
     en: Subject added entry - personal name
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1402,7 +1402,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     x: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Suddivisione generale
-        fr: "Subdivision g\xC3\xA9n\xC3\xA9rale"
+        fr: "Subdivision générale"
         de: Allgemeine Unterteilung
         en: Subheading General subdivision
     y: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1414,20 +1414,20 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     z: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Suddivisione geografica
-        fr: "Subdivision g\xC3\xA9ographique"
+        fr: "Subdivision géographique"
         de: Geographische Unterteilung
         en: Geographic subdivision
 "651": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Luogo di un evento
-    fr: "Lieu d'un \xC3\xA9v\xC3\xA9nement"
+    fr: "Lieu d'un événement"
     de: "Aufführungsort"
     en: Place of an event
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Luogo di un evento
-        fr: "Lieu d'un \xC3\xA9v\xC3\xA9nement"
+        fr: "Lieu d'un événement"
         de: "Aufführungsort"
         en: Place of an event
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1435,14 +1435,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "653": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Nomi di ruoli standardizzati
-    fr: "Noms de r\xC3\xB4les standardis\xC3\xA9s"
+    fr: "Noms de rôles standardisés"
     de: Rollennamen, normiert Schreibweise
     en: Role names, standardised
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Nomi di ruoli standardizzati
-        fr: "Noms de r\xC3\xB4les standardis\xC3\xA9s"
+        fr: "Noms de rôles standardisés"
         de: Rollennamen, standardisierte Schreibweise
         en: Role names, standardised
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1450,14 +1450,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "657": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Feste liturgiche
-    fr: "F\xC3\xAAte liturgique"
+    fr: "Fête liturgique"
     de: Liturgische Feste
     en: Liturgical feasts
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Feste liturgiche
-        fr: "F\xC3\xAAte liturgique"
+        fr: "Fête liturgique"
         de: Liturgische Feste
         en: Liturgical feasts
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1478,26 +1478,26 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     n: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Numero/pagina
-        fr: "Num\xC3\xA9ro/page"
+        fr: "Numéro/page"
         de: Nummer/Seitenzahl
         en: Number/page
 "691": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Riferimenti bibliografici
-    fr: "R\xC3\xA9f\xC3\xA9rence bibliographique"
+    fr: "Référence bibliographique"
     de: Literaturverweis
     en: Bibliographical reference
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Bibliografia
-        fr: "R\xC3\xA9f\xC3\xA9rence bibliographique"
+        fr: "Référence bibliographique"
         de: Literatur
         en: Bibliographical reference
     n: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Numero/pagina
-        fr: "Num\xC3\xA9ro/page"
+        fr: "Numéro/page"
         de: Fundstelle
         en: Number/page
 "700": !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1542,7 +1542,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "710": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Nome di ente
-    fr: "Nom de la collectivit\xC3\xA9"
+    fr: "Nom de la collectivité"
     de: Nebeneintragung Institutionen
     en: Holding institution
   accepts: 
@@ -1557,13 +1557,13 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Nome di ente
-        fr: "Nom de la collectivit\xC3\xA9"
+        fr: "Nom de la collectivité"
         de: Institutionsname
         en: Holding institution
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Ente subordinato
-        fr: "Collectivit\xC3\xA9 subordonn\xC3\xA9e"
+        fr: "Collectivité subordonnée"
         de: Untergeordnete Institution
         en: Subordinate unit
     "3": !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1622,8 +1622,8 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Title of section or part
     r: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: "Tonalit\xC3\xA0"
-        fr: "Tonalit\xC3\xA9"
+        it: "Tonalità"
+        fr: "Tonalité"
         de: Tonart
         en: Key
 "740": !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1642,7 +1642,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     n: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Atto o sezione, intestazione
-        fr: "Num\xC3\xA9ro de la partie ou section"
+        fr: "Numéro de la partie ou section"
         de: "Aktnummer/Fundstelle, \xC3\x9Cberschrift"
         en: Number of part or section
     p: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1706,7 +1706,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     w: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Numero RISM dell'opera principale
-        fr: "Num\xC3\xA9ro RISM de la source"
+        fr: "Numéro RISM de la source"
         de: RISM Dokumentnummer des Hauptwerks
         en: RISM ID
     "7": !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1753,8 +1753,8 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Movement title/tempo mark
     n: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: "Tonalit\xC3\xA0"
-        fr: "Tonalit\xC3\xA9"
+        it: "Tonalità"
+        fr: "Tonalité"
         en: Key
     o: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1779,7 +1779,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     h: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Incipit musicale codificato
-        fr: "Incipit cod\xC3\xA9"
+        fr: "Incipit codé"
         en: Coded musical incipit
     i: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1794,14 +1794,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "852": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Sigla della biblioteca
-    fr: "Sigle de biblioth\xC3\xA8que"
+    fr: "Sigle de bibliothèque"
     de: Bibliothekssigel
     en: Library siglum
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Sigla della biblioteca
-        fr: "Sigle de biblioth\xC3\xA8que"
+        fr: "Sigle de bibliothèque"
         de: Bibliothekssigel
         en: Library siglum
     b: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1825,7 +1825,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     e: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Biblioteca
-        fr: "Biblioth\xC3\xA8que"
+        fr: "Bibliothèque"
         de: Bibliothek
         en: Library
     p: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1837,7 +1837,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "856": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Localizzazione e accesso elettronico
-    fr: "Ressource \xC3\xA9lectronique externe"
+    fr: "Ressource électronique externe"
     de: Elektronische Lokalisierung und Zugriff
     en: External resource
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1856,7 +1856,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 added_entry: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Note secondarie
-    fr: "Entr\xC3\xA9es secondaires"
+    fr: "Entrées secondaires"
     de: Nebeneintragungen
     en: Added entry fields
 added_entries: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1868,7 +1868,7 @@ added_entries: !map:ActiveSupport::HashWithIndifferentAccess
 added_series: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Note secondarie sul titolo generale
-    fr: "Entr\xC3\xA9es de collection"
+    fr: "Entrées de collection"
     de: Nebeneintragungen Gesamttitel
     en: Series added entry fields
 administration: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1886,7 +1886,7 @@ arr: !map:ActiveSupport::HashWithIndifferentAccess
 art: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Scenografo
-    fr: "Metteur en sc\xC3\xA8ne"
+    fr: "Metteur en scène"
     de: "Bühnenbildner"
     en: Artist
 asn: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1904,7 +1904,7 @@ aut: !map:ActiveSupport::HashWithIndifferentAccess
 bibliographical_reference: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Bibliografia
-    fr: "R\xC3\xA9f\xC3\xA9rences"
+    fr: "Références"
     de: Literatur
     en: References
 bnd: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1928,7 +1928,7 @@ ccp: !map:ActiveSupport::HashWithIndifferentAccess
 chr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Coreografo
-    fr: "Chor\xC3\xA9graphe"
+    fr: "Chorégraphe"
     de: Choreograph
     en: Choreographer
 clb: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1958,7 +1958,7 @@ cns: !map:ActiveSupport::HashWithIndifferentAccess
 codes: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Numeri e codici
-    fr: "Num\xC3\xA9ros et codes"
+    fr: "Numéros et codes"
     de: Nummern und Codes
     en: Numbers and code fields
 com: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1975,7 +1975,7 @@ content: !map:ActiveSupport::HashWithIndifferentAccess
     en: Content description
 control: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    fr: "Champs de contr\xC3\xB4le"
+    fr: "Champs de contrôle"
     de: Kontrollfelder
     ot: Campi di controllo
     en: Control Fields
@@ -1994,7 +1994,7 @@ date: !map:ActiveSupport::HashWithIndifferentAccess
 description: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Campi per la descrizione fisica
-    fr: "Description mat\xC3\xA9rielle"
+    fr: "Description matérielle"
     de: "Felder für die physische Beschreibung"
     en: Physical description, etc. fields
 diplomatic_title: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2018,7 +2018,7 @@ dnr: !map:ActiveSupport::HashWithIndifferentAccess
 dte: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Dedicatario
-    fr: "D\xC3\xA9dicataire"
+    fr: "Dédicataire"
     de: "Widmungsträger"
     en: Dedicatee
 dub: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2048,13 +2048,13 @@ egr: !map:ActiveSupport::HashWithIndifferentAccess
 fmo: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Proprietario precedente
-    fr: "Propri\xC3\xA9taire pr\xC3\xA9c\xC3\xA9dent"
+    fr: "Propriétaire précédent"
     de: Vorbesitzer
     en: Former owner
 holding: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Informazioni sul fondo
-    fr: "Donn\xC3\xA9es bibliographiques, fonds, etc."
+    fr: "Données bibliographiques, fonds, etc."
     de: Bestandsdaten
     en: Holdings, location, etc. fields
 ill: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2084,7 +2084,7 @@ lbt: !map:ActiveSupport::HashWithIndifferentAccess
 library: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Biblioteca
-    fr: "Biblioth\xC3\xA8que"
+    fr: "Bibliothèque"
     de: Besitzerangaben
     en: Library information
 linkage: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2096,7 +2096,7 @@ linkage: !map:ActiveSupport::HashWithIndifferentAccess
 linking: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Note su collegamenti
-    fr: "Entr\xC3\xA9es de liens"
+    fr: "Entrées de liens"
     de: "Verknüpfungseintragungen"
     en: Linking entry fields
 ltg: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2114,7 +2114,7 @@ lyr: !map:ActiveSupport::HashWithIndifferentAccess
 main: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Registrazioni principali
-    fr: "Entr\xC3\xA9es principales"
+    fr: "Entrées principales"
     de: Haupteintragungen
     en: Main entry fields
 notes: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2138,7 +2138,7 @@ otm: !map:ActiveSupport::HashWithIndifferentAccess
 pat: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Committente
-    fr: "M\xC3\xA9c\xC3\xA8ne"
+    fr: "Mécène"
     de: "Mäzen/Auftraggeber"
     en: Patron
 pbl: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2156,7 +2156,7 @@ performance: !map:ActiveSupport::HashWithIndifferentAccess
 physical_description: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Descrizione fisica
-    fr: "Description mat\xC3\xA9rielle"
+    fr: "Description matérielle"
     de: Physische Beschreibung
     en: Physical description
 ppm: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2168,13 +2168,13 @@ ppm: !map:ActiveSupport::HashWithIndifferentAccess
 prd: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Personale alla produzione
-    fr: "Personnel de r\xC3\xA9alisation"
+    fr: "Personnel de réalisation"
     de: Produktionspersonal
     en: Production personnel
 prf: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Interprete
-    fr: "Interpr\xC3\xA8te"
+    fr: "Interprète"
     de: Interpret
     en: Performer
 provenance: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2216,7 +2216,7 @@ show_content: !map:ActiveSupport::HashWithIndifferentAccess
 show_details: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Descrizione fisica
-    fr: "D\xC3\xA9tail de la source"
+    fr: "Détail de la source"
     de: Physische Beschreibung
     en: Source details
 show_distribution: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2228,13 +2228,13 @@ show_distribution: !map:ActiveSupport::HashWithIndifferentAccess
 show_information: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Note
-    fr: "Information suppl\xC3\xA9mentaire"
+    fr: "Information supplémentaire"
     de: Anmerkungen
     en: Further information
 show_library: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Biblioteca
-    fr: "Biblioth\xC3\xA8que"
+    fr: "Bibliothèque"
     de: Besitzerangaben
     en: Library information
 show_links: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2246,7 +2246,7 @@ show_links: !map:ActiveSupport::HashWithIndifferentAccess
 show_references: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Bibliografia
-    fr: "R\xC3\xA9f\xC3\xA9rences"
+    fr: "Références"
     de: Literatur
     en: References
 show_resources: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2258,7 +2258,7 @@ show_resources: !map:ActiveSupport::HashWithIndifferentAccess
 show_summary: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Riassunto
-    fr: "R\xC3\xA9sum\xC3\xA9"
+    fr: "Résumé"
     de: Zusammenfassung
     en: Summary
 show_terms: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2270,13 +2270,13 @@ show_terms: !map:ActiveSupport::HashWithIndifferentAccess
 subject: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Note sul sitolo uniforme
-    fr: "Entr\xC3\xA9es de sujets"
+    fr: "Entrées de sujets"
     de: Schlagworteintragungen
     en: Subject access fields
 title: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Titolo e campi correlati
-    fr: "Titre et champs associ\xC3\xA9s"
+    fr: "Titre et champs associés"
     de: Titel- und damit verbundene Felder
     en: Title and title-related fields
 trl: !map:ActiveSupport::HashWithIndifferentAccess 
