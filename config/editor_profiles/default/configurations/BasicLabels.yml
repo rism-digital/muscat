@@ -1,7 +1,7 @@
 --- !map:Settings 
 doc_abbreviations: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    de: "Abk\xC3\xBCrzungen"
+    de: "Abkürzungen"
     en: Abbreviations
 doc_aid: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -13,7 +13,7 @@ doc_cataloguing_collections: !map:ActiveSupport::HashWithIndifferentAccess
     en: Cataloging collection and convoluta
 doc_functions: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    de: "Grund\xC3\xA4tzliche Funktionen"
+    de: "Grundsätzliche Funktionen"
     en: Basic functions
 doc_introduction: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -83,7 +83,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Dati bibliografici di lunghezza fissa
     fr: "Donn\xC3\xA9es bibliographiques cod\xC3\xA9es"
-    de: "Datenelemente fixer L\xC3\xA4nge"
+    de: "Datenelemente fixer Länge"
     en: Coded bibliographic data
 01_codes_artistic: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -194,12 +194,12 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Chiave
         fr: "Cl\xC3\xA9"
-        de: "Schl\xC3\xBCssel"
+        de: "Schlüssel"
         en: Clef
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Chiave
         fr: "Cl\xC3\xA9"
-        de: "Schl\xC3\xBCss."
+        de: "Schlüss."
         en: Clef
     r: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -216,12 +216,12 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: "Validit\xC3\xA0"
         fr: "Validit\xC3\xA9"
-        de: "G\xC3\xBCltigkeit"
+        de: "Gültigkeit"
         en: Validity
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Val.
         fr: Val.
-        de: "G\xC3\xBCl."
+        de: "Gül."
         en: Val.
     t: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -302,7 +302,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Agenzia della trascrizione
         fr: Organisme de la transcription
-        de: "\xC3\x9Cbertragende Katalogisierungsstelle"
+        de: "Übertragende Katalogisierungsstelle"
         en: Transcribing agency
     d: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -333,7 +333,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Traduzione
         fr: Traduction
-        de: "\xC3\x9Cbersetzung"
+        de: "Übersetzung"
         en: Translation
     1#: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -425,7 +425,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Nome di ente
     fr: "Nom de la collectivit\xC3\xA9"
-    de: "K\xC3\xB6rperschaftsname"
+    de: "Körperschaftsname"
     en: Holding institution
   accepts: 
   - "710"
@@ -434,13 +434,13 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Nome di ente
         fr: "Nom de la collectivit\xC3\xA9"
-        de: "K\xC3\xB6rperschaftsname"
+        de: "Körperschaftsname"
         en: Holding institution
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Ente subordinato
         fr: "Collectivit\xC3\xA9 subordonn\xC3\xA9e"
-        de: "Untergeordnete K\xC3\xB6rperschaft"
+        de: "Untergeordnete Körperschaft"
         en: Subordinate unit
 "130": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -849,13 +849,13 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "506": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Restrizioni all'accesso
-    de: "Zugangsbeschr\xC3\xA4nkungen"
+    de: "Zugangsbeschränkungen"
     en: Access restriction
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Restrizioni all'accesso
-        de: "Zugangsbeschr\xC3\xA4nkungen"
+        de: "Zugangsbeschränkungen"
         en: Access restriction
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
@@ -891,14 +891,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Nota sui interpreti
     fr: "Remarque sur les interpr\xC3\xA8tes"
-    de: "Bemerkungen zu den Auff\xC3\xBChrungen"
+    de: "Bemerkungen zu den Aufführungen"
     en: Performer note
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Nota sui interpreti
         fr: "Remarque sur les interpr\xC3\xA8tes"
-        de: "Bemerkungen zu den Auff\xC3\xBChrungen"
+        de: "Bemerkungen zu den Aufführungen"
         en: Performer note
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
@@ -1150,7 +1150,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Organico completo
     fr: Instrumentation
-    de: "Vollst\xC3\xA4ndige Besetzung"
+    de: "Vollständige Besetzung"
     en: Scoring (coded instrumentation)
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     k: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1190,7 +1190,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Voce solista aggiuntiva
         fr: Voix seule additionnelle
-        de: "Zus\xC3\xA4tzliche Solostimme"
+        de: "Zusätzliche Solostimme"
         en: Additional solo voice
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Vsolo
@@ -1234,7 +1234,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Voci di coro aggiuntive
         fr: Voix de choeur additionnelles
-        de: "Zus\xC3\xA4tzliche Chorstimmen"
+        de: "Zusätzliche Chorstimmen"
         en: Additional choir voice
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Coro
@@ -1421,14 +1421,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Luogo di un evento
     fr: "Lieu d'un \xC3\xA9v\xC3\xA9nement"
-    de: "Auff\xC3\xBChrungsort"
+    de: "Aufführungsort"
     en: Place of an event
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Luogo di un evento
         fr: "Lieu d'un \xC3\xA9v\xC3\xA9nement"
-        de: "Auff\xC3\xBChrungsort"
+        de: "Aufführungsort"
         en: Place of an event
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
@@ -1845,7 +1845,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Nota destinata al pubblico
         fr: Remarque sur la ressource externe
-        de: "F\xC3\xBCr das Publikum bestimmte Fussnote"
+        de: "Für das Publikum bestimmte Fussnote"
         en: Note about external resource
     u: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1887,7 +1887,7 @@ art: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Scenografo
     fr: "Metteur en sc\xC3\xA8ne"
-    de: "B\xC3\xBChnenbildner"
+    de: "Bühnenbildner"
     en: Artist
 asn: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1917,7 +1917,7 @@ bsl: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Libraio musicale
     fr: Libraire
-    de: "Musikalienh\xC3\xA4ndler"
+    de: "Musikalienhändler"
     en: Bookseller
 ccp: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1983,7 +1983,7 @@ cst: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Costumista
     fr: Costumier
-    de: "Kost\xC3\xBCmbildner"
+    de: "Kostümbildner"
     en: Costume designer
 date: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1995,7 +1995,7 @@ description: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Campi per la descrizione fisica
     fr: "Description mat\xC3\xA9rielle"
-    de: "Felder f\xC3\xBCr die physische Beschreibung"
+    de: "Felder für die physische Beschreibung"
     en: Physical description, etc. fields
 diplomatic_title: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2007,7 +2007,7 @@ dnc: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Ballerino
     fr: Danceur
-    de: "T\xC3\xA4nzer"
+    de: "Tänzer"
     en: Dancer
 dnr: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2019,7 +2019,7 @@ dte: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Dedicatario
     fr: "D\xC3\xA9dicataire"
-    de: "Widmungstr\xC3\xA4ger"
+    de: "Widmungsträger"
     en: Dedicatee
 dub: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2097,7 +2097,7 @@ linking: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Note su collegamenti
     fr: "Entr\xC3\xA9es de liens"
-    de: "Verkn\xC3\xBCpfungseintragungen"
+    de: "Verknüpfungseintragungen"
     en: Linking entry fields
 ltg: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2139,7 +2139,7 @@ pat: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Committente
     fr: "M\xC3\xA9c\xC3\xA8ne"
-    de: "M\xC3\xA4zen/Auftraggeber"
+    de: "Mäzen/Auftraggeber"
     en: Patron
 pbl: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2151,7 +2151,7 @@ performance: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Rappresentazioni
     fr: Performances
-    de: "Auff\xC3\xBChrungen"
+    de: "Aufführungen"
     en: Performances
 physical_description: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2289,5 +2289,5 @@ voc: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Cantante
     fr: Vocaliste
-    de: "S\xC3\xA4nger"
+    de: "Sänger"
     en: Vocalist

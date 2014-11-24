@@ -16,7 +16,7 @@ ActiveAdmin.setup do |config|
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "logo.png"
+  config.site_title_image = "logo2.png"
 
   # == Default Namespace
   #
@@ -227,7 +227,7 @@ ActiveAdmin.setup do |config|
         lang.add :label => "FR", :url => proc { url_for(:locale => 'fr') }, id: 'i18n-fr', :priority => 3, :html_options   => {:style => 'float:left;'}
         lang.add :label => "IT", :url => proc { url_for(:locale => 'it') }, id: 'i18n-it', :priority => 4, :html_options   => {:style => 'float:left;'}
       end
-
+      admin.add_current_user_to_menu menu
       admin.add_logout_button_to_menu menu
     end
     
