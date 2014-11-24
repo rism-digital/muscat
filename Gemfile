@@ -62,6 +62,7 @@ gem 'blacklight', ">= 5.3.0"
 #https://github.com/projectblacklight/blacklight_range_limit
 gem "blacklight_range_limit"
 gem 'devise'
+gem 'devise-i18n'
 
 # https://github.com/zdennis/activerecord-import/wiki
 # For bulk import SQL data
