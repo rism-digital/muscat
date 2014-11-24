@@ -87,7 +87,7 @@ de:
       username:
         title: "Benutzername"
       email:
-        title: "E-Mail-Adresse"
+        title: "E-Mail"
       subdomain:
         title: "Subdomain"
       password:
