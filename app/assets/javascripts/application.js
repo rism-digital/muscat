@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 
 //
@@ -28,7 +29,6 @@
 //= require pae_incipit_render_ujs
 //= require_tree .
 //= require autocomplete-rails
-//= require folder_actions
 
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
 // this:
