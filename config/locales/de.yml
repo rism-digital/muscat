@@ -131,8 +131,8 @@ de:
   activerecord:
     models:
       liturgical_feast:
-        one: "LITURGICAL FEAST"
-        other: "LITURGICAL FEASTS"
+        one: "Liturgisches Fest"
+        other: "Liturgische Feste"
   
   #################### MENUS
   menu_home: "Home"
