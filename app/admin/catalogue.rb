@@ -83,7 +83,7 @@ ActiveAdmin.register Catalogue do
       row (I18n.t :filter_revue_title) { |r| r.revue_title }
       row (I18n.t :filter_volume) { |r| r.volume }
       row (I18n.t :filter_date) { |r| r.date }
-      row (I18n.t :filter_pages) { |r| r.pages }     
+      row (I18n.t :filter_pages) { |r| r.pages }
     end
     active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page] )
   end
@@ -92,6 +92,21 @@ begin
   sidebar I18n.t(:search_sources), :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
+
+  sidebar 'Global Folder Actions', :only => :index do
+    if params.include?(:q)
+      a href: "#", onclick: "create_folder('#{save_to_folder_catalogues_path(params)}');" do text_node I18n.t(:save, scope: :folders) end
+      input :class => "folder_name", placeholder: "Name", id: "folder_name"
+      hr
+    end
+    
+    ul do
+
+      li link_to("Tickets", "#")
+      li link_to("Milestones", "#")
+    end
+  end
+
 end
   
   ##########

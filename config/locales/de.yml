@@ -131,8 +131,8 @@ de:
   activerecord:
     models:
       liturgical_feast:
-        one: "LITURGICAL FEAST"
-        other: "LITURGICAL FEASTS"
+        one: "Liturgisches Fest"
+        other: "Liturgische Feste"
   
   #################### MENUS
   menu_home: "Home"
@@ -150,25 +150,25 @@ de:
   menu_help: "Hilfe"
   menu_folders: "Ordner"
   menu_users: "Benutzer"
-  menu_workgroups: "WORKGROUPS"
-  menu_administration: "ADMINISTRATION"
+  menu_workgroups: "Benutzergruppen"
+  menu_administration: "Administration"
   menu_languages: "Sprache"
   
   ### VARIOUS ELEMENTS
-  recent_sources: "RECENT SOURCES"
-  any_field_contains: "ANY FIELD CONTAINS"
-  is_in_folder: "IS IN FOLDER"
-  workgroups: "WORKGROUPS"
-  user_details: "USER DETAILS"
-  sections: "SECTIONS"
-  edit: "EDIT"
-  search_sources: "SEARCH SOURCES"
+  recent_sources: "Neueste Einträge"
+  any_field_contains: "Irgendein Feld enthält"
+  is_in_folder: "Ist im Ordner"
+  workgroups: "Benutzergruppen"
+  user_details: "Benutzerinfo"
+  sections: "Sektionen"
+  edit: "Edit"
+  search_sources: "Quellensuche"
   
   #### FOLDER MESSAGES
   folders:
-    save: "SAVE RESULTS TO FOLDER"
-    success: "FOLDER %{name} CREATED WITH %{count} ITEMS."
-    too_many: "CANNOT ADD MORE THAN %{max} ITEMS (%{count} SELECTED)."
+    save: "In Ordner speichern"
+    success: "Ordner %{name} generiert aus %{count} Datensätzen."
+    too_many: "Es können nicht mehr als %{max} Datensätze (%{count} ausgewählt werden)."
 
   ############ filters
   filter_address: "Adresse"
@@ -190,7 +190,7 @@ de:
   filter_date_from: "Datum von"
   filter_date_to: "Datum bis"
   filter_description: "Beschreibung"
-  filter_digital_objects: "Digital Objects"
+  filter_digital_objects: "Digitale Objekte"
   filter_district: "Provinz/Kanton"
   filter_email: "E-Mail"
   filter_folder_type: "Ordner Typ"
@@ -211,7 +211,7 @@ de:
   filter_liturgical_feast: "Liturgische Feste"
   filter_location_and_name: "Name und Ort"
   filter_manuscript_no: "Manuskript-Nr."
-  filter_shelf_mark: "Ms Nr."
+  filter_shelf_mark: "Signatur"
   filter_name: "Name"
   filter_notes: "Anmerkungen"
   filter_old_versions: "Alte Versionen"

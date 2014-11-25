@@ -1,7 +1,6 @@
 #= require active_admin/base
 #= require admin/index-filters.coffee
 #= require jquery
-#= require jquery.ui.all
 #= require jquery_ujs
 
 #= require marc_editor
