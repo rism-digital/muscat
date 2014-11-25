@@ -15,9 +15,10 @@
 $brand-primary: $primary-color;
 
 // Font size
-$font-size-base: 12px !default;
+//$font-size-base: 12px !default;
 
 // Text color in the menu bar
+$navbar-height: 78px;
 $navbar-inverse-link-color: #cdcdcd;
 //$navbar-inverse-link-hover-bg: #f00;
 
@@ -31,6 +32,9 @@ $navbar-inverse-link-color: #cdcdcd;
 
 #header-navbar .navbar-brand {
   /* The main logo image for the Blacklight instance */
-  background: transparent url('/images/logo/in.png') no-repeat top left;
+  background: transparent url('/images/logo2.png') no-repeat top left;
+  margin-left: 30px;
+  margin-top: 6px;
+  height: 60px;
 
 }
