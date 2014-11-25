@@ -117,11 +117,6 @@ ActiveAdmin.register Person do
     render("editor/section_sidebar") # Calls a partial
   end
   
-  form do
-    # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
-    @item =  @arbre_context.assigns[:item]
-    render :partial => "editor/edit_wide"
-    active_admin_submit_bar( self )
-  end
+  form :partial => "editor/edit_wide"
 
 end
