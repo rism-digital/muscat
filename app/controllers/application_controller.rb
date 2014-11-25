@@ -39,5 +39,16 @@ class ApplicationController < ActionController::Base
   
   def save_search_filters  
   end
+  
+  private
+  
+  # Parse the http header to get a locale
+  # Hard-coded list - to be improved
+  def _locale_from_http_header 
+    return "en" if !request.env || !request.env.include?('HTTP_ACCEPT_LANGUAGE')
+    locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first 
+    return locale if ["en", "fr", "it", "de"].include?(locale)
+    "en"
+  end 
 
 end
