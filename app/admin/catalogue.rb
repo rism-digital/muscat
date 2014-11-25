@@ -93,20 +93,6 @@ begin
     render("activeadmin/src_search") # Calls a partial
   end
 
-  sidebar 'Global Folder Actions', :only => :index do
-    if params.include?(:q)
-      a href: "#", onclick: "create_folder('#{save_to_folder_catalogues_path(params)}');" do text_node I18n.t(:save, scope: :folders) end
-      input :class => "folder_name", placeholder: "Name", id: "folder_name"
-      hr
-    end
-    
-    ul do
-
-      li link_to("Tickets", "#")
-      li link_to("Milestones", "#")
-    end
-  end
-
 end
   
   ##########

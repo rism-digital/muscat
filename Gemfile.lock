@@ -97,6 +97,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-i18n (0.11.2)
     erubis (2.7.0)
     execjs (2.2.2)
     formtastic (3.1.2)
@@ -228,6 +229,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 4.0.0)
   devise
+  devise-i18n
   jbuilder (~> 1.2)
   jquery-rails
   mysql2

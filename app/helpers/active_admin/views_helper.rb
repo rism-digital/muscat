@@ -73,15 +73,7 @@ module ActiveAdmin::ViewsHelper
       end
     end
   end 
-  
-  # displays the edit button on top of a edit panel
-  def active_admin_edition_bar( context )
-    # we can use this to add tool buttons
-    #context.div class: :table_tools do
-    # context.a href: "javascript:marc_editor_send_form('marc_editor_panel','marc_editor_panel', 0, '#{self.resource_class.to_s.pluralize.downcase}')", class: :table_tools_button do  context.text_node "Save" end  
-    #end        
-  end
-  
+    
   # displays the edit button on top of a edit panel
   def active_admin_submit_bar( context )
     context.div class: :buttons do

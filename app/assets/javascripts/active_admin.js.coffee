@@ -18,4 +18,5 @@
 #= require tag_header_events
 #= require section_sidebar_ujs.js
 #= require pae_incipit_render_ujs.js
-#= blacklight_range_limit
+#= require blacklight_range_limit
+#= require folder_actions

@@ -45,6 +45,13 @@ module FolderControllerActions
     # THIS IS OVERRIDEN from resource_dsl_extensions.rb
     dsl.collection_action :save_to_folder, :method => :get do
       
+      if !params.include?(:folder_name) || params[:folder_name].empty?
+        redirect_to collection_path, :alert => "Please select a name for the folder."
+        return
+      end
+      
+      folder_name = params[:folder_name]
+      
       #Get the model we are working on
       model = self.resource_class
       
@@ -58,7 +65,7 @@ module FolderControllerActions
       end
       
       # inputs is a hash of all the form fields you requested
-      f = Folder.create(:name => "Folder #{Folder.count + 1}", :folder_type => model.to_s)
+      f = Folder.create(:name => folder_name, :folder_type => model.to_s)
 
       all_items = []
       results.each { |s| all_items << s }
@@ -78,13 +85,24 @@ module FolderControllerActions
     
       redirect_to collection_path, :notice => I18n.t(:success, scope: :folders, name: "\"#{f.name}\"", count: all_items.count)
     end
-
-    dsl.action_item :if => proc {params.include?(:q)} do
+  
+    # Only show for the moment if there is a query
+    dsl.sidebar 'Global Folder Actions', :only => :index, :if => proc{params.include?(:q)} do
       # Build the dynamic path function, then call it with send
       model = self.resource_class.to_s.pluralize.underscore.downcase
       link_function = "save_to_folder_#{model}_path"
       
-      link_to(I18n.t(:save, scope: :folders), send(link_function, params))
+      if params.include?(:q)
+        a href: "#", onclick: "create_folder('#{send(link_function, params)}');" do text_node I18n.t(:save, scope: :folders) end
+        input :class => "folder_name", placeholder: "Name", id: "folder_name"
+        hr
+      end
+    
+      #ul do
+      #  li link_to("Action 1", "#")
+      #  li link_to("Action 2", "#")
+      #end
+      
     end
   
   end
