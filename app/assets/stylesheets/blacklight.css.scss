@@ -1,5 +1,4 @@
 
-@import "bootstrap-sprockets";
 
 // Colors, etc
 @import "muscat-custom";
@@ -22,6 +21,7 @@ $font-size-base: 12px !default;
 $navbar-inverse-link-color: #cdcdcd;
 //$navbar-inverse-link-hover-bg: #f00;
 
+@import "bootstrap-sprockets";
 @import 'bootstrap';
 @import 'blacklight/blacklight';
 
