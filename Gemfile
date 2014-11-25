@@ -20,7 +20,7 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+#gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -45,7 +45,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'activeadmin', ref: 'a2cd960'
 
 gem 'sunspot_rails', git: 'https://github.com/sunspot/sunspot.git'
 gem 'sunspot_solr'
