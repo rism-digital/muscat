@@ -12,24 +12,32 @@ class ApplicationController < ActionController::Base
   
   before_filter :set_locale
   
-  def set_locale
-      I18n.locale = params[:locale] || I18n.default_locale
-    end
-
-    def default_url_options(options={})
-      { :locale => I18n.locale }
-    end
+  # Find out and set the locale, store into a cookie
+  def set_locale 
+    # We do not check if the locale is available. The list is actually set in the
+    # menu (see active_admin.rb) 
+    if params[:locale] ## && AVAILABLE_LOCALES.include?(params[:locale])
+    # user is changing locale, keep it for the session and in a cookie
+      session[:locale] = params[:locale]
+      cookies[:locale] = { :value => session[:locale], :expires => 30.days.from_now }
+    elsif !session[:locale]
+      # no locale for the session yet, use cookie or http_header (or default)
+      if (cookies[:locale]) # && AVAILABLE_LOCALES.include?(cookies[:locale])
+        session[:locale] = cookies[:locale] 
+      else
+        #logger.debug "HTTP_ACCEPT_LANGUAGE:#{request.env['HTTP_ACCEPT_LANGUAGE']}" 
+        session[:locale] = _locale_from_http_header
+        cookies[:locale] = { :value => session[:locale], :expires => 30.days.from_now }
+      end
+    end   
+    #logger.debug "LOCALE", I18n.locale
+    I18n.locale = session[:locale]
+  end 
   
   def restore_search_filters  
   end
   
   def save_search_filters  
   end
-  
-  def set_admin_locale
-    I18n.locale = params[:locale] || I18n.default_locale
-  end
-
-
 
 end

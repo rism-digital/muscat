@@ -123,14 +123,14 @@ Example:
  028: !map:HashWithIndifferentAccess 
    label: !map:HashWithIndifferentAccess 
      it: Numero dell'editore
-     fr: "Num\xC3\xA9ro d'\xC3\xA9diteur"
+     fr: "Numéro d'éditeur"
      de: Verlagsnummer
      en: Publisher Number
    fields: !map:HashWithIndifferentAccess 
      a: !map:HashWithIndifferentAccess 
        label: !map:HashWithIndifferentAccess 
          it: Numero di lastra
-         fr: "Num\xC3\xA9ro de plaque"
+         fr: "Numéro de plaque"
          de: Plattennummer
          en: Plate number
  "100": !map:HashWithIndifferentAccess 

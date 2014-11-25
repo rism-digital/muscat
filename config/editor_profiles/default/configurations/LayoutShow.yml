@@ -38,7 +38,10 @@ groups:
       "031": marc_show/show_incipit
   show_admin: 
     all_tags: 
-    - "040"
+    - "000"
+    - "001"
+    - "003"
+    - "008"
     - "599"
     - "035"
     admin_only: true

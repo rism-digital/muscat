@@ -39,3 +39,9 @@ body.active_admin {
 #main_content_wrapper {
     max-width: 1500px;
 }
+
+#lang_menu ul {
+    float: left !important;
+    min-width: 50px !important;
+    max-width: 50px !important;
+}

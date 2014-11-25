@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
 
-  menu :parent => "admin_menu", url: ->{ users_path(locale: I18n.locale) }, :label => proc {I18n.t(:menu_users)}
+  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}
   
   permit_params :email, :password, :password_confirmation, :name, workgroup_ids: [], role_ids: []
   

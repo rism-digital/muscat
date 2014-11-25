@@ -3,7 +3,7 @@ ActiveAdmin.register Source do
 
   collection_action :autocomplete_source_std_title, :method => :get
   
-  menu :priority => 10, url: ->{ sources_path(locale: I18n.locale) }, :label => proc {I18n.t(:menu_sources)}
+  menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -143,6 +143,7 @@ ActiveAdmin.register Source do
   
   sidebar I18n.t(:sections), :class => "sidebar_tabs", :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
+    active_admin_submit_bar( self )
   end
   
   form do
@@ -150,7 +151,7 @@ ActiveAdmin.register Source do
     active_admin_edition_bar( self )
     @item =  @arbre_context.assigns[:item]
     render :partial => "editor/edit_wide"
-    active_admin_submit_bar( self )
+    #active_admin_submit_bar( self )
   end
   
 end

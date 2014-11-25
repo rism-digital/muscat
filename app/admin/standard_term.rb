@@ -1,6 +1,6 @@
 ActiveAdmin.register StandardTerm do
 
-  menu :parent => "indexes_menu", url: ->{ standard_terms_path(locale: I18n.locale) }, :label => proc {I18n.t(:menu_subjects)}
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_subjects)}
 
   collection_action :autocomplete_standard_term_term, :method => :get
 

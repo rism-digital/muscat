@@ -130,9 +130,21 @@ en:
     
   switch_language: "Switch language" 
   this_file_language: "English"
-
-  #################### MENUS
   
+  time:
+    formats:
+      default: "%H:%M"
+      short: "%H:%M"
+      long: "%H:%M"
+      
+  #################### MODELS      
+  activerecord:
+    models:
+      liturgical_feast:
+        one: "Liturgical feast"
+        other: "Liturgical feasts"
+        
+  #################### MENUS
   menu_home: "Home"
   menu_sources: "Sources"
   menu_indexes: "Indexes"
@@ -165,9 +177,7 @@ en:
   folders:
     save: "Save results to Folder"
     success: "Folder %{name} created with %{count} items."
-    too_many: "Cannot add more than %{max} items (you selected %{count})."
-  
-  #################### CONTROLLER STRATEGIES
+    too_many: "Cannot add more than %{max} items (%{count} séléctionés)."
   
   ############ filters
   filter_address: "Address"

@@ -12,20 +12,6 @@
   - LayoutDefault
   :filter: 
     default: true
-- :id: Print
-  :name: Print
-  :model: source
-  :labels: 
-  - BasicLabels
-  :rules: 
-  - BasicCataloguingRules
-  :options: 
-  - BasicFormOptions
-  :layout: 
-  - LayoutShow
-  :filter: 
-    leader: !ruby/regexp /.....cdd|ncm.............../
-    tag: "100"
 - :id: Show
   :name: Show
   :model: source
@@ -40,20 +26,6 @@
   :filter: 
     show_all: false
     show: true
-
-- :id: Holding
-  :name: holding
-  :model: source
-  :labels: 
-  - BasicLabels
-  :rules: 
-  - BasicCataloguingRules
-  :options: 
-  - BasicFormOptions
-  :layout: 
-  - LayoutHolding
-  :filter: 
-    holding: true
 
 # Configuration for person
 - :id: DefaultPerson

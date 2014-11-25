@@ -1,6 +1,6 @@
 ActiveAdmin.register Library do
   
-  menu :parent => "indexes_menu", url: ->{ libraries_path(locale: I18n.locale) }, :label => proc {I18n.t(:menu_library_sigla)}
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_library_sigla)}
 
   collection_action :autocomplete_library_siglum, :method => :get
 

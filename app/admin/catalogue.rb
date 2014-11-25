@@ -1,6 +1,6 @@
 ActiveAdmin.register Catalogue do
   
-  menu :parent => "indexes_menu", url: ->{ catalogues_path(locale: I18n.locale) }, :label => proc {I18n.t(:menu_catalogues)}
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_catalogues)}
 
   collection_action :autocomplete_catalogue_name, :method => :get
 
