@@ -320,9 +320,6 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 		   }
            $("html, body").animate({ scrollTop: 0 }, "fast");
            $('#dialog').text("Record saved!").attr("class","flash flash_notice");
-           setTimeout(function (){
-           window.location.replace("/"+rails_model+"/"+marc_id);
-                            }, 2000); 
 		},
 		data: {marc: JSON.stringify(json_marc), marc_editor_dest: destination_column, id: $('#id').val()},
 		//dataType: 'script',
