@@ -293,14 +293,13 @@ function marc_editor_help( url ) {
  * form_type: 0 = save, 1 = preview, 2 = inline save
  */
 function marc_editor_send_form( source_column, destination_column, form_type, rails_model ) {
-   
 	form = $('form', "#" + source_column);
 	json_marc = serialize_marc_editor_form(form);
-	
 	//$(form).valid();
 	url = "/" + rails_model + "/marc_editor_save"; ///form.attr("action");
+    var marc_id=json_marc["fields"][0]["001"];
 	if ( form_type == 1) {
-		url = "/manuscripts/marc_editor_preview";
+		url = "/"+rails_model;
 	}
 	else if ( form_type == 2) {
 		url = "/manuscripts/marc_editor_save_inline";
@@ -309,7 +308,6 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 	data = data + "&" + JSON.stringify(json_marc);
 	
 	$('#' + destination_column).block({ message: "Loading..." });
-	
 	$.ajax({
 		success: function() { 
 		   $('#' + destination_column).unblock();
@@ -319,12 +317,16 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 		   } else if (form_type == 1) {
 		      $('#dialog_preview').parent().css('position', 'fixed');
 		      $("#dialog_preview").dialog('open');
-		      //$('#dialog_preview').parent().css('position', 'fixed');
 		   }
+           $("html, body").animate({ scrollTop: 0 }, "fast");
+           $('#dialog').text("Record saved!").attr("class","flash flash_notice");
+           setTimeout(function (){
+           window.location.replace("/"+rails_model+"/"+marc_id);
+                            }, 2000); 
 		},
 		data: {marc: JSON.stringify(json_marc), marc_editor_dest: destination_column, id: $('#id').val()},
 		//dataType: 'script',
-		timeout: 20000, 
+		timeout: 20000,
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
@@ -358,3 +360,11 @@ function quick_search_form( base, lang ) {
    </div>";
    return output;
 }
+
+function marc_editor_cancel_form( ) {
+    marc_editor_form_changed = true;
+    var loc=location.href.substring(location.href.lastIndexOf("/"), -1);
+    window.location=loc;
+}
+
+
