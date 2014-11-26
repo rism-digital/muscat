@@ -21,11 +21,6 @@
       <li>
         <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
       </li>
-      <% unless current_user.to_s.blank? -%>
-      <li>
-        <%= link_to current_user, edit_user_registration_path %>
-      </li>
-      <% end %>
       <% else %>
       <li>
         <%= link_to t('blacklight.header_links.login'), new_user_session_path %>

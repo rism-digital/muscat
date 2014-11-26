@@ -217,16 +217,16 @@ ActiveAdmin.setup do |config|
   config.namespace :root do |admin|
     admin.build_menu :default do |menu|
       menu.add :label => proc {I18n.t(:menu_administration)}, id: 'admin_menu', :priority => 1
-      menu.add :label => proc {I18n.t(:menu_indexes)}, id: 'indexes_menu', :priority => 20
-    end
-    
-    admin.build_menu :utility_navigation do |menu|
-      menu.add  :label => proc {I18n.t(:menu_languages)}, id: 'lang_menu' do |lang|
+      menu.add  :label => proc {I18n.t(:menu_languages)}, id: 'lang_menu', :priority => 2 do |lang|
         lang.add :label => "EN", :url => proc { url_for(:locale => 'en') }, id: 'i18n-en', :priority => 1, :html_options   => {:style => 'float:left;'}
         lang.add :label => "DE", :url => proc { url_for(:locale => 'de') }, id: 'i18n-de', :priority => 2, :html_options   => {:style => 'float:left;'}
         lang.add :label => "FR", :url => proc { url_for(:locale => 'fr') }, id: 'i18n-fr', :priority => 3, :html_options   => {:style => 'float:left;'}
         lang.add :label => "IT", :url => proc { url_for(:locale => 'it') }, id: 'i18n-it', :priority => 4, :html_options   => {:style => 'float:left;'}
       end
+      menu.add :label => proc {I18n.t(:menu_indexes)}, id: 'indexes_menu', :priority => 20
+    end
+    
+    admin.build_menu :utility_navigation do |menu|
       admin.add_current_user_to_menu menu
       admin.add_logout_button_to_menu menu
     end

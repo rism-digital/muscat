@@ -1,5 +1,5 @@
-en:
+de:
   blacklight:
     application_name: 'Muscat'
     header_links:
-      logout: 'Logout'
+      logout: 'Abmelden'

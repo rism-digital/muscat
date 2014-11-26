@@ -20,8 +20,6 @@ $brand-primary: $primary-color;
 // Text color in the menu bar
 $navbar-height: 78px;
 $navbar-inverse-link-color: #cdcdcd;
-//$navbar-padding-horizontal:  -25px !default;
-//$navbar-inverse-link-hover-bg: #f00;
 
 @import "bootstrap-sprockets";
 @import 'bootstrap';
@@ -34,6 +32,11 @@ $navbar-inverse-link-color: #cdcdcd;
 #header-navbar {
     padding-left: 30px;
 }
+
+#opac-header {
+    margin-right: 30px;
+}
+
 
 #header-navbar .navbar-brand {
   /* The main logo image for the Blacklight instance */
