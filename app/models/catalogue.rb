@@ -84,4 +84,16 @@ class Catalogue < ActiveRecord::Base
       where("created_at > ?", 5.days.ago).limit(limit)
   end
 
+  def autocomplete_label
+    
+    aut = (author and !author.empty? ? author : nil)
+    des = (description and !description.empty? ? description.truncate(45) : nil)
+    dat = (date and !date.empty? ? date : nil)
+    
+    infos = [aut, dat, des].join(", ")
+    
+    "#{name}: #{infos}"
+    
+  end
+
 end

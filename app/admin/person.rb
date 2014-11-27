@@ -10,7 +10,7 @@ ActiveAdmin.register Person do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :person, :full_name
+    autocomplete :person, :full_name, :display_value => :autocomplete_label , :extra_data => [:life_dates]
     
     after_destroy :check_model_errors
     
