@@ -25,7 +25,7 @@ module ApplicationHelper
   end
   
   def source_default_autocomplete
-    autocomplete_source_std_title_sources_path
+    autocomplete_source_id_sources_path
   end
   
   def standard_term_default_autocomplete
