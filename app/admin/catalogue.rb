@@ -10,7 +10,7 @@ ActiveAdmin.register Catalogue do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :catalogue, :name, :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
+    autocomplete :catalogue, [:name, :author, :description], :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
     
     after_destroy :check_model_errors
     
