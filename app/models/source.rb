@@ -438,7 +438,12 @@ class Source < ActiveRecord::Base
       where("created_at > ?", 5.days.ago).limit(limit)
   end
   
-  def name
+  def name  
     "#{composer} - #{std_title}"
   end
+  
+  def autocomplete_label
+    "#{self.id}: #{self.composer} - #{self.std_title}"
+  end
+  
 end

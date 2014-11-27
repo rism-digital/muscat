@@ -189,4 +189,8 @@ class Person < ActiveRecord::Base
   def name
     return full_name
   end
+  
+  def autocomplete_label
+    "#{full_name}" + (life_dates && !life_dates.empty? ? "  - #{life_dates}" : "")
+  end
 end

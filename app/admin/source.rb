@@ -1,7 +1,7 @@
 ActiveAdmin.register Source do
   
 
-  collection_action :autocomplete_source_std_title, :method => :get
+  collection_action :autocomplete_source_id, :method => :get
   
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
@@ -15,7 +15,7 @@ ActiveAdmin.register Source do
                  #params['q'] = {:std_title_contains => "[Holding]"} 
         end
     end
-    autocomplete :source, :std_title
+    autocomplete :source, :id, :display_value => :autocomplete_label , :extra_data => [:std_title, :composer]
     
     def permitted_params
       params.permit!

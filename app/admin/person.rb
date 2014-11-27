@@ -10,7 +10,7 @@ ActiveAdmin.register Person do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :person, :full_name
+    autocomplete :person, :full_name, :display_value => :autocomplete_label , :extra_data => [:life_dates]
     
     after_destroy :check_model_errors
     
@@ -115,6 +115,7 @@ ActiveAdmin.register Person do
   
   sidebar I18n.t(:sections), :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
+    active_admin_submit_bar( self )
   end
   
   form :partial => "editor/edit_wide"
