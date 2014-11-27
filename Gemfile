@@ -51,7 +51,7 @@ gem 'sunspot_rails', git: 'https://github.com/sunspot/sunspot.git'
 gem 'sunspot_solr'
 gem 'awesome_print'
 gem 'progress_bar'
-gem "rails3-jquery-autocomplete"
+gem "rails3-jquery-autocomplete", github: 'rism-ch/rails3-jquery-autocomplete'
 gem "cancan"
 gem "rolify"
 group :development do

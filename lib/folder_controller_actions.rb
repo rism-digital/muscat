@@ -98,10 +98,14 @@ module FolderControllerActions
         hr
       end
     
-      #ul do
-      #  li link_to("Action 1", "#")
-      #  li link_to("Action 2", "#")
-      #end
+      ##aa_query = params[:q].split()
+      # Are we selecting a folder?
+      if params[:q].include?(:id_with_integer)
+        ul do
+          li link_to("Action 1", "#")
+          li link_to("Action 2", "#")
+        end
+      end
       
     end
   
