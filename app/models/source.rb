@@ -61,7 +61,7 @@ class Source < ActiveRecord::Base
   before_save :set_object_fields
   before_create :generate_id
   after_save :update_links, :reindex
-  before_destroy :destroy_links
+  before_destroy :update_links
   
   # alias for holding records
   alias_attribute :ms_condition, :title  
@@ -201,7 +201,7 @@ class Source < ActiveRecord::Base
   # the contents of the objects themselves, but it only
   # updates the relationship link tables on the DB.
   # It will update src_count if needed.
-  # This trigger is disables with suppress_recreate
+  # This trigger is disabled with suppress_recreate
   # src_count update is disabled with suppress_update_count
   # It will also update the 77x relations in MARC data
   # unless suppress_update_77x is set
