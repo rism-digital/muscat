@@ -120,7 +120,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Numero dell'incipit
-        fr: "Numéro de l'\xC5\x93uvre"
+        fr: "Numéro de l'œuvre"
         de: Incipitnummer
         en: Number of work
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -337,7 +337,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Translation
     1#: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: "S\xC3\xAC"
+        it: "Sì"
         fr: Oui
         de: Ja
         en: "Yes"
@@ -1643,7 +1643,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Atto o sezione, intestazione
         fr: "Numéro de la partie ou section"
-        de: "Aktnummer/Fundstelle, \xC3\x9Cberschrift"
+        de: "Aktnummer/Fundstelle, Überschrift"
         en: Number of part or section
     p: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -2283,7 +2283,7 @@ trl: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Traduttore
     fr: Traducteur
-    de: "\xC3\x9Cbersetzer"
+    de: "Übersetzer"
     en: Translater
 voc: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
