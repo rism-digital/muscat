@@ -70,6 +70,7 @@ de:
       labels:
         destroy: "Lösche"
         folder: "Erstelle Ordner mit"
+
     comments:
       resource_type: "Res­sour­cen-Typ"
       author_type: "Autor-Typ"
