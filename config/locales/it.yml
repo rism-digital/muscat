@@ -152,6 +152,7 @@ it:
   menu_users: "Utenti"
   menu_workgroups: "Gruppi"
   menu_administration: "Amministrazione"
+  menu_comments: "COMMENTS"
   menu_languages: "Lingue"
   
   ### VARIOUS ELEMENTS

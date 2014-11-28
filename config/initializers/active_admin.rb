@@ -121,10 +121,11 @@ ActiveAdmin.setup do |config|
   config.allow_comments = true
   #
   # You can disable the menu item for the comments index page:
-  # config.show_comments_in_menu = false
+  # Menus set by hand for translation, see below
+  config.show_comments_in_menu = false
   #
   # You can change the name under which comments are registered:
-  # config.comments_registration_name = 'AdminComment'
+  #config.comments_registration_name = 'AdminComment'
 
 
   # == Batch Actions
@@ -223,7 +224,10 @@ ActiveAdmin.setup do |config|
         lang.add :label => "FR", :url => proc { url_for(:locale => 'fr') }, id: 'i18n-fr', :priority => 3, :html_options   => {:style => 'float:left;'}
         lang.add :label => "IT", :url => proc { url_for(:locale => 'it') }, id: 'i18n-it', :priority => 4, :html_options   => {:style => 'float:left;'}
       end
+      # Add the menu by hand because otherwise it is not getting translated
+      menu.add :label => proc {I18n.t(:menu_comments)}, id: 'comments_menu', :priority => 4, :url => "/comments"
       menu.add :label => proc {I18n.t(:menu_indexes)}, id: 'indexes_menu', :priority => 20
+
     end
     
     admin.build_menu :utility_navigation do |menu|
