@@ -1,0 +1,47 @@
+<%- extended_help = @editor_profile.get_tag_extended_help(tag_name) %>
+<%
+	no_add = false
+	no_delete = false
+	if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name]["layout"]
+		if @editor_profile.options_config[tag_name]["layout"]["hide_add_button"]
+			no_add = true
+		end
+	end
+	
+	allow_new = @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name].include?("layout_new")
+	
+	if allow_new && is_new
+		no_add = true
+		no_delete = true
+	end
+
+%>
+<div style="float:right" class="_lp_tag_header ui-corner-all">
+	<div  class="abuttonset abuttonset-multi">
+		<% if allow_new && !empty_header %>
+			<% if is_new %>
+			<a class="abutton ui-state-default abutton-icon-solo ui-corner-all" href="#" data-header-button="edit" title="Edit existing Auth file"><span class="ui-icon ui-icon-locked"></span>_</a>
+			<% else %>
+			<a class="abutton ui-state-default abutton-icon-solo ui-corner-all" href="#" data-header-button="new" title="Create New Auth File"><span class="ui-icon ui-icon-unlocked"></span>_</a>
+			<% end %>
+		<% end %>
+
+		<%- if !extended_help.empty? %>
+        <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="help" data-help="<%= extended_help -%>"  title="Help"><span class="ui-icon ui-icon-help"></span>_</a>
+		<%- end %>
+
+		
+	    <%- if (@item.marc.config.multiples_allowed?(tag_name) && no_add == false) || empty_header-%>
+        <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="add" title="Add tag"><span class="ui-icon ui-icon-plus"></span>_</a>
+        <%- end -%>	
+
+        <%- if !no_delete && !empty_header -%>
+		<a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="delete" title="Delete"><span class="ui-icon ui-icon-trash"></span>_</a>
+	    <% end %>
+
+        <%- if !empty_header -%>
+	    <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="toggle"  title="Toggle"><span class="ui-icon ui-icon-triangle-1-s"></span>_</a>
+        <% end %>
+		
+	</div>
+</div>

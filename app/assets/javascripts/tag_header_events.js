@@ -87,6 +87,24 @@ used for _tag_header partial
 	        $(show_id).fadeIn('fast');
 	    });
 	}
+    
+	function tag_header_help(elem) {
+        help_div = elem.parents(".tag_container").children(".tag_help_collapsable");
+        if ( help_div.css('display') !== 'none') {
+            help_div.fadeOut('fast');
+            return;
+        }
+    	$.ajax({
+    		success: function(data) {
+                help_div.children(".help_content").html(data);
+                help_div.fadeIn('fast');
+    		},
+    		dataType: 'html',
+    		timeout: 1000, 
+    		type: 'get',
+    		url: elem.data("help")
+    	});
+	}
 	
 	var self = null;
 	jQuery.fn.tagHeaderButtons = function() {
@@ -128,7 +146,10 @@ used for _tag_header partial
 					tag_header_new($(this));
 				} else if ($(this).data("header-button") == "edit") {
 					tag_header_edit($(this));
+				} else if ($(this).data("header-button") == "help") {
+					tag_header_help($(this));
 				}
+                
 				
 			});
 		}

@@ -1,24 +1,13 @@
-<% function = is_new ? "new" : "edit"%>
+<% function = is_new ? "new" : "edit" %>
 <% style_hide = is_new ? "style=\"display: none\"".html_safe : "style=\"display: block\"".html_safe %>
 
 <div class="tag_container" data-tag="<%= tag_name %>" data-function="<%= function %>" <%= style_hide -%>>
-    <table  class="tag_header" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <th class="col col-label">
-                <%= @editor_profile.get_label(tag_name) -%> (<%= tag_name %>)
-            </th>
-            <th class="col">
-                <%= render :partial => @editor_profile.get_tag_partial("tag_header", tag_name), 
-		:locals => { :tag_name => tag_name, :marc_tag => marc_tag, :is_new => is_new  } %>
-            </th>
-        </tr>
-    </table>
-    
-	
+    <%= render :partial => "editor/tag_header", 
+        :locals => { :tag_name => tag_name, :is_new => is_new, :empty_header => false  } %>
+
 	<div class="tag_content_collapsable">
 		<%= render :partial => @editor_profile.get_tag_partial("tag", tag_name), 
 			:locals => { :tag_name => tag_name, :marc_tag => marc_tag, :is_new => is_new  } %>
-	</div>
-		<%= render :partial => @editor_profile.get_tag_partial("tag_footer", tag_name), 
-			:locals => { :tag_name => tag_name, :marc_tag => marc_tag  } %>
+    </div>
+    
 </div>
