@@ -13,10 +13,16 @@
 			}
 		};
 		
+		if (!this.textareaAutogrow) {
+			this.textareaAutogrow = new jQuery.textareaAutogrow(this);
+		}
+		
 		if (jQuery.fn.on !== undefined) {
+			jQuery(document).on('update', this.selector, handler);
 			return jQuery(document).on('focus', this.selector, handler);
+			//return 
 		} else {
-			return this.live('focus', handler);
+			return this.live('load', handler);
 		}
 	};
 
@@ -40,10 +46,7 @@
 	
 	jQuery(document).ready(function() {
 		jQuery(".autogrow").textareaAutogrow();
-	});
-	
-	jQuery(document).ready(function(){
-		jQuery('.autogrow').trigger('autosize.resize');
+		jQuery(".autogrow").trigger('update');
 	});
 	
 })(jQuery);

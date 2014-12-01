@@ -320,6 +320,7 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 		   }
            $("html, body").animate({ scrollTop: 0 }, "fast");
            $('#dialog').text("Record saved!").attr("class","flash flash_notice");
+		   $(".autogrow").trigger('update'); // Have them grow again
 		},
 		data: {marc: JSON.stringify(json_marc), marc_editor_dest: destination_column, id: $('#id').val()},
 		//dataType: 'script',
@@ -327,7 +328,7 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Editor reload failed (but data saved). Page will be reloaded. (" 
+			alert ("Error saving page! Page will be reloaded. (" 
 					+ textStatus + " " 
 					+ errorThrown);
 			//location.reload();
