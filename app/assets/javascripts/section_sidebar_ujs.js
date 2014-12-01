@@ -32,7 +32,9 @@ var init_sidebar_actions = function () {
 		} else {
 			show_tab_group(tname);
 		}
-
+		
+		window.scrollTo(0, 0);
+		
 	});
 };
 
