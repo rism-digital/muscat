@@ -40,9 +40,20 @@ module MarcControllerActions
       @item.save
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
 
-      @editor_profile = EditorConfiguration.get_applicable_layout @item
-      @source = @item
-      render :template => 'editor/reload_editor'
+     # @editor_profile = EditorConfiguration.get_applicable_layout @item
+     # @source = @item
+     
+     # build the dynamic model path
+      model_for_path = self.resource_class.to_s.underscore.downcase
+      link_function = "edit_#{model_for_path}_path"
+     
+      path =  send(link_function, @item.id) #edit_source_path(@item.id)
+
+      respond_to do |format|
+        format.js { render :json => { :redirect => path }.to_json }
+      end
+
+      #render :template => 'editor/reload_editor'
 
     end
     

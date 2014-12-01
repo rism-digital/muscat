@@ -307,9 +307,10 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 	var data = "marc_editor_dest=" + destination_column;
 	data = data + "&" + JSON.stringify(json_marc);
 	
-	$('#' + destination_column).block({ message: "Loading..." });
+	//$('#' + destination_column).block({ message: "Loading..." });
 	$.ajax({
-		success: function() { 
+		success: function(data) {
+			/*
 		   $('#' + destination_column).unblock();
 		   //location.reload();
 		   if (form_type == 0) {
@@ -321,9 +322,16 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
            $("html, body").animate({ scrollTop: 0 }, "fast");
            $('#dialog').text("Record saved!").attr("class","flash flash_notice");
 		   $(".autogrow").trigger('update'); // Have them grow again
+		   window.location.reload();
+			*/
+			
+			new_url = data.redirect;
+			
+			window.location.href = new_url;
+			
 		},
 		data: {marc: JSON.stringify(json_marc), marc_editor_dest: destination_column, id: $('#id').val()},
-		//dataType: 'script',
+		dataType: 'json',
 		timeout: 20000,
 		type: 'post',
 		url: url, 
