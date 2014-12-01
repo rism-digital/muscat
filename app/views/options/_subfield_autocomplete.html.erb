@@ -1,5 +1,5 @@
 <%- if (params['width']==100 || params['growfield'])  %>
-	<textarea cols="100" class="marc_editor_growfield subfield_entry serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" rows="1"><%= h marc_subfield.content %></textarea>
+	<textarea rows="1" cols="100" class="subfield_entry serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" rows="1"><%= h marc_subfield.content %></textarea>
 <%- else %>
 	<input class="subfield_entry serialize_marc" size="100" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>" />
 <%- end %>
