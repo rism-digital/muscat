@@ -1,6 +1,8 @@
 class Folder < ActiveRecord::Base
   
-  has_many :folder_items, :dependent => :destroy
+  has_many :folder_items, :dependent => :delete_all
+  
+  #after_destroy :remove_links
   
   # Looks to see if an item is in the current folder.
   def has_item?(item)
@@ -32,4 +34,8 @@ class Folder < ActiveRecord::Base
     return true
   end
     
+    
+  #def remove_links
+  #  FolderItem.clean_index_orphans
+  #end
 end
