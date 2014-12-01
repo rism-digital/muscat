@@ -96,7 +96,7 @@ ActiveAdmin.register Source do
   filter :title_contains, :as => :string
   filter :std_title_contains, :as => :string
   filter :composer_contains, :as => :string
-  filter :lib_siglum_contains, :label => I18n.t(:library_sigla_contains), :as => :string
+  filter :lib_siglum_contains, :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
   # This filter is the "any field" one
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   # This filter passes the value to the with() function in seach

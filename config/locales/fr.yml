@@ -154,6 +154,7 @@ fr:
   ### VARIOUS ELEMENTS
   recent_sources: "Sources modifiées récemment"
   any_field_contains: "N'importe quel champ"
+  library_sigla_contains: "La cote contient"
   is_in_folder: "Est dans le dossier"
   workgroups: "Groupes"
   user_details: "Détail de l'utilisateur"
