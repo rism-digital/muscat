@@ -38,14 +38,11 @@ used for _tag_header partial
 			OK: function() {
 				
 				dt_id = button_id.parents(".tag_toplevel_container");
-				tag = dt_id.data("tag");
-	
-				// Enable the tag menu
-				tag_menu = dt_id.parents(".marc_editor_panel_content");
-				tag_menu.find("[value=" + tag + "]").removeAttr("disabled");
 	
 				dt_id.fadeOut('fast', function() {
+                    tag_group = dt_id.parents(".tag_group");
 					dt_id.remove();
+                    update_empty_tag( tag_group );
 				});
 				
 				$(this).dialog('close');
@@ -54,6 +51,15 @@ used for _tag_header partial
 			});
 		$("#dialog").dialog('open');
 	}
+    
+    function update_empty_tag(tag_group) {
+        if ( tag_group.children(".marc_editor_tag_block").children().size() > 0 ) {
+            tag_group.children(".tag_empty_container").hide();
+        }
+        else {
+            tag_group.children(".tag_empty_container").show();
+        }
+    }
 	
 	function tag_header_add(elem) {
 		placeholder = elem.parents(".tag_group").children(".tag_placeholders");
@@ -64,13 +70,25 @@ used for _tag_header partial
 		new_dt.insertAfter(current_dt);
 		new_dt.fadeIn('fast');
 	}
+    
+	function tag_header_add_from_empty(elem) {
+        // hide help if necessary
+        elem.parents(".tag_container").children(".tag_help_collapsable").hide();
+		placeholder = elem.parents(".tag_group").children(".tag_placeholders");
+		parent_dl = elem.parents(".tag_group").children(".marc_editor_tag_block");
+
+		new_dt = placeholder.clone();
+		new_dt.toggleClass('tag_placeholders tag_toplevel_container');
+		parent_dl.append(new_dt);
+		new_dt.fadeIn('fast');
+        update_empty_tag( elem.parents(".tag_group") );
+	}
 
 	function tag_header_edit(elem) {
 		dt = elem.parents(".tag_toplevel_container");
 	
 		show_id = dt.find('.tag_container[data-function="edit"]');
 		hide_id = dt.find('.tag_container[data-function="new"]');
-
 		
 	    $(hide_id).fadeOut('fast', function(){
 	        $(show_id).fadeIn('fast');
@@ -86,6 +104,24 @@ used for _tag_header partial
 	    $(hide_id).fadeOut('fast', function(){
 	        $(show_id).fadeIn('fast');
 	    });
+	}
+    
+	function tag_header_help(elem) {
+        help_div = elem.parents(".tag_container").children(".tag_help_collapsable");
+        if ( help_div.css('display') !== 'none') {
+            help_div.fadeOut('fast');
+            return;
+        }
+    	$.ajax({
+    		success: function(data) {
+                help_div.children(".help_content").html(data);
+                help_div.fadeIn('fast');
+    		},
+    		dataType: 'html',
+    		timeout: 1000, 
+    		type: 'get',
+    		url: elem.data("help")
+    	});
 	}
 	
 	var self = null;
@@ -124,11 +160,16 @@ used for _tag_header partial
 					tag_header_delete($(this));
 				} else if ($(this).data("header-button") == "add") {
 					tag_header_add($(this));
+				} else if ($(this).data("header-button") == "add-from-empty") {
+					tag_header_add_from_empty($(this));
 				} else if ($(this).data("header-button") == "new") {
 					tag_header_new($(this));
 				} else if ($(this).data("header-button") == "edit") {
 					tag_header_edit($(this));
+				} else if ($(this).data("header-button") == "help") {
+					tag_header_help($(this));
 				}
+                
 				
 			});
 		}

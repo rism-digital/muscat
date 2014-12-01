@@ -39,6 +39,16 @@
                         margin-left: 4px !important; 
                     }
                 }
+                div.tag_help_collapsable {
+                    background: #fff;
+                    border: 1px solid $primary-color;
+                    padding: 10px; 
+                    margin: 5px 0px;
+                    display: none;
+                    * p {
+                        font-weight: normal;                        
+                    }
+                }
                 table {
                     margin-bottom: 1px;
                 }
@@ -52,7 +62,6 @@
                     }
                     div.add_subfield_button {
                         float: right; 
-                        padding-right: 5px;
                         font-size: 1.3em;
                     }          
                     * input,
@@ -161,6 +170,7 @@ button.abutton_condensed .ui-icon {
 }
 .abutton_condensed { 
    padding: 1px;
+   padding-right: 5px;
    height: 12px;
    line-height: 0.8em;
 }

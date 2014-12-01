@@ -6,9 +6,6 @@ group
 			tag_div
 				tag_header
 				tag
-				tag_footer
-		tag_list_footer
-
 -->
 <%- 
 	group_title = @editor_profile.get_label(group)
@@ -32,10 +29,6 @@ group
 	<h3><%= group_title -%></h3>
 	
 	<div class="marc_editor_panel_content">
-		
-		<%= render :partial => "editor/group_add_tag", :locals => { :render_panel => render_panel, :group => group, :tag_names => tag_names } %>
-		<div style="clear:both;"></div>
-		
 		<div class="marc_editor_group_contents">
 			<%- tag_names.each do |tag_name| -%>
 				<%= render :partial => "editor/tag_list_div",
