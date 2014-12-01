@@ -158,6 +158,7 @@ it:
   ### VARIOUS ELEMENTS
   recent_sources: "Fonti modificate di recente"
   any_field_contains: "Qualsiasi campo contiene"
+  library_sigla_contains: "SIGLUM CONTAINS"
   is_in_folder: "IS IN FOLDER"
   workgroups: "Gruppi"
   user_details: "Dettagli per l'Utente"

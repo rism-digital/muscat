@@ -167,6 +167,7 @@ en:
   ### VARIOUS ELEMENTS
   recent_sources: "Recent Sources"
   any_field_contains: "Any Field Contains"
+  library_sigla_contains: "Siglum Contains"
   is_in_folder: "Is in folder"
   workgroups: "Workgroups"
   user_details: "User Details"

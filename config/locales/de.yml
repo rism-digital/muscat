@@ -153,12 +153,13 @@ de:
   menu_users: "Benutzer"
   menu_workgroups: "Benutzergruppen"
   menu_administration: "Administration"
-  menu_comments: "COMMENTS"
+  menu_comments: "Kommentare"
   menu_languages: "Sprache"
   
   ### VARIOUS ELEMENTS
   recent_sources: "Neueste Einträge"
   any_field_contains: "Irgendein Feld enthält"
+  library_sigla_contains: "Sigel enthält"
   is_in_folder: "Ist im Ordner"
   workgroups: "Benutzergruppen"
   user_details: "Benutzerinfo"
@@ -242,7 +243,7 @@ de:
   filter_volume: "Band"
   filter_wf: "WF"
   filter_wf_audit: "WF audit"
-  filter_wf_stage: "WF stage"
+  filter_wf_stage: "Status"
   filter_distribution: "Besetzung"
   filter_dist_exclude: "Ausschliessen"
   filter_dist_594a: "Vokalstimmen (Solo)"
