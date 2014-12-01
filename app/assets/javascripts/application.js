@@ -24,10 +24,12 @@
 //= require jquery.dirtyFields
 //= require jquery.maskedinput
 //= require jquery.validate
+//= require jquery.autosize.min
 //= require relator_codes_cascade_ujs
 //= require relator_codes_single_ujs
 //= require jquery.scrollTo.js
 //= require pae_incipit_render_ujs
+//= require textarea_autogrow_ujs
 //= require_tree .
 //= require autocomplete-rails
 

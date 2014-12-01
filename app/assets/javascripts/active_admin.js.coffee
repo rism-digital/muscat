@@ -13,12 +13,14 @@
 #= require jquery.maskedinput
 #= require jquery.validate
 #= require jquery.scrollTo.js
+#= require jquery.autosize.min
 #= require rism.localisation
 #= require autocomplete-rails
 #= require relator_codes_cascade_ujs
 #= require relator_codes_single_ujs
 #= require tag_header_events
-#= require section_sidebar_ujs.js
-#= require pae_incipit_render_ujs.js
+#= require section_sidebar_ujs
+#= require pae_incipit_render_ujs
+#= require textarea_autogrow_ujs
 #= require blacklight_range_limit
 #= require folder_actions
