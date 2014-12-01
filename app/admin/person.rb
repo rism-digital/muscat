@@ -52,8 +52,9 @@ ActiveAdmin.register Person do
       new_marc.load_source false # this will need to be fixed
       @person.marc = new_marc
 
-      @page_title = I18n.t(:new_person)
       @editor_profile = EditorConfiguration.get_applicable_layout @person
+      # Since we have only one default template, no need to change the title
+      #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
       #To transmit correctly @item we need to have @source initialized
       @item = @person
     end

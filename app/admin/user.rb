@@ -2,7 +2,17 @@ ActiveAdmin.register User do
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ can? :manage, User }
   
   permit_params :email, :password, :password_confirmation, :name, workgroup_ids: [], role_ids: []
-  
+
+  controller do
+    def update
+      if params[:user][:password].blank?
+        params[:user].delete("password")
+        params[:user].delete("password_confirmation")
+      end
+    super
+    end
+  end
+
   index do
     selectable_column
     id_column
@@ -28,11 +38,12 @@ ActiveAdmin.register User do
     f.inputs I18n.t(:user_details) do
       f.input :name
       f.input :email
+
       if can? :manage, User
         f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all 
         f.input :password
         f.input :password_confirmation
-        f.input :roles, as: :check_boxes, multiple: true, collection: Role.all
+        f.input :roles, as: :select, multiple: false, collection: Role.all
       end
     end
     f.actions
