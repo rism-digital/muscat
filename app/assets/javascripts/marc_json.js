@@ -132,7 +132,9 @@ function serialize_element( element, tag, json_marc ) {
 			controlfield[tag] = $(this).val();
 		} else {
 			// This is a norma subfield, eg. $a
-			subfields_unordered[field + "-" + index] = $(this).val();
+			// Also replace the newlines if any with spaces
+			// it is also doublecheked in the marc_node
+			subfields_unordered[field + "-" + index] = $(this).val().replace('\n', " ");
 		}
 		
 	});

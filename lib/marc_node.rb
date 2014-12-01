@@ -308,7 +308,7 @@ class MarcNode
     if @tag =~ /^[\d\w]$/
       # subfield
       if value
-        value = value.to_s.gsub(/\$/, Marc::DOLLAR_STRING)
+        value = clean_string(value.to_s) #.gsub(/\$/, Marc::DOLLAR_STRING)
         out = "$#{@tag}#{value}"
       end
     else
@@ -510,5 +510,11 @@ class MarcNode
 
   alias length size
   alias << add
+  
+  private
+  def clean_string(str)
+    single_space = " "
+    return str.gsub(/[\r\n]+/, single_space).gsub(/\n+/, single_space).gsub(/\r+/, single_space).gsub(/\$/, Marc::DOLLAR_STRING)
+  end
   
 end
