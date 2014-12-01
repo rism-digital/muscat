@@ -72,7 +72,8 @@ used for _tag_header partial
 	}
     
 	function tag_header_add_from_empty(elem) {
-        console.log( "add" );
+        // hide help if necessary
+        elem.parents(".tag_container").children(".tag_help_collapsable").hide();
 		placeholder = elem.parents(".tag_group").children(".tag_placeholders");
 		parent_dl = elem.parents(".tag_group").children(".marc_editor_tag_block");
 
