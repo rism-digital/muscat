@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030182144) do
+ActiveRecord::Schema.define(version: 20141130172121) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20141030182144) do
     t.integer  "src_count",              default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "marc_source"
   end
 
   add_index "catalogues", ["name"], name: "index_catalogues_on_name", using: :btree
@@ -133,6 +134,21 @@ ActiveRecord::Schema.define(version: 20141030182144) do
   add_index "do_items", ["item_id"], name: "index_do_items_on_item_id", using: :btree
   add_index "do_items", ["item_type"], name: "index_do_items_on_item_type", using: :btree
 
+  create_table "folder_items", force: true do |t|
+    t.integer  "folder_id"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "folders", force: true do |t|
+    t.string   "name"
+    t.string   "folder_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "institutions", force: true do |t|
     t.string   "siglum",      limit: 32
     t.string   "name"
@@ -164,12 +180,20 @@ ActiveRecord::Schema.define(version: 20141030182144) do
   add_index "institutions_sources", ["institution_id"], name: "index_institutions_sources_on_institution_id", using: :btree
   add_index "institutions_sources", ["source_id"], name: "index_institutions_sources_on_source_id", using: :btree
 
+  create_table "institutions_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "institution_id"
+  end
+
+  add_index "institutions_users", ["institution_id"], name: "index_institutions_users_on_institution_id", using: :btree
+  add_index "institutions_users", ["user_id"], name: "index_institutions_users_on_user_id", using: :btree
+
   create_table "institutions_workgroups", id: false, force: true do |t|
     t.integer "workgroup_id"
     t.integer "institution_id"
   end
 
-  add_index "institutions_workgroups", ["institution_id"], name: "index_workgroups_institutions_on_library_id", using: :btree
+  add_index "institutions_workgroups", ["institution_id"], name: "index_workgroups_institutions_on_institution_id", using: :btree
   add_index "institutions_workgroups", ["workgroup_id"], name: "index_workgroups_institutions_on_workgroup_id", using: :btree
 
   create_table "liturgical_feasts", force: true do |t|
@@ -278,24 +302,24 @@ ActiveRecord::Schema.define(version: 20141030182144) do
 
   create_table "sources", force: true do |t|
     t.integer  "source_id"
-    t.integer  "record_type", limit: 1,    default: 0
+    t.integer  "record_type", limit: 1,   default: 0
     t.string   "std_title"
     t.string   "std_title_d"
     t.string   "composer"
     t.string   "composer_d"
-    t.string   "title",       limit: 2048
-    t.string   "title_d",     limit: 2048
+    t.string   "title",       limit: 256
+    t.string   "title_d",     limit: 256
     t.string   "shelf_mark"
     t.string   "language",    limit: 16
     t.integer  "date_from"
     t.integer  "date_to"
     t.string   "lib_siglum"
     t.text     "marc_source"
-    t.string   "wf_audit",    limit: 16,   default: "unapproved"
-    t.string   "wf_stage",    limit: 16,   default: "unpublished"
+    t.string   "wf_audit",    limit: 16,  default: "unapproved"
+    t.string   "wf_stage",    limit: 16,  default: "unpublished"
     t.string   "wf_notes"
-    t.integer  "wf_owner",                 default: 0
-    t.integer  "wf_version",               default: 0
+    t.integer  "wf_owner",                default: 0
+    t.integer  "wf_version",              default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
