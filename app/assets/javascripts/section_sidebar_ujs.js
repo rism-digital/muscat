@@ -33,6 +33,12 @@ var init_sidebar_actions = function () {
 			show_tab_group(tname);
 		}
 		
+		// If we are in preview switch to edit
+		if (!$('#marc_editor_panel').is(':visible')) {
+			$('#marc_editor_preview').hide();
+			$('#marc_editor_panel').show();
+		}
+		
 		window.scrollTo(0, 0);
 		
 	});
