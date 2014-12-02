@@ -38,13 +38,6 @@
     :fields:
     - - ""
       - :no_browse: true
-  "007": 
-    :master: ""
-    :indicator: "" 
-    :occurances: "*"
-    :fields:
-    - - ""
-      - :no_browse: true
   "008": 
     :master: ""
     :indicator: ""
@@ -52,45 +45,6 @@
     :fields:
     - - ""
       - :no_browse: true
-  "035": 
-    :master: a
-    :indicator: "##"
-    :occurances: "*"    
-    :fields: 
-    - - a
-      - :occurances: "?"
-  "039": 
-    :master: a
-    :indicator: "##"
-    :occurances: "*"    
-    :fields: 
-    - - a
-      - :occurances: "?"
-  "040": 
-    :master: a
-    :indicator: "##"
-    :occurances: "1"
-    :fields: 
-    - - a
-      - :occurances: "1"
-    - - b
-      - :occurances: "1"
-    - - c
-      - :occurances: "1"
-    - - d
-      - :occurances: "?"
-
-  "043": 
-    :master: a
-    :indicator: "##"
-    :occurances: "*"
-    :fields: 
-    - - a
-      - :occurances: "*"
-    - - b
-      - :occurances: "*"
-    - - c
-      - :occurances: "*"
   "100": 
     :master: a
     :indicator: "1#"
@@ -123,59 +77,6 @@
     - - a
       - :occurances: "?"
     - - c
-      - :occurances: "?"
-# This is a linked field
-  "509": 
-    :master: "0"
-    :indicator: "1#"
-    :occurances: "*"
-    :fields: 
-    - - "0"
-      - :occurances: "?"
-    - - "9"
-      - :occurances: "?"
-  "549": 
-    :master: a
-    :indicator: "##"
-    :occurances: "*"
-    :fields: 
-    - - a
-      - :occurances: "?"
-  "559": 
-    :master: a
-    :indicator: "##"
-    :occurances: "*"
-    :fields: 
-    - - a
-      - :occurances: "?"
-  "569": 
-    :master: a
-    :indicator: "##"
-    :occurances: "*"
-    :fields: 
-    - - a
-      - :occurances: "?"    
-  "670": 
-    :master: a
-    :indicator: "##"
-    :occurances: "*"
-    :fields: 
-    - - a
-      - :occurances: "?"
-    - - b
-      - :occurances: "?"
-    - - u
-      - :occurances: "?"
-  "678": 
-    :master: a
-    :indicator: "##"
-    :occurances: "*"
-    :fields: 
-    - - a
-      - :occurances: "?"
-    - - b
-      - :occurances: "?"
-    - - u
       - :occurances: "?"
   "700": 
     :master: a

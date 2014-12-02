@@ -101,4 +101,21 @@
     show_all: false
     show: true
 
+- :id: Catalogue
+  :name: catalogue
+  :model: catalogue
+  :labels: 
+  - CatalogueBasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - CatalogueBasicFormOptions
+  :layout: 
+  - CatalogueLayoutShow
+  :filter:
+    default: true 
+    show_all: false
+    show: true
+
+
 

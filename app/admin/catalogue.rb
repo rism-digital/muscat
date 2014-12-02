@@ -24,8 +24,15 @@ ActiveAdmin.register Catalogue do
       params.permit!
     end
     
+    def edit
+      @item = Catalogue.find(params[:id])
+      @editor_profile = EditorConfiguration.get_applicable_layout @item
+      @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+    end
+
     def show
       @catalogue = Catalogue.find(params[:id])
+      @editor_profile = EditorConfiguration.get_show_layout @catalogue
       @prev_item, @next_item, @prev_page, @next_page = Catalogue.near_items_as_ransack(params, @catalogue)
     end
     
@@ -40,6 +47,7 @@ ActiveAdmin.register Catalogue do
     
   end
   
+  include MarcControllerActions
   ###########
   ## Index ##
   ###########
@@ -56,6 +64,7 @@ ActiveAdmin.register Catalogue do
     selectable_column
     column (I18n.t :filter_id), :id    
     column (I18n.t :filter_name), :name
+    column (I18n.t :filter_name), :revue_title
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count
     actions
@@ -89,17 +98,12 @@ end
   ## Edit ##
   ##########
   
-  form do |f|
-    f.inputs do
-      f.input :name, :label => (I18n.t :filter_name)
-      f.input :author, :label => (I18n.t :filter_author)
-      f.input :description, :label => (I18n.t :filter_description)
-      f.input :revue_title, :label => (I18n.t :filter_revue_title)
-      f.input :volume, :label => (I18n.t :filter_volume)
-      f.input :date, :label => (I18n.t :filter_date)
-      f.input :pages, :label => (I18n.t :filter_pages)
-    end
-    f.actions
+  form do
+    # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
+    active_admin_edition_bar( self )
+    @item =  @arbre_context.assigns[:item]
+    render :partial => "editor/edit_wide"
+    active_admin_submit_bar( self )
   end
   
 end
