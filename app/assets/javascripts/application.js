@@ -30,6 +30,7 @@
 //= require jquery.scrollTo.js
 //= require pae_incipit_render_ujs
 //= require textarea_autogrow_ujs
+//= require inline_autocomplete_ujs
 //= require_tree .
 //= require autocomplete-rails
 

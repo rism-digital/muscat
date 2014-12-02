@@ -1,27 +1,17 @@
+<%-	
+
+data = []
+
+params['values'].each do |val|
+	data << {label: val, value: val}
+end 
+
+%>
+
+<div data-autocomplete-values="<%= data.to_json %>"></div>
+
 <%- if (params['width']==100 || params['growfield'])  %>
-	<textarea rows="1" cols="100" class="subfield_entry serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" rows="1"><%= h marc_subfield.content %></textarea>
+	<textarea rows="1" cols="100" class="subfield_entry serialize_marc inline-autocomplete" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" rows="1"><%= h marc_subfield.content %></textarea>
 <%- else %>
-	<input class="subfield_entry serialize_marc" size="100" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>" />
+	<input class="subfield_entry serialize_marc inline-autocomplete" size="100" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>" />
 <%- end %>
-
-<script>
-/* FIXME
-	jquery_tag_id = "<%# tag_id -%>".replace(/(\[|\])/g, '\\$1');
-	var valuesArray = [
-	<%- params['values'].each do |val| -%>
-		{label: "<%=val%>", value: "<%=val%>"},
-	<%- end -%>
-	];
-	$("#" + jquery_tag_id ).autocomplete(
-			{
-				source: valuesArray,
-				delay:10,
-				minChars:0,
-				matchSubset:0,
-				autoFill:true,
-				maxItemsToShow:10
-			}
-		);
-*/
-</script>
-

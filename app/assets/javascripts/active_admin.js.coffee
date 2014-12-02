@@ -18,6 +18,7 @@
 #= require autocomplete-rails
 #= require relator_codes_cascade_ujs
 #= require relator_codes_single_ujs
+#= require inline_autocomplete_ujs
 #= require tag_header_events
 #= require section_sidebar_ujs
 #= require pae_incipit_render_ujs
