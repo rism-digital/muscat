@@ -13,6 +13,7 @@
 		};
 		
 		if (jQuery.fn.on !== undefined) {
+			jQuery(document).on('update', this.selector, handler);
 			return jQuery(document).on('keydown', this.selector, handler);
 		} else {
 			return this.live('keydown', handler);
@@ -34,14 +35,23 @@
 			// Atach to the keyup event
 			$(e).keyup(function(e) {
 				e.preventDefault();
-				
-				grid = $(this).parents(".tag_grid");
+				display_music(this)
+			});
+			
+			// Handle the button
+			$('a[data-pae-button]').click(function(e) {
+				e.preventDefault();
+				display_music(this);
+			});
+			
+			function display_music(obj) {
+				grid = $(obj).parents(".tag_grid");
 			
 				pae_key = $(".subfield_entry[data-subfield='n']", grid).val();
 				pae_time = $(".subfield_entry[data-subfield='o']", grid).val();
 				pae_clef = $(".subfield_entry[data-subfield='g']", grid).val();
-				pae_data = $(this).val();
-				width = $(this).width(); // Get the parent textbox with so the image is the same
+				pae_data = $(".subfield_entry[data-subfield='p']", grid).val(); //$(obj).val();
+				width = $(obj).width(); // Get the parent textbox with so the image is the same
 			
 				target_div = $('.pae_incipit_target', grid);
 
@@ -54,12 +64,19 @@
     		
 					$(target_div).parents('table').show();
 					$(target_div).show();
-			});
+			}
+			
+			// Update on first load
+			display_music(e);
 		}
 	});
 	
 	jQuery(document).ready(function() {
 		jQuery(".pae_input").paeIncipitRender();
+		jQuery(".pae_input").trigger('update');
+		
+		$()
+		
 	});
 	
 })(jQuery);
