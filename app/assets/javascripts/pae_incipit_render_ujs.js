@@ -38,6 +38,12 @@
 				display_music(this)
 			});
 			
+			// Handle the button
+			$('a[data-pae-button]').click(function(e) {
+				e.preventDefault();
+				display_music(this);
+			});
+			
 			function display_music(obj) {
 				grid = $(obj).parents(".tag_grid");
 			
@@ -68,6 +74,9 @@
 	jQuery(document).ready(function() {
 		jQuery(".pae_input").paeIncipitRender();
 		jQuery(".pae_input").trigger('update');
+		
+		$()
+		
 	});
 	
 })(jQuery);

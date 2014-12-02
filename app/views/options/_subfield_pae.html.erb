@@ -1,7 +1,16 @@
 <%
 	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
 %>
-<textarea class="autogrow subfield_entry serialize_marc pae_input" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>"><%=h marc_subfield.content %></textarea>
+<table width="100%">
+	<tr>
+	<td>
+		<textarea class="autogrow subfield_entry serialize_marc pae_input" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>"><%=h marc_subfield.content %></textarea>
+	</td>
+	<td width="20px">
+		<a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" style="margin: 4px;" href="#" data-pae-button="refresh" title="Refresh PAE"><span class="ui-icon ui-icon-refresh"></span>_</a>
+	</td>
+</tr>
+</table>
 	<table class="marc_editor_pae_info"  style="display: none;" cellpadding="0" cellspacing="0"><tr>
 		<td width="100%"><div class="pae_incipit_target">Loading...&nbsp;</div></td>
 		<td width="16"><div style="visibility:hidden;"><img src="/images/spinner_small.gif" /></div></td>	
