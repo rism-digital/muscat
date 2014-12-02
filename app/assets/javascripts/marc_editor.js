@@ -326,7 +326,7 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 			*/
 			
 			new_url = data.redirect;
-			
+			window.onbeforeunload = false;
 			window.location.href = new_url;
 			
 		},
