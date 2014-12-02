@@ -9,7 +9,8 @@
 
 	## ! for testing, reatime rendering with verovio
 	 incipit_number = "#{(number_a ? number_a.content : "x")}.#{(number_b ? number_b.content : "x")}.#{(number_c ? number_c.content : "x")}"
-	 image_render_div = "incipit_#{incipit_number}#{@item.id}"
+	 	 incipit_number_for_id = "#{(number_a ? number_a.content : "x")}#{(number_b ? number_b.content : "x")}#{(number_c ? number_c.content : "x")}"
+	 image_render_div = "incipit_#{incipit_number_for_id}#{@item.id}"
 %>
 
 <tr class="row">
@@ -33,7 +34,7 @@
 	%>
 	<tr class="row">
 		<th><%= @editor_profile.get_sub_label(tag.tag, subfield.tag) %></th>
-		<td><%= subfield.content %></td>					    
+		<td><%= subfield.content %></td>
 	</tr>
 <% end -%>
 
