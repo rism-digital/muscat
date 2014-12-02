@@ -78,7 +78,8 @@ module ActiveAdmin::ViewsHelper
   def active_admin_submit_bar( context )
     context.div class: :buttons do
      context.a href: "javascript:marc_editor_send_form('marc_editor_panel','marc_editor_panel', 0, '#{self.resource_class.to_s.pluralize.downcase}')", class: :marc_save_btn do  context.text_node "Save #{self.resource_class.to_s}" end 
-     context.a href: "javascript:marc_editor_cancel_form()", class: :marc_cancel_btn do  context.text_node "Cancel" end  
+     context.a href: "javascript:marc_editor_cancel_form()", class: :marc_cancel_btn do  context.text_node "Cancel" end
+     context.br      
     end        
   end
   

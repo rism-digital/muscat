@@ -36,6 +36,24 @@ var init_sidebar_actions = function () {
 		window.scrollTo(0, 0);
 		
 	});
+	
+	$('a[data-sidebar-preview]').click(function(e) {
+		e.preventDefault();
+		
+		model = $(this).data("preview-model");
+		
+		if ($('#marc_editor_panel').is(':visible')) {
+			// this function gets the show data via ajax
+			// it will automatically hide the editor on success
+			// or do nothing if there is an error
+			marc_editor_preview('marc_editor_panel','marc_editor_preview', model);
+		} else {
+			$('#marc_editor_preview').hide();
+			$('#marc_editor_panel').show();
+		}
+		
+		window.scrollTo(0, 0);
+	});
 };
 
 $(document).ready(init_sidebar_actions);
