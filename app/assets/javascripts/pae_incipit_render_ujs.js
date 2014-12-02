@@ -37,10 +37,10 @@
 				
 				grid = $(this).parents(".tag_grid");
 			
-				pae_key = $(".subfield_entry[data-subfield='r']", grid).val();
+				pae_key = $(".subfield_entry[data-subfield='n']", grid).val();
 				pae_time = $(".subfield_entry[data-subfield='o']", grid).val();
 				pae_clef = $(".subfield_entry[data-subfield='g']", grid).val();
-		        pae_data = $(this).val();
+				pae_data = $(this).val();
 				width = $(this).width(); // Get the parent textbox with so the image is the same
 			
 				target_div = $('.pae_incipit_target', grid);

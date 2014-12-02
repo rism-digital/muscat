@@ -52,7 +52,10 @@
    clef = (tag_g && tag_g.content) ? tag_g.content.html_safe : ""
    
    tag_r = tag.fetch_first_by_tag(:r)
-   key = (tag_r && tag_r.content) ? tag_r.content.html_safe : ""
+   key_or_mode = (tag_r && tag_r.content) ? tag_r.content.html_safe : ""
+
+   tag_n = tag.fetch_first_by_tag(:n)
+   key = (tag_n && tag_n.content) ? tag_n.content.html_safe : ""
 
    tag_o = tag.fetch_first_by_tag(:o)
    time = (tag_o && tag_o.content) ? tag_o.content.html_safe : ""
@@ -67,7 +70,7 @@
 	pae = "@start:pae-file\n";
 	pae = pae + "@clef:<%= clef %>\n";
 	pae = pae + "@keysig:<%= key %>\n";
-	pae = pae + "@key:\n";
+	pae = pae + "@key:<%= key_or_mode %>\n";
 	pae = pae + "@timesig:<%= time %>\n";
 	pae = pae + "@data: <%= notation %>\n";
 	pae = pae + "@end:pae-file\n"
