@@ -77,7 +77,7 @@ module MarcControllerActions
       @item.marc = new_marc
       
       @item.set_object_fields
-      @item.generate_id
+      @item.generate_id if @item.respond_to?(:generate_id)
 
       @editor_profile = EditorConfiguration.get_show_layout @item
      
