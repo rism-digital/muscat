@@ -344,6 +344,33 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 	});
 }
 
+function marc_editor_preview( source_form, destination, rails_model ) {
+	form = $('form', "#" + source_form);
+	json_marc = serialize_marc_editor_form(form);
+	
+	url = "/" + rails_model + "/marc_editor_preview";
+	
+	$.ajax({
+		success: function(data) {
+			// Hide and show the divs
+			$("#" + source_form).hide();
+			$("#" + destination).show();
+			
+		},
+		data: {marc: JSON.stringify(json_marc), marc_editor_dest: destination, id: $('#id').val()},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			alert ("Error saving page! Page will be reloaded. (" 
+					+ textStatus + " " 
+					+ errorThrown);
+			//location.reload();
+		}
+	});
+}
+
 function quick_search_form( base, lang ) {
    marc_editor_set_locale( lang );
    output = "\

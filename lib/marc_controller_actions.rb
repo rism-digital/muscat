@@ -57,6 +57,34 @@ module MarcControllerActions
 
     end
     
+    dsl.collection_action :marc_editor_preview, :method => :post do
+      
+      #Get the model we are working on
+      model = self.resource_class
+
+      marc_hash = JSON.parse params[:marc]
+      
+      # This is the tricky part. Get the MARC subclass
+      # e.g. MarcSource or MarcPerson
+      classname = "Marc" + model.to_s
+      # Let it crash is the class is not fond
+      dyna_marc_class = Kernel.const_get(classname)
+      
+      new_marc = dyna_marc_class.new()
+      new_marc.load_from_hash(marc_hash)
+
+      @item = model.new
+      @item.marc = new_marc
+      
+      @item.set_object_fields
+      @item.generate_id
+
+      @editor_profile = EditorConfiguration.get_show_layout @item
+     
+      render :template => 'marc_show/show_preview'
+
+    end
+    
     # This can be used to add a button in the title bar
     #dsl.action_item :only => [:edit, :new] do
     #    link_to('View on site', "javascript:marc_editor_send_form('marc_editor_panel','marc_editor_panel', 0, '#{self.resource_class.to_s.pluralize.downcase}')")

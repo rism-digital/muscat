@@ -166,29 +166,29 @@ class MarcConfig
 
   # Return if a tag is not browsable
   def show_in_browse?(tag, subtag)
-    subtag.gsub!(/\$/,"")
-    !@tag_config[tag][:fields].assoc(subtag)[1][:no_browse] rescue nil
+    s = subtag.gsub(/\$/,"")
+    !@tag_config[tag][:fields].assoc(s)[1][:no_browse] rescue nil
   end
 
   # Return if a tag should be hidden
   def always_hide?(tag, subtag)
-    subtag.gsub!(/\$/,"")
-    @tag_config[tag][:fields].assoc(subtag)[1][:no_show] rescue nil
+    s = subtag.gsub(/\$/,"")
+    @tag_config[tag][:fields].assoc(s)[1][:no_show] rescue nil
   end
   
   def browse_inline?(tag, subtag)
-    subtag.gsub!(/\$/,"")
-    @tag_config[tag][:fields].assoc(subtag)[1][:browse_inline] rescue nil
+    s = subtag.gsub(/\$/,"")
+    @tag_config[tag][:fields].assoc(s)[1][:browse_inline] rescue nil
   end
 
   def get_browse_helper(tag, subtag)
-    subtag.gsub!(/\$/,"")
-    @tag_config[tag][:fields].assoc(subtag)[1][:browse_helper]
+    s = subtag.gsub(/\$/,"")
+    @tag_config[tag][:fields].assoc(s)[1][:browse_helper]
   end
 
   def get_size(tag, subtag)
-    subtag.gsub!(/\$/,"")
-    @tag_config[tag][:fields].assoc(subtag)[1][:size] || 15
+    s = subtag.gsub(/\$/,"")
+    @tag_config[tag][:fields].assoc(s)[1][:size] || 15
   end
   
   def get_subtag_attribute(tag, subtag, attribute_name)
