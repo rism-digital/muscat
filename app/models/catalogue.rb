@@ -25,6 +25,7 @@ class Catalogue < ActiveRecord::Base
   
   before_destroy :check_dependencies
   
+  before_save :set_object_fields
   ##before_create :generate_new_id
   after_save :reindex
   
@@ -34,6 +35,28 @@ class Catalogue < ActiveRecord::Base
   def suppress_reindex
     self.suppress_reindex_trigger = true
   end
+
+  def scaffold_marc
+    return if self.marc_source != nil  
+    return if self.suppress_scaffold_marc_trigger == true
+ 
+    new_marc = MarcInstitution.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/library/default.marc"))
+    new_marc.load_source true
+    
+    new_100 = MarcNode.new("catalogue", "100", "", "1#")
+    new_100.add_at(MarcNode.new("catalogue", "a", self.author, nil), 0)
+    
+    pi = new_marc.get_insert_position("100")
+    new_marc.root.children.insert(pi, new_100)
+
+    if self.id != nil
+      new_marc.set_id self.id
+    end
+    
+    self.marc_source = new_marc.to_marc
+    self.save!
+  end
+
 
   def set_object_fields
     # This is called always after we tried to add MARC
@@ -55,7 +78,7 @@ class Catalogue < ActiveRecord::Base
     # std_title
     self.place, self.date = marc.get_place_and_date
     self.name = marc.get_short_title
-    self.title = marc.get_title
+    self.revue_title = marc.get_title
     self.author = marc.get_author
     self.marc_source = self.marc.to_marc
   end
