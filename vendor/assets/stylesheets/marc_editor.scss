@@ -42,11 +42,16 @@
                 div.tag_help_collapsable {
                     background: #fff;
                     border: 1px solid $primary-color;
-                    padding: 10px; 
+                    padding: 10px;
                     margin: 5px 0px;
                     display: none;
-                    * p {
-                        font-weight: normal;                        
+                    font-weight: normal;
+                    * h4 {
+                        font-weight: bold;
+                        font-size: 100%;
+                    }
+                    h4:not(:first-child) {
+                        margin-top: 20px;
                     }
                 }
                 table {
