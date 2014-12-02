@@ -7,7 +7,7 @@
 
 # People auth data
 
-:model: person
+:model: catalogue
 :tags:
   "000": 
     :master: ""
@@ -98,7 +98,7 @@
     :fields: 
     - - a
       - :occurances: "?"
-    - - d
+    - - "0"
       - :occurances: "?"
         :browse_inline: true
   "210": 
@@ -115,14 +115,14 @@
     :fields: 
     - - a
       - :occurances: "?"
-  "400": 
+  "260": 
     :master: a
     :indicator: "1#"
     :occurances: "*"
     :fields: 
     - - a
       - :occurances: "?"
-    - - d
+    - - c
       - :occurances: "?"
 # This is a linked field
   "509": 
@@ -177,32 +177,23 @@
       - :occurances: "?"
     - - u
       - :occurances: "?"
-  "680": 
+  "700": 
     :master: a
     :indicator: "##"
     :occurances: "*"
     :fields: 
     - - a
       - :occurances: "?"
-    - - i
+    - - "0"
       - :occurances: "?"
-    - - "5"
+    - - "4"
       - :occurances: "?"
-  "684": 
-    :master: a
+  "760": 
+    :master: g
     :indicator: "##"
     :occurances: "*"
     :fields: 
-    - - a
+    - - g
       - :occurances: "?"
-    - - j
-      - :occurances: "?"
-  "856": 
-    :master: u
-    :indicator: "##"
-    :occurances: "*"
-    :fields: 
-    - - u
-      - :occurances: "?"
-    - - y
+    - - t
       - :occurances: "?"

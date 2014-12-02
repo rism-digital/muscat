@@ -55,9 +55,12 @@ class MarcImport
         model = Object.const_get(@model).find_by_id( marc.get_id )
         if !model
           status="created"
-          if @model!="Source"
+          if @model=="Catalogue"
+            model = Object.const_get(@model).new(:id => marc.get_id, :name => marc.get_short_title, :author => marc.get_author, :revue_title=> marc.get_title, :wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
+
+          elsif @model=="Person" || @model =="Institution"
             model = Object.const_get(@model).new(:id => marc.get_id, :wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
-          else
+          elsif @model=="Source"
             model = Object.const_get(@model).new(:id => marc.get_id, :lib_siglum => marc.get_siglum, :wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
           end
         else
