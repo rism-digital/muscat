@@ -57,7 +57,7 @@ ActiveAdmin.register Folder do
           column ("Name") {|fitem| fitem.item.name}
           column ("Id") {|fitem| fitem.item.id}
           column "" do |fitem|
-            link_to "View", controller: :sources, action: :show, id: fitem.item.id
+            link_to "View", controller: fitem.item.class.to_s.pluralize.underscore.downcase.to_sym, action: :show, id: fitem.item.id
           end
         end
       end
