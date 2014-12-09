@@ -11,6 +11,16 @@ ActiveAdmin.register Folder do
     after_destroy :check_model_errors
     
     def check_model_errors(object)
+      
+      # Look in the saved filters for this controller
+      # relative to the folder type of the deleted folder
+      # if it was filtered by folder. If it was remove it
+      controller =  object.folder_type.underscore.downcase.pluralize
+      params_q =  session[:last_search_filter][controller]
+      if params_q.include?(:id_with_integer)
+        params_q.delete(:id_with_integer)
+      end
+      
       return unless object.errors.any?
       flash[:error] ||= []
       flash[:error].concat(object.errors.full_messages)
