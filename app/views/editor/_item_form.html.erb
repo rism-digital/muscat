@@ -1,4 +1,4 @@
-<div id="<%= render_panel -%>">
+<div id="<%= render_panel -%>" data-editor-model="<%= model %>">
 	<%# we don't want the form to be submitted directly (with enter for example), so the 'onSubmit return false %>
 	<%- @editor_profile.layout_config[:marc_editor_group_links] = [] -%>
 	<%= form_tag( "#", {:id => "marc_editor_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>

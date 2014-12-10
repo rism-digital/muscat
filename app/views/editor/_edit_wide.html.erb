@@ -1,3 +1,7 @@
+<%
+	rails_model = @item.class.to_s.pluralize.downcase
+%>
+
 <!-- place holder for the dialog boxes -->
 <div class="flashes">
 <div id="dialog"></div>
@@ -5,7 +9,8 @@
 <br>
 <div id="marc_editor_preview"></div>
 
-<%= render :partial => "editor/item_form", :locals => { :render_panel => "marc_editor_panel" } -%>
+
+<%= render :partial => "editor/item_form", :locals => { :render_panel => "marc_editor_panel", :model => rails_model } -%>
 
 <script type="text/javascript">
 

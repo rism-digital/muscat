@@ -14,6 +14,7 @@
 #= require jquery.validate
 #= require jquery.scrollTo.js
 #= require jquery.autosize.min
+#= require jquery.hotkeys
 #= require rism.localisation
 #= require autocomplete-rails
 #= require relator_codes_cascade_ujs

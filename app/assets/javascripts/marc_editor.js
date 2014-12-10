@@ -63,7 +63,15 @@ function marc_editor_init_tags( id ) {
 			hidden.val(data.item.id);
 		}
 	})
+	
+	// Add save and preview hotkeys
+	$(document).on('keydown', null, 'alt+ctrl+s', function(){
+		marc_editor_send_form('marc_editor_panel', 'marc_editor_panel', 0, marc_editor_get_model());
+	});
 
+	$(document).on('keydown', null, 'alt+ctrl+p', function(){
+		marc_editor_show_hide_preview();
+	});
 }
 
 function marc_editor_set_locale( lang ){
@@ -400,4 +408,25 @@ function marc_editor_cancel_form( ) {
     window.location=loc;
 }
 
+// Hardcoded for marc_editor_panel
+function marc_editor_get_model() {
+	return $("#marc_editor_panel").data("editor-model");
+}
 
+function marc_editor_show_hide_preview() {
+	// Use the commodity function in marc_editor.js
+	// model comes from the marc_editor_panel div
+	model = marc_editor_get_model();
+	
+	if ($('#marc_editor_panel').is(':visible')) {
+		// this function gets the show data via ajax
+		// it will automatically hide the editor on success
+		// or do nothing if there is an error
+		marc_editor_preview('marc_editor_panel','marc_editor_preview', model);
+	} else {
+		$('#marc_editor_preview').hide();
+		$('#marc_editor_panel').show();
+	}
+	
+	window.scrollTo(0, 0);
+}

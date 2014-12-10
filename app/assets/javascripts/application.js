@@ -25,6 +25,7 @@
 //= require jquery.maskedinput
 //= require jquery.validate
 //= require jquery.autosize.min
+//= require jquery.hotkeys
 //= require relator_codes_cascade_ujs
 //= require relator_codes_single_ujs
 //= require jquery.scrollTo.js
