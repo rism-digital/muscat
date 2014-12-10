@@ -162,10 +162,46 @@
         cols: 2
     - - a
       - cols: 2
+        values: 
+        - "eng"
+        - "fre"
+        - "ger"
+        - "grc"
+        - "gsw"
+        - "ita"
+        - "lat"
+        - "roh"
+        - "rus"
+        - "spa"
+        editor_partial: subfield_autocomplete
     - - e
       - cols: 2
+        values: 
+        - "eng"
+        - "fre"
+        - "ger"
+        - "grc"
+        - "gsw"
+        - "ita"
+        - "lat"
+        - "roh"
+        - "rus"
+        - "spa"
+        editor_partial: subfield_autocomplete
     - - h
       - cols: 2
+        values: 
+        - "eng"
+        - "fre"
+        - "ger"
+        - "grc"
+        - "gsw"
+        - "ita"
+        - "lat"
+        - "roh"
+        - "rus"
+        - "spa"
+        editor_partial: subfield_autocomplete
     columns: 4
 "100": 
   allow_new: true
