@@ -2,7 +2,7 @@
 	val = marc_tag.indicator || @item.marc.config.get_default_indicator(tag_name)
 	tag_id = marc_editor_ind_name(tag_name, 0) #FIXME
 %>
-<select id="<%= tag_id %>" name="<%= tag_id %>">
+<select id="<%= tag_id %>" name="<%= tag_id %>" class="marc_editor_hotkey">
 	<%- @item.marc.config.each_indicator(tag_name) do |ind| %>
 		<option value="<%= ind -%>" <%= (val == ind) ? "selected=\"selected\"".html_safe : "" -%>><%= @editor_profile.get_sub_label(tag_name, ind).force_encoding('UTF-8') -%></option>
 	<%- end %>

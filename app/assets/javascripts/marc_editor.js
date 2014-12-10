@@ -72,6 +72,10 @@ function marc_editor_init_tags( id ) {
 	$(document).on('keydown', null, 'alt+ctrl+p', function(){
 		marc_editor_show_hide_preview();
 	});
+	
+	$(document).on('keydown', null, 'alt+ctrl+n', function(){
+		window.location.href = "/" +  marc_editor_get_model() + "/new";
+	});
 }
 
 function marc_editor_set_locale( lang ){

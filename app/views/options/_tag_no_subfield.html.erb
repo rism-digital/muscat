@@ -5,7 +5,7 @@
 <input style="margin-top:6px" disabled="disabled" class="subfield_entry" type="text" value="<%= h node.content %>" />
 <input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" value="<%= h node.content %>">
 <%- else %>
-<input style="margin-top:6px" class="subfield_entry serialize_marc" data-tag="<%=tag_name%>" type="text" value="<%= h node.content %>" />
+<input style="margin-top:6px" class="subfield_entry serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" type="text" value="<%= h node.content %>" />
 <% end %>	
 <%- if tag_params.has_key?("maskedinput") %>
 	<script>
