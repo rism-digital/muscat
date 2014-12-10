@@ -119,7 +119,7 @@ ActiveAdmin.register Source do
         source.lib_siglum
       end
     end
-    #column (I18n.t :filter_shelf_mark), :shelf_mark
+    column (I18n.t :filter_shelf_mark), :shelf_mark
     
     actions
   end
