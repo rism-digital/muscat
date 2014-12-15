@@ -59,7 +59,7 @@ de:
       button_label: "Aktionen"
     batch_actions:
       button_label: "Stapelverarbeitung"
-      default_confirmation: "Bist du sicher, dass Sie dies tun wollen?"
+      default_confirmation: "Sind Sie sicher, dass Sie dies tun wollen?"
       delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen?"
       succesfully_destroyed:
         one: "Erfolgreich 1 %{model} gelöscht"
@@ -72,13 +72,13 @@ de:
         folder: "Erstelle Ordner mit"
 
     comments:
-      resource_type: "Res­sour­cen-Typ"
+      resource_type: "Ressourcen-Typ"
       author_type: "Autor-Typ"
       body: "Inhalt"
       author: "Autor"
       title: "Kommentar"
       add: "Kommentar hinzufügen"
-      resource: "Res­sour­ce"
+      resource: "Ressource"
       no_comments_yet: "Es gibt noch keine Kommentare."
       author_missing: "Unbekannt"
       title_content: "Kommentare (%{count})"
@@ -106,6 +106,9 @@ de:
       change_password:
         title: "Ändern Sie Ihr Passwort"
         submit: "Mein Passwort ändern"
+      unlock:
+        title: "RESEND UNLOCK INSTRUCTIONS"
+        submit: "RESEND UNLOCK INSTRUCTION"
       resend_confirmation_instructions:
         title: "Anleitung zur Bestätigung noch mal schicken"
         submit: "Anleitung zur Bestätigung noch mal schicken"
@@ -113,12 +116,18 @@ de:
         sign_in: "Anmeldung"
         forgot_your_password: "Passwort vergessen?"
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
+        resend_unlock_instructions: "RESEND UNLOCK INSTRUCTIONS"
     unsupported_browser:
       headline: "ActiveAdmin unterstützt nicht länger den Internet Explorer in Version 8 oder niedriger."
       recommendation: "Wir empfehlen die Nutzung von <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, oder <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Wenn sie IE 9 oder neuer benutzen, stellen sie sicher das sie den <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Kompatibilitätsansicht\" ausgeschaltet</a> haben."
+      turn_off_compatibility_view: "Wenn Sie den Internet Explorer 9 oder neuer benutzen, achten Sie darauf, dass Sie den <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Kompatibilitätsansicht\" ausgeschaltet</a> haben."
     access_denied:
-      message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen." 
+      message: "Sie haben nicht die Berechtigung, diese Aktion auszuführen." 
+    index_list:
+      table: "TABLE"
+      block: "LIST"
+      grid: "GRID"
+      blog: "BLOG"
   switch_language: "Sprache ändern" 
   this_file_language: "Deutsch"
 
@@ -143,7 +152,7 @@ de:
   menu_people: "Personen"
   menu_institutions: "Institutionen"
   menu_titles: "Titel / Textincipit"
-  menu_subjects: "Schlagworte"
+  menu_subjects: "Schlagwörter"
   menu_library_sigla: "Bibliothekssigel"
   menu_catalogues: "WV / Kataloge"
   menu_liturgical_feasts: "Liturgische Feste"
@@ -164,7 +173,7 @@ de:
   workgroups: "Benutzergruppen"
   user_details: "Benutzerinfo"
   sections: "Sektionen"
-  edit: "Edit"
+  edit: "Bearbeiten"
   search_sources: "Quellensuche"
   
   #### FOLDER MESSAGES
@@ -194,12 +203,12 @@ de:
   filter_date_to: "Datum bis"
   filter_description: "Beschreibung"
   filter_digital_objects: "Digitale Objekte"
-  filter_district: "Provinz/Kanton"
+  filter_district: "Region"
   filter_email: "E-Mail"
-  filter_folder_type: "Ordner Typ"
+  filter_folder_type: "Ordner-Typ"
   filter_full_name: "Name"
   filter_gender: "Geschlecht"
-  filter_incipits: "Incipits"
+  filter_id: "ID"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
@@ -231,7 +240,7 @@ de:
   filter_source: "Quelle"
   filter_sources: "Quellen"
   filter_std_title: "Standardtitel"
-  filter_subjects: "Schlagworte"
+  filter_subjects: "Schlagwörter"
   filter_term: "Begriff"
   filter_thematic_opus: "Them. Kat. / Op.-Nr."
   filter_title: "Titel"
@@ -245,7 +254,7 @@ de:
   filter_wf_audit: "WF audit"
   filter_wf_stage: "Status"
   filter_distribution: "Besetzung"
-  filter_dist_exclude: "Ausschliessen"
+  filter_dist_exclude: "Ausschließen"
   filter_dist_594a: "Vokalstimmen (Solo)"
   filter_dist_594b: "Weitere Vokalstimmen (Solo)"
   filter_dist_594c: "Vokalstimmen (Coro)"
@@ -258,23 +267,23 @@ de:
   filter_dist_594k: "Schlaginstrumente"
   filter_dist_594l: "Tasteninstrumente"
   filter_dist_594m: "Weitere Instrumente"
-  filter_dist_594n: "Basso continuo-Instrumente"
+  filter_dist_594n: "Basso-continuo-Instrumente"
  
   rism_any_key: "Any key"
-  rism_a_flat: "A flat major/minor"
-  rism_a: "A major/minor"
-  rism_b_flat: "B flat major/minor"
-  rism_b: "B major/minor"
-  rism_c: "C major/minor"
-  rism_c_sharp: "C sharp major/minor"
-  rism_d_flat: "D flat major/minor"
-  rism_d: "D major/minor"
-  rism_e_flat: "E flat major/minor"
-  rism_e: "E major/minor"
-  rism_f: "F major/minor"
-  rism_f_sharp: "F sharp major/minor"
-  rism_g: "G major/minor"
-  rism_g_sharp: "G sharp major/minor"
+  rism_a_flat: "As-Dur/Moll"
+  rism_a: "A-Dur/Moll"
+  rism_b_flat: "B-Dur/Moll"
+  rism_b: "B-Dur/Moll"
+  rism_c: "C-Dur/Moll"
+  rism_c_sharp: "Cis-Dur/Moll"
+  rism_d_flat: "Des-Dur/Moll"
+  rism_d: "D-Dur/Moll"
+  rism_e_flat: "Es-Dur/Moll"
+  rism_e: "E-Dur/Moll"
+  rism_f: "F-Dur/Moll"
+  rism_f_sharp: "Fis-Dur/Moll"
+  rism_g: "G-Dur/Moll"
+  rism_g_sharp: "Gis-Dur/Moll"
   
   #
   entry:
@@ -303,10 +312,20 @@ de:
      other: "Personen"
   standardterm:
     one: "Schlagwort"
-    other: "Schlagworte" 
+    other: "Schlagwörter" 
   standardtitle:
     one: "Titel oder Textincipit"
     other: "Titel oder Textincipits"
+
+  user:
+    one: "Benutzer"
+    other: "Benutzer" 
+  job:
+    one: "Job"
+    other: "Jobs"
+  folder:
+    one: "Ordner"
+    other: "Ordner"
 
   will_paginate:
     page_entries_info:
@@ -316,6 +335,11 @@ de:
         other:  "Anzeige <b>aller %{count}</b> %{model}"
       multi_page_html: "Anzeige %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> von total <b>%{count}</b>"
   
+    models:
+      person: 
+        one: "PERSONA"
+        other: "PERSONE"
+
   manuscript_links:
      one: "1 Quelle"
      other: "%{count} Quellen" 
@@ -353,7 +377,7 @@ de:
   tf_metric_help: "Tipps für die Metrumsuche"
   tf_anchor_help: "Tipps für die verankerte Suche"
   tf_timesig_help: "Tipps für die Taktartsuche"
-  btn_themefinder_reset: "Reset"
+  btn_themefinder_reset: "RESET"
   
   tf_acknowledgments: "Die Incipit-Suche verwendet das Tool <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a>, das vom <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a> entwickelt wurde."
 
@@ -361,8 +385,8 @@ de:
   hls_link_name: "HLS"
   
   do_link_lang: "ENG"
-  do_media_files_title: "Multimedia files"
-  do_ext_res_link: "External resources:"
-  do_ext_link_not_avail: "(Audio files not available from this location)"
-  do_images_title: "Images"
+  do_media_files_title: "Multimedia-Dateien"
+  do_ext_res_link: "EXTERNAL RESOURCES:"
+  do_ext_link_not_avail: "(Audio-Dateien sind hier nicht verfügbar.)"
+  do_images_title: "Bilder"
   connected_libraries: "Bibliotheken"

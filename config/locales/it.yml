@@ -70,6 +70,7 @@ it:
       labels:
         destroy: "Elimina"
         folder: "Create Folder with"
+
     comments:
       resource_type: "Tipo di risorsa"
       author_type: "Tipo di Autore"
@@ -92,6 +93,9 @@ it:
         title: "Sottodominio"
       password:
         title: "Password"
+      sign_up:
+        title: "SIGN UP"
+        submit: "SIGN UP"
       login:
         title: "Entra"
         remember_me: "Ricordami"
@@ -112,6 +116,11 @@ it:
         sign_in: "Entra"
         forgot_your_password: "Dimenticato la password?"
         sign_in_with_omniauth_provider: "Collegati a %{provider}"
+        resend_unlock_instructions: "RE-SEND UNLOCK INSTRUCTIONS"
+    unsupported_browser:
+      headline: "PLEASE NOTE THAT ACTIVEaDMIN NO LONGER SUPPORTS INTERNET EXPLORER VERSIONS 8 OR LESS."
+      recommendation: "WE RECOMMEND UPGRADING TO THE LATEST <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, OR <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "IF YOU Are USING IE 9 OR LATER, MAKE SURE YOU <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">TURN OFF \"Compatibility View\"</a>."
     access_denied:
       message: "Non hai le autorizzazioni necessarie per eseguire questa azione."
     index_list:
@@ -138,6 +147,7 @@ it:
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Fonti"
+  menu_advanced_search: "ADVANCED SEARCH"
   menu_indexes: "Indici"
   menu_people: "Persone"
   menu_institutions: "Istituzioni"
@@ -198,6 +208,7 @@ it:
   filter_folder_type: "Folder Type"
   filter_full_name: "Nome"
   filter_gender: "Sesso"
+  filter_id: "ID"
   filter_incipits: "Incipit"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
@@ -258,21 +269,21 @@ it:
   filter_dist_594m: "Altri instrumenti"
   filter_dist_594n: "Strumenti del basso continuo"
   
-  rism_any_key: "Any key"
-  rism_a_flat: "A flat major/minor"
-  rism_a: "A major/minor"
-  rism_b_flat: "B flat major/minor"
-  rism_b: "B major/minor"
-  rism_c: "C major/minor"
-  rism_c_sharp: "C sharp major/minor"
-  rism_d_flat: "D flat major/minor"
-  rism_d: "D major/minor"
-  rism_e_flat: "E flat major/minor"
-  rism_e: "E major/minor"
-  rism_f: "F major/minor"
-  rism_f_sharp: "F sharp major/minor"
-  rism_g: "G major/minor"
-  rism_g_sharp: "G sharp major/minor"
+  rism_any_key: "ANY KEY"
+  rism_a_flat: "A FLAT MAJOR/MINOR"
+  rism_a: "A MAJOR/MINOR"
+  rism_b_flat: "B FLAT MAJOR/MINOR"
+  rism_b: "B MAJOR/MINOR"
+  rism_c: "C MAJOR/MINOR"
+  rism_c_sharp: "C SHARP MAJOR/MINOR"
+  rism_d_flat: "D FLAT MAJOR/MINOR"
+  rism_d: "D MAJOR/MINOR"
+  rism_e_flat: "E FLAT MAJOR/MINOR"
+  rism_e: "E MAJOR/MINOR"
+  rism_f: "F MAJOR/MINOR"
+  rism_f_sharp: "F SHARP MAJOR/MINOR"
+  rism_g: "G MAJOR/MINOR"
+  rism_g_sharp: "G SHARP MAJOR/MINOR"
   
   #
   entry:
@@ -306,6 +317,16 @@ it:
     one: "titolo o incipit testuale"
     other: "titoli o incipit testuali"   
 
+  user:
+    one: "USER"
+    other: "USERS" 
+  job:
+    one: "JOB"
+    other: "JOBS"
+  folder:
+    one: "FOLDER"
+    other: "FOLDERS"
+
   will_paginate:
     page_entries_info:
       single_page_html:
@@ -313,6 +334,7 @@ it:
         one: "Risultati di ricerca <b>1</b> %{model}"
         other:  "Risultati di ricerca <b> %{count}</b> %{model}%"
       multi_page_html: "Risultati di ricerca %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{count}</b> in totale"
+
     models:
       person: 
         one: "persona"
@@ -367,3 +389,4 @@ it:
   do_ext_res_link: "Collegamenti esterni:"
   do_ext_link_not_avail: "(File audio non disponibile da questa postazione)"
   do_images_title: "Immagini"
+  connected_libraries: "LIBRARIES"

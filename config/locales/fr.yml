@@ -70,15 +70,17 @@ fr:
       labels:
         destroy: "Supprimer"
         folder: "Créer un dossier avec"
+
     comments:
+      resource_type: "Type de ressource"
+      author_type: "Profil de l'auteur"
       body: "Corps"
       author: "Auteur"
       title: "Commentaire"
       add: "Ajouter un commentaire"
       resource: "Ressource"
-      resource_type: "Type de ressource"
-      author_type: "Profil de l'auteur"
       no_comments_yet: "Aucun commentaire actuellement"
+      author_missing: "ANONYMOUS"
       title_content: "Commentaires (%{count})"
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
@@ -91,6 +93,9 @@ fr:
         title: "Sous-domaine"
       password:
         title: "Mot de passe"
+      sign_up:
+        tiitle: "SIGN UP"
+        submit: "SIGN UP"
       login:
         title: "Connection"
         remember_me: "Garder ma session ouverte"
@@ -101,6 +106,9 @@ fr:
       change_password:
         title: "Changez votre mot de passe"
         submit: "Changer mon mot de passe"
+      unlock:
+        title: "RESEND UNLOCK INSTRUCTIONS"
+        submit: "RESEND UNLOCK INSTRUCTION"
       resend_confirmation_instructions:
         title: "Renvoyer les instructions de confirmation"
         submit: "Renvoyer les instructions de confirmation"
@@ -108,7 +116,13 @@ fr:
         sign_in: "Connectez-vous"
         forgot_your_password: "Vous avez oublié votre mot de passe ?"
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
-    access_denied: "Vous n'êtes pas autorisé à executer cette action"
+        resend_unlock_instructions: "RE-SEND UNLOCK INSTRUCTIONS"
+    unsupported_browser:
+      headline: "PLEASE NOTE THAT ACTIVEaDMIN NO LONGER SUPPORTS INTERNET EXPLORER VERSIONS 8 OR LESS."
+      recommendation: "WE RECOMMEND UPGRADING TO THE LATEST <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, OR <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "IF YOU Are USING IE 9 OR LATER, MAKE SURE YOU <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">TURN OFF \"Compatibility View\"</a>."
+    access_denied: 
+      message: "Vous n'êtes pas autorisé à executer cette action."
     index_list:
       table: "Tableau"
       block: "Liste"
@@ -194,6 +208,7 @@ fr:
   filter_folder_type: "Type de dossier"
   filter_full_name: "Nom"
   filter_gender: "Genre"
+  filter_id: "ID"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
@@ -302,6 +317,16 @@ fr:
     one: "titre ou incipit de texte"
     other: "titres ou incipits de texte"  
 
+  user:
+    one: "USER"
+    other: "USERS" 
+  job:
+    one: "JOB"
+    other: "JOBS"
+  folder:
+    one: "FOLDER"
+    other: "FOLDERS"
+
   will_paginate:
     page_entries_info:
       single_page_html:
@@ -310,6 +335,11 @@ fr:
         other:  "Affichage des <b>%{count}</b> %{model}"
       multi_page_html: "Affichage des %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b> au total"
   
+    models:
+      person: 
+        one: "PERSONA"
+        other: "PERSONE"
+          
   manuscript_links:
      one: "1 source"
      other: "%{count} sources" 
@@ -348,6 +378,7 @@ fr:
   tf_anchor_help: "Suggestions pour la recherche ancrée"
   tf_timesig_help: "Suggestions pour la recherche par mesure"
   btn_themefinder_reset: "Reset"
+
   tf_acknowledgments: "La recherche par incipit utilise l'outil <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> développé par le <a href=\"http://www.ccarh.org/\"target=\"_blank\">CCARH</a>."
 
   hls_link_lang: "f"
@@ -356,5 +387,6 @@ fr:
   do_link_lang: "ENG"
   do_media_files_title: "Multimedia files"
   do_ext_res_link: "External resources:"
-  do_ext_link_not_avail: "(Audio files not available from this location)"
+  do_ext_link_not_avail: "(AUDIO FILES NOT AVAILABLE FROM THIS LOCATION)"
   do_images_title: "Images"
+  connected_libraries: "LIBRARIES"

@@ -127,7 +127,7 @@ en:
       table: "Table"
       block: "List"
       grid: "Grid"
-    
+      blog: "BLOG"
   switch_language: "Switch language" 
   this_file_language: "English"
   
@@ -147,6 +147,7 @@ en:
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Sources"
+  menu_advanced_search: "Advanced Search"
   menu_indexes: "Indexes"
   menu_people: "People"
   menu_institutions: "Institutions"
@@ -179,7 +180,7 @@ en:
   folders:
     save: "Save results to Folder"
     success: "Folder %{name} created with %{count} items."
-    too_many: "Cannot add more than %{max} items (%{count} séléctionés)."
+    too_many: "Cannot add more than %{max} items (%{count} SÉLÉCTIONÉS)."
   
   ############ filters
   filter_address: "Address"
@@ -220,8 +221,8 @@ en:
   filter_life_dates: "Life dates"
   filter_links: "Links"
   filter_liturgical_feast: "Liturgical feast"
-  filter_location_and_name: "Name and location"
-  filter_manuscript_no: "Shelfmark"
+  filter_location_and_name: "Name ion"
+  filter_manuscript_no: "Manuscript No."
   filter_shelf_mark: "Shelfmark"
   filter_name: "Name"
   filter_notes: "Notes"
@@ -315,7 +316,7 @@ en:
   standardtitle:
     one: "title or text incipit"
     other: "titles or text incipits" 
-  # missing in others
+
   user:
     one: "user"
     other: "users" 
@@ -334,6 +335,11 @@ en:
         other: "Displaying <b>all %{count}</b> %{model}"
       multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
   
+    models:
+      person: 
+        one: "PERSONA"
+        other: "PERSONE"
+
   manuscript_links:
      one: "1 source"
      other: "%{count} sources" 
@@ -369,7 +375,6 @@ en:
   tf_pitch_help: "Tips for pitch search"
   tf_duration_help: "Tips for duration search"
   tf_metric_help: "Tips for metric help"
-  
   tf_anchor_help: "Anchored searching tips"
   tf_timesig_help: "Time signature help"
   btn_themefinder_reset: "Reset"
@@ -384,3 +389,4 @@ en:
   do_ext_res_link: "External resources:"
   do_ext_link_not_avail: "(Audio files not available from this location)"
   do_images_title: "Images"
+  connected_libraries: "Libraries"
