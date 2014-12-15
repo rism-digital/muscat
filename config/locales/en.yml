@@ -381,10 +381,10 @@ en:
   
   tf_acknowledgments: "Incipits search is performed with <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> developed by the <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
 
-  hls_link_lang: "d"
+  hls_link_lang: "e"
   hls_link_name: "HDS"
   
-  do_link_lang: "ENG"
+  do_link_lang: "eng"
   do_media_files_title: "Multimedia files"
   do_ext_res_link: "External resources:"
   do_ext_link_not_avail: "(Audio files not available from this location)"
