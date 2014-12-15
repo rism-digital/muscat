@@ -94,8 +94,8 @@ fr:
       password:
         title: "Mot de passe"
       sign_up:
-        tiitle: "SIGN UP"
-        submit: "SIGN UP"
+        tiitle: "s'inscrire"
+        submit: "s'inscrire"
       login:
         title: "Connection"
         remember_me: "Garder ma session ouverte"
@@ -107,8 +107,8 @@ fr:
         title: "Changez votre mot de passe"
         submit: "Changer mon mot de passe"
       unlock:
-        title: "RESEND UNLOCK INSTRUCTIONS"
-        submit: "RESEND UNLOCK INSTRUCTION"
+        title: "Renvoyer les instructions de déblocage"
+        submit: "Renvoyer les instructions de déblocage"
       resend_confirmation_instructions:
         title: "Renvoyer les instructions de confirmation"
         submit: "Renvoyer les instructions de confirmation"
@@ -118,9 +118,9 @@ fr:
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
         resend_unlock_instructions: "RE-SEND UNLOCK INSTRUCTIONS"
     unsupported_browser:
-      headline: "PLEASE NOTE THAT ACTIVEaDMIN NO LONGER SUPPORTS INTERNET EXPLORER VERSIONS 8 OR LESS."
-      recommendation: "WE RECOMMEND UPGRADING TO THE LATEST <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, OR <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "IF YOU Are USING IE 9 OR LATER, MAKE SURE YOU <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">TURN OFF \"Compatibility View\"</a>."
+      headline: "Muscat ne support pas la version 8 ou antéreure d'Internet Explorer."
+      recommendation: "Nous vous recommandons de mettre votre version d'<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a> à jour, ou d'utiliser <a href=\"https://chrome.google.com/\">Google Chrome</a>, ou <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Si vous utilisez IE 9 ou plus récent, vérifier que <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\"> \"Compatibility View\" est désactivé</a>."
     access_denied: 
       message: "Vous n'êtes pas autorisé à executer cette action."
     index_list:
@@ -337,8 +337,8 @@ fr:
   
     models:
       person: 
-        one: "PERSONA"
-        other: "PERSONE"
+        one: "Personne"
+        other: "Personnes"
           
   manuscript_links:
      one: "1 source"
@@ -384,9 +384,9 @@ fr:
   hls_link_lang: "f"
   hls_link_name: "DHS"
   
-  do_link_lang: "ENG"
-  do_media_files_title: "Multimedia files"
-  do_ext_res_link: "External resources:"
-  do_ext_link_not_avail: "(AUDIO FILES NOT AVAILABLE FROM THIS LOCATION)"
+  do_link_lang: "eng"
+  do_media_files_title: "Fichiers multimedia"
+  do_ext_res_link: "Resources externes:"
+  do_ext_link_not_avail: "(Fichiers audio non disponibles depuis cet ordinateur)"
   do_images_title: "Images"
-  connected_libraries: "LIBRARIES"
+  connected_libraries: "Institutions"
