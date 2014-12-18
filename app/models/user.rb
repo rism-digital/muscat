@@ -18,9 +18,9 @@ class User < ActiveRecord::Base
           libs<<l
         end
       end
-      (libs & (self.workgroups.map {|ins| ins.get_institutions}).flatten).any?
+      (libs & (self.workgroups.map {|ins| ins.get_libraries}).flatten).any?
     else
-      (source.institutions & (self.workgroups.map {|ins| ins.get_institutions}).flatten).any?
+      (source.libraries & (self.workgroups.map {|ins| ins.get_libraries}).flatten).any?
     end
   end
 

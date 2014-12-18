@@ -26,6 +26,12 @@
       definitions: "['~']='[|0-9]'"
       mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
+"035": 
+    layout: 
+      fields: 
+      - - a
+        - cols: 4
+      columns: 4
 "039": 
   layout: 
     fields: 

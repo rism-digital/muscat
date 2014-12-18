@@ -41,7 +41,7 @@ class Source < ActiveRecord::Base
   
   belongs_to :source
   has_many :sources
-  has_and_belongs_to_many :institutions
+  has_and_belongs_to_many :libraries
   has_and_belongs_to_many :people
   has_and_belongs_to_many :standard_titles
   has_and_belongs_to_many :standard_terms
@@ -211,7 +211,7 @@ class Source < ActiveRecord::Base
     marc_foreign_objects = Hash.new
     
     # All the allowed relation types *must* be in this array or they will be dropped
-    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places"]
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "libraries", "places"]
     
     # Group all the foreign associations by class, get_all_foreign_associations will just return
     # a flat list of objects
@@ -327,6 +327,10 @@ class Source < ActiveRecord::Base
     
     sunspot_dsl.integer :places, :multiple => true do
           places.map { |place| place.id }
+    end
+    
+    sunspot_dsl.integer :libraries, :multiple => true do
+          libraries.map { |library| library.id }
     end
     
     sunspot_dsl.integer :institutions, :multiple => true do

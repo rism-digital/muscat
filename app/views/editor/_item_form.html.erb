@@ -9,8 +9,8 @@
 				:locals => { :render_panel => render_panel , :group => group } -%>
 		<%- end -%>
 		<!-- get all tags not included in the group into an 'other' group -->
-       	<%= render :partial => @editor_profile.get_group_partial("other"),  
-            :locals => { :render_panel => render_panel , :group => "other" } -%> 
+		<%= render :partial => @editor_profile.get_group_partial("other"), 
+			:locals => { :render_panel => render_panel , :group => "other" } -%>
 	<% end %>
 	<%= render :partial => "editor/form_dialogs", :locals => { :render_panel => render_panel } -%>
 </div>

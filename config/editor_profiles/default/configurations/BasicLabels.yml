@@ -359,19 +359,6 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Autre
     de: Weitere
     en: Other
-"043": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Country code
-    fr: Country code
-    de: Länder-Code
-    en: County code
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    c: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Country code
-        fr: Country code
-        de: Länder-Code  
-        en: Country code
 "100": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Compositore/Autore
@@ -455,19 +442,6 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: "Collectivité subordonnée"
         de: "Untergeordnete Körperschaft"
         en: Subordinate unit
-    c: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Place
-        fr: Place 
-        de: Ort
-        en: Place
-    g: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Ente subordinato
-        fr: "Siglum"
-        de: "Sigel"
-        en: Siglum
-
 "130": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Titolo uniforme
@@ -842,19 +816,6 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     fr: "Traité attribué"
     de: Theoretica zugeschrieben
     en: Theoretica attributed
-"410": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Name variants
-    fr: Name variants
-    de: Namensvarianten
-    en: Name variants
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Name variants
-        fr: Name variants
-        de: Namensvarianten  
-        en: Name variants
 "500": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Osservazioni
@@ -1419,27 +1380,6 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Personal name
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
-
-"622": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Contact 
-    fr: Contact
-    de: Kontakt
-    en: Contact 
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    e: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Address
-        fr: Address
-        de: Adresse
-        en: Address 
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    u: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: URL
-        fr: URL
-        de: URL
-        en: URL 
 "650": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Parola chiave
