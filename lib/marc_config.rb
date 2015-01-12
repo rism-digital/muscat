@@ -159,7 +159,7 @@ class MarcConfig
     return true if @tag_config[tag][:fields].assoc(subtag)
     return false
   end
-   
+
   def is_tagless?(tag)
     @tag_config[tag][:tagless]
   end

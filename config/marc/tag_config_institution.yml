@@ -7,7 +7,7 @@
 
 # People auth data
 
-:model: catalogue
+:model: institution
 :tags:
   "000": 
     :master: ""
@@ -45,56 +45,38 @@
     :fields:
     - - ""
       - :no_browse: true
-  "100": 
-    :master: a
-    :indicator: "1#"
-    :occurances: "?"
-    :fields: 
-    - - a
-      - :occurances: "?"
-    - - "0"
-      - :occurances: "?"
-        :browse_inline: true
-  "210": 
-    :master: a
-    :indicator: "1#"
-    :occurances: "?"
-    :fields: 
-    - - a
-      - :occurances: "?"
-  "240": 
-    :master: a
-    :indicator: "1#"
-    :occurances: "?"
-    :fields: 
-    - - a
-      - :occurances: "?"
-  "260": 
-    :master: a
-    :indicator: "1#"
+  "043": 
+    :master: c
+    :indicator: "##"
     :occurances: "*"
+    :fields: 
+    - - c
+      - :occurances: "*"
+  "110": 
+    :master: a
+    :indicator: "1#"
+    :occurances: "?"
     :fields: 
     - - a
       - :occurances: "?"
     - - c
       - :occurances: "?"
-  "700": 
+    - - g
+      - :occurances: "?"
+  "410": 
     :master: a
-    :indicator: "##"
+    :indicator: "1#"
     :occurances: "*"
     :fields: 
     - - a
       - :occurances: "?"
-    - - "0"
-      - :occurances: "?"
-    - - "4"
-      - :occurances: "?"
-  "760": 
-    :master: g
+  "622": 
+    :master: e
     :indicator: "##"
     :occurances: "*"
     :fields: 
-    - - g
+    - - e
       - :occurances: "?"
-    - - t
+    - - u
       - :occurances: "?"
+        :validation: "^http*"

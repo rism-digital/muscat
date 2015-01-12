@@ -304,10 +304,11 @@ class EditorConfiguration
   # refer to _layout_is_applicable. It is filtered in base of the MARC leader or <tt>tag</tt> item.
   def self.get_applicable_layout(model)
     profiles = EditorConfiguration.profiles
+    p profiles
     default = nil
     model_name = model.class.to_s.downcase
+
     profiles.each do |p|
-      
       next if model_name != p.model
       
       # we keep the default profile while looping in case we don't find an applicable one

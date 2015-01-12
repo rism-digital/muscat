@@ -55,3 +55,39 @@
   :filter:
     show_all: false
     show: true
+
+
+- :id: Institution
+  :name: institution
+  :model: institution
+  :labels: 
+  - InstitutionBasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - InstitutionBasicFormOptions
+  :layout: 
+  - InstitutionLayoutShow
+  :filter:
+    default: true 
+    show_all: false
+    show: true
+
+- :id: Catalogue
+  :name: catalogue
+  :model: catalogue
+  :labels: 
+  - CatalogueBasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - CatalogueBasicFormOptions
+  :layout: 
+  - CatalogueLayoutShow
+  :filter:
+    default: true 
+    show_all: false
+    show: true
+
+
+
