@@ -45,6 +45,14 @@ def self.up
   execute "ALTER TABLE institutions ADD marc_source TEXT"
   execute "ALTER TABLE institutions ADD comments TEXT"  
   
+  ## Hand sanitize
+  execute "DELETE FROM institutions_manuscripts where manuscript_id = 76390"
+  execute "DELETE FROM institutions_manuscripts where manuscript_id = 76403"
+  execute "DELETE FROM manuscripts_people where manuscript_id = 76403"
+  execute "DELETE FROM manuscripts_standard_terms where manuscript_id = 76403"
+  execute "DELETE FROM manuscripts_standard_titles where manuscript_id = 76403"
+  execute "DELETE FROM manuscripts_standard_titles where manuscript_id = 76390"
+  
   # Add marc source to catalogues too
   execute "ALTER TABLE catalogues ADD marc_source TEXT"
   
