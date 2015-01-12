@@ -15,19 +15,32 @@ class UpdateTables < ActiveRecord::Migration
     :old_versions]
 
 @rename_mscount_tables =   
-  [:catalogues, :institutions, :libraries, :liturgical_feasts, :people, :places, 
+  [:catalogues, :institutions, :liturgical_feasts, :people, :places, 
   :standard_terms, :standard_titles, :work_incipits, :works]
 
 @update_tables =   
   [:catalogues, :institutions, :do_div_files, :do_divs, :do_file_groups, :do_files, :do_images, :do_items,
-  :libraries, :liturgical_feasts, :people, :places, 
+  :liturgical_feasts, :people, :places, 
   :standard_terms, :standard_titles, :works]
 
 def self.up
   
+
+  
   @drop_tables.each do |t|
     execute "DROP TABLE IF EXISTS #{t}";
   end
+  
+  # Drop the Institutions table
+  # At this point in history it is already updated in muscat 2
+  #execute "ALTER TABLE libraries DROP CONSTRAINT library_old_versions_ext_id_fk"
+  execute "DROP TABLE institutions"
+  execute "DROP TABLE institutions_manuscripts"
+  
+  # Rename the libraries one
+  execute "RENAME TABLE libraries TO institutions"
+  execute "RENAME TABLE libraries_manuscripts TO institutions_manuscripts"
+  execute "ALTER TABLE institutions_manuscripts CHANGE library_id institution_id INT"
   
   # Update schema for sources/manuscripts
   execute "RENAME TABLE manuscripts TO sources"
@@ -58,8 +71,8 @@ def self.up
   execute "RENAME TABLE institutions_manuscripts TO institutions_sources"
   execute "ALTER TABLE institutions_sources CHANGE manuscript_id source_id INT(11)  NULL  DEFAULT NULL"
   
-  execute "RENAME TABLE libraries_manuscripts TO libraries_sources"
-  execute "ALTER TABLE libraries_sources CHANGE manuscript_id source_id INT(11)  NULL  DEFAULT NULL"
+  #execute "RENAME TABLE libraries_manuscripts TO libraries_sources"
+  #execute "ALTER TABLE libraries_sources CHANGE manuscript_id source_id INT(11)  NULL  DEFAULT NULL"
   
   execute "RENAME TABLE liturgical_feasts_manuscripts TO liturgical_feasts_sources"
   execute "ALTER TABLE liturgical_feasts_sources CHANGE manuscript_id source_id INT(11)  NULL  DEFAULT NULL"
@@ -81,7 +94,7 @@ def self.up
   
   execute "ALTER TABLE catalogues_sources ADD CONSTRAINT catalogues_manuscripts_fk1 FOREIGN KEY (source_id) REFERENCES sources (id) ON UPDATE CASCADE"
   execute "ALTER TABLE institutions_sources ADD CONSTRAINT institutions_sources_fk1 FOREIGN KEY (source_id) REFERENCES sources (id) ON UPDATE CASCADE"
-  execute "ALTER TABLE libraries_sources ADD CONSTRAINT libraries_sources_fk1 FOREIGN KEY (source_id) REFERENCES sources (id) ON UPDATE CASCADE"
+  #execute "ALTER TABLE libraries_sources ADD CONSTRAINT libraries_sources_fk1 FOREIGN KEY (source_id) REFERENCES sources (id) ON UPDATE CASCADE"
   execute "ALTER TABLE liturgical_feasts_sources ADD CONSTRAINT liturgical_feasts_sources_fk1 FOREIGN KEY (source_id) REFERENCES sources (id) ON UPDATE CASCADE"
   execute "ALTER TABLE people_sources ADD CONSTRAINT people_sources_fk1 FOREIGN KEY (source_id) REFERENCES sources (id) ON UPDATE CASCADE"
   execute "ALTER TABLE places_sources ADD CONSTRAINT places_sources_fk1 FOREIGN KEY (source_id) REFERENCES sources (id) ON UPDATE CASCADE"
@@ -89,7 +102,7 @@ def self.up
   execute "ALTER TABLE sources_standard_titles ADD CONSTRAINT sources_standard_titles_fk1 FOREIGN KEY (source_id) REFERENCES sources (id) ON UPDATE CASCADE"
   execute "ALTER TABLE sources_works ADD CONSTRAINT sources_works_fk1 FOREIGN KEY (source_id) REFERENCES sources (id) ON UPDATE CASCADE"
 
-  execute "ALTER TABLE libraries_sources ADD CONSTRAINT libraries_sources_fk2 FOREIGN KEY (library_id) REFERENCES libraries (id) ON UPDATE CASCADE"
+  #execute "ALTER TABLE libraries_sources ADD CONSTRAINT libraries_sources_fk2 FOREIGN KEY (library_id) REFERENCES libraries (id) ON UPDATE CASCADE"
   execute "ALTER TABLE institutions_sources ADD CONSTRAINT institutions_sources_fk2 FOREIGN KEY (institution_id) REFERENCES institutions (id) ON UPDATE CASCADE"
   execute "ALTER TABLE catalogues_sources ADD CONSTRAINT catalogues_sources_fk2 FOREIGN KEY (catalogue_id) REFERENCES catalogues (id) ON UPDATE CASCADE"
   execute "ALTER TABLE liturgical_feasts_sources ADD CONSTRAINT liturgical_feasts_sources_fk2 FOREIGN KEY (liturgical_feast_id) REFERENCES liturgical_feasts (id) ON UPDATE CASCADE"
@@ -177,7 +190,7 @@ def self.up
   end  
   
   # Setup the autoincrements
-  ["Catalogue", "Institution", "Library", "LiturgicalFeast", "Person", "Place", "StandardTerm", "StandardTitle", "Work"].each do |classname|
+  ["Catalogue", "Institution", "LiturgicalFeast", "Person", "Place", "StandardTerm", "StandardTitle", "Work"].each do |classname|
     model = Kernel.const_get(classname)
     max_id = model.maximum(:id)
     max_id = max_id != nil ? max_id : 0 # WHY can't you just return 0???!
