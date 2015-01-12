@@ -41,6 +41,12 @@ def self.up
   execute "RENAME TABLE libraries TO institutions"
   execute "RENAME TABLE libraries_manuscripts TO institutions_manuscripts"
   execute "ALTER TABLE institutions_manuscripts CHANGE library_id institution_id INT"
+  execute "ALTER TABLE institutions ADD place VARCHAR(255)"
+  execute "ALTER TABLE institutions ADD marc_source TEXT"
+  execute "ALTER TABLE institutions ADD comments TEXT"  
+  
+  # Add marc source to catalogues too
+  execute "ALTER TABLE catalogues ADD marc_source TEXT"
   
   # Update schema for sources/manuscripts
   execute "RENAME TABLE manuscripts TO sources"
@@ -128,6 +134,12 @@ def self.up
   
   # update source_id in sources
   execute "UPDATE sources s, (SELECT DISTINCT id, ext_id FROM sources) t1 SET s.source_id = t1.ext_id WHERE s.source_id = t1.id;"
+  
+  # Updated index for new institutions
+  add_index :institutions, :siglum
+  add_index :institutions, :wf_stage
+  add_index :institutions_sources, :institution_id
+  add_index :institutions_sources, :source_id
   
   @update_tables.each do |t|
     execute "UPDATE #{t} SET id = id + 100000000" # WE CAN HAVE LOW EXT_IDs
