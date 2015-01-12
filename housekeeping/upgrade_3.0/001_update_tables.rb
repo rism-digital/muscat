@@ -201,6 +201,24 @@ def self.up
   require './db/migrate/20140923105654_create_folder_items.rb'
   CreateFolderItems.new.migrate(:up)
   
+  require './db/migrate/20141008113939_create_workgroups.rb'
+  CreateWorkgroups.new.migrate(:up)
+  
+  require './db/migrate/20141008133333_create_users_workgroups.rb'
+  CreateUsersWorkgroups.new.migrate(:up)
+  
+  require './db/migrate/20141008133403_remove_workgroup_from_users.rb'
+  RemoveWorkgroupFromUsers.new.migrate(:up)
+  
+  require './db/migrate/20141009061155_add_libpatterns_to_workgroups.rb'
+  AddLibpatternsToWorkgroups.new.migrate(:up)
+  
+  require './db/migrate/20141030153402_create_institutions_workgroups.rb'
+  CreateInstitutionsWorkgroups.new.migrate(:up)
+  
+  require './db/migrate/20141030153402_create_institutions_workgroups.rb'
+  CreateInstitutionsWorkgroups.new.migrate(:up)
+  
   # Fix the schema migration
   execute "TRUNCATE TABLE schema_migrations;"
   Dir.open('db/migrate').each do |fname|
