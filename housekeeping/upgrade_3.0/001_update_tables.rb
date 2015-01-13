@@ -46,7 +46,7 @@ def self.up
   execute "ALTER TABLE institutions ADD comments TEXT"  
   
   # De nullize siglum
-  execute "ALTER TABLE institutions CHANGE siglum VARCHAR(32) NULL DEFAULT NULL"
+  execute "ALTER TABLE institutions CHANGE siglum siglum VARCHAR(32) NULL DEFAULT NULL"
   
   ## Hand sanitize
   execute "DELETE FROM institutions_manuscripts where manuscript_id = 76390"
