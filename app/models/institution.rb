@@ -37,24 +37,39 @@ class Institution < ActiveRecord::Base
   before_validation :set_object_fields
   
   attr_accessor :suppress_reindex_trigger
+  attr_accessor :suppress_scaffold_marc_trigger
 
   # Suppresses the solr reindex
   def suppress_reindex
     self.suppress_reindex_trigger = true
   end
-  
+
+  def suppress_scaffold_marc
+    self.suppress_scaffold_marc_trigger = true
+  end
+
   def scaffold_marc
-    return if self.marc_source != nil  
-    return if self.suppress_scaffold_marc_trigger == true
+    #return if self.marc_source != nil  
+    #return if self.suppress_scaffold_marc_trigger == true
   
-    new_marc = MarcInstitution.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/library/default.marc"))
+    new_marc = MarcInstitution.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/institution/default.marc"))
     new_marc.load_source true
     
     new_100 = MarcNode.new("institution", "110", "", "1#")
-    new_100.add_at(MarcNode.new("institution", "a", self.full_name, nil), 0)
+    new_100.add_at(MarcNode.new("institution", "p", self.place, nil), 0) if self.place != nil
+    new_100.add_at(MarcNode.new("institution", "g", self.siglum, nil), 0) if self.siglum != nil
+    
+    new_100.add_at(MarcNode.new("institution", "a", self.name, nil), 0)
     
     pi = new_marc.get_insert_position("100")
     new_marc.root.children.insert(pi, new_100)
+
+    new_600 = MarcNode.new("institution", "622", "", "1#")
+    new_600.add_at(MarcNode.new("institution", "u", self.url, nil), 0) if self.url
+    new_600.add_at(MarcNode.new("institution", "e", self.address, nil), 0) if self.address
+    
+    pi = new_marc.get_insert_position("622")
+    new_marc.root.children.insert(pi, new_600)
 
     if self.id != nil
       new_marc.set_id self.id

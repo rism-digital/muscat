@@ -31,17 +31,22 @@ class Catalogue < ActiveRecord::Base
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
+  attr_accessor :suppress_scaffold_marc_trigger
   
   # Suppresses the solr reindex
   def suppress_reindex
     self.suppress_reindex_trigger = true
   end
 
+  def suppress_scaffold_marc
+    self.suppress_scaffold_marc_trigger = true
+  end
+    
   def scaffold_marc
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
  
-    new_marc = MarcInstitution.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/library/default.marc"))
+    new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/library/default.marc"))
     new_marc.load_source true
     
     new_100 = MarcNode.new("catalogue", "100", "", "1#")
