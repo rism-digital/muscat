@@ -45,6 +45,9 @@ def self.up
   execute "ALTER TABLE institutions ADD marc_source TEXT"
   execute "ALTER TABLE institutions ADD comments TEXT"  
   
+  # De nullize siglum
+  execute "ALTER TABLE institutions CHANGE siglum title VARCHAR(32) NULL DEFAULT NULL"
+  
   ## Hand sanitize
   execute "DELETE FROM institutions_manuscripts where manuscript_id = 76390"
   execute "DELETE FROM institutions_manuscripts where manuscript_id = 76403"

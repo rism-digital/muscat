@@ -60,7 +60,6 @@ class Catalogue < ActiveRecord::Base
     end
     
     self.marc_source = new_marc.to_marc
-    self.save!
   end
 
 

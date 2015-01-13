@@ -49,8 +49,8 @@ class Institution < ActiveRecord::Base
   end
 
   def scaffold_marc
-    #return if self.marc_source != nil  
-    #return if self.suppress_scaffold_marc_trigger == true
+    return if self.marc_source != nil  
+    return if self.suppress_scaffold_marc_trigger == true
   
     new_marc = MarcInstitution.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/institution/default.marc"))
     new_marc.load_source true
@@ -76,7 +76,6 @@ class Institution < ActiveRecord::Base
     end
     
     self.marc_source = new_marc.to_marc
-    self.save!
   end
 
   def set_object_fields
