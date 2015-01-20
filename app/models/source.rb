@@ -59,7 +59,7 @@ class Source < ActiveRecord::Base
   before_destroy :check_dependencies
   
   before_save :set_object_fields
-  before_create :fix_ids
+  after_create :fix_ids
   after_save :update_links, :reindex
   before_destroy :update_links
   
@@ -336,6 +336,7 @@ class Source < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
+      self.save!
     end
   end
   
