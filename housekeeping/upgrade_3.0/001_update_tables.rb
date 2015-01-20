@@ -233,6 +233,14 @@ def self.up
   # Source on the other hand always starts from the default configured one
   execute "ALTER TABLE sources AUTO_INCREMENT=#{RISM::BASE_NEW_IDS[:source]}"
   
+  # Seed roles
+  Role.create :name => "admin"
+  Role.create :name => "editor"
+  Role.create :name => "cataloger"
+  Role.create :name => "guest"
+  
+  # Note that admin user is created by 20140331105619_devise_create_users
+  
 end
 
 end
