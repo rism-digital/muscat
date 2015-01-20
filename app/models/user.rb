@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     if source.sources.count > 0
       libs=[]
       source.sources.each do |so| 
-        so.libraries.each do |l|
+        so.institutions.each do |l|
           libs<<l
         end
       end
