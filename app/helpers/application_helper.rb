@@ -9,7 +9,7 @@ module ApplicationHelper
   end
   
   def library_default_autocomplete
-    autocomplete_library_siglum_libraries_path
+    autocomplete_institution_siglum_institutions_path
   end
   
   def liturgical_feast_default_autocomplete
