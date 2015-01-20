@@ -34,6 +34,7 @@ module MarcControllerActions
 
       if !@item
         @item = model.new
+        @item.user = current_user
       end
       @item.marc = new_marc
 
