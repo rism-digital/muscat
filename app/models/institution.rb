@@ -149,4 +149,8 @@ class Institution < ActiveRecord::Base
     end
   end
   
+  def autocomplete_label_siglum
+    "#{siglum} (#{name})"
+  end
+  
 end

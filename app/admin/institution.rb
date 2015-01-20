@@ -11,7 +11,7 @@ ActiveAdmin.register Institution do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :institution, :siglum
+    autocomplete :institution, [:siglum, :name], :display_value => :autocomplete_label_siglum, :extra_data => [:siglum, :name], :required => :siglum
     autocomplete :institution, :name
     
     after_destroy :check_model_errors
