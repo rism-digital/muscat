@@ -27,7 +27,6 @@ class Catalogue < ActiveRecord::Base
   before_destroy :check_dependencies
   
   before_save :set_object_fields
-  ##before_create :generate_new_id
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger

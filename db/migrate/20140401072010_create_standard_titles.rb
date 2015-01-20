@@ -29,7 +29,7 @@ class CreateStandardTitles < ActiveRecord::Migration
     add_index :sources_standard_titles, :standard_title_id
     add_index :sources_standard_titles, :source_id
     
-    execute "ALTER TABLE standard_titles AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    execute "ALTER TABLE standard_titles AUTO_INCREMENT=#{RISM::BASE_NEW_IDS[:standard_title]}"
     
   end
 

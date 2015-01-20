@@ -30,7 +30,7 @@ class CreatePlaces < ActiveRecord::Migration
     add_index :places_sources, :place_id
     add_index :places_sources, :source_id
     
-    execute "ALTER TABLE places AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    execute "ALTER TABLE places AUTO_INCREMENT=#{RISM::BASE_NEW_IDS[:place]}"
     
   end
 

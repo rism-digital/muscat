@@ -3,7 +3,6 @@ class CreateSources < ActiveRecord::Migration
   def self.up
     create_table(:sources, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8') do |t|
       # changing to bingint/64bits needs limit to be set to 8 
-      ### this is created automatically! why is it here?
       #t.column :id,                 :integer, { :limit => 4 }
       
       t.column :source_id,          :integer #, { :limit => 4 }
@@ -40,6 +39,8 @@ class CreateSources < ActiveRecord::Migration
     add_index :sources, :source_id
     add_index :sources, :record_type
     add_index :sources, :wf_stage
+    
+    execute "ALTER TABLE sources AUTO_INCREMENT=#{RISM::BASE_NEW_IDS[:source]}"
     
   end
 

@@ -29,7 +29,7 @@ class CreateStandardTerms < ActiveRecord::Migration
     add_index :sources_standard_terms, :standard_term_id
     add_index :sources_standard_terms, :source_id
     
-    execute "ALTER TABLE standard_terms AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    execute "ALTER TABLE standard_terms AUTO_INCREMENT=#{RISM::BASE_NEW_IDS[:standard_term]}"
     
   end
 

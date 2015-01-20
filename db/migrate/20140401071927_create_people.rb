@@ -38,7 +38,7 @@ class CreatePeople < ActiveRecord::Migration
     add_index :people_sources, :person_id
     add_index :people_sources, :source_id
     
-    execute "ALTER TABLE people AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    execute "ALTER TABLE people AUTO_INCREMENT=#{RISM::BASE_NEW_IDS[:person]}"
     
   end
 

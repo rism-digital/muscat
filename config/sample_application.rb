@@ -14,10 +14,18 @@ module RISM
   # Select the configuration for the editor profiles to load
   EDITOR_PROFILE = ""
   
-  BASE_ID = "00000400"
-  BASE_NEW_ID = 100000000
-  # The base id for generating new holding IDs
-  BASE_HOLDING_ID = "00002"
+  BASE_NEW_IDS = { 
+    :catalogue        => 50000000,
+    :institution      => 50000000,
+    :liturgical_feast => 50000000,
+    :person           => 50000000,
+    :place            => 50000000,
+    :source           => 410000000,
+    :standard_term    => 50000000,
+    :standard_title   => 50000000,
+    :work             => 50000000
+  }
+
 end
 
 module Muscat

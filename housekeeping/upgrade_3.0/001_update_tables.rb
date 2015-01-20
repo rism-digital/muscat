@@ -229,18 +229,9 @@ def self.up
       next if i == 0
       execute "INSERT INTO schema_migrations (version) VALUES(#{i});"
   end  
-  
-  # Setup the autoincrements
-  ["Catalogue", "Institution", "LiturgicalFeast", "Person", "Place", "StandardTerm", "StandardTitle", "Work"].each do |classname|
-    model = Kernel.const_get(classname)
-    max_id = model.maximum(:id)
-    max_id = max_id != nil ? max_id : 0 # WHY can't you just return 0???!
     
-    # If the ids in the table already overflowed the BASE_ID use the existing id for autoincrement
-    autoincrement_id = max_id < RISM::BASE_NEW_ID ? RISM::BASE_NEW_ID : max_id + 1
-    
-    execute "ALTER TABLE #{classname.tableize} AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
-  end
+  # Source on the other hand always starts from the default configured one
+  execute "ALTER TABLE sources AUTO_INCREMENT=#{RISM::BASE_NEW_IDS[:source]}"
   
 end
 

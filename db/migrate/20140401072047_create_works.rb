@@ -31,7 +31,7 @@ class CreateWorks < ActiveRecord::Migration
     add_index :sources_works, :work_id
     add_index :sources_works, :source_id
     
-    execute "ALTER TABLE works AUTO_INCREMENT=#{RISM::BASE_NEW_ID}"
+    execute "ALTER TABLE works AUTO_INCREMENT=#{RISM::BASE_NEW_IDS[:work]}"
     
   end
 
