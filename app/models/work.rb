@@ -2,7 +2,8 @@ class Work < ActiveRecord::Base
   
   belongs_to :person
   has_many :sources 
-  has_many :work_incipits   
+  has_many :work_incipits
+  belongs_to :user, :foreign_key => "wf_owner"
   
   #include NewIds
   #before_create :generate_new_id

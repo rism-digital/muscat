@@ -13,6 +13,9 @@ ActiveAdmin.register StandardTitle do
     autocomplete :standard_title, :title
  
     after_destroy :check_model_errors
+    before_create do |item|
+      item.user = current_user
+    end
     
     def check_model_errors(object)
       return unless object.errors.any?

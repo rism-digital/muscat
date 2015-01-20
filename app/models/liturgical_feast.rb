@@ -12,6 +12,7 @@ class LiturgicalFeast < ActiveRecord::Base
   
   has_and_belongs_to_many :sources
   has_many :folder_items, :as => :item
+  belongs_to :user, :foreign_key => "wf_owner"
     
   validates_presence_of :name
   

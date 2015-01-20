@@ -9,6 +9,9 @@ ActiveAdmin.register Folder do
   controller do
         
     after_destroy :check_model_errors
+    before_create do |item|
+      item.user = current_user
+    end
     
     def check_model_errors(object)
       

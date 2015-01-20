@@ -19,6 +19,7 @@ class Institution < ActiveRecord::Base
   #has_many :folder_items, :as => :item
   has_and_belongs_to_many :institutions
   has_and_belongs_to_many :workgroups
+  belongs_to :user, :foreign_key => "wf_owner"
     
   composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source)
   

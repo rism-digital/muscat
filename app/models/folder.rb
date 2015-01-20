@@ -1,6 +1,7 @@
 class Folder < ActiveRecord::Base
   
   has_many :folder_items, :dependent => :delete_all
+  belongs_to :user, :foreign_key => "wf_owner"
   
   #after_destroy :remove_links
   

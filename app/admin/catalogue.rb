@@ -13,6 +13,9 @@ ActiveAdmin.register Catalogue do
     autocomplete :catalogue, [:name, :author, :description], :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
     
     after_destroy :check_model_errors
+    before_create do |item|
+      item.user = current_user
+    end
     
     def check_model_errors(object)
       return unless object.errors.any?
@@ -109,12 +112,6 @@ end
   ## Edit ##
   ##########
   
-  form do
-    # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
-    active_admin_edition_bar( self )
-    @item =  @arbre_context.assigns[:item]
-    render :partial => "editor/edit_wide"
-    active_admin_submit_bar( self )
-  end
+  form :partial => "editor/edit_wide"
   
 end

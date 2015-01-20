@@ -25,6 +25,7 @@ class Person < ActiveRecord::Base
   has_many :works
   has_and_belongs_to_many :sources
   has_many :folder_items, :as => :item
+  belongs_to :user, :foreign_key => "wf_owner"
   
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
   

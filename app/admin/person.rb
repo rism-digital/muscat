@@ -13,6 +13,9 @@ ActiveAdmin.register Person do
     autocomplete :person, :full_name, :display_value => :autocomplete_label , :extra_data => [:life_dates]
     
     after_destroy :check_model_errors
+    before_create do |item|
+      item.user = current_user
+    end
     
     def check_model_errors(object)
       return unless object.errors.any?

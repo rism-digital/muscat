@@ -10,6 +10,7 @@ ActiveAdmin.register Source do
   #
   # temporarily allow all parameters
   controller do
+    
     before_filter :only => [:index] do
         if params['commit'].blank?
                  #params['q'] = {:std_title_contains => "[Holding]"} 
@@ -44,7 +45,7 @@ ActiveAdmin.register Source do
     def new
       @source = Source.new
       @based_on = String.new
-
+      
       if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_type] || params[:new_type].empty?)
         redirect_to action: :select_new_template
         return

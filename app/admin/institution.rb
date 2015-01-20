@@ -15,6 +15,9 @@ ActiveAdmin.register Institution do
     autocomplete :institution, :name
     
     after_destroy :check_model_errors
+    before_create do |item|
+      item.user = current_user
+    end
     
     def check_model_errors(object)
       return unless object.errors.any?
@@ -103,28 +106,6 @@ ActiveAdmin.register Institution do
   ## Edit ##
   ##########
 
-  form do
-    # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
-    active_admin_edition_bar( self )
-    @item =  @arbre_context.assigns[:item]
-    render :partial => "editor/edit_wide"
-    active_admin_submit_bar( self )
-  end
+  form :partial => "editor/edit_wide"
 
-=begin
-  form do |f|
-    f.inputs I18n.t(:details) do
-      f.input :siglum, :label => (I18n.t :filter_siglum)
-      f.input :name, :label => (I18n.t :filter_name)
-      f.input :address, :label => (I18n.t :filter_address)
-
-    end
-    f.inputs I18n.t(:content) do
-      f.input :url, :label => (I18n.t :filter_url)
-      f.input :phone, :label => (I18n.t :filter_phone)
-      f.input :email, :label => (I18n.t :filter_email)
-    end
-    f.actions
-  end
-=end
 end
