@@ -3,6 +3,7 @@ ActiveAdmin.register Institution do
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_institutions)}
 
   collection_action :autocomplete_institution_siglum, :method => :get
+  collection_action :autocomplete_institution_name, :method => :get
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -11,6 +12,7 @@ ActiveAdmin.register Institution do
   controller do
     
     autocomplete :institution, :siglum
+    autocomplete :institution, :name
     
     after_destroy :check_model_errors
     
