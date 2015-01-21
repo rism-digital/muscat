@@ -12,8 +12,11 @@ class Ability
       can :read, User, :id => user.id
 
     elsif user.has_role?(:editor, Person)
-      can :manage, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work]
-      can :manage, Source
+      can [:read, :create, :update], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work]
+      can :destroy, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work], :wf_owner => user.id
+      can [:read, :create, :update], Source
+      can :destroy, Source, :wf_owner => user.id
+      
       can :manage, Folder
       can [:read, :create], ActiveAdmin::Comment
       can :read, ActiveAdmin::Page, :name => "Dashboard"
