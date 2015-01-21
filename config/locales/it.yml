@@ -140,10 +140,37 @@ it:
   #################### MODELS      
   activerecord:
     models:
+      catalogue:
+        one: "Catalogo"
+        other: "Cataloghi"
+      folder:
+        one: "Cartella"
+        other: "Cartelle"
+      workgroup:
+        one: "Gruppo"
+        other: "Gruppi"
+      institution:
+        one: "Istitutione"
+        other: "Istituzioni"
       liturgical_feast:
         one: "Festa Liturgica"
         other: "Feste Liturgiche"
-  
+      person:
+        one: "Persona"
+        other: "Persone"
+      source:
+        one: "Fonte"
+        other: "Fonti"
+      standard_term:
+        one: "Termine standard"
+        other: "Termini standard"
+      standard_title:
+        one: "Titolo Standard"
+        other: "titoli Standard"
+      user:
+        one: "Utente"
+        other: "Utenti"
+
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Fonti"
