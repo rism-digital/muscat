@@ -141,35 +141,35 @@ fr:
   activerecord:
     models:
       catalogue:
-        one: "CATALOGUE"
-        other: "CATALOGUES"
+        one: "Catalogue"
+        other: "Catalogues"
       folder:
-        one: "FOLDER"
-        other: "FOLDERS"
+        one: "Dossier"
+        other: "Dossiers"
       workgroup:
-        one: "GROUP"
-        other: "GROUPS"
+        one: "Groupe"
+        other: "Groupes"
       institution:
-        one: "INSTITUTION"
-        other: "INSTITUTIONS"
+        one: "Institution"
+        other: "Institutions"
       liturgical_feast:
-        one: "LITURGICAL FEAST"
-        other: "LITURGICAL FEASTS"
+        one: "Fête liturgique"
+        other: "Fêtes liturgiques"
       person:
-        one: "PERSON"
-        other: "PEOPLE"
+        one: "Personne"
+        other: "Personnes"
       source:
-        one: "SOURCE"
-        other: "SOURCES"
+        one: "Source"
+        other: "Sources"
       standard_term:
-        one: "STANDARD TERM"
-        other: "STANDARD TERMS"
+        one: "Sujet"
+        other: "Sujets"
       standard_title:
-        one: "STANDARD TITLE"
-        other: "STANDARD TITLES"
+        one: "Titre uniforme"
+        other: "Titres uniformes"
       user:
-        one: "USER"
-        other: "USERS"
+        one: "Utilisateur"
+        other: "Utilisateurs"
 
   #################### MENUS
   menu_home: "Home"
