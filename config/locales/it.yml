@@ -141,13 +141,13 @@ it:
   activerecord:
     models:
       liturgical_feast:
-        one: "LITURGICAL FEAST"
-        other: "LITURGICAL FEASTS"
+        one: "Festa Liturgica"
+        other: "Feste Liturgiche"
   
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Fonti"
-  menu_advanced_search: "ADVANCED SEARCH"
+  menu_advanced_search: "Ricerca Avanzata"
   menu_indexes: "Indici"
   menu_people: "Persone"
   menu_institutions: "Istituzioni"
@@ -162,14 +162,14 @@ it:
   menu_users: "Utenti"
   menu_workgroups: "Gruppi"
   menu_administration: "Amministrazione"
-  menu_comments: "COMMENTS"
+  menu_comments: "Commenti"
   menu_languages: "Lingue"
   
   ### VARIOUS ELEMENTS
   recent_sources: "Fonti modificate di recente"
   any_field_contains: "Qualsiasi campo contiene"
-  library_sigla_contains: "SIGLUM CONTAINS"
-  is_in_folder: "IS IN FOLDER"
+  library_sigla_contains: "La sigla contiene"
+  is_in_folder: "E' nella cartella"
   workgroups: "Gruppi"
   user_details: "Dettagli per l'Utente"
   sections: "Sezioni"
@@ -178,9 +178,9 @@ it:
   
   #### FOLDER MESSAGES
   folders:
-    save: "SAVE RESULTS TO FOLDER"
-    success: "FOLDER %{name} CREATED WITH %{count} ITEMS."
-    too_many: "CANNOT ADD MORE THAN %{max} ITEMS (%{count} SELECTED)."
+    save: "Salva i risultati in una cartella"
+    success: "Cartella %{name} creata con %{count} oggetti."
+    too_many: "Impossibile aggiungere più di %{max} oggetti (ne sono selezionati %{count})."
     
   ############ filters
   filter_address: "Indirizzo"
@@ -269,21 +269,21 @@ it:
   filter_dist_594m: "Altri instrumenti"
   filter_dist_594n: "Strumenti del basso continuo"
   
-  rism_any_key: "ANY KEY"
-  rism_a_flat: "A FLAT MAJOR/MINOR"
-  rism_a: "A MAJOR/MINOR"
-  rism_b_flat: "B FLAT MAJOR/MINOR"
-  rism_b: "B MAJOR/MINOR"
-  rism_c: "C MAJOR/MINOR"
-  rism_c_sharp: "C SHARP MAJOR/MINOR"
-  rism_d_flat: "D FLAT MAJOR/MINOR"
-  rism_d: "D MAJOR/MINOR"
-  rism_e_flat: "E FLAT MAJOR/MINOR"
-  rism_e: "E MAJOR/MINOR"
-  rism_f: "F MAJOR/MINOR"
-  rism_f_sharp: "F SHARP MAJOR/MINOR"
-  rism_g: "G MAJOR/MINOR"
-  rism_g_sharp: "G SHARP MAJOR/MINOR"
+  rism_any_key: "ogni tonalità"
+  rism_a_flat: "La bemolle maggiore/minore"
+  rism_a: "La maggiore/minore"
+  rism_b_flat: "Si bemolle maggiore/minore"
+  rism_b: "Si maggiore/minore"
+  rism_c: "Do maggiore/minore"
+  rism_c_sharp: "Do diesis maggiore/minore"
+  rism_d_flat: "Re bemolle maggiore/minore"
+  rism_d: "Re maggiore/minore"
+  rism_e_flat: "Mi bemolle maggiore/minore"
+  rism_e: "Mi  maggiore/minore"
+  rism_f: "Fa maggiore/minore"
+  rism_f_sharp: "Fa diesis maggiore/minore"
+  rism_g: "Sol maggiore/minore"
+  rism_g_sharp: "Sol diesis maggiore/minore"
   
   #
   entry:
@@ -318,14 +318,14 @@ it:
     other: "titoli o incipit testuali"   
 
   user:
-    one: "USER"
-    other: "USERS" 
+    one: "utente"
+    other: "utenti" 
   job:
-    one: "JOB"
-    other: "JOBS"
+    one: "processo"
+    other: "processi"
   folder:
-    one: "FOLDER"
-    other: "FOLDERS"
+    one: "cartella"
+    other: "cartelle"
 
   will_paginate:
     page_entries_info:
@@ -389,4 +389,4 @@ it:
   do_ext_res_link: "Collegamenti esterni:"
   do_ext_link_not_avail: "(File audio non disponibile da questa postazione)"
   do_images_title: "Immagini"
-  connected_libraries: "LIBRARIES"
+  connected_libraries: "Biblioteche"
