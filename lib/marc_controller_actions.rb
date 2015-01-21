@@ -24,7 +24,7 @@ module MarcControllerActions
       dyna_marc_class = Kernel.const_get(classname)
       
       new_marc = dyna_marc_class.new()
-      new_marc.load_from_hash(marc_hash)
+      new_marc.load_from_hash(marc_hash, current_user)
 
       # @item is used in the Marc Editor
       @item = nil

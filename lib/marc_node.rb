@@ -145,11 +145,11 @@ class MarcNode
   # (the field is returned by get_master_foreign_subfield) it will try
   # to get the corrensponding object from the DB. If no id ($0) is present
   # it will try to look it up
-  def import(overwrite = false, reindex = false)
+  def import(overwrite = false, reindex = false, user = nil)
     foreign_associations = {}
     if parent == nil
       @children.each do |child|
-        child_foreign_associations = child.import(overwrite, reindex)
+        child_foreign_associations = child.import(overwrite, reindex, user)
         foreign_associations.merge!(child_foreign_associations) unless !child_foreign_associations
       end
     else
@@ -182,6 +182,7 @@ class MarcNode
         return if !self.foreign_object 
         # We have the foreign object. Check if it needs to be populated and saved
         if self.foreign_object.new_record? or overwrite
+          self.foreign_object.user = user if user
           populate_master( )
           #FIXME self.foreign_object.suppress_reindex
           # PROBLEM: if an element has an incorrect id, but a field that is unique already is in the DB

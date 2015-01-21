@@ -26,7 +26,7 @@ class Marc
   
   DOLLAR_STRING = "_DOLLAR_"
   
-  def initialize(model, source = nil)
+  def initialize(model, source = nil, user = nil)
     @root = MarcNode.new(model)
     @marc21 = Regexp.new('^[\=]([\d]{3,3})[\s]+(.*)$')
     @loaded = false
@@ -51,8 +51,8 @@ class Marc
 
   # After a Marc file is loaded an parsed, read all the foreign references
   # and link them. In case they do not exist they will be created (upon saving the manuscript). 
-  def import(reindex = false)
-    @all_foreign_associations = @root.import(false, reindex)
+  def import(reindex = false, user = nil)
+    @all_foreign_associations = @root.import(false, reindex, user)
   end
   
   # Creates a Marc object from the <tt>source</tt> field in the Source record
@@ -116,7 +116,7 @@ class Marc
   # This function by default uses marc_node.import to
   # create the relations with the foreign object and create
   # them in the DB. It will also call a reindex on them
-  def load_from_hash(hash)
+  def load_from_hash(hash, user = nil)
     @root << MarcNode.new(@model, "000", hash['leader'], nil) if hash['leader']
     
     if hash['fields']
@@ -157,7 +157,7 @@ class Marc
     end # if hash['fields']
     
     @loaded = true
-    import(true) # Import, reindexing
+    import(true, user) # Import
     @source = to_marc
     @source_id = first_occurance("001").content || nil rescue @source_id = nil
     # When importing externals are not resolved, do it here

@@ -234,7 +234,6 @@ def self.up
   execute "ALTER TABLE sources AUTO_INCREMENT=#{RISM::BASE_NEW_IDS[:source]}"
   
   # Seed roles
-  Role.create :name => "admin"
   Role.create :name => "editor"
   Role.create :name => "cataloger"
   Role.create :name => "guest"
