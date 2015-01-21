@@ -12,7 +12,7 @@ class Ability
       can :read, User, :id => user.id
 
     elsif user.has_role?(:editor, Person)
-      can :manage, Person
+      can :manage, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work]
       can :manage, Source
       can :manage, Folder
       can [:read, :create], ActiveAdmin::Comment
@@ -20,13 +20,19 @@ class Ability
       can [:read, :update], User, :id => user.id
 
     elsif user.has_role?(:cataloger, Person)
-      can [:read, :create], Person
-      can :read, Source
-      can :manage, Folder
-      can [:read, :create], ActiveAdmin::Comment
-      can :update, Source do |source|
-        user.can_edit? source
-       end
+      # A cataloguer can create new items but modify only the ones ho made
+      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work]
+      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work], :wf_owner => user.id
+      
+      can [:read, :create, :update], Folder
+      can [:read, :create, :update], ActiveAdmin::Comment
+      
+      can [:read, :create], Source
+      can :update, Source, :wf_owner => user.id
+      #can :update, Source do |source|
+      #  user.can_edit? source
+      # end
+      
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can [:read, :update], User, :id => user.id
     end
