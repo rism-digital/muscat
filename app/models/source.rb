@@ -45,7 +45,7 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :people
   has_and_belongs_to_many :standard_titles
   has_and_belongs_to_many :standard_terms
-  has_and_belongs_to_many :institutions
+
   has_and_belongs_to_many :catalogues
   has_and_belongs_to_many :liturgical_feasts
   has_and_belongs_to_many :places
