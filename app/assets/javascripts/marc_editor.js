@@ -422,11 +422,17 @@ function marc_editor_show_hide_preview() {
 	// model comes from the marc_editor_panel div
 	model = marc_editor_get_model();
 	
-	if ($('div[data-function="new"]').filter(":visible").size() > 0) {
+//	if ($('div[data-function="new"]').filter(":visible").size() > 0) {
+//		alert("There are unsaved Authority Files. Please save the Source before switching to preview.");
+//		return;
+//	}
+
+	if ($('div[data-function="new"]').filter(function (index) {
+                  return $(this).css("display") === "block";
+              }).size() > 0) {
 		alert("There are unsaved Authority Files. Please save the Source before switching to preview.");
 		return;
 	}
-
 	
 	if ($('#marc_editor_panel').is(':visible')) {
 		// this function gets the show data via ajax

@@ -92,7 +92,7 @@ class MarcNode
   def find_or_new_foreign_object_by_foreign_field(class_name, field_name, search_value)
     new_foreign_object = nil
     if foreign_class = get_class(class_name)
-      new_foreign_object = foreign_class.send("where", field_name.to_sym => search_value)
+      new_foreign_object = foreign_class.send("find_by_" + field_name, search_value)
       if !new_foreign_object
         new_foreign_object = foreign_class.new
         new_foreign_object.send("#{field_name}=", search_value)
