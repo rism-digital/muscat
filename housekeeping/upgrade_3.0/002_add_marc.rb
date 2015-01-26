@@ -10,14 +10,14 @@ Person.where("id >= 50000000" ).find_each do |p|
   puts "Saved #{p.id}"
 end
 
-Catalogue.where("id >= 50000000" ).find_each do |p|
+Institution.where("id >= 50000000" ).find_each do |p|
   puts "Saving #{p.id}"
   p.scaffold_marc
   p.save
 end
 
-#Catalogue.where("id >= 50000000" ).find_each do |p|
-#  puts "Saving #{p.id}"
-#  p.scaffold_marc
-#  p.save
-#end
+Catalogue.where("id >= 50000000" ).find_each do |p|
+  puts "Saving #{p.id}"
+  p.scaffold_marc
+  p.save
+end
