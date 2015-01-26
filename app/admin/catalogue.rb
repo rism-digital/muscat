@@ -48,6 +48,20 @@ ActiveAdmin.register Catalogue do
       end
     end
     
+    def new
+      @catalogue = Catalogue.new
+      
+      new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/catalogue/default.marc"))
+      new_marc.load_source false # this will need to be fixed
+      @catalogue.marc = new_marc
+
+      @editor_profile = EditorConfiguration.get_applicable_layout @catalogue
+      # Since we have only one default template, no need to change the title
+      #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
+      #To transmit correctly @item we need to have @source initialized
+      @item = @catalogue
+    end
+    
   end
   
   # Include the folder actions
