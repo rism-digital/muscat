@@ -92,7 +92,7 @@ class MarcNode
   def find_or_new_foreign_object_by_foreign_field(class_name, field_name, search_value)
     new_foreign_object = nil
     if foreign_class = get_class(class_name)
-      new_foreign_object = foreign_class.send("find_by_" + field_name, search_value)
+      new_foreign_object = foreign_class.send("where", field_name.to_sym => search_value)
       if !new_foreign_object
         new_foreign_object = foreign_class.new
         new_foreign_object.send("#{field_name}=", search_value)
@@ -112,7 +112,7 @@ class MarcNode
       nmasters.each do |nmaster|
         conditions[@marc_configuration.get_foreign_field(tag, nmaster.tag)] = nmaster.looked_up_content if !nmaster.looked_up_content.empty?
       end
-      new_foreign_object = foreign_class.send("find", :first, :conditions => conditions)
+      new_foreign_object = foreign_class.send("where", conditions).first
       if !new_foreign_object
         new_foreign_object = foreign_class.new
         new_foreign_object.send("wf_stage=", 'published')
@@ -163,7 +163,7 @@ class MarcNode
         # will be used to check if we need to add a $_ db_master or not (for 004 we don't have one)
         add_db_master = true
         # If we have a master subfield, fo the lookup using that
-        if master    
+        if master
           master_field = @marc_configuration.get_foreign_field(tag, master.tag)
           self.foreign_object = find_or_new_foreign_object_by_foreign_field(@marc_configuration.get_foreign_class(tag, master.tag), master_field, master.looked_up_content)
         # If we have no master subfiled but master is actually empty "" (e.g. 004) with holding records
