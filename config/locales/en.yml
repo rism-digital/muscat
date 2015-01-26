@@ -198,6 +198,7 @@ en:
   library_sigla_contains: "Siglum Contains"
   is_in_folder: "Is in folder"
   workgroups: "Workgroups"
+  roles: "Roles"
   user_details: "User Details"
   sections: "Sections"
   edit: "Edit"

@@ -198,6 +198,7 @@ fr:
   library_sigla_contains: "La cote contient"
   is_in_folder: "Est dans le dossier"
   workgroups: "Groupes"
+  roles: "ROLES"
   user_details: "Détail de l'utilisateur"
   sections: "Sections"
   edit: "Modifier"

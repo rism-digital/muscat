@@ -198,6 +198,7 @@ it:
   library_sigla_contains: "La sigla contiene"
   is_in_folder: "E' nella cartella"
   workgroups: "Gruppi"
+  roles: "Ruoli"
   user_details: "Dettagli per l'Utente"
   sections: "Sezioni"
   edit: "Modifica"

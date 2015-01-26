@@ -27,4 +27,9 @@ class User < ActiveRecord::Base
   def get_workgroups
     self.workgroups.map {|ins| ins.name}
   end
+  
+  def get_roles
+    self.roles.map {|r| r.name}
+  end
+  
 end

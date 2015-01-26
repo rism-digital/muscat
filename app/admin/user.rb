@@ -21,6 +21,9 @@ ActiveAdmin.register User do
     column I18n.t(:workgroups) do |user|
          user.get_workgroups.join(", ")
     end
+    column I18n.t(:roles) do |user|
+         user.get_roles.join(", ")
+    end
     #column :institutions
     column :current_sign_in_at
     column :sign_in_count
@@ -55,6 +58,9 @@ ActiveAdmin.register User do
       row :email
       row I18n.t(:workgroups) do |n|
              user.workgroups.map(&:name).join(", ").html_safe
+      end
+      row I18n.t(:roles) do |user|
+           user.get_roles.join(", ")
       end
       row :sign_in_count
       row :created_at
