@@ -15,6 +15,7 @@ fr:
     update_model: "Modifier %{model}"
     delete_model: "Supprimer %{model}"
     details: "Détails de %{model}"
+    save_model: "SAVE"
     cancel: "Annuler"
     empty: "Vide"
     previous: "Précédent"
@@ -42,6 +43,7 @@ fr:
     powered_by: "Propulsé par %{active_admin} %{version}"
     sidebars:
       filters: "Filtres"
+      sections: "SECTIONS"
     pagination:
       empty: "Aucun %{model} trouvé"
       one: "Affichage de <b>1</b> %{model}"
@@ -203,6 +205,10 @@ fr:
   sections: "Sections"
   edit: "Modifier"
   search_sources: "Chercher des sources"
+ 
+  # Editor sidebar
+  show_all_groups: "SHOW ALL GROUPS"
+  show_preview: "SHOW/HIDE PREVIEW"
  
   #### FOLDER MESSAGES
   folders:

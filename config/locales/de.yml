@@ -14,6 +14,7 @@ de:
     edit_model: "%{model} bearbeiten"
     update_model: "%{model} bearbeiten"
     delete_model: "%{model} löschen"
+    save_model: "Sichern"
     details: "%{model} Details"
     cancel: "Abbrechen"
     empty: "Leer"
@@ -42,6 +43,7 @@ de:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filter"
+      sections: "Blöcke"
     pagination:
       empty: "Keine %{model} gefunden"
       one: "Zeige <b>1</b> %{model}"
@@ -203,6 +205,10 @@ de:
   sections: "Sektionen"
   edit: "Bearbeiten"
   search_sources: "Quellensuche"
+  
+  # Editor sidebar
+  show_all_groups: "Alle Blöcke anzeigen"
+  show_preview: "Vorschau anzeigen/verbergen"
   
   #### FOLDER MESSAGES
   folders:

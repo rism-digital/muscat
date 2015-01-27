@@ -14,6 +14,7 @@ en:
     edit_model: "Edit %{model}"
     update_model: "Edit %{model}"
     delete_model: "Delete %{model}"
+    save_model: "Save"
     details: "%{model} Details"
     cancel: "Cancel"
     empty: "Empty"
@@ -42,6 +43,7 @@ en:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filters"
+      sections: "Sections"
     pagination:
       empty: "No %{model} found"
       one: "Displaying <b>1</b> %{model}"
@@ -203,6 +205,10 @@ en:
   sections: "Sections"
   edit: "Edit"
   search_sources: "Search Sources"
+  
+  # Editor sidebar
+  show_all_groups: "Show All Groups"
+  show_preview: "Show/Hide Preview"
   
   #### FOLDER MESSAGES
   folders:
