@@ -2,6 +2,9 @@ ActiveAdmin.register Person do
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_people)}
 
+  # Remove mass-delete action
+  batch_action :destroy, false
+  
   collection_action :autocomplete_person_full_name, :method => :get
   
   # See permitted parameters documentation:

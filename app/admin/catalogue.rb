@@ -2,6 +2,9 @@ ActiveAdmin.register Catalogue do
   
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_catalogues)}
 
+  # Remove mass-delete action
+  batch_action :destroy, false
+
   collection_action :autocomplete_catalogue_name, :method => :get
 
   # See permitted parameters documentation:
@@ -65,7 +68,7 @@ ActiveAdmin.register Catalogue do
   end
   
   # Include the folder actions
-#  include FolderControllerActions
+  include FolderControllerActions
   
   include MarcControllerActions
 

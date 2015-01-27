@@ -1,7 +1,9 @@
 ActiveAdmin.register Source do
   
-
   collection_action :autocomplete_source_id, :method => :get
+
+  # Remove mass-delete action
+  batch_action :destroy, false
   
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 

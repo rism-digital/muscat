@@ -2,6 +2,9 @@ ActiveAdmin.register Place do
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_places)}
 
+  # Remove mass-delete action
+  batch_action :destroy, false
+  
   collection_action :autocomplete_place_name, :method => :get
 
   # See permitted parameters documentation:

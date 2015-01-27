@@ -2,6 +2,9 @@ ActiveAdmin.register StandardTitle do
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_titles)}
 
+  # Remove mass-delete action
+  batch_action :destroy, false
+  
   collection_action :autocomplete_standard_title_title, :method => :get
 
   # See permitted parameters documentation:

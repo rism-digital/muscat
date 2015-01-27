@@ -2,6 +2,9 @@ ActiveAdmin.register StandardTerm do
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_subjects)}
 
+  # Remove mass-delete action
+  batch_action :destroy, false
+  
   collection_action :autocomplete_standard_term_term, :method => :get
 
   # See permitted parameters documentation:

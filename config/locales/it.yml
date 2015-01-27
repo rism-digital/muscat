@@ -69,7 +69,7 @@ it:
       action_label: "%{title} Selezionati"
       labels:
         destroy: "Elimina"
-        folder: "Create Folder with"
+        folder: "Crea nuova cartella con gli elementi "
 
     comments:
       resource_type: "Tipo di risorsa"

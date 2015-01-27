@@ -2,6 +2,9 @@ ActiveAdmin.register LiturgicalFeast do
   
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_liturgical_feasts)}
 
+  # Remove mass-delete action
+  batch_action :destroy, false
+  
   collection_action :autocomplete_liturgical_feast_name, :method => :get
 
   # See permitted parameters documentation:

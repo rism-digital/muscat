@@ -2,6 +2,9 @@ ActiveAdmin.register Institution do
   
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_institutions)}
 
+  # Remove mass-delete action
+  batch_action :destroy, false
+  
   collection_action :autocomplete_institution_siglum, :method => :get
   collection_action :autocomplete_institution_name, :method => :get
 
@@ -67,7 +70,7 @@ ActiveAdmin.register Institution do
   end
   
   # Include the folder actions
-  #include FolderControllerActions
+  include FolderControllerActions
   
   include MarcControllerActions
   

@@ -2,6 +2,9 @@ ActiveAdmin.register Folder do
   
   menu :label => proc {I18n.t(:menu_folders)}
 
+  # Remove mass-delete action
+  batch_action :destroy, false
+  
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
