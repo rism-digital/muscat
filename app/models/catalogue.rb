@@ -72,8 +72,32 @@ class Catalogue < ActiveRecord::Base
     new_100 = MarcNode.new("catalogue", "100", "", "1#")
     new_100.add_at(MarcNode.new("catalogue", "a", self.author, nil), 0)
     
-    pi = new_marc.get_insert_position("100")
-    new_marc.root.children.insert(pi, new_100)
+    new_marc.root.children.insert(new_marc.get_insert_position("100"), new_100)
+    
+    # save name
+    node = MarcNode.new("catalogue", "210", "", "##")
+    node.add_at(MarcNode.new("catalogue", "a", self.name, nil), 0)
+    
+    new_marc.root.children.insert(new_marc.get_insert_position("210"), node)
+
+    # save decription
+    node = MarcNode.new("catalogue", "240", "", "##")
+    node.add_at(MarcNode.new("catalogue", "a", self.description, nil), 0)
+    
+    new_marc.root.children.insert(new_marc.get_insert_position("240"), node)
+
+    # save date and place
+    node = MarcNode.new("catalogue", "260", "", "##")
+    node.add_at(MarcNode.new("catalogue", "c", self.date, nil), 0)
+    node.add_at(MarcNode.new("catalogue", "a", self.place, nil), 0)
+
+    new_marc.root.children.insert(new_marc.get_insert_position("260"), node)
+
+    # save revue_title
+    node = MarcNode.new("catalogue", "760", "", "0#")
+    node.add_at(MarcNode.new("catalogue", "t", self.revue_title, nil), 0)
+    
+    new_marc.root.children.insert(new_marc.get_insert_position("760"), node)
 
     if self.id != nil
       new_marc.set_id self.id
@@ -103,9 +127,10 @@ class Catalogue < ActiveRecord::Base
 
     # std_title
     self.place, self.date = marc.get_place_and_date
-    self.name = marc.get_short_title
-    self.revue_title = marc.get_title
+    self.name = marc.get_name
+    self.description = marc.get_description
     self.author = marc.get_author
+    self.revue_title = marc.get_revue_title
     self.marc_source = self.marc.to_marc
   end
   
