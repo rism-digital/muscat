@@ -43,9 +43,11 @@ ActiveAdmin.register User do
       f.input :email
 
       if can? :update, User
-        f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all 
         f.input :password
         f.input :password_confirmation
+      end
+      if can? :manage, User
+        f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all 
         f.input :roles, as: :select, multiple: false, collection: Role.all
       end
     end
