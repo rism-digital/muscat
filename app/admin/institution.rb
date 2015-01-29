@@ -15,7 +15,7 @@ ActiveAdmin.register Institution do
   controller do
     
     autocomplete :institution, [:siglum, :name], :display_value => :autocomplete_label_siglum, :extra_data => [:siglum, :name], :required => :siglum
-    autocomplete :institution, :name
+    autocomplete :institution, :name, :display_value => :autocomplete_label_name, :extra_data => [:siglum, :name]
     
     after_destroy :check_model_errors
     before_create do |item|
