@@ -100,6 +100,43 @@ class Person < ActiveRecord::Base
       new_marc.set_id self.id
     end
     
+    if self.birth_place && !self.birth_place.empty?
+      new_field = MarcNode.new("person", "370", "", "##")
+      new_field.add_at(MarcNode.new("person", "a", self.birth_place, nil), 0)
+      
+      new_marc.root.children.insert(new_marc.get_insert_position("370"), new_field)
+    end
+    
+    if self.gender && self.gender == "1" # only if female...
+      new_field = MarcNode.new("person", "375", "", "##")
+      new_field.add_at(MarcNode.new("person", "a", "female", nil), 0)
+
+      new_marc.root.children.insert(new_marc.get_insert_position("375"), new_field)
+    end
+    
+    if (self.alternate_names != nil and !self.alternate_names.empty?) || (self.alternate_dates != nil and !self.alternate_dates.empty?)
+      new_field = MarcNode.new("person", "400", "", "1#")
+      name = (self.alternate_names != nil and !self.alternate_names.empty?) ? self.alternate_names : self.full_name
+      new_field.add_at(MarcNode.new("person", "a", name, nil), 0)
+      new_field.add_at(MarcNode.new("person", "d", self.alternate_dates, nil), 1) if (self.alternate_dates != nil and !self.alternate_dates.empty?)
+      
+      new_marc.root.children.insert(new_marc.get_insert_position("400"), new_field)
+    end
+
+    if self.source != nil and !self.source.empty?
+      new_field = MarcNode.new("person", "670", "", "##")
+      new_field.add_at(MarcNode.new("person", "a", self.source, nil), 0)
+    
+      new_marc.root.children.insert(new_marc.get_insert_position("670"), new_field)
+    end
+    
+    if self.comments != nil and !self.comments.empty?
+      new_field = MarcNode.new("person", "680", "", "1#")
+      new_field.add_at(MarcNode.new("person", "i", self.comments, nil), 0)
+    
+      new_marc.root.children.insert(new_marc.get_insert_position("680"), new_field)
+    end    
+    
     self.marc_source = new_marc.to_marc
     self.save!
   end

@@ -101,6 +101,20 @@
     - - d
       - :occurances: "?"
         :browse_inline: true
+  "370": 
+    :master: a
+    :indicator: "##"
+    :occurances: "?"
+    :fields: 
+    - - a
+      - :occurances: "?"
+  "375": 
+    :master: a
+    :indicator: "##"
+    :occurances: "?"
+    :fields: 
+    - - a
+      - :occurances: "?"
   "400": 
     :master: a
     :indicator: "1#"
