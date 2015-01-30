@@ -213,6 +213,8 @@ class Source < ActiveRecord::Base
     sunspot_dsl.integer :date_from
     sunspot_dsl.integer :date_to
     
+    sunspot_dsl.integer :wf_owner
+    
     sunspot_dsl.integer :catalogues, :multiple => true do
           catalogues.map { |catalogue| catalogue.id }
     end

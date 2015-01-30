@@ -107,6 +107,15 @@ ActiveAdmin.register Source do
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Source").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+  # and for the wf_owner
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:owner)}, as: :select, 
+         collection: proc {
+           if current_user.has_any_role?(:editor, :admin)
+             User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}
+           else
+             [[current_user.name, "wf_owner:#{current_user.id}"]]
+           end
+         }
   
   index do
     selectable_column
