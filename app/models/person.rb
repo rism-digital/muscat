@@ -107,7 +107,7 @@ class Person < ActiveRecord::Base
       new_marc.root.children.insert(new_marc.get_insert_position("370"), new_field)
     end
     
-    if self.gender && self.gender == "1" # only if female...
+    if self.gender && self.gender == 1 # only if female...
       new_field = MarcNode.new("person", "375", "", "##")
       new_field.add_at(MarcNode.new("person", "a", "female", nil), 0)
 
@@ -207,6 +207,12 @@ class Person < ActiveRecord::Base
 
     # std_title
     self.full_name, self.full_name_d, self.life_dates = marc.get_full_name_and_dates
+    
+    # alternate
+    self.alternate_names, self.alternate_dates = marc.get_alternate_names_and_dates
+    
+    # varia
+    self.gender, self.birth_place, self.source, self.comments = marc.get_gender_birth_place_source_and_comments
     
     self.marc_source = self.marc.to_marc
   end
