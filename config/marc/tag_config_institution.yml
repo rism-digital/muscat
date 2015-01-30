@@ -80,3 +80,10 @@
     - - u
       - :occurances: "?"
         :validation: "^http*"
+  "680": 
+    :master: i
+    :indicator: "1#"
+    :occurances: "*"
+    :fields: 
+    - - i
+      - :occurances: "?"

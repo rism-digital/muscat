@@ -76,18 +76,33 @@ class Institution < ActiveRecord::Base
     new_100 = MarcNode.new("institution", "110", "", "1#")
     new_100.add_at(MarcNode.new("institution", "p", self.place, nil), 0) if self.place != nil
     new_100.add_at(MarcNode.new("institution", "g", self.siglum, nil), 0) if self.siglum != nil
-    
     new_100.add_at(MarcNode.new("institution", "a", self.name, nil), 0)
     
-    pi = new_marc.get_insert_position("100")
-    new_marc.root.children.insert(pi, new_100)
-
-    new_600 = MarcNode.new("institution", "622", "", "1#")
-    new_600.add_at(MarcNode.new("institution", "u", self.url, nil), 0) if self.url
-    new_600.add_at(MarcNode.new("institution", "e", self.address, nil), 0) if self.address
+    new_marc.root.children.insert(new_marc.get_insert_position("110"), new_100)
     
-    pi = new_marc.get_insert_position("622")
-    new_marc.root.children.insert(pi, new_600)
+    if self.alternates != nil and !self.alternates.empty?
+      new_400 = MarcNode.new("institution", "410", "", "1#")
+      new_400.add_at(MarcNode.new("institution", "a", self.alternates, nil), 0)
+    
+      new_marc.root.children.insert(new_marc.get_insert_position("410"), new_400)
+    end
+    
+    if self.url || self.address
+      new_600 = MarcNode.new("institution", "622", "", "1#")
+      new_600.add_at(MarcNode.new("institution", "u", self.url, nil), 0) if self.url
+      new_600.add_at(MarcNode.new("institution", "e", self.address, nil), 0) if self.address
+    
+      new_marc.root.children.insert(new_marc.get_insert_position("622"), new_600)
+    end
+    
+    if self.notes != nil and !self.notes.empty?
+      new_field = MarcNode.new("institution", "680", "", "1#")
+      new_field.add_at(MarcNode.new("institution", "i", self.notes, nil), 0)
+    
+      new_marc.root.children.insert(new_marc.get_insert_position("680"), new_field)
+    end
+    
+    
 
     if self.id != nil
       new_marc.set_id self.id
