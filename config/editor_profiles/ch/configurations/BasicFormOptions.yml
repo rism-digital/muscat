@@ -633,10 +633,6 @@
       - cols: 4
     - - d
       - cols: 2
-    - - e
-      - cols: 2
-    - - t
-      - cols: 2
     - - "4"
       - cols: 2
         editor_partial: subfield_relator_codes_700
