@@ -105,14 +105,14 @@ ActiveAdmin.register Institution do
     active_admin_navigation_bar( self )
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
-      row (I18n.t :filter_email) { |r| r.alternates } 
+      row (I18n.t :filter_alternates) { |r| r.alternates } 
       row (I18n.t :filter_place) { |r| r.place }
       row (I18n.t :filter_siglum) { |r| r.siglum }
       row (I18n.t :filter_address) { |r| r.address }
       row (I18n.t :filter_url) { |r| r.url }
       row (I18n.t :filter_phone) { |r| r.phone }
       row (I18n.t :filter_email) { |r| r.email }
-      row (I18n.t :filter_email) { |r| r.notes } 
+      row (I18n.t :filter_notes) { |r| r.notes } 
     end
     active_admin_embedded_source_list( self, institution, params[:qe], params[:src_list_page] )
   end
