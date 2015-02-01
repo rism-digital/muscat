@@ -104,18 +104,17 @@ ActiveAdmin.register Catalogue do
   ## Show ##
   ##########
   
-  show do 
+  show :title => proc{ active_admin_source_show_title( @item.name, @item.siglum, @item.id) } do
+    # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
-    attributes_table do
-      row (I18n.t :filter_name) { |r| r.name }
-      row (I18n.t :filter_author) { |r| r.author }
-      row (I18n.t :filter_description) { |r| r.description }
-      row (I18n.t :filter_revue_title) { |r| r.revue_title }
-      row (I18n.t :filter_volume) { |r| r.volume }
-      row (I18n.t :filter_date) { |r| r.date }
-      row (I18n.t :filter_pages) { |r| r.pages }
+    @item = @arbre_context.assigns[:item]
+    if @item.marc_source == nil
+      render :partial => "marc_missing"
+    else
+      render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page] )
+    active_admin_navigation_bar( self )
   end
   
 begin  

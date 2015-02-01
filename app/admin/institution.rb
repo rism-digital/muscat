@@ -101,20 +101,17 @@ ActiveAdmin.register Institution do
   ## Show ##
   ##########
   
-  show do
+  show :title => proc{ active_admin_source_show_title( @item.name, @item.siglum, @item.id) } do
+    # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
-    attributes_table do
-      row (I18n.t :filter_name) { |r| r.name }
-      row (I18n.t :filter_alternates) { |r| r.alternates } 
-      row (I18n.t :filter_place) { |r| r.place }
-      row (I18n.t :filter_siglum) { |r| r.siglum }
-      row (I18n.t :filter_address) { |r| r.address }
-      row (I18n.t :filter_url) { |r| r.url }
-      row (I18n.t :filter_phone) { |r| r.phone }
-      row (I18n.t :filter_email) { |r| r.email }
-      row (I18n.t :filter_notes) { |r| r.notes } 
+    @item = @arbre_context.assigns[:item]
+    if @item.marc_source == nil
+      render :partial => "marc_missing"
+    else
+      render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, institution, params[:qe], params[:src_list_page] )
+    active_admin_navigation_bar( self )
   end
   
   sidebar I18n.t(:search_sources), :only => :show do
