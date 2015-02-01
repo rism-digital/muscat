@@ -172,7 +172,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     de: Quellenangaben
     en: Source data found 
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    e: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Source data found
         fr: Source des données
