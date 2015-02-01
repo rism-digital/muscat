@@ -195,7 +195,7 @@ en:
   menu_languages: "Language"
   
   ### VARIOUS ELEMENTS
-  recent_sources: "Recent Sources"
+  recent_changes: "Lastest modifications"
   any_field_contains: "Any Field Contains"
   library_sigla_contains: "Siglum Contains"
   is_in_folder: "Is in folder"
@@ -335,7 +335,7 @@ en:
   liturgicalfeast: 
     one: "litrugical feast"
     other: "liturgical feasts"
-  manuscript:
+  source:
     one: "source"
     other: "sources"
   place:

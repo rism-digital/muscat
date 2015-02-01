@@ -195,7 +195,7 @@ de:
   menu_languages: "Sprache"
   
   ### VARIOUS ELEMENTS
-  recent_sources: "Neueste Einträge"
+  recent_changes: "Letzte Änderungen"
   any_field_contains: "Irgendein Feld enthält"
   library_sigla_contains: "Sigel enthält"
   is_in_folder: "Ist im Ordner"
@@ -335,7 +335,7 @@ de:
   liturgicalfeast: 
     one: "Liturgisches Fest"
     other: "Liturgische Feste"
-  manuscript:
+  source:
     one: "Quelle"
     other: "Quellen"
   place:

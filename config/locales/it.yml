@@ -195,7 +195,7 @@ it:
   menu_languages: "Lingue"
   
   ### VARIOUS ELEMENTS
-  recent_sources: "Fonti modificate di recente"
+  recent_changes: "Ultime modificazione"
   any_field_contains: "Qualsiasi campo contiene"
   library_sigla_contains: "La sigla contiene"
   is_in_folder: "E' nella cartella"
@@ -335,7 +335,7 @@ it:
   liturgicalfeast: 
     one: "festa liturgica"
     other: "feste liturgiche"
-  manuscript:
+  source:
     one: "fonte"
     other: "fonti"
   place:

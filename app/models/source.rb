@@ -342,12 +342,12 @@ class Source < ActiveRecord::Base
     end
   end
   
-  def self.find_recent_updated(limit)
-      where("updated_at > ?", 5.days.ago).limit(limit)
-  end
-  
-  def self.find_recent_created(limit)
-      where("created_at > ?", 5.days.ago).limit(limit)
+  def self.find_recent_updated(limit, user)
+    if user != -1
+      where("updated_at > ?", 5.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
+    else
+      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
+    end
   end
   
   def name  

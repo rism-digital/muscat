@@ -222,12 +222,8 @@ class Person < ActiveRecord::Base
     self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
   end
   
-  def self.find_recent_updated(limit)
+  def self.find_recent_updated(limit, user)
       where("updated_at > ?", 5.days.ago).limit(limit)
-  end
-  
-  def self.find_recent_created(limit)
-      where("created_at > ?", 5.days.ago).limit(limit)
   end
   
   def name
