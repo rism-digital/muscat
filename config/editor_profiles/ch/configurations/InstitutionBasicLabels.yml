@@ -133,6 +133,19 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: URL
         de: URL
         en: URL
+"680": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: General note
+    fr: Remarque général
+    de: Allgemeine Fussnote
+    en: General note
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    i: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: General note
+        fr: Remarque générale
+        de: Allgemeine Fussnote
+        en: General note
 
 main: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -164,4 +177,9 @@ other: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Divers
     de: Verschiedenes
     en: Miscellaneous
-
+administration: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Amministrazione
+    fr: Administration
+    de: Administration
+    en: Administration

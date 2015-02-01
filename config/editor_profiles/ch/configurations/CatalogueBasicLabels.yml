@@ -70,69 +70,83 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Country code
 "100": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Nome di ente
-    fr: "Nom de la collectivité"
-    de: "Körperschaftsname"
-    en: Authors
+    it: Autore
+    fr: Auteur
+    de: Autor
+    en: Author
   accepts: 
   - "710"
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Nome di ente
-        fr: "Nom de la collectivité"
-        de: "Körperschaftsname"
+        it: Autore
+        fr: Auteur
+        de: Autor
         en: Author
-    b: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Ente subordinato
-        fr: "Collectivité subordonnée"
-        de: "Untergeordnete Körperschaft"
-        en: Subordinate unit
-    c: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Place
-        fr: Place 
-        de: Ort
-        en: Place
-    g: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Ente subordinato
-        fr: "Siglum"
-        de: "Sigel"
-        en: Siglum
 "210": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Name variants
-    fr: Name variants
-    de: Namensvarianten
-    en: Short title
+    it: Nome 
+    fr: Nom
+    de: Name
+    en: Name
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Name variants
-        fr: Name variants
-        de: Namensvarianten  
-        en: Short title
+        it: Nome 
+        fr: Nom
+        de: Name
+        en: Name
 "240": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Contact 
-    fr: Contact
-    de: Kontakt
-    en: Title
+    it: Descrizione 
+    fr: Description
+    de: Beschreibung
+    en: Description
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    e: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Address
-        fr: Address
-        de: Adresse
-        en: Address 
-    u: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Descrizione 
+        fr: Description
+        de: Beschreibung
+        en: Description
+"260": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Impressum 
+    fr: Impressum
+    de: Impressum
+    en: Impressum
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: URL
-        fr: URL
-        de: URL
-        en: URL
+        it: Luogo
+        fr: Endroit
+        de: Ort
+        en: Place 
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Data
+        fr: Date
+        de: Datum
+        en: Date
+"760": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Testata
+    fr: Titre de la revue
+    de: Zeitschriftentitel
+    en: Revue title
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    g: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Part
+        fr: Partie
+        de: Teil
+        en: Part 
+    t: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Titolo
+        fr: Titre
+        de: Titel
+        en: Title
 
 main: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -148,7 +162,7 @@ codes: !map:ActiveSupport::HashWithIndifferentAccess
     en: Numbers and code fields
 control: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    fr: "Champs de contréle"
+    fr: "Champs de contrle"
     de: Kontrollfelder
     ot: Campi di controllo
     en: Control Fields
@@ -164,4 +178,9 @@ other: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Divers
     de: Verschiedenes
     en: Miscellaneous
-
+administration: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Amministrazione
+    fr: Administration
+    de: Administration
+    en: Administration
