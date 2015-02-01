@@ -1,9 +1,6 @@
 --- !map:Settings 
 group_order: 
 - main_person
-- notes
-- subject
-- codes
 - administration
 groups: 
   administration: 
@@ -12,23 +9,23 @@ groups:
     - "001"
     - "003"
     - "005"
-    - 008
-  notes: 
+    - "040"
+  other: 
     all_tags: 
     - "509"
     - "549"
     - "559"
     - "569"
-  subject: 
-    all_tags: 
-    - "670"
     - "678"
-    - "680"
     - "684"
   main_person: 
     all_tags: 
     - "100"
     - "400"
+    - "370"
+    - "375"
+    - "670"
+    - "680"
   codes: 
     all_tags: 
     - "035"

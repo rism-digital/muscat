@@ -103,11 +103,7 @@
 "670": 
   layout: 
     fields: 
-    - - a
-      - cols: 2
-    - - b
-      - cols: 2
-    - - u
+    - - i
       - cols: 4
     columns: 4
 "678": 
@@ -123,12 +119,8 @@
 "680": 
   layout: 
     fields: 
-    - - a
-      - cols: 2
     - - i
       - cols: 2
-    - - "5"
-      - cols: 4
     columns: 4
 "684": 
   layout: 
