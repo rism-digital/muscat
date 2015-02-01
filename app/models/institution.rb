@@ -155,6 +155,11 @@ class Institution < ActiveRecord::Base
     end
     text :name
     
+    string :place_order do
+      place
+    end
+    text :place
+    
     text :address
     text :url
     text :phone
