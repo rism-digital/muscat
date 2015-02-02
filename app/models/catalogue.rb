@@ -141,31 +141,34 @@ class Catalogue < ActiveRecord::Base
     self.index
   end
 
-  searchable :auto_index => false do
-    integer :id
-    string :name_order do
+  searchable :auto_index => false do |sunspot_dsl|
+    sunspot_dsl.integer :id
+    sunspot_dsl.string :name_order do
       name
     end
-    text :name
+    sunspot_dsl.text :name
     
-    string :author_order do
+    sunspot_dsl.string :author_order do
       author
     end
-    text :author
+    sunspot_dsl.text :author
     
-    text :description
-    text :revue_title
-    text :volume
-    text :place
-    text :date
-    text :pages
+    sunspot_dsl.text :description
+    sunspot_dsl.text :revue_title
+    sunspot_dsl.text :volume
+    sunspot_dsl.text :place
+    sunspot_dsl.text :date
+    sunspot_dsl.text :pages
     
-    join(:folder_id, :target => FolderItem, :type => :integer, 
+    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    integer :src_count_order do 
+    sunspot_dsl.integer :src_count_order do 
       src_count
     end
+    
+    MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
+    
   end
   
   def check_dependencies

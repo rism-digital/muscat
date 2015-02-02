@@ -1,0 +1,18 @@
+
+# Version 2 - For SOLR and Muscat 3
+
+config:
+    :version: 2.0
+    :model: institution
+
+fields:  
+    "001":
+    "008":
+    "043c":
+    "110a":
+    "110c":
+    "110g":
+    "410a":
+    "622e":
+    "622u":
+    "680i":

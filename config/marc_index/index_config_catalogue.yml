@@ -1,0 +1,20 @@
+
+# Version 2 - For SOLR and Muscat 3
+
+config:
+    :version: 2.0
+    :model: catalogue
+
+fields:  
+    "001":
+    "008":
+    "100a":
+    "100d":
+    "400a":
+    "210a":
+    "240a":
+    "260a":
+    "700a":
+    "7004":
+    "760g": 
+    "760t":

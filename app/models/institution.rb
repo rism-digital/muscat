@@ -143,34 +143,37 @@ class Institution < ActiveRecord::Base
     self.index
   end
 
-  searchable :auto_index => false do
-    integer :id
-    string :siglum_order do
+  searchable :auto_index => false do |sunspot_dsl|
+    sunspot_dsl.integer :id
+    sunspot_dsl.string :siglum_order do
       siglum
     end
-    text :siglum
+    sunspot_dsl.text :siglum
     
-    string :name_order do
+    sunspot_dsl.string :name_order do
       name
     end
-    text :name
+    sunspot_dsl.text :name
     
-    string :place_order do
+    sunspot_dsl.string :place_order do
       place
     end
-    text :place
+    sunspot_dsl.text :place
     
-    text :address
-    text :url
-    text :phone
-    text :email
+    sunspot_dsl.text :address
+    sunspot_dsl.text :url
+    sunspot_dsl.text :phone
+    sunspot_dsl.text :email
     
-    join(:folder_id, :target => FolderItem, :type => :integer, 
+    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    integer :src_count_order do 
+    sunspot_dsl.integer :src_count_order do 
       src_count
     end
+    
+    MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
+    
   end
   
   def check_dependencies
