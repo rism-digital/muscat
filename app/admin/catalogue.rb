@@ -37,7 +37,7 @@ ActiveAdmin.register Catalogue do
     end
 
     def show
-      @catalogue = Catalogue.find(params[:id])
+      @item = @catalogue = Catalogue.find(params[:id])
       @editor_profile = EditorConfiguration.get_show_layout @catalogue
       @prev_item, @next_item, @prev_page, @next_page = Catalogue.near_items_as_ransack(params, @catalogue)
     end
@@ -104,7 +104,7 @@ ActiveAdmin.register Catalogue do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_source_show_title( @item.name, @item.siglum, @item.id) } do
+  show :title => proc{ active_admin_source_show_title( @item.name, @item.author, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]
