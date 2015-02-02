@@ -197,9 +197,9 @@ it:
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modificazione"
   any_field_contains: "Qualsiasi campo contiene"
-  title_contains: "Titolo DIplomatico contiene"
+  title_contains: "Titolo Diplomatico contiene"
   std_title_contains: "Titolo Standard contiene"
-  composer_contains: "Compser contains"
+  composer_contains: "Compsitore contains"
   library_sigla_contains: "La sigla contiene"
   is_in_folder: "É nella cartella"
   workgroups: "Gruppi"
