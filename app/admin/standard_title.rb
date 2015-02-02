@@ -13,7 +13,7 @@ ActiveAdmin.register StandardTitle do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :standard_title, :title
+    autocomplete :standard_title, :title, :extra_data => [:title]
  
     after_destroy :check_model_errors
     before_create do |item|

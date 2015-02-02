@@ -54,13 +54,17 @@ function marc_editor_init_tags( id ) {
 		toplevel_li = input.parents("li");
 		hidden = toplevel_li.children(".autocomplete_target")
 		
+		// the data-field in the hidden tells us which
+		// field write in the input value. Default is id
+		field = hidden.data("field")
+		
 		// Set the value from the id of the autocompleted elem
 		if (data.item.id == "") {
 			alert("Please select a valid item from the list");
 			input.val("");
 			hidden.val("");
 		} else {
-			hidden.val(data.item.id);
+			hidden.val(data.item[field]);
 		}
 	})
 	
