@@ -197,6 +197,9 @@ fr:
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"
   any_field_contains: "N'importe quel champ"
+  title_contains: "Le titre diplomatique contient"
+  std_title_contains: "Le titre standardisé contient"
+  composer_contains: "Le compositeur contient"
   library_sigla_contains: "La cote contient"
   is_in_folder: "Est dans le dossier"
   workgroups: "Groupes"

@@ -299,7 +299,7 @@
   :name: Show Person
   :model: person
   :labels: 
-  - BasicLabels
+  - PersonBasicLabels
   :rules: 
   - BasicCataloguingRules
   :options: 
