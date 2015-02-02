@@ -323,7 +323,11 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 	var data = "marc_editor_dest=" + destination_column;
 	data = data + "&" + JSON.stringify(json_marc);
 	
-	//$('#' + destination_column).block({ message: "Loading..." });
+	// A bit of hardcoded stuff
+	// block the main editor and sidebar
+	$('#main_content').block({ message: "Saving..." });
+	$('#sections_sidebar_section').block({ message: "Saving..." });
+	
 	$.ajax({
 		success: function(data) {
 			/*
