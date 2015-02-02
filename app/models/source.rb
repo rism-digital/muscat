@@ -192,7 +192,7 @@ class Source < ActiveRecord::Base
     sunspot_dsl.text :composer, :stored => true
     sunspot_dsl.text :composer_d
     
-    sunspot_dsl.text :marc_source
+    #sunspot_dsl.text :marc_source
     
     sunspot_dsl. string :title_order do 
       title
