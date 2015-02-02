@@ -325,7 +325,7 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 	
 	// A bit of hardcoded stuff
 	// block the main editor and sidebar
-	$('#main_content').block({ message: "Saving..." });
+	$('#main_content').block({ message: "" });
 	$('#sections_sidebar_section').block({ message: "Saving..." });
 	
 	$.ajax({
