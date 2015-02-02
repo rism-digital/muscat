@@ -196,8 +196,11 @@ en:
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
-  any_field_contains: "Any Field Contains"
-  library_sigla_contains: "Siglum Contains"
+  any_field_contains: "Any field contains"
+  title_contains: "Diplomatic title contains"
+  std_title_contains: "Standardized title contains"
+  composer_contains: "Compser contains"
+  library_sigla_contains: "Siglum contains"
   is_in_folder: "Is in folder"
   workgroups: "Workgroups"
   roles: "Roles"

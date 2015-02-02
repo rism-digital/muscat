@@ -96,9 +96,9 @@ ActiveAdmin.register Source do
   ###########  
 
   # filers
-  filter :title_contains, :as => :string
-  filter :std_title_contains, :as => :string
-  filter :composer_contains, :as => :string
+  filter :title_contains, :label => proc{I18n.t(:title_contains)}, :as => :string
+  filter :std_title_contains, :label => proc{I18n.t(:std_title_contains)}, :as => :string
+  filter :composer_contains, :label => proc{I18n.t(:composer_contains)}, :as => :string
   filter :lib_siglum_contains, :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
   # This filter is the "any field" one
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
