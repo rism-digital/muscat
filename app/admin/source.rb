@@ -146,6 +146,7 @@ ActiveAdmin.register Source do
     @item = @arbre_context.assigns[:item]
     render :partial => "marc/show"
     active_admin_navigation_bar( self )
+    active_admin_user_wf( self, @item )
     active_admin_comments
   end
   
