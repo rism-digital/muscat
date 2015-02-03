@@ -1,0 +1,15 @@
+// Removing colon
+.attributes_table {
+  th {
+    &:after {
+      content: '';
+    }
+  }
+}
+
+// Removing gray line
+.panel {
+  border-bottom: none;
+  margin-bottom: 0em;
+  padding-bottom: 2em;
+}

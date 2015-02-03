@@ -182,6 +182,8 @@ ActiveAdmin.setup do |config|
   #config.register_javascript 'jquery.dirtyFields.js'
   #config.register_javascript 'jquery.maskedinput.js'
   #config.register_javascript 'jquery.validate.js'
+  
+  config.register_stylesheet 'muscat-print.css', :media => :print
 
   # == CSV options
   #
