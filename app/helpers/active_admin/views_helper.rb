@@ -48,8 +48,8 @@ module ActiveAdmin::ViewsHelper
     context.panel (I18n.t :filter_wf) do
       context.attributes_table_for item  do
         context.row (I18n.t :filter_owner) { |r| r.user.name } if ( item.user )
-        # context.row (I18n.t :created_at) { |r| I18n.localize(r.created_at, :format => '%A %e %B %Y - %H:%M') } if r.created_at
-        context.row (I18n.t :updated_at) { |r| I18n.localize(r.updated_at, :format => '%A %e %B %Y - %H:%M') } if r.updated_at
+        # context.row (I18n.t :created_at) { |r| I18n.localize(r.created_at, :format => '%A %e %B %Y - %H:%M') }
+        context.row (I18n.t :updated_at) { |r| I18n.localize(r.updated_at, :format => '%A %e %B %Y - %H:%M') }
       end
     end
   end
