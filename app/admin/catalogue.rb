@@ -114,6 +114,7 @@ ActiveAdmin.register Catalogue do
       render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page] )
+    active_admin_user_wf( self, catalogue )
     active_admin_navigation_bar( self )
   end
   

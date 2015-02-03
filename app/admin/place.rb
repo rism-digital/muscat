@@ -83,6 +83,8 @@ ActiveAdmin.register Place do
       row (I18n.t :filter_district) { |r| r.district }    
     end
     active_admin_embedded_source_list( self, place, params[:qe], params[:src_list_page] )
+    active_admin_user_wf( self, place )
+    active_admin_navigation_bar( self )
   end
   
   sidebar I18n.t(:search_sources), :only => :show do

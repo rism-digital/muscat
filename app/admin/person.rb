@@ -110,6 +110,7 @@ ActiveAdmin.register Person do
       render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, person, params[:qe], params[:src_list_page] )
+    active_admin_user_wf( self, person )
     active_admin_navigation_bar( self )
   end
   

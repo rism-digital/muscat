@@ -84,6 +84,8 @@ ActiveAdmin.register StandardTerm do
       row (I18n.t :filter_notes) { |r| r.notes }    
     end
     active_admin_embedded_source_list( self, standard_term, params[:qe], params[:src_list_page] )
+    active_admin_user_wf( self, standard_term )
+    active_admin_navigation_bar( self )
   end
   
   sidebar I18n.t(:search_sources), :only => :show do

@@ -44,6 +44,16 @@ module ActiveAdmin::ViewsHelper
     end
   end 
   
+  def active_admin_user_wf( context, item )   
+    if ( item.user )
+      context.panel (I18n.t :filter_wf) do
+        context.attributes_table_for item  do
+          context.row (I18n.t :filter_owner) { |r| r.user.name } 
+        end
+      end
+    end
+  end
+
   # displays the navigation button on top of a show panel
   # this helper uses the controller member variables @prev_item, @next_item, @prev_page and @next_page
   # the values should be instanciated with the near_items_as_ransack from the
