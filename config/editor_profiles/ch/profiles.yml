@@ -310,8 +310,21 @@
     show_all: false
     show: true
 
-- :id: Institution
-  :name: institution
+- :id: DefaultInstitution
+  :name: Institution
+  :model: institution
+  :labels: 
+  - InstitutionBasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - InstitutionBasicFormOptions
+  :layout: 
+  - InstitutionLayoutDefault
+  :filter:
+    default: true 
+- :id: ShowInstitution
+  :name: Institution
   :model: institution
   :labels: 
   - InstitutionBasicLabels
@@ -322,12 +335,24 @@
   :layout: 
   - InstitutionLayoutShow
   :filter:
-    default: true 
     show_all: false
     show: true
 
-- :id: Catalogue
-  :name: catalogue
+- :id: DefaultCatalogue
+  :name: Catalogue
+  :model: catalogue
+  :labels: 
+  - CatalogueBasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - CatalogueBasicFormOptions
+  :layout: 
+  - CatalogueLayoutDefault
+  :filter:
+    default: true 
+- :id: ShowCatalogue
+  :name: Catalogue
   :model: catalogue
   :labels: 
   - CatalogueBasicLabels
@@ -338,6 +363,5 @@
   :layout: 
   - CatalogueLayoutShow
   :filter:
-    default: true 
     show_all: false
     show: true
