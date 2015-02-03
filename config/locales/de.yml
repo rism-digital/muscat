@@ -208,6 +208,8 @@ de:
   sections: "Sektionen"
   edit: "Bearbeiten"
   search_sources: "Quellensuche"
+  created_at: "Erstellungsdatum"
+  updated_at: "Letzte Änderung"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -427,3 +429,29 @@ de:
   do_ext_link_not_avail: "(Audio-Dateien sind hier nicht verfügbar.)"
   do_images_title: "Bilder"
   connected_libraries: "Bibliotheken"
+  
+ # To be kept at the end because not required in English
+ 
+  date:
+    month_names:
+    -
+    - "Januar"
+    - "Februar"
+    - "Märch"
+    - "April"
+    - "Mai"
+    - "Juni"
+    - "Juli"
+    - "August"
+    - "September"
+    - "Oktober"
+    - "November"
+    - "December"
+    day_names:
+    - "Sontag"
+    - "Montag"
+    - "Dienstag"
+    - "Mittwoch"
+    - "Donnerstag"
+    - "Freitag"
+    - "Samstag"

@@ -208,6 +208,8 @@ fr:
   sections: "Sections"
   edit: "Modifier"
   search_sources: "Chercher des sources"
+  created_at: "Date de création"
+  updated_at: "Dernière modification"
  
   # Editor sidebar
   show_all_groups: "SHOW ALL GROUPS"
@@ -427,3 +429,30 @@ fr:
   do_ext_link_not_avail: "(Fichiers audio non disponibles depuis cet ordinateur)"
   do_images_title: "Images"
   connected_libraries: "Institutions"
+  
+  
+ # To be kept at the end because not required in English
+ 
+  date:
+    month_names:
+    -
+    - "janvier"
+    - "février"
+    - "mars"
+    - "avril"
+    - "mai"
+    - "juin"
+    - "juillet"
+    - "août"
+    - "septembre"
+    - "octobre"
+    - "novembre"
+    - "décembre"
+    day_names:
+    - "dimanche"
+    - "lundi"
+    - "mardi"
+    - "mercredi"
+    - "jeudi"
+    - "vendredi"
+    - "samedi"

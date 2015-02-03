@@ -208,6 +208,8 @@ en:
   sections: "Sections"
   edit: "Edit"
   search_sources: "Search Sources"
+  created_at: "Creation date"
+  updated_at: "Last modification"
   
   # Editor sidebar
   show_all_groups: "Show All Groups"
