@@ -19,7 +19,10 @@ module FolderControllerActions
       model = self.resource_class
        
       # inputs is a hash of all the form fields you requested
-      f = Folder.create(:name => inputs[:name], :folder_type => model.to_s)
+      f = Folder.new(:name => inputs[:name], :folder_type => model.to_s)
+      f.user = current_user
+      f.save
+      
       # Pagination is on as default! wahooo!
       params[:per_page] = 1000
       results = model.find(ids)
@@ -65,7 +68,9 @@ module FolderControllerActions
       end
       
       # inputs is a hash of all the form fields you requested
-      f = Folder.create(:name => folder_name, :folder_type => model.to_s)
+      f = Folder.new(:name => folder_name, :folder_type => model.to_s)
+      f.user = current_user
+      f.save
 
       all_items = []
       results.each { |s| all_items << s }

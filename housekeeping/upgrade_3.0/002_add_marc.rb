@@ -4,20 +4,20 @@
 # 50000000 is the offset for locally generated data
 # The others are sync'd with RISM auth files
 
-Person.where("id >= 50000000" ).find_each do |p|
+Person.find_each do |p|
   p.scaffold_marc
   p.save
   puts "Saved #{p.id}"
 end
 
-Institution.where("id >= 50000000" ).find_each do |p|
-  puts "Saving #{p.id}"
-  p.scaffold_marc
-  p.save
-end
+#Institution.find_each do |p|
+#  puts "Saving #{p.id}"
+#  p.scaffold_marc
+#  p.save
+#end
 
-Catalogue.where("id >= 50000000" ).find_each do |p|
-  puts "Saving #{p.id}"
-  p.scaffold_marc
-  p.save
-end
+#Catalogue.find_each do |p|
+#  puts "Saving #{p.id}"
+#  p.scaffold_marc
+#  p.save
+#end

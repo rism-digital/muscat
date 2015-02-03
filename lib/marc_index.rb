@@ -6,7 +6,7 @@ class MarcIndex
       
       store = properties && properties.has_key?(:store) ? properties[:store] : false
       boost = properties && properties.has_key?(:boost) ? properties[:boost] : 1.0
-      type =  properties && properties.has_key?(:type) ? properties[:type] : 'string'
+      type =  properties && properties.has_key?(:type) ? properties[:type] : 'text'
       
       # Build up our options for the sunxpot index call
       opts = {:stored => store}
@@ -50,6 +50,7 @@ class MarcIndex
               next if !marcvalue.content
               value = index_helper != nil ? marc.send(index_helper, marcvalue.content) : marcvalue.content
               out << value
+              ap "#{marctag} #{subtag} #{value}"
             end
           else
             # No subtag, is it a control field.

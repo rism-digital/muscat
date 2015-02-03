@@ -757,6 +757,7 @@
     fields: 
     - - a
       - type: standard_title
+        field: title
         cols: 2
         editor_partial: subfield_secondary
     - - n
