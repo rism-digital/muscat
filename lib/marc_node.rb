@@ -264,7 +264,7 @@ class MarcNode
     foreign_class = @marc_configuration.get_foreign_class(self.parent.tag, self.tag)
     if parent.foreign_object == nil
       db_node = parent.fetch_first_by_tag(parent.get_master_foreign_subfield.tag)
-      parent.foreign_object = foreign_class.constantize.send("find", db_node.content)
+        parent.foreign_object = foreign_class.constantize.send("find", db_node.content)
     end
     self.foreign_field = @marc_configuration.get_foreign_field(self.parent.tag, self.tag)
     self.foreign_object = parent.foreign_object

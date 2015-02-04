@@ -50,7 +50,6 @@ class MarcIndex
               next if !marcvalue.content
               value = index_helper != nil ? marc.send(index_helper, marcvalue.content) : marcvalue.content
               out << value
-              ap "#{marctag} #{subtag} #{value}"
             end
           else
             # No subtag, is it a control field.
