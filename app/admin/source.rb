@@ -124,7 +124,7 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title
     column (I18n.t :filter_title), :title
-    column (I18n.t :filter_lib_siglum) do |source|
+    column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
       if source.sources.count>0
          source.sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
       else
