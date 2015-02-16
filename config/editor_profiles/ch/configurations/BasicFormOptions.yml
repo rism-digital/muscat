@@ -545,16 +545,10 @@
       - type: standard_term
         cols: 1
         editor_partial: subfield_secondary
-    - - indicator
-      - editor_partial: subfield_650_indicator
-        hidden: true
   layout_new: 
     fields: 
     - - a
       - cols: 1
-    - - indicator
-      - editor_partial: subfield_650_indicator
-        hidden: true
 "651": 
   allow_new: true
   layout: 
