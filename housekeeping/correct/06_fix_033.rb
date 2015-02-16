@@ -4,7 +4,7 @@ Source.where("updated_at > '2015-01-29 00:00:00'").each do |s|
     marc = s.marc
     x = marc.to_marc
   rescue => e
-    puts e.exception
+    #puts e.exception
     next
   end
   
