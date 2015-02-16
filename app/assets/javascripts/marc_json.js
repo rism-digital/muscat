@@ -25,9 +25,9 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-function get_indicator(tag, index) {
+function get_indicator(field) {
 	inds = [];
-	field = $('#' + tag + '-' + index + '-indicator');
+	//field = $('#' + tag + '-' + index + '-indicator');
 	
 	if (field.length) {
 		// split the two char indicator
@@ -110,9 +110,10 @@ function serialize_element( element, tag, json_marc ) {
 	var subfields = [];
 	var controlfield = {};
 	var subfields_unordered = {};
+	var indicators = [];
 	var index;
 	
-	// Navigate the single emenets in this tag group
+	// Navigate the single elements in this tag group
 	$('.serialize_marc', element).each(function() {
 		// X-XXXX or -XXXX
 		// in the first case we get two fields
@@ -121,17 +122,26 @@ function serialize_element( element, tag, json_marc ) {
 		// Keep the whole field for sorted duplicates
 		field = new String($(this).data("subfield"));
 		index = $(this).data("subfield-iterator");
+		
+		// Indicators are special fields that have the
+		// data-indicator=true tag
+		is_indicator = $(this).data("indicator");
 
 		if ($(this).val() == null || $(this).val() == "") {
 			return;
 		}
-		
-		// Control fields do not have tags, so we
+
+		// Control fields and indicators do not have tags, so we
 		// put it into a special container
 		if (field == null || field == "" || field == "undefined") {
-			controlfield[tag] = $(this).val();
+			// if it has data-indicator parse the indicator
+			if (is_indicator == true) {
+				indicators = get_indicator($(this));
+			} else {
+				controlfield[tag] = $(this).val();	
+			}
 		} else {
-			// This is a norma subfield, eg. $a
+			// This is a normal subfield, eg. $a
 			// Also replace the newlines if any with spaces
 			// it is also doublecheked in the marc_node
 			subfields_unordered[field + "-" + index] = $(this).val().replace('\n', " ");
@@ -179,10 +189,9 @@ function serialize_element( element, tag, json_marc ) {
 		marc_tag[tag] = {};
 		marc_tag[tag]["subfields"] = subfields;
 		
-		// Pass indicators only if provided by daya
+		// Pass indicators only if provided by data tag
 		// if not passed the backend will fill it
 		// with the default value
-		indicators = get_indicator(tag, index);
 		if (indicators.length > 0) {
 			marc_tag[tag]["ind1"] = indicators[0];
 			marc_tag[tag]["ind2"] = indicators[1];
