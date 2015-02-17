@@ -750,7 +750,7 @@
   layout: 
     fields: 
     - - a
-      - type: standard_title
+      - type: source_solr
         field: title
         cols: 2
         editor_partial: subfield_secondary

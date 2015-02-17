@@ -36,6 +36,10 @@ module ApplicationHelper
     autocomplete_standard_title_title_standard_titles_path
   end
   
+  def source_solr_default_autocomplete
+    autocomplete_source_740a_sources_path
+  end
+  
 
   # Create a link for a page in a new window
   def application_helper_link_http(value, node)
