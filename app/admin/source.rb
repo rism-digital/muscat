@@ -1,7 +1,7 @@
 ActiveAdmin.register Source do
   
   collection_action :autocomplete_source_id, :method => :get
-  collection_action :autocomplete_source_740a_sm, :method => :get
+  collection_action :autocomplete_source_740a_sms, :method => :get
 
   # Remove mass-delete action
   batch_action :destroy, false
@@ -20,7 +20,7 @@ ActiveAdmin.register Source do
         end
     end
     autocomplete :source, :id, :display_value => :autocomplete_label , :extra_data => [:std_title, :composer]
-    autocomplete :source, "740a_sm", :solr => true
+    autocomplete :source, "740a_sms", :solr => true
     
     def permitted_params
       params.permit!
