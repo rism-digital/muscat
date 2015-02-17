@@ -37,7 +37,7 @@ module ApplicationHelper
   end
   
   def source_solr_default_autocomplete
-    autocomplete_source_740a_sources_path
+    autocomplete_source_740a_sm_sources_path
   end
   
 

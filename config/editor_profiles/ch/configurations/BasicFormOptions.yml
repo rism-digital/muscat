@@ -751,7 +751,7 @@
     fields: 
     - - a
       - type: source_solr
-        field: title
+        field: value
         cols: 2
         editor_partial: subfield_secondary
     - - n
