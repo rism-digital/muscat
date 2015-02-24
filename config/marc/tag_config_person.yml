@@ -155,13 +155,27 @@
     :fields: 
     - - a
       - :occurances: "?"    
-  "670": 
+  "667": 
     :master: a
     :indicator: "##"
     :occurances: "*"
     :fields: 
     - - a
       - :occurances: "?"
+  "670": 
+    :master: "0"
+    :indicator: "##"
+    :occurances: "*"
+    :fields: 
+    - - "0"
+      - :occurances: "?"
+      #  :foreign_class: Catalogue
+      #  :foreign_field: id
+      #  :no_show: true
+    - - a
+      - :occurances: "?"
+      #  :foreign_class: ^0
+      #  :foreign_field: name
     - - b
       - :occurances: "?"
     - - u

@@ -1,7 +1,7 @@
 --- !map:Settings 
 doc_abbreviations: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    de: "Abk\xC3\xBCrzungen"
+    de: "Abkürzungen"
     en: Abbreviations
 doc_aid: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -13,7 +13,7 @@ doc_cataloguing_collections: !map:ActiveSupport::HashWithIndifferentAccess
     en: Cataloging collection and convoluta
 doc_functions: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    de: "Grund\xC3\xA4tzliche Funktionen"
+    de: "Grundätzliche Funktionen"
     en: Basic functions
 doc_introduction: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -46,13 +46,13 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "003": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Identificatore del numero di controllo
-    fr: "Identit\xC3\xA9 du num\xC3\xA9ro de contr\xC3\xB4le"
+    fr: "Identité du numéro de contrôle"
     de: Kontrollnummer-Bezeichnung
     en: Control number identifier
 "005": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Data e ora dell'ultima transazione
-    fr: "Date/heure de la derni\xC3\xA8re transaction"
+    fr: "Date/heure de la dernière transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
 "043": !map:ActiveSupport::HashWithIndifferentAccess 
@@ -71,8 +71,8 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "110": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Nome di ente
-    fr: "Nom de la collectivit\xC3\xA9"
-    de: "K\xC3\xB6rperschaftsname"
+    fr: "Nom de la collectivité"
+    de: "Körperschaftsname"
     en: Institution
   accepts: 
   - "710"
@@ -80,14 +80,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Nome di ente
-        fr: "Nom de la collectivit\xC3\xA9"
-        de: "K\xC3\xB6rperschaftsname"
+        fr: "Nom de la collectivité"
+        de: "Körperschaftsname"
         en: Institution
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Ente subordinato
-        fr: "Collectivit\xC3\xA9 subordonn\xC3\xA9e"
-        de: "Untergeordnete K\xC3\xB6rperschaft"
+        fr: "Collectivité subordonnée"
+        de: "Untergeordnete Körperschaft"
         en: Subordinate unit
     c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -133,22 +133,35 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: URL
         de: URL
         en: URL
+"680": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: General note
+    fr: Remarque général
+    de: Allgemeine Fussnote
+    en: General note
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    i: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: General note
+        fr: Remarque générale
+        de: Allgemeine Fussnote
+        en: General note
 
 main: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Registrazioni principali
-    fr: "Entr\xC3\xA9es principales"
+    fr: "Entrées principales"
     de: Haupteintragungen
     en: Main entry fields
 codes: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Numeri e codici
-    fr: "Num\xC3\xA9ros et codes"
+    fr: "Numéros et codes"
     de: Nummern und Codes
     en: Numbers and code fields
 control: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    fr: "Champs de contr\xC3\xB4le"
+    fr: "Champs de contrôle"
     de: Kontrollfelder
     ot: Campi di controllo
     en: Control Fields
@@ -164,4 +177,9 @@ other: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Divers
     de: Verschiedenes
     en: Miscellaneous
-
+administration: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Amministrazione
+    fr: Administration
+    de: Administration
+    en: Administration
