@@ -71,3 +71,5 @@ gem 'activerecord-import', ">= 0.4.0"
 # Uncomment this to test the webpage saving
 # in housekeeping/selenium_webdriver
 # gem 'selenium-webdriver'
+gem 'web-console', github: 'rails/web-console'
+gem "haml-rails", "~> 0.8"

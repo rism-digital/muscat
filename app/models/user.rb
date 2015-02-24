@@ -31,5 +31,9 @@ class User < ActiveRecord::Base
   def get_roles
     self.roles.map {|r| r.name}
   end
+
+  def online?
+      updated_at > 10.minutes.ago
+  end
   
 end

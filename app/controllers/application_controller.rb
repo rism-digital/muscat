@@ -11,6 +11,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_filter :set_locale
+
+  after_filter :user_activity
+
+  private
+
+  def user_activity
+      current_user.try :touch
+  end
   
   # Find out and set the locale, store into a cookie
   def set_locale 
