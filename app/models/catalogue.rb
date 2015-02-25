@@ -154,7 +154,15 @@ class Catalogue < ActiveRecord::Base
     sunspot_dsl.text :author
     
     sunspot_dsl.text :description
+    sunspot_dsl.string :description_order do
+      description
+    end
+ 
     sunspot_dsl.text :revue_title
+    sunspot_dsl.string :revue_title_order do
+      revue_title
+    end
+ 
     sunspot_dsl.text :volume
     sunspot_dsl.text :place
     sunspot_dsl.text :date
