@@ -74,3 +74,4 @@ gem 'activerecord-import', ">= 0.4.0"
 gem 'web-console', github: 'rails/web-console'
 gem "haml-rails", "~> 0.8"
 gem 'gruff'
+gem 'jquery-ace-rails'
