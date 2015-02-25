@@ -1,6 +1,15 @@
 ActiveAdmin.register_page "Administration" do
   menu :parent => "admin_menu", :if => proc{ can? :manage, :all }
 
+  controller do
+    before_filter :my_filter
+    private
+    def my_filter
+      Administration.build_statistic
+      Administration.build_chart
+    end
+  end
+
   content do
     panel "Current active users" do 
       table_for User.all.select{|user|user.online?} do
@@ -18,8 +27,9 @@ ActiveAdmin.register_page "Administration" do
       s=`#{cmd}`
       text_node s.html_safe
     end
-   
-   
-    render 'index'
+
+    panel "Statistic" do 
+      render 'index'
+    end
   end
 end

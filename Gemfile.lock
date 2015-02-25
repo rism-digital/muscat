@@ -129,6 +129,8 @@ GEM
     formtastic (3.1.3)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.1.1)
+    gruff (0.5.1)
+      rmagick
     haml (4.0.6)
       tilt
     haml-rails (0.8.2)
@@ -213,6 +215,7 @@ GEM
     ref (1.0.5)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    rmagick (2.13.2)
     rolify (3.5.2)
     rsolr (1.0.10)
       builder (>= 2.1.2)
@@ -267,6 +270,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   devise-i18n
+  gruff
   haml-rails (~> 0.8)
   jbuilder (~> 1.2)
   jquery-rails
