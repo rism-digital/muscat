@@ -6,9 +6,17 @@ ActiveAdmin.register_page "Translations" do
     puts params
     text=params['trans']['body']
     file=session['file']
-    f=File.open("config/locales/"+file, "w")
-    f.write(text)
-    redirect_to translations_path
+    schema = Kwalify::Yaml.load_file('config/locales/schemas/lang.schema.yml')
+    validator = Kwalify::Validator.new(schema)
+    parser = Kwalify::Yaml::Parser.new(validator)
+    begin
+      parser.parse(text)
+      f=File.open("config/locales/"+file, "w")
+      f.write(text)
+      redirect_to translations_path, notice: 'Saved'
+    rescue Kwalify::SyntaxError => e
+      redirect_to translations_path, alert: e.message
+    end
   end
 
   page_action :open, :method=>:post do

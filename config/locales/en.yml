@@ -247,7 +247,7 @@ en:
   filter_folder_type: "Folder Type"
   filter_full_name: "Name"
   filter_gender: "Gender"
-  filter_id: "ID"
+  #filter_id: "ID"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
