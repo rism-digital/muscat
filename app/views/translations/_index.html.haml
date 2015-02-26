@@ -1,20 +1,18 @@
 %body
-  - if session['file']
-    -file=session['file']
-  - else
-    -file='en.yml'
+  - session['file'] ? file=session['file'] : file='en.yml'
+  - session['content'] ? content=session['content'] : content=""
+  - files = Dir["config/locales/*.yml"].select {|x| x =~ /\/[a-z]{2}.yml/ }.sort 
   =semantic_form_for :open_file, {:input_html => { :class => "form-horizontal" }, :url => translations_open_path} do |f|
     = f.inputs do
       =f.input :file, :collection=>files, :include_blank => false, :selected => file
-
+      =f.input :recent_file, :as => :hidden, :input_html => {:value => file}
+      =f.input :content, :as => :hidden, :input_html => {:value => content}
       =f.action :submit, :label => "Select File"
   %h3
     ="Editing "+file
   =semantic_form_for :trans, :url => translations_trans_path do |f|
     = f.inputs do
-      -text=File.open('config/locales/'+file, 'r').read
-      -#text=""
-      =f.input :body, :as => :text, :input_html =>{:class =>'my-code-area', :rows=>"30", :style=>"width: 80%; border-style: solid;", :value => text}
+      =f.input :body, :as => :text, :input_html =>{:class =>'my-code-area', :rows=>"30", :style=>"width: 80%; border-style: solid;", :value => content}
       =f.action :submit, :label => "Save"
 :javascript 
   $('.my-code-area').ace({ theme: 'github', lang: 'ruby' })
