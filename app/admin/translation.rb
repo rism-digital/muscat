@@ -1,32 +1,27 @@
 ActiveAdmin.register_page "Translation" do
   menu :parent => "admin_menu", :if => proc{ can? :manage, :all }
 
-  page_action :edit, :method=>:post do
+  page_action :edit, :method=> :post do
     if params['act']['Open']
-      file=session['file']=params['open_file']['file']
-      if params['open_file']['content'].size < 2 || file != params['open_file']['recent_file']
-        session['content']=File.open(file, "r").read
-      else
-        session['content']=params['open_file']['content']
-      end
+      session['file']=file=params['open_file']['file']
+      FileUtils.cp(file, 'tmp/trans.yml')
+      content=File.open(file, "r").read
       redirect_to translation_path
     end
     if params['act']['Save']
-      text=params['open_file']['content']
-      file=session['file']
-      session['content']=text
+      session['file']=file=params['open_file']['file']
+      content=params['open_file']['content']
+      trans=File.open("tmp/trans.yml", "w")
+      trans.write(content)
       schema = Kwalify::Yaml.load_file('config/locales/schemas/lang.schema.yml')
       validator = Kwalify::Validator.new(schema)
       begin
-        document = Kwalify::Yaml::load(text)
+        document = Kwalify::Yaml::load(content)
         errors=validator.validate(document)
-        puts errors
-        puts errors.size
         ## show errors
         if errors && !errors.empty?
           for e in errors
             if e.message.include?("required")
-
               flash[:error] = "SYNTAX ERROR: "+e.message+" Unable to save translation file!"
               redirect_to translation_path
               return 1
@@ -35,9 +30,9 @@ ActiveAdmin.register_page "Translation" do
           end
         end
         f=File.open(file, "w")
-        f.write(text)
+        f.write(content)
         redirect_to translation_path, notice: 'Translation file saved!'
-      rescue Kwalify::SyntaxError => e
+    rescue Kwalify::SyntaxError => e
         flash[:error] = "SYNTAX ERROR: "+e.message+" Unable to save translation file!"
         redirect_to translation_path
       end
