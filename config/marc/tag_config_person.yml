@@ -132,6 +132,13 @@
     :fields: 
     - - "0"
       - :occurances: "?"
+        :foreign_class: Person
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurances: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
     - - "9"
       - :occurances: "?"
   "549": 
@@ -155,6 +162,15 @@
     :fields: 
     - - a
       - :occurances: "?"    
+  "599": 
+    :master: a
+    :indicator: "##"
+    :occurances: "*"
+    :fields: 
+    - - a
+      - :occurances: "?"   
+    - - b 
+      - :occurances: "?"   
   "667": 
     :master: a
     :indicator: "##"
@@ -169,13 +185,13 @@
     :fields: 
     - - "0"
       - :occurances: "?"
-      #  :foreign_class: Catalogue
-      #  :foreign_field: id
-      #  :no_show: true
+        :foreign_class: Catalogue
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurances: "?"
-      #  :foreign_class: ^0
-      #  :foreign_field: name
+        :foreign_class: ^0
+        :foreign_field: name
     - - b
       - :occurances: "?"
     - - u

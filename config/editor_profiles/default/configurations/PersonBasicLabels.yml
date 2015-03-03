@@ -55,6 +55,19 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     fr: "Date/heure de la dernière transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
+"039": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Gender
+    fr: Genre
+    de: Geschlecht
+    en: Gender
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Genre
+        fr: Gender
+        de: Geschlecht 
+        en: Gender
 "040": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Fonte della catalogazione

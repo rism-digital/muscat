@@ -30,7 +30,13 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
+      - cols: 4 
+        values: 
+        - "m"
+        - "w"
+        - "?"
+        editor_partial: subfield_select
+
     columns: 4
 "040": 
   layout: 
@@ -73,9 +79,13 @@
 "509": 
   layout: 
     fields: 
-    - - a
+    - - "a"
+      - type: person
+        editor_partial: subfield_secondary
+      - cols: 4
+    - - "9"
       - cols: 2
-    columns: 2
+    columns: 4
 "549": 
   layout: 
     fields: 
@@ -94,6 +104,14 @@
     - - a
       - cols: 2
     columns: 2
+"599": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - b
+      - cols: 2
+    columns: 4
 "667": 
   layout: 
     fields: 
