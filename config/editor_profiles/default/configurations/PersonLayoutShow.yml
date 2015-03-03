@@ -1,8 +1,8 @@
 --- !map:Settings 
 group_order: 
 - control
-- codes
 - main
+- codes
 - notes
 - subject
 groups: 
@@ -37,3 +37,5 @@ groups:
     - "039"
     - "040"
     - "043"
+    all_tag_templates:
+      "039": marc_show/show_gender

@@ -30,14 +30,14 @@
   layout: 
     fields: 
     - - a
-      - cols: 4 
-        values: 
-        - "m"
-        - "w"
-        - "?"
-        editor_partial: subfield_select
-
-    columns: 4
+      - cols: 2 
+        editor_partial: subfield_gender_codes_039
+    columns: 2
+  tag_params:
+    codes:
+      - m
+      - w
+      - "?"
 "040": 
   layout: 
     fields: 

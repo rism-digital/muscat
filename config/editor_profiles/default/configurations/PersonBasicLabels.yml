@@ -253,4 +253,22 @@ administration: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Administration
     de: Administration
     en: Administration
+m: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: male
+    fr: male
+    de: männlich
+    en: male
+w: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: female
+    fr: female
+    de: weiblich
+    en: female
+"?": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: unknown
+    fr: unknown
+    de: unbekannt
+    en: unkown
 

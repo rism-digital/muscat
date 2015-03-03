@@ -112,6 +112,7 @@ ActiveAdmin.register Person do
     active_admin_embedded_source_list( self, person, params[:qe], params[:src_list_page] )
     active_admin_user_wf( self, person )
     active_admin_navigation_bar( self )
+    active_admin_comments
   end
   
   sidebar I18n.t(:search_sources), :only => :show do
