@@ -76,4 +76,3 @@ gem "haml-rails", "~> 0.8"
 gem 'gruff'
 gem 'jquery-ace-rails'
 gem 'kwalify'
-gem 'activerecord-session_store'
