@@ -19,7 +19,7 @@ ActiveAdmin.register Source do
                  #params['q'] = {:std_title_contains => "[Holding]"} 
         end
     end
-    autocomplete :source, :id, :display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :solr => false
+    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :solr => false}
     autocomplete :source, "740a_sms", :solr => true
     
     def permitted_params
