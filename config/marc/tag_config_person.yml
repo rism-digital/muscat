@@ -101,6 +101,11 @@
     - - d
       - :occurances: "?"
         :browse_inline: true
+    - - w
+      - :occurances: "?"
+        :no_show: true
+    - - y
+      - :occurances: "?"
   "370": 
     :master: a
     :indicator: "##"
@@ -124,6 +129,8 @@
       - :occurances: "?"
     - - d
       - :occurances: "?"
+    - - j
+      - :occurances: "?"
 # This is a linked field
   "509": 
     :master: "0"
@@ -141,6 +148,21 @@
         :foreign_field: full_name
     - - "9"
       - :occurances: "?"
+# Reference to institutions
+  "510": 
+    :master: "0"
+    :indicator: "1#"
+    :occurances: "*"
+    :fields: 
+    - - "0"
+      - :occurances: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurances: "?"
+        :foreign_class: ^0
+        :foreign_field: siglum
   "549": 
     :master: a
     :indicator: "##"
@@ -161,7 +183,9 @@
     :occurances: "*"
     :fields: 
     - - a
-      - :occurances: "?"    
+      - :occurances: "?"  
+    - - j
+      - :occurances: "?"  
   "599": 
     :master: a
     :indicator: "##"
@@ -193,8 +217,6 @@
         :foreign_class: ^0
         :foreign_field: name
     - - b
-      - :occurances: "?"
-    - - u
       - :occurances: "?"
   "678": 
     :master: a

@@ -1,41 +1,49 @@
 --- !map:Settings 
 group_order: 
-- control
-- main
+- main_person
 - codes
 - notes
 - subject
-groups: 
+- variants
+groups:   
+  main_person: 
+    all_tags: 
+    - "100"
+    - "042"
+    - "039"    
+    all_tag_templates:
+      "039": marc_show/show_gender  
+
+  notes: 
+    all_tags: 
+    - "509"
+    - "549"
+    - "559"
+    - "599"
+    - "667"
+    - "670"
+    - "856"
+  subject: 
+    all_tags: 
+    - "510"
+    - "043"
+    - "569"
+    - "670"
+    - "678"
+    - "680"
+    - "684"
+  codes: 
+    all_tags: 
+    - "035"
+    all_tag_templates:
+      "035": marc_show/show_dnb_link
   control: 
     all_tags: 
     - "000"
     - "001"
     - "003"
     - "005"
-    - 008
-  notes: 
-    all_tags: 
-    - "509"
-    - "549"
-    - "559"
-    - "569"
-    - "599"
-    - "856"
-  subject: 
-    all_tags: 
-    - "670"
-    - "678"
-    - "680"
-    - "684"
-  main: 
-    all_tags: 
-    - "100"
+    - "008"
+  variants:
+    all_tags:
     - "400"
-  codes: 
-    all_tags: 
-    - "035"
-    - "039"
-    - "040"
-    - "043"
-    all_tag_templates:
-      "039": marc_show/show_gender

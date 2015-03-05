@@ -55,16 +55,29 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     fr: "Date/heure de la dernière transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
+"035": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: AUTHORITY REFERENCE
+    fr: AUTHORITY REFERENCE
+    de: Normdatenverweise
+    en: Authority Reference
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: AUTHORITY REFERENCE
+        fr: AUTHORITY REFERENCE
+        de: Normdatenverweise
+        en: Authority Reference
 "039": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Gender
-    fr: Genre
+    fr: Gender
     de: Geschlecht
     en: Gender
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Genre
+        it: Gender
         fr: Gender
         de: Geschlecht 
         en: Gender
@@ -133,6 +146,18 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Dates de vie
         de: Geburts- und Todesdaten
         en: Life dates
+    w: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: STATUS
+        fr: STATUS
+        de: Status
+        en: Status
+    y: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: LIFE DATES TEXT
+        fr: LIFE DATES TEXT
+        de: Geburts- und Todesdaten Text
+        en: Life dates text
 "370": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Associated Place
@@ -149,15 +174,15 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "375": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Gender
-    fr: Genre
-    de: Gender
+    fr: Gender
+    de: Geschlecht
     en: Gender
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Genre
+        it: Gender
         fr: Gender
-        de: Gender 
+        de: Geschlecht 
         en: Gender
 "400": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -177,7 +202,66 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         it: Data di nascita e di morte
         fr: Dates de vie
         de: Geburts- und Todesdaten
-        en: Life dates
+        en: Life dates    
+    j: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: INDICATOR
+        fr: INDICATOR
+        de: Art der Namensvariante
+        en: Description of name variant
+"509": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: RELATED PERSONS
+    fr: RELATED PERSONS
+    de: Zugehörige Personen
+    en: Related Persons
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it:  NAME
+        fr:  NAME
+        de:  Name
+        en:  Name    
+    y: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it:  RELATIONSHIP
+        fr:  RELATIONSHIP
+        de:  Beziehung
+        en:  Relationship
+
+"510": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: RELATED SIGLUM
+    fr: RELATED SIGLUM
+    de: Zugehörige Sigel 
+    en:  Related Siglums
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it:  SIGLUM
+        fr:  SIGLUM
+        de:  Sigel
+        en:  Siglum
+"569": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PLACES
+    fr: PLACES
+    de: Orte
+    en:  Places
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it:  PLACE
+        fr:  PLACE
+        de:  Ort
+        en:  Place
+    j: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it:  PLACE INDICATOR
+        fr:  PLACE INDICATOR
+        de:  Ort Bedeutung
+        en:  Place Description
+
 "667": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Non public note
@@ -241,12 +325,24 @@ notes: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Notes
     de: Fussnoten
     en: Note fields
+subject: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Note sul sitolo uniforme
+    fr: "Entrées de sujets"
+    de: Schlagworteintragungen
+    en: Subject access fields
 other: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Varia
     fr: Divers
     de: Verschiedenes
     en: Miscellaneous
+variants: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: VARIANTS
+    fr: VARIANTS
+    de: Namensvarianten
+    en: Name Variants
 administration: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Amministrazione

@@ -19,7 +19,7 @@
   tag_params: 
     read_only: true
   tag_header: none
-008: 
+"008": 
   tag: tag_no_subfield
   tag_params: 
     maskedinput: 
@@ -67,6 +67,10 @@
       - cols: 2
     - - d
       - cols: 2
+    - - w
+      - cols: 2
+    - - y
+      - cols: 2
     columns: 4
 "400": 
   layout: 
@@ -74,6 +78,8 @@
     - - a
       - cols: 2
     - - d
+      - cols: 2
+    - - j
       - cols: 2
     columns: 4
 "509": 
@@ -85,6 +91,14 @@
       - cols: 4
     - - "9"
       - cols: 2
+    columns: 4
+"510": 
+  layout: 
+    fields: 
+    - - "a"
+      - type: institution
+        editor_partial: subfield_secondary
+      - cols: 4
     columns: 4
 "549": 
   layout: 
@@ -102,6 +116,8 @@
   layout: 
     fields: 
     - - a
+      - cols: 2
+    - - j
       - cols: 2
     columns: 2
 "599": 
@@ -127,8 +143,6 @@
       - cols: 4
     - - b
       - cols: 2
-    - - u
-      - cols: 4
     columns: 4
 "678": 
   layout: 

@@ -1,0 +1,26 @@
+<%
+    a_tag = tag.fetch_first_by_tag(:a)
+-%>
+<tr class="row">
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+    <td>	
+      <%- link_list=a_tag.content.split("; ") %>
+      <%- link_list.each do |link| %>
+        <% if link.include?("(DE-588a)") && !link.include?("(VIAF)") %>
+          <%ref=link.gsub("(DE-588a)", "") %>
+          <%= "GND: " %>
+          <%= link_to ref, "http://d-nb.info/gnd/"+ref, :target => "_blank" if (a_tag && a_tag.content) -%>
+
+        <% elsif link.include?("(VIAF)") %>
+          <%ref=link.gsub("(VIAF)", "").gsub("(DE-588a)", "") %>
+          <%= "VIAF: " %>
+          <%= link_to ref, "http://viaf.org/viaf/"+ref, :target => "_blank" if (a_tag && a_tag.content) -%>
+
+            <%end%>
+            <%end %>
+	</td>
+</tr>
