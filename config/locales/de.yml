@@ -222,6 +222,9 @@ de:
     too_many: "Es können nicht mehr als %{max} Datensätze (%{count} ausgewählt werden)."
 
   ############ filters
+  039a: Geschlecht
+  559a: Beruf
+  100d: Lebensdaten
   filter_address: "Adresse"
   filter_alternate_dates: "Andere Daten"
   filter_alternate_names: "Andere Namen"

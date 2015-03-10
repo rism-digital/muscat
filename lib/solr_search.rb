@@ -121,9 +121,13 @@ module Muscat
               # just use another predicate
               # and no field will be used
               f = []
-              if k.to_s.match("contains") # :filter xxx_contains
-                field = k.to_s.gsub("_contains", "")
-                f << field.underscore.to_sym
+              if k.to_s.match("contains") # :filter xxx_contains                
+                if field[0] =~ /[0-9]/
+                  f << field.underscore
+                else
+                  field = k.to_s.gsub("_contains", "")
+                  f << field.underscore.to_sym
+                end
                 fields << {:fields => f, :value => options[k]}
               elsif k.to_s.match("with_integer") # :filter zzz_with_integer
                 # The field to filter with is

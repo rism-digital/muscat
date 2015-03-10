@@ -77,10 +77,10 @@ class MarcImport
         @import_results.concat( marc.results )
         @import_results = @import_results.uniq
         # step 4. insert model into database
-        #model.suppress_update_77x # we should not need to update the 772/773 relationships during the import
+        model.suppress_update_77x # we should not need to update the 772/773 relationships during the import
         #model.suppress_create_incipit
         #model.suppress_create_incipit
-        #model.suppress_reindex
+        model.suppress_reindex
         begin
           model.save #
           @log.info(@model+" record "+marc.get_id.to_s+" "+status)

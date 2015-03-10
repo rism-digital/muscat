@@ -44,7 +44,7 @@ ActiveAdmin.register Person do
     
     def index
       @results = Person.search_as_ransack(params)
-      
+      puts @results 
       index! do |format|
         @people = @results
         format.html
@@ -79,7 +79,9 @@ ActiveAdmin.register Person do
   
   # temporary, to be replaced by Solr
   filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-#  filter :name_contains, :as => :string
+  filter :"100d_contains", :label => proc {I18n.t(:"100d")}, :as => :string
+  filter :"039a_contains", :label => proc {I18n.t(:"039a")}, :as => :string
+  filter :"559a_contains", :label => proc {I18n.t(:"559a")}, :as => :string
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb

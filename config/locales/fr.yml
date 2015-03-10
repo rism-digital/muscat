@@ -222,6 +222,9 @@ fr:
     too_many: "Impossible d'ajouter plus de %{max} éléments  (%{count} sélectionés)."
   
   ############ filters
+  039a: GENDER
+  559a: PROFESSION
+  100d: LIFE DATES
   filter_address: "Adresse"
   filter_alternate_dates: "Autres dates"
   filter_alternate_names: "Autres noms"

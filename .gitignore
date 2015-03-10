@@ -1,5 +1,7 @@
 config/application.rb
 config/database.yml
+config/solr.yml
+config/sunspot.yml
 development.log
 /tmp
 /log

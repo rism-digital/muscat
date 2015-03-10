@@ -1,3 +1,4 @@
+=begin
 search=Person.solr_search do 
   fulltext("Unresolved", :fields=>["667a"]) 
   paginate :per_page=>50
@@ -23,19 +24,29 @@ puts rs
 puts rs.size
 puts rs
 
+=end
 
-
-=begin
+#=begin
+counter=0
+del=[]
 Person.all.each do |s|
+  print "\r#{counter+=1}: #{s.id}"
   count=0
-  marc = s.marc
+  begin
+    marc = s.marc
+  rescue Exception
+    puts "#{s.id}"
+    del<< s
+  end
   modified = false
- # puts "OLD MARC ############################## OLD MARC"
- # puts marc
+  #puts "OLD MARC ############################## OLD MARC"
+  #puts marc
   marc.each_by_tag("670") do |t|
-  counter=0
     a = t.fetch_first_by_tag("a")
     if a 
+      if t.fetch_first_by_tag("b")
+        next
+      end
       if a.content.include?(": ")
         reference=a.content.split(": ")[0]
         finding=a.content.split(": ")[1]  
@@ -46,7 +57,6 @@ Person.all.each do |s|
           t.add(MarcNode.new(Person, "0", catalog.id, nil)) if !t.fetch_first_by_tag("0")
           t.add(MarcNode.new(Person, "b", finding, nil)) if !t.fetch_first_by_tag("b")
         else
-          puts counter+=1
           new_549 = MarcNode.new(Person, "667", "", "10")
           ip = marc.get_insert_position("667")
           count=0
@@ -71,8 +81,15 @@ Person.all.each do |s|
   
 
   end
-#  puts "NEW MARC ========================================"
+  #puts "NEW MARC ========================================"
+  #puts marc
+  #s.suppress_recreate
   s.save if modified
 
 end
-=end
+
+puts del.size
+del.each do |pers|
+  Person.delete(pers)
+end
+#=end
