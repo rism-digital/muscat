@@ -78,6 +78,7 @@ ActiveAdmin.register Person do
   ###########
   
   # temporary, to be replaced by Solr
+  filter :id_eq, :label => proc {I18n.t(:filter_id)}, :as => :string
   filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"100d_contains", :label => proc {I18n.t(:"100d")}, :as => :string
   filter :"039a_contains", :label => proc {I18n.t(:"039a")}, :as => :string
