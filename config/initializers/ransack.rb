@@ -38,3 +38,4 @@ Ransack.configure do |config|
     # submit it. Good luck debgging it next time.
     type: :string
 end
+

@@ -227,6 +227,8 @@ fr:
   100d: LIFE DATES
   100d_birthdate: YEAR OF BIRTH
   100d_deathdate: YEAR OF DEATH
+  043c: COUNTRY CODE
+  569a: PLACES
   filter_address: "Adresse"
   filter_alternate_dates: "Autres dates"
   filter_alternate_names: "Autres noms"

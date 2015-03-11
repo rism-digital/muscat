@@ -227,6 +227,8 @@ en:
   100d: Life Dates
   100d_birthdate: Year of Birth
   100d_deathdate: Year of Death
+  043c: Country Code
+  569a: Places
   filter_address: "Address"
   filter_alternate_dates: "Alternate dates"
   filter_alternate_names: "Alternate names"
