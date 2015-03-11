@@ -225,6 +225,8 @@ en:
   039a: Gender
   559a: Profession
   100d: Life Dates
+  100d_birthdate: Year of Birth
+  100d_deathdate: Year of Death
   filter_address: "Address"
   filter_alternate_dates: "Alternate dates"
   filter_alternate_names: "Alternate names"

@@ -82,6 +82,8 @@ ActiveAdmin.register Person do
   filter :"100d_contains", :label => proc {I18n.t(:"100d")}, :as => :string
   filter :"039a_contains", :label => proc {I18n.t(:"039a")}, :as => :string
   filter :"559a_contains", :label => proc {I18n.t(:"559a")}, :as => :string
+  filter :"100d_birthdate_contains", :label => proc {I18n.t(:"100d_birthdate")}, :as => :string
+  filter :"100d_deathdate_contains", :label => proc {I18n.t(:"100d_deathdate")}, :as => :string
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb

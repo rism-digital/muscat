@@ -19,7 +19,15 @@ fields:
     "043c":
     "100a":
     "100d":
-      :type: text
+      :type: text 
+    "100d_birthdate":
+      :from_tag: "100"
+      :from_subtag: "d"
+      :index_helper: :marc_helper_get_birthdate
+    "100d_deathdate":
+      :from_tag: "100"
+      :from_subtag: "d"
+      :index_helper: :marc_helper_get_deathdate
     "400a":
     "400d": 
     "5099":

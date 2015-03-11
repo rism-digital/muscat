@@ -581,6 +581,28 @@ class Marc
     end
     return field
   end
-  
+ 
+  # Get the birth date from MARC 100$d
+  def marc_helper_get_birthdate(value)
+    if value.include?('-')
+      field = value.split('-')[0]
+    end
+    if field
+      field = field.to_i
+    end
+    return field
+  end
+
+  # Get the death date from MARC 100$d
+  def marc_helper_get_deathdate(value)
+    if value.include?('-')
+      field = value.split('-')[1]
+    end
+    if field
+      field = field.to_i
+    end
+    return field
+  end
 end
+ 
 
