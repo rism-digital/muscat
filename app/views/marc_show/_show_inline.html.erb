@@ -5,7 +5,7 @@
   root=tag.parent
   root.each_by_tag(tag.tag) do |t| group<< t end
   group.each do |t|
-    content << t.fetch_first_by_tag("a").content 
+    content << t.fetch_first_by_tag("a").content if t.fetch_first_by_tag("a")
   end
 -%>
 <% if tag==group.first %>

@@ -314,6 +314,32 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Remarque générale
         de: Allgemeine Fussnote
         en: General note
+"684": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: ORDER
+    fr: ORDER
+    de: Orden
+    en: Order
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    j: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: ORDER
+        fr: ORDER
+        de: Orden
+        en: ORDER
+"856": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: URL
+    fr: URL
+    de: URL
+    en: URL
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    u: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: URL
+        fr: URL
+        de: URL
+        en: URL
 main_person: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Registrazioni principali
