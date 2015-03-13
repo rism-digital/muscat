@@ -1,5 +1,5 @@
 
-<%- 
+<%-
   content = Array.new
   group=Array.new
   root=tag.parent
@@ -9,7 +9,7 @@
   end
 -%>
 <% if tag==group.first %>
-<tr class="row">
+  <tr class="row">
 	<th valign="top">
 		<% if (no_label == false) -%>
 			<%= @editor_profile.get_label(tag.tag) %>

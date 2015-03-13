@@ -23,6 +23,7 @@ groups:
     - "667"
     - "856"
     all_tag_templates:
+      "509": people/show_related_person
       "559": marc_show/show_inline
   places: 
     all_tags: 
