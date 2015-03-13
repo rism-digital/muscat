@@ -3,7 +3,7 @@ group_order:
 - main_person
 - codes
 - notes
-- subject
+- places
 - variants
 groups:   
   main_person: 
@@ -22,7 +22,9 @@ groups:
     - "599"
     - "667"
     - "856"
-  subject: 
+    all_tag_templates:
+      "559": marc_show/show_inline
+  places: 
     all_tags: 
     - "510"
     - "043"

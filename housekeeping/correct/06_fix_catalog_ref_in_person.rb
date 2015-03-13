@@ -39,23 +39,24 @@ Person.all.each do |s|
     del<< s
   end
   modified = false
-  #puts "OLD MARC ############################## OLD MARC"
-  #puts marc
+  puts "OLD MARC ############################## OLD MARC"
+  puts marc
   marc.each_by_tag("670") do |t|
     a = t.fetch_first_by_tag("a")
     if a 
-      if t.fetch_first_by_tag("b")
-        next
-      end
+      #if t.fetch_first_by_tag("b")
+       # next
+      #end
       if a.content.include?(": ")
+
         reference=a.content.split(": ")[0]
         finding=a.content.split(": ")[1]  
         catalog=Catalogue.where(name: reference).take
         if catalog
-          a.content=reference
-
-          t.add(MarcNode.new(Person, "0", catalog.id, nil)) if !t.fetch_first_by_tag("0")
+          #t.destroy_child(a)
           t.add(MarcNode.new(Person, "b", finding, nil)) if !t.fetch_first_by_tag("b")
+          t.add(MarcNode.new(Person, "0", catalog.id, nil)) if !t.fetch_first_by_tag("0")
+          a.content = reference
         else
           new_549 = MarcNode.new(Person, "667", "", "10")
           ip = marc.get_insert_position("667")
@@ -73,18 +74,16 @@ Person.all.each do |s|
     #      new_549.add_at(MarcNode.new("a", a.content, nil), count)
     #      marc.root.children.insert(ip, new_549)
     #      t.destroy_child(a)
-
-        modified = true
       end
     end
   
   
 
   end
-  #puts "NEW MARC ========================================"
-  #puts marc
+  puts "NEW MARC ========================================"
+  puts marc
   #s.suppress_recreate
-  s.save if modified
+  #s.save if modified
 
 end
 
