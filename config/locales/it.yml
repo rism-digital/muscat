@@ -225,6 +225,10 @@ it:
   039a: GENDER
   559a: PROFESSION
   100d: LIFE DATES
+  100d_birthdate: YEAR OF BIRTH
+  100d_deathdate: YEAR OF DEATH
+  043c: COUNTRY CODE
+  569a: PLACES
   filter_address: "Indirizzo"
   filter_alternate_dates: "Date alternative"
   filter_alternate_names: "Nomi alternativi"

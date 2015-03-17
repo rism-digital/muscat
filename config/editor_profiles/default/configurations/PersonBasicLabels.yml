@@ -242,6 +242,19 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr:  SIGLUM
         de:  Sigel
         en:  Siglum
+"559": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PROFESSION
+    fr: PROFESSION
+    de: PROFESSION
+    en:  PROFESSION
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it:  PROFESSION
+        fr:  PROFESSION
+        de:  Berufe
+        en:  Profession
 "569": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: PLACES
@@ -301,6 +314,32 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Remarque générale
         de: Allgemeine Fussnote
         en: General note
+"684": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: ORDER
+    fr: ORDER
+    de: Orden
+    en: Order
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    j: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: ORDER
+        fr: ORDER
+        de: Orden
+        en: ORDER
+"856": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: URL
+    fr: URL
+    de: URL
+    en: URL
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    u: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: URL
+        fr: URL
+        de: URL
+        en: URL
 main_person: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Registrazioni principali
@@ -323,7 +362,7 @@ notes: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Note
     fr: Notes
-    de: Fussnoten
+    de: Bemerkungen
     en: Note fields
 subject: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -331,6 +370,12 @@ subject: !map:ActiveSupport::HashWithIndifferentAccess
     fr: "Entrées de sujets"
     de: Schlagworteintragungen
     en: Subject access fields
+places: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PLACES
+    fr: PLACES
+    de: Länder und Orte
+    en: Countries and Places
 other: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Varia
