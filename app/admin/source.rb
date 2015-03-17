@@ -1,7 +1,7 @@
 ActiveAdmin.register Source do
   
   collection_action :autocomplete_source_id, :method => :get
-  collection_action :autocomplete_source_740a, :method => :get
+  collection_action :autocomplete_source_740a_sms, :method => :get
 
   # Remove mass-delete action
   batch_action :destroy, false
@@ -19,8 +19,8 @@ ActiveAdmin.register Source do
                  #params['q'] = {:std_title_contains => "[Holding]"} 
         end
     end
-    autocomplete :source, :id, :display_value => :autocomplete_label , :extra_data => [:std_title, :composer]
-    autocomplete :source, "740a", :solr => true
+    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :solr => false}
+    autocomplete :source, "740a_sms", :solr => true
     
     def permitted_params
       params.permit!
@@ -126,7 +126,7 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title
     column (I18n.t :filter_title), :title
-    column (I18n.t :filter_lib_siglum) do |source|
+    column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
       if source.sources.count>0
          source.sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
       else

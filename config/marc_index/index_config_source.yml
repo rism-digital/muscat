@@ -157,6 +157,7 @@ fields:
   "730r":
   "740a":
       :store: true
+      :type: string
   "752a":
   "752d":
   "772w":

@@ -59,7 +59,7 @@ function marc_editor_init_tags( id ) {
 		field = hidden.data("field")
 		
 		// Set the value from the id of the autocompleted elem
-		if (data.item.id == "") {
+		if (data.item[field] == "") {
 			alert("Please select a valid item from the list");
 			input.val("");
 			hidden.val("");

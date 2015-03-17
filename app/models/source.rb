@@ -149,7 +149,6 @@ class Source < ActiveRecord::Base
       if !self.suppress_update_count_trigger
         (new_items + remove_items).each do |o|
           o.update_attribute( :src_count, o.sources.count )
-          puts o.sources.count
         end
       end
       
