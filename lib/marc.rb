@@ -582,5 +582,42 @@ class Marc
     return field
   end
   
+  def marc_create_pae_entry(conf_tag, conf_properties, marc, model)
+    out = []
+    
+    tag = conf_properties && conf_properties.has_key?(:from_tag) ? conf_properties[:from_tag] : nil
+    
+    return if tag == nil
+    return if tag != "031"
+    
+    marc.each_by_tag(tag) do |marctag|
+      subtags = [:a, :b, :c, :g, :n, :o, :p]
+      vals = {}
+      
+      subtags.each do |st|
+        v = marctag.fetch_first_by_tag(st)
+        vals[st] = v && v.content ? v.content : "0"
+      end
+
+      next if vals[:p] == "0"
+
+      pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
+      
+      s = "@start:#{pae_nr}\n";
+	    s = s + "@clef:#{vals[:g]}\n";
+	    s = s + "@keysig:#{vals[:n]}\n";
+	    s = s + "@key:\n";
+	    s = s + "@timesig:#{vals[:o]}\n";
+	    s = s + "@data:#{vals[:p]}\n";
+	    s = s + "@end:#{pae_nr}\n"
+
+      out << s
+
+    end
+    
+    return out
+    
+  end
+  
 end
 

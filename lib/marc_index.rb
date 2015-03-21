@@ -4,6 +4,9 @@ class MarcIndex
     
     IndexConfig.get_fields(klass).each do |tag, properties|
       
+      # index_processor: mash togeather the values of one or more tags/subtags
+      index_processor_helper = properties && properties.has_key?(:index_processor_helper) ? properties[:index_processor_helper] : nil
+      
       store = properties && properties.has_key?(:store) ? properties[:store] : false
       boost = properties && properties.has_key?(:boost) ? properties[:boost] : 1.0
       type =  properties && properties.has_key?(:type) ? properties[:type] : 'text'
@@ -17,14 +20,23 @@ class MarcIndex
       # (ignoring it was too difficult? maybe print a warn?)
       opts[:multiple] = true if type != 'text'
       
+      if properties && properties.has_key?(:as)
+        opts[:as] = properties[:as]
+      end
+      
       sunspot_dsl.send(type, tag, opts) do
-        marc_index_tag(tag, properties, marc, self)
+        if index_processor_helper
+          marc.send(index_processor_helper, tag, properties, marc, self)
+        else
+          marc_index_tag(tag, properties, marc, self)
+        end
       end
     end
   end
   
   def self.marc_index_tag(conf_tag, conf_properties, marc, model)
     
+    # index_helper: fetch a subtag and process the value
     index_helper = conf_properties && conf_properties.has_key?(:index_helper) ? conf_properties[:index_helper] : nil
     # tags can be spefied if the field name it not the tag name
     tag = conf_properties && conf_properties.has_key?(:from_tag) ? conf_properties[:from_tag] : nil
