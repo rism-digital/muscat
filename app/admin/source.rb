@@ -1,7 +1,7 @@
 ActiveAdmin.register Source do
   
   collection_action :autocomplete_source_id, :method => :get
-  collection_action :autocomplete_source_740a_sms, :method => :get
+  collection_action :autocomplete_source_740_autocomplete_sms, :method => :get
 
   # Remove mass-delete action
   batch_action :destroy, false

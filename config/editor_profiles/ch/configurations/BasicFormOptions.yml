@@ -746,7 +746,7 @@
       - cols: 3
     columns: 6
 "740":
-  allow_new: true
+#  allow_new: true
   layout: 
     fields: 
     - - a
@@ -754,20 +754,21 @@
         field: value
         cols: 2
         editor_partial: subfield_secondary
+        allow_not_found: true
     - - n
       - cols: 1
     - - p
       - cols: 1
     columns: 2
-  layout_new: 
-    fields: 
-    - - a
-      - cols: 2
-    - - n
-      - cols: 1
-    - - p
-      - cols: 1
-    columns: 2
+#  layout_new: 
+#    fields: 
+#    - - a
+#      - cols: 2
+#    - - n
+#      - cols: 1
+#    - - p
+#      - cols: 1
+#    columns: 2
 "772": 
   layout: 
     fields: 
