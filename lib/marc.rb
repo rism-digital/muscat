@@ -614,9 +614,29 @@ class Marc
       out << s
 
     end
-    
+
     return out
     
+  end
+  
+  def marc_create_aggregated_text(conf_tag, conf_properties, marc, model)
+    out = []
+    tags = conf_properties && conf_properties.has_key?(:tags) ? conf_properties[:tags] : nil
+    
+    return if tags == nil
+    return if !tags.is_a?(Hash)
+    
+    tags.each do |tag, subtag|
+      marc.each_by_tag(tag) do |marctag|
+        marctag.each_by_tag(subtag) do |marcsubtag|
+          #puts "#{tag}, #{subtag}"
+          out << marcsubtag.content if marcsubtag.content
+          
+        end
+      end
+    end
+    
+    return out
   end
   
 end

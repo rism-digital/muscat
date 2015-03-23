@@ -22,11 +22,15 @@ fields:
   "031e":
   "031m":
   "031p":
-      :store: true
   "031q":
   "031t":
   "033a":
   "035a":
+  "pae_complete":
+      :store: true
+      :as: pae
+      :from_tag: "031"
+      :index_processor_helper: :marc_create_pae_entry
   "041a":
   "041e":
   "041h":
@@ -35,6 +39,8 @@ fields:
   "110a":
   "110b":
   "130a":
+      :store: true
+      :type: string
   "130k":
   "130m":
   "130n":
@@ -43,6 +49,8 @@ fields:
   "130p":
   "130r":
   "240a":
+      :store: true
+      :type: string
   "240k":
   "240m":
       :store: true
@@ -156,8 +164,6 @@ fields:
   "730p":
   "730r":
   "740a":
-      :store: true
-      :type: string
   "752a":
   "752d":
   "772w":
@@ -184,3 +190,12 @@ fields:
   "852q":
   "852z":
   "856u":
+  "740_autocomplete":
+      :index_processor_helper: marc_create_aggregated_text
+      :tags:
+          :740: "a"
+          :730: "a"
+          :240: "a"
+          :130: "a"
+      :store: true
+      :type: string

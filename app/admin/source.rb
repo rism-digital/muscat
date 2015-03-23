@@ -20,7 +20,7 @@ ActiveAdmin.register Source do
         end
     end
     autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :solr => false}
-    autocomplete :source, "740a_sms", :solr => true
+    autocomplete :source, "740_autocomplete_sms", :solr => true
     
     def permitted_params
       params.permit!
