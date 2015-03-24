@@ -245,6 +245,7 @@ class MarcSource < Marc
       parent_manuscript.suppress_update_77x
       parent_manuscript.save
     else
+      
       # do we have a parent manuscript?
       parent_manuscript_id = first_occurance("773", "w")
       return if !parent_manuscript_id
@@ -256,8 +257,8 @@ class MarcSource < Marc
         return if subfield && subfield.content == get_id
       end
       # nothing found, add it in the parent manuscript
-      _772_w = MarcNode.new("772", "", @marc_configuration.get_default_indicator("772"))
-      _772_w.add_at(MarcNode.new("w", get_id, nil), 0 )
+      _772_w = MarcNode.new(@model, "772", "", @marc_configuration.get_default_indicator("772"))
+      _772_w.add_at(MarcNode.new(@model, "w", get_id, nil), 0 )
       parent_manuscript.marc.root.add_at(_772_w, parent_manuscript.marc.get_insert_position("772") )
       #parent_manuscript.suppress_create_incipit
       parent_manuscript.suppress_update_77x
