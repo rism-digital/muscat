@@ -1,7 +1,7 @@
 production:
   solr:
     hostname: localhost
-    port: 8985
+    port: 8983
     log_level: WARNING
     path: /solr/production
     auto_commit_after_request: false
@@ -11,7 +11,7 @@ production:
 development:
   solr:
     hostname: localhost
-    port: 8967
+    port: 8982
     log_level: INFO
     path: /solr/development
     auto_commit_after_request: false

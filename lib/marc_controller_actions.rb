@@ -46,7 +46,7 @@ module MarcControllerActions
      
      # build the dynamic model path
       model_for_path = self.resource_class.to_s.underscore.downcase
-      link_function = "edit_#{model_for_path}_path"
+      link_function = "edit_admin_#{model_for_path}_path"
      
       path =  send(link_function, @item.id) #edit_source_path(@item.id)
 
