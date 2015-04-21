@@ -22,15 +22,11 @@ fields:
   "031e":
   "031m":
   "031p":
+      :store: true
   "031q":
   "031t":
   "033a":
   "035a":
-  "pae_complete":
-      :store: true
-      :as: pae
-      :from_tag: "031"
-      :index_processor_helper: :marc_create_pae_entry
   "041a":
   "041e":
   "041h":
