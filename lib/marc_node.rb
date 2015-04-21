@@ -16,6 +16,8 @@ class MarcNode
     @foreign_object = nil
     @foreign_field = nil
     @foreign_host = false
+    # FIX We should have some sort of type checking here
+    #raise "Model does not exit in enviroment" if !ActiveRecord::Base.descendants.map(&:name).include?(model.to_s.capitalize)
     @model = model
     @marc_configuration = MarcConfigCache.get_configuration @model
   end

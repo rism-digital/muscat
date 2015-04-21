@@ -80,12 +80,18 @@ class MarcImport
         #model.suppress_update_77x # we should not need to update the 772/773 relationships during the import
         #model.suppress_create_incipit
         #model.suppress_create_incipit
-        #model.suppress_reindex
+        model.suppress_reindex
         begin
           model.save #
           @log.info(@model+" record "+marc.get_id.to_s+" "+status)
         rescue ActiveRecord::RecordNotUnique
           @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
+        rescue Exception => e
+        #rescue ActiveRecord::StatementInvalid::Mysql2::Error
+
+          @log.error(@model+" record "+marc.get_id.to_s+" import failed data too long for column")
+          #puts marc.get_id.to_s
+          puts e.class
         end
         print "\rStarted: "+@start_time.strftime("%Y-%m-%d %H:%M:%S")+" -- Record #{@cnt} of #{@total_records} processed"
         #puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"

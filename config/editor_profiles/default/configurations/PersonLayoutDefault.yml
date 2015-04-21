@@ -2,7 +2,7 @@
 group_order: 
 - control
 - codes
-- main
+- main_person
 - notes
 - subject
 groups: 
@@ -12,10 +12,11 @@ groups:
     - "001"
     - "003"
     - "005"
-    - 008
+    - "008"
   notes: 
     all_tags: 
     - "509"
+    - "510"
     - "549"
     - "559"
     - "569"
@@ -26,7 +27,7 @@ groups:
     - "678"
     - "680"
     - "684"
-  main: 
+  main_person: 
     all_tags: 
     - "100"
     - "400"

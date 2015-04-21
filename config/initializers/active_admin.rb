@@ -182,7 +182,23 @@ ActiveAdmin.setup do |config|
   #config.register_javascript 'jquery.dirtyFields.js'
   #config.register_javascript 'jquery.maskedinput.js'
   #config.register_javascript 'jquery.validate.js'
-  
+  config.register_javascript  'ace/ace.js'
+config.register_javascript 'ace/theme-twilight.js'
+config.register_javascript 'ace/mode-ruby.js'
+config.register_javascript 'jquery-ace.min.js'
+
+
+
+
+
+
+
+
+
+
+
+
+
   config.register_stylesheet 'muscat-print.css', :media => :print
 
   # == CSV options
@@ -276,7 +292,6 @@ ActiveAdmin.setup do |config|
   # You can enable or disable them for all resources here.
   #
   # config.filters = true
-
 end
 
 # LP - added for caching filters, pagination and order

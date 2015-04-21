@@ -94,7 +94,7 @@ ActiveAdmin.register Catalogue do
     selectable_column
     column (I18n.t :filter_id), :id    
     column (I18n.t :filter_name), :name
-    column (I18n.t :filter_name), :revue_title
+    column (I18n.t :filter_name), :description
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count
     actions

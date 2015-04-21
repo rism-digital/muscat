@@ -1,0 +1,83 @@
+type: map
+mapping:
+  "en":
+    type: map
+    mapping:
+     "switch_language": {type: str}
+     "activerecord":
+        required: yes
+     "folders":
+     "rism_any_key": 
+     "will_paginate":
+     "active_admin": 
+        type: map
+        required: yes
+        mapping:
+          "dashboard": {type: str}
+          "dashboard_welcome":
+             type: map
+             mapping:
+                "welcome": {type: str}
+  "de":
+    type: map
+    mapping:
+     "switch_language": {type: str}
+     "activerecord":
+        required: yes
+     "folders":
+     "rism_any_key": 
+     "will_paginate":
+     "active_admin": 
+        type: map
+        required: yes
+        mapping:
+          "dashboard": {type: str}
+          "dashboard_welcome":
+             type: map
+             mapping:
+                "welcome": {type: str}
+  "fr":
+    type: map
+    mapping:
+     "switch_language": {type: str}
+     "activerecord":
+        required: yes
+     "folders":
+     "rism_any_key": 
+     "will_paginate":
+     "active_admin": 
+        type: map
+        required: yes
+        mapping:
+          "dashboard": {type: str}
+          "dashboard_welcome":
+             type: map
+             mapping:
+                "welcome": {type: str}
+
+  "it":
+    type: map
+    mapping:
+     "switch_language": {type: str}
+     "activerecord":
+        required: yes
+     "folders":
+     "rism_any_key": 
+     "will_paginate":
+     "active_admin": 
+        type: map
+        required: yes
+        mapping:
+          "dashboard": {type: str}
+          "dashboard_welcome":
+             type: map
+             mapping:
+                "welcome": {type: str}
+
+
+
+
+
+
+
+

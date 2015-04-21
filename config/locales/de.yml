@@ -158,7 +158,7 @@ de:
         one: "Liturgisches Fest"
         other: "Liturgische Feste"
       person:
-        one: "Persone"
+        one: "Person"
         other: "Personen"
       source:
         one: "Quelle"
@@ -222,6 +222,9 @@ de:
     too_many: "Es können nicht mehr als %{max} Datensätze (%{count} ausgewählt werden)."
 
   ############ filters
+  039a: Geschlecht
+  559a: Beruf
+  100d: Lebensdaten
   filter_address: "Adresse"
   filter_alternate_dates: "Andere Daten"
   filter_alternate_names: "Andere Namen"
@@ -247,7 +250,7 @@ de:
   filter_folder_type: "Ordner-Typ"
   filter_full_name: "Name"
   filter_gender: "Geschlecht"
-  filter_id: "ID"
+  #filter_id: "ID"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
@@ -434,24 +437,23 @@ de:
  
   date:
     month_names:
-    -
-    - "Januar"
-    - "Februar"
-    - "März"
-    - "April"
-    - "Mai"
-    - "Juni"
-    - "Juli"
-    - "August"
-    - "September"
-    - "Oktober"
-    - "November"
-    - "December"
+      - "Januar"
+      - "Februar"
+      - "Märch"
+      - "April"
+      - "Mai"
+      - "Juni"
+      - "Juli"
+      - "August"
+      - "September"
+      - "Oktober"
+      - "November"
+      - "December"
     day_names:
-    - "Sontag"
-    - "Montag"
-    - "Dienstag"
-    - "Mittwoch"
-    - "Donnerstag"
-    - "Freitag"
-    - "Samstag"
+      - "Sontag"
+      - "Montag"
+      - "Dienstag"
+      - "Mittwoch"
+      - "Donnerstag"
+      - "Freitag"
+      - "Samstag"

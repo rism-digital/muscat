@@ -19,7 +19,7 @@
   tag_params: 
     read_only: true
   tag_header: none
-008: 
+"008": 
   tag: tag_no_subfield
   tag_params: 
     maskedinput: 
@@ -30,8 +30,14 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
+      - cols: 2 
+        editor_partial: subfield_gender_codes_039
+    columns: 2
+  tag_params:
+    codes:
+      - m
+      - w
+      - "?"
 "040": 
   layout: 
     fields: 
@@ -61,6 +67,10 @@
       - cols: 2
     - - d
       - cols: 2
+    - - w
+      - cols: 2
+    - - y
+      - cols: 2
     columns: 4
 "400": 
   layout: 
@@ -69,13 +79,27 @@
       - cols: 2
     - - d
       - cols: 2
+    - - j
+      - cols: 2
     columns: 4
 "509": 
   layout: 
     fields: 
-    - - a
+    - - "a"
+      - type: person
+        editor_partial: subfield_secondary
+      - cols: 4
+    - - "9"
       - cols: 2
-    columns: 2
+    columns: 4
+"510": 
+  layout: 
+    fields: 
+    - - "a"
+      - type: institution
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
 "549": 
   layout: 
     fields: 
@@ -93,16 +117,32 @@
     fields: 
     - - a
       - cols: 2
+    - - j
+      - cols: 2
     columns: 2
-"670": 
+"599": 
   layout: 
     fields: 
     - - a
       - cols: 2
     - - b
       - cols: 2
-    - - u
+    columns: 4
+"667": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    columns: 2
+"670": 
+  layout: 
+    fields: 
+    - - a
+      - type: catalogue
+        editor_partial: subfield_secondary
       - cols: 4
+    - - b
+      - cols: 2
     columns: 4
 "678": 
   layout: 

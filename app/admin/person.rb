@@ -44,7 +44,7 @@ ActiveAdmin.register Person do
     
     def index
       @results = Person.search_as_ransack(params)
-      
+      puts @results 
       index! do |format|
         @people = @results
         format.html
@@ -78,8 +78,15 @@ ActiveAdmin.register Person do
   ###########
   
   # temporary, to be replaced by Solr
-  filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-#  filter :name_contains, :as => :string
+  #filter :id_eq, :label => proc {I18n.t(:filter_id)}
+  filter :full_name_equals, :label => proc {I18n.t(:filter_full_name)}, :as => :string
+  filter :"100d_contains", :label => proc {I18n.t(:"100d")}, :as => :string
+  filter :"039a_contains", :label => proc {I18n.t(:"039a")}, :as => :string
+  filter :"559a_contains", :label => proc {I18n.t(:"559a")}, :as => :string
+  filter :"043c_contains", :label => proc {I18n.t(:"043c")}, :as => :string
+  filter :"569a_contains", :label => proc {I18n.t(:"569a")}, :as => :string
+  filter :"100d_birthdate_contains", :label => proc {I18n.t(:"100d_birthdate")}, :as => :string
+  filter :"100d_deathdate_contains", :label => proc {I18n.t(:"100d_deathdate")}, :as => :string
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
@@ -112,6 +119,7 @@ ActiveAdmin.register Person do
     active_admin_embedded_source_list( self, person, params[:qe], params[:src_list_page] )
     active_admin_user_wf( self, person )
     active_admin_navigation_bar( self )
+    active_admin_comments
   end
   
   sidebar I18n.t(:search_sources), :only => :show do

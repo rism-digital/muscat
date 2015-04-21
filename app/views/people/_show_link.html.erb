@@ -1,0 +1,18 @@
+<%
+    u_tag = tag.fetch_first_by_tag("u")
+    y_tag = tag.fetch_first_by_tag("y")
+  
+-%>
+<tr class="row">
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td>
+    <%= y_tag.content+": "%>
+    <%= link_to u_tag.content,u_tag.content, :target => "_blank"   %>
+	</td>
+</tr>
+
+

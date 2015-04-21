@@ -222,6 +222,13 @@ it:
     too_many: "Impossibile aggiungere più di %{max} oggetti (ne sono selezionati %{count})."
     
   ############ filters
+  039a: GENDER
+  559a: PROFESSION
+  100d: LIFE DATES
+  100d_birthdate: YEAR OF BIRTH
+  100d_deathdate: YEAR OF DEATH
+  043c: COUNTRY CODE
+  569a: PLACES
   filter_address: "Indirizzo"
   filter_alternate_dates: "Date alternative"
   filter_alternate_names: "Nomi alternativi"
@@ -247,7 +254,7 @@ it:
   filter_folder_type: "Folder Type"
   filter_full_name: "Nome"
   filter_gender: "Sesso"
-  filter_id: "ID"
+  #filter_id: "ID"
   filter_incipits: "Incipit"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
@@ -434,24 +441,23 @@ it:
   
   date:
      month_names:
-     -
-     - "gennaio"
-     - "febbraio"
-     - "marzo"
-     - "aprile"
-     - "maggio"
-     - "giugno"
-     - "luglio"
-     - "agosto"
-     - "settembre"
-     - "ottobre"
-     - "novembre"
-     - "dicembre"
+       - "gennaio"
+       - "febbraio"
+       - "marzo"
+       - "aprile"
+       - "maggio"
+       - "giugno"
+       - "luglio"
+       - "agosto"
+       - "settembre"
+       - "ottobre"
+       - "novembre"
+       - "dicembre"
      day_names:
-     - "domenica"
-     - "lunedì"
-     - "martedì"
-     - "mercoledì"
-     - "giovedì"
-     - "venerdì"
-     - "sabato"
+       - "domenica"
+       - "lunedì"
+       - "martedì"
+       - "mercoledì"
+       - "giovedì"
+       - "venerdì"
+       - "sabato"

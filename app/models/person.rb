@@ -42,12 +42,11 @@ class Person < ActiveRecord::Base
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
-  
+
   # Suppresses the marc scaffolding
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
-  
   
   # This is the last callback to set the ID to 001 marc
   # A Person can be created in various ways:
@@ -237,4 +236,13 @@ class Person < ActiveRecord::Base
   def autocomplete_label
     "#{full_name}" + (life_dates && !life_dates.empty? ? "  - #{life_dates}" : "")
   end
+
+  ransacker :"100d_contains", proc{ |v| } do |parent| end
+  ransacker :"039a_contains", proc{ |v| } do |parent| end
+  ransacker :"559a_contains", proc{ |v| } do |parent| end
+  ransacker :"100d_birthdate_contains", proc{ |v| } do |parent| end
+  ransacker :"100d_deathdate_contains", proc{ |v| } do |parent| end
+  ransacker :"043c_contains", proc{ |v| } do |parent| end
+  ransacker :"569a_contains", proc{ |v| } do |parent| end
+
 end

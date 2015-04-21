@@ -222,6 +222,13 @@ fr:
     too_many: "Impossible d'ajouter plus de %{max} éléments  (%{count} sélectionés)."
   
   ############ filters
+  039a: GENDER
+  559a: PROFESSION
+  100d: LIFE DATES
+  100d_birthdate: YEAR OF BIRTH
+  100d_deathdate: YEAR OF DEATH
+  043c: COUNTRY CODE
+  569a: PLACES
   filter_address: "Adresse"
   filter_alternate_dates: "Autres dates"
   filter_alternate_names: "Autres noms"
@@ -247,7 +254,7 @@ fr:
   filter_folder_type: "Type de dossier"
   filter_full_name: "Nom"
   filter_gender: "Genre"
-  filter_id: "ID"
+  #filter_id: "ID"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
@@ -435,24 +442,23 @@ fr:
  
   date:
     month_names:
-    -
-    - "janvier"
-    - "février"
-    - "mars"
-    - "avril"
-    - "mai"
-    - "juin"
-    - "juillet"
-    - "août"
-    - "septembre"
-    - "octobre"
-    - "novembre"
-    - "décembre"
+      - "janvier"
+      - "février"
+      - "mars"
+      - "avril"
+      - "mai"
+      - "juin"
+      - "juillet"
+      - "août"
+      - "septembre"
+      - "octobre"
+      - "novembre"
+      - "décembre"
     day_names:
-    - "dimanche"
-    - "lundi"
-    - "mardi"
-    - "mercredi"
-    - "jeudi"
-    - "vendredi"
-    - "samedi"
+      - "dimanche"
+      - "lundi"
+      - "mardi"
+      - "mercredi"
+      - "jeudi"
+      - "vendredi"
+      - "samedi"
