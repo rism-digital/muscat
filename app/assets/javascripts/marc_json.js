@@ -130,7 +130,17 @@ function serialize_element( element, tag, json_marc ) {
 		if ($(this).val() == null || $(this).val() == "") {
 			return;
 		}
-
+		
+		// Check if this is a checkbox and it is checked
+		// The value we put into thet marc field correponds
+		// to the 'value' of the input. Obviously if it is
+		// not checked we do not want to serielize it
+		input_type = $(this).attr('type');
+		if (input_type != null && input_type == "checkbox") {
+			if (!$(this).is(":checked"))
+				return;
+		}
+		
 		// Control fields and indicators do not have tags, so we
 		// put it into a special container
 		if (field == null || field == "" || field == "undefined") {
