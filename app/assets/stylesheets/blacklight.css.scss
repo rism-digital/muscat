@@ -1,15 +1,11 @@
 
 
-// Colors, etc
-@import "muscat-custom";
+// Colors, etc 
+// RISM-CH color
+$primary-color: #6E3621 !default;
 
-// Import the active_admin mixins, e.g., for gradient definitions
-@import "active_admin/mixins";
-
-// gradient for header-navbar
-#header-navbar { 
-	@include primary-gradient;
-}
+// Reset it to the active admin default color
+$section-header-text-color: #5E6469 !default;
 
 // default button color set to primary color
 $brand-primary: $primary-color;
@@ -18,29 +14,9 @@ $brand-primary: $primary-color;
 //$font-size-base: 12px !default;
 
 // Text color in the menu bar
-$navbar-height: 78px;
-$navbar-inverse-link-color: #cdcdcd;
+//$navbar-height: 78px;
+//$navbar-inverse-link-color: #cdcdcd;
 
 @import "bootstrap-sprockets";
 @import 'bootstrap';
 @import 'blacklight/blacklight';
-
-.pagination li a {
-	padding: 3px 10px;
-}
-
-#header-navbar {
-    padding-left: 30px;
-}
-
-#opac-header {
-    margin-right: 30px;
-}
-
-
-#header-navbar .navbar-brand {
-  /* The main logo image for the Blacklight instance */
-  background: transparent url('/images/logo2.png') no-repeat top left;
-  margin-top: 6px;
-  height: 60px;
-}
