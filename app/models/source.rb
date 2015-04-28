@@ -357,4 +357,14 @@ class Source < ActiveRecord::Base
     "#{self.id}: #{self.composer} - #{self.std_title}"
   end
   
+  def to_marcxml
+    out = Array.new
+    out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+    out << "<!-- Exported from RISM CH (http://www.rism-ch.org/) Dated: #{} -->\n"
+    out << "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
+    out << marc.export_xml
+    out << "</marc:collection>" 
+    return out.join('')
+  end
+  
 end
