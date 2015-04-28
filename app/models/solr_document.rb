@@ -20,4 +20,8 @@ class SolrDocument
 
   #self.unique_key = 'std_title_texts'
 
+  def to_param
+    id.to_s.split(" ")[1] #split the "Model XXXXXX"
+  end
+  
 end
