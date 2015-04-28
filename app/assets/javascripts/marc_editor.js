@@ -312,7 +312,7 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 	form = $('form', "#" + source_column);
 	json_marc = serialize_marc_editor_form(form);
 	//$(form).valid();
-	url = "/" + rails_model + "/marc_editor_save"; ///form.attr("action");
+	url = "/admin/" + rails_model + "/marc_editor_save"; ///form.attr("action");
     var marc_id=json_marc["fields"][0]["001"];
 	if ( form_type == 1) {
 		url = "/"+rails_model;

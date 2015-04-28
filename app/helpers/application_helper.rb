@@ -1,43 +1,43 @@
 module ApplicationHelper
   
   def catalogue_default_autocomplete
-    autocomplete_catalogue_name_catalogues_path
+    autocomplete_catalogue_name_admin_catalogues_path
   end
   
   def institution_default_autocomplete
-    autocomplete_institution_name_institutions_path
+    autocomplete_institution_name_admin_institutions_path
   end
   
   def library_default_autocomplete
-    autocomplete_institution_siglum_institutions_path
+    autocomplete_institution_siglum_admin_institutions_path
   end
   
   def liturgical_feast_default_autocomplete
-    autocomplete_liturgical_feast_name_liturgical_feasts_path
+    autocomplete_liturgical_feast_name_admin_liturgical_feasts_path
   end
   
   def person_default_autocomplete
-    autocomplete_person_full_name_people_path
+    autocomplete_person_full_name_admin_people_path
   end
   
   def place_default_autocomplete
-    autocomplete_place_name_places_path
+    autocomplete_place_name_admin_places_path
   end
   
   def source_default_autocomplete
-    autocomplete_source_id_sources_path
+    autocomplete_source_id_admin_sources_path
   end
   
   def standard_term_default_autocomplete
-    autocomplete_standard_term_term_standard_terms_path
+    autocomplete_standard_term_term_admin_standard_terms_path
   end
   
   def standard_title_default_autocomplete
-    autocomplete_standard_title_title_standard_titles_path
+    autocomplete_standard_title_title_admin_standard_titles_path
   end
   
   def source_solr_default_autocomplete
-    autocomplete_source_740_autocomplete_sms_sources_path
+    autocomplete_source_740_autocomplete_sms_admin_sources_path
   end
   
 
@@ -57,7 +57,7 @@ module ApplicationHelper
   
   # Link a manuscript by its RISM id
   def application_helper_link_source_id(value)
-    link_to( value, { :action => "show", :controller => "sources", :id => value })
+    link_to( value, { :action => "show", :controller => "admin/sources", :id => value })
   end
   
   #################

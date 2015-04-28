@@ -1,7 +1,14 @@
 # -*- encoding : utf-8 -*-
 #
 class CatalogController < ApplicationController  
-    
+  
+  before_action :redirect_legacy_values, :only => :show
+  
+  def redirect_legacy_values
+    params[:id] = "Source " + params[:id]
+  end
+
+  
   include Blacklight::Catalog
 
   configure_blacklight do |config|

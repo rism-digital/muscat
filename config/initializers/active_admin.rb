@@ -30,7 +30,7 @@ ActiveAdmin.setup do |config|
   # will namespace routes to /hello_world/*
   #
   # To set no namespace by default, use:
-  config.default_namespace = false
+  #config.default_namespace = false
   
   #
   # Default:
@@ -217,7 +217,8 @@ ActiveAdmin.setup do |config|
   # UNDOCUMENTED! UNDOCUMENTED!
   # SInce we do not use default namespace
   # we need to use :root instead of :admin
-  config.namespace :root do |admin|
+  # BTW going back to admin ns we put again :admin
+  config.namespace :admin do |admin|
     admin.build_menu :default do |menu|
       menu.add :label => proc {I18n.t(:menu_administration)}, id: 'admin_menu', :priority => 1
       menu.add  :label => proc {I18n.t(:menu_languages)}, id: 'lang_menu', :priority => 2 do |lang|
