@@ -6,3 +6,5 @@ development.log
 /solr/default
 /solr/pids
 log/sunspot-solr-development.log
+vendor/assets/stylesheets/muscat-custom.scss
+
