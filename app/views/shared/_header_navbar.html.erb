@@ -1,0 +1,46 @@
+<div id="header-navbar" class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle btn collapsed" data-toggle="collapse" data-target="#user-util-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="slogan">
+                <a href="/">
+                    <span class="slogan-top"><%= RISM::PROJECTLINE.html_safe %></span><br />
+                    <span class="slogan-bottom"><%= RISM::STRAPLINE.html_safe %></span>
+                </a>
+            </div>
+    </div>
+    <div class="collapse navbar-collapse" id="user-util-collapse">
+        <div class="navbar-right">
+            <% if has_user_authentication_provider? %>
+            <ul class="nav navbar-nav">
+                <% if current_user %>
+                <li>
+                <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
+                </li>
+                <% else %>
+                <li>
+                <%= link_to t('blacklight.header_links.login'), new_user_session_path %>
+                </li>
+            <% end %>
+            </ul>
+            <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="search-navbar" class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="col-md-3 hidden-sm hidden-xs search-navbar-logo">
+            <img src="/images/logo-large-ch.png">
+        </div>
+        <div class="col-md-9 search-navbar-text">
+            <%= render_search_bar  %>
+        </div>
+    </div>
+</div>

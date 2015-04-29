@@ -25,6 +25,14 @@ module RISM
     :standard_title   => 50000000,
     :work             => 50000000
   }
+  
+  # The project line in the header
+  PROJECTLINE = "R&eacute;pertoire International des Sources Musicales"
+  # The strap line in the header 
+  STRAPLINE = "Schweiz - Suisse - Svizzera - Switzerland"
+  # The left footer
+  FOOTER= "&copy; 2015 &ndash; Verein Arbeitsstelle Schweiz des RISM<br>Hallwylstrasse 15 &ndash; Postfach 286 &ndash; CH-3000 Bern 6"
+
 
 end
 
