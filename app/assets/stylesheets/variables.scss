@@ -2,8 +2,6 @@
 
 $rismColor: #8C1515;
 $darkRismColor: #820000;
-$black: #2e2d29;
-$black80: #585754;
 
 $gray100: #000000;
 $gray95: #0E0D0B;
@@ -51,12 +49,7 @@ $gray5: #F3F3F3;
 $gray0: #FFFFFF;
 */
 
-$gray: #3F3C30;
-$gray90: #565347;
-$darkGray: #696969;
-
 $brand-primary: $rismColor;
-$brandbar-height: 50px;
 $navbar-inverse-bg: $gray90;
 $navbar-inverse-border: $gray100;
 $navbar-default-border: $gray15;
@@ -66,6 +59,9 @@ $navbar-default-link-color: $gray0;
 $navbar-default-link-active-color: $gray75;
 $navbar-default-link-active-bg: $gray10;
 
-$link-color: $black;
+$brandbar-height: 50px;
+$footer-height: 60px;
+
+$link-color: $rismColor;
 
 @import 'bootstrap/variables';

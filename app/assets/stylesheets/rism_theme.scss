@@ -88,6 +88,9 @@ button#search {
 body {
     background-color: $gray5;
     font-family: Helvetica, Arial, sans-serif;
+    #main-container {
+        margin-bottom: $footer-height;
+    }
 }
 
 a {
@@ -127,7 +130,7 @@ h2 {
 
 .pagination > .active > a, .pagination > .active > a:hover {
     background-color: #5f574f;
-    border-color: $black;
+    border-color: $gray100;
 }
 
 // Facets //
@@ -136,7 +139,7 @@ h2 {
 }
 
 h5.panel-title > a {
-    color: $link-color;
+    color: $gray90;
     &:active, &:hover {
         color: $link-color;
         text-decoration: none;
@@ -145,12 +148,12 @@ h5.panel-title > a {
 }
 
 .panel-default > .panel-heading {
-    color: $link-color;
+    color: $gray90;
     background-color: $gray15;
 }
 
 .panel-success > .panel-heading, .facet_limit-active > .panel-heading {
-    color: $link-color;
+    color: $gray90;
     background-color: $gray15;
     border-color: $gray25;
 }
@@ -211,7 +214,7 @@ footer {
     background-color: $gray20;
     border-top: 1px solid $gray30;
     .rism-footer-text {
-        min-height: 50px;
-        padding: 10px 0px;
+        min-height: $footer-height;
+        padding: 8px 0px;
     }
 }
