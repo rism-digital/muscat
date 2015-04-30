@@ -38,7 +38,7 @@
 		<%- end %>
 	</th>
 	<td>	
-		<%= link_to content, person_path(person_id) %>
+		<%= link_to content, admin_person_path(person_id) %>
 			
 		<%= " (#{lifedates})" if lifedates %>
 		<%- four_tags.each do |four_tag| %> 
