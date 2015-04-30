@@ -55,11 +55,31 @@
         padding-top: 10px;
         padding-left: 70px;
     }
+    .search-navbar-right {
+        padding-right: 0px;
+    }
+    .search-navbar-locale {
+        @media screen and (min-width: 768px) {
+            padding-top: 5px;
+        }
+        @media screen and (max-width: 767px) {
+            padding-top: 0px;
+            padding-bottom: 6px;
+        }
+        a {
+            border-right: solid 1px $gray75;
+            padding-right: 4px;
+            color: $gray75;
+        }
+        a:last-child {
+            border-right: none;
+            padding-right: 0px;
+        }
+    }
     .search-navbar-text {
         @media screen and (min-width: 768px) {
             padding-top: 35px;
         }
-
     }
     .search-input-group {
         width: 500px;

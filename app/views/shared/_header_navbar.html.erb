@@ -39,8 +39,16 @@
         <div class="col-md-3 hidden-sm hidden-xs search-navbar-logo">
             <img src="/images/logo-large-ch.png">
         </div>
-        <div class="col-md-9 search-navbar-text">
-            <%= render_search_bar  %>
+        <div class="col-md-9 search-navbar-right">
+            <div class="search-navbar-locale pull-right">
+                <a href="?locale=en">English</a>
+                <a href="?locale=de">Deutsch</a>
+                <a href="?locale=fr">Français</a>
+                <a href="?locale=it">Italiano</a>
+            </div>
+            <div class="search-navbar-text">
+                <%= render_search_bar  %>
+            </div>
         </div>
     </div>
 </div>
