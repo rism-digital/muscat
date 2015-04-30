@@ -134,6 +134,12 @@ h2 {
 }
 
 // Facets //
+.facets > div > h4 {
+   @media (max-width: $screen-sm-min) {
+        padding-left: 20px;
+   }
+}
+
 .top-panel-heading {
     padding-left: 0;
 }
