@@ -149,6 +149,7 @@ GEM
     mysql2 (0.3.17)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
+    non-stupid-digest-assets (1.0.4)
     options (2.3.2)
     orm_adapter (0.5.0)
     polyamorous (1.1.0)
@@ -242,6 +243,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   mysql2
+  non-stupid-digest-assets
   progress_bar
   rails (~> 4.1.0)
   rails3-jquery-autocomplete!

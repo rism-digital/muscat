@@ -1,0 +1,220 @@
+@import 'variables';
+
+#search-navbar {
+    background: image-url("paper-96.png");
+    height: 120px;
+    border-bottom: solid 2px $gray30;
+}
+
+.navbar {
+    min-height: $brandbar-height !important;
+}
+
+#header-navbar {
+    &.navbar-inverse {
+        background-color: $rismColor;
+        border-color: $darkRismColor;
+        .navbar-nav > li > a {
+            color: #ddd;
+            padding-top: 15px;
+            padding-bottom: 0;
+        }
+        .navbar-nav > .open > a,
+        .navbar-inverse .navbar-nav > .open > a:hover,
+        .navbar-inverse .navbar-nav > .open > a:focus {
+            background-color: $rismColor;
+        }
+
+    }
+    .navbar-brand {/* The main logo image for the Blacklight instance */
+        //width: 290px;
+        height: $brandbar-height;
+        //background:transparent image-url("rism-ch-01.png") no-repeat center left;
+    }
+    .slogan {
+        padding-left: 10px;
+        padding-top: 6px;
+        a:active, a:hover {
+            text-decoration: none;
+        }
+        .slogan-top {
+            font-size: 14px;
+            color: $gray0;
+        }
+        .slogan-bottom {
+            font-size: 12px;
+            color: $gray30;
+        }
+
+    }
+
+}
+
+#search-navbar {
+    .search-navbar-logo {
+        padding-top: 10px;
+        padding-left: 70px;
+    }
+    .search-navbar-text {
+        @media screen and (min-width: 768px) {
+            padding-top: 35px;
+        }
+
+    }
+    .search-input-group {
+        width: 500px;
+        @media (max-width: $screen-sm-min) {
+            width: auto;
+        }
+
+    }
+    .search-query-form {
+        @extend .col-md-12;
+        padding-left: 0;
+    }
+
+}
+
+button#search {
+    background-color: $gray75;
+    border-color: $gray75;
+    .glyphicon-search {
+        color: $gray60;
+    }
+
+}
+
+// Global //
+body {
+    background-color: $gray5;
+    font-family: Helvetica, Arial, sans-serif;
+    #main-container {
+        margin-bottom: $footer-height;
+    }
+}
+
+a {
+    color: $link-color;
+    &:active, &:hover {
+        color: $link-color;
+    }
+
+}
+
+.sidenav a, p a, .content-block p > a, ol li > a {
+    color: $rismColor;
+    &:active, &:hover {
+        color: $rismColor;
+        text-decoration: dotted;
+    }
+
+}
+
+p {
+    color: $gray;
+    line-height: 1.6;
+    padding: 0 0 11px;
+}
+
+#main-container h1 {
+    font-size: 26px;
+    // margin-left: 12px;
+    margin-top: 8px;
+}
+
+h2 {
+    font-size: 20px;
+    border-bottom: 1px solid #eae9e6;
+    padding-bottom: 5px;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover {
+    background-color: #5f574f;
+    border-color: $gray100;
+}
+
+// Facets //
+.top-panel-heading {
+    padding-left: 0;
+}
+
+h5.panel-title > a {
+    color: $gray90;
+    &:active, &:hover {
+        color: $link-color;
+        text-decoration: none;
+    }
+
+}
+
+.panel-default > .panel-heading {
+    color: $gray90;
+    background-color: $gray15;
+}
+
+.panel-success > .panel-heading, .facet_limit-active > .panel-heading {
+    color: $gray90;
+    background-color: $gray15;
+    border-color: $gray25;
+}
+
+.panel-success, .facet_limit-active {
+    border-color: $gray25;
+}
+
+.facet_limit-active > .panel-heading + .panel-collapse > .panel-body {
+    border-color: $gray25;
+}
+
+.facet-values li .selected {
+    color: $link-color;
+}
+
+// Results Page //
+.dropdown-toggle.btn-default:hover, .dropdown-toggle.btn-default:active {
+    background-color: $gray15;
+}
+
+.dropdown-menu > li > a, .dropdown-menu > li > a {
+    color: $rismColor;
+    &:hover, &:focus {
+        background-color: $gray10;
+        color: $rismColor;
+    }
+
+}
+
+form.bookmark_toggle {
+    display: none;
+}
+
+h5.index_title {
+    font-size: 16px;
+    a {
+        border-bottom: 1px dotted $gray85;
+        text-decoration: none;
+    }
+
+}
+
+// Catalog Show Page //
+.blacklight-catalog-show {
+    #content {
+        width: 100%;
+    }
+    // We want to hide the sidebar
+    #sidebar {
+        display: none;
+    }
+
+}
+
+// Site Footer //
+footer {
+    background-color: $gray20;
+    border-top: 1px solid $gray30;
+    .rism-footer-text {
+        min-height: $footer-height;
+        padding: 8px 0px;
+    }
+}
