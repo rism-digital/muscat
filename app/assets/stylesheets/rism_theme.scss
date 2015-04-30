@@ -215,6 +215,32 @@ h5.index_title {
 
 }
 
+#document {
+    .panel {
+        background-color: transparent;
+        padding-bottom: 10px;
+        border-bottom: solid 1px $gray15;
+        box-shadow: none;
+        margin-bottom: 0px;
+        .attributes_table td {
+            padding-top: 5px !important;
+        }
+        .attributes_table th:first-child {
+            @media (max-width: $screen-sm-min) {
+                min-width: 100px;
+                padding-right: 10px;
+            }
+            @media (min-width: $screen-sm-min) {
+                min-width: 200px;
+                padding-right: 30px;
+            }
+        }
+    }
+    .panel:last-child {
+        border-bottom: 0px;
+    }
+}
+
 // Site Footer //
 footer {
     background-color: $gray20;
