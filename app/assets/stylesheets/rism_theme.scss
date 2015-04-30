@@ -222,8 +222,9 @@ h5.index_title {
         border-bottom: solid 1px $gray15;
         box-shadow: none;
         margin-bottom: 0px;
-        .attributes_table td {
+        .attributes_table td, .attributes_table th {
             padding-top: 5px !important;
+            vertical-align: top;
         }
         .attributes_table th:first-child {
             @media (max-width: $screen-sm-min) {
