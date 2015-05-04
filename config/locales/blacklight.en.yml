@@ -3,3 +3,7 @@ en:
     application_name: 'Muscat'
     header_links:
       logout: 'Logout'
+    search:
+      form:
+        search_field:
+          composer: "Prout"

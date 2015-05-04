@@ -55,15 +55,41 @@
         padding-top: 10px;
         padding-left: 70px;
     }
-    .search-navbar-text {
+    .search-navbar-right {
+        padding-right: 0px;
+    }
+    .search-navbar-locale {
         @media screen and (min-width: 768px) {
-            padding-top: 35px;
+            padding-top: 5px;
+            height: 20px;
         }
-
+        @media screen and (max-width: 767px) {
+            padding-top: 5px;
+            padding-bottom: 6px;
+        }
+        a {
+            border-right: solid 1px $gray75;
+            padding-right: 4px;
+            color: $gray75;
+        }
+        a:last-child {
+            border-right: none;
+            padding-right: 0px;
+        }
+    }
+    .search-navbar-text {
+        clear: both;
+        form {
+            margin-top: 0px;
+            padding-top: 5px;
+        }
+        @media screen and (min-width: 768px) {
+            padding-top: 22px;
+        }
     }
     .search-input-group {
         width: 500px;
-        @media (max-width: $screen-sm-min) {
+        @media (max-width: 767px) {
             width: auto;
         }
 
@@ -134,6 +160,12 @@ h2 {
 }
 
 // Facets //
+.facets > div > h4 {
+   @media (max-width: $screen-sm-min) {
+        padding-left: 20px;
+   }
+}
+
 .top-panel-heading {
     padding-left: 0;
 }
@@ -207,6 +239,33 @@ h5.index_title {
         display: none;
     }
 
+}
+
+#document {
+    .panel {
+        background-color: transparent;
+        padding-bottom: 10px;
+        border-bottom: solid 1px $gray15;
+        box-shadow: none;
+        margin-bottom: 0px;
+        .attributes_table td, .attributes_table th {
+            padding-top: 5px !important;
+            vertical-align: top;
+        }
+        .attributes_table th:first-child {
+            @media (max-width: $screen-sm-min) {
+                min-width: 100px;
+                padding-right: 10px;
+            }
+            @media (min-width: $screen-sm-min) {
+                min-width: 200px;
+                padding-right: 30px;
+            }
+        }
+    }
+    .panel:last-child {
+        border-bottom: 0px;
+    }
 }
 
 // Site Footer //

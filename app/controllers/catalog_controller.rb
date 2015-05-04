@@ -70,12 +70,12 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
-    config.add_facet_field 'std_title_order_s', :label => 'Standard Title', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field 'composer_order_s', :label => 'Composer', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field '593a_sms', :label => 'Material', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field '240m_sms', :label => 'Scoring Summary', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field 'date_from_i', :label => "Year", :range => true #, :limit => 5, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field 'lib_siglum_order_s', :label => 'Library', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'std_title_order_s', :label => :filter_std_title, :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'composer_order_s', :label => :filter_composer, :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    #config.add_facet_field '593a_sms', :label => 'Material', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    #config.add_facet_field '240m_sms', :label => 'Scoring Summary', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'date_from_i', :label => :filter_date, :range => true, :limit => 5, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'lib_siglum_order_s', :label => :filter_lib_siglum, :limit => 10, solr_params: { 'facet.mincount' => 1 }
     #config.add_facet_field 'title_order', :label => 'Standard Title', :single => true
     #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     #config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
@@ -99,17 +99,13 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'std_title_texts', :label => 'Standard Title'
-    config.add_index_field '240m_sms', :label => 'Scoring Summary'
-    config.add_index_field 'lib_siglum_texts', :label => 'Siglum'
-    config.add_index_field 'shelf_mark_texts', :label => 'Shelf Mark'
-    config.add_index_field '593a_sms', :label => 'Material'
-    config.add_index_field '240n_sms', :label => 'Thematic catalogue no./Opus'
-    config.add_index_field '240r_sms', :label => 'Key'
+    config.add_index_field 'std_title_texts',   :label => :filter_std_title
+    config.add_index_field '240m_sms',          :label => :filter_distribution
+    config.add_index_field 'lib_siglum_texts',  :label => :filter_lib_siglum
+    config.add_index_field 'shelf_mark_texts',  :label => :filter_siglum
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display 
-    config.add_show_field 'source_id_text', :label => 'Title'
     #config.add_show_field 'title_vern_display', :label => 'Title'
     #config.add_show_field 'subtitle_display', :label => 'Subtitle'
     #config.add_show_field 'subtitle_vern_display', :label => 'Subtitle'
@@ -150,6 +146,7 @@ class CatalogController < ApplicationController
     # of Solr search fields. 
     
     config.add_search_field('title') do |field|
+      field.label = :filter_std_title
       # solr_parameters hash are sent to Solr as ordinary url query params. 
       #field.solr_parameters = { :'spellcheck.dictionary' => 'title_d_text' }
 
@@ -163,6 +160,7 @@ class CatalogController < ApplicationController
     end
     
     config.add_search_field('composer') do |field|
+      field.label = :filter_composer
       field.solr_local_parameters = { 
         :qf => 'composer_texts',
       }
@@ -192,9 +190,9 @@ class CatalogController < ApplicationController
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
-    config.add_sort_field 'std_title_order_s asc', :label => 'Standard Title';
-    config.add_sort_field ':date_from_i asc', :label => 'Year';
-    config.add_sort_field ':composer_order_s asc', :label => 'Composer';
+    config.add_sort_field 'std_title_order_s asc', :label => :filter_std_title;
+    config.add_sort_field ':date_from_i asc', :label => :filter_date;
+    config.add_sort_field ':composer_order_s asc', :label => :filter_composer;
     #config.add_sort_field 'score desc, pub_date_sort desc, title_sort asc', :label => 'relevance'
     #config.add_sort_field 'pub_date_sort desc, title_sort asc', :label => 'year'
     #config.add_sort_field 'author_sort asc, title_sort asc', :label => 'author'

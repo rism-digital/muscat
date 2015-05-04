@@ -3,3 +3,5 @@ fr:
     application_name: 'Muscat'
     header_links:
       logout: 'Déconnexion'
+    search:
+      start_over: 'Nouvelle recherche'
