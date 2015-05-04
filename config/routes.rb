@@ -1,12 +1,15 @@
 Muscat::Application.routes.draw do
   root :to => "catalog#index"
   blacklight_for :catalog
+  
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
   #scope ':locale', locale: I18n.locale do
   #  ActiveAdmin.routes(self)
   #end 
+  
+  get 'catalog/:id/mei' => 'catalog#mei'
   
   get "/manuscripts", to: redirect('/sources')
   get "/manuscripts/:name", to: redirect('/sources/%{name}')

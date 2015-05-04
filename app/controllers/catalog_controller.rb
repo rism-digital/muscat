@@ -8,6 +8,9 @@ class CatalogController < ApplicationController
     params[:id] = "Source " + params[:id]
   end
 
+  def mei
+    @item = Source.find(params[:id])
+  end
   
   include Blacklight::Catalog
 

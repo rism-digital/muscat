@@ -1,0 +1,37 @@
+<script type="text/javascript" language="javascript" src="/javascripts/Saxonce/Saxonce.nocache.js"></script>
+<script type="text/javascript" language="javascript" src="/javascripts/verovio-toolkit.js"></script>
+
+<div class="container" id="mei-toplevel">
+	
+	<div class="page-header">
+	  <h2>Big<small>
+			Small
+		</small></h2>
+	</div>
+	
+	<div class="col-xs-6 col-md-4 sidebar-offcanvas" id="sidebar" role="navigation">
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	            <h3 class="panel-title">Controls</h3>
+	        </div>
+	        <div class="panel-body">
+					Opts
+					<p>
+		            <div  style="text-align: right">
+		                <button onclick="dosax(<%=@item.id%>)" class="btn btn-default btn-sm">
+		                    <span class="glyphicon glyphicon-search"></span>Preview
+		                </button>
+		                <button onclick="dosax(<%=@item.id%>)" class="btn btn-default btn-sm" id="form-reset">
+		                    <span class="glyphicon glyphicon-remove"></span>Download
+		                </button>
+		            </div>
+			</div>
+	    </div>
+	</div>
+
+	<div class="col-md-8" id="mei-output">
+		
+	</div>
+
+	
+</div>
