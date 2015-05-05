@@ -1,9 +1,24 @@
 var saxonLoaded = false;
 var globalMeiOutput = null;
+var globalXslFile = null;
 
 var onSaxonLoad = function() {
 	saxonLoaded = true;
 	return;
+}
+
+function parseXMLString(input) {
+	var xmlDoc;
+	
+	if (window.DOMParser) {
+		parser = new DOMParser();
+		xmlDoc = parser.parseFromString(input,"text/xml");
+	} else { // code for IE
+		xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+		xmlDoc.async=false;
+		xmlDoc.loadXML(input); 
+	}
+	return xmlDoc;
 }
 
 function translateIncipCode(incip, out_format) {
@@ -40,14 +55,7 @@ function translateIncipCode(incip, out_format) {
 		else
 			var outXml = vrvToolkit.getMEI(1, 1);
 		
-		if (window.DOMParser) {
-			parser = new DOMParser();
-			xmlInsert = parser.parseFromString(outXml,"text/xml");
-		} else { // code for IE
-			xmlInsert = new ActiveXObject("Microsoft.XMLDOM");
-			xmlInsert.async=false;
-			xmlInsert.loadXML(outXml); 
-		}
+		xmlInsert = parseXMLString(outXml);
 		
 		incip[index].removeChild(incipcode);
 		incip[index].appendChild(xmlInsert.firstChild);
@@ -59,7 +67,11 @@ function executeTransformation(id) {
 	vrvToolkit = new verovio.toolkit();
 		
 	file = "/catalog/" + id + ".marcxml";
-    xsl = Saxon.requestXML("/xml/marc2mei.xsl");
+	if (globalXslFile == null)
+    	xsl = Saxon.requestXML("/xml/marc2mei.xsl");
+	else
+		xsl = globalXslFile;
+	
     xml = Saxon.requestXML( file );
     proc = Saxon.newXSLT20Processor(xsl);
 	xmldoc = proc.transformToDocument(xml);
@@ -94,4 +106,39 @@ function downloadMeiFile(id) {
 
 function setRegenerateMei() {
 	globalMeiOutput = null;
+}
+
+function setUseDefaultStylesheet() {
+	globalXslFile = null;
+	setRegenerateMei();
+	$("#mei-select-file").prop("disabled", "disabled");
+}
+
+function setUseCustomStylesheet() {
+	
+	$("#mei-select-file").prop("disabled", "");
+	
+	fileCount = $("#mei-select-file").prop("files").length;
+	if (fileCount == 0) {
+		 $("#mei-select-file").click();
+		 setRegenerateMei();
+	}
+}
+
+function readSingleFile(evt) {
+	//Retrieve the first (and only!) File from the FileList object
+	var f = evt.target.files[0]; 
+
+	if (f) {
+		var r = new FileReader();
+		r.onload = function(e) { 
+			content = e.target.result;
+			globalXslFile = parseXMLString(content);
+			setRegenerateMei();
+		}
+		
+		r.readAsText(f);
+	} else { 
+		alert("Failed to load file");
+	}
 }

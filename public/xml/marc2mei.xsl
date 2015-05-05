@@ -4624,7 +4624,69 @@
   </xsl:template>
 
   <!-- 59x fields are handled by templates in the external file referenced in @href.
-  If that file isn't available, 59x fields are output using <annot>. -->
-  <xsl:include href="marc2mei59x.xsl"/>
+  If that file isn't available, 59x fields are output using <annot>.
+  <xsl:include href="marc2mei59x.xsl"/>-->
+  
+  <!-- 594 (RISM scoring note) -->
+  <xsl:template match="marc:datafield[@tag='594']">
+    <xsl:variable name="tag" select="@tag"/>
+    <annot type="scoring">
+      <xsl:attribute name="analog">
+        <xsl:value-of select="$tag"/>
+      </xsl:attribute>
+      <xsl:variable name="delimiter">
+        <xsl:text>; </xsl:text>
+      </xsl:variable>
+      <!-- cat everything into the $str variable -->
+      <xsl:variable name="str">
+        <xsl:for-each select="marc:subfield">
+          <xsl:variable name="code">
+            <xsl:value-of select="@code"/>
+          </xsl:variable>
+          <xsl:variable name="scoring">
+            <xsl:choose>
+              <xsl:when test="$code = 'a'">Solo voice</xsl:when>
+              <xsl:when test="$code = 'b'">Additional solo voice</xsl:when>
+              <xsl:when test="$code = 'c'">Choir voice</xsl:when>
+              <xsl:when test="$code = 'd'">Additional choir voice</xsl:when>
+              <xsl:when test="$code = 'e'">Solo intrument</xsl:when>
+              <xsl:when test="$code = 'f'">Strings</xsl:when>
+              <xsl:when test="$code = 'g'">Woodwinds</xsl:when>
+              <xsl:when test="$code = 'h'">Brasses</xsl:when>
+              <xsl:when test="$code = 'i'">Plucked instruments</xsl:when>
+              <xsl:when test="$code = 'k'">Percussion</xsl:when>
+              <xsl:when test="$code = 'l'">Keyboards</xsl:when>
+              <xsl:when test="$code = 'm'">Other instruments</xsl:when>
+              <xsl:when test="$code = 'n'">Basso continuo</xsl:when>
+              <xsl:otherwise>[unspecified]</xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          <!-- cat the values: -->
+          <xsl:value-of select="$scoring"/>
+          <xsl:text>: </xsl:text>
+          <xsl:value-of select="text()"/>
+          <xsl:value-of select="$delimiter"/>
+        </xsl:for-each>
+      </xsl:variable>
+      <!-- truncate the last delimiter -->
+      <xsl:value-of select="substring($str,1,string-length($str)-string-length($delimiter))"/>
+    </annot>
+  </xsl:template>
+
+  <!-- 595 (RISM cast item) -->
+  <xsl:template match="marc:datafield[@tag='595']">
+    <xsl:variable name="tag" select="@tag"/>
+    <castItem xmlns="http://www.music-encoding.org/ns/mei">
+      <xsl:if test="$analog='true'">
+        <!-- Unfortunately, castItem doesn't allow @analog, so we have to abuse @label -->
+        <xsl:attribute name="label">
+          <xsl:value-of select="concat('marc:', $tag)"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:call-template name="subfieldSelect">
+        <xsl:with-param name="codes">a</xsl:with-param>
+      </xsl:call-template>
+    </castItem>
+  </xsl:template>
 
 </xsl:stylesheet>
