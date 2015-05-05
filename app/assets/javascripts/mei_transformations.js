@@ -38,7 +38,7 @@ function translateIncipCode(incip, out_format) {
 		if (out_format == "svg")
 			var outXml = vrvToolkit.renderPage(1, "");
 		else
-			var outXml = vrvToolkit.getMEI(0, 1);
+			var outXml = vrvToolkit.getMEI(1, 1);
 		
 		if (window.DOMParser) {
 			parser = new DOMParser();
@@ -56,7 +56,7 @@ function translateIncipCode(incip, out_format) {
 
 function executeTransformation(id) {
 	if (!vrvToolkit)
-		vrvToolkit = new verovio.toolkit();
+	vrvToolkit = new verovio.toolkit();
 		
 	file = "/catalog/" + id + ".marcxml";
     xsl = Saxon.requestXML("/xml/marc2mei.xsl");
