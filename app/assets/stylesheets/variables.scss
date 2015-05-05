@@ -1,7 +1,7 @@
 @import 'bootstrap-sprockets';
 
 $rismColor: #8C1515;
-$darkRismColor: #820000;
+$darkRismColor: darken($rismColor, 10%);
 
 $gray100: #000000;
 $gray95: #0E0D0B;
