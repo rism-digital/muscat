@@ -1,57 +1,18 @@
 var saxonLoaded = false;
-var globalStore = {};
-
-function marc_transform(id) {
-	
-	$.when(
-		$.get("/catalog/" + id + ".marcxml", function(xml) {
-			globalStore.marc = xml;
-		}),
-		
-		$.get("/xml/marc2mei.xsl", function(xml) {
-			globalStore.stylesheet = xml;
-		})
-		
-	).then(
-	// All ok
-	function(){
-		alert("all done!");
-	},
-	// Error
-	function(){
-		//alert("Darn!");
-	});
-}
+var globalMeiOutput = null;
 
 var onSaxonLoad = function() {
 	saxonLoaded = true;
 	return;
 }
 
-function dosax(id) {
-	vrvToolkit = new verovio.toolkit();
-	
-	file = "/catalog/402000797.marcxml";
-    xsl = Saxon.requestXML("/xml/marc2mei.xsl");
-    xml = Saxon.requestXML( file );
-    proc = Saxon.newXSLT20Processor(xsl);
-	xmldoc = proc.transformToDocument(xml);
-	
-	/*
-    xsl = Saxon.requestXML("/xml/rism-mei2html.xsl");
-    xml = Saxon.parseXML( globalStore.mei );
-    proc = Saxon.newXSLT20Processor(xsl);
-	pepo = proc.transformToDocument(xml);
-	globalStore.html = Saxon.serializeXML( pepo);
-	*/
-	incip = xmldoc.getElementsByTagName("incip");
+function translateIncipCode(incip, out_format) {
+
 	for (index = 0; index < incip.length; ++index) {
 		incipcode = incip[index].childNodes[0];
 		clef = incipcode.getAttribute("clef");
 		key = incipcode.getAttribute("key");
 		meter = incipcode.getAttribute("meter");
-		
-		
 		
 		pae = "@start:pae-file\n";
 		pae = pae + "@clef:" + clef + "\n";
@@ -74,16 +35,63 @@ function dosax(id) {
 				
 		vrvToolkit.setOptions( options );
 		vrvToolkit.loadData(pae + "\n" );
-		svg = vrvToolkit.renderPage(1, "");
-		console.log(svg);
+		if (out_format == "svg")
+			var outXml = vrvToolkit.renderPage(1, "");
+		else
+			var outXml = vrvToolkit.getMEI(0, 1);
+		
+		if (window.DOMParser) {
+			parser = new DOMParser();
+			xmlInsert = parser.parseFromString(outXml,"text/xml");
+		} else { // code for IE
+			xmlInsert = new ActiveXObject("Microsoft.XMLDOM");
+			xmlInsert.async=false;
+			xmlInsert.loadXML(outXml); 
+		}
+		
+		incip[index].removeChild(incipcode);
+		incip[index].appendChild(xmlInsert.firstChild);
+	}
+}
+
+function executeTransformation(id) {
+	if (!vrvToolkit)
+		vrvToolkit = new verovio.toolkit();
+		
+	file = "/catalog/" + id + ".marcxml";
+    xsl = Saxon.requestXML("/xml/marc2mei.xsl");
+    xml = Saxon.requestXML( file );
+    proc = Saxon.newXSLT20Processor(xsl);
+	xmldoc = proc.transformToDocument(xml);
+	
+	out_format = $("#mei-output-format").val();
+	
+	if (out_format != "pae") {
+		incip = xmldoc.getElementsByTagName("incip");
+		// This call modifies the DOM
+		translateIncipCode(incip, out_format);
 	}
 	
+	globalMeiOutput = Saxon.serializeXML(xmldoc);
+}
+
+function previewMeiFile(id) {
+	if (globalMeiOutput == null)
+		executeTransformation(id)
 	
-	globalStore.mei = Saxon.serializeXML(xmldoc);
+	$("#mei-output").html(globalMeiOutput);
+}
+
+function downloadMeiFile(id) {
+	if (globalMeiOutput == null)
+		executeTransformation(id)
 	
-	$("#mei-output").html(globalStore.mei);
+	$("#mei-output").html(globalMeiOutput);
 	
-	var blob = new Blob([globalStore.mei], {type: "text/xml"});
+	var blob = new Blob([globalMeiOutput], {type: "text/xml"});
 	saveAs(blob, id + ".mei");
-	
+}
+
+function setRegenerateMei() {
+	globalMeiOutput = null;
 }
