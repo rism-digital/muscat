@@ -158,8 +158,9 @@ it:
           label: 'Search in'
           title: 'Targeted search options'
           post_label: 'for'
-        q: 'Search...'
+        q: 'Cerca...'
         submit: 'Search'
+        placeholder: 'Cerca...'
       pagination:
         title: 'Results navigation'
       pagination_info:

@@ -5,3 +5,7 @@ fr:
       logout: 'Déconnexion'
     search:
       start_over: 'Nouvelle recherche'
+      form:
+        q: 'Rechercher...'
+        search:
+          placeholder: 'Rechercher...'
