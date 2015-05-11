@@ -55,6 +55,8 @@ function translateIncipCode(incip, out_format) {
 		else
 			var outXml = vrvToolkit.getMEI(1, 1);
 		
+		console.log(outXml);
+		
 		xmlInsert = parseXMLString(outXml);
 		
 		incip[index].removeChild(incipcode);
@@ -101,7 +103,7 @@ function downloadMeiFile(id) {
 	$("#mei-output").html(globalMeiOutput);
 	
 	var blob = new Blob([globalMeiOutput], {type: "text/xml"});
-	saveAs(blob, id + ".mei");
+	saveAs(blob, id + ".xml");
 }
 
 function setRegenerateMei() {
