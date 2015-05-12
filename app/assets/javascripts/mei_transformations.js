@@ -91,7 +91,8 @@ function previewMeiFile(id) {
 	if (globalMeiOutput == null)
 		executeTransformation(id)
 	
-	$("#mei-output").html(globalMeiOutput);
+	$("#mei-output").text(vkbeautify.xml(globalMeiOutput));
+    prettyPrint();
 }
 
 function downloadMeiFile(id) {
