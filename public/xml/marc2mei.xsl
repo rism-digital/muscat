@@ -2176,7 +2176,7 @@
           <xsl:for-each select="$uniqueTerms/mei:term">
             <xsl:sort select="@analog"/>
             <xsl:sort/>
-            <xsl:copy-of select="."/>
+            <xsl:copy-of select="." copy-namespaces="no"/>
           </xsl:for-each>
         </termList>
       </classification>
@@ -2348,7 +2348,7 @@
           </xsl:variable>
           <xsl:for-each select="$sortedRespStmts/mei:respStmt">
             <xsl:if test="not(preceding-sibling::mei:respStmt = .)">
-              <xsl:copy-of select="."/>
+              <xsl:copy-of select="." copy-namespaces="no"/>
             </xsl:if>
           </xsl:for-each>
         </titleStmt>
@@ -2436,7 +2436,7 @@
                   </xsl:variable>
                   <xsl:for-each select="$sortedRespStmts/mei:respStmt">
                     <xsl:if test="not(preceding-sibling::mei:respStmt = .)">
-                      <xsl:copy-of select="."/>
+                      <xsl:copy-of select="." copy-namespaces="no"/>
                     </xsl:if>
                   </xsl:for-each>
                 </titleStmt>
@@ -2672,12 +2672,12 @@
                       <xsl:sort select="mei:*[local-name()='persName' or
                         local-name()='corpName']/@analog"/>
                       <xsl:sort/>
-                      <xsl:copy-of select="."/>
+                        <xsl:copy-of select="." />
                     </xsl:for-each>
                   </xsl:variable>
                   <xsl:for-each select="$sortedRespStmts/mei:respStmt">
                     <xsl:if test="not(preceding-sibling::mei:respStmt = .)">
-                      <xsl:copy-of select="."/>
+                      <xsl:copy-of select="." copy-namespaces="no" />
                     </xsl:if>
                   </xsl:for-each>
                 </titleStmt>
@@ -2892,7 +2892,7 @@
             </xsl:variable>
             <xsl:for-each select="$sortedRespStmts/mei:respStmt">
               <xsl:if test="not(preceding-sibling::mei:respStmt = .)">
-                <xsl:copy-of select="."/>
+                  <xsl:copy-of select="."  copy-namespaces="no"/>
               </xsl:if>
             </xsl:for-each>
           </titleStmt>
