@@ -95,6 +95,7 @@ function previewMeiFile(id) {
 		executeTransformation(id)
 	
 	$("#mei-output").show();
+    $("#mei-html-output").show();
     $("#mei-output").text(vkbeautify.xml(globalMeiOutput));
     $("#mei-output").removeClass("prettyprinted");
     prettyPrint();
