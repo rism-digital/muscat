@@ -4,31 +4,30 @@
 <div class="container" id="mei-toplevel">
 	
 	<div class="page-header">
-	  <h2>MEI Export Source: <%=@item.id=%>
+	  <h2>MEI export for source <%=@item.id=%>
 	</div>
 	
-	<div class="col-xs-6 col-md-4 sidebar-offcanvas" id="sidebar" role="navigation">
+	<div class="col-sm-12 col-md-4 sidebar-offcanvas" id="sidebar" role="navigation">
 	    <div class="panel panel-default">
 	        <div class="panel-heading">
-	            <h3 class="panel-title">Export Customization</h3>
+	            <h3 class="panel-title">Export parameters</h3>
 	        </div>
 	        <div class="panel-body">
 				
-			    <label for="sel1">Incipit Output Format:</label>
+			    <label for="sel1">Incipit output format:</label>
 			    <select class="form-control" id="mei-output-format" onclick="setRegenerateMei();">
 			      <option value="mei">MEI</option>
-			      <option value="pae">PAE (no translation)</option>
-			      <option value="svg">SVG</option>
+			      <option value="pae">PAE (no conversion)</option>
 			    </select>
 				
 				<hr>
 
 				<label for="exampleInputFile">Stylesheet</label>
 				<div class="radio">
-				  <label><input type="radio" name="radio-xsls" checked="checked" onclick="setUseDefaultStylesheet();">Use default Stylesheet</label>
+				  <label><input type="radio" name="radio-xsls" checked="checked" onclick="setUseDefaultStylesheet();">Use default stylesheet</label>
 				</div>
 				<div class="radio">
-				  <label><input type="radio" name="radio-xsls" onclick="setUseCustomStylesheet();">Custom Stylesheet:</label>
+				  <label><input type="radio" name="radio-xsls" onclick="setUseCustomStylesheet();">Custom stylesheet:</label>
 				</div>
 				<input type="file" id="mei-select-file" disabled="disabled" accept=".xsl,.xml">
 				
@@ -48,8 +47,8 @@
 	</div>
 
 	<div class="col-md-8">
-        <pre class="prettyprint" id="mei-output"  style="overflow: auto; width: auto; word-wrap: normal;">
-            Please click "Preview" to show the MEI-translated output.
+        <h4 id="mei-preview-text">Please click "Preview" to show the MEI-converted output.</h4>
+        <pre id="mei-output" class="prettyprint" style="overflow: auto; width: auto; word-wrap: normal; display: none">
         </pre>
 	</div>
 

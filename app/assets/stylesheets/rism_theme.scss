@@ -277,3 +277,13 @@ footer {
         padding: 8px 0px;
     }
 }
+
+// MEI output
+#mei-output {
+    border: $gray10 solid 1px;
+    border-style:inset;
+    //border-radius: 0;
+    background-color: $gray0;
+    padding: 5px;
+    margin-bottom: 50px;
+}

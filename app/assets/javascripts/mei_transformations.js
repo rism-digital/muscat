@@ -88,10 +88,15 @@ function executeTransformation(id) {
 }
 
 function previewMeiFile(id) {
+
+    $("#mei-preview-text").hide();
+
 	if (globalMeiOutput == null)
 		executeTransformation(id)
 	
-	$("#mei-output").text(vkbeautify.xml(globalMeiOutput));
+	$("#mei-output").show();
+    $("#mei-output").text(vkbeautify.xml(globalMeiOutput));
+    $("#mei-output").removeClass("prettyprinted");
     prettyPrint();
 }
 
