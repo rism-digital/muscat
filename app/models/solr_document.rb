@@ -2,7 +2,7 @@
 
 require 'blacklight/marcxml.rb'
 
-class SolrDocument 
+class SolrDocument
 
   include Blacklight::Solr::Document
 
@@ -21,7 +21,7 @@ class SolrDocument
   # Recommendation: Use field names from Dublin Core
   use_extension( Blacklight::Solr::Document::DublinCore)
   
-  use_extension(Muscat::Blacklight::MarcXML) 
+  use_extension( Muscat::Blacklight::MarcXML ) 
 
   #self.unique_key = 'std_title_texts'
 

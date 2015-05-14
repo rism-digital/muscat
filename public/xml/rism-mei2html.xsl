@@ -4,7 +4,7 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:m="http://www.music-encoding.org/ns/mei">	
  
-  <xsl:output method="html"/>
+	<xsl:output method="html"/>
 		<html>
 			<head>
 				<style type="text/css">
@@ -14,22 +14,22 @@ ul {
 				</style>
 			</head>
 			<body>
-				<ul>
+		<ul>
 					<xsl:apply-templates select="m:fileDesc"/>
-				</ul>
+		</ul>
 			</body>
 		</html>
-
+		
 	<xsl:template match="m:fileDesc">
 		<li>
 		<b>Work: <xsl:value-of select="title"/> 
 			<xsl:for-each select="title">
 				<xsl:text> </xsl:text>
-				<xsl:value-of select="."/>
+			<xsl:value-of select="." />
 			</xsl:for-each>
 			</b>
-			</li>
-
+		</li>
+  
 		<ul>
 			<!--xsl:apply-templates select="frbr:expression"/-->
 		</ul>
