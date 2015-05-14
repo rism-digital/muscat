@@ -1,5 +1,6 @@
 var saxonLoaded = false;
 var globalMeiOutput = null;
+var globalMeiOutputDocument = null;
 var globalXslFile = null;
 
 var onSaxonLoad = function() {
@@ -55,8 +56,6 @@ function translateIncipCode(incip, out_format) {
 		else
 			var outXml = vrvToolkit.getMEI(1, 1);
 		
-		console.log(outXml);
-		
 		xmlInsert = parseXMLString(outXml);
 		
 		incip[index].removeChild(incipcode);
@@ -86,15 +85,30 @@ function executeTransformation(id) {
 		translateIncipCode(incip, out_format);
 	}
 	
+	globalMeiOutputDocument = xmldoc;
 	globalMeiOutput = Saxon.serializeXML(xmldoc);
+}
+
+function showMEIPreview() {
+
+	$("#mei-html-output").html("");
+
+    xsl = Saxon.requestXML("/xml/rism-mei2html.xsl");
+
+    proc = Saxon.newXSLT20Processor(xsl);
+	// Use the xsl:result-document magic
+	xmldoc = proc.updateHTMLDocument(globalMeiOutputDocument);
 }
 
 function previewMeiFile(id) {
 
     $("#mei-preview-text").hide();
 
-	if (globalMeiOutput == null)
-		executeTransformation(id)
+	if (globalMeiOutput == null) {
+		executeTransformation(id);
+	}
+	
+	showMEIPreview();
 	
 	$("#mei-output").show();
     $("#mei-html-output").show();
@@ -104,10 +118,11 @@ function previewMeiFile(id) {
 }
 
 function downloadMeiFile(id) {
-	if (globalMeiOutput == null)
+	if (globalMeiOutput == null) {
 		executeTransformation(id)
+	}
 	
-	$("#mei-output").html(globalMeiOutput);
+	previewMeiFile(id);
 	
 	var blob = new Blob([globalMeiOutput], {type: "text/xml"});
 	saveAs(blob, id + ".xml");
@@ -115,6 +130,7 @@ function downloadMeiFile(id) {
 
 function setRegenerateMei() {
 	globalMeiOutput = null;
+	globalMeiOutputDocument = null;
 }
 
 function setUseDefaultStylesheet() {

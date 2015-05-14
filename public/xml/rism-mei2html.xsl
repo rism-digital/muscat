@@ -9,10 +9,10 @@
     </xsl:template>
     
     <xsl:template match="m:sourceDesc/m:source">
-        <h4>
+        <h4>ID: 
             <xsl:value-of select="./@xml:id"/>
         </h4>
-    </xsl:template>    
+    </xsl:template>
     
     <xsl:template match="m:fileDesc/m:titleStmt/m:respStmt/m:persName">
         <h4>Composer</h4>
@@ -36,7 +36,9 @@
     </xsl:template>
     
     <xsl:template match="node() | @*">
-        <xsl:apply-templates/>
+		<xsl:result-document href="#mei-html-output">
+        	<xsl:apply-templates/>
+		</xsl:result-document>
     </xsl:template>
     
 </xsl:stylesheet>
