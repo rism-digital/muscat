@@ -63,6 +63,8 @@ function translateIncipCode(incip, out_format) {
 		
 		incip[index].removeChild(incipcode);
 		incip[index].appendChild(xmlInsert.firstChild);
+		
+		console.log(outXml);
 	}
 }
 
@@ -87,11 +89,19 @@ function typesetIncipits(incip, out_format) {
 			pae = pae + "@end:pae-file\n";
 			in_data = pae;
 		} else {
-			in_data = globalIncipitStrings[index];
+			//var meiDocType = document.implementation.createDocumentType ("fruit", "SYSTEM", "<!ENTITY tf 'tropical fruit'>");
+			containerDoc = document.implementation.createDocument("http://www.music-encoding.org/ns/mei", "mei", null);
+			music = document.createElement('music');
+			body = document.createElement('body');
+			mdiv = document.createElement('mdiv');
+			
+			containerDoc.documentElement.appendChild(music).appendChild(body).appendChild(mdiv).appendChild(incipcode);
+			oSerializer = new XMLSerializer();
+			in_data = oSerializer.serializeToString(containerDoc);
 		}
 		
 		options = JSON.stringify({
-					inputFormat: 'pae',
+					inputFormat: out_format,
 					//pageHeight: 250,
 					pageWidth: 1024 / 0.4,
 					spacingStaff: 1,
