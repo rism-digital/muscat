@@ -1,38 +1,42 @@
 <?xml version="1.0"?>
-<xsl:stylesheet version="2.0" 
-  xmlns="http://www.w3.org/1999/xhtml" 
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:m="http://www.music-encoding.org/ns/mei">	
- 
-	<xsl:output method="html"/>
-		<html>
-			<head>
-				<style type="text/css">
-ul {
-  list-style-type: disc;
-}
-				</style>
-			</head>
-			<body>
-		<ul>
-					<xsl:apply-templates select="m:fileDesc"/>
-		</ul>
-			</body>
-		</html>
-		
-	<xsl:template match="m:fileDesc">
-		<li>
-		<b>Work: <xsl:value-of select="title"/> 
-			<xsl:for-each select="title">
-				<xsl:text> </xsl:text>
-			<xsl:value-of select="." />
-			</xsl:for-each>
-			</b>
-		</li>
-  
-		<ul>
-			<!--xsl:apply-templates select="frbr:expression"/-->
-		</ul>
-	</xsl:template>
-  
+<xsl:stylesheet version="2.0" exclude-result-prefixes="m xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:m="http://www.music-encoding.org/ns/mei">
+    <xsl:output method="html"/>
+    
+    <xsl:template match="/">
+        <xsl:apply-templates select="m:sourceDesc/m:source"/>
+        <xsl:apply-templates/>
+    </xsl:template>
+    
+    <xsl:template match="m:sourceDesc/m:source">
+        <h4>
+            <xsl:value-of select="./@xml:id"/>
+        </h4>
+    </xsl:template>    
+    
+    <xsl:template match="m:fileDesc/m:titleStmt/m:respStmt/m:persName">
+        <h4>Composer</h4>
+        <p>
+            <xsl:value-of select="."/>
+        </p>
+    </xsl:template>
+    
+    <xsl:template match="m:fileDesc/m:titleStmt/m:title[@type='uniform']">
+        <h4>Uniform title</h4>
+        <p>
+            <xsl:value-of select="."/>
+        </p>
+    </xsl:template>
+    
+    <xsl:template match="m:fileDesc/m:titleStmt/m:title[@type='proper']">
+        <h4>Diplomatic title</h4>
+        <p>
+            <xsl:value-of select="."/>
+        </p>
+    </xsl:template>
+    
+    <xsl:template match="node() | @*">
+        <xsl:apply-templates/>
+    </xsl:template>
+    
 </xsl:stylesheet>

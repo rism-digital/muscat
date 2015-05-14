@@ -90,10 +90,17 @@ function executeTransformation(id) {
 }
 
 function previewMeiFile(id) {
+
+    $("#mei-preview-text").hide();
+
 	if (globalMeiOutput == null)
 		executeTransformation(id)
 	
-	$("#mei-output").html(globalMeiOutput);
+	$("#mei-output").show();
+    $("#mei-html-output").show();
+    $("#mei-output").text(vkbeautify.xml(globalMeiOutput));
+    $("#mei-output").removeClass("prettyprinted");
+    prettyPrint();
 }
 
 function downloadMeiFile(id) {
