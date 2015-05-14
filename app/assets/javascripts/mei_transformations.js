@@ -57,7 +57,7 @@ function translateIncipCode(incip, out_format) {
 		if (out_format == "svg")
 			var outXml = vrvToolkit.renderPage(1, "");
 		else
-			var outXml = vrvToolkit.getMEI(1, 0);
+			var outXml = vrvToolkit.getMEI(1, 1);
 		
 		xmlInsert = parseXMLString(outXml);
 		
