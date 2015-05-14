@@ -2,6 +2,7 @@ var saxonLoaded = false;
 var globalMeiOutput = null;
 var globalMeiOutputDocument = null;
 var globalXslFile = null;
+var globalIncipitStrings = [];
 
 var onSaxonLoad = function() {
 	saxonLoaded = true;
@@ -38,6 +39,8 @@ function translateIncipCode(incip, out_format) {
 		pae = pae + "@data: " + incipcode.textContent + "\n";
 		pae = pae + "@end:pae-file\n";
 		
+		globalIncipitStrings.push(pae);
+		
 		options = JSON.stringify({
 					inputFormat: 'pae',
 					//pageHeight: 250,
@@ -54,12 +57,56 @@ function translateIncipCode(incip, out_format) {
 		if (out_format == "svg")
 			var outXml = vrvToolkit.renderPage(1, "");
 		else
-			var outXml = vrvToolkit.getMEI(1, 1);
+			var outXml = vrvToolkit.getMEI(1, 0);
 		
 		xmlInsert = parseXMLString(outXml);
 		
 		incip[index].removeChild(incipcode);
 		incip[index].appendChild(xmlInsert.firstChild);
+	}
+}
+
+function typesetIncipits(incip, out_format) {
+
+	for (index = 0; index < incip.length; ++index) {
+		incipcode = incip[index].childNodes[0];
+		
+		var in_data;
+		
+		if (out_format == "pae") {
+			clef = incipcode.getAttribute("clef");
+			key = incipcode.getAttribute("key");
+			meter = incipcode.getAttribute("meter");
+		
+			pae = "@start:pae-file\n";
+			pae = pae + "@clef:" + clef + "\n";
+			pae = pae + "@keysig:" + key + "\n";
+			pae = pae + "@key:\n";
+			pae = pae + "@timesig:" + meter + "\n";
+			pae = pae + "@data: " + incipcode.textContent + "\n";
+			pae = pae + "@end:pae-file\n";
+			in_data = pae;
+		} else {
+			in_data = globalIncipitStrings[index];
+		}
+		
+		options = JSON.stringify({
+					inputFormat: 'pae',
+					//pageHeight: 250,
+					pageWidth: 1024 / 0.4,
+					spacingStaff: 1,
+					border: 10,
+					scale: 40,
+					ignoreLayout: 0,
+					adjustPageHeight: 1
+				});
+				
+		vrvToolkit.setOptions( options );
+		vrvToolkit.loadData(in_data + "\n" );
+
+		var outXml = vrvToolkit.renderPage(1, "");
+		
+		$("#mei-html-output").append(outXml);
 	}
 }
 
@@ -98,6 +145,11 @@ function showMEIPreview() {
     proc = Saxon.newXSLT20Processor(xsl);
 	// Use the xsl:result-document magic
 	xmldoc = proc.updateHTMLDocument(globalMeiOutputDocument);
+	
+	out_format = $("#mei-output-format").val();
+	incip = globalMeiOutputDocument.getElementsByTagName("incip");
+	typesetIncipits(incip, out_format);
+	
 }
 
 function previewMeiFile(id) {
@@ -131,6 +183,7 @@ function downloadMeiFile(id) {
 function setRegenerateMei() {
 	globalMeiOutput = null;
 	globalMeiOutputDocument = null;
+	globalIncipitStrings = [];
 }
 
 function setUseDefaultStylesheet() {
