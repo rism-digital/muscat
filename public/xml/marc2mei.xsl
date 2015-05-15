@@ -3212,26 +3212,28 @@
       <xsl:if test="marc:subfield[@code='p']">
         <incipCode>
           <xsl:attribute name="form">
-            <xsl:choose>
-              <xsl:when test="marc:subfield[@code='2']='pe'">
-                <xsl:text>plaineAndEasie</xsl:text>
-              </xsl:when>
-            </xsl:choose>
-          </xsl:attribute>
-          <xsl:attribute name="key">
-            <xsl:value-of select="marc:subfield[@code='n']"/>
-          </xsl:attribute>
-          <xsl:attribute name="clef">
-            <xsl:value-of select="marc:subfield[@code='g']"/>
-          </xsl:attribute>
-          <xsl:attribute name="time">
-            <xsl:value-of select="marc:subfield[@code='o']"/>
+            <xsl:text>plaineAndEasie</xsl:text>
           </xsl:attribute>
           <xsl:call-template name="analog">
             <xsl:with-param name="tag">
               <xsl:value-of select="concat(@tag, 'p')"/>
             </xsl:with-param>
           </xsl:call-template>
+            <xsl:if test="marc:subfield[@code='g']">
+                <xsl:text>%</xsl:text>
+                <xsl:value-of select="marc:subfield[@code='g']"/>
+                <xsl:text> </xsl:text>
+            </xsl:if>
+            <xsl:if test="marc:subfield[@code='n']">
+              <xsl:text>$</xsl:text>
+              <xsl:value-of select="marc:subfield[@code='n']"/>
+              <xsl:text> </xsl:text>
+            </xsl:if>
+            <xsl:if test="marc:subfield[@code='o']">
+                <xsl:text>@</xsl:text>
+                <xsl:value-of select="marc:subfield[@code='o']"/>
+                <xsl:text> </xsl:text>
+            </xsl:if>
           <xsl:value-of select="marc:subfield[@code='p']"/>
         </incipCode>
       </xsl:if>

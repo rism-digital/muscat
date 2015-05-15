@@ -27,15 +27,8 @@ function translateIncipCode(incip, out_format) {
 
 	for (index = 0; index < incip.length; ++index) {
 		incipcode = incip[index].childNodes[0];
-		clef = incipcode.getAttribute("clef");
-		key = incipcode.getAttribute("key");
-		meter = incipcode.getAttribute("meter");
 		
 		pae = "@start:pae-file\n";
-		pae = pae + "@clef:" + clef + "\n";
-		pae = pae + "@keysig:" + key + "\n";
-		pae = pae + "@key:\n";
-		pae = pae + "@timesig:" + meter + "\n";
 		pae = pae + "@data: " + incipcode.textContent + "\n";
 		pae = pae + "@end:pae-file\n";
 		
@@ -76,15 +69,7 @@ function typesetIncipits(incip, out_format) {
 		var in_data;
 		
 		if (out_format == "pae") {
-			clef = incipcode.getAttribute("clef");
-			key = incipcode.getAttribute("key");
-			meter = incipcode.getAttribute("meter");
-		
 			pae = "@start:pae-file\n";
-			pae = pae + "@clef:" + clef + "\n";
-			pae = pae + "@keysig:" + key + "\n";
-			pae = pae + "@key:\n";
-			pae = pae + "@timesig:" + meter + "\n";
 			pae = pae + "@data: " + incipcode.textContent + "\n";
 			pae = pae + "@end:pae-file\n";
 			in_data = pae;
