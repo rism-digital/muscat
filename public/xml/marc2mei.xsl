@@ -3136,8 +3136,8 @@
   <xsl:template match="marc:datafield[@tag='031']">
     <incip>
       <xsl:attribute name="n">
-        <xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'], '&#32;',
-          marc:subfield[@code='b'], '&#32;', marc:subfield[@code='c']))"/>
+        <xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'], '-',
+          marc:subfield[@code='b'], '-', marc:subfield[@code='c']))"/>
       </xsl:attribute>
       <xsl:attribute name="label">
         <xsl:choose>
