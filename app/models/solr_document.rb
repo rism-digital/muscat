@@ -29,4 +29,16 @@ class SolrDocument
     id.to_s.split(" ")[1] #split the "Model XXXXXX"
   end
   
+  def source_index_composer
+      first(:composer_texts) == "" ? "[n.a.]" : first(:composer_texts)
+  end
+  
+  def source_index_description
+    title = first(:std_title_texts) || ""
+    sigla = first(:lib_siglum_texts) || ""
+    shelf = first(:shelf_mark_texts) || ""
+    desc = first(:"240m_texts") || ""
+    "#{title}; #{desc}; #{sigla} #{shelf}"
+  end
+  
 end

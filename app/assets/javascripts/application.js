@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require 'blacklight_advanced_search'
+
+
 //= require jquery-ui
 //= require jquery-ui/autocomplete
 //= require jquery_ujs

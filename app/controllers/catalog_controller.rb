@@ -18,8 +18,9 @@ class CatalogController < ApplicationController
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = { 
       :q => 'search',
-      :rows => 10,
-      :defType => 'dismax'
+      :rows => 20,
+      :defType => 'dismax',
+      :fq => "type:Source"
     }
     
     # solr path which will be added to solr base url before the other solr params.
@@ -46,6 +47,12 @@ class CatalogController < ApplicationController
     # Set it as in RISM A/2 OPAC
     config.index.title_field = 'composer_texts'
     config.index.display_type_field = 'composer_order_s'
+    # call out own partial index_header_rism_default
+    # it could be called just index_header_default but this
+    # way it implyies that it is customized
+    config.index.partials = [:index_header_rism]
+    config.add_index_field 'source_title_field',   :accessor => 'source_index_description'
+    config.add_index_field 'source_composer_field',   :accessor => 'source_index_composer'
 
     # solr field configuration for document/show views
     #config.show.title_field = 'title_display'
@@ -70,10 +77,11 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
-    config.add_facet_field 'std_title_order_s', :label => :filter_std_title, :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'std_title_order_s', :label => "Genre", :limit => 10, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field 'composer_order_s', :label => :filter_composer, :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    #config.add_facet_field '593a_sms', :label => 'Material', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    #config.add_facet_field '240m_sms', :label => 'Scoring Summary', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field '593a_texts', :label => 'Source Type', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field '240m_texts', :label => 'Scoring', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    ##config.add_facet_field '240m_sms', :label => 'Publisher', :limit => 10, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field 'date_from_i', :label => :filter_date, :range => true, :limit => 5, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field 'lib_siglum_order_s', :label => :filter_lib_siglum, :limit => 10, solr_params: { 'facet.mincount' => 1 }
     #config.add_facet_field 'title_order', :label => 'Standard Title', :single => true
@@ -99,10 +107,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'std_title_texts',   :label => :filter_std_title
-    config.add_index_field '240m_sms',          :label => :filter_distribution
-    config.add_index_field 'lib_siglum_texts',  :label => :filter_lib_siglum
-    config.add_index_field 'shelf_mark_texts',  :label => :filter_siglum
+    # configured above
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display 
@@ -138,7 +143,13 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise. 
     
-    #config.add_search_field 'all_fields', :label => 'All Fields'
+    config.add_search_field('any_field') do |field|
+      field.label = "Any Field"
+      # Dumb was here
+      field.solr_local_parameters = { 
+        :qf => 'id_fulltext_text source_id_text std_title_texts std_title_d_text composer_texts composer_d_text title_texts title_d_text shelf_mark_texts lib_siglum_texts 001_text 008_date1_text 008_date2_text 008_language_text 028a_text 028b_text 031d_text 031e_text 031m_text 031p_texts 031q_text 031t_text 033a_text 035a_text 041a_text 041e_text 041h_text 100a_text 100d_text 110a_text 110b_text 130k_text 130m_text 130n_texts 130o_text 130p_text 130r_text 240k_text 240m_texts 240n_texts 240o_text 240p_text 240r_texts 245a_text 245b_text 245c_text 246a_text 246i_text 254a_text 260a_text 260b_text 260c_text 260e_text 260f_text 270a_text 300a_text 300b_text 300c_text 340c_text 340d_text 351a_text 500a_text 5005_text 505a_text 506a_text 508a_text 510a_text 510c_text 511a_text 518a_text 520a_text 525a_text 533a_text 541a_text 541c_text 541d_text 545a_text 546a_text 555a_text 561a_text 5615_text 562a_text 5625_text 563a_text 5635_text 590a_text 590b_text 591a_text 592a_text 593a_texts 594a_text 594b_text 594c_text 594d_text 594e_text 594f_text 594g_text 594h_text 594i_text 594k_text 594l_text 594m_text 594n_text 595a_text 596a_text 597a_text 598a_text 599a_text 600a_texts 650a_text 651a_text 653a_text 657a_text 690a_text 690a_fulltext_text 690n_fulltext_text 691a_text 700a_text 700d_text 700e_text 700t_text 7004_text 7005_text 710a_text 710b_text 710k_text 710e_text 7104_text 7105_text 730a_text 730k_text 730m_text 730n_text 730o_text 730p_text 730r_text 740a_text 752a_text 752d_text 772w_text 773w_text 786a_text 786d_text 786i_text 786o_text 786t_text 787a_text 787n_text 787w_text 852a_text 852b_text 852d_text 852e_text 852p_texts 852q_text 852z_text 856u_text',
+      }
+    end
     
 
     # Now we see how to over-ride Solr request handler defaults, in this
