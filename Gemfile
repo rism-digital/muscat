@@ -51,7 +51,7 @@ gem 'non-stupid-digest-assets'
 gem 'activeadmin', github: 'activeadmin', ref: 'a2cd960'
 
 gem 'sunspot_rails', git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
-gem 'sunspot_solr'#, github: 'sunspot/sunspot_solr', ref: '9c4ec23'
+gem 'sunspot_solr'
 gem 'awesome_print'
 gem 'progress_bar'
 gem "rails3-jquery-autocomplete", github: 'rism-ch/rails3-jquery-autocomplete'
@@ -61,6 +61,7 @@ group :development do
     gem 'webrick', '~> 1.3.1'
 end
 gem 'blacklight', ">= 5.3.0"
+gem "blacklight_advanced_search"
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
 gem "blacklight_range_limit"
