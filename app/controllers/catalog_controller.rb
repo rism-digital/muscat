@@ -20,7 +20,10 @@ class CatalogController < ApplicationController
       :q => 'search',
       :rows => 20,
       :defType => 'dismax',
-      :fq => "type:Source"
+      :fq => "type:Source",
+      :hl => 'true',
+      :"hl.simple.pre" => '<span class="highlight">',
+      :"hl.simple.post" => "</span>",
     }
     
     # solr path which will be added to solr base url before the other solr params.
