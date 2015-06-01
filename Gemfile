@@ -50,8 +50,8 @@ gem 'non-stupid-digest-assets'
 
 gem 'activeadmin', github: 'activeadmin', ref: 'a2cd960'
 
-gem 'sunspot_rails', git: 'https://github.com/sunspot/sunspot.git'
-gem 'sunspot_solr'
+gem 'sunspot_rails', git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
+gem 'sunspot_solr'#, github: 'sunspot/sunspot_solr', ref: '9c4ec23'
 gem 'awesome_print'
 gem 'progress_bar'
 gem "rails3-jquery-autocomplete", github: 'rism-ch/rails3-jquery-autocomplete'
@@ -74,3 +74,5 @@ gem 'activerecord-import', ">= 0.4.0"
 # Uncomment this to test the webpage saving
 # in housekeeping/selenium_webdriver
 # gem 'selenium-webdriver'
+
+gem 'ruby-prof'
