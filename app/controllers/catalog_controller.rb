@@ -21,7 +21,7 @@ class CatalogController < ApplicationController
       :rows => 20,
       :defType => 'dismax',
       :fq => "type:Source",
-      :hl => 'true',
+      :hl => 'false',
       :"hl.simple.pre" => '<span class="highlight">',
       :"hl.simple.post" => "</span>",
     }
@@ -273,14 +273,6 @@ class CatalogController < ApplicationController
     # If there are more than this many search results, no spelling ("did you 
     # mean") suggestion is offered.
     config.spell_max = 5
-    
-    config.advanced_search = {
-      :form_solr_parameters => {
-        "facet.field" => ["std_title_order_s", "593a_texts"],
-        "facet.limit" => -1, # return all facet values
-        "facet.sort" => "index" # sort by byte order of values
-      }
-    }
   end
 
 end 
