@@ -210,10 +210,10 @@ class Source < ActiveRecord::Base
     sunspot_dsl.text :lib_siglum, :stored =>true
     
     sunspot_dsl.integer :date_from do 
-      date_from > 0 ? date_from : nil
+      date_from != nil && date_from > 0 ? date_from : nil
     end
     sunspot_dsl.integer :date_to do 
-      date_to > 0 ? date_to : nil
+      date_to != nil && date_to > 0 ? date_to : nil
     end
     
     sunspot_dsl.integer :wf_owner
