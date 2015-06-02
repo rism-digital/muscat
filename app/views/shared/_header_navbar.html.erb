@@ -16,19 +16,13 @@
     </div>
     <div class="collapse navbar-collapse" id="user-util-collapse">
         <div class="navbar-right">
-            <% if has_user_authentication_provider? %>
             <ul class="nav navbar-nav">
-                <% if current_user %>
+                <%- RISM::MENUS.each do |m| %>
                 <li>
-                <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
+                    <%= link_to t(m[0]), m[1] %>
                 </li>
-                <% else %>
-                <li>
-                <%= link_to t('blacklight.header_links.login'), new_user_session_path %>
-                </li>
-            <% end %>
+                <%- end %>
             </ul>
-            <% end %>
         </div>
     </div>
   </div>
@@ -41,13 +35,24 @@
         </div>
         <div class="col-md-9 search-navbar-right">
             <div class="search-navbar-locale pull-right">
-                <a href="?locale=en">English</a>
-                <a href="?locale=de">Deutsch</a>
-                <a href="?locale=fr">Français</a>
-                <a href="?locale=it">Italiano</a>
+                <%- RISM::LOCALES.each do |l| %>
+                <a href="?locale=<%= l[0] -%>"><%= l[1].html_safe -%></a>
+                <%- end %>
             </div>
             <div class="search-navbar-text">
                 <%= render_search_bar  %>
+            </div>
+        </div>
+    </div>
+</div>
+<% else %>
+<div id="search-navbar" class="navbar navbar-default navbar-static-top advanced" role="navigation">
+    <div class="container"> 
+        <div class="col-md-12 search-navbar-right">
+            <div class="search-navbar-locale pull-right">
+                <%- RISM::LOCALES.each do |l| %>
+                <a href="?locale=<%= l[0] -%>"><%= l[1].html_safe -%></a>
+                <%- end %>
             </div>
         </div>
     </div>
