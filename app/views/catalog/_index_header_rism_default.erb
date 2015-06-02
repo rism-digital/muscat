@@ -1,3 +1,12 @@
+<%
+# Very basic highlighting
+first_match = nil
+doc_highlights = @response['highlighting'][document[:id]] rescue doc_highlights = nil
+if doc_highlights && doc_highlights.length > 0
+	first_match = doc_highlights[doc_highlights.keys.first].first
+end
+%>
+
 <%# header bar for doc items in index view -%>
 <div class="documentHeader row">
   <%# main title container for doc partial view
@@ -9,18 +18,22 @@
     <%= render_index_doc_actions document, wrapping_class: "index-document-functions col-sm-3 col-lg-2" %>
   <% end %>
 
-  <h5 class="index_title document-title-heading <%= document_actions.present? ? "col-sm-9 col-lg-10" : "col-md-12" %>">
+  <div class=" <%= document_actions.present? ? "col-sm-9 col-lg-10" : "col-md-12" %>">
 	  <table>
 		  <tr>
 			  <td>
 			    <% if counter = document_counter_with_offset(document_counter) %>
+				<h5 class="index_title document-title-heading">
 			      <span class="document-counter">
 			        <%= t('blacklight.search.documents.counter', counter: counter) %>
 			      </span>
 			    <% end %>&nbsp;
+			</h5>
 			</td>
 			<td>
+				<h5 class="index_title document-title-heading">
 				<%= render_index_field_value document, field: "source_composer_field" %>
+			</h5>
 			</td>
 		</tr>
 		<tr>
@@ -29,8 +42,20 @@
 				<%= link_to_document document, render_index_field_value(document, field: 'source_title_field') %>
 			</td>
 		</tr>
+		<% if first_match %>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<%= first_match.html_safe %>
+			</td>
+		</tr>
+		<% end %>
 	</table>
   </h5>
+
+	
+		
+	
 
   <%= document_actions %>
 </div>

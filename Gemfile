@@ -50,7 +50,7 @@ gem 'non-stupid-digest-assets'
 
 gem 'activeadmin', github: 'activeadmin', ref: 'a2cd960'
 
-gem 'sunspot_rails', git: 'https://github.com/sunspot/sunspot.git'
+gem 'sunspot_rails', git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
 gem 'sunspot_solr'
 gem 'awesome_print'
 gem 'progress_bar'
@@ -61,6 +61,7 @@ group :development do
     gem 'webrick', '~> 1.3.1'
 end
 gem 'blacklight', ">= 5.3.0"
+gem "blacklight_advanced_search"
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
 gem "blacklight_range_limit"
@@ -74,3 +75,5 @@ gem 'activerecord-import', ">= 0.4.0"
 # Uncomment this to test the webpage saving
 # in housekeeping/selenium_webdriver
 # gem 'selenium-webdriver'
+
+gem 'ruby-prof'
