@@ -11,7 +11,11 @@
 							<%= @editor_profile.get_sub_label("773", "w") %>
 		                </th>
 		                <td valign="top">
-							<%= application_helper_link_source_id(@item.source.id).html_safe %>
+							<% if opac %>
+								<%= link_to @item.source.id.to_s, catalog_path(@item.source.id.to_s)%>
+							<% else %>
+								<%= application_helper_link_source_id(@item.source.id).html_safe %>
+							<% end %>
 							<%= " #{@item.source.composer}" if @item.source.composer != "" %><%= ": " if (@item.source.composer != "" && @item.source.std_title)%><i><%= "#{@item.source.std_title}" if @item.source.std_title %></i>
 						</td>
 		        	</tr>
@@ -26,7 +30,11 @@
 							<%= count == 0 ? @editor_profile.get_label("772") : "&nbsp;".html_safe %>
 		                </th>
 		                <td>
-							<%= application_helper_link_source_id(child.id).html_safe %>
+							<% if opac %>
+								<%= link_to child.id.to_s, catalog_path(child.id.to_s)%>
+							<% else %>
+								<%= application_helper_link_source_id(child.id).html_safe %>
+							<% end %>
 							<%= " #{child.composer}" if child.composer != "" %><%= ": " if (child.composer != "" && child.std_title != "") %><i><%= "#{child.std_title}" if child.std_title != "" %></i>
 						</td>
 		        	</tr>
