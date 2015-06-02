@@ -5,6 +5,9 @@
     height: 120px;
     border-bottom: solid 2px $gray30;
 }
+#search-navbar.advanced {
+    height: 30px;
+}
 
 .navbar {
     min-height: $brandbar-height !important;

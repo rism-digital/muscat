@@ -32,8 +32,19 @@ module RISM
   STRAPLINE = "Schweiz - Suisse - Svizzera - Switzerland"
   # The left footer
   FOOTER= "&copy; 2015 &ndash; Verein Arbeitsstelle Schweiz des RISM<br>Hallwylstrasse 15 &ndash; Postfach 286 &ndash; CH-3000 Bern 6"
-
-
+  # Header menu
+  MENUS = {
+    :menu_help       => "http://www.rism.info/help",
+    :menu_home       => "http://www.rism.info/"
+  }
+  # Locales for Blacklight
+  LOCALES = {
+    :en => "English",
+    :de => "Deutsch",
+    :fr => "Fran&ccedil;ais",
+    :it => "Italiano"
+  }
+  
 end
 
 module Muscat

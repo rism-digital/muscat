@@ -5,5 +5,5 @@
 	@editor_profile = EditorConfiguration.get_show_layout @item
 %>
 <dl class="dl-horizontal  dl-invert">
-	<%= render :partial => "marc/show" %>
+	<%= render :partial => "marc/show", :locals => { :opac => true } %>
 </dl>
