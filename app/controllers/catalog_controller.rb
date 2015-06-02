@@ -80,10 +80,10 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
-    config.add_facet_field 'std_title_order_s', :label => "Genre", :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'std_title_order_s', :label => :filter_std_title, :limit => 10, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field 'composer_order_s', :label => :filter_composer, :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field '593a_texts', :label => 'Source Type', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field '240m_texts', :label => 'Scoring', :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field '593a_texts', :label => :filter_source_type, :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field '240m_texts', :label => :filter_scoring, :limit => 10, solr_params: { 'facet.mincount' => 1 }
     ##config.add_facet_field '240m_sms', :label => 'Publisher', :limit => 10, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field 'date_from_i', :label => :filter_date, :range => true, :limit => 5, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field 'lib_siglum_order_s', :label => :filter_lib_siglum, :limit => 10, solr_params: { 'facet.mincount' => 1 }
@@ -147,7 +147,7 @@ class CatalogController < ApplicationController
     # since we aren't specifying it otherwise. 
     
     config.add_search_field('any_field') do |field|
-      field.label = "Any Field"
+      field.label = :filter_any_field
       # Dumb was here
       field.solr_local_parameters = { 
         # THIS IS THE HACK OF THE DAY
@@ -162,7 +162,7 @@ class CatalogController < ApplicationController
     # of Solr search fields. 
     
     config.add_search_field('title') do |field|
-      #field.label = :filter_std_title
+      field.label = :filter_title
       # solr_parameters hash are sent to Solr as ordinary url query params. 
       #field.solr_parameters = { :'spellcheck.dictionary' => 'title_d_text' }
 
@@ -176,7 +176,7 @@ class CatalogController < ApplicationController
     end
     
     config.add_search_field('composer') do |field|
-      #field.label = :filter_composer
+      field.label = :filter_composer
       field.solr_local_parameters = { 
         :qf => 'composer_texts',
       }
@@ -204,56 +204,67 @@ class CatalogController < ApplicationController
 
     # Add some filters for the adv search
     config.add_search_field("genre") do |field|
+      field.label = :filter_std_title
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "std_title_texts" }
     end
     
     config.add_search_field("provenance") do |field|
+      field.label = :filter_provenance
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "561a_text" }
     end
     
     config.add_search_field("source_type") do |field|
+      field.label = :filter_source_type
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "593a_texts" }
     end
     
     config.add_search_field("liturgical_feast") do |field|
+      field.label = :filter_liturgical_feast
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "657a_text" }
     end
     
     config.add_search_field("institution") do |field|
+      field.label = :filter_institution
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "110a_test" }
     end
     
     config.add_search_field("scoring") do |field|
+      field.label = :filter_catalog
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "240m_texts" }
     end
     
     config.add_search_field("library_siglum") do |field|
+      field.label = :filter_lib_siglum
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "852a_text" }
     end
     
     config.add_search_field("rism_id_no") do |field|
+      field.label = :filter_id
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "id_i" }
     end
     
     config.add_search_field("year") do |field|
+      field.label = :filter_date
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "date_text" }
     end
     
     config.add_search_field("shelfmark") do |field|
+      field.label = :filter_shelf_mark
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "852p_texts" }
     end
     
     config.add_search_field("language") do |field|
+      field.label = :filter_language
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "041a_text" }
     end

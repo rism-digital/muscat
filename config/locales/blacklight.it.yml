@@ -181,6 +181,7 @@ it:
           index: 'A-Z Sort'
         count: '%{number}'
         more: 'more »'
+        more_html: "Di più"
         selected:
           remove: '[remove]'
       group:
@@ -219,3 +220,15 @@ it:
       default: 'entry'
 
     did_you_mean: 'Did you mean to type: %{options}?'
+
+  blacklight_advanced_search:
+    all: tutti i campi
+    any: qualsiasi campo
+    form:
+      title: Ricerca Avanzata
+      search_context: Nella ricerca
+      limit_criteria_heading_html: "<strong>E</strong> hanno questi attributi"
+      query_criteria_heading_html: "Carca gli elementi che corrispondono a %{select_menu}"
+      sort_label: "Ordina per"
+      start_over: "Reset"
+      search_btn: 'Cerca'
