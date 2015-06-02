@@ -41,9 +41,10 @@ module RISM
   LOCALES = {
     :en => "English",
     :de => "Deutsch",
-    :fr => "Français",
+    :fr => "Fran&ccedil;ais",
     :it => "Italiano"
   }
+  
 end
 
 module Muscat

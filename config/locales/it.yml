@@ -193,6 +193,8 @@ it:
   menu_administration: "Amministrazione"
   menu_comments: "Commenti"
   menu_languages: "Lingue"
+  menu_contact: "Contatti"
+  menu_search_history: "Storico Ricerche"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modificazione"
