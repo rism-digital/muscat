@@ -20,7 +20,7 @@ class CatalogController < ApplicationController
       :q => 'search',
       :rows => 20,
       :defType => 'dismax',
-      :fq => "type:Source",
+      :fq => "type:Source wf_stage_s:published",
       :hl => 'false',
       :"hl.simple.pre" => '<span class="highlight">',
       :"hl.simple.post" => "</span>",
