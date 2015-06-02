@@ -194,7 +194,7 @@ it:
   menu_comments: "Commenti"
   menu_languages: "Lingue"
   menu_contact: "Contatti"
-  menu_search_history: "Storico Ricerche"
+  menu_search_history: "Ricerche effettuate"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modificazione"
