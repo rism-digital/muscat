@@ -11,7 +11,7 @@
 			<%= @editor_profile.get_label(tag.tag) %>
 		<%- end %>
 	</th>
-	<td>		
+	<td>
 		<%= link_to institution, institution_path(db_id) -%>
 		<%- four_tags.each do |four_tag| %> 
 			<%= " [#{@editor_profile.get_label(four_tag.content)}]" if (four_tag && four_tag.content) -%>
