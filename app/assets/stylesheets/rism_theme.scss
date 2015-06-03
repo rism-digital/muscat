@@ -30,9 +30,7 @@
 
     }
     .navbar-brand {/* The main logo image for the Blacklight instance */
-        //width: 290px;
         height: $brandbar-height;
-        //background:transparent image-url("rism-ch-01.png") no-repeat center left;
     }
     .slogan {
         padding-left: 10px;
@@ -269,6 +267,11 @@ h5.index_title {
     .panel:last-child {
         border-bottom: 0px;
     }
+}
+
+// Search history
+table.search_history {
+    margin-top: 60px;
 }
 
 // Site Footer //
