@@ -14,6 +14,11 @@ Muscat::Application.routes.draw do
   get "/manuscripts", to: redirect('/sources')
   get "/manuscripts/:name", to: redirect('/sources/%{name}')
 
+  ## Set up routes to redirect legacy /pages from muscat2
+  ## to the new site URL
+  get '/pages', to: redirect(RISM::LEGACY_PAGES_URL)
+  get '/pages/:name', to: redirect(RISM::LEGACY_PAGES_URL + '/pages/%{name}')
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
