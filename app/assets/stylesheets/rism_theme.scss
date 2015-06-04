@@ -1,7 +1,12 @@
 @import 'variables';
 
+/* require for verovio output with bootstrap */
+svg:not(:root){
+	overflow:inherit
+}
+
 #search-navbar {
-    background: image-url("paper-96.png");
+    background: image-url("paper-96-R.png");
     height: 120px;
     border-bottom: solid 2px $gray30;
 }
@@ -30,9 +35,7 @@
 
     }
     .navbar-brand {/* The main logo image for the Blacklight instance */
-        //width: 290px;
         height: $brandbar-height;
-        //background:transparent image-url("rism-ch-01.png") no-repeat center left;
     }
     .slogan {
         padding-left: 10px;
@@ -269,6 +272,11 @@ h5.index_title {
     .panel:last-child {
         border-bottom: 0px;
     }
+}
+
+// Search history
+table.search_history {
+    margin-top: 60px;
 }
 
 // Site Footer //

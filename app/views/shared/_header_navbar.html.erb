@@ -9,8 +9,13 @@
             </button>
             <div class="slogan">
                 <a href="/">
-                    <span class="slogan-top"><%= RISM::PROJECTLINE.html_safe %></span><br />
-                    <span class="slogan-bottom"><%= RISM::STRAPLINE.html_safe %></span>
+                    <div class="hidden-sm hidden-xs">
+                        <span class="slogan-top"><%= RISM::PROJECTLINE.html_safe %></span><br />
+                        <span class="slogan-bottom"><%= RISM::STRAPLINE.html_safe %></span>
+                    </div>
+                    <div class="hidden-md hidden-lg">
+                        <img src="/images/logo3.png">
+                    </div>
                 </a>
             </div>
     </div>
