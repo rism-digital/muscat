@@ -62,7 +62,7 @@ de:
     batch_actions:
       button_label: "Stapelverarbeitung"
       default_confirmation: "Sind Sie sicher, dass Sie dies tun wollen?"
-      delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen?"
+      delete_confirmation: "Sind Sie sicher, dass Sie diese %{plural_model} löschen wollen?"
       succesfully_destroyed:
         one: "Erfolgreich 1 %{model} gelöscht"
         other: "Erfolgreich %{count} %{plural_model} gelöscht"
@@ -126,10 +126,10 @@ de:
     access_denied:
       message: "Sie haben nicht die Berechtigung, diese Aktion auszuführen." 
     index_list:
-      table: "TABLE"
-      block: "LIST"
-      grid: "GRID"
-      blog: "BLOG"
+      table: "Tabelle"
+      block: "Liste"
+      grid: "Raster"
+      blog: "Blog"
   switch_language: "Sprache ändern" 
   this_file_language: "Deutsch"
 
@@ -205,7 +205,7 @@ de:
   library_sigla_contains: "Sigel enthält"
   is_in_folder: "Ist im Ordner"
   workgroups: "Benutzergruppen"
-  roles: "ROLES"
+  roles: "Rollen"
   user_details: "Benutzerinfo"
   sections: "Sektionen"
   edit: "Bearbeiten"
@@ -233,7 +233,7 @@ de:
   filter_author: "Autor"
   filter_autograph_of: "Autograph von"
   filter_birth_place: "Geburtsort"
-  filter_catalog: "CATALOG"
+  filter_catalog: "WV / Katalog"
   filter_collection: "Sammlung"
   filter_comments: "Kommentare"
   filter_composer: "Komponist"
@@ -255,7 +255,7 @@ de:
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
   filter_incipit_key: "Tonart im Incipit"
-  filter_institution: "INSTITUTION"
+  filter_institution: "Institution"
   filter_institutions: "Institutionen"
   filter_key: "Tonart"
   filter_language: "Sprache"
@@ -276,15 +276,15 @@ de:
   filter_people: "Personen"
   filter_phone: "Telefon"
   filter_place: "Ort"
-  filter_provenance: "PROVENANCE"
+  filter_provenance: "Herkunft"
   filter_revue_title: "Zeitschriftentitel"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
-  filter_scoring: "SCORING"
+  filter_scoring: "Besetzung"
   filter_siglum: "Sigel"
   filter_source: "Quelle"
   filter_sources: "Quellen"
-  filter_source_type: "SOURCE TYPE"
+  filter_source_type: "Quellentyp"
   filter_std_title: "Standardtitel"
   filter_subjects: "Schlagwörter"
   filter_term: "Begriff"
@@ -315,7 +315,7 @@ de:
   filter_dist_594m: "Weitere Instrumente"
   filter_dist_594n: "Basso-continuo-Instrumente"
  
-  rism_any_key: "Any key"
+  rism_any_key: "Irgendeine Tonart"
   rism_a_flat: "As-Dur/Moll"
   rism_a: "A-Dur/Moll"
   rism_b_flat: "B-Dur/Moll"
@@ -383,8 +383,8 @@ de:
   
     models:
       person: 
-        one: "PERSONA"
-        other: "PERSONE"
+        one: "Person"
+        other: "Personen"
 
   manuscript_links:
      one: "1 Quelle"
@@ -423,7 +423,7 @@ de:
   tf_metric_help: "Tipps für die Metrumsuche"
   tf_anchor_help: "Tipps für die verankerte Suche"
   tf_timesig_help: "Tipps für die Taktartsuche"
-  btn_themefinder_reset: "RESET"
+  btn_themefinder_reset: "Zurücksetzen"
   
   tf_acknowledgments: "Die Incipit-Suche verwendet das Tool <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a>, das vom <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a> entwickelt wurde."
 
@@ -453,9 +453,9 @@ de:
     - "September"
     - "Oktober"
     - "November"
-    - "December"
+    - "Dezember"
     day_names:
-    - "Sontag"
+    - "Sonntag"
     - "Montag"
     - "Dienstag"
     - "Mittwoch"

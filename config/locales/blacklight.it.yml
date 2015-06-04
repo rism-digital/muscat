@@ -229,10 +229,10 @@ it:
     all: tutti i campi
     any: qualsiasi campo
     form:
-      title: Ricerca Avanzata
+      title: Ricerca avanzata
       search_context: Nella ricerca
       limit_criteria_heading_html: "<strong>E</strong> hanno questi attributi"
-      query_criteria_heading_html: "Carca gli elementi che corrispondono a %{select_menu}"
+      query_criteria_heading_html: "Cerca gli elementi che corrispondono a %{select_menu}"
       sort_label: "Ordina per"
       start_over: "Reset"
       search_btn: 'Cerca'
