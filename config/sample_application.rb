@@ -13,6 +13,7 @@ module RISM
   MARC = "ch"
   # Select the configuration for the editor profiles to load
   EDITOR_PROFILE = ""
+  LEGACY_PAGES_URL = 'http://pages'
   
   BASE_NEW_IDS = { 
     :catalogue        => 50000000,
