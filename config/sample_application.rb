@@ -13,6 +13,7 @@ module RISM
   MARC = "ch"
   # Select the configuration for the editor profiles to load
   EDITOR_PROFILE = ""
+  # Url redirection for the deprecated Page controller (to be set only if the installation was previously in Muscat 2 with page)
   LEGACY_PAGES_URL = 'http://pages'
   
   BASE_NEW_IDS = { 
