@@ -95,7 +95,7 @@ module FolderControllerActions
     dsl.sidebar 'Global Folder Actions', :only => :index, :if => proc{params.include?(:q)} do
       # Build the dynamic path function, then call it with send
       model = self.resource_class.to_s.pluralize.underscore.downcase
-      link_function = "save_to_folder_#{model}_path"
+      link_function = "save_to_folder_admin_#{model}_path"
       
       if params.include?(:q)
         a href: "#", onclick: "create_folder('#{send(link_function, params)}');" do text_node I18n.t(:save, scope: :folders) end

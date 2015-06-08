@@ -10,13 +10,13 @@ fr:
         search:
           placeholder: 'Rechercher...'
   blacklight_advanced_search:
-    all: tutti
-    any: qualsiasi
+    all: tous
+    any: au moins un des
     form:
-      title: "FR :Ricerca Avanzata"
-      search_context: "FR: Nella ricerca"
+      title: "Recherche avancée"
+      search_context: "Dans la recherche"
       limit_criteria_heading_html: "FR: <strong>E</strong> hanno questi attributi"
-      query_criteria_heading_html: "FR: Carca gli elementi che corrispondono a %{select_menu} i criteri"
-      sort_label: "FR: Ordina per"
-      start_over: "FR: Reset"
-      search_btn: 'FR: Cerca'
+      query_criteria_heading_html: "Rechercher les titres correspondant à %{select_menu} les critères"
+      sort_label: "Trier par"
+      start_over: "Nouvelle recherche"
+      search_btn: 'Chercher'
