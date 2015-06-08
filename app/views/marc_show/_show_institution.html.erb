@@ -12,7 +12,11 @@
 		<%- end %>
 	</th>
 	<td>
-		<%= link_to institution, institution_path(db_id) -%>
+		<% if opac %>
+			<%= link_to institution, catalog_index_path(:search_field => "any_field", :q => institution)%>
+		<% else %>
+			<%= link_to institution, admin_institution_path(db_id) -%>
+		<% end %>
 		<%- four_tags.each do |four_tag| %> 
 			<%= " [#{@editor_profile.get_label(four_tag.content)}]" if (four_tag && four_tag.content) -%>
 		<%- end %>
