@@ -5,8 +5,8 @@
 		group = layout_config["groups"][group_name]
 		grouping = { :title => @editor_profile.get_label(group_name), :tags => group["all_tags"], :tag_templates => group["all_tag_templates"] }					
 -%>	
-	<%# unless group["admin_only"] and not role_at_least? :cataloguer -%>
+	<% unless group["admin_only"] -%>
 		<%= render :partial => (group["template"] ? group["template"] : "marc/show_group" ), :locals => { :item => @item, :group => grouping, :opac => opac_resolved } %>
-	<%# end -%>
+	<% end -%>
   <%- end -%>
 
