@@ -17,13 +17,15 @@ class CatalogController < ApplicationController
   configure_blacklight do |config|
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = { 
-      :q => 'search',
+      :qt => 'search',
+      :"q.alt" => "*:*",
       :rows => 20,
       :defType => 'dismax',
       :fq => "type:Source wf_stage_s:published",
       :hl => 'false',
       :"hl.simple.pre" => '<span class="highlight">',
       :"hl.simple.post" => "</span>",
+      :"facet.mincount" => 1,
     }
     
     # solr path which will be added to solr base url before the other solr params.
@@ -80,13 +82,13 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
-    config.add_facet_field 'std_title_order_s', :label => :filter_std_title, :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field 'composer_order_s', :label => :filter_composer, :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field '593a_texts', :label => :filter_source_type, :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field '240m_texts', :label => :filter_scoring, :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'std_title_order_s', :label => :filter_std_title, :limit => 10
+    config.add_facet_field 'composer_order_s', :label => :filter_composer, :limit => 10
+    config.add_facet_field '593a_filter_sm', :label => :filter_source_type, :limit => 10
+    config.add_facet_field '240m_texts', :label => :filter_scoring, :limit => 10
     ##config.add_facet_field '240m_sms', :label => 'Publisher', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field 'date_from_i', :label => :filter_date, :range => true, :limit => 5, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field 'lib_siglum_order_s', :label => :filter_lib_siglum, :limit => 10, solr_params: { 'facet.mincount' => 1 }
+    config.add_facet_field 'date_from_i', :label => :filter_date, :range => true, :limit => 5
+    config.add_facet_field 'lib_siglum_order_s', :label => :filter_lib_siglum, :limit => 10
     #config.add_facet_field 'title_order', :label => 'Standard Title', :single => true
     #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     #config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
@@ -233,15 +235,21 @@ class CatalogController < ApplicationController
       field.solr_parameters = { :qf => "110a_test" }
     end
     
-    config.add_search_field("scoring") do |field|
+    config.add_search_field("catalogue") do |field|
       field.label = :filter_catalog
+      field.include_in_simple_select = false
+      field.solr_parameters = { :qf => "690a_text" }
+    end
+    
+    config.add_search_field("scoring") do |field|
+      field.label = :filter_scoring
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "240m_texts" }
     end
     
+    # This is shown in the topbar
     config.add_search_field("library_siglum") do |field|
       field.label = :filter_lib_siglum
-      field.include_in_simple_select = false
       field.solr_parameters = { :qf => "852a_text" }
     end
     
@@ -254,7 +262,7 @@ class CatalogController < ApplicationController
     config.add_search_field("year") do |field|
       field.label = :filter_date
       field.include_in_simple_select = false
-      field.solr_parameters = { :qf => "date_text" }
+      field.solr_parameters = { :qf => "date_from_i" }
     end
     
     config.add_search_field("shelfmark") do |field|
@@ -267,6 +275,12 @@ class CatalogController < ApplicationController
       field.label = :filter_language
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "041a_text" }
+    end
+
+    # Show in topbar too
+    config.add_search_field("subject") do |field|
+      field.label = :filter_subject
+      field.solr_parameters = { :qf => "650a_text" }
     end
 
     # "sort results by" select (pulldown)

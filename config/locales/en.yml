@@ -286,7 +286,7 @@ en:
   filter_sources: "Sources"
   filter_source_type: "SOURCE TYPE"
   filter_std_title: "Standardised title"
-  filter_subjects: "Subjects"
+  filter_subject: "Subject"
   filter_term: "Term"
   filter_thematic_opus: "Thematic cat. / Opus no."
   filter_title: "Title"

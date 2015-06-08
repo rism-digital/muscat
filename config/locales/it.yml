@@ -286,7 +286,7 @@ it:
   filter_sources: "Fonti"
   filter_source_type: "Tipo di fonte"
   filter_std_title: "Titolo uniforme"
-  filter_subjects: "Soggetti"
+  filter_subject: "Soggetto"
   filter_term: "Termine"
   filter_thematic_opus: "Catalogo / Num. d'opera"
   filter_title: "Titolo"

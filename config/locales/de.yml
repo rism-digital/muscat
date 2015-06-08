@@ -286,7 +286,7 @@ de:
   filter_sources: "Quellen"
   filter_source_type: "Quellentyp"
   filter_std_title: "Standardtitel"
-  filter_subjects: "Schlagwörter"
+  filter_subjects: "SUBJECT Schlagwörter"
   filter_term: "Begriff"
   filter_thematic_opus: "Them. Kat. / Op.-Nr."
   filter_title: "Titel"
