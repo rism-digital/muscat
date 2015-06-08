@@ -9,3 +9,14 @@ fr:
         q: 'Rechercher...'
         search:
           placeholder: 'Rechercher...'
+  blacklight_advanced_search:
+    all: tutti
+    any: qualsiasi
+    form:
+      title: "FR :Ricerca Avanzata"
+      search_context: "FR: Nella ricerca"
+      limit_criteria_heading_html: "FR: <strong>E</strong> hanno questi attributi"
+      query_criteria_heading_html: "FR: Carca gli elementi che corrispondono a %{select_menu} i criteri"
+      sort_label: "FR: Ordina per"
+      start_over: "FR: Reset"
+      search_btn: 'FR: Cerca'

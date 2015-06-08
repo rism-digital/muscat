@@ -7,10 +7,10 @@ de:
     all: tutti
     any: qualsiasi
     form:
-      title: Ricerca Avanzata
-      search_context: Nella ricerca
-      limit_criteria_heading_html: "<strong>E</strong> hanno questi attributi"
+      title: "DE :Ricerca Avanzata"
+      search_context: "DE: Nella ricerca"
+      limit_criteria_heading_html: "DE: <strong>E</strong> hanno questi attributi"
       query_criteria_heading_html: "Carca gli elementi che corrispondono a %{select_menu} i criteri"
-      sort_label: "Ordina per"
-      start_over: "Reset"
-      search_btn: 'Cerca'
+      sort_label: "DE: Ordina per"
+      start_over: "DE: Reset"
+      search_btn: 'DE: Cerca'
