@@ -262,7 +262,7 @@ class CatalogController < ApplicationController
     config.add_search_field("year") do |field|
       field.label = :filter_date
       field.include_in_simple_select = false
-      field.solr_parameters = { :qf => "date_text" }
+      field.solr_parameters = { :qf => "date_from_i" }
     end
     
     config.add_search_field("shelfmark") do |field|
