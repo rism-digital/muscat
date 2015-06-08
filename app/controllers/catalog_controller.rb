@@ -84,7 +84,7 @@ class CatalogController < ApplicationController
     # facet bar
     config.add_facet_field 'std_title_order_s', :label => :filter_std_title, :limit => 10
     config.add_facet_field 'composer_order_s', :label => :filter_composer, :limit => 10
-    config.add_facet_field '593a_texts', :label => :filter_source_type, :limit => 10
+    config.add_facet_field '593a_filter_sm', :label => :filter_source_type, :limit => 10
     config.add_facet_field '240m_texts', :label => :filter_scoring, :limit => 10
     ##config.add_facet_field '240m_sms', :label => 'Publisher', :limit => 10, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field 'date_from_i', :label => :filter_date, :range => true, :limit => 5
