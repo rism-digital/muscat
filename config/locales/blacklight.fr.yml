@@ -15,7 +15,7 @@ fr:
     form:
       title: "Recherche avancée"
       search_context: "Dans la recherche"
-      limit_criteria_heading_html: "FR: <strong>E</strong> hanno questi attributi"
+      limit_criteria_heading_html: "<strong>et</strong> ont cet attribut"
       query_criteria_heading_html: "Rechercher les titres correspondant à %{select_menu} critères"
       sort_label: "Trier par"
       start_over: "Nouvelle recherche"
