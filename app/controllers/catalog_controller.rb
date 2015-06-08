@@ -277,6 +277,12 @@ class CatalogController < ApplicationController
       field.solr_parameters = { :qf => "041a_text" }
     end
 
+    # Show in topbar too
+    config.add_search_field("subject") do |field|
+      field.label = :filter_subject
+      field.solr_parameters = { :qf => "650a_text" }
+    end
+
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc

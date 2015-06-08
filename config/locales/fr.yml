@@ -286,7 +286,7 @@ fr:
   filter_sources: "Sources"
   filter_source_type: "SOURCE TYPE"
   filter_std_title: "Titre uniforme"
-  filter_subjects: "Sujets"
+  filter_subject: "Sujet"
   filter_term: "Terme"
   filter_thematic_opus: "Cat. thématique / No d'opus"
   filter_title: "Titre"
