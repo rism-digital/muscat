@@ -60,6 +60,15 @@ module ApplicationHelper
     link_to( value, { :action => "show", :controller => "admin/sources", :id => value })
   end
   
+  # Link a manuscript by its RISM id
+  def application_helper_link_to_library(value, subfield, opac)
+		if opac
+			link_to value, catalog_index_path(:search_field => "library_siglum", :q => value)
+		else
+			value
+		end
+  end
+  
   #################
   # These methods are placed here for compatibility with muscat 2
   
