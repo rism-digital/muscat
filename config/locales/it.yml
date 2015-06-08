@@ -281,10 +281,10 @@ it:
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
   filter_scoring: "Organico"
-  filter_siglum: "Siglum"
+  filter_siglum: "Sigla"
   filter_source: "Fonte"
   filter_sources: "Fonti"
-  filter_source_type: "Tipo di Fonte"
+  filter_source_type: "Tipo di fonte"
   filter_std_title: "Titolo uniforme"
   filter_subjects: "Soggetti"
   filter_term: "Termine"
@@ -333,8 +333,8 @@ it:
   
   #
   entry:
-     one: "ENTRY"
-     other: "ENTRIES"
+     one: "voce"
+     other: "voci"
   catalogue:
     one: "catalogo"
     other: "cataloghi"
