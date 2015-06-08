@@ -186,7 +186,7 @@ class Source < ActiveRecord::Base
     sunspot_dsl.text :std_title_d
     
     sunspot_dsl.string :composer_order do 
-      composer
+      composer == "" ? nil : composer
     end
     sunspot_dsl.text :composer, :stored => true
     sunspot_dsl.text :composer_d

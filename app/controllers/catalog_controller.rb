@@ -247,9 +247,9 @@ class CatalogController < ApplicationController
       field.solr_parameters = { :qf => "240m_texts" }
     end
     
+    # This is shown in the topbar
     config.add_search_field("library_siglum") do |field|
       field.label = :filter_lib_siglum
-      field.include_in_simple_select = false
       field.solr_parameters = { :qf => "852a_text" }
     end
     
