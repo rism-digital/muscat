@@ -141,6 +141,10 @@ fields:
   "653a":
   "657a":
   "690a":
+  "650a_filter":
+      :type: string
+      :from_tag: "650"
+      :from_subtag: "a"
   "690n":
   "691a":
   "700a":
