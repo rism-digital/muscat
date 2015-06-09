@@ -42,7 +42,7 @@ module ApplicationHelper
   
 
   # Create a link for a page in a new window
-  def application_helper_link_http(value, node)
+  def application_helper_link_http(value, node, opac)
     result = []
     links = value.split("\n")
     links.each do |link|
