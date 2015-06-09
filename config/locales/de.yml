@@ -109,16 +109,16 @@ de:
         title: "Ändern Sie Ihr Passwort"
         submit: "Mein Passwort ändern"
       unlock:
-        title: "RESEND UNLOCK INSTRUCTIONS"
-        submit: "RESEND UNLOCK INSTRUCTION"
+        title: "Anleitung zur Aufhebung der Blockierung nochmals schicken"
+        submit: "Anleitung zur Aufhebung der Blockierung nochmals schicken"
       resend_confirmation_instructions:
-        title: "Anleitung zur Bestätigung noch mal schicken"
-        submit: "Anleitung zur Bestätigung noch mal schicken"
+        title: "Anleitung zur Bestätigung nochmals schicken"
+        submit: "Anleitung zur Bestätigung nochmals schicken"
       links:
         sign_in: "Anmeldung"
         forgot_your_password: "Passwort vergessen?"
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
-        resend_unlock_instructions: "RESEND UNLOCK INSTRUCTIONS"
+        resend_unlock_instructions: "Anleitung zur Aufhebung der Blockierung nochmals schicken"
     unsupported_browser:
       headline: "Muscat unterstützt nicht länger den Internet Explorer in Version 8 oder niedriger."
       recommendation: "Wir empfehlen die Nutzung von <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, oder <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
@@ -158,7 +158,7 @@ de:
         one: "Liturgisches Fest"
         other: "Liturgische Feste"
       person:
-        one: "Persone"
+        one: "Person"
         other: "Personen"
       source:
         one: "Quelle"
@@ -194,7 +194,7 @@ de:
   menu_comments: "Kommentare"
   menu_languages: "Sprache"
   menu_contact: "Kontakt"
-  menu_search_history: "Suchhitorie"
+  menu_search_history: "Suchverlauf"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Letzte Änderungen"
@@ -286,7 +286,7 @@ de:
   filter_sources: "Quellen"
   filter_source_type: "Quellentyp"
   filter_std_title: "Standardtitel"
-  filter_subjects: "SUBJECT Schlagwörter"
+  filter_subjects: "Schlagwörter"
   filter_term: "Begriff"
   filter_thematic_opus: "Them. Kat. / Op.-Nr."
   filter_title: "Titel"
@@ -432,7 +432,7 @@ de:
   
   do_link_lang: "ENG"
   do_media_files_title: "Multimedia-Dateien"
-  do_ext_res_link: "EXTERNAL RESOURCES:"
+  do_ext_res_link: "Externer Link:"
   do_ext_link_not_avail: "(Audio-Dateien sind hier nicht verfügbar.)"
   do_images_title: "Bilder"
   connected_libraries: "Bibliotheken"
