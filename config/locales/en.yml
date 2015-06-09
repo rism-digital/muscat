@@ -176,7 +176,8 @@ en:
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Sources"
-  menu_advanced_search: "Advanced Search"
+  menu_simple_search: "Simple search"
+  menu_advanced_search: "Advanced search"
   menu_indexes: "Indexes"
   menu_people: "People"
   menu_institutions: "Institutions"
@@ -194,7 +195,7 @@ en:
   menu_comments: "Comments"
   menu_languages: "Language"
   menu_contact: "Contact"
-  menu_search_history: "Search History"
+  menu_search_history: "Search history"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"

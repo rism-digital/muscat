@@ -176,6 +176,7 @@ it:
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Fonti"
+  menu_simple_search: "Ricerca semplice"
   menu_advanced_search: "Ricerca avanzata"
   menu_indexes: "Indici"
   menu_people: "Persone"
