@@ -236,3 +236,13 @@ it:
       sort_label: "Ordina per"
       start_over: "Reset"
       search_btn: 'Cerca'
+    help:
+      title: "Consigli per la ricerca"
+      line1: 'Selezionare "tutti i campi" per rendere tutti i campi obbligatori.'
+      line2: 'Selezionare "qualsiasi campo" in modo che almeno un campo sia presente.'
+      line3: 'Combinare parole chiave ed attributi per cercare elementi specifici.'
+      line4: 'Racchiudere frasi da cercare intere tra doppi apici.'
+      line5: 'Aggiungere "+" davanti ad un termine per renderlo obbligatorio (altrimenti saranno inclusi risultati che corrispondono ad almeno uno dei termini inclusi).'
+      line6: 'Aggiuntere "-" davanti a una parola o frase per esclderla.'
+      line7: 'Usare "OR", "AND" e "NOT" per creare ricerche booleane complesse. Sono accettate parentesi per racchiudere le espressioni.'
+      line8: 'Troncamento e caratteri jolly non sono supportati, il troncamento è eseguito automaticamente.'

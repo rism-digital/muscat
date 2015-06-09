@@ -20,3 +20,13 @@ fr:
       sort_label: "Trier par"
       start_over: "Nouvelle recherche"
       search_btn: 'Chercher'
+    help:
+      title: "FR: Search Tips"
+      line1: 'FR: Select "match all" to require all fields.'
+      line2: 'FR: Select "match any" to find at least one field.'
+      line3: 'FR: Combine keywords and attributes to find specific items.'
+      line4: 'FR: Use quotation marks to search as a phrase. '
+      line5: 'FR: Use "+" before a term to make it required. (Otherwise results matching only some of your terms may be included).'
+      line6: 'FR: Use "-" before a word or phrase to exclude. '
+      line7: 'FR: Use "OR", "AND", and "NOT" to create complex boolean logic. You can use parentheses in your complex expressions.'
+      line8: 'FR: Truncation and wildcards are not supported - word-stemming is done automatically.'
