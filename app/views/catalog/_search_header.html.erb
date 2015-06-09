@@ -1,0 +1,12 @@
+<!-- Overridded so it does NOT show the search header with no results 
+     which makes an ugly mess in non-english languages by pluralizing
+     the term (yes this is hardcoded!)
+-->
+
+<%= render 'did_you_mean' %>
+
+<%= render 'constraints' %>
+
+<%- if !@response.empty? %>
+	<%= render 'sort_and_per_page' %>
+<%- end %>
