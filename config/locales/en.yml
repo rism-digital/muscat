@@ -129,7 +129,7 @@ en:
       table: "Table"
       block: "List"
       grid: "Grid"
-      blog: "BLOG"
+      blog: "Blog"
   switch_language: "Switch language" 
   this_file_language: "English"
   
@@ -255,7 +255,7 @@ en:
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
   filter_incipit_key: "Incipit key"
-  filter_institution: "INSTITUTION"
+  filter_institution: "Institution"
   filter_institutions: "Institutions"
   filter_key: "Key"
   filter_language: "Language"
@@ -276,15 +276,15 @@ en:
   filter_people: "People"
   filter_phone: "Phone"
   filter_place: "Place"
-  filter_provenance: "PROVENANCE"
+  filter_provenance: "Provenance"
   filter_revue_title: "Revue title"
-  filter_id: "RISM ID"
-  filter_id_no: "RISM ID"
-  filter_scoring: "SCORING"
+  filter_id: "Rism ID"
+  filter_id_no: "Rism ID"
+  filter_scoring: "Scoring"
   filter_siglum: "Siglum"
   filter_source: "Source"
   filter_sources: "Sources"
-  filter_source_type: "SOURCE TYPE"
+  filter_source_type: "Source Type"
   filter_std_title: "Standardised title"
   filter_subject: "Subject"
   filter_term: "Term"
@@ -383,8 +383,8 @@ en:
   
     models:
       person: 
-        one: "PERSONA"
-        other: "PERSONE"
+        one: "Person"
+        other: "People"
 
   manuscript_links:
      one: "1 source"
