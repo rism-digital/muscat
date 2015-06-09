@@ -497,6 +497,6 @@ it:
       line3: 'Combinare parole chiave ed attributi per cercare elementi specifici.'
       line4: 'Racchiudere frasi da cercare intere tra doppi apici.'
       line5: 'Aggiungere "+" davanti ad un termine per renderlo obbligatorio (altrimenti saranno inclusi risultati che corrispondono ad almeno uno dei termini inclusi).'
-      line6: 'Aggiuntere "-" davanti a una parola o frase per esclderla.'
+      line6: 'Aggiungere "-" davanti a una parola o frase per escluderla.'
       line7: 'Usare "OR", "AND" e "NOT" per creare ricerche booleane complesse. Sono accettate parentesi per racchiudere le espressioni.'
       line8: 'Troncamento e caratteri jolly non sono supportati, il troncamento è eseguito automaticamente.'
