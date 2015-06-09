@@ -9,6 +9,11 @@ fr:
         q: 'Rechercher...'
         search:
           placeholder: 'Rechercher...'
+    range_limit:
+      range_begin: "FR: %{field_label} range begin"
+      range_end: "FR: %{field_label} range end"
+      submit_limit: 'FR: Limit'
+      remove_limit: 'FR: remove'
   blacklight_advanced_search:
     all: tous les
     any: au moins un des

@@ -225,6 +225,12 @@ it:
 
     did_you_mean: 'Intendevi digitare: %{options}?'
 
+    range_limit:
+      range_begin: "%{field_label} inizio dell'intervallo"
+      range_end: "%{field_label} fine dell'intervallo"
+      submit_limit: 'Limita'
+      remove_limit: 'rimuovi'
+
   blacklight_advanced_search:
     all: tutti i campi
     any: qualsiasi campo

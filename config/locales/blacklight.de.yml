@@ -3,6 +3,11 @@ de:
     application_name: 'Muscat'
     header_links:
       logout: 'Abmelden'
+    range_limit:
+      range_begin: "DE: %{field_label} range begin"
+      range_end: "DE: %{field_label} range end"
+      submit_limit: 'DE: Limit'
+      remove_limit: 'DE: remove'
   blacklight_advanced_search:
     all: allen Eigenschaften
     any: irgendeine Eigenschaft
