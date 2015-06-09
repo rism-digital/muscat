@@ -167,7 +167,7 @@ it:
       pagination:
         title: 'Navigazione nei risultati'
       pagination_info:
-        no_items_found: 'Nessun %{entry_name} trovano'
+        no_items_found: 'Nessun %{entry_name} trovato'
         single_item_found: '<strong>1</strong> %{entry_name} trovato'
         pages:
           one: '<strong>%{start_num}</strong> - <strong>%{end_num}</strong> di <strong>%{total_num}</strong>'
@@ -224,31 +224,3 @@ it:
       default: 'termine di ricerca'
 
     did_you_mean: 'Intendevi digitare: %{options}?'
-
-    range_limit:
-      range_begin: "%{field_label} inizio dell'intervallo"
-      range_end: "%{field_label} fine dell'intervallo"
-      submit_limit: 'Limita'
-      remove_limit: 'rimuovi'
-
-  blacklight_advanced_search:
-    all: tutti i campi
-    any: qualsiasi campo
-    form:
-      title: Ricerca avanzata
-      search_context: Nella ricerca
-      limit_criteria_heading_html: "<strong>E</strong> hanno questi attributi"
-      query_criteria_heading_html: "Cerca gli elementi che corrispondono a %{select_menu}"
-      sort_label: "Ordina per"
-      start_over: "Reset"
-      search_btn: 'Cerca'
-    help:
-      title: "Consigli per la ricerca"
-      line1: 'Selezionare "tutti i campi" per rendere tutti i campi obbligatori.'
-      line2: 'Selezionare "qualsiasi campo" in modo che almeno un campo sia presente.'
-      line3: 'Combinare parole chiave ed attributi per cercare elementi specifici.'
-      line4: 'Racchiudere frasi da cercare intere tra doppi apici.'
-      line5: 'Aggiungere "+" davanti ad un termine per renderlo obbligatorio (altrimenti saranno inclusi risultati che corrispondono ad almeno uno dei termini inclusi).'
-      line6: 'Aggiuntere "-" davanti a una parola o frase per esclderla.'
-      line7: 'Usare "OR", "AND" e "NOT" per creare ricerche booleane complesse. Sono accettate parentesi per racchiudere le espressioni.'
-      line8: 'Troncamento e caratteri jolly non sono supportati, il troncamento è eseguito automaticamente.'

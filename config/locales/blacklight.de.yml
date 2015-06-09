@@ -1,31 +1,226 @@
 de:
+  views:
+    pagination:
+      first: '&laquo; Erste'
+      last: 'Letzte &raquo;'
+      previous: '&laquo; Vorige'
+      next: 'Nächste &raquo;'
+      truncate: '…'
+
+    pagination_compact:
+      previous: '&laquo; Vorige'
+      next: 'Nächste &raquo;'
+
   blacklight:
-    application_name: 'Muscat'
+    application_name: 'Blacklight'
+
     header_links:
-      logout: 'Abmelden'
-    range_limit:
-      range_begin: "DE: %{field_label} range begin"
-      range_end: "DE: %{field_label} range end"
-      submit_limit: 'DE: Limit'
-      remove_limit: 'DE: remove'
-  blacklight_advanced_search:
-    all: allen Eigenschaften
-    any: irgendeine Eigenschaft
-    form:
-      title: "Erweiterte Suche"
-      search_context: "In der Suche"
-      limit_criteria_heading_html: "<strong>und</strong> haben diese Eigenschaften"
-      query_criteria_heading_html: "Suche Elemente mit %{select_menu}"
-      sort_label: "Ordnen nach"
-      start_over: "Zurücksetzen"
-      search_btn: 'Suche'
-    help:
-      title: "DE: Search Tips"
-      line1: 'DE: Select "match all" to require all fields.'
-      line2: 'DE: Select "match any" to find at least one field.'
-      line3: 'DE: Combine keywords and attributes to find specific items.'
-      line4: 'DE: Use quotation marks to search as a phrase. '
-      line5: 'DE: Use "+" before a term to make it required. (Otherwise results matching only some of your terms may be included).'
-      line6: 'DE: Use "-" before a word or phrase to exclude. '
-      line7: 'DE: Use "OR", "AND", and "NOT" to create complex boolean logic. You can use parentheses in your complex expressions.'
-      line8: 'DE: Truncation and wildcards are not supported - word-stemming is done automatically.'
+      login: 'Anmelden'
+      logout: 'Ausloggen'
+      bookmarks: 'Lesezeichen'
+      saved_searches: 'Gespeicherte Suchen'
+      search_history: 'Geschichte'
+
+    welcome: 'Wilkommen!'
+    and: 'und'
+    or: 'oder'
+
+    bookmarks:
+      title: 'Lesezeichen'
+      no_bookmarks: 'Sie haben keine Lesezeichen'
+      add:
+        button: 'Lesezeichen'
+        success:
+          one: 'Lesezeichen erfolgreich hinzugefügt.'
+          other: 'Lesezeichen erfolgreich hinzugefügt.'
+        failure:  'Entschuldigung, es gab ein Problem beim Speichern von Lesezeichen.'
+      remove:
+        button: 'Lesezeichen entfernen'
+        success: 'Lesezeichen erfolgreich gelöscht.'
+        failure: 'Entschuldigung, es gab ein Problem beim Löschen von Lesezeichen.'
+        action_confirm: 'Dieses Lesezeichen entfernen?'
+      clear:
+        action_title: 'Lesezeichen löschen'
+        action_confirm: 'Ihre Lesezeichen löschen?'
+        success: 'Ihre Lesezeichen wurden gelöscht.'
+        failure: 'Entschuldigung, es gab ein Problem beim Löschen von Lesezeichen.'
+      need_login: 'Bitte melden Sie sich an, um Ihre Lesezeichen zu verwalten und anzusehen.'
+      list_title: 'Ihre Lesezeichen'
+      delete: 'Löschen'
+
+    saved_searches:
+      add:
+        success: 'Suche erfolgreich gespeichert.'
+        failure: 'Es gab ein Problem beim Speichern der Suchen.'
+      remove:
+        success: 'Suche erfolgreich gelöscht.'
+        failure: 'Es gab ein Problem beim Löschen der Suchen.'
+      clear:
+        action_title: 'Gespeicherte Suchen löschen'
+        action_confirm: 'Ihre gespeicherten Suchen löschen?'
+        success: 'Ihre gespeicherten Suchen wurden gelöscht.'
+        failure: 'Es gab ein Problem beim Löschen der Suchen.'
+      title: 'Gespeicherte Suchen'
+      need_login: 'Bitte melden Sie sich an, um Ihre gespeicherten Suchen anzuschauen und verwalten.'
+      no_searches: 'Sie haben keine gespeicherten Suchen'
+      list_title: 'Ihre gespeicherten Suchen'
+      delete: 'Löschen'
+
+    search_history:
+      clear:
+        action_title: 'Suchverlauf löschen'
+        action_confirm: 'Ihren Suchverlauf löschen?'
+        success: 'Suchverlauf gelöscht.'
+        failure: 'Es gab ein Problem beim Löschen des Suchverlaufs.'
+      title: 'Suchverlauf'
+      no_history: 'Sie haben keinen Suchverlauf'
+      recent: 'Ihre neueste Suchen'
+      forget: 'vergessen'
+      save: 'speichern'
+
+    tools:
+      title: 'Werkzeuge'
+      cite: 'Zitieren'
+      endnote: 'Export nach EndNote'
+      refworks: 'Export nach Refworks'
+      email: 'Email'
+      sms: 'SMS senden'
+      clear: 'Löschen'
+
+    citation:
+      mla: 'MLA'
+      apa: 'APA'
+      chicago: 'Chicago'
+
+    email:
+      form:
+        title: 'Email senden'
+        to: 'Email:'
+        message: 'Meldung:'
+        submit: 'Schicken'
+      text:
+        title: 'Titel: %{value}'
+        author: 'Autor: %{value}'
+        format: 'Format: %{value}'
+        language: 'Sprache: %{value}'
+        subject:
+          one: 'Datensatz: %{title}'
+          other: 'Datensätze'
+        url: 'URL: %{url}'
+        message: 'Mitteilung: %{message}'
+
+      success: "Email verschickt"
+
+      errors:
+        to:
+          invalid: 'Sie müssen eine gültige E-Mail-Addresse angeben'
+          blank: 'Sie müssen einen Empfänger angeben, um diese Mitteilung zu schicken'
+    sms:
+      form:
+        title: 'SMS senden'
+        to: 'Telefonnummer:'
+        carrier: 'Netzbetreiber'
+        carrier_prompt: 'Bitte Ihren Netzbetreiber auswählen'
+        submit: 'Schicken'
+      text:
+        title: '%{value}'
+        author: ' von %{value}'
+        url: 'Link: %{url}'
+      success: "SMS verschickt"
+      errors:
+        to:
+          invalid: 'Sie müssen eine gültige 10-stellige Telefonnummer angeben'
+          blank: "Sie müssen die Telefonnummer eines Empfängers eingeben, um diese Mitteilung zu schicken"
+        carrier:
+          blank: 'Sie müssen einen Netzbetreiber wählen'
+          invalid: "Sie müssen einen gültigen Netzbetreiber wählen"
+
+    back_to_search: 'Zurück zur Suche'
+    back_to_bookmarks: 'Zurück zu den Lesezeichen'
+
+    search:
+      title: '%{application_name} Suchergebnisse'
+      search_results_header: 'Suchen'
+      search_results: 'Suchergebnisse'
+      errors:
+        request_error: "Entschuldigung, ich habe Ihre Suche nicht verstanden."
+        invalid_solr_id: "Entschuldigung, Sie haben einen nicht vorhandenen Datensatz angefordert."
+      per_page:
+        label: '%{count}<span class="sr-only"> pro Seite</span>'
+        button_label: '%{count} pro Seite'
+        title: 'Anzahl Ergebnisse pro Seite'
+        submit: 'Aktualisieren'
+      sort:
+        label: 'Ordnen nach %{field}'
+        submit: 'Ergebnisse ordnen'
+      form:
+        search_field:
+          label: 'Suchen in'
+          title: 'gezielte Suchoptionen'
+          post_label: 'für'
+        # i18n key 'q' is deprecated and will be removed in Blacklight 6.0, use 'search.label' and 'search.placeholder'
+        q: 'Suchen...'
+        search:
+          label: 'suchen nach'
+          placeholder: 'Suchen...'
+        submit: 'Suchen'
+      pagination:
+        title: 'Navigieren in den Ergebnissen'
+      pagination_info:
+        no_items_found: 'Kein %{entry_name} gefunden'
+        single_item_found: '<strong>1</strong> %{entry_name} gefunden'
+        pages:
+          one: '<strong>%{start_num}</strong> - <strong>%{end_num}</strong> von <strong>%{total_num}</strong>'
+          other: '<strong>%{start_num}</strong> - <strong>%{end_num}</strong> von <strong>%{total_num}</strong>'
+      entry_pagination_info:
+        one: '<strong>1 von 1</strong>'
+        other: '<strong>%{current}</strong> von <strong>%{total}</strong>'
+      documents:
+        counter: '%{counter}. '
+      facets:
+        title: 'Suche einschränken'
+        sort:
+          count: 'Numerisch ordnen'
+          index: 'Alphabetisch ordnen'
+        count: '%{number}'
+        # i18n key 'more' is deprecated and will be removed in Blacklight 6.0
+        more: 'mehr »'
+        more_html: 'mehr <span class="sr-only">%{field_name}</span> »'
+        selected:
+          remove: '[entfernen]'
+      group:
+        more: 'mehr »'
+      filters:
+        title: 'Sie suchten nach:'
+        label: '%{label}:'
+        remove:
+          value: 'Entfernen Filter %{value}'
+          label_value: 'Entfernen Filter %{label}: %{value}'
+      start_over: 'Zurücksetzen'
+      index:
+        label: '%{label}:'
+      show:
+        title: '%{document_title} - %{application_name}'
+        label: '%{label}:'
+      rss_feed: 'RSS für Ergebnisse'
+      atom_feed: 'Atom für Ergebnisse'
+      fields:
+        default: 'Stichwort'
+      bookmarks:
+        present: "In den Lesezeichen"
+        absent: "Lesezeichen"
+        inprogress: "Speichern..."
+      zero_results:
+        title: "Keine Ergebnisse für Ihre Suche gefunden"
+        modify_search: "Ändern Sie Ihre Suche"
+        use_fewer_keywords: "Benutzen Sie weniger Stichworte am Anfang, danach verfeinern Sie Ihre Suche mit den Filtern auf der linken Seite."
+        search_fields: "Sie haben nach %{search_fields} gesucht"
+        search_everything: "Suchen Sie in alle Felder"
+      view_title: "Ergebnisse anschauen als: "
+      view:
+        list: "Liste"
+
+    entry_name:
+      default: 'Eintrag'
+
+    did_you_mean: 'Meinten Sie: %{options}?'

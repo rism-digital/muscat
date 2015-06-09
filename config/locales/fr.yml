@@ -464,3 +464,40 @@ fr:
     - "jeudi"
     - "vendredi"
     - "samedi"
+
+  blacklight:
+    application_name: 'Muscat'
+    header_links:
+      logout: 'Déconnexion'
+    search:
+      start_over: 'Nouvelle recherche'
+      form:
+        q: 'Rechercher...'
+        search:
+          placeholder: 'Rechercher...'
+    range_limit:
+      range_begin: "FR: %{field_label} range begin"
+      range_end: "FR: %{field_label} range end"
+      submit_limit: 'FR: Limit'
+      remove_limit: 'FR: remove'
+  blacklight_advanced_search:
+    all: tous les
+    any: au moins un des
+    form:
+      title: "Recherche avancée"
+      search_context: "Dans la recherche"
+      limit_criteria_heading_html: "<strong>et</strong> ont cet attribut"
+      query_criteria_heading_html: "Rechercher les titres correspondant à %{select_menu} critères"
+      sort_label: "Trier par"
+      start_over: "Nouvelle recherche"
+      search_btn: 'Chercher'
+    help:
+      title: "FR: Search Tips"
+      line1: 'FR: Select "match all" to require all fields.'
+      line2: 'FR: Select "match any" to find at least one field.'
+      line3: 'FR: Combine keywords and attributes to find specific items.'
+      line4: 'FR: Use quotation marks to search as a phrase. '
+      line5: 'FR: Use "+" before a term to make it required. (Otherwise results matching only some of your terms may be included).'
+      line6: 'FR: Use "-" before a word or phrase to exclude. '
+      line7: 'FR: Use "OR", "AND", and "NOT" to create complex boolean logic. You can use parentheses in your complex expressions.'
+      line8: 'FR: Truncation and wildcards are not supported - word-stemming is done automatically.'
