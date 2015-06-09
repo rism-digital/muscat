@@ -260,7 +260,7 @@ fr:
   filter_key: "Tonalité"
   filter_language: "Langue"
   filter_last_updated: "Dernière mise à jour"
-  filter_lib_siglum: "Sigles de bibliothèque"
+  filter_lib_siglum: "Sigle de bibliothèque"
   filter_life_dates: "Dates de vie"
   filter_links: "Liens"
   filter_liturgical_feast: "Fête liturgique"
