@@ -1,5 +1,9 @@
 
 # Version 2 - For SOLR and Muscat 3
+# Note: the default store type is TEXT
+# WHich means it is tokenized
+# For facets and untokenized filtering
+# use string (or integer)
 
 config:
     :version: 2.0
@@ -50,15 +54,17 @@ fields:
   "240k":
   "240m":
       :store: true
+  "240m_filter":
+      :type: string
+      :from_tag: "240"
+      :from_subtag: "m"
   "240n":
       :store: true
-      :type: text
   "240o":
   "240p":
   "240r":
       :store: true
   "245a":
-      :type: text
   "245b":
   "245c":
   "246a":
