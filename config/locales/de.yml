@@ -152,8 +152,8 @@ de:
         one: "Gruppe"
         other: "Gruppen"
       institution:
-        one: "Institution"
-        other: "Institutionen"
+        one: "Körperschaft"
+        other: "Körperschaften"
       liturgical_feast:
         one: "Liturgisches Fest"
         other: "Liturgische Feste"
