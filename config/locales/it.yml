@@ -463,7 +463,7 @@ it:
      - "giovedì"
      - "venerdì"
      - "sabato"
-	 
+
   blacklight:
     application_name: 'Muscat'
     header_links:
