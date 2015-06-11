@@ -233,6 +233,14 @@ h5.panel-title > a {
 
 }
 
+div.document {
+    margin-top: 0px !important;
+    padding-bottom: 6px;
+}
+div.document:last-child {
+    margin-bottom: 6px;
+}
+
 form.bookmark_toggle {
     display: none;
 }
