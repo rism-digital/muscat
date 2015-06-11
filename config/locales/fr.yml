@@ -206,7 +206,7 @@ fr:
   library_sigla_contains: "La cote contient"
   is_in_folder: "Est dans le dossier"
   workgroups: "Groupes"
-  roles: "ROLES"
+  roles: "Rôles"
   user_details: "Détail de l'utilisateur"
   sections: "Sections"
   edit: "Modifier"
@@ -215,8 +215,8 @@ fr:
   updated_at: "Dernière modification"
  
   # Editor sidebar
-  show_all_groups: "SHOW ALL GROUPS"
-  show_preview: "SHOW/HIDE PREVIEW"
+  show_all_groups: "Afficher tous les groupes"
+  show_preview: "Montrer/masquer l'aperçu"
  
   #### FOLDER MESSAGES
   folders:
@@ -234,7 +234,7 @@ fr:
   filter_author: "Auteur"
   filter_autograph_of: "Autographe de"
   filter_birth_place: "Lieu de naissance"
-  filter_catalog: "CATALOG"
+  filter_catalog: "Catalogue"
   filter_collection: "Collection"
   filter_comments: "Commentaires"
   filter_composer: "Compositeur"
@@ -256,7 +256,7 @@ fr:
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
   filter_incipit_key: "Tonalité d'incipit"
-  filter_institution: "INSTITUTION"
+  filter_institution: "Institution"
   filter_institutions: "Institutions"
   filter_key: "Tonalité"
   filter_language: "Langue"
@@ -277,15 +277,15 @@ fr:
   filter_people: "Personnes"
   filter_phone: "Téléphone"
   filter_place: "Endroit"
-  filter_provenance: "PROVENANCE"
+  filter_provenance: "Provenance"
   filter_revue_title: "Titre de la revue"
   filter_id: "No RISM"
   filter_id_no: "No RISM"
-  filter_scoring: "SCORING"
+  filter_scoring: "Distribution"
   filter_siglum: "Sigle"
   filter_source: "Source"
   filter_sources: "Sources"
-  filter_source_type: "SOURCE TYPE"
+  filter_source_type: "Type de source"
   filter_std_title: "Titre uniforme"
   filter_subject: "Sujet"
   filter_term: "Terme"
@@ -365,14 +365,14 @@ fr:
     other: "titres ou incipits de texte"  
 
   user:
-    one: "USER"
-    other: "USERS" 
+    one: "Utilisateur"
+    other: "Utilisateurs" 
   job:
-    one: "JOB"
-    other: "JOBS"
+    one: "Tâche"
+    other: "Tâches"
   folder:
-    one: "FOLDER"
-    other: "FOLDERS"
+    one: "Dossier"
+    other: "Dossiers"
 
   will_paginate:
     page_entries_info:
