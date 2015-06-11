@@ -56,8 +56,12 @@ module ApplicationHelper
   end
   
   # Link a manuscript by its RISM id
-  def application_helper_link_source_id(value)
-    link_to( value, { :action => "show", :controller => "admin/sources", :id => value })
+  def application_helper_link_source_id(value, subfield, opac) # This could have never worked
+    if opac
+      link_to(value, catalog_path(value))
+    else
+      link_to( value, { :action => "show", :controller => "admin/sources", :id => value })
+    end
   end
   
   # Link a manuscript by its RISM id

@@ -5,6 +5,10 @@ class CatalogController < ApplicationController
   before_action :redirect_legacy_values, :only => :show
   
   def redirect_legacy_values
+    # Rewrite old IDS with five leading zeros
+    if params[:id].start_with?('00000')
+      params[:id] = params[:id][5, params[:id].length]
+    end
     params[:id] = "Source " + params[:id]
   end
 
