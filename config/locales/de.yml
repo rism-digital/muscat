@@ -475,22 +475,22 @@ de:
       remove_limit: 'DE: remove'
   blacklight_advanced_search:
     all: allen Eigenschaften
-    any: irgendeine Eigenschaft
+    any: irgendeiner Eigenschaft
     form:
       title: "Erweiterte Suche"
       search_context: "In der Suche"
       limit_criteria_heading_html: "<strong>und</strong> haben diese Eigenschaften"
-      query_criteria_heading_html: "Suche Elemente mit %{select_menu}"
+      query_criteria_heading_html: "Elemente mit %{select_menu} suchen"
       sort_label: "Ordnen nach"
       start_over: "Zurücksetzen"
       search_btn: 'Suche'
     help:
-      title: "DE: Search Tips"
-      line1: 'DE: Select "match all" to require all fields.'
-      line2: 'DE: Select "match any" to find at least one field.'
-      line3: 'DE: Combine keywords and attributes to find specific items.'
-      line4: 'DE: Use quotation marks to search as a phrase. '
-      line5: 'DE: Use "+" before a term to make it required. (Otherwise results matching only some of your terms may be included).'
-      line6: 'DE: Use "-" before a word or phrase to exclude. '
-      line7: 'DE: Use "OR", "AND", and "NOT" to create complex boolean logic. You can use parentheses in your complex expressions.'
-      line8: 'DE: Truncation and wildcards are not supported - word-stemming is done automatically.'
+      title: "Suchtipps"
+      line1: 'Wählen Sie "alle Eigenschaften", um in allen Feldern zu suchen.'
+      line2: 'Wählen Sie "irgendeine Eigenschaft", um in mindestens einem Feld zu suchen.'
+      line3: 'Kombinieren Sie Suchbegriffe und Eigenschaften, um bestimmte Einträge zu finden.'
+      line4: 'Benutzen Sie Anführungszeichen, um ganze Sätze oder Phrasen zu suchen.'
+      line5: 'Geben Sie ein "+" vor einem erforderlichen Begriff ein. (Ansonsten werden Treffer eingezeigt, die nur einige Ihrer Suchbegriffe beinhalten).'
+      line6: 'Geben Sie ein "-" vor einem Wort oder Phrase, um sie auszuschliessen.'
+      line7: 'Benutzen Sie die Booleschen Operatoren "OR", "AND" und "NOT", um komplexe Verknüpfungen darzustellen. Sie können Klammern in Ihrer Sucheingabe benutzen.'
+      line8: 'Trunkierung und Platzhalter werden nicht unterstützt, die Trunkierung ist automatisiert.'
