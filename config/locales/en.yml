@@ -442,19 +442,3 @@ en:
     application_name: 'Muscat'
     header_links:
       logout: 'Logout'
-    search:
-      form:
-        search_field:
-          composer: "Prout"
-
-  blacklight_advanced_search:
-    help:
-      title: "Search Tips"
-      line1: 'Select "match all" to require all fields.'
-      line2: 'Select "match any" to find at least one field.'
-      line3: 'Combine keywords and attributes to find specific items.'
-      line4: 'Use quotation marks to search as a phrase. '
-      line5: 'Use "+" before a term to make it required. (Otherwise results matching only some of your terms may be included).'
-      line6: 'Use "-" before a word or phrase to exclude. '
-      line7: 'Use "OR", "AND", and "NOT" to create complex boolean logic. You can use parentheses in your complex expressions.'
-      line8: 'Truncation and wildcards are not supported - word-stemming is done automatically.'

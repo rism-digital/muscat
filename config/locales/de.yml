@@ -469,10 +469,10 @@ de:
     header_links:
       logout: 'Abmelden'
     range_limit:
-      range_begin: "DE: %{field_label} range begin"
-      range_end: "DE: %{field_label} range end"
-      submit_limit: 'DE: Limit'
-      remove_limit: 'DE: remove'
+      range_begin: "%{field_label} range begin"
+      range_end: "%{field_label} range end"
+      submit_limit: 'Beschränken'
+      remove_limit: 'entfernen'
   blacklight_advanced_search:
     all: allen Eigenschaften
     any: irgendeine Eigenschaft
@@ -484,13 +484,3 @@ de:
       sort_label: "Ordnen nach"
       start_over: "Zurücksetzen"
       search_btn: 'Suche'
-    help:
-      title: "DE: Search Tips"
-      line1: 'DE: Select "match all" to require all fields.'
-      line2: 'DE: Select "match any" to find at least one field.'
-      line3: 'DE: Combine keywords and attributes to find specific items.'
-      line4: 'DE: Use quotation marks to search as a phrase. '
-      line5: 'DE: Use "+" before a term to make it required. (Otherwise results matching only some of your terms may be included).'
-      line6: 'DE: Use "-" before a word or phrase to exclude. '
-      line7: 'DE: Use "OR", "AND", and "NOT" to create complex boolean logic. You can use parentheses in your complex expressions.'
-      line8: 'DE: Truncation and wildcards are not supported - word-stemming is done automatically.'
