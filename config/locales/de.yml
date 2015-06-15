@@ -475,12 +475,12 @@ de:
       remove_limit: 'entfernen'
   blacklight_advanced_search:
     all: allen Eigenschaften
-    any: irgendeine Eigenschaft
+    any: irgendeiner Eigenschaft
     form:
       title: "Erweiterte Suche"
       search_context: "In der Suche"
       limit_criteria_heading_html: "<strong>und</strong> haben diese Eigenschaften"
-      query_criteria_heading_html: "Suche Elemente mit %{select_menu}"
+      query_criteria_heading_html: "Elemente mit %{select_menu} suchen"
       sort_label: "Ordnen nach"
       start_over: "Zurücksetzen"
       search_btn: 'Suche'
