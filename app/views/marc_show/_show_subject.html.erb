@@ -10,7 +10,11 @@
 			<%= @editor_profile.get_sub_label(tag.tag, "a") %>
 		<%- end %>
 	</th>
-	<td>		
-		<%= link_to subject, standard_term_path(db_id) %>
+	<td>
+		<% if opac %>
+			<%= link_to subject, catalog_index_path(:search_field => "subject", :q => subject) %>
+		<% else %>
+			<%= link_to subject, admin_standard_term_path(db_id) %>
+		<% end %>
 	</td>
 </tr>

@@ -61,7 +61,7 @@ it:
       button_label: "Azioni"
     batch_actions:
       button_label: "Azioni multiple"
-      default_confirmation: "Sei sicuro di che voler fare questo?"
+      default_confirmation: "Sei sicuro di voler fare questo?"
       delete_confirmation: "Sei sicuro di volere cancellare %{plural_model}?"
       succesfully_destroyed:
         one: "Eliminato con successo 1 %{model}"
@@ -75,11 +75,11 @@ it:
 
     comments:
       resource_type: "Tipo di risorsa"
-      author_type: "Tipo di Autore"
-      body: "Corpo"
+      author_type: "Tipo di autore"
+      body: "Contenuto"
       author: "Autore"
       title: "Commento"
-      add: "Aggiungi Commento"
+      add: "Aggiungi commento"
       resource: "Risorsa"
       no_comments_yet: "Nessun commento."
       author_missing: "Anonimo"
@@ -88,7 +88,7 @@ it:
         empty_text: "Il commento non può essere salvato, il testo è vuoto."
     devise:
       username:
-        title: "Nome Utente"
+        title: "Nome utente"
       email:
         title: "Email"
       subdomain:
@@ -96,8 +96,8 @@ it:
       password:
         title: "Password"
       sign_up:
-        title: "SIGN UP"
-        submit: "SIGN UP"
+        title: "Registrati"
+        submit: "Registrami"
       login:
         title: "Entra"
         remember_me: "Ricordami"
@@ -152,11 +152,11 @@ it:
         one: "Gruppo"
         other: "Gruppi"
       institution:
-        one: "Istitutione"
+        one: "Istituzione"
         other: "Istituzioni"
       liturgical_feast:
-        one: "Festa Liturgica"
-        other: "Feste Liturgiche"
+        one: "Festa liturgica"
+        other: "Feste liturgiche"
       person:
         one: "Persona"
         other: "Persone"
@@ -167,8 +167,8 @@ it:
         one: "Termine standard"
         other: "Termini standard"
       standard_title:
-        one: "Titolo Standard"
-        other: "titoli Standard"
+        one: "Titolo standard"
+        other: "Titoli standard"
       user:
         one: "Utente"
         other: "Utenti"
@@ -176,7 +176,8 @@ it:
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Fonti"
-  menu_advanced_search: "Ricerca Avanzata"
+  menu_simple_search: "Ricerca semplice"
+  menu_advanced_search: "Ricerca avanzata"
   menu_indexes: "Indici"
   menu_people: "Persone"
   menu_institutions: "Istituzioni"
@@ -193,27 +194,29 @@ it:
   menu_administration: "Amministrazione"
   menu_comments: "Commenti"
   menu_languages: "Lingue"
+  menu_contact: "Contatti"
+  menu_search_history: "Ricerche effettuate"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modificazione"
   any_field_contains: "Qualsiasi campo contiene"
-  title_contains: "Titolo Diplomatico contiene"
-  std_title_contains: "Titolo Standard contiene"
-  composer_contains: "Compsitore contiene"
+  title_contains: "Titolo diplomatico contiene"
+  std_title_contains: "Titolo standard contiene"
+  composer_contains: "Compositore contiene"
   library_sigla_contains: "La sigla contiene"
-  is_in_folder: "É nella cartella"
+  is_in_folder: "È nella cartella"
   workgroups: "Gruppi"
   roles: "Ruoli"
-  user_details: "Dettagli per l'Utente"
+  user_details: "Dettagli per l'utente"
   sections: "Sezioni"
   edit: "Modifica"
-  search_sources: "Cerca Fonti"
+  search_sources: "Cerca fonti"
   created_at: "Data di creazione"
   updated_at: "Ultima modifica"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
-  show_preview: "Mostra/Nascondi anteprima"
+  show_preview: "Mostra/nascondi anteprima"
   
   #### FOLDER MESSAGES
   folders:
@@ -222,13 +225,6 @@ it:
     too_many: "Impossibile aggiungere più di %{max} oggetti (ne sono selezionati %{count})."
     
   ############ filters
-  039a: GENDER
-  559a: PROFESSION
-  100d: LIFE DATES
-  100d_birthdate: YEAR OF BIRTH
-  100d_deathdate: YEAR OF DEATH
-  043c: COUNTRY CODE
-  569a: PLACES
   filter_address: "Indirizzo"
   filter_alternate_dates: "Date alternative"
   filter_alternate_names: "Nomi alternativi"
@@ -238,10 +234,11 @@ it:
   filter_author: "Autore"
   filter_autograph_of: "Autografo di"
   filter_birth_place: "Luogo di nascita"
+  filter_catalog: "Catalogo"
   filter_collection: "Collezione"
   filter_comments: "Commenti"
   filter_composer: "Compositore"
-  filter_connected_libraries: "Libraries"
+  filter_connected_libraries: "Biblioteche"
   filter_country: "Paese"
   filter_creation_date: "Data di composizione"
   filter_date: "Data"
@@ -254,11 +251,12 @@ it:
   filter_folder_type: "Folder Type"
   filter_full_name: "Nome"
   filter_gender: "Sesso"
-  #filter_id: "ID"
+  filter_id: "ID"
   filter_incipits: "Incipit"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
   filter_incipit_key: "Tonalità dell'incipit"
+  filter_institution: "Istituzione"
   filter_institutions: "Istituzioni"
   filter_key: "Chiave"
   filter_language: "Lingua"
@@ -279,14 +277,17 @@ it:
   filter_people: "Persone"
   filter_phone: "Telefono"
   filter_place: "Luogo"
+  filter_provenance: "Provenienza"
   filter_revue_title: "Testata"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
-  filter_siglum: "Siglum"
+  filter_scoring: "Organico"
+  filter_siglum: "Sigla"
   filter_source: "Fonte"
   filter_sources: "Fonti"
+  filter_source_type: "Tipo di fonte"
   filter_std_title: "Titolo uniforme"
-  filter_subjects: "Soggetti"
+  filter_subject: "Soggetto"
   filter_term: "Termine"
   filter_thematic_opus: "Catalogo / Num. d'opera"
   filter_title: "Titolo"
@@ -304,7 +305,7 @@ it:
   filter_dist_594a: "Parti vocali (soli)"
   filter_dist_594b: "Altre parti vocali (soli)"
   filter_dist_594c: "Parti vocali (coro)"
-  filter_dist_594d: "Altre Parti vocali (coro)"
+  filter_dist_594d: "Altre parti vocali (coro)"
   filter_dist_594e: "Strumenti solisti"
   filter_dist_594f: "Archi"
   filter_dist_594g: "Legni"
@@ -312,7 +313,7 @@ it:
   filter_dist_594i: "Strumenti a pizzico"
   filter_dist_594k: "Percussioni"
   filter_dist_594l: "Strumenti da tasto"
-  filter_dist_594m: "Altri instrumenti"
+  filter_dist_594m: "Altri strumenti"
   filter_dist_594n: "Strumenti del basso continuo"
   
   rism_any_key: "ogni tonalità"
@@ -333,8 +334,8 @@ it:
   
   #
   entry:
-     one: "entry"
-     other: "entries"
+     one: "voce"
+     other: "voci"
   catalogue:
     one: "catalogo"
     other: "cataloghi"
@@ -377,7 +378,7 @@ it:
     page_entries_info:
       single_page_html:
         zero: "Nessun %{model} trovato" 
-        one: "Risultati di ricerca <b>1</b> %{model}"
+        one: "Risultato di ricerca <b>1</b> %{model}"
         other:  "Risultati di ricerca <b> %{count}</b> %{model}%"
       multi_page_html: "Risultati di ricerca %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{count}</b> in totale"
 
@@ -431,7 +432,7 @@ it:
   hls_link_name: "DSS"
   
   do_link_lang: "ITA"
-  do_media_files_title: "File Multimediali"
+  do_media_files_title: "File multimediali"
   do_ext_res_link: "Collegamenti esterni:"
   do_ext_link_not_avail: "(File audio non disponibile da questa postazione)"
   do_images_title: "Immagini"
@@ -441,23 +442,51 @@ it:
   
   date:
      month_names:
-       - "gennaio"
-       - "febbraio"
-       - "marzo"
-       - "aprile"
-       - "maggio"
-       - "giugno"
-       - "luglio"
-       - "agosto"
-       - "settembre"
-       - "ottobre"
-       - "novembre"
-       - "dicembre"
+     -
+     - "gennaio"
+     - "febbraio"
+     - "marzo"
+     - "aprile"
+     - "maggio"
+     - "giugno"
+     - "luglio"
+     - "agosto"
+     - "settembre"
+     - "ottobre"
+     - "novembre"
+     - "dicembre"
      day_names:
-       - "domenica"
-       - "lunedì"
-       - "martedì"
-       - "mercoledì"
-       - "giovedì"
-       - "venerdì"
-       - "sabato"
+     - "domenica"
+     - "lunedì"
+     - "martedì"
+     - "mercoledì"
+     - "giovedì"
+     - "venerdì"
+     - "sabato"
+
+  blacklight:
+    application_name: 'Muscat'
+    header_links:
+      logout: 'Logout'
+    search:
+      start_over: 'Nuova Ricerca'
+      form:
+        q: 'Ricerca in corso...'
+        search:
+          placeholder: 'Rechercher...'
+    range_limit:
+      range_begin: "%{field_label} inizio dell'intervallo"
+      range_end: "%{field_label} fine dell'intervallo"
+      submit_limit: 'Limita'
+      remove_limit: 'rimuovi'
+  blacklight_advanced_search:
+    all: tutti i campi
+    any: qualsiasi campo
+    form:
+      title: Ricerca avanzata
+      search_context: Nella ricerca
+      limit_criteria_heading_html: "<strong>E</strong> hanno questi attributi"
+      query_criteria_heading_html: "Cerca gli elementi che corrispondono a %{select_menu}"
+      sort_label: "Ordina per"
+      start_over: "Reset"
+      search_btn: 'Cerca'

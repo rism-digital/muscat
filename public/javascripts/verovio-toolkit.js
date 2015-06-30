@@ -1,1 +1,1 @@
-verovio-toolkit-0.9.6.js
+verovio-toolkit-develop-meiscore.js

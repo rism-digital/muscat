@@ -13,6 +13,8 @@ module RISM
   MARC = "ch"
   # Select the configuration for the editor profiles to load
   EDITOR_PROFILE = ""
+  # Url redirection for the deprecated Page controller (to be set only if the installation was previously in Muscat 2 with page)
+  LEGACY_PAGES_URL = 'http://pages'
   
   BASE_NEW_IDS = { 
     :catalogue        => 50000000,
@@ -25,7 +27,26 @@ module RISM
     :standard_title   => 50000000,
     :work             => 50000000
   }
-
+  
+  # The project line in the header
+  PROJECTLINE = "R&eacute;pertoire International des Sources Musicales"
+  # The strap line in the header 
+  STRAPLINE = "Schweiz - Suisse - Svizzera - Switzerland"
+  # The left footer
+  FOOTER= "&copy; 2015 &ndash; Verein Arbeitsstelle Schweiz des RISM<br>Hallwylstrasse 15 &ndash; Postfach 286 &ndash; CH-3000 Bern 6"
+  # Header menu
+  MENUS = {
+    :menu_help       => "http://www.rism.info/help",
+    :menu_home       => "http://www.rism.info/"
+  }
+  # Locales for Blacklight
+  LOCALES = {
+    :en => "English",
+    :de => "Deutsch",
+    :fr => "Fran&ccedil;ais",
+    :it => "Italiano"
+  }
+  
 end
 
 module Muscat

@@ -129,7 +129,7 @@ en:
       table: "Table"
       block: "List"
       grid: "Grid"
-      blog: "BLOG"
+      blog: "Blog"
   switch_language: "Switch language" 
   this_file_language: "English"
   
@@ -176,7 +176,8 @@ en:
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Sources"
-  menu_advanced_search: "Advanced Search"
+  menu_simple_search: "Simple search"
+  menu_advanced_search: "Advanced search"
   menu_indexes: "Indexes"
   menu_people: "People"
   menu_institutions: "Institutions"
@@ -193,6 +194,8 @@ en:
   menu_administration: "Administration"
   menu_comments: "Comments"
   menu_languages: "Language"
+  menu_contact: "Contact"
+  menu_search_history: "Search history"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
@@ -222,13 +225,6 @@ en:
     too_many: "Cannot add more than %{max} items (%{count} SÉLÉCTIONÉS)."
   
   ############ filters
-  039a: Gender
-  559a: Profession
-  100d: Life Dates
-  100d_birthdate: Year of Birth
-  100d_deathdate: Year of Death
-  043c: Country Code
-  569a: Places
   filter_address: "Address"
   filter_alternate_dates: "Alternate dates"
   filter_alternate_names: "Alternate names"
@@ -238,6 +234,7 @@ en:
   filter_author: "Author"
   filter_autograph_of: "Autograph of"
   filter_birth_place: "Birth place"
+  filter_catalog: "Catalog"
   filter_collection: "Collection"
   filter_comments: "Comments"
   filter_composer: "Composer"
@@ -254,11 +251,12 @@ en:
   filter_folder_type: "Folder Type"
   filter_full_name: "Name"
   filter_gender: "Gender"
-  #filter_id: "ID"
+  filter_id: "ID"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
   filter_incipit_key: "Incipit key"
+  filter_institution: "Institution"
   filter_institutions: "Institutions"
   filter_key: "Key"
   filter_language: "Language"
@@ -279,14 +277,17 @@ en:
   filter_people: "People"
   filter_phone: "Phone"
   filter_place: "Place"
+  filter_provenance: "Provenance"
   filter_revue_title: "Revue title"
-  filter_id: "RISM ID"
-  filter_id_no: "RISM ID"
+  filter_id: "Rism ID"
+  filter_id_no: "Rism ID"
+  filter_scoring: "Scoring"
   filter_siglum: "Siglum"
   filter_source: "Source"
   filter_sources: "Sources"
+  filter_source_type: "Source Type"
   filter_std_title: "Standardised title"
-  filter_subjects: "Subjects"
+  filter_subject: "Subject"
   filter_term: "Term"
   filter_thematic_opus: "Thematic cat. / Opus no."
   filter_title: "Title"
@@ -383,8 +384,8 @@ en:
   
     models:
       person: 
-        one: "PERSONA"
-        other: "PERSONE"
+        one: "Person"
+        other: "People"
 
   manuscript_links:
      one: "1 source"
@@ -436,3 +437,8 @@ en:
   do_ext_link_not_avail: "(Audio files not available from this location)"
   do_images_title: "Images"
   connected_libraries: "Libraries"
+  
+  blacklight:
+    application_name: 'Muscat'
+    header_links:
+      logout: 'Logout'

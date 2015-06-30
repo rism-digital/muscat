@@ -214,7 +214,7 @@ function load_verovio() {
 	element.src = "/javascripts/verovio-toolkit.js";
 	document.body.appendChild(element);
 	
-    element.onreadystagechange = finalize_verovio;            
+    element.onreadystagechange = finalize_verovio;
     element.onload = finalize_verovio;
 
 }

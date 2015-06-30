@@ -1,0 +1,65 @@
+<div id="header-navbar" class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle btn collapsed" data-toggle="collapse" data-target="#user-util-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="slogan">
+                <a href="/">
+                    <div class="hidden-sm hidden-xs">
+                        <span class="slogan-top"><%= RISM::PROJECTLINE.html_safe %></span><br />
+                        <span class="slogan-bottom"><%= RISM::STRAPLINE.html_safe %></span>
+                    </div>
+                    <div class="hidden-md hidden-lg">
+                        <img src="/images/logo3.png">
+                    </div>
+                </a>
+            </div>
+    </div>
+    <div class="collapse navbar-collapse" id="user-util-collapse">
+        <div class="navbar-right">
+            <ul class="nav navbar-nav">
+                <%- RISM::MENUS.each do |m| %>
+                <li>
+                    <%= link_to t(m[0]), m[1] %>
+                </li>
+                <%- end %>
+            </ul>
+        </div>
+    </div>
+  </div>
+</div>
+<% if request.path != "/advanced" %>
+	<div id="search-navbar" class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="col-md-3 hidden-sm hidden-xs search-navbar-logo">
+            <img src="/images/logo-large-ch.png">
+        </div>
+        <div class="col-md-9 search-navbar-right">
+            <div class="search-navbar-locale pull-right">
+                <%- RISM::LOCALES.each do |l| %>
+                <a href="?locale=<%= l[0] -%>"><%= l[1].html_safe -%></a>
+                <%- end %>
+            </div>
+            <div class="search-navbar-text">
+                <%= render_search_bar  %>
+            </div>
+        </div>
+    </div>
+</div>
+<% else %>
+<div id="search-navbar" class="navbar navbar-default navbar-static-top advanced" role="navigation">
+    <div class="container"> 
+        <div class="col-md-12 search-navbar-right">
+            <div class="search-navbar-locale pull-right">
+                <%- RISM::LOCALES.each do |l| %>
+                <a href="?locale=<%= l[0] -%>"><%= l[1].html_safe -%></a>
+                <%- end %>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>

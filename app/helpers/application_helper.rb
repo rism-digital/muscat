@@ -42,7 +42,7 @@ module ApplicationHelper
   
 
   # Create a link for a page in a new window
-  def application_helper_link_http(value, node)
+  def application_helper_link_http(value, node, opac)
     result = []
     links = value.split("\n")
     links.each do |link|
@@ -56,8 +56,21 @@ module ApplicationHelper
   end
   
   # Link a manuscript by its RISM id
-  def application_helper_link_source_id(value)
-    link_to( value, { :action => "show", :controller => "sources", :id => value })
+  def application_helper_link_source_id(value, subfield, opac) # This could have never worked
+    if opac
+      link_to(value, catalog_path(value))
+    else
+      link_to( value, { :action => "show", :controller => "admin/sources", :id => value })
+    end
+  end
+  
+  # Link a manuscript by its RISM id
+  def application_helper_link_to_library(value, subfield, opac)
+		if opac
+			link_to value, catalog_index_path(:search_field => "library_siglum", :q => value)
+		else
+			value
+		end
   end
   
   #################

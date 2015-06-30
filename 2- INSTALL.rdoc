@@ -86,7 +86,7 @@ Install base configuration:
 Install the base css:
 
  cd muscat/config
- cp muscat-custom-sample.scss ../app/assets/stylesheets/muscat-custom.scss
+ cp muscat-custom-sample.scss ../vendor/assets/stylesheets/muscat-custom.scss
 
 Set up databases access:
 

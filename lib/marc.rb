@@ -256,7 +256,7 @@ class Marc
         end
         index += 1
       end
-      @root.add_at(MarcNode.new(@model, "001",_id, nil), save_at + 1)
+      @root.add_at(MarcNode.new(@model, "001", id, nil), save_at + 1)
     end
   end
   

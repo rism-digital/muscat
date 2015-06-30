@@ -1047,6 +1047,7 @@
       - :occurances: "1"
         :foreign_class: ^0
         :foreign_field: siglum
+        :browse_helper: application_helper_link_to_library
     - - b
       - :occurances: "?"
     - - d

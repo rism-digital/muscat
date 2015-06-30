@@ -1,0 +1,21 @@
+<!-- Overridded to remove page title that was hardcoded in english -->
+
+<div class="advanced-search-form col-sm-12">
+
+    <h1 class="advanced page-header">
+        <%= t('blacklight_advanced_search.form.title') %>
+        <%= link_to t('blacklight_advanced_search.form.start_over'), advanced_search_path, :class =>"btn btn-default pull-right advanced-search-start-over" %>
+    </h1>
+
+    <div class="row">
+
+        <div class="col-md-8">
+            <%= render 'advanced_search_form' %>
+        </div>
+        <div class="col-md-4">
+            <%= render "advanced_search_help" %>
+        </div>
+
+    </div>
+
+</div>

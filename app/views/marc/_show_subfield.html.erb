@@ -10,7 +10,7 @@
 		browse_helper = @item.marc.config.get_browse_helper(tag.tag, subfield.tag)
 	-%>
 	<% if browse_helper -%>
-	   <%= raw method(browse_helper).call( content, subfield) %>
+	   <%= raw method(browse_helper).call( content, subfield, opac ) %>
 	<% else -%>
 		<% #NEED TO DISCUSS THIS! removed h BUT HTML NOT SANITIZED only for PSMD!!! %>
 		<% if RISM::BASE == "pr" -%>
@@ -19,6 +19,6 @@
 	   		<%= h content %>
 	   <%- end -%>
 	<%- end %>
-	</td>					    
+	</td>
 </tr>
 

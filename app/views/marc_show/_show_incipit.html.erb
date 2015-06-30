@@ -1,4 +1,6 @@
 <%-
+	random_string = SecureRandom.hex
+
 	number_a = tag.fetch_first_by_tag('a')
 	number_b = tag.fetch_first_by_tag('b')	
 	number_c = tag.fetch_first_by_tag('c')	
@@ -27,23 +29,38 @@
 
 <!-- these are the subfields we can hide if we have an image -->
 
-<% [:g, :n, :o, :p].each do |s|
-	subfield = tag.fetch_first_by_tag(s)
-	next unless subfield			
-	css_classes = cycle('', ' class="odd"')
+<% if opac %>
+
+	<% label = [:g, :n, :o, :p].collect {|s|
+			subfield = tag.fetch_first_by_tag(s)
+			next unless subfield
+			"<b>#{@editor_profile.get_sub_label(tag.tag, subfield.tag)}</b>: #{subfield.content}".html_safe
+		}.join(", ")
 	%>
-	<tr class="row">
-		<th><%= @editor_profile.get_sub_label(tag.tag, subfield.tag) %></th>
-		<td><%= subfield.content %></td>
+	
+	<tr class="row" id="<%= random_string %>"  style="display:none">
+		<th></th>
+		<td><%= label.html_safe %></td>
 	</tr>
-<% end -%>
 
-
+<% else %>
+	<% [:g, :n, :o, :p].each do |s|
+		subfield = tag.fetch_first_by_tag(s)
+		next unless subfield			
+		css_classes = cycle('', ' class="odd"')
+		%>
+		<tr class="row">
+			<th><%= @editor_profile.get_sub_label(tag.tag, subfield.tag) %></th>
+			<td><%= subfield.content %></td>
+		</tr>
+	<% end -%>
+<% end %>
 			
 <%	if (pae_subfield && pae_subfield.content ) %>
 	<tr class="row">
+		<td></td>
 		<td>
-		<td>
+			<a onclick="javascript:show_hide_pae('<%=random_string%>');">PAE Code</a>
 			<div id="<%= image_render_div %>" />
 		</td>
 	<tr>
@@ -75,6 +92,15 @@
 	pae = pae + "@data: <%= notation %>\n";
 	pae = pae + "@end:pae-file\n"
 	render_music(pae, 'pae', $("#" + "<%=image_render_div%>"));
+
+	function show_hide_pae(id) {
+		row = $("#" + id)
+		if (row.is(":hidden")) {
+			row.show();
+		} else {
+			row.hide();
+		}
+	}
 
 </script>
 	

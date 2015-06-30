@@ -1,91 +1,91 @@
 it:
   views:
     pagination:
-      first: '&laquo; First'
-      last: 'Last &raquo;'
-      previous: '&laquo; Previous'
-      next: 'Next &raquo;'
+      first: '&laquo; Pagina iniziale'
+      last: 'Pagina finale &raquo;'
+      previous: '&laquo; Pagina precedente'
+      next: 'Pagina successiva &raquo;'
       truncate: '…'
 
     pagination_compact:
-      previous: '&laquo; Previous'
-      next: 'Next &raquo;'
+      previous: '&laquo; Pagina precedente'
+      next: 'Pagina successiva &raquo;'
 
   blacklight:
     application_name: 'Blacklight'
 
     header_links:
       login: 'Login'
-      logout: 'Esci'
-      bookmarks: 'Bookmarks'
-      saved_searches: 'Saved Searches'
-      search_history: 'History'
+      logout: 'Log out'
+      bookmarks: 'Preferiti'
+      saved_searches: 'Ricerche salvate'
+      search_history: 'Ricerche effettuate'
 
-    welcome: 'Welcome!'
-    and: 'and'
-    or: 'or'
+    welcome: 'Benvenuti!'
+    and: 'e'
+    or: 'o'
 
     bookmarks:
-      title: 'Bookmarks'
-      no_bookmarks: 'You have no bookmarks'
+      title: 'Preferiti'
+      no_bookmarks: 'Non è stato salvato nessun preferito.'
       add:
-        button: 'Bookmark'
+        button: 'Preferiti'
         success:
-          one: 'Successfully added bookmark.'
-          other: 'Successfully added bookmarks.'
-        failure:  'Sorry, there was a problem saving the bookmarks.'
+          one: 'Pagina aggiunta a preferiti.'
+          other: 'Pagine aggiunte a preferiti.'
+        failure:  'Si è verificato un errore nel salvare i preferiti.'
       remove:
-        button: 'Remove bookmark'
-        success: 'Successfully removed bookmark.'
-        failure: 'Sorry, there was a problem removing the bookmarks.'
-        action_confirm: 'Remove this bookmark?'
+        button: 'Togli la pagina dai preferiti'
+        success: 'La pagina è stata tolta dai preferiti.'
+        failure: 'Si è verificato un errore nel togliere la pagina dai preferiti.'
+        action_confirm: 'Vuoi togliere questa pagina dai preferiti?'
       clear:
-        action_title: 'Clear Bookmarks'
-        action_confirm: 'Clear your bookmarks?'
-        success: 'Cleared your bookmarks.'
-        failure: 'Sorry, there was a problem clearing your bookmarks.'
-      need_login: 'Please log in to manage and view your bookmarks.'
-      list_title: 'Your Bookmarks'
-      delete: 'Remove'
+        action_title: 'Cancella tutti i preferiti'
+        action_confirm: 'Vuoi cancellare tutti i preferiti?'
+        success: 'Tutti i preferiti sono stati cancellati.'
+        failure: 'Si è verificato un errore nel cancellare i preferiti.'
+      need_login: 'Effettuare il login per gestire e visualizzare i preferiti.'
+      list_title: 'Preferiti'
+      delete: 'Togli'
 
     saved_searches:
       add:
-        success: 'Successfully saved your search.'
-        failure: 'There was a problem saving your search.'
+        success: 'Ricerca salvata.'
+        failure: 'Si è verificato un errore nel salvare la ricerca.'
       remove:
-        success: 'Successfully removed that saved search.'
-        failure: 'There was a problem removing your search.'
+        success: 'La ricerca è stata tolta dalla lista.'
+        failure: 'Si è verificato un errore nel togliere la ricerca dalla lista.'
       clear:
-        action_title: 'Clear Saved Searches'
-        action_confirm: 'Clear your saved searches?'
-        success: 'Cleared your saved searches.'
-        failure: 'There was a problem clearing your searches.'
-      title: 'Saved Searches'
-      need_login: 'Please log in to manage and view your saved searches.'
-      no_searches: 'You have no saved searches'
-      list_title: 'Your saved searches'
-      delete: 'delete'
+        action_title: 'Cancella tutte le ricerche salvate'
+        action_confirm: 'Vuoi cancellare tutte le ricerche salvate?'
+        success: 'Tutte le ricerche salvate sono state cancellate.'
+        failure: 'Si è verificato un errore nel cancellare le ricerche salvate.'
+      title: 'Ricerche salvate'
+      need_login: 'Effettuare il login per gestire e visualizzare le ricerche salvate.'
+      no_searches: 'Non è stata salvata nessuna ricerca.'
+      list_title: 'Ricerche salvate'
+      delete: 'cancella'
 
     search_history:
       clear:
-        action_title: 'Clear Search History'
-        action_confirm: 'Clear your search history?'
-        success: 'Cleared your search history.'
-        failure: 'There was a problem clearing your search history.'
-      title: 'Search History'
-      no_history: 'You have no search history'
-      recent: 'Your recent searches'
-      forget: 'forget'
-      save: 'save'
+        action_title: 'Cancella le ricerche effettuate'
+        action_confirm: 'Vuoi cancellare le ricerche effettuate?'
+        success: 'Le ricerche effettuate sono state cancellate.'
+        failure: 'Si è verificato un errore nel cancellare le ricerche effettuate.'
+      title: 'Ricerche effettuate'
+      no_history: 'Non è stata effettuata nessuna ricerca'
+      recent: 'Ricerche effettuate'
+      forget: 'dimentica'
+      save: 'salva'
 
     tools:
-      title: 'Tools'
-      citation: 'Cite'
-      endnote: 'Export to EndNote'
-      refworks: 'Export to Refworks'
-      email: 'Email'
-      sms: 'SMS This'
-      clear: 'Clear'
+      title: 'Strumenti'
+      citation: 'Cita'
+      endnote: 'Esporta in EndNote'
+      refworks: 'Esporta in Refworks'
+      email: 'Invia per e-mail'
+      sms: 'Invia per SMS'
+      clear: 'Cancella'
 
     citation:
       mla: 'MLA'
@@ -94,127 +94,133 @@ it:
 
     email:
       form:
-        title: 'Email This'
-        to: 'Email:'
-        message: 'Message:'
-        submit: 'Send'
+        title: 'Invia per e-mail'
+        to: 'E-mail:'
+        message: 'Messaggio:'
+        submit: 'Invia'
       text:
-        title: 'Title: %{value}'
-        author: 'Author: %{value}'
-        format: 'Format: %{value}'
-        language: 'Language: %{value}'
+        title: 'Titolo: %{value}'
+        author: 'Autore: %{value}'
+        format: 'Formato: %{value}'
+        language: 'Lingua: %{value}'
         subject:
-          one: 'Item Record: %{title}'
-          other: 'Item records'
+          one: 'Numero di scheda: %{title}'
+          other: 'Numeri di scheda'
         url: 'URL: %{url}'
-        message: 'Message: %{message}'
+        message: 'Messaggio: %{message}'
 
-      success: "Email Sent"
+      success: "Messaggio inviato"
 
       errors:
         to:
-          invalid: 'You must enter a valid email address'
-          blank: 'You must enter a recipient in order to send this message'
+          invalid: "L'indirizzo e-mail inserito non è valido"
+          blank: 'Inserisci un destinatario per inviare il messaggio'
     sms:
       form:
-        title: 'SMS This'
-        to: 'Phone Number:'
-        carrier: 'Carrier'
-        carrier_prompt: 'Please select your carrier'
-        submit: 'Send'
+        title: 'Invia per SMS'
+        to: 'Numero di telefono:'
+        carrier: 'Operatore'
+        carrier_prompt: "Indicare l'operatore"
+        submit: 'Inviare'
       text:
         title: '%{value}'
-        author: ' by %{value}'
+        author: ' da %{value}'
         url: 'Link: %{url}'
-      success: "SMS Sent"
+      success: "SMS inviato"
       errors:
         to:
-          invalid: 'You must enter a valid 10 digit phone number'
-          blank: "You must enter a recipient's phone number in order to send this message"
+          invalid: 'Inserisci un numero telefonico valido di 10 cifre'
+          blank: "Inserisci il numero di telefono del destinarario per inviare il messaggio"
         carrier:
-          blank: 'You must select a carrier'
-          invalid: "You must enter a valid carrier"
+          blank: 'Si richiede la scelta di un operatore'
+          invalid: "L'operatore non è valido"
 
-    back_to_search: 'Back to Search'
-    back_to_bookmarks: 'Back to Bookmarks'
+    back_to_search: 'Torna alla ricerca'
+    back_to_bookmarks: 'Torna ai preferiti'
 
     search:
-      title: '%{application_name} Search Results'
-      search_results_header: 'Search'
-      search_results: 'Search Results'
+      title: 'Risultati della ricerca per %{application_name}'
+      search_results_header: 'Ricerca'
+      search_results: 'Risultati della ricerca'
       errors:
-        request_error: "Sorry, I don't understand your search."
-        invalid_solr_id: "Sorry, you have requested a record that doesn't exist."
+        request_error: "La richiesta non è comprensibile."
+        invalid_solr_id: "Il numero di scheda richiesto non esiste."
       per_page:
-        label: '%{count}<span class="sr-only"> per page</span>'
-        button_label: '%{count} per page'
-        title: 'Number of results to display per page'
-        submit: 'Update'
+        label: '%{count}<span class="sr-only"> per pagina</span>'
+        button_label: '%{count} per pagina'
+        title: 'Risultati per pagina'
+        submit: 'Aggiorna'
       sort:
-        label: 'Sort by %{field}'
-        submit: 'sort results'
+        label: 'Ordina per %{field}'
+        submit: 'Ordina i risultati'
       form:
         search_field:
-          label: 'Search in'
-          title: 'Targeted search options'
-          post_label: 'for'
-        q: 'Search...'
-        submit: 'Search'
+          label: 'Cerca in'
+          title: 'Opzioni di ricerca mirate'
+          post_label: 'per'
+        # i18n key 'q' is deprecated and will be removed in Blacklight 6.0, use 'search.label' and 'search.placeholder'
+        q: 'Ricerca in corso...'
+        search:
+          label: 'cerca per'
+          placeholder: 'Ricerca in corso...'
+        submit: 'Avvia la ricerca'
       pagination:
-        title: 'Results navigation'
+        title: 'Navigazione nei risultati'
       pagination_info:
-        no_items_found: 'No %{entry_name} found'
-        single_item_found: '<strong>1</strong> %{entry_name} found'
+        no_items_found: 'Nessun %{entry_name} trovato'
+        single_item_found: '<strong>1</strong> %{entry_name} trovato'
         pages:
-          one: '<strong>%{start_num}</strong> - <strong>%{end_num}</strong> of <strong>%{total_num}</strong>'
-          other: '<strong>%{start_num}</strong> - <strong>%{end_num}</strong> of <strong>%{total_num}</strong>'
+          one: '<strong>%{start_num}</strong> - <strong>%{end_num}</strong> di <strong>%{total_num}</strong>'
+          other: '<strong>%{start_num}</strong> - <strong>%{end_num}</strong> di <strong>%{total_num}</strong>'
       entry_pagination_info:
-        one: '<strong>1 of 1</strong>'
-        other: '<strong>%{current}</strong> of <strong>%{total}</strong>'
+        one: '<strong>1 di 1</strong>'
+        other: '<strong>%{current}</strong> di <strong>%{total}</strong>'
       documents:
         counter: '%{counter}. '
       facets:
-        title: 'Limit your search'
+        title: 'Affina la ricerca'
         sort:
-          count: 'Numerical Sort'
-          index: 'A-Z Sort'
+          count: 'Ordina per numero'
+          index: 'Ordina A-Z'
         count: '%{number}'
-        more: 'more »'
+        # i18n key 'more' is deprecated and will be removed in Blacklight 6.0 
+        more: 'altri »'
+        more_html: 'altri <span class="sr-only">%{field_name}</span> »'
         selected:
-          remove: '[remove]'
+          remove: '[cancella]'
       group:
-        more: 'more »'
+        more: 'altri »'
       filters:
-        title: 'You searched for:'
+        title: 'Hai cercato per:'
         label: '%{label}:'
         remove:
-          value: 'Remove constraint %{value}'
-          label_value: 'Remove constraint %{label}: %{value}'
-      start_over: 'Start Over'
+          value: 'Cancella il filtro %{value}'
+          label_value: 'Cancella il filtro %{label}: %{value}'
+      start_over: 'Nuova ricerca'
       index:
         label: '%{label}:'
       show:
         title: '%{document_title} - %{application_name}'
         label: '%{label}:'
-      rss_feed: 'RSS for results'
-      atom_feed: 'Atom for results'
+      rss_feed: 'RSS per i risultati'
+      atom_feed: 'Atom per i risultati'
       fields:
-        default: 'Keyword'
+        default: 'Parola chiave'
       bookmarks:
-        present: "In Bookmarks"
-        absent: "Bookmark"
-        inprogress: "Saving..."
+        present: "Nei preferiti"
+        absent: "Non fra i preferiti"
+        inprogress: "Salvataggio in corso..."
       zero_results:
-        title: "No results found for your search"
-        modify_search: "Try modifying your search"
-        use_fewer_keywords: "Use fewer keywords to start, then refine your search using the links on the left."
-        search_fields: "you searched by %{search_fields}"
-        search_everything: "try searching everything"
-      view_title: "View results as: "
+        title: "La ricerca non ha prodotto alcun risultato"
+        modify_search: "Modifica la ricerca"
+        use_fewer_keywords: "Usa meno parole chiave per iniziare, poi raffina la ricerca con i links sulla sinistra."
+        search_fields: "hai cercato in %{search_fields}"
+        search_everything: "prova a cercare in tutti i campi"
+      view_title: "Visualizza i risultati come: "
       view:
-        list: "List"
+        list: "Lista"
 
     entry_name:
-      default: 'entry'
+      default: 'termine di ricerca'
 
-    did_you_mean: 'Did you mean to type: %{options}?'
+    did_you_mean: 'Intendevi digitare: %{options}?'

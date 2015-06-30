@@ -62,7 +62,7 @@ de:
     batch_actions:
       button_label: "Stapelverarbeitung"
       default_confirmation: "Sind Sie sicher, dass Sie dies tun wollen?"
-      delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen?"
+      delete_confirmation: "Sind Sie sicher, dass Sie diese %{plural_model} löschen wollen?"
       succesfully_destroyed:
         one: "Erfolgreich 1 %{model} gelöscht"
         other: "Erfolgreich %{count} %{plural_model} gelöscht"
@@ -109,16 +109,16 @@ de:
         title: "Ändern Sie Ihr Passwort"
         submit: "Mein Passwort ändern"
       unlock:
-        title: "RESEND UNLOCK INSTRUCTIONS"
-        submit: "RESEND UNLOCK INSTRUCTION"
+        title: "Anleitung zur Aufhebung der Blockierung nochmals schicken"
+        submit: "Anleitung zur Aufhebung der Blockierung nochmals schicken"
       resend_confirmation_instructions:
-        title: "Anleitung zur Bestätigung noch mal schicken"
-        submit: "Anleitung zur Bestätigung noch mal schicken"
+        title: "Anleitung zur Bestätigung nochmals schicken"
+        submit: "Anleitung zur Bestätigung nochmals schicken"
       links:
         sign_in: "Anmeldung"
         forgot_your_password: "Passwort vergessen?"
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
-        resend_unlock_instructions: "RESEND UNLOCK INSTRUCTIONS"
+        resend_unlock_instructions: "Anleitung zur Aufhebung der Blockierung nochmals schicken"
     unsupported_browser:
       headline: "Muscat unterstützt nicht länger den Internet Explorer in Version 8 oder niedriger."
       recommendation: "Wir empfehlen die Nutzung von <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, oder <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
@@ -126,10 +126,10 @@ de:
     access_denied:
       message: "Sie haben nicht die Berechtigung, diese Aktion auszuführen." 
     index_list:
-      table: "TABLE"
-      block: "LIST"
-      grid: "GRID"
-      blog: "BLOG"
+      table: "Tabelle"
+      block: "Liste"
+      grid: "Raster"
+      blog: "Blog"
   switch_language: "Sprache ändern" 
   this_file_language: "Deutsch"
 
@@ -152,8 +152,8 @@ de:
         one: "Gruppe"
         other: "Gruppen"
       institution:
-        one: "Institution"
-        other: "Institutionen"
+        one: "Körperschaft"
+        other: "Körperschaften"
       liturgical_feast:
         one: "Liturgisches Fest"
         other: "Liturgische Feste"
@@ -176,6 +176,7 @@ de:
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Quellen"
+  menu_simple_search: "Einfache Suche"
   menu_advanced_search: "Erweiterte Suche"
   menu_indexes: "Indexsuche"
   menu_people: "Personen"
@@ -193,6 +194,8 @@ de:
   menu_administration: "Administration"
   menu_comments: "Kommentare"
   menu_languages: "Sprache"
+  menu_contact: "Kontakt"
+  menu_search_history: "Suchverlauf"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Letzte Änderungen"
@@ -203,7 +206,7 @@ de:
   library_sigla_contains: "Sigel enthält"
   is_in_folder: "Ist im Ordner"
   workgroups: "Benutzergruppen"
-  roles: "ROLES"
+  roles: "Rollen"
   user_details: "Benutzerinfo"
   sections: "Sektionen"
   edit: "Bearbeiten"
@@ -222,9 +225,6 @@ de:
     too_many: "Es können nicht mehr als %{max} Datensätze (%{count} ausgewählt werden)."
 
   ############ filters
-  039a: Geschlecht
-  559a: Beruf
-  100d: Lebensdaten
   filter_address: "Adresse"
   filter_alternate_dates: "Andere Daten"
   filter_alternate_names: "Andere Namen"
@@ -234,6 +234,7 @@ de:
   filter_author: "Autor"
   filter_autograph_of: "Autograph von"
   filter_birth_place: "Geburtsort"
+  filter_catalog: "WV / Katalog"
   filter_collection: "Sammlung"
   filter_comments: "Kommentare"
   filter_composer: "Komponist"
@@ -250,11 +251,12 @@ de:
   filter_folder_type: "Ordner-Typ"
   filter_full_name: "Name"
   filter_gender: "Geschlecht"
-  #filter_id: "ID"
+  filter_id: "ID"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
   filter_incipit_key: "Tonart im Incipit"
+  filter_institution: "Institution"
   filter_institutions: "Institutionen"
   filter_key: "Tonart"
   filter_language: "Sprache"
@@ -275,14 +277,17 @@ de:
   filter_people: "Personen"
   filter_phone: "Telefon"
   filter_place: "Ort"
+  filter_provenance: "Herkunft"
   filter_revue_title: "Zeitschriftentitel"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
+  filter_scoring: "Besetzung"
   filter_siglum: "Sigel"
   filter_source: "Quelle"
   filter_sources: "Quellen"
+  filter_source_type: "Quellentyp"
   filter_std_title: "Standardtitel"
-  filter_subjects: "Schlagwörter"
+  filter_subject: "Schlagwörter"
   filter_term: "Begriff"
   filter_thematic_opus: "Them. Kat. / Op.-Nr."
   filter_title: "Titel"
@@ -311,7 +316,7 @@ de:
   filter_dist_594m: "Weitere Instrumente"
   filter_dist_594n: "Basso-continuo-Instrumente"
  
-  rism_any_key: "Any key"
+  rism_any_key: "Irgendeine Tonart"
   rism_a_flat: "As-Dur/Moll"
   rism_a: "A-Dur/Moll"
   rism_b_flat: "B-Dur/Moll"
@@ -379,8 +384,8 @@ de:
   
     models:
       person: 
-        one: "PERSONA"
-        other: "PERSONE"
+        one: "Person"
+        other: "Personen"
 
   manuscript_links:
      one: "1 Quelle"
@@ -419,7 +424,7 @@ de:
   tf_metric_help: "Tipps für die Metrumsuche"
   tf_anchor_help: "Tipps für die verankerte Suche"
   tf_timesig_help: "Tipps für die Taktartsuche"
-  btn_themefinder_reset: "RESET"
+  btn_themefinder_reset: "Zurücksetzen"
   
   tf_acknowledgments: "Die Incipit-Suche verwendet das Tool <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a>, das vom <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a> entwickelt wurde."
 
@@ -428,7 +433,7 @@ de:
   
   do_link_lang: "ENG"
   do_media_files_title: "Multimedia-Dateien"
-  do_ext_res_link: "EXTERNAL RESOURCES:"
+  do_ext_res_link: "Externer Link:"
   do_ext_link_not_avail: "(Audio-Dateien sind hier nicht verfügbar.)"
   do_images_title: "Bilder"
   connected_libraries: "Bibliotheken"
@@ -437,23 +442,45 @@ de:
  
   date:
     month_names:
-      - "Januar"
-      - "Februar"
-      - "Märch"
-      - "April"
-      - "Mai"
-      - "Juni"
-      - "Juli"
-      - "August"
-      - "September"
-      - "Oktober"
-      - "November"
-      - "December"
+    -
+    - "Januar"
+    - "Februar"
+    - "März"
+    - "April"
+    - "Mai"
+    - "Juni"
+    - "Juli"
+    - "August"
+    - "September"
+    - "Oktober"
+    - "November"
+    - "Dezember"
     day_names:
-      - "Sontag"
-      - "Montag"
-      - "Dienstag"
-      - "Mittwoch"
-      - "Donnerstag"
-      - "Freitag"
-      - "Samstag"
+    - "Sonntag"
+    - "Montag"
+    - "Dienstag"
+    - "Mittwoch"
+    - "Donnerstag"
+    - "Freitag"
+    - "Samstag"
+
+  blacklight:
+    application_name: 'Muscat'
+    header_links:
+      logout: 'Abmelden'
+    range_limit:
+      range_begin: "%{field_label} range begin"
+      range_end: "%{field_label} range end"
+      submit_limit: 'Beschränken'
+      remove_limit: 'entfernen'
+  blacklight_advanced_search:
+    all: allen Eigenschaften
+    any: irgendeiner Eigenschaft
+    form:
+      title: "Erweiterte Suche"
+      search_context: "In der Suche"
+      limit_criteria_heading_html: "<strong>und</strong> haben diese Eigenschaften"
+      query_criteria_heading_html: "Elemente mit %{select_menu} suchen"
+      sort_label: "Ordnen nach"
+      start_over: "Zurücksetzen"
+      search_btn: 'Suche'

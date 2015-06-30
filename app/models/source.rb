@@ -186,7 +186,7 @@ class Source < ActiveRecord::Base
     sunspot_dsl.text :std_title_d
     
     sunspot_dsl.string :composer_order do 
-      composer
+      composer == "" ? nil : composer
     end
     sunspot_dsl.text :composer, :stored => true
     sunspot_dsl.text :composer_d
@@ -209,10 +209,15 @@ class Source < ActiveRecord::Base
     end
     sunspot_dsl.text :lib_siglum, :stored =>true
     
-    sunspot_dsl.integer :date_from
-    sunspot_dsl.integer :date_to
+    sunspot_dsl.integer :date_from do 
+      date_from != nil && date_from > 0 ? date_from : nil
+    end
+    sunspot_dsl.integer :date_to do 
+      date_to != nil && date_to > 0 ? date_to : nil
+    end
     
     sunspot_dsl.integer :wf_owner
+    sunspot_dsl.string :wf_stage
     
     sunspot_dsl.integer :catalogues, :multiple => true do
           catalogues.map { |catalogue| catalogue.id }
@@ -355,6 +360,16 @@ class Source < ActiveRecord::Base
   
   def autocomplete_label
     "#{self.id}: #{self.composer} - #{self.std_title}"
+  end
+  
+  def to_marcxml
+    out = Array.new
+    out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+    out << "<!-- Exported from RISM CH (http://www.rism-ch.org/) Dated: #{} -->\n"
+    out << "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
+    out << marc.export_xml
+    out << "</marc:collection>" 
+    return out.join('')
   end
   
 end

@@ -1,5 +1,243 @@
 fr:
+  views:
+    pagination:
+      first: '&laquo; Première'
+      last: 'Dernière &raquo;'
+      previous: '&laquo; Précédente'
+      next: 'Suivante &raquo;'
+      truncate: '…'
+
+    pagination_compact:
+      previous: '&laquo; Précédente'
+      next: 'Suivante &raquo;'
+
   blacklight:
-    application_name: 'Muscat'
+    application_name: 'Blacklight'
+
     header_links:
-      logout: 'Déconnexion'
+      login: 'Mon compte'
+      logout: 'Me déconnecter'
+      bookmarks: 'Mon panier'
+      saved_searches: 'Mes recherches'
+      search_history: 'Historique de recherche'
+
+    welcome: 'Bienvenue!'
+    and: 'et'
+    or: 'ou'
+
+    bookmarks:
+      title: 'Favoris'
+      no_bookmarks: 'Accédez à votre compte pour conserver des références dans votre panier'
+      add:
+        button: 'Panier'
+        success:
+          one: 'Favori bien enregistré.'
+          other: 'Favoris bien enregistrés.'
+        failure:  'Pardon, un problème est survenu lors de l''ajout.'
+      remove:
+        button: 'Supprimer'
+        success: 'Favori supprimé.'
+        failure: 'Pardon, un problème est survenu lors de la suppression.'
+        action_confirm: 'Supprimer ce favori ?'
+      clear:
+        action_title: 'Effacer tout'
+        action_confirm: 'Effacer tous vos favoris ?'
+        success: 'Favoris effacés.'
+        failure: 'Pardon, un problème est survenu lors de la suppression.'
+      need_login: 'Veuillez vous connecter pour accéder à vos favoris.'
+      list_title: 'Vos favoris'
+      delete: 'Supprimer'
+
+    folder:
+      title: 'Panier'
+      add:
+        success: '%{title} a bien été sélectionné.'
+      remove:
+        success: '%{title} a bien été supprimé.'
+      clear:
+        success: 'Panier vide.'
+      no_folder: 'Votre panier est vide'
+
+    saved_searches:
+      add:
+        success: 'Votre recherche a bien été sauvegardée.'
+        failure: 'Un problème est survenu lors de l''enregistrement.'
+      remove:
+        success: 'Votre recherche a bien été supprimée.'
+        failure: 'Un problème est survenu lors de la suppression.'
+      clear:
+        action_title: 'Effacer tout'
+        action_confirm: 'Effacer toutes vos recherches ?'
+        success: 'Recherches effacées.'
+        failure: 'Un problème est survenu lors de la suppression.'
+      title: 'Recherches sauvegardées'
+      need_login: 'Veuillez vous connecter pour accéder à vos recherches.'
+      no_searches: 'Vous n''avez sauvegardé aucune recherche.'
+      list_title: 'Vos recherches'
+      delete: 'Supprimer'
+
+    search_history:
+      clear:
+        action_title: 'Effacer l''historique'
+        action_confirm: 'Effacer votre historique de recherche ?'
+        success: 'Votre historique de recherche a bien été effacé.'
+        failure: 'Un problème est survenu lors de la suppression.'
+      title: 'Historique de recherche'
+      no_history: 'Il n''y a aucun historique en cours.'
+      recent: 'Dernières recherches'
+      forget: 'Supprimer'
+      save: 'Sauvegarder'
+
+    tools:
+      title: 'Outils'
+      citation: 'Citer'
+      endnote: 'Exporter vers EndNote ou Zotero'
+      refworks: 'Exporter vers Refworks'
+      email: 'Envoyer'
+      sms: 'SMS'
+      clear: 'Effacer'
+
+    citation:
+      mla: 'MLA'
+      apa: 'APA'
+      chicago: 'Chicago'
+
+    email:
+      form:
+        title: 'Envoyer par courriel'
+        to: 'Courriel :'
+        message: 'Message :'
+        submit: 'Envoyer'
+      text:
+        title: 'Titre : %{value}'
+        author: 'Auteur : %{value}'
+        format: 'Format : %{value}'
+        language: 'Langue : %{value}'
+        subject:
+          one: 'Une référence : %{title}'
+          other: 'Des références bibliographiques'
+        url: 'URL : %{url}'
+        message: 'Message : %{message}'
+
+      success: "Message envoyé"
+
+      errors:
+        to:
+          invalid: 'Vous devez saisir une adresse correcte.'
+          blank: 'Vous devez saisir l''adresse de votre destinataire.'
+
+    sms:
+      form:
+        title: 'Envoyer par SMS'
+        to: 'Numéro de téléphone :'
+        carrier: 'Opérateur téléphonique'
+        carrier_prompt: 'Veuillez choisir votre opérateur'
+        submit: 'Envoyer'
+      text:
+        title: '%{value}'
+        author: ' by %{value}'
+        url: 'Lien : %{url}'
+
+      success: "SMS envoyé"
+
+      errors:
+        to:
+          invalid: 'Vous devez saisir un numéro de téléphone à 10 chiffres.'
+          blank: "Vous devez saisir le numéro de téléphone de votre destinataire."
+        carrier:
+          blank: 'Vous devez choisir un opérateur.'
+          invalid: "Vous devez choisir un opérateur valide."
+
+    back_to_search: 'Retour aux résultats'
+    back_to_bookmarks: 'Retour aux favoris'
+
+    search:
+      title: '%{application_name} Résultats de recherche'
+      search_results_header: 'Recherche'
+      search_results: 'Résultats de recherche'
+      errors:
+        request_error: "Pardon, nous n'avons pas compris votre recherche."
+        invalid_solr_id: "Vous avez demandé une notice qui n'existe pas."
+      per_page:
+        label: '%{count}<span class="sr-only"> par page</span>'
+        button_label: '%{count} par page'
+        title: 'Nombre de résultats à afficher par page'
+        submit: 'mettre à jour'
+      sort:
+        label: 'Trier par %{field}'
+        submit: 'trier les résultats'
+      form:
+        search_field:
+          label: 'dans'
+          title: 'Options de recherche'
+        post_label: 'pour'
+        # i18n key 'q' is deprecated and will be removed in Blacklight 6.0, use 'search.label' and 'search.placeholder'
+        q: 'Rechercher '
+        search:
+          label: 'Rechercher'
+          placeholder: 'Rechercher'
+        submit: 'Chercher'
+      pagination:
+        title: 'Navigation dans les résultats'
+      pagination_info:
+        no_items_found: 'Pas de %{entry_name}'
+        single_item_found: '<b>1</b> de <b>1</b> sur <b>1</b>'
+        pages:
+          one: '<b>%{start_num}</b> - <b>%{end_num}</b> sur <b>%{total_num}</b>'
+          other: '<b>%{start_num}</b> - <b>%{end_num}</b> sur <b>%{total_num}</b>'
+      entry_pagination_info:
+        one: '<b>1 sur 1</b>'
+        other: '<b>%{current}</b> sur <b>%{total}</b>'
+      documents:
+        counter: '%{counter}. '
+      folder:
+        select: 'Panier'
+        unselect: 'Panier'
+      facets:
+        title: 'Limiter votre recherche'
+        sort:
+          count: 'Du + au - fréquent'
+          index: 'Tri de A à Z'
+        count: '%{number}'
+        # i18n key 'more' is deprecated and will be removed in Blacklight 6.0
+        more: 'plus »'
+        more_html: 'plus <span class="sr-only">%{field_name}</span> »'
+        selected:
+          remove: '[ X ]'
+      group:
+        more: 'plus »'
+      filters:
+        title: 'Vous avez demandé :'
+        label: '%{label}:'
+        remove:
+          value: 'Supprimer la restriction %{value}'
+          label_value: 'Supprimer la restriction %{label}: %{value}'
+      start_over: 'Accueil'
+      index:
+        label: '%{label}:'
+      show:
+        title: '%{document_title} - %{application_name}'
+        label: '%{label}:'
+      rss_feed: 'RSS pour les résultats'
+      atom_feed: 'Atom pour les résultats'
+      fields:
+        default: 'Keyword'
+      bookmarks:
+        present: "Dans panier"
+        absent: "Ajouter au panier"
+        inprogress: "En cours"
+      zero_results:
+        title: "Votre recherche ne correspond à aucune ressource."
+        modify_search: "Essayez de modifier votre requête de recherche"
+        use_fewer_keywords: "Utilisez moins de mots-clés pour commencer, puis affinez votre recherche."
+        search_fields: "vous avez cherché par %{search_fields}"
+        search_everything: "essayez de rechercher tout"
+      view_title: "Affichage : "
+      view:
+        list: "Liste"
+
+
+    entry_name:
+      default: 'résultat'
+
+    did_you_mean: 'Essayez peut-être avec : %{options}'

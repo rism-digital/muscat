@@ -1,0 +1,62 @@
+<script type="text/javascript" language="javascript" src="/javascripts/Saxonce/Saxonce.nocache.js"></script>
+<script type="text/javascript" language="javascript" src="/javascripts/verovio-toolkit.js"></script>
+
+<div class="container" id="mei-toplevel">
+	
+	<div class="page-header">
+	  <h2>MEI export for source <%=@item.id=%>
+	</div>
+	
+	<div class="col-sm-12 col-md-4 sidebar-offcanvas" id="sidebar" role="navigation">
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	            <h3 class="panel-title">Export parameters</h3>
+	        </div>
+	        <div class="panel-body">
+				
+			    <label for="sel1">Incipit output format:</label>
+			    <select class="form-control" id="mei-output-format" onclick="setRegenerateMei();">
+			      <option value="mei">MEI</option>
+			      <option value="pae">PAE (no conversion)</option>
+			    </select>
+				
+				<hr>
+
+				<label for="exampleInputFile">Stylesheet</label>
+				<div class="radio">
+				  <label><input type="radio" name="radio-xsls" checked="checked" onclick="setUseDefaultStylesheet();">Use default stylesheet</label>
+				</div>
+				<div class="radio">
+				  <label><input type="radio" name="radio-xsls" onclick="setUseCustomStylesheet();">Custom stylesheet:</label>
+				</div>
+				<input type="file" id="mei-select-file" disabled="disabled" accept=".xsl,.xml">
+				
+				<hr>
+				
+				<p>
+	            <div  style="text-align: right">
+	                <button onclick="previewMeiFile(<%=@item.id%>)" class="btn btn-default btn-sm">
+	                    <span class="glyphicon glyphicon-search"></span>Preview
+	                </button>
+	                <button onclick="downloadMeiFile(<%=@item.id%>)" class="btn btn-default btn-sm" id="form-reset">
+	                    <span class="glyphicon glyphicon-remove"></span>Download
+	                </button>
+	            </div>
+			</div>
+	    </div>
+	</div>
+
+	<div class="col-md-8">
+        <h4 id="mei-preview-text">Please click "Preview" to show the MEI-converted output.</h4>
+        <div id="mei-html-output">
+        </div>
+        <pre id="mei-output" class="prettyprint">
+        </pre>
+	</div>
+
+	
+</div>
+
+<script type="text/javascript">
+	document.getElementById('mei-select-file').addEventListener('change', readSingleFile, false);
+</script>
