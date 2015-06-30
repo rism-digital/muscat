@@ -368,7 +368,7 @@ function marc_editor_preview( source_form, destination, rails_model ) {
 	form = $('form', "#" + source_form);
 	json_marc = serialize_marc_editor_form(form);
 	
-	url = "/" + rails_model + "/marc_editor_preview";
+	url = "/admin/" + rails_model + "/marc_editor_preview";
 	
 	$.ajax({
 		success: function(data) {
