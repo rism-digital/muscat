@@ -464,6 +464,20 @@ de:
     - "Freitag"
     - "Samstag"
 
+  mei:
+    title: "MEI EXPORT FOR SOURCE %{source}"
+    parameters: "EXPORT PARAMETERS"
+    format: "INCIPIT OUTPUT FORMAT:"
+    format_mei: "MEI"
+    format_pae: "PAE (NO CONVERSION)"
+    stylesheet: "STYLESHEET"
+    default_stylesheet: "USE DEFAULT STYLESHEET"
+    custom_stylesheet: "CUSTOM STYLESHEET:"
+    preview: "PREVIEW"
+    download: "DOWNLOAD"
+    more: "MORE"
+    banner: 'PLEASE CLICK "PREVIEW" TO SHOW THE MEI-CONVERTED OUTPUT.'
+
   blacklight:
     application_name: 'Muscat'
     header_links:

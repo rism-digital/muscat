@@ -464,6 +464,20 @@ it:
      - "venerdì"
      - "sabato"
 
+  mei:
+    title: "Esportazione MEI per la fonte %{source}"
+    parameters: "Parametri"
+    format: "Formato incipit:"
+    format_mei: "MEI"
+    format_pae: "PAE (nessuna conversione)"
+    stylesheet: "Stylesheet"
+    default_stylesheet: "Usa predefinita"
+    custom_stylesheet: "Carica personalizzata:"
+    preview: "Anteprima"
+    download: "Download"
+    more: "Altro"
+    banner: 'Usare "Anteprima" per mostrare il risultato della conversione in MEI.'
+
   blacklight:
     application_name: 'Muscat'
     header_links:
