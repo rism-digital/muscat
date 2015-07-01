@@ -244,7 +244,7 @@ config.register_javascript 'jquery-ace.min.js'
         lang.add :label => "IT", :url => proc { url_for(:locale => 'it') }, id: 'i18n-it', :priority => 4, :html_options   => {:style => 'float:left;'}
       end
       # Add the menu by hand because otherwise it is not getting translated
-      menu.add :label => proc {I18n.t(:menu_comments)}, id: 'comments_menu', :priority => 4, :url => "/comments"
+      menu.add :label => proc {I18n.t(:menu_comments)}, id: 'comments_menu', :priority => 4, :url => "/admin/comments"
       menu.add :label => proc {I18n.t(:menu_indexes)}, id: 'indexes_menu', :priority => 20
 
     end
