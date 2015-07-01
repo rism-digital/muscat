@@ -33,6 +33,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development do
+  gem 'web-console', '~> 2.0'
+end
+
 # For generating both digest and no digest assets
 gem 'non-stupid-digest-assets'
 

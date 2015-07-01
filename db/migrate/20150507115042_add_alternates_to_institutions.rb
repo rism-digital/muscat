@@ -1,5 +1,7 @@
 class AddAlternatesToInstitutions < ActiveRecord::Migration
   def change
-    add_column :institutions, :alternates, :text
+    unless column_exists? :institutions, :alternates
+      add_column :institutions, :alternates, :text
+    end
   end
 end
