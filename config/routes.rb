@@ -1,6 +1,8 @@
 Muscat::Application.routes.draw do
   #root :to => "catalog#index"
   root :to => redirect('http://rism-ch.org')
+  get 'catalog/:id/mei' => 'catalog#mei'
+  get "catalog/download_xslt" => 'catalog#download_xslt'
   blacklight_for :catalog
   
   devise_for :users, ActiveAdmin::Devise.config
@@ -9,8 +11,6 @@ Muscat::Application.routes.draw do
   #scope ':locale', locale: I18n.locale do
   #  ActiveAdmin.routes(self)
   #end 
-  
-  get 'catalog/:id/mei' => 'catalog#mei'
   
   get "/manuscripts", to: redirect('/sources')
   get "/manuscripts/:name", to: redirect('/sources/%{name}')

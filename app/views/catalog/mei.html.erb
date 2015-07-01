@@ -7,7 +7,7 @@
 	  <h2>MEI export for source <%=@item.id=%>
 	</div>
 	
-	<div class="col-sm-12 col-md-4 sidebar-offcanvas" id="sidebar" role="navigation">
+	<div class="col-sm-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
 	    <div class="panel panel-default">
 	        <div class="panel-heading">
 	            <h3 class="panel-title">Export parameters</h3>
@@ -33,7 +33,7 @@
 				
 				<hr>
 				
-				<p>
+				<p/>
 	            <div  style="text-align: right">
 	                <button onclick="previewMeiFile(<%=@item.id%>)" class="btn btn-default btn-sm">
 	                    <span class="glyphicon glyphicon-search"></span>Preview
@@ -42,11 +42,22 @@
 	                    <span class="glyphicon glyphicon-remove"></span>Download
 	                </button>
 	            </div>
+	    	</div>
+		</div>
+		
+		
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	            <h3 class="panel-title">More</h3>
+	        </div>
+	        <div class="panel-body">
+				<%= render "mei_more" %>
 			</div>
-	    </div>
+		</div>
+		
 	</div>
 
-	<div class="col-md-8">
+	<div class="col-md-9">
         <h4 id="mei-preview-text">Please click "Preview" to show the MEI-converted output.</h4>
         <div id="mei-html-output">
         </div>

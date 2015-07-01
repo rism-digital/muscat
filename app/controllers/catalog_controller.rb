@@ -16,6 +16,14 @@ class CatalogController < ApplicationController
     @item = Source.find(params[:id])
   end
   
+  def download_xslt
+    send_file(
+      "#{Rails.root}/public/xml/marc2mei.xsl",
+      filename: "marc2mei.xsl",
+      type: "text/xsl"
+    )
+  end
+  
   include Blacklight::Catalog
 
   configure_blacklight do |config|

@@ -56,15 +56,13 @@ function translateIncipCode(incip, out_format) {
 		
 		incip[index].removeChild(incipcode);
 		incip[index].appendChild(xmlInsert.firstChild);
-		
-		console.log(outXml);
 	}
 }
 
 function typesetIncipits(incip, out_format) {
 
 	for (index = 0; index < incip.length; ++index) {
-		incipcode = incip[index].childNodes[0];
+		incipcode = incip[index].getElementsByTagName('score')[0];
 		
 		var in_data;
 		
