@@ -4,30 +4,30 @@
 <div class="container" id="mei-toplevel">
 	
 	<div class="page-header">
-	  <h2>MEI export for source <%=@item.id=%>
+	  <h2><%= t('mei.title', :source => @item.id)%></h2>
 	</div>
 	
 	<div class="col-sm-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
 	    <div class="panel panel-default">
 	        <div class="panel-heading">
-	            <h3 class="panel-title">Export parameters</h3>
+	            <h3 class="panel-title"><%= t('mei.parameters')%></h3>
 	        </div>
 	        <div class="panel-body">
 				
-			    <label for="sel1">Incipit output format:</label>
+			    <label for="sel1"><%= t('mei.format')%></label>
 			    <select class="form-control" id="mei-output-format" onclick="setRegenerateMei();">
-			      <option value="mei">MEI</option>
-			      <option value="pae">PAE (no conversion)</option>
+			      <option value="mei"><%= t('mei.format_mei')%></option>
+			      <option value="pae"><%= t('mei.format_pae')%></option>
 			    </select>
 				
 				<hr>
 
-				<label for="exampleInputFile">Stylesheet</label>
+				<label for="exampleInputFile"><%= t('mei.stylesheet')%></label>
 				<div class="radio">
-				  <label><input type="radio" name="radio-xsls" checked="checked" onclick="setUseDefaultStylesheet();">Use default stylesheet</label>
+				  <label><input type="radio" name="radio-xsls" checked="checked" onclick="setUseDefaultStylesheet();"><%= t('mei.default_stylesheet')%></label>
 				</div>
 				<div class="radio">
-				  <label><input type="radio" name="radio-xsls" onclick="setUseCustomStylesheet();">Custom stylesheet:</label>
+				  <label><input type="radio" name="radio-xsls" onclick="setUseCustomStylesheet();"><%= t('mei.custom_stylesheet')%></label>
 				</div>
 				<input type="file" id="mei-select-file" disabled="disabled" accept=".xsl,.xml">
 				
@@ -36,10 +36,10 @@
 				<p/>
 	            <div  style="text-align: right">
 	                <button onclick="previewMeiFile(<%=@item.id%>)" class="btn btn-default btn-sm">
-	                    <span class="glyphicon glyphicon-search"></span>Preview
+	                    <span class="glyphicon glyphicon-search"></span><%= t('mei.preview')%>
 	                </button>
 	                <button onclick="downloadMeiFile(<%=@item.id%>)" class="btn btn-default btn-sm" id="form-reset">
-	                    <span class="glyphicon glyphicon-remove"></span>Download
+	                    <span class="glyphicon glyphicon-remove"></span><%= t('mei.download')%>
 	                </button>
 	            </div>
 	    	</div>
@@ -48,7 +48,7 @@
 		
 	    <div class="panel panel-default">
 	        <div class="panel-heading">
-	            <h3 class="panel-title">More</h3>
+	            <h3 class="panel-title"><%= t('mei.more')%></h3>
 	        </div>
 	        <div class="panel-body">
 				<%= render "mei_more" %>
@@ -58,7 +58,7 @@
 	</div>
 
 	<div class="col-md-9">
-        <h4 id="mei-preview-text">Please click "Preview" to show the MEI-converted output.</h4>
+        <h4 id="mei-preview-text"><%= t('mei.banner')%></h4>
         <div id="mei-html-output">
         </div>
         <pre id="mei-output" class="prettyprint">
