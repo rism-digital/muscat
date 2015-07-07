@@ -289,7 +289,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Agenzia catalografica originale
-        fr: Orgranisme du catalogage original
+        fr: Organisme du catalogage original
         de: Original-Katalogisierungsstelle
         en: Original cataloguing agency
     b: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -1525,7 +1525,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 "690": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Catalogo tematico
-    fr: Nome de catalgue
+    fr: Nom de catalogue
     de: Werkverzeichnis
     en: Catalogue name
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
