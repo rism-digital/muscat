@@ -206,16 +206,9 @@
     :master: "0"
     :indicator: "##"
     :occurances: "*"
-    :fields: 
-    - - "0"
-      - :occurances: "?"
-        :foreign_class: Catalogue
-        :foreign_field: id
-        :no_show: true
+    :fields:
     - - a
       - :occurances: "?"
-        :foreign_class: ^0
-        :foreign_field: name
     - - b
       - :occurances: "?"
   "678": 
