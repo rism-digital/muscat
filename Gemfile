@@ -52,7 +52,7 @@ gem 'non-stupid-digest-assets'
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', github: 'activeadmin', ref: 'a2cd960'
+gem 'activeadmin', github: 'rism-ch/activeadmin'#, ref: 'a2cd960'
 
 gem 'sunspot_rails', git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
 gem 'sunspot_solr'
