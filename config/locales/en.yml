@@ -440,12 +440,12 @@ en:
 
   mei:
     title: "MEI export for source %{source}"
-    parameters: "Export parameters"
+    parameters: "Parameters"
     format: "Incipit output format:"
     format_mei: "MEI"
     format_pae: "PAE (no conversion)"
     stylesheet: "Stylesheet"
-    default_stylesheet: "Use default stylesheet"
+    default_stylesheet: "Default stylesheet"
     custom_stylesheet: "Custom stylesheet:"
     preview: "Preview"
     download: "Download"

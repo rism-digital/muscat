@@ -82,7 +82,7 @@ fr:
       add: "Ajouter un commentaire"
       resource: "Ressource"
       no_comments_yet: "Aucun commentaire actuellement"
-      author_missing: "ANONYMOUS"
+      author_missing: "Anonyme"
       title_content: "Commentaires (%{count})"
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
@@ -120,11 +120,11 @@ fr:
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
         resend_unlock_instructions: "RE-SEND UNLOCK INSTRUCTIONS"
     unsupported_browser:
-      headline: "Muscat ne support pas la version 8 ou antéreure d'Internet Explorer."
+      headline: "Muscat ne support pas la version 8 ou antérieure d'Internet Explorer."
       recommendation: "Nous vous recommandons de mettre votre version d'<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a> à jour, ou d'utiliser <a href=\"https://chrome.google.com/\">Google Chrome</a>, ou <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
       turn_off_compatibility_view: "Si vous utilisez IE 9 ou plus récent, vérifier que <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\"> \"Compatibility View\" est désactivé</a>."
     access_denied: 
-      message: "Vous n'êtes pas autorisé à executer cette action."
+      message: "Vous n'êtes pas autorisé à exécuter cette action."
     index_list:
       table: "Tableau"
       block: "Liste"
@@ -190,7 +190,7 @@ fr:
   menu_help: "Help"
   menu_folders: "Dossiers"
   menu_users: "Utilisateurs"
-  menu_workgroups: "Groups"
+  menu_workgroups: "Groupes"
   menu_administration: "Administration"
   menu_comments: "Commentaires"
   menu_languages: "Langue"
@@ -222,7 +222,7 @@ fr:
   folders:
     save: "Sauver les résultats dans un dossier"
     success: "Le dossier %{name} créé avec %{count} éléments."
-    too_many: "Impossible d'ajouter plus de %{max} éléments  (%{count} sélectionés)."
+    too_many: "Impossible d'ajouter plus de %{max} éléments  (%{count} sélectionnés)."
   
   ############ filters
   filter_address: "Adresse"
@@ -238,7 +238,7 @@ fr:
   filter_collection: "Collection"
   filter_comments: "Commentaires"
   filter_composer: "Compositeur"
-  filter_connected_libraries: "Libraries"
+  filter_connected_libraries: "Bibliothèques"
   filter_country: "Pays"
   filter_creation_date: "Date de création"
   filter_date: "Date"
@@ -314,7 +314,7 @@ fr:
   filter_dist_594k: "Instruments à percussions"
   filter_dist_594l: "Instruments à clavier"
   filter_dist_594m: "Autres instruments"
-  filter_dist_594n: "Instruments de basso continuo"
+  filter_dist_594n: "Instruments de basse continue"
   
   rism_any_key: "N'importe quelle tonalité"
   rism_a_flat: "La bémol majeur/mineur"
@@ -402,8 +402,8 @@ fr:
   themefinder_p0: "aucune recherche par hauteur"
 
   themefinder_u: "durée exacte"
-  themefinder_r: "countour fin des durées"
-  themefinder_R: "countour grossier des durées"
+  themefinder_r: "contour fin des durées"
+  themefinder_R: "contour grossier des durées"
   themefinder_d0: "aucune recherche par durée"
   
   themefinder_L: "niveau métrique"
@@ -433,7 +433,7 @@ fr:
   
   do_link_lang: "eng"
   do_media_files_title: "Fichiers multimedia"
-  do_ext_res_link: "Resources externes:"
+  do_ext_res_link: "Ressources externes:"
   do_ext_link_not_avail: "(Fichiers audio non disponibles depuis cet ordinateur)"
   do_images_title: "Images"
   connected_libraries: "Institutions"
@@ -466,18 +466,18 @@ fr:
     - "samedi"
 
   mei:
-    title: "MEI EXPORT FOR SOURCE %{source}"
-    parameters: "EXPORT PARAMETERS"
-    format: "INCIPIT OUTPUT FORMAT:"
+    title: "Export en MEI de la source %{source}"
+    parameters: "Paramètres"
+    format: "Format d'incipit:"
     format_mei: "MEI"
-    format_pae: "PAE (NO CONVERSION)"
-    stylesheet: "STYLESHEET"
-    default_stylesheet: "USE DEFAULT STYLESHEET"
-    custom_stylesheet: "CUSTOM STYLESHEET:"
-    preview: "PREVIEW"
-    download: "DOWNLOAD"
-    more: "MORE"
-    banner: 'PLEASE CLICK "PREVIEW" TO SHOW THE MEI-CONVERTED OUTPUT.'
+    format_pae: "PAE (pas de conversion)"
+    stylesheet: "Feuille de style"
+    default_stylesheet: "Par défaut"
+    custom_stylesheet: "Personnalisée:"
+    preview: "Aperçu"
+    download: "Téléchargement"
+    more: "Informations supplémentaires"
+    banner: 'Cliquez "Aperçu" pour voir le résultat de la conversion en MEI.'
 
   blacklight:
     application_name: 'Muscat'
