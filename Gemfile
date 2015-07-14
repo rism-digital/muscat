@@ -64,8 +64,9 @@ gem "rolify"
 group :development do
     gem 'webrick', '~> 1.3.1'
 end
-gem 'blacklight', ">= 5.3.0"
+gem 'blacklight', "= 5.13.1"
 gem "blacklight_advanced_search"
+gem 'bootstrap-sass', "3.3.4.1"
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
 gem "blacklight_range_limit"
