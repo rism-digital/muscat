@@ -85,7 +85,7 @@ ActiveAdmin.register Folder do
   
  
   form do |f|
-    f.inputs I18n.t(:contents) do
+    f.inputs do
       f.input :name, :label => (I18n.t :filter_name)
     end
     f.actions
