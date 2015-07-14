@@ -438,6 +438,8 @@ de:
   do_images_title: "Bilder"
   connected_libraries: "Bibliotheken"
   
+  contents: "CONTENTS"
+  
  # To be kept at the end because not required in English
  
   date:

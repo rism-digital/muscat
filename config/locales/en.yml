@@ -438,6 +438,8 @@ en:
   do_images_title: "Images"
   connected_libraries: "Libraries"
 
+  contents: "Contents"
+
   mei:
     title: "MEI export for source %{source}"
     parameters: "Parameters"
