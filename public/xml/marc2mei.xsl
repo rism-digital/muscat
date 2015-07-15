@@ -2399,7 +2399,7 @@
                           ''))"/>
                       </xsl:when>
                       <xsl:otherwise>
-                        <xsl:value-of select="marc:controlfield[@tag='001']"/>
+                        <xsl:value-of select="concat('RISM-', marc:controlfield[@tag='001'])"/>
                       </xsl:otherwise>
                     </xsl:choose>
                   </xsl:attribute>
