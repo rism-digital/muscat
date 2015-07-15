@@ -57,21 +57,25 @@ function translateIncipCode(incip, out_format) {
 		incip[index].removeChild(incipcode);
 		incip[index].appendChild(xmlInsert.firstChild);
 	}
+	
+	//console.log(outXml);
 }
 
 function typesetIncipits(incip, out_format) {
 
 	for (index = 0; index < incip.length; ++index) {
-		incipcode = incip[index].getElementsByTagName('score')[0];
+		//incipcode = incip[index].childNodes[0];//getElementsByTagName('score')[0];
 		
 		var in_data;
 		
 		if (out_format == "pae") {
+			incipcode = incip[index].childNodes[0];
 			pae = "@start:pae-file\n";
 			pae = pae + "@data: " + incipcode.textContent + "\n";
 			pae = pae + "@end:pae-file\n";
 			in_data = pae;
 		} else {
+			incipcode = incip[index].getElementsByTagName('score')[0];
 			//var meiDocType = document.implementation.createDocumentType ("fruit", "SYSTEM", "<!ENTITY tf 'tropical fruit'>");
 			containerDoc = document.implementation.createDocument("http://www.music-encoding.org/ns/mei", "mei", null);
 			music = document.createElement('music');
@@ -137,10 +141,12 @@ function showMEIPreview() {
 
     proc = Saxon.newXSLT20Processor(xsl);
 	// Use the xsl:result-document magic
-	xmldoc = proc.updateHTMLDocument(globalMeiOutputDocument);
+	docu = parseXMLString(globalMeiOutput);
+	xmldoc = proc.updateHTMLDocument(docu);
 	
 	out_format = $("#mei-output-format").val();
-	incip = globalMeiOutputDocument.getElementsByTagName("incip");
+	incip = docu.getElementsByTagName("incip");
+	console.log(incip);
 	typesetIncipits(incip, out_format);
 	
 }
