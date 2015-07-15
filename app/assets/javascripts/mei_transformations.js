@@ -26,7 +26,11 @@ function parseXMLString(input) {
 function translateIncipCode(incip, out_format) {
 
 	for (index = 0; index < incip.length; ++index) {
-		incipcode = incip[index].childNodes[0];
+		incipcode = incip[index].getElementsByTagName('incipCode')[0]; //childNodes[0];
+		
+		if (incipcode == null) {
+			continue;
+		}
 		
 		pae = "@start:pae-file\n";
 		pae = pae + "@data: " + incipcode.textContent + "\n";
@@ -57,8 +61,6 @@ function translateIncipCode(incip, out_format) {
 		incip[index].removeChild(incipcode);
 		incip[index].appendChild(xmlInsert.firstChild);
 	}
-	
-	//console.log(outXml);
 }
 
 function typesetIncipits(incip, out_format) {
@@ -69,13 +71,23 @@ function typesetIncipits(incip, out_format) {
 		var in_data;
 		
 		if (out_format == "pae") {
-			incipcode = incip[index].childNodes[0];
+			incipcode = incip[index].getElementsByTagName('incipCode')[0]; //childNodes[0];
+		
+			if (incipcode == null) {
+				continue;
+			}
+			
 			pae = "@start:pae-file\n";
 			pae = pae + "@data: " + incipcode.textContent + "\n";
 			pae = pae + "@end:pae-file\n";
 			in_data = pae;
 		} else {
 			incipcode = incip[index].getElementsByTagName('score')[0];
+			
+			if (incipcode == null) {
+				continue;
+			}
+			
 			//var meiDocType = document.implementation.createDocumentType ("fruit", "SYSTEM", "<!ENTITY tf 'tropical fruit'>");
 			containerDoc = document.implementation.createDocument("http://www.music-encoding.org/ns/mei", "mei", null);
 			music = document.createElement('music');
@@ -109,7 +121,7 @@ function typesetIncipits(incip, out_format) {
 
 function executeTransformation(id) {
 	if (!vrvToolkit)
-	vrvToolkit = new verovio.toolkit();
+		vrvToolkit = new verovio.toolkit();
 		
 	file = "/catalog/" + id + ".marcxml";
 	if (globalXslFile == null)
@@ -131,6 +143,7 @@ function executeTransformation(id) {
 	
 	globalMeiOutputDocument = xmldoc;
 	globalMeiOutput = Saxon.serializeXML(xmldoc);
+	
 }
 
 function showMEIPreview() {
@@ -146,7 +159,6 @@ function showMEIPreview() {
 	
 	out_format = $("#mei-output-format").val();
 	incip = docu.getElementsByTagName("incip");
-	console.log(incip);
 	typesetIncipits(incip, out_format);
 	
 }
