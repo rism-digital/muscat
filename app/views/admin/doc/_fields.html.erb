@@ -1,4 +1,6 @@
 <div class="col-md-9">   
+
+<% if @model != nil -%>
     <%- @marc_config = MarcConfigCache.get_configuration @model_name %>
     <%- @editor_config = EditorConfiguration.get_applicable_layout(@model) %>  
     <%- @marc_config.each_data_tag do |tag| %>
@@ -38,7 +40,12 @@
             </div>
         </div>
     <% end -%>
+<% else -%>
+	<strong>Please select a valid model</strong>
+<% end -%>
+
 </div>
+
 
 <div class="col-sm-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
     <div class="panel panel-default">
