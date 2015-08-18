@@ -17,6 +17,9 @@ Muscat::Application.routes.draw do
   get "/manuscripts", to: redirect('/sources')
   get "/manuscripts/:name", to: redirect('/sources/%{name}')
 
+  get "/sources", to: redirect('/catalog')
+  get "/sources/:name", to: redirect('/catalog/%{name}')
+
   ## Set up routes to redirect legacy /pages from muscat2
   ## to the new site URL
   get '/pages', to: redirect(RISM::LEGACY_PAGES_URL)

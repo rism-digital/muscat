@@ -1,1 +1,1 @@
-verovio-toolkit-light-0.9.8.js
+verovio-toolkit-light-0.9.9-dev.js
