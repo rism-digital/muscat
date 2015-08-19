@@ -13,6 +13,17 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
 
   after_filter :user_activity
+  
+  # Code for rescueing lock conflicts errors
+  rescue_from ActiveRecord::StaleObjectError do |exception|
+     respond_to do |format|
+        format.html {
+          flash.now[:warning] = "Another user has made a change to that record "+
+             "since you accessed the edit form."
+          render :edit
+       }
+    end
+  end      
 
   private
 

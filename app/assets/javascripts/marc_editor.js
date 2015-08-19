@@ -350,7 +350,7 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 			window.location.href = new_url;
 			
 		},
-		data: {marc: JSON.stringify(json_marc), marc_editor_dest: destination_column, id: $('#id').val()},
+		data: {marc: JSON.stringify(json_marc), marc_editor_dest: destination_column, id: $('#id').val(), lock_version: $('#lock_version').val()},
 		dataType: 'json',
 		timeout: 20000,
 		type: 'post',

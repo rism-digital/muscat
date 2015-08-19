@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507115101) do
+ActiveRecord::Schema.define(version: 20150819094054) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -251,6 +251,7 @@ ActiveRecord::Schema.define(version: 20150507115101) do
     t.string   "wf_audit",        limit: 16,  default: "unapproved"
     t.string   "wf_stage",        limit: 16,  default: "unpublished"
     t.text     "marc_source"
+    t.integer  "lock_version",                default: 0,             null: false
   end
 
   add_index "people", ["wf_stage"], name: "index_people_on_wf_stage", using: :btree

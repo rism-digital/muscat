@@ -11,7 +11,7 @@ module MarcControllerActions
   def self.included(dsl)
     # THIS IS OVERRIDEN from resource_dsl_extensions.rb
     dsl.collection_action :marc_editor_save, :method => :post do
-      
+
       #Get the model we are working on
       model = self.resource_class
 
@@ -37,6 +37,7 @@ module MarcControllerActions
         @item.user = current_user
       end
       @item.marc = new_marc
+      @item.lock_version = params[:lock_version]
 
       @item.save
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 

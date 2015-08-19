@@ -44,7 +44,6 @@ ActiveAdmin.register Person do
     
     def index
       @results = Person.search_as_ransack(params)
-      puts @results 
       index! do |format|
         @people = @results
         format.html

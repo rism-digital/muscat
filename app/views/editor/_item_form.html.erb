@@ -3,6 +3,7 @@
 	<%- @editor_profile.layout_config[:marc_editor_group_links] = [] -%>
 	<%= form_tag( "#", {:id => "marc_editor_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>
 		<%= hidden_field_tag 'id', @item.id -%>
+        <%= hidden_field_tag 'lock_version', @item.lock_version if @item.lock_version -%>
 		<%- @editor_profile.layout_config["group_order"].each do |group| -%>
 		<%# The default partial is editor/group %>
 			<%= render :partial => @editor_profile.get_group_partial(group), 
