@@ -19,7 +19,11 @@
 
 class Person < ActiveRecord::Base
   
-#  include MarcIndex
+  has_paper_trail :only => [:marc_source]
+  
+  def user_name
+    user ? user.name : ''
+  end
   
   resourcify 
   has_many :works

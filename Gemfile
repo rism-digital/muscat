@@ -40,6 +40,9 @@ end
 # For generating both digest and no digest assets
 gem 'non-stupid-digest-assets'
 
+# Papertrail for old version support
+gem 'paper_trail'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

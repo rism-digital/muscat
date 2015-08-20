@@ -391,6 +391,32 @@ function marc_editor_preview( source_form, destination, rails_model ) {
 	});
 }
 
+function marc_editor_version( version_id, destination, rails_model ) {	
+	url = "/admin/" + rails_model + "/marc_editor_version";
+	
+	$.ajax({
+		success: function(data) {
+			// Hide and show the divs
+            // Since we did not pas the source form we cannot hide it... 
+            // We will need it depending on the layout we want to have
+			//$("#" + source_form).hide();
+			$("#" + destination).show();
+			
+		},
+		data: {marc_editor_dest: destination, version_id: version_id},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			alert ("Error saving page! Page will be reloaded. (" 
+					+ textStatus + " " 
+					+ errorThrown);
+			//location.reload();
+		}
+	});
+}
+
 function quick_search_form( base, lang ) {
    marc_editor_set_locale( lang );
    output = "\
@@ -449,7 +475,7 @@ function marc_editor_show_hide_preview() {
 		marc_editor_preview('marc_editor_panel','marc_editor_preview', model);
 	} else {
 		$('#marc_editor_preview').hide();
-		$('#marc_editor_panel').show();
+		//$('#marc_editor_panel').show();
 	}
 	
 	window.scrollTo(0, 0);

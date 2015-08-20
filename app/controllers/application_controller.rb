@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
        }
     end
   end      
+  
+  def user_for_paper_trail
+    current_user.try :name
+  end
 
   private
 

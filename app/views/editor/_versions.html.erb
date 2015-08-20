@@ -1,0 +1,23 @@
+<table border="0" cellspacing="0" cellpadding="0" class="index_table index" >
+	<tr>
+		<th>Date</th>
+		<th>Author</th>
+		<th></th>
+	</tr>
+	<%- i = 0 %>
+	<%- @item.versions.each do |version| %>
+		<tr class="<%= cycle('even', 'odd') -%>" id="person_50036437">
+			<td class="col"><%= I18n.localize(version.created_at.localtime, :format => '%A %e %B %Y - %H:%M') -%></td>
+			<td class="col"><%= version.whodunnit ? version.whodunnit : "[system]" %></td>
+			<td class="col col-actions">
+				<div class="table_actions">
+					<!-- testing hardcoded values -->
+					<a class="view_link member_link" href="javascript:marc_editor_version( 9, 'marc_editor_preview', 'people');">View</a>
+					<a class="edit_link member_link" href="#">Diff</a>
+					<a class="delete_link member_link" data-confirm="Do you want to restore this version?" data-method="restore" href="#" rel="nofollow">Restore</a>
+				</div>
+			</td>
+		</tr>
+		<%- i += 1 %>
+	<%- end -%>
+</table>

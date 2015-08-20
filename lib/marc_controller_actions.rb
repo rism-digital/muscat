@@ -87,6 +87,16 @@ module MarcControllerActions
 
     end
     
+    dsl.collection_action :marc_editor_version, :method => :post do
+      
+      version = PaperTrail::Version.find( params[:version_id] )
+      @item = version.reify
+      @editor_profile = EditorConfiguration.get_show_layout @item
+     
+      render :template => 'marc_show/show_preview'
+
+    end
+    
     # This can be used to add a button in the title bar
     #dsl.action_item :only => [:edit, :new] do
     #    link_to('View on site', "javascript:marc_editor_send_form('marc_editor_panel','marc_editor_panel', 0, '#{self.resource_class.to_s.pluralize.downcase}')")
