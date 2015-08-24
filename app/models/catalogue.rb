@@ -113,9 +113,6 @@ class Catalogue < ActiveRecord::Base
     # if it was suppressed we do not update it as it
     # will be nil
     return if marc_source == nil
-
-    # update last transcation
-    marc.update_005
     
     # If the source id is present in the MARC field, set it into the
     # db record
