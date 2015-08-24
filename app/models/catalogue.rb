@@ -17,6 +17,12 @@
 class Catalogue < ActiveRecord::Base
   resourcify
 
+  # class variables for storing the user name from the controller
+  @@last_user_save
+  cattr_accessor :last_user_save
+  
+  has_paper_trail :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+
   has_and_belongs_to_many :sources
   has_many :folder_items, :as => :item
   belongs_to :user, :foreign_key => "wf_owner"
