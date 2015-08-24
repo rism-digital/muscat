@@ -286,9 +286,6 @@ class Source < ActiveRecord::Base
   # the _d variant fields store a normalized lower case version with accents removed
   # the _d columns are used for western dictionary sorting in list forms
   def set_object_fields
-
-    # update last transcation
-    marc.update_005
     
     # source id
     ##marc_source_id = marc.get_marc_source_id

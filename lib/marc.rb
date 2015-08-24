@@ -229,18 +229,7 @@ class Marc
     end
     return source_id
   end
-  
-  # Update the last transaction field, 005.
-  def update_005
-    last_transcation = Time.now.utc.strftime("%Y%m%d%H%M%S") + ".0"
-    _005_tag = first_occurance("005")
-    if _005_tag
-      _005_tag.content = last_transcation
-    else
-      @root.add_at(MarcNode.new(@model, "005", last_transcation, nil), get_insert_position("005") )
-    end
-  end
-  
+    
   # Set the RISM ID in the 001 field
   def set_id(id)
     id_tag = first_occurance("001")
