@@ -24,6 +24,7 @@
 #= require section_sidebar_ujs
 #= require pae_incipit_render_ujs
 #= require textarea_autogrow_ujs
+#= require marc_versioning_ujs
 #= require blacklight_range_limit
 #= require folder_actions
 #= require editor_hotkeys

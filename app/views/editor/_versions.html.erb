@@ -12,7 +12,8 @@
 			<td class="col col-actions">
 				<div class="table_actions">
 					<!-- testing hardcoded values -->
-					<a class="view_link member_link" href="javascript:marc_editor_version( 9, 'marc_editor_preview', 'people');">View</a>
+					<% model = @item.class.model_name.route_key %>
+					<a class="view_link member_link marc_versioning" data-model="<%= model %>" data-version="<%= version.id %>" href="#">View</a>
 					<a class="edit_link member_link" href="#">Diff</a>
 					<a class="delete_link member_link" data-confirm="Do you want to restore this version?" data-method="restore" href="#" rel="nofollow">Restore</a>
 				</div>
