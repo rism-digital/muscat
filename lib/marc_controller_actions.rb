@@ -15,6 +15,10 @@ module MarcControllerActions
       #Get the model we are working on
       model = self.resource_class
 
+      # Set the user name to the model class variable
+      # This is used by the VersionChecker module to see if we want a version to be stored
+      model.last_user_save = current_user.name
+
       marc_hash = JSON.parse params[:marc]
       
       # This is the tricky part. Get the MARC subclass
@@ -41,11 +45,11 @@ module MarcControllerActions
 
       @item.save
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
-
-     # @editor_profile = EditorConfiguration.get_applicable_layout @item
-     # @source = @item
+      
+      # Reset the user name to nil for next time
+      model.last_user_save = nil
      
-     # build the dynamic model path
+      # build the dynamic model path
       model_for_path = self.resource_class.to_s.underscore.downcase
       link_function = "edit_admin_#{model_for_path}_path"
      

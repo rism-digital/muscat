@@ -19,7 +19,11 @@
 
 class Person < ActiveRecord::Base
   
-  has_paper_trail :only => [:marc_source]
+  # class variables for storing the user name from the controller
+  @@last_user_save
+  cattr_accessor :last_user_save
+  
+  has_paper_trail :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
   def user_name
     user ? user.name : ''
