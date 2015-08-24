@@ -15,6 +15,8 @@
 class Institution < ActiveRecord::Base
   resourcify
   
+  has_paper_trail :only => [:marc_source]
+  
   has_and_belongs_to_many :sources
   #has_many :folder_items, :as => :item
   has_and_belongs_to_many :workgroups

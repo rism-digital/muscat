@@ -34,6 +34,8 @@
 
 class Source < ActiveRecord::Base
   
+  has_paper_trail :only => [:marc_source]
+  
   # include the override for group_values
   require 'solr_search.rb'
 #  include MarcIndex
