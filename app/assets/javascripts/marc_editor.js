@@ -417,29 +417,6 @@ function marc_editor_version( version_id, destination, rails_model ) {
 	});
 }
 
-function quick_search_form( base, lang ) {
-   marc_editor_set_locale( lang );
-   output = "\
-   <div id=\"searchform\" class=\"ui-corner-all\" style=\"width: 350px;\">\
-   	<table cellpadding=\"0\" cellspacing=\"\">\
-   		<tbody><tr>\
-   			<td style=\"padding: 0px 0px 4px 0px;\">"
-   			+ quick_search +
-            "</td>\
-   			<td style=\"padding: 0px 0px 4px 5px;\">\
-   				<span class=\"quick_help\"><a name=\"" + tips_on_quick_search + "\" id=\"help_quick\" rel=\"/help/quick_search_" + base + "_" + lang + ".html\" href=\"/help/quick_search_" + base + "_" + lang + ".html\" title=\"" + tips_on_quick_search + "\">?</a></span>\
-   			</td>\
-   		</tr>\
-   	</tbody></table>\
-   	<form method=\"get\" class=\"search\" action=\"/manuscripts\">\
-   		<input id=\"strategy\" name=\"strategy\" value=\"index\" type=\"hidden\"> \
-   		<input id=\"search_1\" name=\"search_1\" class=\"text\" style=\"width: 300px;\" type=\"text\">\
-   		<input name=\"search_b\" class=\"button\" value=\"Go!\" type=\"submit\">\
-   	</form>\
-   </div>";
-   return output;
-}
-
 function marc_editor_cancel_form( ) {
     marc_editor_form_changed = true;
     var loc=location.href.substring(location.href.lastIndexOf("/"), -1);
@@ -475,7 +452,7 @@ function marc_editor_show_hide_preview() {
 		marc_editor_preview('marc_editor_panel','marc_editor_preview', model);
 	} else {
 		$('#marc_editor_preview').hide();
-		//$('#marc_editor_panel').show();
+		$('#marc_editor_panel').show();
 	}
 	
 	window.scrollTo(0, 0);
