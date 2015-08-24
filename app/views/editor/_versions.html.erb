@@ -2,6 +2,7 @@
 	<tr>
 		<th>Date</th>
 		<th>Author</th>
+		<th>Event</th>
 		<th></th>
 	</tr>
 	<%- i = 0 %>
@@ -9,6 +10,7 @@
 		<tr class="<%= cycle('even', 'odd') -%>" id="person_50036437">
 			<td class="col"><%= I18n.localize(version.created_at.localtime, :format => '%A %e %B %Y - %H:%M') -%></td>
 			<td class="col"><%= version.whodunnit ? version.whodunnit : "[system]" %></td>
+			<td class="col"><%= version.event ? version.event.humanize : "[unknown]" %></td>
 			<td class="col col-actions">
 				<div class="table_actions">
 					<!-- testing hardcoded values -->
