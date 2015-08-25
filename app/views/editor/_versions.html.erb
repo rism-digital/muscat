@@ -2,7 +2,8 @@
 # Get the restore path
 # a bit complex since the model is dynamic
 	model_for_path = @item.class.to_s.underscore.downcase
-	link_function = "marc_restore_version_admin_#{model_for_path}_path"
+	link_function_restore = "marc_restore_version_admin_#{model_for_path}_path"
+	link_function_delete = "marc_delete_version_admin_#{model_for_path}_path"
 %>
 
 <div id="marc_editor_history" class="panel-hidable" style="display: none">
@@ -16,7 +17,8 @@
 		</tr>
 		<%- i = 0 %>
 		<%- @item.versions.each do |version| %>
-			<% restore_path =  send(link_function, @item.id, {version_id: version.id}) %>
+			<% restore_path =  send(link_function_restore, @item.id, {version_id: version.id}) %>
+			<% delete_path =  send(link_function_delete, @item.id, {version_id: version.id}) %>
 			
 			<tr class="<%= cycle('even', 'odd') -%>" id="person_50036437">
 				<td class="col"><%= I18n.localize(version.created_at.localtime, :format => '%A %e %B %Y - %H:%M') -%></td>
@@ -29,7 +31,7 @@
 						<a class="view_link member_link marc_versioning" data-model="<%= model %>" data-version="<%= version.id %>" href="#">View</a>
 						<a class="edit_link member_link" href="#">Diff</a>
 						<%= link_to("Restore", restore_path, method: :put, data: { confirm: "Do you want to restore this version?"}) %>
-
+						<%= link_to("Delete", delete_path, method: :put, data: { confirm: "Do you want to delete this version?"}) %>
 					</div>
 				</td>
 			</tr>

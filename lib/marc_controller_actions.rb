@@ -118,8 +118,18 @@ module MarcControllerActions
       
       @item.save
       
-      redirect_to resource_path(@item), notice: "Correctly restored to version #{params[:version_id]}!"
+      redirect_to resource_path(@item), notice: "Correctly restored to version #{params[:version_id]}"
     end
+    
+    dsl.member_action :marc_delete_version, method: :put do
+
+      version = PaperTrail::Version.find( params[:version_id] )
+      @item = version.reify
+      version.delete
+
+      redirect_to resource_path(@item), notice: "Deleted snapshot #{params[:version_id]}"
+    end
+    
     
     # This can be used to add a button in the title bar
     #dsl.action_item :only => [:edit, :new] do
