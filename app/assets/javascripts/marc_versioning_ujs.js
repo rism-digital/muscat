@@ -36,7 +36,7 @@
 				e.preventDefault();
 				version = $(this).data("version");
 				model = $(this).data("model")
-				marc_editor_version(version, 'marc_editor_preview', model);
+				marc_editor_version(version, 'marc_editor_historic_view', model);
 			});
 		}
 	});

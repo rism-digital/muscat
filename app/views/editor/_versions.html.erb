@@ -5,7 +5,8 @@
 	link_function = "marc_restore_version_admin_#{model_for_path}_path"
 %>
 
-<div id="marc_editor_history" class="panel-hidable">
+<div id="marc_editor_history" class="panel-hidable" style="display: none">
+	<strong>Old versions</strong>
 	<table border="0" cellspacing="0" cellpadding="0" class="index_table index" >
 		<tr>
 			<th>Date</th>
@@ -35,4 +36,7 @@
 			<%- i += 1 %>
 		<%- end -%>
 	</table>
+	
+	<div id="marc_editor_historic_view"></div>
+	
 </div>

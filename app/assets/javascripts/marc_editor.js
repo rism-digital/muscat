@@ -390,11 +390,12 @@ function marc_editor_preview( source_form, destination, rails_model ) {
 
 function marc_editor_version( version_id, destination, rails_model ) {	
 	url = "/admin/" + rails_model + "/marc_editor_version";
+	$("#" + destination).block({message: ""});
 	
 	$.ajax({
 		success: function(data) {
-			marc_editor_show_panel(destination);
-			
+			//marc_editor_show_panel(destination);
+			$("#" + destination).unblock();
 		},
 		data: {marc_editor_dest: destination, version_id: version_id},
 		dataType: 'script',
