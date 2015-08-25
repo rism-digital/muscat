@@ -1,4 +1,4 @@
-<div id="<%= render_panel -%>" data-editor-model="<%= model %>">
+<div id="<%= render_panel -%>" class="panel-hidable" data-editor-model="<%= model %>">
 	<%# we don't want the form to be submitted directly (with enter for example), so the 'onSubmit return false %>
 	<%- @editor_profile.layout_config[:marc_editor_group_links] = [] -%>
 	<%= form_tag( "#", {:id => "marc_editor_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>
@@ -13,10 +13,5 @@
        	<%= render :partial => @editor_profile.get_group_partial("other"),  
             :locals => { :render_panel => render_panel , :group => "other" } -%> 
 	<% end %>
-	<%= render :partial => "editor/form_dialogs", :locals => { :render_panel => render_panel } -%>
-	
-	<% if @item.respond_to?('paper_trail_enabled_for_model?') %>
-    	<%= render :partial => "editor/versions" -%>
-	<% end %>
-	
+	<%= render :partial => "editor/form_dialogs", :locals => { :render_panel => render_panel } -%>	
 </div>

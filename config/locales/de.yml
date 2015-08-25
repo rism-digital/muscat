@@ -217,6 +217,7 @@ de:
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
   show_preview: "Vorschau anzeigen/verbergen"
+  show_history: "HISTORY"
   
   #### FOLDER MESSAGES
   folders:

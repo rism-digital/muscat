@@ -1,26 +1,28 @@
-<table border="0" cellspacing="0" cellpadding="0" class="index_table index" >
-	<tr>
-		<th>Date</th>
-		<th>Author</th>
-		<th>Event</th>
-		<th></th>
-	</tr>
-	<%- i = 0 %>
-	<%- @item.versions.each do |version| %>
-		<tr class="<%= cycle('even', 'odd') -%>" id="person_50036437">
-			<td class="col"><%= I18n.localize(version.created_at.localtime, :format => '%A %e %B %Y - %H:%M') -%></td>
-			<td class="col"><%= version.whodunnit ? version.whodunnit : "[system]" %></td>
-			<td class="col"><%= version.event ? version.event.humanize : "[unknown]" %></td>
-			<td class="col col-actions">
-				<div class="table_actions">
-					<!-- testing hardcoded values -->
-					<% model = @item.class.model_name.route_key %>
-					<a class="view_link member_link marc_versioning" data-model="<%= model %>" data-version="<%= version.id %>" href="#">View</a>
-					<a class="edit_link member_link" href="#">Diff</a>
-					<a class="delete_link member_link" data-confirm="Do you want to restore this version?" data-method="restore" href="#" rel="nofollow">Restore</a>
-				</div>
-			</td>
+<div id="marc_editor_history" class="panel-hidable">
+	<table border="0" cellspacing="0" cellpadding="0" class="index_table index" >
+		<tr>
+			<th>Date</th>
+			<th>Author</th>
+			<th>Event</th>
+			<th></th>
 		</tr>
-		<%- i += 1 %>
-	<%- end -%>
-</table>
+		<%- i = 0 %>
+		<%- @item.versions.each do |version| %>
+			<tr class="<%= cycle('even', 'odd') -%>" id="person_50036437">
+				<td class="col"><%= I18n.localize(version.created_at.localtime, :format => '%A %e %B %Y - %H:%M') -%></td>
+				<td class="col"><%= version.whodunnit ? version.whodunnit : "[system]" %></td>
+				<td class="col"><%= version.event ? version.event.humanize : "[unknown]" %></td>
+				<td class="col col-actions">
+					<div class="table_actions">
+						<!-- testing hardcoded values -->
+						<% model = @item.class.model_name.route_key %>
+						<a class="view_link member_link marc_versioning" data-model="<%= model %>" data-version="<%= version.id %>" href="#">View</a>
+						<a class="edit_link member_link" href="#">Diff</a>
+						<a class="delete_link member_link" data-confirm="Do you want to restore this version?" data-method="restore" href="#" rel="nofollow">Restore</a>
+					</div>
+				</td>
+			</tr>
+			<%- i += 1 %>
+		<%- end -%>
+	</table>
+</div>

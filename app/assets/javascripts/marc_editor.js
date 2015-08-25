@@ -372,10 +372,7 @@ function marc_editor_preview( source_form, destination, rails_model ) {
 	
 	$.ajax({
 		success: function(data) {
-			// Hide and show the divs
-			$("#" + source_form).hide();
-			$("#" + destination).show();
-			
+			marc_editor_show_panel(destination);
 		},
 		data: {marc: JSON.stringify(json_marc), marc_editor_dest: destination, id: $('#id').val()},
 		dataType: 'script',
@@ -396,11 +393,7 @@ function marc_editor_version( version_id, destination, rails_model ) {
 	
 	$.ajax({
 		success: function(data) {
-			// Hide and show the divs
-            // Since we did not pas the source form we cannot hide it... 
-            // We will need it depending on the layout we want to have
-			//$("#" + source_form).hide();
-			$("#" + destination).show();
+			marc_editor_show_panel(destination);
 			
 		},
 		data: {marc_editor_dest: destination, version_id: version_id},
@@ -451,9 +444,17 @@ function marc_editor_show_hide_preview() {
 		// or do nothing if there is an error
 		marc_editor_preview('marc_editor_panel','marc_editor_preview', model);
 	} else {
-		$('#marc_editor_preview').hide();
-		$('#marc_editor_panel').show();
+		marc_editor_show_panel("marc_editor_preview");
 	}
 	
 	window.scrollTo(0, 0);
+}
+
+function marc_editor_show_panel(panel_name) {
+	// Hide all the panels
+	$(".panel-hidable").each(function() {
+		$(this).hide();
+	});
+	
+	$('#' + panel_name).show();
 }

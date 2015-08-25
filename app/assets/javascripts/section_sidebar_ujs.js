@@ -2,7 +2,7 @@ var init_sidebar_actions = function () {
 	$('a[data-scroll-target]').click(function(e){
 		e.preventDefault();
 		
-		function show_tab_group(tname) {
+		function show_tab_group(tname, panel) {
 			var current_item = null;
 			var new_item = null;
 		
@@ -12,40 +12,42 @@ var init_sidebar_actions = function () {
 					$(this).hide();
 				} else {
 					$(this).show();
-
 				}
 			});
+			
+			marc_editor_show_panel(panel)
 			//$.scrollTo($("[name=" + tname + "]"), 100, {offset: -10});
 		} // function
 		
-		function show_all_tab_groups() {
+		function show_toplevel(panel) {
+			
+			// Show all the subpanels, if any
 			$( ".tab_panel" ).each(function() {
 				$(this).show();
 				$(this).removeData("current-item");
 			})
+			
+			marc_editor_show_panel(panel)
 		} // function
 		
-		tname = $(this).data("scroll-target");
+		tname = $(this).data("scroll-target"); // type of action
+		panel = $(this).data("panel"); // toplevel panel
 		
-		if (tname == "show_all_groups") {
-			show_all_tab_groups();
+		if (tname == "show_toplevel") {
+			// Show a specific toplevel panel
+			show_toplevel(panel);
+		} else if (tname == "show_preview") {
+			// the preview panel requires AJAX to get the data
+			// so we defer action to this function
+			// if it succeeds it will display the correct panel
+			marc_editor_show_hide_preview();
 		} else {
-			show_tab_group(tname);
+			// This is for showing/hiding subtabs in marc
+			show_tab_group(tname, panel);
 		}
-		
-		// If we are in preview switch to edit
-		if (!$('#marc_editor_panel').is(':visible')) {
-			$('#marc_editor_preview').hide();
-			$('#marc_editor_panel').show();
-		}
-		
+				
 		window.scrollTo(0, 0);
 		
-	});
-	
-	$('a[data-sidebar-preview]').click(function(e) {
-		e.preventDefault();
-		marc_editor_show_hide_preview() 
 	});
 };
 

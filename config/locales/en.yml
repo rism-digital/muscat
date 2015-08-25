@@ -217,6 +217,7 @@ en:
   # Editor sidebar
   show_all_groups: "Show All Groups"
   show_preview: "Show/Hide Preview"
+  show_history: "Source History"
   
   #### FOLDER MESSAGES
   folders:
