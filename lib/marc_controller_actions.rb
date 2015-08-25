@@ -6,8 +6,6 @@ require 'resource_dsl_extensions.rb'
 # https://github.com/gregbell/active_admin/wiki/Content-rendering-API
 module MarcControllerActions
   
-  
-  
   def self.included(dsl)
     # THIS IS OVERRIDEN from resource_dsl_extensions.rb
     dsl.collection_action :marc_editor_save, :method => :post do
@@ -99,6 +97,28 @@ module MarcControllerActions
      
       render :template => 'marc_show/show_preview'
 
+    end
+    
+    dsl.member_action :marc_restore_version, method: :put do
+      #Get the model we are working on
+      model = self.resource_class
+      @item = model.find(params[:id])
+      
+      model.last_user_save = current_user.name
+      
+      version = PaperTrail::Version.find( params[:version_id] )
+      old_item = version.reify
+
+      classname = "Marc" + model.to_s
+      dyna_marc_class = Kernel.const_get(classname)
+      new_marc = dyna_marc_class.new(old_item.marc.to_marc)
+      
+      new_marc.import
+      @item.marc = new_marc
+      
+      @item.save
+      
+      redirect_to resource_path(@item), notice: "Correctly restored to version #{params[:version_id]}!"
     end
     
     # This can be used to add a button in the title bar
