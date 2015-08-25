@@ -27,7 +27,7 @@
 						<% model = @item.class.model_name.route_key %>
 						<a class="view_link member_link marc_versioning" data-model="<%= model %>" data-version="<%= version.id %>" href="#">View</a>
 						<a class="edit_link member_link" href="#">Diff</a>
-						<%= link_to("Restore", restore_path, method: :put, data: { confirm: " you want to restore this version?"}) %>
+						<%= link_to("Restore", restore_path, method: :put, data: { confirm: "Do you want to restore this version?"}) %>
 
 					</div>
 				</td>
