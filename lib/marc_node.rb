@@ -513,6 +513,8 @@ class MarcNode
 
   alias length size
   alias << add
+  alias to_s to_marc
+  
   
   private
   def clean_string(str)
