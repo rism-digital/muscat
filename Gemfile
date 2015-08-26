@@ -43,6 +43,9 @@ gem 'non-stupid-digest-assets'
 # Papertrail for old version support
 gem 'paper_trail'
 
+# for aligning marc
+gem 'needleman_wunsch_aligner'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
