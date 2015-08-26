@@ -1,4 +1,12 @@
-<div id="marc_editor_history" class="panel-hidable">
+<%
+# Get the restore path
+# a bit complex since the model is dynamic
+	model_for_path = @item.class.to_s.underscore.downcase
+	link_function_restore = "marc_restore_version_admin_#{model_for_path}_path"
+	link_function_delete = "marc_delete_version_admin_#{model_for_path}_path"
+%>
+
+<div id="marc_editor_history" class="panel-hidable" style="display: none">
 	<table border="0" cellspacing="0" cellpadding="0" class="index_table index" >
 		<tr>
 			<th>Date</th>
@@ -9,26 +17,33 @@
 		</tr>
 		<%- i = 0 %>
 		<%- @item.versions.reverse.each do |version| %>
+			<% restore_path =  send(link_function_restore, @item.id, {version_id: version.id}) %>
+			<% delete_path =  send(link_function_delete, @item.id, {version_id: version.id}) %>
+			
 			<tr class="<%= cycle('even', 'odd') -%>" id="person_50036437">
 				<td class="col"><%= I18n.localize(version.created_at.localtime, :format => '%A %e %B %Y - %H:%M') -%></td>
 				<td class="col"><%= version.whodunnit ? version.whodunnit : "[system]" %></td>
 				<td class="col"><%= version.event ? version.event.humanize : "[unknown]" %></td>
 				<td class="col">
 					<div style="border: #ccc 1px solid; width: 100%; background-color: #eee;">
-						<div data-version-modification="<%= VersionChecker.get_modification_with_previous( version.id ) %>" class="version_modification">&nbsp;</div>
+						<div data-version-modification="<%= VersionChecker.get_similarity_with_next( version.id ) %>" class="version_modification">&nbsp;</div>
 					</div>
 				</td>
 				<td class="col col-actions">
 					<div class="table_actions">
 						<!-- testing hardcoded values -->
 						<% model = @item.class.model_name.route_key %>
-						<a class="view_link member_link marc_versioning" data-model="<%= model %>" data-version="<%= version.id %>" href="#">View</a>
-						<a class="edit_link member_link" href="#">Diff</a>
-						<a class="delete_link member_link" data-confirm="Do you want to restore this version?" data-method="restore" href="#" rel="nofollow">Restore</a>
+						<a class="view_link member_link" data-model="<%= model %>" data-version="<%= version.id %>" href="#">View</a>
+						<a class="edit_link member_link marc_versioning" data-model="<%= model %>" data-version="<%= version.id %>" href="#">Diff</a>
+						<%= link_to("Restore", restore_path, method: :put, data: { confirm: "Do you want to restore this version?"}) %>
+						<%= link_to("Delete", delete_path, method: :put, data: { confirm: "Do you want to delete this version?"}) %>
 					</div>
 				</td>
 			</tr>
 			<%- i += 1 %>
 		<%- end -%>
 	</table>
+	
+	<div id="marc_editor_historic_view" class="marc_historic_view"></div>
+	
 </div>

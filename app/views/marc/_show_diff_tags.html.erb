@@ -1,0 +1,15 @@
+<%- last_tag = "" %>
+
+<%- tags.each do |tag| %>
+	<%- tag = tag.diff if tag.diff && tag.diff.diff_is_deleted %>
+	<div class="tag_diff <%= tag.diff_is_deleted ? "tag_diff_deleted version_diff" : !tag.diff ? "tag_diff_inserted version_diff" : ""  -%>">
+		<%- tag.children do |subfield| %>
+			<%- subfield = subfield.diff if subfield.diff && subfield.diff.diff_is_deleted %>
+			<%- next if @item.marc.config.always_hide?(tag.tag, subfield.tag) || !subfield.content.is_a?(String) %>
+			<%= render :partial => "marc/show_diff_subfield", :locals => { :tag => tag, :subfield => subfield, 
+				:no_label => (last_tag == tag.tag + subfield.tag), :tag_diff_inserted => (tag.diff == nil) } %>
+			<%- last_tag = tag.tag + subfield.tag %>
+		<%- end %>
+	</div>
+<%- end %>
+

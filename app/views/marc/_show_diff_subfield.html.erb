@@ -1,0 +1,20 @@
+<div class="subfield_diff <%= subfield.diff_is_deleted ? "subfield_diff_deleted version_diff" : (!tag_diff_inserted && !subfield.diff) ? "subfield_diff_inserted version_diff" : ""  -%>">
+	<table border="0" cellpadding="0" cellspacing="0">
+		<tr class="row">
+			<th>
+				<% if (no_label == false) -%>
+					<%= @editor_profile.get_sub_label(tag.tag, subfield.tag) %>
+				<%- end %>
+			</th>
+			<%- subfield_diff_content = true if (subfield.diff && (subfield.content != subfield.diff.content)) %>
+			<td class="<%= subfield_diff_content ? "subfield_diff_content version_diff" : "" -%>">
+				<%- if subfield_diff_content %>
+					<div class="diff_new"><%= subfield.content -%></div>
+					<div class="diff_old"><%= subfield.diff.content -%></div>
+				<%- else %>
+					<%= subfield.content.html_safe %>
+				<%- end %>
+			</td>
+		</tr>
+	</table>
+</div>

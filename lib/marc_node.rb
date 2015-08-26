@@ -3,8 +3,8 @@
 class MarcNode
 
   include Enumerable
-  attr_reader :tag, :content, :indicator, :foreign_object, :parent
-  attr_writer :tag, :content, :indicator, :foreign_object, :foreign_field
+  attr_reader :tag, :content, :indicator, :foreign_object, :parent, :diff, :diff_is_deleted
+  attr_writer :tag, :content, :indicator, :foreign_object, :foreign_field, :diff, :diff_is_deleted
   attr_accessor :foreign_host 
   
   def initialize(model, tag = nil, content = nil, indicator = nil)
@@ -16,6 +16,8 @@ class MarcNode
     @foreign_object = nil
     @foreign_field = nil
     @foreign_host = false
+    @diff = nil
+    @diff_is_deleted = false
     # FIX We should have some sort of type checking here
     #raise "Model does not exit in enviroment" if !ActiveRecord::Base.descendants.map(&:name).include?(model.to_s.capitalize)
     @model = model
@@ -463,6 +465,14 @@ class MarcNode
     else
       @children.sort { |a, b| (a.tag.match(/\d/) ? "z#{a.tag}" : a.tag) <=> (b.tag.match(/\d/) ? "z#{b.tag}" : b.tag) }
     end
+  end
+  
+  def all_children
+    tags = Array.new
+    for child in children
+      tags << child
+    end
+    return tags
   end
 
   def each(&block)

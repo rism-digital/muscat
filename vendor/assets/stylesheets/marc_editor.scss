@@ -100,6 +100,36 @@
     }
 }
 
+.marc_historic_view {
+    margin-top: 30px;
+}
+.tag_diff {
+    padding-left: 7px;
+}
+.tag_diff_inserted {
+    border-left: #5f5 3px solid;
+}
+.tag_diff_deleted {
+    border-left: #f55 3px solid;
+}
+.subfield_diff {
+    padding-left: 7px;
+}
+.subfield_diff_inserted {
+    border-left: #5f5 3px solid;
+}
+.subfield_diff_deleted {
+    border-left: #f55 3px solid;
+}
+.diff_new, .diff_old {
+    display: none;
+}
+.subfield_diff_content ins {
+    background-color: #7f7;
+}
+.subfield_diff_content del {
+    background-color: #f99;
+}
 
 
 /***********************/

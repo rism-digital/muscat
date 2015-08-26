@@ -163,6 +163,15 @@ class Marc
     # When importing externals are not resolved, do it here
     @root.resolve_externals
   end
+  
+  # Load marc data from an array (use for loading diff versions)
+  def load_from_array(array_of_tags)
+    @root = MarcNode.new(@model)
+    array_of_tags.each do |t|
+      @root << t
+    end 
+    @loaded = true
+  end
 
   def get_model
     return @model.to_s
@@ -357,8 +366,8 @@ class Marc
   end
   
   # Return all tags
-  def all_tags()
-    load_source unless @loaded
+  def all_tags( resolve = true )
+    load_source( resolve ) unless @loaded
     tags = Array.new
     for child in @root.children
       tags << child

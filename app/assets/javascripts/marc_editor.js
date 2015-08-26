@@ -390,11 +390,45 @@ function marc_editor_preview( source_form, destination, rails_model ) {
 
 function marc_editor_version( version_id, destination, rails_model ) {	
 	url = "/admin/" + rails_model + "/marc_editor_version";
+	$("#" + destination).block({message: ""});
 	
 	$.ajax({
 		success: function(data) {
-			marc_editor_show_panel(destination);
-			
+			//marc_editor_show_panel(destination);
+			$("#" + destination).unblock();
+		},
+		data: {marc_editor_dest: destination, version_id: version_id},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			alert ("Error saving page! Page will be reloaded. (" 
+					+ textStatus + " " 
+					+ errorThrown);
+			//location.reload();
+		}
+	});
+}
+
+function marc_editor_version_diff( version_id, destination, rails_model ) {	
+	url = "/admin/" + rails_model + "/marc_editor_version_diff";
+	$("#" + destination).block({message: ""});
+	
+	$.ajax({
+		success: function(data) {
+			//marc_editor_show_panel(destination);
+			$("#" + destination).unblock();
+            $(".subfield_diff_content").each(function() {
+		        $(this).html( diffString( $(this).children('.diff_old').html(), $(this).children('.diff_new').html() ) );
+	        });
+            $('#marc_editor_historic_view .panel').each(function(){
+                if($(this).find(".version_diff").length == 0){
+                    $(this).hide();
+                }
+            });
+            
+            
 		},
 		data: {marc_editor_dest: destination, version_id: version_id},
 		dataType: 'script',

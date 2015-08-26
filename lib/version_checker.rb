@@ -2,8 +2,10 @@
 
 require 'needleman_wunsch_aligner'
 
+# A base class for defining a set of new methods
 class MarcAligner < NeedlemanWunschAligner
   
+  # A method returning a normalized similarity measurement (0-100) of the best alignment
   def get_alignment_score
     row = @score_matrix.length-1
     col = @score_matrix[0].length-1
@@ -12,6 +14,7 @@ class MarcAligner < NeedlemanWunschAligner
     @score_matrix.flatten.max / length
   end
   
+  # A method for computing the distance of two strings
   def levenshtein_distance(s, t)
     m = s.length
     n = t.length
@@ -40,7 +43,9 @@ end
 
 class MarcSubfieldAligner < MarcAligner
 
-  # Get score for alignment pair of paragraphs and sentences. Aligner prioritizes
+  # Get score for the alignment of two MarcNode (field)
+  # Aligns the subfields of the to fields
+  # For matching subfield.tag compute the levenshtein distance if not identical
   def compute_score(left_el, top_el)
     score = 0
     if !left_el || !top_el || !left_el.tag || !top_el.tag
@@ -49,7 +54,10 @@ class MarcSubfieldAligner < MarcAligner
       # Match on tag
       if left_el.content == top_el.content
         score += 100
-      else
+      # Make sure we are comparing strings
+      elsif !left_el.content.is_a?(String) || !top_el.content.is_a?(String)
+        score += 100
+      else    
         length = [left_el.content.length, top_el.content.length].max
         if length == 0 
           score += 100
@@ -75,19 +83,17 @@ end
 
 class MarcFieldAligner < MarcAligner
 
-  # Get score for alignment pair of paragraphs and sentences. Aligner prioritizes
+  # Get score for the alignment of two MarcNote (root)
+  # Aligns the fields of the root (record)
+  # For matching field.tag get the score from a MarcSubfieldAligner
   def compute_score(left_el, top_el)
     score = 0
     if left_el.tag == top_el.tag
         sub_aligner = MarcSubfieldAligner.new( left_el.children, top_el.children )
         sub_aligner.get_optimal_alignment
         score += sub_aligner.get_alignment_score
-    else #if [left_el, top_el].any? { |e| :paragraph == e[:type] }
-      # Difference in type, one is :paragraph. This is more significant
-      # than sentences.
+    else
       score += -100
-      #else
-      #raise "Handle this: #{ [left_el, top_el].inspect }"
     end
     score
   end
@@ -118,48 +124,73 @@ module VersionChecker
     return false
   end
   
-  def self.get_modification_with_previous(id)
+  def self.get_similarity_with_next(id)
+    item1, item2 = get_item_and_next(id)
+    return 0 if !item1 || !item2
+
+    aligner = MarcFieldAligner.new( item1.marc.all_tags(false), item2.marc.all_tags(false) )
+    aligner.get_optimal_alignment
+    return aligner.get_alignment_score
+  end
+  
+  def self.get_diff_with_next(id)
+    item1, item2 = get_item_and_next(id)
+    return nil if !item1 || !item2
+  
+    aligner = MarcFieldAligner.new( item1.marc.all_tags(false), item2.marc.all_tags(false) )
+    alignment = aligner.get_optimal_alignment
+    tags = set_tag_diff(alignment[0], alignment[1])
+    # sub alignment
+    tags.each do |t|
+      # insertion or deletion, no need to compare
+      next if !t.diff || t.diff.diff_is_deleted
+      
+      sub_aligner = MarcSubfieldAligner.new( t.diff.all_children, t.all_children )
+      sub_alignment = sub_aligner.get_optimal_alignment
+      subfields = set_tag_diff(sub_alignment[0], sub_alignment[1])
+      
+      # replace all the children with the aligned version
+      t.children.clear
+      subfields.each{ |st| t.children << st }  
+    end
+  end
+  
+  private
+  
+  # A private methdo the reify an object and its next version
+  # If the version is the last one, the next one it the current version
+  def self.get_item_and_next(id)
     version = PaperTrail::Version.find( id )
-    return 0 if !version
+    return [nil, nil] if !version
     item1 = version.reify
     
     item2 = nil
+    # The version is the last one
     if !version.next
       item2 = version.item_type.singularize.classify.constantize.find(version.item_id)
     else
       item2 = version.next.reify
     end
     
-    return 0 if !item1 || !item2
-    
-    #s1 = Source.find(id1)
-    #marc_a = MarcSource.new(s1.marc_source)
-    #marc_a.load_source(false)
-    
-    #s2 = Source.find(id2)
-    #marc_b = MarcSource.new(s2.marc_source)
-    #marc_b.load_source(false)
-  
-    #all_tags_a = marc_a.all_tags.map {|t| t.tag}.uniq
-    #all_tags_b = marc_b.all_tags.map {|t| t.tag}.uniq
-  
-    #puts marc_a.all_tags.size
-    #puts marc_b.all_tags.size
-
-    aligner = MarcFieldAligner.new( item1.marc.all_tags, item2.marc.all_tags )
-    aligner.get_optimal_alignment
-    return aligner.get_alignment_score
-    #puts "Similarity: #{aligner.get_alignment_score}%"
-
-    #b0 = a[0].map {|t| t.tag}
-    #b1 = a[1].map {|t| t.tag}
-
-    #i=0
-    #b0.each do |r|
-    #  puts "#{b0[i]} #{b1[i]}"
-    #  i += 1
-    #end
+    [item1, item2]
   end
   
-    
+  def self.set_tag_diff(tag_list1, tag_list2)
+    return tag_list1 if (tag_list1.size != tag_list2.size) 
+  
+    i=0
+    for i in 0..tag_list1.size - 1
+      if tag_list2[i] && tag_list2[i].tag
+        # set it only if we have a tag in the aligned version (otherwise this is an insertion)
+        tag_list2[i].diff = tag_list1[i] if tag_list1[i] && tag_list1[i].tag
+      else
+        # this is deletion - special case where we create an empty node with the deletion as diff (marked as such)
+        tag_list2[i] = MarcNode.new(nil, tag_list1[i].tag)
+        tag_list1[i].diff_is_deleted = true
+        tag_list2[i].diff = tag_list1[i]
+      end
+    end    
+    tag_list2
+  end
+  
 end
