@@ -49,19 +49,9 @@
 
 
 var init_modification_bars = function () {
-    
-	function hsl_col_perc(percent,start,end) {
-		var a = percent/100,
-		b = end*a;
-		c = b+start;
-		//Return a CSS HSL string
-		return 'hsl('+c+',100%,50%)';
-	}
-    
 	$('div[data-version-modification]').each(function() {
         percent = $(this).data("version-modification");
     	$(this).css('width', (100 - percent) + '%');
-        $(this).css('background-color', hsl_col_perc(percent, 0, 100) );
     });
 };
 

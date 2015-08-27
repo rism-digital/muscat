@@ -100,35 +100,68 @@
     }
 }
 
+.marc_editor_preview {
+    table {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+}
+
+$add-color: #7f7;
+$del-color: #f99;
+$mod-color: #ff5;
+$none-color: #e8e8e8;
+
+$tag-diff-width: 5px;
+$subfield-diff-width: 5px;
+$diff-padding-width: 15px;
+
+.marc_editor_preview {
+    table {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+}
+
 .marc_historic_view {
     margin-top: 30px;
-}
-.tag_diff {
-    padding-left: 7px;
-}
-.tag_diff_inserted {
-    border-left: #5f5 3px solid;
-}
-.tag_diff_deleted {
-    border-left: #f55 3px solid;
-}
-.subfield_diff {
-    padding-left: 7px;
-}
-.subfield_diff_inserted {
-    border-left: #5f5 3px solid;
-}
-.subfield_diff_deleted {
-    border-left: #f55 3px solid;
-}
-.diff_new, .diff_old {
-    display: none;
-}
-.subfield_diff_content ins {
-    background-color: #7f7;
-}
-.subfield_diff_content del {
-    background-color: #f99;
+    table {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .tag_diff_inserted {
+        border-left: $add-color $tag-diff_width solid;
+        padding-left: $diff-padding-width - $subfield-diff-width;
+    }
+    .tag_diff_deleted {
+        border-left: $del-color $tag-diff_width solid;
+        padding-left: $diff-padding-width - $subfield-diff-width;
+    }
+    .subfield_diff {
+        border-left: $none-color $subfield-diff_width solid;
+        padding-left: $diff-padding-width - $subfield-diff-width;
+    }
+    .subfield_diff_inserted {
+        border-left: $add-color $subfield-diff_width solid;
+        padding-left: $diff-padding-width - $subfield-diff-width;
+    }
+    .subfield_diff_deleted {
+        border-left: $del-color $subfield-diff_width solid;
+        padding-left: $diff-padding-width - $subfield-diff-width;
+    }
+    .subfield_diff_modified {
+        border-left: $mod-color $subfield-diff_width solid;
+        padding-left: $diff-padding-width - $subfield-diff-width;
+    }
+    .diff_new, .diff_old {
+        display: none;
+    }
+    .subfield_diff_content ins {
+        background-color: #7f7;
+    }
+    .subfield_diff_content del {
+        background-color: #f99;
+    }
 }
 
 

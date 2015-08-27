@@ -26,7 +26,7 @@
 				<td class="col"><%= version.event ? version.event.humanize : "[unknown]" %></td>
 				<td class="col">
 					<div style="border: #ccc 1px solid; width: 100%; background-color: #eee;">
-						<div data-version-modification="<%= VersionChecker.get_similarity_with_next( version.id ) %>" class="version_modification">&nbsp;</div>
+						<div style="background-color: #205b92;" data-version-modification="<%= VersionChecker.get_similarity_with_next( version.id ) %>" class="version_modification">&nbsp;</div>
 					</div>
 				</td>
 				<td class="col col-actions">
