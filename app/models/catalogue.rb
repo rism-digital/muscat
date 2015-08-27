@@ -23,7 +23,7 @@ class Catalogue < ActiveRecord::Base
   @@last_event_save
   cattr_accessor :last_event_save
   
-  has_paper_trail :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   has_and_belongs_to_many :sources
   has_many :folder_items, :as => :item
