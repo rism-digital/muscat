@@ -219,6 +219,18 @@ de:
   show_preview: "Vorschau anzeigen/verbergen"
   show_history: "HISTORY"
   
+  # Version history
+  history_date: "DATE"
+  history_author: "AUTHOR"
+  history_event: "EVENT"
+  history_modification: "MODIFICATION"
+  history_view: "Anzeigen"
+  history_diff: "Vergleichen"
+  history_restore: "Umspeichern"
+  history_delete: "Löschen"
+  history_restore_confirm: "DO YOU WANT TO RESTORE THIS VERSION?"
+  history_delete_confirm: "DO YOU WANT TO DELETE THIS VERSION?"
+  
   #### FOLDER MESSAGES
   folders:
     save: "In Ordner speichern"
