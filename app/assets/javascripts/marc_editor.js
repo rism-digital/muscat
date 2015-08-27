@@ -154,42 +154,6 @@ function marc_editor_add_tag_from_list( list )
 	tg.fadeIn();
 }
 
-function marc_editor_edit_inline( destination_column, id, tag_name )
-{
-	url = "/manuscripts/marc_editor_edit_inline";
-	var data = "marc_editor_dest=" + destination_column;
-	data = data + "&id=" + id;
-	data = data + "&tag_name=" + tag_name;
-	
-	$.ajax({
-		success: function() { 
-		},
-		data: data,
-		dataType: 'script',
-		timeout: 20000, 
-		type: 'post',
-		url: url
-	});
-}
-
-function marc_editor_new_inline( destination_column, parent_id, tag_name )
-{
-	url = "/manuscripts/marc_editor_new_inline";
-	var data = "marc_editor_dest=" + destination_column;
-	data = data + "&parent_id=" + parent_id;
-	data = data + "&tag_name=" + tag_name;
-	
-	$.ajax({
-		success: function() { 
-		},
-		data: data,
-		dataType: 'script',
-		timeout: 20000, 
-		type: 'post',
-		url: url
-	});
-}
-
 var deferred_render_data = []
 var verovio_loading = false;
 
@@ -472,7 +436,7 @@ function marc_editor_show_hide_preview() {
 		return;
 	}
 	
-	if ($('#marc_editor_panel').is(':visible')) {
+	if ($('#marc_editor_preview').not(':visible')) {
 		// this function gets the show data via ajax
 		// it will automatically hide the editor on success
 		// or do nothing if there is an error

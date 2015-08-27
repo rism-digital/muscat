@@ -28,6 +28,13 @@ module RISM
     :work             => 50000000
   }
   
+  # Versionning timeout for marc models
+  # - if set to 0, will store a version of every save (any user)
+  # - if set to -1, will not create a version for every save of the same user
+  # - othervise will not save a version for a save of the same user unless the last
+  #   is older than the XXX seconds - (3600 = 1 hour, 43200 = half a day)
+  VERSION_TIMEOUT = 43200
+  
   # The project line in the header
   PROJECTLINE = "R&eacute;pertoire International des Sources Musicales"
   # The strap line in the header 

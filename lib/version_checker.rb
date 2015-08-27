@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 require 'needleman_wunsch_aligner'
 
 # A base class for defining a set of new methods
@@ -111,16 +109,23 @@ end
 module VersionChecker
   
   def self.save_version?(object)
-    # first check the last version status
-    return true if !object.versions || !object.versions.last || !object.versions.last.whodunnit
+    # first check the timeout value is 0, which means version for any same
+    return true if RISM::VERSION_TIMEOUT == 0
+    # then check the last version status
+    return true if !object.versions || !object.versions.last || !object.versions.last.whodunnit || !object.versions.last.event
     # then check if we have information about who did it
     return true if !object.last_user_save
     # not the same user
     return true if object.versions.last.whodunnit != object.last_user_save
-    # otherwise check at the time - wait at least one hour (3600 seconds)
-    # we might want to make this configurable
-    return true if (Time.now - object.versions.last.created_at.to_time) > 3600
-    # else we don't want to save one
+    # then check if we have information about the event
+    return true if !object.last_event_save
+    # note the same event
+    return true if object.versions.last.event != object.last_event_save
+    # we do not timeout versioning for the same user if timeout value is -1
+    return false if RISM::VERSION_TIMEOUT == -1
+    # otherwise check at the time
+    return true if (Time.now - object.versions.last.created_at.to_time) > RISM::VERSION_TIMEOUT
+    # else we don't want to save one now
     return false
   end
   

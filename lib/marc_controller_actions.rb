@@ -5,9 +5,14 @@ require 'resource_dsl_extensions.rb'
 # Extension module, see
 # https://github.com/gregbell/active_admin/wiki/Content-rendering-API
 module MarcControllerActions
-  
+
   def self.included(dsl)
     # THIS IS OVERRIDEN from resource_dsl_extensions.rb
+    
+    ##########
+    ## Save ##
+    ##########
+    
     dsl.collection_action :marc_editor_save, :method => :post do
 
       #Get the model we are working on
@@ -16,6 +21,7 @@ module MarcControllerActions
       # Set the user name to the model class variable
       # This is used by the VersionChecker module to see if we want a version to be stored
       model.last_user_save = current_user.name
+      model.last_event_save = "update"
 
       marc_hash = JSON.parse params[:marc]
       
@@ -44,8 +50,9 @@ module MarcControllerActions
       @item.save
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       
-      # Reset the user name to nil for next time
+      # Reset the user name and the event to nil for next time
       model.last_user_save = nil
+      model.last_event_save = nil
      
       # build the dynamic model path
       model_for_path = self.resource_class.to_s.underscore.downcase
@@ -58,8 +65,11 @@ module MarcControllerActions
       end
 
       #render :template => 'editor/reload_editor'
-
     end
+  
+    #############
+    ## Preview ##
+    #############
     
     dsl.collection_action :marc_editor_preview, :method => :post do
       
@@ -86,37 +96,51 @@ module MarcControllerActions
       @editor_profile = EditorConfiguration.get_show_layout @item
      
       render :template => 'marc_show/show_preview'
-
     end
+  
+    ##################
+    ## View version ##
+    ##################
     
     dsl.collection_action :marc_editor_version, :method => :post do
       
       version = PaperTrail::Version.find( params[:version_id] )
       @item = version.reify
-      @editor_profile = EditorConfiguration.get_show_layout @item
-     
+      
+      # Do not resolve external since we might foreign object that might have been deleted since then
+      @item.marc.load_source(false)
+      @editor_profile = EditorConfiguration.get_show_layout @item   
+      
       render :template => 'marc_show/show_preview'
-
     end
+  
+    ##################
+    ## Diff version ##
+    ##################
     
     dsl.collection_action :marc_editor_version_diff, :method => :post do
       
       version = PaperTrail::Version.find( params[:version_id] )
-      #@item = version.reify
+
       @item = version.item_type.singularize.classify.constantize.new
       @item.marc.load_from_array( VersionChecker.get_diff_with_next( params[:version_id] ) )
       @editor_profile = EditorConfiguration.get_show_layout @item
+      
+      # Parameter for using diff partials
       @diff = true
+      
       render :template => 'marc_show/show_preview'
-
     end
     
+    #####################
+    ## Restore version ##
+    #####################
+    
     dsl.member_action :marc_restore_version, method: :put do
+      
       #Get the model we are working on
       model = self.resource_class
       @item = model.find(params[:id])
-      
-      model.last_user_save = current_user.name
       
       version = PaperTrail::Version.find( params[:version_id] )
       old_item = version.reify
@@ -127,19 +151,28 @@ module MarcControllerActions
       
       new_marc.import
       @item.marc = new_marc
-      
+      @item.paper_trail_event = "restore"
       @item.save
       
       redirect_to resource_path(@item), notice: "Correctly restored to version #{params[:version_id]}"
     end
+  
+    ####################
+    ## Delete version ##
+    ####################
     
     dsl.member_action :marc_delete_version, method: :put do
-
+      
       version = PaperTrail::Version.find( params[:version_id] )
       @item = version.reify
       version.delete
+      
+      # Parameter for showing history in editor
+      @show_history = true
 
-      redirect_to resource_path(@item), notice: "Deleted snapshot #{params[:version_id]}"
+      model_for_path = self.resource_class.to_s.underscore.downcase
+      link_function = "edit_admin_#{model_for_path}_path"
+      redirect_to send(link_function, @item.id, {:show_history => true}), notice: "Deleted snapshot #{params[:version_id]}"
     end
     
     
@@ -149,6 +182,5 @@ module MarcControllerActions
     #end
   
   end
-  
   
 end

@@ -35,8 +35,14 @@
 			$(e).click(function(e) {
 				e.preventDefault();
 				version = $(this).data("version");
-				model = $(this).data("model")
-				marc_editor_version_diff(version, 'marc_editor_historic_view', model);
+				model = $(this).data("model");
+				action = $(this).data("action");
+				if (action == "preview") {
+					marc_editor_version(version, 'marc_editor_historic_view', model);
+				}
+				else if (action == "diff") {
+					marc_editor_version_diff(version, 'marc_editor_historic_view', model);
+				}
 			});
 		}
 	});
@@ -50,9 +56,9 @@
 
 var init_modification_bars = function () {
 	$('div[data-version-modification]').each(function() {
-        percent = $(this).data("version-modification");
-    	$(this).css('width', (100 - percent) + '%');
-    });
+		percent = $(this).data("version-modification");
+		$(this).css('width', (100 - percent) + '%');
+	});
 };
 
 $(document).ready(init_modification_bars);

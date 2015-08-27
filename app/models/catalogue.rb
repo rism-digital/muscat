@@ -17,9 +17,11 @@
 class Catalogue < ActiveRecord::Base
   resourcify
 
-  # class variables for storing the user name from the controller
+  # class variables for storing the user name and the event from the controller
   @@last_user_save
   cattr_accessor :last_user_save
+  @@last_event_save
+  cattr_accessor :last_event_save
   
   has_paper_trail :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
