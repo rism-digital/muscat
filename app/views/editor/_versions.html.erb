@@ -25,8 +25,8 @@
 				<td class="col"><%= version.whodunnit ? version.whodunnit : "[system]" %></td>
 				<td class="col"><%= version.event ? version.event.humanize : "[unknown]" %></td>
 				<td class="col">
-					<div style="border: #ccc 1px solid; width: 100%; background-color: #eee;">
-						<div style="background-color: #205b92;" data-version-modification="<%= VersionChecker.get_similarity_with_next( version.id ) %>" class="version_modification">&nbsp;</div>
+					<div class="modification_bar">
+						<div class="modification_bar_content" data-version-modification="<%= VersionChecker.get_similarity_with_next( version.id ) %>" class="version_modification">&nbsp;</div>
 					</div>
 				</td>
 				<td class="col col-actions">
@@ -35,8 +35,10 @@
 						<% model = @item.class.model_name.route_key %>
 						<a class="view_link member_link marc_versioning" data-action="preview" data-model="<%= model %>" data-version="<%= version.id %>" href="#">View</a>
 						<a class="edit_link member_link marc_versioning" data-action="diff" data-model="<%= model %>" data-version="<%= version.id %>" href="#">Diff</a>
-						<%= link_to("Restore", restore_path, method: :put, data: { confirm: "Do you want to restore this version?"}) %>
-						<%= link_to("Delete", delete_path, method: :put, data: { confirm: "Do you want to delete this version?"}) %>
+						<%= link_to("Restore", restore_path, method: :put, :class => "member_link",
+							data: { confirm: "Do you want to restore this version?"}) %>
+						<%= link_to("Delete", delete_path, method: :put, :class => "member_link",
+							data: { confirm: "Do you want to delete this version?"}) %>
 					</div>
 				</td>
 			</tr>
