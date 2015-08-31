@@ -293,22 +293,7 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 	$('#sections_sidebar_section').block({ message: "Saving..." });
 	
 	$.ajax({
-		success: function(data) {
-			/*
-		   $('#' + destination_column).unblock();
-		   //location.reload();
-		   if (form_type == 0) {
-		      marc_editor_form_changed = false;
-		   } else if (form_type == 1) {
-		      $('#dialog_preview').parent().css('position', 'fixed');
-		      $("#dialog_preview").dialog('open');
-		   }
-           $("html, body").animate({ scrollTop: 0 }, "fast");
-           $('#dialog').text("Record saved!").attr("class","flash flash_notice");
-		   $(".autogrow").trigger('update'); // Have them grow again
-		   window.location.reload();
-			*/
-			
+		success: function(data) {			
 			new_url = data.redirect;
 			window.onbeforeunload = false;
 			window.location.href = new_url;
@@ -320,9 +305,23 @@ function marc_editor_send_form( source_column, destination_column, form_type, ra
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error saving page! Page will be reloaded. (" 
-					+ textStatus + " " 
-					+ errorThrown);
+				if (errorThrown == "Conflict") {
+					alert ("Error saving page: this is a stale version");
+					
+					$('.flashes').empty();
+					$('<div/>', {
+					    "class": 'flash flash_error',
+					    text: 'This page will not be saved: STALE VERSION. Please reload.'
+					}).appendTo('.flashes');
+					
+					$('#main_content').unblock();
+					$('#sections_sidebar_section').unblock();
+				} else {
+					alert ("Error saving page! Please reload the page. (" 
+							+ textStatus + " " 
+							+ errorThrown + ")");
+				}
+				
 			//location.reload();
 		}
 	});
@@ -344,7 +343,7 @@ function marc_editor_preview( source_form, destination, rails_model ) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error saving page! Page will be reloaded. (" 
+			alert ("Error loading preview. (" 
 					+ textStatus + " " 
 					+ errorThrown);
 			//location.reload();
@@ -367,7 +366,7 @@ function marc_editor_version( version_id, destination, rails_model ) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error saving page! Page will be reloaded. (" 
+			alert ("Error loading version. (" 
 					+ textStatus + " " 
 					+ errorThrown);
 			//location.reload();
@@ -400,7 +399,7 @@ function marc_editor_version_diff( version_id, destination, rails_model ) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error saving page! Page will be reloaded. (" 
+			alert ("Error loading diff. (" 
 					+ textStatus + " " 
 					+ errorThrown);
 			//location.reload();
