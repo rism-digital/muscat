@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base
   # Code for rescueing lock conflicts errors
   rescue_from ActiveRecord::StaleObjectError do |exception|
      respond_to do |format|
-        #format.html {
-        #  flash.now[:warning] = "Another user has made a change to that record "+
-        #     "since you accessed the edit form."
-        #  render :edit
-       #}
+        format.html {
+          flash.now[:error] = "Another user has made a change to that record " +
+             "since you accessed the edit form."
+          render :edit
+       }
        format.json { head :conflict }
     end
   end

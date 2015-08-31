@@ -99,6 +99,7 @@ ActiveAdmin.register StandardTitle do
     f.inputs do
       f.input :title, :label => (I18n.t :filter_title) 
       f.input :notes, :label => (I18n.t :filter_notes) 
+      f.input :lock_version, :as => :hidden
     end
     f.actions
   end

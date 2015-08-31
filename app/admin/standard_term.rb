@@ -100,7 +100,8 @@ ActiveAdmin.register StandardTerm do
     f.inputs do
       f.input :term, :label => (I18n.t :filter_term) 
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms), :input_html => { :rows => 3 }
-      f.input :notes, :label => (I18n.t :filter_notes) 
+      f.input :notes, :label => (I18n.t :filter_notes)
+      f.input :lock_version, :as => :hidden
     end
     f.actions
   end
