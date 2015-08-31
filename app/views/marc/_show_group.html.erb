@@ -13,9 +13,11 @@
 						subfield_group_tags = item.marc.by_tags_with_subtag(group[:tags], group[:subfield_grouping], subfield_group)
 						unless subfield_group_tags.empty? 
 						%>
+							<%- if subfield_group_values > 1 %>
 							<table border="0" cellpadding="0" cellspacing="0">
 								<tr><th><h5 class="subfield_group"><%= "Group #{subfield_group}" %></h5></th></tr>
 							</table>
+							<%- end %>
 							<%- if !@diff %>
 								<%= render :partial => "marc/show_tags", :locals => { :tags => subfield_group_tags, :templates => group[:tag_templates], :opac => opac } %>
 							<%- else %>
