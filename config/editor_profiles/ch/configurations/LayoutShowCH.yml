@@ -29,7 +29,6 @@ groups:
     - "260"
     - "590"
     - "592"
-    #template: marc_show/show_details
     subfield_grouping: 3
     all_tag_templates: 
       "260": marc_show/show_subfield_concat
