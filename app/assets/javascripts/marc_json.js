@@ -76,8 +76,8 @@ function order_subfields(fields) {
 	for (var key in fields) keys.push(key);
 	
 	keys.sort(function(a, b) {
-		a1 = isNumber(a) ? 'z' + a : a;
-		b1 = isNumber(b) ? 'z' + b : b;
+		a1 = isNumber(a.split("-")[0]) ? 'z' + a : a;
+		b1 = isNumber(b.split("-")[0]) ? 'z' + b : b;
 		
 		// is there a better way to do this
 		// on strings?
