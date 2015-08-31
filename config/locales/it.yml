@@ -220,16 +220,16 @@ it:
   show_history: "Mostra il storico"
   
   # Version history
-  history_date: "DATE"
-  history_author: "AUTHOR"
-  history_event: "EVENT"
-  history_modification: "MODIFICATION"
-  history_view: "VIEW"
-  history_diff: "DIFF"
-  history_restore: "RESTORE"
-  history_delete: "DELETE"
-  history_restore_confirm: "DO YOU WANT TO RESTORE THIS VERSION?"
-  history_delete_confirm: "DO YOU WANT TO DELETE THIS VERSION?"
+  history_date: "Data"
+  history_author: "Autore"
+  history_event: "Evento"
+  history_modification: "Modifica"
+  history_view: "Vedi"
+  history_diff: "Compara"
+  history_restore: "Ripristina"
+  history_delete: "Elimina"
+  history_restore_confirm: "Sei sicuro di voler ripristinare questa versione?"
+  history_delete_confirm: "Sei sicuro di voler cancellare questa versione?"
   
   #### FOLDER MESSAGES
   folders:
