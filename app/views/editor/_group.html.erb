@@ -1,11 +1,9 @@
 <!-- 
 group
-	tag_list_div
-		tag_list_header
-		tag_list
-			tag_div
-				tag_header
-				tag
+	tag_list
+		tag_div
+			tag_header
+			tag
 -->
 <%- 
 	### temporary, must probably be moved into the editor_profile model
@@ -35,9 +33,12 @@ group
 	<div class="marc_editor_panel_content">
 		<div class="marc_editor_group_contents">
 			<%- tag_names.each do |tag_name| -%>
-				<%= render :partial => "editor/tag_list_div",
-					:locals => { :tag_name => tag_name,  } 
-					%>
+				<div class="tag_group" data-tag="<%= tag_name %>">
+					<%= render :partial => @editor_profile.get_tag_partial("tag_list",tag_name), 
+							:locals => { :tag_name => tag_name } %>
+					<%= render :partial => "editor/tag_placeholders", 
+							:locals => { :tag_name => tag_name } %>
+				</div>
 			<%- end -%>
 		</div>	
 	</div>
