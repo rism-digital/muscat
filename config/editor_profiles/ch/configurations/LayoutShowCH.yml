@@ -5,6 +5,7 @@ group_order:
 - show_content
 - show_distribution
 - show_details
+- show_material
 - show_information
 - show_references
 - show_terms
@@ -15,18 +16,21 @@ groups:
   show_details: 
     all_tags: 
     - "254"
+    - "028"
+    - "563"
+    - "525"
+    - "270"
+  show_material: 
+    all_tags: 
     - "593"
     - "300"
     - "340"
+    - "351"
     - "260"
     - "590"
-    - 028
     - "592"
-    - "563"
-    - "593"
-    - "525"
-    - "270"
-    template: marc_show/show_details
+    #template: marc_show/show_details
+    subfield_grouping: 3
     all_tag_templates: 
       "260": marc_show/show_subfield_concat
   show_content: 

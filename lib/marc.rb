@@ -337,6 +337,19 @@ class Marc
     return tags
   end
   
+  # Returns and array with all values in a list or tag/subtag
+  def all_values_for_tags_with_subtag(tag_names, subtag)
+    load_source unless @loaded
+    values = Array.new
+    for child in @root.children
+      next if !tag_names.include?(child.tag)
+      next if !child.fetch_first_by_tag( subtag )
+      next if child.fetch_first_by_tag( subtag ).content.empty?
+      values << child.fetch_first_by_tag( subtag ).content
+    end
+    values.uniq
+  end
+  
   def to_yaml
     load_source unless @loaded
     @root.to_yaml
