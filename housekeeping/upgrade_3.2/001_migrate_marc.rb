@@ -30,7 +30,7 @@ Source.all.each do |s|
   modified = false
   fields_mod = []
   fields_add = []
-  index_028 = -1
+  index_028 = []
   
   fields3.each do |field|
   
@@ -74,10 +74,10 @@ Source.all.each do |s|
       # See if there is a 593 Print (or more than one)
       # and save the $8 number and add it to the
       # (eventual) 028
-      if field == "593" && index_028 == -1
+      if field == "593"
         type = t.fetch_first_by_tag("a")
         if type && type.content && type.content == "Print"
-          index_028 = t.fetch_first_by_tag("8").content
+          index_028 << t.fetch_first_by_tag("8").content
         end
       end
       
@@ -87,19 +87,25 @@ Source.all.each do |s|
   
   # Make the 028 tag have a $8 to the index
   # of the relative print material
-  tag_028 = s.marc.by_tags("028")
-  if tag_028.count > 1
-    # More 028s, what to do?
-    uncorrelated_028 << "#{s.id} more than 1 028"
-  elsif tag_028.count == 1
-    if index_028 == -1 # No print reference found
-      uncorrelated_028 << "#{s.id} has 028 but no 593 $a Print"
-    else
-      tag_028.first.add_at(MarcNode.new(Source, "8", index_028, nil), 0)
-      tag_028.first.sort_alphabetically
-      modified = true
+  tags_028 = s.marc.by_tags("028")
+
+  if index_028.count == 0 # No print reference found
+    uncorrelated_028 << "#{s.id} has 028 but no 593 $a Print"
+  elsif index_028.count == 1 # One print reference, set it to the 028s
+    tags_028.each do |t|
+      # Note the hardcoded [0] in index_028
+      # Valid records have one oe more 028
+      # but only ONE 593, if there ae more
+      # set an error
+      t.add_at(MarcNode.new(Source, "8", index_028[0], nil), 0)
+      t.sort_alphabetically
     end
+    modified = true
+  else # More then one print reference!
+    #puts "#{s.id} has 028 bur more than one 593 print"
+    uncorrelated_028 << "#{s.id} has 028 bur more than one 593 print"
   end
+
   
   if modified
     # This case should never happen
@@ -113,7 +119,7 @@ Source.all.each do |s|
     	s.suppress_update_77x
     	s.suppress_update_count
     	s.suppress_reindex
-      #s.save!
+      s.save!
    end
    
   end
