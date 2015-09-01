@@ -376,5 +376,5 @@ class Source < ActiveRecord::Base
     out << "</marc:collection>" 
     return out.join('')
   end
-  
+    
 end
