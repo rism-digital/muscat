@@ -96,7 +96,8 @@ ActiveAdmin.register LiturgicalFeast do
   form do |f|
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name)
-      f.input :notes, :label => (I18n.t :filter_notes) 
+      f.input :notes, :label => (I18n.t :filter_notes)
+      f.input :lock_version, :as => :hidden
     end
     f.actions
   end
