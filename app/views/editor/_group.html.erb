@@ -30,33 +30,10 @@ group
 <%- if !other_tags && @editor_profile.layout_config["groups"][group]["subfield_grouping"] %>
 
 	<%- subfield = @editor_profile.layout_config["groups"][group]["subfield_grouping"] %>
-	<%- subfield_group_values = @item.marc.all_values_for_tags_with_subtag(tag_names, subfield) %>
-	<%- subfield_group_values << "NEW" %>
 	<div class="tab_panel" name="<%= group_title.gsub(/ /, "_") %>">
-		<dl class="sortable">
-		<%- subfield_group_values.each do |subfield_group| %>
-			<%- subfield_group_tags = @item.marc.by_tags_with_subtag(tag_names, subfield, subfield_group) %>
-			<dt>
-				<div class="panel">
-					<%- group_title = subfield_group_values.size > 1 ? "Group #{subfield_group}" : group_title %>
-					<%- group_title = subfield_group == "NEW" ? "New group" : group_title %>
-					<h3><%= group_title -%></h3>
-					<div class="marc_editor_panel_content">
-						<div class="marc_editor_group_contents">
-							<%- tag_names.each do |tag_name| -%>
-								<div class="tag_group" data-tag="<%= tag_name %>">
-									<%= render :partial => "editor/tag_list", 
-										:locals => { :tag_name => tag_name, :tags => subfield_group_tags.select{ |t| t.tag == tag_name } } %>
-									<%= render :partial => "editor/tag_placeholders", 
-										:locals => { :tag_name => tag_name } %>
-								</div>
-							<%- end -%>
-						</div>	
-					</div>
-				</div>
-			</dt>
-		<%- end %>
-		</dl>
+		<%= render :partial => "editor/group_by_subfield", 
+				:locals => { :tag_names => tag_names, :subfield => subfield, :group_title => group_title } %>
+		
 	</div>
 	
 <%- else %>
