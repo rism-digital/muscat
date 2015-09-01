@@ -244,7 +244,7 @@ class MarcSource < Marc
       #parent_manuscript.suppress_create_incipit
       parent_manuscript.suppress_update_77x
       parent_manuscript.save
-    else
+    else      
       
       # do we have a parent manuscript?
       parent_manuscript_id = first_occurance("773", "w")

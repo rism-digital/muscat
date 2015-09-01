@@ -264,7 +264,7 @@ class Marc
       ap node
       rism_id = node.content
     end
-    return rism_id
+    return rism_id.to_s # make sure it is ALWAYS a string!
   end
   
   # Return the parent of a manuscript. This need to be improved
