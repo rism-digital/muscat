@@ -344,6 +344,7 @@ class Marc
     for child in @root.children
       next if !tag_names.include?(child.tag)
       next if !child.fetch_first_by_tag( subtag )
+      next if !child.fetch_first_by_tag( subtag ).content
       next if child.fetch_first_by_tag( subtag ).content.empty?
       values << child.fetch_first_by_tag( subtag ).content
     end
