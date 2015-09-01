@@ -335,9 +335,9 @@
       - cols: 5
     - - f
       - cols: 5
-    - - "3"
-      - editor_partial: subfield_material
-        cols: 2
+    - - "8"
+#      - editor_partial: subfield_material
+      - cols: 2
     columns: 10
 "300": 
   layout: 
@@ -349,9 +349,9 @@
       - cols: 4
     - - b
       - cols: 6
-    - - "3"
-      - editor_partial: subfield_material
-        cols: 2
+    - - "8"
+#      - editor_partial: subfield_material
+      - cols: 2
     columns: 10
 "340": 
   layout: 
@@ -360,9 +360,9 @@
       - cols: 4
     - - d
       - cols: 4
-    - - "3"
-      - editor_partial: subfield_material
-        cols: 4
+    - - "8"
+#      - editor_partial: subfield_material
+      - cols: 4
     columns: 4
 "351": 
   layout: 
@@ -370,9 +370,9 @@
     - - a
       - growfield: true
         cols: 8
-    - - "3"
+    - - "8"
       - cols: 2
-        editor_partial: subfield_material
+#        editor_partial: subfield_material
     columns: 10
 "508": 
   layout: 
@@ -446,18 +446,18 @@
     - - b
       - growfield: true
         cols: 5
-    - - "3"
+    - - "8"
       - cols: 1
-        editor_partial: subfield_material
+#        editor_partial: subfield_material
     columns: 5
 "592": 
   layout: 
     fields: 
     - - a
       - cols: 4
-    - - "3"
+    - - "8"
       - cols: 1
-        editor_partial: subfield_material
+#        editor_partial: subfield_material
     columns: 5
 "593": 
   layout: 
@@ -471,9 +471,9 @@
         - Probably autograph
         cols: 4
         editor_partial: subfield_select
-    - - "3"
+    - - "8"
       - cols: 1
-        editor_partial: subfield_material
+#        editor_partial: subfield_material
     columns: 5
 "594": 
   layout: 
