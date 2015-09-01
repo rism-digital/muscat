@@ -347,7 +347,7 @@
     :master: a
     :indicator: "##"
     :occurances: "+"
-    :groupable: "3"
+    :groupable: "8"
     :fields: 
     - - a
       - :occurances: "1"
@@ -359,7 +359,7 @@
       - :occurances: "?"
     - - f
       - :occurances: "?"
-    - - "3"
+    - - "8"
       - :occurances: "?"
         :no_browse: true
   "270": 
@@ -373,7 +373,7 @@
     :master: a
     :indicator: "##"
     :occurances: "*"
-    :groupable: "3"
+    :groupable: "8"
     :fields: 
     - - a
       - :occurances: "*"
@@ -381,29 +381,29 @@
       - :occurances: "?"
     - - c
       - :occurances: "?"
-    - - "3"
+    - - "8"
       - :occurances: "?"
         :no_browse: true
   "340": 
     :master: c
     :indicator: "##"
     :occurances: "*"
-    :groupable: "3"
+    :groupable: "8"
     :fields:
     - - d
       - :occurances: "*"
-    - - "3"
+    - - "8"
       - :occurances: "?"
         :no_browse: true
   "351": 
     :master: a
     :indicator: "##"
     :occurances: "*"
-    :groupable: "3"
+    :groupable: "8"
     :fields: 
     - - a
       - :occurances: "*"
-    - - "3"
+    - - "8"
       - :occurances: "?"
         :no_browse: true
   "490": 
@@ -566,13 +566,13 @@
     :master: a
     :indicator: "##"
     :occurances: "*"
-    :groupable: "3"
+    :groupable: "8"
     :fields: 
     - - a
       - :occurances: "?"
     - - b
       - :occurances: "?"
-    - - "3"
+    - - "8"
       - :occurances: "?"
         :no_browse: true
   "591": 
@@ -588,22 +588,22 @@
     :master: a
     :indicator: "##"
     :occurances: "*"
-    :groupable: "3"
+    :groupable: "8"
     :fields: 
     - - a
       - :occurances: "?"
-    - - "3"
+    - - "8"
       - :occurances: "?"
         :no_browse: true
   "593": 
     :master: a
     :indicator: "##"
     :occurances: "*"
-    :groupable: "3"
+    :groupable: "8"
     :fields: 
     - - a
       - :occurances: "?"
-    - - "3"
+    - - "8"
       - :occurances: "?"
         :no_browse: true
   "594": 
