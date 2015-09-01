@@ -276,6 +276,23 @@ class EditorConfiguration
     end
     @layout_tags 
   end
+
+  # build an array with all the tags in the layout_config that are not in a subfield grouping group
+  # used by each_tag_not_in_layout 
+  def layout_tags_not_in_subfield_grouping
+    unless @layout_tags_not_in_subfield_grouping
+      @layout_tags_not_in_subfield_grouping = Array.new
+      layout_config["groups"].each do |group, gdata|
+        next if gdata["subfield_grouping"]
+        gdata["all_tags"].each do |tag, tdata|
+          @layout_tags_not_in_subfield_grouping.push tag
+        end
+      end
+      @layout_tags_not_in_subfield_grouping.uniq!
+      @layout_tags_not_in_subfield_grouping.sort!
+    end
+    @layout_tags_not_in_subfield_grouping 
+  end
   
   # Gets the default partial for the layout tag group
   def get_group_partial(group_name)

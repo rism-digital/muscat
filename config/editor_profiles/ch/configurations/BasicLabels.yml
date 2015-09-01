@@ -2183,12 +2183,12 @@ notes: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Notes
     de: Fussnoten
     en: Note fields
-other: !map:ActiveSupport::HashWithIndifferentAccess 
+unmatched: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Varia
-    fr: Divers
-    de: Verschiedenes
-    en: Miscellaneous
+    it: Campi sconoscuti
+    fr: Champs non reconnus
+    de: Unbekannte Felder
+    en: Unknown fields
 otm: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Organizzatore
