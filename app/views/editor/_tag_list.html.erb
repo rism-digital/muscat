@@ -1,6 +1,6 @@
 <%
 	allow_new = @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name].include?("layout_new") ? true : false
-    style_hide_empty = @item.marc.has_tag?(tag_name) ? "style=\"display: none\"".html_safe : "style=\"display: block\"".html_safe 
+    style_hide_empty = tags.empty? ? "style=\"display: block\"".html_safe : "style=\"display: none\"".html_safe
 %>
 
 <div class="tag_container tag_empty_container" <%= style_hide_empty -%>>
@@ -10,7 +10,7 @@
 
 <dl class="marc_editor_tag_block <%= (@item.marc.config.multiples_allowed? tag_name) ? "sortable" : "" %>" data-tag="<%= tag_name %>">
 
-<%- @item.marc.each_by_tag(tag_name) do |marc_tag| %>
+<%- tags.each do |marc_tag| %>
 	<dt class="tag_toplevel_container" data-tag="<%= tag_name %>">
 		<%= render :partial => "editor/tag_dt",
 			:locals => { :tag_name => tag_name, :marc_tag => marc_tag , :is_new => false } %>

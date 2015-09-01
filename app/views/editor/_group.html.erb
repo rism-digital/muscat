@@ -8,34 +8,67 @@ group
 <%- 
 	### temporary, must probably be moved into the editor_profile model
 	tag_names = Array.new
+	other_tags = false
 	if group == "other"
 		@editor_profile.each_tag_not_in_layout @item do |tag|
 			tag_names << tag
 		end
 		# Do not render anything if nothing needs to go in other
 		return if tag_names.empty?
+		other_tags = true
 	else
-	#	if group != "group_order"
-			tag_names = @editor_profile.layout_config["groups"][group]["all_tags"]
-	#	end
+		tag_names = @editor_profile.layout_config["groups"][group]["all_tags"]
 	end
-	####
 -%>
 
 <%- 
 	group_title = @editor_profile.get_label(group)
 	@editor_profile.layout_config[:marc_editor_group_links] << group_title
+	puts group
 -%>
+
+<%- if !other_tags && @editor_profile.layout_config["groups"][group]["subfield_grouping"] %>
+
+	<%- subfield = @editor_profile.layout_config["groups"][group]["subfield_grouping"] %>
+	<%- subfield_group_values = @item.marc.all_values_for_tags_with_subtag(tag_names, subfield) %>
+	<%- subfield_group_values << "NEW" %>
+	<div class="tab_panel" name="<%= group_title.gsub(/ /, "_") %>">
+		<dl class="sortable">
+		<%- subfield_group_values.each do |subfield_group| %>
+			<%- subfield_group_tags = @item.marc.by_tags_with_subtag(tag_names, subfield, subfield_group) %>
+			<dt>
+				<div class="panel">
+					<%- group_title = subfield_group_values.size > 1 ? "Group #{subfield_group}" : group_title %>
+					<%- group_title = subfield_group == "NEW" ? "New group" : group_title %>
+					<h3><%= group_title -%></h3>
+					<div class="marc_editor_panel_content">
+						<div class="marc_editor_group_contents">
+							<%- tag_names.each do |tag_name| -%>
+								<div class="tag_group" data-tag="<%= tag_name %>">
+									<%= render :partial => "editor/tag_list", 
+										:locals => { :tag_name => tag_name, :tags => subfield_group_tags.select{ |t| t.tag == tag_name } } %>
+									<%= render :partial => "editor/tag_placeholders", 
+										:locals => { :tag_name => tag_name } %>
+								</div>
+							<%- end -%>
+						</div>	
+					</div>
+				</div>
+			</dt>
+		<%- end %>
+		</dl>
+	</div>
+	
+<%- else %>
 
 <div class="panel tab_panel" name="<%= group_title.gsub(/ /, "_") %>">
 	<h3><%= group_title -%></h3>
-	
 	<div class="marc_editor_panel_content">
 		<div class="marc_editor_group_contents">
 			<%- tag_names.each do |tag_name| -%>
 				<div class="tag_group" data-tag="<%= tag_name %>">
-					<%= render :partial => @editor_profile.get_tag_partial("tag_list",tag_name), 
-							:locals => { :tag_name => tag_name } %>
+					<%= render :partial => "editor/tag_list", 
+							:locals => { :tag_name => tag_name, :tags => @item.marc.by_tags([tag_name])  } %>
 					<%= render :partial => "editor/tag_placeholders", 
 							:locals => { :tag_name => tag_name } %>
 				</div>
@@ -43,3 +76,5 @@ group
 		</div>	
 	</div>
 </div>
+
+<%- end %>
