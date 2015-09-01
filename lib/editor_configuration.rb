@@ -1,5 +1,5 @@
 # encoding: UTF-8
-# The editor configurations define how each manuscript will be printed/edited/shown. It builds uo the old EditorProfile
+# The editor configurations define how each marc_item will be printed/edited/shown. It builds uo the old EditorProfile
 # and retains the full functionality.
 # An editor configuration is comprised of a set of layout rules: i.e. which tags show and in which order. It enables to define labels in the same way.
 # Layout options define how the editor fields will be constructed.
@@ -286,9 +286,9 @@ class EditorConfiguration
   end  
   
   # Returns all the tags not included in the layout
-  def each_tag_not_in_layout(manuscript)
+  def each_tag_not_in_layout(marc_item)
     layout_tags
-    manuscript.marc.each_data_tags_present do |tag|
+    marc_item.marc.each_data_tags_present do |tag|
       yield tag if !layout_tags.include? tag
     end
   end
@@ -355,26 +355,26 @@ class EditorConfiguration
 
   private
 
-  # Used by get_applicable_layout, checks passed manuscript and layout to see if the layout
+  # Used by get_applicable_layout, checks passed marc_item and layout to see if the layout
   # is applicabile to the ms.
-  def self._layout_is_applicable(manuscript, profile)
-    return false if !profile.filter || !manuscript.marc
+  def self._layout_is_applicable(marc_item, profile)
+    return false if !profile.filter || !marc_item.marc
     # we don't want the default one, or show one
     return false if profile.filter["default"]
     return false if profile.filter["show"]
     # check if the leader matches the regexp
     if profile.filter["leader"]
-      leader = manuscript.marc.get_leader
+      leader = marc_item.marc.get_leader
       r = Regexp.new(profile.filter["leader"])
       return false if !r.match(leader)
     end
     # check if the tag if present
     if profile.filter["tag"]
-      return false if !manuscript.marc.has_tag?(profile.filter["tag"])
+      return false if !marc_item.marc.has_tag?(profile.filter["tag"])
     end
     # check if the tag if NOT present
     if profile.filter["no_tag"]
-      return false if manuscript.marc.has_tag?(profile.filter["no_tag"])
+      return false if marc_item.marc.has_tag?(profile.filter["no_tag"])
     end
     # it is applicable
     return true    
