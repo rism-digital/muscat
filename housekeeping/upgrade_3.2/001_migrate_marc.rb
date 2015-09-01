@@ -48,7 +48,7 @@ Source.all.each do |s|
           # only a number for $8
           material_no = subtag.content.split(" ")[1]
         
-          t.add_at(MarcNode.new(Source, "8", material_no, nil), 0)
+          t.add_at(MarcNode.new(Source, "8", sprintf("%02d", material_no), nil), 0)
           t.destroy_child(subtag)
           subtag_changed = true
         end
@@ -62,7 +62,7 @@ Source.all.each do |s|
 
       else # No $3 field, it is only one
         # Add $8 = 1 in this case
-        t.add_at(MarcNode.new(Source, "8", 1, nil), 0)
+        t.add_at(MarcNode.new(Source, "8", "01", nil), 0)
 
         modified = true
         t.sort_alphabetically
