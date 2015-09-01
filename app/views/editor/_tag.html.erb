@@ -1,66 +1,39 @@
 <%- 
 	layout_key = is_new ? "layout_new" : "layout"
-	ocfg = @editor_profile.options_config
 	s_iterator = 1
-	cols = ((ocfg[tag_name] and ocfg[tag_name][layout_key].include?("columns")) ? ocfg[tag_name][layout_key]["columns"].to_i : 1)
-	cur_col = 1
-    # Muscat 3 temporary layout - always 4 (1 for the label and 3 for the field)
-    cols = 4
-	hiddens = [] 
-	dims = []
-	p = 100/cols
-	1.upto(cols) { |n| dims << "<th width=\"#{p}%\"></th>" }
-
 -%>
 <table class="tag_grid" cellpadding="0" cellspacing="0">
-    <tr><%= dims.join('').html_safe %></tr>
+    <tr><th width="25%"></th><th width="25%"></th><th width="25%"></th><th width="25%"></th></tr>
     <%- @editor_profile.each_subfield_for(tag_name, is_new) do |subfield, field_settings|
-    		# if field_settings[:type] == :hidden
-    		# 	hiddens << [field_name, field_settings]
-    		# 	next
-    		# end
 
     		field_label = ""
     		field_leader = ""
-    		row_span = field_settings["rows"] || 1
-		
-    		if field_settings["cols"]
-    			cur_col += field_settings["cols"]
-    			col_span = field_settings["cols"]
-    		else
-    			cur_col += 1
-    			col_span = 1
-    		end
+			field_settings = Hash.new if !field_settings
 
     		if @item.marc.config.multiples_allowed?(tag_name, subfield)
-    			#TODO: need to multi-lang this (see :title)
-    			extra_leader = safe_link_to_function_stub "<div class=\"add_subfield_button abutton_condensed ui-state-default  abutton-icon-solo ui-corner-all\"><span class=\"ui-icon ui-icon-plus\"></span>_</div>".html_safe, "marc_editor_add_subfield($(this))", :title => "Add another instance of this subfield"
-				
+    			extra_leader = safe_link_to_function_stub "<div class=\"add_subfield_button abutton_condensed ui-state-default  abutton-icon-solo ui-corner-all\"><span class=\"ui-icon ui-icon-plus\"></span>_</div>".html_safe, "marc_editor_add_subfield($(this))", :title => "Add another instance of this subfield"				
     		end
 		
     		if @editor_profile.has_sub_label?(tag_name, subfield)
     			sub_label = @editor_profile.get_sub_label(tag_name, subfield, true)
     			field_label =  "#{sub_label}" if !sub_label.empty?
-    			# field_label = @editor_profile.get_sub_label(tag_name, subfield, true)
     		end
 		
     		extra_td_options = ""
     		if field_settings["nowrap"]
     			extra_td_options = " nowrap=\"true\"".html_safe
     		end
-    	# raise "dsddss#{field_label} #{field_settings["cols"]}"
-		
     	-%>
     	<%- if (subfield != "__blank") -%>
     		<%- if !field_settings["hidden"] || !field_settings["hidden"]==true -%>
             <tr>
-        		<td rowspan="<%= row_span -%>">
+        		<td>
         			<div class="grid_cell_header">
     					<%= field_label.html_safe %>
                         <%= extra_leader -%>
                     </div>
                 </td>
-        		<td colspan="<%= 3 -%>" rowspan="<%= row_span -%>"<%= extra_td_options -%>>
+        		<td colspan="3" <%= extra_td_options -%>>
         			<div class="grid_cell">
         				<div style="vertical-align: bottom; background-color: transparent">
         					<ul class="repeating_subfield">
@@ -80,7 +53,7 @@
             </tr>
     		<%- else -%>
             <tr>
-    			<td colspan="<%= 4 -%>" rowspan="<%= row_span -%>">
+    			<td colspan="4">
     			<div style="visibility: hidden; height: 0px;">
     				<%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
     					subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
@@ -100,5 +73,3 @@
     <%- end -%>
 
 </table>
-<%#= hiddens.collect { |h| edit_field(h[0], h[1], @strategy.item, panel_settings) }.join("\n") unless hiddens.empty? -%>
-<%#- end -%>

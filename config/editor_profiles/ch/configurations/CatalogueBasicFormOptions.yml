@@ -30,41 +30,26 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
 "210": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
 "240": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
 "260": 
   layout: 
     fields: 
     - - a
-      - cols: 4
     - - c
-      - cols: 4
-    columns: 4
 "700": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
 "760": 
   layout: 
     fields: 
     - - g
-      - cols: 4
     - - t
-      - cols: 4
-    columns: 4
-
 
