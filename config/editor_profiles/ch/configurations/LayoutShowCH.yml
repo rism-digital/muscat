@@ -29,7 +29,7 @@ groups:
     - "260"
     - "590"
     - "592"
-    subfield_grouping: 3
+    subfield_grouping: 8
     all_tag_templates: 
       "260": marc_show/show_subfield_concat
   show_content: 
