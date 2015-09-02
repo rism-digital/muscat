@@ -2,7 +2,6 @@
 groups: 
   physical_description: 
     all_tags: 
-    - "028"
     - "563"
     - "525"
     - "500"
@@ -14,4 +13,5 @@ groups:
     - "590"
     - "260"
     - "592"
+    - "028"
     subfield_grouping: 8
