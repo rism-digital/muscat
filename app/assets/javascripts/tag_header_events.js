@@ -127,6 +127,17 @@ used for _tag_header partial
     	});
 	}
 	
+	// Duplicate a whole group
+	function tag_header_new_group(elem) {
+		placeholder = elem.parents(".tab_panel").children(".group_placeholders_toplevel").children(".group_placeholders").children(".panel");
+		toplevel_dl =  elem.parents(".tab_panel").children(".tag_group_container");
+		
+		new_group = placeholder.clone();
+		dt = $("<dt />").append(new_group);
+		dt.appendTo(toplevel_dl);
+		dt.fadeIn('fast');
+	}
+	
 	var self = null;
 	jQuery.fn.tagHeaderButtons = function() {
 		var handler = function() {
@@ -171,6 +182,8 @@ used for _tag_header partial
 					tag_header_edit($(this));
 				} else if ($(this).data("header-button") == "help") {
 					tag_header_help($(this));
+				}else if ($(this).data("group-button") == "add") {
+					tag_header_new_group($(this));
 				}
                 
 				
