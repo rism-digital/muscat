@@ -61,8 +61,9 @@ used for _tag_header partial
         }
     }
 	
+	// Create a new element when the tag_group already contains elements
 	function tag_header_add(elem) {
-		placeholder = elem.parents(".tag_group").children(".tag_placeholders");
+		placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
 		current_dt = elem.parents(".tag_toplevel_container");
 
 		new_dt = placeholder.clone();
@@ -71,10 +72,12 @@ used for _tag_header partial
 		new_dt.fadeIn('fast');
 	}
     
+	// Create a new element when the tag_group is empty. It is necessary
+	// because in this case there is no tag_toplevel_container
 	function tag_header_add_from_empty(elem) {
         // hide help if necessary
         elem.parents(".tag_container").children(".tag_help_collapsable").hide();
-		placeholder = elem.parents(".tag_group").children(".tag_placeholders");
+		placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
 		parent_dl = elem.parents(".tag_group").children(".marc_editor_tag_block");
 
 		new_dt = placeholder.clone();
