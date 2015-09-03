@@ -8,7 +8,7 @@ module ActiveAdmin::ViewsHelper
   # - item is the instance of the model
   # - query is the fitler for the source list
   # - src_list_page is the pagination
-  def active_admin_embedded_source_list( context, item, query, src_list_page )
+  def active_admin_embedded_source_list( context, item, query, src_list_page, enable_view_src = true )
     # get the list of sources for the item
     c = item.sources
     # do not display the panel if no source attached
@@ -36,13 +36,19 @@ module ActiveAdmin::ViewsHelper
           context.column (I18n.t :filter_title), :title
           context.column (I18n.t :filter_lib_siglum), :lib_siglum
           context.column (I18n.t :filter_shelf_mark), :shelf_mark
-          context.column "" do |source|
-            link_to "View", controller: :sources, action: :show, id: source.id
+          if enable_view_src
+            context.column "" do |source|
+              link_to "View", controller: :sources, action: :show, id: source.id
+            end
           end
         end
       end
     end
   end 
+  
+  def prout?
+    false
+  end
   
   def active_admin_user_wf( context, item )   
     context.panel (I18n.t :filter_wf) do
@@ -52,6 +58,16 @@ module ActiveAdmin::ViewsHelper
         context.row (I18n.t :updated_at) { |r| I18n.localize(r.updated_at.localtime, :format => '%A %e %B %Y - %H:%M') }
       end
     end
+  end
+  
+  #def active_admin_muscat_breadcrumb editor_select
+  #  return [] if editor_select
+  #  breadcrumb_links()
+  #end
+  
+  def active_admin_muscat_breadcrumb 
+    return [] if params[:select]
+    breadcrumb_links()
   end
 
   # displays the navigation button on top of a show panel

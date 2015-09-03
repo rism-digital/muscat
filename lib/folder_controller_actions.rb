@@ -10,7 +10,7 @@ module FolderControllerActions
   
   def self.included(dsl)
     # batch_action seems already public
-    dsl.batch_action :folder, form: {
+    dsl.batch_action :folder, if: proc { !params[:select].present? }, form: {
       name:   :text,
       hide:   :checkbox
     } do |ids, inputs|
@@ -92,7 +92,7 @@ module FolderControllerActions
     end
   
     # Only show for the moment if there is a query
-    dsl.sidebar 'Global Folder Actions', :only => :index, :if => proc{params.include?(:q)} do
+    dsl.sidebar 'Global Folder Actions', :only => :index, :if => proc{params.include?(:q)}, :if => proc { !params[:select].present? } do
       # Build the dynamic path function, then call it with send
       model = self.resource_class.to_s.pluralize.underscore.downcase
       link_function = "save_to_folder_admin_#{model}_path"

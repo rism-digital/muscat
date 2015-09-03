@@ -82,9 +82,15 @@ module ActiveAdmin
             end
           end
         end
+        
+        if session[:select] == controller_name 
+          params[:select] = "true"
+        end
+        
       end
  
       def save_search_filters
+        session[:select] = nil
         if params[:action].to_sym == :index
           session[:last_search_filter] ||= Hash.new
           session[:last_search_filter][controller_name] = params[:q]
@@ -94,11 +100,13 @@ module ActiveAdmin
           session[:last_order_page][controller_name] = params[:order]
           session[:last_scope] ||= Hash.new
           session[:last_scope][controller_name] = params[:scope]
+          session[:select] = controller_name if params[:select]
         # We also need to save the page param in show because it might be change 
         # by the prev/next navigation 
         elsif params[:action].to_sym == :show
           session[:last_search_page] ||= Hash.new
           session[:last_search_page][controller_name] = params[:page]
+          session[:select] = controller_name if params[:select]
         end
       end
  
