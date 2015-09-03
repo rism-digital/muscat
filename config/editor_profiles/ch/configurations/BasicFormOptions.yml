@@ -35,6 +35,8 @@
   layout: 
     fields: 
     - - a
+    - - "8"
+#      - editor_partial: subfield_material
 "031": 
   layout: 
     fields: 
