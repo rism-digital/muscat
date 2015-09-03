@@ -198,7 +198,7 @@ it:
   menu_search_history: "Ricerche effettuate"
   
   ### VARIOUS ELEMENTS
-  recent_changes: "Ultime modificazione"
+  recent_changes: "Ultime modifiche"
   any_field_contains: "Qualsiasi campo contiene"
   title_contains: "Titolo diplomatico contiene"
   std_title_contains: "Titolo standard contiene"
@@ -217,7 +217,7 @@ it:
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
   show_preview: "Mostra l'anteprima"
-  show_history: "Mostra il storico"
+  show_history: "Mostra lo storico"
   
   # Version history
   history_date: "Data"
