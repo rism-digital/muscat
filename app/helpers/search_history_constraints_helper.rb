@@ -8,5 +8,5 @@ module SearchHistoryConstraintsHelper
     # Directly use the passed symbol for I18n lookup
     content_tag(:span, "#{t(name)}:", :class => 'filterName')
   end
-  
+
 end

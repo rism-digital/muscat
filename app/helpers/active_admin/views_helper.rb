@@ -2,7 +2,7 @@
 require 'sunspot_extensions.rb'
 
 module ActiveAdmin::ViewsHelper
-  
+
   # embedds a list of sources from a foreign (authority) model
   # - context is the show context is the AA
   # - item is the instance of the model
@@ -14,21 +14,21 @@ module ActiveAdmin::ViewsHelper
     # do not display the panel if no source attached
     return if c.empty?
     context.panel (I18n.t :filter_sources), :class => "muscat_panel"  do
-      
+
       # Sometimes if a query is already present query comes with the
       # parameters for ransack, filter this out so only text queries
       # pass
       query = "*" if !query.is_a? String
-      
+
       # filter the list of sources
       # todo - Solr searching instead of active model searching
       # c = item.sources.where("std_title like ?", "%#{query}%") unless query.blank?
       c = Source.solr_search do
         fulltext query
         with item.class.name.underscore.pluralize.to_sym, item.id
-        paginate :page => src_list_page, :per_page => 15 
+        paginate :page => src_list_page, :per_page => 15
       end
-      
+
       context.paginated_collection(c.results, param_name: 'src_list_page',  download_links: false) do
         context.table_for(context.collection) do |cr|
           context.column (I18n.t :filter_composer), :composer
@@ -42,9 +42,9 @@ module ActiveAdmin::ViewsHelper
         end
       end
     end
-  end 
-  
-  def active_admin_user_wf( context, item )   
+  end
+
+  def active_admin_user_wf( context, item )
     context.panel (I18n.t :filter_wf) do
       context.attributes_table_for item  do
         context.row (I18n.t :filter_owner) { |r| r.user.name } if ( item.user )
@@ -82,17 +82,17 @@ module ActiveAdmin::ViewsHelper
         end
       end
     end
-  end 
-    
+  end
+
   # displays the edit button on top of a edit panel
   def active_admin_submit_bar( context )
     context.div class: :buttons do
-     context.a href: "javascript:marc_editor_send_form('marc_editor_panel','marc_editor_panel', 0, marc_editor_get_model())", class: :marc_save_btn do  context.text_node I18n.t("active_admin.save_model") end 
+     context.a href: "javascript:marc_editor_send_form('marc_editor_panel','marc_editor_panel', 0, marc_editor_get_model())", class: :marc_save_btn do  context.text_node I18n.t("active_admin.save_model") end
      context.a href: "javascript:marc_editor_cancel_form()", class: :marc_cancel_btn do  context.text_node I18n.t("active_admin.cancel") end
-     context.br      
-    end        
+     context.br
+    end
   end
-  
+
   # formats the string for the source show title
   def active_admin_source_show_title( composer, std_title, id )
     return "[#{id}]" if composer.empty? and std_title.empty?
@@ -100,5 +100,5 @@ module ActiveAdmin::ViewsHelper
     return "#{composer} [#{id}]" if (std_title.nil? or std_title.empty?)
     return "#{composer} : #{std_title} [#{id}]"
   end
-  
+
 end
