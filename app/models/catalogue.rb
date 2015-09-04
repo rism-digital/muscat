@@ -1,4 +1,4 @@
-# The Catalogue model describes a basic bibliograpfic catalog
+# The Catalogue model describes a basic bibliographic catalog
 # and is used to link Sources with its bibliographical info
 #
 # === Fields
@@ -22,27 +22,27 @@ class Catalogue < ActiveRecord::Base
   cattr_accessor :last_user_save
   @@last_event_save
   cattr_accessor :last_event_save
-  
+
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   has_and_belongs_to_many :sources
   has_many :folder_items, :as => :item
   belongs_to :user, :foreign_key => "wf_owner"
-  
+
   composed_of :marc, :class_name => "MarcCatalogue", :mapping => %w(marc_source)
-  
+
   ##include NewIds
-  
+
   before_destroy :check_dependencies
-  
+
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :reindex
-  
-  
+
+
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
-  
+
   # Suppresses the solr reindex
   def suppress_reindex
     self.suppress_reindex_trigger = true
@@ -51,7 +51,7 @@ class Catalogue < ActiveRecord::Base
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
-  
+
   def fix_ids
     #generate_new_id
     # If there is no marc, do not add the id
@@ -69,29 +69,29 @@ class Catalogue < ActiveRecord::Base
       self.save!
     end
   end
-  
+
   def scaffold_marc
-    return if self.marc_source != nil  
+    return if self.marc_source != nil
     return if self.suppress_scaffold_marc_trigger == true
- 
+
     new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/catalogue/default.marc"))
     new_marc.load_source true
-    
+
     new_100 = MarcNode.new("catalogue", "100", "", "1#")
     new_100.add_at(MarcNode.new("catalogue", "a", self.author, nil), 0)
-    
+
     new_marc.root.children.insert(new_marc.get_insert_position("100"), new_100)
-    
+
     # save name
     node = MarcNode.new("catalogue", "210", "", "##")
     node.add_at(MarcNode.new("catalogue", "a", self.name, nil), 0)
-    
+
     new_marc.root.children.insert(new_marc.get_insert_position("210"), node)
 
-    # save decription
+    # save description
     node = MarcNode.new("catalogue", "240", "", "##")
     node.add_at(MarcNode.new("catalogue", "a", self.description, nil), 0)
-    
+
     new_marc.root.children.insert(new_marc.get_insert_position("240"), node)
 
     # save date and place
@@ -104,13 +104,13 @@ class Catalogue < ActiveRecord::Base
     # save revue_title
     node = MarcNode.new("catalogue", "760", "", "0#")
     node.add_at(MarcNode.new("catalogue", "t", self.revue_title, nil), 0)
-    
+
     new_marc.root.children.insert(new_marc.get_insert_position("760"), node)
 
     if self.id != nil
       new_marc.set_id self.id
     end
-    
+
     self.marc_source = new_marc.to_marc
     self.save!
   end
@@ -121,7 +121,7 @@ class Catalogue < ActiveRecord::Base
     # if it was suppressed we do not update it as it
     # will be nil
     return if marc_source == nil
-    
+
     # If the source id is present in the MARC field, set it into the
     # db record
     # if the record is NEW this has to be done after the record is created
@@ -138,8 +138,6 @@ class Catalogue < ActiveRecord::Base
     self.revue_title = marc.get_revue_title
     self.marc_source = self.marc.to_marc
   end
-  
-
 
   def reindex
     return if self.suppress_reindex_trigger == true
@@ -152,63 +150,63 @@ class Catalogue < ActiveRecord::Base
       name
     end
     sunspot_dsl.text :name
-    
+
     sunspot_dsl.string :author_order do
       author
     end
     sunspot_dsl.text :author
-    
+
     sunspot_dsl.text :description
     sunspot_dsl.string :description_order do
       description
     end
- 
+
     sunspot_dsl.text :revue_title
     sunspot_dsl.string :revue_title_order do
       revue_title
     end
- 
+
     sunspot_dsl.text :volume
     sunspot_dsl.text :place
     sunspot_dsl.text :date
     sunspot_dsl.text :pages
-    
-    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
+
+    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
-    
-    sunspot_dsl.integer :src_count_order do 
+
+    sunspot_dsl.integer :src_count_order do
       src_count
     end
-    
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
-    
+
   end
-  
+
   def check_dependencies
     if (self.sources.count > 0)
       errors.add :base, "The catalogue could not be deleted because it is used"
       return false
     end
   end
-  
+
   def self.find_recent_updated(limit, user)
     if user != -1
       where("updated_at > ?", 5.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
     else
-      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
+      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC")
     end
   end
 
   def autocomplete_label
-    
+
     aut = (author and !author.empty? ? author : nil)
     des = (description and !description.empty? ? description.truncate(45) : nil)
     dat = (date and !date.empty? ? date : nil)
-    
+
     infos = [aut, dat, des].join(", ")
-    
+
     "#{name}: #{infos}"
-    
+
   end
 
 end

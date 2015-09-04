@@ -5,7 +5,7 @@
 # * <tt>name</tt> -  Fullname of the lib
 # * <tt>address</tt>
 # * <tt>url</tt>
-# * <tt>phone</tt> 
+# * <tt>phone</tt>
 # * <tt>email</tt>
 # * <tt>src_count</tt> - The number of manuscript that reference this lib.
 #
@@ -14,36 +14,36 @@
 
 class Institution < ActiveRecord::Base
   resourcify
-  
+
   # class variables for storing the user name and the event from the controller
   @@last_user_save
   cattr_accessor :last_user_save
   @@last_event_save
   cattr_accessor :last_event_save
-  
+
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
-  
+
   has_and_belongs_to_many :sources
   #has_many :folder_items, :as => :item
   has_and_belongs_to_many :workgroups
   belongs_to :user, :foreign_key => "wf_owner"
-    
+
   composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source)
-  
-  #validates_presence_of :siglum    
-  
+
+  #validates_presence_of :siglum
+
   validates_uniqueness_of :siglum, :allow_nil => true
-  
+
   #include NewIds
-  
+
   before_destroy :check_dependencies
-  
+
   #before_create :generate_new_id
   after_save :reindex
   after_create :scaffold_marc, :fix_ids, :update_workgroups
-  
+
   before_validation :set_object_fields
-  
+
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
 
@@ -75,47 +75,47 @@ class Institution < ActiveRecord::Base
   end
 
   def scaffold_marc
-    return if self.marc_source != nil  
+    return if self.marc_source != nil
     return if self.suppress_scaffold_marc_trigger == true
-  
+
     new_marc = MarcInstitution.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/institution/default.marc"))
     new_marc.load_source true
-    
+
     new_100 = MarcNode.new("institution", "110", "", "1#")
     new_100.add_at(MarcNode.new("institution", "p", self.place, nil), 0) if self.place != nil
     new_100.add_at(MarcNode.new("institution", "g", self.siglum, nil), 0) if self.siglum != nil
     new_100.add_at(MarcNode.new("institution", "a", self.name, nil), 0)
-    
+
     new_marc.root.children.insert(new_marc.get_insert_position("110"), new_100)
-    
+
     if self.alternates != nil and !self.alternates.empty?
       new_400 = MarcNode.new("institution", "410", "", "1#")
       new_400.add_at(MarcNode.new("institution", "a", self.alternates, nil), 0)
-    
+
       new_marc.root.children.insert(new_marc.get_insert_position("410"), new_400)
     end
-    
+
     if self.url || self.address
       new_600 = MarcNode.new("institution", "622", "", "1#")
       new_600.add_at(MarcNode.new("institution", "u", self.url, nil), 0) if self.url
       new_600.add_at(MarcNode.new("institution", "e", self.address, nil), 0) if self.address
-    
+
       new_marc.root.children.insert(new_marc.get_insert_position("622"), new_600)
     end
-    
+
     if self.notes != nil and !self.notes.empty?
       new_field = MarcNode.new("institution", "680", "", "1#")
       new_field.add_at(MarcNode.new("institution", "i", self.notes, nil), 0)
-    
+
       new_marc.root.children.insert(new_marc.get_insert_position("680"), new_field)
     end
-    
-    
+
+
 
     if self.id != nil
       new_marc.set_id self.id
     end
-    
+
     self.marc_source = new_marc.to_marc
     self.save!
   end
@@ -125,7 +125,7 @@ class Institution < ActiveRecord::Base
     # if it was suppressed we do not update it as it
     # will be nil
     return if marc_source == nil
-    
+
     # If the source id is present in the MARC field, set it into the
     # db record
     # if the record is NEW this has to be done after the record is created
@@ -140,7 +140,7 @@ class Institution < ActiveRecord::Base
     self.siglum = marc.get_siglum
     self.marc_source = self.marc.to_marc
   end
-  
+
 
 
   def reindex
@@ -154,33 +154,33 @@ class Institution < ActiveRecord::Base
       siglum
     end
     sunspot_dsl.text :siglum
-    
+
     sunspot_dsl.string :name_order do
       name
     end
     sunspot_dsl.text :name
-    
+
     sunspot_dsl.string :place_order do
       place
     end
     sunspot_dsl.text :place
-    
+
     sunspot_dsl.text :address
     sunspot_dsl.text :url
     sunspot_dsl.text :phone
     sunspot_dsl.text :email
-    
-    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
+
+    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
-    
-    sunspot_dsl.integer :src_count_order do 
+
+    sunspot_dsl.integer :src_count_order do
       src_count
     end
-    
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
-    
+
   end
-  
+
   def check_dependencies
     if (self.sources.count > 0)
       errors.add :base, "The institution could not be deleted because it is used"
@@ -195,14 +195,14 @@ class Institution < ActiveRecord::Base
       end
     end
   end
-  
+
   def autocomplete_label_siglum
     "#{siglum} (#{name})"
   end
-  
+
   def autocomplete_label_name
     sigla = siglum != nil && !siglum.empty? ? " [#{siglum}]" : ""
     "#{name}#{sigla}"
   end
-  
+
 end
