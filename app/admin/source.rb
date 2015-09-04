@@ -1,11 +1,11 @@
 ActiveAdmin.register Source do
-  
+
   collection_action :autocomplete_source_id, :method => :get
   collection_action :autocomplete_source_740_autocomplete_sms, :method => :get
 
   # Remove mass-delete action
   batch_action :destroy, false
-  
+
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
   # See permitted parameters documentation:
@@ -13,19 +13,19 @@ ActiveAdmin.register Source do
   #
   # temporarily allow all parameters
   controller do
-    
+
     before_filter :only => [:index] do
         if params['commit'].blank?
-                 #params['q'] = {:std_title_contains => "[Holding]"} 
+                 #params['q'] = {:std_title_contains => "[Holding]"}
         end
     end
     autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :solr => false}
     autocomplete :source, "740_autocomplete_sms", :solr => true
-    
+
     def permitted_params
       params.permit!
     end
-    
+
     def show
       @item = Source.find(params[:id])
       @editor_profile = EditorConfiguration.get_show_layout @item
@@ -50,7 +50,7 @@ ActiveAdmin.register Source do
     def new
       @source = Source.new
       @based_on = String.new
-      
+
       if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_type] || params[:new_type].empty?)
         redirect_to action: :select_new_template
         return
@@ -76,27 +76,27 @@ ActiveAdmin.register Source do
     end
 
   end
-  
+
   #batch_action :unpublish do |selection|
   #end
-  
-  
+
+
   # Include the MARC extensions
   include MarcControllerActions
-  
+
   # Include the folder actions
   include FolderControllerActions
-  
+
   collection_action :select_new_template, :method => :get
-  
-  #scope :all, :default => true 
+
+  #scope :all, :default => true
   #scope :published do |sources|
   #  sources.where(:wf_stage => 'published')
   #end
-  
+
   ###########
   ## Index ##
-  ###########  
+  ###########
 
   # filers
   filter :title_contains, :label => proc{I18n.t(:title_contains)}, :as => :string
@@ -108,10 +108,10 @@ ActiveAdmin.register Source do
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
-  filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
+  filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select,
          collection: proc{Folder.where(folder_type: "Source").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   # and for the wf_owner
-  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select,
          collection: proc {
            if current_user.has_any_role?(:editor, :admin)
              User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}
@@ -119,11 +119,11 @@ ActiveAdmin.register Source do
              [[current_user.name, "wf_owner:#{current_user.id}"]]
            end
          }
-  
+
   index do
     selectable_column
-    column (I18n.t :filter_id), :id  
-    column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage)} 
+    column (I18n.t :filter_id), :id
+    column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage)}
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title
     column (I18n.t :filter_title), :title
@@ -135,14 +135,14 @@ ActiveAdmin.register Source do
       end
     end
     column (I18n.t :filter_shelf_mark), :shelf_mark
-    
+
     actions
   end
-  
+
   ##########
   ## Show ##
   ##########
-  
+
   show :title => proc{ active_admin_source_show_title( @item.composer, @item.std_title, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
@@ -152,16 +152,16 @@ ActiveAdmin.register Source do
     active_admin_user_wf( self, @item )
     active_admin_comments
   end
-  
+
   ##########
   ## Edit ##
   ##########
-  
+
   sidebar :sections, :class => "sidebar_tabs", :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
     active_admin_submit_bar( self )
   end
-  
+
   form :partial => "editor/edit_wide"
-  
+
 end
