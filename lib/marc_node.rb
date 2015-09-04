@@ -5,8 +5,8 @@ class MarcNode
   include Enumerable
   attr_reader :tag, :content, :indicator, :foreign_object, :parent, :diff, :diff_is_deleted
   attr_writer :tag, :content, :indicator, :foreign_object, :foreign_field, :diff, :diff_is_deleted
-  attr_accessor :foreign_host 
-  
+  attr_accessor :foreign_host
+
   def initialize(model, tag = nil, content = nil, indicator = nil)
     @tag = tag
     @content = content
@@ -19,16 +19,16 @@ class MarcNode
     @diff = nil
     @diff_is_deleted = false
     # FIX We should have some sort of type checking here
-    #raise "Model does not exit in enviroment" if !ActiveRecord::Base.descendants.map(&:name).include?(model.to_s.capitalize)
+    #raise "Model does not exit in environment" if !ActiveRecord::Base.descendants.map(&:name).include?(model.to_s.capitalize)
     @model = model
     @marc_configuration = MarcConfigCache.get_configuration @model
   end
-  
+
   # Returns a copy of this object an all of its references
   def deep_copy
     Marshal.load(Marshal.dump(self))
   end
-  
+
   # Try to get the external references for this object
   def resolve_externals
     if parent == nil
@@ -45,7 +45,7 @@ class MarcNode
         if !master
           raise NoMethodError, "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
         end
-        
+
         unless master.foreign_object
           master.set_foreign_object
           master.foreign_host = true
@@ -58,9 +58,9 @@ class MarcNode
             dep_field = @marc_configuration.get_foreign_field(self.tag, dep)
             dep_tag = fetch_first_by_tag(dep)
             value = (master.foreign_object ? master.foreign_object.[](dep_field.intern) : nil)
-            
+
             # For PSMD. If the foreign_fields contains a dot "."
-            # It means we are following a relatio, eg
+            # It means we are following a relation, eg
             # work.person.full_name. In this case call all the
             # methods to get the data. It is the same as in
             # looked_up_content.
@@ -69,7 +69,7 @@ class MarcNode
               value = master.foreign_object.send(fields[0])
               (1..fields.count - 1).each {|n| value = value.send(fields[n]) }
             end
-            
+
             if !dep_tag
               # the tag is missing in the source
               dep_tag = add(MarcNode.new(@model, dep, value, nil)) unless value.nil? or value.empty?
@@ -81,7 +81,7 @@ class MarcNode
             dep_tag.set_foreign_object if dep_tag
           end
         end
-      # this will happen with 004 in holding records       
+      # this will happen with 004 in holding records
       elsif @marc_configuration.has_foreign_subfields(self.tag) && @marc_configuration.is_tagless?( self.tag )
         foreign_class = @marc_configuration.get_foreign_class(self.tag, "")
         self.foreign_object = foreign_class.constantize.send("find", self.content)
@@ -124,7 +124,7 @@ class MarcNode
     end
     return new_foreign_object
   end
-  
+
   # Populate the master object, used during the import
   def populate_master( )
     if dependants = @marc_configuration.get_foreign_dependants( self.tag, @marc_configuration.get_master( self.tag ) )
@@ -139,15 +139,15 @@ class MarcNode
           # dep_tag.set_foreign_object
         end
       end
-    end    
+    end
   end
 
-  
+
   # Once the Marc data is parsed to MarcNodes, it can be
   # inspected to create the relations with the external classes
   # ex. People. This function does this. If the tag has a $0 with an id
   # (the field is returned by get_master_foreign_subfield) it will try
-  # to get the corrensponding object from the DB. If no id ($0) is present
+  # to get the corresponding object from the DB. If no id ($0) is present
   # it will try to look it up
   def import(overwrite = false, reindex = false, user = nil)
     foreign_associations = {}
@@ -170,12 +170,12 @@ class MarcNode
         if master
           master_field = @marc_configuration.get_foreign_field(tag, master.tag)
           self.foreign_object = find_or_new_foreign_object_by_foreign_field(@marc_configuration.get_foreign_class(tag, master.tag), master_field, master.looked_up_content)
-        # If we have no master subfiled but master is actually empty "" (e.g. 004) with holding records
+        # If we have no master subfield but master is actually empty "" (e.g. 004) with holding records
         elsif !master && @marc_configuration.get_master( self.tag ) == ""
           add_db_master = false
           master_field = @marc_configuration.get_foreign_field(tag, "")
           self.foreign_object = find_or_new_foreign_object_by_foreign_field(@marc_configuration.get_foreign_class(tag, ""), master_field, self.content)
-        # if not, there will be one or more non master fields, we can use to make a lookup and see if this 
+        # if not, there will be one or more non master fields, we can use to make a lookup and see if this
         # object already exists
         elsif nmasters.size > 0
           # we will need to add a master (id), but only if the master if $0 (e.g., for 740, we don't add a $0 master)
@@ -183,14 +183,14 @@ class MarcNode
           add_master = true if master_tag == "0"
           self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters )
         end
-        return if !self.foreign_object 
+        return if !self.foreign_object
         # We have the foreign object. Check if it needs to be populated and saved
         if self.foreign_object.new_record? or overwrite
           self.foreign_object.user = user if user
           populate_master( )
           #FIXME self.foreign_object.suppress_reindex
           # PROBLEM: if an element has an incorrect id, but a field that is unique already is in the DB
-          # the save will creash because of the duplicate field. In this case, we try an extreme remedy:
+          # the save will crash because of the duplicate field. In this case, we try an extreme remedy:
           # we try the lookup using non-masters so hopefully we can match the field to the one already there
           # and avoid the duplication crash
           self.foreign_object.suppress_reindex if reindex == false
@@ -210,7 +210,7 @@ class MarcNode
           rescue
             $stderr.puts "Failed to save foreign object #{self.foreign_object.to_yaml}"
           end
-        end 
+        end
         # now add the master subfield $0 with the id value
         if add_master
           master = MarcNode.new(@model, "0", nil, nil )
@@ -218,7 +218,7 @@ class MarcNode
           add( master )
         end
         # populate the foreign associations hash
-        foreign_associations["#{self.foreign_object.class.name}-#{self.foreign_object.id}"] = self.foreign_object   
+        foreign_associations["#{self.foreign_object.class.name}-#{self.foreign_object.id}"] = self.foreign_object
         # set the foreign object for all the subfields
         get_foreign_subfields.each do |subfield|
           subfield.set_foreign_object
@@ -234,7 +234,7 @@ class MarcNode
     return foreign_associations
   end
 
-  # Check the zero padding for fields or subfields having this requirement (typically 14 charachter ids)
+  # Check the zero padding for fields or subfields having this requirement (typically 14 character ids)
   def check_padding( tag, subtag )
     if (padding = @marc_configuration.get_zero_padding( tag, subtag )) && self.content != padding.to_i
       padding_string = "%0#{padding}d"
@@ -245,24 +245,24 @@ class MarcNode
       child.check_padding( tag, child.tag )
     end
   end
-  
+
   # get the master subfield for a tag
-  def get_master_foreign_subfield 
+  def get_master_foreign_subfield
     masters = @children.reverse.select { |c| @marc_configuration.is_foreign?(self.tag, c.tag) and !@marc_configuration.get_foreign_class(self.tag, c.tag).match(/^\^/) }
     raise "only one master subfield is allowed" if masters.size > 1
     return masters.size > 0 ? masters[0] : nil
   end
-  
+
   # Get the all the tags that are not master for a subtag
-  def get_non_master_foreign_subfields  
+  def get_non_master_foreign_subfields
     @children.select { |c| @marc_configuration.is_foreign?(self.tag, c.tag) and @marc_configuration.get_foreign_class(self.tag, c.tag).match(/^\^/) }
   end
-  
+
   # Get the all the tags that are foreign subfields (master and non master)
-  def get_foreign_subfields  
+  def get_foreign_subfields
     @children.select { |c| @marc_configuration.is_foreign?(self.tag, c.tag) }
   end
-  
+
   # Get the foreign field and class for a foreign object
   def set_foreign_object
     foreign_class = @marc_configuration.get_foreign_class(self.parent.tag, self.tag)
@@ -282,13 +282,13 @@ class MarcNode
       return @content
     end
   end
-  
+
   # Return the content of a foreign object non from the Marc data itself
   # but from the corresponding class
   def looked_up_content
     if @foreign_object and @foreign_field
       value = @foreign_object.[](@foreign_field.intern)
-      
+
       # For PSMD. If the foreign_filed contains a dot "."
       # it means it is a relation that has to be resolved.
       # work.person.full_name. See resolve_externals above.
@@ -297,13 +297,13 @@ class MarcNode
         value = @foreign_object.send(fields[0])
         (1..fields.count - 1).each {|n| value = value.send(fields[n])}
       end
-      
+
       return value
     else
       return @content
     end
   end
-  
+
   # Export to text Marc format
   def to_marc(no_db_id = false)
     out = String.new
@@ -335,7 +335,7 @@ class MarcNode
       		out += "\r\n"
         end
       else
-        @children.each { |child| out += child.to_marc(no_db_id) }       
+        @children.each { |child| out += child.to_marc(no_db_id) }
       end
     end
 
@@ -375,7 +375,7 @@ class MarcNode
 
     return out
   end
-  
+
   # Export to JSON
   def to_json
     out = Array.new
@@ -402,17 +402,17 @@ class MarcNode
     end
     return out
   end
-  
+
   # Set the foreign object
   def foreign_object=(object)
     @foreign_object = object
   end
-  
+
   # Get the foreign object
   def foreign_object
     @foreign_object
   end
- 
+
   # Set the foreign field
   def foreign_field=(field_name)
     @foreign_field = field_name
@@ -421,17 +421,17 @@ class MarcNode
   def get_class(classname)
     begin
       dyna_class = Kernel.const_get(classname)
-    rescue 
+    rescue
       dyna_class = nil
     end
     dyna_class
   end
-  
+
   # Set the parent object
   def parent=(parent)
     @parent = parent
   end
-  
+
   # Return if this object has children
   def has_children?
     @children.length != 0
@@ -466,7 +466,7 @@ class MarcNode
       @children.sort { |a, b| (a.tag.match(/\d/) ? "z#{a.tag}" : a.tag) <=> (b.tag.match(/\d/) ? "z#{b.tag}" : b.tag) }
     end
   end
-  
+
   def all_children
     tags = Array.new
     for child in children
@@ -479,13 +479,13 @@ class MarcNode
     yield self if @parent
     children { |child| child.each(&block) }
   end
-  
+
   def each_by_tag(tag)
     @children.each do |child|
       yield child if child.tag == tag.to_s
     end
   end
-  
+
   def fetch_first_by_tag(tag)
     #s = @children.collect { |c| c.tag }.join(', ')
     @children.each do |child|
@@ -499,17 +499,17 @@ class MarcNode
     @children.each do |child|
       matching_children << child if child.tag == tag.to_s
     end
-    return matching_children  
+    return matching_children
   end
 
   def destroy_yourself
     @parent.destroy_child(self) if @parent
   end
-  
+
   def destroy_child(node)
     @children.delete_if { |child| child == node }
   end
-  
+
   # Add an element at specified position
   def add_at(child, index)
     @children.insert(index, child)
@@ -524,12 +524,12 @@ class MarcNode
   alias length size
   alias << add
   alias to_s to_marc
-  
-  
+
+
   private
   def clean_string(str)
     single_space = " "
     return str.gsub(/[\r\n]+/, single_space).gsub(/\n+/, single_space).gsub(/\r+/, single_space).gsub(/\$/, Marc::DOLLAR_STRING)
   end
-  
+
 end
