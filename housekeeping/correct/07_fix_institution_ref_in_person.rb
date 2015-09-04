@@ -1,6 +1,6 @@
 =begin
-search=Person.solr_search do 
-  fulltext("Unresolved", :fields=>["667a"]) 
+search=Person.solr_search do
+  fulltext("Unresolved", :fields=>["667a"])
   paginate :per_page=>50
 end
 
@@ -36,7 +36,7 @@ Person.all.each do |s|
   marc.each_by_tag("510") do |t|
   counter=0
     a = t.fetch_first_by_tag("a")
-    if a 
+    if a
       if a.content
         reference=a.content
         institution=Institution.where(siglum: reference).take
@@ -65,8 +65,7 @@ Person.all.each do |s|
         modified = true
       end
     end
-  
-  
+
 
   end
   puts "NEW MARC ========================================"
