@@ -38,10 +38,10 @@ class Person < ActiveRecord::Base
   belongs_to :user, :foreign_key => "wf_owner"
 
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
-
-#  validates_presence_of :full_name
-  validate :field_lenght
-
+  
+#  validates_presence_of :full_name  
+  validate :field_length
+  
   #include NewIds
 
   before_destroy :check_dependencies
@@ -222,8 +222,8 @@ class Person < ActiveRecord::Base
 
     self.marc_source = self.marc.to_marc
   end
-
-  def field_lenght
+  
+  def field_length
     self.life_dates = self.life_dates.truncate(24) if self.life_dates and self.life_dates.length > 24
     self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
   end
