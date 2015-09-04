@@ -11,9 +11,10 @@ ActiveAdmin.register Person do
   
   collection_action :autocomplete_person_full_name, :method => :get
   
-  action_item :view, only: :show do
-    link_to 'View on site', "person_path(person)" if params[:select]
+  action_item :view, only: :show, if: proc{ params[:select] } do
+    link_to 'View on site', "person_path(person)" 
   end
+
   
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -108,7 +109,7 @@ ActiveAdmin.register Person do
          collection: proc{Folder.where(folder_type: "Person").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
   index :download_links => false do
-    selectable_column
+    selectable_column if !params[:select]
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_full_name), :full_name
     column (I18n.t :filter_life_dates), :life_dates

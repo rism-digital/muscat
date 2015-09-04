@@ -10,7 +10,7 @@ module FolderControllerActions
   
   def self.included(dsl)
     # batch_action seems already public
-    dsl.batch_action :folder, if: proc { !params[:select].present? }, form: {
+    dsl.batch_action :folder, form: {
       name:   :text,
       hide:   :checkbox
     } do |ids, inputs|
