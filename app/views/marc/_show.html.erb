@@ -1,12 +1,12 @@
 <%- 
-	opac_resolved = opac rescue opac_resolved = false 
-	layout_config = @editor_profile.layout_config
-	layout_config["group_order"].each do |group_name|
-		group = layout_config["groups"][group_name]
-		grouping = { :title => @editor_profile.get_label(group_name), :tags => group["all_tags"], :tag_templates => group["all_tag_templates"] }					
+    opac_resolved = opac rescue opac_resolved = false
+    layout_config = @editor_profile.layout_config
+    layout_config["group_order"].each do |group_name|
+        group = layout_config["groups"][group_name]
+        grouping = { :title => @editor_profile.get_label(group_name), :tags => group["all_tags"], :tag_templates => group["all_tag_templates"] }
 -%>	
-	<% unless group["admin_only"] and not (current_user && current_user.has_any_role?(:editor, :admin)) -%>
-		<%= render :partial => (group["template"] && !@diff ? group["template"] : "marc/show_group" ), :locals => { :item => @item, :group => grouping, :opac => opac_resolved } %>
-	<% end -%>
+    <% unless group["admin_only"] and not (current_user && current_user.has_any_role?(:editor, :admin)) -%>
+        <%= render :partial => (group["template"] && !@diff ? group["template"] : "marc/show_group" ), :locals => { :item => @item, :group => grouping, :opac => opac_resolved } %>
+    <% end -%>
   <%- end -%>
 

@@ -4,9 +4,9 @@
   This is pretty hackish for now - figure out a better way to do this into the CatalogController! -%>
 
 <%
-	@item = Source.find(@document.id.split(" ")[1]) # hackady-hack! Source 1234567 -> 1234567
-	@editor_profile = EditorConfiguration.get_show_layout @item
+    @item = Source.find(@document.id.split(" ")[1]) # hackady-hack! Source 1234567 -> 1234567
+    @editor_profile = EditorConfiguration.get_show_layout @item
 %>
 <dl class="dl-horizontal  dl-invert">
-	<%= render :partial => "marc/show", :locals => { :opac => true } %>
+    <%= render :partial => "marc/show", :locals => { :opac => true } %>
 </dl>

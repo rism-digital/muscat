@@ -1,11 +1,11 @@
 <%
-	val = marc_tag.indicator || @item.marc.config.get_default_indicator(tag_name)
-	tag_id = marc_editor_ind_name(tag_name, 0) #FIXME
+    val = marc_tag.indicator || @item.marc.config.get_default_indicator(tag_name)
+    tag_id = marc_editor_ind_name(tag_name, 0) #FIXME
 %>
 <select class="serialize_marc marc_editor_hotkey" data-indicator="true">
-	<%- @item.marc.config.each_indicator(tag_name) do |ind| %>
-		<option value="<%= ind -%>" <%= (val == ind) ? "selected=\"selected\"".html_safe : "" -%>><%= @editor_profile.get_sub_label(tag_name, ind).force_encoding('UTF-8') -%></option>
-	<%- end %>
+    <%- @item.marc.config.each_indicator(tag_name) do |ind| %>
+        <option value="<%= ind -%>" <%= (val == ind) ? "selected=\"selected\"".html_safe : "" -%>><%= @editor_profile.get_sub_label(tag_name, ind).force_encoding('UTF-8') -%></option>
+    <%- end %>
 </select>
 <!--<input class="subfield_entry serialize_marc" type="radio" id="<%= tag_id %>" name="<%= tag_id %>" value="0#" <%= (val == "0#") ? "checked" : "" -%> />No
 <input class="subfield_entry serialize_marc" type="radio" id="<%= tag_id %>" name="<%= tag_id %>" value="1#" <%= (val == "1#") ? "checked" : "" -%> />Yes-->

@@ -1,5 +1,5 @@
 <%
-	rails_model = @item.class.to_s.pluralize.downcase
+    rails_model = @item.class.to_s.pluralize.downcase
 %>
 
 <!-- place holders -->
@@ -13,17 +13,17 @@
 <%= render :partial => "editor/item_form", :locals => { :render_panel => "marc_editor_panel", :model => rails_model } -%>
 
 <% if @item.respond_to?('paper_trail_enabled_for_model?') %>
-	<%= render :partial => "editor/versions" -%>
+    <%= render :partial => "editor/versions" -%>
 <% end %>
 
 <script type="text/javascript">
 
-	marc_editor_init_tags($('#marc_editor_panel'));	
-	
-	// avoid user to accidently leave the page when the form was modify 
-	// will ask for a confirmation
-	window.onbeforeunload = marc_editor_discard_changes_leaving;	
+    marc_editor_init_tags($('#marc_editor_panel'));
 
-	$.ajax 
-		
+    // avoid user to accidently leave the page when the form was modify
+    // will ask for a confirmation
+    window.onbeforeunload = marc_editor_discard_changes_leaving;
+
+    $.ajax
+
 </script>

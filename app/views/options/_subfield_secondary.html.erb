@@ -8,9 +8,9 @@
 <input type="hidden" class="autocomplete_target serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-subfield-iterator="<%=s_iterator%>" data-field="<%=field%>" value="<%= marc_subfield_m.content %>">
 
 <table class="marc_editor_grid_internal_layout" cellpadding="0" cellspacing="0">
-	<tr>
-	<td width="100%">
-	<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey" %>
+    <tr>
+    <td width="100%">
+    <%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey" %>
 
 </td>
 
@@ -19,9 +19,9 @@
 <%else%>
 
 <table class="marc_editor_grid_internal_layout" cellpadding="0" cellspacing="0">
-	<tr>
-	<td width="100%">
-	<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey serialize_marc", :"data-subfield"=>"#{master}", :"data-subfield-iterator"=>"#{s_iterator}", :"data-field"=>"#{field}" %>
+    <tr>
+    <td width="100%">
+    <%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey serialize_marc", :"data-subfield"=>"#{master}", :"data-subfield-iterator"=>"#{s_iterator}", :"data-field"=>"#{field}" %>
 
 </td>
 

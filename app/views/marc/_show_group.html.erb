@@ -2,19 +2,19 @@
 
 <% unless group_tags.empty? -%>
 
-	<div class="panel">
-		<h3><%= group[:title] %></h3>
-		<div class="panel_contents">
-			<div class="attributes_table">
-				<%- if !@diff %>
-				<table border="0" cellpadding="0" cellspacing="0">
-					<%= render :partial => "marc/show_tags", :locals => { :tags => group_tags, :templates => group[:tag_templates], :opac => opac } %>
-				</table>
-				<%- else %>
-					<%= render :partial => "marc/show_diff_tags", :locals => { :tags => group_tags } %>
-				<%- end %>
-			</div>
-		</div>
-	</div>
-	
+    <div class="panel">
+        <h3><%= group[:title] %></h3>
+        <div class="panel_contents">
+            <div class="attributes_table">
+                <%- if !@diff %>
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <%= render :partial => "marc/show_tags", :locals => { :tags => group_tags, :templates => group[:tag_templates], :opac => opac } %>
+                </table>
+                <%- else %>
+                    <%= render :partial => "marc/show_diff_tags", :locals => { :tags => group_tags } %>
+                <%- end %>
+            </div>
+        </div>
+    </div>
+
 <% end -%>
