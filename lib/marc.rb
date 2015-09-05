@@ -6,26 +6,26 @@
 class Marc
   include ApplicationHelper
   include Comparable
-  
+
   attr_reader :all_foreign_associations
   attr_accessor :root, :results
 
   LANGUAGES = {
-		'lat' => 'Latin',
-		'eng' => 'English',
-		'ita' => 'Italian',
-		'ger' => 'German',
-		'spa' => 'Spanish',
-		'fre' => 'French',
-		'sco' => 'Scots',
-		'wel' => 'Welsh',
-		'rus' => 'Russian'
+    'lat' => 'Latin',
+    'eng' => 'English',
+    'ita' => 'Italian',
+    'ger' => 'German',
+    'spa' => 'Spanish',
+    'fre' => 'French',
+    'sco' => 'Scots',
+    'wel' => 'Welsh',
+    'rus' => 'Russian'
   }
 
   public
-  
+
   DOLLAR_STRING = "_DOLLAR_"
-  
+
   def initialize(model, source = nil, user = nil)
     @root = MarcNode.new(model)
     @marc21 = Regexp.new('^[\=]([\d]{3,3})[\s]+(.*)$')
@@ -38,23 +38,23 @@ class Marc
     @model = model
     @marc_configuration = MarcConfigCache.get_configuration model
   end
-  
+
   # Returns the root MarcNode
   def __get_root
     @root
   end
-  
+
   # Returns a copy of this object an all of its references
   def deep_copy
     Marshal.load(Marshal.dump(self))
   end
 
   # After a Marc file is loaded an parsed, read all the foreign references
-  # and link them. In case they do not exist they will be created (upon saving the manuscript). 
+  # and link them. In case they do not exist they will be created (upon saving the manuscript).
   def import(reindex = false, user = nil)
     @all_foreign_associations = @root.import(false, reindex, user)
   end
-  
+
   # Creates a Marc object from the <tt>source</tt> field in the Source record
   def load_source( resolve = true )
     @source.each_line { |line| ingest_raw(line.sub(/[\s\r\n]+$/, '')) } if @source
@@ -63,23 +63,23 @@ class Marc
     # when importing we do not want to resolve externals since source has ext_id (and not db_id)
     @root.resolve_externals unless !resolve
   end
-  
+
   # Read a line from a MARC record
   def ingest_raw(tag_line)
     if tag_line =~ @marc21
       parse_marc21 $1, $2
     end
   end
-  
+
   # Parse a MARC 21 line
   def parse_marc21(tag, data)
     # Warning! we are skipping the tag that are not included in MarcConfig
-    # It would probably be wise to notify the user 
+    # It would probably be wise to notify the user
     if !@marc_configuration.has_tag? tag
       @results << "Tag #{tag} missing in the marc configuration"
       return
     end
-    
+
     # control fields
     if @marc_configuration.is_tagless? tag
       if data =~ /^[\s]*(.+)$/
@@ -101,12 +101,12 @@ class Marc
         subtag  = $1
         content = $2
         record  = $3
-        
+
         content.gsub!(DOLLAR_STRING, "$")
-      
-        # missing subtag 
+
+        # missing subtag
         @results << "Subfield #{tag} $#{subtag} missing in the marc configuration" if !@marc_configuration.has_subfield? tag, subtag
-        
+
         subtag = tag_group << MarcNode.new(@model, subtag, content, nil)
       end
     end
@@ -118,7 +118,7 @@ class Marc
   # them in the DB. It will also call a reindex on them
   def load_from_hash(hash, user = nil)
     @root << MarcNode.new(@model, "000", hash['leader'], nil) if hash['leader']
-    
+
     if hash['fields']
       grouped_tags = {}
       hash['fields'].each do |s|
@@ -126,20 +126,20 @@ class Marc
         grouped_tags[k] = [] if !grouped_tags.has_key?(k)
         grouped_tags[k] << s
       end
-      
+
       grouped_tags.keys.sort.each do |tag_key|
         grouped_tags[tag_key].each do |toplevel|
           toplevel.each_pair do |tag, field|
             if field.is_a?(Hash)
               ind = ""
-              
+
               if !field.has_key?('ind1') || !field.has_key?('ind2')
                 ind = @marc_configuration.get_default_indicator tag
               else
                 ind = field['ind1'] + field['ind2']
                 ind.gsub!(" ", "#")
               end
-              
+
               tag_group = @root << MarcNode.new(@model, tag, nil, ind)
               field['subfields'].each do | pos |
                 pos.each_pair do |code, value|
@@ -153,9 +153,9 @@ class Marc
           end # toplevel.each_pair
         end # grouped_tags[tag_key].each
       end # grouped_tags.keys.sort.each
-      
+
     end # if hash['fields']
-    
+
     @loaded = true
     import(true, user) # Import
     @source = to_marc
@@ -163,20 +163,20 @@ class Marc
     # When importing externals are not resolved, do it here
     @root.resolve_externals
   end
-  
+
   # Load marc data from an array (use for loading diff versions)
   def load_from_array(array_of_tags)
     @root = MarcNode.new(@model)
     array_of_tags.each do |t|
       @root << t
-    end 
+    end
     @loaded = true
   end
 
   def get_model
     return @model.to_s
   end
-  
+
   def config
     return @marc_configuration
   end
@@ -218,7 +218,7 @@ class Marc
   def get_leader
     control000 = first_occurance("000").content || "" rescue control000 = ""
   end
-  
+
   # Fin the insert position of a tag. For march fields they should be ascending
   def get_insert_position(tag)
     load_source unless @loaded
@@ -229,7 +229,7 @@ class Marc
     end
     insert_at
   end
-  
+
   # Return the ID from field 001
   def get_marc_source_id
     source_id = nil
@@ -238,7 +238,7 @@ class Marc
     end
     return source_id
   end
-    
+
   # Set the RISM ID in the 001 field
   def set_id(id)
     id_tag = first_occurance("001")
@@ -257,7 +257,7 @@ class Marc
       @root.add_at(MarcNode.new(@model, "001", id, nil), save_at + 1)
     end
   end
-  
+
   def get_id
     rism_id = nil
     if node = first_occurance("001")
@@ -265,11 +265,11 @@ class Marc
     end
     return rism_id
   end
-  
+
   # Return the parent of a manuscript. This need to be improved
   # Currently handles holding records, item in collection/convolutum and previous edition
   # More than one case should not (cannot ?) happen in one manuscript
-  # Otherwise it would be necessary to change this to a many-to-many relationship and 
+  # Otherwise it would be necessary to change this to a many-to-many relationship and
   # have this handled in the create_links / destroy_links methods
   def get_parent
     parent = nil
@@ -284,9 +284,9 @@ class Marc
       parent = node.foreign_object
     end
   end
-  
+
   # Copied from application helpers
-  # Used for the inventory database to tuncate the title 
+  # Used for the inventory database to tuncate the title
   def pretty_truncate(text, length = 30, truncate_string = " ...")
     return if text.nil?
     l = length - truncate_string.mb_chars.length
@@ -301,7 +301,7 @@ class Marc
     end
     return false
   end
-  
+
   # Find the first occurrance of a tag, even if more than one is present
   def first_occurance(tag, subtag = "")
     load_source unless @loaded
@@ -316,7 +316,7 @@ class Marc
     end
     return nil
   end
-  
+
   # Block to iterate over a set of given tags (passed as array), with a subtag
   # and an optional subtag value to filter on.
   def by_tags_with_subtag(tag_names, subtag, subtag_content = "")
@@ -330,13 +330,13 @@ class Marc
         tags << child
       end
       #for grandchild in child.children
-      #  tags 
+      #  tags
       #  tags << child if grandchild.tag == subtag && grandchild.content == subtag_content
       #end
     end
     return tags
   end
-  
+
   # Returns and array with all values in a list or tag/subtag
   def all_values_for_tags_with_subtag(tag_names, subtag)
     load_source unless @loaded
@@ -350,23 +350,23 @@ class Marc
     end
     values.uniq
   end
-  
+
   def to_yaml
     load_source unless @loaded
     @root.to_yaml
-  end   
+  end
 
   def to_marc
     load_source unless @loaded
     @root.to_marc
   end
-  
+
   # Export as a valid MARC record
   def export
     load_source unless @loaded
-    @root.to_marc :true    
+    @root.to_marc :true
   end
-  
+
   def export_xml
     load_source unless @loaded
     out = String.new
@@ -378,7 +378,7 @@ class Marc
     out += "\t</marc:record>\n"
     return out
   end
-  
+
   # Return all tags
   def all_tags( resolve = true )
     load_source( resolve ) unless @loaded
@@ -388,7 +388,7 @@ class Marc
     end
     return tags
   end
-  
+
   # Return all the tags with a given name
   def by_tags(tag_names)
     load_source unless @loaded
@@ -398,7 +398,7 @@ class Marc
     end
     return tags
   end
-  
+
   # Return an ordered list of the given tags
   def by_tags_with_order(tag_names)
     load_source unless @loaded
@@ -409,7 +409,7 @@ class Marc
     return tags
   end
 
-  
+
   def each_data_tags_present( no_control = true )
     load_source unless @loaded
     seen = Hash.new
@@ -452,7 +452,7 @@ class Marc
     load_source unless @loaded
     @root.each_by_tag(tag, &block)
   end
-  
+
   def each_by_tag_after(tag, node, &block)
     load_source unless @loaded
     @root.each_by_tag(tag, node, &block)
@@ -492,9 +492,9 @@ class Marc
 
   alias to_s to_marc
   alias marc_source to_marc
-  
+
   private
-  
+
   def marc_helper_get_008_language(value)
     # language is 35-37
     if value.length <= 35
@@ -507,7 +507,7 @@ class Marc
     end
     return field
   end
-  
+
   # Get the first date from MARC 008
   def marc_helper_get_008_date1(value)
     # date1 is 07-10
@@ -527,49 +527,49 @@ class Marc
     end
     return field
   end
-  
+
   def marc_helper_get_008_language(value)
     codes = Array.new
-    
+
     forward = {
-    	'lat' => 'Latin',
-    	'la' => 'Latin',
+      'lat' => 'Latin',
+      'la' => 'Latin',
 
-    	'eng' => 'English',
-    	'en' => 'English',
+      'eng' => 'English',
+      'en' => 'English',
 
-    	'ita' => 'Italian',
-    	'it' => 'Italian',
+      'ita' => 'Italian',
+      'it' => 'Italian',
 
-    	'ger' => 'German',
-    	'ge' => 'German',
+      'ger' => 'German',
+      'ge' => 'German',
 
-    	'spa' => 'Spanish',
-    	'sp' => 'Spanish',
+      'spa' => 'Spanish',
+      'sp' => 'Spanish',
 
-    	'fre' => 'French',
-    	'fr' => 'French',
+      'fre' => 'French',
+      'fr' => 'French',
 
-    	'sco' => 'Scots',
-    	'sc' => 'Scots',
+      'sco' => 'Scots',
+      'sc' => 'Scots',
 
-    	'wel' => 'Welsh',
-    	'we' => 'Welsh',
+      'wel' => 'Welsh',
+      'we' => 'Welsh',
 
-    	'rus' => 'Russian',
-    	'ru' => 'Russian'
+      'rus' => 'Russian',
+      'ru' => 'Russian'
     }
 
     reverse = {
-    	'Latin'   => 'lat',
-    	'English' => 'eng',
-    	'Italian' => 'ita',
-    	'German'  => 'ger',
-    	'Spanish' => 'spa',
-    	'French'  => 'fre',
-    	'Scots'   => 'sco',
-    	'Welsh'   => 'wel',
-    	'Russian' => 'rus'
+      'Latin'   => 'lat',
+      'English' => 'eng',
+      'Italian' => 'ita',
+      'German'  => 'ger',
+      'Spanish' => 'spa',
+      'French'  => 'fre',
+      'Scots'   => 'sco',
+      'Welsh'   => 'wel',
+      'Russian' => 'rus'
     }
 
     if value =~ /^[^|]+[|]+([^|]+).+$/
@@ -581,7 +581,7 @@ class Marc
 
     return codes
   end
-  
+
   # Return the string from the given start for lenght in a 008 MARC record
   def marc_get_range(value, start, length)
     if value.length <= start
@@ -593,19 +593,19 @@ class Marc
     end
     return field
   end
-  
+
   def marc_create_pae_entry(conf_tag, conf_properties, marc, model)
     out = []
-    
+
     tag = conf_properties && conf_properties.has_key?(:from_tag) ? conf_properties[:from_tag] : nil
-    
+
     return if tag == nil
     return if tag != "031"
-    
+
     marc.each_by_tag(tag) do |marctag|
       subtags = [:a, :b, :c, :g, :n, :o, :p]
       vals = {}
-      
+
       subtags.each do |st|
         v = marctag.fetch_first_by_tag(st)
         vals[st] = v && v.content ? v.content : "0"
@@ -614,43 +614,43 @@ class Marc
       next if vals[:p] == "0"
 
       pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
-      
+
       s = "@start:#{pae_nr}\n";
-	    s = s + "@clef:#{vals[:g]}\n";
-	    s = s + "@keysig:#{vals[:n]}\n";
-	    s = s + "@key:\n";
-	    s = s + "@timesig:#{vals[:o]}\n";
-	    s = s + "@data:#{vals[:p]}\n";
-	    s = s + "@end:#{pae_nr}\n"
+      s = s + "@clef:#{vals[:g]}\n";
+      s = s + "@keysig:#{vals[:n]}\n";
+      s = s + "@key:\n";
+      s = s + "@timesig:#{vals[:o]}\n";
+      s = s + "@data:#{vals[:p]}\n";
+      s = s + "@end:#{pae_nr}\n"
 
       out << s
 
     end
 
     return out
-    
+
   end
-  
+
   def marc_create_aggregated_text(conf_tag, conf_properties, marc, model)
     out = []
     tags = conf_properties && conf_properties.has_key?(:tags) ? conf_properties[:tags] : nil
-    
+
     return if tags == nil
     return if !tags.is_a?(Hash)
-    
+
     tags.each do |tag, subtag|
       marc.each_by_tag(tag) do |marctag|
         marctag.each_by_tag(subtag) do |marcsubtag|
           #puts "#{tag}, #{subtag}"
           out << marcsubtag.content if marcsubtag.content
-          
+
         end
       end
     end
-    
+
     return out
   end
-  
+
   # Get the birth date from MARC 100$d
   def marc_helper_get_birthdate(value)
     if value.include?('-')
@@ -674,5 +674,5 @@ class Marc
   end
 
 end
- 
+
 

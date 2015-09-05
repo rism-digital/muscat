@@ -1,75 +1,75 @@
-<%- 
-	layout_key = is_new ? "layout_new" : "layout"
-	s_iterator = 1
+<%-
+    layout_key = is_new ? "layout_new" : "layout"
+    s_iterator = 1
 -%>
 <table class="tag_grid" cellpadding="0" cellspacing="0">
     <tr><th width="25%"></th><th width="25%"></th><th width="25%"></th><th width="25%"></th></tr>
     <%- @editor_profile.each_subfield_for(tag_name, is_new) do |subfield, field_settings|
 
-    		field_label = ""
-    		field_leader = ""
-			field_settings = Hash.new if !field_settings
+            field_label = ""
+            field_leader = ""
+            field_settings = Hash.new if !field_settings
 
-    		if @item.marc.config.multiples_allowed?(tag_name, subfield)
-    			extra_leader = safe_link_to_function_stub "<div class=\"add_subfield_button abutton_condensed ui-state-default  abutton-icon-solo ui-corner-all\"><span class=\"ui-icon ui-icon-plus\"></span>_</div>".html_safe, "marc_editor_add_subfield($(this))", :title => "Add another instance of this subfield"				
-    		end
-		
-    		if @editor_profile.has_sub_label?(tag_name, subfield)
-    			sub_label = @editor_profile.get_sub_label(tag_name, subfield, true)
-    			field_label =  "#{sub_label}" if !sub_label.empty?
-    		end
-		
-    		extra_td_options = ""
-    		if field_settings["nowrap"]
-    			extra_td_options = " nowrap=\"true\"".html_safe
-    		end
-    	-%>
-    	<%- if (subfield != "__blank") -%>
-    		<%- if !field_settings["hidden"] || !field_settings["hidden"]==true -%>
+            if @item.marc.config.multiples_allowed?(tag_name, subfield)
+                extra_leader = safe_link_to_function_stub "<div class=\"add_subfield_button abutton_condensed ui-state-default  abutton-icon-solo ui-corner-all\"><span class=\"ui-icon ui-icon-plus\"></span>_</div>".html_safe, "marc_editor_add_subfield($(this))", :title => "Add another instance of this subfield"
+            end
+
+            if @editor_profile.has_sub_label?(tag_name, subfield)
+                sub_label = @editor_profile.get_sub_label(tag_name, subfield, true)
+                field_label =  "#{sub_label}" if !sub_label.empty?
+            end
+
+            extra_td_options = ""
+            if field_settings["nowrap"]
+                extra_td_options = " nowrap=\"true\"".html_safe
+            end
+        -%>
+        <%- if (subfield != "__blank") -%>
+            <%- if !field_settings["hidden"] || !field_settings["hidden"]==true -%>
             <tr>
-        		<td>
-        			<div class="grid_cell_header">
-    					<%= field_label.html_safe %>
+                <td>
+                    <div class="grid_cell_header">
+                        <%= field_label.html_safe %>
                         <%= extra_leader -%>
                     </div>
                 </td>
-        		<td colspan="3" <%= extra_td_options -%>>
-        			<div class="grid_cell">
-        				<div style="vertical-align: bottom; background-color: transparent">
-        					<ul class="repeating_subfield">
-        					<%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
-        						subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
-        					  	subfield_collection.each do |marc_subfield| %>
-        						<%= render :partial => "editor/subfield_li", 
-        							:locals => { :column => [subfield, field_settings], 
-        									:marc_tag => marc_tag, :tag_name => tag_name, 
-        									:s_iterator => s_iterator, :marc_subfield => marc_subfield } %>
-        						<%- s_iterator += 1 %>
-        					<%- end %>
-        					</ul>
-        				</div>
-        			</div>
-        		</td>
+                <td colspan="3" <%= extra_td_options -%>>
+                    <div class="grid_cell">
+                        <div style="vertical-align: bottom; background-color: transparent">
+                            <ul class="repeating_subfield">
+                            <%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
+                                subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
+                                subfield_collection.each do |marc_subfield| %>
+                                <%= render :partial => "editor/subfield_li",
+                                    :locals => { :column => [subfield, field_settings],
+                                            :marc_tag => marc_tag, :tag_name => tag_name,
+                                            :s_iterator => s_iterator, :marc_subfield => marc_subfield } %>
+                                <%- s_iterator += 1 %>
+                            <%- end %>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
             </tr>
-    		<%- else -%>
+            <%- else -%>
             <tr>
-    			<td colspan="4">
-    			<div style="visibility: hidden; height: 0px;">
-    				<%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
-    					subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
-    				  	subfield_collection.each do |marc_subfield| %>
-    					<%= render :partial => (field_settings.has_key?('editor_partial') ? "options/#{field_settings['editor_partial']}" : "editor/subfield"), 
-    						:locals => { :marc_tag => marc_tag, :tag_name => tag_name, 
-    							:s_iterator => s_iterator, :marc_subfield => marc_subfield, :subfield => subfield, :params => field_settings, :read_only => field_settings["read_only"] } %>		
-    						<%- s_iterator += 1 %>
-    				<%- end %>
-    			</div>
-    			<td>
+                <td colspan="4">
+                <div style="visibility: hidden; height: 0px;">
+                    <%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
+                        subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
+                        subfield_collection.each do |marc_subfield| %>
+                        <%= render :partial => (field_settings.has_key?('editor_partial') ? "options/#{field_settings['editor_partial']}" : "editor/subfield"),
+                            :locals => { :marc_tag => marc_tag, :tag_name => tag_name,
+                                :s_iterator => s_iterator, :marc_subfield => marc_subfield, :subfield => subfield, :params => field_settings, :read_only => field_settings["read_only"] } %>
+                            <%- s_iterator += 1 %>
+                    <%- end %>
+                </div>
+                <td>
             </tr>
-    		<%- end -%>
-    	<%- end -%>
+            <%- end -%>
+        <%- end -%>
 
-    	<%- s_iterator = (s_iterator / 100 * 100) + 100 %>		
+        <%- s_iterator = (s_iterator / 100 * 100) + 100 %>
     <%- end -%>
 
 </table>

@@ -62,7 +62,7 @@ used for _tag_header partial
         }
     }
 
-	// Create a new element when the tag_group already contains elements
+    // Create a new element when the tag_group already contains elements
     function tag_header_add(elem) {
         var placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel");
         var current_dt = elem.parents(".tag_toplevel_container");
@@ -73,8 +73,8 @@ used for _tag_header partial
         new_dt.fadeIn('fast');
     }
 
-	// Create a new element when the tag_group is empty. It is necessary
-	// because in this case there is no tag_toplevel_container
+    // Create a new element when the tag_group is empty. It is necessary
+    // because in this case there is no tag_toplevel_container
     function tag_header_add_from_empty(elem) {
         // hide help if necessary
         elem.parents(".tag_container").children(".tag_help_collapsable").hide();
@@ -91,8 +91,8 @@ used for _tag_header partial
     function tag_header_edit(elem) {
         var dt = elem.parents(".tag_toplevel_container");
 
-		var show_id = dt.find('.tag_container[data-function="new"]');
-		var hide_id = dt.find('.tag_container[data-function="edit"]');
+        var show_id = dt.find('.tag_container[data-function="new"]');
+        var hide_id = dt.find('.tag_container[data-function="edit"]');
 
         $(hide_id).fadeOut('fast', function () {
             $(show_id).fadeIn('fast');
@@ -121,24 +121,24 @@ used for _tag_header partial
             success: function (data) {
                 help_div.children(".help_content").html(data);
                 help_div.fadeIn('fast');
-    		},
-    		dataType: 'html',
-    		timeout: 1000, 
-    		type: 'get',
-    		url: elem.data("help")
-    	});
-	}
-	
-	// Duplicate a whole group
-	function tag_header_new_group(elem) {
-		var placeholder = elem.parents(".tab_panel").children(".group_placeholders_toplevel").children(".group_placeholders").children(".panel");
-		var toplevel_dl =  elem.parents(".tab_panel").children(".tag_group_container");
-		
-		var new_group = placeholder.clone();
-		var dt = $("<dt />").append(new_group);
-		dt.appendTo(toplevel_dl);
-		dt.fadeIn('fast');
-	}
+            },
+            dataType: 'html',
+            timeout: 1000,
+            type: 'get',
+            url: elem.data("help")
+        });
+    }
+
+    // Duplicate a whole group
+    function tag_header_new_group(elem) {
+        var placeholder = elem.parents(".tab_panel").children(".group_placeholders_toplevel").children(".group_placeholders").children(".panel");
+        var toplevel_dl =  elem.parents(".tab_panel").children(".tag_group_container");
+
+        var new_group = placeholder.clone();
+        var dt = $("<dt />").append(new_group);
+        dt.appendTo(toplevel_dl);
+        dt.fadeIn('fast');
+    }
 
     var self = null;
     jQuery.fn.tagHeaderButtons = function() {
@@ -155,37 +155,37 @@ used for _tag_header partial
         }
     };
 
-	jQuery.tagHeaderButtons.fn.extend = jQuery.tagHeaderButtons.extend = jQuery.extend;
-	jQuery.tagHeaderButtons.fn.extend({
-		init: function(e) {
-			$(e).click(function(e) {
-				e.preventDefault();
-				
-				if ($(this).data("header-button") == "toggle") {
-					tag_header_toggle($(this));
-				} else if ($(this).data("header-button") == "delete") {
-					tag_header_delete($(this));
-				} else if ($(this).data("header-button") == "add") {
-					tag_header_add($(this));
-				} else if ($(this).data("header-button") == "add-from-empty") {
-					tag_header_add_from_empty($(this));
-				} else if ($(this).data("header-button") == "new") {
-					tag_header_new($(this));
-				} else if ($(this).data("header-button") == "edit") {
-					tag_header_edit($(this));
-				} else if ($(this).data("header-button") == "help") {
-					tag_header_help($(this));
-				}else if ($(this).data("group-button") == "add") {
-					tag_header_new_group($(this));
-				}
-                
-				
-			});
-		}
-	});
-  
-	jQuery(document).ready(function(){
-		jQuery('.abutton').tagHeaderButtons();
-	});
+    jQuery.tagHeaderButtons.fn.extend = jQuery.tagHeaderButtons.extend = jQuery.extend;
+    jQuery.tagHeaderButtons.fn.extend({
+        init: function(e) {
+            $(e).click(function(e) {
+                e.preventDefault();
+
+                if ($(this).data("header-button") == "toggle") {
+                    tag_header_toggle($(this));
+                } else if ($(this).data("header-button") == "delete") {
+                    tag_header_delete($(this));
+                } else if ($(this).data("header-button") == "add") {
+                    tag_header_add($(this));
+                } else if ($(this).data("header-button") == "add-from-empty") {
+                    tag_header_add_from_empty($(this));
+                } else if ($(this).data("header-button") == "new") {
+                    tag_header_new($(this));
+                } else if ($(this).data("header-button") == "edit") {
+                    tag_header_edit($(this));
+                } else if ($(this).data("header-button") == "help") {
+                    tag_header_help($(this));
+                }else if ($(this).data("group-button") == "add") {
+                    tag_header_new_group($(this));
+                }
+
+
+            });
+        }
+    });
+
+    jQuery(document).ready(function(){
+        jQuery('.abutton').tagHeaderButtons();
+    });
 })(jQuery);
 

@@ -15,9 +15,9 @@ uncorrelated_028 = []
 pb = ProgressBar.new(Source.all.count)
 
 Source.all.each do |s|
-  
+
   pb.increment!
-  
+
   begin
     marc = s.marc
     x = marc.to_marc
@@ -26,16 +26,16 @@ Source.all.each do |s|
     unloadable_marc << s.id
     next
   end
-  
+
   modified = false
   fields_mod = []
   fields_add = []
   print_539 = []
-  
+
   fields3.each do |field|
-  
+
     marc.each_by_tag(field) do |t|
-    
+
       a = t.fetch_all_by_tag("3")
 
       if a.count > 0 # There is a $3, meaning more than one field
@@ -43,19 +43,19 @@ Source.all.each do |s|
 
         a.each do |subtag|
           next if !subtag && !subtag.content
-          
+
           # Translate "Material 1", "Material 2", etc into
           # only a number for $8
           material_no = subtag.content.split(" ")[1]
-        
+
           t.add_at(MarcNode.new(Source, "8", sprintf("%02d", material_no), nil), 0)
           t.destroy_child(subtag)
           subtag_changed = true
         end
-    
+
         if subtag_changed
           t.sort_alphabetically
-      
+
           modified = true
           fields_mod << field
         end
@@ -66,10 +66,10 @@ Source.all.each do |s|
 
         modified = true
         t.sort_alphabetically
-      
+
         fields_add << field
       end  # if a
-      
+
       # Additional step since we are looping anyways
       # See if there is a 593 Print (or more than one)
       # and save the $8 number and add it to the
@@ -80,11 +80,11 @@ Source.all.each do |s|
           print_539 << t.fetch_first_by_tag("8").content
         end
       end
-      
+
     end # each_by_tag
-    
+
   end
-  
+
   # Make the 028 tag have a $8 to the index
   # of the relative print material
   tags_028 = s.marc.by_tags("028")
@@ -106,7 +106,7 @@ Source.all.each do |s|
     uncorrelated_028 << "#{s.id} has 028 bur more than one 593 print" if tags_028.count > 0
   end
 
-  
+
   if modified
     # This case should never happen
     # There should be always one or the other
@@ -121,9 +121,9 @@ Source.all.each do |s|
     	s.suppress_reindex
       s.save!
    end
-   
+
   end
-  
+
 end
 
 puts "==============================="
