@@ -2183,12 +2183,12 @@ notes: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Notes
     de: Fussnoten
     en: Note fields
-other: !map:ActiveSupport::HashWithIndifferentAccess 
+unmatched: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Varia
-    fr: Divers
-    de: Verschiedenes
-    en: Miscellaneous
+    it: Campi sconoscuti
+    fr: Champs non reconnus
+    de: Unbekannte Felder
+    en: Unknown fields
 otm: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Organizzatore
@@ -2216,9 +2216,15 @@ performance: !map:ActiveSupport::HashWithIndifferentAccess
 physical_description: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Descrizione fisica
-    fr: "Description matérielle"
+    fr: "Description physique"
     de: Physische Beschreibung
     en: Physical description
+material_description: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Descrizione del materiale
+    fr: "Description du matériel"
+    de: Materialbeschreibung
+    en: Material description    
 ppm: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Fabbricante di carta
@@ -2303,6 +2309,12 @@ show_links: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Titres connexes
     de: Verlinkungen
     en: Related Titles
+show_material: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Descrizione del materiale
+    fr: "Description du matériel"
+    de: Materialbeschreibung
+    en: Material description     
 show_references: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Bibliografia

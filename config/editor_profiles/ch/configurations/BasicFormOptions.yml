@@ -35,7 +35,8 @@
   layout: 
     fields: 
     - - a
-      - cols: 1
+    - - "8"
+#      - editor_partial: subfield_material
 "031": 
   layout: 
     fields: 
@@ -47,7 +48,6 @@
 #        - msg: the field is required
 #          value: true
 #          rule: required
-      - cols: 1
     - - b
 #      - validate: 
 #        - msg: the format must be numeric
@@ -56,7 +56,6 @@
 #        - msg: the field is required
 #          value: true
 #          rule: required
-      - cols: 1
     - - c
 #      - validate: 
 #        - msg: the format must be numeric
@@ -65,23 +64,15 @@
 #        - msg: the field is required
 #          value: true
 #          rule: required
-      - cols: 1
     - - d
-      - cols: 2
     - - m
-      - cols: 1
     - - e
-      - cols: 1
     - - t
       - growfield: true
-        cols: 5
     - - r
-      - cols: 1
     - - o
-      - cols: 1
     - - g
-      - cols: 1
-        values: 
+      - values: 
         - "G-1"
         - "G-2"
         - "g-2"
@@ -94,8 +85,7 @@
         - "F-5"
         editor_partial: subfield_select
     - - n
-      - cols: 1
-        values: 
+      - values: 
         - "xF"
         - "xFC"
         - "xFCG"
@@ -116,13 +106,9 @@
 #        - msg: the field can contain 't', '+' or '?'
 #          value: "'^[t\\+\\?][t\\+\\?]?[t\\+\\?]?$'"
 #          rule: regex
-      - cols: 1
     - - p
       - editor_partial: subfield_pae
-        cols: 5
     - - q
-      - cols: 5
-    columns: 5
   tag_params: 
     timesig: 
       subfield: o
@@ -137,32 +123,22 @@
   layout: 
     fields: 
     - - indicator
-      - cols: 2
-        editor_partial: subfield_indicator
+      - editor_partial: subfield_indicator
     - - a
-      - cols: 5
-    columns: 7
 "040": 
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - c
-      - cols: 2
     - - d
-      - cols: 2
     - - b
-      - cols: 2
-    columns: 4
 "041": 
   layout: 
     fields: 
     - - indicator
       - editor_partial: subfield_indicator
-        cols: 2
     - - a
-      - cols: 2
-        values: 
+      - values: 
         - "eng"
         - "fre"
         - "ger"
@@ -175,8 +151,7 @@
         - "spa"
         editor_partial: subfield_autocomplete
     - - e
-      - cols: 2
-        values: 
+      - values: 
         - "eng"
         - "fre"
         - "ger"
@@ -189,8 +164,7 @@
         - "spa"
         editor_partial: subfield_autocomplete
     - - h
-      - cols: 2
-        values: 
+      - values: 
         - "eng"
         - "fre"
         - "ger"
@@ -202,7 +176,6 @@
         - "rus"
         - "spa"
         editor_partial: subfield_autocomplete
-    columns: 4
 "100": 
   allow_new: true
   layout: 
@@ -210,23 +183,16 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
-        cols: 4
     - - j
       - value: Attributed to
         editor_partial: subfield_checkbox
-        cols: 1
-    columns: 5
   layout_new: 
     fields: 
     - - a
-      - cols: 4
     - - d
-      - cols: 3
     - - j
       - value: Attributed to
         editor_partial: subfield_checkbox
-        cols: 1
-    columns: 8
 "110":
   allow_new: true
   layout: 
@@ -234,17 +200,11 @@
     - - a
       - type: institution
         editor_partial: subfield_secondary
-        cols: 2
     - - b
-      - cols: 1
-    columns: 3
   layout_new: 
     fields: 
     - - a
-      - cols: 2
     - - b
-      - cols: 1
-    columns: 3
 "130":
   allow_new: true
   layout: 
@@ -252,128 +212,79 @@
     - - a
       - type: standard_title
         editor_partial: subfield_secondary
-        cols: 7
     - - k
-      - cols: 3
     - - o
-      - cols: 2
     - - r
-      - cols: 2
     - - n
-      - cols: 4
     - - m
-      - cols: 3
-    columns: 7
   layout_new: 
     fields: 
     - - a
-      - cols: 7
     - - k
-      - cols: 3
     - - o
-      - cols: 2
     - - r
-      - cols: 2
     - - n
-      - cols: 4
     - - m
-      - cols: 3
-    columns: 7
 "240": 
   layout: 
     fields: 
     - - a
       - type: standard_title
         editor_partial: subfield_secondary
-        cols: 7
     - - k
-      - cols: 3
     - - o
-      - cols: 2
     - - r
-      - cols: 2
     - - n
-      - cols: 4
     - - m
-      - cols: 3
-    columns: 7
   layout_new: 
     fields: 
     - - a
-      - cols: 7
     - - k
-      - cols: 3
     - - o
-      - cols: 2
     - - r
-      - cols: 2
     - - n
-      - cols: 4
     - - m
-      - cols: 3
-    columns: 7
   extended_help: 130
 "245": 
   layout: 
     fields: 
     - - a
       - growfield: true
-        cols: 1
     - - c
-      - cols: 1
-        hidden: true
+      - hidden: true
 "260": 
   layout: 
     fields: 
     - - a
-      - cols: 3
     - - b
-      - cols: 3
     - - c
-      - cols: 2
     - - e
-      - cols: 5
     - - f
-      - cols: 5
-    - - "3"
-      - editor_partial: subfield_material
-        cols: 2
-    columns: 10
+    - - "8"
+#      - editor_partial: subfield_material
 "300": 
   layout: 
     fields: 
     - - a
       - growfield: true
-        cols: 8
     - - c
-      - cols: 4
     - - b
-      - cols: 6
-    - - "3"
-      - editor_partial: subfield_material
-        cols: 2
-    columns: 10
+    - - "8"
+#      - editor_partial: subfield_material
 "340": 
   layout: 
     fields: 
     - - a
-      - cols: 4
     - - d
-      - cols: 4
-    - - "3"
-      - editor_partial: subfield_material
-        cols: 4
-    columns: 4
+    - - "8"
+#      - editor_partial: subfield_material
 "351": 
   layout: 
     fields: 
     - - a
       - growfield: true
-        cols: 8
-    - - "3"
-      - cols: 2
-        editor_partial: subfield_material
-    columns: 10
+    - - "8"
+#        editor_partial: subfield_material0
 "508": 
   layout: 
     fields: 
@@ -414,8 +325,6 @@
         - "Vocalist: "
         growfield: true
         editor_partial: subfield_autocomplete
-        cols: 1
-
 "518": 
   layout: 
     fields: 
@@ -425,40 +334,28 @@
         - "First performance date: "
         - "Performance date: "
         editor_partial: subfield_autocomplete
-        cols: 1
 "541": 
   layout: 
     fields: 
     - - c
       - growfield: true
-        cols: 6
     - - a
-      - cols: 4
     - - d
-      - cols: 2
-    columns: 6
 "590": 
   layout: 
     fields: 
     - - a
       - growfield: true
-        cols: 4
     - - b
       - growfield: true
-        cols: 5
-    - - "3"
-      - cols: 1
-        editor_partial: subfield_material
-    columns: 5
+    - - "8"
+#        editor_partial: subfield_material
 "592": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    - - "3"
-      - cols: 1
-        editor_partial: subfield_material
-    columns: 5
+    - - "8"
+#        editor_partial: subfield_material
 "593": 
   layout: 
     fields: 
@@ -469,12 +366,9 @@
         - Manuscript with autograph annotations
         - Print
         - Probably autograph
-        cols: 4
         editor_partial: subfield_select
-    - - "3"
-      - cols: 1
-        editor_partial: subfield_material
-    columns: 5
+    - - "8"
+#        editor_partial: subfield_material
 "594": 
   layout: 
     fields: 
@@ -483,48 +377,34 @@
 #        - msg: this field must be 4 characters
 #          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
 #          rule: regex
-      - cols: 3
     - - b
-      - cols: 3
     - - c
 #      - validate: 
 #        - msg: this field must be 4 characters
 #          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
 #          rule: regex
-      - cols: 3
     - - d
-      - cols: 3
     - - e
-      - cols: 3
     - - f
 #      - validate: 
 #        - msg: this field must be 5 characters
 #          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
 #          rule: regex
-      - cols: 3
     - - g
 #      - validate: 
 #        - msg: this field must be 4 characters
 #          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
 #          rule: regex
-      - cols: 3
     - - h
 #      - validate: 
 #        - msg: this field must be 3 characters
 #          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
 #          rule: regex
-      - cols: 3
     - - i
-      - cols: 3
     - - k
-      - cols: 3
     - - l
-      - cols: 5
     - - m
-      - cols: 5
     - - n
-      - cols: 5
-    columns: 15
 "600":
   allow_new: true
   layout: 
@@ -532,105 +412,78 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
-        cols: 1
   layout_new: 
     fields: 
     - - a
-      - cols: 1
 "650":
   allow_new: true
   layout: 
     fields: 
     - - a
       - type: standard_term
-        cols: 1
         editor_partial: subfield_secondary
   layout_new: 
     fields: 
     - - a
-      - cols: 1
 "651": 
   allow_new: true
   layout: 
     fields: 
     - - a
       - type: place
-        cols: 1
         editor_partial: subfield_secondary
   layout_new: 
     fields: 
     - - a
-      - cols: 1
 "657": 
   allow_new: true
   layout: 
     fields: 
     - - a
       - type: liturgical_feast
-        cols: 1
         editor_partial: subfield_secondary
   layout_new: 
     fields: 
     - - a
-      - cols: 1
 "690": 
   allow_new: true
   layout: 
     fields: 
     - - a
       - type: catalogue
-        cols: 1
         editor_partial: subfield_secondary
     - - n
-      - cols: 1
-    columns: 2
   layout_new: 
     fields: 
     - - a
-      - cols: 1
     - - n
-      - cols: 1
-    columns: 2
 "691":
   allow_new: true
   layout: 
     fields: 
     - - a
       - type: catalogue
-        cols: 1
         editor_partial: subfield_secondary
     - - n
-      - cols: 1
-    columns: 2
   layout_new: 
     fields: 
     - - a
-      - cols: 1
     - - n
-      - cols: 1
-    columns: 2
 "700":
   allow_new: true 
   layout:
     fields: 
     - - a
       - type: person
-        cols: 1
         editor_partial: subfield_secondary
     - - "4"
-      - cols: 1
-        editor_partial: subfield_relator_codes_700
-    columns: 2
+      - editor_partial: subfield_relator_codes_700
   layout_new:
     fields: 
     - - a
-      - cols: 4
     - - d
-      - cols: 2
     - - "4"
-      - cols: 2
-        editor_partial: subfield_relator_codes_700
-    columns: 6
+      - editor_partial: subfield_relator_codes_700
   tag_list_header: tag_list_header_relator_codes
   tag_params: 
     groups: 
@@ -679,24 +532,16 @@
     fields: 
     - - a
       - type: institution
-        cols: 2
         editor_partial: subfield_secondary
     - - b
-      - cols: 1
     - - "4"
-      - cols: 1
-        editor_partial: subfield_relator_codes_710
-    columns: 2
+      - editor_partial: subfield_relator_codes_710
   layout_new: 
     fields: 
     - - a
-      - cols: 2
     - - b
-      - cols: 1
     - - "4"
-      - cols: 1
-        editor_partial: subfield_relator_codes_710
-    columns: 2
+      - editor_partial: subfield_relator_codes_710
   tag_params: 
     codes: 
     - fmo
@@ -717,34 +562,20 @@
     fields: 
     - - a
       - type: standard_title
-        cols: 6
         editor_partial: subfield_secondary
     - - k
-      - cols: 2
     - - o
-      - cols: 2
     - - r
-      - cols: 2
     - - n
-      - cols: 3
     - - m
-      - cols: 3
-    columns: 6
   layout_new: 
     fields: 
     - - a
-      - cols: 6
     - - k
-      - cols: 2
     - - o
-      - cols: 2
     - - r
-      - cols: 2
     - - n
-      - cols: 3
     - - m
-      - cols: 3
-    columns: 6
 "740":
 #  allow_new: true
   layout: 
@@ -752,48 +583,33 @@
     - - a
       - type: source_solr
         field: value
-        cols: 2
         editor_partial: subfield_secondary
         allow_not_found: true
     - - n
-      - cols: 1
     - - p
-      - cols: 1
-    columns: 2
 #  layout_new: 
 #    fields: 
 #    - - a
-#      - cols: 2
 #    - - n
-#      - cols: 1
 #    - - p
-#      - cols: 1
-#    columns: 2
 "772": 
   layout: 
     fields: 
     - - w
-      - cols: 2
-        read_only: true
+      - read_only: true
 "773": 
   layout: 
     fields: 
     - - w
-      - cols: 2
-        type: source
+      - type: source
         editor_partial: subfield_secondary
 "787": 
   layout: 
     fields: 
     - - g
-      - cols: 2
     - - n
-      - cols: 5
     - - s
-      - cols: 4
     - - w
-      - cols: 3
-    columns: 7
 "852": 
   allow_new: true
   layout: 
@@ -801,32 +617,20 @@
     - - a
       - nowrap: true
         type: library
-        cols: 2
         editor_partial: subfield_secondary
     - - b
-      - cols: 8
     - - z
-      - cols: 4
     - - p
       - growfield: true
-        cols: 3
     - - d
-      - cols: 3
-    columns: 10
   layout_new: 
     fields: 
     - - a
       - nowrap: true
-        cols: 2
     - - b
-      - cols: 8
     - - p
       - growfield: true
-        cols: 3
     - - d
-      - cols: 3
     - - z
-      - cols: 4
-    columns: 10
 ui: 
   hide_marc_identifiers: true

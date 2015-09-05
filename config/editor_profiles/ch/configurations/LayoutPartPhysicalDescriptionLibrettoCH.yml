@@ -2,12 +2,15 @@
 groups: 
   physical_description: 
     all_tags: 
+    - "563"
+    - "525"
+    - "500"
+  material_description: 
+    all_tags: 
     - "593"
     - "340"
     - "300"
     - "260"
     - "592"
     - 028
-    - "563"
-    - "525"
-    - "500"
+    subfield_grouping: 8

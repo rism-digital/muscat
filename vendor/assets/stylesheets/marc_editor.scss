@@ -100,13 +100,6 @@
     }
 }
 
-.marc_editor_preview {
-    table {
-        margin-top: 0px;
-        margin-bottom: 0px;
-    }
-}
-
 $add-color: #5f5;
 $del-color: #f77;
 $mod-color: #ff3;
@@ -174,6 +167,15 @@ $diff-padding-width: 15px;
     }
 }
 
+.editor-flash {
+    display: none;
+}
+
+.active_admin h5.subfield_group {
+    color: #5e6469;
+    margin-top: 1.0em;
+    margin-bottom: 0.5em;
+}
 
 /***********************/
 /* Navigation side bar */
@@ -213,7 +215,6 @@ a.marc_cancel_btn {
    text-decoration:none !important; 
    cursor:pointer; 
    position: relative; 
-/*   text-align: center;*/
    zoom: 1;
    /* So the buttons are always the same height */
    line-height: 1.2em;
