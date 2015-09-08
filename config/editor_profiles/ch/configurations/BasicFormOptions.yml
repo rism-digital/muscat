@@ -35,7 +35,6 @@
   layout: 
     fields: 
     - - a
-    - - "8"
 #      - editor_partial: subfield_material
 "031": 
   layout: 
@@ -251,7 +250,6 @@
     - - c
     - - e
     - - f
-    - - "8"
 #      - editor_partial: subfield_material
 "300": 
   layout: 
@@ -260,21 +258,18 @@
       - growfield: true
     - - c
     - - b
-    - - "8"
 #      - editor_partial: subfield_material
 "340": 
   layout: 
     fields: 
     - - a
     - - d
-    - - "8"
 #      - editor_partial: subfield_material
 "351": 
   layout: 
     fields: 
     - - a
       - growfield: true
-    - - "8"
 #        editor_partial: subfield_material0
 "508": 
   layout: 
@@ -339,13 +334,11 @@
       - growfield: true
     - - b
       - growfield: true
-    - - "8"
 #        editor_partial: subfield_material
 "592": 
   layout: 
     fields: 
     - - a
-    - - "8"
 #        editor_partial: subfield_material
 "593": 
   layout: 
@@ -358,7 +351,6 @@
         - Print
         - Probably autograph
         editor_partial: subfield_select
-    - - "8"
 #        editor_partial: subfield_material
 "594": 
   layout: 

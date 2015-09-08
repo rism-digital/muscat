@@ -1,10 +1,10 @@
 <%- subfield_group_values = @item.marc.all_values_for_tags_with_subtag(tag_names, subfield) %>
 <%- subfield_group_values << "NEW" if subfield_group_values.empty? %>
-<dl class="sortable tag_group_container">
+<dl class="sortable tag_group_container toplevel_group_dl">
 <%- subfield_group_values.each do |subfield_group| %>
 	<%- subfield_group_tags = @item.marc.by_tags_with_subtag(tag_names, subfield, subfield_group) %>
 	<%- group_title = subfield_group_values.size > 1 ? "Group #{subfield_group}" : group_title %>
-	<dt>
+	<dt class="inner_group_dt">
 		<div class="panel">
 			<h3><%= group_title -%></h3>
 			<div class="marc_editor_panel_content">

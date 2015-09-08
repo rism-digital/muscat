@@ -47,6 +47,14 @@ function get_indicator(field) {
 	return inds;
 }
 
+// Add marc tags to the final marc
+// we want to keep the ordering of same tags
+// so if you have 300 xxx1 and 300 xxx2
+// in the final marc they maintain the same order:
+// =... stuff before
+// =300 xxx1
+// =300 xxx2
+// =... stuff after
 function add_ordered(tag, marc_tag, json_marc) {
 	// add it to the fields array, ordering the fields
 	if (json_marc["fields"].length == 0) {
@@ -112,7 +120,7 @@ function order_subfields(fields) {
 	return ordered_fields;
 }
 
-function serialize_element( element, tag, json_marc ) {
+function serialize_element( element, tag, json_marc, toplevel_groups) {
 	//console.log(this);
 	
 	var subfields = [];
@@ -129,7 +137,7 @@ function serialize_element( element, tag, json_marc ) {
 		// empty string, for control tags
 		// Keep the whole field for sorted duplicates
 		field = new String($(this).data("subfield"));
-		//index = $(this).data("subfield-iterator");
+
 		if (!tag_indexes.hasOwnProperty(field)) {
 			tag_indexes[field] = 0;
 		} else {
@@ -206,6 +214,68 @@ function serialize_element( element, tag, json_marc ) {
 		return;
 	}
 	
+	// Begin fixture for grouping
+	//
+	// Before ordering the subfields, check if
+	// this subfield is in a grouping
+	// in this case we add a (for now hardcoded)
+	// $8 with the counter of the group
+	//
+	// the structure of toplevel groups is:
+	// toplevel_groups [
+	//	[0] => {
+	//		dl: one of the toplevel dls
+	//		dts: Array with the dt inside, ordered
+	//	}]
+	if (element.closest(".toplevel_group_dl")) {
+		toplevel_group = element.closest(".toplevel_group_dl")
+		inner_dt = element.closest(".inner_group_dt");
+		position = -1
+		sub_dts_array = [];
+
+		// Is the toplevel dl aleady inside?
+		for (i = 0; i < toplevel_groups.length; i++) {
+			if (toplevel_groups[i]["dl"] == toplevel_group) {
+				sub_dts_array = toplevel_groups[i]["dts"];
+			}
+		}
+		
+		// no it is not, added and posistion is 0-
+		if (sub_dts_array.length == 0) {
+			toplevel_groups.push({
+				dl: toplevel_group,
+				dts: [inner_dt]
+			});
+			position = 0;
+		} else { // found the element
+			
+			// Is the current dt already inside?
+			for (i = 0; i < sub_dts_array.length; i++) {
+				if (sub_dts_array[i] == inner_dt) {
+					position = i; // yes we have the position
+					break;
+				}
+			}
+			
+			// no add it, position is the last
+			// in the array
+			if (position == -1) {
+				sub_dts_array.push(inner_dt);
+				position = sub_dts_array.length - 1;
+			}
+			
+		}
+
+		// In marc indexes start from 1
+		// we start from 0, just increment
+		position++;
+		
+		// now... add a subfield with the computed posisiton
+		subfields_unordered["8-000"] = zeroPad(position, 2);
+		
+	} // End fixture for Grouping, ideally it will be moved
+	  // to its own function
+	
 	subfields = order_subfields(subfields_unordered);
 	
 	// Build the JSON marc tag
@@ -237,6 +307,7 @@ function serialize_marc_editor_form( form ) {
 
 	var json_marc = {};
 	json_marc["fields"] = [];
+	toplevel_groups = [];
 	
 	// Each group contents contain the <div> for each marc tag
 	//$(".marc_editor_group_contents", form).each(function (index, elem) {
@@ -268,7 +339,7 @@ function serialize_marc_editor_form( form ) {
 						return;
 					}
 				
-					serialize_element(this, marc_tag, json_marc);
+					serialize_element(this, marc_tag, json_marc, toplevel_groups);
 				
 				});
 			})
