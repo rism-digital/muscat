@@ -11,7 +11,7 @@ end
 <div data-autocomplete-values="<%= data.to_json %>"></div>
 
 <%- if (params['width']==100 || params['growfield'])  %>
-	<textarea rows="1" cols="100" class="subfield_entry serialize_marc inline-autocomplete marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" rows="1"><%= h marc_subfield.content %></textarea>
+	<textarea rows="1" cols="100" class="subfield_entry serialize_marc inline-autocomplete marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" rows="1"><%= h marc_subfield.content %></textarea>
 <%- else %>
-	<input class="subfield_entry serialize_marc inline-autocomplete marc_editor_hotkey" size="100" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>" />
+	<input class="subfield_entry serialize_marc inline-autocomplete marc_editor_hotkey" size="100" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h marc_subfield.content %>" />
 <%- end %>

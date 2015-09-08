@@ -25,6 +25,14 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+// How can not javascript have this??
+function zeroPad(n, length) {
+    var str = n.toString();
+    while (str.length < length)
+        str = "0" + str;
+    return str;
+}
+
 function get_indicator(field) {
 	inds = [];
 	//field = $('#' + tag + '-' + index + '-indicator');
@@ -111,7 +119,7 @@ function serialize_element( element, tag, json_marc ) {
 	var controlfield = {};
 	var subfields_unordered = {};
 	var indicators = [];
-	var index;
+	var tag_indexes = {};
 	
 	// Navigate the single elements in this tag group
 	$('.serialize_marc', element).each(function() {
@@ -121,7 +129,12 @@ function serialize_element( element, tag, json_marc ) {
 		// empty string, for control tags
 		// Keep the whole field for sorted duplicates
 		field = new String($(this).data("subfield"));
-		index = $(this).data("subfield-iterator");
+		//index = $(this).data("subfield-iterator");
+		if (!tag_indexes.hasOwnProperty(field)) {
+			tag_indexes[field] = 0;
+		} else {
+			tag_indexes[field]++;
+		}
 		
 		// Indicators are special fields that have the
 		// data-indicator=true tag
@@ -154,7 +167,10 @@ function serialize_element( element, tag, json_marc ) {
 			// This is a normal subfield, eg. $a
 			// Also replace the newlines if any with spaces
 			// it is also doublecheked in the marc_node
-			subfields_unordered[field + "-" + index] = $(this).val().replace('\n', " ");
+			
+			// the index has to be zero padded for ordering
+			padded_index = zeroPad(tag_indexes[field], 3);
+			subfields_unordered[field + "-" +  padded_index] = $(this).val().replace('\n', " ");
 		}
 		
 	});

@@ -1,6 +1,6 @@
 <% tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
 
-<input class="serialize_marc single_select_target marc_editor_hotkey" type="text" disabled="disabled" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>">
+<input class="serialize_marc single_select_target marc_editor_hotkey" type="text" disabled="disabled" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h marc_subfield.content %>">
 
 <select class="single_relator_select marc_editor_hotkey" width="100">
 	<option value="">--- Gender ---</option>

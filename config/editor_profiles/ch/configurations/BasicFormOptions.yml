@@ -109,16 +109,7 @@
     - - p
       - editor_partial: subfield_pae
     - - q
-  tag_params: 
-    timesig: 
-      subfield: o
-      s_iterator: -400
-    keysig: 
-      subfield: n
-      s_iterator: -200
-    clef: 
-      subfield: g
-      s_iterator: -300
+
 "033": 
   layout: 
     fields: 
