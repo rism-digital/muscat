@@ -348,7 +348,10 @@ class Marc
       next if child.fetch_first_by_tag( subtag ).content.empty?
       values << child.fetch_first_by_tag( subtag ).content
     end
-    values.uniq
+    # Sort the return value
+    # because the value is computed on the fist tag
+    # so 300 $804 will come before 593 $801
+    values.uniq.sort
   end
   
   def to_yaml
