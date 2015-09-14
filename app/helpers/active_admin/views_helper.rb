@@ -46,8 +46,8 @@ module ActiveAdmin::ViewsHelper
     end
   end 
   
-  def prout?
-    false
+  def is_selection_mode?
+    return params && params[:select].present?
   end
   
   def active_admin_user_wf( context, item )   

@@ -15,7 +15,7 @@ class MuscatAdminHeader < ActiveAdmin::Views::Header
     
     # Now, invoke the parent class's build method to put it all together.
     #if can? :manage, User
-    super(namespace, menu) unless params[:select]
+    super(namespace, menu) unless is_selection_mode?
   end
 end
 

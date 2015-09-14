@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
   def user_for_paper_trail
     current_user.try :name
   end
+  
+  def is_selection_mode?
+    return params && params[:select].present?
+  end
 
   private
 

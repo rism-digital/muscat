@@ -11,7 +11,7 @@ ActiveAdmin.register Person do
   
   collection_action :autocomplete_person_full_name, :method => :get
   
-  action_item :view, only: :show, if: proc{ params[:select] } do
+  action_item :view, only: :show, if: proc{ is_selection_mode? } do
     link_to 'View on site', "person_path(person)" 
   end
 
@@ -30,7 +30,7 @@ ActiveAdmin.register Person do
     end
     
     def action_methods
-      return super - ['new', 'edit', 'destroy'] if params[:select]
+      return super - ['new', 'edit', 'destroy'] if is_selection_mode?
       super
     end
     
@@ -109,12 +109,12 @@ ActiveAdmin.register Person do
          collection: proc{Folder.where(folder_type: "Person").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
   index :download_links => false do
-    selectable_column if !params[:select]
+    selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_full_name), :full_name
     column (I18n.t :filter_life_dates), :life_dates
     column (I18n.t :filter_sources), :src_count
-    if params[:select]
+    if is_selection_mode?
       actions defaults: false do |post|
         link_to "View", admin_person_path(post)
       end
@@ -136,10 +136,10 @@ ActiveAdmin.register Person do
     else
       render :partial => "marc/show"
     end
-    active_admin_embedded_source_list( self, person, params[:qe], params[:src_list_page], !params[:select] )
+    active_admin_embedded_source_list( self, person, params[:qe], params[:src_list_page], !is_selection_mode? )
     active_admin_user_wf( self, person )
     active_admin_navigation_bar( self )
-    active_admin_comments if !params[:select]
+    active_admin_comments if !is_selection_mode?
   end
   
   sidebar I18n.t(:search_sources), :only => :show do
