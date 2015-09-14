@@ -60,13 +60,28 @@ module ActiveAdmin::ViewsHelper
     end
   end
   
-  #def active_admin_muscat_breadcrumb editor_select
-  #  return [] if editor_select
-  #  breadcrumb_links()
-  #end
+  def active_admin_muscat_select_link( item )
+    link_to("Select", "#", :data => { :marc_editor_select => item.id })
+  end
+  
+  def active_admin_muscat_actions( context )
+    # Build the dynamic path function, then call it with send
+    model = self.resource_class.to_s.underscore.downcase
+    view_link_function = "admin_#{model}_path"
+    if is_selection_mode?
+      context.actions defaults: false do |item|
+        item_links = Array.new
+        item_links << link_to("View", "#{send( view_link_function, item )}")
+        item_links << active_admin_muscat_select_link( item )
+        safe_join item_links, ' '
+      end
+    else
+      context.actions
+    end
+  end
   
   def active_admin_muscat_breadcrumb 
-    return [] if params[:select]
+    return [] if is_selection_mode?
     breadcrumb_links()
   end
 
@@ -80,6 +95,11 @@ module ActiveAdmin::ViewsHelper
     next_id = @next_item != nil ? @next_item.id.to_s : ""
     prev_id += "?page=#{@prev_page}" if @prev_page != 0
     next_id += "?page=#{@next_page}" if @next_page != 0
+    
+    # Build the back to index path function
+    model = self.resource_class.to_s.pluralize.underscore.downcase
+    index_link_function = "admin_#{model}_path"
+    
     context.div class: :table_tools do
       context.ul class: :table_tools_segmented_control do
         context.li class: :scope do
@@ -88,6 +108,9 @@ module ActiveAdmin::ViewsHelper
           else
             context.a class: "table_tools_button disabled" do context.text_node "Previous" end
           end
+        end
+        context.li class: :scope do
+          context.a href: "#{send(index_link_function)}", class: :table_tools_button do  context.text_node "Back to the list"  end
         end
         context.li class: :scope do
           if @next_item != nil

@@ -12,7 +12,7 @@ ActiveAdmin.register Person do
   collection_action :autocomplete_person_full_name, :method => :get
   
   action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    link_to 'View on site', "person_path(person)" 
+    active_admin_muscat_select_link( person )
   end
 
   
@@ -114,13 +114,7 @@ ActiveAdmin.register Person do
     column (I18n.t :filter_full_name), :full_name
     column (I18n.t :filter_life_dates), :life_dates
     column (I18n.t :filter_sources), :src_count
-    if is_selection_mode?
-      actions defaults: false do |post|
-        link_to "View", admin_person_path(post)
-      end
-    else
-      actions
-    end
+    active_admin_muscat_actions( self )
   end
   
   ##########
