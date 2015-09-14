@@ -87,7 +87,7 @@ module ActiveAdmin::ViewsHelper
   # displays the edit button on top of a edit panel
   def active_admin_submit_bar( context )
     context.div class: :buttons do
-     context.a href: "javascript:marc_editor_send_form('marc_editor_panel','marc_editor_panel', 0, marc_editor_get_model())", class: :marc_save_btn do  context.text_node I18n.t("active_admin.save_model") end 
+     context.a href: "javascript:marc_editor_send_form('marc_editor_panel', marc_editor_get_model())", class: :marc_save_btn do  context.text_node I18n.t("active_admin.save_model") end 
      context.a href: "javascript:marc_editor_cancel_form()", class: :marc_cancel_btn do  context.text_node I18n.t("active_admin.cancel") end
      context.br      
     end        

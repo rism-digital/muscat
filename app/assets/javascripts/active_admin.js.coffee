@@ -28,4 +28,5 @@
 #= require blacklight_range_limit
 #= require folder_actions
 #= require editor_hotkeys
+#= require verovio_preload
 #= require jsdiff.js

@@ -39,6 +39,7 @@
 //= require_tree .
 //= require autocomplete-rails
 //= require editor_hotkeys
+//= require verovio_preload
 //= require jsdiff.js
 
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
