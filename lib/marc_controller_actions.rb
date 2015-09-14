@@ -63,8 +63,6 @@ module MarcControllerActions
       respond_to do |format|
         format.js { render :json => { :redirect => path }.to_json }
       end
-
-      #render :template => 'editor/reload_editor'
     end
   
     #############
@@ -85,7 +83,8 @@ module MarcControllerActions
       dyna_marc_class = Kernel.const_get(classname)
       
       new_marc = dyna_marc_class.new()
-      new_marc.load_from_hash(marc_hash)
+      # Load marc, do not resolve externals
+      new_marc.load_from_hash(marc_hash, nil, false)
 
       @item = model.new
       @item.marc = new_marc
@@ -109,7 +108,7 @@ module MarcControllerActions
       
       # Do not resolve external since we might foreign object that might have been deleted since then
       @item.marc.load_source(false)
-      @editor_profile = EditorConfiguration.get_show_layout @item   
+      @editor_profile = EditorConfiguration.get_show_layout @item
       
       render :template => 'marc_show/show_preview'
     end
@@ -178,7 +177,7 @@ module MarcControllerActions
     
     # This can be used to add a button in the title bar
     #dsl.action_item :only => [:edit, :new] do
-    #    link_to('View on site', "javascript:marc_editor_send_form('marc_editor_panel','marc_editor_panel', 0, '#{self.resource_class.to_s.pluralize.downcase}')")
+    #    link_to('View on site', "javascript:marc_editor_send_form('marc_editor_panel', '#{self.resource_class.to_s.pluralize.downcase}')")
     #end
   
   end

@@ -116,7 +116,7 @@ class Marc
   # This function by default uses marc_node.import to
   # create the relations with the foreign object and create
   # them in the DB. It will also call a reindex on them
-  def load_from_hash(hash, user = nil)
+  def load_from_hash(hash, user = nil, resolve = true)
     @root << MarcNode.new(@model, "000", hash['leader'], nil) if hash['leader']
     
     if hash['fields']
@@ -161,7 +161,7 @@ class Marc
     @source = to_marc
     @source_id = first_occurance("001").content || nil rescue @source_id = nil
     # When importing externals are not resolved, do it here
-    @root.resolve_externals
+    @root.resolve_externals if resolve
   end
   
   # Load marc data from an array (use for loading diff versions)
@@ -348,7 +348,10 @@ class Marc
       next if child.fetch_first_by_tag( subtag ).content.empty?
       values << child.fetch_first_by_tag( subtag ).content
     end
-    values.uniq
+    # Sort the return value
+    # because the value is computed on the fist tag
+    # so 300 $804 will come before 593 $801
+    values.uniq.sort
   end
   
   def to_yaml

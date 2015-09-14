@@ -77,16 +77,7 @@
     - - q
       - cols: 5
     columns: 5
-  tag_params: 
-    timesig: 
-      subfield: o
-      s_iterator: -400
-    keysig: 
-      subfield: n
-      s_iterator: -200
-    clef: 
-      subfield: g
-      s_iterator: -300
+
 "035": 
   layout: 
     fields: 
