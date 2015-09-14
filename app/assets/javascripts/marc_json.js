@@ -270,8 +270,12 @@ function serialize_element( element, tag, json_marc, toplevel_groups) {
 		// we start from 0, just increment
 		position++;
 		
+		// Get the tag, we save it in the 
+		// toplevel df
+		subfield = $(toplevel_group).data("subfield");
+
 		// now... add a subfield with the computed posisiton
-		subfields_unordered["8-000"] = zeroPad(position, 2);
+		subfields_unordered[subfield + "-000"] = zeroPad(position, 2);
 		
 	} // End fixture for Grouping, ideally it will be moved
 	  // to its own function
