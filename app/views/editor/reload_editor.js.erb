@@ -1,7 +1,0 @@
-<% render_panel = params[:marc_editor_dest] %>
-
-$('#<%= render_panel %>').html("<%= escape_javascript(render(:partial =>  "editor/item_form", :locals => { :render_panel => "marc_editor_panel" })) -%>");
-
-marc_editor_init_tags($('#<%= render_panel -%>'));
-
-//flash.discard
