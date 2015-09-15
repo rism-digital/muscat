@@ -8,6 +8,14 @@ ActiveAdmin.register Source do
   
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
+  breadcrumb do
+    active_admin_muscat_breadcrumb
+  end
+    
+  action_item :view, only: :show, if: proc{ is_selection_mode? } do
+    active_admin_muscat_select_link( person )
+  end
+
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -21,6 +29,11 @@ ActiveAdmin.register Source do
     end
     autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :solr => false}
     autocomplete :source, "740_autocomplete_sms", :solr => true
+    
+    def action_methods
+      return super - ['new', 'edit', 'destroy'] if is_selection_mode?
+      super
+    end
     
     def permitted_params
       params.permit!
@@ -121,7 +134,7 @@ ActiveAdmin.register Source do
          }
   
   index do
-    selectable_column
+    selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage)} 
     column (I18n.t :filter_composer), :composer
@@ -136,7 +149,7 @@ ActiveAdmin.register Source do
     end
     column (I18n.t :filter_shelf_mark), :shelf_mark
     
-    actions
+    active_admin_muscat_actions( self )
   end
   
   ##########
@@ -150,7 +163,7 @@ ActiveAdmin.register Source do
     render :partial => "marc/show"
     active_admin_navigation_bar( self )
     active_admin_user_wf( self, @item )
-    active_admin_comments
+    active_admin_comments if !is_selection_mode?
   end
   
   ##########
