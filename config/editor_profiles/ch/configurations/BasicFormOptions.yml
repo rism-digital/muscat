@@ -172,6 +172,7 @@
     fields: 
     - - a
       - type: person
+        new_window: people
         editor_partial: subfield_secondary
     - - j
       - value: Attributed to
@@ -189,6 +190,7 @@
     fields: 
     - - a
       - type: institution
+        new_window: institutions
         editor_partial: subfield_secondary
     - - b
   layout_new: 
@@ -201,6 +203,7 @@
     fields: 
     - - a
       - type: standard_title
+        new_window: standard_titles
         editor_partial: subfield_secondary
     - - k
     - - o
@@ -220,6 +223,7 @@
     fields: 
     - - a
       - type: standard_title
+        new_window: standard_titles
         editor_partial: subfield_secondary
     - - k
     - - o
@@ -394,6 +398,7 @@
     fields: 
     - - a
       - type: person
+        new_window: people
         editor_partial: subfield_secondary
   layout_new: 
     fields: 
@@ -404,6 +409,7 @@
     fields: 
     - - a
       - type: standard_term
+        new_window: standard_terms
         editor_partial: subfield_secondary
   layout_new: 
     fields: 
@@ -414,6 +420,7 @@
     fields: 
     - - a
       - type: place
+        new_window: places
         editor_partial: subfield_secondary
   layout_new: 
     fields: 
@@ -424,6 +431,7 @@
     fields: 
     - - a
       - type: liturgical_feast
+        new_window: liturgical_feasts
         editor_partial: subfield_secondary
   layout_new: 
     fields: 
@@ -434,6 +442,7 @@
     fields: 
     - - a
       - type: catalogue
+        new_window: catalogues
         editor_partial: subfield_secondary
     - - n
   layout_new: 
@@ -446,6 +455,7 @@
     fields: 
     - - a
       - type: catalogue
+        new_window: catalogues
         editor_partial: subfield_secondary
     - - n
   layout_new: 
@@ -458,6 +468,7 @@
     fields: 
     - - a
       - type: person
+        new_window: people
         editor_partial: subfield_secondary
     - - "4"
       - editor_partial: subfield_relator_codes_700
@@ -515,6 +526,7 @@
     fields: 
     - - a
       - type: institution
+        new_window: institutions
         editor_partial: subfield_secondary
     - - b
     - - "4"
@@ -545,6 +557,7 @@
     fields: 
     - - a
       - type: standard_title
+        new_window: standard_titles
         editor_partial: subfield_secondary
     - - k
     - - o
@@ -566,6 +579,7 @@
     - - a
       - type: source_solr
         field: value
+        new_window: standard_titles
         editor_partial: subfield_secondary
         allow_not_found: true
     - - n
@@ -585,6 +599,7 @@
     fields: 
     - - w
       - type: source
+        new_window: sources
         editor_partial: subfield_secondary
 "787": 
   layout: 
@@ -600,6 +615,7 @@
     - - a
       - nowrap: true
         type: library
+        new_window: institutions
         editor_partial: subfield_secondary
     - - b
     - - z

@@ -88,8 +88,10 @@ function newWindowIsSelect() {
 				toplevel_li = $(this).parents("li");
 				_nw_destination = toplevel_li.children(".autocomplete_target")
 				
+				controller = $(this).data("controller");
+				
 				// Open up the new window
-				_child = window.open('/admin/people?select=true', null, "location=no");
+				_child = window.open('/admin/' + controller + '?select=true', null, "location=no");
 				
 			});
 		}

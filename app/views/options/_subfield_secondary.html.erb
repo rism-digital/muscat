@@ -4,6 +4,8 @@
 <%- ac_path = send(params['type'] + "_default_autocomplete")%>
 <%- field = params.has_key?("field") ? params['field'] : "id" %>
 <%- create_not_found = params.has_key?("allow_not_found") ? params['allow_not_found'] : false %>
+<%- new_window_controller =  params.include?("new_window") ? params['new_window'] : false%>
+
 <% if create_not_found == false %>
 <input type="hidden" class="autocomplete_target serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%= marc_subfield_m.content %>">
 
@@ -12,9 +14,11 @@
 	<td width="100%">
 		<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey autocomplete_new_window" %>
 	</td>
+	<%if new_window_controller %>
 	<td>
-		<button class="new_window_select">Click</button>
+		<button class="new_window_select" data-controller="<%=new_window_controller%>">Click</button>
 	</td>
+	<%end%>
 
 </tr>
 </table>
