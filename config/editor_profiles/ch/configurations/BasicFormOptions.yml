@@ -186,11 +186,11 @@
         editor_partial: subfield_checkbox
 "110":
   allow_new: true
+  new_window: institutions
   layout: 
     fields: 
     - - a
       - type: institution
-        new_window: institutions
         editor_partial: subfield_secondary
     - - b
   layout_new: 
@@ -199,11 +199,11 @@
     - - b
 "130":
   allow_new: true
+  new_window: standard_titles
   layout: 
     fields: 
     - - a
       - type: standard_title
-        new_window: standard_titles
         editor_partial: subfield_secondary
     - - k
     - - o
@@ -219,11 +219,11 @@
     - - n
     - - m
 "240": 
+  new_window: standard_titles
   layout: 
     fields: 
     - - a
       - type: standard_title
-        new_window: standard_titles
         editor_partial: subfield_secondary
     - - k
     - - o
@@ -393,56 +393,56 @@
     - - m
     - - n
 "600":
+  new_window: people
   allow_new: true
   layout: 
     fields: 
     - - a
       - type: person
-        new_window: people
         editor_partial: subfield_secondary
   layout_new: 
     fields: 
     - - a
 "650":
   allow_new: true
+  new_window: standard_terms
   layout: 
     fields: 
     - - a
       - type: standard_term
-        new_window: standard_terms
         editor_partial: subfield_secondary
   layout_new: 
     fields: 
     - - a
 "651": 
   allow_new: true
+  new_window: places
   layout: 
     fields: 
     - - a
       - type: place
-        new_window: places
         editor_partial: subfield_secondary
   layout_new: 
     fields: 
     - - a
 "657": 
   allow_new: true
+  new_window: liturgical_feasts
   layout: 
     fields: 
     - - a
       - type: liturgical_feast
-        new_window: liturgical_feasts
         editor_partial: subfield_secondary
   layout_new: 
     fields: 
     - - a
 "690": 
   allow_new: true
+  new_window: catalogues
   layout: 
     fields: 
     - - a
       - type: catalogue
-        new_window: catalogues
         editor_partial: subfield_secondary
     - - n
   layout_new: 
@@ -451,11 +451,11 @@
     - - n
 "691":
   allow_new: true
+  new_window: catalogues
   layout: 
     fields: 
     - - a
       - type: catalogue
-        new_window: catalogues
         editor_partial: subfield_secondary
     - - n
   layout_new: 
@@ -463,12 +463,12 @@
     - - a
     - - n
 "700":
-  allow_new: true 
+  allow_new: true
+  new_window: people
   layout:
     fields: 
     - - a
       - type: person
-        new_window: people
         editor_partial: subfield_secondary
     - - "4"
       - editor_partial: subfield_relator_codes_700
@@ -522,11 +522,11 @@
       - bnd
 "710":
   allow_new: true
+  new_window: institutions
   layout: 
     fields: 
     - - a
       - type: institution
-        new_window: institutions
         editor_partial: subfield_secondary
     - - b
     - - "4"
@@ -553,11 +553,11 @@
     - dub
 "730":
   allow_new: true
+  new_window: standard_titles
   layout: 
     fields: 
     - - a
       - type: standard_title
-        new_window: standard_titles
         editor_partial: subfield_secondary
     - - k
     - - o
@@ -573,13 +573,11 @@
     - - n
     - - m
 "740":
-#  allow_new: true
   layout: 
     fields: 
     - - a
       - type: source_solr
         field: value
-        new_window: standard_titles
         editor_partial: subfield_secondary
         allow_not_found: true
     - - n
@@ -594,12 +592,12 @@
     fields: 
     - - w
       - read_only: true
-"773": 
+"773":
+  new_window: sources
   layout: 
     fields: 
     - - w
       - type: source
-        new_window: sources
         editor_partial: subfield_secondary
 "787": 
   layout: 
@@ -610,12 +608,12 @@
     - - w
 "852": 
   allow_new: true
+  new_window: institutions
   layout: 
     fields: 
     - - a
       - nowrap: true
         type: library
-        new_window: institutions
         editor_partial: subfield_secondary
     - - b
     - - z
