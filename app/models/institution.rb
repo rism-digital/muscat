@@ -196,6 +196,11 @@ class Institution < ActiveRecord::Base
     end
   end
   
+  def autocomplete_label
+    sigla = siglum != nil && !siglum.empty? ? "#{siglum} " : ""
+    "#{sigla}#{name}"
+  end
+  
   def autocomplete_label_siglum
     "#{siglum} (#{name})"
   end
