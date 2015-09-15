@@ -1,5 +1,6 @@
 
 var _nw_destination = null;
+var _child = null;
 
 function newWindowUpdateValue(id, label) {
 	
@@ -16,12 +17,29 @@ function newWindowUpdateValue(id, label) {
 	
 	_nw_destination.val(id);
 	_nw_destination = null;
+	_child = null
 }
 
 function newWindowCancel() {
 	$("#wrapper").unblock();
 	_nw_destination = null;
+	_child = null
 }
+
+function newWindowUnloaded() {
+	
+	// Someone changed page on the
+	// child window or it was closed
+	// wait a bit and see if it was
+	// really closed
+	
+	setTimeout(function() { 
+		if (_child && _child.closed) {
+			newWindowCancel();
+		}
+	}, 700)
+}
+
 
 function newWindowIsSelect() {
 	if (_nw_destination != null)
@@ -71,7 +89,7 @@ function newWindowIsSelect() {
 				_nw_destination = toplevel_li.children(".autocomplete_target")
 				
 				// Open up the new window
-				window.open('/admin/people?select=true');
+				_child = window.open('/admin/people?select=true', null, "location=no");
 				
 			});
 		}
@@ -94,8 +112,8 @@ var add_window_select_actions = function () {
 		if (window.opener.newWindowIsSelect()) {
 			// Set the before unload so it cancels
 			// the action if the window is closed
-			window.onbeforeunload = function(e) {
-				window.opener.newWindowCancel();
+			window.onunload = function(e) {
+				window.opener.newWindowUnloaded();
 			}
 		}
 	}
