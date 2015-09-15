@@ -168,11 +168,11 @@
         editor_partial: subfield_autocomplete
 "100": 
   allow_new: true
+  new_window: people
   layout: 
     fields: 
     - - a
       - type: person
-        new_window: people
         editor_partial: subfield_secondary
     - - j
       - value: Attributed to
