@@ -30,4 +30,5 @@
 #= require folder_actions
 #= require editor_hotkeys
 #= require verovio_preload
+#= require new_window_select_ujs
 #= require jsdiff.js
