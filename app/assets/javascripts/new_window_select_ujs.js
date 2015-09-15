@@ -85,8 +85,8 @@ function newWindowIsSelect() {
 				
 				$("#wrapper").block();
 				
-				toplevel_li = $(this).parents("li");
-				_nw_destination = toplevel_li.children(".autocomplete_target")
+				toplevel_li = $(this).parents(".tag_container");
+				_nw_destination = toplevel_li.find(".autocomplete_target")
 				
 				controller = $(this).data("controller");
 				
