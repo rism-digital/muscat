@@ -69,9 +69,9 @@ Lastly install Passenger (3.0):
 
 == Bootstrap the application
 
-Get the sources if necessary (https://github.com/rism-ch/muscat):
+Get the sources if necessary (https://github.com/rism-ch/muscat and https://github-com/rism-ch/muscat-guidelines):
 
- git clone https://github.com/rism-ch/muscat.git
+ git clone https://github.com/rism-ch/muscat.git --recursive
 
 Use bundle to install all the gems for the app:
 
