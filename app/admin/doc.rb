@@ -1,5 +1,5 @@
 ActiveAdmin.register_page "doc" do
-    menu :parent => "admin_menu", :label => proc {I18n.t(:menu_marc_documentation)}, :if => proc{ can? :manage, User }
+  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_marc_documentation)}, :if => proc{ can? :manage, User }
   
   controller do
     def index
@@ -19,6 +19,8 @@ ActiveAdmin.register_page "doc" do
   ###########
   
   sidebar :models, :class => "sidebar_tabs", :only => [:index] do
+    # no idea why the I18n.locale is not set by set_locale in the ApplicationController
+    I18n.locale = session[:locale]
     render("doc_sidebar") # Calls a partial
   end
   
