@@ -10,3 +10,4 @@ development.log
 log/sunspot-solr-development.log
 vendor/assets/stylesheets/muscat-custom.scss
 
+.idea

@@ -8,6 +8,8 @@ Muscat::Application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
+  get 'doc' => 'doc#index'
+  
   #scope ':locale', locale: I18n.locale do
   #  ActiveAdmin.routes(self)
   #end 

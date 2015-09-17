@@ -215,6 +215,10 @@ class MarcConfig
     @tag_config.keys.sort.each { |tag| yield tag if tag.to_i > 8 }
   end
   
+  def each_subtag( tag )
+    @tag_config[tag][:fields].each { |subtag| yield subtag }
+  end
+  
   def tags_with_subtag( subtag )
     tags = Array.new
     @tag_config.keys.sort.each do |tag|

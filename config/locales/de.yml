@@ -196,6 +196,7 @@ de:
   menu_languages: "Sprache"
   menu_contact: "Kontakt"
   menu_search_history: "Suchverlauf"
+  menu_marc_documentation: "Marc Einstellungen"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Letzte Änderungen"
