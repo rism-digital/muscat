@@ -2,7 +2,7 @@ require 'needleman_wunsch_aligner'
 
 # A base class for defining a set of new methods
 class MarcAligner < NeedlemanWunschAligner
-  
+
   # A method returning a normalized similarity measurement (0-100) of the best alignment
   def get_alignment_score
     row = @score_matrix.length-1
@@ -11,7 +11,7 @@ class MarcAligner < NeedlemanWunschAligner
     return 100 if length == 0
     @score_matrix.flatten.max / length
   end
-  
+
   # A method for computing the distance of two strings
   def levenshtein_distance(s, t)
     m = s.length
@@ -36,7 +36,7 @@ class MarcAligner < NeedlemanWunschAligner
     end
     d[m][n]
   end
-  
+
 end
 
 class MarcSubfieldAligner < MarcAligner
@@ -55,15 +55,15 @@ class MarcSubfieldAligner < MarcAligner
       # Make sure we are comparing strings
       elsif !left_el.content.is_a?(String) || !top_el.content.is_a?(String)
         score += 100
-      else    
+      else
         length = [left_el.content.length, top_el.content.length].max
-        if length == 0 
+        if length == 0
           score += 100
-        else 
+        else
           score += 100 / (length) * (length - levenshtein_distance(left_el.content, top_el.content ))
         end
       end
-    else 
+    else
       score += -100
     end
     score
@@ -107,7 +107,7 @@ class MarcFieldAligner < MarcAligner
 end
 
 module VersionChecker
-  
+
   def self.save_version?(object)
     # first check the timeout value is 0, which means version for any same
     return true if RISM::VERSION_TIMEOUT == 0
@@ -128,7 +128,7 @@ module VersionChecker
     # else we don't want to save one now
     return false
   end
-  
+
   def self.get_similarity_with_next(id)
     item1, item2 = get_item_and_next(id)
     return 0 if !item1 || !item2
@@ -137,11 +137,11 @@ module VersionChecker
     aligner.get_optimal_alignment
     return aligner.get_alignment_score
   end
-  
+
   def self.get_diff_with_next(id)
     item1, item2 = get_item_and_next(id)
     return nil if !item1 || !item2
-  
+
     aligner = MarcFieldAligner.new( item1.marc.all_tags(false), item2.marc.all_tags(false) )
     alignment = aligner.get_optimal_alignment
     tags = set_tag_diff(alignment[0], alignment[1])
@@ -149,26 +149,26 @@ module VersionChecker
     tags.each do |t|
       # insertion or deletion, no need to compare
       next if !t.diff || t.diff.diff_is_deleted
-      
+
       sub_aligner = MarcSubfieldAligner.new( t.diff.all_children, t.all_children )
       sub_alignment = sub_aligner.get_optimal_alignment
       subfields = set_tag_diff(sub_alignment[0], sub_alignment[1])
-      
+
       # replace all the children with the aligned version
       t.children.clear
-      subfields.each{ |st| t.children << st }  
+      subfields.each{ |st| t.children << st }
     end
   end
-  
+
   private
-  
+
   # A private methdo the reify an object and its next version
   # If the version is the last one, the next one it the current version
   def self.get_item_and_next(id)
     version = PaperTrail::Version.find( id )
     return [nil, nil] if !version
     item1 = version.reify
-    
+
     item2 = nil
     # The version is the last one
     if !version.next
@@ -176,13 +176,13 @@ module VersionChecker
     else
       item2 = version.next.reify
     end
-    
+
     [item1, item2]
   end
-  
+
   def self.set_tag_diff(tag_list1, tag_list2)
-    return tag_list1 if (tag_list1.size != tag_list2.size) 
-  
+    return tag_list1 if (tag_list1.size != tag_list2.size)
+
     i=0
     for i in 0..tag_list1.size - 1
       if tag_list2[i] && tag_list2[i].tag
@@ -194,8 +194,8 @@ module VersionChecker
         tag_list1[i].diff_is_deleted = true
         tag_list2[i].diff = tag_list1[i]
       end
-    end    
+    end
     tag_list2
   end
-  
+
 end

@@ -1,19 +1,19 @@
 <%
     a_tag = tag.fetch_first_by_tag(:a)
     i_tag = tag.fetch_first_by_tag(:i)
-	
-	content = Array.new
-	content << i_tag.content if i_tag && i_tag.content
-	content << a_tag.content if a_tag && a_tag.content	
+
+    content = Array.new
+    content << i_tag.content if i_tag && i_tag.content
+    content << a_tag.content if a_tag && a_tag.content
 -%>
 <tr class="row">
-	<th>
-		<% if (no_label == false) -%>
-			<%= @editor_profile.get_label(tag.tag) %>
-		<%- end %>
-	</th>
-	<td>
-		<%= content.join(' ') %>
-	</td>
+    <th>
+        <% if (no_label == false) -%>
+            <%= @editor_profile.get_label(tag.tag) %>
+        <%- end %>
+    </th>
+    <td>
+        <%= content.join(' ') %>
+    </td>
 </tr>
 

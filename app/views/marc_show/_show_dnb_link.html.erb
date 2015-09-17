@@ -2,11 +2,11 @@
     a_tag = tag.fetch_first_by_tag(:a)
 -%>
 <tr class="row">
-	<th>
-		<% if (no_label == false) -%>
-			<%= @editor_profile.get_label(tag.tag) %>
-		<%- end %>
-	</th>
+    <th>
+        <% if (no_label == false) -%>
+            <%= @editor_profile.get_label(tag.tag) %>
+        <%- end %>
+    </th>
     <td>	
       <%- link_list=a_tag.content.split("; ") %>
       <%- link_list.each do |link| %>
@@ -22,5 +22,5 @@
 
             <%end%>
             <%end %>
-	</td>
+    </td>
 </tr>

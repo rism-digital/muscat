@@ -1,10 +1,10 @@
 # Reads from a MARCXML file and imports the records into the database
 
 require 'nokogiri'
-require 'logger' 
+require 'logger'
 
 class MarcImport
-  
+
   def initialize(source_file, model, from = 0)
     @log = Logger.new(Rails.root.join('log/', 'import.log'), 'daily')
     @from = from
@@ -29,7 +29,7 @@ class MarcImport
 
   def import
     #line_number = 0
-    each_record(@source_file) { |record|         
+    each_record(@source_file) { |record|
         rec=Nokogiri::XML(record.to_s)
 
         # Use external XSLT 1.0 file for converting to MARC21 text
@@ -68,8 +68,8 @@ class MarcImport
 
         end
         #p model
-          
-        # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
+
+        # step 2. do all the lookups and change marc fields to point to external entities (where applicable)
         marc.import
 
         # step 3. associate Marc with Manuscript

@@ -2,12 +2,12 @@
     a_tag = tag.fetch_first_by_tag(:a)
 -%>
 <tr class="row">
-	<th>
-		<% if (no_label == false) -%>
-			<%= @editor_profile.get_label(tag.tag) %>
-		<%- end %>
-	</th>
-	<td>		
-			<%= "#{@editor_profile.get_label(a_tag.content)}" if (a_tag && a_tag.content) -%>
-	</td>
+    <th>
+        <% if (no_label == false) -%>
+            <%= @editor_profile.get_label(tag.tag) %>
+        <%- end %>
+    </th>
+    <td>
+            <%= "#{@editor_profile.get_label(a_tag.content)}" if (a_tag && a_tag.content) -%>
+    </td>
 </tr>

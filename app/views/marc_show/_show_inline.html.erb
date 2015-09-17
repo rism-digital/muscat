@@ -8,16 +8,16 @@
     content << t.fetch_first_by_tag("a").content if t.fetch_first_by_tag("a")
   end
 -%>
-<% if tag==group.first %>
+<% if tag == group.first %>
   <tr class="row">
-	<th valign="top">
-		<% if (no_label == false) -%>
-			<%= @editor_profile.get_label(tag.tag) %>
-		<%- end %>
-	</th>
-	<td valign="top">
-		<%= content.uniq.join(', ') %>
-	</td>
+    <th valign="top">
+        <% if (no_label == false) -%>
+            <%= @editor_profile.get_label(tag.tag) %>
+        <%- end %>
+    </th>
+    <td valign="top">
+        <%= content.uniq.join(', ') %>
+    </td>
   </tr>
 <%end%>
 
