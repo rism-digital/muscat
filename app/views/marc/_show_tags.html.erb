@@ -1,5 +1,6 @@
 <%- last_tag = "" %>
 
+<table border="0" cellpadding="0" cellspacing="0">
 <%- tags.each do |tag| %>
 	<% if @editor_profile.show_all? || @item.marc.config.tag_is_browsable?(tag.tag) -%>
 	
@@ -16,4 +17,5 @@
 		<% end -%>	
 	<% end -%>
 <% end -%>
+</table>
 

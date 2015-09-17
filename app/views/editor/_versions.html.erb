@@ -1,0 +1,51 @@
+<%
+# Get the restore path
+# a bit complex since the model is dynamic
+	model_for_path = @item.class.to_s.underscore.downcase
+	link_function_restore = "marc_restore_version_admin_#{model_for_path}_path"
+	link_function_delete = "marc_delete_version_admin_#{model_for_path}_path"
+%>
+
+<div id="marc_editor_history" class="panel-hidable" style="display: <%= @show_history ? "block" : "none" -%>;">
+	<table border="0" cellspacing="0" cellpadding="0" class="index_table index" >
+		<tr>
+			<th><%=(I18n.t :history_date)%></th>
+			<th><%=(I18n.t :history_author)%></th>
+			<th><%=(I18n.t :history_event)%></th>
+			<th><%=(I18n.t :history_modification)%></th>
+			<th></th>
+		</tr>
+		<%- i = 0 %>
+		<%- @item.versions.reverse.each do |version| %>
+			<% restore_path =  send(link_function_restore, @item.id, {version_id: version.id}) %>
+			<% delete_path =  send(link_function_delete, @item.id, {version_id: version.id}) %>
+			
+			<tr class="<%= cycle('even', 'odd') -%>" id="person_50036437">
+				<td class="col"><%= I18n.localize(version.created_at.localtime, :format => '%A %e %B %Y - %H:%M') -%></td>
+				<td class="col"><%= version.whodunnit ? version.whodunnit : "[system]" %></td>
+				<td class="col"><%= version.event ? version.event.humanize : "[unknown]" %></td>
+				<td class="col">
+					<div class="modification_bar">
+						<div class="modification_bar_content" data-version-modification="<%= VersionChecker.get_similarity_with_next( version.id ) %>" class="version_modification">&nbsp;</div>
+					</div>
+				</td>
+				<td class="col col-actions">
+					<div class="table_actions">
+						<!-- testing hardcoded values -->
+						<% model = @item.class.model_name.route_key %>
+						<a class="view_link member_link marc_versioning" data-action="preview" data-model="<%= model %>" data-version="<%= version.id %>" href="#"><%=(I18n.t :history_view)%></a>
+						<a class="edit_link member_link marc_versioning" data-action="diff" data-model="<%= model %>" data-version="<%= version.id %>" href="#"><%=(I18n.t :history_diff)%></a>
+						<%= link_to("#{I18n.t :history_restore}", restore_path, method: :put, :class => "member_link",
+							data: { confirm: "#{I18n.t :history_restore_confirm}"}) %>
+						<%= link_to("#{I18n.t :history_delete}", delete_path, method: :put, :class => "member_link",
+							data: { confirm: "#{I18n.t :history_delete_confirm}"}) %>
+					</div>
+				</td>
+			</tr>
+			<%- i += 1 %>
+		<%- end -%>
+	</table>
+
+	<div id="marc_editor_historic_view" class="marc_historic_view"></div>
+	
+</div>

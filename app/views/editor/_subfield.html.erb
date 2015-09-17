@@ -1,42 +1,19 @@
 <%
 	read_only = false
 	@editor_profile.each_subfield_for(tag_name) do |subfieldopt, field_settings|
+		field_settings = Hash.new if !field_settings
 		if subfieldopt == subfield
 			read_only = field_settings["read_only"] != nil ? field_settings["read_only"] : false
 		end
 	end	
 %>
 <%- if (params['growfield'])  %>
-	<textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>"><%= h marc_subfield.content %></textarea>
+	<textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>"><%= h marc_subfield.content %></textarea>
 <%- else %>
 	<% if read_only %>
 			<input class="subfield_entry"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h marc_subfield.content %>"/>
-			<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>"/>
+			<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h marc_subfield.content %>"/>
 	<% else %>
-		<input class="subfield_entry serialize_marc marc_editor_hotkey" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>"/>
+		<input class="subfield_entry serialize_marc marc_editor_hotkey" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h marc_subfield.content %>"/>
 	<% end %>
-<%- end %>
-
-
-<%- if (params['maskedinput']) %>
-	<script>
-	// FIXME
-	//jQuery(function($){
-	//	jquery_id = "<%= tag_id %>".replace(/(\[|\])/g, '\\$1');
-	//  	$("#" + jquery_id).mask("<%= params['maskedinput'].html_safe-%>", {placeholder:" "});
-	//});
-	</script>
-	
-<%- elsif (params['validate']) %>
-<!--
-	<script>
-		jQuery(function($){
-			jquery_id = "<%= tag_id %>".replace(/(\[|\])/g, '\\$1');
-			<%- params['validate'].each do |valid| %>
-				$("#" + jquery_id).rules("add", { <%= valid['rule'] %>: <%= raw valid['value'] %>, 
-					messages: { <%= valid['rule'] %>: "<%= tag_name.html_safe-%> $<%= subfield.html_safe-%>: <%= valid['msg'].html_safe -%>" }});
-			<%- end %>
-		});
-	</script>
--->
 <%- end %>

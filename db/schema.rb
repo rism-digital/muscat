@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507115101) do
+ActiveRecord::Schema.define(version: 20150824123044) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150507115101) do
   add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "catalogues", force: true do |t|
-    t.string   "name",                                           null: false
+    t.string   "name",                                            null: false
     t.string   "author"
     t.string   "description"
     t.string   "revue_title"
@@ -50,14 +50,15 @@ ActiveRecord::Schema.define(version: 20150507115101) do
     t.string   "date"
     t.string   "pages"
     t.string   "wf_notes"
-    t.integer  "wf_owner",               default: 0
-    t.integer  "wf_version",             default: 0
-    t.integer  "src_count",              default: 0
+    t.integer  "wf_owner",                default: 0
+    t.integer  "wf_version",              default: 0
+    t.integer  "src_count",               default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "wf_audit",    limit: 16, default: "unapproved"
-    t.string   "wf_stage",    limit: 16, default: "unpublished"
+    t.string   "wf_audit",     limit: 16, default: "unapproved"
+    t.string   "wf_stage",     limit: 16, default: "unpublished"
     t.text     "marc_source"
+    t.integer  "lock_version",            default: 0,             null: false
   end
 
   add_index "catalogues", ["name"], name: "index_catalogues_on_name", using: :btree
@@ -165,7 +166,7 @@ ActiveRecord::Schema.define(version: 20150507115101) do
   end
 
   create_table "institutions", force: true do |t|
-    t.string   "siglum",      limit: 32
+    t.string   "siglum",       limit: 32
     t.string   "name"
     t.string   "address"
     t.string   "url"
@@ -174,16 +175,17 @@ ActiveRecord::Schema.define(version: 20150507115101) do
     t.text     "alternates"
     t.text     "notes"
     t.string   "wf_notes"
-    t.integer  "wf_owner",               default: 0
-    t.integer  "wf_version",             default: 0
-    t.integer  "src_count",              default: 0
+    t.integer  "wf_owner",                default: 0
+    t.integer  "wf_version",              default: 0
+    t.integer  "src_count",               default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "wf_audit",    limit: 16, default: "unapproved"
-    t.string   "wf_stage",    limit: 16, default: "unpublished"
+    t.string   "wf_audit",     limit: 16, default: "unapproved"
+    t.string   "wf_stage",     limit: 16, default: "unpublished"
     t.string   "place"
     t.text     "marc_source"
     t.text     "comments"
+    t.integer  "lock_version",            default: 0,             null: false
   end
 
   add_index "institutions", ["siglum"], name: "index_institutions_on_siglum", using: :btree
@@ -209,16 +211,17 @@ ActiveRecord::Schema.define(version: 20150507115101) do
   add_index "institutions_workgroups", ["workgroup_id"], name: "index_workgroups_institutions_on_workgroup_id", using: :btree
 
   create_table "liturgical_feasts", force: true do |t|
-    t.string   "name",                                          null: false
+    t.string   "name",                                            null: false
     t.string   "notes"
     t.string   "wf_notes"
-    t.integer  "wf_owner",              default: 0
-    t.integer  "wf_version",            default: 0
-    t.integer  "src_count",             default: 0
+    t.integer  "wf_owner",                default: 0
+    t.integer  "wf_version",              default: 0
+    t.integer  "src_count",               default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "wf_audit",   limit: 16, default: "unapproved"
-    t.string   "wf_stage",   limit: 16, default: "unpublished"
+    t.string   "wf_audit",     limit: 16, default: "unapproved"
+    t.string   "wf_stage",     limit: 16, default: "unpublished"
+    t.integer  "lock_version",            default: 0,             null: false
   end
 
   add_index "liturgical_feasts", ["wf_stage"], name: "index_liturgical_feasts_on_wf_stage", using: :btree
@@ -251,6 +254,7 @@ ActiveRecord::Schema.define(version: 20150507115101) do
     t.string   "wf_audit",        limit: 16,  default: "unapproved"
     t.string   "wf_stage",        limit: 16,  default: "unpublished"
     t.text     "marc_source"
+    t.integer  "lock_version",                default: 0,             null: false
   end
 
   add_index "people", ["wf_stage"], name: "index_people_on_wf_stage", using: :btree
@@ -264,18 +268,19 @@ ActiveRecord::Schema.define(version: 20150507115101) do
   add_index "people_sources", ["source_id"], name: "manuscript_index", using: :btree
 
   create_table "places", force: true do |t|
-    t.string   "name",                                          null: false
+    t.string   "name",                                            null: false
     t.string   "country"
     t.string   "district"
     t.string   "notes"
     t.string   "wf_notes"
-    t.integer  "wf_owner",              default: 0
-    t.integer  "wf_version",            default: 0
-    t.integer  "src_count",             default: 0
+    t.integer  "wf_owner",                default: 0
+    t.integer  "wf_version",              default: 0
+    t.integer  "src_count",               default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "wf_audit",   limit: 16, default: "unapproved"
-    t.string   "wf_stage",   limit: 16, default: "unpublished"
+    t.string   "wf_audit",     limit: 16, default: "unapproved"
+    t.string   "wf_stage",     limit: 16, default: "unpublished"
+    t.integer  "lock_version",            default: 0,             null: false
   end
 
   add_index "places", ["wf_stage"], name: "index_places_on_wf_stage", using: :btree
@@ -322,25 +327,26 @@ ActiveRecord::Schema.define(version: 20150507115101) do
   create_table "sources", force: true do |t|
     t.integer  "source_id"
     t.string   "std_title"
-    t.string   "std_title_d", limit: 128
+    t.string   "std_title_d",  limit: 128
     t.string   "composer"
-    t.string   "composer_d",  limit: 128
-    t.string   "title",       limit: 256
-    t.string   "title_d",     limit: 256
+    t.string   "composer_d",   limit: 128
+    t.string   "title",        limit: 256
+    t.string   "title_d",      limit: 256
     t.string   "shelf_mark"
-    t.string   "language",    limit: 16
+    t.string   "language",     limit: 16
     t.integer  "date_from"
     t.integer  "date_to"
     t.string   "lib_siglum"
     t.text     "marc_source"
     t.string   "wf_notes"
-    t.integer  "wf_owner",                default: 0
-    t.integer  "wf_version",              default: 0
+    t.integer  "wf_owner",                 default: 0
+    t.integer  "wf_version",               default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "wf_audit",    limit: 16,  default: "unapproved"
-    t.string   "wf_stage",    limit: 16,  default: "unpublished"
-    t.integer  "record_type", limit: 1,   default: 0
+    t.string   "wf_audit",     limit: 16,  default: "unapproved"
+    t.string   "wf_stage",     limit: 16,  default: "unpublished"
+    t.integer  "record_type",  limit: 1,   default: 0
+    t.integer  "lock_version",             default: 0,             null: false
   end
 
   add_index "sources", ["source_id"], name: "index_manuscripts_on_manuscript_id", using: :btree
@@ -382,22 +388,24 @@ ActiveRecord::Schema.define(version: 20150507115101) do
     t.datetime "updated_at"
     t.string   "wf_audit",        limit: 16, default: "unapproved"
     t.string   "wf_stage",        limit: 16, default: "unpublished"
+    t.integer  "lock_version",               default: 0,             null: false
   end
 
   add_index "standard_terms", ["wf_stage"], name: "index_standard_terms_on_wf_stage", using: :btree
 
   create_table "standard_titles", force: true do |t|
-    t.string   "title",                                          null: false
-    t.string   "title_d",    limit: 128
+    t.string   "title",                                            null: false
+    t.string   "title_d",      limit: 128
     t.text     "notes"
     t.string   "wf_notes"
-    t.integer  "wf_owner",               default: 0
-    t.integer  "wf_version",             default: 0
-    t.integer  "src_count",              default: 0
+    t.integer  "wf_owner",                 default: 0
+    t.integer  "wf_version",               default: 0
+    t.integer  "src_count",                default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "wf_audit",   limit: 16,  default: "unapproved"
-    t.string   "wf_stage",   limit: 16,  default: "unpublished"
+    t.string   "wf_audit",     limit: 16,  default: "unapproved"
+    t.string   "wf_stage",     limit: 16,  default: "unpublished"
+    t.integer  "lock_version",             default: 0,             null: false
   end
 
   add_index "standard_titles", ["wf_stage"], name: "index_standard_titles_on_wf_stage", using: :btree
@@ -440,6 +448,17 @@ ActiveRecord::Schema.define(version: 20150507115101) do
 
   add_index "users_workgroups", ["user_id"], name: "index_workgroups_users_on_user_id", using: :btree
   add_index "users_workgroups", ["workgroup_id"], name: "index_workgroups_users_on_workgroup_id", using: :btree
+
+  create_table "versions", force: true do |t|
+    t.string   "item_type",                     null: false
+    t.integer  "item_id",                       null: false
+    t.string   "event",                         null: false
+    t.string   "whodunnit"
+    t.text     "object",     limit: 2147483647
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   create_table "work_incipits", force: true do |t|
     t.integer  "work_id"

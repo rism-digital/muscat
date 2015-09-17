@@ -1,16 +1,17 @@
-<div id="<%= render_panel -%>" data-editor-model="<%= model %>">
+<div id="<%= render_panel -%>" class="panel-hidable" data-editor-model="<%= model %>" style="display: <%= @show_history ? "none" : "block" -%>;">
 	<%# we don't want the form to be submitted directly (with enter for example), so the 'onSubmit return false %>
 	<%- @editor_profile.layout_config[:marc_editor_group_links] = [] -%>
+	<%- @editor_profile.layout_config[:marc_editor_missing_group_links] = "" -%>
 	<%= form_tag( "#", {:id => "marc_editor_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>
 		<%= hidden_field_tag 'id', @item.id -%>
+		<%= hidden_field_tag 'lock_version', @item.lock_version if @item.lock_version -%>
 		<%- @editor_profile.layout_config["group_order"].each do |group| -%>
-		<%# The default partial is editor/group %>
 			<%= render :partial => @editor_profile.get_group_partial(group), 
 				:locals => { :render_panel => render_panel , :group => group } -%>
 		<%- end -%>
 		<!-- get all tags not included in the group into an 'other' group -->
-       	<%= render :partial => @editor_profile.get_group_partial("other"),  
-            :locals => { :render_panel => render_panel , :group => "other" } -%> 
+		<%= render :partial => "editor/group_miscellaneous",
+				:locals => { :render_panel => render_panel } -%> 
 	<% end %>
-	<%= render :partial => "editor/form_dialogs", :locals => { :render_panel => render_panel } -%>
+	<%= render :partial => "editor/form_dialogs", :locals => { :render_panel => render_panel } -%>	
 </div>

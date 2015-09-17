@@ -217,7 +217,20 @@ fr:
  
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"
-  show_preview: "Montrer/masquer l'aperçu"
+  show_preview: "Afficher l'aperçu"
+  show_history: "Afficher l'historique"
+  
+  # Version history
+  history_date: "Date"
+  history_author: "Auteur"
+  history_event: "Action"
+  history_modification: "Modification"
+  history_view: "Afficher"
+  history_diff: "Comparer"
+  history_restore: "Restaurer"
+  history_delete: "Supprimer"
+  history_restore_confirm: "Désirez-vous restaurer cette version?"
+  history_delete_confirm: "Désirez-vous supprimer cette version?"
  
   #### FOLDER MESSAGES
   folders:

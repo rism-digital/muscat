@@ -1,0 +1,32 @@
+<%- subfield_group_values = @item.marc.all_values_for_tags_with_subtag(tag_names, subfield) %>
+<%- subfield_group_values << "NEW" if subfield_group_values.empty? %>
+<dl class="sortable tag_group_container toplevel_group_dl" data-subfield="<%=subfield%>">
+<%- subfield_group_values.each do |subfield_group| %>
+	<%- subfield_group_tags = @item.marc.by_tags_with_subtag(tag_names, subfield, subfield_group) %>
+	<%- group_title = subfield_group_values.size > 1 ? "Group #{subfield_group}" : group_title %>
+	<dt class="inner_group_dt">
+		<div class="panel">
+			<h3><%= group_title -%></h3>
+			<div class="marc_editor_panel_content">
+				<div class="marc_editor_group_contents">
+					<%- tag_names.each do |tag_name| -%>
+						<div class="tag_group" data-tag="<%= tag_name %>">
+							<%= render :partial => "editor/tag_list", 
+								:locals => { :tag_name => tag_name, :tags => subfield_group_tags.select{ |t| t.tag == tag_name } } %>
+						</div>
+					<%- end -%>
+				</div>	
+			</div>
+		</div>
+	</dt>
+<%- end %>
+</dl>
+
+<div style="height: 20px;" class="ui-corner-all">
+	<div style="float:right;" class="abuttonset abuttonset-multi">
+		<a class="abutton ui-state-default abutton-icon-left ui-corner-all" href="#" data-group-button="add" title="Add group"><span class="ui-icon ui-icon-plus"></span>Add a group</a>
+	</div>
+</div>
+
+<%= render :partial => "editor/group_by_subfield_placeholders", :locals => { :tag_names => tag_names } %>
+

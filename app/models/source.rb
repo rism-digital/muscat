@@ -34,6 +34,14 @@
 
 class Source < ActiveRecord::Base
   
+  # class variables for storing the user name and the event from the controller
+  @@last_user_save
+  cattr_accessor :last_user_save
+  @@last_event_save
+  cattr_accessor :last_event_save
+  
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  
   # include the override for group_values
   require 'solr_search.rb'
 #  include MarcIndex
@@ -284,9 +292,6 @@ class Source < ActiveRecord::Base
   # the _d variant fields store a normalized lower case version with accents removed
   # the _d columns are used for western dictionary sorting in list forms
   def set_object_fields
-
-    # update last transcation
-    marc.update_005
     
     # source id
     ##marc_source_id = marc.get_marc_source_id
@@ -342,7 +347,7 @@ class Source < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.save!
+      self.without_versioning :save
     end
   end
   
@@ -371,5 +376,5 @@ class Source < ActiveRecord::Base
     out << "</marc:collection>" 
     return out.join('')
   end
-  
+    
 end

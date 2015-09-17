@@ -116,7 +116,7 @@ class Marc
   # This function by default uses marc_node.import to
   # create the relations with the foreign object and create
   # them in the DB. It will also call a reindex on them
-  def load_from_hash(hash, user = nil)
+  def load_from_hash(hash, user = nil, resolve = true)
     @root << MarcNode.new(@model, "000", hash['leader'], nil) if hash['leader']
     
     if hash['fields']
@@ -161,7 +161,16 @@ class Marc
     @source = to_marc
     @source_id = first_occurance("001").content || nil rescue @source_id = nil
     # When importing externals are not resolved, do it here
-    @root.resolve_externals
+    @root.resolve_externals if resolve
+  end
+  
+  # Load marc data from an array (use for loading diff versions)
+  def load_from_array(array_of_tags)
+    @root = MarcNode.new(@model)
+    array_of_tags.each do |t|
+      @root << t
+    end 
+    @loaded = true
   end
 
   def get_model
@@ -229,18 +238,7 @@ class Marc
     end
     return source_id
   end
-  
-  # Update the last transaction field, 005.
-  def update_005
-    last_transcation = Time.now.utc.strftime("%Y%m%d%H%M%S") + ".0"
-    _005_tag = first_occurance("005")
-    if _005_tag
-      _005_tag.content = last_transcation
-    else
-      @root.add_at(MarcNode.new(@model, "005", last_transcation, nil), get_insert_position("005") )
-    end
-  end
-  
+    
   # Set the RISM ID in the 001 field
   def set_id(id)
     id_tag = first_occurance("001")
@@ -265,7 +263,7 @@ class Marc
     if node = first_occurance("001")
       rism_id = node.content
     end
-    return rism_id
+    return rism_id.to_s # make sure it is ALWAYS a string!
   end
   
   # Return the parent of a manuscript. This need to be improved
@@ -339,6 +337,23 @@ class Marc
     return tags
   end
   
+  # Returns and array with all values in a list or tag/subtag
+  def all_values_for_tags_with_subtag(tag_names, subtag)
+    load_source unless @loaded
+    values = Array.new
+    for child in @root.children
+      next if !tag_names.include?(child.tag)
+      next if !child.fetch_first_by_tag( subtag )
+      next if !child.fetch_first_by_tag( subtag ).content
+      next if child.fetch_first_by_tag( subtag ).content.empty?
+      values << child.fetch_first_by_tag( subtag ).content
+    end
+    # Sort the return value
+    # because the value is computed on the fist tag
+    # so 300 $804 will come before 593 $801
+    values.uniq.sort
+  end
+  
   def to_yaml
     load_source unless @loaded
     @root.to_yaml
@@ -368,8 +383,8 @@ class Marc
   end
   
   # Return all tags
-  def all_tags()
-    load_source unless @loaded
+  def all_tags( resolve = true )
+    load_source( resolve ) unless @loaded
     tags = Array.new
     for child in @root.children
       tags << child

@@ -1,6 +1,6 @@
 <%	tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
 
-<input type="text" disabled="disabled" class="serialize_marc cascade_select_target" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>">
+<input type="text" disabled="disabled" class="serialize_marc cascade_select_target" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h marc_subfield.content %>">
 
 <select class="top_cascade_select marc_editor_hotkey" width="100">
 	<option value="-">--- Select ---</option>

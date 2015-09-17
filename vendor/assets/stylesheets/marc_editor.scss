@@ -103,7 +103,82 @@
     }
 }
 
+$add-color: #5f5;
+$del-color: #f77;
+$mod-color: #ff3;
+$none-color: #e8e8e8;
 
+$tag-diff-width: 5px;
+$subfield-diff-width: 5px;
+$diff-padding-width: 15px;
+
+#marc_editor_preview {
+    table {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+}
+
+#marc_editor_history {
+    .modification_bar {
+        border: #ccc 1px solid; 
+        width: 100%; 
+        background-color: #eee;
+    }
+    .modification_bar_content {
+        background-color: lighten($primary-color, 20%)
+    }
+    .marc_historic_view {
+        margin-top: 30px;
+        table {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        .tag_diff_inserted {
+            border-left: $add-color $tag-diff_width solid;
+            padding-left: $diff-padding-width - $subfield-diff-width;
+        }
+        .tag_diff_deleted {
+            border-left: $del-color $tag-diff_width solid;
+            padding-left: $diff-padding-width - $subfield-diff-width;
+        }
+        .subfield_diff {
+            border-left: $none-color $subfield-diff_width solid;
+            padding-left: $diff-padding-width - $subfield-diff-width;
+        }
+        .subfield_diff_inserted {
+            border-left: $add-color $subfield-diff_width solid;
+            padding-left: $diff-padding-width - $subfield-diff-width;
+        }
+        .subfield_diff_deleted {
+            border-left: $del-color $subfield-diff_width solid;
+            padding-left: $diff-padding-width - $subfield-diff-width;
+        }
+        .subfield_diff_modified {
+            border-left: $mod-color $subfield-diff_width solid;
+            padding-left: $diff-padding-width - $subfield-diff-width;
+        }
+        .diff_new, .diff_old {
+            display: none;
+        }
+        .subfield_diff_content ins {
+            background-color: #7f7;
+        }
+        .subfield_diff_content del {
+            background-color: #f99;
+        }
+    }
+}
+
+.editor-flash {
+    display: none;
+}
+
+.active_admin h5.subfield_group {
+    color: #5e6469;
+    margin-top: 1.0em;
+    margin-bottom: 0.5em;
+}
 
 /***********************/
 /* Navigation side bar */
@@ -143,7 +218,6 @@ a.marc_cancel_btn {
    text-decoration:none !important; 
    cursor:pointer; 
    position: relative; 
-/*   text-align: center;*/
    zoom: 1;
    /* So the buttons are always the same height */
    line-height: 1.2em;

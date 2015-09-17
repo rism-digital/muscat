@@ -61,8 +61,9 @@ used for _tag_header partial
         }
     }
 	
+	// Create a new element when the tag_group already contains elements
 	function tag_header_add(elem) {
-		placeholder = elem.parents(".tag_group").children(".tag_placeholders");
+		placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
 		current_dt = elem.parents(".tag_toplevel_container");
 
 		new_dt = placeholder.clone();
@@ -71,10 +72,12 @@ used for _tag_header partial
 		new_dt.fadeIn('fast');
 	}
     
+	// Create a new element when the tag_group is empty. It is necessary
+	// because in this case there is no tag_toplevel_container
 	function tag_header_add_from_empty(elem) {
         // hide help if necessary
         elem.parents(".tag_container").children(".tag_help_collapsable").hide();
-		placeholder = elem.parents(".tag_group").children(".tag_placeholders");
+		placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
 		parent_dl = elem.parents(".tag_group").children(".marc_editor_tag_block");
 
 		new_dt = placeholder.clone();
@@ -124,6 +127,17 @@ used for _tag_header partial
     	});
 	}
 	
+	// Duplicate a whole group
+	function tag_header_new_group(elem) {
+		placeholder = elem.parents(".tab_panel").children(".group_placeholders_toplevel").children(".group_placeholders").children(".panel");
+		toplevel_dl =  elem.parents(".tab_panel").children(".tag_group_container");
+		
+		new_group = placeholder.clone();
+		dt = $("<dt />").append(new_group);
+		dt.appendTo(toplevel_dl);
+		dt.fadeIn('fast');
+	}
+	
 	var self = null;
 	jQuery.fn.tagHeaderButtons = function() {
 		var handler = function() {
@@ -168,6 +182,8 @@ used for _tag_header partial
 					tag_header_edit($(this));
 				} else if ($(this).data("header-button") == "help") {
 					tag_header_help($(this));
+				}else if ($(this).data("group-button") == "add") {
+					tag_header_new_group($(this));
 				}
                 
 				

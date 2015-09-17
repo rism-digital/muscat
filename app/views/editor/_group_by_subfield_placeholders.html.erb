@@ -1,0 +1,17 @@
+<dl class="group_placeholders_toplevel">
+	<dt class="group_placeholders" style="display: none">
+		<div class="panel">
+			<h3>New Group</h3>
+			<div class="marc_editor_panel_content">
+				<div class="marc_editor_group_contents">
+					<%- tag_names.each do |tag_name| -%>
+						<div class="tag_group" data-tag="<%= tag_name %>">
+							<%= render :partial => "editor/tag_list", 
+								:locals => { :tag_name => tag_name, :tags => [] } %>
+						</div>
+					<%- end -%>
+				</div>	
+			</div>
+		</div>
+	</dt>
+</dl>

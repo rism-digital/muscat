@@ -100,7 +100,8 @@ ActiveAdmin.register Place do
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name)
       f.input :country, :label => (I18n.t :filter_country), :as => :string # otherwise country-select assumed
-      f.input :district, :label => (I18n.t :filter_district) 
+      f.input :district, :label => (I18n.t :filter_district)
+      f.input :lock_version, :as => :hidden
     end
     f.actions
   end

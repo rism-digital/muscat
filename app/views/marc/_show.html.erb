@@ -3,10 +3,11 @@
 	layout_config = @editor_profile.layout_config
 	layout_config["group_order"].each do |group_name|
 		group = layout_config["groups"][group_name]
-		grouping = { :title => @editor_profile.get_label(group_name), :tags => group["all_tags"], :tag_templates => group["all_tag_templates"] }					
+		grouping = { :title => @editor_profile.get_label(group_name), :tags => group["all_tags"], :tag_templates => group["all_tag_templates"], 
+			:subfield_grouping => group["subfield_grouping"] }					
 -%>	
-	<% unless group["admin_only"] and not (current_user && current_user.has_any_role?(:editor, :admin)) -%>
-		<%= render :partial => (group["template"] ? group["template"] : "marc/show_group" ), :locals => { :item => @item, :group => grouping, :opac => opac_resolved } %>
-	<% end -%>
-  <%- end -%>
+		<% unless group["admin_only"] and not (current_user && current_user.has_any_role?(:editor, :admin)) -%>
+			<%= render :partial => (group["template"] && !@diff ? group["template"] : "marc/show_group" ), :locals => { :item => @item, :group => grouping, :opac => opac_resolved } %>
+		<% end -%>
+	<%- end -%>
 

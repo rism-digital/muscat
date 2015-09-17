@@ -1,12 +1,11 @@
 <%
-	tag_id = marc_editor_field_name(tag_name, 0, subfield, s_iterator)
 	val = marc_subfield.content ? marc_subfield.content : ""
 %>
 
 <%- if (!val.empty?) && (!params['values'].include?( marc_subfield.content ))   %>
-	<input class="subfield_entry serialize_marc marc_editor_hotkey"  size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>" value="<%= h marc_subfield.content %>"/>
+	<input class="subfield_entry serialize_marc marc_editor_hotkey"  size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h marc_subfield.content %>"/>
 <%- else %>
-	<select class="subfield_entry serialize_marc marc_editor_hotkey" width="100" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-subfield-iterator="<%=s_iterator%>">
+	<select class="subfield_entry serialize_marc marc_editor_hotkey" width="100" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>">
 		<option value="">--- Select ---</option>
 		<%- params["values"].each do |value| %>
 	    	<option value="<%= value -%>"<%= (value == marc_subfield.content) ? "selected=\"selected\"".html_safe : "" -%>><%= value -%></option>	

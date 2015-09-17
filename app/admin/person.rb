@@ -32,6 +32,7 @@ ActiveAdmin.register Person do
     
     def edit
       @item = Person.find(params[:id])
+      @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_applicable_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
     end
@@ -44,7 +45,6 @@ ActiveAdmin.register Person do
     
     def index
       @results = Person.search_as_ransack(params)
-      puts @results 
       index! do |format|
         @people = @results
         format.html

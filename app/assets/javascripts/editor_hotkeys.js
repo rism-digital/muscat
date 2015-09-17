@@ -35,7 +35,7 @@
 		init: function(e) {
 			
 			$(e).on('keydown', null, 'alt+ctrl+s', function(){
-				marc_editor_send_form('marc_editor_panel', 'marc_editor_panel', 0, marc_editor_get_model());
+				marc_editor_send_form('marc_editor_panel', marc_editor_get_model());
 			});
 
 			$(e).on('keydown', null, 'alt+ctrl+p', function(){

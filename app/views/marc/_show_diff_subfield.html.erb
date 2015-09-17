@@ -1,0 +1,44 @@
+<%- 
+subfield_diff_content = true if (!subfield.diff || (subfield.content != subfield.diff.content))
+subfield_class = ""
+if (!is_deleted_tag && !is_inserted_tag) 
+	if subfield.diff_is_deleted
+		subfield_class = "subfield_diff_deleted version_diff"
+	elsif !subfield.diff
+		subfield_class = "subfield_diff_inserted version_diff"
+	elsif subfield_diff_content
+		subfield_class = "subfield_diff_modified version_diff"
+	else
+		subfield_class = "subfield_diff"
+	end
+end
+%>
+<div class="<%= subfield_class  -%>">
+	<table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 0px">
+		<tr class="row">
+			<th>
+				<%- if (no_label == false) %>
+					<%= @editor_profile.get_sub_label(tag.tag, subfield.tag) %>
+				<%- end %>
+			</th>
+			<td class="<%= subfield_diff_content ? "subfield_diff_content version_diff" : "" -%>">
+				<%- 
+				if subfield_diff_content
+					subfield_diff_content_new = subfield.content
+					subfield_diff_content_old = ""
+					if subfield.diff
+						subfield_diff_content_old = subfield.diff.content
+					elsif subfield.diff_is_deleted || is_deleted_tag 
+						subfield_diff_content_old = subfield.content
+						subfield_diff_content_new = ""
+					end  
+				%>
+					<div class="diff_new"><%= subfield_diff_content_new -%></div>
+					<div class="diff_old"><%= subfield_diff_content_old -%></div>
+				<%- else %>
+					<%= subfield.content.html_safe %>
+				<%- end %>
+			</td>
+		</tr>
+	</table>
+</div>

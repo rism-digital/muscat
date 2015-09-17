@@ -2,14 +2,16 @@
 	allow_new = @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name].include?("layout_new") ? true : false
 	marc_tag = MarcNode.new(@item.marc.get_model)
 %>
-<dt class="tag_placeholders" data-tag="<%= tag_name %>" style="display: none">
+<dl class="tag_placeholders_toplevel">
+	<dt class="tag_placeholders" data-tag="<%= tag_name %>" style="display: none">
 
-	<%= render :partial => "editor/tag_dt",
-		:locals => { :tag_name => tag_name, :marc_tag => marc_tag , :is_new => false} %>
-	
-	<% if allow_new %>
 		<%= render :partial => "editor/tag_dt",
-			:locals => { :tag_name => tag_name, :marc_tag => marc_tag, :is_new => true } %>
-	<% end %>
+			:locals => { :tag_name => tag_name, :marc_tag => marc_tag , :is_new => false} %>
+	
+		<% if allow_new %>
+			<%= render :partial => "editor/tag_dt",
+				:locals => { :tag_name => tag_name, :marc_tag => marc_tag, :is_new => true } %>
+		<% end %>
 
-</dt>
+	</dt>
+</dl>

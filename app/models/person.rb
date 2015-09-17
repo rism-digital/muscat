@@ -19,7 +19,17 @@
 
 class Person < ActiveRecord::Base
   
-#  include MarcIndex
+  # class variables for storing the user name and the event from the controller
+  @@last_user_save
+  cattr_accessor :last_user_save
+  @@last_event_save
+  cattr_accessor :last_event_save
+  
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  
+  def user_name
+    user ? user.name : ''
+  end
   
   resourcify 
   has_many :works
@@ -30,7 +40,7 @@ class Person < ActiveRecord::Base
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
   
 #  validates_presence_of :full_name  
-  validate :field_lenght
+  validate :field_length
   
   #include NewIds
   
@@ -192,9 +202,6 @@ class Person < ActiveRecord::Base
     # if it was suppressed we do not update it as it
     # will be nil
     return if marc_source == nil
-
-    # update last transcation
-    marc.update_005
     
     # If the source id is present in the MARC field, set it into the
     # db record
@@ -216,7 +223,7 @@ class Person < ActiveRecord::Base
     self.marc_source = self.marc.to_marc
   end
   
-  def field_lenght
+  def field_length
     self.life_dates = self.life_dates.truncate(24) if self.life_dates and self.life_dates.length > 24
     self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
   end

@@ -32,6 +32,7 @@ ActiveAdmin.register Catalogue do
     
     def edit
       @item = Catalogue.find(params[:id])
+      @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_applicable_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
     end

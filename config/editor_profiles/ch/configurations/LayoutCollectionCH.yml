@@ -5,6 +5,7 @@ group_order:
 - linkage
 - diplomatic_title
 - physical_description
+- material_description
 - content
 - bibliographical_reference
 - added_entries

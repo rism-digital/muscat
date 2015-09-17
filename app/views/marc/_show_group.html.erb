@@ -1,16 +1,39 @@
 <% group_tags = item.marc.by_tags_with_order(group[:tags]) -%>
 
-<% unless group_tags.empty? -%>
+<%- unless group_tags.empty? %>
 
 	<div class="panel">
 		<h3><%= group[:title] %></h3>
 		<div class="panel_contents">
 			<div class="attributes_table">
-				<table border="0" cellpadding="0" cellspacing="0">
-					<%= render :partial => "marc/show_tags", :locals => { :tags => group_tags, :templates => group[:tag_templates], :opac => opac } %>
-				</table>
+				<%- 
+				if group[:subfield_grouping]
+					subfield_group_values = @item.marc.all_values_for_tags_with_subtag(group[:tags], group[:subfield_grouping])
+					subfield_group_values.each do |subfield_group|
+						subfield_group_tags = item.marc.by_tags_with_subtag(group[:tags], group[:subfield_grouping], subfield_group)
+						unless subfield_group_tags.empty? 
+						%>
+							<%- if subfield_group_values.size > 1 %>
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr><th><h5 class="subfield_group"><%= "Group #{subfield_group}" %></h5></th></tr>
+							</table>
+							<%- end %>
+							<%- if !@diff %>
+								<%= render :partial => "marc/show_tags", :locals => { :tags => subfield_group_tags, :templates => group[:tag_templates], :opac => opac } %>
+							<%- else %>
+								<%= render :partial => "marc/show_diff_tags", :locals => { :tags => subfield_group_tags } %>
+							<%- end %>
+						<%- end %>
+					<%- end %>
+				<%- else %>				
+					<%- if !@diff %>
+						<%= render :partial => "marc/show_tags", :locals => { :tags => group_tags, :templates => group[:tag_templates], :opac => opac } %>
+					<%- else %>
+						<%= render :partial => "marc/show_diff_tags", :locals => { :tags => group_tags } %>
+					<%- end %>
+				<%- end %>
 			</div>
 		</div>
 	</div>
 	
-<% end -%>
+<%- end %>

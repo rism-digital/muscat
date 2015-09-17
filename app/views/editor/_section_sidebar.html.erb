@@ -1,10 +1,16 @@
 <ul>
 <%- @editor_profile.layout_config[:marc_editor_group_links].each do |gl| -%>
-	<li><a data-scroll-target="<%= gl.gsub(/ /, "_") -%>" href="#"><%= gl -%></a></li>
+	<li><a data-scroll-target="<%= gl.gsub(/ /, "_") -%>" data-panel="marc_editor_panel" href="#"><%= gl -%></a></li>
+<%- end -%>
+<%- if !@editor_profile.layout_config[:marc_editor_missing_group_links].empty? -%>
+	<li>&nbsp;</li>
+	<%- missing_group_link = @editor_profile.layout_config[:marc_editor_missing_group_links] %>
+	<li><a data-scroll-target="<%= missing_group_link.gsub(/ /, "_") -%>" data-panel="marc_editor_panel" href="#"><%= missing_group_link -%></a></li>
 <%- end -%>
 	<li>&nbsp;</li>
-	<li><a data-scroll-target="show_all_groups" href="#"><%=(I18n.t :show_all_groups)%></a></li>
+	<li><a data-scroll-target="show_toplevel" data-panel="marc_editor_panel" href="#"><%=(I18n.t :show_all_groups)%></a></li>
 	<li>&nbsp;</li>
-	<li><a data-sidebar-preview="true" href="#"><%=(I18n.t :show_preview)%></a> 
-		
+	<li><a data-scroll-target="show_preview" data-panel="marc_editor_preview" href="#"><%=(I18n.t :show_preview)%></a></li>
+	<li>&nbsp;</li>
+	<li><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#"><%=(I18n.t :show_history)%></a></li>
 </ul>
