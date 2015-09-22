@@ -216,11 +216,11 @@ en:
   updated_at: "Last modification"
   
   # Editor sidebar
-  show_all_groups: "Show All Groups"
-  show_preview: "Show Preview"
-  show_history: "Show Change History"
+  show_all_groups: "Show all groups"
+  show_preview: "Show preview"
+  show_history: "Show change history"
   save_and_continue: "Save and continue editing"
-  save_and_exit: "Save and exit"
+  save_and_exit: "Save and terminate"
   cancel: "Cancel"
   
   # Version history
