@@ -180,7 +180,6 @@ class MarcSource < Marc
       return [language, date_from, date_to]
       
     else
-      #FIXME!!! move to 033 for others?
       language = "Unknown"
       date_from = nil
       date_to = nil
@@ -188,14 +187,19 @@ class MarcSource < Marc
       if node = first_occurance("008")
         unless node.content.empty?
           language = LANGUAGES[marc_helper_get_008_language(node.content)] || "Unknown"
-          date_from = marc_helper_get_008_date1(node.content) || nil
-          date_to = marc_helper_get_008_date2(node.content) || nil
         end
       end
       
+      if node = first_occurance("033", "a")
+        if node && node.content
+          date_from = marc_get_range(node.content, 0, 4) || nil
+          date_to = marc_get_range(node.content, 4, 4) || nil
+        end
+      end
+
       # Force it to nil if 0, this used to work in the past
-      date_from = nil if date_from == 0
-      date_to = nil if date_to == 0
+      date_from = nil if date_from.to_i == 0
+      date_to = nil if date_to.to_i == 0
       
       return [language.truncate(16), date_from, date_to]
     end
