@@ -106,6 +106,18 @@ Source.all.each do |s|
     uncorrelated_028 << "#{s.id} has 028 bur more than one 593 print" if tags_028.count > 0
   end
 
+
+  # Do some additional housekeeping
+  # Kill 005 and 008
+  marc.each_by_tag("008") do |t|
+    t.destroy_yourself
+    modified = true
+  end
+  marc.each_by_tag("005") do |t|
+    t.destroy_yourself
+    modified = true
+  end
+
   
   if modified
     # This case should never happen
@@ -114,14 +126,13 @@ Source.all.each do |s|
     if fields_mod.count > 0 && fields_add.count > 0
       #puts "#{s.id} Has elements with material and without, skip"
       check_by_hand << s.id
-    else
-      #puts "Saving #{s.id}, fields: #{fields_mod.to_s}, added $8: #{fields_add.to_s}"
-    	s.suppress_update_77x
-    	s.suppress_update_count
-    	s.suppress_reindex
-      s.save!
-   end
-   
+    end
+    
+    #puts "Saving #{s.id}, fields: #{fields_mod.to_s}, added $8: #{fields_add.to_s}"
+  	s.suppress_update_77x
+  	s.suppress_update_count
+  	s.suppress_reindex
+    s.save!
   end
   
 end
