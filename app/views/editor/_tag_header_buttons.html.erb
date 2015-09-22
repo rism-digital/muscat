@@ -23,7 +23,7 @@
 %>
 <div style="float:right" class="_lp_tag_header ui-corner-all">
 	<div  class="abuttonset abuttonset-multi">
-		<%if new_window_controller %>
+		<%if new_window_controller && !empty_header %>
 		<!-- this is a special case, see new_window_select_ujs.js -->
  		<a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" title="Search"><span class="ui-icon ui-icon-search"></span>_</a>
 		<%end%>
