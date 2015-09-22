@@ -4,7 +4,10 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.1.0'
 
 # Use mysql2 as the database for Active Record
-gem 'mysql2'
+# USE THIS VERSION for 4.1
+# http://stackoverflow.com/questions/32457657/rails-4-gemloaderror-specified-mysql2-for-database-adapter-but-the-gem-i
+# https://github.com/rails/rails/issues/21544
+gem 'mysql2', '~> 0.3.18'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
