@@ -14,23 +14,11 @@
   tag_params: 
     read_only: true
   tag_header: none
-"005": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
 "007": 
   tag: tag_no_subfield
   tag_params: 
     maskedinput: 
       mask: aa
-008: 
-  tag: tag_no_subfield
-  tag_params: 
-    maskedinput: 
-      definitions: "['~']='[|0-9]'"
-      mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
-  tag_header: none
 028: 
   layout: 
     fields: 

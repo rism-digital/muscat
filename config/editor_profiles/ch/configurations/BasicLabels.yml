@@ -67,24 +67,12 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     fr: "Collection imprimées"
     de: Sammeldruck
     en: Printed Collection
-"005": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Data e ora dell'ultima transazione
-    fr: "Date/heure de la dernière transaction"
-    de: Datum und Zeit der letzten Transaktion
-    en: Date and time of last transaction
 "007": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Campo fisso per la descrizione fisica
     fr: "Zone fixe de description matérielle"
     de: Codierte Form der Materialbeschreibung
     en: Physical description fixed field
-008: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Dati bibliografici di lunghezza fissa
-    fr: "Données bibliographiques codées"
-    de: "Datenelemente fixer Länge"
-    en: Coded bibliographic data
 01_codes_artistic: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Autore
