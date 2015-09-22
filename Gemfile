@@ -70,7 +70,7 @@ gem "rolify"
 group :development do
     gem 'webrick', '~> 1.3.1'
 end
-gem 'blacklight', "= 5.13.1"
+gem 'blacklight', "~> 5.14"
 gem "blacklight_advanced_search"
 gem 'bootstrap-sass', "3.3.4.1"
 # For nice date ranges
