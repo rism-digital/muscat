@@ -11,8 +11,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_filter :set_locale
-
-  after_filter :user_activity
   
   # Code for rescueing lock conflicts errors
   rescue_from ActiveRecord::StaleObjectError do |exception|
@@ -29,13 +27,17 @@ class ApplicationController < ActionController::Base
   def user_for_paper_trail
     current_user.try :name
   end
+  
+  def is_selection_mode?
+    return params && params[:select].present?
+  end
 
   private
 
   def user_activity
       current_user.try :touch
   end
-  
+
   # Find out and set the locale, store into a cookie
   def set_locale 
     # We do not check if the locale is available. The list is actually set in the
@@ -53,7 +55,8 @@ class ApplicationController < ActionController::Base
         session[:locale] = _locale_from_http_header
         cookies[:locale] = { :value => session[:locale], :expires => 30.days.from_now }
       end
-    end   
+    end
+    
     #logger.debug "LOCALE", I18n.locale
     I18n.locale = session[:locale]
   end 

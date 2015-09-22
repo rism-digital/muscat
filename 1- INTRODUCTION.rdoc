@@ -4,7 +4,9 @@
 
 == Source code and further documentation
 
-Source code is available on GitHub https://github.com/rism-ch/muscat
+The source code is available on GitHub https://github.com/rism-ch/muscat
+
+The cataloguing guidelines submodule is also available on GitHub https://github.com/rism-ch/muscat-guidelines
 
 The documentation for version 1.0 and 2.0 (legacy) is available at http://docs.rism-ch.org/muscat/1.0/
 

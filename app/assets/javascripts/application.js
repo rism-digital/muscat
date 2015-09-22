@@ -41,6 +41,7 @@
 //= require autocomplete-rails
 //= require editor_hotkeys
 //= require verovio_preload
+//- require new_window_select_ujs
 //= require jsdiff.js
 
 // For blacklight_range_limit built-in JS, if you don't want it you don't need

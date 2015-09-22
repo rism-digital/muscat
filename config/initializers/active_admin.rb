@@ -1,3 +1,24 @@
+# Customize the ActiveAdmin header to add our own item. NOTE: This class
+# must be registered as the view factory for the header. See below, in the
+# setup block.
+class MuscatAdminHeader < ActiveAdmin::Views::Header
+  include Rails.application.routes.url_helpers
+
+  def build(namespace, menu)
+    # Create a new menu item and add it to the menu. By default, all menu
+    # items have priority 10, and they're sorted within the priority. Setting
+    # this item's priority to 11 ensures that it appears after the other
+    # menu items (except for "Live Site"), which is what we want.
+    #
+    # See lib/active_admin/dashboards.rb in the activeadmin gem, for
+    # example.
+    
+    # Now, invoke the parent class's build method to put it all together.
+    #if can? :manage, User
+    super(namespace, menu) unless is_selection_mode?
+  end
+end
+
 ActiveAdmin.setup do |config|
 
   # == Site Title
@@ -277,6 +298,9 @@ ActiveAdmin.setup do |config|
   # You can enable or disable them for all resources here.
   #
   # config.filters = true
+  
+  
+  config.view_factory.header = MuscatAdminHeader
 end
 
 # LP - added for caching filters, pagination and order

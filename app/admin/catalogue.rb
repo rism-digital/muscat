@@ -7,6 +7,15 @@ ActiveAdmin.register Catalogue do
 
   collection_action :autocomplete_catalogue_name, :method => :get
 
+  breadcrumb do
+    active_admin_muscat_breadcrumb
+  end
+    
+  action_item :view, only: :show, if: proc{ is_selection_mode? } do
+    active_admin_muscat_select_link( person )
+  end
+
+
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -18,6 +27,11 @@ ActiveAdmin.register Catalogue do
     after_destroy :check_model_errors
     before_create do |item|
       item.user = current_user
+    end
+    
+    def action_methods
+      return super - ['new', 'edit', 'destroy'] if is_selection_mode?
+      super
     end
     
     def check_model_errors(object)
@@ -92,13 +106,13 @@ ActiveAdmin.register Catalogue do
          collection: proc{Folder.where(folder_type: "Catalogue").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
   index do
-    selectable_column
+    selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id    
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_name), :description
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count
-    actions
+    active_admin_muscat_actions( self )
   end
   
   ##########
@@ -114,9 +128,10 @@ ActiveAdmin.register Catalogue do
     else
       render :partial => "marc/show"
     end
-    active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page] )
+    active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode )
     active_admin_user_wf( self, catalogue )
     active_admin_navigation_bar( self )
+    active_admin_comments if !is_selection_mode?
   end
   
 begin  

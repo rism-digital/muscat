@@ -92,7 +92,7 @@ module FolderControllerActions
     end
   
     # Only show for the moment if there is a query
-    dsl.sidebar 'Global Folder Actions', :only => :index, :if => proc{params.include?(:q)} do
+    dsl.sidebar 'Global Folder Actions', :only => :index, :if => proc{params.include?(:q)}, :if => proc { !is_selection_mode? } do
       # Build the dynamic path function, then call it with send
       model = self.resource_class.to_s.pluralize.underscore.downcase
       link_function = "save_to_folder_admin_#{model}_path"

@@ -1,0 +1,26 @@
+<tr class="doc-subfield">
+    <th>$<%= subtag[0] %></th>
+</tr>
+    <tr>
+        <td>
+        <table class="table">
+            <%- RISM::LOCALES.each do |lang| %>
+                <%- I18n.locale = lang[0] %>
+                <tr>
+                    <th><%= lang[1].html_safe %></th>
+                    <td><%= @editor_config.get_label(tag, subtag[0]).html_safe -%></td>
+                </tr>
+            <% end -%>
+        </table>
+        <table class="table">
+            <tr>
+                <th>Repeatable</th>
+                <th>Show in browse</th>
+            </td>
+            <tr>
+                <td><%= @marc_config.multiples_allowed?(tag, subtag[0] ) -%></td>
+                <td><%= @marc_config.show_in_browse?(tag, subtag[0] ) -%></td>
+            </tr>
+        </table>
+    </td>
+</tr>

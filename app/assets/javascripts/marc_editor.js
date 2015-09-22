@@ -1,6 +1,6 @@
-function marc_editor_discard_changes_leaving( ) {
+function marc_editor_discard_changes_leaving( ) {	
 	if (marc_editor_form_changed) {
-	   return "The modifications on the title will be lost";
+	   return "The modifications on the title will be lost 2";
    }
 }
 

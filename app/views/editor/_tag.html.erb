@@ -40,7 +40,8 @@
         						subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
         					  	subfield_collection.each do |marc_subfield| %>
         						<%= render :partial => "editor/subfield_li", 
-        							:locals => { :column => [subfield, field_settings], 
+        							:locals => { :subfield => subfield, 
+											:field_settings => field_settings, 
         									:marc_tag => marc_tag, :tag_name => tag_name, 
         									:marc_subfield => marc_subfield } %>
         					<%- end %>

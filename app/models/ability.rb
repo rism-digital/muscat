@@ -41,5 +41,5 @@ class Ability
     end
 
   end
-
+  
 end

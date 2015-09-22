@@ -168,6 +168,7 @@
         editor_partial: subfield_autocomplete
 "100": 
   allow_new: true
+  new_window: people
   layout: 
     fields: 
     - - a
@@ -185,6 +186,7 @@
         editor_partial: subfield_checkbox
 "110":
   allow_new: true
+  new_window: institutions
   layout: 
     fields: 
     - - a
@@ -197,6 +199,7 @@
     - - b
 "130":
   allow_new: true
+  new_window: standard_titles
   layout: 
     fields: 
     - - a
@@ -216,6 +219,7 @@
     - - n
     - - m
 "240": 
+  new_window: standard_titles
   layout: 
     fields: 
     - - a
@@ -389,6 +393,7 @@
     - - m
     - - n
 "600":
+  new_window: people
   allow_new: true
   layout: 
     fields: 
@@ -400,6 +405,7 @@
     - - a
 "650":
   allow_new: true
+  new_window: standard_terms
   layout: 
     fields: 
     - - a
@@ -410,6 +416,7 @@
     - - a
 "651": 
   allow_new: true
+  new_window: places
   layout: 
     fields: 
     - - a
@@ -420,6 +427,7 @@
     - - a
 "657": 
   allow_new: true
+  new_window: liturgical_feasts
   layout: 
     fields: 
     - - a
@@ -430,6 +438,7 @@
     - - a
 "690": 
   allow_new: true
+  new_window: catalogues
   layout: 
     fields: 
     - - a
@@ -442,6 +451,7 @@
     - - n
 "691":
   allow_new: true
+  new_window: catalogues
   layout: 
     fields: 
     - - a
@@ -453,7 +463,8 @@
     - - a
     - - n
 "700":
-  allow_new: true 
+  allow_new: true
+  new_window: people
   layout:
     fields: 
     - - a
@@ -511,6 +522,7 @@
       - bnd
 "710":
   allow_new: true
+  new_window: institutions
   layout: 
     fields: 
     - - a
@@ -541,6 +553,7 @@
     - dub
 "730":
   allow_new: true
+  new_window: standard_titles
   layout: 
     fields: 
     - - a
@@ -560,7 +573,6 @@
     - - n
     - - m
 "740":
-#  allow_new: true
   layout: 
     fields: 
     - - a
@@ -580,7 +592,8 @@
     fields: 
     - - w
       - read_only: true
-"773": 
+"773":
+  new_window: sources
   layout: 
     fields: 
     - - w
@@ -595,6 +608,7 @@
     - - w
 "852": 
   allow_new: true
+  new_window: institutions
   layout: 
     fields: 
     - - a

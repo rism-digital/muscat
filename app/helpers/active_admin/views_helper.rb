@@ -8,7 +8,7 @@ module ActiveAdmin::ViewsHelper
   # - item is the instance of the model
   # - query is the fitler for the source list
   # - src_list_page is the pagination
-  def active_admin_embedded_source_list( context, item, query, src_list_page )
+  def active_admin_embedded_source_list( context, item, query, src_list_page, enable_view_src = true )
     # get the list of sources for the item
     c = item.sources
     # do not display the panel if no source attached
@@ -36,13 +36,19 @@ module ActiveAdmin::ViewsHelper
           context.column (I18n.t :filter_title), :title
           context.column (I18n.t :filter_lib_siglum), :lib_siglum
           context.column (I18n.t :filter_shelf_mark), :shelf_mark
-          context.column "" do |source|
-            link_to "View", controller: :sources, action: :show, id: source.id
+          if enable_view_src
+            context.column "" do |source|
+              link_to "View", controller: :sources, action: :show, id: source.id
+            end
           end
         end
       end
     end
   end 
+  
+  def is_selection_mode?
+    return params && params[:select].present?
+  end
   
   def active_admin_user_wf( context, item )   
     context.panel (I18n.t :filter_wf) do
@@ -52,6 +58,36 @@ module ActiveAdmin::ViewsHelper
         context.row (I18n.t :updated_at) { |r| I18n.localize(r.updated_at.localtime, :format => '%A %e %B %Y - %H:%M') }
       end
     end
+  end
+  
+  def active_admin_muscat_select_link( item )
+    
+    name = "[Model does not have a label]"
+    name = item.name if item.respond_to?(:name)
+    name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
+    
+    link_to("Select", "#", :data => { :marc_editor_select => item.id, :marc_editor_label => name })
+  end
+  
+  def active_admin_muscat_actions( context )
+    # Build the dynamic path function, then call it with send
+    model = self.resource_class.to_s.underscore.downcase
+    view_link_function = "admin_#{model}_path"
+    if is_selection_mode?
+      context.actions defaults: false do |item|
+        item_links = Array.new
+        item_links << link_to("View", "#{send( view_link_function, item )}")
+        item_links << active_admin_muscat_select_link( item )
+        safe_join item_links, ' '
+      end
+    else
+      context.actions
+    end
+  end
+  
+  def active_admin_muscat_breadcrumb 
+    return [] if is_selection_mode?
+    breadcrumb_links()
   end
 
   # displays the navigation button on top of a show panel
@@ -64,6 +100,11 @@ module ActiveAdmin::ViewsHelper
     next_id = @next_item != nil ? @next_item.id.to_s : ""
     prev_id += "?page=#{@prev_page}" if @prev_page != 0
     next_id += "?page=#{@next_page}" if @next_page != 0
+    
+    # Build the back to index path function
+    model = self.resource_class.to_s.pluralize.underscore.downcase
+    index_link_function = "admin_#{model}_path"
+    
     context.div class: :table_tools do
       context.ul class: :table_tools_segmented_control do
         context.li class: :scope do
@@ -72,6 +113,9 @@ module ActiveAdmin::ViewsHelper
           else
             context.a class: "table_tools_button disabled" do context.text_node "Previous" end
           end
+        end
+        context.li class: :scope do
+          context.a href: "#{send(index_link_function)}", class: :table_tools_button do  context.text_node "Back to the list"  end
         end
         context.li class: :scope do
           if @next_item != nil
