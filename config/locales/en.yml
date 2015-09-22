@@ -219,6 +219,9 @@ en:
   show_all_groups: "Show All Groups"
   show_preview: "Show Preview"
   show_history: "Show Change History"
+  save_and_continue: "Save and continue editing"
+  save_and_exit: "Save and exit"
+  cancel: "Cancel"
   
   # Version history
   history_date: "Date"

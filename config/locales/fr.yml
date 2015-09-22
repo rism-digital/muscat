@@ -219,6 +219,9 @@ fr:
   show_all_groups: "Afficher tous les groupes"
   show_preview: "Afficher l'aperçu"
   show_history: "Afficher l'historique"
+  save_and_continue: "Enregistrer et continuer"
+  save_and_exit: "Enregistrer et terminer"
+  cancel: "Annuler"
   
   # Version history
   history_date: "Date"

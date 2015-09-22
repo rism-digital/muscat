@@ -217,8 +217,11 @@ de:
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
-  show_preview: "Vorschau anzeigen/verbergen"
+  show_preview: "Vorschau anzeigen"
   show_history: "HISTORY"
+  save_and_continue: "SAVE_AND_CONTINUE_EDITING"
+  save_and_exit: "SAVE_AND_EXIT"
+  cancel: "CANCEL"
   
   # Version history
   history_date: "DATE"
