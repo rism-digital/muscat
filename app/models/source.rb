@@ -82,7 +82,11 @@ class Source < ActiveRecord::Base
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_77x_trigger
   attr_accessor :suppress_update_count_trigger
-    
+  
+  def after_initialize
+    @old_parent = nil
+  end
+  
   # Suppresses the recreation of the links with foreign MARC elements
   # (es libs, people, ...) on saving
   def suppress_recreate
@@ -163,7 +167,7 @@ class Source < ActiveRecord::Base
     end
     
     # update the parent manuscript when having 773/772 relationships
-    marc.update_77x unless self.suppress_update_77x_trigger == true 
+    update_77x unless self.suppress_update_77x_trigger == true 
   end
   
   # Suppresses the solr reindex
@@ -301,7 +305,11 @@ class Source < ActiveRecord::Base
     
     # parent source
     parent = marc.get_parent
-    self.source_id = parent.id if parent
+    # If the 773 link is removed, clear the source_id
+    # But before save it so we can update the parent
+    # source.
+    @old_parent = source_id if !parent
+    self.source_id = parent ? parent.id : nil
     
     # record type
     self.record_type = 2 if marc.is_holding?
@@ -332,6 +340,72 @@ class Source < ActiveRecord::Base
 
     self.marc_source = self.marc.to_marc
   end
+  
+  # If this manuscript is linked with another via 772/773, update if it is our parent
+  def update_77x
+    # do we have a parent manuscript?
+    parent_manuscript_id = marc.first_occurance("773", "w")
+    
+    # NOTE we evaluate the strings prefixed by 00000
+    # as the field may contain legacy values
+    
+    if parent_manuscript_id
+      # We have a parent manuscript in the 773
+      # Open it and add, if necessary, the 772 link
+    
+      parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
+      return if !parent_manuscript
+      # check if the 772 tag already exists
+      parent_manuscript.marc.each_data_tag_from_tag("772") do |tag|
+        subfield = tag.fetch_first_by_tag("w")
+        next if !subfield || !subfield.content
+        
+        return if subfield.content == id.to_s || subfield.content == "00000" + id.to_s
+      end
+      
+      # nothing found, add it in the parent manuscript
+      mc = MarcConfigCache.get_configuration("source")
+      w772 = MarcNode.new(@model, "772", "", mc.get_default_indicator("772"))
+      w772.add_at(MarcNode.new(@model, "w", id.to_s, nil), 0 )
+      
+      parent_manuscript.marc.root.add_at(w772, parent_manuscript.marc.get_insert_position("772") )
+
+      parent_manuscript.suppress_update_77x
+      parent_manuscript.save
+    else
+      # We do NOT have a parent ms in the 773.
+      # but we have it in old_parent, it means that
+      # the 773 was deleted. Go into the parent and
+      # find the reference to the id, then delete it
+      if @old_parent
+        parent_manuscript = Source.find_by_id(@old_parent)
+        return if !parent_manuscript
+        modified = false
+        
+        # check if the 772 tag already exists
+        parent_manuscript.marc.each_data_tag_from_tag("772") do |tag|
+          subfield = tag.fetch_first_by_tag("w")
+          next if !subfield || !subfield.content
+          puts subfield.content
+          if subfield.content == id.to_s || subfield.content == "00000" + id.to_s
+            tag.destroy_yourself
+            modified = true
+          end
+          
+        end
+        
+        if modified
+          parent_manuscript.suppress_update_77x
+          parent_manuscript.save
+          @old_parent = nil
+        end
+        
+      end
+      
+    end
+    
+  end
+  
   
   def fix_ids
     #generate_new_id
