@@ -7,10 +7,12 @@
 	<%- missing_group_link = @editor_profile.layout_config[:marc_editor_missing_group_links] %>
 	<li><a data-scroll-target="<%= missing_group_link.gsub(/ /, "_") -%>" data-panel="marc_editor_panel" href="#"><%= missing_group_link -%></a></li>
 <%- end -%>
-	<li>&nbsp;</li>
-	<li><a data-scroll-target="show_toplevel" data-panel="marc_editor_panel" href="#"><%=(I18n.t :show_all_groups)%></a></li>
-	<li>&nbsp;</li>
-	<li><a data-scroll-target="show_preview" data-panel="marc_editor_preview" href="#"><%=(I18n.t :show_preview)%></a></li>
-	<li>&nbsp;</li>
-	<li><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#"><%=(I18n.t :show_history)%></a></li>
+	<li class="marc_separator"></li>
+	<li class="marc_icon"><a data-scroll-target="show_toplevel" data-panel="marc_editor_panel" href="#" class="marc_icon marc_icon_all"><%=(I18n.t :show_all_groups)%></a></li>
+	<li class="marc_icon"><a data-scroll-target="show_preview" data-panel="marc_editor_preview" href="#" class="marc_icon marc_icon_preview"><%=(I18n.t :show_preview)%></a></li>
+	<li class="marc_icon"><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="marc_icon marc_icon_save">Save</a></li>
+	<li class="marc_icon"><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="marc_icon marc_icon_history"><%=(I18n.t :show_history)%></a></li>
+	<li class="marc_separator"></li>
+	<li class="marc_icon"><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="marc_icon marc_icon_cancel">Cancel</a></li>
+	<li class="marc_icon"><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="marc_icon marc_icon_save_exit">Save and exit</a></li>
 </ul>

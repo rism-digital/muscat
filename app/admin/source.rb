@@ -172,7 +172,6 @@ ActiveAdmin.register Source do
   
   sidebar :sections, :class => "sidebar_tabs", :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
-    active_admin_submit_bar( self )
   end
   
   form :partial => "editor/edit_wide"

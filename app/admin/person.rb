@@ -146,7 +146,6 @@ ActiveAdmin.register Person do
   
   sidebar :sections, :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
-    active_admin_submit_bar( self )
   end
   
   form :partial => "editor/edit_wide"

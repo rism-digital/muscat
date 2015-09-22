@@ -192,6 +192,41 @@ $diff-padding-width: 15px;
 .sidebar_section ul {
 	list-style-type: none;
 	padding-left: 0px;
+    margin: 0px;
+    
+    li.marc_icon {
+        vertical-align: middle;
+        line-height: 25px;
+        min-height: 24px;
+        padding-top: 8px;
+        a.marc_icon {
+            margin-left: 2px;
+            padding-left: 40px;
+            display: inline-block;
+        }
+        a.marc_icon_all {
+            background: image-url("/images/marc-icons/all.png") no-repeat;
+        }
+        a.marc_icon_cancel {
+            background: image-url("/images/marc-icons/cancel.png") no-repeat;
+        }
+        a.marc_icon_history {
+            background: image-url("/images/marc-icons/history.png") no-repeat;
+        }
+        a.marc_icon_preview {
+            background: image-url("/images/marc-icons/preview.png") no-repeat;
+        }
+        a.marc_icon_save {
+            background: image-url("/images/marc-icons/save.png") no-repeat;
+        }
+        a.marc_icon_save_exit {
+            background: image-url("/images/marc-icons/save-exit.png") no-repeat;
+        }
+    }
+    li.marc_separator {
+         border-bottom: 3px solid #dfe1e2;
+         margin-top: 8px;
+    }
 }
 
 /*******************/
