@@ -1,4 +1,10 @@
 var init_sidebar_actions = function () {
+    
+    $('a[data-save-form]').click(function(e) {
+        form = $("#" + $(this).data("save-form"));
+        form.submit();
+    });
+    
 	$('a[data-scroll-target]').click(function(e){
 		e.preventDefault();
 		
