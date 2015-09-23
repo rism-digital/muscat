@@ -96,7 +96,7 @@ ActiveAdmin.register Place do
       row (I18n.t :filter_country) { |r| r.country }
       row (I18n.t :filter_district) { |r| r.district }    
     end
-    active_admin_embedded_source_list( self, place, params[:qe], params[:src_list_page], !is_selection_mode )
+    active_admin_embedded_source_list( self, place, params[:qe], params[:src_list_page], !is_selection_mode? )
     active_admin_user_wf( self, place )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
