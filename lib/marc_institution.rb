@@ -2,7 +2,7 @@ class MarcInstitution < Marc
   def initialize(source = nil)
     super("institution", source)
   end
-  
+
   def get_name_and_place
     name = ""
     place = ""
@@ -12,7 +12,7 @@ class MarcInstitution < Marc
         name = node.content.truncate(128)
       end
     end
-    
+
     if node = first_occurance("110", "c")
       if node.content
         place = node.content.truncate(24)
@@ -29,7 +29,7 @@ class MarcInstitution < Marc
         address = node.content.truncate(128)
       end
     end
-    
+
     if node = first_occurance("622", "u")
       if node.content
         url = node.content.truncate(24)
@@ -37,7 +37,7 @@ class MarcInstitution < Marc
     end
     [address, url]
   end
- 
+
   def get_siglum
     if node = first_occurance("110", "g")
       if node.content

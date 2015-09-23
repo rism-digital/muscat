@@ -38,16 +38,6 @@ if ARGV.length >= 2
       #break if start==100
     }
 
-
-
-
-
-
-
-
-
-
-
     puts "\nCompleted: "+Time.new.strftime("%Y-%m-%d %H:%M:%S")
   else
     puts source_file + " is not a file!"

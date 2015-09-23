@@ -3,7 +3,7 @@ records = [400219385, 400219386, 400219387, 400219388, 402000852, 402001625, 402
 
 records.each do |r|
   source = Source.find(r)
-  
+
   begin
     # hey it worked!
     puts source.marc
@@ -14,48 +14,48 @@ records.each do |r|
 
   new_marc = MarcSource.new(source.marc_source)
   new_marc.load_source(false)
-  
+
   #puts new_marc.to_marc
 
   contents = message.split("=")
   if contents.count > 0
     #puts contents[1]
-    
-    subtags = {} 
-    
+
+    subtags = {}
+
     if "=#{contents[1]}" =~ Regexp.new('^[\=]([\d]{3,3})[\s]+(.*)$')
      # puts $1, $2
       data = $2
       parsed_tag = $1
-      
+
       indicator = nil
       if data =~ /^[\s]*([^$]*)([$].*)$/
         indicator = $1
         record = $2
       end
-      
+
       # iterate trough the subfields
       while record =~ /^[$]([\d\w]{1,1})([^$]*)(.*)$/
         subtag  = $1
         content = $2
         record  = $3
-        
+
         subtags[subtag] =  content
       end
-      
+
       # we have the non working tag
       # process marc and fix it
-      
+
       new_marc.each_by_tag(parsed_tag) do |t|
-        
+
         master = t.fetch_first_by_tag("0")
         next if master && master.content
-        
+
         first_elem = subtags.first[0]
         tags = t.fetch_all_by_tag(first_elem)
-        
+
         tags.each do |subtag|
-          if subtag.content = subtags[first_elem]  
+          if subtag.content = subtags[first_elem]
             puts "Fixing #{t.to_marc}"
             t.add_at(MarcNode.new(Source, "a", "[missing]", nil), 0)
             t.sort_alphabetically
@@ -63,18 +63,17 @@ records.each do |r|
           end
         end
       end
-      
+
       # we have valid marc
       # import it!
       import_marc = MarcSource.new(new_marc.to_marc)
       import_marc.load_source(false)
       import_marc.import
-      
+
       source.marc = import_marc
       source.save!
-      
+
     end
-    
+
   end
-  
 end

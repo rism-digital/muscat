@@ -1,12 +1,12 @@
 class Workgroup < ActiveRecord::Base
 
-    has_and_belongs_to_many :users
-    has_and_belongs_to_many :institutions
-    after_save :change_institutions
-    validates_presence_of :name 
-    before_destroy :check_dependencies
+  has_and_belongs_to_many :users
+  has_and_belongs_to_many :institutions
+  after_save :change_institutions
+  validates_presence_of :name
+  before_destroy :check_dependencies
 
-   searchable :auto_index => false do
+  searchable :auto_index => false do
     integer :id
     text :name
   end
@@ -31,5 +31,4 @@ class Workgroup < ActiveRecord::Base
       end
     end
   end
- 
 end

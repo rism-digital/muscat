@@ -17,7 +17,7 @@
 # i.import( {:import_file => "zip_file_in_tmp_uploads", :owner => "admin", :owner_id => 1})
 
 class Marc21Import
-  
+
   def initialize(source_file, from = 0)
     @from = from
     @source_file = source_file
@@ -51,7 +51,7 @@ class Marc21Import
     @total_records += 1
     buffer.gsub!(/[\r\n]+/, ' ')
     buffer.gsub!(/ (=[0-9]{3,3})/, "\n\\1")
-    
+
     if @total_records >= @from
       marc = MarcInstitution.new(buffer)
       # load the source but without resolving externals
@@ -60,14 +60,14 @@ class Marc21Import
       if marc.is_valid?(false)
         # p marc.to_s
         # exit
-        
+
         # step 1.  update or create a new manuscript
         manuscript = Institution.find_by_id( marc.get_marc_source_id )
         if !manuscript
           manuscript = Institution.new(:wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
         end
-          
-        # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
+
+        # step 2. do all the lookups and change marc fields to point to external entities (where applicable)
         marc.import
 
         # step 3. associate Marc with Manuscript
@@ -89,7 +89,7 @@ class Marc21Import
       end
     end
   end
-  
+
 end
 
 # first argument is the file containing marc records

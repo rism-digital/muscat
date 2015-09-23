@@ -1,9 +1,9 @@
 <%- tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
 <% node = marc_tag || MarcNode.new(@item.marc.get_model) -%>
 <%
-can_edit = !tag_params.has_key?("read_only") && 
-	((tag_params.has_key?("editor_only") && current_user.has_any_role?(:editor, :admin)) ||
-	 (tag_params.has_key?("admin_only") && current_user.has_role?(:admin)))
+can_edit = !tag_params.has_key?("read_only") &&
+    ((tag_params.has_key?("editor_only") && current_user.has_any_role?(:editor, :admin)) ||
+     (tag_params.has_key?("admin_only") && current_user.has_role?(:admin)))
 %>
 <%- if can_edit %>
 <input style="margin-top:6px" class="subfield_entry serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" type="text" value="<%= h node.content %>" />
