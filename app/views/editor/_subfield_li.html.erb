@@ -1,8 +1,8 @@
 <li>
-    <%= render :partial => (field_settings.has_key?('editor_partial') ? "options/#{field_settings['editor_partial']}" : "editor/subfield"),
-        :locals => { :marc_tag => marc_tag,
-            :tag_name => tag_name,
-            :marc_subfield => marc_subfield,
-            :subfield => subfield,
-            :params => field_settings } %>
+	<%= render :partial => (field_settings.has_key?('editor_partial') ? "options/#{field_settings['editor_partial']}" : "editor/subfield"), 
+		:locals => { :marc_tag => marc_tag,
+			:tag_name => tag_name,
+			:marc_subfield => marc_subfield,
+			:subfield => subfield,
+			:params => field_settings } %>
 </li>

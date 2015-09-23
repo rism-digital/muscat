@@ -4,19 +4,19 @@
 # normalize and put to lowercase the names in the _d fields, ex. full_name_d in People
 # The non-ascii chars are mapped to ASCII using the MAP table.
 module DictionaryOrder
-  MAP = {
+  MAP = {  
     [
       'À',    #Capital A, grave accent ("&Agrave;")
       'Á',    #Capital A, acute accent ("&Aacute;")
       'Â',    #Capital A, circumflex accent ("&Acirc;")
       'Ã',    #Capital A, tilde ("&Atilde;")
-      'Å',    #Capital A, ring ("&Aring;")
+      'Å',    #Capital A, ring ("&Aring;") 
       'à',    #Small a, grave accent ("&agrave;")
       'á',    #Small a, acute accent ("&aacute;")
       'â',    #Small a, circumflex accent ("&acirc;")
       'ã',    #Small a, tilde ("&atilde;")
       'ä',    #Small a, dieresis or umlaut mark ("&auml;")
-      'å',    #Small a, ring ("&aring;")
+      'å',    #Small a, ring ("&aring;") 
       'ǎ',    #Small a, caron ("&acaron;")
       'ā',    #Small a, macron (?)
       'ą'     #Small a, ogonek ("&aogon;")
@@ -26,7 +26,7 @@ module DictionaryOrder
       'Æ',    #Capital AE dipthong (ligature) ("&AElig;")
       'æ'     #Small ae dipthong (ligature) ("&aelig;")
     ] => 'ae',
-
+    
     [
       'Ç',    #Capital C, cedilla ("&Ccedil;")
       'Č',    #Capital C, caron ("&Ccaron;")
@@ -37,19 +37,19 @@ module DictionaryOrder
       'č',    #Small c, caron ("&ccaron;")
       'ć'     #Small c, acute accent ("&cacute;")
     ] => 'c',
-
+    
     [
-
+      
       'Ď',    #Capital D, caron ("&Dcaron;")
       'Đ',    #Capital D, african D (?)
       'Ḍ',    #Capital D, dot below (?)
       'Ḓ',    #Capital D, circumflex below (?)
       'ƌ',    #Capital D [sic]?, top bar (?)
-      'ḍ',    #Small d, dot below (?)
+      'ḍ',    #Small d, dot below (?) 
       'đ',    #Small d, stroke ("&dstrok;")
       'ḓ'     #Small d, circumflex below (?)
     ] => 'd',
-
+    
     [
       'È',    #Capital E, grave accent ("&Egrave;")
       'É',    #Capital E, acute accent ("&Eacute;")
@@ -68,7 +68,7 @@ module DictionaryOrder
       'ĕ',    #Small e, breve ("&ebreve;")
       'ė'     #Small e, dot ("&edot;")
     ] => 'e',
-
+    
     [
       'Ḥ',    #Capital H, dot below (?)
       'Ḫ',    #Capital H, breve below (?)
@@ -88,16 +88,16 @@ module DictionaryOrder
       'ĩ',    #Small i, tilde ("&itilde;")
       'ī'     #Small i, macron (?)
     ] => 'i',
-
+    
     [
       'Ĺ',    #Capital L, acute ("&Lacute;")
       'Ł',    #Capital L, stroke ("&Lstrok;")
       'ĺ',    #Small l, acute ("&lacute;")
       'ł'     #Small l, stroke ("&lstrok;")
     ] => 'l',
-
+  
     [
-      'Ń',    #Capital N, acute ("&Nacute;")
+      'Ń',    #Capital N, acute ("&Nacute;")      
       'Ñ',    #Capital N, tilde ("&Ntilde;")
       'Ň',    #Capital N, caron ("&Ncaron;")
       'ń',    #Small n, acute  ("&nacute;")
@@ -105,7 +105,7 @@ module DictionaryOrder
       'ñ',    #Small n, tilde ("&ntilde;")
       'ň'     #Small n, caron ("&ncaron;")
     ] => 'n',
-
+  
     [
       'Ò',    #Capital O, grave accent ("&Ograve;")
       'Ó',    #Capital O, acute accent ("&Oacute;")
@@ -125,12 +125,12 @@ module DictionaryOrder
       'ǒ',    #Small o, caron ("&ocaron;")
       'ō'
     ] => 'o',
-
+    
     [
       'Œ',    #Capital OE dipthong (ligature) ("&OElig;")
       'œ'     #Small oe dipthong (ligature) ("&oelig;")
     ] => 'oe',
-
+    
     [
       'Ŕ',    #Capital R, acute ("&Racute;")
       'Ř',    #Capital R, caron ("&Rcaron;")
@@ -138,7 +138,7 @@ module DictionaryOrder
       'ř'     #Small r, caron ("&rcaron;")
     ] => 'r',
 
-    [
+    [ 
       'Ś',    #Capital S, acute ("&Sacute;")
       'Š',    #Capital S, caron ("&Scaron;")
       'Ṣ',    #Capital S, dot below (?)
@@ -146,27 +146,27 @@ module DictionaryOrder
       'š',    #Small s, caron ("&scaron;")
       'ş',    #Small s, ogonke ("&sogon;")
       'ṣ'     #Small s, dot below (?)
-    ] => 's',
-
-    [
+    ] => 's',  
+  
+    [ 
       'Ṭ',    #Capital T, dot below (?)
       'Ť',    #Capital T, caron ("&Tcaron;")
       'Ţ',    #Capital T, cedilla ("&Tcedil;")
-      'ţ',    #Small t, cedilla ("&tcedil;")
+      'ţ',    #Small t, cedilla ("&tcedil;") 
       'ṭ'     #Small t, dot below (?)
     ] => 't',
-
-    [
+    
+    [  
       'ß'     #Small sharp s, German (sz ligature) ("&szlig;")
-    ] => 'ss',
-
+    ] => 'ss',  
+  
     [
       'Þ',    #Capital thorn, Icelandic ("&THORN;")
       'þ',    #Small thorn, Icelandic ("&thorn;")
       'ð',    #Small eth, Icelandic ("&eth;")
       'Ð'     #Capital Eth, Icelandic ("&ETH;")
-    ] => 'th',
-
+    ] => 'th',  
+  
     [
       'Ù',    #Capital U, grave accent ("&Ugrave;")
       'Ú',    #Capital U, acute accent ("&Uacute;")
@@ -180,20 +180,20 @@ module DictionaryOrder
       'ú',    #Small u, acute accent ("&uacute;")
       'û',    #Small u, circumflex accent ("&ucirc;")
       'ü',    #Small u, dieresis or umlaut mark ("&uuml;")
-      'ǔ',    #Small u, caron ("&ucaron;")
+      'ǔ',    #Small u, caron ("&ucaron;") 
       'ũ',    #Smalu u, tilda  ("&utilde;")
       'ū',    #Small u, macron (?)
       'ů',    #Small u, ring ("&uring;")
       'ų',    #Small u, ogonek ("&uogon;")
       'ű'     #Small u, double acute (?)
-    ] => 'u',
-
-    [
+    ] => 'u',  
+  
+    [  
       'Ý',    #Capital Y, acute accent ("&Yacute;")
       'ý',    #Small y, acute accent ("&yacute;")
       'ÿ'     #Small y, dieresis or umlaut mark ("&yuml;")
     ] => 'y',
-
+    
     [
       'Ź',    #Capital Z, acute ("&Zacute;")
       'Ž',    #Capital Z, caron ("&Zcaron;")
@@ -204,7 +204,7 @@ module DictionaryOrder
       'ż',    #Small z, dot above ("&zdot;")
       'ẓ'     #Small z, dot below (?)
     ] => 'z'
-  }
+  }   
 
   # Normalize a string, go downcase and convert all chars to ASCII
   def self.normalize(src)
@@ -217,5 +217,5 @@ module DictionaryOrder
     end
     return new_str
   end
-
+  
 end

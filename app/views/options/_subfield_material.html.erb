@@ -1,7 +1,7 @@
 <select data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" class="serialize_marc marc_editor_hotkey">
-    <option value="">[unspecified]</option>
-    <%- (1..10).each do |m| %>
-        <%- mat = "Material #{m}" %>
-        <option value="<%= mat -%>" <%= (mat == marc_subfield.content) ? "selected=\"selected\"".html_safe : "" -%>><%= mat -%></option>
-    <%- end %>
+	<option value="">[unspecified]</option>
+	<%- (1..10).each do |m| %>
+	    <%- mat = "Material #{m}" %>
+		<option value="<%= mat -%>" <%= (mat == marc_subfield.content) ? "selected=\"selected\"".html_safe : "" -%>><%= mat -%></option>
+	<%- end %>
 </select>

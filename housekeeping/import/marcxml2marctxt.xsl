@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-
-    marcxml2marctxt.xsl - XSLT (1.0) stylesheet for transformation of RISM MARC XML to MARC text
-
-    Laurent Pugin <laurent.pugin@rism-ch.org>
-    Swiss RISM Office
-    Written: 2011-05-03
-    Last modified: 2012-12-10
-
-    For info on MARC XML, see http://www.loc.gov/marc/marcxml.html
-    For info on RISM, see http://www.rism-ch.org
-
-    Modifications:
-    - 2014/21/07: adding marc namespace; adding $ escaping
-
+	
+	marcxml2marctxt.xsl - XSLT (1.0) stylesheet for transformation of RISM MARC XML to MARC text
+	
+	Laurent Pugin <laurent.pugin@rism-ch.org>
+	Swiss RISM Office
+	Written: 2011-05-03
+	Last modified: 2012-12-10
+	
+	For info on MARC XML, see http://www.loc.gov/marc/marcxml.html
+	For info on RISM, see http://www.rism-ch.org
+	
+	Modifications:
+	- 2014/21/07: adding marc namespace; adding $ escaping
+		
 -->
 
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:marc="http://www.loc.gov/MARC21/slim">
@@ -57,4 +57,4 @@
     </xsl:template>
 
 </xsl:stylesheet>
-
+ 

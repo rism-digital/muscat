@@ -1,17 +1,17 @@
 <%- last_tag = "" %>
 
 <%- tags.each do |tag| %>
-    <%- tag = tag.diff if tag.diff && tag.diff.diff_is_deleted %>
-    <%- is_inserted_tag = (!tag.diff && !tag.diff_is_deleted) %>
-    <%- is_deleted_tag = (!tag.diff && tag.diff_is_deleted) %>
-    <div class="<%= tag.diff_is_deleted ? "tag_diff_deleted version_diff" : !tag.diff ? "tag_diff_inserted version_diff" : ""  -%>">
-        <%- tag.children do |subfield| %>
-            <%- subfield = subfield.diff if subfield.diff && subfield.diff.diff_is_deleted %>
-            <%- next if @item.marc.config.always_hide?(tag.tag, subfield.tag) || !subfield.content.is_a?(String) %>
-            <%= render :partial => "marc/show_diff_subfield", :locals => { :tag => tag, :subfield => subfield,
-                :no_label => (last_tag == tag.tag + subfield.tag), :is_inserted_tag => is_inserted_tag, :is_deleted_tag => is_deleted_tag } %>
-            <%- last_tag = tag.tag + subfield.tag %>
-        <%- end %>
-    </div>
+	<%- tag = tag.diff if tag.diff && tag.diff.diff_is_deleted %>
+	<%- is_inserted_tag = (!tag.diff && !tag.diff_is_deleted) %>
+	<%- is_deleted_tag = (!tag.diff && tag.diff_is_deleted) %>
+	<div class="<%= tag.diff_is_deleted ? "tag_diff_deleted version_diff" : !tag.diff ? "tag_diff_inserted version_diff" : ""  -%>">
+		<%- tag.children do |subfield| %>
+			<%- subfield = subfield.diff if subfield.diff && subfield.diff.diff_is_deleted %>
+			<%- next if @item.marc.config.always_hide?(tag.tag, subfield.tag) || !subfield.content.is_a?(String) %>
+			<%= render :partial => "marc/show_diff_subfield", :locals => { :tag => tag, :subfield => subfield, 
+				:no_label => (last_tag == tag.tag + subfield.tag), :is_inserted_tag => is_inserted_tag, :is_deleted_tag => is_deleted_tag } %>
+			<%- last_tag = tag.tag + subfield.tag %>
+		<%- end %>
+	</div>
 <%- end %>
 

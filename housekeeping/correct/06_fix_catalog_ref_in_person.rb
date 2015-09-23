@@ -1,6 +1,6 @@
 =begin
-search=Person.solr_search do
-  fulltext("Unresolved", :fields=>["667a"])
+search=Person.solr_search do 
+  fulltext("Unresolved", :fields=>["667a"]) 
   paginate :per_page=>50
 end
 
@@ -43,14 +43,14 @@ Person.all.each do |s|
   puts marc
   marc.each_by_tag("670") do |t|
     a = t.fetch_first_by_tag("a")
-    if a
+    if a 
       #if t.fetch_first_by_tag("b")
        # next
       #end
       if a.content.include?(": ")
 
         reference=a.content.split(": ")[0]
-        finding=a.content.split(": ")[1]
+        finding=a.content.split(": ")[1]  
         catalog=Catalogue.where(name: reference).take
         if catalog
           #t.destroy_child(a)
@@ -76,8 +76,8 @@ Person.all.each do |s|
     #      t.destroy_child(a)
       end
     end
-
-
+  
+  
 
   end
   puts "NEW MARC ========================================"

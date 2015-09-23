@@ -7,14 +7,14 @@
 #	content << a_tag.content if a_tag && a_tag.content	
 -%>
 <tr class="row">
-    <th>
-        <% if (no_label == false) -%>
-            <%= @editor_profile.get_label(tag.tag) %>
-        <%- end %>
-    </th>
-    <td>
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td>
       <%= a_tag.content+" ["+i_tag.content+"]" %>
-    </td>
+	</td>
 </tr>
 
 

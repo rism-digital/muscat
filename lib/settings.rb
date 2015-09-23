@@ -1,6 +1,6 @@
 # This class is used to read the editor profile configurations
 # from yaml files. It is needed in the first migration to read all the conf
-# Used in 199_sample_editor_profiles.rb
+# Used in 199_sample_editor_profiles.rb 
 
 class Settings < Hash
   def initialize(source = nil)
@@ -10,9 +10,9 @@ class Settings < Hash
       update YAML::load(source)
     end
   end
-
+  
   def dive(struct, from)
-
+    
     struct.each do |k, v|
       if v.is_a?(Hash) and from[k]
         dive(v, from[k])
@@ -21,7 +21,7 @@ class Settings < Hash
       end
     end
   end
-
+  
   def squeeze(other)
     other.each do |k, v|
       if v.is_a?(Hash) and self[k]
@@ -31,7 +31,7 @@ class Settings < Hash
       end
     end
   end
-
+  
   def to_yaml_sorted( opts = {} )
     YAML::quick_emit( object_id, opts ) do |out|
       out.map( taguri, to_yaml_style ) do |map|
@@ -45,5 +45,5 @@ class Settings < Hash
   alias settings to_yaml_sorted
   alias struct to_yaml_sorted
   alias to_s to_yaml_sorted
-
+  
 end

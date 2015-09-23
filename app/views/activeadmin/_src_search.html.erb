@@ -1,8 +1,8 @@
 <%= form_tag("", {method: "get", :class => 'filter_form'}) do %>
-    <%= label_tag(:q_embed, "Search for:") %>
-    <%= text_field_tag(:qe, params[:qe]) %>
-    <div class="buttons">
-        <%= submit_tag("Search") %>
-        <%= link_to("Clear Search",  "#", :class => "clear_filters_btn embedded_search_btn")%>
-    </div>
+	<%= label_tag(:q_embed, "Search for:") %>
+	<%= text_field_tag(:qe, params[:qe]) %>
+	<div class="buttons">
+ 	 	<%= submit_tag("Search") %>
+		<%= link_to("Clear Search",  "#", :class => "clear_filters_btn embedded_search_btn")%>
+	</div>
 <% end %>

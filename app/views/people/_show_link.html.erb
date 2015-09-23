@@ -4,13 +4,15 @@
   
 -%>
 <tr class="row">
-    <th>
-        <% if (no_label == false) -%>
-            <%= @editor_profile.get_label(tag.tag) %>
-        <%- end %>
-    </th>
-    <td>
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td>
     <%= y_tag.content+": "%>
     <%= link_to u_tag.content,u_tag.content, :target => "_blank"   %>
-    </td>
+	</td>
 </tr>
+
+

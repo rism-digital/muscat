@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ can? :manage, User }
-
+  
   permit_params :email, :password, :password_confirmation, :name, workgroup_ids: [], role_ids: []
 
   controller do
@@ -47,7 +47,7 @@ ActiveAdmin.register User do
         f.input :password_confirmation
       end
       if can? :manage, User
-        f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all
+        f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all 
         f.input :roles, as: :select, multiple: false, collection: Role.all
       end
     end
@@ -55,7 +55,7 @@ ActiveAdmin.register User do
   end
 
   show do
-    attributes_table do
+    attributes_table do 
       row :name
       row :email
       row I18n.t(:workgroups) do |n|
