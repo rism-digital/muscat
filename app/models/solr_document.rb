@@ -7,10 +7,10 @@ class SolrDocument
   include Blacklight::Solr::Document
 
   # self.unique_key = 'id'
-
+  
   # Email uses the semantic field mappings below to generate the body of an email.
   SolrDocument.use_extension( Blacklight::Document::Email )
-
+  
   # SMS uses the semantic field mappings below to generate the body of an SMS email.
   SolrDocument.use_extension( Blacklight::Document::Sms )
 
@@ -20,19 +20,19 @@ class SolrDocument
   # and Blacklight::Solr::Document#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension( Blacklight::Document::DublinCore)
-
-  use_extension( Muscat::Blacklight::MarcXML )
+  
+  use_extension( Muscat::Blacklight::MarcXML ) 
 
   #self.unique_key = 'std_title_texts'
 
   def to_param
     id.to_s.split(" ")[1] #split the "Model XXXXXX"
   end
-
+  
   def source_index_composer
-    first(:composer_texts) == "" ? "[n.a.]" : first(:composer_texts)
+      first(:composer_texts) == "" ? "[n.a.]" : first(:composer_texts)
   end
-
+  
   def source_index_description
     title = first(:std_title_texts) || ""
     sigla = first(:lib_siglum_texts) || ""
@@ -40,5 +40,5 @@ class SolrDocument
     desc = first(:"240m_texts") || ""
     "#{title}; #{desc}; #{sigla} #{shelf}"
   end
-
+  
 end

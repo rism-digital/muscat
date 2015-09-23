@@ -3,14 +3,14 @@
 #
 # === Fields
 # * <tt>full_name</tt> - Full name of the person: Second name, Name
-# * <tt>full_name_d</tt> - Downcase with UTF chars stripped
+# * <tt>full_name_d</tt> - Downcase with UTF chars stripped 
 # * <tt>life_dates</tt> - Dates in the form xxxx-xxxx
 # * <tt>birth_place</tt>
 # * <tt>gender</tt> - 0 = male, 1 = female
 # * <tt>composer</tt> - 1 =  it is a composer
 # * <tt>source</tt> - Source from where the bio info comes from
 # * <tt>alternate_names</tt> - Alternate spelling of the name
-# * <tt>alternate_dates</tt> - Alternate birth/death dates if uncertain
+# * <tt>alternate_dates</tt> - Alternate birth/death dates if uncertain 
 # * <tt>comments</tt>
 # * <tt>src_count</tt> - Incremented every time a Source tied to this person
 # * <tt>hls_id</tt> - Used to match this person with the its biografy at HLS (http://www.hls-dhs-dss.ch/)
@@ -18,38 +18,38 @@
 # Other wf_* fields are not shown
 
 class Person < ActiveRecord::Base
-
+  
   # class variables for storing the user name and the event from the controller
   @@last_user_save
   cattr_accessor :last_user_save
   @@last_event_save
   cattr_accessor :last_event_save
-
+  
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
-
+  
   def user_name
     user ? user.name : ''
   end
-
-  resourcify
+  
+  resourcify 
   has_many :works
   has_and_belongs_to_many :sources
   has_many :folder_items, :as => :item
   belongs_to :user, :foreign_key => "wf_owner"
-
+  
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
   
 #  validates_presence_of :full_name  
   validate :field_length
   
   #include NewIds
-
+  
   before_destroy :check_dependencies
-
+  
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :reindex
-
+  
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
 
@@ -57,7 +57,7 @@ class Person < ActiveRecord::Base
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
-
+  
   # This is the last callback to set the ID to 001 marc
   # A Person can be created in various ways:
   # 1) using new() without an id
@@ -85,76 +85,76 @@ class Person < ActiveRecord::Base
       self.save!
     end
   end
-
+  
   # Do it in two steps
   # The second time it creates all the MARC necessary
   def scaffold_marc
-    return if self.marc_source != nil
+    return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
-
+  
     new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/person/default.marc"))
     new_marc.load_source true
-
+    
     new_100 = MarcNode.new("person", "100", "", "1#")
     new_100.add_at(MarcNode.new("person", "a", self.full_name, nil), 0)
-
+    
     if self.life_dates
       new_100.add_at(MarcNode.new("person", "d", self.life_dates, nil), 1)
     end
-
+    
     pi = new_marc.get_insert_position("100")
     new_marc.root.children.insert(pi, new_100)
 
     if self.id != nil
       new_marc.set_id self.id
     end
-
+    
     if self.birth_place && !self.birth_place.empty?
       new_field = MarcNode.new("person", "370", "", "##")
       new_field.add_at(MarcNode.new("person", "a", self.birth_place, nil), 0)
-
+      
       new_marc.root.children.insert(new_marc.get_insert_position("370"), new_field)
     end
-
+    
     if self.gender && self.gender == 1 # only if female...
       new_field = MarcNode.new("person", "375", "", "##")
       new_field.add_at(MarcNode.new("person", "a", "female", nil), 0)
 
       new_marc.root.children.insert(new_marc.get_insert_position("375"), new_field)
     end
-
+    
     if (self.alternate_names != nil and !self.alternate_names.empty?) || (self.alternate_dates != nil and !self.alternate_dates.empty?)
       new_field = MarcNode.new("person", "400", "", "1#")
       name = (self.alternate_names != nil and !self.alternate_names.empty?) ? self.alternate_names : self.full_name
       new_field.add_at(MarcNode.new("person", "a", name, nil), 0)
       new_field.add_at(MarcNode.new("person", "d", self.alternate_dates, nil), 1) if (self.alternate_dates != nil and !self.alternate_dates.empty?)
-
+      
       new_marc.root.children.insert(new_marc.get_insert_position("400"), new_field)
     end
 
     if self.source != nil and !self.source.empty?
       new_field = MarcNode.new("person", "670", "", "##")
       new_field.add_at(MarcNode.new("person", "a", self.source, nil), 0)
-
+    
       new_marc.root.children.insert(new_marc.get_insert_position("670"), new_field)
     end
-
+    
     if self.comments != nil and !self.comments.empty?
       new_field = MarcNode.new("person", "680", "", "1#")
       new_field.add_at(MarcNode.new("person", "i", self.comments, nil), 0)
-
+    
       new_marc.root.children.insert(new_marc.get_insert_position("680"), new_field)
-    end
-
+    end    
+    
     self.marc_source = new_marc.to_marc
     self.save!
   end
-
+  
   # Suppresses the solr reindex
   def suppress_reindex
     self.suppress_reindex_trigger = true
   end
-
+  
   def reindex
     return if self.suppress_reindex_trigger == true
     self.index
@@ -167,28 +167,28 @@ class Person < ActiveRecord::Base
     end
     sunspot_dsl.text :full_name
     sunspot_dsl.text :full_name_d
-
+    
     sunspot_dsl.string :life_dates_order do
       life_dates
     end
     sunspot_dsl.text :life_dates
-
+    
     sunspot_dsl.text :birth_place
     sunspot_dsl.text :source
     sunspot_dsl.text :alternate_names
     sunspot_dsl.text :alternate_dates
-
-    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
+    
+    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
-
-    sunspot_dsl.integer :src_count_order do
+    
+    sunspot_dsl.integer :src_count_order do 
       src_count
     end
-
+    
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
-
+    
   end
-
+    
   # before_destroy, will delete Person only if it has no Source and no Work
   def check_dependencies
     if (self.sources.count > 0) || (self.works.count > 0)
@@ -196,13 +196,13 @@ class Person < ActiveRecord::Base
       return false
     end
   end
-
+  
   def set_object_fields
     # This is called always after we tried to add MARC
     # if it was suppressed we do not update it as it
     # will be nil
     return if marc_source == nil
-
+    
     # If the source id is present in the MARC field, set it into the
     # db record
     # if the record is NEW this has to be done after the record is created
@@ -213,13 +213,13 @@ class Person < ActiveRecord::Base
 
     # std_title
     self.full_name, self.full_name_d, self.life_dates = marc.get_full_name_and_dates
-
+    
     # alternate
     self.alternate_names, self.alternate_dates = marc.get_alternate_names_and_dates
-
+    
     # varia
     self.gender, self.birth_place, self.source, self.comments = marc.get_gender_birth_place_source_and_comments
-
+    
     self.marc_source = self.marc.to_marc
   end
   
@@ -227,19 +227,19 @@ class Person < ActiveRecord::Base
     self.life_dates = self.life_dates.truncate(24) if self.life_dates and self.life_dates.length > 24
     self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
   end
-
+  
   def self.find_recent_updated(limit, user)
     if user != -1
       where("updated_at > ?", 5.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
     else
-      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC")
+      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
     end
   end
-
+  
   def name
     return full_name
   end
-
+  
   def autocomplete_label
     "#{full_name}" + (life_dates && !life_dates.empty? ? "  - #{life_dates}" : "")
   end

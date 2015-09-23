@@ -1,24 +1,24 @@
 <%
     a_tag = tag.fetch_first_by_tag(:a)
     four_tags = tag.fetch_all_by_tag(:"4")
-    institution = (a_tag ? a_tag.looked_up_content : "")
-    master_tag = @item.marc.config.get_master(tag.tag) rescue master_tag = ""
-    db_id = tag.fetch_first_by_tag(master_tag).content rescue db_id = ""
+	institution = (a_tag ? a_tag.looked_up_content : "")
+	master_tag = @item.marc.config.get_master(tag.tag) rescue master_tag = ""
+	db_id = tag.fetch_first_by_tag(master_tag).content rescue db_id = ""
 -%>
 <tr class="row">
-    <th>
-        <% if (no_label == false) -%>
-            <%= @editor_profile.get_label(tag.tag) %>
-        <%- end %>
-    </th>
-    <td>
-        <% if opac %>
-            <%= link_to institution, catalog_index_path(:search_field => "any_field", :q => institution)%>
-        <% else %>
-            <%= link_to institution, admin_institution_path(db_id) -%>
-        <% end %>
-        <%- four_tags.each do |four_tag| %>
-            <%= " [#{@editor_profile.get_label(four_tag.content)}]" if (four_tag && four_tag.content) -%>
-        <%- end %>
-    </td>
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td>
+		<% if opac %>
+			<%= link_to institution, catalog_index_path(:search_field => "any_field", :q => institution)%>
+		<% else %>
+			<%= link_to institution, admin_institution_path(db_id) -%>
+		<% end %>
+		<%- four_tags.each do |four_tag| %> 
+			<%= " [#{@editor_profile.get_label(four_tag.content)}]" if (four_tag && four_tag.content) -%>
+		<%- end %>
+	</td>
 </tr>

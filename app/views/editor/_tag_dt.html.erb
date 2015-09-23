@@ -5,9 +5,9 @@
     <%= render :partial => "editor/tag_header", 
         :locals => { :tag_name => tag_name, :is_new => is_new, :empty_header => false  } %>
 
-    <div class="tag_content_collapsable">
-        <%= render :partial => @editor_profile.get_tag_partial("tag", tag_name),
-            :locals => { :tag_name => tag_name, :marc_tag => marc_tag, :is_new => is_new  } %>
+	<div class="tag_content_collapsable">
+		<%= render :partial => @editor_profile.get_tag_partial("tag", tag_name), 
+			:locals => { :tag_name => tag_name, :marc_tag => marc_tag, :is_new => is_new  } %>
     </div>
     
 </div>

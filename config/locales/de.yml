@@ -169,7 +169,7 @@ de:
         other: "Schlagwörter"
       standard_title:
         one: "Standardtitel"
-        other: "Standardtiteln"
+        other: "Standardtitel"
       user:
         one: "Benutzer"
         other: "Benutzer"
@@ -219,28 +219,28 @@ de:
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
   show_preview: "Vorschau anzeigen"
-  show_history: "HISTORY"
-  save_and_continue: "SAVE_AND_CONTINUE_EDITING"
-  save_and_exit: "SAVE_AND_EXIT"
-  cancel: "CANCEL"
+  show_history: "Änderungsgeschichte"
+  save_and_continue: "Speichern und weiter bearbeiten"
+  save_and_exit: "Speichern und verlassen"
+  cancel: "Löschen"
   
   # Version history
-  history_date: "DATE"
-  history_author: "AUTHOR"
-  history_event: "EVENT"
-  history_modification: "MODIFICATION"
+  history_date: "Datum"
+  history_author: "Bearbeiter"
+  history_event: "Aktion"
+  history_modification: "Modifikation"
   history_view: "Anzeigen"
   history_diff: "Vergleichen"
-  history_restore: "Umspeichern"
+  history_restore: "Wiederherstellen"
   history_delete: "Löschen"
-  history_restore_confirm: "DO YOU WANT TO RESTORE THIS VERSION?"
-  history_delete_confirm: "DO YOU WANT TO DELETE THIS VERSION?"
+  history_restore_confirm: "Wollen Sie diese Version wiederherstellen?"
+  history_delete_confirm: "Wollen Sie diese Version löschen?"
   
   #### FOLDER MESSAGES
   folders:
     save: "In Ordner speichern"
     success: "Ordner %{name} generiert aus %{count} Datensätzen."
-    too_many: "Es können nicht mehr als %{max} Datensätze (%{count} ausgewählt werden)."
+    too_many: "Es können nicht mehr als %{max} Datensätze ausgewählt werden (%{count} wurden ausgewählt)."
 
   ############ filters
   filter_address: "Adresse"

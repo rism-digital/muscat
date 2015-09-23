@@ -16,12 +16,12 @@ class MarcConfig
 
     @whole_config = Settings.new( YAML::load(File.open(tag_config_file_path)) )
 
-    config_file = File.basename(tag_config_file_path)
+    config_file = File.basename(tag_config_file_path) 
     overlay_file = File.join(Rails.root, 'config', 'marc', RISM::MARC, 'local_' + config_file)
     if File.exists?(overlay_file)
       @whole_config.squeeze(Settings.new(YAML::load(File.open(overlay_file))))
     end
-
+    
     @tag_config = @whole_config[:tags]
     # @indexed_tags = Array.new
     @foreign_tags = Array.new
@@ -38,7 +38,7 @@ class MarcConfig
         end
 
         @has_browsable[tag] = true unless field_data[:no_browse]
-
+        
         if field_data[:foreign_class]
           @foreign_tag_groups.push(tag) unless @foreign_tag_groups.include? tag
           @foreign_tags.push(tag + subtag)
@@ -53,11 +53,11 @@ class MarcConfig
       end
       @tag_config[tag][:tagless] = tagless
     end
-
+    
     return @whole_config[:model]
   end
 
-  public
+  public    
 
   def get_model
     @model
@@ -67,18 +67,18 @@ class MarcConfig
   def to_yaml
     @whole_config.to_yaml
   end
-
+  
   # Return if a tag is browsable, i.e. it will be shown to the user
   def tag_is_browsable?(tag)
     @has_browsable[tag]
   end
-
+  
   # Get the default indicator for a Marc tag
   def get_default_indicator(tag)
     return @tag_config[tag][:indicator][0] if @tag_config[tag][:indicator].is_a? Array
     @tag_config[tag][:indicator]
   end
-
+  
   # Block to iterate over the indicators for a tag
   def each_indicator(tag)
     if @tag_config[tag][:indicator].is_a? Array
@@ -106,7 +106,7 @@ class MarcConfig
   def get_foreign_class(tag, subtag)
     @tag_config[tag][:fields].assoc(subtag)[1][:foreign_class]
   end
-
+  
   # Get the foreign field that is connected to a foreign class
   def get_foreign_field(tag, subtag)
     @tag_config[tag][:fields].assoc(subtag)[1][:foreign_field]
@@ -115,15 +115,15 @@ class MarcConfig
   def get_foreign_alternates(tag, subtag)
     @tag_config[tag][:fields].assoc(subtag)[1][:foreign_alternates]
   end
-
+ 
   def get_foreign_dependants(tag, subtag)
     return @foreign_dependants[tag + subtag]
   end
-
+  
   def has_foreign_subfields(tag)
     return @foreign_tag_groups.rindex(tag)
   end
-
+  
   # Get the foreign field 0 padding length for string field (if wanted)
   def get_zero_padding(tag, subtag = "")
     # p tag
@@ -134,7 +134,7 @@ class MarcConfig
       @tag_config[tag][:fields].assoc(subtag)[1][:zero_padding] rescue nil
     end
   end
-
+  
   # Check if a tag or subtag can be repeated (* or + mean it is)
   def multiples_allowed?(tag, subtag = "")
     if subtag.empty?
@@ -154,7 +154,7 @@ class MarcConfig
   def has_tag?(tag)
     return @tag_config.include?(tag)
   end
-
+  
   def has_subfield?(tag, subtag )
     return true if @tag_config[tag][:fields].assoc(subtag)
     return false
@@ -175,7 +175,7 @@ class MarcConfig
     s = subtag.gsub(/\$/,"")
     @tag_config[tag][:fields].assoc(s)[1][:no_show] rescue nil
   end
-
+  
   def browse_inline?(tag, subtag)
     s = subtag.gsub(/\$/,"")
     @tag_config[tag][:fields].assoc(s)[1][:browse_inline] rescue nil
@@ -190,7 +190,7 @@ class MarcConfig
     s = subtag.gsub(/\$/,"")
     @tag_config[tag][:fields].assoc(s)[1][:size] || 15
   end
-
+  
   def get_subtag_attribute(tag, subtag, attribute_name)
     pull = @tag_config[tag]
     if pull
@@ -210,15 +210,15 @@ class MarcConfig
       return @tag_config[tag][:fields].assoc(subtag)[1][:indicator]
     end
   end
-
+  
   def each_data_tag
     @tag_config.keys.sort.each { |tag| yield tag if tag.to_i > 8 }
   end
-
+  
   def each_subtag( tag )
     @tag_config[tag][:fields].each { |subtag| yield subtag }
   end
-
+  
   def tags_with_subtag( subtag )
     tags = Array.new
     @tag_config.keys.sort.each do |tag|
@@ -226,8 +226,8 @@ class MarcConfig
     end
     tags
   end
-
-  def dive(struct, from)
+  
+  def dive(struct, from)    
     struct.each do |k, v|
       if v.is_a?(Hash) and from[k]
         dive(v, from[k])
@@ -236,7 +236,7 @@ class MarcConfig
       end
     end
   end
-
+  
   def squeeze(other)
     other.each do |k, v|
       if v.is_a?(Hash) and @whole_config[k]
@@ -246,6 +246,6 @@ class MarcConfig
       end
     end
   end
-
+    
 
 end

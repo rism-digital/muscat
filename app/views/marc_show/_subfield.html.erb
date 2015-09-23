@@ -1,11 +1,11 @@
 <li id="<%= "#{tag_div}_#{subfield}_#{iterator}" %>"<%= blind ? " style=\"display: none;\"" : "" %>>
-    <span class="subfield">
-        <div class="subfield_title">
-            <% if show_add_link %>
-            <%= link_to_function "+", "add_new_subfield_call('#{tag}', '#{tag_div}', '#{subfield}')" %><strong><%= title %></strong>
-            <% end %>
-        </div>
-        <% field_id = generate_field_name(tag_div, iterator, subfield) %>
-        <div><input class="subfield_entry serialize_marc marc_editor_hotkey" size="10" type="text" id="<%= field_id %>" name="<%= field_id %>" value="<%= h node.content %>" /></div>
-    </span>
+	<span class="subfield">
+		<div class="subfield_title">
+			<% if show_add_link %>
+			<%= link_to_function "+", "add_new_subfield_call('#{tag}', '#{tag_div}', '#{subfield}')" %><strong><%= title %></strong>
+			<% end %>
+		</div>
+		<% field_id = generate_field_name(tag_div, iterator, subfield) %>
+		<div><input class="subfield_entry serialize_marc marc_editor_hotkey" size="10" type="text" id="<%= field_id %>" name="<%= field_id %>" value="<%= h node.content %>" /></div>
+	</span>
 </li>

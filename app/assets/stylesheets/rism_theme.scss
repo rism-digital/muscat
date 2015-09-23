@@ -2,7 +2,7 @@
 
 /* require for verovio output with bootstrap */
 svg:not(:root){
-    overflow:inherit
+	overflow:inherit
 }
 
 #search-navbar {
@@ -322,10 +322,10 @@ footer {
     background-color: $gray0;
     padding: 5px;
     margin-bottom: 50px;
-    overflow: auto;
-    width: auto;
-    max-height: 600px;
-    word-wrap: normal;
+    overflow: auto; 
+    width: auto; 
+    max-height: 600px; 
+    word-wrap: normal; 
     display: none;
 }
 

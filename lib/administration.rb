@@ -63,4 +63,6 @@ class Administration
     #:colors => ['#aedaa9', '#12a702'],
     g.write('public/images/chart.png')
   end
+
+
 end

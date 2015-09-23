@@ -2,18 +2,18 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :workgroups
   attr_accessible :email, :password, :password_confirmation if Rails::VERSION::MAJOR < 4
-# Connects this user object to Blacklights Bookmarks.
+# Connects this user object to Blacklights Bookmarks. 
   include Blacklight::User
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable,
+  devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
   def can_edit?(source)
     if source.sources.count > 0
       libs=[]
-      source.sources.each do |so|
+      source.sources.each do |so| 
         so.institutions.each do |l|
           libs<<l
         end
@@ -27,13 +27,13 @@ class User < ActiveRecord::Base
   def get_workgroups
     self.workgroups.map {|ins| ins.name}
   end
-
+  
   def get_roles
     self.roles.map {|r| r.name}
   end
 
   def online?
-    updated_at > 10.minutes.ago
+      updated_at > 10.minutes.ago
   end
-
+  
 end

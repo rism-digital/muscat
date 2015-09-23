@@ -1,69 +1,69 @@
 <%-
-    random_string = SecureRandom.hex
+	random_string = SecureRandom.hex
 
-    number_a = tag.fetch_first_by_tag('a')
-    number_b = tag.fetch_first_by_tag('b')
-    number_c = tag.fetch_first_by_tag('c')
+	number_a = tag.fetch_first_by_tag('a')
+	number_b = tag.fetch_first_by_tag('b')	
+	number_c = tag.fetch_first_by_tag('c')	
 
-    pae_subfield = tag.fetch_first_by_tag('p')
-    has_image = false
-    last_tag = ""
+	pae_subfield = tag.fetch_first_by_tag('p')
+	has_image = false
+	last_tag = ""	
 
-    ## ! for testing, reatime rendering with verovio
-     incipit_number = "#{(number_a ? number_a.content : "x")}.#{(number_b ? number_b.content : "x")}.#{(number_c ? number_c.content : "x")}"
-         incipit_number_for_id = "#{(number_a ? number_a.content : "x")}#{(number_b ? number_b.content : "x")}#{(number_c ? number_c.content : "x")}"
-     image_render_div = "incipit_#{incipit_number_for_id}#{@item.id}"
+	## ! for testing, reatime rendering with verovio
+	 incipit_number = "#{(number_a ? number_a.content : "x")}.#{(number_b ? number_b.content : "x")}.#{(number_c ? number_c.content : "x")}"
+	 	 incipit_number_for_id = "#{(number_a ? number_a.content : "x")}#{(number_b ? number_b.content : "x")}#{(number_c ? number_c.content : "x")}"
+	 image_render_div = "incipit_#{incipit_number_for_id}#{@item.id}"
 %>
 
 <tr class="row">
-    <th><%= @editor_profile.get_sub_label(tag.tag, "a") %></th>
-    <td><%= incipit_number %></td>
+	<th><%= @editor_profile.get_sub_label(tag.tag, "a") %></th>
+	<td><%= incipit_number %></td>
 </tr>
 
 <% tag.children do |subfield| -%>
-    <% next if @item.marc.config.always_hide?(tag.tag, subfield.tag) || !(@editor_profile.show_all? || @item.marc.config.show_in_browse?(tag.tag, subfield.tag)) -%>
-    <%= render :partial => "marc/show_subfield", :locals => { :tag => tag, :subfield => subfield,
-        :no_label => (last_tag == tag.tag + subfield.tag) } %>
-    <%- last_tag = tag.tag + subfield.tag %>
+	<% next if @item.marc.config.always_hide?(tag.tag, subfield.tag) || !(@editor_profile.show_all? || @item.marc.config.show_in_browse?(tag.tag, subfield.tag)) -%>
+	<%= render :partial => "marc/show_subfield", :locals => { :tag => tag, :subfield => subfield, 
+		:no_label => (last_tag == tag.tag + subfield.tag) } %>
+	<%- last_tag = tag.tag + subfield.tag %>
 <% end -%>
 
 <!-- these are the subfields we can hide if we have an image -->
 
 <% if opac %>
 
-    <% label = [:g, :n, :o, :p].collect {|s|
-            subfield = tag.fetch_first_by_tag(s)
-            next unless subfield
-            "<b>#{@editor_profile.get_sub_label(tag.tag, subfield.tag)}</b>: #{subfield.content}".html_safe
-        }.join(", ")
-    %>
-
-    <tr class="row" id="<%= random_string %>"  style="display:none">
-        <th></th>
-        <td><%= label.html_safe %></td>
-    </tr>
+	<% label = [:g, :n, :o, :p].collect {|s|
+			subfield = tag.fetch_first_by_tag(s)
+			next unless subfield
+			"<b>#{@editor_profile.get_sub_label(tag.tag, subfield.tag)}</b>: #{subfield.content}".html_safe
+		}.join(", ")
+	%>
+	
+	<tr class="row" id="<%= random_string %>"  style="display:none">
+		<th></th>
+		<td><%= label.html_safe %></td>
+	</tr>
 
 <% else %>
-    <% [:g, :n, :o, :p].each do |s|
-        subfield = tag.fetch_first_by_tag(s)
-        next unless subfield
-        css_classes = cycle('', ' class="odd"')
-        %>
-        <tr class="row">
-            <th><%= @editor_profile.get_sub_label(tag.tag, subfield.tag) %></th>
-            <td><%= subfield.content %></td>
-        </tr>
-    <% end -%>
+	<% [:g, :n, :o, :p].each do |s|
+		subfield = tag.fetch_first_by_tag(s)
+		next unless subfield			
+		css_classes = cycle('', ' class="odd"')
+		%>
+		<tr class="row">
+			<th><%= @editor_profile.get_sub_label(tag.tag, subfield.tag) %></th>
+			<td><%= subfield.content %></td>
+		</tr>
+	<% end -%>
 <% end %>
-
+			
 <%	if (pae_subfield && pae_subfield.content ) %>
-    <tr class="row">
-        <td></td>
-        <td>
-            <a onclick="javascript:show_hide_pae('<%=random_string%>');">PAE Code</a>
-            <div id="<%= image_render_div %>" />
-        </td>
-    <tr>
+	<tr class="row">
+		<td></td>
+		<td>
+			<a onclick="javascript:show_hide_pae('<%=random_string%>');">PAE Code</a>
+			<div id="<%= image_render_div %>" />
+		</td>
+	<tr>
 <%-
    tag_g = tag.fetch_first_by_tag(:g)
    clef = (tag_g && tag_g.content) ? tag_g.content.html_safe : ""
@@ -84,25 +84,25 @@
 
 <script>
 
-    pae = "@start:pae-file\n";
-    pae = pae + "@clef:<%= clef %>\n";
-    pae = pae + "@keysig:<%= key %>\n";
-    pae = pae + "@key:<%= key_or_mode %>\n";
-    pae = pae + "@timesig:<%= time %>\n";
-    pae = pae + "@data: <%= notation %>\n";
-    pae = pae + "@end:pae-file\n"
-    render_music(pae, 'pae', $("#" + "<%=image_render_div%>"));
+	pae = "@start:pae-file\n";
+	pae = pae + "@clef:<%= clef %>\n";
+	pae = pae + "@keysig:<%= key %>\n";
+	pae = pae + "@key:<%= key_or_mode %>\n";
+	pae = pae + "@timesig:<%= time %>\n";
+	pae = pae + "@data: <%= notation %>\n";
+	pae = pae + "@end:pae-file\n"
+	render_music(pae, 'pae', $("#" + "<%=image_render_div%>"));
 
-    function show_hide_pae(id) {
-        row = $("#" + id)
-        if (row.is(":hidden")) {
-            row.show();
-        } else {
-            row.hide();
-        }
-    }
+	function show_hide_pae(id) {
+		row = $("#" + id)
+		if (row.is(":hidden")) {
+			row.show();
+		} else {
+			row.hide();
+		}
+	}
 
 </script>
-
+	
 <% end -%>
 

@@ -1,5 +1,5 @@
 ActiveAdmin.register WorkIncipit do
-
+  
   menu false
 
   # See permitted parameters documentation:
@@ -11,5 +11,5 @@ ActiveAdmin.register WorkIncipit do
       params.permit!
     end
   end
-
+  
 end
