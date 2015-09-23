@@ -1,8 +1,13 @@
-<%
-	# Build the back to index path function
-	model = self.resource_class.to_s.underscore.downcase
-	index_link_function = "admin_#{model}_path"
-	index_path = send(index_link_function, @item.id)
+<%-
+    # Build the back to index path function
+    model = self.resource_class.to_s.underscore.downcase
+    models = model.pluralize
+    cancel_path = ""
+    if @item.id != nil
+      cancel_path = send("admin_#{model}_path", @item)
+    else
+      cancel_path = send("admin_#{models}_path")
+    end
 %>
 <ul>
 	
@@ -22,7 +27,7 @@
 	<li class="muscat_icon_link"><a data-scroll-target="action" data-action="save" href="#" class="muscat_icon_link muscat_icon_link_save"><%=(I18n.t :save_and_continue)%></a></li>
 	<li class="muscat_icon_link"><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="muscat_icon_link muscat_icon_link_history"><%=(I18n.t :show_history)%></a></li>
 	<li class="muscat_icon_separator"></li>
-	<li class="muscat_icon_link"><a href="<%=index_path%>" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a></li>
+	<li class="muscat_icon_link"><a href="<%= cancel_path %>" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a></li>
 	<li class="muscat_icon_link"><a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a></li>
 
 </ul>

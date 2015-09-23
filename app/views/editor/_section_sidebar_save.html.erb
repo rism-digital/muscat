@@ -1,10 +1,19 @@
 <%-
 	# Build the back to index path function
 	model = self.resource_class.to_s.underscore.downcase
-	index_link_function = "admin_#{model}_path"
-	index_path = send(index_link_function, self.instance_variable_get("@" + model))
+    models = model.pluralize
+    item = self.instance_variable_get("@" + model)
+    cancel_path = ""
+    save_form = ""
+    if item.id != nil
+      cancel_path = send("admin_#{model}_path", item)
+      save_form = "edit_#{model}"
+    else
+      cancel_path = send("admin_#{models}_path")
+      save_form = "new_#{model}"
+    end
 %>
 <ul>
-	<li class="muscat_icon_link"><a href="<%= index_path %>" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a></li>
-	<li class="muscat_icon_link"><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" data-save-form="<%= "edit_#{model}" %>" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a></li>
+	<li class="muscat_icon_link"><a href="<%= cancel_path %>" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a></li>
+	<li class="muscat_icon_link"><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" data-save-form="<%= save_form  %>" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a></li>
 </ul>
