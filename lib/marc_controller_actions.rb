@@ -55,10 +55,20 @@ module MarcControllerActions
       model.last_event_save = nil
      
       # build the dynamic model path
-      model_for_path = self.resource_class.to_s.underscore.downcase
-      link_function = "edit_admin_#{model_for_path}_path"
-     
-      path =  send(link_function, @item.id) #edit_source_path(@item.id)
+      
+      # Redirect decides if we ar reloading the editor or redirecting
+      # to the index page
+      redirect = params.include?(:redirect) ? params[:redirect] : false
+
+      if redirect == "true"
+        model_for_path = self.resource_class.to_s.underscore.pluralize.downcase
+        link_function = "admin_#{model_for_path}_path"
+        path =  send(link_function) #admin_sources_path
+      else
+        model_for_path = self.resource_class.to_s.underscore.downcase
+        link_function = "edit_admin_#{model_for_path}_path"
+        path =  send(link_function, @item.id) #admin_edit_source_path(@item.id)
+      end
 
       respond_to do |format|
         format.js { render :json => { :redirect => path }.to_json }

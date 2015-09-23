@@ -91,7 +91,9 @@ function marc_editor_add_subfield(id) {
 // Serialize marc to JSON and do an ajax call to save it
 // Ajax sends back and URL tor erirect to
 // or an error
-function marc_editor_send_form(form_name, rails_model) {
+function marc_editor_send_form(form_name, rails_model, redirect) {
+	redirect = redirect || false;
+	
 	form = $('form', "#" + form_name);
 	json_marc = serialize_marc_editor_form(form);
 
@@ -104,14 +106,17 @@ function marc_editor_send_form(form_name, rails_model) {
 	
 	$.ajax({
 		success: function(data) {
-			new_url = data.redirect;
+			
 			window.onbeforeunload = false;
+			// just reload the edit page
+			new_url = data.redirect;
 			window.location.href = new_url;
 		},
 		data: {
 			marc: JSON.stringify(json_marc),
 			id: $('#id').val(), 
-			lock_version: $('#lock_version').val()
+			lock_version: $('#lock_version').val(),
+			redirect: redirect
 		},
 		dataType: 'json',
 		timeout: 20000,

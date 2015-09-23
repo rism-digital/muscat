@@ -30,12 +30,29 @@ var init_sidebar_actions = function () {
 			marc_editor_show_panel(panel)
 		} // function
 		
+		// Defer to the marc_editor
+		// for the save, cancel and
+		// save and exit actions
+		function do_actions(action) {
+			
+			if (action == "save") {
+				marc_editor_send_form('marc_editor_panel', marc_editor_get_model());
+			} else if (action == "cancel") {
+				marc_editor_redirect(marc_editor_get_model());
+			} else if (action == "exit") {
+				marc_editor_send_form('marc_editor_panel', marc_editor_get_model(), true);
+			}
+			
+		}
+		
 		tname = $(this).data("scroll-target"); // type of action
 		panel = $(this).data("panel"); // toplevel panel
 		
 		if (tname == "show_toplevel") {
 			// Show a specific toplevel panel
 			show_toplevel(panel);
+		} else if (tname == "action") {
+			do_actions($(this).data("action"));
 		} else if (tname == "show_preview") {
 			// the preview panel requires AJAX to get the data
 			// so we defer action to this function
