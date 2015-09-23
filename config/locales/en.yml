@@ -217,7 +217,7 @@ en:
   updated_at: "Last modification"
   
   # Editor sidebar
-  show_all_groups: "Show all groups"
+  show_all_groups: "Show all sections"
   show_preview: "Show preview"
   show_history: "Show modification history"
   save_and_continue: "Save and continue editing"
