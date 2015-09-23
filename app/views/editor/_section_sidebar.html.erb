@@ -7,12 +7,13 @@
 	<%- missing_group_link = @editor_profile.layout_config[:marc_editor_missing_group_links] %>
 	<li><a data-scroll-target="<%= missing_group_link.gsub(/ /, "_") -%>" data-panel="marc_editor_panel" href="#"><%= missing_group_link -%></a></li>
 <%- end -%>
-	<li class="marc_separator"></li>
-	<li class="marc_icon"><a data-scroll-target="show_toplevel" data-panel="marc_editor_panel" href="#" class="marc_icon marc_icon_all"><%=(I18n.t :show_all_groups)%></a></li>
-	<li class="marc_icon"><a data-scroll-target="show_preview" data-panel="marc_editor_preview" href="#" class="marc_icon marc_icon_preview"><%=(I18n.t :show_preview)%></a></li>
-	<li class="marc_icon"><a data-scroll-target="action" data-action="save" href="#" class="marc_icon marc_icon_save"><%=(I18n.t :save_and_continue)%></a></li>
-	<li class="marc_icon"><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="marc_icon marc_icon_history"><%=(I18n.t :show_history)%></a></li>
-	<li class="marc_separator"></li>
-	<li class="marc_icon"><a data-scroll-target="action" data-action="cancel" href="#" class="marc_icon marc_icon_cancel"><%=(I18n.t :cancel)%></a></li>
-	<li class="marc_icon"><a data-scroll-target="action" data-action="exit" href="#" class="marc_icon marc_icon_save_exit"><%=(I18n.t :save_and_exit)%></a></li>
+	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link"><a data-scroll-target="show_toplevel" data-panel="marc_editor_panel" href="#" class="muscat_icon_link muscat_icon_link_all"><%=(I18n.t :show_all_groups)%></a></li>
+	<li class="muscat_icon_link"><a data-scroll-target="show_preview" data-panel="marc_editor_preview" href="#" class="muscat_icon_link muscat_icon_link_preview"><%=(I18n.t :show_preview)%></a></li>
+	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link"><a data-scroll-target="action" data-action="save" href="#" class="muscat_icon_link muscat_icon_link_save"><%=(I18n.t :save_and_continue)%></a></li>
+	<li class="muscat_icon_link"><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="muscat_icon_link muscat_icon_link_history"><%=(I18n.t :show_history)%></a></li>
+	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link"><a data-scroll-target="action" data-action="cancel" href="#" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a></li>
+	<li class="muscat_icon_link"><a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a></li>
 </ul>
