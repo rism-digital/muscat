@@ -194,32 +194,32 @@ $diff-padding-width: 15px;
 	padding-left: 0px;
     margin: 0px;
     
-    li.marc_icon {
+    li.muscat_icon_link {
         vertical-align: middle;
         line-height: 25px;
         min-height: 24px;
         padding-top: 8px;
-        a.marc_icon {
+        a.muscat_icon_link {
             margin-left: 2px;
             padding-left: 40px;
             display: inline-block;
         }
-        a.marc_icon_all {
+        a.muscat_icon_link_all {
             background: image-url("/images/marc-icons/all.png") no-repeat;
         }
-        a.marc_icon_cancel {
+        a.muscat_icon_link_cancel {
             background: image-url("/images/marc-icons/cancel.png") no-repeat;
         }
-        a.marc_icon_history {
+        a.muscat_icon_link_history {
             background: image-url("/images/marc-icons/history.png") no-repeat;
         }
-        a.marc_icon_preview {
+        a.muscat_icon_link_preview {
             background: image-url("/images/marc-icons/preview.png") no-repeat;
         }
-        a.marc_icon_save {
+        a.muscat_icon_link_save {
             background: image-url("/images/marc-icons/save.png") no-repeat;
         }
-        a.marc_icon_save_exit {
+        a.muscat_icon_link_save_exit {
             background: image-url("/images/marc-icons/save-exit.png") no-repeat;
         }
     }

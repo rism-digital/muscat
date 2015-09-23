@@ -43,7 +43,8 @@ de:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filter"
-      sections: "Blöcke"
+      sections: "Blöcke und Aktionen"
+      actions: "Aktionen"
     pagination:
       empty: "Keine %{model} gefunden"
       one: "Zeige <b>1</b> %{model}"

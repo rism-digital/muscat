@@ -43,7 +43,8 @@ fr:
     powered_by: "Propulsé par %{active_admin} %{version}"
     sidebars:
       filters: "Filtres"
-      sections: "SECTIONS"
+      sections: "Groupes et actions"
+      actions: "Actions"
     pagination:
       empty: "Aucun %{model} trouvé"
       one: "Affichage de <b>1</b> %{model}"

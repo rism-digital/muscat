@@ -43,7 +43,8 @@ en:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filters"
-      sections: "Sections"
+      sections: "Sections and actions"
+      actions: "Actions"
     pagination:
       empty: "No %{model} found"
       one: "Displaying <b>1</b> %{model}"
@@ -218,7 +219,7 @@ en:
   # Editor sidebar
   show_all_groups: "Show all groups"
   show_preview: "Show preview"
-  show_history: "Show change history"
+  show_history: "Show modification history"
   save_and_continue: "Save and continue editing"
   save_and_exit: "Save and terminate"
   cancel: "Cancel"
