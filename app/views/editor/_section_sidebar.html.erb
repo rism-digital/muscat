@@ -1,8 +1,8 @@
 <%
 	# Build the back to index path function
-	model = self.resource_class.to_s.pluralize.underscore.downcase
+	model = self.resource_class.to_s.underscore.downcase
 	index_link_function = "admin_#{model}_path"
-	index_path = send(index_link_function)
+	index_path = send(index_link_function, @item.id)
 %>
 <ul>
 <%- @editor_profile.layout_config[:marc_editor_group_links].each do |gl| -%>
