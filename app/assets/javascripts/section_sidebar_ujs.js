@@ -34,15 +34,18 @@ var init_sidebar_actions = function () {
 		// for the save, cancel and
 		// save and exit actions
 		function do_actions(action) {
+			var redirect = false;
 			
 			if (action == "save") {
-				marc_editor_send_form('marc_editor_panel', marc_editor_get_model());
-			} else if (action == "cancel") {
-				marc_editor_redirect(marc_editor_get_model());
+				// ok it is redundand
+				// save will not redirect to index
+				redirect = false;
 			} else if (action == "exit") {
-				marc_editor_send_form('marc_editor_panel', marc_editor_get_model(), true);
+				// Save and exit will redirect
+				redirect = true;
 			}
 			
+			marc_editor_send_form('marc_editor_panel', marc_editor_get_model(), redirect);
 		}
 		
 		tname = $(this).data("scroll-target"); // type of action

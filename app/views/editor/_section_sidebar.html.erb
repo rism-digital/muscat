@@ -1,3 +1,9 @@
+<%
+	# Build the back to index path function
+	model = self.resource_class.to_s.pluralize.underscore.downcase
+	index_link_function = "admin_#{model}_path"
+	index_path = send(index_link_function)
+%>
 <ul>
 <%- @editor_profile.layout_config[:marc_editor_group_links].each do |gl| -%>
 	<li><a data-scroll-target="<%= gl.gsub(/ /, "_") -%>" data-panel="marc_editor_panel" href="#"><%= gl -%></a></li>
@@ -13,6 +19,7 @@
 	<li class="marc_icon"><a data-scroll-target="action" data-action="save" href="#" class="marc_icon marc_icon_save"><%=(I18n.t :save_and_continue)%></a></li>
 	<li class="marc_icon"><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="marc_icon marc_icon_history"><%=(I18n.t :show_history)%></a></li>
 	<li class="marc_separator"></li>
-	<li class="marc_icon"><a data-scroll-target="action" data-action="cancel" href="#" class="marc_icon marc_icon_cancel"><%=(I18n.t :cancel)%></a></li>
+	<li class="marc_icon"><a href="<%=index_path%>" class="marc_icon marc_icon_cancel"><%=(I18n.t :cancel)%></a></li>
 	<li class="marc_icon"><a data-scroll-target="action" data-action="exit" href="#" class="marc_icon marc_icon_save_exit"><%=(I18n.t :save_and_exit)%></a></li>
 </ul>
+
