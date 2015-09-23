@@ -212,6 +212,16 @@ class EditorConfiguration
     return "editor/#{partial}"
   end
   
+  # gets the display partial for the specified tag from the configuration. Used so
+  # the tag display can be customized from the configutarion.
+  # This call returns false if the partial is not found
+  def get_tag_partial_no_default(partial, tag_name)
+    if options_config.include?(tag_name) && options_config[tag_name].include?(partial)
+      return "options/#{options_config[tag_name][partial]}"
+    end
+    return false
+  end
+  
   # gets the width of the specified tag in columns. It is used in the editor view so
   # The edit field for a tag can be more or less big.
   def get_column_for(tag_name, subfield_name)

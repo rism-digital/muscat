@@ -23,4 +23,8 @@
 <%- end -%>
 </dl>
 
+<% if data_partial = @editor_profile.get_tag_partial_no_default("tag_list_additional_data", tag_name) %>
+	<%= render :partial => data_partial, :locals => { :tag_name => tag_name } %>
+<%end%>
+
 <%= render :partial => "editor/tag_placeholders", :locals => { :tag_name => tag_name } %>

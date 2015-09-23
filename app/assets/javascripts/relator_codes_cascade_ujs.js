@@ -16,7 +16,7 @@
 	data-select-code-list need not to be at the same level, but should be
 	child if tag_group
 
-	data-select-code-list is implemented in _tag_list_header_relator_codes
+	data-select-code-list is implemented in _tag_list_additional_data_relator_codes
 	
 	Used for _subfield_relator_codes_700
 */
@@ -54,7 +54,7 @@
 			data = parent_select.parents(".tag_group").children("[data-select-code-list]");
 	
 			child_select = parent_select.parent().children(".bottom_cascade_select")
-			$(child_select).cascade(parent_select, {					
+			$(child_select).cascade(parent_select, {
 				list: data.data("select-code-list"),
 				template: function(item) {
 					return "<option value='" + item.Value + "'>" + item.Text + "</option>";
