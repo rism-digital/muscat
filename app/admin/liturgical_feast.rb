@@ -113,7 +113,10 @@ ActiveAdmin.register LiturgicalFeast do
       f.input :notes, :label => (I18n.t :filter_notes)
       f.input :lock_version, :as => :hidden
     end
-    f.actions
+  end
+  
+  sidebar :actions, :only => [:edit, :new] do
+    render("editor/section_sidebar_save") # Calls a partial
   end
   
 end

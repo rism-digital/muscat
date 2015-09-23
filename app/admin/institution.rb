@@ -137,6 +137,7 @@ ActiveAdmin.register Institution do
   ##########
   ## Edit ##
   ##########
+  
   sidebar :sections, :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
   end
