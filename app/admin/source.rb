@@ -133,7 +133,7 @@ ActiveAdmin.register Source do
            end
          }
   
-  index do
+  index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage)} 
