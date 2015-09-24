@@ -49,6 +49,9 @@ gem 'paper_trail'
 # for aligning marc
 gem 'needleman_wunsch_aligner'
 
+# for the documentation
+gem 'htmlentities'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
