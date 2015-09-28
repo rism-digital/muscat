@@ -13,7 +13,7 @@ ActiveAdmin.register Source do
   end
     
   action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( person )
+    active_admin_muscat_select_link( source )
   end
 
   # See permitted parameters documentation:
