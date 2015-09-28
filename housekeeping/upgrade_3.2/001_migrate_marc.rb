@@ -118,6 +118,15 @@ Source.all.each do |s|
     modified = true
   end
 
+  # Make sure all 031 have $2pe
+  marc.each_by_tag("031") do |incipit|
+    tags = incipit.fetch_all_by_tag("2")
+    if tags.count == 0
+      incipit.add_at(MarcNode.new(Source, "2", "pe", nil), 0)
+      incipit.sort_alphabetically
+    end
+  end
+
   # Lastly get into each tang and
   # 1) remove $_
   # 2) sort_alphabetically
