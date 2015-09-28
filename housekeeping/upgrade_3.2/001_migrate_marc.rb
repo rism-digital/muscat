@@ -118,6 +118,20 @@ Source.all.each do |s|
     modified = true
   end
 
+  # Lastly get into each tang and
+  # 1) remove $_
+  # 2) sort_alphabetically
+  tgs = marc.all_tags
+  tgs.each do |t|
+    t.sort_alphabetically
+    a = t.fetch_all_by_tag("_")
+    next if a.count == 0
+    a.each do |st|
+      t.destroy_child(st)
+    end
+    modified = true
+  end
+
   
   if modified
     # This case should never happen
