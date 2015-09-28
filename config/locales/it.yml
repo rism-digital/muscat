@@ -220,9 +220,9 @@ it:
   show_all_groups: "Mostra tutti i gruppi"
   show_preview: "Mostra l'anteprima"
   show_history: "Mostra lo storico"
-  save_and_continue: "SAVE_AND_CONTINUE_EDITING"
-  save_and_exit: "SAVE_AND_EXIT"
-  cancel: "CANCEL"
+  save_and_continue: "Salva e continua"
+  save_and_exit: "Salva ed esci"
+  cancel: "Annulla"
   
   # Version history
   history_date: "Data"
