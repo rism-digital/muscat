@@ -5,15 +5,20 @@
 		if subfieldopt == subfield
 			read_only = field_settings["read_only"] != nil ? field_settings["read_only"] : false
 		end
-	end	
+	end
+	
+	content = marc_subfield.content
+	content = params["default"] if params.include?("default") && !content
+	
 %>
+
 <%- if (params['growfield'])  %>
-	<textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>"><%= h marc_subfield.content %></textarea>
+	<textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>"><%= h content %></textarea>
 <%- else %>
 	<% if read_only %>
-			<input class="subfield_entry"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h marc_subfield.content %>"/>
-			<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h marc_subfield.content %>"/>
+			<input class="subfield_entry"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h content %>"/>
+			<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
 	<% else %>
-		<input class="subfield_entry serialize_marc marc_editor_hotkey" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h marc_subfield.content %>"/>
+		<input class="subfield_entry serialize_marc marc_editor_hotkey" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
 	<% end %>
 <%- end %>

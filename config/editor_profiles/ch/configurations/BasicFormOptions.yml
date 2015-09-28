@@ -26,7 +26,10 @@
 #      - editor_partial: subfield_material
 "031": 
   layout: 
-    fields: 
+    fields:
+    - - "2"
+      - default: "pe"
+        hidden: true
     - - a
 #      - validate: 
 #        - msg: the format must be numeric
