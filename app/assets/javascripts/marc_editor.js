@@ -1,12 +1,30 @@
-function marc_editor_discard_changes_leaving( ) {	
+function marc_editor_discard_changes_leaving() {
+	
+	if (newWindowIsSelect()) {
+		return "You have a selection window open. Closing the window will lose all the modifications."
+	}
+	
 	if (marc_editor_form_changed) {
-	   return "The modifications on the title will be lost 2";
+	   return "The modifications on the title will be lost";
    }
+}
+
+function marc_editor_cleanp() {
+	if (newWindowIsSelect()) {
+		newWindowClose();
+	}
 }
 
 // init the tags
 // called from the edit_wide.rhtml partial
 function marc_editor_init_tags( id ) {
+	
+	// Set event hooks
+	// avoid user to accidently leave the page when the form was modify 
+	// will ask for a confirmation
+	window.onbeforeunload = marc_editor_discard_changes_leaving;
+	window.onunload = marc_editor_cleanp;
+	
 	$(".sortable").sortable();
 
 	/* Bind to the global railsAutocomplete. event, thrown when someone selects
