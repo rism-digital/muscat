@@ -94,7 +94,7 @@ module MarcControllerActions
       
       new_marc = dyna_marc_class.new()
       # Load marc, do not resolve externals
-      new_marc.load_from_hash(marc_hash, nil, false)
+      new_marc.load_from_hash(marc_hash)
 
       @item = model.new
       @item.marc = new_marc

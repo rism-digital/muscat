@@ -262,7 +262,19 @@ function marc_editor_get_model() {
 function marc_editor_show_hide_preview() {
 	// Use the commodity function in marc_editor.js
 	// model comes from the marc_editor_panel div
-	model = marc_editor_get_model();
+	var model = marc_editor_get_model();
+	var cancel = false;
+
+	$('div[data-function="new"]').each(function(){
+		if ($(this).is(':visible')) {
+			alert("There is an unsaved authority file. Please save the source before opining the preview.");
+			cancel = true;
+		}
+	});
+
+	if (cancel) {
+		return;
+	}
 
 	if ($('#marc_editor_preview').not(':visible')) {
 		// this function gets the show data via ajax
