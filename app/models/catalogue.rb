@@ -66,7 +66,7 @@ class Catalogue < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.save!
+      self.without_versioning :save
     end
   end
   

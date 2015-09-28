@@ -129,6 +129,7 @@ GEM
       activesupport (>= 3.2, < 5)
     highline (1.6.21)
     hike (1.2.3)
+    htmlentities (4.3.4)
     i18n (0.7.0)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
@@ -152,7 +153,7 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.6.2)
     mini_portile (0.6.2)
-    minitest (5.8.0)
+    minitest (5.8.1)
     multi_json (1.11.2)
     mysql2 (0.3.20)
     needleman_wunsch_aligner (1.0.4)
@@ -263,6 +264,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   devise-i18n
+  htmlentities
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails
