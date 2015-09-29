@@ -79,9 +79,10 @@ class MarcNode
             end
             # also set the foreign object for upcoming access to the field value
             dep_tag.set_foreign_object if dep_tag
+            sort_alphabetically
           end
         end
-      # this will happen with 004 in holding records       
+      # this will happen with 004 in holding records
       elsif @marc_configuration.has_foreign_subfields(self.tag) && @marc_configuration.is_tagless?( self.tag )
         foreign_class = @marc_configuration.get_foreign_class(self.tag, "")
         self.foreign_object = foreign_class.constantize.send("find", self.content)
