@@ -222,7 +222,7 @@ de:
   show_history: "Änderungsgeschichte"
   save_and_continue: "Speichern und weiter bearbeiten"
   save_and_exit: "Speichern und verlassen"
-  cancel: "Löschen"
+  cancel: "Abbrechen"
   
   # Version history
   history_date: "Datum"
