@@ -269,7 +269,7 @@ it:
   filter_folder_type: "Folder Type"
   filter_full_name: "Nome"
   filter_gender: "Sesso"
-  filter_id: "ID"
+  filter_id: "Id"
   filter_incipits: "Incipit"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
@@ -349,6 +349,9 @@ it:
   rism_f_sharp: "Fa diesis maggiore/minore"
   rism_g: "Sol maggiore/minore"
   rism_g_sharp: "Sol diesis maggiore/minore"
+  
+  # Assorted error messages
+  error_not_found: "La risorsa specificata non esiste oppure è stata cancellata."
   
   #
   entry:
