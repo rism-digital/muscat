@@ -65,7 +65,8 @@ groups:
     all_tag_templates: 
       "510": marc_show/show_subfield_concat
   show_library: 
-    all_tags: 
+    all_tags:
+    - "110" 
     - "852"
     - "541"
   show_distribution: 
