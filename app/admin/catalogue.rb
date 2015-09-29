@@ -45,18 +45,18 @@ ActiveAdmin.register Catalogue do
     end
     
     def edit
-      begin
-        @item = Catalogue.find(params[:id])
-      rescue ActiveRecord::RecordNotFound
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Catalogue #{params[:id]})" }
-      end
+      @item = Catalogue.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_applicable_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
     end
 
     def show
-      @item = @catalogue = Catalogue.find(params[:id])
+      begin
+        @item = @catalogue = Catalogue.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Catalogue #{params[:id]})" }
+      end
       @editor_profile = EditorConfiguration.get_show_layout @catalogue
       @prev_item, @next_item, @prev_page, @next_page = Catalogue.near_items_as_ransack(params, @catalogue)
     end
