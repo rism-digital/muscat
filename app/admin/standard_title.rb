@@ -44,7 +44,11 @@ ActiveAdmin.register StandardTitle do
     end
     
     def show
-      @standard_title = StandardTitle.find(params[:id])
+      begin
+        @standard_title = StandardTitle.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (StandardTitle #{params[:id]})" }
+      end
       @prev_item, @next_item, @prev_page, @next_page = StandardTitle.near_items_as_ransack(params, @standard_title)
     end
     

@@ -45,7 +45,11 @@ ActiveAdmin.register Catalogue do
     end
     
     def edit
-      @item = Catalogue.find(params[:id])
+      begin
+        @item = Catalogue.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Catalogue #{params[:id]})" }
+      end
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_applicable_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
