@@ -14,7 +14,7 @@ if [ $# -gt 0 ]; then
     lang=$1
 fi
 
-rails r housekeeping/doc/generate_doc.rb guidelines.yml ./public/guidelines/$marc/$name-$lang.html $lang
+rails r housekeeping/doc/generate_doc.rb guidelines.yml ./public/guidelines/$marc/.output.html $lang
 
 content="Content"
 if [ $lang = "de" ]; then
@@ -22,7 +22,7 @@ if [ $lang = "de" ]; then
 fi
 
 iconv -f UTF-8 -t ISO-8859-1 ../../public/help/$marc/title_$lang.html > ../../public/help/$marc/.title.html
-iconv --unicode-subst=formatstring -f UTF-8 -t ISO-8859-1 ../../public/guidelines/$marc/$name-$lang.html > ../../public/help/$marc/.content.html
+iconv --unicode-subst=formatstring -f UTF-8 -t ISO-8859-1 ../../public/guidelines/$marc/.output.html > ../../public/help/$marc/.content.html
 
 htmldoc \
 	--titleimage ../../public/help/$marc/$image \
@@ -42,3 +42,4 @@ htmldoc \
 
 rm ../../public/help/$marc/.title.html
 rm ../../public/help/$marc/.content.html
+rm ../../public/guidelines/$marc/.output.html

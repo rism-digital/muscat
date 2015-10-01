@@ -41,7 +41,6 @@ var init_sidebar_actions = function () {
 		// save and exit actions
 		function do_actions(action) {
 			var redirect = false;
-			
 			if (action == "save") {
 				// ok it is redundand
 				// save will not redirect to index
@@ -50,12 +49,12 @@ var init_sidebar_actions = function () {
 				// Save and exit will redirect
 				redirect = true;
 			}
-			
-			marc_editor_send_form('marc_editor_panel', marc_editor_get_model(), redirect);
+			marc_editor_send_form(redirect);
 		}
 		
 		tname = $(this).data("scroll-target"); // type of action
 		panel = $(this).data("panel"); // toplevel panel
+        help = $(this).data("help"); // the help file to load
 		
 		if (tname == "show_toplevel") {
 			// Show a specific toplevel panel
@@ -63,10 +62,13 @@ var init_sidebar_actions = function () {
 		} else if (tname == "action") {
 			do_actions($(this).data("action"));
 		} else if (tname == "show_preview") {
-			// the preview panel requires AJAX to get the data
-			// so we defer action to this function
-			// if it succeeds it will display the correct panel
-			marc_editor_show_hide_preview();
+			// the preview panel requires AJAX to get the data so we defer action to this function
+			// if it succeeds it will display the marc_editor_preview panel
+			marc_editor_show_preview();
+		} else if (tname == "show_help") {
+			// the preview panel requires AJAX to get the data so we defer action to this function
+			// if it succeeds it will display the marc_editor_help panel
+			marc_editor_show_help(help);
 		} else {
 			// This is for showing/hiding subtabs in marc
 			show_tab_group(tname, panel);

@@ -35,13 +35,12 @@
 			$(e).click(function(e) {
 				e.preventDefault();
 				version = $(this).data("version");
-				model = $(this).data("model");
 				action = $(this).data("action");
 				if (action == "preview") {
-					marc_editor_version(version, 'marc_editor_historic_view', model);
+					marc_editor_version_view(version);
 				}
 				else if (action == "diff") {
-					marc_editor_version_diff(version, 'marc_editor_historic_view', model);
+					marc_editor_version_diff(version);
 				}
 			});
 		}

@@ -1,11 +1,7 @@
-function marc_editor_discard_changes_leaving( ) {	
-	if (marc_editor_form_changed) {
-	   return "The modifications on the title will be lost 2";
-   }
-}
+////////////////////////////////////////////////////////////////////
+// Init the tags called from the edit_wide.rhtml partial
+////////////////////////////////////////////////////////////////////
 
-// init the tags
-// called from the edit_wide.rhtml partial
 function marc_editor_init_tags( id ) {
 	$(".sortable").sortable();
 
@@ -40,7 +36,7 @@ function marc_editor_init_tags( id ) {
 	});
 
 	$(document).on('keydown', null, 'alt+ctrl+p', function(){
-		marc_editor_show_hide_preview();
+		marc_editor_show_preview();
 	});
 	
 	$(document).on('keydown', null, 'alt+ctrl+n', function(){
@@ -48,50 +44,13 @@ function marc_editor_init_tags( id ) {
 	});
 }
 
-function marc_editor_incipit(clef, keysig, timesig, incipit, target, width) {
-	// width is option
-	width = typeof width !== 'undefined' ? width : 720;
-	
-	pae = "@start:pae-file\n";
-	pae = pae + "@clef:" + clef + "\n";
-	pae = pae + "@keysig:" + keysig + "\n";
-	pae = pae + "@key:\n";
-	pae = pae + "@timesig:" + timesig + "\n";
-	pae = pae + "@data: " + incipit + "\n";
-	pae = pae + "@end:pae-file\n";
-	
-	// Do the call to the verovio helper
-	render_music(pae, 'pae', target, width);
-}
-
-// This is the last non-ujs function remaining
-// it is called when ckicking the "+" button
-// near a repeatable field. It makes a copy
-// of it
-function marc_editor_add_subfield(id) {
-
-	grid = id.parents("tr");
-	//ul = grid.siblings(".repeating_subfield");
-	ul = $(".repeating_subfield", grid);
-	
-	li_all = $("li", ul);
-	
-	li_original = $(li_all[li_all.length - 1]);
-	
-	new_li = li_original.clone();
-	$(".serialize_marc", new_li).each(function() {
-		$(this).val("");
-	});
-	
-	ul.append(new_li);
-	new_li.fadeIn('fast');
-
-}
+////////////////////////////////////////////////////////////////////
+// Pseudo-private functions called from within the marc editor
+////////////////////////////////////////////////////////////////////
 
 // Serialize marc to JSON and do an ajax call to save it
-// Ajax sends back and URL tor erirect to
-// or an error
-function marc_editor_send_form(form_name, rails_model, redirect) {
+// Ajax sends back and URL to redirect to or an error
+function _marc_editor_send_form(form_name, rails_model, redirect) {
 	redirect = redirect || false;
 	
 	form = $('form', "#" + form_name);
@@ -143,7 +102,7 @@ function marc_editor_send_form(form_name, rails_model, redirect) {
 	});
 }
 
-function marc_editor_preview( source_form, destination, rails_model ) {
+function _marc_editor_preview( source_form, destination, rails_model ) {
 	form = $('form', "#" + source_form);
 	json_marc = serialize_marc_editor_form(form);
 	
@@ -170,7 +129,7 @@ function marc_editor_preview( source_form, destination, rails_model ) {
 	});
 }
 
-function marc_editor_version( version_id, destination, rails_model ) {	
+function _marc_editor_version_view( version_id, destination, rails_model ) {	
 	url = "/admin/" + rails_model + "/marc_editor_version";
 	$("#" + destination).block({message: ""});
 	
@@ -195,7 +154,7 @@ function marc_editor_version( version_id, destination, rails_model ) {
 	});
 }
 
-function marc_editor_version_diff( version_id, destination, rails_model ) {	
+function _marc_editor_version_diff( version_id, destination, rails_model ) {	
 	url = "/admin/" + rails_model + "/marc_editor_version_diff";
 	$("#" + destination).block({message: ""});
 	
@@ -230,32 +189,42 @@ function marc_editor_version_diff( version_id, destination, rails_model ) {
 	});
 }
 
-function marc_editor_cancel_form( ) {
+////////////////////////////////////////////////////////////////////
+// Top level fuction to be called from the sidebar or hotkeys
+////////////////////////////////////////////////////////////////////
+
+function marc_editor_discard_changes_leaving( ) {	
+	if (marc_editor_form_changed) {
+	   return "The modifications on the record will be lost";
+   }
+}
+
+function marc_editor_cancel_form() {
     marc_editor_form_changed = true;
     var loc=location.href.substring(location.href.lastIndexOf("/"), -1);
     window.location=loc;
 }
 
-// Hardcoded for marc_editor_panel
-function marc_editor_get_model() {
-	return $("#marc_editor_panel").data("editor-model");
+function marc_editor_send_form(redirect) {
+	_marc_editor_send_form('marc_editor_panel', marc_editor_get_model(), redirect);
 }
 
-function marc_editor_show_hide_preview() {
-	// Use the commodity function in marc_editor.js
-	// model comes from the marc_editor_panel div
-	model = marc_editor_get_model();
-
-	if ($('#marc_editor_preview').not(':visible')) {
-		// this function gets the show data via ajax
-		// it will automatically hide the editor on success
-		// or do nothing if there is an error
-		marc_editor_preview('marc_editor_panel','marc_editor_preview', model);
-	} else {
-		marc_editor_show_panel("marc_editor_preview");
-	}
-	
+function marc_editor_show_preview() {
+	_marc_editor_preview('marc_editor_panel','marc_editor_preview', marc_editor_get_model());
 	window.scrollTo(0, 0);
+}
+
+function marc_editor_show_help(help) {
+	_marc_editor_help('marc_editor_help', help);
+	window.scrollTo(0, 0);
+}
+
+function marc_editor_version_view(version) {
+    _marc_editor_version_view(version, 'marc_editor_historic_view', marc_editor_get_model());
+}
+
+function marc_editor_version_diff(version) {
+	_marc_editor_version_diff(version, 'marc_editor_historic_view', marc_editor_get_model());
 }
 
 function marc_editor_show_panel(panel_name) {
@@ -265,4 +234,49 @@ function marc_editor_show_panel(panel_name) {
 	});
 	
 	$('#' + panel_name).show();
+}
+
+function marc_editor_incipit(clef, keysig, timesig, incipit, target, width) {
+	// width is option
+	width = typeof width !== 'undefined' ? width : 720;
+	
+	pae = "@start:pae-file\n";
+	pae = pae + "@clef:" + clef + "\n";
+	pae = pae + "@keysig:" + keysig + "\n";
+	pae = pae + "@key:\n";
+	pae = pae + "@timesig:" + timesig + "\n";
+	pae = pae + "@data: " + incipit + "\n";
+	pae = pae + "@end:pae-file\n";
+	
+	// Do the call to the verovio helper
+	render_music(pae, 'pae', target, width);
+}
+
+// This is the last non-ujs function remaining
+// it is called when ckicking the "+" button
+// near a repeatable field. It makes a copy
+// of it
+function marc_editor_add_subfield(id) {
+
+	grid = id.parents("tr");
+	//ul = grid.siblings(".repeating_subfield");
+	ul = $(".repeating_subfield", grid);
+	
+	li_all = $("li", ul);
+	
+	li_original = $(li_all[li_all.length - 1]);
+	
+	new_li = li_original.clone();
+	$(".serialize_marc", new_li).each(function() {
+		$(this).val("");
+	});
+	
+	ul.append(new_li);
+	new_li.fadeIn('fast');
+
+}
+
+// Hardcoded for marc_editor_panel
+function marc_editor_get_model() {
+	return $("#marc_editor_panel").data("editor-model");
 }

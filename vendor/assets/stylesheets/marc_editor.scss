@@ -243,9 +243,9 @@ $diff-padding-width: 15px;
     
     li.muscat_icon_link {
         vertical-align: middle;
-        line-height: 25px;
+        line-height: 24px;
         min-height: 24px;
-        padding-top: 8px;
+        padding-top: 6px;
         a.muscat_icon_link {
             margin-left: 2px;
             padding-left: 40px;
@@ -257,8 +257,14 @@ $diff-padding-width: 15px;
         a.muscat_icon_link_cancel {
             background: image-url("/images/marc-icons/cancel.png") no-repeat;
         }
+        a.muscat_icon_link_help {
+            background: image-url("/images/marc-icons/help.png") no-repeat;
+        }
         a.muscat_icon_link_history {
             background: image-url("/images/marc-icons/history.png") no-repeat;
+        }
+        a.muscat_icon_link_more {
+            background: image-url("/images/marc-icons/more.png") no-repeat;
         }
         a.muscat_icon_link_preview {
             background: image-url("/images/marc-icons/preview.png") no-repeat;
@@ -272,7 +278,7 @@ $diff-padding-width: 15px;
     }
     li.muscat_icon_separator {
          border-bottom: 3px solid #dfe1e2;
-         margin-top: 8px;
+         margin-top: 6px;
     }
 }
 

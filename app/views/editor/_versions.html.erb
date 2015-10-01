@@ -31,10 +31,9 @@
 				</td>
 				<td class="col col-actions">
 					<div class="table_actions">
-						<!-- testing hardcoded values -->
 						<% model = @item.class.model_name.route_key %>
-						<a class="view_link member_link marc_versioning" data-action="preview" data-model="<%= model %>" data-version="<%= version.id %>" href="#"><%=(I18n.t :history_view)%></a>
-						<a class="edit_link member_link marc_versioning" data-action="diff" data-model="<%= model %>" data-version="<%= version.id %>" href="#"><%=(I18n.t :history_diff)%></a>
+						<a class="view_link member_link marc_versioning" data-action="preview" data-version="<%= version.id %>" href="#"><%=(I18n.t :history_view)%></a>
+						<a class="edit_link member_link marc_versioning" data-action="diff" data-version="<%= version.id %>" href="#"><%=(I18n.t :history_diff)%></a>
 						<%= link_to("#{I18n.t :history_restore}", restore_path, method: :put, :class => "member_link",
 							data: { confirm: "#{I18n.t :history_restore_confirm}"}) %>
 						<%= link_to("#{I18n.t :history_delete}", delete_path, method: :put, :class => "member_link",
@@ -47,5 +46,4 @@
 	</table>
 
 	<div id="marc_editor_historic_view" class="marc_historic_view"></div>
-	
 </div>

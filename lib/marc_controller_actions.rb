@@ -183,12 +183,6 @@ module MarcControllerActions
       link_function = "edit_admin_#{model_for_path}_path"
       redirect_to send(link_function, @item.id, {:show_history => true}), notice: "Deleted snapshot #{params[:version_id]}"
     end
-    
-    
-    # This can be used to add a button in the title bar
-    #dsl.action_item :only => [:edit, :new] do
-    #    link_to('View on site', "javascript:marc_editor_send_form('marc_editor_panel', '#{self.resource_class.to_s.pluralize.downcase}')")
-    #end
   
   end
   

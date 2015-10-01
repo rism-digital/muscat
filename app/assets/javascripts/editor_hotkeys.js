@@ -35,11 +35,11 @@
 		init: function(e) {
 			
 			$(e).on('keydown', null, 'alt+ctrl+s', function(){
-				marc_editor_send_form('marc_editor_panel', marc_editor_get_model());
+				marc_editor_send_form(false);
 			});
 
 			$(e).on('keydown', null, 'alt+ctrl+p', function(){
-				marc_editor_show_hide_preview();
+				marc_editor_show_preview();
 			});
 	
 			$(e).on('keydown', null, 'alt+ctrl+n', function(){

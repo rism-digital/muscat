@@ -85,4 +85,7 @@ if ARGV.length >= 3
 end
 
 # arg 1 is input yml file, arg 2 output filename
-doc = RISMDoc.new("#{Rails.root}/public/help/#{RISM::MARC}/#{ARGV[0]}", ARGV[1], lang)
+guidelines = Guidelines.new("#{Rails.root}/public/help/#{RISM::MARC}/#{ARGV[0]}", lang)
+outfile = File.open( ARGV[1] , "w") 
+outfile.write guidelines.output
+outfile.close

@@ -21,14 +21,36 @@
 <%- end -%>
 
 	<li class="muscat_icon_separator"></li>
-	<li class="muscat_icon_link"><a data-scroll-target="show_toplevel" data-panel="marc_editor_panel" href="#" class="muscat_icon_link muscat_icon_link_all"><%=(I18n.t :show_all_groups)%></a></li>
-	<li class="muscat_icon_link"><a data-scroll-target="show_preview" data-panel="marc_editor_preview" href="#" class="muscat_icon_link muscat_icon_link_preview"><%=(I18n.t :show_preview)%></a></li>
+	<li class="muscat_icon_link">
+		<a data-scroll-target="show_toplevel" data-panel="marc_editor_panel" href="#" class="muscat_icon_link muscat_icon_link_all"><%=(I18n.t :show_all_groups)%></a>
+	</li>
+	<li class="muscat_icon_link">
+		<a data-scroll-target="show_preview" data-panel="marc_editor_preview" href="#" class="muscat_icon_link muscat_icon_link_preview"><%=(I18n.t :show_preview)%></a>
+	</li>
+	
 	<li class="muscat_icon_separator"></li>
-	<li class="muscat_icon_link"><a data-scroll-target="action" data-action="save" href="#" class="muscat_icon_link muscat_icon_link_save"><%=(I18n.t :save_and_continue)%></a></li>
-	<li class="muscat_icon_link"><a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="muscat_icon_link muscat_icon_link_history"><%=(I18n.t :show_history)%></a></li>
+	<li class="muscat_icon_link">
+		<a data-scroll-target="action" data-action="save" href="#" class="muscat_icon_link muscat_icon_link_save"><%=(I18n.t :save_and_continue)%></a>
+	</li>
+	<li class="muscat_icon_link">
+		<a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="muscat_icon_link muscat_icon_link_history"><%=(I18n.t :show_history)%></a>
+	</li>
+	
 	<li class="muscat_icon_separator"></li>
-	<li class="muscat_icon_link"><a href="<%= cancel_path %>" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a></li>
-	<li class="muscat_icon_link"><a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a></li>
+	<li class="muscat_icon_link">
+		<a href="<%= cancel_path %>" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a>
+	</li>
+	<li class="muscat_icon_link">
+		<a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a>
+	</li>
+	
+	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link">
+		<a data-scroll-target="show_help" data-panel="marc_editor_help" href="#" class="muscat_icon_link muscat_icon_link_help">Help</a
+			></li>
+	<li class="muscat_icon_link">
+		<a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_more">Additional texts</a>
+	</li>
 
 </ul>
 
