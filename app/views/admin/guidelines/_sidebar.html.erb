@@ -1,11 +1,17 @@
 <ul class="guidelines_sidebar">
 	<%- @guidelines.sidebar.each do |chapter| %>
-		<%- if chapter[0] %>
-		<li class="guidelines_chapter"><%= link_to( chapter[0].html_safe, admin_guidelines_path( anchor: chapter[1])) %></li>
-		<%- elsif chapter[1] %>
-			<%- chapter[1].each do |section| %>
-				<li class="guidelines_section"><%= link_to( section[0].html_safe, admin_guidelines_path( anchor: section[1])) %></li>
-			<%- end %>
-		<%- end %>
+		<li class="guidelines_chapter">
+			<%= link_to( chapter[0].html_safe, admin_guidelines_path( anchor: chapter[1])) %>
+            <%- if chapter[2] && !chapter[2].empty?() %>
+			    <div class="toggler">
+				    <a class="down" href="" data-toggle-help-sections='true'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+			    </div>
+			    <ul class="guidelines_sections">
+			    <%- chapter[2].each do |section| %>
+				    <li class="guidelines_section"><%= link_to( section[0].html_safe, admin_guidelines_path( anchor: section[1])) %></li>
+			    <%- end %>
+			    </ul>
+            <%- end %>
+		</li>
 	<%- end %>
 </ul>

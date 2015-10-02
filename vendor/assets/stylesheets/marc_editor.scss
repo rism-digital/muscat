@@ -221,6 +221,22 @@ $diff-padding-width: 15px;
         //border-top: 3px solid #dfe1e2;
         margin-top: 8px;
         padding-top: 8px;
+
+    }
+    li.guidelines_chapter {
+        div.toggler {
+            float: right ;
+            text-align: right;
+            a {
+                text-decoration: none;
+            }
+            a.down {
+                background: url(/images/marc-icons/triangle-down.png) top right no-repeat;
+            }
+            a.left {
+                background: url(/images/marc-icons/triangle-left.png) top right no-repeat;
+            }
+        }
     }
     li.guidelines_section {
         padding-left: 10px;

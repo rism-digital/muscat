@@ -77,6 +77,12 @@ var init_sidebar_actions = function () {
 		window.scrollTo(0, 0);
 		
 	});
+    
+	$('a[data-toggle-help-sections]').click(function(e){
+        e.preventDefault();
+        $(this).parents(".guidelines_chapter").children(".guidelines_sections").toggle();
+        $(this).toggleClass("left down");
+    });
 };
 
 $(document).ready(init_sidebar_actions);

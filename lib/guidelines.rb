@@ -12,7 +12,6 @@ class Guidelines
     @profile = EditorConfiguration.get_show_layout( s )
     @output = ""
     @sidebar = Array.new
-    @current_chapter = nil
     
     # numbering
     @chapterNb = 1
@@ -38,27 +37,23 @@ class Guidelines
   
   def chapter c
     name = "#{@chapterNb} &ndash; #{@coder.encode(@profile.get_label(c[:title]), :named)}"
-
     @output +=  "<h1 id=\"#{c[:title]}\">#{name}</h1>\n" if c[:title]
-    @sidebar << [name,c[:title]];
+    @sidebar << [name,c[:title],Array.new];
     cat c[:helpfile] if c[:helpfile]
     sections =  c[:sections]
     if sections
       @sectionNb = 1
-      @current_chapter = Array.new
       sections.each do |s|
         section s if s
       end
-      @sidebar << [nil, @current_chapter]
     end
-    
     @chapterNb += 1
   end
   
   def section s
     name = "#{@chapterNb}.#{@sectionNb} &ndash; #{@coder.encode(@profile.get_label(s[:title]), :named)}"
     @output +=  "<h2 id=\"#{s[:title]}\">#{name}</h2>\n" if s[:title]
-    @current_chapter   << [name, s[:title]];
+    @sidebar.last[2]   << [name, s[:title]];
     cat  s[:helpfile] if s[:helpfile]
     subsections = s[:subsections]
     if subsections
