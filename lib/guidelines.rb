@@ -24,10 +24,12 @@ class Guidelines
     end
     
     if @tree[:tag_index] && !@tag_index.empty?
-      @output +=  "<h1>#{@chapterNb} #{@coder.encode(@profile.get_label("doc_tag_index"), :named)}</h1>\n"
+      name = "#{@chapterNb} &ndash; #{@coder.encode(@profile.get_label("doc_tag_index"), :named)}"
+      @output +=  "<h1 id=\"tag_index\">#{name}</h1>\n"
+      @sidebar << [name,"tag_index",Array.new];
       @output +=  "<table>\n"  
       @tag_index.sort_by { |entry| entry[:id] }.each do |entry|
-        @output +=  "<tr><td><a href=\"#{entry[:id]}\">#{entry[:id]} - #{entry[:text]}</a></td></tr>"
+        @output +=  "<tr><td><a href=\"##{entry[:id]}\">#{entry[:id]} - #{entry[:text]}</a></td></tr>"
       end
       @output +=  "</table>\n"
     end
