@@ -13,7 +13,7 @@ ActiveAdmin.register Institution do
   end
     
   action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( person )
+    active_admin_muscat_select_link( institution )
   end
 
   # See permitted parameters documentation:
@@ -53,7 +53,11 @@ ActiveAdmin.register Institution do
     end
     
     def show
-      @item = @institution = Institution.find(params[:id])
+      begin
+        @item = @institution = Institution.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Institution #{params[:id]})" }
+      end
       @editor_profile = EditorConfiguration.get_show_layout @institution
       @prev_item, @next_item, @prev_page, @next_page = Institution.near_items_as_ransack(params, @institution)
     end

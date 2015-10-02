@@ -20,6 +20,14 @@ function newWindowUpdateValue(id, label) {
 	_child = null
 }
 
+// This function is called when
+// a user navigates away from the parent
+function newWindowClose() {
+	_child.close();
+	_nw_destination = null;
+	_child = null
+}
+
 function newWindowCancel() {
 	$("#wrapper").unblock();
 	_nw_destination = null;
@@ -83,7 +91,7 @@ function newWindowIsSelect() {
 			$(e).click(function(e, data) {
 				e.preventDefault();
 				
-				$("#wrapper").block();
+				$("#wrapper").block({message: ""});
 				
 				toplevel_li = $(this).parents(".tag_container");
 				_nw_destination = toplevel_li.find(".autocomplete_target")
@@ -128,7 +136,6 @@ var add_window_select_actions = function () {
 		
 		window.opener.newWindowUpdateValue(id, label);
 		window.close();
-		
 	});
 }
 

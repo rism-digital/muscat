@@ -350,6 +350,9 @@ en:
   rism_g: "G major/minor"
   rism_g_sharp: "G sharp major/minor"
   
+  # Assorted error messages
+  error_not_found: "The resource you are trying to access does not exist or has been deleted."
+  
   #
   entry:
      one: "entry"

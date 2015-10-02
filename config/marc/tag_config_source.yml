@@ -95,7 +95,7 @@
     :master: a
     :indicator: "##"
     :occurances: "*"
-    :fields: 
+    :fields:
     - - a
       - :occurances: "?"
         :no_browse: true

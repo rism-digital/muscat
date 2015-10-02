@@ -13,7 +13,7 @@ ActiveAdmin.register Place do
   end
     
   action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( person )
+    active_admin_muscat_select_link( place )
   end
 
   # See permitted parameters documentation:
@@ -45,7 +45,11 @@ ActiveAdmin.register Place do
     end
     
     def show
-      @place = Place.find(params[:id])
+      begin
+        @place = Place.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Place #{params[:id]})" }
+      end
       @prev_item, @next_item, @prev_page, @next_page = Place.near_items_as_ransack(params, @place)
     end
     

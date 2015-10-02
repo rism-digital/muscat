@@ -222,7 +222,7 @@ de:
   show_history: "Änderungsgeschichte"
   save_and_continue: "Speichern und weiter bearbeiten"
   save_and_exit: "Speichern und verlassen"
-  cancel: "Löschen"
+  cancel: "Abbrechen"
   
   # Version history
   history_date: "Datum"
@@ -350,6 +350,9 @@ de:
   rism_g: "G-Dur/Moll"
   rism_g_sharp: "Gis-Dur/Moll"
   
+  # Assorted error messages
+  error_not_found: "THE RESOURCE YOU ARE TRYING TO ACCESS DOES NOT EXIST OR HAS BEEN DELETED."
+   
   #
   entry:
      one: "Eintrag"

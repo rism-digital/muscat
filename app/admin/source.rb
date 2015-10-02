@@ -13,7 +13,7 @@ ActiveAdmin.register Source do
   end
     
   action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( person )
+    active_admin_muscat_select_link( source )
   end
 
   # See permitted parameters documentation:
@@ -40,7 +40,11 @@ ActiveAdmin.register Source do
     end
     
     def show
-      @item = Source.find(params[:id])
+      begin
+        @item = Source.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Source #{params[:id]})" }
+      end
       @editor_profile = EditorConfiguration.get_show_layout @item
       @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
     end

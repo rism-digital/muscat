@@ -3,6 +3,13 @@
 ////////////////////////////////////////////////////////////////////
 
 function marc_editor_init_tags( id ) {
+	
+	// Set event hooks
+	// avoid user to accidently leave the page when the form was modify 
+	// will ask for a confirmation
+	window.onbeforeunload = marc_editor_discard_changes_leaving;
+	window.onunload = marc_editor_cleanp;
+	
 	$(".sortable").sortable();
 
 	/* Bind to the global railsAutocomplete. event, thrown when someone selects
@@ -193,10 +200,20 @@ function _marc_editor_version_diff( version_id, destination, rails_model ) {
 // Top level fuction to be called from the sidebar or hotkeys
 ////////////////////////////////////////////////////////////////////
 
-function marc_editor_discard_changes_leaving( ) {	
+function marc_editor_discard_changes_leaving( ) {
+    if (newWindowIsSelect()) {
+        return "You have a selection window open. Closing the window will lose all the modifications."
+    }
+
 	if (marc_editor_form_changed) {
 	   return "The modifications on the record will be lost";
    }
+}
+
+function marc_editor_cleanp() {
+    if (newWindowIsSelect()) {
+        newWindowClose();
+    }
 }
 
 function marc_editor_cancel_form() {
@@ -210,10 +227,23 @@ function marc_editor_send_form(redirect) {
 }
 
 function marc_editor_show_preview() {
-	_marc_editor_preview('marc_editor_panel','marc_editor_preview', marc_editor_get_model());
-	window.scrollTo(0, 0);
-}
+    // check that there is no new authority because preview is not possible
+    cancel = false;
+	$('div[data-function="new"]').each(function(){
+		if ($(this).is(':visible')) {
+            cancel = true;
+		}
+	});
 
+    if (cancel) {
+        alert("There is an unsaved authority file. Please save the source before opining the preview.");
+        return;
+    }
+
+    _marc_editor_preview('marc_editor_panel','marc_editor_preview', marc_editor_get_model());
+    window.scrollTo(0, 0);
+}
+	
 function marc_editor_show_help(help) {
 	_marc_editor_help('marc_editor_help', help);
 	window.scrollTo(0, 0);

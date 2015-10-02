@@ -12,7 +12,7 @@ ActiveAdmin.register LiturgicalFeast do
   end
     
   action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( person )
+    active_admin_muscat_select_link( liturgical_feast )
   end
 
   # See permitted parameters documentation:
@@ -44,7 +44,11 @@ ActiveAdmin.register LiturgicalFeast do
     end
     
     def show
-      @liturgical_feast = LiturgicalFeast.find(params[:id])
+      begin
+        @liturgical_feast = LiturgicalFeast.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (LiturgicalFeast #{params[:id]})" }
+      end
       @prev_item, @next_item, @prev_page, @next_page = LiturgicalFeast.near_items_as_ransack(params, @liturgical_feast)
     end
     

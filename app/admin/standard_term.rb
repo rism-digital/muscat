@@ -12,7 +12,7 @@ ActiveAdmin.register StandardTerm do
   end
     
   action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( person )
+    active_admin_muscat_select_link( standard_term )
   end
 
   # See permitted parameters documentation:
@@ -44,7 +44,11 @@ ActiveAdmin.register StandardTerm do
     end
     
     def show
-      @standard_term = StandardTerm.find(params[:id])
+      begin
+        @standard_term = StandardTerm.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (StandardTerm #{params[:id]})" }
+      end
       @prev_item, @next_item, @prev_page, @next_page = StandardTerm.near_items_as_ransack(params, @standard_term)
     end
     
