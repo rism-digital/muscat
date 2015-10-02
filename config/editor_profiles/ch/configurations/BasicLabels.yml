@@ -1,5 +1,20 @@
 --- !map:ActiveSupport::HashWithIndifferentAccess 
 
+doc_introduction: 
+  label: 
+    de: Einleitung
+    en: Introduction
+doc_masks: 
+  label: 
+    de: Masken für Quellen
+    en: Cataloging forms for sources
+doc_tag_index: 
+  label: 
+    de: MARC Tag Index
+    en: MARC tag index
+
+################
+
 doc_abbreviations: 
   label: 
     de: "Abkürzungen"
@@ -58,30 +73,37 @@ doc_aid_transposing_instruments:
 
 ################
 
-doc_cataloguing_collections: 
+doc_cataloguing: 
+  label: 
+    de: Allgemeine Erfassung Hilfe
+    en: General cataloguing guidelines
+doc_cat_collections: 
   label: 
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
-doc_functions: 
-  label: 
-    de: "Grundsätzliche Funktionen"
-    en: Basic functions
-doc_introduction: 
-  label: 
-    de: Einleitung
-    en: Introduction
-doc_masks: 
-  label: 
-    de: Masken
-    en: Cataloging forms
-doc_tag_index: 
-  label: 
-    de: MARC Tag Index
-    en: MARC tag index
-doc_templates: 
+doc_cat_templates: 
   label: 
     de: Templates
     en: Templates
+doc_cat_authorities: 
+  label: 
+    de: Autoritäten
+    en: Authorities
+
+################
+
+doc_editor: 
+  label: 
+    de: "Editor Hilfe"
+    en: Editor help
+doc_edit_functions: 
+  label: 
+    de: "Grundsätzliche Funktionen"
+    en: Basic functions
+doc_edit_workflow: 
+  label: 
+    de: "Workflow"
+    en: Workflow
 
 ################
 

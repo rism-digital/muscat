@@ -3,7 +3,7 @@ ActiveAdmin.register_page "guidelines" do
   
   controller do
     def index
-      @guidelines = Guidelines.new("#{Rails.root}/public/help/#{RISM::MARC}/guidelines.yml", "en")
+      @guidelines = Guidelines.new("#{Rails.root}/public/help/#{RISM::MARC}/guidelines.yml", session[:locale])
     end
   end
   
