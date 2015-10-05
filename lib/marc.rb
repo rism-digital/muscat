@@ -385,12 +385,20 @@ class Marc
     
     safe_root = @root.deep_copy
     
+    # Since we are on a copy of @root
+    # if we add a 005 tag get_insert_position in the
+    # subsequent calls will return an incorrect value
+    # since it does not have the new tag. Keep an offset
+    # and pad it
+    offset = 0
+    
     if updated_at
       last_transcation = updated_at.strftime("%Y%m%d%H%M%S") + ".0"
       # 005 should not be there, if it is avoid duplicates
       _005_tag = first_occurance("005")
       if !_005_tag
-        safe_root.add_at(MarcNode.new(nil, "005", last_transcation, nil), get_insert_position("005") )
+        safe_root.add_at(MarcNode.new(@model, "005", last_transcation, nil), get_insert_position("005") )
+        offset += 1
       end
     end
     
@@ -402,7 +410,7 @@ class Marc
         entry = "#{author}#{v.created_at} (#{v.event})"
         n599 = MarcNode.new(@model, "599", "", nil)
         n599.add_at(MarcNode.new(@model, "a", entry, nil), 0)
-        safe_root.add_at(n599, get_insert_position("599"))
+        safe_root.add_at(n599, get_insert_position("599") + offset)
       end
         
     end
