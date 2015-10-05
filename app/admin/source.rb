@@ -50,7 +50,7 @@ ActiveAdmin.register Source do
       
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at) }
+        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
       end
     end
 
