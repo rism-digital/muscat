@@ -15,6 +15,10 @@ ActiveAdmin.register StandardTerm do
     active_admin_muscat_select_link( standard_term )
   end
 
+  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
+    active_admin_muscat_cancel_link
+  end
+
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

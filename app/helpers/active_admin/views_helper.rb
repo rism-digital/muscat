@@ -69,6 +69,10 @@ module ActiveAdmin::ViewsHelper
     link_to("Select", "#", :data => { :marc_editor_select => item.id, :marc_editor_label => name })
   end
   
+  def active_admin_muscat_cancel_link
+    link_to("Cancel", "#", :data => { :marc_editor_cancel => "cancel"})
+  end
+  
   def active_admin_muscat_actions( context )
     # Build the dynamic path function, then call it with send
     model = self.resource_class.to_s.underscore.downcase
