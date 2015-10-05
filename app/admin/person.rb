@@ -56,6 +56,7 @@ ActiveAdmin.register Person do
         @item = @person = Person.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Person #{params[:id]})" }
+        return
       end
       @editor_profile = EditorConfiguration.get_show_layout @person
       @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)

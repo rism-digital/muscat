@@ -57,6 +57,7 @@ ActiveAdmin.register Institution do
         @item = @institution = Institution.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Institution #{params[:id]})" }
+        return
       end
       @editor_profile = EditorConfiguration.get_show_layout @institution
       @prev_item, @next_item, @prev_page, @next_page = Institution.near_items_as_ransack(params, @institution)

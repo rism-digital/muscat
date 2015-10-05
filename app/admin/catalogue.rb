@@ -56,6 +56,7 @@ ActiveAdmin.register Catalogue do
         @item = @catalogue = Catalogue.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Catalogue #{params[:id]})" }
+        return
       end
       @editor_profile = EditorConfiguration.get_show_layout @catalogue
       @prev_item, @next_item, @prev_page, @next_page = Catalogue.near_items_as_ransack(params, @catalogue)
