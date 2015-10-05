@@ -47,6 +47,11 @@ ActiveAdmin.register Source do
       end
       @editor_profile = EditorConfiguration.get_show_layout @item
       @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
+      
+      respond_to do |format|
+        format.html
+        format.xml { render :xml => @item.marc.to_xml(@item.updated_at) }
+      end
     end
 
     def edit

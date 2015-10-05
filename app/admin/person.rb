@@ -59,6 +59,11 @@ ActiveAdmin.register Person do
       end
       @editor_profile = EditorConfiguration.get_show_layout @person
       @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
+      
+      respond_to do |format|
+        format.html
+        format.xml { render :xml => @item.marc.to_xml(@item.updated_at) }
+      end
     end
     
     def index

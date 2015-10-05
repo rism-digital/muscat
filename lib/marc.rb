@@ -370,18 +370,42 @@ class Marc
     @root.to_marc :true    
   end
   
-  def export_xml
-    load_source unless @loaded
-    out = String.new
-    out += "\t<marc:record>\n"
-    for child in @root.children
-      out += child.to_xml
-    end
-    # @root.to_xml
-    out += "\t</marc:record>\n"
-    return out
+  def to_xml(updated_at)
+    out = Array.new
+    out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+    out << "<!-- Exported from RISM CH (http://www.rism-ch.org/) Date: #{Time.now.utc} -->\n"
+    out << "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
+    out << to_xml_record(updated_at)
+    out << "</marc:collection>" 
+    return out.join('')
   end
   
+  def to_xml_record(updated_at = nil)
+    load_source unless @loaded
+    
+    safe_root = @root.deep_copy
+    
+    if updated_at
+      last_transcation = updated_at.strftime("%Y%m%d%H%M%S") + ".0"
+      # 005 should not be there, if it is avoid duplicates
+      _005_tag = first_occurance("005")
+      if !_005_tag
+        safe_root.add_at(MarcNode.new(nil, "005", last_transcation, nil), get_insert_position("005") )
+      end
+    end
+    
+    out = String.new
+    
+    out += "\t<marc:record>\n"
+    for child in safe_root.children
+      out += child.to_xml
+    end
+
+    out += "\t</marc:record>\n"
+    
+    return out
+  end
+
   # Return all tags
   def all_tags( resolve = true )
     load_source( resolve ) unless @loaded
