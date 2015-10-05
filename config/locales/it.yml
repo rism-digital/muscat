@@ -198,8 +198,8 @@ it:
   menu_languages: "Lingue"
   menu_contact: "Contatti"
   menu_search_history: "Ricerche effettuate"
-  menu_guidelines: "CATALOGUING GUIDELINES"
-  menu_marc_documentation: "MARC CONFIGURATION"
+  menu_guidelines: "Regole di Catalogazione"
+  menu_marc_documentation: "Configurazione Marc"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"
@@ -354,7 +354,8 @@ it:
   
   # Assorted error messages
   error_not_found: "La risorsa specificata non esiste oppure è stata cancellata."
-  
+  unknown_tags: "Il record contiene dei campi sconosciuti"
+
   #
   entry:
      one: "voce"
