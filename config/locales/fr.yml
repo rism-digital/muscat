@@ -353,8 +353,8 @@ fr:
   rism_g_sharp: "Sol dièse majeur/mineur"
   
   # Assorted error messages
-  error_not_found: "THE RESOURCE YOU ARE TRYING TO ACCESS DOES NOT EXIST OR HAS BEEN DELETED."
-  unknown_tags: "UNKNOWN TAGS"
+  error_not_found: "La resource à laquelle vous essayez d'accéder n'existe pas ou a été supprimée."
+  unknown_tags: "Ce titre contient des champs non reconnus."
   
   #
   entry:
