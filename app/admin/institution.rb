@@ -60,6 +60,11 @@ ActiveAdmin.register Institution do
       end
       @editor_profile = EditorConfiguration.get_show_layout @institution
       @prev_item, @next_item, @prev_page, @next_page = Institution.near_items_as_ransack(params, @institution)
+      
+      respond_to do |format|
+        format.html
+        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+      end
     end
    
     def index

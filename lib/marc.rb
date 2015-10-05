@@ -370,18 +370,63 @@ class Marc
     @root.to_marc :true    
   end
   
-  def export_xml
-    load_source unless @loaded
-    out = String.new
-    out += "\t<marc:record>\n"
-    for child in @root.children
-      out += child.to_xml
-    end
-    # @root.to_xml
-    out += "\t</marc:record>\n"
-    return out
+  def to_xml(updated_at = nil, versions = nil)
+    out = Array.new
+    out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+    out << "<!-- Exported from RISM CH (http://www.rism-ch.org/) Date: #{Time.now.utc} -->\n"
+    out << "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
+    out << to_xml_record(updated_at, versions)
+    out << "</marc:collection>" 
+    return out.join('')
   end
   
+  def to_xml_record(updated_at, versions)
+    load_source unless @loaded
+    
+    safe_root = @root.deep_copy
+    
+    # Since we are on a copy of @root
+    # if we add a 005 tag get_insert_position in the
+    # subsequent calls will return an incorrect value
+    # since it does not have the new tag. Keep an offset
+    # and pad it
+    offset = 0
+    
+    if updated_at
+      last_transcation = updated_at.strftime("%Y%m%d%H%M%S") + ".0"
+      # 005 should not be there, if it is avoid duplicates
+      _005_tag = first_occurance("005")
+      if !_005_tag
+        safe_root.add_at(MarcNode.new(@model, "005", last_transcation, nil), get_insert_position("005") )
+        offset += 1
+      end
+    end
+    
+    # This is not the best place to do this
+    # But until we refactor MARC it is ok here
+    if versions
+      versions.each do |v|
+        author = v.whodunnit != nil ? "#{v.whodunnit}, " : ""
+        entry = "#{author}#{v.created_at} (#{v.event})"
+        n599 = MarcNode.new(@model, "599", "", nil)
+        n599.add_at(MarcNode.new(@model, "a", entry, nil), 0)
+        safe_root.add_at(n599, get_insert_position("599") + offset)
+      end
+        
+    end
+    
+    out = String.new
+    
+    out += "\t<marc:record>\n"
+    for child in safe_root.children
+      out += child.to_xml
+    end
+
+    out += "\t</marc:record>\n"
+    
+    return out
+  end
+
   # Return all tags
   def all_tags( resolve = true )
     load_source( resolve ) unless @loaded
