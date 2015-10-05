@@ -45,6 +45,7 @@ it:
       filters: "Filtri"
       sections: "Sezioni e azioni"
       actions: "Azioni"
+      toc: "TABLE OF CONTENTS"
     pagination:
       empty: "Nessun %{model} trovato"
       one: "Sto mostrando <b>1</b> %{model}"
@@ -197,6 +198,7 @@ it:
   menu_languages: "Lingue"
   menu_contact: "Contatti"
   menu_search_history: "Ricerche effettuate"
+  menu_guidelines: "CATALOGUING GUIDELINES"
   menu_marc_documentation: "MARC CONFIGURATION"
   
   ### VARIOUS ELEMENTS

@@ -8,6 +8,7 @@
     else
       cancel_path = send("admin_#{models}_path")
     end
+	help_title = @editor_profile.get_label("doc_edit_functions")
 %>
 <ul>
 	
@@ -46,11 +47,8 @@
 	
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
-		<a data-scroll-target="show_help" data-panel="marc_editor_help" href="#" class="muscat_icon_link muscat_icon_link_help">Help</a
+		<a data-scroll-target="show_help" data-panel="marc_editor_help" data-help="edit_functions" data-help-title="<%= help_title -%>" href="#" class="muscat_icon_link muscat_icon_link_help"><%= help_title -%></a
 			></li>
-	<li class="muscat_icon_link">
-		<a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_more">Additional texts</a>
-	</li>
 
 </ul>
 

@@ -197,9 +197,9 @@ class EditorConfiguration
   # Help files oare in <tt>public/help</tt>. Used from the editor view.
   def get_tag_extended_help(tag_name)
     if options_config.include?(tag_name) && options_config[tag_name].include?("extended_help")
-      return EditorConfiguration.get_help_fname("#{RISM::MARC}/#{options_config[tag_name]["extended_help"]}")
+      return EditorConfiguration.get_help_fname("#{options_config[tag_name]["extended_help"]}")
     else
-      return EditorConfiguration.get_help_fname("#{RISM::MARC}/#{tag_name}")
+      return EditorConfiguration.get_help_fname("#{tag_name}")
     end
   end
   
@@ -370,11 +370,11 @@ class EditorConfiguration
   # Gets the html file name.
   def self.get_help_fname(name)
     # translated version?
-    fname = "/help/#{name}_#{I18n.locale.to_s}.html"
+    fname = "/help/#{RISM::MARC}/#{name}_#{I18n.locale.to_s}.html"
     # puts fname
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # english?
-    fname = "/help/#{name}_en.html"
+    fname = "/help/#{RISM::MARC}/#{name}_en.html"
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # nope...
     return ""

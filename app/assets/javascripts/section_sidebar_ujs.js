@@ -68,7 +68,7 @@ var init_sidebar_actions = function () {
 		} else if (tname == "show_help") {
 			// the preview panel requires AJAX to get the data so we defer action to this function
 			// if it succeeds it will display the marc_editor_help panel
-			marc_editor_show_help(help);
+			marc_editor_show_help(help, $(this).data("help-title"));
 		} else {
 			// This is for showing/hiding subtabs in marc
 			show_tab_group(tname, panel);

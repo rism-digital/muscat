@@ -45,6 +45,7 @@ en:
       filters: "Filters"
       sections: "Sections and actions"
       actions: "Actions"
+      toc: "Table of content"
     pagination:
       empty: "No %{model} found"
       one: "Displaying <b>1</b> %{model}"
@@ -197,6 +198,7 @@ en:
   menu_languages: "Language"
   menu_contact: "Contact"
   menu_search_history: "Search history"
+  menu_guidelines: "Cataloguing guidelines"
   menu_marc_documentation: "Marc configuration"
   
   ### VARIOUS ELEMENTS

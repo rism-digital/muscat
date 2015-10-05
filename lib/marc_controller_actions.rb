@@ -107,6 +107,20 @@ module MarcControllerActions
       render :template => 'marc_show/show_preview'
     end
   
+    ##########
+    ## Help ##
+    ##########
+    
+    dsl.collection_action :marc_editor_help, :method => :post do
+
+      help = params[:help]
+      help_fname = EditorConfiguration.get_help_fname(help)
+      @help_title = params[:title]
+      @help_text = IO.read("#{Rails.root}/public/#{help_fname}")
+     
+      render :template => 'editor/show_help'
+    end
+  
     ##################
     ## View version ##
     ##################

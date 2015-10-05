@@ -1,17 +1,21 @@
 class Guidelines
   
-  attr_accessor :output, :sidebar
+  attr_accessor :output, :sidebar, :version
   
   def initialize(ymlfile, lang)
     @tag_index = Array.new
     @lang = lang
-    puts ymlfile
     @tree = YAML::load(File.read(ymlfile))
     @coder = HTMLEntities.new
+    # check if the language exists in the wanted lang
+    if (!@tree[:lang].include?(lang))
+      @lang = "en"
+    end
     s = Source.new
     @profile = EditorConfiguration.get_show_layout( s )
     @output = ""
     @sidebar = Array.new
+    @version = @tree[:version]
     
     # numbering
     @chapterNb = 1

@@ -136,6 +136,31 @@ function _marc_editor_preview( source_form, destination, rails_model ) {
 	});
 }
 
+function _marc_editor_help( destination, help, title, rails_model ) {
+
+	url = "/admin/" + rails_model + "/marc_editor_help";
+	
+	$.ajax({
+		success: function(data) {
+			marc_editor_show_panel(destination);
+		},
+		data: {
+			help: help,
+			title: title,
+			marc_editor_dest: destination
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			alert ("Error loading preview. (" 
+					+ textStatus + " " 
+					+ errorThrown);
+		}
+	});
+}
+
 function _marc_editor_version_view( version_id, destination, rails_model ) {	
 	url = "/admin/" + rails_model + "/marc_editor_version";
 	$("#" + destination).block({message: ""});
@@ -244,8 +269,8 @@ function marc_editor_show_preview() {
     window.scrollTo(0, 0);
 }
 	
-function marc_editor_show_help(help) {
-	_marc_editor_help('marc_editor_help', help);
+function marc_editor_show_help(help, title) {
+	_marc_editor_help('marc_editor_help', help, title, marc_editor_get_model());
 	window.scrollTo(0, 0);
 }
 
