@@ -198,7 +198,7 @@ de:
   menu_languages: "Sprache"
   menu_contact: "Kontakt"
   menu_search_history: "Suchverlauf"
-  menu_guidelines: "CATALOGUING GUIDELINES"
+  menu_guidelines: "Katalogisierungsrichtlinien"
   menu_marc_documentation: "Marc Einstellungen"
   
   ### VARIOUS ELEMENTS
@@ -353,8 +353,8 @@ de:
   rism_g_sharp: "Gis-Dur/Moll"
   
   # Assorted error messages
-  error_not_found: "THE RESOURCE YOU ARE TRYING TO ACCESS DOES NOT EXIST OR HAS BEEN DELETED."
-  unknown_tags: "UNKNOWN TAGS"
+  error_not_found: "Der gesuchte Eintrag existiert nicht order wurde gelöscht."
+  unknown_tags: "Dieser Eintrag enthält falsch verwendete Felder"
    
   #
   entry:

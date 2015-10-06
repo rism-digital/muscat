@@ -137,6 +137,13 @@ var add_window_select_actions = function () {
 		window.opener.newWindowUpdateValue(id, label);
 		window.close();
 	});
+	
+	$('a[data-marc-editor-cancel]').click(function(e) {
+		e.preventDefault();
+				
+		window.opener.newWindowCancel();
+		window.close();
+	});
 }
 
 $(document).ready(add_window_select_actions);
