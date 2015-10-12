@@ -200,6 +200,7 @@ fr:
   menu_search_history: "Historique de recherche"
   menu_guidelines: "Directives de catalogage"
   menu_marc_documentation: "Configuration Marc"
+  menu_guidelines_top: "GUIDELINES"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"

@@ -1,5 +1,5 @@
 ActiveAdmin.register_page "guidelines" do
-  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_guidelines)}, :priority => 1
+  menu :parent => "guidelines_menu", :label => proc {I18n.t(:menu_guidelines)}, :priority => 1
   
   controller do
     def index

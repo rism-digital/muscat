@@ -251,6 +251,7 @@ ActiveAdmin.setup do |config|
       # Add the menu by hand because otherwise it is not getting translated
       menu.add :label => proc {I18n.t(:menu_comments)}, id: 'comments_menu', :priority => 4, :url => "/admin/comments"
       menu.add :label => proc {I18n.t(:menu_indexes)}, id: 'indexes_menu', :priority => 20
+      menu.add :label => proc {I18n.t(:menu_guidelines_top)}, id: 'guidelines_menu', :priority => 100
 
     end
     
