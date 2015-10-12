@@ -1,5 +1,5 @@
 ActiveAdmin.register_page "doc" do
-  menu :parent => "guidelines_menu", :label => proc {I18n.t(:menu_marc_documentation)}
+  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_marc_documentation)}
   
   controller do
     def index
