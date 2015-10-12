@@ -12,7 +12,33 @@ class MarcAligner < NeedlemanWunschAligner
     @score_matrix.flatten.max / length
   end
   
+  # A method for computing the distance of two strings with low memory footprint
+  # Unused
+  def levenshtein_distance_low_memory(s1, s2)
+    s1len = s1.length;
+    s2len = s2.length;
+    return s2len if s1len == 0
+    return s1line if s2len == 0
+    column = Array.new(s1len+1)
+  
+    for y in 1..s1len
+      column[y] = y;
+    end
+    for x in 1..s2len
+      column[0] = x;
+      lastdiag = x-1
+      for y in 1..s1len
+        olddiag = column[y]
+        column[y] = min3(column[y] + 1, column[y-1] + 1, lastdiag + (s1[y-1] == s2[x-1] ? 0 : 1));
+        lastdiag = olddiag;
+      end
+    end
+    puts column[s1len]
+    return(column[s1len]);
+  end
+  
   # A method for computing the distance of two strings
+  # Unused
   def levenshtein_distance(s, t)
     m = s.length
     n = t.length
@@ -34,7 +60,14 @@ class MarcAligner < NeedlemanWunschAligner
                   end
       end
     end
+    puts d[m][n]
     d[m][n]
+  end
+  
+  private
+  
+  def min3(a, b, c)
+    ((a) < (b) ? ((a) < (c) ? (a) : (c)) : ((b) < (c) ? (b) : (c)))
   end
   
 end
@@ -60,7 +93,8 @@ class MarcSubfieldAligner < MarcAligner
         if length == 0 
           score += 100
         else 
-          score += 100 / (length) * (length - levenshtein_distance(left_el.content, top_el.content ))
+          #score += 100 / (length) * (length - levenshtein_distance_low_memory(left_el.content, top_el.content ))
+          score += 50
         end
       end
     else 
