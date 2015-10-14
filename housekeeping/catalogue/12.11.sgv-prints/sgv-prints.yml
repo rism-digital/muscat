@@ -1,0 +1,76 @@
+--- !map:HashWithIndifferentAccess
+
+header: "header"
+footer: "footer"
+tag_index: true
+incipits_path: "/Users/laurent/Documents/rism/catalogues/12.10.studer/"
+
+material_tags_used:
+  - "300"
+  - "590"
+  - "593"
+  - "260"
+  
+# mandatory
+header:
+  function: "function_852"
+
+tags:
+  - function: "function_100"
+  - function: "function_collection"
+  - tag: "130"
+    :subfields:
+    - "a"
+    - "k"
+    - "o"
+    - "r"
+    - "n"
+    - "m" 
+  - tag: "240"
+    :subfields:
+    - "a"
+    - "k"
+    - "o"
+    - "r"
+    - "n"
+    - "m"
+  - tag: "730"
+    :subfields:
+    - "a"
+    - "k"
+    - "o"
+    - "r"
+    - "n"
+    - "m"
+  - function: "function_245_246"
+  - separator: true
+  # teil
+  - material_tags:
+    - tag: "300"
+      :subfields:
+      - "a"
+    - tag: "590"
+    - tag: "300"
+      :subfields:
+      - "c"
+    - tag: "593"
+    - tag: "260"
+      :onerow: true
+      :subfields:
+      - "a"
+      - "b"
+      - "c"
+  - separator: true
+  - tag: "505"
+  - tag: "657"
+  - separator: true
+  - function: "function_031" # special function
+  - separator: true
+  - function: "function_594" # special function
+  - tag: "525"
+  - separator: true
+  - tag: "500"
+  - function: "function_700_710" # special function $a $4
+  - tag: "518"
+  - separator: true 
+  - function: "function_001" # special function

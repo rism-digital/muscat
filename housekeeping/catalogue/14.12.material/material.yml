@@ -1,0 +1,46 @@
+--- !map:HashWithIndifferentAccess
+
+header: "header"
+footer: "footer"
+tag_index: true
+
+material_tags_used:
+  - "260"
+  - "300"
+  - "340"
+  - "590"
+  - "592"
+  - "593"
+  
+# mandatory
+header:
+  function: "function_001"
+
+tags:
+  - tag: "100"
+    :onerow: true
+  #- function: "function_collection"
+  - tag: "110"
+  - tag: "130"
+    :onerow: true
+  - tag: "240"
+    :onerow: true
+  - tag: "245"
+  
+  - separator: "show_library"
+  #- function: "function_852"
+  - tag: "852"
+  
+  - separator: "show_details"
+  - material_tags:
+    - tag: "260"
+    - tag: "300"
+    - tag: "340"
+    - tag: "590"
+    - tag: "592" 
+    - tag: "593" 
+  - tag: "028"
+  - tag: "563"
+  - tag: "525"
+  - tag: "270"
+  

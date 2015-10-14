@@ -1,0 +1,106 @@
+--- !map:HashWithIndifferentAccess
+
+header: "header"
+footer: "footer"
+tag_index: true
+verovio_path: "http://www.rism-ch.org/javascripts/verovio-toolkit.js"
+
+material_tags_used:
+  - "300"
+  - "590"
+  - "340"
+  - "260"
+  - "351"
+  
+# mandatory
+header:
+  function: "function_001"
+
+tags:
+  - tag: "100"
+    :onerow: true
+  #- function: "function_collection"
+  - tag: "110"
+  - tag: "130"
+    :onerow: true
+  - tag: "240"
+    :onerow: true
+  - tag: "245"
+  - tag: "246"
+  - tag: "505"
+  - tag: "657"
+  - tag: "730"
+    :onerow: true
+  
+  - separator: "show_library"
+  #- function: "function_852"
+  - tag: "852"
+  - tag: "541"
+
+  - separator: "show_content"
+  - function: "function_031" # special function
+  - tag: "740"
+
+  - separator: "show_distribution"
+  - tag: "653"
+  - function: "function_594"
+  
+  - separator: "show_details"
+  - tag: "254"
+  - material_tags:
+    - tag: "300"
+    - tag: "590"
+    - tag: "340"
+    - tag: "260"
+    - tag: "351" 
+  - tag: "028"
+  - tag: "592"
+  - tag: "563"
+  - tag: "593"
+  - tag: "525"
+  - tag: "270"
+  
+  - separator: "show_information"
+  - tag: "500"
+  - tag: "506"
+  - tag: "508"
+  - tag: "510"
+  - tag: "511"
+  - tag: "518"
+  - tag: "520"
+  - tag: "533"
+  - tag: "545"
+  - tag: "546"
+  - tag: "555"
+  - tag: "580"
+  - tag: "561"
+  - tag: "591"
+  - tag: "592"
+  - tag: "597"
+  - tag: "598"
+  
+  - separator: "show_references"
+  - tag: "596"
+  - tag: "690"
+  - tag: "691"
+
+  - separator: "show_terms"
+  - tag: "650"
+  - tag: "041"
+  - tag: "700"
+  - tag: "710"
+  - tag: "651"
+
+  - separator: "show_admin"
+  #- tag: "040"      
+  #  :onerow: true
+  - tag: "599"
+  - tag: "035"
+
+  - separator: "show_links"  
+  - tag: "772"
+  - tag: "773"
+
+  - separator: "show_resources"
+  - tag: "787"
+  - tag: "856"
