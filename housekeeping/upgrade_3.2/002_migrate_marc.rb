@@ -14,7 +14,9 @@ uncorrelated_028 = []
 
 pb = ProgressBar.new(Source.all.count)
 
-Source.all.each do |s|
+Source.all.each do |sa|
+  
+  s = Source.find(sa.id)
   
   pb.increment!
   
@@ -30,7 +32,19 @@ Source.all.each do |s|
   modified = false
   fields_mod = []
   fields_add = []
-  print_539 = []
+  print_593 = []
+  has_593_print = 0
+  
+  fields3.each do |field|
+    marc.each_by_tag(field) do |t|
+      a = t.fetch_all_by_tag("3")
+      if a.count > 0
+        fields_mod << field
+      else
+        fields_add << field
+      end
+    end
+  end
   
   fields3.each do |field|
   
@@ -57,17 +71,23 @@ Source.all.each do |s|
           t.sort_alphabetically
       
           modified = true
-          fields_mod << field
+          #fields_mod << field
         end
 
-      else # No $3 field, it is only one
+      else #
+        
+        if !fields_mod.empty?
+          puts "No $3 #{field} - #{s.id}"
+          next
+        end
+        
         # Add $8 = 1 in this case
         t.add_at(MarcNode.new(Source, "8", "01", nil), 0)
 
         modified = true
         t.sort_alphabetically
       
-        fields_add << field
+        #fields_add << field
       end  # if a
       
       # Additional step since we are looping anyways
@@ -76,8 +96,10 @@ Source.all.each do |s|
       # (eventual) 028
       if field == "593"
         type = t.fetch_first_by_tag("a")
-        if type && type.content && type.content == "Print"
-          print_539 << t.fetch_first_by_tag("8").content
+        # always correlate 593
+        if type && type.content #&& type.content == "Print"
+          print_593 << [t.fetch_first_by_tag("8").content, type.content]
+          has_593_print += 1 if type.content == "Print" #shorthand
         end
       end
       
@@ -89,21 +111,54 @@ Source.all.each do |s|
   # of the relative print material
   tags_028 = s.marc.by_tags("028")
 
-  if print_539.count == 0 # No print reference found
+  if print_593.count == 0 # No print reference found
     uncorrelated_028 << "#{s.id} has 028 but no 593 $a Print" if tags_028.count > 0
-  elsif print_539.count == 1 # One print reference, set it to the 028s
+  elsif print_593.count == 1 # One print reference, set it to the 028s
     tags_028.each do |t|
-      # Note the hardcoded [0] in print_539
+      # Note the hardcoded [0] in print_593
       # Valid records have one oe more 028
       # but only ONE 593, if there ae more
       # set an error
-      t.add_at(MarcNode.new(Source, "8", print_539[0], nil), 0)
+      t.add_at(MarcNode.new(Source, "8", print_593[0][0], nil), 0)
       t.sort_alphabetically
+      if print_593[0][1] != "Print"
+        uncorrelated_028 << "w: #{s.id} 539 is #{print_593[0][1]}"
+      end
     end
     modified = true
-  else # More then one print reference!
-    #puts "#{s.id} has 028 bur more than one 593 print"
-    uncorrelated_028 << "#{s.id} has 028 bur more than one 593 print" if tags_028.count > 0
+  else # More then one 593 reference!
+    # Now if there is one and only one 'print' 593
+    # we ignore the others and correlate to that
+    # if not we cannot correlate any
+    
+    if has_593_print == 1
+      
+      # Get the print one
+      index = -1
+      print_593.each do |p|
+        if p[1] == "Print"
+          index = print_593.find_index(p)
+        end
+      end
+      
+      if index == -1
+        puts "No print found but has_593_print == 1, the program is broken"
+      end
+      
+      tags_028.each do |t|
+        # This is copy and paste from above
+        # sorry
+        t.add_at(MarcNode.new(Source, "8", print_593[index][0], nil), 0)
+        t.sort_alphabetically
+        if print_593[index][1] != "Print"
+          uncorrelated_028 << "#{s.id} 539 is #{print_593[1]} THIS SHOLD NOT HAPPEN"
+        end
+      end
+    elsif has_593_print > 1
+      uncorrelated_028 << "#{s.id} has 028 but more than one 593 Print" if tags_028.count > 0
+    else
+      uncorrelated_028 << "#{s.id} has 028 but more than one 593 (and no Print)" if tags_028.count > 0
+    end
   end
 
 
@@ -127,7 +182,7 @@ Source.all.each do |s|
     end
   end
 
-  # Lastly get into each tang and
+  # Lastly get into each tag and
   # 1) remove $_
   # 2) sort_alphabetically
   tgs = marc.all_tags
@@ -161,11 +216,11 @@ Source.all.each do |s|
 end
 
 puts "==============================="
-puts "These elements need to be ckecked by hand:"
+puts "These elements have marerial tags with and without $3:"
 puts check_by_hand.to_s
 puts "==============================="
 puts "These elements could not load MARC:"
 puts unloadable_marc.to_s
 puts "==============================="
 puts "These elements coould not correlate 028"
-puts uncorrelated_028.to_s
+ap uncorrelated_028
