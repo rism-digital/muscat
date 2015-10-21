@@ -223,13 +223,15 @@ puts "==============================="
 puts "These elements have marerial tags with and without $3:"
 puts check_by_hand.to_s
 
+srcs = Source.find(nonprint_028)
 f = Folder.new(:name => "Manuscripts with 028 Plate Nr.", :folder_type => "Source")
 f.save
-f.add_items(nonprint_028)
+f.add_items(srcs)
 
 Sunspot.index f.folder_items
 Sunspot.commit
 
+srcs = Source.find(uncorrelated_028)
 f = Folder.new(:name => "Sources with more than one 593", :folder_type => "Source")
 f.save
 f.add_items(uncorrelated_028)
