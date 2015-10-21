@@ -11,6 +11,7 @@ Source.paper_trail_off!
 check_by_hand = []
 unloadable_marc = []
 uncorrelated_028 = []
+nonprint_028 = []
 
 pb = ProgressBar.new(Source.all.count)
 
@@ -122,7 +123,8 @@ Source.all.each do |sa|
       t.add_at(MarcNode.new(Source, "8", print_593[0][0], nil), 0)
       t.sort_alphabetically
       if print_593[0][1] != "Print"
-        uncorrelated_028 << "w: #{s.id} 539 is #{print_593[0][1]}"
+        puts "w: #{s.id} 539 is #{print_593[0][1]}"
+        nonprint_028 << s.id
       end
     end
     modified = true
@@ -151,13 +153,15 @@ Source.all.each do |sa|
         t.add_at(MarcNode.new(Source, "8", print_593[index][0], nil), 0)
         t.sort_alphabetically
         if print_593[index][1] != "Print"
-          uncorrelated_028 << "#{s.id} 539 is #{print_593[1]} THIS SHOLD NOT HAPPEN"
+          puts "#{s.id} 539 is #{print_593[1]} THIS SHOLD NOT HAPPEN"
         end
       end
     elsif has_593_print > 1
-      uncorrelated_028 << "#{s.id} has 028 but more than one 593 Print" if tags_028.count > 0
+      puts "#{s.id} has 028 but more than one 593 Print" if tags_028.count > 0
+      uncorrelated_028 << s.id if tags_028.count > 0
     else
-      uncorrelated_028 << "#{s.id} has 028 but more than one 593 (and no Print)" if tags_028.count > 0
+      puts "#{s.id} has 028 but more than one 593 (and no Print)" if tags_028.count > 0
+      uncorrelated_028 << s.id if tags_028.count > 0
     end
   end
 
@@ -218,9 +222,17 @@ end
 puts "==============================="
 puts "These elements have marerial tags with and without $3:"
 puts check_by_hand.to_s
-puts "==============================="
-puts "These elements could not load MARC:"
-puts unloadable_marc.to_s
-puts "==============================="
-puts "These elements coould not correlate 028"
-ap uncorrelated_028
+
+f = Folder.new(:name => "Manuscripts with 028 Plate Nr.", :folder_type => "Source")
+f.save
+f.add_items(nonprint_028)
+
+Sunspot.index f.folder_items
+Sunspot.commit
+
+f = Folder.new(:name => "Sources with more than one 593", :folder_type => "Source")
+f.save
+f.add_items(uncorrelated_028)
+
+Sunspot.index f.folder_items
+Sunspot.commit
