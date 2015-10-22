@@ -33,7 +33,7 @@ class RISMCatalogue
     @output.write "</head>\n<body>"
     @output.write "<script type=\"text/javascript\">\n\
       var vrvToolkit = new verovio.toolkit();\n\
-      var options = JSON.stringify({ inputFormat: 'pae', font: 'Leipzig', scale: 50, border: 0, adjustPageHeight: 1 });\n</script>\n"
+      var options = JSON.stringify({ inputFormat: 'pae', font: 'Leipzig', scale: 50, border: 0, spacingStaff: 5, adjustPageHeight: 1 });\n</script>\n"
       
     # load the folder content and sort it
     @folder = Folder.find_by_id( folder );
