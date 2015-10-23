@@ -15,13 +15,12 @@ The documentation for version 1.0 and 2.0 (legacy) is available at http://docs.r
 The basic entity in muscat is the Source class, which describes a single source. The Marc21 data is stored directly in the database, and is parsed to a Marc object with holding MarcNodes recursively. A MarcNode is a field at the first level of recursion and a subfield at the second level. Relevant information (such as author name) is also extracted from the Marc record and stored in the same database row. A the same time, a Source is put in relation with the authority data, or foreign classes, stored directly in the database. The foreign classes representing data are:
 
 * People (Contributors)
-* Libraries
+* Institutions
 * StandardTerms
 * StandardTitles
 * LiturgicalFeasts
 * Catalogues
 * Places
-* Institutions
 
 This way all the basic information related to a Source is always available on the database. Marc21 records and these classes are automatically kept in sync, using ids to relate the various entities.
 
