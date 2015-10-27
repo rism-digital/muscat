@@ -234,7 +234,7 @@ Sunspot.commit
 srcs = Source.find(uncorrelated_028)
 f = Folder.new(:name => "Sources with more than one 593", :folder_type => "Source")
 f.save
-f.add_items(uncorrelated_028)
+f.add_items(srcs)
 
 Sunspot.index f.folder_items
 Sunspot.commit
