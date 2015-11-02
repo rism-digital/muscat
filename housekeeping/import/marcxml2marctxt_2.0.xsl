@@ -2,7 +2,9 @@
 
 <!--
 	
-	marcxml2marctxt.xsl - XSLT (1.0) stylesheet for transformation of RISM MARC XML to MARC text
+	marcxml2marctxt.xsl - XSLT (2.0) stylesheet for transformation of RISM MARC XML to MARC text
+	
+	Tested with Saxon 9
 	
 	Laurent Pugin <laurent.pugin@rism-ch.org>
 	Swiss RISM Office
@@ -14,6 +16,7 @@
 	
 	Modifications:
 	- 2014/21/07: adding marc namespace; adding $ escaping
+	- 2015/11/02: updating documentation
 		
 -->
 
