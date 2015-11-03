@@ -2,7 +2,7 @@
 
 <!--
 	
-	marcxml2marctxt.xsl - XSLT (1.0) stylesheet for transformation of RISM MARC XML to MARC text
+	marcxml2marctxt_1.0.xsl - XSLT (1.0) stylesheet for transformation of RISM MARC XML to MARC text
 	
 	Laurent Pugin <laurent.pugin@rism-ch.org>
 	Swiss RISM Office
@@ -15,10 +15,11 @@
 	Modifications:
 	- 2014/21/07: adding marc namespace; adding $ escaping
 	- 2014/21/10: changed for use with libxml xslt 1.0 (replace function)
+	- 2015/11/02: fixing namespace
 		
 -->
 
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.loc.gov/MARC21/slim">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:marc="http://www.loc.gov/MARC21/slim">
     <xsl:output method="text" encoding="UTF-8" indent="no" omit-xml-declaration="yes" />
     <xsl:strip-space elements="*"/>
 
@@ -47,13 +48,14 @@
       </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="leader">
+    <xsl:template match="marc:record">
       <xsl:text>=000  </xsl:text>
         <xsl:value-of select="."/>
         <xsl:text>&#xa;</xsl:text>
-        <xsl:apply-templates select="datafield|controlfield"/>
+        <xsl:apply-templates select="marc:datafield|marc:controlfield"/>
     </xsl:template>
-    <xsl:template match="controlfield">
+    
+    <xsl:template match="marc:controlfield">
         <xsl:text>=</xsl:text>
         <xsl:value-of select="@tag"/>
         <xsl:text>  </xsl:text>
@@ -61,17 +63,17 @@
         <xsl:text>&#xa;</xsl:text>
     </xsl:template>
 
-    <xsl:template match="datafield">
+    <xsl:template match="marc:datafield">
         <xsl:text>=</xsl:text>
         <xsl:value-of select="@tag"/>
         <xsl:text>  </xsl:text>
         <xsl:value-of select="translate(@ind1,' ','#')"/>
         <xsl:value-of select="translate(@ind2,' ','#')"/>
-        <xsl:apply-templates select="subfield"/>
+        <xsl:apply-templates select="marc:subfield"/>
         <xsl:text>&#xa;</xsl:text>
     </xsl:template>
 
-    <xsl:template match="subfield">
+    <xsl:template match="marc:subfield">
         <xsl:text>$</xsl:text>
         <xsl:value-of select="@code"/>
         <xsl:variable name="newtext">
