@@ -4,7 +4,7 @@ This document describes how to bootstrap into the webapplication.
 
 * ruby: > 1.9.3
 
-This document describes the installation process on FreeBSD using ports, other systems are tested (MacOS X and Linux), 
+This document describes the installation process on FreeBSD using ports, other systems are tested (MacOS X and Linux),
 and it is important that the various package versions match.
 
 == Preliminaries
@@ -43,7 +43,7 @@ Install Apache 2.2:
  cd /usr/ports/www/apache22
  make install clean
  # Edit /etc/rc.conf and add for automatic startup:
- # accf_http_load="YES"     
+ # accf_http_load="YES"
  # apache22_enable="YES"
 
 == Ruby and Rails
@@ -128,6 +128,16 @@ Try to open :
 
  http://ip:3000/
 
+== Logging In
+
+A default administrative user has been created as part of the installation process. To log in,
+go to `http://ip:3000/admin` and log in with the following credentials:
+
+ username: admin@example.com
+ password: password
+
+It is advised that you delete this account after creating a new administrative user in the admin interface.
+
 ==== Index rebuilding:
 
  rake sunspot:reindex
@@ -186,16 +196,6 @@ Start Apache and Ferretd:
 If all this works, you can access the rism application:
 
  http://IP
-
-== Adding users
-
-The first user needs to be set from the commandline:
-
- cd housekeeping/admin
- ruby create_admin_users.rb -a --username USER --password PASS --email EMAIL
-
-the <tt>-a</tt> flag marks the user as admin
-
 
 == Installation on Ubuntu 14.04
 
