@@ -1,70 +1,58 @@
-ActiveRecord::Base.transaction do
-  Benchmark.bm(7) do |x| x.report("Count Person") {
-    Person.all.each do |p|
-      c = p.sources.count
-      p.suppress_reindex
-      p.update_attribute( :src_count, c ) if c != p.src_count
-    end
-  }
-  end
+require 'progress_bar'
+
+puts "Fixing Person"
+pb = ProgressBar.new(Person.count)
+Person.all.each do |p|
+  c = p.sources.count
+  p.suppress_reindex
+  p.update_attribute( :src_count, c ) if c != p.src_count
+  pb.increment!
 end
 
-ActiveRecord::Base.transaction do
-  Benchmark.bm(7) do |x| x.report("Count StandardTitle") { 
-    StandardTitle.all.each do |s|
-      c = s.sources.count
-      s.update_attribute( :src_count, c ) if c != s.src_count
-    end
-  }  
-  end
+puts "Fixing Standard Title"
+pb = ProgressBar.new(StandardTitle.count)
+StandardTitle.all.each do |s|
+  c = s.sources.count
+  s.update_attribute( :src_count, c ) if c != s.src_count
+  pb.increment!
 end
 
-ActiveRecord::Base.transaction do
-  Benchmark.bm(7) do |x| x.report("Count StandardTerm") {
-    StandardTerm.all.each do |st|
-      c = st.sources.count
-      st.update_attribute( :src_count, c ) if c != st.src_count
-    end
-  }
-  end
+puts "Fixing Standard Term"
+pb = ProgressBar.new(StandardTerm.count)
+StandardTerm.all.each do |st|
+  c = st.sources.count
+  st.update_attribute( :src_count, c ) if c != st.src_count
+  pb.increment!
 end
 
-ActiveRecord::Base.transaction do
-  Benchmark.bm(7) do |x| x.report("Count Catalogue") { 
-    Catalogue.all.each do |c|
-      cs = c.sources.count
-      c.update_attribute( :src_count, cs ) if cs != c.src_count
-    end
-  }
-  end
-end
- 
-ActiveRecord::Base.transaction do
-  Benchmark.bm(7) do |x| x.report("Count LiturgicalFeasts") {   
-    LiturgicalFeast.all.each do |l|
-      c = l.sources.count
-      l.update_attribute( :src_count, c ) if c != l.src_count
-    end
-  }
-  end
-end
- 
-ActiveRecord::Base.transaction do
-  Benchmark.bm(7) do |x| x.report("Count Place") { 
-    Place.all.each do |p|
-      c = p.sources.count
-      p.update_attribute( :src_count, c ) if c != p.src_count
-    end
-  }
-  end
+puts "Fixing Catalogue"
+pb = ProgressBar.new(Catalogue.count)
+Catalogue.all.each do |c|
+  cs = c.sources.count
+  c.update_attribute( :src_count, cs ) if cs != c.src_count
+  pb.increment!
 end
 
-ActiveRecord::Base.transaction do
-  Benchmark.bm(7) do |x| x.report("Count Institution") {
-    Institution.all.each do |i|
-      c = i.sources.count
-      i.update_attribute( :src_count, c ) if c != i.src_count
-    end
-  }
-  end
+puts "Fixing Liturgical Feast"
+pb = ProgressBar.new(LiturgicalFeast.count)
+LiturgicalFeast.all.each do |l|
+  c = l.sources.count
+  l.update_attribute( :src_count, c ) if c != l.src_count
+  pb.increment!
+end
+
+purs "Fixing Place"
+pb = ProgressBar.new(Place.count)
+Place.all.each do |p|
+  c = p.sources.count
+  p.update_attribute( :src_count, c ) if c != p.src_count
+  pb.increment!
+end
+
+puts "Fixing Institution"
+pb = ProgressBar.new(Institution.count)
+Institution.all.each do |i|
+  c = i.sources.count
+  i.update_attribute( :src_count, c ) if c != i.src_count
+  pb.increment!
 end
