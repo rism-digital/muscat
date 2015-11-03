@@ -68,13 +68,3 @@ ActiveRecord::Base.transaction do
   }
   end
 end
-
-ActiveRecord::Base.transaction do
-  Benchmark.bm(7) do |x| x.report("Count Library") {
-    Library.all.each do |l|
-      c = l.sources.count
-      l.update_attribute( :src_count, c ) if c != l.src_count
-    end
-  }
-  end
-end
