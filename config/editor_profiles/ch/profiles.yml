@@ -34,7 +34,7 @@
   - LayoutPartDateCH
   - LayoutConvolutumCH
   :filter:
-    leader: !ruby/regexp /.....npd.............../
+    leader: !ruby/regexp /......pd.............../
 ###
 - :id: CollectionCH
   :name: Collection (CH)
@@ -58,7 +58,7 @@
   - LayoutPartDateCH
   - LayoutCollectionCH
   :filter:
-    leader: !ruby/regexp /.....n[dc]c.............../
+    leader: !ruby/regexp /......[dc]c.............../
     tag: "110"
 ###
 - :id: LibrettoAnonymousCH
@@ -83,7 +83,7 @@
   - LayoutPartBibRefLibrettoAnonymousCH
   - LayoutLibrettoAnonymousCH
   :filter:
-    leader: !ruby/regexp /.....n[at]m.............../
+    leader: !ruby/regexp /......[at]m.............../
     tag: "130"
 ###
 - :id: LibrettoAttributedCH
@@ -108,7 +108,7 @@
   - LayoutPartBibRefLibrettoAttributedCH
   - LayoutLibrettoAttributedCH
   :filter:
-    leader: !ruby/regexp /.....n[at]m.............../
+    leader: !ruby/regexp /......[at]m.............../
     tag: "100"
 ###
 - :id: AnonymousWorkCH
@@ -135,7 +135,7 @@
   - LayoutPartLinkageWorkCH
   - LayoutAnonymousWorkCH
   :filter:
-    leader: !ruby/regexp /.....n[dc]m.............../
+    leader: !ruby/regexp /......[dc]m.............../
     tag: "130"
 ###
 - :id: AnonymousWorkinCollectionCH
@@ -162,7 +162,7 @@
   - LayoutPartLinkageWorkCollectionCH
   - LayoutAnonymousWorkCollectionCH
   :filter:
-    leader: !ruby/regexp /.....n[dc]d.............../
+    leader: !ruby/regexp /......[dc]d.............../
     tag: "130"
 ###
 - :id: AttributedWorkCH
@@ -189,7 +189,7 @@
   - LayoutPartLinkageWorkCH
   - LayoutAttributedWorkCH
   :filter:
-    leader: !ruby/regexp /.....n[dc]m.............../
+    leader: !ruby/regexp /......[dc]m.............../
     tag: "100"
 ###
 - :id: AttributedWorkinCollectionCH
@@ -216,7 +216,7 @@
   - LayoutPartLinkageWorkCollectionCH
   - LayoutAttributedWorkCollectionCH
   :filter:
-    leader: !ruby/regexp /.....n[dc]d.............../
+    leader: !ruby/regexp /......[dc]d.............../
     tag: "100"
 ###
 - :id: TheoreticaAnonymousCH
@@ -240,7 +240,7 @@
   - LayoutPartBibRefTheoreticaCH
   - LayoutTheoreticaAnonymousCH
   :filter:
-    leader: !ruby/regexp /.....npm.............../
+    leader: !ruby/regexp /......pm.............../
     tag: "130"
 ###
 - :id: TheoreticaAttributedCH
@@ -264,7 +264,7 @@
   - LayoutPartBibRefTheoreticaCH
   - LayoutTheoreticaAttributedCH
   :filter:
-    leader: !ruby/regexp /.....npm.............../
+    leader: !ruby/regexp /......pm.............../
     tag: "100"
 - :id: ShowCH
   :name: Show (CH)
