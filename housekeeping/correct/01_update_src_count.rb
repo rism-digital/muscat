@@ -41,8 +41,8 @@ LiturgicalFeast.all.each do |l|
   pb.increment!
 end
 
-purs "Fixing Place"
-pb = ProgressBar.new(Place.count)
+puts "Fixing Place"
+pb = ProgressBar.new(Place.count + 1) #can be zero!
 Place.all.each do |p|
   c = p.sources.count
   p.update_attribute( :src_count, c ) if c != p.src_count
