@@ -102,23 +102,23 @@ Migrate the database:
 
  cd trunk/
  rake db:migrate
-	
+
 
 Add basic dataset:
 
  rake db:seed
-	
+
 Default (development) startup:
 
  ./bundle exec rake sunspot:solr:start
- ./rails s -e
+ ./rails s -e development
 
 For startup in production mode:
 
  ./bundle exec rake RAILS_ENV=production assets:precompile
  ./bundle exec rake RAILS_ENV=production sunspot:solr:start
  ./rails s -e production
-	
+
 For refreshing an installation in production mode:
 
  sudo -u www rake assets:clean
@@ -135,7 +135,7 @@ Try to open :
 Specify only a model:
 
  rake sunspot:reindex[,Person]
-	
+
 Do reindex in 1 record batches, useful if reindex crashes to see in which one (very slow to start)
 
  rake sunspot:reindex[1]
@@ -143,7 +143,7 @@ Do reindex in 1 record batches, useful if reindex crashes to see in which one (v
 ==== Updating from an older version of Muscat
 
 For upgrading from an older version, see the {5- UPGRADE}[link:5-%20UPGRADE_rdoc.html] page.
-	 
+
 ==== To install on Mac OS X Lion
 
 With MySQL 64 bit binaries, add:
@@ -168,7 +168,7 @@ Example Apache configuration:
          </Directory>
          RailsEnv development
  </VirtualHost>
-	
+
 Double check permissions:
 
  # Create /var/rails and populate with software
@@ -182,25 +182,25 @@ Start Apache and Ferretd:
  /usr/local/etc/rc.d/apache22 start
  cd /var/rails/rism-ch/
  ./script/ferretd/start
-	
+
 If all this works, you can access the rism application:
 
  http://IP
-	
+
 == Adding users
 
 The first user needs to be set from the commandline:
 
  cd housekeeping/admin
  ruby create_admin_users.rb -a --username USER --password PASS --email EMAIL
-	
+
 the <tt>-a</tt> flag marks the user as admin
 
 
 == Installation on Ubuntu 14.04
- 
-Install the necessary packages 
- 
+
+Install the necessary packages
+
  sudo apt-get install ruby1.9.3 git ruby-passenger apache2 mysql-server openjdk-7-jre libapache2-mod-passenger make libmysqlclient-dev g++
 
 Clone GIT repo in /var/www/rails (instead ad /usr/local/www as used on FreeBSD). Remember to remove the default html site.
