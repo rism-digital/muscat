@@ -142,7 +142,7 @@ Do reindex in 1 record batches, useful if reindex crashes to see in which one (v
 
 ==== Updating from an older version of Muscat
 
-For upgrading from an older version, see the {5- UPGRADE}[link:5-%20UPGRADE_rdoc.html] page.
+For upgrading from an older version, see the {5- UPGRADE}[link:5-%20UPGRADE.rdoc] page.
 
 ==== To install on Mac OS X Lion
 
