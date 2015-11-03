@@ -2,7 +2,7 @@
 
 Marc records can be imported into muscat. They can be fed and imported using the command line script:
 
-	./script/runner housekeeping/import/import_from_marc.rb $FILE $MODEL
+ ./script/runner housekeeping/import/import_from_marc.rb $FILE $MODEL
 	
 <tt>$FILE</tt> contains all the Marc records in MarcXML format.
 <tt>$MODEL</tt> refers to the model of the records (e.g. Source, Person etc.)
@@ -28,8 +28,18 @@ For the StandardTitle authority, fields without a $0 (e.g., 740) can create prob
 Many object, like Person, Library, StandardTitle, ... cointain a field <tt>src_count</tt> which caches the total Sources
 related to any of them. This field is not updated during import, and a separate script needs to be run afterwards:
 
-	rails r housekeeping/correct/01_update_src_count.rb
+ rails r housekeeping/correct/01_update_src_count.rb
 	
 It will update all the ms_counts for each class. 
 
--- To be further documented --
+== Importing from XML data
+
+XML data can be converted to text MARC using an xsl2 stylesheet in housekeeping/import/housekeeping/import/marcxml2marctxt.xsl. In this example Saxon HE version 9 is used (http://sourceforge.net/projects/saxon/files/Saxon-HE/), which requires a java runtime to be installed:
+
+ java -jar saxon9he.jar -s:input.xml -xsl:$MUSCAT_DIR/housekeeping/import/marcxml2marctxt.xsl -o:output.marc
+
+The XML file has to be well formed, and use the correct namespace:
+
+ <collection xmlns="http://www.loc.gov/MARC21/slim">
+
+The MARC data can then be imported using the conventional importer.
