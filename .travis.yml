@@ -7,3 +7,7 @@ rvm:
 before_script:
   - cp config/sample_application.rb config/application.rb
   - cp config/sample_database.yml config/database.yml
+
+script:
+  - bundle exec rake db:migrate
+  - bundle exec rake db:seed
