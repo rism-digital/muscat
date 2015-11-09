@@ -1,5 +1,7 @@
 language: ruby
 sudo: false
+services:
+  - mysql
 rvm:
   - 1.9.3
   - 2.1.1
