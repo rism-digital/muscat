@@ -8,6 +8,7 @@ gem 'rails', '~> 4.1.0'
 # http://stackoverflow.com/questions/32457657/rails-4-gemloaderror-specified-mysql2-for-database-adapter-but-the-gem-i
 # https://github.com/rails/rails/issues/21544
 gem 'mysql2', '~> 0.3.18'
+gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
