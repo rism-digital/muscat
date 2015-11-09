@@ -4,3 +4,6 @@ rvm:
   - 1.9.3
   - 2.1.1
 
+before_script:
+  - cp config/sample_application.rb config/application.rb
+  - cp config/sample_database.yml config/database.yml
