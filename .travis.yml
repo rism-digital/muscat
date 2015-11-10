@@ -1,0 +1,17 @@
+language: ruby
+sudo: false
+services:
+  - mysql
+rvm:
+  - 1.9.3
+  - 2.1.1
+
+before_script:
+  - cp config/sample_application.rb config/application.rb
+  - cp config/travis_database.yml config/database.yml
+  - mysql -e 'create database muscat_test;'
+  - mysql -e 'create database muscat_development;'
+
+script:
+  - bundle exec rake db:migrate
+  - bundle exec rake db:seed
