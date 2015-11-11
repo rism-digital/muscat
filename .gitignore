@@ -12,3 +12,4 @@ vendor/assets/stylesheets/muscat-custom.scss
 
 .idea
 help.sh
+.DS_Store
