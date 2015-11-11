@@ -98,6 +98,10 @@
     :fields:
     - - a
       - :occurances: "?"
+    - - b
+      - :occurances: "?"
+    - - c
+      - :occurances: "?"
     - - d
       - :occurances: "*"
     - - e
