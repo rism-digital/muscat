@@ -9,92 +9,92 @@
 
 :model: catalogue
 :tags:
-  "000": 
+  "000":
     :master: ""
-    :indicator: "" 
-    :occurances: "1"
+    :indicator: ""
+    :occurrences: "1"
     :fields:
     - - ""
       - :no_browse: true
-  "001": 
+  "001":
     :master: ""
-    :indicator: "" 
-    :occurances: "1"
+    :indicator: ""
+    :occurrences: "1"
     :zero_padding: "14"
     :fields:
     - - ""
       - :no_browse: true
-  "003": 
-    :master: ""
-    :indicator: "" 
-    :occurances: "1"
-    :fields:
-    - - ""
-      - :no_browse: true
-  "005": 
-    :master: ""
-    :indicator: "" 
-    :occurances: "1"
-    :fields:
-    - - ""
-      - :no_browse: true
-  "008": 
+  "003":
     :master: ""
     :indicator: ""
-    :occurances: "1"
+    :occurrences: "1"
     :fields:
     - - ""
       - :no_browse: true
-  "100": 
+  "005":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "008":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "100":
     :master: a
     :indicator: "1#"
-    :occurances: "?"
-    :fields: 
+    :occurrences: "?"
+    :fields:
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
     - - "0"
-      - :occurances: "?"
+      - :occurrences: "?"
         :browse_inline: true
-  "210": 
+  "210":
     :master: a
     :indicator: "1#"
-    :occurances: "?"
-    :fields: 
+    :occurrences: "?"
+    :fields:
     - - a
-      - :occurances: "?"
-  "240": 
+      - :occurrences: "?"
+  "240":
     :master: a
     :indicator: "1#"
-    :occurances: "?"
-    :fields: 
+    :occurrences: "?"
+    :fields:
     - - a
-      - :occurances: "?"
-  "260": 
+      - :occurrences: "?"
+  "260":
     :master: a
     :indicator: "1#"
-    :occurances: "*"
-    :fields: 
+    :occurrences: "*"
+    :fields:
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
     - - c
-      - :occurances: "?"
-  "700": 
+      - :occurrences: "?"
+  "700":
     :master: a
     :indicator: "##"
-    :occurances: "*"
-    :fields: 
+    :occurrences: "*"
+    :fields:
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
     - - "0"
-      - :occurances: "?"
+      - :occurrences: "?"
     - - "4"
-      - :occurances: "?"
-  "760": 
+      - :occurrences: "?"
+  "760":
     :master: g
     :indicator: "##"
-    :occurances: "*"
-    :fields: 
+    :occurrences: "*"
+    :fields:
     - - g
-      - :occurances: "?"
+      - :occurrences: "?"
     - - t
-      - :occurances: "?"
+      - :occurrences: "?"

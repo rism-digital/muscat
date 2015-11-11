@@ -138,10 +138,10 @@ class MarcConfig
   # Check if a tag or subtag can be repeated (* or + mean it is)
   def multiples_allowed?(tag, subtag = "")
     if subtag.empty?
-        occurrences = @tag_config[tag][:occurances]
+        occurrences = @tag_config[tag][:occurrences]
     else
         return false if !@tag_config[tag][:fields].assoc(subtag)
-        occurrences = @tag_config[tag][:fields].assoc(subtag)[1][:occurances]
+        occurrences = @tag_config[tag][:fields].assoc(subtag)[1][:occurrences]
     end
     return true if occurrences == '*' or occurrences == '+'
     return false

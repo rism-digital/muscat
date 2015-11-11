@@ -9,81 +9,81 @@
 
 :model: institution
 :tags:
-  "000": 
+  "000":
     :master: ""
-    :indicator: "" 
-    :occurances: "1"
+    :indicator: ""
+    :occurrences: "1"
     :fields:
     - - ""
       - :no_browse: true
-  "001": 
+  "001":
     :master: ""
-    :indicator: "" 
-    :occurances: "1"
+    :indicator: ""
+    :occurrences: "1"
     :zero_padding: "14"
     :fields:
     - - ""
       - :no_browse: true
-  "003": 
-    :master: ""
-    :indicator: "" 
-    :occurances: "1"
-    :fields:
-    - - ""
-      - :no_browse: true
-  "005": 
-    :master: ""
-    :indicator: "" 
-    :occurances: "1"
-    :fields:
-    - - ""
-      - :no_browse: true
-  "008": 
+  "003":
     :master: ""
     :indicator: ""
-    :occurances: "1"
+    :occurrences: "1"
     :fields:
     - - ""
       - :no_browse: true
-  "043": 
+  "005":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "008":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "043":
     :master: c
     :indicator: "##"
-    :occurances: "*"
-    :fields: 
+    :occurrences: "*"
+    :fields:
     - - c
-      - :occurances: "*"
-  "110": 
+      - :occurrences: "*"
+  "110":
     :master: a
     :indicator: "1#"
-    :occurances: "?"
-    :fields: 
+    :occurrences: "?"
+    :fields:
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
     - - c
-      - :occurances: "?"
+      - :occurrences: "?"
     - - g
-      - :occurances: "?"
-  "410": 
+      - :occurrences: "?"
+  "410":
     :master: a
     :indicator: "1#"
-    :occurances: "*"
-    :fields: 
+    :occurrences: "*"
+    :fields:
     - - a
-      - :occurances: "?"
-  "622": 
+      - :occurrences: "?"
+  "622":
     :master: e
     :indicator: "##"
-    :occurances: "*"
-    :fields: 
+    :occurrences: "*"
+    :fields:
     - - e
-      - :occurances: "?"
+      - :occurrences: "?"
     - - u
-      - :occurances: "?"
+      - :occurrences: "?"
         :validation: "^http*"
-  "680": 
+  "680":
     :master: i
     :indicator: "1#"
-    :occurances: "*"
-    :fields: 
+    :occurrences: "*"
+    :fields:
     - - i
-      - :occurances: "?"
+      - :occurrences: "?"
