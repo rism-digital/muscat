@@ -209,7 +209,8 @@ class MarcNode
               #puts "Foreign object could not be saved, no recovery from here." if !self.foreign_object.save
             end
           rescue =>
-            $stderr.puts "\nFailed to save foreign object #{self.foreign_object.to_yaml}"
+            $stderr.puts
+            $stderr.puts "Failed to save foreign object #{self.foreign_object.to_yaml}"
             $stderr.puts e.backtrace.join("\n")
           end
         end 
