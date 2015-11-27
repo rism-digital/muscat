@@ -210,9 +210,9 @@ class MarcNode
             end
           rescue => e
             $stderr.puts
-            $stderr.puts "Failed to save foreign object #{self.foreign_object.to_yaml}"
             $stderr.puts e.message
-            $stderr.puts e.backtrace.join("\n")
+            $stderr.puts "While importing: #{self.id}"
+            $stderr.puts "Failed to save foreign object #{self.foreign_object.to_yaml}"
           end
         end 
         # now add the master subfield $0 with the id value
