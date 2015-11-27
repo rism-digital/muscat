@@ -1,107 +1,86 @@
 --- !map:Settings 
 group_order: 
-- control
-- codes
-- main
-- title
-- edition
-- description
-- notes
-- subject
-- added_entry
-- linking
-- holding
-groups: 
-  control: 
-    all_tags: 
-    - "000"
-    - "001"
-    - "003"
-    - "007"
-  added_entry: 
-    all_tags: 
-    - "700"
-    - "710"
-    - "730"
-    - "740"
-  added_series: 
-    all_tags: []
-
-  title: 
-    all_tags: 
-    - "240"
-    - "245"
-    - "246"
-  notes: 
-    all_tags: 
-    - "500"
-    - "505"
-    - "506"
-    - "508"
-    - "510"
-    - "511"
-    - "518"
-    - "520"
-    - "525"
-    - "533"
-    - "541"
-    - "545"
-    - "546"
-    - "555"
-    - "561"
-    - "563"
-    - "580"
-    - "590"
-    - "591"
-    - "592"
-    - "593"
-    - "594"
-    - "595"
-    - "596"
-    - "597"
-    - "598"
-    - "599"
-  series: 
-    all_tags: []
-
-  holding: 
-    all_tags: 
-    - "852"
-    - "856"
-  subject: 
-    all_tags: 
-    - "600"
-    - "650"
-    - "651"
-    - "653"
-    - "657"
-    - "690"
-    - "691"
-  main: 
-    all_tags: 
-    - "100"
-    - "110"
-    - "130"
-  description: 
-    all_tags: 
-    - "300"
-    - "340"
-  codes: 
-    all_tags: 
+- library
+- provenance
+- diplomatic_title
+- physical_description
+- material_description
+- content
+- incipit
+- bibliographical_reference
+- added_entries
+- administration
+groups:
+  added_entries:
+    all_tags:
+    - '700'
+    - '710'
+    - '508'
+  administration:
+    all_tags:
+    - '000'
+    - '001'
+    - '003'
+    - '007'
+    - '040'
+    - '599'
+  bibliographical_reference:
+    all_tags:
+    - '691'
+  content:
+    all_tags:
+    - '100'
+    - '600'
+    - '240'
+    - '730'
+    - '650'
+    - '505'
+    - '740'
+    - '041'
+    - '546'
+  date:
+    all_tags:
+    - '033'
+    - '518'
+  diplomatic_title:
+    all_tags:
+    - '245'
+    - '246'
+  incipit:
+    all_tags:
+    - '031'
+    template: show_incipit
+  library:
+    all_tags:
+    - '110'
+    - '852'
+    - '506'
+    - '500'
+    - '505'
+  linkage:
+    all_tags:
+    - '773'
+    - '787'
+  performance:
+    all_tags:
+    - '651'
+    - '657'
+    - '511'
+  physical_description:
+    all_tags:
+    - '563'
+    - '525'
+    - '500'
+  material_description:
+    all_tags:
+    - '593'
+    - '340'
+    - '300'
+    - '260'
+    - '592'
     - 028
-    - "031"
-    - "033"
-    - "035"
-    - "040"
-    - "041"
-  linking: 
-    all_tags: 
-    - "772"
-    - "773"
-    - "787"
-    - "789"
-  edition: 
-    all_tags: 
-    - "254"
-    - "260"
-    - "270"
+    subfield_grouping: 8
+  provenance:
+    all_tags:
+    - '561'
+    - '541'

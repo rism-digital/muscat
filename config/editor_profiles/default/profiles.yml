@@ -24,6 +24,17 @@
   :filter:
     show_all: false
     show: true
+###
+- :id: MarcSource
+  :name: Marc Source
+  :model: source
+  :labels: 
+  - SourceLabels
+  :options: 
+  - SourceFormOptions
+  :layout: 
+  - SourceLayoutMarc
+  :filter:
 
 # Configuration for person
 - :id: DefaultPerson
