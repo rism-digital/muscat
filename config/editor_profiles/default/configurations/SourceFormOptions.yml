@@ -1,0 +1,624 @@
+--- !map:Settings 
+"000": 
+  tag: tag_no_subfield
+  tag_params: 
+    editor_only: true
+  tag_header: none
+"001": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+  tag_header: none
+"003": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+  tag_header: none
+"007": 
+  tag: tag_no_subfield
+  tag_params: 
+    maskedinput: 
+      mask: aa
+028: 
+  layout: 
+    fields: 
+    - - a
+#      - editor_partial: subfield_material
+"031": 
+  layout: 
+    fields:
+    - - "2"
+      - default: "pe"
+        hidden: true
+    - - a
+#      - validate: 
+#        - msg: the format must be numeric
+#          value: "'^[0-9][0-9]*$'"
+#          rule: regex
+#        - msg: the field is required
+#          value: true
+#          rule: required
+    - - b
+#      - validate: 
+#        - msg: the format must be numeric
+#          value: "'^[0-9][0-9]*$'"
+#          rule: regex
+#        - msg: the field is required
+#          value: true
+#          rule: required
+    - - c
+#      - validate: 
+#        - msg: the format must be numeric
+#          value: "'^[0-9][0-9]*$'"
+#          rule: regex
+#        - msg: the field is required
+#          value: true
+#          rule: required
+    - - d
+    - - m
+    - - e
+    - - t
+      - growfield: true
+    - - r
+    - - o
+    - - g
+      - values: 
+        - "G-1"
+        - "G-2"
+        - "g-2"
+        - "C-1"
+        - "C-2"
+        - "C-3"
+        - "C-4"
+        - "C-5"
+        - "F-4"
+        - "F-5"
+        editor_partial: subfield_select
+    - - n
+      - values: 
+        - "xF"
+        - "xFC"
+        - "xFCG"
+        - "xFCGD"
+        - "xFCGDA"
+        - "xFCGDAE"
+        - "xFCGDAEB"
+        - "bB"
+        - "bBE"
+        - "bBEA"
+        - "bBEAD"
+        - "bBEADG"
+        - "bBEADGC"
+        - "bBEADGCF"
+        editor_partial: subfield_autocomplete
+    - - s
+#      - validate: 
+#        - msg: the field can contain 't', '+' or '?'
+#          value: "'^[t\\+\\?][t\\+\\?]?[t\\+\\?]?$'"
+#          rule: regex
+    - - p
+      - editor_partial: subfield_pae
+    - - q
+
+"033": 
+  layout: 
+    fields: 
+    - - indicator
+      - editor_partial: subfield_indicator
+    - - a
+"040": 
+  layout: 
+    fields: 
+    - - a
+    - - c
+    - - d
+    - - b
+"041": 
+  layout: 
+    fields: 
+    - - indicator
+      - editor_partial: subfield_indicator
+    - - a
+      - values: 
+        - "eng"
+        - "fre"
+        - "ger"
+        - "grc"
+        - "gsw"
+        - "ita"
+        - "lat"
+        - "roh"
+        - "rus"
+        - "spa"
+        editor_partial: subfield_autocomplete
+    - - e
+      - values: 
+        - "eng"
+        - "fre"
+        - "ger"
+        - "grc"
+        - "gsw"
+        - "ita"
+        - "lat"
+        - "roh"
+        - "rus"
+        - "spa"
+        editor_partial: subfield_autocomplete
+    - - h
+      - values: 
+        - "eng"
+        - "fre"
+        - "ger"
+        - "grc"
+        - "gsw"
+        - "ita"
+        - "lat"
+        - "roh"
+        - "rus"
+        - "spa"
+        editor_partial: subfield_autocomplete
+"100": 
+  allow_new: true
+  new_window: people
+  layout: 
+    fields: 
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+    - - j
+      - value: Attributed to
+        editor_partial: subfield_checkbox
+  layout_new: 
+    fields: 
+    - - a
+    - - d
+    - - j
+      - value: Attributed to
+        editor_partial: subfield_checkbox
+"110":
+  allow_new: true
+  new_window: institutions
+  layout: 
+    fields: 
+    - - a
+      - type: institution
+        editor_partial: subfield_secondary
+    - - b
+  layout_new: 
+    fields: 
+    - - a
+    - - b
+"130":
+  allow_new: true
+  new_window: standard_titles
+  layout: 
+    fields: 
+    - - a
+      - type: standard_title
+        editor_partial: subfield_secondary
+    - - k
+    - - o
+    - - r
+    - - n
+    - - m
+  layout_new: 
+    fields: 
+    - - a
+    - - k
+    - - o
+    - - r
+    - - n
+    - - m
+"240": 
+  new_window: standard_titles
+  layout: 
+    fields: 
+    - - a
+      - type: standard_title
+        editor_partial: subfield_secondary
+    - - k
+    - - o
+    - - r
+    - - n
+    - - m
+  layout_new: 
+    fields: 
+    - - a
+    - - k
+    - - o
+    - - r
+    - - n
+    - - m
+  extended_help: 130
+"245": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - c
+      - hidden: true
+"260": 
+  layout: 
+    fields: 
+    - - a
+    - - b
+    - - c
+    - - e
+    - - f
+#      - editor_partial: subfield_material
+"300": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - c
+    - - b
+#      - editor_partial: subfield_material
+"340": 
+  layout: 
+    fields: 
+    - - a
+    - - d
+#      - editor_partial: subfield_material
+"351": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+#        editor_partial: subfield_material0
+"508": 
+  layout: 
+    fields: 
+    - - a
+      - values: 
+        - "Arranger: "
+        - "Artist: "
+        - "Associated name: "
+        - "Binder: "
+        - "Bookseller: "
+        - "Conceptor: "
+        - "Choreographer: "
+        - "Collaborator: "
+        - "Composer: "
+        - "Compiler: "
+        - "Conductor: "
+        - "Censor: "
+        - "Costume designer: "
+        - "Dancer: "
+        - "Donor: "
+        - "Dedicatee: "
+        - "Dubious author: "
+        - "Editor: "
+        - "Engraver: "
+        - "Former owner: "
+        - "Illustrator: "
+        - "Instrumentalist: "
+        - "Librettist: "
+        - "Lithograph: "
+        - "Lyricist: "
+        - "Patron: "
+        - "Paper maker: "
+        - "Production personnel: "
+        - "Performer: "
+        - "Printer: "
+        - "Scribe: "
+        - "Translater: "
+        - "Vocalist: "
+        growfield: true
+        editor_partial: subfield_autocomplete
+"518": 
+  layout: 
+    fields: 
+    - - a
+      - values: 
+        - "Composition date: "
+        - "First performance date: "
+        - "Performance date: "
+        editor_partial: subfield_autocomplete
+"541": 
+  layout: 
+    fields: 
+    - - c
+      - growfield: true
+    - - a
+    - - d
+"590": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - b
+      - growfield: true
+#        editor_partial: subfield_material
+"592": 
+  layout: 
+    fields: 
+    - - a
+#        editor_partial: subfield_material
+"593": 
+  layout: 
+    fields: 
+    - - a
+      - values: 
+        - Autograph
+        - Manuscript
+        - Manuscript with autograph annotations
+        - Print
+        - Probably autograph
+        editor_partial: subfield_select
+#        editor_partial: subfield_material
+"594": 
+  layout: 
+    fields: 
+    - - a
+#      - validate: 
+#        - msg: this field must be 4 characters
+#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
+#          rule: regex
+    - - b
+    - - c
+#      - validate: 
+#        - msg: this field must be 4 characters
+#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
+#          rule: regex
+    - - d
+    - - e
+    - - f
+#      - validate: 
+#        - msg: this field must be 5 characters
+#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
+#          rule: regex
+    - - g
+#      - validate: 
+#        - msg: this field must be 4 characters
+#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
+#          rule: regex
+    - - h
+#      - validate: 
+#        - msg: this field must be 3 characters
+#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
+#          rule: regex
+    - - i
+    - - k
+    - - l
+    - - m
+    - - n
+"600":
+  new_window: people
+  allow_new: true
+  layout: 
+    fields: 
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+  layout_new: 
+    fields: 
+    - - a
+"650":
+  allow_new: true
+  new_window: standard_terms
+  layout: 
+    fields: 
+    - - a
+      - type: standard_term
+        editor_partial: subfield_secondary
+  layout_new: 
+    fields: 
+    - - a
+"651": 
+  allow_new: true
+  new_window: places
+  layout: 
+    fields: 
+    - - a
+      - type: place
+        editor_partial: subfield_secondary
+  layout_new: 
+    fields: 
+    - - a
+"657": 
+  allow_new: true
+  new_window: liturgical_feasts
+  layout: 
+    fields: 
+    - - a
+      - type: liturgical_feast
+        editor_partial: subfield_secondary
+  layout_new: 
+    fields: 
+    - - a
+"690": 
+  allow_new: true
+  new_window: catalogues
+  layout: 
+    fields: 
+    - - a
+      - type: catalogue
+        editor_partial: subfield_secondary
+    - - n
+  layout_new: 
+    fields: 
+    - - a
+    - - n
+"691":
+  allow_new: true
+  new_window: catalogues
+  layout: 
+    fields: 
+    - - a
+      - type: catalogue
+        editor_partial: subfield_secondary
+    - - n
+  layout_new: 
+    fields: 
+    - - a
+    - - n
+"700":
+  allow_new: true
+  new_window: people
+  layout:
+    fields: 
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+    - - "4"
+      - editor_partial: subfield_relator_codes_700
+  layout_new:
+    fields: 
+    - - a
+    - - d
+    - - "4"
+      - editor_partial: subfield_relator_codes_700
+  tag_list_additional_data: tag_list_additional_data_relator_codes
+  tag_params: 
+    groups: 
+      01_codes_artistic: 
+      - cmp
+      - com
+      - arr
+      - aut
+      - clb
+      - lyr
+      - ccp
+      - lbt
+      - trl
+      02_codes_performing: 
+      - prf
+      - voc
+      - itr
+      - dnc
+      - cnd
+      - chr
+      - art
+      - cst
+      - prd
+      - cns
+      04_codes_other: 
+      - fmo
+      - dnr
+      - dte
+      - pat
+      - otm
+      - bsl
+      - asn
+      - dub
+      03_codes_technical: 
+      - scr
+      - ltg
+      - egr
+      - ill
+      - prt
+      - pbl
+      - edt
+      - bnd
+"710":
+  allow_new: true
+  new_window: institutions
+  layout: 
+    fields: 
+    - - a
+      - type: institution
+        editor_partial: subfield_secondary
+    - - b
+    - - "4"
+      - editor_partial: subfield_relator_codes_710
+  layout_new: 
+    fields: 
+    - - a
+    - - b
+    - - "4"
+      - editor_partial: subfield_relator_codes_710
+  tag_params: 
+    codes: 
+    - fmo
+    - dnr
+    - dte
+    - prf
+    - otm
+    - ppm
+    - prt
+    - pbl
+    - edt
+    - bsl
+    - asn
+    - dub
+"730":
+  allow_new: true
+  new_window: standard_titles
+  layout: 
+    fields: 
+    - - a
+      - type: standard_title
+        editor_partial: subfield_secondary
+    - - k
+    - - o
+    - - r
+    - - n
+    - - m
+  layout_new: 
+    fields: 
+    - - a
+    - - k
+    - - o
+    - - r
+    - - n
+    - - m
+"740":
+  layout: 
+    fields: 
+    - - a
+      - type: source_solr
+        field: value
+        editor_partial: subfield_secondary
+        allow_not_found: true
+    - - n
+    - - p
+#  layout_new: 
+#    fields: 
+#    - - a
+#    - - n
+#    - - p
+"772": 
+  layout: 
+    fields: 
+    - - w
+      - read_only: true
+"773":
+  new_window: sources
+  layout: 
+    fields: 
+    - - w
+      - type: source
+        editor_partial: subfield_secondary
+"787": 
+  layout: 
+    fields: 
+    - - g
+    - - n
+    - - s
+    - - w
+"852": 
+  allow_new: true
+  new_window: institutions
+  layout: 
+    fields: 
+    - - a
+      - nowrap: true
+        type: library
+        editor_partial: subfield_secondary
+    - - b
+    - - z
+    - - p
+      - growfield: true
+    - - d
+  layout_new: 
+    fields: 
+    - - a
+      - nowrap: true
+    - - b
+    - - p
+      - growfield: true
+    - - d
+    - - z
+ui: 
+  hide_marc_identifiers: true

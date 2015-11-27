@@ -1,0 +1,7 @@
+--- !map:Settings 
+groups: 
+  library: 
+    all_tags: 
+    - "110"
+    - "852"
+    - "506"

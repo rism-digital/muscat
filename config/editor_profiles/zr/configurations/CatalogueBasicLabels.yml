@@ -1,0 +1,186 @@
+--- !map:Settings 
+doc_abbreviations: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: "Abkürzungen"
+    en: Abbreviations
+doc_aid: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: Arbeitshilfen
+    en: Aide
+doc_cataloguing_collections: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: Erfassung von Sammlungen
+    en: Cataloging collection and convoluta
+doc_functions: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: "Grundätzliche Funktionen"
+    en: Basic functions
+doc_introduction: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: Einleitung
+    en: Introduction
+doc_masks: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: Masken
+    en: Cataloging forms
+doc_tag_index: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: MARC Tag Index
+    en: MARC tag index
+doc_templates: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    de: Templates
+    en: Templates
+"000": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Leader
+    fr: Guide
+    de: Leader
+    en: Leader
+"001": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Numero documento RISM
+    fr: No. RISM
+    de: RISM Dokumentnummer
+    en: RISM ID No.
+"003": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Identificatore del numero di controllo
+    fr: "Identité du numéro de contréle"
+    de: Kontrollnummer-Bezeichnung
+    en: Control number identifier
+"005": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Data e ora dell'ultima transazione
+    fr: "Date/heure de la derniôre transaction"
+    de: Datum und Zeit der letzten Transaktion
+    en: Date and time of last transaction
+"043": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Country code
+    fr: Country code
+    de: Länder-Code
+    en: County code
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Country code
+        fr: Country code
+        de: Länder-Code  
+        en: Country code
+"100": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore
+    fr: Auteur
+    de: Autor
+    en: Author
+  accepts: 
+  - "710"
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Autore
+        fr: Auteur
+        de: Autor
+        en: Author
+"210": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Nome 
+    fr: Nom
+    de: Name
+    en: Name
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nome 
+        fr: Nom
+        de: Name
+        en: Name
+"240": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Descrizione 
+    fr: Description
+    de: Beschreibung
+    en: Description
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Descrizione 
+        fr: Description
+        de: Beschreibung
+        en: Description
+"260": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Impressum 
+    fr: Impressum
+    de: Impressum
+    en: Impressum
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Luogo
+        fr: Endroit
+        de: Ort
+        en: Place 
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Data
+        fr: Date
+        de: Datum
+        en: Date
+"760": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Testata
+    fr: Titre de la revue
+    de: Zeitschriftentitel
+    en: Revue title
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    g: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Part
+        fr: Partie
+        de: Teil
+        en: Part 
+    t: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Titolo
+        fr: Titre
+        de: Titel
+        en: Title
+
+main: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Registrazioni principali
+    fr: "Entrées principales"
+    de: Haupteintragungen
+    en: Main entry fields
+codes: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Numeri e codici
+    fr: "Numéros et codes"
+    de: Nummern und Codes
+    en: Numbers and code fields
+control: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    fr: "Champs de contrle"
+    de: Kontrollfelder
+    ot: Campi di controllo
+    en: Control Fields
+notes: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Note
+    fr: Notes
+    de: Fussnoten
+    en: Note fields
+other: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Varia
+    fr: Divers
+    de: Verschiedenes
+    en: Miscellaneous
+administration: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Amministrazione
+    fr: Administration
+    de: Administration
+    en: Administration

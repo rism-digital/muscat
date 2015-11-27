@@ -1,17 +1,24 @@
 --- !map:Settings 
 group_order: 
 - main
-- administration
+- codes
+- control
+- notes
 groups: 
-  administration: 
+  control: 
     all_tags: 
     - "000"
     - "001"
     - "003"
     - "005"
+    - 008
+  notes: 
+    all_tags: 
+    - "622"
   main: 
     all_tags: 
     - "110"
     - "410"
-    - "622"
-    - "680"
+  codes: 
+    all_tags: 
+    - "043"
