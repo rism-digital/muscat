@@ -208,8 +208,9 @@ class MarcNode
               #self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters )
               #puts "Foreign object could not be saved, no recovery from here." if !self.foreign_object.save
             end
-          rescue
-            $stderr.puts "Failed to save foreign object #{self.foreign_object.to_yaml}"
+          rescue =>
+            $stderr.puts "\nFailed to save foreign object #{self.foreign_object.to_yaml}"
+            $stderr.puts e.backtrace.join("\n")
           end
         end 
         # now add the master subfield $0 with the id value
