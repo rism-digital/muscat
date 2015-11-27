@@ -4,9 +4,9 @@
   :name: Default Source
   :model: source
   :labels: 
-  - SourceBasicLabels
+  - SourceLabels
   :options: 
-  - SourceBasicFormOptions
+  - SourceFormOptions
   :layout: 
   - SourceLayoutDefault
   :filter: 

@@ -9,12 +9,10 @@
 # e.g. editor_profiles/ch, and configure RISM::EDITOR_PROFILE="ch", for example. The new profiles completely overrides the default one.
 # profiles.yml consists of an array of configurations, in this form:<p>
 # <tt>
-# - :id: DefaultCH
-#  :name: Default (CH)
+# - :id: Default
+#  :name: Default 
 #  :labels: 
 #  - BasicLabels
-#  :rules: 
-#  - BasicCataloguingRules
 #  :options: 
 #  - BasicFormOptions
 #  :layout: 
@@ -66,7 +64,6 @@ class EditorConfiguration
     @filter = conf[:filter]
     @model = conf[:model]
     @squeezed_labels_config = squeeze(conf[:labels])
-    @squeezed_rules_config = squeeze(conf[:rules])
     @squeezed_options_config = squeeze(conf[:options])
     @squeezed_layout_config = squeeze(conf[:layout])
   end
@@ -176,15 +173,8 @@ class EditorConfiguration
   end
 
   #################################
-  
-  # Gets the rules configuration from the DB. As labels_config above.
-  def rules_config
-    @squeezed_rules_config
-  end
 
-  #################################
-
-  # Gets the options for the current EditorConfiguration. As labels_config and rules_config.
+  # Gets the options for the current EditorConfiguration. As labels_config.
   # The form options are the options used in showing the edit fields in the ms editor
   def options_config
     unless @squeezed_options_config
@@ -266,7 +256,7 @@ class EditorConfiguration
 
   #################################
 
-  # Gets the layout for the current configuration. As labels_config and rules_config.
+  # Gets the layout for the current configuration. As labels_config.
   def layout_config
     @squeezed_layout_config
   end

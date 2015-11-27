@@ -2,6 +2,7 @@
 group_order: 
 - library
 - provenance
+- linkage
 - diplomatic_title
 - physical_description
 - material_description
@@ -9,7 +10,10 @@ group_order:
 - incipit
 - bibliographical_reference
 - added_entries
+- performance
+- date
 - administration
+
 groups:
   added_entries:
     all_tags:
@@ -26,18 +30,23 @@ groups:
     - '599'
   bibliographical_reference:
     all_tags:
+    - '596'
     - '691'
+    - '690'
   content:
     all_tags:
-    - '100'
-    - '600'
-    - '240'
+    - '130'
     - '730'
     - '650'
     - '505'
+    - '594'
+    - '653'
     - '740'
     - '041'
     - '546'
+    - '100'
+    - '600'
+    - '240'
   date:
     all_tags:
     - '033'
@@ -52,14 +61,15 @@ groups:
     template: show_incipit
   library:
     all_tags:
-    - '110'
     - '852'
     - '506'
+    - '110'
     - '500'
     - '505'
   linkage:
     all_tags:
     - '773'
+    - '772'
     - '787'
   performance:
     all_tags:
@@ -79,6 +89,7 @@ groups:
     - '260'
     - '592'
     - 028
+    - '590'
     subfield_grouping: 8
   provenance:
     all_tags:
