@@ -3,11 +3,13 @@ class CreateHoldings < ActiveRecord::Migration
   def self.up
     create_table(:holdings, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8') do |t|
 
-      t.column :source_id           :integer
+      t.column :source_id,          :integer
       t.column :lib_siglum,         :string
     
       t.column :marc_source,        :text
 
+      t.column :lock_version,       :integer, { :default => 0, :null => false }
+      
       # this fields are kept for now - to be decided
       t.column :wf_audit,           :string, { :limit => 16, :default => "unapproved" }
       t.column :wf_stage,           :string, { :limit => 16, :default => "unpublished" }

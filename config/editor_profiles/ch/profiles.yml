@@ -379,7 +379,7 @@
   - HoldingLayoutDefault
   :filter:
     default: true 
-- :id: ShowCatalogue
+- :id: ShowHolding
   :name: Holding
   :model: holding
   :labels: 
