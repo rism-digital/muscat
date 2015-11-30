@@ -78,7 +78,7 @@ ActiveAdmin.register Holding do
     def new
       @holding = Holding.new
       
-      new_marc = MarcHolfing.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/holding/default.marc"))
+      new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/holding/default.marc"))
       new_marc.load_source false # this will need to be fixed
       @holding.marc = new_marc
 
@@ -106,21 +106,18 @@ ActiveAdmin.register Holding do
   #end
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :lib_siglum_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
-         collection: proc{Folder.where(folder_type: "Holding").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+         collection: proc{Folder.where(folder_type: "Holding").collect {|c| [c.lib_siglum, "folder_id:#{c.id}"]}}
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id    
-    column (I18n.t :filter_name), :name
-    column (I18n.t :filter_name), :description
-    column (I18n.t :filter_author), :author
-    column (I18n.t :filter_sources), :src_count
+    column (I18n.t :filter_lib_siglum), :lib_siglum
     active_admin_muscat_actions( self )
   end
   
@@ -128,7 +125,7 @@ ActiveAdmin.register Holding do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_source_show_title( @item.name, @item.author, @item.id) } do
+  show :title => proc{ active_admin_source_show_title( @item.lib_siglum, "", "") } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]

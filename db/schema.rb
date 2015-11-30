@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824123044) do
+ActiveRecord::Schema.define(version: 20151130141959) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -164,6 +164,30 @@ ActiveRecord::Schema.define(version: 20150824123044) do
     t.datetime "updated_at"
     t.integer  "wf_owner"
   end
+
+  create_table "holdings", force: true do |t|
+    t.integer  "source_id"
+    t.string   "lib_siglum"
+    t.text     "marc_source"
+    t.integer  "lock_version",            default: 0,             null: false
+    t.string   "wf_audit",     limit: 16, default: "unapproved"
+    t.string   "wf_stage",     limit: 16, default: "unpublished"
+    t.string   "wf_notes"
+    t.integer  "wf_owner",                default: 0
+    t.integer  "wf_version",              default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "holdings", ["wf_stage"], name: "index_holdings_on_wf_stage", using: :btree
+
+  create_table "holdings_institutions", id: false, force: true do |t|
+    t.integer "holding_id"
+    t.integer "institution_id"
+  end
+
+  add_index "holdings_institutions", ["holding_id"], name: "index_holdings_institutions_on_holding_id", using: :btree
+  add_index "holdings_institutions", ["institution_id"], name: "index_holdings_institutions_on_institution_id", using: :btree
 
   create_table "institutions", force: true do |t|
     t.string   "siglum",       limit: 32
