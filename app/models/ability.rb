@@ -11,7 +11,7 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, User, :id => user.id
 
-    elsif user.has_role?(:editor, Person)
+    elsif user.has_role?(:editor)
       can [:read, :create, :update], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work]
       can :destroy, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work], :wf_owner => user.id
       can [:read, :create, :update], Source
@@ -24,7 +24,7 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "doc"
       can [:read, :update], User, :id => user.id
 
-    elsif user.has_role?(:cataloger, Person)
+    elsif user.has_role?(:cataloger)
       # A cataloguer can create new items but modify only the ones ho made
       can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work]
       can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work], :wf_owner => user.id
