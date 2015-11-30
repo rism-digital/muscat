@@ -1,4 +1,5 @@
 class Holding < ActiveRecord::Base
+  include ForeignLinks
   resourcify
 
   # class variables for storing the user name and the event from the controller
@@ -18,11 +19,14 @@ class Holding < ActiveRecord::Base
   
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
-  after_save :reindex
+  after_save :update_links, :reindex
+    before_destroy :update_links
   
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
+  attr_accessor :suppress_recreate_trigger
+  attr_accessor :suppress_update_count_trigger
   
   # Suppresses the solr reindex
   def suppress_reindex
@@ -31,6 +35,14 @@ class Holding < ActiveRecord::Base
 
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
+  end
+  
+  def suppress_recreate
+    self.suppress_recreate_trigger = true
+  end 
+  
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
   end
   
   def fix_ids
@@ -50,6 +62,14 @@ class Holding < ActiveRecord::Base
       self.without_versioning :save
     end
   end
+  
+  def update_links
+    return if self.suppress_recreate_trigger == true
+    
+    allowed_relations = ["institutions"]
+    recreate_links(marc, allowed_relations)
+  end
+  
   
   def scaffold_marc
     return if self.marc_source != nil  
