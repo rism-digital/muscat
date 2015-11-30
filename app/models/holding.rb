@@ -16,10 +16,6 @@ class Holding < ActiveRecord::Base
   
   composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source)
   
-  ##include NewIds
-  
-  before_destroy :check_dependencies
-  
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :reindex
@@ -63,7 +59,7 @@ class Holding < ActiveRecord::Base
     new_marc.load_source true
     
     # save revue_title
-    node = MarcNode.new("holding", "852", "", "0#")
+    node = MarcNode.new("holding", "852", "", "##")
     node.add_at(MarcNode.new("holding", "a", self.lib_siglum, nil), 0)
     
     new_marc.root.children.insert(new_marc.get_insert_position("852"), node)
@@ -116,13 +112,6 @@ class Holding < ActiveRecord::Base
         
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
-  end
-  
-  def check_dependencies
-    if (self.sources.count > 0)
-      errors.add :base, "The holding could not be deleted because it is used"
-      return false
-    end
   end
   
   def self.find_recent_updated(limit, user)
