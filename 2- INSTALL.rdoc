@@ -2,70 +2,21 @@
 
 This document describes how to bootstrap into the webapplication.
 
-* ruby: > 1.9.3
-
-This document describes the installation process on FreeBSD using ports, other systems are tested (MacOS X and Linux),
-and it is important that the various package versions match.
-
 == Preliminaries
 
 The following other libraries and programs are needed
 
+* ruby: > 1.9.3
 * Apache 2.2
 * MySQL > 5.0
-* iconv
 * Git
+* Passenger for Apache 2
 
-Git is necessary for checking out the repo, so install it if necessary:
-
- cd /usr/ports/devel/git
- sudo make install clean
-
-Install iconv (for rails, used by ruby-iconv):
-
- cd /usr/ports/converters/iconv
- sudo make install clean
- # gem is dumb, need symlinks....
- ln -s /usr/local/lib/libiconv.* /usr/lib
- ln -s /usr/local/include/iconv.h /usr/include/
-
-Install MySQL:
-
- cd /usr/ports/databases/mysql51-server
- make install clean
- # Remember to enable it in /etc/rc.conf
- # mysql_enable="YES"
- # and launch it:
- /usr/local/etc/rc.d/mysql-server start
-
-Install Apache 2.2:
-
- cd /usr/ports/www/apache22
- make install clean
- # Edit /etc/rc.conf and add for automatic startup:
- # accf_http_load="YES"
- # apache22_enable="YES"
+On a Debian or Ubuntu system all these packages are available via apt-get. No special configuration is needed
 
 == Ruby and Rails
 
-Version 1.9.3 of Ruby is used. On FreeBSD:
-
- cd /usr/ports/lang/ruby19/
- sudo make install clean
-
-Install Gem:
-
- cd /usr/ports/devel/ruby-gems
- sudo make install clean
-
-Install rails (4.0):
-
- sudo gem install rails
-
-Lastly install Passenger (3.0):
-
- gem install passenger
- passenger-install-apache2-module
+Any version of Ruby that supports Rails 4 is ok. Use the package manager to install any version of Rails 4, the system will be then updated with bundler.
 
 == Bootstrap the application
 
@@ -100,9 +51,7 @@ Set up databases access:
 
 Migrate the database:
 
- cd trunk/
  rake db:migrate
-
 
 Add basic dataset:
 
@@ -110,8 +59,8 @@ Add basic dataset:
 
 Default (development) startup:
 
- ./bundle exec rake sunspot:solr:start
- ./rails s -e development
+ bundle exec rake sunspot:solr:start
+ rails s -e development
 
 For startup in production mode:
 
@@ -128,6 +77,7 @@ Try to open :
 
  http://ip:3000/
 
+
 == Logging In
 
 A default administrative user has been created as part of the installation process. To log in,
@@ -141,6 +91,10 @@ It is advised that you delete this account after creating a new administrative u
 ==== Index rebuilding:
 
  rake sunspot:reindex
+
+it in production mode run
+
+ RAILS_ENV=production rake sunspot:reindex
 
 Specify only a model:
 
@@ -186,12 +140,7 @@ Double check permissions:
  <command to checkout as needed TBD>
  chown -R www /var/rails
 
-Start Apache and Ferretd:
-
- # REMEMBER, check that the hostname resolves!
- /usr/local/etc/rc.d/apache22 start
- cd /var/rails/rism-ch/
- ./script/ferretd/start
+Start Apache and Solr.
 
 If all this works, you can access the rism application:
 
