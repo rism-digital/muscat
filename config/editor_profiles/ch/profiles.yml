@@ -374,7 +374,7 @@
   :rules: 
   - BasicCataloguingRules
   :options: 
-  - HoldingeBasicFormOptions
+  - HoldingBasicFormOptions
   :layout: 
   - HoldingLayoutDefault
   :filter:
