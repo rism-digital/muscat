@@ -365,3 +365,31 @@
   :filter:
     show_all: false
     show: true
+
+- :id: DefaultHolding
+  :name: Holding
+  :model: holding
+  :labels: 
+  - HoldingBasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - HoldingeBasicFormOptions
+  :layout: 
+  - HoldingLayoutDefault
+  :filter:
+    default: true 
+- :id: ShowCatalogue
+  :name: Holding
+  :model: holding
+  :labels: 
+  - HoldingBasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - HoldingBasicFormOptions
+  :layout: 
+  - HoldingLayoutShow
+  :filter:
+    show_all: false
+    show: true

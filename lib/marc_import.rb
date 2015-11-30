@@ -28,7 +28,6 @@ class MarcImport
   end
 
   def import
-    #line_number = 0
     each_record(@source_file) { |record|         
         rec = Nokogiri::XML(record.to_s)
         # Use external XSLT 1.0 file for converting to MARC21 text
@@ -39,7 +38,7 @@ class MarcImport
     puts @import_results
   end
 
-  def create_record(buffer, line_number = 0)
+  def create_record(buffer)
     @cnt += 1
     #@total_records += 1
     buffer.gsub!(/[\r\n]+/, ' ')
@@ -76,8 +75,8 @@ class MarcImport
         @import_results = @import_results.uniq
 
         if @model == "Source"
-          source.suppress_update_77x # we should not need to update the 772/773 relationships during the import
-          source.suppress_update_count # Do not update the count for the foreign objects
+          model.suppress_update_77x # we should not need to update the 772/773 relationships during the import
+          model.suppress_update_count # Do not update the count for the foreign objects
         end
         
         model.suppress_reindex
@@ -98,7 +97,7 @@ class MarcImport
         print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S") + " -- Record #{@cnt} of #{@total_records} processed"
         #puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"
       else
-        puts "failed to import marc record leading up to line #{line_number}"
+        puts "Marc is not valid! #{buffer}"
       end
     end
   end

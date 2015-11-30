@@ -18,6 +18,7 @@ module RISM
   
   BASE_NEW_IDS = { 
     :catalogue        => 50000000,
+    :holding          => 50000000,
     :institution      => 50000000,
     :liturgical_feast => 50000000,
     :person           => 50000000,
