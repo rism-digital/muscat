@@ -253,6 +253,8 @@ class EditorConfiguration
       end
     end
   end
+  
+  
 
   #################################
 
@@ -301,6 +303,13 @@ class EditorConfiguration
     end
     return "editor/group"
   end  
+
+  # Returns all the tags not included in the layout
+  def each_group_in_layout(marc_item)
+    layout_config["group_order"].each do |group|
+      yield group unless layout_config["group_exclude"] && layout_config["group_exclude"]["collection"].include?(group)
+    end
+  end
   
   # Returns all the tags not included in the layout
   def each_tag_not_in_layout(marc_item)
@@ -317,42 +326,35 @@ class EditorConfiguration
     return @filter["show_all"]
   end
   
-  # Used from the SourceController, finds a layout that is applicabile for the current Source item
-  # refer to _layout_is_applicable. It is filtered in base of the MARC leader or <tt>tag</tt> item.
-  def self.get_applicable_layout(model)
+  # Gets the default layout. This is a configuration in which <tt>default</tt> in the <tt>filter</tt> is true.
+  def self.get_default_layout(model)
     profiles = EditorConfiguration.profiles
-    default = nil
     model_name = model.class.to_s.downcase
-
     profiles.each do |p|
       next if model_name != p.model
-      
-      # we keep the default profile while looping in case we don't find an applicable one
-      default = p if p.filter && p.filter["default"]
-      # we got it
-      return p if self._layout_is_applicable model, p
+      return p if p.filter && p.filter["default"]
     end
-    return default
+    return nil
   end
   
-  # Gets the default show layout. This is a configuration in which <tt>show</tt> in the <tt>filter</tt> is true.
+  # Gets the show layout. This is a configuration in which <tt>show</tt> in the <tt>filter</tt> is true.
   def self.get_show_layout(model)
     profiles = EditorConfiguration.profiles
     model_name = model.class.to_s.downcase
     profiles.each do |p|
-      
       next if model_name != p.model
-      
       return p if p.filter && p.filter["show"]
     end
     return nil
   end
   
-  # Gets the default holding layout. This is a configuration in which <tt>holding</tt> in the <tt>filter</tt> is true.
-  def self.get_holding_layout
-    profiles = EditorConfiguration.profiles
-    profiles.each do |p|
-      return p if p.filter && p.filter["holding"]
+  def self.get_record_type(model)
+    record_types = EditorConfiguration.record_types
+    model_name = model.class.to_s.downcase
+    record_types.each do |t|
+      # this is not the correct record type list
+      next if model_name != t[:model]
+      return t[:record_types][model.record_type]
     end
     return nil
   end
@@ -371,31 +373,6 @@ class EditorConfiguration
   end
 
   private
-
-  # Used by get_applicable_layout, checks passed marc_item and layout to see if the layout
-  # is applicabile to the ms.
-  def self._layout_is_applicable(marc_item, profile)
-    return false if !profile.filter || !marc_item.marc
-    # we don't want the default one, or show one
-    return false if profile.filter["default"]
-    return false if profile.filter["show"]
-    # check if the leader matches the regexp
-    if profile.filter["leader"]
-      leader = marc_item.marc.get_leader
-      r = Regexp.new(profile.filter["leader"])
-      return false if !r.match(leader)
-    end
-    # check if the tag if present
-    if profile.filter["tag"]
-      return false if !marc_item.marc.has_tag?(profile.filter["tag"])
-    end
-    # check if the tag if NOT present
-    if profile.filter["no_tag"]
-      return false if marc_item.marc.has_tag?(profile.filter["no_tag"])
-    end
-    # it is applicable
-    return true    
-  end
 
   # Get all the EditorConfigurations defined in config/editor_profiles/default/profiles.yml
   # and locals is config/editor_profiles/$EDITOR_PROFILE/profiles.yml
@@ -419,19 +396,27 @@ class EditorConfiguration
           @squeezed_profiles << EditorConfiguration.new(conf)
         end
       end
-
-      
+  
     end
     @squeezed_profiles
   end
   
-  # Find the editor profile that matches the current passed if
-  # kept so this class functions as a drop-in replacement for EditorProfile
-  def self.find_by_id(elem)
-    profiles.each do |profile|
-      return profile if profile.id == elem
+  # Get all the record types defined in config/editor_profiles/default/record_types.yml
+  def self.record_types
+    unless @squeezed_record_types
+      # load global record types
+      @squeezed_record_types
+      # Load local configurations
+      file = "#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/record_types.yml"
+      if File.exists?(file)
+        @squeezed_record_types = YAML::load(IO.read(file))
+      else
+        # if it does not exist, load default
+        file = "#{Rails.root}/config/editor_profiles/default/record_types.yml"
+        @squeezed_record_types = YAML::load(IO.read(file))
+      end
     end
-    nil
+    @squeezed_record_types
   end
   
   def self.get_profile_templates(model)

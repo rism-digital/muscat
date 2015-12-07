@@ -62,7 +62,7 @@ ActiveAdmin.register Source do
     def edit
       @item = Source.find(params[:id])
       @show_history = true if params[:show_history]
-      @editor_profile = EditorConfiguration.get_applicable_layout @item
+      @editor_profile = EditorConfiguration.get_default_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
     end
 
@@ -96,7 +96,7 @@ ActiveAdmin.register Source do
         new_marc.load_source false # this will need to be fixed
         @source.marc = new_marc
       end
-      @editor_profile = EditorConfiguration.get_applicable_layout @source
+      @editor_profile = EditorConfiguration.get_default_layout @source
       @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
       #To transmit correctly @item we need to have @source initialized
       @item = @source

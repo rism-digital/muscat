@@ -14,6 +14,20 @@ group_order:
 - date
 - administration
 
+
+group_exclude:
+  collection:
+  - incipit
+  
+tag_exclude:
+  collection:
+  - '600'
+  - '650'
+  - '653'
+  - '740'
+  - '041'
+  - '546'
+
 groups:
   added_entries:
     all_tags:

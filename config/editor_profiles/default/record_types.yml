@@ -1,0 +1,6 @@
+--- 
+### Configuration for source
+- :model: source
+  :record_types: 
+  - :collection
+  - :print
