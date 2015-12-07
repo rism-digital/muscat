@@ -217,5 +217,15 @@ class MarcSource < Marc
     return false unless get_leader.match(/^.....nu.*$/i)
     return true
   end
+  
+  def to_internal
+    super
+    # puts "overriden to_internal call"
+  end
+  
+  def to_external
+    super
+    # puts "overriden to_external call"
+  end
 
 end
