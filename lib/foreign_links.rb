@@ -27,6 +27,11 @@ module ForeignLinks
       puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')}"
     end
     
+    ap related_classes
+    ap unknown_classes
+    ap marc_foreign_objects.keys
+    ap marc.get_all_foreign_associations
+    
     related_classes.each do |foreign_class|
       relation = self.send(foreign_class)
       
@@ -42,9 +47,15 @@ module ForeignLinks
 
       # If this item was manipulated, update also the src count
       # Unless the suppress_update_count is set
-      if !self.suppress_update_count_trigger
-        (new_items + remove_items).each do |o|
-          o.update_attribute( :src_count, o.sources.count )
+      # Since now classes can link between eachother
+      # make sure this is updated only when it is a source
+      # that triggers the change. In other cases (like people linking to institutions)
+      # there is no such count field.
+      if self.is_a?(Source)
+        if !self.suppress_update_count_trigger && 
+          (new_items + remove_items).each do |o|
+            o.update_attribute( :src_count, o.sources.count )
+          end
         end
       end
       

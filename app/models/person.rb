@@ -18,7 +18,8 @@
 # Other wf_* fields are not shown
 
 class Person < ActiveRecord::Base
-  
+  include ForeignLinks
+
   # class variables for storing the user name and the event from the controller
   @@last_user_save
   cattr_accessor :last_user_save
@@ -60,15 +61,20 @@ class Person < ActiveRecord::Base
   
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
-  after_save :reindex
+  after_save :update_links, :reindex
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
+  attr_accessor :suppress_recreate_trigger
 
   # Suppresses the marc scaffolding
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
+  
+  def suppress_recreate
+    self.suppress_recreate_trigger = true
+  end 
   
   # This is the last callback to set the ID to 001 marc
   # A Person can be created in various ways:
@@ -96,6 +102,13 @@ class Person < ActiveRecord::Base
       self.marc_source = self.marc.to_marc
       self.without_versioning :save
     end
+  end
+  
+  def update_links
+    return if self.suppress_recreate_trigger == true
+
+    allowed_relations = ["institutions", "people", "parents"]
+    recreate_links(marc, allowed_relations)
   end
   
   # Do it in two steps
