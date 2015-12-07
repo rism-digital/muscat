@@ -35,17 +35,19 @@ class Person < ActiveRecord::Base
   resourcify 
   has_many :works
   has_and_belongs_to_many :sources
+  has_and_belongs_to_many :institutions
   has_many :folder_items, :as => :item
   belongs_to :user, :foreign_key => "wf_owner"
   
   # People can link to themselves
   # This is the forward link
-  has_and_belongs_to_many(:people,
+  has_and_belongs_to_many(:refers_to,
+    :class_name => "Person",
     :foreign_key => "person_a_id",
     :association_foreign_key => "person_b_id")
   
   # This is the backward link
-  has_and_belongs_to_many(:parents,
+  has_and_belongs_to_many(:referred_from,
     :class_name => "Person",
     :foreign_key => "person_b_id",
     :association_foreign_key => "person_a_id")

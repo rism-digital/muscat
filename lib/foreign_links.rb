@@ -26,12 +26,7 @@ module ForeignLinks
     if !unknown_classes.empty?
       puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')}"
     end
-    
-    ap related_classes
-    ap unknown_classes
-    ap marc_foreign_objects.keys
-    ap marc.get_all_foreign_associations
-    
+        
     related_classes.each do |foreign_class|
       relation = self.send(foreign_class)
       

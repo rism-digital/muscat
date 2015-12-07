@@ -6,7 +6,7 @@ require 'logger'
 class MarcImport
   
   def initialize(source_file, model, from = 0)
-    @log = Logger.new(Rails.root.join('log/', 'import.log'), 'daily')
+    #@log = Logger.new(Rails.root.join('log/', 'import.log'), 'daily')
     @from = from
     @source_file = source_file
     @model = model
@@ -84,15 +84,11 @@ class MarcImport
          # step 4. insert model into database
         begin
           model.save #
-          @log.info(@model+" record "+marc.get_id.to_s+" "+status)
-        rescue ActiveRecord::RecordNotUnique
-          @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
+#          @log.info(@model+" record "+marc.get_id.to_s+" "+status)
+#        rescue ActiveRecord::RecordNotUnique
+#          @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
         rescue Exception => e
-        #rescue ActiveRecord::StatementInvalid::Mysql2::Error
-
-          @log.error(@model+" record "+marc.get_id.to_s+" import failed data too long for column")
-          #puts marc.get_id.to_s
-          puts e.class
+          puts e.message
         end
         print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S") + " -- Record #{@cnt} of #{@total_records} processed"
         #puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"

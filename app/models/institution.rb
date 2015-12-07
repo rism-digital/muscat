@@ -25,6 +25,7 @@ class Institution < ActiveRecord::Base
   
   has_and_belongs_to_many :sources
   has_and_belongs_to_many :holdings
+  has_and_belongs_to_many :people
   #has_many :folder_items, :as => :item
   has_and_belongs_to_many :workgroups
   belongs_to :user, :foreign_key => "wf_owner"
