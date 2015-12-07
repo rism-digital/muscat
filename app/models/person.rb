@@ -37,6 +37,18 @@ class Person < ActiveRecord::Base
   has_many :folder_items, :as => :item
   belongs_to :user, :foreign_key => "wf_owner"
   
+  # People can link to themselves
+  # This is the forward link
+  has_and_belongs_to_many(:people,
+    :foreign_key => "person_a_id",
+    :association_foreign_key => "person_b_id")
+  
+  # This is the backward link
+  has_and_belongs_to_many(:parents,
+    :class_name => "Person",
+    :foreign_key => "person_b_id",
+    :association_foreign_key => "person_a_id")
+  
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
   
 #  validates_presence_of :full_name  
