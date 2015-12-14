@@ -1,7 +1,12 @@
 --- 
 ### Configuration for source
 - :model: source
-  :record_types: 
+  :record_types:
     :unspecified: 0
     :collection: 1
-    :print: 2
+    :manuscript: 2
+    :print: 3
+    :manuscript_libretto: 4
+    :print_libretto: 5
+    :theoretica: 6
+    :convolutum: 7
