@@ -35,6 +35,7 @@ fields:
   "041e":
   "041h":
   "100a":
+#      :missing_helper: marc_helper_set_anonymous
   "100d":
   "110a":
   "110b":

@@ -354,7 +354,13 @@ class EditorConfiguration
     record_types.each do |t|
       # this is not the correct record type list
       next if model_name != t[:model]
-      return t[:record_types][model.record_type]
+      record_type = "unknown"
+      t.each do |type, code|
+        if code == model.record_type
+          record_type = type
+          break
+        end
+      end
     end
     return nil
   end

@@ -320,6 +320,11 @@ class Source < ActiveRecord::Base
     # composer
     self.composer, self.composer_d = marc.get_composer
     
+    # Is composer set? if not this could be an anonymous
+    if self.composer = ""
+      self.composer, self.composer_d = "Anonymous", "anonymous"
+    end
+    
     # siglum and ms_no
     # in A/1 we do not have 852 in the bibliographic data
     # instead we store in ms_no the Book RISM ID (old rism id)
@@ -449,6 +454,10 @@ class Source < ActiveRecord::Base
     out << marc.export_xml
     out << "</marc:collection>" 
     return out.join('')
+  end
+    
+  def marc_helper_set_anonymous
+    "Anonymous"
   end
     
 end
