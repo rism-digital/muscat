@@ -307,6 +307,7 @@ class EditorConfiguration
   # Returns all the tags not included in the layout
   def each_group_in_layout(marc_item)
     layout_config["group_order"].each do |group|
+      # This is work in progress: collection is hard-coded and need to be replaced with the record type
       yield group unless layout_config["group_exclude"] && layout_config["group_exclude"]["collection"].include?(group)
     end
   end
@@ -348,7 +349,7 @@ class EditorConfiguration
     return nil
   end
   
-  def self.get_record_type(model)
+  def self.get_show_layout(model)
     record_types = EditorConfiguration.record_types
     model_name = model.class.to_s.downcase
     record_types.each do |t|
