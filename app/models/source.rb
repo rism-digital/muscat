@@ -310,10 +310,7 @@ class Source < ActiveRecord::Base
     # source.
     @old_parent = source_id if !parent
     self.source_id = parent ? parent.id : nil
-    
-    # record type
-    self.record_type = 2 if marc.is_holding?
-    
+        
     # std_title
     self.std_title, self.std_title_d = marc.get_std_title
     
@@ -321,7 +318,7 @@ class Source < ActiveRecord::Base
     self.composer, self.composer_d = marc.get_composer
     
     # Is composer set? if not this could be an anonymous
-    if self.composer = "" && self.record_type != MarcSource::RECORD_TYPES[:collection]
+    if self.composer == "" && self.record_type != MarcSource::RECORD_TYPES[:collection]
       self.composer, self.composer_d = "Anonymous", "anonymous"
     end
     
