@@ -1,4 +1,17 @@
 class MarcSource < Marc
+  
+  # record_type mapping
+  RECORD_TYPES = {
+    :unspecified => 0,
+    :collection => 1,
+    :manuscript => 2,
+    :print => 3,
+    :manuscript_libretto => 4,
+    :print_libretto => 5,
+    :theoretica => 6,
+    :convolutum => 7,
+  }
+  
   def initialize(source = nil)
     super("source", source)
   end
@@ -218,9 +231,64 @@ class MarcSource < Marc
     return true
   end
   
+  def match_leader
+    record_type = RECORD_TYPES[:unspecified]
+    
+    if get_leader.match(/......[dc]c.............../)
+      record_type = RECORD_TYPES[:collection]
+    elsif get_leader.match(/......d[dm].............../)
+      record_type = RECORD_TYPES[:manuscript]
+    elsif get_leader.match(/......c[dm].............../)
+      record_type = RECORD_TYPES[:print]
+    elsif get_leader.match(/......tm.............../)
+      record_type = RECORD_TYPES[:manuscript_libretto]
+    elsif get_leader.match(/......am.............../)
+      record_type = RECORD_TYPES[:print_libretto]
+    elsif get_leader.match(/......pm.............../)
+      record_type = RECORD_TYPES[:theoretica]
+    elsif get_leader.match(/......pd.............../)
+      record_type = RECORD_TYPES[:convolutum]
+    else
+       puts "Unknown leader #{get_leader}"
+    end
+    
+    return record_type
+  end
+  
   def to_internal
     super
-    # puts "overriden to_internal call"
+
+    # convert leader to record_type
+    record_type = match_leader
+    
+    # Drop leader
+    each_by_tag("000") {|t| t.destroy_yourself}
+
+    # Drop other unused tags
+    each_by_tag("005") {|t| t.destroy_yourself}
+    each_by_tag("008") {|t| t.destroy_yourself}
+
+    # Move 130 to 240
+    each_by_tag("130") do |t|
+
+      node = t.deep_copy
+      node.tag = "240"
+      node.indicator = "10"
+      node.sort_alphabetically
+      root.children.insert(get_insert_position("240"), node)
+      
+      t.destroy_yourself
+      
+    end
+    
+    #puts to_marc
+    #puts
+
+    if @model && @model.respond_to?(:record_type)
+      @model.record_type = record_type
+    end
+
+    return record_type
   end
   
   def to_external

@@ -53,6 +53,8 @@ class Marc
   # and link them. In case they do not exist they will be created (upon saving the manuscript). 
   def import(reindex = false, user = nil)
     @all_foreign_associations = @root.import(false, reindex, user)
+    record_type = to_internal
+    return record_type
   end
   
   # Creates a Marc object from the <tt>source</tt> field in the Source record

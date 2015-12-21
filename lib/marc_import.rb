@@ -68,16 +68,17 @@ class MarcImport
         #p model
           
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
-        marc.import
-
+        record_type = marc.import
+        
         # step 3. associate Marc with Manuscript
         model.marc = marc
         @import_results.concat( marc.results )
         @import_results = @import_results.uniq
 
         if @model == "Source"
-          source.suppress_update_77x # we should not need to update the 772/773 relationships during the import
-          source.suppress_update_count # Do not update the count for the foreign objects
+          model.suppress_update_77x # we should not need to update the 772/773 relationships during the import
+          model.suppress_update_count # Do not update the count for the foreign objects
+          model.record_type = record_type
         end
         
         model.suppress_reindex

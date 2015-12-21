@@ -348,24 +348,7 @@ class EditorConfiguration
     end
     return nil
   end
-  
-  def self.get_record_type(model)
-    record_types = EditorConfiguration.record_types
-    model_name = model.class.to_s.downcase
-    record_types.each do |t|
-      # this is not the correct record type list
-      next if model_name != t[:model]
-      record_type = "unknown"
-      t.each do |type, code|
-        if code == model.record_type
-          record_type = type
-          break
-        end
-      end
-    end
-    return nil
-  end
-  
+    
   # Gets the html file name.
   def self.get_help_fname(name)
     # translated version?
@@ -407,25 +390,7 @@ class EditorConfiguration
     end
     @squeezed_profiles
   end
-  
-  # Get all the record types defined in config/editor_profiles/default/record_types.yml
-  def self.record_types
-    unless @squeezed_record_types
-      # load global record types
-      @squeezed_record_types
-      # Load local configurations
-      file = "#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/record_types.yml"
-      if File.exists?(file)
-        @squeezed_record_types = YAML::load(IO.read(file))
-      else
-        # if it does not exist, load default
-        file = "#{Rails.root}/config/editor_profiles/default/record_types.yml"
-        @squeezed_record_types = YAML::load(IO.read(file))
-      end
-    end
-    @squeezed_record_types
-  end
-  
+    
   def self.get_profile_templates(model)
     templates = {}
     # We just need to access the BasicLabels for the current RISM::MARC

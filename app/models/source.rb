@@ -321,7 +321,7 @@ class Source < ActiveRecord::Base
     self.composer, self.composer_d = marc.get_composer
     
     # Is composer set? if not this could be an anonymous
-    if self.composer = ""
+    if self.composer = "" && self.record_type != MarcSource::RECORD_TYPES[:collection]
       self.composer, self.composer_d = "Anonymous", "anonymous"
     end
     
