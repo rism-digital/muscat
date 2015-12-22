@@ -35,7 +35,7 @@ class CreateHoldings < ActiveRecord::Migration
     end
     
     add_index :holdings_sources, :holding_id
-    add_index :holdings_institutions, :sources_id
+    add_index :holdings_sources, :source_id
     
     execute "ALTER TABLE holdings AUTO_INCREMENT=#{RISM::BASE_NEW_IDS[:holding]}"
     

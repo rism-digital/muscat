@@ -83,12 +83,17 @@ class MarcImport
         
          # step 4. insert model into database
         begin
-          model.save #
+          model.save! #
 #          @log.info(@model+" record "+marc.get_id.to_s+" "+status)
 #        rescue ActiveRecord::RecordNotUnique
 #          @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
-        rescue Exception => e
+        rescue => e
+          puts
+          puts "Marc Import: Could not save the imported record"
           puts e.message
+          puts "Record Id: #{model.id}"
+          puts "#{marc.to_marc}"
+          #puts e.backtrace.join("\n")
         end
         print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S") + " -- Record #{@cnt} of #{@total_records} processed"
         #puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"

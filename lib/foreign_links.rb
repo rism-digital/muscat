@@ -38,7 +38,15 @@ module ForeignLinks
       
       # Delete or add to the DB relation
       relation.delete(remove_items)
-      relation << new_items
+      begin
+        relation << new_items
+      rescue => e
+        puts
+        puts "Foreign Links: Could not add a record in the relationship with #{self.id} (#{self.class})"
+        puts "- Added records dump: #{new_items}"
+        puts "- Error message follows:"
+        puts e.message
+      end
 
       # If this item was manipulated, update also the src count
       # Unless the suppress_update_count is set

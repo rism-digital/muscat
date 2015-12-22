@@ -152,7 +152,6 @@ ActiveRecord::Schema.define(version: 20151207110735) do
   end
 
   create_table "holdings", force: true do |t|
-    t.integer  "source_id"
     t.string   "lib_siglum"
     t.text     "marc_source"
     t.integer  "lock_version",            default: 0,             null: false
@@ -174,6 +173,14 @@ ActiveRecord::Schema.define(version: 20151207110735) do
 
   add_index "holdings_institutions", ["holding_id"], name: "index_holdings_institutions_on_holding_id", using: :btree
   add_index "holdings_institutions", ["institution_id"], name: "index_holdings_institutions_on_institution_id", using: :btree
+
+  create_table "holdings_sources", id: false, force: true do |t|
+    t.integer "holding_id"
+    t.integer "source_id"
+  end
+
+  add_index "holdings_sources", ["holding_id"], name: "index_holdings_sources_on_holding_id", using: :btree
+  add_index "holdings_sources", ["source_id"], name: "index_holdings_sources_on_source_id", using: :btree
 
   create_table "institutions", force: true do |t|
     t.string   "siglum",       limit: 32

@@ -41,13 +41,13 @@ class Person < ActiveRecord::Base
   
   # People can link to themselves
   # This is the forward link
-  has_and_belongs_to_many(:refers_to,
+  has_and_belongs_to_many(:people,
     :class_name => "Person",
     :foreign_key => "person_a_id",
     :association_foreign_key => "person_b_id")
   
   # This is the backward link
-  has_and_belongs_to_many(:referred_from,
+  has_and_belongs_to_many(:referring_people,
     :class_name => "Person",
     :foreign_key => "person_b_id",
     :association_foreign_key => "person_a_id")
@@ -109,7 +109,7 @@ class Person < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["institutions", "people", "parents"]
+    allowed_relations = ["institutions", "people"]
     recreate_links(marc, allowed_relations)
   end
   
