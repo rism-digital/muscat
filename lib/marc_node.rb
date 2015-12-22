@@ -214,6 +214,7 @@ class MarcNode
             $stderr.puts "While importing: #{self.to_s}"
             $stderr.puts "Failed to save this foreign object: "
             $stderr.puts  "#{self.foreign_object.to_yaml}"
+            #$stderr.puts e.backtrace.join("\n")
           end
         end 
         # now add the master subfield $0 with the id value
