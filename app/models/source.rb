@@ -325,7 +325,7 @@ class Source < ActiveRecord::Base
     # siglum and ms_no
     # in A/1 we do not have 852 in the bibliographic data
     # instead we store in ms_no the Book RISM ID (old rism id)
-    if RISM::BASE == "a1" and record_type == 0
+    if RISM::BASE == "a1" and record_type == MarcSource::RECORD_TYPES[:print]
       self.book_id = marc.get_book_rism_id
     else
       self.lib_siglum, self.shelf_mark = marc.get_siglum_and_shelf_mark
