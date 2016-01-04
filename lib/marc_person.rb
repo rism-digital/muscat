@@ -63,7 +63,7 @@ class MarcPerson < Marc
     
     if node = first_occurance("670", "a")
       if node.content
-        source = node.content
+        source = node.content.truncate(255)
       end
     end
     

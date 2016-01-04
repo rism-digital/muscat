@@ -210,6 +210,7 @@ class MarcNode
             end
           rescue => e
             $stderr.puts
+            $stderr.puts "Marc Node Import error"
             $stderr.puts e.message
             $stderr.puts "While importing: #{self.to_s}"
             $stderr.puts "Failed to save this foreign object: "

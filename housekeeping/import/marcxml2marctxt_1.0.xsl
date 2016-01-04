@@ -50,7 +50,7 @@
 
     <xsl:template match="marc:record">
       <xsl:text>=000  </xsl:text>
-        <xsl:value-of select="."/>
+        <xsl:value-of select="marc:leader"/>
         <xsl:text>&#xa;</xsl:text>
         <xsl:apply-templates select="marc:datafield|marc:controlfield"/>
     </xsl:template>
