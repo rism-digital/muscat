@@ -362,6 +362,10 @@ class Source < ActiveRecord::Base
     
   end
   
+  def get_record_type
+    MarcSource::RECORD_TYPES.key(self.record_type)
+  end
+  
   
   def fix_ids
     #generate_new_id

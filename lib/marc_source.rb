@@ -295,5 +295,5 @@ class MarcSource < Marc
     super
     # puts "overriden to_external call"
   end
-
+  
 end

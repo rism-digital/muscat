@@ -278,6 +278,39 @@ class EditorConfiguration
     end
     @layout_tags 
   end
+  
+  # Returns an array of all the tags excluded for the record type (be they exluded in groups or by tag)
+  def excluded_tags_for_record_type(marc_item)
+    record_type =  (marc_item.respond_to? :record_type) ? marc_item.get_record_type : nil
+    # no record_type for this model, or unknown, nothing exluced
+    return [] if record_type == nil
+    excluded = Array.new
+    layout_config["groups"].each do |group, gdata|
+      # Skip the group unless the group is excluded for the record type of the itme
+      next unless
+        record_type != nil && layout_config["group_exclude"] && 
+        layout_config["group_exclude"][record_type.to_s] && 
+        layout_config["group_exclude"][record_type.to_s].include?(group)
+        gdata["all_tags"].each do |tag, tdata|
+          excluded.push tag
+        end
+    end
+    if layout_config["tag_exclude"] && layout_config["tag_exclude"][record_type.to_s]
+      excluded.concat( layout_config["tag_exclude"][record_type.to_s] )
+    end
+    excluded
+  end
+  
+  # Returns an array with all the tags for the group but taking into account exclusiong by record type (if any)
+  def layout_tag_names_for_group(marc_item, group)
+    tag_names = Array.new
+  	tag_names = layout_config["groups"][group]["all_tags"]
+    record_type = (marc_item.respond_to? :record_type) ? marc_item.get_record_type : nil
+    # no record_type for this model, or unknown, nothing exluced
+    return tag_names if record_type == nil || !layout_config["tag_exclude"] || !layout_config["tag_exclude"][record_type.to_s]
+    return tag_names - layout_config["tag_exclude"][record_type.to_s]
+  end
+    
 
   # build an array with all the tags in the layout_config that are not in a subfield grouping group
   # used by each_tag_not_in_layout 
@@ -304,19 +337,25 @@ class EditorConfiguration
     return "editor/group"
   end  
 
-  # Returns all the tags not included in the layout
+  # Yields all the tags not included in the layout
   def each_group_in_layout(marc_item)
+    record_type =  (marc_item.respond_to? :record_type) ? marc_item.get_record_type : nil
     layout_config["group_order"].each do |group|
-      # This is work in progress: collection is hard-coded and need to be replaced with the record type
-      yield group unless layout_config["group_exclude"] && layout_config["group_exclude"]["collection"].include?(group)
+      # Show the group unless the group is excluded for the record type of the itme
+      yield group unless
+        record_type != nil && layout_config["group_exclude"] && 
+        layout_config["group_exclude"][record_type.to_s] && 
+        layout_config["group_exclude"][record_type.to_s].include?(group)
     end
   end
   
-  # Returns all the tags not included in the layout
+  # Yields all the tags not included in the layout
   def each_tag_not_in_layout(marc_item)
     layout_tags
+    # get the tags excluded for a particular record_type (if any)
+    excluded = excluded_tags_for_record_type(marc_item)
     marc_item.marc.each_data_tags_present do |tag|
-      yield tag if !layout_tags.include? tag
+      yield tag if ((!layout_tags.include? tag) || (excluded.include? tag))
     end
   end
   

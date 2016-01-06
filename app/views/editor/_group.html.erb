@@ -1,6 +1,5 @@
 <%- 
-	tag_names = Array.new		
-	tag_names = @editor_profile.layout_config["groups"][group]["all_tags"]
+	tag_names = @editor_profile.layout_tag_names_for_group(@item, group)
 	group_title = @editor_profile.get_label(group)
 	@editor_profile.layout_config[:marc_editor_group_links] << group_title
 -%>
