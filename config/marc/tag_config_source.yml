@@ -77,13 +77,6 @@
         :foreign_class: Source
         :foreign_field: id
         :zero_padding: "14"
-  "005":
-    :master: ""
-    :indicator: ""
-    :occurrences: "1"
-    :fields:
-    - - ""
-      - :no_browse: true
   "007":
     :master: ""
     :indicator: ""
@@ -91,14 +84,6 @@
     :fields:
     - - ""
       - :no_browse: true
-  "008":
-    :master: ""
-    :indicator: ""
-    :occurrences: "1"
-    :fields:
-    - - ""
-      - :no_browse: true
-
   "028":
     :master: a
     :indicator: "20"
