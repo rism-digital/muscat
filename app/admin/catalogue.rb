@@ -126,7 +126,7 @@ ActiveAdmin.register Catalogue do
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id    
-    column (I18n.t :filter_name), :name
+#   column (I18n.t :filter_name), :name
     column (I18n.t :filter_name), :description
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count
@@ -137,7 +137,7 @@ ActiveAdmin.register Catalogue do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_source_show_title( @item.name, @item.author, @item.id) } do
+  show :title => proc{ active_admin_catalogue_show_title( @item.author, @item.description, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]

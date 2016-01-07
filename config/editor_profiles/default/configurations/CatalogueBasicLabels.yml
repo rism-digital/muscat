@@ -98,17 +98,23 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Name
 "240": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Descrizione 
-    fr: Description
-    de: Beschreibung
-    en: Description
+    it: TITLE 
+    fr: TITLE
+    de: Titel
+    en: Title
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Descrizione 
-        fr: Description
-        de: Beschreibung
-        en: Description
+        it: TITLE
+        fr: TITLE
+        de: Titel
+        en: Titel
+    g: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: TYPE
+        fr: TYPE
+        de: Art/Inhalt
+        en: Type
 "260": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Impressum 
@@ -122,17 +128,49 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Endroit
         de: Ort
         en: Place 
+    b: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: PUBLISHER
+        fr: PUBLISHER
+        de: Verlag
+        en: Publisher
     c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Data
         fr: Date
         de: Datum
         en: Date
+"700": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PERSON
+    fr: PERSON
+    de: Person
+    en: Person
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: PERSON
+        fr: PERSON
+        de: Person
+        en: Person
+"710": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: INSTITUTION
+    fr: INSTITUTION
+    de: Körperschaft
+    en: Institution
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: INSTITUTION
+        fr: INSTITUTION
+        de: Körperschaft
+        en: Institution
 "760": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Testata
     fr: Titre de la revue
-    de: Zeitschriftentitel
+    de: Reihentitel
     en: Revue title
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     g: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -143,11 +181,10 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Part 
     t: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Titolo
-        fr: Titre
-        de: Titel
-        en: Title
-
+        it: Testata
+        fr: Titre de la revue
+        de: Reihentitel
+        en: Revue title
 main: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Registrazioni principali
@@ -184,3 +221,27 @@ administration: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Administration
     de: Administration
     en: Administration
+ed: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: EDITION
+    fr: EDITION
+    de: Edition
+    en: Edition
+pbl: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Editore
+    fr: Editeur
+    de: Verlag
+    en: Publisher
+edt: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Curatore
+    fr: Editeur
+    de: Herausgeber
+    en: Editor
+H: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Curatore
+    fr: Editeur
+    de: Herausgeber
+    en: Editor

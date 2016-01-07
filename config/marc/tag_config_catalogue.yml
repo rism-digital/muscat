@@ -294,15 +294,10 @@
     :indicator: "10"
     :occurrences: "?"
     :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: StandardTitle
-        :foreign_field: id
-        :no_show: true
     - - a
       - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: title
+    - - g
+      - :occurrences: "?"
     - - k
       - :occurrences: "?"
     - - m
@@ -940,13 +935,13 @@
         :foreign_class: Catalogue
         :foreign_field: id
         :no_show: true
-    - - o
+    - - t
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: description
     - - g
       - :occurrences: "*"
-    - - t
+    - - o
       - :occurrences: "*"
         :no_browse: true
   "772":

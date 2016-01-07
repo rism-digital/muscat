@@ -139,5 +139,12 @@ module ActiveAdmin::ViewsHelper
     return "#{composer} [#{id}]" if (std_title.nil? or std_title.empty?)
     return "#{composer} : #{std_title} [#{id}]"
   end
+ 
+  def active_admin_catalogue_show_title( author, description, id )
+    return "[#{id}]" if author.empty? and description.empty?
+    return "#{description} [#{id}]" if author.empty? and !description.empty?
+    return "#{author} [#{id}]" if (description.nil? or description.empty?)
+    return "#{author} : #{description} [#{id}]"
+  end
   
 end
