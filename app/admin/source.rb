@@ -63,7 +63,9 @@ ActiveAdmin.register Source do
       @item = Source.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
-      @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+      record_type = @item.get_record_type
+      record_type = record_type ? " - #{I18n.t('record_types.' + record_type.to_s)}" : ""
+      @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
     end
 
     def index
@@ -76,6 +78,7 @@ ActiveAdmin.register Source do
 
     def new
       @source = Source.new
+      @template_name = ""
       
       if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_type] || params[:new_type].empty?)
         redirect_to action: :select_new_template
@@ -90,16 +93,17 @@ ActiveAdmin.register Source do
         # copy the record type
         @source.marc = new_marc
         @source.record_type = base_item.record_type
+        @template_name = @source.get_record_type
       elsif File.exists?("#{Rails.root}/config/marc/#{RISM::MARC}/source/" + params[:new_type] + '.marc')
         new_marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/source/" +params[:new_type] + '.marc'))
         new_marc.load_source false # this will need to be fixed
         @source.marc = new_marc
-        template_type = params[:new_type].sub(/[^_]*_/,"")
-        @source.record_type = MarcSource::RECORD_TYPES[template_type.to_sym]
+        @template_name = params[:new_type].sub(/[^_]*_/,"")
+        @source.record_type = MarcSource::RECORD_TYPES[@template_name.to_sym]
         puts "type", @source.record_type
       end
       @editor_profile = EditorConfiguration.get_default_layout @source
-      @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
+      @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{I18n.t('record_types.' + @template_name)}"
       #To transmit correctly @item we need to have @source initialized
       @item = @source
     end

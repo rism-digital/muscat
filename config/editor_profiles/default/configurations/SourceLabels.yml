@@ -119,30 +119,12 @@ doc_edit_workflow:
     fr: No. RISM
     de: RISM Dokumentnummer
     en: RISM ID No.
-001_conv: 
-  label: 
-    it: Raccolta di miscellanee
-    fr: Convolutum
-    de: Convolutum
-    en: Convolutum
-002_ms_col: 
-  label: 
-    it: Manoscritto miscellaneo
-    fr: Collection manuscrite
-    de: Sammelhandschrift
-    en: Manuscript Collection
 "003": 
   label: 
     it: Identificatore del numero di controllo
     fr: "Identité du numéro de contrôle"
     de: Kontrollnummer-Bezeichnung
     en: Control number identifier
-003_pr_col: 
-  label: 
-    it: Raccolta a stampa
-    fr: "Collection imprimées"
-    de: Sammeldruck
-    en: Printed Collection
 "007": 
   label: 
     it: Campo fisso per la descrizione fisica
@@ -468,36 +450,6 @@ doc_edit_workflow:
         fr: Douteux
         de: Zweifelhaft
         en: Dubious
-100_ms: 
-  label: 
-    it: Manoscritti musicali
-    fr: Manuscrits musicaux
-    de: Handschriftliche Musikwerke
-    en: Music manuscripts
-101_ms_anon_work: 
-  label: 
-    it: Opera anonima
-    fr: Oeuvre anonyme
-    de: Anonymes Werk
-    en: Anonymous work
-102_ms_anon_work_col: 
-  label: 
-    it: Opera anonima in raccolta
-    fr: Oeuvre anonyme dans une collection
-    de: Anonymes Werk in Sammlung
-    en: Anonymous work in collection
-103_ms_attr_work: 
-  label: 
-    it: Opera attribuita
-    fr: "Oeuvre attribuée"
-    de: Zugeschriebenes Werk
-    en: Attributed work
-104_ms_attr_work_col: 
-  label: 
-    it: Opera attribuita in raccolta
-    fr: "Oeuvre attribuée dans une collection"
-    de: Zugeschriebenes Werk in Sammlung
-    en: Attributed work in collection
 "110": 
   label: 
     it: Nome di ente
@@ -583,36 +535,6 @@ doc_edit_workflow:
         fr: "Tonalité"
         de: Tonart
         en: Key
-200_pr: 
-  label: 
-    it: Musica a stampa
-    fr: "Imprimés musicaux"
-    de: Gedruckte Musikwerke
-    en: Music prints
-201_pr_anon_work: 
-  label: 
-    it: Opera anonima
-    fr: Oeuvre anonyme
-    de: Anonymes Werk
-    en: Anonymous work
-202_pr_anon_work_col: 
-  label: 
-    it: Opera anonima in raccolta
-    fr: Oeuvre anonyme dans une collection
-    de: Anonymes Werk in Sammlung
-    en: Anonymous work in collection
-203_pr_attr_work: 
-  label: 
-    it: Opera attribuita
-    fr: "Oeuvre attribuée"
-    de: Zugeschriebenes Werk
-    en: Attributed work
-204_pr_attr_work_col: 
-  label: 
-    it: Opera attribuita in raccolta
-    fr: "Oeuvre attribuée dans une collection"
-    de: Zugeschriebenes Werk in Sammlung
-    en: Attributed work in collection
 "240": 
   label: 
     it: Titolo uniforme
@@ -808,36 +730,6 @@ doc_edit_workflow:
         fr: Documents
         de: Set
         en: Set
-300_lib: 
-  label: 
-    it: Libretti
-    fr: Libretti
-    de: Libretti
-    en: Libretti
-301_lib_ms_anon: 
-  label: 
-    it: Libretto anonimo manoscritto
-    fr: Libretto anonyme, manuscrit
-    de: Libretto anonym, handschriflich
-    en: Libretto anonymous, manuscript
-302_lib_pr_anon: 
-  label: 
-    it: Libretto anonimo a stampa
-    fr: "Libretto anonyme imprmé"
-    de: Libretto anonym, gedruckt
-    en: Libretto anonymous, printed
-303_lib_ms_attr: 
-  label: 
-    it: Libretto attribuito manoscritto
-    fr: "Libretto attribué, manuscrit"
-    de: Libretto zugeschrieben, handschriflich
-    en: Libretto attributed, manuscript
-304_lib_pr_attr: 
-  label: 
-    it: Libretto attribuito a stampa
-    fr: "Libretto attribué, imprimé"
-    de: Libretto zugeschrieben, gedruckt
-    en: Libretto attributed, printed
 "340": 
   label: 
     it: Supporto fisico
@@ -888,24 +780,6 @@ doc_edit_workflow:
         fr: Documents
         de: Set
         en: Set
-400_th: 
-  label: 
-    it: Trattati
-    fr: "Traités"
-    de: Theoretica
-    en: Theoretica
-401_th_anon: 
-  label: 
-    it: Trattato anonimo
-    fr: "Traité anonyme"
-    de: Theoretica anonym
-    en: Theoretica anonymous
-402_th_attr: 
-  label: 
-    it: Trattato attribuito
-    fr: "Traité attribué"
-    de: Theoretica zugeschrieben
-    en: Theoretica attributed
 "410": 
   label: 
     it: Name variants
