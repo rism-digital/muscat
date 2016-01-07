@@ -306,6 +306,7 @@ en:
   filter_phone: "Phone"
   filter_place: "Place"
   filter_provenance: "Provenance"
+  filter_publisher: "Publisher"
   filter_revue_title: "Revue title"
   filter_id: "Rism ID"
   filter_id_no: "Rism ID"

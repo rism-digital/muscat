@@ -306,6 +306,7 @@ de:
   filter_phone: "Telefon"
   filter_place: "Ort"
   filter_provenance: "Herkunft"
+  filter_publisher: "Verlag"
   filter_revue_title: "Zeitschriftentitel"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"

@@ -5,6 +5,13 @@ group_order:
 - control
 - notes
 groups: 
+  main: 
+    all_tags: 
+    - "260"            
+    - "240"
+    - "100"
+    - "700"
+    - "710"
   control: 
     all_tags: 
     - "000"
@@ -14,14 +21,7 @@ groups:
     - 008
   notes: 
     all_tags: 
-    - "260"
-    - "700"
     - "760"
-  main: 
-    all_tags: 
-    - "100"
-    - "240"
   codes: 
     all_tags: 
     - "210"
-    - "240"

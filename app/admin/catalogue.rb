@@ -111,6 +111,11 @@ ActiveAdmin.register Catalogue do
   
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :author_contains, :label => proc {I18n.t(:filter_author)}, :as => :string
+  filter :description_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
+  filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
+  filter :"place_contains", :label => proc {I18n.t(:filter_place)}, :as => :string
+  filter :"date_contains", :label => proc {I18n.t(:filter_date)}, :as => :string
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
