@@ -76,7 +76,6 @@ ActiveAdmin.register Source do
 
     def new
       @source = Source.new
-      @based_on = String.new
       
       if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_type] || params[:new_type].empty?)
         redirect_to action: :select_new_template
@@ -84,17 +83,20 @@ ActiveAdmin.register Source do
       end
 
       if params[:existing_title] and !params[:existing_title].empty?
-        @based_on = "exsiting title"
         base_item = Source.find(params[:existing_title])
         new_marc = MarcSource.new(base_item.marc.marc_source)
         new_marc.load_source false # this will need to be fixed
         new_marc.first_occurance("001").content = "__TEMP__"
+        # copy the record type
         @source.marc = new_marc
-      elsif File.exists?("#{Rails.root}/config/marc/#{RISM::BASE}/source/" + params[:new_type] + '.marc')
-        @based_on = params[:new_type]
-        new_marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/source/" +params[:new_type] + '.marc'))
+        @source.record_type = base_item.record_type
+      elsif File.exists?("#{Rails.root}/config/marc/#{RISM::MARC}/source/" + params[:new_type] + '.marc')
+        new_marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/source/" +params[:new_type] + '.marc'))
         new_marc.load_source false # this will need to be fixed
         @source.marc = new_marc
+        template_type = params[:new_type].sub(/[^_]*_/,"")
+        @source.record_type = MarcSource::RECORD_TYPES[template_type.to_sym]
+        puts "type", @source.record_type
       end
       @editor_profile = EditorConfiguration.get_default_layout @source
       @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"

@@ -82,6 +82,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 			marc: JSON.stringify(json_marc),
 			id: $('#id').val(), 
 			lock_version: $('#lock_version').val(),
+			record_type: $('#record_type').val(),
 			redirect: redirect
 		},
 		dataType: 'json',
