@@ -13,6 +13,7 @@
 	</div>
 	
 	<%- tags_with_no_subfield = @item.marc.by_tags_with_subtag(tag_names, subfield, "") %>
+	<%# check that the tags with no grouping are not present somewhere else in the layout %>
 	<%- tags_with_no_subfield = tags_with_no_subfield.select{ |t| !@editor_profile.layout_tags_not_in_subfield_grouping.include? t.tag } %>
 	
 	<%- if tags_with_no_subfield.size > 0 %>
@@ -36,6 +37,18 @@
 	
 <%- else %>
 
+<%- 
+	tags = @item.marc.by_tags(tag_names)
+	ungrouped = @editor_profile.layout_config["groups"][group]["ungrouped_tags"]
+	# we have tags that are grouped elswhere, keep only the values with no subfield
+	if ungrouped
+		ungrouped.each do |tag, subfield|
+			tags.delete_if{ |t| t.tag == tag }
+			tags_with_no_subfield = @item.marc.by_tags_with_subtag([tag], subfield, "")
+			tags.concat(tags_with_no_subfield)
+		end
+	end
+-%>
 <div class="panel tab_panel" name="<%= group_title.gsub(/ /, "_") %>">
 	<h3><%= group_title -%></h3>
 	<div class="marc_editor_panel_content">
@@ -43,7 +56,7 @@
 			<%- tag_names.each do |tag_name| -%>
 				<div class="tag_group" data-tag="<%= tag_name %>">
 					<%= render :partial => "editor/tag_list", 
-							:locals => { :tag_name => tag_name, :tags => @item.marc.by_tags([tag_name])  } %>
+							:locals => { :tag_name => tag_name, :tags => tags.select{ |t| t.tag == tag_name } } %>
 				</div>
 			<%- end -%>
 		</div>	

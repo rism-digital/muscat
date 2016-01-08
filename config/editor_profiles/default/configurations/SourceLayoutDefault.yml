@@ -34,6 +34,9 @@ groups:
     - '700'
     - '710'
     - '508'
+    ungrouped_tags:
+     "700": 8
+     "710": 8
   administration:
     all_tags:
     - '000'
@@ -102,6 +105,8 @@ groups:
     - '592'
     - 028
     - '590'
+    - '700'
+    - '710'
     subfield_grouping: 8
   provenance:
     all_tags:

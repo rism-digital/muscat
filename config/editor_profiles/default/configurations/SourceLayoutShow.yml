@@ -29,9 +29,13 @@ groups:
     - "260"
     - "590"
     - "592"
+    - "700"
+    - "710"
     subfield_grouping: 8
     all_tag_templates: 
       "260": marc_show/show_subfield_concat
+      "700": marc_show/show_person
+      "710": marc_show/show_institution
   show_content: 
     all_tags: 
     - "031"
@@ -107,6 +111,9 @@ groups:
       "710": marc_show/show_institution
       "752": marc_show/show_place
       "650": marc_show/show_subject
+    ungrouped_tags:
+      "700": 8
+      "710": 8
   show_references: 
     all_tags: 
     - "596"
