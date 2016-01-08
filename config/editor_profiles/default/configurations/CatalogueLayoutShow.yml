@@ -1,13 +1,13 @@
 --- !map:Settings 
 group_order: 
 - main
-- codes
 - control
 - notes
 groups: 
   main: 
     all_tags: 
     - "240"
+    - "210"
     - "260"            
     - "100"
     - "700"
@@ -26,7 +26,4 @@ groups:
     - 008
   notes: 
     all_tags: 
-    - "760"
-  codes: 
-    all_tags: 
-    - "210"
+    - "500"

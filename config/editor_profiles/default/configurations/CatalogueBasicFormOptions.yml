@@ -27,11 +27,16 @@
       mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
 "100": 
+  allow_new: true
+  new_window: people
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
+      - type: person
+        editor_partial: subfield_secondary
+    - - j
+      - value: Attributed to
+        editor_partial: subfield_checkbox
 "210": 
   layout: 
     fields: 
@@ -53,18 +58,30 @@
       - cols: 4
     columns: 4
 "700": 
+  allow_new: true
+  new_window: people
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
-"760": 
+      - type: person
+        editor_partial: subfield_secondary
+    - - j
+      - value: Attributed to
+        editor_partial: subfield_checkbox
+"710": 
+  allow_new: true
+  new_window: institutions
   layout: 
     fields: 
-    - - g
-      - cols: 4
+    - - a
+      - type: institution
+        editor_partial: subfield_secondary
+"760": 
+  allow_new: true
+  new_window: catalogues
+  layout: 
+    fields: 
     - - t
-      - cols: 4
-    columns: 4
-
-
+      - type: catalogue
+        editor_partial: subfield_secondary
+    - - g      

@@ -85,17 +85,17 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Author
 "210": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Nome 
-    fr: Nom
-    de: Name
-    en: Name
+    it: ABBREVIATION
+    fr: ABBREVIATION
+    de: Kürzel
+    en: Abbreviation
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Nome 
-        fr: Nom
-        de: Name
-        en: Name
+        it: ABBREVIATION
+        fr: ABBREVIATION
+        de: Kürzel
+        en: Abbreviation
 "240": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: TITLE 
