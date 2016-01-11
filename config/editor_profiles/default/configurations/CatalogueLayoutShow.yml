@@ -6,12 +6,12 @@ group_order:
 groups: 
   main: 
     all_tags: 
-    - "240"
-    - "210"
-    - "260"            
     - "100"
     - "700"
     - "710"
+    - "240"
+    - "210"
+    - "260"            
     - "760"
     all_tag_templates:
       "700": marc_show/show_person
