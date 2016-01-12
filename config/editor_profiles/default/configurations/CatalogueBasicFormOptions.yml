@@ -26,6 +26,12 @@
       definitions: "['~']='[|0-9]'"
       mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
+"041": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
 "100": 
   allow_new: true
   new_window: people
@@ -34,6 +40,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
+    - - d
     - - j
       - value: Attributed to
         editor_partial: subfield_checkbox
@@ -121,6 +128,43 @@
     - - c
       - cols: 4
     columns: 4
+"300": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+"500": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+"599": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+"650":
+  allow_new: true
+  new_window: standard_terms
+  layout: 
+    fields: 
+    - - a
+      - type: standard_term
+        editor_partial: subfield_secondary
+  layout_new: 
+    fields: 
+    - - a
+"651": 
+  allow_new: true
+  new_window: places
+  layout: 
+    fields: 
+    - - a
+      - type: place
+        editor_partial: subfield_secondary
+  layout_new: 
+    fields: 
+    - - a
 "700":
   allow_new: true
   new_window: people
@@ -218,4 +262,8 @@
     - - t
       - type: catalogue
         editor_partial: subfield_secondary
-    - - g      
+    - - g     
+"856": 
+  layout: 
+    fields: 
+    - - u

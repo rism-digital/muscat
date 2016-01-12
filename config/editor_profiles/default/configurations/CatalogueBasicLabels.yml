@@ -55,14 +55,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     fr: "Date/heure de la derniôre transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
-"043": !map:ActiveSupport::HashWithIndifferentAccess 
+"041": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Country code
     fr: Country code
     de: Länder-Code
     en: County code
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    c: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Country code
         fr: Country code
@@ -83,6 +83,12 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Auteur
         de: Autor
         en: Author
+    d: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Data di nascita e di morte
+        fr: Dates de vie
+        de: Geburts- und Todesdaten
+        en: Life dates
 "210": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: ABBREVIATION
@@ -683,4 +689,118 @@ voc: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Autre
     de: Weitere
     en: Other
+"300": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Materiale
+    fr: "Matériel"
+    de: Material
+    en: Material
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Estensione
+        fr: EXTENT
+        de: Umfang
+        en: Extent
+"500": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Osservazioni
+    fr: "Remarque générale"
+    de: Bemerkungen
+    en: General note
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Osservazioni
+        fr: "Remarque générale"
+        de: Bemerkungen
+        en: General note
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"599": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Commenti interni
+    fr: Commentaires internes
+    de: Interne Fussnoten
+    en: Local notes field
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Commenti interni
+        fr: Commentaires internes
+        de: Interne Fussnoten
+        en: Local notes field
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"650": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Parola chiave
+    fr: Sujets
+    de: Schlagworteintragung
+    en: Subject heading
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    v: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Suddivisione formale
+        fr: Subdivision de forme
+        de: Unterteilung nach der Form
+        en: Form subdivision
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Parola chiave
+        de: Sachschlagwort
+        fr: Sujet
+        en: Subject heading
+    x: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Suddivisione generale
+        fr: "Subdivision générale"
+        de: Allgemeine Unterteilung
+        en: Subheading General subdivision
+    y: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Suddivisione cronologica
+        fr: Subdivision chronologique
+        de: Chronologische Unterteilung
+        en: Chronological subdivision
+    z: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Suddivisione geografica
+        fr: "Subdivision géographique"
+        de: Geographische Unterteilung
+        en: Geographic subdivision
+"651": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Luogo
+    fr: "Lieu"
+    de: "Ort"
+    en: Place of an event
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Luogo
+        fr: "Lieu"
+        de: "Ort"
+        en: Place
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"856": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Localizzazione e accesso elettronico
+    fr: "Ressource électronique externe"
+    de: Elektronische Lokalisierung und Zugriff
+    en: External resource
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    z: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nota destinata al pubblico
+        fr: Remarque sur la ressource externe
+        de: "Für das Publikum bestimmte Fussnote"
+        en: Note about external resource
+    u: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Risorsa esterna
+        fr: Ressource externe
+        de: Uniform Resource Identifier
+        en: External resource
 

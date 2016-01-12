@@ -1,8 +1,9 @@
 --- !map:Settings 
 group_order: 
 - main
-- control
+- subject
 - notes
+- control
 groups: 
   main: 
     all_tags: 
@@ -11,12 +12,22 @@ groups:
     - "710"
     - "240"
     - "210"
-    - "260"            
+    - "260"
+    - "300"      
     - "760"
     all_tag_templates:
+      "100": marc_show/show_person
       "700": marc_show/show_person
       "710": marc_show/show_institution
       "760": marc_show/show_catalogue
+  subject:
+    all_tags:
+    - "041"
+    - "650"
+    - "651" 
+    all_tag_templates:
+      "650": marc_show/show_subject
+      #"651": marc_show/show_place
   control: 
     all_tags: 
     - "000"
@@ -27,3 +38,5 @@ groups:
   notes: 
     all_tags: 
     - "500"
+    - "599"
+    - "856"
