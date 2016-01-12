@@ -230,6 +230,9 @@
         :foreign_alternates: alternate_dates
     - - j
       - :occurrences: "?"
+    - - "4"
+      - :occurrences: "*"
+        :browse_inline: true
   "110":
     :master: "0"
     :indicator: "2#"
@@ -298,6 +301,8 @@
       - :occurrences: "?"
     - - g
       - :occurrences: "?"
+    - - h
+      - :occurrences: "?"
     - - k
       - :occurrences: "?"
     - - m
@@ -363,6 +368,13 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+  "264":
+    :master: c
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - c
+      - :occurrences: "*"
   "270":
     :master: a
     :indicator: "##"
@@ -991,7 +1003,20 @@
         :foreign_field: id
         :zero_padding: "14"
         :browse_helper: application_helper_link_source_id
-
+  "785":
+    :master: "0"
+    :indicator: "2#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Catalogue
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: description
   "786":
     :master: a
     :indicator: "0#"

@@ -121,6 +121,12 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: TYPE
         de: Art/Inhalt
         en: Type
+    h: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: MEDIUM
+        fr: MEDIUM
+        de: Medium
+        en: Medium
 "260": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Impressum 
@@ -146,6 +152,19 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Date
         de: Datum
         en: Date
+"264": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PRODUCTION
+    fr: PRODUCTION
+    de: Verlauf
+    en: Production
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: PRODUCTION
+        fr: PRODUCTION
+        de: Verlauf
+        en: Production
 "700": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: PERSON
@@ -191,6 +210,19 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Titre de la revue
         de: Reihentitel
         en: Revue title
+"785": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: SUCCEEDING ENTRY
+    fr: SUCCEEDING ENTRY
+    de: Folgeeintrag
+    en: Succeeding Entry
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: SUCCEEDING ENTRY
+        fr: SUCCEEDING ENTRY
+        de: Folgeeintrag
+        en: Succeeding Entry
 main: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Registrazioni principali
@@ -715,6 +747,36 @@ voc: !map:ActiveSupport::HashWithIndifferentAccess
         fr: "Remarque générale"
         de: Bemerkungen
         en: General note
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"508": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: INDICATION OF AUTHOR
+    fr: INDICATION OF AUTHOR
+    de: Verfasserangabe
+    en: Indication of author
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: INDICATION OF AUTHOR
+        fr: INDICATION OF AUTHOR
+        de: Verfasserangabe
+        en: Indication of author
+      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
+        en: ""
+"520": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: INDICATION OF HOLDING
+    fr: INDICATION OF HOLDING
+    de: Bestandsangabe
+    en: Indication of holding
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: INDICATION OF HOLDING
+        fr: INDICATION OF HOLDING
+        de: Bestandsangabe
+        en: Indication of holding
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
 "599": !map:ActiveSupport::HashWithIndifferentAccess 

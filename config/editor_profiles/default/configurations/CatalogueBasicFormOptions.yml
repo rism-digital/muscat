@@ -118,6 +118,17 @@
         - "work catalog"
         - "yearbook"
         editor_partial: subfield_select
+    - - h
+      - cols: 1
+        values:
+        - "book"
+        - "electronic resource"
+        - "individual item"
+        - "item"
+        - "journal"
+        - "periodical"
+        - "series"
+        editor_partial: subfield_select
 "260": 
   layout: 
     fields: 
@@ -128,12 +139,27 @@
     - - c
       - cols: 4
     columns: 4
+"264": 
+  layout: 
+    fields: 
+    - - c
+      - cols: 4
 "300": 
   layout: 
     fields: 
     - - a
       - cols: 4
 "500": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+"508": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+"520": 
   layout: 
     fields: 
     - - a
@@ -263,7 +289,16 @@
       - type: catalogue
         editor_partial: subfield_secondary
     - - g     
+"785": 
+  allow_new: true
+  new_window: catalogues
+  layout: 
+    fields: 
+    - - a
+      - type: catalogue
+        editor_partial: subfield_secondary
 "856": 
   layout: 
     fields: 
     - - u
+    - - z
