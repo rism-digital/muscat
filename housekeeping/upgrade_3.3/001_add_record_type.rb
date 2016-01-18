@@ -27,9 +27,13 @@ Source.all.each do |sa|
     #adios
     t8.destroy_yourself
     tb.destroy_yourself
-    
-    ap marc
-    
+  end
+  
+  #191 Remove 730 $r $n $m 
+  marc.each_by_tag("730") do |t|
+    t.fetch_all_by_tag("r").each {|st| st.destroy_yourself}
+    t.fetch_all_by_tag("n").each {|st| st.destroy_yourself}
+    t.fetch_all_by_tag("m").each {|st| st.destroy_yourself}
   end
   
 	s.suppress_update_77x
