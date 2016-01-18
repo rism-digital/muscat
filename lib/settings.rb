@@ -16,6 +16,8 @@ class Settings < Hash
     struct.each do |k, v|
       if v.is_a?(Hash) and from[k]
         dive(v, from[k])
+      elsif v.is_a?(Array) and from[k]
+        from[k] = (from[k] + v).uniq
       else
         from[k] = v
       end

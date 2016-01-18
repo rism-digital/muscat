@@ -1,0 +1,47 @@
+--- !map:Settings 
+"000": 
+  tag: tag_no_subfield
+  tag_params: 
+    editor_only: true
+  tag_header: none
+"001": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+  tag_header: none
+"003": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+  tag_header: none
+"005": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+  tag_header: none
+008: 
+  tag: tag_no_subfield
+  tag_params: 
+    maskedinput: 
+      definitions: "['~']='[|0-9]'"
+      mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
+  tag_header: none
+"043": 
+  layout: 
+    fields: 
+    - - c
+"110": 
+  layout: 
+    fields: 
+    - - a
+    - - g
+"410": 
+  layout: 
+    fields: 
+    - - a
+"622": 
+  layout: 
+    fields: 
+    - - e
+    - - u
+

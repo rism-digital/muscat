@@ -6,7 +6,7 @@ require 'logger'
 class MarcImport
   
   def initialize(source_file, model, from = 0)
-    @log = Logger.new(Rails.root.join('log/', 'import.log'), 'daily')
+    #@log = Logger.new(Rails.root.join('log/', 'import.log'), 'daily')
     @from = from
     @source_file = source_file
     @model = model
@@ -28,7 +28,6 @@ class MarcImport
   end
 
   def import
-    #line_number = 0
     each_record(@source_file) { |record|         
         rec = Nokogiri::XML(record.to_s)
         # Use external XSLT 1.0 file for converting to MARC21 text
@@ -39,7 +38,7 @@ class MarcImport
     puts @import_results
   end
 
-  def create_record(buffer, line_number = 0)
+  def create_record(buffer)
     @cnt += 1
     #@total_records += 1
     buffer.gsub!(/[\r\n]+/, ' ')
@@ -68,37 +67,39 @@ class MarcImport
         #p model
           
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
-        marc.import
-
+        record_type = marc.import
+        
         # step 3. associate Marc with Manuscript
         model.marc = marc
         @import_results.concat( marc.results )
         @import_results = @import_results.uniq
 
         if @model == "Source"
-          source.suppress_update_77x # we should not need to update the 772/773 relationships during the import
-          source.suppress_update_count # Do not update the count for the foreign objects
+          model.suppress_update_77x # we should not need to update the 772/773 relationships during the import
+          model.suppress_update_count # Do not update the count for the foreign objects
+          model.record_type = record_type
         end
         
         model.suppress_reindex
         
          # step 4. insert model into database
         begin
-          model.save #
-          @log.info(@model+" record "+marc.get_id.to_s+" "+status)
-        rescue ActiveRecord::RecordNotUnique
-          @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
-        rescue Exception => e
-        #rescue ActiveRecord::StatementInvalid::Mysql2::Error
-
-          @log.error(@model+" record "+marc.get_id.to_s+" import failed data too long for column")
-          #puts marc.get_id.to_s
-          puts e.class
+          model.save! #
+#          @log.info(@model+" record "+marc.get_id.to_s+" "+status)
+#        rescue ActiveRecord::RecordNotUnique
+#          @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
+        rescue => e
+          puts
+          puts "Marc Import: Could not save the imported record"
+          puts e.message
+          puts "Record Id: #{model.id}"
+          puts "#{marc.to_marc}"
+          #puts e.backtrace.join("\n")
         end
         print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S") + " -- Record #{@cnt} of #{@total_records} processed"
         #puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"
       else
-        puts "failed to import marc record leading up to line #{line_number}"
+        puts "Marc is not valid! #{buffer}"
       end
     end
   end

@@ -18,7 +18,8 @@
 # Other wf_* fields are not shown
 
 class Person < ActiveRecord::Base
-  
+  include ForeignLinks
+
   # class variables for storing the user name and the event from the controller
   @@last_user_save
   cattr_accessor :last_user_save
@@ -34,8 +35,22 @@ class Person < ActiveRecord::Base
   resourcify 
   has_many :works
   has_and_belongs_to_many :sources
+  has_and_belongs_to_many :institutions
   has_many :folder_items, :as => :item
   belongs_to :user, :foreign_key => "wf_owner"
+  
+  # People can link to themselves
+  # This is the forward link
+  has_and_belongs_to_many(:people,
+    :class_name => "Person",
+    :foreign_key => "person_a_id",
+    :association_foreign_key => "person_b_id")
+  
+  # This is the backward link
+  has_and_belongs_to_many(:referring_people,
+    :class_name => "Person",
+    :foreign_key => "person_b_id",
+    :association_foreign_key => "person_a_id")
   
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
   
@@ -48,15 +63,20 @@ class Person < ActiveRecord::Base
   
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
-  after_save :reindex
+  after_save :update_links, :reindex
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
+  attr_accessor :suppress_recreate_trigger
 
   # Suppresses the marc scaffolding
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
+  
+  def suppress_recreate
+    self.suppress_recreate_trigger = true
+  end 
   
   # This is the last callback to set the ID to 001 marc
   # A Person can be created in various ways:
@@ -84,6 +104,13 @@ class Person < ActiveRecord::Base
       self.marc_source = self.marc.to_marc
       self.without_versioning :save
     end
+  end
+  
+  def update_links
+    return if self.suppress_recreate_trigger == true
+
+    allowed_relations = ["institutions", "people"]
+    recreate_links(marc, allowed_relations)
   end
   
   # Do it in two steps

@@ -1,0 +1,124 @@
+--- !map:Settings 
+group_order: 
+- show_summary
+- show_library
+- show_content
+- show_distribution
+- show_details
+- show_material
+- show_information
+- show_references
+- show_terms
+- show_admin
+- show_links
+- show_resources
+groups: 
+  show_details: 
+    all_tags: 
+    - "254"
+    - "028"
+    - "563"
+    - "525"
+    - "270"
+  show_material: 
+    all_tags: 
+    - "593"
+    - "300"
+    - "340"
+    - "351"
+    - "260"
+    - "590"
+    - "592"
+    - "700"
+    - "710"
+    subfield_grouping: 8
+    all_tag_templates: 
+      "260": marc_show/show_subfield_concat
+      "700": marc_show/show_person
+      "710": marc_show/show_institution
+  show_content: 
+    all_tags: 
+    - "031"
+    - "740"
+    all_tag_templates: 
+      "031": marc_show/show_incipit
+  show_admin: 
+    all_tags: 
+    - "040"
+    - "599"
+    - "035"
+    admin_only: true
+  show_information: 
+    all_tags: 
+    - "500"
+    - "506"
+    - "508"
+    - "510"
+    - "511"
+    - "518"
+    - "520"
+    - "533"
+    - "545"
+    - "546"
+    - "555"
+    - "580"
+    - "561"
+    - "591"
+    - "597"
+    - "598"
+    all_tag_templates: 
+      "510": marc_show/show_subfield_concat
+  show_library: 
+    all_tags:
+    - "110" 
+    - "852"
+    - "541"
+  show_distribution: 
+    all_tags: 
+    - "653"
+    - "594"
+  show_summary: 
+    all_tags: 
+    - "100"
+    - "130"
+    - "240"
+    - "245"
+    - "246"
+    - "505"
+    - "657"
+    - "730"
+    all_tag_templates: 
+      "100": marc_show/show_person
+      "246": marc_show/show_title_variant
+  show_links: 
+    all_tags: 
+    - "772"
+    - "773"
+    template: marc_show/show_772_773_links
+  show_resources:
+    all_tags:
+    - "787"
+    - "856"
+  show_terms: 
+    all_tags: 
+    - "650"
+    - "041"
+    - "700"
+    - "710"
+    - "651"
+    all_tag_templates: 
+      "700": marc_show/show_person
+      "710": marc_show/show_institution
+      "752": marc_show/show_place
+      "650": marc_show/show_subject
+    ungrouped_tags:
+      "700": 8
+      "710": 8
+  show_references: 
+    all_tags: 
+    - "596"
+    - "690"
+    - "691"
+    all_tag_templates: 
+      "690": marc_show/show_subfield_concat
+      "691": marc_show/show_subfield_concat

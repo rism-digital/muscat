@@ -53,6 +53,8 @@ class Marc
   # and link them. In case they do not exist they will be created (upon saving the manuscript). 
   def import(reindex = false, user = nil)
     @all_foreign_associations = @root.import(false, reindex, user)
+    record_type = to_internal
+    return record_type
   end
   
   # Creates a Marc object from the <tt>source</tt> field in the Source record
@@ -69,6 +71,14 @@ class Marc
     if tag_line =~ @marc21
       parse_marc21 $1, $2
     end
+  end
+  
+  def to_internal
+    # TODO common conversion to internal (if any?)
+  end
+  
+  def to_external
+    # TODO common conversion to external (add last transaction, leader, etc.)
   end
   
   # Parse a MARC 21 line
@@ -383,7 +393,8 @@ class Marc
   def to_xml_record(updated_at, versions)
     load_source unless @loaded
     
-    safe_root = @root.deep_copy
+    safe_marc = self.class.new
+    safe_marc.root = @root.deep_copy
     
     # Since we are on a copy of @root
     # if we add a 005 tag get_insert_position in the
@@ -392,12 +403,14 @@ class Marc
     # and pad it
     offset = 0
     
+    safe_marc.to_external
+    
     if updated_at
       last_transcation = updated_at.strftime("%Y%m%d%H%M%S") + ".0"
       # 005 should not be there, if it is avoid duplicates
       _005_tag = first_occurance("005")
       if !_005_tag
-        safe_root.add_at(MarcNode.new(@model, "005", last_transcation, nil), get_insert_position("005") )
+        safe_marc.root.add_at(MarcNode.new(@model, "005", last_transcation, nil), get_insert_position("005") )
         offset += 1
       end
     end
@@ -410,7 +423,7 @@ class Marc
         entry = "#{author}#{v.created_at} (#{v.event})"
         n599 = MarcNode.new(@model, "599", "", nil)
         n599.add_at(MarcNode.new(@model, "a", entry, nil), 0)
-        safe_root.add_at(n599, get_insert_position("599") + offset)
+        safe_marc.root.add_at(n599, get_insert_position("599") + offset)
       end
         
     end
@@ -418,7 +431,7 @@ class Marc
     out = String.new
     
     out += "\t<marc:record>\n"
-    for child in safe_root.children
+    for child in safe_marc.root.children
       out += child.to_xml
     end
 

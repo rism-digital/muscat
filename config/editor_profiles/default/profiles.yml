@@ -1,93 +1,115 @@
 --- 
-- :id: Default
-  :name: Default
+### Configuration for source
+- :id: DefaultSource
+  :name: Default Source
   :model: source
   :labels: 
-  - BasicLabels
-  :rules: 
-  - BasicCataloguingRules
+  - SourceLabels
   :options: 
-  - BasicFormOptions
+  - SourceFormOptions
   :layout: 
-  - LayoutDefault
+  - SourceLayoutDefault
   :filter: 
     default: true
-- :id: Show
-  :name: Show
+###
+- :id: ShowSource
+  :name: Show Source
   :model: source
   :labels: 
-  - BasicLabels
-  :rules: 
-  - BasicCataloguingRules
+  - SourceLabels
   :options: 
-  - BasicFormOptions
+  - SourceFormOptions
   :layout: 
-  - LayoutShow
-  :filter: 
+  - SourceLayoutShow
+  :filter:
     show_all: false
     show: true
+###
+- :id: MarcSource
+  :name: Marc Source
+  :model: source
+  :labels: 
+  - SourceLabels
+  :options: 
+  - SourceFormOptions
+  :layout: 
+  - SourceLayoutMarc
+  :filter:
 
 # Configuration for person
 - :id: DefaultPerson
   :name: Default Person
   :model: person
   :labels: 
-  - PersonBasicLabels
-  :rules: 
-  - BasicCataloguingRules
+  - PersonLabels
   :options: 
-  - PersonBasicFormOptions
+  - PersonFormOptions
   :layout: 
   - PersonLayoutDefault
   :filter: 
     default: true
+###
 - :id: ShowPerson
   :name: Show Person
   :model: person
   :labels: 
-  - PersonBasicLabels
-  :rules: 
-  - BasicCataloguingRules
+  - PersonLabels
   :options: 
-  - PersonBasicFormOptions
+  - PersonFormOptions
   :layout: 
   - PersonLayoutShow
   :filter:
     show_all: false
     show: true
 
-
-- :id: Institution
-  :name: institution
+# Configuration for institution
+- :id: DefaultInstitution
+  :name: Institution
   :model: institution
   :labels: 
-  - InstitutionBasicLabels
-  :rules: 
-  - BasicCataloguingRules
+  - InstitutionLabels
   :options: 
-  - InstitutionBasicFormOptions
+  - InstitutionFormOptions
+  :layout: 
+  - InstitutionLayoutDefault
+  :filter:
+    default: true 
+###
+- :id: ShowInstitution
+  :name: Institution
+  :model: institution
+  :labels: 
+  - InstitutionLabels
+  :options: 
+  - InstitutionFormOptions
   :layout: 
   - InstitutionLayoutShow
   :filter:
-    default: true 
     show_all: false
     show: true
 
-- :id: Catalogue
-  :name: catalogue
+# Configuration for catalogue
+- :id: DefaultCatalogue
+  :name: Catalogue
   :model: catalogue
   :labels: 
-  - CatalogueBasicLabels
-  :rules: 
-  - BasicCataloguingRules
+  - CatalogueLabels
   :options: 
-  - CatalogueBasicFormOptions
+  - CatalogueFormOptions
+  :layout: 
+  - CatalogueLayoutDefault
+  :filter:
+    default: true 
+###
+- :id: ShowCatalogue
+  :name: Catalogue
+  :model: catalogue
+  :labels: 
+  - CatalogueLabels
+  :options: 
+  - CatalogueFormOptions
   :layout: 
   - CatalogueLayoutShow
   :filter:
-    default: true 
     show_all: false
     show: true
-
-
-

@@ -46,6 +46,8 @@ module MarcControllerActions
       end
       @item.marc = new_marc
       @item.lock_version = params[:lock_version]
+      
+      @item.record_type = params[:record_type] if (@item.respond_to? :record_type)
 
       @item.save
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
