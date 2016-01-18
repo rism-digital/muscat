@@ -84,6 +84,9 @@ class Source < ActiveRecord::Base
   attr_accessor :suppress_update_77x_trigger
   attr_accessor :suppress_update_count_trigger
   
+  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_audit: [ :basic, :minimal, :full ]
+  
   def after_initialize
     @old_parent = nil
   end

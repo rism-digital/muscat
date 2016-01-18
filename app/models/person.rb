@@ -69,6 +69,9 @@ class Person < ActiveRecord::Base
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
 
+  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_audit: [ :basic, :minimal, :full ]
+
   # Suppresses the marc scaffolding
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true

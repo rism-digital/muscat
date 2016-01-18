@@ -12,6 +12,9 @@ class Work < ActiveRecord::Base
   attr_accessor :suppress_reindex_trigger
   after_save :reindex
 
+  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_audit: [ :basic, :minimal, :full ]
+
   # Suppresses the solr reindex
   def suppress_reindex
     self.suppress_reindex_trigger = true

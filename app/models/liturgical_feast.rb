@@ -26,7 +26,10 @@ class LiturgicalFeast < ActiveRecord::Base
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
-    
+  
+  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_audit: [ :basic, :minimal, :full ]
+  
   # Suppresses the solr reindex
   def suppress_reindex
     self.suppress_reindex_trigger = true
