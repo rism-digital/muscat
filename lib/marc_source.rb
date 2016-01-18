@@ -266,6 +266,7 @@ class MarcSource < Marc
 
     # Drop other unused tags
     each_by_tag("005") {|t| t.destroy_yourself}
+    each_by_tag("007") {|t| t.destroy_yourself}
     each_by_tag("008") {|t| t.destroy_yourself}
 
     # Move 130 to 240
