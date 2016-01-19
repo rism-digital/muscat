@@ -12,9 +12,13 @@ class MarcSource < Marc
     :convolutum => 7,
   }
   
-  def initialize(source = nil, record_type = 0)
+  def initialize(source = nil, rt = 0)
     super("source", source)
-    @record_type = record_type
+    @record_type = rt
+  end
+  
+  def record_type
+    @record_type
   end
   
   # Get the std_title and std_title_d values
@@ -222,7 +226,7 @@ class MarcSource < Marc
   end
   
   def match_leader
-    record_type = RECORD_TYPES[:unspecified]
+    rt = RECORD_TYPES[:unspecified]
     
     leader = first_occurance("000").content || nil rescue leader = nil
     if !leader
@@ -231,31 +235,31 @@ class MarcSource < Marc
     end
     
     if leader.match(/......[dc]c.............../)
-      record_type = RECORD_TYPES[:collection]
+      rt = RECORD_TYPES[:collection]
     elsif leader.match(/......d[dm].............../)
-      record_type = RECORD_TYPES[:manuscript]
+      rt = RECORD_TYPES[:manuscript]
     elsif leader.match(/......c[dm].............../)
-      record_type = RECORD_TYPES[:print]
+      rt = RECORD_TYPES[:print]
     elsif leader.match(/......tm.............../)
-      record_type = RECORD_TYPES[:manuscript_libretto]
+      rt = RECORD_TYPES[:manuscript_libretto]
     elsif leader.match(/......am.............../)
-      record_type = RECORD_TYPES[:print_libretto]
+      rt = RECORD_TYPES[:print_libretto]
     elsif leader.match(/......pm.............../)
-      record_type = RECORD_TYPES[:theoretica]
+      rt = RECORD_TYPES[:theoretica]
     elsif leader.match(/......pd.............../)
-      record_type = RECORD_TYPES[:convolutum]
+      rt = RECORD_TYPES[:convolutum]
     else
        puts "Unknown leader #{leader}"
     end
     
-    return record_type
+    return rt
   end
   
   def to_internal
     super
 
     # convert leader to record_type
-    record_type = match_leader
+    rt = match_leader
     
     # Drop leader
     each_by_tag("000") {|t| t.destroy_yourself}
@@ -278,8 +282,8 @@ class MarcSource < Marc
       
     end
     
-    if record_type
-      @record_type = record_type
+    if rt
+      @record_type = rt
     end
   end
   
@@ -287,13 +291,9 @@ class MarcSource < Marc
     super
     # puts "overriden to_external call"
   end
-  
-  def get_record_type
-    return @record_type
-  end
-  
-  def set_record_type(record_type)
-    @record_type = record_type
+    
+  def set_record_type(rt)
+    @record_type = rt
   end
   
 end

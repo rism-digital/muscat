@@ -8,7 +8,7 @@ Source.all.each do |sa|
   
   # convert to intergal marc
   s.marc.to_internal
-  rt = s.marc.get_record_type
+  rt = s.marc.record_type
   if (rt)
     s.record_type = rt
   else
@@ -59,16 +59,52 @@ Source.all.each do |sa|
     end
   end
   
+  # Migrate 852 $0 to $x
+  marc.each_by_tag("852") do |t|
+    t0 = t.fetch_first_by_tag("0")
+    
+    if !(t0 && t0.content)
+      puts "WARN: 852 without $0 #{s.id}"
+      next
+    end
+    
+    t.add_at(MarcNode.new("source", "x", t0.content, nil), 0)
+    t.sort_alphabetically
+    
+    #adios
+    t0.destroy_yourself
+  end
+  
+  #193 Migrate 505 to 52
+  marc.each_by_tag("505") do |t|
+    ta = t.fetch_first_by_tag("a")
+    
+    next if !(ta && ta.content)
+    
+    new_520 = MarcNode.new("source", "520", "", "##")
+    new_520.add_at(MarcNode.new("source", "a", ta.content, nil), 0)
+    new_520.sort_alphabetically
+
+    marc.root.children.insert(marc.get_insert_position("500"), new_520)
+    
+    #adios
+    t.destroy_yourself
+  end
   
 	s.suppress_update_77x
 	s.suppress_update_count
   s.suppress_reindex
   
-  begin
+  new_marc_txt = marc.to_marc
+  new_marc = MarcSource.new(new_marc_txt, s.record_type)
+  s.marc = new_marc
+  #puts new_marc
+  
+  #begin
     s.save
-  rescue => e
-    puts e.message
-  end
+    #rescue => e
+    #puts e.message
+    #end
   
   pb.increment!
   
