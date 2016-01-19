@@ -107,6 +107,33 @@ doc_edit_workflow:
 
 ################
 
+01_codes_artistic: 
+  label: 
+    it: Autore
+    fr: Auteur
+    de: Verfasser
+    en: Artistic production
+02_codes_performing: 
+  label: 
+    it: Partecipanti
+    fr: Performance
+    de: Mitwirkende
+    en: Performance
+03_codes_technical: 
+  label: 
+    it: Produttore
+    fr: "Création"
+    de: Hersteller
+    en: Technical production  
+04_codes_other: 
+  label: 
+    it: Altri
+    fr: Autre
+    de: Weitere
+    en: Other 
+
+################
+
 "000": 
   label: 
     it: Leader
@@ -125,18 +152,6 @@ doc_edit_workflow:
     fr: "Identité du numéro de contrôle"
     de: Kontrollnummer-Bezeichnung
     en: Control number identifier
-"007": 
-  label: 
-    it: Campo fisso per la descrizione fisica
-    fr: "Zone fixe de description matérielle"
-    de: Codierte Form der Materialbeschreibung
-    en: Physical description fixed field
-01_codes_artistic: 
-  label: 
-    it: Autore
-    fr: Auteur
-    de: Verfasser
-    en: Artistic production
 028: 
   label: 
     it: Numero dell'editore
@@ -150,12 +165,12 @@ doc_edit_workflow:
         fr: "Numéro de plaque"
         de: Plattennummer
         en: Plate number
-02_codes_performing: 
-  label: 
-    it: Partecipanti
-    fr: Performance
-    de: Mitwirkende
-    en: Performance
+    "8": 
+      label: 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
 "031": 
   label: 
     it: Incipit musicale
@@ -318,13 +333,8 @@ doc_edit_workflow:
       label: 
         it: Num. locale
         fr: No. local
+        de: Lokale Nummer
         en: Local ID no.
-03_codes_technical: 
-  label: 
-    it: Produttore
-    fr: "Création"
-    de: Hersteller
-    en: Technical production
 "040": 
   label: 
     it: Fonte della catalogazione
@@ -375,6 +385,12 @@ doc_edit_workflow:
         fr: Langue du livret
         de: Sprachcode von Libretti
         en: Language code of libretto
+    h: 
+      label: 
+        it: Lingua del testo originale
+        fr: Langue du texte original
+        de: Sprachcode des Originaltextes
+        en: Language of original text
     indicator: 
       label: 
         it: Traduzione
@@ -387,45 +403,18 @@ doc_edit_workflow:
         fr: Oui
         de: Ja
         en: "Yes"
-    h: 
-      label: 
-        it: Lingua del testo originale
-        fr: Langue du texte original
-        de: Sprachcode des Originaltextes
-        en: Language of original text
     0#: 
       label: 
         it: "No"
         fr: Non
         de: Nein
         en: "No"
-04_codes_other: 
-  label: 
-    it: Altri
-    fr: Autre
-    de: Weitere
-    en: Other
-"043": 
-  label: 
-    it: Country code
-    fr: Country code
-    de: Länder-Code
-    en: County code
-  fields: 
-    c: 
-      label: 
-        it: Country code
-        fr: Country code
-        de: Länder-Code  
-        en: Country code
 "100": 
   label: 
     it: Compositore/Autore
     fr: Compositeur/Auteur
     de: Komponist/Autor
     en: Composer/Author
-  accepts: 
-  - "700"
   fields: 
     a: 
       label: 
@@ -442,108 +431,20 @@ doc_edit_workflow:
     j: 
       label: 
         it: Qualificazione d'attribuzione
-        fr: Qualificatif d'attribution'
-        de: Attribution qualifier
+        fr: Qualificatif d'attribution
+        de: Zuschreibungsvermerk
         en: Attribution qualifier
       edit_label: 
-        it: Dubbio
-        fr: Douteux
-        de: Zweifelhaft
-        en: Dubious
-"110": 
-  label: 
-    it: Nome di ente
-    fr: "Nom de la collectivité"
-    de: "Körperschaftsname"
-    en: Holding institution
-  accepts: 
-  - "710"
-  fields: 
-    a: 
-      label: 
-        it: Nome di ente
-        fr: "Nom de la collectivité"
-        de: "Körperschaftsname"
-        en: Holding institution
-    b: 
-      label: 
-        it: Ente subordinato
-        fr: "Collectivité subordonnée"
-        de: "Untergeordnete Körperschaft"
-        en: Subordinate unit
-    c: 
-      label: 
-        it: Place
-        fr: Place 
-        de: Ort
-        en: Place
-    g: 
-      label: 
-        it: Ente subordinato
-        fr: "Siglum"
-        de: "Sigel"
-        en: Siglum
-
-"130": 
-  label: 
-    it: Titolo uniforme
-    fr: Titre uniforme
-    de: Einordnungstitel
-    en: Standardised title
-  accepts: 
-  - "240"
-  - "245"
-  fields: 
-    k: 
-      label: 
-        it: suddivisione formale
-        fr: Sous-vedette de forme
-        de: Unterteilung nach der Form
-        en: Subheading
-    a: 
-      label: 
-        it: Titolo uniforme
-        fr: Titre uniforme
-        de: Einordnungstitel
-        en: Standardised title
-    m: 
-      label: 
-        it: Organico sintetico
-        fr: Distribution
-        de: Besetzungshinweis
-        en: Scoring summary
-    n: 
-      label: 
-        it: Num. di catalogo/d'opera
-        fr: "Opus/no. de catalogue thématique"
-        de: Werkverzeichnis/Opus
-        en: Thematic catalogue no./Opus
-    o: 
-      label: 
-        it: Arrangiamento
-        fr: Mention d'arrangement
-        de: Bearbeitung
-        en: Arrangement statement
-    p: 
-      label: 
-        it: Titolo della sezione o parte
-        fr: Nom de la partie/section
-        en: Title of section or part
-    r: 
-      label: 
-        it: "Tonalità"
-        fr: "Tonalité"
-        de: Tonart
-        en: Key
+        it: Attribuzione
+        fr: Attribution
+        de: Zuschreibung
+        en: Attribution
 "240": 
   label: 
     it: Titolo uniforme
     fr: Titre uniforme
     de: Einordnungstitel
     en: Standardised title
-  accepts: 
-  - "130"
-  - "245"
   fields: 
     k: 
       label: 
@@ -592,9 +493,6 @@ doc_edit_workflow:
     fr: Titre diplomatique
     de: Diplomatischer Titel
     en: Title on manuscript
-  accepts: 
-  - "130"
-  - "240"
   fields: 
     a: 
       label: 
@@ -602,17 +500,6 @@ doc_edit_workflow:
         fr: Titre diplomatique
         de: Diplomatischer Titel
         en: Title on manuscript
-    b: 
-      label: 
-        it: Sottotitolo
-        fr: Sous-titre
-        en: Subtitle
-    c: 
-      label: 
-        it: Nome/i nel titolo diplomatico
-        fr: Noms(s) dans le titre
-        de: Name(n) im diplomatischen Titel
-        en: Name(s) on manuscript
 "246": 
   label: 
     it: Varianti del titolo diplomatico
@@ -626,21 +513,6 @@ doc_edit_workflow:
         fr: Variante du titre diplomatique
         de: Weiterer diplomatischer Titel
         en: Variant title on manuscript
-      edit_label: 
-        en: ""
-"254": 
-  label: 
-    it: Consistenza codicologica
-    fr: "Présentation musicale"
-    de: Musikalische Ausgabeform
-    en: Musical presentation statement
-  fields: 
-    a: 
-      label: 
-        it: Consistenza codicologica
-        fr: "Présentation musicale"
-        de: Musikalische Ausgabeform
-        en: Musical presentation statement
       edit_label: 
         en: ""
 "260": 
@@ -680,25 +552,12 @@ doc_edit_workflow:
         fr: Imprimeur, imprimerie
         de: Drucker, Druckerei
         en: Printing office
-    "3": 
+    "8": 
       label: 
         it: Gruppo di materiale
         fr: Documents
         de: Set
         en: Set
-"270": 
-  label: 
-    it: Indirizzo nella fonte
-    fr: Adresse sur la source
-    en: Address on manuscript
-  fields: 
-    a: 
-      label: 
-        it: Indirizzo nella fonte
-        fr: Adresse sur la source
-        en: Address on manuscript
-      edit_label: 
-        en: ""
 "300": 
   label: 
     it: Materiale
@@ -712,19 +571,13 @@ doc_edit_workflow:
         fr: Type de source
         de: Quellenart, Umfang
         en: Description/Extent
-    b: 
-      label: 
-        it: Altri particolari fisici
-        fr: "Autres détails physiques"
-        de: Andere physische Details
-        en: Other physical details
     c: 
       label: 
         it: Dimensioni
         fr: Dimension
         de: Format
         en: Dimensions
-    "3": 
+    "8": 
       label: 
         it: Gruppo di materiale
         fr: Documents
@@ -737,62 +590,18 @@ doc_edit_workflow:
     de: Physisches Medium
     en: Physical medium
   fields: 
-    a: 
-      label: 
-        it: Materiale
-        fr: "Substances appliquées"
-        de: Physisches Medium
-        en: Material
-    c: 
-      label: 
-        it: Materiali applicati
-        fr: "Substances appliquées"
-        de: Physisches Medium
-        en: Materials applied
     d: 
       label: 
         it: Tecnica di produzione
         fr: Technique de production
         de: Herstellungsverfahren
         en: Recording technique
-    "3": 
+    "8": 
       label: 
         it: Gruppo di materiale
         fr: Documents
         de: Set
         en: Set
-"351": 
-  label: 
-    it: Distribuzione delle parti
-    fr: "Arrangement du matériel"
-    de: Anordnung der Stimmen
-    en: Physical arrangement
-  fields: 
-    a: 
-      label: 
-        it: Distribuzione delle parti
-        fr: "Arrangement du matériel"
-        de: Anordnung der Stimmen
-        en: Physical arrangement
-    "3": 
-      label: 
-        it: Gruppo di materiale
-        fr: Documents
-        de: Set
-        en: Set
-"410": 
-  label: 
-    it: Name variants
-    fr: Name variants
-    de: Namensvarianten
-    en: Name variants
-  fields: 
-    a: 
-      label: 
-        it: Name variants
-        fr: Name variants
-        de: Namensvarianten  
-        en: Name variants
 "500": 
   label: 
     it: Osservazioni
@@ -808,30 +617,23 @@ doc_edit_workflow:
         en: General note
       edit_label: 
         en: ""
-"505": 
-  label: 
-    it: Nota di contenuto
-    fr: Remarque sur le contenu
-    de: Bemerkungen zu Inhaltsangaben
-    en: Note on content
-  fields: 
-    a: 
+    "8": 
       label: 
-        it: Nota di contenuto
-        fr: Remarque sur le contenu
-        de: Bemerkungen zu Inhaltsangaben
-        en: Note on content
-      edit_label: 
-        en: ""
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
 "506": 
   label: 
     it: Restrizioni all'accesso
+    fr: Restriction d'accès
     de: "Zugangsbeschränkungen"
     en: Access restriction
   fields: 
     a: 
       label: 
         it: Restrizioni all'accesso
+        fr: Restriction d'accès
         de: "Zugangsbeschränkungen"
         en: Access restriction
       edit_label: 
@@ -849,19 +651,6 @@ doc_edit_workflow:
         fr: "Note sur la création/production"
         de: Bemerkung zur Person / Institution
         en: Creation/production note
-      edit_label: 
-        en: ""
-"510": 
-  label: 
-    it: Riferimenti
-    fr: "Références"
-    en: References
-  fields: 
-    a: 
-      label: 
-        it: Riferimenti
-        fr: "Références"
-        en: References
       edit_label: 
         en: ""
 "511": 
@@ -922,19 +711,6 @@ doc_edit_workflow:
         en: Supplementary material
       edit_label: 
         en: ""
-"533": 
-  label: 
-    it: Nota di riproduzione
-    fr: Note de reproduction
-    en: Reproduction note
-  fields: 
-    a: 
-      label: 
-        it: Nota di riproduzione
-        fr: Note de reproduction
-        en: Reproduction note
-      edit_label: 
-        en: ""
 "541": 
   label: 
     it: Fonte immediata d'acquisto
@@ -960,21 +736,12 @@ doc_edit_workflow:
         fr: Date d'acquisition
         de: Beschaffungsdatum
         en: Date of acquisition
-"545": 
-  label: 
-    it: Dati biografici o storici
-    fr: "Données biographiques ou historiques"
-    de: Biographische oder geschichtliche Daten
-    en: Biographical note
-  fields: 
-    a: 
+    e: 
       label: 
-        it: Dati biografici o storici
-        fr: "Données biographiques ou historiques"
-        de: Biographische oder geschichtliche Daten
-        en: Biographical note
-      edit_label: 
-        en: ""
+        it: Numero di acquisizione
+        fr: Numéro d'acquisition
+        de: Akzessionsnumer
+        en: Accession number
 "546": 
   label: 
     it: Nota sulla lingua
@@ -988,15 +755,6 @@ doc_edit_workflow:
         fr: Note sur la langue
         de: Sprachenvermerk
         en: Language note
-      edit_label: 
-        en: ""
-"555": 
-  label: 
-    en: Unpublished finding aid
-  fields: 
-    a: 
-      label: 
-        en: Unpublished finding aid
       edit_label: 
         en: ""
 "561": 
@@ -1029,21 +787,12 @@ doc_edit_workflow:
         en: Binding note
       edit_label: 
         en: ""
-"580": 
-  label: 
-    it: Nota di collegamento complesso
-    fr: Note de liaison complexe des vedettes
-    de: Beziehung von komplexen Eintragungen
-    en: Linking entry complexity note
-  fields: 
-    a: 
+    "8": 
       label: 
-        it: Nota di collegamento complesso
-        fr: Note de liaison complexe des vedettes
-        de: Beziehung von komplexen Eintragungen
-        en: Linking entry complexity note
-      edit_label: 
-        en: ""
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set 
 "590": 
   label: 
     it: Parti staccate
@@ -1063,7 +812,7 @@ doc_edit_workflow:
         fr: Parties manquantes
         de: Fehlendes Stimmenmaterial
         en: Parts missing
-    "3": 
+    "8": 
       label: 
         it: Gruppo di materiale
         fr: Documents
@@ -1071,20 +820,17 @@ doc_edit_workflow:
         en: Set
 "591": 
   label: 
-    it: Segnatura precedente
-    fr: Ancienne cote
-    en: Former MS number
+    it: Altra segnatura
+    fr: Autre cote
+    de: Weitere Signatur
+    en: Other shelf number
   fields: 
     a: 
       label: 
-        it: Segnatura precedente
-        fr: Ancienne cote
-        en: Former MS number
-    "4": 
-      label: 
-        it: Categoria di segnatura
-        fr: Type de cote
-        en: Shelf mark type
+        it: Altra segnatura
+        fr: Autre cote
+        de: Weitere Signatur
+        en: Other shelf number
 "592": 
   label: 
     it: Filigrana
@@ -1098,7 +844,7 @@ doc_edit_workflow:
         fr: Filigrane
         de: Wasserzeichen
         en: Watermark note
-    "3": 
+    "8": 
       label: 
         it: Gruppo di materiale
         fr: Documents
@@ -1117,7 +863,7 @@ doc_edit_workflow:
         fr: Type
         de: Typ
         en: Type
-    "3": 
+    "8": 
       label: 
         it: Gruppo di materiale
         fr: Documents
@@ -1125,22 +871,52 @@ doc_edit_workflow:
         en: Set
 "594": 
   label: 
-    it: Organico completo
+    it: Organico
     fr: Instrumentation
-    de: "Vollständige Besetzung"
-    en: Scoring (coded instrumentation)
+    de: Besetzung
+    en: Scoring
   fields: 
-    k: 
+    a: 
       label: 
-        it: Strumenti a percussione
-        fr: Percussions
-        de: Schlaginstrumente
-        en: Precussion
+        it: Organico
+        fr: Instrumentation
+        de: Besetzung
+        en: Scoring
+"595": 
+  label: 
+    it: "Ruoli: nomi originali dei personaggi"
+    fr: "Rôles: noms originaux"
+    de: "Rollennamen: Originale Schreibweise"
+    en: Dramatic roles named
+  fields: 
+    a: 
+      label: 
+        it: "Ruoli: nomi originali dei personaggi"
+        fr: "Rôle: noms originaux"
+        de: "Rollennamen: Originale Schreibweise"
+        en: Dramatic roles named
+"596": 
+  label: 
+    it: Rimandi a RISM A/I e RISM B
+    fr: "Référence au RISM A/I et B"
+    de: Querverweise zu RISM A/I und RISM B
+    en: RISM Series A/I and B references
+  fields: 
+    a: 
+      label: 
+        it: Rimandi a RISM A/I e RISM B
+        fr: "Références au RISM A/I et B"
+        de: Querverweise zu RISM A/I und RISM B
+        en: RISM Series A/I and B references
       edit_label: 
-        it: stck
-        fr: stck
-        de: stck
-        en: stck
+        en: ""
+"598": 
+  label: 
+    it: Codice della strumentazione
+    fr: Instrumentation codée
+    de: "Kodierte Besetzung"
+    en: Coded instrumentation
+  fields: 
     a: 
       label: 
         it: Voce solista
@@ -1152,17 +928,6 @@ doc_edit_workflow:
         fr: Vsolo
         de: Vsolo
         en: Vsolo
-    l: 
-      label: 
-        it: Strumenti a tastiera
-        fr: "Instruments à clavier"
-        de: Tasteninstrumente
-        en: Keyboards
-      edit_label: 
-        it: keyb
-        fr: keby
-        de: keyb
-        en: keyb
     b: 
       label: 
         it: Voce solista aggiuntiva
@@ -1174,17 +939,6 @@ doc_edit_workflow:
         fr: Vsolo
         de: Vsolo
         en: Vsolo
-    m: 
-      label: 
-        it: Altri strumenti
-        fr: Autres instruments
-        de: Weitere Instrumente
-        en: Other instruments
-      edit_label: 
-        it: other instr.
-        fr: other instr.
-        de: other instr.
-        en: other instr.
     c: 
       label: 
         it: Voci di coro
@@ -1196,17 +950,6 @@ doc_edit_workflow:
         fr: Coro
         de: Coro
         en: Coro
-    n: 
-      label: 
-        it: Basso continuo
-        fr: Basso continuo
-        de: Basso continuo
-        en: Basso continuo
-      edit_label: 
-        it: B.c.
-        fr: B.c.
-        de: B.c.
-        en: B.c.
     d: 
       label: 
         it: Voci di coro aggiuntive
@@ -1273,60 +1016,50 @@ doc_edit_workflow:
         fr: plck
         de: plck
         en: plck
-"595": 
-  label: 
-    it: "Ruoli: nomi originali dei personaggi"
-    fr: "Rôles: noms originaux"
-    de: "Rollennamen: Originale Schreibweise"
-    en: Dramatic roles named
-  fields: 
-    a: 
+    k: 
       label: 
-        it: "Ruoli: nomi originali dei personaggi"
-        fr: "Rôle: noms originaux"
-        de: "Rollennamen: Originale Schreibweise"
-        en: Dramatic roles named
-"596": 
-  label: 
-    it: Rimandi a RISM A/I e RISM B
-    fr: "Référence au RISM A/I et B"
-    de: Querverweise zu RISM A/I und RISM B
-    en: RISM Series A/I and B references
-  fields: 
-    a: 
-      label: 
-        it: Rimandi a RISM A/I e RISM B
-        fr: "Références au RISM A/I et B"
-        de: Querverweise zu RISM A/I und RISM B
-        en: RISM Series A/I and B references
+        it: Strumenti a percussione
+        fr: Percussions
+        de: Schlaginstrumente
+        en: Precussion
       edit_label: 
-        en: ""
-"597": 
-  label: 
-    it: Rilegatura
-    fr: Reliure
-    en: Binding
-  fields: 
-    a: 
+        it: stck
+        fr: stck
+        de: stck
+        en: stck
+    l: 
       label: 
-        it: Rilegatura
-        fr: Reliure
-        en: Binding
+        it: Strumenti a tastiera
+        fr: "Instruments à clavier"
+        de: Tasteninstrumente
+        en: Keyboards
       edit_label: 
-        en: ""
-"598": 
-  label: 
-    it: Denominazioni originali delle parti
-    fr: Nom original des parties
-    en: Original names of parts
-  fields: 
-    a: 
+        it: keyb
+        fr: keby
+        de: keyb
+        en: keyb
+    m: 
       label: 
-        it: Denominazioni originali delle parti
-        fr: Nom original des parties
-        en: Original names of parts
+        it: Altri strumenti
+        fr: Autres instruments
+        de: Weitere Instrumente
+        en: Other instruments
       edit_label: 
-        en: ""
+        it: other instr.
+        fr: other instr.
+        de: other instr.
+        en: other instr.
+    n: 
+      label: 
+        it: Basso continuo
+        fr: Basso continuo
+        de: Basso continuo
+        en: Basso continuo
+      edit_label: 
+        it: B.c.
+        fr: B.c.
+        de: B.c.
+        en: B.c.
 "599": 
   label: 
     it: Commenti interni
@@ -1357,27 +1090,6 @@ doc_edit_workflow:
         en: Personal name
       edit_label: 
         en: ""
-
-"622": 
-  label: 
-    it: Contact 
-    fr: Contact
-    de: Kontakt
-    en: Contact 
-  fields: 
-    e: 
-      label: 
-        it: Address
-        fr: Address
-        de: Adresse
-        en: Address 
-  fields: 
-    u: 
-      label: 
-        it: URL
-        fr: URL
-        de: URL
-        en: URL 
 "650": 
   label: 
     it: Parola chiave
@@ -1385,36 +1097,14 @@ doc_edit_workflow:
     de: Schlagworteintragung
     en: Subject heading
   fields: 
-    v: 
-      label: 
-        it: Suddivisione formale
-        fr: Subdivision de forme
-        de: Unterteilung nach der Form
-        en: Form subdivision
     a: 
       label: 
         it: Parola chiave
         de: Sachschlagwort
         fr: Sujet
         en: Subject heading
-    x: 
-      label: 
-        it: Suddivisione generale
-        fr: "Subdivision générale"
-        de: Allgemeine Unterteilung
-        en: Subheading General subdivision
-    y: 
-      label: 
-        it: Suddivisione cronologica
-        fr: Subdivision chronologique
-        de: Chronologische Unterteilung
-        en: Chronological subdivision
-    z: 
-      label: 
-        it: Suddivisione geografica
-        fr: "Subdivision géographique"
-        de: Geographische Unterteilung
-        en: Geographic subdivision
+      edit_label: 
+        en: ""
 "651": 
   label: 
     it: Luogo di un evento
@@ -1504,8 +1194,6 @@ doc_edit_workflow:
     fr: Noms de personnes additionnels
     de: Nebeneintragung Personen
     en: Additional personal names
-  accepts: 
-  - "100"
   fields: 
     a: 
       label: 
@@ -1519,39 +1207,36 @@ doc_edit_workflow:
         fr: Dates de vie
         de: Geburts- und Todesdaten
         en: Life dates
-    e: 
+    j: 
       label: 
-        en: Relator term
-    t: 
-      label: 
-        en: Title of a work
-    "3": 
-      label: 
-        it: Gruppo di materiale
-        fr: Documents
-        de: Set
-        en: Set
+        it: Qualificazione d'attribuzione
+        fr: Qualificatif d'attribution
+        de: Zuschreibungsvermerk
+        en: Attribution qualifier
+      edit_label: 
+        it: Attribuzione
+        fr: Attribution
+        de: Zuschreibung
+        en: Attribution
     "4": 
       label: 
         it: Funzione
         fr: Function
         de: Funktionsbezeichnung
         en: Function
+    "8": 
+      label: 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
 "710": 
   label: 
     it: Nome di ente
     fr: "Nom de la collectivité"
     de: Nebeneintragung Institutionen
     en: Holding institution
-  accepts: 
-  - "110"
   fields: 
-    k: 
-      label: 
-        it: Nome di ente
-        fr: Nom de l'institution
-        de: Institutionsname
-        en: Holding institution
     a: 
       label: 
         it: Nome di ente
@@ -1564,18 +1249,18 @@ doc_edit_workflow:
         fr: "Collectivité subordonnée"
         de: Untergeordnete Institution
         en: Subordinate unit
-    "3": 
-      label: 
-        it: Gruppo di materiale
-        fr: Documents
-        de: Set
-        en: Set
     "4": 
       label: 
         it: Funzione
         fr: Function
         de: Funktionsbezeichnung
         en: Function
+    "8": 
+      label: 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
 "730": 
   label: 
     it: Titolo uniforme alternativo
@@ -1583,18 +1268,18 @@ doc_edit_workflow:
     de: Alternativer Einordnungstitel
     en: Additional title
   fields: 
-    k: 
-      label: 
-        it: Suddivisione formale
-        fr: Sous-vedette de forme
-        de: Unterteilung nach der Form
-        en: Subheading
     a: 
       label: 
         it: Titolo uniforme alternativo
         fr: Titres uniformes additionnels
         de: Alternativer Einordnungstitel
         en: Additional title
+    k: 
+      label: 
+        it: Suddivisione formale
+        fr: Sous-vedette de forme
+        de: Unterteilung nach der Form
+        en: Subheading
     m: 
       label: 
         it: Organico sintetico
@@ -1613,11 +1298,6 @@ doc_edit_workflow:
         fr: Mention d'arrangement
         de: Bearbeitung
         en: Arrangement statement
-    p: 
-      label: 
-        it: Titolo di sezione o parte
-        fr: Nom de la partie/section
-        en: Title of section or part
     r: 
       label: 
         it: "Tonalità"
@@ -1664,9 +1344,6 @@ doc_edit_workflow:
         en: Item in this collection
       edit_label: 
         en: ""
-    "7": 
-      label: 
-        en: Parent record entry
 "773": 
   label: 
     it: Item principale
@@ -1682,12 +1359,6 @@ doc_edit_workflow:
         en: Volume containing this item
       edit_label: 
         en: ""
-    "7": 
-      label: 
-        en: Host record entry
-    i: 
-      label: 
-        en: Note
 "787": 
   label: 
     it: Inserimenti
@@ -1695,21 +1366,12 @@ doc_edit_workflow:
     de: Einlagen
     en: Related work/Insertions
   fields: 
-    a: 
-      label: 
-        it: Inserimenti
-        fr: Insertions
-        de: Einlagen
-        en: Related work/Insertions
     w: 
       label: 
         it: Numero RISM dell'opera principale
         fr: "Numéro RISM de la source"
         de: RISM Dokumentnummer des Hauptwerks
         en: RISM ID
-    "7": 
-      label: 
-        en: Non-specific rel. entry
     n: 
       label: 
         it: Collocazione dell'inserimento nell'opera principale
@@ -1728,67 +1390,6 @@ doc_edit_workflow:
         fr: Titre uniforme
         de: Einordnungstitel des Hauptwerks
         en: Standardised title
-"789": 
-  label: 
-    it: Incipit
-    fr: Incipit
-    en: Incipit
-  fields: 
-    a: 
-      label: 
-        it: Incipit
-        fr: Incipit
-        en: Incipit
-    b: 
-      label: 
-        it: Voce/strumento
-        fr: Voix/instrument
-        en: Voice/instrument
-    c: 
-      label: 
-        it: Intestazione/tempo del movimento
-        fr: Mouvemement/tempo
-        en: Movement title/tempo mark
-    n: 
-      label: 
-        it: "Tonalità"
-        fr: "Tonalité"
-        en: Key
-    o: 
-      label: 
-        it: Codice di commento
-        fr: Commentaire
-        en: Commentary code
-    e: 
-      label: 
-        it: Chiave
-        fr: Clef
-        en: Clef
-    f: 
-      label: 
-        it: Armatura di chiave
-        fr: Armure
-        en: Key signature
-    g: 
-      label: 
-        it: Indicazioni del tempo
-        fr: Indication de mesure
-        en: Time signature
-    h: 
-      label: 
-        it: Incipit musicale codificato
-        fr: "Incipit codé"
-        en: Coded musical incipit
-    i: 
-      label: 
-        it: Incipit num.
-        fr: No. d'incipit
-        en: Incipit ID no.
-    t: 
-      label: 
-        it: Incipit testuale trascritto
-        fr: Text d'incipit
-        en: Text incipit as transcribed
 "852": 
   label: 
     it: Sigla della biblioteca
@@ -1814,12 +1415,6 @@ doc_edit_workflow:
         fr: Ancienne cote (olim)
         de: Alte Signatur (olim)
         en: Former shelf mark
-    z: 
-      label: 
-        it: Nome del fondo
-        fr: Fonds
-        de: Bestandsname
-        en: Collection
     e: 
       label: 
         it: Biblioteca
@@ -1832,6 +1427,12 @@ doc_edit_workflow:
         fr: Cote
         de: Signatur
         en: Shelf mark
+    z: 
+      label: 
+        it: Nome del fondo
+        fr: Fonds
+        de: Bestandsname
+        en: Collection
 "856": 
   label: 
     it: Localizzazione e accesso elettronico
@@ -1851,6 +1452,9 @@ doc_edit_workflow:
         fr: Ressource externe
         de: Uniform Resource Identifier
         en: External resource
+        
+################
+        
 added_entry: 
   label: 
     it: Note secondarie

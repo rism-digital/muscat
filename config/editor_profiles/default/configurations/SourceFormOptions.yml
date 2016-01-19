@@ -14,21 +14,13 @@
   tag_params: 
     read_only: true
   tag_header: none
-"007": 
-  tag: tag_no_subfield
-  tag_params: 
-    maskedinput: 
-      mask: aa
-028: 
-  layout: 
-    fields: 
-    - - a
-#      - editor_partial: subfield_material
 "031": 
   layout: 
     fields:
     - - "2"
       - default: "pe"
+        hidden: true
+    - - u
         hidden: true
     - - a
 #      - validate: 
@@ -166,49 +158,25 @@
       - type: person
         editor_partial: subfield_secondary
     - - j
-      - value: Attributed to
-        editor_partial: subfield_checkbox
+      - values: 
+        - "e"
+        - "g"
+        - "z"
+        - "a"
+        - "f"
+        editor_partial: subfield_select
   layout_new: 
     fields: 
     - - a
     - - d
     - - j
-      - value: Attributed to
-        editor_partial: subfield_checkbox
-"110":
-  allow_new: true
-  new_window: institutions
-  layout: 
-    fields: 
-    - - a
-      - type: institution
-        editor_partial: subfield_secondary
-    - - b
-  layout_new: 
-    fields: 
-    - - a
-    - - b
-"130":
-  allow_new: true
-  new_window: standard_titles
-  layout: 
-    fields: 
-    - - a
-      - type: standard_title
-        editor_partial: subfield_secondary
-    - - k
-    - - o
-    - - r
-    - - n
-    - - m
-  layout_new: 
-    fields: 
-    - - a
-    - - k
-    - - o
-    - - r
-    - - n
-    - - m
+      - values: 
+        - "e"
+        - "g"
+        - "z"
+        - "a"
+        - "f"
+        editor_partial: subfield_select
 "240": 
   new_window: standard_titles
   layout: 
@@ -229,14 +197,11 @@
     - - r
     - - n
     - - m
-  extended_help: 130
 "245": 
   layout: 
     fields: 
     - - a
       - growfield: true
-    - - c
-      - hidden: true
 "260": 
   layout: 
     fields: 
@@ -245,27 +210,12 @@
     - - c
     - - e
     - - f
-#      - editor_partial: subfield_material
 "300": 
   layout: 
     fields: 
     - - a
       - growfield: true
     - - c
-    - - b
-#      - editor_partial: subfield_material
-"340": 
-  layout: 
-    fields: 
-    - - a
-    - - d
-#      - editor_partial: subfield_material
-"351": 
-  layout: 
-    fields: 
-    - - a
-      - growfield: true
-#        editor_partial: subfield_material0
 "508": 
   layout: 
     fields: 
@@ -322,6 +272,7 @@
       - growfield: true
     - - a
     - - d
+    - - e
 "590": 
   layout: 
     fields: 
@@ -329,12 +280,6 @@
       - growfield: true
     - - b
       - growfield: true
-#        editor_partial: subfield_material
-"592": 
-  layout: 
-    fields: 
-    - - a
-#        editor_partial: subfield_material
 "593": 
   layout: 
     fields: 
@@ -346,8 +291,7 @@
         - Print
         - Probably autograph
         editor_partial: subfield_select
-#        editor_partial: subfield_material
-"594": 
+"598": 
   layout: 
     fields: 
     - - a
@@ -461,12 +405,28 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
+    - - j
+      - values: 
+        - "e"
+        - "g"
+        - "z"
+        - "a"
+        - "f"
+        editor_partial: subfield_select
     - - "4"
       - editor_partial: subfield_relator_codes_700
   layout_new:
     fields: 
     - - a
     - - d
+    - - j
+      - values: 
+        - "e"
+        - "g"
+        - "z"
+        - "a"
+        - "f"
+        editor_partial: subfield_select
     - - "4"
       - editor_partial: subfield_relator_codes_700
   tag_list_additional_data: tag_list_additional_data_relator_codes
@@ -573,11 +533,6 @@
         allow_not_found: true
     - - n
     - - p
-#  layout_new: 
-#    fields: 
-#    - - a
-#    - - n
-#    - - p
 "772": 
   layout: 
     fields: 
@@ -615,6 +570,7 @@
     fields: 
     - - a
       - nowrap: true
+    - - e
     - - b
     - - p
       - growfield: true

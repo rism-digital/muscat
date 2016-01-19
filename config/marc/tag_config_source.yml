@@ -1,7 +1,7 @@
 
 :version:
   :name: tag_config
-  :current: 2.0
+  :current: 3.3
   :authors: ["Chad Thatcher", "Sandra Tuppen", "Laurent Pugin", "Rodolfo Zitellini"]
 
 
@@ -66,24 +66,6 @@
     :fields:
     - - ""
       - :no_browse: true
-  "004":
-    # this is a special used internally for holding records
-    :master: ""
-    :indicator: ""
-    :occurrences: "?"
-    :fields:
-    - - ""
-      - :occurrences: "1"
-        :foreign_class: Source
-        :foreign_field: id
-        :zero_padding: "14"
-  "007":
-    :master: ""
-    :indicator: ""
-    :occurrences: "*"
-    :fields:
-    - - ""
-      - :no_browse: true
   "028":
     :master: a
     :indicator: "20"
@@ -91,6 +73,9 @@
     :fields:
     - - a
       - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?" 
+        :no_browse: true
   "031":
     :master: a
     :indicator: "##"
@@ -124,13 +109,12 @@
       - :occurrences: "*"
     - - t
       - :occurrences: "*"
-    - - x
-      - :occurrences: "*"
+    - - u
+      - :occurrences: "?"
+        :no_browse: true
     - - "2"
       - :occurrences: "?"
         :no_browse: true
-        # default "pe" value must be added during exportation
-        # ["0#", "1#", "2#"]
   "033":
     :master: a
     :indicator: ["0#", "1#", "2#"]
@@ -159,25 +143,6 @@
       - :occurrences: "1"
     - - d
       - :occurrences: "?"
-
-# NOTES FOR 041:
-#
-# There are two 'a' tags here with different indicators.  Can both variations exist in a manuscript at the
-# same time?  If not, then this should be amalgamated into one 'a' subtag with two variations on the
-# indicator field entered as ["0#", "1#"]
-#
-# >ST NOTE: No, the two variants can't exist in the same record, so I've amalgamated them into one "a" subtag.
-# >I've amended the indicator field, but please check I've done this right.
-# I have put in the opening and closing square brackets
-#
-# Also this is the first occurance of a subordinate tag ('h').  On this subtag the dependency field is
-# set to false - this means 'h' can exist without the presence of an 'a' subtag.  If this is incorrect
-# the dependency field should be changed to true and its repeat and max_occur fields set in the context
-# of the "parent" subtag ('a').   This note applies to all remaining tags where subordinate subtags exist.
-#
-# >ST NOTE: dependency field for 'h' corrected to true.
-
-
   "041":
     :master: a
     :indicator: ["0#", "1#"]
@@ -185,13 +150,8 @@
     :fields:
     - - a
       - :occurrences: "*"
-    - - d
-      - :occurrences: "*"
     - - e
       - :occurrences: "*"
-    - - g
-      - :occurrences: "*"
-        :no_browse: true
     - - h
       - :occurrences: "*"
   "100":
@@ -216,58 +176,6 @@
         :foreign_alternates: alternate_dates
     - - j
       - :occurrences: "?"
-  "110":
-    :master: "0"
-    :indicator: "2#"
-    :occurrences: "?"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Institution
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :no_browse: true
-        :foreign_class: ^0
-        :foreign_field: name
-    - - b
-      - :occurrences: "*"
-        :no_browse: true
-    - - k
-      - :occurrences: "0"
-        :export_as: "Source"
-        :no_browse: true
-#
-# ST NOTE: I've amended repeat value of 110 k to "0" as it can be discarded on import.
-# I hope this is correct usage of that code.
-#
-  "130":
-    :master: "0"
-    :indicator: "0#"
-    :occurrences: "?"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: StandardTitle
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: title
-    - - k
-      - :occurrences: "?"
-    - - m
-      - :occurrences: "*"
-    - - n
-      - :occurrences: "*"
-    - - o
-      - :occurrences: "?"
-    - - p
-      - :occurrences: "?"
-    - - r
-      - :occurrences: "?"
   "240":
     :master: "0"
     :indicator: "10"
@@ -290,8 +198,6 @@
       - :occurrences: "*"
     - - o
       - :occurrences: "?"
-    - - p
-      - :occurrences: "?"
     - - r
       - :occurrences: "?"
   "245":
@@ -301,30 +207,10 @@
     :fields:
     - - a
       - :occurrences: "1"
-    - - b
-      - :occurrences: "?"
-    - - c
-      - :occurrences: "?"
-        :no_browse: true
-    - - n
-      - :occurrences: "*"
-        :no_browse: true
   "246":
     :master: a
     :indicator: "2#"
     :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - b
-      - :occurrences: "?"
-        :no_browse: true
-    - - i
-      - :occurrences: "?"
-  "254":
-    :master: a
-    :indicator: "##"
-    :occurrences: "?"
     :fields:
     - - a
       - :occurrences: "?"
@@ -347,13 +233,6 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
-  "270":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "*"
   "300":
     :master: a
     :indicator: "##"
@@ -362,31 +241,18 @@
     :fields:
     - - a
       - :occurrences: "*"
-    - - b
-      - :occurrences: "?"
     - - c
       - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
   "340":
-    :master: c
+    :master: d
     :indicator: "##"
     :occurrences: "*"
     :groupable: "8"
     :fields:
     - - d
-      - :occurrences: "*"
-    - - "8"
-      - :occurrences: "?"
-        :no_browse: true
-  "351":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :groupable: "8"
-    :fields:
-    - - a
       - :occurrences: "*"
     - - "8"
       - :occurrences: "?"
@@ -402,22 +268,13 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :groupable: "8"
     :fields:
     - - a
       - :occurrences: "?"
         :browse_helper: application_helper_link_http
-    - - "5"
+    - - "8"
       - :occurrences: "?"
-        :no_browse: true
-  "505":
-    :master: a
-    :indicator: "0#"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - r
-      - :occurrences: "*"
         :no_browse: true
   "506":
     :master: a
@@ -432,15 +289,6 @@
     :occurrences: "*"
     :fields:
     - - a
-      - :occurrences: "?"
-  "510":
-    :master: a
-    :indicator: "0#"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - c
       - :occurrences: "?"
   "511":
     :master: a
@@ -470,13 +318,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-  "533":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
   "541":
     :master: a
     :indicator: "1#"
@@ -488,23 +329,11 @@
       - :occurrences: "?"
     - - d
       - :occurrences: "?"
-  "545":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
+    - - e
       - :occurrences: "?"
   "546":
     :master: a
     :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "555":
-    :master: a
-    :indicator: "0#"
     :occurrences: "*"
     :fields:
     - - a
@@ -516,19 +345,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - "5"
-      - :occurrences: "?"
-        :no_browse: true
-  "562":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "*"
-    - - "5"
-      - :occurrences: "?"
-        :no_browse: true
   "563":
     :master: a
     :indicator: "##"
@@ -536,15 +352,7 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - "5"
-      - :occurrences: "?"
-        :no_browse: true
-  "580":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
+    - - "8"
       - :occurrences: "?"
         :no_browse: true
   "590":
@@ -567,8 +375,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - "4"
-      - :occurrences: "*"
   "592":
     :master: a
     :indicator: "##"
@@ -592,6 +398,27 @@
       - :occurrences: "?"
         :no_browse: true
   "594":
+    :master: a
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "595":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "596":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "598":
     :master: ""
     :indicator: "##"
     :occurrences: "*"
@@ -621,34 +448,6 @@
     - - m
       - :occurrences: "*"
     - - n
-      - :occurrences: "?"
-  "595":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "596":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "597":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "598":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
       - :occurrences: "?"
   "599":
     :master: a
@@ -681,7 +480,7 @@
         :no_browse: true
   "650":
     :master: "0"
-    :indicator: ["00", "07"]
+    :indicator: "07"
     :occurrences: "*"
     :fields:
     - - "0"
@@ -693,21 +492,10 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: term
-    - - v
-      - :occurrences: "*"
-        :no_browse: true
-    - - x
-      - :occurrences: "*"
-    - - y
-      - :occurrences: "*"
-        :no_browse: true
-    - - z
-      - :occurrences: "*"
-        :no_browse: true
     - - "2"
       - :occurrences: "?"
         :no_browse: true
-      # default "CH-BeSRO" value must be added during exportation
+        # value must be added during exportation
   "651":
     :master: "0"
     :indicator: "#7"
@@ -725,7 +513,7 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
-      # default "CH-BeSRO" value must be added during exportation
+        # value must be added during exportation
   "653":
     :master: a
     :indicator: "##"
@@ -750,7 +538,7 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
-      # default "CH-BeSRO" value must be added during exportation
+        # value must be added during exportation
   "690":
     :master: "0"
     :indicator: "#7"
@@ -770,7 +558,7 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
-      # default "CH-BeSRO" value must be added during exportation
+        # value must be added during exportation
   "691":
     :master: "0"
     :indicator: "#7"
@@ -790,11 +578,12 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
-      # default "CH-BeSRO" value must be added during exportation
+        # value must be added during exportation
   "700":
     :master: "0"
     :indicator: "1#"
     :occurrences: "*"
+    :groupable: "8"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -811,22 +600,19 @@
         :foreign_class: ^0
         :foreign_field: life_dates
         :foreign_alternates: alternate_dates
-        #:no_browse: true
-    - - "e"
-      - :occurrences: "*"
-    - - "t"
+    - - j
       - :occurrences: "?"
     - - "4"
       - :occurrences: "*"
         :browse_inline: true
-        #:no_browse: true
-    - - "5"
+    - - "8"
       - :occurrences: "?"
         :no_browse: true
   "710":
     :master: "0"
     :indicator: "2#"
     :occurrences: "*"
+    :groupable: "8"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -839,21 +625,11 @@
         :foreign_field: name
     - - b
       - :occurrences: "*"
-    - - k
-      - :occurrences: "0"
-        :export_as: "Source"
-        :no_browse: true
-    - - "e"
-      - :occurrences: "*"
     - - "4"
       - :occurrences: "*"
-    - - "5"
+    - - "8"
       - :occurrences: "?"
         :no_browse: true
-
-#
-# ST NOTE: As with 110 k, I've amended repeat value of 710 k to "0" as this field can be discarded on import.
-#
   "730":
     :master: "0"
     :indicator: "0#"
@@ -876,8 +652,6 @@
       - :occurrences: "*"
     - - o
       - :occurrences: "?"
-    - - p
-      - :occurrences: "?"
     - - r
       - :occurrences: "?"
   "740":
@@ -891,24 +665,6 @@
        - :occurrences: "*"
      - - p
        - :occurrences: "*"
-  "752":
-    :master: "0"
-    :indicator: "#7"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Place
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: country
-    - - d
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: name
   "772":
     :master: w
     :indicator: "18"
@@ -917,32 +673,17 @@
     - - w
       - :occurrences: "1"
         :browse_helper: application_helper_link_source_id
-    - - "7"
-      - :occurrences: "0"
-        :no_browse: true
   "773":
     :master: w
     :indicator: "18"
     :occurrences: "?"
     :fields:
-    - - "a"
-      - :occurrences: "1"
-        :foreign_class: Source
-        :foreign_field: id
-        :zero_padding: "14"
-        :browse_helper: application_helper_link_source_id
-
     - - w
       - :occurrences: "1"
         :foreign_class: Source
         :foreign_field: id
         :zero_padding: "14"
         :browse_helper: application_helper_link_source_id
-    - - i
-      - :occurrences: "?"
-    - - "7"
-      - :occurrences: "0"
-        :no_browse: true
   "775":
     :master: w
     :indicator: "##"
@@ -956,32 +697,11 @@
         :foreign_field: id
         :zero_padding: "14"
         :browse_helper: application_helper_link_source_id
-
-  "786":
-    :master: a
-    :indicator: "0#"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - d
-      - :occurrences: "?"
-    - - i
-      - :occurrences: "?"
-    - - o
-      - :occurrences: "?"
-    - - n
-      - :occurrences: "?"
-    - - t
-      - :occurrences: "?"
   "787":
     :master: a
     :indicator: "18"
     :occurrences: "*"
     :fields:
-    - - a
-      - :occurrences: "?"
-        :browse_helper: application_helper_link_source_id
     - - g
       - :occurrences: "*"
         :no_browse: true
@@ -994,50 +714,19 @@
     - - w
       - :occurrences: "*"
         :browse_helper: application_helper_link_source_id
-    - - "7"
-      - :occurrences: "0"
-        :no_browse: true
-  "789":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - b
-      - :occurrences: "?"
-    - - c
-      - :occurrences: "?"
-    - - e
-      - :occurrences: "?"
-    - - f
-      - :occurrences: "?"
-    - - g
-      - :occurrences: "?"
-    - - h
-      - :occurrences: "?"
-    - - i
-      - :occurrences: "?"
-        :no_browse: true
-    - - n
-      - :occurrences: "?"
-    - - o
-      - :occurrences: "?"
-    - - t
-      - :occurrences: "?"
   "852":
-    :master: "0"
+    :master: "x"
     :indicator: "##"
     :occurrences: "?"
     :fields:
-    - - "0"
+    - - "x"
       - :occurrences: "?"
         :foreign_class: Institution
         :foreign_field: id
         :no_show: true
     - - a
       - :occurrences: "1"
-        :foreign_class: ^0
+        :foreign_class: ^x
         :foreign_field: siglum
         :browse_helper: application_helper_link_to_library
     - - b
@@ -1046,17 +735,10 @@
       - :occurrences: "*"
     - - e
       - :occurrences: "?"
-        :foreign_class: ^0
+        :foreign_class: ^x
         :foreign_field: name
     - - p
       - :occurrences: "?"
-    - - q
-      - :occurrences: "?"
-    - - u
-      - :occurrences: "*"
-    - - x
-      - :occurrences: "*"
-        :no_browse: true
     - - z
       - :occurrences: "*"
   "856":
@@ -1069,6 +751,3 @@
         :browse_helper: application_helper_link_http
     - - z
       - :occurrences: "*"
-
-#
-# ST NOTE: Repeat value of 852 x repeat value amended to "0" as this field can be discarded on import.
