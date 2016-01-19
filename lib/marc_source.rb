@@ -12,8 +12,9 @@ class MarcSource < Marc
     :convolutum => 7,
   }
   
-  def initialize(source = nil)
+  def initialize(source = nil, record_type = 0)
     super("source", source)
+    @record_type = record_type
   end
   
   # Get the std_title and std_title_d values
@@ -234,22 +235,29 @@ class MarcSource < Marc
   def match_leader
     record_type = RECORD_TYPES[:unspecified]
     
-    if get_leader.match(/......[dc]c.............../)
+
+    leader = first_occurance("000").content || nil rescue leader = nil
+    if !leader
+      puts "No leader present"
+      return nil
+    end
+    
+    if leader.match(/......[dc]c.............../)
       record_type = RECORD_TYPES[:collection]
-    elsif get_leader.match(/......d[dm].............../)
+    elsif leader.match(/......d[dm].............../)
       record_type = RECORD_TYPES[:manuscript]
-    elsif get_leader.match(/......c[dm].............../)
+    elsif leader.match(/......c[dm].............../)
       record_type = RECORD_TYPES[:print]
-    elsif get_leader.match(/......tm.............../)
+    elsif leader.match(/......tm.............../)
       record_type = RECORD_TYPES[:manuscript_libretto]
-    elsif get_leader.match(/......am.............../)
+    elsif leader.match(/......am.............../)
       record_type = RECORD_TYPES[:print_libretto]
-    elsif get_leader.match(/......pm.............../)
+    elsif leader.match(/......pm.............../)
       record_type = RECORD_TYPES[:theoretica]
-    elsif get_leader.match(/......pd.............../)
+    elsif leader.match(/......pd.............../)
       record_type = RECORD_TYPES[:convolutum]
     else
-       puts "Unknown leader #{get_leader}"
+       puts "Unknown leader #{leader}"
     end
     
     return record_type
@@ -282,19 +290,22 @@ class MarcSource < Marc
       
     end
     
-    #puts to_marc
-    #puts
-
-    if @model && @model.respond_to?(:record_type)
-      @model.record_type = record_type
+    if record_type
+      @record_type = record_type
     end
-
-    return record_type
   end
   
   def to_external
     super
     # puts "overriden to_external call"
+  end
+  
+  def get_record_type
+    return @record_type
+  end
+  
+  def set_record_type(record_type)
+    @record_type = record_type
   end
   
 end

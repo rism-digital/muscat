@@ -6,7 +6,14 @@ Source.all.each do |sa|
   
   s = Source.find(sa.id)
   
-  s.record_type = s.marc.to_internal
+  # convert to intergal marc
+  s.marc.to_internal
+  rt = s.marc.get_record_type
+  if (rt)
+    s.record_type = rt
+  else
+    "Empty record type for #{s.id}"
+  end
   
   marc = s.marc
   
@@ -35,6 +42,11 @@ Source.all.each do |sa|
     t.fetch_all_by_tag("n").each {|st| st.destroy_yourself}
     t.fetch_all_by_tag("m").each {|st| st.destroy_yourself}
   end
+  
+  #198 Remove 110 for collections
+  if s.record_type == MarcSource::RECORD_TYPES[:collection] || MarcSource::RECORD_TYPES[:convolutum]
+    marc.each_by_tag("110") {|t| t.destroy_yourself}
+  end 
   
 	s.suppress_update_77x
 	s.suppress_update_count

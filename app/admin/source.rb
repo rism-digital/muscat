@@ -87,7 +87,7 @@ ActiveAdmin.register Source do
 
       if params[:existing_title] and !params[:existing_title].empty?
         base_item = Source.find(params[:existing_title])
-        new_marc = MarcSource.new(base_item.marc.marc_source)
+        new_marc = MarcSource.new(base_item.marc.marc_source, base_item.record_type)
         new_marc.load_source false # this will need to be fixed
         new_marc.first_occurance("001").content = "__TEMP__"
         # copy the record type
@@ -95,7 +95,7 @@ ActiveAdmin.register Source do
         @source.record_type = base_item.record_type
         @template_name = @source.get_record_type
       elsif File.exists?("#{Rails.root}/config/marc/#{RISM::MARC}/source/" + params[:new_type] + '.marc')
-        new_marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/source/" +params[:new_type] + '.marc'))
+        new_marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/source/" +params[:new_type] + '.marc'), MarcSource::RECORD_TYPES[@template_name.to_sym])
         new_marc.load_source false # this will need to be fixed
         @source.marc = new_marc
         @template_name = params[:new_type].sub(/[^_]*_/,"")

@@ -61,7 +61,7 @@ class Source < ActiveRecord::Base
   has_many :folder_items, :as => :item
   belongs_to :user, :foreign_key => "wf_owner"
   
-  composed_of :marc, :class_name => "MarcSource", :mapping => %w(marc_source)
+  composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source), %w(record_type)]
   alias_attribute :id_for_fulltext, :id
   
   # FIXME id generation

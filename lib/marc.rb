@@ -223,11 +223,6 @@ class Marc
     end
     return false
   end
-
-  # Return the MARC leader
-  def get_leader
-    control000 = first_occurance("000").content || "" rescue control000 = ""
-  end
   
   # Fin the insert position of a tag. For march fields they should be ascending
   def get_insert_position(tag)
