@@ -1,31 +1,40 @@
 --- !map:Settings 
 group_order: 
+- sigla
+- identity
+- contact
+- description
 - control
-- codes
-- main
-- notes
-groups: 
+groups:
+  sigla:
+    all_tags:
+    - "024"
+    - "035"
+    - "040"
+  identity:
+    all_tags:
+    - "110"
+    - "510"
+    - "410"
+    - "373"
+    - "368"
+    - "580"
+  contact:
+    all_tags:
+    - "371"
+    - "622"
+  description:
+    all_tags:
+    - "678"
+    - "670"
+    - "680"
+    - "856"
+    - "710"
   control: 
     all_tags: 
     - "000"
     - "001"
     - "003"
     - "005"
-    - 008
-  notes: 
-    all_tags: 
-    - "509"
-    - "549"
-    - "559"
-    - "569"
-    - "856"
-  main: 
-    all_tags: 
-    - "110"
-    - "410"
-  codes: 
-    all_tags: 
-    - "039"
-    - "040"
-    - "043"
-
+    - "008"
+    - "667"
