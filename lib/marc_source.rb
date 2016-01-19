@@ -228,8 +228,10 @@ class MarcSource < Marc
   def match_leader
     rt = RECORD_TYPES[:unspecified]
     
-    leader = first_occurance("000").content || nil rescue leader = nil
-    if !leader
+    leader = nil
+    if first_occurance("000") && first_occurance("000").content
+      leader = first_occurance("000").content
+    else
       puts "No leader present"
       return nil
     end

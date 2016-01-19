@@ -6,16 +6,17 @@ Source.all.each do |sa|
   
   s = Source.find(sa.id)
   
+  marc = s.marc
+  marc.load_source(false)
+  
   # convert to intergal marc
-  s.marc.to_internal
-  rt = s.marc.record_type
+  marc.to_internal
+  rt = marc.record_type
   if (rt)
     s.record_type = rt
   else
     "Empty record type for #{s.id}"
   end
-  
-  marc = s.marc
   
   #204 Move 300 $b to 500
   marc.each_by_tag("300") do |t|
