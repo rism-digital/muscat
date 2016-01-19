@@ -46,12 +46,13 @@ class MarcSource < Marc
       end
     # or not
     else
-      if is_convolutum?
+      if @record_type == RECORD_TYPES[:convolutum]
         std_title = "[Convolutum]"  
-        std_title_d = '+'      
-      elsif is_holding?
-        std_title = "[Holding]"  
-        std_title_d = '+' 
+        std_title_d = '+'
+        ## TBD FOR HOLDINGS
+        #elsif @record_type == RECORD_TYPES[:convolutum]
+        #std_title = "[Holding]"  
+        #std_title_d = '+' 
       else
         std_title = "[Collection]"
         std_title_d = '-' 
@@ -220,22 +221,9 @@ class MarcSource < Marc
     
   end
   
-  # Return if the MARC leader matches npd, i.e. convolutum
-  def is_convolutum?
-    return false unless get_leader.match(/^.....npd.*$/i)
-    return true
-  end
-
-  # Return if the MARC leader matches nu, i.e. holding
-  def is_holding?
-    return false unless get_leader.match(/^.....nu.*$/i)
-    return true
-  end
-  
   def match_leader
     record_type = RECORD_TYPES[:unspecified]
     
-
     leader = first_occurance("000").content || nil rescue leader = nil
     if !leader
       puts "No leader present"

@@ -48,6 +48,18 @@ Source.all.each do |sa|
     marc.each_by_tag("110") {|t| t.destroy_yourself}
   end 
   
+  #202 Map 100 $j and 700 $j
+  marc.each_by_tag("100") do |t|
+    tj = t.fetch_first_by_tag("j")
+    
+    if tj && tj.content && tj.content == "Attributed to"
+      tj.destroy_yourself #adios
+      t.add_at(MarcNode.new("source", "j", "Doubtful", nil), 0)
+      t.sort_alphabetically
+    end
+  end
+  
+  
 	s.suppress_update_77x
 	s.suppress_update_count
   s.suppress_reindex
