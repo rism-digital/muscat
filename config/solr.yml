@@ -1,6 +1,6 @@
 # config/solr.yml
 development:
-  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8982/solr/default" %>
+  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8982/solr/development" %>
 production:
   url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/default" %>
 test: &test

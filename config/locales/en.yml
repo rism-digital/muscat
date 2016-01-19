@@ -175,6 +175,18 @@ en:
         one: "User"
         other: "Users"
         
+  #################### RECORD TYPES (TEMPLATES)
+  record_types:
+    unspecified: "[Unknown template]"
+    convolutum: "Convolutum"
+    collection: "Collection"
+    manuscript: "Music manuscript"
+    print: "Music print"
+    manuscript_libretto: "Manuscript libretto"
+    print_libretto: "Printed libretto"
+    manuscript_theoretica: "Manuscript treatise"
+    print_theoretica: "Printed treatise"
+        
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Sources"

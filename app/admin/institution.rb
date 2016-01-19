@@ -52,7 +52,7 @@ ActiveAdmin.register Institution do
     def edit
       @item = Institution.find(params[:id])
       @show_history = true if params[:show_history]
-      @editor_profile = EditorConfiguration.get_applicable_layout @item
+      @editor_profile = EditorConfiguration.get_default_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
     end
     
@@ -88,7 +88,7 @@ ActiveAdmin.register Institution do
       new_marc.load_source false # this will need to be fixed
       @institution.marc = new_marc
 
-      @editor_profile = EditorConfiguration.get_applicable_layout @institution
+      @editor_profile = EditorConfiguration.get_default_layout @institution
       # Since we have only one default template, no need to change the title
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
       #To transmit correctly @item we need to have @source initialized

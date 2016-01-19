@@ -9,12 +9,10 @@
 # e.g. editor_profiles/ch, and configure RISM::EDITOR_PROFILE="ch", for example. The new profiles completely overrides the default one.
 # profiles.yml consists of an array of configurations, in this form:<p>
 # <tt>
-# - :id: DefaultCH
-#  :name: Default (CH)
+# - :id: Default
+#  :name: Default 
 #  :labels: 
 #  - BasicLabels
-#  :rules: 
-#  - BasicCataloguingRules
 #  :options: 
 #  - BasicFormOptions
 #  :layout: 
@@ -66,7 +64,6 @@ class EditorConfiguration
     @filter = conf[:filter]
     @model = conf[:model]
     @squeezed_labels_config = squeeze(conf[:labels])
-    @squeezed_rules_config = squeeze(conf[:rules])
     @squeezed_options_config = squeeze(conf[:options])
     @squeezed_layout_config = squeeze(conf[:layout])
   end
@@ -176,15 +173,8 @@ class EditorConfiguration
   end
 
   #################################
-  
-  # Gets the rules configuration from the DB. As labels_config above.
-  def rules_config
-    @squeezed_rules_config
-  end
 
-  #################################
-
-  # Gets the options for the current EditorConfiguration. As labels_config and rules_config.
+  # Gets the options for the current EditorConfiguration. As labels_config.
   # The form options are the options used in showing the edit fields in the ms editor
   def options_config
     unless @squeezed_options_config
@@ -263,10 +253,12 @@ class EditorConfiguration
       end
     end
   end
+  
+  
 
   #################################
 
-  # Gets the layout for the current configuration. As labels_config and rules_config.
+  # Gets the layout for the current configuration. As labels_config.
   def layout_config
     @squeezed_layout_config
   end
@@ -286,6 +278,39 @@ class EditorConfiguration
     end
     @layout_tags 
   end
+  
+  # Returns an array of all the tags excluded for the record type (be they exluded in groups or by tag)
+  def excluded_tags_for_record_type(marc_item)
+    record_type =  (marc_item.respond_to? :record_type) ? marc_item.get_record_type : nil
+    # no record_type for this model, or unknown, nothing exluced
+    return [] if record_type == nil
+    excluded = Array.new
+    layout_config["groups"].each do |group, gdata|
+      # Skip the group unless the group is excluded for the record type of the itme
+      next unless
+        record_type != nil && layout_config["group_exclude"] && 
+        layout_config["group_exclude"][record_type.to_s] && 
+        layout_config["group_exclude"][record_type.to_s].include?(group)
+        gdata["all_tags"].each do |tag, tdata|
+          excluded.push tag
+        end
+    end
+    if layout_config["tag_exclude"] && layout_config["tag_exclude"][record_type.to_s]
+      excluded.concat( layout_config["tag_exclude"][record_type.to_s] )
+    end
+    excluded
+  end
+  
+  # Returns an array with all the tags for the group but taking into account exclusiong by record type (if any)
+  def layout_tag_names_for_group(marc_item, group)
+    tag_names = Array.new
+  	tag_names = layout_config["groups"][group]["all_tags"]
+    record_type = (marc_item.respond_to? :record_type) ? marc_item.get_record_type : nil
+    # no record_type for this model, or unknown, nothing exluced
+    return tag_names if record_type == nil || !layout_config["tag_exclude"] || !layout_config["tag_exclude"][record_type.to_s]
+    return tag_names - layout_config["tag_exclude"][record_type.to_s]
+  end
+    
 
   # build an array with all the tags in the layout_config that are not in a subfield grouping group
   # used by each_tag_not_in_layout 
@@ -311,12 +336,26 @@ class EditorConfiguration
     end
     return "editor/group"
   end  
+
+  # Yields all the tags not included in the layout
+  def each_group_in_layout(marc_item)
+    record_type =  (marc_item.respond_to? :record_type) ? marc_item.get_record_type : nil
+    layout_config["group_order"].each do |group|
+      # Show the group unless the group is excluded for the record type of the itme
+      yield group unless
+        record_type != nil && layout_config["group_exclude"] && 
+        layout_config["group_exclude"][record_type.to_s] && 
+        layout_config["group_exclude"][record_type.to_s].include?(group)
+    end
+  end
   
-  # Returns all the tags not included in the layout
+  # Yields all the tags not included in the layout
   def each_tag_not_in_layout(marc_item)
     layout_tags
+    # get the tags excluded for a particular record_type (if any)
+    excluded = excluded_tags_for_record_type(marc_item)
     marc_item.marc.each_data_tags_present do |tag|
-      yield tag if !layout_tags.include? tag
+      yield tag if ((!layout_tags.include? tag) || (excluded.include? tag))
     end
   end
   
@@ -327,46 +366,28 @@ class EditorConfiguration
     return @filter["show_all"]
   end
   
-  # Used from the SourceController, finds a layout that is applicabile for the current Source item
-  # refer to _layout_is_applicable. It is filtered in base of the MARC leader or <tt>tag</tt> item.
-  def self.get_applicable_layout(model)
+  # Gets the default layout. This is a configuration in which <tt>default</tt> in the <tt>filter</tt> is true.
+  def self.get_default_layout(model)
     profiles = EditorConfiguration.profiles
-    default = nil
     model_name = model.class.to_s.downcase
-
     profiles.each do |p|
       next if model_name != p.model
-      
-      # we keep the default profile while looping in case we don't find an applicable one
-      default = p if p.filter && p.filter["default"]
-      # we got it
-      return p if self._layout_is_applicable model, p
+      return p if p.filter && p.filter["default"]
     end
-    return default
+    return nil
   end
   
-  # Gets the default show layout. This is a configuration in which <tt>show</tt> in the <tt>filter</tt> is true.
+  # Gets the show layout. This is a configuration in which <tt>show</tt> in the <tt>filter</tt> is true.
   def self.get_show_layout(model)
     profiles = EditorConfiguration.profiles
     model_name = model.class.to_s.downcase
     profiles.each do |p|
-      
       next if model_name != p.model
-      
       return p if p.filter && p.filter["show"]
     end
     return nil
   end
-  
-  # Gets the default holding layout. This is a configuration in which <tt>holding</tt> in the <tt>filter</tt> is true.
-  def self.get_holding_layout
-    profiles = EditorConfiguration.profiles
-    profiles.each do |p|
-      return p if p.filter && p.filter["holding"]
-    end
-    return nil
-  end
-  
+    
   # Gets the html file name.
   def self.get_help_fname(name)
     # translated version?
@@ -381,31 +402,6 @@ class EditorConfiguration
   end
 
   private
-
-  # Used by get_applicable_layout, checks passed marc_item and layout to see if the layout
-  # is applicabile to the ms.
-  def self._layout_is_applicable(marc_item, profile)
-    return false if !profile.filter || !marc_item.marc
-    # we don't want the default one, or show one
-    return false if profile.filter["default"]
-    return false if profile.filter["show"]
-    # check if the leader matches the regexp
-    if profile.filter["leader"]
-      leader = marc_item.marc.get_leader
-      r = Regexp.new(profile.filter["leader"])
-      return false if !r.match(leader)
-    end
-    # check if the tag if present
-    if profile.filter["tag"]
-      return false if !marc_item.marc.has_tag?(profile.filter["tag"])
-    end
-    # check if the tag if NOT present
-    if profile.filter["no_tag"]
-      return false if marc_item.marc.has_tag?(profile.filter["no_tag"])
-    end
-    # it is applicable
-    return true    
-  end
 
   # Get all the EditorConfigurations defined in config/editor_profiles/default/profiles.yml
   # and locals is config/editor_profiles/$EDITOR_PROFILE/profiles.yml
@@ -429,40 +425,18 @@ class EditorConfiguration
           @squeezed_profiles << EditorConfiguration.new(conf)
         end
       end
-
-      
+  
     end
     @squeezed_profiles
   end
-  
-  # Find the editor profile that matches the current passed if
-  # kept so this class functions as a drop-in replacement for EditorProfile
-  def self.find_by_id(elem)
-    profiles.each do |profile|
-      return profile if profile.id == elem
-    end
-    nil
-  end
-  
+    
   def self.get_profile_templates(model)
     templates = {}
-    # We just need to access the BasicLabels for the current RISM::MARC
-    profile = EditorConfiguration.profiles[0]
-		Dir.glob("#{Rails.root}/config/marc/#{RISM::MARC}/#{model}/*").sort.each do |f|
-			if File.directory?(f)
-				category = profile.get_label(File.basename(f,'.marc'))
-        templates[category] = {}
-				Dir.glob("#{f}/*.marc").sort.each do |ff|
-					file_dir = File.basename(f) + "/" + File.basename(ff,'.marc')
-          file_label = profile.get_label(File.basename(ff,'.marc'))
-          templates[category][file_dir] = file_label
-				end
-			else
-				file_dir = File.basename(f,'.marc')
-        file_label = profile.get_label(File.basename(f,'.marc'))
+    Dir.glob("#{Rails.root}/config/marc/#{RISM::MARC}/#{model}/*").sort.each do |f|
+        file_dir = File.basename(f,'.marc')
+        file_label = file_dir.sub(/[^_]*_/,"")
         templates[file_dir] = file_label
-			end
-		end
+    end
     return templates
   end
   

@@ -175,6 +175,18 @@ fr:
         one: "Utilisateur"
         other: "Utilisateurs"
 
+  #################### RECORD TYPES (TEMPLATES)
+  record_types:
+    unspecified: "[type indéterminé]"
+    convolutum: "Convolutum"
+    collection: "Collection"
+    manuscript: "Manuscrit musical"
+    print: "Imprimé musical"
+    manuscript_libretto: "Libretto manuscrit"
+    print_libretto: "Imprimé imprimé"
+    manuscript_theoretica: "Traité manuscrit"
+    print_theoretica:  "Traité imprimé"
+
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Sources"

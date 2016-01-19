@@ -51,7 +51,7 @@ class RISMCatalogue
       get_tags @tree[:header][:tag], @tree[:header][:subfields], true if @tree[:header][:tag] # always one row with header
       eval @tree[:header][:function]
       # get the template name
-      template = EditorConfiguration.get_applicable_layout(@item)
+      template = EditorConfiguration.get_default_layout(@item)
       @output.write " &ndash; #{template.name}"
       @output.write  "</h4>\n" 
     	

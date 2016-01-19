@@ -38,6 +38,8 @@ class MarcIndex
     
     # index_helper: fetch a subtag and process the value
     index_helper = conf_properties && conf_properties.has_key?(:index_helper) ? conf_properties[:index_helper] : nil
+    # missing helper: if the tag is not present still provide a default value
+    missing_helper = conf_properties && conf_properties.has_key?(:missing_helper) ? conf_properties[:missing_helper] : nil
     # tags can be spefied if the field name it not the tag name
     tag = conf_properties && conf_properties.has_key?(:from_tag) ? conf_properties[:from_tag] : nil
     subtag = conf_properties && conf_properties.has_key?(:from_subtag) ? conf_properties[:from_subtag] : nil
@@ -52,11 +54,18 @@ class MarcIndex
       if conf_tag.length == 4
         subtag = conf_tag[3]
       end
-      
     end
     
-      begin
-        marc.each_by_tag(tag) do |marctag|
+    begin
+
+      tags = marc.by_tags(tag)
+
+      if tags.count == 0
+        if missing_helper && model.respond_to?(missing_helper)
+          out << model.send(missing_helper)
+        end
+      else
+        tags.each do |marctag|
           if subtag
             marctag.each_by_tag(subtag) do |marcvalue|
               next if !marcvalue.content
@@ -70,12 +79,13 @@ class MarcIndex
             out << value
           end
         end
-        
-      rescue => e
-        puts e.exception
-        puts "Marc failed to load for #{model.to_yaml}, check foreign relations, data: #{conf_tag}, #{subtag}"
       end
-      
+
+    rescue => e
+      puts e.exception
+      puts "Marc failed to load for #{model.to_yaml}, check foreign relations, data: #{conf_tag}, #{subtag}"
+    end
+
     return out
     
   end

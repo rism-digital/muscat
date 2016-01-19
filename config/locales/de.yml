@@ -175,6 +175,18 @@ de:
         one: "Benutzer"
         other: "Benutzer"
   
+  #################### RECORD TYPES (TEMPLATES)
+  record_types:
+    unspecified: "[UNKNOWN TEMPLATE]"
+    convolutum: "Convolutum"
+    collection: "Sammlung"
+    manuscript: "Musikhandschrift"
+    print: "Musikdruck"
+    manuscript_libretto: "Handschrifliches Libretto"
+    print_libretto: "Gedrucktes Libretto"
+    manuscript_theoretica: "Handschriftliches Theoretica"
+    print_theoretica: "Gedrucktes Theoretica"
+  
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Quellen"

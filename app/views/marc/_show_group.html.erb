@@ -1,6 +1,17 @@
-<% group_tags = item.marc.by_tags_with_order(group[:tags]) -%>
+<%- 
+	tags = item.marc.by_tags_with_order(group[:tags])
+	# we have tags that are grouped elswhere, keep only the values with no subfield
+	if group[:ungrouped_tags]
+		puts "TTTT",  group[:ungrouped_tags]
+		group[:ungrouped_tags].each do |tag, subfield|
+			tags.delete_if{ |t| t.tag == tag }
+			tags_with_no_subfield = @item.marc.by_tags_with_subtag([tag], subfield, "")
+			tags.concat(tags_with_no_subfield)
+		end
+	end
+-%>
 
-<%- unless group_tags.empty? %>
+<%- unless tags.empty? %>
 
 	<div class="panel">
 		<h3><%= group[:title] %></h3>
@@ -25,11 +36,14 @@
 							<%- end %>
 						<%- end %>
 					<%- end %>
-				<%- else %>				
+				<%- else %>	
+				
+				
+							
 					<%- if !@diff %>
-						<%= render :partial => "marc/show_tags", :locals => { :tags => group_tags, :templates => group[:tag_templates], :opac => opac } %>
+						<%= render :partial => "marc/show_tags", :locals => { :tags => tags, :templates => group[:tag_templates], :opac => opac } %>
 					<%- else %>
-						<%= render :partial => "marc/show_diff_tags", :locals => { :tags => group_tags } %>
+						<%= render :partial => "marc/show_diff_tags", :locals => { :tags => tags } %>
 					<%- end %>
 				<%- end %>
 			</div>

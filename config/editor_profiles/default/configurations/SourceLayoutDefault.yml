@@ -1,0 +1,114 @@
+--- !map:Settings 
+group_order: 
+- library
+- provenance
+- linkage
+- diplomatic_title
+- physical_description
+- material_description
+- content
+- incipit
+- bibliographical_reference
+- added_entries
+- performance
+- date
+- administration
+
+
+group_exclude:
+  collection:
+  - incipit
+  
+tag_exclude:
+  collection:
+  - '600'
+  - '650'
+  - '653'
+  - '740'
+  - '041'
+  - '546'
+
+groups:
+  added_entries:
+    all_tags:
+    - '700'
+    - '710'
+    - '508'
+    ungrouped_tags:
+     "700": 8
+     "710": 8
+  administration:
+    all_tags:
+    - '000'
+    - '001'
+    - '003'
+    - '007'
+    - '040'
+    - '599'
+  bibliographical_reference:
+    all_tags:
+    - '596'
+    - '691'
+    - '690'
+  content:
+    all_tags:
+    - '130'
+    - '730'
+    - '650'
+    - '505'
+    - '594'
+    - '653'
+    - '740'
+    - '041'
+    - '546'
+    - '100'
+    - '600'
+    - '240'
+  date:
+    all_tags:
+    - '033'
+    - '518'
+  diplomatic_title:
+    all_tags:
+    - '245'
+    - '246'
+  incipit:
+    all_tags:
+    - '031'
+    template: show_incipit
+  library:
+    all_tags:
+    - '852'
+    - '506'
+    - '110'
+  linkage:
+    all_tags:
+    - '773'
+    - '772'
+    - '787'
+  performance:
+    all_tags:
+    - '651'
+    - '657'
+    - '511'
+  physical_description:
+    all_tags:
+    - '563'
+    - '525'
+    - '500'
+  material_description:
+    all_tags:
+    - '593'
+    - '340'
+    - '300'
+    - '260'
+    - '592'
+    - 028
+    - '590'
+    - '700'
+    - '710'
+    subfield_grouping: 8
+  provenance:
+    all_tags:
+    - '561'
+    - '541'

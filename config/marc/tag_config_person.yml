@@ -148,21 +148,12 @@
         :foreign_field: full_name
     - - "9"
       - :occurrences: "?"
-# Reference to institutions
   "510":
-    :master: "0"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Institution
-        :foreign_field: id
-        :no_show: true
     - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: siglum
+      - :occurrences: "1"
   "549":
     :master: a
     :indicator: "##"
@@ -242,6 +233,20 @@
       - :occurrences: "?"
     - - j
       - :occurrences: "?"
+  "710":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: siglum
   "856":
     :master: u
     :indicator: "##"
