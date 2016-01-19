@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824123044) do
+ActiveRecord::Schema.define(version: 20151207110735) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -177,6 +177,14 @@ ActiveRecord::Schema.define(version: 20150824123044) do
   add_index "institutions", ["siglum"], name: "index_institutions_on_siglum", using: :btree
   add_index "institutions", ["wf_stage"], name: "index_institutions_on_wf_stage", using: :btree
 
+  create_table "institutions_people", id: false, force: true do |t|
+    t.integer "institution_id"
+    t.integer "person_id"
+  end
+
+  add_index "institutions_people", ["institution_id"], name: "index_institutions_people_on_institution_id", using: :btree
+  add_index "institutions_people", ["person_id"], name: "index_institutions_people_on_person_id", using: :btree
+
   create_table "institutions_sources", id: false, force: true do |t|
     t.integer "institution_id"
     t.integer "source_id"
@@ -251,6 +259,14 @@ ActiveRecord::Schema.define(version: 20150824123044) do
 
   add_index "people", ["full_name"], name: "index_people_on_full_name", using: :btree
   add_index "people", ["wf_stage"], name: "index_people_on_wf_stage", using: :btree
+
+  create_table "people_people", id: false, force: true do |t|
+    t.integer "person_a_id"
+    t.integer "person_b_id"
+  end
+
+  add_index "people_people", ["person_a_id"], name: "index_people_people_on_person_a_id", using: :btree
+  add_index "people_people", ["person_b_id"], name: "index_people_people_on_person_b_id", using: :btree
 
   create_table "people_sources", id: false, force: true do |t|
     t.integer "person_id"
