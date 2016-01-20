@@ -123,6 +123,9 @@
     - - a
       - :occurrences: "*"
         :no_browse: true
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
   "035":
     :master: a
     :indicator: "##"
@@ -138,8 +141,6 @@
     - - a
       - :occurrences: "1"
     - - b
-      - :occurrences: "1"
-    - - c
       - :occurrences: "1"
     - - d
       - :occurrences: "?"
@@ -218,7 +219,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "+"
-    :groupable: "8"
     :fields:
     - - a
       - :occurrences: "1"
@@ -237,7 +237,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :groupable: "8"
     :fields:
     - - a
       - :occurrences: "*"
@@ -250,7 +249,6 @@
     :master: d
     :indicator: "##"
     :occurrences: "*"
-    :groupable: "8"
     :fields:
     - - d
       - :occurrences: "*"
@@ -268,7 +266,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :groupable: "8"
     :fields:
     - - a
       - :occurrences: "?"
@@ -304,6 +301,9 @@
     :fields:
     - - a
       - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
   "520":
     :master: a
     :indicator: "##"
@@ -359,7 +359,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :groupable: "8"
     :fields:
     - - a
       - :occurrences: "?"
@@ -379,7 +378,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :groupable: "8"
     :fields:
     - - a
       - :occurrences: "?"
@@ -390,7 +388,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :groupable: "8"
     :fields:
     - - a
       - :occurrences: "?"
@@ -583,7 +580,6 @@
     :master: "0"
     :indicator: "1#"
     :occurrences: "*"
-    :groupable: "8"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -612,7 +608,6 @@
     :master: "0"
     :indicator: "2#"
     :occurrences: "*"
-    :groupable: "8"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -751,3 +746,6 @@
         :browse_helper: application_helper_link_http
     - - z
       - :occurrences: "*"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true

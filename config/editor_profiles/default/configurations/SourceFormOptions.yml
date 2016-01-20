@@ -1,19 +1,13 @@
 --- !map:Settings 
-"000": 
-  tag: tag_no_subfield
-  tag_params: 
-    editor_only: true
-  tag_header: none
 "001": 
   tag: tag_no_subfield
   tag_params: 
     read_only: true
   tag_header: none
-"003": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
+"028": 
+  layout: 
+    fields: 
+    - - a
 "031": 
   layout: 
     fields:
@@ -21,7 +15,7 @@
       - default: "pe"
         hidden: true
     - - u
-        hidden: true
+      - hidden: true
     - - a
 #      - validate: 
 #        - msg: the format must be numeric
@@ -100,11 +94,24 @@
     - - a
 "040": 
   layout: 
-    fields: 
+    fields:
     - - a
-    - - c
+      - hidden: true
     - - d
+      - hidden: true 
     - - b
+      - values: 
+        - "eng"
+        - "fre"
+        - "ger"
+        - "grc"
+        - "gsw"
+        - "ita"
+        - "lat"
+        - "roh"
+        - "rus"
+        - "spa"
+        editor_partial: subfield_autocomplete
 "041": 
   layout: 
     fields: 
@@ -159,11 +166,11 @@
         editor_partial: subfield_secondary
     - - j
       - values: 
-        - "e"
-        - "g"
-        - "z"
-        - "a"
-        - "f"
+        - "Verified"
+        - "Ascertained"
+        - "Alleged"
+        - "Doubtful"
+        - "Misattributed"
         editor_partial: subfield_select
   layout_new: 
     fields: 
@@ -171,11 +178,11 @@
     - - d
     - - j
       - values: 
-        - "e"
-        - "g"
-        - "z"
-        - "a"
-        - "f"
+        - "Verified"
+        - "Ascertained"
+        - "Alleged"
+        - "Doubtful"
+        - "Misattributed"
         editor_partial: subfield_select
 "240": 
   new_window: standard_titles
@@ -216,6 +223,14 @@
     - - a
       - growfield: true
     - - c
+"340": 
+  layout: 
+    fields: 
+    - - a
+"500": 
+  layout: 
+    fields: 
+    - - a
 "508": 
   layout: 
     fields: 
@@ -273,6 +288,10 @@
     - - a
     - - d
     - - e
+"563": 
+  layout: 
+    fields: 
+    - - a
 "590": 
   layout: 
     fields: 
@@ -280,6 +299,10 @@
       - growfield: true
     - - b
       - growfield: true
+"592": 
+  layout: 
+    fields: 
+    - - a
 "593": 
   layout: 
     fields: 
@@ -407,11 +430,11 @@
         editor_partial: subfield_secondary
     - - j
       - values: 
-        - "e"
-        - "g"
-        - "z"
-        - "a"
-        - "f"
+        - "Verified"
+        - "Ascertained"
+        - "Alleged"
+        - "Doubtful"
+        - "Misattributed"
         editor_partial: subfield_select
     - - "4"
       - editor_partial: subfield_relator_codes_700
@@ -421,11 +444,11 @@
     - - d
     - - j
       - values: 
-        - "e"
-        - "g"
-        - "z"
-        - "a"
-        - "f"
+        - "Verified"
+        - "Ascertained"
+        - "Alleged"
+        - "Doubtful"
+        - "Misattributed"
         editor_partial: subfield_select
     - - "4"
       - editor_partial: subfield_relator_codes_700
