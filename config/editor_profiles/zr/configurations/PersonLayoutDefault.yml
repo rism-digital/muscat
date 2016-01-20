@@ -15,18 +15,14 @@ groups:
     - "008"
   notes: 
     all_tags: 
-    - "509"
     - "510"
-    - "549"
-    - "559"
-    - "569"
+    - "551"
     - "856"
   subject: 
     all_tags: 
     - "670"
     - "678"
     - "680"
-    - "684"
   main_person: 
     all_tags: 
     - "100"

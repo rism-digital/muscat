@@ -149,9 +149,9 @@ ActiveAdmin.register Person do
     active_admin_comments if !is_selection_mode?
   end
   
-  sidebar I18n.t(:search_sources), :only => :show do
-    render("activeadmin/src_search") # Calls a partial
-  end
+  #sidebar I18n.t(:search_sources), :only => :show do
+    #render("activeadmin/src_search") # Calls a partial
+  #end
   
   ##########
   ## Edit ##
