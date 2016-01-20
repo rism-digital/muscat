@@ -140,10 +140,12 @@
     :fields:
     - - a
       - :occurrences: "1"
+        :no_browse: true
     - - b
       - :occurrences: "1"
     - - d
       - :occurrences: "?"
+        :no_browse: true
   "041":
     :master: a
     :indicator: ["0#", "1#"]

@@ -324,19 +324,14 @@ class Marc
   # Block to iterate over a set of given tags (passed as array), with a subtag
   # and an optional subtag value to filter on.
   def by_tags_with_subtag(tag_names, subtag, subtag_content = "")
-    load_source unless @loaded
+    all_tags = by_tags_with_order(tag_names)
     tags = Array.new
-    for child in @root.children
-      next if !tag_names.include?(child.tag)
+    for child in all_tags
       if subtag_content.empty? && !child.fetch_first_by_tag( subtag )
         tags << child
       elsif child.fetch_first_by_tag( subtag ) && child.fetch_first_by_tag( subtag ).content == subtag_content
         tags << child
       end
-      #for grandchild in child.children
-      #  tags 
-      #  tags << child if grandchild.tag == subtag && grandchild.content == subtag_content
-      #end
     end
     return tags
   end

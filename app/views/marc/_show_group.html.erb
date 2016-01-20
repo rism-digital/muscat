@@ -2,10 +2,9 @@
 	tags = item.marc.by_tags_with_order(group[:tags])
 	# we have tags that are grouped elswhere, keep only the values with no subfield
 	if group[:ungrouped_tags]
+		tmptags = tags
 		group[:ungrouped_tags].each do |tag, subfield|
-			tags.delete_if{ |t| t.tag == tag }
-			tags_with_no_subfield = @item.marc.by_tags_with_subtag([tag], subfield, "")
-			tags.concat(tags_with_no_subfield)
+			tags.delete_if{ |t| t.tag == tag && t.fetch_first_by_tag(subfield)}
 		end
 	end
 -%>
