@@ -67,7 +67,10 @@ class MarcImport
         #p model
           
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
-        record_type = marc.import
+        marc.import
+        
+        # Make internal format
+        marc.to_internal
         
         # step 3. associate Marc with Manuscript
         model.marc = marc
@@ -77,7 +80,12 @@ class MarcImport
         if @model == "Source"
           model.suppress_update_77x # we should not need to update the 772/773 relationships during the import
           model.suppress_update_count # Do not update the count for the foreign objects
-          model.record_type = record_type
+          rt = marc.record_type
+          if (rt)
+            model.record_type = rt
+          else
+            "Empty record type for #{s.id}"
+          end
         end
         
         model.suppress_reindex
