@@ -1429,12 +1429,6 @@ show_content:
     fr: Contenu
     de: Inhalt
     en: Content
-show_details: 
-  label: 
-    it: Descrizione fisica
-    fr: "Détail de la source"
-    de: Physische Beschreibung
-    en: Source details
 show_distribution: 
   label: 
     it: Organico
