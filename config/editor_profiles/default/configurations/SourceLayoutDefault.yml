@@ -1,114 +1,166 @@
 --- !map:Settings 
 group_order: 
-- library
-- provenance
-- linkage
-- diplomatic_title
-- physical_description
-- material_description
-- content
-- incipit
-- bibliographical_reference
-- added_entries
-- performance
-- date
-- administration
-
+- edit_library
+- edit_names
+- edit_content
+- edit_material
+- edit_incipits
+- edit_references
+- edit_administration
 
 group_exclude:
   collection:
-  - incipit
+  - edit_incipits
+  manuscript_libretto:
+  - edit_incipits
+  print_libretto:
+  - edit_incipits
+  theoretica:
+  - edit_incipits
+  convolutum:
+  - edit_incipits
   
 tag_exclude:
   collection:
+  - '041'
+  - '100'
+  - '511'
+  - '546'
   - '600'
   - '650'
   - '653'
+  - '651'
+  - '657'
   - '740'
+  - '787'
+  manuscript:
+  - '772'
+  print:
+  - '772'
+  manuscript_libretto:
+  - '590'
+  - '594'
+  - '596'
+  - '598'
+  - '772'
+  - '787'
+  print_libretto:
+  - '590'
+  - '594'
+  - '596'
+  - '598'
+  - '772'
+  - '787'
+  theoretica:
+  - '511'
+  - '590'
+  - '594'
+  - '596'
+  - '598'
+  - '651'
+  - '653'
+  - '657'
+  - '690'
+  - '772'
+  - '787'
+  convolutum:
+  - '028'
   - '041'
+  - '100'
+  - '240'
+  - '260'
+  - '300'
+  - '340'
+  - '511'
   - '546'
+  - '590'
+  - '592'
+  - '593'
+  - '600'
+  - '650'
+  - '653'
+  - '651'
+  - '657'
+  - '730'
+  - '740'
+  - '773'
+  - '787'
 
 groups:
-  added_entries:
+  edit_library:
     all_tags:
+    - '852'
+    - '035'
+    - '506'
+    - '561'
+    - '541'
+    - '773'
+    - '787'
+    - '772'
+  edit_names:
+    all_tags:
+    - '100'
+    - '600'
     - '700'
     - '710'
-    - '508'
     ungrouped_tags:
      "700": 8
      "710": 8
-  administration:
+  edit_content:
     all_tags:
-    - '000'
-    - '001'
-    - '003'
-    - '007'
-    - '040'
-    - '599'
-  bibliographical_reference:
-    all_tags:
-    - '596'
-    - '691'
+    - '245'
+    - '246'
+    - '240'
     - '690'
-  content:
-    all_tags:
-    - '130'
     - '730'
     - '650'
-    - '505'
+    - '520'
     - '594'
+    - '598'
     - '653'
     - '740'
     - '041'
     - '546'
-    - '100'
-    - '600'
-    - '240'
-  date:
+  edit_material:
     all_tags:
+    - '593'
+    - '260'
     - '033'
     - '518'
-  diplomatic_title:
-    all_tags:
-    - '245'
-    - '246'
-  incipit:
+    - '300'
+    - '590'
+    - '340'
+    - '028'
+    - '592'
+    - '563'
+    - '700'
+    - '710'
+    - '500'
+    - '856'
+    subfield_grouping: 8
+  edit_incipits:
     all_tags:
     - '031'
     template: show_incipit
-  library:
+  edit_references:
     all_tags:
-    - '852'
-    - '506'
-    - '110'
-  linkage:
-    all_tags:
-    - '773'
-    - '772'
-    - '787'
-  performance:
-    all_tags:
-    - '651'
-    - '657'
-    - '511'
-  physical_description:
-    all_tags:
-    - '563'
-    - '525'
     - '500'
-  material_description:
+    - '525'
+    - '691'
+    - '596'
+    - '657'
+    - '651'
+    - '511'
+    - '033'
+    - '518'
+    - '856'
+    ungrouped_tags:
+     "033": 8
+     "500": 8
+     "518": 8
+     "856": 8
+  edit_administration:
     all_tags:
-    - '593'
-    - '340'
-    - '300'
-    - '260'
-    - '592'
-    - 028
-    - '590'
-    - '700'
-    - '710'
-    subfield_grouping: 8
-  provenance:
-    all_tags:
-    - '561'
-    - '541'
+    - '001'
+    - '040'
+    - '599'
