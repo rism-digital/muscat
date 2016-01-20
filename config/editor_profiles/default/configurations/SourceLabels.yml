@@ -755,27 +755,6 @@ doc_edit_workflow:
         en: Provenance
       edit_label: 
         en: ""
-"563": 
-  label: 
-    it: Rilegatura
-    fr: Reliure
-    de: Einband
-    en: Binding note
-  fields: 
-    a: 
-      label: 
-        it: Rilegatura
-        fr: Reliure
-        de: Einband
-        en: Binding note
-      edit_label: 
-        en: ""
-    "8": 
-      label: 
-        it: Gruppo di materiale
-        fr: Documents
-        de: Set
-        en: Set 
 "590": 
   label: 
     it: Parti staccate
