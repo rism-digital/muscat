@@ -21,7 +21,7 @@
       - default: "pe"
         hidden: true
     - - u
-        hidden: true
+      - hidden: true
     - - a
 #      - validate: 
 #        - msg: the format must be numeric
