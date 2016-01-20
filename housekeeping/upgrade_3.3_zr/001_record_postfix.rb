@@ -1,5 +1,9 @@
 require 'progress_bar'
 
+# Delete all the records that reference a source_id that does not exist
+orphans = Source.find_by_sql("select s2.id from sources as s right join sources as s2 on s.id = s2.source_id where s.id is null and s2.source_id is not null;")
+orphans.each {|o| o.delete}
+
 pb = ProgressBar.new(Source.all.count)
 
 Source.all.each do |sa|
@@ -28,8 +32,10 @@ Source.all.each do |sa|
       word = "Verified"
     elsif letter == "f"
       word = "Misattributed"
-    elsif letter == "a"
+    elsif letter == "l"
       word = "Alleged"
+    elsif letter == "m"
+      word = "Conjectural"
     else
       word = "unknown"
       puts "Unknown $j value #{letter}"
@@ -54,8 +60,10 @@ Source.all.each do |sa|
       word = "Verified"
     elsif letter == "f"
       word = "Misattributed"
-    elsif letter == "a"
+    elsif letter == "l"
       word = "Alleged"
+    elsif letter == "m"
+      word = "Conjectural"
     else
       word = "unknown"
       puts "Unknown $j value #{letter}"
