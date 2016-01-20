@@ -166,11 +166,11 @@
         editor_partial: subfield_secondary
     - - j
       - values: 
-        - "e"
-        - "g"
-        - "z"
-        - "a"
-        - "f"
+        - "Verified"
+        - "Ascertained"
+        - "Alleged"
+        - "Doubtful"
+        - "Misattributed"
         editor_partial: subfield_select
   layout_new: 
     fields: 
@@ -178,11 +178,11 @@
     - - d
     - - j
       - values: 
-        - "e"
-        - "g"
-        - "z"
-        - "a"
-        - "f"
+        - "Verified"
+        - "Ascertained"
+        - "Alleged"
+        - "Doubtful"
+        - "Misattributed"
         editor_partial: subfield_select
 "240": 
   new_window: standard_titles
@@ -430,11 +430,11 @@
         editor_partial: subfield_secondary
     - - j
       - values: 
-        - "e"
-        - "g"
-        - "z"
-        - "a"
-        - "f"
+        - "Verified"
+        - "Ascertained"
+        - "Alleged"
+        - "Doubtful"
+        - "Misattributed"
         editor_partial: subfield_select
     - - "4"
       - editor_partial: subfield_relator_codes_700
@@ -444,11 +444,11 @@
     - - d
     - - j
       - values: 
-        - "e"
-        - "g"
-        - "z"
-        - "a"
-        - "f"
+        - "Verified"
+        - "Ascertained"
+        - "Alleged"
+        - "Doubtful"
+        - "Misattributed"
         editor_partial: subfield_select
     - - "4"
       - editor_partial: subfield_relator_codes_700
