@@ -8,8 +8,9 @@ class MarcSource < Marc
     :print => 3,
     :manuscript_libretto => 4,
     :print_libretto => 5,
-    :theoretica => 6,
-    :convolutum => 7,
+    :manuscript_theoretica => 6,
+    :print_theoretica => 7,
+    :convolutum => 8,
   }
   
   def initialize(source = nil, rt = 0)
@@ -247,7 +248,7 @@ class MarcSource < Marc
     elsif leader.match(/......am.............../)
       rt = RECORD_TYPES[:print_libretto]
     elsif leader.match(/......pm.............../)
-      rt = RECORD_TYPES[:theoretica]
+      rt = RECORD_TYPES[:manuscript_theoretica] # we cannot make the distinction between ms and print
     elsif leader.match(/......pd.............../)
       rt = RECORD_TYPES[:convolutum]
     else
