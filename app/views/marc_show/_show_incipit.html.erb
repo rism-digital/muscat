@@ -34,16 +34,12 @@
 	}.join(", ")
 %>
 
-<tr class="row" id="<%= random_string %>"  style="display:none">
-	<th></th>
-	<td><%= label.html_safe %></td>
-</tr>
-
 <%	if (pae_subfield && pae_subfield.content ) %>
 <tr class="row">
 	<td></td>
 	<td>
 		<a onclick="javascript:show_hide_pae('<%=random_string%>');">PAE Code</a>
+		<span id="<%= random_string %>"  style="display:none">&nbsp;<%= label.html_safe %></span>
 		<div id="<%= image_render_div %>" />
 	</td>
 <tr>
