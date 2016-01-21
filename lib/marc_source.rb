@@ -267,6 +267,7 @@ class MarcSource < Marc
     each_by_tag("000") {|t| t.destroy_yourself}
 
     # Drop other unused tags
+    each_by_tag("003") {|t| t.destroy_yourself}
     each_by_tag("005") {|t| t.destroy_yourself}
     each_by_tag("007") {|t| t.destroy_yourself}
     each_by_tag("008") {|t| t.destroy_yourself}
