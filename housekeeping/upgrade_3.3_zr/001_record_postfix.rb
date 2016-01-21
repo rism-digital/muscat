@@ -70,7 +70,7 @@ Source.all.each do |sa|
     end
     
     tj.destroy_yourself #adios
-    t.add_at(MarcNode.new("source", "j", letter, nil), 0)
+    t.add_at(MarcNode.new("source", "j", word, nil), 0)
     t.sort_alphabetically
   end
   
