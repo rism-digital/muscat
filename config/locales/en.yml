@@ -311,6 +311,7 @@ en:
   filter_phone: "Phone"
   filter_place: "Place"
   filter_provenance: "Provenance"
+  filter_record_type: "Type"
   filter_revue_title: "Revue title"
   filter_id: "Rism ID"
   filter_id_no: "Rism ID"
@@ -331,8 +332,8 @@ en:
   filter_versions: "Versions"
   filter_volume: "Volume"
   filter_wf: "WF"
-  filter_wf_audit: "WF audit"
-  filter_wf_stage: "WF stage"
+  filter_wf_audit: "Audit"
+  filter_wf_stage: "Status"
   filter_distribution: "Scoring"
   filter_dist_exclude: "Exclude"
   filter_dist_594a: "Vocal parts (solo)"
@@ -493,4 +494,18 @@ en:
     application_name: 'Muscat'
     header_links:
       logout: 'Logout'
-
+      
+  record_types_codes:
+    "0": "UNK"
+    "1": "COL"
+    "2": "MMS"
+    "3": "MPR"
+    "4": "LMS"
+    "5": "LPR"
+    "6": "TMS"
+    "7": "TPR"
+    "8": "CVT"
+    
+  status_codes:
+    published: "PUB"
+    unpublished: "UNP"

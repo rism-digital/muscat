@@ -100,7 +100,6 @@ ActiveAdmin.register Source do
         @source.marc = new_marc
         @template_name = params[:new_type].sub(/[^_]*_/,"")
         @source.record_type = MarcSource::RECORD_TYPES[@template_name.to_sym]
-        puts "type", @source.record_type
       end
       @editor_profile = EditorConfiguration.get_default_layout @source
       @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{I18n.t('record_types.' + @template_name)}"
@@ -155,11 +154,13 @@ ActiveAdmin.register Source do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
+    column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
+      label: I18n.t('status_codes.' + source.wf_stage, locale: :en))} 
+    column (I18n.t :filter_record_type) {|source| status_tag(source.get_record_type.to_s, 
+      label: I18n.t('record_types_codes.' + source.record_type.to_s, locale: :en))} 
     column (I18n.t :filter_id), :id  
-    column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage)} 
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title
-    column (I18n.t :filter_title), :title
     column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
       if source.sources.count>0
          source.sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
@@ -176,7 +177,7 @@ ActiveAdmin.register Source do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_source_show_title( @item.composer, @item.std_title, @item.id) } do
+  show :title => proc{ active_admin_source_show_title( @item.composer, @item.std_title, @item.id, @item.get_record_type) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]

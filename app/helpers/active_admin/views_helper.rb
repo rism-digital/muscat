@@ -133,11 +133,12 @@ module ActiveAdmin::ViewsHelper
   end 
   
   # formats the string for the source show title
-  def active_admin_source_show_title( composer, std_title, id )
-    return "[#{id}]" if composer.empty? and std_title.empty?
-    return "#{std_title} [#{id}]" if composer.empty? and !std_title.empty?
-    return "#{composer} [#{id}]" if (std_title.nil? or std_title.empty?)
-    return "#{composer} : #{std_title} [#{id}]"
+  def active_admin_source_show_title( composer, std_title, id, record_type )
+    record_type = record_type ? "#{I18n.t('record_types.' + record_type.to_s)} " : ""
+    return "#{record_type}[#{id}]" if composer.empty? and std_title.empty?
+    return "#{std_title} - #{record_type}[#{id}]" if composer.empty? and !std_title.empty?
+    return "#{composer} - #{record_type}[#{id}]" if (std_title.nil? or std_title.empty?)
+    return "#{composer} : #{std_title} - #{record_type}[#{id}]"
   end
   
 end
