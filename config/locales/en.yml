@@ -516,4 +516,4 @@ en:
     
   status_codes:
     published: "PUB"
-    unpublished: "UNP"
+    inprogress: "INP"
