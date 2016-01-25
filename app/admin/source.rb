@@ -93,7 +93,7 @@ ActiveAdmin.register Source do
         # copy the record type
         @source.marc = new_marc
         @source.record_type = base_item.record_type
-        @template_name = @source.get_record_type
+        @template_name = @source.get_record_type.to_s
       elsif File.exists?("#{Rails.root}/config/marc/#{RISM::MARC}/source/" + params[:new_type] + '.marc')
         new_marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/source/" +params[:new_type] + '.marc'), MarcSource::RECORD_TYPES[@template_name.to_sym])
         new_marc.load_source false # this will need to be fixed
