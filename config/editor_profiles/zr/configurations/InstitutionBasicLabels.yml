@@ -55,6 +55,55 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     fr: "Date/heure de la dernière transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
+"008": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: DATE OF CREATION
+    fr: DATE OF CREATION
+    de: Datum der Erstellung
+    en: Date of creation
+
+"024": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Codice ISIL
+    fr: Code ISIL
+    de: ISIL Code
+    en: ISIL Code
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Codice ISIL
+        fr: Code ISIL
+        de: ISIL Code  
+        en: ISIL Code
+"035": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Codice GND
+    fr: Code GND
+    de: GND Code
+    en: GND Code
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Codice GND
+        fr: Code GND
+        de: GND Code  
+        en: GND Code
+"040": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Sigla
+    fr: Sigla
+    de: Sigel
+    en: Sigla
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Sigla
+        fr: Sigla
+        de: Sigla
+        en: Sigla
+
+
+
 "043": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Country code
@@ -101,19 +150,125 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: "Siglum"
         de: "Sigel"
         en: Siglum
-"410": !map:ActiveSupport::HashWithIndifferentAccess 
+"368": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Name variants
-    fr: Name variants
-    de: Namensvarianten
-    en: Name variants
+    it: TYP OF INSTITUTION
+    fr: TYP OF INSTITUTION
+    de: Typ der Institution
+    en: Typ of Institution
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Name variants
-        fr: Name variants
+        it: TYP OF INSTITUTION
+        fr: TYP OF INSTITUTION
+        de: Typ der Institution
+        en: Type of institution
+
+
+"371": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: ADDRESS
+    fr: ADDRESS
+    de: "Adresse"
+    en: Address
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nome di ente
+        fr: "Nom de la collectivité"
+        de: Strasse
+        en: Street address
+    e: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: POSTAL CODE
+        fr: POSTAL CODE
+        de: Postleitzahl
+        en: Postal Code
+    b: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: CITY
+        fr: CITY
+        de: Ort
+        en: City
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: COUNTY OR STATE
+        fr: COUNTY OR STATE
+        de: Bezirk oder Staat
+        en: County or State
+    d: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: COUNTRY
+        fr: COUNTRY
+        de: Land
+        en: Country
+    m: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: E-MAIL
+        fr: E-MAIL
+        de: E-Mail
+        en: E-mail
+    u: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: URL
+        fr: URL
+        de: URL
+        en: URL
+"373": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: NOW IN
+    fr: NOW IN
+    de: In
+    en: Now in
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    x: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        t: NOW IN
+        fr: NOW IN
+        de: In
+        en: Now in
+
+"410": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Name variants
+    fr: OTHER FORM OF NAME
+    de: Andere Namensformen
+    en: Other form of name
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        t: OTHER FORM OF NAME
+        fr: OTHER FORM OF NAME
+        de: Andere Namensformen
+        en: Other Form of Name
+"510": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PARALLEL FORM OF NAME
+    fr: PARALLEL FORM OF NAME
+    de: Parallelle Namensformen
+    en: Parallel form of name
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: PARALLEL FORM OF NAME
+        fr: PARALLEL FORM OF NAME
         de: Namensvarianten  
-        en: Name variants
+        en: Parallel form of name
+"580": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: NOW IN
+    fr: NOW IN
+    de: In
+    en: Now in
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    x: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        t: NOW IN
+        fr: NOW IN
+        de: In
+        en: Now in
+
+
 "622": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Contact 
@@ -133,6 +288,52 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: URL
         de: URL
         en: URL
+
+"667": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: INTERNAL NOTES
+    fr: INTERNAL NOTES
+    de: Interne Bemerkungen
+    en: Internal Notes
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: INTERNAL NOTES
+        fr: INTERNAL NOTES
+        de: Interne Bemerkungen
+        en: Internal notes
+
+
+"670": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: LITERATURE
+    fr: LITERATURE
+    de: Literatur
+    en: Literature
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: LITERATURE
+        fr: LITERATURE
+        de: Literatur
+        en: Literature
+
+
+"678": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: HISTORY OF INSTITUTION
+    fr: HISTORY OF INSTITUTION
+    de: Geschichte der Institution
+    en: History of institution
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: HISTORY OF INSTITUTION
+        fr: HISTORY OF INSTITUTION
+        de: Geschichte der Institution
+        en: History of institution
+
+
 "680": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: General note
@@ -140,12 +341,46 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     de: Allgemeine Fussnote
     en: General note
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    i: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: General note
         fr: Remarque générale
         de: Allgemeine Fussnote
         en: General note
+"710": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: RELATED INSTITUTION
+    fr: RELATED INSTITUTION
+    de: RELATED INSTITUTION
+    en: Related institution
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: RELATED INSTITUTION
+        fr: RELATED INSTITUTION
+        de: RELATED INSTITUTION
+        en: Related institution
+
+"856": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: ONLINE
+    fr: ONLINE
+    de: Archivführer und andere Publikationen
+    en: Online finding aids
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    u: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        t: ONLINE
+        fr: ONLINE
+        de: Archivführer und andere Publikationen
+        en: Online finding aids
+    z: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        t: NOTE
+        fr: NOTE
+        de: Bemerkung
+        en: Note
+
 
 main: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -183,3 +418,27 @@ administration: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Administration
     de: Administration
     en: Administration
+sigla: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: SIGLA
+    fr: SIGLA
+    de: Sigel
+    en: Sigla
+contact: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: CONTACT
+    fr: CONTACT
+    de: Kontakt
+    en: Contact
+identity: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: IDENTITY
+    fr: IDENTITY
+    de: Identifizierung
+    en: Identity
+description: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: DESCRIPTION
+    fr: DESCRIPTION
+    de: Beschreibung
+    en: Description

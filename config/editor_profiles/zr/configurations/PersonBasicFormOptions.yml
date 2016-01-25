@@ -50,6 +50,12 @@
     - - b
       - cols: 2
     columns: 4
+"042": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
 "043": 
   layout: 
     fields: 
@@ -65,6 +71,8 @@
     fields: 
     - - a
       - cols: 2
+    - - c
+      - cols: 2
     - - d
       - cols: 2
     - - w
@@ -72,6 +80,12 @@
     - - y
       - cols: 2
     columns: 4
+"374": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    columns: 2
 "400": 
   layout: 
     fields: 
@@ -82,14 +96,14 @@
     - - j
       - cols: 2
     columns: 4
-"509": 
+"500": 
   layout: 
     fields: 
     - - "a"
       - type: person
         editor_partial: subfield_secondary
       - cols: 4
-    - - "9"
+    - - "i"
       - cols: 2
     columns: 4
 "510": 
@@ -106,18 +120,12 @@
     - - a
       - cols: 2
     columns: 2
-"559": 
+"551": 
   layout: 
     fields: 
     - - a
       - cols: 2
-    columns: 2
-"569": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 2
-    - - j
+    - - i
       - cols: 2
     columns: 2
 "599": 
@@ -163,14 +171,6 @@
       - cols: 2
     - - "5"
       - cols: 4
-    columns: 4
-"684": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 2
-    - - j
-      - cols: 2
     columns: 4
 "856": 
   layout: 

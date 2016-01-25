@@ -148,5 +148,12 @@ module ActiveAdmin::ViewsHelper
     return "#{val1} - [#{id}]" if (val2.nil? or val2.empty?)
     return "#{val1} : #{val2} - [#{id}]"
   end
+ 
+  def active_admin_catalogue_show_title( author, description, id )
+    return "[#{id}]" if author.empty? and description.empty?
+    return "#{description} [#{id}]" if author.empty? and !description.empty?
+    return "#{author} [#{id}]" if (description.nil? or description.empty?)
+    return "#{author} : #{description} [#{id}]"
+  end
   
 end

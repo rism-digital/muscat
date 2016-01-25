@@ -112,6 +112,19 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Organisme de la modification
         de: Modifizierende Katalogisierungsstelle
         en: Modifying agency
+"042": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: AUTHENTICATION CODE
+    fr: AUTHENTICATION CODE
+    de: Authentication Code
+    en: Authentication Code
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: AUTHENTICATION CODE
+        fr: AUTHENTICATION CODE
+        de: Authentication Code
+        en: Authentication Code
 "043": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Country code
@@ -154,10 +167,10 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Status
     y: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: LIFE DATES TEXT
-        fr: LIFE DATES TEXT
-        de: Geburts- und Todesdaten Text
-        en: Life dates text
+        it: OTHER DATES
+        fr: OTHER DATES
+        de: Andere Lebensdaten
+        en: Other dates
 "370": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Associated Place
@@ -171,6 +184,19 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Place of birth
         de: Geburtsort  
         en: Place of birth
+"374": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: OCCUPATION
+    fr: OCCUPATION
+    de: Beruf
+    en: Occupation
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: OCCUPATION
+        fr: OCCUPATION
+        de: Beruf 
+        en: OCCUPATION
 "375": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Gender
@@ -209,7 +235,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: INDICATOR
         de: Art der Namensvariante
         en: Description of name variant
-"509": !map:ActiveSupport::HashWithIndifferentAccess 
+"500": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: RELATED PERSONS
     fr: RELATED PERSONS
@@ -242,20 +268,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr:  SIGLUM
         de:  Sigel
         en:  Siglum
-"559": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: PROFESSION
-    fr: PROFESSION
-    de: PROFESSION
-    en:  PROFESSION
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it:  PROFESSION
-        fr:  PROFESSION
-        de:  Berufe
-        en:  Profession
-"569": !map:ActiveSupport::HashWithIndifferentAccess 
+"551": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: PLACES
     fr: PLACES
@@ -268,7 +281,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr:  PLACE
         de:  Ort
         en:  Place
-    j: !map:ActiveSupport::HashWithIndifferentAccess 
+    i: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it:  PLACE INDICATOR
         fr:  PLACE INDICATOR
@@ -301,6 +314,19 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Source des données
         de: Quellenangaben
         en: Source data found
+"678": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: ADDITIONAL BIBLIOGRAPHIC REFERENCE 
+    fr: ADDITIONAL BIBLIOGRAPHIC REFERENCE 
+    de: Weitere bibliographische Angaben
+    en: Additional bibliographic reference 
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: ADDITIONAL BIBLIOGRAPHIC REFERENCE 
+        fr: ADDITIONAL BIBLIOGRAPHIC REFERENCE 
+        de: Weitere bibliographische Angaben
+        en: Additional bibliographic reference 
 "680": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: General note
@@ -314,19 +340,6 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Remarque générale
         de: Allgemeine Fussnote
         en: General note
-"684": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: ORDER
-    fr: ORDER
-    de: Orden
-    en: Order
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    j: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: ORDER
-        fr: ORDER
-        de: Orden
-        en: ORDER
 "856": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: URL

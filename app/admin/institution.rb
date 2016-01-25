@@ -108,6 +108,8 @@ ActiveAdmin.register Institution do
   
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :siglum_contains, :label => proc {I18n.t(:filter_siglum)}, :as => :string
+  filter :place_contains, :label => proc {I18n.t(:filter_place)}, :as => :string
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb

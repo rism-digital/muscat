@@ -111,6 +111,11 @@ ActiveAdmin.register Catalogue do
   
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :author_contains, :label => proc {I18n.t(:filter_author)}, :as => :string
+  filter :description_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
+  filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
+  filter :"place_contains", :label => proc {I18n.t(:filter_place)}, :as => :string
+  filter :"date_contains", :label => proc {I18n.t(:filter_date)}, :as => :string
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
@@ -121,7 +126,7 @@ ActiveAdmin.register Catalogue do
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id    
-    column (I18n.t :filter_name), :name
+#   column (I18n.t :filter_name), :name
     column (I18n.t :filter_name), :description
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count
@@ -132,7 +137,7 @@ ActiveAdmin.register Catalogue do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_auth_show_title( @item.name, @item.author, @item.id) } do
+  show :title => proc{ active_admin_catalogue_show_title( @item.author, @item.description, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]
@@ -147,13 +152,7 @@ ActiveAdmin.register Catalogue do
     active_admin_comments if !is_selection_mode?
   end
   
-begin  
-  sidebar I18n.t(:search_sources), :only => :show do
-    render("activeadmin/src_search") # Calls a partial
-  end
-
-end
-  
+ 
   ##########
   ## Edit ##
   ##########

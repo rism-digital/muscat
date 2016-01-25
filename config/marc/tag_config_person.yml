@@ -79,7 +79,13 @@
       - :occurrences: "1"
     - - d
       - :occurrences: "?"
-
+  "042":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
   "043":
     :master: a
     :indicator: "##"
@@ -98,6 +104,8 @@
     :fields:
     - - a
       - :occurrences: "?"
+    - - c
+      - :occurrences: "*"
     - - d
       - :occurrences: "?"
         :browse_inline: true
@@ -107,6 +115,13 @@
     - - y
       - :occurrences: "?"
   "370":
+    :master: a
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "374":
     :master: a
     :indicator: "##"
     :occurrences: "?"
@@ -132,7 +147,7 @@
     - - j
       - :occurrences: "?"
 # This is a linked field
-  "509":
+  "500":
     :master: "0"
     :indicator: "1#"
     :occurrences: "*"
@@ -146,7 +161,7 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: full_name
-    - - "9"
+    - - "i"
       - :occurrences: "?"
   "510":
     :indicator: "1#"
@@ -161,21 +176,14 @@
     :fields:
     - - a
       - :occurrences: "?"
-  "559":
+  "551":
     :master: a
     :indicator: "##"
     :occurrences: "*"
     :fields:
     - - a
       - :occurrences: "?"
-  "569":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - j
+    - - i
       - :occurrences: "?"
   "599":
     :master: a
@@ -223,15 +231,6 @@
     - - i
       - :occurrences: "?"
     - - "5"
-      - :occurrences: "?"
-  "684":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - j
       - :occurrences: "?"
   "710":
     :master: "0"

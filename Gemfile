@@ -94,3 +94,4 @@ gem 'activerecord-import', ">= 0.4.0"
 # gem 'selenium-webdriver'
 
 gem 'ruby-prof'
+gem 'pry', :group => :development

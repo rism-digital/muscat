@@ -213,4 +213,6 @@ class Catalogue < ActiveRecord::Base
     
   end
 
+  ransacker :"260b_contains", proc{ |v| } do |parent| end
+
 end

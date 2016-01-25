@@ -27,7 +27,7 @@ groups:
     - "593"
     - "525"
     - "270"
-    template: marc_show/show_details
+    #template: marc_show/show_details
     all_tag_templates: 
       "260": marc_show/show_subfield_concat
   show_content: 
