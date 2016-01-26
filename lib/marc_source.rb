@@ -286,6 +286,15 @@ class MarcSource < Marc
       
     end
     
+    # Drop $2pe in 031, see #194
+    each_by_tag("031") do |t|
+      st = t.fetch_first_by_tag("2")
+      if st && st.content && st.content != "pe"
+        puts "Unknown 031 $2 value: #{st.content}"
+      end
+      st.destroy_yourself
+    end
+    
     if rt
       @record_type = rt
     end
@@ -338,7 +347,6 @@ class MarcSource < Marc
     # 240 to 130 when 100 is not present
     if by_tags("100").count == 0
       each_by_tag("240") do |t|
-
         node = t.deep_copy
         node.tag = "130"
         node.indicator = "0#"
@@ -346,8 +354,13 @@ class MarcSource < Marc
         root.children.insert(get_insert_position("130"), node)
       
         t.destroy_yourself
-      
       end
+    end
+    
+    # Put back $2pe in 031, see #194
+    each_by_tag("031") do |t|
+      t.add_at(MarcNode.new("source", "2", "pe", nil), 0)
+      t.sort_alphabetically
     end
     
   end
