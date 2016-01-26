@@ -286,6 +286,15 @@ class MarcSource < Marc
       
     end
     
+    # Drop $2pe in 031, see #194
+    each_by_tag("031") do |t|
+      st = t.fetch_first_by_tag("2")
+      if st && st.content && st.content != "pe"
+        puts "Unknown 031 $2 value: #{st.content}"
+      end
+      st.destroy_yourself
+    end
+    
     if rt
       @record_type = rt
     end
@@ -293,7 +302,67 @@ class MarcSource < Marc
   
   def to_external
     super
-    # puts "overriden to_external call"
+    
+    # See #176
+    # Step 1, rmake leader
+    # collection, if we have prints only (......cc...............) or not (......dc...............)
+    # manuscript and print, if it is part of a collection (......[cd]d...............) or not (......[cd]m...............)
+
+    base_leader = "00000nXX#a2200000#u#4500"
+
+    if @record_type == RECORD_TYPES[:collection]
+      type = "cc"
+      
+      each_by_tag("772") do |t|
+        source = Source.find(t.fetch_first_by_tag("w").content)
+        type = "dc" if source.record_type != RECORD_TYPES[:print]
+        puts source.record_type
+      end
+      
+      leader = base_leader.gsub("XX", type)
+    elsif @record_type == RECORD_TYPES[:manuscript]
+      type = "dm"
+      type = "dd" if by_tags("773").count > 0
+      leader = base_leader.gsub("XX", type)
+    elsif @record_type == RECORD_TYPES[:print]
+      type = "cm"
+      type = "cd" if by_tags("773").count > 0
+      leader = base_leader.gsub("XX", type)
+    elsif @record_type == RECORD_TYPES[:manuscript_libretto]
+      leader = base_leader.gsub("XX", "tm")
+    elsif @record_type == RECORD_TYPES[:print_libretto]
+      leader = base_leader.gsub("XX", "am")
+    elsif @record_type == RECORD_TYPES[:manuscript_theoretica] # we cannot make the distinction between ms and print
+      leader = base_leader.gsub("XX", "pm")
+    elsif @record_type == RECORD_TYPES[:convolutum]
+      leader = base_leader.gsub("XX", "pd")
+    else
+      puts "Unknown record type #{@record_type}"
+      leader = ""
+    end
+    
+    new_leader = MarcNode.new("source", "000", leader, "")
+    @root.children.insert(get_insert_position("000"), new_leader)
+    
+    # 240 to 130 when 100 is not present
+    if by_tags("100").count == 0
+      each_by_tag("240") do |t|
+        node = t.deep_copy
+        node.tag = "130"
+        node.indicator = "0#"
+        node.sort_alphabetically
+        root.children.insert(get_insert_position("130"), node)
+      
+        t.destroy_yourself
+      end
+    end
+    
+    # Put back $2pe in 031, see #194
+    each_by_tag("031") do |t|
+      t.add_at(MarcNode.new("source", "2", "pe", nil), 0)
+      t.sort_alphabetically
+    end
+    
   end
     
   def set_record_type(rt)

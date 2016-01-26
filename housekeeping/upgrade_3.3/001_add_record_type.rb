@@ -92,6 +92,15 @@ Source.all.each do |sa|
     t.destroy_yourself
   end
   
+  # Drop $2pe in 031, see #194
+  each_by_tag("031") do |t|
+    st = t.fetch_first_by_tag("2")
+    if st && st.content && st.content != "pe"
+      puts "Unknown 031 $2 value: #{st.content}"
+    end
+    st.destroy_yourself
+  end
+  
 	s.suppress_update_77x
 	s.suppress_update_count
   s.suppress_reindex

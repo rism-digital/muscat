@@ -382,7 +382,7 @@ class Marc
   def to_xml_record(updated_at, versions)
     load_source unless @loaded
     
-    safe_marc = self.class.new
+    safe_marc = self.deep_copy
     safe_marc.root = @root.deep_copy
     
     # Since we are on a copy of @root
@@ -393,7 +393,7 @@ class Marc
     offset = 0
     
     safe_marc.to_external
-    
+        
     if updated_at
       last_transcation = updated_at.strftime("%Y%m%d%H%M%S") + ".0"
       # 005 should not be there, if it is avoid duplicates
