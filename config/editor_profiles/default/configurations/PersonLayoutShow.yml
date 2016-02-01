@@ -1,35 +1,54 @@
 --- !map:Settings 
 group_order: 
 - main_person
-- administration
-groups: 
-  administration: 
+- codes
+- notes
+- places
+- variants
+groups:   
+  main_person: 
+    all_tags: 
+    - "100"
+    - "042"
+    - "039"    
+    all_tag_templates:
+      "039": marc_show/show_gender  
+
+  notes: 
+    all_tags: 
+    - "500"
+    - "599"
+    - "667"
+    - "856"
+    all_tag_templates:
+      "500": people/show_related_person
+      "374": marc_show/show_inline
+      "856": people/show_link
+  places: 
+    all_tags: 
+    - "510"
+    - "043"
+    - "670"
+    - "678"
+    - "680"
+    - "551"
+    all_tag_templates:
+      "043": marc_show/show_subfield_concat
+      #"569": people/show_indicator
+  codes: 
+    all_tags: 
+    - "035"
+    all_tag_templates:
+      "035": marc_show/show_dnb_link
+  control: 
     all_tags: 
     - "000"
     - "001"
     - "003"
     - "005"
-    - "040"
-  other: 
-    all_tags: 
-    - "509"
-    - "549"
-    - "559"
-    - "569"
-    - "678"
-    - "684"
-  main_person: 
-    all_tags: 
-    - "100"
+    - "008"
+  variants:
+    all_tags:
     - "400"
-    - "370"
-    - "375"
-    - "670"
-    - "680"
-  codes: 
-    all_tags: 
-    - "035"
-    - "039"
-    - "040"
-    - "043"
-
+    all_tag_templates:
+      "400": people/show_indicator
