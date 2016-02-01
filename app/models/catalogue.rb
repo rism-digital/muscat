@@ -77,12 +77,12 @@ class Catalogue < ActiveRecord::Base
     return if self.suppress_scaffold_marc_trigger == true
  
     new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/catalogue/default.marc"))
-    new_marc.load_source true
+    new_marc.load_source false
     
-    new_100 = MarcNode.new("catalogue", "100", "", "1#")
-    new_100.add_at(MarcNode.new("catalogue", "a", self.author, nil), 0)
+    #new_100 = MarcNode.new("catalogue", "100", "", "1#")
+    #new_100.add_at(MarcNode.new("catalogue", "a", self.author, nil), 0)
     
-    new_marc.root.children.insert(new_marc.get_insert_position("100"), new_100)
+    #new_marc.root.children.insert(new_marc.get_insert_position("100"), new_100)
     
     # save name
     node = MarcNode.new("catalogue", "210", "", "##")
@@ -112,7 +112,7 @@ class Catalogue < ActiveRecord::Base
     if self.id != nil
       new_marc.set_id self.id
     end
-    
+
     self.marc_source = new_marc.to_marc
     self.save!
   end

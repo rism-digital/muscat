@@ -49,14 +49,14 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.string   "place"
     t.string   "date"
     t.string   "pages"
+    t.integer  "wf_audit",     default: 0
+    t.integer  "wf_stage",     default: 0
     t.string   "wf_notes"
     t.integer  "wf_owner",     default: 0
     t.integer  "wf_version",   default: 0
     t.integer  "src_count",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",     default: 0
-    t.integer  "wf_stage",     default: 0
     t.text     "marc_source"
     t.integer  "lock_version", default: 0, null: false
   end
@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.integer "source_id"
   end
 
-  add_index "catalogues_sources", ["catalogue_id"], name: "catalogue_index", using: :btree
-  add_index "catalogues_sources", ["source_id"], name: "manuscript_index", using: :btree
+  add_index "catalogues_sources", ["catalogue_id"], name: "index_catalogues_sources_on_catalogue_id", using: :btree
+  add_index "catalogues_sources", ["source_id"], name: "index_catalogues_sources_on_source_id", using: :btree
 
   create_table "do_div_files", force: true do |t|
     t.integer  "do_file_id"
@@ -80,19 +80,14 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.datetime "updated_at"
   end
 
-  add_index "do_div_files", ["do_div_id"], name: "do_div_fk1", using: :btree
-  add_index "do_div_files", ["do_file_id"], name: "do_file_fk1", using: :btree
-
   create_table "do_divs", force: true do |t|
     t.integer  "do_item_id"
-    t.string   "title"
+    t.string   "title_string"
     t.integer  "subdiv_id"
     t.string   "subdiv_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "do_divs", ["do_item_id"], name: "do_item_fk1", using: :btree
 
   create_table "do_file_groups", force: true do |t|
     t.integer  "do_item_id"
@@ -101,8 +96,6 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.datetime "updated_at"
   end
 
-  add_index "do_file_groups", ["do_item_id"], name: "do_item_fg_fk1", using: :btree
-
   create_table "do_files", force: true do |t|
     t.integer  "do_file_group_id"
     t.integer  "do_image_id"
@@ -110,9 +103,6 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "do_files", ["do_file_group_id"], name: "do_file_group_fk1", using: :btree
-  add_index "do_files", ["do_image_id"], name: "do_image_fk1", using: :btree
 
   create_table "do_images", force: true do |t|
     t.string   "file_name"
@@ -127,27 +117,23 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.integer  "res_number"
     t.integer  "tile_width"
     t.integer  "tile_height"
+    t.string   "file_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "file_type",   limit: 16
   end
 
-  add_index "do_images", ["file_type"], name: "type_index", using: :btree
+  add_index "do_images", ["file_type"], name: "index_do_images_on_file_type", using: :btree
 
   create_table "do_items", force: true do |t|
-    t.string   "item_ext_id", limit: 14
+    t.string   "item_id"
     t.string   "title"
-    t.string   "wf_audit",    limit: 16, default: "unapproved"
-    t.string   "wf_stage",    limit: 16, default: "unpublished"
-    t.string   "wf_notes"
-    t.integer  "wf_owner",               default: 0
-    t.integer  "wf_version",             default: 0
+    t.string   "item_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "item_type"
   end
 
-  add_index "do_items", ["item_type"], name: "type_index", using: :btree
+  add_index "do_items", ["item_id"], name: "index_do_items_on_item_id", using: :btree
+  add_index "do_items", ["item_type"], name: "index_do_items_on_item_type", using: :btree
 
   create_table "folder_items", force: true do |t|
     t.integer  "folder_id"
@@ -172,25 +158,24 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.string   "url"
     t.string   "phone"
     t.string   "email"
-    t.text     "alternates"
-    t.text     "notes"
+    t.integer  "wf_audit",                default: 0
+    t.integer  "wf_stage",                default: 0
     t.string   "wf_notes"
     t.integer  "wf_owner",                default: 0
     t.integer  "wf_version",              default: 0
     t.integer  "src_count",               default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",                default: 0
-    t.integer  "wf_stage",                default: 0
     t.string   "place"
     t.text     "marc_source"
     t.text     "comments"
+    t.text     "alternates"
+    t.text     "notes"
     t.integer  "lock_version",            default: 0, null: false
   end
 
   add_index "institutions", ["siglum"], name: "index_institutions_on_siglum", using: :btree
   add_index "institutions", ["wf_stage"], name: "index_institutions_on_wf_stage", using: :btree
-  add_index "institutions", ["wf_stage"], name: "index_libraries_on_wf_stage", using: :btree
 
   create_table "institutions_people", id: false, force: true do |t|
     t.integer "institution_id"
@@ -206,9 +191,15 @@ ActiveRecord::Schema.define(version: 20160118112050) do
   end
 
   add_index "institutions_sources", ["institution_id"], name: "index_institutions_sources_on_institution_id", using: :btree
-  add_index "institutions_sources", ["institution_id"], name: "library_index", using: :btree
   add_index "institutions_sources", ["source_id"], name: "index_institutions_sources_on_source_id", using: :btree
-  add_index "institutions_sources", ["source_id"], name: "manuscript_index", using: :btree
+
+  create_table "institutions_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "institution_id"
+  end
+
+  add_index "institutions_users", ["institution_id"], name: "index_institutions_users_on_institution_id", using: :btree
+  add_index "institutions_users", ["user_id"], name: "index_institutions_users_on_user_id", using: :btree
 
   create_table "institutions_workgroups", id: false, force: true do |t|
     t.integer "workgroup_id"
@@ -221,17 +212,18 @@ ActiveRecord::Schema.define(version: 20160118112050) do
   create_table "liturgical_feasts", force: true do |t|
     t.string   "name",                     null: false
     t.string   "notes"
+    t.integer  "wf_audit",     default: 0
+    t.integer  "wf_stage",     default: 0
     t.string   "wf_notes"
     t.integer  "wf_owner",     default: 0
     t.integer  "wf_version",   default: 0
     t.integer  "src_count",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",     default: 0
-    t.integer  "wf_stage",     default: 0
     t.integer  "lock_version", default: 0, null: false
   end
 
+  add_index "liturgical_feasts", ["name"], name: "index_liturgical_feasts_on_name", using: :btree
   add_index "liturgical_feasts", ["wf_stage"], name: "index_liturgical_feasts_on_wf_stage", using: :btree
 
   create_table "liturgical_feasts_sources", id: false, force: true do |t|
@@ -239,8 +231,8 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.integer "source_id"
   end
 
-  add_index "liturgical_feasts_sources", ["liturgical_feast_id"], name: "liturgical_feast_index", using: :btree
-  add_index "liturgical_feasts_sources", ["source_id"], name: "manuscript_index", using: :btree
+  add_index "liturgical_feasts_sources", ["liturgical_feast_id"], name: "index_liturgical_feasts_sources_on_liturgical_feast_id", using: :btree
+  add_index "liturgical_feasts_sources", ["source_id"], name: "index_liturgical_feasts_sources_on_source_id", using: :btree
 
   create_table "people", force: true do |t|
     t.string   "full_name",       limit: 128,             null: false
@@ -253,18 +245,19 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.text     "alternate_names"
     t.text     "alternate_dates"
     t.text     "comments"
+    t.text     "marc_source"
+    t.integer  "wf_audit",                    default: 0
+    t.integer  "wf_stage",                    default: 0
     t.string   "wf_notes"
     t.integer  "wf_owner",                    default: 0
     t.integer  "wf_version",                  default: 0
     t.integer  "src_count",                   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",                    default: 0
-    t.integer  "wf_stage",                    default: 0
-    t.text     "marc_source"
     t.integer  "lock_version",                default: 0, null: false
   end
 
+  add_index "people", ["full_name"], name: "index_people_on_full_name", using: :btree
   add_index "people", ["wf_stage"], name: "index_people_on_wf_stage", using: :btree
 
   create_table "people_people", id: false, force: true do |t|
@@ -276,29 +269,30 @@ ActiveRecord::Schema.define(version: 20160118112050) do
   add_index "people_people", ["person_b_id"], name: "index_people_people_on_person_b_id", using: :btree
 
   create_table "people_sources", id: false, force: true do |t|
-    t.integer "person_id", default: 0, null: false
+    t.integer "person_id"
     t.integer "source_id"
   end
 
-  add_index "people_sources", ["person_id"], name: "person_index", using: :btree
-  add_index "people_sources", ["source_id"], name: "manuscript_index", using: :btree
+  add_index "people_sources", ["person_id"], name: "index_people_sources_on_person_id", using: :btree
+  add_index "people_sources", ["source_id"], name: "index_people_sources_on_source_id", using: :btree
 
   create_table "places", force: true do |t|
     t.string   "name",                     null: false
     t.string   "country"
     t.string   "district"
     t.string   "notes"
+    t.integer  "wf_audit",     default: 0
+    t.integer  "wf_stage",     default: 0
     t.string   "wf_notes"
     t.integer  "wf_owner",     default: 0
     t.integer  "wf_version",   default: 0
     t.integer  "src_count",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",     default: 0
-    t.integer  "wf_stage",     default: 0
     t.integer  "lock_version", default: 0, null: false
   end
 
+  add_index "places", ["name"], name: "index_places_on_name", using: :btree
   add_index "places", ["wf_stage"], name: "index_places_on_wf_stage", using: :btree
 
   create_table "places_sources", id: false, force: true do |t|
@@ -306,8 +300,8 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.integer "source_id"
   end
 
-  add_index "places_sources", ["place_id"], name: "place_index", using: :btree
-  add_index "places_sources", ["source_id"], name: "manuscript_index", using: :btree
+  add_index "places_sources", ["place_id"], name: "index_places_sources_on_place_id", using: :btree
+  add_index "places_sources", ["source_id"], name: "index_places_sources_on_source_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -330,22 +324,13 @@ ActiveRecord::Schema.define(version: 20160118112050) do
 
   add_index "searches", ["user_id"], name: "index_searches_on_user_id", using: :btree
 
-  create_table "sessions", force: true do |t|
-    t.string   "session_id", null: false
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
-
   create_table "sources", force: true do |t|
     t.integer  "source_id"
+    t.integer  "record_type",  limit: 1,   default: 0
     t.string   "std_title"
-    t.string   "std_title_d",  limit: 128
+    t.string   "std_title_d"
     t.string   "composer"
-    t.string   "composer_d",   limit: 128
+    t.string   "composer_d"
     t.string   "title",        limit: 256
     t.string   "title_d",      limit: 256
     t.string   "shelf_mark"
@@ -354,82 +339,79 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.integer  "date_to"
     t.string   "lib_siglum"
     t.text     "marc_source"
+    t.integer  "wf_audit",                 default: 0
+    t.integer  "wf_stage",                 default: 0
     t.string   "wf_notes"
     t.integer  "wf_owner",                 default: 0
     t.integer  "wf_version",               default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",                 default: 0
-    t.integer  "wf_stage",                 default: 0
-    t.integer  "record_type",  limit: 1,   default: 0
     t.integer  "lock_version",             default: 0, null: false
   end
 
-  add_index "sources", ["source_id"], name: "index_manuscripts_on_manuscript_id", using: :btree
-  add_index "sources", ["wf_stage"], name: "index_manuscripts_on_wf_stage", using: :btree
+  add_index "sources", ["record_type"], name: "index_sources_on_record_type", using: :btree
+  add_index "sources", ["source_id"], name: "index_sources_on_source_id", using: :btree
+  add_index "sources", ["wf_stage"], name: "index_sources_on_wf_stage", using: :btree
 
   create_table "sources_standard_terms", id: false, force: true do |t|
     t.integer "standard_term_id"
     t.integer "source_id"
   end
 
-  add_index "sources_standard_terms", ["source_id"], name: "manuscript_index", using: :btree
-  add_index "sources_standard_terms", ["standard_term_id"], name: "standard_term_index", using: :btree
+  add_index "sources_standard_terms", ["source_id"], name: "index_sources_standard_terms_on_source_id", using: :btree
+  add_index "sources_standard_terms", ["standard_term_id"], name: "index_sources_standard_terms_on_standard_term_id", using: :btree
 
   create_table "sources_standard_titles", id: false, force: true do |t|
     t.integer "standard_title_id"
     t.integer "source_id"
   end
 
-  add_index "sources_standard_titles", ["source_id"], name: "manuscript_index", using: :btree
-  add_index "sources_standard_titles", ["standard_title_id"], name: "standard_title_index", using: :btree
+  add_index "sources_standard_titles", ["source_id"], name: "index_sources_standard_titles_on_source_id", using: :btree
+  add_index "sources_standard_titles", ["standard_title_id"], name: "index_sources_standard_titles_on_standard_title_id", using: :btree
 
-  create_table "sources_works", force: true do |t|
+  create_table "sources_works", id: false, force: true do |t|
     t.integer "source_id"
     t.integer "work_id"
   end
 
-  add_index "sources_works", ["source_id"], name: "manuscript_index", using: :btree
-  add_index "sources_works", ["work_id"], name: "work_index", using: :btree
+  add_index "sources_works", ["source_id"], name: "index_sources_works_on_source_id", using: :btree
+  add_index "sources_works", ["work_id"], name: "index_sources_works_on_work_id", using: :btree
 
   create_table "standard_terms", force: true do |t|
     t.string   "term",                        null: false
     t.text     "alternate_terms"
     t.text     "notes"
+    t.integer  "wf_audit",        default: 0
+    t.integer  "wf_stage",        default: 0
     t.string   "wf_notes"
     t.integer  "wf_owner",        default: 0
     t.integer  "wf_version",      default: 0
     t.integer  "src_count",       default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",        default: 0
-    t.integer  "wf_stage",        default: 0
     t.integer  "lock_version",    default: 0, null: false
   end
 
+  add_index "standard_terms", ["term"], name: "index_standard_terms_on_term", using: :btree
   add_index "standard_terms", ["wf_stage"], name: "index_standard_terms_on_wf_stage", using: :btree
 
   create_table "standard_titles", force: true do |t|
     t.string   "title",                                null: false
     t.string   "title_d",      limit: 128
     t.text     "notes"
+    t.integer  "wf_audit",                 default: 0
+    t.integer  "wf_stage",                 default: 0
     t.string   "wf_notes"
     t.integer  "wf_owner",                 default: 0
     t.integer  "wf_version",               default: 0
     t.integer  "src_count",                default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",                 default: 0
-    t.integer  "wf_stage",                 default: 0
     t.integer  "lock_version",             default: 0, null: false
   end
 
+  add_index "standard_titles", ["title"], name: "index_standard_titles_on_title", using: :btree
   add_index "standard_titles", ["wf_stage"], name: "index_standard_titles_on_wf_stage", using: :btree
-
-  create_table "synchronizations", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false
@@ -506,8 +488,6 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.datetime "updated_at"
   end
 
-  add_index "work_incipits", ["work_id"], name: "work_incipits_fk1", using: :btree
-
   create_table "workgroups", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -531,6 +511,7 @@ ActiveRecord::Schema.define(version: 20160118112050) do
     t.datetime "updated_at"
   end
 
+  add_index "works", ["title"], name: "index_works_on_title", using: :btree
   add_index "works", ["wf_stage"], name: "index_works_on_wf_stage", using: :btree
 
 end
