@@ -22,48 +22,35 @@ class MarcSource < Marc
     @record_type
   end
   
-  # Get the std_title and std_title_d values
+  # Get the std_title and std_title_d values  
   def get_std_title  
     std_title = ""
     std_title_d = ""
+    standard_title = nil
+    description = nil
     
-    # try to get the title (130)
-    node = first_occurance("130", "a")
-    # get 240 if nothing or PSMD
-    if !node || RISM::BASE == "pr"
-      node = first_occurance("240", "a")
-    end
-    # get 245 if INVENTORIES
-    if RISM::BASE == "in"
-      node = first_occurance("245", "a")
-    end
-    standard_title = node.foreign_object if node 
+    # try to get the title (240)
+    node = first_occurance("240", "a")
+    standard_title = node.content if node 
    
-    # we found one
-    if standard_title
-      # specific for inventories
-      if RISM::BASE == "in"
-        std_title = pretty_truncate(standard_title.title, 50)
-        std_title_d = DictionaryOrder::normalize(std_title)
-      else
-        std_title = standard_title.title
-        std_title_d = standard_title.title_d
-      end
-    # or not
-    else
+    # try to get the description (240 m)
+    node = first_occurance("240", "m")
+    description = node.content if node
+   
+    if !standard_title
       if @record_type == RECORD_TYPES[:convolutum]
-        std_title = "[Convolutum]"  
-        std_title_d = '+'
-        ## TBD FOR HOLDINGS
-        #elsif @record_type == RECORD_TYPES[:convolutum]
-        #std_title = "[Holding]"  
-        #std_title_d = '+' 
-      else
-        std_title = "[Collection]"
-        std_title_d = '-' 
+        standard_title = "[Colvolutum]"
+      elsif @record_type == RECORD_TYPES[:collection]
+        standard_title = "[Collection]"
       end
     end
+   
+    title = standard_title || "[Without title]" ## if title is unset and it is not collection
+    desc = "#{description}" || ""
     
+    std_title = "#{standard_title}" + (!desc.empty? ? "; " : "") + "#{desc}" 
+    std_title_d = DictionaryOrder::normalize(std_title)
+
     [std_title, std_title_d]
   end
   
@@ -118,6 +105,7 @@ class MarcSource < Marc
       return node.content
     end
   end
+
   
   # For bibliographic records, set the ms_title and ms_title_d field fromMARC 245 or 246
   def get_source_title
@@ -142,7 +130,7 @@ class MarcSource < Marc
    
     return [ms_title.truncate(255), ms_title_d.truncate(255)]
   end
-  
+
   # For holding records, set the condition and the urls (aliases)
   def get_ms_condition_and_urls
     ms_condition = "" 

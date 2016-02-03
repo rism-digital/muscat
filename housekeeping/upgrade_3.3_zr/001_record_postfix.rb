@@ -4,6 +4,8 @@ require 'progress_bar'
 orphans = Source.find_by_sql("select s2.id from sources as s right join sources as s2 on s.id = s2.source_id where s.id is null and s2.source_id is not null;")
 orphans.each {|o| o.delete}
 
+ActiveRecord::Base.connection.execute("UPDATE sources SET record_type = 2 WHERE record_type = 8 OR record_type = 6")
+
 pb = ProgressBar.new(Source.all.count)
 
 Source.all.each do |sa|
