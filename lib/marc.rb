@@ -90,7 +90,7 @@ class Marc
     end
     
     # control fields
-    if @marc_configuration.is_tagless? tag
+    if @marc_configuration.is_tagless?(tag)
       if data =~ /^[\s]*(.+)$/
         content = $1
         tag_group = @root << MarcNode.new(@model, tag, content, nil)

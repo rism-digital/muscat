@@ -12,16 +12,16 @@ class MarcConfig
 
   private
 
-  def load_config( tag_config_file_path  )
+  def load_config(tag_config_file_path, overlay_path = "")
 
     @whole_config = Settings.new( YAML::load(File.open(tag_config_file_path)) )
 
     config_file = File.basename(tag_config_file_path)
-    overlay_file = File.join(Rails.root, 'config', 'marc', RISM::MARC, 'local_' + config_file)
+    overlay_file = overlay_path #File.join(Rails.root, 'config', 'marc', RISM::MARC, 'local_' + config_file)
     if File.exists?(overlay_file)
       @whole_config.squeeze(Settings.new(YAML::load(File.open(overlay_file))))
     end
-
+    
     @tag_config = @whole_config[:tags]
     # @indexed_tags = Array.new
     @foreign_tags = Array.new
@@ -58,6 +58,10 @@ class MarcConfig
   end
 
   public
+
+  def add_overlay(tag_config_file_path, overlay_path)
+    @model = load_config tag_config_file_path, overlay_path
+  end
 
   def get_model
     @model
@@ -240,8 +244,8 @@ class MarcConfig
   def squeeze(other)
     other.each do |k, v|
       if v.is_a?(Hash) and @whole_config[k]
-        dive(v, @whole_config[k])
-      else
+          dive(v, @whole_config[k])
+        else
         update({ k => v })
       end
     end
