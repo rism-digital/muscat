@@ -1,7 +1,6 @@
 @import 'bootstrap-sprockets';
 
-$rismColor: #8C1515;
-$darkRismColor: darken($rismColor, 10%);
+@import 'muscat-custom';
 
 $gray100: #000000;
 $gray95: #0E0D0B;
@@ -49,7 +48,7 @@ $gray5: #F3F3F3;
 $gray0: #FFFFFF;
 */
 
-$brand-primary: $rismColor;
+$brand-primary: $rismBLColor;
 $navbar-inverse-bg: $gray90;
 $navbar-inverse-border: $gray100;
 $navbar-default-border: $gray15;
@@ -62,6 +61,6 @@ $navbar-default-link-active-bg: $gray10;
 $brandbar-height: 50px;
 $footer-height: 40px;
 
-$link-color: $rismColor;
+$link-color: lighten($rismBLColor, 5%);;
 
 @import 'bootstrap/variables';

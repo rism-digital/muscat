@@ -82,7 +82,7 @@ class Institution < ActiveRecord::Base
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
   
-    new_marc = MarcInstitution.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/institution/default.marc"))
+    new_marc = MarcInstitution.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/institution/default.marc"))
     new_marc.load_source true
     
     new_100 = MarcNode.new("institution", "110", "", "1#")

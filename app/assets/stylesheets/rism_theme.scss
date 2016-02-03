@@ -20,8 +20,8 @@ svg:not(:root){
 
 #header-navbar {
     &.navbar-inverse {
-        background-color: $rismColor;
-        border-color: $darkRismColor;
+        background-color: $rismBLColor;
+        border-color: $darkRismBLColor;
         .navbar-nav > li > a {
             color: #ddd;
             padding-top: 15px;
@@ -30,7 +30,7 @@ svg:not(:root){
         .navbar-nav > .open > a,
         .navbar-inverse .navbar-nav > .open > a:hover,
         .navbar-inverse .navbar-nav > .open > a:focus {
-            background-color: $rismColor;
+            background-color: $rismBLColor;
         }
 
     }
@@ -134,9 +134,9 @@ a {
 }
 
 .sidenav a, p a, .content-block p > a, ol li > a {
-    color: $rismColor;
+    color: $rismBLColor;
     &:active, &:hover {
-        color: $rismColor;
+        color: $rismBLColor;
         text-decoration: dotted;
     }
 
@@ -232,10 +232,10 @@ h5.panel-title > a {
 }
 
 .dropdown-menu > li > a, .dropdown-menu > li > a {
-    color: $rismColor;
+    color: $rismBLColor;
     &:hover, &:focus {
         background-color: $gray10;
-        color: $rismColor;
+        color: $rismBLColor;
     }
 
 }

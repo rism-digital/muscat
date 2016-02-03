@@ -82,7 +82,7 @@ ActiveAdmin.register Catalogue do
     def new
       @catalogue = Catalogue.new
       
-      new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/catalogue/default.marc"))
+      new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc"))
       new_marc.load_source false # this will need to be fixed
       @catalogue.marc = new_marc
 

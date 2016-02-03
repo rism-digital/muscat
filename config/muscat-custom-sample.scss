@@ -13,3 +13,7 @@ $link-color: $primary-color !default;
 
 // Reset it to the active admin default color
 $section-header-text-color: #5E6469 !default;
+
+// BlackLight colors
+$rismBLColor: #08447d;
+$darkRismBLColor: darken($rismBLColor, 10%);
