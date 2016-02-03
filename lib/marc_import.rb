@@ -14,6 +14,9 @@ class MarcImport
     @import_results = Array.new
     @cnt = 0
     @start_time = Time.now
+    
+    MarcConfigCache.get_configuration model.downcase
+    MarcConfigCache.add_overlay(model, "#{Rails.root}/housekeeping/import/import_tags_source.yml")
   end
 
   #Helper method to parse huge files with nokogiri
@@ -47,6 +50,7 @@ class MarcImport
       marc = Object.const_get("Marc" + @model).new(buffer)
       # load the text source but without resolving externals
       marc.load_source(false)
+      
       if marc.is_valid?(false)
        
         # step 1.  update or create a new object
@@ -64,14 +68,13 @@ class MarcImport
         else
           status = "updated"
         end
-        #p model
-          
-        # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
-        marc.import
         
         # Make internal format
         marc.to_internal
-        
+
+        # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
+        marc.import
+
         # step 3. associate Marc with Manuscript
         model.marc = marc
         @import_results.concat( marc.results )
