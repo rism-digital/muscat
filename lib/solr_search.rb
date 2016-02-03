@@ -69,10 +69,10 @@ module Muscat
             
             fields.each do |f|
               if f[:fields].empty?
-                without(:record_type, 2) if model=="Source"
+                #without(:record_type, 2) if model=="Source"
                 fulltext f[:value]
               else
-                without(:record_type, 2) if model=="Source"
+                #without(:record_type, 2) if model=="Source"
                 fulltext f[:value], :fields => f[:fields]
               end
             end

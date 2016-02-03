@@ -5,6 +5,8 @@ orphans = Source.find_by_sql("select s2.id from sources as s right join sources 
 orphans.each {|o| o.delete}
 
 ActiveRecord::Base.connection.execute("UPDATE sources SET record_type = 2 WHERE record_type = 8 OR record_type = 6")
+ActiveRecord::Base.connection.execute("DELETE FROM sources WHERE id = 225000014")
+
 
 pb = ProgressBar.new(Source.all.count)
 

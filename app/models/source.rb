@@ -279,21 +279,14 @@ class Source < ActiveRecord::Base
     if self.composer == "" && self.record_type != MarcSource::RECORD_TYPES[:collection]
       self.composer, self.composer_d = "Anonymous", "anonymous"
     end
-    
-    # siglum and ms_no
-    # in A/1 we do not have 852 in the bibliographic data
-    # instead we store in ms_no the Book RISM ID (old rism id)
-    if RISM::BASE == "a1" and record_type == MarcSource::RECORD_TYPES[:print]
-      self.book_id = marc.get_book_rism_id
-    else
-      self.lib_siglum, self.shelf_mark = marc.get_siglum_and_shelf_mark
-    end
+
+    self.lib_siglum, self.shelf_mark = marc.get_siglum_and_shelf_mark
     
     # ms_title for bibliographic records
-    self.title, self.title_d = marc.get_source_title if self.record_type != 2
+    self.title, self.title_d = marc.get_source_title
     
     # physical_condition and urls for holding records
-    self.ms_condition, self.urls, self.image_urls = marc.get_ms_condition_and_urls if self.record_type == 2
+    self.ms_condition, self.urls, self.image_urls = marc.get_ms_condition_and_urls
     
     # miscallaneous
     self.language, self.date_from, self.date_to = marc.get_miscellaneous_values

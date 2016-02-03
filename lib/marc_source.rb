@@ -114,18 +114,7 @@ class MarcSource < Marc
     if node = first_occurance(ms_title_field, "a")
       ms_title = node.content
     end
-    
-    # Special quirk for a-1
-    # Reprints not always have 245 set, so we copied the 245 from the parent
-    # into the 246. Since only reprints have 246, we can safely copy it from
-    # there so it shows the [previous entry:] tag.
-    # Quirky because it will re-read the marc data
-    if RISM::BASE == "a1"
-      if node = first_occurance("246", "a")
-        ms_title = node.content
-      end
-    end
-    
+
     ms_title_d = DictionaryOrder::normalize(ms_title)
    
     return [ms_title.truncate(255), ms_title_d.truncate(255)]
@@ -159,59 +148,30 @@ class MarcSource < Marc
   
   # Set miscallaneous values
   def get_miscellaneous_values
-    
-    # In a1 is only in 033
-    if RISM::BASE == "a1"
-      language = "Unknown"
-      date_from = nil
-      date_to = nil
 
-      # Try to extract all the text from 260
-      if node = first_occurance("260")
-        tag = node.fetch_first_by_tag(:c)
-        if tag && tag.content
-          toks = tag.content.split(/(\d+)/)
-          first = true
-          toks.each do |tk|
-            next if tk.to_i == 0
-            
-            if first          
-              date_from = tk.to_i
-              first = false
-            else
-              date_to = tk.to_i
-            end
-            
-          end
-        end
-      end
-      return [language, date_from, date_to]
-      
-    else
-      language = "Unknown"
-      date_from = nil
-      date_to = nil
+    language = "Unknown"
+    date_from = nil
+    date_to = nil
 
-      if node = first_occurance("008")
-        unless node.content.empty?
-          language = LANGUAGES[marc_helper_get_008_language(node.content)] || "Unknown"
-        end
+    if node = first_occurance("008")
+      unless node.content.empty?
+        language = LANGUAGES[marc_helper_get_008_language(node.content)] || "Unknown"
       end
-      
-      if node = first_occurance("033", "a")
-        if node && node.content
-          date_from = marc_get_range(node.content, 0, 4) || nil
-          date_to = marc_get_range(node.content, 4, 4) || nil
-        end
-      end
-
-      # Force it to nil if 0, this used to work in the past
-      date_from = nil if date_from.to_i == 0
-      date_to = nil if date_to.to_i == 0
-      
-      return [language.truncate(16), date_from, date_to]
     end
     
+    if node = first_occurance("033", "a")
+      if node && node.content
+        date_from = marc_get_range(node.content, 0, 4) || nil
+        date_to = marc_get_range(node.content, 4, 4) || nil
+      end
+    end
+
+    # Force it to nil if 0, this used to work in the past
+    date_from = nil if date_from.to_i == 0
+    date_to = nil if date_to.to_i == 0
+    
+    return [language.truncate(16), date_from, date_to]
+
   end
   
   def match_leader
@@ -302,9 +262,13 @@ class MarcSource < Marc
       type = "cc"
       
       each_by_tag("772") do |t|
-        source = Source.find(t.fetch_first_by_tag("w").content)
-        type = "dc" if source.record_type != RECORD_TYPES[:print]
-        puts source.record_type
+        w = t.fetch_first_by_tag("w")
+        if w && w.content
+          source = Source.find(w.content)
+          type = "dc" if source.record_type != RECORD_TYPES[:print]
+        else
+          raise "Empty $w in 772"
+        end
       end
       
       leader = base_leader.gsub("XX", type)
