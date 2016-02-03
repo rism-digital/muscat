@@ -81,7 +81,7 @@ ActiveAdmin.register Person do
     def new
       @person = Person.new
       
-      new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/person/default.marc"))
+      new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
       new_marc.load_source false # this will need to be fixed
       @person.marc = new_marc
 
