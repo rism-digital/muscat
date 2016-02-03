@@ -195,6 +195,7 @@ class MarcNode
           # we try the lookup using non-masters so hopefully we can match the field to the one already there
           # and avoid the duplication crash
           self.foreign_object.suppress_reindex if reindex == false
+          self.foreign_object.suppress_scaffold_marc if self.foreign_object.respond_to?(:suppress_scaffold_marc)
           begin
             # If this is a marc auth file suppress scaffolding
             # Removed for now, it seems it does not degrade performance too much

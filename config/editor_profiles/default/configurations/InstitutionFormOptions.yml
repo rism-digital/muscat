@@ -30,18 +30,56 @@
   layout: 
     fields: 
     - - c
+      - cols: 2
+    columns: 4
 "110": 
   layout: 
     fields: 
     - - a
+      - cols: 2
+    - - c
+      - cols: 2
     - - g
+      - cols: 2
+    columns: 4
 "410": 
   layout: 
     fields: 
     - - a
+      - cols: 4
+    columns: 4
+"580": 
+  layout: 
+    fields: 
+    - - "x"
+      - type: institution
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
+
 "622": 
   layout: 
     fields: 
     - - e
+      - cols: 2
     - - u
+      - cols: 2
+    columns: 4
+"670": 
+  layout: 
+    fields: 
+    - - "a"
+      - type: catalogue
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
+"710": 
+  layout: 
+    fields: 
+    - - "a"
+      - type: institution
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
+
 

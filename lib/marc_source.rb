@@ -292,7 +292,7 @@ class MarcSource < Marc
       if st && st.content && st.content != "pe"
         puts "Unknown 031 $2 value: #{st.content}"
       end
-      st.destroy_yourself
+      st.destroy_yourself if st
     end
     
     if rt
