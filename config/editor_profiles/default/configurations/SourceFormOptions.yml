@@ -11,9 +11,6 @@
 "031": 
   layout: 
     fields:
-    - - "2"
-      - default: "pe"
-        hidden: true
     - - u
       - hidden: true
     - - a

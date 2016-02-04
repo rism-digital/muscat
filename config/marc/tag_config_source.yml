@@ -112,9 +112,6 @@
     - - u
       - :occurrences: "?"
         :no_browse: true
-    - - "2"
-      - :occurrences: "?"
-        :no_browse: true
   "033":
     :master: a
     :indicator: ["0#", "1#", "2#"]
