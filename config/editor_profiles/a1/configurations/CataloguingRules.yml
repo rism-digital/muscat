@@ -1,4 +1,0 @@
---- !map:Settings 
-cataloguer: 
-  published_state_after_save: unpublished
-  published_state_after_create: unpublished

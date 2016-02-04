@@ -1,4 +1,0 @@
---- !map:Settings 
-application: 
-  leader: !ruby/regexp /.....ncm.............../
-
