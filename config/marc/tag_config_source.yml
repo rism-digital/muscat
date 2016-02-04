@@ -455,28 +455,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-  "600":
-    :master: "0"
-    :indicator: "14"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Person
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: full_name
-        :no_browse: true
-    - - d
-      - :occurrences: "?"
-        :browse_inline: true
-        :foreign_class: ^0
-        :foreign_field: life_dates
-        :foreign_alternates: alternate_dates
-        :no_browse: true
   "650":
     :master: "0"
     :indicator: "07"

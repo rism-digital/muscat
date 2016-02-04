@@ -346,17 +346,6 @@
     - - l
     - - m
     - - n
-"600":
-  new_window: people
-  allow_new: true
-  layout: 
-    fields: 
-    - - a
-      - type: person
-        editor_partial: subfield_secondary
-  layout_new: 
-    fields: 
-    - - a
 "650":
   allow_new: true
   new_window: standard_terms

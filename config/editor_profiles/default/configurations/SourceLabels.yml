@@ -1037,21 +1037,6 @@ doc_edit_workflow:
         en: Local notes field
       edit_label: 
         en: ""
-"600": 
-  label: 
-    it: Accesso aggiunto di soggetto - nome di persona
-    fr: "Vedette matière - nom de personne"
-    de: Schlagworteintragung - Personenname
-    en: Subject added entry - personal name
-  fields: 
-    a: 
-      label: 
-        it: Nome di persona
-        fr: Nom de personne
-        de: Personenname
-        en: Personal name
-      edit_label: 
-        en: ""
 "650": 
   label: 
     it: Parola chiave
