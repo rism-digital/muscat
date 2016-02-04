@@ -132,6 +132,7 @@ ActiveAdmin.setup do |config|
   #
   # Default:
   # config.root_to = 'dashboard#index'
+  config.root_to = 'sources#index'
 
 
   # == Admin Comments
@@ -250,6 +251,7 @@ ActiveAdmin.setup do |config|
       end
       # Add the menu by hand because otherwise it is not getting translated
       menu.add :label => proc {I18n.t(:menu_comments)}, id: 'comments_menu', :priority => 4, :url => "/admin/comments"
+      menu.add :label => proc {I18n.t(:menu_catalog)}, id: 'catalog_menu', :priority => 8, :url => "/catalog"
       menu.add :label => proc {I18n.t(:menu_indexes)}, id: 'indexes_menu', :priority => 20
     end
     

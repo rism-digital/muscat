@@ -207,12 +207,14 @@ de:
   menu_workgroups: "Benutzergruppen"
   menu_administration: "Administration"
   menu_comments: "Kommentare"
+  menu_catalog: "Facettensuche"
   menu_languages: "Sprache"
   menu_contact: "Kontakt"
   menu_search_history: "Suchverlauf"
   menu_guidelines: "Katalogisierungsrichtlinien"
   menu_marc_documentation: "Marc Einstellungen"
   menu_guidelines_top: "Richtlinien"
+  menu_cataloging: "Katalogisierung"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Letzte Änderungen"

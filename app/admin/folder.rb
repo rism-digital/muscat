@@ -1,6 +1,6 @@
 ActiveAdmin.register Folder do
   
-  menu :label => proc {I18n.t(:menu_folders)}
+  menu :priority => 7, :label => proc {I18n.t(:menu_folders)}
 
   # Remove mass-delete action
   batch_action :destroy, false
