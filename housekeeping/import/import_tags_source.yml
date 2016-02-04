@@ -1,0 +1,40 @@
+
+:version:
+  :name: tag_config
+  :current: 3.3
+  :authors: ["Rodolfo Zitellini"]
+
+:model: source
+:tags:
+  "000":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "130":
+    :master: "0"
+    :indicator: "#1"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+    - - k
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "*"
+    - - n
+      - :occurrences: "*"
+    - - o
+      - :occurrences: "?"
+    - - r
+      - :occurrences: "?"
+

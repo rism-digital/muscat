@@ -88,6 +88,19 @@ Source.all.each do |sa|
     t.sort_alphabetically
   end
   
+  # map 595 -> 653
+  each_by_tag("595") do |t|
+
+    node = t.deep_copy
+    node.tag = "653"
+    node.indicator = "##"
+    node.sort_alphabetically
+    root.children.insert(get_insert_position("653"), node)
+    
+    t.destroy_yourself
+    
+  end
+  
 	s.suppress_update_77x
 	s.suppress_update_count
   s.suppress_reindex

@@ -185,7 +185,7 @@ class MarcSource < Marc
       return nil
     end
     
-    if leader.match(/......[dc]c.............../)
+    if leader.match(/......[dcp]c.............../)
       rt = RECORD_TYPES[:collection]
     elsif leader.match(/......d[dm].............../)
       rt = RECORD_TYPES[:manuscript]
