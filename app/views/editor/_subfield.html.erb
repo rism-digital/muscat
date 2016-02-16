@@ -10,15 +10,20 @@
 	content = marc_subfield.content
 	content = params["default"] if params.include?("default") && !content
 	
+	validate_class = ""
+	if @editor_validation
+		validate_class = @editor_validation.get_subtag_class_name(tag_name, subfield)
+	end
+	
 %>
 
 <%- if (params['growfield'])  %>
-	<textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>"><%= h content %></textarea>
+	<textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>"><%= h content %></textarea>
 <%- else %>
 	<% if read_only %>
 			<input class="subfield_entry"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h content %>"/>
 			<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
 	<% else %>
-		<input class="subfield_entry serialize_marc marc_editor_hotkey" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
+		<input class="subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%>" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
 	<% end %>
 <%- end %>

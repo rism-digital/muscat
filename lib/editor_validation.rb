@@ -33,6 +33,10 @@ class EditorValidation
     return @validation_config[tag]
   end
   
+  def get_subtag_class_name(tag, subtag)
+    return "validate_#{tag}_#{subtag}"
+  end
+  
   def rules
     return @validation_config
   end

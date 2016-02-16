@@ -51,14 +51,6 @@ function marc_editor_init_tags( id ) {
 	});
 }
 
-function marc_editor_init_validation(form) {
-	//form.validate();
-	
-    $.validator.addClassRules("rodmarc", { required: true });
-	
-}
-
-
 ////////////////////////////////////////////////////////////////////
 // Pseudo-private functions called from within the marc editor
 ////////////////////////////////////////////////////////////////////
@@ -79,7 +71,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	$('#sections_sidebar_section').block({ message: "Saving..." });
 	
 	form.validate();
-	alert( "Valid: " + form.valid() );
+	//alert( "Valid: " + form.valid() );
 	
 	if (!form.valid()) {
 		$('#main_content').unblock();
