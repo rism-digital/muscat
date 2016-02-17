@@ -29,12 +29,21 @@ class EditorValidation
     @validation_config = squeeze(conf[:validation])
   end
 
+  def validate_subtag?(tag, subtag)
+    if @validation_config[tag]
+      return true if @validation_config[tag]["tags"][subtag]
+    end
+      return false
+  end
+
   def get_rules_for_tag(tag)
     return @validation_config[tag]
   end
   
   def get_subtag_class_name(tag, subtag)
-    return "validate_#{tag}_#{subtag}"
+    class_name = "validate_#{tag}_#{subtag}"
+    unique_name = class_name + "_uniq_" + SecureRandom.hex(5)
+    return class_name, unique_name
   end
   
   def rules

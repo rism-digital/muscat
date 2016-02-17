@@ -80,6 +80,25 @@ used for _tag_header partial
 		new_dt = placeholder.clone();
 		new_dt.toggleClass('tag_placeholders tag_toplevel_container');
 		new_dt.insertAfter(current_dt);
+		
+		// This is a little tweak for validation
+		// The validation plugin wants each element with an unique name
+		// it does not use it for *nything*, just to make the life of
+		// us user more miserable
+		// Since we do not even use the "name" property of elements,
+		// we can just put into it some random junk and be happy
+		$("[name]", new_dt).each(function() {
+			var n = $(this).prop("name");
+			if (n == "")
+				return;
+			
+			// Let's waste CPU time
+			suffix = Math.random().toString(36).substring(4);
+			
+			$(this).prop("name", n + suffix);
+			console.log($(this).prop("name"));
+		});
+		
 		new_dt.fadeIn('fast');
 	}
     
