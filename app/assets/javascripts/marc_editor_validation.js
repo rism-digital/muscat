@@ -84,9 +84,51 @@ function marc_editor_validate_className(tag, subtag) {
 function marc_editor_init_validation(form, validation_conf) {
 	
 	$(form).validate({
-		//onfocusout: false,
-		//onkeyup: false,
-		//onclick: false,
+		// disable automagic callbacks for now
+		onfocusout: false,
+		onkeyup: false,
+		onclick: false,
+		ignore: false,
+		highlight: function( element, errorClass, validClass ) {
+			if ( element.type === "radio" ) {
+				this.findByName( element.name ).addClass( errorClass ).removeClass( validClass );
+			} else if ( element.type === "hidden" ) {
+				// Alert! an autocomplete?
+				
+				// havigate up to the <li> and down to the autocomplete elem
+				toplevel_li = $(element).parents("li");
+				ac = $("input[data-autocomplete]", toplevel_li);
+				
+				if (ac) {
+					ac.addClass( errorClass ).removeClass( validClass );
+				} else {
+					console.log("Tried to higlight a hidden object with no autocomplete.")
+				}
+				
+			} else {
+				$( element ).addClass( errorClass ).removeClass( validClass );
+			}
+		},
+		unhighlight: function( element, errorClass, validClass ) {
+			if ( element.type === "radio" ) {
+				this.findByName( element.name ).removeClass( errorClass ).addClass( validClass );
+			} else if ( element.type === "hidden" ) {
+				// Alert! an autocomplete?
+				
+				// havigate up to the <li> and down to the autocomplete elem
+				toplevel_li = $(element).parents("li");
+				ac = $("input[data-autocomplete]", toplevel_li);
+				
+				if (ac) {
+					ac.removeClass( errorClass ).addClass( validClass );
+				} else {
+					console.log("Tried to un-higlight a hidden object with no autocomplete.")
+				}
+				
+			} else {
+				$( element ).removeClass( errorClass ).addClass( validClass );
+			}
+		}
 	});
 	
 	// Add validator methods

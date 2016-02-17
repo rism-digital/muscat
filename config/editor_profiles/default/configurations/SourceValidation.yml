@@ -21,3 +21,6 @@
     a:
       retuired_if:
         "031": "t"
+"100": 
+  tags:
+    "0": required
