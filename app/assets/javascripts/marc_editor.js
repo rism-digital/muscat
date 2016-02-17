@@ -1,6 +1,7 @@
 ////////////////////////////////////////////////////////////////////
 // Init the tags called from the edit_wide.rhtml partial
 ////////////////////////////////////////////////////////////////////
+marc_editor_form_changed = false;
 
 function marc_editor_init_tags( id ) {
 	
@@ -11,6 +12,15 @@ function marc_editor_init_tags( id ) {
 	window.onunload = marc_editor_cleanp;
 	
 	$(".sortable").sortable();
+
+
+	marc_editor_form_changed = false;
+	$(id).dirtyFields({
+		trimText:true,
+		fieldChangeCallback: function(originalValue, isDirty) {
+			marc_editor_form_changed = true;
+		}
+	});	
 
 	/* Bind to the global railsAutocomplete. event, thrown when someone selects
 	   from an autocomplete field. It is a delegated method so dynamically added
