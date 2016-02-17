@@ -71,15 +71,12 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	redirect = redirect || false;
 	form = $('form', "#" + form_name);
 	
-	//form.validate();
-	//alert( "Valid: " + form.valid() );
-	
+	// .valid() triggers form validation
 	if (!form.valid()) {
 		$('#main_content').unblock();
 		$('#sections_sidebar_section').unblock();
 		return;
 	}
-	return;
 	
 	json_marc = serialize_marc_editor_form(form);
 

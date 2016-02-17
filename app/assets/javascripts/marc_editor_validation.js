@@ -29,15 +29,25 @@ function marc_validate_presence(value, element) {
 }
 
 function marc_validate_retuired_if(value, element, param) {
-	var dep_tag = param["tag"];
-	var dep_subtag = param["subtag"];
+	var dep_tag = param[0];
+	var dep_subtag = param[1];
 	var valid = true;
+	var tag = $(element).data("tag");
+	var toplevel;
 	
 	// We need at least an occurance of def_tag
 	// tag with a valid value. This means we
 	// try to get it from the editor and see
 	
-	var toplevel = $("#marc_editor_panel");
+	// There is a catch: if it is the same tag
+	// as us, search inside this tag, else
+	// find the first one in the whole tree
+	if (tag == dep_tag) {
+		toplevel = $(element).parents(".tag_toplevel_container");
+	} else {
+		toplevel = $("#marc_editor_panel");
+	}
+	
 	$('.serialize_marc[data-tag=' + dep_tag + '][data-subfield=' + dep_subtag + ']', toplevel).each(function() {
 		if ($(this).val() != "") {
 			// The value of the other field is set
@@ -58,7 +68,7 @@ function marc_editor_validate_advanced_rule(element_class, rules) {
 			var rule_contents = rules[rule_name];
 			
 			for (var tag in rule_contents) {
-				$.validator.addClassRules(element_class, { retuired_if: {tag: tag, subtag: rule_contents[tag]} });
+				$.validator.addClassRules(element_class, { retuired_if: [ tag, rule_contents[tag]] });
 			}
 			
 		} else {
@@ -74,15 +84,15 @@ function marc_editor_validate_className(tag, subtag) {
 function marc_editor_init_validation(form, validation_conf) {
 	
 	$(form).validate({
-		onfocusout: false,
-		onkeyup: false,
-		onclick: false,
+		//onfocusout: false,
+		//onkeyup: false,
+		//onclick: false,
 	});
 	
 	// Add validator methods
 	$.validator.addMethod("presence", marc_validate_presence, "Missing Mandatory Field");
 	$.validator.addMethod("retuired_if", marc_validate_retuired_if, 
-			$.validator.format("Missing Mandatory Field, because of {0}"));
+			$.validator.format("Missing Mandatory Field, because field {0} ${1} is present"));
 
 	for (var key in validation_conf) {
 		

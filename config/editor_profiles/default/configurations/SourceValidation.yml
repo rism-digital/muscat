@@ -5,19 +5,19 @@
     b: required
     c: required
     e:
-      depends:
+      retuired_if:
         "031": "m"
     n:
-      depends:
+      retuired_if:
         "031": "p"
     o:
-      depends:
+      retuired_if:
         "031": "p"
     r:
-      depends:
+      retuired_if:
         "031": "p"
 "041": 
   tags:
     a:
-      depends:
+      retuired_if:
         "031": "t"
