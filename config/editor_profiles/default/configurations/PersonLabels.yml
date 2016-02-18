@@ -68,19 +68,6 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: AUTHORITY REFERENCE
         de: Normdatenverweise
         en: Authority Reference
-"039": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Gender
-    fr: Gender
-    de: Geschlecht
-    en: Gender
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Gender
-        fr: Gender
-        de: Geschlecht 
-        en: Gender
 "040": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Fonte della catalogazione
@@ -413,19 +400,19 @@ administration: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Administration
     de: Administration
     en: Administration
-m: !map:ActiveSupport::HashWithIndifferentAccess 
+male: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: male
     fr: male
     de: männlich
     en: male
-w: !map:ActiveSupport::HashWithIndifferentAccess 
+female: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: female
     fr: female
     de: weiblich
     en: female
-"?": !map:ActiveSupport::HashWithIndifferentAccess 
+unknown: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: unknown
     fr: unknown

@@ -9,7 +9,6 @@ fields:
     "001":
     "008":
     "035a":
-    "039a":
     "040a":
     "040b":
     "040c":
@@ -29,6 +28,7 @@ fields:
       :from_subtag: "d"
       :index_helper: :marc_helper_get_deathdate
     "374a":
+    "375a":
     "400a":
     "400d": 
     "5099":

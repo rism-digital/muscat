@@ -26,18 +26,6 @@
       definitions: "['~']='[|0-9]'"
       mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
-"039": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 2 
-        editor_partial: subfield_gender_codes_039
-    columns: 2
-  tag_params:
-    codes:
-      - m
-      - w
-      - "?"
 "040": 
   layout: 
     fields: 
@@ -86,6 +74,18 @@
     - - a
       - cols: 2
     columns: 2
+"375": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2 
+        editor_partial: subfield_gender_codes_375
+    columns: 2
+  tag_params:
+    codes:
+      - male
+      - female
+      - "unknown"
 "400": 
   layout: 
     fields: 

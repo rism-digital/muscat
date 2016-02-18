@@ -10,10 +10,10 @@ groups:
     all_tags: 
     - "100"
     - "042"
-    - "039"   
+    - "375"   
     - "374" 
     all_tag_templates:
-      "039": marc_show/show_gender  
+      "375": marc_show/show_gender  
       "374": marc_show/show_inline
 
   notes: 
