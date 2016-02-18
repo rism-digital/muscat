@@ -28,7 +28,7 @@ function marc_validate_presence(value, element) {
 	return true;
 }
 
-function marc_validate_retuired_if(value, element, param) {
+function marc_validate_required_if(value, element, param) {
 	var dep_tag = param[0];
 	var dep_subtag = param[1];
 	var valid = true;
@@ -62,13 +62,13 @@ function marc_validate_retuired_if(value, element, param) {
 
 function marc_editor_validate_advanced_rule(element_class, rules) {
 	for (var rule_name in rules) {
-		if (rule_name == "retuired_if") {
+		if (rule_name == "required_if") {
 			// the dependent rule contains a hash
 			// with the tag and subtag
 			var rule_contents = rules[rule_name];
 			
 			for (var tag in rule_contents) {
-				$.validator.addClassRules(element_class, { retuired_if: [ tag, rule_contents[tag]] });
+				$.validator.addClassRules(element_class, { required_if: [ tag, rule_contents[tag]] });
 			}
 			
 		} else {
@@ -133,7 +133,7 @@ function marc_editor_init_validation(form, validation_conf) {
 	
 	// Add validator methods
 	$.validator.addMethod("presence", marc_validate_presence, "Missing Mandatory Field");
-	$.validator.addMethod("retuired_if", marc_validate_retuired_if, 
+	$.validator.addMethod("required_if", marc_validate_required_if, 
 			$.validator.format("Missing Mandatory Field, because field {0} ${1} is present"));
 
 	for (var key in validation_conf) {

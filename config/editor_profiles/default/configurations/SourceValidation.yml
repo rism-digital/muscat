@@ -5,21 +5,21 @@
     b: required
     c: required
     e:
-      retuired_if:
+      required_if:
         "031": "m"
     n:
-      retuired_if:
+      required_if:
         "031": "p"
     o:
-      retuired_if:
+      required_if:
         "031": "p"
     r:
-      retuired_if:
+      required_if:
         "031": "p"
 "041": 
   tags:
     a:
-      retuired_if:
+      required_if:
         "031": "t"
 "100": 
   tags:
