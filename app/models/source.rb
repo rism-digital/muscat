@@ -50,6 +50,7 @@ class Source < ActiveRecord::Base
   
   belongs_to :source
   has_many :sources
+  has_many :digital_objects
   has_and_belongs_to_many :institutions
   has_and_belongs_to_many :people
   has_and_belongs_to_many :standard_titles
@@ -229,6 +230,10 @@ class Source < ActiveRecord::Base
     
   def check_dependencies
     if (self.sources.count > 0)
+      errors.add :base, "The source could not be deleted because it is used"
+      return false
+    end
+    if (self.digital_objects.count > 0)
       errors.add :base, "The source could not be deleted because it is used"
       return false
     end
