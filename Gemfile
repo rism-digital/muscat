@@ -85,6 +85,9 @@ gem "blacklight_range_limit"
 gem 'devise'
 gem 'devise-i18n'
 
+# paperclip for image storage
+gem "paperclip", "~> 4.3"
+
 # https://github.com/zdennis/activerecord-import/wiki
 # For bulk import SQL data
 gem 'activerecord-import', ">= 0.4.0"
