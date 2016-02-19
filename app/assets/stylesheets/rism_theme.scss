@@ -282,6 +282,12 @@ h5.index_title {
      min-width: 320px;
 }
 
+.ekko-lightbox-nav-overlay {
+    a {
+        text-decoration: none;
+    }
+}
+
 #document {
     .panel {
         background-color: transparent;
