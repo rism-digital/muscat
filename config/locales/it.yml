@@ -139,11 +139,14 @@ it:
     formats:
       default: "%H:%M"
       short: "%H:%M"
-      long: "%H:%M"
+      long: "%Y-%m-%d %H:%M"
       
   #################### MODELS      
   activerecord:
     models:
+      digital_object:
+        one: "DIGITAL OBJECT"
+        other: "DIGITAL OBJECTS"
       catalogue:
         one: "Catalogo"
         other: "Cataloghi"
@@ -257,7 +260,12 @@ it:
   folders:
     save: "Salva i risultati in una cartella"
     success: "Cartella %{name} creata con %{count} oggetti."
-    too_many: "Impossibile aggiungere più di %{max} oggetti (ne sono selezionati %{count})."
+    too_many: "Impossibile aggiungere più di %{max} oggetti (ne sono selezionati %{count})." 
+    
+  ### Digital objects
+  digital_objects: "IMAGES"
+  digital_object_new: "ADD A NEW IMAGE"
+  digital_object_add: "ADD"
     
   ############ filters
   filter_address: "Indirizzo"
@@ -341,6 +349,10 @@ it:
   filter_variants: "Varianti"
   filter_versions: "Versioni"
   filter_volume: "Volume"
+  filter_image: "IMAGE"
+  filter_file_name: "FILE NAME"
+  filter_file_size: "FILE SIZE"
+  filter_content_type: "TYPE"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
   filter_wf_stage: "Status"
@@ -384,6 +396,9 @@ it:
   entry:
      one: "voce"
      other: "voci"
+  digital_object:
+      one: "DIGITAL OBJECT"
+      other: "DIGITAL OBJECTS"
   catalogue:
     one: "catalogo"
     other: "cataloghi"
@@ -501,8 +516,6 @@ it:
     banner: 'Usare "Anteprima" per mostrare il risultato della conversione in MEI.'
   
   date:
-    formats:
-      long: "%Y-%m-%d"
     month_names:
      -
      - "gennaio"
@@ -525,9 +538,6 @@ it:
      - "giovedì"
      - "venerdì"
      - "sabato"
-  time:
-    formats:
-      long: "%Y-%m-%d %H:%M"
 
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line

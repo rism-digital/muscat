@@ -139,11 +139,14 @@ de:
     formats:
       default: "%H:%M"
       short: "%H:%M"
-      long: "%H:%M"
+      long: "%Y-%m-%d %H:%M"
   
   #################### MODELS      
   activerecord:
     models:
+      digital_object:
+        one: "DIGITAL OBJECT"
+        other: "DIGITAL OBJECTS"
       catalogue:
         one: "WV / Katalog"
         other: "WV / Kataloge"
@@ -258,6 +261,11 @@ de:
     save: "In Ordner speichern"
     success: "Ordner %{name} generiert aus %{count} Datensätzen."
     too_many: "Es können nicht mehr als %{max} Datensätze ausgewählt werden (%{count} wurden ausgewählt)."
+    
+  ### Digital objects
+  digital_objects: "IMAGES"
+  digital_object_new: "ADD A NEW IMAGE"
+  digital_object_add: "ADD"
 
   ############ filters
   filter_address: "Adresse"
@@ -341,6 +349,10 @@ de:
   filter_variants: "Varianten"
   filter_versions: "Versionen"
   filter_volume: "Band"
+  filter_image: "IMAGE"
+  filter_file_name: "FILE NAME"
+  filter_file_size: "FILE SIZE"
+  filter_content_type: "TYPE"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
   filter_wf_stage: "Status"
@@ -382,17 +394,20 @@ de:
    
   #
   entry:
-     one: "Eintrag"
-     other: "Einträge"
+    one: "Eintrag"
+    other: "Einträge"
+  digital_object:
+    one: "DIGITAL OBJECT"
+    other: "DIGITAL OBJECTS"
   catalogue:
     one: "Katalog"
     other: "Kataloge"
   institution: 
-     one: "Institution"
-     other: "Institutionen"
+    one: "Institution"
+    other: "Institutionen"
   library: 
-     one: "Bibliothek"
-     other: "Bibliotheken"
+    one: "Bibliothek"
+    other: "Bibliotheken"
   liturgicalfeast: 
     one: "Liturgisches Fest"
     other: "Liturgische Feste"
@@ -403,8 +418,8 @@ de:
     one: "Ort"
     other: "Orte"
   person: 
-     one: "Person"
-     other: "Personen"
+    one: "Person"
+    other: "Personen"
   standardterm:
     one: "Schlagwort"
     other: "Schlagwörter" 
@@ -501,8 +516,6 @@ de:
     banner: 'PLEASE CLICK "PREVIEW" TO SHOW THE MEI-CONVERTED OUTPUT.'  
     
   date:
-    formats:
-      long: "%Y-%m-%d"
     month_names:
     -
     - "Januar"
@@ -525,9 +538,6 @@ de:
     - "Donnerstag"
     - "Freitag"
     - "Samstag"
-  time:
-    formats:
-      long: "%Y-%m-%d %H:%M"
  
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
