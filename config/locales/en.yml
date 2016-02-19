@@ -499,11 +499,51 @@ en:
     download: "Download"
     more: "More"
     banner: 'Please click "Preview" to show the MEI-converted output.'
-  
+    
+  date:
+    formats:
+      long: "%Y-%m-%d"
+  # Empty lines for matching line numbers with other translation files  
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M"
+
+######################################################################################################
+# End of translation in all languages - make sure all the file have the same line number for this line
+
+ 
+######################################################################################################
+# Blacklights overriden translations - the list can vary from one language to another
+
   blacklight:
     application_name: 'Muscat'
     header_links:
       logout: 'Logout'
+      
+ 
+######################################################################################################
+# Record types, English only
       
   record_types_codes:
     "0": "UNK"
@@ -519,3 +559,4 @@ en:
   status_codes:
     published: "PUB"
     inprogress: "INP"
+

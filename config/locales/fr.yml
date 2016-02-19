@@ -486,10 +486,23 @@ fr:
   do_images_title: "Images"
   connected_libraries: "Institutions"
   
-  
- # To be kept at the end because not required in English
- 
+  mei:
+    title: "Export en MEI de la source %{source}"
+    parameters: "Paramètres"
+    format: "Format d'incipit:"
+    format_mei: "MEI"
+    format_pae: "PAE (pas de conversion)"
+    stylesheet: "Feuille de style"
+    default_stylesheet: "Par défaut"
+    custom_stylesheet: "Personnalisée:"
+    preview: "Aperçu"
+    download: "Téléchargement"
+    more: "Informations supplémentaires"
+    banner: 'Cliquez "Aperçu" pour voir le résultat de la conversion en MEI.'
+    
   date:
+    formats:
+      long: "%Y-%m-%d"
     month_names:
     -
     - "janvier"
@@ -512,20 +525,15 @@ fr:
     - "jeudi"
     - "vendredi"
     - "samedi"
-
-  mei:
-    title: "Export en MEI de la source %{source}"
-    parameters: "Paramètres"
-    format: "Format d'incipit:"
-    format_mei: "MEI"
-    format_pae: "PAE (pas de conversion)"
-    stylesheet: "Feuille de style"
-    default_stylesheet: "Par défaut"
-    custom_stylesheet: "Personnalisée:"
-    preview: "Aperçu"
-    download: "Téléchargement"
-    more: "Informations supplémentaires"
-    banner: 'Cliquez "Aperçu" pour voir le résultat de la conversion en MEI.'
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M"
+  
+######################################################################################################
+# End of translation in all languages - make sure all the file have the same line number for this line
+ 
+######################################################################################################
+# Blacklights overriden translations - the list can vary from one language to another
 
   blacklight:
     application_name: 'Muscat'
@@ -553,3 +561,4 @@ fr:
       sort_label: "Trier par"
       start_over: "Nouvelle recherche"
       search_btn: 'Chercher'
+
