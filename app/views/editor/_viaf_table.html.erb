@@ -6,6 +6,16 @@ var show_viaf_actions = function () {
       var tt = $.ajax({
         type: "GET",
         url: "/admin/people/viaf.json?viaf_input="+term,
+
+        beforeSend: function() {
+             $('#loader').show();
+               
+             },
+        complete: function(){
+          $('#loader').hide();
+       
+},
+
         success: function(data){
           var result = (JSON.stringify(data));
           drawTable(data);
@@ -22,10 +32,11 @@ var show_viaf_actions = function () {
   function drawRow(rowData) {
     var row = $("<tr />")
     $("#viaf_table").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
-    row.append($("<td>" + rowData.id + "</td>"));
+    row.append($("<td><a target=\"_blank\" href=\"http://viaf.org/viaf/" + rowData.id + "\">" + rowData.id + "</a></td>"));
     row.append($("<td>" + rowData.name + "</td>"));
     row.append($("<td>" + rowData.dates + "</td>"));
     row.append($("<td>" + rowData.source + "</td>"));
+    row.append($("<td><a target=\"_blank\" href=\"http://viaf.org/viaf/" + rowData.id + "\">Übernehmen</a></td>"));
   }
 };
 
@@ -37,10 +48,14 @@ $(document).ready(show_viaf_actions);
   <h3>Viaf</h3>
   <div class="marc_editor_panel_content">
     <table>
+      <colgroup>
+         <col span="1" style="width: 80%;">
+         <col span="1" style="width: 20%;">
+         </colgroup>
       <tr>
       <td>
         <div class="tag_content_collapsable">
-          <input style="margin-top:6px" class="subfield_entry serialize_marc" type="text" id="viaf_input" size="80px">
+          <input style="margin-top:6px; width:70%;" class="subfield_entry serialize_marc" type="text" id="viaf_input">
         </div>
       </td>
       <td>
@@ -53,6 +68,10 @@ $(document).ready(show_viaf_actions);
  </div>
 </div>
 
+<div id="loader" style="display: none;">
+  <p><img style="display: block;margin-left: auto; margin-right: auto;width:48px;height:48px;" src="/images/gears.svg"/>
+  </p>
+</div>
 <table id="viaf_table" class="index_table index">
 </table>
 
