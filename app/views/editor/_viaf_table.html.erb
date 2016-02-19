@@ -1,6 +1,7 @@
 <script>
 var show_viaf_actions = function () {
-	$("#viaf_button").click(function(){
+  $("#viaf_button").click(function(){
+      $("#viaf_table").html("");
       var term = $("#viaf_input").val();
       var tt = $.ajax({
         type: "GET",
