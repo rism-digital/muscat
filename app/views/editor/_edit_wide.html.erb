@@ -15,6 +15,10 @@
 	<%= render :partial => "editor/versions" -%>
 <% end %>
 
+<% if rails_model == 'people'%>
+  <%= render :partial => "editor/viaf_table" %>
+<% end %>
+
 <script type="text/javascript">
 
 	marc_editor_init_tags($('#marc_editor_panel'));	

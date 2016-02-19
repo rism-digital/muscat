@@ -18,7 +18,13 @@ ActiveAdmin.register Person do
   action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
     active_admin_muscat_cancel_link
   end
-  
+ 
+  collection_action :viaf, method: :get do
+    respond_to do |format|
+        format.json { render json: Person.get_viaf(params[:viaf_input])  }
+    end
+  end
+
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -164,5 +170,12 @@ ActiveAdmin.register Person do
   end
   
   form :partial => "editor/edit_wide"
+  # panel "Viaf" do
+  #    attributes_table_for resource do
+  #      row :id
+  #    end
+
+  #  end
+  #end
 
 end

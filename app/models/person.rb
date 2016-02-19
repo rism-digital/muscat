@@ -282,4 +282,8 @@ class Person < ActiveRecord::Base
   ransacker :"043c_contains", proc{ |v| } do |parent| end
   ransacker :"551a_contains", proc{ |v| } do |parent| end
 
+  def self.get_viaf(str)
+    Viaf::Search.people(str)
+  end
+
 end

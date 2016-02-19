@@ -94,4 +94,7 @@ gem 'activerecord-import', ">= 0.4.0"
 # gem 'selenium-webdriver'
 
 gem 'ruby-prof'
-gem 'pry', :group => :development
+#gem 'pry', :group => :development
+group :development, :test do
+    gem 'jazz_hands'
+end

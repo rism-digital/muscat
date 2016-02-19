@@ -1,0 +1,58 @@
+<script>
+var show_viaf_actions = function () {
+	$("#viaf_button").click(function(){
+      var term = $("#viaf_input").val();
+      var tt = $.ajax({
+        type: "GET",
+        url: "/admin/people/viaf.json?viaf_input="+term,
+        success: function(data){
+          var result = (JSON.stringify(data));
+          drawTable(data);
+        }
+      });
+      });
+
+  function drawTable(data) {
+    for (var i = 0; i < data.length; i++) {
+      drawRow(data[i]);
+    }
+  }
+
+  function drawRow(rowData) {
+    var row = $("<tr />")
+    $("#viaf_table").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
+    row.append($("<td>" + rowData.id + "</td>"));
+    row.append($("<td>" + rowData.name + "</td>"));
+    row.append($("<td>" + rowData.dates + "</td>"));
+    row.append($("<td>" + rowData.source + "</td>"));
+  }
+};
+
+$(document).ready(show_viaf_actions);
+
+</script>
+
+<div class="panel tab_panel" name="Viaf">
+  <h3>Viaf</h3>
+  <div class="marc_editor_panel_content">
+    <table>
+      <tr>
+      <td>
+        <div class="tag_content_collapsable">
+          <input style="margin-top:6px" class="subfield_entry serialize_marc" type="text" id="viaf_input" size="80px">
+        </div>
+      </td>
+      <td>
+        <div class "buttons">
+          <input name="commit" type="submit" value="Search" id="viaf_button">
+        </div>
+      </td>
+    </tr>
+    </table>
+ </div>
+</div>
+
+<table id="viaf_table" class="index_table index">
+</table>
+
+
