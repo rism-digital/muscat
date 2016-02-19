@@ -171,12 +171,14 @@ module ActiveAdmin::ViewsHelper
   end
   
   def active_admin_digital_object( context, item )   
-    context.panel (I18n.t :digital_objects) do
-      item.digital_objects.each do |obj| 
-        context.attributes_table_for obj do 
-          context.row (I18n.t :filter_description) { |r| r.description } 
-          context.row (I18n.t :filter_image) { |obj| 
-            link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj)) }
+    if item.digital_objects.size > 0 
+      context.panel (I18n.t :digital_objects) do
+        item.digital_objects.each do |obj| 
+          context.attributes_table_for obj do 
+            context.row (I18n.t :filter_description) { |r| r.description } 
+            context.row (I18n.t :filter_image) { |obj| 
+              link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj)) }
+          end
         end
       end
     end

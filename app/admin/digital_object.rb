@@ -59,20 +59,21 @@ ActiveAdmin.register DigitalObject do
   ##########
 
   show do |ad|
-    panel (I18n.t :filter_image) do
-      image_tag(ad.attachment.url(:original))
+    if ad.attachment_file_size
+      panel (I18n.t :filter_image) do
+        image_tag(ad.attachment.url(:maximum))
+      end
     end
     attributes_table do
       row (I18n.t :filter_description) { |r| r.description } 
       row (I18n.t :filter_source) do 
         link_to(ad.source.id, admin_source_path(ad.source)) if ad.source
       end
-      row (I18n.t :filter_file_name) { |r| r.attachment_file_name }
+      row (I18n.t :filter_file_name) { |r| link_to( r.attachment_file_name, r.attachment.url(:original, false), :target => "_blank") if r.attachment_file_size}
       row (I18n.t :filter_file_size) {|r| filesize_to_human(r.attachment_file_size) if r.attachment_file_size}
       row (I18n.t :filter_content_type) { |r| r.attachment_content_type }
       row (I18n.t :updated_at) { |r| r.attachment_updated_at }
       row (I18n.t :filter_owner) { |r| r.user.name } if ( ad.user )
-      
     end
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
