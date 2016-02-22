@@ -1,5 +1,5 @@
-class DigitalObject < ActiveRecord::Migration
-  def change
+class CreateDigitalObjects < ActiveRecord::Migration
+  def self.up
     create_table :digital_objects do |t|
       t.belongs_to :source, index: true
       t.string :description
@@ -11,4 +11,9 @@ class DigitalObject < ActiveRecord::Migration
       t.integer  "lock_version",             default: 0, null: false
     end
   end
+  
+  def self.down
+    drop_table :digital_objects
+  end
+  
 end
