@@ -48,6 +48,12 @@ function marc_validate_required_if(value, element, param) {
 		toplevel = $("#marc_editor_panel");
 	}
 	
+	// .serialize_marc selects all fields,
+	// even if they are in a placeholder.
+	// This permits us to show the missing fields
+	// in hidden tags that are entirely missing
+	// from the editing page at the moment of
+	// verification.
 	$('.serialize_marc[data-tag=' + dep_tag + '][data-subfield=' + dep_subtag + ']', toplevel).each(function() {
 		if ($(this).val() != "") {
 			// The value of the other field is set
@@ -81,6 +87,31 @@ function marc_editor_validate_className(tag, subtag) {
 	return "validate_" + tag + "_" + subtag;
 }
 
+function marc_editor_validate_expand_placeholder(element) {
+	// Are we in a placeholder?	
+	var placeholders = $(element).parents(".tag_placeholders");
+	
+	var toplevel = $(element).parents(".tag_group");
+	var tags = $(".marc_editor_tag_block", toplevel).children();
+	
+	// We are in a placeholder and there are no shown tags
+	if (placeholders.length > 0 && tags.length == 0) {
+		new_dt = tag_header_add_from_empty($(element));
+		
+		new_elements = $("[data-subfield=" + $(element).data("subfield") + "]", new_dt);
+
+		if (new_elements.length > 0) {
+			return new_elements[0];
+		} else {
+			console.log("Could not find newly created element");
+			return element;
+		}
+		
+	} else {
+		return element;
+	}
+}
+
 function marc_editor_init_validation(form, validation_conf) {
 	
 	$(form).validate({
@@ -88,8 +119,29 @@ function marc_editor_init_validation(form, validation_conf) {
 		onfocusout: false,
 		onkeyup: false,
 		onclick: false,
-		ignore: false,
+		// Skip validation in placeholders
+		// ONLY if there are shown tags
+		ignore: function(index, element) {
+			var placeholders = $(element).parents(".tag_placeholders");
+	
+			var toplevel = $(element).parents(".tag_group");
+			var tags = $(".marc_editor_tag_block", toplevel).children();
+			
+			// Was found in a placeholder, but regular tags
+			// are already there, skip
+			if (placeholders.length > 0 && tags.length > 0) {
+				return true;
+			}
+			
+			return false;
+		},
 		highlight: function( element, errorClass, validClass ) {
+			
+			// See if this is in a placeholder.
+			// If it is, create a new tag and add the error
+			// to that tag, not the hidden placelohder
+			element = marc_editor_validate_expand_placeholder(element);
+			
 			if ( element.type === "radio" ) {
 				this.findByName( element.name ).addClass( errorClass ).removeClass( validClass );
 			} else if ( element.type === "hidden" ) {
@@ -108,12 +160,10 @@ function marc_editor_init_validation(form, validation_conf) {
 			} else {
 				$( element ).addClass( errorClass ).removeClass( validClass );
 			}
-			// Gihlight the group in the sidebar
+			// Highlight the group in the sidebar
 			var panel = $(element).parents(".tab_panel");
 			var item_name = panel.attr("name");
-			
 			$("a[data-scroll-target=" + item_name+ "]").addClass("error");
-			
 			
 		},
 		unhighlight: function( element, errorClass, validClass ) {
@@ -135,6 +185,7 @@ function marc_editor_init_validation(form, validation_conf) {
 			} else {
 				$( element ).removeClass( errorClass ).addClass( validClass );
 			}
+			
 		}
 	});
 	
