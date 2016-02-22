@@ -15,8 +15,8 @@
 	<%= render :partial => "editor/versions" -%>
 <% end %>
 
-<% if rails_model == 'people'%>
-  <%= render :partial => "editor/viaf_table" %>
+<% if @item.class.respond_to?("get_viaf")%>
+  <%= render :partial => "editor/viaf_form" %>
 <% end %>
 
 <script type="text/javascript">

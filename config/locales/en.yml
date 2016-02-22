@@ -237,6 +237,7 @@ en:
   show_all_groups: "Show all sections"
   show_preview: "Show preview"
   show_history: "Show modification history"
+  show_viaf: "VIAF Search"
   save_and_continue: "Save and continue editing"
   save_and_exit: "Save and terminate"
   cancel: "Cancel"

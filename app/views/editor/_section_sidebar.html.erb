@@ -28,6 +28,11 @@
 	<li class="muscat_icon_link">
 		<a data-scroll-target="show_preview" data-panel="marc_editor_preview" href="#" class="muscat_icon_link muscat_icon_link_preview"><%=(I18n.t :show_preview)%></a>
 	</li>
+  <% if @item.class.respond_to?("get_viaf") %>
+  	<li class="muscat_icon_link">
+	  	<a id="viaf-sidebar" href="#" class="muscat_icon_link muscat_icon_link_viaf"><%= (I18n.t :show_viaf)%></a>
+  	</li>
+  <% end %>
 	
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">

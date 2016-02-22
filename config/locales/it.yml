@@ -237,6 +237,7 @@ it:
   show_all_groups: "Mostra tutti i gruppi"
   show_preview: "Mostra l'anteprima"
   show_history: "Mostra lo storico"
+  show_viaf: "VIAF SEARCH"
   save_and_continue: "Salva e continua"
   save_and_exit: "Salva ed esci"
   cancel: "Annulla"
