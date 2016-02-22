@@ -18,6 +18,15 @@ ActiveAdmin.register DigitalObject do
       item.user = current_user
     end
     
+    def show
+      begin
+        @digital_object = DigitalObject.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Digital object #{params[:id]})" }
+        return
+      end
+    end
+    
     # Redirect to the resource show page after comment creation
     def create
       create! do |success, failure|
@@ -26,10 +35,17 @@ ActiveAdmin.register DigitalObject do
           return
         end
         failure.html do
-          flash[:error] = I18n.t 'active_admin.comments.errors.empty_text'
+          flash[:error] = "The digital object could not be created"
           redirect_to admin_source_path(params[:digital_object][:source_id])
+          return
         end
       end
+    end
+    
+    def destroy
+      obj = DigitalObject.find(params[:id])
+      destroy_redirect = obj ? admin_source_path(obj.source_id) : admin_sources_url
+      destroy! { redirect_to destroy_redirect and return }
     end
     
   end
@@ -57,8 +73,8 @@ ActiveAdmin.register DigitalObject do
   ##########
   ## Show ##
   ##########
-
-  show do |ad|
+  
+  show :title => proc{ active_admin_digital_object_show_title( @digital_object.description, @digital_object.id) } do |ad|
     if ad.attachment_file_size
       panel (I18n.t :filter_image) do
         image_tag(ad.attachment.url(:maximum))
