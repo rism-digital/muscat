@@ -124,6 +124,9 @@
 					* label.error {
 						color: red;
 					}
+					* a.error {
+						color: red;
+					}
                 }
             } 
         }
@@ -387,6 +390,7 @@ button.abutton-icon-solo .ui-icon {left: 0;}
 }
 
 // Form Validation
-input {
-	border-color: #FFFF00;
+a.error {
+  color: red;
+  text-decoration: underline;
 }
