@@ -7,7 +7,7 @@ module ActiveAdmin
         super :style => "text-align: left;"                                     
 
         div do                                                                   
-          small "Muscat #{Date.today.year}"                                       
+          small "Muscat #{Date.today.year} #{Git::VERSION}"                                       
         end
       end
 
