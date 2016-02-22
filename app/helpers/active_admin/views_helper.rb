@@ -156,4 +156,46 @@ module ActiveAdmin::ViewsHelper
     return "#{author} : #{description} [#{id}]"
   end
   
+  def digital_object_form_url
+    parts = []
+    parts << active_admin_namespace.name unless active_admin_namespace.root?
+    parts << "digital_objects_path"
+    send parts.join '_'
+  end
+  
+  def filesize_to_human value
+    units = %w{B KB MB GB TB}
+    e = (Math.log(value)/Math.log(1024)).floor
+    s = "%.1f" % (value.to_f / 1024**e)
+    s.sub(/\.?0*$/, units[e])
+  end
+  
+  def active_admin_digital_object( context, item )   
+    if item.digital_objects.size > 0 
+      context.panel (I18n.t :digital_objects) do
+        item.digital_objects.each do |obj| 
+          context.attributes_table_for obj do 
+            context.row (I18n.t :filter_description) { |r| r.description } 
+            context.row (I18n.t :filter_image) { |obj| 
+              link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj)) }
+          end
+        end
+      end
+    end
+    
+    context.panel (I18n.t :digital_object_new) do
+      active_admin_form_for(DigitalObject.new, url: digital_object_form_url, html: { multipart: true }) do |f|
+      #context.form :html => {:multipart => true} do |f|
+        f.inputs do
+          f.input :source_id, :as => :hidden, :input_html => {:value => item.id }
+          f.input :description, :label => I18n.t(:filter_description)
+          f.input :attachment, as: :file, hint: (f.template.image_tag(f.object.attachment.url(:thumb)) if f.object.attachment?), :label => I18n.t(:filter_image)
+        end
+        f.actions do
+          f.action :submit, label: I18n.t(:digital_object_add)
+        end
+      end
+    end
+  end
+  
 end

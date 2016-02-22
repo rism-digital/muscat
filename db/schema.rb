@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202151822) do
+ActiveRecord::Schema.define(version: 20160218123959) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20160202151822) do
   create_table "catalogues", force: true do |t|
     t.string   "name"
     t.string   "author"
-    t.string   "description"
+    t.text     "description"
     t.string   "revue_title"
     t.string   "volume"
     t.string   "place"
@@ -71,6 +71,23 @@ ActiveRecord::Schema.define(version: 20160202151822) do
 
   add_index "catalogues_sources", ["catalogue_id"], name: "index_catalogues_sources_on_catalogue_id", using: :btree
   add_index "catalogues_sources", ["source_id"], name: "index_catalogues_sources_on_source_id", using: :btree
+
+  create_table "digital_objects", force: true do |t|
+    t.integer  "source_id"
+    t.string   "description"
+    t.integer  "wf_audit",                default: 0
+    t.integer  "wf_stage",                default: 0
+    t.string   "wf_notes"
+    t.integer  "wf_owner",                default: 0
+    t.integer  "wf_version",              default: 0
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.integer  "lock_version",            default: 0, null: false
+  end
+
+  add_index "digital_objects", ["source_id"], name: "index_digital_objects_on_source_id", using: :btree
 
   create_table "do_div_files", force: true do |t|
     t.integer  "do_file_id"
@@ -150,6 +167,37 @@ ActiveRecord::Schema.define(version: 20160202151822) do
     t.datetime "updated_at"
     t.integer  "wf_owner"
   end
+
+  create_table "holdings", force: true do |t|
+    t.string   "lib_siglum"
+    t.text     "marc_source"
+    t.integer  "lock_version",            default: 0,             null: false
+    t.string   "wf_audit",     limit: 16, default: "unapproved"
+    t.string   "wf_stage",     limit: 16, default: "unpublished"
+    t.string   "wf_notes"
+    t.integer  "wf_owner",                default: 0
+    t.integer  "wf_version",              default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "holdings", ["wf_stage"], name: "index_holdings_on_wf_stage", using: :btree
+
+  create_table "holdings_institutions", id: false, force: true do |t|
+    t.integer "holding_id"
+    t.integer "institution_id"
+  end
+
+  add_index "holdings_institutions", ["holding_id"], name: "index_holdings_institutions_on_holding_id", using: :btree
+  add_index "holdings_institutions", ["institution_id"], name: "index_holdings_institutions_on_institution_id", using: :btree
+
+  create_table "holdings_sources", id: false, force: true do |t|
+    t.integer "holding_id"
+    t.integer "source_id"
+  end
+
+  add_index "holdings_sources", ["holding_id"], name: "index_holdings_sources_on_holding_id", using: :btree
+  add_index "holdings_sources", ["source_id"], name: "index_holdings_sources_on_source_id", using: :btree
 
   create_table "institutions", force: true do |t|
     t.string   "siglum",       limit: 32
@@ -324,6 +372,16 @@ ActiveRecord::Schema.define(version: 20160202151822) do
 
   add_index "searches", ["user_id"], name: "index_searches_on_user_id", using: :btree
 
+  create_table "sessions", force: true do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
   create_table "sources", force: true do |t|
     t.integer  "source_id"
     t.integer  "record_type",  limit: 1,   default: 0
@@ -412,6 +470,11 @@ ActiveRecord::Schema.define(version: 20160202151822) do
 
   add_index "standard_titles", ["title"], name: "index_standard_titles_on_title", using: :btree
   add_index "standard_titles", ["wf_stage"], name: "index_standard_titles_on_wf_stage", using: :btree
+
+  create_table "synchronizations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false

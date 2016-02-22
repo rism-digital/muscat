@@ -273,6 +273,21 @@ h5.index_title {
 
 }
 
+.digital_object_row {
+    margin-top: 25px;
+}
+
+.digital_object_col {
+     min-height: 320px; 
+     min-width: 320px;
+}
+
+.ekko-lightbox-nav-overlay {
+    a {
+        text-decoration: none;
+    }
+}
+
 #document {
     .panel {
         background-color: transparent;
