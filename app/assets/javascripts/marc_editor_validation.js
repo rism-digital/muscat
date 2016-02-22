@@ -96,8 +96,8 @@ function marc_editor_init_validation(form, validation_conf) {
 				// Alert! an autocomplete?
 				
 				// havigate up to the <li> and down to the autocomplete elem
-				toplevel_li = $(element).parents("li");
-				ac = $("input[data-autocomplete]", toplevel_li);
+				var toplevel_li = $(element).parents("li");
+				var ac = $("input[data-autocomplete]", toplevel_li);
 				
 				if (ac) {
 					ac.addClass( errorClass ).removeClass( validClass );
@@ -108,6 +108,13 @@ function marc_editor_init_validation(form, validation_conf) {
 			} else {
 				$( element ).addClass( errorClass ).removeClass( validClass );
 			}
+			// Gihlight the group in the sidebar
+			var panel = $(element).parents(".tab_panel");
+			var item_name = panel.attr("name");
+			
+			$("a[data-scroll-target=" + item_name+ "]").addClass("error");
+			
+			
 		},
 		unhighlight: function( element, errorClass, validClass ) {
 			if ( element.type === "radio" ) {
@@ -116,8 +123,8 @@ function marc_editor_init_validation(form, validation_conf) {
 				// Alert! an autocomplete?
 				
 				// havigate up to the <li> and down to the autocomplete elem
-				toplevel_li = $(element).parents("li");
-				ac = $("input[data-autocomplete]", toplevel_li);
+				var toplevel_li = $(element).parents("li");
+				var ac = $("input[data-autocomplete]", toplevel_li);
 				
 				if (ac) {
 					ac.removeClass( errorClass ).addClass( validClass );

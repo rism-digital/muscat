@@ -26,6 +26,7 @@
     "0": required
 "240": 
   tags:
+    "0": required
     m: required
 "245": 
   tags:
@@ -39,3 +40,51 @@
 "593": 
   tags:
     a: required
+"595": 
+  tags:
+    a:
+      required_if:
+        "031": "e"
+"650": 
+  tags:
+    "0": required
+"651": 
+  tags:
+    "0": required
+"657": 
+  tags:
+    "0": required
+"690": 
+  tags:
+    "0": required
+    n: required
+"691": 
+  tags:
+    "0": required
+    n: required
+"700": 
+  tags:
+    "0": required
+    j: required
+"710": 
+  tags:
+    "0": required
+    j: required
+"730": 
+  tags:
+    "0": required
+"740": 
+  tags:
+    "0": required
+"773": 
+  tags:
+    w: required
+"852": 
+  tags:
+    p: required
+    x: required
+"856": 
+  tags:
+    z:
+      required_if:
+        "856": "u"
