@@ -1,4 +1,4 @@
-class DigitalObject < ApplicationController  
+class DigitalObjectController < ApplicationController  
 
   private
 
