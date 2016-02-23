@@ -170,8 +170,10 @@ function marc_editor_init_validation(form, validation_conf) {
 			if (errors == undefined) {
 				errors = [];
 			}
-
-			errors.push(element);
+			
+			if ($.inArray(element, errors) == -1)
+				errors.push(element);
+			
 			menu_item.data("error-counter", errors);
 			
 		},
@@ -204,7 +206,7 @@ function marc_editor_init_validation(form, validation_conf) {
 			if (errors != undefined) {
 				
 				if (!$(element).hasClass(errorClass) && $.inArray(element, errors) >= 0) {
-					errors.pop(element);
+					errors.splice( $.inArray(element, errors), 1 );
 					menu_item.data("error-counter", errors);
 				}
 				
