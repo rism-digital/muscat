@@ -38,13 +38,6 @@
     :fields:
     - - ""
       - :no_browse: true
-  "007":
-    :master: ""
-    :indicator: ""
-    :occurrences: "*"
-    :fields:
-    - - ""
-      - :no_browse: true
   "008":
     :master: ""
     :indicator: ""
@@ -52,13 +45,15 @@
     :fields:
     - - ""
       - :no_browse: true
-  "035":
+  "024":
     :master: a
-    :indicator: "##"
+    :indicator: "7#"
     :occurrences: "*"
     :fields:
     - - a
-      - :occurrences: "?"
+      - :occurrences: "1"
+    - - "2"
+      - :occurrences: "1"
   "040":
     :master: a
     :indicator: "##"
@@ -162,13 +157,6 @@
     :fields:
     - - a
       - :occurrences: "1"
-  "549":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
   "551":
     :master: a
     :indicator: "##"

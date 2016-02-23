@@ -1,26 +1,30 @@
-<%
-    a_tag = tag.fetch_first_by_tag(:a)
+<%-
+  content = Array.new
+  group=Array.new
+  root=tag.parent
+  root.each_by_tag(tag.tag) do |t| group<< t end
+  group.each do |t|
+    a_tag = t.fetch_first_by_tag("a")
+    two_tag = t.fetch_first_by_tag("2")
+    if two_tag.content == "DNB"
+      content << link_to("DNB: " + a_tag.content, "http://d-nb.info/gnd/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
+    elsif two_tag.content == "VIAF"
+      content << link_to("VIAF: " + a_tag.content, "http://viaf.org/viaf/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
+    end
+  end
 -%>
-<tr class="row">
-	<th>
+
+<% if tag==group.first %>
+  <tr class="row">
+	<th valign="top">
 		<% if (no_label == false) -%>
 			<%= @editor_profile.get_label(tag.tag) %>
 		<%- end %>
 	</th>
-    <td>	
-      <%- link_list=a_tag.content.split("; ") %>
-      <%- link_list.each do |link| %>
-        <% if link.include?("(DE-588a)") && !link.include?("(VIAF)") %>
-          <%ref=link.gsub("(DE-588a)", "") %>
-          <%= "GND: " %>
-          <%= link_to ref, "http://d-nb.info/gnd/"+ref, :target => "_blank" if (a_tag && a_tag.content) -%>
-
-        <% elsif link.include?("(VIAF)") %>
-          <%ref=link.gsub("(VIAF)", "").gsub("(DE-588a)", "") %>
-          <%= "VIAF: " %>
-          <%= link_to ref, "http://viaf.org/viaf/"+ref, :target => "_blank" if (a_tag && a_tag.content) -%>
-
-            <%end%>
-            <%end %>
+	<td valign="top">
+    <%= content.uniq.join(', ').html_safe %>
 	</td>
-</tr>
+  </tr>
+<%end%>
+
+

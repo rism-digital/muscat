@@ -39,9 +39,9 @@ groups:
       #"569": people/show_indicator
   codes: 
     all_tags: 
-    - "035"
+    - "024"
     all_tag_templates:
-      "035": marc_show/show_dnb_link
+      "024": marc_show/show_dnb_link
   control: 
     all_tags: 
     - "000"
