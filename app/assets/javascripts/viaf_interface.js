@@ -18,22 +18,18 @@ var show_viaf_actions = function () {
       $.ajax({
         type: "GET",
         url: "/admin/people/viaf.json?viaf_input="+term,
-
         beforeSend: function() {
              $('#loader').show();
-               
              },
         complete: function(){
           $('#loader').hide();
-       
-},
-
+             },
         success: function(data){
           var result = (JSON.stringify(data));
           drawTable(data);
         }
       });
-      });
+  });
 
   function drawTable(data) {
     for (var i = 0; i < data.length; i++) {
@@ -41,13 +37,35 @@ var show_viaf_actions = function () {
     }
   }
 
+	//OPTIMIZE could need some caching
+	function get_attr(data, tag, code){
+    tags = data.fields
+    for (i in tags){
+				if (typeof code === "undefined" ){
+				   if (tags[i].tag === tag){
+				     return tags[i].content;
+				   }
+				}
+				else{
+				   if (tags[i].tag === tag){
+				      subfields = tags[i].subfields
+				      for ( c in subfields ){
+								if (subfields[c].code === code) {
+								       return subfields[c].content;
+								}
+				      }
+				   }
+				}
+	   }
+	}
+
   function drawRow(rowData) {
     var row = $("<tr />")
-    $viaf_table.append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
-    row.append($("<td><a target=\"_blank\" href=\"http://viaf.org/viaf/" + rowData.id + "\">" + rowData.id + "</a></td>"));
-    row.append($("<td>" + rowData.name + "</td>"));
-    row.append($("<td>" + rowData.dates + "</td>"));
-    row.append($("<td>" + rowData.source + "</td>"));
+    $viaf_table.append(row); 
+    row.append($("<td><a target=\"_blank\" href=\"http://viaf.org/viaf/" + get_attr(rowData, "001") + "\">" + get_attr(rowData, "001") + "</a></td>"));
+    row.append($("<td>" + get_attr(rowData, "100", "a") + "</td>"));
+    row.append($("<td>" + get_attr(rowData, "100", "d") + "</td>"));
+    row.append($("<td>" + get_attr(rowData, "100", "0") + "</td>"));
     //console.log(JSON.stringify(rowData));
     //row.append($('<td><a class="data">Übernehmen</a></td>').data('key', rowData));
     row.append($('<td><a class="data" data-viaf=\'' + JSON.stringify(rowData) + '\'>Übernehmen</a></td>'));

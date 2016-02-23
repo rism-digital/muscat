@@ -3,7 +3,7 @@
 module Viaf
   
   # A List of VIAF providers sorted by rank
-  SELECT_PROVIDER = %w(DNB BNF LC)
+  SELECT_PROVIDER = %w(DNB BNF LC ICCU ISNI BNE WKP NKC NLP SWNL BAV)
   
   # This class provides the main search functionality
   class Interface
