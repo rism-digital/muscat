@@ -26,6 +26,21 @@
       definitions: "['~']='[|0-9]'"
       mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
+"024": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - "2"
+      - values: 
+        - "VIAF"
+        - "DNB"
+        - "BNF"
+        - "LC"
+        editor_partial: subfield_select
+      - cols: 2
+    columns: 4
+
 "040": 
   layout: 
     fields: 

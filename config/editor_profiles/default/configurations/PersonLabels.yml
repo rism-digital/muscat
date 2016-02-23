@@ -55,19 +55,25 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     fr: "Date/heure de la dernière transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
-"035": !map:ActiveSupport::HashWithIndifferentAccess 
+"024": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: AUTHORITY REFERENCE
     fr: AUTHORITY REFERENCE
     de: Normdatenverweise
     en: Authority Reference
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    c: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: AUTHORITY REFERENCE
         fr: AUTHORITY REFERENCE
         de: Normdatenverweise
         en: Authority Reference
+    "2": !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: AUTHORITY AGENCY
+        fr: AUTHORITY AGENCY
+        de: Normdatenagentur
+        en: Authority Agency
 "040": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Fonte della catalogazione
