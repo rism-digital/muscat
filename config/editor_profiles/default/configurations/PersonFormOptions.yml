@@ -33,10 +33,17 @@
       - cols: 2
     - - "2"
       - values: 
-        - "VIAF"
-        - "DNB"
+        - "BNE"
         - "BNF"
+        - "DNB"
+        - "ICCU"
+        - "ISNI"
         - "LC"
+        - "NLP"
+        - "NKC"
+        - "SWNL"
+        - "VIAF"
+        - "WKP"
         editor_partial: subfield_select
       - cols: 2
     columns: 4
