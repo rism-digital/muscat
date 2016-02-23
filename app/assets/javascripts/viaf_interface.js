@@ -48,7 +48,7 @@ var show_viaf_actions = function () {
     row.append($("<td>" + rowData.name + "</td>"));
     row.append($("<td>" + rowData.dates + "</td>"));
     row.append($("<td>" + rowData.source + "</td>"));
-    console.log(JSON.stringify(rowData));
+    //console.log(JSON.stringify(rowData));
     //row.append($('<td><a class="data">Übernehmen</a></td>').data('key', rowData));
     row.append($('<td><a class="data" data-viaf=\'' + JSON.stringify(rowData) + '\'>Übernehmen</a></td>'));
   }

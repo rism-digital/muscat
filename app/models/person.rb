@@ -283,7 +283,8 @@ class Person < ActiveRecord::Base
   ransacker :"551a_contains", proc{ |v| } do |parent| end
 
   def self.get_viaf(str)
-    Viaf::Search.people(str)
+    str.gsub!("\"", "")
+    Viaf::Interface.search(str, self.class)
   end
 
 end
