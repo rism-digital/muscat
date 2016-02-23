@@ -133,6 +133,22 @@ function marc_editor_init_validation(form, validation_conf) {
 				return true;
 			}
 			
+			// Other case: in tags that can be edited or new
+			// we have a duplicate entry that is not shown
+			// a .tag_containter data-function [new, edit]
+			// if we are in such container and hidden, skip
+			var containers = $(element).parents(".tag_container");
+			if (containers.length > 0) {
+				var cont = containers[0];
+				if ($(cont).data("function") != undefined) {
+					if ($(cont).css('display') == "none") {
+						console.log("Skip hidden element with data-function " + $(cont).data("function"));
+						return true;
+					}
+
+				}
+			}
+			
 			return false;
 		},
 		highlight: function( element, errorClass, validClass ) {
