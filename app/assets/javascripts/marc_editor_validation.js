@@ -163,10 +163,22 @@ function marc_editor_init_validation(form, validation_conf) {
 			// Highlight the group in the sidebar
 			var panel = $(element).parents(".tab_panel");
 			var item_name = panel.attr("name");
-			$("a[data-scroll-target=" + item_name+ "]").addClass("error");
+			var menu_item = $("a[data-scroll-target=" + item_name+ "]");
+			menu_item.addClass(errorClass);
+			
+			var errors = menu_item.data("error-counter");
+			if (errors == undefined) {
+				errors = [];
+			}
+			
+			if ($.inArray(element, errors) == -1)
+				errors.push(element);
+			
+			menu_item.data("error-counter", errors);
 			
 		},
 		unhighlight: function( element, errorClass, validClass ) {
+						
 			if ( element.type === "radio" ) {
 				this.findByName( element.name ).removeClass( errorClass ).addClass( validClass );
 			} else if ( element.type === "hidden" ) {
@@ -185,7 +197,23 @@ function marc_editor_init_validation(form, validation_conf) {
 			} else {
 				$( element ).removeClass( errorClass ).addClass( validClass );
 			}
-			
+
+			// unHighlight the group in the sidebar
+			var panel = $(element).parents(".tab_panel");
+			var item_name = panel.attr("name");
+			var menu_item = $("a[data-scroll-target=" + item_name+ "]");
+			var errors = menu_item.data("error-counter");
+			if (errors != undefined) {
+				
+				if (!$(element).hasClass(errorClass) && $.inArray(element, errors) >= 0) {
+					errors.splice( $.inArray(element, errors), 1 );
+					menu_item.data("error-counter", errors);
+				}
+				
+				if (errors.length == 0)
+					menu_item.removeClass(errorClass);
+			}
+
 		}
 	});
 	
