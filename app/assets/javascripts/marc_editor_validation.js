@@ -176,12 +176,24 @@ function marc_editor_init_validation(form, validation_conf) {
 			} else {
 				$( element ).addClass( errorClass ).removeClass( validClass );
 			}
+			
+			// Open up the group if it was collapsed
+			var group = $(element).parents(".tag_content_collapsable");
+			if ($(group).css("display") == "none") {
+				var toplevel = $(element).parents(".tag_container");
+				var button = $("a[data-header-button='toggle']", toplevel);
+				tag_header_toggle($(button));
+			}
+			
 			// Highlight the group in the sidebar
 			var panel = $(element).parents(".tab_panel");
 			var item_name = panel.attr("name");
 			var menu_item = $("a[data-scroll-target=" + item_name+ "]");
 			menu_item.addClass(errorClass);
 			
+			// Keep a reference of the error'd items
+			// in the sidebar element. We use this to
+			// unhighlight it after
 			var errors = menu_item.data("error-counter");
 			if (errors == undefined) {
 				errors = [];
@@ -215,6 +227,12 @@ function marc_editor_init_validation(form, validation_conf) {
 			}
 
 			// unHighlight the group in the sidebar
+			// The sidebar element contains a data elem
+			// with a list of the items with errors in that
+			// group. If the items are validated and valid
+			// we remove them from this list. When no
+			// items remain, we can remove the error
+			// class from the sidebar group
 			var panel = $(element).parents(".tab_panel");
 			var item_name = panel.attr("name");
 			var menu_item = $("a[data-scroll-target=" + item_name+ "]");
