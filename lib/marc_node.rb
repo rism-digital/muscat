@@ -461,10 +461,13 @@ class MarcNode
 
   # Sort children and return them. can be used as block
   def for_every_child_sorted
+    n = 0
     if block_given?
-      @children.sort { |a, b| (a.tag.match(/\d/) ? "z#{a.tag}" : a.tag) <=> (b.tag.match(/\d/) ? "z#{b.tag}" : b.tag) }.each { |child| yield child }
+      @children.sort_by {|a| n += 1; [(a.tag.match(/\d/) ? "z#{a.tag}" : a.tag), n]}.each { |child| yield child }
+      #@children.sort { |a, b| (a.tag.match(/\d/) ? "z#{a.tag}" : a.tag) <=> (b.tag.match(/\d/) ? "z#{b.tag}" : b.tag) }.each { |child| yield child }
     else
-      @children.sort { |a, b| (a.tag.match(/\d/) ? "z#{a.tag}" : a.tag) <=> (b.tag.match(/\d/) ? "z#{b.tag}" : b.tag) }
+      #@children.sort { |a, b| (a.tag.match(/\d/) ? "z#{a.tag}" : a.tag) <=> (b.tag.match(/\d/) ? "z#{b.tag}" : b.tag) }
+      @children.sort_by {|a| n += 1; [(a.tag.match(/\d/) ? "z#{a.tag}" : a.tag), n]}
     end
   end
   
@@ -519,7 +522,11 @@ class MarcNode
   end
 
   def sort_alphabetically
-      @children = @children.sort { |a, b| (a.tag.match(/\d/) ? "z#{a.tag}" : a.tag) <=> (b.tag.match(/\d/) ? "z#{b.tag}" : b.tag) }
+    n = 0
+    @children = @children.sort_by {|a|
+      n += 1
+      [(a.tag.match(/\d/) ? "z#{a.tag}" : a.tag), n]
+    }
   end
 
   alias length size
