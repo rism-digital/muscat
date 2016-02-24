@@ -5,10 +5,28 @@ var show_viaf_actions = function () {
 		marc_editor_show_panel("viaf-form");
 	});
 
+
+	//needs improvement!
 	$viaf_table.delegate('.data', 'click', function() {
-		console.log($(this).data("viaf"));
-		alert(JSON.stringify($(this).data("viaf")));
+		_update_form($(this).data("viaf"));
+		var elem = $(".tag_container[data-tag='024']");
+		field024_2 = elem.find("select.subfield_entry[data-tag='024'][data-subfield='2']")
+		field024_2.first().val("VIAF");
 	});
+
+	function _update_form(data){
+		marc_json = data;
+		id = marc_json_get_tags(marc_json, "001")[0].content
+		var elem = $(".tag_container[data-tag='024']");
+		var collapse = elem.children(".tag_content_collapsable");
+		field024_a = elem.find("input.subfield_entry[data-tag='024'][data-subfield='a']").first()
+		field024_a[0].value = id;
+		field024_a.css("background-color", "#ffffb3");
+		tag_header_add_from_empty(elem);
+		marc_editor_show_panel("marc_editor_panel");		
+			}
+
+
 
 	$("#viaf_button").click(function(){
 		$viaf_table.html("");

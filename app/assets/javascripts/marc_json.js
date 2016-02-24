@@ -56,6 +56,7 @@ function get_indicator(field) {
 // =300 xxx2
 // =... stuff after
 function add_ordered(tag, marc_tag, json_marc) {
+	console.log("hi");
 	// add it to the fields array, ordering the fields
 	if (json_marc["fields"].length == 0) {
 		json_marc["fields"].push(marc_tag);

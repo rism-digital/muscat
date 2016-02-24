@@ -208,3 +208,26 @@ used for _tag_header partial
 	});
 })(jQuery);
 
+	//Outbreak
+	function tag_header_add_from_empty(elem) {
+        // hide help if necessary
+        elem.parents(".tag_container").children(".tag_help_collapsable").hide();
+		placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
+		parent_dl = elem.parents(".tag_group").children(".marc_editor_tag_block");
+
+		new_dt = placeholder.clone();
+		new_dt.toggleClass('tag_placeholders tag_toplevel_container');
+		parent_dl.append(new_dt);
+		new_dt.fadeIn('fast');
+        update_empty_tag( elem.parents(".tag_group") );
+	}
+
+    function update_empty_tag(tag_group) {
+        if ( tag_group.children(".marc_editor_tag_block").children().size() > 0 ) {
+            tag_group.children(".tag_empty_container").hide();
+        }
+        else {
+            tag_group.children(".tag_empty_container").show();
+        }
+    }
+	
