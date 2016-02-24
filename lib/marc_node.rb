@@ -158,6 +158,7 @@ class MarcNode
         foreign_associations.merge!(child_foreign_associations) unless !child_foreign_associations
       end
     else
+      self.sort_alphabetically
       # Try to get the remote objects for this record
       if @marc_configuration.has_foreign_subfields(self.tag)
         self.foreign_object = nil
