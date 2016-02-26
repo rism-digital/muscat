@@ -33,7 +33,11 @@ module Viaf
         #OPTIMIZE probably better to use a MarcNodeBuilder
         node = MarcNode.new(model)
         r = Nokogiri::XML(record.to_xml)
-        node.add(MarcNode.new(model, "001", r.xpath('//marc:controlfield[@tag="001"]', NAMESPACE)[0].content[4..-1]))
+        viaf_id = r.xpath('//marc:controlfield[@tag="001"]', NAMESPACE)[0].content[4..-1]
+        node.add(MarcNode.new(model, "001", viaf_id))
+        node.add(MarcNode.new(model, "024"))
+        node.fetch_first_by_tag("024").add(MarcNode.new(model, "a", viaf_id))
+        node.fetch_first_by_tag("024").add(MarcNode.new(model, "2", "VIAF"))
         SELECT_PROVIDER.each do |provider|
           tag100 = r.xpath('//marc:datafield[@tag="700"]/marc:subfield[@code="0"][contains(text(),"' + provider + '")]/..', NAMESPACE)[0]
           if tag100 && tag100.xpath('marc:subfield', NAMESPACE).size >= 2
