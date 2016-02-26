@@ -6,6 +6,7 @@ var show_viaf_actions = function () {
 	});
 
 	$viaf_table.delegate('.data', 'click', function() {
+		console.log($(this).data("viaf"))
 		_update_form($(this).data("viaf"));
 		marc_editor_show_panel("marc_editor_panel");
 	});
@@ -37,7 +38,7 @@ var show_viaf_actions = function () {
 			}
 			else{
 				if (_marc_tag_is_empty(datafield.tag)){
-					_edit_marc_tag(datafield.tag, marc_json_get_tags(data, datafield.tag)[0])
+					_update_marc_tag(datafield.tag, marc_json_get_tags(data, datafield.tag)[0])
 				}
 				else{
 					_append_marc_tag(datafield.tag, marc_json_get_tags(data, datafield.tag)[0])
