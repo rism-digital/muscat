@@ -1,20 +1,79 @@
 # This module provides an Interface to the VIAF 
 
 module Viaf
-  
+
   # A List of VIAF providers sorted by rank
   SELECT_PROVIDER = %w(DNB BNF LC ICCU ISNI BNE WKP NKC NLP SWNL BAV)
+  SELECT_PROVIDER2 = %w(DNB LC ISNI BNF WKP NKC NLP SWNL)
   # Requested fields
-  TAGS = {"100" => %w(a d 0), "374" => %w(a)}
+  TAGS = {"100" => %w(a d), "374" => %w(a), "035" => %w(a)}
   # VIAF XML has other tag definitions than ours, so we have to give the target
   VIAF_CONVERTER = {"100" => "700", "374" => "941"}
-  
+
   # This class provides the main search functionality
   class Interface
     NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim"}
     require 'rexml/document'
     include REXML
     require 'open-uri'
+
+    def self.search2(term, model)
+      result = []
+      query = JSON.load(open(URI.escape("http://viaf.org/viaf/AutoSuggest?query="+term)))
+      r = query["result"].map{|e| e if e['nametype']=='personal'}.compact
+      provider_doc = ""
+      r.each do |record|
+        SELECT_PROVIDER2.each do |provider|
+          puts provider
+          if record[provider.downcase]
+            provider_id=record[provider.downcase]
+          else
+            next
+          end
+          #break unless links[provider]
+          provider_url="http://viaf.org/processed/#{provider}%7C#{provider_id}?httpAccept=application/xml"
+          begin
+            provider_doc = Nokogiri::XML(open(provider_url))
+            puts record["displayForm"]
+
+            if provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE).empty?
+              next
+            end
+            break
+          rescue
+            next
+          end
+        end
+
+        viaf_id = record["viafid"]
+        node = MarcNode.new(model)
+        node.add(MarcNode.new(model, "001", viaf_id))
+        node.add(MarcNode.new(model, "024"))
+        node.fetch_first_by_tag("024").add(MarcNode.new(model, "a", viaf_id))
+        node.fetch_first_by_tag("024").add(MarcNode.new(model, "2", "VIAF"))
+        if provider_doc && provider_doc != ""
+          TAGS.each do |key,v|
+            break if node.fetch_first_by_tag(key)
+            tag = provider_doc.xpath('//marc:datafield[@tag="' + key + '"]', NAMESPACE)
+            v.each do |code|
+              if tag && tag.xpath('marc:subfield', NAMESPACE).size >= 2
+                node.add(MarcNode.new(model, key)) unless node.fetch_first_by_tag(key)
+                subfield = tag.xpath('marc:subfield[@code="' + code + '"]', NAMESPACE)
+                node.fetch_first_by_tag(key).add(MarcNode.new(model, code, subfield.first.content)) unless subfield.empty?
+              end
+            end
+          end
+        end
+        if node.fetch_first_by_tag("100") 
+          marc_json = {"leader" => "01471cjm a2200349 a 4500", "fields" => []}
+          node.children.each do |k|
+            marc_json["fields"] << k.to_json
+          end
+          result << marc_json
+        end
+      end
+      return result
+    end
 
     # Sends a http request to the API and returns an array of MarcNodes
     # Another approach could be to select the specific node from the viaf cluster and then take the fields, see below

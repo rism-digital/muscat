@@ -284,7 +284,7 @@ class Person < ActiveRecord::Base
 
   def self.get_viaf(str)
     str.gsub!("\"", "")
-    Viaf::Interface.search(str, self.class)
+    Viaf::Interface.search2(str, self.class)
   end
 
 end
