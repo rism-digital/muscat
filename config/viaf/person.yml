@@ -1,27 +1,47 @@
 marc21: &marc21
    "100":
-      - "a"
-      - "d"
+      - "a":
+         target:
+      - "d":
+         target:
+   "370":
+      - "a":
+         target:
+            tag: "551"
+            code: "a"
    "374":
-      - "a"
+      - "a":
+         target:
+   "375":
+      - "a":
+         target:
    "035":
-      - "a"
+      - "a":
+         target:
 
 unimarc: &unimarc
-   "200":
-      - target: "100"
-      - "a"
-      - "d"
+   "998":
+      - "a":
+         target:
+            tag: "100"
+            code: "a"
+      - "d":
+         target:
+            tag: "100"
+            code: "d"
    "374":
-      - "a"
+      - "a":
+         target:
    "035":
-      - "a"
-DNB:
-   tags: *marc21
+      - "a":
+         target:
 
 LC:
-   tags: *marc21
+   format: *marc21
 
-#BNF:
-#   tags: *unimarc
+DNB:
+   format: *marc21
+
+BNF:
+   format: *unimarc
 

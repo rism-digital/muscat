@@ -27,7 +27,6 @@ module Viaf
           else
             next
           end
-          #break unless links[provider]
           provider_url="http://viaf.org/processed/#{provider}%7C#{provider_id}?httpAccept=application/xml"
           begin
             provider_doc = Nokogiri::XML(open(provider_url))
@@ -49,15 +48,19 @@ module Viaf
         node.fetch_first_by_tag("024").add(MarcNode.new(model, "a", viaf_id))
         node.fetch_first_by_tag("024").add(MarcNode.new(model, "2", "VIAF"))
         if provider_doc && provider_doc != ""
-          CONFIG[agency]["tags"].each do |key,v|
-            break if node.fetch_first_by_tag(key)
-            binding.pry
+          CONFIG[agency]["format"].each do |key,v|
+            target = v.select{|c| c if c[c.keys.first]["target"]}
+            target_tag = target.empty? ? key : target.first[target.first.keys.first]["target"]["tag"]
+            break if node.fetch_first_by_tag(target_tag)
             tag = provider_doc.xpath('//marc:datafield[@tag="' + key + '"]', NAMESPACE)
             v.each do |code|
-              if tag && tag.xpath('marc:subfield', NAMESPACE).size >= 2
-                node.add(MarcNode.new(model, key)) unless node.fetch_first_by_tag(key)
-                subfield = tag.xpath('marc:subfield[@code="' + code + '"]', NAMESPACE)
-                node.fetch_first_by_tag(key).add(MarcNode.new(model, code, subfield.first.content)) unless subfield.empty?
+              print code
+              subfield_code = code.keys.first
+              target_code = code[code.keys.first]["target"] ? code[code.keys.first]["target"]["code"] : code.keys.first
+              if tag && tag.xpath('marc:subfield', NAMESPACE).size > 0
+                node.add(MarcNode.new(model, target_tag)) unless node.fetch_first_by_tag(target_tag)
+                subfield = tag.xpath('marc:subfield[@code="' + subfield_code + '"]', NAMESPACE)
+                node.fetch_first_by_tag(target_tag).add(MarcNode.new(model, target_code, subfield.first.content)) unless subfield.empty?
               end
             end
           end
