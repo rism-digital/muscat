@@ -1,0 +1,27 @@
+marc21: &marc21
+   "100":
+      - "a"
+      - "d"
+   "374":
+      - "a"
+   "035":
+      - "a"
+
+unimarc: &unimarc
+   "200":
+      - target: "100"
+      - "a"
+      - "d"
+   "374":
+      - "a"
+   "035":
+      - "a"
+DNB:
+   tags: *marc21
+
+LC:
+   tags: *marc21
+
+#BNF:
+#   tags: *unimarc
+
