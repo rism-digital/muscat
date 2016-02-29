@@ -7,15 +7,15 @@
 #    e:
 #      required_if:
 #        "031": "m"
-    n:
-      required_if:
-        "031": "p"
+#    n:
+#      required_if:
+#        "031": "p"
     o:
       required_if:
         "031": "p"
-    r:
-      required_if:
-        "031": "p"
+#    r:
+#      required_if:
+#        "031": "p"
 #"041": 
 #  tags:
 #    a:

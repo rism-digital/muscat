@@ -103,6 +103,7 @@ ActiveAdmin.register Source do
         @source.record_type = MarcSource::RECORD_TYPES[@template_name.to_sym]
       end
       @editor_profile = EditorConfiguration.get_default_layout @source
+      @editor_validation = EditorValidation.get_default_validation(@source)
       @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{I18n.t('record_types.' + @template_name)}"
       #To transmit correctly @item we need to have @source initialized
       @item = @source
