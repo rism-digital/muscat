@@ -3,21 +3,17 @@
 module Viaf
 
   # A List of VIAF providers sorted by rank
-  CONFIG = YAML::load(File.open("config/viaf/person.yml"))
-  SELECT_PROVIDER = CONFIG.keys.select{|e| e unless e =~ /marc/}
+  SELECT_PROVIDER = YAML::load(File.open("config/viaf/person.yml"))
 
   # This class provides the main search functionality
   class Interface
     NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim"}
-    require 'rexml/document'
-    include REXML
     require 'open-uri'
 
     def self.search(term, model)
       result = []
       query = JSON.load(open(URI.escape("http://viaf.org/viaf/AutoSuggest?query="+term)))
       r = query["result"].map{|e| e if e['nametype']=='personal'}.compact
-      agency = ""
       provider_doc = ""
       r.each do |record|
         SELECT_PROVIDER.each do |provider|
@@ -28,49 +24,36 @@ module Viaf
             next
           end
           provider_url="http://viaf.org/processed/#{provider}%7C#{provider_id}?httpAccept=application/xml"
-          begin
-            provider_doc = Nokogiri::XML(open(provider_url))
-            puts record["displayForm"]
-            agency = provider
-            if provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE).empty?
-              next
-            end
-            break
-          rescue
+          provider_doc = Nokogiri::XML(open(provider_url))
+          # IMPROVE inject methods
+          provider_doc.xpath('//marc:controlfield[@tag="001"]', NAMESPACE).first.content = record["viafid"]
+          node_24 = provider_doc.xpath('//marc:datafield[@tag="024"]', NAMESPACE)
+          tag_024 = Nokogiri::XML::Node.new "mx:datafield", provider_doc.root
+          tag_024['tag'] = '024'
+          tag_024['ind1'] = '7'
+          tag_024['ind2'] = ' '
+          sfa = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
+          sfa['code'] = 'a'
+          sfa.content = record["viafid"]
+          sf2 = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
+          sf2['code'] = '2'
+          sf2.content = "VIAF"
+          tag_024 << sfa << sf2
+          if node_24.empty?
+            provider_doc.root << tag_024
+          else
+            node_24.first.add_previous_sibling(tag_024)
+          end
+          puts record["displayForm"]
+          if provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE).empty?
             next
+          else
+            xslt  = Nokogiri::XSLT(File.read('config/viaf/person_dnb.xsl'))
+            doc = xslt.transform(provider_doc)
+            marc = MarcPerson.new(doc.to_s)
+            result << marc.to_json
+            break
           end
-        end
-
-        viaf_id = record["viafid"]
-        node = MarcNode.new(model)
-        node.add(MarcNode.new(model, "001", viaf_id))
-        node.add(MarcNode.new(model, "024"))
-        node.fetch_first_by_tag("024").add(MarcNode.new(model, "a", viaf_id))
-        node.fetch_first_by_tag("024").add(MarcNode.new(model, "2", "VIAF"))
-        if provider_doc && provider_doc != ""
-          CONFIG[agency]["format"].each do |key,v|
-            target = v.select{|c| c if c[c.keys.first]["target"]}
-            target_tag = target.empty? ? key : target.first[target.first.keys.first]["target"]["tag"]
-            break if node.fetch_first_by_tag(target_tag)
-            tag = provider_doc.xpath('//marc:datafield[@tag="' + key + '"]', NAMESPACE)
-            v.each do |code|
-              print code
-              subfield_code = code.keys.first
-              target_code = code[code.keys.first]["target"] ? code[code.keys.first]["target"]["code"] : code.keys.first
-              if tag && tag.xpath('marc:subfield', NAMESPACE).size > 0
-                node.add(MarcNode.new(model, target_tag)) unless node.fetch_first_by_tag(target_tag)
-                subfield = tag.xpath('marc:subfield[@code="' + subfield_code + '"]', NAMESPACE)
-                node.fetch_first_by_tag(target_tag).add(MarcNode.new(model, target_code, subfield.first.content)) unless subfield.empty?
-              end
-            end
-          end
-        end
-        if node.fetch_first_by_tag("100") 
-          marc_json = {"leader" => "01471cjm a2200349 a 4500", "fields" => []}
-          node.children.each do |k|
-            marc_json["fields"] << k.to_json
-          end
-          result << marc_json
         end
       end
       return result

@@ -2,7 +2,7 @@ class MarcPerson < Marc
   def initialize(source = nil)
     super("person", source)
   end
-  
+
   def get_full_name_and_dates
     composer = ""
     composer_d = ""

@@ -362,13 +362,15 @@ function _marc_json_get_nodes(json_marc, tag){
 	tags = json_marc.fields
 	for (i in tags){
 		if (parseInt(tag) < 10){
-			arr.push(tags[i]);
-			return arr
+			if (tags[i].tag == tag){
+				arr.push(tags[i]);
+			}
 		}
+		else{
 		if (tags[i].tag === tag){
 			arr.push(tags[i].subfields);
 		}
-	}
+	}}
 	return arr;
 }
 

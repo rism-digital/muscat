@@ -1,47 +1,6 @@
-marc21: &marc21
-   "100":
-      - "a":
-         target:
-      - "d":
-         target:
-   "370":
-      - "a":
-         target:
-            tag: "551"
-            code: "a"
-   "374":
-      - "a":
-         target:
-   "375":
-      - "a":
-         target:
-   "035":
-      - "a":
-         target:
-
-unimarc: &unimarc
-   "998":
-      - "a":
-         target:
-            tag: "100"
-            code: "a"
-      - "d":
-         target:
-            tag: "100"
-            code: "d"
-   "374":
-      - "a":
-         target:
-   "035":
-      - "a":
-         target:
-
-LC:
-   format: *marc21
-
-DNB:
-   format: *marc21
-
-BNF:
-   format: *unimarc
+# This is an ranking list
+- LC
+- DNB
+- WKP
+- BNF
 
