@@ -15,6 +15,8 @@
 	<%= render :partial => "editor/versions" -%>
 <% end %>
 
+
+<% if @editor_validation %>
 <script type="text/javascript">
 
 validation_conf = <%= raw JSON.dump(EditorValidation.get_default_validation(@item).rules) -%>
@@ -24,3 +26,4 @@ validation_conf = <%= raw JSON.dump(EditorValidation.get_default_validation(@ite
 	$.ajax 
 		
 </script>
+<%end%>
