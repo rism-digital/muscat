@@ -104,6 +104,57 @@ doc_edit_workflow:
   label: 
     de: "Workflow"
     en: Workflow
+    
+################
+
+doc_library: 
+  label: 
+    de: Besitzerangaben
+    en: Library information
+doc_provenance: 
+  label: 
+    de: Provenienz
+    en: Provenance
+doc_linkage: 
+  label: 
+    de: Verlinkung
+    en: Linkage
+doc_diplomatic_title: 
+  label: 
+    de: Diplomatischer Titel
+    en: Diplomatic title
+doc_physical_description: 
+  label: 
+    de: Physische Beschreibung
+    en: Physical description
+doc_content: 
+  label: 
+    de: Inhalt
+    en: Content
+doc_incipit: 
+  label: 
+    de: Incipits
+    en: Incipits
+doc_bibliographical_reference: 
+  label: 
+    de: Literatur
+    en: References
+doc_added_entries: 
+  label: 
+    de: Nebeneintragungen
+    en: Added entry name
+doc_performance: 
+  label: 
+    de: "Aufführungen"
+    en: Performances
+doc_date: 
+  label: 
+    de: Daten
+    en: Dates
+doc_administration: 
+  label: 
+    de: Administration
+    en: Administration
 
 ################
 
