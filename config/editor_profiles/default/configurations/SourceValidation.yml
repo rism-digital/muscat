@@ -4,9 +4,9 @@
     a: required
     b: required
     c: required
-    e:
-      required_if:
-        "031": "m"
+#    e:
+#      required_if:
+#        "031": "m"
     n:
       required_if:
         "031": "p"
@@ -16,11 +16,11 @@
     r:
       required_if:
         "031": "p"
-"041": 
-  tags:
-    a:
-      required_if:
-        "031": "t"
+#"041": 
+#  tags:
+#    a:
+#      required_if:
+#        "031": "t"
 "100": 
   tags:
     "0": required
@@ -40,11 +40,11 @@
 "593": 
   tags:
     a: required
-"595": 
-  tags:
-    a:
-      required_if:
-        "031": "e"
+#"595": 
+#  tags:
+#    a:
+#      required_if:
+#        "031": "e"
 "650": 
   tags:
     "0": required
@@ -57,7 +57,7 @@
 "690": 
   tags:
     "0": required
-    n: required
+#    n: required
 "691": 
   tags:
     "0": required
@@ -65,11 +65,11 @@
 "700": 
   tags:
     "0": required
-    j: required
+#    j: required
 "710": 
   tags:
     "0": required
-    j: required
+#    j: required
 "730": 
   tags:
     "0": required
