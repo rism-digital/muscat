@@ -29,8 +29,9 @@ module Viaf
             next
           end
           provider_url="http://viaf.org/processed/#{provider}%7C#{provider_id}?httpAccept=application/xml"
+          links = JSON.load(open(URI.escape("http://viaf.org/viaf/#{record["viafid"]}/justlinks.json")))
           provider_doc = Nokogiri::XML(open(provider_url))
-          # IMPROVE inject methods
+          # TODO IMPROVE inject methods
           provider_doc.xpath('//marc:controlfield[@tag="001"]', NAMESPACE).first.content = record["viafid"]
           node_24 = provider_doc.xpath('//marc:datafield[@tag="024"]', NAMESPACE)
           tag_024 = Nokogiri::XML::Node.new "mx:datafield", provider_doc.root
@@ -50,6 +51,22 @@ module Viaf
             node_24.first.add_previous_sibling(tag_024)
           end
           puts record["displayForm"]
+          if links["WKP"]
+            wkp = links["WKP"][0]
+            wkp_024 = Nokogiri::XML::Node.new "mx:datafield", provider_doc.root
+            wkp_024['tag'] = '024'
+            wkp_024['ind1'] = '7'
+            wkp_024['ind2'] = ' '
+            sfa = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
+            sfa['code'] = 'a'
+            sfa.content = wkp
+            sf2 = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
+            sf2['code'] = '2'
+            sf2.content = "WKP"
+            wkp_024 << sfa << sf2
+          end
+
+          node_24.last.add_next_sibling(wkp_024) if wkp_024 && node_24.last
           if provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE).empty?
             next
           else
@@ -57,7 +74,6 @@ module Viaf
             doc = xslt.transform(provider_doc)
             # Escaping for json
             doc = doc.to_s.gsub(/'/, "&apos;")
-            #binding.pry
             marc = Object.const_get("Marc#{model.to_s.capitalize}").new(doc)
             result << marc.to_json
             break
