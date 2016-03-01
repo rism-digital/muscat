@@ -46,7 +46,7 @@ module ForeignLinks
         puts "- Added records dump: #{new_items}"
         puts "- Error message follows:"
         puts e.message
-      end      
+      end
     end
     
     
