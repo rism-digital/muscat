@@ -5,7 +5,7 @@ class MarcNode
   include Enumerable
   attr_reader :tag, :content, :indicator, :foreign_object, :parent, :diff, :diff_is_deleted
   attr_writer :tag, :content, :indicator, :foreign_object, :foreign_field, :diff, :diff_is_deleted
-  attr_accessor :foreign_host 
+  attr_accessor :foreign_host, :suppress_scaffold_links_trigger
   
   def initialize(model, tag = nil, content = nil, indicator = nil)
     @tag = tag
@@ -23,6 +23,11 @@ class MarcNode
     @model = model
     @marc_configuration = MarcConfigCache.get_configuration @model
   end
+  
+  def suppress_scaffold_links
+    self.suppress_scaffold_links_trigger = true
+  end  
+  
   
   # Returns a copy of this object an all of its references
   def deep_copy
@@ -154,6 +159,7 @@ class MarcNode
     foreign_associations = {}
     if parent == nil
       @children.each do |child|
+        child.suppress_scaffold_links if self.suppress_scaffold_links_trigger == true
         child_foreign_associations = child.import(overwrite, reindex, user)
         foreign_associations.merge!(child_foreign_associations) unless !child_foreign_associations
       end
@@ -182,10 +188,11 @@ class MarcNode
         elsif nmasters.size > 0
           # we will need to add a master (id), but only if the master if $0 (e.g., for 740, we don't add a $0 master)
           master_tag = @marc_configuration.get_master( self.tag )
-          add_master = true if master_tag == "0"
+          add_master = true
           self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters )
         end
-        return if !self.foreign_object 
+        return if !self.foreign_object
+        
         # We have the foreign object. Check if it needs to be populated and saved
         if self.foreign_object.new_record? or overwrite
           self.foreign_object.user = user if user
@@ -196,7 +203,9 @@ class MarcNode
           # we try the lookup using non-masters so hopefully we can match the field to the one already there
           # and avoid the duplication crash
           self.foreign_object.suppress_reindex if reindex == false
-          #self.foreign_object.suppress_scaffold_marc if self.foreign_object.respond_to?(:suppress_scaffold_marc)
+          if self.suppress_scaffold_links_trigger == true
+            self.foreign_object.suppress_scaffold_marc if self.foreign_object.respond_to?(:suppress_scaffold_marc)
+          end
           begin
             # If this is a marc auth file suppress scaffolding
             # Removed for now, it seems it does not degrade performance too much
@@ -222,7 +231,8 @@ class MarcNode
         end 
         # now add the master subfield $0 with the id value
         if add_master
-          master = MarcNode.new(@model, "0", nil, nil )
+          master_tag = @marc_configuration.get_master( self.tag )
+          master = MarcNode.new(@model, master_tag, nil, nil )
           master.content = self.foreign_object.id
           add( master )
         end
