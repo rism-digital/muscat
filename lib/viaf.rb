@@ -3,7 +3,6 @@
 module Viaf
 
   # A List of VIAF providers sorted by rank
-  SELECT_PROVIDER = YAML::load(File.open("config/viaf/person.yml"))
 
   # This class provides the main search functionality
   class Interface
@@ -11,12 +10,18 @@ module Viaf
     require 'open-uri'
 
     def self.search(term, model)
+      providers = YAML::load(File.open("config/viaf/#{model.to_s.downcase}.yml"))
       result = []
       query = JSON.load(open(URI.escape("http://viaf.org/viaf/AutoSuggest?query="+term)))
-      r = query["result"].map{|e| e if e['nametype']=='personal'}.compact
+      if model.to_s == 'Person'
+        r = query["result"].map{|e| e if e['nametype']=='personal'}.compact
+      else
+        #TODO adopt for other marc classes
+        r = query["result"].map{|e| e if e['nametype']=='personal'}.compact
+      end
       provider_doc = ""
       r.each do |record|
-        SELECT_PROVIDER.each do |provider|
+        providers.keys.each do |provider|
           puts provider
           if record[provider.downcase]
             provider_id=record[provider.downcase]
@@ -48,15 +53,25 @@ module Viaf
           if provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE).empty?
             next
           else
-            xslt  = Nokogiri::XSLT(File.read('config/viaf/person_dnb.xsl'))
+            xslt  = Nokogiri::XSLT(File.read('config/viaf/' + providers[provider]))
             doc = xslt.transform(provider_doc)
-            marc = MarcPerson.new(doc.to_s)
+            # Escaping for json
+            doc = doc.to_s.gsub(/'/, "&apos;")
+            marc = Object.const_get("Marc#{model.to_s.capitalize}").new(doc)
             result << marc.to_json
             break
           end
         end
       end
       return result
+    end
+
+    def self.xsl_test
+      xml = File.open("config/viaf/test.xml") { |f| Nokogiri::XML(f)  }
+      xslt  = Nokogiri::XSLT(File.read('config/viaf/person_dnb.xsl'))
+      doc = xslt.transform(xml)
+      puts doc.to_s.split("\n")[0..20].join("\n")
+      binding.pry
     end
   end
 end

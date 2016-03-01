@@ -1,6 +1,6 @@
 # This is an ranking list
-- LC
-- DNB
-- WKP
-- BNF
+DNB: person_dnb.xsl
+BNF: person_bnf.xsl
+LC: person_lc.xsl
+#WKP:
 

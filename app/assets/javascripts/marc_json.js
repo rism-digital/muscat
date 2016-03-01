@@ -391,5 +391,3 @@ function marc_json_get_tags(json_marc, tag){
 	}
 	return result;
 }
-
-

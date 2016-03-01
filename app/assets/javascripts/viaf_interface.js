@@ -21,11 +21,20 @@ var show_viaf_actions = function () {
 	function _update_form(data){
 		protected_fields = ['100']
 		tags = data["fields"]
-		for (t in tags){
+		tag = ""
+		cnt = 0
+		for(t=0; t < tags.length; t++){
 			datafield = tags[t]
+			if(datafield.tag != tag){
+				cnt = 0
+				tag = datafield.tag
+			}
+			else{
+				cnt++
+			}
 			if (!($.inArray(datafield.tag, protected_fields))){
 				if (/\/new#$/.test(self.location.href)){
-					_update_marc_tag(datafield.tag, marc_json_get_tags(data, datafield.tag)[0])
+					_update_marc_tag(datafield.tag, marc_json_get_tags(data, datafield.tag)[cnt])
 				}
 				else{
 					continue
@@ -33,14 +42,14 @@ var show_viaf_actions = function () {
 				continue
 			}
 			if (_size_of_marc_tag(datafield.tag) == 0){
-				_new_marc_tag(datafield.tag, marc_json_get_tags(data, datafield.tag)[0])
+				_new_marc_tag(datafield.tag, marc_json_get_tags(data, datafield.tag)[cnt])
 			}
 			else{
 				if (_marc_tag_is_empty(datafield.tag)){
-					_update_marc_tag(datafield.tag, marc_json_get_tags(data, datafield.tag)[0])
+					_update_marc_tag(datafield.tag, marc_json_get_tags(data, datafield.tag)[cnt])
 				}
 				else{
-					_append_marc_tag(datafield.tag, marc_json_get_tags(data, datafield.tag)[0])
+					_append_marc_tag(datafield.tag, marc_json_get_tags(data, datafield.tag)[cnt])
 				}
 			}
 		}
@@ -72,6 +81,7 @@ var show_viaf_actions = function () {
 	}
 
 	function drawRow(rowData) {
+		console.log(rowData)
 		var id = marc_json_get_tags(rowData, "001")[0].content;
 		var tag100 = marc_json_get_tags(rowData, "100")[0]
 		var tag35 = marc_json_get_tags(rowData, "035")[0]
@@ -81,7 +91,7 @@ var show_viaf_actions = function () {
 		row.append($("<td>" + tag100["a"] + "</td>"));
 		row.append($("<td>" + (tag100["d"] ? tag100["d"] : "") + "</td>"));
 		row.append($("<td>" + ( (typeof(tag35)!='undefined') ? tag35["a"] : "") + "</td>"));
-		row.append($('<td><a class="data" href="#" data-viaf=\'' + JSON.stringify(rowData) + '\'>Übernehmen</a></td>'));
+		row.append($('<td><a class="data" id="viaf_data" href="#" data-viaf=\'' + JSON.stringify(rowData) + '\'>Übernehmen</a></td>'));
 	}
 };
 

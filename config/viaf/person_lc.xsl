@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Version: 2016-03-01 -->
-
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:marc="http://www.loc.gov/MARC21/slim">
     <xsl:output method="text" encoding="UTF-8" indent="no" omit-xml-declaration="yes" />
     <xsl:strip-space elements="*"/>
@@ -49,59 +47,28 @@
     </xsl:template>
 
     <xsl:template match="marc:datafield">
-		 <xsl:if test="
-			 @tag='024' or 
-			 @tag='100' or 
-			 @tag='400' or 
-			 @tag='550' or 
-			 @tag='551'">
-			 <xsl:text>=</xsl:text>
- 			 <xsl:choose>
-				<xsl:when test="@tag='550'">
-					<xsl:value-of select="374"/>
-				</xsl:when>
-
-				<xsl:otherwise >
-					<xsl:value-of select="@tag"/>
-				</xsl:otherwise>
-			</xsl:choose>
+		 <xsl:if test="@tag='024' or @tag='100'">
+        <xsl:text>=</xsl:text>
+        <xsl:value-of select="@tag"/>
         <xsl:text>  </xsl:text>
         <xsl:value-of select="translate(@ind1,' ','#')"/>
         <xsl:value-of select="translate(@ind2,' ','#')"/>
         <xsl:apply-templates select="marc:subfield"/>
 		  <xsl:text>&#xa;</xsl:text>
 		</xsl:if>
-	</xsl:template>
+    </xsl:template>
+
     <xsl:template match="marc:subfield">
         <xsl:text>$</xsl:text>
         <xsl:value-of select="@code"/>
-		  <xsl:variable name="newtext">
-  			  <xsl:choose>
-				  <xsl:when test="../@tag='024' and @code='a' and contains(current(), 'd-nb')">
-					<xsl:call-template name="string-replace-all">
-						<xsl:with-param name="text" select="substring-after(text(), 'gnd/')" />
-						<xsl:with-param name="replace" select="'$'" />
-						<xsl:with-param name="by" select="'_DOLLAR_'" />
-					</xsl:call-template>
-					</xsl:when>
-	 				<xsl:when test="../@tag='024' and @code='2' and contains(current(), 'uri')">
-					<xsl:call-template name="string-replace-all">
-						<xsl:with-param name="text" select="'DNB'" />
-						<xsl:with-param name="replace" select="'$'" />
-						<xsl:with-param name="by" select="'_DOLLAR_'" />
-					</xsl:call-template>
-				</xsl:when>
-
-				<xsl:otherwise>
-					<xsl:call-template name="string-replace-all">
-						<xsl:with-param name="text" select="current()" />
-						<xsl:with-param name="replace" select="'$'" />
-						<xsl:with-param name="by" select="'_DOLLAR_'" />
-						</xsl:call-template>
-				</xsl:otherwise>
-			</xsl:choose>
+        <xsl:variable name="newtext">
+           <xsl:call-template name="string-replace-all">
+              <xsl:with-param name="text" select="current()" />
+              <xsl:with-param name="replace" select="'$'" />
+              <xsl:with-param name="by" select="'_DOLLAR_'" />
+            </xsl:call-template>
         </xsl:variable>
-       <xsl:value-of select="$newtext"/>
+        <xsl:value-of select="$newtext"/>
 	 </xsl:template>
 </xsl:stylesheet>
  
