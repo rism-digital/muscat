@@ -210,7 +210,7 @@ class MarcNode
             # If this is a marc auth file suppress scaffolding
             # Removed for now, it seems it does not degrade performance too much
             #self.foreign_object.suppress_scaffold_marc if self.foreign_object.respond_to?(:suppress_scaffold_marc)
-            if !self.foreign_object.save
+            unless self.foreign_object.save!
               puts "Foreign object could not be saved, possible duplicate?" # Try again not using master field lookup"
               # NOTE: THe code above is commented to allow duplicate entries in people/institutions for RISM A/I
               # see the Institutions model
@@ -274,7 +274,7 @@ class MarcNode
   
   # Get the all the tags that are not master for a subtag
   def get_non_master_foreign_subfields  
-    @children.select { |c| @marc_configuration.is_foreign?(self.tag, c.tag) and @marc_configuration.get_foreign_class(self.tag, c.tag).match(/^\^/) }
+    @children.select { |c| @marc_configuration.is_foreign?(self.tag, c.tag) and !@marc_configuration.disable_create_lookup?(self.tag, c.tag) and @marc_configuration.get_foreign_class(self.tag, c.tag).match(/^\^/) }
   end
   
   # Get the all the tags that are foreign subfields (master and non master)
