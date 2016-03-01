@@ -109,7 +109,7 @@ Source.all.each do |sa|
     node.tag = "500"
     node.indicator = "##"
     node.sort_alphabetically
-    marc.root.children.insert(get_insert_position("500"), node)
+    marc.root.children.insert(marc.get_insert_position("500"), node)
     
     t.destroy_yourself
   end
