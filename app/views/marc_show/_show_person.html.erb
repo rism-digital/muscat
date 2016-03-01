@@ -47,7 +47,7 @@
 			<%= link_to content, catalog_index_path(:search_field => query_type, :q => content)%>
 		<% else %>
 		
-			<%= !person_id.empty? ? link_to( content, admin_person_path(person_id)) : content %>
+			<%= person_id && !person_id.empty? ? link_to( content, admin_person_path(person_id)) : content %>
 		<% end %>
 			
 		<%= " (#{lifedates})" if lifedates %>
