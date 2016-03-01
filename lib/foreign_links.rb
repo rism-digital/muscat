@@ -46,23 +46,24 @@ module ForeignLinks
         puts "- Added records dump: #{new_items}"
         puts "- Error message follows:"
         puts e.message
-      end
-
-      # If this item was manipulated, update also the src count
-      # Unless the suppress_update_count is set
-      # Since now classes can link between eachother
-      # make sure this is updated only when it is a source
-      # that triggers the change. In other cases (like people linking to institutions)
-      # there is no such count field.
-      if self.is_a?(Source)
-        if !self.suppress_update_count_trigger && 
-          (new_items + remove_items).each do |o|
-            o.update_attribute( :src_count, o.sources.count )
-          end
+      end      
+    end
+    
+    
+    # If this item was manipulated, update also the src count
+    # Unless the suppress_update_count is set
+    # Since now classes can link between eachother
+    # make sure this is updated only when it is a source
+    # that triggers the change. In other cases (like people linking to institutions)
+    # there is no such count field.
+    if self.is_a?(Source)
+      if !self.suppress_update_count_trigger 
+        marc_foreign_objects.each do |key, fo|
+          fo.each {|o| o.update_attribute( :src_count, o.sources.count)}
         end
       end
-      
     end
+    
   end
 end
     
