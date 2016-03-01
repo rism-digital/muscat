@@ -52,6 +52,7 @@
 		 <xsl:if test="
 			 @tag='024' or 
 			 @tag='100' or 
+			 @tag='375' or 
 			 @tag='400' or 
 			 @tag='550' or 
 			 @tag='551'">
@@ -91,6 +92,23 @@
 						<xsl:with-param name="by" select="'_DOLLAR_'" />
 					</xsl:call-template>
 				</xsl:when>
+
+				<xsl:when test="../@tag='375' and @code='a'">
+					<xsl:choose>
+						<xsl:when test="text()=1">
+							<xsl:value-of select="'male'"/>
+							</xsl:when>
+							<xsl:when test="text()=2">
+							<xsl:value-of select="'female'"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="'unknown'"/>
+						</xsl:otherwise>
+				</xsl:choose>
+
+
+				</xsl:when>
+
 
 				<xsl:otherwise>
 					<xsl:call-template name="string-replace-all">

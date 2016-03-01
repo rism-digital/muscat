@@ -57,6 +57,7 @@ module Viaf
             doc = xslt.transform(provider_doc)
             # Escaping for json
             doc = doc.to_s.gsub(/'/, "&apos;")
+            #binding.pry
             marc = Object.const_get("Marc#{model.to_s.capitalize}").new(doc)
             result << marc.to_json
             break
