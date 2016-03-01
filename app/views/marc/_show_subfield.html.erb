@@ -8,7 +8,7 @@
 	<% 		
 		content = ""
 		if @item.marc.config.is_foreign?(tag.tag, subfield.tag)
-			content = subfield.looked_up_content.html_safe if subfield && looked_up_content
+			content = subfield.looked_up_content.html_safe if subfield && subfield.looked_up_content
 		else
 			content = subfield.content.html_safe if subfield && subfield.content
 		end
