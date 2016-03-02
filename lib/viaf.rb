@@ -31,14 +31,13 @@ module Viaf
           provider_url="http://viaf.org/processed/#{provider}%7C#{provider_id}?httpAccept=application/xml"
           links = JSON.load(open(URI.escape("http://viaf.org/viaf/#{record["viafid"]}/justlinks.json")))
           provider_doc = Nokogiri::XML(open(provider_url))
-          # TODO IMPROVE inject methods
           provider_doc.xpath('//marc:controlfield[@tag="001"]', NAMESPACE).first.content = record["viafid"]
           node_24 = provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE)
           provider_doc.xpath('//marc:datafield[@tag="024"]', NAMESPACE).remove
-          node_24.first.add_previous_sibling(self.build_provider_node(provider_doc.root, "VIAF", record["viafid"]))
-          node_24.first.add_previous_sibling(self.build_provider_node(provider_doc.root, provider, provider_id))
+          node_24.first.add_previous_sibling(build_provider_node(provider_doc.root, "VIAF", record["viafid"]))
+          node_24.first.add_previous_sibling(build_provider_node(provider_doc.root, provider, provider_id))
           if links["WKP"]
-            node_24.first.add_previous_sibling(self.build_provider_node(provider_doc.root, "WKP", links["WKP"][0]))
+            node_24.first.add_previous_sibling(build_provider_node(provider_doc.root, "WKP", links["WKP"][0]))
           end
 
          if provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE).empty?
@@ -80,5 +79,7 @@ module Viaf
       doc = xslt.transform(xml)
       puts doc.to_s.split("\n")[0..20].join("\n")
     end
+
+    private_class_method :build_provider_node
   end
 end
