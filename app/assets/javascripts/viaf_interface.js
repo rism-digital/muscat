@@ -15,8 +15,6 @@ var show_viaf_actions = function () {
 	* if tag in protected fields: only update if new
 	* else: add other tags (new and append)
 	* never update fields if not new
-	* OPTIMIZE use external conf
-	* OPTIMIZE too much and complex logic here
 	*/
 	function _update_form(data){
 		protected_fields = ['100']
@@ -81,7 +79,8 @@ var show_viaf_actions = function () {
 	}
 
 	function drawRow(rowData) {
-		console.log(rowData)
+		locale = $viaf_table.attr("locale")
+		message = {"de": "übernehmen", "en": "select", "fr": "choisir", "it": "scegliere"}[locale]
 		var id = marc_json_get_tags(rowData, "001")[0].content;
 		var tag100 = marc_json_get_tags(rowData, "100")[0]
 		var tag24 = marc_json_get_tags(rowData, "024")[1]
@@ -91,7 +90,7 @@ var show_viaf_actions = function () {
 		row.append($("<td>" + tag100["a"] + "</td>"));
 		row.append($("<td>" + (tag100["d"] ? tag100["d"] : "") + "</td>"));
 		row.append($("<td>" + ( (typeof(tag24)!='undefined') ? tag24["2"] : "") + "</td>"));
-		row.append($('<td><a class="data" id="viaf_data" href="#" data-viaf=\'' + JSON.stringify(rowData) + '\'>Übernehmen</a></td>'));
+		row.append($('<td><a class="data" id="viaf_data" href="#" data-viaf=\'' + JSON.stringify(rowData) + '\'>' + message  + '</a></td>'));
 	}
 };
 
@@ -111,9 +110,6 @@ function _new_marc_tag(target, data) {
 	new_dt = placeholder.clone();
 	for (code in data){
 		subfield = new_dt.find(".subfield_entry[data-tag='" + target + "'][data-subfield='" + code + "'], .single_select_target[data-tag='" + target + "'][data-subfield='" + code + "']").first()
-		//if(target == '375'){
-		//subfield = new_dt.find(".single_select_target[data-tag='" + target + "'][data-subfield='" + code + "']").first()
-		//}
 		subfield.val(data[code]);
 		subfield.css("background-color", "#ffffb3");
 	}
