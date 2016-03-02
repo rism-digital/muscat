@@ -50,6 +50,7 @@ class Source < ActiveRecord::Base
   
   belongs_to :source
   has_many :sources
+  has_many :digital_objects
   has_and_belongs_to_many :institutions
   has_and_belongs_to_many :people
   has_and_belongs_to_many :standard_titles
@@ -70,7 +71,7 @@ class Source < ActiveRecord::Base
   before_save :set_object_fields
   after_create :fix_ids
   after_save :update_links, :reindex
-  before_destroy :update_links
+  before_destroy :update_links_for_destroy
   
   # alias for holding records
   alias_attribute :ms_condition, :title  
@@ -125,6 +126,15 @@ class Source < ActiveRecord::Base
     
     # update the parent manuscript when having 773/772 relationships
     update_77x unless self.suppress_update_77x_trigger == true 
+  end
+  
+  # A special case: if we are deleting the source
+  # do not update the 77x links. This permits
+  # us to delete sources that have invalid MARC data
+  # since 77x forces a marc load
+  def update_links_for_destroy
+    suppress_update_77x
+    update_links
   end
   
   # Suppresses the solr reindex
@@ -229,6 +239,10 @@ class Source < ActiveRecord::Base
     
   def check_dependencies
     if (self.sources.count > 0)
+      errors.add :base, "The source could not be deleted because it is used"
+      return false
+    end
+    if (self.digital_objects.count > 0)
       errors.add :base, "The source could not be deleted because it is used"
       return false
     end

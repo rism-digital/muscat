@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202151822) do
+ActiveRecord::Schema.define(version: 20160218123959) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -27,24 +27,6 @@ ActiveRecord::Schema.define(version: 20160202151822) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
-
-  create_table "admin_users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id",       null: false
@@ -89,6 +71,23 @@ ActiveRecord::Schema.define(version: 20160202151822) do
 
   add_index "catalogues_sources", ["catalogue_id"], name: "index_catalogues_sources_on_catalogue_id", using: :btree
   add_index "catalogues_sources", ["source_id"], name: "index_catalogues_sources_on_source_id", using: :btree
+
+  create_table "digital_objects", force: true do |t|
+    t.integer  "source_id"
+    t.string   "description"
+    t.integer  "wf_audit",                default: 0
+    t.integer  "wf_stage",                default: 0
+    t.string   "wf_notes"
+    t.integer  "wf_owner",                default: 0
+    t.integer  "wf_version",              default: 0
+    t.integer  "lock_version",            default: 0, null: false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+  end
+
+  add_index "digital_objects", ["source_id"], name: "index_digital_objects_on_source_id", using: :btree
 
   create_table "do_div_files", force: true do |t|
     t.integer  "do_file_id"

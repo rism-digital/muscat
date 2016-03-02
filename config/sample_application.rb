@@ -56,6 +56,9 @@ module RISM
     :it => "Italiano"
   }
   
+  # Set the path for the digital object storage
+  # You also need to symlink ./public/system to a system directory in it
+  DIGITAL_OBJECT_PATH = "/path/to/the/digital/objects/directory"
 end
 
 module Muscat

@@ -76,7 +76,7 @@ Source.all.each do |sa|
     t0.destroy_yourself
   end
   
-  #193 Migrate 505 to 52
+  #193 Migrate 505 to 520
   marc.each_by_tag("505") do |t|
     ta = t.fetch_first_by_tag("a")
     
@@ -93,13 +93,29 @@ Source.all.each do |sa|
   end
   
   # Drop $2pe in 031, see #194
-  each_by_tag("031") do |t|
+  marc.each_by_tag("031") do |t|
     st = t.fetch_first_by_tag("2")
     if st && st.content && st.content != "pe"
       puts "Unknown 031 $2 value: #{st.content}"
     end
-    st.destroy_yourself
+    st.destroy_yourself if st
   end
+  
+  
+  # #207 Move 563 to 500
+  marc.each_by_tag("563") do |t|
+
+    node = t.deep_copy
+    node.tag = "500"
+    node.indicator = "##"
+    node.sort_alphabetically
+    marc.root.children.insert(marc.get_insert_position("500"), node)
+    
+    t.destroy_yourself
+  end
+  
+  # #208, drop 600
+  marc.each_by_tag("600") {|t| t.destroy_yourself}
   
 	s.suppress_update_77x
 	s.suppress_update_count

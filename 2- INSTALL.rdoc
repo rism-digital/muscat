@@ -159,3 +159,7 @@ Clone GIT repo in /var/www/rails (instead ad /usr/local/www as used on FreeBSD).
  sudo bundle install
 
 Use the above example apache conf in /etc/httpd/sites-enabled, create the DB and start Solr as above.
+
+== Add clean up in crontab for blacklight
+
+ 0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production

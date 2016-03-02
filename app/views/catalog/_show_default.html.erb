@@ -9,4 +9,7 @@
 %>
 <dl class="dl-horizontal  dl-invert">
 	<%= render :partial => "marc/show", :locals => { :opac => true } %>
+	<%- if @item.digital_objects.size > 0 %>
+		<%= render :partial => "catalog/digital_objects" %>
+	<%- end %>
 </dl>
