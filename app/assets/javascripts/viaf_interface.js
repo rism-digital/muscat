@@ -84,13 +84,13 @@ var show_viaf_actions = function () {
 		console.log(rowData)
 		var id = marc_json_get_tags(rowData, "001")[0].content;
 		var tag100 = marc_json_get_tags(rowData, "100")[0]
-		var tag35 = marc_json_get_tags(rowData, "035")[0]
+		var tag24 = marc_json_get_tags(rowData, "024")[1]
 		var row = $("<tr />")
 		$viaf_table.append(row); 
 		row.append($("<td><a target=\"_blank\" href=\"http://viaf.org/viaf/" + id + "\">" + id + "</a></td>"));
 		row.append($("<td>" + tag100["a"] + "</td>"));
 		row.append($("<td>" + (tag100["d"] ? tag100["d"] : "") + "</td>"));
-		row.append($("<td>" + ( (typeof(tag35)!='undefined') ? tag35["a"] : "") + "</td>"));
+		row.append($("<td>" + ( (typeof(tag24)!='undefined') ? tag24["2"] : "") + "</td>"));
 		row.append($('<td><a class="data" id="viaf_data" href="#" data-viaf=\'' + JSON.stringify(rowData) + '\'>Übernehmen</a></td>'));
 	}
 };

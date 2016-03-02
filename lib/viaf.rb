@@ -33,41 +33,15 @@ module Viaf
           provider_doc = Nokogiri::XML(open(provider_url))
           # TODO IMPROVE inject methods
           provider_doc.xpath('//marc:controlfield[@tag="001"]', NAMESPACE).first.content = record["viafid"]
-          node_24 = provider_doc.xpath('//marc:datafield[@tag="024"]', NAMESPACE)
-          tag_024 = Nokogiri::XML::Node.new "mx:datafield", provider_doc.root
-          tag_024['tag'] = '024'
-          tag_024['ind1'] = '7'
-          tag_024['ind2'] = ' '
-          sfa = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
-          sfa['code'] = 'a'
-          sfa.content = record["viafid"]
-          sf2 = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
-          sf2['code'] = '2'
-          sf2.content = "VIAF"
-          tag_024 << sfa << sf2
-          if node_24.empty?
-            provider_doc.root << tag_024
-          else
-            node_24.first.add_previous_sibling(tag_024)
-          end
-          puts record["displayForm"]
+          node_24 = provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE)
+          provider_doc.xpath('//marc:datafield[@tag="024"]', NAMESPACE).remove
+          node_24.first.add_previous_sibling(self.build_provider_node(provider_doc.root, "VIAF", record["viafid"]))
+          node_24.first.add_previous_sibling(self.build_provider_node(provider_doc.root, provider, provider_id))
           if links["WKP"]
-            wkp = links["WKP"][0]
-            wkp_024 = Nokogiri::XML::Node.new "mx:datafield", provider_doc.root
-            wkp_024['tag'] = '024'
-            wkp_024['ind1'] = '7'
-            wkp_024['ind2'] = ' '
-            sfa = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
-            sfa['code'] = 'a'
-            sfa.content = wkp
-            sf2 = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
-            sf2['code'] = '2'
-            sf2.content = "WKP"
-            wkp_024 << sfa << sf2
+            node_24.first.add_previous_sibling(self.build_provider_node(provider_doc.root, "WKP", links["WKP"][0]))
           end
 
-          node_24.last.add_next_sibling(wkp_024) if wkp_024 && node_24.last
-          if provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE).empty?
+         if provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE).empty?
             next
           else
             xslt  = Nokogiri::XSLT(File.read('config/viaf/' + providers[provider]))
@@ -83,12 +57,28 @@ module Viaf
       return result
     end
 
+
+    def self.build_provider_node(parent, provider, id)
+          tag = Nokogiri::XML::Node.new "mx:datafield", parent
+          tag['tag'] = '024'
+          tag['ind1'] = '7'
+          tag['ind2'] = ' '
+          sfa = Nokogiri::XML::Node.new "mx:subfield", parent
+          sfa['code'] = 'a'
+          sfa.content = id
+          sf2 = Nokogiri::XML::Node.new "mx:subfield", parent
+          sf2['code'] = '2'
+          sf2.content = provider
+          tag << sfa << sf2
+          return tag
+    end
+
+
     def self.xsl_test
       xml = File.open("config/viaf/test.xml") { |f| Nokogiri::XML(f)  }
-      xslt  = Nokogiri::XSLT(File.read('config/viaf/person_dnb.xsl'))
+      xslt  = Nokogiri::XSLT(File.read('config/viaf/person_bnf.xsl'))
       doc = xslt.transform(xml)
       puts doc.to_s.split("\n")[0..20].join("\n")
-      binding.pry
     end
   end
 end

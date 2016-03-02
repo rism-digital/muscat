@@ -47,7 +47,9 @@
 	</xsl:template>
 
 	<xsl:template match="marc:datafield">
-		<xsl:if test="@tag='024' or @tag='200' or @tag='998' ">
+		<xsl:if test="@tag='024' or 
+							@tag='200' or 
+							@tag='998' ">
 			<xsl:text>=</xsl:text>
 			<xsl:choose>
 				<xsl:when test="@tag='200'">
@@ -90,6 +92,7 @@
 						<xsl:with-param name="by" select="'_DOLLAR_'" />
 					</xsl:call-template>
 				</xsl:when>
+
 				<xsl:otherwise>
 					<xsl:call-template name="string-replace-all">
 						<xsl:with-param name="text" select="current()" />
