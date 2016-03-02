@@ -1,7 +1,7 @@
 <%- 
 	tag_names = @editor_profile.layout_tag_names_for_group(@item, group)
 	group_title = @editor_profile.get_label(group)
-	@editor_profile.layout_config[:marc_editor_group_links] << group_title
+   @editor_profile.layout_config[:marc_editor_group_links] << group_title
 -%>
 
 <%- if @editor_profile.layout_config["groups"][group]["subfield_grouping"] %>
@@ -16,7 +16,7 @@
 	<%# check that the tags with no grouping are not present somewhere else in the layout %>
 	<%- tags_with_no_subfield = tags_with_no_subfield.select{ |t| !@editor_profile.layout_tags_not_in_subfield_grouping.include? t.tag } %>
 	
-	<%- if tags_with_no_subfield.size > 0 %>
+   <%- if tags_with_no_subfield.size > 0 %>
 		<%- group_title = @editor_profile.get_label("unmatched") %>
 		<%- @editor_profile.layout_config[:marc_editor_missing_group_links] = group_title -%>
 		<div class="panel tab_panel" name="<%= group_title.gsub(/ /, "_") %>">

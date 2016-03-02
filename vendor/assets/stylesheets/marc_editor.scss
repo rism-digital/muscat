@@ -117,7 +117,16 @@
                         color: $form-label-color;
                         margin-top: 5px;
                         padding-left: 3px;
-                    }
+                    }			
+					* .error {
+						border-color: red;
+					}
+					* label.error {
+						color: red;
+					}
+					* a.error {
+						color: red;
+					}
                 }
             } 
         }
@@ -381,4 +390,10 @@ button.abutton-icon-solo .ui-icon {left: 0;}
 	background-image:url('/images/textfield_key.png');
 	background-repeat: no-repeat;
 	background-position: center right;
+}
+
+// Form Validation
+a.error {
+  color: red;
+  text-decoration: underline;
 }

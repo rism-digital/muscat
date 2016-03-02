@@ -8,7 +8,7 @@ class Marc
   include Comparable
   
   attr_reader :all_foreign_associations
-  attr_accessor :root, :results
+  attr_accessor :root, :results, :suppress_scaffold_links_trigger
 
   LANGUAGES = {
 		'lat' => 'Latin',
@@ -43,6 +43,11 @@ class Marc
   def __get_root
     @root
   end
+  
+  def suppress_scaffold_links
+    self.suppress_scaffold_links_trigger = true
+    @root.suppress_scaffold_links
+  end  
   
   # Returns a copy of this object an all of its references
   def deep_copy

@@ -6,6 +6,7 @@
 #= require jquery_ujs
 
 #= require marc_editor
+#= require marc_editor_validation
 #= require marc_json
 #= require jquery.blockUI
 #= require jquery.cascade

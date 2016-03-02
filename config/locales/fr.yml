@@ -139,11 +139,14 @@ fr:
     formats:
       default: "%H:%M"
       short: "%H:%M"
-      long: "%H:%M"
+      long: "%Y-%m-%d %H:%M"
   
   #################### MODELS      
   activerecord:
     models:
+      digital_object:
+        one: "Objet digital"
+        other: "Objets digitaux"
       catalogue:
         one: "Catalogue"
         other: "Catalogues"
@@ -260,6 +263,11 @@ fr:
     success: "Le dossier %{name} créé avec %{count} éléments."
     too_many: "Impossible d'ajouter plus de %{max} éléments  (%{count} sélectionnés)."
   
+  ### Digital objects
+  digital_objects: "Images"
+  digital_object_new: "Ajouter une nouvelle image"
+  digital_object_add: "Ajouter"
+  
   ############ filters
   filter_address: "Adresse"
   filter_alternate_dates: "Autres dates"
@@ -345,6 +353,10 @@ fr:
   filter_variants: "Variantes"
   filter_versions: "Versions"
   filter_volume: "Volume"
+  filter_image: "Image"
+  filter_file_name: "Nom de fichier"
+  filter_file_size: "Taille de fichier"
+  filter_content_type: "Type"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
   filter_wf_stage: "Status"
@@ -386,17 +398,20 @@ fr:
   
   #
   entry:
-     one: "entrée"
-     other: "entrées"
+    one: "entrée"
+    other: "entrées"
+  digital_object:
+    one: "objet digital"
+    other: "objets digitaux"
   catalogue:
     one: "catalogue"
     other: "catalogues"
   institution: 
-     one: "institution"
-     other: "institutions"
+    one: "institution"
+    other: "institutions"
   library: 
-     one: "bibliothèque"
-     other: "bibliothèques"
+    one: "bibliothèque"
+    other: "bibliothèques"
   liturgicalfeast: 
     one: "fête liturgique"
     other: "fêtes liturgiques"
@@ -407,8 +422,8 @@ fr:
     one: "place"
     other: "places"
   person: 
-     one: "personne"
-     other: "personnes"
+    one: "personne"
+    other: "personnes"
   standardterm:
     one: "sujet"
     other: "sujets" 
@@ -490,9 +505,20 @@ fr:
   do_images_title: "Images"
   connected_libraries: "Institutions"
   
-  
- # To be kept at the end because not required in English
- 
+  mei:
+    title: "Export en MEI de la source %{source}"
+    parameters: "Paramètres"
+    format: "Format d'incipit:"
+    format_mei: "MEI"
+    format_pae: "PAE (pas de conversion)"
+    stylesheet: "Feuille de style"
+    default_stylesheet: "Par défaut"
+    custom_stylesheet: "Personnalisée:"
+    preview: "Aperçu"
+    download: "Téléchargement"
+    more: "Informations supplémentaires"
+    banner: 'Cliquez "Aperçu" pour voir le résultat de la conversion en MEI.'
+    
   date:
     month_names:
     -
@@ -516,20 +542,12 @@ fr:
     - "jeudi"
     - "vendredi"
     - "samedi"
-
-  mei:
-    title: "Export en MEI de la source %{source}"
-    parameters: "Paramètres"
-    format: "Format d'incipit:"
-    format_mei: "MEI"
-    format_pae: "PAE (pas de conversion)"
-    stylesheet: "Feuille de style"
-    default_stylesheet: "Par défaut"
-    custom_stylesheet: "Personnalisée:"
-    preview: "Aperçu"
-    download: "Téléchargement"
-    more: "Informations supplémentaires"
-    banner: 'Cliquez "Aperçu" pour voir le résultat de la conversion en MEI.'
+  
+######################################################################################################
+# End of translation in all languages - make sure all the file have the same line number for this line
+ 
+######################################################################################################
+# Blacklights overriden translations - the list can vary from one language to another
 
   blacklight:
     application_name: 'Muscat'
@@ -557,3 +575,4 @@ fr:
       sort_label: "Trier par"
       start_over: "Nouvelle recherche"
       search_btn: 'Chercher'
+

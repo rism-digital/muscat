@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202151822) do
+ActiveRecord::Schema.define(version: 20160218123959) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -89,6 +89,23 @@ ActiveRecord::Schema.define(version: 20160202151822) do
 
   add_index "catalogues_sources", ["catalogue_id"], name: "index_catalogues_sources_on_catalogue_id", using: :btree
   add_index "catalogues_sources", ["source_id"], name: "index_catalogues_sources_on_source_id", using: :btree
+
+  create_table "digital_objects", force: true do |t|
+    t.integer  "source_id"
+    t.string   "description"
+    t.integer  "wf_audit",                default: 0
+    t.integer  "wf_stage",                default: 0
+    t.string   "wf_notes"
+    t.integer  "wf_owner",                default: 0
+    t.integer  "wf_version",              default: 0
+    t.integer  "lock_version",            default: 0, null: false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+  end
+
+  add_index "digital_objects", ["source_id"], name: "index_digital_objects_on_source_id", using: :btree
 
   create_table "do_div_files", force: true do |t|
     t.integer  "do_file_id"

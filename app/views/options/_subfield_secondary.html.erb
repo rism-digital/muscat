@@ -5,10 +5,22 @@
 <%- field = params.has_key?("field") ? params['field'] : "id" %>
 <%- create_not_found = params.has_key?("allow_not_found") ? params['allow_not_found'] : false %>
 
-<% do_serialize = "serialize_marc" if create_not_found == false %>
+<% 
+do_serialize = "serialize_marc" if create_not_found == false
 
-<input type="hidden" class="autocomplete_target <%=do_serialize%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%= marc_subfield_m.content %>">
+# Apply valitation only if we are not creating a new one
+# FIXME it should validate creation also?
+validate_class = ""
+name_tag = ""
+# Validate on the MASTER subfield, because it can be different from the DISPLAY subfiled!
+if @editor_validation && @editor_validation.validate_subtag?(tag_name, master) && (create_not_found == false)
+	validate_class, unique_name = @editor_validation.get_subtag_class_name(tag_name, master)
+	name_tag = raw "name=\"#{unique_name}\""
+end
 
+%>
+
+<input type="hidden" class="autocomplete_target <%=do_serialize%> <%=validate_class%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%= marc_subfield_m.content %>" <%=name_tag%> >
 
 <table class="marc_editor_grid_internal_layout" cellpadding="0" cellspacing="0">
 	<tr>

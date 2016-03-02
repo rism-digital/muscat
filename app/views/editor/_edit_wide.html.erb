@@ -19,9 +19,15 @@
   <%= render :partial => "editor/viaf_form" %>
 <% end %>
 
+
+<% if @editor_validation %>
 <script type="text/javascript">
 
-	marc_editor_init_tags($('#marc_editor_panel'));	
+validation_conf = <%= raw JSON.dump(EditorValidation.get_default_validation(@item).rules) -%>
+
+	marc_editor_init_tags($('#marc_editor_panel'));
+	marc_editor_init_validation($('#marc_editor_form_marc_editor_panel'), validation_conf);
 	$.ajax 
 		
 </script>
+<%end%>

@@ -282,7 +282,7 @@ function serialize_element( element, tag, json_marc, toplevel_groups) {
 	  // to its own function
 	
 	subfields = order_subfields(subfields_unordered);
-	
+
 	// Build the JSON marc tag
 	marc_tag = {};
 	// subfields are an array of objects

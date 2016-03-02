@@ -139,11 +139,14 @@ it:
     formats:
       default: "%H:%M"
       short: "%H:%M"
-      long: "%H:%M"
+      long: "%Y-%m-%d %H:%M"
       
   #################### MODELS      
   activerecord:
     models:
+      digital_object:
+        one: "DIGITAL OBJECT"
+        other: "DIGITAL OBJECTS"
       catalogue:
         one: "Catalogo"
         other: "Cataloghi"
@@ -258,7 +261,12 @@ it:
   folders:
     save: "Salva i risultati in una cartella"
     success: "Cartella %{name} creata con %{count} oggetti."
-    too_many: "Impossibile aggiungere più di %{max} oggetti (ne sono selezionati %{count})."
+    too_many: "Impossibile aggiungere più di %{max} oggetti (ne sono selezionati %{count})." 
+    
+  ### Digital objects
+  digital_objects: "IMAGES"
+  digital_object_new: "ADD A NEW IMAGE"
+  digital_object_add: "ADD"
     
   ############ filters
   filter_address: "Indirizzo"
@@ -345,6 +353,10 @@ it:
   filter_variants: "Varianti"
   filter_versions: "Versioni"
   filter_volume: "Volume"
+  filter_image: "IMAGE"
+  filter_file_name: "FILE NAME"
+  filter_file_size: "FILE SIZE"
+  filter_content_type: "TYPE"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
   filter_wf_stage: "Status"
@@ -388,6 +400,9 @@ it:
   entry:
      one: "voce"
      other: "voci"
+  digital_object:
+      one: "DIGITAL OBJECT"
+      other: "DIGITAL OBJECTS"
   catalogue:
     one: "catalogo"
     other: "cataloghi"
@@ -490,32 +505,6 @@ it:
   do_images_title: "Immagini"
   connected_libraries: "Biblioteche"
   
-   # To be kept at the end because not required in English
-  
-  date:
-     month_names:
-     -
-     - "gennaio"
-     - "febbraio"
-     - "marzo"
-     - "aprile"
-     - "maggio"
-     - "giugno"
-     - "luglio"
-     - "agosto"
-     - "settembre"
-     - "ottobre"
-     - "novembre"
-     - "dicembre"
-     day_names:
-     - "domenica"
-     - "lunedì"
-     - "martedì"
-     - "mercoledì"
-     - "giovedì"
-     - "venerdì"
-     - "sabato"
-
   mei:
     title: "Esportazione MEI per la fonte %{source}"
     parameters: "Parametri"
@@ -529,6 +518,36 @@ it:
     download: "Download"
     more: "Altro"
     banner: 'Usare "Anteprima" per mostrare il risultato della conversione in MEI.'
+  
+  date:
+    month_names:
+     -
+     - "gennaio"
+     - "febbraio"
+     - "marzo"
+     - "aprile"
+     - "maggio"
+     - "giugno"
+     - "luglio"
+     - "agosto"
+     - "settembre"
+     - "ottobre"
+     - "novembre"
+     - "dicembre"
+    day_names:
+     - "domenica"
+     - "lunedì"
+     - "martedì"
+     - "mercoledì"
+     - "giovedì"
+     - "venerdì"
+     - "sabato"
+
+######################################################################################################
+# End of translation in all languages - make sure all the file have the same line number for this line
+ 
+######################################################################################################
+# Blacklights overriden translations - the list can vary from one language to another
 
   blacklight:
     application_name: 'Muscat'

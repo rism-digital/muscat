@@ -105,46 +105,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-  "031":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - b
-      - :occurrences: "?"
-    - - c
-      - :occurrences: "?"
-    - - d
-      - :occurrences: "*"
-    - - e
-      - :occurrences: "?"
-    - - g
-      - :occurrences: "?"
-    - - m
-      - :occurrences: "?"
-    - - n
-      - :occurrences: "?"
-    - - o
-      - :occurrences: "?"
-    - - p
-      - :occurrences: "?"
-    - - q
-      - :occurrences: "*"
-    - - r
-      - :occurrences: "?"
-    - - s
-      - :occurrences: "*"
-    - - t
-      - :occurrences: "*"
-    - - x
-      - :occurrences: "*"
-    - - "2"
-      - :occurrences: "?"
-        :no_browse: true
-        # default "pe" value must be added during exportation
-        # ["0#", "1#", "2#"]
   "033":
     :master: a
     :indicator: ["0#", "1#", "2#"]
@@ -215,19 +175,10 @@
     :fields:
     - - "0"
       - :occurrences: "?"
-        :foreign_class: Person
-        :foreign_field: id
-        :no_show: true
     - - a
       - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: full_name
     - - d
       - :occurrences: "?"
-        :browse_inline: true
-        :foreign_class: ^0
-        :foreign_field: life_dates
-        :foreign_alternates: alternate_dates
     - - j
       - :occurrences: "?"
     - - "4"
@@ -942,67 +893,13 @@
     :indicator: "2#"
     :occurrences: "*"
     :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Catalogue
-        :foreign_field: id
-        :no_show: true
     - - t
       - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: description
     - - g
       - :occurrences: "*"
     - - o
       - :occurrences: "*"
         :no_browse: true
-  "772":
-    :master: w
-    :indicator: "18"
-    :occurrences: "*"
-    :fields:
-    - - w
-      - :occurrences: "1"
-        :browse_helper: application_helper_link_source_id
-    - - "7"
-      - :occurrences: "0"
-        :no_browse: true
-  "773":
-    :master: w
-    :indicator: "18"
-    :occurrences: "?"
-    :fields:
-    - - "a"
-      - :occurrences: "1"
-        :foreign_class: Source
-        :foreign_field: id
-        :zero_padding: "14"
-        :browse_helper: application_helper_link_source_id
-
-    - - w
-      - :occurrences: "1"
-        :foreign_class: Source
-        :foreign_field: id
-        :zero_padding: "14"
-        :browse_helper: application_helper_link_source_id
-    - - i
-      - :occurrences: "?"
-    - - "7"
-      - :occurrences: "0"
-        :no_browse: true
-  "775":
-    :master: w
-    :indicator: "##"
-    :occurrences: "?"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - w
-      - :occurrences: "1"
-        :foreign_class: Source
-        :foreign_field: id
-        :zero_padding: "14"
-        :browse_helper: application_helper_link_source_id
   "785":
     :master: "0"
     :indicator: "2#"
@@ -1085,40 +982,6 @@
       - :occurrences: "?"
     - - t
       - :occurrences: "?"
-  "852":
-    :master: "0"
-    :indicator: "##"
-    :occurrences: "?"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Institution
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "1"
-        :foreign_class: ^0
-        :foreign_field: siglum
-        :browse_helper: application_helper_link_to_library
-    - - b
-      - :occurrences: "?"
-    - - d
-      - :occurrences: "*"
-    - - e
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: name
-    - - p
-      - :occurrences: "?"
-    - - q
-      - :occurrences: "?"
-    - - u
-      - :occurrences: "*"
-    - - x
-      - :occurrences: "*"
-        :no_browse: true
-    - - z
-      - :occurrences: "*"
   "856":
     :master: u
     :indicator: "##"
