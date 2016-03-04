@@ -65,6 +65,9 @@ var show_viaf_actions = function () {
 			complete: function(){
 				$('#loader').hide();
 			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert(jqXHR.responseText);
+			},
 			success: function(data){
 				var result = (JSON.stringify(data));
 				drawTable(data);
