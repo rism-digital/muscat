@@ -98,3 +98,6 @@ gem 'activerecord-import', ">= 0.4.0"
 
 gem 'ruby-prof'
 gem 'pry', :group => :development
+
+gem 'delayed_job_active_record'
+gem 'daemons'

@@ -79,6 +79,8 @@ module Muscat
     config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", RISM::BASE, '*.{rb,yml}'))]
     
     config.autoload_paths << "#{Rails.root}/lib"
+    config.active_job.queue_adapter = :delayed_job
+    
   end
 end
 

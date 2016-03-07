@@ -102,7 +102,13 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    daemons (1.2.3)
     debug_inspector (0.0.2)
+    delayed_job (4.1.1)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.1.0)
+      activerecord (>= 3.0, < 5)
+      delayed_job (>= 3.0, < 5)
     deprecation (1.0.0)
       activesupport
     devise (3.5.6)
@@ -292,6 +298,8 @@ DEPENDENCIES
   bootstrap-sass (= 3.3.4.1)
   cancan
   coffee-rails (~> 4.0.0)
+  daemons
+  delayed_job_active_record
   devise
   devise-i18n
   htmlentities
