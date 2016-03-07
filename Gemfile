@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.2.0'
 
 # Use mysql2 as the database for Active Record
 # USE THIS VERSION for 4.1
@@ -64,9 +64,9 @@ gem 'htmlentities'
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', github: 'rism-ch/activeadmin'#, ref: 'a2cd960'
+gem 'activeadmin', '~> 1.0.0.pre2' #, github: 'rism-ch/activeadmin'#, ref: 'a2cd960'
 
-gem 'sunspot_rails', git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
+gem 'sunspot_rails'#, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
 gem 'sunspot_solr'
 gem 'awesome_print'
 gem 'progress_bar'
@@ -76,7 +76,7 @@ gem "rolify"
 group :development do
     gem 'webrick', '~> 1.3.1'
 end
-gem 'blacklight', "~> 5.14"
+gem 'blacklight', "5.14"
 gem "blacklight_advanced_search"
 gem 'bootstrap-sass', "3.3.4.1"
 # For nice date ranges
