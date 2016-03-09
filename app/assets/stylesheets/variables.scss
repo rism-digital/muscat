@@ -64,3 +64,5 @@ $footer-height: 40px;
 $link-color: lighten($rismBLColor, 5%);;
 
 @import 'bootstrap/variables';
+
+@import "active_admin_scoped_collection_actions";

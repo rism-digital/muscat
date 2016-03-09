@@ -1,4 +1,18 @@
 GIT
+  remote: git://github.com/activeadmin-plugins/active_admin_scoped_collection_actions.git
+  revision: 94d92f0d9c7b4a3c189ce727f87ac2c47eaef11d
+  specs:
+    active_admin_scoped_collection_actions (0.2.0)
+
+GIT
+  remote: git://github.com/plashchynski/crono.git
+  revision: 63283509cb961364cb4080d834bf20c64e27c3b6
+  specs:
+    crono (1.0.0.pre3)
+      activerecord (~> 4.0)
+      activesupport (~> 4.0)
+
+GIT
   remote: git://github.com/rism-ch/rails3-jquery-autocomplete.git
   revision: 18855c2582163339959107f5dcbbe656f9bd22f2
   specs:
@@ -8,21 +22,21 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.2.5.2)
-      actionpack (= 4.2.5.2)
-      actionview (= 4.2.5.2)
-      activejob (= 4.2.5.2)
+    actionmailer (4.2.6)
+      actionpack (= 4.2.6)
+      actionview (= 4.2.6)
+      activejob (= 4.2.6)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-    actionpack (4.2.5.2)
-      actionview (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    actionpack (4.2.6)
+      actionview (= 4.2.6)
+      activesupport (= 4.2.6)
       rack (~> 1.6)
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actionview (4.2.5.2)
-      activesupport (= 4.2.5.2)
+    actionview (4.2.6)
+      activesupport (= 4.2.6)
       builder (~> 3.1)
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
@@ -40,19 +54,19 @@ GEM
       rails (>= 3.2, < 5.0)
       ransack (~> 1.3)
       sass-rails
-    activejob (4.2.5.2)
-      activesupport (= 4.2.5.2)
+    activejob (4.2.6)
+      activesupport (= 4.2.6)
       globalid (>= 0.3.0)
-    activemodel (4.2.5.2)
-      activesupport (= 4.2.5.2)
+    activemodel (4.2.6)
+      activesupport (= 4.2.6)
       builder (~> 3.1)
-    activerecord (4.2.5.2)
-      activemodel (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    activerecord (4.2.6)
+      activemodel (= 4.2.6)
+      activesupport (= 4.2.6)
       arel (~> 6.0)
     activerecord-import (0.12.0)
       activerecord (>= 3.0)
-    activesupport (4.2.5.2)
+    activesupport (4.2.6)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -118,7 +132,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise-i18n (0.12.1)
+    devise-i18n (1.0.0)
     erubis (2.7.0)
     execjs (2.6.0)
     formtastic (3.1.3)
@@ -188,6 +202,8 @@ GEM
     progress_bar (1.0.5)
       highline (~> 1.6)
       options (~> 2.3.0)
+    progress_job (0.0.4)
+      delayed_job
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -195,16 +211,16 @@ GEM
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (4.2.5.2)
-      actionmailer (= 4.2.5.2)
-      actionpack (= 4.2.5.2)
-      actionview (= 4.2.5.2)
-      activejob (= 4.2.5.2)
-      activemodel (= 4.2.5.2)
-      activerecord (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    rails (4.2.6)
+      actionmailer (= 4.2.6)
+      actionpack (= 4.2.6)
+      actionview (= 4.2.6)
+      activejob (= 4.2.6)
+      activemodel (= 4.2.6)
+      activerecord (= 4.2.6)
+      activesupport (= 4.2.6)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.2.5.2)
+      railties (= 4.2.6)
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -214,12 +230,12 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    railties (4.2.5.2)
-      actionpack (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    railties (4.2.6)
+      actionpack (= 4.2.6)
+      activesupport (= 4.2.6)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.5.0)
+    rake (11.0.1)
     ransack (1.7.0)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
@@ -255,14 +271,14 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sunspot (2.2.4)
+    sunspot (2.2.0)
       pr_geohash (~> 1.0)
       rsolr (~> 1.0.7)
-    sunspot_rails (2.2.4)
+    sunspot_rails (2.2.0)
       nokogiri
       rails (>= 3)
-      sunspot (= 2.2.4)
-    sunspot_solr (2.2.5)
+      sunspot (= 2.2.0)
+    sunspot_solr (2.2.0)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -289,6 +305,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_admin_scoped_collection_actions!
   activeadmin (~> 1.0.0.pre2)
   activerecord-import (>= 0.4.0)
   awesome_print
@@ -298,6 +315,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.3.4.1)
   cancan
   coffee-rails (~> 4.0.0)
+  crono!
   daemons
   delayed_job_active_record
   devise
@@ -312,6 +330,7 @@ DEPENDENCIES
   paper_trail
   paperclip (~> 4.3)
   progress_bar
+  progress_job
   pry
   rails (~> 4.2.0)
   rails3-jquery-autocomplete!
@@ -319,8 +338,8 @@ DEPENDENCIES
   ruby-prof
   sass-rails (~> 4.0.0)
   sdoc
-  sunspot_rails
-  sunspot_solr
+  sunspot_rails (= 2.2.0)
+  sunspot_solr (= 2.2.0)
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)

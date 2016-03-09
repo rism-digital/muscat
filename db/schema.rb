@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307153729) do
+ActiveRecord::Schema.define(version: 20160308151001) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -72,18 +72,34 @@ ActiveRecord::Schema.define(version: 20160307153729) do
   add_index "catalogues_sources", ["catalogue_id"], name: "catalogue_index", using: :btree
   add_index "catalogues_sources", ["source_id"], name: "manuscript_index", using: :btree
 
+  create_table "crono_jobs", force: :cascade do |t|
+    t.string   "job_id",            limit: 255,   null: false
+    t.text     "log",               limit: 65535
+    t.datetime "last_performed_at"
+    t.boolean  "healthy"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "crono_jobs", ["job_id"], name: "index_crono_jobs_on_job_id", unique: true, using: :btree
+
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   limit: 4,     default: 0, null: false
-    t.integer  "attempts",   limit: 4,     default: 0, null: false
-    t.text     "handler",    limit: 65535,             null: false
-    t.text     "last_error", limit: 65535
+    t.integer  "priority",         limit: 4,     default: 0, null: false
+    t.integer  "attempts",         limit: 4,     default: 0, null: false
+    t.text     "handler",          limit: 65535,             null: false
+    t.text     "last_error",       limit: 65535
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by",  limit: 255
-    t.string   "queue",      limit: 255
+    t.string   "locked_by",        limit: 255
+    t.string   "queue",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "progress_stage",   limit: 255
+    t.integer  "progress_current", limit: 4,     default: 0
+    t.integer  "progress_max",     limit: 4,     default: 0
+    t.string   "parent_type",      limit: 255
+    t.integer  "parent_id",        limit: 4
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree

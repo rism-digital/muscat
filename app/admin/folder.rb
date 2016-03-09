@@ -16,6 +16,15 @@ ActiveAdmin.register Folder do
       item.user = current_user
     end
     
+    def show
+      begin
+        @folder = Folder.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Folder #{params[:id]})" }
+      end
+      @jobs = @folder.delayed_jobs
+    end
+    
     def check_model_errors(object)
       
       # Look in the saved filters for this controller
@@ -40,6 +49,24 @@ ActiveAdmin.register Folder do
     
   end
   
+  action_item :reindex, only: :show do
+    link_to 'Reindex', reindex_admin_folder_path(folder)
+  end
+  
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexFolderJob.new(params[:id]))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
+  
+  action_item :publish, only: :show do
+    link_to 'Publish', publish_admin_folder_path(folder)
+  end
+  
+  member_action :publish, method: :get do
+    job = Delayed::Job.enqueue(PublishFolderJob.new(params[:id]))
+    redirect_to resource_path(params[:id]), notice: "Publish Job started #{job.id}"
+  end
+  
   ###########
   ## Index ##
   ###########
@@ -61,6 +88,9 @@ ActiveAdmin.register Folder do
   
   show do
     active_admin_navigation_bar( self )
+    
+    render('jobs/jobs_monitor')
+    
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_folder_type) { |r| r.folder_type }

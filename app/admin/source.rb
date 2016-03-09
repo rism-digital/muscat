@@ -114,6 +114,16 @@ ActiveAdmin.register Source do
   #batch_action :unpublish do |selection|
   #end
   
+  scoped_collection_action :print_pretty, title: "AP",
+                             form: {
+                               name:   :text,
+                               hide:   :checkbox
+                             } do
+      ap scoped_collection_records
+      #flash[:error] = "Name successfully changed. #{params[:changes][:name]}"
+      #render nothing: true, status: :no_content
+      redirect_to collection_path, :notice => "OMG"
+    end
   
   # Include the MARC extensions
   include MarcControllerActions

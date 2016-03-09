@@ -90,7 +90,7 @@ module FolderControllerActions
     
       redirect_to collection_path, :notice => I18n.t(:success, scope: :folders, name: "\"#{f.name}\"", count: all_items.count)
     end
-  
+    
     # Only show for the moment if there is a query
     dsl.sidebar 'Global Folder Actions', :only => :index, :if => proc{params.include?(:q)}, :if => proc { !is_selection_mode? } do
       # Build the dynamic path function, then call it with send

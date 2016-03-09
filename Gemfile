@@ -65,9 +65,10 @@ gem 'htmlentities'
 # gem 'debugger', group: [:development, :test
 
 gem 'activeadmin', '~> 1.0.0.pre2' #, github: 'rism-ch/activeadmin'#, ref: 'a2cd960'
+gem 'active_admin_scoped_collection_actions', github: 'activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails'#, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
-gem 'sunspot_solr'
+gem 'sunspot_rails', "2.2.0"#, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
+gem 'sunspot_solr',  "2.2.0"
 gem 'awesome_print'
 gem 'progress_bar'
 gem "rails3-jquery-autocomplete", github: 'rism-ch/rails3-jquery-autocomplete'
@@ -99,5 +100,10 @@ gem 'activerecord-import', ">= 0.4.0"
 gem 'ruby-prof'
 gem 'pry', :group => :development
 
+# Background tasks
 gem 'delayed_job_active_record'
+gem 'progress_job'
+
+# Scheduled tasks cron style
+gem 'crono', github: 'plashchynski/crono'
 gem 'daemons'

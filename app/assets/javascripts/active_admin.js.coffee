@@ -33,3 +33,6 @@
 #= require verovio_preload
 #= require new_window_select_ujs
 #= require jsdiff.js
+#= require job_progress_bar
+
+#= require active_admin_scoped_collection_actions
