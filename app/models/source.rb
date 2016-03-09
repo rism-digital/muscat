@@ -60,10 +60,13 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :places
   has_and_belongs_to_many :works
   has_many :folder_items, :as => :item
+  has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
   alias_attribute :id_for_fulltext, :id
+  
+  scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
   
   # FIXME id generation
   before_destroy :check_dependencies

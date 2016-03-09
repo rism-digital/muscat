@@ -17,16 +17,16 @@ class ReindexFolderJob < ProgressJob::Base
     
     update_progress_max(0)
         
-    update_stage("Reindex items")
-    f2 = Folder.find(@parent_id)
-    
+    update_stage("Init Reindex process...")
+    f2 = Folder.find(@parent_id)    
     update_progress_max(f2.folder_items.count)
     
+    update_stage("Look up Sources")
     batch = 1
-    f2.folder_items.find_in_batches(batch_size: 100) do |group|
+    Source.in_folder(@parent_id).find_in_batches(batch_size: 50) do |group|
       Sunspot.index group
       Sunspot.commit
-      update_stage_progress("Updating records #{batch * 100}/#{f2.folder_items.count}", step: 100)
+      update_stage_progress("Updating records #{batch * 50}/#{f2.folder_items.count}", step: 50)
       batch += 1
     end
     
