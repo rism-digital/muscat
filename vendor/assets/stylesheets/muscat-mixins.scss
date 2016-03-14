@@ -27,6 +27,10 @@
 
 }
 
+@mixin primary-gradient {
+  @include gradient(lighten($primary-color, 0%), darken($primary-color, 0%));///
+  border-bottom: 1px solid darken($primary-color, 11%);
+}
 
 @mixin default-button {
   @include basic-button;
