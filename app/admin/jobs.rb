@@ -6,6 +6,17 @@ ActiveAdmin.register Delayed::Job, as: 'Job' do
   actions :index, :show, :update, :destroy
   config.filters = false
 
+  controller do
+    def destroy
+      @job = Delayed::Job.find(params[:id])
+      if (!@job.failed_at && @job.locked_at)
+        redirect_to admin_jobs_path, :flash => { :error => "Running jobs cannot be deleted" }
+      else
+        destroy!
+      end
+    end
+  end
+
   index do
     column :id
     column ("Status") do |job| 
