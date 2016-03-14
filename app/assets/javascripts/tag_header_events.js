@@ -8,7 +8,7 @@ used for _tag_header partial
 
 */
 
-(function(jQuery) {
+
     
     // adjust the link when a help file is loaded in the editor
     // because we then want the interal link to load their content
@@ -16,19 +16,19 @@ used for _tag_header partial
     function adjust_editor_help_links() { 
         $('a[data-help-internal]').click(function(e){
             e.preventDefault();
-            title = $(this).text();
+            var title = $(this).text();
             marc_editor_show_help($(this).data("help-internal"), title);
         });
     }
 	
 	function tag_header_toggle(elem) {
-		tag_container = elem.parents(".tag_container");
-		collapsable = tag_container.children(".tag_content_collapsable");
+		var tag_container = elem.parents(".tag_container");
+		var collapsable = tag_container.children(".tag_content_collapsable");
 		
 		// toggle
 		collapsable.slideToggle(0);
 	
-		span = elem.children("span");
+		var span = elem.children("span");
 	
 		if (collapsable.css("display") == "none") {
 			span.removeClass('ui-icon-triangle-1-s');
@@ -48,10 +48,10 @@ used for _tag_header partial
 		$("#dialog").dialog( 'option', 'buttons', {
 			OK: function() {
 				
-				dt_id = button_id.parents(".tag_toplevel_container");
+				var dt_id = button_id.parents(".tag_toplevel_container");
 	
 				dt_id.fadeOut('fast', function() {
-                    tag_group = dt_id.parents(".tag_group");
+                    var tag_group = dt_id.parents(".tag_group");
 					dt_id.remove();
                     update_empty_tag( tag_group );
 				});
@@ -72,15 +72,39 @@ used for _tag_header partial
         }
     }
 	
+	
+	function tag_header_fix_validation(new_dt) {
+		// This is a little tweak for validation
+		// The validation plugin wants each element with an unique name
+		// it does not use it for *nything*, just to make the life of
+		// us user more miserable
+		// Since we do not even use the "name" property of elements,
+		// we can just put into it some random junk and be happy
+		$("[name]", new_dt).each(function() {
+			var n = $(this).prop("name");
+			if (n == "")
+				return;
+			
+			// Let's waste CPU time
+			suffix = Math.random().toString(36).substring(4);
+			
+			$(this).prop("name", n + suffix);
+		});
+	}
+	
 	// Create a new element when the tag_group already contains elements
 	function tag_header_add(elem) {
-		placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
-		current_dt = elem.parents(".tag_toplevel_container");
+		var placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
+		var current_dt = elem.parents(".tag_toplevel_container");
 
-		new_dt = placeholder.clone();
+		var new_dt = placeholder.clone();
 		new_dt.toggleClass('tag_placeholders tag_toplevel_container');
 		new_dt.insertAfter(current_dt);
+		
+		tag_header_fix_validation(new_dt);
+		
 		new_dt.fadeIn('fast');
+		return new_dt;
 	}
     
 	// Create a new element when the tag_group is empty. It is necessary
@@ -88,21 +112,25 @@ used for _tag_header partial
 	function tag_header_add_from_empty(elem) {
         // hide help if necessary
         elem.parents(".tag_container").children(".tag_help_collapsable").hide();
-		placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
-		parent_dl = elem.parents(".tag_group").children(".marc_editor_tag_block");
+		var placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
+		var parent_dl = elem.parents(".tag_group").children(".marc_editor_tag_block");
 
-		new_dt = placeholder.clone();
+		var new_dt = placeholder.clone();
 		new_dt.toggleClass('tag_placeholders tag_toplevel_container');
 		parent_dl.append(new_dt);
+		
+		tag_header_fix_validation(new_dt);
+		
 		new_dt.fadeIn('fast');
         update_empty_tag( elem.parents(".tag_group") );
+		return new_dt;
 	}
 
 	function tag_header_edit(elem) {
-		dt = elem.parents(".tag_toplevel_container");
+		var dt = elem.parents(".tag_toplevel_container");
 	
-		show_id = dt.find('.tag_container[data-function="edit"]');
-		hide_id = dt.find('.tag_container[data-function="new"]');
+		var show_id = dt.find('.tag_container[data-function="edit"]');
+		var hide_id = dt.find('.tag_container[data-function="new"]');
 		
 	    $(hide_id).fadeOut('fast', function(){
 	        $(show_id).fadeIn('fast');
@@ -141,15 +169,16 @@ used for _tag_header partial
 	
 	// Duplicate a whole group
 	function tag_header_new_group(elem) {
-		placeholder = elem.parents(".tab_panel").children(".group_placeholders_toplevel").children(".group_placeholders").children(".panel");
-		toplevel_dl =  elem.parents(".tab_panel").children(".tag_group_container");
+		var placeholder = elem.parents(".tab_panel").children(".group_placeholders_toplevel").children(".group_placeholders").children(".panel");
+		var toplevel_dl =  elem.parents(".tab_panel").children(".tag_group_container");
 		
-		new_group = placeholder.clone();
+		var new_group = placeholder.clone();
 		dt = $("<dt />").append(new_group);
 		dt.appendTo(toplevel_dl);
 		dt.fadeIn('fast');
 	}
-	
+
+(function(jQuery) {
 	var self = null;
 	jQuery.fn.tagHeaderButtons = function() {
 		var handler = function() {

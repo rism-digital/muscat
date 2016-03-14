@@ -5,19 +5,20 @@
 		<%- end %>
 	</th>
 	<td>
-	<% 
-		content = @item.marc.config.is_foreign?(tag.tag, subfield.tag) ? subfield.looked_up_content.html_safe : subfield.content.html_safe
+	<% 		
+		content = ""
+		if @item.marc.config.is_foreign?(tag.tag, subfield.tag)
+			content = subfield.looked_up_content.html_safe if subfield && subfield.looked_up_content
+		else
+			content = subfield.content.html_safe if subfield && subfield.content
+		end
+		
 		browse_helper = @item.marc.config.get_browse_helper(tag.tag, subfield.tag)
 	-%>
 	<% if browse_helper -%>
 	   <%= raw method(browse_helper).call( content, subfield, opac ) %>
 	<% else -%>
-		<% #NEED TO DISCUSS THIS! removed h BUT HTML NOT SANITIZED only for PSMD!!! %>
-		<% if RISM::BASE == "pr" -%>
-	   		<%= content %>
-	   <% else %>
-	   		<%= h content %>
-	   <%- end -%>
+		<%= h content %>
 	<%- end %>
 	</td>
 </tr>

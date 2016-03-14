@@ -1,6 +1,7 @@
 ////////////////////////////////////////////////////////////////////
 // Init the tags called from the edit_wide.rhtml partial
 ////////////////////////////////////////////////////////////////////
+marc_editor_form_changed = false;
 
 function marc_editor_init_tags( id ) {
 	
@@ -11,6 +12,15 @@ function marc_editor_init_tags( id ) {
 	window.onunload = marc_editor_cleanp;
 	
 	$(".sortable").sortable();
+
+
+	marc_editor_form_changed = false;
+	$(id).dirtyFields({
+		trimText:true,
+		fieldChangeCallback: function(originalValue, isDirty) {
+			marc_editor_form_changed = true;
+		}
+	});	
 
 	/* Bind to the global railsAutocomplete. event, thrown when someone selects
 	   from an autocomplete field. It is a delegated method so dynamically added
@@ -59,8 +69,15 @@ function marc_editor_init_tags( id ) {
 // Ajax sends back and URL to redirect to or an error
 function _marc_editor_send_form(form_name, rails_model, redirect) {
 	redirect = redirect || false;
-	
 	form = $('form', "#" + form_name);
+	
+	// .valid() triggers form validation
+	if (!form.valid()) {
+		$('#main_content').unblock();
+		$('#sections_sidebar_section').unblock();
+		return;
+	}
+	
 	json_marc = serialize_marc_editor_form(form);
 
 	url = "/admin/" + rails_model + "/marc_editor_save";
@@ -69,7 +86,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	// block the main editor and sidebar
 	$('#main_content').block({ message: "" });
 	$('#sections_sidebar_section').block({ message: "Saving..." });
-	
+		
 	$.ajax({
 		success: function(data) {
 			

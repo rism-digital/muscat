@@ -107,6 +107,13 @@ class MarcConfig
   end
 
   # Get the foreign class for a tag and subtag
+  def disable_create_lookup?(tag, subtag)
+    flag = @tag_config[tag][:fields].assoc(subtag)[1][:disable_create_lookup]
+    return flag if flag
+    false
+  end
+
+  # Get the foreign class for a tag and subtag
   def get_foreign_class(tag, subtag)
     @tag_config[tag][:fields].assoc(subtag)[1][:foreign_class]
   end

@@ -146,9 +146,7 @@
   layout: 
     fields: 
     - - a
-      - type: catalogue
-        editor_partial: subfield_secondary
-      - cols: 4
+      - cols: 2
     - - b
       - cols: 2
     columns: 4

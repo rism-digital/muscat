@@ -709,6 +709,7 @@
       - :occurrences: "?"
         :foreign_class: ^x
         :foreign_field: name
+        :disable_create_lookup: true
     - - p
       - :occurrences: "?"
     - - z

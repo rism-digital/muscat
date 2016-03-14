@@ -139,11 +139,14 @@ de:
     formats:
       default: "%H:%M"
       short: "%H:%M"
-      long: "%H:%M"
+      long: "%Y-%m-%d %H:%M"
   
   #################### MODELS      
   activerecord:
     models:
+      digital_object:
+        one: "Digitales Objekt"
+        other: "Digitale Objekte"
       catalogue:
         one: "WV / Katalog"
         other: "WV / Kataloge"
@@ -258,6 +261,11 @@ de:
     save: "In Ordner speichern"
     success: "Ordner %{name} generiert aus %{count} Datensätzen."
     too_many: "Es können nicht mehr als %{max} Datensätze ausgewählt werden (%{count} wurden ausgewählt)."
+    
+  ### Digital objects
+  digital_objects: "Bild"
+  digital_object_new: "Neues Bild hinzufügen"
+  digital_object_add: "Hinzufügen"
 
   ############ filters
   filter_address: "Adresse"
@@ -312,9 +320,9 @@ de:
   filter_people: "Personen"
   filter_person_100d: "Lebensdaten"
   filter_person_039a: "Geschlecht"
-  filter_person_559a: "Beruf"
+  filter_person_374a: "Beruf"
   filter_person_043c: "Länder Code"
-  filter_person_569a: "Orte"
+  filter_person_551a: "Orte"
   filter_person_100d_birthdate: "Geburtsjahr"
   filter_person_100d_deathdate: "Todesjahr"
   filter_phone: "Telefon"
@@ -341,6 +349,10 @@ de:
   filter_variants: "Varianten"
   filter_versions: "Versionen"
   filter_volume: "Band"
+  filter_image: "Bild"
+  filter_file_name: "Dateiname"
+  filter_file_size: "Dateigrösse"
+  filter_content_type: "Typ"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
   filter_wf_stage: "Status"
@@ -382,17 +394,20 @@ de:
    
   #
   entry:
-     one: "Eintrag"
-     other: "Einträge"
+    one: "Eintrag"
+    other: "Einträge"
+  digital_object:
+    one: "Digitales Objekt"
+    other: "Digitale Objekte"
   catalogue:
     one: "Katalog"
     other: "Kataloge"
   institution: 
-     one: "Institution"
-     other: "Institutionen"
+    one: "Institution"
+    other: "Institutionen"
   library: 
-     one: "Bibliothek"
-     other: "Bibliotheken"
+    one: "Bibliothek"
+    other: "Bibliotheken"
   liturgicalfeast: 
     one: "Liturgisches Fest"
     other: "Liturgische Feste"
@@ -403,8 +418,8 @@ de:
     one: "Ort"
     other: "Orte"
   person: 
-     one: "Person"
-     other: "Personen"
+    one: "Person"
+    other: "Personen"
   standardterm:
     one: "Schlagwort"
     other: "Schlagwörter" 
@@ -485,9 +500,21 @@ de:
   do_ext_link_not_avail: "(Audio-Dateien sind hier nicht verfügbar.)"
   do_images_title: "Bilder"
   connected_libraries: "Bibliotheken"
-  
- # To be kept at the end because not required in English
  
+  mei:
+    title: "MEI EXPORT FOR SOURCE %{source}"
+    parameters: "EXPORT PARAMETERS"
+    format: "INCIPIT OUTPUT FORMAT:"
+    format_mei: "MEI"
+    format_pae: "PAE (NO CONVERSION)"
+    stylesheet: "STYLESHEET"
+    default_stylesheet: "USE DEFAULT STYLESHEET"
+    custom_stylesheet: "CUSTOM STYLESHEET:"
+    preview: "PREVIEW"
+    download: "DOWNLOAD"
+    more: "MORE"
+    banner: 'PLEASE CLICK "PREVIEW" TO SHOW THE MEI-CONVERTED OUTPUT.'  
+    
   date:
     month_names:
     -
@@ -511,20 +538,12 @@ de:
     - "Donnerstag"
     - "Freitag"
     - "Samstag"
-
-  mei:
-    title: "MEI EXPORT FOR SOURCE %{source}"
-    parameters: "EXPORT PARAMETERS"
-    format: "INCIPIT OUTPUT FORMAT:"
-    format_mei: "MEI"
-    format_pae: "PAE (NO CONVERSION)"
-    stylesheet: "STYLESHEET"
-    default_stylesheet: "USE DEFAULT STYLESHEET"
-    custom_stylesheet: "CUSTOM STYLESHEET:"
-    preview: "PREVIEW"
-    download: "DOWNLOAD"
-    more: "MORE"
-    banner: 'PLEASE CLICK "PREVIEW" TO SHOW THE MEI-CONVERTED OUTPUT.'
+ 
+######################################################################################################
+# End of translation in all languages - make sure all the file have the same line number for this line
+ 
+######################################################################################################
+# Blacklights overriden translations - the list can vary from one language to another
 
   blacklight:
     application_name: 'Muscat'

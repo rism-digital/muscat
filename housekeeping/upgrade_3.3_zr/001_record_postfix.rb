@@ -1,4 +1,7 @@
 require 'progress_bar'
+# Delete all the records that reference a source_id that does not exist
+orphans = Source.find_by_sql("select s2.id from sources as s right join sources as s2 on s.id = s2.source_id where s.marc_source is null and s2.source_id is not null;")
+orphans.each {|o| o.delete}
 
 # 593 $amw
 ActiveRecord::Base.connection.execute("DELETE FROM sources WHERE id IN(225005556, 225006499, 225007493, 225007495, 605001268, 605001269, 605002196, 605002197, 605002198, 605002199, 605002200, 605002201, 605002202, 605002203, 605002204, 605002205, 605020352)")
@@ -10,9 +13,6 @@ ActiveRecord::Base.connection.execute("DELETE FROM sources WHERE id IN(702010611
 ActiveRecord::Base.connection.execute("DELETE FROM sources WHERE id IN(551001327, 551001340, 551001341)")
 
 
-# Delete all the records that reference a source_id that does not exist
-orphans = Source.find_by_sql("select s2.id from sources as s right join sources as s2 on s.id = s2.source_id where s.id is null and s2.source_id is not null;")
-orphans.each {|o| o.delete}
 
 ActiveRecord::Base.connection.execute("UPDATE sources SET record_type = 2 WHERE record_type = 8 OR record_type = 6")
 ActiveRecord::Base.connection.execute("DELETE FROM sources WHERE id = 225000014")

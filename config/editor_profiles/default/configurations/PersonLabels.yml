@@ -314,6 +314,12 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Source des données
         de: Quellenangaben
         en: Source data found
+    b:
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Numero/pagina
+        fr: "Numéro/page"
+        de: Fundstelle
+        en: Number/page
 "678": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: ADDITIONAL BIBLIOGRAPHIC REFERENCE 

@@ -63,6 +63,7 @@ ActiveAdmin.register Source do
       @item = Source.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       record_type = @item.get_record_type
       record_type = record_type ? " - #{I18n.t('record_types.' + record_type.to_s)}" : ""
       @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
@@ -102,6 +103,7 @@ ActiveAdmin.register Source do
         @source.record_type = MarcSource::RECORD_TYPES[@template_name.to_sym]
       end
       @editor_profile = EditorConfiguration.get_default_layout @source
+      @editor_validation = EditorValidation.get_default_validation(@source)
       @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{I18n.t('record_types.' + @template_name)}"
       #To transmit correctly @item we need to have @source initialized
       @item = @source
@@ -182,8 +184,9 @@ ActiveAdmin.register Source do
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]
     render :partial => "marc/show"
-    active_admin_navigation_bar( self )
+    active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, @item )
+    active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
   end
   

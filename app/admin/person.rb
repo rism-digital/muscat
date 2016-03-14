@@ -109,9 +109,9 @@ ActiveAdmin.register Person do
   filter :full_name_equals, :label => proc {I18n.t(:filter_full_name)}, :as => :string
   filter :"100d_contains", :label => proc {I18n.t(:filter_person_100d)}, :as => :string
   filter :"039a_contains", :label => proc {I18n.t(:filter_person_039a)}, :as => :string
-  filter :"559a_contains", :label => proc {I18n.t(:filter_person_559a)}, :as => :string
+  filter :"374a_contains", :label => proc {I18n.t(:filter_person_374a)}, :as => :string
   filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, :as => :string
-  filter :"569a_contains", :label => proc {I18n.t(:filter_person_569a)}, :as => :string
+  filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
   
