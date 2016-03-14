@@ -54,6 +54,8 @@ ActiveAdmin.register StandardTerm do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (StandardTerm #{params[:id]})" }
       end
       @prev_item, @next_item, @prev_page, @next_page = StandardTerm.near_items_as_ransack(params, @standard_term)
+      
+      @jobs = @standard_term.delayed_jobs
     end
     
     
@@ -70,6 +72,15 @@ ActiveAdmin.register StandardTerm do
   
   # Include the folder actions
   include FolderControllerActions
+  
+  action_item :reindex, only: :show do
+    link_to 'Reindex', reindex_admin_standard_term_path(standard_term)
+  end
+  
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexAuthorityJob.new(StandardTerm.find(params[:id])))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
   
   ###########
   ## Index ##
@@ -99,6 +110,7 @@ ActiveAdmin.register StandardTerm do
   
   show :title => :term do
     active_admin_navigation_bar( self ) 
+    render('jobs/jobs_monitor')
     attributes_table do
       row (I18n.t :filter_term) { |r| r.term }
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
