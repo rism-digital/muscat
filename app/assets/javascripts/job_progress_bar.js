@@ -29,6 +29,7 @@ jQuery(document).ready(function() {
 		var job_id = $(this).data("job-id");
 		var bar = $(this);
 		var stat = $("#progress-status-" + job_id);
+		var banner = $("#job-banner-" + job_id);
 		var interval = setInterval(function(){
 			$.ajax({
 				url: '/progress-job/' + job_id,
@@ -38,13 +39,30 @@ jQuery(document).ready(function() {
 					stage = "Job enqueued"
 					if (job.progress_stage != null){
 						stage = job.progress_stage;
+						
+						if (banner && banner.hasClass("no")) {
+							banner.removeClass();
+							banner.addClass("status_tag");
+							banner.addClass("no");
+							banner.html('Waiting');
+						}
 					}
 					
 					// If there are errors
 					if (job.last_error != null) {
 						stat.addClass("error");
 						bar.addClass("error");
-						stat.html("ERROR: " + stage);
+						if (stat) {
+							stat.html("ERROR: " + stage);
+						}
+						
+						if (banner) {
+							banner.removeClass();
+							banner.addClass("status_tag");
+							banner.addClass("error");
+							banner.html('Failed');
+						}
+						
 						clearInterval(interval);
 						return;
 					}
@@ -52,11 +70,30 @@ jQuery(document).ready(function() {
 					
 					progress = job.progress_current / job.progress_max * 100;
 					bar.css('width', progress + '%').text(truncateDecimals(progress, 2) + '%');
-					stat.html(stage);
+					if (stat) {
+						stat.html(stage);
+					}
+					
+					// Update banner, but only if running
+					if (banner && !banner.hasClass("ok") && job.progress_stage != null) {
+						banner.removeClass();
+						banner.addClass("status_tag");
+						banner.addClass("ok");
+						banner.html('Running');
+					}
 
 				},
 				error: function(){
-					stat.html('Job ended successfully');
+					if (stat) {
+						stat.html('Job ended successfully');
+					}
+					if (banner) {
+						banner.removeClass();
+						banner.addClass("status_tag");
+						banner.addClass("yes");
+						banner.html('Finished');
+					}
+					
 					bar.css('width', '100%').text("100%");
 					clearInterval(interval);
 				}

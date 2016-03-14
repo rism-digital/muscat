@@ -1,0 +1,7 @@
+<%
+	percent = (job.progress_current.to_f / job.progress_max.to_f) * 100
+%>
+		
+<div class="progress_bar">
+	<div class="progress_bar_content" style="width: <%= percent %>%;" data-job-id="<%= job.id %>">&nbsp;</div>
+</div>

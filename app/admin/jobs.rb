@@ -1,45 +1,35 @@
 #based on https://gist.github.com/webmat/1887148
 
 ActiveAdmin.register Delayed::Job, as: 'Job' do
-  menu parent: 'Admin'
+  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_jobs)}, :if => proc{ can? :manage, Delayed::Job }
 
-  actions :index, :show, :edit, :update, :destroy
+  actions :index, :show, :update, :destroy
+  config.filters = false
 
   index do
     column :id
+    column ("Status") do |job| 
+      if job.failed_at
+        status_tag("Failed", :error, id: "job-banner-#{job.id}")
+      else
+        if !job.locked_at
+          status_tag("Waiting", :no, id: "job-banner-#{job.id}")
+        else
+          status_tag("Running", :ok, id: "job-banner-#{job.id}")
+        end
+      end
+    end
+    column ("Progress") do |job|
+      render(partial: "jobs/jobs_progress", locals: { job: job })
+    end
+    column :progress_stage do |job|
+      span(job.progress_stage, id: "progress-status-#{job.id}")
+    end
     column :queue
-    column :priority
-    column :attempts
     column :failed_at
     column :run_at
     column :created_at
-    column :locked_by
-    column :locked_at
     actions
-  end
-
-  form do |f|
-    f.inputs "Scheduling" do
-      f.input :priority
-      f.input :queue
-      f.input :run_at
-    end
-
-    f.inputs "Details" do
-      f.input :id, input_html:          {disabled: true}
-      f.input :created_at, input_html:  {disabled: true}
-      f.input :updated_at, input_html:  {disabled: true}
-      f.input :handler, input_html:     {disabled: true}
-    end
-
-    f.inputs "Diagnostics" do
-      f.input :attempts,    input_html: {disabled: true}
-      f.input :failed_at,   input_html: {disabled: true}
-      f.input :last_error,  input_html: {disabled: true}
-      f.input :locked_at,   input_html: {disabled: true}
-      f.input :locked_by,   input_html: {disabled: true}
-    end
-    f.buttons
   end
 
   action_item :only => [:edit] do

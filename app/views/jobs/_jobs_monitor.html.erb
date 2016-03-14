@@ -1,20 +1,31 @@
-
-
 <div class="panel2">
 	<h3>Running jobs</h3>
 	<div class="panel_contents2">
 		<table border="0" cellspacing="0" cellpadding="0" class="index_table index">
 			<tr>
 				<th>ID</th>
+				<th>Status</th>
 				<th>Progress</th>
 				<th>Status</th>
 			</tr>
 		<% @jobs.each do |j| %>
 		<%
 			percent = (j.progress_current.to_f / j.progress_max.to_f) * 100
+			
+	        if j.failed_at
+	          banner_txt = "Failed"; banner_class = "error"
+	        else
+	          if !j.locked_at
+	            banner_txt = "Waiting"; banner_class = "no"
+	          else
+	            banner_txt = "Running"; banner_class = "yes"
+	          end
+	        end
+			
 		%>
 			<tr class="<%= cycle('even', 'odd') -%>">
 				<td class="col"><%= j.id%></td>
+				<td><span id="job-banner-<%=j.id%>" class="status_tag <%=banner_class%>"><%=banner_txt%></span></td>
 				<td class="col">
 				<div class="progress_bar">
 					<div class="progress_bar_content" style="width: <%= percent %>%;" data-job-id="<%= j.id %>">&nbsp;</div>
