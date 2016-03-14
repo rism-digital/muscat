@@ -36,37 +36,15 @@ ActiveAdmin.register Delayed::Job, as: 'Job' do
     column :progress_stage do |job|
       span(job.progress_stage, id: "progress-status-#{job.id}")
     end
+    column :object do |job|
+      link_to("#{job.parent_type} #{job.parent_id}", )
+      link_to "#{job.parent_type} #{job.parent_id}", controller: job.parent_type.pluralize.underscore.downcase.to_sym, action: :show, id: job.parent_id
+    end
     column :queue
     column :failed_at
     column :run_at
     column :created_at
     actions
-  end
-
-  action_item :only => [:edit] do
-    link_to 'Delete Job', admin_job_path(resource),
-            'data-method' => :delete, 'data-confirm' => 'Are you sure?'
-  end
-
-  action_item :only => [:show, :edit] do
-    link_to 'Schedule now', run_now_admin_job_path(resource), 'data-method' => :post,
-      :title => 'Cause a job scheduled in the future to run now.'
-  end
-
-  action_item :only => [:show, :edit] do
-    link_to 'Reset Job', reset_admin_job_path(resource), 'data-method' => :post,
-      :title => 'Resets the state caused by errors. Lets a worker give it another go ASAP.'
-  end
-
-  member_action :run_now, :method => :post do
-    resource.update_attributes run_at: Time.now
-    redirect_to action: :index
-  end
-
-  member_action :reset, :method => :post do
-    resource.update_attributes locked_at: nil, locked_by: nil, attempts: 0, last_error: nil
-    resource.update_attribute :attempts, 0
-    redirect_to action: :index
   end
 
 end
