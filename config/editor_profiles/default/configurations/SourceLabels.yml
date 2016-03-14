@@ -1694,6 +1694,12 @@ egr:
     fr: Graveur
     de: Stecher
     en: Engraver
+evp:
+  label: 
+    it: "Luogo dell’evento"
+    fr: "Lieu de l'énénement"
+    de: Veranstaltungsort
+    en: Event place
 fmo: 
   label: 
     it: Proprietario precedente
