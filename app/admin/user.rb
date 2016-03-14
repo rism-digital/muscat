@@ -34,9 +34,6 @@ ActiveAdmin.register User do
     column I18n.t(:roles) do |user|
          user.get_roles.join(", ")
     end
-    #column :institutions
-    column :current_sign_in_at
-    column :sign_in_count
     column :created_at
     actions
   end
