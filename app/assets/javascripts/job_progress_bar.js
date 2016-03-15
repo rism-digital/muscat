@@ -35,9 +35,26 @@ jQuery(document).ready(function() {
 			$.ajax({
 				url: '/progress-job/' + job_id,
 				success: function(job){
+					if (job == "none") {
+						if (stat) {
+							stat.html('Job ended successfully');
+						}
+						if (banner) {
+							banner.removeClass();
+							banner.addClass("status_tag");
+							banner.addClass("ok");
+							banner.html('Finished');
+						}
+					
+						percent_span.html("100%");
+						bar.css('width', '100%');
+						clearInterval(interval);
+						return;
+					}
+					
+					// Valid job
 					var stage, progress;
 
-					
 					if (job.progress_stage != null){
 						stage = job.progress_stage;
 						
@@ -58,7 +75,7 @@ jQuery(document).ready(function() {
 						banner.addClass("status_tag");
 						banner.addClass("yes");
 						banner.html('Running');
-				} else {
+					} else {
 						stage = "Job enqueued"
 						
 						// Set the banner to waiting
@@ -98,17 +115,14 @@ jQuery(document).ready(function() {
 				},
 				error: function(){
 					if (stat) {
-						stat.html('Job ended successfully');
+						stat.html('There was an error reading job status');
 					}
 					if (banner) {
 						banner.removeClass();
 						banner.addClass("status_tag");
-						banner.addClass("ok");
-						banner.html('Finished');
+						banner.addClass("error");
+						banner.html('Error');
 					}
-					
-					percent_span.html("100%");
-					bar.css('width', '100%');
 					clearInterval(interval);
 				}
 			})
