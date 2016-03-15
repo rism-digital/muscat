@@ -8,13 +8,26 @@ ActiveAdmin.register Delayed::Job, as: 'Job' do
 
   controller do
     def destroy
-      @job = Delayed::Job.find(params[:id])
-      if (!@job.failed_at && @job.locked_at)
-        redirect_to admin_jobs_path, :flash => { :error => "Running jobs cannot be deleted" }
-      else
-        destroy!
+      begin
+        @job = Delayed::Job.find(params[:id])
+        if (!@job.failed_at && @job.locked_at)
+          redirect_to admin_jobs_path, :flash => { :error => "Running jobs cannot be deleted." }
+        else
+          destroy!
+        end
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_jobs_path, :flash => { :warning => "Cannot delete: finished job was automatically deleted." }
       end
     end
+    
+    def show
+      begin
+        show!
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_jobs_path, :flash => { :warning => "Cannow view: finished job was automatically deleted." }
+      end
+    end
+    
   end
 
   index do
