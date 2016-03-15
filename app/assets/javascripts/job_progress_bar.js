@@ -30,28 +30,56 @@ jQuery(document).ready(function() {
 		var bar = $(this);
 		var stat = $("#progress-status-" + job_id);
 		var banner = $("#job-banner-" + job_id);
+		var percent_span = $('#progress-percent-' + job_id);
 		var interval = setInterval(function(){
 			$.ajax({
 				url: '/progress-job/' + job_id,
 				success: function(job){
 					var stage, progress;
 
-					stage = "Job enqueued"
+					
 					if (job.progress_stage != null){
 						stage = job.progress_stage;
 						
-						if (banner && banner.hasClass("no")) {
-							banner.removeClass();
-							banner.addClass("status_tag");
-							banner.addClass("no");
-							banner.html('Waiting');
+						if (job.progress_current != null && job.progress_current > -1) {
+							progress = job.progress_current / job.progress_max * 100;
+							bar.css('width', progress + '%');
+							percent_span.html(truncateDecimals(progress, 1) + "%");
+							bar.removeClass('progress-bar-striped');
+							bar.removeClass('active');
+						} else {
+							// If the progress is NULL OR it is indefinite
+							// put the bar to indefinite
+							bar.css('width','0%');
 						}
+					
+						// Set the banner to running
+						banner.removeClass();
+						banner.addClass("status_tag");
+						banner.addClass("yes");
+						banner.html('Running');
+				} else {
+						stage = "Job enqueued"
+						
+						// Set the banner to waiting
+						banner.removeClass();
+						banner.addClass("status_tag");
+						banner.addClass("no");
+						banner.html('Waiting');
+						
+						// put the progressbar to indefinite
+						bar.css('width','0%');
+						percent_span.html("0%");
+					}
+					
+					// Always update the stage
+					if (stat) {
+						stat.html(stage);
 					}
 					
 					// If there are errors
 					if (job.last_error != null) {
 						stat.addClass("error");
-						bar.addClass("error");
 						if (stat) {
 							stat.html("ERROR: " + stage);
 						}
@@ -66,21 +94,6 @@ jQuery(document).ready(function() {
 						clearInterval(interval);
 						return;
 					}
-					
-					
-					progress = job.progress_current / job.progress_max * 100;
-					bar.css('width', progress + '%').text(truncateDecimals(progress, 2) + '%');
-					if (stat) {
-						stat.html(stage);
-					}
-					
-					// Update banner, but only if running
-					if (banner && !banner.hasClass("ok") && job.progress_stage != null) {
-						banner.removeClass();
-						banner.addClass("status_tag");
-						banner.addClass("ok");
-						banner.html('Running');
-					}
 
 				},
 				error: function(){
@@ -90,11 +103,12 @@ jQuery(document).ready(function() {
 					if (banner) {
 						banner.removeClass();
 						banner.addClass("status_tag");
-						banner.addClass("yes");
+						banner.addClass("ok");
 						banner.html('Finished');
 					}
 					
-					bar.css('width', '100%').text("100%");
+					percent_span.html("100%");
+					bar.css('width', '100%');
 					clearInterval(interval);
 				}
 			})
