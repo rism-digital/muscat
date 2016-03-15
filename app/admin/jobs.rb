@@ -26,12 +26,16 @@ ActiveAdmin.register Delayed::Job, as: 'Job' do
         if !job.locked_at
           status_tag("Waiting", :no, id: "job-banner-#{job.id}")
         else
-          status_tag("Running", :ok, id: "job-banner-#{job.id}")
+          status_tag("Running", :yes, id: "job-banner-#{job.id}")
         end
       end
     end
     column ("Progress") do |job|
       render(partial: "jobs/jobs_progress", locals: { job: job })
+    end
+    column ("%") do |job|
+      percent = (job.progress_current.to_f / job.progress_max.to_f) * 100
+      span(!percent.nan? ? percent.round(1) : "0%", id: "progress-percent-#{job.id}")
     end
     column :progress_stage do |job|
       span(job.progress_stage, id: "progress-status-#{job.id}")

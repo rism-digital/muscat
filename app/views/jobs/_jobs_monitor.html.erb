@@ -1,12 +1,12 @@
 <% if @jobs && @jobs.count > 0%>
 <div class="panel2">
-	<h3>Running jobs</h3>
 	<div class="panel_contents2">
 		<table border="0" cellspacing="0" cellpadding="0" class="index_table index">
 			<tr>
-				<th>ID</th>
+				<th>Job ID</th>
 				<th>Status</th>
 				<th>Progress</th>
+				<th>%</th>
 				<th>Status</th>
 			</tr>
 		<% @jobs.each do |j| %>
@@ -22,7 +22,6 @@
 	            banner_txt = "Running"; banner_class = "yes"
 	          end
 	        end
-			
 		%>
 			<tr class="<%= cycle('even', 'odd') -%>">
 				<td class="col"><%= j.id%></td>
@@ -30,9 +29,12 @@
 				<td class="col">
 				<div class="progress_bar">
 					<div class="progress_bar_content" style="width: <%= percent %>%;" data-job-id="<%= j.id %>">&nbsp;</div>
-				</div>
+				  </div>
 				</td>
-				<td class="col" style="width: 50%;">
+				<td>
+					<span id="progress-percent-<%=j.id%>"><%= !percent.nan? ? percent.round(1) : "0" %>%</span>
+				</td>
+				<td class="col" style="width: 50%">
 					<span id="progress-status-<%=j.id%>" class="progress_status"><%= j.progress_stage%></span>
 				</td>
 			</tr>

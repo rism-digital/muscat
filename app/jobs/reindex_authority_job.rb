@@ -15,17 +15,15 @@ class ReindexAuthorityJob < ProgressJob::Base
   def perform
     return if !@parent_obj
     
-    update_progress_max(0)
+    update_progress_max(-1)
         
-    update_stage("Init Reindex process...")
-    update_progress_max(@parent_obj.sources.count)
-    
     update_stage("Look up Sources")
+    update_progress_max(@parent_obj.sources.count)
     batch = 1
-    @parent_obj.sources.find_in_batches(batch_size: 50) do |group|
+    @parent_obj.sources.find_in_batches(batch_size: 10) do |group|
       Sunspot.index group
       Sunspot.commit
-      update_stage_progress("Updating records #{batch * 50}/#{@parent_obj.sources.count}", step: 50)
+      update_stage_progress("Updating records #{batch * 10}/#{@parent_obj.sources.count}", step: 10)
       batch += 1
     end
     
