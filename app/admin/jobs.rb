@@ -24,7 +24,7 @@ ActiveAdmin.register Delayed::Job, as: 'Job' do
       begin
         show!
       rescue ActiveRecord::RecordNotFound
-        redirect_to admin_jobs_path, :flash => { :warning => "Cannow view: finished job was automatically deleted." }
+        redirect_to admin_jobs_path, :flash => { :warning => "Cannot view: finished job was automatically deleted." }
       end
     end
     
