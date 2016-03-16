@@ -306,8 +306,14 @@ $diff-padding-width: 15px;
         a.muscat_icon_link_new {
             background: image-url("/images/marc-icons/new.png") no-repeat;
         }
+        a.muscat_icon_link_reindex {
+            background: image-url("/images/marc-icons/reindex.png") no-repeat;
+        }
         a.muscat_icon_link_preview {
             background: image-url("/images/marc-icons/preview.png") no-repeat;
+        }
+        a.muscat_icon_link_publish {
+            background: image-url("/images/marc-icons/publish.png") no-repeat;
         }
         a.muscat_icon_link_save {
             background: image-url("/images/marc-icons/save.png") no-repeat;

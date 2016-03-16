@@ -242,6 +242,7 @@ de:
   edit: "EDIT"
   new: "CREATE"
   duplicate: "DUPLICATE"
+  no_action: "NO ACTION AVAILABLE"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"

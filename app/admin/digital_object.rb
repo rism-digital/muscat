@@ -6,6 +6,9 @@ ActiveAdmin.register DigitalObject do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
   # Remove creation option (only possible from source)
   actions :all, :except => [:new]
   
@@ -70,6 +73,10 @@ ActiveAdmin.register DigitalObject do
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
   ##########
   ## Show ##
   ##########
@@ -93,6 +100,10 @@ ActiveAdmin.register DigitalObject do
     end
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+  end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => digital_object }
   end
   
   ##########

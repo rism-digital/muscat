@@ -242,6 +242,7 @@ fr:
   edit: "Modifier"
   new: "Créer"
   duplicate: "Dupliquer"
+  no_action: "Aucune action possible"
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"

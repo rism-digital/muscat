@@ -1,26 +1,30 @@
 <%-
 	model = self.resource_class.to_s.underscore.downcase
 	delete_path = send("admin_#{model}_path", item)
-	edit_path = send("edit_admin_#{model}_path", item)
 	save_form = "edit_#{model}"
-	index_path = send("collection_path", item)
-	new_path = send("new_admin_#{model}_path")
-	reindex_path = send("reindex_admin_#{model}_path", item)
-	
-	name = "[Model does not have a label]"
-	name = item.name if item.respond_to?(:name)
-	name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
 %>
+
 <ul>
 	<%- if  !is_selection_mode? %>
-		<%- if can? :create, item %>
-			<li class="muscat_icon_link"><a href="<%= new_path %>" class="muscat_icon_link muscat_icon_link_new"><%=(I18n.t :new)%></a></li>
+	
+		<%- if (self.controller.respond_to? :new) && (can? :create, item) -%>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :new}", send("new_admin_#{model}_path"),
+				:class => "muscat_icon_link muscat_icon_link_new") %>
+			</li>
 		<%- end %>
-		<li class="muscat_icon_link"><a href="<%= index_path %>" class="muscat_icon_link muscat_icon_link_list"><%=(I18n.t :to_the_list)%></a></li>	
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :to_the_list}", send("collection_path", item),
+			:class => "muscat_icon_link muscat_icon_link_list") %>
+		</li>
+		
 		<li class="muscat_icon_separator"></li>
 	
 		<%- if can? :edit, item %>
-			<li class="muscat_icon_link"><a href="<%= edit_path %>" class="muscat_icon_link muscat_icon_link_edit"><%=(I18n.t :edit)%></a></li>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :edit}", send("edit_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_edit") %>
+			</li>
 		<%- end %>
 		<%- if can? :destroy, item %>
 			<li class="muscat_icon_link">
@@ -30,18 +34,37 @@
 				data: { confirm: "#{I18n.t :history_delete_confirm}"}) %>
 			</li>
 		<%- end %>
-		<%- if can? :reindex, item %>
+		<%- if (self.controller.respond_to? :reindex) && (can? :reindex, item) %>
 			<li class="muscat_icon_link">
-			<%= link_to("#{I18n.t :reindex}", reindex_path,
+			<%= link_to("#{I18n.t :reindex}", send("reindex_admin_#{model}_path", item),
 				:class => "muscat_icon_link muscat_icon_link_reindex") %>
 			</li>
 		<%- end %>
+		<%- if (self.controller.respond_to? :publish) && (can? :publish, item) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :publish}", send("publish_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_publish") %>
+			</li>
+		<%- end %>
+		
 	<%- else %>
+	
+		<%-
+			name = "[Model does not have a label]"
+			name = item.name if item.respond_to?(:name)
+			name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
+		%>
+	
 		<li class="muscat_icon_link">
 		<%= link_to("#{I18n.t :select}", "#",
 			:class => "muscat_icon_link muscat_icon_link_save_exit",
 			:data => { :marc_editor_select => item.id, :marc_editor_label => name }) %>
 		</li>
-		<li class="muscat_icon_link"><a href="<%= index_path %>" class="muscat_icon_link muscat_icon_link_list"><%=(I18n.t :to_the_list)%></a></li>	
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :to_the_list}", send("collection_path", item),
+			:class => "muscat_icon_link muscat_icon_link_list") %>
+		</li>	
+	
 	<%- end %>
+	
 </ul>

@@ -242,6 +242,7 @@ en:
   edit: "Edit"
   new: "Create"
   duplicate: "Duplicate"
+  no_action: "No action available"
   
   # Editor sidebar
   show_all_groups: "Show all sections"

@@ -103,13 +103,6 @@ ActiveAdmin.register Catalogue do
   ## Index ##
   ###########
   
-  sidebar :actions, :only => :index do
-    render :partial => "activeadmin/section_sidebar_index"
-  end
-  
-  # Include the folder actions
-  include FolderControllerActions
-  
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :author_contains, :label => proc {I18n.t(:filter_author)}, :as => :string
@@ -133,6 +126,13 @@ ActiveAdmin.register Catalogue do
     column (I18n.t :filter_sources), :src_count
     active_admin_muscat_actions( self )
   end
+  
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
   
   ##########
   ## Show ##
