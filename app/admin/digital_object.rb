@@ -108,7 +108,7 @@ ActiveAdmin.register DigitalObject do
   end
 
   sidebar :actions, :only => [:edit] do
-    render("editor/section_sidebar_save") # Calls a partial
+    render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => digital_object }
   end
   
 end

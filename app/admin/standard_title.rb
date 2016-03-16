@@ -126,7 +126,7 @@ ActiveAdmin.register StandardTitle do
   end
   
   sidebar :actions, :only => [:edit, :new] do
-    render("editor/section_sidebar_save") # Calls a partial
+    render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => standard_title }
   end
   
 end
