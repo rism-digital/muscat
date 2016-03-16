@@ -5,18 +5,13 @@ ActiveAdmin.register LiturgicalFeast do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
   collection_action :autocomplete_liturgical_feast_name, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
-  end
-    
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( liturgical_feast )
-  end
-
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
   end
 
   # See permitted parameters documentation:
@@ -65,14 +60,33 @@ ActiveAdmin.register LiturgicalFeast do
       end
     end
     
+    # redirect update failure for preserving sidebars
+    def update
+      update! do |success,failure|
+        success.html { redirect_to collection_path }
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
+    # redirect create failure for preserving sidebars
+    def create
+      create! do |success,failure|
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
   end
-  
-  # Include the folder actions
-  include FolderControllerActions
   
   ###########
   ## Index ##
   ###########
+  
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
   
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
@@ -108,7 +122,7 @@ ActiveAdmin.register LiturgicalFeast do
   end
   
   sidebar :actions, :only => :show do
-    render("editor/section_sidebar_show")
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => liturgical_feast }
   end
   
   sidebar I18n.t(:search_sources), :only => :show do
@@ -128,7 +142,7 @@ ActiveAdmin.register LiturgicalFeast do
   end
   
   sidebar :actions, :only => [:edit, :new] do
-    render("editor/section_sidebar_save") # Calls a partial
+    render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => liturgical_feast }
   end
   
 end

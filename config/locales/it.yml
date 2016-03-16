@@ -236,6 +236,13 @@ it:
   created_at: "Data di creazione"
   updated_at: "Ultima modifica"
   
+  # Sidebar
+  delete: "DELETE"
+  to_the_list: "TO THE LIST"
+  edit: "EDIT"
+  new: "CREATE"
+  duplicate: "DUPLICATE"
+  
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
   show_preview: "Mostra l'anteprima"
@@ -390,6 +397,7 @@ it:
   
   # Assorted error messages
   error_not_found: "La risorsa specificata non esiste oppure è stata cancellata."
+  error_saving: "THE RESOURCE IS NOT COMPLETE OR GENERATES A DUPLICATE"
   unknown_tags: "Il record contiene dei campi sconosciuti"
 
   #

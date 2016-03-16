@@ -235,6 +235,13 @@ de:
   search_sources: "Quellensuche"
   created_at: "Erstellungsdatum"
   updated_at: "Letzte Änderung"
+
+  # Sidebar
+  delete: "DELETE"
+  to_the_list: "TO THE LIST"
+  edit: "EDIT"
+  new: "CREATE"
+  duplicate: "DUPLICATE"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -390,6 +397,7 @@ de:
   
   # Assorted error messages
   error_not_found: "Der gesuchte Eintrag existiert nicht order wurde gelöscht."
+  error_saving: "THE RESOURCE IS NOT COMPLETE OR GENERATES A DUPLICATE"
   unknown_tags: "Dieser Eintrag enthält falsch verwendete Felder"
    
   #

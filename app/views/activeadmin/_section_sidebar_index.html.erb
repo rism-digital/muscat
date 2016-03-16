@@ -1,0 +1,15 @@
+<%-
+	model = self.resource_class.to_s.underscore.downcase
+	new_path = send("new_admin_#{model}_path")
+%>
+<ul>
+	<%- if !is_selection_mode? %>
+		<li class="muscat_icon_link"><a href="<%= new_path %>" class="muscat_icon_link muscat_icon_link_new"><%=(I18n.t :new)%></a></li>
+	<%- else %>
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :cancel}", "#",
+			:class => "muscat_icon_link muscat_icon_link_cancel",
+			:data => { :marc_editor_cancel => "cancel"}) %>
+		</li>
+	<%- end %>
+</ul>
