@@ -5,6 +5,7 @@ class Ability
 
     if user.has_role? :admin
       can :manage, :all
+      can :reindex, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle]
 
     elsif user.has_role? :guest
       can :read, :all

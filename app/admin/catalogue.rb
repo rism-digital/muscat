@@ -93,10 +93,6 @@ ActiveAdmin.register Catalogue do
   end
   
   include MarcControllerActions
-
-  action_item :reindex, only: :show do
-    link_to 'Reindex', reindex_admin_catalogue_path(catalogue)
-  end
   
   member_action :reindex, method: :get do
     job = Delayed::Job.enqueue(ReindexAuthorityJob.new(Catalogue.find(params[:id])))

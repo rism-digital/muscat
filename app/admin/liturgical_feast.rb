@@ -79,13 +79,6 @@ ActiveAdmin.register LiturgicalFeast do
     
   end
   
-  # Include the folder actions
-  include FolderControllerActions
-  
-  action_item :reindex, only: :show do
-    link_to 'Reindex', reindex_admin_liturgical_feast_path(liturgical_feast)
-  end
-  
   member_action :reindex, method: :get do
     job = Delayed::Job.enqueue(ReindexAuthorityJob.new(LiturgicalFeast.find(params[:id])))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"

@@ -5,6 +5,7 @@
 	save_form = "edit_#{model}"
 	index_path = send("collection_path", item)
 	new_path = send("new_admin_#{model}_path")
+	reindex_path = send("reindex_admin_#{model}_path", item)
 	
 	name = "[Model does not have a label]"
 	name = item.name if item.respond_to?(:name)
@@ -27,6 +28,12 @@
 				:class => "muscat_icon_link muscat_icon_link_delete",
 				:method => :delete,
 				data: { confirm: "#{I18n.t :history_delete_confirm}"}) %>
+			</li>
+		<%- end %>
+		<%- if can? :reindex, item %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :reindex}", reindex_path,
+				:class => "muscat_icon_link muscat_icon_link_reindex") %>
 			</li>
 		<%- end %>
 	<%- else %>
