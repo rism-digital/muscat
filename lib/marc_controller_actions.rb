@@ -24,7 +24,7 @@ module MarcControllerActions
       model.last_event_save = "update"
 
       marc_hash = JSON.parse params[:marc]
-      
+        
       # This is the tricky part. Get the MARC subclass
       # e.g. MarcSource or MarcPerson
       classname = "Marc" + model.to_s
@@ -55,6 +55,23 @@ module MarcControllerActions
       # Reset the user name and the event to nil for next time
       model.last_user_save = nil
       model.last_event_save = nil
+     
+     
+      # if we arrived here it means nothing crashed
+      # Rejoice! and launch the background jobs
+      # if any
+      if params[:triggers]
+        triggers = JSON.parse(params[:triggers])
+        
+        triggers.each do |k, t|
+          if k == "save"
+            t.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, model)) }
+          elsif k == "reindex"
+          else
+            puts "Unknown trigger #{k}"
+          end
+        end
+      end
      
       # build the dynamic model path
       

@@ -86,7 +86,7 @@ jQuery(document).ready(function() {
 						
 						// put the progressbar to indefinite
 						bar.css('width','0%');
-						percent_span.html("0%");
+						percent_span.html("0.0%");
 					}
 					
 					// Always update the stage
@@ -96,6 +96,11 @@ jQuery(document).ready(function() {
 					
 					// If there are errors
 					if (job.last_error != null) {
+						
+						if (!job.progress_stage) {
+							stage = "[No status set]"
+						}
+						
 						stat.addClass("error");
 						if (stat) {
 							stat.html("ERROR: " + stage);

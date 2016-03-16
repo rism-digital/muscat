@@ -11,7 +11,10 @@
 			</tr>
 		<% @jobs.each do |j| %>
 		<%
-			percent = (j.progress_current.to_f / j.progress_max.to_f) * 100
+			percent = 0.0
+			if j.progress_current && j.progress_max
+				percent = (j.progress_current.to_f / j.progress_max.to_f) * 100
+			end
 			
 	        if j.failed_at
 	          banner_txt = "Failed"; banner_class = "error"
@@ -22,6 +25,9 @@
 	            banner_txt = "Running"; banner_class = "yes"
 	          end
 	        end
+			
+			stage = j.progress_stage != nil && !j.progress_stage.empty? ? j.progress_stage : "[No status set]"
+			stage = j.failed_at ? "ERROR: #{stage}" : stage
 		%>
 			<tr class="<%= cycle('even', 'odd') -%>">
 				<td class="col"><%= j.id%></td>
@@ -32,10 +38,10 @@
 				  </div>
 				</td>
 				<td>
-					<span id="progress-percent-<%=j.id%>"><%= !percent.nan? ? percent.round(1) : "0" %>%</span>
+					<span id="progress-percent-<%=j.id%>"><%= !percent.nan? ? percent.round(1) : "0.0" %>%</span>
 				</td>
 				<td class="col" style="width: 50%">
-					<span id="progress-status-<%=j.id%>" class="progress_status"><%= j.progress_stage%></span>
+					<span id="progress-status-<%=j.id%>" class="progress_status"><%= stage %></span>
 				</td>
 			</tr>
 		<% end %>
