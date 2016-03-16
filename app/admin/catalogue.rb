@@ -59,6 +59,8 @@ ActiveAdmin.register Catalogue do
       @editor_profile = EditorConfiguration.get_show_layout @catalogue
       @prev_item, @next_item, @prev_page, @next_page = Catalogue.near_items_as_ransack(params, @catalogue)
       
+      @jobs = @catalogue.delayed_jobs
+      
       respond_to do |format|
         format.html
         format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
@@ -91,6 +93,15 @@ ActiveAdmin.register Catalogue do
   end
   
   include MarcControllerActions
+
+  action_item :reindex, only: :show do
+    link_to 'Reindex', reindex_admin_catalogue_path(catalogue)
+  end
+  
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexAuthorityJob.new(Catalogue.find(params[:id])))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
 
   ###########
   ## Index ##
@@ -134,6 +145,7 @@ ActiveAdmin.register Catalogue do
   show :title => proc{ active_admin_catalogue_show_title( @item.author, @item.description, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
+    render('jobs/jobs_monitor')
     @item = @arbre_context.assigns[:item]
     if @item.marc_source == nil
       render :partial => "marc_missing"

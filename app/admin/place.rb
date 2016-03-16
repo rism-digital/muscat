@@ -55,6 +55,8 @@ ActiveAdmin.register Place do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Place #{params[:id]})" }
       end
       @prev_item, @next_item, @prev_page, @next_page = Place.near_items_as_ransack(params, @place)
+      
+      @jobs = @place.delayed_jobs
     end
     
     def index
@@ -70,6 +72,15 @@ ActiveAdmin.register Place do
   
   # Include the folder actions
   include FolderControllerActions
+  
+  action_item :reindex, only: :show do
+    link_to 'Reindex', reindex_admin_place_path(place)
+  end
+  
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexAuthorityJob.new(Place.find(params[:id])))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
   
   ###########
   ## Index ##
@@ -99,6 +110,7 @@ ActiveAdmin.register Place do
   
   show do
     active_admin_navigation_bar( self )
+    render('jobs/jobs_monitor')
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_country) { |r| r.country }

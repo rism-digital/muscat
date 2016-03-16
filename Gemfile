@@ -101,8 +101,10 @@ gem 'ruby-prof'
 gem 'pry', :group => :development
 
 # Background tasks
+# https://github.com/collectiveidea/delayed_job/issues/776
+gem 'delayed_job', "4.1.1", github: 'rism-ch/delayed_job'
 gem 'delayed_job_active_record'
-gem 'progress_job'
+gem 'progress_job', github: "rism-ch/progress_job"
 
 # Scheduled tasks cron style
 gem 'crono', github: 'plashchynski/crono'

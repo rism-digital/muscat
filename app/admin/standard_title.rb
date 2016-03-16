@@ -54,6 +54,8 @@ ActiveAdmin.register StandardTitle do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (StandardTitle #{params[:id]})" }
       end
       @prev_item, @next_item, @prev_page, @next_page = StandardTitle.near_items_as_ransack(params, @standard_title)
+      
+      @jobs = @standard_title.delayed_jobs
     end
     
     def index
@@ -71,6 +73,15 @@ ActiveAdmin.register StandardTitle do
   
   # Include the folder actions
   include FolderControllerActions
+  
+  action_item :reindex, only: :show do
+    link_to 'Reindex', reindex_admin_standard_title_path(standard_title)
+  end
+  
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexAuthorityJob.new(StandardTitle.find(params[:id])))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
   
   ###########
   ## Index ##
@@ -99,6 +110,7 @@ ActiveAdmin.register StandardTitle do
   
   show do
     active_admin_navigation_bar( self )
+    render('jobs/jobs_monitor')
     attributes_table do
       row (I18n.t :filter_title) { |r| r.title }
       row (I18n.t :filter_notes) { |r| r.notes }  

@@ -49,6 +49,8 @@ ActiveAdmin.register LiturgicalFeast do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (LiturgicalFeast #{params[:id]})" }
       end
       @prev_item, @next_item, @prev_page, @next_page = LiturgicalFeast.near_items_as_ransack(params, @liturgical_feast)
+      
+      @jobs = @liturgical_feast.delayed_jobs
     end
     
     def index
@@ -75,6 +77,18 @@ ActiveAdmin.register LiturgicalFeast do
       end
     end
     
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
+  action_item :reindex, only: :show do
+    link_to 'Reindex', reindex_admin_liturgical_feast_path(liturgical_feast)
+  end
+  
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexAuthorityJob.new(LiturgicalFeast.find(params[:id])))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
   ###########
@@ -111,6 +125,7 @@ ActiveAdmin.register LiturgicalFeast do
   
   show do
     active_admin_navigation_bar( self )
+    render('jobs/jobs_monitor')
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_notes) { |r| r.notes } 

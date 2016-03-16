@@ -66,6 +66,8 @@ ActiveAdmin.register Institution do
       @editor_profile = EditorConfiguration.get_show_layout @institution
       @prev_item, @next_item, @prev_page, @next_page = Institution.near_items_as_ransack(params, @institution)
       
+      @jobs = @institution.delayed_jobs
+      
       respond_to do |format|
         format.html
         format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
@@ -102,6 +104,15 @@ ActiveAdmin.register Institution do
   
   include MarcControllerActions
   
+  action_item :reindex, only: :show do
+    link_to 'Reindex', reindex_admin_institution_path(institution)
+  end
+  
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexAuthorityJob.new(Institution.find(params[:id])))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
+  
   ###########
   ## Index ##
   ###########
@@ -134,6 +145,7 @@ ActiveAdmin.register Institution do
   show :title => proc{ active_admin_auth_show_title( @item.name, @item.siglum, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
+    render('jobs/jobs_monitor')
     @item = @arbre_context.assigns[:item]
     if @item.marc_source == nil
       render :partial => "marc_missing"
