@@ -1,7 +1,8 @@
-class ReindexAuthorityJob < ProgressJob::Base
+class ReindexItemsJob < ProgressJob::Base
   
-  def initialize(parent_obj)
+  def initialize(parent_obj, relation = "Source")
     @parent_obj = parent_obj
+    @relation = relation
   end
   
   def enqueue(job)
@@ -16,11 +17,14 @@ class ReindexAuthorityJob < ProgressJob::Base
     return if !@parent_obj
     
     update_progress_max(-1)
-        
+      
+    klass_name = @relation.underscore.downcase.pluralize
+    items = @parent_obj.send(klass_name)  
+    
     update_stage("Look up Sources")
     update_progress_max(@parent_obj.sources.count)
     batch = 1
-    @parent_obj.sources.find_in_batches(batch_size: 10) do |group|
+    items.find_in_batches(batch_size: 10) do |group|
       Sunspot.index group
       Sunspot.commit
       update_stage_progress("Updating records #{batch * 10}/#{@parent_obj.sources.count}", step: 10)

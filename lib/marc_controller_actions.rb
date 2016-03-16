@@ -67,6 +67,7 @@ module MarcControllerActions
           if k == "save"
             t.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, model)) }
           elsif k == "reindex"
+            t.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, model)) }
           else
             puts "Unknown trigger #{k}"
           end
