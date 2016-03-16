@@ -189,9 +189,17 @@ module MarcControllerActions
 
       classname = "Marc" + model.to_s
       dyna_marc_class = Kernel.const_get(classname)
-      new_marc = dyna_marc_class.new(old_item.marc.to_marc)
+      old_item.marc.load_source(false)
       
+      new_marc = nil
+      if @item.respond_to?(:record_type)
+        new_marc = dyna_marc_class.new(old_item.marc.to_marc, @item.record_type)
+      else
+        new_marc = dyna_marc_class.new(old_item.marc.to_marc)
+      end
+      new_marc.load_source(false)
       new_marc.import
+
       @item.marc = new_marc
       @item.paper_trail_event = "restore"
       @item.save
