@@ -243,6 +243,8 @@ fr:
   new: "Créer"
   duplicate: "Dupliquer"
   no_action: "Aucune action possible"
+  reindex: "Ré-indexer"
+  publish: "Publier"
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"
@@ -251,6 +253,7 @@ fr:
   save_and_continue: "Enregistrer et continuer"
   save_and_exit: "Enregistrer et terminer"
   cancel: "Annuler"
+  select: "Sélectionner"
   
   # Version history
   history_date: "Date"

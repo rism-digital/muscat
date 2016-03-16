@@ -243,6 +243,9 @@ de:
   new: "CREATE"
   duplicate: "DUPLICATE"
   no_action: "NO ACTION AVAILABLE"
+  reindex: "REINDEX"
+  publish: "PUBLISH"
+  select: "SELECT"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"

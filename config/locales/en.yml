@@ -243,6 +243,9 @@ en:
   new: "Create"
   duplicate: "Duplicate"
   no_action: "No action available"
+  reindex: "Re-index"
+  publish: "Publish"
+  select: "Select"
   
   # Editor sidebar
   show_all_groups: "Show all sections"
