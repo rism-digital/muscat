@@ -4,19 +4,14 @@ ActiveAdmin.register Catalogue do
 
   # Remove mass-delete action
   batch_action :destroy, false
+  
+  # Remove all action items
+  config.clear_action_items!
 
   collection_action :autocomplete_catalogue_name, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
-  end
-    
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( catalogue )
-  end
-
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
   end
 
   # See permitted parameters documentation:
@@ -95,19 +90,18 @@ ActiveAdmin.register Catalogue do
     
   end
   
-  # Include the folder actions
-  include FolderControllerActions
-  
   include MarcControllerActions
 
   ###########
   ## Index ##
   ###########
   
-  #scope :all, :default => true 
-  #scope :published do |catalogues|
-  #  catalogues.where(:wf_stage => 'published')
-  #end
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
   
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
@@ -152,15 +146,23 @@ ActiveAdmin.register Catalogue do
     active_admin_comments if !is_selection_mode?
   end
   
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => catalogue }
+  end
+  
+  sidebar I18n.t(:search_sources), :only => :show do
+    render("activeadmin/src_search") # Calls a partial
+  end
+  
  
   ##########
   ## Edit ##
   ##########
   
+  form :partial => "editor/edit_wide"
+  
   sidebar :sections, :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
   end
-  
-  form :partial => "editor/edit_wide"
   
 end
