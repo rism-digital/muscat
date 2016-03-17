@@ -161,7 +161,6 @@ ActiveAdmin.register Catalogue do
   sidebar I18n.t(:search_sources), :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
-  
  
   ##########
   ## Edit ##

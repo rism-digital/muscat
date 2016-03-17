@@ -5,19 +5,14 @@ ActiveAdmin.register Institution do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
   collection_action :autocomplete_institution_siglum, :method => :get
   collection_action :autocomplete_institution_name, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
-  end
-    
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( institution )
-  end
-
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
   end
 
   # See permitted parameters documentation:
@@ -99,15 +94,8 @@ ActiveAdmin.register Institution do
     
   end
   
-  # Include the folder actions
-  include FolderControllerActions
-  
   include MarcControllerActions
-  
-  action_item :reindex, only: :show do
-    link_to 'Reindex', reindex_admin_institution_path(institution)
-  end
-  
+
   member_action :reindex, method: :get do
     job = Delayed::Job.enqueue(ReindexAuthorityJob.new(Institution.find(params[:id])))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
@@ -138,6 +126,13 @@ ActiveAdmin.register Institution do
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
@@ -158,6 +153,10 @@ ActiveAdmin.register Institution do
     active_admin_comments if !is_selection_mode?
   end
   
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => institution }
+  end
+  
   sidebar I18n.t(:search_sources), :only => :show do
     render("activeadmin/src_search") # Calls a partial
   end
@@ -166,10 +165,10 @@ ActiveAdmin.register Institution do
   ## Edit ##
   ##########
   
+  form :partial => "editor/edit_wide"
+  
   sidebar :sections, :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
   end
-  
-  form :partial => "editor/edit_wide"
 
 end

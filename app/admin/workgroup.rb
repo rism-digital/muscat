@@ -2,6 +2,9 @@ ActiveAdmin.register Workgroup do
   
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_workgroups)}
 
+  # Remove all action items
+  config.clear_action_items!
+  
   collection_action :autocomplete_workgroup_name, :method => :get
 
   # See permitted parameters documentation:
@@ -37,6 +40,20 @@ ActiveAdmin.register Workgroup do
         format.html
       end
     end
+    # redirect update failure for preserving sidebars
+    def update
+      update! do |success,failure|
+        success.html { redirect_to collection_path }
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
+    # redirect create failure for preserving sidebars
+    def create
+      create! do |success,failure|
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
     
   end
   
@@ -60,6 +77,10 @@ ActiveAdmin.register Workgroup do
     actions
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
   ##########
   ## Show ##
   ##########
@@ -76,6 +97,10 @@ ActiveAdmin.register Workgroup do
      # row (I18n.t :filter_notes) { |r| r.notes }  
     end
     #active_admin_embedded_source_list( self, workgroup, params[:qe], params[:src_list_page] )
+  end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => workgroup }
   end
   
   sidebar I18n.t(:search_sources), :only => :show do

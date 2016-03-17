@@ -5,6 +5,9 @@ ActiveAdmin.register StandardTerm do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
   collection_action :autocomplete_standard_term_term, :method => :get
 
   breadcrumb do
@@ -58,7 +61,6 @@ ActiveAdmin.register StandardTerm do
       @jobs = @standard_term.delayed_jobs
     end
     
-    
     def index
       @results = StandardTerm.search_as_ransack(params)
       
@@ -68,13 +70,21 @@ ActiveAdmin.register StandardTerm do
       end
     end
     
-  end
-  
-  # Include the folder actions
-  include FolderControllerActions
-  
-  action_item :reindex, only: :show do
-    link_to 'Reindex', reindex_admin_standard_term_path(standard_term)
+    # redirect update failure for preserving sidebars
+    def update
+      update! do |success,failure|
+        success.html { redirect_to collection_path }
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
+    # redirect create failure for preserving sidebars
+    def create
+      create! do |success,failure|
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
   end
   
   member_action :reindex, method: :get do
@@ -104,6 +114,13 @@ ActiveAdmin.register StandardTerm do
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
@@ -120,6 +137,10 @@ ActiveAdmin.register StandardTerm do
     active_admin_user_wf( self, standard_term )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+  end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => standard_term }
   end
   
   sidebar I18n.t(:search_sources), :only => :show do

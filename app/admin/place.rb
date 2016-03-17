@@ -6,18 +6,13 @@ ActiveAdmin.register Place do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
   collection_action :autocomplete_place_name, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
-  end
-    
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( place )
-  end
-  
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
   end
 
   # See permitted parameters documentation:
@@ -68,13 +63,21 @@ ActiveAdmin.register Place do
       end
     end
     
-  end
-  
-  # Include the folder actions
-  include FolderControllerActions
-  
-  action_item :reindex, only: :show do
-    link_to 'Reindex', reindex_admin_place_path(place)
+    # redirect update failure for preserving sidebars
+    def update
+      update! do |success,failure|
+        success.html { redirect_to collection_path }
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
+    # redirect create failure for preserving sidebars
+    def create
+      create! do |success,failure|
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
   end
   
   member_action :reindex, method: :get do
@@ -104,6 +107,13 @@ ActiveAdmin.register Place do
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
@@ -120,6 +130,10 @@ ActiveAdmin.register Place do
     active_admin_user_wf( self, place )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+  end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => place }
   end
   
   sidebar I18n.t(:search_sources), :only => :show do

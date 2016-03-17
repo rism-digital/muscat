@@ -3,14 +3,30 @@ ActiveAdmin.register User do
   
   permit_params :email, :password, :password_confirmation, :name, workgroup_ids: [], role_ids: []
 
+  # Remove all action items
+  config.clear_action_items!
+
   controller do
-    def update
+        
+    # redirect update failure for preserving sidebars
+    def update      
       if params[:user][:password].blank?
         params[:user].delete("password")
         params[:user].delete("password_confirmation")
       end
-    super
+      update! do |success,failure|
+        success.html { redirect_to collection_path }
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
     end
+    
+    # redirect create failure for preserving sidebars
+    def create
+      create! do |success,failure|
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
   end
 
   ###########
@@ -37,6 +53,10 @@ ActiveAdmin.register User do
     column :created_at
     actions
   end
+  
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
 
   ##########
   ## Show ##
@@ -56,6 +76,10 @@ ActiveAdmin.register User do
       row :created_at
       row :updated_at
     end
+  end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => user }
   end
   
   ##########

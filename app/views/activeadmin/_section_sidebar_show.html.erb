@@ -1,7 +1,5 @@
 <%-
 	model = self.resource_class.to_s.underscore.downcase
-	delete_path = send("admin_#{model}_path", item)
-	save_form = "edit_#{model}"
 %>
 
 <ul>
@@ -20,13 +18,17 @@
 		
 		<li class="muscat_icon_separator"></li>
 	
-		<%- if can? :edit, item %>
+		<%- if (self.controller.respond_to? :new) && (can? :edit, item) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :edit}", send("edit_admin_#{model}_path", item),
 				:class => "muscat_icon_link muscat_icon_link_edit") %>
 			</li>
 		<%- end %>
-		<%- if can? :destroy, item %>
+		<%- if (self.controller.respond_to? :destroy) && (can? :destroy, item) %>
+			<%-
+				delete_path = send("admin_#{model}_path", item)
+				save_form = "edit_#{model}"
+			%>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :delete}", delete_path,
 				:class => "muscat_icon_link muscat_icon_link_delete",
@@ -50,11 +52,10 @@
 	<%- else %>
 	
 		<%-
-			name = "[Model does not have a label]"
+			name = "[unspecified]"
 			name = item.name if item.respond_to?(:name)
 			name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
 		%>
-	
 		<li class="muscat_icon_link">
 		<%= link_to("#{I18n.t :select}", "#",
 			:class => "muscat_icon_link muscat_icon_link_save_exit",
