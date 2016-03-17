@@ -1,7 +1,7 @@
 <%-
 	# Build the back to index path function
-	model = self.resource_class.to_s.underscore.downcase
-    models = model.pluralize
+	model = self.resource_class.to_s.split('::').last.underscore.downcase
+	models = model.pluralize
     cancel_path = ""
     save_form = ""
     if item != nil && item.id != nil

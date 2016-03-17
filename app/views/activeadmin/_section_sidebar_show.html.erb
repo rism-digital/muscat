@@ -1,5 +1,5 @@
 <%-
-	model = self.resource_class.to_s.underscore.downcase
+	model = self.resource_class.to_s.split('::').last.underscore.downcase
 %>
 
 <ul>
