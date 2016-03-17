@@ -6,7 +6,7 @@ function deselectSession() {
 	$.ajax({
 		success: function(data) {},
 		data: {
-			select: false, 
+			deselect: true, 
 		},
 		dataType: 'script',
 		timeout: 20000,
