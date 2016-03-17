@@ -95,7 +95,7 @@ ActiveAdmin.register Person do
   include MarcControllerActions
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexAuthorityJob.new(Person.find(params[:id])))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(Person.find(params[:id]), "Source"))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
