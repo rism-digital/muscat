@@ -16,7 +16,7 @@ module ActiveAdmin
         order_storage = session[:last_order_page]
         scope_storage = session[:last_scope]
         # Do not restor filters opening the select mode
-        if params.include?(:select) && params[:select] == "true"
+        if params.include?(:select)
           return
         end
         if params[:clear_filters]
@@ -87,7 +87,9 @@ module ActiveAdmin
           end
         end
         
-        if session[:select] == controller_name 
+        if params.include?(:deselect)
+          session[:select] = nil
+        elsif session[:select] == controller_name 
           params[:select] = "true"
         end
         
