@@ -116,8 +116,17 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    columnize (0.9.0)
+    coolline (0.5.0)
+      unicode_utils (~> 1.4)
     daemons (1.2.3)
     debug_inspector (0.0.2)
+    debugger (1.6.8)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.3.5)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.3.8)
     delayed_job (4.1.1)
       activesupport (>= 3.0, < 5.0)
     delayed_job_active_record (4.1.0)
@@ -133,6 +142,8 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     devise-i18n (1.0.0)
+    diff-lcs (1.2.5)
+    diffy (3.1.0)
     erubis (2.7.0)
     execjs (2.6.0)
     formtastic (3.1.3)
@@ -140,11 +151,15 @@ GEM
     formtastic_i18n (0.5.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    grit (2.0.0)
+      diff-lcs (>= 1.1.2)
+      mime-types (>= 1.15)
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     highline (1.7.8)
     hike (1.2.3)
+    hirb (0.7.3)
     htmlentities (4.3.4)
     i18n (0.7.0)
     inherited_resources (1.6.0)
@@ -152,6 +167,18 @@ GEM
       has_scope (~> 0.6.0.rc)
       railties (>= 3.2, < 5)
       responders
+    jazz_hands (0.5.2)
+      awesome_print (~> 1.2)
+      coolline (>= 0.4.2)
+      hirb (~> 0.7.1)
+      pry (~> 0.9.12)
+      pry-debugger (~> 0.2.2)
+      pry-doc (~> 0.4.6)
+      pry-git (~> 0.2.3)
+      pry-rails (~> 0.3.2)
+      pry-remote (>= 0.1.7)
+      pry-stack_explorer (~> 0.4.9)
+      railties (>= 3.0, < 5.0)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -204,10 +231,28 @@ GEM
       options (~> 2.3.0)
     progress_job (0.0.4)
       delayed_job
-    pry (0.10.3)
-      coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
       slop (~> 3.4)
+    pry-debugger (0.2.3)
+      debugger (~> 1.3)
+      pry (>= 0.9.10, < 0.11.0)
+    pry-doc (0.4.6)
+      pry (>= 0.9)
+      yard (>= 0.8)
+    pry-git (0.2.3)
+      diffy
+      grit
+      pry (>= 0.9.8)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
+    pry-remote (0.1.8)
+      pry (~> 0.9)
+      slop (~> 3.0)
+    pry-stack_explorer (0.4.9.2)
+      binding_of_caller (>= 0.7)
+      pry (>= 0.9.11)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -292,6 +337,7 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicode_utils (1.4.0)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -300,6 +346,7 @@ GEM
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
     webrick (1.3.1)
+    yard (0.8.7.6)
 
 PLATFORMS
   ruby
@@ -321,6 +368,7 @@ DEPENDENCIES
   devise
   devise-i18n
   htmlentities
+  jazz_hands
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails
@@ -331,7 +379,6 @@ DEPENDENCIES
   paperclip (~> 4.3)
   progress_bar
   progress_job
-  pry
   rails (~> 4.2.0)
   rails3-jquery-autocomplete!
   rolify

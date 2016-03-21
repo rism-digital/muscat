@@ -90,7 +90,7 @@ ActiveAdmin.register Person do
       new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
       new_marc.load_source false # this will need to be fixed
       @person.marc = new_marc
-
+      
       @editor_profile = EditorConfiguration.get_default_layout @person
       # Since we have only one default template, no need to change the title
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"

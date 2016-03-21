@@ -29,7 +29,7 @@ class Institution < ActiveRecord::Base
   has_and_belongs_to_many :workgroups
   belongs_to :user, :foreign_key => "wf_owner"
     
-  composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source)
+  composed_of :marc, :class_name => "MarcInstitution", :mapping => [%w(marc_source to_marc)]
   
   #validates_presence_of :siglum    
   

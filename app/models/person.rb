@@ -52,7 +52,7 @@ class Person < ActiveRecord::Base
     :foreign_key => "person_b_id",
     :association_foreign_key => "person_a_id")
   
-  composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
+  composed_of :marc, :class_name => "MarcPerson", :mapping => [%w(marc_source to_marc)]
   
 #  validates_presence_of :full_name  
   validate :field_length
