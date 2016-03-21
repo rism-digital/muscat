@@ -6,18 +6,13 @@ ActiveAdmin.register Source do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
   breadcrumb do
     active_admin_muscat_breadcrumb
-  end
-    
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( source )
-  end
-  
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
   end
 
   # See permitted parameters documentation:
@@ -128,9 +123,6 @@ ActiveAdmin.register Source do
   # Include the MARC extensions
   include MarcControllerActions
   
-  # Include the folder actions
-  include FolderControllerActions
-  
   collection_action :select_new_template, :method => :get
   
   #scope :all, :default => true 
@@ -185,6 +177,13 @@ ActiveAdmin.register Source do
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
@@ -198,6 +197,10 @@ ActiveAdmin.register Source do
     active_admin_user_wf( self, @item )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+  end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
   end
   
   ##########

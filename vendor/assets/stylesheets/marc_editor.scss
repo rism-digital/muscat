@@ -58,12 +58,12 @@
             //border-bottom: 1px solid lighten($primary-color, 10%);
             border-bottom: 4px solid #dfe1e2;
             .tag_container {
-                margin-bottom: 7px;
+                margin-bottom: 4px;
                 table.tag_header {
                     margin-top: 0px;
                     margin-bottom: 0px;
                     th {
-                        padding: 8px 4px 2px 0px;
+                        padding: 5px 4px 2px 0px;
                         background: none;
                         color: $primary-color;
                         @include no-shadow;
@@ -97,10 +97,16 @@
                         font-size: 1.3em;
                     }          
                     * input,
+                    * select {
+                        margin: 2px 0px 3px 0px;
+                    }
+                    * textarea {
+                        margin: 2px 0px 0px 0px;
+                    }
+                    * input,
                     * select,
                     * textarea {
                         padding: 2px 5px 2px 5px;
-                        margin: 4px 0px 3px 0px;
                     }
                     * input[type='text'],
                     * select,
@@ -279,17 +285,35 @@ $diff-padding-width: 15px;
         a.muscat_icon_link_cancel {
             background: image-url("/images/marc-icons/cancel.png") no-repeat;
         }
+        a.muscat_icon_link_delete {
+            background: image-url("/images/marc-icons/delete.png") no-repeat;
+        }
+        a.muscat_icon_link_edit {
+            background: image-url("/images/marc-icons/edit.png") no-repeat;
+        }
         a.muscat_icon_link_help {
             background: image-url("/images/marc-icons/help.png") no-repeat;
         }
         a.muscat_icon_link_history {
             background: image-url("/images/marc-icons/history.png") no-repeat;
         }
+        a.muscat_icon_link_list {
+            background: image-url("/images/marc-icons/list.png") no-repeat;
+        }
         a.muscat_icon_link_more {
             background: image-url("/images/marc-icons/more.png") no-repeat;
         }
+        a.muscat_icon_link_new {
+            background: image-url("/images/marc-icons/new.png") no-repeat;
+        }
+        a.muscat_icon_link_reindex {
+            background: image-url("/images/marc-icons/reindex.png") no-repeat;
+        }
         a.muscat_icon_link_preview {
             background: image-url("/images/marc-icons/preview.png") no-repeat;
+        }
+        a.muscat_icon_link_publish {
+            background: image-url("/images/marc-icons/publish.png") no-repeat;
         }
         a.muscat_icon_link_save {
             background: image-url("/images/marc-icons/save.png") no-repeat;

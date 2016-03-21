@@ -257,6 +257,17 @@ it:
     auto_delete: "Impossibile cancellare: il processo terminato è già stato eliminato automaticamente."
     no_view: "Impossibile visualizzare: il processo terminato è già stato eliminato automaticamente."
 
+  # Sidebar
+  delete: "DELETE"
+  to_the_list: "TO THE LIST"
+  edit: "EDIT"
+  new: "CREATE"
+  duplicate: "DUPLICATE"
+  no_action: "NO ACTION AVAILABLE"
+  reindex: "REINDEX"
+  publish: "PUBLISH"
+  select: "SELECT"
+  
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
   show_preview: "Mostra l'anteprima"
@@ -411,6 +422,7 @@ it:
   
   # Assorted error messages
   error_not_found: "La risorsa specificata non esiste oppure è stata cancellata."
+  error_saving: "THE RESOURCE IS NOT COMPLETE OR GENERATES A DUPLICATE"
   unknown_tags: "Il record contiene dei campi sconosciuti"
 
   #

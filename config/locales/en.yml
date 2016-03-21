@@ -257,6 +257,17 @@ en:
     auto_delete: "Cannot Delete: Finished job was Automatically Deleted."
     no_view: "Cannot View: Finished job was Automatically Deleted."
 
+  # Sidebar
+  delete: "Delete"
+  to_the_list: "To the list"
+  edit: "Edit"
+  new: "Create"
+  duplicate: "Duplicate"
+  no_action: "No action available"
+  reindex: "Re-index"
+  publish: "Publish"
+  select: "Select"
+  
   # Editor sidebar
   show_all_groups: "Show all sections"
   show_preview: "Show preview"
@@ -411,6 +422,7 @@ en:
   
   # Assorted error messages
   error_not_found: "The resource you are trying to access does not exist or has been deleted."
+  error_saving: "The resource is not complete or generates a duplicate"
   unknown_tags: "There are some unknown fields in this record"
   
   #

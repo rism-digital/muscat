@@ -256,6 +256,17 @@ de:
     running_jobs: "RUNNING JOBS CANNOT BE DELETED."
     auto_delete: "CANNOT DELETE: FINISHED JOB WAS AUTOMATICALLY DELETED."
     no_view: "CANNOT VIEW: FINISHED JOB WAS AUTOMATICALLY DELETED."
+
+  # Sidebar
+  delete: "DELETE"
+  to_the_list: "TO THE LIST"
+  edit: "EDIT"
+  new: "CREATE"
+  duplicate: "DUPLICATE"
+  no_action: "NO ACTION AVAILABLE"
+  reindex: "REINDEX"
+  publish: "PUBLISH"
+  select: "SELECT"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -411,6 +422,7 @@ de:
   
   # Assorted error messages
   error_not_found: "Der gesuchte Eintrag existiert nicht order wurde gelöscht."
+  error_saving: "THE RESOURCE IS NOT COMPLETE OR GENERATES A DUPLICATE"
   unknown_tags: "Dieser Eintrag enthält falsch verwendete Felder"
    
   #

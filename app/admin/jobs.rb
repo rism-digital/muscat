@@ -4,6 +4,10 @@ ActiveAdmin.register Delayed::Job, as: 'Job' do
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_jobs)}, :if => proc{ can? :manage, Delayed::Job }
 
   actions :index, :show, :update, :destroy
+  
+  # Remove all action items
+  config.clear_action_items!
+  
   config.filters = false
 
   controller do
@@ -29,6 +33,10 @@ ActiveAdmin.register Delayed::Job, as: 'Job' do
     end
     
   end
+  
+  ###########
+  ## Index ##
+  ###########
 
   index do
     column :id
@@ -61,6 +69,18 @@ ActiveAdmin.register Delayed::Job, as: 'Job' do
     column I18n.t(:run_at), :run_at
     column I18n.t(:created_at), :created_at
     actions
+  end
+  
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  ##########
+  ## Show ##
+  ##########
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => job }
   end
 
 end
