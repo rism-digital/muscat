@@ -37,13 +37,13 @@ jQuery(document).ready(function() {
 				success: function(job){
 					if (job == "none") {
 						if (stat) {
-							stat.html('Job ended successfully');
+							stat.html(I18n.t("jobs.ok"));
 						}
 						if (banner) {
 							banner.removeClass();
 							banner.addClass("status_tag");
 							banner.addClass("ok");
-							banner.html('Finished');
+							banner.html((I18n.t("finished"));
 						}
 					
 						percent_span.html("100%");
@@ -74,7 +74,7 @@ jQuery(document).ready(function() {
 						banner.removeClass();
 						banner.addClass("status_tag");
 						banner.addClass("yes");
-						banner.html('Running');
+						banner.html((I18n.t("running"));
 					} else {
 						stage = "Job enqueued"
 						
@@ -82,7 +82,7 @@ jQuery(document).ready(function() {
 						banner.removeClass();
 						banner.addClass("status_tag");
 						banner.addClass("no");
-						banner.html('Waiting');
+						banner.html((I18n.t("waiting"));
 						
 						// put the progressbar to indefinite
 						bar.css('width','0%');
@@ -98,19 +98,20 @@ jQuery(document).ready(function() {
 					if (job.last_error != null) {
 						
 						if (!job.progress_stage) {
-							stage = "[No status set]"
+							stage = I18n.t("jobs.not_set")
 						}
 						
 						stat.addClass("error");
 						if (stat) {
-							stat.html("ERROR: " + stage);
+							stat.html(I18n.t("jobs.error") + stage);
 						}
 						
 						if (banner) {
 							banner.removeClass();
 							banner.addClass("status_tag");
 							banner.addClass("error");
-							banner.html('Failed');
+							banner.html(I18n.t("failed"));
+);
 						}
 						
 						clearInterval(interval);
@@ -120,7 +121,7 @@ jQuery(document).ready(function() {
 				},
 				error: function(){
 					if (stat) {
-						stat.html('There was an error reading job status');
+						stat.html(I18n.t("jobs.no_status"));
 					}
 					if (banner) {
 						banner.removeClass();

@@ -4,10 +4,10 @@
 		<table border="0" cellspacing="0" cellpadding="0" class="index_table index">
 			<tr>
 				<th>Job ID</th>
-				<th>Status</th>
-				<th>Progress</th>
+				<th><%=I18n.t(:status)%></th>
+				<th><%=I18n.t(:progress)%></th>
 				<th>%</th>
-				<th>Status</th>
+				<th><%=I18n.t(:progress_stage)%></th>
 			</tr>
 		<% @jobs.each do |j| %>
 		<%
@@ -17,17 +17,17 @@
 			end
 			
 	        if j.failed_at
-	          banner_txt = "Failed"; banner_class = "error"
+	          banner_txt = I18n.t(:failed); banner_class = "error"
 	        else
 	          if !j.locked_at
-	            banner_txt = "Waiting"; banner_class = "no"
+	            banner_txt = I18n.t(:waiting); banner_class = "no"
 	          else
-	            banner_txt = "Running"; banner_class = "yes"
+	            banner_txt = I18n.t(:running); banner_class = "yes"
 	          end
 	        end
 			
-			stage = j.progress_stage != nil && !j.progress_stage.empty? ? j.progress_stage : "[No status set]"
-			stage = j.failed_at ? "ERROR: #{stage}" : stage
+			stage = j.progress_stage != nil && !j.progress_stage.empty? ? j.progress_stage : I18n.t("jobs.not_set")
+			stage = j.failed_at ? I18n.t("jobs.error") + "#{stage}" : stage
 		%>
 			<tr class="<%= cycle('even', 'odd') -%>">
 				<td class="col"><%= j.id%></td>

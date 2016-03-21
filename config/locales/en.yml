@@ -218,6 +218,7 @@ en:
   menu_marc_documentation: "Marc configuration"
   menu_guidelines_top: "Guidelines"
   menu_cataloging: "Cataloguing"
+  menu_jobs: "Jobs"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
@@ -235,7 +236,27 @@ en:
   search_sources: "Search Sources"
   created_at: "Creation date"
   updated_at: "Last modification"
+  status: "Status"
+  progress_stage: "Stage"
+  object: "Object"
+  queue: "Queue"
+  failed_at: "Failed At"
+  run_at: "Run At"
+  created_at: "Created At"
+  progress: "Progress"
+  failed: "Failed"
+  waiting: "Waiting"
+  running: "Running"
   
+  jobs:
+    not_set: "[No status set]"
+    ok: "Job ended successfully"
+    no_status: "There was an Error Reading job Status"
+    error: "ERROR: "
+    running_jobs: "Running Jobs Cannot be Deleted."
+    auto_delete: "Cannot Delete: Finished job was Automatically Deleted."
+    no_view: "Cannot View: Finished job was Automatically Deleted."
+
   # Editor sidebar
   show_all_groups: "Show all sections"
   show_preview: "Show preview"

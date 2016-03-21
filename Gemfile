@@ -109,3 +109,6 @@ gem 'progress_job', github: "rism-ch/progress_job"
 # Scheduled tasks cron style
 gem 'crono', github: 'plashchynski/crono'
 gem 'daemons'
+
+# Add I18n in js
+gem "i18n-js", ">= 3.0.0.rc11"

@@ -18,6 +18,10 @@
 //= require jquery-ui/autocomplete
 //= require jquery_ujs
 
+//= require i18n
+// This is a must
+//= require i18n/translations
+
 //
 // Required by Blacklight
 //= require blacklight/blacklight
