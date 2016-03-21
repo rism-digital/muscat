@@ -115,7 +115,7 @@ Source.all.each do |sa|
   end
   
   # #192 move 594 to 598
-  marc.each_by_tag("595") do |t|
+  marc.each_by_tag("594") do |t|
 
     node = t.deep_copy
     node.tag = "598"
