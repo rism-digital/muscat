@@ -1,0 +1,10 @@
+# This is an ranking list
+DNB: person_dnb.xsl
+BNF: person_bnf.xsl
+LC: person_lc.xsl
+NKC: person_nkc.xsl
+NLP: person_nlp.xsl
+NUKAT: person_nukat.xsl
+ISNI: person_isni.xsl
+#WKP:
+

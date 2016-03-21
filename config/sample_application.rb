@@ -8,9 +8,9 @@ Bundler.require(:default, Rails.env)
 
 module RISM
   # The project letters (e.g., uk, ch)
-  BASE = "ch"
+  BASE = "default"
   # The MARC letters (used in the new_from.rhtml and in the manuscript_controller for the templates) 
-  MARC = "ch"
+  MARC = "default"
   # Select the configuration for the editor profiles to load
   EDITOR_PROFILE = ""
   # Url redirection for the deprecated Page controller (to be set only if the installation was previously in Muscat 2 with page)

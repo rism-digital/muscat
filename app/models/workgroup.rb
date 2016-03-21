@@ -31,5 +31,9 @@ class Workgroup < ActiveRecord::Base
       end
     end
   end
- 
+
+  def show_libs
+    libs = self.get_institutions.map(&:siglum)
+    return libs.size > 4 ? "#{libs[0..4].join(', ')} [ ... #{libs.size - 5} more]" : libs.join(', ')
+  end
 end

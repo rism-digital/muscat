@@ -15,6 +15,10 @@
 	<%= render :partial => "editor/versions" -%>
 <% end %>
 
+<% if @item.class.respond_to?("get_viaf")%>
+  <%= render :partial => "editor/viaf_form" %>
+<% end %>
+
 
 <% if @editor_validation %>
 <script type="text/javascript">

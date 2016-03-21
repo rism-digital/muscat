@@ -56,6 +56,7 @@ function get_indicator(field) {
 // =300 xxx2
 // =... stuff after
 function add_ordered(tag, marc_tag, json_marc) {
+	console.log("hi");
 	// add it to the fields array, ordering the fields
 	if (json_marc["fields"].length == 0) {
 		json_marc["fields"].push(marc_tag);
@@ -354,4 +355,39 @@ function serialize_marc_editor_form( form ) {
 	console.log(JSON.stringify(json_marc));
 	return json_marc;
 	
+}
+
+function _marc_json_get_nodes(json_marc, tag){
+	var arr = [];
+	tags = json_marc.fields
+	for (i in tags){
+		if (parseInt(tag) < 10){
+			if (tags[i].tag == tag){
+				arr.push(tags[i]);
+			}
+		}
+		else{
+		if (tags[i].tag === tag){
+			arr.push(tags[i].subfields);
+		}
+	}}
+	return arr;
+}
+
+function marc_json_get_tags(json_marc, tag){
+	var result = [];
+	var tags = _marc_json_get_nodes(json_marc, tag);
+	if (parseInt(tag) < 10){
+		return tags;
+	}
+	for (arr in tags){
+		var subfields = {};
+		var codes = tags[arr];
+		for (subfield in codes){
+			//FIXME not correct for multiple subfields
+			subfields[codes[subfield].code]=codes[subfield].content
+		}
+		result.push(subfields);
+	}
+	return result;
 }

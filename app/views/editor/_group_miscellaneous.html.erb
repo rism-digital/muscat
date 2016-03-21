@@ -2,7 +2,7 @@
 	tag_names = Array.new
 	@editor_profile.each_tag_not_in_layout @item do |tag|
 		tag_names << tag
-	end
+   end
 	# Do not render anything if nothing needs to go in other
 	return if tag_names.empty?
 	group_title = @editor_profile.get_label("unmatched")

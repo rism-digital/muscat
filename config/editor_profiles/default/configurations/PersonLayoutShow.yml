@@ -10,10 +10,10 @@ groups:
     all_tags: 
     - "100"
     - "042"
-    - "039"   
+    - "375"   
     - "374" 
     all_tag_templates:
-      "039": marc_show/show_gender  
+      "375": marc_show/show_gender  
       "374": marc_show/show_inline
 
   notes: 
@@ -39,9 +39,9 @@ groups:
       #"569": people/show_indicator
   codes: 
     all_tags: 
-    - "035"
+    - "024"
     all_tag_templates:
-      "035": marc_show/show_dnb_link
+      "024": marc_show/show_dnb_link
   control: 
     all_tags: 
     - "000"

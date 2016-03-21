@@ -275,11 +275,16 @@ class Person < ActiveRecord::Base
   end
 
   ransacker :"100d_contains", proc{ |v| } do |parent| end
-  ransacker :"039a_contains", proc{ |v| } do |parent| end
+  ransacker :"375a_contains", proc{ |v| } do |parent| end
   ransacker :"374a_contains", proc{ |v| } do |parent| end
   ransacker :"100d_birthdate_contains", proc{ |v| } do |parent| end
   ransacker :"100d_deathdate_contains", proc{ |v| } do |parent| end
   ransacker :"043c_contains", proc{ |v| } do |parent| end
   ransacker :"551a_contains", proc{ |v| } do |parent| end
+
+  def self.get_viaf(str)
+    str.gsub!("\"", "")
+    Viaf::Interface.search(str, self.to_s)
+  end
 
 end

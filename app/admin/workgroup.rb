@@ -53,7 +53,7 @@ ActiveAdmin.register Workgroup do
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_pattern), :libpatterns
     column I18n.t(:filter_connected_libraries), :workgroups do |wg|
-             wg.institutions.map(&:siglum).join(", ").html_safe
+             wg.show_libs.html_safe
        end
 
     #column (I18n.t :filter_sources), :src_count
@@ -70,7 +70,7 @@ ActiveAdmin.register Workgroup do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_pattern) { |r| r.libpatterns }
       row I18n.t(:connected_libraries) do |n|
-             workgroup.institutions.map(&:siglum).join(", ").html_safe
+             workgroup.show_libs.html_safe
                end
      # row (I18n.t :filter_alternates) { |r| r.alternates }
      # row (I18n.t :filter_notes) { |r| r.notes }  

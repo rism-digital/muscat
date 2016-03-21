@@ -36,3 +36,5 @@
 #= require job_progress_bar
 
 #= require active_admin_scoped_collection_actions
+#= require viaf_interface.js
+

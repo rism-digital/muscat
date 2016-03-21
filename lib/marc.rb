@@ -373,7 +373,17 @@ class Marc
     load_source unless @loaded
     @root.to_marc :true    
   end
-  
+ 
+  def to_json
+    load_source unless @loaded
+    marc_json = {"leader" => "01471cjm a2200349 a 4500", "fields" => []}
+    array = self.root.each{|c| c}
+    array.each do |node|
+      marc_json["fields"] << node.to_json
+    end
+    return marc_json
+  end
+
   def to_xml(updated_at = nil, versions = nil)
     out = Array.new
     out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
