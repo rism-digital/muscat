@@ -55,5 +55,3 @@
 // this:
 //= require 'blacklight_range_limit'
 //= require 'ekko-lightbox.min'
-
-//= require active_admin_scoped_collection_actions

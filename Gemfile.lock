@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/activeadmin-plugins/active_admin_scoped_collection_actions.git
-  revision: 63aff0f52dc7ffce0dd6f4d0d0ecab8c15e69138
-  specs:
-    active_admin_scoped_collection_actions (0.2.0)
-
-GIT
   remote: git://github.com/plashchynski/crono.git
   revision: 63283509cb961364cb4080d834bf20c64e27c3b6
   specs:
@@ -317,7 +311,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_admin_scoped_collection_actions!
   activeadmin (~> 1.0.0.pre2)
   activerecord-import (>= 0.4.0)
   awesome_print

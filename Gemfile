@@ -65,7 +65,8 @@ gem 'htmlentities'
 # gem 'debugger', group: [:development, :test
 
 gem 'activeadmin', '~> 1.0.0.pre2' #, github: 'rism-ch/activeadmin'#, ref: 'a2cd960'
-gem 'active_admin_scoped_collection_actions', github: 'activeadmin-plugins/active_admin_scoped_collection_actions'
+# Disabled - left to find it again
+#gem 'active_admin_scoped_collection_actions', github: 'activeadmin-plugins/active_admin_scoped_collection_actions'
 
 gem 'sunspot_rails', "2.2.0"#, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
 gem 'sunspot_solr',  "2.2.0"

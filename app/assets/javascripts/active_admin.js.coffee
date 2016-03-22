@@ -39,5 +39,3 @@
 #= require jsdiff.js
 #= require job_progress_bar
 #= require modification_trigger_ujs.js
-
-#= require active_admin_scoped_collection_actions
