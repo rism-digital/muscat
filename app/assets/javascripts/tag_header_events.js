@@ -226,8 +226,6 @@ used for _tag_header partial
 				}else if ($(this).data("group-button") == "add") {
 					tag_header_new_group($(this));
 				}
-                
-				
 			});
 		}
 	});

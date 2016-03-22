@@ -24,7 +24,7 @@ module MarcControllerActions
       model.last_event_save = "update"
 
       marc_hash = JSON.parse params[:marc]
-      
+        
       # This is the tricky part. Get the MARC subclass
       # e.g. MarcSource or MarcPerson
       classname = "Marc" + model.to_s
@@ -55,6 +55,24 @@ module MarcControllerActions
       # Reset the user name and the event to nil for next time
       model.last_user_save = nil
       model.last_event_save = nil
+     
+     
+      # if we arrived here it means nothing crashed
+      # Rejoice! and launch the background jobs
+      # if any
+      if params[:triggers]
+        triggers = JSON.parse(params[:triggers])
+        
+        triggers.each do |k, t|
+          if k == "save"
+            t.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, model)) }
+          elsif k == "reindex"
+            t.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, model)) }
+          else
+            puts "Unknown trigger #{k}"
+          end
+        end
+      end
      
       # build the dynamic model path
       
@@ -172,9 +190,17 @@ module MarcControllerActions
 
       classname = "Marc" + model.to_s
       dyna_marc_class = Kernel.const_get(classname)
-      new_marc = dyna_marc_class.new(old_item.marc.to_marc)
+      old_item.marc.load_source(false)
       
+      new_marc = nil
+      if @item.respond_to?(:record_type)
+        new_marc = dyna_marc_class.new(old_item.marc.to_marc, @item.record_type)
+      else
+        new_marc = dyna_marc_class.new(old_item.marc.to_marc)
+      end
+      new_marc.load_source(false)
       new_marc.import
+
       @item.marc = new_marc
       @item.paper_trail_event = "restore"
       @item.save

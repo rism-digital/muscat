@@ -4,6 +4,9 @@ ActiveAdmin.register Person do
 
   # Remove mass-delete action
   batch_action :destroy, false
+  
+  # Remove all action items
+  config.clear_action_items!
 
   breadcrumb do
     active_admin_muscat_breadcrumb
@@ -11,14 +14,6 @@ ActiveAdmin.register Person do
   
   collection_action :autocomplete_person_full_name, :method => :get
   
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( person )
-  end
-
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
-  end
- 
   collection_action :viaf, method: :get do
     respond_to do |format|
         format.json { render json: Person.get_viaf(params[:viaf_input])  }
@@ -70,6 +65,8 @@ ActiveAdmin.register Person do
       @editor_profile = EditorConfiguration.get_show_layout @person
       @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
       
+      @jobs = @person.delayed_jobs
+      
       respond_to do |format|
         format.html
         format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
@@ -103,8 +100,10 @@ ActiveAdmin.register Person do
   # Include the MARC extensions
   include MarcControllerActions
   
-  # Include the folder actions
-  include FolderControllerActions
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(Person.find(params[:id]), "Source"))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
   
   ###########
   ## Index ##
@@ -138,6 +137,13 @@ ActiveAdmin.register Person do
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
@@ -145,6 +151,9 @@ ActiveAdmin.register Person do
   show :title => proc{ active_admin_auth_show_title( @item.full_name, @item.life_dates, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
+    
+    render('jobs/jobs_monitor')
+    
     @item = @arbre_context.assigns[:item]
     if @item.marc_source == nil
       render :partial => "marc_missing"
@@ -157,25 +166,23 @@ ActiveAdmin.register Person do
     active_admin_comments if !is_selection_mode?
   end
   
-  #sidebar I18n.t(:search_sources), :only => :show do
-    #render("activeadmin/src_search") # Calls a partial
-  #end
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => person }
+  end
+  
+  sidebar I18n.t(:search_sources), :only => :show do
+    render("activeadmin/src_search") # Calls a partial
+  end
   
   ##########
   ## Edit ##
   ##########
   
+  form :partial => "editor/edit_wide"
+  
   sidebar :sections, :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
   end
-  
-  form :partial => "editor/edit_wide"
-  # panel "Viaf" do
-  #    attributes_table_for resource do
-  #      row :id
-  #    end
 
-  #  end
-  #end
 
 end

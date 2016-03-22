@@ -1,9 +1,14 @@
 <%
 	read_only = false
+	triggers = ""
 	@editor_profile.each_subfield_for(tag_name) do |subfieldopt, field_settings|
 		field_settings = Hash.new if !field_settings
 		if subfieldopt == subfield
 			read_only = field_settings["read_only"] != nil ? field_settings["read_only"] : false
+			if field_settings["trigger"] && field_settings["trigger"].is_a?(Array)
+				data = field_settings["trigger"].to_json.html_safe
+				triggers = "data-trigger='".html_safe + data + "'".html_safe
+			end
 		end
 	end
 	
@@ -19,12 +24,12 @@
 %>
 
 <%- if (params['growfield'])  %>
-	<textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" <%=name_tag%> ><%= h content %></textarea>
+	<textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" <%=triggers%> <%=name_tag%> ><%= h content %></textarea>
 <%- else %>
 	<% if read_only %>
 			<input class="subfield_entry"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h content %>"/>
 			<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
 	<% else %>
-		<input class="subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%>" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" <%=name_tag%> value="<%= h content %>"/>
+		<input class="subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%>" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" <%=triggers%> <%=name_tag%> value="<%= h content %>"/>
 	<% end %>
 <%- end %>

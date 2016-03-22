@@ -1,16 +1,24 @@
 GIT
-  remote: git://github.com/activeadmin-plugins/active_admin_scoped_collection_actions.git
-  revision: 94d92f0d9c7b4a3c189ce727f87ac2c47eaef11d
-  specs:
-    active_admin_scoped_collection_actions (0.2.0)
-
-GIT
   remote: git://github.com/plashchynski/crono.git
   revision: 63283509cb961364cb4080d834bf20c64e27c3b6
   specs:
     crono (1.0.0.pre3)
       activerecord (~> 4.0)
       activesupport (~> 4.0)
+
+GIT
+  remote: git://github.com/rism-ch/delayed_job.git
+  revision: d13077cb039ae27f44082f92c4e3caf1602f7a2e
+  specs:
+    delayed_job (4.1.1)
+      activesupport (>= 3.0, < 5.1)
+
+GIT
+  remote: git://github.com/rism-ch/progress_job.git
+  revision: b085abb0983eef6b93e30ad4cc2d4fe896d47d32
+  specs:
+    progress_job (0.0.4)
+      delayed_job
 
 GIT
   remote: git://github.com/rism-ch/rails3-jquery-autocomplete.git
@@ -116,19 +124,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    columnize (0.9.0)
-    coolline (0.5.0)
-      unicode_utils (~> 1.4)
     daemons (1.2.3)
     debug_inspector (0.0.2)
-    debugger (1.6.8)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.3.5)
-    debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.3.8)
-    delayed_job (4.1.1)
-      activesupport (>= 3.0, < 5.0)
     delayed_job_active_record (4.1.0)
       activerecord (>= 3.0, < 5)
       delayed_job (>= 3.0, < 5)
@@ -142,48 +139,32 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     devise-i18n (1.0.0)
-    diff-lcs (1.2.5)
-    diffy (3.1.0)
     erubis (2.7.0)
     execjs (2.6.0)
     formtastic (3.1.3)
       actionpack (>= 3.2.13)
-    formtastic_i18n (0.5.0)
+    formtastic_i18n (0.6.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    grit (2.0.0)
-      diff-lcs (>= 1.1.2)
-      mime-types (>= 1.15)
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     highline (1.7.8)
     hike (1.2.3)
-    hirb (0.7.3)
     htmlentities (4.3.4)
     i18n (0.7.0)
+    i18n-js (3.0.0.rc12)
+      i18n (~> 0.6, >= 0.6.6)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
       has_scope (~> 0.6.0.rc)
       railties (>= 3.2, < 5)
       responders
-    jazz_hands (0.5.2)
-      awesome_print (~> 1.2)
-      coolline (>= 0.4.2)
-      hirb (~> 0.7.1)
-      pry (~> 0.9.12)
-      pry-debugger (~> 0.2.2)
-      pry-doc (~> 0.4.6)
-      pry-git (~> 0.2.3)
-      pry-rails (~> 0.3.2)
-      pry-remote (>= 0.1.7)
-      pry-stack_explorer (~> 0.4.9)
-      railties (>= 3.0, < 5.0)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
-    jquery-rails (4.1.0)
-      rails-dom-testing (~> 1.0)
+    jquery-rails (4.1.1)
+      rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
@@ -215,7 +196,7 @@ GEM
       activerecord (>= 3.0, < 6.0)
       activesupport (>= 3.0, < 6.0)
       request_store (~> 1.1)
-    paperclip (4.3.5)
+    paperclip (4.3.6)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
@@ -229,30 +210,10 @@ GEM
     progress_bar (1.0.5)
       highline (~> 1.6)
       options (~> 2.3.0)
-    progress_job (0.0.4)
-      delayed_job
-    pry (0.9.12.6)
-      coderay (~> 1.0)
-      method_source (~> 0.8)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-debugger (0.2.3)
-      debugger (~> 1.3)
-      pry (>= 0.9.10, < 0.11.0)
-    pry-doc (0.4.6)
-      pry (>= 0.9)
-      yard (>= 0.8)
-    pry-git (0.2.3)
-      diffy
-      grit
-      pry (>= 0.9.8)
-    pry-rails (0.3.4)
-      pry (>= 0.9.10)
-    pry-remote (0.1.8)
-      pry (~> 0.9)
-      slop (~> 3.0)
-    pry-stack_explorer (0.4.9.2)
-      binding_of_caller (>= 0.7)
-      pry (>= 0.9.11)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -280,7 +241,7 @@ GEM
       activesupport (= 4.2.6)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (11.0.1)
+    rake (11.1.1)
     ransack (1.7.0)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
@@ -337,7 +298,6 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unicode_utils (1.4.0)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -346,13 +306,11 @@ GEM
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
     webrick (1.3.1)
-    yard (0.8.7.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_admin_scoped_collection_actions!
   activeadmin (~> 1.0.0.pre2)
   activerecord-import (>= 0.4.0)
   awesome_print
@@ -364,11 +322,12 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   crono!
   daemons
+  delayed_job (= 4.1.1)!
   delayed_job_active_record
   devise
   devise-i18n
   htmlentities
-  jazz_hands
+  i18n-js (>= 3.0.0.rc11)
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails
@@ -378,7 +337,8 @@ DEPENDENCIES
   paper_trail
   paperclip (~> 4.3)
   progress_bar
-  progress_job
+  progress_job!
+  pry
   rails (~> 4.2.0)
   rails3-jquery-autocomplete!
   rolify

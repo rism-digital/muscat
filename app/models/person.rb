@@ -37,6 +37,7 @@ class Person < ActiveRecord::Base
   has_and_belongs_to_many :sources
   has_and_belongs_to_many :institutions
   has_many :folder_items, :as => :item
+  has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   # People can link to themselves
@@ -52,7 +53,7 @@ class Person < ActiveRecord::Base
     :foreign_key => "person_b_id",
     :association_foreign_key => "person_a_id")
   
-  composed_of :marc, :class_name => "MarcPerson", :mapping => [%w(marc_source to_marc)]
+  composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
   
 #  validates_presence_of :full_name  
   validate :field_length

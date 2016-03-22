@@ -6,18 +6,13 @@ ActiveAdmin.register Place do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
   collection_action :autocomplete_place_name, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
-  end
-    
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( place )
-  end
-  
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
   end
 
   # See permitted parameters documentation:
@@ -55,6 +50,8 @@ ActiveAdmin.register Place do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Place #{params[:id]})" }
       end
       @prev_item, @next_item, @prev_page, @next_page = Place.near_items_as_ransack(params, @place)
+      
+      @jobs = @place.delayed_jobs
     end
     
     def index
@@ -66,10 +63,27 @@ ActiveAdmin.register Place do
       end
     end
     
+    # redirect update failure for preserving sidebars
+    def update
+      update! do |success,failure|
+        success.html { redirect_to collection_path }
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
+    # redirect create failure for preserving sidebars
+    def create
+      create! do |success,failure|
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
   end
   
-  # Include the folder actions
-  include FolderControllerActions
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexAuthorityJob.new(Place.find(params[:id])))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
   
   ###########
   ## Index ##
@@ -93,12 +107,20 @@ ActiveAdmin.register Place do
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
   
   show do
     active_admin_navigation_bar( self )
+    render('jobs/jobs_monitor')
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_country) { |r| r.country }
@@ -108,6 +130,10 @@ ActiveAdmin.register Place do
     active_admin_user_wf( self, place )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+  end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => place }
   end
   
   sidebar I18n.t(:search_sources), :only => :show do
@@ -128,7 +154,7 @@ ActiveAdmin.register Place do
   end
 
   sidebar :actions, :only => [:edit, :new] do
-    render("editor/section_sidebar_save") # Calls a partial
+    render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => place }
   end
 
 end

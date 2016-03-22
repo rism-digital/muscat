@@ -81,6 +81,9 @@
     fields: 
     - - a
       - cols: 2
+        trigger:
+        - save:
+          - Source
     - - c
       - cols: 2
     - - d

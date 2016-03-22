@@ -2,8 +2,22 @@
 var _nw_destination = null;
 var _child = null;
 
+function deselectSession() {
+	$.ajax({
+		success: function(data) {},
+		data: {
+			deselect: true, 
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'get',
+		url: '/admin/session/deselect', 
+	});
+}
+
 function newWindowUpdateValue(id, label) {
 	
+	deselectSession();
 	$("#wrapper").unblock();
 	
 	if (_nw_destination == null)
@@ -23,15 +37,19 @@ function newWindowUpdateValue(id, label) {
 // This function is called when
 // a user navigates away from the parent
 function newWindowClose() {
+
+	deselectSession();
 	_child.close();
 	_nw_destination = null;
-	_child = null
+	_child = null;
 }
 
 function newWindowCancel() {
+
+	deselectSession();
 	$("#wrapper").unblock();
 	_nw_destination = null;
-	_child = null
+	_child = null;
 }
 
 function newWindowUnloaded() {
@@ -140,7 +158,7 @@ var add_window_select_actions = function () {
 	
 	$('a[data-marc-editor-cancel]').click(function(e) {
 		e.preventDefault();
-				
+	
 		window.opener.newWindowCancel();
 		window.close();
 	});

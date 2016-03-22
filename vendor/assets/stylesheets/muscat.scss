@@ -18,17 +18,24 @@ body.active_admin form fieldset ol > li {
 	padding-bottom: 2px !important;
 }
 
-// reduce the title bar h2 size and vertical padding
-#title_bar h2 {
-	font-size: 1.8em;
+// reduce the header height
+.muscat_admin_header {
+    padding: 0px !important;
 }
 
+// reduce the title bar h2 size and vertical padding
 #title_bar {
-	padding: 8px 30px;
+	padding: 5px 30px;
+    h2 {
+    	font-size: 1.4em;
+    }
 }
 
 #titlebar_left, #titlebar_right {
-	height: 45px !important;
+	height: 40px !important;
+    span.breadcrumb {
+        margin-bottom: 6px;
+    }
 }
 
 
