@@ -78,9 +78,7 @@ gem "rolify"
 group :development do
     gem 'webrick', '~> 1.3.1'
 end
-group :development, :test do
-    gem 'jazz_hands'
-end
+
 gem 'blacklight', "5.14"
 gem "blacklight_advanced_search"
 gem 'bootstrap-sass', "3.3.4.1"
