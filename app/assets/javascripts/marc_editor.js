@@ -61,6 +61,30 @@ function marc_editor_init_tags( id ) {
 	});
 }
 
+function marc_editor_get_triggers() {
+	var triggers = {};
+	$("[data-trigger]").each(function(){
+		var t = $(this).data("triggered");
+		if (!t)
+			return;
+		
+		t = t[0];
+		
+		for (var k in t) {
+			// is it there in the final array?
+			if (triggers[k]) {
+				triggers[k] = triggers[k].concat(t[k]);
+				triggers[k] = $.unique(triggers[k]);
+			} else {
+				triggers[k] = [];
+				triggers[k] = t[k];
+			}
+		}
+	});
+	
+	return triggers;
+}
+
 ////////////////////////////////////////////////////////////////////
 // Pseudo-private functions called from within the marc editor
 ////////////////////////////////////////////////////////////////////
@@ -78,9 +102,10 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		return;
 	}
 	
-	json_marc = serialize_marc_editor_form(form);
+	var json_marc = serialize_marc_editor_form(form);
+	var triggers = marc_editor_get_triggers();
 
-	url = "/admin/" + rails_model + "/marc_editor_save";
+	var url = "/admin/" + rails_model + "/marc_editor_save";
 		
 	// A bit of hardcoded stuff
 	// block the main editor and sidebar
@@ -100,6 +125,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 			id: $('#id').val(), 
 			lock_version: $('#lock_version').val(),
 			record_type: $('#record_type').val(),
+			triggers: JSON.stringify(triggers),
 			redirect: redirect
 		},
 		dataType: 'json',

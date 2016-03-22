@@ -7,7 +7,7 @@ class ReindexFolderJob < ProgressJob::Base
   def enqueue(job)
     if @parent_id
       job.parent_id = @parent_id
-      job.parent_type = "folder"
+      job.parent_type = "Folder"
       job.save!
     end
   end

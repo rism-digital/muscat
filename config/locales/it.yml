@@ -218,6 +218,7 @@ it:
   menu_marc_documentation: "Configurazione Marc"
   menu_guidelines_top: "Documentazione"
   menu_cataloging: "Catalogazione"
+  menu_jobs: "Processi in Background"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"
@@ -235,6 +236,37 @@ it:
   search_sources: "Cerca fonti"
   created_at: "Data di creazione"
   updated_at: "Ultima modifica"
+  status: "Stato"
+  progress_stage: "Fase"
+  object: "Oggetto"
+  queue: "Coda"
+  failed_at: "Data Fallimento"
+  run_at: "Data Esecuzione"
+  created_at: "Data Creazione"
+  progress: "Avanzamento"
+  failed: "Fallito"
+  waiting: "In Attesa"
+  running: "In Esecuzione"
+  
+  jobs:
+    not_set: "[Nessuno stato]"
+    ok: "Processo terminato con successo"
+    no_status: "Errore durante la lettura del messaggio di stato"
+    error: "ERRORE: "
+    running_jobs: "I processi correntemente in esecuzione non possono essere candellati."
+    auto_delete: "Impossibile cancellare: il processo terminato è già stato eliminato automaticamente."
+    no_view: "Impossibile visualizzare: il processo terminato è già stato eliminato automaticamente."
+
+  # Sidebar
+  delete: "DELETE"
+  to_the_list: "TO THE LIST"
+  edit: "EDIT"
+  new: "CREATE"
+  duplicate: "DUPLICATE"
+  no_action: "NO ACTION AVAILABLE"
+  reindex: "REINDEX"
+  publish: "PUBLISH"
+  select: "SELECT"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
@@ -394,6 +426,7 @@ it:
   
   # Assorted error messages
   error_not_found: "La risorsa specificata non esiste oppure è stata cancellata."
+  error_saving: "THE RESOURCE IS NOT COMPLETE OR GENERATES A DUPLICATE"
   unknown_tags: "Il record contiene dei campi sconosciuti"
 
   #

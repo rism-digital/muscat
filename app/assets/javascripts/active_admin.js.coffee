@@ -5,6 +5,10 @@
 #= require jquery-ui/autocomplete
 #= require jquery_ujs
 
+#= require i18n
+# This is a must
+#= require i18n/translations
+
 #= require marc_editor
 #= require marc_editor_validation
 #= require marc_json
@@ -35,6 +39,5 @@
 #= require jsdiff.js
 #= require job_progress_bar
 
-#= require active_admin_scoped_collection_actions
 #= require viaf_interface.js
-
+#= require modification_trigger_ujs.js
