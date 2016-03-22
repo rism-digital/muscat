@@ -1,30 +1,51 @@
-
-
+<% if @jobs && @jobs.count > 0%>
 <div class="panel2">
-	<h3>Running jobs</h3>
 	<div class="panel_contents2">
 		<table border="0" cellspacing="0" cellpadding="0" class="index_table index">
 			<tr>
-				<th>ID</th>
-				<th>Progress</th>
-				<th>Status</th>
+				<th>Job ID</th>
+				<th><%=I18n.t(:status)%></th>
+				<th><%=I18n.t(:progress)%></th>
+				<th>%</th>
+				<th><%=I18n.t(:progress_stage)%></th>
 			</tr>
 		<% @jobs.each do |j| %>
 		<%
-			percent = (j.progress_current.to_f / j.progress_max.to_f) * 100
+			percent = 0.0
+			if j.progress_current && j.progress_max
+				percent = (j.progress_current.to_f / j.progress_max.to_f) * 100
+			end
+			
+	        if j.failed_at
+	          banner_txt = I18n.t(:failed); banner_class = "error"
+	        else
+	          if !j.locked_at
+	            banner_txt = I18n.t(:waiting); banner_class = "no"
+	          else
+	            banner_txt = I18n.t(:running); banner_class = "yes"
+	          end
+	        end
+			
+			stage = j.progress_stage != nil && !j.progress_stage.empty? ? j.progress_stage : I18n.t("jobs.not_set")
+			stage = j.failed_at ? I18n.t("jobs.error") + "#{stage}" : stage
 		%>
 			<tr class="<%= cycle('even', 'odd') -%>">
 				<td class="col"><%= j.id%></td>
+				<td><span id="job-banner-<%=j.id%>" class="status_tag <%=banner_class%>"><%=banner_txt%></span></td>
 				<td class="col">
 				<div class="progress_bar">
 					<div class="progress_bar_content" style="width: <%= percent %>%;" data-job-id="<%= j.id %>">&nbsp;</div>
-				</div>
+				  </div>
 				</td>
-				<td class="col" style="width: 50%;">
-					<span id="progress-status-<%=j.id%>" class="progress_status"><%= j.progress_stage%></span>
+				<td>
+					<span id="progress-percent-<%=j.id%>"><%= !percent.nan? ? percent.round(1) : "0.0" %>%</span>
+				</td>
+				<td class="col" style="width: 50%">
+					<span id="progress-status-<%=j.id%>" class="progress_status"><%= stage %></span>
 				</td>
 			</tr>
 		<% end %>
 		</table>
 	</div>
 </div>
+<%end%>

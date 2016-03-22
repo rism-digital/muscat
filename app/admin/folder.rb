@@ -5,6 +5,12 @@ ActiveAdmin.register Folder do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
+  # Remove creation option (only possible from lists)
+  actions :all, :except => [:new]
+  
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -49,18 +55,14 @@ ActiveAdmin.register Folder do
     
   end
   
-  action_item :reindex, only: :show do
-    link_to 'Reindex', reindex_admin_folder_path(folder)
-  end
-  
   member_action :reindex, method: :get do
     job = Delayed::Job.enqueue(ReindexFolderJob.new(params[:id]))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
-  action_item :publish, only: :show do
-    link_to 'Publish', publish_admin_folder_path(folder)
-  end
+  #action_item :publish, only: :show do
+  #  link_to 'Publish', publish_admin_folder_path(folder)
+  #end
   
   member_action :publish, method: :get do
     job = Delayed::Job.enqueue(PublishFolderJob.new(params[:id]))
@@ -80,6 +82,10 @@ ActiveAdmin.register Folder do
     column (I18n.t :filter_folder_type), :folder_type
     column ("Items")  {|folder| folder.folder_items.count}
     actions
+  end
+  
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
   end
   
   ##########
@@ -112,19 +118,23 @@ ActiveAdmin.register Folder do
     end
     
   end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => folder }
+  end
 
   ##########
   ## Edit ##
   ##########
-  
-  sidebar :actions, :only => [:edit, :new] do
-    render("editor/section_sidebar_save") # Calls a partial
-  end
 
   form do |f|
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name)
     end
+  end
+  
+  sidebar :actions, :only => [:edit, :new] do
+    render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => folder }
   end
   
 end

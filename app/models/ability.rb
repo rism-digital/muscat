@@ -5,6 +5,8 @@ class Ability
 
     if user.has_role? :admin
       can :manage, :all
+      can :reindex, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Folder]
+      can :publish, [Folder]
 
     elsif user.has_role? :guest
       can :read, :all
@@ -26,9 +28,10 @@ class Ability
 
     elsif user.has_role?(:cataloger)
       # A cataloguer can create new items but modify only the ones ho made
-      can [:read, :create], [DigitalObject, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work]
-      can :update, [DigitalObject, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work], :wf_owner => user.id
-      can :destroy, DigitalObject, :wf_owner => user.id
+      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work]
+      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work], :wf_owner => user.id
+      can :create, DigitalObject
+      can [:destroy, :read, :update], DigitalObject, :wf_owner => user.id
       
       can [:read, :create, :update], Folder
       can [:read, :create, :update], ActiveAdmin::Comment

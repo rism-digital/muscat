@@ -13,6 +13,7 @@ class Place < ActiveRecord::Base
   
   has_and_belongs_to_many :sources
   has_many :folder_items, :as => :item
+  has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
     
   validates_presence_of :name

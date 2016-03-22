@@ -6,6 +6,9 @@ ActiveAdmin.register DigitalObject do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
   # Remove creation option (only possible from source)
   actions :all, :except => [:new]
   
@@ -70,21 +73,27 @@ ActiveAdmin.register DigitalObject do
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
   ##########
   ## Show ##
   ##########
   
   show :title => proc{ active_admin_digital_object_show_title( @digital_object.description, @digital_object.id) } do |ad|
+    attributes_table do
+      row (I18n.t :filter_description) { |r| r.description } 
+      row (I18n.t :filter_source) do 
+        link_to(ad.source.id, admin_source_path(ad.source)) if ad.source
+      end
+    end
     if ad.attachment_file_size
       panel (I18n.t :filter_image) do
         image_tag(ad.attachment.url(:maximum))
       end
     end
     attributes_table do
-      row (I18n.t :filter_description) { |r| r.description } 
-      row (I18n.t :filter_source) do 
-        link_to(ad.source.id, admin_source_path(ad.source)) if ad.source
-      end
       row (I18n.t :filter_file_name) { |r| link_to( r.attachment_file_name, r.attachment.url(:original, false), :target => "_blank") if r.attachment_file_size}
       row (I18n.t :filter_file_size) {|r| filesize_to_human(r.attachment_file_size) if r.attachment_file_size}
       row (I18n.t :filter_content_type) { |r| r.attachment_content_type }
@@ -93,6 +102,10 @@ ActiveAdmin.register DigitalObject do
     end
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+  end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => digital_object }
   end
   
   ##########
@@ -108,7 +121,7 @@ ActiveAdmin.register DigitalObject do
   end
 
   sidebar :actions, :only => [:edit] do
-    render("editor/section_sidebar_save") # Calls a partial
+    render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => digital_object }
   end
   
 end

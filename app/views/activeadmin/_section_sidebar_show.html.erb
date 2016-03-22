@@ -1,0 +1,71 @@
+<%-
+	model = self.resource_class.to_s.split('::').last.underscore.downcase
+%>
+
+<ul>
+	<%- if  !is_selection_mode? %>
+	
+		<%- if (self.controller.respond_to? :new) && (can? :create, item) -%>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :new}", send("new_admin_#{model}_path"),
+				:class => "muscat_icon_link muscat_icon_link_new") %>
+			</li>
+		<%- end %>
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :to_the_list}", send("collection_path", item),
+			:class => "muscat_icon_link muscat_icon_link_list") %>
+		</li>
+		
+		<li class="muscat_icon_separator"></li>
+	
+		<%- if (self.controller.respond_to? :new) && (can? :edit, item) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :edit}", send("edit_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_edit") %>
+			</li>
+		<%- end %>
+		<%- if (self.controller.respond_to? :destroy) && (can? :destroy, item) %>
+			<%-
+				delete_path = send("admin_#{model}_path", item)
+				save_form = "edit_#{model}"
+			%>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :delete}", delete_path,
+				:class => "muscat_icon_link muscat_icon_link_delete",
+				:method => :delete,
+				data: { confirm: "#{I18n.t :history_delete_confirm}"}) %>
+			</li>
+		<%- end %>
+		<%- if (self.controller.respond_to? :reindex) && (can? :reindex, item) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :reindex}", send("reindex_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_reindex") %>
+			</li>
+		<%- end %>
+		<%- if (self.controller.respond_to? :publish) && (can? :publish, item) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :publish}", send("publish_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_publish") %>
+			</li>
+		<%- end %>
+		
+	<%- else %>
+	
+		<%-
+			name = "[unspecified]"
+			name = item.name if item.respond_to?(:name)
+			name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
+		%>
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :select}", "#",
+			:class => "muscat_icon_link muscat_icon_link_save_exit",
+			:data => { :marc_editor_select => item.id, :marc_editor_label => name }) %>
+		</li>
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :to_the_list}", send("collection_path", item),
+			:class => "muscat_icon_link muscat_icon_link_list") %>
+		</li>	
+	
+	<%- end %>
+	
+</ul>
