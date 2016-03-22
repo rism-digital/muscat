@@ -180,7 +180,7 @@ de:
   
   #################### RECORD TYPES (TEMPLATES)
   record_types:
-    unspecified: "[UNKNOWN TEMPLATE]"
+    unspecified: "[Unbekannte Vorlage]"
     convolutum: "Convolutum"
     collection: "Sammlung"
     manuscript: "Musikhandschrift"
@@ -236,37 +236,37 @@ de:
   search_sources: "Quellensuche"
   created_at: "Erstellungsdatum"
   updated_at: "Letzte Änderung"
-  status: "STATUS"
-  progress_stage: "PROGRESS_STAGE"
-  object: "OBJECT"
-  queue: "QUEUE"
-  failed_at: "FAILED_AT"
-  run_at: "RUN_AT"
-  created_at: "CREATED_AT"
-  progress: "PROGRESS"
-  failed: "FAILED"
-  waiting: "WAITING"
-  running: "RUNNING"
+  status: "Status"
+  progress_stage: "Stand Fortschritt"
+  object: "Objekt"
+  queue: "Warteschleife"
+  failed_at: "Fehlgeschlagen am"
+  run_at: "Durchgeführt am"
+  created_at: "Erstellt am"
+  progress: "Fortschritt"
+  failed: "Fehlgeschlagen"
+  waiting: "Wartet"
+  running: "Läuft"
   
   jobs:
-    not_set: "[NO STATUS SET]"
-    ok: "JOB ENDED SUCCESSFULLY"
-    no_status: "THERE WAS AN ERROR READING JOB STATUS"
-    error: "ERROR: "
-    running_jobs: "RUNNING JOBS CANNOT BE DELETED."
-    auto_delete: "CANNOT DELETE: FINISHED JOB WAS AUTOMATICALLY DELETED."
-    no_view: "CANNOT VIEW: FINISHED JOB WAS AUTOMATICALLY DELETED."
+    not_set: "[Kein Status gesetzt]"
+    ok: "Prozess erfolgreich abgeschlossen"
+    no_status: "Fehler beim Lesen des Prozess-status"
+    error: "Fehler: "
+    running_jobs: "Laufender Prozess kann nicht gelöscht werden."
+    auto_delete: "Löschen nicht möglich: Abgeschlossener Prozess wurde bereits automatisch gelöscht."
+    no_view: "Ansicht nicht möglich: Abgeschlossener Prozess wurde bereits automatisch gelöscht."
 
   # Sidebar
-  delete: "DELETE"
-  to_the_list: "TO THE LIST"
-  edit: "EDIT"
-  new: "CREATE"
-  duplicate: "DUPLICATE"
-  no_action: "NO ACTION AVAILABLE"
-  reindex: "REINDEX"
-  publish: "PUBLISH"
-  select: "SELECT"
+  delete: "Löschen"
+  to_the_list: "Zur Liste"
+  edit: "Bearbeiten"
+  new: "Erstellen"
+  duplicate: "Kopieren"
+  no_action: "Keine Aktion verfügbar"
+  reindex: "Reindexieren"
+  publish: "Veröffentlichen"
+  select: "Auswählen"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -426,8 +426,8 @@ de:
   
   # Assorted error messages
   error_not_found: "Der gesuchte Eintrag existiert nicht order wurde gelöscht."
-  error_saving: "THE RESOURCE IS NOT COMPLETE OR GENERATES A DUPLICATE"
-  unknown_tags: "Dieser Eintrag enthält falsch verwendete Felder"
+  error_saving: "Dieser Eintrag ist unvollständig oder erstellt eine Dublette."
+  unknown_tags: "Dieser Eintrag enthält falsch verwendete Felder."
    
   #
   entry:
