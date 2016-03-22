@@ -36,6 +36,12 @@
 				data: { confirm: "#{I18n.t :history_delete_confirm}"}) %>
 			</li>
 		<%- end %>
+		<%- if (self.controller.respond_to? :duplicate) && (can? :create, item) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :duplicate}", send("duplicate_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_duplicate") %>
+			</li>
+		<%- end %>
 		<%- if (self.controller.respond_to? :reindex) && (can? :reindex, item) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :reindex}", send("reindex_admin_#{model}_path", item),

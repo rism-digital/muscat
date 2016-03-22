@@ -109,6 +109,11 @@ ActiveAdmin.register Source do
   # Include the MARC extensions
   include MarcControllerActions
   
+  member_action :duplicate, method: :get do
+    redirect_to action: :new, :existing_title => params[:id]
+    return
+  end
+  
   collection_action :select_new_template, :method => :get
   
   #scope :all, :default => true 
