@@ -43,6 +43,18 @@ module MarcControllerActions
       if !@item
         @item = model.new
         @item.user = current_user
+        
+        # This is a special case for Holdings
+        # in which the link is created out of marc
+        # For now hardcode, when needed :parent_object_type
+        # will have the proper model
+        # PLEASE NOTE: The existence of this object should
+        # be checked beforehand in the :new controller action
+        if params.include?(:parent_object_id)
+          source = Source.find(params[:parent_object_id])
+          @item.sources << source
+        end
+        
       end
       @item.marc = new_marc
       @item.lock_version = params[:lock_version]

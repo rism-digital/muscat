@@ -15,7 +15,7 @@ class Holding < ActiveRecord::Base
   has_many :folder_items, :as => :item
   belongs_to :user, :foreign_key => "wf_owner"
   
-  composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source)
+  composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
   
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids

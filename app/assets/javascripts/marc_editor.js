@@ -125,6 +125,8 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 			id: $('#id').val(), 
 			lock_version: $('#lock_version').val(),
 			record_type: $('#record_type').val(),
+			parent_object_id: $('#parent_object_id').val(),
+			parent_object_type: $('#parent_object_type').val(),
 			triggers: JSON.stringify(triggers),
 			redirect: redirect
 		},

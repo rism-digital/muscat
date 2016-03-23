@@ -46,7 +46,7 @@ ActiveAdmin.register Holding do
     def edit
       @item = Holding.find(params[:id])
       @show_history = true if params[:show_history]
-      @editor_profile = EditorConfiguration.get_applicable_layout @item
+      @editor_profile = EditorConfiguration.get_show_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
     end
 
@@ -76,13 +76,29 @@ ActiveAdmin.register Holding do
     end
     
     def new
-      @holding = Holding.new
+      ap params[:source_id]
       
-      new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/holding/default.marc"))
+      if !params.include?(:source_id) || !params[:source_id]
+        redirect_to admin_root_path, :flash => { :error => "PLEASE INCLUDE A SOURCE ID" }
+        return
+      end
+      
+      begin
+        source = Source.find(params[:source_id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "Could not find source #{params[:source_id]}" }
+        return
+      end
+      
+      @holding = Holding.new
+      @parent_object_id = params[:source_id]
+      @parent_object_type = "Source" #hardcoded for now
+      
+      new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
       new_marc.load_source false # this will need to be fixed
       @holding.marc = new_marc
 
-      @editor_profile = EditorConfiguration.get_applicable_layout @holding
+      @editor_profile = EditorConfiguration.get_default_layout @holding
       # Since we have only one default template, no need to change the title
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
       #To transmit correctly @item we need to have @source initialized

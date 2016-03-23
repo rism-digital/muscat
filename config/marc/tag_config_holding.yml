@@ -29,18 +29,18 @@
     - - ""
       - :no_browse: true
   "852":
-    :master: "0"
+    :master: "x"
     :indicator: "##"
     :occurrences: "?"
     :fields:
-    - - "0"
+    - - "x"
       - :occurrences: "?"
         :foreign_class: Institution
         :foreign_field: id
         :no_show: true
     - - a
       - :occurrences: "1"
-        :foreign_class: ^0
+        :foreign_class: ^x
         :foreign_field: siglum
         :browse_helper: application_helper_link_to_library
     - - b
@@ -49,16 +49,10 @@
       - :occurrences: "*"
     - - e
       - :occurrences: "?"
-        :foreign_class: ^0
+        :foreign_class: ^x
         :foreign_field: name
+        :disable_create_lookup: true
     - - p
       - :occurrences: "?"
-    - - q
-      - :occurrences: "?"
-    - - u
-      - :occurrences: "*"
-    - - x
-      - :occurrences: "*"
-        :no_browse: true
     - - z
       - :occurrences: "*"
