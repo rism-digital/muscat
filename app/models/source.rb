@@ -58,7 +58,7 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :catalogues
   has_and_belongs_to_many :liturgical_feasts
   has_and_belongs_to_many :places
-  has_and_belongs_to_many :holdings
+  has_many :holdings
   has_and_belongs_to_many :works
   has_many :folder_items, :as => :item
   has_many :folders, through: :folder_items, foreign_key: "item_id"

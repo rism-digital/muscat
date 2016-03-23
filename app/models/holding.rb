@@ -11,7 +11,7 @@ class Holding < ActiveRecord::Base
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   has_and_belongs_to_many :institutions
-  has_and_belongs_to_many :sources
+  belongs_to :source
   has_many :folder_items, :as => :item
   belongs_to :user, :foreign_key => "wf_owner"
   

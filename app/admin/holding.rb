@@ -45,6 +45,8 @@ ActiveAdmin.register Holding do
     
     def edit
       @item = Holding.find(params[:id])
+      @parent_object_id = @item.source.id
+      @parent_object_type = "Source" #hardcoded for now
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_show_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
@@ -75,9 +77,7 @@ ActiveAdmin.register Holding do
       end
     end
     
-    def new
-      ap params[:source_id]
-      
+    def new      
       if !params.include?(:source_id) || !params[:source_id]
         redirect_to admin_root_path, :flash => { :error => "PLEASE INCLUDE A SOURCE ID" }
         return

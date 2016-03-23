@@ -217,6 +217,7 @@ ActiveRecord::Schema.define(version: 20160308151001) do
   add_index "folders", ["folder_type"], name: "folder_type", using: :btree
 
   create_table "holdings", force: :cascade do |t|
+    t.integer  "source_id",    limit: 4
     t.string   "lib_siglum",   limit: 255
     t.text     "marc_source",  limit: 65535
     t.integer  "lock_version", limit: 4,     default: 0,             null: false
@@ -238,14 +239,6 @@ ActiveRecord::Schema.define(version: 20160308151001) do
 
   add_index "holdings_institutions", ["holding_id"], name: "index_holdings_institutions_on_holding_id", using: :btree
   add_index "holdings_institutions", ["institution_id"], name: "index_holdings_institutions_on_institution_id", using: :btree
-
-  create_table "holdings_sources", id: false, force: :cascade do |t|
-    t.integer "holding_id", limit: 4
-    t.integer "source_id",  limit: 4
-  end
-
-  add_index "holdings_sources", ["holding_id"], name: "index_holdings_sources_on_holding_id", using: :btree
-  add_index "holdings_sources", ["source_id"], name: "index_holdings_sources_on_source_id", using: :btree
 
   create_table "institutions", force: :cascade do |t|
     t.string   "siglum",       limit: 32

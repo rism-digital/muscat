@@ -52,7 +52,7 @@ module MarcControllerActions
         # be checked beforehand in the :new controller action
         if params.include?(:parent_object_id)
           source = Source.find(params[:parent_object_id])
-          @item.sources << source
+          @item.source = source
         end
         
       end
@@ -94,8 +94,12 @@ module MarcControllerActions
 
       if redirect == "true"
         model_for_path = self.resource_class.to_s.underscore.pluralize.downcase
-        link_function = "admin_#{model_for_path}_path"
-        path =  send(link_function) #admin_sources_path
+        if (model_for_path == "holdings") && params.include?(:parent_object_id)
+          path = edit_admin_source_path(params[:parent_object_id])
+        else
+          link_function = "admin_#{model_for_path}_path"
+          path =  send(link_function) #admin_sources_path
+        end
       else
         model_for_path = self.resource_class.to_s.underscore.downcase
         link_function = "edit_admin_#{model_for_path}_path"
