@@ -41,11 +41,13 @@
 	<li class="muscat_icon_link">
 		<a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="muscat_icon_link muscat_icon_link_history"><%=(I18n.t :show_history)%></a>
 	</li>
+<%if model == "source" %>
 	<li class="muscat_icon_link">
 		<%= link_to("#{I18n.t :new_holding}", new_admin_holding_path(source_id: @item.id),
 			:class => "muscat_icon_link muscat_icon_link_new") %>
 	</li>
-	
+<%end%>	
+
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
 		<a href="<%= cancel_path %>" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a>
