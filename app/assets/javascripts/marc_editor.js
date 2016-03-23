@@ -232,6 +232,28 @@ function _marc_editor_version_view( version_id, destination, rails_model ) {
 	});
 }
 
+function _marc_editor_embedded_view(destination, rails_model, id ) {	
+	url = "/admin/" + rails_model + "/marc_editor_embedded_show";
+	
+	$.ajax({
+		success: function(data) {
+		},
+		data: {
+			marc_editor_dest: destination,
+			object_id: id
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			alert ("Error loading version. (" 
+					+ textStatus + " " 
+					+ errorThrown);
+		}
+	});
+}
+
 function _marc_editor_version_diff( version_id, destination, rails_model ) {	
 	url = "/admin/" + rails_model + "/marc_editor_version_diff";
 	$("#" + destination).block({message: ""});
