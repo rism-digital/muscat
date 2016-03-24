@@ -38,9 +38,9 @@ class Ability
       
       can [:read, :create], Source
       can :update, Source, :wf_owner => user.id
-      #can :update, Source do |source|
-      #  user.can_edit? source
-      # end
+      can :update, Source do |source|
+        user.can_edit? source
+      end
       
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
