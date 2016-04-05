@@ -174,6 +174,10 @@ class Catalogue < ActiveRecord::Base
     sunspot_dsl.text :volume
     sunspot_dsl.text :place
     sunspot_dsl.text :date
+    sunspot_dsl.string :date_order do
+      date
+    end
+ 
     sunspot_dsl.text :pages
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 

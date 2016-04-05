@@ -156,7 +156,7 @@ ActiveAdmin.register Catalogue do
         search=Catalogue.solr_search do 
           fulltext(params[:id], :fields=>['7600'])
           paginate :page => params[:items_list_page], :per_page=>15
-          order_by(:id)
+          order_by(:date_order)
         end
         paginated_collection(search.results, param_name: 'items_list_page', download_links: false) do
           table_for(collection, sortable: true) do
