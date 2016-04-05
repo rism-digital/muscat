@@ -11,7 +11,6 @@ groups:
     - "001"
     - "003"
     - "005"
-    - 008
   notes: 
     all_tags: 
     - "260"
@@ -24,4 +23,3 @@ groups:
   codes: 
     all_tags: 
     - "210"
-    - "240"
