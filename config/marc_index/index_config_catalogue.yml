@@ -23,6 +23,7 @@ fields:
     "710a":
     "760g": 
     "760t":
+    "7600":
 #   "100a_or_700a":
 #     :index_processor_helper: marc_create_aggregated_text
 #     :tags:

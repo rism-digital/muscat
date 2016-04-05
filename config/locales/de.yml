@@ -371,6 +371,7 @@ de:
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
   filter_scoring: "Besetzung"
+  filter_series_items: "Zugehörige Einträge"
   filter_siglum: "Sigel"
   filter_source: "Quelle"
   filter_sources: "Quellen"

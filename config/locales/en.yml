@@ -371,6 +371,7 @@ en:
   filter_id: "Rism ID"
   filter_id_no: "Rism ID"
   filter_scoring: "Scoring"
+  filter_series_items: "Series items"
   filter_siglum: "Siglum"
   filter_source: "Source"
   filter_sources: "Sources"

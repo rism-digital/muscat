@@ -371,6 +371,7 @@ it:
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
   filter_scoring: "Organico"
+  filter_series_items: "SERIES ITEMS"
   filter_siglum: "Sigla"
   filter_source: "Fonte"
   filter_sources: "Fonti"

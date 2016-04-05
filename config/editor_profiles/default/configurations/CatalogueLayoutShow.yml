@@ -3,7 +3,7 @@ group_order:
 - main
 - subject
 - notes
-- control
+  #- control
 groups: 
   main: 
     all_tags: 
@@ -22,6 +22,7 @@ groups:
       "760": marc_show/show_catalogue
   subject:
     all_tags:
+    - "001"
     - "041"
     - "650"
     - "651" 
