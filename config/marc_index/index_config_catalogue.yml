@@ -10,14 +10,23 @@ fields:
     "008":
     "100a":
     "100d":
-    "400a":
     "210a":
     "240a":
+    "240g":
     "260a":
     "260b":
     "260c":
+    "400a":
+    "508a":
     "700a":
     "7004":
     "710a":
     "760g": 
     "760t":
+#   "100a_or_700a":
+#     :index_processor_helper: marc_create_aggregated_text
+#     :tags:
+#         :100: "a"
+#         :700: "a"
+#     :store: true
+#     :type: text

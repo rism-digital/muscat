@@ -308,6 +308,7 @@ fr:
   filter_alternates: "Autres noms"
   filter_any_field: "N'importe quel champ"
   filter_author: "Auteur"
+  filter_author_or_editor: "Auteur/Éditeur"
   filter_autograph_of: "Autographe de"
   filter_birth_place: "Lieu de naissance"
   filter_catalog: "Catalogue"

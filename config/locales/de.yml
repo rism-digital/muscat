@@ -308,6 +308,7 @@ de:
   filter_alternates: "Andere Namen"
   filter_any_field: "Irgendein Feld"
   filter_author: "Autor"
+  filter_author_or_editor: "Autor/Herausgeber"
   filter_autograph_of: "Autograph von"
   filter_birth_place: "Geburtsort"
   filter_catalog: "WV / Katalog"
