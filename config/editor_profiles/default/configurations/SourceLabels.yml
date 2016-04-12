@@ -721,12 +721,14 @@ doc_administration:
   label: 
     it: Riassunto
     fr: "Résumé"
+    de: Zusammenfassende Beschreibung
     en: Summary description
   fields: 
     a: 
       label: 
         it: Riassunto
         fr: "Résumé"
+        de: Zusammenfassende Beschreibung
         en: Summary description
       edit_label: 
         en: ""
