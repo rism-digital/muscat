@@ -358,19 +358,25 @@ doc_edit_workflow:
         fr: Remarque générale
         de: Externe Bemerkungen
         en: General note
-"856": !map:ActiveSupport::HashWithIndifferentAccess 
+"856": !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: URL
-    fr: URL
-    de: URL
-    en: URL
+    it: Localizzazione e accesso elettronico
+    fr: "Ressource électronique externe"
+    de: Elektronische Lokalisierung und Zugriff
+    en: External resource
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    y: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Nota destinata al pubblico
+        fr: Remarque sur la ressource externe
+        de: "Für das Publikum bestimmte Fussnote"
+        en: Note about external resource
     u: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: URL
-        fr: URL
-        de: URL
-        en: URL
+        it: Risorsa esterna
+        fr: Ressource externe
+        de: Uniform Resource Identifier
+        en: External resource
 main_person: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Registrazioni principali
