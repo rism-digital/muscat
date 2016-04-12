@@ -31,6 +31,25 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     de: Templates
     en: Templates
+
+################
+
+doc_editor: 
+  label: 
+    de: "Editor Hilfe"
+    en: Editor help
+doc_edit_functions: 
+  label: 
+    de: "Grundsätzliche Funktionen"
+    en: Basic functions
+doc_edit_workflow: 
+  label: 
+    de: "Workflow"
+    en: Workflow
+    
+################
+
+
 "000": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Leader
@@ -330,14 +349,14 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: General note
     fr: Remarque général
-    de: Allgemeine Fussnote
+    de: Allgemeine Bemerkungen
     en: General note
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    i: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: General note
         fr: Remarque générale
-        de: Allgemeine Fussnote
+        de: Externe Bemerkungen
         en: General note
 "856": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -394,6 +413,18 @@ other: !map:ActiveSupport::HashWithIndifferentAccess
     fr: Divers
     de: Verschiedenes
     en: Miscellaneous
+references: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: REFERENCES
+    fr: REFERENCES
+    de: Literatur und Bemerkungen
+    en: References
+relations: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: RELATIONS
+    fr: RELATIONS
+    de: Beziehungen
+    en: Relations
 variants: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: VARIANTS
