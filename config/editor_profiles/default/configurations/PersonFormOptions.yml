@@ -152,7 +152,17 @@
       - cols: 2
     - - i
       - cols: 2
+        editor_partial: subfield_place_codes
     columns: 2
+  tag_params:
+    codes:
+      - go
+      - ha
+      - po
+      - so
+      - wl
+      - wo
+      - wr
 "599": 
   layout: 
     fields: 

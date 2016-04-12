@@ -462,3 +462,46 @@ unknown: !map:ActiveSupport::HashWithIndifferentAccess
     de: unbekannt
     en: unkown
 
+#########################
+go: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PLACE OF BIRTH
+    fr: PLACE OF BIRTH
+    de: Geburtsort
+    en: Place of Birth
+ha: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PLACE OF ORIGIN
+    fr: PLACE OF ORIGIN
+    de: Herkunftsangabe
+    en: Place of Origin
+po: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: POSTAL PLACE
+    fr: POSTAL PLACE
+    de: postalischer Ort
+    en: postal Place
+so: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PLACE OF DEATH
+    fr: PLACE OF DEATH
+    de: Sterbeort
+    en: Place of Death
+wl: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: COUNTRY OF ACTIVITY
+    fr: COUNTRY OF ACTIVITY
+    de: Wirkungsland
+    en: Country of activity
+wo: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PLACE OF ACTIVITY
+    fr: PLACE OF ACTIVITY
+    de: Wirkungsort
+    en: Place of activity
+wr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: REGION OF ACTIVITY
+    fr: REGION OF ACTIVITY
+    de: Wirkungsregion
+    en: Region of activity
