@@ -236,13 +236,25 @@ doc_administration:
         en: Nb work
     b: 
       label: 
+        it: NUMBER OF MOVEMENT
+        fr: NUMBER OF MOVEMENT
+        de: Satznummer
         en: Number of movement
       edit_label: 
+        it: NB. MOVEMENT
+        fr: NB. MOVEMENT
+        de: Satznummer
         en: Nb. movement
     c: 
       label: 
+        it: NUMBER OF EXCERPT
+        fr: NUMBER OF EXCERPT
+        de: Abschnitt
         en: Number of excerpt
       edit_label: 
+        it: NB EXCERPT
+        fr: NB EXCERPT
+        de: Nummer Abschnitt
         en: Nb excerpt
     m: 
       label: 
@@ -259,7 +271,7 @@ doc_administration:
       edit_label: 
         it: Armat.
         fr: Armure
-        de: Akzid.
+        de: Vorzeichen
         en: Key g.
     d: 
       label: 
@@ -305,7 +317,7 @@ doc_administration:
       edit_label: 
         it: Chiave
         fr: "Clé"
-        de: "Schlüss."
+        de: "Schlüssel"
         en: Clef
     r: 
       label: 
@@ -327,7 +339,7 @@ doc_administration:
       edit_label: 
         it: Val.
         fr: Val.
-        de: "Gül."
+        de: "Gültigkeit"
         en: Val.
     t: 
       label: 
