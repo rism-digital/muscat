@@ -228,6 +228,7 @@
   layout: 
     fields: 
     - - a
+      - growfield: true
 "508": 
   layout: 
     fields: 
