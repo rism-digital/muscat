@@ -547,15 +547,6 @@ class MarcNode
     }
   end
 
-  def sort_incipit
-    if tag == '031'
-      a = fetch_first_by_tag("a").content.to_i + 100
-      b = fetch_first_by_tag("b").content.to_i + 100
-      c = fetch_first_by_tag("c").content.to_i + 100
-      return { "#{a.to_s}#{b.to_s}#{c.to_s}".to_i => self }
-    end
-  end
-
   alias length size
   alias << add
   alias to_s to_marc

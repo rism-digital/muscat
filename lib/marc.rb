@@ -468,18 +468,8 @@ class Marc
   def by_tags_with_order(tag_names)
     load_source unless @loaded
     tags = Array.new
-    inc = Hash.new
     tag_names.each do |tag_name|
-      if tag_name == '031'
-        by_tags(tag_name).each do |i|
-          inc.update(i.sort_incipit)
-        end
-        inc.keys.sort.each do |k,v|
-          tags << inc[k]
-        end
-      else
-        tags += by_tags tag_name
-      end
+      tags += by_tags tag_name
     end
     return tags
   end
