@@ -459,7 +459,7 @@ class Marc
     load_source unless @loaded
     tags = Array.new
     for child in @root.children
-      tags << child if tag_names.include? child.tag
+        tags << child if tag_names.include? child.tag
     end
     return tags
   end
@@ -468,8 +468,18 @@ class Marc
   def by_tags_with_order(tag_names)
     load_source unless @loaded
     tags = Array.new
+    inc = Hash.new
     tag_names.each do |tag_name|
-      tags += by_tags tag_name
+      if tag_name == '031'
+        by_tags(tag_name).each do |i|
+          inc.update(i.sort_incipit)
+        end
+        inc.keys.sort.each do |k,v|
+          tags << inc[k]
+        end
+      else
+        tags += by_tags tag_name
+      end
     end
     return tags
   end
