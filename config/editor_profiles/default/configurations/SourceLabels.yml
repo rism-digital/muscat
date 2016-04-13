@@ -231,31 +231,31 @@ doc_administration:
         en: Number of work
       edit_label: 
         it: Numero
-        fr: "Numéro"
+        fr: "No. de l'œuvre"
         de: Nummer
-        en: Nb work
+        en: Nb. work
     b: 
       label: 
         it: NUMBER OF MOVEMENT
-        fr: NUMBER OF MOVEMENT
+        fr: "Numéro du mouvement"
         de: Satznummer
         en: Number of movement
       edit_label: 
         it: NB. MOVEMENT
-        fr: NB. MOVEMENT
+        fr: "No. du mouvement"
         de: Satznummer
         en: Nb. movement
     c: 
       label: 
         it: NUMBER OF EXCERPT
-        fr: NUMBER OF EXCERPT
+        fr: "Numéro de l'extrait"
         de: Abschnitt
         en: Number of excerpt
       edit_label: 
         it: NB EXCERPT
-        fr: NB EXCERPT
+        fr: "No. de l'extrait"
         de: Nummer Abschnitt
-        en: Nb excerpt
+        en: Nb. excerpt
     m: 
       label: 
         it: Organico
