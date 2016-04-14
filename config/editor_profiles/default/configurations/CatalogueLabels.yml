@@ -57,17 +57,17 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
     en: Date and time of last transaction
 "041": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Country code
-    fr: Country code
-    de: Länder-Code
-    en: County code
+    it: LANGUAGE CODE
+    fr: LANGUAGE CODE
+    de: Sprache
+    en: Language Code
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Country code
-        fr: Country code
-        de: Länder-Code  
-        en: Country code
+        it: LANGUAGE CODE
+        fr: LANGUAGE CODE
+        de: Sprach-Code
+        en: Language Code
 "100": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Autore
