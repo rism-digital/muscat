@@ -191,6 +191,19 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: INSTITUTION
         de: Körperschaft
         en: Institution
+"730":  !map:ActiveSupport::HashWithIndifferentAccess
+  label: !map:ActiveSupport::HashWithIndifferentAccess
+    it: Titolo uniforme alternativo
+    fr: Titres uniformes additionnels
+    de: Alternativer Einordnungstitel
+    en: Additional title
+  fields: !map:ActiveSupport::HashWithIndifferentAccess
+    a:  !map:ActiveSupport::HashWithIndifferentAccess
+      label:  !map:ActiveSupport::HashWithIndifferentAccess
+        it: Titolo uniforme alternativo
+        fr: Titres uniformes additionnels
+        de: Alternativer Einordnungstitel
+        en: Additional title
 "760": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Testata
