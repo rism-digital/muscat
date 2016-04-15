@@ -33,10 +33,6 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
-    - - d
-    - - j
-      - value: Attributed to
-        editor_partial: subfield_checkbox
 "210": 
   layout: 
     fields: 
