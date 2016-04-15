@@ -347,6 +347,20 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Remarque générale
         de: Allgemeine Fussnote
         en: General note
+"700": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PERSON
+    fr: PERSON
+    de: Person
+    en: Person
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: PERSON
+        fr: PERSON
+        de: Person
+        en: Person
+
 "710": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: RELATED INSTITUTION
@@ -442,3 +456,258 @@ description: !map:ActiveSupport::HashWithIndifferentAccess
     fr: DESCRIPTION
     de: Beschreibung
     en: Description
+
+# Person related
+01_codes_artistic: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore
+    fr: Auteur
+    de: Verfasser
+    en: Artistic production
+02_codes_performing: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Partecipanti
+    fr: Performance
+    de: Mitwirkende
+    en: Performance
+03_codes_technical: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Produttore
+    fr: "Création"
+    de: Hersteller
+    en: Technical production
+04_codes_other: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Altri
+    fr: Autre
+    de: Weitere
+    en: Other
+ed: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: EDITION
+    fr: EDITION
+    de: Edition
+    en: Edition
+H: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Curatore
+    fr: Editeur
+    de: Herausgeber
+    en: Editor
+arr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Arrangiatore
+    fr: Arrangeur
+    de: Bearbeiter
+    en: Arranger
+art: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Scenografo
+    fr: "Metteur en scène"
+    de: "Bühnenbildner"
+    en: Artist
+asn: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Altro nome
+    fr: Autre nom
+    de: Weiterer Name
+    en: Associated name
+aut: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore
+    fr: Auteur
+    de: Autor
+    en: Author
+bnd: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Rilegatore
+    fr: Relieur
+    de: Buchbinder
+    en: Binder
+bsl: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Libraio musicale
+    fr: Libraire
+    de: "Musikalienhändler"
+    en: Bookseller
+ccp: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore della fonte letteraria
+    fr: Auteur du texte
+    de: Autor der Textvorlage
+    en: Conceptor
+chr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Coreografo
+    fr: "Chorégraphe"
+    de: Choreograph
+    en: Choreographer
+clb: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore secondario
+    fr: Collabarateur
+    de: Mitverfasser
+    en: Collaborator
+cmp: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Compositore/Compositore secondario
+    fr: Compositeur / Co-compositeur
+    de: Komponist / Mitkomponist
+    en: Composer
+cnd: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Direttore d'orchestra
+    fr: Chef d'orchestre
+    de: Dirigent
+    en: Conductor
+cns: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Censore
+    fr: Censeur
+    de: Zensor
+    en: Censor
+com: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Compilatore
+    fr: Compilateur
+    de: Kompilator
+    en: Compiler
+cst: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Costumista
+    fr: Costumier
+    de: "Kostümbildner"
+    en: Costume designer
+dnc: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Ballerino
+    fr: Danceur
+    de: "Tänzer"
+    en: Dancer
+dnr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Donatore
+    fr: Donateur
+    de: Donator
+    en: Donor
+dte: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Dedicatario
+    fr: "Dédicataire"
+    de: "Widmungsträger"
+    en: Dedicatee
+dub: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Dubbio
+    fr: Douteux
+    de: Zweifelhaft
+    en: Dubious
+edt: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Curatore
+    fr: Editeur
+    de: Herausgeber
+    en: Editor
+egr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Incisore
+    fr: Graveur
+    de: Stecher
+    en: Engraver
+fmo: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Proprietario precedente
+    fr: "Propriétaire précédent"
+    de: Vorbesitzer
+    en: Former owner
+ill: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Disegnatore
+    fr: Illustrateur
+    de: Illustrator
+    en: Illustrator
+itr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Strumentista
+    fr: Instrumentiste
+    de: Instrumentalist
+    en: Instrumentalist
+lbt: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Librettista
+    fr: Librettiste
+    de: Librettist
+    en: Librettist
+ltg: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Litografo
+    fr: Litographe
+    de: Lithograph
+    en: Lithograph
+lyr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Poeta
+    fr: Parolier
+    de: Textdichter
+    en: Lyricist
+otm: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Organizzatore
+    fr: Organisateur
+    de: Veranstalter
+    en: Event organizer
+pat: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Committente
+    fr: "Mécène"
+    de: "Mäzen/Auftraggeber"
+    en: Patron
+pbl: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Editore
+    fr: Editeur
+    de: Verleger
+    en: Publisher
+ppm: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Fabbricante di carta
+    fr: Papetier
+    de: Papierhersteller
+    en: Paper maker
+prd: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Personale alla produzione
+    fr: "Personnel de réalisation"
+    de: Produktionspersonal
+    en: Production personnel
+prf: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Interprete
+    fr: "Interprète"
+    de: Interpret
+    en: Performer
+prt: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Stampatore
+    fr: Imprimeur
+    de: Drucker
+    en: Printer
+scr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Copista
+    fr: Scribe
+    de: Schreiber
+    en: Scribe
+trl: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Traduttore
+    fr: Traducteur
+    de: "Übersetzer"
+    en: Translater
+voc: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Cantante
+    fr: Vocaliste
+    de: "Sänger"
+    en: Vocalist
+
