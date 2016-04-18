@@ -73,7 +73,7 @@ module FolderControllerActions
     end
     
     # THIS IS OVERRIDEN from resource_dsl_extensions.rb
-    dsl.collection_action :save_to_folder, :method => :get do
+    dsl.collection_action :do_create_new_folder, :method => :get do
       
       if !params.include?(:folder_name) || params[:folder_name].empty?
         redirect_to collection_path, :alert => "Please select a name for the folder."
@@ -118,13 +118,54 @@ module FolderControllerActions
       redirect_to collection_path, :notice => I18n.t(:success, scope: :folders, name: "\"#{f.name}\"", count: all_items.count)
     end
     
+    dsl.collection_action :do_append_to_folder, :method => :get do
+      
+      if !params.include?(:folder) || params[:folder].empty?
+        redirect_to collection_path, :alert => "Please select a name for the folder."
+        return
+      end
+            
+      #Get the model we are working on
+      model = self.resource_class
+      
+      # Pagination is on as default! wahooo!
+      params[:per_page] = 1000
+      results = model.search_as_ransack(params)
+      
+      if results.total_entries > MAX_FOLDER_ITEMS
+        redirect_to collection_path, :alert => I18n.t(:too_many, scope: :folders, max: MAX_FOLDER_ITEMS, count: results.total_entries)
+        return
+      end
+      
+      # inputs is a hash of all the form fields you requested
+      f = Folder.find(params[:folder])
+
+      all_items = []
+      results.each { |s| all_items << s }
+      # insert the next ones
+      for page in 2..results.total_pages
+        params[:page] = page
+        r = Source.search_as_ransack(params)
+        r.each { |s| all_items << s }
+      end
+      
+      f.add_items(all_items)
+      
+      # Hack, see above
+      f2 = Folder.find(f.id)
+      Sunspot.index f2.folder_items
+      Sunspot.commit
+    
+      redirect_to collection_path, :notice => I18n.t(:added, scope: :folders, name: "\"#{f.name}\"", count: all_items.count)
+    end
+    
     ## Shows a page so the user can select the folder name
     dsl.collection_action :create_new_folder, :method => :get do
       #Get the model we are working on
       @model = self.resource_class
       
       model_downcase = self.resource_class.to_s.pluralize.underscore.downcase
-      link_function = "save_to_folder_admin_#{model_downcase}_path"
+      link_function = "do_create_new_folder_admin_#{model_downcase}_path"
       
       # Pagination is on as default! wahooo!
       params[:per_page] = 1000
@@ -132,7 +173,23 @@ module FolderControllerActions
       
       @items_count = results.total_entries
       @save_path = send(link_function)
-    end  
+    end 
+    
+    dsl.collection_action :append_to_folder, :method => :get do
+      #Get the model we are working on
+      @model = self.resource_class
+      
+      model_downcase = self.resource_class.to_s.pluralize.underscore.downcase
+      link_function = "do_append_to_folder_admin_#{model_downcase}_path"
+      
+      # Pagination is on as default! wahooo!
+      params[:per_page] = 1000
+      results = @model.search_as_ransack(params)
+      
+      @items_count = results.total_entries
+      @save_path = send(link_function)
+    end 
+     
   end
   
   
