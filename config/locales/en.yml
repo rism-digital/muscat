@@ -296,7 +296,10 @@ en:
   folders:
     save: "Save results to Folder"
     success: "Folder %{name} created with %{count} items."
-    too_many: "Cannot add more than %{max} items (%{count} SÉLÉCTIONÉS)."
+    too_many: "Cannot add more than %{max} items (%{count} selected)."
+    added: "Added %{count} items to Folder %{name}."
+    added_bg: "Added items to folder, job %{job} enqueued."
+    success_bg: "Folder %{name} created, job %{job} enqueued."
 
   ### Digital objects
   digital_objects: "Images"

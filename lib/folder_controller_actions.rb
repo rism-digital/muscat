@@ -2,7 +2,7 @@
 # from activeadmin lib/active_admin/resource_dsl.rb
 require 'resource_dsl_extensions.rb'
 
-MAX_FOLDER_ITEMS = 10000
+MAX_FOLDER_ITEMS = 100000
 
 # Extension module, see
 # https://github.com/gregbell/active_admin/wiki/Content-rendering-API
@@ -80,12 +80,9 @@ module FolderControllerActions
         return
       end
       
-      folder_name = params[:folder_name]
-      
       #Get the model we are working on
       model = self.resource_class
       
-      # Pagination is on as default! wahooo!
       params[:per_page] = 1000
       results = model.search_as_ransack(params)
       
@@ -94,28 +91,14 @@ module FolderControllerActions
         return
       end
       
-      # inputs is a hash of all the form fields you requested
+      folder_name = params[:folder_name]
       f = Folder.new(:name => folder_name, :folder_type => model.to_s)
       f.user = current_user
       f.save
-
-      all_items = []
-      results.each { |s| all_items << s }
-      # insert the next ones
-      for page in 2..results.total_pages
-        params[:page] = page
-        r = Source.search_as_ransack(params)
-        r.each { |s| all_items << s }
-      end
-      
-      f.add_items(all_items)
-      
-      # Hack, see above
-      f2 = Folder.find(f.id)
-      Sunspot.index f2.folder_items
-      Sunspot.commit
-    
-      redirect_to collection_path, :notice => I18n.t(:success, scope: :folders, name: "\"#{f.name}\"", count: all_items.count)
+       
+      job = Delayed::Job.enqueue(AddToFolderJob.new(f.id, params, model))
+        
+      redirect_to collection_path, :notice => I18n.t(:success_bg, scope: :folders, name: "\"#{f.name}\"", job: job.id)
     end
     
     dsl.collection_action :do_append_to_folder, :method => :get do
@@ -140,23 +123,9 @@ module FolderControllerActions
       # inputs is a hash of all the form fields you requested
       f = Folder.find(params[:folder])
 
-      all_items = []
-      results.each { |s| all_items << s }
-      # insert the next ones
-      for page in 2..results.total_pages
-        params[:page] = page
-        r = Source.search_as_ransack(params)
-        r.each { |s| all_items << s }
-      end
-      
-      f.add_items(all_items)
-      
-      # Hack, see above
-      f2 = Folder.find(f.id)
-      Sunspot.index f2.folder_items
-      Sunspot.commit
-    
-      redirect_to collection_path, :notice => I18n.t(:added, scope: :folders, name: "\"#{f.name}\"", count: all_items.count)
+      job = Delayed::Job.enqueue(AddToFolderJob.new(f.id, params, model))
+
+      redirect_to collection_path, :notice => I18n.t(:added_bg, scope: :folders, name: "\"#{f.name}\"", job: job.id)
     end
     
     ## Shows a page so the user can select the folder name
