@@ -296,7 +296,10 @@ it:
   folders:
     save: "Salva i risultati in una cartella"
     success: "Cartella %{name} creata con %{count} oggetti."
-    too_many: "Impossibile aggiungere più di %{max} oggetti (ne sono selezionati %{count})." 
+    too_many: "Impossibile aggiungere più di %{max} oggetti (ne sono selezionati %{count})."
+    added: "Aggiunti %{count} elementi alla cartella %{name}."
+    added_bg: "Aggiunti elementi, job %{job} in coda."
+    success_bg: "Creata cartella %{name}, job %{job} in coda."
     
   ### Digital objects
   digital_objects: "IMAGES"

@@ -297,6 +297,9 @@ fr:
     save: "Sauver les résultats dans un dossier"
     success: "Le dossier %{name} créé avec %{count} éléments."
     too_many: "Impossible d'ajouter plus de %{max} éléments  (%{count} sélectionnés)."
+    added: "ADDED %{COUNT} ITEMS TO FOLDER %{NAME}."
+    added_bg: "ADDED ITEMS TO FOLDER, JOB %{JOB} ENQUEUED."
+    success_bg: "FOLDER %{NAME} CREATED, JOB %{JOB} ENQUEUED."
   
   ### Digital objects
   digital_objects: "Images"
