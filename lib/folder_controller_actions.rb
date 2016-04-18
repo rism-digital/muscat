@@ -91,29 +91,21 @@ module FolderControllerActions
       redirect_to collection_path, :notice => I18n.t(:success, scope: :folders, name: "\"#{f.name}\"", count: all_items.count)
     end
     
-    # Only show for the moment if there is a query
-    dsl.sidebar 'Global Folder Actions', :only => :index, :if => proc{params.include?(:q)}, :if => proc { !is_selection_mode? } do
-      # Build the dynamic path function, then call it with send
-      model = self.resource_class.to_s.pluralize.underscore.downcase
-      link_function = "save_to_folder_admin_#{model}_path"
+    ## Shows a page so the user can select the folder name
+    dsl.collection_action :create_new_folder, :method => :get do
+      #Get the model we are working on
+      @model = self.resource_class
       
-      if params.include?(:q)
-        a href: "#", onclick: "create_folder('#{send(link_function, params)}');" do text_node I18n.t(:save, scope: :folders) end
-        input :class => "folder_name", placeholder: "Name", id: "folder_name"
-        hr
-      end
-    
-      ##aa_query = params[:q].split()
-      # Are we selecting a folder?
-      #if params[:q].include?(:id_with_integer)
-      #  ul do
-      #    li link_to("Action 1", "#")
-      #    li link_to("Action 2", "#")
-      #  end
-      #end
+      model_downcase = self.resource_class.to_s.pluralize.underscore.downcase
+      link_function = "save_to_folder_admin_#{model_downcase}_path"
       
-    end
-  
+      # Pagination is on as default! wahooo!
+      params[:per_page] = 1000
+      results = @model.search_as_ransack(params)
+      
+      @items_count = results.total_entries
+      @save_path = send(link_function)
+    end  
   end
   
   

@@ -32,7 +32,6 @@
 #= require marc_versioning_ujs
 #= require marc_messages_ujs.js
 #= require blacklight_range_limit
-#= require folder_actions
 #= require editor_hotkeys
 #= require verovio_preload
 #= require new_window_select_ujs

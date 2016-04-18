@@ -1,5 +1,6 @@
 <%-
 	model = self.resource_class.to_s.underscore.downcase
+	model_plural = self.resource_class.to_s.pluralize.underscore.downcase
 %>
 <ul>
 	<%- if !is_selection_mode? %>
@@ -11,6 +12,14 @@
 			</li>
 		<%else %>
 			<li><%= (I18n.t :no_action) -%></li>
+		<%- end %>
+		
+		<%- if params.include?(:q) %>
+			<li class="muscat_icon_link">
+			<!-- Create the link to the function, pass the params fo q is preserved -->
+			<%= link_to("Create Folder", send("create_new_folder_admin_#{model_plural}_path", params.except(:action, :controller)),
+				:class => "muscat_icon_link muscat_icon_link_publish") %>
+			</li>
 		<%- end %>
 		
 	<%- else %>
