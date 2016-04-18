@@ -1,6 +1,9 @@
 
 it:
   active_admin:
+    search_status:
+      headline: "Ambito"
+      current_filters: "Filtri in uso"
     dashboard: Pannello
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
