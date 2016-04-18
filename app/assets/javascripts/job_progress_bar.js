@@ -43,7 +43,7 @@ jQuery(document).ready(function() {
 							banner.removeClass();
 							banner.addClass("status_tag");
 							banner.addClass("ok");
-							banner.html((I18n.t("finished"));
+							banner.html(I18n.t("finished"));
 						}
 					
 						percent_span.html("100%");
@@ -74,7 +74,7 @@ jQuery(document).ready(function() {
 						banner.removeClass();
 						banner.addClass("status_tag");
 						banner.addClass("yes");
-						banner.html((I18n.t("running"));
+						banner.html(I18n.t("running"));
 					} else {
 						stage = "Job enqueued"
 						
@@ -82,7 +82,7 @@ jQuery(document).ready(function() {
 						banner.removeClass();
 						banner.addClass("status_tag");
 						banner.addClass("no");
-						banner.html((I18n.t("waiting"));
+						banner.html(I18n.t("waiting"));
 						
 						// put the progressbar to indefinite
 						bar.css('width','0%');
@@ -111,7 +111,6 @@ jQuery(document).ready(function() {
 							banner.addClass("status_tag");
 							banner.addClass("error");
 							banner.html(I18n.t("failed"));
-);
 						}
 						
 						clearInterval(interval);

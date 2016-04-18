@@ -1,0 +1,8 @@
+--- !map:Settings 
+group_order: 
+- main
+groups: 
+  main: 
+    all_tags: 
+    - "852"
+    - "001"

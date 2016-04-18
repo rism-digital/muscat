@@ -25,6 +25,7 @@ class Institution < ActiveRecord::Base
   
   has_and_belongs_to_many :sources
   has_and_belongs_to_many :people
+  has_and_belongs_to_many :holdings
   #has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: Delayed::Job, foreign_key: "parent_id"
   has_and_belongs_to_many :workgroups

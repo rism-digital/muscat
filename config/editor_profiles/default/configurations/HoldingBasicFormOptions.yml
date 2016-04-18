@@ -1,0 +1,41 @@
+--- !map:Settings 
+"000": 
+  tag: tag_no_subfield
+  tag_params: 
+    editor_only: true
+  tag_header: none
+"001": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+  tag_header: none
+"003": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+  tag_header: none
+"852": 
+  allow_new: true
+  new_window: institutions
+  layout: 
+    fields: 
+    - - a
+      - nowrap: true
+        type: library
+        editor_partial: subfield_secondary
+    - - b
+    - - z
+    - - p
+      - growfield: true
+    - - d
+  layout_new: 
+    fields: 
+    - - a
+      - nowrap: true
+    - - b
+    - - p
+      - growfield: true
+    - - d
+    - - z
+ui: 
+  hide_marc_identifiers: true

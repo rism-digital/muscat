@@ -247,6 +247,9 @@ en:
   failed: "Failed"
   waiting: "Waiting"
   running: "Running"
+  lib_siglum: "Library Siglum"
+  holding_records: "Exemplar Information"
+  new_holding: "Create Holding Record"
   
   jobs:
     not_set: "[No status set]"

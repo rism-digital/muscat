@@ -214,6 +214,32 @@ ActiveRecord::Schema.define(version: 20160308151001) do
     t.integer  "wf_owner",    limit: 4
   end
 
+  add_index "folders", ["folder_type"], name: "folder_type", using: :btree
+
+  create_table "holdings", force: :cascade do |t|
+    t.integer  "source_id",    limit: 4
+    t.string   "lib_siglum",   limit: 255
+    t.text     "marc_source",  limit: 65535
+    t.integer  "lock_version", limit: 4,     default: 0,             null: false
+    t.string   "wf_audit",     limit: 16,    default: "unapproved"
+    t.string   "wf_stage",     limit: 16,    default: "unpublished"
+    t.string   "wf_notes",     limit: 255
+    t.integer  "wf_owner",     limit: 4,     default: 0
+    t.integer  "wf_version",   limit: 4,     default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "holdings", ["wf_stage"], name: "index_holdings_on_wf_stage", using: :btree
+
+  create_table "holdings_institutions", id: false, force: :cascade do |t|
+    t.integer "holding_id",     limit: 4
+    t.integer "institution_id", limit: 4
+  end
+
+  add_index "holdings_institutions", ["holding_id"], name: "index_holdings_institutions_on_holding_id", using: :btree
+  add_index "holdings_institutions", ["institution_id"], name: "index_holdings_institutions_on_institution_id", using: :btree
+
   create_table "institutions", force: :cascade do |t|
     t.string   "siglum",       limit: 32
     t.string   "name",         limit: 255
