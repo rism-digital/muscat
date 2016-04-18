@@ -12,7 +12,6 @@ module FolderControllerActions
     # batch_action seems already public
     dsl.batch_action :folder, form: {
       name:   :text,
-      hide:   :checkbox
     } do |ids, inputs|
 
       #Get the model we are working on
@@ -43,6 +42,34 @@ module FolderControllerActions
       Sunspot.commit
 
       redirect_to collection_path, :notice => I18n.t(:success, scope: :folders, name: inputs[:name], count: results.count)
+    end
+    
+    # This action adds to an existing folder, from the menu
+    dsl.batch_action :add_to_folder, if: proc{ Folder.where(folder_type: self.resource_class).count > 0 }, form: -> {
+      folders = Folder.where(folder_type: self.resource_class)
+      ids = folders.map {|f| [f.name, f.id]}.collect
+      {folder: ids}
+    } do |ids, inputs|
+      
+      if !inputs[:folder]
+        redirect_to collection_path, :alert => "No Folder selected."
+      else
+        #Get the model we are working on
+        model = self.resource_class
+        f = Folder.find(inputs[:folder])
+      
+        # Pagination is on as default! wahooo!
+        params[:per_page] = 1000
+        results = model.find(ids)
+
+        # as above
+        f.add_items(results)
+        f2 = Folder.find(f.id)
+        Sunspot.index f2.folder_items
+        Sunspot.commit
+
+        redirect_to collection_path, :notice => I18n.t(:added, scope: :folders, name: f.name, count: results.count)
+      end
     end
     
     # THIS IS OVERRIDEN from resource_dsl_extensions.rb
