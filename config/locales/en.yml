@@ -270,6 +270,8 @@ en:
   reindex: "Re-index"
   publish: "Publish"
   select: "Select"
+  create_folder: "Create Folder"
+  append_folder: "Add to Folder"
   
   # Editor sidebar
   show_all_groups: "Show all sections"

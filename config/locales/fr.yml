@@ -269,6 +269,8 @@ fr:
   no_action: "Aucune action possible"
   reindex: "Ré-indexer"
   publish: "Publier"
+  create_folder: "CREATE FOLDER"
+  append_folder: "ADD TO FOLDER"
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"

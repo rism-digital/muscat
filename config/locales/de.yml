@@ -270,6 +270,8 @@ de:
   reindex: "REINDEX"
   publish: "PUBLISH"
   select: "SELECT"
+  create_folder: "CREATE FOLDER"
+  append_folder: "ADD TO FOLDER"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
