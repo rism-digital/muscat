@@ -75,14 +75,10 @@
     - - a
       - :occurrences: "?"
   "043":
-    :master: a
+    :master: c
     :indicator: "##"
     :occurrences: "*"
     :fields:
-    - - a
-      - :occurrences: "*"
-    - - b
-      - :occurrences: "*"
     - - c
       - :occurrences: "*"
   "100":
