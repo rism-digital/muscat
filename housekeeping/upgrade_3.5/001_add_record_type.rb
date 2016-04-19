@@ -33,8 +33,15 @@ Source.all.each do |sa|
     marc.root.children.insert(marc.get_insert_position("500"), new_500)
     
     #adios
-    t8.destroy_yourself
     tb.destroy_yourself
+  end
+  
+  all300 = marc.root.fetch_all_by_tag("300")
+  all300.each do |t|
+    if t.all_children.count == 1
+      puts "Removed 300 with ony $8: #{s.id}"
+      t.destroy_yourself
+    end
   end
   
   #191 Remove 730 $r $n $m 
