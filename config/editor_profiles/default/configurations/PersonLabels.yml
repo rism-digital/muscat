@@ -962,3 +962,53 @@ wr: !map:ActiveSupport::HashWithIndifferentAccess
     fr: "Venezuela, Bolivarian Republic of"
     de: "Venezuela, Bolivarian Republic of"
     en: "Venezuela, Bolivarian Republic of"
+# Relationships
+brother of: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: BROTHER OF
+    fr: BROTHER OF
+    de: Bruder von
+    en: brother of
+child of: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: CHILD OF
+    fr: CHILD OF
+    de: Kind von
+    en: child of
+mother of: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: MOTHER OF
+    fr: MOTHER OF
+    de: Mutter von
+    en: mother of
+confused with: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: CONFUSED WITH
+    fr: CONFUSED WITH
+    de: verwechselt mit
+    en: confused with
+sister of: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: SISTER OF
+    fr: SISTER OF
+    de: Schwester von
+    en: sister of
+married with: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: MARRIED WITH
+    fr: MARRIED WITH
+    de: Verheiratet mit
+    en: married with
+father of: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: FATHER OF
+    fr: FATHER OF
+    de: Vater von
+    en: father of
+related to: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: RELATED TO
+    fr: RELATED TO
+    de: verwandt mit
+    en: related to
+

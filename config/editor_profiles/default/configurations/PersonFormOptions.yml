@@ -206,7 +206,18 @@
       - cols: 4
     - - "i"
       - cols: 2
+        editor_partial: subfield_relationship_codes
     columns: 4
+  tag_params:
+    codes:
+      - brother of
+      - child of
+      - mother of
+      - confused with
+      - sister of
+      - married with
+      - father of
+      - related to
 "510": 
   layout: 
     fields: 
