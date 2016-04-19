@@ -1,15 +1,5 @@
 --- !map:Settings 
-"000": 
-  tag: tag_no_subfield
-  tag_params: 
-    editor_only: true
-  tag_header: none
 "001": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
-"003": 
   tag: tag_no_subfield
   tag_params: 
     read_only: true

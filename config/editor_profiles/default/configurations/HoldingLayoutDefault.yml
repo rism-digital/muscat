@@ -5,9 +5,7 @@ group_order:
 groups: 
   administration: 
     all_tags: 
-    - "000"
     - "001"
-    - "003"
   main: 
     all_tags: 
     - "852"
