@@ -222,6 +222,7 @@ it:
   menu_guidelines_top: "Documentazione"
   menu_cataloging: "Catalogazione"
   menu_jobs: "Processi in Background"
+  menu_holdings: "HOLDINGS"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"
