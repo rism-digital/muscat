@@ -114,3 +114,31 @@
   :filter:
     show_all: false
     show: true
+## Holding Record
+- :id: DefaultHolding
+  :name: Holding
+  :model: holding
+  :labels: 
+  - HoldingBasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - HoldingBasicFormOptions
+  :layout: 
+  - HoldingLayoutDefault
+  :filter:
+    default: true 
+- :id: ShowHolding
+  :name: Holding
+  :model: holding
+  :labels: 
+  - HoldingBasicLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - HoldingBasicFormOptions
+  :layout: 
+  - HoldingLayoutShow
+  :filter:
+    show_all: false
+    show: true

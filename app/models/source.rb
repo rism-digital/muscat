@@ -58,6 +58,7 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :catalogues
   has_and_belongs_to_many :liturgical_feasts
   has_and_belongs_to_many :places
+  has_many :holdings
   has_and_belongs_to_many :works
   has_many :folder_items, :as => :item
   has_many :folders, through: :folder_items, foreign_key: "item_id"
@@ -124,7 +125,7 @@ class Source < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places"]
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings"]
     recreate_links(marc, allowed_relations)
     
     # update the parent manuscript when having 773/772 relationships

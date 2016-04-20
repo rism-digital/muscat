@@ -43,6 +43,18 @@ module MarcControllerActions
       if !@item
         @item = model.new
         @item.user = current_user
+        
+        # This is a special case for Holdings
+        # in which the link is created out of marc
+        # For now hardcode, when needed :parent_object_type
+        # will have the proper model
+        # PLEASE NOTE: The existence of this object should
+        # be checked beforehand in the :new controller action
+        if params.include?(:parent_object_id)
+          source = Source.find(params[:parent_object_id])
+          @item.source = source
+        end
+        
       end
       @item.marc = new_marc
       @item.lock_version = params[:lock_version]
@@ -82,8 +94,12 @@ module MarcControllerActions
 
       if redirect == "true"
         model_for_path = self.resource_class.to_s.underscore.pluralize.downcase
-        link_function = "admin_#{model_for_path}_path"
-        path =  send(link_function) #admin_sources_path
+        if (model_for_path == "holdings") && params.include?(:parent_object_id)
+          path = edit_admin_source_path(params[:parent_object_id])
+        else
+          link_function = "admin_#{model_for_path}_path"
+          path =  send(link_function) #admin_sources_path
+        end
       else
         model_for_path = self.resource_class.to_s.underscore.downcase
         link_function = "edit_admin_#{model_for_path}_path"
@@ -124,6 +140,20 @@ module MarcControllerActions
 
       @editor_profile = EditorConfiguration.get_show_layout @item
      
+      render :template => 'marc_show/show_preview'
+    end
+  
+    ###################
+    ## Embedded show ##
+    ###################
+    
+    dsl.collection_action :marc_editor_embedded_show, :method => :post do
+      
+      @item = Holding.find( params[:object_id] )
+      
+      @item.marc.load_source(true)
+      @editor_profile = EditorConfiguration.get_show_layout @item
+      
       render :template => 'marc_show/show_preview'
     end
   

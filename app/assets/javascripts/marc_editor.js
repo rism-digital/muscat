@@ -125,6 +125,8 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 			id: $('#id').val(), 
 			lock_version: $('#lock_version').val(),
 			record_type: $('#record_type').val(),
+			parent_object_id: $('#parent_object_id').val(),
+			parent_object_type: $('#parent_object_type').val(),
 			triggers: JSON.stringify(triggers),
 			redirect: redirect
 		},
@@ -217,6 +219,28 @@ function _marc_editor_version_view( version_id, destination, rails_model ) {
 		data: {
 			marc_editor_dest: destination, 
 			version_id: version_id
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			alert ("Error loading version. (" 
+					+ textStatus + " " 
+					+ errorThrown);
+		}
+	});
+}
+
+function _marc_editor_embedded_view(destination, rails_model, id ) {	
+	url = "/admin/" + rails_model + "/marc_editor_embedded_show";
+	
+	$.ajax({
+		success: function(data) {
+		},
+		data: {
+			marc_editor_dest: destination,
+			object_id: id
 		},
 		dataType: 'script',
 		timeout: 20000,

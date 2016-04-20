@@ -1,0 +1,58 @@
+
+:version:
+  :name: tag_config
+  :current: 2.0
+  :authors: ["Rodolfo Zitellini"]
+
+:model: holding
+:tags:
+  "000":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "001":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :zero_padding: "14"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "003":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "852":
+    :master: "x"
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - "x"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "1"
+        :foreign_class: ^x
+        :foreign_field: siglum
+        :browse_helper: application_helper_link_to_library
+    - - b
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "*"
+    - - e
+      - :occurrences: "?"
+        :foreign_class: ^x
+        :foreign_field: name
+        :disable_create_lookup: true
+    - - p
+      - :occurrences: "?"
+    - - z
+      - :occurrences: "*"

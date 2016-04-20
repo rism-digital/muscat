@@ -56,6 +56,7 @@ ActiveAdmin.register Source do
 
     def edit
       @item = Source.find(params[:id])
+      @holdings = @item.holdings
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
       @editor_validation = EditorValidation.get_default_validation(@item)

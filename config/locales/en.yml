@@ -247,6 +247,9 @@ en:
   failed: "Failed"
   waiting: "Waiting"
   running: "Running"
+  lib_siglum: "Library Siglum"
+  holding_records: "Exemplar Information"
+  new_holding: "Create Holding Record"
   
   jobs:
     not_set: "[No status set]"
@@ -267,6 +270,8 @@ en:
   reindex: "Re-index"
   publish: "Publish"
   select: "Select"
+  create_folder: "Create Folder"
+  append_folder: "Add to Folder"
   
   # Editor sidebar
   show_all_groups: "Show all sections"
@@ -293,7 +298,10 @@ en:
   folders:
     save: "Save results to Folder"
     success: "Folder %{name} created with %{count} items."
-    too_many: "Cannot add more than %{max} items (%{count} SÉLÉCTIONÉS)."
+    too_many: "Cannot add more than %{max} items (%{count} selected)."
+    added: "Added %{count} items to Folder %{name}."
+    added_bg: "Added items to folder, job %{job} enqueued."
+    success_bg: "Folder %{name} created, job %{job} enqueued."
 
   ### Digital objects
   digital_objects: "Images"

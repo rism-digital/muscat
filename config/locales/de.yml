@@ -247,6 +247,9 @@ de:
   failed: "Fehlgeschlagen"
   waiting: "Wartet"
   running: "Läuft"
+  lib_siglum: "Bibliothekssigel"
+  holding_records: "Exemplar Information"
+  new_holding: "Neuer Holding Eintrag"
   
   jobs:
     not_set: "[Kein Status gesetzt]"
@@ -267,6 +270,8 @@ de:
   reindex: "Reindexieren"
   publish: "Veröffentlichen"
   select: "Auswählen"
+  create_folder: "CREATE FOLDER"
+  append_folder: "ADD TO FOLDER"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -294,6 +299,9 @@ de:
     save: "In Ordner speichern"
     success: "Ordner %{name} generiert aus %{count} Datensätzen."
     too_many: "Es können nicht mehr als %{max} Datensätze ausgewählt werden (%{count} wurden ausgewählt)."
+    added: "ADDED %{COUNT} ITEMS TO FOLDER %{NAME}."
+    added_bg: "ADDED ITEMS TO FOLDER, JOB %{JOB} ENQUEUED."
+    success_bg: "FOLDER %{NAME} CREATED, JOB %{JOB} ENQUEUED."
     
   ### Digital objects
   digital_objects: "Bild"

@@ -321,6 +321,12 @@ $diff-padding-width: 15px;
         a.muscat_icon_link_save {
             background: image-url("/images/marc-icons/save.png") no-repeat;
         }
+        a.muscat_icon_link_new_folder {
+            background: image-url("/images/marc-icons/folder.png") no-repeat;
+        }
+        a.muscat_icon_link_append_folder {
+            background: image-url("/images/marc-icons/append_folder.png") no-repeat;
+        }
         a.muscat_icon_link_save_exit {
             background: image-url("/images/marc-icons/save-exit.png") no-repeat;
         }
