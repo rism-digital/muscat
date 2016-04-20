@@ -25,4 +25,11 @@
 	<% end %>
 </div>
 
+<% if @item.is_a? Holding %>
+	<div id="source_preview_for_holding"></div>
+	<script>
+		_marc_editor_summary_view("source_preview_for_holding", "sources", <%= @item.source.id %>)
+	</script>
+<% end %>
+
 <%= render "holdings/list_holdings" %>
