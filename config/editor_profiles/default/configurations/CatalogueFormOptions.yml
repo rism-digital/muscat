@@ -23,8 +23,36 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
+      - cols: 2 
+        editor_partial: subfield_language_codes
+    columns: 2
+  tag_params:
+    codes:
+      - "cat"
+      - "cze"
+      - "dan"
+      - "dut"
+      - "eng"
+      - "fre"
+      - "ger"
+      - "grc"
+      - "gre" 
+      - "gsw"
+      - "heb"
+      - "hrv"
+      - "hun"
+      - "ita"
+      - "kor"
+      - "lat"
+      - "pol"
+      - "por"
+      - "rus"
+      - "slo"
+      - "slv"
+      - "spa"
+      - "srp"
+      - "swe"
+      - "zxx"
 "100": 
   allow_new: true
   new_window: people
