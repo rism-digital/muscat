@@ -198,6 +198,8 @@
       - cols: 2
     columns: 4
 "500": 
+  allow_new: true
+  new_window: people
   layout: 
     fields: 
     - - "a"
@@ -219,10 +221,12 @@
       - father of
       - related to
 "510": 
+  allow_new: true
+  new_window: institutions
   layout: 
     fields: 
     - - "a"
-      - type: institution
+      - type: library
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4

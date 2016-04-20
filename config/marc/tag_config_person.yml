@@ -148,11 +148,19 @@
     - - "i"
       - :occurrences: "?"
   "510":
+    :master: "0"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "1"
+        :foreign_class: ^0
+        :foreign_field: siglum
   "551":
     :master: a
     :indicator: "##"
