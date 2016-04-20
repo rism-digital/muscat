@@ -143,6 +143,14 @@ module ActiveAdmin::ViewsHelper
     return "#{composer} : #{std_title} - #{record_type}[#{id}]"
   end
   
+  # formats the string for the holding show title
+  def active_admin_holding_show_title( holding )
+    return "#{holding.lib_siglum}[#{holding.id}]" if !holding.source
+    return "#{holding.lib_siglum}[#{holding.id}] (#{holding.source.std_title}[#{holding.source.id}])"if !holding.source.composer
+    return "#{holding.lib_siglum}[#{holding.id}] (#{holding.source.composer}[#{holding.source.id}])" if !holding.source.std_title
+    return "#{holding.lib_siglum}[#{holding.id}] (#{holding.source.composer} - #{holding.source.std_title}[#{holding.source.id}])"
+  end
+  
   # formats the string for the source show title
   def active_admin_auth_show_title( val1, val2, id )
     return "[#{id}]" if val1.empty? and val2.empty?

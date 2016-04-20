@@ -1,5 +1,7 @@
 ActiveAdmin.register Holding do
   
+  # formats the string for the holding show title
+  
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_holdings)}
 
   # Remove mass-delete action
@@ -22,6 +24,13 @@ ActiveAdmin.register Holding do
   #
   # temporarily allow all parameters
   controller do
+        
+    def format_holding( holding )
+      return "#{I18n.t(:edit)} #{holding.lib_siglum} [#{holding.id}]" if !holding.source
+      return "#{I18n.t(:edit)} #{holding.lib_siglum} [#{holding.id}] in (#{holding.source.std_title} [#{holding.source.id}])"if !holding.source.composer || holding.source.composer.empty?
+      return "#{I18n.t(:edit)} #{holding.lib_siglum} [#{holding.id}] in (#{holding.source.composer} [#{holding.source.id}])" if !holding.source.std_title || holding.source.std_title.empty?
+      return "#{I18n.t(:edit)} #{holding.lib_siglum} [#{holding.id}] in (#{holding.source.composer} - #{holding.source.std_title} [#{holding.source.id}])"
+    end
         
     after_destroy :check_model_errors
     before_create do |item|
@@ -49,7 +58,7 @@ ActiveAdmin.register Holding do
       @parent_object_type = "Source" #hardcoded for now
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_show_layout @item
-      @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+      @page_title = format_holding(@item)
     end
 
     def show
@@ -153,7 +162,7 @@ ActiveAdmin.register Holding do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_source_show_title( @item.lib_siglum, "", "") } do
+  show :title => proc{ active_admin_holding_show_title(@item) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]

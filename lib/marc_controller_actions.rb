@@ -157,6 +157,20 @@ module MarcControllerActions
       render :template => 'marc_show/show_preview'
     end
   
+    ###################
+    ## Summary show ##
+    ###################
+    
+    dsl.collection_action :marc_editor_summary_show, :method => :post do
+      
+      @item = Source.find( params[:object_id] )
+      
+      @item.marc.load_source(true)
+      @editor_profile = EditorConfiguration.get_show_layout @item
+      
+      render :template => 'marc_show/show_preview'
+    end
+  
     ##########
     ## Help ##
     ##########
