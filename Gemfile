@@ -85,7 +85,7 @@ gem 'bootstrap-sass', "3.3.4.1"
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
 gem "blacklight_range_limit"
-gem 'devise'
+gem 'devise', "~> 3.5.6"
 gem 'devise-i18n'
 
 # paperclip for image storage
