@@ -1810,3 +1810,35 @@ voc:
     fr: Vocaliste
     de: "Sänger"
     en: Vocalist
+#Attribution qualifier for 100/700$j
+"Verified":
+  label:
+    it: VERIFIED
+    fr: VERIFIED
+    de: gesichert
+    en: Verified
+"Ascertained":   
+  label:
+    it: ASCERTAINED
+    fr: ASCERTAINED
+    de: ermittelt
+    en: Ascertained
+"Alleged":   
+  label:
+    it: ALLEGED
+    fr: ALLEGED
+    de: angeblich
+    en: Alleged
+"Doubtful":   
+  label:
+    it: DOUBTFUL
+    fr: DOUBTFUL
+    de: zweifelhaft
+    en: Doubtful
+"Misattributed":   
+  label:
+    it: MISATTRIBUTED
+    fr: MISATTRIBUTED
+    de: fälschlich
+    en: Misattributed
+

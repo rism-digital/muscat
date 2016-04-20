@@ -162,13 +162,16 @@
       - type: person
         editor_partial: subfield_secondary
     - - j
-      - values: 
-        - "Verified"
-        - "Ascertained"
-        - "Alleged"
-        - "Doubtful"
-        - "Misattributed"
-        editor_partial: subfield_select
+      - cols: 2
+        editor_partial: subfield_attribution_codes
+    columns: 2
+  tag_params:
+    codes:
+      - "Verified"
+      - "Ascertained"
+      - "Alleged"
+      - "Doubtful"
+      - "Misattributed"
   layout_new: 
     fields: 
     - - a
@@ -412,13 +415,7 @@
       - type: person
         editor_partial: subfield_secondary
     - - j
-      - values: 
-        - "Verified"
-        - "Ascertained"
-        - "Alleged"
-        - "Doubtful"
-        - "Misattributed"
-        editor_partial: subfield_select
+      - editor_partial: subfield_attribution_codes
     - - "4"
       - editor_partial: subfield_relator_codes_700
   layout_new:
@@ -437,6 +434,12 @@
       - editor_partial: subfield_relator_codes_700
   tag_list_additional_data: tag_list_additional_data_relator_codes
   tag_params: 
+    codes:
+      - "Verified"
+      - "Ascertained"
+      - "Alleged"
+      - "Doubtful"
+      - "Misattributed"
     groups: 
       01_codes_artistic: 
       - cmp
