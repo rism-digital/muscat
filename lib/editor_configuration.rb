@@ -185,11 +185,11 @@ class EditorConfiguration
   
   # Extracts from the configuration the file name of the helpfile for the specified tag.
   # Help files oare in <tt>public/help</tt>. Used from the editor view.
-  def get_tag_extended_help(tag_name)
+  def get_tag_extended_help(tag_name, model)
     if options_config.include?(tag_name) && options_config[tag_name].include?("extended_help")
-      return EditorConfiguration.get_help_fname("#{options_config[tag_name]["extended_help"]}")
+      return EditorConfiguration.get_help_fname("#{options_config[tag_name]["extended_help"]}", model)
     else
-      return EditorConfiguration.get_help_fname("#{tag_name}")
+      return EditorConfiguration.get_help_fname("#{tag_name}", model)
     end
   end
   
@@ -389,13 +389,14 @@ class EditorConfiguration
   end
     
   # Gets the html file name.
-  def self.get_help_fname(name)
+  def self.get_help_fname(name, model)
+    model = model=="Source" ? "" : "#{model.downcase}_"
     # translated version?
-    fname = "/help/#{RISM::MARC}/#{name}_#{I18n.locale.to_s}.html"
+    fname = "/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html"
     # puts fname
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # english?
-    fname = "/help/#{RISM::MARC}/#{name}_en.html"
+    fname = "/help/#{RISM::MARC}/#{model}#{name}_en.html"
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # nope...
     return ""
