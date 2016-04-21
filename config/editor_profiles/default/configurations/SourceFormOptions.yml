@@ -308,7 +308,9 @@
         - Autograph
         - Manuscript
         - Manuscript with autograph annotations
+        - Partly Autograph
         - Print
+        - Print with handwritten entries
         - Probably autograph
         editor_partial: subfield_select
 "598": 
