@@ -65,8 +65,12 @@
     fields: 
     - - a
       - cols: 4
+        values:
+        - "individualized" 
+        - "not individualized"
+        - "unkown"
+        editor_partial: subfield_select
     columns: 4
-
 "043": 
   layout: 
     fields: 
@@ -169,12 +173,6 @@
     - - y
       - cols: 2
     columns: 4
-"374": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 2
-    columns: 2
 "375": 
   layout: 
     fields: 
@@ -196,6 +194,24 @@
       - cols: 2
     - - j
       - cols: 2
+        editor_partial: subfield_variant_codes
+    columns: 2
+  tag_params:
+    codes:
+      - "bn"
+      - "da"
+      - "do"
+      - "dv"
+      - "ee"
+      - "ef"
+      - "ff"
+      - "gg"
+      - "in"
+      - "mo"
+      - "tn"
+      - "ub"
+      - "z"
+      - "xx"
     columns: 4
 "500": 
   allow_new: true
@@ -235,6 +251,20 @@
     fields: 
     - - a
       - cols: 2
+    columns: 2
+"550": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - i
+      - cols: 2
+        values:
+        - "academic" 
+        - "profession"
+        - "religion"
+        - "unkown"
+        editor_partial: subfield_select
     columns: 2
 "551": 
   layout: 

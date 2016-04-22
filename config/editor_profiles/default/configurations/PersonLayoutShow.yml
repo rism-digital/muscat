@@ -15,7 +15,7 @@ groups:
     - "043"
     all_tag_templates:
       "375": marc_show/show_gender  
-      "374": marc_show/show_inline
+      "550": marc_show/show_inline
       "043": marc_show/show_subfield_concat
   codes: 
     all_tags: 
@@ -29,10 +29,10 @@ groups:
       "400": people/show_indicator
   relations:
     all_tags:
-    - "551"
-    - "374" 
     - "500"
     - "510"
+    - "550" 
+    - "551"
     - "667"
     all_tag_templates:
       "500": people/show_related_person

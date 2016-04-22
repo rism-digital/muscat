@@ -21,10 +21,10 @@ groups:
     - "400"
   relations:
     all_tags:
-    - "551"
-    - "374" 
     - "500"
     - "510"
+    - "550" 
+    - "551"
     - "667"
   references:
     all_tags:

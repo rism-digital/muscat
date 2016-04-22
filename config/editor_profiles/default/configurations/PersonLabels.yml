@@ -196,19 +196,6 @@ doc_edit_workflow:
         fr: Place of birth
         de: Geburtsort  
         en: Place of birth
-"374": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: OCCUPATION
-    fr: OCCUPATION
-    de: Beruf
-    en: Occupation
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: OCCUPATION
-        fr: OCCUPATION
-        de: Beruf 
-        en: OCCUPATION
 "375": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Gender
@@ -280,6 +267,25 @@ doc_edit_workflow:
         fr:  SIGLUM
         de:  Sigel
         en:  Siglum
+"550": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: TOPICAL TERM
+    fr: TOPICAL TERM
+    de: Sachbegriff
+    en: Topical Term
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: TOPICAL TERM
+        fr: TOPICAL TERM
+        de: Sachbegriff
+        en: Topical Term
+    i: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it:  RELATION
+        fr:  RELATION
+        de:  Bedeutung
+        en:  Relation
 "551": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: PLACES
@@ -1011,4 +1017,89 @@ related to: !map:ActiveSupport::HashWithIndifferentAccess
     fr: RELATED TO
     de: verwandt mit
     en: related to
+# Name variant codes
+bn: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: BYNAME
+    fr: BYNAME
+    de: Beiname
+    en: Byname
+da: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Pseudonym
+    fr: Pseudonym
+    de: Pseudonym
+    en: Pseudonym
+do: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: ORDER NAME
+    fr: ORDER NAME
+    de: Ordensname
+    en: Order Name
+dv: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: OTHER SEARCHFORM
+    fr: OTHER SEARCHFORM
+    de: andere Suchform
+    en: Other Searchform
+ee: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: MARRIAGE NAME
+    fr: MARRIAGE NAME
+    de: Ehename
+    en: Marriage Name
+ef: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: FAMILY NAME
+    fr: FAMILY NAME
+    de: Familienname
+    en: Family Name
+ff: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PERSON NAME
+    fr: PERSON NAME
+    de: Personenname
+    en: Person Name
+gg: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: BIRTHNAME
+    fr: BIRTHNAME
+    de: Geburtsname
+    en: Birthname
+in: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: INITIALE
+    fr: INITIALE
+    de: Initiale
+    en: Initiale
+mo: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Monogram
+    fr: Monogram
+    de: Monogramm
+    en: Monogram
+tn: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: BAPTISMAL NAME
+    fr: BAPTISMAL NAME
+    de: Taufname
+    en: Baptsimal Name
+ub: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: TRANSLATION
+    fr: TRANSLATION
+    de: Übersetzung
+    en: Translation
+z: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: OTHER FORMS
+    fr: OTHER FORMS
+    de: Andere Schreibweise
+    en: Other form
+xx: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: UNKNOWN
+    fr: UNKNOWN
+    de: Unbekannt
+    en: Unknown
 

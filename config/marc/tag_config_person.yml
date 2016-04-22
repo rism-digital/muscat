@@ -98,20 +98,6 @@
         :no_show: true
     - - y
       - :occurrences: "?"
-  "370":
-    :master: a
-    :indicator: "##"
-    :occurrences: "?"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "374":
-    :master: a
-    :indicator: "##"
-    :occurrences: "?"
-    :fields:
-    - - a
-      - :occurrences: "?"
   "375":
     :master: a
     :indicator: "##"
@@ -161,6 +147,15 @@
       - :occurrences: "1"
         :foreign_class: ^0
         :foreign_field: siglum
+  "550":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - i
+      - :occurrences: "?"
   "551":
     :master: a
     :indicator: "##"
@@ -170,6 +165,7 @@
       - :occurrences: "?"
     - - i
       - :occurrences: "?"
+
   "599":
     :master: a
     :indicator: "##"

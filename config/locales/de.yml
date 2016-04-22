@@ -271,8 +271,8 @@ de:
   reindex: "Reindexieren"
   publish: "Veröffentlichen"
   select: "Auswählen"
-  create_folder: "CREATE FOLDER"
-  append_folder: "ADD TO FOLDER"
+  create_folder: "Erstelle Ordner"
+  append_folder: "Zu Ordner hinzufügen"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -365,7 +365,7 @@ de:
   filter_pattern: "Sigel Muster"
   filter_people: "Personen"
   filter_person_100d: "Lebensdaten"
-  filter_person_374a: "Beruf"
+  filter_person_550a: "Beruf"
   filter_person_375a: "Geschlecht"
   filter_person_043c: "Länder Code"
   filter_person_551a: "Orte"
