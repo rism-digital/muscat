@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308151001) do
+ActiveRecord::Schema.define(version: 20160425114201) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -283,6 +283,14 @@ ActiveRecord::Schema.define(version: 20160308151001) do
   add_index "institutions_sources", ["source_id"], name: "index_institutions_sources_on_source_id", using: :btree
   add_index "institutions_sources", ["source_id"], name: "manuscript_index", using: :btree
 
+  create_table "institutions_to_people", id: false, force: :cascade do |t|
+    t.integer "institution_id", limit: 4
+    t.integer "person_id",      limit: 4
+  end
+
+  add_index "institutions_to_people", ["institution_id"], name: "index_institutions_to_people_on_institution_id", using: :btree
+  add_index "institutions_to_people", ["person_id"], name: "index_institutions_to_people_on_person_id", using: :btree
+
   create_table "institutions_workgroups", id: false, force: :cascade do |t|
     t.integer "workgroup_id",   limit: 4
     t.integer "institution_id", limit: 4
@@ -355,6 +363,14 @@ ActiveRecord::Schema.define(version: 20160308151001) do
 
   add_index "people_sources", ["person_id"], name: "person_index", using: :btree
   add_index "people_sources", ["source_id"], name: "manuscript_index", using: :btree
+
+  create_table "people_to_institutions", id: false, force: :cascade do |t|
+    t.integer "person_id",      limit: 4
+    t.integer "institution_id", limit: 4
+  end
+
+  add_index "people_to_institutions", ["institution_id"], name: "index_people_to_institutions_on_institution_id", using: :btree
+  add_index "people_to_institutions", ["person_id"], name: "index_people_to_institutions_on_person_id", using: :btree
 
   create_table "places", force: :cascade do |t|
     t.string   "name",         limit: 255,             null: false
