@@ -59,7 +59,7 @@
 			 <xsl:text>=</xsl:text>
  			 <xsl:choose>
 				<xsl:when test="@tag='550'">
-					<xsl:value-of select="374"/>
+					<xsl:value-of select="550"/>
 				</xsl:when>
 
 				<xsl:otherwise >

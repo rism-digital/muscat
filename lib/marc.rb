@@ -459,7 +459,7 @@ class Marc
     load_source unless @loaded
     tags = Array.new
     for child in @root.children
-      tags << child if tag_names.include? child.tag
+        tags << child if tag_names.include? child.tag
     end
     return tags
   end

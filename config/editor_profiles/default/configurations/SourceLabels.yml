@@ -231,19 +231,31 @@ doc_administration:
         en: Number of work
       edit_label: 
         it: Numero
-        fr: "Numéro"
+        fr: "No. de l'œuvre"
         de: Nummer
-        en: Nb work
+        en: Nb. work
     b: 
       label: 
+        it: NUMBER OF MOVEMENT
+        fr: "Numéro du mouvement"
+        de: Satznummer
         en: Number of movement
       edit_label: 
+        it: NB. MOVEMENT
+        fr: "No. du mouvement"
+        de: Satznummer
         en: Nb. movement
     c: 
       label: 
+        it: NUMBER OF EXCERPT
+        fr: "Numéro de l'extrait"
+        de: Abschnitt
         en: Number of excerpt
       edit_label: 
-        en: Nb excerpt
+        it: NB EXCERPT
+        fr: "No. de l'extrait"
+        de: Nummer Abschnitt
+        en: Nb. excerpt
     m: 
       label: 
         it: Organico
@@ -259,7 +271,7 @@ doc_administration:
       edit_label: 
         it: Armat.
         fr: Armure
-        de: Akzid.
+        de: Vorzeichen
         en: Key g.
     d: 
       label: 
@@ -305,7 +317,7 @@ doc_administration:
       edit_label: 
         it: Chiave
         fr: "Clé"
-        de: "Schlüss."
+        de: "Schlüssel"
         en: Clef
     r: 
       label: 
@@ -327,7 +339,7 @@ doc_administration:
       edit_label: 
         it: Val.
         fr: Val.
-        de: "Gül."
+        de: "Gültigkeit"
         en: Val.
     t: 
       label: 
@@ -721,12 +733,14 @@ doc_administration:
   label: 
     it: Riassunto
     fr: "Résumé"
+    de: Zusammenfassende Beschreibung
     en: Summary description
   fields: 
     a: 
       label: 
         it: Riassunto
         fr: "Résumé"
+        de: Zusammenfassende Beschreibung
         en: Summary description
       edit_label: 
         en: ""
@@ -1272,6 +1286,12 @@ doc_administration:
         fr: Titres uniformes additionnels
         de: Alternativer Einordnungstitel
         en: Additional title
+    g: 
+      label: 
+        it: RULE TYPE
+        fr: RULE TYPE
+        de: Regelwerk
+        en: Rule type
     k: 
       label: 
         it: Suddivisione formale
@@ -1796,3 +1816,35 @@ voc:
     fr: Vocaliste
     de: "Sänger"
     en: Vocalist
+#Attribution qualifier for 100/700$j
+"Verified":
+  label:
+    it: VERIFIED
+    fr: VERIFIED
+    de: gesichert
+    en: Verified
+"Ascertained":   
+  label:
+    it: ASCERTAINED
+    fr: ASCERTAINED
+    de: ermittelt
+    en: Ascertained
+"Alleged":   
+  label:
+    it: ALLEGED
+    fr: ALLEGED
+    de: angeblich
+    en: Alleged
+"Doubtful":   
+  label:
+    it: DOUBTFUL
+    fr: DOUBTFUL
+    de: zweifelhaft
+    en: Doubtful
+"Misattributed":   
+  label:
+    it: MISATTRIBUTED
+    fr: MISATTRIBUTED
+    de: fälschlich
+    en: Misattributed
+

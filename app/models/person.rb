@@ -277,7 +277,7 @@ class Person < ActiveRecord::Base
 
   ransacker :"100d_contains", proc{ |v| } do |parent| end
   ransacker :"375a_contains", proc{ |v| } do |parent| end
-  ransacker :"374a_contains", proc{ |v| } do |parent| end
+  ransacker :"550a_contains", proc{ |v| } do |parent| end
   ransacker :"100d_birthdate_contains", proc{ |v| } do |parent| end
   ransacker :"100d_deathdate_contains", proc{ |v| } do |parent| end
   ransacker :"043c_contains", proc{ |v| } do |parent| end

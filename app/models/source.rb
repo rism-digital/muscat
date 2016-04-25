@@ -411,6 +411,20 @@ class Source < ActiveRecord::Base
   def name  
     "#{composer} - #{std_title}"
   end
+
+  def complete_title
+    tag_240 = marc.first_occurance( "240" )
+    return std_title unless tag_240
+    title = tag_240.fetch_first_by_tag("a") ? "#{tag_240.fetch_first_by_tag("a").content}" : ""
+    extract = tag_240.fetch_first_by_tag("k") ? ". #{tag_240.fetch_first_by_tag("k").content}" : ""
+    arr = tag_240.fetch_first_by_tag("o") ? ".#{tag_240.fetch_first_by_tag("o").content}" : ""
+    scoring = tag_240.fetch_first_by_tag("m") ? "; #{tag_240.fetch_first_by_tag("m").content}" : ""
+    if !extract.empty? || !arr.empty?
+      return "#{title}#{extract}#{arr}#{scoring}"
+    else
+      return "#{std_title}"
+    end
+  end
   
   def autocomplete_label
     "#{self.id}: #{self.composer} - #{self.std_title}"

@@ -19,7 +19,11 @@ module Viaf
       end
 
       if model.to_s == 'Person'
-        r = query["result"].map{|e| e if e['nametype']=='personal'}.compact
+        if query["result"]
+          r = query["result"].map{|e| e if e['nametype']=='personal'}.compact
+        else
+          return "Sorry, no results were found in VIAF!"
+        end
       else
         #TODO adopt for other marc classes
         r = query["result"].map{|e| e if e['nametype']=='personal'}.compact

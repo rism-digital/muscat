@@ -105,8 +105,9 @@ ActiveAdmin.register Catalogue do
   
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  filter :author_contains, :label => proc {I18n.t(:filter_author)}, :as => :string
+  filter :"508a_contains", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
   filter :description_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
+  filter :"240g_contains", :label => proc {I18n.t(:filter_record_type)}, :as => :string
   filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
   filter :"place_contains", :label => proc {I18n.t(:filter_place)}, :as => :string
   filter :"date_contains", :label => proc {I18n.t(:filter_date)}, :as => :string
@@ -149,6 +150,25 @@ ActiveAdmin.register Catalogue do
       render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode? )
+
+    if resource.revue_title.empty? && !resource.get_items.empty?
+      panel I18n.t :filter_series_items do
+        search=Catalogue.solr_search do 
+          fulltext(params[:id], :fields=>['7600'])
+          paginate :page => params[:items_list_page], :per_page=>15
+          order_by(:date_order)
+        end
+        paginated_collection(search.results, param_name: 'items_list_page', download_links: false) do
+          table_for(collection, sortable: true) do
+            column :id do |p| link_to p.id, controller: :catalogues, action: :show, id: p.id end
+            column :author
+            column :description
+            column :date
+          end
+        end
+      end
+    end
+
     active_admin_user_wf( self, catalogue )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?

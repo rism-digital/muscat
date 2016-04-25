@@ -30,6 +30,7 @@ class Institution < ActiveRecord::Base
   has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: Delayed::Job, foreign_key: "parent_id"
   has_and_belongs_to_many :workgroups
   belongs_to :user, :foreign_key => "wf_owner"
+  
   composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
   
   #validates_presence_of :siglum    

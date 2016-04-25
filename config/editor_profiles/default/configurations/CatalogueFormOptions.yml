@@ -19,19 +19,40 @@
   tag_params: 
     read_only: true
   tag_header: none
-008: 
-  tag: tag_no_subfield
-  tag_params: 
-    maskedinput: 
-      definitions: "['~']='[|0-9]'"
-      mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
-  tag_header: none
 "041": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
+      - cols: 2 
+        editor_partial: subfield_language_codes
+    columns: 2
+  tag_params:
+    codes:
+      - "cat"
+      - "cze"
+      - "dan"
+      - "dut"
+      - "eng"
+      - "fre"
+      - "ger"
+      - "grc"
+      - "gre" 
+      - "gsw"
+      - "heb"
+      - "hrv"
+      - "hun"
+      - "ita"
+      - "kor"
+      - "lat"
+      - "pol"
+      - "por"
+      - "rus"
+      - "slo"
+      - "slv"
+      - "spa"
+      - "srp"
+      - "swe"
+      - "zxx"
 "100": 
   allow_new: true
   new_window: people
@@ -40,10 +61,6 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
-    - - d
-    - - j
-      - value: Attributed to
-        editor_partial: subfield_checkbox
 "210": 
   layout: 
     fields: 

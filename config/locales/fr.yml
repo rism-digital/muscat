@@ -219,6 +219,7 @@ fr:
   menu_guidelines_top: "Instructions"
   menu_cataloging: "Catalogage"
   menu_jobs: "JOBS"
+  menu_holdings: "HOLDINGS"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"
@@ -316,6 +317,7 @@ fr:
   filter_alternates: "Autres noms"
   filter_any_field: "N'importe quel champ"
   filter_author: "Auteur"
+  filter_author_or_editor: "Auteur/Éditeur"
   filter_autograph_of: "Autographe de"
   filter_birth_place: "Lieu de naissance"
   filter_catalog: "Catalogue"
@@ -363,7 +365,7 @@ fr:
   filter_pattern: "Modèle de sigle"
   filter_people: "Personnes" 
   filter_person_100d: "Dates"
-  filter_person_374a: "Profession"
+  filter_person_550a: "Profession"
   filter_person_375a: "Genre"
   filter_person_043c: "Code de pays"
   filter_person_551a: "Lieux"
@@ -378,6 +380,7 @@ fr:
   filter_id: "No RISM"
   filter_id_no: "No RISM"
   filter_scoring: "Distribution"
+  filter_series_items: "SERIES ITEMS"
   filter_siglum: "Sigle"
   filter_source: "Source"
   filter_sources: "Sources"

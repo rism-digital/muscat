@@ -75,14 +75,10 @@
     - - a
       - :occurrences: "?"
   "043":
-    :master: a
+    :master: c
     :indicator: "##"
     :occurrences: "*"
     :fields:
-    - - a
-      - :occurrences: "*"
-    - - b
-      - :occurrences: "*"
     - - c
       - :occurrences: "*"
   "100":
@@ -101,20 +97,6 @@
       - :occurrences: "?"
         :no_show: true
     - - y
-      - :occurrences: "?"
-  "370":
-    :master: a
-    :indicator: "##"
-    :occurrences: "?"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "374":
-    :master: a
-    :indicator: "##"
-    :occurrences: "?"
-    :fields:
-    - - a
       - :occurrences: "?"
   "375":
     :master: a
@@ -152,11 +134,28 @@
     - - "i"
       - :occurrences: "?"
   "510":
+    :master: "0"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "1"
+        :foreign_class: ^0
+        :foreign_field: siglum
+  "550":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - i
+      - :occurrences: "?"
   "551":
     :master: a
     :indicator: "##"
@@ -166,6 +165,7 @@
       - :occurrences: "?"
     - - i
       - :occurrences: "?"
+
   "599":
     :master: a
     :indicator: "##"
