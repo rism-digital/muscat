@@ -24,7 +24,7 @@ class Institution < ActiveRecord::Base
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
-  has_and_belongs_to_many :people
+  has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
   has_and_belongs_to_many :holdings
   #has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: Delayed::Job, foreign_key: "parent_id"

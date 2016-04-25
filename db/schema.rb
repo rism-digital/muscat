@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425114201) do
+ActiveRecord::Schema.define(version: 20160425154201) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -63,14 +63,6 @@ ActiveRecord::Schema.define(version: 20160425114201) do
 
   add_index "catalogues", ["name"], name: "index_catalogues_on_name", using: :btree
   add_index "catalogues", ["wf_stage"], name: "index_catalogues_on_wf_stage", using: :btree
-
-  create_table "catalogues_sources", id: false, force: :cascade do |t|
-    t.integer "catalogue_id", limit: 4
-    t.integer "source_id",    limit: 4
-  end
-
-  add_index "catalogues_sources", ["catalogue_id"], name: "catalogue_index", using: :btree
-  add_index "catalogues_sources", ["source_id"], name: "manuscript_index", using: :btree
 
   create_table "crono_jobs", force: :cascade do |t|
     t.string   "job_id",            limit: 255,   null: false
@@ -265,24 +257,6 @@ ActiveRecord::Schema.define(version: 20160425114201) do
   add_index "institutions", ["wf_stage"], name: "index_institutions_on_wf_stage", using: :btree
   add_index "institutions", ["wf_stage"], name: "index_libraries_on_wf_stage", using: :btree
 
-  create_table "institutions_people", id: false, force: :cascade do |t|
-    t.integer "institution_id", limit: 4
-    t.integer "person_id",      limit: 4
-  end
-
-  add_index "institutions_people", ["institution_id"], name: "index_institutions_people_on_institution_id", using: :btree
-  add_index "institutions_people", ["person_id"], name: "index_institutions_people_on_person_id", using: :btree
-
-  create_table "institutions_sources", id: false, force: :cascade do |t|
-    t.integer "institution_id", limit: 4
-    t.integer "source_id",      limit: 4
-  end
-
-  add_index "institutions_sources", ["institution_id"], name: "index_institutions_sources_on_institution_id", using: :btree
-  add_index "institutions_sources", ["institution_id"], name: "library_index", using: :btree
-  add_index "institutions_sources", ["source_id"], name: "index_institutions_sources_on_source_id", using: :btree
-  add_index "institutions_sources", ["source_id"], name: "manuscript_index", using: :btree
-
   create_table "institutions_to_people", id: false, force: :cascade do |t|
     t.integer "institution_id", limit: 4
     t.integer "person_id",      limit: 4
@@ -314,14 +288,6 @@ ActiveRecord::Schema.define(version: 20160425114201) do
   end
 
   add_index "liturgical_feasts", ["wf_stage"], name: "index_liturgical_feasts_on_wf_stage", using: :btree
-
-  create_table "liturgical_feasts_sources", id: false, force: :cascade do |t|
-    t.integer "liturgical_feast_id", limit: 4
-    t.integer "source_id",           limit: 4
-  end
-
-  add_index "liturgical_feasts_sources", ["liturgical_feast_id"], name: "liturgical_feast_index", using: :btree
-  add_index "liturgical_feasts_sources", ["source_id"], name: "manuscript_index", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "full_name",       limit: 128,               null: false
@@ -356,17 +322,9 @@ ActiveRecord::Schema.define(version: 20160425114201) do
   add_index "people_people", ["person_a_id"], name: "index_people_people_on_person_a_id", using: :btree
   add_index "people_people", ["person_b_id"], name: "index_people_people_on_person_b_id", using: :btree
 
-  create_table "people_sources", id: false, force: :cascade do |t|
-    t.integer "person_id", limit: 4, default: 0, null: false
-    t.integer "source_id", limit: 4
-  end
-
-  add_index "people_sources", ["person_id"], name: "person_index", using: :btree
-  add_index "people_sources", ["source_id"], name: "manuscript_index", using: :btree
-
   create_table "people_to_institutions", id: false, force: :cascade do |t|
-    t.integer "person_id",      limit: 4
     t.integer "institution_id", limit: 4
+    t.integer "person_id",      limit: 4
   end
 
   add_index "people_to_institutions", ["institution_id"], name: "index_people_to_institutions_on_institution_id", using: :btree
@@ -389,14 +347,6 @@ ActiveRecord::Schema.define(version: 20160425114201) do
   end
 
   add_index "places", ["wf_stage"], name: "index_places_on_wf_stage", using: :btree
-
-  create_table "places_sources", id: false, force: :cascade do |t|
-    t.integer "place_id",  limit: 4
-    t.integer "source_id", limit: 4
-  end
-
-  add_index "places_sources", ["place_id"], name: "place_index", using: :btree
-  add_index "places_sources", ["source_id"], name: "manuscript_index", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -457,29 +407,71 @@ ActiveRecord::Schema.define(version: 20160425114201) do
   add_index "sources", ["source_id"], name: "index_manuscripts_on_manuscript_id", using: :btree
   add_index "sources", ["wf_stage"], name: "index_manuscripts_on_wf_stage", using: :btree
 
-  create_table "sources_standard_terms", id: false, force: :cascade do |t|
+  create_table "sources_to_catalogues", id: false, force: :cascade do |t|
+    t.integer "catalogue_id", limit: 4
+    t.integer "source_id",    limit: 4
+  end
+
+  add_index "sources_to_catalogues", ["catalogue_id"], name: "catalogue_index", using: :btree
+  add_index "sources_to_catalogues", ["source_id"], name: "manuscript_index", using: :btree
+
+  create_table "sources_to_institutions", id: false, force: :cascade do |t|
+    t.integer "institution_id", limit: 4
+    t.integer "source_id",      limit: 4
+  end
+
+  add_index "sources_to_institutions", ["institution_id"], name: "index_sources_to_institutions_on_institution_id", using: :btree
+  add_index "sources_to_institutions", ["institution_id"], name: "library_index", using: :btree
+  add_index "sources_to_institutions", ["source_id"], name: "index_sources_to_institutions_on_source_id", using: :btree
+  add_index "sources_to_institutions", ["source_id"], name: "manuscript_index", using: :btree
+
+  create_table "sources_to_liturgical_feasts", id: false, force: :cascade do |t|
+    t.integer "liturgical_feast_id", limit: 4
+    t.integer "source_id",           limit: 4
+  end
+
+  add_index "sources_to_liturgical_feasts", ["liturgical_feast_id"], name: "liturgical_feast_index", using: :btree
+  add_index "sources_to_liturgical_feasts", ["source_id"], name: "manuscript_index", using: :btree
+
+  create_table "sources_to_people", id: false, force: :cascade do |t|
+    t.integer "person_id", limit: 4, default: 0, null: false
+    t.integer "source_id", limit: 4
+  end
+
+  add_index "sources_to_people", ["person_id"], name: "person_index", using: :btree
+  add_index "sources_to_people", ["source_id"], name: "manuscript_index", using: :btree
+
+  create_table "sources_to_places", id: false, force: :cascade do |t|
+    t.integer "place_id",  limit: 4
+    t.integer "source_id", limit: 4
+  end
+
+  add_index "sources_to_places", ["place_id"], name: "place_index", using: :btree
+  add_index "sources_to_places", ["source_id"], name: "manuscript_index", using: :btree
+
+  create_table "sources_to_standard_terms", id: false, force: :cascade do |t|
     t.integer "standard_term_id", limit: 4
     t.integer "source_id",        limit: 4
   end
 
-  add_index "sources_standard_terms", ["source_id"], name: "manuscript_index", using: :btree
-  add_index "sources_standard_terms", ["standard_term_id"], name: "standard_term_index", using: :btree
+  add_index "sources_to_standard_terms", ["source_id"], name: "manuscript_index", using: :btree
+  add_index "sources_to_standard_terms", ["standard_term_id"], name: "standard_term_index", using: :btree
 
-  create_table "sources_standard_titles", id: false, force: :cascade do |t|
+  create_table "sources_to_standard_titles", id: false, force: :cascade do |t|
     t.integer "standard_title_id", limit: 4
     t.integer "source_id",         limit: 4
   end
 
-  add_index "sources_standard_titles", ["source_id"], name: "manuscript_index", using: :btree
-  add_index "sources_standard_titles", ["standard_title_id"], name: "standard_title_index", using: :btree
+  add_index "sources_to_standard_titles", ["source_id"], name: "manuscript_index", using: :btree
+  add_index "sources_to_standard_titles", ["standard_title_id"], name: "standard_title_index", using: :btree
 
-  create_table "sources_works", force: :cascade do |t|
+  create_table "sources_to_works", force: :cascade do |t|
     t.integer "source_id", limit: 4
     t.integer "work_id",   limit: 4
   end
 
-  add_index "sources_works", ["source_id"], name: "manuscript_index", using: :btree
-  add_index "sources_works", ["work_id"], name: "work_index", using: :btree
+  add_index "sources_to_works", ["source_id"], name: "manuscript_index", using: :btree
+  add_index "sources_to_works", ["work_id"], name: "work_index", using: :btree
 
   create_table "standard_terms", force: :cascade do |t|
     t.string   "term",            limit: 255,               null: false
@@ -622,27 +614,27 @@ ActiveRecord::Schema.define(version: 20160425114201) do
 
   add_index "works", ["wf_stage"], name: "index_works_on_wf_stage", using: :btree
 
-  add_foreign_key "catalogues_sources", "catalogues", name: "catalogues_sources_fk2", on_update: :cascade
-  add_foreign_key "catalogues_sources", "sources", name: "catalogues_manuscripts_fk1", on_update: :cascade
   add_foreign_key "do_div_files", "do_divs", name: "do_div_fk1", on_update: :cascade
   add_foreign_key "do_div_files", "do_files", name: "do_file_fk1", on_update: :cascade
   add_foreign_key "do_divs", "do_items", name: "do_item_fk1", on_update: :cascade
   add_foreign_key "do_file_groups", "do_items", name: "do_item_fg_fk1", on_update: :cascade
   add_foreign_key "do_files", "do_file_groups", name: "do_file_group_fk1", on_update: :cascade
   add_foreign_key "do_files", "do_images", name: "do_image_fk1", on_update: :cascade
-  add_foreign_key "institutions_sources", "institutions", name: "institutions_sources_fk2", on_update: :cascade
-  add_foreign_key "institutions_sources", "sources", name: "institutions_sources_fk1", on_update: :cascade
-  add_foreign_key "liturgical_feasts_sources", "liturgical_feasts", name: "liturgical_feasts_sources_fk2", on_update: :cascade
-  add_foreign_key "liturgical_feasts_sources", "sources", name: "liturgical_feasts_sources_fk1", on_update: :cascade
-  add_foreign_key "people_sources", "people", name: "people_sources_fk2", on_update: :cascade
-  add_foreign_key "people_sources", "sources", name: "people_sources_fk1", on_update: :cascade
-  add_foreign_key "places_sources", "places", name: "places_sources_fk2", on_update: :cascade
-  add_foreign_key "places_sources", "sources", name: "places_sources_fk1", on_update: :cascade
-  add_foreign_key "sources_standard_terms", "sources", name: "sources_standard_terms_fk1", on_update: :cascade
-  add_foreign_key "sources_standard_terms", "standard_terms", name: "sources_standard_terms_fk2", on_update: :cascade
-  add_foreign_key "sources_standard_titles", "sources", name: "sources_standard_titles_fk1", on_update: :cascade
-  add_foreign_key "sources_standard_titles", "standard_titles", name: "sources_standard_titles_fk2", on_update: :cascade
-  add_foreign_key "sources_works", "sources", name: "sources_works_fk1", on_update: :cascade
-  add_foreign_key "sources_works", "works", name: "sources_works_fk2", on_update: :cascade
+  add_foreign_key "sources_to_catalogues", "catalogues", name: "catalogues_sources_fk2", on_update: :cascade
+  add_foreign_key "sources_to_catalogues", "sources", name: "catalogues_manuscripts_fk1", on_update: :cascade
+  add_foreign_key "sources_to_institutions", "institutions", name: "institutions_sources_fk2", on_update: :cascade
+  add_foreign_key "sources_to_institutions", "sources", name: "institutions_sources_fk1", on_update: :cascade
+  add_foreign_key "sources_to_liturgical_feasts", "liturgical_feasts", name: "liturgical_feasts_sources_fk2", on_update: :cascade
+  add_foreign_key "sources_to_liturgical_feasts", "sources", name: "liturgical_feasts_sources_fk1", on_update: :cascade
+  add_foreign_key "sources_to_people", "people", name: "people_sources_fk2", on_update: :cascade
+  add_foreign_key "sources_to_people", "sources", name: "people_sources_fk1", on_update: :cascade
+  add_foreign_key "sources_to_places", "places", name: "places_sources_fk2", on_update: :cascade
+  add_foreign_key "sources_to_places", "sources", name: "places_sources_fk1", on_update: :cascade
+  add_foreign_key "sources_to_standard_terms", "sources", name: "sources_standard_terms_fk1", on_update: :cascade
+  add_foreign_key "sources_to_standard_terms", "standard_terms", name: "sources_standard_terms_fk2", on_update: :cascade
+  add_foreign_key "sources_to_standard_titles", "sources", name: "sources_standard_titles_fk1", on_update: :cascade
+  add_foreign_key "sources_to_standard_titles", "standard_titles", name: "sources_standard_titles_fk2", on_update: :cascade
+  add_foreign_key "sources_to_works", "sources", name: "sources_works_fk1", on_update: :cascade
+  add_foreign_key "sources_to_works", "works", name: "sources_works_fk2", on_update: :cascade
   add_foreign_key "work_incipits", "works", name: "work_incipits_fk1", on_update: :cascade
 end
