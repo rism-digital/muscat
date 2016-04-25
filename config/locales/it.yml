@@ -222,6 +222,7 @@ it:
   menu_guidelines_top: "Documentazione"
   menu_cataloging: "Catalogazione"
   menu_jobs: "Processi in Background"
+  menu_holdings: "HOLDINGS"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"
@@ -319,6 +320,7 @@ it:
   filter_alternates: "Nomi alternativi"
   filter_any_field: "Qualsiasi campo"
   filter_author: "Autore"
+  filter_author_or_editor: "Autore/Editore"
   filter_autograph_of: "Autografo di"
   filter_birth_place: "Luogo di nascita"
   filter_catalog: "Catalogo"
@@ -366,7 +368,7 @@ it:
   filter_pattern: "Siglum patterns"
   filter_people: "Persone"
   filter_person_100d: "Date"
-  filter_person_374a: "Professione"
+  filter_person_550a: "Professione"
   filter_person_375a: "Sesso"
   filter_person_043c: "Codice paese"
   filter_person_551a: "PLACES"
@@ -381,6 +383,7 @@ it:
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
   filter_scoring: "Organico"
+  filter_series_items: "SERIES ITEMS"
   filter_siglum: "Sigla"
   filter_source: "Fonte"
   filter_sources: "Fonti"

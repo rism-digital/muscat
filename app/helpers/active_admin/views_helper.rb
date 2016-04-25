@@ -212,5 +212,13 @@ module ActiveAdmin::ViewsHelper
       end
     end
   end
+
+  def local_sorting( codes, editor_profile )
+    local_hash = Hash.new
+    codes.each do |code|
+      local_hash[code] = editor_profile.get_label(code)
+    end
+    return Hash[local_hash.sort_by{|k, v| v}].keys
+  end
   
 end

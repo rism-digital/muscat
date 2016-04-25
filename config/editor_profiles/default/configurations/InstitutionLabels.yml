@@ -347,6 +347,20 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Remarque générale
         de: Allgemeine Fussnote
         en: General note
+"700": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PERSON
+    fr: PERSON
+    de: Person
+    en: Person
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: PERSON
+        fr: PERSON
+        de: Person
+        en: Person
+
 "710": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: RELATED INSTITUTION
@@ -442,3 +456,714 @@ description: !map:ActiveSupport::HashWithIndifferentAccess
     fr: DESCRIPTION
     de: Beschreibung
     en: Description
+
+# Person related
+01_codes_artistic: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore
+    fr: Auteur
+    de: Verfasser
+    en: Artistic production
+02_codes_performing: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Partecipanti
+    fr: Performance
+    de: Mitwirkende
+    en: Performance
+03_codes_technical: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Produttore
+    fr: "Création"
+    de: Hersteller
+    en: Technical production
+04_codes_other: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Altri
+    fr: Autre
+    de: Weitere
+    en: Other
+ed: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: EDITION
+    fr: EDITION
+    de: Edition
+    en: Edition
+H: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Curatore
+    fr: Editeur
+    de: Herausgeber
+    en: Editor
+arr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Arrangiatore
+    fr: Arrangeur
+    de: Bearbeiter
+    en: Arranger
+art: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Scenografo
+    fr: "Metteur en scène"
+    de: "Bühnenbildner"
+    en: Artist
+asn: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Altro nome
+    fr: Autre nom
+    de: Weiterer Name
+    en: Associated name
+aut: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore
+    fr: Auteur
+    de: Autor
+    en: Author
+bnd: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Rilegatore
+    fr: Relieur
+    de: Buchbinder
+    en: Binder
+bsl: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Libraio musicale
+    fr: Libraire
+    de: "Musikalienhändler"
+    en: Bookseller
+ccp: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore della fonte letteraria
+    fr: Auteur du texte
+    de: Autor der Textvorlage
+    en: Conceptor
+chr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Coreografo
+    fr: "Chorégraphe"
+    de: Choreograph
+    en: Choreographer
+clb: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Autore secondario
+    fr: Collabarateur
+    de: Mitverfasser
+    en: Collaborator
+cmp: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Compositore/Compositore secondario
+    fr: Compositeur / Co-compositeur
+    de: Komponist / Mitkomponist
+    en: Composer
+cnd: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Direttore d'orchestra
+    fr: Chef d'orchestre
+    de: Dirigent
+    en: Conductor
+cns: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Censore
+    fr: Censeur
+    de: Zensor
+    en: Censor
+com: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Compilatore
+    fr: Compilateur
+    de: Kompilator
+    en: Compiler
+cst: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Costumista
+    fr: Costumier
+    de: "Kostümbildner"
+    en: Costume designer
+dnc: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Ballerino
+    fr: Danceur
+    de: "Tänzer"
+    en: Dancer
+dnr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Donatore
+    fr: Donateur
+    de: Donator
+    en: Donor
+dte: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Dedicatario
+    fr: "Dédicataire"
+    de: "Widmungsträger"
+    en: Dedicatee
+dub: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Dubbio
+    fr: Douteux
+    de: Zweifelhaft
+    en: Dubious
+edt: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Curatore
+    fr: Editeur
+    de: Herausgeber
+    en: Editor
+egr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Incisore
+    fr: Graveur
+    de: Stecher
+    en: Engraver
+fmo: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Proprietario precedente
+    fr: "Propriétaire précédent"
+    de: Vorbesitzer
+    en: Former owner
+ill: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Disegnatore
+    fr: Illustrateur
+    de: Illustrator
+    en: Illustrator
+itr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Strumentista
+    fr: Instrumentiste
+    de: Instrumentalist
+    en: Instrumentalist
+lbt: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Librettista
+    fr: Librettiste
+    de: Librettist
+    en: Librettist
+ltg: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Litografo
+    fr: Litographe
+    de: Lithograph
+    en: Lithograph
+lyr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Poeta
+    fr: Parolier
+    de: Textdichter
+    en: Lyricist
+otm: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Organizzatore
+    fr: Organisateur
+    de: Veranstalter
+    en: Event organizer
+pat: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Committente
+    fr: "Mécène"
+    de: "Mäzen/Auftraggeber"
+    en: Patron
+pbl: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Editore
+    fr: Editeur
+    de: Verleger
+    en: Publisher
+ppm: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Fabbricante di carta
+    fr: Papetier
+    de: Papierhersteller
+    en: Paper maker
+prd: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Personale alla produzione
+    fr: "Personnel de réalisation"
+    de: Produktionspersonal
+    en: Production personnel
+prf: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Interprete
+    fr: "Interprète"
+    de: Interpret
+    en: Performer
+prt: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Stampatore
+    fr: Imprimeur
+    de: Drucker
+    en: Printer
+scr: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Copista
+    fr: Scribe
+    de: Schreiber
+    en: Scribe
+trl: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Traduttore
+    fr: Traducteur
+    de: "Übersetzer"
+    en: Translater
+voc: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: Cantante
+    fr: Vocaliste
+    de: "Sänger"
+    en: Vocalist
+#Country Codes
+"XC-DZ": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Algeria"
+    fr: "Algeria"
+    de: "Algeria"
+    en: "Algeria"
+"XD-AR": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Argentina"
+    fr: "Argentina"
+    de: "Argentina"
+    en: "Argentina"
+"XB-AM": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Armenia"
+    fr: "Armenia"
+    de: "Armenia"
+    en: "Armenia"
+"XE-AU": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Australia"
+    fr: "Australia"
+    de: "Australia"
+    en: "Australia"
+"XA-AT": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Austria"
+    fr: "Austria"
+    de: "Austria"
+    en: "Austria"
+"XA-AT-2": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Austria: Carinthia"
+    fr: "Austria: Carinthia"
+    de: "Austria: Carinthia"
+    en: "Austria: Carinthia"
+"XA-AT-3": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Austria: Lower Austria"
+    fr: "Austria: Lower Austria"
+    de: "Austria: Lower Austria"
+    en: "Austria: Lower Austria"
+"XA-AT-5": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Austria: Salzburg"
+    fr: "Austria: Salzburg"
+    de: "Austria: Salzburg"
+    en: "Austria: Salzburg"
+"XA-AT-6": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Austria: Styria"
+    fr: "Austria: Styria"
+    de: "Austria: Styria"
+    en: "Austria: Styria"
+"XA-AT-7": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Austria: Tyrol"
+    fr: "Austria: Tyrol"
+    de: "Austria: Tyrol"
+    en: "Austria: Tyrol"
+"XA-AT-4": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Austria: Upper Austria"
+    fr: "Austria: Upper Austria"
+    de: "Austria: Upper Austria"
+    en: "Austria: Upper Austria"
+"XA-AT-9": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Austria: Vienna XA-AT-9"
+    fr: "Austria: Vienna XA-AT-9"
+    de: "Austria: Vienna XA-AT-9"
+    en: "Austria: Vienna XA-AT-9"
+"XA-BE": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Belgium"
+    fr: "Belgium"
+    de: "Belgium"
+    en: "Belgium"
+"XC-BJ": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Benin"
+    fr: "Benin"
+    de: "Benin"
+    en: "Benin"
+"XD-BR": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Brazil"
+    fr: "Brazil"
+    de: "Brazil"
+    en: "Brazil"
+"XA-BG": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Bulgaria"
+    fr: "Bulgaria"
+    de: "Bulgaria"
+    en: "Bulgaria"
+"XB-KH": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Cambodia"
+    fr: "Cambodia"
+    de: "Cambodia"
+    en: "Cambodia"
+"XD-CA": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Canada"
+    fr: "Canada"
+    de: "Canada"
+    en: "Canada"
+"XD-CL": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Chile"
+    fr: "Chile"
+    de: "Chile"
+    en: "Chile"
+"XB-CN": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "China"
+    fr: "China"
+    de: "China"
+    en: "China"
+"XD-CO": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Colombia"
+    fr: "Colombia"
+    de: "Colombia"
+    en: "Colombia"
+"XA-HR": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Croatia"
+    fr: "Croatia"
+    de: "Croatia"
+    en: "Croatia"
+"XD-CU": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Cuba"
+    fr: "Cuba"
+    de: "Cuba"
+    en: "Cuba"
+"XA-CZ": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Czech Republic"
+    fr: "Czech Republic"
+    de: "Czech Republic"
+    en: "Czech Republic"
+"XA-DK": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Denmark"
+    fr: "Denmark"
+    de: "Denmark"
+    en: "Denmark"
+"XC-EG": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Egypt"
+    fr: "Egypt"
+    de: "Egypt"
+    en: "Egypt"
+"XA-EE": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Estonia"
+    fr: "Estonia"
+    de: "Estonia"
+    en: "Estonia"
+"XA-FI": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Finland"
+    fr: "Finland"
+    de: "Finland"
+    en: "Finland"
+"XA-FR": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "France"
+    fr: "France"
+    de: "France"
+    en: "France"
+"XA-DE": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Germany"
+    fr: "Germany"
+    de: "Germany"
+    en: "Germany"
+"XA-DE-BY": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Germany: Bavaria"
+    fr: "Germany: Bavaria"
+    de: "Germany: Bavaria"
+    en: "Germany: Bavaria"
+"XA-DE-SN": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Germany: Saxony"
+    fr: "Germany: Saxony"
+    de: "Germany: Saxony"
+    en: "Germany: Saxony"
+"XA-GR": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Greece"
+    fr: "Greece"
+    de: "Greece"
+    en: "Greece"
+"XA-VA": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Holy See"
+    fr: "Holy See"
+    de: "Holy See"
+    en: "Holy See"
+"XD-HN": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Honduras"
+    fr: "Honduras"
+    de: "Honduras"
+    en: "Honduras"
+"XA-HU": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Hungary"
+    fr: "Hungary"
+    de: "Hungary"
+    en: "Hungary"
+"XA-IS": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Iceland"
+    fr: "Iceland"
+    de: "Iceland"
+    en: "Iceland"
+"XB-IN": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "India"
+    fr: "India"
+    de: "India"
+    en: "India"
+"XB-IR": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Iran, Islamic Republic of"
+    fr: "Iran, Islamic Republic of"
+    de: "Iran, Islamic Republic of"
+    en: "Iran, Islamic Republic of"
+"XA-IE": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Ireland"
+    fr: "Ireland"
+    de: "Ireland"
+    en: "Ireland"
+"XB-IL": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Israel"
+    fr: "Israel"
+    de: "Israel"
+    en: "Israel"
+"XA-IT-32": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Italy: Trentino-Alto Adige"
+    fr: "Italy: Trentino-Alto Adige"
+    de: "Italy: Trentino-Alto Adige"
+    en: "Italy: Trentino-Alto Adige"
+"XA-IT": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Italy"
+    fr: "Italy"
+    de: "Italy"
+    en: "Italy"
+"XB-JP": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Japan"
+    fr: "Japan"
+    de: "Japan"
+    en: "Japan"
+"XB-KR": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Korea, Republic of"
+    fr: "Korea, Republic of"
+    de: "Korea, Republic of"
+    en: "Korea, Republic of"
+"XA-LV": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Latvia"
+    fr: "Latvia"
+    de: "Latvia"
+    en: "Latvia"
+"XA-LT": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Lithuania"
+    fr: "Lithuania"
+    de: "Lithuania"
+    en: "Lithuania"
+"XA-LU": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Luxembourg"
+    fr: "Luxembourg"
+    de: "Luxembourg"
+    en: "Luxembourg"
+"XA-MT": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Malta"
+    fr: "Malta"
+    de: "Malta"
+    en: "Malta"
+"XD-MX": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Mexico"
+    fr: "Mexico"
+    de: "Mexico"
+    en: "Mexico"
+"XA-ME": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Montenegro"
+    fr: "Montenegro"
+    de: "Montenegro"
+    en: "Montenegro"
+"XA-NL": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Netherlands"
+    fr: "Netherlands"
+    de: "Netherlands"
+    en: "Netherlands"
+"XE-NZ": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "New Zealand"
+    fr: "New Zealand"
+    de: "New Zealand"
+    en: "New Zealand"
+"XA-NO": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Norway"
+    fr: "Norway"
+    de: "Norway"
+    en: "Norway"
+"XD-PY": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Paraguay"
+    fr: "Paraguay"
+    de: "Paraguay"
+    en: "Paraguay"
+"XA-PL": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Poland"
+    fr: "Poland"
+    de: "Poland"
+    en: "Poland"
+"XA-PT": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Portugal"
+    fr: "Portugal"
+    de: "Portugal"
+    en: "Portugal"
+"XD-PR": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Puerto Rico"
+    fr: "Puerto Rico"
+    de: "Puerto Rico"
+    en: "Puerto Rico"
+"XA-RO": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Romania"
+    fr: "Romania"
+    de: "Romania"
+    en: "Romania"
+"XA-RU": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Russian Federation"
+    fr: "Russian Federation"
+    de: "Russian Federation"
+    en: "Russian Federation"
+"XA-RS": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Serbia"
+    fr: "Serbia"
+    de: "Serbia"
+    en: "Serbia"
+"XA-SK": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Slovakia"
+    fr: "Slovakia"
+    de: "Slovakia"
+    en: "Slovakia"
+"XA-SI": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Slovenia"
+    fr: "Slovenia"
+    de: "Slovenia"
+    en: "Slovenia"
+"XC-ZA": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "South Africa"
+    fr: "South Africa"
+    de: "South Africa"
+    en: "South Africa"
+"XA-ES": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Spain"
+    fr: "Spain"
+    de: "Spain"
+    en: "Spain"
+"XA-SE": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Sweden"
+    fr: "Sweden"
+    de: "Sweden"
+    en: "Sweden"
+"XA-CH-VD": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Switzerland: Vaud"
+    fr: "Switzerland: Vaud"
+    de: "Switzerland: Vaud"
+    en: "Switzerland: Vaud"
+"XA-CH": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Switzerland"
+    fr: "Switzerland"
+    de: "Switzerland"
+    en: "Switzerland"
+"XB-SY": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Syrian Arab Republic"
+    fr: "Syrian Arab Republic"
+    de: "Syrian Arab Republic"
+    en: "Syrian Arab Republic"
+"XD-TT": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Trinidad and Tobago"
+    fr: "Trinidad and Tobago"
+    de: "Trinidad and Tobago"
+    en: "Trinidad and Tobago"
+"XB-TR": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Turkey"
+    fr: "Turkey"
+    de: "Turkey"
+    en: "Turkey"
+"XA-UA": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Ukraine"
+    fr: "Ukraine"
+    de: "Ukraine"
+    en: "Ukraine"
+"XA-GB": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "United Kingdom"
+    fr: "United Kingdom"
+    de: "United Kingdom"
+    en: "United Kingdom"
+"XD-US": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "United States of America"
+    fr: "United States of America"
+    de: "United States of America"
+    en: "United States of America"
+"XD-UY": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Uruguay"
+    fr: "Uruguay"
+    de: "Uruguay"
+    en: "Uruguay"
+"XD-VE": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: "Venezuela, Bolivarian Republic of"
+    fr: "Venezuela, Bolivarian Republic of"
+    de: "Venezuela, Bolivarian Republic of"
+    en: "Venezuela, Bolivarian Republic of"

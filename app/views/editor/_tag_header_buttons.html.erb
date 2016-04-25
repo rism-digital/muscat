@@ -1,4 +1,4 @@
-<%- extended_help = @editor_profile.get_tag_extended_help(tag_name) %>
+<%- extended_help = @editor_profile.get_tag_extended_help(tag_name, @item.class.to_s) %>
 <%
 	no_add = false
 	no_delete = false

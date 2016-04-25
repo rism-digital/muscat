@@ -7,7 +7,7 @@ ActiveAdmin.register Person do
   
   # Remove all action items
   config.clear_action_items!
-
+  config.sort_order = 'full_name_asc'
   breadcrumb do
     active_admin_muscat_breadcrumb
   end
@@ -87,7 +87,7 @@ ActiveAdmin.register Person do
       new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
       new_marc.load_source false # this will need to be fixed
       @person.marc = new_marc
-
+      
       @editor_profile = EditorConfiguration.get_default_layout @person
       # Since we have only one default template, no need to change the title
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
@@ -116,7 +116,7 @@ ActiveAdmin.register Person do
   filter :"375a_contains", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
   # FIXME locale not read
     :collection => [[I18n.t(:filter_male), 'male'], [ I18n.t(:filter_female), 'female'], [I18n.t(:filter_unknown), 'unknown']]
-  filter :"374a_contains", :label => proc {I18n.t(:filter_person_374a)}, :as => :string
+  filter :"550a_contains", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
   filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, :as => :string
   filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
@@ -170,10 +170,7 @@ ActiveAdmin.register Person do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => person }
   end
   
-  sidebar I18n.t(:search_sources), :only => :show do
-    render("activeadmin/src_search") # Calls a partial
-  end
-  
+ 
   ##########
   ## Edit ##
   ##########

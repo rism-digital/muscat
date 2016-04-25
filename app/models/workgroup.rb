@@ -26,8 +26,8 @@ class Workgroup < ActiveRecord::Base
     self.institutions.delete_all
     pattern_list=self.libpatterns.split(",")
     if libpatterns
-      pattern_list.each do |siglum|
-        self.institutions << Institution.where("siglum like ?", "%#{siglum.gsub("*", "").strip}%")
+      pattern_list.each do |pattern|
+        self.institutions << Institution.where("siglum REGEXP ?", pattern.gsub("*", "").strip)
       end
     end
   end

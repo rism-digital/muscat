@@ -3,9 +3,8 @@
 	model_plural = self.resource_class.to_s.pluralize.underscore.downcase
 %>
 <ul>
-	<%- if !is_selection_mode? %>
-	
-		<%- if (self.controller.respond_to? :new) && (can? :create, model) -%>
+  <%- if !is_selection_mode? %>
+		<%- if (self.controller.respond_to? :new) && (can? :create, resource_class) -%>
 			<li class="muscat_icon_link">
 				<%= link_to("#{I18n.t :new}", send("new_admin_#{model}_path"),
 					:class => "muscat_icon_link muscat_icon_link_new") %>

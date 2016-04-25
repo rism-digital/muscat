@@ -174,6 +174,10 @@ class Catalogue < ActiveRecord::Base
     sunspot_dsl.text :volume
     sunspot_dsl.text :place
     sunspot_dsl.text :date
+    sunspot_dsl.string :date_order do
+      date
+    end
+ 
     sunspot_dsl.text :pages
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
@@ -214,6 +218,12 @@ class Catalogue < ActiveRecord::Base
     
   end
 
+  def get_items
+    MarcSearch.select(Catalogue, '760$0', id.to_s).to_a
+  end
+
+  ransacker :"240g_contains", proc{ |v| } do |parent| end
   ransacker :"260b_contains", proc{ |v| } do |parent| end
+  ransacker :"508a_contains", proc{ |v| } do |parent| end
 
 end

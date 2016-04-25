@@ -9,24 +9,26 @@ groups:
     all_tags: 
     - "100"
     - "700"
-    - "710"
     - "240"
-    - "210"
+    - "730"
     - "260"
     - "300"      
-    - "760"
+    - "210"
+    - "508"
     all_tag_templates:
       "100": marc_show/show_person
       "700": marc_show/show_person
-      "710": marc_show/show_institution
-      "760": marc_show/show_catalogue
   subject:
     all_tags:
     - "041"
+    - "710"
+    - "760"
     - "650"
     - "651" 
     all_tag_templates:
       "650": marc_show/show_subject
+      "710": marc_show/show_institution
+      "760": marc_show/show_catalogue
       #"651": marc_show/show_place
   control: 
     all_tags: 
@@ -34,10 +36,8 @@ groups:
     - "001"
     - "003"
     - "005"
-    - 008
   notes: 
     all_tags: 
-    - "508"
     - "500"
     - "599"
     - "856"
