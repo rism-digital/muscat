@@ -522,6 +522,12 @@
     - - a
       - type: standard_title
         editor_partial: subfield_secondary
+    - - g
+      - values: 
+        - "RISM"
+        - "RDA"
+        - "RAK"
+        editor_partial: subfield_select
     - - k
     - - o
     - - r

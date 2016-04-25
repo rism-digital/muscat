@@ -1286,6 +1286,12 @@ doc_administration:
         fr: Titres uniformes additionnels
         de: Alternativer Einordnungstitel
         en: Additional title
+    g: 
+      label: 
+        it: RULE TYPE
+        fr: RULE TYPE
+        de: Regelwerk
+        en: Rule type
     k: 
       label: 
         it: Suddivisione formale
