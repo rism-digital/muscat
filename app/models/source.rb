@@ -51,13 +51,13 @@ class Source < ActiveRecord::Base
   belongs_to :source
   has_many :sources
   has_many :digital_objects
-  has_and_belongs_to_many :institutions
-  has_and_belongs_to_many :people
-  has_and_belongs_to_many :standard_titles
-  has_and_belongs_to_many :standard_terms
-  has_and_belongs_to_many :catalogues
-  has_and_belongs_to_many :liturgical_feasts
-  has_and_belongs_to_many :places
+  has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
+  has_and_belongs_to_many :people, join_table: "sources_to_people"
+  has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_title"
+  has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
+  has_and_belongs_to_many :catalogues, join_table: "sources_to_catalogues"
+  has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
+  has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
   has_and_belongs_to_many :works
   has_many :folder_items, :as => :item

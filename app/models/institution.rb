@@ -23,7 +23,7 @@ class Institution < ActiveRecord::Base
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
-  has_and_belongs_to_many :sources
+  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
   has_and_belongs_to_many :people
   has_and_belongs_to_many :holdings
   #has_many :folder_items, :as => :item
