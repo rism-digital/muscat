@@ -319,7 +319,7 @@ DEPENDENCIES
   daemons
   delayed_job (= 4.1.1)!
   delayed_job_active_record
-  devise
+  devise (~> 3.5.6)
   devise-i18n
   htmlentities
   i18n-js (>= 3.0.0.rc11)
