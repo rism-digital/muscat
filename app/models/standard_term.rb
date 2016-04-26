@@ -12,6 +12,8 @@
 class StandardTerm < ActiveRecord::Base
   
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
+  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_standard_terms")
+  has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_standard_terms")
   has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
