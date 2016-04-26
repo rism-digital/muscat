@@ -43,7 +43,7 @@ module RISM
   # The strap line in the header 
   STRAPLINE = "Schweiz - Suisse - Svizzera - Switzerland"
   # The left footer
-  FOOTER= "&copy; 2015 &ndash; Verein Arbeitsstelle Schweiz des RISM<br>Hallwylstrasse 15 &ndash; Postfach 286 &ndash; CH-3000 Bern 6"
+  FOOTER= "<a href=\"http://www.rism.info/en/service/disclaimer.html\">Impressum</a> &ndash; &copy; 2016 &ndash; The Association <em>Internationales Quellenlexikon der Musik</em><br>Johann Wolfgang Goethe-Universit&auml;t &ndash; Senckenberganlage 31-33 &ndash; D-60325 Frankfurt am Main"
   # Header menu
   MENUS = {
     :menu_help       => "http://www.rism.info/help",
