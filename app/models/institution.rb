@@ -13,6 +13,7 @@
 # The class provides the same functionality as similar models, see Catalogue
 
 class Institution < ActiveRecord::Base
+  include ForeignLinks
   resourcify
   
   # class variables for storing the user name and the event from the controller
@@ -48,13 +49,14 @@ class Institution < ActiveRecord::Base
   before_destroy :check_dependencies
   
   #before_create :generate_new_id
-  after_save :reindex
+  after_save :update_links, :reindex
   after_create :scaffold_marc, :fix_ids, :update_workgroups
   
   before_validation :set_object_fields
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
+  attr_accessor :suppress_recreate_trigger
 
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
@@ -67,6 +69,10 @@ class Institution < ActiveRecord::Base
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
+
+  def suppress_recreate
+    self.suppress_recreate_trigger = true
+  end 
 
   def fix_ids
     #generate_new_id
@@ -84,6 +90,13 @@ class Institution < ActiveRecord::Base
       self.marc_source = self.marc.to_marc
       self.without_versioning :save
     end
+  end
+  
+  def update_links
+    return if self.suppress_recreate_trigger == true
+
+    allowed_relations = ["institutions", "people", "places", "catalogues", "standard_terms"]
+    recreate_links(marc, allowed_relations)
   end
 
   def scaffold_marc

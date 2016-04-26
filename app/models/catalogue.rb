@@ -43,10 +43,11 @@ class Catalogue < ActiveRecord::Base
   
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
-  after_save :reindex
+  after_save :update_links, :reindex
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
+  attr_accessor :suppress_recreate_trigger
 
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
@@ -59,6 +60,10 @@ class Catalogue < ActiveRecord::Base
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
+  
+  def suppress_recreate
+    self.suppress_recreate_trigger = true
+  end 
   
   def fix_ids
     #generate_new_id
@@ -76,6 +81,13 @@ class Catalogue < ActiveRecord::Base
       self.marc_source = self.marc.to_marc
       self.without_versioning :save
     end
+  end
+  
+  def update_links
+    return if self.suppress_recreate_trigger == true
+
+    allowed_relations = ["institutions", "people", "places", "catalogue", "standard_terms"]
+    recreate_links(marc, allowed_relations)
   end
   
   def scaffold_marc

@@ -121,10 +121,19 @@
     :fields:
     - - "0"
       - :occurrences: "?"
+        :foreign_class: Person
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
     - - d
       - :occurrences: "?"
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
     - - j
       - :occurrences: "?"
     - - "4"

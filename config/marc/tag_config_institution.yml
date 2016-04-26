@@ -159,6 +159,40 @@
     - - u
       - :occurances: "?"
         :validation: "^http*"
+  "650":
+    :master: "0"
+    :indicator: "07"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTerm
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: term
+    - - "2"
+      - :occurrences: "?"
+        :no_browse: true
+  "651":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Place
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - "2"
+      - :occurrences: "?"
+        :no_browse: true
   "667": 
     :master: a
     :indicator: "1#"
