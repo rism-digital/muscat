@@ -33,6 +33,7 @@
 //= require jquery.validate
 //= require jquery.autosize.min
 //= require jquery.hotkeys
+//= require relator_codes_single_ujs
 //= require jquery.scrollTo.js
 //= require pae_incipit_render_ujs
 //= require textarea_autogrow_ujs
