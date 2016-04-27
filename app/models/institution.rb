@@ -40,6 +40,19 @@ class Institution < ActiveRecord::Base
   
   composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
   
+  # Institutions also can link to themselves
+  # This is the forward link
+  has_and_belongs_to_many(:institutions,
+    :class_name => "Institution",
+    :foreign_key => "institution_a_id",
+    :association_foreign_key => "institution_b_id")
+  
+  # This is the backward link
+  has_and_belongs_to_many(:referring_institutions,
+    :class_name => "Institution",
+    :foreign_key => "institution_b_id",
+    :association_foreign_key => "institution_a_id")
+  
   #validates_presence_of :siglum    
   
   validates_uniqueness_of :siglum, :allow_nil => true

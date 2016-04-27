@@ -15,6 +15,7 @@
 # * many to many with Sources
 
 class Catalogue < ActiveRecord::Base
+  include ForeignLinks
   resourcify
 
   # class variables for storing the user name and the event from the controller

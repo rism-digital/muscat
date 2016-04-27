@@ -10,7 +10,6 @@ class CreateRelationshipTables < ActiveRecord::Migration
     add_index :people_to_places, :place_id
     
     
-    
     # Institutions -> People
     create_table(:institutions_to_people, :id => false) do |t|
       t.column :institution_id, :integer 
@@ -84,6 +83,25 @@ class CreateRelationshipTables < ActiveRecord::Migration
     
     add_index :catalogues_to_standard_terms, :catalogue_id
     add_index :catalogues_to_standard_terms, :standard_term_id
+    
+    ## Reflection tables for institutions
+    create_table :institutions_institutions, :id => false do |t|
+      t.column :institution_a_id, :integer
+      t.column :institution_b_id, :integer      
+    end
+    
+    add_index :institutions_institutions, :institution_a_id
+    add_index :institutions_institutions, :institution_b_id
+    
+    
+    ## Reflection tables for catalogues
+    create_table :catalogues_catalogues, :id => false do |t|
+      t.column :catalogue_a_id, :integer
+      t.column :catalogue_b_id, :integer      
+    end
+    
+    add_index :catalogues_catalogues, :catalogue_a_id
+    add_index :catalogues_catalogues, :catalogue_b_id
     
   end
 end

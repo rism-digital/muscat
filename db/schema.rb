@@ -64,6 +64,14 @@ ActiveRecord::Schema.define(version: 20160426124201) do
   add_index "catalogues", ["name"], name: "index_catalogues_on_name", using: :btree
   add_index "catalogues", ["wf_stage"], name: "index_catalogues_on_wf_stage", using: :btree
 
+  create_table "catalogues_catalogues", id: false, force: :cascade do |t|
+    t.integer "catalogue_a_id", limit: 4
+    t.integer "catalogue_b_id", limit: 4
+  end
+
+  add_index "catalogues_catalogues", ["catalogue_a_id"], name: "index_catalogues_catalogues_on_catalogue_a_id", using: :btree
+  add_index "catalogues_catalogues", ["catalogue_b_id"], name: "index_catalogues_catalogues_on_catalogue_b_id", using: :btree
+
   create_table "catalogues_to_institutions", id: false, force: :cascade do |t|
     t.integer "catalogue_id",   limit: 4
     t.integer "institution_id", limit: 4
@@ -273,6 +281,14 @@ ActiveRecord::Schema.define(version: 20160426124201) do
 
   add_index "institutions", ["siglum"], name: "index_institutions_on_siglum", using: :btree
   add_index "institutions", ["wf_stage"], name: "index_institutions_on_wf_stage", using: :btree
+
+  create_table "institutions_institutions", id: false, force: :cascade do |t|
+    t.integer "institution_a_id", limit: 4
+    t.integer "institution_b_id", limit: 4
+  end
+
+  add_index "institutions_institutions", ["institution_a_id"], name: "index_institutions_institutions_on_institution_a_id", using: :btree
+  add_index "institutions_institutions", ["institution_b_id"], name: "index_institutions_institutions_on_institution_b_id", using: :btree
 
   create_table "institutions_to_catalogues", id: false, force: :cascade do |t|
     t.integer "catalogue_id",   limit: 4
