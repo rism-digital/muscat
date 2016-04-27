@@ -44,6 +44,7 @@
         - "SWNL"
         - "VIAF"
         - "WKP"
+        default: "VIAF"
         editor_partial: subfield_select
       - cols: 2
     columns: 4
@@ -260,10 +261,11 @@
     - - i
       - cols: 2
         values:
-        - "academic" 
         - "profession"
+        - "academic" 
         - "religion"
         - "unkown"
+        default: "profession"
         editor_partial: subfield_select
     columns: 2
 "551": 
