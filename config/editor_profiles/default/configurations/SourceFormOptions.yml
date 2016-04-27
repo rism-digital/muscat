@@ -167,22 +167,24 @@
     columns: 2
   tag_params:
     codes:
-      - "Verified"
       - "Ascertained"
       - "Alleged"
+      - "Conjectural"
       - "Doubtful"
       - "Misattributed"
+      - "Verified"
   layout_new: 
     fields: 
     - - a
     - - d
     - - j
       - values: 
-        - "Verified"
         - "Ascertained"
         - "Alleged"
+        - "Conjectural"
         - "Doubtful"
         - "Misattributed"
+        - "Verified"
         editor_partial: subfield_select
 "240": 
   new_window: standard_titles
@@ -426,22 +428,24 @@
     - - d
     - - j
       - values: 
-        - "Verified"
         - "Ascertained"
         - "Alleged"
+        - "Conjectural"
         - "Doubtful"
         - "Misattributed"
+        - "Verified"
         editor_partial: subfield_select
     - - "4"
       - editor_partial: subfield_relator_codes_700
   tag_list_additional_data: tag_list_additional_data_relator_codes
   tag_params: 
     codes:
-      - "Verified"
       - "Ascertained"
       - "Alleged"
+      - "Conjectural"
       - "Doubtful"
       - "Misattributed"
+      - "Verified"
     groups: 
       01_codes_artistic: 
       - cmp

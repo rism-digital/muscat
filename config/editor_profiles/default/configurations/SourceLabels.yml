@@ -1847,4 +1847,10 @@ voc:
     fr: MISATTRIBUTED
     de: fälschlich
     en: Misattributed
+"Conjectural":   
+  label:
+    it: CONJECTURAL
+    fr: CONJECTURAL
+    de: mutmaßlich
+    en: Conjectural
 

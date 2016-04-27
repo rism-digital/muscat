@@ -179,6 +179,13 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+  "264":
+    :master: c
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - c
+      - :occurrences: "?"
   "300":
     :master: a
     :indicator: "##"
@@ -351,6 +358,13 @@
     - - o
       - :occurrences: "*"
         :no_browse: true
+  "785":
+    :master: 0
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - 0
+      - :occurrences: "?"
   "856":
     :master: u
     :indicator: "##"
