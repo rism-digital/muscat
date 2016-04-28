@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20160425114201) do
   create_table "catalogues", force: :cascade do |t|
     t.string   "name",         limit: 255
     t.string   "author",       limit: 255
-    t.text     "description",  limit: 65535
+    t.string   "description",  limit: 255
     t.string   "revue_title",  limit: 255
     t.string   "volume",       limit: 255
     t.string   "place",        limit: 255
@@ -112,11 +112,11 @@ ActiveRecord::Schema.define(version: 20160425114201) do
     t.string   "wf_notes",                limit: 255
     t.integer  "wf_owner",                limit: 4,   default: 0
     t.integer  "wf_version",              limit: 4,   default: 0
+    t.integer  "lock_version",            limit: 4,   default: 0, null: false
     t.string   "attachment_file_name",    limit: 255
     t.string   "attachment_content_type", limit: 255
     t.integer  "attachment_file_size",    limit: 4
     t.datetime "attachment_updated_at"
-    t.integer  "lock_version",            limit: 4,   default: 0, null: false
   end
 
   add_index "digital_objects", ["source_id"], name: "index_digital_objects_on_source_id", using: :btree
@@ -357,6 +357,14 @@ ActiveRecord::Schema.define(version: 20160425114201) do
   add_index "people_sources", ["person_id"], name: "index_people_sources_on_person_id", using: :btree
   add_index "people_sources", ["source_id"], name: "index_people_sources_on_source_id", using: :btree
 
+  create_table "people_to_institutions", id: false, force: :cascade do |t|
+    t.integer "person_id",      limit: 4
+    t.integer "institution_id", limit: 4
+  end
+
+  add_index "people_to_institutions", ["institution_id"], name: "index_people_to_institutions_on_institution_id", using: :btree
+  add_index "people_to_institutions", ["person_id"], name: "index_people_to_institutions_on_person_id", using: :btree
+
   create_table "places", force: :cascade do |t|
     t.string   "name",         limit: 255,             null: false
     t.string   "country",      limit: 255
@@ -404,16 +412,6 @@ ActiveRecord::Schema.define(version: 20160425114201) do
   end
 
   add_index "searches", ["user_id"], name: "index_searches_on_user_id", using: :btree
-
-  create_table "sessions", force: :cascade do |t|
-    t.string   "session_id", limit: 255,   null: false
-    t.text     "data",       limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "sources", force: :cascade do |t|
     t.integer  "source_id",    limit: 4
@@ -503,11 +501,6 @@ ActiveRecord::Schema.define(version: 20160425114201) do
 
   add_index "standard_titles", ["title"], name: "index_standard_titles_on_title", using: :btree
   add_index "standard_titles", ["wf_stage"], name: "index_standard_titles_on_wf_stage", using: :btree
-
-  create_table "synchronizations", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255, default: "", null: false
