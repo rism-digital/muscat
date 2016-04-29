@@ -123,10 +123,10 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: Type
     h: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: MEDIUM
-        fr: MEDIUM
-        de: Medium
-        en: Medium
+        it: TYPE OF PUBLICATION
+        fr: TYPE OF PUBLICATION
+        de: Ausgabeform
+        en: Type of publication
 "260": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Impressum 
@@ -747,6 +747,19 @@ voc: !map:ActiveSupport::HashWithIndifferentAccess
         fr: EXTENT
         de: Umfang
         en: Extent
+"337": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PHYSICAL MEDIUM
+    fr: PHYSICAL MEDIUM 
+    de: Physisches Medium 
+    en: Physical Medium
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: PHYSICAL MEDIUM 
+        fr: PHYSICAL MEDIUM 
+        de: Physisches Medium 
+        en: Physical Medium
 "500": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Osservazioni
@@ -1029,3 +1042,4 @@ zxx: !map:ActiveSupport::HashWithIndifferentAccess
     fr: NO LINGUISTIK CONTENT
     de: ohne Sprache
     en: No linguistic content
+

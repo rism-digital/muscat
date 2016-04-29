@@ -166,6 +166,22 @@
     fields: 
     - - a
       - cols: 4
+"337": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+        values:
+        - "Printed Book"
+        - "Manuscript"
+        - "Electronic resource"
+        - "Sheet music"
+        - "Audiovisual media"
+        - "CD-ROM"
+        - "Combination"
+        - "Other"
+        default: "Printed Book"
+        editor_partial: subfield_select
 "500": 
   layout: 
     fields: 
