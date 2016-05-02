@@ -26,6 +26,53 @@ function marc_editor_init_tags( id ) {
 	   from an autocomplete field. It is a delegated method so dynamically added
 	   forms can handle it
 	*/
+	$("#marc_editor_panel").on('autocompleteopen', function(event, data) {
+		input = $(event.target); // Get the autocomplete id
+		toplevel_li = input.parents("li");
+		hidden = toplevel_li.children(".autocomplete_target")
+		
+		hidden.data("status", "opened");
+	});
+
+	$("#marc_editor_panel").on('autocompleteclose', function(event, data) {
+		input = $(event.target); // Get the autocomplete id
+		toplevel_li = input.parents("li");
+		hidden = toplevel_li.children(".autocomplete_target")
+		
+		console.log(hidden.data("status"));
+	});
+
+	$("#marc_editor_panel").on('autocompletechange', function(event, data) {
+		input = $(event.target); // Get the autocomplete id
+		
+		// havigate up to the <li> and down to the hidden elem
+		toplevel_li = input.parents("li");
+		hidden = toplevel_li.children(".autocomplete_target")
+		
+		console.log(hidden.data("status"));
+		
+		if (hidden.data("status") != "selected") {
+		
+			hidden.val("");
+			hidden.removeClass("serialize_marc");
+			var element_class = marc_editor_validate_className(hidden.data("tag"), hidden.data("subfield"));
+			hidden.removeClass(element_class);
+		
+			input.addClass("serialize_marc");
+			input.addClass("new_autocomplete");
+		}
+	});
+
+	$("#marc_editor_panel").on('autocompleteresponse', function(event, data) {
+		input = $(event.target); // Get the autocomplete id
+		toplevel_li = input.parents("li");
+		hidden = toplevel_li.children(".autocomplete_target")
+		
+		if (data.content.length == 0) {
+			hidden.data("status", "nomatch");
+		}
+	});
+
 	$("#marc_editor_panel").on('railsAutocomplete.select', 'input.ui-autocomplete-input', function(event, data){
 		input = $(event.target); // Get the autocomplete id
 		
@@ -37,24 +84,15 @@ function marc_editor_init_tags( id ) {
 		// field write in the input value. Default is id
 		field = hidden.data("field")
 		
-		// Set the value from the id of the autocompleted elem
-		if (data.item[field] == "") {
-			alert("Please select a valid item from the list");
-			//input.val("");
-			hidden.val("");
-			hidden.removeClass("serialize_marc");
-			var element_class = marc_editor_validate_className(hidden.data("tag"), hidden.data("subfield"));
-			hidden.removeClass(element_class);
-			
-			input.addClass("serialize_marc");
-			
-		} else {
-			hidden.addClass("serialize_marc");
-			var element_class = marc_editor_validate_className(hidden.data("tag"), hidden.data("subfield"));
-			hidden.addClass(element_class);
-			hidden.val(data.item[field]);
-			input.removeClass("serialize_marc");
-		}
+		hidden.addClass("serialize_marc");
+		var element_class = marc_editor_validate_className(hidden.data("tag"), hidden.data("subfield"));
+		hidden.addClass(element_class);
+		hidden.val(data.item[field]);
+		hidden.data("status", "selected");
+		
+		input.removeClass("serialize_marc");
+		input.removeClass("new_autocomplete");
+
 	})
 	
 	// Add save and preview hotkeys
