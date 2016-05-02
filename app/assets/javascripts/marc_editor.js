@@ -34,23 +34,13 @@ function marc_editor_init_tags( id ) {
 		hidden.data("status", "opened");
 	});
 
-	$("#marc_editor_panel").on('autocompleteclose', function(event, data) {
-		input = $(event.target); // Get the autocomplete id
-		toplevel_li = input.parents("li");
-		hidden = toplevel_li.children(".autocomplete_target")
-		
-		console.log(hidden.data("status"));
-	});
-
 	$("#marc_editor_panel").on('autocompletechange', function(event, data) {
 		input = $(event.target); // Get the autocomplete id
 		
 		// havigate up to the <li> and down to the hidden elem
 		toplevel_li = input.parents("li");
 		hidden = toplevel_li.children(".autocomplete_target")
-		
-		console.log(hidden.data("status"));
-		
+				
 		if (hidden.data("status") != "selected") {
 		
 			hidden.val("");
