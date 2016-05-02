@@ -230,10 +230,6 @@ class Source < ActiveRecord::Base
           standard_titles.map { |stit| stit.id }
     end
     
-    sunspot_dsl.integer :works, :multiple => true do
-          works.map { |work| work.id }
-    end
-
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 

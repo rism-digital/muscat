@@ -1,7 +1,4 @@
-<% function = is_new ? "new" : "edit" %>
-<% style_hide = is_new ? "style=\"display: none\"".html_safe : "style=\"display: block\"".html_safe %>
-
-<div class="tag_container" data-tag="<%= tag_name %>" data-function="<%= function %>" <%= style_hide -%>>
+<div class="tag_container" data-tag="<%= tag_name %>" style="display: block">
     <%= render :partial => "editor/tag_header", 
         :locals => { :tag_name => tag_name, :is_new => is_new, :empty_header => false  } %>
 

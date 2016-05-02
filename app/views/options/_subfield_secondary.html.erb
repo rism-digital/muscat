@@ -26,7 +26,7 @@ end
 	<tr>
 	<td width="100%">
 		<% if create_not_found == false %>
-			<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey autocomplete_new_window" %>
+			<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey autocomplete_new_window", :"data-subfield"=>"#{subfield}", :"data-field"=>"#{tag_name}" %>
 		<%else%>
 			<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey serialize_marc autocomplete_new_window", :"data-subfield"=>"#{master}", :"data-field"=>"#{field}" %>
 		<%end%>

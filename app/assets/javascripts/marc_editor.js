@@ -40,10 +40,20 @@ function marc_editor_init_tags( id ) {
 		// Set the value from the id of the autocompleted elem
 		if (data.item[field] == "") {
 			alert("Please select a valid item from the list");
-			input.val("");
+			//input.val("");
 			hidden.val("");
+			hidden.removeClass("serialize_marc");
+			var element_class = marc_editor_validate_className(hidden.data("tag"), hidden.data("subfield"));
+			hidden.removeClass(element_class);
+			
+			input.addClass("serialize_marc");
+			
 		} else {
+			hidden.addClass("serialize_marc");
+			var element_class = marc_editor_validate_className(hidden.data("tag"), hidden.data("subfield"));
+			hidden.addClass(element_class);
 			hidden.val(data.item[field]);
+			input.removeClass("serialize_marc");
 		}
 	})
 	

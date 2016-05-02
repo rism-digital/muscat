@@ -59,7 +59,7 @@ module ForeignLinks
     if self.is_a?(Source)
       if !self.suppress_update_count_trigger 
         marc_foreign_objects.each do |key, fo|
-          fo.each {|o| o.update_attribute( :src_count, o.sources.count)}
+          fo.each {|o| o.update_attribute( :src_count, o.referring_sources.count)}
         end
       end
     end

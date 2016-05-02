@@ -263,7 +263,7 @@ function marc_editor_init_validation(form, validation_conf) {
 		for (var subtag_key in tag_conf) {
 			var subtag = tag_conf[subtag_key];
 			var element_class = marc_editor_validate_className(key, subtag_key);
-			
+
 			if (subtag == "required") {
 				// Our own validator is called "presence" to distinguish it
 				// from the default "required" validator
