@@ -4,7 +4,7 @@
 
 <div class="tag_container tag_empty_container" <%= style_hide_empty -%>>
     <%= render :partial => "editor/tag_header", 
-        :locals => { :tag_name => tag_name, :is_new => false, :empty_header => true   } %>
+        :locals => { :tag_name => tag_name, :empty_header => true   } %>
 </div>
 
 <dl class="marc_editor_tag_block <%= (@item.marc.config.multiples_allowed? tag_name) ? "sortable" : "" %>" data-tag="<%= tag_name %>">
@@ -12,7 +12,7 @@
 <%- tags.each do |marc_tag| %>
 	<dt class="tag_toplevel_container" data-tag="<%= tag_name %>">
 		<%= render :partial => "editor/tag_dt",
-			:locals => { :tag_name => tag_name, :marc_tag => marc_tag , :is_new => false } %>
+			:locals => { :tag_name => tag_name, :marc_tag => marc_tag } %>
 	</dt>
 <%- end -%>
 </dl>

@@ -1,9 +1,6 @@
-<%- 
-	layout_key = "layout" #is_new ? "layout_new" : "layout"
--%>
 <table class="tag_grid" cellpadding="0" cellspacing="0">
     <tr><th width="25%"></th><th width="25%"></th><th width="25%"></th><th width="25%"></th></tr>
-    <%- @editor_profile.each_subfield_for(tag_name, is_new) do |subfield, field_settings|
+    <%- @editor_profile.each_subfield_for(tag_name) do |subfield, field_settings|
 
     		field_label = ""
     		field_leader = ""

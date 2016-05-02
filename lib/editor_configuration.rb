@@ -223,11 +223,10 @@ class EditorConfiguration
   end
   
   # Iterates on each subfield for the passed tag. Returns the field name and its config
-  def each_subfield_for(tag_name, is_new = false)
-    layout_key = is_new ? "layout_new" : "layout"
-    if options_config.include?(tag_name) && options_config[tag_name].include?(layout_key)
+  def each_subfield_for(tag_name)
+    if options_config.include?(tag_name) && options_config[tag_name].include?("layout")
       # we must have 'fields' if we have 'layout'
-      options_config[tag_name][layout_key]["fields"].each do |field, config|
+      options_config[tag_name]["layout"]["fields"].each do |field, config|
         yield [field, config]
       end
     elsif labels_config.include?(tag_name) && labels_config[tag_name].include?(:fields)
