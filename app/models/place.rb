@@ -69,7 +69,7 @@ class Place < ActiveRecord::Base
   end
   
   def check_dependencies
-    if (self.sources.count > 0)
+    if (self.referring_sources.count > 0)
       errors.add :base, "The place could not be deleted because it is used"
       return false
     end

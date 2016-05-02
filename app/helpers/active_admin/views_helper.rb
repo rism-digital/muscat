@@ -10,7 +10,7 @@ module ActiveAdmin::ViewsHelper
   # - src_list_page is the pagination
   def active_admin_embedded_source_list( context, item, query, src_list_page, enable_view_src = true )
     # get the list of sources for the item
-    c = item.sources
+    c = item.referring_sources
     # do not display the panel if no source attached
     return if c.empty?
     context.panel (I18n.t :filter_sources), :class => "muscat_panel"  do
