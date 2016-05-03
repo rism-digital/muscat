@@ -12,7 +12,6 @@ groups:
     - "035"
     - "040"
     - "043"
-    - "034"
   identity:
     all_tags:
     - "110"
@@ -24,6 +23,10 @@ groups:
   contact:
     all_tags:
     - "371"
+    - "034"
+    all_tag_templates:
+      "034": marc_show/show_googlemap
+
   description:
     all_tags:
     - "680"

@@ -156,10 +156,6 @@ ActiveAdmin.register Institution do
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => institution }
   end
-  
-  sidebar I18n.t(:search_sources), :only => :show do
-    render("activeadmin/src_search") # Calls a partial
-  end
 
   ##########
   ## Edit ##
