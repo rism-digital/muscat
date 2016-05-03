@@ -12,14 +12,14 @@
   "000": 
     :master: ""
     :indicator: "" 
-    :occurances: "1"
+    :occurrences: "1"
     :fields:
     - - ""
       - :no_browse: true
   "001": 
     :master: ""
     :indicator: "" 
-    :occurances: "1"
+    :occurrences: "1"
     :zero_padding: "14"
     :fields:
     - - ""
@@ -27,174 +27,174 @@
   "003": 
     :master: ""
     :indicator: "" 
-    :occurances: "1"
+    :occurrences: "1"
     :fields:
     - - ""
       - :no_browse: false
   "005": 
     :master: ""
     :indicator: "" 
-    :occurances: "1"
+    :occurrences: "1"
     :fields:
     - - ""
       - :no_browse: false
   "008": 
     :master: ""
     :indicator: ""
-    :occurances: "1"
+    :occurrences: "1"
     :fields:
     - - ""
       - :no_browse: true
   "024": 
     :master: a
     :indicator: "##"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - a
-      - :occurances: "*"
+      - :occurrences: "*"
 
   "035": 
     :master: a
     :indicator: "##"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - a
-      - :occurances: "*"
+      - :occurrences: "*"
   "040": 
     :master: a
     :indicator: "##"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - a
-      - :occurances: "*"
+      - :occurrences: "*"
 
   "043": 
     :master: c
     :indicator: "##"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - c
-      - :occurances: "*"
+      - :occurrences: "*"
   "110": 
     :master: a
     :indicator: "1#"
-    :occurances: "?"
+    :occurrences: "?"
     :fields: 
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
     - - c
-      - :occurances: "?"
+      - :occurrences: "?"
     - - g
-      - :occurances: "?"
+      - :occurrences: "?"
         :no_show: true
   "368": 
     :master: a
     :indicator: "##"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - a
-      - :occurances: "*"
+      - :occurrences: "*"
   "371": 
     :master: a
     :indicator: "##"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - a
-      - :occurances: "*"
+      - :occurrences: "*"
     - - e
-      - :occurances: "*"
+      - :occurrences: "*"
     - - b
-      - :occurances: "*"
+      - :occurrences: "*"
     - - c
-      - :occurances: "*"
+      - :occurrences: "*"
     - - d
-      - :occurances: "*"
+      - :occurrences: "*"
     - - m
-      - :occurances: "*"
+      - :occurrences: "*"
     - - u
-      - :occurances: "*"
+      - :occurrences: "*"
   "373": 
     :master: a
     :indicator: "##"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - a
-      - :occurances: "*"
+      - :occurrences: "*"
 
   "410": 
     :master: a
-    :indicator: "1#"
-    :occurances: "*"
+    :indicator: "##"
+    :occurrences: "*"
     :fields: 
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
   "510": 
     :master: a
     :indicator: "1#"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
   "580": 
     :master: "0"
     :indicator: "1#"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - "0"
-      - :occurances: "?"
+      - :occurrences: "?"
         :foreign_class: Institution
         :foreign_field: id
         :no_show: true
     - - x
-      - :occurances: "?"
+      - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: siglum
   "622": 
     :master: e
     :indicator: "##"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - e
-      - :occurances: "?"
+      - :occurrences: "?"
     - - u
-      - :occurances: "?"
+      - :occurrences: "?"
         :validation: "^http*"
   "667": 
     :master: a
     :indicator: "1#"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
   "670": 
     :master: "0"
     :indicator: "1#"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - "0"
-      - :occurances: "?"
+      - :occurrences: "?"
         :foreign_class: Catalogue
         :foreign_field: id
         :no_show: true
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: name
   "678": 
     :master: a
     :indicator: "1#"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
 
   "680": 
     :master: a
     :indicator: "1#"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
   "700":
     :master: "0"
     :indicator: "1#"
@@ -230,24 +230,24 @@
   "710": 
     :master: "0"
     :indicator: "1#"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - "0"
-      - :occurances: "?"
+      - :occurrences: "?"
         :foreign_class: Institution
         :foreign_field: id
         :no_show: true
     - - a
-      - :occurances: "?"
+      - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: siglum
   "856": 
     :master: u
     :indicator: "1#"
-    :occurances: "*"
+    :occurrences: "*"
     :fields: 
     - - u
-      - :occurances: "?"
+      - :occurrences: "?"
     - - z
-      - :occurances: "?"
+      - :occurrences: "?"
 
