@@ -20,6 +20,10 @@ groups:
     - "373"
     - "368"
     - "580"
+    all_tag_templates:
+      "580": institutions/show_580
+
+
   contact:
     all_tags:
     - "371"
