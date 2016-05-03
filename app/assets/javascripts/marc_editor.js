@@ -64,6 +64,13 @@ function marc_editor_init_tags( id ) {
 			check = toplevel_li.find(".creation_checkbox")
 			check.data("check", true)
 			
+			// Remove auxiliary data and enable
+			var group = input.parents(".tag_content_collapsable");
+			$(".autocomplete_extra", group).each(function () {
+				$(this).prop('disabled', false);
+				$(this).val("");
+			});
+			
 		}
 	});
 
@@ -78,15 +85,15 @@ function marc_editor_init_tags( id ) {
 	});
 
 	$("#marc_editor_panel").on('railsAutocomplete.select', 'input.ui-autocomplete-input', function(event, data){
-		input = $(event.target); // Get the autocomplete id
+		var input = $(event.target); // Get the autocomplete id
 		
 		// havigate up to the <li> and down to the hidden elem
-		toplevel_li = input.parents("li");
-		hidden = toplevel_li.children(".autocomplete_target")
+		var toplevel_li = input.parents("li");
+		var hidden = toplevel_li.children(".autocomplete_target")
 		
 		// the data-field in the hidden tells us which
 		// field write in the input value. Default is id
-		field = hidden.data("field")
+		var field = hidden.data("field")
 		
 		hidden.addClass("serialize_marc");
 		var element_class = marc_editor_validate_className(hidden.data("tag"), hidden.data("subfield"));
@@ -98,11 +105,23 @@ function marc_editor_init_tags( id ) {
 		input.removeClass("new_autocomplete");
 		
 		// Remove the checkbox
-		check_tr = toplevel_li.find(".checkbox_confirmation")
+		var check_tr = toplevel_li.find(".checkbox_confirmation")
 		check_tr.fadeOut("fast");
 		
-		check = toplevel_li.find(".creation_checkbox")
+		var check = toplevel_li.find(".creation_checkbox")
 		check.data("check", false)
+		
+		// Set auxiliary data
+		var group = input.parents(".tag_content_collapsable");
+		$(".autocomplete_extra", group).each(function () {
+			$(this).prop('disabled', true);
+			var extra_data = $(this).data("autocomplete-extra");
+			if (extra_data in data.item) {
+				$(this).val(data.item[extra_data])
+			} else {
+				console.log("Autocomplete extra data: cound not find " + extra_data + " in element.")
+			}
+		});
 
 	})
 	
@@ -206,9 +225,12 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 					$('#main_content').unblock();
 					$('#sections_sidebar_section').unblock();
 				} else {
-					alert ("Error saving page! Please reload the page. (" 
+					alert ("Error saving page! Please try again. (" 
 							+ textStatus + " " 
 							+ errorThrown + ")");
+
+					$('#main_content').unblock();
+					$('#sections_sidebar_section').unblock();
 				}
 		}
 	});

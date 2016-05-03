@@ -81,6 +81,7 @@
     w: required
 "852": 
   tags:
+    a: required
     p: required
     x: required
 "856": 

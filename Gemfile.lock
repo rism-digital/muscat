@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/rism-ch/rails3-jquery-autocomplete.git
-  revision: d43811abcfef16807f978d24d9dee4f50fed3398
+  revision: a952128a134f0c2283c1c1fbeb21aeb51b552cd0
   specs:
     rails3-jquery-autocomplete (1.0.14)
       rails (>= 3.0)
@@ -131,7 +131,7 @@ GEM
       delayed_job (>= 3.0, < 5)
     deprecation (1.0.0)
       activesupport
-    devise (3.5.8)
+    devise (3.5.9)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -193,7 +193,7 @@ GEM
       sprockets (>= 2.0)
     options (2.3.2)
     orm_adapter (0.5.0)
-    paper_trail (4.1.0)
+    paper_trail (5.0.0)
       activerecord (>= 3.0, < 6.0)
       activesupport (>= 3.0, < 6.0)
       request_store (~> 1.1)
