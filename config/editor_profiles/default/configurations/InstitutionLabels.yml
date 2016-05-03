@@ -75,6 +75,26 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Code ISIL
         de: ISIL Code  
         en: ISIL Code
+"034": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: GEODATA
+    fr: GEODATA
+    de: Geodaten
+    en: Geodata
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    d: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Latitude
+        fr: Latitude
+        de: Breitengrad 
+        en: Latitude
+    f: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Longitude
+        fr: Longitude
+        de: Längengrad 
+        en: Longitude
+
 "035": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Codice GND
@@ -99,7 +119,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Sigla
         fr: Sigla
-        de: Sigla
+        de: Sigel
         en: Sigla
 
 
@@ -245,7 +265,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: PARALLEL FORM OF NAME
     fr: PARALLEL FORM OF NAME
-    de: Parallelle Namensformen
+    de: Parallelle ...
     en: Parallel form of name
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
