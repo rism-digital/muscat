@@ -135,15 +135,6 @@
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
-
-"622": 
-  layout: 
-    fields: 
-    - - e
-      - cols: 2
-    - - u
-      - cols: 2
-    columns: 4
 "670": 
   layout: 
     fields: 

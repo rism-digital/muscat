@@ -287,28 +287,6 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: NOW IN
         de: In
         en: Now in
-
-
-"622": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Contact 
-    fr: Contact
-    de: Kontakt
-    en: Contact 
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    e: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Address
-        fr: Address
-        de: Adresse
-        en: Address 
-    u: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: URL
-        fr: URL
-        de: URL
-        en: URL
-
 "667": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: INTERNAL NOTES

@@ -157,16 +157,6 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: siglum
-  "622": 
-    :master: e
-    :indicator: "##"
-    :occurrences: "*"
-    :fields: 
-    - - e
-      - :occurrences: "?"
-    - - u
-      - :occurrences: "?"
-        :validation: "^http*"
   "667": 
     :master: a
     :indicator: "1#"
