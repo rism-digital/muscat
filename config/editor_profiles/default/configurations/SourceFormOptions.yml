@@ -584,8 +584,7 @@
   layout: 
     fields: 
     - - a
-      - nowrap: true
-        type: library
+      - type: library
         editor_partial: subfield_secondary
         allow_new: true
     - - b
@@ -593,15 +592,5 @@
     - - p
       - growfield: true
     - - d
-  layout_new: 
-    fields: 
-    - - a
-      - nowrap: true
-    - - e
-    - - b
-    - - p
-      - growfield: true
-    - - d
-    - - z
 ui: 
   hide_marc_identifiers: true

@@ -14,11 +14,6 @@
     			sub_label = @editor_profile.get_sub_label(tag_name, subfield, true)
     			field_label =  "#{sub_label}" if !sub_label.empty?
     		end
-		
-    		extra_td_options = ""
-    		if field_settings["nowrap"]
-    			extra_td_options = " nowrap=\"true\"".html_safe
-    		end
     	-%>
     	<%- if (subfield != "__blank") -%>
     		<%- if !field_settings["hidden"] || !field_settings["hidden"]==true -%>
@@ -29,7 +24,7 @@
                         <%= extra_leader -%>
                     </div>
                 </td>
-        		<td colspan="3" <%= extra_td_options -%>>
+        		<td colspan="3">
         			<div class="grid_cell">
         				<div style="vertical-align: bottom; background-color: transparent">
         					<ul class="repeating_subfield">

@@ -162,12 +162,6 @@
         editor_partial: subfield_secondary
     - - "4"
       - editor_partial: subfield_relator_codes_700
-  layout_new:
-    fields: 
-    - - a
-    - - d
-    - - "4"
-      - editor_partial: subfield_relator_codes_700
   tag_list_additional_data: tag_list_additional_data_relator_codes
   tag_params: 
     groups: 
