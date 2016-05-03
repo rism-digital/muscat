@@ -84,16 +84,16 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     d: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Latitude
-        fr: Latitude
-        de: Breitengrad 
-        en: Latitude
-    f: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Longitude
         fr: Longitude
         de: Längengrad 
         en: Longitude
+    f: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Latitude
+        fr: Latitude
+        de: Breitengrad 
+        en: Latitude
 
 "035": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
