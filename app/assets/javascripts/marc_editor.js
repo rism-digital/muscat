@@ -13,7 +13,6 @@ function marc_editor_init_tags( id ) {
 	
 	$(".sortable").sortable();
 
-
 	marc_editor_form_changed = false;
 	$(id).dirtyFields({
 		trimText:true,
@@ -40,8 +39,15 @@ function marc_editor_init_tags( id ) {
 		// havigate up to the <li> and down to the hidden elem
 		toplevel_li = input.parents("li");
 		hidden = toplevel_li.children(".autocomplete_target")
-				
+		
 		if (hidden.data("status") != "selected") {
+		
+			// Are we allowed to create a new?
+			if (hidden.data("allow-new") == false) {
+				alert("Item cannot create a new element, please select one from the list.");
+				input.addClass("error");
+				return false;
+			}
 		
 			hidden.val("");
 			hidden.removeClass("serialize_marc");
@@ -50,6 +56,14 @@ function marc_editor_init_tags( id ) {
 		
 			input.addClass("serialize_marc");
 			input.addClass("new_autocomplete");
+			
+			// Show the checkbox
+			check_tr = toplevel_li.find(".checkbox_confirmation")
+			check_tr.fadeIn("fast");
+			
+			check = toplevel_li.find(".creation_checkbox")
+			check.data("check", true)
+			
 		}
 	});
 
@@ -82,6 +96,13 @@ function marc_editor_init_tags( id ) {
 		
 		input.removeClass("serialize_marc");
 		input.removeClass("new_autocomplete");
+		
+		// Remove the checkbox
+		check_tr = toplevel_li.find(".checkbox_confirmation")
+		check_tr.fadeOut("fast");
+		
+		check = toplevel_li.find(".creation_checkbox")
+		check.data("check", false)
 
 	})
 	

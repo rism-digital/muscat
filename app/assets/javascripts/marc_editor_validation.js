@@ -66,6 +66,15 @@ function marc_validate_required_if(value, element, param) {
 	return valid;
 }
 
+function marc_validate_new_creation(value, element) {
+	if ($(element).data("check") == true) {
+		if (element.checked == false) {
+			return false;
+		}
+	}
+	return true;
+}
+
 function marc_editor_validate_advanced_rule(element_class, rules) {
 	for (var rule_name in rules) {
 		if (rule_name == "required_if") {
@@ -255,6 +264,11 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("presence", marc_validate_presence, "Missing Mandatory Field");
 	$.validator.addMethod("required_if", marc_validate_required_if, 
 			$.validator.format("Missing Mandatory Field, because field {0} ${1} is present"));
+
+	// New creation: this is not configurable, it is used to make sure the
+	// "confirm create new" checkbox is selected for new items
+	$.validator.addMethod("new_creation", marc_validate_new_creation, "Please confirm new element");
+	$.validator.addClassRules("creation_checkbox", { new_creation: true });
 
 	for (var key in validation_conf) {
 		

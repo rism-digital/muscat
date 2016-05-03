@@ -4,6 +4,9 @@
 <%- ac_path = send(params['type'] + "_default_autocomplete")%>
 <%- field = params.has_key?("field") ? params['field'] : "id" %>
 <%- create_not_found = params.has_key?("allow_not_found") ? params['allow_not_found'] : false %>
+<%- allow_new = params.has_key?("allow_new") ? params['allow_new'] : false %>
+<!-- validation plugin REQUIRES a name. Make it random as we never call it elsewhere -->
+<%- check_name = "confirmation_uniq_" + SecureRandom.hex(5)%>
 
 <% 
 do_serialize = "serialize_marc" if create_not_found == false
@@ -20,7 +23,8 @@ end
 
 %>
 
-<input type="hidden" class="autocomplete_target <%=do_serialize%> <%=validate_class%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%= marc_subfield_m.content %>" <%=name_tag%> >
+
+<input type="hidden" class="autocomplete_target <%=do_serialize%> <%=validate_class%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%= marc_subfield_m.content %>" <%=name_tag%> data-allow-new="<%=allow_new%>">
 
 <table class="marc_editor_grid_internal_layout" cellpadding="0" cellspacing="0">
 	<tr>
@@ -32,4 +36,9 @@ end
 		<%end%>
 	</td>
 </tr>
+	<tr class="checkbox_confirmation" style="display: none;">
+		<td>
+	        <input class="creation_checkbox" type="checkbox" data-check="false" name="<%=check_name%>"/><span>&nbsp;Confirm Create New Item</span>
+		</td>
+	</tr>
 </table>
