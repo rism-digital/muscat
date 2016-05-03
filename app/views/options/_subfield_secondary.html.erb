@@ -42,5 +42,6 @@ name_tag_subfield = "#{tag_name}#{subfield}"
 <%end%>
 
 <div class="checkbox_confirmation" style="display: none;">
-	<input class="creation_checkbox" type="checkbox" data-check="false" name="<%=check_name%>"/><span>&nbsp;Confirm Create New Item</span>
+	<input class="creation_checkbox" type="checkbox" data-check="false" name="<%=check_name%>"/>
+	<label id="<%=check_name%>-error" class="error test" for="<%=check_name%>"><span style="color: black;">Confirm the insertion of a new value</span></label>
 </div>
