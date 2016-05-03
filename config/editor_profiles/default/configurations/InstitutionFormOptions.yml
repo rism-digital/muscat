@@ -127,6 +127,14 @@
     - - a
       - cols: 4
     columns: 4
+"551": 
+  layout: 
+    fields: 
+    - - "a"
+      - type: place
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
 "580": 
   layout: 
     fields: 

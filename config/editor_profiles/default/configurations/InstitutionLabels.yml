@@ -274,6 +274,20 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: PARALLEL FORM OF NAME
         de: Namensvarianten  
         en: Parallel form of name
+"551": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PLACES
+    fr: PLACES
+    de: Orte
+    en: Places
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: PLACE
+        fr: PLACE
+        de: Ort
+        en: Place
+
 "580": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: NOW IN
