@@ -24,13 +24,13 @@ class MarcInstitution < Marc
     address = ""
     url = ""
 
-    if node = first_occurance("622", "e")
+    if node = first_occurance("371", "a")
       if node.content
         address = node.content.truncate(128)
       end
     end
     
-    if node = first_occurance("622", "u")
+    if node = first_occurance("371", "u")
       if node.content
         url = node.content.truncate(24)
       end

@@ -12,6 +12,7 @@ groups:
     - "035"
     - "040"
     - "043"
+    - "034"
   identity:
     all_tags:
     - "110"
@@ -23,13 +24,13 @@ groups:
   contact:
     all_tags:
     - "371"
-    - "622"
   description:
     all_tags:
     - "678"
     - "670"
     - "680"
     - "856"
+    - "551"
     - "710"
     - "700"
   control: 

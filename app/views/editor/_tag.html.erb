@@ -5,7 +5,6 @@
     		field_label = ""
     		field_leader = ""
 			field_settings = Hash.new if !field_settings
-
     		if @item.marc.config.multiples_allowed?(tag_name, subfield)
     			extra_leader = safe_link_to_function_stub "<div class=\"add_subfield_button abutton_condensed ui-state-default  abutton-icon-solo ui-corner-all\"><span class=\"ui-icon ui-icon-plus\"></span>_</div>".html_safe, "marc_editor_add_subfield($(this))", :title => "Add another instance of this subfield"				
     		end

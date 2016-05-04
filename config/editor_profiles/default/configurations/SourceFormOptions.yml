@@ -477,6 +477,7 @@
         - "RISM"
         - "RDA"
         - "RAK"
+        default: "RISM"
         editor_partial: subfield_select
     - - k
     - - o

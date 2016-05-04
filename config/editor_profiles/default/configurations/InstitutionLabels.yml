@@ -75,6 +75,26 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: Code ISIL
         de: ISIL Code  
         en: ISIL Code
+"034": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: LOCATION
+    fr: LOCATION
+    de: Position
+    en: Location
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    d: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Longitude
+        fr: Longitude
+        de: Längengrad 
+        en: Longitude
+    f: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Latitude
+        fr: Latitude
+        de: Breitengrad 
+        en: Latitude
+
 "035": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: Codice GND
@@ -99,7 +119,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: Sigla
         fr: Sigla
-        de: Sigla
+        de: Sigel
         en: Sigla
 
 
@@ -214,6 +234,13 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: URL
         de: URL
         en: URL
+    z: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: PUBLIC NOTE
+        fr: PUBLIC NOTE
+        de: Bemerkungen
+        en: Public Note
+
 "373": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: NOW IN
@@ -245,7 +272,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: PARALLEL FORM OF NAME
     fr: PARALLEL FORM OF NAME
-    de: Parallelle Namensformen
+    de: Parallelle ...
     en: Parallel form of name
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -254,41 +281,33 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         fr: PARALLEL FORM OF NAME
         de: Namensvarianten  
         en: Parallel form of name
+"551": !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PLACES
+    fr: PLACES
+    de: Orte
+    en: Places
+  fields: !map:ActiveSupport::HashWithIndifferentAccess 
+    a: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: PLACE
+        fr: PLACE
+        de: Ort
+        en: Place
+
 "580": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: NOW IN
     fr: NOW IN
-    de: In
+    de: Heute in
     en: Now in
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     x: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         t: NOW IN
         fr: NOW IN
-        de: In
+        de: Heute in
         en: Now in
-
-
-"622": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Contact 
-    fr: Contact
-    de: Kontakt
-    en: Contact 
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    e: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Address
-        fr: Address
-        de: Adresse
-        en: Address 
-    u: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: URL
-        fr: URL
-        de: URL
-        en: URL
-
 "667": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: INTERNAL NOTES

@@ -47,7 +47,7 @@ class LiturgicalFeast < ActiveRecord::Base
       name
     end
     text :name
-    
+  
     text :notes
     
     join(:folder_id, :target => FolderItem, :type => :integer, 

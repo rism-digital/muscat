@@ -20,16 +20,24 @@ groups:
     - "373"
     - "368"
     - "580"
+    all_tag_templates:
+      "580": institutions/show_580
+
+
   contact:
     all_tags:
     - "371"
-    - "622"
+    - "034"
+    all_tag_templates:
+      "034": marc_show/show_googlemap
+
   description:
     all_tags:
     - "680"
     - "678"
     - "670"
     - "856"
+    - "551"
     - "710"
     - "700"
   control: 

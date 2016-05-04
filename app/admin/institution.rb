@@ -146,19 +146,33 @@ ActiveAdmin.register Institution do
       render :partial => "marc_missing"
     else
       render :partial => "marc/show"
+    end    
+    if !resource.get_deposita.empty?
+      panel I18n.t :filter_series_items do
+        search=Institution.solr_search do 
+          fulltext(params[:id], :fields=>['5800'])
+          paginate :page => params[:items_list_page], :per_page=>15
+          order_by(:siglum_order)
+        end
+        paginated_collection(search.results, param_name: 'items_list_page', download_links: false) do
+          table_for(collection, sortable: true) do
+            column :id do |p| link_to p.id, controller: :institutions, action: :show, id: p.id end
+            column :siglum
+            column :name
+            column :place
+          end
+        end
+      end
     end
     active_admin_embedded_source_list( self, institution, params[:qe], params[:src_list_page], !is_selection_mode? )
     active_admin_user_wf( self, institution )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+
   end
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => institution }
-  end
-  
-  sidebar I18n.t(:search_sources), :only => :show do
-    render("activeadmin/src_search") # Calls a partial
   end
 
   ##########
