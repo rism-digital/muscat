@@ -23,13 +23,32 @@ function newWindowUpdateValue(id, label) {
 	if (_nw_destination == null)
 		return;
 	
+	var field = _nw_destination.data("field")
+	
 	// Get the autocomplete
 	toplevel_li = _nw_destination.parents("li");
 	ac = toplevel_li.find(".autocomplete_new_window");
 	
+	_nw_destination.addClass("serialize_marc");
+	var element_class = marc_editor_validate_className(_nw_destination.data("tag"), _nw_destination.data("subfield"));
+	_nw_destination.addClass(element_class);
+	// Write the data
+	_nw_destination.val(id);
+	_nw_destination.data("status", "selected");
+	
+	ac.removeClass("serialize_marc");
+	ac.removeClass("new_autocomplete");
+	
+	// Remove the checkbox
+	var check_tr = toplevel_li.find(".checkbox_confirmation")
+	check_tr.fadeOut("fast");
+	
+	var check = toplevel_li.find(".creation_checkbox")
+	check.data("check", false)
+	
+	// set the value of the AC by hand
 	ac.val(label);
 	
-	_nw_destination.val(id);
 	_nw_destination = null;
 	_child = null
 }
@@ -112,6 +131,7 @@ function newWindowIsSelect() {
 				$("#wrapper").block({message: ""});
 				
 				toplevel_li = $(this).parents(".tag_container");
+				// This is always the hidden field
 				_nw_destination = toplevel_li.find(".autocomplete_target")
 				
 				controller = $(this).data("controller");
