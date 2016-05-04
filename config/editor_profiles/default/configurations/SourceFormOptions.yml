@@ -520,6 +520,8 @@
       - type: library
         editor_partial: subfield_secondary
         allow_new: true
+    - - e
+      - autocomplete_extra: name
     - - b
     - - z
     - - p
