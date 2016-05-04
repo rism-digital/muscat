@@ -175,19 +175,6 @@
       - "Doubtful"
       - "Misattributed"
       - "Verified"
-  layout_new: 
-    fields: 
-    - - a
-    - - d
-    - - j
-      - values: 
-        - "Ascertained"
-        - "Alleged"
-        - "Conjectural"
-        - "Doubtful"
-        - "Misattributed"
-        - "Verified"
-        editor_partial: subfield_select
 "240": 
   new_window: standard_titles
   layout: 
@@ -196,14 +183,6 @@
       - type: standard_title
         editor_partial: subfield_secondary
         allow_new: true
-    - - k
-    - - o
-    - - r
-    - - n
-    - - m
-  layout_new: 
-    fields: 
-    - - a
     - - k
     - - o
     - - r
@@ -362,9 +341,6 @@
       - type: standard_term
         editor_partial: subfield_secondary
         allow_new: true
-  layout_new: 
-    fields: 
-    - - a
 "651":
   new_window: places
   layout: 
@@ -373,9 +349,6 @@
       - type: place
         editor_partial: subfield_secondary
         allow_new: true
-  layout_new: 
-    fields: 
-    - - a
 "657": 
   new_window: liturgical_feasts
   layout: 
@@ -384,9 +357,6 @@
       - type: liturgical_feast
         editor_partial: subfield_secondary
         allow_new: true
-  layout_new: 
-    fields: 
-    - - a
 "690": 
   new_window: catalogues
   layout: 
@@ -396,10 +366,6 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - n
-  layout_new: 
-    fields: 
-    - - a
-    - - n
 "691":
   new_window: catalogues
   layout: 
@@ -408,10 +374,6 @@
       - type: catalogue
         editor_partial: subfield_secondary
         allow_new: true
-    - - n
-  layout_new: 
-    fields: 
-    - - a
     - - n
 "700":
   new_window: people
@@ -425,21 +387,6 @@
       - autocomplete_extra: life_dates
     - - j
       - editor_partial: subfield_attribution_codes
-    - - "4"
-      - editor_partial: subfield_relator_codes_700
-  layout_new:
-    fields: 
-    - - a
-    - - d
-    - - j
-      - values: 
-        - "Ascertained"
-        - "Alleged"
-        - "Conjectural"
-        - "Doubtful"
-        - "Misattributed"
-        - "Verified"
-        editor_partial: subfield_select
     - - "4"
       - editor_partial: subfield_relator_codes_700
   tag_list_additional_data: tag_list_additional_data_relator_codes
@@ -502,12 +449,6 @@
     - - b
     - - "4"
       - editor_partial: subfield_relator_codes_710
-  layout_new: 
-    fields: 
-    - - a
-    - - b
-    - - "4"
-      - editor_partial: subfield_relator_codes_710
   tag_params: 
     codes: 
     - fmo
@@ -537,14 +478,6 @@
         - "RDA"
         - "RAK"
         editor_partial: subfield_select
-    - - k
-    - - o
-    - - r
-    - - n
-    - - m
-  layout_new: 
-    fields: 
-    - - a
     - - k
     - - o
     - - r
