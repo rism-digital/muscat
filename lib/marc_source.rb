@@ -77,7 +77,6 @@ class MarcSource < Marc
     siglum = "" 
     ms_no = ""
     
-
     tags_852 = by_tags(["852"])    
     if tags_852.length > 1 # we have multiple copies
       tags_852.each do |tag|
@@ -90,9 +89,10 @@ class MarcSource < Marc
     elsif tags_852.length == 1 # single copy
       if node = first_occurance("852", "a")
         siglum = node.foreign_object.siglum
+        siglum = "" if !siglum
       end
       if node = first_occurance("852", "p")
-        ms_no = node.content
+        ms_no = node.content if node.content
       end
     end
     
