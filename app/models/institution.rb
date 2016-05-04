@@ -102,11 +102,11 @@ class Institution < ActiveRecord::Base
     end
     
     if self.url || self.address
-      new_600 = MarcNode.new("institution", "622", "", "1#")
-      new_600.add_at(MarcNode.new("institution", "u", self.url, nil), 0) if self.url
-      new_600.add_at(MarcNode.new("institution", "e", self.address, nil), 0) if self.address
+      new_371 = MarcNode.new("institution", "371", "", "1#")
+      new_371.add_at(MarcNode.new("institution", "u", self.url, nil), 0) if self.url
+      new_371.add_at(MarcNode.new("institution", "a", self.address, nil), 0) if self.address
     
-      new_marc.root.children.insert(new_marc.get_insert_position("622"), new_600)
+      new_marc.root.children.insert(new_marc.get_insert_position("371"), new_371)
     end
     
     if self.notes != nil and !self.notes.empty?
@@ -215,5 +215,10 @@ class Institution < ActiveRecord::Base
     sigla = siglum != nil && !siglum.empty? ? " [#{siglum}]" : ""
     "#{name}#{sigla}"
   end
-  
+ 
+  def get_deposita
+    MarcSearch.select(Institution, '580$x', siglum.to_s).to_a
+  end
+
+ 
 end
