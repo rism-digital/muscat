@@ -133,9 +133,16 @@
 					* a.error {
 						color: red;
 					}
+					* span.error {
+						color: red;
+					}
 					* .new_autocomplete {
 						border-color: orange;
 						color: orange;
+					}
+					
+					input:disabled {
+					    background: #dddddd;
 					}
                 }
             } 

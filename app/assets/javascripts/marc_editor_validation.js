@@ -181,7 +181,9 @@ function marc_editor_init_validation(form, validation_conf) {
 				} else {
 					console.log("Tried to higlight a hidden object with no autocomplete.")
 				}
-				
+			} else if ( element.type === "checkbox" ) {
+				var label = $("#" + element.name + "-label");
+				label.addClass(errorClass).removeClass( validClass );
 			} else {
 				$( element ).addClass( errorClass ).removeClass( validClass );
 			}
@@ -230,8 +232,11 @@ function marc_editor_init_validation(form, validation_conf) {
 				} else {
 					console.log("Tried to un-higlight a hidden object with no autocomplete.")
 				}
-				
+			} else if ( element.type === "checkbox" ) {
+				var label = $("#" + element.name + "-label");
+				label.addClass(validClass).removeClass( errorClass );
 			} else {
+				
 				$( element ).removeClass( errorClass ).addClass( validClass );
 			}
 
@@ -257,6 +262,13 @@ function marc_editor_init_validation(form, validation_conf) {
 					menu_item.removeClass(errorClass);
 			}
 
+		},
+		errorPlacement: function(error, element) {
+			// Checkboxes do not append any message
+			// FIXME other cases of checkbox
+			if (element.is(':checkbox') == false) {
+				//error.insertAfter( element );
+			}
 		}
 	});
 	
