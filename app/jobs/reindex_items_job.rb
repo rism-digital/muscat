@@ -22,12 +22,12 @@ class ReindexItemsJob < ProgressJob::Base
     items = @parent_obj.send(klass_name)  
     
     update_stage("Look up Sources")
-    update_progress_max(@parent_obj.sources.count)
+    update_progress_max(@parent_obj.referring_sources.count)
     batch = 1
     items.find_in_batches(batch_size: 10) do |group|
       Sunspot.index group
       Sunspot.commit
-      update_stage_progress("Updating records #{batch * 10}/#{@parent_obj.sources.count}", step: 10)
+      update_stage_progress("Updating records #{batch * 10}/#{@parent_obj.referring_sources.count}", step: 10)
       batch += 1
     end
     

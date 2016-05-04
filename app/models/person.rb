@@ -34,8 +34,11 @@ class Person < ActiveRecord::Base
   
   resourcify 
   has_many :works
-  has_and_belongs_to_many :sources
-  has_and_belongs_to_many :institutions
+  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
+  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_people")
+  has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_people")
+  has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
+  has_and_belongs_to_many :places, join_table: "people_to_places"
   has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -113,7 +116,7 @@ class Person < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["institutions", "people"]
+    allowed_relations = ["institutions", "people", "places"]
     recreate_links(marc, allowed_relations)
   end
   
@@ -222,7 +225,7 @@ class Person < ActiveRecord::Base
     
   # before_destroy, will delete Person only if it has no Source and no Work
   def check_dependencies
-    if (self.sources.count > 0) || (self.works.count > 0)
+    if (self.referring_sources.count > 0) || (self.works.count > 0)
       errors.add :base, "The person could not be deleted because it is used"
       return false
     end

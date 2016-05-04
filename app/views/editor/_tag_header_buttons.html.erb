@@ -12,13 +12,6 @@
 	if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name].include?("new_window")
 		new_window_controller = @editor_profile.options_config[tag_name]["new_window"]
 	end
-	
-	allow_new = @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name].include?("layout_new")
-	
-	if allow_new && is_new
-		no_add = true
-		no_delete = true
-	end
 
 %>
 <div style="float:right" class="_lp_tag_header ui-corner-all">
@@ -27,14 +20,6 @@
 		<!-- this is a special case, see new_window_select_ujs.js -->
  		<a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" title="Search"><span class="ui-icon ui-icon-search"></span>_</a>
 		<%end%>
-		
-		<% if allow_new && !empty_header %>
-			<% if is_new %>
-			<a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="edit" title="Edit existing Auth file"><span class="ui-icon ui-icon-locked"></span>_</a>
-			<% else %>
-			<a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="new" title="Create New Auth File"><span class="ui-icon ui-icon-unlocked"></span>_</a>
-			<% end %>
-		<% end %>
 
 		<%- if !extended_help.empty? %>
         <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="help" data-help="<%= extended_help -%>"  title="Help"><span class="ui-icon ui-icon-help"></span>_</a>

@@ -13,6 +13,7 @@
 # The class provides the same functionality as similar models, see Catalogue
 
 class Institution < ActiveRecord::Base
+  include ForeignLinks
   resourcify
   
   # class variables for storing the user name and the event from the controller
@@ -23,8 +24,14 @@ class Institution < ActiveRecord::Base
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
-  has_and_belongs_to_many :sources
-  has_and_belongs_to_many :people
+  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
+  has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
+  has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_institutions")
+  has_and_belongs_to_many :people, join_table: "institutions_to_people"
+  has_and_belongs_to_many :catalogues, join_table: "institutions_to_catalogues"
+  has_and_belongs_to_many :places, join_table: "institutions_to_places"
+  has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
+  
   has_and_belongs_to_many :holdings
   #has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: Delayed::Job, foreign_key: "parent_id"
@@ -32,6 +39,19 @@ class Institution < ActiveRecord::Base
   belongs_to :user, :foreign_key => "wf_owner"
   
   composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
+  
+  # Institutions also can link to themselves
+  # This is the forward link
+  has_and_belongs_to_many(:institutions,
+    :class_name => "Institution",
+    :foreign_key => "institution_a_id",
+    :association_foreign_key => "institution_b_id")
+  
+  # This is the backward link
+  has_and_belongs_to_many(:referring_institutions,
+    :class_name => "Institution",
+    :foreign_key => "institution_b_id",
+    :association_foreign_key => "institution_a_id")
   
   #validates_presence_of :siglum    
   
@@ -42,13 +62,14 @@ class Institution < ActiveRecord::Base
   before_destroy :check_dependencies
   
   #before_create :generate_new_id
-  after_save :reindex
+  after_save :update_links, :reindex
   after_create :scaffold_marc, :fix_ids, :update_workgroups
   
   before_validation :set_object_fields
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
+  attr_accessor :suppress_recreate_trigger
 
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
@@ -61,6 +82,10 @@ class Institution < ActiveRecord::Base
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
+
+  def suppress_recreate
+    self.suppress_recreate_trigger = true
+  end 
 
   def fix_ids
     #generate_new_id
@@ -78,6 +103,13 @@ class Institution < ActiveRecord::Base
       self.marc_source = self.marc.to_marc
       self.without_versioning :save
     end
+  end
+  
+  def update_links
+    return if self.suppress_recreate_trigger == true
+
+    allowed_relations = ["institutions", "people", "places", "catalogues", "standard_terms"]
+    recreate_links(marc, allowed_relations)
   end
 
   def scaffold_marc
@@ -188,7 +220,7 @@ class Institution < ActiveRecord::Base
   end
   
   def check_dependencies
-    if (self.sources.count > 0)
+    if (self.referring_sources.count > 0)
       errors.add :base, "The institution could not be deleted because it is used"
       return false
     end

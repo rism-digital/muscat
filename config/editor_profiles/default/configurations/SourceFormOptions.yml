@@ -154,13 +154,15 @@
         - "spa"
         editor_partial: subfield_autocomplete
 "100": 
-  allow_new: true
   new_window: people
   layout: 
     fields: 
     - - a
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
+    - - d
+      - autocomplete_extra: life_dates
     - - j
       - cols: 2
         editor_partial: subfield_attribution_codes
@@ -173,19 +175,6 @@
       - "Doubtful"
       - "Misattributed"
       - "Verified"
-  layout_new: 
-    fields: 
-    - - a
-    - - d
-    - - j
-      - values: 
-        - "Ascertained"
-        - "Alleged"
-        - "Conjectural"
-        - "Doubtful"
-        - "Misattributed"
-        - "Verified"
-        editor_partial: subfield_select
 "240": 
   new_window: standard_titles
   layout: 
@@ -193,14 +182,7 @@
     - - a
       - type: standard_title
         editor_partial: subfield_secondary
-    - - k
-    - - o
-    - - r
-    - - n
-    - - m
-  layout_new: 
-    fields: 
-    - - a
+        allow_new: true
     - - k
     - - o
     - - r
@@ -352,89 +334,59 @@
     - - m
     - - n
 "650":
-  allow_new: true
   new_window: standard_terms
   layout: 
     fields: 
     - - a
       - type: standard_term
         editor_partial: subfield_secondary
-  layout_new: 
-    fields: 
-    - - a
-"651": 
-  allow_new: true
+        allow_new: true
+"651":
   new_window: places
   layout: 
     fields: 
     - - a
       - type: place
         editor_partial: subfield_secondary
-  layout_new: 
-    fields: 
-    - - a
+        allow_new: true
 "657": 
-  allow_new: true
   new_window: liturgical_feasts
   layout: 
     fields: 
     - - a
       - type: liturgical_feast
         editor_partial: subfield_secondary
-  layout_new: 
-    fields: 
-    - - a
+        allow_new: true
 "690": 
-  allow_new: true
   new_window: catalogues
   layout: 
     fields: 
     - - a
       - type: catalogue
         editor_partial: subfield_secondary
-    - - n
-  layout_new: 
-    fields: 
-    - - a
+        allow_new: true
     - - n
 "691":
-  allow_new: true
   new_window: catalogues
   layout: 
     fields: 
     - - a
       - type: catalogue
         editor_partial: subfield_secondary
-    - - n
-  layout_new: 
-    fields: 
-    - - a
+        allow_new: true
     - - n
 "700":
-  allow_new: true
   new_window: people
   layout:
     fields: 
     - - a
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
+    - - d
+      - autocomplete_extra: life_dates
     - - j
       - editor_partial: subfield_attribution_codes
-    - - "4"
-      - editor_partial: subfield_relator_codes_700
-  layout_new:
-    fields: 
-    - - a
-    - - d
-    - - j
-      - values: 
-        - "Ascertained"
-        - "Alleged"
-        - "Conjectural"
-        - "Doubtful"
-        - "Misattributed"
-        - "Verified"
-        editor_partial: subfield_select
     - - "4"
       - editor_partial: subfield_relator_codes_700
   tag_list_additional_data: tag_list_additional_data_relator_codes
@@ -487,19 +439,13 @@
       - edt
       - bnd
 "710":
-  allow_new: true
   new_window: institutions
   layout: 
     fields: 
     - - a
       - type: institution
         editor_partial: subfield_secondary
-    - - b
-    - - "4"
-      - editor_partial: subfield_relator_codes_710
-  layout_new: 
-    fields: 
-    - - a
+        allow_new: true
     - - b
     - - "4"
       - editor_partial: subfield_relator_codes_710
@@ -519,27 +465,19 @@
     - dub
     - evp
 "730":
-  allow_new: true
   new_window: standard_titles
   layout: 
     fields: 
     - - a
       - type: standard_title
         editor_partial: subfield_secondary
+        allow_new: true
     - - g
       - values: 
         - "RISM"
         - "RDA"
         - "RAK"
         editor_partial: subfield_select
-    - - k
-    - - o
-    - - r
-    - - n
-    - - m
-  layout_new: 
-    fields: 
-    - - a
     - - k
     - - o
     - - r
@@ -575,28 +513,19 @@
     - - s
     - - w
 "852": 
-  allow_new: true
   new_window: institutions
   layout: 
     fields: 
     - - a
-      - nowrap: true
-        type: library
+      - type: library
         editor_partial: subfield_secondary
-    - - b
-    - - z
-    - - p
-      - growfield: true
-    - - d
-  layout_new: 
-    fields: 
-    - - a
-      - nowrap: true
+        allow_new: true
     - - e
+      - autocomplete_extra: name
     - - b
+    - - z
     - - p
       - growfield: true
     - - d
-    - - z
 ui: 
   hide_marc_identifiers: true

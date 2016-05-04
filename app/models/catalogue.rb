@@ -15,6 +15,7 @@
 # * many to many with Sources
 
 class Catalogue < ActiveRecord::Base
+  include ForeignLinks
   resourcify
 
   # class variables for storing the user name and the event from the controller
@@ -25,7 +26,12 @@ class Catalogue < ActiveRecord::Base
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
-  has_and_belongs_to_many :sources
+  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_catalogues")
+  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_catalogues")
+  has_and_belongs_to_many :people, join_table: "catalogues_to_people"
+  has_and_belongs_to_many :institutions, join_table: "catalogues_to_institutions"
+  has_and_belongs_to_many :places, join_table: "catalogues_to_places"
+  has_and_belongs_to_many :standard_terms, join_table: "catalogues_to_standard_terms"
   has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "Catalogue" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -38,10 +44,11 @@ class Catalogue < ActiveRecord::Base
   
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
-  after_save :reindex
+  after_save :update_links, :reindex
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
+  attr_accessor :suppress_recreate_trigger
 
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
@@ -54,6 +61,10 @@ class Catalogue < ActiveRecord::Base
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
+  
+  def suppress_recreate
+    self.suppress_recreate_trigger = true
+  end 
   
   def fix_ids
     #generate_new_id
@@ -71,6 +82,13 @@ class Catalogue < ActiveRecord::Base
       self.marc_source = self.marc.to_marc
       self.without_versioning :save
     end
+  end
+  
+  def update_links
+    return if self.suppress_recreate_trigger == true
+
+    allowed_relations = ["institutions", "people", "places", "catalogue", "standard_terms"]
+    recreate_links(marc, allowed_relations)
   end
   
   def scaffold_marc
@@ -192,7 +210,7 @@ class Catalogue < ActiveRecord::Base
   end
   
   def check_dependencies
-    if (self.sources.count > 0)
+    if (self.referring_sources.count > 0)
       errors.add :base, "The catalogue could not be deleted because it is used"
       return false
     end

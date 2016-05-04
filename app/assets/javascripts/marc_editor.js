@@ -13,7 +13,6 @@ function marc_editor_init_tags( id ) {
 	
 	$(".sortable").sortable();
 
-
 	marc_editor_form_changed = false;
 	$(id).dirtyFields({
 		trimText:true,
@@ -26,25 +25,104 @@ function marc_editor_init_tags( id ) {
 	   from an autocomplete field. It is a delegated method so dynamically added
 	   forms can handle it
 	*/
-	$("#marc_editor_panel").on('railsAutocomplete.select', 'input.ui-autocomplete-input', function(event, data){
+	$("#marc_editor_panel").on('autocompleteopen', function(event, data) {
+		input = $(event.target); // Get the autocomplete id
+		toplevel_li = input.parents("li");
+		hidden = toplevel_li.children(".autocomplete_target")
+		
+		hidden.data("status", "opened");
+	});
+
+	$("#marc_editor_panel").on('autocompletechange', function(event, data) {
 		input = $(event.target); // Get the autocomplete id
 		
 		// havigate up to the <li> and down to the hidden elem
 		toplevel_li = input.parents("li");
 		hidden = toplevel_li.children(".autocomplete_target")
 		
+		if (hidden.data("status") != "selected") {
+		
+			// Are we allowed to create a new?
+			if (hidden.data("allow-new") == false) {
+				alert("Item cannot create a new element, please select one from the list.");
+				input.addClass("error");
+				return false;
+			}
+		
+			hidden.val("");
+			hidden.removeClass("serialize_marc");
+			var element_class = marc_editor_validate_className(hidden.data("tag"), hidden.data("subfield"));
+			hidden.removeClass(element_class);
+		
+			input.addClass("serialize_marc");
+			input.addClass("new_autocomplete");
+			
+			// Show the checkbox
+			check_tr = toplevel_li.find(".checkbox_confirmation")
+			check_tr.fadeIn("fast");
+			
+			check = toplevel_li.find(".creation_checkbox")
+			check.data("check", true)
+			
+			// Remove auxiliary data and enable
+			var group = input.parents(".tag_content_collapsable");
+			$(".autocomplete_extra", group).each(function () {
+				$(this).prop('disabled', false);
+				$(this).val("");
+			});
+			
+		}
+	});
+
+	$("#marc_editor_panel").on('autocompleteresponse', function(event, data) {
+		input = $(event.target); // Get the autocomplete id
+		toplevel_li = input.parents("li");
+		hidden = toplevel_li.children(".autocomplete_target")
+		
+		if (data.content.length == 0) {
+			hidden.data("status", "nomatch");
+		}
+	});
+
+	$("#marc_editor_panel").on('railsAutocomplete.select', 'input.ui-autocomplete-input', function(event, data){
+		var input = $(event.target); // Get the autocomplete id
+		
+		// havigate up to the <li> and down to the hidden elem
+		var toplevel_li = input.parents("li");
+		var hidden = toplevel_li.children(".autocomplete_target")
+		
 		// the data-field in the hidden tells us which
 		// field write in the input value. Default is id
-		field = hidden.data("field")
+		var field = hidden.data("field")
 		
-		// Set the value from the id of the autocompleted elem
-		if (data.item[field] == "") {
-			alert("Please select a valid item from the list");
-			input.val("");
-			hidden.val("");
-		} else {
-			hidden.val(data.item[field]);
-		}
+		hidden.addClass("serialize_marc");
+		var element_class = marc_editor_validate_className(hidden.data("tag"), hidden.data("subfield"));
+		hidden.addClass(element_class);
+		hidden.val(data.item[field]);
+		hidden.data("status", "selected");
+		
+		input.removeClass("serialize_marc");
+		input.removeClass("new_autocomplete");
+		
+		// Remove the checkbox
+		var check_tr = toplevel_li.find(".checkbox_confirmation")
+		check_tr.fadeOut("fast");
+		
+		var check = toplevel_li.find(".creation_checkbox")
+		check.data("check", false)
+		
+		// Set auxiliary data
+		var group = input.parents(".tag_content_collapsable");
+		$(".autocomplete_extra", group).each(function () {
+			$(this).prop('disabled', true);
+			var extra_data = $(this).data("autocomplete-extra");
+			if (extra_data in data.item) {
+				$(this).val(data.item[extra_data])
+			} else {
+				console.log("Autocomplete extra data: cound not find " + extra_data + " in element.")
+			}
+		});
+
 	})
 	
 	// Add save and preview hotkeys
@@ -147,9 +225,12 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 					$('#main_content').unblock();
 					$('#sections_sidebar_section').unblock();
 				} else {
-					alert ("Error saving page! Please reload the page. (" 
+					alert ("Error saving page! Please try again. (" 
 							+ textStatus + " " 
 							+ errorThrown + ")");
+
+					$('#main_content').unblock();
+					$('#sections_sidebar_section').unblock();
 				}
 		}
 	});
