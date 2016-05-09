@@ -124,6 +124,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    colorize (0.7.7)
     daemons (1.2.3)
     debug_inspector (0.0.2)
     delayed_job_active_record (4.1.0)
@@ -316,6 +317,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.3.4.1)
   cancan
   coffee-rails (~> 4.0.0)
+  colorize
   crono!
   daemons
   delayed_job (= 4.1.1)!

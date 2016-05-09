@@ -102,13 +102,13 @@ class MarcImport
 #          @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
         rescue => e
           puts
-          puts "Marc Import: Could not save the imported record"
-          puts e.message
-          puts "Record Id: #{model.id}"
-          puts "#{marc.to_marc}"
+          puts "Marc Import: Could not save the imported record".red
+          puts e.message.blue
+          puts "Record Id: #{model.id}".magenta
+          ap "#{marc.to_marc}"
           #puts e.backtrace.join("\n")
         end
-        print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S") + " -- Record #{@cnt} of #{@total_records} processed"
+        print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S").green + " -- Record #{@cnt} of #{@total_records} processed".yellow
         #puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"
       else
         puts "Marc is not valid! #{buffer}"
