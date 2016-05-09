@@ -85,6 +85,7 @@ groups:
     all_tags: 
     - "596"
     - "690"
+    - "383"
     - "691"
     all_tag_templates: 
       "690": marc_show/show_subfield_concat

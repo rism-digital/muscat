@@ -648,6 +648,19 @@ doc_administration:
         fr: Documents
         de: Set
         en: Set
+"383": 
+  label: 
+    it: OPUS
+    fr: OPUS
+    de: OPUS
+    en: OPUS
+  fields: 
+    b: 
+      label: 
+        it: OPUS
+        fr: OPUS
+        de: OPUS
+        en: OPUS
 "500": 
   label: 
     it: Osservazioni
