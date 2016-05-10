@@ -21,8 +21,6 @@ module ActiveAdmin::ViewsHelper
       query = "*" if !query.is_a? String
       
       # filter the list of sources
-      # todo - Solr searching instead of active model searching
-      # c = item.sources.where("std_title like ?", "%#{query}%") unless query.blank?
       c = Source.solr_search do
         fulltext query
         with item.class.name.underscore.pluralize.to_sym, item.id
