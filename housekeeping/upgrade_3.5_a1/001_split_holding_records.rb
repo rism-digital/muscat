@@ -38,6 +38,12 @@ Source.all.each do |source|
   ts = marc.root.fetch_all_by_tag("852") 
   ts.each {|t2| t2.destroy_yourself}
   
+  # suppress the 246 field in A/I prints since it was used for the previous title (now in 775 $t)
+  if source.id > 990000000
+    ts = marc.root.fetch_all_by_tag("246") 
+    ts.each {|t2| t2.destroy_yourself}
+  end
+  
 	source.suppress_update_77x
 	source.suppress_update_count
   source.suppress_reindex
