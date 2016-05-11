@@ -381,14 +381,6 @@ ActiveRecord::Schema.define(version: 20160511234201) do
   add_index "people", ["full_name"], name: "index_people_on_full_name", using: :btree
   add_index "people", ["wf_stage"], name: "index_people_on_wf_stage", using: :btree
 
-  create_table "people_people", id: false, force: :cascade do |t|
-    t.integer "person_a_id", limit: 4
-    t.integer "person_b_id", limit: 4
-  end
-
-  add_index "people_people", ["person_a_id"], name: "index_people_people_on_person_a_id", using: :btree
-  add_index "people_people", ["person_b_id"], name: "index_people_people_on_person_b_id", using: :btree
-
   create_table "people_to_institutions", id: false, force: :cascade do |t|
     t.integer "institution_id", limit: 4
     t.integer "person_id",      limit: 4
@@ -396,6 +388,14 @@ ActiveRecord::Schema.define(version: 20160511234201) do
 
   add_index "people_to_institutions", ["institution_id"], name: "index_people_to_institutions_on_institution_id", using: :btree
   add_index "people_to_institutions", ["person_id"], name: "index_people_to_institutions_on_person_id", using: :btree
+
+  create_table "people_to_people", id: false, force: :cascade do |t|
+    t.integer "person_a_id", limit: 4
+    t.integer "person_b_id", limit: 4
+  end
+
+  add_index "people_to_people", ["person_a_id"], name: "index_people_to_people_on_person_a_id", using: :btree
+  add_index "people_to_people", ["person_b_id"], name: "index_people_to_people_on_person_b_id", using: :btree
 
   create_table "people_to_places", id: false, force: :cascade do |t|
     t.integer "place_id",  limit: 4
