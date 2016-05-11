@@ -117,6 +117,10 @@
                     * textarea {
                         font-size: 1.1em;
                     }
+                    * input.validating,
+                    * textarea.validating {
+                        background: lightyellow;
+                    }
                     * .grid_cell_header { 
                         font-size: 1.0em;
                         font-weight: bold;

@@ -10,7 +10,7 @@ validate_class = ""
 if @editor_validation && @editor_validation.validate_subtag?(tag_name, subfield)
 	validate_class, unique_name = @editor_validation.get_subtag_class_name(tag_name, subfield)
 	name_tag = raw "name=\"#{unique_name}\""
-	validate_marker = "*"
+	validate_marker = "validating"
 end
 
 %>
@@ -18,7 +18,7 @@ end
 <div data-autocomplete-values="<%= data.to_json %>"></div>
 
 <%- if (params['width']==100 || params['growfield'])  %>
-	<span class="validate_marker"><%=validate_marker%></span><textarea rows="1" cols="100" class="subfield_entry serialize_marc inline-autocomplete marc_editor_hotkey <%=validate_class%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" rows="1" <%=name_tag%> ><%= h marc_subfield.content %></textarea>
+	<textarea rows="1" cols="100" class="subfield_entry serialize_marc inline-autocomplete marc_editor_hotkey <%=validate_class%> <%=validate_marker%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" rows="1" <%=name_tag%> ><%= h marc_subfield.content %></textarea>
 <%- else %>
-	<span class="validate_marker"><%=validate_marker%></span><input class="subfield_entry serialize_marc inline-autocomplete marc_editor_hotkey <%=validate_class%>" size="100" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h marc_subfield.content %>" <%=name_tag%> />
+	<input class="subfield_entry serialize_marc inline-autocomplete marc_editor_hotkey <%=validate_class%> <%=validate_marker%>" size="100" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h marc_subfield.content %>" <%=name_tag%> />
 <%- end %>
