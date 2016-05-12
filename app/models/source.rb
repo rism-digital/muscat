@@ -48,8 +48,9 @@ class Source < ActiveRecord::Base
   include ForeignLinks
   resourcify
   
-  belongs_to :source
-  has_many :sources
+  belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
+  #belongs_to :source
+  has_many :child_sources, {class_name: "Source"}
   has_many :digital_objects
   has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
   has_and_belongs_to_many :people, join_table: "sources_to_people"
@@ -63,6 +64,21 @@ class Source < ActiveRecord::Base
   has_many :folder_items, :as => :item
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
+  
+  # People can link to themselves
+  # This is the forward link
+  has_and_belongs_to_many(:sources,
+    :class_name => "Source",
+    :foreign_key => "source_a_id",
+    :association_foreign_key => "source_b_id",
+    join_table: "sources_to_sources")
+  
+  # This is the backward link
+  has_and_belongs_to_many(:referring_sources,
+    :class_name => "Source",
+    :foreign_key => "source_b_id",
+    :association_foreign_key => "source_a_id",
+    join_table: "sources_to_sources")
   
   composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
   alias_attribute :id_for_fulltext, :id
@@ -238,7 +254,7 @@ class Source < ActiveRecord::Base
   end
     
   def check_dependencies
-    if (self.sources.count > 0)
+    if (self.child_sources.count > 0)
       errors.add :base, "The source could not be deleted because it is used"
       return false
     end

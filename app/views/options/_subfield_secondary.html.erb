@@ -25,9 +25,11 @@ end
 
 if @editor_validation && @editor_validation.validate_subtag?(tag_name, master) && (create_not_found == false)
 	validate_class_subfield, name_tag_subfield = @editor_validation.get_subtag_class_name(tag_name, subfield)
+	validate_marker = "validating"
 else
 	validate_class_subfield = ""
 	name_tag_subfield = "#{tag_name}#{subfield}"
+	validate_marker = ""
 end
 name_tag_subfield = "#{tag_name}#{subfield}"
 %>
@@ -36,9 +38,9 @@ name_tag_subfield = "#{tag_name}#{subfield}"
 
 
 <% if create_not_found == false %>
-	<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey autocomplete_new_window #{validate_class_subfield}", :"data-subfield"=>"#{subfield}", :"data-field"=>"#{tag_name}" %>
+	<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey autocomplete_new_window #{validate_class_subfield} #{validate_marker}", :"data-subfield"=>"#{subfield}", :"data-field"=>"#{tag_name}" %>
 <%else%>
-	<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey serialize_marc autocomplete_new_window", :"data-subfield"=>"#{master}", :"data-field"=>"#{field}" %>
+	<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey serialize_marc autocomplete_new_window  #{validate_marker}", :"data-subfield"=>"#{master}", :"data-field"=>"#{field}" %>
 <%end%>
 
 <div class="checkbox_confirmation" style="display: none;">

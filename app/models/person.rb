@@ -48,13 +48,15 @@ class Person < ActiveRecord::Base
   has_and_belongs_to_many(:people,
     :class_name => "Person",
     :foreign_key => "person_a_id",
-    :association_foreign_key => "person_b_id")
+    :association_foreign_key => "person_b_id",
+    join_table: "people_to_people")
   
   # This is the backward link
   has_and_belongs_to_many(:referring_people,
     :class_name => "Person",
     :foreign_key => "person_b_id",
-    :association_foreign_key => "person_a_id")
+    :association_foreign_key => "person_a_id",
+    join_table: "people_to_people")
   
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
   

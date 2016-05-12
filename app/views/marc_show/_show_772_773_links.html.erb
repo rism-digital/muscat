@@ -1,9 +1,9 @@
-<% if @item.source || @item.sources.count > 0 %>
+<% if @item.parent_source || @item.child_sources.count > 0 %>
 	<div class="panel">
 		<h3><%= group[:title] %></h3>
 		<div class="panel_contents">
 			<div class="attributes_table">
-			<% if @item.source %>
+			<% if @item.parent_source %>
 				<table border="0" cellpadding="0" cellspacing="0">
 					<tr class="row">
 						<th>
@@ -11,19 +11,19 @@
 						</th>
 						<td valign="top">
 							<% if opac %>
-								<%= link_to @item.source.id.to_s, catalog_path(@item.source.id.to_s)%>
+								<%= link_to @item.parent_source.id.to_s, catalog_path(@item.parent_source.id.to_s)%>
 							<% else %>
-								<%= application_helper_link_source_id(@item.source.id, "", opac).html_safe %>
+								<%= application_helper_link_source_id(@item.parent_source.id, "", opac).html_safe %>
 							<% end %>
-							<%= " #{@item.source.composer}" if @item.source.composer != "" %><%= ": " if (@item.source.composer != "" && @item.source.std_title)%><i><%= "#{@item.source.std_title}" if @item.source.std_title %></i>
+							<%= " #{@item.parent_source.composer}" if @item.parent_source.composer != "" %><%= ": " if (@item.parent_source.composer != "" && @item.parent_source.std_title)%><i><%= "#{@item.parent_source.std_title}" if @item.parent_source.std_title %></i>
 						</td>
 					</tr>
 				</table>
 			<% end %>
-			<% if @item.sources.count > 0 %>
+			<% if @item.child_sources.count > 0 %>
 				<table border="0" cellpadding="0" cellspacing="0">
 				<% count = 0 %>
-				<% @item.sources.each do |child| %>
+				<% @item.child_sources.each do |child| %>
 					<tr class="row">
 						<th>
 							<%= count == 0 ? @editor_profile.get_label("772") : "&nbsp;".html_safe %>

@@ -10,7 +10,7 @@ if ARGV.length >= 2
   if File.exists?(source_file)
     import = MarcImport.new(source_file, model, from.to_i)
     import.import
-    puts "\nCompleted: "+Time.new.strftime("%Y-%m-%d %H:%M:%S")
+    puts "\nCompleted: "  +Time.new.strftime("%Y-%m-%d %H:%M:%S")
   else
     puts source_file + " is not a file!"
   end

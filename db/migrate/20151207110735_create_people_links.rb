@@ -2,13 +2,13 @@ class CreatePeopleLinks < ActiveRecord::Migration
 
   def self.up
     
-    create_table :people_people, :id => false do |t|
+    create_table :people_to_people, :id => false do |t|
       t.column :person_a_id, :integer
       t.column :person_b_id, :integer      
     end
     
-    add_index :people_people, :person_a_id
-    add_index :people_people, :person_b_id
+    add_index :people_to_people, :person_a_id
+    add_index :people_to_people, :person_b_id
     
     
     create_table :institutions_people, :id => false do |t|
@@ -22,7 +22,7 @@ class CreatePeopleLinks < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :people_people
+    drop_table :people_to_people
     drop_table :institutions_people
   end
 
