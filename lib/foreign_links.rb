@@ -22,7 +22,6 @@ module ForeignLinks
     unknown_classes = marc_foreign_objects.keys - allowed_relations
     # If there are unknown classes purge them
     related_classes = marc_foreign_objects.keys - unknown_classes
-    
     if !unknown_classes.empty?
       puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')}"
     end

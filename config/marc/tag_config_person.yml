@@ -200,14 +200,22 @@
       - :occurrences: "?"
         :no_browse: true
   "670":
-    :master: "0"
+    :master: "w"
     :indicator: "##"
     :occurrences: "*"
     :fields:
+    - - w
+      - :occurrences: "?"
+        :foreign_class: Catalogue
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: name
     - - b
       - :occurrences: "?"
+
   "678":
     :master: a
     :indicator: "##"
