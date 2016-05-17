@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511234201) do
+ActiveRecord::Schema.define(version: 20160513114201) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -81,6 +81,38 @@ ActiveRecord::Schema.define(version: 20160511234201) do
 
   add_index "catalogues", ["name"], name: "index_catalogues_on_name", using: :btree
   add_index "catalogues", ["wf_stage"], name: "index_catalogues_on_wf_stage", using: :btree
+
+  create_table "catalogues_to_institutions", id: false, force: :cascade do |t|
+    t.integer "catalogue_id",   limit: 4
+    t.integer "institution_id", limit: 4
+  end
+
+  add_index "catalogues_to_institutions", ["catalogue_id"], name: "index_catalogues_to_institutions_on_catalogue_id", using: :btree
+  add_index "catalogues_to_institutions", ["institution_id"], name: "index_catalogues_to_institutions_on_institution_id", using: :btree
+
+  create_table "catalogues_to_people", id: false, force: :cascade do |t|
+    t.integer "catalogue_id", limit: 4
+    t.integer "person_id",    limit: 4
+  end
+
+  add_index "catalogues_to_people", ["catalogue_id"], name: "index_catalogues_to_people_on_catalogue_id", using: :btree
+  add_index "catalogues_to_people", ["person_id"], name: "index_catalogues_to_people_on_person_id", using: :btree
+
+  create_table "catalogues_to_places", id: false, force: :cascade do |t|
+    t.integer "catalogue_id", limit: 4
+    t.integer "place_id",     limit: 4
+  end
+
+  add_index "catalogues_to_places", ["catalogue_id"], name: "index_catalogues_to_places_on_catalogue_id", using: :btree
+  add_index "catalogues_to_places", ["place_id"], name: "index_catalogues_to_places_on_place_id", using: :btree
+
+  create_table "catalogues_to_standard_terms", id: false, force: :cascade do |t|
+    t.integer "catalogue_id",     limit: 4
+    t.integer "standard_term_id", limit: 4
+  end
+
+  add_index "catalogues_to_standard_terms", ["catalogue_id"], name: "index_catalogues_to_standard_terms_on_catalogue_id", using: :btree
+  add_index "catalogues_to_standard_terms", ["standard_term_id"], name: "index_catalogues_to_standard_terms_on_standard_term_id", using: :btree
 
   create_table "crono_jobs", force: :cascade do |t|
     t.string   "job_id",            limit: 255,   null: false
@@ -327,14 +359,6 @@ ActiveRecord::Schema.define(version: 20160511234201) do
   add_index "people", ["full_name"], name: "index_people_on_full_name", using: :btree
   add_index "people", ["wf_stage"], name: "index_people_on_wf_stage", using: :btree
 
-  create_table "people_people", id: false, force: :cascade do |t|
-    t.integer "person_a_id", limit: 4
-    t.integer "person_b_id", limit: 4
-  end
-
-  add_index "people_people", ["person_a_id"], name: "index_people_people_on_person_a_id", using: :btree
-  add_index "people_people", ["person_b_id"], name: "index_people_people_on_person_b_id", using: :btree
-
   create_table "people_to_institutions", id: false, force: :cascade do |t|
     t.integer "institution_id", limit: 4
     t.integer "person_id",      limit: 4
@@ -350,6 +374,14 @@ ActiveRecord::Schema.define(version: 20160511234201) do
 
   add_index "people_to_institutions_old", ["institution_id"], name: "index_people_to_institutions_on_institution_id", using: :btree
   add_index "people_to_institutions_old", ["person_id"], name: "index_people_to_institutions_on_person_id", using: :btree
+
+  create_table "people_to_people", id: false, force: :cascade do |t|
+    t.integer "person_a_id", limit: 4
+    t.integer "person_b_id", limit: 4
+  end
+
+  add_index "people_to_people", ["person_a_id"], name: "index_people_people_on_person_a_id", using: :btree
+  add_index "people_to_people", ["person_b_id"], name: "index_people_people_on_person_b_id", using: :btree
 
   create_table "places", force: :cascade do |t|
     t.string   "name",         limit: 255,             null: false
