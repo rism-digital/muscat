@@ -187,10 +187,10 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 
 "371": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: ADDRESS
-    fr: ADDRESS
+    it: LOCATION AND ADDRESS
+    fr: LOCATION AND ADDRESS
     de: "Adresse"
-    en: Address
+    en: Location and Address
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -203,7 +203,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         it: POSTAL CODE
         fr: POSTAL CODE
         de: Postleitzahl
-        en: Postal Code
+        en: Postal code
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: CITY
@@ -212,10 +212,10 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: City
     c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: COUNTY OR STATE
-        fr: COUNTY OR STATE
+        it: COUNTY OR PROVINCE
+        fr: COUNTY OR PROVINCE
         de: Bezirk oder Staat
-        en: County or State
+        en: County or province
     d: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: COUNTRY
@@ -267,7 +267,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         t: OTHER FORM OF NAME
         fr: OTHER FORM OF NAME
         de: Andere Namensformen
-        en: Other Form of Name
+        en: Other form of name
 "510": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: PARALLEL FORM OF NAME
