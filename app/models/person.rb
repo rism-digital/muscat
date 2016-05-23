@@ -19,6 +19,7 @@
 
 class Person < ActiveRecord::Base
   include ForeignLinks
+  include MarcIndex
 
   # class variables for storing the user name and the event from the controller
   @@last_user_save

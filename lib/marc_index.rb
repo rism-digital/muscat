@@ -1,4 +1,4 @@
-class MarcIndex
+module MarcIndex
   
   def self.attach_marc_index(sunspot_dsl, klass)
     
@@ -28,12 +28,75 @@ class MarcIndex
         if index_processor_helper
           marc.send(index_processor_helper, tag, properties, marc, self)
         else
-          marc_index_tag(tag, properties, marc, self)
-        end
-      end
-    end
+          ####marc_index_tag(tag, properties, marc, self)
+          
+          ## NOTE NOTE NOTE
+          ## THIS USED TO BE A SEPARATE FUNCTION
+          # Since this code is executed deferred in the sunspot context
+          # calling it asa function slows down
+          # When this was a class method it would slow down 10 fold
+          # It is not nice but written out inline is the most efficent way
+          conf_tag = tag
+          model = self
+          
+          # index_helper: fetch a subtag and process the value
+          index_helper = properties && properties.has_key?(:index_helper) ? properties[:index_helper] : nil
+          # missing helper: if the tag is not present still provide a default value
+          missing_helper = properties && properties.has_key?(:missing_helper) ? properties[:missing_helper] : nil
+          # tags can be spefied if the field name it not the tag name
+          tag = properties && properties.has_key?(:from_tag) ? properties[:from_tag] : nil
+          subtag = properties && properties.has_key?(:from_subtag) ? properties[:from_subtag] : nil
+        
+          out = []
+    
+          if !tag
+            # By convention the first three digits
+            tag = conf_tag[0..2]
+      
+            # If not a conrol field
+            if conf_tag.length == 4
+              subtag = conf_tag[3]
+            end
+          end
+    
+          begin
+
+            tags = marc.by_tags(tag)
+
+            if tags.count == 0
+              if missing_helper && model.respond_to?(missing_helper)
+                out << model.send(missing_helper)
+              end
+            else
+              tags.each do |marctag|
+                if subtag
+                  marctag.each_by_tag(subtag) do |marcvalue|
+                    next if !marcvalue.content
+                    value = index_helper != nil ? marc.send(index_helper, marcvalue.content) : marcvalue.content
+                    out << value
+                  end
+                else
+                  # No subtag, is it a control field.
+                  next if !marctag.content
+                  value = index_helper != nil ? marc.send(index_helper, marctag.content) : marctag.content
+                  out << value
+                end
+              end
+            end
+
+          rescue => e
+            puts e.exception
+            puts "Marc failed to load for #{model.to_yaml}, check foreign relations, data: #{conf_tag}, #{subtag}"
+          end
+          ## Return the value
+          out
+          ## END INLINED FUNCTION
+        end # index_processor_helper
+      end #sunspot_dsl.send
+    end #IndexConfig.get_fields
   end
-  
+
+=begin
   def self.marc_index_tag(conf_tag, conf_properties, marc, model)
     
     # index_helper: fetch a subtag and process the value
@@ -89,5 +152,6 @@ class MarcIndex
     return out
     
   end
-
+=end
+  
 end

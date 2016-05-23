@@ -14,6 +14,7 @@
 
 class Institution < ActiveRecord::Base
   include ForeignLinks
+  include MarcIndex
   resourcify
   
   # class variables for storing the user name and the event from the controller

@@ -648,6 +648,19 @@ doc_administration:
         fr: Documents
         de: Set
         en: Set
+"383": 
+  label: 
+    it: Opus
+    fr: "Opus"
+    de: Opus
+    en: Opus
+  fields: 
+    b: 
+      label: 
+        it: Num. d'opera
+        fr: "No. de Opus"
+        de: Opus
+        en: Opus
 "500": 
   label: 
     it: Osservazioni

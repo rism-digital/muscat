@@ -36,6 +36,22 @@ Source.all.each do |sa|
     tb.destroy_yourself
   end
   
+  #339 Migrate 240 $n to 383 $b
+  marc.each_by_tag("240") do |t|
+    tn = t.fetch_first_by_tag("n")
+    
+    next if !(tn && tn.content)
+    
+    new_383 = MarcNode.new("source", "383", "", "##")
+    new_383.add_at(MarcNode.new("source", "b", tn.content, nil), 0)
+    new_383.sort_alphabetically
+
+    marc.root.children.insert(marc.get_insert_position("383"), new_500)
+    
+    #adios
+    tn.destroy_yourself
+  end
+  
   all300 = marc.root.fetch_all_by_tag("300")
   all300.each do |t|
     if t.all_children.count == 1

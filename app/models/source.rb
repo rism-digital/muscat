@@ -46,6 +46,7 @@ class Source < ActiveRecord::Base
   require 'solr_search.rb'
 #  include MarcIndex
   include ForeignLinks
+  include MarcIndex
   resourcify
   
   belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
@@ -167,6 +168,7 @@ class Source < ActiveRecord::Base
     self.index
   end
 
+  
 
   searchable :auto_index => false do |sunspot_dsl|
    sunspot_dsl.integer :id
@@ -217,7 +219,7 @@ class Source < ActiveRecord::Base
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
-    
+=begin    
     sunspot_dsl.integer :catalogues, :multiple => true do
           catalogues.map { |catalogue| catalogue.id }
     end
@@ -248,7 +250,7 @@ class Source < ActiveRecord::Base
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
-
+=end
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
