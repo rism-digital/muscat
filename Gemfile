@@ -71,7 +71,7 @@ gem 'activeadmin', '~> 1.0.0.pre2' #, github: 'rism-ch/activeadmin'#, ref: 'a2cd
 gem 'sunspot_rails', "2.2.0"#, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
 gem 'sunspot_solr',  "2.2.0"
 gem 'awesome_print'
-gem 'progress_bar'
+gem 'progress_bar', github: 'rism-ch/progress_bar'
 gem "rails3-jquery-autocomplete", github: 'rism-ch/rails3-jquery-autocomplete'
 gem "cancan"
 gem "rolify"
