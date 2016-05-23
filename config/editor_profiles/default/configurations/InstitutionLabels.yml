@@ -110,18 +110,35 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: GND Code
 "040": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Sigla
-    fr: Sigla
-    de: Sigel
-    en: Sigla
+    it: Fonte della catalogazione
+    fr: Source du catalogage
+    de: Katalogisierungsquelle
+    en: Cataloguing agency
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Sigla
-        fr: Sigla
-        de: Sigel
-        en: Sigla
-
+        it: Agenzia catalografica originale
+        fr: Organisme du catalogage original
+        de: Original-Katalogisierungsstelle
+        en: Original cataloguing agency
+    b: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Lingua della catalogazione
+        fr: Langue de catalogage
+        de: Katalogisierungssprache
+        en: Language of cataloguing
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Agenzia della trascrizione
+        fr: Organisme de la transcription
+        de: "Übertragende Katalogisierungsstelle"
+        en: Transcribing agency
+    d: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Agenzia della modifica
+        fr: Organisme de la modification
+        de: Modifizierende Katalogisierungsstelle
+        en: Modifying agency
 
 
 "043": !map:ActiveSupport::HashWithIndifferentAccess 

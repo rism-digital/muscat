@@ -68,14 +68,19 @@
     :fields: 
     - - a
       - :occurrences: "*"
-  "040": 
+  "040":
     :master: a
     :indicator: "##"
-    :occurrences: "*"
-    :fields: 
+    :occurrences: "1"
+    :fields:
     - - a
-      - :occurrences: "*"
-
+      - :occurrences: "1"
+    - - b
+      - :occurrences: "1"
+    - - c
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "?"
   "043": 
     :master: c
     :indicator: "##"
