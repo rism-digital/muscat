@@ -23,7 +23,6 @@ group_exclude:
 tag_exclude:
   collection:
   - '041'
-  - '100'
   - '511'
   - '546'
   - '650'
