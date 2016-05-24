@@ -301,6 +301,15 @@
         - Print with handwritten entries
         - Probably autograph
         editor_partial: subfield_select
+"594":
+  layout: 
+    fields: 
+    - - b
+      - type: source_594b_solr
+        field: value
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - c
 "598": 
   layout: 
     fields: 

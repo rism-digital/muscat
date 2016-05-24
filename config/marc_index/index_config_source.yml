@@ -120,6 +120,8 @@ fields:
       :from_subtag: "a"
   "594a":
   "594b":
+      :store: true
+      :type: string
   "594c":
   "594d":
   "594e":

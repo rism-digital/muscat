@@ -2,6 +2,7 @@ ActiveAdmin.register Source do
   
   collection_action :autocomplete_source_id, :method => :get
   collection_action :autocomplete_source_740_autocomplete_sms, :method => :get
+  collection_action :autocomplete_source_594b_sms, :method => :get
 
   # Remove mass-delete action
   batch_action :destroy, false
@@ -28,6 +29,7 @@ ActiveAdmin.register Source do
     end
     autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :solr => false}
     autocomplete :source, "740_autocomplete_sms", :solr => true
+    autocomplete :source, "594b_sms", :solr => true
     
     def action_methods
       return super - ['new', 'edit', 'destroy'] if is_selection_mode?
