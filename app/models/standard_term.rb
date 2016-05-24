@@ -17,9 +17,7 @@ class StandardTerm < ActiveRecord::Base
   has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
-    
   validates_presence_of :term
-  
   validates_uniqueness_of :term
   
   #include NewIds
@@ -76,5 +74,5 @@ class StandardTerm < ActiveRecord::Base
   def name
     return term
   end
-  
+
 end

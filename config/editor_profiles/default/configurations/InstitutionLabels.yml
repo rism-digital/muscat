@@ -815,10 +815,10 @@ voc: !map:ActiveSupport::HashWithIndifferentAccess
     en: "Austria: Upper Austria"
 "XA-AT-9": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: "Austria: Vienna XA-AT-9"
-    fr: "Austria: Vienna XA-AT-9"
-    de: "Austria: Vienna XA-AT-9"
-    en: "Austria: Vienna XA-AT-9"
+    it: "Austria: Vienna"
+    fr: "Austria: Vienna"
+    de: "Austria: Vienna"
+    en: "Austria: Vienna"
 "XA-BE": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: "Belgium"
