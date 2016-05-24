@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513114201) do
+ActiveRecord::Schema.define(version: 20160511234201) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -27,24 +27,6 @@ ActiveRecord::Schema.define(version: 20160513114201) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
-
-  create_table "admin_users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-  end
-
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       limit: 4,   null: false
@@ -82,6 +64,14 @@ ActiveRecord::Schema.define(version: 20160513114201) do
   add_index "catalogues", ["name"], name: "index_catalogues_on_name", using: :btree
   add_index "catalogues", ["wf_stage"], name: "index_catalogues_on_wf_stage", using: :btree
 
+  create_table "catalogues_catalogues", id: false, force: :cascade do |t|
+    t.integer "catalogue_a_id", limit: 4
+    t.integer "catalogue_b_id", limit: 4
+  end
+
+  add_index "catalogues_catalogues", ["catalogue_a_id"], name: "index_catalogues_catalogues_on_catalogue_a_id", using: :btree
+  add_index "catalogues_catalogues", ["catalogue_b_id"], name: "index_catalogues_catalogues_on_catalogue_b_id", using: :btree
+
   create_table "catalogues_to_institutions", id: false, force: :cascade do |t|
     t.integer "catalogue_id",   limit: 4
     t.integer "institution_id", limit: 4
@@ -99,16 +89,16 @@ ActiveRecord::Schema.define(version: 20160513114201) do
   add_index "catalogues_to_people", ["person_id"], name: "index_catalogues_to_people_on_person_id", using: :btree
 
   create_table "catalogues_to_places", id: false, force: :cascade do |t|
-    t.integer "catalogue_id", limit: 4
     t.integer "place_id",     limit: 4
+    t.integer "catalogue_id", limit: 4
   end
 
   add_index "catalogues_to_places", ["catalogue_id"], name: "index_catalogues_to_places_on_catalogue_id", using: :btree
   add_index "catalogues_to_places", ["place_id"], name: "index_catalogues_to_places_on_place_id", using: :btree
 
   create_table "catalogues_to_standard_terms", id: false, force: :cascade do |t|
-    t.integer "catalogue_id",     limit: 4
     t.integer "standard_term_id", limit: 4
+    t.integer "catalogue_id",     limit: 4
   end
 
   add_index "catalogues_to_standard_terms", ["catalogue_id"], name: "index_catalogues_to_standard_terms_on_catalogue_id", using: :btree
@@ -292,6 +282,22 @@ ActiveRecord::Schema.define(version: 20160513114201) do
   add_index "institutions", ["siglum"], name: "index_institutions_on_siglum", using: :btree
   add_index "institutions", ["wf_stage"], name: "index_institutions_on_wf_stage", using: :btree
 
+  create_table "institutions_institutions", id: false, force: :cascade do |t|
+    t.integer "institution_a_id", limit: 4
+    t.integer "institution_b_id", limit: 4
+  end
+
+  add_index "institutions_institutions", ["institution_a_id"], name: "index_institutions_institutions_on_institution_a_id", using: :btree
+  add_index "institutions_institutions", ["institution_b_id"], name: "index_institutions_institutions_on_institution_b_id", using: :btree
+
+  create_table "institutions_to_catalogues", id: false, force: :cascade do |t|
+    t.integer "catalogue_id",   limit: 4
+    t.integer "institution_id", limit: 4
+  end
+
+  add_index "institutions_to_catalogues", ["catalogue_id"], name: "index_institutions_to_catalogues_on_catalogue_id", using: :btree
+  add_index "institutions_to_catalogues", ["institution_id"], name: "index_institutions_to_catalogues_on_institution_id", using: :btree
+
   create_table "institutions_to_people", id: false, force: :cascade do |t|
     t.integer "institution_id", limit: 4
     t.integer "person_id",      limit: 4
@@ -299,6 +305,22 @@ ActiveRecord::Schema.define(version: 20160513114201) do
 
   add_index "institutions_to_people", ["institution_id"], name: "index_institutions_to_people_on_institution_id", using: :btree
   add_index "institutions_to_people", ["person_id"], name: "index_institutions_to_people_on_person_id", using: :btree
+
+  create_table "institutions_to_places", id: false, force: :cascade do |t|
+    t.integer "place_id",       limit: 4
+    t.integer "institution_id", limit: 4
+  end
+
+  add_index "institutions_to_places", ["institution_id"], name: "index_institutions_to_places_on_institution_id", using: :btree
+  add_index "institutions_to_places", ["place_id"], name: "index_institutions_to_places_on_place_id", using: :btree
+
+  create_table "institutions_to_standard_terms", id: false, force: :cascade do |t|
+    t.integer "standard_term_id", limit: 4
+    t.integer "institution_id",   limit: 4
+  end
+
+  add_index "institutions_to_standard_terms", ["institution_id"], name: "index_institutions_to_standard_terms_on_institution_id", using: :btree
+  add_index "institutions_to_standard_terms", ["standard_term_id"], name: "index_institutions_to_standard_terms_on_standard_term_id", using: :btree
 
   create_table "institutions_users", id: false, force: :cascade do |t|
     t.integer "user_id",        limit: 4
@@ -367,21 +389,21 @@ ActiveRecord::Schema.define(version: 20160513114201) do
   add_index "people_to_institutions", ["institution_id"], name: "index_people_to_institutions_on_institution_id", using: :btree
   add_index "people_to_institutions", ["person_id"], name: "index_people_to_institutions_on_person_id", using: :btree
 
-  create_table "people_to_institutions_old", id: false, force: :cascade do |t|
-    t.integer "person_id",      limit: 4
-    t.integer "institution_id", limit: 4
-  end
-
-  add_index "people_to_institutions_old", ["institution_id"], name: "index_people_to_institutions_on_institution_id", using: :btree
-  add_index "people_to_institutions_old", ["person_id"], name: "index_people_to_institutions_on_person_id", using: :btree
-
   create_table "people_to_people", id: false, force: :cascade do |t|
     t.integer "person_a_id", limit: 4
     t.integer "person_b_id", limit: 4
   end
 
-  add_index "people_to_people", ["person_a_id"], name: "index_people_people_on_person_a_id", using: :btree
-  add_index "people_to_people", ["person_b_id"], name: "index_people_people_on_person_b_id", using: :btree
+  add_index "people_to_people", ["person_a_id"], name: "index_people_to_people_on_person_a_id", using: :btree
+  add_index "people_to_people", ["person_b_id"], name: "index_people_to_people_on_person_b_id", using: :btree
+
+  create_table "people_to_places", id: false, force: :cascade do |t|
+    t.integer "place_id",  limit: 4
+    t.integer "person_id", limit: 4
+  end
+
+  add_index "people_to_places", ["person_id"], name: "index_people_to_places_on_person_id", using: :btree
+  add_index "people_to_places", ["place_id"], name: "index_people_to_places_on_place_id", using: :btree
 
   create_table "places", force: :cascade do |t|
     t.string   "name",         limit: 255,             null: false

@@ -2,7 +2,7 @@ module MarcIndex
   
   def self.attach_marc_index(sunspot_dsl, klass)
     
-    IndexConfig.get_fields(klass).each do |tag, properties|
+    IndexConfig.get_fields(klass).each do |conf_tag, properties|
       
       # index_processor: mash togeather the values of one or more tags/subtags
       index_processor_helper = properties && properties.has_key?(:index_processor_helper) ? properties[:index_processor_helper] : nil
@@ -24,9 +24,9 @@ module MarcIndex
         opts[:as] = properties[:as]
       end
       
-      sunspot_dsl.send(type, tag, opts) do
+      sunspot_dsl.send(type, conf_tag, opts) do
         if index_processor_helper
-          marc.send(index_processor_helper, tag, properties, marc, self)
+          marc.send(index_processor_helper, conf_tag, properties, marc, self)
         else
           ####marc_index_tag(tag, properties, marc, self)
           
@@ -36,8 +36,6 @@ module MarcIndex
           # calling it asa function slows down
           # When this was a class method it would slow down 10 fold
           # It is not nice but written out inline is the most efficent way
-          conf_tag = tag
-          model = self
           
           # index_helper: fetch a subtag and process the value
           index_helper = properties && properties.has_key?(:index_helper) ? properties[:index_helper] : nil
@@ -60,12 +58,11 @@ module MarcIndex
           end
     
           begin
-
             tags = marc.by_tags(tag)
 
             if tags.count == 0
-              if missing_helper && model.respond_to?(missing_helper)
-                out << model.send(missing_helper)
+              if missing_helper && self.respond_to?(missing_helper)
+                out << self.send(missing_helper)
               end
             else
               tags.each do |marctag|
@@ -85,8 +82,11 @@ module MarcIndex
             end
 
           rescue => e
-            puts e.exception
-            puts "Marc failed to load for #{model.to_yaml}, check foreign relations, data: #{conf_tag}, #{subtag}"
+            puts "MarcIndex: Marc failed to load for ".red +  self[:id].to_s.magenta
+            puts "While indexing: #{conf_tag.to_s.green}, #{subtag.to_s.yellow}"
+            puts "Look for the MARC error, as the index tag could have triggered a marc reload and is unrelated"
+            puts e.exception.to_s.blue
+            puts
           end
           ## Return the value
           out
