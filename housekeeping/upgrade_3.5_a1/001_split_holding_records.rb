@@ -1,4 +1,4 @@
-pb = ProgressBar.new(Source.all.count)
+pb = ProgressBar.new(Source.where(record_type: MarcSource::RECORD_TYPES[:print]).count)
 
 Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
   
