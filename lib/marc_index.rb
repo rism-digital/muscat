@@ -58,7 +58,6 @@ module MarcIndex
           end
     
           begin
-
             tags = marc.by_tags(tag)
 
             if tags.count == 0
@@ -84,9 +83,10 @@ module MarcIndex
 
           rescue => e
             puts "MarcIndex: Marc failed to load for ".red +  self[:id].to_s.magenta
-            puts "Offending data: #{conf_tag.to_s.green}, #{subtag.to_s.yellow}"
-            puts 
+            puts "While indexing: #{conf_tag.to_s.green}, #{subtag.to_s.yellow}"
+            puts "Look for the MARC error, as the index tag could have triggered a marc reload and is unrelated"
             puts e.exception.to_s.blue
+            puts
           end
           ## Return the value
           out

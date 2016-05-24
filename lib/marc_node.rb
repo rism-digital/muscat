@@ -287,7 +287,15 @@ class MarcNode
     foreign_class = @marc_configuration.get_foreign_class(self.parent.tag, self.tag)
     if parent.foreign_object == nil
       db_node = parent.fetch_first_by_tag(parent.get_master_foreign_subfield.tag)
+      begin
         parent.foreign_object = foreign_class.constantize.send("find", db_node.content)
+      rescue => e
+        puts "MarcNode set_foreign_object error".red
+        puts e.exception.to_s.blue
+        puts "MarcNode tag dummp " + self.parent.to_marc.strip.yellow
+        puts "MarcNode offending or missing tag: " + self.to_marc.yellow
+        raise e
+      end
     end
     self.foreign_field = @marc_configuration.get_foreign_field(self.parent.tag, self.tag)
     self.foreign_object = parent.foreign_object
