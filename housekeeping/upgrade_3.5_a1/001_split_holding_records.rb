@@ -31,8 +31,7 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
   end
 
   if count != source.holdings.count
-    puts "OH NOOOO"
-    ENDMENOW
+    puts "Modified #{count} records but record has #{source.holdings.count} holdings."
   end
   
   ts = marc.root.fetch_all_by_tag("852") 
