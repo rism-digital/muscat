@@ -27,7 +27,9 @@ class MarcSource < Marc
     std_title = ""
     std_title_d = ""
     standard_title = nil
-    description = nil
+    scoring = nil
+    extract = nil
+    arr = nil
     
     # try to get the title (240)
     node = first_occurance("240", "a")
@@ -35,7 +37,13 @@ class MarcSource < Marc
    
     # try to get the description (240 m)
     node = first_occurance("240", "m")
-    description = node.content if node
+    scoring = node.content if node
+   
+    node = first_occurance("240", "k")
+    extract = node.content if node
+    
+    node = first_occurance("240", "o")
+    arr = node.content if node
    
     if !standard_title
       if @record_type == RECORD_TYPES[:convolutum]
@@ -46,9 +54,8 @@ class MarcSource < Marc
     end
    
     title = standard_title || "[Without title]" ## if title is unset and it is not collection
-    desc = "#{description}" || ""
-    
-    std_title = "#{standard_title}" + (!desc.empty? ? "; " : "") + "#{desc}" 
+
+    std_title = [title, extract, arr, scoring].compact.join("; ")
     std_title_d = DictionaryOrder::normalize(std_title)
 
     [std_title, std_title_d]
