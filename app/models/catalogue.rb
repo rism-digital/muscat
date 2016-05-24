@@ -103,7 +103,7 @@ class Catalogue < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["institutions", "people", "places", "catalogue", "standard_terms"]
+    allowed_relations = ["institutions", "people", "places", "catalogues", "standard_terms"]
     recreate_links(marc, allowed_relations)
   end
   
