@@ -37,6 +37,21 @@ class Catalogue < ActiveRecord::Base
   has_many :delayed_jobs, -> { where parent_type: "Catalogue" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
+  # This is the forward link
+  has_and_belongs_to_many(:catalogues,
+    :class_name => "Catalogue",
+    :foreign_key => "catalogue_a_id",
+    :association_foreign_key => "catalogue_b_id",
+    join_table: "catalogues_to_catalogues")
+  
+  # This is the backward link
+  has_and_belongs_to_many(:referring_catalogues,
+    :class_name => "Catalogue",
+    :foreign_key => "catalogue_b_id",
+    :association_foreign_key => "catalogue_a_id",
+    join_table: "catalogues_to_catalogues")
+  
+  
   composed_of :marc, :class_name => "MarcCatalogue", :mapping => %w(marc_source to_marc)
   
   ##include NewIds
