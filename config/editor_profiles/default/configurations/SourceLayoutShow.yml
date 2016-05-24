@@ -62,6 +62,7 @@ groups:
     - "700"
     - "710"
     - "500"
+    - "597"
     - "856"
     subfield_grouping: 8
     all_tag_templates: 

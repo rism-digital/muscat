@@ -301,6 +301,10 @@
         - Print with handwritten entries
         - Probably autograph
         editor_partial: subfield_select
+"597": 
+  layout: 
+    fields: 
+    - - a
 "598": 
   layout: 
     fields: 
@@ -451,6 +455,7 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - b
+    - - g
     - - "4"
       - editor_partial: subfield_relator_codes_710
   tag_params: 

@@ -617,6 +617,12 @@ doc_administration:
         fr: Type de source
         de: Quellenart, Umfang
         en: Description/Extent
+    b: 
+      label: 
+        it: OTHER PHYSICAL DETAILS
+        fr: OTHER PHYSICAL DETAILS
+        de: Zusätzliche Materialbeschreibung
+        en: Other physical details
     c: 
       label: 
         it: Dimensioni
@@ -949,7 +955,20 @@ doc_administration:
         de: Querverweise zu RISM A/I und RISM B
         en: RISM Series A/I and B references
       edit_label: 
-        en: ""
+      en: ""
+"597": 
+  label: 
+    it: ORIGINAL IMPRESSUM
+    fr: ORIGINAL IMPRESSUM
+    de: Impressum (original)
+    en: Original Impressum
+  fields: 
+    a: 
+      label: 
+        it: ORIGINAL IMPRESSUM
+        fr: ORIGINAL IMPRESSUM
+        de: Impressum (original)
+        en: Original Impressum
 "598": 
   label: 
     it: Codice della strumentazione
@@ -1274,6 +1293,18 @@ doc_administration:
         fr: "Collectivité subordonnée"
         de: Untergeordnete Institution
         en: Subordinate unit
+    g: 
+      label: 
+        it: Qualificazione d'attribuzione
+        fr: Qualificatif d'attribution
+        de: Zuschreibungsvermerk
+        en: Attribution qualifier
+      edit_label: 
+        it: Attribuzione
+        fr: Attribution
+        de: Zuschreibung
+        en: Attribution
+
     "4": 
       label: 
         it: Funzione
@@ -1458,6 +1489,18 @@ doc_administration:
         fr: Cote
         de: Signatur
         en: Shelf mark
+    q: 
+      label: 
+        it: PRESERVED PARTS
+        fr: PRESERVED PARTS
+        de: erhaltenes Material
+        en: Preserved Parts
+    u: 
+      label: 
+        it: URI
+        fr: URI
+        de: URI
+        en: URI
     z: 
       label: 
         it: Nome del fondo

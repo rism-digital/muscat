@@ -239,6 +239,8 @@
     :fields:
     - - a
       - :occurrences: "*"
+    - - b
+      - :occurrences: "*"
     - - c
       - :occurrences: "?"
     - - "8"
@@ -407,6 +409,10 @@
     :fields:
     - - a
       - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - c
+      - :occurrences: "?"
   "595":
     :master: a
     :indicator: "##"
@@ -415,6 +421,13 @@
     - - a
       - :occurrences: "?"
   "596":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "597":
     :master: a
     :indicator: "##"
     :occurrences: "*"
@@ -604,6 +617,8 @@
         :foreign_field: name
     - - b
       - :occurrences: "*"
+    - - c
+      - :occurrences: "*"
     - - "4"
       - :occurrences: "*"
     - - "8"
@@ -720,6 +735,10 @@
         :foreign_field: name
         :disable_create_lookup: true
     - - p
+      - :occurrences: "?"
+    - - q
+      - :occurrences: "?"
+    - - u
       - :occurrences: "?"
     - - z
       - :occurrences: "*"
