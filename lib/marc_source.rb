@@ -213,13 +213,7 @@ class MarcSource < Marc
     rt = match_leader
     
     # Drop leader
-    each_by_tag("000") {|t| t.destroy_yourself}
 
-    # Drop other unused tags
-    each_by_tag("003") {|t| t.destroy_yourself}
-    each_by_tag("005") {|t| t.destroy_yourself}
-    each_by_tag("007") {|t| t.destroy_yourself}
-    each_by_tag("008") {|t| t.destroy_yourself}
 
     # Move 130 to 240
     each_by_tag("130") do |t|
@@ -241,6 +235,18 @@ class MarcSource < Marc
         puts "Unknown 031 $2 value: #{st.content}"
       end
       st.destroy_yourself if st
+    end
+    
+    each_by_tag("691") do |t|
+      t.each_by_tag("c") do |st|
+        st.destroy_yourself if st
+      end
+    end
+    
+    each_by_tag("772") do |t|
+      t.each_by_tag("t") do |st|
+        st.destroy_yourself if st
+      end
     end
     
     if rt
