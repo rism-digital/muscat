@@ -1703,6 +1703,12 @@ dnr:
     fr: Donateur
     de: Donator
     en: Donor
+dpt: 
+  label: 
+    it: DEPOSITOR
+    fr: DEPOSITOR
+    de: Despositor
+    en: Depositor
 dte: 
   label: 
     it: Dedicatario

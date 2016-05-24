@@ -5,9 +5,9 @@
 <select class="single_relator_select marc_editor_hotkey" width="100">
 	<option value="-">--- Select ---</option>
 	<%- tag_params["groups"].sort.map do |key, values| %>
-    	<optgroup label="<%= @editor_profile.get_label(key) -%>"
-			<%- values.each do |code| %>
-		    	<option value="<%= code -%>"><%= @editor_profile.get_label(code) -%></option>	
+     <optgroup label="<%= @editor_profile.get_label(key) -%>">
+        <%- values.each do |code| %>
+          <option value="<%= code -%>"><%= @editor_profile.get_label(code) -%></option>	
 			<%- end %>
 		</option>	
 	<%- end %>

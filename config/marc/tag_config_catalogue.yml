@@ -367,8 +367,15 @@
     :indicator: "2#"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Catalogue
+        :foreign_field: id
+        :no_show: true
     - - t
       - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: description
     - - g
       - :occurrences: "*"
     - - o

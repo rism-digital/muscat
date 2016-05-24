@@ -1,12 +1,12 @@
 --- !map:Settings 
 group_order: 
-- sigla
+- codes
 - identity
 - contact
 - description
 - control
 groups:
-  sigla:
+  codes:
     all_tags:
     - "024"
     - "035"

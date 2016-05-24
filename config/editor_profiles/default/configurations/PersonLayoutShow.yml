@@ -42,7 +42,8 @@ groups:
     - "678"
     - "680"
     - "856"
-  all_tag_templates:
+    all_tag_templates:
+      "670": people/show_catalogue
       "856": people/show_link
   control: 
     all_tags: 

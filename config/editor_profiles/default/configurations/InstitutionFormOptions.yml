@@ -34,6 +34,12 @@
     - - f
       - cols: 2
     columns: 4
+"040": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+        read_only: true
 "043": 
   layout: 
     fields: 

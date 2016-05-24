@@ -110,18 +110,35 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: GND Code
 "040": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Sigla
-    fr: Sigla
-    de: Sigel
-    en: Sigla
+    it: Fonte della catalogazione
+    fr: Source du catalogage
+    de: Katalogisierungsquelle
+    en: Cataloguing agency
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: Sigla
-        fr: Sigla
-        de: Sigel
-        en: Sigla
-
+        it: Agenzia catalografica originale
+        fr: Organisme du catalogage original
+        de: Original-Katalogisierungsstelle
+        en: Original cataloguing agency
+    b: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Lingua della catalogazione
+        fr: Langue de catalogage
+        de: Katalogisierungssprache
+        en: Language of cataloguing
+    c: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Agenzia della trascrizione
+        fr: Organisme de la transcription
+        de: "Übertragende Katalogisierungsstelle"
+        en: Transcribing agency
+    d: !map:ActiveSupport::HashWithIndifferentAccess 
+      label: !map:ActiveSupport::HashWithIndifferentAccess 
+        it: Agenzia della modifica
+        fr: Organisme de la modification
+        de: Modifizierende Katalogisierungsstelle
+        en: Modifying agency
 
 
 "043": !map:ActiveSupport::HashWithIndifferentAccess 
@@ -187,10 +204,10 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
 
 "371": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: ADDRESS
-    fr: ADDRESS
+    it: LOCATION AND ADDRESS
+    fr: LOCATION AND ADDRESS
     de: "Adresse"
-    en: Address
+    en: Location and Address
   fields: !map:ActiveSupport::HashWithIndifferentAccess 
     a: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
@@ -203,7 +220,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         it: POSTAL CODE
         fr: POSTAL CODE
         de: Postleitzahl
-        en: Postal Code
+        en: Postal code
     b: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: CITY
@@ -212,10 +229,10 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         en: City
     c: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: COUNTY OR STATE
-        fr: COUNTY OR STATE
+        it: COUNTY OR PROVINCE
+        fr: COUNTY OR PROVINCE
         de: Bezirk oder Staat
-        en: County or State
+        en: County or province
     d: !map:ActiveSupport::HashWithIndifferentAccess 
       label: !map:ActiveSupport::HashWithIndifferentAccess 
         it: COUNTRY
@@ -267,7 +284,7 @@ doc_templates: !map:ActiveSupport::HashWithIndifferentAccess
         t: OTHER FORM OF NAME
         fr: OTHER FORM OF NAME
         de: Andere Namensformen
-        en: Other Form of Name
+        en: Other form of name
 "510": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: PARALLEL FORM OF NAME
@@ -798,10 +815,10 @@ voc: !map:ActiveSupport::HashWithIndifferentAccess
     en: "Austria: Upper Austria"
 "XA-AT-9": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: "Austria: Vienna XA-AT-9"
-    fr: "Austria: Vienna XA-AT-9"
-    de: "Austria: Vienna XA-AT-9"
-    en: "Austria: Vienna XA-AT-9"
+    it: "Austria: Vienna"
+    fr: "Austria: Vienna"
+    de: "Austria: Vienna"
+    en: "Austria: Vienna"
 "XA-BE": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: "Belgium"

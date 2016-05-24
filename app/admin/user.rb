@@ -51,13 +51,20 @@ ActiveAdmin.register User do
          user.get_roles.join(", ")
     end
     column :created_at
+    column :active do |user|
+      user.active? ? status_tag( "yes", :ok  ) : status_tag( "no"  )
+      user.active?
+    end
     actions
   end
   
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/section_sidebar_index"
   end
-
+ 
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
