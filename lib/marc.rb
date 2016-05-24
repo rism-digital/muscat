@@ -69,6 +69,10 @@ class Marc
     @root.resolve_externals unless !resolve
   end
   
+  def loaded
+    return @loaded
+  end
+  
   # Read a line from a MARC record
   def ingest_raw(tag_line)
     if tag_line =~ @marc21

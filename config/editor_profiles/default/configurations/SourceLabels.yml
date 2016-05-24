@@ -650,17 +650,17 @@ doc_administration:
         en: Set
 "383": 
   label: 
-    it: OPUS
-    fr: OPUS
-    de: OPUS
-    en: OPUS
+    it: Opus
+    fr: "Opus"
+    de: Opus
+    en: Opus
   fields: 
     b: 
       label: 
-        it: OPUS
-        fr: OPUS
-        de: OPUS
-        en: OPUS
+        it: Num. d'opera
+        fr: "No. de Opus"
+        de: Opus
+        en: Opus
 "500": 
   label: 
     it: Osservazioni
