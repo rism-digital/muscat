@@ -108,7 +108,7 @@ class MarcImport
           ap "#{marc.to_marc}"
           #puts e.backtrace.join("\n")
         end
-        print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S").green + " -- Record #{@cnt} of #{@total_records} processed".yellow
+        $stderr.puts "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S").green + " -- Record #{@cnt} of #{@total_records} processed".yellow
         #puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"
       else
         puts "Marc is not valid! #{buffer}"
