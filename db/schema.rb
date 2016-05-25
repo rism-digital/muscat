@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511234201) do
+ActiveRecord::Schema.define(version: 20160525092702) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -71,6 +71,14 @@ ActiveRecord::Schema.define(version: 20160511234201) do
 
   add_index "catalogues_catalogues", ["catalogue_a_id"], name: "index_catalogues_catalogues_on_catalogue_a_id", using: :btree
   add_index "catalogues_catalogues", ["catalogue_b_id"], name: "index_catalogues_catalogues_on_catalogue_b_id", using: :btree
+
+  create_table "catalogues_to_catalogues", id: false, force: :cascade do |t|
+    t.integer "catalogue_a_id", limit: 4
+    t.integer "catalogue_b_id", limit: 4
+  end
+
+  add_index "catalogues_to_catalogues", ["catalogue_a_id"], name: "index_catalogues_to_catalogues_on_catalogue_a_id", using: :btree
+  add_index "catalogues_to_catalogues", ["catalogue_b_id"], name: "index_catalogues_to_catalogues_on_catalogue_b_id", using: :btree
 
   create_table "catalogues_to_institutions", id: false, force: :cascade do |t|
     t.integer "catalogue_id",   limit: 4
@@ -380,6 +388,14 @@ ActiveRecord::Schema.define(version: 20160511234201) do
 
   add_index "people", ["full_name"], name: "index_people_on_full_name", using: :btree
   add_index "people", ["wf_stage"], name: "index_people_on_wf_stage", using: :btree
+
+  create_table "people_to_catalogues", id: false, force: :cascade do |t|
+    t.integer "person_id",    limit: 4
+    t.integer "catalogue_id", limit: 4
+  end
+
+  add_index "people_to_catalogues", ["catalogue_id"], name: "index_people_to_catalogues_on_catalogue_id", using: :btree
+  add_index "people_to_catalogues", ["person_id"], name: "index_people_to_catalogues_on_person_id", using: :btree
 
   create_table "people_to_institutions", id: false, force: :cascade do |t|
     t.integer "institution_id", limit: 4

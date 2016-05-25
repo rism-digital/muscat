@@ -40,6 +40,7 @@ class Person < ActiveRecord::Base
   has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_people")
   has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
   has_and_belongs_to_many :places, join_table: "people_to_places"
+  has_and_belongs_to_many :catalogues, join_table: "people_to_catalogues"
   has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
