@@ -244,6 +244,12 @@ class MarcSource < Marc
       st.destroy_yourself if st
     end
     
+    each_by_tag("594") do |t|
+      t.each_by_tag("a") do |st|
+        st.destroy_yourself if st
+      end
+    end
+    
     each_by_tag("691") do |t|
       t.each_by_tag("c") do |st|
         st.destroy_yourself if st
