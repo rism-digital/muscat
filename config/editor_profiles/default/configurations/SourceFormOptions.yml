@@ -304,6 +304,7 @@
 "594":
   layout: 
     fields: 
+    - - a
     - - b
       - type: source_594b_solr
         field: value
@@ -510,7 +511,7 @@
       - type: source_solr
         field: value
         editor_partial: subfield_secondary
-        allow_not_found: true
+        allow_new: true
     - - n
     - - p
 "772": 
