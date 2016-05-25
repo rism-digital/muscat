@@ -120,7 +120,7 @@ class Person < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["institutions", "people", "places"]
+    allowed_relations = ["institutions", "people", "places", "catalogues"]
     recreate_links(marc, allowed_relations)
   end
   
