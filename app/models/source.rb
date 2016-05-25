@@ -219,7 +219,7 @@ class Source < ActiveRecord::Base
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
-=begin    
+    
     sunspot_dsl.integer :catalogues, :multiple => true do
           catalogues.map { |catalogue| catalogue.id }
     end
@@ -250,7 +250,6 @@ class Source < ActiveRecord::Base
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
-=end
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
