@@ -23,7 +23,7 @@ module ForeignLinks
     # If there are unknown classes purge them
     related_classes = marc_foreign_objects.keys - unknown_classes
     if !unknown_classes.empty?
-      puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')}"
+      $stderr.puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')} [#{self.id}]"
     end
         
     related_classes.each do |foreign_class|
@@ -41,11 +41,10 @@ module ForeignLinks
         begin
           relation << ni
         rescue => e
-          puts
-          puts "Foreign Links: Could not add a record (#{ni.id}) in the relationship with #{self.id} (#{self.class})".red
-          puts "- Added records dump: #{new_items}".magenta
-          puts "- Error message follows:"
-          puts e.message.blue
+          $stderr.puts
+          $stderr.puts "Foreign Links: Could not add a record (#{ni.id}) in the relationship with #{self.id} (#{self.class})".red
+          $stderr.puts "- Added records dump: #{new_items}".magenta
+          $stderr.puts e.message.blue
         end
       end
     end

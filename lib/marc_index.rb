@@ -82,11 +82,11 @@ module MarcIndex
             end
 
           rescue => e
-            puts "MarcIndex: Marc failed to load for ".red +  self[:id].to_s.magenta
-            puts "While indexing: #{conf_tag.to_s.green}, #{subtag.to_s.yellow}"
-            puts "Look for the MARC error, as the index tag could have triggered a marc reload and is unrelated"
-            puts e.exception.to_s.blue
-            puts
+            $stderr.puts "MarcIndex: Marc failed to load for ".red +  self[:id].to_s.magenta
+            $stderr.puts "While indexing: #{conf_tag.to_s.green}, #{subtag.to_s.yellow}"
+            $stderr.puts "Look for the MARC error, as the index tag could have triggered a marc reload and is unrelated"
+            $stderr.puts e.exception.to_s.blue
+            $stderr.puts
           end
           ## Return the value
           out

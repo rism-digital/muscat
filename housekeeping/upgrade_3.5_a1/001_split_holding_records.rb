@@ -6,8 +6,8 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
     marc = source.marc
     marc.load_source
   rescue => e
-    "SplitHoldingRecords: Could not load record #{source.id}"
-    puts e.message.blue
+    $stderr.puts "SplitHoldingRecords: Could not load record #{source.id}"
+    $stderr.puts e.message.blue
     next
   end
   
@@ -35,8 +35,8 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
     begin
       holding.save
     rescue => e
-      "SplitHoldingRecords could not save holding record for #{source.id}"
-      puts e.message.blue
+      $stderr.puts"SplitHoldingRecords could not save holding record for #{source.id}"
+      $stderr.puts e.message.blue
       next
     end
     
@@ -44,7 +44,7 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
   end
 
   if count != source.holdings.count
-    puts "Modified #{count} records but record has #{source.holdings.count} holdings."
+    $stderr.puts "Modified #{count} records but record has #{source.holdings.count} holdings. [#{source.id}]"
   end
   
   ts = marc.root.fetch_all_by_tag("852") 
@@ -67,7 +67,7 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
   begin
     source.save
   rescue => e
-    "SplitHoldingRecords could not save record #{source.id}"
+    $stderr.puts "SplitHoldingRecords could not save record #{source.id}"
     puts e.message.blue
   end
   

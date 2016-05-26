@@ -101,17 +101,17 @@ class MarcImport
 #        rescue ActiveRecord::RecordNotUnique
 #          @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
         rescue => e
-          puts
-          puts "Marc Import: Could not save the imported record".red
-          puts e.message.blue
-          puts "Record Id: #{model.id}".magenta
-          ap "#{marc.to_marc}"
+          $stderr.puts
+          $stderr.puts "Marc Import: Could not save the imported record".red
+          $stderr.puts e.message.blue
+          $stderr.puts "Record Id: #{model.id}".magenta
+          $stderr.puts "#{marc.to_marc}"
           #puts e.backtrace.join("\n")
         end
-        $stderr.puts "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S").green + " -- Record #{@cnt} of #{@total_records} processed".yellow
+        print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S").green + " -- Record #{@cnt} of #{@total_records} processed".yellow
         #puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"
       else
-        puts "Marc is not valid! #{buffer}"
+        $stderr.puts "Marc is not valid! #{buffer}"
       end
     end
   end

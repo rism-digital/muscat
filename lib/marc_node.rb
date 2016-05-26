@@ -290,10 +290,10 @@ class MarcNode
       begin
         parent.foreign_object = foreign_class.constantize.send("find", db_node.content)
       rescue => e
-        puts "MarcNode set_foreign_object error".red
-        puts e.exception.to_s.blue
-        puts "MarcNode tag dummp " + self.parent.to_marc.strip.yellow
-        puts "MarcNode offending or missing tag: " + self.to_marc.yellow
+        $stderr.puts "MarcNode set_foreign_object error".red
+        $stderr.puts e.exception.to_s.blue
+        $stderr.puts "MarcNode tag dummp " + self.parent.to_marc.strip.yellow
+        $stderr.puts "MarcNode offending or missing tag: " + self.to_marc.yellow
         raise e
       end
     end
