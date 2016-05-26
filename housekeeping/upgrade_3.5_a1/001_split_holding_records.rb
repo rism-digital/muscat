@@ -37,6 +37,7 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
     rescue => e
       "SplitHoldingRecords could not save holding record for #{source.id}"
       puts e.message.blue
+      next
     end
     
     count += 1
