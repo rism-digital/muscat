@@ -2,8 +2,14 @@ pb = ProgressBar.new(Source.where(record_type: MarcSource::RECORD_TYPES[:print])
 
 Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
   
-  marc = source.marc
-  marc.load_source
+  begin
+    marc = source.marc
+    marc.load_source
+  rescue => e
+    "SplitHoldingRecords: Could not load record #{source.id}"
+    puts e.message.blue
+    next
+  end
   
   count = 0
   
@@ -25,7 +31,13 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
     
     holding.marc = new_marc
     holding.source = source
-    holding.save
+    
+    begin
+      holding.save
+    rescue => e
+      "SplitHoldingRecords could not save holding record for #{source.id}"
+      puts e.message.blue
+    end
     
     count += 1
   end
@@ -50,8 +62,13 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
   new_marc_txt = marc.to_marc
   new_marc = MarcSource.new(new_marc_txt, source.record_type)
   source.marc = new_marc
-
-  source.save
+  
+  begin
+    source.save
+  rescue => e
+    "SplitHoldingRecords could not save record #{source.id}"
+    puts e.message.blue
+  end
   
   pb.increment!
   
