@@ -304,7 +304,6 @@
 "594":
   layout: 
     fields: 
-    - - a
     - - b
       - type: source_594b_solr
         field: value

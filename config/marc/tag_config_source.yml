@@ -407,8 +407,6 @@
     :indicator: "##"
     :occurrences: "?"
     :fields:
-    - - a
-      - :occurrences: "?"
     - - b
       - :occurrences: "?"
     - - c

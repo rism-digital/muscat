@@ -922,12 +922,19 @@ doc_administration:
     de: Besetzung
     en: Scoring
   fields: 
-    a: 
+    b: 
       label: 
         it: Organico
         fr: Instrumentation
         de: Besetzung
         en: Scoring
+        fields: 
+    c: 
+      label: 
+        it: NUMBER
+        fr: Nombre
+        de: NUMBER
+        en: Number
 "595": 
   label: 
     it: "Ruoli: nomi originali dei personaggi"
@@ -1333,7 +1340,7 @@ doc_administration:
     g: 
       label: 
         it: RULE TYPE
-        fr: RULE TYPE
+        fr: Règle de cat.
         de: Regelwerk
         en: Rule type
     k: 
