@@ -292,9 +292,6 @@ class Marc
     # item in collection
     elsif node = first_occurance("773", "w")
       parent = node.foreign_object
-    # previous edition
-    elsif node = first_occurance("775", "w")
-      parent = node.foreign_object
     end
   end
   
