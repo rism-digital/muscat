@@ -34,6 +34,7 @@ tag_exclude:
   manuscript:
   - '597'
   - '772'
+  - '775'
   print:
   - '772'
   manuscript_libretto:
@@ -43,6 +44,7 @@ tag_exclude:
   - '597'
   - '598'
   - '772'
+  - '775'
   - '787'
   print_libretto:
   - '590'
@@ -84,6 +86,7 @@ tag_exclude:
   - '730'
   - '740'
   - '773'
+  - '775'
   - '787'
 
 groups:
@@ -98,6 +101,7 @@ groups:
     - '773'
     - '787'
     - '772'
+    - '775'
   edit_names:
     all_tags:
     - '100'
@@ -137,6 +141,7 @@ groups:
     - '700'
     - '710'
     - '500'
+    - '563'
     - '597'
     - '856'
     subfield_grouping: 8

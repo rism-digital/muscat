@@ -15,15 +15,16 @@
 <%- @editor_profile.layout_config[:marc_editor_group_links].each do |gl| -%>
 	<li><a data-scroll-target="<%= gl.gsub(/ /, "_") -%>" data-panel="marc_editor_panel" href="#"><%= gl -%></a></li>
 <%- end -%>
-<%- if !@editor_profile.layout_config[:marc_editor_missing_group_links].empty? -%>
-	<li>&nbsp;</li>
-	<%- missing_group_link = @editor_profile.layout_config[:marc_editor_missing_group_links] %>
-	<li><a data-scroll-target="<%= missing_group_link.gsub(/ /, "_") -%>" data-panel="marc_editor_panel" href="#"><%= missing_group_link -%></a></li>
-<%- end -%>
+
 
 <% if @holdings && @holdings.count > 0%>
 	<li><a data-scroll-target="Holding_Records" data-panel="marc_editor_panel" href="#"><%=I18n.t(:holding_records)%></a></li>
 <%end%>
+
+<%- if !@editor_profile.layout_config[:marc_editor_missing_group_links].empty? -%>
+	<%- missing_group_link = @editor_profile.layout_config[:marc_editor_missing_group_links] %>
+	<li><a data-scroll-target="<%= missing_group_link.gsub(/ /, "_") -%>" data-panel="marc_editor_panel" href="#"><%= missing_group_link -%></a></li>
+<%- end -%>
 
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
@@ -32,32 +33,35 @@
 	<li class="muscat_icon_link">
 		<a data-scroll-target="show_preview" data-panel="marc_editor_preview" href="#" class="muscat_icon_link muscat_icon_link_preview"><%=(I18n.t :show_preview)%></a>
 	</li>
-  <% if @item.class.respond_to?("get_viaf") %>
-  	<li class="muscat_icon_link">
-	  	<a id="viaf-sidebar" href="#" class="muscat_icon_link muscat_icon_link_viaf"><%= (I18n.t :show_viaf)%></a>
-  	</li>
-  <% end %>
+<% if @item.class.respond_to?("get_viaf") %>
+	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link">
+		<a id="viaf-sidebar" href="#" class="muscat_icon_link muscat_icon_link_viaf"><%= (I18n.t :show_viaf)%></a>
+	</li>
+<% end %>
+
+<%if model == "source" && (@item.record_type == MarcSource::RECORD_TYPES[:print]) %>
+	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :new_holding}", new_admin_holding_path(source_id: @item.id),
+			:class => "muscat_icon_link muscat_icon_link_new") %>
+	</li>
+<%end%>	
 	
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
 		<a data-scroll-target="action" data-action="save" href="#" class="muscat_icon_link muscat_icon_link_save"><%=(I18n.t :save_and_continue)%></a>
 	</li>
 	<li class="muscat_icon_link">
-		<a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="muscat_icon_link muscat_icon_link_history"><%=(I18n.t :show_history)%></a>
+		<a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a>
 	</li>
-<%if model == "source" %>
-	<li class="muscat_icon_link">
-		<%= link_to("#{I18n.t :new_holding}", new_admin_holding_path(source_id: @item.id),
-			:class => "muscat_icon_link muscat_icon_link_new") %>
-	</li>
-<%end%>	
 
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
 		<a href="<%= cancel_path %>" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a>
 	</li>
 	<li class="muscat_icon_link">
-		<a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a>
+		<a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="muscat_icon_link muscat_icon_link_history"><%=(I18n.t :show_history)%></a>
 	</li>
 
 	<li class="muscat_icon_separator"></li>

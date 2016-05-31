@@ -525,6 +525,13 @@
     - - w
       - type: source
         editor_partial: subfield_secondary
+"775":
+  new_window: sources
+  layout: 
+    fields: 
+    - - w
+      - type: source
+        editor_partial: subfield_secondary
 "787": 
   layout: 
     fields: 
