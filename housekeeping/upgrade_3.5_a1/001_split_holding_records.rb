@@ -81,7 +81,14 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |s|
   
   new_marc_txt = marc.to_marc
   new_marc = MarcSource.new(new_marc_txt, source.record_type)
-  source.marc = new_marc
+  
+  begin
+    source.marc = new_marc
+  rescue =>e
+    $stderr.puts "SplitHoldingRecords could not add new marc #{source.id}"
+    puts e.message.blue
+    next
+  end
   
   begin
     source.save
