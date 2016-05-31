@@ -277,6 +277,7 @@ de:
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
   show_preview: "Vorschau anzeigen"
+  hide_preview: "HIDE PREVIEW"
   show_history: "Änderungsgeschichte"
   show_viaf: "VIAF Suche"
   save_and_continue: "Speichern und weiter bearbeiten"

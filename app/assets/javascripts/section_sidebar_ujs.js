@@ -65,6 +65,12 @@ var init_sidebar_actions = function () {
 			// the preview panel requires AJAX to get the data so we defer action to this function
 			// if it succeeds it will display the marc_editor_preview panel
 			marc_editor_show_preview();
+			$("#show_preview_li").hide();
+			$("#hide_preview_li").show();
+		} else if (tname == "hide_preview") {
+			show_toplevel(panel);
+			$("#hide_preview_li").hide();
+			$("#show_preview_li").show();
 		} else if (tname == "show_help") {
 			// the preview panel requires AJAX to get the data so we defer action to this function
 			// if it succeeds it will display the marc_editor_help panel

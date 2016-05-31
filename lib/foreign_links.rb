@@ -17,7 +17,7 @@ module ForeignLinks
           end
         end
       end
-        
+
       can_manage = false
       marc.each_by_tag("775") do |t|
         a = t.fetch_first_by_tag("w")
