@@ -135,7 +135,7 @@ function marc_editor_init_tags( id ) {
 	});
 	
 	$(document).on('keydown', null, 'alt+ctrl+n', function(){
-		window.location.href = "/" +  marc_editor_get_model() + "/new";
+		window.location.href = "/admin/" +  marc_editor_get_model() + "/new";
 	});
 }
 

@@ -141,7 +141,7 @@ class Source < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings"]
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings", "sources"]
     recreate_links(marc, allowed_relations)
     
     # update the parent manuscript when having 773/772 relationships
