@@ -683,8 +683,6 @@
     :indicator: "##"
     :occurrences: "?"
     :fields:
-    - - a
-      - :occurrences: "?"
     - - w
       - :occurrences: "1"
         :foreign_class: Source

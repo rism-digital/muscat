@@ -1428,6 +1428,21 @@ doc_administration:
         en: Volume containing this item
       edit_label: 
         en: ""
+"775": 
+  label: 
+    it: FIRST ENTRY
+    fr: "Première entrée"
+    de: Ersteintrag
+    en: First entry
+  fields: 
+    w: 
+      label: 
+        it: FIRST ENTRY
+        fr: "Première entrée"
+        de: Ersteintrag
+        en: First entry
+      edit_label: 
+        en: ""
 "787": 
   label: 
     it: Inserimenti
