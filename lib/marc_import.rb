@@ -41,6 +41,29 @@ class MarcImport
     puts @import_results
   end
 
+  # see 337
+  def apply_bush_fix(marc)
+    
+    if nodeid = marc.first_occurance("001")
+      id = nodeid.content
+    end
+    
+    if ["50000002", "50000003", "50000004", "50000005", "50000006", "50000007",
+        "50000008", "50000009", "50000010", "50000011", "50000012", "50000013",
+        "50000014"].include?(id)
+    
+        node = marc.first_occurance('110', "g")
+        if node && node.content
+          sigla = node.content
+          node.content = sigla + "-duplicate"
+          
+          $stderr.puts "Modified sigla for #{id}".red
+          $stderr.puts "New siga: #{node.content}".yellow
+        end
+    end
+    
+  end
+
   def create_record(buffer)
     @cnt += 1
     #@total_records += 1
@@ -71,6 +94,10 @@ class MarcImport
         
         # Make internal format
         marc.to_internal
+
+        if @model == "Institution"
+          apply_bush_fix(marc)
+        end
 
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
         marc.suppress_scaffold_links

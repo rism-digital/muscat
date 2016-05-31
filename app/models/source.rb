@@ -66,7 +66,6 @@ class Source < ActiveRecord::Base
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
-  # People can link to themselves
   # This is the forward link
   has_and_belongs_to_many(:sources,
     :class_name => "Source",
