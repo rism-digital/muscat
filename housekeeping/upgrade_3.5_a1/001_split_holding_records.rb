@@ -1,10 +1,11 @@
 pb = ProgressBar.new(Source.where(record_type: MarcSource::RECORD_TYPES[:print]).count)
 
-Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
+Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |s|
+  source = Source.find(s)
   
   begin
     marc = source.marc
-    marc.load_source
+    marc.load_source false
   rescue => e
     $stderr.puts "SplitHoldingRecords: Could not load record #{source.id}"
     $stderr.puts e.message.blue
@@ -12,6 +13,9 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
   end
   
   count = 0
+  
+  # No 852 or record already processed
+  next if marc.by_tags("852").count == 0
   
   marc.each_by_tag("852") do |t|
     
@@ -43,17 +47,32 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
     count += 1
   end
 
-  if count != source.holdings.count
+  if count != source.holdings.count && count > 0
     $stderr.puts "Modified #{count} records but record has #{source.holdings.count} holdings. [#{source.id}]"
+  else
+    ts = marc.root.fetch_all_by_tag("852") 
+    ts.each {|t2| t2.destroy_yourself}
   end
-  
-  ts = marc.root.fetch_all_by_tag("852") 
-  ts.each {|t2| t2.destroy_yourself}
   
   # suppress the 246 field in A/I prints since it was used for the previous title (now in 775 $t)
   if source.id > 990000000
     ts = marc.root.fetch_all_by_tag("246") 
     ts.each {|t2| t2.destroy_yourself}
+    
+    # Do more housekeeping
+    # Add $8 to sources that need it
+
+    ['593', '260','300', '590', '340', '028', '592','563', '597'].each do |tag|
+      marc.each_by_tag(tag) do |t|
+        st = t.fetch_first_by_tag("8")
+        # Skip if exists
+        next if st && st.content
+        
+        t.add_at(MarcNode.new("source", "8", "01", nil), 0)
+        t.sort_alphabetically
+      end
+    end
+    
   end
   
 	source.suppress_update_77x
@@ -72,5 +91,5 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |source|
   end
   
   pb.increment!
-  
+  source = nil
 end
