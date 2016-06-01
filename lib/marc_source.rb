@@ -33,17 +33,17 @@ class MarcSource < Marc
     
     # try to get the title (240)
     node = first_occurance("240", "a")
-    standard_title = node.content if node 
+    standard_title = pretty_truncate(node.content, 50) if node 
    
     # try to get the description (240 m)
     node = first_occurance("240", "m")
-    scoring = node.content if node
+    scoring = pretty_truncate(node.content, 50) if node
    
     node = first_occurance("240", "k")
-    extract = node.content if node
+    extract = pretty_truncate(node.content, 50) if node
     
     node = first_occurance("240", "o")
-    arr = node.content if node
+    arr = pretty_truncate(node.content, 50) if node
    
     if !standard_title
       if @record_type == RECORD_TYPES[:convolutum]
@@ -52,7 +52,7 @@ class MarcSource < Marc
         standard_title = "[Collection]"
       end
     end
-   
+    
     title = standard_title || "[Without title]" ## if title is unset and it is not collection
 
     std_title = [title, extract, arr, scoring].compact.join("; ")
