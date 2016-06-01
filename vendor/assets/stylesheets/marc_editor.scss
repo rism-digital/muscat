@@ -121,6 +121,12 @@
                     * textarea.validating {
                         background: lightyellow;
                     }
+					
+					* input.autocomplete_extra_enabled {
+						border-color: orange;
+						color: orange
+					}
+					
                     * .grid_cell_header { 
                         font-size: 1.0em;
                         font-weight: bold;

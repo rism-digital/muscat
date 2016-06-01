@@ -68,6 +68,7 @@ function marc_editor_init_tags( id ) {
 			var group = input.parents(".tag_content_collapsable");
 			$(".autocomplete_extra", group).each(function () {
 				$(this).prop('disabled', false);
+				$(this).addClass("autocomplete_extra_enabled");
 				$(this).val("");
 			});
 			
@@ -115,6 +116,7 @@ function marc_editor_init_tags( id ) {
 		var group = input.parents(".tag_content_collapsable");
 		$(".autocomplete_extra", group).each(function () {
 			$(this).prop('disabled', true);
+			$(this).removeClass("autocomplete_extra_enabled");
 			var extra_data = $(this).data("autocomplete-extra");
 			if (extra_data in data.item) {
 				$(this).val(data.item[extra_data])
