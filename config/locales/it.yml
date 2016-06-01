@@ -38,6 +38,7 @@ it:
         ends_with: "Finisce con"
         greater_than: "Maggiore di"
         less_than: "Minore di"
+        with_integer: "Filtro"
     status_tag:
       "yes": "Sì"
       "no": "No"

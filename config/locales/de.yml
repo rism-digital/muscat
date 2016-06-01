@@ -35,6 +35,7 @@ de:
         ends_with: "Endet mit"
         greater_than: "Größer als"
         less_than: "Kleiner als"
+        with_integer: "FILTER"
     status_tag:
       "yes": "Ja"
       "no": "Nein"
