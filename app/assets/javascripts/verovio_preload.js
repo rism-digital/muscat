@@ -54,7 +54,7 @@ function render_music( music, format, target, width ) {
 				inputFormat: 'pae',
 				pageWidth: width / 0.4,
 				spacingStaff: 1,
-				border: 10,
+				border: 20,
 				scale: 40,
 				ignoreLayout: 0,
 				adjustPageHeight: 1
