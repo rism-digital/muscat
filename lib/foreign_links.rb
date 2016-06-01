@@ -23,7 +23,7 @@ module ForeignLinks
         a = t.fetch_first_by_tag("w")
         if a && a.content
           if a.content.to_s == object_id.to_s
-            puts "Manage 775 relation".green
+            #puts "Manage 775 relation".green
             can_manage = true
           end
         end

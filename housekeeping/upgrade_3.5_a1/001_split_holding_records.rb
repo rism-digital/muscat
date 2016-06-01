@@ -1,7 +1,11 @@
-pb = ProgressBar.new(Source.where(record_type: MarcSource::RECORD_TYPES[:print]).count)
+@cnt = 0
+@start_time = Time.now
+@total_records = Source.where(record_type: MarcSource::RECORD_TYPES[:print]).count
 
-Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |s|
-  source = Source.find(s)
+Source.where(record_type: MarcSource::RECORD_TYPES[:print]).pluck(:id).each do |sid|
+  source = Source.find(sid)
+  
+  @cnt += 1
   
   begin
     marc = source.marc
@@ -84,9 +88,9 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |s|
   
   begin
     source.marc = new_marc
-  rescue =>e
+  rescue => e
     $stderr.puts "SplitHoldingRecords could not add new marc #{source.id}"
-    puts e.message.blue
+    $stderr.puts e.message.blue
     next
   end
   
@@ -94,9 +98,10 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |s|
     source.save
   rescue => e
     $stderr.puts "SplitHoldingRecords could not save record #{source.id}"
-    puts e.message.blue
+    $stderr.puts e.message.blue
   end
   
-  pb.increment!
+  print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S").green + " -- Record #{@cnt} of #{@total_records} processed".yellow
+
   source = nil
 end
