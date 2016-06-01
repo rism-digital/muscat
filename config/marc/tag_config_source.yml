@@ -194,8 +194,6 @@
       - :occurrences: "?"
     - - m
       - :occurrences: "*"
-    - - n
-      - :occurrences: "*"
     - - o
       - :occurrences: "?"
     - - r

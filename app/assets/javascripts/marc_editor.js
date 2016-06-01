@@ -423,19 +423,6 @@ function marc_editor_send_form(redirect) {
 }
 
 function marc_editor_show_preview() {
-    // check that there is no new authority because preview is not possible
-    cancel = false;
-	$('div[data-function="new"]').each(function(){
-		if ($(this).is(':visible')) {
-            cancel = true;
-		}
-	});
-
-    if (cancel) {
-        alert("There is an unsaved authority file. Please save the source before opining the preview.");
-        return;
-    }
-
     _marc_editor_preview('marc_editor_panel','marc_editor_preview', marc_editor_get_model());
     window.scrollTo(0, 0);
 }
