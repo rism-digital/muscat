@@ -150,6 +150,12 @@ ActiveAdmin.register Source do
            end
          }
   
+  filter :record_type_with_integer, :label => proc {I18n.t(:filter_record_type)}, as: :select, 
+  collection: proc{MarcSource::RECORD_TYPES.collect {|k, v| [k, "record_type:#{v}"]}}
+
+  filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
+  collection: proc{[:inprogress, :published, :deleted].collect {|v| [v, "wf_stage:#{v}"]}}
+      
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,

@@ -15,7 +15,6 @@ groups:
     - "300"     
     - "337" 
     - "210"
-    - "508"
     all_tag_templates:
       "100": marc_show/show_person
       "700": marc_show/show_person

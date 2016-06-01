@@ -35,6 +35,7 @@ fr:
         ends_with: "Se termine par"
         greater_than: "Plus grand que"
         less_than: "Plus petit que"
+        with_integer: "FILTER"
     status_tag:
       "yes": "Oui"
       "no": "Non"
