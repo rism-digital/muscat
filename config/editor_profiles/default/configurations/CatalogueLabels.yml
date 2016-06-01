@@ -775,21 +775,6 @@ voc: !map:ActiveSupport::HashWithIndifferentAccess
         en: General note
       edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
         en: ""
-"508": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: INDICATION OF AUTHOR
-    fr: INDICATION OF AUTHOR
-    de: Verfasserangabe
-    en: Indication of author
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: INDICATION OF AUTHOR
-        fr: INDICATION OF AUTHOR
-        de: Verfasserangabe
-        en: Indication of author
-      edit_label: !map:ActiveSupport::HashWithIndifferentAccess 
-        en: ""
 "520": !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: INDICATION OF HOLDING

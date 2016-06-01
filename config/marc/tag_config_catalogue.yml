@@ -228,13 +228,6 @@
     - - "5"
       - :occurrences: "?"
         :no_browse: true
-  "508":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
   "520":
     :master: a
     :indicator: "##"
