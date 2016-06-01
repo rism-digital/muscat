@@ -235,6 +235,12 @@ class MarcSource < Marc
       
     end
     
+    each_by_tag("240") do |t|
+      t.each_by_tag("n") do |st|
+        st.destroy_yourself if st
+      end
+    end
+    
     # Drop $2pe in 031, see #194
     each_by_tag("031") do |t|
       st = t.fetch_first_by_tag("2")
