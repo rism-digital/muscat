@@ -84,9 +84,9 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |s|
   
   begin
     source.marc = new_marc
-  rescue =>e
+  rescue => e
     $stderr.puts "SplitHoldingRecords could not add new marc #{source.id}"
-    puts e.message.blue
+    $stderr.puts e.message.blue
     next
   end
   
@@ -94,7 +94,7 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).each do |s|
     source.save
   rescue => e
     $stderr.puts "SplitHoldingRecords could not save record #{source.id}"
-    puts e.message.blue
+    $stderr.puts e.message.blue
   end
   
   pb.increment!
