@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  before_filter :set_locale
+  before_filter :set_locale, :set_paper_trail_whodunnit
   
   # Code for rescueing lock conflicts errors
   rescue_from ActiveRecord::StaleObjectError do |exception|
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
   
   def user_for_paper_trail
-    current_user.try :name
+   current_user.try :name
   end
   
   def is_selection_mode?
