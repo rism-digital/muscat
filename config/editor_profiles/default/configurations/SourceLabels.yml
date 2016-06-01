@@ -510,12 +510,6 @@ doc_administration:
         fr: Distribution
         de: Besetzungshinweis
         en: Scoring summary
-    n: 
-      label: 
-        it: Num. di catalogo/d'opera
-        fr: "No. de cat. thématique/Opus"
-        de: Werkverzeichnis/Opus
-        en: Thematic catalogue no./Opus
     o: 
       label: 
         it: Arrangiamento
