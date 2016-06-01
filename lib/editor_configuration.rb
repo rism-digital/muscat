@@ -388,11 +388,11 @@ class EditorConfiguration
   end
     
   # Gets the html file name.
-  def self.get_help_fname(name, model)
-    model = model=="Source" ? "" : "#{model.downcase}_"
+  def self.get_help_fname(name, model = "Source")
+    model = (model == "Source") ? "" : "#{model.downcase}_"
     # translated version?
     fname = "/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html"
-    # puts fname
+    #ap fname
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # english?
     fname = "/help/#{RISM::MARC}/#{model}#{name}_en.html"
