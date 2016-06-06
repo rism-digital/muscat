@@ -1,45 +1,44 @@
 module ForeignLinks
   
   def can_source_to_source?(marc, object_id, object)
-    if object.is_a?(Source) && self.is_a?(Source)
-      # Is this a 773 or 775?
-      # 773 is a special case
-
-      # NOTE the TAG VALUE 'w' is HARDCODED here
-      marc.each_by_tag("773") do |t|
-        a = t.fetch_first_by_tag("w")
-        if a && a.content
-          if a.content.to_s == object_id.to_s
-            # This source is referenced by a 773
-            # skip it - it is updated in marc.update_77x
-            #puts "Skip 773 relation".purple
-            return false
-          end
+    # If one of the two objects is not a source just return true
+    # The relation is managed by foreign_links
+    return true if !object.is_a?(Source) || !self.is_a?(Source)
+    
+    # Is this a 773 or 775?
+    # 773 is a special case
+    # and not managed in foreign_links
+    # NOTE the TAG VALUE 'w' is HARDCODED here
+    marc.each_by_tag("773") do |t|
+      a = t.fetch_first_by_tag("w")
+      if a && a.content
+        if a.content.to_i == object_id.to_i
+          # This source is referenced by a 773
+          # skip it - it is updated in marc.update_77x
+          #puts "Skip 773 relation".purple
+          return false
         end
       end
+    end
 
-      can_manage = false
-      marc.each_by_tag("775") do |t|
-        a = t.fetch_first_by_tag("w")
-        if a && a.content
-          if a.content.to_s == object_id.to_s
-            #puts "Manage 775 relation".green
-            can_manage = true
-          end
+    can_manage = false
+    marc.each_by_tag("775") do |t|
+      a = t.fetch_first_by_tag("w")
+      if a && a.content
+        if a.content.to_i == object_id.to_i
+          #puts "Manage 775 relation".green
+          can_manage = true
         end
       end
-      
-      if !can_manage
-        $stderr.puts "Error in source to source relation".red
-        $stderr.puts "#{self.id} relation with #{object_id}".yellow
-        $stderr.puts "No 773 or 775 containing that relation is found".red
-      end
-      
-      return can_manage #if it is found we can go on
-    else
-      # For classes that are not source we can link to sources
-      return true
-    end #if object.is_a? Source && self.is_a?(Source)
+    end
+    
+    if !can_manage
+      $stderr.puts "Error in source to source relation".red
+      $stderr.puts "#{self.id} relation with #{object_id.to_s}".yellow
+      $stderr.puts "No 773 or 775 containing that relation is found".red
+    end
+    
+    return can_manage #if it is found we can go on
   end
   
   def recreate_links(marc, allowed_relations)

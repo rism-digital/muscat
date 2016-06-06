@@ -237,7 +237,7 @@ class MarcNode
           add( master )
         end
         # populate the foreign associations hash
-        foreign_associations["#{self.foreign_object.class.name}-#{self.foreign_object.id}"] = self.foreign_object   
+        foreign_associations[self.foreign_object.id] = self.foreign_object   
         # set the foreign object for all the subfields
         get_foreign_subfields.each do |subfield|
           subfield.set_foreign_object
