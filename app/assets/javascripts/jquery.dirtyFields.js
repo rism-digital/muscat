@@ -66,7 +66,7 @@
 							{
 								return false;
 							};
-						}	
+						}
 						evaluateTextElement($object,$container);	
 					});	
 				break;

@@ -3,6 +3,15 @@
 ////////////////////////////////////////////////////////////////////
 marc_editor_form_changed = false;
 
+function marc_editor_set_dirty() {
+	if (marc_editor_form_changed == true)
+		return;
+	
+	marc_editor_form_changed = true
+	//$("<span>*</span>").insertAfter($("#page_title"));
+	$("#page_title").append("*");
+}
+
 function marc_editor_init_tags( id ) {
 	
 	// Set event hooks
@@ -15,9 +24,9 @@ function marc_editor_init_tags( id ) {
 
 	marc_editor_form_changed = false;
 	$(id).dirtyFields({
-		trimText:true,
+		trimText: true,
 		fieldChangeCallback: function(originalValue, isDirty) {
-			marc_editor_form_changed = true;
+			marc_editor_set_dirty();
 		}
 	});	
 
@@ -56,6 +65,9 @@ function marc_editor_init_tags( id ) {
 		
 			input.addClass("serialize_marc");
 			input.addClass("new_autocomplete");
+			
+			// Make the form dirty
+			marc_editor_set_dirty();
 			
 			// Show the checkbox
 			check_tr = toplevel_li.find(".checkbox_confirmation")
@@ -104,6 +116,9 @@ function marc_editor_init_tags( id ) {
 		
 		input.removeClass("serialize_marc");
 		input.removeClass("new_autocomplete");
+		
+		// Make the form dirty
+		marc_editor_set_dirty();
 		
 		// Remove the checkbox
 		var check_tr = toplevel_li.find(".checkbox_confirmation")
