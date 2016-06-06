@@ -274,7 +274,7 @@ class MarcSource < Marc
       st = t.fetch_first_by_tag("0")
       if st && st.content
         if st.content.include?("DE-588a")
-          puts "#{get_id}: ".magenta + "Killing 700 tag: ".green + t.to_s.yellow
+          $stderr.puts "#{get_id}: ".magenta + "Killing 700 tag: ".green + t.to_s.yellow
           t.destroy_yourself
         end
       end
@@ -289,7 +289,7 @@ class MarcSource < Marc
       stx = t.fetch_first_by_tag("x")
       if st && st.content
         if stx && stx.content.empty?
-          puts "#{get_id}: ".magenta + "Killing 852 tag: ".green + t.to_s.yellow 
+          $stderr.puts "#{get_id}: ".magenta + "Killing 852 tag: ".green + t.to_s.yellow 
           t.destroy_yourself
         end
       end
