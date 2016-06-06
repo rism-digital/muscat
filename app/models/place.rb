@@ -58,6 +58,9 @@ class Place < ActiveRecord::Base
     text :country
     
     text :notes
+    text :alternate_terms
+    text :topic
+    text :sub_topic
     text :district
     
     join(:folder_id, :target => FolderItem, :type => :integer, 

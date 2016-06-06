@@ -394,6 +394,8 @@ fr:
   filter_title: "Titre"
   filter_titles: "Titres"
   filter_title_on_ms: "Titre diplomatique"
+  filter_topic: "TOPIC"
+  filter_sub_topic: "SUBTOPIC"
   filter_url: "Adresse Internet"
   filter_variants: "Variantes"
   filter_versions: "Versions"

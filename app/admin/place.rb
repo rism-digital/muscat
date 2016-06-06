@@ -1,7 +1,7 @@
 ActiveAdmin.register Place do
   # Temporary hide menu item because place model has to be configured first
-  menu false
-  #menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_places)}
+  # menu false
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_places)}
 
   # Remove mass-delete action
   batch_action :destroy, false
@@ -123,8 +123,12 @@ ActiveAdmin.register Place do
     render('jobs/jobs_monitor')
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
+      row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
+      row (I18n.t :filter_topic) { |r| r.topic }
+      row (I18n.t :filter_sub_topic) { |r| r.sub_topic }
       row (I18n.t :filter_country) { |r| r.country }
       row (I18n.t :filter_district) { |r| r.district }    
+      row (I18n.t :filter_notes) { |r| r.notes }    
     end
     active_admin_embedded_source_list( self, place, params[:qe], params[:src_list_page], !is_selection_mode? )
     active_admin_user_wf( self, place )
@@ -147,8 +151,12 @@ ActiveAdmin.register Place do
   form do |f|
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name)
+      f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
+      f.input :topic, :label => (I18n.t :filter_topic)
+      f.input :sub_topic, :label => (I18n.t :filter_sub_topic)
       f.input :country, :label => (I18n.t :filter_country), :as => :string # otherwise country-select assumed
       f.input :district, :label => (I18n.t :filter_district)
+      f.input :notes, :label => (I18n.t :filter_notes)
       f.input :lock_version, :as => :hidden
     end
   end

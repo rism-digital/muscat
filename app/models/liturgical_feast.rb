@@ -49,6 +49,7 @@ class LiturgicalFeast < ActiveRecord::Base
     text :name
   
     text :notes
+    text :alternate_terms
     
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })

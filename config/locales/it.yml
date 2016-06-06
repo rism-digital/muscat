@@ -397,6 +397,8 @@ it:
   filter_title: "Titolo"
   filter_titles: "Titoli"
   filter_title_on_ms: "Titolo diplomatico"
+  filter_topic: "TOPIC"
+  filter_sub_topic: "SUBTOPIC"
   filter_url: "Indirizzo url"
   filter_variants: "Varianti"
   filter_versions: "Versioni"

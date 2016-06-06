@@ -121,6 +121,8 @@ ActiveAdmin.register StandardTitle do
     render('jobs/jobs_monitor')
     attributes_table do
       row (I18n.t :filter_title) { |r| r.title }
+      row (I18n.t :filter_variants) { |r| r.variants }
+      row (I18n.t :filter_record_type) { |r| r.typus }
       row (I18n.t :filter_notes) { |r| r.notes }  
     end
     active_admin_embedded_source_list( self, standard_title, params[:qe], params[:src_list_page], !is_selection_mode? )
@@ -144,6 +146,8 @@ ActiveAdmin.register StandardTitle do
   form do |f|
     f.inputs do
       f.input :title, :label => (I18n.t :filter_title) 
+      f.input :variants, :label => (I18n.t :filter_variants) 
+      f.input :typus, :label => (I18n.t :filter_record_type) 
       f.input :notes, :label => (I18n.t :filter_notes) 
       f.input :lock_version, :as => :hidden
     end

@@ -101,6 +101,7 @@ ActiveAdmin.register LiturgicalFeast do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
+    column (I18n.t :filter_alternate_terms), :alternate_terms
     column (I18n.t :filter_sources), :src_count
     active_admin_muscat_actions( self )
   end
@@ -121,6 +122,7 @@ ActiveAdmin.register LiturgicalFeast do
     render('jobs/jobs_monitor')
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
+      row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
       row (I18n.t :filter_notes) { |r| r.notes } 
     end
     active_admin_embedded_source_list( self, liturgical_feast, params[:qe], params[:src_list_page], !is_selection_mode? )
@@ -144,6 +146,7 @@ ActiveAdmin.register LiturgicalFeast do
   form do |f|
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name)
+      f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
       f.input :notes, :label => (I18n.t :filter_notes)
       f.input :lock_version, :as => :hidden
     end

@@ -50,6 +50,8 @@ class StandardTitle < ActiveRecord::Base
     text :title_d
     
     text :notes
+    text :variants
+    text :typus
     
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
