@@ -34,27 +34,27 @@ class MarcSource < Marc
     # try to get the title (240)
     # Quartets
     node = first_occurance("240", "a")
-    standard_title = pretty_truncate(node.content, 50) if node 
+    standard_title = pretty_truncate(node.content, 50) if node && node.content
    
     # try to get the description (240 m)
     # vl (2), vla, vlc
     node = first_occurance("240", "m")
-    scoring = pretty_truncate(node.content, 50) if node
+    scoring = pretty_truncate(node.content, 50) if node && node.content
    
     node = first_occurance("240", "k")
-    extract = pretty_truncate(node.content, 50) if node
+    extract = pretty_truncate(node.content, 50) if node && node.content
     
     node = first_occurance("240", "o")
-    arr = pretty_truncate(node.content, 50) if node
+    arr = pretty_truncate(node.content, 50) if node && node.content
    
     node = first_occurance("383", "b")
-    opus = pretty_truncate(node.content, 50) if node
+    opus = pretty_truncate(node.content, 50) if node && node.content
    
     node = first_occurance("690", "a")
-    cat_a = pretty_truncate(node.content, 50) if node
+    cat_a = pretty_truncate(node.content, 50) if node && node.content
     
     node = first_occurance("690", "n")
-    cat_n = pretty_truncate(node.content, 50) if node
+    cat_n = pretty_truncate(node.content, 50) if node && node.content
    
     cat_no = "#{cat_a} #{cat_n}"
    
