@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525092702) do
+ActiveRecord::Schema.define(version: 20160606092702) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -464,8 +464,8 @@ ActiveRecord::Schema.define(version: 20160525092702) do
   create_table "sources", force: :cascade do |t|
     t.integer  "source_id",    limit: 4
     t.integer  "record_type",  limit: 1,     default: 0
-    t.string   "std_title",    limit: 255
-    t.string   "std_title_d",  limit: 255
+    t.string   "std_title",    limit: 512
+    t.string   "std_title_d",  limit: 512
     t.string   "composer",     limit: 255
     t.string   "composer_d",   limit: 255
     t.string   "title",        limit: 256
@@ -488,6 +488,8 @@ ActiveRecord::Schema.define(version: 20160525092702) do
 
   add_index "sources", ["record_type"], name: "index_sources_on_record_type", using: :btree
   add_index "sources", ["source_id"], name: "index_sources_on_source_id", using: :btree
+  add_index "sources", ["std_title"], name: "index_sources_on_std_title", length: {"std_title"=>255}, using: :btree
+  add_index "sources", ["std_title_d"], name: "index_sources_on_std_title_d", length: {"std_title_d"=>255}, using: :btree
   add_index "sources", ["wf_stage"], name: "index_sources_on_wf_stage", using: :btree
 
   create_table "sources_to_catalogues", id: false, force: :cascade do |t|
