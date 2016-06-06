@@ -122,7 +122,9 @@ ActiveAdmin.register Catalogue do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id    
 #   column (I18n.t :filter_name), :name
-    column (I18n.t :filter_name), :description
+    column (I18n.t :filter_name), :description do |catalogue| 
+      pretty_truncate(catalogue.description, 60)
+    end
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count
     active_admin_muscat_actions( self )
@@ -139,7 +141,7 @@ ActiveAdmin.register Catalogue do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_catalogue_show_title( @item.author, @item.description, @item.id) } do
+  show :title => proc{ active_admin_catalogue_show_title( @item.author, pretty_truncate(@item.description, 60), @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     render('jobs/jobs_monitor')
