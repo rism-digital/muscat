@@ -295,14 +295,6 @@ class Marc
     end
   end
   
-  # Copied from application helpers
-  # Used for the inventory database to tuncate the title 
-  def pretty_truncate(text, length = 30, truncate_string = " ...")
-    return if text.nil?
-    l = length - truncate_string.mb_chars.length
-    text.mb_chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
-  end
-
   # Check if the passed tag exists
   def has_tag?(tag)
     load_source unless @loaded
