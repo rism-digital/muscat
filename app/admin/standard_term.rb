@@ -80,7 +80,7 @@ ActiveAdmin.register StandardTerm do
   end
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexAuthorityJob.new(StandardTerm.find(params[:id])))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(StandardTerm.find(params[:id]), "Source"))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
