@@ -375,11 +375,11 @@
       - :occurrences: "*"
         :no_browse: true
   "785":
-    :master: 0
+    :master: "0"
     :indicator: "##"
     :occurrences: "*"
     :fields:
-    - - 0
+    - - "0"
       - :occurrences: "?"
   "856":
     :master: u
