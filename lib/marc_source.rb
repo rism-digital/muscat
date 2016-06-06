@@ -219,9 +219,6 @@ class MarcSource < Marc
     # convert leader to record_type
     rt = match_leader
     
-    # Drop leader
-
-
     # Move 130 to 240
     each_by_tag("130") do |t|
 
@@ -265,6 +262,36 @@ class MarcSource < Marc
     each_by_tag("772") do |t|
       t.each_by_tag("t") do |st|
         st.destroy_yourself if st
+      end
+    end
+    
+    ## BUSH FIX
+    ## #350
+    # remove 700 with DE-588a links
+    # these are IDS that do not exist in muscat
+    a = by_tags("700")
+    a.each do |t|
+      st = t.fetch_first_by_tag("0")
+      if st && st.content
+        if st.content.include?("DE-588a")
+          puts "#{get_id}: ".magenta + "Killing 700 tag: ".green + t.to_s.yellow
+          t.destroy_yourself
+        end
+      end
+    end
+    
+    ## BUSH FIX
+    ## #350
+    # Kill 852 with $a but empty $x
+    a = by_tags("852")
+    a.each do |t|
+      st = t.fetch_first_by_tag("a")
+      stx = t.fetch_first_by_tag("x")
+      if st && st.content
+        if stx && stx.content.empty?
+          puts "#{get_id}: ".magenta + "Killing 852 tag: ".green + t.to_s.yellow 
+          t.destroy_yourself
+        end
       end
     end
     
