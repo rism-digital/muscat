@@ -45,7 +45,8 @@
     fields: 
     - - c
       - cols: 2 
-        editor_partial: subfield_country_codes
+        editor_partial: subfield_select_codes
+        select_label: "Country"
     columns: 2
   tag_params:
     codes:

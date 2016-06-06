@@ -39,7 +39,6 @@
 				if (!$(this).data("triggered")) {
 					triggers = $(this).data("trigger");
 					$(this).data("triggered", triggers);
-					console.log("peppo");
 				}
 				
 			});

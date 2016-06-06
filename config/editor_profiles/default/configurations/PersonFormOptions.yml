@@ -77,7 +77,8 @@
     fields: 
     - - c
       - cols: 2 
-        editor_partial: subfield_country_codes
+        editor_partial: subfield_select_codes
+        select_label: "Country"
     columns: 2
   tag_params:
     codes:
@@ -179,7 +180,8 @@
     fields: 
     - - a
       - cols: 2 
-        editor_partial: subfield_gender_codes_375
+        editor_partial: subfield_select_codes
+        select_label: "Gender"
     columns: 2
   tag_params:
     codes:
@@ -195,7 +197,8 @@
       - cols: 2
     - - j
       - cols: 2
-        editor_partial: subfield_variant_codes
+        editor_partial: subfield_select_codes
+        select_label: "Kind of Variant"
     columns: 2
   tag_params:
     codes:
@@ -225,7 +228,8 @@
       - cols: 4
     - - "i"
       - cols: 2
-        editor_partial: subfield_relationship_codes
+        editor_partial: subfield_select_codes
+        select_label: "Relationship"
     columns: 4
   tag_params:
     codes:
@@ -275,7 +279,8 @@
       - cols: 2
     - - i
       - cols: 2
-        editor_partial: subfield_place_codes
+        editor_partial: subfield_select_codes
+        select_label: "Place"
     columns: 2
   tag_params:
     codes:

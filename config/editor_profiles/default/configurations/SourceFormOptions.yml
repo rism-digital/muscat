@@ -165,7 +165,8 @@
       - autocomplete_extra: life_dates
     - - j
       - cols: 2
-        editor_partial: subfield_attribution_codes
+        editor_partial: subfield_select_codes
+        select_label: "Attribution"
     columns: 2
   tag_params:
     codes:
@@ -402,7 +403,7 @@
     - - d
       - autocomplete_extra: life_dates
     - - j
-      - editor_partial: subfield_attribution_codes
+      - editor_partial: subfield_select_codes
     - - "4"
       - editor_partial: subfield_relator_codes_700
   tag_list_additional_data: tag_list_additional_data_relator_codes
@@ -465,7 +466,8 @@
     - - b
     - - g
     - - "4"
-      - editor_partial: subfield_relator_codes_710
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
   tag_params: 
     codes: 
     - fmo
