@@ -471,6 +471,13 @@ function marc_editor_show_tab_in_panel(tab_name, panel_name) {
 	marc_editor_show_panel(panel_name)
 }
 
+function marc_editor_show_all_subpanels() {
+	$( ".tab_panel" ).each(function() {
+		$(this).show();
+		$(this).removeData("current-item");
+	})
+}
+
 function marc_editor_set_last_tab(tab_name, panel_name) {
 	Cookies.set(marc_editor_get_model() + '-last_tab', tab_name, { expires: 30 });
 	Cookies.set(marc_editor_get_model() + '-panel_name', panel_name, { expires: 30 });
@@ -479,8 +486,11 @@ function marc_editor_set_last_tab(tab_name, panel_name) {
 function marc_editor_show_last_tab() {
     var last_tab = Cookies.get(marc_editor_get_model() + '-last_tab');
     var panel_name = Cookies.get(marc_editor_get_model() + '-panel_name');
-    if (last_tab && panel_name) {
+	
+	if ((last_tab != "full") && (last_tab && panel_name)) {
         marc_editor_show_tab_in_panel(last_tab, panel_name);
+    } else {
+    	marc_editor_show_all_subpanels();
     }
 }
 

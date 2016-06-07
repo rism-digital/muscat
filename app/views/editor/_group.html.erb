@@ -7,7 +7,7 @@
 <%- if @editor_profile.layout_config["groups"][group]["subfield_grouping"] %>
 
 	<%- subfield = @editor_profile.layout_config["groups"][group]["subfield_grouping"] %>
-	<div class="tab_panel" name="<%= group_title.gsub(/ /, "_") %>">
+	<div class="tab_panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">
 		<%= render :partial => "editor/group_by_subfield", 
 				:locals => { :tag_names => tag_names, :subfield => subfield, :group_title => group_title } %>
 	</div>
@@ -19,7 +19,7 @@
    <%- if tags_with_no_subfield.size > 0 %>
 		<%- group_title = @editor_profile.get_label("unmatched") %>
 		<%- @editor_profile.layout_config[:marc_editor_missing_group_links] = group_title -%>
-		<div class="panel tab_panel" name="<%= group_title.gsub(/ /, "_") %>">
+		<div class="panel tab_panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">
 			<div class="editor-flash" data-flash="<%=I18n.t(:unknown_tags)%>" data-type="warning"></div>
 			<h3><%= group_title -%></h3>
 			<div class="marc_editor_panel_content">
@@ -49,7 +49,7 @@
 		end
 	end
 -%>
-<div class="panel tab_panel" name="<%= group_title.gsub(/ /, "_") %>">
+<div class="panel tab_panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">
 	<h3><%= group_title -%></h3>
 	<div class="marc_editor_panel_content">
 		<div class="marc_editor_group_contents">

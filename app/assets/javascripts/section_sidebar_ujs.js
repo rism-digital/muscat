@@ -10,12 +10,11 @@ var init_sidebar_actions = function () {
 		
 		function show_toplevel(panel) {
 			// Show all the subpanels, if any
-			$( ".tab_panel" ).each(function() {
-				$(this).show();
-				$(this).removeData("current-item");
-			})
+			marc_editor_show_all_subpanels();
 			
-			marc_editor_show_panel(panel)
+			// Show the selected subpaned
+			// and toplevel panel
+			marc_editor_show_panel(panel);
 		} // function
 		
 		// Defer to the marc_editor
@@ -41,6 +40,8 @@ var init_sidebar_actions = function () {
 		if (tname == "show_toplevel") {
 			// Show a specific toplevel panel
 			show_toplevel(panel);
+			// Save the full view
+			marc_editor_set_last_tab("full", "full");
 		} else if (tname == "action") {
 			do_actions($(this).data("action"));
 		} else if (tname == "show_preview") {

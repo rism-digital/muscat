@@ -9,7 +9,7 @@
 	@editor_profile.layout_config[:marc_editor_missing_group_links] = group_title
 -%>
 
-<div class="panel tab_panel" name="<%= group_title.gsub(/ /, "_") %>">
+<div class="panel tab_panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">
 	<div class="editor-flash" data-flash="<%=I18n.t(:unknown_tags)%>" data-type="warning"></div>
 	<h3><%= group_title -%></h3>
 	<div class="marc_editor_panel_content">
