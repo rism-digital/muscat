@@ -232,6 +232,15 @@ class MarcSource < Marc
     # convert leader to record_type
     rt = match_leader
     
+    # Drop leader
+    each_by_tag("000") {|t| t.destroy_yourself}
+     
+    # Drop other unused tags
+    each_by_tag("003") {|t| t.destroy_yourself}
+    each_by_tag("005") {|t| t.destroy_yourself}
+    each_by_tag("007") {|t| t.destroy_yourself}
+    each_by_tag("008") {|t| t.destroy_yourself}
+    
     # Move 130 to 240
     each_by_tag("130") do |t|
 
@@ -260,9 +269,16 @@ class MarcSource < Marc
       st.destroy_yourself if st
     end
     
-    each_by_tag("594") do |t|
+    # Remove the $a tag
+    a = by_tags("594")
+    a.each do |t|
       t.each_by_tag("a") do |st|
         st.destroy_yourself if st
+      end
+      
+      # it the 594 is then empty remove it
+      if t.all_children.count == 0
+        t.destroy_yourself
       end
     end
     
