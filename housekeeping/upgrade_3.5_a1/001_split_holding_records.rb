@@ -40,6 +40,8 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).pluck(:id).each do |
     holding.marc = new_marc
     holding.source = source
     
+    holding.suppress_reindex
+    
     begin
       holding.save
     rescue => e
