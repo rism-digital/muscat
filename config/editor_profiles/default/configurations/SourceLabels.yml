@@ -661,6 +661,22 @@ doc_administration:
         fr: "No. de Opus"
         de: Opus
         en: Opus
+"490": 
+  label: 
+    it: RISM Series
+    fr: RISM Series
+    de: RISM Series
+    en: RISM Series
+  fields: 
+    a: 
+      label: 
+        it: RISM Series
+        fr: RISM Series
+        de: RISM Series
+        en: RISM Series
+      edit_label: 
+        en: ""
+
 "500": 
   label: 
     it: Osservazioni

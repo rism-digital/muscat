@@ -215,6 +215,18 @@
   layout: 
     fields: 
     - - b
+#
+"490": 
+  layout: 
+    fields: 
+    - - a
+      - values: 
+        - "A/I"
+        - "A/II"
+        - "B/I"
+        - "B/II"
+        - "B/IV"
+        editor_partial: subfield_select
 "500": 
   layout: 
     fields: 
