@@ -53,13 +53,17 @@
 <%end%>	
 	
 	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link" id="validation_override_container" hidden>
+		<input class="creation_checkbox" type="checkbox" id="validation_override_checkbox"/>
+		<span id="validation_override_label" style="color:red">Override Validation and Save</span>
+	</li>
 	<li class="muscat_icon_link">
 		<a data-scroll-target="action" data-action="save" href="#" class="muscat_icon_link muscat_icon_link_save"><%=(I18n.t :save_and_continue)%></a>
 	</li>
 	<li class="muscat_icon_link">
 		<a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a>
 	</li>
-
+	
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
 		<a href="<%= cancel_path %>" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a>

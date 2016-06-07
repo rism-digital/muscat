@@ -196,7 +196,15 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	if (!form.valid()) {
 		$('#main_content').unblock();
 		$('#sections_sidebar_section').unblock();
-		return;
+		
+		// Show the validation override check
+		$("#validation_override_container").show();
+		
+		// If it is not checked just return
+		// default state is unckecked
+		// If checked go on at the editor's risk
+		if ( !$("#validation_override_checkbox").is(':checked') )
+			return;
 	}
 	
 	var json_marc = serialize_marc_editor_form(form);
