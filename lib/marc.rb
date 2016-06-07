@@ -550,6 +550,7 @@ class Marc
 
   alias to_s to_marc
   alias marc_source to_marc
+  alias inspect to_marc
   
   private
   

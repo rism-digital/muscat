@@ -558,6 +558,7 @@ class MarcNode
   alias length size
   alias << add
   alias to_s to_marc
+  alias inspect to_marc
   
   
   private
