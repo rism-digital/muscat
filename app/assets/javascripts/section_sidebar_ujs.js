@@ -8,25 +8,7 @@ var init_sidebar_actions = function () {
 	$('a[data-scroll-target]').click(function(e){
 		e.preventDefault();
 		
-		function show_tab_group(tname, panel) {
-			var current_item = null;
-			var new_item = null;
-		
-			// Hide all the other panels
-			$( ".tab_panel" ).each(function() {
-				if ($(this).attr("name") != tname) {
-					$(this).hide();
-				} else {
-					$(this).show();
-				}
-			});
-			
-			marc_editor_show_panel(panel)
-			//$.scrollTo($("[name=" + tname + "]"), 100, {offset: -10});
-		} // function
-		
 		function show_toplevel(panel) {
-			
 			// Show all the subpanels, if any
 			$( ".tab_panel" ).each(function() {
 				$(this).show();
@@ -54,7 +36,7 @@ var init_sidebar_actions = function () {
 		
 		tname = $(this).data("scroll-target"); // type of action
 		panel = $(this).data("panel"); // toplevel panel
-        help = $(this).data("help"); // the help file to load
+		help = $(this).data("help"); // the help file to load
 		
 		if (tname == "show_toplevel") {
 			// Show a specific toplevel panel
@@ -77,7 +59,8 @@ var init_sidebar_actions = function () {
 			marc_editor_show_help(help, $(this).data("help-title"));
 		} else {
 			// This is for showing/hiding subtabs in marc
-			show_tab_group(tname, panel);
+			marc_editor_set_last_tab(tname, panel);
+			marc_editor_show_tab_in_panel(tname, panel);
 		}
 				
 		window.scrollTo(0, 0);
