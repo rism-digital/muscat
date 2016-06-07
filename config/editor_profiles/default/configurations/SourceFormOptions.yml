@@ -112,47 +112,47 @@
 "041": 
   layout: 
     fields: 
-    - - indicator
-      - editor_partial: subfield_indicator
     - - a
-      - values: 
-        - "eng"
-        - "fre"
-        - "ger"
-        - "grc"
-        - "gsw"
-        - "ita"
-        - "lat"
-        - "roh"
-        - "rus"
-        - "spa"
-        editor_partial: subfield_autocomplete
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        select_label: "Language"
     - - e
-      - values: 
-        - "eng"
-        - "fre"
-        - "ger"
-        - "grc"
-        - "gsw"
-        - "ita"
-        - "lat"
-        - "roh"
-        - "rus"
-        - "spa"
-        editor_partial: subfield_autocomplete
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        select_label: "Language"
     - - h
-      - values: 
-        - "eng"
-        - "fre"
-        - "ger"
-        - "grc"
-        - "gsw"
-        - "ita"
-        - "lat"
-        - "roh"
-        - "rus"
-        - "spa"
-        editor_partial: subfield_autocomplete
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        select_label: "Language"
+    columns: 2
+  tag_params:
+    codes:
+      - "cat"
+      - "cze"
+      - "dan"
+      - "dut"
+      - "eng"
+      - "fre"
+      - "ger"
+      - "grc"
+      - "gre" 
+      - "gsw"
+      - "heb"
+      - "hrv"
+      - "hun"
+      - "ita"
+      - "kor"
+      - "lat"
+      - "pol"
+      - "por"
+      - "rus"
+      - "slo"
+      - "slv"
+      - "spa"
+      - "srp"
+      - "swe"
+      - "zxx"
+
 "100": 
   new_window: people
   layout: 

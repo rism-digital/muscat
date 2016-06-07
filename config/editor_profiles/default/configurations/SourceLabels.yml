@@ -1946,4 +1946,155 @@ voc:
     fr: CONJECTURAL
     de: mutmaßlich
     en: Conjectural
+# Marc Language codes
+cat: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: CATALAN
+    fr: CATALAN
+    de: Katalanisch
+    en: Catalan 
+cze: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: CZECH
+    fr: CZECH
+    de: Tschechisch
+    en: Czech
+dan: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: DANISH
+    fr: DANISH
+    de: Dänisch
+    en: Danish
+dut: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: DUTCH
+    fr: DUTCH
+    de: Niederländisch
+    en: Dutch
+eng: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: ENGLISH
+    fr: ENGLISH
+    de: Englisch
+    en: English
+fre: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: FRENCH
+    fr: FRENCH
+    de: Französisch
+    en: French
+ger: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: GERMAN
+    fr: GERMAN
+    de: Deutsch
+    en: German
+grc: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: GREEK, ANCIENT (TO 1453)
+    fr: GREEK, ANCIENT (TO 1453)
+    de: Altgriechisch (bis 1453)
+    en: Greek, Ancient (to 1453)
+gre: !map:ActiveSupport::HashWithIndifferentAccess  
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: GREEK, MODERN (1453-)
+    fr: GREEK, MODERN (1453-)
+    de: Neugriechisch (1453-)
+    en: Greek, Modern (1453-)
+gsw: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: SWISS GERMAN
+    fr: SWISS GERMAN
+    de: Schweizerdeutsch
+    en: Swiss German
+heb: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: HEBREW
+    fr: HEBREW
+    de: Hebräisch
+    en: Hebrew
+hrv: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: CROATIAN
+    fr: CROATIAN
+    de: Kroatisch
+    en: Croatian
+hun: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: HUNGARIAN
+    fr: HUNGARIAN
+    de: Ungarisch
+    en: Hungarian
+ita: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: ITALIAN
+    fr: ITALIAN
+    de: Italienisch
+    en: Italian
+kor: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: KOREAN
+    fr: KOREAN
+    de: Koreanisch
+    en: Korean
+lat: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: LATIN
+    fr: LATIN
+    de: Lateinisch
+    en: Latin
+pol: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: POLISH
+    fr: POLISH
+    de: Polnisch
+    en: Polish
+por: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: PORTUGUESE
+    fr: PORTUGUESE
+    de: Portugisisch
+    en: Portuguese
+rus: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: RUSSIAN
+    fr: RUSSIAN
+    de: Russisch
+    en: Russian
+slo: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: SLOVAK
+    fr: SLOVAK
+    de: Slowakisch
+    en: Slovak
+slv: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: SLOVENIAN
+    fr: SLOVENIAN
+    de: Slowenisch
+    en: Slovenian
+spa: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: SPANISH
+    fr: SPANISH
+    de: Spanisch
+    en: Spanish
+srp: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: SERBIAN
+    fr: SERBIAN
+    de: Serbisch
+    en: Serbian
+swe: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: SWEDISH
+    fr: SWEDISH
+    de: Schwedisch
+    en: Swedish
+zxx: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: NO LINGUISTIK CONTENT
+    fr: NO LINGUISTIK CONTENT
+    de: ohne Sprache
+    en: No linguistic content
 
