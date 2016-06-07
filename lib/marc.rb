@@ -407,7 +407,7 @@ class Marc
       # 005 should not be there, if it is avoid duplicates
       _005_tag = first_occurance("005")
       if !_005_tag
-        safe_marc.root.add_at(MarcNode.new(@model, "005", last_transcation, nil), get_insert_position("005") )
+        safe_marc.root.add_at(MarcNode.new(@model, "005", last_transcation, nil), safe_marc.get_insert_position("005") )
         offset += 1
       end
     end
