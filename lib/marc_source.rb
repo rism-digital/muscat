@@ -67,8 +67,10 @@ class MarcSource < Marc
     end
     
     title = (standard_title != nil || standard_title != "") ? standard_title : "[Without title]" ## if title is unset and it is not collection
-
-    std_title = "#{title} - " + [extract, arr, scoring, opus, cat_no].compact.join("; ")
+    
+    desc = [extract, arr, scoring, opus, cat_no].compact.join("; ")
+    # use join so the "-" is not places if one of the two is missing
+    std_title = [title, desc].compact.join(" - ")
     std_title_d = DictionaryOrder::normalize(std_title)
 
     [std_title, std_title_d]

@@ -236,23 +236,23 @@ doc_administration:
         en: Nb. work
     b: 
       label: 
-        it: NUMBER OF MOVEMENT
+        it: Movimento No.
         fr: "Numéro du mouvement"
         de: Satznummer
         en: Number of movement
       edit_label: 
-        it: NB. MOVEMENT
+        it: Movimento No.
         fr: "No. du mouvement"
         de: Satznummer
         en: Nb. movement
     c: 
       label: 
-        it: NUMBER OF EXCERPT
+        it: Numero dell'estratto'
         fr: "Numéro de l'extrait"
         de: Abschnitt
         en: Number of excerpt
       edit_label: 
-        it: NB EXCERPT
+        it: Estratto No.
         fr: "No. de l'extrait"
         de: Nummer Abschnitt
         en: Nb. excerpt
@@ -974,15 +974,15 @@ doc_administration:
       en: ""
 "597": 
   label: 
-    it: ORIGINAL IMPRESSUM
-    fr: ORIGINAL IMPRESSUM
+    it: Impressum Originale
+    fr: Impressum original
     de: Impressum (original)
     en: Original Impressum
   fields: 
     a: 
       label: 
-        it: ORIGINAL IMPRESSUM
-        fr: ORIGINAL IMPRESSUM
+        it: Impressum Originale
+        fr: Impressum original
         de: Impressum (original)
         en: Original Impressum
 "598": 
@@ -1439,14 +1439,14 @@ doc_administration:
         en: ""
 "775": 
   label: 
-    it: FIRST ENTRY
+    it: Primo item
     fr: "Première entrée"
     de: Ersteintrag
     en: First entry
   fields: 
     w: 
       label: 
-        it: FIRST ENTRY
+        it: Primo item
         fr: "Première entrée"
         de: Ersteintrag
         en: First entry
@@ -1912,38 +1912,189 @@ voc:
 #Attribution qualifier for 100/700$j
 "Verified":
   label:
-    it: VERIFIED
-    fr: VERIFIED
+    it: Verificato
+    fr: "Vérifié"
     de: gesichert
     en: Verified
 "Ascertained":   
   label:
-    it: ASCERTAINED
-    fr: ASCERTAINED
+    it: Accertato
+    fr: "Authentifié"
     de: ermittelt
     en: Ascertained
 "Alleged":   
   label:
-    it: ALLEGED
-    fr: ALLEGED
+    it: Presunto
+    fr: "Présumé"
     de: angeblich
     en: Alleged
 "Doubtful":   
   label:
-    it: DOUBTFUL
-    fr: DOUBTFUL
+    it: Dubbio
+    fr: "Douteux"
     de: zweifelhaft
     en: Doubtful
 "Misattributed":   
   label:
-    it: MISATTRIBUTED
-    fr: MISATTRIBUTED
+    it: Misattribuito
+    fr: "Erroné"
     de: fälschlich
     en: Misattributed
 "Conjectural":   
   label:
-    it: CONJECTURAL
-    fr: CONJECTURAL
+    it: Congetturale
+    fr: Conjectural
     de: mutmaßlich
     en: Conjectural
+# Marc Language codes
+cat: 
+  label: 
+    it: Catalano
+    fr: Catalan
+    de: Katalanisch
+    en: Catalan 
+cze: 
+  label: 
+    it: Ceco
+    fr: Tchèque
+    de: Tschechisch
+    en: Czech
+dan: 
+  label: 
+    it: Danese
+    fr: Danois
+    de: Dänisch
+    en: Danish
+dut: 
+  label: 
+    it: Olandese
+    fr: Néerlandais
+    de: Niederländisch
+    en: Dutch
+eng: 
+  label: 
+    it: Inglese
+    fr: Anglais
+    de: Englisch
+    en: English
+fre: 
+  label: 
+    it: Francese
+    fr: Français
+    de: Französisch
+    en: French
+ger: 
+  label: 
+    it: Tedesco
+    fr: Allemand
+    de: Deutsch
+    en: German
+grc: 
+  label: 
+    it: Greco, antico (fino al 1453)
+    fr: GREEK, ANCIENT (TO 1453)
+    de: Altgriechisch (bis 1453)
+    en: Greek, Ancient (to 1453)
+gre:  
+  label: 
+    it: Greco, moderno (1453-)
+    fr: GREEK, MODERN (1453-)
+    de: Neugriechisch (1453-)
+    en: Greek, Modern (1453-)
+gsw: 
+  label: 
+    it: Tedesco Svizzero
+    fr: SWISS GERMAN
+    de: Schweizerdeutsch
+    en: Swiss German
+heb: 
+  label: 
+    it: Ebreo
+    fr: "Hébraïque"
+    de: Hebräisch
+    en: Hebrew
+hrv: 
+  label: 
+    it: Croato
+    fr: Croate
+    de: Kroatisch
+    en: Croatian
+hun: 
+  label: 
+    it: Ungherese
+    fr: Hongrois
+    de: Ungarisch
+    en: Hungarian
+ita: 
+  label: 
+    it: Italiano
+    fr: Italien
+    de: Italienisch
+    en: Italian
+kor: 
+  label: 
+    it: Coreano
+    fr: "Coréen"
+    de: Koreanisch
+    en: Korean
+lat: 
+  label: 
+    it: Latino
+    fr: Latin
+    de: Lateinisch
+    en: Latin
+pol: 
+  label: 
+    it: Polacco
+    fr: Polonais
+    de: Polnisch
+    en: Polish
+por: 
+  label: 
+    it: Portoghese
+    fr: Portugais
+    de: Portugisisch
+    en: Portuguese
+rus: 
+  label: 
+    it: Russo
+    fr: Russe
+    de: Russisch
+    en: Russian
+slo: 
+  label: 
+    it: Slovacco
+    fr: Slovaque
+    de: Slowakisch
+    en: Slovak
+slv: 
+  label: 
+    it: Sloveno
+    fr: "Slovène"
+    de: Slowenisch
+    en: Slovenian
+spa: 
+  label: 
+    it: Spagnolo
+    fr: Espanol
+    de: Spanisch
+    en: Spanish
+srp: 
+  label: 
+    it: Serbo
+    fr: Serbe
+    de: Serbisch
+    en: Serbian
+swe: 
+  label: 
+    it: Svedese
+    fr: "Suédois"
+    de: Schwedisch
+    en: Swedish
+zxx: 
+  label: 
+    it: Nessun contesto linguistico
+    fr: NO LINGUISTIK CONTENT
+    de: ohne Sprache
+    en: No linguistic content
 
