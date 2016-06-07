@@ -49,7 +49,7 @@ groups:
     - "594"
     - "598"
     all_tag_templates: 
-      "594": marc_show/show_distribution
+      "594": marc_show/show_distribution_all
       
   show_material: 
     all_tags: 
