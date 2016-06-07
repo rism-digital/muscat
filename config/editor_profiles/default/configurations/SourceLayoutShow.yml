@@ -48,7 +48,9 @@ groups:
     - "653"
     - "594"
     - "598"
-
+    all_tag_templates: 
+      "594": marc_show/show_distribution
+      
   show_material: 
     all_tags: 
     - "593"
