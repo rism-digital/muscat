@@ -236,23 +236,23 @@ doc_administration:
         en: Nb. work
     b: 
       label: 
-        it: NUMBER OF MOVEMENT
+        it: Movimento No.
         fr: "Numéro du mouvement"
         de: Satznummer
         en: Number of movement
       edit_label: 
-        it: NB. MOVEMENT
+        it: Movimento No.
         fr: "No. du mouvement"
         de: Satznummer
         en: Nb. movement
     c: 
       label: 
-        it: NUMBER OF EXCERPT
+        it: Numero dell'estratto'
         fr: "Numéro de l'extrait"
         de: Abschnitt
         en: Number of excerpt
       edit_label: 
-        it: NB EXCERPT
+        it: Estratto No.
         fr: "No. de l'extrait"
         de: Nummer Abschnitt
         en: Nb. excerpt
@@ -974,15 +974,15 @@ doc_administration:
       en: ""
 "597": 
   label: 
-    it: ORIGINAL IMPRESSUM
-    fr: ORIGINAL IMPRESSUM
+    it: Impressum Originale
+    fr: Impressum original
     de: Impressum (original)
     en: Original Impressum
   fields: 
     a: 
       label: 
-        it: ORIGINAL IMPRESSUM
-        fr: ORIGINAL IMPRESSUM
+        it: Impressum Originale
+        fr: Impressum original
         de: Impressum (original)
         en: Original Impressum
 "598": 
@@ -1439,14 +1439,14 @@ doc_administration:
         en: ""
 "775": 
   label: 
-    it: FIRST ENTRY
+    it: Primo item
     fr: "Première entrée"
     de: Ersteintrag
     en: First entry
   fields: 
     w: 
       label: 
-        it: FIRST ENTRY
+        it: Primo item
         fr: "Première entrée"
         de: Ersteintrag
         en: First entry
@@ -1912,38 +1912,38 @@ voc:
 #Attribution qualifier for 100/700$j
 "Verified":
   label:
-    it: VERIFIED
-    fr: VERIFIED
+    it: Verificato
+    fr: "Vérifié"
     de: gesichert
     en: Verified
 "Ascertained":   
   label:
-    it: ASCERTAINED
-    fr: ASCERTAINED
+    it: Accertato
+    fr: "Authentifié"
     de: ermittelt
     en: Ascertained
 "Alleged":   
   label:
-    it: ALLEGED
-    fr: ALLEGED
+    it: Presunto
+    fr: "Présumé"
     de: angeblich
     en: Alleged
 "Doubtful":   
   label:
-    it: DOUBTFUL
-    fr: DOUBTFUL
+    it: Dubbio
+    fr: "Douteux"
     de: zweifelhaft
     en: Doubtful
 "Misattributed":   
   label:
-    it: MISATTRIBUTED
-    fr: MISATTRIBUTED
+    it: Misattribuito
+    fr: "Erroné"
     de: fälschlich
     en: Misattributed
 "Conjectural":   
   label:
-    it: CONJECTURAL
-    fr: CONJECTURAL
+    it: Congetturale
+    fr: Conjectural
     de: mutmaßlich
     en: Conjectural
 
