@@ -52,6 +52,7 @@ var init_sidebar_actions = function () {
 			$("#hide_preview_li").show();
 		} else if (tname == "hide_preview") {
 			show_toplevel(panel);
+			marc_editor_set_last_tab("full", "full");
 			$("#hide_preview_li").hide();
 			$("#show_preview_li").show();
 		} else if (tname == "show_help") {
