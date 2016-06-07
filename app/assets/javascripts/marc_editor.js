@@ -481,15 +481,24 @@ function marc_editor_show_all_subpanels() {
 function marc_editor_set_last_tab(tab_name, panel_name) {
 	Cookies.set(marc_editor_get_model() + '-last_tab', tab_name, { expires: 30 });
 	Cookies.set(marc_editor_get_model() + '-panel_name', panel_name, { expires: 30 });
+	
+	// Save the last object id
+	Cookies.set(marc_editor_get_model() + '-last_id', $("#id").val(), { expires: 30 });
 }
 
 function marc_editor_show_last_tab() {
     var last_tab = Cookies.get(marc_editor_get_model() + '-last_tab');
     var panel_name = Cookies.get(marc_editor_get_model() + '-panel_name');
+	var last_id = Cookies.get(marc_editor_get_model() + '-last_id');
+	var current_id = $("#id").val();
 	
 	var elem = $("[name='" + last_tab + "']")
 		
-	if ((last_tab != "full") && (last_tab && panel_name) && elem.length > 0) {
+	if ((last_tab != "full") 
+		&& (last_tab && panel_name) 
+		&& elem.length > 0
+		&& current_id == last_id)
+	{
         marc_editor_show_tab_in_panel(last_tab, panel_name);
     } else {
 		marc_editor_set_last_tab("full", "full");
