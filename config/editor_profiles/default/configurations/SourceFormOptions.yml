@@ -145,6 +145,7 @@
       - "lat"
       - "pol"
       - "por"
+      - "roh"
       - "rus"
       - "slo"
       - "slv"
@@ -152,7 +153,6 @@
       - "srp"
       - "swe"
       - "zxx"
-
 "100": 
   new_window: people
   layout: 

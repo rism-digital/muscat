@@ -2055,6 +2055,12 @@ por: !map:ActiveSupport::HashWithIndifferentAccess
     fr: PORTUGUESE
     de: Portugisisch
     en: Portuguese
+roh: !map:ActiveSupport::HashWithIndifferentAccess 
+  label: !map:ActiveSupport::HashWithIndifferentAccess 
+    it: ROMANSH
+    fr: ROMANSH
+    de: Rätoromanisch
+    en: Romansh
 rus: !map:ActiveSupport::HashWithIndifferentAccess 
   label: !map:ActiveSupport::HashWithIndifferentAccess 
     it: RUSSIAN
