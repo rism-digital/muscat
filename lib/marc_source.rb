@@ -232,6 +232,15 @@ class MarcSource < Marc
     # convert leader to record_type
     rt = match_leader
     
+    # Drop leader
+    each_by_tag("000") {|t| t.destroy_yourself}
+     
+    # Drop other unused tags
+    each_by_tag("003") {|t| t.destroy_yourself}
+    each_by_tag("005") {|t| t.destroy_yourself}
+    each_by_tag("007") {|t| t.destroy_yourself}
+    each_by_tag("008") {|t| t.destroy_yourself}
+    
     # Move 130 to 240
     each_by_tag("130") do |t|
 
