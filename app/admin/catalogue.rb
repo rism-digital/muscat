@@ -123,7 +123,7 @@ ActiveAdmin.register Catalogue do
     column (I18n.t :filter_id), :id    
 #   column (I18n.t :filter_name), :name
     column (I18n.t :filter_name), :description do |catalogue| 
-      catalogue.description.truncate(60)
+      catalogue.description.truncate(60) if catalogue.description
     end
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count
