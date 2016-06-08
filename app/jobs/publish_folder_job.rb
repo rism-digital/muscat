@@ -25,7 +25,7 @@ class PublishFolderJob < ProgressJob::Base
     count = 0
     f2.folder_items.each do |fi|
       fi.item.wf_stage = :published
-      fi.save
+      fi.item.save
       update_stage_progress("Updating records #{count}/#{f2.folder_items.count}", step: 1)
       count += 1
     end
