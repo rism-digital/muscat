@@ -477,25 +477,33 @@
         allow_new: true
     - - b
     - - g
-    - - "4"
       - editor_partial: subfield_select_codes
+    - - "4"
+      - editor_partial: subfield_relator_codes_710
         select_label: "Function"
   tag_params: 
-    codes: 
-    - fmo
-    - dnr
-    - dte
-    - prf
-    - otm
-    - ppm
-    - prt
-    - pbl
-    - edt
-    - bsl
-    - asn
-    - dub
-    - evp
-    - dpt
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Doubtful"
+      - "Misattributed"
+      - "Verified"
+    relator_codes: 
+      - fmo
+      - dnr
+      - dte
+      - prf
+      - otm
+      - ppm
+      - prt
+      - pbl
+      - edt
+      - bsl
+      - asn
+      - dub
+      - evp
+      - dpt
 "730":
   new_window: standard_titles
   layout: 
