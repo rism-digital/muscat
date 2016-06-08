@@ -1,6 +1,9 @@
 
 en:
   active_admin:
+# Pad for italian, it has 2 missing items
+#
+#
     dashboard: Dashboard
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."
@@ -273,8 +276,8 @@ en:
   reindex: "Re-index"
   publish: "Publish"
   select: "Select"
-  create_folder: "Create Folder"
-  append_folder: "Add to Folder"
+  create_folder: "Add to a new folder"
+  append_folder: "Add to an existing folder"
   
   # Editor sidebar
   show_all_groups: "Show all sections"
@@ -565,7 +568,22 @@ en:
     download: "Download"
     more: "More"
     banner: 'Please click "Preview" to show the MEI-converted output.'
-    
+  
+  record_types:
+    unspecified: "Unspecified (UNK)"
+    collection: "Collection (COL)"
+    manuscript: "Manuscript (MMS)"
+    print: "Print (MPR)"
+    manuscript_libretto: "Manuscript Libretto (LMS)"
+    print_libretto: "Print Libretto (LPR)"
+    manuscript_theoretica: "Manuscript Theoretica (TMS)"
+    print_theoretica: "Print Theoretica (TPR)"
+    convolutum: "Convolutum (CVT)"
+  wf_stage:
+    inprogress: "In Progress"
+    published: "Published"
+    deleted: "Deleted"
+   
   # date:
   # Empty lines for matching line numbers with other translation files  
   #

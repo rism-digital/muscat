@@ -1,6 +1,9 @@
 
 fr: 
   active_admin:
+# Pad for italian, it has 2 missing items
+#
+#
     dashboard: "Tableau de bord"
     dashboard_welcome:
       welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
@@ -565,7 +568,22 @@ fr:
     download: "Téléchargement"
     more: "Informations supplémentaires"
     banner: 'Cliquez "Aperçu" pour voir le résultat de la conversion en MEI.'
-    
+
+  record_types:
+    unspecified: "Non spécifié (UNK)"
+    collection: "Collection (COL)"
+    manuscript: "Manuscript (MMS)"
+    print: "Imprimé (MPR)"
+    manuscript_libretto: "Libretto manuscrit (LMS)"
+    print_libretto: "Libretto imprimé (LPR)"
+    manuscript_theoretica: "Traité manuscrit (TMS)"
+    print_theoretica: "Traité imprimé (TPR)"
+    convolutum: "Convolutum (CVT)"
+  wf_stage:
+    inprogress: "En cours"
+    published: "Publié"
+    deleted: "Supprimé"
+
   date:
     month_names:
     -

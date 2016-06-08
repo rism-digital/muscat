@@ -27,7 +27,7 @@ ActiveAdmin.register Source do
                  #params['q'] = {:std_title_contains => "[Holding]"} 
         end
     end
-    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :solr => false}
+    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => true, :solr => false}
     autocomplete :source, "740_autocomplete_sms", :solr => true
     autocomplete :source, "594b_sms", :solr => true
     
@@ -151,10 +151,10 @@ ActiveAdmin.register Source do
          }
   
   filter :record_type_with_integer, :label => proc {I18n.t(:filter_record_type)}, as: :select, 
-  collection: proc{MarcSource::RECORD_TYPES.collect {|k, v| [k, "record_type:#{v}"]}}
+  collection: proc{MarcSource::RECORD_TYPES.collect {|k, v| [I18n.t("record_types." + k.to_s), "record_type:#{v}"]}}
 
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
-  collection: proc{[:inprogress, :published, :deleted].collect {|v| [v, "wf_stage:#{v}"]}}
+  collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
       
   index :download_links => false do
     selectable_column if !is_selection_mode?
