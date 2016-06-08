@@ -35,28 +35,36 @@ class MarcSource < Marc
     # Quartets
     node = first_occurance("240", "a")
     standard_title = node.content.truncate(50) if node && node.content
-   
+    standard_title.strip! if standard_title
+    
     # try to get the description (240 m)
     # vl (2), vla, vlc
     node = first_occurance("240", "m")
     scoring = node.content.truncate(50) if node && node.content
+    scoring.strip! if scoring
    
     node = first_occurance("240", "k")
     extract = node.content.truncate(50) if node && node.content
+    extract.strip! if extract
     
     node = first_occurance("240", "o")
     arr = node.content.truncate(50) if node && node.content
+    arr.strip! if arr
    
     node = first_occurance("383", "b")
     opus = node.content.truncate(50) if node && node.content
+    opus.strip! if opus
    
     node = first_occurance("690", "a")
     cat_a = node.content.truncate(50) if node && node.content
+    cat_a.strip! if cat_a
     
     node = first_occurance("690", "n")
     cat_n = node.content.truncate(50) if node && node.content
+    cat_n.strip! if cat_n
    
-    cat_no = "#{cat_a} #{cat_n}"
+    cat_no = "#{cat_a} #{cat_n}".strip
+    cat_no = nil if cat_no.empty? # For the join only nil is skipped 
    
     if !standard_title
       if @record_type == RECORD_TYPES[:convolutum]
@@ -67,8 +75,10 @@ class MarcSource < Marc
     end
     
     title = (standard_title != nil || standard_title != "") ? standard_title : "[Without title]" ## if title is unset and it is not collection
-    
+    ap [extract, arr, scoring, opus, cat_no]
     desc = [extract, arr, scoring, opus, cat_no].compact.join("; ")
+    desc = nil if desc.empty?
+    
     # use join so the "-" is not places if one of the two is missing
     std_title = [title, desc].compact.join(" - ")
     std_title_d = DictionaryOrder::normalize(std_title)
