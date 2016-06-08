@@ -667,7 +667,6 @@
     :master: w
     :indicator: "18"
     :occurrences: "*"
-    :preclude_holdings: true
     :fields:
     - - w
       - :occurrences: "1"
