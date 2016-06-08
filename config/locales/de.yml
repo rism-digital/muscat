@@ -249,6 +249,7 @@ de:
   failed: "Fehlgeschlagen"
   waiting: "Wartet"
   running: "Läuft"
+  finished: "COMPLETED"
   lib_siglum: "Bibliothekssigel"
   holding_records: "Exemplar Information"
   new_holding: "Neuer Holding Eintrag"
