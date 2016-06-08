@@ -569,6 +569,21 @@ it:
     more: "Altro"
     banner: 'Usare "Anteprima" per mostrare il risultato della conversione in MEI.'
   
+  record_types:
+    unspecified: "Non specificato (UNK)"
+    collection: "Collezione (COL)"
+    manuscript: "Manoscritto (MMS)"
+    print: "Stampa (MPR)"
+    manuscript_libretto: "Libretto Manoscritto (LMS)"
+    print_libretto: "Libretto a Stampa (LPR)"
+    manuscript_theoretica: "Manoscritto Teoretico (TMS)"
+    print_theoretica: "Stampa Teoretico (TPR)"
+    convolutum: "Convolutum (CVT)"
+  wf_stage:
+    inprogress: "In Elaborazione"
+    published: "Pubblicato"
+    deleted: "Cancellato"
+  
   date:
     month_names:
      -
