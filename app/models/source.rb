@@ -393,7 +393,7 @@ class Source < ActiveRecord::Base
   
   def allow_holding?
     return false if (self.record_type != MarcSource::RECORD_TYPES[:print]) && (self.record_type != MarcSource::RECORD_TYPES[:collection])
-    # Then look if the source has fields that preclude holding
+    return false if marc.preclude_holdings?
     return true
   end
   
