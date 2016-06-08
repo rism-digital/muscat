@@ -249,7 +249,7 @@ en:
   failed: "Failed"
   waiting: "Waiting"
   running: "Running"
-  finished: "Completed"
+  finished: "Finished"
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
   new_holding: "Create Holding Record"

@@ -59,7 +59,7 @@ doc_templates:
 "008":
   label:
     it: Data di Creazione
-    fr: DATE OF CREATION
+    fr: Date de création
     de: Datum der Erstellung
     en: Date of creation
 
@@ -191,14 +191,14 @@ doc_templates:
 "368":
   label:
     it: Tipo di Istituzione
-    fr: TYP OF INSTITUTION
+    fr: "Type d'institution"
     de: Typ der Institution
     en: Type of Institution
   fields:
     a:
       label:
         it: Tipo di Istitutione
-        fr: TYP OF INSTITUTION
+        fr: "Type d'institution"
         de: Typ der Institution
         en: Type of institution
 
@@ -206,7 +206,7 @@ doc_templates:
 "371":
   label:
     it: Luogo ed indirizzo
-    fr: LOCATION AND ADDRESS
+    fr: Lieu et adresse
     de: "Adresse"
     en: Location and Address
   fields:
@@ -231,7 +231,7 @@ doc_templates:
     c:
       label:
         it: Paese o Provincia
-        fr: COUNTY OR PROVINCE
+        fr: Canton our province
         de: Bezirk oder Staat
         en: County or province
     d:
@@ -255,48 +255,48 @@ doc_templates:
     z:
       label:
         it: Nota Pubblica
-        fr: PUBLIC NOTE
+        fr: Note publique
         de: Bemerkungen
         en: Public Note
 
 "373":
   label:
     it: Ora in
-    fr: NOW IN
+    fr: Maintenant à
     de: In
     en: Now in
   fields:
     x:
       label:
         t: Ora In
-        fr: NOW IN
+        fr: Maintenant à
         de: In
         en: Now in
 
 "410":
   label:
     it: Altre forme del nome
-    fr: OTHER FORM OF NAME
+    fr: Autre forme de nom
     de: Andere Namensformen
     en: Other form of name
   fields:
     a:
       label:
         t: Altre forme del nome
-        fr: OTHER FORM OF NAME
+        fr: Autre forme de nom
         de: Andere Namensformen
         en: Other form of name
 "510":
   label:
     it: Forma parallela del nome
-    fr: PARALLEL FORM OF NAME
+    fr: Forme de nom parallèle
     de: Parallelle ...
     en: Parallel form of name
   fields:
     a:
       label:
         it: Forma parallela del nome
-        fr: PARALLEL FORM OF NAME
+        fr: Forme de nom parallèle
         de: Namensvarianten  
         en: Parallel form of name
 "551":
@@ -316,27 +316,27 @@ doc_templates:
 "580":
   label:
     it: Ora in
-    fr: NOW IN
+    fr: Maintenant à
     de: Heute in
     en: Now in
   fields:
     x:
       label:
         t: Ora in
-        fr: NOW IN
+        fr: Maintenant à
         de: Heute in
         en: Now in
 "667":
   label:
     it: Nota interna
-    fr: INTERNAL NOTES
+    fr: Note interne
     de: Interne Bemerkungen
     en: Internal Notes
   fields:
     a:
       label:
-        it: Nota Interna
-        fr: INTERNAL NOTES
+        it: Nota interna
+        fr: Note interne
         de: Interne Bemerkungen
         en: Internal notes
 
@@ -344,29 +344,29 @@ doc_templates:
 "670":
   label:
     it: Bibliografia
-    fr: LITERATURE
+    fr: Littérature
     de: Literatur
     en: Literature
   fields:
     a:
       label:
         it: Bibliografia
-        fr: LITERATURE
+        fr: Littérature
         de: Literatur
         en: Literature
 
 
 "678":
   label:
-    it: Storia dell'istituzione
-    fr: HISTORY OF INSTITUTION
+    it: "Storia dell'istituzione"
+    fr: "Historique de l'institution"
     de: Geschichte der Institution
     en: History of institution
   fields:
     a:
       label:
-        it: Storia dell'istituzione
-        fr: HISTORY OF INSTITUTION
+        it: "Storia dell'istituzione"
+        fr: "Historique de l'institution"
         de: Geschichte der Institution
         en: History of institution
 
@@ -401,14 +401,14 @@ doc_templates:
 "710":
   label:
     it: Istituzione in relazione
-    fr: RELATED INSTITUTION
+    fr: Institution liée
     de: RELATED INSTITUTION
     en: Related institution
   fields:
     a:
       label:
         it: Istituzione in relazione
-        fr: RELATED INSTITUTION
+        fr: Institution liée
         de: RELATED INSTITUTION
         en: Related institution
 
