@@ -95,7 +95,7 @@ ActiveAdmin.register Catalogue do
   include MarcControllerActions
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexItemsJob.new(Catalogue.find(params[:id]), "Source"))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(Catalogue.find(params[:id]), "referring_sources"))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
 
@@ -123,7 +123,7 @@ ActiveAdmin.register Catalogue do
     column (I18n.t :filter_id), :id    
 #   column (I18n.t :filter_name), :name
     column (I18n.t :filter_name), :description do |catalogue| 
-      catalogue.description.truncate(60)
+      catalogue.description.truncate(60) if catalogue.description
     end
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count
