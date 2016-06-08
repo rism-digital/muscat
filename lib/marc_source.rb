@@ -75,7 +75,7 @@ class MarcSource < Marc
     end
     
     title = (standard_title != nil || standard_title != "") ? standard_title : "[Without title]" ## if title is unset and it is not collection
-    ap [extract, arr, scoring, opus, cat_no]
+
     desc = [extract, arr, scoring, opus, cat_no].compact.join("; ")
     desc = nil if desc.empty?
     
@@ -409,9 +409,16 @@ class MarcSource < Marc
     end
     
   end
-    
+  
   def set_record_type(rt)
     @record_type = rt
+  end
+  
+  def preclude_holdings?
+    all_tags.each do |tag|
+      return true if @marc_configuration.tag_precludes_holdings?(tag.tag)
+    end
+    false
   end
   
 end
