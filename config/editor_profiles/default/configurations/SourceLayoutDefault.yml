@@ -19,7 +19,7 @@ group_exclude:
   - edit_incipits
   convolutum:
   - edit_incipits
-  
+
 tag_exclude:
   collection:
   - '041'
@@ -37,7 +37,12 @@ tag_exclude:
   - '772'
   - '775'
   print:
+  - '506'
+  - '541'
+  - '561'
+  - '591'
   - '772'
+  - '852'
   manuscript_libretto:
   - '490'
   - '590'
@@ -93,6 +98,15 @@ tag_exclude:
   - '773'
   - '775'
   - '787'
+  
+tag_exclude_with_holdings:
+  collection:
+  - '506'
+  - '541'
+  - '561'
+  - '591'
+  - '773'
+  - '852'
 
 groups:
   edit_library:

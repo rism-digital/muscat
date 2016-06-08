@@ -391,6 +391,11 @@ class Source < ActiveRecord::Base
     MarcSource::RECORD_TYPES.key(self.record_type)
   end
   
+  def allow_holding?
+    return false if (self.record_type != MarcSource::RECORD_TYPES[:print]) && (self.record_type != MarcSource::RECORD_TYPES[:collection])
+    # Then look if the source has fields that preclude holding
+    return true
+  end
   
   def fix_ids
     #generate_new_id

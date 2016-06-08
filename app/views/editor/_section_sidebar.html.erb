@@ -44,7 +44,7 @@
 	</li>
 <% end %>
 
-<%if model == "source" && (@item.record_type == MarcSource::RECORD_TYPES[:print]) %>
+<%if @item.id && @item.respond_to?(:allow_holding?) && @item.allow_holding? %>
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
 		<%= link_to("#{I18n.t :new_holding}", new_admin_holding_path(source_id: @item.id),
