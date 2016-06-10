@@ -81,7 +81,7 @@ ActiveAdmin.register Place do
   end
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexItemsJob.new(Place.find(params[:id]), "Source"))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(Place.find(params[:id]), "referring_sources"))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   

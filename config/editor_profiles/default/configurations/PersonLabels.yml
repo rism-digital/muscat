@@ -77,20 +77,20 @@ doc_edit_workflow:
 "024":
   label:
     it: "Riferimento autorità"
-    fr: AUTHORITY REFERENCE
+    fr: "Référence d'authorité"
     de: Normdatenverweise
     en: Authority Reference
   fields:
     a:
       label:
         it: "Riferimento autorità"
-        fr: AUTHORITY REFERENCE
+        fr: "Référence d'authorité"
         de: Normdatenverweise
         en: Authority Reference
     "2":
       label:
         it: "Agenzia autorità"
-        fr: AUTHORITY AGENCY
+        fr: "Agence d'authorité"
         de: Normdatenagentur
         en: Authority Agency
 "040":
@@ -127,14 +127,14 @@ doc_edit_workflow:
 "042":
   label:
     it: Codice di Autenticazione
-    fr: AUTHENTICATION CODE
+    fr: "Code d'authentification"
     de: Authentication Code
     en: Authentication Code
   fields:
     a:
       label:
         it: Codice di Autenticazione
-        fr: AUTHENTICATION CODE
+        fr: "Code d'authentification"
         de: Authentication Code
         en: Authentication Code
 "043":
@@ -180,7 +180,7 @@ doc_edit_workflow:
     y:
       label:
         it: Altre date
-        fr: OTHER DATES
+        fr: Autres dates
         de: Andere Lebensdaten
         en: Other dates
 "370":
@@ -237,7 +237,7 @@ doc_edit_workflow:
 "500":
   label:
     it: Persone correlate
-    fr: RELATED PERSONS
+    fr: Personnes liées
     de: Zugehörige Personen
     en: Related People
   fields:
@@ -257,7 +257,7 @@ doc_edit_workflow:
 "510":
   label:
     it: Sigle correlate
-    fr: RELATED SIGLUM
+    fr: Sigle de relation
     de: Zugehörige Sigel 
     en:  Related Siglums
   fields:
@@ -270,14 +270,14 @@ doc_edit_workflow:
 "550":
   label:
     it: Termine topico
-    fr: TOPICAL TERM
+    fr: Sujet
     de: Sachbegriff
     en: Topical Term
   fields:
     a:
       label:
         it: Termine topico
-        fr: TOPICAL TERM
+        fr: Sujet
         de: Sachbegriff
         en: Topical Term
     i:
@@ -302,7 +302,7 @@ doc_edit_workflow:
     i:
       label:
         it:  Descrizione del Luogo
-        fr:  PLACE DESCRIPTION
+        fr:  "Description de l'endroit"
         de:  Ort Bedeutung
         en:  Place Description
 
@@ -341,14 +341,14 @@ doc_edit_workflow:
 "678":
   label:
     it: Riferimento bibliografico addizionale 
-    fr: ADDITIONAL BIBLIOGRAPHIC REFERENCE 
+    fr: Référence bibliographique additionnelle 
     de: Weitere bibliographische Angaben
     en: Additional bibliographic reference 
   fields:
     a:
       label:
         it: Riferimento bibliografico addizionale 
-        fr: ADDITIONAL BIBLIOGRAPHIC REFERENCE 
+        fr: Référence bibliographique additionnelle
         de: Weitere bibliographische Angaben
         en: Additional bibliographic reference 
 "680":
@@ -472,13 +472,13 @@ unknown:
 go:
   label:
     it: Luogo di Nascita
-    fr: PLACE OF BIRTH
+    fr: Lieu de naissance
     de: Geburtsort
     en: Place of Birth
 ha:
   label:
     it: Luogo di origine
-    fr: PLACE OF ORIGIN
+    fr: "Lieu d'origine"
     de: Herkunftsangabe
     en: Place of Origin
 po:
@@ -490,25 +490,25 @@ po:
 so:
   label:
     it: Luogo di Morte
-    fr: PLACE OF DEATH
+    fr: Lieu de décès
     de: Sterbeort
     en: Place of Death
 wl:
   label:
     it: "Paese di attività"
-    fr: COUNTRY OF ACTIVITY
+    fr: "Pays d'activité"
     de: Wirkungsland
     en: Country of activity
 wo:
   label:
     it: "Luogo di attiità"
-    fr: PLACE OF ACTIVITY
+    fr: "Lieu d'activité"
     de: Wirkungsort
     en: Place of activity
 wr:
   label:
     it: "Regione di attività"
-    fr: REGION OF ACTIVITY
+    fr: "Région d'activité"
     de: Wirkungsregion
     en: Region of activity
 #Country Codes
@@ -580,10 +580,10 @@ wr:
     en: "Austria: Upper Austria"
 "XA-AT-9":
   label:
-    it: "Austria: Vienna XA-AT-9"
-    fr: "Austria: Vienna XA-AT-9"
-    de: "Austria: Vienna XA-AT-9"
-    en: "Austria: Vienna XA-AT-9"
+    it: "Austria: Vienna"
+    fr: "Austria: Vienna"
+    de: "Austria: Vienna"
+    en: "Austria: Vienna"
 "XA-BE":
   label:
     it: "Belgium"
@@ -1021,7 +1021,7 @@ related to:
 bn:
   label:
     it: Soprannome
-    fr: BYNAME
+    fr: Surnom
     de: Beiname
     en: Byname
 da:
@@ -1033,19 +1033,19 @@ da:
 do:
   label:
     it: Nome dell'ordine
-    fr: ORDER NAME
+    fr: "Nom d'ordre"
     de: Ordensname
     en: Order Name
 dv:
   label:
     it: Altra forma di ricerca
-    fr: OTHER SEARCHFORM
+    fr: Autre forme de recherche
     de: andere Suchform
     en: Other Searchform
 ee:
   label:
     it: Nome del matrimonio
-    fr: MARRIAGE NAME
+    fr: Nom de mariage
     de: Ehename
     en: Marriage Name
 ef:

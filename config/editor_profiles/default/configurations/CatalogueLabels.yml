@@ -59,14 +59,14 @@ doc_templates:
 "041": 
   label: 
     it: Codice Lingua
-    fr: LANGUAGE CODE
+    fr: Code de langue
     de: Sprache
     en: Language Code
   fields: 
     a: 
       label: 
         it: Codice Lingua
-        fr: LANGUAGE CODE
+        fr: Code de langue
         de: Sprach-Code
         en: Language Code
 "100": 
@@ -227,14 +227,14 @@ doc_templates:
 "785": 
   label: 
     it: Item precedente
-    fr: SUCCEEDING ENTRY
+    fr: Entrée suivante
     de: Folgeeintrag
     en: Succeeding Entry
   fields: 
     a: 
       label: 
         it: Item precedente
-        fr: SUCCEEDING ENTRY
+        fr: Entrée suivante
         de: Folgeeintrag
         en: Succeeding Entry
 main: 
@@ -751,14 +751,14 @@ voc:
 "337": 
   label: 
     it: Mezzo Fisico
-    fr: PHYSICAL MEDIUM 
+    fr: Moyen phyisuqe 
     de: Physisches Medium 
     en: Physical Medium
   fields: 
     a: 
       label: 
         it: Mezzo Fisico 
-        fr: PHYSICAL MEDIUM 
+        fr: Moyen physique 
         de: Physisches Medium 
         en: Physical Medium
 "500": 
@@ -779,14 +779,14 @@ voc:
 "520": 
   label: 
     it: Indicatione di possesso
-    fr: INDICATION OF HOLDING
+    fr: Indication de copie
     de: Bestandsangabe
     en: Indication of holding
   fields: 
     a: 
       label: 
         it: Indicazione di possesso
-        fr: INDICATION OF HOLDING
+        fr: Indication de copie
         de: Bestandsangabe
         en: Indication of holding
       edit_label: 
@@ -923,19 +923,19 @@ ger:
 grc: 
   label: 
     it: Greco, antico (fino al 1453)
-    fr: GREEK, ANCIENT (TO 1453)
+    fr: Grec, ancien (TO 1453)
     de: Altgriechisch (bis 1453)
     en: Greek, Ancient (to 1453)
 gre:  
   label: 
     it: Greco, moderno (1453-)
-    fr: GREEK, MODERN (1453-)
+    fr: Grec, moderne (1453-)
     de: Neugriechisch (1453-)
     en: Greek, Modern (1453-)
 gsw: 
   label: 
     it: Tedesco Svizzero
-    fr: SWISS GERMAN
+    fr: Suisse allemand
     de: Schweizerdeutsch
     en: Swiss German
 heb: 
@@ -1025,7 +1025,7 @@ swe:
 zxx: 
   label: 
     it: Nessun contesto linguistico
-    fr: NO LINGUISTIK CONTENT
+    fr: Sans contenu linguistique
     de: ohne Sprache
     en: No linguistic content
 

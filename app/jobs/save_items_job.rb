@@ -1,6 +1,6 @@
 class SaveItemsJob < ProgressJob::Base
   
-  def initialize(parent_obj, relation = "Source")
+  def initialize(parent_obj, relation = "referring_sources")
     @parent_obj = parent_obj
     @relation = relation
   end
@@ -17,8 +17,7 @@ class SaveItemsJob < ProgressJob::Base
     return if !@parent_obj
     return if !@relation
     
-    klass_name = @relation.underscore.downcase.pluralize
-    items = @parent_obj.send(klass_name)
+    items = @parent_obj.send(@relation)
     
     update_progress_max(-1)    
     update_stage("Look up #{@relation}")

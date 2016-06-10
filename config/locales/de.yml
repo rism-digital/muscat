@@ -1,6 +1,9 @@
 
 de:
-  active_admin: 
+  active_admin:
+# Pad for italian, it has 2 missing items
+#
+#
     dashboard: Übersicht
     dashboard_welcome:
       welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
@@ -249,6 +252,7 @@ de:
   failed: "Fehlgeschlagen"
   waiting: "Wartet"
   running: "Läuft"
+  finished: "COMPLETED"
   lib_siglum: "Bibliothekssigel"
   holding_records: "Exemplar Information"
   new_holding: "Neuer Holding Eintrag"
@@ -564,6 +568,21 @@ de:
     download: "DOWNLOAD"
     more: "MORE"
     banner: 'PLEASE CLICK "PREVIEW" TO SHOW THE MEI-CONVERTED OUTPUT.'  
+
+  record_types:
+    unspecified: "UNSPECIFIED (UNK)"
+    collection: "COLLECTION (COL)"
+    manuscript: "MANUSCRIPT (MMS)"
+    print: "PRINT (MPR)"
+    manuscript_libretto: "MANUSCRIPT LIBRETTO (LMS)"
+    print_libretto: "PRINT LIBRETTO (LPR)"
+    manuscript_theoretica: "MANUSCRIPT THEORETICA (TMS)"
+    print_theoretica: "PRINT THEORETICA (TPR)"
+    convolutum: "CONVOLUTUM (CVT)"
+  wf_stage:
+    inprogress: "IN PROGRESS"
+    published: "PUBLISHED"
+    deleted: "DELETED"
     
   date:
     month_names:

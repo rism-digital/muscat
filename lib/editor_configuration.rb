@@ -297,6 +297,12 @@ class EditorConfiguration
     if layout_config["tag_exclude"] && layout_config["tag_exclude"][record_type.to_s]
       excluded.concat( layout_config["tag_exclude"][record_type.to_s] )
     end
+    # also check if some tags are excluded if the item (source) has holdings
+    if (marc_item.respond_to? :holdings) && (marc_item.holdings.size > 0)
+      if layout_config["tag_exclude_with_holdings"] && layout_config["tag_exclude_with_holdings"][record_type.to_s]
+        excluded.concat( layout_config["tag_exclude_with_holdings"][record_type.to_s] )
+      end
+    end
     excluded
   end
   

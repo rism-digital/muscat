@@ -283,6 +283,7 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -328,6 +329,7 @@
     :master: a
     :indicator: "1#"
     :occurrences: "?"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -348,6 +350,7 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -377,6 +380,7 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -671,6 +675,7 @@
     :master: w
     :indicator: "18"
     :occurrences: "?"
+    :preclude_holdings: true
     :fields:
     - - w
       - :occurrences: "1"
@@ -710,6 +715,7 @@
     :master: "x"
     :indicator: "##"
     :occurrences: "?"
+    :preclude_holdings: true
     :fields:
     - - "x"
       - :occurrences: "?"
