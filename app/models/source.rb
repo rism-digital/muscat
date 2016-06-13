@@ -93,13 +93,6 @@ class Source < ActiveRecord::Base
   after_save :update_links, :reindex
   before_destroy :update_links_for_destroy
   
-  # alias for holding records
-  alias_attribute :ms_condition, :title  
-  alias_attribute :image_urls, :title_d
-  alias_attribute :urls, :composer_d
-  # For bibliografic records in A/1, the old rism id goes into ms_no
-  alias_attribute :book_id, :shelf_mark
-  
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_77x_trigger
@@ -305,17 +298,14 @@ class Source < ActiveRecord::Base
     
     # Is composer set? if not this could be an anonymous
     if self.composer == "" && self.record_type != MarcSource::RECORD_TYPES[:collection]
-      self.composer, self.composer_d = "Anonymous", "anonymous"
+      self.composer, self.composer_d = ["Anonymous", "anonymous"]
     end
 
     self.lib_siglum, self.shelf_mark = marc.get_siglum_and_shelf_mark
     
     # ms_title for bibliographic records
     self.title, self.title_d = marc.get_source_title
-    
-    # physical_condition and urls for holding records
-    self.ms_condition, self.urls, self.image_urls = marc.get_ms_condition_and_urls
-    
+        
     # miscallaneous
     self.language, self.date_from, self.date_to = marc.get_miscellaneous_values
 

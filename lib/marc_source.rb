@@ -151,32 +151,6 @@ class MarcSource < Marc
    
     return [ms_title.truncate(255), ms_title_d.truncate(255)]
   end
-
-  # For holding records, set the condition and the urls (aliases)
-  def get_ms_condition_and_urls
-    ms_condition = "" 
-    urls = ""
-    image_urls = ""
-    
-    tag_852 = first_occurance( "852" )
-    if tag_852
-      q_tag = tag_852.fetch_first_by_tag("q")
-      ms_condition = q_tag.content if q_tag
-    
-      url_tags = tag_852.fetch_all_by_tag("u")
-      url_tags.each do |u|
-        image_urls += "#{u.content}\n"
-      end
-      
-      url_tags = tag_852.fetch_all_by_tag("z")
-      url_tags.each do |u|
-        urls += "#{u.content}\n"
-      end
-      
-    end
-    
-    return [ms_condition.truncate(255), urls.truncate(128), image_urls.truncate(255)]
-  end
   
   # Set miscallaneous values
   def get_miscellaneous_values
