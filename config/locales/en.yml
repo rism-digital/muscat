@@ -252,7 +252,7 @@ en:
   failed: "Failed"
   waiting: "Waiting"
   running: "Running"
-  finished: "Completed"
+  finished: "Finished"
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
   new_holding: "Create Holding Record"
@@ -276,8 +276,8 @@ en:
   reindex: "Re-index"
   publish: "Publish"
   select: "Select"
-  create_folder: "Create Folder"
-  append_folder: "Add to Folder"
+  create_folder: "Add to a new folder"
+  append_folder: "Add to an existing folder"
   
   # Editor sidebar
   show_all_groups: "Show all sections"
