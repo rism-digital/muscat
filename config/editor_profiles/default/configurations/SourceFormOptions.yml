@@ -43,20 +43,6 @@
     - - t
       - growfield: true
     - - r
-    - - o
-    - - g
-      - values: 
-        - "G-1"
-        - "G-2"
-        - "g-2"
-        - "C-1"
-        - "C-2"
-        - "C-3"
-        - "C-4"
-        - "C-5"
-        - "F-4"
-        - "F-5"
-        editor_partial: subfield_select
     - - n
       - values: 
         - "xF"
@@ -74,6 +60,20 @@
         - "bBEADGC"
         - "bBEADGCF"
         editor_partial: subfield_autocomplete
+    - - o
+    - - g
+      - values: 
+        - "G-1"
+        - "G-2"
+        - "g-2"
+        - "C-1"
+        - "C-2"
+        - "C-3"
+        - "C-4"
+        - "C-5"
+        - "F-4"
+        - "F-5"
+        editor_partial: subfield_select
     - - s
 #      - validate: 
 #        - msg: the field can contain 't', '+' or '?'
