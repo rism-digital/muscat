@@ -111,6 +111,8 @@ ActiveAdmin.register Holding do
       end
       
       @holding = Holding.new
+      source = Source.find(params[:source_id])
+      @holding.source = source
       @parent_object_id = params[:source_id]
       @parent_object_type = "Source" #hardcoded for now
       

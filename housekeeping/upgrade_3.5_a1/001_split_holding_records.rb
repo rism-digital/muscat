@@ -1,26 +1,5 @@
-@cnt = 0
-@start_time = Time.now
-@total_records = Source.where(record_type: MarcSource::RECORD_TYPES[:print]).count
-
-Source.where(record_type: MarcSource::RECORD_TYPES[:print]).pluck(:id).each do |sid|
-  source = Source.find(sid)
-  
-  @cnt += 1
-  
-  begin
-    marc = source.marc
-    marc.load_source false
-  rescue => e
-    $stderr.puts "SplitHoldingRecords: Could not load record #{source.id}"
-    $stderr.puts e.message.blue
-    next
-  end
-  
+def create_holdings(source, marc)
   count = 0
-  
-  # No 852 or record already processed
-  next if marc.by_tags("852").count == 0
-  
   marc.each_by_tag("852") do |t|
     
     # Make a nice new holding record
@@ -59,12 +38,68 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).pluck(:id).each do |
     ts = marc.root.fetch_all_by_tag("852") 
     ts.each {|t2| t2.destroy_yourself}
   end
+end
+
+@cnt = 0
+@start_time = Time.now
+@total_records = Source.where(["record_type = ? or record_type = ?",
+    MarcSource::RECORD_TYPES[:print],
+    MarcSource::RECORD_TYPES[:collection]]).count
+
+Source.where(["record_type = ? or record_type = ?",
+    MarcSource::RECORD_TYPES[:print],
+    MarcSource::RECORD_TYPES[:collection]]).pluck(:id).each do |sid|
+  source = Source.find(sid)
+  
+  @cnt += 1
+  
+  begin
+    marc = source.marc
+    marc.load_source false
+  rescue => e
+    $stderr.puts "SplitHoldingRecords: Could not load record #{source.id}"
+    $stderr.puts e.message.blue
+    next
+  end
+  
+
+  # Are we a print and part of a collection?
+  if source.record_type = MarcSource::RECORD_TYPES[:print]
+    if source.source_id != nil
+      # Items over 990000000 are NEVER split
+      if source.id >= 990000000
+        # Print in collection
+        # Should have no 852, if it has drop
+        if marc.by_tags("852").count > 0
+          puts "Source #{source.id} is part of a collection but has 852. Dropping".red
+          ts = marc.root.fetch_all_by_tag("852") 
+          ts.each {|t2| t2.destroy_yourself}
+        end
+      else
+        # Items under that range are always split
+        create_holdings(source, marc)
+      end
+    else
+      # We are just a simple print, split holdings
+      create_holdings(source, marc)
+    end
+  end
+  
+  # Are we a collection?
+  if source.record_type = MarcSource::RECORD_TYPES[:collection]
+    # Items under 990000000 are NEVER split
+    # Items over 990000000 are always split
+    if source.id > 990000000
+      create_holdings(source, marc)
+    end
+  end
   
   # suppress the 246 field in A/I prints since it was used for the previous title (now in 775 $t)
+  # This applies only to high-id records, prints and collections
   if source.id > 990000000
     ts = marc.root.fetch_all_by_tag("246") 
     ts.each {|t2| t2.destroy_yourself}
-    
+  
     # Do more housekeeping
     # Add $8 to sources that need it
 
@@ -73,7 +108,7 @@ Source.where(record_type: MarcSource::RECORD_TYPES[:print]).pluck(:id).each do |
         st = t.fetch_first_by_tag("8")
         # Skip if exists
         next if st && st.content
-        
+      
         t.add_at(MarcNode.new("source", "8", "01", nil), 0)
         t.sort_alphabetically
       end
