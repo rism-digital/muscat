@@ -620,7 +620,7 @@
     - - c
       - :occurrences: "*"
     - - g
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - "4"
       - :occurrences: "*"
     - - "8"
