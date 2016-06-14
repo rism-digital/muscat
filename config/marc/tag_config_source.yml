@@ -414,7 +414,7 @@
   "594":
     :master: b
     :indicator: "##"
-    :occurrences: "?"
+    :occurrences: "*"
     :fields:
     - - b
       - :occurrences: "?"
