@@ -698,6 +698,21 @@ doc_administration:
         fr: Documents
         de: Set
         en: Set
+"505": 
+  label: 
+    it: Nota di contenuto
+    fr: Remarque sur le contenu
+    de: Bemerkungen zu Inhaltsangaben
+    en: Note on content
+  fields: 
+    a: 
+      label: 
+        it: Nota di contenuto
+        fr: Remarque sur le contenu
+        de: Bemerkungen zu Inhaltsangaben
+        en: Note on content
+      edit_label: 
+        en: ""
 "506": 
   label: 
     it: Restrizioni all'accesso
