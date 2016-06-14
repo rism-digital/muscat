@@ -42,11 +42,11 @@ end
 
 @cnt = 0
 @start_time = Time.now
-@total_records = Source.where(["record_type = ? or record_type = ?",
+@total_records = Source.where(["record_type = ? or (record_type = ? and id > 990000000)",
     MarcSource::RECORD_TYPES[:print],
     MarcSource::RECORD_TYPES[:collection]]).count
 
-Source.where(["record_type = ? or record_type = ?",
+Source.where(["record_type = ? or (record_type = ? and id > 990000000)",
     MarcSource::RECORD_TYPES[:print],
     MarcSource::RECORD_TYPES[:collection]]).pluck(:id).each do |sid|
   source = Source.find(sid)
@@ -64,7 +64,7 @@ Source.where(["record_type = ? or record_type = ?",
   
 
   # Are we a print and part of a collection?
-  if source.record_type = MarcSource::RECORD_TYPES[:print]
+  if source.record_type == MarcSource::RECORD_TYPES[:print]
     if source.source_id != nil
       # Items over 990000000 are NEVER split
       if source.id >= 990000000
@@ -86,7 +86,7 @@ Source.where(["record_type = ? or record_type = ?",
   end
   
   # Are we a collection?
-  if source.record_type = MarcSource::RECORD_TYPES[:collection]
+  if source.record_type == MarcSource::RECORD_TYPES[:collection]
     # Items under 990000000 are NEVER split
     # Items over 990000000 are always split
     if source.id > 990000000
