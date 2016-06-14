@@ -296,10 +296,12 @@ class Source < ActiveRecord::Base
     # composer
     self.composer, self.composer_d = marc.get_composer
     
+    # NOTE we now decided to leave composer empty in all cases
+    # when 100 is not set
     # Is composer set? if not this could be an anonymous
-    if self.composer == "" && self.record_type != MarcSource::RECORD_TYPES[:collection]
-      self.composer, self.composer_d = ["Anonymous", "anonymous"]
-    end
+    #if self.composer == "" && self.record_type != MarcSource::RECORD_TYPES[:collection]
+    #  self.composer, self.composer_d = ["Anonymous", "anonymous"]
+    #end
 
     self.lib_siglum, self.shelf_mark = marc.get_siglum_and_shelf_mark
     
