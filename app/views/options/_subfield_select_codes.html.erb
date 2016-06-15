@@ -4,7 +4,7 @@
 <select class="serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100">
 	<option value="">--- <%= label %> ---</option>
 	<%- local_sorting(tag_params["codes"], @editor_profile).each do |code| %>
-    	<option value="<%= code -%>" <%= "selected" if marc_subfield.content == code %>><%= @editor_profile.get_label(code) -%></option>	
+    	<option value="<%= code -%>" <%= "selected" if marc_subfield.content == code %>><%= @editor_profile.get_label(code) -%></option>
 	<%- end %>
 </select>
 

@@ -14,29 +14,8 @@
     - - u
       - hidden: true
     - - a
-#      - validate: 
-#        - msg: the format must be numeric
-#          value: "'^[0-9][0-9]*$'"
-#          rule: regex
-#        - msg: the field is required
-#          value: true
-#          rule: required
     - - b
-#      - validate: 
-#        - msg: the format must be numeric
-#          value: "'^[0-9][0-9]*$'"
-#          rule: regex
-#        - msg: the field is required
-#          value: true
-#          rule: required
     - - c
-#      - validate: 
-#        - msg: the format must be numeric
-#          value: "'^[0-9][0-9]*$'"
-#          rule: regex
-#        - msg: the field is required
-#          value: true
-#          rule: required
     - - d
     - - m
     - - e
@@ -75,10 +54,6 @@
         - "F-5"
         editor_partial: subfield_select
     - - s
-#      - validate: 
-#        - msg: the field can contain 't', '+' or '?'
-#          value: "'^[t\\+\\?][t\\+\\?]?[t\\+\\?]?$'"
-#          rule: regex
     - - p
       - editor_partial: subfield_pae
     - - q
@@ -185,9 +160,18 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - k
-    - - o
+      - values: 
+        - "Excerpts"
+        - "Sketches"
+        - "Fragments"
+        editor_partial: subfield_select
     - - r
     - - m
+    - - o
+      - values: 
+        - "Arr"
+        - "Var"
+        editor_partial: subfield_select
 "245": 
   layout: 
     fields: 
@@ -330,33 +314,13 @@
   layout: 
     fields: 
     - - a
-#      - validate: 
-#        - msg: this field must be 4 characters
-#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
-#          rule: regex
     - - b
     - - c
-#      - validate: 
-#        - msg: this field must be 4 characters
-#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
-#          rule: regex
     - - d
     - - e
     - - f
-#      - validate: 
-#        - msg: this field must be 5 characters
-#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
-#          rule: regex
     - - g
-#      - validate: 
-#        - msg: this field must be 4 characters
-#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
-#          rule: regex
     - - h
-#      - validate: 
-#        - msg: this field must be 3 characters
-#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
-#          rule: regex
     - - i
     - - k
     - - l
@@ -520,10 +484,21 @@
         default: "RISM"
         editor_partial: subfield_select
     - - k
+      - values: 
+        - "Excerpts"
+        - "Sketches"
+        - "Fragments"
+        - "Inserts"
+        editor_partial: subfield_select
     - - o
+      - values: 
+        - "Arr"
+        - "Var"
+        editor_partial: subfield_select
     - - r
     - - n
     - - m
+
 "740":
   layout: 
     fields: 
