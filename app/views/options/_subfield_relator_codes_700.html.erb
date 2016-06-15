@@ -1,7 +1,7 @@
 <%	tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
 
 <select class="serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100">
-	<option value="-">--- Select ---</option>
+	<option value="">--- Select ---</option>
 	<%- tag_params["groups"].sort.map do |key, values| %>
      <optgroup label="<%= @editor_profile.get_label(key) -%>">
         <%- values.each do |code| %>
