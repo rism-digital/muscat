@@ -4,9 +4,18 @@
     models = model.pluralize
     cancel_path = ""
     if @item.id != nil
-      cancel_path = send("admin_#{model}_path", @item)
+		if @item.is_a?(Holding) && defined? @parent_object_id
+			cancel_path = edit_admin_source_path(@parent_object_id)
+		else
+			cancel_path = send("admin_#{model}_path", @item)
+		end
+
     else
-      cancel_path = send("admin_#{models}_path")
+		if @item.is_a?(Holding) && defined? @parent_object_id
+			cancel_path = edit_admin_source_path(@parent_object_id)
+		else
+			cancel_path = send("admin_#{models}_path")
+		end
     end
 	help_title = @editor_profile.get_label("doc_edit_functions")
 %>
