@@ -91,14 +91,17 @@
       - cols: 2 
         editor_partial: subfield_select_codes
         select_label: "Language"
+        codes_reference: "codes"
     - - e
       - cols: 2 
         editor_partial: subfield_select_codes
         select_label: "Language"
+        codes_reference: "codes"
     - - h
       - cols: 2 
         editor_partial: subfield_select_codes
         select_label: "Language"
+        codes_reference: "codes"
     columns: 2
   tag_params:
     codes:
@@ -142,6 +145,7 @@
       - cols: 2
         editor_partial: subfield_select_codes
         select_label: "Attribution"
+        codes_reference: "codes"
     columns: 2
   tag_params:
     codes:
@@ -380,6 +384,7 @@
       - autocomplete_extra: life_dates
     - - j
       - editor_partial: subfield_select_codes
+        codes_reference: "codes"
     - - "4"
       - editor_partial: subfield_relator_codes_700
   tag_params: 
@@ -441,9 +446,11 @@
     - - b
     - - g
       - editor_partial: subfield_select_codes
+        codes_reference: "codes"
     - - "4"
-      - editor_partial: subfield_relator_codes_710
+      - editor_partial: subfield_select_codes
         select_label: "Function"
+        codes_reference: "relator_codes"
   tag_params: 
     codes:
       - "Ascertained"

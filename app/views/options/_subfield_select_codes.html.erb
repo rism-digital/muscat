@@ -1,9 +1,10 @@
 <% tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
 <% label = params.has_key?("select_label") ? params['select_label'] : "Select" %>
+<% codes_reference = params.include?("codes_reference") ? params["codes_reference"] : "codes"%>
 
 <select class="serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100">
 	<option value="">--- <%= label %> ---</option>
-	<%- local_sorting(tag_params["codes"], @editor_profile).each do |code| %>
+	<%- local_sorting(tag_params[codes_reference], @editor_profile).each do |code| %>
     	<option value="<%= code -%>" <%= "selected" if marc_subfield.content == code %>><%= @editor_profile.get_label(code) -%></option>
 	<%- end %>
 </select>
