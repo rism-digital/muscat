@@ -7,6 +7,14 @@ body {
   	padding-bottom: 25px !important;
 }
 
+.panel_group {
+    margin-bottom: 0px;
+}
+
+.panel_group_space {
+    min-height: 20px;
+}
+
 // make active admin fields more compact
 body.active_admin table.index_table td {
 	padding-top: 4px !important;
