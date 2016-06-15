@@ -382,7 +382,6 @@
       - editor_partial: subfield_select_codes
     - - "4"
       - editor_partial: subfield_relator_codes_700
-  tag_list_additional_data: tag_list_additional_data_relator_codes
   tag_params: 
     codes:
       - "Ascertained"
