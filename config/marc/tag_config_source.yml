@@ -58,7 +58,7 @@
     :zero_padding: "14"
     :fields:
     - - ""
-      - :no_browse: true
+      - :no_browse: false
   "003":
     :master: ""
     :indicator: ""

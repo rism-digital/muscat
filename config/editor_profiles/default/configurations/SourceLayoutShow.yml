@@ -23,9 +23,11 @@ groups:
     - "246"
     - "657"
     - "730"
+    - "001"
     all_tag_templates: 
       "100": marc_show/show_person
       "246": marc_show/show_title_variant  
+      "001": marc_show/show_rism_id
 
   show_library: 
     all_tags:
@@ -34,7 +36,6 @@ groups:
     - "506"
     - "035"
     - "541"
-    - "001"
   
   show_content: 
     all_tags: 
