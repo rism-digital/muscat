@@ -28,6 +28,44 @@
     :fields:
     - - ""
       - :no_browse: true
+  "506":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :preclude_holdings: true
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "541":
+    :master: a
+    :indicator: "1#"
+    :occurrences: "?"
+    :preclude_holdings: true
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - c
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "?"
+    - - e
+      - :occurrences: "?"
+  "561":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :preclude_holdings: true
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "591":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :preclude_holdings: true
+    :fields:
+    - - a
+      - :occurrences: "?"
   "852":
     :master: "x"
     :indicator: "##"

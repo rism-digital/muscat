@@ -125,6 +125,80 @@ doc_edit_workflow:
     fr: "Identité du numéro de contrôle"
     de: Kontrollnummer-Bezeichnung
     en: Control number identifier
+"506": 
+  label: 
+    it: Restrizioni all'accesso
+    fr: Restriction d'accès
+    de: "Zugangsbeschränkungen"
+    en: Access restriction
+  fields: 
+    a: 
+      label: 
+        it: Restrizioni all'accesso
+        fr: Restriction d'accès
+        de: "Zugangsbeschränkungen"
+        en: Access restriction
+      edit_label: 
+        en: ""
+"541": 
+  label: 
+    it: Fonte immediata d'acquisto
+    fr: Source d'acquisition
+    de: Unmittelbare Beschaffungsquelle
+    en: Source of acquisition
+  fields: 
+    a: 
+      label: 
+        it: Nota sulla fonte d'acquisto
+        fr: Source d'acquisition
+        de: Beschaffungsquelle
+        en: Source of acquisition note
+    c: 
+      label: 
+        it: Metodo d'acquisto
+        fr: "Méthode d'acquisition"
+        de: Beschaffungsart
+        en: Method of acquisition
+    d: 
+      label: 
+        it: Data d'acquisto
+        fr: Date d'acquisition
+        de: Beschaffungsdatum
+        en: Date of acquisition
+    e: 
+      label: 
+        it: Numero di acquisizione
+        fr: Numéro d'acquisition
+        de: Akzessionsnumer
+        en: Accession number
+"561": 
+  label: 
+    it: Provenienza
+    fr: Provenance
+    de: Herkunft der Quelle
+    en: Provenance
+  fields: 
+    a: 
+      label: 
+        it: Provenienza
+        fr: Provenance
+        de: Herkunft der Quelle
+        en: Provenance
+      edit_label: 
+        en: ""
+"591": 
+  label: 
+    it: Altra segnatura
+    fr: Autre cote
+    de: Weitere Signatur
+    en: Other shelf number
+  fields: 
+    a: 
+      label: 
+        it: Altra segnatura
+        fr: Autre cote
+        de: Weitere Signatur
+        en: Other shelf number
 "852": 
   label: 
     it: Sigla della biblioteca
