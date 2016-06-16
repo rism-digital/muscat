@@ -78,7 +78,6 @@ class Holding < ActiveRecord::Base
     new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::BASE}/holding/default.marc"))
     new_marc.load_source true
     
-    # save revue_title
     node = MarcNode.new("holding", "852", "", "##")
     node.add_at(MarcNode.new("holding", "a", self.lib_siglum, nil), 0)
     
@@ -140,6 +139,10 @@ class Holding < ActiveRecord::Base
     else
       where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
     end
+  end
+
+  def display_name
+    "#{lib_siglum} [#{id}]"
   end
 
 end
