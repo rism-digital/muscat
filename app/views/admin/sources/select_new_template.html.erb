@@ -14,19 +14,3 @@
 		</div>
 	</div>
 </div>
-
-<%= form_tag(new_resource_path, {method: "get", :class => 'filter_form'}) do %>
-<div class="panel">
-	<h3>From existing source</h3>
-	<div class="panel_contents">
-	    <div class="form-group">
-	      <input name="existing_title" size="20" type="text"/>
-	    </div>
-	  </div>
-
-		<div class="buttons">
-	 	 	<%= submit_tag("Create from existing") %>
-		</div>
-	</div>
-</div>
-<%end%>
