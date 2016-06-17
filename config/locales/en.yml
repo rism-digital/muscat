@@ -568,17 +568,7 @@ en:
     download: "Download"
     more: "More"
     banner: 'Please click "Preview" to show the MEI-converted output.'
-  
-  record_types:
-    unspecified: "Unspecified (UNK)"
-    collection: "Collection (COL)"
-    manuscript: "Manuscript (MMS)"
-    print: "Print (MPR)"
-    manuscript_libretto: "Manuscript Libretto (LMS)"
-    print_libretto: "Print Libretto (LPR)"
-    manuscript_theoretica: "Manuscript Theoretica (TMS)"
-    print_theoretica: "Print Theoretica (TPR)"
-    convolutum: "Convolutum (CVT)"
+
   wf_stage:
     inprogress: "In Progress"
     published: "Published"

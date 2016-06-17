@@ -569,16 +569,6 @@ de:
     more: "MORE"
     banner: 'PLEASE CLICK "PREVIEW" TO SHOW THE MEI-CONVERTED OUTPUT.'  
 
-  record_types:
-    unspecified: "UNSPECIFIED (UNK)"
-    collection: "COLLECTION (COL)"
-    manuscript: "MANUSCRIPT (MMS)"
-    print: "PRINT (MPR)"
-    manuscript_libretto: "MANUSCRIPT LIBRETTO (LMS)"
-    print_libretto: "PRINT LIBRETTO (LPR)"
-    manuscript_theoretica: "MANUSCRIPT THEORETICA (TMS)"
-    print_theoretica: "PRINT THEORETICA (TPR)"
-    convolutum: "CONVOLUTUM (CVT)"
   wf_stage:
     inprogress: "IN PROGRESS"
     published: "PUBLISHED"
