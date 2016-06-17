@@ -228,34 +228,34 @@ doc_administration:
         it: Numero dell'incipit
         fr: "Numéro de l'œuvre"
         de: Incipitnummer
-        en: Number of work
+        en: Work number
       edit_label: 
         it: Numero
         fr: "No. de l'œuvre"
         de: Nummer
-        en: Nb. work
+        en: Work number
     b: 
       label: 
         it: Movimento No.
         fr: "Numéro du mouvement"
         de: Satznummer
-        en: Number of movement
+        en: Movement number
       edit_label: 
         it: Movimento No.
         fr: "No. du mouvement"
         de: Satznummer
-        en: Nb. movement
+        en: Movement number
     c: 
       label: 
         it: Numero dell'estratto'
         fr: "Numéro de l'extrait"
         de: Abschnitt
-        en: Number of excerpt
+        en: Incipit number
       edit_label: 
         it: Estratto No.
         fr: "No. de l'extrait"
         de: Nummer Abschnitt
-        en: Nb. excerpt
+        en: Incipit number
     m: 
       label: 
         it: Organico
@@ -272,13 +272,13 @@ doc_administration:
         it: Armat.
         fr: Armure
         de: Vorzeichen
-        en: Key g.
+        en: Key signature
     d: 
       label: 
         it: Intestazione, Tempo
         fr: Titre/tempo
         de: Satztitel, Tempo
-        en: Caption of heading
+        en: Title of movement, tempo
     o: 
       label: 
         it: Misura
@@ -289,7 +289,7 @@ doc_administration:
         it: Misura
         fr: Mes.
         de: Metrum
-        en: Time s.
+        en: Time signature
     e: 
       label: 
         it: Ruolo
@@ -301,7 +301,7 @@ doc_administration:
         it: Incipit musicale
         fr: Notation musicale
         de: Musikincipit
-        en: Musical notation
+        en: Musical incipit
     q: 
       label: 
         it: Commento all'incipit mus.
@@ -340,7 +340,7 @@ doc_administration:
         it: Val.
         fr: Val.
         de: "Gültigkeit"
-        en: Val.
+        en: ""
     t: 
       label: 
         it: Incipit testuale
@@ -359,7 +359,7 @@ doc_administration:
         it: Data e luogo di un evento
         fr: "Date/heure et lieu d'un événement"
         de: Datum und Ort eines Ereignisses (codiert)
-        en: Coded date, time and place of an event
+        en: Date
     indicator: 
       label: 
         it: Tipo di datazione
@@ -389,7 +389,7 @@ doc_administration:
     it: Num. locale
     fr: No. local
     de: Lokale Nummer
-    en: Local ID no.
+    en: Local Number
   fields: 
     a: 
       label: 
@@ -490,7 +490,7 @@ doc_administration:
     it: Titolo uniforme
     fr: Titre uniforme
     de: Einordnungstitel
-    en: Standardised title
+    en: Standardized title
   fields: 
     k: 
       label: 
@@ -503,7 +503,7 @@ doc_administration:
         it: Titolo uniforme
         fr: Titre uniforme
         de: Einordnungstitel
-        en: Standardised title
+        en: Standardized title
     m: 
       label: 
         it: Organico sintetico
@@ -526,26 +526,26 @@ doc_administration:
         it: "Tonalità"
         fr: "Tonalité"
         de: Tonart
-        en: Key
+        en: Key or mode
 "245": 
   label: 
     it: Titolo diplomatico
     fr: Titre diplomatique
     de: Diplomatischer Titel
-    en: Title on manuscript
+    en: Title on source
   fields: 
     a: 
       label: 
         it: Titolo diplomatico
         fr: Titre diplomatique
         de: Diplomatischer Titel
-        en: Title on manuscript
+        en: Title on source
 "246": 
   label: 
     it: Varianti del titolo diplomatico
     fr: Variante du titre diplomatique
     de: Weiterer diplomatischer Titel
-    en: Variant title on manuscript
+    en: Variant title on source
   fields: 
     a: 
       label: 
@@ -653,14 +653,14 @@ doc_administration:
     it: Opus
     fr: "Opus"
     de: Opus
-    en: Opus
+    en: Opus number
   fields: 
     b: 
       label: 
         it: Num. d'opera
         fr: "No. de Opus"
         de: Opus
-        en: Opus
+        en: Opus number
 "490": 
   label: 
     it: RISM Series
@@ -718,7 +718,7 @@ doc_administration:
     it: Restrizioni all'accesso
     fr: Restriction d'accès
     de: "Zugangsbeschränkungen"
-    en: Access restriction
+    en: Access restrictions
   fields: 
     a: 
       label: 
@@ -748,7 +748,7 @@ doc_administration:
     it: Nota sui interpreti
     fr: "Remarque sur les interprètes"
     de: "Bemerkungen zu den Aufführungen"
-    en: Performer note
+    en: Note on performance
   fields: 
     a: 
       label: 
@@ -778,14 +778,14 @@ doc_administration:
     it: Riassunto
     fr: "Résumé"
     de: Zusammenfassende Beschreibung
-    en: Summary description
+    en: Description summary
   fields: 
     a: 
       label: 
         it: Riassunto
         fr: "Résumé"
         de: Zusammenfassende Beschreibung
-        en: Summary description
+        en: Description summary
       edit_label: 
         en: ""
 "525": 
@@ -854,14 +854,14 @@ doc_administration:
     it: Provenienza
     fr: Provenance
     de: Herkunft der Quelle
-    en: Provenance
+    en: Provenance note
   fields: 
     a: 
       label: 
         it: Provenienza
         fr: Provenance
         de: Herkunft der Quelle
-        en: Provenance
+        en: Provenance note
       edit_label: 
         en: ""
 "563": 
@@ -909,14 +909,14 @@ doc_administration:
     it: Altra segnatura
     fr: Autre cote
     de: Weitere Signatur
-    en: Other shelf number
+    en: Other shelfmark
   fields: 
     a: 
       label: 
         it: Altra segnatura
         fr: Autre cote
         de: Weitere Signatur
-        en: Other shelf number
+        en: Other shelfmark
 "592": 
   label: 
     it: Filigrana
@@ -1201,14 +1201,14 @@ doc_administration:
     it: Luogo di un evento
     fr: "Lieu d'un événement"
     de: "Aufführungsort"
-    en: Place of an event
+    en: Location of performance
   fields: 
     a: 
       label: 
         it: Luogo di un evento
         fr: "Lieu d'un événement"
         de: "Aufführungsort"
-        en: Place of an event
+        en: Location of performance
       edit_label: 
         en: ""
 "653": 
@@ -1231,7 +1231,7 @@ doc_administration:
     it: Feste liturgiche
     fr: "Fête liturgique"
     de: Liturgische Feste
-    en: Liturgical feasts
+    en: Liturgical festival
   fields: 
     a: 
       label: 
@@ -1326,20 +1326,20 @@ doc_administration:
     it: Nome di ente
     fr: "Nom de la collectivité"
     de: Nebeneintragung Institutionen
-    en: Holding institution
+    en: Additional institution
   fields: 
     a: 
       label: 
         it: Nome di ente
         fr: "Nom de la collectivité"
         de: Institutionsname
-        en: Holding institution
+        en: Institution
     b: 
       label: 
         it: Ente subordinato
         fr: "Collectivité subordonnée"
         de: Untergeordnete Institution
-        en: Subordinate unit
+        en: Department
     g: 
       label: 
         it: Qualificazione d'attribuzione
@@ -1400,7 +1400,7 @@ doc_administration:
         it: Catalogo/Numero d'opera
         fr: "No. de catalogue thématique/Opus"
         de: Werkverzeichnis/Opus
-        en: Thematic catalogue no./Opus
+        en: Catalogue number/Opus number
     o: 
       label: 
         it: Arrangiamento
@@ -1458,14 +1458,14 @@ doc_administration:
     it: Item principale
     fr: Source principale
     de: Übergeordneter Eintrag
-    en: Volume containing this item
+    en: Parent record
   fields: 
     w: 
       label: 
         it: Item principale
         fr: Source principale
         de: Übergeordneter Eintrag
-        en: Volume containing this item
+        en: Parent record
       edit_label: 
         en: ""
 "775": 
@@ -1488,32 +1488,32 @@ doc_administration:
     it: Inserimenti
     fr: Insertions
     de: Einlagen
-    en: Related work/Insertions
+    en: Insertions
   fields: 
     w: 
       label: 
         it: Numero RISM dell'opera principale
         fr: "Numéro RISM de la source"
         de: RISM Dokumentnummer des Hauptwerks
-        en: RISM ID
+        en: RISM ID number
     n: 
       label: 
         it: Collocazione dell'inserimento nell'opera principale
         fr: Remarque sur l'endroit de l'insertion
         de: Stelle der Einlage im Hauptwerk
-        en: Note about the insertion place
+        en: Location of insertion
     g: 
       label: 
         it: Incipit num.
         fr: No. d'incipit
         de: Incipitnummer
-        en: Incipit Nr.
+        en: Incipit number
     s: 
       label: 
         it: Titolo uniforme
         fr: Titre uniforme
         de: Einordnungstitel des Hauptwerks
-        en: Standardised title
+        en: Standardized title
 "852": 
   label: 
     it: Sigla della biblioteca
@@ -1532,13 +1532,13 @@ doc_administration:
         it: Dipartimento
         fr: Section
         de: Abteilung
-        en: Sublocation
+        en: Department
     d: 
       label: 
         it: Segnatura vecchia (olim)
         fr: Ancienne cote (olim)
         de: Alte Signatur (olim)
-        en: Former shelf mark
+        en: Shelfmark (olim)
     e: 
       label: 
         it: Biblioteca
@@ -1550,7 +1550,7 @@ doc_administration:
         it: Segnatura
         fr: Cote
         de: Signatur
-        en: Shelf mark
+        en: Shelfmark
     q: 
       label: 
         it: PRESERVED PARTS
@@ -1568,7 +1568,7 @@ doc_administration:
         it: Nome del fondo
         fr: Fonds
         de: Bestandsname
-        en: Collection
+        en: Provenance
 "856": 
   label: 
     it: Localizzazione e accesso elettronico
@@ -1729,7 +1729,7 @@ asn:
     it: Altro nome
     fr: Autre nom
     de: Weiterer Name
-    en: Associated name
+    en: Other
 aut: 
   label: 
     it: Autore
@@ -1765,13 +1765,13 @@ clb:
     it: Autore secondario
     fr: Collabarateur
     de: Mitverfasser
-    en: Collaborator
+    en: Contributer
 cmp: 
   label: 
     it: Compositore/Compositore secondario
     fr: Compositeur / Co-compositeur
     de: Komponist / Mitkomponist
-    en: Composer
+    en: Composer / Co-Composer
 cnd: 
   label: 
     it: Direttore d'orchestra
@@ -1879,7 +1879,7 @@ lyr:
     it: Poeta
     fr: Parolier
     de: Textdichter
-    en: Lyricist
+    en: Text author
 otm: 
   label: 
     it: Organizzatore
@@ -1903,7 +1903,7 @@ ppm:
     it: Fabbricante di carta
     fr: Papetier
     de: Papierhersteller
-    en: Paper maker
+    en: Papermaker
 prd: 
   label: 
     it: Personale alla produzione
@@ -1927,13 +1927,13 @@ scr:
     it: Copista
     fr: Scribe
     de: Schreiber
-    en: Scribe
+    en: Copyist/Scribe
 trl: 
   label: 
     it: Traduttore
     fr: Traducteur
     de: "Übersetzer"
-    en: Translater
+    en: Translator
 voc: 
   label: 
     it: Cantante
