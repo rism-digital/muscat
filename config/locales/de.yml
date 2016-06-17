@@ -184,6 +184,9 @@ de:
   
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Auswahl der Vorlage"
+  available_templates: "Verfügbare Vorlagen"
+  from_existing_source: "Erstellen von vorhandener Quelle"
+  create_from_existing: "Erstellen"
   record_types:
     unspecified: "[Unbekannte Vorlage]"
     convolutum: "Convolutum"

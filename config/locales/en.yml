@@ -184,6 +184,11 @@ en:
         
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Select new template"
+  available_templates: "Available templates"
+  from_existing_source: "Create from existing source"
+  create_from_existing: "Create"
+   
+
   record_types:
     unspecified: "[Unknown template]"
     convolutum: "Convolutum"
