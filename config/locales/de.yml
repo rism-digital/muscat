@@ -183,6 +183,7 @@ de:
         other: "Benutzer"
   
   #################### RECORD TYPES (TEMPLATES)
+  select_template: "Auswahl der Vorlage"
   record_types:
     unspecified: "[Unbekannte Vorlage]"
     convolutum: "Convolutum"

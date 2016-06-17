@@ -183,6 +183,7 @@ en:
         other: "Users"
         
   #################### RECORD TYPES (TEMPLATES)
+  select_template: "Select new template"
   record_types:
     unspecified: "[Unknown template]"
     convolutum: "Convolutum"

@@ -183,6 +183,7 @@ fr:
         other: "Utilisateurs"
 
   #################### RECORD TYPES (TEMPLATES)
+  select_template: "SELECT NEW TEMPLATE"
   record_types:
     unspecified: "[type indéterminé]"
     convolutum: "Convolutum"

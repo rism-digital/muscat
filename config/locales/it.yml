@@ -183,6 +183,7 @@ it:
         other: "Utenti"
       
   #################### RECORD TYPES (TEMPLATES)
+  select_template: "SELECT NEW TEMPLATE"
   record_types:
     unspecified: "[Template sconosciuto]"
     convolutum: "Raccolta di miscellanee"
