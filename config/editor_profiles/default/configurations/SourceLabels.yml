@@ -272,7 +272,7 @@ doc_administration:
         it: Armat.
         fr: Armure
         de: Vorzeichen
-        en: Key g.
+        en: Key signature
     d: 
       label: 
         it: Intestazione, Tempo
@@ -287,9 +287,9 @@ doc_administration:
         en: Time signature
       edit_label: 
         it: Misura
-        fr: Mes.
+        fr: Ind. mesure
         de: Metrum
-        en: Time s.
+        en: Time signature
     e: 
       label: 
         it: Ruolo
@@ -337,10 +337,10 @@ doc_administration:
         de: "Gültigkeit"
         en: Validity
       edit_label: 
-        it: Val.
-        fr: Val.
+        it: "Validità"
+        fr: "Validité"
         de: "Gültigkeit"
-        en: Val.
+        en: Validity
     t: 
       label: 
         it: Incipit testuale
