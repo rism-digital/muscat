@@ -430,7 +430,7 @@ doc_administration:
         it: Lingua del libretto
         fr: Langue du livret
         de: Sprachcode von Libretti
-        en: Language code of libretto
+        en: Language of libretto
     h: 
       label: 
         it: Lingua del testo originale
@@ -703,14 +703,14 @@ doc_administration:
     it: Nota di contenuto
     fr: Remarque sur le contenu
     de: Bemerkungen zu Inhaltsangaben
-    en: Note on content
+    en: Contents note
   fields: 
     a: 
       label: 
         it: Nota di contenuto
         fr: Remarque sur le contenu
         de: Bemerkungen zu Inhaltsangaben
-        en: Note on content
+        en: Contents note
       edit_label: 
         en: ""
 "506": 
@@ -941,7 +941,7 @@ doc_administration:
     it: Categoria di fonte
     fr: Type de source
     de: Quellentyp
-    en: Autograph note
+    en: Source type
   fields: 
     a: 
       label: 
@@ -1008,14 +1008,14 @@ doc_administration:
     it: Impressum Originale
     fr: Impressum original
     de: Impressum (original)
-    en: Original Impressum
+    en: Imprint on source
   fields: 
     a: 
       label: 
         it: Impressum Originale
         fr: Impressum original
         de: Impressum (original)
-        en: Original Impressum
+        en: Imprint on source
 "598": 
   label: 
     it: Codice della strumentazione
@@ -1033,7 +1033,7 @@ doc_administration:
         it: Vsolo
         fr: Vsolo
         de: Vsolo
-        en: Vsolo
+        en: Vocal solo
     b: 
       label: 
         it: Voce solista aggiuntiva
@@ -1044,7 +1044,7 @@ doc_administration:
         it: Vsolo
         fr: Vsolo
         de: Vsolo
-        en: Vsolo
+        en: Vocal solo
     c: 
       label: 
         it: Voci di coro
@@ -1055,7 +1055,7 @@ doc_administration:
         it: Coro
         fr: Coro
         de: Coro
-        en: Coro
+        en: Chorus
     d: 
       label: 
         it: Voci di coro aggiuntive
@@ -1077,7 +1077,7 @@ doc_administration:
         it: iSol
         fr: iSol
         de: iSol
-        en: iSol
+        en: Solo instruments
     f: 
       label: 
         it: Archi
@@ -1088,7 +1088,7 @@ doc_administration:
         it: strings
         fr: strings
         de: strings
-        en: strings
+        en: Strings
     g: 
       label: 
         it: Legni
@@ -1099,7 +1099,7 @@ doc_administration:
         it: woodwinds
         fr: woodwinds
         de: woodwinds
-        en: woodwinds
+        en: Woodwinds
     h: 
       label: 
         it: Ottoni
@@ -1110,7 +1110,7 @@ doc_administration:
         it: brasses
         fr: brasses
         de: brasses
-        en: brasses
+        en: Brasses
     i: 
       label: 
         it: Strumenti a pizzico
@@ -1121,18 +1121,18 @@ doc_administration:
         it: plck
         fr: plck
         de: plck
-        en: plck
+        en: Plucked
     k: 
       label: 
         it: Strumenti a percussione
         fr: Percussions
         de: Schlaginstrumente
-        en: Precussion
+        en: Percussion
       edit_label: 
         it: stck
         fr: stck
         de: stck
-        en: stck
+        en: Percussion
     l: 
       label: 
         it: Strumenti a tastiera
@@ -1143,7 +1143,7 @@ doc_administration:
         it: keyb
         fr: keby
         de: keyb
-        en: keyb
+        en: Keyboards
     m: 
       label: 
         it: Altri strumenti
@@ -1154,7 +1154,7 @@ doc_administration:
         it: other instr.
         fr: other instr.
         de: other instr.
-        en: other instr.
+        en: other instruments
     n: 
       label: 
         it: Basso continuo
@@ -1165,7 +1165,7 @@ doc_administration:
         it: B.c.
         fr: B.c.
         de: B.c.
-        en: B.c.
+        en: Continuo
 "599": 
   label: 
     it: Commenti interni
@@ -1216,7 +1216,7 @@ doc_administration:
     it: Nomi di ruoli standardizzati
     fr: "Noms de rôles standardisés"
     de: Rollennamen, normiert Schreibweise
-    en: Role names, standardised
+    en: Dramatic roles, standardized
   fields: 
     a: 
       label: 
@@ -1473,14 +1473,14 @@ doc_administration:
     it: Primo item
     fr: "Première entrée"
     de: Ersteintrag
-    en: First entry
+    en: Initial entry
   fields: 
     w: 
       label: 
         it: Primo item
         fr: "Première entrée"
         de: Ersteintrag
-        en: First entry
+        en: Initial entry
       edit_label: 
         en: ""
 "787": 
