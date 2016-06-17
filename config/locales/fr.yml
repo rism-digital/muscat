@@ -222,8 +222,8 @@ fr:
   menu_marc_documentation: "Configuration Marc"
   menu_guidelines_top: "Instructions"
   menu_cataloging: "Catalogage"
-  menu_jobs: "JOBS"
-  menu_holdings: "HOLDINGS"
+  menu_jobs: "Tâches"
+  menu_holdings: "Exemplaires"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"

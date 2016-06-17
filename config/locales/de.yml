@@ -38,7 +38,7 @@ de:
         ends_with: "Endet mit"
         greater_than: "Größer als"
         less_than: "Kleiner als"
-        with_integer: "FILTER"
+        with_integer: "Filter"
     status_tag:
       "yes": "Ja"
       "no": "Nein"
@@ -222,8 +222,8 @@ de:
   menu_marc_documentation: "Marc Einstellungen"
   menu_guidelines_top: "Richtlinien"
   menu_cataloging: "Katalogisierung"
-  menu_jobs: "JOBS"
-  menu_holdings: "Holdings"
+  menu_jobs: "Jobs"
+  menu_holdings: "Examplare"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Letzte Änderungen"
@@ -255,7 +255,7 @@ de:
   finished: "COMPLETED"
   lib_siglum: "Bibliothekssigel"
   holding_records: "Exemplar Information"
-  new_holding: "Neuer Holding Eintrag"
+  new_holding: "Neuer Examplar Eintrag"
   
   jobs:
     not_set: "[Kein Status gesetzt]"
@@ -282,7 +282,7 @@ de:
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
   show_preview: "Vorschau anzeigen"
-  hide_preview: "HIDE PREVIEW"
+  hide_preview: "Vorschau vergeben"
   show_history: "Änderungsgeschichte"
   show_viaf: "VIAF Suche"
   save_and_continue: "Speichern und weiter bearbeiten"
@@ -306,10 +306,10 @@ de:
     save: "In Ordner speichern"
     success: "Ordner %{name} generiert aus %{count} Datensätzen."
     too_many: "Es können nicht mehr als %{max} Datensätze ausgewählt werden (%{count} wurden ausgewählt)."
-    added: "ADDED %{COUNT} ITEMS TO FOLDER %{NAME}."
-    added_bg: "ADDED ITEMS TO FOLDER, JOB %{JOB} ENQUEUED."
-    success_bg: "FOLDER %{NAME} CREATED, JOB %{JOB} ENQUEUED."
-    
+    added: "%{COUNT} Einträge zum Ordner %{NAME} hinzugefügt."
+    added_bg: "Einträge in den Ordner hinzugefügt, Auftrag %{JOB} in Warteschlange."
+    success_bg: "Ordner %{NAME} erstellt, Auftrag %{JOB} in Warteschlange."
+
   ### Digital objects
   digital_objects: "Bild"
   digital_object_new: "Neues Bild hinzufügen"
@@ -570,9 +570,9 @@ de:
     banner: 'PLEASE CLICK "PREVIEW" TO SHOW THE MEI-CONVERTED OUTPUT.'  
 
   wf_stage:
-    inprogress: "IN PROGRESS"
-    published: "PUBLISHED"
-    deleted: "DELETED"
+    inprogress: "In Arbeit"
+    published: "Veröffentlicht"
+    deleted: "Gelöscht"
     
   date:
     month_names:
