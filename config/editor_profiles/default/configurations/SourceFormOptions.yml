@@ -681,6 +681,7 @@
     - - w
       - type: source
         editor_partial: subfield_secondary
+        only_new_window: true
 "775":
   new_window: sources
   layout: 
