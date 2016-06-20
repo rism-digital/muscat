@@ -56,7 +56,6 @@ module MarcIndex
               if marc.by_tags("852").count == 0
 
                 self.holdings.each do |h|
-                  puts "HOLDING #{h.id}"
                   begin
                     holding_marc = h.marc
                     holding_marc.load_source false
