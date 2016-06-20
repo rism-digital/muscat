@@ -186,14 +186,26 @@ fields:
   "787w":
   "787w":
   "787w":
+  "852a_facet":
+      :type: string
+      :from_tag: "852"
+      :from_subtag: "a"
+      :holding_record: true
   "852a":
+      :holding_record: true
   "852b":
+      :holding_record: true
   "852d":
+      :holding_record: true
   "852e":
+      :holding_record: true
   "852p":
       :store: true
+      :holding_record: true
   "852q":
+      :holding_record: true
   "852z":
+      :holding_record: true
   "856u":
   "740_autocomplete":
       :index_processor_helper: marc_create_aggregated_text
