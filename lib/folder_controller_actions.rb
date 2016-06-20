@@ -2,7 +2,7 @@
 # from activeadmin lib/active_admin/resource_dsl.rb
 require 'resource_dsl_extensions.rb'
 
-MAX_FOLDER_ITEMS = 100000
+MAX_FOLDER_ITEMS = 200000
 
 # Extension module, see
 # https://github.com/gregbell/active_admin/wiki/Content-rendering-API
