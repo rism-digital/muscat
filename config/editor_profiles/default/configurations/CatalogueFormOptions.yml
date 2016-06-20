@@ -223,7 +223,7 @@
       - type: person
         editor_partial: subfield_secondary
     - - "4"
-      - editor_partial: subfield_relator_codes_700
+      - editor_partial: subfield_select_codes_grouped
   tag_params: 
     groups: 
       01_codes_artistic: 

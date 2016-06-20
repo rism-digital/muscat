@@ -22,6 +22,8 @@
     - - t
       - growfield: true
     - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "031r"
     - - n
       - values: 
         - "xF"
@@ -41,23 +43,95 @@
         editor_partial: subfield_autocomplete
     - - o
     - - g
-      - values: 
-        - "G-1"
-        - "G-2"
-        - "g-2"
-        - "C-1"
-        - "C-2"
-        - "C-3"
-        - "C-4"
-        - "C-5"
-        - "F-4"
-        - "F-5"
-        editor_partial: subfield_select
+      - editor_partial: subfield_select_codes_grouped
+        codes_reference: clef_groups
     - - s
     - - p
       - editor_partial: subfield_pae
     - - q
-
+  tag_params:
+    031r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b" 
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
+    clef_groups:
+      01_modern_clefs:
+      - C-1
+      - C-2
+      - C-3
+      - C-4
+      - C-5
+      - F-1
+      - F-2
+      - F-3
+      - F-4
+      - F-5
+      - G-1
+      - G-2
+      - G-3
+      - G-4
+      - G-5
+      02_mensural_clefs:
+      - C+1
+      - C+2
+      - C+3
+      - C+4
+      - C+5
+      - F+1
+      - F+2
+      - F+3
+      - F+4
+      - F+5
+      - G+1
+      - G+2
+      - G+3
+      - G+4
+      - G+5
 "033": 
   layout: 
     fields: 
@@ -144,7 +218,6 @@
     - - j
       - cols: 2
         editor_partial: subfield_select_codes
-        select_label: "Attribution"
         codes_reference: "codes"
     columns: 2
   tag_params:
@@ -164,18 +237,59 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - k
-      - values: 
-        - "Excerpts"
-        - "Sketches"
-        - "Fragments"
-        editor_partial: subfield_select
+      - editor_partial: subfield_select_codes
+        codes_reference: "240k"
     - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "240r"
     - - m
     - - o
-      - values: 
-        - "Arr"
-        - "Var"
-        editor_partial: subfield_select
+      - editor_partial: subfield_select_codes
+        codes_reference: "240o"
+  tag_params:
+    240k:
+      - "Excerpts"
+      - "Sketches"
+      - "Fragments"
+    240o:
+      - "Arr"
+    240r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
 "245": 
   layout: 
     fields: 
@@ -386,7 +500,7 @@
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
     - - "4"
-      - editor_partial: subfield_relator_codes_700
+      - editor_partial: subfield_select_codes_grouped
   tag_params: 
     codes:
       - "Ascertained"
@@ -490,21 +604,61 @@
         default: "RISM"
         editor_partial: subfield_select
     - - k
-      - values: 
-        - "Excerpts"
-        - "Sketches"
-        - "Fragments"
-        - "Inserts"
-        editor_partial: subfield_select
+      - editor_partial: subfield_select_codes
+        codes_reference: "730k"
     - - o
-      - values: 
-        - "Arr"
-        - "Var"
-        editor_partial: subfield_select
+      - editor_partial: subfield_select_codes
+        codes_reference: "730o"
     - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "730r"
     - - n
     - - m
-
+  tag_params:
+    730k:
+      - "Excerpts"
+      - "Sketches"
+      - "Fragments"
+      - "Inserts"
+    730o:
+      - "Arr"
+    730r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
 "740":
   layout: 
     fields: 
