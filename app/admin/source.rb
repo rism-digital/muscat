@@ -80,7 +80,7 @@ ActiveAdmin.register Source do
       @template_name = ""
       
       if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_type] || params[:new_type].empty?)
-        redirect_to action: :select_new_template
+        redirect_to action: :select_new_template 
         return
       end
 
@@ -117,7 +117,9 @@ ActiveAdmin.register Source do
     return
   end
   
-  collection_action :select_new_template, :method => :get
+  collection_action :select_new_template, :method => :get do 
+    @page_title = "#{I18n.t(:select_template)}"
+  end
   
   #scope :all, :default => true 
   #scope :published do |sources|

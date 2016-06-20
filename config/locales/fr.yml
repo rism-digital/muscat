@@ -183,6 +183,10 @@ fr:
         other: "Utilisateurs"
 
   #################### RECORD TYPES (TEMPLATES)
+  select_template: "SELECT NEW TEMPLATE"
+  available_templates: "AVAILABLE TEMPLATES"
+  from_existing_source: "CREATE FROM EXISTING SOURCE"
+  create_from_existing: "CREATE"
   record_types:
     unspecified: "[type indéterminé]"
     convolutum: "Convolutum"
