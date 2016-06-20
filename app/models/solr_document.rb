@@ -35,6 +35,7 @@ class SolrDocument
   
   def source_index_description
     title = first(:std_title_texts) || "[n.a.]"
+    title = "[n.a.]" if title.nil? || title.empty?
     #sigla = first(:lib_siglum_texts) || ""
     #shelf = first(:shelf_mark_texts) || ""
     #desc = first(:"240m_texts") || ""
