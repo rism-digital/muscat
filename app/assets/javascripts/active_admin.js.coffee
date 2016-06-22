@@ -39,3 +39,6 @@
 
 #= require viaf_interface.js
 #= require modification_trigger_ujs.js
+
+#= require diva/diva.js
+#= require diva/utils.js
