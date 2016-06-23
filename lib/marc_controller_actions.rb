@@ -142,7 +142,7 @@ module MarcControllerActions
 
       @editor_profile = EditorConfiguration.get_show_layout @item
      
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
   
     ###################
@@ -151,12 +151,14 @@ module MarcControllerActions
     
     dsl.collection_action :marc_editor_embedded_show, :method => :post do
       
+      opac = (params[:opac] == "true")
+      
       @item = Holding.find( params[:object_id] )
       
       @item.marc.load_source(true)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => opac }
     end
   
     ###################
@@ -170,7 +172,7 @@ module MarcControllerActions
       @item.marc.load_source(true)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
   
     ##########
@@ -200,7 +202,7 @@ module MarcControllerActions
       @item.marc.load_source(false)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => opac }
     end
   
     ##################
@@ -218,7 +220,7 @@ module MarcControllerActions
       # Parameter for using diff partials
       @diff = true
       
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => opac }
     end
     
     #####################

@@ -340,7 +340,7 @@ function _marc_editor_version_view( version_id, destination, rails_model ) {
 	});
 }
 
-function _marc_editor_embedded_view(destination, rails_model, id ) {	
+function _marc_editor_embedded_view(destination, rails_model, id, opac ) {	
 	url = "/admin/" + rails_model + "/marc_editor_embedded_show";
 	
 	$.ajax({
@@ -348,7 +348,8 @@ function _marc_editor_embedded_view(destination, rails_model, id ) {
 		},
 		data: {
 			marc_editor_dest: destination,
-			object_id: id
+			object_id: id,
+			opac: opac
 		},
 		dataType: 'script',
 		timeout: 20000,

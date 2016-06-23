@@ -242,6 +242,31 @@ doc_edit_workflow:
         fr: Cote
         de: Signatur
         en: Shelf mark
+"856": 
+  label: 
+    it: Localizzazione e accesso elettronico
+    fr: "Ressource électronique externe"
+    de: Elektronische Lokalisierung und Zugriff
+    en: External resource
+  fields: 
+    z: 
+      label: 
+        it: Nota destinata al pubblico
+        fr: Remarque sur la ressource externe
+        de: "Für das Publikum bestimmte Fussnote"
+        en: Note about external resource
+    u: 
+      label: 
+        it: Risorsa esterna
+        fr: Ressource externe
+        de: Uniform Resource Identifier
+        en: External resource
+    x: 
+      label: 
+        it: LINK TYPE
+        fr: Type de lien
+        de: LINK TYPE
+        en: Link type
 added_entry: 
   label: 
     it: Note secondarie

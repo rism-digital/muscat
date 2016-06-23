@@ -94,3 +94,18 @@
       - :occurrences: "?"
     - - z
       - :occurrences: "*"
+  "856":
+    :master: u
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - u
+      - :occurrences: "*"
+        :browse_helper: application_helper_link_http
+    - - x
+      - :occurrences: "?"
+    - - z
+      - :occurrences: "*"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
