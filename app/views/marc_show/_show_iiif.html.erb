@@ -4,12 +4,12 @@
 
 <%- tags.each do |tag|
 
-	number_u = tag.fetch_first_by_tag('u')
-	number_x = tag.fetch_first_by_tag('x')	
-	number_z = tag.fetch_first_by_tag('z')	
+	subfield_u = tag.fetch_first_by_tag('u')
+	subfield_x = tag.fetch_first_by_tag('x')	
+	subfield_z = tag.fetch_first_by_tag('z')	
 	
-	next if !number_x || !number_x.content || number_x.content != "IIIF"
-	next if !number_u || !number_u.content
+	next if !subfield_x || !subfield_x.content || subfield_x.content != "IIIF"
+	next if !subfield_u || !subfield_u.content
 	
 	random_string = SecureRandom.hex
 -%>
@@ -20,7 +20,7 @@
 			window.viewer = $('#<%= random_string -%>').diva({
 				enableAutoHeight: true,
 				fixedHeightGrid: false,
-				objectData: "<%= number_u.content -%>",
+				objectData: "<%= subfield_u.content -%>",
 				enableCanvas: true,
 				enableDownload: true,
 				enableAutoTitle: false
