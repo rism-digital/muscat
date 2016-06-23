@@ -19,11 +19,12 @@
 		$(document).ready(function() {
 			window.viewer = $('#<%= random_string -%>').diva({
 				enableAutoHeight: true,
+				enableLinkIcon: false,
 				fixedHeightGrid: false,
+				enableDownload: false,
+				enableAutoTitle: false,
 				inGrid: true,
-				objectData: "<%= subfield_u.content -%>",
-				enableDownload: true,
-				enableAutoTitle: false
+				objectData: "<%= subfield_u.content -%>"
 			}).data('diva');
 
 		});
