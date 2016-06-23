@@ -202,7 +202,7 @@ module MarcControllerActions
       @item.marc.load_source(false)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview', :locals => { :opac => opac }
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
   
     ##################
@@ -220,7 +220,7 @@ module MarcControllerActions
       # Parameter for using diff partials
       @diff = true
       
-      render :template => 'marc_show/show_preview', :locals => { :opac => opac }
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
     
     #####################
