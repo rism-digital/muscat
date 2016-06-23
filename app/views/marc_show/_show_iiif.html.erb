@@ -20,8 +20,8 @@
 			window.viewer = $('#<%= random_string -%>').diva({
 				enableAutoHeight: true,
 				fixedHeightGrid: false,
+				inGrid: true,
 				objectData: "<%= subfield_u.content -%>",
-				enableCanvas: true,
 				enableDownload: true,
 				enableAutoTitle: false
 			}).data('diva');
