@@ -414,6 +414,12 @@
         - Print
         - Print with handwritten entries
         - Probably autograph
+        - Libretto, handwritten
+        - Libretto, printed
+        - Treatise, handwritten
+        - Treatise, printed
+        - Music periodical
+        - Other 
         editor_partial: subfield_select
 "594":
   layout: 

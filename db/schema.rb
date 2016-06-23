@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606092702) do
+ActiveRecord::Schema.define(version: 20160622145102) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -254,6 +254,7 @@ ActiveRecord::Schema.define(version: 20160606092702) do
     t.datetime "updated_at"
   end
 
+  add_index "holdings", ["source_id"], name: "index_holdings_on_source_id", using: :btree
   add_index "holdings", ["wf_stage"], name: "index_holdings_on_wf_stage", using: :btree
 
   create_table "holdings_institutions", id: false, force: :cascade do |t|

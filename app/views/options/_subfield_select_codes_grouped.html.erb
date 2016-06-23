@@ -7,8 +7,7 @@
      <optgroup label="<%= @editor_profile.get_label(key) -%>">
         <%- values.each do |code| %>
           <option value="<%= code -%>" <%= "selected" if marc_subfield.content == code %> ><%= @editor_profile.get_label(code) -%></option>
-		  <script>console.log("<%= values -%>");</script>
-			<%- end %>
+		<%- end %>
 		</option>	
 	<%- end %>
 </select>

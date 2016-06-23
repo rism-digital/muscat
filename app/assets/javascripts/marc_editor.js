@@ -340,8 +340,8 @@ function _marc_editor_version_view( version_id, destination, rails_model ) {
 	});
 }
 
-function _marc_editor_embedded_view(destination, rails_model, id, opac ) {	
-	url = "/admin/" + rails_model + "/marc_editor_embedded_show";
+function _marc_editor_embedded_holding(destination, rails_model, id, opac ) {	
+	url = "/catalog/holding";
 	
 	$.ajax({
 		success: function(data) {
