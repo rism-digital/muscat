@@ -144,21 +144,7 @@ module MarcControllerActions
      
       render :template => 'marc_show/show_preview'
     end
-  
-    ###################
-    ## Embedded show ##
-    ###################
-    
-    dsl.collection_action :marc_editor_embedded_show, :method => :post do
-      
-      @item = Holding.find( params[:object_id] )
-      
-      @item.marc.load_source(true)
-      @editor_profile = EditorConfiguration.get_show_layout @item
-      
-      render :template => 'marc_show/show_preview'
-    end
-  
+
     ###################
     ## Summary show ##
     ###################

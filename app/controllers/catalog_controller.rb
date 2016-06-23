@@ -16,6 +16,15 @@ class CatalogController < ApplicationController
     @item = Source.find(params[:id])
   end
   
+  def holding
+    @item = Holding.find( params[:object_id] )
+    
+    @item.marc.load_source(true)
+    @editor_profile = EditorConfiguration.get_show_layout @item
+    
+    render :template => 'marc_show/show_preview'
+  end
+  
   def download_xslt
     send_file(
       "#{Rails.root}/public/xml/marc2mei.xsl",
