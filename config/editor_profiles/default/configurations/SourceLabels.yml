@@ -1588,6 +1588,12 @@ doc_administration:
         fr: Ressource externe
         de: Uniform Resource Identifier
         en: External resource
+    x: 
+      label: 
+        it: LINK TYPE
+        fr: Type de lien
+        de: LINK TYPE
+        en: Link type
         
 ################
 

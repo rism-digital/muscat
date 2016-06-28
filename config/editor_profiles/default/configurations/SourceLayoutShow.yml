@@ -72,7 +72,8 @@ groups:
     all_tag_templates: 
       "260": marc_show/show_subfield_concat
       "700": marc_show/show_person
-      "710": marc_show/show_institution
+      "710": marc_show/show_institution 
+      "856": marc_show/show_link
 
   show_information: 
     all_tags: 
@@ -121,6 +122,8 @@ groups:
     - "856"
     ungrouped_tags:
       "856": 8
+    all_tag_templates: 
+      "856": marc_show/show_link
   
   show_admin: 
     all_tags: 

@@ -1,0 +1,18 @@
+<%
+	subfield_u = tag.fetch_first_by_tag('u')
+	subfield_x = tag.fetch_first_by_tag('x')	
+	subfield_z = tag.fetch_first_by_tag('z')	
+	link = ((subfield_u && subfield_u.content) ? subfield_u.content : "[unset]")
+	display = ((subfield_z && subfield_z.content) ? subfield_z.content : link)
+
+-%>
+<tr class="row">
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td>
+		<%= link_to(display, link, :target => "_blank") %><%= " [#{subfield_x.content.html_safe}]" if (subfield_x && subfield_x.content) %>
+	</td>
+</tr>
