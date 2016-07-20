@@ -75,8 +75,13 @@ module MarcControllerActions
       if params[:triggers]
         triggers = JSON.parse(params[:triggers])
         
-        triggers.each do |k, t|
-          relation_name = "referring_" + t
+        #trigger:
+        # - save:
+        #   - sources
+        # note that "relation" is an array
+        
+        triggers.each do |k, relations|
+          relation_name = "referring_" + relations[0]
           if k == "save"
             t.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, relation_name)) }
           elsif k == "reindex"
