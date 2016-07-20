@@ -165,7 +165,7 @@
       - cols: 2
         trigger:
         - save:
-          - Source
+          - sources
     - - c
       - cols: 2
     - - d
