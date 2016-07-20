@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def can_edit?(source)
-    if sourcechild_sources.count > 0
+    if source.child_sources.count > 0
       libs=[]
       source.child_sources.each do |so| 
         so.institutions.each do |l|
