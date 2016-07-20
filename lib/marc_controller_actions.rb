@@ -77,9 +77,9 @@ module MarcControllerActions
         
         triggers.each do |k, relations|
           if k == "save"
-            t.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, "referring_" + model)) }
+            relations.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, "referring_" + model)) }
           elsif k == "reindex"
-            t.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, "referring_" + model)) }
+            relations.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, "referring_" + model)) }
           else
             puts "Unknown trigger #{k}"
           end
