@@ -65,15 +65,15 @@ gem 'htmlentities'
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', '~> 1.0.0.pre2' #, github: 'rism-ch/activeadmin'#, ref: 'a2cd960'
+gem 'activeadmin', '~> 1.0.0.pre2' #, git: 'https://github.com/rism-ch/activeadmin'#, ref: 'a2cd960'
 # Disabled - left to find it again
-#gem 'active_admin_scoped_collection_actions', github: 'activeadmin-plugins/active_admin_scoped_collection_actions'
+#gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
 gem 'sunspot_rails', "2.2.0"#, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
 gem 'sunspot_solr',  "2.2.0"
 gem 'awesome_print'
-gem 'progress_bar', github: 'rism-ch/progress_bar'
-gem "rails3-jquery-autocomplete", github: 'rism-ch/rails3-jquery-autocomplete'
+gem 'progress_bar', git: 'https://github.com/rism-ch/progress_bar'
+gem "rails3-jquery-autocomplete", git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
 gem "cancan"
 gem "rolify"
 group :development do
@@ -105,12 +105,12 @@ gem 'pry', :group => :development
 
 # Background tasks
 # https://github.com/collectiveidea/delayed_job/issues/776
-gem 'delayed_job', "4.1.1", github: 'rism-ch/delayed_job'
+gem 'delayed_job', "4.1.1", git: 'https://github.com/rism-ch/delayed_job'
 gem 'delayed_job_active_record'
-gem 'progress_job', github: "rism-ch/progress_job"
+gem 'progress_job', git: "https://github.com/rism-ch/progress_job"
 
 # Scheduled tasks cron style
-gem 'crono', github: 'plashchynski/crono'
+gem 'crono', git: 'https://github.com/plashchynski/crono'
 gem 'daemons'
 
 # Add I18n in js
