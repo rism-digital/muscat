@@ -11,6 +11,8 @@
 	<%- @editor_profile.layout_config[:marc_editor_missing_group_links] = "" -%>
 	<%= form_tag( "#", {:id => "marc_editor_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>
 		<%= hidden_field_tag 'id', @item.id -%>
+		<%= hidden_field_tag 'parent_object_id', @parent_object_id if @parent_object_id -%>
+		<%= hidden_field_tag 'parent_object_type', @parent_object_type if @parent_object_type -%>
 		<%= hidden_field_tag 'lock_version', @item.lock_version if @item.lock_version -%>
         <%= hidden_field_tag 'record_type', @item.record_type if (@item.respond_to? :record_type) && @item.record_type -%>
 		<%- groups.each do |group| -%>
@@ -22,3 +24,12 @@
 				:locals => { :render_panel => render_panel } -%> 
 	<% end %>
 </div>
+
+<% if @item.is_a? Holding %>
+	<div id="source_preview_for_holding"></div>
+	<script>
+		_marc_editor_summary_view("source_preview_for_holding", "sources", <%= @item.source.id %>)
+	</script>
+<% end %>
+
+<%= render "holdings/list_holdings" %>

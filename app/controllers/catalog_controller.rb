@@ -16,6 +16,17 @@ class CatalogController < ApplicationController
     @item = Source.find(params[:id])
   end
   
+  def holding
+    opac = (params[:opac] == "true")
+    
+    @item = Holding.find( params[:object_id] )
+    
+    @item.marc.load_source(true)
+    @editor_profile = EditorConfiguration.get_show_layout @item
+    
+    render :template => 'marc_show/show_preview', :locals => { :opac => opac }
+  end
+  
   def download_xslt
     send_file(
       "#{Rails.root}/public/xml/marc2mei.xsl",
@@ -101,7 +112,7 @@ class CatalogController < ApplicationController
     config.add_facet_field '240m_filter_sm', :label => :filter_scoring, :limit => 10
     ##config.add_facet_field '240m_sms', :label => 'Publisher', :limit => 10, solr_params: { 'facet.mincount' => 1 }
     config.add_facet_field 'date_from_i', :label => :filter_date, :range => true, :limit => 5
-    config.add_facet_field 'lib_siglum_order_s', :label => :filter_lib_siglum, :limit => 10
+    config.add_facet_field '852a_facet_sm', :label => :filter_lib_siglum, :limit => 10
     config.add_facet_field '650a_filter_sm', :label => :filter_subject, :limit => 10
     #config.add_facet_field 'title_order', :label => 'Standard Title', :single => true
     #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 

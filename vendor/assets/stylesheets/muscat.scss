@@ -7,6 +7,14 @@ body {
   	padding-bottom: 25px !important;
 }
 
+.panel_group {
+    margin-bottom: 0px;
+}
+
+.panel_group_space {
+    min-height: 20px;
+}
+
 // make active admin fields more compact
 body.active_admin table.index_table td {
 	padding-top: 4px !important;
@@ -18,17 +26,24 @@ body.active_admin form fieldset ol > li {
 	padding-bottom: 2px !important;
 }
 
-// reduce the title bar h2 size and vertical padding
-#title_bar h2 {
-	font-size: 1.8em;
+// reduce the header height
+.muscat_admin_header {
+    padding: 0px !important;
 }
 
+// reduce the title bar h2 size and vertical padding
 #title_bar {
-	padding: 8px 30px;
+	padding: 5px 30px;
+    h2 {
+    	font-size: 1.4em;
+    }
 }
 
 #titlebar_left, #titlebar_right {
-	height: 45px !important;
+	height: 40px !important;
+    span.breadcrumb {
+        margin-bottom: 6px;
+    }
 }
 
 
@@ -55,4 +70,13 @@ body.active_admin {
     .status_tag.manuscript_theoretica { background: #8c6027; }
     .status_tag.print_theoretica { background: #deb887; }
     .status_tag.convolutum { background: #404040; }
+}
+
+.progress_bar {
+    border: #ccc 1px solid; 
+    width: 100%; 
+    background-color: #eee;
+}
+.progress_bar_content {
+    background-color: lighten($primary-color, 20%)
 }

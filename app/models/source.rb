@@ -46,24 +46,44 @@ class Source < ActiveRecord::Base
   require 'solr_search.rb'
 #  include MarcIndex
   include ForeignLinks
+  include MarcIndex
   resourcify
   
-  belongs_to :source
-  has_many :sources
+  belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
+  #belongs_to :source
+  has_many :child_sources, {class_name: "Source"}
   has_many :digital_objects
-  has_and_belongs_to_many :institutions
-  has_and_belongs_to_many :people
-  has_and_belongs_to_many :standard_titles
-  has_and_belongs_to_many :standard_terms
-  has_and_belongs_to_many :catalogues
-  has_and_belongs_to_many :liturgical_feasts
-  has_and_belongs_to_many :places
+  has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
+  has_and_belongs_to_many :people, join_table: "sources_to_people"
+  has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
+  has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
+  has_and_belongs_to_many :catalogues, join_table: "sources_to_catalogues"
+  has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
+  has_and_belongs_to_many :places, join_table: "sources_to_places"
+  has_many :holdings
   has_and_belongs_to_many :works
   has_many :folder_items, :as => :item
+  has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
-  composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source), %w(record_type)]
+  # This is the forward link
+  has_and_belongs_to_many(:sources,
+    :class_name => "Source",
+    :foreign_key => "source_a_id",
+    :association_foreign_key => "source_b_id",
+    join_table: "sources_to_sources")
+  
+  # This is the backward link
+  has_and_belongs_to_many(:referring_sources,
+    :class_name => "Source",
+    :foreign_key => "source_b_id",
+    :association_foreign_key => "source_a_id",
+    join_table: "sources_to_sources")
+  
+  composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
   alias_attribute :id_for_fulltext, :id
+  
+  scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
   
   # FIXME id generation
   before_destroy :check_dependencies
@@ -72,13 +92,6 @@ class Source < ActiveRecord::Base
   after_create :fix_ids
   after_save :update_links, :reindex
   before_destroy :update_links_for_destroy
-  
-  # alias for holding records
-  alias_attribute :ms_condition, :title  
-  alias_attribute :image_urls, :title_d
-  alias_attribute :urls, :composer_d
-  # For bibliografic records in A/1, the old rism id goes into ms_no
-  alias_attribute :book_id, :shelf_mark
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
@@ -121,7 +134,7 @@ class Source < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places"]
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings", "sources"]
     recreate_links(marc, allowed_relations)
     
     # update the parent manuscript when having 773/772 relationships
@@ -147,6 +160,7 @@ class Source < ActiveRecord::Base
     self.index
   end
 
+  
 
   searchable :auto_index => false do |sunspot_dsl|
    sunspot_dsl.integer :id
@@ -169,9 +183,7 @@ class Source < ActiveRecord::Base
     end
     sunspot_dsl.text :composer, :stored => true
     sunspot_dsl.text :composer_d
-    
-    #sunspot_dsl.text :marc_source
-    
+        
     sunspot_dsl. string :title_order do 
       title
     end
@@ -197,7 +209,7 @@ class Source < ActiveRecord::Base
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
-    
+
     sunspot_dsl.integer :catalogues, :multiple => true do
           catalogues.map { |catalogue| catalogue.id }
     end
@@ -226,19 +238,14 @@ class Source < ActiveRecord::Base
           standard_titles.map { |stit| stit.id }
     end
     
-    sunspot_dsl.integer :works, :multiple => true do
-          works.map { |work| work.id }
-    end
-
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
-
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
     
   def check_dependencies
-    if (self.sources.count > 0)
+    if (self.child_sources.count > 0)
       errors.add :base, "The source could not be deleted because it is used"
       return false
     end
@@ -289,19 +296,18 @@ class Source < ActiveRecord::Base
     # composer
     self.composer, self.composer_d = marc.get_composer
     
+    # NOTE we now decided to leave composer empty in all cases
+    # when 100 is not set
     # Is composer set? if not this could be an anonymous
-    if self.composer == "" && self.record_type != MarcSource::RECORD_TYPES[:collection]
-      self.composer, self.composer_d = "Anonymous", "anonymous"
-    end
+    #if self.composer == "" && self.record_type != MarcSource::RECORD_TYPES[:collection]
+    #  self.composer, self.composer_d = ["Anonymous", "anonymous"]
+    #end
 
     self.lib_siglum, self.shelf_mark = marc.get_siglum_and_shelf_mark
     
     # ms_title for bibliographic records
     self.title, self.title_d = marc.get_source_title
-    
-    # physical_condition and urls for holding records
-    self.ms_condition, self.urls, self.image_urls = marc.get_ms_condition_and_urls
-    
+        
     # miscallaneous
     self.language, self.date_from, self.date_to = marc.get_miscellaneous_values
 
@@ -377,6 +383,11 @@ class Source < ActiveRecord::Base
     MarcSource::RECORD_TYPES.key(self.record_type)
   end
   
+  def allow_holding?
+    return false if (self.record_type != MarcSource::RECORD_TYPES[:print]) && (self.record_type != MarcSource::RECORD_TYPES[:collection])
+    return false if marc.preclude_holdings?
+    return true
+  end
   
   def fix_ids
     #generate_new_id

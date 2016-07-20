@@ -26,10 +26,14 @@ class Workgroup < ActiveRecord::Base
     self.institutions.delete_all
     pattern_list=self.libpatterns.split(",")
     if libpatterns
-      pattern_list.each do |siglum|
-        self.institutions << Institution.where("siglum like ?", "%#{siglum.gsub("*", "").strip}%")
+      pattern_list.each do |pattern|
+        self.institutions << Institution.where("siglum REGEXP ?", pattern.gsub("*", "").strip)
       end
     end
   end
- 
+
+  def show_libs
+    libs = self.get_institutions.map(&:siglum)
+    return libs.size > 4 ? "#{libs[0..4].join(', ')} [ ... #{libs.size - 5} more]" : libs.join(', ')
+  end
 end

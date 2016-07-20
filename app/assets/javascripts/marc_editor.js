@@ -3,7 +3,18 @@
 ////////////////////////////////////////////////////////////////////
 marc_editor_form_changed = false;
 
+function marc_editor_set_dirty() {
+	if (marc_editor_form_changed == true)
+		return;
+	
+	marc_editor_form_changed = true
+	//$("<span>*</span>").insertAfter($("#page_title"));
+	$("#page_title").append("*");
+}
+
 function marc_editor_init_tags( id ) {
+    
+    marc_editor_show_last_tab();
 	
 	// Set event hooks
 	// avoid user to accidently leave the page when the form was modify 
@@ -13,12 +24,11 @@ function marc_editor_init_tags( id ) {
 	
 	$(".sortable").sortable();
 
-
 	marc_editor_form_changed = false;
 	$(id).dirtyFields({
-		trimText:true,
+		trimText: true,
 		fieldChangeCallback: function(originalValue, isDirty) {
-			marc_editor_form_changed = true;
+			marc_editor_set_dirty();
 		}
 	});	
 
@@ -26,25 +36,112 @@ function marc_editor_init_tags( id ) {
 	   from an autocomplete field. It is a delegated method so dynamically added
 	   forms can handle it
 	*/
-	$("#marc_editor_panel").on('railsAutocomplete.select', 'input.ui-autocomplete-input', function(event, data){
+	$("#marc_editor_panel").on('autocompleteopen', function(event, data) {
+		input = $(event.target); // Get the autocomplete id
+		toplevel_li = input.parents("li");
+		hidden = toplevel_li.children(".autocomplete_target")
+		
+		hidden.data("status", "opened");
+	});
+
+	$("#marc_editor_panel").on('autocompletechange', function(event, data) {
 		input = $(event.target); // Get the autocomplete id
 		
 		// havigate up to the <li> and down to the hidden elem
 		toplevel_li = input.parents("li");
 		hidden = toplevel_li.children(".autocomplete_target")
 		
+		if (hidden.data("status") != "selected") {
+		
+			// Are we allowed to create a new?
+			if (hidden.data("allow-new") == false) {
+				alert("Item cannot create a new element, please select one from the list.");
+				input.addClass("error");
+				return false;
+			}
+		
+			hidden.val("");
+			hidden.removeClass("serialize_marc");
+			var element_class = marc_editor_validate_className(hidden.data("tag"), hidden.data("subfield"));
+			hidden.removeClass(element_class);
+		
+			input.addClass("serialize_marc");
+			input.addClass("new_autocomplete");
+			
+			// Make the form dirty
+			marc_editor_set_dirty();
+			
+			// Show the checkbox
+			check_tr = toplevel_li.find(".checkbox_confirmation")
+			check_tr.fadeIn("fast");
+			
+			check = toplevel_li.find(".creation_checkbox")
+			check.data("check", true)
+			
+			// Remove auxiliary data and enable
+			var group = input.parents(".tag_content_collapsable");
+			$(".autocomplete_extra", group).each(function () {
+				$(this).prop('disabled', false);
+				$(this).addClass("autocomplete_extra_enabled");
+				$(this).val("");
+			});
+			
+		}
+	});
+
+	$("#marc_editor_panel").on('autocompleteresponse', function(event, data) {
+		input = $(event.target); // Get the autocomplete id
+		toplevel_li = input.parents("li");
+		hidden = toplevel_li.children(".autocomplete_target")
+		
+		if (data.content.length == 0) {
+			hidden.data("status", "nomatch");
+		}
+	});
+
+	$("#marc_editor_panel").on('railsAutocomplete.select', 'input.ui-autocomplete-input', function(event, data){
+		var input = $(event.target); // Get the autocomplete id
+		
+		// havigate up to the <li> and down to the hidden elem
+		var toplevel_li = input.parents("li");
+		var hidden = toplevel_li.children(".autocomplete_target")
+		
 		// the data-field in the hidden tells us which
 		// field write in the input value. Default is id
-		field = hidden.data("field")
+		var field = hidden.data("field")
 		
-		// Set the value from the id of the autocompleted elem
-		if (data.item[field] == "") {
-			alert("Please select a valid item from the list");
-			input.val("");
-			hidden.val("");
-		} else {
-			hidden.val(data.item[field]);
-		}
+		hidden.addClass("serialize_marc");
+		var element_class = marc_editor_validate_className(hidden.data("tag"), hidden.data("subfield"));
+		hidden.addClass(element_class);
+		hidden.val(data.item[field]);
+		hidden.data("status", "selected");
+		
+		input.removeClass("serialize_marc");
+		input.removeClass("new_autocomplete");
+		
+		// Make the form dirty
+		marc_editor_set_dirty();
+		
+		// Remove the checkbox
+		var check_tr = toplevel_li.find(".checkbox_confirmation")
+		check_tr.fadeOut("fast");
+		
+		var check = toplevel_li.find(".creation_checkbox")
+		check.data("check", false)
+		
+		// Set auxiliary data
+		var group = input.parents(".tag_content_collapsable");
+		$(".autocomplete_extra", group).each(function () {
+			$(this).prop('disabled', true);
+			$(this).removeClass("autocomplete_extra_enabled");
+			var extra_data = $(this).data("autocomplete-extra");
+			if (extra_data in data.item) {
+				$(this).val(data.item[extra_data])
+			} else {
+				console.log("Autocomplete extra data: cound not find " + extra_data + " in element.")
+			}
+		});
+
 	})
 	
 	// Add save and preview hotkeys
@@ -57,8 +154,32 @@ function marc_editor_init_tags( id ) {
 	});
 	
 	$(document).on('keydown', null, 'alt+ctrl+n', function(){
-		window.location.href = "/" +  marc_editor_get_model() + "/new";
+		window.location.href = "/admin/" +  marc_editor_get_model() + "/new";
 	});
+}
+
+function marc_editor_get_triggers() {
+	var triggers = {};
+	$("[data-trigger]").each(function(){
+		var t = $(this).data("triggered");
+		if (!t)
+			return;
+		
+		t = t[0];
+		
+		for (var k in t) {
+			// is it there in the final array?
+			if (triggers[k]) {
+				triggers[k] = triggers[k].concat(t[k]);
+				triggers[k] = $.unique(triggers[k]);
+			} else {
+				triggers[k] = [];
+				triggers[k] = t[k];
+			}
+		}
+	});
+	
+	return triggers;
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -75,12 +196,21 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	if (!form.valid()) {
 		$('#main_content').unblock();
 		$('#sections_sidebar_section').unblock();
-		return;
+		
+		// Show the validation override check
+		$("#validation_override_container").show();
+		
+		// If it is not checked just return
+		// default state is unckecked
+		// If checked go on at the editor's risk
+		if ( !$("#validation_override_checkbox").is(':checked') )
+			return;
 	}
 	
-	json_marc = serialize_marc_editor_form(form);
+	var json_marc = serialize_marc_editor_form(form);
+	var triggers = marc_editor_get_triggers();
 
-	url = "/admin/" + rails_model + "/marc_editor_save";
+	var url = "/admin/" + rails_model + "/marc_editor_save";
 		
 	// A bit of hardcoded stuff
 	// block the main editor and sidebar
@@ -100,6 +230,9 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 			id: $('#id').val(), 
 			lock_version: $('#lock_version').val(),
 			record_type: $('#record_type').val(),
+			parent_object_id: $('#parent_object_id').val(),
+			parent_object_type: $('#parent_object_type').val(),
+			triggers: JSON.stringify(triggers),
 			redirect: redirect
 		},
 		dataType: 'json',
@@ -119,9 +252,12 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 					$('#main_content').unblock();
 					$('#sections_sidebar_section').unblock();
 				} else {
-					alert ("Error saving page! Please reload the page. (" 
+					alert ("Error saving page! Please try again. (" 
 							+ textStatus + " " 
 							+ errorThrown + ")");
+
+					$('#main_content').unblock();
+					$('#sections_sidebar_section').unblock();
 				}
 		}
 	});
@@ -204,6 +340,51 @@ function _marc_editor_version_view( version_id, destination, rails_model ) {
 	});
 }
 
+function _marc_editor_embedded_holding(destination, rails_model, id, opac ) {	
+	url = "/catalog/holding";
+	
+	$.ajax({
+		success: function(data) {
+		},
+		data: {
+			marc_editor_dest: destination,
+			object_id: id,
+			opac: opac
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			alert ("Error loading version. (" 
+					+ textStatus + " " 
+					+ errorThrown);
+		}
+	});
+}
+
+function _marc_editor_summary_view(destination, rails_model, id ) {	
+	url = "/admin/" + rails_model + "/marc_editor_summary_show";
+	
+	$.ajax({
+		success: function(data) {
+		},
+		data: {
+			marc_editor_dest: destination,
+			object_id: id
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			alert ("Error loading version. (" 
+					+ textStatus + " " 
+					+ errorThrown);
+		}
+	});
+}
+
 function _marc_editor_version_diff( version_id, destination, rails_model ) {	
 	url = "/admin/" + rails_model + "/marc_editor_version_diff";
 	$("#" + destination).block({message: ""});
@@ -270,19 +451,6 @@ function marc_editor_send_form(redirect) {
 }
 
 function marc_editor_show_preview() {
-    // check that there is no new authority because preview is not possible
-    cancel = false;
-	$('div[data-function="new"]').each(function(){
-		if ($(this).is(':visible')) {
-            cancel = true;
-		}
-	});
-
-    if (cancel) {
-        alert("There is an unsaved authority file. Please save the source before opining the preview.");
-        return;
-    }
-
     _marc_editor_preview('marc_editor_panel','marc_editor_preview', marc_editor_get_model());
     window.scrollTo(0, 0);
 }
@@ -298,6 +466,53 @@ function marc_editor_version_view(version) {
 
 function marc_editor_version_diff(version) {
 	_marc_editor_version_diff(version, 'marc_editor_historic_view', marc_editor_get_model());
+}
+
+function marc_editor_show_tab_in_panel(tab_name, panel_name) {
+	// Hide all the other panels
+	$( ".tab_panel" ).each(function() {
+		if ($(this).attr("name") != tab_name) {
+			$(this).hide();
+		} else {
+			$(this).show();
+		}
+	});	
+	marc_editor_show_panel(panel_name)
+}
+
+function marc_editor_show_all_subpanels() {
+	$( ".tab_panel" ).each(function() {
+		$(this).show();
+		$(this).removeData("current-item");
+	})
+}
+
+function marc_editor_set_last_tab(tab_name, panel_name) {
+	Cookies.set(marc_editor_get_model() + '-last_tab', tab_name, { expires: 30 });
+	Cookies.set(marc_editor_get_model() + '-panel_name', panel_name, { expires: 30 });
+	
+	// Save the last object id
+	Cookies.set(marc_editor_get_model() + '-last_id', $("#id").val(), { expires: 30 });
+}
+
+function marc_editor_show_last_tab() {
+    var last_tab = Cookies.get(marc_editor_get_model() + '-last_tab');
+    var panel_name = Cookies.get(marc_editor_get_model() + '-panel_name');
+	var last_id = Cookies.get(marc_editor_get_model() + '-last_id');
+	var current_id = $("#id").val();
+	
+	var elem = $("[name='" + last_tab + "']")
+		
+	if ((last_tab != "full") 
+		&& (last_tab && panel_name) 
+		&& elem.length > 0
+		&& current_id == last_id)
+	{
+        marc_editor_show_tab_in_panel(last_tab, panel_name);
+    } else {
+		marc_editor_set_last_tab("full", "full");
+    	marc_editor_show_all_subpanels();
+    }
 }
 
 function marc_editor_show_panel(panel_name) {

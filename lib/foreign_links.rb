@@ -1,4 +1,46 @@
 module ForeignLinks
+  
+  def can_source_to_source?(marc, object_id, object)
+    # If one of the two objects is not a source just return true
+    # The relation is managed by foreign_links
+    return true if !object.is_a?(Source) || !self.is_a?(Source)
+    
+    # Is this a 773 or 775?
+    # 773 is a special case
+    # and not managed in foreign_links
+    # NOTE the TAG VALUE 'w' is HARDCODED here
+    marc.each_by_tag("773") do |t|
+      a = t.fetch_first_by_tag("w")
+      if a && a.content
+        if a.content.to_i == object_id.to_i
+          # This source is referenced by a 773
+          # skip it - it is updated in marc.update_77x
+          #puts "Skip 773 relation".purple
+          return false
+        end
+      end
+    end
+
+    can_manage = false
+    marc.each_by_tag("775") do |t|
+      a = t.fetch_first_by_tag("w")
+      if a && a.content
+        if a.content.to_i == object_id.to_i
+          #puts "Manage 775 relation".green
+          can_manage = true
+        end
+      end
+    end
+    
+    if !can_manage
+      $stderr.puts "Error in source to source relation".red
+      $stderr.puts "#{self.id} relation with #{object_id.to_s}".yellow
+      $stderr.puts "No 773 or 775 containing that relation is found".red
+    end
+    
+    return can_manage #if it is found we can go on
+  end
+  
   def recreate_links(marc, allowed_relations)
     marc_foreign_objects = Hash.new
     
@@ -8,13 +50,13 @@ module ForeignLinks
     # Group all the foreign associations by class, get_all_foreign_associations will just return
     # a flat list of objects
     marc.get_all_foreign_associations.each do |object_id, object|
-      next if object.is_a? Source
+      # Manage source to source relations
+      next if !can_source_to_source?(marc, object_id, object)
       
       foreign_class = object.class.name.pluralize.underscore
       marc_foreign_objects[foreign_class] = [] if !marc_foreign_objects.include? (foreign_class)
       
       marc_foreign_objects[foreign_class] << object
-      
     end
     
     # allowed_relations explicitly needs to contain the classes we will repond to
@@ -22,9 +64,8 @@ module ForeignLinks
     unknown_classes = marc_foreign_objects.keys - allowed_relations
     # If there are unknown classes purge them
     related_classes = marc_foreign_objects.keys - unknown_classes
-    
     if !unknown_classes.empty?
-      puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')}"
+      $stderr.puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')} [#{self.id}]"
     end
         
     related_classes.each do |foreign_class|
@@ -38,14 +79,15 @@ module ForeignLinks
       
       # Delete or add to the DB relation
       relation.delete(remove_items)
-      begin
-        relation << new_items
-      rescue => e
-        puts
-        puts "Foreign Links: Could not add a record in the relationship with #{self.id} (#{self.class})"
-        puts "- Added records dump: #{new_items}"
-        puts "- Error message follows:"
-        puts e.message
+      new_items.each do |ni|
+        begin
+          relation << ni
+        rescue => e
+          $stderr.puts
+          $stderr.puts "Foreign Links: Could not add a record (#{ni.id}) in the relationship with #{self.id} (#{self.class})".red
+          $stderr.puts "- Added records dump: #{new_items}".magenta
+          $stderr.puts e.message.blue
+        end
       end
     end
     
@@ -59,7 +101,10 @@ module ForeignLinks
     if self.is_a?(Source)
       if !self.suppress_update_count_trigger 
         marc_foreign_objects.each do |key, fo|
-          fo.each {|o| o.update_attribute( :src_count, o.sources.count)}
+          fo.each do |o| 
+            next if !o.respond_to? :src_count
+            o.update_attribute( :src_count, o.referring_sources.count)
+          end
         end
       end
     end

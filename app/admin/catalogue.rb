@@ -4,19 +4,14 @@ ActiveAdmin.register Catalogue do
 
   # Remove mass-delete action
   batch_action :destroy, false
+  
+  # Remove all action items
+  config.clear_action_items!
 
   collection_action :autocomplete_catalogue_name, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
-  end
-    
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( catalogue )
-  end
-
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
   end
 
   # See permitted parameters documentation:
@@ -64,6 +59,8 @@ ActiveAdmin.register Catalogue do
       @editor_profile = EditorConfiguration.get_show_layout @catalogue
       @prev_item, @next_item, @prev_page, @next_page = Catalogue.near_items_as_ransack(params, @catalogue)
       
+      @jobs = @catalogue.delayed_jobs
+      
       respond_to do |format|
         format.html
         format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
@@ -95,24 +92,22 @@ ActiveAdmin.register Catalogue do
     
   end
   
-  # Include the folder actions
-  include FolderControllerActions
-  
   include MarcControllerActions
+  
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(Catalogue.find(params[:id]), "referring_sources"))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
 
   ###########
   ## Index ##
   ###########
   
-  #scope :all, :default => true 
-  #scope :published do |catalogues|
-  #  catalogues.where(:wf_stage => 'published')
-  #end
-  
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  filter :author_contains, :label => proc {I18n.t(:filter_author)}, :as => :string
+  filter :"700a_contains", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
   filter :description_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
+  filter :"240g_contains", :label => proc {I18n.t(:filter_record_type)}, :as => :string
   filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
   filter :"place_contains", :label => proc {I18n.t(:filter_place)}, :as => :string
   filter :"date_contains", :label => proc {I18n.t(:filter_date)}, :as => :string
@@ -127,19 +122,29 @@ ActiveAdmin.register Catalogue do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id    
 #   column (I18n.t :filter_name), :name
-    column (I18n.t :filter_name), :description
+    column (I18n.t :filter_name), :description do |catalogue| 
+      catalogue.description.truncate(60) if catalogue.description
+    end
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_catalogue_show_title( @item.author, @item.description, @item.id) } do
+  show :title => proc{ active_admin_catalogue_show_title( @item.author, @item.description.truncate(60), @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
+    render('jobs/jobs_monitor')
     @item = @arbre_context.assigns[:item]
     if @item.marc_source == nil
       render :partial => "marc_missing"
@@ -147,20 +152,42 @@ ActiveAdmin.register Catalogue do
       render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode? )
+
+    if resource.revue_title.empty? && !resource.get_items.empty?
+      panel I18n.t :filter_series_items do
+        search=Catalogue.solr_search do 
+          fulltext(params[:id], :fields=>['7600'])
+          paginate :page => params[:items_list_page], :per_page=>15
+          order_by(:date_order)
+        end
+        paginated_collection(search.results, param_name: 'items_list_page', download_links: false) do
+          table_for(collection, sortable: true) do
+            column :id do |p| link_to p.id, controller: :catalogues, action: :show, id: p.id end
+            column :author
+            column :description
+            column :date
+          end
+        end
+      end
+    end
+
     active_admin_user_wf( self, catalogue )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
   end
   
- 
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => catalogue }
+  end
+
   ##########
   ## Edit ##
   ##########
   
+  form :partial => "editor/edit_wide"
+  
   sidebar :sections, :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
   end
-  
-  form :partial => "editor/edit_wide"
   
 end

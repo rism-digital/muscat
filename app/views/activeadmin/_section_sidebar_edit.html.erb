@@ -1,0 +1,18 @@
+<%-
+	# Build the back to index path function
+	model = self.resource_class.to_s.split('::').last.underscore.downcase
+	models = model.pluralize
+    cancel_path = ""
+    save_form = ""
+    if item != nil && item.id != nil
+      cancel_path = send("admin_#{model}_path", item)
+      save_form = "edit_#{model}"
+    else
+      cancel_path = send("admin_#{models}_path")
+      save_form = "new_#{model}"
+    end
+%>
+<ul>
+	<li class="muscat_icon_link"><a href="<%= cancel_path %>" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a></li>
+	<li class="muscat_icon_link"><a href="#" data-save-form="<%= save_form  %>" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a></li>
+</ul>

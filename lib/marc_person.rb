@@ -2,7 +2,7 @@ class MarcPerson < Marc
   def initialize(source = nil)
     super("person", source)
   end
-  
+
   def get_full_name_and_dates
     composer = ""
     composer_d = ""
@@ -54,7 +54,7 @@ class MarcPerson < Marc
         birth_place = node.content.truncate(128)
       end
     end
-    
+    # OPTIMIZE Gender should be saved as string 
     if node = first_occurance("375", "a")
       if node.content
         gender = 1

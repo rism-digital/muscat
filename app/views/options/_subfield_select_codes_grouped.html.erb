@@ -1,0 +1,13 @@
+<% tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
+<% codes_reference = params.include?("codes_reference") ? params["codes_reference"] : "groups"%>
+
+<select class="subfield_entry serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100">
+	<option value="">--- Select ---</option>
+	<%- tag_params[codes_reference].sort.map do |key, values| %>
+     <optgroup label="<%= @editor_profile.get_label(key) -%>">
+        <%- values.each do |code| %>
+          <option value="<%= code -%>" <%= "selected" if marc_subfield.content == code %> ><%= @editor_profile.get_label(code) -%></option>
+		<%- end %>
+		</option>	
+	<%- end %>
+</select>

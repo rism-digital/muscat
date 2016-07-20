@@ -4,21 +4,22 @@ ActiveAdmin.register Person do
 
   # Remove mass-delete action
   batch_action :destroy, false
-
+  
+  # Remove all action items
+  config.clear_action_items!
+  config.sort_order = 'full_name_asc'
   breadcrumb do
     active_admin_muscat_breadcrumb
   end
   
   collection_action :autocomplete_person_full_name, :method => :get
   
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( person )
+  collection_action :viaf, method: :get do
+    respond_to do |format|
+        format.json { render json: Person.get_viaf(params[:viaf_input])  }
+    end
   end
 
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
-  end
-  
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -64,6 +65,8 @@ ActiveAdmin.register Person do
       @editor_profile = EditorConfiguration.get_show_layout @person
       @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
       
+      @jobs = @person.delayed_jobs
+      
       respond_to do |format|
         format.html
         format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
@@ -84,7 +87,7 @@ ActiveAdmin.register Person do
       new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
       new_marc.load_source false # this will need to be fixed
       @person.marc = new_marc
-
+      
       @editor_profile = EditorConfiguration.get_default_layout @person
       # Since we have only one default template, no need to change the title
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
@@ -97,8 +100,10 @@ ActiveAdmin.register Person do
   # Include the MARC extensions
   include MarcControllerActions
   
-  # Include the folder actions
-  include FolderControllerActions
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(Person.find(params[:id]), "referring_sources"))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
   
   ###########
   ## Index ##
@@ -108,8 +113,10 @@ ActiveAdmin.register Person do
   #filter :id_eq, :label => proc {I18n.t(:filter_id)}
   filter :full_name_equals, :label => proc {I18n.t(:filter_full_name)}, :as => :string
   filter :"100d_contains", :label => proc {I18n.t(:filter_person_100d)}, :as => :string
-  filter :"039a_contains", :label => proc {I18n.t(:filter_person_039a)}, :as => :string
-  filter :"374a_contains", :label => proc {I18n.t(:filter_person_374a)}, :as => :string
+  filter :"375a_contains", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
+  # FIXME locale not read
+    :collection => [[I18n.t(:filter_male), 'male'], [ I18n.t(:filter_female), 'female'], [I18n.t(:filter_unknown), 'unknown']]
+  filter :"550a_contains", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
   filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, :as => :string
   filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
@@ -130,6 +137,13 @@ ActiveAdmin.register Person do
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
@@ -137,6 +151,9 @@ ActiveAdmin.register Person do
   show :title => proc{ active_admin_auth_show_title( @item.full_name, @item.life_dates, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
+    
+    render('jobs/jobs_monitor')
+    
     @item = @arbre_context.assigns[:item]
     if @item.marc_source == nil
       render :partial => "marc_missing"
@@ -149,18 +166,20 @@ ActiveAdmin.register Person do
     active_admin_comments if !is_selection_mode?
   end
   
-  #sidebar I18n.t(:search_sources), :only => :show do
-    #render("activeadmin/src_search") # Calls a partial
-  #end
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => person }
+  end
   
+ 
   ##########
   ## Edit ##
   ##########
   
+  form :partial => "editor/edit_wide"
+  
   sidebar :sections, :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
   end
-  
-  form :partial => "editor/edit_wide"
+
 
 end

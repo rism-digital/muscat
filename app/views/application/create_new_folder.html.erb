@@ -1,0 +1,22 @@
+<%= form_tag(@save_path, method: "get", :class => 'filter_form') do %>
+
+<!-- Important! Preserve q parameter -->
+<% params[:q].each do |key,value| %>
+<%= hidden_field_tag "q[#{key}]",value %> 
+<% end %>
+
+<h3>Create <%=@model%> Folder with <%=@items_count%> items</h3>
+<div class="panel">
+	<h3>Select Folder Name</h3>
+	<div class="panel_contents">
+	    <div class="form-group">
+	      <input name="folder_name" size="20" type="text"/>
+	    </div>
+	  </div>
+
+		<div class="buttons">
+	 	 	<%= submit_tag("Create Folder") %>
+		</div>
+	</div>
+</div>
+<%end%>

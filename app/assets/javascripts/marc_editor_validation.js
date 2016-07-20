@@ -66,6 +66,15 @@ function marc_validate_required_if(value, element, param) {
 	return valid;
 }
 
+function marc_validate_new_creation(value, element) {
+	if ($(element).data("check") == true) {
+		if (element.checked == false) {
+			return false;
+		}
+	}
+	return true;
+}
+
 function marc_editor_validate_advanced_rule(element_class, rules) {
 	for (var rule_name in rules) {
 		if (rule_name == "required_if") {
@@ -172,7 +181,9 @@ function marc_editor_init_validation(form, validation_conf) {
 				} else {
 					console.log("Tried to higlight a hidden object with no autocomplete.")
 				}
-				
+			} else if ( element.type === "checkbox" ) {
+				var label = $("#" + element.name + "-label");
+				label.addClass(errorClass).removeClass( validClass );
 			} else {
 				$( element ).addClass( errorClass ).removeClass( validClass );
 			}
@@ -221,8 +232,11 @@ function marc_editor_init_validation(form, validation_conf) {
 				} else {
 					console.log("Tried to un-higlight a hidden object with no autocomplete.")
 				}
-				
+			} else if ( element.type === "checkbox" ) {
+				var label = $("#" + element.name + "-label");
+				label.addClass(validClass).removeClass( errorClass );
 			} else {
+				
 				$( element ).removeClass( errorClass ).addClass( validClass );
 			}
 
@@ -248,6 +262,13 @@ function marc_editor_init_validation(form, validation_conf) {
 					menu_item.removeClass(errorClass);
 			}
 
+		},
+		errorPlacement: function(error, element) {
+			// Checkboxes do not append any message
+			// FIXME other cases of checkbox
+			if (element.is(':checkbox') == false) {
+				//error.insertAfter( element );
+			}
 		}
 	});
 	
@@ -256,6 +277,11 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("required_if", marc_validate_required_if, 
 			$.validator.format("Missing Mandatory Field, because field {0} ${1} is present"));
 
+	// New creation: this is not configurable, it is used to make sure the
+	// "confirm create new" checkbox is selected for new items
+	$.validator.addMethod("new_creation", marc_validate_new_creation, "Please confirm new element");
+	$.validator.addClassRules("creation_checkbox", { new_creation: true });
+
 	for (var key in validation_conf) {
 		
 		var tag_conf = validation_conf[key]["tags"]
@@ -263,7 +289,7 @@ function marc_editor_init_validation(form, validation_conf) {
 		for (var subtag_key in tag_conf) {
 			var subtag = tag_conf[subtag_key];
 			var element_class = marc_editor_validate_className(key, subtag_key);
-			
+
 			if (subtag == "required") {
 				// Our own validator is called "presence" to distinguish it
 				// from the default "required" validator

@@ -1,0 +1,13 @@
+<%
+	tag_001 = tag.content rescue tag_001 = "[unspecified]"
+-%>
+<tr class="row">
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td>
+		<%= h tag_001 %>
+	</td>
+</tr>

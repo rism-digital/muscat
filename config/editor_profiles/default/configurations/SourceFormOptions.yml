@@ -14,49 +14,16 @@
     - - u
       - hidden: true
     - - a
-#      - validate: 
-#        - msg: the format must be numeric
-#          value: "'^[0-9][0-9]*$'"
-#          rule: regex
-#        - msg: the field is required
-#          value: true
-#          rule: required
     - - b
-#      - validate: 
-#        - msg: the format must be numeric
-#          value: "'^[0-9][0-9]*$'"
-#          rule: regex
-#        - msg: the field is required
-#          value: true
-#          rule: required
     - - c
-#      - validate: 
-#        - msg: the format must be numeric
-#          value: "'^[0-9][0-9]*$'"
-#          rule: regex
-#        - msg: the field is required
-#          value: true
-#          rule: required
     - - d
     - - m
     - - e
     - - t
       - growfield: true
     - - r
-    - - o
-    - - g
-      - values: 
-        - "G-1"
-        - "G-2"
-        - "g-2"
-        - "C-1"
-        - "C-2"
-        - "C-3"
-        - "C-4"
-        - "C-5"
-        - "F-4"
-        - "F-5"
-        editor_partial: subfield_select
+      - editor_partial: subfield_select_codes
+        codes_reference: "031r"
     - - n
       - values: 
         - "xF"
@@ -74,15 +41,97 @@
         - "bBEADGC"
         - "bBEADGCF"
         editor_partial: subfield_autocomplete
+    - - o
+    - - g
+      - editor_partial: subfield_select_codes_grouped
+        codes_reference: clef_groups
     - - s
-#      - validate: 
-#        - msg: the field can contain 't', '+' or '?'
-#          value: "'^[t\\+\\?][t\\+\\?]?[t\\+\\?]?$'"
-#          rule: regex
     - - p
       - editor_partial: subfield_pae
     - - q
-
+  tag_params:
+    031r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b" 
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
+    clef_groups:
+      01_modern_clefs:
+      - C-1
+      - C-2
+      - C-3
+      - C-4
+      - C-5
+      - F-1
+      - F-2
+      - F-3
+      - F-4
+      - F-5
+      - G-1
+      - G-2
+      - G-3
+      - G-4
+      - G-5
+      02_mensural_clefs:
+      - C+1
+      - C+2
+      - C+3
+      - C+4
+      - C+5
+      - F+1
+      - F+2
+      - F+3
+      - F+4
+      - F+5
+      - G+1
+      - G+2
+      - G+3
+      - G+4
+      - G+5
 "033": 
   layout: 
     fields: 
@@ -112,75 +161,73 @@
 "041": 
   layout: 
     fields: 
-    - - indicator
-      - editor_partial: subfield_indicator
     - - a
-      - values: 
-        - "eng"
-        - "fre"
-        - "ger"
-        - "grc"
-        - "gsw"
-        - "ita"
-        - "lat"
-        - "roh"
-        - "rus"
-        - "spa"
-        editor_partial: subfield_autocomplete
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
     - - e
-      - values: 
-        - "eng"
-        - "fre"
-        - "ger"
-        - "grc"
-        - "gsw"
-        - "ita"
-        - "lat"
-        - "roh"
-        - "rus"
-        - "spa"
-        editor_partial: subfield_autocomplete
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
     - - h
-      - values: 
-        - "eng"
-        - "fre"
-        - "ger"
-        - "grc"
-        - "gsw"
-        - "ita"
-        - "lat"
-        - "roh"
-        - "rus"
-        - "spa"
-        editor_partial: subfield_autocomplete
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+    columns: 2
+  tag_params:
+    codes:
+      - "cat"
+      - "cze"
+      - "dan"
+      - "dut"
+      - "eng"
+      - "fre"
+      - "ger"
+      - "grc"
+      - "gre" 
+      - "gsw"
+      - "heb"
+      - "hrv"
+      - "hun"
+      - "ita"
+      - "kor"
+      - "lat"
+      - "pol"
+      - "por"
+      - "roh"
+      - "rus"
+      - "slo"
+      - "slv"
+      - "spa"
+      - "srp"
+      - "swe"
+      - "zxx"
 "100": 
-  allow_new: true
   new_window: people
   layout: 
     fields: 
     - - a
       - type: person
         editor_partial: subfield_secondary
-    - - j
-      - values: 
-        - "Verified"
-        - "Ascertained"
-        - "Alleged"
-        - "Doubtful"
-        - "Misattributed"
-        editor_partial: subfield_select
-  layout_new: 
-    fields: 
-    - - a
+        allow_new: true
     - - d
+      - autocomplete_extra: life_dates
     - - j
-      - values: 
-        - "Verified"
-        - "Ascertained"
-        - "Alleged"
-        - "Doubtful"
-        - "Misattributed"
-        editor_partial: subfield_select
+      - cols: 2
+        editor_partial: subfield_select_codes
+        codes_reference: "codes"
+    columns: 2
+  tag_params:
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Doubtful"
+      - "Misattributed"
+      - "Verified"
 "240": 
   new_window: standard_titles
   layout: 
@@ -188,19 +235,61 @@
     - - a
       - type: standard_title
         editor_partial: subfield_secondary
+        allow_new: true
     - - k
-    - - o
+      - editor_partial: subfield_select_codes
+        codes_reference: "240k"
     - - r
-    - - n
+      - editor_partial: subfield_select_codes
+        codes_reference: "240r"
     - - m
-  layout_new: 
-    fields: 
-    - - a
-    - - k
     - - o
-    - - r
-    - - n
-    - - m
+      - editor_partial: subfield_select_codes
+        codes_reference: "240o"
+  tag_params:
+    240k:
+      - "Excerpts"
+      - "Sketches"
+      - "Fragments"
+    240o:
+      - "Arr"
+    240r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
 "245": 
   layout: 
     fields: 
@@ -224,10 +313,27 @@
   layout: 
     fields: 
     - - a
+"383": 
+  layout: 
+    fields: 
+    - - b
+#
+"490": 
+  layout: 
+    fields: 
+    - - a
+      - values: 
+        - "A/I"
+        - "A/II"
+        - "B/I"
+        - "B/II"
+        - "B/IV"
+        editor_partial: subfield_select
 "500": 
   layout: 
     fields: 
     - - a
+      - growfield: true
 "508": 
   layout: 
     fields: 
@@ -304,138 +410,111 @@
         - Autograph
         - Manuscript
         - Manuscript with autograph annotations
+        - Partly Autograph
         - Print
+        - Print with handwritten entries
         - Probably autograph
+        - Libretto, handwritten
+        - Libretto, printed
+        - Treatise, handwritten
+        - Treatise, printed
+        - Music periodical
+        - Other 
         editor_partial: subfield_select
+"594":
+  layout: 
+    fields: 
+    - - b
+      - type: source_594b_solr
+        field: value
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - c
+"597": 
+  layout: 
+    fields: 
+    - - a
 "598": 
   layout: 
     fields: 
     - - a
-#      - validate: 
-#        - msg: this field must be 4 characters
-#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
-#          rule: regex
     - - b
     - - c
-#      - validate: 
-#        - msg: this field must be 4 characters
-#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
-#          rule: regex
     - - d
     - - e
     - - f
-#      - validate: 
-#        - msg: this field must be 5 characters
-#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
-#          rule: regex
     - - g
-#      - validate: 
-#        - msg: this field must be 4 characters
-#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
-#          rule: regex
     - - h
-#      - validate: 
-#        - msg: this field must be 3 characters
-#          value: "'^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$'"
-#          rule: regex
     - - i
     - - k
     - - l
     - - m
     - - n
 "650":
-  allow_new: true
   new_window: standard_terms
   layout: 
     fields: 
     - - a
       - type: standard_term
         editor_partial: subfield_secondary
-  layout_new: 
-    fields: 
-    - - a
-"651": 
-  allow_new: true
+        allow_new: true
+"651":
   new_window: places
   layout: 
     fields: 
     - - a
       - type: place
         editor_partial: subfield_secondary
-  layout_new: 
-    fields: 
-    - - a
+        allow_new: true
 "657": 
-  allow_new: true
   new_window: liturgical_feasts
   layout: 
     fields: 
     - - a
       - type: liturgical_feast
         editor_partial: subfield_secondary
-  layout_new: 
-    fields: 
-    - - a
+        allow_new: true
 "690": 
-  allow_new: true
   new_window: catalogues
   layout: 
     fields: 
     - - a
       - type: catalogue
         editor_partial: subfield_secondary
-    - - n
-  layout_new: 
-    fields: 
-    - - a
+        allow_new: true
     - - n
 "691":
-  allow_new: true
   new_window: catalogues
   layout: 
     fields: 
     - - a
       - type: catalogue
         editor_partial: subfield_secondary
-    - - n
-  layout_new: 
-    fields: 
-    - - a
+        allow_new: true
     - - n
 "700":
-  allow_new: true
   new_window: people
   layout:
     fields: 
     - - a
       - type: person
         editor_partial: subfield_secondary
-    - - j
-      - values: 
-        - "Verified"
-        - "Ascertained"
-        - "Alleged"
-        - "Doubtful"
-        - "Misattributed"
-        editor_partial: subfield_select
-    - - "4"
-      - editor_partial: subfield_relator_codes_700
-  layout_new:
-    fields: 
-    - - a
+        allow_new: true
     - - d
+      - autocomplete_extra: life_dates
     - - j
-      - values: 
-        - "Verified"
-        - "Ascertained"
-        - "Alleged"
-        - "Doubtful"
-        - "Misattributed"
-        editor_partial: subfield_select
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
     - - "4"
-      - editor_partial: subfield_relator_codes_700
-  tag_list_additional_data: tag_list_additional_data_relator_codes
+      - editor_partial: subfield_select_codes_grouped
   tag_params: 
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Doubtful"
+      - "Misattributed"
+      - "Verified"
     groups: 
       01_codes_artistic: 
       - cmp
@@ -477,58 +556,115 @@
       - edt
       - bnd
 "710":
-  allow_new: true
   new_window: institutions
   layout: 
     fields: 
     - - a
       - type: institution
         editor_partial: subfield_secondary
+        allow_new: true
     - - b
+    - - g
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
     - - "4"
-      - editor_partial: subfield_relator_codes_710
-  layout_new: 
-    fields: 
-    - - a
-    - - b
-    - - "4"
-      - editor_partial: subfield_relator_codes_710
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
   tag_params: 
-    codes: 
-    - fmo
-    - dnr
-    - dte
-    - prf
-    - otm
-    - ppm
-    - prt
-    - pbl
-    - edt
-    - bsl
-    - asn
-    - dub
-    - evp
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Doubtful"
+      - "Misattributed"
+      - "Verified"
+    relator_codes: 
+      - fmo
+      - dnr
+      - dte
+      - prf
+      - otm
+      - ppm
+      - prt
+      - pbl
+      - edt
+      - bsl
+      - asn
+      - dub
+      - evp
+      - dpt
 "730":
-  allow_new: true
   new_window: standard_titles
   layout: 
     fields: 
     - - a
       - type: standard_title
         editor_partial: subfield_secondary
+        allow_new: true
+    - - g
+      - values: 
+        - "RISM"
+        - "RDA"
+        - "RAK"
+        default: "RISM"
+        editor_partial: subfield_select
     - - k
+      - editor_partial: subfield_select_codes
+        codes_reference: "730k"
     - - o
+      - editor_partial: subfield_select_codes
+        codes_reference: "730o"
     - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "730r"
     - - n
     - - m
-  layout_new: 
-    fields: 
-    - - a
-    - - k
-    - - o
-    - - r
-    - - n
-    - - m
+  tag_params:
+    730k:
+      - "Excerpts"
+      - "Sketches"
+      - "Fragments"
+      - "Inserts"
+    730o:
+      - "Arr"
+    730r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
 "740":
   layout: 
     fields: 
@@ -536,7 +672,7 @@
       - type: source_solr
         field: value
         editor_partial: subfield_secondary
-        allow_not_found: true
+        allow_new: true
     - - n
     - - p
 "772": 
@@ -551,6 +687,14 @@
     - - w
       - type: source
         editor_partial: subfield_secondary
+        only_new_window: true
+"775":
+  new_window: sources
+  layout: 
+    fields: 
+    - - w
+      - type: source
+        editor_partial: subfield_secondary
 "787": 
   layout: 
     fields: 
@@ -559,28 +703,28 @@
     - - s
     - - w
 "852": 
-  allow_new: true
   new_window: institutions
   layout: 
     fields: 
     - - a
-      - nowrap: true
-        type: library
+      - type: library
         editor_partial: subfield_secondary
-    - - b
-    - - z
-    - - p
-      - growfield: true
-    - - d
-  layout_new: 
-    fields: 
-    - - a
-      - nowrap: true
+        allow_new: true
     - - e
+      - autocomplete_extra: name
     - - b
+    - - z
     - - p
       - growfield: true
     - - d
+"856": 
+  layout: 
+    fields: 
+    - - u
     - - z
+    - - x
+      - values: 
+        - "IIIF"
+        editor_partial: subfield_select
 ui: 
   hide_marc_identifiers: true

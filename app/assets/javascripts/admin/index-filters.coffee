@@ -13,4 +13,4 @@ indexFiltersOnLoad = ->
 	  
 
 $(indexFiltersOnLoad)
-$(document).on "page:load", indexFiltersOnLoad
+$(document).on "ready page:load", indexFiltersOnLoad

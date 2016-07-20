@@ -1,27 +1,36 @@
 --- !map:Settings 
 group_order: 
 - main
-- codes
-- control
+- subject
 - notes
+- control
 groups: 
+  main: 
+    all_tags: 
+    - "100"
+    - "700"
+    - "240"
+    - "730"
+    - "260"
+    - "300"      
+    - "337"
+    - "210"
+  subject:
+    all_tags:
+    - "041"
+    - "710"
+    - "760"
+    - "650"
+    - "651" 
   control: 
     all_tags: 
     - "000"
     - "001"
     - "003"
     - "005"
-    - 008
   notes: 
     all_tags: 
-    - "260"
-    - "700"
-    - "760"
-  main: 
-    all_tags: 
-    - "100"
-    - "240"
-  codes: 
-    all_tags: 
-    - "210"
-    - "240"
+    - "500"
+    - "599"
+    - "856"
+    - "520"

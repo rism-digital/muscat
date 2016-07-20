@@ -355,3 +355,38 @@ function serialize_marc_editor_form( form ) {
 	return json_marc;
 	
 }
+
+function _marc_json_get_nodes(json_marc, tag){
+	var arr = [];
+	tags = json_marc.fields
+	for (i in tags){
+		if (parseInt(tag) < 10){
+			if (tags[i].tag == tag){
+				arr.push(tags[i]);
+			}
+		}
+		else{
+		if (tags[i].tag === tag){
+			arr.push(tags[i].subfields);
+		}
+	}}
+	return arr;
+}
+
+function marc_json_get_tags(json_marc, tag){
+	var result = [];
+	var tags = _marc_json_get_nodes(json_marc, tag);
+	if (parseInt(tag) < 10){
+		return tags;
+	}
+	for (arr in tags){
+		var subfields = {};
+		var codes = tags[arr];
+		for (subfield in codes){
+			//FIXME not correct for multiple subfields
+			subfields[codes[subfield].code]=codes[subfield].content
+		}
+		result.push(subfields);
+	}
+	return result;
+}

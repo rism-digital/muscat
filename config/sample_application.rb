@@ -8,9 +8,9 @@ Bundler.require(:default, Rails.env)
 
 module RISM
   # The project letters (e.g., uk, ch)
-  BASE = "ch"
+  BASE = "default"
   # The MARC letters (used in the new_from.rhtml and in the manuscript_controller for the templates) 
-  MARC = "ch"
+  MARC = "default"
   # Select the configuration for the editor profiles to load
   EDITOR_PROFILE = ""
   # Url redirection for the deprecated Page controller (to be set only if the installation was previously in Muscat 2 with page)
@@ -20,6 +20,7 @@ module RISM
   
   BASE_NEW_IDS = { 
     :catalogue        => 0,
+    :holding          => 0,
     :institution      => 0,
     :liturgical_feast => 0,
     :person           => 0,
@@ -42,7 +43,7 @@ module RISM
   # The strap line in the header 
   STRAPLINE = "Schweiz - Suisse - Svizzera - Switzerland"
   # The left footer
-  FOOTER= "&copy; 2015 &ndash; Verein Arbeitsstelle Schweiz des RISM<br>Hallwylstrasse 15 &ndash; Postfach 286 &ndash; CH-3000 Bern 6"
+  FOOTER= "<a href=\"http://www.rism.info/en/service/disclaimer.html\">Impressum</a> &ndash; &copy; 2016 &ndash; The Association <em>Internationales Quellenlexikon der Musik</em><br>Johann Wolfgang Goethe-Universit&auml;t &ndash; Senckenberganlage 31-33 &ndash; D-60325 Frankfurt am Main"
   # Header menu
   MENUS = {
     :menu_help       => "http://www.rism.info/help",
@@ -79,6 +80,10 @@ module Muscat
     config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", RISM::BASE, '*.{rb,yml}'))]
     
     config.autoload_paths << "#{Rails.root}/lib"
+    config.active_job.queue_adapter = :delayed_job
+    
+    config.active_record.raise_in_transactional_callbacks = true
+    
   end
 end
 

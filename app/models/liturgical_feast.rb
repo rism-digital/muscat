@@ -10,8 +10,9 @@
 
 class LiturgicalFeast < ActiveRecord::Base
   
-  has_and_belongs_to_many :sources
+  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")
   has_many :folder_items, :as => :item
+  has_many :delayed_jobs, -> { where parent_type: "LiturgicalFeast" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
     
   validates_presence_of :name
@@ -46,7 +47,7 @@ class LiturgicalFeast < ActiveRecord::Base
       name
     end
     text :name
-    
+  
     text :notes
     
     join(:folder_id, :target => FolderItem, :type => :integer, 
@@ -58,7 +59,7 @@ class LiturgicalFeast < ActiveRecord::Base
   end
 
   def check_dependencies
-    if (self.sources.count > 0)
+    if (self.referring_sources.count > 0)
       errors.add :base, "The liturgical fease could not be deleted because it is used"
       return false
     end

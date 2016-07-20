@@ -11,12 +11,13 @@
 
 class StandardTerm < ActiveRecord::Base
   
-  has_and_belongs_to_many :sources
+  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
+  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_standard_terms")
+  has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_standard_terms")
   has_many :folder_items, :as => :item
+  has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
-    
   validates_presence_of :term
-  
   validates_uniqueness_of :term
   
   #include NewIds
@@ -64,7 +65,7 @@ class StandardTerm < ActiveRecord::Base
   end
   
   def check_dependencies
-    if (self.sources.count > 0)
+    if (self.referring_sources.count > 0)
       errors.add :base, "The standard term could not be deleted because it is used"
       return false
     end
@@ -73,5 +74,5 @@ class StandardTerm < ActiveRecord::Base
   def name
     return term
   end
-  
+
 end

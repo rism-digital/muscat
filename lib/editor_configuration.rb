@@ -185,11 +185,11 @@ class EditorConfiguration
   
   # Extracts from the configuration the file name of the helpfile for the specified tag.
   # Help files oare in <tt>public/help</tt>. Used from the editor view.
-  def get_tag_extended_help(tag_name)
+  def get_tag_extended_help(tag_name, model)
     if options_config.include?(tag_name) && options_config[tag_name].include?("extended_help")
-      return EditorConfiguration.get_help_fname("#{options_config[tag_name]["extended_help"]}")
+      return EditorConfiguration.get_help_fname("#{options_config[tag_name]["extended_help"]}", model)
     else
-      return EditorConfiguration.get_help_fname("#{tag_name}")
+      return EditorConfiguration.get_help_fname("#{tag_name}", model)
     end
   end
   
@@ -223,11 +223,10 @@ class EditorConfiguration
   end
   
   # Iterates on each subfield for the passed tag. Returns the field name and its config
-  def each_subfield_for(tag_name, is_new = false)
-    layout_key = is_new ? "layout_new" : "layout"
-    if options_config.include?(tag_name) && options_config[tag_name].include?(layout_key)
+  def each_subfield_for(tag_name)
+    if options_config.include?(tag_name) && options_config[tag_name].include?("layout")
       # we must have 'fields' if we have 'layout'
-      options_config[tag_name][layout_key]["fields"].each do |field, config|
+      options_config[tag_name]["layout"]["fields"].each do |field, config|
         yield [field, config]
       end
     elsif labels_config.include?(tag_name) && labels_config[tag_name].include?(:fields)
@@ -297,6 +296,12 @@ class EditorConfiguration
     end
     if layout_config["tag_exclude"] && layout_config["tag_exclude"][record_type.to_s]
       excluded.concat( layout_config["tag_exclude"][record_type.to_s] )
+    end
+    # also check if some tags are excluded if the item (source) has holdings
+    if (marc_item.respond_to? :holdings) && (marc_item.holdings.size > 0)
+      if layout_config["tag_exclude_with_holdings"] && layout_config["tag_exclude_with_holdings"][record_type.to_s]
+        excluded.concat( layout_config["tag_exclude_with_holdings"][record_type.to_s] )
+      end
     end
     excluded
   end
@@ -389,13 +394,14 @@ class EditorConfiguration
   end
     
   # Gets the html file name.
-  def self.get_help_fname(name)
+  def self.get_help_fname(name, model = "Source")
+    model = (model == "Source") ? "" : "#{model.downcase}_"
     # translated version?
-    fname = "/help/#{RISM::MARC}/#{name}_#{I18n.locale.to_s}.html"
-    # puts fname
+    fname = "/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html"
+    #ap fname
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # english?
-    fname = "/help/#{RISM::MARC}/#{name}_en.html"
+    fname = "/help/#{RISM::MARC}/#{model}#{name}_en.html"
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # nope...
     return ""

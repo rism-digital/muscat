@@ -34,11 +34,13 @@ class SolrDocument
   end
   
   def source_index_description
-    title = first(:std_title_texts) || ""
-    sigla = first(:lib_siglum_texts) || ""
-    shelf = first(:shelf_mark_texts) || ""
-    desc = first(:"240m_texts") || ""
-    "#{title}; #{desc}; #{sigla} #{shelf}"
+    title = first(:std_title_texts) || "[n.a.]"
+    title = "[n.a.]" if title.nil? || title.empty?
+    #sigla = first(:lib_siglum_texts) || ""
+    #shelf = first(:shelf_mark_texts) || ""
+    #desc = first(:"240m_texts") || ""
+    #"#{title}; #{desc}; #{sigla} #{shelf}"
+    title
   end
   
 end

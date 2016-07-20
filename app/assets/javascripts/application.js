@@ -18,6 +18,10 @@
 //= require jquery-ui/autocomplete
 //= require jquery_ujs
 
+//= require i18n
+// This is a must
+//= require i18n/translations
+
 //
 // Required by Blacklight
 //= require blacklight/blacklight
@@ -29,9 +33,8 @@
 //= require jquery.validate
 //= require jquery.autosize.min
 //= require jquery.hotkeys
-//= require relator_codes_cascade_ujs
-//= require relator_codes_single_ujs
 //= require jquery.scrollTo.js
+//= require js.cookie
 //= require pae_incipit_render_ujs
 //= require textarea_autogrow_ujs
 //= require inline_autocomplete_ujs
@@ -44,7 +47,9 @@
 //- require new_window_select_ujs
 //= require jsdiff.js
 //= require marc_editor_validation
-	
+//= require job_progress_bar
+//= require modification_trigger_ujs.js
+
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
 // this:
 //= require 'blacklight_range_limit'

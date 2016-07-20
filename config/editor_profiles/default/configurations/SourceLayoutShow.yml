@@ -18,13 +18,16 @@ groups:
     all_tags: 
     - "100"
     - "240"
+    - "383"
     - "245"
     - "246"
     - "657"
     - "730"
+    - "001"
     all_tag_templates: 
       "100": marc_show/show_person
       "246": marc_show/show_title_variant  
+      "001": marc_show/show_rism_id
 
   show_library: 
     all_tags:
@@ -33,7 +36,6 @@ groups:
     - "506"
     - "035"
     - "541"
-    - "001"
   
   show_content: 
     all_tags: 
@@ -47,7 +49,9 @@ groups:
     - "653"
     - "594"
     - "598"
-
+    all_tag_templates: 
+      "594": marc_show/show_distribution_all
+      
   show_material: 
     all_tags: 
     - "593"
@@ -61,12 +65,15 @@ groups:
     - "700"
     - "710"
     - "500"
+    - "563"
+    - "597"
     - "856"
     subfield_grouping: 8
     all_tag_templates: 
       "260": marc_show/show_subfield_concat
       "700": marc_show/show_person
-      "710": marc_show/show_institution
+      "710": marc_show/show_institution 
+      "856": marc_show/show_link
 
   show_information: 
     all_tags: 
@@ -74,6 +81,7 @@ groups:
     - "511"
     - "518"
     - "520"
+    - "505"
     - "525"
     - "546"
     - "561"
@@ -83,8 +91,10 @@ groups:
 
   show_references: 
     all_tags: 
+    - "490"
     - "596"
     - "690"
+    - "383"
     - "691"
     all_tag_templates: 
       "690": marc_show/show_subfield_concat
@@ -112,6 +122,8 @@ groups:
     - "856"
     ungrouped_tags:
       "856": 8
+    all_tag_templates: 
+      "856": marc_show/show_link
   
   show_admin: 
     all_tags: 
@@ -123,4 +135,5 @@ groups:
     all_tags: 
     - "772"
     - "773"
+    - "775"
     template: marc_show/show_772_773_links

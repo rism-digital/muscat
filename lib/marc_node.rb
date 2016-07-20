@@ -221,11 +221,11 @@ class MarcNode
             end
           rescue => e
             $stderr.puts
-            $stderr.puts "Marc Node Import error"
+            $stderr.puts "Marc Node Import error".red
             $stderr.puts e.message
-            $stderr.puts "While importing: #{self.to_s}"
-            $stderr.puts "Failed to save this foreign object: "
-            $stderr.puts  "#{self.foreign_object.to_yaml}"
+            $stderr.puts "While importing: #{self.to_s}".yellow
+            #$stderr.puts "Failed to save this foreign object: "
+            #$stderr.puts  "#{self.foreign_object.to_yaml}"
             #$stderr.puts e.backtrace.join("\n")
           end
         end 
@@ -237,7 +237,7 @@ class MarcNode
           add( master )
         end
         # populate the foreign associations hash
-        foreign_associations["#{self.foreign_object.class.name}-#{self.foreign_object.id}"] = self.foreign_object   
+        foreign_associations[self.foreign_object.id] = self.foreign_object   
         # set the foreign object for all the subfields
         get_foreign_subfields.each do |subfield|
           subfield.set_foreign_object
@@ -287,7 +287,15 @@ class MarcNode
     foreign_class = @marc_configuration.get_foreign_class(self.parent.tag, self.tag)
     if parent.foreign_object == nil
       db_node = parent.fetch_first_by_tag(parent.get_master_foreign_subfield.tag)
+      begin
         parent.foreign_object = foreign_class.constantize.send("find", db_node.content)
+      rescue => e
+        $stderr.puts "MarcNode set_foreign_object error".red
+        $stderr.puts e.exception.to_s.blue
+        $stderr.puts "MarcNode tag dummp " + self.parent.to_marc.strip.yellow
+        $stderr.puts "MarcNode offending or missing tag: " + self.to_marc.yellow
+        raise e
+      end
     end
     self.foreign_field = @marc_configuration.get_foreign_field(self.parent.tag, self.tag)
     self.foreign_object = parent.foreign_object
@@ -550,6 +558,7 @@ class MarcNode
   alias length size
   alias << add
   alias to_s to_marc
+  alias inspect to_marc
   
   
   private

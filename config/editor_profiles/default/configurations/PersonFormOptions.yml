@@ -26,18 +26,29 @@
       definitions: "['~']='[|0-9]'"
       mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
-"039": 
+"024": 
   layout: 
     fields: 
     - - a
-      - cols: 2 
-        editor_partial: subfield_gender_codes_039
-    columns: 2
-  tag_params:
-    codes:
-      - m
-      - w
-      - "?"
+      - cols: 2
+    - - "2"
+      - values: 
+        - "BNE"
+        - "BNF"
+        - "DNB"
+        - "ICCU"
+        - "ISNI"
+        - "LC"
+        - "NLP"
+        - "NKC"
+        - "SWNL"
+        - "VIAF"
+        - "WKP"
+        default: "VIAF"
+        editor_partial: subfield_select
+      - cols: 2
+    columns: 4
+
 "040": 
   layout: 
     fields: 
@@ -55,22 +66,106 @@
     fields: 
     - - a
       - cols: 4
+        values:
+        - "individualized" 
+        - "not individualized"
+        - "unkown"
+        editor_partial: subfield_select
     columns: 4
 "043": 
   layout: 
     fields: 
-    - - a
-      - cols: 4
-    - - b
-      - cols: 2
     - - c
-      - cols: 2
-    columns: 4
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        select_label: "Country"
+    columns: 2
+  tag_params:
+    codes:
+      - "XC-DZ"
+      - "XD-AR"
+      - "XB-AM"
+      - "XE-AU"
+      - "XA-AT"
+      - "XA-AT-2"
+      - "XA-AT-3"
+      - "XA-AT-5"
+      - "XA-AT-6"
+      - "XA-AT-7"
+      - "XA-AT-4"
+      - "XA-AT-9"
+      - "XA-BE"
+      - "XC-BJ"
+      - "XD-BR"
+      - "XA-BG"
+      - "XB-KH"
+      - "XD-CA"
+      - "XD-CL"
+      - "XB-CN"
+      - "XD-CO"
+      - "XA-HR"
+      - "XD-CU"
+      - "XA-CZ"
+      - "XA-DK"
+      - "XC-EG"
+      - "XA-EE"
+      - "XA-FI"
+      - "XA-FR"
+      - "XA-DE"
+      - "XA-DE-BY"
+      - "XA-DE-SN"
+      - "XA-GR"
+      - "XA-VA"
+      - "XD-HN"
+      - "XA-HU"
+      - "XA-IS"
+      - "XB-IN"
+      - "XB-IR"
+      - "XA-IE"
+      - "XB-IL"
+      - "XA-IT-32"
+      - "XA-IT"
+      - "XB-JP"
+      - "XB-KR"
+      - "XA-LV"
+      - "XA-LT"
+      - "XA-LU"
+      - "XA-MT"
+      - "XD-MX"
+      - "XA-ME"
+      - "XA-NL"
+      - "XE-NZ"
+      - "XA-NO"
+      - "XD-PY"
+      - "XA-PL"
+      - "XA-PT"
+      - "XD-PR"
+      - "XA-RO"
+      - "XA-RU"
+      - "XA-RS"
+      - "XA-SK"
+      - "XA-SI"
+      - "XC-ZA"
+      - "XA-ES"
+      - "XA-SE"
+      - "XA-CH"
+      - "XA-CH-VD"
+      - "XB-SY"
+      - "XD-TT"
+      - "XB-TR"
+      - "XA-UA"
+      - "XA-GB"
+      - "XD-US"
+      - "XD-UY"
+      - "XD-VE"
 "100": 
   layout: 
     fields: 
     - - a
       - cols: 2
+        trigger:
+        - save:
+          - Source
     - - c
       - cols: 2
     - - d
@@ -80,12 +175,19 @@
     - - y
       - cols: 2
     columns: 4
-"374": 
+"375": 
   layout: 
     fields: 
     - - a
-      - cols: 2
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        select_label: "Gender"
     columns: 2
+  tag_params:
+    codes:
+      - male
+      - female
+      - "unknown"
 "400": 
   layout: 
     fields: 
@@ -95,8 +197,29 @@
       - cols: 2
     - - j
       - cols: 2
+        editor_partial: subfield_select_codes
+        select_label: "Kind of Variant"
+    columns: 2
+  tag_params:
+    codes:
+      - "bn"
+      - "da"
+      - "do"
+      - "dv"
+      - "ee"
+      - "ef"
+      - "ff"
+      - "gg"
+      - "in"
+      - "mo"
+      - "tn"
+      - "ub"
+      - "z"
+      - "xx"
     columns: 4
 "500": 
+  allow_new: true
+  new_window: people
   layout: 
     fields: 
     - - "a"
@@ -105,12 +228,26 @@
       - cols: 4
     - - "i"
       - cols: 2
+        editor_partial: subfield_select_codes
+        select_label: "Relationship"
     columns: 4
+  tag_params:
+    codes:
+      - brother of
+      - child of
+      - mother of
+      - confused with
+      - sister of
+      - married with
+      - father of
+      - related to
 "510": 
+  allow_new: true
+  new_window: institutions
   layout: 
     fields: 
     - - "a"
-      - type: institution
+      - type: library
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
@@ -120,6 +257,21 @@
     - - a
       - cols: 2
     columns: 2
+"550": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - i
+      - cols: 2
+        values:
+        - "profession"
+        - "academic" 
+        - "religion"
+        - "unkown"
+        default: "profession"
+        editor_partial: subfield_select
+    columns: 2
 "551": 
   layout: 
     fields: 
@@ -127,7 +279,18 @@
       - cols: 2
     - - i
       - cols: 2
+        editor_partial: subfield_select_codes
+        select_label: "Place"
     columns: 2
+  tag_params:
+    codes:
+      - go
+      - ha
+      - po
+      - so
+      - wl
+      - wo
+      - wr
 "599": 
   layout: 
     fields: 
@@ -143,11 +306,15 @@
       - cols: 2
     columns: 2
 "670": 
+  allow_new: true
+  new_window: catalogues
   layout: 
     fields: 
-    - - a
-      - cols: 2
-    - - b
+    - - "a"
+      - type: catalogue
+        editor_partial: subfield_secondary
+      - cols: 4
+    - - "b"
       - cols: 2
     columns: 4
 "678": 

@@ -1,0 +1,38 @@
+--- !map:Settings 
+"001": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+  tag_header: none
+"541": 
+  layout: 
+    fields: 
+    - - c
+      - growfield: true
+    - - a
+    - - d
+    - - e
+"852": 
+  allow_new: true
+  new_window: institutions
+  layout: 
+    fields: 
+    - - a
+      - type: library
+        editor_partial: subfield_secondary
+    - - b
+    - - z
+    - - p
+      - growfield: true
+    - - d
+"856": 
+  layout: 
+    fields: 
+    - - u
+    - - z
+    - - x
+      - values: 
+        - "IIIF"
+        editor_partial: subfield_select
+ui: 
+  hide_marc_identifiers: true

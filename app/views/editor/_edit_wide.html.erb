@@ -5,6 +5,7 @@
 <!-- place holders -->
 <div class="marc_flashes"></div>
 <div id="dialog"></div>
+<div id="spacer" style="min-width: 700px; min-height: 1px"></div>
 <div id="marc_editor_preview" class="panel-hidable"></div>
 <div id="marc_editor_help" class="panel-hidable"></div>
 
@@ -15,15 +16,21 @@
 	<%= render :partial => "editor/versions" -%>
 <% end %>
 
+<% if @item.class.respond_to?("get_viaf")%>
+  <%= render :partial => "editor/viaf_form" %>
+<% end %>
 
-<% if @editor_validation %>
+
+
 <script type="text/javascript">
 
-validation_conf = <%= raw JSON.dump(EditorValidation.get_default_validation(@item).rules) -%>
-
 	marc_editor_init_tags($('#marc_editor_panel'));
+	
+<% if @editor_validation %>
+	validation_conf = <%= raw JSON.dump(EditorValidation.get_default_validation(@item).rules) -%>;
 	marc_editor_init_validation($('#marc_editor_form_marc_editor_panel'), validation_conf);
-	$.ajax 
+<%end%>
+	$.ajax;
 		
 </script>
-<%end%>
+

@@ -2,22 +2,18 @@ ActiveAdmin.register Source do
   
   collection_action :autocomplete_source_id, :method => :get
   collection_action :autocomplete_source_740_autocomplete_sms, :method => :get
+  collection_action :autocomplete_source_594b_sms, :method => :get
 
   # Remove mass-delete action
   batch_action :destroy, false
+  
+  # Remove all action items
+  config.clear_action_items!
   
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
   breadcrumb do
     active_admin_muscat_breadcrumb
-  end
-    
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( source )
-  end
-  
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
   end
 
   # See permitted parameters documentation:
@@ -31,8 +27,9 @@ ActiveAdmin.register Source do
                  #params['q'] = {:std_title_contains => "[Holding]"} 
         end
     end
-    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :solr => false}
+    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => true, :solr => false}
     autocomplete :source, "740_autocomplete_sms", :solr => true
+    autocomplete :source, "594b_sms", :solr => true
     
     def action_methods
       return super - ['new', 'edit', 'destroy'] if is_selection_mode?
@@ -61,6 +58,7 @@ ActiveAdmin.register Source do
 
     def edit
       @item = Source.find(params[:id])
+      @holdings = @item.holdings
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
       @editor_validation = EditorValidation.get_default_validation(@item)
@@ -82,7 +80,7 @@ ActiveAdmin.register Source do
       @template_name = ""
       
       if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_type] || params[:new_type].empty?)
-        redirect_to action: :select_new_template
+        redirect_to action: :select_new_template 
         return
       end
 
@@ -110,18 +108,18 @@ ActiveAdmin.register Source do
     end
 
   end
-  
-  #batch_action :unpublish do |selection|
-  #end
-  
-  
+    
   # Include the MARC extensions
   include MarcControllerActions
   
-  # Include the folder actions
-  include FolderControllerActions
+  member_action :duplicate, method: :get do
+    redirect_to action: :new, :existing_title => params[:id]
+    return
+  end
   
-  collection_action :select_new_template, :method => :get
+  collection_action :select_new_template, :method => :get do 
+    @page_title = "#{I18n.t(:select_template)}"
+  end
   
   #scope :all, :default => true 
   #scope :published do |sources|
@@ -154,6 +152,12 @@ ActiveAdmin.register Source do
            end
          }
   
+  filter :record_type_with_integer, :label => proc {I18n.t(:filter_record_type)}, as: :select, 
+  collection: proc{MarcSource::RECORD_TYPES.collect {|k, v| [I18n.t("record_types." + k.to_s), "record_type:#{v}"]}}
+
+  filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
+  collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
+      
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
@@ -164,8 +168,8 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title
     column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
-      if source.sources.count>0
-         source.sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
+      if source.child_sources.count > 0
+         source.child_sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
       else
         source.lib_siglum
       end
@@ -174,6 +178,13 @@ ActiveAdmin.register Source do
     
     active_admin_muscat_actions( self )
   end
+  
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
   
   ##########
   ## Show ##
@@ -188,6 +199,10 @@ ActiveAdmin.register Source do
     active_admin_user_wf( self, @item )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+  end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
   end
   
   ##########

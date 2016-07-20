@@ -2,55 +2,56 @@
 group_order: 
 - main_person
 - codes
-- notes
-- places
 - variants
+- relations
+- references
+- control
 groups:   
   main_person: 
     all_tags: 
     - "100"
     - "042"
-    - "039"   
-    - "374" 
-    all_tag_templates:
-      "039": marc_show/show_gender  
-      "374": marc_show/show_inline
-
-  notes: 
-    all_tags: 
-    - "500"
-    - "599"
-    - "667"
-    - "856"
-    all_tag_templates:
-      "500": people/show_related_person
-      "374": marc_show/show_inline
-      "856": people/show_link
-  places: 
-    all_tags: 
-    - "510"
+    - "375"   
     - "043"
-    - "670"
-    - "678"
-    - "680"
-    - "551"
     all_tag_templates:
+      "375": marc_show/show_gender  
+      "550": marc_show/show_inline
       "043": marc_show/show_subfield_concat
-      #"569": people/show_indicator
   codes: 
     all_tags: 
-    - "035"
+    - "024"
     all_tag_templates:
-      "035": marc_show/show_dnb_link
-  control: 
-    all_tags: 
-    - "000"
-    - "001"
-    - "003"
-    - "005"
-    - "008"
+      "024": marc_show/show_dnb_link
   variants:
     all_tags:
     - "400"
     all_tag_templates:
       "400": people/show_indicator
+  relations:
+    all_tags:
+    - "500"
+    - "510"
+    - "550" 
+    - "551"
+    - "667"
+    all_tag_templates:
+      "500": people/show_related_person
+  references:
+    all_tags:
+    - "670"
+    - "678"
+    - "680"
+    - "856"
+    all_tag_templates:
+      "670": people/show_catalogue
+      "856": people/show_link
+  control: 
+    all_tags: 
+    - "040"
+    - "000"
+    - "001"
+    - "003"
+    - "005"
+    - "008"
+    - "599"
+

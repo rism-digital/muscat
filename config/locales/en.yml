@@ -1,6 +1,9 @@
 
 en:
   active_admin:
+# Pad for italian, it has 2 missing items
+#
+#
     dashboard: Dashboard
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."
@@ -35,6 +38,7 @@ en:
         ends_with: "Ends with"
         greater_than: "Greater than"
         less_than: "Less than"
+        with_integer: "Filter"
     status_tag:
       "yes": "Yes"
       "no": "No"
@@ -179,6 +183,10 @@ en:
         other: "Users"
         
   #################### RECORD TYPES (TEMPLATES)
+  select_template: "Select new template"
+  available_templates: "Available templates"
+  from_existing_source: "Create from existing source"
+  create_from_existing: "Create"
   record_types:
     unspecified: "[Unknown template]"
     convolutum: "Convolutum"
@@ -218,6 +226,8 @@ en:
   menu_marc_documentation: "Marc configuration"
   menu_guidelines_top: "Guidelines"
   menu_cataloging: "Cataloguing"
+  menu_jobs: "Jobs"
+  menu_holdings: "Holdings"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
@@ -235,11 +245,50 @@ en:
   search_sources: "Search Sources"
   created_at: "Creation date"
   updated_at: "Last modification"
+  status: "Status"
+  progress_stage: "Stage"
+  object: "Object"
+  queue: "Queue"
+  failed_at: "Failed At"
+  run_at: "Run At"
+  created_at: "Created At"
+  progress: "Progress"
+  failed: "Failed"
+  waiting: "Waiting"
+  running: "Running"
+  finished: "Finished"
+  lib_siglum: "Library Siglum"
+  holding_records: "Exemplar Information"
+  new_holding: "Create Holding Record"
+  
+  jobs:
+    not_set: "[No status set]"
+    ok: "Job ended successfully"
+    no_status: "There was an Error Reading job Status"
+    error: "ERROR: "
+    running_jobs: "Running Jobs Cannot be Deleted."
+    auto_delete: "Cannot Delete: Finished job was Automatically Deleted."
+    no_view: "Cannot View: Finished job was Automatically Deleted."
+
+  # Sidebar
+  delete: "Delete"
+  to_the_list: "Return to the list"
+  edit: "Edit"
+  new: "Create"
+  duplicate: "Duplicate"
+  no_action: "No action available"
+  reindex: "Re-index"
+  publish: "Publish"
+  select: "Select"
+  create_folder: "Add to a new folder"
+  append_folder: "Add to an existing folder"
   
   # Editor sidebar
   show_all_groups: "Show all sections"
   show_preview: "Show preview"
+  hide_preview: "Hide preview"
   show_history: "Show modification history"
+  show_viaf: "VIAF Search"
   save_and_continue: "Save and continue editing"
   save_and_exit: "Save and terminate"
   cancel: "Cancel"
@@ -260,7 +309,10 @@ en:
   folders:
     save: "Save results to Folder"
     success: "Folder %{name} created with %{count} items."
-    too_many: "Cannot add more than %{max} items (%{count} SÉLÉCTIONÉS)."
+    too_many: "Cannot add more than %{max} items (%{count} selected)."
+    added: "Added %{count} items to Folder %{name}."
+    added_bg: "Added items to folder, job %{job} enqueued."
+    success_bg: "Folder %{name} created, job %{job} enqueued."
 
   ### Digital objects
   digital_objects: "Images"
@@ -275,6 +327,7 @@ en:
   filter_alternates: "Alternate names"
   filter_any_field: "Any field"
   filter_author: "Author"
+  filter_author_or_editor: "Author/Editor"
   filter_autograph_of: "Autograph of"
   filter_birth_place: "Birth place"
   filter_catalog: "Catalog"
@@ -310,6 +363,9 @@ en:
   filter_liturgical_feast: "Liturgical feast"
   filter_location_and_name: "Name ion"
   filter_manuscript_no: "Manuscript No."
+  filter_male: "Male"
+  filter_female: "Female"
+  filter_unknown: "Unknown"
   filter_shelf_mark: "Shelfmark"
   filter_name: "Name"
   filter_notes: "Notes"
@@ -319,8 +375,8 @@ en:
   filter_pattern: "Siglum patterns"
   filter_people: "People"
   filter_person_100d: "Life Dates"
-  filter_person_039a: "Gender"
-  filter_person_374a: "Profession"
+  filter_person_550a: "Profession"
+  filter_person_375a: "Gender"
   filter_person_043c: "Country Code"
   filter_person_551a: "Places"
   filter_person_100d_birthdate: "Year of Birth"
@@ -334,6 +390,7 @@ en:
   filter_id: "Rism ID"
   filter_id_no: "Rism ID"
   filter_scoring: "Scoring"
+  filter_series_items: "Series items"
   filter_siglum: "Siglum"
   filter_source: "Source"
   filter_sources: "Sources"
@@ -371,7 +428,7 @@ en:
   filter_dist_594l: "Keyboard instruments"
   filter_dist_594m: "Other instruments"
   filter_dist_594n: "Basso continuo instruments"
-  
+ 
   rism_any_key: "Any key"
   rism_a_flat: "A flat major/minor"
   rism_a: "A major/minor"
@@ -390,6 +447,7 @@ en:
   
   # Assorted error messages
   error_not_found: "The resource you are trying to access does not exist or has been deleted."
+  error_saving: "The resource is not complete or generates a duplicate"
   unknown_tags: "There are some unknown fields in this record"
   
   #
@@ -514,7 +572,12 @@ en:
     download: "Download"
     more: "More"
     banner: 'Please click "Preview" to show the MEI-converted output.'
-    
+
+  wf_stage:
+    inprogress: "In Progress"
+    published: "Published"
+    deleted: "Deleted"
+   
   # date:
   # Empty lines for matching line numbers with other translation files  
   #

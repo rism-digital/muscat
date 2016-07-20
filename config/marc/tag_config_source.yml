@@ -58,7 +58,7 @@
     :zero_padding: "14"
     :fields:
     - - ""
-      - :no_browse: true
+      - :no_browse: false
   "003":
     :master: ""
     :indicator: ""
@@ -194,8 +194,6 @@
       - :occurrences: "?"
     - - m
       - :occurrences: "*"
-    - - n
-      - :occurrences: "*"
     - - o
       - :occurrences: "?"
     - - r
@@ -239,6 +237,8 @@
     :fields:
     - - a
       - :occurrences: "*"
+    - - b
+      - :occurrences: "*"
     - - c
       - :occurrences: "?"
     - - "8"
@@ -254,6 +254,13 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+  "383":
+    :master: b
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - b
+      - :occurrences: "*"
   "490":
     :master: a
     :indicator: "2#"
@@ -272,10 +279,18 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+  "505":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
   "506":
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -321,6 +336,7 @@
     :master: a
     :indicator: "1#"
     :occurrences: "?"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -341,6 +357,7 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -370,6 +387,7 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -394,11 +412,13 @@
       - :occurrences: "?"
         :no_browse: true
   "594":
-    :master: a
+    :master: b
     :indicator: "##"
-    :occurrences: "?"
+    :occurrences: "*"
     :fields:
-    - - a
+    - - b
+      - :occurrences: "?"
+    - - c
       - :occurrences: "?"
   "595":
     :master: a
@@ -408,6 +428,13 @@
     - - a
       - :occurrences: "?"
   "596":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "597":
     :master: a
     :indicator: "##"
     :occurrences: "*"
@@ -597,6 +624,10 @@
         :foreign_field: name
     - - b
       - :occurrences: "*"
+    - - c
+      - :occurrences: "*"
+    - - g
+      - :occurrences: "?"
     - - "4"
       - :occurrences: "*"
     - - "8"
@@ -616,6 +647,8 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: title
+    - - g
+      - :occurrences: "?"
     - - k
       - :occurrences: "?"
     - - m
@@ -649,6 +682,7 @@
     :master: w
     :indicator: "18"
     :occurrences: "?"
+    :preclude_holdings: true
     :fields:
     - - w
       - :occurrences: "1"
@@ -661,8 +695,6 @@
     :indicator: "##"
     :occurrences: "?"
     :fields:
-    - - a
-      - :occurrences: "?"
     - - w
       - :occurrences: "1"
         :foreign_class: Source
@@ -690,6 +722,7 @@
     :master: "x"
     :indicator: "##"
     :occurrences: "?"
+    :preclude_holdings: true
     :fields:
     - - "x"
       - :occurrences: "?"
@@ -712,6 +745,10 @@
         :disable_create_lookup: true
     - - p
       - :occurrences: "?"
+    - - q
+      - :occurrences: "?"
+    - - u
+      - :occurrences: "?"
     - - z
       - :occurrences: "*"
   "856":
@@ -722,6 +759,8 @@
     - - u
       - :occurrences: "*"
         :browse_helper: application_helper_link_http
+    - - x
+      - :occurrences: "?"
     - - z
       - :occurrences: "*"
     - - "8"

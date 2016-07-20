@@ -8,7 +8,7 @@
                 <%- I18n.locale = lang[0] %>
                 <tr>
                     <th><%= lang[1].html_safe %></th>
-                    <td><%= @editor_config.get_label(tag, subtag[0]).html_safe -%></td>
+                    <td><%= @editor_config.get_sub_label(tag, subtag[0]).html_safe -%></td>
                 </tr>
             <% end -%>
         </table>

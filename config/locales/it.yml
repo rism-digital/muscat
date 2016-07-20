@@ -1,6 +1,9 @@
 
 it:
   active_admin:
+    search_status:
+      headline: "Ambito"
+      current_filters: "Filtri in uso"
     dashboard: Pannello
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
@@ -35,6 +38,7 @@ it:
         ends_with: "Finisce con"
         greater_than: "Maggiore di"
         less_than: "Minore di"
+        with_integer: "Filtro"
     status_tag:
       "yes": "Sì"
       "no": "No"
@@ -145,8 +149,8 @@ it:
   activerecord:
     models:
       digital_object:
-        one: "DIGITAL OBJECT"
-        other: "DIGITAL OBJECTS"
+        one: "Oggetto Digitale"
+        other: "Oggetti Digitali"
       catalogue:
         one: "Catalogo"
         other: "Cataloghi"
@@ -179,8 +183,12 @@ it:
         other: "Utenti"
       
   #################### RECORD TYPES (TEMPLATES)
+  select_template: "SELECT NEW TEMPLATE"
+  available_templates: "AVAILABLE TEMPLATES"
+  from_existing_source: "CREATE FROM EXISTING SOURCE"
+  create_from_existing: "CREATE"
   record_types:
-    unspecified: "[UNKNOWN TEMPLATE]"
+    unspecified: "[Template sconosciuto]"
     convolutum: "Raccolta di miscellanee"
     collection: "Raccolta"
     manuscript: "Manoscritto musicale"
@@ -218,6 +226,8 @@ it:
   menu_marc_documentation: "Configurazione Marc"
   menu_guidelines_top: "Documentazione"
   menu_cataloging: "Catalogazione"
+  menu_jobs: "Processi in Background"
+  menu_holdings: "HOLDINGS"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"
@@ -235,11 +245,50 @@ it:
   search_sources: "Cerca fonti"
   created_at: "Data di creazione"
   updated_at: "Ultima modifica"
+  status: "Stato"
+  progress_stage: "Fase"
+  object: "Oggetto"
+  queue: "Coda"
+  failed_at: "Data Fallimento"
+  run_at: "Data Esecuzione"
+  created_at: "Data Creazione"
+  progress: "Avanzamento"
+  failed: "Fallito"
+  waiting: "In Attesa"
+  running: "In Esecuzione"
+  finished: "Completato"
+  lib_siglum: "Sigla della Biblioteca"
+  holding_records: "Informazioni sugli esemplari"
+  new_holding: "Nuovo Esemplare"
+  
+  jobs:
+    not_set: "[Nessuno stato]"
+    ok: "Processo terminato con successo"
+    no_status: "Errore durante la lettura del messaggio di stato"
+    error: "ERRORE: "
+    running_jobs: "I processi correntemente in esecuzione non possono essere candellati."
+    auto_delete: "Impossibile cancellare: il processo terminato è già stato eliminato automaticamente."
+    no_view: "Impossibile visualizzare: il processo terminato è già stato eliminato automaticamente."
+
+  # Sidebar
+  delete: "Cancella"
+  to_the_list: "Ritorna all'indice"
+  edit: "Modifica"
+  new: "Crea"
+  duplicate: "Duplica"
+  no_action: "Nessuna azione"
+  reindex: "Reindicizza"
+  publish: "Pubblica"
+  select: "Seleziona"
+  create_folder: "Crea Cartella"
+  append_folder: "Aggiungi a Cartella"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
-  show_preview: "Mostra l'anteprima"
+  show_preview: "Mostra anteprima"
+  hide_preview: "Nascondi anteprima"
   show_history: "Mostra lo storico"
+  show_viaf: "VIAF SEARCH"
   save_and_continue: "Salva e continua"
   save_and_exit: "Salva ed esci"
   cancel: "Annulla"
@@ -260,12 +309,15 @@ it:
   folders:
     save: "Salva i risultati in una cartella"
     success: "Cartella %{name} creata con %{count} oggetti."
-    too_many: "Impossibile aggiungere più di %{max} oggetti (ne sono selezionati %{count})." 
+    too_many: "Impossibile aggiungere più di %{max} oggetti (ne sono selezionati %{count})."
+    added: "Aggiunti %{count} elementi alla cartella %{name}."
+    added_bg: "Aggiunti elementi, job %{job} in coda."
+    success_bg: "Creata cartella %{name}, job %{job} in coda."
     
   ### Digital objects
-  digital_objects: "IMAGES"
-  digital_object_new: "ADD A NEW IMAGE"
-  digital_object_add: "ADD"
+  digital_objects: "Immagini"
+  digital_object_new: "Aggiungi una nuova immagine"
+  digital_object_add: "Aggiungi"
     
   ############ filters
   filter_address: "Indirizzo"
@@ -275,6 +327,7 @@ it:
   filter_alternates: "Nomi alternativi"
   filter_any_field: "Qualsiasi campo"
   filter_author: "Autore"
+  filter_author_or_editor: "Autore/Editore"
   filter_autograph_of: "Autografo di"
   filter_birth_place: "Luogo di nascita"
   filter_catalog: "Catalogo"
@@ -310,6 +363,9 @@ it:
   filter_liturgical_feast: "Feste liturgiche"
   filter_location_and_name: "Nome e luogo"
   filter_manuscript_no: "Manoscritto num."
+  filter_male: "MALE"
+  filter_female: "FEMALE"
+  filter_unknown: "UNKNOWN"
   filter_shelf_mark: "Ms. num."
   filter_name: "Nome"
   filter_notes: "Note"
@@ -318,13 +374,13 @@ it:
   filter_pages: "Pagine"
   filter_pattern: "Siglum patterns"
   filter_people: "Persone"
-  filter_person_100d: "LIFE DATES"
-  filter_person_039a: "GENDER"
-  filter_person_374a: "PROFESSION"
-  filter_person_043c: "COUNTRY CODE"
+  filter_person_100d: "Date"
+  filter_person_550a: "Professione"
+  filter_person_375a: "Sesso"
+  filter_person_043c: "Codice paese"
   filter_person_551a: "PLACES"
-  filter_person_100d_birthdate: "YEAR OF BIRTH"
-  filter_person_100d_deathdate: "YEAR OF DEATH"
+  filter_person_100d_birthdate: "Data di nascita"
+  filter_person_100d_deathdate: "Data di morte"
   filter_phone: "Telefono"
   filter_place: "Luogo"
   filter_provenance: "Provenienza"
@@ -334,6 +390,7 @@ it:
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
   filter_scoring: "Organico"
+  filter_series_items: "SERIES ITEMS"
   filter_siglum: "Sigla"
   filter_source: "Fonte"
   filter_sources: "Fonti"
@@ -350,9 +407,9 @@ it:
   filter_versions: "Versioni"
   filter_volume: "Volume"
   filter_image: "IMAGE"
-  filter_file_name: "FILE NAME"
-  filter_file_size: "FILE SIZE"
-  filter_content_type: "TYPE"
+  filter_file_name: "Nome FIle"
+  filter_file_size: "Nome File"
+  filter_content_type: "Tipo"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
   filter_wf_stage: "Status"
@@ -390,6 +447,7 @@ it:
   
   # Assorted error messages
   error_not_found: "La risorsa specificata non esiste oppure è stata cancellata."
+  error_saving: "La risorsa non è completa oppure genera un duplicato"
   unknown_tags: "Il record contiene dei campi sconosciuti"
 
   #
@@ -397,8 +455,8 @@ it:
      one: "voce"
      other: "voci"
   digital_object:
-      one: "DIGITAL OBJECT"
-      other: "DIGITAL OBJECTS"
+      one: "Oggetto Digitale"
+      other: "Oggetti Digitali"
   catalogue:
     one: "catalogo"
     other: "cataloghi"
@@ -514,6 +572,11 @@ it:
     download: "Download"
     more: "Altro"
     banner: 'Usare "Anteprima" per mostrare il risultato della conversione in MEI.'
+  
+  wf_stage:
+    inprogress: "In Elaborazione"
+    published: "Pubblicato"
+    deleted: "Cancellato"
   
   date:
     month_names:

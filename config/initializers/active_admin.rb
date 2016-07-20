@@ -140,7 +140,7 @@ ActiveAdmin.setup do |config|
   # This allows your users to comment on any resource registered with Active Admin.
   #
   # You can completely disable comments:
-  config.allow_comments = true
+  config.comments = true
   #
   # You can disable the menu item for the comments index page:
   # Menus set by hand for translation, see below

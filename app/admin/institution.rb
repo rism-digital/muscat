@@ -5,19 +5,14 @@ ActiveAdmin.register Institution do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
   collection_action :autocomplete_institution_siglum, :method => :get
   collection_action :autocomplete_institution_name, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
-  end
-    
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( institution )
-  end
-
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
   end
 
   # See permitted parameters documentation:
@@ -66,6 +61,8 @@ ActiveAdmin.register Institution do
       @editor_profile = EditorConfiguration.get_show_layout @institution
       @prev_item, @next_item, @prev_page, @next_page = Institution.near_items_as_ransack(params, @institution)
       
+      @jobs = @institution.delayed_jobs
+      
       respond_to do |format|
         format.html
         format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
@@ -97,10 +94,12 @@ ActiveAdmin.register Institution do
     
   end
   
-  # Include the folder actions
-  include FolderControllerActions
-  
   include MarcControllerActions
+
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(Institution.find(params[:id]), "referring_sources"))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
   
   ###########
   ## Index ##
@@ -127,6 +126,13 @@ ActiveAdmin.register Institution do
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
@@ -134,30 +140,49 @@ ActiveAdmin.register Institution do
   show :title => proc{ active_admin_auth_show_title( @item.name, @item.siglum, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
+    render('jobs/jobs_monitor')
     @item = @arbre_context.assigns[:item]
     if @item.marc_source == nil
       render :partial => "marc_missing"
     else
       render :partial => "marc/show"
+    end    
+    if !resource.get_deposita.empty?
+      panel I18n.t :filter_series_items do
+        search=Institution.solr_search do 
+          fulltext(params[:id], :fields=>['5800'])
+          paginate :page => params[:items_list_page], :per_page=>15
+          order_by(:siglum_order)
+        end
+        paginated_collection(search.results, param_name: 'items_list_page', download_links: false) do
+          table_for(collection, sortable: true) do
+            column :id do |p| link_to p.id, controller: :institutions, action: :show, id: p.id end
+            column :siglum
+            column :name
+            column :place
+          end
+        end
+      end
     end
     active_admin_embedded_source_list( self, institution, params[:qe], params[:src_list_page], !is_selection_mode? )
     active_admin_user_wf( self, institution )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+
   end
   
-  sidebar I18n.t(:search_sources), :only => :show do
-    render("activeadmin/src_search") # Calls a partial
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => institution }
   end
 
   ##########
   ## Edit ##
   ##########
   
+  form :partial => "editor/edit_wide"
+  
   sidebar :sections, :only => [:edit, :new] do
     render("editor/section_sidebar") # Calls a partial
   end
-  
-  form :partial => "editor/edit_wide"
 
 end

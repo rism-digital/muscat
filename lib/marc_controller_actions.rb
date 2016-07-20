@@ -24,7 +24,7 @@ module MarcControllerActions
       model.last_event_save = "update"
 
       marc_hash = JSON.parse params[:marc]
-      
+        
       # This is the tricky part. Get the MARC subclass
       # e.g. MarcSource or MarcPerson
       classname = "Marc" + model.to_s
@@ -43,6 +43,18 @@ module MarcControllerActions
       if !@item
         @item = model.new
         @item.user = current_user
+        
+        # This is a special case for Holdings
+        # in which the link is created out of marc
+        # For now hardcode, when needed :parent_object_type
+        # will have the proper model
+        # PLEASE NOTE: The existence of this object should
+        # be checked beforehand in the :new controller action
+        if params.include?(:parent_object_id)
+          source = Source.find(params[:parent_object_id])
+          @item.source = source
+        end
+        
       end
       @item.marc = new_marc
       @item.lock_version = params[:lock_version]
@@ -56,6 +68,26 @@ module MarcControllerActions
       model.last_user_save = nil
       model.last_event_save = nil
      
+     
+      # if we arrived here it means nothing crashed
+      # Rejoice! and launch the background jobs
+      # if any
+      if params[:triggers]
+        triggers = JSON.parse(params[:triggers])
+        
+        relation_name = "referring_" + model.to_s.downcase
+        
+        triggers.each do |k, t|
+          if k == "save"
+            t.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, relation_name)) }
+          elsif k == "reindex"
+            t.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, relation_name)) }
+          else
+            puts "Unknown trigger #{k}"
+          end
+        end
+      end
+     
       # build the dynamic model path
       
       # Redirect decides if we ar reloading the editor or redirecting
@@ -64,8 +96,12 @@ module MarcControllerActions
 
       if redirect == "true"
         model_for_path = self.resource_class.to_s.underscore.pluralize.downcase
-        link_function = "admin_#{model_for_path}_path"
-        path =  send(link_function) #admin_sources_path
+        if (model_for_path == "holdings") && params.include?(:parent_object_id)
+          path = edit_admin_source_path(params[:parent_object_id])
+        else
+          link_function = "admin_#{model_for_path}_path"
+          path =  send(link_function) #admin_sources_path
+        end
       else
         model_for_path = self.resource_class.to_s.underscore.downcase
         link_function = "edit_admin_#{model_for_path}_path"
@@ -106,7 +142,21 @@ module MarcControllerActions
 
       @editor_profile = EditorConfiguration.get_show_layout @item
      
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+    end
+
+    ###################
+    ## Summary show ##
+    ###################
+    
+    dsl.collection_action :marc_editor_summary_show, :method => :post do
+      
+      @item = Source.find( params[:object_id] )
+      
+      @item.marc.load_source(true)
+      @editor_profile = EditorConfiguration.get_show_layout @item
+      
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
   
     ##########
@@ -136,7 +186,7 @@ module MarcControllerActions
       @item.marc.load_source(false)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
   
     ##################
@@ -154,7 +204,7 @@ module MarcControllerActions
       # Parameter for using diff partials
       @diff = true
       
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
     
     #####################
@@ -172,9 +222,17 @@ module MarcControllerActions
 
       classname = "Marc" + model.to_s
       dyna_marc_class = Kernel.const_get(classname)
-      new_marc = dyna_marc_class.new(old_item.marc.to_marc)
+      old_item.marc.load_source(false)
       
+      new_marc = nil
+      if @item.respond_to?(:record_type)
+        new_marc = dyna_marc_class.new(old_item.marc.to_marc, @item.record_type)
+      else
+        new_marc = dyna_marc_class.new(old_item.marc.to_marc)
+      end
+      new_marc.load_source(false)
       new_marc.import
+
       @item.marc = new_marc
       @item.paper_trail_event = "restore"
       @item.save

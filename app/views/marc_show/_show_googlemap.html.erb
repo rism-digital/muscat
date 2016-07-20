@@ -1,0 +1,15 @@
+<%
+   lng = tag.fetch_first_by_tag(:d)
+   lat = tag.fetch_first_by_tag(:f)
+-%>
+<tr class="row">
+	<th>
+	  <% if (no_label == false) -%>
+	      <%= @editor_profile.get_label(tag.tag) %>
+	  <%- end %>
+	</th>
+   <td>
+     <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{lat.content},#{lng.content}&zoom=14&size=400x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:red%7Clabel:1%7C#{lat.content},#{lng.content}"
+   %>
+	</td>
+</tr>

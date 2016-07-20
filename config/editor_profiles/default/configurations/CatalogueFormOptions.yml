@@ -19,19 +19,41 @@
   tag_params: 
     read_only: true
   tag_header: none
-008: 
-  tag: tag_no_subfield
-  tag_params: 
-    maskedinput: 
-      definitions: "['~']='[|0-9]'"
-      mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
-  tag_header: none
 "041": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        select_label: "Language"
+    columns: 2
+  tag_params:
+    codes:
+      - "cat"
+      - "cze"
+      - "dan"
+      - "dut"
+      - "eng"
+      - "fre"
+      - "ger"
+      - "grc"
+      - "gre" 
+      - "gsw"
+      - "heb"
+      - "hrv"
+      - "hun"
+      - "ita"
+      - "kor"
+      - "lat"
+      - "pol"
+      - "por"
+      - "rus"
+      - "slo"
+      - "slv"
+      - "spa"
+      - "srp"
+      - "swe"
+      - "zxx"
 "100": 
   allow_new: true
   new_window: people
@@ -40,10 +62,6 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
-    - - d
-    - - j
-      - value: Attributed to
-        editor_partial: subfield_checkbox
 "210": 
   layout: 
     fields: 
@@ -149,12 +167,23 @@
     fields: 
     - - a
       - cols: 4
-"500": 
+"337": 
   layout: 
     fields: 
     - - a
       - cols: 4
-"508": 
+        values:
+        - "Printed Book"
+        - "Manuscript"
+        - "Electronic resource"
+        - "Sheet music"
+        - "Audiovisual media"
+        - "CD-ROM"
+        - "Combination"
+        - "Other"
+        default: "Printed Book"
+        editor_partial: subfield_select
+"500": 
   layout: 
     fields: 
     - - a
@@ -177,9 +206,6 @@
     - - a
       - type: standard_term
         editor_partial: subfield_secondary
-  layout_new: 
-    fields: 
-    - - a
 "651": 
   allow_new: true
   new_window: places
@@ -188,9 +214,6 @@
     - - a
       - type: place
         editor_partial: subfield_secondary
-  layout_new: 
-    fields: 
-    - - a
 "700":
   allow_new: true
   new_window: people
@@ -200,14 +223,7 @@
       - type: person
         editor_partial: subfield_secondary
     - - "4"
-      - editor_partial: subfield_relator_codes_700
-  layout_new:
-    fields: 
-    - - a
-    - - d
-    - - "4"
-      - editor_partial: subfield_relator_codes_700
-  tag_list_additional_data: tag_list_additional_data_relator_codes
+      - editor_partial: subfield_select_codes_grouped
   tag_params: 
     groups: 
       01_codes_artistic: 
@@ -259,13 +275,8 @@
         editor_partial: subfield_secondary
     - - b
     - - "4"
-      - editor_partial: subfield_relator_codes_710
-  layout_new: 
-    fields: 
-    - - a
-    - - b
-    - - "4"
-      - editor_partial: subfield_relator_codes_710
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
   tag_params: 
     codes: 
     - fmo

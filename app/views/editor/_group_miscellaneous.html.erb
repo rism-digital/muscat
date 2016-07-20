@@ -2,14 +2,14 @@
 	tag_names = Array.new
 	@editor_profile.each_tag_not_in_layout @item do |tag|
 		tag_names << tag
-	end
+   end
 	# Do not render anything if nothing needs to go in other
 	return if tag_names.empty?
 	group_title = @editor_profile.get_label("unmatched")
 	@editor_profile.layout_config[:marc_editor_missing_group_links] = group_title
 -%>
 
-<div class="panel tab_panel" name="<%= group_title.gsub(/ /, "_") %>">
+<div class="panel tab_panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">
 	<div class="editor-flash" data-flash="<%=I18n.t(:unknown_tags)%>" data-type="warning"></div>
 	<h3><%= group_title -%></h3>
 	<div class="marc_editor_panel_content">

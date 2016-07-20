@@ -1,30 +1,51 @@
 <%
 	read_only = false
+	triggers = ""
 	@editor_profile.each_subfield_for(tag_name) do |subfieldopt, field_settings|
 		field_settings = Hash.new if !field_settings
 		if subfieldopt == subfield
 			read_only = field_settings["read_only"] != nil ? field_settings["read_only"] : false
+			if field_settings["trigger"] && field_settings["trigger"].is_a?(Array)
+				data = field_settings["trigger"].to_json.html_safe
+				triggers = "data-trigger='".html_safe + data + "'".html_safe
+			end
 		end
 	end
 	
 	content = marc_subfield.content
 	content = params["default"] if params.include?("default") && !content
 	
-	validate_class = ""
+	
 	if @editor_validation && @editor_validation.validate_subtag?(tag_name, subfield)
 		validate_class, unique_name = @editor_validation.get_subtag_class_name(tag_name, subfield)
 		name_tag = raw "name=\"#{unique_name}\""
+		validate_marker = "validating"
+	else
+		validate_class = ""
 	end
 	
+	
+	if params.include? "autocomplete_extra"
+		autocomplete_extra = params["autocomplete_extra"]
+		autocomplete_extra_class = "autocomplete_extra"
+		disabled_by_autocomplete = "disabled=\"disabled\"".html_safe
+	else
+		autocomplete_extra_class = ""
+		disabled_by_autocomplete = ""
+	end
+	
+	# read_only vs disabled_by_autocomplete
+	# read_only if for tags that can NEVER be edited
+	# disabled_by_autocomplete is for tags that can be disabled/enabled by autocomplete
 %>
 
 <%- if (params['growfield'])  %>
-	<textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" <%=name_tag%> ><%= h content %></textarea>
+	</span><textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%> <%=autocomplete_extra_class%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" <%=triggers%> <%=name_tag%> <%=disabled_by_autocomplete%> data-autocomplete-extra="<%=autocomplete_extra%>"><%= h content %></textarea>
 <%- else %>
 	<% if read_only %>
-			<input class="subfield_entry"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h content %>"/>
+			<input class="subfield_entry <%=autocomplete_extra_class%>"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h content %>"/>
 			<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
 	<% else %>
-		<input class="subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%>" size="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" <%=name_tag%> value="<%= h content %>"/>
+		</span><input class="augh subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%> <%=autocomplete_extra_class%>" sizeU="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" <%=triggers%> <%=name_tag%> value="<%= h content %>" <%=disabled_by_autocomplete%> data-autocomplete-extra="<%=autocomplete_extra%>" />
 	<% end %>
 <%- end %>

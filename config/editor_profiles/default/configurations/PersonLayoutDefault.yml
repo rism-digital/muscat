@@ -1,36 +1,42 @@
 --- !map:Settings 
 group_order: 
-- control
-- codes
 - main_person
-- notes
-- subject
-groups: 
-  control: 
+- codes
+- variants
+- relations
+- references
+- control
+groups:   
+  main_person: 
     all_tags: 
+    - "100"
+    - "042"
+    - "375"   
+    - "043"
+  codes: 
+    all_tags: 
+    - "024"
+  variants:
+    all_tags:
+    - "400"
+  relations:
+    all_tags:
+    - "500"
+    - "510"
+    - "550" 
+    - "551"
+    - "667"
+  references:
+    all_tags:
+    - "670"
+    - "678"
+    - "680"
+    - "856"
+  control: 
+    all_tags:
+    - "040" 
     - "000"
     - "001"
     - "003"
     - "005"
-    - "008"
-  notes: 
-    all_tags: 
-    - "510"
-    - "551"
-    - "856"
-  subject: 
-    all_tags: 
-    - "670"
-    - "678"
-    - "680"
-  main_person: 
-    all_tags: 
-    - "100"
-    - "400"
-  codes: 
-    all_tags: 
-    - "035"
-    - "039"
-    - "040"
-    - "043"
 

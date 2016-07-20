@@ -1,0 +1,27 @@
+<%
+	folders = Folder.where(folder_type: self.resource_class)
+	ids = folders.map {|f| [f.name, f.id]}.collect
+%>
+
+<%= form_tag(@save_path, method: "get", :class => 'filter_form') do %>
+
+<!-- Important! Preserve q parameter -->
+<% params[:q].each do |key,value| %>
+<%= hidden_field_tag "q[#{key}]",value %> 
+<% end %>
+
+<h3>Append <%=@items_count%> items to Folder</h3>
+<div class="panel">
+	<h3>Please select folder</h3>
+	<div class="panel_contents">
+	    <div class="form-group">
+		 <%= select_tag "folder", options_for_select(ids) %>
+	    </div>
+	  </div>
+
+		<div class="buttons">
+	 	 	<%= submit_tag("Append Items") %>
+		</div>
+	</div>
+</div>
+<%end%>

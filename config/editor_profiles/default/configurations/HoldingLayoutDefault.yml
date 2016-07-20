@@ -1,0 +1,17 @@
+--- !map:Settings 
+group_order: 
+- main
+- administration
+groups: 
+  administration: 
+    all_tags: 
+    - "001"
+  main: 
+    all_tags: 
+    - "852"
+    - '506'
+    - '541'
+    - '561'
+    - '591'
+    - '856'
+

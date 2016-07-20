@@ -11,9 +11,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def can_edit?(source)
-    if source.sources.count > 0
+    if sourcechild_sources.count > 0
       libs=[]
-      source.sources.each do |so| 
+      source.child_sources.each do |so| 
         so.institutions.each do |l|
           libs<<l
         end
@@ -35,5 +35,9 @@ class User < ActiveRecord::Base
   def online?
       updated_at > 10.minutes.ago
   end
-  
+ 
+  def active?
+    return false unless last_sign_in_at
+    last_sign_in_at > (DateTime.now - 4.weeks) ? true : false
+  end
 end

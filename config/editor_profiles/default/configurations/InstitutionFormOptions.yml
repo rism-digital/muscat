@@ -26,12 +26,106 @@
       definitions: "['~']='[|0-9]'"
       mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
+"034": 
+  layout: 
+    fields: 
+    - - d
+      - cols: 2
+    - - f
+      - cols: 2
+    columns: 4
+"040": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+        read_only: true
 "043": 
   layout: 
     fields: 
     - - c
-      - cols: 2
-    columns: 4
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        select_label: "Country"
+    columns: 2
+  tag_params:
+    codes:
+      - "XC-DZ"
+      - "XD-AR"
+      - "XB-AM"
+      - "XE-AU"
+      - "XA-AT"
+      - "XA-AT-2"
+      - "XA-AT-3"
+      - "XA-AT-5"
+      - "XA-AT-6"
+      - "XA-AT-7"
+      - "XA-AT-4"
+      - "XA-AT-9"
+      - "XA-BE"
+      - "XC-BJ"
+      - "XD-BR"
+      - "XA-BG"
+      - "XB-KH"
+      - "XD-CA"
+      - "XD-CL"
+      - "XB-CN"
+      - "XD-CO"
+      - "XA-HR"
+      - "XD-CU"
+      - "XA-CZ"
+      - "XA-DK"
+      - "XC-EG"
+      - "XA-EE"
+      - "XA-FI"
+      - "XA-FR"
+      - "XA-DE"
+      - "XA-DE-BY"
+      - "XA-DE-SN"
+      - "XA-GR"
+      - "XA-VA"
+      - "XD-HN"
+      - "XA-HU"
+      - "XA-IS"
+      - "XB-IN"
+      - "XB-IR"
+      - "XA-IE"
+      - "XB-IL"
+      - "XA-IT-32"
+      - "XA-IT"
+      - "XB-JP"
+      - "XB-KR"
+      - "XA-LV"
+      - "XA-LT"
+      - "XA-LU"
+      - "XA-MT"
+      - "XD-MX"
+      - "XA-ME"
+      - "XA-NL"
+      - "XE-NZ"
+      - "XA-NO"
+      - "XD-PY"
+      - "XA-PL"
+      - "XA-PT"
+      - "XD-PR"
+      - "XA-RO"
+      - "XA-RU"
+      - "XA-RS"
+      - "XA-SK"
+      - "XA-SI"
+      - "XC-ZA"
+      - "XA-ES"
+      - "XA-SE"
+      - "XA-CH"
+      - "XA-CH-VD"
+      - "XB-SY"
+      - "XD-TT"
+      - "XB-TR"
+      - "XA-UA"
+      - "XA-GB"
+      - "XD-US"
+      - "XD-UY"
+      - "XD-VE"
 "110": 
   layout: 
     fields: 
@@ -48,6 +142,14 @@
     - - a
       - cols: 4
     columns: 4
+"551": 
+  layout: 
+    fields: 
+    - - "a"
+      - type: place
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
 "580": 
   layout: 
     fields: 
@@ -55,15 +157,6 @@
       - type: institution
         editor_partial: subfield_secondary
       - cols: 4
-    columns: 4
-
-"622": 
-  layout: 
-    fields: 
-    - - e
-      - cols: 2
-    - - u
-      - cols: 2
     columns: 4
 "670": 
   layout: 
@@ -73,6 +166,58 @@
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
+"700":
+  allow_new: true
+  new_window: people
+  layout:
+    fields: 
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+    - - "4"
+      - editor_partial: subfield_select_codes_grouped
+  tag_params: 
+    groups: 
+      01_codes_artistic: 
+      - cmp
+      - com
+      - arr
+      - aut
+      - clb
+      - lyr
+      - ccp
+      - lbt
+      - trl
+      02_codes_performing: 
+      - prf
+      - voc
+      - itr
+      - dnc
+      - cnd
+      - chr
+      - art
+      - cst
+      - prd
+      - cns
+      04_codes_other: 
+      - fmo
+      - dnr
+      - dte
+      - pat
+      - otm
+      - bsl
+      - asn
+      - dub
+      03_codes_technical: 
+      - scr
+      - ltg
+      - egr
+      - ill
+      - prt
+      - pbl
+      - edt
+      - bnd
+
 "710": 
   layout: 
     fields: 

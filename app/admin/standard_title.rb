@@ -5,18 +5,13 @@ ActiveAdmin.register StandardTitle do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
   collection_action :autocomplete_standard_title_title, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
-  end
-    
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( standard_title )
-  end
-
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
   end
 
   # See permitted parameters documentation:
@@ -54,6 +49,8 @@ ActiveAdmin.register StandardTitle do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (StandardTitle #{params[:id]})" }
       end
       @prev_item, @next_item, @prev_page, @next_page = StandardTitle.near_items_as_ransack(params, @standard_title)
+      
+      @jobs = @standard_title.delayed_jobs
     end
     
     def index
@@ -65,12 +62,27 @@ ActiveAdmin.register StandardTitle do
       end
     end
     
-
+    # redirect update failure for preserving sidebars
+    def update
+      update! do |success,failure|
+        success.html { redirect_to collection_path }
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
+    # redirect create failure for preserving sidebars
+    def create
+      create! do |success,failure|
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
     
   end
   
-  # Include the folder actions
-  include FolderControllerActions
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(StandardTitle.find(params[:id]), "referring_sources"))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
   
   ###########
   ## Index ##
@@ -93,12 +105,20 @@ ActiveAdmin.register StandardTitle do
     active_admin_muscat_actions( self )
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
   
   show do
     active_admin_navigation_bar( self )
+    render('jobs/jobs_monitor')
     attributes_table do
       row (I18n.t :filter_title) { |r| r.title }
       row (I18n.t :filter_notes) { |r| r.notes }  
@@ -107,6 +127,10 @@ ActiveAdmin.register StandardTitle do
     active_admin_user_wf( self, standard_title )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+  end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => standard_title }
   end
   
   sidebar I18n.t(:search_sources), :only => :show do
@@ -126,7 +150,7 @@ ActiveAdmin.register StandardTitle do
   end
   
   sidebar :actions, :only => [:edit, :new] do
-    render("editor/section_sidebar_save") # Calls a partial
+    render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => standard_title }
   end
   
 end

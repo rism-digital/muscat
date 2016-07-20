@@ -38,13 +38,6 @@
     :fields:
     - - ""
       - :no_browse: true
-  "007":
-    :master: ""
-    :indicator: ""
-    :occurrences: "*"
-    :fields:
-    - - ""
-      - :no_browse: true
   "008":
     :master: ""
     :indicator: ""
@@ -52,20 +45,15 @@
     :fields:
     - - ""
       - :no_browse: true
-  "035":
+  "024":
     :master: a
-    :indicator: "##"
+    :indicator: "7#"
     :occurrences: "*"
     :fields:
     - - a
-      - :occurrences: "?"
-  "039":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
+      - :occurrences: "1"
+    - - "2"
+      - :occurrences: "1"
   "040":
     :master: a
     :indicator: "##"
@@ -87,14 +75,10 @@
     - - a
       - :occurrences: "?"
   "043":
-    :master: a
+    :master: c
     :indicator: "##"
     :occurrences: "*"
     :fields:
-    - - a
-      - :occurrences: "*"
-    - - b
-      - :occurrences: "*"
     - - c
       - :occurrences: "*"
   "100":
@@ -113,20 +97,6 @@
       - :occurrences: "?"
         :no_show: true
     - - y
-      - :occurrences: "?"
-  "370":
-    :master: a
-    :indicator: "##"
-    :occurrences: "?"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "374":
-    :master: a
-    :indicator: "##"
-    :occurrences: "?"
-    :fields:
-    - - a
       - :occurrences: "?"
   "375":
     :master: a
@@ -164,17 +134,27 @@
     - - "i"
       - :occurrences: "?"
   "510":
+    :master: "0"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "1"
-  "549":
+        :foreign_class: ^0
+        :foreign_field: siglum
+  "550":
     :master: a
     :indicator: "##"
     :occurrences: "*"
     :fields:
     - - a
+      - :occurrences: "?"
+    - - i
       - :occurrences: "?"
   "551":
     :master: a
@@ -185,6 +165,7 @@
       - :occurrences: "?"
     - - i
       - :occurrences: "?"
+
   "599":
     :master: a
     :indicator: "##"
@@ -201,15 +182,40 @@
     :fields:
     - - a
       - :occurrences: "?"
-  "670":
+  "651":
     :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Place
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - "2"
+      - :occurrences: "?"
+        :no_browse: true
+  "670":
+    :master: "w"
     :indicator: "##"
     :occurrences: "*"
     :fields:
+    - - w
+      - :occurrences: "?"
+        :foreign_class: Catalogue
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: name
     - - b
       - :occurrences: "?"
+
   "678":
     :master: a
     :indicator: "##"

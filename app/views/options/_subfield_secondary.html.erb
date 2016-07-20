@@ -3,33 +3,48 @@
 <%- no_new = params.include?("no_new") ? params["no_new"] : false %>
 <%- ac_path = send(params['type'] + "_default_autocomplete")%>
 <%- field = params.has_key?("field") ? params['field'] : "id" %>
-<%- create_not_found = params.has_key?("allow_not_found") ? params['allow_not_found'] : false %>
+<%- allow_new = params.has_key?("allow_new") ? params['allow_new'] : false %>
+<%- disabled =  params.has_key?("only_new_window") ? true : false %>
+<!-- validation plugin REQUIRES a name. Make it random as we never call it elsewhere -->
+<%- check_name = "confirmation_uniq_" + SecureRandom.hex(5)%>
 
 <% 
-do_serialize = "serialize_marc" if create_not_found == false
-
-# Apply valitation only if we are not creating a new one
-# FIXME it should validate creation also?
-validate_class = ""
-name_tag = ""
 # Validate on the MASTER subfield, because it can be different from the DISPLAY subfiled!
-if @editor_validation && @editor_validation.validate_subtag?(tag_name, master) && (create_not_found == false)
-	validate_class, unique_name = @editor_validation.get_subtag_class_name(tag_name, master)
-	name_tag = raw "name=\"#{unique_name}\""
+if @editor_validation && @editor_validation.validate_subtag?(tag_name, master)
+	validate_class_master, unique_name_master = @editor_validation.get_subtag_class_name(tag_name, master)
+	name_tag_master = raw "name=\"#{unique_name_master}\""
+else
+	validate_class_master = ""
+	name_tag_master = ""
 end
 
+if @editor_validation && @editor_validation.validate_subtag?(tag_name, master)
+	validate_class_subfield, name_tag_subfield = @editor_validation.get_subtag_class_name(tag_name, subfield)
+	validate_marker = "validating"
+else
+	validate_class_subfield = ""
+	name_tag_subfield = "#{tag_name}#{subfield}"
+	validate_marker = ""
+end
+name_tag_subfield = "#{tag_name}#{subfield}"
 %>
 
-<input type="hidden" class="autocomplete_target <%=do_serialize%> <%=validate_class%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%= marc_subfield_m.content %>" <%=name_tag%> >
+<input type="hidden" class="autocomplete_target serialize_marc <%=validate_class_master%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%= marc_subfield_m.content %>" <%=name_tag_master%> data-allow-new="<%=allow_new%>">
 
-<table class="marc_editor_grid_internal_layout" cellpadding="0" cellspacing="0">
-	<tr>
-	<td width="100%">
-		<% if create_not_found == false %>
-			<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey autocomplete_new_window" %>
-		<%else%>
-			<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, :size => 75, :class => "marc_editor_hotkey serialize_marc autocomplete_new_window", :"data-subfield"=>"#{master}", :"data-field"=>"#{field}" %>
-		<%end%>
-	</td>
-</tr>
-</table>
+<%
+options = {
+	:size => 75, 
+	:class => "marc_editor_hotkey autocomplete_new_window #{validate_class_subfield} #{validate_marker}", 	:"data-subfield"=>"#{subfield}",
+	:"data-field"=>"#{tag_name}"}
+	
+	options[:disabled] = "disabled" if disabled
+%>
+
+
+<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, options %>
+
+
+<div class="checkbox_confirmation" style="display: none;">
+	<input class="creation_checkbox" type="checkbox" data-check="false" name="<%=check_name%>"/>
+	<span id="<%=check_name%>-label">Confirm the insertion of a new value</span>
+</div>

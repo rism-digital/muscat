@@ -5,6 +5,12 @@ ActiveAdmin.register Folder do
   # Remove mass-delete action
   batch_action :destroy, false
   
+  # Remove all action items
+  config.clear_action_items!
+  
+  # Remove creation option (only possible from lists)
+  actions :all, :except => [:new]
+  
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -14,6 +20,15 @@ ActiveAdmin.register Folder do
     after_destroy :check_model_errors
     before_create do |item|
       item.user = current_user
+    end
+    
+    def show
+      begin
+        @folder = Folder.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Folder #{params[:id]})" }
+      end
+      @jobs = @folder.delayed_jobs
     end
     
     def check_model_errors(object)
@@ -40,6 +55,20 @@ ActiveAdmin.register Folder do
     
   end
   
+  member_action :reindex, method: :get do
+    job = Delayed::Job.enqueue(ReindexFolderJob.new(params[:id]))
+    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+  end
+  
+  #action_item :publish, only: :show do
+  #  link_to 'Publish', publish_admin_folder_path(folder)
+  #end
+  
+  member_action :publish, method: :get do
+    job = Delayed::Job.enqueue(PublishFolderJob.new(params[:id]))
+    redirect_to resource_path(params[:id]), notice: "Publish Job started #{job.id}"
+  end
+  
   ###########
   ## Index ##
   ###########
@@ -55,12 +84,19 @@ ActiveAdmin.register Folder do
     actions
   end
   
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
+  end
+  
   ##########
   ## Show ##
   ##########
   
   show do
     active_admin_navigation_bar( self )
+    
+    render('jobs/jobs_monitor')
+    
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_folder_type) { |r| r.folder_type }
@@ -82,19 +118,23 @@ ActiveAdmin.register Folder do
     end
     
   end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => folder }
+  end
 
   ##########
   ## Edit ##
   ##########
-  
-  sidebar :actions, :only => [:edit, :new] do
-    render("editor/section_sidebar_save") # Calls a partial
-  end
 
   form do |f|
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name)
     end
+  end
+  
+  sidebar :actions, :only => [:edit, :new] do
+    render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => folder }
   end
   
 end

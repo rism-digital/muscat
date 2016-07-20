@@ -10,7 +10,7 @@ module ActiveAdmin::ViewsHelper
   # - src_list_page is the pagination
   def active_admin_embedded_source_list( context, item, query, src_list_page, enable_view_src = true )
     # get the list of sources for the item
-    c = item.sources
+    c = item.referring_sources
     # do not display the panel if no source attached
     return if c.empty?
     context.panel (I18n.t :filter_sources), :class => "muscat_panel"  do
@@ -21,8 +21,6 @@ module ActiveAdmin::ViewsHelper
       query = "*" if !query.is_a? String
       
       # filter the list of sources
-      # todo - Solr searching instead of active model searching
-      # c = item.sources.where("std_title like ?", "%#{query}%") unless query.blank?
       c = Source.solr_search do
         fulltext query
         with item.class.name.underscore.pluralize.to_sym, item.id
@@ -67,10 +65,6 @@ module ActiveAdmin::ViewsHelper
     name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
     
     link_to("Select", "#", :data => { :marc_editor_select => item.id, :marc_editor_label => name })
-  end
-  
-  def active_admin_muscat_cancel_link
-    link_to("Cancel", "#", :data => { :marc_editor_cancel => "cancel"})
   end
   
   def active_admin_muscat_actions( context )
@@ -132,12 +126,6 @@ module ActiveAdmin::ViewsHelper
     end
   end
   
-  def pretty_truncate(text, length = 30, truncate_string = " ...")
-    return if text.nil?
-    l = length - truncate_string.mb_chars.length
-    text.mb_chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
-  end 
-  
   # formats the string for the source show title
   def active_admin_source_show_title( composer, std_title, id, record_type )
     record_type = record_type ? "#{I18n.t('record_types.' + record_type.to_s)} " : ""
@@ -145,6 +133,14 @@ module ActiveAdmin::ViewsHelper
     return "#{std_title} - #{record_type}[#{id}]" if composer.empty? and !std_title.empty?
     return "#{composer} - #{record_type}[#{id}]" if (std_title.nil? or std_title.empty?)
     return "#{composer} : #{std_title} - #{record_type}[#{id}]"
+  end
+  
+  # formats the string for the holding show title
+  def active_admin_holding_show_title( holding )
+    return "#{holding.lib_siglum}[#{holding.id}]" if !holding.source
+    return "#{holding.lib_siglum}[#{holding.id}] (#{holding.source.std_title}[#{holding.source.id}])"if !holding.source.composer
+    return "#{holding.lib_siglum}[#{holding.id}] (#{holding.source.composer}[#{holding.source.id}])" if !holding.source.std_title
+    return "#{holding.lib_siglum}[#{holding.id}] (#{holding.source.composer} - #{holding.source.std_title}[#{holding.source.id}])"
   end
   
   # formats the string for the source show title
@@ -164,7 +160,7 @@ module ActiveAdmin::ViewsHelper
   
   def active_admin_digital_object_show_title( description, id )
     return "[#{id}]" if !description || description.empty?
-    return "#{pretty_truncate(description, 60)} - [#{id}]"
+    return "#{description.truncate(60)} - [#{id}]"
   end
   
   def digital_object_form_url
@@ -207,6 +203,14 @@ module ActiveAdmin::ViewsHelper
         end
       end
     end
+  end
+
+  def local_sorting( codes, editor_profile )
+    local_hash = Hash.new
+    codes.each do |code|
+      local_hash[code] = editor_profile.get_label(code)
+    end
+    return Hash[local_hash.sort_by{|k, v| v}].keys
   end
   
 end

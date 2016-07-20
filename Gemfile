@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.2.0'
 
 # Use mysql2 as the database for Active Record
 # USE THIS VERSION for 4.1
@@ -19,11 +19,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+#gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'js_cookie_rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -64,25 +65,28 @@ gem 'htmlentities'
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', github: 'rism-ch/activeadmin'#, ref: 'a2cd960'
+gem 'activeadmin', '~> 1.0.0.pre2' #, github: 'rism-ch/activeadmin'#, ref: 'a2cd960'
+# Disabled - left to find it again
+#gem 'active_admin_scoped_collection_actions', github: 'activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails', git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
-gem 'sunspot_solr'
+gem 'sunspot_rails', "2.2.0"#, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
+gem 'sunspot_solr',  "2.2.0"
 gem 'awesome_print'
-gem 'progress_bar'
+gem 'progress_bar', github: 'rism-ch/progress_bar'
 gem "rails3-jquery-autocomplete", github: 'rism-ch/rails3-jquery-autocomplete'
 gem "cancan"
 gem "rolify"
 group :development do
     gem 'webrick', '~> 1.3.1'
 end
-gem 'blacklight', "~> 5.14"
+
+gem 'blacklight', "5.14"
 gem "blacklight_advanced_search"
 gem 'bootstrap-sass', "3.3.4.1"
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
 gem "blacklight_range_limit"
-gem 'devise'
+gem 'devise', "~> 3.5.6"
 gem 'devise-i18n'
 
 # paperclip for image storage
@@ -98,3 +102,17 @@ gem 'activerecord-import', ">= 0.4.0"
 
 gem 'ruby-prof'
 gem 'pry', :group => :development
+
+# Background tasks
+# https://github.com/collectiveidea/delayed_job/issues/776
+gem 'delayed_job', "4.1.1", github: 'rism-ch/delayed_job'
+gem 'delayed_job_active_record'
+gem 'progress_job', github: "rism-ch/progress_job"
+
+# Scheduled tasks cron style
+gem 'crono', github: 'plashchynski/crono'
+gem 'daemons'
+
+# Add I18n in js
+gem "i18n-js", ">= 3.0.0.rc11"
+gem 'colorize'

@@ -2,6 +2,9 @@ ActiveAdmin.register Workgroup do
   
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_workgroups)}
 
+  # Remove all action items
+  config.clear_action_items!
+  
   collection_action :autocomplete_workgroup_name, :method => :get
 
   # See permitted parameters documentation:
@@ -37,6 +40,20 @@ ActiveAdmin.register Workgroup do
         format.html
       end
     end
+    # redirect update failure for preserving sidebars
+    def update
+      update! do |success,failure|
+        success.html { redirect_to collection_path }
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
+    
+    # redirect create failure for preserving sidebars
+    def create
+      create! do |success,failure|
+        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+      end
+    end
     
   end
   
@@ -53,11 +70,15 @@ ActiveAdmin.register Workgroup do
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_pattern), :libpatterns
     column I18n.t(:filter_connected_libraries), :workgroups do |wg|
-             wg.institutions.map(&:siglum).join(", ").html_safe
+             wg.show_libs.html_safe
        end
 
     #column (I18n.t :filter_sources), :src_count
     actions
+  end
+  
+  sidebar :actions, :only => :index do
+    render :partial => "activeadmin/section_sidebar_index"
   end
   
   ##########
@@ -70,12 +91,16 @@ ActiveAdmin.register Workgroup do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_pattern) { |r| r.libpatterns }
       row I18n.t(:connected_libraries) do |n|
-             workgroup.institutions.map(&:siglum).join(", ").html_safe
+             workgroup.show_libs.html_safe
                end
      # row (I18n.t :filter_alternates) { |r| r.alternates }
      # row (I18n.t :filter_notes) { |r| r.notes }  
     end
     #active_admin_embedded_source_list( self, workgroup, params[:qe], params[:src_list_page] )
+  end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => workgroup }
   end
   
   sidebar I18n.t(:search_sources), :only => :show do
@@ -96,7 +121,7 @@ ActiveAdmin.register Workgroup do
   end
   
   sidebar :actions, :only => [:edit, :new] do
-    render("editor/section_sidebar_save") # Calls a partial
+    render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => workgroup }
   end
   
 end

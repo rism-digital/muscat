@@ -1,6 +1,9 @@
 
 fr: 
   active_admin:
+# Pad for italian, it has 2 missing items
+#
+#
     dashboard: "Tableau de bord"
     dashboard_welcome:
       welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
@@ -35,6 +38,7 @@ fr:
         ends_with: "Se termine par"
         greater_than: "Plus grand que"
         less_than: "Plus petit que"
+        with_integer: "FILTER"
     status_tag:
       "yes": "Oui"
       "no": "Non"
@@ -179,6 +183,10 @@ fr:
         other: "Utilisateurs"
 
   #################### RECORD TYPES (TEMPLATES)
+  select_template: "SELECT NEW TEMPLATE"
+  available_templates: "AVAILABLE TEMPLATES"
+  from_existing_source: "CREATE FROM EXISTING SOURCE"
+  create_from_existing: "CREATE"
   record_types:
     unspecified: "[type indéterminé]"
     convolutum: "Convolutum"
@@ -210,7 +218,7 @@ fr:
   menu_workgroups: "Groupes"
   menu_administration: "Administration"
   menu_comments: "Commentaires"
-  menu_catalog: "Recherche par facette"
+  menu_catalog: "Recherche par catégories"
   menu_languages: "Langue"
   menu_contact: "Contact"
   menu_search_history: "Historique de recherche"
@@ -218,6 +226,8 @@ fr:
   menu_marc_documentation: "Configuration Marc"
   menu_guidelines_top: "Instructions"
   menu_cataloging: "Catalogage"
+  menu_jobs: "Tâches"
+  menu_holdings: "Exemplaires"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"
@@ -235,14 +245,53 @@ fr:
   search_sources: "Chercher des sources"
   created_at: "Date de création"
   updated_at: "Dernière modification"
- 
+  status: "Statut"
+  progress_stage: "Avancement"
+  object: "Object"
+  queue: "Queue"
+  failed_at: "Echec à"
+  run_at: "Lancé à"
+  created_at: "Créé à"
+  progress: "Progrès"
+  failed: "Echec"
+  waiting: "En attente"
+  running: "En cours"
+  finished: "Achevé"
+  lib_siglum: "Sigle de bibliothèque"
+  holding_records: "Copie"
+  new_holding: "Ajouter une copie"
+  
+  jobs:
+    not_set: "[sans statut]"
+    ok: "Tâche accomplie"
+    no_status: "Une erreur s'est produite lors de la lecture du statut"
+    error: "Erreur: "
+    running_jobs: "Une tâche en cours ne peut être supprimée."
+    auto_delete: "Suppression impossible: la tâche a été supprimée automatiquement."
+    no_view: "Affichage impossible: la tâche a été supprimée automatiquement."
+
+  # Sidebar
+  delete: "Supprimer"
+  to_the_list: "Retourner à la liste"
+  edit: "Modifier"
+  new: "Créer"
+  duplicate: "Dupliquer"
+  no_action: "Aucune action possible"
+  reindex: "Ré-indexer"
+  publish: "Publier"
+  create_folder: "Ajouter à un nouveau dossier"
+  append_folder: "Ajouter à un dossier existant"
+  
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"
   show_preview: "Afficher l'aperçu"
+  hide_preview: "Masquer l'aperçu"
   show_history: "Afficher l'historique"
+  show_viaf: "Recherche VIAF"
   save_and_continue: "Enregistrer et continuer"
   save_and_exit: "Enregistrer et terminer"
   cancel: "Annuler"
+  select: "Sélectionner"
   
   # Version history
   history_date: "Date"
@@ -261,6 +310,9 @@ fr:
     save: "Sauver les résultats dans un dossier"
     success: "Le dossier %{name} créé avec %{count} éléments."
     too_many: "Impossible d'ajouter plus de %{max} éléments  (%{count} sélectionnés)."
+    added: "%{COUNT} éléments ajoutés au dossier %{NAME}."
+    added_bg: "Eléments ajoutés au dossier, tâche %{JOB} ajoutée à la queue."
+    success_bg: "Dossier %{NAME} créé, tâche %{JOB} ajoutée à la queue."
   
   ### Digital objects
   digital_objects: "Images"
@@ -275,6 +327,7 @@ fr:
   filter_alternates: "Autres noms"
   filter_any_field: "N'importe quel champ"
   filter_author: "Auteur"
+  filter_author_or_editor: "Auteur/Éditeur"
   filter_autograph_of: "Autographe de"
   filter_birth_place: "Lieu de naissance"
   filter_catalog: "Catalogue"
@@ -310,6 +363,9 @@ fr:
   filter_liturgical_feast: "Fête liturgique"
   filter_location_and_name: "Nom et endroit"
   filter_manuscript_no: "No de source"
+  filter_male: "MALE"
+  filter_female: "FEMALE"
+  filter_unknown: "UNKNOWN"
   filter_shelf_mark: "Cote"
   filter_name: "Nom"
   filter_notes: "Notes"
@@ -319,8 +375,8 @@ fr:
   filter_pattern: "Modèle de sigle"
   filter_people: "Personnes" 
   filter_person_100d: "Dates"
-  filter_person_039a: "Genre"
-  filter_person_374a: "Profession"
+  filter_person_550a: "Profession"
+  filter_person_375a: "Genre"
   filter_person_043c: "Code de pays"
   filter_person_551a: "Lieux"
   filter_person_100d_birthdate: "Date de naissance"
@@ -334,6 +390,7 @@ fr:
   filter_id: "No RISM"
   filter_id_no: "No RISM"
   filter_scoring: "Distribution"
+  filter_series_items: "Eléments de la série"
   filter_siglum: "Sigle"
   filter_source: "Source"
   filter_sources: "Sources"
@@ -355,7 +412,7 @@ fr:
   filter_content_type: "Type"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
-  filter_wf_stage: "Status"
+  filter_wf_stage: "Statut"
   filter_distribution: "Formation"
   filter_dist_exclude: "Exclure"
   filter_dist_594a: "Parties vocales (solo)"
@@ -389,7 +446,8 @@ fr:
   rism_g_sharp: "Sol dièse majeur/mineur"
   
   # Assorted error messages
-  error_not_found: "La resource à laquelle vous essayez d'accéder n'existe pas ou a été supprimée."
+  error_not_found: "La ressource à laquelle vous essayez d'accéder n'existe pas ou a été supprimée."
+  error_saving: "La ressource n'est pas complète ou engendre un doublon"
   unknown_tags: "Ce titre contient des champs non reconnus."
   
   #
@@ -514,7 +572,12 @@ fr:
     download: "Téléchargement"
     more: "Informations supplémentaires"
     banner: 'Cliquez "Aperçu" pour voir le résultat de la conversion en MEI.'
-    
+
+  wf_stage:
+    inprogress: "En cours"
+    published: "Publié"
+    deleted: "Supprimé"
+
   date:
     month_names:
     -

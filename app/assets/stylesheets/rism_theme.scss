@@ -261,6 +261,14 @@ h5.index_title {
 
 }
 
+// Avoid navbar and header to remain on top of diva.js
+.navbar-static-top {
+	z-index: 98;
+}
+.navbar-fixed-bottom {
+	z-index: 99;
+}
+
 // Catalog Show Page //
 .blacklight-catalog-show {
     #content {

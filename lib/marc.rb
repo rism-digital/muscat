@@ -69,6 +69,10 @@ class Marc
     @root.resolve_externals unless !resolve
   end
   
+  def loaded
+    return @loaded
+  end
+  
   # Read a line from a MARC record
   def ingest_raw(tag_line)
     if tag_line =~ @marc21
@@ -288,20 +292,9 @@ class Marc
     # item in collection
     elsif node = first_occurance("773", "w")
       parent = node.foreign_object
-    # previous edition
-    elsif node = first_occurance("775", "w")
-      parent = node.foreign_object
     end
   end
   
-  # Copied from application helpers
-  # Used for the inventory database to tuncate the title 
-  def pretty_truncate(text, length = 30, truncate_string = " ...")
-    return if text.nil?
-    l = length - truncate_string.mb_chars.length
-    text.mb_chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
-  end
-
   # Check if the passed tag exists
   def has_tag?(tag)
     load_source unless @loaded
@@ -373,7 +366,17 @@ class Marc
     load_source unless @loaded
     @root.to_marc :true    
   end
-  
+ 
+  def to_json
+    load_source unless @loaded
+    marc_json = {"leader" => "01471cjm a2200349 a 4500", "fields" => []}
+    array = self.root.each{|c| c}
+    array.each do |node|
+      marc_json["fields"] << node.to_json
+    end
+    return marc_json
+  end
+
   def to_xml(updated_at = nil, versions = nil)
     out = Array.new
     out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -404,7 +407,7 @@ class Marc
       # 005 should not be there, if it is avoid duplicates
       _005_tag = first_occurance("005")
       if !_005_tag
-        safe_marc.root.add_at(MarcNode.new(@model, "005", last_transcation, nil), get_insert_position("005") )
+        safe_marc.root.add_at(MarcNode.new(@model, "005", last_transcation, nil), safe_marc.get_insert_position("005") )
         offset += 1
       end
     end
@@ -449,7 +452,7 @@ class Marc
     load_source unless @loaded
     tags = Array.new
     for child in @root.children
-      tags << child if tag_names.include? child.tag
+        tags << child if tag_names.include? child.tag
     end
     return tags
   end
@@ -547,6 +550,7 @@ class Marc
 
   alias to_s to_marc
   alias marc_source to_marc
+  alias inspect to_marc
   
   private
   

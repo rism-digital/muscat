@@ -19,6 +19,7 @@
 
 class Person < ActiveRecord::Base
   include ForeignLinks
+  include MarcIndex
 
   # class variables for storing the user name and the event from the controller
   @@last_user_save
@@ -34,9 +35,14 @@ class Person < ActiveRecord::Base
   
   resourcify 
   has_many :works
-  has_and_belongs_to_many :sources
-  has_and_belongs_to_many :institutions
+  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
+  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_people")
+  has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_people")
+  has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
+  has_and_belongs_to_many :places, join_table: "people_to_places"
+  has_and_belongs_to_many :catalogues, join_table: "people_to_catalogues"
   has_many :folder_items, :as => :item
+  has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   # People can link to themselves
@@ -44,15 +50,17 @@ class Person < ActiveRecord::Base
   has_and_belongs_to_many(:people,
     :class_name => "Person",
     :foreign_key => "person_a_id",
-    :association_foreign_key => "person_b_id")
+    :association_foreign_key => "person_b_id",
+    join_table: "people_to_people")
   
   # This is the backward link
   has_and_belongs_to_many(:referring_people,
     :class_name => "Person",
     :foreign_key => "person_b_id",
-    :association_foreign_key => "person_a_id")
+    :association_foreign_key => "person_a_id",
+    join_table: "people_to_people")
   
-  composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source)
+  composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
   
 #  validates_presence_of :full_name  
   validate :field_length
@@ -112,7 +120,7 @@ class Person < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["institutions", "people"]
+    allowed_relations = ["institutions", "people", "places", "catalogues"]
     recreate_links(marc, allowed_relations)
   end
   
@@ -221,7 +229,7 @@ class Person < ActiveRecord::Base
     
   # before_destroy, will delete Person only if it has no Source and no Work
   def check_dependencies
-    if (self.sources.count > 0) || (self.works.count > 0)
+    if (self.referring_sources.count > 0) || (self.works.count > 0)
       errors.add :base, "The person could not be deleted because it is used"
       return false
     end
@@ -275,11 +283,16 @@ class Person < ActiveRecord::Base
   end
 
   ransacker :"100d_contains", proc{ |v| } do |parent| end
-  ransacker :"039a_contains", proc{ |v| } do |parent| end
-  ransacker :"374a_contains", proc{ |v| } do |parent| end
+  ransacker :"375a_contains", proc{ |v| } do |parent| end
+  ransacker :"550a_contains", proc{ |v| } do |parent| end
   ransacker :"100d_birthdate_contains", proc{ |v| } do |parent| end
   ransacker :"100d_deathdate_contains", proc{ |v| } do |parent| end
   ransacker :"043c_contains", proc{ |v| } do |parent| end
   ransacker :"551a_contains", proc{ |v| } do |parent| end
+
+  def self.get_viaf(str)
+    str.gsub!("\"", "")
+    Viaf::Interface.search(str, self.to_s)
+  end
 
 end
