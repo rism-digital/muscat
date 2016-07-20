@@ -75,17 +75,11 @@ module MarcControllerActions
       if params[:triggers]
         triggers = JSON.parse(params[:triggers])
         
-        #trigger:
-        # - save:
-        #   - sources
-        # note that "relation" is an array
-        
         triggers.each do |k, relations|
-          relation_name = "referring_" + relations[0]
           if k == "save"
-            t.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, relation_name)) }
+            t.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, "referring_" + model)) }
           elsif k == "reindex"
-            t.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, relation_name)) }
+            t.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, "referring_" + model)) }
           else
             puts "Unknown trigger #{k}"
           end
