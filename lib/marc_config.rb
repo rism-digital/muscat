@@ -156,14 +156,20 @@ class MarcConfig
   end
 
   # Check if a tag or subtag can be repeated (* or + mean it is)
+  # disable_multiple means that duplication is disable IN EDITOR
+  # but the field is allowed to be repeatable IN MARC
+  # This is for tag groups: a field should not be repeatable in the group
+  # but can be repeated because of multiple groups
   def multiples_allowed?(tag, subtag = "")
     if subtag.empty?
         occurrences = @tag_config[tag][:occurrences]
+        disable_multiple = @tag_config[tag][:disable_multiple] rescue disable_multiple = false
     else
         return false if !@tag_config[tag][:fields].assoc(subtag)
         occurrences = @tag_config[tag][:fields].assoc(subtag)[1][:occurrences]
+        disable_multiple = @tag_config[tag][:fields].assoc(subtag)[1][:disable_multiple] rescue disable_multiple = false
     end
-    return true if occurrences == '*' or occurrences == '+'
+    return true if (occurrences == '*' or occurrences == '+') && disable_multiple == false
     return false
   end
 

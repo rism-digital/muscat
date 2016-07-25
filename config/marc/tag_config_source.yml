@@ -116,6 +116,7 @@
     :master: a
     :indicator: ["0#", "1#", "2#"]
     :occurrences: "*"
+    :disable_multiple: true
     :fields:
     - - a
       - :occurrences: "*"
