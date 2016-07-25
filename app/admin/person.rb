@@ -122,6 +122,15 @@ ActiveAdmin.register Person do
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
   
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+         collection: proc {
+           if current_user.has_any_role?(:editor, :admin)
+             User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}
+           else
+             [[current_user.name, "wf_owner:#{current_user.id}"]]
+           end
+         }
+  
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder

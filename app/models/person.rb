@@ -216,6 +216,9 @@ class Person < ActiveRecord::Base
     sunspot_dsl.text :alternate_names
     sunspot_dsl.text :alternate_dates
     
+    sunspot_dsl.integer :wf_owner
+    sunspot_dsl.string :wf_stage
+    
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
