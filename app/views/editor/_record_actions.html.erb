@@ -1,0 +1,73 @@
+<div class="panel tab_panel" style="display: none;" name="Holding_Records">
+	<h3><%=I18n.t(:record_actions)%></h3>
+	<div class="tag_content_collapsable">
+		<table class="tag_grid" cellpadding="0" cellspacing="0">
+			<tr><th width="25%"></th><th width="25%"></th><th width="25%"></th><th width="25%"></th></tr>
+		
+	        <tr>
+	    		<td>
+	    			<div class="grid_cell_header">
+						<%=I18n.t(:record_status)%>
+	                </div>
+	            </td>
+	    		<td colspan="3">
+	    			<div class="grid_cell">
+	    				<div style="vertical-align: bottom; background-color: transparent">
+							<select id="record_status" width="100">
+								<% if @item.id == nil %>
+									<% if current_user.has_role?(:editor) || current_user.has_role?(:admin) %>
+										<option value="published" selected="true">Published</option>
+										<option value="inprogress">In Progress</option>
+									<%else%>
+										<option value="published">Published</option>
+										<option value="inprogress" selected="true">In Progress</option>
+									<%end%>
+								<%else%>
+									<% if @item.wf_stage == "published" %>
+										<option value="published" selected="true">Published</option>
+										<option value="inprogress">In Progress</option>
+									<%else%>
+										<option value="published">Published</option>
+										<option value="inprogress" selected="true">In Progress</option>
+									<%end%>
+								<%end%>
+							</select>
+	    				</div>
+	    			</div>
+	    		</td>
+			</tr>
+			<tr>
+	    		<td>
+	    			<div class="grid_cell_header">
+						<%=I18n.t(:record_owner)%>
+	                </div>
+	            </td>
+	    		<td colspan="3">
+	    			<div class="grid_cell">
+	    				<div style="vertical-align: bottom; background-color: transparent">
+							<select id="record_owner" width="100" <%= (current_user.has_role?(:editor)||current_user.has_role?(:admin)) ? "a" : "disabled=\"disabled\""%> >
+								<% User.all.each do |u| %>
+									<% if @item.id == nil %>
+										<%if u == current_user %>
+											<option value="<%=u.id%>" selected="true"><%=u.name%></option>
+										<%else%>
+											<option value="<%=u.id%>"><%=u.name%></option>
+										<%end%>
+									<%else%>
+										<%if u == @item.user %>
+											<option value="<%=u.id%>" selected="true"><%=u.name%></option>
+										<%else%>
+											<option value="<%=u.id%>"><%=u.name%></option>
+										<%end%>
+									<%end%>
+								<%end%>
+							</select>
+	    				</div>
+	    			</div>
+	    		</td>
+	        </tr>
+		</table>
+		
+
+	</div>
+</div>

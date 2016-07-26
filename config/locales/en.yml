@@ -260,6 +260,9 @@ en:
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
   new_holding: "Create Holding Record"
+  record_actions: "Record Actions"
+  record_status: "Record Status"
+  record_owner: "Record Owner"
   
   jobs:
     not_set: "[No status set]"

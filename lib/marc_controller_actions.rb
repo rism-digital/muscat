@@ -60,7 +60,19 @@ module MarcControllerActions
       @item.lock_version = params[:lock_version]
       
       @item.record_type = params[:record_type] if (@item.respond_to? :record_type)
-
+      
+      # Some housekeeping, change owner and status
+      if params.has_key?(:record_status) &&
+        (current_user.has_role?(:cataloger) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
+        @item.wf_stage = params[:record_status]
+      end
+      
+      if params.has_key?(:record_owner) &&
+        (current_user.has_role?(:editor) || current_user.has_role?(:admin))
+        new_user = User.find(params[:record_owner]) rescue new_user = nil
+        @item.user = new_user if new_user
+      end
+      
       @item.save
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       

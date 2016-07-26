@@ -260,6 +260,9 @@ it:
   lib_siglum: "Sigla della Biblioteca"
   holding_records: "Informazioni sugli esemplari"
   new_holding: "Nuovo Esemplare"
+  record_actions: "Impostazioni Record "
+  record_status: "Stato pubblicazione"
+  record_owner: "Proprietario"
   
   jobs:
     not_set: "[Nessuno stato]"

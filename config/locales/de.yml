@@ -260,6 +260,9 @@ de:
   lib_siglum: "Bibliothekssigel"
   holding_records: "Exemplar Information"
   new_holding: "Neuer Examplar Eintrag"
+  record_actions: "RECORD ACTIONS"
+  record_status: "RECORD STATUS"
+  record_owner: "RECORD OWNER"
   
   jobs:
     not_set: "[Kein Status gesetzt]"
