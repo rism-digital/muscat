@@ -187,18 +187,18 @@ class Source < ActiveRecord::Base
     sunspot_dsl. string :title_order do 
       title
     end
-    sunspot_dsl. text :title, :stored => true
-    sunspot_dsl. text :title_d
+    sunspot_dsl.text :title, :stored => true
+    sunspot_dsl.text :title_d
     
     sunspot_dsl.string :shelf_mark_order do 
       shelf_mark
     end
-    sunspot_dsl.text :shelf_mark, :stored => true
+    sunspot_dsl.text :shelf_mark, :stored => true, :as => "shelf_mark_ans"
     
     sunspot_dsl.string :lib_siglum_order do
       lib_siglum
     end
-    sunspot_dsl.text :lib_siglum, :stored =>true
+    sunspot_dsl.text :lib_siglum, :stored => true, :as => "lib_siglum_ans"
     
     sunspot_dsl.integer :date_from do 
       date_from != nil && date_from > 0 ? date_from : nil
