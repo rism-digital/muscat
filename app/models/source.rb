@@ -436,5 +436,7 @@ class Source < ActiveRecord::Base
   def marc_helper_set_anonymous
     "Anonymous"
   end
-    
+
+  ransacker :"852a_facet_contains", proc{ |v| } do |parent| end
+
 end

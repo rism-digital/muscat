@@ -187,9 +187,10 @@ fields:
   "787w":
   "787w":
   "852a_facet":
-      :type: string
+      :type: text ## hack for sunspot: make this field work as fulltext
       :from_tag: "852"
       :from_subtag: "a"
+      :as: "852a_facet_sm" # But set it manually as string multiple
       :holding_record: true
   "852a":
       :holding_record: true
