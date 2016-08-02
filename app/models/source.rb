@@ -198,7 +198,7 @@ class Source < ActiveRecord::Base
     sunspot_dsl.string :lib_siglum_order do
       lib_siglum
     end
-    sunspot_dsl.text :lib_siglum, :stored => true, :as => "lib_siglum_ans"
+    sunspot_dsl.text :lib_siglum, :stored => true, :as => "lib_siglum_s"
     
     sunspot_dsl.integer :date_from do 
       date_from != nil && date_from > 0 ? date_from : nil
