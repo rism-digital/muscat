@@ -36,6 +36,7 @@
 #= require new_window_select_ujs
 #= require jsdiff.js
 #= require job_progress_bar
+#= require filter_workaround
 
 #= require viaf_interface.js
 #= require modification_trigger_ujs.js
