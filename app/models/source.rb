@@ -52,7 +52,11 @@ class Source < ActiveRecord::Base
   belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
   #belongs_to :source
   has_many :child_sources, {class_name: "Source"}
-  has_many :digital_objects
+  #has_many :digital_objects, :as => :object_link, :through => :digital_object_links
+  has_many :digital_object_links, as: :object_link
+  has_many :digital_objects, :through => :digital_object_links
+  
+  
   has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
   has_and_belongs_to_many :people, join_table: "sources_to_people"
   has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
