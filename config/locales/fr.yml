@@ -228,9 +228,9 @@ fr:
   menu_cataloging: "Catalogage"
   menu_jobs: "Tâches"
   menu_holdings: "Exemplaires"
-  record_actions: "RECORD ACTIONS"
-  record_status: "RECORD STATUS"
-  record_owner: "RECORD OWNER"
+  record_actions: "Actions"
+  record_status: "Status"
+  record_owner: "Propriétaire"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"
