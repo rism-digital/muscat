@@ -438,5 +438,5 @@ class Source < ActiveRecord::Base
   end
 
   ransacker :"852a_facet_contains", proc{ |v| } do |parent| end
-
+    
 end
