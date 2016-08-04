@@ -228,9 +228,6 @@ fr:
   menu_cataloging: "Catalogage"
   menu_jobs: "Tâches"
   menu_holdings: "Exemplaires"
-  record_actions: "Actions"
-  record_status: "Status"
-  record_owner: "Propriétaire"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"
@@ -263,6 +260,10 @@ fr:
   lib_siglum: "Sigle de bibliothèque"
   holding_records: "Copie"
   new_holding: "Ajouter une copie"
+  new_digital_object: "Attacher une nouvelle image"
+  record_actions: "Actions"
+  record_status: "Status"
+  record_owner: "Propriétaire"
   
   jobs:
     not_set: "[sans statut]"

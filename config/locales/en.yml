@@ -260,6 +260,7 @@ en:
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
   new_holding: "Create Holding Record"
+  new_digital_object: "Attach a new image"
   record_actions: "Record Actions"
   record_status: "Record Status"
   record_owner: "Record Owner"
