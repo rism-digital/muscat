@@ -108,6 +108,7 @@ ActiveAdmin.register DigitalObject do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => digital_object }
+    render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
   end
   
   ##########

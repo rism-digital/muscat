@@ -1,0 +1,17 @@
+<%-
+	model = self.resource_class.to_s.split('::').last.underscore.downcase
+%>
+
+<ul>
+	<%- if  !is_selection_mode? %>
+
+		<li class="muscat_icon_separator"></li>
+	
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :to_the_list}", send("collection_path", item),
+			:class => "muscat_icon_link muscat_icon_link_list") %>
+		</li>
+		
+	<%- end %>
+	
+</ul>
