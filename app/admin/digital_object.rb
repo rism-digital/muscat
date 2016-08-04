@@ -65,14 +65,11 @@ ActiveAdmin.register DigitalObject do
   filter :attachment_content_type, :label => proc {I18n.t(:filter_content_type)}
   filter :attachment_updated_at, :label => proc {I18n.t(:updated_at)}
   
-  index :download_links => false do
-    selectable_column if !is_selection_mode?
-    id_column
-    column (I18n.t :filter_description), :description
-    column (I18n.t :filter_file_name), :attachment_file_name
-    column (I18n.t :filter_file_size) {|obj| filesize_to_human(obj.attachment_file_size) if obj.attachment_file_size}
-    column (I18n.t :filter_content_type), :attachment_content_type
-    active_admin_muscat_actions( self )
+  index :as => :grid, :download_links => false do |obj|
+    div do
+        link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
+    end
+    a truncate(obj.description), :href => admin_digital_object_path(obj)
   end
   
   sidebar :actions, :only => :index do
