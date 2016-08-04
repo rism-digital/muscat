@@ -85,6 +85,13 @@
 		<a data-scroll-target="show_toplevel" data-panel="marc_editor_history" href="#" class="muscat_icon_link muscat_icon_link_history"><%=(I18n.t :show_history)%></a>
 	</li>
 
+<% if @item.respond_to?("digital_objects") %>
+	<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :new_digital_object}", new_admin_digital_object_path(object_link_id: @item.id, object_link_type: @item.class),
+			:class => "muscat_icon_link muscat_icon_link_picture") %>
+	</li>
+<% end %>
+
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
 		<a data-scroll-target="show_help" data-panel="marc_editor_help" data-help="edit_functions" data-help-title="<%= help_title -%>" href="#" class="muscat_icon_link muscat_icon_link_help"><%= help_title -%></a

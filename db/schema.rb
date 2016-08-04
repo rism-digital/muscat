@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803145014) do
+ActiveRecord::Schema.define(version: 20160804073728) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -154,7 +154,6 @@ ActiveRecord::Schema.define(version: 20160803145014) do
   end
 
   create_table "digital_objects", force: :cascade do |t|
-    t.integer  "source_id",               limit: 4
     t.string   "description",             limit: 255
     t.integer  "wf_audit",                limit: 4,   default: 0
     t.integer  "wf_stage",                limit: 4,   default: 0
@@ -167,8 +166,6 @@ ActiveRecord::Schema.define(version: 20160803145014) do
     t.integer  "attachment_file_size",    limit: 4
     t.datetime "attachment_updated_at"
   end
-
-  add_index "digital_objects", ["source_id"], name: "index_digital_objects_on_source_id", using: :btree
 
   create_table "do_div_files", force: :cascade do |t|
     t.integer  "do_file_id", limit: 4

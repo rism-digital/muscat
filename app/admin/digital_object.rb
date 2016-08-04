@@ -9,9 +9,6 @@ ActiveAdmin.register DigitalObject do
   # Remove all action items
   config.clear_action_items!
   
-  # Remove creation option (only possible from source)
-  actions :all, :except => [:new]
-  
   controller do
     def permitted_params
       params.permit! #params.permit :description, :attachment
@@ -34,21 +31,26 @@ ActiveAdmin.register DigitalObject do
     def create
       create! do |success, failure|
         success.html do
-          redirect_to admin_source_path(params[:digital_object][:source_id])
+          # If we have a new_object_link_type/id, also create the object link - See the DigitalObjectLink for
+          # the fake accessors and the form below for the hidden fields
+          if (params[:digital_object][:new_object_link_type] && params[:digital_object][:new_object_link_id])
+            dol = DigitalObjectLink.new(
+              object_link_type: params[:digital_object][:new_object_link_type],
+              object_link_id: params[:digital_object][:new_object_link_id],
+              user: resource.user,
+              digital_object_id: resource.id
+            )
+            dol.save!
+          end
+          redirect_to admin_digital_object_path(resource.id)
           return
         end
         failure.html do
           flash[:error] = "The digital object could not be created"
-          redirect_to admin_source_path(params[:digital_object][:source_id])
+          redirect_to collection_path
           return
         end
       end
-    end
-    
-    def destroy
-      obj = DigitalObject.find(params[:id])
-      destroy_redirect = obj ? admin_source_path(obj.source_id) : admin_sources_url
-      destroy! { redirect_to destroy_redirect and return }
     end
     
   end
@@ -85,8 +87,10 @@ ActiveAdmin.register DigitalObject do
   show :title => proc{ active_admin_digital_object_show_title( @digital_object.description, @digital_object.id) } do |ad|
     attributes_table do
       row (I18n.t :filter_description) { |r| r.description } 
-      row (I18n.t :filter_source) do 
-        link_to(ad.source.id, admin_source_path(ad.source)) if ad.source
+      ad.digital_object_links.each do |dol|
+        row (I18n.t "filter_#{dol.object_link_type.downcase}".to_sym) do
+          link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
+        end
       end
     end
     if ad.attachment_file_size
@@ -118,10 +122,15 @@ ActiveAdmin.register DigitalObject do
       f.input :description,:label => I18n.t(:filter_description)
       f.input :attachment, as: :file, :label => I18n.t(:filter_image)
       f.input :lock_version, :as => :hidden
+      # passing additional parameters for adding the object link directly after the creation
+      if (params[:object_link_type] &&  params[:object_link_id])
+        f.input :new_object_link_type, :as => :hidden, :input_html => {:value =>  params[:object_link_type]}
+        f.input :new_object_link_id, :as => :hidden, :input_html => {:value =>  params[:object_link_id]}
+      end
     end
   end
 
-  sidebar :actions, :only => [:edit] do
+  sidebar :actions, :only => [:edit, :new] do
     render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => digital_object }
   end
   

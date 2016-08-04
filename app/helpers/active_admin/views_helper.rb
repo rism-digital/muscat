@@ -190,19 +190,25 @@ module ActiveAdmin::ViewsHelper
       end
     end
     
-    context.panel (I18n.t :digital_object_new) do
-      active_admin_form_for(DigitalObject.new, url: digital_object_form_url, html: { multipart: true }) do |f|
-      #context.form :html => {:multipart => true} do |f|
-        f.inputs do
-          f.input :source_id, :as => :hidden, :input_html => {:value => item.id }
-          f.input :description, :label => I18n.t(:filter_description)
-          f.input :attachment, as: :file, hint: (f.template.image_tag(f.object.attachment.url(:thumb)) if f.object.attachment?), :label => I18n.t(:filter_image)
-        end
-        f.actions do
-          f.action :submit, label: I18n.t(:digital_object_add)
-        end
-      end
-    end
+    # The block below create a input form for digital objects when it was attached directly to the source
+    # not used anymore because now we have a many to many relationship + polymorphic. 
+    # Digital objects are added from the edit menu
+    # Left for documentation because it was a pain to have it up....
+    
+    #context.panel (I18n.t :digital_object_new) do
+    #  active_admin_form_for(DigitalObject.new, url: digital_object_form_url, html: { multipart: true }) do |f|
+    #  #context.form :html => {:multipart => true} do |f|
+    #    f.inputs do
+    #      f.input :source_id, :as => :hidden, :input_html => {:value => item.id }
+    #      f.input :description, :label => I18n.t(:filter_description)
+    #      f.input :attachment, as: :file, hint: (f.template.image_tag(f.object.attachment.url(:thumb)) if f.object.attachment?), :label => I18n.t(:filter_image)
+     #   end
+    #    f.actions do
+    #      f.action :submit, label: I18n.t(:digital_object_add)
+    #    end
+    #  end
+    #end
+    
   end
 
   def local_sorting( codes, editor_profile )
