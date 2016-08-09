@@ -72,6 +72,14 @@ ActiveRecord::Schema.define(version: 20160804073728) do
   add_index "catalogues_catalogues", ["catalogue_a_id"], name: "index_catalogues_catalogues_on_catalogue_a_id", using: :btree
   add_index "catalogues_catalogues", ["catalogue_b_id"], name: "index_catalogues_catalogues_on_catalogue_b_id", using: :btree
 
+  create_table "catalogues_sources", id: false, force: :cascade do |t|
+    t.integer "catalogue_id", limit: 4
+    t.integer "source_id",    limit: 4
+  end
+
+  add_index "catalogues_sources", ["catalogue_id"], name: "index_catalogues_sources_on_catalogue_id", using: :btree
+  add_index "catalogues_sources", ["source_id"], name: "index_catalogues_sources_on_source_id", using: :btree
+
   create_table "catalogues_to_catalogues", id: false, force: :cascade do |t|
     t.integer "catalogue_a_id", limit: 4
     t.integer "catalogue_b_id", limit: 4
@@ -305,6 +313,22 @@ ActiveRecord::Schema.define(version: 20160804073728) do
   add_index "institutions_institutions", ["institution_a_id"], name: "index_institutions_institutions_on_institution_a_id", using: :btree
   add_index "institutions_institutions", ["institution_b_id"], name: "index_institutions_institutions_on_institution_b_id", using: :btree
 
+  create_table "institutions_people", id: false, force: :cascade do |t|
+    t.integer "institution_id", limit: 4
+    t.integer "person_id",      limit: 4
+  end
+
+  add_index "institutions_people", ["institution_id"], name: "index_institutions_people_on_institution_id", using: :btree
+  add_index "institutions_people", ["person_id"], name: "index_institutions_people_on_person_id", using: :btree
+
+  create_table "institutions_sources", id: false, force: :cascade do |t|
+    t.integer "institution_id", limit: 4
+    t.integer "source_id",      limit: 4
+  end
+
+  add_index "institutions_sources", ["institution_id"], name: "index_institutions_sources_on_institution_id", using: :btree
+  add_index "institutions_sources", ["source_id"], name: "index_institutions_sources_on_source_id", using: :btree
+
   create_table "institutions_to_catalogues", id: false, force: :cascade do |t|
     t.integer "catalogue_id",   limit: 4
     t.integer "institution_id", limit: 4
@@ -370,6 +394,14 @@ ActiveRecord::Schema.define(version: 20160804073728) do
   add_index "liturgical_feasts", ["name"], name: "index_liturgical_feasts_on_name", using: :btree
   add_index "liturgical_feasts", ["wf_stage"], name: "index_liturgical_feasts_on_wf_stage", using: :btree
 
+  create_table "liturgical_feasts_sources", id: false, force: :cascade do |t|
+    t.integer "liturgical_feast_id", limit: 4
+    t.integer "source_id",           limit: 4
+  end
+
+  add_index "liturgical_feasts_sources", ["liturgical_feast_id"], name: "index_liturgical_feasts_sources_on_liturgical_feast_id", using: :btree
+  add_index "liturgical_feasts_sources", ["source_id"], name: "index_liturgical_feasts_sources_on_source_id", using: :btree
+
   create_table "people", force: :cascade do |t|
     t.string   "full_name",       limit: 255
     t.string   "full_name_d",     limit: 128
@@ -395,6 +427,22 @@ ActiveRecord::Schema.define(version: 20160804073728) do
 
   add_index "people", ["full_name"], name: "index_people_on_full_name", using: :btree
   add_index "people", ["wf_stage"], name: "index_people_on_wf_stage", using: :btree
+
+  create_table "people_people", id: false, force: :cascade do |t|
+    t.integer "person_a_id", limit: 4
+    t.integer "person_b_id", limit: 4
+  end
+
+  add_index "people_people", ["person_a_id"], name: "index_people_people_on_person_a_id", using: :btree
+  add_index "people_people", ["person_b_id"], name: "index_people_people_on_person_b_id", using: :btree
+
+  create_table "people_sources", id: false, force: :cascade do |t|
+    t.integer "person_id", limit: 4
+    t.integer "source_id", limit: 4
+  end
+
+  add_index "people_sources", ["person_id"], name: "index_people_sources_on_person_id", using: :btree
+  add_index "people_sources", ["source_id"], name: "index_people_sources_on_source_id", using: :btree
 
   create_table "people_to_catalogues", id: false, force: :cascade do |t|
     t.integer "person_id",    limit: 4
@@ -447,6 +495,14 @@ ActiveRecord::Schema.define(version: 20160804073728) do
   add_index "places", ["name"], name: "index_places_on_name", using: :btree
   add_index "places", ["wf_stage"], name: "index_places_on_wf_stage", using: :btree
 
+  create_table "places_sources", id: false, force: :cascade do |t|
+    t.integer "place_id",  limit: 4
+    t.integer "source_id", limit: 4
+  end
+
+  add_index "places_sources", ["place_id"], name: "index_places_sources_on_place_id", using: :btree
+  add_index "places_sources", ["source_id"], name: "index_places_sources_on_source_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255
     t.integer  "resource_id",   limit: 4
@@ -495,7 +551,25 @@ ActiveRecord::Schema.define(version: 20160804073728) do
 
   add_index "sources", ["record_type"], name: "index_sources_on_record_type", using: :btree
   add_index "sources", ["source_id"], name: "index_sources_on_source_id", using: :btree
+  add_index "sources", ["std_title"], name: "index_sources_on_std_title", length: {"std_title"=>255}, using: :btree
+  add_index "sources", ["std_title_d"], name: "index_sources_on_std_title_d", length: {"std_title_d"=>255}, using: :btree
   add_index "sources", ["wf_stage"], name: "index_sources_on_wf_stage", using: :btree
+
+  create_table "sources_standard_terms", id: false, force: :cascade do |t|
+    t.integer "standard_term_id", limit: 4
+    t.integer "source_id",        limit: 4
+  end
+
+  add_index "sources_standard_terms", ["source_id"], name: "index_sources_standard_terms_on_source_id", using: :btree
+  add_index "sources_standard_terms", ["standard_term_id"], name: "index_sources_standard_terms_on_standard_term_id", using: :btree
+
+  create_table "sources_standard_titles", id: false, force: :cascade do |t|
+    t.integer "standard_title_id", limit: 4
+    t.integer "source_id",         limit: 4
+  end
+
+  add_index "sources_standard_titles", ["source_id"], name: "index_sources_standard_titles_on_source_id", using: :btree
+  add_index "sources_standard_titles", ["standard_title_id"], name: "index_sources_standard_titles_on_standard_title_id", using: :btree
 
   create_table "sources_to_catalogues", id: false, force: :cascade do |t|
     t.integer "catalogue_id", limit: 4
@@ -568,6 +642,14 @@ ActiveRecord::Schema.define(version: 20160804073728) do
 
   add_index "sources_to_works", ["source_id"], name: "index_sources_to_works_on_source_id", using: :btree
   add_index "sources_to_works", ["work_id"], name: "index_sources_to_works_on_work_id", using: :btree
+
+  create_table "sources_works", id: false, force: :cascade do |t|
+    t.integer "source_id", limit: 4
+    t.integer "work_id",   limit: 4
+  end
+
+  add_index "sources_works", ["source_id"], name: "index_sources_works_on_source_id", using: :btree
+  add_index "sources_works", ["work_id"], name: "index_sources_works_on_work_id", using: :btree
 
   create_table "standard_terms", force: :cascade do |t|
     t.string   "term",            limit: 255,               null: false

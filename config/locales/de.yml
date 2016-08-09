@@ -286,6 +286,8 @@ de:
   select: "Auswählen"
   create_folder: "Erstelle Ordner"
   append_folder: "Zu Ordner hinzufügen"
+  add_source: "LINK SOURCE"
+  add_source: "LINK PERSON"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"

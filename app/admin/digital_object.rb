@@ -1,7 +1,7 @@
 ActiveAdmin.register DigitalObject do
 
   # Hide the menu
-  menu false
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:digital_objects)}
 
   # Remove mass-delete action
   batch_action :destroy, false
@@ -55,6 +55,20 @@ ActiveAdmin.register DigitalObject do
     
   end
   
+  member_action :add_item, method: :get do
+    
+    begin 
+      dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
+                                  user: resource.user, digital_object_id: params[:id])
+      dol.save!
+    
+      redirect_to resource_path(params[:id]), notice: "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
+    rescue
+      redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
+      
+    end
+  end
+  
   ###########
   ## Index ##
   ###########
@@ -85,7 +99,7 @@ ActiveAdmin.register DigitalObject do
     attributes_table do
       row (I18n.t :filter_description) { |r| r.description } 
       ad.digital_object_links.each do |dol|
-        row (I18n.t "filter_#{dol.object_link_type.downcase}".to_sym) do
+        row (I18n.t "#{dol.object_link_type.downcase}.one".to_sym) do
           link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
         end
       end

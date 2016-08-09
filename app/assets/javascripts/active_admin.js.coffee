@@ -34,6 +34,7 @@
 #= require editor_hotkeys
 #= require verovio_preload
 #= require new_window_select_ujs
+#= require new_window_select_non_marc
 #= require jsdiff.js
 #= require job_progress_bar
 #= require filter_workaround
