@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ can? :manage, User }
   
-  permit_params :email, :password, :password_confirmation, :name, workgroup_ids: [], role_ids: []
+  permit_params :preference_wf_stage, :email, :password, :password_confirmation, :name, workgroup_ids: [], role_ids: []
 
   # Remove all action items
   config.clear_action_items!
@@ -106,6 +106,7 @@ ActiveAdmin.register User do
       if can? :manage, User
         f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all 
         f.input :roles, as: :select, multiple: false, collection: Role.all
+        f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published, :deleted]
       end
     end
   end

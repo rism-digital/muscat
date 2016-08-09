@@ -15,7 +15,7 @@
 	    				<div style="vertical-align: bottom; background-color: transparent">
 							<select id="record_status" width="100">
 								<% if @item.id == nil %>
-									<% if current_user.has_role?(:editor) || current_user.has_role?(:admin) %>
+									<% if current_user.preference_wf_stage == :published %>
 										<option value="published" selected="true">Published</option>
 										<option value="inprogress">In Progress</option>
 									<%else%>
