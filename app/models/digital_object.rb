@@ -15,5 +15,4 @@ class DigitalObject < ActiveRecord::Base
     # the params are then used to create the digital_object_link item
     attr_accessor :new_object_link_type
     attr_accessor :new_object_link_id
-
 end
