@@ -317,7 +317,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin (~> 1.0.0.pre2)
+  activeadmin (= 1.0.0.pre2)
   activerecord-import (>= 0.4.0)
   awesome_print
   blacklight (= 5.14)
