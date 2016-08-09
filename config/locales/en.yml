@@ -264,6 +264,10 @@ en:
   record_actions: "Record Actions"
   record_status: "Record Status"
   record_owner: "Record Owner"
+  link_type: "Linked object type"
+  linked_object: "Linked Object"
+  links: "Links"
+  link_remove: "Remove Link"
   
   jobs:
     not_set: "[No status set]"

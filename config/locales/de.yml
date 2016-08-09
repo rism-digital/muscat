@@ -264,6 +264,10 @@ de:
   record_actions: "RECORD ACTIONS"
   record_status: "RECORD STATUS"
   record_owner: "RECORD OWNER"
+  link_type: "LINK TYPE"
+  linked_object: "LINKED OBJECT"
+  links: "LINKS"
+  link_remove: "REMOVE LINK"
   
   jobs:
     not_set: "[Kein Status gesetzt]"

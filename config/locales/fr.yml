@@ -264,6 +264,10 @@ fr:
   record_actions: "Actions"
   record_status: "Status"
   record_owner: "Propriétaire"
+  link_type: "LINK TYPE"
+  linked_object: "LINKED OBJECT"
+  links: "LINKS"
+  link_remove: "REMOVE LINK"
   
   jobs:
     not_set: "[sans statut]"
