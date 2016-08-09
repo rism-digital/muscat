@@ -287,7 +287,7 @@ it:
   create_folder: "Crea Cartella"
   append_folder: "Aggiungi a Cartella"
   add_source: "Collega Fonte"
-  add_source: "Collega Persona"
+  add_person: "Collega Persona"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"

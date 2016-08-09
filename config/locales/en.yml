@@ -287,7 +287,7 @@ en:
   create_folder: "Add to a new folder"
   append_folder: "Add to an existing folder"
   add_source: "Link Source"
-  add_source: "Link Person"
+  add_person: "Link Person"
   
   # Editor sidebar
   show_all_groups: "Show all sections"

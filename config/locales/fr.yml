@@ -286,7 +286,7 @@ fr:
   create_folder: "Ajouter à un nouveau dossier"
   append_folder: "Ajouter à un dossier existant"
   add_source: "LINK SOURCE"
-  add_source: "LINK PERSON"
+  add_person: "LINK PERSON"
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"

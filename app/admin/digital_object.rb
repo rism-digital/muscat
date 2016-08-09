@@ -57,15 +57,35 @@ ActiveAdmin.register DigitalObject do
   
   member_action :add_item, method: :get do
     
-    begin 
-      dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
-                                  user: resource.user, digital_object_id: params[:id])
-      dol.save!
+    if can?(:create, DigitalObjectLink)
+      begin 
+        dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
+                                    user: resource.user, digital_object_id: params[:id])
+        dol.save!
     
-      redirect_to resource_path(params[:id]), notice: "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
-    rescue
-      redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
-      
+        redirect_to resource_path(params[:id]), notice: "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
+      rescue
+        redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
+      end
+    else
+      flash[:error] = "Operation not allowed"
+      redirect_to collection_path
+    end
+  end
+  
+  member_action :remove_item, method: :get do
+
+    if can?(:delete, DigitalObjectLink)
+      begin
+        dol = DigitalObjectLink.find(params[:digital_object_link_id])
+        dol.delete
+        redirect_to resource_path(params[:id]), notice: "Link deleted successfully"
+      rescue
+        redirect_to resource_path(params[:id]), error: "Could not delete link"
+      end
+    else
+      flash[:error] = "Operation not allowed"
+      redirect_to collection_path
     end
   end
   
@@ -97,13 +117,21 @@ ActiveAdmin.register DigitalObject do
   
   show :title => proc{ active_admin_digital_object_show_title( @digital_object.description, @digital_object.id) } do |ad|
     attributes_table do
-      row (I18n.t :filter_description) { |r| r.description } 
-      ad.digital_object_links.each do |dol|
-        row (I18n.t "#{dol.object_link_type.downcase}.one".to_sym) do
+      row (I18n.t :filter_description) { |r| r.description }
+    end
+    
+    panel "Links" do
+      table_for ad.digital_object_links do
+        column "Linked Object" do |dol|
           link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
+        end
+        column "Type", :object_link_type
+        column "" do |dol|
+          link_to "Remove", controller: :digital_objects, action: :remove_item, id: resource.id, params: {digital_object_link_id: dol.id}
         end
       end
     end
+    
     if ad.attachment_file_size
       panel (I18n.t :filter_image) do
         image_tag(ad.attachment.url(:maximum))
