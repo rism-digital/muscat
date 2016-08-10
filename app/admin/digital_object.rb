@@ -120,18 +120,20 @@ ActiveAdmin.register DigitalObject do
       row (I18n.t :filter_description) { |r| r.description }
     end
     
-    panel I18n.t(:links) do
-      table_for ad.digital_object_links do
-        column I18n.t(:link_type), :object_link_type
-        column I18n.t(:linked_object) do |dol|
-            dol.description
-        end	
-        column "ID" do |dol|
-          link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
-        end
-        column "" do |dol|
-          link_to I18n.t(:link_remove), controller: :digital_objects, action: :remove_item, id: resource.id, params: {digital_object_link_id: dol.id}
-        end
+    if ad.digital_object_links.size > 0
+        panel I18n.t(:links) do
+          table_for ad.digital_object_links do
+            column I18n.t(:link_type), :object_link_type
+            column I18n.t(:linked_object) do |dol|
+                dol.description
+            end	
+            column "ID" do |dol|
+              link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
+            end
+            column "" do |dol|
+              link_to I18n.t(:link_remove), controller: :digital_objects, action: :remove_item, id: resource.id, params: {digital_object_link_id: dol.id}
+            end
+          end
       end
     end
     
