@@ -25,6 +25,10 @@ doc.xpath('/images/image').each do |i|
 		path = "/root/images/#{f.content}"
 		puts "Processing #{path} for #{src}"
 		next if !File.exists?(path)
-		DigitalObject.create(:source_id => src.to_i, :attachment => File.open(path, 'rb'), :description => title)
+    
+		obj = DigitalObject.create(:attachment => File.open(path, 'rb'), :description => title)
+    
+    dol = DigitalObjectLink.create(object_link_type: "Source", object_link_id: src.to_i,
+                                  user: 1, digital_object_id: obj.id)
 	end
 end
