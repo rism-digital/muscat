@@ -35,7 +35,7 @@ class Person < ActiveRecord::Base
   
   resourcify 
   has_many :works
-  has_many :digital_object_links, :as => :object_link
+  has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_people")
