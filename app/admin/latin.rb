@@ -150,10 +150,12 @@ ActiveAdmin.register Latin do
   form do |f|
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name)
-      f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
-      f.input :topic, :label => (I18n.t :filter_topic)
-      f.input :sub_topic, :label => (I18n.t :filter_sub_topic)
+      f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms), :input_html => { :rows => 8 }
+      f.input :topic, :label => (I18n.t :filter_topic), :input_html => { :rows => 8 }
+      f.input :sub_topic, :label => (I18n.t :filter_sub_topic), :input_html => { :rows => 8 }
       f.input :notes, :label => (I18n.t :filter_notes)
+      f.input :viaf, :label => "VIAF"
+      f.input :gnd, :label => "GND"
       f.input :lock_version, :as => :hidden
     end
   end

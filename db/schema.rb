@@ -331,7 +331,7 @@ ActiveRecord::Schema.define(version: 20160822124822) do
     t.text     "notes",           limit: 65535
     t.text     "sub_topic",       limit: 65535
     t.text     "topic",           limit: 65535
-    t.string   "viag",            limit: 255
+    t.string   "viaf",            limit: 255
     t.string   "gnd",             limit: 255
     t.integer  "wf_audit",        limit: 4,     default: 0
     t.integer  "wf_stage",        limit: 4,     default: 0

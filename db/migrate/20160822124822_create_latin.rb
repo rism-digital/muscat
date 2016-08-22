@@ -6,7 +6,7 @@ class CreateLatin < ActiveRecord::Migration
       t.text :notes
       t.text :sub_topic
       t.text :topic
-      t.string :viag
+      t.string :viaf
       t.string :gnd
       t.integer  "wf_audit",        limit: 4,     default: 0
       t.integer  "wf_stage",        limit: 4,     default: 0
