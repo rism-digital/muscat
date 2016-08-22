@@ -209,6 +209,8 @@ class Source < ActiveRecord::Base
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
+	sunspot_dsl.time :updated_at
+	sunspot_dsl.time :created_at
 
     sunspot_dsl.integer :catalogues, :multiple => true do
           catalogues.map { |catalogue| catalogue.id }

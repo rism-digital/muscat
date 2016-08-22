@@ -137,6 +137,8 @@ ActiveAdmin.register Source do
   filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
   # This filter is the "any field" one
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :updated_at, label: 'Updated date', as: :date_range
+  filter :created_at, label: 'Created date', as: :date_range
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
