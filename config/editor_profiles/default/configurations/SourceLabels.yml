@@ -2166,6 +2166,12 @@ Arr:
     fr: Arrangement
     de: ARR
     en: Arrangement
+Var:
+  label:
+    it: VAR
+    fr: Variations
+    de: VAR
+    en: Variations
 #Keys
 A:
   label:
