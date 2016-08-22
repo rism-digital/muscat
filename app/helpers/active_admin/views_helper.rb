@@ -126,12 +126,6 @@ module ActiveAdmin::ViewsHelper
     end
   end
   
-  def pretty_truncate(text, length = 30, truncate_string = " ...")
-    return if text.nil?
-    l = length - truncate_string.mb_chars.length
-    text.mb_chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
-  end 
-  
   # formats the string for the source show title
   def active_admin_source_show_title( composer, std_title, id, record_type )
     record_type = record_type ? "#{I18n.t('record_types.' + record_type.to_s)} " : ""
@@ -166,7 +160,7 @@ module ActiveAdmin::ViewsHelper
   
   def active_admin_digital_object_show_title( description, id )
     return "[#{id}]" if !description || description.empty?
-    return "#{pretty_truncate(description, 60)} - [#{id}]"
+    return "#{description.truncate(60)} - [#{id}]"
   end
   
   def digital_object_form_url

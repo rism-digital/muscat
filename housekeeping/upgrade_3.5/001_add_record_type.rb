@@ -137,6 +137,18 @@ Source.all.each do |sa|
     t.destroy_yourself
   end
   
+  # #192 move 594 to 598
+  marc.each_by_tag("594") do |t|
+
+    node = t.deep_copy
+    node.tag = "598"
+    node.indicator = "##"
+    node.sort_alphabetically
+    marc.root.children.insert(marc.get_insert_position("598"), node)
+    
+    t.destroy_yourself
+  end
+  
   # #208, drop 600
   marc.each_by_tag("600") {|t| t.destroy_yourself}
   

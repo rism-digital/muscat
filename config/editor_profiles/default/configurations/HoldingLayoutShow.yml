@@ -5,4 +5,11 @@ groups:
   main: 
     all_tags: 
     - "852"
+    - '506'
+    - '541'
+    - '561'
+    - '591'
+    - '856'
     - "001"
+    all_tag_templates: 
+      "856": marc_show/show_link

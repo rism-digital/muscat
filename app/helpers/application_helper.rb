@@ -43,7 +43,7 @@ module ApplicationHelper
   def source_594b_solr_default_autocomplete
     autocomplete_source_594b_sms_admin_sources_path
   end
-
+  
   # Create a link for a page in a new window
   def application_helper_link_http(value, node, opac)
     result = []

@@ -34,29 +34,37 @@ class MarcSource < Marc
     # try to get the title (240)
     # Quartets
     node = first_occurance("240", "a")
-    standard_title = pretty_truncate(node.content, 50) if node 
-   
+    standard_title = node.content.truncate(50) if node && node.content
+    standard_title.strip! if standard_title
+    
     # try to get the description (240 m)
     # vl (2), vla, vlc
     node = first_occurance("240", "m")
-    scoring = pretty_truncate(node.content, 50) if node
+    scoring = node.content.truncate(50) if node && node.content
+    scoring.strip! if scoring
    
     node = first_occurance("240", "k")
-    extract = pretty_truncate(node.content, 50) if node
+    extract = node.content.truncate(50) if node && node.content
+    extract.strip! if extract
     
     node = first_occurance("240", "o")
-    arr = pretty_truncate(node.content, 50) if node
+    arr = node.content.truncate(50) if node && node.content
+    arr.strip! if arr
    
     node = first_occurance("383", "b")
-    opus = pretty_truncate(node.content, 50) if node
+    opus = node.content.truncate(50) if node && node.content
+    opus.strip! if opus
    
     node = first_occurance("690", "a")
-    cat_a = pretty_truncate(node.content, 50) if node
+    cat_a = node.content.truncate(50) if node && node.content
+    cat_a.strip! if cat_a
     
     node = first_occurance("690", "n")
-    cat_n = pretty_truncate(node.content, 50) if node
+    cat_n = node.content.truncate(50) if node && node.content
+    cat_n.strip! if cat_n
    
-    cat_no = "#{cat_a} #{cat_n}"
+    cat_no = "#{cat_a} #{cat_n}".strip
+    cat_no = nil if cat_no.empty? # For the join only nil is skipped 
    
     if !standard_title
       if @record_type == RECORD_TYPES[:convolutum]
@@ -68,7 +76,11 @@ class MarcSource < Marc
     
     title = (standard_title != nil || standard_title != "") ? standard_title : "[Without title]" ## if title is unset and it is not collection
 
-    std_title = "#{title} - " + [extract, arr, scoring, opus, cat_no].compact.join("; ")
+    desc = [extract, arr, scoring, opus, cat_no].compact.join("; ")
+    desc = nil if desc.empty?
+    
+    # use join so the "-" is not places if one of the two is missing
+    std_title = [title, desc].compact.join(" - ")
     std_title_d = DictionaryOrder::normalize(std_title)
 
     [std_title, std_title_d]
@@ -139,32 +151,6 @@ class MarcSource < Marc
    
     return [ms_title.truncate(255), ms_title_d.truncate(255)]
   end
-
-  # For holding records, set the condition and the urls (aliases)
-  def get_ms_condition_and_urls
-    ms_condition = "" 
-    urls = ""
-    image_urls = ""
-    
-    tag_852 = first_occurance( "852" )
-    if tag_852
-      q_tag = tag_852.fetch_first_by_tag("q")
-      ms_condition = q_tag.content if q_tag
-    
-      url_tags = tag_852.fetch_all_by_tag("u")
-      url_tags.each do |u|
-        image_urls += "#{u.content}\n"
-      end
-      
-      url_tags = tag_852.fetch_all_by_tag("z")
-      url_tags.each do |u|
-        urls += "#{u.content}\n"
-      end
-      
-    end
-    
-    return [ms_condition.truncate(255), urls.truncate(128), image_urls.truncate(255)]
-  end
   
   # Set miscallaneous values
   def get_miscellaneous_values
@@ -232,6 +218,15 @@ class MarcSource < Marc
     # convert leader to record_type
     rt = match_leader
     
+    # Drop leader
+    each_by_tag("000") {|t| t.destroy_yourself}
+     
+    # Drop other unused tags
+    each_by_tag("003") {|t| t.destroy_yourself}
+    each_by_tag("005") {|t| t.destroy_yourself}
+    each_by_tag("007") {|t| t.destroy_yourself}
+    each_by_tag("008") {|t| t.destroy_yourself}
+    
     # Move 130 to 240
     each_by_tag("130") do |t|
 
@@ -260,9 +255,16 @@ class MarcSource < Marc
       st.destroy_yourself if st
     end
     
-    each_by_tag("594") do |t|
+    # Remove the $a tag
+    a = by_tags("594")
+    a.each do |t|
       t.each_by_tag("a") do |st|
         st.destroy_yourself if st
+      end
+      
+      # it the 594 is then empty remove it
+      if t.all_children.count == 0
+        t.destroy_yourself
       end
     end
     
@@ -381,9 +383,16 @@ class MarcSource < Marc
     end
     
   end
-    
+  
   def set_record_type(rt)
     @record_type = rt
+  end
+  
+  def preclude_holdings?
+    all_tags.each do |tag|
+      return true if @marc_configuration.tag_precludes_holdings?(tag.tag)
+    end
+    false
   end
   
 end

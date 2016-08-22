@@ -58,7 +58,7 @@
     :zero_padding: "14"
     :fields:
     - - ""
-      - :no_browse: true
+      - :no_browse: false
   "003":
     :master: ""
     :indicator: ""
@@ -116,6 +116,7 @@
     :master: a
     :indicator: ["0#", "1#", "2#"]
     :occurrences: "*"
+    :disable_multiple: true
     :fields:
     - - a
       - :occurrences: "*"
@@ -279,10 +280,18 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+  "505":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
   "506":
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -328,6 +337,7 @@
     :master: a
     :indicator: "1#"
     :occurrences: "?"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -348,6 +358,7 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -377,6 +388,7 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -403,7 +415,7 @@
   "594":
     :master: b
     :indicator: "##"
-    :occurrences: "?"
+    :occurrences: "*"
     :fields:
     - - b
       - :occurrences: "?"
@@ -615,6 +627,8 @@
       - :occurrences: "*"
     - - c
       - :occurrences: "*"
+    - - g
+      - :occurrences: "?"
     - - "4"
       - :occurrences: "*"
     - - "8"
@@ -669,6 +683,7 @@
     :master: w
     :indicator: "18"
     :occurrences: "?"
+    :preclude_holdings: true
     :fields:
     - - w
       - :occurrences: "1"
@@ -708,6 +723,7 @@
     :master: "x"
     :indicator: "##"
     :occurrences: "?"
+    :preclude_holdings: true
     :fields:
     - - "x"
       - :occurrences: "?"
@@ -744,6 +760,8 @@
     - - u
       - :occurrences: "*"
         :browse_helper: application_helper_link_http
+    - - x
+      - :occurrences: "?"
     - - z
       - :occurrences: "*"
     - - "8"

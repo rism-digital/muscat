@@ -60,7 +60,19 @@ module MarcControllerActions
       @item.lock_version = params[:lock_version]
       
       @item.record_type = params[:record_type] if (@item.respond_to? :record_type)
-
+      
+      # Some housekeeping, change owner and status
+      if params.has_key?(:record_status) &&
+        (current_user.has_role?(:cataloger) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
+        @item.wf_stage = params[:record_status]
+      end
+      
+      if params.has_key?(:record_owner) &&
+        (current_user.has_role?(:editor) || current_user.has_role?(:admin))
+        new_user = User.find(params[:record_owner]) rescue new_user = nil
+        @item.user = new_user if new_user
+      end
+      
       @item.save
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       
@@ -75,11 +87,11 @@ module MarcControllerActions
       if params[:triggers]
         triggers = JSON.parse(params[:triggers])
         
-        triggers.each do |k, t|
+        triggers.each do |k, relations|
           if k == "save"
-            t.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, model)) }
+            relations.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, "referring_" + model)) }
           elsif k == "reindex"
-            t.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, model)) }
+            relations.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, "referring_" + model)) }
           else
             puts "Unknown trigger #{k}"
           end
@@ -140,23 +152,9 @@ module MarcControllerActions
 
       @editor_profile = EditorConfiguration.get_show_layout @item
      
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
-  
-    ###################
-    ## Embedded show ##
-    ###################
-    
-    dsl.collection_action :marc_editor_embedded_show, :method => :post do
-      
-      @item = Holding.find( params[:object_id] )
-      
-      @item.marc.load_source(true)
-      @editor_profile = EditorConfiguration.get_show_layout @item
-      
-      render :template => 'marc_show/show_preview'
-    end
-  
+
     ###################
     ## Summary show ##
     ###################
@@ -168,7 +166,7 @@ module MarcControllerActions
       @item.marc.load_source(true)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
   
     ##########
@@ -198,7 +196,7 @@ module MarcControllerActions
       @item.marc.load_source(false)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
   
     ##################
@@ -216,7 +214,7 @@ module MarcControllerActions
       # Parameter for using diff partials
       @diff = true
       
-      render :template => 'marc_show/show_preview'
+      render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
     
     #####################

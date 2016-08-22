@@ -1,6 +1,6 @@
 class ReindexItemsJob < ProgressJob::Base
   
-  def initialize(parent_obj, relation = "Source")
+  def initialize(parent_obj, relation = "referring_sources")
     @parent_obj = parent_obj
     @relation = relation
   end
@@ -18,8 +18,7 @@ class ReindexItemsJob < ProgressJob::Base
     
     update_progress_max(-1)
       
-    klass_name = @relation.underscore.downcase.pluralize
-    items = @parent_obj.send(klass_name)  
+    items = @parent_obj.send(@relation)
     
     update_stage("Look up Sources")
     update_progress_max(@parent_obj.referring_sources.count)

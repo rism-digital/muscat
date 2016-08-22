@@ -1,1204 +1,1205 @@
---- !map:Settings 
-doc_abbreviations: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+--- !map:ActiveSupport::HashWithIndifferentAccess
+
+doc_abbreviations:
+  label:
     de: "Abkürzungen"
     en: Abbreviations
-doc_aid: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+doc_aid:
+  label:
     de: Arbeitshilfen
     en: Aide
-doc_cataloguing_collections: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+doc_cataloguing_collections:
+  label:
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
-doc_functions: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+doc_functions:
+  label:
     de: "Grundätzliche Funktionen"
     en: Basic functions
-doc_introduction: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+doc_introduction:
+  label:
     de: Einleitung
     en: Introduction
-doc_masks: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+doc_masks:
+  label:
     de: Masken
     en: Cataloging forms
-doc_tag_index: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+doc_tag_index:
+  label:
     de: MARC Tag Index
     en: MARC tag index
-doc_templates: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+doc_templates:
+  label:
     de: Templates
     en: Templates
-"000": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"000":
+  label:
     it: Leader
     fr: Guide
     de: Leader
     en: Leader
-"001": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"001":
+  label:
     it: Numero documento RISM
     fr: No. RISM
     de: RISM Dokumentnummer
     en: RISM ID No.
-"003": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"003":
+  label:
     it: Identificatore del numero di controllo
     fr: "Identité du numéro de contrôle"
     de: Kontrollnummer-Bezeichnung
     en: Control number identifier
-"005": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"005":
+  label:
     it: Data e ora dell'ultima transazione
     fr: "Date/heure de la dernière transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
-"008": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: DATE OF CREATION
-    fr: DATE OF CREATION
+"008":
+  label:
+    it: Data di Creazione
+    fr: Date de création
     de: Datum der Erstellung
     en: Date of creation
 
-"024": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"024":
+  label:
     it: Codice ISIL
     fr: Code ISIL
     de: ISIL Code
     en: ISIL Code
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+  fields:
+    a:
+      label:
         it: Codice ISIL
         fr: Code ISIL
         de: ISIL Code  
         en: ISIL Code
-"034": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: LOCATION
-    fr: LOCATION
+"034":
+  label:
+    it: Posizione
+    fr: Position
     de: Position
     en: Location
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    d: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+  fields:
+    d:
+      label:
         it: Longitude
         fr: Longitude
         de: Längengrad 
         en: Longitude
-    f: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+    f:
+      label:
         it: Latitude
         fr: Latitude
         de: Breitengrad 
         en: Latitude
 
-"035": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"035":
+  label:
     it: Codice GND
     fr: Code GND
     de: GND Code
     en: GND Code
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+  fields:
+    a:
+      label:
         it: Codice GND
         fr: Code GND
         de: GND Code  
         en: GND Code
-"040": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"040":
+  label:
     it: Fonte della catalogazione
     fr: Source du catalogage
     de: Katalogisierungsquelle
     en: Cataloguing agency
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+  fields:
+    a:
+      label:
         it: Agenzia catalografica originale
         fr: Organisme du catalogage original
         de: Original-Katalogisierungsstelle
         en: Original cataloguing agency
-    b: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+    b:
+      label:
         it: Lingua della catalogazione
         fr: Langue de catalogage
         de: Katalogisierungssprache
         en: Language of cataloguing
-    c: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+    c:
+      label:
         it: Agenzia della trascrizione
         fr: Organisme de la transcription
         de: "Übertragende Katalogisierungsstelle"
         en: Transcribing agency
-    d: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+    d:
+      label:
         it: Agenzia della modifica
         fr: Organisme de la modification
         de: Modifizierende Katalogisierungsstelle
         en: Modifying agency
 
 
-"043": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"043":
+  label:
     it: Country code
     fr: Country code
     de: Länder-Code
     en: County code
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    c: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+  fields:
+    c:
+      label:
         it: Country code
         fr: Country code
         de: Länder-Code  
         en: Country code
-"110": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"110":
+  label:
     it: Nome di ente
     fr: "Nom de la collectivité"
     de: "Körperschaftsname"
     en: Institution
   accepts: 
   - "710"
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+  fields:
+    a:
+      label:
         it: Nome di ente
         fr: "Nom de la collectivité"
         de: "Körperschaftsname"
         en: Institution
-    b: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+    b:
+      label:
         it: Ente subordinato
         fr: "Collectivité subordonnée"
         de: "Untergeordnete Körperschaft"
         en: Subordinate unit
-    c: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+    c:
+      label:
         it: Place
         fr: Place 
         de: Ort
         en: Place
-    g: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+    g:
+      label:
         it: Ente subordinato
         fr: "Siglum"
         de: "Sigel"
         en: Siglum
-"368": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: TYP OF INSTITUTION
-    fr: TYP OF INSTITUTION
+"368":
+  label:
+    it: Tipo di Istituzione
+    fr: "Type d'institution"
     de: Typ der Institution
-    en: Typ of Institution
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: TYP OF INSTITUTION
-        fr: TYP OF INSTITUTION
+    en: Type of Institution
+  fields:
+    a:
+      label:
+        it: Tipo di Istitutione
+        fr: "Type d'institution"
         de: Typ der Institution
         en: Type of institution
 
 
-"371": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: LOCATION AND ADDRESS
-    fr: LOCATION AND ADDRESS
+"371":
+  label:
+    it: Luogo ed indirizzo
+    fr: Lieu et adresse
     de: "Adresse"
     en: Location and Address
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+  fields:
+    a:
+      label:
         it: Nome di ente
         fr: "Nom de la collectivité"
         de: Strasse
         en: Street address
-    e: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: POSTAL CODE
-        fr: POSTAL CODE
+    e:
+      label:
+        it: Codice Postale
+        fr: Code Postal
         de: Postleitzahl
         en: Postal code
-    b: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: CITY
-        fr: CITY
+    b:
+      label:
+        it: "Città"
+        fr: Ville
         de: Ort
         en: City
-    c: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: COUNTY OR PROVINCE
-        fr: COUNTY OR PROVINCE
+    c:
+      label:
+        it: Paese o Provincia
+        fr: Canton our province
         de: Bezirk oder Staat
         en: County or province
-    d: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: COUNTRY
-        fr: COUNTRY
+    d:
+      label:
+        it: Paese
+        fr: Pays
         de: Land
         en: Country
-    m: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: E-MAIL
-        fr: E-MAIL
+    m:
+      label:
+        it: E-Mail
+        fr: E-Mail
         de: E-Mail
         en: E-mail
-    u: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+    u:
+      label:
         it: URL
         fr: URL
         de: URL
         en: URL
-    z: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: PUBLIC NOTE
-        fr: PUBLIC NOTE
+    z:
+      label:
+        it: Nota Pubblica
+        fr: Note publique
         de: Bemerkungen
         en: Public Note
 
-"373": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: NOW IN
-    fr: NOW IN
+"373":
+  label:
+    it: Ora in
+    fr: Maintenant à
     de: In
     en: Now in
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    x: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        t: NOW IN
-        fr: NOW IN
+  fields:
+    x:
+      label:
+        t: Ora In
+        fr: Maintenant à
         de: In
         en: Now in
 
-"410": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: Name variants
-    fr: OTHER FORM OF NAME
+"410":
+  label:
+    it: Altre forme del nome
+    fr: Autre forme de nom
     de: Andere Namensformen
     en: Other form of name
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        t: OTHER FORM OF NAME
-        fr: OTHER FORM OF NAME
+  fields:
+    a:
+      label:
+        t: Altre forme del nome
+        fr: Autre forme de nom
         de: Andere Namensformen
         en: Other form of name
-"510": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: PARALLEL FORM OF NAME
-    fr: PARALLEL FORM OF NAME
+"510":
+  label:
+    it: Forma parallela del nome
+    fr: Forme de nom parallèle
     de: Parallelle ...
     en: Parallel form of name
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: PARALLEL FORM OF NAME
-        fr: PARALLEL FORM OF NAME
+  fields:
+    a:
+      label:
+        it: Forma parallela del nome
+        fr: Forme de nom parallèle
         de: Namensvarianten  
         en: Parallel form of name
-"551": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: PLACES
-    fr: PLACES
+"551":
+  label:
+    it: Luoghi
+    fr: Lieu
     de: Orte
     en: Places
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: PLACE
-        fr: PLACE
+  fields:
+    a:
+      label:
+        it: Luogo
+        fr: Lieu
         de: Ort
         en: Place
 
-"580": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: NOW IN
-    fr: NOW IN
+"580":
+  label:
+    it: Ora in
+    fr: Maintenant à
     de: Heute in
     en: Now in
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    x: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        t: NOW IN
-        fr: NOW IN
+  fields:
+    x:
+      label:
+        t: Ora in
+        fr: Maintenant à
         de: Heute in
         en: Now in
-"667": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: INTERNAL NOTES
-    fr: INTERNAL NOTES
+"667":
+  label:
+    it: Nota interna
+    fr: Note interne
     de: Interne Bemerkungen
     en: Internal Notes
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: INTERNAL NOTES
-        fr: INTERNAL NOTES
+  fields:
+    a:
+      label:
+        it: Nota interna
+        fr: Note interne
         de: Interne Bemerkungen
         en: Internal notes
 
 
-"670": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: LITERATURE
-    fr: LITERATURE
+"670":
+  label:
+    it: Bibliografia
+    fr: Littérature
     de: Literatur
     en: Literature
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: LITERATURE
-        fr: LITERATURE
+  fields:
+    a:
+      label:
+        it: Bibliografia
+        fr: Littérature
         de: Literatur
         en: Literature
 
 
-"678": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: HISTORY OF INSTITUTION
-    fr: HISTORY OF INSTITUTION
+"678":
+  label:
+    it: "Storia dell'istituzione"
+    fr: "Historique de l'institution"
     de: Geschichte der Institution
     en: History of institution
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: HISTORY OF INSTITUTION
-        fr: HISTORY OF INSTITUTION
+  fields:
+    a:
+      label:
+        it: "Storia dell'istituzione"
+        fr: "Historique de l'institution"
         de: Geschichte der Institution
         en: History of institution
 
 
-"680": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"680":
+  label:
     it: General note
     fr: Remarque général
     de: Allgemeine Fussnote
     en: General note
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
+  fields:
+    a:
+      label:
         it: General note
         fr: Remarque générale
         de: Allgemeine Fussnote
         en: General note
-"700": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: PERSON
-    fr: PERSON
+"700":
+  label:
+    it: Persona
+    fr: Personne
     de: Person
     en: Person
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: PERSON
-        fr: PERSON
+  fields:
+    a:
+      label:
+        it: Persona
+        fr: Personne
         de: Person
         en: Person
 
-"710": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: RELATED INSTITUTION
-    fr: RELATED INSTITUTION
+"710":
+  label:
+    it: Istituzione in relazione
+    fr: Institution liée
     de: RELATED INSTITUTION
     en: Related institution
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    a: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        it: RELATED INSTITUTION
-        fr: RELATED INSTITUTION
+  fields:
+    a:
+      label:
+        it: Istituzione in relazione
+        fr: Institution liée
         de: RELATED INSTITUTION
         en: Related institution
 
-"856": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: ONLINE
-    fr: ONLINE
+"856":
+  label:
+    it: Online
+    fr: En Ligne
     de: Archivführer und andere Publikationen
     en: Online finding aids
-  fields: !map:ActiveSupport::HashWithIndifferentAccess 
-    u: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        t: ONLINE
-        fr: ONLINE
+  fields:
+    u:
+      label:
+        t: Online
+        fr: En Ligne
         de: Archivführer und andere Publikationen
         en: Online finding aids
-    z: !map:ActiveSupport::HashWithIndifferentAccess 
-      label: !map:ActiveSupport::HashWithIndifferentAccess 
-        t: NOTE
-        fr: NOTE
+    z:
+      label:
+        t: Nota
+        fr: Note
         de: Bemerkung
         en: Note
 
 
-main: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+main:
+  label:
     it: Registrazioni principali
     fr: "Entrées principales"
     de: Haupteintragungen
     en: Main entry fields
-codes: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+codes:
+  label:
     it: Numeri e codici
     fr: "Numéros et codes"
     de: Nummern und Codes
     en: Numbers and code fields
-control: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+control:
+  label:
     fr: "Champs de contrôle"
     de: Kontrollfelder
     ot: Campi di controllo
     en: Control Fields
-notes: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+notes:
+  label:
     it: Note
     fr: Notes
     de: Fussnoten
     en: Note fields
-other: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+other:
+  label:
     it: Varia
     fr: Divers
     de: Verschiedenes
     en: Miscellaneous
-administration: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+administration:
+  label:
     it: Amministrazione
     fr: Administration
     de: Administration
     en: Administration
-sigla: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: SIGLA
-    fr: SIGLA
+sigla:
+  label:
+    it: Sigla
+    fr: Sigla
     de: Sigel
     en: Sigla
-contact: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: CONTACT
-    fr: CONTACT
+contact:
+  label:
+    it: Contatto
+    fr: Contact
     de: Kontakt
     en: Contact
-identity: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: IDENTITY
-    fr: IDENTITY
+identity:
+  label:
+    it: "Identità"
+    fr: "Identité"
     de: Identifizierung
     en: Identity
-description: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: DESCRIPTION
-    fr: DESCRIPTION
+description:
+  label:
+    it: Descrizione
+    fr: Description
     de: Beschreibung
     en: Description
 
 # Person related
-01_codes_artistic: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+01_codes_artistic:
+  label:
     it: Autore
     fr: Auteur
     de: Verfasser
     en: Artistic production
-02_codes_performing: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+02_codes_performing:
+  label:
     it: Partecipanti
     fr: Performance
     de: Mitwirkende
     en: Performance
-03_codes_technical: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+03_codes_technical:
+  label:
     it: Produttore
     fr: "Création"
     de: Hersteller
     en: Technical production
-04_codes_other: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+04_codes_other:
+  label:
     it: Altri
     fr: Autre
     de: Weitere
     en: Other
-ed: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
-    it: EDITION
-    fr: EDITION
+ed:
+  label:
+    it: Edizione
+    fr: "édition"
     de: Edition
     en: Edition
-H: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+H:
+  label:
     it: Curatore
     fr: Editeur
     de: Herausgeber
     en: Editor
-arr: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+arr:
+  label:
     it: Arrangiatore
     fr: Arrangeur
     de: Bearbeiter
     en: Arranger
-art: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+art:
+  label:
     it: Scenografo
     fr: "Metteur en scène"
     de: "Bühnenbildner"
     en: Artist
-asn: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+asn:
+  label:
     it: Altro nome
     fr: Autre nom
     de: Weiterer Name
     en: Associated name
-aut: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+aut:
+  label:
     it: Autore
     fr: Auteur
     de: Autor
     en: Author
-bnd: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+bnd:
+  label:
     it: Rilegatore
     fr: Relieur
     de: Buchbinder
     en: Binder
-bsl: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+bsl:
+  label:
     it: Libraio musicale
     fr: Libraire
     de: "Musikalienhändler"
     en: Bookseller
-ccp: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+ccp:
+  label:
     it: Autore della fonte letteraria
     fr: Auteur du texte
     de: Autor der Textvorlage
     en: Conceptor
-chr: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+chr:
+  label:
     it: Coreografo
     fr: "Chorégraphe"
     de: Choreograph
     en: Choreographer
-clb: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+clb:
+  label:
     it: Autore secondario
     fr: Collabarateur
     de: Mitverfasser
     en: Collaborator
-cmp: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+cmp:
+  label:
     it: Compositore/Compositore secondario
     fr: Compositeur / Co-compositeur
     de: Komponist / Mitkomponist
     en: Composer
-cnd: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+cnd:
+  label:
     it: Direttore d'orchestra
     fr: Chef d'orchestre
     de: Dirigent
     en: Conductor
-cns: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+cns:
+  label:
     it: Censore
     fr: Censeur
     de: Zensor
     en: Censor
-com: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+com:
+  label:
     it: Compilatore
     fr: Compilateur
     de: Kompilator
     en: Compiler
-cst: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+cst:
+  label:
     it: Costumista
     fr: Costumier
     de: "Kostümbildner"
     en: Costume designer
-dnc: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+dnc:
+  label:
     it: Ballerino
     fr: Danceur
     de: "Tänzer"
     en: Dancer
-dnr: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+dnr:
+  label:
     it: Donatore
     fr: Donateur
     de: Donator
     en: Donor
-dte: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+dte:
+  label:
     it: Dedicatario
     fr: "Dédicataire"
     de: "Widmungsträger"
     en: Dedicatee
-dub: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+dub:
+  label:
     it: Dubbio
     fr: Douteux
     de: Zweifelhaft
     en: Dubious
-edt: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+edt:
+  label:
     it: Curatore
     fr: Editeur
     de: Herausgeber
     en: Editor
-egr: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+egr:
+  label:
     it: Incisore
     fr: Graveur
     de: Stecher
     en: Engraver
-fmo: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+fmo:
+  label:
     it: Proprietario precedente
     fr: "Propriétaire précédent"
     de: Vorbesitzer
     en: Former owner
-ill: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+ill:
+  label:
     it: Disegnatore
     fr: Illustrateur
     de: Illustrator
     en: Illustrator
-itr: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+itr:
+  label:
     it: Strumentista
     fr: Instrumentiste
     de: Instrumentalist
     en: Instrumentalist
-lbt: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+lbt:
+  label:
     it: Librettista
     fr: Librettiste
     de: Librettist
     en: Librettist
-ltg: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+ltg:
+  label:
     it: Litografo
     fr: Litographe
     de: Lithograph
     en: Lithograph
-lyr: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+lyr:
+  label:
     it: Poeta
     fr: Parolier
     de: Textdichter
     en: Lyricist
-otm: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+otm:
+  label:
     it: Organizzatore
     fr: Organisateur
     de: Veranstalter
     en: Event organizer
-pat: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+pat:
+  label:
     it: Committente
     fr: "Mécène"
     de: "Mäzen/Auftraggeber"
     en: Patron
-pbl: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+pbl:
+  label:
     it: Editore
     fr: Editeur
     de: Verleger
     en: Publisher
-ppm: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+ppm:
+  label:
     it: Fabbricante di carta
     fr: Papetier
     de: Papierhersteller
     en: Paper maker
-prd: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+prd:
+  label:
     it: Personale alla produzione
     fr: "Personnel de réalisation"
     de: Produktionspersonal
     en: Production personnel
-prf: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+prf:
+  label:
     it: Interprete
     fr: "Interprète"
     de: Interpret
     en: Performer
-prt: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+prt:
+  label:
     it: Stampatore
     fr: Imprimeur
     de: Drucker
     en: Printer
-scr: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+scr:
+  label:
     it: Copista
     fr: Scribe
     de: Schreiber
     en: Scribe
-trl: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+trl:
+  label:
     it: Traduttore
     fr: Traducteur
     de: "Übersetzer"
     en: Translater
-voc: !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+voc:
+  label:
     it: Cantante
     fr: Vocaliste
     de: "Sänger"
     en: Vocalist
 #Country Codes
-"XC-DZ": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XC-DZ":
+  label:
     it: "Algeria"
     fr: "Algeria"
     de: "Algeria"
     en: "Algeria"
-"XD-AR": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-AR":
+  label:
     it: "Argentina"
     fr: "Argentina"
     de: "Argentina"
     en: "Argentina"
-"XB-AM": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XB-AM":
+  label:
     it: "Armenia"
     fr: "Armenia"
     de: "Armenia"
     en: "Armenia"
-"XE-AU": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XE-AU":
+  label:
     it: "Australia"
     fr: "Australia"
     de: "Australia"
     en: "Australia"
-"XA-AT": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-AT":
+  label:
     it: "Austria"
     fr: "Austria"
     de: "Austria"
     en: "Austria"
-"XA-AT-2": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-AT-2":
+  label:
     it: "Austria: Carinthia"
     fr: "Austria: Carinthia"
     de: "Austria: Carinthia"
     en: "Austria: Carinthia"
-"XA-AT-3": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-AT-3":
+  label:
     it: "Austria: Lower Austria"
     fr: "Austria: Lower Austria"
     de: "Austria: Lower Austria"
     en: "Austria: Lower Austria"
-"XA-AT-5": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-AT-5":
+  label:
     it: "Austria: Salzburg"
     fr: "Austria: Salzburg"
     de: "Austria: Salzburg"
     en: "Austria: Salzburg"
-"XA-AT-6": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-AT-6":
+  label:
     it: "Austria: Styria"
     fr: "Austria: Styria"
     de: "Austria: Styria"
     en: "Austria: Styria"
-"XA-AT-7": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-AT-7":
+  label:
     it: "Austria: Tyrol"
     fr: "Austria: Tyrol"
     de: "Austria: Tyrol"
     en: "Austria: Tyrol"
-"XA-AT-4": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-AT-4":
+  label:
     it: "Austria: Upper Austria"
     fr: "Austria: Upper Austria"
     de: "Austria: Upper Austria"
     en: "Austria: Upper Austria"
-"XA-AT-9": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-AT-9":
+  label:
     it: "Austria: Vienna"
     fr: "Austria: Vienna"
     de: "Austria: Vienna"
     en: "Austria: Vienna"
-"XA-BE": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-BE":
+  label:
     it: "Belgium"
     fr: "Belgium"
     de: "Belgium"
     en: "Belgium"
-"XC-BJ": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XC-BJ":
+  label:
     it: "Benin"
     fr: "Benin"
     de: "Benin"
     en: "Benin"
-"XD-BR": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-BR":
+  label:
     it: "Brazil"
     fr: "Brazil"
     de: "Brazil"
     en: "Brazil"
-"XA-BG": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-BG":
+  label:
     it: "Bulgaria"
     fr: "Bulgaria"
     de: "Bulgaria"
     en: "Bulgaria"
-"XB-KH": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XB-KH":
+  label:
     it: "Cambodia"
     fr: "Cambodia"
     de: "Cambodia"
     en: "Cambodia"
-"XD-CA": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-CA":
+  label:
     it: "Canada"
     fr: "Canada"
     de: "Canada"
     en: "Canada"
-"XD-CL": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-CL":
+  label:
     it: "Chile"
     fr: "Chile"
     de: "Chile"
     en: "Chile"
-"XB-CN": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XB-CN":
+  label:
     it: "China"
     fr: "China"
     de: "China"
     en: "China"
-"XD-CO": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-CO":
+  label:
     it: "Colombia"
     fr: "Colombia"
     de: "Colombia"
     en: "Colombia"
-"XA-HR": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-HR":
+  label:
     it: "Croatia"
     fr: "Croatia"
     de: "Croatia"
     en: "Croatia"
-"XD-CU": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-CU":
+  label:
     it: "Cuba"
     fr: "Cuba"
     de: "Cuba"
     en: "Cuba"
-"XA-CZ": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-CZ":
+  label:
     it: "Czech Republic"
     fr: "Czech Republic"
     de: "Czech Republic"
     en: "Czech Republic"
-"XA-DK": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-DK":
+  label:
     it: "Denmark"
     fr: "Denmark"
     de: "Denmark"
     en: "Denmark"
-"XC-EG": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XC-EG":
+  label:
     it: "Egypt"
     fr: "Egypt"
     de: "Egypt"
     en: "Egypt"
-"XA-EE": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-EE":
+  label:
     it: "Estonia"
     fr: "Estonia"
     de: "Estonia"
     en: "Estonia"
-"XA-FI": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-FI":
+  label:
     it: "Finland"
     fr: "Finland"
     de: "Finland"
     en: "Finland"
-"XA-FR": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-FR":
+  label:
     it: "France"
     fr: "France"
     de: "France"
     en: "France"
-"XA-DE": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-DE":
+  label:
     it: "Germany"
     fr: "Germany"
     de: "Germany"
     en: "Germany"
-"XA-DE-BY": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-DE-BY":
+  label:
     it: "Germany: Bavaria"
     fr: "Germany: Bavaria"
     de: "Germany: Bavaria"
     en: "Germany: Bavaria"
-"XA-DE-SN": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-DE-SN":
+  label:
     it: "Germany: Saxony"
     fr: "Germany: Saxony"
     de: "Germany: Saxony"
     en: "Germany: Saxony"
-"XA-GR": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-GR":
+  label:
     it: "Greece"
     fr: "Greece"
     de: "Greece"
     en: "Greece"
-"XA-VA": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-VA":
+  label:
     it: "Holy See"
     fr: "Holy See"
     de: "Holy See"
     en: "Holy See"
-"XD-HN": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-HN":
+  label:
     it: "Honduras"
     fr: "Honduras"
     de: "Honduras"
     en: "Honduras"
-"XA-HU": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-HU":
+  label:
     it: "Hungary"
     fr: "Hungary"
     de: "Hungary"
     en: "Hungary"
-"XA-IS": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-IS":
+  label:
     it: "Iceland"
     fr: "Iceland"
     de: "Iceland"
     en: "Iceland"
-"XB-IN": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XB-IN":
+  label:
     it: "India"
     fr: "India"
     de: "India"
     en: "India"
-"XB-IR": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XB-IR":
+  label:
     it: "Iran, Islamic Republic of"
     fr: "Iran, Islamic Republic of"
     de: "Iran, Islamic Republic of"
     en: "Iran, Islamic Republic of"
-"XA-IE": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-IE":
+  label:
     it: "Ireland"
     fr: "Ireland"
     de: "Ireland"
     en: "Ireland"
-"XB-IL": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XB-IL":
+  label:
     it: "Israel"
     fr: "Israel"
     de: "Israel"
     en: "Israel"
-"XA-IT-32": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-IT-32":
+  label:
     it: "Italy: Trentino-Alto Adige"
     fr: "Italy: Trentino-Alto Adige"
     de: "Italy: Trentino-Alto Adige"
     en: "Italy: Trentino-Alto Adige"
-"XA-IT": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-IT":
+  label:
     it: "Italy"
     fr: "Italy"
     de: "Italy"
     en: "Italy"
-"XB-JP": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XB-JP":
+  label:
     it: "Japan"
     fr: "Japan"
     de: "Japan"
     en: "Japan"
-"XB-KR": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XB-KR":
+  label:
     it: "Korea, Republic of"
     fr: "Korea, Republic of"
     de: "Korea, Republic of"
     en: "Korea, Republic of"
-"XA-LV": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-LV":
+  label:
     it: "Latvia"
     fr: "Latvia"
     de: "Latvia"
     en: "Latvia"
-"XA-LT": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-LT":
+  label:
     it: "Lithuania"
     fr: "Lithuania"
     de: "Lithuania"
     en: "Lithuania"
-"XA-LU": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-LU":
+  label:
     it: "Luxembourg"
     fr: "Luxembourg"
     de: "Luxembourg"
     en: "Luxembourg"
-"XA-MT": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-MT":
+  label:
     it: "Malta"
     fr: "Malta"
     de: "Malta"
     en: "Malta"
-"XD-MX": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-MX":
+  label:
     it: "Mexico"
     fr: "Mexico"
     de: "Mexico"
     en: "Mexico"
-"XA-ME": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-ME":
+  label:
     it: "Montenegro"
     fr: "Montenegro"
     de: "Montenegro"
     en: "Montenegro"
-"XA-NL": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-NL":
+  label:
     it: "Netherlands"
     fr: "Netherlands"
     de: "Netherlands"
     en: "Netherlands"
-"XE-NZ": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XE-NZ":
+  label:
     it: "New Zealand"
     fr: "New Zealand"
     de: "New Zealand"
     en: "New Zealand"
-"XA-NO": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-NO":
+  label:
     it: "Norway"
     fr: "Norway"
     de: "Norway"
     en: "Norway"
-"XD-PY": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-PY":
+  label:
     it: "Paraguay"
     fr: "Paraguay"
     de: "Paraguay"
     en: "Paraguay"
-"XA-PL": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-PL":
+  label:
     it: "Poland"
     fr: "Poland"
     de: "Poland"
     en: "Poland"
-"XA-PT": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-PT":
+  label:
     it: "Portugal"
     fr: "Portugal"
     de: "Portugal"
     en: "Portugal"
-"XD-PR": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-PR":
+  label:
     it: "Puerto Rico"
     fr: "Puerto Rico"
     de: "Puerto Rico"
     en: "Puerto Rico"
-"XA-RO": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-RO":
+  label:
     it: "Romania"
     fr: "Romania"
     de: "Romania"
     en: "Romania"
-"XA-RU": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-RU":
+  label:
     it: "Russian Federation"
     fr: "Russian Federation"
     de: "Russian Federation"
     en: "Russian Federation"
-"XA-RS": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-RS":
+  label:
     it: "Serbia"
     fr: "Serbia"
     de: "Serbia"
     en: "Serbia"
-"XA-SK": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-SK":
+  label:
     it: "Slovakia"
     fr: "Slovakia"
     de: "Slovakia"
     en: "Slovakia"
-"XA-SI": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-SI":
+  label:
     it: "Slovenia"
     fr: "Slovenia"
     de: "Slovenia"
     en: "Slovenia"
-"XC-ZA": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XC-ZA":
+  label:
     it: "South Africa"
     fr: "South Africa"
     de: "South Africa"
     en: "South Africa"
-"XA-ES": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-ES":
+  label:
     it: "Spain"
     fr: "Spain"
     de: "Spain"
     en: "Spain"
-"XA-SE": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-SE":
+  label:
     it: "Sweden"
     fr: "Sweden"
     de: "Sweden"
     en: "Sweden"
-"XA-CH-VD": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-CH-VD":
+  label:
     it: "Switzerland: Vaud"
     fr: "Switzerland: Vaud"
     de: "Switzerland: Vaud"
     en: "Switzerland: Vaud"
-"XA-CH": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-CH":
+  label:
     it: "Switzerland"
     fr: "Switzerland"
     de: "Switzerland"
     en: "Switzerland"
-"XB-SY": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XB-SY":
+  label:
     it: "Syrian Arab Republic"
     fr: "Syrian Arab Republic"
     de: "Syrian Arab Republic"
     en: "Syrian Arab Republic"
-"XD-TT": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-TT":
+  label:
     it: "Trinidad and Tobago"
     fr: "Trinidad and Tobago"
     de: "Trinidad and Tobago"
     en: "Trinidad and Tobago"
-"XB-TR": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XB-TR":
+  label:
     it: "Turkey"
     fr: "Turkey"
     de: "Turkey"
     en: "Turkey"
-"XA-UA": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-UA":
+  label:
     it: "Ukraine"
     fr: "Ukraine"
     de: "Ukraine"
     en: "Ukraine"
-"XA-GB": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XA-GB":
+  label:
     it: "United Kingdom"
     fr: "United Kingdom"
     de: "United Kingdom"
     en: "United Kingdom"
-"XD-US": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-US":
+  label:
     it: "United States of America"
     fr: "United States of America"
     de: "United States of America"
     en: "United States of America"
-"XD-UY": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-UY":
+  label:
     it: "Uruguay"
     fr: "Uruguay"
     de: "Uruguay"
     en: "Uruguay"
-"XD-VE": !map:ActiveSupport::HashWithIndifferentAccess 
-  label: !map:ActiveSupport::HashWithIndifferentAccess 
+"XD-VE":
+  label:
     it: "Venezuela, Bolivarian Republic of"
     fr: "Venezuela, Bolivarian Republic of"
     de: "Venezuela, Bolivarian Republic of"

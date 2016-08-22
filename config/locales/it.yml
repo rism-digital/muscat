@@ -183,6 +183,10 @@ it:
         other: "Utenti"
       
   #################### RECORD TYPES (TEMPLATES)
+  select_template: "SELECT NEW TEMPLATE"
+  available_templates: "AVAILABLE TEMPLATES"
+  from_existing_source: "CREATE FROM EXISTING SOURCE"
+  create_from_existing: "CREATE"
   record_types:
     unspecified: "[Template sconosciuto]"
     convolutum: "Raccolta di miscellanee"
@@ -252,9 +256,13 @@ it:
   failed: "Fallito"
   waiting: "In Attesa"
   running: "In Esecuzione"
+  finished: "Completato"
   lib_siglum: "Sigla della Biblioteca"
   holding_records: "Informazioni sugli esemplari"
   new_holding: "Nuovo Esemplare"
+  record_actions: "Impostazioni Record "
+  record_status: "Stato pubblicazione"
+  record_owner: "Proprietario"
   
   jobs:
     not_set: "[Nessuno stato]"
@@ -569,6 +577,11 @@ it:
     download: "Download"
     more: "Altro"
     banner: 'Usare "Anteprima" per mostrare il risultato della conversione in MEI.'
+  
+  wf_stage:
+    inprogress: "In Elaborazione"
+    published: "Pubblicato"
+    deleted: "Cancellato"
   
   date:
     month_names:

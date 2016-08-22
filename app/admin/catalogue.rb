@@ -95,7 +95,7 @@ ActiveAdmin.register Catalogue do
   include MarcControllerActions
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexAuthorityJob.new(Catalogue.find(params[:id])))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(Catalogue.find(params[:id]), "referring_sources"))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
 
@@ -123,7 +123,7 @@ ActiveAdmin.register Catalogue do
     column (I18n.t :filter_id), :id    
 #   column (I18n.t :filter_name), :name
     column (I18n.t :filter_name), :description do |catalogue| 
-      pretty_truncate(catalogue.description, 60)
+      catalogue.description.truncate(60) if catalogue.description
     end
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count
@@ -131,6 +131,7 @@ ActiveAdmin.register Catalogue do
   end
   
   sidebar :actions, :only => :index do
+    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   
@@ -141,7 +142,7 @@ ActiveAdmin.register Catalogue do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_catalogue_show_title( @item.author, pretty_truncate(@item.description, 60), @item.id) } do
+  show :title => proc{ active_admin_catalogue_show_title( @item.author, @item.description.truncate(60), @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     render('jobs/jobs_monitor')

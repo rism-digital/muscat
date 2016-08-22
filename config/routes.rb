@@ -2,6 +2,7 @@ Muscat::Application.routes.draw do
   #root :to => "catalog#index"
   root :to => redirect(RISM::ROOT_REDIRECT)
   get 'catalog/:id/mei' => 'catalog#mei'
+  post 'catalog/holding' => 'catalog#holding'
   get "catalog/download_xslt" => 'catalog#download_xslt'
   blacklight_for :catalog
   

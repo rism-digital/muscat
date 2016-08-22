@@ -33,8 +33,8 @@
 //= require jquery.validate
 //= require jquery.autosize.min
 //= require jquery.hotkeys
-//= require relator_codes_single_ujs
 //= require jquery.scrollTo.js
+//= require js.cookie
 //= require pae_incipit_render_ujs
 //= require textarea_autogrow_ujs
 //= require inline_autocomplete_ujs
@@ -49,6 +49,7 @@
 //= require marc_editor_validation
 //= require job_progress_bar
 //= require modification_trigger_ujs.js
+//= require filter_workaround.js
 
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
 // this:

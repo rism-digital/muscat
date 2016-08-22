@@ -163,3 +163,14 @@ Use the above example apache conf in /etc/httpd/sites-enabled, create the DB and
 == Add clean up in crontab for blacklight
 
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
+ 
+ == Starting Daemons
+ 
+ Muscat has three running daemons that should be started:
+ 
+  sudo RAILS_ENV=production bin/delayed_job start
+  sudo RAILS_ENV=production bundle exec crono start
+  sudo bundle exec rake RAILS_ENV=production sunspot:solr:start
+  
+Depending on the env, remove sudo if necessary. RAILS_ENV is needed only on production, and has to come *after* sudo.
+  

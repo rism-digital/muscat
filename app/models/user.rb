@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   has_and_belongs_to_many :workgroups
-  attr_accessible :email, :password, :password_confirmation if Rails::VERSION::MAJOR < 4
+  attr_accessible :email, :password, :preference_wf_stage, :password_confirmation if Rails::VERSION::MAJOR < 4
 # Connects this user object to Blacklights Bookmarks. 
   include Blacklight::User
   rolify
@@ -10,8 +10,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
+  enum preference_wf_stage: [ :inprogress, :published, :deleted ]
+
   def can_edit?(source)
-    if sourcechild_sources.count > 0
+    if source.child_sources.count > 0
       libs=[]
       source.child_sources.each do |so| 
         so.institutions.each do |l|

@@ -14,4 +14,5 @@
 # Crono.perform(TestJob).every 2.days, at: '15:30'
 #
 
-Crono.perform(PurgeSearchesJob).every 1.day, at: {hour: 10, min: 51}
+Crono.perform(PurgeSearchesJob).every 1.day, at: {hour: 1, min: 00}
+Crono.perform(PurgeFolderItemsJob).every 1.day, at: {hour: 3, min: 0}

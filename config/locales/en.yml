@@ -1,6 +1,9 @@
 
 en:
   active_admin:
+# Pad for italian, it has 2 missing items
+#
+#
     dashboard: Dashboard
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."
@@ -180,6 +183,10 @@ en:
         other: "Users"
         
   #################### RECORD TYPES (TEMPLATES)
+  select_template: "Select new template"
+  available_templates: "Available templates"
+  from_existing_source: "Create from existing source"
+  create_from_existing: "Create"
   record_types:
     unspecified: "[Unknown template]"
     convolutum: "Convolutum"
@@ -249,9 +256,13 @@ en:
   failed: "Failed"
   waiting: "Waiting"
   running: "Running"
+  finished: "Finished"
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
   new_holding: "Create Holding Record"
+  record_actions: "Record Actions"
+  record_status: "Record Status"
+  record_owner: "Record Owner"
   
   jobs:
     not_set: "[No status set]"
@@ -272,8 +283,8 @@ en:
   reindex: "Re-index"
   publish: "Publish"
   select: "Select"
-  create_folder: "Create Folder"
-  append_folder: "Add to Folder"
+  create_folder: "Add to a new folder"
+  append_folder: "Add to an existing folder"
   
   # Editor sidebar
   show_all_groups: "Show all sections"
@@ -566,7 +577,12 @@ en:
     download: "Download"
     more: "More"
     banner: 'Please click "Preview" to show the MEI-converted output.'
-    
+
+  wf_stage:
+    inprogress: "In Progress"
+    published: "Published"
+    deleted: "Deleted"
+   
   # date:
   # Empty lines for matching line numbers with other translation files  
   #

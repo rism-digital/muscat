@@ -295,14 +295,6 @@ class Marc
     end
   end
   
-  # Copied from application helpers
-  # Used for the inventory database to tuncate the title 
-  def pretty_truncate(text, length = 30, truncate_string = " ...")
-    return if text.nil?
-    l = length - truncate_string.mb_chars.length
-    text.mb_chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
-  end
-
   # Check if the passed tag exists
   def has_tag?(tag)
     load_source unless @loaded
@@ -415,7 +407,7 @@ class Marc
       # 005 should not be there, if it is avoid duplicates
       _005_tag = first_occurance("005")
       if !_005_tag
-        safe_marc.root.add_at(MarcNode.new(@model, "005", last_transcation, nil), get_insert_position("005") )
+        safe_marc.root.add_at(MarcNode.new(@model, "005", last_transcation, nil), safe_marc.get_insert_position("005") )
         offset += 1
       end
     end
@@ -558,6 +550,7 @@ class Marc
 
   alias to_s to_marc
   alias marc_source to_marc
+  alias inspect to_marc
   
   private
   

@@ -45,7 +45,8 @@
     fields: 
     - - c
       - cols: 2 
-        editor_partial: subfield_country_codes
+        editor_partial: subfield_select_codes
+        select_label: "Country"
     columns: 2
   tag_params:
     codes:
@@ -174,8 +175,7 @@
       - type: person
         editor_partial: subfield_secondary
     - - "4"
-      - editor_partial: subfield_relator_codes_700
-  tag_list_additional_data: tag_list_additional_data_relator_codes
+      - editor_partial: subfield_select_codes_grouped
   tag_params: 
     groups: 
       01_codes_artistic: 

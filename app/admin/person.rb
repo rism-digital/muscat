@@ -101,7 +101,7 @@ ActiveAdmin.register Person do
   include MarcControllerActions
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexItemsJob.new(Person.find(params[:id]), "Source"))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(Person.find(params[:id]), "referring_sources"))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
@@ -122,6 +122,15 @@ ActiveAdmin.register Person do
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
   
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+         collection: proc {
+           if current_user.has_any_role?(:editor, :admin)
+             User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}
+           else
+             [[current_user.name, "wf_owner:#{current_user.id}"]]
+           end
+         }
+  
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
@@ -130,7 +139,9 @@ ActiveAdmin.register Person do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
-    column (I18n.t :filter_id), :id  
+    column (I18n.t :filter_id), :id
+    column (I18n.t :filter_wf_stage) {|person| status_tag(person.wf_stage,
+      label: I18n.t('status_codes.' + person.wf_stage, locale: :en))} 
     column (I18n.t :filter_full_name), :full_name
     column (I18n.t :filter_life_dates), :life_dates
     column (I18n.t :filter_sources), :src_count
@@ -138,6 +149,7 @@ ActiveAdmin.register Person do
   end
   
   sidebar :actions, :only => :index do
+    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   

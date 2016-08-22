@@ -3,7 +3,18 @@
 ////////////////////////////////////////////////////////////////////
 marc_editor_form_changed = false;
 
+function marc_editor_set_dirty() {
+	if (marc_editor_form_changed == true)
+		return;
+	
+	marc_editor_form_changed = true
+	//$("<span>*</span>").insertAfter($("#page_title"));
+	$("#page_title").append("*");
+}
+
 function marc_editor_init_tags( id ) {
+    
+    marc_editor_show_last_tab();
 	
 	// Set event hooks
 	// avoid user to accidently leave the page when the form was modify 
@@ -15,9 +26,9 @@ function marc_editor_init_tags( id ) {
 
 	marc_editor_form_changed = false;
 	$(id).dirtyFields({
-		trimText:true,
+		trimText: true,
 		fieldChangeCallback: function(originalValue, isDirty) {
-			marc_editor_form_changed = true;
+			marc_editor_set_dirty();
 		}
 	});	
 
@@ -56,6 +67,9 @@ function marc_editor_init_tags( id ) {
 		
 			input.addClass("serialize_marc");
 			input.addClass("new_autocomplete");
+			
+			// Make the form dirty
+			marc_editor_set_dirty();
 			
 			// Show the checkbox
 			check_tr = toplevel_li.find(".checkbox_confirmation")
@@ -104,6 +118,9 @@ function marc_editor_init_tags( id ) {
 		
 		input.removeClass("serialize_marc");
 		input.removeClass("new_autocomplete");
+		
+		// Make the form dirty
+		marc_editor_set_dirty();
 		
 		// Remove the checkbox
 		var check_tr = toplevel_li.find(".checkbox_confirmation")
@@ -179,7 +196,15 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	if (!form.valid()) {
 		$('#main_content').unblock();
 		$('#sections_sidebar_section').unblock();
-		return;
+		
+		// Show the validation override check
+		$("#validation_override_container").show();
+		
+		// If it is not checked just return
+		// default state is unckecked
+		// If checked go on at the editor's risk
+		if ( !$("#validation_override_checkbox").is(':checked') )
+			return;
 	}
 	
 	var json_marc = serialize_marc_editor_form(form);
@@ -207,6 +232,8 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 			record_type: $('#record_type').val(),
 			parent_object_id: $('#parent_object_id').val(),
 			parent_object_type: $('#parent_object_type').val(),
+			record_status: $('#record_status').val(),
+			record_owner: $('#record_owner').val(),
 			triggers: JSON.stringify(triggers),
 			redirect: redirect
 		},
@@ -315,15 +342,16 @@ function _marc_editor_version_view( version_id, destination, rails_model ) {
 	});
 }
 
-function _marc_editor_embedded_view(destination, rails_model, id ) {	
-	url = "/admin/" + rails_model + "/marc_editor_embedded_show";
+function _marc_editor_embedded_holding(destination, rails_model, id, opac ) {	
+	url = "/catalog/holding";
 	
 	$.ajax({
 		success: function(data) {
 		},
 		data: {
 			marc_editor_dest: destination,
-			object_id: id
+			object_id: id,
+			opac: opac
 		},
 		dataType: 'script',
 		timeout: 20000,
@@ -440,6 +468,53 @@ function marc_editor_version_view(version) {
 
 function marc_editor_version_diff(version) {
 	_marc_editor_version_diff(version, 'marc_editor_historic_view', marc_editor_get_model());
+}
+
+function marc_editor_show_tab_in_panel(tab_name, panel_name) {
+	// Hide all the other panels
+	$( ".tab_panel" ).each(function() {
+		if ($(this).attr("name") != tab_name) {
+			$(this).hide();
+		} else {
+			$(this).show();
+		}
+	});	
+	marc_editor_show_panel(panel_name)
+}
+
+function marc_editor_show_all_subpanels() {
+	$( ".tab_panel" ).each(function() {
+		$(this).show();
+		$(this).removeData("current-item");
+	})
+}
+
+function marc_editor_set_last_tab(tab_name, panel_name) {
+	Cookies.set(marc_editor_get_model() + '-last_tab', tab_name, { expires: 30 });
+	Cookies.set(marc_editor_get_model() + '-panel_name', panel_name, { expires: 30 });
+	
+	// Save the last object id
+	Cookies.set(marc_editor_get_model() + '-last_id', $("#id").val(), { expires: 30 });
+}
+
+function marc_editor_show_last_tab() {
+    var last_tab = Cookies.get(marc_editor_get_model() + '-last_tab');
+    var panel_name = Cookies.get(marc_editor_get_model() + '-panel_name');
+	var last_id = Cookies.get(marc_editor_get_model() + '-last_id');
+	var current_id = $("#id").val();
+	
+	var elem = $("[name='" + last_tab + "']")
+		
+	if ((last_tab != "full") 
+		&& (last_tab && panel_name) 
+		&& elem.length > 0
+		&& current_id == last_id)
+	{
+        marc_editor_show_tab_in_panel(last_tab, panel_name);
+    } else {
+		marc_editor_set_last_tab("full", "full");
+    	marc_editor_show_all_subpanels();
+    }
 }
 
 function marc_editor_show_panel(panel_name) {

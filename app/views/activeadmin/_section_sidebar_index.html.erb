@@ -14,6 +14,7 @@
 		<%- end %>
 		
 		<%- if params.include?(:q) %>
+			<li class="muscat_icon_separator"></li>
 			<li class="muscat_icon_link">
 			<!-- Create the link to the function, pass the params fo q is preserved -->
 			<%= link_to("#{I18n.t :create_folder}", send("create_new_folder_admin_#{model_plural}_path", params.except(:action, :controller)),

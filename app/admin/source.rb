@@ -27,7 +27,7 @@ ActiveAdmin.register Source do
                  #params['q'] = {:std_title_contains => "[Holding]"} 
         end
     end
-    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :solr => false}
+    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => true, :solr => false}
     autocomplete :source, "740_autocomplete_sms", :solr => true
     autocomplete :source, "594b_sms", :solr => true
     
@@ -80,7 +80,7 @@ ActiveAdmin.register Source do
       @template_name = ""
       
       if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_type] || params[:new_type].empty?)
-        redirect_to action: :select_new_template
+        redirect_to action: :select_new_template 
         return
       end
 
@@ -117,7 +117,9 @@ ActiveAdmin.register Source do
     return
   end
   
-  collection_action :select_new_template, :method => :get
+  collection_action :select_new_template, :method => :get do 
+    @page_title = "#{I18n.t(:select_template)}"
+  end
   
   #scope :all, :default => true 
   #scope :published do |sources|
@@ -132,7 +134,7 @@ ActiveAdmin.register Source do
   filter :title_contains, :label => proc{I18n.t(:title_contains)}, :as => :string
   filter :std_title_contains, :label => proc{I18n.t(:std_title_contains)}, :as => :string
   filter :composer_contains, :label => proc{I18n.t(:composer_contains)}, :as => :string
-  filter :lib_siglum_contains, :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
+  filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
   # This filter is the "any field" one
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   # This filter passes the value to the with() function in seach
@@ -151,10 +153,10 @@ ActiveAdmin.register Source do
          }
   
   filter :record_type_with_integer, :label => proc {I18n.t(:filter_record_type)}, as: :select, 
-  collection: proc{MarcSource::RECORD_TYPES.collect {|k, v| [k, "record_type:#{v}"]}}
+  collection: proc{MarcSource::RECORD_TYPES.collect {|k, v| [I18n.t("record_types." + k.to_s), "record_type:#{v}"]}}
 
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
-  collection: proc{[:inprogress, :published, :deleted].collect {|v| [v, "wf_stage:#{v}"]}}
+  collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
       
   index :download_links => false do
     selectable_column if !is_selection_mode?
@@ -178,6 +180,7 @@ ActiveAdmin.register Source do
   end
   
   sidebar :actions, :only => :index do
+    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   

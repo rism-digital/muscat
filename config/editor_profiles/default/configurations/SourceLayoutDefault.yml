@@ -19,7 +19,7 @@ group_exclude:
   - edit_incipits
   convolutum:
   - edit_incipits
-  
+
 tag_exclude:
   collection:
   - '041'
@@ -32,12 +32,19 @@ tag_exclude:
   - '740'
   - '787'
   manuscript:
+  - '490'
   - '597'
   - '772'
   - '775'
   print:
+  - '506'
+  - '541'
+  - '561'
+  - '591'
   - '772'
+  - '852'
   manuscript_libretto:
+  - '490'
   - '590'
   - '594'
   - '596'
@@ -47,6 +54,7 @@ tag_exclude:
   - '775'
   - '787'
   print_libretto:
+  - '490'
   - '590'
   - '594'
   - '596'
@@ -54,6 +62,7 @@ tag_exclude:
   - '772'
   - '787'
   theoretica:
+  - '490'
   - '511'
   - '590'
   - '594'
@@ -66,6 +75,7 @@ tag_exclude:
   - '772'
   - '787'
   convolutum:
+  - '490'
   - '028'
   - '041'
   - '100'
@@ -88,6 +98,15 @@ tag_exclude:
   - '773'
   - '775'
   - '787'
+  
+tag_exclude_with_holdings:
+  collection:
+  - '506'
+  - '541'
+  - '561'
+  - '591'
+  - '773'
+  - '852'
 
 groups:
   edit_library:
@@ -120,6 +139,7 @@ groups:
     - '730'
     - '650'
     - '520'
+    - '505'
     - '594'
     - '595'
     - '598'
@@ -154,6 +174,7 @@ groups:
     - '500'
     - '525'
     - '691'
+    - '490'
     - '596'
     - '657'
     - '651'

@@ -80,7 +80,7 @@ ActiveAdmin.register StandardTitle do
   end
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexAuthorityJob.new(StandardTitle.find(params[:id])))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(StandardTitle.find(params[:id]), "referring_sources"))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
@@ -106,6 +106,7 @@ ActiveAdmin.register StandardTitle do
   end
   
   sidebar :actions, :only => :index do
+    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   

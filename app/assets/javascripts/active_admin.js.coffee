@@ -20,9 +20,9 @@
 #= require jquery.scrollTo.js
 #= require jquery.autosize.min
 #= require jquery.hotkeys
+#= require js.cookie
 #= require rism.localisation
 #= require autocomplete-rails
-#= require relator_codes_single_ujs
 #= require inline_autocomplete_ujs
 #= require tag_header_events
 #= require section_sidebar_ujs
@@ -36,6 +36,10 @@
 #= require new_window_select_ujs
 #= require jsdiff.js
 #= require job_progress_bar
+#= require filter_workaround
 
 #= require viaf_interface.js
 #= require modification_trigger_ujs.js
+
+#= require diva/diva.js
+#= require diva/utils.js
