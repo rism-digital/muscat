@@ -228,9 +228,6 @@ fr:
   menu_cataloging: "Catalogage"
   menu_jobs: "Tâches"
   menu_holdings: "Exemplaires"
-  record_actions: "Actions"
-  record_status: "Status"
-  record_owner: "Propriétaire"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"
@@ -263,6 +260,14 @@ fr:
   lib_siglum: "Sigle de bibliothèque"
   holding_records: "Copie"
   new_holding: "Ajouter une copie"
+  new_digital_object: "Attacher une nouvelle image"
+  record_actions: "Actions"
+  record_status: "Status"
+  record_owner: "Propriétaire"
+  link_type: "Type de lien"
+  linked_object: "Objet lié"
+  links: "Liens"
+  link_remove: "Supprimer le lien"
   
   jobs:
     not_set: "[sans statut]"
@@ -282,8 +287,11 @@ fr:
   no_action: "Aucune action possible"
   reindex: "Ré-indexer"
   publish: "Publier"
+  select: "Sélectionner"
   create_folder: "Ajouter à un nouveau dossier"
   append_folder: "Ajouter à un dossier existant"
+  add_source: "LINK SOURCE"
+  add_person: "LINK PERSON"
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"
@@ -294,7 +302,6 @@ fr:
   save_and_continue: "Enregistrer et continuer"
   save_and_exit: "Enregistrer et terminer"
   cancel: "Annuler"
-  select: "Sélectionner"
   
   # Version history
   history_date: "Date"

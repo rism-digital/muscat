@@ -260,9 +260,14 @@ it:
   lib_siglum: "Sigla della Biblioteca"
   holding_records: "Informazioni sugli esemplari"
   new_holding: "Nuovo Esemplare"
+  new_digital_object: "Aggiungi una nuova immagine"
   record_actions: "Impostazioni Record "
   record_status: "Stato pubblicazione"
   record_owner: "Proprietario"
+  link_type: "Tipo Oggetto"
+  linked_object: "Oggetto Collegato"
+  links: "Collegamenti"
+  link_remove: "Elimina Collegamento"
   
   jobs:
     not_set: "[Nessuno stato]"
@@ -285,6 +290,8 @@ it:
   select: "Seleziona"
   create_folder: "Crea Cartella"
   append_folder: "Aggiungi a Cartella"
+  add_source: "Collega Fonte"
+  add_person: "Collega Persona"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"

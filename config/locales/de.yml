@@ -260,9 +260,14 @@ de:
   lib_siglum: "Bibliothekssigel"
   holding_records: "Exemplar Information"
   new_holding: "Neuer Examplar Eintrag"
+  new_digital_object: "ATTACH A NEW IMAGE"
   record_actions: "RECORD ACTIONS"
   record_status: "RECORD STATUS"
   record_owner: "RECORD OWNER"
+  link_type: "LINK TYPE"
+  linked_object: "LINKED OBJECT"
+  links: "LINKS"
+  link_remove: "REMOVE LINK"
   
   jobs:
     not_set: "[Kein Status gesetzt]"
@@ -285,6 +290,8 @@ de:
   select: "Auswählen"
   create_folder: "Erstelle Ordner"
   append_folder: "Zu Ordner hinzufügen"
+  add_source: "LINK SOURCE"
+  add_person: "LINK PERSON"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
