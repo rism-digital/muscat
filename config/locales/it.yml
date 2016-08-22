@@ -211,6 +211,7 @@ it:
   menu_library_sigla: "Sigla della biblioteca"
   menu_catalogues: "Cataloghi tematici"
   menu_liturgical_feasts: "Feste liturgiche"
+  menu_latin: "LATIN TEXT"
   menu_places: "Luoghi"
   menu_help: "Aiuto"
   menu_folders: "Cartelle"

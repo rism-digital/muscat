@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809145102) do
+ActiveRecord::Schema.define(version: 20160822124822) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -325,6 +325,25 @@ ActiveRecord::Schema.define(version: 20160809145102) do
   add_index "institutions_workgroups", ["institution_id"], name: "index_workgroups_institutions_on_institution_id", using: :btree
   add_index "institutions_workgroups", ["workgroup_id"], name: "index_workgroups_institutions_on_workgroup_id", using: :btree
 
+  create_table "latins", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.text     "alternate_terms", limit: 65535
+    t.text     "notes",           limit: 65535
+    t.text     "sub_topic",       limit: 65535
+    t.text     "topic",           limit: 65535
+    t.string   "viag",            limit: 255
+    t.string   "gnd",             limit: 255
+    t.integer  "wf_audit",        limit: 4,     default: 0
+    t.integer  "wf_stage",        limit: 4,     default: 0
+    t.string   "wf_notes",        limit: 255
+    t.integer  "wf_owner",        limit: 4,     default: 0
+    t.integer  "wf_version",      limit: 4,     default: 0
+    t.integer  "src_count",       limit: 4,     default: 0
+    t.integer  "lock_version",    limit: 4,     default: 0, null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
   create_table "liturgical_feasts", force: :cascade do |t|
     t.string   "name",            limit: 255,               null: false
     t.text     "notes",           limit: 65535
@@ -490,6 +509,14 @@ ActiveRecord::Schema.define(version: 20160809145102) do
 
   add_index "sources_to_institutions", ["institution_id"], name: "index_sources_to_institutions_on_institution_id", using: :btree
   add_index "sources_to_institutions", ["source_id"], name: "index_sources_to_institutions_on_source_id", using: :btree
+
+  create_table "sources_to_latin", id: false, force: :cascade do |t|
+    t.integer "latin_id",  limit: 4
+    t.integer "source_id", limit: 4
+  end
+
+  add_index "sources_to_latin", ["latin_id"], name: "index_sources_to_latins_on_latin_id", using: :btree
+  add_index "sources_to_latin", ["source_id"], name: "index_sources_to_latins_on_source_id", using: :btree
 
   create_table "sources_to_liturgical_feasts", id: false, force: :cascade do |t|
     t.integer "liturgical_feast_id", limit: 4
