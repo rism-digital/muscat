@@ -269,6 +269,8 @@ it:
   links: "Collegamenti"
   link_remove: "Elimina Collegamento"
   link_remove_confirm: "Sei sicuro di voler eliminare il collegamento?"
+  validation_level_error: "Sono presenti errori, correggerli prima di continuare"
+  validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
   
   jobs:
     not_set: "[Nessuno stato]"

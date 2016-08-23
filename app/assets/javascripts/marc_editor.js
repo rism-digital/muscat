@@ -220,6 +220,8 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		if (form_valid && !already_warnings) {
 			return; // Give the user a chance to resubmit
 		}
+	} else {
+		$("#validation_warnings").hide();
 	}
 	
 	if (!form_valid) {

@@ -269,6 +269,8 @@ en:
   links: "Links"
   link_remove: "Remove Link"
   link_remove_confirm: "Are you sure you want to delete this link?"
+  validation_level_error: "There are errors, please solve before saving"
+  validation_level_warning: "There are warnings, save again to override"
   
   jobs:
     not_set: "[No status set]"

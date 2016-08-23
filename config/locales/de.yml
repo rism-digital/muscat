@@ -269,6 +269,8 @@ de:
   links: "LINKS"
   link_remove: "REMOVE LINK"
   link_remove_confirm: "DELETE LINK?"
+  validation_level_error: "THERE ARE ERRORS, PLEASE SOLVE BEFORE SAVING"
+  validation_level_warning: "THERE ARE WARNINGS, SAVE AGAIN TO OVERRIDE"
   
   jobs:
     not_set: "[Kein Status gesetzt]"
