@@ -36,6 +36,29 @@ class EditorValidation
       return false
   end
 
+  # To indicare the warning level we add a ", warning" to the rule name
+  # so
+  # "031": 
+  #   tags:
+  #     a: required, warning
+  #     b: required
+  #     c: required
+  def is_warning?(tag, subtag)
+	  return false if !@validation_config[tag]
+	  conf = @validation_config[tag]["tags"][subtag]
+	  return false if !conf
+	  if conf.is_a? String
+		  if conf.match(",") # is split by comma?
+			  parts = conf.split(",")
+			  # by convention the second token has to be == "warning"
+			  return true if parts[1].strip == "warning"
+		  else
+			  return false
+		  end
+	  elsif conf.is_a? Hash
+	  end
+  end
+
   def get_rules_for_tag(tag)
     return @validation_config[tag]
   end

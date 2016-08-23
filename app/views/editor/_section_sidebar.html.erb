@@ -70,6 +70,12 @@
 		<input class="creation_checkbox" type="checkbox" id="validation_override_checkbox"/>
 		<span id="validation_override_label" style="color:red">Override Validation and Save</span>
 	</li>
+	<li class="muscat_icon_link" id="validation_errors" hidden>
+		<span style="color:red">There are errors, please solve before saving</span>
+	</li>
+	<li class="muscat_icon_link" id="validation_warnings" hidden>
+		<span style="color:green">There are warnings, save again to override</span>
+	</li>
 	<li class="muscat_icon_link">
 		<a data-scroll-target="action" data-action="save" href="#" class="muscat_icon_link muscat_icon_link_save"><%=(I18n.t :save_and_continue)%></a>
 	</li>

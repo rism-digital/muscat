@@ -27,7 +27,7 @@
 "240": 
   tags:
     "0": required
-    m: required
+    m: required, warning
 "245": 
   tags:
     a: required
@@ -61,7 +61,7 @@
 "691": 
   tags:
     "0": required
-    n: required
+    n: required, warning
 "700": 
   tags:
     "0": required
@@ -82,7 +82,7 @@
 "852": 
   tags:
     a: required
-    p: required
+    p: required, warning
     x: required
 "856": 
   tags:

@@ -1,3 +1,138 @@
+var warningList = [];
+var hasNewWarnings = false;
+
+function marc_validate_has_warnings() {
+	return hasNewWarnings;
+}
+
+function marc_validate_reset_warnings() {
+	warningList = [];
+	hasNewWarnings = false;
+}
+
+function marc_validate_force_evaluate_warnings() {
+	hasNewWarnings = false;
+}
+
+function marc_validate_add_warnings(element) {
+	hasNewWarnings = true;
+	warningList.push(element);
+}
+
+function marc_validate_hide_warnings() {
+	for (var warn in warningList) {
+		_marc_validate_unhighlight(warningList[warn], "warning", "nice");
+	}
+}
+
+function marc_validate_show_warnings() {
+	for (var warn in warningList) {
+		_marc_validate_highlight(warningList[warn], "warning", "");
+	}
+}
+
+function _marc_validate_highlight( element, errorClass, validClass ) {
+	
+	// See if this is in a placeholder.
+	// If it is, create a new tag and add the error
+	// to that tag, not the hidden placelohder
+	element = marc_editor_validate_expand_placeholder(element);
+	
+	if ( element.type === "radio" ) {
+		this.findByName( element.name ).addClass( errorClass ).removeClass( validClass );
+	} else if ( element.type === "hidden" ) {
+		// Alert! an autocomplete?
+		
+		// havigate up to the <li> and down to the autocomplete elem
+		var toplevel_li = $(element).parents("li");
+		var ac = $("input[data-autocomplete]", toplevel_li);
+		
+		if (ac) {
+			ac.addClass( errorClass ).removeClass( validClass );
+		} else {
+			console.log("Tried to higlight a hidden object with no autocomplete.")
+		}
+	} else if ( element.type === "checkbox" ) {
+		var label = $("#" + element.name + "-label");
+		label.addClass(errorClass).removeClass( validClass );
+	} else {
+		$( element ).addClass( errorClass ).removeClass( validClass );
+	}
+	
+	// Open up the group if it was collapsed
+	var group = $(element).parents(".tag_content_collapsable");
+	if ($(group).css("display") == "none") {
+		var toplevel = $(element).parents(".tag_container");
+		var button = $("a[data-header-button='toggle']", toplevel);
+		tag_header_toggle($(button));
+	}
+	
+	// Highlight the group in the sidebar
+	var panel = $(element).parents(".tab_panel");
+	var item_name = panel.attr("name");
+	var menu_item = $("a[data-scroll-target=" + item_name+ "]");
+	menu_item.addClass(errorClass);
+	
+	// Keep a reference of the error'd items
+	// in the sidebar element. We use this to
+	// unhighlight it after
+	var errors = menu_item.data("error-counter");
+	if (errors == undefined) {
+		errors = [];
+	}
+	
+	if ($.inArray(element.name, errors) == -1)
+		errors.push(element.name);
+	
+	menu_item.data("error-counter", errors);
+}
+
+function _marc_validate_unhighlight( element, errorClass, validClass ) {
+	if ( element.type === "radio" ) {
+		this.findByName( element.name ).removeClass( errorClass ).addClass( validClass );
+	} else if ( element.type === "hidden" ) {
+		// Alert! an autocomplete?
+		
+		// havigate up to the <li> and down to the autocomplete elem
+		var toplevel_li = $(element).parents("li");
+		var ac = $("input[data-autocomplete]", toplevel_li);
+		
+		if (ac) {
+			ac.removeClass( errorClass ).addClass( validClass );
+		} else {
+			console.log("Tried to un-higlight a hidden object with no autocomplete.")
+		}
+	} else if ( element.type === "checkbox" ) {
+		var label = $("#" + element.name + "-label");
+		label.addClass(validClass).removeClass( errorClass );
+	} else {
+		
+		$( element ).removeClass( errorClass ).addClass( validClass );
+	}
+
+	// unHighlight the group in the sidebar
+	// The sidebar element contains a data elem
+	// with a list of the items with errors in that
+	// group. If the items are validated and valid
+	// we remove them from this list. When no
+	// items remain, we can remove the error
+	// class from the sidebar group
+	var panel = $(element).parents(".tab_panel");
+	var item_name = panel.attr("name");
+	var menu_item = $("a[data-scroll-target=" + item_name+ "]");
+	var errors = menu_item.data("error-counter");
+	if (errors != undefined) {
+		
+		if (!$(element).hasClass(errorClass) && $.inArray(element.name, errors) >= 0) {
+			errors.splice( $.inArray(element.name, errors), 1 );
+			menu_item.data("error-counter", errors);
+		}
+		
+		if (errors.length == 0)
+			menu_item.removeClass(errorClass);
+	}
+}
+
 // This is the simplest validator
 // It checks that a value is present
 // but only in partially filled forms
@@ -12,11 +147,18 @@ function marc_validate_presence(value, element) {
 		}
 	});
 	
+	var validate_level = $(element).data("validate-level");
+	
 	if (value == "") {
 		// There are other values in the form
 		// it is mandatory that this field is filled
-		if (others)
+		if (others) {
+			if (validate_level == "warning") {
+				marc_validate_add_warnings(element);
+				return true;
+			}
 			return false;
+		}
 		else
 			return true;
 		// if all the other fields are empty
@@ -161,107 +303,10 @@ function marc_editor_init_validation(form, validation_conf) {
 			return false;
 		},
 		highlight: function( element, errorClass, validClass ) {
-			
-			// See if this is in a placeholder.
-			// If it is, create a new tag and add the error
-			// to that tag, not the hidden placelohder
-			element = marc_editor_validate_expand_placeholder(element);
-			
-			if ( element.type === "radio" ) {
-				this.findByName( element.name ).addClass( errorClass ).removeClass( validClass );
-			} else if ( element.type === "hidden" ) {
-				// Alert! an autocomplete?
-				
-				// havigate up to the <li> and down to the autocomplete elem
-				var toplevel_li = $(element).parents("li");
-				var ac = $("input[data-autocomplete]", toplevel_li);
-				
-				if (ac) {
-					ac.addClass( errorClass ).removeClass( validClass );
-				} else {
-					console.log("Tried to higlight a hidden object with no autocomplete.")
-				}
-			} else if ( element.type === "checkbox" ) {
-				var label = $("#" + element.name + "-label");
-				label.addClass(errorClass).removeClass( validClass );
-			} else {
-				$( element ).addClass( errorClass ).removeClass( validClass );
-			}
-			
-			// Open up the group if it was collapsed
-			var group = $(element).parents(".tag_content_collapsable");
-			if ($(group).css("display") == "none") {
-				var toplevel = $(element).parents(".tag_container");
-				var button = $("a[data-header-button='toggle']", toplevel);
-				tag_header_toggle($(button));
-			}
-			
-			// Highlight the group in the sidebar
-			var panel = $(element).parents(".tab_panel");
-			var item_name = panel.attr("name");
-			var menu_item = $("a[data-scroll-target=" + item_name+ "]");
-			menu_item.addClass(errorClass);
-			
-			// Keep a reference of the error'd items
-			// in the sidebar element. We use this to
-			// unhighlight it after
-			var errors = menu_item.data("error-counter");
-			if (errors == undefined) {
-				errors = [];
-			}
-			
-			if ($.inArray(element.name, errors) == -1)
-				errors.push(element.name);
-			
-			menu_item.data("error-counter", errors);
-			
+			_marc_validate_highlight(element, errorClass, validClass);
 		},
 		unhighlight: function( element, errorClass, validClass ) {
-						
-			if ( element.type === "radio" ) {
-				this.findByName( element.name ).removeClass( errorClass ).addClass( validClass );
-			} else if ( element.type === "hidden" ) {
-				// Alert! an autocomplete?
-				
-				// havigate up to the <li> and down to the autocomplete elem
-				var toplevel_li = $(element).parents("li");
-				var ac = $("input[data-autocomplete]", toplevel_li);
-				
-				if (ac) {
-					ac.removeClass( errorClass ).addClass( validClass );
-				} else {
-					console.log("Tried to un-higlight a hidden object with no autocomplete.")
-				}
-			} else if ( element.type === "checkbox" ) {
-				var label = $("#" + element.name + "-label");
-				label.addClass(validClass).removeClass( errorClass );
-			} else {
-				
-				$( element ).removeClass( errorClass ).addClass( validClass );
-			}
-
-			// unHighlight the group in the sidebar
-			// The sidebar element contains a data elem
-			// with a list of the items with errors in that
-			// group. If the items are validated and valid
-			// we remove them from this list. When no
-			// items remain, we can remove the error
-			// class from the sidebar group
-			var panel = $(element).parents(".tab_panel");
-			var item_name = panel.attr("name");
-			var menu_item = $("a[data-scroll-target=" + item_name+ "]");
-			var errors = menu_item.data("error-counter");
-			if (errors != undefined) {
-				
-				if (!$(element).hasClass(errorClass) && $.inArray(element.name, errors) >= 0) {
-					errors.splice( $.inArray(element.name, errors), 1 );
-					menu_item.data("error-counter", errors);
-				}
-				
-				if (errors.length == 0)
-					menu_item.removeClass(errorClass);
-			}
-
+			_marc_validate_unhighlight(element, errorClass, validClass);
 		},
 		errorPlacement: function(error, element) {
 			// Checkboxes do not append any message
@@ -289,11 +334,17 @@ function marc_editor_init_validation(form, validation_conf) {
 		for (var subtag_key in tag_conf) {
 			var subtag = tag_conf[subtag_key];
 			var element_class = marc_editor_validate_className(key, subtag_key);
-
-			if (subtag == "required") {
-				// Our own validator is called "presence" to distinguish it
-				// from the default "required" validator
-				$.validator.addClassRules(element_class, { presence: true });
+			
+			if (typeof subtag === "string") {
+				var str_parts = subtag.split(",");
+				// by convention: required, warning
+				// the rule name is always the first
+				var rule_name = str_parts[0];
+				if (rule_name == "required") {
+					// Our own validator is called "presence" to distinguish it
+					// from the default "required" validator
+					$.validator.addClassRules(element_class, { presence: true });
+				}
 			} else if (subtag instanceof Object) {
 				// More complex dataype
 				marc_editor_validate_advanced_rule(element_class, subtag);

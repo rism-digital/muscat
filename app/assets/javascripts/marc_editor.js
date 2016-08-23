@@ -4,6 +4,7 @@
 marc_editor_form_changed = false;
 
 function marc_editor_set_dirty() {
+	marc_validate_force_evaluate_warnings(); // Force the warnings to re-evaluate
 	if (marc_editor_form_changed == true)
 		return;
 	
@@ -192,11 +193,42 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	redirect = redirect || false;
 	form = $('form', "#" + form_name);
 	
+	// Warning level works like this: first time it shows warnings
+	// second time it passes. See if warning are present so
+	// if this is the second load it will pass
+	var already_warnings = marc_validate_has_warnings();
+	marc_validate_hide_warnings(); // Delete all the old warnings
+	marc_validate_reset_warnings(); // Reset all the warnings if the user fixed them
+	// Warnings will be re-drawn if needed
+	
 	// .valid() triggers form validation
-	if (!form.valid()) {
+	// it also populates the warning hash
+	var form_valid = form.valid();
+
+	// Warning in the validation on a new validation (i.e. no 
+	// warnings already there)
+	if (marc_validate_has_warnings()) {
 		$('#main_content').unblock();
 		$('#sections_sidebar_section').unblock();
+		$("#validation_warnings").show();
 		
+		marc_validate_show_warnings();
+		// If the form is valid AND it is the first submission
+		// after something changed in the editor, inhibit submit
+		// if the form is INVALID submit is ALWAYS blocked,
+		// see below
+		if (form_valid && !already_warnings) {
+			return; // Give the user a chance to resubmit
+		}
+	}
+	
+	if (!form_valid) {
+		$('#main_content').unblock();
+		$('#sections_sidebar_section').unblock();
+		$("#validation_errors").show();
+		
+		return;
+		/*
 		// Show the validation override check
 		$("#validation_override_container").show();
 		
@@ -205,6 +237,9 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		// If checked go on at the editor's risk
 		if ( !$("#validation_override_checkbox").is(':checked') )
 			return;
+		*/
+	} else {
+		$("#validation_errors").hide();
 	}
 	
 	var json_marc = serialize_marc_editor_form(form);
