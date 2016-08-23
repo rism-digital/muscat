@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822124822) do
+ActiveRecord::Schema.define(version: 20160823081105) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -357,6 +357,9 @@ ActiveRecord::Schema.define(version: 20160822124822) do
     t.datetime "updated_at"
     t.integer  "lock_version",    limit: 4,     default: 0, null: false
     t.text     "alternate_terms", limit: 65535
+    t.text     "sub_topic",       limit: 65535
+    t.string   "viaf",            limit: 255
+    t.string   "gnd",             limit: 255
   end
 
   add_index "liturgical_feasts", ["name"], name: "index_liturgical_feasts_on_name", using: :btree
@@ -437,6 +440,8 @@ ActiveRecord::Schema.define(version: 20160822124822) do
     t.text     "alternate_terms", limit: 65535
     t.text     "topic",           limit: 65535
     t.text     "sub_topic",       limit: 65535
+    t.string   "viaf",            limit: 255
+    t.string   "gnd",             limit: 255
   end
 
   add_index "places", ["name"], name: "index_places_on_name", using: :btree
@@ -587,6 +592,9 @@ ActiveRecord::Schema.define(version: 20160822124822) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lock_version",    limit: 4,     default: 0, null: false
+    t.text     "sub_topic",       limit: 65535
+    t.string   "viaf",            limit: 255
+    t.string   "gnd",             limit: 255
   end
 
   add_index "standard_terms", ["term"], name: "index_standard_terms_on_term", using: :btree

@@ -19,7 +19,7 @@ class StandardTerm < ActiveRecord::Base
   belongs_to :user, :foreign_key => "wf_owner"
   validates_presence_of :term
   validates_uniqueness_of :term
-  
+  alias_attribute :name, :term
   #include NewIds
   
   before_destroy :check_dependencies

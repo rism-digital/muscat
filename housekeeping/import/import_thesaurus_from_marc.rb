@@ -1,112 +1,52 @@
-# Reads from a UTF8 MARC 21 source file and imports the records into the database (and ferret)
-# For a completely clean import:
-# - Ensure that ferretd is stopped (./script/ferretd/stop && ps ax | grep ferretd)
-# - Remove the index files (rm -rf index/i_my/*)
-# - Roll back the database (rake db:migrate VERSION=0)
-# - Recreate the db (rake db:migrate)
-# - Restart ferretd (./script/ferretd/start)
-# - Run this script (cd housekeeping/import; ../../script/runner ./import_from_marc.rb ./00000_01000.utf8)
-# - Run the post processing script (../../script/runner ./post_process.rb)
-# - Done.
-
-#User.current_user = User.find(1)
-#@setting.save
-
-# Alternatively, it is possible to import from the command line using the console and the ImportWorker:
-# i = ImportWorker.new
-# i.import( {:import_file => "zip_file_in_tmp_uploads", :owner => "admin", :owner_id => 1})
-
-class Marc21Import
-  
-  def initialize(source_file, from = 0)
-    @from = from
-    @source_file = source_file
-    @total_records = 0
-    @import_results = Array.new
-  end
-
-  def import
-    buffer = ""
-    line_number = 0
-    File.open(@source_file, "r") do |f|
-      f.each_line do |line|
-        line_number += 1
-        if line =~ /^\s+$/
-          # ignore
-        elsif line =~ /^=000/
-          if buffer.length > 0
-            create_record(buffer, line_number)
-          end
-          buffer = line
-        else
-          buffer += line
-        end
-      end
-      create_record(buffer, line_number)
-    end
-    puts @import_results
-  end
-
-  def create_record(buffer, line_number)
-    @total_records += 1
-    buffer.gsub!(/[\r\n]+/, ' ')
-    buffer.gsub!(/ (=[0-9]{3,3})/, "\n\\1")
-    
-    if @total_records >= @from
-      marc = MarcCatalogue.new(buffer)
-      # load the source but without resolving externals
-      marc.load_source(false)
-
-      if marc.is_valid?(false)
-        # p marc.to_s
-        # exit
-        
-        # step 1.  update or create a new manuscript
-        manuscript = Catalogue.find_by_id( marc.get_marc_source_id )
-        if !manuscript
-          manuscript = Catalogue.new(:wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
-        end
-          
-        # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
-        marc.import
-
-        # step 3. associate Marc with Manuscript
-        manuscript.marc = marc
-
-        @import_results.concat( marc.results )
-        @import_results = @import_results.uniq
-
-        # step 4. insert Manuscript into database
-        #manuscript.suppress_update_77x # we should not need to update the 772/773 relationships during the import
-        #manuscript.suppress_create_incipit
-        #manuscript.suppress_create_incipit
-        #manuscript.suppress_reindex
-        manuscript.save #rescue puts "save failed"
-
-        puts "Last offset: #{@total_records}, Last RISM ID: #{marc.first_occurance('001').content}"
-      else
-        puts "failed to import marc record leading up to line #{line_number}"
+def each_record(filename, &block)
+  File.open(filename) do |file|
+    Nokogiri::XML::Reader.from_io(file).each do |node|
+      if node.name == 'record' and node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
+        yield(Nokogiri::XML(node.outer_xml).root)
       end
     end
   end
-  
 end
 
-# first argument is the file containing marc records
-# second is the offset to start from
-
-ap ARGV
+NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim"}
+classes = %w(Latin LiturgicalFeast Place StandardTerm)
 
 if ARGV.length >= 1
-  source_file = "rism_lit.marc"
-  from = 0
-#  from = ARGV[1] if ARGV[1]
+  source_file = ARGV[0]
   if File.exists?(source_file)
-    import = Marc21Import.new(source_file, from.to_i)
-    import.import
+    each_record(source_file) { |record|
+      next if record.xpath("//marc:datafield[@tag='750']/marc:subfield[@code='a']", NAMESPACE).first
+      if class_name = record.xpath("//marc:datafield[@tag='336']/marc:subfield[@code='a']", NAMESPACE).first
+        next unless classes.include?(class_name.text)
+        puts class_name.text
+        name = record.xpath("//marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text
+        id = record.xpath("//marc:controlfield[@tag='001']", NAMESPACE).first.text.to_i
+        existing =  Object.const_get(class_name.text).where(:name => name)
+        binding.pry unless Object.const_get(class_name.text).where(:id => id).empty?
+        thes = !existing.empty? ? existing.first : Object.const_get(class_name.text).new
+        thes.name = name if existing.empty?
+        # thes.name.gsub!(", ", " | ") if class_name.text == 'Latin'
+        thes.id = id
+        if alternate_terms = record.xpath("//marc:datafield[@tag='550']/marc:subfield[@code='a']", NAMESPACE)
+          thes.alternate_terms = alternate_terms.map{|n| n.content}.join("\n")
+          # thes.alternate_terms.gsub!(", ", " | ") if class_name.text == 'Latin'
+        end
+        if sub_topics = record.xpath("//marc:datafield[@tag='780']/marc:subfield[@code='a']", NAMESPACE)
+          thes.sub_topic = sub_topics.map{|n| n.content}.join("\n")
+          # thes.sub_topic.gsub!(", ", " | ") if class_name.text == 'Latin'
+        end
+        if notes = record.xpath("//marc:datafield[@tag='680']/marc:subfield[@code='a']", NAMESPACE)
+          thes.notes = notes.map{|n| n.content}.join("\n")
+        end
+        thes.save
+      end
+
+    }
+    $stderr.puts "\nCompleted: "  +Time.new.strftime("%Y-%m-%d %H:%M:%S")
   else
     puts source_file + " is not a file!"
   end
 else
-  puts "Bad arguments, specify marc file and ferret index file to use"
+  puts "Bad arguments, specify marc file and model class to use"
 end
+

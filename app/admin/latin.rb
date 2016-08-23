@@ -102,7 +102,7 @@ ActiveAdmin.register Latin do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
-    column (I18n.t :filter_country), :alternate_terms
+    column (I18n.t :filter_alternate_terms), :alternate_terms
     column (I18n.t :filter_sources), :src_count
     active_admin_muscat_actions( self )
   end
