@@ -2166,6 +2166,12 @@ Arr:
     fr: Arrangement
     de: ARR
     en: Arrangement
+Var:
+  label:
+    it: VAR
+    fr: Variations
+    de: VAR
+    en: Variations
 #Keys
 A:
   label:
@@ -2386,76 +2392,76 @@ g|b:
 # modes
 1t:
   label:
-    it: "Mode: Dorian"
-    fr: "Mode: Dorian"
-    de: "Mode: Dorian"
-    en: "Mode: Dorian"
+    it: "Mode:  1t – Dorian"
+    fr: "Mode:  1t – Dorian"
+    de: "Mode:  1t – Dorian"
+    en: "Mode:  1t – Dorian"
 2t:
   label:
-    it: "Mode: Hypodorian"
-    fr: "Mode: Hypodorian"
-    de: "Mode: Hypodorian"
-    en: "Mode: Hypodorian"
+    it: "Mode:  2t – Hypodorian"
+    fr: "Mode:  2t – Hypodorian"
+    de: "Mode:  2t – Hypodorian"
+    en: "Mode:  2t – Hypodorian"
 3t:
   label:
-    it: "Mode: Phrygian"
-    fr: "Mode: Phrygian"
-    de: "Mode: Phrygian"
-    en: "Mode: Phrygian"
+    it: "Mode:  3t – Phrygian"
+    fr: "Mode:  3t – Phrygian"
+    de: "Mode:  3t – Phrygian"
+    en: "Mode:  3t – Phrygian"
 4t:
   label:
-    it: "Mode: Hypophrygian"
-    fr: "Mode: Hypophrygian"
-    de: "Mode: Hypophrygian"
-    en: "Mode: Hypophrygian"
+    it: "Mode:  4t – Hypophrygian"
+    fr: "Mode:  4t – Hypophrygian"
+    de: "Mode:  4t – Hypophrygian"
+    en: "Mode:  4t – Hypophrygian"
 5t:
   label:
-    it: "Mode: Lydian"
-    fr: "Mode: Lydian"
-    de: "Mode: Lydian"
-    en: "Mode: Lydian"
+    it: "Mode:  5t – Lydian"
+    fr: "Mode:  5t – Lydian"
+    de: "Mode:  5t – Lydian"
+    en: "Mode:  5t – Lydian"
 6t:
   label:
-    it: "Mode: Hypolydian"
-    fr: "Mode: Hypolydian"
-    de: "Mode: Hypolydian"
-    en: "Mode: Hypolydian"
+    it: "Mode:  6t – Hypolydian"
+    fr: "Mode:  6t – Hypolydian"
+    de: "Mode:  6t – Hypolydian"
+    en: "Mode:  6t – Hypolydian"
 7t:
   label:
-    it: "Mode: Mixolydian"
-    fr: "Mode: Mixolydian"
-    de: "Mode: Mixolydian"
-    en: "Mode: Mixolydian"
+    it: "Mode:  7t – Mixolydian"
+    fr: "Mode:  7t – Mixolydian"
+    de: "Mode:  7t – Mixolydian"
+    en: "Mode:  7t – Mixolydian"
 8t:
   label:
-    it: "Mode: Hypomixolydian"
-    fr: "Mode: Hypomixolydian"
-    de: "Mode: Hypomixolydian"
-    en: "Mode: Hypomixolydian"
+    it: "Mode:  8t – Hypomixolydian"
+    fr: "Mode:  8t – Hypomixolydian"
+    de: "Mode:  8t – Hypomixolydian"
+    en: "Mode:  8t – Hypomixolydian"
 9t:
   label:
-    it: "Mode: Aeolian"
-    fr: "Mode: Aeolian"
-    de: "Mode: Aeolian"
-    en: "Mode: Aeolian"
+    it: "Mode:  9t – Aeolian"
+    fr: "Mode:  9t – Aeolian"
+    de: "Mode:  9t – Aeolian"
+    en: "Mode:  9t – Aeolian"
 10t:
   label:
-    it: "Mode: Hypoaeolian"
-    fr: "Mode: Hypoaeolian"
-    de: "Mode: Hypoaeolian"
-    en: "Mode: Hypoaeolian"
+    it: "Mode: 10t – Hypoaeolian"
+    fr: "Mode: 10t – Hypoaeolian"
+    de: "Mode: 10t – Hypoaeolian"
+    en: "Mode: 10t – Hypoaeolian"
 11t:
   label:
-    it: "Mode: Ionian"
-    fr: "Mode: Ionian"
-    de: "Mode: Ionian"
-    en: "Mode: Ionian"
+    it: "Mode: 11t – Ionian"
+    fr: "Mode: 11t – Ionian"
+    de: "Mode: 11t – Ionian"
+    en: "Mode: 11t – Ionian"
 12t:
   label:
-    it: "Mode: Hypoionian"
-    fr: "Mode: Hypoionian"
-    de: "Mode: Hypoionian"
-    en: "Mode: Hypoionian"
+    it: "Mode: 12t – Hypoionian"
+    fr: "Mode: 12t – Hypoionian"
+    de: "Mode: 12t – Hypoionian"
+    en: "Mode: 12t – Hypoionian"
 #Clefs (031)
 01_modern_clefs:
   label:

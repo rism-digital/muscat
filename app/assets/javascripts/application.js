@@ -45,6 +45,7 @@
 //= require editor_hotkeys
 //= require verovio_preload
 //- require new_window_select_ujs
+//= new_window_select_non_marc.js
 //= require jsdiff.js
 //= require marc_editor_validation
 //= require job_progress_bar

@@ -1,16 +1,13 @@
 ActiveAdmin.register DigitalObject do
 
   # Hide the menu
-  menu false
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:digital_objects)}
 
   # Remove mass-delete action
   batch_action :destroy, false
   
   # Remove all action items
   config.clear_action_items!
-  
-  # Remove creation option (only possible from source)
-  actions :all, :except => [:new]
   
   controller do
     def permitted_params
@@ -34,23 +31,62 @@ ActiveAdmin.register DigitalObject do
     def create
       create! do |success, failure|
         success.html do
-          redirect_to admin_source_path(params[:digital_object][:source_id])
+          # If we have a new_object_link_type/id, also create the object link - See the DigitalObjectLink for
+          # the fake accessors and the form below for the hidden fields
+          if (params[:digital_object][:new_object_link_type] && params[:digital_object][:new_object_link_id])
+            dol = DigitalObjectLink.new(
+              object_link_type: params[:digital_object][:new_object_link_type],
+              object_link_id: params[:digital_object][:new_object_link_id],
+              user: resource.user,
+              digital_object_id: resource.id
+            )
+            dol.save!
+          end
+          redirect_to admin_digital_object_path(resource.id)
           return
         end
         failure.html do
           flash[:error] = "The digital object could not be created"
-          redirect_to admin_source_path(params[:digital_object][:source_id])
+          redirect_to collection_path
           return
         end
       end
     end
     
-    def destroy
-      obj = DigitalObject.find(params[:id])
-      destroy_redirect = obj ? admin_source_path(obj.source_id) : admin_sources_url
-      destroy! { redirect_to destroy_redirect and return }
-    end
+  end
+  
+  member_action :add_item, method: :get do
     
+    if can?(:create, DigitalObjectLink)
+      begin 
+        dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
+                                    user: resource.user, digital_object_id: params[:id])
+        dol.save!
+    
+        redirect_to resource_path(params[:id]), notice: "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
+      rescue
+        redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
+      end
+    else
+      flash[:error] = "Operation not allowed"
+      redirect_to collection_path
+    end
+  end
+  
+  member_action :remove_item, method: :get do
+
+    if can?(:delete, DigitalObjectLink)
+      begin
+        dol = DigitalObjectLink.find(params[:digital_object_link_id])
+        dol.delete
+        redirect_to resource_path(params[:id]), notice: "Link deleted successfully"
+      rescue
+        redirect_to resource_path(params[:id]), error: "Could not delete link"
+      end
+    else
+      flash[:error] = "Operation not allowed"
+      redirect_to collection_path
+    end
   end
   
   ###########
@@ -63,14 +99,11 @@ ActiveAdmin.register DigitalObject do
   filter :attachment_content_type, :label => proc {I18n.t(:filter_content_type)}
   filter :attachment_updated_at, :label => proc {I18n.t(:updated_at)}
   
-  index :download_links => false do
-    selectable_column if !is_selection_mode?
-    id_column
-    column (I18n.t :filter_description), :description
-    column (I18n.t :filter_file_name), :attachment_file_name
-    column (I18n.t :filter_file_size) {|obj| filesize_to_human(obj.attachment_file_size) if obj.attachment_file_size}
-    column (I18n.t :filter_content_type), :attachment_content_type
-    active_admin_muscat_actions( self )
+  index :as => :grid, :download_links => false do |obj|
+    div do
+        link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
+    end
+    a truncate(obj.description), :href => admin_digital_object_path(obj)
   end
   
   sidebar :actions, :only => :index do
@@ -84,11 +117,28 @@ ActiveAdmin.register DigitalObject do
   
   show :title => proc{ active_admin_digital_object_show_title( @digital_object.description, @digital_object.id) } do |ad|
     attributes_table do
-      row (I18n.t :filter_description) { |r| r.description } 
-      row (I18n.t :filter_source) do 
-        link_to(ad.source.id, admin_source_path(ad.source)) if ad.source
+      row (I18n.t :filter_description) { |r| r.description }
+    end
+    
+    if ad.digital_object_links.size > 0
+        panel I18n.t(:links) do
+          table_for ad.digital_object_links do
+            column I18n.t(:link_type), :object_link_type
+            column I18n.t(:linked_object) do |dol|
+                dol.description
+            end	
+            column "ID" do |dol|
+              link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
+            end
+            column "" do |dol|
+              link_to I18n.t(:link_remove), 
+			  	{controller: :digital_objects, action: :remove_item, id: resource.id, params: {digital_object_link_id: dol.id}}, 
+			  	data: { confirm: I18n.t(:link_remove_confirm) }
+            end
+          end
       end
     end
+    
     if ad.attachment_file_size
       panel (I18n.t :filter_image) do
         image_tag(ad.attachment.url(:maximum))
@@ -107,6 +157,7 @@ ActiveAdmin.register DigitalObject do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => digital_object }
+    render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
   end
   
   ##########
@@ -118,10 +169,15 @@ ActiveAdmin.register DigitalObject do
       f.input :description,:label => I18n.t(:filter_description)
       f.input :attachment, as: :file, :label => I18n.t(:filter_image)
       f.input :lock_version, :as => :hidden
+      # passing additional parameters for adding the object link directly after the creation
+      if (params[:object_link_type] &&  params[:object_link_id])
+        f.input :new_object_link_type, :as => :hidden, :input_html => {:value =>  params[:object_link_type]}
+        f.input :new_object_link_id, :as => :hidden, :input_html => {:value =>  params[:object_link_id]}
+      end
     end
   end
 
-  sidebar :actions, :only => [:edit] do
+  sidebar :actions, :only => [:edit, :new] do
     render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => digital_object }
   end
   

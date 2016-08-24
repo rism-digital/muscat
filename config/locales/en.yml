@@ -261,9 +261,17 @@ en:
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
   new_holding: "Create Holding Record"
+  new_digital_object: "Attach a new image"
   record_actions: "Record Actions"
   record_status: "Record Status"
   record_owner: "Record Owner"
+  link_type: "Linked object type"
+  linked_object: "Linked Object"
+  links: "Links"
+  link_remove: "Remove Link"
+  link_remove_confirm: "Are you sure you want to delete this link?"
+  validation_level_error: "There are errors, please solve before saving"
+  validation_level_warning: "There are warnings, save again to override"
   
   jobs:
     not_set: "[No status set]"
@@ -286,6 +294,8 @@ en:
   select: "Select"
   create_folder: "Add to a new folder"
   append_folder: "Add to an existing folder"
+  add_source: "Link Source"
+  add_person: "Link Person"
   
   # Editor sidebar
   show_all_groups: "Show all sections"

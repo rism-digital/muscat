@@ -13,7 +13,7 @@
 			<li><%= (I18n.t :no_action) -%></li>
 		<%- end %>
 		
-		<%- if params.include?(:q) %>
+		<%- if respond_to?("create_new_folder_admin_#{model_plural}_path".to_sym) && params.include?(:q) %>
 			<li class="muscat_icon_separator"></li>
 			<li class="muscat_icon_link">
 			<!-- Create the link to the function, pass the params fo q is preserved -->
