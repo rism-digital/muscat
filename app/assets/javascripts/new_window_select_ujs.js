@@ -130,14 +130,24 @@ function newWindowIsSelect() {
 				
 				$("#wrapper").block({message: ""});
 				
-				toplevel_li = $(this).parents(".tag_container");
+				var toplevel_li = $(this).parents(".tag_container");
 				// This is always the hidden field
 				_nw_destination = toplevel_li.find(".autocomplete_target")
 				
-				controller = $(this).data("controller");
+				var controller = $(this).data("controller");
+				var new_window_field = $(this).data("new-window-field");
+
+				var search = "";
+				if (new_window_field) {
+					var ac = toplevel_li.find(".autocomplete_new_window");
+					var value = ac.val();
+					if (value) {
+						search = "&q[" + new_window_field + "]=" + value;
+					}
+				}
 				
 				// Open up the new window
-				_child = window.open('/admin/' + controller + '?select=true', null, "location=no");
+				_child = window.open('/admin/' + controller + '?select=true' + encodeURI(search), null, "location=no");
 				
 			});
 		}

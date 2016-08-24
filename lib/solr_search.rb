@@ -111,7 +111,13 @@ module Muscat
 						if field != "id"
 							field = field + "_order"
 						end
-
+						
+						## HARDCODED! Shelfmarks need a particular way of indexing
+						# using a custom tokenizer. If we encounter that field
+						# translate it to the "special" one. The solr dynamic field
+						# terminates with "*_shelforder_s"
+						field = "shelf_mark_shelforder" if field == "shelf_mark_order"
+						
 						order = {:field => field.underscore.to_sym, :order => order.to_sym}
 					end
           

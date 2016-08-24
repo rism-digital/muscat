@@ -207,6 +207,7 @@
       - "zxx"
 "100": 
   new_window: people
+  new_window_field: full_name_equals
   layout: 
     fields: 
     - - a
@@ -230,6 +231,7 @@
       - "Verified"
 "240": 
   new_window: standard_titles
+  new_window_field: title_equals
   layout: 
     fields: 
     - - a
@@ -465,6 +467,7 @@
     - - n
 "650":
   new_window: standard_terms
+  new_window_field: term_equals
   layout: 
     fields: 
     - - a
@@ -473,6 +476,7 @@
         allow_new: true
 "651":
   new_window: places
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
@@ -481,6 +485,7 @@
         allow_new: true
 "657": 
   new_window: liturgical_feasts
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
@@ -489,6 +494,7 @@
         allow_new: true
 "690": 
   new_window: catalogues
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
@@ -498,6 +504,7 @@
     - - n
 "691":
   new_window: catalogues
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
@@ -507,6 +514,7 @@
     - - n
 "700":
   new_window: people
+  new_window_field: full_name_equals
   layout:
     fields: 
     - - a
@@ -570,6 +578,7 @@
       - bnd
 "710":
   new_window: institutions
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
@@ -609,6 +618,7 @@
       - dpt
 "730":
   new_window: standard_titles
+  new_window_field: title_equals
   layout: 
     fields: 
     - - a

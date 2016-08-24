@@ -78,10 +78,10 @@ function newWindowIsSelect() {
 (function(jQuery) {
 	
 	var self = null;
-	jQuery.fn.NewWindowSelect = function() {
+	jQuery.fn.NewWindowSelectNonMarc = function() {
 		var handler = function() {
-			if (!this.NewWindowSelect) {
-				this.NewWindowSelect = new jQuery.NewWindowSelect(this);
+			if (!this.NewWindowSelectNonMarc) {
+				this.NewWindowSelectNonMarc = new jQuery.NewWindowSelectNonMarc(this);
 			}
 		};
 		
@@ -92,17 +92,17 @@ function newWindowIsSelect() {
 		}
 	};
 
-	jQuery.NewWindowSelect = function (e) {
+	jQuery.NewWindowSelectNonMarc = function (e) {
 		_e = e;
 		this.init(_e);
 	};
 
-	jQuery.NewWindowSelect.fn = jQuery.NewWindowSelect.prototype = {
-		NewWindowSelect: '0.0.1'
+	jQuery.NewWindowSelectNonMarc.fn = jQuery.NewWindowSelectNonMarc.prototype = {
+		NewWindowSelectNonMarc: '0.0.1'
 	};
 
-	jQuery.NewWindowSelect.fn.extend = jQuery.NewWindowSelect.extend = jQuery.extend;
-	jQuery.NewWindowSelect.fn.extend({
+	jQuery.NewWindowSelectNonMarc.fn.extend = jQuery.NewWindowSelectNonMarc.extend = jQuery.extend;
+	jQuery.NewWindowSelectNonMarc.fn.extend({
 		init: function(e) {	
 			$(e).click(function(e, data) {
 				e.preventDefault();
@@ -122,7 +122,7 @@ function newWindowIsSelect() {
 	});
 	
 	jQuery(document).ready(function() {
-		jQuery("#new_window_select_nomarc").NewWindowSelect();
+		jQuery("#new_window_select_nomarc").NewWindowSelectNonMarc();
 	});
 	
 })(jQuery);
