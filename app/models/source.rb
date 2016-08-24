@@ -193,8 +193,17 @@ class Source < ActiveRecord::Base
     sunspot_dsl.string :shelf_mark_order do 
       shelf_mark
     end
-    sunspot_dsl.text :shelf_mark, :stored => true, :as => "shelf_mark_ans"
-    
+	
+	# This is a _very special_ case to have advanced indexing of shelfmarks
+	# the solr dynamic field is "*_shelforder_s", so we can "trick" sunspot to load it
+	# by calling the field :shelf_mark_shelforder -> sunspot translated it into shelf_mark_shelforder_s
+	# when doing searches since the type is string.
+	# This field type must be also configured in the schema.xml solr configuration
+    sunspot_dsl.string :shelf_mark_shelforder, :stored => true, :as => "shelf_mark_shelforder_s" do
+		shelf_mark
+	end
+    sunspot_dsl.text :shelf_mark
+	
     sunspot_dsl.string :lib_siglum_order do
       lib_siglum
     end

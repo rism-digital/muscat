@@ -270,7 +270,7 @@
     <dynamicField name="*_llms" stored="true" type="location" multiValued="true" indexed="true"/>
     
     <!-- index fields to sort alphanumerically. Useful for things like shelfmarks and folio numbers -->
-    <dynamicField name="*_ans" type="text_alphanumeric_sort" indexed="true" stored="false" />
+    <dynamicField name="*_shelforder_s" type="text_alphanumeric_sort" indexed="true" stored="false" multiValued="false"/>
 	
     <!-- required by Solr 4 -->
     <field name="_version_" type="string" indexed="true" stored="true" multiValued="false" />
