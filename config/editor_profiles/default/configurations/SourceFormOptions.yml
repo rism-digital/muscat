@@ -419,13 +419,14 @@
     fields: 
     - - a
       - values: 
-        - Autograph
-        - Manuscript
-        - Manuscript with autograph annotations
-        - Partly Autograph
+        - Autograph manuscript
+        - Possible autograph manuscript
+        - Partial autograph
+        - Manuscript copy
+        - Manuscript copy with autograph annotations
         - Print
-        - Print with handwritten entries
-        - Probably autograph
+        - Print with autograph annotations
+        - Print with non-autograph annotations
         - Libretto, handwritten
         - Libretto, printed
         - Treatise, handwritten
