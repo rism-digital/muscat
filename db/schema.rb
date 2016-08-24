@@ -154,8 +154,16 @@ ActiveRecord::Schema.define(version: 20160823081105) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "digital_object_links", force: :cascade do |t|
+    t.integer  "digital_object_id", limit: 4
+    t.integer  "object_link_id",    limit: 4
+    t.string   "object_link_type",  limit: 255
+    t.integer  "wf_owner",          limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "digital_objects", force: :cascade do |t|
-    t.integer  "source_id",               limit: 4
     t.string   "description",             limit: 255
     t.integer  "wf_audit",                limit: 4,   default: 0
     t.integer  "wf_stage",                limit: 4,   default: 0
@@ -168,8 +176,6 @@ ActiveRecord::Schema.define(version: 20160823081105) do
     t.integer  "attachment_file_size",    limit: 4
     t.datetime "attachment_updated_at"
   end
-
-  add_index "digital_objects", ["source_id"], name: "index_digital_objects_on_source_id", using: :btree
 
   create_table "do_div_files", force: :cascade do |t|
     t.integer  "do_file_id", limit: 4
@@ -634,6 +640,7 @@ ActiveRecord::Schema.define(version: 20160823081105) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "preference_wf_stage",    limit: 4,   default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

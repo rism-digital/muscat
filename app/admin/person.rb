@@ -121,6 +121,7 @@ ActiveAdmin.register Person do
   filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
+  filter :updated_at, :label => proc {I18n.t(:updated_at)}, :as => :date_range
   
   filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
          collection: proc {
