@@ -11,6 +11,7 @@
 	
 	if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name].include?("new_window")
 		new_window_controller = @editor_profile.options_config[tag_name]["new_window"]
+		new_window_field = @editor_profile.options_config[tag_name]["new_window_field"]
 	end
 
 %>
@@ -18,7 +19,7 @@
 	<div  class="abuttonset abuttonset-multi">
 		<%if new_window_controller && !empty_header %>
 		<!-- this is a special case, see new_window_select_ujs.js -->
- 		<a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" title="Search"><span class="ui-icon ui-icon-search"></span>_</a>
+ 		<a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" title="Search"><span class="ui-icon ui-icon-search"></span>_</a>
 		<%end%>
 
 		<%- if !extended_help.empty? %>
