@@ -1,5 +1,11 @@
 class AddSubTopicToStandardTerms < ActiveRecord::Migration
-  def change
+  def change    
+    rename_column :standard_titles, :variants, :alternate_terms
+    add_column :standard_titles, :sub_topic, :text
+    add_column :standard_titles, :viaf, :string
+    add_column :standard_titles, :gnd, :string
+    add_column :standard_titles, :latin, :boolean
+ 
     add_column :standard_terms, :sub_topic, :text
     add_column :standard_terms, :viaf, :string
     add_column :standard_terms, :gnd, :string

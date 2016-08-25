@@ -27,6 +27,7 @@ class StandardTitle < ActiveRecord::Base
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
+  alias_attribute :name, :title
   
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
@@ -50,7 +51,7 @@ class StandardTitle < ActiveRecord::Base
     text :title_d
     
     text :notes
-    text :variants
+    text :alternate_terms
     text :typus
     
     join(:folder_id, :target => FolderItem, :type => :integer, 
@@ -68,7 +69,4 @@ class StandardTitle < ActiveRecord::Base
     end
   end
    
-  def name
-    return title
-  end
 end

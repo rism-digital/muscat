@@ -15,18 +15,22 @@ if ARGV.length >= 1
   source_file = ARGV[0]
   if File.exists?(source_file)
     each_record(source_file) { |record|
+      latin = false
       next if record.xpath("//marc:datafield[@tag='750']/marc:subfield[@code='a']", NAMESPACE).first
       if class_name = record.xpath("//marc:datafield[@tag='336']/marc:subfield[@code='a']", NAMESPACE).first
         next unless classes.include?(class_name.text)
-        puts class_name.text
+        latin = true if class_name.text == 'Latin' 
+        class_name.content = 'StandardTitle' if latin
+        #puts class_name.text
         name = record.xpath("//marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text
+        puts name
         id = record.xpath("//marc:controlfield[@tag='001']", NAMESPACE).first.text.to_i
         existing =  Object.const_get(class_name.text).where(:name => name)
         binding.pry unless Object.const_get(class_name.text).where(:id => id).empty?
         thes = !existing.empty? ? existing.first : Object.const_get(class_name.text).new
         thes.name = name if existing.empty?
         # thes.name.gsub!(", ", " | ") if class_name.text == 'Latin'
-        thes.id = id
+        thes.id = id if existing.empty?
         if alternate_terms = record.xpath("//marc:datafield[@tag='550']/marc:subfield[@code='a']", NAMESPACE)
           thes.alternate_terms = alternate_terms.map{|n| n.content}.join("\n")
           # thes.alternate_terms.gsub!(", ", " | ") if class_name.text == 'Latin'
@@ -38,7 +42,12 @@ if ARGV.length >= 1
         if notes = record.xpath("//marc:datafield[@tag='680']/marc:subfield[@code='a']", NAMESPACE)
           thes.notes = notes.map{|n| n.content}.join("\n")
         end
-        thes.save
+        thes.latin = true if latin
+        begin
+          thes.save
+        rescue
+          binding.pry
+        end
       end
 
     }
