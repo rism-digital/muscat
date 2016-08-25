@@ -189,7 +189,6 @@ de:
   create_from_existing: "Erstellen"
   record_types:
     unspecified: "[Unbekannte Vorlage]"
-    convolutum: "Convolutum"
     collection: "Sammlung"
     manuscript: "Musikhandschrift"
     print: "Musikdruck"

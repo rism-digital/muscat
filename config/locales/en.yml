@@ -189,7 +189,6 @@ en:
   create_from_existing: "Create"
   record_types:
     unspecified: "[Unknown template]"
-    convolutum: "Convolutum"
     collection: "Collection"
     manuscript: "Music manuscript"
     print: "Music print"
@@ -643,7 +642,6 @@ en:
     "5": "LPR"
     "6": "TMS"
     "7": "TPR"
-    "8": "CVT"
     
   status_codes:
     published: "PUB"

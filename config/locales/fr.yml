@@ -189,7 +189,6 @@ fr:
   create_from_existing: "CREATE"
   record_types:
     unspecified: "[type indéterminé]"
-    convolutum: "Convolutum"
     collection: "Collection"
     manuscript: "Manuscrit musical"
     print: "Imprimé musical"
