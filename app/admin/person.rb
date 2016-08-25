@@ -170,7 +170,7 @@ ActiveAdmin.register Person do
     
     @item = @arbre_context.assigns[:item]
     if @item.marc_source == nil
-      render :partial => "marc_missing"
+      render :partial => "marc/missing"
     else
       render :partial => "marc/show"
     end
