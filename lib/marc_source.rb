@@ -9,8 +9,7 @@ class MarcSource < Marc
     :manuscript_libretto => 4,
     :print_libretto => 5,
     :manuscript_theoretica => 6,
-    :print_theoretica => 7,
-    :convolutum => 8,
+    :print_theoretica => 7
   }
   
   def initialize(source = nil, rt = 0)
@@ -67,9 +66,7 @@ class MarcSource < Marc
     cat_no = nil if cat_no.empty? # For the join only nil is skipped 
    
     if !standard_title
-      if @record_type == RECORD_TYPES[:convolutum]
-        standard_title = "[Colvolutum]"
-      elsif @record_type == RECORD_TYPES[:collection]
+      if @record_type == RECORD_TYPES[:collection]
         standard_title = "[Collection]"
       end
     end
@@ -203,8 +200,6 @@ class MarcSource < Marc
       rt = RECORD_TYPES[:print_libretto]
     elsif leader.match(/......pm.............../)
       rt = RECORD_TYPES[:manuscript_theoretica] # we cannot make the distinction between ms and print
-    elsif leader.match(/......pd.............../)
-      rt = RECORD_TYPES[:convolutum]
     else
        puts "Unknown leader #{leader}"
     end
@@ -353,8 +348,6 @@ class MarcSource < Marc
       leader = base_leader.gsub("XX", "am")
     elsif @record_type == RECORD_TYPES[:manuscript_theoretica] # we cannot make the distinction between ms and print
       leader = base_leader.gsub("XX", "pm")
-    elsif @record_type == RECORD_TYPES[:convolutum]
-      leader = base_leader.gsub("XX", "pd")
     else
       puts "Unknown record type #{@record_type}"
       leader = ""

@@ -280,7 +280,7 @@ class Marc
   end
   
   # Return the parent of a manuscript. This need to be improved
-  # Currently handles holding records, item in collection/convolutum and previous edition
+  # Currently handles holding records, item in collection and previous edition
   # More than one case should not (cannot ?) happen in one manuscript
   # Otherwise it would be necessary to change this to a many-to-many relationship and 
   # have this handled in the create_links / destroy_links methods
