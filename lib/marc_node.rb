@@ -36,6 +36,11 @@ class MarcNode
   
   # Try to get the external references for this object
   def resolve_externals
+    # Do nothing if the master tag is missing but optional
+    if self.tag && @marc_configuration.master_optional?(self.tag)
+      master = get_master_foreign_subfield
+      return if !master
+    end
     if parent == nil
       @children.each do |child|
         child.resolve_externals

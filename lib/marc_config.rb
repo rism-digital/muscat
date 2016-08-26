@@ -177,6 +177,10 @@ class MarcConfig
     @tag_config[tag][:master]
   end
 
+  def master_optional?(tag)
+    @tag_config[tag][:master_optional]
+  end
+
   def has_tag?(tag)
     return @tag_config.include?(tag)
   end

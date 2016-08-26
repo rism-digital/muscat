@@ -264,7 +264,6 @@ function marc_editor_validate_expand_placeholder(element) {
 }
 
 function marc_editor_init_validation(form, validation_conf) {
-	
 	$(form).validate({
 		// disable automagic callbacks for now
 		onfocusout: false,

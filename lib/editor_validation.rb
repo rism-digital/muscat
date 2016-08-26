@@ -102,5 +102,5 @@ class EditorValidation
     end
     @squeezed_profiles
   end
-    
+
 end

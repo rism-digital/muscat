@@ -77,10 +77,17 @@
       - :occurrences: "?" 
         :no_browse: true
   "031":
-    :master: a
+    :master: "0"
+    :master_optional: true
     :indicator: "##"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "*"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
+        :no_browse: true
     - - a
       - :occurrences: "?"
     - - b
@@ -109,6 +116,8 @@
       - :occurrences: "*"
     - - t
       - :occurrences: "*"
+        :foreign_class: ^0
+        :foreign_field: title
     - - u
       - :occurrences: "?"
         :no_browse: true

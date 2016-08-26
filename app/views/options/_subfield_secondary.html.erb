@@ -1,4 +1,5 @@
 <%- master = @item.marc.config.get_master(tag_name) %>
+<%- master_is_optional = @item.marc.config.master_optional?(tag_name) %>
 <%-	marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new(@item.marc.get_model) %>
 <%- no_new = params.include?("no_new") ? params["no_new"] : false %>
 <%- ac_path = send(params['type'] + "_default_autocomplete")%>
@@ -44,8 +45,9 @@ options = {
 
 <%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, options %>
 
-
+<% unless master_is_optional %>
 <div class="checkbox_confirmation" style="display: none;">
 	<input class="creation_checkbox" type="checkbox" data-check="false" name="<%=check_name%>"/>
 	<span id="<%=check_name%>-label">Confirm the insertion of a new value</span>
 </div>
+<% end %>

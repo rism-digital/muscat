@@ -13,7 +13,6 @@
     o:
       required_if:
         "031": "p"
-#    r:
 #      required_if:
 #        "031": "p"
 #"041": 
