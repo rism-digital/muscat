@@ -17,8 +17,6 @@ group_exclude:
   - edit_incipits
   theoretica:
   - edit_incipits
-  convolutum:
-  - edit_incipits
 
 tag_exclude:
   collection:
@@ -73,30 +71,6 @@ tag_exclude:
   - '657'
   - '690'
   - '772'
-  - '787'
-  convolutum:
-  - '490'
-  - '028'
-  - '041'
-  - '100'
-  - '240'
-  - '260'
-  - '300'
-  - '340'
-  - '511'
-  - '546'
-  - '590'
-  - '592'
-  - '593'
-  - '597'
-  - '650'
-  - '653'
-  - '651'
-  - '657'
-  - '730'
-  - '740'
-  - '773'
-  - '775'
   - '787'
   
 tag_exclude_with_holdings:

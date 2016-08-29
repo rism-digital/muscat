@@ -189,7 +189,6 @@ it:
   create_from_existing: "CREATE"
   record_types:
     unspecified: "[Template sconosciuto]"
-    convolutum: "Raccolta di miscellanee"
     collection: "Raccolta"
     manuscript: "Manoscritto musicale"
     print: "Musica a stampa"
