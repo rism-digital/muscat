@@ -300,7 +300,7 @@ class EditorConfiguration
     # also check if some tags are excluded if the item (source) has holdings
     if (marc_item.respond_to? :holdings) && (marc_item.holdings.size > 0)
       if layout_config["tag_exclude_with_holdings"] && layout_config["tag_exclude_with_holdings"][record_type.to_s]
-        excluded.concat( layout_config["tag_exclude_with_holdings"][record_type.to_s] )
+		excluded.concat( layout_config["tag_exclude_with_holdings"][record_type.to_s] )
       end
     end
     excluded
@@ -311,6 +311,18 @@ class EditorConfiguration
     tag_names = Array.new
   	tag_names = layout_config["groups"][group]["all_tags"]
     record_type = (marc_item.respond_to? :record_type) ? marc_item.get_record_type : nil
+	
+	# Take in account tags excluded by holdings
+	excluded_by_holdings = Array.new
+    if (marc_item.respond_to? :holdings) && (marc_item.holdings.size > 0)
+      if layout_config["tag_exclude_with_holdings"] && layout_config["tag_exclude_with_holdings"][record_type.to_s]
+		excluded_by_holdings.concat( layout_config["tag_exclude_with_holdings"][record_type.to_s] )
+      end
+    end
+	
+	# Remove the tags
+	tag_names -= excluded_by_holdings
+	
     # no record_type for this model, or unknown, nothing exluced
     return tag_names if record_type == nil || !layout_config["tag_exclude"] || !layout_config["tag_exclude"][record_type.to_s]
     return tag_names - layout_config["tag_exclude"][record_type.to_s]
