@@ -24,13 +24,12 @@
 "100": 
   tags:
     "0": required
+    a: required
 "240": 
   tags:
     "0": required
-    m: required, warning
-"245": 
-  tags:
     a: required
+    m: required, warning
 "260": 
   tags:
     c: required
@@ -48,34 +47,42 @@
 "650": 
   tags:
     "0": required
+    a: required
 "651": 
   tags:
     "0": required
+    a: required
 "657": 
   tags:
     "0": required
+    a: required
 "690": 
   tags:
     "0": required
+    a: required
 #    n: required
 "691": 
   tags:
     "0": required
+    a: required
     n: required, warning
 "700": 
   tags:
     "0": required
+    a: required
 #    j: required
 "710": 
   tags:
     "0": required
+    a: required
 #    j: required
 "730": 
   tags:
     "0": required
+    a: required
 "740": 
   tags:
-    "0": required
+    a: required
 "773": 
   tags:
     w: required

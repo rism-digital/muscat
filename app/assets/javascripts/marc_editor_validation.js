@@ -309,10 +309,13 @@ function marc_editor_init_validation(form, validation_conf) {
 			_marc_validate_unhighlight(element, errorClass, validClass);
 		},
 		errorPlacement: function(error, element) {
-			// Checkboxes do not append any message
-			// FIXME other cases of checkbox
-			if (element.is(':checkbox') == false) {
-				//error.insertAfter( element );
+			// Autocomplete: if the input is a hidden type
+			if (element.is(':input') && element.prop("type") == "hidden") {
+				// Show the message under the textbox
+				// in autocompletes it is always after the hidden field
+				error.insertAfter( element.next() );
+			} else {
+				error.insertAfter( element );
 			}
 		}
 	});
@@ -324,7 +327,7 @@ function marc_editor_init_validation(form, validation_conf) {
 
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
-	$.validator.addMethod("new_creation", marc_validate_new_creation, "Please confirm new element");
+	$.validator.addMethod("new_creation", marc_validate_new_creation, "");
 	$.validator.addClassRules("creation_checkbox", { new_creation: true });
 
 	for (var key in validation_conf) {
