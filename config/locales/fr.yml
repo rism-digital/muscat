@@ -590,6 +590,11 @@ fr:
     published: "Publié"
     deleted: "Supprimé"
 
+  # editor validation 
+  validation:
+    missing_message: "A VALUE IN THIS FIELD IS MANDATORY"
+    warning_message: "A VALUE FOR THIS FIELD SHOULD BE PROVIDED"
+
   date:
     month_names:
     -

@@ -27,7 +27,15 @@ function marc_validate_hide_warnings() {
 
 function marc_validate_show_warnings() {
 	for (var warn in warningList) {
-		_marc_validate_highlight(warningList[warn], "warning", "");
+		var element = warningList[warn];
+		_marc_validate_highlight(element, "warning", "");
+		
+		var label = $( "<label>" )
+		.attr( "id", element.name + "-warning" )
+		.addClass("warning")
+		.html(I18n.t("validation.warning_message"));
+		
+		label.insertAfter( element );
 	}
 }
 
@@ -321,7 +329,7 @@ function marc_editor_init_validation(form, validation_conf) {
 	});
 	
 	// Add validator methods
-	$.validator.addMethod("presence", marc_validate_presence, "Missing Mandatory Field");
+	$.validator.addMethod("presence", marc_validate_presence, I18n.t("validation.missing_message"));
 	$.validator.addMethod("required_if", marc_validate_required_if, 
 			$.validator.format("Missing Mandatory Field, because field {0} ${1} is present"));
 

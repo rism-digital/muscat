@@ -147,16 +147,16 @@
 						color: red;
 					}
 					* .warning {
-						border-color: green;
+						border-color: orange;
 					}
 					* label.warning {
-						color: green;
+						color: orange;
 					}
 					* a.warning {
-						color: green;
+						color: orange;
 					}
 					* span.warning {
-						color: green;
+						color: orange;
 					}
 					* .new_autocomplete {
 						border-color: orange;
@@ -473,6 +473,6 @@ a.error {
   text-decoration: underline;
 }
 a.warning {
-  color: green;
+  color: orange;
   text-decoration: underline;
 }
