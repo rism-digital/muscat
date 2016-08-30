@@ -109,6 +109,8 @@
       - :occurrences: "*"
     - - t
       - :occurrences: "*"
+        :link_to_model: StandardTitle
+        :link_to_field: title
     - - u
       - :occurrences: "?"
         :no_browse: true
