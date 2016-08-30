@@ -18,7 +18,7 @@ fr:
     update_model: "Modifier %{model}"
     delete_model: "Supprimer %{model}"
     details: "Détails de %{model}"
-    save_model: "SAVE"
+    save_model: "Enregistrer"
     cancel: "Annuler"
     empty: "Vide"
     previous: "Précédent"
@@ -38,7 +38,7 @@ fr:
         ends_with: "Se termine par"
         greater_than: "Plus grand que"
         less_than: "Plus petit que"
-        with_integer: "FILTER"
+        with_integer: "Filtrer"
     status_tag:
       "yes": "Oui"
       "no": "Non"
@@ -183,10 +183,10 @@ fr:
         other: "Utilisateurs"
 
   #################### RECORD TYPES (TEMPLATES)
-  select_template: "SELECT NEW TEMPLATE"
-  available_templates: "AVAILABLE TEMPLATES"
-  from_existing_source: "CREATE FROM EXISTING SOURCE"
-  create_from_existing: "CREATE"
+  select_template: "Choisir un modèle"
+  available_templates: "Modèles disponibles"
+  from_existing_source: "Créer a partir d'une source"
+  create_from_existing: "Créer"
   record_types:
     unspecified: "[type indéterminé]"
     collection: "Collection"
@@ -267,9 +267,9 @@ fr:
   linked_object: "Objet lié"
   links: "Liens"
   link_remove: "Supprimer le lien"
-  link_remove_confirm: "DELETE LINK?"
-  validation_level_error: "THERE ARE ERRORS, PLEASE SOLVE BEFORE SAVING"
-  validation_level_warning: "THERE ARE WARNINGS, SAVE AGAIN TO OVERRIDE"
+  link_remove_confirm: "Désirez-vous supprimer le lien?"
+  validation_level_error: "Il y a des erreurs à corriger avant d'enregistrer."
+  validation_level_warning: "Il y a des avertissements. Enregistrer à nouveau pour ignorer."
   
   jobs:
     not_set: "[sans statut]"
@@ -292,8 +292,8 @@ fr:
   select: "Sélectionner"
   create_folder: "Ajouter à un nouveau dossier"
   append_folder: "Ajouter à un dossier existant"
-  add_source: "LINK SOURCE"
-  add_person: "LINK PERSON"
+  add_source: "Attacher une source"
+  add_person: "Attacher une personne"
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"
@@ -375,9 +375,9 @@ fr:
   filter_liturgical_feast: "Fête liturgique"
   filter_location_and_name: "Nom et endroit"
   filter_manuscript_no: "No de source"
-  filter_male: "MALE"
-  filter_female: "FEMALE"
-  filter_unknown: "UNKNOWN"
+  filter_male: "Masculin"
+  filter_female: "Féminin"
+  filter_unknown: "Inconnu"
   filter_shelf_mark: "Cote"
   filter_name: "Nom"
   filter_notes: "Notes"
@@ -592,8 +592,8 @@ fr:
 
   # editor validation 
   validation:
-    missing_message: "A VALUE IN THIS FIELD IS MANDATORY"
-    warning_message: "A VALUE FOR THIS FIELD SHOULD BE PROVIDED"
+    missing_message: "Une valeur dans ce champ est nécessaire"
+    warning_message: "Une valeur devrait être présente pour ce champ"
 
   date:
     month_names:
