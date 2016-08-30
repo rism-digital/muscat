@@ -255,21 +255,21 @@ de:
   failed: "Fehlgeschlagen"
   waiting: "Wartet"
   running: "Läuft"
-  finished: "COMPLETED"
+  finished: "Beendet"
   lib_siglum: "Bibliothekssigel"
   holding_records: "Exemplar Information"
   new_holding: "Neuer Examplar Eintrag"
-  new_digital_object: "ATTACH A NEW IMAGE"
-  record_actions: "RECORD ACTIONS"
-  record_status: "RECORD STATUS"
-  record_owner: "RECORD OWNER"
-  link_type: "LINK TYPE"
-  linked_object: "LINKED OBJECT"
-  links: "LINKS"
-  link_remove: "REMOVE LINK"
-  link_remove_confirm: "DELETE LINK?"
-  validation_level_error: "THERE ARE ERRORS, PLEASE SOLVE BEFORE SAVING"
-  validation_level_warning: "THERE ARE WARNINGS, SAVE AGAIN TO OVERRIDE"
+  new_digital_object: "Neues Bild hinzufügen"
+  record_actions: "Aktion für Eintrag"
+  record_status: "Status des Eintrags"
+  record_owner: "Besitzer des Eintrags"
+  link_type: "Verlinkungstyp"
+  linked_object: "Verknüpftes Objekt"
+  links: "Verlinkungen"
+  link_remove: "Link entfernen"
+  link_remove_confirm: "Link entfernen?"
+  validation_level_error: "Die Fehler müssen vor dem Speichern behoben werden."
+  validation_level_warning: "Erneut speichern, um die Warnung(en) zu ignorieren."
   
   jobs:
     not_set: "[Kein Status gesetzt]"
@@ -292,8 +292,8 @@ de:
   select: "Auswählen"
   create_folder: "Erstelle Ordner"
   append_folder: "Zu Ordner hinzufügen"
-  add_source: "LINK SOURCE"
-  add_person: "LINK PERSON"
+  add_source: "Quelle verlinken"
+  add_person: "Person verlinken"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -423,7 +423,7 @@ de:
   filter_file_size: "Dateigrösse"
   filter_content_type: "Typ"
   filter_wf: "WF"
-  filter_wf_audit: "Audit"
+  filter_wf_audit: "Prüfung"
   filter_wf_stage: "Status"
   filter_distribution: "Besetzung"
   filter_dist_exclude: "Ausschließen"
@@ -458,7 +458,7 @@ de:
   rism_g_sharp: "Gis-Dur/Moll"
   
   # Assorted error messages
-  error_not_found: "Der gesuchte Eintrag existiert nicht order wurde gelöscht."
+  error_not_found: "Der gesuchte Eintrag existiert nicht odrer wurde gelöscht."
   error_saving: "Dieser Eintrag ist unvollständig oder erstellt eine Dublette."
   unknown_tags: "Dieser Eintrag enthält falsch verwendete Felder."
    
@@ -510,7 +510,7 @@ de:
   will_paginate:
     page_entries_info:
       single_page_html:
-        zero: "Keinen %{model} gefunden" 
+        zero: "Keine(n) %{model} gefunden" 
         one: "Anzeige von <b>1</b> %{model}"
         other:  "Anzeige <b>aller %{count}</b> %{model}"
       multi_page_html: "Anzeige %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> von total <b>%{count}</b>"
@@ -572,18 +572,18 @@ de:
   connected_libraries: "Bibliotheken"
  
   mei:
-    title: "MEI EXPORT FOR SOURCE %{source}"
-    parameters: "EXPORT PARAMETERS"
-    format: "INCIPIT OUTPUT FORMAT:"
+    title: "MEI-Export für folgende Quelle: %{source}"
+    parameters: "Export-Parameter"
+    format: "Output-Format für Incipit:"
     format_mei: "MEI"
-    format_pae: "PAE (NO CONVERSION)"
-    stylesheet: "STYLESHEET"
-    default_stylesheet: "USE DEFAULT STYLESHEET"
-    custom_stylesheet: "CUSTOM STYLESHEET:"
-    preview: "PREVIEW"
-    download: "DOWNLOAD"
-    more: "MORE"
-    banner: 'PLEASE CLICK "PREVIEW" TO SHOW THE MEI-CONVERTED OUTPUT.'  
+    format_pae: "PAE (Keine Umwandlung)"
+    stylesheet: "Formatvorlage"
+    default_stylesheet: "Standard-Formatvorlage verwenden"
+    custom_stylesheet: "Eigene Formatvorlage:"
+    preview: "Vorschau"
+    download: "Download"
+    more: "Mehr"
+    banner: 'Bitte "Vorschau" wählen, um die MEI-Konvertierung anzuzeigen.'  
 
   wf_stage:
     inprogress: "In Arbeit"
@@ -592,8 +592,8 @@ de:
 
   # editor validation 
   validation:
-    missing_message: "A VALUE IN THIS FIELD IS MANDATORY"
-    warning_message: "A VALUE FOR THIS FIELD SHOULD BE PROVIDED"
+    missing_message: "Dieses Feld muss zwingend ausgefüllt werden."
+    warning_message: "Dieses Feld enthält üblicherweise einen Eintrag."
     
   date:
     month_names:
@@ -630,8 +630,8 @@ de:
     header_links:
       logout: 'Abmelden'
     range_limit:
-      range_begin: "%{field_label} range begin"
-      range_end: "%{field_label} range end"
+      range_begin: "%{field_label} Bereichsanfang"
+      range_end: "%{field_label} Bereichsende"
       submit_limit: 'Beschränken'
       remove_limit: 'entfernen'
   blacklight_advanced_search:
