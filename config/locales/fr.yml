@@ -510,7 +510,7 @@ fr:
   will_paginate:
     page_entries_info:
       single_page_html:
-        zero: "Pas %{model} trouvée" 
+        zero: "%{model} introuvable" 
         one: "Affichage de <b>1</b> %{model}"
         other:  "Affichage des <b>%{count}</b> %{model}"
       multi_page_html: "Affichage des %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b> au total"
