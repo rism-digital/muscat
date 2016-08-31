@@ -211,6 +211,13 @@ module ActiveAdmin::ViewsHelper
     
   end
 
+	def active_admin_stored_from_hits(all_hits, object, field)
+		hits = all_hits.select {|h| h.to_param == object.id.to_s}
+		if hits && hits.count > 0
+			hits.first.stored(field).to_s
+		end
+	end
+
   def local_sorting( codes, editor_profile )
     local_hash = Hash.new
     codes.each do |code|

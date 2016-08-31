@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804073728) do
+ActiveRecord::Schema.define(version: 20160831073728) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -291,7 +291,6 @@ ActiveRecord::Schema.define(version: 20160804073728) do
     t.string   "wf_notes",     limit: 255
     t.integer  "wf_owner",     limit: 4,     default: 0
     t.integer  "wf_version",   limit: 4,     default: 0
-    t.integer  "src_count",    limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "place",        limit: 255
@@ -385,7 +384,6 @@ ActiveRecord::Schema.define(version: 20160804073728) do
     t.string   "wf_notes",     limit: 255
     t.integer  "wf_owner",     limit: 4,   default: 0
     t.integer  "wf_version",   limit: 4,   default: 0
-    t.integer  "src_count",    limit: 4,   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lock_version", limit: 4,   default: 0, null: false
@@ -419,7 +417,6 @@ ActiveRecord::Schema.define(version: 20160804073728) do
     t.string   "wf_notes",        limit: 255
     t.integer  "wf_owner",        limit: 4,     default: 0
     t.integer  "wf_version",      limit: 4,     default: 0
-    t.integer  "src_count",       limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lock_version",    limit: 4,     default: 0, null: false
@@ -486,7 +483,6 @@ ActiveRecord::Schema.define(version: 20160804073728) do
     t.string   "wf_notes",     limit: 255
     t.integer  "wf_owner",     limit: 4,   default: 0
     t.integer  "wf_version",   limit: 4,   default: 0
-    t.integer  "src_count",    limit: 4,   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lock_version", limit: 4,   default: 0, null: false
@@ -549,6 +545,7 @@ ActiveRecord::Schema.define(version: 20160804073728) do
     t.integer  "lock_version", limit: 4,     default: 0, null: false
   end
 
+  add_index "sources", ["id"], name: "index_sources_on_id", using: :btree
   add_index "sources", ["record_type"], name: "index_sources_on_record_type", using: :btree
   add_index "sources", ["source_id"], name: "index_sources_on_source_id", using: :btree
   add_index "sources", ["std_title"], name: "index_sources_on_std_title", length: {"std_title"=>255}, using: :btree
@@ -660,7 +657,6 @@ ActiveRecord::Schema.define(version: 20160804073728) do
     t.string   "wf_notes",        limit: 255
     t.integer  "wf_owner",        limit: 4,     default: 0
     t.integer  "wf_version",      limit: 4,     default: 0
-    t.integer  "src_count",       limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lock_version",    limit: 4,     default: 0, null: false
@@ -678,7 +674,6 @@ ActiveRecord::Schema.define(version: 20160804073728) do
     t.string   "wf_notes",     limit: 255
     t.integer  "wf_owner",     limit: 4,     default: 0
     t.integer  "wf_version",   limit: 4,     default: 0
-    t.integer  "src_count",    limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lock_version", limit: 4,     default: 0, null: false
@@ -701,6 +696,7 @@ ActiveRecord::Schema.define(version: 20160804073728) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "preference_wf_stage",    limit: 4,   default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -757,7 +753,6 @@ ActiveRecord::Schema.define(version: 20160804073728) do
     t.string   "wf_notes",         limit: 255
     t.integer  "wf_owner",         limit: 4,     default: 0
     t.integer  "wf_version",       limit: 4,     default: 0
-    t.integer  "src_count",        limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -780,7 +775,6 @@ ActiveRecord::Schema.define(version: 20160804073728) do
     t.string   "wf_notes",   limit: 255
     t.integer  "wf_owner",   limit: 4,     default: 0
     t.integer  "wf_version", limit: 4,     default: 0
-    t.integer  "src_count",  limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

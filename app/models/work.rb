@@ -34,8 +34,8 @@ class Work < ActiveRecord::Base
     text :form
     text :notes
     
-    integer :src_count_order do 
-      src_count
+    integer :src_count_order, :stored => true do 
+      Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
     end
   end
 
