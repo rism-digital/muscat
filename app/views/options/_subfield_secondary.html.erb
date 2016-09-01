@@ -44,9 +44,7 @@ options = {
 
 <%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, options %>
 
-<% unless master_is_optional %>
 <div class="checkbox_confirmation" style="display: none;">
 	<input class="creation_checkbox" type="checkbox" data-check="false" name="<%=check_name%>"/>
 	<span id="<%=check_name%>-label">Confirm the insertion of a new value</span>
 </div>
-<% end %>
