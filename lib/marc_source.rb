@@ -355,6 +355,10 @@ class MarcSource < Marc
     
     new_leader = MarcNode.new("source", "000", leader, "")
     @root.children.insert(get_insert_position("000"), new_leader)
+
+    # cataloguing agency
+    agency = MarcNode.new("source", "003", RISM::AGENCY, "")
+    @root.children.insert(get_insert_position("003"), agency)
     
     # 240 to 130 when 100 is not present
     if by_tags("100").count == 0
