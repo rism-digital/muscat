@@ -165,7 +165,7 @@
       - cols: 2
         trigger:
         - save:
-          - sources
+          - referring_sources
     - - c
       - cols: 2
     - - d

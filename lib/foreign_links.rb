@@ -43,6 +43,7 @@ module ForeignLinks
   
   def recreate_links(marc, allowed_relations)
     marc_foreign_objects = Hash.new
+		reindex_items = Array.new
     
     # All the allowed relation types *must* be in this array or they will be dropped
     #allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places"]
@@ -77,6 +78,9 @@ module ForeignLinks
       new_items = marc_foreign_objects[foreign_class] - relation.to_a
       remove_items = relation.to_a - marc_foreign_objects[foreign_class]
       
+			reindex_items += new_items
+			reindex_items += remove_items
+			
       # Delete or add to the DB relation
       relation.delete(remove_items)
       new_items.each do |ni|
@@ -98,15 +102,11 @@ module ForeignLinks
     # make sure this is updated only when it is a source
     # that triggers the change. In other cases (like people linking to institutions)
     # there is no such count field.
-    if self.is_a?(Source)
-      if !self.suppress_update_count_trigger 
-        marc_foreign_objects.each do |key, fo|
-          fo.each do |o| 
-            next if !o.respond_to? :src_count
-            o.update_attribute( :src_count, o.referring_sources.count)
-          end
-        end
-      end
+    if self.is_a?(Source) && !self.suppress_update_count_trigger && reindex_items.size > 0
+			# just pass the minumum necessary information
+			ids_hash = reindex_items.map {|i| {class: i.class, id: i.id}}
+			ap ids_hash
+	    job = Delayed::Job.enqueue(ReindexForeignRelationsJob.new(self.id, ids_hash))
     end
     
   end
