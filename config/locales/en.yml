@@ -592,6 +592,11 @@ en:
     inprogress: "In Progress"
     published: "Published"
     deleted: "Deleted"
+  
+  # editor validation 
+  validation:
+    missing_message: "A value in this field is mandatory"
+    warning_message: "A value for this field should be provided"
    
   # date:
   # Empty lines for matching line numbers with other translation files  

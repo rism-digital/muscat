@@ -1,5 +1,4 @@
-<%- master = @item.marc.config.get_master(tag_name) %>
-<%- master_is_optional = @item.marc.config.master_optional?(tag_name) %>
+<%- master = params.include?("has_links_to") && params["has_links_to"] == true ? subfield : @item.marc.config.get_master(tag_name) %>
 <%-	marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new(@item.marc.get_model) %>
 <%- no_new = params.include?("no_new") ? params["no_new"] : false %>
 <%- ac_path = send(params['type'] + "_default_autocomplete")%>

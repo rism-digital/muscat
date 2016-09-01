@@ -153,6 +153,42 @@ class MarcNode
     end    
   end
 
+  def populate_links_to(deftag)
+    return if  !@marc_configuration.has_links_to(deftag)
+    
+    @marc_configuration.each_link_to(self.tag) do |subtag, model, field|
+      tag = fetch_first_by_tag(subtag)
+      next if !tag || !tag.content
+
+      # Create the links_to, a stepped down version of the foreign links
+      link_class = get_class(model)
+      next if !link_class
+      
+      # Search the model for the value in the tag
+      condition = Hash.new
+      condition[field.to_sym] = tag.content
+      link = link_class.where(condition).first
+
+      # If it exists do nothing
+      next if link
+      
+      # Does not exist, create a new one
+      link = link_class.new
+      link.send("wf_stage=", 'published')
+      link.send("#{field}=", tag.content)
+
+      link.suppress_reindex
+      link.suppress_scaffold_marc if link.respond_to?(:suppress_scaffold_marc)
+      begin
+        link.save!
+      rescue => e
+        $stderr.puts
+        $stderr.puts "Error saving link_to".red
+        $stderr.puts e.message
+        $stderr.puts "While importing: #{self.to_s}".yellow
+      end
+    end
+  end
   
   # Once the Marc data is parsed to MarcNodes, it can be
   # inspected to create the relations with the external classes
@@ -170,6 +206,10 @@ class MarcNode
       end
     else
       self.sort_alphabetically
+      
+      # Before resolving the master fields, process the lightwheight link_to
+      populate_links_to(self.tag)
+      
       # Try to get the remote objects for this record
       if @marc_configuration.has_foreign_subfields(self.tag)
         self.foreign_object = nil

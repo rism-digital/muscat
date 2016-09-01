@@ -22,9 +22,12 @@
     - - m
     - - e
     - - t
-      - type: standard_title
+      - growfield: true
+        type: standard_title
+        field: title
         editor_partial: subfield_secondary
         allow_new: true
+        has_links_to: true
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "031r"

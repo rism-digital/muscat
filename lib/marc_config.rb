@@ -144,6 +144,19 @@ class MarcConfig
     return @foreign_tag_groups.rindex(tag)
   end
 
+  def has_links_to(tag)
+	  @tag_config[tag][:fields].each do |st|
+		  return true if st[1].has_key?(:link_to_model) && st[1].has_key?(:link_to_field)
+	  end
+	  return false
+  end
+  
+  def each_link_to(tag)
+	  @tag_config[tag][:fields].each do |st|
+		  yield(st[0], st[1][:link_to_model], st[1][:link_to_field]) if st[1].has_key?(:link_to_model) && st[1].has_key?(:link_to_field)
+	  end
+  end
+
   # Get the foreign field 0 padding length for string field (if wanted)
   def get_zero_padding(tag, subtag = "")
     # p tag

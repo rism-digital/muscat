@@ -27,7 +27,15 @@ function marc_validate_hide_warnings() {
 
 function marc_validate_show_warnings() {
 	for (var warn in warningList) {
-		_marc_validate_highlight(warningList[warn], "warning", "");
+		var element = warningList[warn];
+		_marc_validate_highlight(element, "warning", "");
+		
+		var label = $( "<label>" )
+		.attr( "id", element.name + "-warning" )
+		.addClass("warning")
+		.html(I18n.t("validation.warning_message"));
+		
+		label.insertAfter( element );
 	}
 }
 
@@ -308,22 +316,25 @@ function marc_editor_init_validation(form, validation_conf) {
 			_marc_validate_unhighlight(element, errorClass, validClass);
 		},
 		errorPlacement: function(error, element) {
-			// Checkboxes do not append any message
-			// FIXME other cases of checkbox
-			if (element.is(':checkbox') == false) {
-				//error.insertAfter( element );
+			// Autocomplete: if the input is a hidden type
+			if (element.is(':input') && element.prop("type") == "hidden") {
+				// Show the message under the textbox
+				// in autocompletes it is always after the hidden field
+				error.insertAfter( element.next() );
+			} else {
+				error.insertAfter( element );
 			}
 		}
 	});
 	
 	// Add validator methods
-	$.validator.addMethod("presence", marc_validate_presence, "Missing Mandatory Field");
+	$.validator.addMethod("presence", marc_validate_presence, I18n.t("validation.missing_message"));
 	$.validator.addMethod("required_if", marc_validate_required_if, 
 			$.validator.format("Missing Mandatory Field, because field {0} ${1} is present"));
 
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
-	$.validator.addMethod("new_creation", marc_validate_new_creation, "Please confirm new element");
+	$.validator.addMethod("new_creation", marc_validate_new_creation, "");
 	$.validator.addClassRules("creation_checkbox", { new_creation: true });
 
 	for (var key in validation_conf) {

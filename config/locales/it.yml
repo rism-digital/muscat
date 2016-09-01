@@ -592,7 +592,12 @@ it:
     inprogress: "In Elaborazione"
     published: "Pubblicato"
     deleted: "Cancellato"
-  
+
+  # editor validation 
+  validation:
+    missing_message: "Questo campo deve contendere un valore"
+    warning_message: "Questo campo dovrebbe contenere un valore"
+
   date:
     month_names:
      -
