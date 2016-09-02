@@ -68,7 +68,7 @@ ActiveAdmin.register Catalogue do
     end
     
     def index
-      @results = Catalogue.search_as_ransack(params)
+      @results, @hits = Catalogue.search_as_ransack(params)
       
       index! do |format|
         @catalogues = @results
@@ -126,7 +126,10 @@ ActiveAdmin.register Catalogue do
       catalogue.description.truncate(60) if catalogue.description
     end
     column (I18n.t :filter_author), :author
-    column (I18n.t :filter_sources), :src_count
+    column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
+			all_hits = @arbre_context.assigns[:hits]
+			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+		end
     active_admin_muscat_actions( self )
   end
   
