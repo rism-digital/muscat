@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831073728) do
+ActiveRecord::Schema.define(version: 20160902073728) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -161,6 +161,9 @@ ActiveRecord::Schema.define(version: 20160831073728) do
     t.datetime "updated_at"
   end
 
+  add_index "digital_object_links", ["digital_object_id"], name: "index_digital_object_links_on_digital_object_id", using: :btree
+  add_index "digital_object_links", ["object_link_id"], name: "index_digital_object_links_on_object_link_id", using: :btree
+
   create_table "digital_objects", force: :cascade do |t|
     t.string   "description",             limit: 255
     t.integer  "wf_audit",                limit: 4,   default: 0
@@ -174,6 +177,8 @@ ActiveRecord::Schema.define(version: 20160831073728) do
     t.integer  "attachment_file_size",    limit: 4
     t.datetime "attachment_updated_at"
   end
+
+  add_index "digital_objects", ["wf_stage"], name: "index_digital_objects_on_wf_stage", using: :btree
 
   create_table "do_div_files", force: :cascade do |t|
     t.integer  "do_file_id", limit: 4
@@ -246,6 +251,9 @@ ActiveRecord::Schema.define(version: 20160831073728) do
     t.datetime "updated_at"
   end
 
+  add_index "folder_items", ["folder_id"], name: "index_folder_items_on_folder_id", using: :btree
+  add_index "folder_items", ["item_id"], name: "index_folder_items_on_item_id", using: :btree
+
   create_table "folders", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "folder_type", limit: 255
@@ -253,6 +261,9 @@ ActiveRecord::Schema.define(version: 20160831073728) do
     t.datetime "updated_at"
     t.integer  "wf_owner",    limit: 4
   end
+
+  add_index "folders", ["folder_type"], name: "index_folders_on_folder_type", using: :btree
+  add_index "folders", ["wf_owner"], name: "index_folders_on_wf_owner", using: :btree
 
   create_table "holdings", force: :cascade do |t|
     t.integer  "source_id",    limit: 4
@@ -545,7 +556,6 @@ ActiveRecord::Schema.define(version: 20160831073728) do
     t.integer  "lock_version", limit: 4,     default: 0, null: false
   end
 
-  add_index "sources", ["id"], name: "index_sources_on_id", using: :btree
   add_index "sources", ["record_type"], name: "index_sources_on_record_type", using: :btree
   add_index "sources", ["source_id"], name: "index_sources_on_source_id", using: :btree
   add_index "sources", ["std_title"], name: "index_sources_on_std_title", length: {"std_title"=>255}, using: :btree

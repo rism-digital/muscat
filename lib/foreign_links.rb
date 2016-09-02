@@ -105,7 +105,6 @@ module ForeignLinks
     if self.is_a?(Source) && !self.suppress_update_count_trigger && reindex_items.size > 0
 			# just pass the minumum necessary information
 			ids_hash = reindex_items.map {|i| {class: i.class, id: i.id}}
-			ap ids_hash
 	    job = Delayed::Job.enqueue(ReindexForeignRelationsJob.new(self.id, ids_hash))
     end
     
