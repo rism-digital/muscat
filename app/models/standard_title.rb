@@ -56,7 +56,7 @@ class StandardTitle < ActiveRecord::Base
     
     integer :src_count_order, :stored => true do 
       StandardTitle.count_by_sql("select count(*) from sources_to_standard_titles where standard_title_id = #{self[:id]}")
-    end
+		end
   end
   
   def check_dependencies
@@ -66,6 +66,12 @@ class StandardTitle < ActiveRecord::Base
     end
   end
    
+	def get_indexed_terms
+    solr = Sunspot.session.get_connection
+    response = solr.get 'terms', :params => {:"terms.fl" => "240a_shingle_sms", :"terms.limit" => 1, :"terms.prefix" => self.title}
+    response["terms"]["240a_shingle_sms"][1]
+	end 
+	 
   def name
     return title
   end

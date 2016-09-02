@@ -52,6 +52,12 @@ fields:
   "240a":
       :store: true
       :type: string
+  "240a_shingle":
+      :type: text
+      :store: true
+      :from_tag: "240"
+      :from_subtag: "a"
+      :as: "240a_shingle_sms"
   "240k":
   "240m":
       :store: true
