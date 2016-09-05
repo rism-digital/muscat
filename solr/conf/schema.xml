@@ -119,14 +119,6 @@
             />
         </analyzer>
     </fieldType>
-	
-    <fieldType name="shingle" class="solr.TextField" omitNorms="false">
-      <analyzer>
-        <tokenizer class="solr.KeywordTokenizerFactory"/>
-		    <!-- filter class="solr.ShingleFilterFactory" maxShingleSize="40" outputUnigrams="true"/ -->
-      </analyzer>
-    </fieldType>
-	
   </types>
   <fields>
     <!-- Valid attributes for fields:
@@ -278,9 +270,6 @@
     
     <!-- index fields to sort alphanumerically. Useful for things like shelfmarks and folio numbers -->
     <dynamicField name="*_shelforder_s" type="text_alphanumeric_sort" indexed="true" stored="false" multiValued="false"/>
-	
-    <!-- index fields for phrase terms count -->
-    <dynamicField name="*_shingle_sms" type="shingle" indexed="true" stored="true" multiValued="true" termVectors="true"/>
 	
     <!-- required by Solr 4 -->
     <field name="_version_" type="string" indexed="true" stored="true" multiValued="false" />

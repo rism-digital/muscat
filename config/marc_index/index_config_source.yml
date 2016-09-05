@@ -28,6 +28,10 @@ fields:
   "031p":
       :store: true
   "031q":
+  "031t_filter":
+      :type: string
+      :from_tag: "031"
+      :from_subtag: "t"
   "031t":
   "033a":
   "035a":
@@ -50,17 +54,13 @@ fields:
   "130p":
   "130r":
   "240a":
+  "240a_filter":
       :store: true
       :type: string
-  "240a_shingle":
-      :type: text
-      :store: true
       :from_tag: "240"
       :from_subtag: "a"
-      :as: "240a_shingle_sms"
   "240k":
   "240m":
-      :store: true
   "240m_filter":
       :type: string
       :from_tag: "240"
@@ -168,6 +168,10 @@ fields:
   "7104":
   "7105":
   "730a":
+  "730a_filter":
+      :type: string
+      :from_tag: "730"
+      :from_subtag: "a"
   "730k":
   "730m":
   "730n":

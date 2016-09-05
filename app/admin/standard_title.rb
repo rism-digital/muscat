@@ -101,10 +101,10 @@ ActiveAdmin.register StandardTitle do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_title), :title
-#    column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-#			all_hits = @arbre_context.assigns[:hits]
-#			active_admin_stored_from_hits(all_hits, element, :src_count_order)
-#		end
+    column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
+			all_hits = @arbre_context.assigns[:hits]
+			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+		end
     active_admin_muscat_actions( self )
   end
   
