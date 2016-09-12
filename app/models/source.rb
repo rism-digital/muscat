@@ -172,10 +172,16 @@ class Source < ActiveRecord::Base
     
     sunspot_dsl.text :source_id
     
+		# For ordering
+    sunspot_dsl.string :std_title_shelforder, :as => "std_title_shelforder_s" do 
+      std_title
+    end
+		# For facet
     sunspot_dsl.string :std_title_order do 
       std_title
     end
-    sunspot_dsl.text :std_title, :stored => true
+		# For fulltext search
+    sunspot_dsl.text :std_title
     sunspot_dsl.text :std_title_d
     
     sunspot_dsl.string :composer_order do 
@@ -187,6 +193,7 @@ class Source < ActiveRecord::Base
     sunspot_dsl. string :title_order do 
       title
     end
+
     sunspot_dsl.text :title, :stored => true
     sunspot_dsl.text :title_d
     
@@ -200,8 +207,8 @@ class Source < ActiveRecord::Base
 	# when doing searches since the type is string.
 	# This field type must be also configured in the schema.xml solr configuration
     sunspot_dsl.string :shelf_mark_shelforder, :stored => true, :as => "shelf_mark_shelforder_s" do
-		shelf_mark
-	end
+			shelf_mark
+		end
     sunspot_dsl.text :shelf_mark
 	
     sunspot_dsl.string :lib_siglum_order do
