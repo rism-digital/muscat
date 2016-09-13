@@ -194,7 +194,7 @@ class MarcSource < Marc
     elsif leader.match(/......d[dm].............../)
       rt = RECORD_TYPES[:manuscript]
     elsif leader.match(/......c[dm].............../)
-      rt = RECORD_TYPES[:print_music]
+      rt = RECORD_TYPES[:print]
     elsif leader.match(/......tm.............../)
       rt = RECORD_TYPES[:manuscript_libretto]
     elsif leader.match(/......am.............../)
