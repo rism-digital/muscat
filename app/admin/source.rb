@@ -65,6 +65,19 @@ ActiveAdmin.register Source do
       record_type = @item.get_record_type
       record_type = record_type ? " - #{I18n.t('record_types.' + record_type.to_s)}" : ""
       @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
+			
+			template = case @item.get_record_type
+				when :collection then "000_collection.marc"
+				when :source then "002_source.marc"
+				when :edition_content then "003_edition_content.marc"
+				when :libretto_source then "004_libretto_source.marc"
+				when :libretto_edition_content then "005_libretto_edition_content.marc"
+				when :theoretica_source then "006_theoretica_source.marc"
+				when :theoretica_edition_content then "007_theoretica_edition_content.marc"
+				when :edition then "001_edition.marc"
+				else nil
+			end
+			@item.marc.superimpose_template(template) if template
     end
 
     def index

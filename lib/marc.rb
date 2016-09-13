@@ -199,6 +199,21 @@ class Marc
     return @marc_configuration
   end
 
+	def superimpose_template(template_name = "default.marc")
+		load_source unless @loaded
+		
+    template = self.class.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/#{@model}/#{template_name}"))
+    template.load_source false
+		
+		template.all_tags.each do |tag|
+			if !first_occurance(tag.tag)
+		    new_tag = tag.deep_copy
+		    pi = get_insert_position(tag.tag)
+				root.children.insert(pi, new_tag)
+			end
+		end
+	end
+
   # Get all the foreign fields for this Marc object. Foreign fields are the one referred by ext_id ($0) in the marc record
   def get_all_foreign_associations
     if @all_foreign_associations.empty?
