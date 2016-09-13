@@ -28,7 +28,7 @@ ActiveAdmin.register Work do
     end
     
     def index
-      @results = Work.search_as_ransack(params)
+      @results, @hits = Work.search_as_ransack(params)
       
       index! do |format|
         @works = @results
