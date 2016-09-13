@@ -318,9 +318,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - "8"
-      - :occurrences: "?"
-        :no_browse: true
   "520":
     :master: a
     :indicator: "##"
