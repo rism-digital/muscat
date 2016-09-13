@@ -189,13 +189,14 @@ en:
   create_from_existing: "Create"
   record_types:
     unspecified: "[Unknown template]"
-    collection: "Collection"
-    manuscript: "Music manuscript"
-    print: "Music print"
-    manuscript_libretto: "Manuscript libretto"
-    print_libretto: "Printed libretto"
-    manuscript_theoretica: "Manuscript treatise"
-    print_theoretica: "Printed treatise"
+    collection: "Source collection"
+    manuscript: "Music source"
+    print: "Music edition content"
+    manuscript_libretto: "Libretto source"
+    print_libretto: "Libretto edition content"
+    manuscript_theoretica: "Treatise source"
+    print_theoretica: "Treatise edition content"
+    edition: "Edition"
         
   #################### MENUS
   menu_home: "Home"
@@ -638,12 +639,13 @@ en:
   record_types_codes:
     "0": "UNK"
     "1": "COL"
-    "2": "MMS"
-    "3": "MPR"
-    "4": "LMS"
-    "5": "LPR"
-    "6": "TMS"
-    "7": "TPR"
+    "2": "MSR"
+    "3": "MEC"
+    "4": "LSR"
+    "5": "LEC"
+    "6": "TSR"
+    "7": "TEC"
+    "8": "EDT"
     
   status_codes:
     published: "PUB"

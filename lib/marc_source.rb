@@ -4,12 +4,12 @@ class MarcSource < Marc
   RECORD_TYPES = {
     :unspecified => 0,
     :collection => 1,
-    :manuscript => 2,
-    :print => 3,
-    :manuscript_libretto => 4,
-    :print_libretto => 5,
-    :manuscript_theoretica => 6,
-    :print_theoretica => 7,
+    :source => 2,
+    :edition_content => 3,
+    :libretto_source => 4,
+    :libretto_edition_content => 5,
+    :theoretica_source => 6,
+    :theoretica_edition_content => 7,
     :edition => 8
   }
   
@@ -192,15 +192,15 @@ class MarcSource < Marc
     if leader.match(/......[dcp]c.............../)
       rt = RECORD_TYPES[:collection]
     elsif leader.match(/......d[dm].............../)
-      rt = RECORD_TYPES[:manuscript]
+      rt = RECORD_TYPES[:source]
     elsif leader.match(/......c[dm].............../)
-      rt = RECORD_TYPES[:print_music]
+      rt = RECORD_TYPES[:edition_content]
     elsif leader.match(/......tm.............../)
-      rt = RECORD_TYPES[:manuscript_libretto]
+      rt = RECORD_TYPES[:libretto_source]
     elsif leader.match(/......am.............../)
-      rt = RECORD_TYPES[:print_libretto]
+      rt = RECORD_TYPES[:libretto_edition_content]
     elsif leader.match(/......pm.............../)
-      rt = RECORD_TYPES[:manuscript_theoretica] # we cannot make the distinction between ms and print
+      rt = RECORD_TYPES[:theoretica_source] # we cannot make the distinction between ms and print
     else
        puts "Unknown leader #{leader}"
     end
@@ -328,26 +328,26 @@ class MarcSource < Marc
         w = t.fetch_first_by_tag("w")
         if w && w.content
           source = Source.find(w.content)
-          type = "dc" if source.record_type != RECORD_TYPES[:print]
+          type = "dc" if source.record_type != RECORD_TYPES[:edition_content]
         else
           raise "Empty $w in 772"
         end
       end
       
       leader = base_leader.gsub("XX", type)
-    elsif @record_type == RECORD_TYPES[:manuscript]
+    elsif @record_type == \
       type = "dm"
       type = "dd" if by_tags("773").count > 0
       leader = base_leader.gsub("XX", type)
-    elsif @record_type == RECORD_TYPES[:print]
+    elsif @record_type == RECORD_TYPES[:edition_content]
       type = "cm"
       type = "cd" if by_tags("773").count > 0
       leader = base_leader.gsub("XX", type)
-    elsif @record_type == RECORD_TYPES[:manuscript_libretto]
+    elsif @record_type == RECORD_TYPES[:libretto_source]
       leader = base_leader.gsub("XX", "tm")
-    elsif @record_type == RECORD_TYPES[:print_libretto]
+    elsif @record_type == RECORD_TYPES[:libretto_edition_content]
       leader = base_leader.gsub("XX", "am")
-    elsif @record_type == RECORD_TYPES[:manuscript_theoretica] # we cannot make the distinction between ms and print
+    elsif @record_type == RECORD_TYPES[:theoretica_source] # we cannot make the distinction between ms and print
       leader = base_leader.gsub("XX", "pm")
     else
       puts "Unknown record type #{@record_type}"

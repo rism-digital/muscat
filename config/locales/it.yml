@@ -190,12 +190,13 @@ it:
   record_types:
     unspecified: "[Template sconosciuto]"
     collection: "Raccolta"
-    manuscript: "Manoscritto musicale"
-    print: "Musica a stampa"
-    manuscript_libretto: "Libretto manoscritto"
-    print_libretto: "Libretto a stampa"
-    manuscript_theoretica: "Trattato manoscritto"
-    print_theoretica: "Trattato a stampa"
+    source: "MUSIC SOURCE"
+    edition_content: "MUSIC EDITION CONTENT"
+    libretto_source: "LIBRETTO SOURCE"
+    libretto_edition_content: "LIBRETTO EDITION CONTENT"
+    theoretica_source: "TREATISE SOURCE"
+    theoretica_edition_content: "TREATISE EDITION CONTENT"
+    edition: "EDITION"
 
   #################### MENUS
   menu_home: "Home"

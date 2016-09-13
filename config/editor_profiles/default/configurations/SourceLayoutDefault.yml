@@ -11,11 +11,13 @@ group_order:
 group_exclude:
   collection:
   - edit_incipits
-  manuscript_libretto:
+  libretto_source:
   - edit_incipits
-  print_libretto:
+  libretto_edition_content:
   - edit_incipits
-  theoretica:
+  theoretica_source:
+  - edit_incipits
+  theoretica_edition_content:
   - edit_incipits
 
 tag_exclude:
@@ -29,19 +31,19 @@ tag_exclude:
   - '657'
   - '740'
   - '787'
-  manuscript:
+  source:
   - '490'
   - '597'
   - '772'
   - '775'
-  print:
+  edition_content:
   - '506'
   - '541'
   - '561'
   - '591'
   - '772'
   - '852'
-  manuscript_libretto:
+  libretto_source:
   - '490'
   - '590'
   - '594'
@@ -51,7 +53,7 @@ tag_exclude:
   - '772'
   - '775'
   - '787'
-  print_libretto:
+  libretto_edition_content:
   - '490'
   - '590'
   - '594'
@@ -59,7 +61,20 @@ tag_exclude:
   - '598'
   - '772'
   - '787'
-  theoretica:
+  theoretica_source:
+  - '490'
+  - '511'
+  - '590'
+  - '594'
+  - '596'
+  - '598'
+  - '651'
+  - '653'
+  - '657'
+  - '690'
+  - '772'
+  - '787'
+  theoretica_edition_content:
   - '490'
   - '511'
   - '590'

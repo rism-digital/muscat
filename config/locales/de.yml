@@ -196,6 +196,7 @@ de:
     print_libretto: "Gedrucktes Libretto"
     manuscript_theoretica: "Handschriftliches Theoretica"
     print_theoretica: "Gedrucktes Theoretica"
+    edition: "EDITION"
   
   #################### MENUS
   menu_home: "Home"
