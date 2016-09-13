@@ -77,15 +77,6 @@ class MarcConfig
     @has_browsable[tag]
   end
 
-  def tag_precludes_holdings?(tag)
-    return false if !@tag_config.include?(tag)
-    if @tag_config[tag].include? :preclude_holdings
-      @tag_config[tag][:preclude_holdings]
-    else
-      false
-    end
-  end
-
   # Get the default indicator for a Marc tag
   def get_default_indicator(tag)
     return @tag_config[tag][:indicator][0] if @tag_config[tag][:indicator].is_a? Array

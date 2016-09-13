@@ -386,11 +386,4 @@ class MarcSource < Marc
     @record_type = rt
   end
   
-  def preclude_holdings?
-    all_tags.each do |tag|
-      return true if @marc_configuration.tag_precludes_holdings?(tag.tag)
-    end
-    false
-  end
-  
 end

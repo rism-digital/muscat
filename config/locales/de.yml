@@ -190,12 +190,12 @@ de:
   record_types:
     unspecified: "[Unbekannte Vorlage]"
     collection: "Sammlung"
-    manuscript: "Musikhandschrift"
-    print: "Musikdruck"
-    manuscript_libretto: "Handschrifliches Libretto"
-    print_libretto: "Gedrucktes Libretto"
-    manuscript_theoretica: "Handschriftliches Theoretica"
-    print_theoretica: "Gedrucktes Theoretica"
+    source: "MUSIC SOURCE"
+    edition_content: "MUSIC EDITION CONTENT"
+    libretto_source: "LIBRETTO SOURCE"
+    libretto_edition_content: "LIBRETTO EDITION CONTENT"
+    theoretica_source: "TREATISE SOURCE"
+    theoretica_edition_content: "TREATISE EDITION CONTENT"
     edition: "EDITION"
   
   #################### MENUS

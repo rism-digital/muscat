@@ -189,13 +189,13 @@ en:
   create_from_existing: "Create"
   record_types:
     unspecified: "[Unknown template]"
-    collection: "Source collection"
-    manuscript: "Music source"
-    print: "Music edition content"
-    manuscript_libretto: "Libretto source"
-    print_libretto: "Libretto edition content"
-    manuscript_theoretica: "Treatise source"
-    print_theoretica: "Treatise edition content"
+    collection: "Collection"
+    source: "Music source"
+    edition_content: "Music edition content"
+    libretto_source: "Libretto source"
+    libretto_edition_content: "Libretto edition content"
+    theoretica_source: "Treatise source"
+    theoretica_edition_content: "Treatise edition content"
     edition: "Edition"
         
   #################### MENUS

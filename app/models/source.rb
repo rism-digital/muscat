@@ -403,7 +403,6 @@ class Source < ActiveRecord::Base
   
   def allow_holding?
     return false if (self.record_type != MarcSource::RECORD_TYPES[:edition])
-    return false if marc.preclude_holdings?
     return true
   end
   
