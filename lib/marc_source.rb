@@ -9,7 +9,8 @@ class MarcSource < Marc
     :manuscript_libretto => 4,
     :print_libretto => 5,
     :manuscript_theoretica => 6,
-    :print_theoretica => 7
+    :print_theoretica => 7,
+    :edition => 8
   }
   
   def initialize(source = nil, rt = 0)
@@ -193,7 +194,7 @@ class MarcSource < Marc
     elsif leader.match(/......d[dm].............../)
       rt = RECORD_TYPES[:manuscript]
     elsif leader.match(/......c[dm].............../)
-      rt = RECORD_TYPES[:print]
+      rt = RECORD_TYPES[:print_music]
     elsif leader.match(/......tm.............../)
       rt = RECORD_TYPES[:manuscript_libretto]
     elsif leader.match(/......am.............../)
@@ -320,7 +321,7 @@ class MarcSource < Marc
 
     base_leader = "00000nXX#a2200000#u#4500"
 
-    if @record_type == RECORD_TYPES[:collection]
+    if ((@record_type == RECORD_TYPES[:collection]) || (@record_type == RECORD_TYPES[:edition]))
       type = "cc"
       
       each_by_tag("772") do |t|
