@@ -58,7 +58,7 @@ doc_templates:
     en: Date and time of last transaction
 "008":
   label:
-    it: Data di Creazione
+    it: Data di creazione
     fr: Date de création
     de: Datum der Erstellung
     en: Date of creation
@@ -85,13 +85,13 @@ doc_templates:
   fields:
     d:
       label:
-        it: Longitude
+        it: Longitudine
         fr: Longitude
         de: Längengrad 
         en: Longitude
     f:
       label:
-        it: Latitude
+        it: Latitudine
         fr: Latitude
         de: Breitengrad 
         en: Latitude
@@ -144,14 +144,14 @@ doc_templates:
 
 "043":
   label:
-    it: Country code
+    it: Codice del Paese
     fr: Country code
     de: Länder-Code
     en: County code
   fields:
     c:
       label:
-        it: Country code
+        it: Codice del Paese
         fr: Country code
         de: Länder-Code  
         en: Country code
@@ -178,26 +178,26 @@ doc_templates:
         en: Subordinate unit
     c:
       label:
-        it: Place
+        it: Luogo
         fr: Place 
         de: Ort
         en: Place
     g:
       label:
-        it: Ente subordinato
+        it: Sigla
         fr: "Siglum"
         de: "Sigel"
         en: Siglum
 "368":
   label:
-    it: Tipo di Istituzione
+    it: Tipo di istituzione
     fr: "Type d'institution"
     de: Typ der Institution
     en: Type of Institution
   fields:
     a:
       label:
-        it: Tipo di Istitutione
+        it: Tipo di istitutione
         fr: "Type d'institution"
         de: Typ der Institution
         en: Type of institution
@@ -230,8 +230,8 @@ doc_templates:
         en: City
     c:
       label:
-        it: Paese o Provincia
-        fr: Canton our province
+        it: Paese o provincia
+        fr: Canton ou province
         de: Bezirk oder Staat
         en: County or province
     d:
@@ -254,7 +254,7 @@ doc_templates:
         en: URL
     z:
       label:
-        it: Nota Pubblica
+        it: Nota pubblica
         fr: Note publique
         de: Bemerkungen
         en: Public Note
@@ -373,14 +373,14 @@ doc_templates:
 
 "680":
   label:
-    it: General note
+    it: Osservazioni
     fr: Remarque général
     de: Allgemeine Fussnote
     en: General note
   fields:
     a:
       label:
-        it: General note
+        it: Osservazioni
         fr: Remarque générale
         de: Allgemeine Fussnote
         en: General note
@@ -421,13 +421,13 @@ doc_templates:
   fields:
     u:
       label:
-        t: Online
+        it: Online
         fr: En Ligne
         de: Archivführer und andere Publikationen
         en: Online finding aids
     z:
       label:
-        t: Nota
+        it: Nota
         fr: Note
         de: Bemerkung
         en: Note
@@ -449,7 +449,7 @@ control:
   label:
     fr: "Champs de contrôle"
     de: Kontrollfelder
-    ot: Campi di controllo
+    it: Campi di controllo
     en: Control Fields
 notes:
   label:
