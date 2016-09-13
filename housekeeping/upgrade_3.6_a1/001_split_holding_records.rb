@@ -68,7 +68,7 @@ Source.where(["record_type = ? or (record_type = ? and id > 990000000)",
 		# Items under 990000000 are "conventional" A/II prints
 		# We transform tham into manuscripts
 		if source.id < 990000000
-			source.record_type = MarcSource::RECORD_TYPES[:manusctipt]
+			source.record_type = MarcSource::RECORD_TYPES[:source]
 		else
 			# Are we a in a collection?
 			if source.source_id != nil
