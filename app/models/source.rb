@@ -61,7 +61,7 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
-  has_and_belongs_to_many :works
+  has_and_belongs_to_many :works, join_table: "sources_to_works"
   has_many :folder_items, :as => :item
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
