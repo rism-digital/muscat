@@ -13,6 +13,18 @@ class MarcSource < Marc
     :edition => 8
   }
   
+  RECORD_TYPE_ORDER = [
+    :collection,
+    :source,
+    :libretto_source,
+    :theoretica_source,
+    :edition,
+    :edition_content,
+    :libretto_edition_content,
+    :theoretica_edition_content,
+    :unspecified
+  ]
+
   def initialize(source = nil, rt = 0)
     super("source", source)
     @record_type = rt
