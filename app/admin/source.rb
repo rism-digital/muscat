@@ -82,6 +82,10 @@ ActiveAdmin.register Source do
 
     def index
       @results, @hits = Source.search_as_ransack(params)
+
+      # Get the terms for 593a_filter, the "source type"
+      @source_types = Source.get_tems("593a_filter_sm")
+
       index! do |format|
        @sources = @results
         format.html
@@ -166,6 +170,9 @@ ActiveAdmin.register Source do
              [[current_user.name, "wf_owner:#{current_user.id}"]]
            end
          }
+  
+  filter :"593a_filter_with_integer", :label => proc{I18n.t(:filter_source_type)}, as: :select, 
+  collection: proc{@source_types.sort.collect {|k| [k.camelize, "593a_filter:#{k}"]}}
   
   filter :record_type_with_integer, :label => proc {I18n.t(:filter_record_type)}, as: :select, 
   collection: proc{MarcSource::RECORD_TYPES.collect {|k, v| [I18n.t("record_types." + k.to_s), "record_type:#{v}"]}}

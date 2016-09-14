@@ -5,6 +5,12 @@ module Muscat
   
 				MAX_PER_PAGE = 30
   
+			  def get_tems(field)
+			    solr = Sunspot.session.get_connection
+			    response = solr.get 'terms', :params => {:"terms.fl" => field, :"terms.limit" => -1}
+			    Hash[*response["terms"][field]].keys
+			  end
+	
 				def search_as_ransack(params)
 					fields, order, with, page = unpack_params(params)
 					per_page = params.has_key?(:per_page) ? params[:per_page] : MAX_PER_PAGE
@@ -182,7 +188,6 @@ module Muscat
 								with["#{param}_lteq"] = {field: param, end: gt}
 							end
 						end
-						ap with
 					else
 						# if no field is specified
 						# return all elements

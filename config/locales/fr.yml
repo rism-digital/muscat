@@ -398,6 +398,7 @@ fr:
   filter_place: "Endroit"
   filter_provenance: "Provenance"
   filter_record_type: "Type"
+  filter_source_type: "SOURCE TYPE"
   filter_publisher: "éditeur"
   filter_revue_title: "Titre de la revue"
   filter_id: "No RISM"

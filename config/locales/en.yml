@@ -398,6 +398,7 @@ en:
   filter_place: "Place"
   filter_provenance: "Provenance"
   filter_record_type: "Type"
+  filter_source_type: "Source Type"
   filter_publisher: "Publisher"
   filter_revue_title: "Revue title"
   filter_id: "Rism ID"
