@@ -65,19 +65,19 @@ ActiveAdmin.register Source do
       record_type = @item.get_record_type
       record_type = record_type ? " - #{I18n.t('record_types.' + record_type.to_s)}" : ""
       @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
-			
-			template = case @item.get_record_type
-				when :collection then "000_collection.marc"
-				when :source then "002_source.marc"
-				when :edition_content then "013_edition_content.marc"
-				when :libretto_source then "004_libretto_source.marc"
-				when :libretto_edition_content then "015_libretto_edition_content.marc"
-				when :theoretica_source then "006_theoretica_source.marc"
-				when :theoretica_edition_content then "017_theoretica_edition_content.marc"
-				when :edition then "011_edition.marc"
-				else nil
-			end
-			@item.marc.superimpose_template(template) if template
+
+      template = case @item.get_record_type
+        when :collection then "000_collection.marc"
+        when :source then "002_source.marc"
+        when :edition_content then "013_edition_content.marc"
+        when :libretto_source then "004_libretto_source.marc"
+        when :libretto_edition_content then "015_libretto_edition_content.marc"
+        when :theoretica_source then "006_theoretica_source.marc"
+        when :theoretica_edition_content then "017_theoretica_edition_content.marc"
+        when :edition then "011_edition.marc"
+        else nil
+      end
+      @item.marc.superimpose_template(template) if template
     end
 
     def index
@@ -189,8 +189,8 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title_shelforder, sortable: :std_title_shelforder do |element|
-			element.std_title
-		end
+      element.std_title
+    end
     column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
       if source.child_sources.count > 0
          source.child_sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
@@ -199,9 +199,9 @@ ActiveAdmin.register Source do
       end
     end
     column (I18n.t :filter_shelf_mark), :shelf_mark_shelforder, sortable: :shelf_mark_shelforder do |element|
-			element.shelf_mark
-		end
-		
+      element.shelf_mark
+    end
+    
     active_admin_muscat_actions( self )
   end
   
