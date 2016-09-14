@@ -7,7 +7,7 @@ module Muscat
   
 			  def get_tems(field)
 			    solr = Sunspot.session.get_connection
-			    response = solr.get 'terms', :params => {:"terms.fl" => field, :"terms.limit" => -1}
+			    response = solr.get 'terms', :params => {:"terms.fl" => field, :"terms.limit" => -1, :"terms.mincount" => 1}
 			    Hash[*response["terms"][field]].keys
 			  end
 	
