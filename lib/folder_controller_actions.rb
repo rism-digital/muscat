@@ -84,7 +84,7 @@ module FolderControllerActions
       model = self.resource_class
       
       params[:per_page] = 1000
-      results = model.search_as_ransack(params)
+      results, hits = model.search_as_ransack(params)
       
       if results.total_entries > MAX_FOLDER_ITEMS
         redirect_to collection_path, :alert => I18n.t(:too_many, scope: :folders, max: MAX_FOLDER_ITEMS, count: results.total_entries)
@@ -113,7 +113,7 @@ module FolderControllerActions
       
       # Pagination is on as default! wahooo!
       params[:per_page] = 1000
-      results = model.search_as_ransack(params)
+      results, hits = model.search_as_ransack(params)
       
       if results.total_entries > MAX_FOLDER_ITEMS
         redirect_to collection_path, :alert => I18n.t(:too_many, scope: :folders, max: MAX_FOLDER_ITEMS, count: results.total_entries)
@@ -138,7 +138,7 @@ module FolderControllerActions
       
       # Pagination is on as default! wahooo!
       params[:per_page] = 1000
-      results = @model.search_as_ransack(params)
+      results, hits = @model.search_as_ransack(params)
       
       @items_count = results.total_entries
       @save_path = send(link_function)
@@ -153,7 +153,7 @@ module FolderControllerActions
       
       # Pagination is on as default! wahooo!
       params[:per_page] = 1000
-      results = @model.search_as_ransack(params)
+      results, hits = @model.search_as_ransack(params)
       
       @items_count = results.total_entries
       @save_path = send(link_function)

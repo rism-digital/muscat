@@ -74,7 +74,7 @@ ActiveAdmin.register Person do
     end
     
     def index
-      @results = Person.search_as_ransack(params)
+      @results, @hits = Person.search_as_ransack(params)
       index! do |format|
         @people = @results
         format.html
@@ -145,8 +145,11 @@ ActiveAdmin.register Person do
       label: I18n.t('status_codes.' + person.wf_stage, locale: :en))} 
     column (I18n.t :filter_full_name), :full_name
     column (I18n.t :filter_life_dates), :life_dates
-    column (I18n.t :filter_sources), :src_count
     column (I18n.t :filter_owner) {|person| User.find(person.wf_owner).name rescue 0} if current_user.has_any_role?(:editor, :admin)
+    column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
+			all_hits = @arbre_context.assigns[:hits]
+			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+		end
     active_admin_muscat_actions( self )
   end
   

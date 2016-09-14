@@ -68,7 +68,7 @@ ActiveAdmin.register Source do
     end
 
     def index
-      @results = Source.search_as_ransack(params)
+      @results, @hits = Source.search_as_ransack(params)
       index! do |format|
        @sources = @results
         format.html
@@ -168,7 +168,9 @@ ActiveAdmin.register Source do
       label: I18n.t('record_types_codes.' + source.record_type.to_s, locale: :en))} 
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_composer), :composer
-    column (I18n.t :filter_std_title), :std_title
+    column (I18n.t :filter_std_title), :std_title_shelforder, sortable: :std_title_shelforder do |element|
+			element.std_title
+		end
     column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
       if source.child_sources.count > 0
          source.child_sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
@@ -176,8 +178,10 @@ ActiveAdmin.register Source do
         source.lib_siglum
       end
     end
-    column (I18n.t :filter_shelf_mark), :shelf_mark
-    
+    column (I18n.t :filter_shelf_mark), :shelf_mark_shelforder, sortable: :shelf_mark_shelforder do |element|
+			element.shelf_mark
+		end
+		
     active_admin_muscat_actions( self )
   end
   

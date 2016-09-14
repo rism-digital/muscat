@@ -94,7 +94,7 @@ module Muscat
             
 						paginate :page => page, :per_page => per_page
 					end
-					return solr_results.results
+					return solr_results.results, solr_results.hits
 
 				end # search_with_solr
         
@@ -108,15 +108,20 @@ module Muscat
 						order = params[:order].include?("_asc") ? "asc" : "desc"
 						field = params[:order].gsub("_#{order}", "")
 
+						# Fields used for order by convention always end with _order
+						# In some cases it is a duplicate field stored in the DB
+						# So in that case we append the _order here
 						if field != "id"
-							field = field + "_order"
+							field = field + "_order" if !field.ends_with?("_order") && !field.ends_with?("_shelforder")
 						end
 						
 						## HARDCODED! Shelfmarks need a particular way of indexing
 						# using a custom tokenizer. If we encounter that field
 						# translate it to the "special" one. The solr dynamic field
 						# terminates with "*_shelforder_s"
-						field = "shelf_mark_shelforder" if field == "shelf_mark_order"
+						#if field.include
+						#field = "shelf_mark_shelforder" if field == "shelf_mark_order"
+						#field = "std_title_shelforder" if field == "std_title_order"
 						
 						order = {:field => field.underscore.to_sym, :order => order.to_sym}
 					end

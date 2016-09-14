@@ -97,8 +97,8 @@ groups:
     - "383"
     - "691"
     all_tag_templates: 
-      "690": marc_show/show_subfield_concat
-      "691": marc_show/show_subfield_concat
+      "690": marc_show/show_69x_url
+      "691": marc_show/show_69x_url
 
   show_terms: 
     all_tags: 

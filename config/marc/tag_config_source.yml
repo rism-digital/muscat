@@ -566,10 +566,6 @@
         :foreign_field: name
     - - n
       - :occurrences: "?"
-    - - "2"
-      - :occurrences: "?"
-        :no_browse: true
-        # value must be added during exportation
   "691":
     :master: "0"
     :indicator: "#7"
@@ -586,10 +582,6 @@
         :foreign_field: name
     - - n
       - :occurrences: "?"
-    - - "2"
-      - :occurrences: "?"
-        :no_browse: true
-        # value must be added during exportation
   "700":
     :master: "0"
     :indicator: "1#"

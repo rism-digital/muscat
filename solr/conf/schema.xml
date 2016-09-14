@@ -119,7 +119,6 @@
             />
         </analyzer>
     </fieldType>
-	
   </types>
   <fields>
     <!-- Valid attributes for fields:
