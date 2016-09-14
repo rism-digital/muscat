@@ -69,12 +69,12 @@ ActiveAdmin.register Source do
 			template = case @item.get_record_type
 				when :collection then "000_collection.marc"
 				when :source then "002_source.marc"
-				when :edition_content then "003_edition_content.marc"
+				when :edition_content then "013_edition_content.marc"
 				when :libretto_source then "004_libretto_source.marc"
-				when :libretto_edition_content then "005_libretto_edition_content.marc"
+				when :libretto_edition_content then "015_libretto_edition_content.marc"
 				when :theoretica_source then "006_theoretica_source.marc"
-				when :theoretica_edition_content then "007_theoretica_edition_content.marc"
-				when :edition then "001_edition.marc"
+				when :theoretica_edition_content then "017_theoretica_edition_content.marc"
+				when :edition then "011_edition.marc"
 				else nil
 			end
 			@item.marc.superimpose_template(template) if template
