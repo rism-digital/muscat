@@ -16,7 +16,7 @@
 	content = params["default"] if params.include?("default") && !content
 	
 	
-	if @editor_validation && @editor_validation.validate_subtag?(tag_name, subfield)
+	if @editor_validation && @editor_validation.validate_subtag?(tag_name, subfield, @item)
 		validate_class, unique_name = @editor_validation.get_subtag_class_name(tag_name, subfield)
 		name_tag = raw "name=\"#{unique_name}\""
 		validate_marker = "validating"
