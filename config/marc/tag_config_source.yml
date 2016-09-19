@@ -408,6 +408,7 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :disable_multiple: true
     :fields:
     - - a
       - :occurrences: "?"
