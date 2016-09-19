@@ -247,7 +247,7 @@ doc_administration:
         en: Movement number
     c: 
       label: 
-        it: Numero dell'estratto'
+        it: Numero dell'estratto
         fr: "Numéro de l'extrait"
         de: Abschnitt
         en: Incipit number
@@ -340,7 +340,7 @@ doc_administration:
         it: "Validità"
         fr: "Validité"
         de: "Gültigkeit"
-        en: ""
+        en: "Validity"
     t: 
       label: 
         it: Incipit testuale
@@ -613,7 +613,7 @@ doc_administration:
         en: Description/Extent
     b: 
       label: 
-        it: OTHER PHYSICAL DETAILS
+        it: Altri dettagli sul materiale
         fr: OTHER PHYSICAL DETAILS
         de: Zusätzliche Materialbeschreibung
         en: Other physical details
@@ -650,7 +650,7 @@ doc_administration:
         en: Set
 "383": 
   label: 
-    it: Opus
+    it: Num. d'opera
     fr: "Opus"
     de: Opus
     en: Opus number
@@ -663,14 +663,14 @@ doc_administration:
         en: Opus number
 "490": 
   label: 
-    it: RISM Series
+    it: Serie RISM
     fr: RISM Series
     de: RISM Series
     en: RISM Series
   fields: 
     a: 
       label: 
-        it: RISM Series
+        it: Serie RISM
         fr: RISM Series
         de: RISM Series
         en: RISM Series
@@ -752,7 +752,7 @@ doc_administration:
   fields: 
     a: 
       label: 
-        it: Nota sui interpreti
+        it: Nota sugli interpreti
         fr: "Remarque sur les interprètes"
         de: "Bemerkungen zu den Aufführungen"
         en: Performer note
@@ -971,7 +971,7 @@ doc_administration:
         fields: 
     c: 
       label: 
-        it: NUMBER
+        it: Numero
         fr: Nombre
         de: NUMBER
         en: Number
@@ -1005,14 +1005,14 @@ doc_administration:
       en: ""
 "597": 
   label: 
-    it: Impressum Originale
+    it: Dati editoriali originali
     fr: Impressum original
     de: Impressum (original)
     en: Imprint on source
   fields: 
     a: 
       label: 
-        it: Impressum Originale
+        it: Dati editoriali originali
         fr: Impressum original
         de: Impressum (original)
         en: Imprint on source
@@ -1379,7 +1379,7 @@ doc_administration:
         en: Additional title
     g: 
       label: 
-        it: RULE TYPE
+        it: Regole di cat.
         fr: Règle de cat.
         de: Regelwerk
         en: Rule type
@@ -1470,14 +1470,14 @@ doc_administration:
         en: ""
 "775": 
   label: 
-    it: Primo item
+    it: Prima notizia
     fr: "Première entrée"
     de: Ersteintrag
     en: Initial entry
   fields: 
     w: 
       label: 
-        it: Primo item
+        it: Prima notizia
         fr: "Première entrée"
         de: Ersteintrag
         en: Initial entry
@@ -1553,7 +1553,7 @@ doc_administration:
         en: Shelfmark
     q: 
       label: 
-        it: PRESERVED PARTS
+        it: Materiale conservato
         fr: PRESERVED PARTS
         de: erhaltenes Material
         en: Preserved Parts
@@ -1590,7 +1590,7 @@ doc_administration:
         en: External resource
     x: 
       label: 
-        it: LINK TYPE
+        it: Tipo di collegamento
         fr: Type de lien
         de: LINK TYPE
         en: Link type
@@ -1816,7 +1816,7 @@ dnr:
     en: Donor
 dpt: 
   label: 
-    it: DEPOSITOR
+    it: Depositante
     fr: DEPOSITOR
     de: Despositor
     en: Depositor
@@ -2137,255 +2137,255 @@ zxx:
 #Subheading 240k / 730k
 Excerpts:
   label:
-    it: EXCERPTS
+    it: Estratti
     fr: Extraits
     de: EXCERPTS
     en: Excerpts
 Sketches:
   label:
-    it: SKETCHES
+    it: Schizzi
     fr: Esquisses
     de: SKETCHES
     en: Sketches
 Fragments:
   label:
-    it: FRAGMENTS
+    it: Frammenti
     fr: Fragments
     de: FRAGMENTS
     en: Fragments
 Inserts:
   label:
-    it: INSERTS
+    it: Inserimenti
     fr: Insertions
     de: INSERTS
     en: Inserts
 #Arrangement statement 240o / 730o
 Arr:
   label:
-    it: ARR
+    it: Arrangiamento
     fr: Arrangement
     de: ARR
     en: Arrangement
 Var:
   label:
-    it: VAR
+    it: Variazioni
     fr: Variations
     de: VAR
     en: Variations
 #Keys
 A:
   label:
-    it: "A major"
+    it: "La maggiore"
     fr: "La majeur"
     de: "A major"
     en: "A major"
 a:
   label:
-    it: "A minor"
+    it: "La minore"
     fr: "La mineur"
     de: "A minor"
     en: "A minor"
 A|x: 
   label:
-    it: "A♯ major"
+    it: "La♯ maggiore"
     fr: "La♯ majeur"
     de: "A♯ major"
     en: "A♯ major"
 a|x: 
   label:
-    it: "A♯ minor"
+    it: "La♯ minore"
     fr: "La♯ mineur"
     de: "A♯ minor"
     en: "A♯ minor"
 A|b: 
   label:
-    it: "A♭ major"
+    it: "La♭ maggiore"
     fr: "La♭ majeur"
     de: "A♭ major"
     en: "A♭ major"
 a|b: 
   label:
-    it: "A♭ minor"
+    it: "La♭ minore"
     fr: "La♭ mineur"
     de: "A♭ minor"
     en: "A♭ minor"
 B:
   label:
-    it: "B major"
+    it: "Si maggiore"
     fr: "Si majeur"
     de: "B major"
     en: "B major"
 b:
   label:
-    it: "B minor"
+    it: "Si minore"
     fr: "Si mineur"
     de: "B minor"
     en: "B minor"
 B|b: 
   label:
-    it: "B♭ major"
+    it: "Si♭ maggiore"
     fr: "Si♭ majeur"
     de: "B♭ major"
     en: "B♭ major"
 b|b: 
   label:
-    it: "B♭ minor"
+    it: "Si♭ minore"
     fr: "Si♭ mineur"
     de: "B♭ minor"
     en: "B♭ minor"
 C:
   label:
-    it: "C major"
+    it: "Do maggiore"
     fr: "Do majeur"
     de: "C major"
     en: "C major"
 c:
   label:
-    it: "C minor"
+    it: "Do minore"
     fr: "Do mineur"
     de: "C minor"
     en: "C minor"
 C|x: 
   label:
-    it: "C♯ major"
+    it: "Do♯ maggiore"
     fr: "Do♯ majeur"
     de: "C♯ major"
     en: "C♯ major"
 c|x: 
   label:
-    it: "C♯ minor"
+    it: "Do♯ minore"
     fr: "Do♯ mineur"
     de: "C♯ minor"
     en: "C♯ minor"
 C|b: 
   label:
-    it: "C♭ major"
+    it: "Do♭ maggiore"
     fr: "Do♭ majeur"
     de: "C♭ major"
     en: "C♭ major"
 c|b: 
   label:
-    it: "C♭ minor"
+    it: "Do♭ minore"
     fr: "Do♭ mineur"
     de: "C♭ minor"
     en: "C♭ minor"
 D:
   label:
-    it: "D major"
+    it: "Re maggiore"
     fr: "Ré majeur"
     de: "D major"
     en: "D major"
 d:
   label:
-    it: "D minor"
+    it: "Re minore"
     fr: "Ré minor"
     de: "D minor"
     en: "D minor"
 D|x: 
   label:
-    it: "D♯ major"
+    it: "Re♯ maggiore"
     fr: "Ré♯ majeur"
     de: "D♯ major"
     en: "D♯ major"
 d|x: 
   label:
-    it: "D♯ minor"
+    it: "Re♯ minore"
     fr: "Ré♯ mineur"
     de: "D♯ minor"
     en: "D♯ minor"
 D|b: 
   label:
-    it: "D♭ major"
+    it: "Re♭ maggiore"
     fr: "Ré♭ majeur"
     de: "D♭ major"
     en: "D♭ major"
 d|b: 
   label:
-    it: "D♭ minor"
+    it: "Re♭ minore"
     fr: "Ré♭ mineur"
     de: "D♭ minor"
     en: "D♭ minor"
 E:
   label:
-    it: "E major"
+    it: "Mi maggiore"
     fr: "Mi majeur"
     de: "E major"
     en: "E major"
 e:
   label:
-    it: "E minor"
+    it: "Mi minore"
     fr: "Mi mineur"
     de: "E minor"
     en: "E minor"
 E|b: 
   label:
-    it: "E♭ major"
+    it: "Mi♭ maggiore"
     fr: "Mi♭ majeur"
     de: "E♭ major"
     en: "E♭ major"
 e|b: 
   label:
-    it: "E♭ minor"
+    it: "Mi♭ minore"
     fr: "Mi♭ mineur"
     de: "E♭ minor"
     en: "E♭ minor"
 F:
   label:
-    it: "F major"
+    it: "Fa maggiore"
     fr: "Fa majeur"
     de: "F major"
     en: "F major"
 f:
   label:
-    it: "F minor"
+    it: "Fa minore"
     fr: "Fa mineur"
     de: "F minor"
     en: "F minor"
 F|x: 
   label:
-    it: "F♯ major"
+    it: "Fa♯ maggiore"
     fr: "Fa♯ majeur"
     de: "F♯ major"
     en: "F♯ major"
 f|x: 
   label:
-    it: "F♯ minor"
+    it: "Fa♯ minore"
     fr: "Fa♯ mineur"
     de: "F♯ minor"
     en: "F♯ minor"
 G:
   label:
-    it: "G major"
+    it: "Sol maggiore"
     fr: "Sol majeur"
     de: "G major"
     en: "G major"
 g:
   label:
-    it: "G minor"
+    it: "Sol minore"
     fr: "Sol mineur"
     de: "G minor"
     en: "G minor"
 G|x: 
   label:
-    it: "G♯ major"
+    it: "Sol♯ maggiore"
     fr: "Sol♯ majeur"
     de: "G♯ major"
     en: "G♯ major"
 g|x: 
   label:
-    it: "G♯ minor"
+    it: "Sol♯ minore"
     fr: "Sol♯ mineur"
     de: "G♯ minor"
     en: "G♯ minor"
 G|b: 
   label:
-    it: "G♭ major"
+    it: "Sol♭ maggiore"
     fr: "Sol♭ majeur"
     de: "G♭ major"
     en: "G♭ major"
 g|b: 
   label:
-    it: "G♭ minor"
+    it: "Sol♭ minore"
     fr: "Sol♭ mineur"
     de: "G♭ minor"
     en: "G♭ minor"
@@ -2465,7 +2465,7 @@ g|b:
 #Clefs (031)
 01_modern_clefs:
   label:
-    it: "Common clefs"
+    it: "Chiavi comuni"
     fr: "Clés communes"
     de: "Common clefs"
     en: "Common clefs"
@@ -2519,7 +2519,7 @@ F-3:
     en: "F-3"
 F-4:
   label:
-    it: "F-4 (bass clef)"
+    it: "F-4 (chiave di basso)"
     fr: "F-4 (clé fa)"
     de: "F-4 (bass clef)"
     en: "F-4 (bass clef)"
@@ -2537,7 +2537,7 @@ G-1:
     en: "G-1"
 G-2:
   label:
-    it: "G-2 (treble clef)"
+    it: "G-2 (chiave di violino)"
     fr: "G-2 (clé de sol)"
     de: "G-2 (treble clef)"
     en: "G-2 (treble clef)"
@@ -2561,7 +2561,7 @@ G-5:
     en: "G-5"
 02_mensural_clefs:
   label:
-    it: "Mensural clefs"
+    it: "Chiavi mensurali"
     fr: "Clés anciennes"
     de: "Mensural clefs"
     en: "Mensural clefs"
