@@ -93,6 +93,9 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	marc_validate_reset_warnings(); // Reset all the warnings if the user fixed them
 	// Warnings will be re-drawn if needed
 	
+	// Delete the "errors" message
+	$("#validation_errors").hide();
+	
 	// .valid() triggers form validation
 	// it also populates the warning hash
 	var form_valid = form.valid();
@@ -132,8 +135,6 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		if ( !$("#validation_override_checkbox").is(':checked') )
 			return;
 		*/
-	} else {
-		$("#validation_errors").hide();
 	}
 	
 	var json_marc = serialize_marc_editor_form(form);
