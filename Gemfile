@@ -48,7 +48,7 @@ gem 'non-stupid-digest-assets'
 gem 'paper_trail'
 
 # for aligning marc
-gem 'needleman_wunsch_aligner'
+gem 'needleman_wunsch_aligner', "1.0.4"
 
 # for the documentation
 gem 'htmlentities'
@@ -69,8 +69,8 @@ gem 'activeadmin', '1.0.0.pre2' #, git: 'https://github.com/rism-ch/activeadmin'
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails', "2.2.0"#, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
-gem 'sunspot_solr',  "2.2.0"
+gem 'sunspot_rails', "2.2.0" #, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
+gem 'sunspot_solr', "2.2.0"
 gem 'awesome_print'
 gem 'progress_bar', git: 'https://github.com/rism-ch/progress_bar'
 gem "rails3-jquery-autocomplete", git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
