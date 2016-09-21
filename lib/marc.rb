@@ -87,6 +87,7 @@ class Marc
   
   def to_external
     # TODO common conversion to external (add last transaction, leader, etc.)
+	# TODO add 040 if not there (with cataloguing agency, etc...)
   end
   
   # Parse a MARC 21 line
