@@ -13,6 +13,24 @@ def create_holdings(source, marc)
     new_852 = t.deep_copy
     new_marc.root.children.insert(new_marc.get_insert_position("852"), new_852)
     
+    st = t.fetch_first_by_tag("u")
+    if st && st.content
+      node = MarcNode.new("holding", "856", "", "##")
+      node.add_at(MarcNode.new("holding", "u", st.content, nil))
+      node.add_at(MarcNode.new("holding", "z", "[digitized version]", nil))
+      node.sort_alphabetically
+      new_marc.root.children.insert(new_marc.get_insert_position("856"), node)
+    end
+    
+    st = t.fetch_first_by_tag("z")
+    if st && st.content
+      node = MarcNode.new("holding", "856", "", "##")
+      node.add_at(MarcNode.new("holding", "u", st.content, nil))
+      node.add_at(MarcNode.new("holding", "z", "[bibliographic record]", nil))
+      node.sort_alphabetically
+      new_marc.root.children.insert(new_marc.get_insert_position("856"), node)
+    end
+		
     new_marc.suppress_scaffold_links
     new_marc.import
     
