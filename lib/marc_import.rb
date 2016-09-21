@@ -120,7 +120,7 @@ class MarcImport
         @import_results = @import_results.uniq
 
         if @model == "Source"
-          model.suppress_update_77x # we should not need to update the 772/773 relationships during the import
+          model.suppress_update_77x # we should not need to update the 774/773 relationships during the import
           model.suppress_update_count # Do not update the count for the foreign objects
           rt = marc.record_type
           if (rt)

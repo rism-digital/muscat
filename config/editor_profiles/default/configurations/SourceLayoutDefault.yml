@@ -49,14 +49,14 @@ tag_exclude:
   source:
   - '490'
   - '597'
-  - '772'
+  - '774'
   - '775'
   edition_content:
   - '506'
   - '541'
   - '561'
   - '591'
-  - '772'
+  - '774'
   - '852'
   libretto_source:
   - '490'
@@ -65,7 +65,7 @@ tag_exclude:
   - '596'
   - '597'
   - '598'
-  - '772'
+  - '774'
   - '775'
   - '787'
   libretto_edition_content:
@@ -78,7 +78,7 @@ tag_exclude:
   - '594'
   - '596'
   - '598'
-  - '772'
+  - '774'
   - '787'
   - '852'
   theoretica_source:
@@ -92,7 +92,7 @@ tag_exclude:
   - '653'
   - '657'
   - '690'
-  - '772'
+  - '774'
   - '787'
   theoretica_edition_content:
   - '490'
@@ -133,7 +133,7 @@ groups:
     - '541'
     - '773'
     - '787'
-    - '772'
+    - '774'
     - '775'
   edit_names:
     all_tags:
