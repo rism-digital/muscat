@@ -136,6 +136,7 @@ class MarcConfig
   end
 
   def has_links_to(tag)
+		return false if !@tag_config.include? tag
 	  @tag_config[tag][:fields].each do |st|
 		  return true if st[1].has_key?(:link_to_model) && st[1].has_key?(:link_to_field)
 	  end

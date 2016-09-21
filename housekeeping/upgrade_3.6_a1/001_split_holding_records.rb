@@ -16,8 +16,8 @@ def create_holdings(source, marc)
     st = t.fetch_first_by_tag("u")
     if st && st.content
       node = MarcNode.new("holding", "856", "", "##")
-      node.add_at(MarcNode.new("holding", "u", st.content, nil))
-      node.add_at(MarcNode.new("holding", "z", "[digitized version]", nil))
+      node.add_at(MarcNode.new("holding", "u", st.content, nil), 0)
+      node.add_at(MarcNode.new("holding", "z", "[digitized version]", nil), 0)
       node.sort_alphabetically
       new_marc.root.children.insert(new_marc.get_insert_position("856"), node)
     end
@@ -25,8 +25,8 @@ def create_holdings(source, marc)
     st = t.fetch_first_by_tag("z")
     if st && st.content
       node = MarcNode.new("holding", "856", "", "##")
-      node.add_at(MarcNode.new("holding", "u", st.content, nil))
-      node.add_at(MarcNode.new("holding", "z", "[bibliographic record]", nil))
+      node.add_at(MarcNode.new("holding", "u", st.content, nil), 0)
+      node.add_at(MarcNode.new("holding", "z", "[bibliographic record]", nil), 0)
       node.sort_alphabetically
       new_marc.root.children.insert(new_marc.get_insert_position("856"), node)
     end
