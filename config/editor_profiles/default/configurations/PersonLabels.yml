@@ -13,7 +13,7 @@ doc_cataloguing_collections:
     en: Cataloging collection and convoluta
 doc_functions:
   label:
-    de: "Grundätzliche Funktionen"
+    de: "Grundsätzliche Funktionen"
     en: Basic functions
 doc_introduction:
   label:
@@ -126,27 +126,27 @@ doc_edit_workflow:
         en: Modifying agency
 "042":
   label:
-    it: Codice di Autenticazione
+    it: Codice di autenticazione
     fr: "Code d'authentification"
     de: Authentication Code
     en: Authentication Code
   fields:
     a:
       label:
-        it: Codice di Autenticazione
+        it: Codice di autenticazione
         fr: "Code d'authentification"
         de: Authentication Code
         en: Authentication Code
 "043":
   label:
-    it: Country code
+    it: Codice del Paese
     fr: Country code
     de: Länder-Code
     en: County code
   fields:
     c:
       label:
-        it: Country code
+        it: Codice del Paese
         fr: Country code
         de: Länder-Code  
         en: Country code
@@ -185,40 +185,40 @@ doc_edit_workflow:
         en: Other dates
 "370":
   label:
-    it: Associated Place
+    it: Luogo associato
     fr: Endroit associé
     de: Associated Place
     en: Associated Place
   fields:
     a:
       label:
-        it: Lieu de naissance
-        fr: Place of birth
+        it: Luogo di nascita
+        fr: Lieu de naissance
         de: Geburtsort  
         en: Place of birth
 "375":
   label:
-    it: Gender
+    it: Genere
     fr: Gender
     de: Geschlecht
     en: Gender
   fields:
     a:
       label:
-        it: Gender
+        it: Genere
         fr: Gender
         de: Geschlecht 
         en: Gender
 "400":
   label:
-    it: Name variants
+    it: Varianti del nome
     fr: Name variants
     de: Namensvarianten
     en: Name variants
   fields:
     a:
       label:
-        it: Name variants
+        it: Varianti del nome
         fr: Name variants
         de: Namensvarianten  
         en: Name variants
@@ -301,34 +301,34 @@ doc_edit_workflow:
         en:  Place
     i:
       label:
-        it:  Descrizione del Luogo
+        it:  Descrizione del luogo
         fr:  "Description de l'endroit"
         de:  Ort Bedeutung
         en:  Place Description
 
 "667":
   label:
-    it: Non public note
+    it:  Nota interna
     fr:  Non public note
     de:  Non public note
     en:  Non public note
   fields:
     a:
       label:
-        it:  Non public note
+        it:  Nota interna
         fr:  Non public note
         de:  Non public note
         en:  Non public note
 "670":
   label:
-    it: Source data found 
+    it: Fonte dei dati 
     fr: Source des données
     de: Quellenangaben
     en: Source data found 
   fields:
     a:
       label:
-        it: Source data found
+        it: Fonte dei dati
         fr: Source des données
         de: Quellenangaben
         en: Source data found
@@ -353,14 +353,14 @@ doc_edit_workflow:
         en: Additional bibliographic reference 
 "680":
   label:
-    it: General note
+    it: Osservazioni
     fr: Remarque général
     de: Allgemeine Bemerkungen
     en: General note
   fields:
     a:
       label:
-        it: General note
+        it: Osservazioni
         fr: Remarque générale
         de: Externe Bemerkungen
         en: General note
@@ -399,7 +399,7 @@ control:
   label:
     fr: "Champs de contrôle"
     de: Kontrollfelder
-    ot: Campi di controllo
+    it: Campi di controllo
     en: Control Fields
 notes:
   label:
@@ -409,7 +409,7 @@ notes:
     en: Note fields
 subject:
   label:
-    it: Note sul sitolo uniforme
+    it: Soggetti
     fr: "Entrées de sujets"
     de: Schlagworteintragungen
     en: Subject access fields
@@ -428,7 +428,7 @@ other:
 references:
   label:
     it: Riferimento
-    fr: "références"
+    fr: "Références"
     de: Literatur und Bemerkungen
     en: References
 relations:
@@ -451,19 +451,19 @@ administration:
     en: Administration
 male:
   label:
-    it: male
+    it: maschio
     fr: male
     de: männlich
     en: male
 female:
   label:
-    it: female
+    it: femmina
     fr: female
     de: weiblich
     en: female
 unknown:
   label:
-    it: unknown
+    it: sconosciuto
     fr: unknown
     de: unbekannt
     en: unkown
@@ -471,7 +471,7 @@ unknown:
 #########################
 go:
   label:
-    it: Luogo di Nascita
+    it: Luogo di nascita
     fr: Lieu de naissance
     de: Geburtsort
     en: Place of Birth
@@ -489,7 +489,7 @@ po:
     en: postal Place
 so:
   label:
-    it: Luogo di Morte
+    it: Luogo di morte
     fr: Lieu de décès
     de: Sterbeort
     en: Place of Death
@@ -1026,7 +1026,7 @@ bn:
     en: Byname
 da:
   label:
-    it: Pseudonym
+    it: Pseudonimo
     fr: Pseudonym
     de: Pseudonym
     en: Pseudonym
@@ -1044,13 +1044,13 @@ dv:
     en: Other Searchform
 ee:
   label:
-    it: Nome del matrimonio
+    it: Nome da sposato
     fr: Nom de mariage
     de: Ehename
     en: Marriage Name
 ef:
   label:
-    it: Nome di Famiglia
+    it: Nome di famiglia
     fr: Nom de famillie
     de: Familienname
     en: Family Name
@@ -1062,7 +1062,7 @@ ff:
     en: Person Name
 gg:
   label:
-    it: Nome di nascita
+    it: Nome da nubile/celibe
     fr: Nom de naissance
     de: Geburtsname
     en: Birthname
@@ -1074,7 +1074,7 @@ in:
     en: Initial
 mo:
   label:
-    it: Monogram
+    it: Monogramma
     fr: Monogram
     de: Monogramm
     en: Monogram
@@ -1092,7 +1092,7 @@ ub:
     en: Translation
 z:
   label:
-    it: Altre form
+    it: Altra forma
     fr: Autres formes
     de: Andere Schreibweise
     en: Other form

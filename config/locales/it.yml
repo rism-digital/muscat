@@ -422,7 +422,7 @@ it:
   filter_volume: "Volume"
   filter_image: "IMAGE"
   filter_file_name: "Nome FIle"
-  filter_file_size: "Nome File"
+  filter_file_size: "Grandezza File"
   filter_content_type: "Tipo"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
