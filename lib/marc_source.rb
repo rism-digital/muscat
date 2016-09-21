@@ -269,7 +269,7 @@ class MarcSource < Marc
       end
     end
     
-    each_by_tag("772") do |t|
+    each_by_tag("774") do |t|
       t.each_by_tag("t") do |st|
         st.destroy_yourself if st
       end
@@ -323,13 +323,13 @@ class MarcSource < Marc
     if @record_type == RECORD_TYPES[:collection]
       type = "cc"
       
-      each_by_tag("772") do |t|
+      each_by_tag("774") do |t|
         w = t.fetch_first_by_tag("w")
         if w && w.content
           source = Source.find(w.content)
           type = "dc" if source.record_type != RECORD_TYPES[:print]
         else
-          raise "Empty $w in 772"
+          raise "Empty $w in 774"
         end
       end
       

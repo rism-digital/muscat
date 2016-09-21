@@ -26,7 +26,7 @@
     <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>
-
+		
     <xsl:template name="string-replace-all">
       <xsl:param name="text" />
       <xsl:param name="replace" />
@@ -43,7 +43,7 @@
           </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="$text" />
+          <xsl:value-of select="$text"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:template>
