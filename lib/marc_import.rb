@@ -35,7 +35,7 @@ class MarcImport
         rec = Nokogiri::XML(record.to_s)
         # Use external XSLT 1.0 file for converting to MARC21 text
         xslt  = Nokogiri::XSLT(File.read(Rails.root.join('housekeeping/import/', 'marcxml2marctxt_1.0.xsl')))
-        marctext = xslt.transform(rec).to_s
+        marctext = CGI::unescapeHTML(xslt.transform(rec).to_s)
         create_record(marctext)
     }
     puts @import_results
@@ -92,6 +92,17 @@ class MarcImport
           status = "updated"
         end
         
+        marcdate = marc.first_occurance('005')
+        if marcdate && marcdate.content
+          begin
+            date = DateTime.parse(marcdate.content)
+            model.updated_at = date if date
+            model.created_at = date if date
+          rescue ArgumentError
+            $stderr.puts "Cannot parse date for #{model.id}, #{marcdate.content}"
+          end
+        end
+
         # Make internal format
         marc.to_internal
 
@@ -109,7 +120,7 @@ class MarcImport
         @import_results = @import_results.uniq
 
         if @model == "Source"
-          model.suppress_update_77x # we should not need to update the 772/773 relationships during the import
+          model.suppress_update_77x # we should not need to update the 774/773 relationships during the import
           model.suppress_update_count # Do not update the count for the foreign objects
           rt = marc.record_type
           if (rt)

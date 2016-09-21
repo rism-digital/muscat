@@ -408,6 +408,7 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :disable_multiple: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -665,14 +666,6 @@
        - :occurrences: "*"
      - - p
        - :occurrences: "*"
-  "772":
-    :master: w
-    :indicator: "18"
-    :occurrences: "*"
-    :fields:
-    - - w
-      - :occurrences: "1"
-        :browse_helper: application_helper_link_source_id
   "773":
     :master: w
     :indicator: "18"
@@ -684,6 +677,14 @@
         :foreign_class: Source
         :foreign_field: id
         :zero_padding: "14"
+        :browse_helper: application_helper_link_source_id
+  "774":
+    :master: w
+    :indicator: "18"
+    :occurrences: "*"
+    :fields:
+    - - w
+      - :occurrences: "1"
         :browse_helper: application_helper_link_source_id
   "775":
     :master: w

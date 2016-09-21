@@ -133,7 +133,7 @@ groups:
     
   show_links: 
     all_tags: 
-    - "772"
+    - "774"
     - "773"
     - "775"
-    template: marc_show/show_772_773_links
+    template: marc_show/show_774_773_links
