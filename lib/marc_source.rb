@@ -122,7 +122,9 @@ class MarcSource < Marc
     tags_852 = by_tags(["852"])    
     if tags_852.length > 1 # we have multiple copies
       tags_852.each do |tag|
-        a_tag = tag.fetch_first_by_tag("a").content
+				t = tag.fetch_first_by_tag("a")
+				next if !t || !t.content
+        a_tag = t.content
         siglum = siglum == "" ? "#{a_tag}" : "#{siglum}, #{a_tag}"
       end
       #siglum = "[multiple copies]"
