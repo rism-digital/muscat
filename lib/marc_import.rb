@@ -92,6 +92,17 @@ class MarcImport
           status = "updated"
         end
         
+        marcdate = marc.first_occurance('005')
+        if marcdate && marcdate.content
+          begin
+            date = DateTime.parse(marcdate.content)
+            model.updated_at = date if date
+            model.created_at = date if date
+          rescue ArgumentError
+            $stderr.puts "Cannot parse date for #{model.id}, #{marcdate.content}"
+          end
+        end
+
         # Make internal format
         marc.to_internal
 
