@@ -105,12 +105,12 @@ module MarcControllerActions
       redirect = params.include?(:redirect) ? params[:redirect] : false
 
       if redirect == "true"
-        model_for_path = self.resource_class.to_s.underscore.pluralize.downcase
+        model_for_path = self.resource_class.to_s.underscore.downcase
         if (model_for_path == "holdings") && params.include?(:parent_object_id)
           path = edit_admin_source_path(params[:parent_object_id])
         else
           link_function = "admin_#{model_for_path}_path"
-          path =  send(link_function) #admin_sources_path
+          path =  send(link_function, @item.id) #admin_sources_path
         end
       else
         model_for_path = self.resource_class.to_s.underscore.downcase

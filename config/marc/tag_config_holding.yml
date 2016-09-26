@@ -32,7 +32,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -40,7 +39,6 @@
     :master: a
     :indicator: "1#"
     :occurrences: "?"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -54,7 +52,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -62,7 +59,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"

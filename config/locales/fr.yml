@@ -190,12 +190,13 @@ fr:
   record_types:
     unspecified: "[type indéterminé]"
     collection: "Collection"
-    manuscript: "Manuscrit musical"
-    print: "Imprimé musical"
-    manuscript_libretto: "Libretto manuscrit"
-    print_libretto: "Imprimé imprimé"
-    manuscript_theoretica: "Traité manuscrit"
-    print_theoretica:  "Traité imprimé"
+    source: "MUSIC SOURCE"
+    edition_content: "MUSIC EDITION CONTENT"
+    libretto_source: "LIBRETTO SOURCE"
+    libretto_edition_content: "LIBRETTO EDITION CONTENT"
+    theoretica_source: "TREATISE SOURCE"
+    theoretica_edition_content: "TREATISE EDITION CONTENT"
+    edition: "EDITION"
 
   #################### MENUS
   menu_home: "Home"
@@ -397,6 +398,7 @@ fr:
   filter_place: "Endroit"
   filter_provenance: "Provenance"
   filter_record_type: "Type"
+  filter_source_type: "SOURCE TYPE"
   filter_publisher: "éditeur"
   filter_revue_title: "Titre de la revue"
   filter_id: "No RISM"

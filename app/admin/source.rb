@@ -65,10 +65,27 @@ ActiveAdmin.register Source do
       record_type = @item.get_record_type
       record_type = record_type ? " - #{I18n.t('record_types.' + record_type.to_s)}" : ""
       @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
+
+      template = case @item.get_record_type
+        when :collection then "000_collection.marc"
+        when :source then "002_source.marc"
+        when :edition_content then "013_edition_content.marc"
+        when :libretto_source then "004_libretto_source.marc"
+        when :libretto_edition_content then "015_libretto_edition_content.marc"
+        when :theoretica_source then "006_theoretica_source.marc"
+        when :theoretica_edition_content then "017_theoretica_edition_content.marc"
+        when :edition then "011_edition.marc"
+        else nil
+      end
+      @item.marc.superimpose_template(template) if template
     end
 
     def index
       @results, @hits = Source.search_as_ransack(params)
+
+      # Get the terms for 593a_filter, the "source type"
+      @source_types = Source.get_tems("593a_filter_sm")
+
       index! do |format|
        @sources = @results
         format.html
@@ -154,12 +171,16 @@ ActiveAdmin.register Source do
            end
          }
   
+  filter :"593a_filter_with_integer", :label => proc{I18n.t(:filter_source_type)}, as: :select, 
+  collection: proc{@source_types.sort.collect {|k| [k.camelize, "593a_filter:#{k}"]}}
+  
   filter :record_type_with_integer, :label => proc {I18n.t(:filter_record_type)}, as: :select, 
-  collection: proc{MarcSource::RECORD_TYPES.collect {|k, v| [I18n.t("record_types." + k.to_s), "record_type:#{v}"]}}
+  collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}}
 
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
-      
+  
+  
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
@@ -169,8 +190,8 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title_shelforder, sortable: :std_title_shelforder do |element|
-			element.std_title
-		end
+      element.std_title
+    end
     column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
       if source.child_sources.count > 0
          source.child_sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
@@ -179,9 +200,9 @@ ActiveAdmin.register Source do
       end
     end
     column (I18n.t :filter_shelf_mark), :shelf_mark_shelforder, sortable: :shelf_mark_shelforder do |element|
-			element.shelf_mark
-		end
-		
+      element.shelf_mark
+    end
+    
     active_admin_muscat_actions( self )
   end
   

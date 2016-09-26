@@ -61,7 +61,7 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
-  has_and_belongs_to_many :works
+  has_and_belongs_to_many :works, join_table: "sources_to_works"
   has_many :folder_items, :as => :item
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -402,8 +402,7 @@ class Source < ActiveRecord::Base
   end
   
   def allow_holding?
-    return false if (self.record_type != MarcSource::RECORD_TYPES[:print]) && (self.record_type != MarcSource::RECORD_TYPES[:collection])
-    return false if marc.preclude_holdings?
+    return false if (self.record_type != MarcSource::RECORD_TYPES[:edition])
     return true
   end
   
@@ -450,5 +449,6 @@ class Source < ActiveRecord::Base
   end
 
   ransacker :"852a_facet_contains", proc{ |v| } do |parent| end
-    
+  ransacker :"593a_filter_with_integer", proc{ |v| } do |parent| end
+	
 end
