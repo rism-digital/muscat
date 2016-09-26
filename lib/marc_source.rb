@@ -205,7 +205,7 @@ class MarcSource < Marc
     
     if leader.match(/......[dcp]c.............../)
       rt = RECORD_TYPES[:collection]
-    if leader.match(/......pd.............../) # Mixed material, subunit, ex convolutum
+    elsif leader.match(/......pd.............../) # Mixed material, subunit, ex convolutum
       rt = RECORD_TYPES[:collection]
     elsif leader.match(/......d[dm].............../)
       rt = RECORD_TYPES[:source]
