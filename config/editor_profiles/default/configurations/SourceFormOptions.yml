@@ -509,7 +509,7 @@
     - - a
       - type: catalogue
         editor_partial: subfield_secondary
-        allow_new: true
+        allow_new: false
     - - n
 "691":
   new_window: catalogues
@@ -519,7 +519,7 @@
     - - a
       - type: catalogue
         editor_partial: subfield_secondary
-        allow_new: true
+        allow_new: false
     - - n
 "700":
   new_window: people
