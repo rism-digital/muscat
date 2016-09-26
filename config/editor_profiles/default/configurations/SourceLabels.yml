@@ -977,17 +977,23 @@ doc_administration:
         en: Number
 "595": 
   label: 
-    it: "Ruoli: nomi originali dei personaggi"
-    fr: "Rôles: noms originaux"
-    de: "Rollennamen: Originale Schreibweise"
-    en: Dramatic roles named
+    it: "Ruoli: nomi  dei personaggi"
+    fr: "Rôles: noms"
+    de: "Rollennamen: Schreibweise"
+    en: Named dramatic roles
   fields: 
     a: 
       label: 
-        it: "Ruoli: nomi originali dei personaggi"
-        fr: "Rôle: noms originaux"
-        de: "Rollennamen: Originale Schreibweise"
-        en: Dramatic roles named
+        it: Nomi di ruoli standardizzati
+        fr: "Noms de rôles standardisés"
+        de: Rollennamen, standardisierte Schreibweise
+        en: Role names, standardised
+    u: 
+      label: 
+        it: "Nomi originali dei personaggi"
+        fr: "Noms originaux"
+        de: "Originale Schreibweise"
+        en: Original Name
 "596": 
   label: 
     it: Rimandi a RISM A/I e RISM B
@@ -1209,21 +1215,6 @@ doc_administration:
         fr: "Lieu d'un événement"
         de: "Aufführungsort"
         en: Location of performance
-      edit_label: 
-        en: ""
-"653": 
-  label: 
-    it: Nomi di ruoli standardizzati
-    fr: "Noms de rôles standardisés"
-    de: Rollennamen, normiert Schreibweise
-    en: Dramatic roles, standardized
-  fields: 
-    a: 
-      label: 
-        it: Nomi di ruoli standardizzati
-        fr: "Noms de rôles standardisés"
-        de: Rollennamen, standardisierte Schreibweise
-        en: Role names, standardised
       edit_label: 
         en: ""
 "657": 

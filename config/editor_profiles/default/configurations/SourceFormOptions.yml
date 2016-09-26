@@ -449,6 +449,11 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - c
+"595":
+  layout: 
+    fields: 
+    - - a
+    - - u
 "597": 
   layout: 
     fields: 
