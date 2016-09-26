@@ -327,8 +327,8 @@ class MarcSource < Marc
     end
   end
   
-  def to_external
-    super
+  def to_external(updated_at = nil, versions = nil)
+    super(updated_at, versions)
     
     # See #176
     # Step 1, rmake leader
@@ -373,10 +373,6 @@ class MarcSource < Marc
     new_leader = MarcNode.new("source", "000", leader, "")
     @root.children.insert(get_insert_position("000"), new_leader)
 
-    # cataloguing agency
-    agency = MarcNode.new("source", "003", RISM::AGENCY, "")
-    @root.children.insert(get_insert_position("003"), agency)
-    
     # 240 to 130 when 100 is not present
     if by_tags("100").count == 0
       each_by_tag("240") do |t|
@@ -395,7 +391,18 @@ class MarcSource < Marc
       t.add_at(MarcNode.new("source", "2", "pe", nil), 0)
       t.sort_alphabetically
     end
-    
+
+    if versions
+      versions.each do |v|
+        author = v.whodunnit != nil ? "#{v.whodunnit}, " : ""
+        entry = "#{author}#{v.created_at} (#{v.event})"
+        n599 = MarcNode.new(@model, "599", "", nil)
+        n599.add_at(MarcNode.new(@model, "a", entry, nil), 0)
+        @root.add_at(n599, get_insert_position("599"))
+      end
+        
+    end
+		
   end
   
   def set_record_type(rt)
