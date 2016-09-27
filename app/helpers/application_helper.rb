@@ -92,7 +92,6 @@ module ApplicationHelper
     content_tag(:a, name, html_options.merge(:href => href, :onclick => onclick))
   end
   
-  
   def edit_user_registration_path
   end
   

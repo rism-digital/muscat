@@ -35,33 +35,10 @@ class MarcImport
         rec = Nokogiri::XML(record.to_s)
         # Use external XSLT 1.0 file for converting to MARC21 text
         xslt  = Nokogiri::XSLT(File.read(Rails.root.join('housekeeping/import/', 'marcxml2marctxt_1.0.xsl')))
-        marctext = xslt.transform(rec).to_s
+        marctext = CGI::unescapeHTML(xslt.transform(rec).to_s)
         create_record(marctext)
     }
     puts @import_results
-  end
-
-  # see 337
-  def apply_bush_fix(marc)
-    
-    if nodeid = marc.first_occurance("001")
-      id = nodeid.content
-    end
-    
-    if ["50000002", "50000003", "50000004", "50000005", "50000006", "50000007",
-        "50000008", "50000009", "50000010", "50000011", "50000012", "50000013",
-        "50000014"].include?(id)
-    
-        node = marc.first_occurance('110', "g")
-        if node && node.content
-          sigla = node.content
-          node.content = sigla + "-duplicate"
-          
-          $stderr.puts "Modified sigla for #{id}".red
-          $stderr.puts "New siga: #{node.content}".yellow
-        end
-    end
-    
   end
 
   def create_record(buffer)
@@ -92,13 +69,20 @@ class MarcImport
           status = "updated"
         end
         
-        # Make internal format
-        marc.to_internal
-
-        if @model == "Institution"
-          apply_bush_fix(marc)
+        marcdate = marc.first_occurance('005')
+        if marcdate && marcdate.content
+          begin
+            date = DateTime.parse(marcdate.content)
+            model.updated_at = date if date
+            model.created_at = date if date
+          rescue ArgumentError
+            $stderr.puts "Cannot parse date for #{model.id}, #{marcdate.content}"
+          end
         end
 
+        # Make internal format
+        marc.to_internal
+				
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
         marc.suppress_scaffold_links
         marc.import
@@ -109,7 +93,7 @@ class MarcImport
         @import_results = @import_results.uniq
 
         if @model == "Source"
-          model.suppress_update_77x # we should not need to update the 772/773 relationships during the import
+          model.suppress_update_77x # we should not need to update the 774/773 relationships during the import
           model.suppress_update_count # Do not update the count for the foreign objects
           rt = marc.record_type
           if (rt)

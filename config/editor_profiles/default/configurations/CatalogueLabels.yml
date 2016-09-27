@@ -149,10 +149,10 @@ doc_templates:
         en: Publisher
     c: 
       label: 
-        it: Data
-        fr: Date
-        de: Datum
-        en: Date
+        it: YEAR
+        fr: YEAR
+        de: Jahr
+        en: Year
 "264": 
   label: 
     it: Produzione
@@ -209,14 +209,14 @@ doc_templates:
   label: 
     it: Testata
     fr: Titre de la revue
-    de: Reihe
+    de: In
     en: Revue title
   fields: 
     g: 
       label: 
         it: Part
         fr: Partie
-        de: Teil
+        de: Jahrgang, Seite
         en: Part 
     t: 
       label: 

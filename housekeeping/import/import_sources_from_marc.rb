@@ -75,7 +75,7 @@ class Marc21Import
         @import_results = @import_results.uniq
 
         # step 4. insert Manuscript into database
-        source.suppress_update_77x # we should not need to update the 772/773 relationships during the import
+        source.suppress_update_77x # we should not need to update the 774/773 relationships during the import
         source.suppress_update_count # Do not update the count for the foreign objects
         #source.suppress_create_incipit
         #source.suppress_reindex

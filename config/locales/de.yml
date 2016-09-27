@@ -152,8 +152,8 @@ de:
         one: "Digitales Objekt"
         other: "Digitale Objekte"
       catalogue:
-        one: "WV / Katalog"
-        other: "WV / Kataloge"
+        one: "Sekundärliteratur"
+        other: "Sekundärliteratur"
       folder:
         one: "Ordner"
         other: "Ordner"
@@ -190,12 +190,13 @@ de:
   record_types:
     unspecified: "[Unbekannte Vorlage]"
     collection: "Sammlung"
-    manuscript: "Musikhandschrift"
-    print: "Musikdruck"
-    manuscript_libretto: "Handschrifliches Libretto"
-    print_libretto: "Gedrucktes Libretto"
-    manuscript_theoretica: "Handschriftliches Theoretica"
-    print_theoretica: "Gedrucktes Theoretica"
+    source: "Musikquelle"
+    edition_content: "Druckausgabe Einzeleintrag"
+    libretto_source: "Libretto"
+    libretto_edition_content: "Libretto Einzeleintrag"
+    theoretica_source: "Theoreticum"
+    theoretica_edition_content: "Theoreticum Einzeleintrag"
+    edition: "Druck"
   
   #################### MENUS
   menu_home: "Home"
@@ -208,7 +209,7 @@ de:
   menu_titles: "Titel / Textincipit"
   menu_subjects: "Schlagwörter"
   menu_library_sigla: "Bibliothekssigel"
-  menu_catalogues: "WV / Kataloge"
+  menu_catalogues: "Sekundärliteratur"
   menu_liturgical_feasts: "Liturgische Feste"
   menu_latin: "Latein"
   menu_places: "Orte"
@@ -398,6 +399,7 @@ de:
   filter_place: "Ort"
   filter_provenance: "Herkunft"
   filter_record_type: "Typ"
+  filter_source_type: "Quellen Typ"
   filter_publisher: "Verlag"
   filter_revue_title: "Zeitschriftentitel"
   filter_id: "RISM ID"

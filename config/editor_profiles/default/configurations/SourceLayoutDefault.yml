@@ -11,11 +11,13 @@ group_order:
 group_exclude:
   collection:
   - edit_incipits
-  manuscript_libretto:
+  libretto_source:
   - edit_incipits
-  print_libretto:
+  libretto_edition_content:
   - edit_incipits
-  theoretica:
+  theoretica_source:
+  - edit_incipits
+  theoretica_edition_content:
   - edit_incipits
 
 tag_exclude:
@@ -23,55 +25,93 @@ tag_exclude:
   - '041'
   - '511'
   - '546'
+  - '595'
   - '650'
-  - '653'
   - '651'
   - '657'
   - '740'
   - '787'
-  manuscript:
+  edition:
+  - '041'
+  - '506'
+  - '511'
+  - '541'
+  - '546'
+  - '561'
+  - '591'
+  - '650'
+  - '651'
+  - '657'
+  - '740'
+  - '773'
+  - '787'
+  - '852'
+  source:
   - '490'
   - '597'
-  - '772'
+  - '774'
   - '775'
-  print:
+  edition_content:
   - '506'
   - '541'
   - '561'
   - '591'
-  - '772'
+  - '774'
   - '852'
-  manuscript_libretto:
+  libretto_source:
   - '490'
   - '590'
   - '594'
   - '596'
   - '597'
   - '598'
-  - '772'
+  - '774'
   - '775'
   - '787'
-  print_libretto:
+  libretto_edition_content:
   - '490'
+  - '506'
+  - '541'
+  - '561'
   - '590'
+  - '591'
   - '594'
   - '596'
   - '598'
-  - '772'
+  - '774'
   - '787'
-  theoretica:
+  - '852'
+  theoretica_source:
   - '490'
   - '511'
   - '590'
   - '594'
+  - '595'
   - '596'
   - '598'
   - '651'
-  - '653'
+  - '657'
+  - '690'
+  - '774'
+  - '787'
+  theoretica_edition_content:
+  - '490'
+  - '506'
+  - '511'
+  - '541'
+  - '561'
+  - '590'
+  - '591'
+  - '594'
+  - '595'
+  - '596'
+  - '598'
+  - '651'
   - '657'
   - '690'
   - '772'
   - '787'
+  - '852'
   
 tag_exclude_with_holdings:
   collection:
@@ -93,7 +133,7 @@ groups:
     - '541'
     - '773'
     - '787'
-    - '772'
+    - '774'
     - '775'
   edit_names:
     all_tags:
@@ -115,9 +155,8 @@ groups:
     - '520'
     - '505'
     - '594'
-    - '595'
     - '598'
-    - '653'
+    - '595'
     - '740'
     - '041'
     - '546'
@@ -127,7 +166,6 @@ groups:
     - '260'
     - '597'
     - '033'
-    - '518'
     - '300'
     - '590'
     - '340'
@@ -153,13 +191,10 @@ groups:
     - '657'
     - '651'
     - '511'
-    - '033'
     - '518'
     - '856'
     ungrouped_tags:
-     "033": 8
      "500": 8
-     "518": 8
      "856": 8
   edit_administration:
     all_tags:

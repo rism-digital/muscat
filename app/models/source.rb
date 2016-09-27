@@ -61,7 +61,7 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
-  has_and_belongs_to_many :works
+  has_and_belongs_to_many :works, join_table: "sources_to_works"
   has_many :folder_items, :as => :item
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -137,7 +137,7 @@ class Source < ActiveRecord::Base
     allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings", "sources"]
     recreate_links(marc, allowed_relations)
     
-    # update the parent manuscript when having 773/772 relationships
+    # update the parent manuscript when having 773/774 relationships
     update_77x unless self.suppress_update_77x_trigger == true 
   end
   
@@ -332,7 +332,7 @@ class Source < ActiveRecord::Base
     self.marc_source = self.marc.to_marc
   end
   
-  # If this manuscript is linked with another via 772/773, update if it is our parent
+  # If this manuscript is linked with another via 774/773, update if it is our parent
   def update_77x
     # do we have a parent manuscript?
     parent_manuscript_id = marc.first_occurance("773", "w")
@@ -342,12 +342,12 @@ class Source < ActiveRecord::Base
     
     if parent_manuscript_id
       # We have a parent manuscript in the 773
-      # Open it and add, if necessary, the 772 link
+      # Open it and add, if necessary, the 774 link
     
       parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
       return if !parent_manuscript
-      # check if the 772 tag already exists
-      parent_manuscript.marc.each_data_tag_from_tag("772") do |tag|
+      # check if the 774 tag already exists
+      parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
         subfield = tag.fetch_first_by_tag("w")
         next if !subfield || !subfield.content
         
@@ -356,10 +356,10 @@ class Source < ActiveRecord::Base
       
       # nothing found, add it in the parent manuscript
       mc = MarcConfigCache.get_configuration("source")
-      w772 = MarcNode.new(@model, "772", "", mc.get_default_indicator("772"))
-      w772.add_at(MarcNode.new(@model, "w", id.to_s, nil), 0 )
+      w774 = MarcNode.new(@model, "774", "", mc.get_default_indicator("774"))
+      w774.add_at(MarcNode.new(@model, "w", id.to_s, nil), 0 )
       
-      parent_manuscript.marc.root.add_at(w772, parent_manuscript.marc.get_insert_position("772") )
+      parent_manuscript.marc.root.add_at(w774, parent_manuscript.marc.get_insert_position("774") )
 
       parent_manuscript.suppress_update_77x
       parent_manuscript.save
@@ -373,8 +373,8 @@ class Source < ActiveRecord::Base
         return if !parent_manuscript
         modified = false
         
-        # check if the 772 tag already exists
-        parent_manuscript.marc.each_data_tag_from_tag("772") do |tag|
+        # check if the 774 tag already exists
+        parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
           subfield = tag.fetch_first_by_tag("w")
           next if !subfield || !subfield.content
           puts subfield.content
@@ -402,8 +402,7 @@ class Source < ActiveRecord::Base
   end
   
   def allow_holding?
-    return false if (self.record_type != MarcSource::RECORD_TYPES[:print]) && (self.record_type != MarcSource::RECORD_TYPES[:collection])
-    return false if marc.preclude_holdings?
+    return false if (self.record_type != MarcSource::RECORD_TYPES[:edition])
     return true
   end
   
@@ -450,5 +449,6 @@ class Source < ActiveRecord::Base
   end
 
   ransacker :"852a_facet_contains", proc{ |v| } do |parent| end
-    
+  ransacker :"593a_filter_with_integer", proc{ |v| } do |parent| end
+	
 end

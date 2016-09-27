@@ -21,7 +21,13 @@ function marc_validate_add_warnings(element) {
 
 function marc_validate_hide_warnings() {
 	for (var warn in warningList) {
-		_marc_validate_unhighlight(warningList[warn], "warning", "nice");
+		var element = warningList[warn];
+		_marc_validate_unhighlight(element, "warning", "");
+		
+		// If the element is a label and a warning label remove it
+		if ($(element).next().is("label") && $(element).next().hasClass("warning")) {
+			$(element).next().remove();
+		}
 	}
 }
 
@@ -34,7 +40,6 @@ function marc_validate_show_warnings() {
 		.attr( "id", element.name + "-warning" )
 		.addClass("warning")
 		.html(I18n.t("validation.warning_message"));
-		
 		label.insertAfter( element );
 	}
 }

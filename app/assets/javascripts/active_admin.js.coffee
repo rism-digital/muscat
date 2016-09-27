@@ -9,6 +9,7 @@
 # This is a must
 #= require i18n/translations
 
+#= require autocomplete_events
 #= require marc_editor
 #= require marc_editor_validation
 #= require marc_json

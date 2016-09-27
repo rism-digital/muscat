@@ -300,7 +300,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -325,9 +324,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - "8"
-      - :occurrences: "?"
-        :no_browse: true
   "520":
     :master: a
     :indicator: "##"
@@ -346,7 +342,6 @@
     :master: a
     :indicator: "1#"
     :occurrences: "?"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -367,7 +362,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -397,7 +391,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -415,6 +408,7 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :disable_multiple: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -436,6 +430,8 @@
     :occurrences: "*"
     :fields:
     - - a
+      - :occurrences: "?"
+    - - u
       - :occurrences: "?"
   "596":
     :master: a
@@ -525,13 +521,6 @@
       - :occurrences: "?"
         :no_browse: true
         # value must be added during exportation
-  "653":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
   "657":
     :master: "0"
     :indicator: "#7"
@@ -672,25 +661,24 @@
        - :occurrences: "*"
      - - p
        - :occurrences: "*"
-  "772":
-    :master: w
-    :indicator: "18"
-    :occurrences: "*"
-    :fields:
-    - - w
-      - :occurrences: "1"
-        :browse_helper: application_helper_link_source_id
   "773":
     :master: w
     :indicator: "18"
     :occurrences: "?"
-    :preclude_holdings: true
     :fields:
     - - w
       - :occurrences: "1"
         :foreign_class: Source
         :foreign_field: id
         :zero_padding: "14"
+        :browse_helper: application_helper_link_source_id
+  "774":
+    :master: w
+    :indicator: "18"
+    :occurrences: "*"
+    :fields:
+    - - w
+      - :occurrences: "1"
         :browse_helper: application_helper_link_source_id
   "775":
     :master: w
@@ -724,7 +712,6 @@
     :master: "x"
     :indicator: "##"
     :occurrences: "?"
-    :preclude_holdings: true
     :fields:
     - - "x"
       - :occurrences: "?"
