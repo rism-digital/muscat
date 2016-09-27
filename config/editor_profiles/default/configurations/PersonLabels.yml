@@ -323,14 +323,14 @@ doc_edit_workflow:
   label:
     it: Fonte dei dati 
     fr: Source des données
-    de: Quellenangaben
+    de: Literaturnachweis
     en: Source data found 
   fields:
     a:
       label:
         it: Fonte dei dati
         fr: Source des données
-        de: Quellenangaben
+        de: Literaturnachweis
         en: Source data found
     b:
       label:
