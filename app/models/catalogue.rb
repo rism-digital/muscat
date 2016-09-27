@@ -259,6 +259,6 @@ class Catalogue < ActiveRecord::Base
 
   ransacker :"240g_contains", proc{ |v| } do |parent| end
   ransacker :"260b_contains", proc{ |v| } do |parent| end
-  ransacker :"700a_contains", proc{ |v| } do |parent| end
+  ransacker :"100a_or_700a_contains", proc{ |v| } do |parent| end
 
 end

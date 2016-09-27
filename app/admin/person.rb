@@ -111,7 +111,7 @@ ActiveAdmin.register Person do
   
   # temporary, to be replaced by Solr
   #filter :id_eq, :label => proc {I18n.t(:filter_id)}
-  filter :full_name_equals, :label => proc {I18n.t(:filter_full_name)}, :as => :string
+  filter :full_name_contains, :label => proc {I18n.t(:filter_full_name)}, :as => :string
   filter :"100d_contains", :label => proc {I18n.t(:filter_person_100d)}, :as => :string
   filter :"375a_contains", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
   # FIXME locale not read
@@ -121,6 +121,7 @@ ActiveAdmin.register Person do
   filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
+  filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc {I18n.t(:updated_at)}, :as => :date_range
   
   filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
