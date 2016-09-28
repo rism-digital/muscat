@@ -27,7 +27,7 @@ end
 	<td>
     <% if subfield_a && subfield_a.content %>
       <% if subfield_0 && subfield_0.content %>
-        <%=link_to(subfield_a.content, admin_catalogues_path + "/" + subfield_0.content.to_s)%>
+        <%=link_to(subfield_a.content, admin_catalogue_path(subfield_0.content.to_s))%>
       <% else %>
         <%= subfield_a.content%>
       <% end %>
