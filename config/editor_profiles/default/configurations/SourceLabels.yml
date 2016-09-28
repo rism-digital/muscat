@@ -1359,14 +1359,14 @@ doc_administration:
   label: 
     it: Titolo uniforme alternativo
     fr: Titres uniformes additionnels
-    de: Alternativer Einordnungstitel
+    de: Alternativer Titel
     en: Additional title
   fields: 
     a: 
       label: 
         it: Titolo uniforme alternativo
         fr: Titres uniformes additionnels
-        de: Alternativer Einordnungstitel
+        de: Alternativer Titel
         en: Additional title
     g: 
       label: 
