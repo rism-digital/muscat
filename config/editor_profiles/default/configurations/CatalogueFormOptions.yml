@@ -54,6 +54,43 @@
       - "srp"
       - "swe"
       - "zxx"
+"020": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+"022": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+"022": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+"041": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+"044": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+
+
+
+
+
+
+
 "100": 
   allow_new: true
   new_window: people
@@ -249,6 +286,15 @@
       - type: catalogue
         editor_partial: subfield_secondary
     - - g     
+
+"780": 
+  allow_new: true
+  new_window: catalogues
+  layout: 
+    fields: 
+    - - a
+      - type: catalogue
+        editor_partial: subfield_secondary
 "785": 
   allow_new: true
   new_window: catalogues

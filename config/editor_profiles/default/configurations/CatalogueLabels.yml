@@ -56,6 +56,49 @@ doc_templates:
     fr: "Date/heure de la derniôre transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
+
+"020": 
+  label: 
+    it: ISBN
+    fr: ISBN
+    de: ISBN
+    en: ISBN
+  fields: 
+    a: 
+      label: 
+        it: ISBN
+        fr: ISBN
+        de: ISBN
+        en: ISBN
+
+"022": 
+  label: 
+    it: ISSN
+    fr: ISSN
+    de: ISSN
+    en: ISSN
+  fields: 
+    a: 
+      label: 
+        it: ISSN
+        fr: ISSN
+        de: ISSN
+        en: ISSN
+
+"024": 
+  label: 
+    it: ISMN
+    fr: ISMN
+    de: ISMN
+    en: ISMN
+  fields: 
+    a: 
+      label: 
+        it: ISMN
+        fr: ISMN
+        de: ISMN
+        en: ISMN
+
 "041": 
   label: 
     it: Codice Lingua
@@ -69,6 +112,20 @@ doc_templates:
         fr: Code de langue
         de: Sprach-Code
         en: Language Code
+"044": 
+  label: 
+    it: COUNTRY
+    fr: COUNTRY
+    de: Land
+    en: Country
+  fields: 
+    a: 
+      label: 
+        it: COUNTRY
+        fr: COUNTRY
+        de: Land
+        en: Country
+
 "100": 
   label: 
     it: Autore
@@ -224,6 +281,19 @@ doc_templates:
         fr: Titre de la revue
         de: "In: "
         en: Revue title
+"780": 
+  label: 
+    it: PREVIOUS ENTRY
+    fr: PREVIOUS ENTRY
+    de: Früherer Eintrag
+    en: Previous entry
+  fields: 
+    a: 
+      label: 
+        it: PREVIOUS ENTRY
+        fr: PREVIOUS ENTRY
+        de: Früherer Eintrag
+        en: Previous entry
 "785": 
   label: 
     it: Item precedente
