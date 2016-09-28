@@ -351,7 +351,7 @@ class MarcSource < Marc
       end
       
       leader = base_leader.gsub("XX", type)
-    elsif @record_type == \
+    elsif @record_type == RECORD_TYPES[:source]
       type = "dm"
       type = "dd" if by_tags("773").count > 0
       leader = base_leader.gsub("XX", type)
@@ -390,6 +390,28 @@ class MarcSource < Marc
     each_by_tag("031") do |t|
       t.add_at(MarcNode.new("source", "2", "pe", nil), 0)
       t.sort_alphabetically
+    end
+
+    #340 Add a 594 with $a
+    scorings = []
+    each_by_tag("594") do |t|
+      b = t.fetch_first_by_tag("b")
+      c = t.fetch_first_by_tag("c")
+      
+      if b && b.content
+        if c && c.content && c.content.to_i > 1
+          scorings << "#{b.content} (#{c.content})"
+        else
+          scorings << b.content
+        end
+      end
+      
+    end
+    
+    if scorings.count > 0
+      n594 = MarcNode.new(@model, "594", "", "##")
+      n594.add_at(MarcNode.new(@model, "a", scorings.join(", "), nil), 0)
+      root.children.insert(get_insert_position("594"), n594)
     end
 
     if versions
