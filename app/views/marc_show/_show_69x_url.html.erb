@@ -12,9 +12,7 @@ if subfield_n && subfield_n.content
 		url = m.match(subfield_n.content)[1]
 		show_url = true
   else
-    #url = subfield_n.content
-    #show_url = true
-		url = catalog_path(subfield_0.content)
+    url = subfield_n.content
 	end
 end
 
