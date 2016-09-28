@@ -165,6 +165,12 @@ doc_edit_workflow:
         fr: Nom
         de: Name
         en: Name
+    c:
+      label:
+        it: ORDER/TITLE
+        fr: ORDER/TITLE
+        de: Orden/Titel
+        en: Order/Title
     d:
       label:
         it: Data di nascita e di morte
@@ -991,7 +997,7 @@ confused with:
   label:
     it: Confuso con
     fr: "Confondu avec"
-    de: verwechselt mit
+    de: Verwechselt mit
     en: confused with
 sister of:
   label:
@@ -1015,8 +1021,15 @@ related to:
   label:
     it: Parente di
     fr: "Relatif à"
-    de: verwandt mit
+    de: Verwandt mit
     en: related to
+other:
+  label:
+    it: OTHER
+    fr: OTHER
+    de: Weiteres
+    en: other
+
 # Name variant codes
 bn:
   label:

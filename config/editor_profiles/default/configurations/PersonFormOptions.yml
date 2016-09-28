@@ -241,6 +241,7 @@
       - married with
       - father of
       - related to
+      - other
 "510": 
   allow_new: true
   new_window: institutions
