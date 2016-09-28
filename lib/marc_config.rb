@@ -166,6 +166,7 @@ class MarcConfig
   # This is for tag groups: a field should not be repeatable in the group
   # but can be repeated because of multiple groups
   def multiples_allowed?(tag, subtag = "")
+    disable_multiple = false
     if subtag.empty?
         occurrences = @tag_config[tag][:occurrences]
         disable_multiple = @tag_config[tag][:disable_multiple] rescue disable_multiple = false
@@ -174,7 +175,7 @@ class MarcConfig
         occurrences = @tag_config[tag][:fields].assoc(subtag)[1][:occurrences]
         disable_multiple = @tag_config[tag][:fields].assoc(subtag)[1][:disable_multiple] rescue disable_multiple = false
     end
-    return true if (occurrences == '*' or occurrences == '+') && disable_multiple == false
+    return true if (occurrences == '*' or occurrences == '+') && !disable_multiple
     return false
   end
 
