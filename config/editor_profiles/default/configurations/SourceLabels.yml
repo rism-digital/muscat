@@ -1524,6 +1524,12 @@ doc_administration:
         fr: Section
         de: Abteilung
         en: Department
+    c: 
+      label: 
+        it: Segnatura
+        fr: Cote
+        de: Signatur
+        en: Shelfmark
     d: 
       label: 
         it: Segnatura vecchia (olim)
@@ -1536,12 +1542,6 @@ doc_administration:
         fr: "Bibliothèque"
         de: Bibliothek
         en: Library
-    p: 
-      label: 
-        it: Segnatura
-        fr: Cote
-        de: Signatur
-        en: Shelfmark
     q: 
       label: 
         it: Materiale conservato

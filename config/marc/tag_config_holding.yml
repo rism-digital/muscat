@@ -79,6 +79,8 @@
         :browse_helper: application_helper_link_to_library
     - - b
       - :occurrences: "?"
+    - - c
+      - :occurrences: "?"
     - - d
       - :occurrences: "*"
     - - e
@@ -86,8 +88,6 @@
         :foreign_class: ^x
         :foreign_field: name
         :disable_create_lookup: true
-    - - p
-      - :occurrences: "?"
     - - z
       - :occurrences: "*"
   "856":

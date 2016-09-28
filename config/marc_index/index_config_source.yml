@@ -206,12 +206,12 @@ fields:
       :holding_record: true
   "852b":
       :holding_record: true
+  "852c":
+      :store: true
+      :holding_record: true
   "852d":
       :holding_record: true
   "852e":
-      :holding_record: true
-  "852p":
-      :store: true
       :holding_record: true
   "852q":
       :holding_record: true
