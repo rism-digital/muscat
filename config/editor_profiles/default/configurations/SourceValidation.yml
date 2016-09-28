@@ -92,8 +92,8 @@
     w: required
 "852": 
   tags:
+    c: required, warning
     a: required
-    p: required, warning
     x: required
 "856": 
   tags:

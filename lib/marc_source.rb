@@ -135,7 +135,7 @@ class MarcSource < Marc
         siglum = node.foreign_object.siglum
         siglum = "" if !siglum
       end
-      if node = first_occurance("852", "p")
+      if node = first_occurance("852", "c")
         ms_no = node.content if node.content
       end
     end
