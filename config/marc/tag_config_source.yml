@@ -66,6 +66,20 @@
     :fields:
     - - ""
       - :no_browse: true
+  "005":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "008":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
   "028":
     :master: a
     :indicator: "20"
