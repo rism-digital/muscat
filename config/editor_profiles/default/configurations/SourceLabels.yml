@@ -353,6 +353,12 @@ doc_title:
         fr: Incipit du texte
         de: Textincipit
         en: Text incipit
+    z: 
+      label: 
+        it: PUBLIC NOTE
+        fr: PUBLIC NOTE
+        de: Bemerkungen
+        en: Public note
 "033": 
   label: 
     it: Data

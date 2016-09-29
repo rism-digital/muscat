@@ -135,6 +135,8 @@
     - - u
       - :occurrences: "?"
         :no_browse: true
+    - - z
+      - :occurrences: "*"
   "033":
     :master: a
     :indicator: ["0#", "1#", "2#"]
