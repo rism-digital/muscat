@@ -43,7 +43,6 @@ doc_abbr_voices_instr:
   label: 
     de: "Stimmen- und Instrumentenbezeichnungen"
     en: "Terms for voices and instruments"
-
 ################
 
 doc_aid: 
@@ -155,7 +154,14 @@ doc_administration:
   label: 
     de: Administration
     en: Administration
-
+doc_people:
+  label:
+    de: "Personen und Institutionen"
+    en: "People and institutions"
+doc_title:
+  label:
+    de: "Titel und Inhaltsangaben"
+    eb: "Title and content description"
 ################
 
 01_codes_artistic: 
@@ -1811,6 +1817,12 @@ dpt:
     fr: DEPOSITOR
     de: Despositor
     en: Depositor
+dsr: 
+  label: 
+    it: DESIGNER
+    fr: DESIGNER
+    de: Designer
+    en: Designer
 dte: 
   label: 
     it: Dedicatario
