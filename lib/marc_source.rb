@@ -225,8 +225,6 @@ class MarcSource < Marc
   end
   
   def to_internal
-    super
-
     # convert leader to record_type
     rt = match_leader
     

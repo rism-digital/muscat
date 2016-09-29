@@ -82,7 +82,7 @@ class MarcImport
 
         # Make internal format
         marc.to_internal
-				
+
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
         marc.suppress_scaffold_links
         marc.import
