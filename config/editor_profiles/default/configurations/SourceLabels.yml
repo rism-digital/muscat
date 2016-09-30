@@ -6,8 +6,8 @@ doc_introduction:
     en: Introduction
 doc_masks: 
   label: 
-    de: Masken für Quellen
-    en: Cataloging forms for sources
+    de: Katalogisierung von Quellen
+    en: Cataloging sources
 doc_tag_index: 
   label: 
     de: MARC Tag Index
@@ -86,7 +86,7 @@ doc_cat_templates:
     en: Templates
 doc_cat_authorities: 
   label: 
-    de: Autoritäten
+    de: Normdaten
     en: Authorities
 
 ################
@@ -154,14 +154,17 @@ doc_administration:
   label: 
     de: Administration
     en: Administration
-doc_people:
+doc_personal_names:
   label:
-    de: "Personen und Institutionen"
-    en: "People and institutions"
+    de: "Personen"
+    en: "Personal names"
+doc_institutions:
+    de: "Körperschaften"
+    en: "Institutionen"
 doc_title:
   label:
     de: "Titel und Inhaltsangaben"
-    eb: "Title and content description"
+    en: "Title and content description"
 ################
 
 01_codes_artistic: 
