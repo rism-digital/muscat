@@ -62,20 +62,25 @@ doc_templates:
     fr: Date de création
     de: Datum der Erstellung
     en: Date of creation
-
 "024":
   label:
-    it: Codice ISIL
-    fr: Code ISIL
-    de: ISIL Code
-    en: ISIL Code
+    it: "Riferimento autorità"
+    fr: "Référence d'authorité"
+    de: Normdatenverweise
+    en: Authority Reference
   fields:
     a:
       label:
-        it: Codice ISIL
-        fr: Code ISIL
-        de: ISIL Code  
-        en: ISIL Code
+        it: "Riferimento autorità"
+        fr: "Référence d'authorité"
+        de: Normdatenverweise
+        en: Authority Reference
+    "2":
+      label:
+        it: "Agenzia autorità"
+        fr: "Agence d'authorité"
+        de: Normdatenagentur
+        en: Authority Agency
 "034":
   label:
     it: Posizione
@@ -95,20 +100,6 @@ doc_templates:
         fr: Latitude
         de: Breitengrad 
         en: Latitude
-
-"035":
-  label:
-    it: Codice GND
-    fr: Code GND
-    de: GND Code
-    en: GND Code
-  fields:
-    a:
-      label:
-        it: Codice GND
-        fr: Code GND
-        de: GND Code  
-        en: GND Code
 "040":
   label:
     it: Fonte della catalogazione

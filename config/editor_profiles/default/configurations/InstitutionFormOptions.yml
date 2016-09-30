@@ -26,6 +26,29 @@
       definitions: "['~']='[|0-9]'"
       mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
+"024": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - "2"
+      - values:
+        - "ISIL" 
+        - "BNE"
+        - "BNF"
+        - "DNB"
+        - "ICCU"
+        - "ISNI"
+        - "LC"
+        - "NLP"
+        - "NKC"
+        - "SWNL"
+        - "VIAF"
+        - "WKP"
+        default: "ISIL"
+        editor_partial: subfield_select
+      - cols: 2
+    columns: 4
 "034": 
   layout: 
     fields: 
@@ -151,6 +174,7 @@
       - cols: 4
     columns: 4
 "580": 
+  new_window: institutions
   layout: 
     fields: 
     - - "x"
@@ -219,6 +243,7 @@
       - bnd
 
 "710": 
+  new_window: institutions
   layout: 
     fields: 
     - - "a"

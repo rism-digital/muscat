@@ -169,6 +169,26 @@ doc_people:
   label:
     de: "Personen und Körperschaften"
     en: "People and institutions"
+doc_main_entry_fields:
+  label:
+    de: "Haupteintragungen"
+    en: "Main entry fields"
+doc_numbers:
+  label:
+    de: "Nummern und Codes"
+    en: "Numbers and code fields"
+doc_name_variants:
+  label:
+    de: "Namensvarianten"
+    en: "Name variants"
+doc_relations:
+  label:
+    de: "Beziehungen"
+    en: "Relations"
+doc_references:
+  label:
+    de: "Literatur und Bemerkungen"
+    en: "References"
 ################
 
 01_codes_artistic: 
