@@ -159,6 +159,21 @@
     - - g
       - cols: 2
     columns: 4
+"368": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+        editor_partial: subfield_select_codes
+        select_label: "Type"
+    columns: 2
+  tag_params:
+    codes:
+      - "Archive" 
+      - "Institution"
+      - "Library"
+      - "Publisher"
+      - "Other"
 "410": 
   layout: 
     fields: 
@@ -182,12 +197,24 @@
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
+"667": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
 "670": 
   layout: 
     fields: 
     - - "a"
       - type: catalogue
         editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
+"680": 
+  layout: 
+    fields: 
+    - - a
       - cols: 4
     columns: 4
 "700":

@@ -192,8 +192,6 @@ doc_templates:
         fr: "Type d'institution"
         de: Typ der Körperschaft
         en: Type of institution
-
-
 "371":
   label:
     it: Luogo ed indirizzo
@@ -303,7 +301,6 @@ doc_templates:
         fr: Lieu
         de: Ort
         en: Place
-
 "580":
   label:
     it: Ora in
@@ -330,8 +327,6 @@ doc_templates:
         fr: Note interne
         de: Interne Bemerkungen
         en: Internal notes
-
-
 "670":
   label:
     it: Bibliografia
@@ -345,8 +340,6 @@ doc_templates:
         fr: Littérature
         de: Literatur
         en: Literature
-
-
 "678":
   label:
     it: "Storia dell'istituzione"
@@ -360,8 +353,6 @@ doc_templates:
         fr: "Historique de l'institution"
         de: Geschichte der Körperschaft
         en: History of institution
-
-
 "680":
   label:
     it: Osservazioni
@@ -1195,3 +1186,33 @@ voc:
     fr: "Venezuela, Bolivarian Republic of"
     de: "Venezuela, Bolivarian Republic of"
     en: "Venezuela, Bolivarian Republic of"
+"Library":
+  label:
+    it: "LIBRARY"
+    fr: "LIBRARY"
+    de: "Bibliothek"
+    en: "Library"
+"Archive":
+  label:
+    it: "ARCHIVE"
+    fr: "ARCHIVE"
+    de: "Archiv"
+    en: "Archive"
+"Publisher":
+  label:
+    it: Editore
+    fr: Editeur
+    de: Verleger
+    en: Publisher
+"Other":
+  label:
+    it: Altri
+    fr: Autre
+    de: Weitere
+    en: Other
+"Institution":
+  label:
+    it: "INSTITUTION"
+    fr: "INSTITUTION"
+    de: "Körperschaft"
+    en: "Institution"
