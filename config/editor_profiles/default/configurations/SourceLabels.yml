@@ -160,11 +160,15 @@ doc_personal_names:
     en: "Personal names"
 doc_institutions:
     de: "Körperschaften"
-    en: "Institutionen"
+    en: "Institutions"
 doc_title:
   label:
     de: "Titel und Inhaltsangaben"
     en: "Title and content description"
+doc_people:
+  label:
+    de: "Personen und Körperschaften"
+    en: "People and institutions"
 ################
 
 01_codes_artistic: 
@@ -747,14 +751,14 @@ doc_title:
   label: 
     it: Nota sui crediti di creazione/produzione
     fr: "Remarque sur la création/production"
-    de: Bemerkung zur Person / Institution
+    de: Bemerkung zur Person / Körperschaft
     en: Creation/production note
   fields: 
     a: 
       label: 
         it: Nota sui crediti di creazione/produzione
         fr: "Note sur la création/production"
-        de: Bemerkung zur Person / Institution
+        de: Bemerkung zur Person / Körperschaft
         en: Creation/production note
       edit_label: 
         en: ""
@@ -1331,20 +1335,20 @@ doc_title:
   label: 
     it: Nome di ente
     fr: "Nom de la collectivité"
-    de: Nebeneintragung Institutionen
+    de: Nebeneintragung Körperschaften
     en: Additional institution
   fields: 
     a: 
       label: 
         it: Nome di ente
         fr: "Nom de la collectivité"
-        de: Institutionsname
+        de: Körperschaftsname
         en: Institution
     b: 
       label: 
         it: Ente subordinato
         fr: "Collectivité subordonnée"
-        de: Untergeordnete Institution
+        de: Untergeordnete Körperschaft
         en: Department
     g: 
       label: 
@@ -1706,7 +1710,7 @@ edit_names:
   label: 
     it: Persone e istituzione
     fr: Personnes et institutions
-    de: Personen und Institutionen
+    de: Personen und Körperschaften
     en: People and institutions
 edit_references: 
   label: 

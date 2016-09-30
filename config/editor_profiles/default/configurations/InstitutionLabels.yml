@@ -192,14 +192,14 @@ doc_templates:
   label:
     it: Tipo di istituzione
     fr: "Type d'institution"
-    de: Typ der Institution
+    de: Typ der Körperschaft
     en: Type of Institution
   fields:
     a:
       label:
         it: Tipo di istitutione
         fr: "Type d'institution"
-        de: Typ der Institution
+        de: Typ der Körperschaft
         en: Type of institution
 
 
@@ -360,14 +360,14 @@ doc_templates:
   label:
     it: "Storia dell'istituzione"
     fr: "Historique de l'institution"
-    de: Geschichte der Institution
+    de: Geschichte der Körperschaft
     en: History of institution
   fields:
     a:
       label:
         it: "Storia dell'istituzione"
         fr: "Historique de l'institution"
-        de: Geschichte der Institution
+        de: Geschichte der Körperschaft
         en: History of institution
 
 
@@ -402,14 +402,14 @@ doc_templates:
   label:
     it: Istituzione in relazione
     fr: Institution liée
-    de: RELATED INSTITUTION
+    de: in Beziehung stehende Körpschaft
     en: Related institution
   fields:
     a:
       label:
         it: Istituzione in relazione
         fr: Institution liée
-        de: RELATED INSTITUTION
+        de: In Beziehung stehende Körperschaft
         en: Related institution
 
 "856":
