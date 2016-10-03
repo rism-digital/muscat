@@ -7,7 +7,7 @@ var _nw_destination = null;
 var _child = null;
 var _object_model = null;
 
-function deselectSession() {
+function nonMarcDeselectSession() {
 	$.ajax({
 		success: function(data) {},
 		data: {
@@ -20,9 +20,9 @@ function deselectSession() {
 	});
 }
 
-function newWindowUpdateValue(id, label) {
+function nonMarcNewWindowUpdateValue(id, label) {
 	
-	deselectSession();
+	nonMarcDeselectSession();
 	$("#wrapper").unblock();
 	
 	window.location.href = _nw_destination + "?object_id=" + id + "&object_model=" + _object_model;
@@ -32,25 +32,25 @@ function newWindowUpdateValue(id, label) {
 
 // This function is called when
 // a user navigates away from the parent
-function newWindowClose() {
+function nonMarcNewWindowClose() {
 
-	deselectSession();
+	nonMarcDeselectSession();
 	_child.close();
 	_nw_destination = null;
 	_child = null;
 	_object_model = null;
 }
 
-function newWindowCancel() {
+function nonMarcNewWindowCancel() {
 
-	deselectSession();
+	nonMarcDeselectSession();
 	$("#wrapper").unblock();
 	_nw_destination = null;
 	_child = null;
 	_object_model = null;
 }
 
-function newWindowUnloaded() {
+function nonMarcNewWindowUnloaded() {
 	
 	// Someone changed page on the
 	// child window or it was closed
@@ -59,13 +59,13 @@ function newWindowUnloaded() {
 	
 	setTimeout(function() { 
 		if (_child && _child.closed) {
-			newWindowCancel();
+			nonMarcNewWindowCancel();
 		}
 	}, 700)
 }
 
 
-function newWindowIsSelect() {
+function nonMarcNewWindowIsSelect() {
 	if (_child != null)
 		return true;
 	else
@@ -116,7 +116,7 @@ function newWindowIsSelect() {
 				
 				// Open up the new window
 				_child = window.open('/admin/' + controller + '?select=true', null, "location=no");
-				
+				_type = "peppo";
 			});
 		}
 	});
@@ -130,38 +130,40 @@ function newWindowIsSelect() {
 // Add a function to the doc ready
 // to bind the various "select" buttons
 // in the child window
-var add_window_select_actions = function () {
-	
+var nonmarc_add_window_select_actions = function () {
+
 	// Is this window opened from another window?
 	if (window.opener != null) {
 		// Is this called from the selection code?
-		if (window.opener.newWindowIsSelect()) {
+		if (window.opener.nonMarcNewWindowIsSelect()) {
 			// Set the before unload so it cancels
 			// the action if the window is closed
 			window.onunload = function(e) {
-				window.opener.newWindowUnloaded();
+				window.opener.nonMarcNewWindowUnloaded();
 			}
 		}
 	}
-	
+
 	$('a[data-marc-editor-select]').click(function(e) {
 		e.preventDefault();
-		
+	
 		id = $(this).data("marc-editor-select");
 		label = $(this).data("marc-editor-label");
-		
-		window.opener.newWindowUpdateValue(id, label);
+
+		window.opener.nonMarcNewWindowUpdateValue(id, label);
 		window.close();
 	});
-	
+
 	$('a[data-marc-editor-cancel]').click(function(e) {
 		e.preventDefault();
-	
-		window.opener.newWindowCancel();
+
+		window.opener.nonMarcNewWindowCancel();
 		window.close();
 	});
 }
 
-$(document).ready(add_window_select_actions);
-// Fix for turbolinks: it will not call againg document.ready
-$(document).on('page:load', add_window_select_actions);
+if (window.opener != null && window.opener.$("#new_window_select_nomarc").length > 0) {
+	$(document).ready(nonmarc_add_window_select_actions);
+	// Fix for turbolinks: it will not call againg document.ready
+	$(document).on('page:load', nonmarc_add_window_select_actions);
+}

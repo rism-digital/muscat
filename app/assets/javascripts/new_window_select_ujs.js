@@ -194,6 +194,8 @@ var add_window_select_actions = function () {
 	});
 }
 
-$(document).ready(add_window_select_actions);
-// Fix for turbolinks: it will not call againg document.ready
-$(document).on('page:load', add_window_select_actions);
+if (window.opener != null && window.opener.$(".new_window_select").length > 0) {
+	$(document).ready(add_window_select_actions);
+	// Fix for turbolinks: it will not call againg document.ready
+	$(document).on('page:load', add_window_select_actions);
+}
