@@ -450,5 +450,6 @@ class Source < ActiveRecord::Base
 
   ransacker :"852a_facet_contains", proc{ |v| } do |parent| end
   ransacker :"593a_filter_with_integer", proc{ |v| } do |parent| end
+	ransacker :record_type_select_with_integer, proc{ |v| } do |parent| end
 	
 end
