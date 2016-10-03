@@ -116,7 +116,6 @@ function nonMarcNewWindowIsSelect() {
 				
 				// Open up the new window
 				_child = window.open('/admin/' + controller + '?select=true', null, "location=no");
-				_type = "peppo";
 			});
 		}
 	});

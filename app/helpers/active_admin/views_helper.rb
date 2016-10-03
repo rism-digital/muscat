@@ -48,6 +48,12 @@ module ActiveAdmin::ViewsHelper
     return params && params[:select].present?
   end
   
+  def get_filter_record_type
+    if params.include?(:q) && params[:q].include?("record_type_with_integer")
+      params[:q]["record_type_with_integer"]
+    end
+  end
+	
   def active_admin_user_wf( context, item )   
     context.panel (I18n.t :filter_wf) do
       context.attributes_table_for item  do

@@ -22,6 +22,19 @@ module ActiveAdmin
         if params[:clear_filters]
           params.delete :clear_filters
           if filter_storage
+            # This is a special case, to preserve only the record_type, if present
+            # in selection mode.
+            # 1. Are we in selection mode? is_selection_mode? does not work
+            #    as we have to use the session param
+            if session[:select] == controller_name
+              saved_filters = filter_storage[controller_name]
+              unless saved_filters.blank?
+                if saved_filters.include?("record_type_with_integer")
+                  params[:q] = {"record_type_with_integer" => saved_filters["record_type_with_integer"]}
+                end
+              end
+            end
+            
             #logger.info "clearing filter storage for #{controller_name}"
             filter_storage.delete controller_name
           end

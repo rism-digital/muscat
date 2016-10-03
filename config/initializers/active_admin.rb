@@ -19,7 +19,7 @@ class MuscatAdminHeader < ActiveAdmin::Views::Header
   end
 end
 
-require 'active_admin_custom_filter'
+require 'active_admin_record_type_filter'
 
 ActiveAdmin.setup do |config|
 
