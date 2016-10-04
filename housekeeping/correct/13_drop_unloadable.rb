@@ -9,7 +9,9 @@ Source.find_in_batches(batch_size: 50) do |batch|
       m.load_source true
     rescue
       puts "Destroy #{record.id}"
-      record.destroy
+      # reload the source or it will not destroy
+      s = Source.find(record.id)
+      s.destroy
     end
 
     pb.increment!
