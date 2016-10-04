@@ -1804,7 +1804,7 @@ clb:
     en: Contributer
 cmp: 
   label: 
-    it: Compositore/Compositore secondario
+    it: Compositore / Compositore secondario
     fr: Compositeur / Co-compositeur
     de: Komponist / Mitkomponist
     en: Composer / Co-Composer
@@ -1832,6 +1832,12 @@ cst:
     fr: Costumier
     de: "Kostümbildner"
     en: Costume designer
+ctb: 
+  label: 
+    it: CONTRIBUTOR
+    fr: Contributeur
+    de: CONTRIBUTOR
+    en: Contributor
 dnc: 
   label: 
     it: Ballerino
@@ -1915,13 +1921,19 @@ ltg:
     it: Litografo
     fr: Litographe
     de: Lithograph
-    en: Lithograph
+    en: Lithographer
 lyr: 
   label: 
     it: Poeta
     fr: Parolier
     de: Textdichter
     en: Text author
+oth: 
+  label: 
+    it: OTHER FUNCTION
+    fr: Autre function
+    de: Andere
+    en: Other function
 otm: 
   label: 
     it: Organizzatore
@@ -1964,12 +1976,18 @@ prt:
     fr: Imprimeur
     de: Drucker
     en: Printer
+pub: 
+  label: 
+    it: PUBLISHER
+    fr: Editeur
+    de: Verleger
+    en: Publisher
 scr: 
   label: 
     it: Copista
-    fr: Scribe
+    fr: Copiste / Scribe
     de: Schreiber
-    en: Copyist/Scribe
+    en: Copyist / Scribe
 trl: 
   label: 
     it: Traduttore

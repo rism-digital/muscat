@@ -540,7 +540,9 @@
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
     - - "4"
-      - editor_partial: subfield_select_codes_grouped
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
   tag_params: 
     codes:
       - "Ascertained"
@@ -549,47 +551,26 @@
       - "Doubtful"
       - "Misattributed"
       - "Verified"
-    groups: 
-      01_codes_artistic: 
+    relator_codes: 
+      - fmo
+      - scr
       - cmp
-      - com
       - arr
-      - aut
-      - clb
+      - prf
+      - dte
       - lyr
-      - ccp
       - lbt
       - trl
-      02_codes_performing: 
-      - prf
-      - voc
-      - itr
-      - dnc
-      - cnd
-      - chr
-      - art
-      - cst
-      - prd
-      - cns
-      04_codes_other: 
-      - fmo
-      - dnr
-      - dte
-      - pat
-      - otm
-      - bsl
-      - asn
-      - dub
-      - dsr
-      03_codes_technical: 
-      - scr
+      - pbl
+      - prt
+      - edt
       - ltg
       - egr
       - ill
-      - prt
-      - pbl
-      - edt
-      - bnd
+      - aut
+      - oth
+      - dub
+      - ctb
 "710":
   new_window: institutions
   new_window_field: name_equals
@@ -616,20 +597,15 @@
       - "Misattributed"
       - "Verified"
     relator_codes: 
+      - pub
       - fmo
-      - dnr
-      - dte
-      - prf
-      - otm
-      - ppm
-      - prt
-      - pbl
-      - edt
-      - bsl
-      - asn
-      - dub
-      - evp
       - dpt
+      - dte
+      - scr
+      - prf
+      - prt
+      - edt
+      - oth
 "730":
   new_window: standard_titles
   new_window_field: title_equals
