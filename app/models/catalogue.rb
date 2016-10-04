@@ -121,29 +121,37 @@ class Catalogue < ActiveRecord::Base
     #new_marc.root.children.insert(new_marc.get_insert_position("100"), new_100)
     
     # save name
-    node = MarcNode.new("catalogue", "210", "", "##")
-    node.add_at(MarcNode.new("catalogue", "a", self.name, nil), 0)
+    if self.name
+      node = MarcNode.new("catalogue", "210", "", "##")
+      node.add_at(MarcNode.new("catalogue", "a", self.name, nil), 0)
     
-    new_marc.root.children.insert(new_marc.get_insert_position("210"), node)
+      new_marc.root.children.insert(new_marc.get_insert_position("210"), node)
+    end
 
     # save decription
-    node = MarcNode.new("catalogue", "240", "", "##")
-    node.add_at(MarcNode.new("catalogue", "a", self.description, nil), 0)
+    if self.description
+      node = MarcNode.new("catalogue", "240", "", "##")
+      node.add_at(MarcNode.new("catalogue", "a", self.description, nil), 0)
     
-    new_marc.root.children.insert(new_marc.get_insert_position("240"), node)
+      new_marc.root.children.insert(new_marc.get_insert_position("240"), node)
+    end
 
     # save date and place
-    node = MarcNode.new("catalogue", "260", "", "##")
-    node.add_at(MarcNode.new("catalogue", "c", self.date, nil), 0)
-    node.add_at(MarcNode.new("catalogue", "a", self.place, nil), 0)
+    if self.date || self.place
+      node = MarcNode.new("catalogue", "260", "", "##")
+      node.add_at(MarcNode.new("catalogue", "c", self.date, nil), 0) if self.date
+      node.add_at(MarcNode.new("catalogue", "a", self.place, nil), 0) if self.place
 
-    new_marc.root.children.insert(new_marc.get_insert_position("260"), node)
+      new_marc.root.children.insert(new_marc.get_insert_position("260"), node)
+    end
 
     # save revue_title
-    node = MarcNode.new("catalogue", "760", "", "0#")
-    node.add_at(MarcNode.new("catalogue", "t", self.revue_title, nil), 0)
+    if self.revue_title
+      node = MarcNode.new("catalogue", "760", "", "0#")
+      node.add_at(MarcNode.new("catalogue", "t", self.revue_title, nil), 0)
     
-    new_marc.root.children.insert(new_marc.get_insert_position("760"), node)
+      new_marc.root.children.insert(new_marc.get_insert_position("760"), node)
+    end
 
     if self.id != nil
       new_marc.set_id self.id
