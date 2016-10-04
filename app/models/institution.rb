@@ -121,7 +121,7 @@ class Institution < ActiveRecord::Base
     new_marc.load_source true
     
     new_100 = MarcNode.new("institution", "110", "", "1#")
-    new_100.add_at(MarcNode.new("institution", "p", self.place, nil), 0) if self.place != nil
+    new_100.add_at(MarcNode.new("institution", "c", self.place, nil), 0) if self.place != nil
     new_100.add_at(MarcNode.new("institution", "g", self.siglum, nil), 0) if self.siglum != nil
     new_100.add_at(MarcNode.new("institution", "a", self.name, nil), 0)
     
@@ -144,7 +144,7 @@ class Institution < ActiveRecord::Base
     
     if self.notes != nil and !self.notes.empty?
       new_field = MarcNode.new("institution", "680", "", "1#")
-      new_field.add_at(MarcNode.new("institution", "i", self.notes, nil), 0)
+      new_field.add_at(MarcNode.new("institution", "a", self.notes, nil), 0)
     
       new_marc.root.children.insert(new_marc.get_insert_position("680"), new_field)
     end

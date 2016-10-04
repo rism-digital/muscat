@@ -181,7 +181,7 @@ class Person < ActiveRecord::Base
     
     if self.comments != nil and !self.comments.empty?
       new_field = MarcNode.new("person", "680", "", "1#")
-      new_field.add_at(MarcNode.new("person", "i", self.comments, nil), 0)
+      new_field.add_at(MarcNode.new("person", "a", self.comments, nil), 0)
     
       new_marc.root.children.insert(new_marc.get_insert_position("680"), new_field)
     end    
