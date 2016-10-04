@@ -9,9 +9,10 @@ groups:
   codes:
     all_tags:
     - "024"
-    - "035"
     - "040"
     - "043"
+    all_tag_templates:
+      "024": marc_show/show_dnb_link
   identity:
     all_tags:
     - "110"
@@ -22,19 +23,17 @@ groups:
     - "580"
     all_tag_templates:
       "580": institutions/show_580
-
-
   contact:
     all_tags:
     - "371"
     - "034"
     all_tag_templates:
       "034": marc_show/show_googlemap
-
   description:
     all_tags:
     - "680"
     - "678"
+    - "667"
     - "670"
     - "856"
     - "551"

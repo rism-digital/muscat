@@ -36,7 +36,10 @@ groups:
     - "506"
     - "035"
     - "541"
-  
+    all_tag_templates: 
+      "852": marc_show/show_852
+
+ 
   show_content: 
     all_tags: 
     - "031"
@@ -46,9 +49,9 @@ groups:
   
   show_distribution: 
     all_tags: 
-    - "653"
     - "594"
     - "598"
+    - "595"
     all_tag_templates: 
       "594": marc_show/show_distribution_all
       
@@ -97,8 +100,8 @@ groups:
     - "383"
     - "691"
     all_tag_templates: 
-      "690": marc_show/show_subfield_concat
-      "691": marc_show/show_subfield_concat
+      "690": marc_show/show_69x_url
+      "691": marc_show/show_69x_url
 
   show_terms: 
     all_tags: 
@@ -133,7 +136,7 @@ groups:
     
   show_links: 
     all_tags: 
-    - "772"
+    - "774"
     - "773"
     - "775"
-    template: marc_show/show_772_773_links
+    template: marc_show/show_774_773_links

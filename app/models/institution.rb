@@ -121,7 +121,7 @@ class Institution < ActiveRecord::Base
     new_marc.load_source true
     
     new_100 = MarcNode.new("institution", "110", "", "1#")
-    new_100.add_at(MarcNode.new("institution", "p", self.place, nil), 0) if self.place != nil
+    new_100.add_at(MarcNode.new("institution", "c", self.place, nil), 0) if self.place != nil
     new_100.add_at(MarcNode.new("institution", "g", self.siglum, nil), 0) if self.siglum != nil
     new_100.add_at(MarcNode.new("institution", "a", self.name, nil), 0)
     
@@ -144,7 +144,7 @@ class Institution < ActiveRecord::Base
     
     if self.notes != nil and !self.notes.empty?
       new_field = MarcNode.new("institution", "680", "", "1#")
-      new_field.add_at(MarcNode.new("institution", "i", self.notes, nil), 0)
+      new_field.add_at(MarcNode.new("institution", "a", self.notes, nil), 0)
     
       new_marc.root.children.insert(new_marc.get_insert_position("680"), new_field)
     end
@@ -212,8 +212,8 @@ class Institution < ActiveRecord::Base
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    sunspot_dsl.integer :src_count_order do 
-      src_count
+    sunspot_dsl.integer :src_count_order, :stored => true do 
+      Institution.count_by_sql("select count(*) from sources_to_institutions where institution_id = #{self[:id]}")
     end
     
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)

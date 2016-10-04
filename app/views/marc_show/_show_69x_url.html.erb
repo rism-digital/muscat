@@ -1,0 +1,42 @@
+<%
+subfield_a = tag.fetch_first_by_tag('a')
+subfield_n = tag.fetch_first_by_tag('n')	
+subfield_0 = tag.fetch_first_by_tag('0')	
+
+urlmatcher = '\[(.*?((?:http|https)(?::\\/{2}[\\w]+)(?:[\\/|\\.]?)(?:[^\\s"]*)))\]'
+
+show_url = false
+if subfield_n && subfield_n.content
+	m = Regexp.new(urlmatcher, Regexp::IGNORECASE);
+	if m.match(subfield_n.content)
+		url = m.match(subfield_n.content)[1]
+		show_url = true
+  else
+    url = subfield_n.content
+	end
+end
+
+
+-%>
+<tr class="row">
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td>
+    <% if subfield_a && subfield_a.content %>
+      <% if subfield_0 && subfield_0.content %>
+        <%=link_to(subfield_a.content, admin_catalogue_path(subfield_0.content.to_s))%>
+      <% else %>
+        <%= subfield_a.content%>
+      <% end %>
+    <% end %>
+    <%=", " if (subfield_a && subfield_a.content) && (subfield_n && subfield_n.content)%>
+		<% if show_url %>
+			<%= link_to(url, url, :target => "_blank") %>
+		<% else %>
+		<%= subfield_n.content if subfield_n && subfield_n.content%>
+		<% end %>
+	</td>
+</tr>

@@ -1,4 +1,4 @@
-doc = Nokogiri::XML.parse(File.open('rism_mm.xml'))
+doc = Nokogiri::XML.parse(File.open('digital_objects.xml'))
 
 doc.xpath('/images/image').each do |i|
 
@@ -7,24 +7,55 @@ doc.xpath('/images/image').each do |i|
 	
 	title = i.xpath('title').collect.first.content
 
-	src = nil
+	sources = []
 	i.xpath('sources/rism_id').collect do |s|
 		if s.content && !s.content.empty?
-			src = s.content
-			break	
+			sources << s.content
 		end
 	end
 	
-	if src
-		begin
-			Source.find(src)
-		rescue ActiveRecord::RecordNotFound => e
-			puts "could not find #{src}"
+	people = []
+	i.xpath('person/isn').collect do |s|
+		if s.content && !s.content.empty?
+			people << s.content
+		end
+	end
+	
+	if sources.length > 0 || people.length > 0
+
+		path = "/root/inages/#{f.content}"
+		puts "Processing #{path} for #{sources.to_s} and #{people.to_s}"
+		if !File.exists?(path)
+			puts "Could not find #{path}"
 			next
 		end
-		path = "/root/images/#{f.content}"
-		puts "Processing #{path} for #{src}"
-		next if !File.exists?(path)
-		DigitalObject.create(:source_id => src.to_i, :attachment => File.open(path, 'rb'), :description => title)
+    
+		obj = DigitalObject.create(:attachment => File.open(path, 'rb'), :description => title)
+		
+		user = User.find(1)
+		
+		sources.each do |src|
+			begin
+				Source.find(src)
+			rescue ActiveRecord::RecordNotFound => e
+				puts "could not find source #{src}"
+				next
+			end
+			
+		    dol = DigitalObjectLink.create(object_link_type: "Source", object_link_id: src.to_i,
+		                                  user: user, digital_object_id: obj.id)
+		end
+		
+		people.each do |pr|
+			begin
+				Person.find(pr)
+			rescue ActiveRecord::RecordNotFound => e
+				puts "could not find person #{p}"
+				next
+			end
+			
+		    dol = DigitalObjectLink.create(object_link_type: "Person", object_link_id: pr.to_i,
+		                                  user: user, digital_object_id: pr.id)
+		end
 	end
 end

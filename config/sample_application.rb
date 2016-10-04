@@ -7,6 +7,8 @@ require 'rails/all'
 Bundler.require(:default, Rails.env)
 
 module RISM
+  # The Marc cataloguing agency
+  AGENCY = "DE-633"
   # The project letters (e.g., uk, ch)
   BASE = "default"
   # The MARC letters (used in the new_from.rhtml and in the manuscript_controller for the templates) 

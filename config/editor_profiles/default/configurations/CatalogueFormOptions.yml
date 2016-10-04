@@ -54,6 +54,43 @@
       - "srp"
       - "swe"
       - "zxx"
+"020": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+"022": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+"022": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+"041": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+"044": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+
+
+
+
+
+
+
 "100": 
   allow_new: true
   new_window: people
@@ -76,76 +113,24 @@
       - cols: 1
         values:
         # http://www.loc.gov/standards/valuelist/marcgt.html
-        - "abstract or summary"
-        - "article"
-        - "autobiography" 
-        - "bibliography"
-        - "biography"
-        - "book"
-        - "catalog"
-        - "conference publication"
-        - "database"
-        - "dictionary"
-        - "directory"
-        - "discography"
-        - "edition"
-        - "encyclopedia"
-        - "essay"
-        - "festschrift"
-        - "fiction"
-        - "font"
-        - "government publication"
-        - "graphic"
-        - "handbook"
-        - "history"
-        - "hymnal"
-        - "index"
-        - "instruction"
-        - "interview"
-        - "issue"
-        - "journal"
-        - "letter"
-        - "loose-leaf"
-        - "memoir"
-        - "microscope slide"
-        - "model"
-        - "multivolume monograph"
-        - "newspaper"
-        - "numeric data"
-        - "offprint"
-        - "online system or service"
-        - "other"
-        - "periodical"
-        - "programmed text"
-        - "realia"
-        - "rehearsal"
-        - "reporting" 
-        - "review"
-        - "script"
-        - "series"
-        - "slide"
-        - "sound"
-        - "speech"
-        - "standard or specification"
-        - "survey of literature"
-        - "thematic catalog"
-        - "thesis"
-        - "transparency"
-        - "treaty"
-        - "web site"
-        - "work catalog"
-        - "yearbook"
+        - "Bibliography"
+        - "Catalog"
+        - "Collective catalogue"
+        - "Encyclopedia"
+        - "Music edition"
+        - "Other"
+        - "Thematic catalog"
+        - "Work catalog"
         editor_partial: subfield_select
     - - h
       - cols: 1
         values:
-        - "book"
-        - "electronic resource"
-        - "individual item"
-        - "item"
-        - "journal"
-        - "periodical"
-        - "series"
+        - "Article/chapter"
+        - "Monograph"
+        - "Periodical"
+        - "Series"
+        - "Volume in a series"
+        - "Yearbook"
         editor_partial: subfield_select
 "260": 
   layout: 
@@ -173,15 +158,16 @@
     - - a
       - cols: 4
         values:
-        - "Printed Book"
-        - "Manuscript"
-        - "Electronic resource"
-        - "Sheet music"
-        - "Audiovisual media"
         - "CD-ROM"
-        - "Combination"
-        - "Other"
-        default: "Printed Book"
+        - "E-book"
+        - "Electronic resource"
+        - "Manuscript"
+        - "Media combination"
+        - "Microfiche"
+        - "Microfilm"
+        - "Printed medium"
+        - "Printed music"
+        default: "Printed medium"
         editor_partial: subfield_select
 "500": 
   layout: 
@@ -300,6 +286,15 @@
       - type: catalogue
         editor_partial: subfield_secondary
     - - g     
+
+"780": 
+  allow_new: true
+  new_window: catalogues
+  layout: 
+    fields: 
+    - - a
+      - type: catalogue
+        editor_partial: subfield_secondary
 "785": 
   allow_new: true
   new_window: catalogues

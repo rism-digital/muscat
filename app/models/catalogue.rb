@@ -121,29 +121,37 @@ class Catalogue < ActiveRecord::Base
     #new_marc.root.children.insert(new_marc.get_insert_position("100"), new_100)
     
     # save name
-    node = MarcNode.new("catalogue", "210", "", "##")
-    node.add_at(MarcNode.new("catalogue", "a", self.name, nil), 0)
+    if self.name
+      node = MarcNode.new("catalogue", "210", "", "##")
+      node.add_at(MarcNode.new("catalogue", "a", self.name, nil), 0)
     
-    new_marc.root.children.insert(new_marc.get_insert_position("210"), node)
+      new_marc.root.children.insert(new_marc.get_insert_position("210"), node)
+    end
 
     # save decription
-    node = MarcNode.new("catalogue", "240", "", "##")
-    node.add_at(MarcNode.new("catalogue", "a", self.description, nil), 0)
+    if self.description
+      node = MarcNode.new("catalogue", "240", "", "##")
+      node.add_at(MarcNode.new("catalogue", "a", self.description, nil), 0)
     
-    new_marc.root.children.insert(new_marc.get_insert_position("240"), node)
+      new_marc.root.children.insert(new_marc.get_insert_position("240"), node)
+    end
 
     # save date and place
-    node = MarcNode.new("catalogue", "260", "", "##")
-    node.add_at(MarcNode.new("catalogue", "c", self.date, nil), 0)
-    node.add_at(MarcNode.new("catalogue", "a", self.place, nil), 0)
+    if self.date || self.place
+      node = MarcNode.new("catalogue", "260", "", "##")
+      node.add_at(MarcNode.new("catalogue", "c", self.date, nil), 0) if self.date
+      node.add_at(MarcNode.new("catalogue", "a", self.place, nil), 0) if self.place
 
-    new_marc.root.children.insert(new_marc.get_insert_position("260"), node)
+      new_marc.root.children.insert(new_marc.get_insert_position("260"), node)
+    end
 
     # save revue_title
-    node = MarcNode.new("catalogue", "760", "", "0#")
-    node.add_at(MarcNode.new("catalogue", "t", self.revue_title, nil), 0)
+    if self.revue_title
+      node = MarcNode.new("catalogue", "760", "", "0#")
+      node.add_at(MarcNode.new("catalogue", "t", self.revue_title, nil), 0)
     
-    new_marc.root.children.insert(new_marc.get_insert_position("760"), node)
+      new_marc.root.children.insert(new_marc.get_insert_position("760"), node)
+    end
 
     if self.id != nil
       new_marc.set_id self.id
@@ -218,8 +226,8 @@ class Catalogue < ActiveRecord::Base
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    sunspot_dsl.integer :src_count_order do 
-      src_count
+    sunspot_dsl.integer :src_count_order, :stored => true do 
+      Catalogue.count_by_sql("select count(*) from sources_to_catalogues where catalogue_id = #{self[:id]}")
     end
     
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
@@ -259,6 +267,6 @@ class Catalogue < ActiveRecord::Base
 
   ransacker :"240g_contains", proc{ |v| } do |parent| end
   ransacker :"260b_contains", proc{ |v| } do |parent| end
-  ransacker :"700a_contains", proc{ |v| } do |parent| end
+  ransacker :"100a_or_700a_contains", proc{ |v| } do |parent| end
 
 end

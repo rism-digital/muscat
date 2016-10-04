@@ -89,7 +89,7 @@ ActiveAdmin.register Holding do
     end
     
     def index
-      @results = Holding.search_as_ransack(params)
+      @results, @hits = Holding.search_as_ransack(params)
       
       index! do |format|
         @holdings = @results

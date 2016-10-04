@@ -49,12 +49,13 @@ class LiturgicalFeast < ActiveRecord::Base
     text :name
   
     text :notes
+    text :alternate_terms
     
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    integer :src_count_order do 
-      src_count
+    integer :src_count_order, :stored => true do 
+      LiturgicalFeast.count_by_sql("select count(*) from sources_to_liturgical_feasts where liturgical_feast_id = #{self[:id]}")
     end
   end
 

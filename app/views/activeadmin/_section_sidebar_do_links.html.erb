@@ -1,0 +1,24 @@
+<%-
+	model = self.resource_class.to_s.split('::').last.underscore.downcase.pluralize
+%>
+
+<ul>
+	<%- if  !is_selection_mode? %>
+
+		<li class="muscat_icon_separator"></li>
+	
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :add_source}", "", :id => "new_window_select_nomarc",
+			:data => { controller: "sources", model: model, id: self.resource.id, object: "Source" },
+			:class => "muscat_icon_link muscat_icon_link_add") %>
+		</li>
+		
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :add_person}", "", :id => "new_window_select_nomarc",
+			:data => { controller: "people", model: model, id: self.resource.id, object: "Person" },
+			:class => "muscat_icon_link muscat_icon_link_add") %>
+		</li>
+		
+	<%- end %>
+	
+</ul>

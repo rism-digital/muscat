@@ -45,13 +45,15 @@
     :fields:
     - - ""
       - :no_browse: true
-  "024": 
+  "024":
     :master: a
-    :indicator: "##"
+    :indicator: "7#"
     :occurrences: "*"
-    :fields: 
+    :fields:
     - - a
-      - :occurrences: "*"
+      - :occurrences: "1"
+    - - "2"
+      - :occurrences: "1"
   "034": 
     :master: d
     :indicator: "1#"
@@ -61,13 +63,6 @@
       - :occurrences: "1"
     - - f
       - :occurrences: "1"
-  "035": 
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields: 
-    - - a
-      - :occurrences: "*"
   "040":
     :master: a
     :indicator: "##"

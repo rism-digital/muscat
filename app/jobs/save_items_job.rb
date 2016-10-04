@@ -19,7 +19,7 @@ class SaveItemsJob < ProgressJob::Base
     
     items = @parent_obj.send(@relation)
     
-    update_progress_max(-1)    
+    update_progress_max(-1)
     update_stage("Look up #{@relation}")
     update_progress_max(items.count)
     

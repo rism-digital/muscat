@@ -165,7 +165,7 @@
       - cols: 2
         trigger:
         - save:
-          - sources
+          - referring_sources
     - - c
       - cols: 2
     - - d
@@ -241,6 +241,7 @@
       - married with
       - father of
       - related to
+      - other
 "510": 
   allow_new: true
   new_window: institutions

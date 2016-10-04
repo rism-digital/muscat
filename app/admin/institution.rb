@@ -70,7 +70,7 @@ ActiveAdmin.register Institution do
     end
    
     def index
-      @results = Institution.search_as_ransack(params)
+      @results, @hits = Institution.search_as_ransack(params)
       
       index! do |format|
         @institutions = @results
@@ -122,11 +122,15 @@ ActiveAdmin.register Institution do
     column (I18n.t :filter_siglum), :siglum
     column (I18n.t :filter_location_and_name), :name
     column (I18n.t :filter_place), :place
-    column (I18n.t :filter_sources), :src_count
+    column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
+			all_hits = @arbre_context.assigns[:hits]
+			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+		end
     active_admin_muscat_actions( self )
   end
   
   sidebar :actions, :only => :index do
+    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   
@@ -143,7 +147,7 @@ ActiveAdmin.register Institution do
     render('jobs/jobs_monitor')
     @item = @arbre_context.assigns[:item]
     if @item.marc_source == nil
-      render :partial => "marc_missing"
+      render :partial => "marc/missing"
     else
       render :partial => "marc/show"
     end    

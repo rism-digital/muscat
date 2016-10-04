@@ -6,8 +6,8 @@ doc_introduction:
     en: Introduction
 doc_masks: 
   label: 
-    de: Masken für Quellen
-    en: Cataloging forms for sources
+    de: Katalogisierung von Quellen
+    en: Cataloging sources
 doc_tag_index: 
   label: 
     de: MARC Tag Index
@@ -43,7 +43,6 @@ doc_abbr_voices_instr:
   label: 
     de: "Stimmen- und Instrumentenbezeichnungen"
     en: "Terms for voices and instruments"
-
 ################
 
 doc_aid: 
@@ -87,7 +86,7 @@ doc_cat_templates:
     en: Templates
 doc_cat_authorities: 
   label: 
-    de: Autoritäten
+    de: Normdaten
     en: Authorities
 
 ################
@@ -155,7 +154,41 @@ doc_administration:
   label: 
     de: Administration
     en: Administration
-
+doc_personal_names:
+  label:
+    de: "Personen"
+    en: "Personal names"
+doc_institutions:
+    de: "Körperschaften"
+    en: "Institutions"
+doc_title:
+  label:
+    de: "Titel und Inhaltsangaben"
+    en: "Title and content description"
+doc_people:
+  label:
+    de: "Personen und Körperschaften"
+    en: "People and institutions"
+doc_main_entry_fields:
+  label:
+    de: "Haupteintragungen"
+    en: "Main entry fields"
+doc_numbers:
+  label:
+    de: "Nummern und Codes"
+    en: "Numbers and code fields"
+doc_name_variants:
+  label:
+    de: "Namensvarianten"
+    en: "Name variants"
+doc_relations:
+  label:
+    de: "Beziehungen"
+    en: "Relations"
+doc_references:
+  label:
+    de: "Literatur und Bemerkungen"
+    en: "References"
 ################
 
 01_codes_artistic: 
@@ -247,7 +280,7 @@ doc_administration:
         en: Movement number
     c: 
       label: 
-        it: Numero dell'estratto'
+        it: Numero dell'estratto
         fr: "Numéro de l'extrait"
         de: Abschnitt
         en: Incipit number
@@ -340,13 +373,19 @@ doc_administration:
         it: "Validità"
         fr: "Validité"
         de: "Gültigkeit"
-        en: ""
+        en: "Validity"
     t: 
       label: 
         it: Incipit testuale
         fr: Incipit du texte
         de: Textincipit
         en: Text incipit
+    z: 
+      label: 
+        it: PUBLIC NOTE
+        fr: PUBLIC NOTE
+        de: Bemerkungen
+        en: Public note
 "033": 
   label: 
     it: Data
@@ -613,7 +652,7 @@ doc_administration:
         en: Description/Extent
     b: 
       label: 
-        it: OTHER PHYSICAL DETAILS
+        it: Altri dettagli sul materiale
         fr: OTHER PHYSICAL DETAILS
         de: Zusätzliche Materialbeschreibung
         en: Other physical details
@@ -650,7 +689,7 @@ doc_administration:
         en: Set
 "383": 
   label: 
-    it: Opus
+    it: Num. d'opera
     fr: "Opus"
     de: Opus
     en: Opus number
@@ -663,14 +702,14 @@ doc_administration:
         en: Opus number
 "490": 
   label: 
-    it: RISM Series
+    it: Serie RISM
     fr: RISM Series
     de: RISM Series
     en: RISM Series
   fields: 
     a: 
       label: 
-        it: RISM Series
+        it: Serie RISM
         fr: RISM Series
         de: RISM Series
         en: RISM Series
@@ -732,14 +771,14 @@ doc_administration:
   label: 
     it: Nota sui crediti di creazione/produzione
     fr: "Remarque sur la création/production"
-    de: Bemerkung zur Person / Institution
+    de: Bemerkung zur Person / Körperschaft
     en: Creation/production note
   fields: 
     a: 
       label: 
         it: Nota sui crediti di creazione/produzione
         fr: "Note sur la création/production"
-        de: Bemerkung zur Person / Institution
+        de: Bemerkung zur Person / Körperschaft
         en: Creation/production note
       edit_label: 
         en: ""
@@ -752,7 +791,7 @@ doc_administration:
   fields: 
     a: 
       label: 
-        it: Nota sui interpreti
+        it: Nota sugli interpreti
         fr: "Remarque sur les interprètes"
         de: "Bemerkungen zu den Aufführungen"
         en: Performer note
@@ -853,14 +892,14 @@ doc_administration:
   label: 
     it: Provenienza
     fr: Provenance
-    de: Herkunft der Quelle
+    de: Provenienzvermerke
     en: Provenance note
   fields: 
     a: 
       label: 
         it: Provenienza
         fr: Provenance
-        de: Herkunft der Quelle
+        de: Provenienzvermerke
         en: Provenance note
       edit_label: 
         en: ""
@@ -971,23 +1010,29 @@ doc_administration:
         fields: 
     c: 
       label: 
-        it: NUMBER
+        it: Numero
         fr: Nombre
         de: NUMBER
         en: Number
 "595": 
   label: 
-    it: "Ruoli: nomi originali dei personaggi"
-    fr: "Rôles: noms originaux"
-    de: "Rollennamen: Originale Schreibweise"
-    en: Dramatic roles named
+    it: "Ruoli: nomi  dei personaggi"
+    fr: "Rôles: noms"
+    de: "Rollennamen: Schreibweise"
+    en: Named dramatic roles
   fields: 
     a: 
       label: 
-        it: "Ruoli: nomi originali dei personaggi"
-        fr: "Rôle: noms originaux"
-        de: "Rollennamen: Originale Schreibweise"
-        en: Dramatic roles named
+        it: Nomi di ruoli standardizzati
+        fr: "Noms de rôles standardisés"
+        de: Rollennamen, standardisierte Schreibweise
+        en: Role names, standardised
+    u: 
+      label: 
+        it: "Nomi originali dei personaggi"
+        fr: "Noms originaux"
+        de: "Originale Schreibweise"
+        en: Original Name
 "596": 
   label: 
     it: Rimandi a RISM A/I e RISM B
@@ -1005,14 +1050,14 @@ doc_administration:
       en: ""
 "597": 
   label: 
-    it: Impressum Originale
+    it: Dati editoriali originali
     fr: Impressum original
     de: Impressum (original)
     en: Imprint on source
   fields: 
     a: 
       label: 
-        it: Impressum Originale
+        it: Dati editoriali originali
         fr: Impressum original
         de: Impressum (original)
         en: Imprint on source
@@ -1105,12 +1150,12 @@ doc_administration:
         it: Ottoni
         fr: Cuivres
         de: Blechblasinstrumente
-        en: Brasses
+        en: Brass instruments
       edit_label: 
         it: brasses
         fr: brasses
-        de: brasses
-        en: Brasses
+        de: brass instruments
+        en: Brass instruments
     i: 
       label: 
         it: Strumenti a pizzico
@@ -1209,21 +1254,6 @@ doc_administration:
         fr: "Lieu d'un événement"
         de: "Aufführungsort"
         en: Location of performance
-      edit_label: 
-        en: ""
-"653": 
-  label: 
-    it: Nomi di ruoli standardizzati
-    fr: "Noms de rôles standardisés"
-    de: Rollennamen, normiert Schreibweise
-    en: Dramatic roles, standardized
-  fields: 
-    a: 
-      label: 
-        it: Nomi di ruoli standardizzati
-        fr: "Noms de rôles standardisés"
-        de: Rollennamen, standardisierte Schreibweise
-        en: Role names, standardised
       edit_label: 
         en: ""
 "657": 
@@ -1325,20 +1355,20 @@ doc_administration:
   label: 
     it: Nome di ente
     fr: "Nom de la collectivité"
-    de: Nebeneintragung Institutionen
+    de: Nebeneintragung Körperschaften
     en: Additional institution
   fields: 
     a: 
       label: 
         it: Nome di ente
         fr: "Nom de la collectivité"
-        de: Institutionsname
+        de: Körperschaftsname
         en: Institution
     b: 
       label: 
         it: Ente subordinato
         fr: "Collectivité subordonnée"
-        de: Untergeordnete Institution
+        de: Untergeordnete Körperschaft
         en: Department
     g: 
       label: 
@@ -1368,18 +1398,18 @@ doc_administration:
   label: 
     it: Titolo uniforme alternativo
     fr: Titres uniformes additionnels
-    de: Alternativer Einordnungstitel
+    de: Alternativer Titel
     en: Additional title
   fields: 
     a: 
       label: 
         it: Titolo uniforme alternativo
         fr: Titres uniformes additionnels
-        de: Alternativer Einordnungstitel
+        de: Alternativer Titel
         en: Additional title
     g: 
       label: 
-        it: RULE TYPE
+        it: Regole di cat.
         fr: Règle de cat.
         de: Regelwerk
         en: Rule type
@@ -1438,7 +1468,7 @@ doc_administration:
         fr: Nom de la partie ou section
         de: Name des Werkteils
         en: Name of part or section
-"772": 
+"774": 
   label: 
     it: Singoli items
     fr: Contenu de la source
@@ -1470,14 +1500,14 @@ doc_administration:
         en: ""
 "775": 
   label: 
-    it: Primo item
+    it: Prima notizia
     fr: "Première entrée"
     de: Ersteintrag
     en: Initial entry
   fields: 
     w: 
       label: 
-        it: Primo item
+        it: Prima notizia
         fr: "Première entrée"
         de: Ersteintrag
         en: Initial entry
@@ -1533,6 +1563,12 @@ doc_administration:
         fr: Section
         de: Abteilung
         en: Department
+    c: 
+      label: 
+        it: Segnatura
+        fr: Cote
+        de: Signatur
+        en: Shelfmark
     d: 
       label: 
         it: Segnatura vecchia (olim)
@@ -1545,15 +1581,9 @@ doc_administration:
         fr: "Bibliothèque"
         de: Bibliothek
         en: Library
-    p: 
-      label: 
-        it: Segnatura
-        fr: Cote
-        de: Signatur
-        en: Shelfmark
     q: 
       label: 
-        it: PRESERVED PARTS
+        it: Materiale conservato
         fr: PRESERVED PARTS
         de: erhaltenes Material
         en: Preserved Parts
@@ -1590,7 +1620,7 @@ doc_administration:
         en: External resource
     x: 
       label: 
-        it: LINK TYPE
+        it: Tipo di collegamento
         fr: Type de lien
         de: LINK TYPE
         en: Link type
@@ -1700,7 +1730,7 @@ edit_names:
   label: 
     it: Persone e istituzione
     fr: Personnes et institutions
-    de: Personen und Institutionen
+    de: Personen und Körperschaften
     en: People and institutions
 edit_references: 
   label: 
@@ -1774,7 +1804,7 @@ clb:
     en: Contributer
 cmp: 
   label: 
-    it: Compositore/Compositore secondario
+    it: Compositore / Compositore secondario
     fr: Compositeur / Co-compositeur
     de: Komponist / Mitkomponist
     en: Composer / Co-Composer
@@ -1802,6 +1832,12 @@ cst:
     fr: Costumier
     de: "Kostümbildner"
     en: Costume designer
+ctb: 
+  label: 
+    it: CONTRIBUTOR
+    fr: Contributeur
+    de: CONTRIBUTOR
+    en: Contributor
 dnc: 
   label: 
     it: Ballerino
@@ -1816,10 +1852,16 @@ dnr:
     en: Donor
 dpt: 
   label: 
-    it: DEPOSITOR
+    it: Depositante
     fr: DEPOSITOR
     de: Despositor
     en: Depositor
+dsr: 
+  label: 
+    it: DESIGNER
+    fr: DESIGNER
+    de: Designer
+    en: Designer
 dte: 
   label: 
     it: Dedicatario
@@ -1879,13 +1921,19 @@ ltg:
     it: Litografo
     fr: Litographe
     de: Lithograph
-    en: Lithograph
+    en: Lithographer
 lyr: 
   label: 
     it: Poeta
     fr: Parolier
     de: Textdichter
     en: Text author
+oth: 
+  label: 
+    it: OTHER FUNCTION
+    fr: Autre function
+    de: Andere
+    en: Other function
 otm: 
   label: 
     it: Organizzatore
@@ -1928,12 +1976,18 @@ prt:
     fr: Imprimeur
     de: Drucker
     en: Printer
+pub: 
+  label: 
+    it: PUBLISHER
+    fr: Editeur
+    de: Verleger
+    en: Publisher
 scr: 
   label: 
     it: Copista
-    fr: Scribe
+    fr: Copiste / Scribe
     de: Schreiber
-    en: Copyist/Scribe
+    en: Copyist / Scribe
 trl: 
   label: 
     it: Traduttore
@@ -2137,329 +2191,335 @@ zxx:
 #Subheading 240k / 730k
 Excerpts:
   label:
-    it: EXCERPTS
+    it: Estratti
     fr: Extraits
     de: EXCERPTS
     en: Excerpts
 Sketches:
   label:
-    it: SKETCHES
+    it: Schizzi
     fr: Esquisses
     de: SKETCHES
     en: Sketches
 Fragments:
   label:
-    it: FRAGMENTS
+    it: Frammenti
     fr: Fragments
     de: FRAGMENTS
     en: Fragments
 Inserts:
   label:
-    it: INSERTS
+    it: Inserimenti
     fr: Insertions
     de: INSERTS
     en: Inserts
 #Arrangement statement 240o / 730o
 Arr:
   label:
-    it: ARR
+    it: Arrangiamento
     fr: Arrangement
     de: ARR
     en: Arrangement
+Var:
+  label:
+    it: Variazioni
+    fr: Variations
+    de: VAR
+    en: Variations
 #Keys
 A:
   label:
-    it: "A major"
+    it: "La maggiore"
     fr: "La majeur"
     de: "A major"
     en: "A major"
 a:
   label:
-    it: "A minor"
+    it: "La minore"
     fr: "La mineur"
     de: "A minor"
     en: "A minor"
 A|x: 
   label:
-    it: "A♯ major"
+    it: "La♯ maggiore"
     fr: "La♯ majeur"
     de: "A♯ major"
     en: "A♯ major"
 a|x: 
   label:
-    it: "A♯ minor"
+    it: "La♯ minore"
     fr: "La♯ mineur"
     de: "A♯ minor"
     en: "A♯ minor"
 A|b: 
   label:
-    it: "A♭ major"
+    it: "La♭ maggiore"
     fr: "La♭ majeur"
     de: "A♭ major"
     en: "A♭ major"
 a|b: 
   label:
-    it: "A♭ minor"
+    it: "La♭ minore"
     fr: "La♭ mineur"
     de: "A♭ minor"
     en: "A♭ minor"
 B:
   label:
-    it: "B major"
+    it: "Si maggiore"
     fr: "Si majeur"
     de: "B major"
     en: "B major"
 b:
   label:
-    it: "B minor"
+    it: "Si minore"
     fr: "Si mineur"
     de: "B minor"
     en: "B minor"
 B|b: 
   label:
-    it: "B♭ major"
+    it: "Si♭ maggiore"
     fr: "Si♭ majeur"
     de: "B♭ major"
     en: "B♭ major"
 b|b: 
   label:
-    it: "B♭ minor"
+    it: "Si♭ minore"
     fr: "Si♭ mineur"
     de: "B♭ minor"
     en: "B♭ minor"
 C:
   label:
-    it: "C major"
+    it: "Do maggiore"
     fr: "Do majeur"
     de: "C major"
     en: "C major"
 c:
   label:
-    it: "C minor"
+    it: "Do minore"
     fr: "Do mineur"
     de: "C minor"
     en: "C minor"
 C|x: 
   label:
-    it: "C♯ major"
+    it: "Do♯ maggiore"
     fr: "Do♯ majeur"
     de: "C♯ major"
     en: "C♯ major"
 c|x: 
   label:
-    it: "C♯ minor"
+    it: "Do♯ minore"
     fr: "Do♯ mineur"
     de: "C♯ minor"
     en: "C♯ minor"
 C|b: 
   label:
-    it: "C♭ major"
+    it: "Do♭ maggiore"
     fr: "Do♭ majeur"
     de: "C♭ major"
     en: "C♭ major"
 c|b: 
   label:
-    it: "C♭ minor"
+    it: "Do♭ minore"
     fr: "Do♭ mineur"
     de: "C♭ minor"
     en: "C♭ minor"
 D:
   label:
-    it: "D major"
+    it: "Re maggiore"
     fr: "Ré majeur"
     de: "D major"
     en: "D major"
 d:
   label:
-    it: "D minor"
+    it: "Re minore"
     fr: "Ré minor"
     de: "D minor"
     en: "D minor"
 D|x: 
   label:
-    it: "D♯ major"
+    it: "Re♯ maggiore"
     fr: "Ré♯ majeur"
     de: "D♯ major"
     en: "D♯ major"
 d|x: 
   label:
-    it: "D♯ minor"
+    it: "Re♯ minore"
     fr: "Ré♯ mineur"
     de: "D♯ minor"
     en: "D♯ minor"
 D|b: 
   label:
-    it: "D♭ major"
+    it: "Re♭ maggiore"
     fr: "Ré♭ majeur"
     de: "D♭ major"
     en: "D♭ major"
 d|b: 
   label:
-    it: "D♭ minor"
+    it: "Re♭ minore"
     fr: "Ré♭ mineur"
     de: "D♭ minor"
     en: "D♭ minor"
 E:
   label:
-    it: "E major"
+    it: "Mi maggiore"
     fr: "Mi majeur"
     de: "E major"
     en: "E major"
 e:
   label:
-    it: "E minor"
+    it: "Mi minore"
     fr: "Mi mineur"
     de: "E minor"
     en: "E minor"
 E|b: 
   label:
-    it: "E♭ major"
+    it: "Mi♭ maggiore"
     fr: "Mi♭ majeur"
     de: "E♭ major"
     en: "E♭ major"
 e|b: 
   label:
-    it: "E♭ minor"
+    it: "Mi♭ minore"
     fr: "Mi♭ mineur"
     de: "E♭ minor"
     en: "E♭ minor"
 F:
   label:
-    it: "F major"
+    it: "Fa maggiore"
     fr: "Fa majeur"
     de: "F major"
     en: "F major"
 f:
   label:
-    it: "F minor"
+    it: "Fa minore"
     fr: "Fa mineur"
     de: "F minor"
     en: "F minor"
 F|x: 
   label:
-    it: "F♯ major"
+    it: "Fa♯ maggiore"
     fr: "Fa♯ majeur"
     de: "F♯ major"
     en: "F♯ major"
 f|x: 
   label:
-    it: "F♯ minor"
+    it: "Fa♯ minore"
     fr: "Fa♯ mineur"
     de: "F♯ minor"
     en: "F♯ minor"
 G:
   label:
-    it: "G major"
+    it: "Sol maggiore"
     fr: "Sol majeur"
     de: "G major"
     en: "G major"
 g:
   label:
-    it: "G minor"
+    it: "Sol minore"
     fr: "Sol mineur"
     de: "G minor"
     en: "G minor"
 G|x: 
   label:
-    it: "G♯ major"
+    it: "Sol♯ maggiore"
     fr: "Sol♯ majeur"
     de: "G♯ major"
     en: "G♯ major"
 g|x: 
   label:
-    it: "G♯ minor"
+    it: "Sol♯ minore"
     fr: "Sol♯ mineur"
     de: "G♯ minor"
     en: "G♯ minor"
 G|b: 
   label:
-    it: "G♭ major"
+    it: "Sol♭ maggiore"
     fr: "Sol♭ majeur"
     de: "G♭ major"
     en: "G♭ major"
 g|b: 
   label:
-    it: "G♭ minor"
+    it: "Sol♭ minore"
     fr: "Sol♭ mineur"
     de: "G♭ minor"
     en: "G♭ minor"
 # modes
 1t:
   label:
-    it: "Mode: Dorian"
-    fr: "Mode: Dorian"
-    de: "Mode: Dorian"
-    en: "Mode: Dorian"
+    it: "Mode:  1t – Dorian"
+    fr: "Mode:  1t – Dorian"
+    de: "Mode:  1t – Dorian"
+    en: "Mode:  1t – Dorian"
 2t:
   label:
-    it: "Mode: Hypodorian"
-    fr: "Mode: Hypodorian"
-    de: "Mode: Hypodorian"
-    en: "Mode: Hypodorian"
+    it: "Mode:  2t – Hypodorian"
+    fr: "Mode:  2t – Hypodorian"
+    de: "Mode:  2t – Hypodorian"
+    en: "Mode:  2t – Hypodorian"
 3t:
   label:
-    it: "Mode: Phrygian"
-    fr: "Mode: Phrygian"
-    de: "Mode: Phrygian"
-    en: "Mode: Phrygian"
+    it: "Mode:  3t – Phrygian"
+    fr: "Mode:  3t – Phrygian"
+    de: "Mode:  3t – Phrygian"
+    en: "Mode:  3t – Phrygian"
 4t:
   label:
-    it: "Mode: Hypophrygian"
-    fr: "Mode: Hypophrygian"
-    de: "Mode: Hypophrygian"
-    en: "Mode: Hypophrygian"
+    it: "Mode:  4t – Hypophrygian"
+    fr: "Mode:  4t – Hypophrygian"
+    de: "Mode:  4t – Hypophrygian"
+    en: "Mode:  4t – Hypophrygian"
 5t:
   label:
-    it: "Mode: Lydian"
-    fr: "Mode: Lydian"
-    de: "Mode: Lydian"
-    en: "Mode: Lydian"
+    it: "Mode:  5t – Lydian"
+    fr: "Mode:  5t – Lydian"
+    de: "Mode:  5t – Lydian"
+    en: "Mode:  5t – Lydian"
 6t:
   label:
-    it: "Mode: Hypolydian"
-    fr: "Mode: Hypolydian"
-    de: "Mode: Hypolydian"
-    en: "Mode: Hypolydian"
+    it: "Mode:  6t – Hypolydian"
+    fr: "Mode:  6t – Hypolydian"
+    de: "Mode:  6t – Hypolydian"
+    en: "Mode:  6t – Hypolydian"
 7t:
   label:
-    it: "Mode: Mixolydian"
-    fr: "Mode: Mixolydian"
-    de: "Mode: Mixolydian"
-    en: "Mode: Mixolydian"
+    it: "Mode:  7t – Mixolydian"
+    fr: "Mode:  7t – Mixolydian"
+    de: "Mode:  7t – Mixolydian"
+    en: "Mode:  7t – Mixolydian"
 8t:
   label:
-    it: "Mode: Hypomixolydian"
-    fr: "Mode: Hypomixolydian"
-    de: "Mode: Hypomixolydian"
-    en: "Mode: Hypomixolydian"
+    it: "Mode:  8t – Hypomixolydian"
+    fr: "Mode:  8t – Hypomixolydian"
+    de: "Mode:  8t – Hypomixolydian"
+    en: "Mode:  8t – Hypomixolydian"
 9t:
   label:
-    it: "Mode: Aeolian"
-    fr: "Mode: Aeolian"
-    de: "Mode: Aeolian"
-    en: "Mode: Aeolian"
+    it: "Mode:  9t – Aeolian"
+    fr: "Mode:  9t – Aeolian"
+    de: "Mode:  9t – Aeolian"
+    en: "Mode:  9t – Aeolian"
 10t:
   label:
-    it: "Mode: Hypoaeolian"
-    fr: "Mode: Hypoaeolian"
-    de: "Mode: Hypoaeolian"
-    en: "Mode: Hypoaeolian"
+    it: "Mode: 10t – Hypoaeolian"
+    fr: "Mode: 10t – Hypoaeolian"
+    de: "Mode: 10t – Hypoaeolian"
+    en: "Mode: 10t – Hypoaeolian"
 11t:
   label:
-    it: "Mode: Ionian"
-    fr: "Mode: Ionian"
-    de: "Mode: Ionian"
-    en: "Mode: Ionian"
+    it: "Mode: 11t – Ionian"
+    fr: "Mode: 11t – Ionian"
+    de: "Mode: 11t – Ionian"
+    en: "Mode: 11t – Ionian"
 12t:
   label:
-    it: "Mode: Hypoionian"
-    fr: "Mode: Hypoionian"
-    de: "Mode: Hypoionian"
-    en: "Mode: Hypoionian"
+    it: "Mode: 12t – Hypoionian"
+    fr: "Mode: 12t – Hypoionian"
+    de: "Mode: 12t – Hypoionian"
+    en: "Mode: 12t – Hypoionian"
 #Clefs (031)
 01_modern_clefs:
   label:
-    it: "Common clefs"
+    it: "Chiavi comuni"
     fr: "Clés communes"
     de: "Common clefs"
     en: "Common clefs"
@@ -2513,7 +2573,7 @@ F-3:
     en: "F-3"
 F-4:
   label:
-    it: "F-4 (bass clef)"
+    it: "F-4 (chiave di basso)"
     fr: "F-4 (clé fa)"
     de: "F-4 (bass clef)"
     en: "F-4 (bass clef)"
@@ -2531,7 +2591,7 @@ G-1:
     en: "G-1"
 G-2:
   label:
-    it: "G-2 (treble clef)"
+    it: "G-2 (chiave di violino)"
     fr: "G-2 (clé de sol)"
     de: "G-2 (treble clef)"
     en: "G-2 (treble clef)"
@@ -2555,7 +2615,7 @@ G-5:
     en: "G-5"
 02_mensural_clefs:
   label:
-    it: "Mensural clefs"
+    it: "Chiavi mensurali"
     fr: "Clés anciennes"
     de: "Mensural clefs"
     en: "Mensural clefs"

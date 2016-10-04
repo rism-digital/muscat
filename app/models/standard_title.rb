@@ -27,6 +27,7 @@ class StandardTitle < ActiveRecord::Base
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
+  alias_attribute :name, :title
   
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
@@ -50,13 +51,24 @@ class StandardTitle < ActiveRecord::Base
     text :title_d
     
     text :notes
+    text :alternate_terms
+    text :typus
     
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    integer :src_count_order do 
-      src_count
-    end
+    integer :src_count_order, :stored => true do
+			tit = title
+			s = Source.solr_search do 
+				any_of do
+					with("031t_filter", tit)
+					with("240a_filter", tit)
+					with("730a_filter", tit)
+				end
+			end
+			s.total
+      #StandardTitle.count_by_sql("select count(*) from sources_to_standard_titles where standard_title_id = #{self[:id]}")
+		end
   end
   
   def check_dependencies
@@ -66,6 +78,12 @@ class StandardTitle < ActiveRecord::Base
     end
   end
    
+#	def get_indexed_terms
+#    solr = Sunspot.session.get_connection
+#    response = solr.get 'terms', :params => {:"terms.fl" => "240a_shingle_sms", :"terms.limit" => 1, :"terms.prefix" => self.title}
+#    response["terms"]["240a_shingle_sms"][1]
+#	end 
+	 
   def name
     return title
   end

@@ -26,6 +26,29 @@
       definitions: "['~']='[|0-9]'"
       mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
+"024": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - "2"
+      - values:
+        - "ISIL" 
+        - "BNE"
+        - "BNF"
+        - "DNB"
+        - "ICCU"
+        - "ISNI"
+        - "LC"
+        - "NLP"
+        - "NKC"
+        - "SWNL"
+        - "VIAF"
+        - "WKP"
+        default: "ISIL"
+        editor_partial: subfield_select
+      - cols: 2
+    columns: 4
 "034": 
   layout: 
     fields: 
@@ -136,6 +159,21 @@
     - - g
       - cols: 2
     columns: 4
+"368": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+        editor_partial: subfield_select_codes
+        select_label: "Type"
+    columns: 2
+  tag_params:
+    codes:
+      - "Archive" 
+      - "Institution"
+      - "Library"
+      - "Publisher"
+      - "Other"
 "410": 
   layout: 
     fields: 
@@ -151,11 +189,18 @@
       - cols: 4
     columns: 4
 "580": 
+  new_window: institutions
   layout: 
     fields: 
     - - "x"
       - type: institution
         editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
+"667": 
+  layout: 
+    fields: 
+    - - a
       - cols: 4
     columns: 4
 "670": 
@@ -164,6 +209,12 @@
     - - "a"
       - type: catalogue
         editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
+"680": 
+  layout: 
+    fields: 
+    - - a
       - cols: 4
     columns: 4
 "700":
@@ -219,6 +270,7 @@
       - bnd
 
 "710": 
+  new_window: institutions
   layout: 
     fields: 
     - - "a"

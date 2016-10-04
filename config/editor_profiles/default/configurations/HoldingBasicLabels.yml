@@ -218,6 +218,12 @@ doc_edit_workflow:
         fr: Section
         de: Abteilung
         en: Sublocation
+    c: 
+      label: 
+        it: Segnatura
+        fr: Cote
+        de: Signatur
+        en: Shelfmark
     d: 
       label: 
         it: Segnatura vecchia (olim)
@@ -236,12 +242,6 @@ doc_edit_workflow:
         fr: "Bibliothèque"
         de: Bibliothek
         en: Library
-    p: 
-      label: 
-        it: Segnatura
-        fr: Cote
-        de: Signatur
-        en: Shelf mark
 "856": 
   label: 
     it: Localizzazione e accesso elettronico

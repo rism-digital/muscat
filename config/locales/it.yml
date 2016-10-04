@@ -189,14 +189,14 @@ it:
   create_from_existing: "CREATE"
   record_types:
     unspecified: "[Template sconosciuto]"
-    convolutum: "Raccolta di miscellanee"
     collection: "Raccolta"
-    manuscript: "Manoscritto musicale"
-    print: "Musica a stampa"
-    manuscript_libretto: "Libretto manoscritto"
-    print_libretto: "Libretto a stampa"
-    manuscript_theoretica: "Trattato manoscritto"
-    print_theoretica: "Trattato a stampa"
+    source: "MUSIC SOURCE"
+    edition_content: "MUSIC EDITION CONTENT"
+    libretto_source: "LIBRETTO SOURCE"
+    libretto_edition_content: "LIBRETTO EDITION CONTENT"
+    theoretica_source: "TREATISE SOURCE"
+    theoretica_edition_content: "TREATISE EDITION CONTENT"
+    edition: "EDITION"
 
   #################### MENUS
   menu_home: "Home"
@@ -211,6 +211,7 @@ it:
   menu_library_sigla: "Sigla della biblioteca"
   menu_catalogues: "Cataloghi tematici"
   menu_liturgical_feasts: "Feste liturgiche"
+  menu_latin: "LATIN TEXT"
   menu_places: "Luoghi"
   menu_help: "Aiuto"
   menu_folders: "Cartelle"
@@ -260,6 +261,17 @@ it:
   lib_siglum: "Sigla della Biblioteca"
   holding_records: "Informazioni sugli esemplari"
   new_holding: "Nuovo Esemplare"
+  new_digital_object: "Aggiungi una nuova immagine"
+  record_actions: "Impostazioni Record "
+  record_status: "Stato pubblicazione"
+  record_owner: "Proprietario"
+  link_type: "Tipo Oggetto"
+  linked_object: "Oggetto Collegato"
+  links: "Collegamenti"
+  link_remove: "Elimina Collegamento"
+  link_remove_confirm: "Sei sicuro di voler eliminare il collegamento?"
+  validation_level_error: "Sono presenti errori, correggerli prima di continuare"
+  validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
   
   jobs:
     not_set: "[Nessuno stato]"
@@ -282,6 +294,8 @@ it:
   select: "Seleziona"
   create_folder: "Crea Cartella"
   append_folder: "Aggiungi a Cartella"
+  add_source: "Collega Fonte"
+  add_person: "Collega Persona"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
@@ -385,6 +399,7 @@ it:
   filter_place: "Luogo"
   filter_provenance: "Provenienza"
   filter_record_type: "Tipo"
+  filter_source_type: "Tipologia della Fonte"
   filter_publisher: "Editore"
   filter_revue_title: "Testata"
   filter_id: "RISM ID"
@@ -402,13 +417,15 @@ it:
   filter_title: "Titolo"
   filter_titles: "Titoli"
   filter_title_on_ms: "Titolo diplomatico"
+  filter_topic: "TOPIC"
+  filter_sub_topic: "SUBTOPIC"
   filter_url: "Indirizzo url"
   filter_variants: "Varianti"
   filter_versions: "Versioni"
   filter_volume: "Volume"
   filter_image: "IMAGE"
   filter_file_name: "Nome FIle"
-  filter_file_size: "Nome File"
+  filter_file_size: "Grandezza File"
   filter_content_type: "Tipo"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
@@ -577,7 +594,12 @@ it:
     inprogress: "In Elaborazione"
     published: "Pubblicato"
     deleted: "Cancellato"
-  
+
+  # editor validation 
+  validation:
+    missing_message: "Questo campo deve contendere un valore"
+    warning_message: "Questo campo dovrebbe contenere un valore"
+
   date:
     month_names:
      -

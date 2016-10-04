@@ -1,4 +1,4 @@
-<%- master = @item.marc.config.get_master(tag_name) %>
+<%- master = params.include?("has_links_to") && params["has_links_to"] == true ? subfield : @item.marc.config.get_master(tag_name) %>
 <%-	marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new(@item.marc.get_model) %>
 <%- no_new = params.include?("no_new") ? params["no_new"] : false %>
 <%- ac_path = send(params['type'] + "_default_autocomplete")%>
@@ -10,7 +10,8 @@
 
 <% 
 # Validate on the MASTER subfield, because it can be different from the DISPLAY subfiled!
-if @editor_validation && @editor_validation.validate_subtag?(tag_name, master)
+# NOTE Secondary subfields DO NOT SUPPORT WARNINGS.
+if @editor_validation && @editor_validation.validate_subtag?(tag_name, master, @item)
 	validate_class_master, unique_name_master = @editor_validation.get_subtag_class_name(tag_name, master)
 	name_tag_master = raw "name=\"#{unique_name_master}\""
 else
@@ -18,7 +19,7 @@ else
 	name_tag_master = ""
 end
 
-if @editor_validation && @editor_validation.validate_subtag?(tag_name, master)
+if @editor_validation && @editor_validation.validate_subtag?(tag_name, master, @item)
 	validate_class_subfield, name_tag_subfield = @editor_validation.get_subtag_class_name(tag_name, subfield)
 	validate_marker = "validating"
 else
@@ -35,14 +36,13 @@ name_tag_subfield = "#{tag_name}#{subfield}"
 options = {
 	:size => 75, 
 	:class => "marc_editor_hotkey autocomplete_new_window #{validate_class_subfield} #{validate_marker}", 	:"data-subfield"=>"#{subfield}",
-	:"data-field"=>"#{tag_name}"}
-	
+	:"data-field"=>"#{tag_name}",
+}
 	options[:disabled] = "disabled" if disabled
 %>
 
 
 <%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, options %>
-
 
 <div class="checkbox_confirmation" style="display: none;">
 	<input class="creation_checkbox" type="checkbox" data-check="false" name="<%=check_name%>"/>

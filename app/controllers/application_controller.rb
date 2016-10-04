@@ -36,6 +36,12 @@ class ApplicationController < ActionController::Base
     return params && params[:select].present?
   end
 
+  def get_filter_record_type
+    if params.include?(:q) && params[:q].include?("record_type_with_integer")
+      params[:q]["record_type_with_integer"]
+    end
+  end
+
   private
 
   def user_activity

@@ -28,6 +28,10 @@ fields:
   "031p":
       :store: true
   "031q":
+  "031t_filter":
+      :type: string
+      :from_tag: "031"
+      :from_subtag: "t"
   "031t":
   "033a":
   "035a":
@@ -50,11 +54,13 @@ fields:
   "130p":
   "130r":
   "240a":
+  "240a_filter":
       :store: true
       :type: string
+      :from_tag: "240"
+      :from_subtag: "a"
   "240k":
   "240m":
-      :store: true
   "240m_filter":
       :type: string
       :from_tag: "240"
@@ -134,13 +140,13 @@ fields:
   "594m":
   "594n":
   "595a":
+  "595u":
   "596a":
   "597a":
   "598a":
   "599a":
   "650a":
   "651a":
-  "653a":
   "657a":
   "690a":
   "650a_filter":
@@ -162,6 +168,10 @@ fields:
   "7104":
   "7105":
   "730a":
+  "730a_filter":
+      :type: string
+      :from_tag: "730"
+      :from_subtag: "a"
   "730k":
   "730m":
   "730n":
@@ -171,8 +181,8 @@ fields:
   "740a":
   "752a":
   "752d":
-  "772w":
   "773w":
+  "774w":
   "786a":
   "786d":
   "786i":
@@ -187,20 +197,21 @@ fields:
   "787w":
   "787w":
   "852a_facet":
-      :type: string
+      :type: text ## hack for sunspot: make this field work as fulltext
       :from_tag: "852"
       :from_subtag: "a"
+      :as: "852a_facet_sm" # But set it manually as string multiple
       :holding_record: true
   "852a":
       :holding_record: true
   "852b":
       :holding_record: true
+  "852c":
+      :store: true
+      :holding_record: true
   "852d":
       :holding_record: true
   "852e":
-      :holding_record: true
-  "852p":
-      :store: true
       :holding_record: true
   "852q":
       :holding_record: true

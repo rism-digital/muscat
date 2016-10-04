@@ -60,7 +60,19 @@ module MarcControllerActions
       @item.lock_version = params[:lock_version]
       
       @item.record_type = params[:record_type] if (@item.respond_to? :record_type)
-
+      
+      # Some housekeeping, change owner and status
+      if params.has_key?(:record_status) &&
+        (current_user.has_role?(:cataloger) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
+        @item.wf_stage = params[:record_status]
+      end
+      
+      if params.has_key?(:record_owner) &&
+        (current_user.has_role?(:editor) || current_user.has_role?(:admin))
+        new_user = User.find(params[:record_owner]) rescue new_user = nil
+        @item.user = new_user if new_user
+      end
+      
       @item.save
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       
@@ -77,9 +89,9 @@ module MarcControllerActions
         
         triggers.each do |k, relations|
           if k == "save"
-            relations.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, "referring_" + model)) }
+            relations.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, model)) }
           elsif k == "reindex"
-            relations.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, "referring_" + model)) }
+            relations.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, model)) }
           else
             puts "Unknown trigger #{k}"
           end
@@ -93,12 +105,12 @@ module MarcControllerActions
       redirect = params.include?(:redirect) ? params[:redirect] : false
 
       if redirect == "true"
-        model_for_path = self.resource_class.to_s.underscore.pluralize.downcase
+        model_for_path = self.resource_class.to_s.underscore.downcase
         if (model_for_path == "holdings") && params.include?(:parent_object_id)
           path = edit_admin_source_path(params[:parent_object_id])
         else
           link_function = "admin_#{model_for_path}_path"
-          path =  send(link_function) #admin_sources_path
+          path =  send(link_function, @item.id) #admin_sources_path
         end
       else
         model_for_path = self.resource_class.to_s.underscore.downcase

@@ -25,6 +25,7 @@
 //
 // Required by Blacklight
 //= require blacklight/blacklight
+//= require autocomplete_events
 //= require marc_json
 //= require jquery.blockUI
 //= require jquery.cascade
@@ -45,10 +46,12 @@
 //= require editor_hotkeys
 //= require verovio_preload
 //- require new_window_select_ujs
+//= new_window_select_non_marc.js
 //= require jsdiff.js
 //= require marc_editor_validation
 //= require job_progress_bar
 //= require modification_trigger_ujs.js
+//= require filter_workaround.js
 
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
 // this:

@@ -152,8 +152,8 @@ en:
         one: "Digital object"
         other: "Digital objects"
       catalogue:
-        one: "Catalogue"
-        other: "Catalogues"
+        one: "Secondary literature"
+        other: "Secondary literature"
       folder:
         one: "Folder"
         other: "Folders"
@@ -164,20 +164,20 @@ en:
         one: "Institution"
         other: "Institutions"
       liturgical_feast:
-        one: "Liturgical Feast"
-        other: "Liturgical Feasts"
+        one: "Liturgical festivals"
+        other: "Liturgical festivals"
       person:
-        one: "Person"
-        other: "People"
+        one: "Personal name"
+        other: "Personal names"
       source:
         one: "Source"
         other: "Sources"
       standard_term:
-        one: "Standard Term"
-        other: "Standard Terms"
+        one: "Standard term"
+        other: "Standard terms"
       standard_title:
-        one: "Standard Title"
-        other: "Standard Titles"
+        one: "Standard title"
+        other: "Standard titles"
       user:
         one: "User"
         other: "Users"
@@ -189,28 +189,29 @@ en:
   create_from_existing: "Create"
   record_types:
     unspecified: "[Unknown template]"
-    convolutum: "Convolutum"
     collection: "Collection"
-    manuscript: "Music manuscript"
-    print: "Music print"
-    manuscript_libretto: "Manuscript libretto"
-    print_libretto: "Printed libretto"
-    manuscript_theoretica: "Manuscript treatise"
-    print_theoretica: "Printed treatise"
+    source: "Music source"
+    edition_content: "Music edition content"
+    libretto_source: "Libretto source"
+    libretto_edition_content: "Libretto edition content"
+    theoretica_source: "Treatise source"
+    theoretica_edition_content: "Treatise edition content"
+    edition: "Edition"
         
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Sources"
   menu_simple_search: "Simple search"
   menu_advanced_search: "Advanced search"
-  menu_indexes: "Indexes"
-  menu_people: "People"
+  menu_indexes: "Authorities"
+  menu_people: "Personal names"
   menu_institutions: "Institutions"
-  menu_titles: "Title / Textual Incipit"
-  menu_subjects: "Subjects"
-  menu_library_sigla: "Library Sigla"
-  menu_catalogues: "Catalogues"
-  menu_liturgical_feasts: "Liturgical Feasts"
+  menu_titles: "Title / text incipit"
+  menu_subjects: "Genres"
+  menu_library_sigla: "Library sigla"
+  menu_catalogues: "Secondary literature"
+  menu_liturgical_feasts: "Liturgical festivals"
+  menu_latin: "Latin text"
   menu_places: "Places"
   menu_help: "Help"
   menu_folders: "Folders"
@@ -260,6 +261,17 @@ en:
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
   new_holding: "Create Holding Record"
+  new_digital_object: "Attach a new image"
+  record_actions: "Record Actions"
+  record_status: "Record Status"
+  record_owner: "Record Owner"
+  link_type: "Linked object type"
+  linked_object: "Linked Object"
+  links: "Links"
+  link_remove: "Remove Link"
+  link_remove_confirm: "Are you sure you want to delete this link?"
+  validation_level_error: "There are errors, please solve before saving"
+  validation_level_warning: "There are warnings, save again to override"
   
   jobs:
     not_set: "[No status set]"
@@ -282,6 +294,8 @@ en:
   select: "Select"
   create_folder: "Add to a new folder"
   append_folder: "Add to an existing folder"
+  add_source: "Link Source"
+  add_person: "Link Person"
   
   # Editor sidebar
   show_all_groups: "Show all sections"
@@ -385,6 +399,7 @@ en:
   filter_place: "Place"
   filter_provenance: "Provenance"
   filter_record_type: "Type"
+  filter_source_type: "Source Type"
   filter_publisher: "Publisher"
   filter_revue_title: "Revue title"
   filter_id: "Rism ID"
@@ -402,6 +417,8 @@ en:
   filter_title: "Title"
   filter_titles: "Titles"
   filter_title_on_ms: "Title on source"
+  filter_topic: "Topic"
+  filter_sub_topic: "Subtopic"
   filter_url: "Internet address"
   filter_variants: "Variants"
   filter_versions: "Versions"
@@ -422,7 +439,7 @@ en:
   filter_dist_594e: "Solo instrument"
   filter_dist_594f: "Strings"
   filter_dist_594g: "Woodwinds"
-  filter_dist_594h: "Brasses"
+  filter_dist_594h: "Brass instruments"
   filter_dist_594i: "Plucked instruments"
   filter_dist_594k: "Percussion instruments"
   filter_dist_594l: "Keyboard instruments"
@@ -577,6 +594,11 @@ en:
     inprogress: "In Progress"
     published: "Published"
     deleted: "Deleted"
+  
+  # editor validation 
+  validation:
+    missing_message: "A value in this field is mandatory"
+    warning_message: "A value for this field should be provided"
    
   # date:
   # Empty lines for matching line numbers with other translation files  
@@ -621,13 +643,13 @@ en:
   record_types_codes:
     "0": "UNK"
     "1": "COL"
-    "2": "MMS"
-    "3": "MPR"
-    "4": "LMS"
-    "5": "LPR"
-    "6": "TMS"
-    "7": "TPR"
-    "8": "CVT"
+    "2": "MSR"
+    "3": "MEC"
+    "4": "LSR"
+    "5": "LEC"
+    "6": "TSR"
+    "7": "TEC"
+    "8": "EDT"
     
   status_codes:
     published: "PUB"

@@ -13,6 +13,24 @@ def create_holdings(source, marc)
     new_852 = t.deep_copy
     new_marc.root.children.insert(new_marc.get_insert_position("852"), new_852)
     
+    st = t.fetch_first_by_tag("u")
+    if st && st.content
+      node = MarcNode.new("holding", "856", "", "##")
+      node.add_at(MarcNode.new("holding", "u", st.content, nil), 0)
+      node.add_at(MarcNode.new("holding", "z", "[digitized version]", nil), 0)
+      node.sort_alphabetically
+      new_marc.root.children.insert(new_marc.get_insert_position("856"), node)
+    end
+    
+    st = t.fetch_first_by_tag("z")
+    if st && st.content
+      node = MarcNode.new("holding", "856", "", "##")
+      node.add_at(MarcNode.new("holding", "u", st.content, nil), 0)
+      node.add_at(MarcNode.new("holding", "z", "[bibliographic record]", nil), 0)
+      node.sort_alphabetically
+      new_marc.root.children.insert(new_marc.get_insert_position("856"), node)
+    end
+		
     new_marc.suppress_scaffold_links
     new_marc.import
     
@@ -43,11 +61,11 @@ end
 @cnt = 0
 @start_time = Time.now
 @total_records = Source.where(["record_type = ? or (record_type = ? and id > 990000000)",
-    MarcSource::RECORD_TYPES[:print],
+    MarcSource::RECORD_TYPES[:edition_content],
     MarcSource::RECORD_TYPES[:collection]]).count
 
 Source.where(["record_type = ? or (record_type = ? and id > 990000000)",
-    MarcSource::RECORD_TYPES[:print],
+    MarcSource::RECORD_TYPES[:edition_content],
     MarcSource::RECORD_TYPES[:collection]]).pluck(:id).each do |sid|
   source = Source.find(sid)
   
@@ -63,34 +81,40 @@ Source.where(["record_type = ? or (record_type = ? and id > 990000000)",
   end
   
 
-  # Are we a print and part of a collection?
-  if source.record_type == MarcSource::RECORD_TYPES[:print]
-    if source.source_id != nil
-      # Items over 990000000 are NEVER split
-      if source.id >= 990000000
-        # Print in collection
-        # Should have no 852, if it has drop
-        if marc.by_tags("852").count > 0
-          puts "Source #{source.id} is part of a collection but has 852. Dropping".red
-          ts = marc.root.fetch_all_by_tag("852") 
-          ts.each {|t2| t2.destroy_yourself}
-        end
-      else
-        # Items under that range are always split
-        create_holdings(source, marc)
-      end
-    else
-      # We are just a simple print, split holdings
-      create_holdings(source, marc)
-    end
-  end
+	# Are we a print and part of a collection?
+	if source.record_type == MarcSource::RECORD_TYPES[:edition_content]
+		# Items under 990000000 are "conventional" A/II prints
+		# We transform tham into manuscripts
+		if source.id < 990000000
+			source.record_type = MarcSource::RECORD_TYPES[:source]
+		else
+			# Are we a in a collection?
+			if source.source_id != nil
+				# Yes do not split
+				# EXCEPT if it has 852. it should NO - holdings are only in editions
+				# print a warning
+				if marc.by_tags("852").count > 0
+					puts "Source #{source.id} is part of a collection but has 852. Dropping".red
+					ts = marc.root.fetch_all_by_tag("852") 
+					ts.each {|t2| t2.destroy_yourself}
+				end
+			else
+				# We are just a simple print, split holdings
+				create_holdings(source, marc)
+				# And convert to edition
+				source.record_type = MarcSource::RECORD_TYPES[:edition]
+			end
+		end
+	end
   
   # Are we a collection?
   if source.record_type == MarcSource::RECORD_TYPES[:collection]
     # Items under 990000000 are NEVER split
     # Items over 990000000 are always split
+		# Items over 990000000 become editions
     if source.id > 990000000
       create_holdings(source, marc)
+			source.record_type = MarcSource::RECORD_TYPES[:edition]
     end
   end
   

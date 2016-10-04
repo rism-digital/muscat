@@ -10,7 +10,7 @@
 # Usual wf_* fields are not shown
 
 class Place < ActiveRecord::Base
-  
+
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_places")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institution_to_places")
@@ -18,28 +18,28 @@ class Place < ActiveRecord::Base
   has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
-    
+
   validates_presence_of :name
-  
+
   validates_uniqueness_of :name
-  
+
   #include NewIds
-  
+
   before_destroy :check_dependencies
-  
+
   #before_create :generate_new_id
   after_save :reindex
-  
+
   attr_accessor :suppress_reindex_trigger
-  
+
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
-  
+
   # Suppresses the solr reindex
   def suppress_reindex
     self.suppress_reindex_trigger = true
   end
-  
+
   def reindex
     return if self.suppress_reindex_trigger == true
     self.index
@@ -51,28 +51,32 @@ class Place < ActiveRecord::Base
       name
     end
     text :name
-    
+
     string :country_order do
       country
     end
     text :country
-    
+
     text :notes
+    text :alternate_terms
+    text :topic
+    text :sub_topic
     text :district
-    
+
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    integer :src_count_order do 
-      src_count
+    integer :src_count_order, :stored => true do 
+      Place.count_by_sql("select count(*) from sources_to_places where place_id = #{self[:id]}")
     end
   end
-  
+
   def check_dependencies
     if (self.referring_sources.count > 0)
       errors.add :base, "The place could not be deleted because it is used"
       return false
     end
   end
-  
+
 end
+

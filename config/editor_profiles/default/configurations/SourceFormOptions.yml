@@ -9,6 +9,8 @@
     fields: 
     - - a
 "031": 
+  new_window: standard_titles
+  new_window_field: title_equals
   layout: 
     fields:
     - - u
@@ -21,6 +23,11 @@
     - - e
     - - t
       - growfield: true
+        type: standard_title
+        field: title
+        editor_partial: subfield_secondary
+        allow_new: true
+        has_links_to: true
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "031r"
@@ -49,6 +56,7 @@
     - - p
       - editor_partial: subfield_pae
     - - q
+    - - z
   tag_params:
     031r:
       - "A"
@@ -207,6 +215,7 @@
       - "zxx"
 "100": 
   new_window: people
+  new_window_field: full_name_equals
   layout: 
     fields: 
     - - a
@@ -230,6 +239,7 @@
       - "Verified"
 "240": 
   new_window: standard_titles
+  new_window_field: title_equals
   layout: 
     fields: 
     - - a
@@ -290,6 +300,18 @@
       - "g|x"
       - "G|b"
       - "g|b"
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
 "245": 
   layout: 
     fields: 
@@ -407,13 +429,14 @@
     fields: 
     - - a
       - values: 
-        - Autograph
-        - Manuscript
-        - Manuscript with autograph annotations
-        - Partly Autograph
+        - Autograph manuscript
+        - Possible autograph manuscript
+        - Partial autograph
+        - Manuscript copy
+        - Manuscript copy with autograph annotations
         - Print
-        - Print with handwritten entries
-        - Probably autograph
+        - Print with autograph annotations
+        - Print with non-autograph annotations
         - Libretto, handwritten
         - Libretto, printed
         - Treatise, handwritten
@@ -430,6 +453,11 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - c
+"595":
+  layout: 
+    fields: 
+    - - a
+    - - u
 "597": 
   layout: 
     fields: 
@@ -452,6 +480,7 @@
     - - n
 "650":
   new_window: standard_terms
+  new_window_field: term_equals
   layout: 
     fields: 
     - - a
@@ -460,6 +489,7 @@
         allow_new: true
 "651":
   new_window: places
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
@@ -468,6 +498,7 @@
         allow_new: true
 "657": 
   new_window: liturgical_feasts
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
@@ -476,24 +507,27 @@
         allow_new: true
 "690": 
   new_window: catalogues
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
       - type: catalogue
         editor_partial: subfield_secondary
-        allow_new: true
+        allow_new: false
     - - n
 "691":
   new_window: catalogues
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
       - type: catalogue
         editor_partial: subfield_secondary
-        allow_new: true
+        allow_new: false
     - - n
 "700":
   new_window: people
+  new_window_field: full_name_equals
   layout:
     fields: 
     - - a
@@ -506,7 +540,9 @@
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
     - - "4"
-      - editor_partial: subfield_select_codes_grouped
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
   tag_params: 
     codes:
       - "Ascertained"
@@ -515,48 +551,29 @@
       - "Doubtful"
       - "Misattributed"
       - "Verified"
-    groups: 
-      01_codes_artistic: 
+    relator_codes: 
+      - fmo
+      - scr
       - cmp
-      - com
       - arr
-      - aut
-      - clb
+      - prf
+      - dte
       - lyr
-      - ccp
       - lbt
       - trl
-      02_codes_performing: 
-      - prf
-      - voc
-      - itr
-      - dnc
-      - cnd
-      - chr
-      - art
-      - cst
-      - prd
-      - cns
-      04_codes_other: 
-      - fmo
-      - dnr
-      - dte
-      - pat
-      - otm
-      - bsl
-      - asn
-      - dub
-      03_codes_technical: 
-      - scr
+      - pbl
+      - prt
+      - edt
       - ltg
       - egr
       - ill
-      - prt
-      - pbl
-      - edt
-      - bnd
+      - aut
+      - oth
+      - dub
+      - ctb
 "710":
   new_window: institutions
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
@@ -580,22 +597,18 @@
       - "Misattributed"
       - "Verified"
     relator_codes: 
+      - pub
       - fmo
-      - dnr
-      - dte
-      - prf
-      - otm
-      - ppm
-      - prt
-      - pbl
-      - edt
-      - bsl
-      - asn
-      - dub
-      - evp
       - dpt
+      - dte
+      - scr
+      - prf
+      - prt
+      - edt
+      - oth
 "730":
   new_window: standard_titles
+  new_window_field: title_equals
   layout: 
     fields: 
     - - a
@@ -628,6 +641,7 @@
       - "Inserts"
     730o:
       - "Arr"
+      - "Var"
     730r:
       - "A"
       - "a"
@@ -665,6 +679,18 @@
       - "g|x"
       - "G|b"
       - "g|b"
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
 "740":
   layout: 
     fields: 
@@ -675,21 +701,23 @@
         allow_new: true
     - - n
     - - p
-"772": 
-  layout: 
-    fields: 
-    - - w
-      - read_only: true
 "773":
   new_window: sources
+  record_type_helper: get_allowed_record_type
   layout: 
     fields: 
     - - w
       - type: source
         editor_partial: subfield_secondary
         only_new_window: true
+"774": 
+  layout: 
+    fields: 
+    - - w
+      - read_only: true
 "775":
   new_window: sources
+  record_type_helper: get_allowed_record_type_775
   layout: 
     fields: 
     - - w
@@ -714,7 +742,7 @@
       - autocomplete_extra: name
     - - b
     - - z
-    - - p
+    - - c
       - growfield: true
     - - d
 "856": 

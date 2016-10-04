@@ -14,7 +14,7 @@ doc_cataloguing_collections:
     en: Cataloging collection and convoluta
 doc_functions:
   label:
-    de: "Grundätzliche Funktionen"
+    de: "Grundsätzliche Funktionen"
     en: Basic functions
 doc_introduction:
   label:
@@ -58,24 +58,29 @@ doc_templates:
     en: Date and time of last transaction
 "008":
   label:
-    it: Data di Creazione
+    it: Data di creazione
     fr: Date de création
     de: Datum der Erstellung
     en: Date of creation
-
 "024":
   label:
-    it: Codice ISIL
-    fr: Code ISIL
-    de: ISIL Code
-    en: ISIL Code
+    it: "Riferimento autorità"
+    fr: "Référence d'authorité"
+    de: Normdatenverweise
+    en: Authority Reference
   fields:
     a:
       label:
-        it: Codice ISIL
-        fr: Code ISIL
-        de: ISIL Code  
-        en: ISIL Code
+        it: "Riferimento autorità"
+        fr: "Référence d'authorité"
+        de: Normdatenverweise
+        en: Authority Reference
+    "2":
+      label:
+        it: "Agenzia autorità"
+        fr: "Agence d'authorité"
+        de: Normdatenagentur
+        en: Authority Agency
 "034":
   label:
     it: Posizione
@@ -85,30 +90,16 @@ doc_templates:
   fields:
     d:
       label:
-        it: Longitude
+        it: Longitudine
         fr: Longitude
         de: Längengrad 
         en: Longitude
     f:
       label:
-        it: Latitude
+        it: Latitudine
         fr: Latitude
         de: Breitengrad 
         en: Latitude
-
-"035":
-  label:
-    it: Codice GND
-    fr: Code GND
-    de: GND Code
-    en: GND Code
-  fields:
-    a:
-      label:
-        it: Codice GND
-        fr: Code GND
-        de: GND Code  
-        en: GND Code
 "040":
   label:
     it: Fonte della catalogazione
@@ -144,14 +135,14 @@ doc_templates:
 
 "043":
   label:
-    it: Country code
+    it: Codice del Paese
     fr: Country code
     de: Länder-Code
-    en: County code
+    en: Country code
   fields:
     c:
       label:
-        it: Country code
+        it: Codice del Paese
         fr: Country code
         de: Länder-Code  
         en: Country code
@@ -178,31 +169,29 @@ doc_templates:
         en: Subordinate unit
     c:
       label:
-        it: Place
+        it: Luogo
         fr: Place 
         de: Ort
         en: Place
     g:
       label:
-        it: Ente subordinato
+        it: Sigla
         fr: "Siglum"
         de: "Sigel"
         en: Siglum
 "368":
   label:
-    it: Tipo di Istituzione
+    it: Tipo di istituzione
     fr: "Type d'institution"
-    de: Typ der Institution
+    de: Typ der Körperschaft
     en: Type of Institution
   fields:
     a:
       label:
-        it: Tipo di Istitutione
+        it: Tipo di istitutione
         fr: "Type d'institution"
-        de: Typ der Institution
+        de: Typ der Körperschaft
         en: Type of institution
-
-
 "371":
   label:
     it: Luogo ed indirizzo
@@ -230,8 +219,8 @@ doc_templates:
         en: City
     c:
       label:
-        it: Paese o Provincia
-        fr: Canton our province
+        it: Paese o provincia
+        fr: Canton ou province
         de: Bezirk oder Staat
         en: County or province
     d:
@@ -254,7 +243,7 @@ doc_templates:
         en: URL
     z:
       label:
-        it: Nota Pubblica
+        it: Nota pubblica
         fr: Note publique
         de: Bemerkungen
         en: Public Note
@@ -312,7 +301,6 @@ doc_templates:
         fr: Lieu
         de: Ort
         en: Place
-
 "580":
   label:
     it: Ora in
@@ -339,8 +327,6 @@ doc_templates:
         fr: Note interne
         de: Interne Bemerkungen
         en: Internal notes
-
-
 "670":
   label:
     it: Bibliografia
@@ -354,33 +340,29 @@ doc_templates:
         fr: Littérature
         de: Literatur
         en: Literature
-
-
 "678":
   label:
     it: "Storia dell'istituzione"
     fr: "Historique de l'institution"
-    de: Geschichte der Institution
+    de: Geschichte der Körperschaft
     en: History of institution
   fields:
     a:
       label:
         it: "Storia dell'istituzione"
         fr: "Historique de l'institution"
-        de: Geschichte der Institution
+        de: Geschichte der Körperschaft
         en: History of institution
-
-
 "680":
   label:
-    it: General note
+    it: Osservazioni
     fr: Remarque général
     de: Allgemeine Fussnote
     en: General note
   fields:
     a:
       label:
-        it: General note
+        it: Osservazioni
         fr: Remarque générale
         de: Allgemeine Fussnote
         en: General note
@@ -402,14 +384,14 @@ doc_templates:
   label:
     it: Istituzione in relazione
     fr: Institution liée
-    de: RELATED INSTITUTION
+    de: in Beziehung stehende Körpschaft
     en: Related institution
   fields:
     a:
       label:
         it: Istituzione in relazione
         fr: Institution liée
-        de: RELATED INSTITUTION
+        de: In Beziehung stehende Körperschaft
         en: Related institution
 
 "856":
@@ -421,13 +403,13 @@ doc_templates:
   fields:
     u:
       label:
-        t: Online
+        it: Online
         fr: En Ligne
         de: Archivführer und andere Publikationen
         en: Online finding aids
     z:
       label:
-        t: Nota
+        it: Nota
         fr: Note
         de: Bemerkung
         en: Note
@@ -449,7 +431,7 @@ control:
   label:
     fr: "Champs de contrôle"
     de: Kontrollfelder
-    ot: Campi di controllo
+    it: Campi di controllo
     en: Control Fields
 notes:
   label:
@@ -1204,3 +1186,33 @@ voc:
     fr: "Venezuela, Bolivarian Republic of"
     de: "Venezuela, Bolivarian Republic of"
     en: "Venezuela, Bolivarian Republic of"
+"Library":
+  label:
+    it: "LIBRARY"
+    fr: "LIBRARY"
+    de: "Bibliothek"
+    en: "Library"
+"Archive":
+  label:
+    it: "ARCHIVE"
+    fr: "ARCHIVE"
+    de: "Archiv"
+    en: "Archive"
+"Publisher":
+  label:
+    it: Editore
+    fr: Editeur
+    de: Verleger
+    en: Publisher
+"Other":
+  label:
+    it: Altri
+    fr: Autre
+    de: Weitere
+    en: Other
+"Institution":
+  label:
+    it: "INSTITUTION"
+    fr: "INSTITUTION"
+    de: "Körperschaft"
+    en: "Institution"

@@ -19,7 +19,7 @@ class StandardTerm < ActiveRecord::Base
   belongs_to :user, :foreign_key => "wf_owner"
   validates_presence_of :term
   validates_uniqueness_of :term
-  
+  alias_attribute :name, :term
   #include NewIds
   
   before_destroy :check_dependencies
@@ -59,8 +59,8 @@ class StandardTerm < ActiveRecord::Base
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    integer :src_count_order do 
-      src_count
+    integer :src_count_order, :stored => true do 
+      StandardTerm.count_by_sql("select count(*) from sources_to_standard_terms where standard_term_id = #{self[:id]}")
     end
   end
   

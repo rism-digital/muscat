@@ -98,6 +98,27 @@
     :fields:
     - - ""
       - :no_browse: true
+  "020":
+    :master: a
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "022":
+    :master: a
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "024":
+    :master: a
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - a
+      - :occurrences: "?"
   "041":
     :master: a
     :indicator: ["0#", "1#"]
@@ -114,6 +135,13 @@
         :no_browse: true
     - - h
       - :occurrences: "*"
+  "044":
+    :master: a
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - a
+      - :occurrences: "?"
   "100":
     :master: "0"
     :indicator: "1#"
@@ -374,12 +402,20 @@
     - - o
       - :occurrences: "*"
         :no_browse: true
-  "785":
-    :master: "0"
+  "780":
+    :master: "w"
     :indicator: "##"
     :occurrences: "*"
     :fields:
-    - - "0"
+    - - "w"
+      - :occurrences: "?"
+
+  "785":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "w"
       - :occurrences: "?"
   "856":
     :master: u

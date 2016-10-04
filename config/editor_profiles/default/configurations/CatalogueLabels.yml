@@ -56,6 +56,49 @@ doc_templates:
     fr: "Date/heure de la derniôre transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
+
+"020": 
+  label: 
+    it: ISBN
+    fr: ISBN
+    de: ISBN
+    en: ISBN
+  fields: 
+    a: 
+      label: 
+        it: ISBN
+        fr: ISBN
+        de: ISBN
+        en: ISBN
+
+"022": 
+  label: 
+    it: ISSN
+    fr: ISSN
+    de: ISSN
+    en: ISSN
+  fields: 
+    a: 
+      label: 
+        it: ISSN
+        fr: ISSN
+        de: ISSN
+        en: ISSN
+
+"024": 
+  label: 
+    it: ISMN
+    fr: ISMN
+    de: ISMN
+    en: ISMN
+  fields: 
+    a: 
+      label: 
+        it: ISMN
+        fr: ISMN
+        de: ISMN
+        en: ISMN
+
 "041": 
   label: 
     it: Codice Lingua
@@ -69,6 +112,20 @@ doc_templates:
         fr: Code de langue
         de: Sprach-Code
         en: Language Code
+"044": 
+  label: 
+    it: COUNTRY
+    fr: COUNTRY
+    de: Land
+    en: Country
+  fields: 
+    a: 
+      label: 
+        it: COUNTRY
+        fr: COUNTRY
+        de: Land
+        en: Country
+
 "100": 
   label: 
     it: Autore
@@ -149,10 +206,10 @@ doc_templates:
         en: Publisher
     c: 
       label: 
-        it: Data
-        fr: Date
-        de: Datum
-        en: Date
+        it: YEAR
+        fr: YEAR
+        de: Jahr
+        en: Year
 "264": 
   label: 
     it: Produzione
@@ -209,14 +266,14 @@ doc_templates:
   label: 
     it: Testata
     fr: Titre de la revue
-    de: Reihe
+    de: In
     en: Revue title
   fields: 
     g: 
       label: 
         it: Part
         fr: Partie
-        de: Teil
+        de: Jahrgang, Seite
         en: Part 
     t: 
       label: 
@@ -224,6 +281,19 @@ doc_templates:
         fr: Titre de la revue
         de: "In: "
         en: Revue title
+"780": 
+  label: 
+    it: PREVIOUS ENTRY
+    fr: PREVIOUS ENTRY
+    de: Früherer Eintrag
+    en: Previous entry
+  fields: 
+    a: 
+      label: 
+        it: PREVIOUS ENTRY
+        fr: PREVIOUS ENTRY
+        de: Früherer Eintrag
+        en: Previous entry
 "785": 
   label: 
     it: Item precedente
@@ -251,9 +321,9 @@ codes:
     en: Numbers and code fields
 control: 
   label: 
-    fr: "Champs de contrle"
+    fr: "Champs de contrôle"
     de: Kontrollfelder
-    ot: Campi di controllo
+    it: Campi di controllo
     en: Control Fields
 notes: 
   label: 
@@ -397,7 +467,7 @@ control:
   label: 
     fr: "Champs de contrôle"
     de: Kontrollfelder
-    ot: Campi di controllo
+    it: Campi di controllo
     en: Control Fields
 cst: 
   label: 
@@ -689,7 +759,7 @@ show_terms:
     en: Index terms
 subject: 
   label: 
-    it: Note sul sitolo uniforme
+    it: Note sul titolo uniforme
     fr: "Entrées de sujets"
     de: Schlagworteintragungen
     en: Subject access fields
@@ -750,7 +820,7 @@ voc:
         en: Extent
 "337": 
   label: 
-    it: Mezzo Fisico
+    it: Mezzo fisico
     fr: Moyen phyisuqe 
     de: Physisches Medium 
     en: Physical Medium
@@ -778,7 +848,7 @@ voc:
         en: ""
 "520": 
   label: 
-    it: Indicatione di possesso
+    it: Indicazione di possesso
     fr: Indication de copie
     de: Bestandsangabe
     en: Indication of holding

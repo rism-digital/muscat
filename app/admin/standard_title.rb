@@ -54,7 +54,7 @@ ActiveAdmin.register StandardTitle do
     end
     
     def index
-      @results = StandardTitle.search_as_ransack(params)
+      @results, @hits = StandardTitle.search_as_ransack(params)
       
       index! do |format|
         @standard_titles = @results
@@ -101,11 +101,17 @@ ActiveAdmin.register StandardTitle do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_title), :title
-    column (I18n.t :filter_sources), :src_count
+    column (I18n.t :filter_variants), :alternate_terms
+    column (I18n.t :menu_latin), :latin
+    column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
+			all_hits = @arbre_context.assigns[:hits]
+			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+		end
     active_admin_muscat_actions( self )
   end
   
   sidebar :actions, :only => :index do
+    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   
@@ -121,6 +127,9 @@ ActiveAdmin.register StandardTitle do
     render('jobs/jobs_monitor')
     attributes_table do
       row (I18n.t :filter_title) { |r| r.title }
+      row (I18n.t :filter_variants) { |r| r.alternate_terms }
+      row (I18n.t :filter_record_type) { |r| r.typus }
+      row (I18n.t :menu_latin) { |r| r.latin }
       row (I18n.t :filter_notes) { |r| r.notes }  
     end
     active_admin_embedded_source_list( self, standard_title, params[:qe], params[:src_list_page], !is_selection_mode? )
@@ -143,7 +152,10 @@ ActiveAdmin.register StandardTitle do
   
   form do |f|
     f.inputs do
-      f.input :title, :label => (I18n.t :filter_title) 
+      f.input :title, :label => (I18n.t :filter_title), :input_html => { :disabled => true } 
+      f.input :latin, :label => (I18n.t :menu_latin) 
+      f.input :alternate_terms, :label => (I18n.t :filter_variants) 
+      #f.input :typus, :label => (I18n.t :filter_record_type) 
       f.input :notes, :label => (I18n.t :filter_notes) 
       f.input :lock_version, :as => :hidden
     end

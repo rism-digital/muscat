@@ -720,7 +720,7 @@
       <str>terms</str>
     </arr>
   </requestHandler>
-  
+
   <!-- Admin Handlers - This will register all the standard admin RequestHandlers. -->
   <requestHandler name="/admin/" class="solr.admin.AdminHandlers" />
 </config>

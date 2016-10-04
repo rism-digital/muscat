@@ -18,7 +18,7 @@ fr:
     update_model: "Modifier %{model}"
     delete_model: "Supprimer %{model}"
     details: "Détails de %{model}"
-    save_model: "SAVE"
+    save_model: "Enregistrer"
     cancel: "Annuler"
     empty: "Vide"
     previous: "Précédent"
@@ -38,7 +38,7 @@ fr:
         ends_with: "Se termine par"
         greater_than: "Plus grand que"
         less_than: "Plus petit que"
-        with_integer: "FILTER"
+        with_integer: "Filtrer"
     status_tag:
       "yes": "Oui"
       "no": "Non"
@@ -183,20 +183,20 @@ fr:
         other: "Utilisateurs"
 
   #################### RECORD TYPES (TEMPLATES)
-  select_template: "SELECT NEW TEMPLATE"
-  available_templates: "AVAILABLE TEMPLATES"
-  from_existing_source: "CREATE FROM EXISTING SOURCE"
-  create_from_existing: "CREATE"
+  select_template: "Choisir un modèle"
+  available_templates: "Modèles disponibles"
+  from_existing_source: "Créer a partir d'une source"
+  create_from_existing: "Créer"
   record_types:
     unspecified: "[type indéterminé]"
-    convolutum: "Convolutum"
     collection: "Collection"
-    manuscript: "Manuscrit musical"
-    print: "Imprimé musical"
-    manuscript_libretto: "Libretto manuscrit"
-    print_libretto: "Imprimé imprimé"
-    manuscript_theoretica: "Traité manuscrit"
-    print_theoretica:  "Traité imprimé"
+    source: "MUSIC SOURCE"
+    edition_content: "MUSIC EDITION CONTENT"
+    libretto_source: "LIBRETTO SOURCE"
+    libretto_edition_content: "LIBRETTO EDITION CONTENT"
+    theoretica_source: "TREATISE SOURCE"
+    theoretica_edition_content: "TREATISE EDITION CONTENT"
+    edition: "EDITION"
 
   #################### MENUS
   menu_home: "Home"
@@ -211,6 +211,7 @@ fr:
   menu_library_sigla: "Sigles de bibliothèque"
   menu_catalogues: "Catalogues"
   menu_liturgical_feasts: "Fêtes liturgiques"
+  menu_latin: "LATIN TEXT"
   menu_places: "Lieux"
   menu_help: "Help"
   menu_folders: "Dossiers"
@@ -260,6 +261,17 @@ fr:
   lib_siglum: "Sigle de bibliothèque"
   holding_records: "Copie"
   new_holding: "Ajouter une copie"
+  new_digital_object: "Attacher une nouvelle image"
+  record_actions: "Actions"
+  record_status: "Status"
+  record_owner: "Propriétaire"
+  link_type: "Type de lien"
+  linked_object: "Objet lié"
+  links: "Liens"
+  link_remove: "Supprimer le lien"
+  link_remove_confirm: "Désirez-vous supprimer le lien?"
+  validation_level_error: "Il y a des erreurs à corriger avant d'enregistrer."
+  validation_level_warning: "Il y a des avertissements. Enregistrer à nouveau pour ignorer."
   
   jobs:
     not_set: "[sans statut]"
@@ -279,8 +291,11 @@ fr:
   no_action: "Aucune action possible"
   reindex: "Ré-indexer"
   publish: "Publier"
+  select: "Sélectionner"
   create_folder: "Ajouter à un nouveau dossier"
   append_folder: "Ajouter à un dossier existant"
+  add_source: "Attacher une source"
+  add_person: "Attacher une personne"
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"
@@ -291,7 +306,6 @@ fr:
   save_and_continue: "Enregistrer et continuer"
   save_and_exit: "Enregistrer et terminer"
   cancel: "Annuler"
-  select: "Sélectionner"
   
   # Version history
   history_date: "Date"
@@ -363,9 +377,9 @@ fr:
   filter_liturgical_feast: "Fête liturgique"
   filter_location_and_name: "Nom et endroit"
   filter_manuscript_no: "No de source"
-  filter_male: "MALE"
-  filter_female: "FEMALE"
-  filter_unknown: "UNKNOWN"
+  filter_male: "Masculin"
+  filter_female: "Féminin"
+  filter_unknown: "Inconnu"
   filter_shelf_mark: "Cote"
   filter_name: "Nom"
   filter_notes: "Notes"
@@ -385,6 +399,7 @@ fr:
   filter_place: "Endroit"
   filter_provenance: "Provenance"
   filter_record_type: "Type"
+  filter_source_type: "SOURCE TYPE"
   filter_publisher: "éditeur"
   filter_revue_title: "Titre de la revue"
   filter_id: "No RISM"
@@ -402,6 +417,8 @@ fr:
   filter_title: "Titre"
   filter_titles: "Titres"
   filter_title_on_ms: "Titre diplomatique"
+  filter_topic: "TOPIC"
+  filter_sub_topic: "SUBTOPIC"
   filter_url: "Adresse Internet"
   filter_variants: "Variantes"
   filter_versions: "Versions"
@@ -498,7 +515,7 @@ fr:
   will_paginate:
     page_entries_info:
       single_page_html:
-        zero: "Pas %{model} trouvée" 
+        zero: "%{model} introuvable" 
         one: "Affichage de <b>1</b> %{model}"
         other:  "Affichage des <b>%{count}</b> %{model}"
       multi_page_html: "Affichage des %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b> au total"
@@ -577,6 +594,11 @@ fr:
     inprogress: "En cours"
     published: "Publié"
     deleted: "Supprimé"
+
+  # editor validation 
+  validation:
+    missing_message: "Une valeur dans ce champ est nécessaire"
+    warning_message: "Une valeur devrait être présente pour ce champ"
 
   date:
     month_names:

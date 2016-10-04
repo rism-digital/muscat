@@ -35,6 +35,8 @@ class Person < ActiveRecord::Base
   
   resourcify 
   has_many :works
+  has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
+  has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_people")
   has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_people")
@@ -179,7 +181,7 @@ class Person < ActiveRecord::Base
     
     if self.comments != nil and !self.comments.empty?
       new_field = MarcNode.new("person", "680", "", "1#")
-      new_field.add_at(MarcNode.new("person", "i", self.comments, nil), 0)
+      new_field.add_at(MarcNode.new("person", "a", self.comments, nil), 0)
     
       new_marc.root.children.insert(new_marc.get_insert_position("680"), new_field)
     end    
@@ -216,11 +218,16 @@ class Person < ActiveRecord::Base
     sunspot_dsl.text :alternate_names
     sunspot_dsl.text :alternate_dates
     
+    sunspot_dsl.integer :wf_owner
+    sunspot_dsl.string :wf_stage
+    sunspot_dsl.time :updated_at
+    sunspot_dsl.time :created_at
+    
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
-    
-    sunspot_dsl.integer :src_count_order do 
-      src_count
+ 	
+    sunspot_dsl.integer :src_count_order, :stored => true do 
+      Person.count_by_sql("select count(*) from sources_to_people where person_id = #{self[:id]}")
     end
     
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
@@ -294,5 +301,5 @@ class Person < ActiveRecord::Base
     str.gsub!("\"", "")
     Viaf::Interface.search(str, self.to_s)
   end
-
 end
+

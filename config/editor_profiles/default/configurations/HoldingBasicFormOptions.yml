@@ -22,7 +22,7 @@
         editor_partial: subfield_secondary
     - - b
     - - z
-    - - p
+    - - c
       - growfield: true
     - - d
 "856": 

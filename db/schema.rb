@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622145102) do
+ActiveRecord::Schema.define(version: 20160902073728) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -144,8 +144,19 @@ ActiveRecord::Schema.define(version: 20160622145102) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "digital_object_links", force: :cascade do |t|
+    t.integer  "digital_object_id", limit: 4
+    t.integer  "object_link_id",    limit: 4
+    t.string   "object_link_type",  limit: 255
+    t.integer  "wf_owner",          limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "digital_object_links", ["digital_object_id"], name: "index_digital_object_links_on_digital_object_id", using: :btree
+  add_index "digital_object_links", ["object_link_id"], name: "index_digital_object_links_on_object_link_id", using: :btree
+
   create_table "digital_objects", force: :cascade do |t|
-    t.integer  "source_id",               limit: 4
     t.string   "description",             limit: 255
     t.integer  "wf_audit",                limit: 4,   default: 0
     t.integer  "wf_stage",                limit: 4,   default: 0
@@ -159,7 +170,7 @@ ActiveRecord::Schema.define(version: 20160622145102) do
     t.datetime "attachment_updated_at"
   end
 
-  add_index "digital_objects", ["source_id"], name: "index_digital_objects_on_source_id", using: :btree
+  add_index "digital_objects", ["wf_stage"], name: "index_digital_objects_on_wf_stage", using: :btree
 
   create_table "do_div_files", force: :cascade do |t|
     t.integer  "do_file_id", limit: 4
@@ -232,6 +243,9 @@ ActiveRecord::Schema.define(version: 20160622145102) do
     t.datetime "updated_at"
   end
 
+  add_index "folder_items", ["folder_id"], name: "index_folder_items_on_folder_id", using: :btree
+  add_index "folder_items", ["item_id"], name: "index_folder_items_on_item_id", using: :btree
+
   create_table "folders", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "folder_type", limit: 255
@@ -239,6 +253,9 @@ ActiveRecord::Schema.define(version: 20160622145102) do
     t.datetime "updated_at"
     t.integer  "wf_owner",    limit: 4
   end
+
+  add_index "folders", ["folder_type"], name: "index_folders_on_folder_type", using: :btree
+  add_index "folders", ["wf_owner"], name: "index_folders_on_wf_owner", using: :btree
 
   create_table "holdings", force: :cascade do |t|
     t.integer  "source_id",    limit: 4
@@ -277,7 +294,6 @@ ActiveRecord::Schema.define(version: 20160622145102) do
     t.string   "wf_notes",     limit: 255
     t.integer  "wf_owner",     limit: 4,     default: 0
     t.integer  "wf_version",   limit: 4,     default: 0
-    t.integer  "src_count",    limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "place",        limit: 255
@@ -348,17 +364,20 @@ ActiveRecord::Schema.define(version: 20160622145102) do
   add_index "institutions_workgroups", ["workgroup_id"], name: "index_workgroups_institutions_on_workgroup_id", using: :btree
 
   create_table "liturgical_feasts", force: :cascade do |t|
-    t.string   "name",         limit: 255,             null: false
-    t.string   "notes",        limit: 255
-    t.integer  "wf_audit",     limit: 4,   default: 0
-    t.integer  "wf_stage",     limit: 4,   default: 0
-    t.string   "wf_notes",     limit: 255
-    t.integer  "wf_owner",     limit: 4,   default: 0
-    t.integer  "wf_version",   limit: 4,   default: 0
-    t.integer  "src_count",    limit: 4,   default: 0
+    t.string   "name",            limit: 255,               null: false
+    t.text     "notes",           limit: 65535
+    t.integer  "wf_audit",        limit: 4,     default: 0
+    t.integer  "wf_stage",        limit: 4,     default: 0
+    t.string   "wf_notes",        limit: 255
+    t.integer  "wf_owner",        limit: 4,     default: 0
+    t.integer  "wf_version",      limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "lock_version", limit: 4,   default: 0, null: false
+    t.integer  "lock_version",    limit: 4,     default: 0, null: false
+    t.text     "alternate_terms", limit: 65535
+    t.text     "sub_topic",       limit: 65535
+    t.string   "viaf",            limit: 255
+    t.string   "gnd",             limit: 255
   end
 
   add_index "liturgical_feasts", ["name"], name: "index_liturgical_feasts_on_name", using: :btree
@@ -381,7 +400,6 @@ ActiveRecord::Schema.define(version: 20160622145102) do
     t.string   "wf_notes",        limit: 255
     t.integer  "wf_owner",        limit: 4,     default: 0
     t.integer  "wf_version",      limit: 4,     default: 0
-    t.integer  "src_count",       limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lock_version",    limit: 4,     default: 0, null: false
@@ -423,19 +441,23 @@ ActiveRecord::Schema.define(version: 20160622145102) do
   add_index "people_to_places", ["place_id"], name: "index_people_to_places_on_place_id", using: :btree
 
   create_table "places", force: :cascade do |t|
-    t.string   "name",         limit: 255,             null: false
-    t.string   "country",      limit: 255
-    t.string   "district",     limit: 255
-    t.string   "notes",        limit: 255
-    t.integer  "wf_audit",     limit: 4,   default: 0
-    t.integer  "wf_stage",     limit: 4,   default: 0
-    t.string   "wf_notes",     limit: 255
-    t.integer  "wf_owner",     limit: 4,   default: 0
-    t.integer  "wf_version",   limit: 4,   default: 0
-    t.integer  "src_count",    limit: 4,   default: 0
+    t.string   "name",            limit: 255,               null: false
+    t.string   "country",         limit: 255
+    t.string   "district",        limit: 255
+    t.text     "notes",           limit: 65535
+    t.integer  "wf_audit",        limit: 4,     default: 0
+    t.integer  "wf_stage",        limit: 4,     default: 0
+    t.string   "wf_notes",        limit: 255
+    t.integer  "wf_owner",        limit: 4,     default: 0
+    t.integer  "wf_version",      limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "lock_version", limit: 4,   default: 0, null: false
+    t.integer  "lock_version",    limit: 4,     default: 0, null: false
+    t.text     "alternate_terms", limit: 65535
+    t.text     "topic",           limit: 65535
+    t.text     "sub_topic",       limit: 65535
+    t.string   "viaf",            limit: 255
+    t.string   "gnd",             limit: 255
   end
 
   add_index "places", ["name"], name: "index_places_on_name", using: :btree
@@ -574,28 +596,35 @@ ActiveRecord::Schema.define(version: 20160622145102) do
     t.string   "wf_notes",        limit: 255
     t.integer  "wf_owner",        limit: 4,     default: 0
     t.integer  "wf_version",      limit: 4,     default: 0
-    t.integer  "src_count",       limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lock_version",    limit: 4,     default: 0, null: false
+    t.text     "sub_topic",       limit: 65535
+    t.string   "viaf",            limit: 255
+    t.string   "gnd",             limit: 255
   end
 
   add_index "standard_terms", ["term"], name: "index_standard_terms_on_term", using: :btree
   add_index "standard_terms", ["wf_stage"], name: "index_standard_terms_on_wf_stage", using: :btree
 
   create_table "standard_titles", force: :cascade do |t|
-    t.string   "title",        limit: 255,               null: false
-    t.string   "title_d",      limit: 128
-    t.text     "notes",        limit: 65535
-    t.integer  "wf_audit",     limit: 4,     default: 0
-    t.integer  "wf_stage",     limit: 4,     default: 0
-    t.string   "wf_notes",     limit: 255
-    t.integer  "wf_owner",     limit: 4,     default: 0
-    t.integer  "wf_version",   limit: 4,     default: 0
-    t.integer  "src_count",    limit: 4,     default: 0
+    t.string   "title",           limit: 255,               null: false
+    t.string   "title_d",         limit: 128
+    t.text     "notes",           limit: 65535
+    t.integer  "wf_audit",        limit: 4,     default: 0
+    t.integer  "wf_stage",        limit: 4,     default: 0
+    t.string   "wf_notes",        limit: 255
+    t.integer  "wf_owner",        limit: 4,     default: 0
+    t.integer  "wf_version",      limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "lock_version", limit: 4,     default: 0, null: false
+    t.integer  "lock_version",    limit: 4,     default: 0, null: false
+    t.string   "typus",           limit: 255
+    t.text     "alternate_terms", limit: 65535
+    t.text     "sub_topic",       limit: 65535
+    t.string   "viaf",            limit: 255
+    t.string   "gnd",             limit: 255
+    t.boolean  "latin"
   end
 
   add_index "standard_titles", ["title"], name: "index_standard_titles_on_title", using: :btree
@@ -615,6 +644,7 @@ ActiveRecord::Schema.define(version: 20160622145102) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "preference_wf_stage",    limit: 4,   default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -671,7 +701,6 @@ ActiveRecord::Schema.define(version: 20160622145102) do
     t.string   "wf_notes",         limit: 255
     t.integer  "wf_owner",         limit: 4,     default: 0
     t.integer  "wf_version",       limit: 4,     default: 0
-    t.integer  "src_count",        limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -694,7 +723,6 @@ ActiveRecord::Schema.define(version: 20160622145102) do
     t.string   "wf_notes",   limit: 255
     t.integer  "wf_owner",   limit: 4,     default: 0
     t.integer  "wf_version", limit: 4,     default: 0
-    t.integer  "src_count",  limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

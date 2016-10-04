@@ -85,6 +85,7 @@ ActiveAdmin.register Folder do
   end
   
   sidebar :actions, :only => :index do
+    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   

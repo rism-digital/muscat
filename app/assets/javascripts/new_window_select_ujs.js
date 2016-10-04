@@ -130,14 +130,29 @@ function newWindowIsSelect() {
 				
 				$("#wrapper").block({message: ""});
 				
-				toplevel_li = $(this).parents(".tag_container");
+				var toplevel_li = $(this).parents(".tag_container");
 				// This is always the hidden field
 				_nw_destination = toplevel_li.find(".autocomplete_target")
 				
-				controller = $(this).data("controller");
+				var controller = $(this).data("controller");
+				var new_window_field = $(this).data("new-window-field");
+				var selection_record_type = $(this).data("selection-record-type")
 				
+				var search = "";
+				if (new_window_field) {
+					var ac = toplevel_li.find(".autocomplete_new_window");
+					var value = ac.val();
+					if (value) {
+						search = "&q[" + new_window_field + "]=" + value;
+					}
+				}
+				
+				// In selection mode, for sources, we can force the record type
+				if (selection_record_type) {
+					search += "&q[record_type_with_integer]=record_type:" + selection_record_type;
+				}
 				// Open up the new window
-				_child = window.open('/admin/' + controller + '?select=true', null, "location=no");
+				_child = window.open('/admin/' + controller + '?select=true' + encodeURI(search), null, "location=no");
 				
 			});
 		}
@@ -184,6 +199,8 @@ var add_window_select_actions = function () {
 	});
 }
 
-$(document).ready(add_window_select_actions);
-// Fix for turbolinks: it will not call againg document.ready
-$(document).on('page:load', add_window_select_actions);
+if (window.opener != null && window.opener.$(".new_window_select").length > 0) {
+	$(document).ready(add_window_select_actions);
+	// Fix for turbolinks: it will not call againg document.ready
+	$(document).on('page:load', add_window_select_actions);
+}

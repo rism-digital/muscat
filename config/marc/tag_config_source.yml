@@ -66,6 +66,20 @@
     :fields:
     - - ""
       - :no_browse: true
+  "005":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "008":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
   "028":
     :master: a
     :indicator: "20"
@@ -77,10 +91,17 @@
       - :occurrences: "?" 
         :no_browse: true
   "031":
-    :master: a
+    :master: "0"
+    :master_optional: true
     :indicator: "##"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "*"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
+        :no_browse: true
     - - a
       - :occurrences: "?"
     - - b
@@ -109,13 +130,18 @@
       - :occurrences: "*"
     - - t
       - :occurrences: "*"
+        :link_to_model: StandardTitle
+        :link_to_field: title
     - - u
       - :occurrences: "?"
         :no_browse: true
+    - - z
+      - :occurrences: "*"
   "033":
     :master: a
     :indicator: ["0#", "1#", "2#"]
     :occurrences: "*"
+    :disable_multiple: true
     :fields:
     - - a
       - :occurrences: "*"
@@ -290,7 +316,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -315,9 +340,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - "8"
-      - :occurrences: "?"
-        :no_browse: true
   "520":
     :master: a
     :indicator: "##"
@@ -336,7 +358,6 @@
     :master: a
     :indicator: "1#"
     :occurrences: "?"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -357,7 +378,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -387,7 +407,6 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
-    :preclude_holdings: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -405,6 +424,7 @@
     :master: a
     :indicator: "##"
     :occurrences: "*"
+    :disable_multiple: true
     :fields:
     - - a
       - :occurrences: "?"
@@ -426,6 +446,8 @@
     :occurrences: "*"
     :fields:
     - - a
+      - :occurrences: "?"
+    - - u
       - :occurrences: "?"
   "596":
     :master: a
@@ -515,13 +537,6 @@
       - :occurrences: "?"
         :no_browse: true
         # value must be added during exportation
-  "653":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
   "657":
     :master: "0"
     :indicator: "#7"
@@ -556,10 +571,6 @@
         :foreign_field: name
     - - n
       - :occurrences: "?"
-    - - "2"
-      - :occurrences: "?"
-        :no_browse: true
-        # value must be added during exportation
   "691":
     :master: "0"
     :indicator: "#7"
@@ -576,10 +587,6 @@
         :foreign_field: name
     - - n
       - :occurrences: "?"
-    - - "2"
-      - :occurrences: "?"
-        :no_browse: true
-        # value must be added during exportation
   "700":
     :master: "0"
     :indicator: "1#"
@@ -670,25 +677,24 @@
        - :occurrences: "*"
      - - p
        - :occurrences: "*"
-  "772":
-    :master: w
-    :indicator: "18"
-    :occurrences: "*"
-    :fields:
-    - - w
-      - :occurrences: "1"
-        :browse_helper: application_helper_link_source_id
   "773":
     :master: w
     :indicator: "18"
     :occurrences: "?"
-    :preclude_holdings: true
     :fields:
     - - w
       - :occurrences: "1"
         :foreign_class: Source
         :foreign_field: id
         :zero_padding: "14"
+        :browse_helper: application_helper_link_source_id
+  "774":
+    :master: w
+    :indicator: "18"
+    :occurrences: "*"
+    :fields:
+    - - w
+      - :occurrences: "1"
         :browse_helper: application_helper_link_source_id
   "775":
     :master: w
@@ -722,7 +728,6 @@
     :master: "x"
     :indicator: "##"
     :occurrences: "?"
-    :preclude_holdings: true
     :fields:
     - - "x"
       - :occurrences: "?"
@@ -736,6 +741,8 @@
         :browse_helper: application_helper_link_to_library
     - - b
       - :occurrences: "?"
+    - - c
+      - :occurrences: "?"
     - - d
       - :occurrences: "*"
     - - e
@@ -743,8 +750,6 @@
         :foreign_class: ^x
         :foreign_field: name
         :disable_create_lookup: true
-    - - p
-      - :occurrences: "?"
     - - q
       - :occurrences: "?"
     - - u

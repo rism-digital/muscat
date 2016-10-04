@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  variants: MyText
+  notes: MyText
+  subtopic: MyString
+  topic: MyString
+  viag: MyString
+  gnd: MyString
+
+two:
+  name: MyString
+  variants: MyText
+  notes: MyText
+  subtopic: MyString
+  topic: MyString
+  viag: MyString
+  gnd: MyString

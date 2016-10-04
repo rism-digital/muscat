@@ -74,7 +74,7 @@ ActiveAdmin.register Person do
     end
     
     def index
-      @results = Person.search_as_ransack(params)
+      @results, @hits = Person.search_as_ransack(params)
       index! do |format|
         @people = @results
         format.html
@@ -111,7 +111,7 @@ ActiveAdmin.register Person do
   
   # temporary, to be replaced by Solr
   #filter :id_eq, :label => proc {I18n.t(:filter_id)}
-  filter :full_name_equals, :label => proc {I18n.t(:filter_full_name)}, :as => :string
+  filter :full_name_contains, :label => proc {I18n.t(:filter_full_name)}, :as => :string
   filter :"100d_contains", :label => proc {I18n.t(:filter_person_100d)}, :as => :string
   filter :"375a_contains", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
   # FIXME locale not read
@@ -121,6 +121,17 @@ ActiveAdmin.register Person do
   filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
+  filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :updated_at, :label => proc {I18n.t(:updated_at)}, :as => :date_range
+  
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+         collection: proc {
+           if current_user.has_any_role?(:editor, :admin)
+             User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}
+           else
+             [[current_user.name, "wf_owner:#{current_user.id}"]]
+           end
+         }
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
@@ -130,14 +141,21 @@ ActiveAdmin.register Person do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
-    column (I18n.t :filter_id), :id  
+    column (I18n.t :filter_id), :id
+    column (I18n.t :filter_wf_stage) {|person| status_tag(person.wf_stage,
+      label: I18n.t('status_codes.' + person.wf_stage, locale: :en))} 
     column (I18n.t :filter_full_name), :full_name
     column (I18n.t :filter_life_dates), :life_dates
-    column (I18n.t :filter_sources), :src_count
+    column (I18n.t :filter_owner) {|person| User.find(person.wf_owner).name rescue 0} if current_user.has_any_role?(:editor, :admin)
+    column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
+			all_hits = @arbre_context.assigns[:hits]
+			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+		end
     active_admin_muscat_actions( self )
   end
   
   sidebar :actions, :only => :index do
+    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   
@@ -156,11 +174,12 @@ ActiveAdmin.register Person do
     
     @item = @arbre_context.assigns[:item]
     if @item.marc_source == nil
-      render :partial => "marc_missing"
+      render :partial => "marc/missing"
     else
       render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, person, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, person )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?

@@ -77,15 +77,6 @@ class MarcConfig
     @has_browsable[tag]
   end
 
-  def tag_precludes_holdings?(tag)
-    return false if !@tag_config.include?(tag)
-    if @tag_config[tag].include? :preclude_holdings
-      @tag_config[tag][:preclude_holdings]
-    else
-      false
-    end
-  end
-
   # Get the default indicator for a Marc tag
   def get_default_indicator(tag)
     return @tag_config[tag][:indicator][0] if @tag_config[tag][:indicator].is_a? Array
@@ -144,6 +135,20 @@ class MarcConfig
     return @foreign_tag_groups.rindex(tag)
   end
 
+  def has_links_to(tag)
+		return false if !@tag_config.include? tag
+	  @tag_config[tag][:fields].each do |st|
+		  return true if st[1].has_key?(:link_to_model) && st[1].has_key?(:link_to_field)
+	  end
+	  return false
+  end
+  
+  def each_link_to(tag)
+	  @tag_config[tag][:fields].each do |st|
+		  yield(st[0], st[1][:link_to_model], st[1][:link_to_field]) if st[1].has_key?(:link_to_model) && st[1].has_key?(:link_to_field)
+	  end
+  end
+
   # Get the foreign field 0 padding length for string field (if wanted)
   def get_zero_padding(tag, subtag = "")
     # p tag
@@ -156,19 +161,30 @@ class MarcConfig
   end
 
   # Check if a tag or subtag can be repeated (* or + mean it is)
+  # disable_multiple means that duplication is disable IN EDITOR
+  # but the field is allowed to be repeatable IN MARC
+  # This is for tag groups: a field should not be repeatable in the group
+  # but can be repeated because of multiple groups
   def multiples_allowed?(tag, subtag = "")
+    disable_multiple = false
     if subtag.empty?
         occurrences = @tag_config[tag][:occurrences]
+        disable_multiple = @tag_config[tag][:disable_multiple] rescue disable_multiple = false
     else
         return false if !@tag_config[tag][:fields].assoc(subtag)
         occurrences = @tag_config[tag][:fields].assoc(subtag)[1][:occurrences]
+        disable_multiple = @tag_config[tag][:fields].assoc(subtag)[1][:disable_multiple] rescue disable_multiple = false
     end
-    return true if occurrences == '*' or occurrences == '+'
+    return true if (occurrences == '*' or occurrences == '+') && !disable_multiple
     return false
   end
 
   def get_master(tag)
     @tag_config[tag][:master]
+  end
+
+  def master_optional?(tag)
+    @tag_config[tag][:master_optional]
   end
 
   def has_tag?(tag)

@@ -9,6 +9,7 @@
 # This is a must
 #= require i18n/translations
 
+#= require autocomplete_events
 #= require marc_editor
 #= require marc_editor_validation
 #= require marc_json
@@ -34,8 +35,10 @@
 #= require editor_hotkeys
 #= require verovio_preload
 #= require new_window_select_ujs
+#= require new_window_select_non_marc
 #= require jsdiff.js
 #= require job_progress_bar
+#= require filter_workaround
 
 #= require viaf_interface.js
 #= require modification_trigger_ujs.js

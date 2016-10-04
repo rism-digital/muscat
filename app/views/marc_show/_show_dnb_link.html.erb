@@ -12,6 +12,8 @@
       content << link_to("VIAF: " + a_tag.content, "http://viaf.org/viaf/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
     elsif two_tag.content == "WKP"
       content << link_to("Wikidata: " + a_tag.content, "https://www.wikidata.org/wiki/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
+    else
+      content << "#{two_tag.content}: #{a_tag.content}"
     end
 
   end
