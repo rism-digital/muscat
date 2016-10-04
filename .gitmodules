@@ -1,5 +1,5 @@
 [submodule "public/help"]
 	path = public/help
 	url = https://github.com/rism-ch/muscat-guidelines.git
-	branch = 3.5.0-edit
+	branch = 3.6.0
 	ignore = dirty
