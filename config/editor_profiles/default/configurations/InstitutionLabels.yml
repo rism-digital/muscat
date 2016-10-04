@@ -138,7 +138,7 @@ doc_templates:
     it: Codice del Paese
     fr: Country code
     de: Länder-Code
-    en: County code
+    en: Country code
   fields:
     c:
       label:
