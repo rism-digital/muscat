@@ -533,10 +533,10 @@ en:
   themefinder_c: "pitch refined contour"
   themefinder_C: "pitch gross contour"
   themefinder_d: "diatonic scale degree"
-  themefinder_i: "twelwe-tone interval"
+  themefinder_i: "twelve-tone interval"
   themefinder_I: "diatonic interval"
   themefinder_p: "diatonic pitch class"
-  themefinder_P: "twelwe-tone pitch class"
+  themefinder_P: "twelve-tone pitch class"
   themefinder_p0: "no pitch search"
 
   themefinder_u: "exact duration"
