@@ -13,6 +13,9 @@ classes = %w(Latin LiturgicalFeast Place StandardTerm)
 
 if ARGV.length >= 1
   source_file = ARGV[0]
+	total_records = open(source_file) { |f| f.grep(/001">/) }.size
+	cnt = 0
+	start_time = Time.now
   if File.exists?(source_file)
     each_record(source_file) { |record|
       latin = false
@@ -23,7 +26,7 @@ if ARGV.length >= 1
         class_name.content = 'StandardTitle' if latin
         #puts class_name.text
         name = record.xpath("//marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text
-        puts name
+        #puts name
         id = record.xpath("//marc:controlfield[@tag='001']", NAMESPACE).first.text.to_i
         existing =  Object.const_get(class_name.text).where(:name => name)
         binding.pry unless Object.const_get(class_name.text).where(:id => id).empty?
@@ -48,6 +51,8 @@ if ARGV.length >= 1
         rescue
           binding.pry
         end
+				cnt += 1
+        print "\rStarted: " + start_time.strftime("%Y-%m-%d %H:%M:%S").green + " -- Record #{cnt} of #{total_records} processed".yellow
       end
 
     }

@@ -1,3 +1,6 @@
+@urlregex = '(.*?((?:http|https)(?::\\/{2}[\\w]+)(?:[\\/|\\.]?)(?:[^\\s"]*)))'
+@matcher = Regexp.new(@urlregex, Regexp::IGNORECASE)
+
 def create_holdings(source, marc)
   count = 0
   marc.each_by_tag("852") do |t|
@@ -15,20 +18,28 @@ def create_holdings(source, marc)
     
     st = t.fetch_first_by_tag("u")
     if st && st.content
-      node = MarcNode.new("holding", "856", "", "##")
-      node.add_at(MarcNode.new("holding", "u", st.content, nil), 0)
-      node.add_at(MarcNode.new("holding", "z", "[digitized version]", nil), 0)
-      node.sort_alphabetically
-      new_marc.root.children.insert(new_marc.get_insert_position("856"), node)
+      if @matcher.match(st.content)
+        node = MarcNode.new("holding", "856", "", "##")
+        node.add_at(MarcNode.new("holding", "u", st.content, nil), 0)
+        node.add_at(MarcNode.new("holding", "z", "[digitized version]", nil), 0)
+        node.sort_alphabetically
+        new_marc.root.children.insert(new_marc.get_insert_position("856"), node)
+        st.destroy_yourself
+      else
+        $stderr.puts "#{source.id}, 852 $u is not an url"
+      end
     end
     
     st = t.fetch_first_by_tag("z")
     if st && st.content
-      node = MarcNode.new("holding", "856", "", "##")
-      node.add_at(MarcNode.new("holding", "u", st.content, nil), 0)
-      node.add_at(MarcNode.new("holding", "z", "[bibliographic record]", nil), 0)
-      node.sort_alphabetically
-      new_marc.root.children.insert(new_marc.get_insert_position("856"), node)
+      if @matcher.match(st.content)
+        node = MarcNode.new("holding", "856", "", "##")
+        node.add_at(MarcNode.new("holding", "u", st.content, nil), 0)
+        node.add_at(MarcNode.new("holding", "z", "[bibliographic record]", nil), 0)
+        node.sort_alphabetically
+        new_marc.root.children.insert(new_marc.get_insert_position("856"), node)
+        st.destroy_yourself
+      end
     end
 		
     new_marc.suppress_scaffold_links

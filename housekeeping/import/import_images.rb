@@ -55,7 +55,7 @@ doc.xpath('/images/image').each do |i|
 			end
 			
 		    dol = DigitalObjectLink.create(object_link_type: "Person", object_link_id: pr.to_i,
-		                                  user: user, digital_object_id: pr.id)
+		                                  user: user, digital_object_id: obj.id)
 		end
 	end
 end
