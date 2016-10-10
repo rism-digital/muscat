@@ -1,0 +1,635 @@
+
+es:
+  active_admin:
+# Pad for italian, it has 2 missing items
+#
+#
+    dashboard: Dashboard # dudoso
+    dashboard_welcome:
+      welcome: "¡Bienvenidos a Active Admin! Eso es la página dashboard."
+      call_to_action: "Para añadir secciones dashboard, checkout app/admin/dashboard'"
+    view: "Ver"
+    edit: "Editar"
+    delete: "Borrar"
+    delete_confirmation: "¿Está Vd. cierto que quiere borrar eso?"
+    new_model: "Nuevo %{model}"
+    create_model: "Nuevo %{model}"
+    edit_model: "Editar %{model}"
+    update_model: "Editar %{model}"
+    delete_model: "Borrar %{model}"
+    save_model: "Guardar"
+    details: "%{model} detalles"
+    cancel: "Cancelar"
+    empty: "Vaciar"
+    previous: "Precediente"
+    next: "Siguiente"
+    download: "Descargar"
+    has_many_new: "Añadir %{model} nuevo"
+    has_many_delete: "Borrar"
+    has_many_remove: "Quitar"
+    filters:
+      buttons:
+        filter: "Filtro"
+        clear: "Quitar filtro"
+      predicates:
+        contains: "contiene"
+        equals: "es igual a"
+        starts_with: "comienza con"
+        ends_with: "termina con"
+        greater_than: "mayor de"
+        less_than: "menor de"
+        with_integer: "Filter" # dudoso, no entiendo qué siginifica
+    status_tag:
+      "yes": "Sí" # dudoso
+      "no": "No" # dudoso
+    main_content: "Por favor implemente %{model}#main_content para mostrar contenido."
+    logout: "Logout"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Filtros"
+      sections: "Secciones y acciones"
+      actions: "Acciones"
+      toc: "Tabla de materias"
+    pagination:
+      empty: "Ningún %{model} encontrado"
+      one: "Mostrando <b>1</b> %{model}"
+      one_page: "Mostrando <b>todos %{n}</b> %{model}"
+      multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> en total"
+      multiple_without_total: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "entrada"
+        other: "entradas"
+    any: "cualquier"
+    blank_slate:
+      content: "Ya no hay %{resource_name}."
+      link: "Crear" # dudoso
+    dropdown_actions:
+      button_label: "Acciones"
+    batch_actions:
+      button_label: "Procesamiento por lotes"
+      default_confirmation: "¿Está seguro que quiere hacer eso?"
+      delete_confirmation: "¿Está seguro que quiere borrar esos %{plural_model}?"
+      succesfully_destroyed:
+        one: "Borrado 1 %{model} con éxito"
+        other: "Borrado %{count} %{plural_model} con éxito"
+      selection_toggle_explanation: "(Alternar selección)"
+      link: "Crea uno"
+      action_label: "%{title} seleccionado"
+      labels:
+        destroy: "Borrar"
+        folder: "Crear directorio con" # dudoso
+
+    comments:
+      resource_type: "Tipo de recurso"
+      author_type: "Tipo de autor"
+      body: "Texto"
+      author: "Autor"
+      title: "Comentario"
+      add: "Añadir comentario"
+      resource: "Recurso"
+      no_comments_yet: "Todavía no hay comentarios."
+      author_missing: "Anónimo"
+      title_content: "Comentarios (%{count})"
+      errors:
+        empty_text: "Comentario no fue guardado, sin texto."
+    devise:
+      username:
+        title: "Nombre del usuario"
+      email:
+        title: "Correo electrónico"
+      subdomain:
+        title: "Subdominio"
+      password:
+        title: "Contraseña"
+      sign_up:
+        title: "Registrar"
+        submit: "Registrar"
+      login:
+        title: "Iniciar sesión"
+        remember_me: "Recuérdame"
+        submit: "Iniciar sesión"
+      reset_password:
+        title: "¿Ha olvidado su contraseña?"
+        submit: "Restablece contraseña"
+      change_password:
+        title: "Cambiar contraseña"
+        submit: "Cambiar contraseña"
+      unlock:
+        title: "Reenviar instrucciones de desbloqueo"
+        submit: "Reenviar instrucciones de desbloqueo"
+      resend_confirmation_instructions:
+        title: "Reenviar instrucciones de confirmación"
+        submit: "Reenviar instrucciones de confirmación"
+      links:
+        sign_in: "Iniciar sesión"
+        forgot_your_password: "¿Ha olvidado su contraseña?"
+        sign_in_with_omniauth_provider: "Iniciar sesión con %{provider}"
+        resend_unlock_instructions: "Reenviar instrucciones de confirmación"
+    unsupported_browser:
+      headline: "Por favor nótese que Muscat ya no sirve con Internet Explorer 8."
+      recommendation: "Recomendamos usen el más reciente <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a> o <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Si usen IE 9 o superior, asegúrese que <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">apague \"Vista de compatibilidad\"</a>."
+    access_denied:
+      message: "Vd. no está autorizado performar esa acción."
+    index_list:
+      table: "Tabla"
+      block: "Lista"
+      grid: "Grid" # dudoso
+      blog: "Blog"
+  switch_language: "Cambiar idioma" 
+  this_file_language: "Español"
+  
+  time:
+    formats:
+      default: "%H:%M" # dudoso
+      short: "%H:%M" # dudoso
+      long: "%Y-%m-%d %H:%M" # dudoso
+      
+  #################### MODELS      
+  activerecord:
+    models:
+      digital_object:
+        one: "Objeto digital"
+        other: "Objetos digitales"
+      catalogue:
+        one: "Catálogo"
+        other: "Catálogos"
+      folder:
+        one: "Directorio"
+        other: "Directorios"
+      workgroup:
+        one: "Grupo"
+        other: "Grupos"
+      institution:
+        one: "Institución"
+        other: "Instituciones"
+      liturgical_feast:
+        one: "Fiesta litúrgica"
+        other: "Fiestas litúrgicas"
+      person:
+        one: "Persona"
+        other: "Personas"
+      source:
+        one: "Fuente"
+        other: "Fuentes"
+      standard_term:
+        one: "Término estándar"
+        other: "Términos estándar"
+      standard_title:
+        one: "Título estándar"
+        other: "Títulos estándar"
+      user:
+        one: "Usuario"
+        other: "Usuarios"
+        
+  #################### RECORD TYPES (TEMPLATES)
+  select_template: "Seleccione nuevo modelo"
+  available_templates: "Modelos disponibles"
+  from_existing_source: "Crear a partir de recurso existiente"
+  create_from_existing: "Crear"
+  record_types:
+    unspecified: "[Modelo desconocido]"
+    convolutum: "Convoluto"
+    collection: "Colección"
+    manuscript: "Manuscrito musical"
+    print: "Impreso musical"
+    manuscript_libretto: "Libreto manuscrito"
+    print_libretto: "Libreto impreso"
+    manuscript_theoretica: "Tratado manuscrito"
+    print_theoretica: "Tratado impreso"
+        
+  #################### MENUS
+  menu_home: "Home"
+  menu_sources: "Fuentes"
+  menu_simple_search: "Búsqueda simple"
+  menu_advanced_search: "Búsqueda avanzada"
+  menu_indexes: "Índices"
+  menu_people: "Personas"
+  menu_institutions: "Instituciones"
+  menu_titles: "Título / Íncipit textual"
+  menu_subjects: "Temas"
+  menu_library_sigla: "Siglas de bibliotecas"
+  menu_catalogues: "Catálogos"
+  menu_liturgical_feasts: "Fiestas litúrgicas"
+  menu_places: "Sitios"
+  menu_help: "Ayuda"
+  menu_folders: "Directorios"
+  menu_users: "Usuarios"
+  menu_workgroups: "Grupos de trabajo" # dudoso
+  menu_administration: "Administración"
+  menu_comments: "Comentarios"
+  menu_catalog: "Búsqueda de faceta"
+  menu_languages: "Idioma"
+  menu_contact: "Contacto"
+  menu_search_history: "Historia de búsquedas"
+  menu_guidelines: "Guía para catalogizar"
+  menu_marc_documentation: "Configuración MARC"
+  menu_guidelines_top: "Guía"
+  menu_cataloging: "Catalogizando"
+  menu_jobs: "Tareas" # dudoso, tal vez empleos
+  menu_holdings: "Holdings" # dudoso, no idea what it means
+  
+  ### VARIOUS ELEMENTS
+  recent_changes: "Modificaciones más recientes"
+  any_field_contains: "Cualquier campo contiene"
+  title_contains: "Título diplomático contiene"
+  std_title_contains: "Título estándar contiene"
+  composer_contains: "Compositor contiene"
+  library_sigla_contains: "Sigla contiene"
+  is_in_folder: "Está en directorio"
+  workgroups: "Workgroups" # dudoso
+  roles: "Papel"
+  user_details: "Detalles del usuario"
+  sections: "Secciones"
+  edit: "Editar"
+  search_sources: "Búsqueda de fuentes"
+  created_at: "Fecha de creación"
+  updated_at: "Fecha de modificación"
+  status: "Estado"
+  progress_stage: "Fase"
+  object: "Objeto"
+  queue: "Cola"
+  failed_at: "Fallado"
+  run_at: "Ejecutado"
+  created_at: "Creado"
+  progress: "Progreso"
+  failed: "Fallado"
+  waiting: "Esperando"
+  running: "Ejecutando"
+  finished: "Terminando"
+  lib_siglum: "Sigla de biblioteca"
+  holding_records: "Información del recurso"
+  new_holding: "Crear recurso"
+  
+  jobs:
+    not_set: "[Estado no puesto]"
+    ok: "Tarea terminado con éxito"
+    no_status: "Ha habido un error leyendo el estado de la tarea"
+    error: "ERROR: "
+    running_jobs: "Tareas pendientes no se puden borrar."
+    auto_delete: "No se puede borrar: Tarea terminada fue borrado automáticamente."
+    no_view: "No se pude ver: Tarea terminada fue borrado automáticamente."
+
+  # Sidebar
+  delete: "Borrar"
+  to_the_list: "Volver a la lista"
+  edit: "Editar"
+  new: "Crear"
+  duplicate: "Duplicar"
+  no_action: "Ninguna acción disponible"
+  reindex: "Reindizar"
+  publish: "Publicar"
+  select: "Seleccionar"
+  create_folder: "Añadir a directorio nuevo"
+  append_folder: "Añadir a directorio existente"
+  
+  # Editor sidebar
+  show_all_groups: "Mostrar todas las secciones"
+  show_preview: "Mostrar vista anticipada"
+  hide_preview: "Ocultar vista anticipada"
+  show_history: "Mostrar historia de modificaciones"
+  show_viaf: "Búsqueda VIAF"
+  save_and_continue: "Guardar y continuar editando"
+  save_and_exit: "Guardar y terminar"
+  cancel: "Cancelar"
+  
+  # Version history
+  history_date: "Fecha"
+  history_author: "Autor"
+  history_event: "Suceso"
+  history_modification: "Modificación"
+  history_view: "Vista"
+  history_diff: "Diferencia"
+  history_restore: "Restaurar"
+  history_delete: "Borrar"
+  history_restore_confirm: "¿Quiere restaurar esta versión?"
+  history_delete_confirm: "¿Quiere borrar esta versión?"
+  
+  #### FOLDER MESSAGES
+  folders:
+    save: "Guardar resultados en directorio"
+    success: "Directorio %{name} creado con %{count} ítems."
+    too_many: "No se puede añadir más de %{max} ítems (%{count} seleccionados)."
+    added: "Añadido %{count} ítems a directorio %{name}."
+    added_bg: "Añadido ítems a directorio, tarea %{job} pendiente."
+    success_bg: "Directorio %{name} creado, tarea %{job} pendiente."
+
+  ### Digital objects
+  digital_objects: "Imágenes"
+  digital_object_new: "Añadir imagen nuevo"
+  digital_object_add: "Añadir"
+  
+  ############ filters
+  filter_address: "Dirección"
+  filter_alternate_dates: "Alternar fechas"
+  filter_alternate_names: "Alternar nombres"
+  filter_alternate_terms: "Alternar términos"
+  filter_alternates: "Alternar nombres"
+  filter_any_field: "Cualquier campo"
+  filter_author: "Autor"
+  filter_author_or_editor: "Autor/Editor"
+  filter_autograph_of: "Autógrafo de"
+  filter_birth_place: "Lugar de nacimiento"
+  filter_catalog: "Catálogo"
+  filter_collection: "Colección"
+  filter_comments: "Comentarios"
+  filter_composer: "Compositor"
+  filter_connected_libraries: "Bibliotecas"
+  filter_country: "País"
+  filter_creation_date: "Fecha de creación"
+  filter_date: "Fecha"
+  filter_date_from: "Desde"
+  filter_date_to: "Hasta"
+  filter_description: "Descripción"
+  filter_digital_objects: "Objetos digitales"
+  filter_district: "Distrito"
+  filter_email: "Correo electrónico"
+  filter_folder_type: "Tipo de directorio"
+  filter_full_name: "Apellido"
+  filter_gender: "Sexo"
+  filter_id: "ID"
+  filter_incipits: "Íncipits"
+  filter_incipits_ng: "Íncipits (ngrams)"
+  filter_incipits_tf: "Íncipits (descubridor tema)"
+  filter_incipit_key: "Íncipit clave"
+  filter_institution: "Institución"
+  filter_institutions: "Instituciones"
+  filter_key: "Clave"
+  filter_language: "Idioma"
+  filter_last_updated: "Actualizado"
+  filter_lib_siglum: "Sigla de biblioteca"
+  filter_life_dates: "Fechas biográficas"
+  filter_links: "Enlace"
+  filter_liturgical_feast: "Fiesta litúrgica"
+  filter_location_and_name: "Appellido y lugar"
+  filter_manuscript_no: "Manuscrito número"
+  filter_male: "Masculino"
+  filter_female: "Femenino"
+  filter_unknown: "Desconocido"
+  filter_shelf_mark: "Signatura"
+  filter_name: "Apellido"
+  filter_notes: "Notas"
+  filter_old_versions: "Versiones anteriores"
+  filter_owner: "Propietario"
+  filter_pages: "Páginas"
+  filter_pattern: "Modelo de sigla"
+  filter_people: "Personas"
+  filter_person_100d: "Fechas biográficas"
+  filter_person_550a: "Profesión"
+  filter_person_375a: "Sexo"
+  filter_person_043c: "Código del país"
+  filter_person_551a: "Lugares"
+  filter_person_100d_birthdate: "Año de nacimiento"
+  filter_person_100d_deathdate: "Año de la muerte"
+  filter_phone: "Teléfono"
+  filter_place: "Lugar"
+  filter_provenance: "Procedencia"
+  filter_record_type: "Tipo"
+  filter_publisher: "Editor"
+  filter_revue_title: "Título" # dudoso
+  filter_id: "ID Rism"
+  filter_id_no: "ID Rism"
+  filter_scoring: "Tanteo"
+  filter_series_items: "Ítems de seria"
+  filter_siglum: "Sigla"
+  filter_source: "Fuente"
+  filter_sources: "Fuentes"
+  filter_source_type: "Tipo de fuente"
+  filter_std_title: "Título estandardizado"
+  filter_subject: "Tema"
+  filter_term: "Término"
+  filter_thematic_opus: "Catálogo temático / Opus no."
+  filter_title: "Título"
+  filter_titles: "Títulos"
+  filter_title_on_ms: "Título en la fuente"
+  filter_url: "URL"
+  filter_variants: "Variantes"
+  filter_versions: "Versiones"
+  filter_volume: "Tomo"
+  filter_image: "Imagen"
+  filter_file_name: "Nombre del archivo"
+  filter_file_size: "Tamaño del archivo"
+  filter_content_type: "Tipo"
+  filter_wf: "WF"
+  filter_wf_audit: "Revisión" # dudoso
+  filter_wf_stage: "Estado"
+  filter_distribution: "Tanteo"
+  filter_dist_exclude: "Excluir"
+  filter_dist_594a: "Partes vocales (solistas)"
+  filter_dist_594b: "Otras partes vocales (solistas)"
+  filter_dist_594c: "Partes vocales (coro)"
+  filter_dist_594d: "Otras partes vocales (coro)"
+  filter_dist_594e: "Instrumento solista"
+  filter_dist_594f: "Instrumentos de cuerda"
+  filter_dist_594g: "Instrumentos de viento-madera"
+  filter_dist_594h: "Instrumentos de viento-metal"
+  filter_dist_594i: "Instrumentos de cuerda pinzada"
+  filter_dist_594k: "Instrumentos de percusión"
+  filter_dist_594l: "Instrumentos de tecla"
+  filter_dist_594m: "Otros instrumentos"
+  filter_dist_594n: "Instrumentos de bajo continuo"
+ 
+  rism_any_key: "Cualquier tonalidad"
+  rism_a_flat: "La bemol mayor/menor"
+  rism_a: "La mayor/menor"
+  rism_b_flat: "Si bemol mayor/menor"
+  rism_b: "Si mayor/menor"
+  rism_c: "Do mayor/menor"
+  rism_c_sharp: "Do sostenido mayor/menor"
+  rism_d_flat: "Re bemol mayor/menor"
+  rism_d: "Re mayor/menor"
+  rism_e_flat: "Mi bemol mayor/menor"
+  rism_e: "Mi mayor/menor"
+  rism_f: "Fa mayor/menor"
+  rism_f_sharp: "Fa sostenido mayor/menor"
+  rism_g: "Sol mayor/menor"
+  rism_g_sharp: "Sol sostenido mayor/menor"
+  
+  # Assorted error messages
+  error_not_found: "El recursos al que Vd. quiere acceder no existe o fue borrado."
+  error_saving: "El recurso no está completo o crea un duplicado"
+  unknown_tags: "Hay algunos campos desconocidos en este recurso"
+  
+  #
+  entry:
+    one: "ítem"
+    other: "ítems"
+  digital_object:
+    one: "objeto digital"
+    other: "objetos digitales"
+  catalogue:
+    one: "catálogo"
+    other: "catálogos"
+  institution: 
+    one: "institución"
+    other: "instituciones"
+  library: 
+    one: "biblioteca"
+    other: "bibliotecas"
+  liturgicalfeast: 
+    one: "fiesta litúrgica"
+    other: "fiestas litúrgicas"
+  source:
+    one: "fuente"
+    other: "fuentes"
+  place:
+    one: "lugar"
+    other: "lugares"
+  person: 
+    one: "persona"
+    other: "personas"
+  standardterm:
+    one: "tema"
+    other: "temas" 
+  standardtitle:
+    one: "título o íncipit del texto"
+    other: "títulos o íncipits del texto" 
+
+  user:
+    one: "usuario"
+    other: "usuarios" 
+  job:
+    one: "tarea"
+    other: "tareas"
+  folder:
+    one: "directorio"
+    other: "directorios"
+
+  will_paginate:
+    page_entries_info:
+      single_page_html:
+        zero: "Ningún %{model} encontrado" 
+        one: "Mostrando <b>1</b> %{model}"
+        other: "Mostranto <b>todos %{count}</b> %{model}"
+      multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b> en total"
+  
+    models:
+      person: 
+        one: "Persona"
+        other: "Personas"
+
+  manuscript_links:
+     one: "1 fuente"
+     other: "%{count} fuentes" 
+     
+  # themefinder
+  themefinder_c: "altura contorno refinado"
+  themefinder_C: "altura contorno grueso"
+  themefinder_d: "grado musical diatónico"
+  themefinder_i: "intervalo dodecafónico" # dudoso, tal vez "cromático"
+  themefinder_I: "intervalo diatónico"
+  themefinder_p: "clase de altura diatónico"
+  themefinder_P: "clase de altura dodecafónico"
+  themefinder_p0: "ninguna búsqueda altura"
+
+  themefinder_u: "duración exacta"
+  themefinder_r: "duración contorno refinado"
+  themefinder_R: "duración contorno grueso"
+  themefinder_d0: "ninguna búsqueda duración"
+  
+  themefinder_L: "nivel métrica" # dudoso
+  themefinder_l: "posición métrica" # dudoso
+  themefinder_e: "métrica contorno refinado"
+  themefinder_E: "métrica contorno grueso"
+  themefinder_b: "nivel pulso"
+  themefinder_m0: "ninguna búsqueda métrica"
+  
+  tf_pitch_search: "Altura"
+  tf_duration_search: "Duración"
+  tf_metric_search: "Métrica"
+  tf_meter: "Métrica"
+  tf_anchor: "Búsquese sólo al comienzo del íncipit"
+  
+  tf_pitch_help: "Avisos para búsqueda altura"
+  tf_duration_help: "Avisos para búsqueda duración"
+  tf_metric_help: "Avisos para búsqueda métrica"
+  tf_anchor_help: "Avisos búsqueda anclada" # dudoso
+  tf_timesig_help: "Ayuda tiempo"
+  btn_themefinder_reset: "Reiniciar"
+  
+  tf_acknowledgments: "Búsqueda íncipits está realizado con <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> desarrollado por <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
+
+  hls_link_lang: "es"
+  hls_link_name: "HDS" # dudoso
+  
+  do_link_lang: "es"
+  do_media_files_title: "Archivos multimedia"
+  do_ext_res_link: "Recursos externos:"
+  do_ext_link_not_avail: "(Archivos de audio no disponibles desde aquí)"
+  do_images_title: "Imágenes"
+  connected_libraries: "Bibliotecas"
+
+  mei:
+    title: "Exportación MEI para fuente %{source}"
+    parameters: "Parámetros"
+    format: "Formato output del íncipit:"
+    format_mei: "MEI"
+    format_pae: "PAE (sin conversión)"
+    stylesheet: "Hoja de estilo"
+    default_stylesheet: "Hoja de estilo estándar:"
+    custom_stylesheet: "Hoja de estilo acostumbrada:"
+    preview: "Vista anticipada"
+    download: "Descargar"
+    more: "Más"
+    banner: 'Por favor haga clic en "Vista anticipada" para mostrar output convertido en MEI.'
+
+  wf_stage:
+    inprogress: "En progreso"
+    published: "Publicado"
+    deleted: "Borrado"
+   
+  # date:
+  # Empty lines for matching line numbers with other translation files  
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+
+######################################################################################################
+# End of translation in all languages - make sure all the file have the same line number for this line
+
+ 
+######################################################################################################
+# Blacklights overriden translations - the list can vary from one language to another
+
+  blacklight:
+    application_name: 'Muscat'
+    header_links:
+      logout: 'Cerrar sesión'
+      
+ 
+######################################################################################################
+# Record types, English only
+      
+  record_types_codes:
+    "0": "UNK"
+    "1": "COL"
+    "2": "MMS"
+    "3": "MPR"
+    "4": "LMS"
+    "5": "LPR"
+    "6": "TMS"
+    "7": "TPR"
+    "8": "CVT"
+    
+  status_codes:
+    published: "PUB"
+    inprogress: "INP"
+
