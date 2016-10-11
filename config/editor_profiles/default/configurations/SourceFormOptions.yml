@@ -246,6 +246,9 @@
       - type: standard_title
         editor_partial: subfield_secondary
         allow_new: true
+    - - o
+      - editor_partial: subfield_select_codes
+        codes_reference: "240o"
     - - k
       - editor_partial: subfield_select_codes
         codes_reference: "240k"
@@ -253,9 +256,6 @@
       - editor_partial: subfield_select_codes
         codes_reference: "240r"
     - - m
-    - - o
-      - editor_partial: subfield_select_codes
-        codes_reference: "240o"
   tag_params:
     240k:
       - "Excerpts"
@@ -615,6 +615,9 @@
       - type: standard_title
         editor_partial: subfield_secondary
         allow_new: true
+    - - o
+      - editor_partial: subfield_select_codes
+        codes_reference: "730o"
     - - g
       - values: 
         - "RISM"
@@ -625,9 +628,6 @@
     - - k
       - editor_partial: subfield_select_codes
         codes_reference: "730k"
-    - - o
-      - editor_partial: subfield_select_codes
-        codes_reference: "730o"
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "730r"

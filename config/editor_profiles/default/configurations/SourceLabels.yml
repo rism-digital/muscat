@@ -18,7 +18,7 @@ doc_tag_index:
 doc_abbreviations: 
   label: 
     de: "Abkürzungen"
-    en: Abbreviations
+    en: Abbreviation
 doc_abbr_dates: 
   label: 
     de: "Datierung"
@@ -1854,7 +1854,7 @@ dpt:
   label: 
     it: Depositante
     fr: DEPOSITOR
-    de: Despositor
+    de: Depositor
     en: Depositor
 dsr: 
   label: 
