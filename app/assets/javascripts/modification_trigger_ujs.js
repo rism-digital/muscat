@@ -13,9 +13,9 @@
 		}
 		
 		if (jQuery.fn.on !== undefined) {
-			return jQuery(document).on('keydown', this.selector, handler);
+			return jQuery(document).on('focus', this.selector, handler);
 		} else {
-			return this.live('keydown', handler);
+			return this.live('focus', handler);
 		}
 	};
 
