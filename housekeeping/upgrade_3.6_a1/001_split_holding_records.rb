@@ -1,6 +1,9 @@
 @urlregex = '(.*?((?:http|https)(?::\\/{2}[\\w]+)(?:[\\/|\\.]?)(?:[^\\s"]*)))'
 @matcher = Regexp.new(@urlregex, Regexp::IGNORECASE)
 
+Source.paper_trail.disable
+Holding.paper_trail.disable
+
 def create_holdings(source, marc)
   count = 0
   marc.each_by_tag("852") do |t|
