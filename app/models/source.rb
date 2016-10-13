@@ -350,8 +350,7 @@ class Source < ActiveRecord::Base
       parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
         subfield = tag.fetch_first_by_tag("w")
         next if !subfield || !subfield.content
-        
-        return if subfield.content == id.to_s || subfield.content == "00000" + id.to_s
+        return if subfield.content.to_i == id
       end
       
       # nothing found, add it in the parent manuscript
