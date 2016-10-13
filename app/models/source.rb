@@ -376,8 +376,8 @@ class Source < ActiveRecord::Base
         parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
           subfield = tag.fetch_first_by_tag("w")
           next if !subfield || !subfield.content
-          puts subfield.content
-          if subfield.content == id.to_s || subfield.content == "00000" + id.to_s
+          puts "Deleting 774 $w#{subfield.content} for #{@old_parent}, from #{id}"
+          if subfield.content.to_i == id
             tag.destroy_yourself
             modified = true
           end
