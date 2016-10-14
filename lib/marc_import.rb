@@ -83,8 +83,8 @@ class MarcImport
             date = DateTime.parse(marcdate.content)
             model.updated_at = date if date
             model.created_at = date if date
-          rescue ArgumentError
-            $stderr.puts "Cannot parse date for #{model.id}, #{marcdate.content}"
+          rescue => e
+            $stderr.puts "Cannot parse date for #{model.id}, #{marcdate.content} #{e.message}"
           end
         end
 
