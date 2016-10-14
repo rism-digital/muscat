@@ -78,17 +78,45 @@ class MarcImport
           status = "updated"
         end
         
-        marcdate = marc.first_occurance('005')
-        if marcdate && marcdate.content
+        moddate = marc.first_occurance('005')
+        if moddate && moddate.content
           begin
-            date = DateTime.parse(marcdate.content)
-            model.updated_at = date if date
-            model.created_at = date if date
+            date = DateTime.parse(moddate.content)
+            updated_at = date if date
           rescue => e
-            $stderr.puts "Cannot parse date for #{model.id}, #{marcdate.content} #{e.message}"
+            $stderr.puts "Cannot parse date for #{model.id}, #{moddate.content} #{e.message}"
           end
         end
 
+        createdate = marc.first_occurance('008')
+        if createdate && createdate.content
+          begin
+            date = DateTime.parse(createdate.content[0, 6])
+            created_at = date if date
+          rescue => e
+            $stderr.puts "Cannot parse date for #{model.id}, #{createdate.content} #{e.message}"
+          end
+        end
+        
+        if updated_at && created_at
+          if created_at < updated_at
+            model.created_at = created_at
+            model.updated_at = updated_at
+          else
+            $stderr.puts "created_at > updated_at #{created_at.to_s}, #{updated_at.to_s}, #{model.id}"
+            model.created_at = created_at
+            model.updated_at = created_at
+          end
+        elsif updated_at && !created_at ## the missing value will be date of import
+          #$stderr.puts "No created_at for #{model.id}"
+          model.updated_at = updated_at
+        elsif !updated_at && created_at
+          #$stderr.puts "No updated_at for #{model.id}"
+          model.created_at = created_at
+        else
+          #$stderr.puts "No date information for #{model.id}"
+        end
+        
         # Make internal format
         marc.to_internal
 
