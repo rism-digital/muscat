@@ -117,6 +117,9 @@ class MarcImport
         
         model.suppress_reindex
         
+        # In institution postpone the workgroup link creation
+        model.suppress_update_workgroups if model.respond_to? :suppress_update_workgroups
+        
         # Add user if exists, only for sources
         if @users && @model == "Source"
           if @users.include?(model.id)
