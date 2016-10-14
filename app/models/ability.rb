@@ -12,6 +12,7 @@ class Ability
       can :update_editions, Source
       
     elsif user.has_role? :guest
+      can [:read, :create], ActiveAdmin::Comment
       can :read, :all
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, User, :id => user.id
