@@ -15,6 +15,14 @@ class MarcImport
     @cnt = 0
     @start_time = Time.now
     
+    @users = nil
+    if File.exist?("link_users.yml")
+      @users = YAML.load(File.read("link_users.yml"))
+      puts "Read #{@users.count} users"
+    else
+      puts "No User file provided"
+    end
+    
     MarcConfigCache.get_configuration model.downcase
     MarcConfigCache.add_overlay(model, "#{Rails.root}/housekeeping/import/import_tags_source.yml")
   end
@@ -86,8 +94,11 @@ class MarcImport
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
         marc.suppress_scaffold_links
         marc.import
-
-        # step 3. associate Marc with Manuscript
+        
+        # step 3 resolve external values if it is a source
+        marc.root.resolve_externals if @model == "Source"
+        
+        # step 4. associate Marc to record
         model.marc = marc
         @import_results.concat( marc.results )
         @import_results = @import_results.uniq
@@ -104,6 +115,19 @@ class MarcImport
         end
         
         model.suppress_reindex
+        
+        # Add user if exists
+        if @users
+          if @users.include?(model.id)
+            name = @users[model.id]
+            begin
+              user = Users.find_by_name(name)
+              model.user = user
+            rescue ActiveRecord::RecordNotFound
+              puts "Could not find user #{name}".red
+            end
+          end
+        end
         
          # step 4. insert model into database
         begin
