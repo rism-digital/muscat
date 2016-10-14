@@ -287,13 +287,6 @@
     :fields:
     - - b
       - :occurrences: "*"
-  "490":
-    :master: a
-    :indicator: "2#"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
   "500":
     :master: a
     :indicator: "##"
@@ -325,6 +318,15 @@
     :occurrences: "*"
     :fields:
     - - a
+      - :occurrences: "?"
+  "510":
+    :master: a
+    :indicator: "2#"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - c
       - :occurrences: "?"
   "511":
     :master: a
