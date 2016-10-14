@@ -335,6 +335,18 @@
   layout: 
     fields: 
     - - a
+      - values: 
+        - "Autography"
+        - "Computer printout"
+        - "Engraving"
+        - "Facsimile"
+        - "Lithography"
+        - "Photoreproductive process"
+        - "Reproduction"
+        - "Transparency"
+        - "Typescript"
+        - "Typography"
+        editor_partial: subfield_select
 "383": 
   layout: 
     fields: 

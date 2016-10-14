@@ -2709,3 +2709,64 @@ G+5:
     fr: "G+5"
     de: "G+5"
     en: "G+5"
+#Physical medium (340 $a) - currently not used by the partial
+Autography:
+  label:
+    it: "AUTOGRAPHY"
+    fr: "Autographie"
+    de: "Autographie"
+    en: "Autography"
+"Computer printout":
+  label:
+    it: "COMPUTER PRINTOUT"
+    fr: "Impression informatique"
+    de: "Computerausdruck"
+    en: "Computer printout"
+Engraving:
+  label:
+    it: "ENGRAVING"
+    fr: "Gravure"
+    de: "Stich"
+    en: "Engraving"
+Facsimile:
+  label:
+    it: "FACSIMILE"
+    fr: "Facsimile"
+    de: "Faksimile"
+    en: "Facsimile"
+Lithography:
+  label:
+    it: "LITHOGRAPHY"
+    fr: "Lithographie"
+    de: "Lithographie"
+    en: "Lithography"
+"Photoreproductive process":
+  label:
+    it: "PHOTOREPRODUCTIVE PROCESS (BLUPRINT)"
+    fr: "Reproduction photo (blueprint)"
+    de: "Blaupause"
+    en: "Photoreproductive process (bluprint)"
+Reproduction:
+  label:
+    it: "REPRODUCTION"
+    fr: "Reproduction"
+    de: "Reproduktion"
+    en: "Reproduction"
+Transparency:
+  label:
+    it: "TRANSPARENCY"
+    fr: "Transparent"
+    de: "Transparentfolie"
+    en: "Transparency"
+Typescript:
+  label:
+    it: "TYPESCRIPT"
+    fr: "Tapuscrit"
+    de: "Typescript"
+    en: "Typescript"
+Typography:
+  label:
+    it: "TYPOGRAPHY"
+    fr: "Typographie"
+    de: "Typendruck"
+    en: "Typography"
