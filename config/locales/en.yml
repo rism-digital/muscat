@@ -466,6 +466,8 @@ en:
   error_not_found: "The resource you are trying to access does not exist or has been deleted."
   error_saving: "The resource is not complete or generates a duplicate"
   unknown_tags: "There are some unknown fields in this record"
+  cannot_update_source: "You are not authorized to edit this type of source"
+  cannot_create_source: "You are not authorized to create this type of source"
   
   #
   entry:

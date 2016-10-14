@@ -36,14 +36,14 @@ doc.xpath('/images/image').each do |i|
 		
 		sources.each do |src|
 			begin
-				Source.find(src)
+				s = Source.find(src)
 			rescue ActiveRecord::RecordNotFound => e
 				puts "could not find source #{src}"
 				next
 			end
 			
 		    dol = DigitalObjectLink.create(object_link_type: "Source", object_link_id: src.to_i,
-		                                  user: user, digital_object_id: obj.id)
+		                                  user: s.user, digital_object_id: obj.id)
 		end
 		
 		people.each do |pr|
