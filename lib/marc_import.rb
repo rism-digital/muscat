@@ -15,8 +15,9 @@ class MarcImport
     @cnt = 0
     @start_time = Time.now
     
+    # Load users, for source model
     @users = nil
-    if File.exist?("link_users.yml")
+    if File.exist?("link_users.yml") @model == "Source"
       @users = YAML.load(File.read("link_users.yml"))
       puts "Read #{@users.count} users"
     else
@@ -116,8 +117,8 @@ class MarcImport
         
         model.suppress_reindex
         
-        # Add user if exists
-        if @users
+        # Add user if exists, only for sources
+        if @users && @model == "Source"
           if @users.include?(model.id)
             name = @users[model.id]
             begin
