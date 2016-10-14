@@ -700,22 +700,6 @@ doc_references:
         fr: "No. de Opus"
         de: Opus
         en: Opus number
-"490": 
-  label: 
-    it: Serie RISM
-    fr: RISM Series
-    de: RISM Series
-    en: RISM Series
-  fields: 
-    a: 
-      label: 
-        it: Serie RISM
-        fr: RISM Series
-        de: RISM Series
-        en: RISM Series
-      edit_label: 
-        en: ""
-
 "500": 
   label: 
     it: Osservazioni
@@ -782,6 +766,25 @@ doc_references:
         en: Creation/production note
       edit_label: 
         en: ""
+"510": 
+  label: 
+    it: Serie RISM
+    fr: RISM Series
+    de: RISM Series
+    en: RISM Series
+  fields: 
+    a: 
+      label: 
+        it: Serie
+        fr: Series
+        de: Series
+        en: Series
+    c: 
+      label: 
+        it: No
+        fr: No
+        de: No
+        en: No
 "511": 
   label: 
     it: Nota sui interpreti

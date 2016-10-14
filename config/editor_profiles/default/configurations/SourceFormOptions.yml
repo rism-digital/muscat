@@ -350,19 +350,7 @@
 "383": 
   layout: 
     fields: 
-    - - b
-#
-"490": 
-  layout: 
-    fields: 
-    - - a
-      - values: 
-        - "A/I"
-        - "A/II"
-        - "B/I"
-        - "B/II"
-        - "B/IV"
-        editor_partial: subfield_select
+    - - b   
 "500": 
   layout: 
     fields: 
@@ -408,6 +396,18 @@
         - "Vocalist: "
         growfield: true
         editor_partial: subfield_autocomplete
+"510": 
+  layout: 
+    fields: 
+    - - a
+      - values: 
+        - "A/I"
+        - "A/II"
+        - "B/I"
+        - "B/II"
+        - "B/IV"
+        editor_partial: subfield_select
+    - - c  
 "518": 
   layout: 
     fields: 
