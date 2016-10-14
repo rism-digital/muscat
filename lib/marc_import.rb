@@ -125,7 +125,7 @@ class MarcImport
           if @users.include?(model.id)
             name = @users[model.id]
             begin
-              user = Users.find_by_name(name)
+              user = User.find_by_name(name)
               model.user = user
             rescue ActiveRecord::RecordNotFound
               puts "Could not find user #{name}".red
