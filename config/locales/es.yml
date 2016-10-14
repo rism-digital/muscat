@@ -278,6 +278,7 @@ es:
   duplicate: "Duplicar"
   no_action: "Ninguna acción disponible"
   reindex: "Reindizar"
+  resave: "RESAVE"
   publish: "Publicar"
   select: "Seleccionar"
   create_folder: "Añadir a directorio nuevo"

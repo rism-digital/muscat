@@ -11,6 +11,8 @@ class Ability
       can :create_editions, Source
       can :update_editions, Source
       
+      can :resave, :all
+
     elsif user.has_role? :guest
       can [:read, :create], ActiveAdmin::Comment
       can :read, :all

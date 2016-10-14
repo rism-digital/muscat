@@ -56,6 +56,12 @@
 				:class => "muscat_icon_link muscat_icon_link_reindex") %>
 			</li>
 		<%- end %>
+		<%- if (self.controller.respond_to? :resave) && (can? :resave, item) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :resave}", send("resave_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_reindex") %>
+			</li>
+		<%- end %>
 		<%- if (self.controller.respond_to? :publish) && (can? :publish, item) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :publish}", send("publish_admin_#{model}_path", item),

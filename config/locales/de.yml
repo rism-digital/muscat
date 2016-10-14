@@ -290,6 +290,7 @@ de:
   duplicate: "Kopieren"
   no_action: "Keine Aktion verfügbar"
   reindex: "Reindexieren"
+  resave: "RESAVE"
   publish: "Veröffentlichen"
   select: "Auswählen"
   create_folder: "Erstelle Ordner"

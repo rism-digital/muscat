@@ -104,6 +104,11 @@ ActiveAdmin.register Person do
     job = Delayed::Job.enqueue(ReindexItemsJob.new(Person.find(params[:id]), "referring_sources"))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
+	
+  member_action :resave, method: :get do
+    job = Delayed::Job.enqueue(SaveItemsJob.new(Person.find(params[:id]), "referring_sources"))
+    redirect_to resource_path(params[:id]), notice: "Save Job started #{job.id}"
+  end
   
   ###########
   ## Index ##
