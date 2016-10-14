@@ -49,8 +49,8 @@ class Ability
         user.can_edit? source
       end
       
-      can :create_editions, Source
-      can :update_editions, Source
+      cannot :create_editions, Source
+      cannot :update_editions, Source
       
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
@@ -74,8 +74,8 @@ class Ability
       end
       
       # THE DIFFERENCE WITH CATALOGUER
-      cannot :create_editions, Source
-      cannot :update_editions, Source
+      can :create_editions, Source
+      can :update_editions, Source
       
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
