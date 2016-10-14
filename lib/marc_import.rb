@@ -17,7 +17,7 @@ class MarcImport
     
     # Load users, for source model
     @users = nil
-    if File.exist?("link_users.yml") @model == "Source"
+    if File.exist?("link_users.yml") && @model == "Source"
       @users = YAML.load(File.read("link_users.yml"))
       puts "Read #{@users.count} users"
     else
