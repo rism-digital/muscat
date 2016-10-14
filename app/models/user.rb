@@ -26,6 +26,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def can_create_edition?(source)
+    if (source.record_type == MarcSource::RECORD_TYPES[:edition] ||
+      source.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
+      source.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
+      source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content])
+     if can? :create_edition?, source
+       true
+     else
+       false
+     end
+   end
+   true
+  end
+
   def get_workgroups
     self.workgroups.map {|ins| ins.name}
   end

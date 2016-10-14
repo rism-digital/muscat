@@ -466,7 +466,9 @@ fr:
   error_not_found: "La ressource à laquelle vous essayez d'accéder n'existe pas ou a été supprimée."
   error_saving: "La ressource n'est pas complète ou engendre un doublon"
   unknown_tags: "Ce titre contient des champs non reconnus."
-  
+  cannot_update_source: "YOU ARE NOT AUTHORIZED TO EDIT THIS TYPE OF SOURCE"
+  cannot_create_source: "YOU ARE NOT AUTHORIZED TO CREATE THIS TYPE OF SOURCE"
+
   #
   entry:
     one: "entrée"
