@@ -2471,7 +2471,7 @@
                 <xsl:apply-templates select="marc:datafield[@tag='852']"/>
 
                 <!-- source seriesStmt -->
-                <xsl:apply-templates select="marc:datafield[@tag='490']"/>
+                <xsl:apply-templates select="marc:datafield[@tag='510']"/>
 
                 <!-- source contents -->
                 <xsl:choose>
@@ -2718,7 +2718,7 @@
 
                 <!-- source seriesStmt -->
                 <xsl:apply-templates
-                  select="marc:datafield[@tag='490'][not(marc:subfield[@code='3'])]"/>
+                  select="marc:datafield[@tag='510'][not(marc:subfield[@code='3'])]"/>
 
                 <!-- source contents -->
                 <xsl:choose>
@@ -2767,7 +2767,7 @@
                 <!-- $componentContent contains copy of datafields that have subfield 3 -->
                 <xsl:variable name="componentContent">
                   <xsl:copy-of select="marc:datafield[@tag='250' or @tag='260' or
-                    @tag='264' or @tag='300' or @tag='490' or @tag='500' or
+                    @tag='264' or @tag='300' or @tag='510' or @tag='500' or
                     @tag='504' or @tag='506' or @tag='510' or @tag='520' or
                     @tag='521' or @tag='524' or @tag='530' or @tag='533' or
                     @tag='534' or @tag='535' or @tag='540' or @tag='541' or
@@ -2822,7 +2822,7 @@
 
                       <!-- component seriesStmt -->
                       <xsl:apply-templates
-                        select="$componentContent/marc:datafield[@tag='490'][marc:subfield[@code='3']
+                        select="$componentContent/marc:datafield[@tag='510'][marc:subfield[@code='3']
                         = current-grouping-key()]"/>
 
                       <!-- component notesStmt -->
@@ -4014,7 +4014,7 @@
   </xsl:template>
 
   <!-- series title -->
-  <xsl:template match="marc:datafield[@tag='490']">
+  <xsl:template match="marc:datafield[@tag='510']">
     <seriesStmt>
       <xsl:call-template name="analog">
         <xsl:with-param name="tag">

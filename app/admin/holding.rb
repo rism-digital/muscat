@@ -97,7 +97,7 @@ ActiveAdmin.register Holding do
       end
     end
     
-    def new      
+    def new
       if !params.include?(:source_id) || !params[:source_id]
         redirect_to admin_root_path, :flash => { :error => "PLEASE INCLUDE A SOURCE ID" }
         return

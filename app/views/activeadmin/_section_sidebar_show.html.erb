@@ -15,6 +15,14 @@
 		<%= link_to("#{I18n.t :to_the_list}", send("collection_path", item),
 			:class => "muscat_icon_link muscat_icon_link_list") %>
 		</li>
+	
+	<%if @item.id && @item.respond_to?(:allow_holding?) && @item.allow_holding? %>
+		<li class="muscat_icon_separator"></li>
+		<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :new_holding}", new_admin_holding_path(source_id: @item.id),
+				:class => "muscat_icon_link muscat_icon_link_new") %>
+		</li>
+	<%end%>
 		
 		<li class="muscat_icon_separator"></li>
 	
@@ -45,6 +53,12 @@
 		<%- if (self.controller.respond_to? :reindex) && (can? :reindex, item) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :reindex}", send("reindex_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_reindex") %>
+			</li>
+		<%- end %>
+		<%- if (self.controller.respond_to? :resave) && (can? :resave, item) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :resave}", send("resave_admin_#{model}_path", item),
 				:class => "muscat_icon_link muscat_icon_link_reindex") %>
 			</li>
 		<%- end %>

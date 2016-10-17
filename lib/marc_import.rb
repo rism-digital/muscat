@@ -15,6 +15,15 @@ class MarcImport
     @cnt = 0
     @start_time = Time.now
     
+    # Load users, for source model
+    @users = nil
+    if File.exist?("link_users.yml") && @model == "Source"
+      @users = YAML.load(File.read("link_users.yml"))
+      puts "Read #{@users.count} users"
+    else
+      puts "No User file provided"
+    end
+    
     MarcConfigCache.get_configuration model.downcase
     MarcConfigCache.add_overlay(model, "#{Rails.root}/housekeeping/import/import_tags_source.yml")
   end
@@ -69,25 +78,56 @@ class MarcImport
           status = "updated"
         end
         
-        marcdate = marc.first_occurance('005')
-        if marcdate && marcdate.content
+        moddate = marc.first_occurance('005')
+        if moddate && moddate.content
           begin
-            date = DateTime.parse(marcdate.content)
-            model.updated_at = date if date
-            model.created_at = date if date
-          rescue ArgumentError
-            $stderr.puts "Cannot parse date for #{model.id}, #{marcdate.content}"
+            date = DateTime.parse(moddate.content)
+            updated_at = date if date
+          rescue => e
+            $stderr.puts "Cannot parse date for #{model.id}, #{moddate.content} #{e.message}"
           end
         end
 
+        createdate = marc.first_occurance('008')
+        if createdate && createdate.content
+          begin
+            date = DateTime.parse(createdate.content[0, 6])
+            created_at = date if date
+          rescue => e
+            $stderr.puts "Cannot parse date for #{model.id}, #{createdate.content} #{e.message}"
+          end
+        end
+        
+        if updated_at && created_at
+          if created_at < updated_at
+            model.created_at = created_at
+            model.updated_at = updated_at
+          else
+            $stderr.puts "created_at > updated_at #{created_at.to_s}, #{updated_at.to_s}, #{model.id}"
+            model.created_at = created_at
+            model.updated_at = created_at
+          end
+        elsif updated_at && !created_at ## the missing value will be date of import
+          #$stderr.puts "No created_at for #{model.id}"
+          model.updated_at = updated_at
+        elsif !updated_at && created_at
+          #$stderr.puts "No updated_at for #{model.id}"
+          model.created_at = created_at
+        else
+          #$stderr.puts "No date information for #{model.id}"
+        end
+        
         # Make internal format
         marc.to_internal
 
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
         marc.suppress_scaffold_links
         marc.import
-
-        # step 3. associate Marc with Manuscript
+        
+        # step 3 resolve external values if it is a source
+        marc.root.resolve_externals if @model == "Source"
+        
+        # step 4. associate Marc to record
         model.marc = marc
         @import_results.concat( marc.results )
         @import_results = @import_results.uniq
@@ -104,6 +144,22 @@ class MarcImport
         end
         
         model.suppress_reindex
+        
+        # In institution postpone the workgroup link creation
+        model.suppress_update_workgroups if model.respond_to? :suppress_update_workgroups
+        
+        # Add user if exists, only for sources
+        if @users && @model == "Source"
+          if @users.include?(model.id)
+            name = @users[model.id]
+            begin
+              user = User.find_by_name(name)
+              model.user = user
+            rescue ActiveRecord::RecordNotFound
+              puts "Could not find user #{name}".red
+            end
+          end
+        end
         
          # step 4. insert model into database
         begin

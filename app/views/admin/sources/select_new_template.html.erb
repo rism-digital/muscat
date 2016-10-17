@@ -6,6 +6,18 @@
 		<div class="attributes_table">
 			<table border="0" cellpadding="0" cellspacing="0">
 				<% templates.each do |value, name|%>
+				<%
+				# Make sure we display only the file types we can edit
+				template_name = value.sub(/[^_]*_/,"")
+				trecord_type = MarcSource::RECORD_TYPES[template_name.to_sym]
+				
+				if (trecord_type == MarcSource::RECORD_TYPES[:edition] ||
+						trecord_type == MarcSource::RECORD_TYPES[:edition_content] ||
+						trecord_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
+						trecord_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]) &&
+						cannot?(:create_editions, Source)
+					next
+				end %>
 				<tr class="row">
 					<td><%= link_to("#{I18n.t('record_types.' + name)}", new_resource_path(:new_type => value)) %></td>
 				</tr>

@@ -71,6 +71,7 @@ class Institution < ActiveRecord::Base
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
+  attr_accessor :suppress_update_workgroups_trigger
 
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
@@ -87,6 +88,10 @@ class Institution < ActiveRecord::Base
   def suppress_recreate
     self.suppress_recreate_trigger = true
   end 
+
+	def suppress_update_workgroups
+		self.suppress_update_workgroups_trigger = true
+	end
 
   def fix_ids
     #generate_new_id
@@ -228,6 +233,7 @@ class Institution < ActiveRecord::Base
   end
 
   def update_workgroups
+		return if self.suppress_update_workgroups_trigger == true
     Workgroup.all.each do |wg|
       if Regexp.new(wg.libpatterns).match(self.siglum)
         wg.save

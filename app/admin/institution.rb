@@ -153,12 +153,7 @@ ActiveAdmin.register Institution do
     end    
     if !resource.get_deposita.empty?
       panel I18n.t :filter_series_items do
-        search=Institution.solr_search do 
-          fulltext(params[:id], :fields=>['5800'])
-          paginate :page => params[:items_list_page], :per_page=>15
-          order_by(:siglum_order)
-        end
-        paginated_collection(search.results, param_name: 'items_list_page', download_links: false) do
+        paginated_collection(@item.institutions.page(params[:items_list_page]).per(15), param_name: 'items_list_page', download_links: false) do
           table_for(collection, sortable: true) do
             column :id do |p| link_to p.id, controller: :institutions, action: :show, id: p.id end
             column :siglum

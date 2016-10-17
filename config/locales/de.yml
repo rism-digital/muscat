@@ -290,6 +290,7 @@ de:
   duplicate: "Kopieren"
   no_action: "Keine Aktion verfügbar"
   reindex: "Reindexieren"
+  resave: "RESAVE"
   publish: "Veröffentlichen"
   select: "Auswählen"
   create_folder: "Erstelle Ordner"
@@ -466,7 +467,9 @@ de:
   error_not_found: "Der gesuchte Eintrag existiert nicht odrer wurde gelöscht."
   error_saving: "Dieser Eintrag ist unvollständig oder erstellt eine Dublette."
   unknown_tags: "Dieser Eintrag enthält falsch verwendete Felder."
-   
+  cannot_update_source: "YOU ARE NOT AUTHORIZED TO EDIT THIS TYPE OF SOURCE"
+  cannot_create_source: "YOU ARE NOT AUTHORIZED TO CREATE THIS TYPE OF SOURCE"
+
   #
   entry:
     one: "Eintrag"

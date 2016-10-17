@@ -289,7 +289,8 @@ it:
   new: "Crea"
   duplicate: "Duplica"
   no_action: "Nessuna azione"
-  reindex: "Reindicizza"
+  reindex: "Indicizza le fonti"
+  resave: "Salva le fonti"
   publish: "Pubblica"
   select: "Seleziona"
   create_folder: "Crea Cartella"
@@ -466,6 +467,8 @@ it:
   error_not_found: "La risorsa specificata non esiste oppure è stata cancellata."
   error_saving: "La risorsa non è completa oppure genera un duplicato"
   unknown_tags: "Il record contiene dei campi sconosciuti"
+  cannot_update_source: "Non sei autorizzato a modificare questo tipo di fonte"
+  cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
 
   #
   entry:

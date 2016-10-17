@@ -94,7 +94,6 @@ groups:
 
   show_references: 
     all_tags: 
-    - "490"
     - "596"
     - "690"
     - "383"
