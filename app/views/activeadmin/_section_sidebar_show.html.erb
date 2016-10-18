@@ -16,7 +16,7 @@
 			:class => "muscat_icon_link muscat_icon_link_list") %>
 		</li>
 	
-	<%if @item.id && @item.respond_to?(:allow_holding?) && @item.allow_holding? %>
+	<%if @item && @item.id && @item.respond_to?(:allow_holding?) && @item.allow_holding? %>
 		<li class="muscat_icon_separator"></li>
 		<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :new_holding}", new_admin_holding_path(source_id: @item.id),
