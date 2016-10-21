@@ -1809,7 +1809,7 @@ cmp:
   label: 
     it: Compositore / Compositore secondario
     fr: Compositeur / Co-compositeur
-    de: Komponist / Mitkomponist
+    de: Komponistenquerverweis
     en: Composer / Co-Composer
 cnd: 
   label: 
@@ -1839,7 +1839,7 @@ ctb:
   label: 
     it: CONTRIBUTOR
     fr: Contributeur
-    de: CONTRIBUTOR
+    de: Mitkomponist
     en: Contributor
 dnc: 
   label: 
