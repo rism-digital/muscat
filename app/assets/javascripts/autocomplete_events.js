@@ -146,14 +146,34 @@ function bind_autocomplete_events() {
 
       // Make the form dirty
       marc_editor_set_dirty();
-			
-      // Show the checkbox
-      check_tr = toplevel_li.find(".checkbox_confirmation")
-      check_tr.fadeIn("fast");
-			
-      check = toplevel_li.find(".creation_checkbox")
-      check.data("check", true)
-			
+
+      // Show the checkbox - but only for real "linked" fields
+      // the link-to permit empty values, so in that case do
+      // not display the checkbox. In all the others yes
+      if (hidden.data("has-links-to") == false ||
+         (hidden.data("has-links-to") == true && input.val() != "")) {
+        // Show the checkbox
+        var check_tr = toplevel_li.find(".checkbox_confirmation")
+        check_tr.fadeIn("fast");
+
+        check = toplevel_li.find(".creation_checkbox")
+        check.data("check", true)
+      }
+
+      // Hide the checkbox if it was previously shown
+      // for links_to and empty value
+      // This is the case in which the user inserts a new value
+      // and the deletes it. We want the check to disappear
+      if (hidden.data("has-links-to") == true && input.val() == "") {
+        // Remove the checkbox
+        var check_tr = toplevel_li.find(".checkbox_confirmation")
+        check_tr.fadeOut("fast");
+		
+        var check = toplevel_li.find(".creation_checkbox")
+        check.data("check", false)
+      }
+      
+      
       // Remove auxiliary data and enable
       var group = input.parents(".tag_content_collapsable");
       $(".autocomplete_extra", group).each(function () {
