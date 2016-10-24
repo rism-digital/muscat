@@ -190,13 +190,13 @@ de:
   record_types:
     unspecified: "[Unbekannte Vorlage]"
     collection: "Sammlung"
-    source: "Musikquelle"
-    edition_content: "Druckausgabe Einzeleintrag"
-    libretto_source: "Libretto"
-    libretto_edition_content: "Libretto Einzeleintrag"
-    theoretica_source: "Theoreticum"
-    theoretica_edition_content: "Theoreticum Einzeleintrag"
-    edition: "Druck"
+    source: "Musikhandschrift"
+    edition_content: "Musikdruck"
+    libretto_source: "Handschriftliches Libretto"
+    libretto_edition_content: "Gedrucktes Libretto"
+    theoretica_source: "Handschriftliches Theoreticum"
+    theoretica_edition_content: "Gedrucktes Theoreticum"
+    edition: "Bibliographischer Eintrag Musikdruck"
   
   #################### MENUS
   menu_home: "Home"

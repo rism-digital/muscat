@@ -18,7 +18,7 @@ doc_tag_index:
 doc_abbreviations: 
   label: 
     de: "Abkürzungen"
-    en: Abbreviations
+    en: Abbreviation
 doc_abbr_dates: 
   label: 
     de: "Datierung"
@@ -1588,7 +1588,7 @@ doc_references:
       label: 
         it: Materiale conservato
         fr: PRESERVED PARTS
-        de: erhaltenes Material
+        de: Erhaltenes Material
         en: Preserved Parts
     u: 
       label: 
@@ -1809,7 +1809,7 @@ cmp:
   label: 
     it: Compositore / Compositore secondario
     fr: Compositeur / Co-compositeur
-    de: Komponist / Mitkomponist
+    de: Komponistenquerverweis
     en: Composer / Co-Composer
 cnd: 
   label: 
@@ -1839,7 +1839,7 @@ ctb:
   label: 
     it: CONTRIBUTOR
     fr: Contributeur
-    de: CONTRIBUTOR
+    de: Mitkomponist
     en: Contributor
 dnc: 
   label: 
@@ -1857,7 +1857,7 @@ dpt:
   label: 
     it: Depositante
     fr: DEPOSITOR
-    de: Despositor
+    de: Depositor
     en: Depositor
 dsr: 
   label: 

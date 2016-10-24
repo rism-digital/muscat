@@ -190,13 +190,13 @@ en:
   record_types:
     unspecified: "[Unknown template]"
     collection: "Collection"
-    source: "Music source"
-    edition_content: "Music edition content"
-    libretto_source: "Libretto source"
-    libretto_edition_content: "Libretto edition content"
-    theoretica_source: "Treatise source"
-    theoretica_edition_content: "Treatise edition content"
-    edition: "Edition"
+    source: "Music manuscript"
+    edition_content: "Music imprint"
+    libretto_source: "Libretto, handwritten"
+    libretto_edition_content: "Libretto, printed"
+    theoretica_source: "Treatise, handwritten"
+    theoretica_edition_content: "Treatise, printed"
+    edition: "Edition*"
         
   #################### MENUS
   menu_home: "Home"
