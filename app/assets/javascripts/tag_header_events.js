@@ -47,7 +47,7 @@ used for _tag_header partial
 		$("#dialog").dialog( 'option', 'width', 300);
 		$("#dialog").dialog( 'option', 'buttons', {
 			OK: function() {
-				
+				marc_editor_set_dirty();
 				var dt_id = button_id.parents(".tag_toplevel_container");
 	
 				dt_id.fadeOut('fast', function() {
@@ -94,6 +94,7 @@ used for _tag_header partial
 	
 	// Create a new element when the tag_group already contains elements
 	function tag_header_add(elem) {
+		marc_editor_set_dirty();
 		var placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
 		var current_dt = elem.parents(".tag_toplevel_container");
 
@@ -110,8 +111,9 @@ used for _tag_header partial
 	// Create a new element when the tag_group is empty. It is necessary
 	// because in this case there is no tag_toplevel_container
 	function tag_header_add_from_empty(elem) {
+		marc_editor_set_dirty();
         // hide help if necessary
-        elem.parents(".tag_container").children(".tag_help_collapsable").hide();
+   elem.parents(".tag_container").children(".tag_help_collapsable").hide();
 		var placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
 		var parent_dl = elem.parents(".tag_group").children(".marc_editor_tag_block");
 
@@ -169,6 +171,7 @@ used for _tag_header partial
 	
 	// Duplicate a whole group
 	function tag_header_new_group(elem) {
+		marc_editor_set_dirty();
 		var placeholder = elem.parents(".tab_panel").children(".group_placeholders_toplevel").children(".group_placeholders").children(".panel");
 		var toplevel_dl =  elem.parents(".tab_panel").children(".tag_group_container");
 		
