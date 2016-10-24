@@ -38,7 +38,10 @@ class Ability
       can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding], :wf_owner => user.id
       can :create, DigitalObject
       can [:destroy, :read, :update], DigitalObject, :wf_owner => user.id
-      can [:destroy, :read, :update], DigitalObjectLink
+      can [:read, :update], DigitalObjectLink
+      can [:destroy], DigitalObjectLink do |link|
+        link.object_link.wf_owner == user.id
+      end
       
       can [:manage], Folder, :wf_owner => user.id
       can [:read, :create, :update], ActiveAdmin::Comment

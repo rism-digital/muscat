@@ -75,18 +75,25 @@ ActiveAdmin.register DigitalObject do
   
   member_action :remove_item, method: :get do
 
-    if can?(:delete, DigitalObjectLink)
+    begin
+      dol = DigitalObjectLink.find(params[:digital_object_link_id])
+    rescue
+      redirect_to resource_path(params[:id]), error: "Could not find Digital Object Link #{params[:digital_object_link_id]}"
+    end
+    
+    if can?(:destroy, dol)
       begin
-        dol = DigitalObjectLink.find(params[:digital_object_link_id])
         dol.delete
-        redirect_to resource_path(params[:id]), notice: "Link deleted successfully"
       rescue
-        redirect_to resource_path(params[:id]), error: "Could not delete link"
+        redirect_to resource_path(params[:id]), error: "Could not delete link #{params[:digital_object_link_id]}"
       end
+      redirect_to resource_path(params[:id]), notice: "Link deleted successfully"
     else
       flash[:error] = "Operation not allowed"
       redirect_to collection_path
     end
+
+
   end
   
   ###########

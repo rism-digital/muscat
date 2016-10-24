@@ -10,9 +10,7 @@
 #    n:
 #      required_if:
 #        "031": "p"
-    o:
-      required_if:
-        "031": "p"
+    o: required, warning
 #      required_if:
 #        "031": "p"
 #"041": 
