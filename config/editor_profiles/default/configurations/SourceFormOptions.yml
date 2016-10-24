@@ -236,7 +236,6 @@
       - "Conjectural"
       - "Doubtful"
       - "Misattributed"
-      - "Verified"
 "240": 
   new_window: standard_titles
   new_window_field: title_equals
