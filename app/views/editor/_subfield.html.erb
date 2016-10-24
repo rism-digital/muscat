@@ -20,7 +20,7 @@
 		validate_class, unique_name = @editor_validation.get_subtag_class_name(tag_name, subfield)
 		name_tag = raw "name=\"#{unique_name}\""
 		validate_marker = "validating"
-		validate_level = "warning" if @editor_validation.is_warning?(tag_name, subfield)	
+		validate_level = "warning" if @editor_validation.is_warning?(tag_name, subfield)
 	else
 		validate_class = ""
 	end

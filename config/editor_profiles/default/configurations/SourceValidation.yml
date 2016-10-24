@@ -27,6 +27,7 @@
     exclude:
       m:
       - collection
+      - theoretica_source
   tags:
     "0": required
     a: required
@@ -47,8 +48,7 @@
 #        "031": "e"
 "650": 
   tags:
-    "0": required
-    a: required
+    "0": mandatory
 "651": 
   tags:
     "0": required

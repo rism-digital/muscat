@@ -183,6 +183,32 @@ function marc_validate_presence(value, element) {
 	return true;
 }
 
+// Mandatory fields differ from the "required" as
+// the mandatory ones never should be blank; a source
+// cannot saved if the field is blank. a "required" field
+// in required ONLY IN THE SAME TAG. I.e. if the whole
+// TAG is empty it validates, but will not validate if you
+// do not fill the required value. Example is 852 institution:
+// you cannot insert Ms. No if you do not insert the sigla.
+// But if Sigla AND Ms. No are empty, the form is transmitted
+// Mandatory ones on the other hand will fail if the whole
+// tag is empty: i.e. 650 needs *always* to be there.
+function marc_validate_mandatory(value, element) {
+	var validate_level = $(element).data("validate-level");
+	
+	if (value == "") {
+			if (validate_level == "warning") {
+				marc_validate_add_warnings(element);
+				return true;
+			} else {
+				return false;
+			}
+		}
+	
+	// Value is present
+	return true;
+}
+
 function marc_validate_required_if(value, element, param) {
 	var dep_tag = param[0];
 	var dep_subtag = param[1];
@@ -209,7 +235,13 @@ function marc_validate_required_if(value, element, param) {
 	// in hidden tags that are entirely missing
 	// from the editing page at the moment of
 	// verification.
-	$('.serialize_marc[data-tag=' + dep_tag + '][data-subfield=' + dep_subtag + ']', toplevel).each(function() {
+	var selector;
+	if (dep_subtag == "control") {
+		selector = '.serialize_marc[data-tag=' + dep_tag + ']';
+	} else {
+		selector = '.serialize_marc[data-tag=' + dep_tag + '][data-subfield=' + dep_subtag + ']';
+	}
+	$(selector, toplevel).each(function() {
 		if ($(this).val() != "") {
 			// The value of the other field is set
 			// it makes the validated field mandatory
@@ -334,6 +366,7 @@ function marc_editor_init_validation(form, validation_conf) {
 	
 	// Add validator methods
 	$.validator.addMethod("presence", marc_validate_presence, I18n.t("validation.missing_message"));
+	$.validator.addMethod("mandatory", marc_validate_mandatory, I18n.t("validation.missing_message"));
 	$.validator.addMethod("required_if", marc_validate_required_if, 
 			$.validator.format("Missing Mandatory Field, because field {0} ${1} is present"));
 
@@ -359,6 +392,8 @@ function marc_editor_init_validation(form, validation_conf) {
 					// Our own validator is called "presence" to distinguish it
 					// from the default "required" validator
 					$.validator.addClassRules(element_class, { presence: true });
+				} else if (rule_name == "mandatory") {
+					$.validator.addClassRules(element_class, { mandatory: true });
 				}
 			} else if (subtag instanceof Object) {
 				// More complex dataype
