@@ -254,7 +254,7 @@ doc_references:
     it: Incipit musicale
     fr: Incipit musical
     de: Musikincipit
-    en: Musical Incipit
+    en: Incipit
   fields: 
     a: 
       label: 
@@ -334,7 +334,7 @@ doc_references:
         it: Incipit musicale
         fr: Notation musicale
         de: Musikincipit
-        en: Musical incipit
+        en: Music incipit
     q: 
       label: 
         it: Commento all'incipit mus.
@@ -599,7 +599,7 @@ doc_references:
     it: Copia o dati editoriali
     fr: Copie ou impressum
     de: Abschrift oder Impressum
-    en: Copy of masthead
+    en: Publishing, Printing and Production Information
   fields: 
     a: 
       label: 
@@ -612,25 +612,25 @@ doc_references:
         it: Copista, editore, casa editrice
         fr: "Copiste ou maison d'édition"
         de: Schreiber, Verleger, Verlag
-        en: Atelier name
+        en: Publisher, copyist
     c: 
       label: 
         it: Anno
         fr: "Année"
         de: Jahr
-        en: Date
+        en: Coded date
     e: 
       label: 
         it: Luogo di stampa
         fr: Lieu d'impression
         de: Druckort
-        en: Printing place
+        en: Location of printer
     f: 
       label: 
         it: Stampatore, stamperia
         fr: Imprimeur, imprimerie
         de: Drucker, Druckerei
-        en: Printing office
+        en: Name of printer
     "8": 
       label: 
         it: Gruppo di materiale
@@ -642,14 +642,14 @@ doc_references:
     it: Materiale
     fr: "Matériel"
     de: Material
-    en: Material
+    en: Physical description
   fields: 
     a: 
       label: 
         it: Categoria di fonte, estensione
         fr: Type de source
         de: Quellenart, Umfang
-        en: Description/Extent
+        en: Format, extent
     b: 
       label: 
         it: Altri dettagli sul materiale
@@ -903,7 +903,7 @@ doc_references:
         it: Provenienza
         fr: Provenance
         de: Provenienzvermerke
-        en: Provenance note
+        en: Provenance notes
       edit_label: 
         en: ""
 "563": 
@@ -926,7 +926,7 @@ doc_references:
     it: Parti staccate
     fr: Parties
     de: Stimmenmaterial
-    en: Parts held
+    en: Parts held and extent
   fields: 
     a: 
       label: 
@@ -939,7 +939,7 @@ doc_references:
         it: Parti staccate mancanti
         fr: Parties manquantes
         de: Fehlendes Stimmenmaterial
-        en: Parts missing
+        en: Extent (parts)
     "8": 
       label: 
         it: Gruppo di materiale
@@ -1029,13 +1029,13 @@ doc_references:
         it: Nomi di ruoli standardizzati
         fr: "Noms de rôles standardisés"
         de: Rollennamen, standardisierte Schreibweise
-        en: Role names, standardised
+        en: Dramatic roles named, standardized
     u: 
       label: 
         it: "Nomi originali dei personaggi"
         fr: "Noms originaux"
         de: "Originale Schreibweise"
-        en: Original Name
+        en: Dramatic roles named, original spelling
 "596": 
   label: 
     it: Rimandi a RISM A/I e RISM B
@@ -1317,7 +1317,7 @@ doc_references:
     it: Nomi di persone aggiuntivi
     fr: Noms de personnes additionnels
     de: Nebeneintragung Personen
-    en: Additional personal names
+    en: Additional personal name
   fields: 
     a: 
       label: 
@@ -1810,7 +1810,7 @@ cmp:
     it: Compositore / Compositore secondario
     fr: Compositeur / Co-compositeur
     de: Komponistenquerverweis
-    en: Composer / Co-Composer
+    en: Composer cross-reference
 cnd: 
   label: 
     it: Direttore d'orchestra
@@ -1840,7 +1840,7 @@ ctb:
     it: CONTRIBUTOR
     fr: Contributeur
     de: Mitkomponist
-    en: Contributor
+    en: Co-composer
 dnc: 
   label: 
     it: Ballerino
@@ -1876,7 +1876,7 @@ dub:
     it: Dubbio
     fr: Douteux
     de: Zweifelhaft
-    en: Dubious
+    en: Uncertain
 edt: 
   label: 
     it: Curatore
@@ -1990,7 +1990,7 @@ scr:
     it: Copista
     fr: Copiste / Scribe
     de: Schreiber
-    en: Copyist / Scribe
+    en: Copyist
 trl: 
   label: 
     it: Traduttore

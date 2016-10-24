@@ -208,7 +208,7 @@ en:
   menu_institutions: "Institutions"
   menu_titles: "Title / text incipit"
   menu_subjects: "Genres"
-  menu_library_sigla: "Library sigla"
+  menu_library_sigla: "Library siglum"
   menu_catalogues: "Secondary literature"
   menu_liturgical_feasts: "Liturgical festivals"
   menu_latin: "Latin text"
@@ -260,7 +260,7 @@ en:
   finished: "Finished"
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
-  new_holding: "Create Holding Record"
+  new_holding: "Add holdings"
   new_digital_object: "Attach a new image"
   record_actions: "Record Actions"
   record_status: "Record Status"
@@ -305,7 +305,7 @@ en:
   show_history: "Show modification history"
   show_viaf: "VIAF Search"
   save_and_continue: "Save and continue editing"
-  save_and_exit: "Save and terminate"
+  save_and_exit: "Save and close"
   cancel: "Cancel"
   
   # Version history
@@ -403,15 +403,15 @@ en:
   filter_source_type: "Source Type"
   filter_publisher: "Publisher"
   filter_revue_title: "Revue title"
-  filter_id: "Rism ID"
-  filter_id_no: "Rism ID"
+  filter_id: "RISM ID"
+  filter_id_no: "RISM ID"
   filter_scoring: "Scoring"
   filter_series_items: "Series items"
   filter_siglum: "Siglum"
   filter_source: "Source"
   filter_sources: "Sources"
   filter_source_type: "Source Type"
-  filter_std_title: "Standardised title"
+  filter_std_title: "Standardized title"
   filter_subject: "Subject"
   filter_term: "Term"
   filter_thematic_opus: "Thematic cat. / Opus no."
@@ -656,5 +656,5 @@ en:
     
   status_codes:
     published: "PUB"
-    inprogress: "INP"
+    inprogress: "UNP"
 
