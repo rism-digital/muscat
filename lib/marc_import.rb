@@ -125,7 +125,15 @@ class MarcImport
         marc.import
         
         # step 3 resolve external values if it is a source
-        marc.root.resolve_externals if @model == "Source"
+        begin
+          marc.root.resolve_externals if @model == "Source"
+        rescue => e
+          $stderr.puts
+          $stderr.puts "Marc Import: Could not resolve externals on record".red
+          $stderr.puts e.message.blue
+          $stderr.puts "Record Id: #{model.id}".magenta
+          $stderr.puts "#{marc.to_marc}"
+        end
         
         # step 4. associate Marc to record
         model.marc = marc

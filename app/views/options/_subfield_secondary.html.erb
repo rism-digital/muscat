@@ -4,6 +4,7 @@
 <%- ac_path = send(params['type'] + "_default_autocomplete")%>
 <%- field = params.has_key?("field") ? params['field'] : "id" %>
 <%- allow_new = params.has_key?("allow_new") ? params['allow_new'] : false %>
+<%- has_links_to = params.has_key?("has_links_to") ? params['has_links_to'] : false %>
 <%- disabled =  params.has_key?("only_new_window") ? true : false %>
 <!-- validation plugin REQUIRES a name. Make it random as we never call it elsewhere -->
 <%- check_name = "confirmation_uniq_" + SecureRandom.hex(5)%>
@@ -30,7 +31,7 @@ end
 name_tag_subfield = "#{tag_name}#{subfield}"
 %>
 
-<input type="hidden" class="autocomplete_target serialize_marc <%=validate_class_master%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%= marc_subfield_m.content %>" <%=name_tag_master%> data-allow-new="<%=allow_new%>">
+<input type="hidden" class="autocomplete_target serialize_marc <%=validate_class_master%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%= marc_subfield_m.content %>" <%=name_tag_master%> data-allow-new="<%=allow_new%>" data-has-links-to="<%=has_links_to%>">
 
 <%
 options = {

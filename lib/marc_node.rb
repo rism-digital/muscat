@@ -53,7 +53,10 @@ class MarcNode
         #end
         master = get_master_foreign_subfield
         if !master
-          raise NoMethodError, "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
+          #raise NoMethodError, "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
+          $stderr.puts "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
+          self.destroy_yourself
+          return
         end
         
         unless master.foreign_object
