@@ -624,13 +624,13 @@ doc_references:
         it: Luogo di stampa
         fr: Lieu d'impression
         de: Druckort
-        en: Printing place
+        en: Location of printer
     f: 
       label: 
         it: Stampatore, stamperia
         fr: Imprimeur, imprimerie
         de: Drucker, Druckerei
-        en: Printing office
+        en: Name of printer
     "8": 
       label: 
         it: Gruppo di materiale
