@@ -159,10 +159,12 @@ class MarcImport
         # Add user if exists, only for sources
         if @users && @model == "Source"
           if @users.include?(model.id)
-            name = @users[model.id]
+            name = @users[model.id][:user]
+            created_at = DateTime.parse(@users[model.id][:created_at])
             begin
               user = User.find_by_name(name)
               model.user = user
+              model.created_at = created_at
             rescue ActiveRecord::RecordNotFound
               puts "Could not find user #{name}".red
             end
