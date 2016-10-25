@@ -1051,6 +1051,14 @@ doc_references:
         en: RISM Series A/I and B references
       edit_label: 
       en: ""
+    b: 
+      label: 
+        it: RISM SERIES NUMBER
+        fr: RISM SERIES NUMBER
+        de: RISM SERIES NUMBER
+        en: RISM series number
+      edit_label: 
+      en: ""
 "597": 
   label: 
     it: Dati editoriali originali
