@@ -232,10 +232,10 @@ doc_edit_workflow:
         en: Former shelf mark
     z: 
       label: 
-        it: Nome del fondo
-        fr: Fonds
-        de: Bestandsname
-        en: Collection
+        it: Osservazioni
+        fr: Remarque
+        de: Bemerkungen
+        en: Note
     e: 
       label: 
         it: Biblioteca
