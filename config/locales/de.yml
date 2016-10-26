@@ -325,9 +325,9 @@ de:
     save: "In Ordner speichern"
     success: "Ordner %{name} generiert aus %{count} Datensätzen."
     too_many: "Es können nicht mehr als %{max} Datensätze ausgewählt werden (%{count} wurden ausgewählt)."
-    added: "%{COUNT} Einträge zum Ordner %{NAME} hinzugefügt."
-    added_bg: "Einträge in den Ordner hinzugefügt, Auftrag %{JOB} in Warteschlange."
-    success_bg: "Ordner %{NAME} erstellt, Auftrag %{JOB} in Warteschlange."
+    added: "%{count} Einträge zum Ordner %{name} hinzugefügt."
+    added_bg: "Einträge in den Ordner hinzugefügt, Auftrag %{job} in Warteschlange."
+    success_bg: "Ordner %{name} erstellt, Auftrag %{job} in Warteschlange."
 
   ### Digital objects
   digital_objects: "Bild"
