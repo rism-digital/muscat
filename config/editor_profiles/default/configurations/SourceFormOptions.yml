@@ -396,7 +396,7 @@
         growfield: true
         editor_partial: subfield_autocomplete
 "510": 
-  layout: 
+  layout:
     fields: 
     - - a
       - values: 
