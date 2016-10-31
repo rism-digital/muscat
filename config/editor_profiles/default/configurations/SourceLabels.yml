@@ -1015,7 +1015,7 @@ doc_references:
       label: 
         it: Numero
         fr: Nombre
-        de: NUMBER
+        de: Anzahl
         en: Number
 "595": 
   label: 
@@ -1633,7 +1633,7 @@ doc_references:
       label: 
         it: Tipo di collegamento
         fr: Type de lien
-        de: LINK TYPE
+        de: Linktyp
         en: Link type
         
 ################
