@@ -24,8 +24,8 @@ module Muscat
 					prev_page = 0
 					next_page = 0
 					fields, order, with, page = unpack_params(params)
-					results = search_with_solr(fields, order, with, page)
-          
+					results, hits = search_with_solr(fields, order, with, page)
+
 					position = results.index(item)
           
 					# The current item was not found, we must be coming from somewhere else...
