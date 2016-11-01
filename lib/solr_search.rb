@@ -153,7 +153,12 @@ module Muscat
 							f = []
 							if k.to_s.match("contains") # :filter xxx_contains
 								field = k.to_s.gsub("_contains", "")
-								f << field.underscore.to_sym
+								# split it!
+								if field.include? "_or_"
+									f.concat(field.split("_or_"))
+								else
+									f << field.underscore.to_sym
+								end
 								fields << {:fields => f, :value => options[k]}
 							elsif k.to_s.match("with_integer") # :filter zzz_with_integer
 								# The field to filter with is

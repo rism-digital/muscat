@@ -296,6 +296,7 @@ class Person < ActiveRecord::Base
   ransacker :"100d_deathdate_contains", proc{ |v| } do |parent| end
   ransacker :"043c_contains", proc{ |v| } do |parent| end
   ransacker :"551a_contains", proc{ |v| } do |parent| end
+	ransacker :"full_name_or_400a_contains", proc{ |v| } do |parent| end
 
   def self.get_viaf(str)
     str.gsub!("\"", "")
