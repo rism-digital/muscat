@@ -38,7 +38,7 @@ module Muscat
 					# Get the prev item in the searc
 					if position == 0
 						if !results.first_page?
-							results_prev_page = search_with_solr(fields, order, with, results.previous_page)
+							results_prev_page, hits = search_with_solr(fields, order, with, results.previous_page)
 							prev_item = results_prev_page.last
 							# the previous item is one the previous page, we also need to return the page nb
 							prev_page = results.previous_page
@@ -50,7 +50,7 @@ module Muscat
 					# get the next item in the search
 					if position == MAX_PER_PAGE - 1
 						if !results.last_page?
-							results_next_page = search_with_solr(fields, order, with, results.next_page)
+							results_next_page, hits = search_with_solr(fields, order, with, results.next_page)
 							next_item = results_next_page.first
 							# return the page number too
 							next_page = results.next_page
