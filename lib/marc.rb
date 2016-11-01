@@ -87,6 +87,7 @@ class Marc
     # Drop other unused tags
     each_by_tag("003") {|t| t.destroy_yourself}
     each_by_tag("005") {|t| t.destroy_yourself}
+    each_by_tag("008") {|t| t.destroy_yourself}
   end
   
   def to_external(updated_at = nil, versions = nil)
