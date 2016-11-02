@@ -384,21 +384,21 @@ doc_references:
       label: 
         it: PUBLIC NOTE
         fr: PUBLIC NOTE
-        de: Bemerkungen
-        en: Public note
+        de: Besetzung Incipit
+        en: Scoring in movement
 "033": 
   label: 
     it: Data
     fr: Date
     de: Datum
-    en: Date
+    en: Coded date
   fields: 
     a: 
       label: 
         it: Data e luogo di un evento
         fr: "Date/heure et lieu d'un événement"
         de: Datum und Ort eines Ereignisses (codiert)
-        en: Date
+        en: Coded date
     indicator: 
       label: 
         it: Tipo di datazione
@@ -618,7 +618,7 @@ doc_references:
         it: Anno
         fr: "Année"
         de: Jahr
-        en: Coded date
+        en: Date
     e: 
       label: 
         it: Luogo di stampa
