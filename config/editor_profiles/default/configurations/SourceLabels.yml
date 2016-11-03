@@ -2175,6 +2175,18 @@ slv:
     fr: "Slovène"
     de: Slowenisch
     en: Slovenian
+dsb:
+  label:
+    it: SORBIAN, LOWER SORBIAN
+    fr: SORBIAN, LOWER SORBIAN
+    de: Sorbisch, Niedersorbisch
+    en: Sorbian, Lower Sorbian
+hsb:
+  label:
+    it: SORBIAN, UPPER SORBIAN
+    fr: SORBIAN, UPPER SORBIAN
+    de: Sorbisch, Obersorbisch
+    en: Sorbian, Upper Sorbian
 spa: 
   label: 
     it: Spagnolo
