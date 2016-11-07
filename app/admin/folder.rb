@@ -27,6 +27,7 @@ ActiveAdmin.register Folder do
         @folder = Folder.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Folder #{params[:id]})" }
+        return
       end
       @jobs = @folder.delayed_jobs
     end

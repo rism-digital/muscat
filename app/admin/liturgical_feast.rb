@@ -47,6 +47,7 @@ ActiveAdmin.register LiturgicalFeast do
         @liturgical_feast = LiturgicalFeast.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (LiturgicalFeast #{params[:id]})" }
+        return
       end
       @prev_item, @next_item, @prev_page, @next_page = LiturgicalFeast.near_items_as_ransack(params, @liturgical_feast)
       
