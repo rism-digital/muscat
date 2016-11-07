@@ -13,7 +13,7 @@ class Place < ActiveRecord::Base
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_places")
-  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institution_to_places")
+  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_places")
   has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_places")
   has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: Delayed::Job, foreign_key: "parent_id"
@@ -72,8 +72,13 @@ class Place < ActiveRecord::Base
   end
 
   def check_dependencies
-    if (self.referring_sources.count > 0)
-      errors.add :base, "The place could not be deleted because it is used"
+    if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
+         self.referring_catalogues.count > 0 || self.referring_people.count > 0
+      errors.add :base, %{The catalogue could not be deleted because it is used by
+        #{self.referring_sources.count} sources,
+        #{self.referring_institutions.count} institutions, 
+        #{self.referring_catalogues.count} catalogues and 
+        #{self.referring_people.count} people}
       return false
     end
   end
