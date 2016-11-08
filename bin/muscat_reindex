@@ -1,5 +1,8 @@
 #!/bin/sh
 
+## Uncomment this t purge the sources!
+##echo "Sunspot.remove_all(Source)" | bundle exec rails c
+
 echo "Starting parallel reindex in background"
 
 RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 0 > reindex0.txt 2>&1 &
