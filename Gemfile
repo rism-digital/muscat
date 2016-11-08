@@ -116,3 +116,9 @@ gem 'daemons'
 # Add I18n in js
 gem "i18n-js", ">= 3.0.0.rc11"
 gem 'colorize'
+
+gem "rspec"
+gem 'rspec-rails', '~> 3.5'
+gem 'poltergeist', "1.11.0"
+
+gem 'exception_notification'
