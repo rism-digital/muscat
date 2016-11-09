@@ -104,6 +104,9 @@
     fields: 
     - - a
       - cols: 4
+        trigger:
+        - save:
+          - referring_sources
     columns: 4
 "240": 
   layout: 
