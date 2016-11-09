@@ -12,13 +12,19 @@
 		else
 			content = subfield.content.html_safe if subfield && subfield.content
 		end
-		
+
 		browse_helper = @item.marc.config.get_browse_helper(tag.tag, subfield.tag)
 	-%>
 	<% if browse_helper -%>
 	   <%= raw method(browse_helper).call( content, subfield, opac ) %>
 	<% else -%>
-		<%= h content %>
+		<% content_lines = content.split("{{brk}}")%>
+		<% content_lines.each do |line|%>
+			<%=h line%>
+			<%unless line.equal?(content_lines.last) %>
+				<br>
+			<%end%>
+		<%end%>
 	<%- end %>
 	</td>
 </tr>
