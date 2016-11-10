@@ -47,6 +47,7 @@ ActiveAdmin.register StandardTerm do
         @standard_term = StandardTerm.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (StandardTerm #{params[:id]})" }
+        return
       end
       @prev_item, @next_item, @prev_page, @next_page = StandardTerm.near_items_as_ransack(params, @standard_term)
       

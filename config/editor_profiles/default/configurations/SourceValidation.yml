@@ -18,6 +18,9 @@
 #    a:
 #      required_if:
 #        "031": "t"
+"033": 
+  tags:
+    a: required
 "100": 
   tags:
     "0": required
@@ -32,6 +35,9 @@
     "0": required
     a: required
     m: required, warning
+"245": 
+  tags:
+    a: required
 "260": 
   tags:
     c: required
@@ -62,20 +68,20 @@
     "0": required
     a: required
 #    n: required
-"691": 
-  tags:
-    "0": required
-    a: required
-    n: required, warning
-"700": 
-  tags:
-    "0": required
-    a: required
+#"691": 
+#  tags:
+#    "0": required
+#    a: required
+#    n: required, warning
+#"700": 
+#  tags:
+#    "0": required
+#    a: required
 #    j: required
-"710": 
-  tags:
-    "0": required
-    a: required
+#"710": 
+#  tags:
+#    "0": required
+#    a: required
 #    j: required
 "730": 
   tags:

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+## Uncomment this t purge the sources!
+##echo "Sunspot.remove_all(Source)" | bundle exec rails c
+
+echo "Starting parallel reindex in background"
+
+RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 0 > reindex0.txt 2>&1 &
+RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 1 > reindex1.txt 2>&1 &
+RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 2 > reindex2.txt 2>&1 &
+RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 3 > reindex3.txt 2>&1 &
+RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 4 > reindex4.txt 2>&1 &
+RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 5 > reindex5.txt 2>&1 &
+RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 6 > reindex6.txt 2>&1 &
+RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 7 > reindex7.txt 2>&1 &
+RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 8 > reindex8.txt 2>&1 &
+RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 9 > reindex9.txt 2>&1 &
+RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 10 > reindex10.txt 2>&1 &
+
+echo "Starting single indexers"
+bundle exec rake RAILS_ENV=production sunspot:reindex[,Catalogue]
+bundle exec rake RAILS_ENV=production sunspot:reindex[,Institution]
+bundle exec rake RAILS_ENV=production sunspot:reindex[,LiturgicalFeast]
+bundle exec rake RAILS_ENV=production sunspot:reindex[,Person]
+bundle exec rake RAILS_ENV=production sunspot:reindex[,Place]
+bundle exec rake RAILS_ENV=production sunspot:reindex[,StandardTerm]
+bundle exec rake RAILS_ENV=production sunspot:reindex[,StandardTitle]
+
+echo "Remember to re-run Standard title by hand to get correct source count"
+echo "bundle exec rake RAILS_ENV=production sunspot:reindex[,StandardTitle]"

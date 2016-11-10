@@ -48,6 +48,7 @@ ActiveAdmin.register Place do
         @place = Place.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Place #{params[:id]})" }
+        return
       end
       @prev_item, @next_item, @prev_page, @next_page = Place.near_items_as_ransack(params, @place)
 

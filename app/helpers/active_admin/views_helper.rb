@@ -151,6 +151,8 @@ module ActiveAdmin::ViewsHelper
   
   # formats the string for the source show title
   def active_admin_auth_show_title( val1, val2, id )
+    val1 = "" if !val1
+    val2 = "" if !val2
     return "[#{id}]" if val1.empty? and val2.empty?
     return "#{val2} - [#{id}]" if val1.empty? and !val2.empty?
     return "#{val1} - [#{id}]" if (val2.nil? or val2.empty?)

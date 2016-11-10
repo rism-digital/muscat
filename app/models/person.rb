@@ -234,10 +234,15 @@ class Person < ActiveRecord::Base
     
   end
     
-  # before_destroy, will delete Person only if it has no Source and no Work
+  # before_destroy, will delete Person only if it has no links referring to
   def check_dependencies
-    if (self.referring_sources.count > 0) || (self.works.count > 0)
-      errors.add :base, "The person could not be deleted because it is used"
+    if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
+         self.referring_catalogues.count > 0 || self.referring_people.count > 0
+      errors.add :base, %{The person could not be deleted because it is used by
+        #{self.referring_sources.count} sources,
+        #{self.referring_institutions.count} institutions, 
+        #{self.referring_catalogues.count} catalogues and 
+        #{self.referring_people.count} people}
       return false
     end
   end
@@ -296,6 +301,7 @@ class Person < ActiveRecord::Base
   ransacker :"100d_deathdate_contains", proc{ |v| } do |parent| end
   ransacker :"043c_contains", proc{ |v| } do |parent| end
   ransacker :"551a_contains", proc{ |v| } do |parent| end
+	ransacker :"full_name_or_400a_contains", proc{ |v| } do |parent| end
 
   def self.get_viaf(str)
     str.gsub!("\"", "")

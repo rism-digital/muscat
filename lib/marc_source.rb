@@ -215,8 +215,8 @@ class MarcSource < Marc
       rt = RECORD_TYPES[:libretto_source]
     elsif leader.match(/......am.............../)
       rt = RECORD_TYPES[:libretto_edition_content]
-    elsif leader.match(/......pm.............../)
-      rt = RECORD_TYPES[:theoretica_source] # we cannot make the distinction between ms and print
+    elsif leader.match(/......pm.............../) # Mixed material, item
+      rt = RECORD_TYPES[:source]
     else
        puts "Unknown leader #{leader}"
     end

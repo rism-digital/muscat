@@ -10,7 +10,15 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  before_filter :set_locale, :set_paper_trail_whodunnit, :auth_user
+  before_filter :set_locale, :set_paper_trail_whodunnit, :auth_user, :prepare_exception_notifier
+
+  def prepare_exception_notifier
+    if current_user
+      request.env["exception_notifier.exception_data"] = {:current_user => current_user } 
+    else
+      request.env["exception_notifier.exception_data"] = {:current_user => "Not Logged In" } 
+    end
+  end
 
   def auth_user
     redirect_to "/admin/login" unless (request.path == "/admin/login" or user_signed_in?)

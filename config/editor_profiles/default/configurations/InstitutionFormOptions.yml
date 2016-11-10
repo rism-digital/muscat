@@ -154,10 +154,16 @@
     fields: 
     - - a
       - cols: 2
+        trigger:
+        - save:
+          - referring_sources
     - - c
       - cols: 2
     - - g
       - cols: 2
+        trigger:
+        - save:
+          - referring_sources
     columns: 4
 "368": 
   layout: 

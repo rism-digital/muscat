@@ -209,6 +209,8 @@
       - "rus"
       - "slo"
       - "slv"
+      - "dsb"
+      - "hsb"
       - "spa"
       - "srp"
       - "swe"
@@ -566,7 +568,6 @@
       - "Conjectural"
       - "Doubtful"
       - "Misattributed"
-      - "Verified"
     relator_codes: 
       - fmo
       - scr
@@ -611,7 +612,6 @@
       - "Conjectural"
       - "Doubtful"
       - "Misattributed"
-      - "Verified"
     relator_codes: 
       - pub
       - fmo
