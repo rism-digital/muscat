@@ -149,8 +149,8 @@ en:
   activerecord:
     models:
       digital_object:
-        one: "Digital object"
-        other: "Digital objects"
+        one: "Image"
+        other: "Images"
       catalogue:
         one: "Secondary literature"
         other: "Secondary literature"
@@ -173,8 +173,8 @@ en:
         one: "Source"
         other: "Sources"
       standard_term:
-        one: "Standard term"
-        other: "Standard terms"
+        one: "Subject heading"
+        other: "Subject headings"
       standard_title:
         one: "Standard title"
         other: "Standard titles"
@@ -206,8 +206,8 @@ en:
   menu_indexes: "Authorities"
   menu_people: "Personal names"
   menu_institutions: "Institutions"
-  menu_titles: "Title / text incipit"
-  menu_subjects: "Genres"
+  menu_titles: "Titles / text incipits"
+  menu_subjects: "Subject headings"
   menu_library_sigla: "Library siglum"
   menu_catalogues: "Secondary literature"
   menu_liturgical_feasts: "Liturgical festivals"

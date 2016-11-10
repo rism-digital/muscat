@@ -149,8 +149,8 @@ de:
   activerecord:
     models:
       digital_object:
-        one: "Digitales Objekt"
-        other: "Digitale Objekte"
+        one: "Bild"
+        other: "Bilder"
       catalogue:
         one: "Sekundärliteratur"
         other: "Sekundärliteratur"

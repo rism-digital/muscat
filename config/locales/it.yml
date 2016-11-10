@@ -149,8 +149,8 @@ it:
   activerecord:
     models:
       digital_object:
-        one: "Oggetto Digitale"
-        other: "Oggetti Digitali"
+        one: "Immagine"
+        other: "Immagini"
       catalogue:
         one: "Catalogo"
         other: "Cataloghi"
