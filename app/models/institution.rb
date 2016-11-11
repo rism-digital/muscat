@@ -261,7 +261,12 @@ class Institution < ActiveRecord::Base
   end
  
   def get_deposita
-    MarcSearch.select(Institution, '580$x', siglum.to_s).to_a
+    #FIXME Search should not test for siglum; intermediate hack to speed up institutions show
+    if self.siglum
+      MarcSearch.select(Institution, '580$x', siglum.to_s).to_a
+    else
+      return []
+    end
   end
 
  
