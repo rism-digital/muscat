@@ -18,9 +18,10 @@
 #    a:
 #      required_if:
 #        "031": "t"
-"033": 
-  tags:
-    a: required
+# Postponed until further discussion
+#"033": 
+#  tags:
+#    a: required
 "100": 
   tags:
     "0": required
