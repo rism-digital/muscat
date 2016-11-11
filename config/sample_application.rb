@@ -62,6 +62,9 @@ module RISM
   # Set the path for the digital object storage
   # You also need to symlink ./public/system to a system directory in it
   DIGITAL_OBJECT_PATH = "/path/to/the/digital/objects/directory"
+	
+	# Test server warning. Set to true to raise a flash notice waring when saving
+	TEST_SERVER = false
 end
 
 module Muscat
