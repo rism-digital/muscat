@@ -230,6 +230,12 @@ doc_edit_workflow:
         fr: Ancienne cote (olim)
         de: Alte Signatur (olim)
         en: Former shelf mark
+    q: 
+      label: 
+        it: Materiale conservato
+        fr: PRESERVED PARTS
+        de: Erhaltenes Material
+        en: Preserved Parts
     z: 
       label: 
         it: Osservazioni
