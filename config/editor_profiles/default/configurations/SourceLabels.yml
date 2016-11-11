@@ -2016,37 +2016,37 @@ voc:
   label:
     it: Verificato
     fr: "Vérifié"
-    de: gesichert
+    de: Gesichert
     en: Verified
 "Ascertained":   
   label:
     it: Accertato
     fr: "Authentifié"
-    de: ermittelt
+    de: Ermittelt
     en: Ascertained
 "Alleged":   
   label:
     it: Presunto
     fr: "Présumé"
-    de: angeblich
+    de: Angeblich
     en: Alleged
 "Doubtful":   
   label:
     it: Dubbio
     fr: "Douteux"
-    de: zweifelhaft
+    de: Zweifelhaft
     en: Doubtful
 "Misattributed":   
   label:
     it: Misattribuito
     fr: "Erroné"
-    de: fälschlich
+    de: Fälschlich
     en: Misattributed
 "Conjectural":   
   label:
     it: Congetturale
     fr: Conjectural
-    de: mutmaßlich
+    de: Mutmaßlich
     en: Conjectural
 # Marc Language codes
 cat: 
