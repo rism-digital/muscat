@@ -613,7 +613,7 @@
       - "Doubtful"
       - "Misattributed"
     relator_codes: 
-      - pub
+      - pbl
       - fmo
       - dpt
       - dte
