@@ -50,6 +50,10 @@ class StandardTitle < ActiveRecord::Base
     text :title
     text :title_d
     
+    integer :latin_order do
+      latin
+    end
+		
     text :notes
     text :alternate_terms
     text :typus
