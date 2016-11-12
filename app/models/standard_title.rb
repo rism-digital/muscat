@@ -50,7 +50,7 @@ class StandardTitle < ActiveRecord::Base
     text :title
     text :title_d
     
-    integer :latin_order do
+    boolean :latin_order do
       latin
     end
 		
