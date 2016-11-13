@@ -167,7 +167,7 @@ doc_edit_workflow:
         en: Name
     c:
       label:
-        it: ORDER/TITLE
+        it: Ordine/Titolo
         fr: ORDER/TITLE
         de: Orden/Titel
         en: Order/Title

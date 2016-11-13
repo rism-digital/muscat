@@ -172,7 +172,7 @@ doc_templates:
         it: Titolo
         fr: Title
         de: Titel
-        en: Titel
+        en: Title
     g: 
       label: 
         it: Tipo
