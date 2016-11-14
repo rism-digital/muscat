@@ -2636,6 +2636,12 @@ G-5:
     fr: "G-5"
     de: "G-5"
     en: "G-5"
+g-2:
+  label:
+    it: "g-2 (Chiave di violino ottavizzata)"
+    fr: "g-2 (octava bassa)"
+    de: "g-2 (oktavierenden Violinschlüssels)"
+    en: "g-2 (Octaved treble clef)"
 02_mensural_clefs:
   label:
     it: "Chiavi mensurali"
