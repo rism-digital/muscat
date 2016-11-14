@@ -112,7 +112,14 @@ ActiveAdmin.register Source do
       end
 
       if params[:existing_title] and !params[:existing_title].empty?
-        base_item = Source.find(params[:existing_title])
+        # Check that the record does exist...
+        begin
+          base_item = Source.find(params[:existing_title])
+        rescue ActiveRecord::RecordNotFound
+          redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Source #{params[:id]})" }
+          return
+        end
+        
         new_marc = MarcSource.new(base_item.marc.marc_source, base_item.record_type)
         new_marc.load_source false # this will need to be fixed
         new_marc.first_occurance("001").content = "__TEMP__"
