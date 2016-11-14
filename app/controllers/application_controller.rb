@@ -26,12 +26,11 @@ class ApplicationController < ActionController::Base
   
   def test_version_warning
     return if (RISM::TEST_SERVER == false)
-    if action_name && [:create, :destroy, :update, :marc_editor_save].include?(action_name.to_sym)
+    if action_name && ["new", "destroy", "edit", "marc_editor_save"].include?(action_name)
       flash[:warning] = "You are operating on a test server and changes will be overwritten."
     end
   end
-	
-  
+
   # Code for rescueing lock conflicts errors
   rescue_from ActiveRecord::StaleObjectError do |exception|
      respond_to do |format|
