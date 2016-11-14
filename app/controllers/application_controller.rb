@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  before_filter :set_locale, :set_paper_trail_whodunnit, :auth_user, :prepare_exception_notifier
+  before_filter :set_locale, :set_paper_trail_whodunnit, :auth_user, :prepare_exception_notifier, :test_version_warning
 
   def prepare_exception_notifier
     if current_user
@@ -23,6 +23,14 @@ class ApplicationController < ActionController::Base
   def auth_user
     redirect_to "/admin/login" unless (request.path == "/admin/login" or user_signed_in?)
   end
+  
+  def test_version_warning
+    return if (RISM::TEST_SERVER == false)
+    if action_name && [:create, :destroy, :update, :marc_editor_save].include?(action_name.to_sym)
+      flash[:warning] = "You are operating on a test server and changes will be overwritten."
+    end
+  end
+	
   
   # Code for rescueing lock conflicts errors
   rescue_from ActiveRecord::StaleObjectError do |exception|
