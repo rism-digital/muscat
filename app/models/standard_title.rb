@@ -56,6 +56,10 @@ class StandardTitle < ActiveRecord::Base
 		
     text :notes
     text :alternate_terms
+    string :alternate_terms_order do
+      alternate_terms
+    end
+		
     text :typus
     
     join(:folder_id, :target => FolderItem, :type => :integer, 

@@ -50,7 +50,10 @@ class LiturgicalFeast < ActiveRecord::Base
   
     text :notes
     text :alternate_terms
-    
+    string :alternate_terms_order do
+      alternate_terms
+    end
+		
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
