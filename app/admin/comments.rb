@@ -1,5 +1,9 @@
 ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   
+  after_create do |comment|
+    CommentNotifications.new_comment(comment).deliver_now
+  end
+	
   # Remove all action items
   config.clear_action_items!
   
