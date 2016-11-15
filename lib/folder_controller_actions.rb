@@ -130,6 +130,12 @@ module FolderControllerActions
     
     ## Shows a page so the user can select the folder name
     dsl.collection_action :create_new_folder, :method => :get do
+      
+      if !params || !params.include?(:q)
+        redirect_to collection_path, :flash => {error: "Please include a query before creating a folder"}
+        return
+      end
+      
       #Get the model we are working on
       @model = self.resource_class
       
