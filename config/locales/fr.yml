@@ -307,7 +307,7 @@ fr:
   save_and_continue: "Enregistrer et continuer"
   save_and_exit: "Enregistrer et terminer"
   cancel: "Annuler"
-  duplicate_confirm: "ARE YOU SURE YOU WANT TO DUPLICATE THIS RECORD?"  
+  duplicate_confirm: "Est-vous certain de vouloir dupliquer ce titre?"  
 
   # Version history
   history_date: "Date"
