@@ -1845,7 +1845,7 @@ cst:
     en: Costume designer
 ctb: 
   label: 
-    it: CONTRIBUTOR
+    it: Compositore secondario
     fr: Contributeur
     de: Mitkomponist
     en: Co-composer
@@ -1941,7 +1941,7 @@ lyr:
     en: Text author
 oth: 
   label: 
-    it: OTHER FUNCTION
+    it: Altra funzione
     fr: Autre function
     de: Andere
     en: Other function
@@ -1989,7 +1989,7 @@ prt:
     en: Printer
 pub: 
   label: 
-    it: PUBLISHER
+    it: Editore
     fr: Editeur
     de: Verleger
     en: Publisher
@@ -2038,7 +2038,7 @@ voc:
     en: Doubtful
 "Misattributed":   
   label:
-    it: Misattribuito
+    it: Attribuito erroneamente
     fr: "Erroné"
     de: Fälschlich
     en: Misattributed
@@ -2759,13 +2759,13 @@ Engraving:
     en: "Engraving"
 Facsimile:
   label:
-    it: "FACSIMILE"
+    it: "Facsimile"
     fr: "Facsimile"
     de: "Faksimile"
     en: "Facsimile"
 Lithography:
   label:
-    it: "LITHOGRAPHY"
+    it: "Litografia"
     fr: "Lithographie"
     de: "Lithographie"
     en: "Lithography"
@@ -2777,7 +2777,7 @@ Lithography:
     en: "Photoreproductive process (bluprint)"
 Reproduction:
   label:
-    it: "REPRODUCTION"
+    it: "Riproduzione"
     fr: "Reproduction"
     de: "Reproduktion"
     en: "Reproduction"
@@ -2789,13 +2789,13 @@ Transparency:
     en: "Transparency"
 Typescript:
   label:
-    it: "TYPESCRIPT"
+    it: "Dattiloscritto"
     fr: "Tapuscrit"
     de: "Typescript"
     en: "Typescript"
 Typography:
   label:
-    it: "TYPOGRAPHY"
+    it: "Stampa tipografica"
     fr: "Typographie"
     de: "Typendruck"
     en: "Typography"
