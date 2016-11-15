@@ -307,6 +307,7 @@ de:
   save_and_continue: "Speichern und weiter bearbeiten"
   save_and_exit: "Speichern und verlassen"
   cancel: "Abbrechen"
+  duplicate_confirm: "ARE YOU SURE YOU WANT TO DUPLICATE THIS RECORD?"
   
   # Version history
   history_date: "Datum"

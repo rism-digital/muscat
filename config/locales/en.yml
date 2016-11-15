@@ -307,6 +307,7 @@ en:
   save_and_continue: "Save and continue editing"
   save_and_exit: "Save and close"
   cancel: "Cancel"
+  duplicate_confirm: "Are you sure you want to duplicate this record?"
   
   # Version history
   history_date: "Date"

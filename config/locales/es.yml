@@ -293,6 +293,7 @@ es:
   save_and_continue: "Guardar y continuar editando"
   save_and_exit: "Guardar y terminar"
   cancel: "Cancelar"
+  duplicate_confirm: "ARE YOU SURE YOU WANT TO DUPLICATE THIS RECORD?"
   
   # Version history
   history_date: "Fecha"

@@ -307,7 +307,8 @@ it:
   save_and_continue: "Salva e continua"
   save_and_exit: "Salva ed esci"
   cancel: "Annulla"
-  
+  duplicate_confirm: "Sei sicuro di voler duplicare questo record?"  
+
   # Version history
   history_date: "Data"
   history_author: "Autore"
