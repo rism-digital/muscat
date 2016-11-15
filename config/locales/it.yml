@@ -49,7 +49,7 @@ it:
       filters: "Filtri"
       sections: "Sezioni e azioni"
       actions: "Azioni"
-      toc: "TABLE OF CONTENTS"
+      toc: "Contenuto"
     pagination:
       empty: "Nessun %{model} trovato"
       one: "Sto mostrando <b>1</b> %{model}"
@@ -124,7 +124,7 @@ it:
         sign_in: "Entra"
         forgot_your_password: "Dimenticato la password?"
         sign_in_with_omniauth_provider: "Collegati a %{provider}"
-        resend_unlock_instructions: "RE-SEND UNLOCK INSTRUCTIONS"
+        resend_unlock_instructions: "Invia di nuovo le istruzioni per sbloccare"
     unsupported_browser:
       headline: "PLEASE NOTE THAT Muscat NO LONGER SUPPORTS INTERNET EXPLORER VERSIONS 8 OR LESS."
       recommendation: "WE RECOMMEND UPGRADING TO THE LATEST <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, OR <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
@@ -183,18 +183,18 @@ it:
         other: "Utenti"
       
   #################### RECORD TYPES (TEMPLATES)
-  select_template: "SELECT NEW TEMPLATE"
-  available_templates: "AVAILABLE TEMPLATES"
-  from_existing_source: "CREATE FROM EXISTING SOURCE"
-  create_from_existing: "CREATE"
+  select_template: "Seleziona un nuovo template"
+  available_templates: "Template disponibili"
+  from_existing_source: "Crea a partire da una fonte già esistente"
+  create_from_existing: "Crea"
   record_types:
     unspecified: "[Template sconosciuto]"
     collection: "Raccolta"
-    source: "MUSIC SOURCE"
+    source: "Manoscritto musicale"
     edition_content: "MUSIC EDITION CONTENT"
-    libretto_source: "LIBRETTO SOURCE"
+    libretto_source: "Libretto manoscritto"
     libretto_edition_content: "LIBRETTO EDITION CONTENT"
-    theoretica_source: "TREATISE SOURCE"
+    theoretica_source: "Manoscritto di teoria musicale"
     theoretica_edition_content: "TREATISE EDITION CONTENT"
     edition: "EDITION"
 
@@ -211,7 +211,7 @@ it:
   menu_library_sigla: "Sigla della biblioteca"
   menu_catalogues: "Cataloghi tematici"
   menu_liturgical_feasts: "Feste liturgiche"
-  menu_latin: "LATIN TEXT"
+  menu_latin: "Testi latini"
   menu_places: "Luoghi"
   menu_help: "Aiuto"
   menu_folders: "Cartelle"
@@ -401,7 +401,7 @@ it:
   filter_place: "Luogo"
   filter_provenance: "Provenienza"
   filter_record_type: "Tipo"
-  filter_source_type: "Tipologia della Fonte"
+  filter_source_type: "Tipologia della fonte"
   filter_publisher: "Editore"
   filter_revue_title: "Testata"
   filter_id: "RISM ID"
@@ -426,8 +426,8 @@ it:
   filter_versions: "Versioni"
   filter_volume: "Volume"
   filter_image: "IMAGE"
-  filter_file_name: "Nome FIle"
-  filter_file_size: "Grandezza File"
+  filter_file_name: "Nome file"
+  filter_file_size: "Grandezza file"
   filter_content_type: "Tipo"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
@@ -639,11 +639,11 @@ it:
     header_links:
       logout: 'Logout'
     search:
-      start_over: 'Nuova Ricerca'
+      start_over: 'Nuova ricerca'
       form:
         q: 'Ricerca in corso...'
         search:
-          placeholder: 'Rechercher...'
+          placeholder: 'Ricerca...'
     range_limit:
       range_begin: "%{field_label} inizio dell'intervallo"
       range_end: "%{field_label} fine dell'intervallo"
