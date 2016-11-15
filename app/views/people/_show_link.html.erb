@@ -1,6 +1,6 @@
 <%
-    u_tag = tag.fetch_first_by_tag("u")
-    y_tag = tag.fetch_first_by_tag("y")
+    u_tag = tag.fetch_first_by_tag("u").content rescue u_tag = ""
+    y_tag = tag.fetch_first_by_tag("y").content rescue y_tag = ""
   
 -%>
 <tr class="row">
@@ -10,8 +10,8 @@
 		<%- end %>
 	</th>
 	<td>
-    <%= y_tag.content+": "%>
-    <%= link_to u_tag.content,u_tag.content, :target => "_blank"   %>
+    <%= y_tag + ": " %>
+    <%= link_to u_tag, u_tag, :target => "_blank"   %>
 	</td>
 </tr>
 
