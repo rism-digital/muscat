@@ -1,5 +1,11 @@
-<b>New comment on Muscat</b><br>
-Comment by: <%= @commenter.name%> <<%= @commenter.email%>><br>
+<b>New comment on Muscat</b><br><br>
+
+Commenter: <%= @commenter.name%> <<%= @commenter.email%>><br>
 Resource: <%= link_to("#{@comment.resource_type} #{@comment.resource_id}", @resource_path) %><br>
-Text:<br>
+<p>
 <%=@comment.body%>
+</p>
+<p>
+---<br>
+You are receiving this because you are the owner of this item or you commented it previously.
+</p>
