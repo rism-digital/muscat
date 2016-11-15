@@ -14,15 +14,17 @@ class CommentNotifications < ApplicationMailer
     
     users = all_comments.map {|c| c.author_id}
     users << @resource.wf_owner
-    users.uniq!
-    
+    users.uniq! # Users can be duplicated
+    users -= [comment.author_id] # Don't send the comment to myself!
+
     addresses = users.each.map do |u|
       next if u == 1 # Don't sent to admin
-      
       email = User.find(u).email
       next if !email
       email
-    end
+    end.compact
+
+    return if addresses.empty?
 
     mail(to: "noreply-muscat@rism.info",
         name: "Muscat Comments",
