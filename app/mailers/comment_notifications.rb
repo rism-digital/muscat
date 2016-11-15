@@ -16,15 +16,19 @@ class CommentNotifications < ApplicationMailer
     users << @resource.wf_owner
     users.uniq!
     
-    users.each do |u|
+    addresses = users.each.map do |u|
       next if u == 1 # Don't sent to admin
       
       email = User.find(u).email
       next if !email
-
-      mail(to: email, subject: "New Comment on Muscat [#{comment.resource_type} #{comment.resource_id}]")
+      email
     end
-    
+
+    mail(to: "noreply-muscat@rism.info",
+        name: "Muscat Comments",
+        bcc: addresses,
+        subject: "New Comment on Muscat [#{comment.resource_type} #{comment.resource_id}]")
+ 
   end
 
 end
