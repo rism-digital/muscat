@@ -3,10 +3,10 @@ class Holding < ActiveRecord::Base
   resourcify
 
   # class variables for storing the user name and the event from the controller
-  @@last_user_save
-  cattr_accessor :last_user_save
-  @@last_event_save
-  cattr_accessor :last_event_save
+  @last_user_save
+  attr_accessor :last_user_save
+  @last_event_save
+  attr_accessor :last_event_save
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
@@ -20,14 +20,20 @@ class Holding < ActiveRecord::Base
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
-    before_destroy :update_links
+  after_initialize :after_initialize
+  before_destroy :update_links
   
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_count_trigger
-  
+
+  def after_initialize
+    @last_user_save = nil
+    @last_event_save = "update"
+  end
+
   # Suppresses the solr reindex
   def suppress_reindex
     self.suppress_reindex_trigger = true

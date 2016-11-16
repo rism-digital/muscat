@@ -18,11 +18,6 @@ module MarcControllerActions
       #Get the model we are working on
       model = self.resource_class
 
-      # Set the user name to the model class variable
-      # This is used by the VersionChecker module to see if we want a version to be stored
-      model.last_user_save = current_user.name
-      model.last_event_save = "update"
-
       marc_hash = JSON.parse params[:marc]
         
       # This is the tricky part. Get the MARC subclass
@@ -72,15 +67,14 @@ module MarcControllerActions
         new_user = User.find(params[:record_owner]) rescue new_user = nil
         @item.user = new_user if new_user
       end
+
+      # Set the user name to the model class variable
+      # This is used by the VersionChecker module to see if we want a version to be stored
+      @item.last_user_save = current_user.name
       
       @item.save
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       
-      # Reset the user name and the event to nil for next time
-      model.last_user_save = nil
-      model.last_event_save = nil
-     
-     
       # if we arrived here it means nothing crashed
       # Rejoice! and launch the background jobs
       # if any

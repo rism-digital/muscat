@@ -18,10 +18,10 @@ class Institution < ActiveRecord::Base
   resourcify
   
   # class variables for storing the user name and the event from the controller
-  @@last_user_save
-  cattr_accessor :last_user_save
-  @@last_event_save
-  cattr_accessor :last_event_save
+  @last_user_save
+  attr_accessor :last_user_save
+  @last_event_save
+  attr_accessor :last_event_save
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
@@ -65,6 +65,7 @@ class Institution < ActiveRecord::Base
   #before_create :generate_new_id
   after_save :update_links, :reindex
   after_create :scaffold_marc, :fix_ids, :update_workgroups
+  after_initialize :after_initialize
   
   before_validation :set_object_fields
   
@@ -75,6 +76,11 @@ class Institution < ActiveRecord::Base
 
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
+
+  def after_initialize
+    @last_user_save = nil
+    @last_event_save = "update"
+  end
 
   # Suppresses the solr reindex
   def suppress_reindex

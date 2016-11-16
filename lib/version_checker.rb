@@ -146,14 +146,10 @@ module VersionChecker
     # first check the timeout value is 0, which means version for any same
     return true if RISM::VERSION_TIMEOUT == 0
     # then check the last version status
-    return true if !object.versions || !object.versions.last || !object.versions.last.whodunnit || !object.versions.last.event
-    # then check if we have information about who did it
-    return true if !object.last_user_save
-    # not the same user
+    return true if !object.versions || !object.versions.last || !object.versions.last.event
+    # not the same user, nil is considered a user
     return true if object.versions.last.whodunnit != object.last_user_save
-    # then check if we have information about the event
-    return true if !object.last_event_save
-    # note the same event
+    # note the same event - the default is "update"
     return true if object.versions.last.event != object.last_event_save
     # we do not timeout versioning for the same user if timeout value is -1
     return false if RISM::VERSION_TIMEOUT == -1
