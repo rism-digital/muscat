@@ -33,7 +33,7 @@ ActiveAdmin.register_page "Dashboard" do
               column(I18n.t :filter_wf_stage) {|catalogue| status_tag(catalogue.wf_stage) } 
               column (I18n.t :filter_name) {|catalogue| catalogue.name }
               column (I18n.t :filter_author) {|catalogue| catalogue.author }
-              column (I18n.t :filter_sources) {|person| person.src_count }
+              #column (I18n.t :filter_sources) {|person| person.src_count }
             end
           end
         end
@@ -48,7 +48,7 @@ ActiveAdmin.register_page "Dashboard" do
               column(I18n.t :filter_id) {|person| link_to(person.id, admin_person_path(person)) }
               column(I18n.t :filter_wf_stage) {|person| status_tag(person.wf_stage) } 
               column (I18n.t :filter_full_name) {|person| person.full_name }
-              column (I18n.t :filter_sources) {|person| person.src_count }
+              #column (I18n.t :filter_sources) {|person| person.src_count }
             end
           end
         end
