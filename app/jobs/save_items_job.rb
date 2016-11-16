@@ -25,6 +25,7 @@ class SaveItemsJob < ProgressJob::Base
     
     count = 1
     items.each do |i|
+      i.paper_trail_event = "auth save"
       # let the job crash in case
       i.save
       update_stage_progress("Saving record #{count}/#{items.count}", step: 1)
