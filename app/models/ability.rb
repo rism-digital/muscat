@@ -26,7 +26,7 @@ class Ability
       can :update_editions, Source
       
       can :manage, Folder, :wf_owner => user.id
-      can [:read, :create], ActiveAdmin::Comment
+      can [:read, :create, :destroy], ActiveAdmin::Comment
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
