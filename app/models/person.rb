@@ -22,10 +22,10 @@ class Person < ActiveRecord::Base
   include MarcIndex
 
   # class variables for storing the user name and the event from the controller
-  @@last_user_save
-  cattr_accessor :last_user_save
-  @@last_event_save
-  cattr_accessor :last_event_save
+  @last_user_save
+  attr_accessor :last_user_save
+  @last_event_save
+  attr_accessor :last_event_save
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
@@ -74,6 +74,7 @@ class Person < ActiveRecord::Base
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
+  after_initialize :after_initialize
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
@@ -81,6 +82,11 @@ class Person < ActiveRecord::Base
 
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
+
+  def after_initialize
+    @last_user_save = nil
+    @last_event_save = "update"
+  end
 
   # Suppresses the marc scaffolding
   def suppress_scaffold_marc

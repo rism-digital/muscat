@@ -35,10 +35,10 @@
 class Source < ActiveRecord::Base
   
   # class variables for storing the user name and the event from the controller
-  @@last_user_save
-  cattr_accessor :last_user_save
-  @@last_event_save
-  cattr_accessor :last_event_save
+  @last_user_save
+  attr_accessor :last_user_save
+  @last_event_save
+  attr_accessor :last_event_save
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
@@ -90,6 +90,7 @@ class Source < ActiveRecord::Base
   
   before_save :set_object_fields
   after_create :fix_ids
+	after_initialize :after_initialize
   after_save :update_links, :reindex
   before_destroy :update_links_for_destroy
   
@@ -103,6 +104,8 @@ class Source < ActiveRecord::Base
   
   def after_initialize
     @old_parent = nil
+    @last_user_save = nil
+    @last_event_save = "update"
   end
   
   # Suppresses the recreation of the links with foreign MARC elements
