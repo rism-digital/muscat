@@ -622,6 +622,7 @@
       - prf
       - prt
       - edt
+      - asn
       - oth
 "730":
   new_window: standard_titles
