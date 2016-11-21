@@ -6,7 +6,7 @@
   group.each do |t|
     a_tag = t.fetch_first_by_tag("a")
     two_tag = t.fetch_first_by_tag("2")
-    if a_tag && two_tag
+    if a_tag && two_tag && a_tag.content && two_tag.content
       if two_tag.content == "DNB"
         content << link_to("DNB: " + a_tag.content, "http://d-nb.info/gnd/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
       elsif two_tag.content == "VIAF"
