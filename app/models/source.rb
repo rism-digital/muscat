@@ -184,7 +184,7 @@ class Source < ActiveRecord::Base
       std_title
     end
 		# For fulltext search
-    sunspot_dsl.text :std_title
+    sunspot_dsl.text :std_title, :stored => true
     sunspot_dsl.text :std_title_d
     
     sunspot_dsl.string :composer_order do 
