@@ -280,6 +280,7 @@ es:
   reindex: "Reindizar"
   resave: "RESAVE"
   publish: "Publicar"
+  unpublish: "UNPUBLISH"
   select: "Seleccionar"
   create_folder: "Añadir a directorio nuevo"
   append_folder: "Añadir a directorio existente"

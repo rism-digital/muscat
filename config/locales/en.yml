@@ -292,6 +292,7 @@ en:
   reindex: "Reindex sources"
   resave: "Resave sources"
   publish: "Publish"
+  unpublish: "Unpublish"
   select: "Select"
   create_folder: "Add to a new folder"
   append_folder: "Add to an existing folder"

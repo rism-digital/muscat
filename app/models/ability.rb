@@ -12,6 +12,7 @@ class Ability
       can :manage, :all
       can :reindex, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Folder]
       can :publish, [Folder]
+      can :upublish, [Folder]
       can :create_editions, Source
       can :update_editions, Source      
       can :resave, :all
@@ -25,6 +26,7 @@ class Ability
       can :create_editions, Source
       can :update_editions, Source
       can :manage, Folder, :wf_owner => user.id
+      can :upublish, [Folder]
       can [:read, :create, :destroy], ActiveAdmin::Comment
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"

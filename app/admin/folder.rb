@@ -70,6 +70,11 @@ ActiveAdmin.register Folder do
     redirect_to resource_path(params[:id]), notice: "Publish Job started #{job.id}"
   end
  
+  member_action :unpublish, method: :get do
+    job = Delayed::Job.enqueue(PublishFolderJob.new(params[:id], unpublish: true))
+    redirect_to resource_path(params[:id]), notice: "Unpublish Job started #{job.id}"
+  end
+ 
   ###########
   ## Index ##
   ###########

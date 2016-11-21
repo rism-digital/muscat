@@ -292,6 +292,7 @@ fr:
   reindex: "Ré-indexer"
   resave: "RESAVE"
   publish: "Publier"
+  unpublish: "UNPUBLISH"
   select: "Sélectionner"
   create_folder: "Ajouter à un nouveau dossier"
   append_folder: "Ajouter à un dossier existant"

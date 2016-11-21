@@ -69,7 +69,12 @@
 				:class => "muscat_icon_link muscat_icon_link_publish") %>
 			</li>
 		<%- end %>
-		
+		<%- if (self.controller.respond_to? :unpublish) && (can? :unpublish, item) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :unpublish}", send("unpublish_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_unpublish") %>
+			</li>
+		<%- end %>
 	<%- else %>
 	
 		<%-

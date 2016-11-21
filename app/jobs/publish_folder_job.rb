@@ -1,7 +1,8 @@
 class PublishFolderJob < ProgressJob::Base
   
-  def initialize(parent_id)
+  def initialize(parent_id, options = {})
     @parent_id = parent_id
+    @options = options
   end
   
   def enqueue(job)
@@ -22,10 +23,17 @@ class PublishFolderJob < ProgressJob::Base
     
     update_progress_max(f2.folder_items.count)
     
+    new_wf_stage = @options.include?(:unpublish) && @options[:unpublish] == true ? :inprogress : :published
+    
     count = 0
     f2.folder_items.each do |fi|
-      fi.item.wf_stage = :published
-      fi.item.save
+      fi.item.wf_stage = new_wf_stage
+      
+      if fi.item.respond_to?('paper_trail_enabled_for_model?')
+        fi.item.paper_trail.without_versioning :save
+      else
+        fi.item.save
+      end
       update_stage_progress("Updating records #{count}/#{f2.folder_items.count}", step: 1)
       count += 1
     end
