@@ -69,7 +69,7 @@ ActiveAdmin.register Folder do
     job = Delayed::Job.enqueue(PublishFolderJob.new(params[:id]))
     redirect_to resource_path(params[:id]), notice: "Publish Job started #{job.id}"
   end
-  
+ 
   ###########
   ## Index ##
   ###########
