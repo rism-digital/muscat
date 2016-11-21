@@ -3,6 +3,7 @@
   tag: tag_no_subfield
   tag_params: 
     read_only: true
+    no_delete: true
   tag_header: none
 "541": 
   layout: 

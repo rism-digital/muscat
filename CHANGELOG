@@ -1,4 +1,5 @@
 v3.6.3
+* Disable delete button for 001 tag
 * Fix #460, added sidebar action to unpublish records from a folder
 * Fix #461, all records show n.a. in blacklight
 * Inaugurating the Musicat Changelog

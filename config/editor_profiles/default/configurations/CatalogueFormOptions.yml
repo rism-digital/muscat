@@ -8,6 +8,7 @@
   tag: tag_no_subfield
   tag_params: 
     read_only: true
+    no_delete: true
   tag_header: none
 "003": 
   tag: tag_no_subfield
