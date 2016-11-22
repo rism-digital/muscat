@@ -24,6 +24,8 @@ class CommentNotifications < ApplicationMailer
       next if !email
       email
     end.compact
+    
+    addresses << RISM::COMMENT_EMAIL if (RISM::COMMENT_EMAIL && RISM::COMMENT_EMAIL.is_a?(String))
 
     return if addresses.empty?
 

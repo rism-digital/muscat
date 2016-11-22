@@ -269,12 +269,12 @@ doc_references:
         en: Work number
     b: 
       label: 
-        it: Movimento No.
+        it: Movimento N.
         fr: "Numéro du mouvement"
         de: Satznummer
         en: Movement number
       edit_label: 
-        it: Movimento No.
+        it: Movimento N.
         fr: "No. du mouvement"
         de: Satznummer
         en: Movement number
@@ -382,7 +382,7 @@ doc_references:
         en: Text incipit
     z: 
       label: 
-        it: PUBLIC NOTE
+        it: Organico del movimento
         fr: PUBLIC NOTE
         de: Besetzung Satz
         en: Scoring in movement
@@ -787,7 +787,7 @@ doc_references:
         en: No
 "511": 
   label: 
-    it: Nota sui interpreti
+    it: Nota sugli interpreti
     fr: "Remarque sur les interprètes"
     de: "Bemerkungen zu den Aufführungen"
     en: Note on performance
@@ -1481,14 +1481,14 @@ doc_references:
         en: Name of part or section
 "774": 
   label: 
-    it: Singoli items
+    it: Singoli oggetti nella fonte
     fr: Contenu de la source
     de: Untergeordnete Einträge
     en: Items in this source
   fields: 
     w: 
       label: 
-        it: Singolo item
+        it: Singolo oggetto nella fonte
         fr: Source dans cette collection
         de: Untergeordneter Eintrag
         en: Item in this collection
@@ -1496,14 +1496,14 @@ doc_references:
         en: ""
 "773": 
   label: 
-    it: Item principale
+    it: Notizia principale
     fr: Source principale
     de: Übergeordneter Eintrag
     en: Parent record
   fields: 
     w: 
       label: 
-        it: Item principale
+        it: Notizia principale
         fr: Source principale
         de: Übergeordneter Eintrag
         en: Parent record

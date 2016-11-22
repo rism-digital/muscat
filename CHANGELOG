@@ -1,4 +1,5 @@
 v3.6.3
+* Corretly escape generated marcxml, #443
 * Disable delete button for 001 tag
 * Fix #460, added sidebar action to unpublish records from a folder
 * Fix #461, all records show n.a. in blacklight

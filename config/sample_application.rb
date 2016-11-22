@@ -65,6 +65,9 @@ module RISM
 	
 	# Test server warning. Set to true to raise a flash notice waring when saving
 	TEST_SERVER = false
+	
+	# All the comments go to this email here, set it to and address to activate
+	COMMENT_EMAIL = false
 end
 
 module Muscat
