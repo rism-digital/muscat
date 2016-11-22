@@ -1,6 +1,31 @@
+Muscat Changelog
+================
+
 v3.6.3
-* Corretly escape generated marcxml, #443
+------
+* Add test server warning config
+* Trap not found records in create new
+* Send mails on Comments
+* Add warning when duplicating a source duplication
+* Make sure users cannot call create_new_folder without params
+* Add custom event to Save job to distinguish it from other jobs
+* Avoiding dashboard to crash
+* Added asn to 710 relator codes
+* Alter the version tracker so it should not create duplicates from scripts.
+* Updating Verovio - fixes bug with fermata on rests
+* Modify configuration so 041 and 650 are collection / edition
+* Fix crash in DNB partial
 * Disable delete button for 001 tag
-* Fix #460, added sidebar action to unpublish records from a folder
-* Fix #461, all records show n.a. in blacklight
+* Fixed all records are unpublished by default
+* #461, all records show n.a. in blacklight, add changelog
+* #460, added sidebar action to unpublish records from a folder
+* #453 add octaved treble clef, verovio upd. will follow
+* #452 add translations for g-2
+* #447 change action names
+* #443: Corretly escape generated marcxml
+* #446, Make users sortable
 * Inaugurating the Musicat Changelog
+
+To generate GIT changelog
+-------------------------
+`git log v3.6.1...HEAD --pretty=format:'%s' --reverse`
