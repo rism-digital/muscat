@@ -444,7 +444,7 @@ class MarcNode
       end
     else
       #subfield
-      cont_sanit = (content != nil and !content.is_a? Integer) ? content.gsub(/\&/){"&amp;"} : content
+      cont_sanit = ERB::Util.html_escape(content)
       out += "\t\t\t<marc:subfield code=\"#{@tag}\">#{cont_sanit}</marc:subfield>\n"
     end
 
