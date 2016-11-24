@@ -2049,12 +2049,42 @@ voc:
     de: Mutmaßlich
     en: Conjectural
 # Marc Language codes
+afr: 
+  label: 
+    IT: AFRIKAANS
+    FR: AFRIKAANS
+    de: Afrikaans
+    en: Afrikaans
+ara: 
+  label: 
+    IT: ARABIC
+    FR: ARABIC
+    de: Arabisch
+    en: Arabic 
+arg: 
+  label: 
+    IT: ARAGONESE
+    FR: ARAGONESE
+    de: Aragonesisch
+    en: Aragonese
 cat: 
   label: 
     it: Catalano
     fr: Catalan
     de: Katalanisch
     en: Catalan 
+chi: 
+  label: 
+    it: CHINESE
+    fr: CHINESE
+    de: Chinesisch
+    en: Chinese
+chu: 
+  label: 
+    it: OLD CHURCH SLAVONIC
+    fr: OLD CHURCH SLAVONIC
+    de: Altkirchenslawisch
+    en: Old Church Slavonic
 cze: 
   label: 
     it: Ceco
@@ -2079,18 +2109,66 @@ eng:
     fr: Anglais
     de: Englisch
     en: English
+enm: 
+  label: 
+    IT: MIDDLE ENGLISH
+    FR: MIDDLE ENGLISH
+    de: Mittelenglisch
+    en: Middle English
+est: 
+  label: 
+    IT: ESTONIAN
+    FR: ESTONIAN
+    de: Estnisch
+    en: Estonian
+fin: 
+  label: 
+    IT: FINNISH
+    FR: FINNISH
+    de: Finnisch
+    en: Finnish
+frr: 
+  label: 
+    IT: NORTH FRISIAN
+    FR: NORTH FRISIAN
+    de: Nordfriesisch
+    en: North Frisian
 fre: 
   label: 
     it: Francese
     fr: Français
     de: Französisch
     en: French
+gem: 
+  label: 
+    IT: GERMANIC
+    FR: GERMANIC
+    de: Germanisch
+    en: Germanic
 ger: 
   label: 
     it: Tedesco
     fr: Allemand
     de: Deutsch
     en: German
+gle: 
+  label: 
+    IT: IRISH
+    FR: IRISH
+    de: Irisch
+    en: Irish
+glg: 
+  label: 
+    IT: GALICIAN
+    FR: GALICIAN
+    de: Galizisch
+    en: Galician
+gmh: 
+  label: 
+    IT: MIDDLE HIGH GERMAN
+    FR: MIDDLE HIGH GERMAN
+    de: Mittelhochdeutsch
+    en: Middle High German
 grc: 
   label: 
     it: Greco, antico (fino al 1453)
@@ -2133,6 +2211,12 @@ ita:
     fr: Italien
     de: Italienisch
     en: Italian
+jpn: 
+  label: 
+    it: JAPANESE
+    fr: JAPANESE
+    de: Japanisch
+    en: Japanese
 kor: 
   label: 
     it: Coreano
@@ -2145,6 +2229,60 @@ lat:
     fr: Latin
     de: Lateinisch
     en: Latin
+lav: 
+  label: 
+    IT: LATVIAN
+    FR: LATVIAN
+    de: Lettisch
+    en: Latvian
+lit: 
+  label: 
+    IT: LITHUANIAN
+    FR: LITHUANIAN
+    de: Litauisch
+    en: Lithuanian
+ltz: 
+  label: 
+    IT: LUXEMBOURGISH
+    FR: LUXEMBOURGISH
+    de: Luxemburgisch
+    en: Luxembourgish
+mac: 
+  label: 
+    IT: MACEDONIAN
+    FR: MACEDONIAN
+    de: Mazedonisch
+    en: Macedonian
+mon: 
+  label: 
+    IT: MONGOLIAN
+    FR: MONGOLIAN
+    de: Mongolisch
+    en: Mongolian
+nap: 
+  label: 
+    it: NEAPOLITAN
+    fr: NEAPOLITAN
+    de: Neapolitanisch
+    en: Neapolitan
+nds: 
+  label: 
+    it: LOW GERMAN
+    fr: LOW GERMAN
+    de: Niederdeutsch
+    en: Low German
+nor: 
+  label: 
+    IT: NORWEGIAN
+    FR: NORWEGIAN
+    de: Norwegisch
+    en: Norwegian
+oci: 
+  label: 
+    IT: OCCITAN
+    FR: OCCITAN
+    de: Okzitanisch
+    en: Occitan
 pol: 
   label: 
     it: Polacco
@@ -2157,12 +2295,42 @@ por:
     fr: Portugais
     de: Portugisisch
     en: Portuguese
+roh: 
+  label: 
+    it: ROHMANSH
+    fr: ROHMANSH
+    de: Bündnerromanisch (Rätoromanisch)
+    en: Romansh
+rom: 
+  label: 
+    IT: ROMANI
+    FR: ROMANI
+    de: Romani
+    en: Romani
+rum: 
+  label: 
+    IT: ROMANIAN
+    FR: ROMANIAN
+    de: Rumänisch
+    en: Romanian
 rus: 
   label: 
     it: Russo
     fr: Russe
     de: Russisch
     en: Russian
+scn: 
+  label: 
+    IT: SICILIAN
+    FR: SICILIAN
+    de: Sizilianisch
+    en: Sicilian
+sla: 
+  label: 
+    IT: SLAVIC
+    FR: SLAVIC
+    de: Slawisch
+    en: Slavic
 slo: 
   label: 
     it: Slovacco
@@ -2175,6 +2343,12 @@ slv:
     fr: "Slovène"
     de: Slowenisch
     en: Slovenian
+srp: 
+  label: 
+    IT: SERBIAN
+    FR: SERBIAN
+    de: Serbisch
+    en: Serbian
 dsb:
   label:
     it: SORBIAN, LOWER SORBIAN
@@ -2205,6 +2379,36 @@ swe:
     fr: "Suédois"
     de: Schwedisch
     en: Swedish
+tur: 
+  label: 
+    IT: TURKISH
+    FR: TURKISH
+    de: Türkisch
+    en: Turkish
+ukr: 
+  label: 
+    IT: UKRAINIAN
+    FR: UKRAINIAN
+    de: Ukrainisch
+    en: Ukrainian
+wel: 
+  label: 
+    IT: WELSH
+    FR: WELSH
+    de: Walisisch
+    en: Welsh
+wen: 
+  label: 
+    it: SORBIAN
+    fr: SORBIAN
+    de: Sorbisch
+    en: Sorbian
+yid: 
+  label: 
+    IT: YIDDISH
+    FR: YIDDISH
+    de: Jiddisch
+    en: Yiddish
 zxx: 
   label: 
     it: Nessun contesto linguistico
