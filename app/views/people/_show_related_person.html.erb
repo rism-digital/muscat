@@ -1,11 +1,8 @@
 <%
-    ref_tag = tag.fetch_first_by_tag("0")
-    a_tag = tag.fetch_first_by_tag("a")
-    i_tag = tag.fetch_first_by_tag("i")
+    ref_tag = tag.fetch_first_by_tag("0").content.to_s rescue ""
+    a_tag = tag.fetch_first_by_tag("a").content rescue ""
+    i_tag = tag.fetch_first_by_tag("i").content rescue ""
 
-#	content = Array.new
-#	content << i_tag.content if i_tag && i_tag.content
-#	content << a_tag.content if a_tag && a_tag.content	
 -%>
 <tr class="row">
 	<th>
@@ -14,7 +11,7 @@
 		<%- end %>
 	</th>
 	<td>
-      <%= link_to a_tag.content+" ["+i_tag.content+"]", ref_tag.content.to_s %>
+      <%= link_to a_tag + " ["+ i_tag +"]", ref_tag %>
 	</td>
 </tr>
 
