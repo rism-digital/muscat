@@ -235,7 +235,9 @@ class Catalogue < ActiveRecord::Base
     sunspot_dsl.integer :src_count_order, :stored => true do 
       Catalogue.count_by_sql("select count(*) from sources_to_catalogues where catalogue_id = #{self[:id]}")
     end
-    
+    sunspot_dsl.time :updated_at
+    sunspot_dsl.time :created_at
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
   end

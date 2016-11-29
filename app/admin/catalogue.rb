@@ -111,7 +111,9 @@ ActiveAdmin.register Catalogue do
   filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
   filter :"place_contains", :label => proc {I18n.t(:filter_place)}, :as => :string
   filter :"date_contains", :label => proc {I18n.t(:filter_date)}, :as => :string
-  
+  filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
+  filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
+
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder

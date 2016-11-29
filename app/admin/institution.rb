@@ -109,7 +109,9 @@ ActiveAdmin.register Institution do
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :siglum_contains, :label => proc {I18n.t(:filter_siglum)}, :as => :string
   filter :place_contains, :label => proc {I18n.t(:filter_place)}, :as => :string
-  
+  filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
+  filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
+
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder

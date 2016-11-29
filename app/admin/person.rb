@@ -129,7 +129,8 @@ ActiveAdmin.register Person do
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
   filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc {I18n.t(:updated_at)}, :as => :date_range
-  
+  filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
+
   filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
          collection: proc {
            if current_user.has_any_role?(:editor, :admin)
