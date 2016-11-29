@@ -3,6 +3,7 @@ Muscat Changelog
 v3.6.5
 * #468 Extented language code list
 * Added timeline filter to institutions, catalogue and people
+* Fix crash in people if related person has no relationship
 
 v3.6.4
 * #466, make sure the incipit gets the correct field index or 031 $t would be overwritten
