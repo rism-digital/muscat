@@ -104,7 +104,7 @@ ActiveAdmin.register User do
         f.input :password_confirmation
       end
       if can? :manage, User
-        f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all 
+        f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all.sort_by {|w| w.name} 
         f.input :roles, as: :select, multiple: false, collection: Role.all
         f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published, :deleted]
       end
