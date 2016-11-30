@@ -42,7 +42,7 @@ class Ability
       can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding]
       can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding], :wf_owner => user.id
       can [:destroy], DigitalObject, :wf_owner => user.id
-      can [:read, :create, :update], DigitalObject
+      can [:read, :create, :update, :add_item], DigitalObject
       can [:read, :update, :create], DigitalObjectLink
       can [:destroy], DigitalObjectLink do |link|
         link.object_link.wf_owner == user.id
