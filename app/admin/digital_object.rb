@@ -58,15 +58,15 @@ ActiveAdmin.register DigitalObject do
   member_action :add_item, method: :get do
     
     if can?(:create, DigitalObjectLink)
-      begin 
+      #begin
         dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
                                     user: resource.user, digital_object_id: params[:id])
         dol.save!
     
         redirect_to resource_path(params[:id]), notice: "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
-      rescue
-        redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
-      end
+      #rescue
+      #  redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
+      #end
     else
       flash[:error] = "Operation not allowed"
       redirect_to collection_path
@@ -139,8 +139,8 @@ ActiveAdmin.register DigitalObject do
             end
             column "" do |dol|
               link_to I18n.t(:link_remove), 
-			  	{controller: :digital_objects, action: :remove_item, id: resource.id, params: {digital_object_link_id: dol.id}}, 
-			  	data: { confirm: I18n.t(:link_remove_confirm) }
+                {controller: :digital_objects, action: :remove_item, id: resource.id, params: {digital_object_link_id: dol.id}}, 
+                data: { confirm: I18n.t(:link_remove_confirm) }
             end
           end
       end
