@@ -121,8 +121,8 @@ ActiveAdmin.register Source do
         end
         
         new_marc = MarcSource.new(base_item.marc.marc_source, base_item.record_type)
-        new_marc.load_source false # this will need to be fixed
-        new_marc.first_occurance("001").content = "__TEMP__"
+        # Reset the basic fields to default values
+        new_marc.reset_to_new
         # copy the record type
         @source.marc = new_marc
         @source.record_type = base_item.record_type

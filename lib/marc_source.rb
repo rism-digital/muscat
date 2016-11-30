@@ -192,6 +192,12 @@ class MarcSource < Marc
 
   end
   
+  def reset_to_new
+    #load_source false if !@loaded
+    first_occurance("001").content = "__TEMP__"
+    by_tags("774").each {|t| t.destroy_yourself}
+  end
+
   def match_leader
     rt = RECORD_TYPES[:unspecified]
     
@@ -229,13 +235,13 @@ class MarcSource < Marc
     rt = match_leader
     
     # Drop leader
-    each_by_tag("000") {|t| t.destroy_yourself}
+    by_tags("000").each {|t| t.destroy_yourself}
      
     # Drop other unused tags
-    each_by_tag("003") {|t| t.destroy_yourself}
-    each_by_tag("005") {|t| t.destroy_yourself}
-    each_by_tag("007") {|t| t.destroy_yourself}
-    each_by_tag("008") {|t| t.destroy_yourself}
+    by_tags("003").each {|t| t.destroy_yourself}
+    by_tags("005").each {|t| t.destroy_yourself}
+    by_tags("007").each {|t| t.destroy_yourself}
+    by_tags("008").each {|t| t.destroy_yourself}
     
     # Move 130 to 240
     each_by_tag("130") do |t|

@@ -5,6 +5,7 @@ v3.6.5
 * Added timeline filter to institutions, catalogue and people
 * Fix crash in people if related person has no relationship
 * Updating Verovio with support for PAE chant notation (7.) as stemless quarter notes
+* Add function to reset MARC to "defaults" when duplicating sources, ex. remove 774s
 
 v3.6.4
 * #466, make sure the incipit gets the correct field index or 031 $t would be overwritten
