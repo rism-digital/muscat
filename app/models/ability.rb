@@ -45,6 +45,8 @@ class Ability
       can [:read, :create, :add_item], DigitalObject
       can [:read, :update, :create], DigitalObjectLink
       can [:destroy], DigitalObjectLink do |link|
+        # the owner of the link is always set to the owner of the object it points to,
+        # so only the first condition will happen. We could change this eventually
         (link.object_link.wf_owner == user.id) or (link.wf_owner == user.id)
       end
       can [:manage], Folder, :wf_owner => user.id
