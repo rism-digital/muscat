@@ -138,9 +138,11 @@ ActiveAdmin.register DigitalObject do
               link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
             end
             column "" do |dol|
+              if can?(:destroy, dol)
               link_to I18n.t(:link_remove), 
                 {controller: :digital_objects, action: :remove_item, id: resource.id, params: {digital_object_link_id: dol.id}}, 
                 data: { confirm: I18n.t(:link_remove_confirm) }
+              end
             end
           end
       end
