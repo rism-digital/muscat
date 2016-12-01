@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
        format.json { head :conflict }
     end
   end
-  
+  	
   def user_for_paper_trail
    current_user.try :name
   end

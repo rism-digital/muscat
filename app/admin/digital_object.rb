@@ -60,7 +60,7 @@ ActiveAdmin.register DigitalObject do
     if can?(:create, DigitalObjectLink)
       #begin
         dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
-                                    user: resource.user, digital_object_id: params[:id])
+                                    user: current_user, digital_object_id: params[:id])
         dol.save!
     
         redirect_to resource_path(params[:id]), notice: "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
