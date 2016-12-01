@@ -45,7 +45,7 @@ class Ability
       can [:read, :create, :add_item], DigitalObject
       can [:read, :update, :create], DigitalObjectLink
       can [:destroy], DigitalObjectLink do |link|
-        link.object_link.wf_owner == user.id
+        (link.object_link.wf_owner == user.id) or (link.wf_owner == user.id)
       end
       can [:manage], Folder, :wf_owner => user.id
       can [:read, :create], ActiveAdmin::Comment
