@@ -41,8 +41,8 @@ class Ability
       # A cataloguer can create new items but modify only the ones ho made
       can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding]
       can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding], :wf_owner => user.id
-      can [:destroy, :update], DigitalObject, :wf_owner => user.id
-      can [:read, :create], DigitalObject
+      can [:destroy], DigitalObject, :wf_owner => user.id
+      can [:read, :create, :update, :add_item], DigitalObject
       can [:read, :update, :create], DigitalObjectLink
       can [:destroy], DigitalObjectLink do |link|
         link.object_link.wf_owner == user.id
