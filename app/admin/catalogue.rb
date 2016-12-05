@@ -192,7 +192,7 @@ ActiveAdmin.register Catalogue do
   
   form :partial => "editor/edit_wide"
   
-  sidebar :sections, :only => [:edit, :new] do
+  sidebar :sections, :only => [:edit, :new, :update] do
     render("editor/section_sidebar") # Calls a partial
   end
   

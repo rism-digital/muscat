@@ -157,7 +157,7 @@ ActiveAdmin.register LiturgicalFeast do
     end
   end
   
-  sidebar :actions, :only => [:edit, :new] do
+  sidebar :actions, :only => [:edit, :new, :update] do
     render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => liturgical_feast }
   end
   

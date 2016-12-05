@@ -5,7 +5,9 @@ class DigitalObject < ActiveRecord::Base
       styles: { maximum: "900x900", medium: "300x300", thumb: "100x100>" }, 
       default_url: "/images/attachment/missing.png",
       path: "#{RISM::DIGITAL_OBJECT_PATH}/system/:class/:attachment/:id_partition/:style/:filename"
-    validates_attachment :attachment, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+		
+		validates_presence_of :description
+		validates_attachment :attachment, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
   
     has_many :digital_object_links, :dependent => :delete_all
     has_many :folder_items, :as => :item

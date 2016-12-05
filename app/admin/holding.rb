@@ -189,7 +189,7 @@ end
   ## Edit ##
   ##########
   
-  sidebar :sections, :only => [:edit, :new] do
+  sidebar :sections, :only => [:edit, :new, :update] do
     render("editor/section_sidebar") # Calls a partial
   end
   
