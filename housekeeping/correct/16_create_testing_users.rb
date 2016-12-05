@@ -11,7 +11,7 @@ wg = Workgroup.where(:id => 8).take #USA
 
   number = str = format('%02d', n)
     
-  User.create!(:name => "training#{number}",  :email => "training#{number}@rism.info", :roles => [role],
+  User.create!(:name => "Training User #{number}",  :email => "training#{number}@rism.info", :roles => [role],
                :password => "password",  :password_confirmation => "password", :workgroups => [wg])
 
 end
