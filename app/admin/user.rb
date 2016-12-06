@@ -6,29 +6,6 @@ ActiveAdmin.register User do
   # Remove all action items
   config.clear_action_items!
 
-  controller do
-        
-    # redirect update failure for preserving sidebars
-    def update      
-      if params[:user][:password].blank?
-        params[:user].delete("password")
-        params[:user].delete("password_confirmation")
-      end
-      update! do |success,failure|
-        success.html { redirect_to collection_path }
-        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
-      end
-    end
-    
-    # redirect create failure for preserving sidebars
-    def create
-      create! do |success,failure|
-        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
-      end
-    end
-    
-  end
-
   ###########
   ## Index ##
   ###########
