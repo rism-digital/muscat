@@ -43,6 +43,11 @@ module Viaf
           rescue
             return "ERROR connecting VIAF Justlinks"
           end
+          
+          if !links.is_a?(Hash)
+            return "ERROR VIAF Justlinks returned invalid data"
+          end
+          
           begin
             provider_doc = Nokogiri::XML(open(provider_url))
           rescue 
