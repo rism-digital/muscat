@@ -753,14 +753,14 @@ doc_references:
         en: ""
 "508": 
   label: 
-    it: Nota sui crediti di creazione/produzione
+    it: Nota sulle responsabilità di creazione/produzione
     fr: "Remarque sur la création/production"
     de: Bemerkung zur Person / Körperschaft
     en: Creation/production note
   fields: 
     a: 
       label: 
-        it: Nota sui crediti di creazione/produzione
+        it: Nota sulle responsabilità di creazione/produzione
         fr: "Note sur la création/production"
         de: Bemerkung zur Person / Körperschaft
         en: Creation/production note
