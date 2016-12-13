@@ -2945,19 +2945,19 @@ G+5:
 #Physical medium (340 $a) - currently not used by the partial
 Autography:
   label:
-    it: "AUTOGRAPHY"
+    it: "Autografia"
     fr: "Autographie"
     de: "Autographie"
     en: "Autography"
 "Computer printout":
   label:
-    it: "COMPUTER PRINTOUT"
+    it: "Stampata da computer"
     fr: "Impression informatique"
     de: "Computerausdruck"
     en: "Computer printout"
 Engraving:
   label:
-    it: "ENGRAVING"
+    it: "Incisione"
     fr: "Gravure"
     de: "Stich"
     en: "Engraving"
@@ -2975,7 +2975,7 @@ Lithography:
     en: "Lithography"
 "Photoreproductive process":
   label:
-    it: "PHOTOREPRODUCTIVE PROCESS (BLUPRINT)"
+    it: "Cianografia"
     fr: "Reproduction photo (blueprint)"
     de: "Blaupause"
     en: "Photoreproductive process (bluprint)"
@@ -2987,7 +2987,7 @@ Reproduction:
     en: "Reproduction"
 Transparency:
   label:
-    it: "TRANSPARENCY"
+    it: "Trasparente"
     fr: "Transparent"
     de: "Transparentfolie"
     en: "Transparency"
