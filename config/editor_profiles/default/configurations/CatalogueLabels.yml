@@ -101,27 +101,27 @@ doc_templates:
 
 "041": 
   label: 
-    it: Codice Lingua
+    it: Codice lingua
     fr: Code de langue
     de: Sprache
     en: Language Code
   fields: 
     a: 
       label: 
-        it: Codice Lingua
+        it: Codice lingua
         fr: Code de langue
         de: Sprach-Code
         en: Language Code
 "044": 
   label: 
-    it: COUNTRY
+    it: Paese
     fr: COUNTRY
     de: Land
     en: Country
   fields: 
     a: 
       label: 
-        it: COUNTRY
+        it: Paese
         fr: COUNTRY
         de: Land
         en: Country
@@ -206,7 +206,7 @@ doc_templates:
         en: Publisher
     c: 
       label: 
-        it: YEAR
+        it: Anno
         fr: YEAR
         de: Jahr
         en: Year
@@ -271,7 +271,7 @@ doc_templates:
   fields: 
     g: 
       label: 
-        it: Part
+        it: Parte
         fr: Partie
         de: Jahrgang, Seite
         en: Part 
@@ -283,33 +283,33 @@ doc_templates:
         en: Revue title
 "780": 
   label: 
-    it: PREVIOUS ENTRY
+    it: Titolo precedente
     fr: PREVIOUS ENTRY
     de: Früherer Eintrag
     en: Previous entry
   fields: 
     a: 
       label: 
-        it: PREVIOUS ENTRY
+        it: Titolo precedente
         fr: PREVIOUS ENTRY
         de: Früherer Eintrag
         en: Previous entry
 "785": 
   label: 
-    it: Item precedente
+    it: Titolo successivo
     fr: Entrée suivante
     de: Folgeeintrag
     en: Succeeding Entry
   fields: 
     a: 
       label: 
-        it: Item precedente
+        it: Titolo successivo
         fr: Entrée suivante
         de: Folgeeintrag
         en: Succeeding Entry
 main: 
   label: 
-    it: Registrazioni principali
+    it: Campi principali
     fr: "Entrées principales"
     de: Haupteintragungen
     en: Main entry fields
@@ -345,7 +345,7 @@ administration:
     en: Administration
 ed: 
   label: 
-    it: Editione
+    it: Edizione
     fr: "édition"
     de: Edition
     en: Edition
@@ -357,7 +357,7 @@ H:
     en: Editor
 added_series: 
   label: 
-    it: Note secondarie sul titolo generale
+    it: Note secondarie sul titolo sovraordinato
     fr: "Entrées de collection"
     de: Nebeneintragungen Gesamttitel
     en: Series added entry fields
@@ -603,7 +603,7 @@ lyr:
     en: Lyricist
 main: 
   label: 
-    it: Registrazioni principali
+    it: Campi principali
     fr: "Entrées principales"
     de: Haupteintragungen
     en: Main entry fields
@@ -687,7 +687,7 @@ scr:
     en: Scribe
 series: 
   label: 
-    it: Informazioni sul titolo generale
+    it: Informazioni sul titolo sovraordinato
     fr: Mentions de collection
     de: Gesamttitelangaben
     en: Series statement fields
@@ -827,7 +827,7 @@ voc:
   fields: 
     a: 
       label: 
-        it: Mezzo Fisico 
+        it: Mezzo fisico 
         fr: Moyen physique 
         de: Physisches Medium 
         en: Physical Medium
