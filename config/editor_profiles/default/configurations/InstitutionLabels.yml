@@ -219,7 +219,7 @@ doc_templates:
         en: City
     c:
       label:
-        it: Paese o provincia
+        it: Cantone o provincia
         fr: Canton ou province
         de: Bezirk oder Staat
         en: County or province
