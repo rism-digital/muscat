@@ -201,7 +201,7 @@ doc_templates:
   fields:
     a:
       label:
-        it: Nome di ente
+        it: Via e numero civico
         fr: "Nom de la collectivité"
         de: Strasse
         en: Street address
