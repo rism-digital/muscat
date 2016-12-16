@@ -1,5 +1,8 @@
 Muscat Changelog
 ================
+v3.6.6
+* Removed 852$q from sources
+
 v3.6.5
 * #468 Extented language code list
 * Added timeline filter to institutions, catalogue and people
