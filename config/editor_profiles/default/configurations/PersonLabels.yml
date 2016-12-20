@@ -346,7 +346,7 @@ doc_edit_workflow:
         en: Number/page
 "678":
   label:
-    it: Riferimento bibliografico addizionale 
+    it: Informazioni biografiche addizionali 
     fr: Référence bibliographique additionnelle 
     de: Weitere bibliographische Angaben
     en: Additional bibliographic reference 
@@ -379,7 +379,7 @@ doc_edit_workflow:
   fields:
     y:
       label:
-        it: Nota destinata al pubblico
+        it: Nota sulla risorsa esterna
         fr: Remarque sur la ressource externe
         de: "Für das Publikum bestimmte Fussnote"
         en: Note about external resource
