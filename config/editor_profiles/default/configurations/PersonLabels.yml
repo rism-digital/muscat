@@ -1025,7 +1025,7 @@ related to:
     en: related to
 other:
   label:
-    it: OTHER
+    it: Altro
     fr: OTHER
     de: Weiteres
     en: other
@@ -1045,7 +1045,7 @@ da:
     en: Pseudonym
 do:
   label:
-    it: Nome dell'ordine
+    it: Nome di religione
     fr: "Nom d'ordre"
     de: Ordensname
     en: Order Name
@@ -1105,7 +1105,7 @@ ub:
     en: Translation
 z:
   label:
-    it: Altra forma
+    it: Ortografia alternativa
     fr: Autres formes
     de: Andere Schreibweise
     en: Other form
