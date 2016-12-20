@@ -489,7 +489,7 @@ ha:
     en: Place of Origin
 po:
   label:
-    it: Codice Postale
+    it: Luogo postale
     fr: Code Postal
     de: postalischer Ort
     en: postal Place
@@ -507,7 +507,7 @@ wl:
     en: Country of activity
 wo:
   label:
-    it: "Luogo di attiità"
+    it: "Luogo di attività"
     fr: "Lieu d'activité"
     de: Wirkungsort
     en: Place of activity
@@ -983,7 +983,7 @@ brother of:
     en: brother of
 child of:
   label:
-    it: Figlio di
+    it: Figlio/figlia di
     fr: Enfant de
     de: Kind von
     en: child of
@@ -995,7 +995,7 @@ mother of:
     en: mother of
 confused with:
   label:
-    it: Confuso con
+    it: Confuso/confusa con
     fr: "Confondu avec"
     de: Verwechselt mit
     en: confused with
@@ -1007,7 +1007,7 @@ sister of:
     en: sister of
 married with:
   label:
-    it: Sposato con
+    it: Sposato/sposata con
     fr: "Marié avec"
     de: Verheiratet mit
     en: married with
