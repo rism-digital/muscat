@@ -142,7 +142,7 @@ doc_edit_workflow:
     it: Codice del Paese
     fr: Country code
     de: Länder-Code
-    en: County code
+    en: Country code
   fields:
     c:
       label:
@@ -152,7 +152,7 @@ doc_edit_workflow:
         en: Country code
 "100":
   label:
-    it: Compositore/Autore
+    it: Nome di persona
     fr: Compositeur/Auteur
     de: Ansetzungsform
     en: Composer/Author
@@ -275,14 +275,14 @@ doc_edit_workflow:
         en:  Siglum
 "550":
   label:
-    it: Termine topico
+    it: Professione o funzione
     fr: Sujet
     de: Sachbegriff
     en: Topical Term
   fields:
     a:
       label:
-        it: Termine topico
+        it: Professione o funzione
         fr: Sujet
         de: Sachbegriff
         en: Topical Term
