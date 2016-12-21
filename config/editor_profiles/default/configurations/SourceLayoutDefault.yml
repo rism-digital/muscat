@@ -22,7 +22,6 @@ group_exclude:
 
 tag_exclude:
   collection:
-  - '511'
   - '546'
   - '595'
   - '651'
@@ -31,7 +30,6 @@ tag_exclude:
   - '787'
   edition:
   - '506'
-  - '511'
   - '541'
   - '546'
   - '561'
@@ -75,7 +73,6 @@ tag_exclude:
   - '787'
   - '852'
   theoretica_source:
-  - '511'
   - '590'
   - '594'
   - '595'
@@ -88,7 +85,6 @@ tag_exclude:
   - '787'
   theoretica_edition_content:
   - '506'
-  - '511'
   - '541'
   - '561'
   - '590'
@@ -181,7 +177,6 @@ groups:
     - '596'
     - '657'
     - '651'
-    - '511'
     - '518'
     - '856'
     ungrouped_tags:

@@ -785,7 +785,7 @@ doc_references:
         fr: No
         de: No
         en: No
-"511": 
+"518": 
   label: 
     it: Nota sugli interpreti
     fr: "Remarque sur les interprètes"
@@ -798,21 +798,6 @@ doc_references:
         fr: "Remarque sur les interprètes"
         de: "Bemerkungen zu den Aufführungen"
         en: Performer note
-      edit_label: 
-        en: ""
-"518": 
-  label: 
-    it: Nota sulla data
-    fr: Remarque sur une date
-    de: Bermerkungen zu Datumsangaben
-    en: Note on a date
-  fields: 
-    a: 
-      label: 
-        it: Nota sulla data
-        fr: Remarque a sur une date
-        de: Bermerkungen zu Datumsangaben
-        en: Note on a date
       edit_label: 
         en: ""
 "520": 

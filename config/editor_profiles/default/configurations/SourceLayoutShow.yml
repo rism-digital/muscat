@@ -81,7 +81,6 @@ groups:
   show_information: 
     all_tags: 
     - "500"
-    - "511"
     - "518"
     - "520"
     - "505"
