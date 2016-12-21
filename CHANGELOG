@@ -5,6 +5,9 @@ v3.6.6
 * Fix disappearing sidebar when errors were shown on non-marc models
 * #475 Fix VIAF links crashing
 * Many improvement to labels and translations
+* Make 033 field collapsed by default
+* Remove 511 field
+* Rename 518 field
 
 v3.6.5
 * #468 Extented language code list
