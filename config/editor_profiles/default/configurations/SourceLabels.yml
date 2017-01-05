@@ -787,14 +787,14 @@ doc_references:
         en: No
 "518": 
   label: 
-    it: Nota sugli interpreti
+    it: Nota sull'esecuzione
     fr: "Remarque sur les interprètes"
     de: "Bemerkungen zu den Aufführungen"
     en: Note on performance
   fields: 
     a: 
       label: 
-        it: Nota sugli interpreti
+        it: Nota sull'esecuzione
         fr: "Remarque sur les interprètes"
         de: "Bemerkungen zu den Aufführungen"
         en: Performer note
@@ -1023,14 +1023,14 @@ doc_references:
         en: Dramatic roles named, original spelling
 "596": 
   label: 
-    it: Rimandi a RISM A/I e RISM B
+    it: Rimando all'esemplare a stampa del manoscritto
     fr: "Référence au RISM A/I et B"
     de: Querverweise zu RISM A/I und RISM B
     en: RISM Series A/I and B references
   fields: 
     a: 
       label: 
-        it: Rimandi a RISM A/I e RISM B
+        it: Serie RISM
         fr: "Références au RISM A/I et B"
         de: Querverweise zu RISM A/I und RISM B
         en: RISM Series A/I and B references
@@ -1038,7 +1038,7 @@ doc_references:
       en: ""
     b: 
       label: 
-        it: RISM SERIES NUMBER
+        it: Numero RISM
         fr: RISM SERIES NUMBER
         de: RISM SERIES NUMBER
         en: RISM series number
@@ -1800,7 +1800,7 @@ clb:
     en: Contributer
 cmp: 
   label: 
-    it: Compositore / Compositore secondario
+    it: Rimando ad altro compositore
     fr: Compositeur / Co-compositeur
     de: Komponistenquerverweis
     en: Composer cross-reference
