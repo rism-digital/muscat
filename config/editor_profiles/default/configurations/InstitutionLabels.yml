@@ -417,7 +417,7 @@ doc_templates:
 
 main:
   label:
-    it: Registrazioni principali
+    it: Campi principali
     fr: "Entrées principales"
     de: Haupteintragungen
     en: Main entry fields
@@ -1188,13 +1188,13 @@ voc:
     en: "Venezuela, Bolivarian Republic of"
 "Library":
   label:
-    it: "LIBRARY"
+    it: "Biblioteca"
     fr: "LIBRARY"
     de: "Bibliothek"
     en: "Library"
 "Archive":
   label:
-    it: "ARCHIVE"
+    it: "Archivio"
     fr: "ARCHIVE"
     de: "Archiv"
     en: "Archive"
@@ -1212,7 +1212,7 @@ voc:
     en: Other
 "Institution":
   label:
-    it: "INSTITUTION"
+    it: "Nome collettivo"
     fr: "INSTITUTION"
     de: "Körperschaft"
     en: "Institution"
