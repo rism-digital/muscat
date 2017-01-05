@@ -181,13 +181,13 @@ doc_templates:
         en: Type
     h: 
       label: 
-        it: Tipo di pubblicatione
+        it: Tipo di pubblicazione
         fr: Type de publication
         de: Ausgabeform
         en: Type of publication
 "260": 
   label: 
-    it: Impressum 
+    it: Dati editoriali 
     fr: Impressum
     de: Impressum
     en: Impressum
@@ -264,20 +264,20 @@ doc_templates:
         en: Additional title
 "760": 
   label: 
-    it: Testata
+    it: Fa parte di
     fr: Titre de la revue
     de: In
     en: Revue title
   fields: 
     g: 
       label: 
-        it: Parte
+        it: Volume, anno, pagina
         fr: Partie
         de: Jahrgang, Seite
         en: Part 
     t: 
       label: 
-        it: Testata
+        it: Titolo del periodico o della miscellanea
         fr: Titre de la revue
         de: "In: "
         en: Revue title
