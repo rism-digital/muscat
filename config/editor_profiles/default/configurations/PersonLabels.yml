@@ -294,20 +294,20 @@ doc_edit_workflow:
         en:  Relation
 "551":
   label:
-    it: Luoghi
+    it: Nome geografico
     fr: Lieu
     de: Orte
     en:  Places
   fields:
     a:
       label:
-        it:  Luogo
+        it:  Nome geografico
         fr:  Lieu
         de:  Ort
         en:  Place
     i:
       label:
-        it:  Descrizione del luogo
+        it:  Tipo
         fr:  "Description de l'endroit"
         de:  Ort Bedeutung
         en:  Place Description
@@ -340,7 +340,7 @@ doc_edit_workflow:
         en: Source data found
     b:
       label:
-        it: Numero/pagina
+        it: Informazione rinvenuta
         fr: "Numéro/page"
         de: Fundstelle
         en: Number/page
@@ -391,7 +391,7 @@ doc_edit_workflow:
         en: External resource
 main_person:
   label:
-    it: Registrazioni principali
+    it: Campi principali
     fr: "Entrées principales"
     de: Haupteintragungen
     en: Main entry fields
