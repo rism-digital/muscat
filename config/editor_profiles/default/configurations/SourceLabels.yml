@@ -43,7 +43,11 @@ doc_abbr_voices_instr:
   label: 
     de: "Stimmen- und Instrumentenbezeichnungen"
     en: "Terms for voices and instruments"
-################
+doc_abbr_voices_instr2: 
+  label: 
+    de: "Stimmen- und Instrumentenbezeichnungen tabellarisch"
+    en: "Terms for voices and instruments as table"
+###############
 
 doc_aid: 
   label: 
