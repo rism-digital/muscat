@@ -243,7 +243,7 @@ doc_templates:
         en: URL
     z:
       label:
-        it: Nota pubblica
+        it: Altri dati sul contatto
         fr: Note publique
         de: Bemerkungen
         en: Public Note
@@ -355,14 +355,14 @@ doc_templates:
         en: History of institution
 "680":
   label:
-    it: Osservazioni
+    it: Altre note sulla descrizione
     fr: Remarque général
     de: Allgemeine Fussnote
     en: General note
   fields:
     a:
       label:
-        it: Osservazioni
+        it: Altre note sulla descrizione
         fr: Remarque générale
         de: Allgemeine Fussnote
         en: General note
@@ -396,14 +396,14 @@ doc_templates:
 
 "856":
   label:
-    it: Online
+    it: Aiuti alla ricerca, guide e pubblicazioni
     fr: En Ligne
     de: Archivführer und andere Publikationen
     en: Online finding aids
   fields:
     u:
       label:
-        it: Online
+        it: Aiuti alla ricerca, guide e pubblicazioni
         fr: En Ligne
         de: Archivführer und andere Publikationen
         en: Online finding aids
