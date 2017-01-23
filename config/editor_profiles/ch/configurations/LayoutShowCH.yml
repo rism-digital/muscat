@@ -112,6 +112,7 @@ groups:
     - "596"
     - "690"
     - "691"
+    - "856"
     all_tag_templates: 
       "690": marc_show/show_subfield_concat
       "691": marc_show/show_subfield_concat
