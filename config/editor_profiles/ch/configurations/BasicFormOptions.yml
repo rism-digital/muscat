@@ -620,5 +620,14 @@
       - growfield: true
     - - d
     - - z
+"856": 
+  layout: 
+    fields: 
+    - - u
+    - - z
+    - - x
+      - values: 
+        - "IIIF"
+        editor_partial: subfield_select
 ui: 
   hide_marc_identifiers: true

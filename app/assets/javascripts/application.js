@@ -48,3 +48,6 @@
 // this:
 //= require 'blacklight_range_limit'
 
+
+//= require diva/diva.js
+//= require diva/utils.js

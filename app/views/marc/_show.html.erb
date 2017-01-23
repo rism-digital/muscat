@@ -11,3 +11,11 @@
 		<% end -%>
 	<%- end -%>
 
+<% if !@diff && opac_resolved  %>
+	
+	<%= render :partial => "marc_show/show_iiif", 
+		:locals => { 
+			:item => @item, 
+			:opac => opac_resolved } %>
+
+<% end %>

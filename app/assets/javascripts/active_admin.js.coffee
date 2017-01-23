@@ -32,3 +32,6 @@
 #= require verovio_preload
 #= require new_window_select_ujs
 #= require jsdiff.js
+
+#= require diva/diva.js
+#= require diva/utils.js

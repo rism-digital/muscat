@@ -1058,13 +1058,18 @@
   "856":
     :master: u
     :indicator: "##"
-    :occurances: "*"
-    :fields: 
+    :occurrences: "*"
+    :fields:
     - - u
-      - :occurances: "*"
+      - :occurrences: "*"
         :browse_helper: application_helper_link_http
+    - - x
+      - :occurrences: "?"
     - - z
-      - :occurances: "*"
+      - :occurrences: "*"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
   
 #
 # ST NOTE: Repeat value of 852 x repeat value amended to "0" as this field can be discarded on import.
