@@ -17,7 +17,8 @@ module Faraday
   end
 end
 
-IIF_PATH="http://d-lib.rism-ch.org/cgi-bin/iipsrv.fcgi?IIIF=/usr/local/images/ch/"
+#IIF_PATH="http://d-lib.rism-ch.org/cgi-bin/iipsrv.fcgi?IIIF=/usr/local/images/ch/"
+IIF_PATH="http://iiif.rism-ch.org/iiif/"
 
 if ARGV[0].include?("yml")
   dirs  = YAML.load_file(ARGV[0])
@@ -87,9 +88,9 @@ dirs.keys.each do |dir|
     if marc.by_tags("856").length == 0
     
       new_tag = MarcNode.new("source", "856", "", "##")
-      new_tag.add_at(MarcNode.new("source", "u", "http://docs.rism-ch.org/#{dir}.json", nil), 0)
       new_tag.add_at(MarcNode.new("source", "x", "IIIF", nil), 0)
-    
+      new_tag.add_at(MarcNode.new("source", "u", "http://docs.rism-ch.org/#{dir}.json", nil), 0)
+
       pi = marc.get_insert_position("856")
       marc.root.children.insert(pi, new_tag)
     
