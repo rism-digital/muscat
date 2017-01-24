@@ -67,7 +67,10 @@ dirs.keys.each do |dir|
     
     image = IIIF::Presentation::Annotation.new
     image["on"] = canvas['@id']
+    ## Uncomment these two prints to see the progress of the HTTP reqs.
+    #print "-"
     image_resource = IIIF::Presentation::ImageResource.create_image_api_image_resource(service_id: image_url)
+    #print "."
     image.resource = image_resource
     
     canvas.width = image.resource['width']
@@ -75,6 +78,11 @@ dirs.keys.each do |dir|
     
     canvas.images << image
     sequence.canvases << canvas
+    
+    # Some obnoxious servers block you after some requests
+    # may also be a server/firewall combination
+    # comment this if you are positive your server works
+    sleep 0.1
   end
   
   #puts manifest.to_json(pretty: true)
