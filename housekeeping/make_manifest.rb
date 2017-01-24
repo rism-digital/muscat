@@ -89,7 +89,7 @@ dirs.keys.each do |dir|
     
       new_tag = MarcNode.new("source", "856", "", "##")
       new_tag.add_at(MarcNode.new("source", "x", "IIIF", nil), 0)
-      new_tag.add_at(MarcNode.new("source", "u", "http://docs.rism-ch.org/#{dir}.json", nil), 0)
+      new_tag.add_at(MarcNode.new("source", "u", "http://iiif.rism-ch.org/manifest/#{dir}.json", nil), 0)
 
       pi = marc.get_insert_position("856")
       marc.root.children.insert(pi, new_tag)
