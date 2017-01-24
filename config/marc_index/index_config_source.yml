@@ -192,7 +192,8 @@ fields:
       :store: true
   "852q":
   "852z":
-  "856u":
+  "856x":
+      type: string
   "740_autocomplete":
       :index_processor_helper: marc_create_aggregated_text
       :tags:
