@@ -26,6 +26,8 @@ else
 end
 
 dirs.keys.each do |dir|
+  source = nil
+  title = "Images for #{dir}"
   
   if dirs.is_a? Array
     images = Dir.entries(dir).select{|x| x.match("tif") }.sort
@@ -39,10 +41,16 @@ dirs.keys.each do |dir|
   
   print "Attempting #{dir}... "
   
+  # If running in Rails get some ms info
+  if defined?(Rails)
+    source = Source.find(dir)
+    title = source.title
+  end
+  
   # Create the base manifest file
   seed = {
-      '@id' => 'http://example.com/manifest',
-      'label' => 'My Manifest'
+      '@id' => "http://iif.rism-ch.org/#{dir}.json",
+      'label' => title
   }
   # Any options you add are added to the object
   manifest = IIIF::Presentation::Manifest.new(seed)
@@ -71,4 +79,24 @@ dirs.keys.each do |dir|
   #puts manifest.to_json(pretty: true)
   File.write(dir + '.json', manifest.to_json(pretty: true))
   puts "Wrote #{dir}.json"
+  
+  if source
+    marc = source.marc
+    marc.load_source true
+    
+    if marc.by_tags("856").length == 0
+    
+      new_tag = MarcNode.new("source", "856", "", "##")
+      new_tag.add_at(MarcNode.new("source", "u", "http://docs.rism-ch.org/#{dir}.json", nil), 0)
+      new_tag.add_at(MarcNode.new("source", "x", "IIIF", nil), 0)
+    
+      pi = marc.get_insert_position("856")
+      marc.root.children.insert(pi, new_tag)
+    
+      source.save!
+    else
+      puts "Source #{source.id} already has 856, not overwriting"
+    end
+  end
+
 end
