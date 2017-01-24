@@ -6,8 +6,8 @@ doc_introduction:
     en: Introduction
 doc_masks: 
   label: 
-    de: Katalogisierung von Quellen
-    en: Cataloging sources
+    de: Katalogisierung von Musikquellen
+    en: Cataloging musical sources
 doc_tag_index: 
   label: 
     de: MARC Tag Index
@@ -47,6 +47,7 @@ doc_abbr_voices_instr2:
   label: 
     de: "Stimmen- und Instrumentenbezeichnungen tabellarisch"
     en: "Terms for voices and instruments as table"
+
 ###############
 
 doc_aid: 
@@ -107,7 +108,12 @@ doc_edit_workflow:
   label: 
     de: "Workflow"
     en: Workflow
-    
+doc_edit_searching:
+  label:
+    de: "Suche"
+    en: "Searching"
+
+   
 ################
 
 doc_library: 
@@ -128,8 +134,8 @@ doc_diplomatic_title:
     en: Diplomatic title
 doc_physical_description: 
   label: 
-    de: Physische Beschreibung
-    en: Physical description
+    de: Materialbeschreibung
+    en: Material description
 doc_content: 
   label: 
     de: Inhalt
@@ -162,7 +168,12 @@ doc_personal_names:
   label:
     de: "Personen"
     en: "Personal names"
+doc_images:
+  label:
+    de: "Bilder"
+    en: "Images"
 doc_institutions:
+  label:
     de: "Körperschaften"
     en: "Institutions"
 doc_title:
@@ -2992,3 +3003,126 @@ Typography:
     fr: "Typographie"
     de: "Typendruck"
     en: "Typography"
+
+### Addons for authority guidelines
+in_024:
+  label:
+    en: "Authority reference"
+    de: "Normdaten referenz"
+in_040:
+  label:
+    en: "Cataloging agency"
+    de: "CATALOGING AGENCY"
+in_043:
+  label:
+    en: "Country code"
+    de: "COUNTRY CODE"
+in_034:
+  label:
+    en: "Location"
+    de: "LOCATION"
+in_110:
+  label:
+    en: "Institution"
+    de: "INSTITUTION"
+in_510:
+  label:
+    en: "Paralell form of name"
+    de: "PARALELL FORM OF NAME"
+in_410:
+  label:
+    en: "Other form of name"
+    de: "OTHER FORM OF NAME"
+in_373:
+  label:
+    en: "Now in"
+    de: "NOW IN"
+in_368:
+  label:
+    en: "Type of institution"
+    de: "TYPE OF INSTITUTION"
+in_580:
+  label:
+    en: "Now in"
+    de: "NOW IN"
+in_371:
+  label:
+    en: "Location and address"
+    de: "LOCATION AND ADDRESS"
+in_678:
+  label:
+    en: "History of institution"
+    de: "HISTORY OF INSTITUTION"
+in_670:
+  label:
+    en: "Literature"
+    de: "LITERATURE"
+in_680:
+  label:
+    en: "General note"
+    de: "GENERAL NOTE"
+in_856:
+  label:
+    en: "Online finding aids"
+    de: "ONLINE FINDING AIDS"
+in_551:
+  label:
+    en: "Places"
+    de: "PLACES"
+in_710:
+  label:
+    en: "Related institution"
+    de: "RELATED INSTITUTION"
+in_700:
+  label:
+    en: "Person"
+    de: "PERSON"
+in_000:
+  label:
+    en: "Leader"
+    de: "LEADER"
+in_001:
+  label:
+    en: "RISM ID Number"
+    de: "RISM ID NUMBER"
+in_003:
+  label:
+    en: "Control number identifier"
+    de: "CONTROL NUMBER IDENTIFIER"
+in_005:
+  label:
+    en: "Date and time of last transaction"
+    de: "DATE AND TIME OF LAST TRANSACTION"
+in_008:
+  label:
+    en: "Date of creation"
+    de: "DATE OF CREATION"
+in_667:
+  label:
+    en: "Internal notes"
+    de: "INTERNAL NOTES"
+doc_in_identity:
+  label:
+    en: "Identity area"
+    de: "IDENTITY AREA"
+doc_in_contact:
+  label:
+    en: "Contact area"
+    de: "CONTACT AREA"
+doc_in_description:
+  label:
+    en: "Description area"
+    de: "DESCRIPTION AREA"
+doc_in_control:
+  label:
+    en: "Control fields"
+    de: "CONTROL FIELDS"
+
+
+
+
+
+      
+
+
+
