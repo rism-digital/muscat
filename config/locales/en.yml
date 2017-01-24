@@ -302,6 +302,7 @@ en:
   filter_revue_title: "Revue title"
   filter_id: "Rism ID"
   filter_id_no: "Rism ID"
+  filter_images: "Images"
   filter_scoring: "Scoring"
   filter_siglum: "Siglum"
   filter_source: "Source"

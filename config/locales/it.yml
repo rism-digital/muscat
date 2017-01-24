@@ -302,6 +302,7 @@ it:
   filter_revue_title: "Testata"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
+  filter_images: "Immagini"
   filter_scoring: "Organico"
   filter_siglum: "Sigla"
   filter_source: "Fonte"
