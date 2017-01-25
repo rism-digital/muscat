@@ -35,7 +35,7 @@ doc_abbr_lang:
   label: 
     de: "Sprachcodes"
     en: "Language codes"
-doc_abbr_modes: 
+doc_abbr_modes:
   label: 
     de: "Kirchentonarten"
     en: "Ecclesiastical modes"
@@ -57,7 +57,7 @@ doc_aid:
 doc_aid_liturgical_feasts: 
   label: 
     de: "Liturgische Feste"
-    en: "Liturgical feasts"
+    en: "Liturgical festivals"
 doc_aid_locations: 
   label: 
     de: "Fundorte auf Quellen"
@@ -3118,11 +3118,228 @@ doc_in_control:
     en: "Control fields"
     de: "CONTROL FIELDS"
 
-
-
-
-
+pe_100:
+  label:
+    en: "Heading-Personal name"
+    de: "HEADING-PERSONAL NAME"
+pe_042:
+  label:
+    en: "Authentication code"
+    de: "AUTHENTICATION CODE"
+pe_375:
+  label:
+    en: "Gender"
+    de: "GENDER"
+pe_043:
+  label:
+    en: "Nationality"
+    de: "NATIONALITY"
+pe_024:
+  label:
+    en: "Other standard identifier"
+    de: "OTHER STANDARD IDENTIFIER"
+pe_400:
+  label:
+    en: "Name variant"
+    de: "NAME VARIANT"
+pe_500:
+  label:
+    en: "Related personal name"
+    de: "RELATED PERSONAL NAME"
+pe_510:
+  label:
+    en: "Associated institution"
+    de: "ASSOCIATED INSTITUTION"
+pe_550:
+  label:
+    en: "Profession or function"
+    de: "PROFESSION OR FUNCTION"
+pe_551:
+  label:
+    en: "Geographic name"
+    de: "GEOGRAPHIC NAME"
+pe_667:
+  label:
+    en: "Internal note"
+    de: "INTERNAL NOTE"
+pe_670:
+  label:
+    en: "Source data found"
+    de: "SOURCE DATA FOUND"
+pe_678:
+  label:
+    en: "Additional biographical information"
+    de: "ADDITIONAL BIOGRAPHICAL INFORMATION"
+pe_680:
+  label:
+    en: "General note"
+    de: "GENERAL NOTE"
+pe_856:
+  label:
+    en: "External resource"
+    de: "EXTERNAL RESOURCE"
+pe_040:
+  label:
+    en: "Cataloging source"
+    de: "CATALOGING SOURCE"
+pe_main_entry_fields:
+  label:
+    de: "Haupteintragungen"
+    en: "Main entry fields"
+pe_numbers:
+  label:
+    de: "Nummern und Codes"
+    en: "Numbers and code fields"
+pe_name_variants:
+  label:
+    de: "Namensvarianten"
+    en: "Name variants"
+pe_relations:
+  label:
+    de: "Beziehungen"
+    en: "Relations"
+pe_references: 
+  label: 
+    it: Bibliografia e note
+    fr: "Références et notes"
+    de: Literatur und Fussnoten
+    en: References and notes
+pe_control:
+  label:
+    en: "Control fields"
+    de: "CONTROL FIELDS"
+doc_places:
+  label:
+    en: "Places"
+    de: "PLACES"
+li_100:
+  label:
+    en: "Author / Editor"
+    de: "AUTHOR / EDITOR"
+li_700:
+  label:
+    en: "Additional personal name"
+    de: "ADDITIONAL PERSONAL NAME"
+li_245:
+  label:
+    en: "Title of item"
+    de: "TITLE OF ITEM"
+li_260:
+  label:
+    en: "Imprint"
+    de: "IMPRINT"
+li_300:
+  label:
+    en: "Physical description"
+    de: "PHYSICAL DESCRIPTION"
+li_337:
+  label:
+    en: "Media type"
+    de: "MEDIA TYPE"
+li_210:
+  label:
+    en: "Short title"
+    de: "SHORT TITLE"
+li_020:
+  label:
+    en: "ISBN"
+    de: "ISBN"
+li_022:
+  label:
+    en: "ISSN"
+    de: "ISSN"
+li_024:
+  label:
+    en: "ISSN"
+    de: "ISSN"
+li_041:
+  label:
+    en: "Language code"
+    de: "LANGUAGE CODE"
+li_044:
+  label:
+    en: "Country of publication"
+    de: "COUNTRY OF PUBLICATION"
+li_710:
+  label:
+    en: "Additional institution"
+    de: "ADDITIONAL INSTITUTION"
+li_760:
+  label:
+    en: "Item part of"
+    de: "ITEM PART OF"
+li_650:
+  label:
+    de: "Subject heading"
+li_651:
+  label:
+    en: "Related place"
+    de: "RELATED PLACE"
+li_780:
+  label:
+    en: "Preceding entry"
+    de: "PRECEDING ENTRY"
+li_785:
+  label:
+    en: "Succeeding entry"
+    de: "SUCCEEDING ENTRY"
+li_500:
+  label:
+    en: "General note"
+    de: "GENERAL NOTE"
+li_599:
+  label:
+    en: "Local note field"
+    de: "LOCAL NOTE FIELD"
+li_856:
+  label:
+    en: "External resource"
+    de: "EXTERNAL RESOURCE"
+li_520:
+  label:
+    en: "Contents note"
+    de: "CONTENTS NOTE"
+li_000:
+  label:
+    en: "Leader"
+    de: "LEADER"
+li_001:
+  label:
+    en: "RISM ID Number"
+    de: "RISM ID NUMBER"
+li_003:
+  label:
+    en: "Control number identifier"
+    de: "CONTROL NUMBER IDENTIFIER"
+li_005:
+  label:
+    en: "Date and time of last transaction"
+    de: "DATE AND TIME OF LAST TRANSACTION"
+li_main_entry_fields:
+  label:
+    de: "Haupteintragungen"
+    en: "Main entry fields"
+li_subject:
+  label:
+    en: "Subject access fields"
+    de: "SUBJECT ACCESS FIELDS"
+li_note:
+  label:
+    en: "Note fields"
+    de: "NOTE FIELDS"
+li_control:
+  label:
+    en: "Control fields"
+    de: "CONTROL FIELDS"
+li_lit:
+  label:
+    en: "Secondary literature"
+    de: "SECONDARY LITERATURE"
       
+
+
+
+
 
 
 
