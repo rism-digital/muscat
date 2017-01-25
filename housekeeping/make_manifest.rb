@@ -50,8 +50,9 @@ dirs.keys.each do |dir|
   
   # Create the base manifest file
   seed = {
-      '@id' => "http://iif.rism-ch.org/#{dir}.json",
-      'label' => title
+      '@id' => "http://iiif.rism-ch.org/manifest/#{dir}.json",
+      'label' => title,
+      'related' => "http://www.rism-ch.org/catalog/#{dir}"
   }
   # Any options you add are added to the object
   manifest = IIIF::Presentation::Manifest.new(seed)
