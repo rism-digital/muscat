@@ -1,8 +1,10 @@
 Muscat Changelog
 ================
 v3.6.7
+* Updated Guidelines 
 * Fix error with missing indicator in people variants
 * Fix crash with invalid dates in filter
+* Fix crash with non-existent help files for guidelines
 
 v3.6.6
 * Removed 852$q from sources
