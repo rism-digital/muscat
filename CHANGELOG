@@ -2,6 +2,7 @@ Muscat Changelog
 ================
 v3.6.7
 * Updated Guidelines 
+* Added italian to the guideline languages
 * Fix error with missing indicator in people variants
 * Fix crash with invalid dates in filter
 * Fix crash with non-existent help files for guidelines
