@@ -17,8 +17,8 @@ doc_tag_index:
 
 doc_abbreviations: 
   label: 
-    de: "Abkürzungen"
-    en: Abbreviation
+    de: "Abkürzungen und Bezeichnungen"
+    en: "Abbreviation and terminology"
 doc_abbr_dates: 
   label: 
     de: "Datierung"
@@ -46,7 +46,7 @@ doc_abbr_voices_instr:
 doc_abbr_voices_instr2: 
   label: 
     de: "Stimmen- und Instrumentenbezeichnungen tabellarisch"
-    en: "Terms for voices and instruments as table"
+    en: "RISM instrument abbreviations"
 
 ###############
 
@@ -3012,55 +3012,55 @@ in_024:
 in_040:
   label:
     en: "Cataloging agency"
-    de: "CATALOGING AGENCY"
+    de: "Katalogisierungsagentur"
 in_043:
   label:
     en: "Country code"
-    de: "COUNTRY CODE"
+    de: "Ländercode"
 in_034:
   label:
     en: "Location"
-    de: "LOCATION"
+    de: "Ort"
 in_110:
   label:
     en: "Institution"
-    de: "INSTITUTION"
+    de: "Körperschaft"
 in_510:
   label:
     en: "Paralell form of name"
-    de: "PARALELL FORM OF NAME"
+    de: "Paralelle Namensform"
 in_410:
   label:
     en: "Other form of name"
-    de: "OTHER FORM OF NAME"
+    de: "Andere Namensform"
 in_373:
   label:
     en: "Now in"
-    de: "NOW IN"
+    de: "Heute in"
 in_368:
   label:
     en: "Type of institution"
-    de: "TYPE OF INSTITUTION"
+    de: "Körperschaftstyp"
 in_580:
   label:
     en: "Now in"
-    de: "NOW IN"
+    de: "Heute in"
 in_371:
   label:
     en: "Location and address"
-    de: "LOCATION AND ADDRESS"
+    de: "Lokalisierung und Adresse"
 in_678:
   label:
     en: "History of institution"
-    de: "HISTORY OF INSTITUTION"
+    de: "Geschichte der Körperschaft"
 in_670:
   label:
     en: "Literature"
-    de: "LITERATURE"
+    de: "Literatur"
 in_680:
   label:
     en: "General note"
-    de: "GENERAL NOTE"
+    de: "Allgemeine Bemerkungen"
 in_856:
   label:
     en: "Online finding aids"
@@ -3068,19 +3068,19 @@ in_856:
 in_551:
   label:
     en: "Places"
-    de: "PLACES"
+    de: "Orte"
 in_710:
   label:
     en: "Related institution"
-    de: "RELATED INSTITUTION"
+    de: "Zugehörige Körperschaften"
 in_700:
   label:
     en: "Person"
-    de: "PERSON"
+    de: "Person"
 in_000:
   label:
     en: "Leader"
-    de: "LEADER"
+    de: "Leader"
 in_001:
   label:
     en: "RISM ID Number"
@@ -3092,15 +3092,15 @@ in_003:
 in_005:
   label:
     en: "Date and time of last transaction"
-    de: "DATE AND TIME OF LAST TRANSACTION"
+    de: "Zeitpunkt der letzten Transaktion"
 in_008:
   label:
     en: "Date of creation"
-    de: "DATE OF CREATION"
+    de: "Erstellungszeit"
 in_667:
   label:
     en: "Internal notes"
-    de: "INTERNAL NOTES"
+    de: "Interne Bemerkungen"
 doc_in_identity:
   label:
     en: "Identity area"
@@ -3108,32 +3108,32 @@ doc_in_identity:
 doc_in_contact:
   label:
     en: "Contact area"
-    de: "CONTACT AREA"
+    de: "Kontakt"
 doc_in_description:
   label:
     en: "Description area"
-    de: "DESCRIPTION AREA"
+    de: "Beschreibung"
 doc_in_control:
   label:
     en: "Control fields"
-    de: "CONTROL FIELDS"
+    de: "Kontrollfelder"
 
 pe_100:
   label:
     en: "Heading-Personal name"
-    de: "HEADING-PERSONAL NAME"
+    de: "Personenname"
 pe_042:
   label:
     en: "Authentication code"
-    de: "AUTHENTICATION CODE"
+    de: "Authentifizierungscode"
 pe_375:
   label:
     en: "Gender"
-    de: "GENDER"
+    de: "Geschlecht"
 pe_043:
   label:
     en: "Nationality"
-    de: "NATIONALITY"
+    de: "Nationalität"
 pe_024:
   label:
     en: "Other standard identifier"
@@ -3141,27 +3141,27 @@ pe_024:
 pe_400:
   label:
     en: "Name variant"
-    de: "NAME VARIANT"
+    de: "Namensvarianten"
 pe_500:
   label:
     en: "Related personal name"
-    de: "RELATED PERSONAL NAME"
+    de: "Zugehörige Personen"
 pe_510:
   label:
     en: "Associated institution"
-    de: "ASSOCIATED INSTITUTION"
+    de: "Zugehörige Körperschaften"
 pe_550:
   label:
     en: "Profession or function"
-    de: "PROFESSION OR FUNCTION"
+    de: "Beruf oder Funktion"
 pe_551:
   label:
     en: "Geographic name"
-    de: "GEOGRAPHIC NAME"
+    de: "Geographischer Name"
 pe_667:
   label:
     en: "Internal note"
-    de: "INTERNAL NOTE"
+    de: "Interne Bemerkungen"
 pe_670:
   label:
     en: "Source data found"
@@ -3169,11 +3169,11 @@ pe_670:
 pe_678:
   label:
     en: "Additional biographical information"
-    de: "ADDITIONAL BIOGRAPHICAL INFORMATION"
+    de: "zusätzliche biographische Informationen"
 pe_680:
   label:
     en: "General note"
-    de: "GENERAL NOTE"
+    de: "Allgemeine Bemerkungen"
 pe_856:
   label:
     en: "External resource"
@@ -3181,7 +3181,7 @@ pe_856:
 pe_040:
   label:
     en: "Cataloging source"
-    de: "CATALOGING SOURCE"
+    de: "Katalogisierungsquelle"
 pe_main_entry_fields:
   label:
     de: "Haupteintragungen"
@@ -3207,23 +3207,23 @@ pe_references:
 pe_control:
   label:
     en: "Control fields"
-    de: "CONTROL FIELDS"
+    de: "Kontrollfelder"
 doc_places:
   label:
     en: "Places"
-    de: "PLACES"
+    de: "Orte"
 li_100:
   label:
     en: "Author / Editor"
-    de: "AUTHOR / EDITOR"
+    de: "Autor / Herausgeber"
 li_700:
   label:
     en: "Additional personal name"
-    de: "ADDITIONAL PERSONAL NAME"
+    de: "Zusätzliche Personen"
 li_245:
   label:
     en: "Title of item"
-    de: "TITLE OF ITEM"
+    de: "Titel"
 li_260:
   label:
     en: "Imprint"
@@ -3231,15 +3231,15 @@ li_260:
 li_300:
   label:
     en: "Physical description"
-    de: "PHYSICAL DESCRIPTION"
+    de: "Materialbeschreibung"
 li_337:
   label:
     en: "Media type"
-    de: "MEDIA TYPE"
+    de: "Medientyp"
 li_210:
   label:
     en: "Short title"
-    de: "SHORT TITLE"
+    de: "Kurztitel"
 li_020:
   label:
     en: "ISBN"
@@ -3255,42 +3255,43 @@ li_024:
 li_041:
   label:
     en: "Language code"
-    de: "LANGUAGE CODE"
+    de: "Sprachcode"
 li_044:
   label:
     en: "Country of publication"
-    de: "COUNTRY OF PUBLICATION"
+    de: "Erscheinungsland"
 li_710:
   label:
     en: "Additional institution"
-    de: "ADDITIONAL INSTITUTION"
+    de: "Zusätzliche Körperschaften"
 li_760:
   label:
     en: "Item part of"
     de: "ITEM PART OF"
 li_650:
   label:
-    de: "Subject heading"
+    en: "Subject heading"
+    de: "SUBJECT HEADING"
 li_651:
   label:
     en: "Related place"
-    de: "RELATED PLACE"
+    de: "Zugehörige Orte"
 li_780:
   label:
     en: "Preceding entry"
-    de: "PRECEDING ENTRY"
+    de: "Ersteintrag"
 li_785:
   label:
     en: "Succeeding entry"
-    de: "SUCCEEDING ENTRY"
+    de: "Folgeeintrag"
 li_500:
   label:
     en: "General note"
-    de: "GENERAL NOTE"
+    de: "Allgemeine Bemerkungen"
 li_599:
   label:
     en: "Local note field"
-    de: "LOCAL NOTE FIELD"
+    de: "Lokale Bemerkungen"
 li_856:
   label:
     en: "External resource"
@@ -3302,7 +3303,7 @@ li_520:
 li_000:
   label:
     en: "Leader"
-    de: "LEADER"
+    de: "Leader"
 li_001:
   label:
     en: "RISM ID Number"
@@ -3314,7 +3315,7 @@ li_003:
 li_005:
   label:
     en: "Date and time of last transaction"
-    de: "DATE AND TIME OF LAST TRANSACTION"
+    de: "Zeitpunkt der letzten Transaktion"
 li_main_entry_fields:
   label:
     de: "Haupteintragungen"
@@ -3326,20 +3327,88 @@ li_subject:
 li_note:
   label:
     en: "Note fields"
-    de: "NOTE FIELDS"
+    de: "Bemerkungsfelder"
 li_control:
   label:
     en: "Control fields"
-    de: "CONTROL FIELDS"
+    de: "Kontrollfelder"
 li_lit:
   label:
     en: "Secondary literature"
-    de: "SECONDARY LITERATURE"
-      
-
-
-
-
-
-
-
+    de: "Sekundärliteratur"
+doc_titles_and_text:
+  label:
+    en: "Titles / text incipits"  
+    de: "Titel und  Texte"  
+aid_terms:
+  label:
+    en: "Standard music terms"
+    de: "STANDARD MUSIC TERMS"
+aid_watermarks:
+  label:
+    en: "Standard watermarks"
+    de: "Wasserzeichen"
+aid_general:
+  label:
+    en: "General abbreviations and terms"
+    de: "GENERAL ABBREVIATIONS AND TERMS"
+aid_dates:
+  label:
+    en: "Dates"
+    de: "Datierungen"
+aid_eccl:
+  label:
+    en: "Ecclesiastical modes"
+    de: "Kirchentonarten"
+aid_keys:
+  label:
+    en: "Keys"
+    de: "Tonarten"
+aid_language:
+  label:
+    en: "Language codes"
+    de: "Sprachcodes"
+doc_other:
+  label:
+    en: "Other help"
+    de: "Weitere Hilfen"
+aid_titles:
+  label:
+    en: "Standardized titles - Subject headings"
+    de: "STANDARDIZED TITLES - SUBJECT HEADINGS"
+aid_texts:
+  label:
+    en: "Standard texts of sacred works"
+    de: "Liturgische Texte"
+aid_lit:
+  label:
+    en: "Liturgical festivals"
+    de: "Liturgische Feste"
+aid_figured:
+  label:
+    en: "Figured bass in scores and/or other parts"
+    de: "Generalbass"
+aid_transpose:
+  label:
+    en: "Help for transposing instruments"
+    de: "Hilfe zu transponierenden Instrumenten"
+aid_opera:
+  label:
+    en: "Opera houses and concert halls"
+    de: "Opernhäuser und Konzerthallen"
+aid_faq:
+  label:
+    en: "Frequently asked questions"
+    de: "FAQ"
+aid_tt:
+  label:
+    en: "How do I ... Tips & Tricks"
+    de: "Wie kann ich ... Tipps & Tricks"
+aid_best:
+  label:
+    en: "RISM best practises"
+    de: "RISM BEST PRACTISES"
+aid_error:
+  label:
+    en: "Technical errors"
+    de: "Technische Fehler"

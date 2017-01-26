@@ -4,9 +4,9 @@
 			<%= link_to( chapter[0].html_safe, admin_guidelines_path( anchor: chapter[1])) %>
             <%- if chapter[2] && !chapter[2].empty?() %>
 			    <div class="toggler">
-				    <a class="down" href="" data-toggle-help-sections='true'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				    <a class="left" href="" data-toggle-help-sections='true'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 			    </div>
-			    <ul class="guidelines_sections">
+			    <ul class="guidelines_sections" style='display:none;'>
 			    <%- chapter[2].each do |section| %>
 				    <li class="guidelines_section"><%= link_to( section[0].html_safe, admin_guidelines_path( anchor: section[1])) %></li>
 			    <%- end %>
