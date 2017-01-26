@@ -111,5 +111,16 @@ module ApplicationHelper
     return nil if !source.is_a? Source
     MarcSource::RECORD_TYPES[:edition]
   end
-  
+
+  #Sanitize date of AA filter
+  def self.to_sanitized_date(string)
+    return if string.blank?
+    if string =~ /[0-9]{4}\-[0-9]{2}\-[0-9]{2}/
+      string.to_date
+    elsif string.size == 4
+      return DateTime.strptime(string, "%Y")
+    else
+      return DateTime.now
+    end
+  end
 end

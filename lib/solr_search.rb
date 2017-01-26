@@ -83,13 +83,15 @@ module Muscat
 
 						with_filter.each do |field, value|
 							if value.is_a?(Hash)
+                start_date = ApplicationHelper.to_sanitized_date(value[:start])
+                end_date = ApplicationHelper.to_sanitized_date(value[:end])
 								if field.to_s.match("_times")
 									with(value[:field]).between(
-										value[:start].to_date..value[:end].to_date)
+                    start_date..end_date)
 								elsif field.to_s.match("_gteq")
-									with(value[:field]).greater_than_or_equal_to(value[:start].to_date)
+									with(value[:field]).greater_than_or_equal_to(start_date)
 								elsif field.to_s.match("_lteq")
-									with(value[:field]).less_than_or_equal_to(value[:end].to_date)
+									with(value[:field]).less_than_or_equal_to(end_date)
 								end
 							else
 								with(field, value)
