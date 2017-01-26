@@ -2,6 +2,7 @@ Muscat Changelog
 ================
 v3.6.7
 * Fix error with missing indicator in people variants
+* Fix crash with invalid dates in filter
 
 v3.6.6
 * Removed 852$q from sources
