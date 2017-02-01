@@ -60,6 +60,26 @@ ActiveAdmin.register Holding do
       @page_title = format_holding(@item)
     end
 
+    def destroy
+      begin
+        @holding = Holding.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Holding #{params[:id]})" }
+        return
+      end
+      
+      if cannot?(:destroy, @holding)
+        flash[:error] = "Operation not allowed"
+        redirect_to edit_admin_source_path(source)
+        return
+      end
+      
+      source = @holding.source
+      
+      @holding.destroy!
+      redirect_to edit_admin_source_path(source)
+    end
+
     def show
       
       begin

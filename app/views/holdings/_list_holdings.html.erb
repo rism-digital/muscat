@@ -9,8 +9,14 @@
 			</tr>
 		<% @holdings.each do |h| %>
 			<tr class="<%= cycle('even', 'odd') -%>">
-				<td class="col"><%= link_to(h.id, edit_admin_holding_path(h.id ))%></td>
-				<td class="col"><%= h.lib_siglum %></td>
+				<td class="col">
+					<% if can?(:destroy, h)%>
+						<%= h.id %> - <%= link_to I18n.t('delete'), admin_holding_path(h.id), method: :delete, data: { confirm: I18n.t('active_admin.delete_confirmation') }%>
+						<% else %>
+							<%= h.id %>
+						<% end %>
+				</td>
+				<td class="col"><%= link_to(h.lib_siglum, edit_admin_holding_path(h.id )) %></td>
 			</tr>
 		<% end %>
 		</table>
