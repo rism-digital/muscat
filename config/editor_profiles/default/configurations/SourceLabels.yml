@@ -4,17 +4,17 @@ doc_introduction:
   label: 
     de: Einleitung
     en: Introduction
-    it: INTRODUCTION
+    it: Introduzione
 doc_masks: 
   label: 
     de: Katalogisierung von Musikquellen
     en: Cataloging musical sources
-    it: CATALOGING MUSICAL SOURCES
+    it: Catalogazione delle fonti musicali
 doc_tag_index: 
   label: 
     de: MARC Tag Index
     en: MARC tag index
-    it: MARC TAG INDEX
+    it: Indice dei Tag MARC
 
 ################
 
@@ -22,42 +22,42 @@ doc_abbreviations:
   label: 
     de: "Abkürzungen und Bezeichnungen"
     en: "Abbreviation and terminology"
-    it: "ABBREVIATION AND TERMINOLOGY"
+    it: "Abbreviazioni e terminologia"
 doc_abbr_dates: 
   label: 
     de: "Datierung"
     en: "Dates"
-    it: "DATES"
+    it: "Date"
 doc_abbr_general: 
   label: 
     de: "Allgemeine Abkürzungen und Begriffe"
     en: "General abbreviations and terms"
-    it: "GENERAL ABBREVIATIONS AND TERMS"
+    it: "Abbreviazioni generali e terminologia"
 doc_abbr_keys: 
   label: 
     de: "Tonarten"
     en: "Keys"
-    it: "KEYS"
+    it: "Tasti"
 doc_abbr_lang: 
   label: 
     de: "Sprachcodes"
     en: "Language codes"
-    it: "LANGUAGE CODES"
+    it: "Codice lingua"
 doc_abbr_modes:
   label: 
     de: "Kirchentonarten"
     en: "Ecclesiastical modes"
-    it: "ECCLESIASTICAL MODES"
+    it: "Modi ecclesiastici"
 doc_abbr_voices_instr: 
   label: 
     de: "Stimmen- und Instrumentenbezeichnungen"
     en: "Terms for voices and instruments"
-    it: "TERMS FOR VOICES AND INSTRUMENTS"
+    it: "Terminologia per voci e strumenti"
 doc_abbr_voices_instr2: 
   label: 
     de: "Stimmen- und Instrumentenbezeichnungen tabellarisch"
     en: "RISM instrument abbreviations"
-    it: "RISM INSTRUMENT ABBREVIATIONS"
+    it: "Abbreviazioni RISM per gli strumenti"
 
 ###############
 
@@ -70,27 +70,27 @@ doc_aid_liturgical_feasts:
   label: 
     de: "Liturgische Feste"
     en: "Liturgical festivals"
-    it: "LITURGICAL FESTIVALS"
+    it: "Feste liturgiche"
 doc_aid_locations: 
   label: 
     de: "Fundorte auf Quellen"
     en: "Locations on the source"
-    it: "LOCATIONS ON THE SOURCE"
+    it: "Luogo sulla fonte"
 doc_aid_texts_sacred_works: 
   label: 
     de: "Standardtexte Sakralwerke"
     en: "Standard texts of sacred works"
-    it: "STANDARD TEXTS OF SACRED WORKS"
+    it: "Testo standard dei brani musicali sacri"
 doc_aid_titles_keywords: 
   label: 
     de: "Einordnungstitel - Schlagworte"
     en: "Standardised titles - Subject headings"
-    it: "STANDARDISED TITLES - SUBJECT HEADINGS"
+    it: "Titolo standard - intestazione del soggetto"
 doc_aid_transposing_instruments: 
   label: 
     de: "Hilfe zur Transponierung von Instrumenten"
-    en: "Help for transposing instruments"    
-    it: "HELP FOR TRANSPOSING INSTRUMENTS"    
+    en: "Help for transposing instruments"
+    it: "Aiuto agli strumenti traspositori"
 
 ################
 
@@ -98,22 +98,22 @@ doc_cataloguing:
   label: 
     de: Allgemeine Erfassung Hilfe
     en: General cataloguing guidelines
-    it: GENERAL CATALOGUING GUIDELINES
+    it: Regole di catalogazione generali
 doc_cat_collections: 
   label: 
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
-    it: CATALOGING COLLECTION AND CONVOLUTA
+    it: Catalogo delle collezioni e convoluta
 doc_cat_templates: 
   label: 
     de: Templates
     en: Templates
-    it: TEMPLATES
+    it: Modelli
 doc_cat_authorities: 
   label: 
     de: Normdaten
     en: Authorities
-    it: AUTHORITIES
+    it: Autorità
 
 ################
 
@@ -121,22 +121,22 @@ doc_editor:
   label: 
     de: "Editor Hilfe"
     en: Editor help
-    it: EDITOR HELP
+    it: Guida all'editor
 doc_edit_functions: 
   label: 
     de: "Grundsätzliche Funktionen"
     en: Basic functions
-    it: BASIC FUNCTIONS
+    it: Funzioni base
 doc_edit_workflow: 
   label: 
     de: "Workflow"
     en: Workflow
-    it: WORKFLOW
+    it: Workflow
 doc_edit_searching:
   label:
     de: "Suche"
     en: "Searching"
-    it: "SEARCHING"
+    it: "Ricerca"
 
 
    
@@ -146,112 +146,112 @@ doc_library:
   label: 
     de: Besitzerangaben
     en: Library information
-    it: LIBRARY INFORMATION
+    it: Informazione sulla libreria
 doc_provenance: 
   label: 
     de: Provenienz
     en: Provenance
-    it: PROVENANCE
+    it: Provenienza
 doc_linkage: 
   label: 
     de: Verlinkung
     en: Linkage
-    it: LINKAGE
+    it: Collegamenti
 doc_diplomatic_title: 
   label: 
     de: Diplomatischer Titel
     en: Diplomatic title
-    it: DIPLOMATIC TITLE
+    it: Titolo diplomatico
 doc_physical_description: 
   label: 
     de: Materialbeschreibung
     en: Material description
-    it: MATERIAL DESCRIPTION
+    it: Descrizione del materiale
 doc_content: 
   label: 
     de: Inhalt
     en: Content
-    it: CONTENT
+    it: Contenuto
 doc_incipit: 
   label: 
     de: Incipits
     en: Incipits
-    it: INCIPITS
+    it: Incipit
 doc_bibliographical_reference: 
   label: 
     de: Literatur
     en: References
-    it: REFERENCES
+    it: Riferimenti
 doc_added_entries: 
   label: 
     de: Nebeneintragungen
     en: Added entry name
-    it: ADDED ENTRY NAME
+    it: Nome di entità aggiunto
 doc_performance: 
   label: 
     de: "Aufführungen"
     en: Performances
-    it: PERFORMANCES
+    it: Esecuzioni
 doc_date: 
   label: 
     de: Daten
     en: Dates
-    it: DATES
+    it: Date
 doc_administration: 
   label: 
     de: Administration
     en: Administration
-    it: ADMINISTRATION
+    it: Amministrazione
 doc_personal_names:
   label:
     de: "Personen"
     en: "Personal names"
-    it: "PERSONAL NAMES"
+    it: "Nomi di persona"
 doc_images:
   label:
     de: "Bilder"
     en: "Images"
-    it: "IMAGES"
+    it: "immagini"
 doc_institutions:
   label:
     de: "Körperschaften"
     en: "Institutions"
-    it: "INSTITUTIONS"
+    it: "Istituzioni"
 doc_title:
   label:
     de: "Titel und Inhaltsangaben"
     en: "Title and content description"
-    it: "TITLE AND CONTENT DESCRIPTION"
+    it: "Titolo e descrizione del contenuto"
 doc_people:
   label:
     de: "Personen und Körperschaften"
     en: "People and institutions"
-    it: "PEOPLE AND INSTITUTIONS"
+    it: "Persone ed istituzioni"
 doc_main_entry_fields:
   label:
     de: "Haupteintragungen"
     en: "Main entry fields"
-    it: "MAIN ENTRY FIELDS"
+    it: "Campi principali"
 doc_numbers:
   label:
     de: "Nummern und Codes"
     en: "Numbers and code fields"
-    it: "NUMBERS AND CODE FIELDS"
+    it: "Campi di numero e codici"
 doc_name_variants:
   label:
     de: "Namensvarianten"
     en: "Name variants"
-    it: "NAME VARIANTS"
+    it: "Varianti del nome"
 doc_relations:
   label:
     de: "Beziehungen"
     en: "Relations"
-    it: "RELATIONS"
+    it: "Relazioni"
 doc_references:
   label:
     de: "Literatur und Bemerkungen"
     en: "References"
-    it: "REFERENCES"
+    it: "Riferimenti"
 
 ################
 
@@ -1918,7 +1918,7 @@ dpt:
     en: Depositor
 dsr: 
   label: 
-    it: DESIGNER
+    it: Progettista
     fr: DESIGNER
     de: Designer
     en: Designer
@@ -2100,19 +2100,19 @@ voc:
 # Marc Language codes
 afr: 
   label: 
-    IT: AFRIKAANS
+    IT: Afrikaans
     FR: AFRIKAANS
     de: Afrikaans
     en: Afrikaans
 ara: 
   label: 
-    IT: ARABIC
+    IT: Arabo
     FR: ARABIC
     de: Arabisch
     en: Arabic 
 arg: 
   label: 
-    IT: ARAGONESE
+    IT: Aragonese
     FR: ARAGONESE
     de: Aragonesisch
     en: Aragonese
@@ -2124,13 +2124,13 @@ cat:
     en: Catalan 
 chi: 
   label: 
-    it: CHINESE
+    it: Cinese
     fr: CHINESE
     de: Chinesisch
     en: Chinese
 chu: 
   label: 
-    it: OLD CHURCH SLAVONIC
+    it: Lingua slava ecclesiastica antica
     fr: OLD CHURCH SLAVONIC
     de: Altkirchenslawisch
     en: Old Church Slavonic
@@ -2160,25 +2160,25 @@ eng:
     en: English
 enm: 
   label: 
-    IT: MIDDLE ENGLISH
+    IT: Lingua inglese media
     FR: MIDDLE ENGLISH
     de: Mittelenglisch
     en: Middle English
 est: 
   label: 
-    IT: ESTONIAN
+    IT: Estone
     FR: ESTONIAN
     de: Estnisch
     en: Estonian
 fin: 
   label: 
-    IT: FINNISH
+    IT: Finlandese
     FR: FINNISH
     de: Finnisch
     en: Finnish
 frr: 
   label: 
-    IT: NORTH FRISIAN
+    IT: Dialetto Frisone Settentrionale
     FR: NORTH FRISIAN
     de: Nordfriesisch
     en: North Frisian
@@ -2190,7 +2190,7 @@ fre:
     en: French
 gem: 
   label: 
-    IT: GERMANIC
+    IT: Germanico
     FR: GERMANIC
     de: Germanisch
     en: Germanic
@@ -2202,19 +2202,19 @@ ger:
     en: German
 gle: 
   label: 
-    IT: IRISH
+    IT: Irlandese
     FR: IRISH
     de: Irisch
     en: Irish
 glg: 
   label: 
-    IT: GALICIAN
+    IT: Gaelico
     FR: GALICIAN
     de: Galizisch
     en: Galician
 gmh: 
   label: 
-    IT: MIDDLE HIGH GERMAN
+    IT: Alto-Tedesco Medio
     FR: MIDDLE HIGH GERMAN
     de: Mittelhochdeutsch
     en: Middle High German
@@ -2262,7 +2262,7 @@ ita:
     en: Italian
 jpn: 
   label: 
-    it: JAPANESE
+    it: Giapponese
     fr: JAPANESE
     de: Japanisch
     en: Japanese
@@ -2280,55 +2280,55 @@ lat:
     en: Latin
 lav: 
   label: 
-    IT: LATVIAN
+    IT: Lettone
     FR: LATVIAN
     de: Lettisch
     en: Latvian
 lit: 
   label: 
-    IT: LITHUANIAN
+    IT: Lituano
     FR: LITHUANIAN
     de: Litauisch
     en: Lithuanian
 ltz: 
   label: 
-    IT: LUXEMBOURGISH
+    IT: Lussemburghese
     FR: LUXEMBOURGISH
     de: Luxemburgisch
     en: Luxembourgish
 mac: 
   label: 
-    IT: MACEDONIAN
+    IT: Macedone
     FR: MACEDONIAN
     de: Mazedonisch
     en: Macedonian
 mon: 
   label: 
-    IT: MONGOLIAN
+    IT: Mongolo
     FR: MONGOLIAN
     de: Mongolisch
     en: Mongolian
 nap: 
   label: 
-    it: NEAPOLITAN
+    it: Napoletano
     fr: NEAPOLITAN
     de: Neapolitanisch
     en: Neapolitan
 nds: 
   label: 
-    it: LOW GERMAN
+    it: Basso sassone
     fr: LOW GERMAN
     de: Niederdeutsch
     en: Low German
 nor: 
   label: 
-    IT: NORWEGIAN
+    IT: Norvegese
     FR: NORWEGIAN
     de: Norwegisch
     en: Norwegian
 oci: 
   label: 
-    IT: OCCITAN
+    IT: Occitano
     FR: OCCITAN
     de: Okzitanisch
     en: Occitan
@@ -2346,19 +2346,19 @@ por:
     en: Portuguese
 roh: 
   label: 
-    it: ROHMANSH
+    it: Romancio
     fr: ROHMANSH
     de: Bündnerromanisch (Rätoromanisch)
     en: Romansh
 rom: 
   label: 
-    IT: ROMANI
+    IT: Romani
     FR: ROMANI
     de: Romani
     en: Romani
 rum: 
   label: 
-    IT: ROMANIAN
+    IT: Romeno
     FR: ROMANIAN
     de: Rumänisch
     en: Romanian
@@ -2370,13 +2370,13 @@ rus:
     en: Russian
 scn: 
   label: 
-    IT: SICILIAN
+    IT: Siciliano
     FR: SICILIAN
     de: Sizilianisch
     en: Sicilian
 sla: 
   label: 
-    IT: SLAVIC
+    IT: Slavico
     FR: SLAVIC
     de: Slawisch
     en: Slavic
@@ -2394,19 +2394,19 @@ slv:
     en: Slovenian
 srp: 
   label: 
-    IT: SERBIAN
+    IT: Serbo
     FR: SERBIAN
     de: Serbisch
     en: Serbian
 dsb:
   label:
-    it: SORBIAN, LOWER SORBIAN
+    it: Sorabo Inferiore
     fr: SORBIAN, LOWER SORBIAN
     de: Sorbisch, Niedersorbisch
     en: Sorbian, Lower Sorbian
 hsb:
   label:
-    it: SORBIAN, UPPER SORBIAN
+    it: Sorabo Superiore
     fr: SORBIAN, UPPER SORBIAN
     de: Sorbisch, Obersorbisch
     en: Sorbian, Upper Sorbian
@@ -2430,31 +2430,31 @@ swe:
     en: Swedish
 tur: 
   label: 
-    IT: TURKISH
+    IT: Turco
     FR: TURKISH
     de: Türkisch
     en: Turkish
 ukr: 
   label: 
-    IT: UKRAINIAN
+    IT: Ucraino
     FR: UKRAINIAN
     de: Ukrainisch
     en: Ukrainian
 wel: 
   label: 
-    IT: WELSH
+    IT: Gallese
     FR: WELSH
     de: Walisisch
     en: Welsh
 wen: 
   label: 
-    it: SORBIAN
+    it: Sorabo
     fr: SORBIAN
     de: Sorbisch
     en: Sorbian
 yid: 
   label: 
-    IT: YIDDISH
+    IT: Yiddish
     FR: YIDDISH
     de: Jiddisch
     en: Yiddish
@@ -3057,244 +3057,244 @@ Typography:
 in_024:
   label:
     en: "Authority reference"
-    it: "AUTHORITY REFERENCE"
+    it: "Riferimento all'autorità"
     de: "Normdaten referenz"
 in_040:
   label:
     en: "Cataloging agency"
-    it: "CATALOGING AGENCY"
+    it: "Agenzia di catalogazione"
     de: "Katalogisierungsagentur"
 in_043:
   label:
     en: "Country code"
-    it: "COUNTRY CODE"
+    it: "Codice paese"
     de: "Ländercode"
 in_034:
   label:
     en: "Location"
-    it: "LOCATION"
+    it: "Luogo"
     de: "Ort"
 in_110:
   label:
     en: "Institution"
-    it: "INSTITUTION"
+    it: "Istituzione"
     de: "Körperschaft"
 in_510:
   label:
     en: "Paralell form of name"
-    it: "PARALELL FORM OF NAME"
+    it: "Forma parallela del nome"
     de: "Paralelle Namensform"
 in_410:
   label:
     en: "Other form of name"
-    it: "OTHER FORM OF NAME"
+    it: "Altre forme del nome"
     de: "Andere Namensform"
 in_373:
   label:
     en: "Now in"
-    it: "NOW IN"
+    it: "Ora in"
     de: "Heute in"
 in_368:
   label:
     en: "Type of institution"
-    it: "TYPE OF INSTITUTION"
+    it: "Tipo di istituzione"
     de: "Körperschaftstyp"
 in_580:
   label:
     en: "Now in"
-    it: "NOW IN"
+    it: "Ora in"
     de: "Heute in"
 in_371:
   label:
     en: "Location and address"
-    it: "LOCATION AND ADDRESS"
+    it: "Luogo ed indirizzo"
     de: "Lokalisierung und Adresse"
 in_678:
   label:
     en: "History of institution"
-    it: "HISTORY OF INSTITUTION"
+    it: "Storia dell'istituzione"
     de: "Geschichte der Körperschaft"
 in_670:
   label:
     en: "Literature"
-    it: "LITERATURE"
+    it: "Letteratura"
     de: "Literatur"
 in_680:
   label:
     en: "General note"
-    it: "GENERAL NOTE"
+    it: "Nota generale"
     de: "Allgemeine Bemerkungen"
 in_856:
   label:
     en: "Online finding aids"
-    it: "ONLINE FINDING AIDS"
+    it: "Strumenti di supporto alla ricerca online"
     de: "ONLINE FINDING AIDS"
 in_551:
   label:
     en: "Places"
-    it: "PLACES"
+    it: "Luoghi"
     de: "Orte"
 in_710:
   label:
     en: "Related institution"
-    it: "RELATED INSTITUTION"
+    it: "Istituzione collegata"
     de: "Zugehörige Körperschaften"
 in_700:
   label:
     en: "Person"
-    it: "PERSON"
+    it: "Persona"
     de: "Person"
 in_000:
   label:
     en: "Leader"
-    it: "LEADER"
+    it: "Leader"
     de: "Leader"
 in_001:
   label:
     en: "RISM ID Number"
-    it: "RISM ID NUMBER"
+    it: "Numero RISM"
     de: "RISM ID NUMBER"
 in_003:
   label:
     en: "Control number identifier"
-    it: "CONTROL NUMBER IDENTIFIER"
+    it: "Identificatore del numero di controllo"
     de: "CONTROL NUMBER IDENTIFIER"
 in_005:
   label:
     en: "Date and time of last transaction"
-    it: "DATE AND TIME OF LAST TRANSACTION"
+    it: "Date ed ora dell'ultima transazione"
     de: "Zeitpunkt der letzten Transaktion"
 in_008:
   label:
     en: "Date of creation"
-    it: "DATE OF CREATION"
+    it: "Data di creazione"
     de: "Erstellungszeit"
 in_667:
   label:
     en: "Internal notes"
-    it: "INTERNAL NOTES"
+    it: "Note interne"
     de: "Interne Bemerkungen"
 doc_in_identity:
   label:
     en: "Identity area"
-    it: "IDENTITY AREA"
+    it: "Identità"
     de: "IDENTITY AREA"
 doc_in_contact:
   label:
     en: "Contact area"
-    it: "CONTACT AREA"
+    it: "Contatto"
     de: "Kontakt"
 doc_in_description:
   label:
     en: "Description area"
-    it: "DESCRIPTION AREA"
+    it: "Descrizione"
     de: "Beschreibung"
 doc_in_control:
   label:
     en: "Control fields"
-    it: "CONTROL FIELDS"
+    it: "Campi di controllo"
     de: "Kontrollfelder"
 
 pe_100:
   label:
     en: "Heading-Personal name"
-    it: "HEADING-PERSONAL NAME"
+    it: "Intestazione-nome di persona"
     de: "Personenname"
 pe_042:
   label:
     en: "Authentication code"
-    it: "AUTHENTICATION CODE"
+    it: "Codice di autenticazione"
     de: "Authentifizierungscode"
 pe_375:
   label:
     en: "Gender"
-    it: "GENDER"
+    it: "Genere"
     de: "Geschlecht"
 pe_043:
   label:
     en: "Nationality"
-    it: "NATIONALITY"
+    it: "Nazionalità"
     de: "Nationalität"
 pe_024:
   label:
     en: "Other standard identifier"
-    it: "OTHER STANDARD IDENTIFIER"
+    it: "Altro identificatore standare"
     de: "OTHER STANDARD IDENTIFIER"
 pe_400:
   label:
     en: "Name variant"
-    it: "NAME VARIANT"
+    it: "Variante del nome"
     de: "Namensvarianten"
 pe_500:
   label:
     en: "Related personal name"
-    it: "RELATED PERSONAL NAME"
+    it: "Nome di persona collegato"
     de: "Zugehörige Personen"
 pe_510:
   label:
     en: "Associated institution"
-    it: "ASSOCIATED INSTITUTION"
+    it: "Istitutione associate"
     de: "Zugehörige Körperschaften"
 pe_550:
   label:
     en: "Profession or function"
-    it: "PROFESSION OR FUNCTION"
+    it: "Professione o funzione"
     de: "Beruf oder Funktion"
 pe_551:
   label:
     en: "Geographic name"
-    it: "GEOGRAPHIC NAME"
+    it: "Nome geografico"
     de: "Geographischer Name"
 pe_667:
   label:
     en: "Internal note"
-    it: "INTERNAL NOTE"
+    it: "Nota interna"
     de: "Interne Bemerkungen"
 pe_670:
   label:
     en: "Source data found"
-    it: "SOURCE DATA FOUND"
+    it: "Dati originali trovati"
     de: "SOURCE DATA FOUND"
 pe_678:
   label:
     en: "Additional biographical information"
-    it: "ADDITIONAL BIOGRAPHICAL INFORMATION"
+    it: "Informazioni bibliografiche addizionali"
     de: "zusätzliche biographische Informationen"
 pe_680:
   label:
     en: "General note"
-    it: "GENERAL NOTE"
+    it: "Nota generale"
     de: "Allgemeine Bemerkungen"
 pe_856:
   label:
     en: "External resource"
-    it: "EXTERNAL RESOURCE"
+    it: "Risorsa esterna"
     de: "EXTERNAL RESOURCE"
 pe_040:
   label:
     en: "Cataloging source"
-    it: "CATALOGING SOURCE"
+    it: "Fonte della catalogazione"
     de: "Katalogisierungsquelle"
 pe_main_entry_fields:
   label:
     de: "Haupteintragungen"
-    it: "HAUPTEINTRAGUNGEN"
+    it: "Campi primcipali"
     en: "Main entry fields"
 pe_numbers:
   label:
     de: "Nummern und Codes"
-    it: "NUMMERN UND CODES"
+    it: "Numeri e codici"
     en: "Numbers and code fields"
 pe_name_variants:
   label:
     de: "Namensvarianten"
-    it: "NAMENSVARIANTEN"
+    it: "Varianti del nome"
     en: "Name variants"
 pe_relations:
   label:
     de: "Beziehungen"
     en: "Relations"
-    it: "RELATIONS"
+    it: "Relazioni"
 pe_references: 
   label: 
     it: Bibliografia e note
@@ -3304,47 +3304,47 @@ pe_references:
 pe_control:
   label:
     en: "Control fields"
-    it: "CONTROL FIELDS"
+    it: "Campi di controllo"
     de: "Kontrollfelder"
 doc_places:
   label:
     en: "Places"
-    it: "PLACES"
+    it: "Luoghi"
     de: "Orte"
 li_100:
   label:
     en: "Author / Editor"
-    it: "AUTHOR / EDITOR"
+    it: "Autore / Editore"
     de: "Autor / Herausgeber"
 li_700:
   label:
     en: "Additional personal name"
-    it: "ADDITIONAL PERSONAL NAME"
+    it: "Nomi di persona addizionali"
     de: "Zusätzliche Personen"
 li_245:
   label:
     en: "Title of item"
-    it: "TITLE OF ITEM"
+    it: "Titolo della voce"
     de: "Titel"
 li_260:
   label:
     en: "Imprint"
-    it: "IMPRINT"
+    it: "Firma"
     de: "IMPRINT"
 li_300:
   label:
     en: "Physical description"
-    it: "PHYSICAL DESCRIPTION"
+    it: "Descrizione fisica"
     de: "Materialbeschreibung"
 li_337:
   label:
     en: "Media type"
-    it: "MEDIA TYPE"
+    it: "Tipo di media"
     de: "Medientyp"
 li_210:
   label:
     en: "Short title"
-    it: "SHORT TITLE"
+    it: "Titolo breve"
     de: "Kurztitel"
 li_020:
   label:
@@ -3364,147 +3364,147 @@ li_024:
 li_041:
   label:
     en: "Language code"
-    it: "LANGUAGE CODE"
+    it: "Codice della lingua"
     de: "Sprachcode"
 li_044:
   label:
     en: "Country of publication"
-    it: "COUNTRY OF PUBLICATION"
+    it: "Paese di pubblicazione"
     de: "Erscheinungsland"
 li_710:
   label:
     en: "Additional institution"
-    it: "ADDITIONAL INSTITUTION"
+    it: "Istituzione addizionale"
     de: "Zusätzliche Körperschaften"
 li_760:
   label:
     en: "Item part of"
-    it: "ITEM PART OF"
+    it: "Voce parte di"
     de: "ITEM PART OF"
 li_650:
   label:
     en: "Subject heading"
-    it: "SUBJECT HEADING"
+    it: "Intestazione del soggetto"
     de: "SUBJECT HEADING"
 li_651:
   label:
     en: "Related place"
-    it: "RELATED PLACE"
+    it: "Luogo correlato"
     de: "Zugehörige Orte"
 li_780:
   label:
     en: "Preceding entry"
-    it: "PRECEDING ENTRY"
+    it: "Entità precedente"
     de: "Ersteintrag"
 li_785:
   label:
     en: "Succeeding entry"
-    it: "SUCCEEDING ENTRY"
+    it: "Entità successiva"
     de: "Folgeeintrag"
 li_500:
   label:
     en: "General note"
-    it: "GENERAL NOTE"
+    it: "Nota generale"
     de: "Allgemeine Bemerkungen"
 li_599:
   label:
     en: "Local note field"
-    it: "LOCAL NOTE FIELD"
+    it: "Nota locale"
     de: "Lokale Bemerkungen"
 li_856:
   label:
     en: "External resource"
-    it: "EXTERNAL RESOURCE"
+    it: "Risorsa esterna"
     de: "EXTERNAL RESOURCE"
 li_520:
   label:
     en: "Contents note"
-    it: "CONTENTS NOTE"
+    it: "Nota al contenuto"
     de: "CONTENTS NOTE"
 li_000:
   label:
     en: "Leader"
-    it: "LEADER"
+    it: "Leader"
     de: "Leader"
 li_001:
   label:
     en: "RISM ID Number"
-    it: "RISM ID NUMBER"
+    it: "Numero RISM"
     de: "RISM ID NUMBER"
 li_003:
   label:
     en: "Control number identifier"
-    it: "CONTROL NUMBER IDENTIFIER"
+    it: "Identificativo del numero di controllo"
     de: "CONTROL NUMBER IDENTIFIER"
 li_005:
   label:
     en: "Date and time of last transaction"
-    it: "DATE AND TIME OF LAST TRANSACTION"
+    it: "Data ed ora dell'ultima transazione"
     de: "Zeitpunkt der letzten Transaktion"
 li_main_entry_fields:
   label:
     de: "Haupteintragungen"
-    it: "HAUPTEINTRAGUNGEN"
+    it: "Campi principali"
     en: "Main entry fields"
 li_subject:
   label:
     en: "Subject access fields"
-    it: "SUBJECT ACCESS FIELDS"
+    it: "Campi di accesso al soggetto"
     de: "SUBJECT ACCESS FIELDS"
 li_note:
   label:
     en: "Note fields"
-    it: "NOTE FIELDS"
+    it: "Campi note"
     de: "Bemerkungsfelder"
 li_control:
   label:
     en: "Control fields"
-    it: "CONTROL FIELDS"
+    it: "Campi di controllo"
     de: "Kontrollfelder"
 li_lit:
   label:
     en: "Secondary literature"
-    it: "SECONDARY LITERATURE"
+    it: "Letteratura secondaria"
     de: "Sekundärliteratur"
 doc_titles_and_text:
   label:
     en: "Titles / text incipits"  
-    it: "TITLES / TEXT INCIPITS"  
+    it: "Titoli / Incipit testuali"  
     de: "Titel und  Texte"  
 aid_terms:
   label:
     en: "Standard music terms"
-    it: "STANDARD MUSIC TERMS"
+    it: "Terminologia musicale standard"
     de: "STANDARD MUSIC TERMS"
 aid_watermarks:
   label:
     en: "Standard watermarks"
-    it: "STANDARD WATERMARKS"
+    it: "Filigrana standard"
     de: "Wasserzeichen"
 aid_general:
   label:
     en: "General abbreviations and terms"
-    it: "GENERAL ABBREVIATIONS AND TERMS"
+    it: "Terminologia ed abbreviazioni generali"
     de: "GENERAL ABBREVIATIONS AND TERMS"
 aid_dates:
   label:
     en: "Dates"
-    it: "DATES"
+    it: "Date"
     de: "Datierungen"
 aid_eccl:
   label:
     en: "Ecclesiastical modes"
-    it: "ECCLESIASTICAL MODES"
+    it: "Modi ecclesiastici"
     de: "Kirchentonarten"
 aid_keys:
   label:
     en: "Keys"
-    it: "KEYS"
+    it: "Tasti"
     de: "Tonarten"
 aid_language:
   label:
     en: "Language codes"
-    it: "LANGUAGE CODES"
+    it: "Codice lingua"
     de: "Sprachcodes"
 doc_other:
   label:
@@ -3514,50 +3514,50 @@ doc_other:
 aid_titles:
   label:
     en: "Standardized titles - Subject headings"
-    it: "STANDARDIZED TITLES - SUBJECT HEADINGS"
+    it: "Titoli standard - Intestazione del soggetto"
     de: "STANDARDIZED TITLES - SUBJECT HEADINGS"
 aid_texts:
   label:
     en: "Standard texts of sacred works"
-    it: "STANDARD TEXTS OF SACRED WORKS"
+    it: "Testi standard"
     de: "Liturgische Texte"
 aid_lit:
   label:
     en: "Liturgical festivals"
-    it: "LITURGICAL FESTIVALS"
+    it: "Feste liturgiche"
     de: "Liturgische Feste"
 aid_figured:
   label:
     en: "Figured bass in scores and/or other parts"
-    it: "FIGURED BASS IN SCORES AND/OR OTHER PARTS"
+    it: "Basso figurato nella partitura e/o altre parti"
     de: "Generalbass"
 aid_transpose:
   label:
     en: "Help for transposing instruments"
-    it: "HELP FOR TRANSPOSING INSTRUMENTS"
+    it: "Aiuto agli strumenti traspositori"
     de: "Hilfe zu transponierenden Instrumenten"
 aid_opera:
   label:
     en: "Opera houses and concert halls"
-    it: "OPERA HOUSES AND CONCERT HALLS"
+    it: "Teatri e sale da concerto"
     de: "Opernhäuser und Konzerthallen"
 aid_faq:
   label:
     en: "Frequently asked questions"
-    it: "FREQUENTLY ASKED QUESTIONS"
+    it: "Domande freqienti"
     de: "FAQ"
 aid_tt:
   label:
     en: "How do I ... Tips & Tricks"
-    it: "HOW DO I ... TIPS & TRICKS"
+    it: "Come faccio ... Tips & Tricks"
     de: "Wie kann ich ... Tipps & Tricks"
 aid_best:
   label:
     en: "RISM best practises"
-    it: "RISM BEST PRACTISES"
+    it: "RISM Best practises"
     de: "RISM BEST PRACTISES"
 aid_error:
   label:
     en: "Technical errors"
-    it: "TECHNICAL ERRORS"
+    it: "Errori tecnici"
     de: "Technische Fehler"
