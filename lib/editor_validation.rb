@@ -91,6 +91,14 @@ class EditorValidation
     return nil
   end
 
+  def inspect
+    ""
+  end
+  
+  def to_s
+    ""
+  end
+
   def self.profiles
     unless @squeezed_profiles
       # load global configurations
