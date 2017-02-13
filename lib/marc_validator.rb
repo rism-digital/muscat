@@ -1,5 +1,7 @@
 class MarcValidator
   
+	DEBUG = false
+	
   def initialize(source)
     @rules = EditorValidation.get_default_validation(source).rules
     #ap @rules
@@ -20,7 +22,7 @@ class MarcValidator
         # This tag has to be there if "mandatory"
         if mandatory
           @errors[tag] = "mandatory"
-          puts "Missing #{tag}, mandatory"
+          puts "Missing #{tag}, mandatory" if DEBUG
         end
         next
       end
@@ -37,7 +39,7 @@ class MarcValidator
         # when required
         
         if is_subtag_excluded(tag, subtag)
-          puts "Skip #{tag} #{subtag} because of tag_overrides"
+          puts "Skip #{tag} #{subtag} because of tag_overrides" if DEBUG
           next
         end
         
@@ -51,7 +53,7 @@ class MarcValidator
             if rule == "required" || rule == "required, warning"
               if !marc_subtag || !marc_subtag.content
                 @errors["#{tag}#{subtag}"] = rule
-                puts "Missing #{tag} #{subtag}, #{rule}"
+                puts "Missing #{tag} #{subtag}, #{rule}" if DEBUG
               end
             else
               puts "Unknown rule #{rule}" if rule != "mandatory"
@@ -72,7 +74,7 @@ class MarcValidator
                     # if it is not here raise an error
                     if !marc_subtag || !marc_subtag.content
                       @errors["#{tag}#{subtag}"] = "required_if-#{other_tag}#{other_subtag}"
-                      puts "Missing #{tag} #{subtag}, required_if-#{other_tag}#{other_subtag}"
+                      puts "Missing #{tag} #{subtag}, required_if-#{other_tag}#{other_subtag}" if DEBUG
                     end
                   end
                 end
@@ -88,10 +90,16 @@ class MarcValidator
   
   end
   
+  def has_errors
+    return @errors.count > 0
+  end
+  
   def to_s
+    output = ""
     @errors.each do |tag, message|
-        puts "#{@source.id}\t#{tag}\t#{message}"
+        output += "#{@source.id}\t#{tag}\t#{message}\n"
     end
+    output
   end
   
   private
