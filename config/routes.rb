@@ -24,6 +24,7 @@ Muscat::Application.routes.draw do
   get '/pages', to: redirect(RISM::LEGACY_PAGES_URL)
   get '/pages/:name', to: redirect(RISM::LEGACY_PAGES_URL + '/pages/%{name}')
 
+  get 'sru' => 'sru#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

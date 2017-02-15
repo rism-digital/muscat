@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<% config   = Rails.configuration.database_configuration %>
+<% db_name = config[Rails.env]["database"] %>
+<zs:explainResponse xmlns:zs="http://docs.oasis-open.org/ns/search-ws/sruResponse">
+  <zs:version>2.0</zs:version>
+  <zs:record><zs:recordSchema>http://explain.z3950.org/dtd/2.0/</zs:recordSchema>
+    <zs:recordXMLEscaping>xml</zs:recordXMLEscaping>
+    <zs:recordData><explain xmlns="http://explain.z3950.org/dtd/2.0/">
+        <serverInfo>
+          <host><%= request.host_with_port %></host>
+          <port>80</port>
+          <database><%= db_name %></database>
+        </serverInfo>
+      </explain>
+    </zs:recordData>
+  </zs:record>
+  <zs:echoedExplainRequest>
+    <zs:version>2.0</zs:version>
+    <zs:recordXMLEscaping>xml</zs:recordXMLEscaping>
+</zs:echoedExplainRequest>
+</zs:explainResponse>
