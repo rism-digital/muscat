@@ -265,7 +265,7 @@ es:
     not_set: "[Estado no puesto]"
     ok: "Tarea terminado con éxito"
     no_status: "Ha habido un error leyendo el estado de la tarea"
-    error: "ERROR: "
+    error: "Error"
     running_jobs: "Tareas pendientes no se puden borrar."
     auto_delete: "No se puede borrar: Tarea terminada fue borrado automáticamente."
     no_view: "No se pude ver: Tarea terminada fue borrado automáticamente."
@@ -278,9 +278,9 @@ es:
   duplicate: "Duplicar"
   no_action: "Ninguna acción disponible"
   reindex: "Reindizar"
-  resave: "RESAVE"
+  resave: "Guardar nuevamente"
   publish: "Publicar"
-  unpublish: "UNPUBLISH"
+  unpublish: "Anular publicación"
   select: "Seleccionar"
   create_folder: "Añadir a directorio nuevo"
   append_folder: "Añadir a directorio existente"
@@ -294,7 +294,7 @@ es:
   save_and_continue: "Guardar y continuar editando"
   save_and_exit: "Guardar y terminar"
   cancel: "Cancelar"
-  duplicate_confirm: "ARE YOU SURE YOU WANT TO DUPLICATE THIS RECORD?"
+  duplicate_confirm: "¿Está Vd. seguro qué quiere duplicar este recurso?"
   
   # Version history
   history_date: "Fecha"
@@ -452,8 +452,8 @@ es:
   error_not_found: "El recursos al que Vd. quiere acceder no existe o fue borrado."
   error_saving: "El recurso no está completo o crea un duplicado"
   unknown_tags: "Hay algunos campos desconocidos en este recurso"
-  cannot_update_source: "YOU ARE NOT AUTHORIZED TO EDIT THIS TYPE OF SOURCE"
-  cannot_create_source: "YOU ARE NOT AUTHORIZED TO CREATE THIS TYPE OF SOURCE"
+  cannot_update_source: "Vd. no está autorizado de editar este tipo de fuente"
+  cannot_create_source: "Vd. no está autorizado de crear este tipo de fuente"
  
   #
   entry:
