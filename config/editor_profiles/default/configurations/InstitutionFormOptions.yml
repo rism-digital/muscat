@@ -53,9 +53,9 @@
 "034": 
   layout: 
     fields: 
-    - - d
-      - cols: 2
     - - f
+      - cols: 2
+    - - d
       - cols: 2
     columns: 4
 "040": 
