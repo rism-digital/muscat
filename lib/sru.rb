@@ -63,7 +63,6 @@ module Sru
       end
       # Check if the index is in the config
       if !(self.query.keys - @@index_config.keys).empty? && !self.query.values.include?(nil)
-        binding.pry
         return "Unsupported index"
       end
       return nil
