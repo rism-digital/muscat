@@ -1,0 +1,23 @@
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/" xmlns:marc="http://www.loc.gov/MARC21/slim">
+    <zs:version>1.1</zs:version>
+    <zs:numberOfRecords><%= @result.total  %></zs:numberOfRecords>
+    <zs:records>
+      <% @result.hits.each_with_index do |hit, index| %>
+        <zs:record>
+          <zs:recordPacking>xml</zs:recordPacking>
+          <zs:recordData>
+            <%= hit.result.marc.to_xml_record(nil, nil).html_safe %>
+          </zs:recordData>
+          <zs:recordPosition><%= index + 1 %></zs:recordPosition>
+        </zs:record>
+      <% end %>
+    </zs:records>
+    <zs:echoedSearchRetrieveRequest>
+      <zs:version>1.1</zs:version>
+      <zs:query><%= params["query"] %></zs:query>
+      <zs:maximumRecords><%= @sru.maximumRecords %></zs:maximumRecords>
+      <zs:recordPacking>xml</zs:recordPacking>
+    </zs:echoedSearchRetrieveRequest>
+  </zs:searchRetrieveResponse>
+
+

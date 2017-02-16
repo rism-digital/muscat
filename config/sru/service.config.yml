@@ -1,0 +1,146 @@
+server:
+  version: 1.1
+  port: 80
+  database: 
+    title: RISM Répértoire des sources musicales Muscat 
+    description: SRW Gateway. Records in UTF-8 encoding. Contains sources, people, institutions and catalogues 
+sets:
+  cql: info:srw/cql-context-set/1/cql-v1.1
+  rec: info:srw/cql-context-set/2/rec-1.1
+  dc: info:srw/cql-context-set/1/dc-v1.1
+  bath: http://zing.z3950.org/cql/bath/2.0/
+index:
+  dc.id:
+    title: id
+    marc: "001"
+  dc.title:
+    title: title
+    marc: 
+      - 240a
+      - 245a
+  dc.subject:
+    title: subject
+    marc: 650a
+  dc.creator:
+    title: creator
+    marc: 100a
+  dc.author:
+    title: author
+    marc: 100a
+  dc.publisher:
+    title: publisher
+    marc: 260b
+  dc.description:
+    title: description
+    marc: 500a
+  dc.date:
+    title: date
+    marc: 260c
+  bath.possessingInstitution:
+    title: possessingInstitution
+    marc: 852$a
+  bath.name:
+    title: name
+    marc: 
+      - 100a
+      - 700a
+  bath.personalName:
+    title: personalName
+    marc: 100a
+  bath.corporateName:
+    title: corporateName
+    marc: 110a
+  bath.uniformTitle:
+    title: uniformTitle
+    marc: 240a
+  bath.notes:
+    title: notes
+    marc: 500a
+  bath.topicalSubject:
+    title: topicalSubject
+    marc: 650a
+  rism.profession:
+    title: profession
+    marc: 550a
+  rism.gender:
+    title: gender
+    marc: 375a
+  rism.siglum:
+    title: siglum
+    marc: 852$a
+  rism.country:
+    title: country
+    marc: 043a
+  rism.watermark:
+    title: watermark
+    marc: 592a
+  rism.composer:
+    title: composer
+    marc: 100a
+  rism.relatedPerson:
+    title: relatedPerson
+    marc: 700a
+  rism.libarySiglum:
+    title: librarySiglum
+    marc: 110g
+
+  #bath.genreForm:
+    #title: genreForm
+    #marc: 001
+  #bath.keyTitle:
+    #title: id
+    #marc: 001
+  #rism.adatum:
+    #title: adatum
+    #marc: 001
+  #rism.provider:
+    #title: provider
+    #marc: 001
+  #rism.place:
+    #title: place
+    #marc: 001
+  #dc.editor:
+    #title: id
+    #marc: 001
+  #dc.image:
+    #title: image
+    #marc: 001
+  #dc.year:
+    # title: year
+    # marc: 001
+  #dc.resourceType:
+    #title: id
+    #marc: 
+  #dc.format:
+    #title: id
+    #marc: 001
+  #dc.resourceIdentifier:
+    #title: id
+    #marc: 001
+  #dc.source:
+    #title: id
+    #marc: 001
+  #dc.language:
+    #title: id
+    #marc: 001
+  #dc.relation:
+    #title: id
+    #marc: 001
+  #dc.coverage:
+    #title: id
+    #marc: 001
+  #dc.rights:
+    #title: id
+    #marc: 
+  #bath.conferenceName:
+    #title: conferenceName
+    #marc: 001
+  #bath.isbn:
+    #title: isbn
+    #marc: 001
+  #bath.issn:
+    #title: issn
+    #marc: 001
+  #bath.geographicName:
+    #title: geographicName
+    #marc: 001

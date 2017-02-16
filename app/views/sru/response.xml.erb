@@ -1,37 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<% sru   = Sru::Query.new(params).response %>
 
-<% if sru %>
-  <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/" xmlns:marc="http://www.loc.gov/MARC21/slim">
-    <zs:version>1.1</zs:version>
-    <zs:numberOfRecords><%= sru.total  %></zs:numberOfRecords>
-    <zs:records>
-      <% sru.results.each do |record| %>
-        <zs:record>
-          <zs:recordPacking>xml</zs:recordPacking>
-          <zs:recordData>
-            <%= record.marc.to_xml_record(nil, nil).html_safe %>
-          </zs:recordData>
-          <zs:recordPosition>1</zs:recordPosition>
-        </zs:record>
-      <% end %>
-    </zs:records>
-  </zs:searchRetrieveResponse>
+<% model = request.env["PATH_INFO"].split("/").last %>
+<% @sru   = Sru::Query.new(model, params) %>
+<% @result   = @sru.response %>
 
+<% if !params['operation'] || !params['query'] %>
+  <%= render :partial => 'explain' %>
+<% elsif !@sru.error_code && @result.instance_of?(Sunspot::Search::StandardSearch) %>
+  <%= render :partial => 'result' %>
 <% else %>
-  <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/">
-    <zs:version>1.2</zs:version>
-    <zs:echoedSearchRetrieveRequest>
-      <zs:version>1.2</zs:version>
-      <zs:query><%= params %></zs:query>
-      <zs:maximumRecords>10</zs:maximumRecords>
-      <zs:recordPacking>xml</zs:recordPacking>
-    </zs:echoedSearchRetrieveRequest>
-    <zs:diagnostics xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/">
-      <diag:diagnostic>
-        <diag:uri>info:srw/diagnostic/1/16</diag:uri>
-        <diag:message>ERROR</diag:message>
-      </diag:diagnostic>
-    </zs:diagnostics>
-  </zs:searchRetrieveResponse>
+  <%= render :partial => 'error' %>
 <% end %>
