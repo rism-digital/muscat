@@ -1,10 +1,4 @@
 GIT
-  remote: https://github.com/jrochkind/cql-ruby
-  revision: bb97e906fa5d68a6ae7315edc59da2a7c5bbfc33
-  specs:
-    cql-ruby (0.9.1)
-
-GIT
   remote: https://github.com/plashchynski/crono
   revision: 1d9d30ef89079c37069a6daab1672b91eb6ed0a8
   specs:
@@ -374,7 +368,6 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 4.0.0)
   colorize
-  cql-ruby (= 0.9.1)!
   crono!
   daemons
   delayed_job (= 4.1.1)!

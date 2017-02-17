@@ -19,76 +19,76 @@ index:
       - 245a
     type: string
   dc.subject:
-    solr: 650a_text
+    solr: 650a
     type: string
   dc.creator:
-    solr: 100a_text
+    solr: 100a
     type: string
   dc.author:
-    solr: 100a_text
+    solr: 100a
     type: string
   dc.publisher:
-    solr: 260b_text
+    solr: 260b
     type: string
   dc.description:
-    solr: 500a_text
+    solr: 500a
     type: string
   dc.date:
-    solr: 260c_text
+    solr: 260c
     type: string
   bath.possessingInstitution:
-    solr: 852a_text
+    solr: 852a
     type: string
   bath.name:
     solr: 
-      - 100a_text
-      - 700a_text
+      - 100a
+      - 700a
     type: string
   bath.personalName:
-    solr: 100a_text
+    solr: 100a
     type: string
   bath.corporateName:
-    solr: 110a_text
+    solr: 110a
     type: string
   bath.uniformTitle:
-    solr: 240a_text
+    solr: 240a
     type: string
   bath.notes:
-    solr: 500a_text
+    solr: 500a
     type: string
   bath.topicalSubject:
-    solr: 650a_text
+    solr: 650a
     type: string
   rism.profession:
-    solr: 550a_text
+    solr: 550a
     type: string
   rism.gender:
-    solr: 375a_text
+    solr: 375a
     type: string
   rism.siglum:
-    solr: 852a_text
+    solr: 852a
     type: string
   rism.country:
-    solr: 043a_text
+    solr: 043a
     type: string
   rism.watermark:
-    solr: 592a_text
+    solr: 592a
     type: string
   rism.composer:
-    solr: 100a_text
+    solr: 100a
     type: string
   rism.relatedPerson:
-    solr: 700a_text
+    solr: 700a
     type: string
   rism.libarySiglum:
-    solr: 110g_text
+    solr: 110g
     type: string
   rism.changed:
     solr: updated_at
     type: date
   rism.created:
     solr: created_at
-    type: date
+    type: dateg
 
 
   #bath.genreForm:

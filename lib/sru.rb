@@ -27,22 +27,19 @@ module Sru
 
     # Returns the solr query result
     def response
-      require 'cql_ruby'
       if !error_code
         begin
-          parser = CqlRuby::CqlParser.new
-          q = parser.parse(self.query).to_solr
-          if q.include?(":")
-            solr_result = Sunspot.search(@model) do
-              adjust_solr_params do |params|
-                params[:q] = q
+          solr_result = @model.solr_search do
+            query.each do |k,v|
+              if v
+                fulltext v, :fields => @@index_config[k]
+              else
+                fulltext k
               end
+              # only published records are used
+              with(:wf_stage).equal_to("published") if @model=="sources"
             end
-          else
-            # Fulltext search
-            solr_result = Sunspot.search(@model) do
-              fulltext q
-            end
+            paginate :page => 1, :per_page => maximumRecords
           end
           return solr_result
         rescue
@@ -74,24 +71,19 @@ module Sru
     # Helper method to parse the query string into a hash
     def _parse(s)
       fields = s.split(" AND ")
-      res = []
+      res = {}
       fields.each do |field|
-        unless field.include?("=")
-          return "#{field}"
-        end
-        hash = Rack::Utils.parse_nested_query(field)
-        hash.each do |k,v|
-          solr = "text"
-          @@index_config.each do |key, value|
-            if key == k || k == key.gsub(/^\w+\./ , "")
-              solr = value['solr']
-              break
-            end
+        k, v = field.split("=")
+          unless v
+            res[k]=v
           end
-          res << "#{solr}=#{v}"
+          @@index_config.each do |key, value|
+          if key == k || k == key.gsub(/^\w+\./ , "")
+              res[value['solr']] = v
+          end
         end
       end
-      return res.join(" AND ")
+      return res
     end
   end
 end
