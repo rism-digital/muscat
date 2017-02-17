@@ -18,7 +18,7 @@ module Sru
     def initialize(model, params = {})
       @model = model.singularize.camelize.constantize rescue nil
       # TODO class variable for caching
-      @@index_config = YAML.load_file("config/sru/service.config.yml")['index'].values.map{|v| {v['title'] => v['marc']} }.reduce({}, :merge)
+      @@index_config = YAML.load_file("config/sru/service.config.yml")['index']
       @operation=params.fetch(:operation, 'searchRetrieve')
       @query=_parse(params.fetch(:query, '*'))
       @maximumRecords=params.fetch(:maximumRecords, 10).to_i rescue 10
@@ -27,19 +27,22 @@ module Sru
 
     # Returns the solr query result
     def response
+      require 'cql_ruby'
       if !error_code
         begin
-          solr_result = @model.solr_search do
-            query.each do |k,v|
-              if v
-                fulltext v, :fields => @@index_config[k]
-              else
-                fulltext k
+          parser = CqlRuby::CqlParser.new
+          q = parser.parse(self.query).to_solr
+          if q.include?(":")
+            solr_result = Sunspot.search(@model) do
+              adjust_solr_params do |params|
+                params[:q] = q
               end
-              # only published records are used
-              with(:wf_stage).equal_to("published") if @model=="sources"
             end
-            paginate :page => 1, :per_page => maximumRecords
+          else
+            # Fulltext search
+            solr_result = Sunspot.search(@model) do
+              fulltext q
+            end
           end
           return solr_result
         rescue
@@ -62,21 +65,33 @@ module Sru
         return "Query string is empty"
       end
       # Check if the index is in the config
-      if !(self.query.keys - @@index_config.keys).empty? && !self.query.values.include?(nil)
-        return "Unsupported index"
-      end
+      #if !(self.query.keys - @@index_config.keys).empty? && !self.query.values.include?(nil)
+      #  return "Unsupported index"
+      #end
       return nil
     end
 
     # Helper method to parse the query string into a hash
-    def _parse(params)
-      q = {}
-      fields = params.split(" AND ")
+    def _parse(s)
+      fields = s.split(" AND ")
+      res = []
       fields.each do |field|
-        index, term = field.split("=")
-        q[index] = term
+        unless field.include?("=")
+          return "#{field}"
+        end
+        hash = Rack::Utils.parse_nested_query(field)
+        hash.each do |k,v|
+          solr = "text"
+          @@index_config.each do |key, value|
+            if key == k || k == key.gsub(/^\w+\./ , "")
+              solr = value['solr']
+              break
+            end
+          end
+          res << "#{solr}=#{v}"
+        end
       end
-      return q
+      return res.join(" AND ")
     end
   end
 end

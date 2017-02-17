@@ -3,7 +3,7 @@ server:
   port: 80
   database: 
     title: RISM Répértoire des sources musicales Muscat 
-    description: SRW Gateway. Records in UTF-8 encoding. Contains sources, people, institutions and catalogues 
+    description: SRU/SRW Gateway based on Solr. Records in UTF-8 encoding. Contains sources, people, institutions and catalogues.
 sets:
   cql: info:srw/cql-context-set/1/cql-v1.1
   rec: info:srw/cql-context-set/2/rec-1.1
@@ -11,136 +11,143 @@ sets:
   bath: http://zing.z3950.org/cql/bath/2.0/
 index:
   dc.id:
-    title: id
-    marc: "001"
+    solr: "001"
+    type: string
   dc.title:
-    title: title
-    marc: 
+    solr: 
       - 240a
       - 245a
+    type: string
   dc.subject:
-    title: subject
-    marc: 650a
+    solr: 650a_text
+    type: string
   dc.creator:
-    title: creator
-    marc: 100a
+    solr: 100a_text
+    type: string
   dc.author:
-    title: author
-    marc: 100a
+    solr: 100a_text
+    type: string
   dc.publisher:
-    title: publisher
-    marc: 260b
+    solr: 260b_text
+    type: string
   dc.description:
-    title: description
-    marc: 500a
+    solr: 500a_text
+    type: string
   dc.date:
-    title: date
-    marc: 260c
+    solr: 260c_text
+    type: string
   bath.possessingInstitution:
-    title: possessingInstitution
-    marc: 852$a
+    solr: 852a_text
+    type: string
   bath.name:
-    title: name
-    marc: 
-      - 100a
-      - 700a
+    solr: 
+      - 100a_text
+      - 700a_text
+    type: string
   bath.personalName:
-    title: personalName
-    marc: 100a
+    solr: 100a_text
+    type: string
   bath.corporateName:
-    title: corporateName
-    marc: 110a
+    solr: 110a_text
+    type: string
   bath.uniformTitle:
-    title: uniformTitle
-    marc: 240a
+    solr: 240a_text
+    type: string
   bath.notes:
-    title: notes
-    marc: 500a
+    solr: 500a_text
+    type: string
   bath.topicalSubject:
-    title: topicalSubject
-    marc: 650a
+    solr: 650a_text
+    type: string
   rism.profession:
-    title: profession
-    marc: 550a
+    solr: 550a_text
+    type: string
   rism.gender:
-    title: gender
-    marc: 375a
+    solr: 375a_text
+    type: string
   rism.siglum:
-    title: siglum
-    marc: 852$a
+    solr: 852a_text
+    type: string
   rism.country:
-    title: country
-    marc: 043a
+    solr: 043a_text
+    type: string
   rism.watermark:
-    title: watermark
-    marc: 592a
+    solr: 592a_text
+    type: string
   rism.composer:
-    title: composer
-    marc: 100a
+    solr: 100a_text
+    type: string
   rism.relatedPerson:
-    title: relatedPerson
-    marc: 700a
+    solr: 700a_text
+    type: string
   rism.libarySiglum:
-    title: librarySiglum
-    marc: 110g
+    solr: 110g_text
+    type: string
+  rism.changed:
+    solr: updated_at
+    type: date
+  rism.created:
+    solr: created_at
+    type: date
+
 
   #bath.genreForm:
     #title: genreForm
-    #marc: 001
+    #solr: 001
   #bath.keyTitle:
     #title: id
-    #marc: 001
+    #solr: 001
   #rism.adatum:
     #title: adatum
-    #marc: 001
+    #solr: 001
   #rism.provider:
     #title: provider
-    #marc: 001
+    #solr: 001
   #rism.place:
     #title: place
-    #marc: 001
+    #solr: 001
   #dc.editor:
     #title: id
-    #marc: 001
+    #solr: 001
   #dc.image:
     #title: image
-    #marc: 001
+    #solr: 001
   #dc.year:
     # title: year
-    # marc: 001
+    # solr: 001
   #dc.resourceType:
     #title: id
-    #marc: 
+    #solr: 
   #dc.format:
     #title: id
-    #marc: 001
+    #solr: 001
   #dc.resourceIdentifier:
     #title: id
-    #marc: 001
+    #solr: 001
   #dc.source:
     #title: id
-    #marc: 001
+    #solr: 001
   #dc.language:
     #title: id
-    #marc: 001
+    #solr: 001
   #dc.relation:
     #title: id
-    #marc: 001
+    #solr: 001
   #dc.coverage:
     #title: id
-    #marc: 001
+    #solr: 001
   #dc.rights:
     #title: id
-    #marc: 
+    #solr: 
   #bath.conferenceName:
     #title: conferenceName
-    #marc: 001
+    #solr: 001
   #bath.isbn:
     #title: isbn
-    #marc: 001
+    #solr: 001
   #bath.issn:
     #title: issn
-    #marc: 001
+    #solr: 001
   #bath.geographicName:
     #title: geographicName
-    #marc: 001
+    #solr: 001
