@@ -22,7 +22,7 @@ module Sru
       @operation=params.fetch(:operation, 'searchRetrieve')
       @query=_parse(params.fetch(:query, '*'))
       @maximumRecords=params.fetch(:maximumRecords, 10).to_i rescue 10
-      @error_code = self._check
+      @error_code = self._check if !@error_code
     end
 
     # Returns the solr query result
@@ -30,11 +30,11 @@ module Sru
       if !error_code
         begin
           solr_result = @model.solr_search do
-            query.each do |k,v|
-              if v
-                fulltext v, :fields => @@index_config[k]
+            query.each do |field, term|
+              if !field.instance_of?(Fixnum)
+                fulltext term, :fields => field
               else
-                fulltext k
+                fulltext term
               end
               # only published records are used
               with(:wf_stage).equal_to("published") if @model=="sources"
@@ -61,10 +61,6 @@ module Sru
       if query.empty?
         return "Query string is empty"
       end
-      # Check if the index is in the config
-      #if !(self.query.keys - @@index_config.keys).empty? && !self.query.values.include?(nil)
-      #  return "Unsupported index"
-      #end
       return nil
     end
 
@@ -72,17 +68,21 @@ module Sru
     def _parse(s)
       fields = s.split(" AND ")
       res = {}
+      fulltext = 0
       fields.each do |field|
-        k, v = field.split("=")
-          unless v
-            res[k]=v
+        field, term = field.split("=")
+          unless term
+            res[fulltext]=field
+            fulltext += 1
           end
           @@index_config.each do |key, value|
-          if key == k || k == key.gsub(/^\w+\./ , "")
-              res[value['solr']] = v
+            if key == field || field == key.gsub(/^\w+\./ , "")
+              res[value['solr']] = term
+            end
           end
         end
-      end
+      # If we have missing fields in the result: 
+      @error_code = "Unsupported index, see explain" if res.size != fields.size
       return res
     end
   end
