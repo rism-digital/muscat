@@ -28,13 +28,18 @@ module Sru
     # Returns the solr query result
     def response
       if !error_code
-        begin
+        #begin
           solr_result = @model.solr_search do
-            query.each do |field, term|
-              if !field.instance_of?(Fixnum)
-                fulltext term, :fields => field
+            query.each do |field, value|
+              if value[:type]
+                if value[:type] == 'text'
+                  fulltext value[:term], :fields => field
+                else
+                  #with(field.to_sym).greater_than_or_equal_to Time.parse(value[:term])
+                  with(field).equal_to value[:term]
+                end
               else
-                fulltext term
+                fulltext value[:term]
               end
               # only published records are used
               with(:wf_stage).equal_to("published") if @model=="sources"
@@ -42,9 +47,9 @@ module Sru
             paginate :page => 1, :per_page => maximumRecords
           end
           return solr_result
-        rescue
-          @error_code = "Index field is not defined for this model"
-        end
+        #rescue
+        #  @error_code = "Index field is not defined for this model"
+        #end
       else
         return error_code
       end
@@ -68,16 +73,17 @@ module Sru
     def _parse(s)
       fields = s.split(" AND ")
       res = {}
+      # use scan as tokenizer: content.scan(/\w+|\W/)
       fulltext = 0
       fields.each do |field|
         field, term = field.split("=")
           unless term
-            res[fulltext]=field
+            res[fulltext] = {:term => field, :type => nil}
             fulltext += 1
           end
           @@index_config.each do |key, value|
             if key == field || field == key.gsub(/^\w+\./ , "")
-              res[value['solr']] = term
+              res[value['solr']] = {:term => term, :type => value['type']}
             end
           end
         end

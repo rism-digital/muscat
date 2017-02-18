@@ -22,10 +22,10 @@
             <set identifier="<%= uri %>" name="<%= set %>"/>
           <% end %>
           <% sru_config['index'].each do |index, hash| %>
-            <index id="<%= index %>" marc="<%= hash['marc']%>">
-              <title><%= hash['title'] %></title>
+            <index id="<%= index %>"  type="<%= hash['type'] %>" >
+              <title><%= index %></title>
               <map>
-                <name set="<%= index %>"><%= hash['title'] %></name>
+                <name set="solr"><%= hash['solr']%></name>
               </map>
             </index>
             <% end %>
