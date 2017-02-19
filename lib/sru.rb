@@ -20,7 +20,7 @@ module Sru
       # TODO class variable for caching
       @@index_config = YAML.load_file("config/sru/service.config.yml")['index']
       @operation=params.fetch(:operation, 'searchRetrieve')
-      @query=_parse(params.fetch(:query, '*'))
+      @query=params.fetch(:query, '*')
       @maximumRecords=params.fetch(:maximumRecords, 10).to_i rescue 10
       @error_code = self._check if !@error_code
     end
@@ -29,24 +29,23 @@ module Sru
     def response
       if !error_code
         #begin
-          solr_result = @model.solr_search do
-            query.each do |field, value|
-              if value[:type]
-                if value[:type] == 'text'
-                  fulltext value[:term], :fields => field
-                else
-                  #with(field.to_sym).greater_than_or_equal_to Time.parse(value[:term])
-                  with(field).equal_to value[:term]
-                end
-              else
-                fulltext value[:term]
-              end
-              # only published records are used
-              with(:wf_stage).equal_to("published") if @model=="sources"
+        q = self.to_solr(@query)
+        #if q.include?(":")
+          solr_result = Sunspot.search(@model) do
+            adjust_solr_params do |params|
+              params[:q] = q
             end
+            with(:wf_stage).equal_to("published") if @model=="sources"
             paginate :page => 1, :per_page => maximumRecords
           end
-          return solr_result
+        #else
+          # Fulltext search
+        #  solr_result = Sunspot.search(@model) do
+         #   fulltext q
+        #  end
+        #end
+
+        return solr_result
         #rescue
         #  @error_code = "Index field is not defined for this model"
         #end
@@ -91,5 +90,90 @@ module Sru
       @error_code = "Unsupported index, see explain" if res.size != fields.size
       return res
     end
+
+    def self.examples
+      [
+       "Bach",
+       "dc.creator=Bach",
+       "dc.creator any Bach",
+       "name=Bach and rism.siglum=D-Dl", 
+       "changed<2017-02-01",
+       "Bach OR siglum=D-Dl",
+       "Bach, Johann Sebastian and Masses",
+       'dc.creator="Bach, Johann NOT Sebastian" NOT siglum=D-Dl'
+      ]
+    end
+
+    def to_solr(s)
+      require 'cql_ruby'
+      index_config = YAML.load_file("config/sru/service.config.yml")['index']
+      token = CqlRuby::CqlLexer.new.tokenize(s)
+      result = []
+      subqueries = []
+      token.chunk {|e| !(e =~ /^(AND|and|OR|or|NOT|not|PROX|prox)$/) }.each {|a| subqueries << a }
+      subqueries.each_with_index do |query, index|
+        if query[0]
+          print query[1]
+          if query[1].any? {|e| e =~ /^[=<>]/}
+            puts "index"
+            index_config.each do |k,v|
+              if query[1][0] == k || query[1][0] == k.gsub(/^\w+\./ , "")
+                if v['solr'].instance_of?(Array)
+                  ary = []
+                  v['solr'].each do |e|
+                    ary << "#{e}_text=#{query[1][-1]}"
+                  end
+                  subqueries[index][1] = ["(#{ary.join(" OR ")})"]
+                else
+                  subqueries[index][1][0]="#{v['solr']}_#{v['type']}"
+                end
+                break
+              end
+            end
+          else
+            fulltext = []
+            index_config['cql.any']['solr'].each do |solr_index|
+              fulltext << "#{solr_index}_text=#{query[1][-1]}"
+            end
+            subqueries[index][1] = ["(#{fulltext.join(" OR ")})"]
+          end
+        end
+      
+      end
+      cql_string = subqueries.map{|e| e[1]}.join(" ")
+=begin
+      fields.each do |field|
+        index_config.each do |k,v|
+          if field == k || field == k.gsub(/^\w+\./ , "")
+            idx = token.index(field)
+            # Expand array to cql query
+            if v['solr'].instance_of?(Array)
+              fulltext = []
+            binding.pry
+              v['solr'].each do |e|
+                fulltext << "#{e}_text=#{token[token.index(field) + 2 ]}"
+              end
+              token[token.index(field)] = "(#{fulltext.join(" OR ")})"
+              token[idx + 1]=""
+              token[idx + 2]=""
+            else
+              if v['type'] == "d"
+                date = Time.parse(token[idx + 2 ])
+                token[idx + 2] = "#{date.strftime("%Y-%m-%d")}T23:59:59Z"
+              end
+              token[token.index(field)] = "#{v['solr']}_#{v['type']}"
+            end
+          end
+        end
+      end
+=end
+      #cql_string = token.flatten.join("")
+      puts cql_string
+      solr_string = CqlRuby::CqlParser.new.parse(cql_string).to_solr
+      puts "#{cql_string} => #{solr_string}"
+      return solr_string
+    end
+
+
   end
 end

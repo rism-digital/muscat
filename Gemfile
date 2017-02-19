@@ -122,3 +122,4 @@ gem 'rspec-rails', '~> 3.5'
 gem 'poltergeist', "1.11.0"
 
 gem 'exception_notification'
+gem 'cql-ruby', '0.9.1', :git => 'https://github.com/jrochkind/cql-ruby'

@@ -10,9 +10,17 @@ sets:
   dc: info:srw/cql-context-set/1/dc-v1.1
   bath: http://zing.z3950.org/cql/bath/2.0/
 index:
+  cql.any:
+    solr:
+      - 100a
+      - 240a
+      - 245a
+      - 500a
+      - 700a
+    type: text
   dc.id:
     solr: id
-    type: integer
+    type: i
   dc.title:
     solr: 
       - 240a
@@ -85,10 +93,10 @@ index:
     type: text
   rism.changed:
     solr: updated_at
-    type: date
+    type: d
   rism.created:
     solr: created_at
-    type: date
+    type: d
   rism.wv:
     solr: 690n
     type: text
