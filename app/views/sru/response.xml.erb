@@ -2,11 +2,11 @@
 
 <% model = request.env["PATH_INFO"].split("/").last %>
 <% @sru   = Sru::Query.new(model, params) %>
-<% @result   = @sru.response %>
+<% @result   = @sru.result %>
 
 <% if !params['operation'] || !params['query'] %>
   <%= render :partial => 'explain' %>
-<% elsif !@sru.error_code && @result.instance_of?(Sunspot::Search::StandardSearch) %>
+<% elsif !@sru.error_code && @result %>
   <%= render :partial => 'result' %>
 <% else %>
   <%= render :partial => 'error' %>
