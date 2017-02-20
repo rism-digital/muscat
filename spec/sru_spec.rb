@@ -1,6 +1,3 @@
-require 'sru'
-require 'rails_helper'
-
 describe Sru::Query do
   
   describe "#initialize" do
@@ -14,18 +11,18 @@ describe Sru::Query do
 
   describe "#initialize" do
     context "Simple index search with base" do
-      it "returns > 17000" do
+      it "returns ~ 104" do
         query = Sru::Query.new("sources", {:query => "dc.creator=Bach", :operation => "searchRetrieve"})
-        expect(query.result.total).to be > 17000
+        expect(query.result.total).to be_within(100).of(200)
       end
     end
   end
 
   describe "#initialize" do
     context "Simple index search without base" do
-      it "returns > 17000" do
+      it "returns ~ 104" do
         query = Sru::Query.new("sources", {:query => "creator=Bach", :operation => "searchRetrieve"})
-        expect(query.result.total).to be > 17000
+        expect(query.result.total).to be_within(100).of(200)
       end
     end
   end
@@ -50,9 +47,8 @@ describe Sru::Query do
 
   describe "#initialize" do
     context "Combined index and fulltext search with OR" do
-      it "returns > 130" do
+      it "returns ~ 140" do
         query = Sru::Query.new("sources", {:query => "watermark=bach or \"Musikalisches Opfer\"", :operation => "searchRetrieve"})
-        puts query.result.total
         expect(query.result.total).to be_within(130).of(200)
       end
     end
@@ -113,7 +109,6 @@ describe Sru::Query do
         get "service", {:query => 'Bach', :operation => "searchRetrieve", :maximumRecords => 200}
         doc = Nokogiri::XML(response.body)
         diag = "http://www.loc.gov/zing/srw/diagnostic/"
-        #namespace="http://explain.z3950.org/dtd/2.0/" 
         max = doc.xpath("//diag:message", "diag" => diag).first.content
         expect(max).to match(/MaximumRecords is limited/)
       end

@@ -31,8 +31,8 @@ index:
     solr: 650a
     type: text
   dc.creator:
-    solr: 100a
-    type: text
+    solr: composer_order
+    type: s
   dc.author:
     solr: 100a
     type: text
@@ -82,9 +82,6 @@ index:
     type: text
   rism.watermark:
     solr: 592a
-    type: text
-  rism.composer:
-    solr: 100a
     type: text
   rism.relatedPerson:
     solr: 700a

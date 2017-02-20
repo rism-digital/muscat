@@ -13,7 +13,7 @@
 module Sru
   class Query
     NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim"}
-    attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code
+    attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code, :schema
     
     def initialize(model, params = {})
       @model = model.singularize.camelize.constantize rescue nil
@@ -29,7 +29,8 @@ module Sru
       end
       @offset = params.fetch("startRecord", 1)
       @error_code = self._check if !@error_code
-      @result = self._response
+      @result = self._response if @query != "*"
+      @schema = params.fetch(:recordSchema, "marcxml")
     end
 
     # Returns the solr query result
@@ -76,8 +77,9 @@ module Sru
       subqueries = []
       token.chunk {|e| !(e =~ /^(AND|and|OR|or|NOT|not|PROX|prox)$/) }.each {|a| subqueries << a }
       subqueries.each_with_index do |query, index|
+        # TODO make this more readable :-)
         if query[0]
-          print query[1]
+          #print query[1]
           if query[1].any? {|e| e =~ /^[=<>]/}
             index_config.each do |k,v|
               if query[1][0] == k || query[1][0] == k.gsub(/^\w+\./ , "")
@@ -113,7 +115,7 @@ module Sru
       end
       cql_string = subqueries.map{|e| e[1]}.join(" ")
       solr_string = CqlRuby::CqlParser.new.parse(cql_string).to_solr
-      puts "#{cql_string} => #{solr_string}"
+      #puts "#{cql_string} => #{solr_string}"
       return solr_string
     end
 
