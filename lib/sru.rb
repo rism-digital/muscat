@@ -29,8 +29,11 @@ module Sru
       end
       @offset = params.fetch("startRecord", 1)
       @error_code = self._check if !@error_code
-      @result = self._response if @query != "*"
       @schema = params.fetch(:recordSchema, "marcxml")
+      if !sru_config['schemas'].include?(@schema)
+        @error_code = "Unsupported schema."
+      end
+      @result = self._response if @query != "*"
     end
 
     # Returns the solr query result
