@@ -61,42 +61,6 @@ module Sru
       return nil
     end
 
-    # Helper method to parse the query string into a hash
-    def _parse(s)
-      fields = s.split(" AND ")
-      res = {}
-      # use scan as tokenizer: content.scan(/\w+|\W/)
-      fulltext = 0
-      fields.each do |field|
-        field, term = field.split("=")
-          unless term
-            res[fulltext] = {:term => field, :type => nil}
-            fulltext += 1
-          end
-          @@index_config.each do |key, value|
-            if key == field || field == key.gsub(/^\w+\./ , "")
-              res[value['solr']] = {:term => term, :type => value['type']}
-            end
-          end
-        end
-      # If we have missing fields in the result: 
-      @error_code = "Unsupported index, see explain" if res.size != fields.size
-      return res
-    end
-
-    def self.examples
-      [
-       "Bach",
-       "dc.creator=Bach",
-       "dc.creator any Bach",
-       "name=Bach and rism.siglum=D-Dl", 
-       "changed<2017-02-01",
-       "Bach OR siglum=D-Dl",
-       "Bach, Johann Sebastian and Masses",
-       'dc.creator="Bach, Johann NOT Sebastian" NOT siglum=D-Dl'
-      ]
-    end
-
     def _to_solr(s)
       require 'cql_ruby'
       index_config = YAML.load_file("config/sru/service.config.yml")['index']
@@ -107,7 +71,6 @@ module Sru
         if query[0]
           print query[1]
           if query[1].any? {|e| e =~ /^[=<>]/}
-            puts "index"
             index_config.each do |k,v|
               if query[1][0] == k || query[1][0] == k.gsub(/^\w+\./ , "")
                 if v['solr'].instance_of?(Array)
