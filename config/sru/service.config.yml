@@ -90,7 +90,7 @@ index:
   rism.relatedPerson:
     solr: 700a
     type: text
-  rism.libarySiglum:
+  rism.librarySiglum:
     solr: 110g
     type: text
   rism.changed:
