@@ -13,15 +13,20 @@
 module Sru
   class Query
     NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim"}
-    attr_accessor :operation, :query, :maximumRecords, :model, :result, :error_code
+    attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code
     
     def initialize(model, params = {})
       @model = model.singularize.camelize.constantize rescue nil
       # TODO class variable for caching
       @@index_config = YAML.load_file("config/sru/service.config.yml")['index']
       @operation=params.fetch(:operation, 'searchRetrieve')
+      @offset=nil
       @query=params.fetch(:query, '*')
       @maximumRecords=params.fetch(:maximumRecords, 10).to_i rescue 10
+      if @maximumRecords > 1000
+        @error_code = "MaximumRecords is limited to 1000 records"
+      end
+      @offset = params.fetch("startRecord", 1)
       @error_code = self._check if !@error_code
       @result = self._response
     end
@@ -30,17 +35,19 @@ module Sru
     def _response
       if !error_code
         begin
-          q = self._to_solr(@query)
-            solr_result = Sunspot.search(@model) do
+          q = self._to_solr(query)
+            solr_result = Sunspot.search(model) do
               adjust_solr_params do |params|
                 params[:q] = q
+                params[:start] = offset
+                params[:rows] = maximumRecords
               end
-              with(:wf_stage).equal_to("published") if @model=="sources"
-              paginate :page => 1, :per_page => maximumRecords
+              with(:wf_stage).equal_to("published") if model=="sources"
+              #paginate :page => 1, :per_page => maximumRecords
             end
           return solr_result
         rescue
-          @error_code = "Index field is not defined for this model"
+          error_code = "Index field is not defined for this model"
         end
       else
         return nil
