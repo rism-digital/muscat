@@ -18,13 +18,14 @@ module Sru
     def initialize(model, params = {})
       @model = model.singularize.camelize.constantize rescue nil
       # TODO class variable for caching
-      @@index_config = YAML.load_file("config/sru/service.config.yml")['index']
+      sru_config = YAML.load_file("config/sru/service.config.yml")
+      @@index_config = sru_config['index']
       @operation=params.fetch(:operation, 'searchRetrieve')
       @offset=nil
       @query=params.fetch(:query, '*')
       @maximumRecords=params.fetch(:maximumRecords, 10).to_i rescue 10
-      if @maximumRecords > 1000
-        @error_code = "MaximumRecords is limited to 1000 records"
+      if @maximumRecords > sru_config['server']['maximumRecords']
+        @error_code = "Result set not created: too many matching records (code 60): MaximumRecords is limited to #{sru_config['server']['maximumRecords']} records"
       end
       @offset = params.fetch("startRecord", 1)
       @error_code = self._check if !@error_code
@@ -47,7 +48,7 @@ module Sru
             end
           return solr_result
         rescue
-          error_code = "Index field is not defined for this model"
+          @error_code = "Unsupported Parameter (code 8)"
         end
       else
         return nil
@@ -57,13 +58,13 @@ module Sru
     # Check if params is valid
     def _check
       if !self.operation || self.operation != 'searchRetrieve'
-        return "PARAMETER 'searchRetreive' not given"
+        return "Mandatory parameter not supplied (code 7): 'searchRetreive'"
       end
       unless self.model
-        return "Database #{model} not existent"
+        return "Database does not exist (code 235)"
       end
       if query.empty?
-        return "Query string is empty"
+        return "Query syntax error (code 10): query is empty"
       end
       return nil
     end
