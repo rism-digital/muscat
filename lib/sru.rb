@@ -14,7 +14,7 @@ module Sru
   class Query
     NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim"}
     attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code, :schema
-    
+
     def initialize(model, params = {})
       @model = model.singularize.camelize.constantize rescue nil
       # TODO class variable for caching
@@ -33,7 +33,7 @@ module Sru
       if !sru_config['schemas'].include?(@schema)
         @error_code = "Unsupported schema."
       end
-      @result = self._response if @query != "*"
+      @result = self._response
     end
 
     # Returns the solr query result
@@ -41,15 +41,15 @@ module Sru
       if !error_code
         begin
           q = self._to_solr(query)
-            solr_result = Sunspot.search(model) do
-              adjust_solr_params do |params|
-                params[:q] = q
-                params[:start] = offset
-                params[:rows] = maximumRecords
-              end
-              with(:wf_stage).equal_to("published") if model=="sources"
-              #paginate :page => 1, :per_page => maximumRecords
+          solr_result = Sunspot.search(model) do
+            adjust_solr_params do |params|
+              params[:q] = q
+              params[:start] = offset
+              params[:rows] = maximumRecords
             end
+            with(:wf_stage).equal_to("published") if model=="sources"
+            #paginate :page => 1, :per_page => maximumRecords
+          end
           return solr_result
         rescue
           @error_code = "Unsupported Parameter (code 8)"
@@ -74,6 +74,9 @@ module Sru
     end
 
     def _to_solr(s)
+      if s=="*"
+        return s
+      end
       require 'cql_ruby'
       index_config = YAML.load_file("config/sru/service.config.yml")['index']
       token = CqlRuby::CqlLexer.new.tokenize(s)
@@ -91,7 +94,7 @@ module Sru
                   v['solr'].each do |e|
                     ary << "#{e}_text=#{query[1][-1]}"
                   end
-                  subqueries[index][1] = ["#{ary.join(" OR ")}"]
+                  subqueries[index][1] = ["(#{ary.join(" OR ")})"]
                 else
                   if v['type'] == "d"
                     date = Time.parse(query[1][-1])
@@ -102,8 +105,8 @@ module Sru
                   end
                 end
                 break
-              #else
-              #  @error_code = "Index not supported"
+                #else
+                #  @error_code = "Index not supported"
               end
             end
           else
@@ -114,11 +117,14 @@ module Sru
             subqueries[index][1] = ["(#{fulltext.join(" OR ")})"]
           end
         end
-      
+
       end
       cql_string = subqueries.map{|e| e[1]}.join(" ")
       solr_string = CqlRuby::CqlParser.new.parse(cql_string).to_solr
-      #puts "#{cql_string} => #{solr_string}"
+      if solr_string =~ /".*\*"/
+        solr_string.gsub!("\"", "")
+      end
+      puts "#{cql_string} => #{solr_string}"
       return solr_string
     end
 

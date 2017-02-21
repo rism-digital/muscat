@@ -89,4 +89,8 @@ describe Sru::Query do
       end
     end
   end
+  
+  describe "Search with mixed truncation" do
+    pending
+  end
 end
