@@ -8,8 +8,9 @@
     <zs:recordData>
       <explain xmlns="http://explain.z3950.org/dtd/2.0/">
         <serverInfo>
-          <host>rism.info</host>
+          <host>beta.rism.info</host>
           <port><%=sru_config['server']['port'] %></port>
+          <database>sru/sources</database>
         </serverInfo>
         <databaseInfo>
           <title><%=sru_config['server']['database']['title'] %></title>
@@ -25,7 +26,7 @@
             <index id="<%= index %>"  type="<%= hash['type'] %>" >
               <title><%= index %></title>
               <map>
-                <name set="solr"><%= hash['solr']%></name>
+               <name>[<%= (hash['solr']).instance_of?(String) ? hash['solr'] : (hash['solr']).join(", ") %>]</name>
               </map>
             </index>
             <% end %>

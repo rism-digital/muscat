@@ -4,7 +4,9 @@
 <% @sru   = Sru::Query.new(model, params) %>
 <% @result   = @sru.result %>
 
-<% if !params['operation'] || !params['query'] %>
+<% if params['operation'] == 'scan' %>
+  <%= render :partial => 'scan' %>
+<% elsif !params['operation'] || !params['query'] %>
   <%= render :partial => 'explain' %>
 <% elsif !@sru.error_code && @result %>
   <%= render :partial => 'result' %>
