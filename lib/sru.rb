@@ -13,9 +13,16 @@
 module Sru
   class Query
     NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim"}
-    attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code, :schema
+    PARAMS = ["query", :query, "maximumRecords", "operation", :operation, "version", "startRecord", 
+            "maximumTerms", "responsePosition", "scanClause", "controller", "action", "recordSchema"]
+    
+    attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code, :schema, :scan, :version
 
     def initialize(model, params = {})
+      @version=params.fetch(:version, '1.1')
+      unless (params.keys - PARAMS).empty?
+        @error_code = {:code => 8 , :message => "Unsupported parameter"}
+      end
       @model = model.singularize.camelize.constantize rescue nil
       # TODO class variable for caching
       sru_config = YAML.load_file("config/sru/service.config.yml")
@@ -23,17 +30,23 @@ module Sru
       @operation=params.fetch(:operation, 'searchRetrieve')
       @offset=nil
       @query=params.fetch(:query, '*')
+      if params[:operation] == 'scan'
+        @query=params.fetch(:scanClause)
+      end
+      if params[:operation]=='searchRetrieve' && !params[:query]
+        @error_code = {:code => 7, :message => "Mandatory parameter not supplied"}
+      end
       @maximumRecords=params.fetch(:maximumRecords, 10).to_i rescue 10
-      if @maximumRecords > sru_config['server']['maximumRecords']
-        @error_code = "Result set not created: too many matching records (code 60): MaximumRecords is limited to #{sru_config['server']['maximumRecords']} records"
+      if @maximumRecords.instance_of?(Fixnum) && @maximumRecords > sru_config['server']['maximumRecords']
+        @error_code = {:code => 60, :message => "Result set not created: too many matching records (code 60): MaximumRecords is limited to #{sru_config['server']['maximumRecords']} records"}
       end
       @offset = params.fetch("startRecord", 1)
       @error_code = self._check if !@error_code
-      @schema = params.fetch(:recordSchema, "marcxml")
+      @schema = params.fetch(:recordSchema, "marc")
       if !sru_config['schemas'].include?(@schema)
-        @error_code = "Unsupported schema."
+        @error_code =  {:code => 67, :message => "Record not available in this schema"}
       end
-      @result = self._response
+      @result = self._response if !@error_code
     end
 
     # Returns the solr query result
@@ -52,7 +65,7 @@ module Sru
           end
           return solr_result
         rescue
-          @error_code = "Unsupported Parameter (code 8)"
+          @error_code = {:code => 10, :message => "Query syntax error"}
         end
       else
         return nil
@@ -61,14 +74,23 @@ module Sru
 
     # Check if params is valid
     def _check
-      if !self.operation || self.operation != 'searchRetrieve'
-        return "Mandatory parameter not supplied (code 7): 'searchRetreive'"
+      if !self.operation
+        return {:code => 7, :message => "Mandatory parameter not supplied"}
+      end
+      if self.version != '1.1'
+        return {:code => 5, :message => "unsupported version"}
+      end
+      if self.maximumRecords == 0
+        return {:code => 6, :message => "unsupported parameter value"}
+      end
+      if self.offset.to_i > self.maximumRecords
+        return {:code => 61, :message => "first record out of range"}
       end
       unless self.model
-        return "Database does not exist (code 235)"
+        return {:code => 235, :message => "Database does not exist"}
       end
       if query.empty?
-        return "Query syntax error (code 10): query is empty"
+        return {:code => 10, :message => "Query syntax error (code 10): query is empty"}
       end
       return nil
     end
@@ -82,39 +104,42 @@ module Sru
       token = CqlRuby::CqlLexer.new.tokenize(s)
       subqueries = []
       token.chunk {|e| !(e =~ /^(AND|and|OR|or|NOT|not|PROX|prox)$/) }.each {|a| subqueries << a }
-      subqueries.each_with_index do |query, index|
+      index_exist = false
+      subqueries.each_with_index do |query, idx|
         # TODO make this more readable :-)
         if query[0]
-          #print query[1]
-          if query[1].any? {|e| e =~ /^[=<>]/}
+          index=query[1][0]
+          operator=query[1][1]
+          term=query[1][2]
+          if operator =~ /^[=<>]/
             index_config.each do |k,v|
-              if query[1][0] == k || query[1][0] == k.gsub(/^\w+\./ , "")
+              if index == k || index == k.gsub(/^\w+\./ , "")
+                index_exist = true
                 if v['solr'].instance_of?(Array)
                   ary = []
                   v['solr'].each do |e|
                     ary << "#{e}_text=#{query[1][-1]}"
                   end
-                  subqueries[index][1] = ["(#{ary.join(" OR ")})"]
+                  subqueries[idx][1] = ["(#{ary.join(" OR ")})"]
                 else
                   if v['type'] == "d"
-                    date = Time.parse(query[1][-1])
-                    subqueries[index][1][0] = "#{v['solr']}_#{v['type']}"
-                    subqueries[index][1][-1] = "#{date.strftime("%Y-%m-%d")}T23:59:59Z"
+                    date = Time.parse(term)
+                    subqueries[idx][1][0] = "#{v['solr']}_#{v['type']}"
+                    subqueries[idx][1][-1] = "#{date.strftime("%Y-%m-%d")}T23:59:59Z"
                   else
-                    subqueries[index][1][0]="#{v['solr']}_#{v['type']}"
+                    subqueries[idx][1][0]="#{v['solr']}_#{v['type']}"
                   end
                 end
                 break
-                #else
-                #  @error_code = "Index not supported"
               end
             end
           else
+            index_exist=true
             fulltext = []
             index_config['cql.any']['solr'].each do |solr_index|
-              fulltext << "#{solr_index}_text=#{query[1][-1]}"
+              fulltext << "#{solr_index}_text=#{index}"
             end
-            subqueries[index][1] = ["(#{fulltext.join(" OR ")})"]
+            subqueries[idx][1] = ["(#{fulltext.join(" OR ")})"]
           end
         end
 
@@ -123,6 +148,10 @@ module Sru
       solr_string = CqlRuby::CqlParser.new.parse(cql_string).to_solr
       if solr_string =~ /".*\*"/
         solr_string.gsub!("\"", "")
+      end
+      if !index_exist
+        @error_code = {:code => 16, :message => "Unsupported index"}
+        return 0
       end
       puts "#{cql_string} => #{solr_string}"
       return solr_string

@@ -7,7 +7,7 @@
         <zs:record>
           <zs:recordPacking>xml</zs:recordPacking>
           <zs:recordData>
-            <% if @sru.schema == 'marcxml' %>
+            <% if @sru.schema == 'marc' %>
               <%= hit.result.marc.to_xml_record(nil, nil).html_safe %>
             <% elsif @sru.schema == 'mods'%>
               <% xml = Nokogiri::XML(hit.result.marc.to_xml) %>

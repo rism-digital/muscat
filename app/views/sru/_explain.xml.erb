@@ -26,13 +26,18 @@
             <index id="<%= index %>"  type="<%= hash['type'] %>" >
               <title><%= index %></title>
               <map>
-               <name>[<%= (hash['solr']).instance_of?(String) ? hash['solr'] : (hash['solr']).join(", ") %>]</name>
+                <% if hash['solr'].instance_of?(Array)%>
+                  <name><%=hash['solr'].map{|e| "#{e}_#{hash['type']}"}.join(",") %></name>
+
+                <% else %>
+                  <name><%= (hash['solr']).instance_of?(String) ? "#{hash['solr']}_#{hash['type']}" : (hash['solr']).join(", ") %></name>
+                <% end %>
               </map>
             </index>
             <% end %>
         </indexInfo>
         <schemaInfo>
-          <schema identifier="info:srw/schema/1/marcxml-v1.1" sort="false" name="marcxml">
+          <schema identifier="info:srw/schema/1/marcxml-v1.1" sort="false" name="marc">
             <title>MARCXML</title>
           </schema>
           <schema identifier="info:srw/schema/1/dc-v1.1" sort="false" name="dc">

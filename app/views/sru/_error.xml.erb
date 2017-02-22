@@ -8,8 +8,8 @@
     </zs:echoedSearchRetrieveRequest>
     <zs:diagnostics xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/">
       <diag:diagnostic>
-        <diag:uri>info:srw/diagnostic/1/16</diag:uri>
-        <diag:message><%= "#{@sru.error_code}" %></diag:message>
+        <diag:uri>info:srw/diagnostic/1/<%= @sru.error_code[:code]%></diag:uri>
+        <diag:message><%= "#{@sru.error_code[:message]}" %></diag:message>
       </diag:diagnostic>
     </zs:diagnostics>
   </zs:searchRetrieveResponse>

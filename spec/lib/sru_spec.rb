@@ -1,5 +1,14 @@
 describe Sru::Query do
-  
+ 
+  describe "Return all records" do
+    context "Simple fulltext search with astersik" do
+      it "returns > 1.000.000" do
+        query = Sru::Query.new("sources", {:query => "*", :operation => "searchRetrieve"})
+        expect(query.result.total).to be > 1000000
+      end
+    end
+  end
+ 
   describe "#initialize" do
     context "Simple fulltext search" do
       it "returns > 20000" do
@@ -65,9 +74,9 @@ describe Sru::Query do
 
  describe "#initialize" do
     context "Fulltext search with unphrased term and two terms and logical AND" do
-      it "returns > 230" do
+      it "returns > 120" do
         query = Sru::Query.new("sources", {:query => "Bach, Johann Sebastian and Masses", :operation => "searchRetrieve"})
-        expect(query.result.total).to be > 230
+        expect(query.result.total).to be > 120
       end
     end
   end
@@ -90,7 +99,12 @@ describe Sru::Query do
     end
   end
   
-  describe "Search with mixed truncation" do
-    pending
+  describe "#initialize" do
+    context "Search with mixed truncation" do
+      it "crazy" do
+        query = Sru::Query.new("sources", {:query => "creator=\"*\" AND title=*Forelle*", :operation => "searchRetrieve"})
+        expect(query.result.total).to be == 1
+      end
+    end
   end
 end
