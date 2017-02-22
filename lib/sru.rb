@@ -28,7 +28,6 @@ module Sru
       sru_config = YAML.load_file("config/sru/service.config.yml")
       @@index_config = sru_config['index']
       @operation=params.fetch(:operation, 'searchRetrieve')
-      @offset=nil
       @query=params.fetch(:query, '*')
       if params[:operation] == 'scan'
         @query=params.fetch(:scanClause)
@@ -40,7 +39,7 @@ module Sru
       if @maximumRecords.instance_of?(Fixnum) && @maximumRecords > sru_config['server']['maximumRecords']
         @error_code = {:code => 60, :message => "Result set not created: too many matching records (code 60): MaximumRecords is limited to #{sru_config['server']['maximumRecords']} records"}
       end
-      @offset = params.fetch("startRecord", 1)
+      @offset = params.fetch("startRecord", 1).to_i rescue 1
       @error_code = self._check if !@error_code
       @schema = params.fetch(:recordSchema, "marc")
       if !sru_config['schemas'].include?(@schema)
@@ -57,11 +56,10 @@ module Sru
           solr_result = Sunspot.search(model) do
             adjust_solr_params do |params|
               params[:q] = q
-              params[:start] = offset
+              params[:start] = (offset - 1)
               params[:rows] = maximumRecords
             end
             with(:wf_stage).equal_to("published") if model=="sources"
-            #paginate :page => 1, :per_page => maximumRecords
           end
           return solr_result
         rescue
@@ -83,7 +81,7 @@ module Sru
       if self.maximumRecords == 0
         return {:code => 6, :message => "unsupported parameter value"}
       end
-      if self.offset.to_i > self.maximumRecords
+      if self.offset.to_i > 999999
         return {:code => 61, :message => "first record out of range"}
       end
       unless self.model
