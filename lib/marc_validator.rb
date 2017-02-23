@@ -2,7 +2,7 @@ class MarcValidator
   
 	DEBUG = false
 	
-  def initialize(object)
+  def initialize(object, warnings = true)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
 		@editor_profile = EditorConfiguration.get_default_layout(object)
@@ -15,6 +15,8 @@ class MarcValidator
     @unresolved_marc.root = @object.marc.root.deep_copy
     
     @object.marc.root.resolve_externals
+    
+    @show_warnings = warnings
     
 #    @unknown_tags = []
 #    @editor_profile.each_tag_not_in_layout(object) do |t|
@@ -133,7 +135,7 @@ class MarcValidator
             if rule == "required" || rule == "required, warning"
               if !marc_subtag || !marc_subtag.content
                 #@errors["#{tag}#{subtag}"] = rule
-                add_error(tag, subtag, rule)
+                add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
                 puts "Missing #{tag} #{subtag}, #{rule}" if DEBUG
               end
             else
@@ -183,25 +185,27 @@ class MarcValidator
       
       if unresolved_tags.empty?
         add_error(marctag.tag, master.tag, "foreign-tag: Searching resolved master value in unresolved marc yields no results")
-      elsif unresolved_tags.count > 1
-        add_error(marctag.tag, master.tag, "foreign-tag: Searching resolved master value in unresolved marc yields more than one result")
-      else
-        # The master is here
-        unresolved_tag = unresolved_tags.first #there should be only one match
-        foreigns.each do |foreign_subtag|
-          next if foreign_subtag.tag == master.tag #we already got the master
+        next
+      end
+      
+      unresolved_tag = match_tags(marctag, unresolved_tags, foreigns)
+      
+      if !unresolved_tag
+        add_error(marctag.tag, master.tag, "foreign-tag: Unable to find exach match in tags with multiple same master tags")
+        next
+      end
 
-          puts "more than one foreign subtag" if unresolved_tag.fetch_all_by_tag(foreign_subtag.tag).count > 1
-          subtag = unresolved_tag.fetch_first_by_tag(foreign_subtag.tag) # get the first
-          if subtag && subtag.content
-            if subtag.content != foreign_subtag.content
-              add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content}")
-            end
-          else
-            add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: tag not present in unresolved marc")
+      foreigns.each do |foreign_subtag|
+        next if foreign_subtag.tag == master.tag #we already got the master
+
+        puts "more than one foreign subtag" if unresolved_tag.fetch_all_by_tag(foreign_subtag.tag).count > 1
+        subtag = unresolved_tag.fetch_first_by_tag(foreign_subtag.tag) # get the first
+        if subtag && subtag.content
+          if subtag.content != foreign_subtag.content
+            add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content}")
           end
-          
-          
+        else
+          add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: tag not present in unresolved marc")
         end
       end
       
@@ -225,6 +229,36 @@ class MarcValidator
   end
   
   private
+  
+  def match_tags(marctag, unresolved_tags, foreigns)
+    exclude_subfields = foreigns.collect {|s| s.tag}
+    found = true
+    #ap "========================="
+    #ap marctag
+    unresolved_tags.each do |utag|
+      #ap "-----------------------"
+      #ap utag
+      marctag.children do |resolved_subtag|
+        subtag_found = false
+        # The linked subfields are analyzed afterwards
+        # Here we make sure that *all* the fields match
+        next if exclude_subfields.include?(resolved_subtag.tag)
+        # We can have scattered subtags in random order
+        # Should not happen but...
+        utag.each_by_tag(resolved_subtag.tag) do |usubtag|
+          subtag_found = true if usubtag.content == resolved_subtag.content
+          #puts usubtag.content
+          #ap resolved_subtag.content
+        end
+        
+        found &= subtag_found
+      end
+      #ap found
+      return utag if found
+      found = true
+    end
+    nil
+  end
   
   def add_error(tag, subtag, message)
     subtag = "tag_errors" if !subtag
