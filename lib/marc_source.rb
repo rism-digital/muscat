@@ -429,7 +429,10 @@ class MarcSource < Marc
     end
 
     if holdings
-      parent_object = Object.const_get(@model.camelize).find(get_id)
+      parent_object = Source.find(get_id)
+      if parent_object.source_id
+        parent_object = Source.find(parent_object.source_id)
+      end
       parent_object.holdings.order(:lib_siglum).each do |holding|
         id = holding.id
         holding.marc.all_tags.each do |tag|
