@@ -1,5 +1,9 @@
 Muscat Changelog
 ================
+v3.6.8
+* Changed order of LAT/LON in 034 of institution
+* Added rake task for executing maintenance scripts
+
 v3.6.7
 * Updated Guidelines 
 * Added italian to the guideline languages
