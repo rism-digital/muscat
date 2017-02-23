@@ -107,7 +107,6 @@ class Marc
             MarcNode.new(@model, "005", last_transcation, nil))
       end
     end
-		
   end
   
   # Parse a MARC 21 line

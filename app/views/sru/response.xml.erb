@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <% model = request.env["PATH_INFO"].split("/").last %>
+<% model = "sources" if model == 'sru' %>
 <% @sru   = Sru::Query.new(model, params) %>
 <% @result   = @sru.result %>
 

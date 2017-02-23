@@ -24,6 +24,7 @@ Muscat::Application.routes.draw do
   get '/pages', to: redirect(RISM::LEGACY_PAGES_URL)
   get '/pages/:name', to: redirect(RISM::LEGACY_PAGES_URL + '/pages/%{name}')
 
+  get 'sru' => 'sru#service'
   get 'sru/sources' => 'sru#service'
   get 'sru/people' => 'sru#service'
   get 'sru/institutions' => 'sru#service'
