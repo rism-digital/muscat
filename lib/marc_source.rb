@@ -410,7 +410,8 @@ class MarcSource < Marc
       end
       
     end
-    
+
+   
     if scorings.count > 0
       n594 = MarcNode.new(@model, "594", "", "##")
       n594.add_at(MarcNode.new(@model, "a", scorings.join(", "), nil), 0)
@@ -439,6 +440,17 @@ class MarcSource < Marc
           tag.add_at(MarcNode.new(@model, "3", id, nil), 0)
           @root.add_at(tag, get_insert_position(tag.tag)) if tag.tag != "001"
         end
+      end
+
+      # Feeding 240 workcatalog number from 690$a and $n
+      n240 = root.fetch_first_by_tag("240")
+      existent = n240.fetch_all_by_tag("n").map {|sf| sf.content rescue nil}
+      each_by_tag("690") do |t|
+        wv = t.fetch_first_by_tag("a")
+        wvno = t.fetch_first_by_tag("n")
+        content = "#{wv.content rescue nil} #{wvno.content rescue nil}"
+        next if existent.include?(content)
+        n240.add_at(MarcNode.new(@model, "n", content, nil), 0)
       end
     end
 		
