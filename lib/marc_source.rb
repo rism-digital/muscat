@@ -412,7 +412,7 @@ class MarcSource < Marc
 
     # Feeding 240$n workcatalog number from 690$a/$n
     n240 = root.fetch_first_by_tag("240")
-    existent = n240.fetch_all_by_tag("n").map {|sf| sf.content rescue nil}
+    existent = n240 ? n240.fetch_all_by_tag("n").map {|sf| sf.content rescue nil} : []
     each_by_tag("690") do |t|
       wv = t.fetch_first_by_tag("a")
       wvno = t.fetch_first_by_tag("n")
