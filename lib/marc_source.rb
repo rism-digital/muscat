@@ -331,9 +331,8 @@ class MarcSource < Marc
     end
   end
   
-  def to_external(updated_at = nil, versions = nil)
+  def to_external(updated_at = nil, versions = nil, holdings = false)
     super(updated_at, versions)
-    
     # See #176
     # Step 1, rmake leader
     # collection, if we have prints only (......cc...............) or not (......dc...............)
@@ -427,6 +426,17 @@ class MarcSource < Marc
         @root.add_at(n599, get_insert_position("599"))
       end
         
+    end
+
+    if holdings
+      parent_object = Object.const_get(@model.camelize).find(get_id)
+      parent_object.holdings.order(:lib_siglum).each do |holding|
+        id = holding.id
+        holding.marc.all_tags.each do |tag|
+          tag.add_at(MarcNode.new(@model, "3", id, nil), 0)
+          @root.add_at(tag, get_insert_position(tag.tag)) if tag.tag != "001"
+        end
+      end
     end
 		
   end
