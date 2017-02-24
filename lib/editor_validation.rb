@@ -71,6 +71,12 @@ class EditorValidation
     return @validation_config[tag]
   end
   
+  def get_subtag_rule(tag, subtag)
+    return nil if !@validation_config.has_key?(tag)
+    return nil if !@validation_config[tag]["tags"].has_key?(subtag)
+    return @validation_config[tag]["tags"][subtag]
+  end
+  
   def get_subtag_class_name(tag, subtag)
     class_name = "validate_#{tag}_#{subtag}"
     unique_name = class_name + "_uniq_" + SecureRandom.hex(5)
