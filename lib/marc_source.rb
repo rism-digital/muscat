@@ -385,7 +385,6 @@ class MarcSource < Marc
         node.indicator = "0#"
         node.sort_alphabetically
         root.children.insert(get_insert_position("130"), node)
-      
         t.destroy_yourself
       end
     end
@@ -395,13 +394,27 @@ class MarcSource < Marc
       t.add_at(MarcNode.new("source", "2", "pe", nil), 0)
       t.sort_alphabetically
     end
+    
+    # Add 040 if not exists; if 040$a!=DE-633 then add 040$c
+    if by_tags("040").count == 0
+        n040 = MarcNode.new(@model, "040", "", "##")
+        n040.add_at(MarcNode.new(@model, "a", RISM::AGENCY, nil), 0)
+        root.children.insert(get_insert_position("040"), n040)
+    else
+      each_by_tag("040") do |t|
+        existent = t.fetch_first_by_tag("a").content rescue nil
+        if existent && existent != RISM::AGENCY
+          t.add_at(MarcNode.new("source", "c", RISM::AGENCY, nil), 0)
+          t.sort_alphabetically
+        end
+      end
+    end
 
     #340 Add a 594 with $a
     scorings = []
     each_by_tag("594") do |t|
       b = t.fetch_first_by_tag("b")
       c = t.fetch_first_by_tag("c")
-      
       if b && b.content
         if c && c.content && c.content.to_i > 1
           scorings << "#{b.content} (#{c.content})"
