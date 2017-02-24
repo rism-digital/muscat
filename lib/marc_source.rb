@@ -333,6 +333,7 @@ class MarcSource < Marc
   
   def to_external(updated_at = nil, versions = nil, holdings = false)
     super(updated_at, versions)
+    parent_object = Source.find(get_id)
     # See #176
     # Step 1, rmake leader
     # collection, if we have prints only (......cc...............) or not (......dc...............)
@@ -427,6 +428,18 @@ class MarcSource < Marc
       n240.add_at(MarcNode.new(@model, "n", content, nil), 0)
     end
 
+    # Adding digital object links to 500 with new records
+    #TODO whe should drop the dublet entries in 500 with Digital Object Link prefix for older records
+    if !parent_object.digital_objects.empty? && parent_object.id >= 1001000000
+      parent_object.digital_objects.each do |image|
+        # FIXME we should use the domain name from application.rb instead
+        path = image.attachment.path.gsub("/path/to/the/digital/objects/directory/", "http://muscat.rism.info/")
+        content = "#{image.description + ': ' rescue nil}#{path}"
+        n500 = MarcNode.new(@model, "500", "", "##")
+        n500.add_at(MarcNode.new(@model, "a", content, nil), 0)
+        root.children.insert(get_insert_position("500"), n500)
+      end
+    end
    
     if scorings.count > 0
       n594 = MarcNode.new(@model, "594", "", "##")
@@ -446,7 +459,6 @@ class MarcSource < Marc
     end
 
     if holdings
-      parent_object = Source.find(get_id)
       if parent_object.source_id
         parent_object = Source.find(parent_object.source_id)
       end
