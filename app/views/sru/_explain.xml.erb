@@ -1,0 +1,58 @@
+<% config   = Rails.configuration.database_configuration %>
+<% sru_config = YAML.load_file("#{Rails.root}/config/sru/service.config.yml") %>
+<zs:explainResponse xmlns:zs="http://www.loc.gov/zing/srw/">
+  <zs:version><%=sru_config['version'] %></zs:version>
+  <zs:record>
+    <zs:recordSchema>http://explain.z3950.org/dtd/2.0/</zs:recordSchema>
+    <zs:recordPacking>xml</zs:recordPacking>
+    <zs:recordData>
+      <explain xmlns="http://explain.z3950.org/dtd/2.0/">
+        <serverInfo>
+          <host>beta.rism.info</host>
+          <port><%=sru_config['server']['port'] %></port>
+          <database>sru/sources</database>
+        </serverInfo>
+        <databaseInfo>
+          <title><%=sru_config['server']['database']['title'] %></title>
+          <description lang="en" primary="true">
+            <%=sru_config['server']['database']['description'] %>
+          </description>
+        </databaseInfo>
+        <indexInfo>
+          <% sru_config['sets'].each do |set, uri| %>
+            <set identifier="<%= uri %>" name="<%= set %>"/>
+          <% end %>
+          <% sru_config['index'].each do |index, hash| %>
+            <index id="<%= index %>"  type="<%= hash['type'] %>" >
+              <title><%= index %></title>
+              <map>
+                <% if hash['solr'].instance_of?(Array)%>
+                  <name><%=hash['solr'].map{|e| "#{e}_#{hash['type']}"}.join(",") %></name>
+
+                <% else %>
+                  <name><%= (hash['solr']).instance_of?(String) ? "#{hash['solr']}_#{hash['type']}" : (hash['solr']).join(", ") %></name>
+                <% end %>
+              </map>
+            </index>
+            <% end %>
+        </indexInfo>
+        <schemaInfo>
+          <schema identifier="info:srw/schema/1/marcxml-v1.1" sort="false" name="marc">
+            <title>MARCXML</title>
+          </schema>
+          <schema identifier="info:srw/schema/1/dc-v1.1" sort="false" name="dc">
+            <title>Dublin Core</title>
+          </schema>
+          <schema identifier="info:srw/schema/1/mods-v3.5" sort="false" name="mods">
+            <title>MODS v3.5</title>
+          </schema>
+        </schemaInfo>
+      </explain>
+    </zs:recordData>
+    <zs:recordPosition>1</zs:recordPosition>
+  </zs:record>
+  <zs:echoedExplainRequest>
+    <zs:version>1.1</zs:version>
+    <zs:recordPacking>xml</zs:recordPacking>
+  </zs:echoedExplainRequest>
+</zs:explainResponse>

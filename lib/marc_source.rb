@@ -331,9 +331,9 @@ class MarcSource < Marc
     end
   end
   
-  def to_external(updated_at = nil, versions = nil)
+  def to_external(updated_at = nil, versions = nil, holdings = false)
     super(updated_at, versions)
-    
+    parent_object = Source.find(get_id)
     # See #176
     # Step 1, rmake leader
     # collection, if we have prints only (......cc...............) or not (......dc...............)
@@ -385,7 +385,6 @@ class MarcSource < Marc
         node.indicator = "0#"
         node.sort_alphabetically
         root.children.insert(get_insert_position("130"), node)
-      
         t.destroy_yourself
       end
     end
@@ -395,13 +394,27 @@ class MarcSource < Marc
       t.add_at(MarcNode.new("source", "2", "pe", nil), 0)
       t.sort_alphabetically
     end
+    
+    # Add 040 if not exists; if 040$a!=DE-633 then add 040$c
+    if by_tags("040").count == 0
+        n040 = MarcNode.new(@model, "040", "", "##")
+        n040.add_at(MarcNode.new(@model, "a", RISM::AGENCY, nil), 0)
+        root.children.insert(get_insert_position("040"), n040)
+    else
+      each_by_tag("040") do |t|
+        existent = t.fetch_first_by_tag("a").content rescue nil
+        if existent && existent != RISM::AGENCY
+          t.add_at(MarcNode.new("source", "c", RISM::AGENCY, nil), 0)
+          t.sort_alphabetically
+        end
+      end
+    end
 
     #340 Add a 594 with $a
     scorings = []
     each_by_tag("594") do |t|
       b = t.fetch_first_by_tag("b")
       c = t.fetch_first_by_tag("c")
-      
       if b && b.content
         if c && c.content && c.content.to_i > 1
           scorings << "#{b.content} (#{c.content})"
@@ -409,9 +422,38 @@ class MarcSource < Marc
           scorings << b.content
         end
       end
-      
     end
-    
+
+    # Feeding 240$n workcatalog number from 690$a/$n and 383$b
+    n240 = root.fetch_first_by_tag("240")
+    existent = n240 ? n240.fetch_all_by_tag("n").map {|sf| sf.content rescue nil} : []
+    each_by_tag("690") do |t|
+      wv = t.fetch_first_by_tag("a")
+      wvno = t.fetch_first_by_tag("n")
+      content = "#{wv.content rescue nil} #{wvno.content rescue nil}"
+      next if existent.include?(content)
+      n240.add_at(MarcNode.new(@model, "n", content, nil), 0)
+    end
+    each_by_tag("383") do |t|
+      wvno = t.fetch_first_by_tag("b")
+      content = "#{wvno.content rescue nil}"
+      next if existent.include?(content)
+      n240.add_at(MarcNode.new(@model, "n", content, nil), 0)
+    end
+
+    # Adding digital object links to 500 with new records
+    #TODO whe should drop the dublet entries in 500 with Digital Object Link prefix for older records
+    if !parent_object.digital_objects.empty? && parent_object.id >= 1001000000
+      parent_object.digital_objects.each do |image|
+        # FIXME we should use the domain name from application.rb instead
+        path = image.attachment.path.gsub("/path/to/the/digital/objects/directory/", "http://muscat.rism.info/")
+        content = "#{image.description + ': ' rescue nil}#{path}"
+        n500 = MarcNode.new(@model, "500", "", "##")
+        n500.add_at(MarcNode.new(@model, "a", content, nil), 0)
+        root.children.insert(get_insert_position("500"), n500)
+      end
+    end
+   
     if scorings.count > 0
       n594 = MarcNode.new(@model, "594", "", "##")
       n594.add_at(MarcNode.new(@model, "a", scorings.join(", "), nil), 0)
@@ -427,6 +469,19 @@ class MarcSource < Marc
         @root.add_at(n599, get_insert_position("599"))
       end
         
+    end
+
+    if holdings
+      if parent_object.source_id
+        parent_object = Source.find(parent_object.source_id)
+      end
+      parent_object.holdings.order(:lib_siglum).each do |holding|
+        id = holding.id
+        holding.marc.all_tags.each do |tag|
+          tag.add_at(MarcNode.new(@model, "3", id, nil), 0)
+          @root.add_at(tag, get_insert_position(tag.tag)) if tag.tag != "001"
+        end
+      end
     end
 		
   end

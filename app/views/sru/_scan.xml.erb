@@ -1,0 +1,17 @@
+<scanResponse xmlns:srw="http://www.loc.gov/zing/srw/" xmlns:diag="//www.loc.gov/zing/srw/diagnostic/" >
+  <version>1.1</version>
+  <terms>
+    <term>
+      <value><%= @sru.query.split("=").last  %></value>
+      <numberOfRecords><%= @result.total %></numberOfRecords>
+      <displayTerm><%= @sru.query.split("=").last %></displayTerm>
+    </term>
+  </terms>
+  <echoedScanRequest>
+    <version>1.1</version>
+    <scanClause><%= params["query"] %></scanClause> 
+    <responsePosition>3</responsePosition>
+    <maximumTerms>3</maximumTerms>
+    <stylesheet>x</stylesheet>
+  </echoedScanRequest>
+</scanResponse>

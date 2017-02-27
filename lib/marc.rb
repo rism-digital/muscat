@@ -89,8 +89,8 @@ class Marc
     by_tags("005").each {|t| t.destroy_yourself}
     by_tags("008").each {|t| t.destroy_yourself}
   end
-  
-  def to_external(updated_at = nil, versions = nil)
+  # TODO arguments should use parameters or keywords
+  def to_external(updated_at = nil, versions = nil, holdings = false)
     # cataloguing agency
     _003_tag = first_occurance("003")
     if !_003_tag
@@ -107,7 +107,6 @@ class Marc
             MarcNode.new(@model, "005", last_transcation, nil))
       end
     end
-		
   end
   
   # Parse a MARC 21 line
@@ -413,22 +412,22 @@ class Marc
     return marc_json
   end
 
-  def to_xml(updated_at = nil, versions = nil)
+  def to_xml(updated_at = nil, versions = nil, holdings = false)
     out = Array.new
     out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
     out << "<!-- Exported from RISM CH (http://www.rism-ch.org/) Date: #{Time.now.utc} -->\n"
     out << "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
-    out << to_xml_record(updated_at, versions)
+    out << to_xml_record(updated_at, versions, holdings)
     out << "</marc:collection>" 
     return out.join('')
   end
   
-  def to_xml_record(updated_at, versions)
+  def to_xml_record(updated_at, versions, holdings)
     load_source unless @loaded
     
     safe_marc = self.deep_copy
     safe_marc.root = @root.deep_copy
-    safe_marc.to_external(updated_at, versions)
+    safe_marc.to_external(updated_at, versions, holdings)
     
     out = String.new
     

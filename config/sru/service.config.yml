@@ -1,0 +1,165 @@
+server:
+  version: 1.1
+  port: 80
+  database: 
+    title: RISM Répértoire des sources musicales Muscat 
+    description: SRU Gateway based on Solr. Records in UTF-8 encoding. Contains sources, people, institutions and catalogues. CQL not fully supported.
+  maximumRecords: 100
+schemas:
+  - marc
+  - mods
+  - dc
+sets:
+  cql: info:srw/cql-context-set/1/cql-v1.1
+  rec: info:srw/cql-context-set/2/rec-1.1
+  dc: info:srw/cql-context-set/1/dc-v1.1
+  bath: http://zing.z3950.org/cql/bath/2.0/
+index:
+  cql.any:
+    solr:
+      - 100a
+      - 240a
+      - 245a
+      - 500a
+      - 700a
+    type: text
+  dc.id:
+    solr: "001"
+    type: text
+  dc.title:
+    solr: 
+      - 240a
+      - 245a
+    type: text
+  dc.subject:
+    solr: 650a
+    type: text
+  dc.creator:
+    solr: composer_order
+    type: s
+  dc.author:
+    solr: 100a
+    type: text
+  dc.publisher:
+    solr: 260b
+    type: text
+  dc.description:
+    solr: 500a
+    type: text
+  dc.date:
+    solr: 260c
+    type: text
+  bath.possessingInstitution:
+    solr: 852a
+    type: text
+  bath.name:
+    solr: 
+      - 100a
+      - 700a
+    type: text
+  bath.personalName:
+    solr: 100a
+    type: text
+  bath.corporateName:
+    solr: 110a
+    type: text
+  bath.uniformTitle:
+    solr: 240a
+    type: text
+  bath.notes:
+    solr: 500a
+    type: text
+  bath.topicalSubject:
+    solr: 650a
+    type: text
+  rism.profession:
+    solr: 550a
+    type: text
+  rism.gender:
+    solr: 375a
+    type: text
+  rism.siglum:
+    solr: 852a
+    type: text
+  rism.country:
+    solr: 043a
+    type: text
+  rism.watermark:
+    solr: 592a
+    type: text
+  rism.relatedPerson:
+    solr: 700a
+    type: text
+  rism.librarySiglum:
+    solr: 110g
+    type: text
+  rism.changed:
+    solr: updated_at
+    type: d
+  rism.created:
+    solr: created_at
+    type: d
+  rism.wv:
+    solr: 690n
+    type: text
+
+  #bath.genreForm:
+    #title: genreForm
+    #solr: 001
+  #bath.keyTitle:
+    #title: id
+    #solr: 001
+  #rism.adatum:
+    #title: adatum
+    #solr: 001
+  #rism.provider:
+    #title: provider
+    #solr: 001
+  #rism.place:
+    #title: place
+    #solr: 001
+  #dc.editor:
+    #title: id
+    #solr: 001
+  #dc.image:
+    #title: image
+    #solr: 001
+  #dc.year:
+    # title: year
+    # solr: 001
+  #dc.resourceType:
+    #title: id
+    #solr: 
+  #dc.format:
+    #title: id
+    #solr: 001
+  #dc.resourceIdentifier:
+    #title: id
+    #solr: 001
+  #dc.source:
+    #title: id
+    #solr: 001
+  #dc.language:
+    #title: id
+    #solr: 001
+  #dc.relation:
+    #title: id
+    #solr: 001
+  #dc.coverage:
+    #title: id
+    #solr: 001
+  #dc.rights:
+    #title: id
+    #solr: 
+  #bath.conferenceName:
+    #title: conferenceName
+    #solr: 001
+  #bath.isbn:
+    #title: isbn
+    #solr: 001
+  #bath.issn:
+    #title: issn
+    #solr: 001
+  #bath.geographicName:
+    #title: geographicName
+    #solr: 001

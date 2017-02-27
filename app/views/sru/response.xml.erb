@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<% model = request.env["PATH_INFO"].split("/").last %>
+<% model = "sources" if model == 'sru' %>
+<% @sru   = Sru::Query.new(model, params) %>
+<% @result   = @sru.result %>
+
+<% if params['operation'] == 'scan' && @result %>
+  <%= render :partial => 'scan' %>
+<% elsif params['operation']=='searchRetrieve' && !params['query'] %>
+  <%= render :partial => 'error' %>
+<% elsif !params['operation'] || !params['query'] %>
+  <%= render :partial => 'explain' %>
+<% elsif !@sru.error_code && @result %>
+  <%= render :partial => 'result' %>
+<% else %>
+  <%= render :partial => 'error' %>
+<% end %>

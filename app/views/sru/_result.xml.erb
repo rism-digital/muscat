@@ -1,0 +1,40 @@
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/" xmlns:marc="http://www.loc.gov/MARC21/slim" >
+    <zs:version>1.1</zs:version>
+    <zs:numberOfRecords><%= @result.total  %></zs:numberOfRecords>
+    <zs:records>
+      <% offset = @sru.offset %>
+      <% @result.hits.each do |hit| %>
+        <zs:record>
+          <zs:recordPacking>xml</zs:recordPacking>
+          <zs:recordData>
+            <% if @sru.schema == 'marc' %>
+              <%= hit.result.marc.to_xml_record(hit.result.updated_at, nil, true).html_safe %>
+            <% elsif @sru.schema == 'mods'%>
+              <% xml = Nokogiri::XML(hit.result.marc.to_xml(hit.result.updated_at, nil, true)) %>
+              <% template =  Nokogiri::XSLT(File.read('public/xml/MARC21slim2MODS3-6.xsl')) %>
+              <% mods_record = template.transform(xml) %>
+              <% mods_record.xpath("//ns:modsCollection", "ns" => "http://www.loc.gov/mods/v3").children.first["xmlns:mods"] = "http://www.loc.gov/mods/v3" %>
+              <%= mods_record.xpath("//mods:modsCollection", "mods" => "http://www.loc.gov/mods/v3").children.to_s.html_safe %>
+            <% elsif @sru.schema == 'dc'%>
+              <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true)) %>
+              <% template =  Nokogiri::XSLT(File.read('public/xml/MARC21slim2SRWDC.xsl')) %>
+              <% mods_record = template.transform(xml) %>
+              <% mods_record.remove_namespaces! %>
+              <% mods_record.xpath("//dcCollection").children.first["xmlns"] = "http://purl.org/dc/elements/1.1/" %>
+              <%= mods_record.xpath("//dcCollection").children.to_s.html_safe %>
+            <% end %>
+          </zs:recordData>
+          <zs:recordPosition><%= offset %></zs:recordPosition>
+          <% (offset += 1) %>
+        </zs:record>
+      <% end %>
+    </zs:records>
+    <zs:echoedSearchRetrieveRequest>
+      <zs:version>1.1</zs:version>
+      <zs:query><%= params["query"] %></zs:query>
+      <zs:maximumRecords><%= @sru.maximumRecords %></zs:maximumRecords>
+      <zs:recordPacking>xml</zs:recordPacking>
+    </zs:echoedSearchRetrieveRequest>
+  </zs:searchRetrieveResponse>
+
+

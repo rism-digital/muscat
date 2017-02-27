@@ -1,0 +1,16 @@
+  <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/">
+    <zs:version>1.1</zs:version>
+    <zs:echoedSearchRetrieveRequest>
+      <zs:version>1.1</zs:version>
+      <zs:query><%= params['query'] %></zs:query>
+      <zs:maximumRecords>params['maximumRecords']</zs:maximumRecords>
+      <zs:recordPacking>xml</zs:recordPacking>
+    </zs:echoedSearchRetrieveRequest>
+    <zs:diagnostics xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/">
+      <diag:diagnostic>
+        <diag:uri>info:srw/diagnostic/1/<%= @sru.error_code[:code]%></diag:uri>
+        <diag:message><%= "#{@sru.error_code[:message]}" %></diag:message>
+      </diag:diagnostic>
+    </zs:diagnostics>
+  </zs:searchRetrieveResponse>
+
