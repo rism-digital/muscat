@@ -24,7 +24,9 @@ index:
       - 700a
     type: text
   dc.id:
-    solr: "001"
+    solr: 
+      - "001"
+      - "035a"
     type: text
   dc.title:
     solr: 
