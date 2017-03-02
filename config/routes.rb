@@ -25,9 +25,9 @@ Muscat::Application.routes.draw do
   get '/pages/:name', to: redirect(RISM::LEGACY_PAGES_URL + '/pages/%{name}')
 
   get 'sru' => 'sru#service'
+  get 'sru/sources' => 'sru#service'
   # To have backward compatibility with the old interface
   get 'muscat' => 'sru#service'
-  get 'sru/sources' => 'sru#service'
   get 'sru/people' => 'sru#service'
   get 'sru/institutions' => 'sru#service'
   get 'sru/catalogues' => 'sru#service'
