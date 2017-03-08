@@ -5,7 +5,7 @@ class MarcValidator
   def initialize(object, warnings = true)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
-		@editor_profile = EditorConfiguration.get_default_layout(object)
+    @editor_profile = EditorConfiguration.get_default_layout(object)
     #ap @rules
     @errors = {}
     @object = object
@@ -17,12 +17,6 @@ class MarcValidator
     @object.marc.root.resolve_externals
     
     @show_warnings = warnings
-    
-#    @unknown_tags = []
-#    @editor_profile.each_tag_not_in_layout(object) do |t|
-#      @unknown_tags << t
-#    end
-
   end
 =begin  
   def validate_marc
@@ -212,8 +206,23 @@ class MarcValidator
     end
   end
   
+  def validate_unknown_tags
+    @unknown_tags = []
+    #begin
+      @editor_profile.each_tag_not_in_layout(@object) do |t|
+        add_error(t, "unknown-tag", "Unknown tag in layout")
+      end
+      #rescue
+    #  add_error("load", "unknown-tag", "Could not read tag layout")
+    #end
+  end
+  
   def has_errors
     return @errors.count > 0
+  end
+  
+  def get_errors
+    @errors
   end
   
   def to_s

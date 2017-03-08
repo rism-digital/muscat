@@ -2,6 +2,8 @@ Muscat Changelog
 ================
 
 v3.6.8
+* Add validation failure notification
+* Add offline record validation
 * Added SRU interface
 * Added holdings to method to_external
 * Added 204$n feeded by 690/383, #200
