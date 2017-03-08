@@ -2,7 +2,7 @@ class SourceValidationNotifications < ApplicationMailer
 	
   def mail_validation(source)
     @errors = []
-    @failed = false
+    @failed = nil
     @source_id = source.id
     begin
       validator = MarcValidator.new(source, false)
@@ -10,8 +10,8 @@ class SourceValidationNotifications < ApplicationMailer
       validator.validate_links
       validator.validate_unknown_tags
       @errors = validator.get_errors
-    rescue
-      @failed = true
+    rescue Exception => e
+      @failed = e
     end
 
     return if @errors.count == 0 && !@failed
