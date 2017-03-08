@@ -18,84 +18,23 @@ class MarcValidator
     
     @show_warnings = warnings
   end
-=begin  
-  def validate_marc
-    @object.marc.all_tags.each do |marctag|
-      validate_tag(marctag)
-    end
-    #puts @object.id
-  end
-  
-  def validate_tag(marctag)
-    tag_rules = @validation.get_rules_for_tag(marctag.tag)
-    return true if !tag_rules
-    
-    marctag.each do |subtag|
-      next if !@validation.validate_subtag?(marctag.tag, subtag.tag, @object)
-      
-      #puts @validation.is_warning?(marctag.tag, subtag.tag)
-      subtag_rule = @validation.get_subtag_rule(marctag.tag, subtag.tag)
-      #next if !subtag_rule
-      ap marctag.tag
-      ap subtag.tag
-      apply_rule(subtag_rule, marctag, subtag)
-      
-    end
-    
-  end
 
-  def apply_rule(rule, marc_tag, marc_subtag)
-    tag = marc_tag.tag
-    subtag = marc_subtag.tag
-    
-    if rule.is_a? String
-      if rule == "required" || rule == "required, warning"
-        if !marc_subtag || !marc_subtag.content
-          #@errors["#{tag}#{subtag}"] = rule
-          add_error(tag, subtag, rule)
-          puts "Missing #{tag} #{subtag}, #{rule}" if DEBUG
-        end
-      else
-        puts "Unknown rule #{rule}" if rule != "mandatory"
-      end
-      
-    elsif rule.is_a? Hash
-      if rule.has_key?("required_if")
-        # This is another hash! gotta love json
-        rule["required_if"].each do |other_tag, other_subtag|
-          # Try to get this other tag first
-          # the validation passes if it is not there
-          other_marc_tag = @object.marc.first_occurance(other_tag)
-          if other_marc_tag
-            other_marc_subtag = other_marc_tag.fetch_first_by_tag(other_subtag)
-            # The other subtag is there. see if we have the subtag 
-            # that is required bu the "other" one
-            if other_marc_subtag && other_marc_subtag.content
-              # if it is not here raise an error
-              if !marc_subtag || !marc_subtag.content
-                #@errors["#{tag}#{subtag}"] = "required_if-#{other_tag}#{other_subtag}"
-                add_error(tag, subtag, "required_if-#{other_tag}#{other_subtag}")
-                puts "Missing #{tag} #{subtag}, required_if-#{other_tag}#{other_subtag}" if DEBUG
-              end
-            end
-          end
-        end
-      end
-    end
-  end
-=end
-  
   def validate
     @rules.each do |tag, tag_rules|
       
-      mandatory =  tag_rules["tags"].has_value? "mandatory"
-      #ap rules["tags"]
+      #mandatory =  tag_rules["tags"].has_value? "mandatory"
+      # Mandatory tags are tags that need to be there entirely
+      # In the editor leaving a tag emply will remove it
+      # Some tags have to be there for some templates.
+      # Extract all the pertinent mandatory tags, exluding the ones
+      # not for this template
+      mandatory = tag_rules["tags"].map {|st, v| st if v == "mandatory" && !is_subtag_excluded(tag, st)}.compact
       
       marc_tags = @object.marc.by_tags(tag)
       
       if marc_tags.count == 0
         # This tag has to be there if "mandatory"
-        if mandatory
+        if mandatory.count > 0
           #@errors[tag] = "mandatory"
           add_error(tag, nil, "mandatory")
           puts "Missing #{tag}, mandatory" if DEBUG
