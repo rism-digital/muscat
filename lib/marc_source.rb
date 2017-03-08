@@ -349,6 +349,7 @@ class MarcSource < Marc
         if w && w.content
           source = Source.find(w.content)
           type = "dc" if source.record_type != RECORD_TYPES[:edition_content]
+          t.add_at(MarcNode.new(@model, "a", source.name, nil), 0)
         else
           raise "Empty $w in 774"
         end
@@ -460,6 +461,10 @@ class MarcSource < Marc
       root.children.insert(get_insert_position("594"), n594)
     end
 
+    # First drop all internal remarks 
+    by_tags("599").each {|t| t.destroy_yourself}
+    
+    # Then add some if we include versions
     if versions
       versions.each do |v|
         author = v.whodunnit != nil ? "#{v.whodunnit}, " : ""

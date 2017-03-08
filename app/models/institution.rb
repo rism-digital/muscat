@@ -246,10 +246,11 @@ class Institution < ActiveRecord::Base
   end
 
   def update_workgroups
-		return if self.suppress_update_workgroups_trigger == true
+    return if self.suppress_update_workgroups_trigger == true || self.siglum.blank?
     Workgroup.all.each do |wg|
-      if Regexp.new(wg.libpatterns).match(self.siglum)
-        wg.save
+      patterns = wg.libpatterns.split(",")
+      patterns.each do |pattern|
+        wg.save if Regexp.new(pattern.strip).match(self.siglum)
       end
     end
   end
@@ -276,6 +277,5 @@ class Institution < ActiveRecord::Base
       return []
     end
   end
-
  
 end

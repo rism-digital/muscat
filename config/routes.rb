@@ -26,6 +26,8 @@ Muscat::Application.routes.draw do
 
   get 'sru' => 'sru#service'
   get 'sru/sources' => 'sru#service'
+  # To have backward compatibility with the old interface
+  get 'muscat' => 'sru#service'
   get 'sru/people' => 'sru#service'
   get 'sru/institutions' => 'sru#service'
   get 'sru/catalogues' => 'sru#service'
