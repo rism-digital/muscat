@@ -16,6 +16,6 @@
   </table>
 
 <%else%>
-  <%= e.message %>
-  <%= e.backtrace.join("\n") %>
+  <%= @failed.message %>
+  <%= @failed.backtrace.join("\n") %>
 <%end%>
