@@ -68,6 +68,11 @@ module RISM
 	
 	# All the comments go to this email here, set it to and address to activate
 	COMMENT_EMAIL = false
+	
+	# Sent the validation notifications
+	SEND_VALIDATION_NOTIFICATIONS = false
+	# Notification email, also used for Exception Notifications
+	NOTIFICATION_EMAIL = "sample@email.com"
 end
 
 module Muscat
