@@ -7,6 +7,7 @@ v3.6.8
 * Added 204$n feeded by 690/383, #200
 * Changed order of LAT/LON in 034 of institution
 * Added rake task for executing maintenance scripts
+* Fixes #486 false workgroup trigger in institution
 
 v3.6.7
 * Updated Guidelines 
