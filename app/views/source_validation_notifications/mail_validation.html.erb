@@ -17,5 +17,5 @@
 
 <%else%>
   <%= @failed.message %>
-  <%= @failed.backtrace.join("\n") %>
+  <%= @failed.backtrace.join("<br>") %>
 <%end%>
