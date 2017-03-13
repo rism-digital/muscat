@@ -46,7 +46,7 @@ Source.all.each do |sa|
     new_383.add_at(MarcNode.new("source", "b", tn.content, nil), 0)
     new_383.sort_alphabetically
 
-    marc.root.children.insert(marc.get_insert_position("383"), new_500)
+    marc.root.children.insert(marc.get_insert_position("383"), new_383)
     
     #adios
     tn.destroy_yourself
