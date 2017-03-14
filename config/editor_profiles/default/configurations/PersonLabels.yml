@@ -61,7 +61,7 @@ doc_edit_workflow:
     it: Numero documento RISM
     fr: No. RISM
     de: RISM Dokumentnummer
-    en: RISM ID No.
+    en: RISM ID number
 "003":
   label:
     it: Identificatore del numero di controllo
@@ -79,39 +79,39 @@ doc_edit_workflow:
     it: "Riferimento autorità"
     fr: "Référence d'authorité"
     de: Normdatenverweise
-    en: Authority Reference
+    en: Other standard identifier
   fields:
     a:
       label:
         it: "Riferimento autorità"
         fr: "Référence d'authorité"
         de: Normdatenverweise
-        en: Authority Reference
+        en: Standard number or code
     "2":
       label:
         it: "Agenzia autorità"
         fr: "Agence d'authorité"
         de: Normdatenagentur
-        en: Authority Agency
+        en: Source of number or code
 "040":
   label:
     it: Fonte della catalogazione
     fr: Source du catalogage
     de: Katalogisierungsquelle
-    en: Cataloguing agency
+    en: Cataloging source
   fields:
     a:
       label:
         it: Agenzia catalografica originale
         fr: Organisme du catalogage original
         de: Original-Katalogisierungsstelle
-        en: Original cataloguing agency
+        en: Original cataloging agency
     b:
       label:
         it: Lingua della catalogazione
         fr: Langue de catalogage
         de: Katalogisierungssprache
-        en: Language of cataloguing
+        en: Language of cataloging
     c:
       label:
         it: Agenzia della trascrizione
@@ -142,20 +142,20 @@ doc_edit_workflow:
     it: Codice del Paese
     fr: Country code
     de: Länder-Code
-    en: Country code
+    en: Nationality
   fields:
     c:
       label:
         it: Codice del Paese
         fr: Country code
         de: Länder-Code  
-        en: Country code
+        en: Nationality
 "100":
   label:
     it: Nome di persona
     fr: Compositeur/Auteur
     de: Ansetzungsform
-    en: Composer/Author
+    en: Heading - Personal name
   accepts: 
   - "700"
   fields:
@@ -164,19 +164,19 @@ doc_edit_workflow:
         it: Nome
         fr: Nom
         de: Name
-        en: Name
+        en: Heading - personal name
     c:
       label:
         it: Ordine/Titolo
         fr: ORDER/TITLE
         de: Orden/Titel
-        en: Order/Title
+        en: Religious order
     d:
       label:
         it: Data di nascita e di morte
         fr: Dates de vie
         de: Geburts- und Todesdaten
-        en: Life dates
+        en: Years of birth and death
     w:
       label:
         it: Status
@@ -188,7 +188,7 @@ doc_edit_workflow:
         it: Altre date
         fr: Autres dates
         de: Andere Lebensdaten
-        en: Other dates
+        en: Other life dates
 "370":
   label:
     it: Luogo associato
@@ -245,34 +245,34 @@ doc_edit_workflow:
     it: Persone correlate
     fr: Personnes liées
     de: Zugehörige Personen
-    en: Related People
+    en: Related personal name
   fields:
     a:
       label:
         it:  Nome
         fr:  Nom
         de:  Name
-        en:  Name    
+        en:  Related personal name
     y:
       label:
         it:  Relazione
         fr:  Relation
         de:  Beziehung
-        en:  Relationship
+        en:  Type of relationship
 
 "510":
   label:
     it: Sigle correlate
     fr: Sigle de relation
     de: Zugehörige Sigel 
-    en:  Related Siglums
+    en: Associated institution
   fields:
     a:
       label:
         it:  Sigla
         fr:  Siglum
         de:  Sigel
-        en:  Siglum
+        en:  Associated institution 
 "550":
   label:
     it: Professione o funzione
@@ -297,34 +297,34 @@ doc_edit_workflow:
     it: Nome geografico
     fr: Lieu
     de: Orte
-    en:  Places
+    en: Geographic name
   fields:
     a:
       label:
         it:  Nome geografico
         fr:  Lieu
         de:  Ort
-        en:  Place
+        en:  Geographic name
     i:
       label:
         it:  Tipo
         fr:  "Description de l'endroit"
         de:  Ort Bedeutung
-        en:  Place Description
+        en:  Type
 
 "667":
   label:
     it:  Nota interna
     fr:  Non public note
     de:  Non public note
-    en:  Non public note
+    en:  Internal note
   fields:
     a:
       label:
         it:  Nota interna
         fr:  Non public note
         de:  Non public note
-        en:  Non public note
+        en:  Internal note
 "670":
   label:
     it: Fonte dei dati 
@@ -343,20 +343,20 @@ doc_edit_workflow:
         it: Informazione rinvenuta
         fr: "Numéro/page"
         de: Fundstelle
-        en: Number/page
+        en: Information found
 "678":
   label:
     it: Informazioni biografiche addizionali 
     fr: Référence bibliographique additionnelle 
     de: Weitere bibliographische Angaben
-    en: Additional bibliographic reference 
+    en: Additional bibliographical information
   fields:
     a:
       label:
         it: Riferimento bibliografico addizionale 
         fr: Référence bibliographique additionnelle
         de: Weitere bibliographische Angaben
-        en: Additional bibliographic reference 
+        en: Additional bibliographical information
 "680":
   label:
     it: Osservazioni
@@ -375,7 +375,7 @@ doc_edit_workflow:
     it: Localizzazione e accesso elettronico
     fr: "Ressource électronique externe"
     de: Elektronische Lokalisierung und Zugriff
-    en: External resource
+    en: External resource URI
   fields:
     y:
       label:
@@ -406,7 +406,7 @@ control:
     fr: "Champs de contrôle"
     de: Kontrollfelder
     it: Campi di controllo
-    en: Control Fields
+    en: Control fields
 notes:
   label:
     it: Note

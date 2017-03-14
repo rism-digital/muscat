@@ -117,14 +117,14 @@ doc_templates:
     it: Paese
     fr: COUNTRY
     de: Land
-    en: Country
+    en: Country of publication
   fields: 
     a: 
       label: 
         it: Paese
         fr: COUNTRY
         de: Land
-        en: Country
+        en: Country of publication
 
 "100": 
   label: 
@@ -241,14 +241,14 @@ doc_templates:
     it: Istituzione
     fr: Institution
     de: Körperschaft
-    en: Institution
+    en: Additional Institution
   fields: 
     a: 
       label: 
         it: Istituzione
         fr: Institution
         de: Körperschaft
-        en: Institution
+        en: Additional institution
 "730": 
   label:
     it: Titolo uniforme alternativo
@@ -267,46 +267,46 @@ doc_templates:
     it: Fa parte di
     fr: Titre de la revue
     de: In
-    en: Revue title
+    en: Item part of
   fields: 
     g: 
       label: 
         it: Volume, anno, pagina
         fr: Partie
         de: Jahrgang, Seite
-        en: Part 
+        en: Volume, year, page
     t: 
       label: 
         it: Titolo del periodico o della miscellanea
         fr: Titre de la revue
         de: "In: "
-        en: Revue title
+        en: Title of periodical or book
 "780": 
   label: 
     it: Titolo precedente
     fr: PREVIOUS ENTRY
     de: Früherer Eintrag
-    en: Previous entry
+    en: Preceding entry
   fields: 
     a: 
       label: 
         it: Titolo precedente
         fr: PREVIOUS ENTRY
         de: Früherer Eintrag
-        en: Previous entry
+        en: Preceding entry
 "785": 
   label: 
     it: Titolo successivo
     fr: Entrée suivante
     de: Folgeeintrag
-    en: Succeeding Entry
+    en: Succeeding entry
   fields: 
     a: 
       label: 
         it: Titolo successivo
         fr: Entrée suivante
         de: Folgeeintrag
-        en: Succeeding Entry
+        en: Succeeding entry
 main: 
   label: 
     it: Campi principali
@@ -851,14 +851,14 @@ voc:
     it: Indicazione di possesso
     fr: Indication de copie
     de: Bestandsangabe
-    en: Indication of holding
+    en: Contents note
   fields: 
     a: 
       label: 
         it: Indicazione di possesso
         fr: Indication de copie
         de: Bestandsangabe
-        en: Indication of holding
+        en: Contents note
       edit_label: 
         en: ""
 "599": 
@@ -866,7 +866,7 @@ voc:
     it: Commenti interni
     fr: Commentaires internes
     de: Interne Fussnoten
-    en: Local notes field
+    en: Internal note
   fields: 
     a: 
       label: 
@@ -918,7 +918,7 @@ voc:
     it: Luogo
     fr: "Lieu"
     de: "Ort"
-    en: Place of an event
+    en: Related place
   fields: 
     a: 
       label: 
