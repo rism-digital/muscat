@@ -13,7 +13,7 @@ doc_masks:
 doc_tag_index: 
   label: 
     de: MARC Tag Index
-    en: MARC tag index
+    en: Index of MARC fields
     it: Indice dei Tag MARC
 
 ################
@@ -21,7 +21,7 @@ doc_tag_index:
 doc_abbreviations: 
   label: 
     de: "Abkürzungen und Bezeichnungen"
-    en: "Abbreviation and terminology"
+    en: "Abbreviations and terminology"
     it: "Abbreviazioni e terminologia"
 doc_abbr_dates: 
   label: 
@@ -84,7 +84,7 @@ doc_aid_texts_sacred_works:
 doc_aid_titles_keywords: 
   label: 
     de: "Einordnungstitel - Schlagworte"
-    en: "Standardised titles - Subject headings"
+    en: "Standardized titles - Subject headings"
     it: "Titolo standard - intestazione del soggetto"
 doc_aid_transposing_instruments: 
   label: 
@@ -97,7 +97,7 @@ doc_aid_transposing_instruments:
 doc_cataloguing: 
   label: 
     de: Allgemeine Erfassung Hilfe
-    en: General cataloguing guidelines
+    en: General cataloging guidelines
     it: Regole di catalogazione generali
 doc_cat_collections: 
   label: 
@@ -120,7 +120,7 @@ doc_cat_authorities:
 doc_editor: 
   label: 
     de: "Editor Hilfe"
-    en: Editor help
+    en: Using Muscat
     it: Guida all'editor
 doc_edit_functions: 
   label: 
@@ -527,7 +527,7 @@ doc_references:
         it: Lingua del testo cantato
         fr: "Langue du texte chanté"
         de: Sprachcode
-        en: Language of sung text
+        en: Language of text
     e: 
       label: 
         it: Lingua del libretto
@@ -1013,14 +1013,14 @@ doc_references:
     it: Filigrana
     fr: Filigrane
     de: Wasserzeichen
-    en: Watermark note
+    en: Watermark description
   fields: 
     a: 
       label: 
         it: Filigrana
         fr: Filigrane
         de: Wasserzeichen
-        en: Watermark note
+        en: Watermark description
     "8": 
       label: 
         it: Gruppo di materiale
@@ -1051,14 +1051,14 @@ doc_references:
     it: Organico
     fr: Instrumentation
     de: Besetzung
-    en: Scoring
+    en: Total scoring
   fields: 
     b: 
       label: 
         it: Organico
         fr: Instrumentation
         de: Besetzung
-        en: Scoring
+        en: Voice/instrument
         fields: 
     c: 
       label: 
@@ -1336,14 +1336,14 @@ doc_references:
     it: Catalogo tematico
     fr: Nom de catalogue
     de: Werkverzeichnis
-    en: Catalogue name
+    en: Catalog of works
   fields: 
     a: 
       label: 
         it: Catalogo tematico
         fr: Nom de catalogue
         de: Werkverzeichnis
-        en: Catalogue name
+        en: Catalog of works
     n: 
       label: 
         it: Numero/pagina
@@ -1664,7 +1664,7 @@ doc_references:
     it: Localizzazione e accesso elettronico
     fr: "Ressource électronique externe"
     de: Elektronische Lokalisierung und Zugriff
-    en: External resource
+    en: External resource URI
   fields: 
     z: 
       label: 
