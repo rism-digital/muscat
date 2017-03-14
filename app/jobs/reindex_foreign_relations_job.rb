@@ -17,12 +17,18 @@ class ReindexForeignRelationsJob < ProgressJob::Base
     
     update_stage("Starting up")
     update_progress_max(@relations.count)
-		
-		@relations.each do |element|
-			link = element[:class].find(element[:id])
-			link.reindex
-			update_stage_progress("Reindexing #{link.class} relation", step: 1)
-		end
+
+    @relations.each do |element|
+      # If the job manager goes down, jobs may pile up
+      # It can happen that a referenced element gets deleted
+      # Just skip it if it does not exists, this way the
+      # job itelf does not crash
+      next if !element[:class].exists?(element[:id])
+      
+      link = element[:class].find(element[:id])
+      link.reindex
+      update_stage_progress("Reindexing #{link.class} relation", step: 1)
+    end
   end
   
   
