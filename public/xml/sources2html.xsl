@@ -48,6 +48,10 @@
 <td>
 <xsl:for-each select="marc:datafield[@tag=852]">
   <xsl:value-of select="marc:subfield[@code='a']"/>
+  <xsl:choose>
+    <xsl:when test="position() != last()">, </xsl:when>
+  </xsl:choose>
+
 </xsl:for-each>
 </td>
 
