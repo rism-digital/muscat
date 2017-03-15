@@ -57,7 +57,7 @@ ActiveAdmin.register Source do
         # continue to show the page so the user does not panic, and
         # show an error message. Also send a mail to the administrators
         flash[:error] = I18n.t(:unloadable_record)
-        AdminNotifications.notify("Source #{@item.id} seems unloadable, please check", @item)
+        AdminNotifications.notify("Source #{@item.id} seems unloadable, please check", @item).deliver_now
       end
       
       @editor_profile = EditorConfiguration.get_show_layout @item
