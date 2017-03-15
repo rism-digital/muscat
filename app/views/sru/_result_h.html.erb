@@ -1,0 +1,60 @@
+<head>
+  <%= stylesheet_link_tag 'active_admin' %>
+  <%= javascript_include_tag "application" %>
+</head>
+
+<body>
+<div id="dvData">
+<table class="srutable">
+
+<% if @model == 'sources' %>
+  <tr>
+  <th>ID</th>
+  <th>Composer</th>
+  <th>Title</th>
+  <th>Scoring</th>
+  <th>Sigla</th>
+  <th>Shelfmark</th>
+  </tr>
+  <% @result.hits.each do |hit| %>
+    <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true)) %>
+    <% template =  Nokogiri::XSLT(File.read('public/xml/sources2html.xsl')) %>
+    <% html_record = template.transform(xml) %>
+    <%= html_record.to_s.html_safe %>
+  <% end %>
+
+<% elsif @model == 'people' %>
+  <tr>
+  <th>ID</th>
+  <th>Name</th>
+  <th>Life dates</th>
+  <th>Profession</th>
+  <th>VIAF</th>
+</tr>
+  <% @result.hits.each do |hit| %>
+    <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true)) %>
+    <% template =  Nokogiri::XSLT(File.read('public/xml/people2html.xsl')) %>
+    <% html_record = template.transform(xml) %>
+    <%= html_record.to_s.html_safe %>
+  <% end %>
+
+<% else %>
+  <tr>
+  <th>ID</th>
+  <th>Name</th>
+  <th>-</th>
+  <th>-</th>
+</tr>
+  <% @result.hits.each do |hit| %>
+    <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true)) %>
+    <% template =  Nokogiri::XSLT(File.read('public/xml/marc2html.xsl')) %>
+    <% html_record = template.transform(xml) %>
+    <%= html_record.to_s.html_safe %>
+  <% end %>
+<% end %>
+
+</table> 
+</div>
+<%= "Number of results: #{@result.total}" %>
+<a href="#" class="export" style="float: right;">Download as CSV/Excel</a>
+</body>

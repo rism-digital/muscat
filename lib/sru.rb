@@ -60,6 +60,7 @@ module Sru
               params[:rows] = maximumRecords
             end
             with(:wf_stage).equal_to("published") if model=="sources"
+            order_by(:id, :asc)
           end
           return solr_result
         rescue

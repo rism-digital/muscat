@@ -80,3 +80,28 @@ body.active_admin {
 .progress_bar_content {
     background-color: lighten($primary-color, 20%)
 }
+
+.srutable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+.srutable td, .srutable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+
+}
+
+.srutable tr:nth-child(even){background-color: #f2f2f2;}
+
+.srutable tr:hover {background-color: #ddd;}
+
+.srutable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: $primary-color;
+  color: white;
+}
