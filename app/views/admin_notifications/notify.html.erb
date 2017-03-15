@@ -1,0 +1,7 @@
+<strong>This is an automatically generated mail from Muscat</strong><p>
+Message: <%= @message %>
+<p>
+<% if @data %>
+	<strong>Additional Data</strong> (printed out with ap)<p>
+	<%= ap(@data).html_safe %>
+<%end%>

@@ -47,6 +47,19 @@ ActiveAdmin.register Source do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Source #{params[:id]})" }
         return
       end
+
+      # Try to load the MARC object.
+      begin
+        @item.marc.load_source true
+      rescue ActiveRecord::RecordNotFound
+        # If resolving the remote objects fails, it means
+        # Something went wrong saving the source, like a DB falure
+        # continue to show the page so the user does not panic, and
+        # show an error message. Also send a mail to the administrators
+        flash[:error] = I18n.t(:unloadable_record)
+        AdminNotifications.notify("Source #{@item.id} seems unloadable, please check", @item).deliver_now
+      end
+      
       @editor_profile = EditorConfiguration.get_show_layout @item
       @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
       
@@ -87,6 +100,18 @@ ActiveAdmin.register Source do
         when :edition then "011_edition.marc"
         else nil
       end
+      
+      # Try to load the MARC object.
+      # This is the same trap as in show but here we
+      # PREVENT opening the editor. Redirect to the show page
+      # and inform the admins.
+      begin
+        @item.marc.load_source true
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_source_path @item
+        return
+      end
+      
       @item.marc.superimpose_template(template) if template
     end
 
