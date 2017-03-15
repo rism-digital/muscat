@@ -190,13 +190,13 @@ fr:
   record_types:
     unspecified: "[type indéterminé]"
     collection: "Collection"
-    source: "MUSIC SOURCE"
-    edition_content: "MUSIC EDITION CONTENT"
-    libretto_source: "LIBRETTO SOURCE"
-    libretto_edition_content: "LIBRETTO EDITION CONTENT"
-    theoretica_source: "TREATISE SOURCE"
-    theoretica_edition_content: "TREATISE EDITION CONTENT"
-    edition: "EDITION"
+    source: "Manuscrit musical"
+    edition_content: "Contenu d'un livre de musique imprimé"
+    libretto_source: "Livret manuscrit"
+    libretto_edition_content: "Contenu d'un livret imprimé"
+    theoretica_source: "Traité manuscrit"
+    theoretica_edition_content: "Contenu d'un traité imprimé"
+    edition: "Musique imprimée"
 
   #################### MENUS
   menu_home: "Home"
@@ -469,8 +469,8 @@ fr:
   error_not_found: "La ressource à laquelle vous essayez d'accéder n'existe pas ou a été supprimée."
   error_saving: "La ressource n'est pas complète ou engendre un doublon"
   unknown_tags: "Ce titre contient des champs non reconnus."
-  cannot_update_source: "YOU ARE NOT AUTHORIZED TO EDIT THIS TYPE OF SOURCE"
-  cannot_create_source: "YOU ARE NOT AUTHORIZED TO CREATE THIS TYPE OF SOURCE"
+  cannot_update_source: "Vous n'êtes pas autorisé à traiter ce type de source"
+  cannot_create_source: "Vous n'êtes pas autorisé à créer ce type de source"
 
   #
   entry:
