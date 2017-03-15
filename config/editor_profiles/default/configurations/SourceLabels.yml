@@ -264,7 +264,7 @@ doc_references:
 02_codes_performing: 
   label: 
     it: Partecipanti
-    fr: Performance
+    fr: Exécuteurs
     de: Mitwirkende
     en: Performance
 03_codes_technical: 
@@ -447,7 +447,7 @@ doc_references:
     z: 
       label: 
         it: Organico del movimento
-        fr: PUBLIC NOTE
+        fr: Distribution du mouvement
         de: Besetzung Satz
         en: Scoring in movement
 "033": 
@@ -460,7 +460,7 @@ doc_references:
     a: 
       label: 
         it: Data e luogo di un evento
-        fr: "Date/heure et lieu d'un événement"
+        fr: "Date et lieu d'un événement"
         de: Datum und Ort eines Ereignisses (codiert)
         en: Coded date
     indicator: 
@@ -717,7 +717,7 @@ doc_references:
     b: 
       label: 
         it: Altri dettagli sul materiale
-        fr: OTHER PHYSICAL DETAILS
+        fr: Autres détails du matériau
         de: Zusätzliche Materialbeschreibung
         en: Other physical details
     c: 
@@ -833,14 +833,14 @@ doc_references:
 "510": 
   label: 
     it: Serie RISM
-    fr: RISM Series
+    fr: Série RISM
     de: RISM Series
     en: RISM Series
   fields: 
     a: 
       label: 
         it: Serie
-        fr: Series
+        fr: Série
         de: Series
         en: Series
     c: 
@@ -889,7 +889,7 @@ doc_references:
     a: 
       label: 
         it: Materiali allegati
-        fr: "Matétriel supplémentaire"
+        fr: "Matériel supplémentaire"
         de: Beigelegtes Material, Addenda
         en: Supplementary material
       edit_label: 
@@ -1103,8 +1103,8 @@ doc_references:
     b: 
       label: 
         it: Numero RISM
-        fr: RISM SERIES NUMBER
-        de: RISM SERIES NUMBER
+        fr: Numéro RISM
+        de: RISM-Nummer
         en: RISM series number
       edit_label: 
       en: ""
@@ -1445,7 +1445,7 @@ doc_references:
     "4": 
       label: 
         it: Funzione
-        fr: Function
+        fr: Fonction
         de: Funktionsbezeichnung
         en: Function
     "8": 
@@ -1644,7 +1644,7 @@ doc_references:
     q: 
       label: 
         it: Materiale conservato
-        fr: PRESERVED PARTS
+        fr: Parties préservées
         de: Erhaltenes Material
         en: Preserved Parts
     u: 
@@ -1702,7 +1702,7 @@ show_content:
 show_distribution: 
   label: 
     it: Organico
-    fr: Formation
+    fr: Distribution
     de: Besetzung
     en: Distribution
 show_information: 
@@ -1913,13 +1913,13 @@ dnr:
 dpt: 
   label: 
     it: Depositante
-    fr: DEPOSITOR
+    fr: Dépositeur
     de: Depositor
     en: Depositor
 dsr: 
   label: 
     it: Progettista
-    fr: DESIGNER
+    fr: Décorateur
     de: Designer
     en: Designer
 dte: 
@@ -2101,19 +2101,19 @@ voc:
 afr: 
   label: 
     IT: Afrikaans
-    FR: AFRIKAANS
+    FR: Afrikaans
     de: Afrikaans
     en: Afrikaans
 ara: 
   label: 
     IT: Arabo
-    FR: ARABIC
+    FR: Arabe
     de: Arabisch
     en: Arabic 
 arg: 
   label: 
     IT: Aragonese
-    FR: ARAGONESE
+    FR: Aragonais
     de: Aragonesisch
     en: Aragonese
 cat: 
@@ -2125,13 +2125,13 @@ cat:
 chi: 
   label: 
     it: Cinese
-    fr: CHINESE
+    fr: Chinois
     de: Chinesisch
     en: Chinese
 chu: 
   label: 
     it: Lingua slava ecclesiastica antica
-    fr: OLD CHURCH SLAVONIC
+    fr: "Slave ancien ecclésiastique"
     de: Altkirchenslawisch
     en: Old Church Slavonic
 cze: 
@@ -2160,26 +2160,26 @@ eng:
     en: English
 enm: 
   label: 
-    IT: Lingua inglese media
-    FR: MIDDLE ENGLISH
+    IT: Lingua inglese medievale
+    FR: Anglais médiéval
     de: Mittelenglisch
     en: Middle English
 est: 
   label: 
     IT: Estone
-    FR: ESTONIAN
+    FR: Estonien
     de: Estnisch
     en: Estonian
 fin: 
   label: 
     IT: Finlandese
-    FR: FINNISH
+    FR: Finlandais
     de: Finnisch
     en: Finnish
 frr: 
   label: 
     IT: Dialetto Frisone Settentrionale
-    FR: NORTH FRISIAN
+    FR: Frison du Nord
     de: Nordfriesisch
     en: North Frisian
 fre: 
@@ -2191,7 +2191,7 @@ fre:
 gem: 
   label: 
     IT: Germanico
-    FR: GERMANIC
+    FR: Germanique
     de: Germanisch
     en: Germanic
 ger: 
@@ -2203,37 +2203,37 @@ ger:
 gle: 
   label: 
     IT: Irlandese
-    FR: IRISH
+    FR: Irlandais
     de: Irisch
     en: Irish
 glg: 
   label: 
-    IT: Gaelico
-    FR: GALICIAN
+    IT: Galiziano
+    FR: Galician
     de: Galizisch
     en: Galician
 gmh: 
   label: 
-    IT: Alto-Tedesco Medio
-    FR: MIDDLE HIGH GERMAN
+    IT: Tedesco medievale
+    FR: Allemand médiéval
     de: Mittelhochdeutsch
     en: Middle High German
 grc: 
   label: 
-    it: Greco, antico (fino al 1453)
-    fr: GREEK, ANCIENT (TO 1453)
+    it: Greco antico (fino al 1453)
+    fr: Grec ancien (jusqu'en 1453)
     de: Altgriechisch (bis 1453)
     en: Greek, Ancient (to 1453)
 gre:  
   label: 
-    it: Greco, moderno (1453-)
-    fr: GREEK, MODERN (1453-)
+    it: Greco moderno (1453-)
+    fr: Grec moderne (1453-)
     de: Neugriechisch (1453-)
     en: Greek, Modern (1453-)
 gsw: 
   label: 
-    it: Tedesco Svizzero
-    fr: SWISS GERMAN
+    it: Svizzero tedesco
+    fr: Suisse allemand
     de: Schweizerdeutsch
     en: Swiss German
 heb: 
@@ -2263,7 +2263,7 @@ ita:
 jpn: 
   label: 
     it: Giapponese
-    fr: JAPANESE
+    fr: Japonais
     de: Japanisch
     en: Japanese
 kor: 
@@ -2281,55 +2281,55 @@ lat:
 lav: 
   label: 
     IT: Lettone
-    FR: LATVIAN
+    FR: Letton
     de: Lettisch
     en: Latvian
 lit: 
   label: 
     IT: Lituano
-    FR: LITHUANIAN
+    FR: Lituanien
     de: Litauisch
     en: Lithuanian
 ltz: 
   label: 
     IT: Lussemburghese
-    FR: LUXEMBOURGISH
+    FR: Luxembourgeois
     de: Luxemburgisch
     en: Luxembourgish
 mac: 
   label: 
     IT: Macedone
-    FR: MACEDONIAN
+    FR: Macédonien
     de: Mazedonisch
     en: Macedonian
 mon: 
   label: 
     IT: Mongolo
-    FR: MONGOLIAN
+    FR: Mongole
     de: Mongolisch
     en: Mongolian
 nap: 
   label: 
     it: Napoletano
-    fr: NEAPOLITAN
+    fr: Néapolitain
     de: Neapolitanisch
     en: Neapolitan
 nds: 
   label: 
     it: Basso sassone
-    fr: LOW GERMAN
+    fr: Bas allemand
     de: Niederdeutsch
     en: Low German
 nor: 
   label: 
     IT: Norvegese
-    FR: NORWEGIAN
+    FR: Norvégien
     de: Norwegisch
     en: Norwegian
 oci: 
   label: 
     IT: Occitano
-    FR: OCCITAN
+    FR: Occitan
     de: Okzitanisch
     en: Occitan
 pol: 
@@ -2347,19 +2347,19 @@ por:
 roh: 
   label: 
     it: Romancio
-    fr: ROHMANSH
+    fr: Rhéto-roman
     de: Bündnerromanisch (Rätoromanisch)
     en: Romansh
 rom: 
   label: 
     IT: Romani
-    FR: ROMANI
+    FR: Romani
     de: Romani
     en: Romani
 rum: 
   label: 
     IT: Romeno
-    FR: ROMANIAN
+    FR: Roumain
     de: Rumänisch
     en: Romanian
 rus: 
@@ -2371,13 +2371,13 @@ rus:
 scn: 
   label: 
     IT: Siciliano
-    FR: SICILIAN
+    FR: Sicilien
     de: Sizilianisch
     en: Sicilian
 sla: 
   label: 
     IT: Slavico
-    FR: SLAVIC
+    FR: Slave
     de: Slawisch
     en: Slavic
 slo: 
@@ -2395,25 +2395,25 @@ slv:
 srp: 
   label: 
     IT: Serbo
-    FR: SERBIAN
+    FR: Serbe
     de: Serbisch
     en: Serbian
 dsb:
   label:
     it: Sorabo Inferiore
-    fr: SORBIAN, LOWER SORBIAN
+    fr: Sorabe, Sorabe inférieur
     de: Sorbisch, Niedersorbisch
     en: Sorbian, Lower Sorbian
 hsb:
   label:
     it: Sorabo Superiore
-    fr: SORBIAN, UPPER SORBIAN
+    fr: Sorabe, Sorabe supérieur
     de: Sorbisch, Obersorbisch
     en: Sorbian, Upper Sorbian
 spa: 
   label: 
     it: Spagnolo
-    fr: Espanol
+    fr: Espagnol
     de: Spanisch
     en: Spanish
 srp: 
@@ -2431,37 +2431,37 @@ swe:
 tur: 
   label: 
     IT: Turco
-    FR: TURKISH
+    FR: Turque
     de: Türkisch
     en: Turkish
 ukr: 
   label: 
     IT: Ucraino
-    FR: UKRAINIAN
+    FR: Ukrainien
     de: Ukrainisch
     en: Ukrainian
 wel: 
   label: 
     IT: Gallese
-    FR: WELSH
+    FR: Gallois
     de: Walisisch
     en: Welsh
 wen: 
   label: 
     it: Sorabo
-    fr: SORBIAN
+    fr: Sorabe
     de: Sorbisch
     en: Sorbian
 yid: 
   label: 
     IT: Yiddish
-    FR: YIDDISH
+    FR: Yiddish
     de: Jiddisch
     en: Yiddish
 zxx: 
   label: 
-    it: Nessun contesto linguistico
-    fr: NO LINGUISTIK CONTENT
+    it: Nessun contenuto linguistico
+    fr: Sans contenu linguistique
     de: ohne Sprache
     en: No linguistic content
 #Subheading 240k / 730k

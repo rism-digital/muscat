@@ -140,14 +140,14 @@ doc_edit_workflow:
 "043":
   label:
     it: Codice del Paese
-    fr: Country code
+    fr: Code du pays
     de: Länder-Code
     en: Nationality
   fields:
     c:
       label:
         it: Codice del Paese
-        fr: Country code
+        fr: Code du pays
         de: Länder-Code  
         en: Nationality
 "100":
@@ -168,7 +168,7 @@ doc_edit_workflow:
     c:
       label:
         it: Ordine/Titolo
-        fr: ORDER/TITLE
+        fr: Ordre/titre
         de: Orden/Titel
         en: Religious order
     d:
@@ -237,7 +237,7 @@ doc_edit_workflow:
     j:
       label:
         it: Descrizione della variante del nome
-        fr: DESCRIPTION OF NAME VARIANT
+        fr: Description de la variante du nom
         de: Art der Namensvariante
         en: Description of name variant
 "500":
@@ -315,14 +315,14 @@ doc_edit_workflow:
 "667":
   label:
     it:  Nota interna
-    fr:  Non public note
+    fr:  Note non publique
     de:  Non public note
     en:  Internal note
   fields:
     a:
       label:
         it:  Nota interna
-        fr:  Non public note
+        fr:  Note non publique
         de:  Non public note
         en:  Internal note
 "670":
@@ -360,7 +360,7 @@ doc_edit_workflow:
 "680":
   label:
     it: Osservazioni
-    fr: Remarque général
+    fr: Remarque générale
     de: Allgemeine Bemerkungen
     en: General note
   fields:
@@ -458,19 +458,19 @@ administration:
 male:
   label:
     it: maschio
-    fr: male
+    fr: homme
     de: männlich
     en: male
 female:
   label:
     it: femmina
-    fr: female
+    fr: femme
     de: weiblich
     en: female
 unknown:
   label:
     it: sconosciuto
-    fr: unknown
+    fr: inconnu
     de: unbekannt
     en: unkown
 
@@ -490,7 +490,7 @@ ha:
 po:
   label:
     it: Luogo postale
-    fr: Code Postal
+    fr: endroit postal
     de: postalischer Ort
     en: postal Place
 so:
@@ -1026,7 +1026,7 @@ related to:
 other:
   label:
     it: Altro
-    fr: OTHER
+    fr: Autres
     de: Weiteres
     en: other
 
@@ -1088,7 +1088,7 @@ in:
 mo:
   label:
     it: Monogramma
-    fr: Monogram
+    fr: Monogramme
     de: Monogramm
     en: Monogram
 tn:

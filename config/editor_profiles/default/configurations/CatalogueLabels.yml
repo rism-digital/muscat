@@ -47,13 +47,13 @@ doc_templates:
 "003": 
   label: 
     it: Identificatore del numero di controllo
-    fr: "Identité du numéro de contréle"
+    fr: "Identité du numéro de contrôle"
     de: Kontrollnummer-Bezeichnung
     en: Control number identifier
 "005": 
   label: 
     it: Data e ora dell'ultima transazione
-    fr: "Date/heure de la derniôre transaction"
+    fr: "Date/heure de la dernière transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
 
@@ -115,14 +115,14 @@ doc_templates:
 "044": 
   label: 
     it: Paese
-    fr: COUNTRY
+    fr: Pays
     de: Land
     en: Country of publication
   fields: 
     a: 
       label: 
         it: Paese
-        fr: COUNTRY
+        fr: Pays
         de: Land
         en: Country of publication
 
@@ -207,7 +207,7 @@ doc_templates:
     c: 
       label: 
         it: Anno
-        fr: YEAR
+        fr: Année
         de: Jahr
         en: Year
 "264": 
@@ -284,14 +284,14 @@ doc_templates:
 "780": 
   label: 
     it: Titolo precedente
-    fr: PREVIOUS ENTRY
+    fr: Entrée précédente
     de: Früherer Eintrag
     en: Preceding entry
   fields: 
     a: 
       label: 
         it: Titolo precedente
-        fr: PREVIOUS ENTRY
+        fr: Entrée précédente
         de: Früherer Eintrag
         en: Preceding entry
 "785": 

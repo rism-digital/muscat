@@ -233,7 +233,7 @@ doc_edit_workflow:
     q: 
       label: 
         it: Materiale conservato
-        fr: PRESERVED PARTS
+        fr: "Matériau préservé"
         de: Erhaltenes Material
         en: Preserved Parts
     z: 
@@ -269,9 +269,9 @@ doc_edit_workflow:
         en: External resource
     x: 
       label: 
-        it: LINK TYPE
+        it: Tipo di collegamento
         fr: Type de lien
-        de: LINK TYPE
+        de: Art der Verlinkung
         en: Link type
 added_entry: 
   label: 

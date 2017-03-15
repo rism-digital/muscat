@@ -1189,13 +1189,13 @@ voc:
 "Library":
   label:
     it: "Biblioteca"
-    fr: "LIBRARY"
+    fr: "Bibliothèque"
     de: "Bibliothek"
     en: "Library"
 "Archive":
   label:
     it: "Archivio"
-    fr: "ARCHIVE"
+    fr: "Archives"
     de: "Archiv"
     en: "Archive"
 "Publisher":
@@ -1213,6 +1213,6 @@ voc:
 "Institution":
   label:
     it: "Nome collettivo"
-    fr: "INSTITUTION"
+    fr: "Institution"
     de: "Körperschaft"
     en: "Institution"
