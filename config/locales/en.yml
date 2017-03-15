@@ -270,6 +270,7 @@ en:
   links: "Links"
   link_remove: "Remove Link"
   link_remove_confirm: "Are you sure you want to delete this link?"
+  unloadable_record: "This record experienced loading errors: it can be viewed but not edited. Please contact an administrator."
   validation_level_error: "There are errors, please solve before saving"
   validation_level_warning: "There are warnings, save again to override"
   
