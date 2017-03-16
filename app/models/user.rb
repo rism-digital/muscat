@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :workgroups
   attr_accessible :email, :password, :preference_wf_stage, :password_confirmation if Rails::VERSION::MAJOR < 4
+  has_many :sources, foreign_key: 'wf_owner'
 # Connects this user object to Blacklights Bookmarks. 
   include Blacklight::User
   rolify

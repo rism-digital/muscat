@@ -68,6 +68,12 @@ ActiveAdmin.register Workgroup do
     selectable_column
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
+    column (I18n.t :filter_sources) do |element|
+      workgroup = Sunspot.search(Workgroup) { with(:id, element.id) }
+      workgroup.hits.first.stored(:src_count_order)
+		end
+ 
+
     column (I18n.t :filter_pattern), :libpatterns
     column I18n.t(:filter_connected_libraries), :workgroups do |wg|
              wg.show_libs.html_safe
