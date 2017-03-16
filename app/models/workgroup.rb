@@ -10,36 +10,32 @@ class Workgroup < ActiveRecord::Base
     searchable :auto_index => false do
       integer :id
       text :name
-
-      dynamic_integer :sources_stat, stored: true do
-        a = {}
-        Date::MONTHNAMES.compact.each_with_index do |month, index|
-          date = Time.now.beginning_of_year + index.month
-          a.merge!({ month.to_sym  => sources.where(:created_at => (date .. date.end_of_month)).count})
-        end
-        a
-      end
-
-
-    integer :src_count_order, :stored => true do 
-      cnt = 0
-      institutions.each do |institution|
-        cnt += Institution.count_by_sql("select count(*) from sources_to_institutions where institution_id = #{institution.id}")
-      end
-      cnt
     end
-    
+  
+  def users_with_sources_size(from_date, to_date)
+    res = {}
+    users.each do |user|
+      res[user] = user.sources_size_per_month(from_date, to_date)
+    end
+    res
   end
 
-  def self.stat
-    search = Sunspot.search(Workgroup) do 
-      dynamic(:statc) do 
-      facet(1) 
-      end
+  def sources_by_range(from_date, to_date)
+    cnt = 0
+    users_with_sources_size(from_date, to_date).each do |k,v|
+      cnt += v
     end
-      return search
-  end 
+    return cnt
+  end
 
+  def self.all_sources_by_range(from_date, to_date)
+    cnt = 0
+    Workgroup.all.each do |workgroup|
+      cnt += workgroup.sources_by_range(from_date, to_date)
+    end
+    cnt
+  end
+  
   def get_institutions
     self.institutions.map {|lib| lib}
   end

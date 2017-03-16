@@ -12,6 +12,29 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   enum preference_wf_stage: [ :inprogress, :published, :deleted ]
+  
+  searchable :auto_index => false do
+    integer :id
+    text :name
+    dynamic_integer :src_size, stored: true do
+      result = {}
+      ApplicationHelper.month_distance(Time.parse("2006-01-01"), Time.now).each do |index|
+        date = Time.now.beginning_of_month + index.month
+        result.merge!({ index  => sources.where(:created_at => (date .. date.end_of_month)).count})
+      end
+      result
+    end
+  end
+
+  def sources_size_per_month(from_date, to_date)
+    range = ApplicationHelper.month_distance(from_date, to_date)
+    s = Sunspot.search(User) { with(:id, id) } 
+    cnt = 0
+    range.each do |index|
+      cnt += s.hits.first.stored(:src_size, index.to_s)
+    end
+    return cnt
+  end
 
   def can_edit?(source)
     if source.child_sources.count > 0
