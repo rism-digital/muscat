@@ -12,17 +12,44 @@ class Workgroup < ActiveRecord::Base
       text :name
     end
   
-  def users_with_sources_size(from_date, to_date)
+  def each_with_sources_size(from_date, to_date, array)
     res = {}
-    users.each do |user|
-      res[user] = user.sources_size_per_month(from_date, to_date)
+    array.each do |item|
+      res[item] = item.sources_size_per_month(from_date, to_date)
     end
-    res
+    return res
+  end
+
+  def self.most_active_workgroups(from_date, to_date, limit=5)
+    res1 = {}
+    res2 = {}
+    hash = self.workgroups_with_sources_size(from_date, to_date)
+    hash.each do |k,v|
+      res1[k] = v.values.sum
+    end
+    res1.sort_by(&:last).reverse[0..limit].each do |e|
+      res2[e[0]] = e[1]
+    end
+    return res2
+  end
+
+  def most_active_users(from_date, to_date, limit=5)
+    res1 = {}
+    res2 = {}
+    hash = each_with_sources_size(from_date, to_date, users)
+    hash.each do |k,v|
+      res1[k] = v.values.sum
+    end
+    res1.sort_by(&:last).reverse[0..limit].each do |e|
+      res2[e[0]] = e[1]
+    end
+    return res2
+
   end
 
   def sources_size_per_month(from_date, to_date)
     res = Hash.new(0)
-    users_with_sources_size(from_date, to_date).each do |k,v|
+    each_with_sources_size(from_date, to_date, users).each do |k,v|
       v.each do |key,value|
         res[key] += value
       end

@@ -9,13 +9,15 @@ ActiveAdmin.register_page "Statistic" do
 
   controller do
     def index
-      @result = Workgroup.all_sources_by_range(Time.now - 12.month, Time.now)
+      @from_date, @to_date = Time.now - 12.month, Time.now
+      @workgroup = Workgroup.find(1)
+      @result = @workgroup.sources_size_per_month(@from_date, @to_date)
+      @wg = @workgroup.most_active_users(@from_date, @to_date)
     end
   end
 
   content do
-
-    panel "Graph" do
+    panel "Graph of workgroup #{workgroup.name}" do
       render :partial => 'statistics/chart'
     end
 
@@ -26,11 +28,10 @@ ActiveAdmin.register_page "Statistic" do
         end
       end
       column do
-        panel "Pie" do
+        panel "Most active users of workgroup #{workgroup.name}" do
           render :partial => 'statistics/pie'
         end
       end
-
 
     end
   end

@@ -1,8 +1,25 @@
 <%  def to_chart(hash)
-x={labels: hash.keys.map{|t| (Time.now + t.month).strftime("%Y-%m") },
+x={labels: hash.keys.map{|t| t.name },
        datasets: [   {
       label: "Monthly",
       fillColor: "rgba(220,220,220,0.2)",
+      hoverBackgroundColor: [
+        '#cc0000',
+        '#004d99',
+        '#cca300',
+        '#006622',
+        '#cc5200',
+        '#ff3377'
+
+      ],
+      backgroundColor: [
+        '#ff0000',
+        '#0066cc',
+        '#ffcc00',
+        '#009933',
+        '#ff6600',
+        '#ff6699'
+      ],
       strokeColor: "#1B4E7D",
       pointColor: "rgba(220,220,220,1)",
       pointStrokeColor: "#fff",
@@ -12,24 +29,14 @@ x={labels: hash.keys.map{|t| (Time.now + t.month).strftime("%Y-%m") },
     return x.to_json
   end
 %>
-
-
-
-<script type="text/javascript" src="http://www.chartjs.org/assets/Chart.js">
-</script>
-<%= javascript_tag do %>
-  
-jQuery(function() {
-  var data;
-  var data = <%= to_chart(@result).html_safe %>
-
-  return new Chart($("#pie").get(0).getContext("2d"), data).Bar(data);
-      });
-<% end %>
-
 <div style="margin-left: 50px; margin-right: auto">
   <canvas id="pie" height="444" width="400"/>
 </div>
+
+<%= javascript_tag do %>
+  var data = <%= to_chart(@wg).html_safe %>
+  var pie =  new Chart($("#pie"), {type: 'pie', data: data});
+<% end %>
 
 
 

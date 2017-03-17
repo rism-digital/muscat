@@ -3,6 +3,10 @@ x={labels: hash.keys.map{|t| (Time.now + t.month).strftime("%Y-%m") },
        datasets: [   {
       label: "Monthly",
       fillColor: "rgba(220,220,220,0.2)",
+      borderWidth: "4",
+      borderColor: "#1B4E7D",
+
+
       strokeColor: "#1B4E7D",
       pointColor: "rgba(220,220,220,1)",
       pointStrokeColor: "#fff",
@@ -12,25 +16,12 @@ x={labels: hash.keys.map{|t| (Time.now + t.month).strftime("%Y-%m") },
     return x.to_json
   end
 %>
-
-
-
-<script type="text/javascript" src="http://www.chartjs.org/assets/Chart.js">
-</script>
-<%= javascript_tag do %>
-  
-jQuery(function() {
-  var data;
-  var data = <%= to_chart(@result).html_safe %>
-
-  return new Chart($("#canvas").get(0).getContext("2d")).Line(data);
-      });
-<% end %>
-
 <div style="margin-left: 50px; margin-right: auto">
-  <canvas id="canvas" height="444" width="800" />
+  <canvas id="chart" />
 </div>
 
-
-
+<%= javascript_tag do %>
+  var data = <%= to_chart(@result).html_safe %>
+  var pie =  new Chart($("#chart"), {type: 'line', data: data});
+<% end %>
 
