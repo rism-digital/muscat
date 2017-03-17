@@ -134,6 +134,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chart-js-rails (0.1.2)
+      railties (> 3.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cliver (0.3.2)
@@ -372,6 +374,7 @@ DEPENDENCIES
   blacklight_range_limit
   bootstrap-sass (= 3.3.4.1)
   cancan
+  chart-js-rails
   coffee-rails (~> 4.0.0)
   colorize
   cql-ruby (= 0.9.1)!

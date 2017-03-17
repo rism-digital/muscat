@@ -1,0 +1,16 @@
+div :id => "dvData" do
+table_for result.sort.reverse do
+  column "Month" do |t|
+    (Time.now + t[0].month).strftime("%Y-%m")
+  end
+
+  column "Size" do |t|
+    t[1]
+  end
+end
+
+    div do
+      link_to("Download as CSV/Excel", "#", :class => "export", :style =>  style="float: right;")
+    end
+
+end

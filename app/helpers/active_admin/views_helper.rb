@@ -233,5 +233,5 @@ module ActiveAdmin::ViewsHelper
     end
     return Hash[local_hash.sort_by{|k, v| v}].keys
   end
-  
+
 end

@@ -20,20 +20,24 @@ class Workgroup < ActiveRecord::Base
     res
   end
 
-  def sources_by_range(from_date, to_date)
-    cnt = 0
+  def sources_size_per_month(from_date, to_date)
+    res = Hash.new(0)
     users_with_sources_size(from_date, to_date).each do |k,v|
-      cnt += v
+      v.each do |key,value|
+        res[key] += value
+      end
     end
-    return cnt
+    return res
   end
 
   def self.all_sources_by_range(from_date, to_date)
-    cnt = 0
+    res = Hash.new(0)
     Workgroup.all.each do |workgroup|
-      cnt += workgroup.sources_by_range(from_date, to_date)
+      workgroup.sources_size_per_month(from_date, to_date).each do |k,v|
+        res[k] += v
+      end
     end
-    cnt
+    return res
   end
   
   def get_institutions

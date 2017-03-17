@@ -45,3 +45,4 @@
 
 #= require diva/diva.js
 #= require diva/utils.js
+#= require html2csv.js

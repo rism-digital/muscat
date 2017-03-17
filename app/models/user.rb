@@ -29,11 +29,11 @@ class User < ActiveRecord::Base
   def sources_size_per_month(from_date, to_date)
     range = ApplicationHelper.month_distance(from_date, to_date)
     s = Sunspot.search(User) { with(:id, id) } 
-    cnt = 0
+    res = {}
     range.each do |index|
-      cnt += s.hits.first.stored(:src_size, index.to_s)
+      res[index] = s.hits.first.stored(:src_size, index.to_s)
     end
-    return cnt
+    return res
   end
 
   def can_edit?(source)
