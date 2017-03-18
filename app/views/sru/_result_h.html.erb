@@ -4,7 +4,7 @@
 </head>
 
 <body>
-<div id="dvData">
+<div id="rism_export">
 <table class="srutable">
 
 <% if @model == 'sources' %>
@@ -54,7 +54,9 @@
 <% end %>
 
 </table> 
+<div>
+<a href="#" class="csv_export" datatable="rism_export" style="float: right;">Download as CSV/Excel</a>
+</div>
 </div>
 <%= "Number of results: #{@result.total}" %>
-<a href="#" class="export" style="float: right;">Download as CSV/Excel</a>
 </body>

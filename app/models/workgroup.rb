@@ -12,10 +12,10 @@ class Workgroup < ActiveRecord::Base
       text :name
     end
   
-  def each_with_sources_size(from_date, to_date, array)
+  def users_with_sources_size(from_date, to_date)
     res = {}
-    array.each do |item|
-      res[item] = item.sources_size_per_month(from_date, to_date)
+    users.each do |user|
+      res[user] = user.sources_size_per_month(from_date, to_date)
     end
     return res
   end
@@ -33,12 +33,13 @@ class Workgroup < ActiveRecord::Base
     return res2
   end
 
-  def most_active_users(from_date, to_date, limit=5)
-    res1 = {}
+  def self.most_active_users(from_date, to_date, statistic, limit=5)
+    res1 = Hash.new(0)
     res2 = {}
-    hash = each_with_sources_size(from_date, to_date, users)
-    hash.each do |k,v|
-      res1[k] = v.values.sum
+    statistic.each do |k,v|
+      v.each do |key, value|
+        res1[key] += value.values.sum
+      end
     end
     res1.sort_by(&:last).reverse[0..limit].each do |e|
       res2[e[0]] = e[1]
@@ -47,22 +48,22 @@ class Workgroup < ActiveRecord::Base
 
   end
 
-  def sources_size_per_month(from_date, to_date)
+  def self.sources_size_per_month(from_date, to_date, statistic)
     res = Hash.new(0)
-    each_with_sources_size(from_date, to_date, users).each do |k,v|
-      v.each do |key,value|
-        res[key] += value
+    statistic.each do |k,v|
+      v.values.each do |e|
+        e.each do |key, value|
+          res[key] += value
+        end
       end
     end
     return res
   end
 
-  def self.all_sources_by_range(from_date, to_date)
+  def self.sources_by_range(from_date, to_date, workgroups)
     res = Hash.new(0)
-    Workgroup.all.each do |workgroup|
-      workgroup.sources_size_per_month(from_date, to_date).each do |k,v|
-        res[k] += v
-      end
+    workgroups.each do |workgroup|
+      res[workgroup] = workgroup.users_with_sources_size(from_date, to_date)
     end
     return res
   end
