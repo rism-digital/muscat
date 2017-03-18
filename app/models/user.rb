@@ -28,10 +28,10 @@ class User < ActiveRecord::Base
 
   def sources_size_per_month(from_date, to_date)
     range = ApplicationHelper.month_distance(from_date, to_date)
-    s = Sunspot.search(User) { with(:id, id) } 
-    res = {}
+    s = Sunspot.search(User) { with(:id, id) }
+    res = []
     range.each do |index|
-      res[index] = s.hits.first.stored(:src_size, index.to_s)
+      res << s.hits.first.stored(:src_size, index.to_s)
     end
     return res
   end

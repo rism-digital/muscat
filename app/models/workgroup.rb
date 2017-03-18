@@ -48,12 +48,14 @@ class Workgroup < ActiveRecord::Base
 
   end
 
-  def self.sources_size_per_month(from_date, to_date, statistic)
-    res = Hash.new(0)
-    statistic.each do |k,v|
-      v.values.each do |e|
-        e.each do |key, value|
-          res[key] += value
+  def sources_size_per_month(from_date, to_date)
+    res = []
+    users.each do |user|
+      user.sources_size_per_month(from_date, to_date).each_with_index do |i, index|
+        if res[index]
+          res[index]  += i
+        else
+          res[index] = i
         end
       end
     end
