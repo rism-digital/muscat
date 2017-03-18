@@ -22,13 +22,13 @@ ActiveAdmin.register_page "Statistic" do
     end
 
     panel "Table of users" do
-      render :partial => 'statistics/user_table'
+      render :partial => 'statistics/ut'
     end
 
     columns do 
       column do 
         panel "Table" do
-          render :partial => 'statistics/table'
+          render :partial => 'statistics/workgroup_table'
         end
       end
       column do

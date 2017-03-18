@@ -1,0 +1,22 @@
+<div id="workgroup_table">
+<table>
+  <thead>
+    <tr>
+      <% @result.sort.each do |item| %>
+        <th class="col"><%=(Time.now + item[0].month).strftime("%Y-%m")%>
+        </th>
+      <%end%>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="odd">
+      <% @result.sort.each do |item| %>
+        <td class="col"><%=item[1] %> </td>
+      <%end%>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div>
+<a href="#" class="csv_export" datatable="workgroup_table" style="float: right;">Download as CSV/Excel</a>
+</div>

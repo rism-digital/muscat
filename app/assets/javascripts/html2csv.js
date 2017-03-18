@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     function exportTableToCSV($table, filename) {
 
-    var $rows = $table.find('tr:has(td)'),
+    var $rows = $table.find('tr'),
 
       // Temporary delimiter characters unlikely to be typed by keyboard
       // This is to avoid accidentally splitting the actual contents
@@ -16,7 +16,7 @@ $(document).ready(function() {
       // Grab text from table into CSV formatted string
       csv = '"' + $rows.map(function(i, row) {
         var $row = $(row),
-          $cols = $row.find('td');
+          $cols = $row.children();
 
           return $cols.map(function(j, col) {
           var $col = $(col),

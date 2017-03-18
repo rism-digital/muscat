@@ -1,5 +1,6 @@
 div :id => "user_table" do
-table_for result.sort.reverse do
+table_for result.sort.reverse.each do |x|
+binding.pry
   column "Month" do |t|
     (Time.now + t[0].month).strftime("%Y-%m")
   end
@@ -10,7 +11,7 @@ table_for result.sort.reverse do
 end
 
     div do
-      link_to("Download as CSV/Excel", "#", :class => "csv_export", :datatable => "user_table", :style =>  style="float: right;")
+      link_to("Download as CSV/Excel", "#", :class => "table_export", :datatable => "user_table", :style =>  style="float: right;")
     end
 
 end
