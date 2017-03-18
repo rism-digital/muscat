@@ -1,5 +1,5 @@
-<%  def to_chart(hash)
-x={labels: hash.keys.map{|t| (Time.now + t.month).strftime("%Y-%m") },
+<% chart = @statistic.group_by(:all) %>
+<% dta = {labels: @statistic.header,
        datasets: [   {
       label: "Monthly",
       fillColor: "rgba(220,220,220,0.2)",
@@ -12,16 +12,14 @@ x={labels: hash.keys.map{|t| (Time.now + t.month).strftime("%Y-%m") },
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba(220,220,220,1)",
-      data: hash.values},  ] }
-    return x.to_json
-  end
+      data: chart.values.first},  ] }
 %>
 <div style="margin-left: 50px; margin-right: auto">
   <canvas id="chart" />
 </div>
 
 <%= javascript_tag do %>
-  var data = <%= to_chart(@result).html_safe %>
+  var data = <%= dta.to_json.html_safe %>
   var pie =  new Chart($("#chart"), {type: 'line', data: data});
 <% end %>
 

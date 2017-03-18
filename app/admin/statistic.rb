@@ -10,9 +10,7 @@ ActiveAdmin.register_page "Statistic" do
   controller do
     def index
       @from_date, @to_date = Time.now - 12.month, Time.now
-      statistic = Workgroup.sources_by_range(@from_date, @to_date, Workgroup.all.limit(3))
-      @result = Workgroup.sources_size_per_month(@from_date, @to_date, statistic)
-      @wg = Workgroup.most_active_users(@from_date, @to_date, statistic)
+      @statistic = Statistic.new(@from_date, @to_date, User.with_role(:cataloger))
     end
   end
 
@@ -22,17 +20,17 @@ ActiveAdmin.register_page "Statistic" do
     end
 
     panel "Table of users" do
-      render :partial => 'statistics/ut'
+      #render :partial => 'statistics/ut'
     end
 
     columns do 
       column do 
         panel "Table" do
-          render :partial => 'statistics/workgroup_table'
+          #render :partial => 'statistics/workgroup_table'
         end
       end
       column do
-        panel "Most active users of workgroup #{}" do
+        panel "Most active workgroups #{}" do
           render :partial => 'statistics/pie'
         end
       end

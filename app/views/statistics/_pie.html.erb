@@ -1,5 +1,5 @@
-<%  def to_chart(hash)
-x={labels: hash.keys.map{|t| t.name },
+<% pie = @statistic.to_pie(:workgroups, 5) %>
+<% dta = {labels: pie.keys,
        datasets: [   {
       label: "Monthly",
       fillColor: "rgba(220,220,220,0.2)",
@@ -25,16 +25,14 @@ x={labels: hash.keys.map{|t| t.name },
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba(220,220,220,1)",
-      data: hash.values},  ] }
-    return x.to_json
-  end
+      data: pie.values},  ] }
 %>
 <div style="margin-left: 50px; margin-right: auto">
   <canvas id="pie" height="444" width="400"/>
 </div>
 
 <%= javascript_tag do %>
-  var data = <%= to_chart(@wg).html_safe %>
+  var data = <%= dta.to_json.html_safe %>
   var pie =  new Chart($("#pie"), {type: 'pie', data: data});
 <% end %>
 
