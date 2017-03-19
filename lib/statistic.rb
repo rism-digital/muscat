@@ -45,11 +45,24 @@ class Statistic
     res
   end
 
+  def to_table(attribute, limit=-1)
+    res = []
+    items = group_by(attribute)
+    items.each do |i|
+      res << i.flatten
+    end
+    return res
+  end
+
+  def to_csv
+
+  end
+
   def to_pie(attribute, limit=-1)
     res = Hash.new(0)
     res2 = {}
     group_by(attribute).each do |k,v|
-      name = k.name rescue "without workgroup"
+      name = k rescue "without workgroup"
       res[name] = v.sum if name
     end
     res.sort_by(&:last).reverse[0..limit].each do |e|

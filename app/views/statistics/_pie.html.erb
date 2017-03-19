@@ -1,4 +1,4 @@
-<% pie = @statistic.to_pie(:workgroups, 5) %>
+<% pie = @statistic.to_pie(:name, 5) %>
 <% dta = {labels: pie.keys,
        datasets: [   {
       label: "Monthly",

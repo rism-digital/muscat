@@ -10,17 +10,18 @@ ActiveAdmin.register_page "Statistic" do
   controller do
     def index
       @from_date, @to_date = Time.now - 12.month, Time.now
-      @statistic = Statistic.new(@from_date, @to_date, User.with_role(:cataloger))
+      @statistic = Statistic.new(@from_date, @to_date, Workgroup.first.users)
     end
   end
 
   content do
+
     panel "Graph of workgroup #{}" do
       render :partial => 'statistics/chart'
     end
 
     panel "Table of users" do
-      #render :partial => 'statistics/ut'
+      render :partial => 'statistics/user_table'
     end
 
     columns do 
