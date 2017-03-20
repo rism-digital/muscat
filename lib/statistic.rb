@@ -7,6 +7,15 @@ class Statistic
     end
   end
 
+  class Row < Array
+    def model_name
+      return "row"
+    end
+    def except
+
+    end
+  end
+
   attr_accessor :from_date, :to_date, :header, :items
   
   def initialize(from_date, to_date, users)
@@ -46,7 +55,7 @@ class Statistic
   end
 
   def to_table(attribute, limit=-1)
-    res = []
+    res = Row.new
     items = group_by(attribute)
     items.each do |i|
       res << i.flatten

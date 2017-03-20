@@ -1,12 +1,12 @@
-collection = statistic.to_table(:name)
-      #paginated_collection(Kaminari.paginate_array(collection)).page(params[:page]).per(10) do
+coll = statistic.to_table(:name)
+      paginated_collection(Kaminari.paginate_array(coll).page(params['page']).per(10), :entry_name => 'book' ) do
       #paginated_collection(statistic.to_table(:name).page(params[:page]).per(10), download_links: false) do
         table_for(collection) do |t|
-          collection[0].each_with_index do |e, index|
+          coll[0].each_with_index do |e, index|
             label = index == 0 ? "name" : statistic.header[index - 1]
             #label = index==0 ? "Name" : index
             t.column(label) {|w| w[index]} 
           end
         end
-      #end
+      end
 
