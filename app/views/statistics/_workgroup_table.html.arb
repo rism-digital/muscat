@@ -1,4 +1,4 @@
-collection = statistic.to_table(:name, :group_by => :workgroup, :columns => [], :summarize => true, :order => 1)
+collection = statistic.to_table :attributes => [:name, :workgroup], :summarize => true
 
 div class: "srutable_wrapper" do
   div id: "workgroup_statistic", class: "srutable_scroll" do

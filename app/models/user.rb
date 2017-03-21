@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   enum preference_wf_stage: [ :inprogress, :published, :deleted ]
+  scope :ordered, -> {
+    joins(:workgroups).order("workgroup.name")
+          
+  }
   
   searchable :auto_index => false do
     integer :id
@@ -25,6 +29,18 @@ class User < ActiveRecord::Base
       result
     end
   end
+
+  def sources_size_per_month(from_date, to_date=Time.now)
+    range = ApplicationHelper.month_distance(from_date, to_date)
+    s = Sunspot.search(User) { with(:id, id) }
+    res = ActiveSupport::OrderedHash.new
+    range.each do |index|
+      key =  (Time.now + index.month).strftime("%Y-%m")
+      res[key] = s.hits.first.stored(:src_size, index.to_s)
+    end
+    return res
+  end
+
 
   def self.sources_size_per_month(from_date, to_date, users)
     result = []

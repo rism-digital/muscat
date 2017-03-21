@@ -19,7 +19,9 @@ ActiveAdmin.register_page "Statistic" do
         @statistic = Statistic.new(@from_date, @to_date, User.where(:id => params['user']))
       else
         @att = :workgroup
-        @statistic = Statistic.new(@from_date, @to_date, User.where.not(:id => 1))
+        users = User.where.not(:id => 1).joins(:workgroups).order(:sign_in_count => :desc)
+        factory = Statistic::ItemFactory.build(users, :sources_size_per_month, Time.now - 1.year)
+        @statistic = Statistic.new(factory)
       end
     end
   end
@@ -44,7 +46,7 @@ ActiveAdmin.register_page "Statistic" do
       render :partial => 'statistics/user_table'
     end
     panel "Table of wokgroups" do
-      render :partial => 'statistics/workgroup_table'
+      #render :partial => 'statistics/workgroup_table'
     end
 
 
