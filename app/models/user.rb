@@ -26,14 +26,19 @@ class User < ActiveRecord::Base
     end
   end
 
-  def sources_size_per_month(from_date, to_date)
+  def self.sources_size_per_month(from_date, to_date, users)
+    result = []
     range = ApplicationHelper.month_distance(from_date, to_date)
-    s = Sunspot.search(User) { with(:id, id) }
-    res = []
-    range.each do |index|
-      res << s.hits.first.stored(:src_size, index.to_s)
+    users.each do |user|
+      s = Sunspot.search(User) { with(:id, user.id) }
+      res = ActiveSupport::OrderedHash.new
+      range.each do |index|
+        key =  (Time.now + index.month).strftime("%Y-%m")
+        res[key] = s.hits.first.stored(:src_size, index.to_s)
+      end
+      result << {user => res}
     end
-    return res
+    return result
   end
 
   def can_edit?(source)
@@ -68,6 +73,10 @@ class User < ActiveRecord::Base
     self.workgroups.map {|ins| ins.name}
   end
   
+  def workgroup
+    get_workgroups.join(", ")
+  end
+
   def get_roles
     self.roles.map {|r| r.name}
   end

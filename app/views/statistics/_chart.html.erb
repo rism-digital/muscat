@@ -1,4 +1,4 @@
-<% chart = @statistic.group_by(:all) %>
+<% chart = @statistic.to_chart %>
 <% dta = {labels: @statistic.header,
        datasets: [   {
       label: "Monthly",
@@ -12,9 +12,9 @@
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba(220,220,220,1)",
-      data: chart.values.first},  ] }
+      data: chart.values},  ] }
 %>
-<div style="margin-left: 50px; margin-right: auto">
+<div style="margin-right: auto">
   <canvas id="chart" />
 </div>
 

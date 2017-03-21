@@ -1,16 +1,17 @@
-div :id => "wo_table" do
-table_for result.sort.reverse do
-  column "Month" do |t|
-    (Time.now + t[0].month).strftime("%Y-%m")
-  end
+collection = statistic.to_table(:name, :group_by => :workgroup, :columns => [], :summarize => true, :order => 1)
 
-  column "Size" do |t|
-    t[1]
-  end
-end
-
-    div do
-      link_to("Download as CSV/Excel", "#", :class => "csv_export", :datatable => "wo_table", :style =>  style="float: right;")
+div class: "srutable_wrapper" do
+  div id: "workgroup_statistic", class: "srutable_scroll" do
+    table_for(collection[1..-1]) do |t|
+      collection.each_with_index do |e, index|
+        label = collection[0][index]
+        t.column(label) {|w| w[index]} 
+      end
     end
-
+  end
 end
+
+div do
+  link_to("Download as CSV/Excel", "#", class: "csv_export", datatable: "workgroup_statistic", style: "float: right;")
+end
+

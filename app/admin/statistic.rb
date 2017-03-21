@@ -10,32 +10,43 @@ ActiveAdmin.register_page "Statistic" do
   controller do
     def index
       @from_date, @to_date = Time.now - 12.month, Time.now
-      @statistic = Statistic.new(@from_date, @to_date, Workgroup.first.users)
+      if params['workgroup']
+        @att = :name
+        @workgroup = Workgroup.where(:name => params['workgroup']).take
+        @statistic = Statistic.new(@from_date, @to_date, @workgroup.users)
+      elsif params['user']
+        @att = :name
+        @statistic = Statistic.new(@from_date, @to_date, User.where(:id => params['user']))
+      else
+        @att = :workgroup
+        @statistic = Statistic.new(@from_date, @to_date, User.where.not(:id => 1))
+      end
     end
   end
 
   content do
 
-    panel "Graph of workgroup #{}" do
-      render :partial => 'statistics/chart'
+    columns do 
+      column do 
+        panel "Chart", style: "width: 800px; margin-bottom: 20px" do
+          render :partial => 'statistics/chart'
+        end
+      end
+      column do
+        panel "Most active", style: "margin-left: auto; width: 350px" do
+          render :partial => 'statistics/workgroups_pie'
+        end
+      end
     end
+
 
     panel "Table of users" do
       render :partial => 'statistics/user_table'
     end
-
-    columns do 
-      column do 
-        panel "Table" do
-          #render :partial => 'statistics/workgroup_table'
-        end
-      end
-      column do
-        panel "Most active workgroups #{}" do
-          render :partial => 'statistics/pie'
-        end
-      end
-
+    panel "Table of wokgroups" do
+      render :partial => 'statistics/workgroup_table'
     end
+
+
   end
 end

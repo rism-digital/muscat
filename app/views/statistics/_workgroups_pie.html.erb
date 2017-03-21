@@ -1,4 +1,4 @@
-<% pie = @statistic.to_pie(:name, 5) %>
+<% pie = @statistic.to_pie(@att, :limit => 5) %>
 <% dta = {labels: pie.keys,
        datasets: [   {
       label: "Monthly",
@@ -27,8 +27,8 @@
       pointHighlightStroke: "rgba(220,220,220,1)",
       data: pie.values},  ] }
 %>
-<div style="margin-left: 50px; margin-right: auto">
-  <canvas id="pie" height="444" width="400"/>
+<div style="margin-right: auto">
+  <canvas id="pie"/>
 </div>
 
 <%= javascript_tag do %>

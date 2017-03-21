@@ -81,6 +81,16 @@ body.active_admin {
     background-color: lighten($primary-color, 20%)
 }
 
+.srutable_wrapper {
+  position:relative;
+}
+
+.srutable_scroll {
+  height:400px;
+  overflow:auto;  
+  //margin-top:20px;
+}
+
 .srutable {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
