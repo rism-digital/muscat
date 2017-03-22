@@ -127,7 +127,7 @@ module ApplicationHelper
   # Calculate the month distance between two dates for the statistics
   def self.month_distance(from_date, to_date)
     raise ArgumentError, "from date > to_date" if from_date > to_date
-    target = (to_date.year * 12 + to_date.month) - (Time.now.year * 12 + Time.now.month)
+    target = (to_date.year * 12 + to_date.month) - (Time.now.localtime.year * 12 + Time.now.localtime.month)
     start = (from_date.year * 12 + from_date.month) - (to_date.year * 12 + to_date.month)
     (start..target)
   end

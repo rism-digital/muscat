@@ -1,5 +1,8 @@
 ActiveAdmin.register_page "Statistic" do
 
+  # FIXME right management
+  menu :parent => "admin_menu", :label => "Statistics"
+
   sidebar :search do
     form :class =>'filer_form' do |f|
       f.input :end_date, :class => 'datepicker hasDatePicker'
@@ -19,9 +22,10 @@ ActiveAdmin.register_page "Statistic" do
         @statistic = Statistic.new(@from_date, @to_date, User.where(:id => params['user']))
       else
         @att = :workgroup
-        users = User.where.not(:id => 1).joins(:workgroups).order(:sign_in_count => :desc)
-        factory = Statistic::ItemFactory.build(users, :sources_size_per_month, Time.now - 1.year)
-        @statistic = Statistic.new(factory)
+        users = User.where.not(:id => 1).joins(:workgroups).order('workgroups.name', :name)
+        #users = User.where(:id => 28)
+        stats = Statistic::User.sources_by_month((Time.now-1.year).beginning_of_month, Time.now, users)
+        @statistic = Statistic::Factory.new(stats)
       end
     end
   end
@@ -45,9 +49,9 @@ ActiveAdmin.register_page "Statistic" do
     panel "Table of users" do
       render :partial => 'statistics/user_table'
     end
-    panel "Table of wokgroups" do
+    #panel "Table of wokgroups" do
       #render :partial => 'statistics/workgroup_table'
-    end
+    #end
 
 
   end

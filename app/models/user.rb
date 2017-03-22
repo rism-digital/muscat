@@ -20,42 +20,8 @@ class User < ActiveRecord::Base
   searchable :auto_index => false do
     integer :id
     text :name
-    dynamic_integer :src_size, stored: true do
-      result = {}
-      ApplicationHelper.month_distance(Time.parse("2006-01-01"), Time.now).each do |index|
-        date = Time.now.beginning_of_month + index.month
-        result.merge!({ index  => sources.where(:created_at => (date .. date.end_of_month)).count})
-      end
-      result
-    end
   end
 
-  def sources_size_per_month(from_date, to_date=Time.now)
-    range = ApplicationHelper.month_distance(from_date, to_date)
-    s = Sunspot.search(User) { with(:id, id) }
-    res = ActiveSupport::OrderedHash.new
-    range.each do |index|
-      key =  (Time.now + index.month).strftime("%Y-%m")
-      res[key] = s.hits.first.stored(:src_size, index.to_s)
-    end
-    return res
-  end
-
-
-  def self.sources_size_per_month(from_date, to_date, users)
-    result = []
-    range = ApplicationHelper.month_distance(from_date, to_date)
-    users.each do |user|
-      s = Sunspot.search(User) { with(:id, user.id) }
-      res = ActiveSupport::OrderedHash.new
-      range.each do |index|
-        key =  (Time.now + index.month).strftime("%Y-%m")
-        res[key] = s.hits.first.stored(:src_size, index.to_s)
-      end
-      result << {user => res}
-    end
-    return result
-  end
 
   def can_edit?(source)
     if source.child_sources.count > 0
