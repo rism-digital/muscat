@@ -198,7 +198,6 @@ ActiveAdmin.register Person do
   
   sidebar :libraries, :only => :show do
     render :partial => "people/library_pie"
-    
   end
   
 

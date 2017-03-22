@@ -1,6 +1,6 @@
-collection = statistic.to_table :attributes => [:name, :workgroup], :summarize => true
+collection = statistic.to_table :attributes => [:id, :name, :workgroup], :summarize => true
 
-div class: "srutable_wrapper" do
+div class: "srutable_wrapper tab-content" do
   div id: "user_statistic", class: "srutable_scroll" do
     table_for(collection[1..-1]) do |t|
       collection.each_with_index do |e, index|

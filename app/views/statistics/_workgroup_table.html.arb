@@ -1,6 +1,9 @@
-collection = statistic.to_table :attributes => [:name, :workgroup], :summarize => true
+workgroups = Statistic::Workgroup.sources_by_month((Time.now-1.year).beginning_of_month, Time.now, Workgroup.all.order(:name))
+stat = Statistic::Factory.new(workgroups)
 
-div class: "srutable_wrapper" do
+collection = stat.to_table :attributes => [:id,:name], :summarize => true
+
+div class: "srutable_wrapper tab-content" do
   div id: "workgroup_statistic", class: "srutable_scroll" do
     table_for(collection[1..-1]) do |t|
       collection.each_with_index do |e, index|

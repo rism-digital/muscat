@@ -1,5 +1,6 @@
 module Statistic
   class Person
+    #Returns hash of person => {siglum => count}
     def self.libraries(people)
       res = ActiveSupport::OrderedHash.new
       people.each do |person|

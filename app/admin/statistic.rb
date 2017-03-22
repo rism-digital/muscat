@@ -3,11 +3,14 @@ ActiveAdmin.register_page "Statistic" do
   # FIXME right management
   menu :parent => "admin_menu", :label => "Statistics"
 
-  sidebar :search do
-    form :class =>'filer_form' do |f|
-      f.input :end_date, :class => 'datepicker hasDatePicker'
-      f.button :submit, :class => 'buttons' 
+  sidebar :info do
+    h4 do
+      "This page contains statistical information."
     end
+    #form :class =>'filer_form' do |f|
+    #  f.input :end_date, :class => 'datepicker hasDatePicker'
+    #  f.button :submit, :class => 'buttons' 
+    #end
   end
 
   controller do
@@ -45,14 +48,25 @@ ActiveAdmin.register_page "Statistic" do
       end
     end
 
+    panel :Tables do
+      tabs do
+        tab "User table" do
+          render :partial => 'statistics/user_table'
+        end
+        tab "Workgroup table" do
+          render :partial => 'statistics/workgroup_table'
 
-    panel "Table of users" do
-      render :partial => 'statistics/user_table'
+        end
+      end
     end
-    #panel "Table of wokgroups" do
-      #render :partial => 'statistics/workgroup_table'
-    #end
 
+    #panel "Table of users" do
+    #  render :partial => 'statistics/user_table'
+    #end
+    
+    #panel "Table of workgroups" do
+    #  render :partial => 'statistics/workgroup_table'
+    #end
 
   end
 end
