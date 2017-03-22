@@ -1,7 +1,5 @@
-<% x = Statistic::ItemFactory.build([@item], :statistic_search)  %>
-<% pie = Statistic.new(x).to_chart %>
-
-<% puts pie %>
+<% s = Statistic::Person.libraries([@item]) %>
+<% pie = Statistic::Factory.new(s).to_chart %>
 
 <% dta = {labels: pie.keys,
        datasets: [   {

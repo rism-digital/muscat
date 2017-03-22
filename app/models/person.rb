@@ -296,24 +296,6 @@ class Person < ActiveRecord::Base
     return full_name
   end
   
-  def statistic_search
-    res = ActiveSupport::OrderedHash.new
-    s = Sunspot.search(Source) do
-      with(:composer_order, name)
-      facet(:lib_siglum_order)
-    end
-    s.facet(:lib_siglum_order).rows[0..4].each do |f|
-      if f.value.blank?
-        res['Print'] = f.count
-      else
-        res[f.value] = f.count
-      end
-    end
-    return res
-  end
-
-
-  
   def autocomplete_label
     "#{full_name}" + (life_dates && !life_dates.empty? ? "  - #{life_dates}" : "")
   end
