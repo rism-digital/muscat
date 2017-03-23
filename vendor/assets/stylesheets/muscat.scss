@@ -83,6 +83,9 @@ body.active_admin {
 
 .srutable_wrapper {
   position:relative;
+  border: 1px;
+  border-style: inset;
+  border-color: #dadad8;
 }
 
 .srutable_scroll {
@@ -94,13 +97,11 @@ body.active_admin {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-
 }
 
 .srutable td, .srutable th {
   border: 0px solid #ddd;
   padding: 8px;
-
 }
 
 .srutable tr:nth-child(even){background-color: #f2f2f2;}
@@ -111,7 +112,6 @@ body.active_admin {
   padding-top: 2px;
   padding-bottom: 2px;
   text-align: left;
-  //font-size: 10px;
   background-color: $primary-color;
   color: white;
 }
@@ -121,7 +121,7 @@ body.active_admin {
 }
 //HACK to improve the css obf tabs which is hardcoded in AA
 .tab-content {
-  border: 0px solid #D3D3D3;
+  border: 1px solid #dadad8;
   padding: 0px;
   padding-top: 0px;
 }
@@ -132,8 +132,5 @@ body.active_admin {
   padding: 5px;
 }
 .ui-widget-content {
-    border: 0px
+  border: 0px
 }
-
-
-

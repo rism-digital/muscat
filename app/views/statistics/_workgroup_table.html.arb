@@ -3,7 +3,7 @@ stat = Statistic::Factory.new(workgroups)
 
 collection = stat.to_table :attributes => [:id,:name], :summarize => true
 
-div class: "srutable_wrapper tab-content" do
+div class: "srutable_wrapper" do
   div id: "workgroup_statistic", class: "srutable_scroll" do
     table_for(collection[1..-1], class: "srutable") do |t|
       collection[1].each_with_index do |e, index|
