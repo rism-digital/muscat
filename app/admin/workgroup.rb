@@ -68,9 +68,6 @@ ActiveAdmin.register Workgroup do
     selectable_column
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
-    column (I18n.t :filter_sources) do |workgroup|
-      workgroup.sources_by_range(Time.now - 1.month, Time.now)
-    end
     column (I18n.t :filter_pattern), :libpatterns
     column I18n.t(:filter_connected_libraries), :workgroups do |wg|
              wg.show_libs.html_safe

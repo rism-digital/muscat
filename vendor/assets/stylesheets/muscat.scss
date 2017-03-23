@@ -86,9 +86,8 @@ body.active_admin {
 }
 
 .srutable_scroll {
-  height:400px;
+  height:640px;
   overflow:auto;  
-  //margin-top:20px;
 }
 
 .srutable {
@@ -99,7 +98,7 @@ body.active_admin {
 }
 
 .srutable td, .srutable th {
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   padding: 8px;
 
 }
@@ -109,9 +108,32 @@ body.active_admin {
 .srutable tr:hover {background-color: #ddd;}
 
 .srutable th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   text-align: left;
+  //font-size: 10px;
   background-color: $primary-color;
   color: white;
 }
+.srutable_download{
+  padding: 10px;
+  margin-bottom: 10px;
+}
+//HACK to improve the css obf tabs which is hardcoded in AA
+.tab-content {
+  border: 0px solid #D3D3D3;
+  padding: 0px;
+  padding-top: 0px;
+}
+.ui-tabs .ui-tabs-panel {
+  border-width: 0;
+  padding: 1em 0em;
+  background-color: #e6e6e6;
+  padding: 5px;
+}
+.ui-widget-content {
+    border: 0px
+}
+
+
+

@@ -1,0 +1,27 @@
+//This is only used in the statistics page for displaying multiple tables
+.ui-tabs .ui-tabs-panel {
+  border-width: 0;
+  padding: 1em 0em;
+  background-color: #e6e6e6;
+}
+.ui-tabs-nav li:first-child a {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.ui-tabs-nav li:last-child a {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.ui-widget-header {
+  border: 0px solid #aaaaaa;
+  color: #222222;
+  background: #e6e6e6;
+  font-weight: bold;
+
+}
+.ui-tabs-nav {
+  overflow: hidden;
+}
+
+
