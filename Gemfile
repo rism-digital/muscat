@@ -119,6 +119,7 @@ gem 'colorize'
 
 gem "rspec"
 gem 'rspec-rails', '~> 3.5'
+gem 'factory_girl_rails'
 gem 'poltergeist', "1.11.0"
 
 gem 'exception_notification'
