@@ -17,7 +17,11 @@ module Statistic
         next unless institution
         result[institution] = {k => v} if sigla.include?(k)
       end
-      return result
+      if !result.empty?
+        return result
+      else
+        return {::Institution.find(5) => {"ZERO" => 0}}
+      end
     end
   end
 end
