@@ -1,4 +1,4 @@
-workgroups = Statistic::Workgroup.sources_by_month((Time.now-1.year).beginning_of_month, Time.now, Workgroup.all.order(:name))
+workgroups = Statistic::Workgroup.sources_by_month(from_date, to_date, Workgroup.all.order(:name))
 stat = Statistic::Factory.new(workgroups)
 
 collection = stat.to_table :attributes => [:id,:name], :summarize => true

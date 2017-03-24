@@ -10,16 +10,15 @@ module Statistic
           with(:wf_owner, user.id)
           facet(:created_at, :zeros => true) do
             time_range.each do |distance|
-              start_time = from_date.localtime - distance.month
-              end_time = start_time + 1.month
-              row start_time.strftime("%Y-%m") do
-                with :created_at, start_time..end_time
+              start_time = Time.now.beginning_of_month + distance.month
+              row start_time.localtime.strftime("%Y-%m") do
+                with :created_at, start_time..start_time.end_of_month
               end
             end
           end
         end
         line = ActiveSupport::OrderedHash.new
-        s.facet(:created_at).rows.reverse.each do |r|
+        s.facet(:created_at).rows.each do |r|
           line[r.value] = r.count
         end   
         result[user] = line
