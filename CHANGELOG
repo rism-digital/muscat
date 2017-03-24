@@ -2,6 +2,8 @@ Muscat Changelog
 ================
 
 v3.6.8
+* Fix view helper for source when composer or std_title are nil
+* Check for existence of lnked elements in bk reindex job, this prevents it crashing
 * Add validation failure notification
 * Add offline record validation
 * Added SRU interface
