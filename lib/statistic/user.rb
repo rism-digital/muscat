@@ -5,7 +5,7 @@ module Statistic
       result = ActiveSupport::OrderedHash.new
       time_range = ApplicationHelper.month_distance(from_date, to_date)
       users.each do |user|
-        s = Sunspot.search(Source) do
+        s = Sunspot.search(::Source) do
           with(:created_at, from_date..to_date)
           with(:wf_owner, user.id)
           facet(:created_at, :zeros => true) do

@@ -80,7 +80,10 @@ ActiveAdmin.register_page "Statistic" do
        tab "Sigla" do
           render :partial => 'statistics/sigla_pie'
        end
+       tab "Overall Publishing/Unpublishing" do
+          render :partial => 'statistics/status_bar'
+       end
      end
    end
-   end
+  end
 end

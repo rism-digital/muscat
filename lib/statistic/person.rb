@@ -4,7 +4,7 @@ module Statistic
     def self.libraries(people)
       res = ActiveSupport::OrderedHash.new
       people.each do |person|
-        s = Sunspot.search(Source) do
+        s = Sunspot.search(::Source) do
           with(:composer_order, person.full_name)
           facet(:lib_siglum_order)
         end

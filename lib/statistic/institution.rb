@@ -3,7 +3,7 @@ module Statistic
     #Returns hash of institution => {siglum => count}
     def self.sources_per_date(from_date, to_date, institutions)
       result = ActiveSupport::OrderedHash.new
-      s = Sunspot.search(Source) do
+      s = Sunspot.search(::Source) do
         with(:created_at, from_date..to_date)
         facet(:lib_siglum_order, :limit => -1, :minimum_count => 10)
       end
