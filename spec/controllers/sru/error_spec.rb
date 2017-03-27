@@ -1,4 +1,4 @@
-describe SruController, :type => :controller do
+RSpec.describe SruController, :type => :controller do
   render_views
   context "MaximumRecords should be limited to 100"
   it "returns the error page with limitiation" do

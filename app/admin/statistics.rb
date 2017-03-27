@@ -4,7 +4,7 @@ ActiveAdmin.register_page "Statistics" do
   menu :parent => "admin_menu", :label => "Statistics"
   
   page_action :index, :method => :post do
-      redirect_to :action => :index, :notice => "Locked!"
+      redirect_to :action => :index
   end
   
   sidebar :search do
@@ -48,7 +48,6 @@ ActiveAdmin.register_page "Statistics" do
   end
 
   content do
-
     columns do 
       column do 
         panel "Chart", style: "width: 130%; margin-bottom: 20px" do

@@ -28,9 +28,9 @@ ActiveAdmin.register User do
          user.get_roles.join(", ")
     end
     column :created_at
-    column (I18n.t :filter_sources) do |user|
-      user.sources_size_per_month(Time.now - 1.month, Time.now)
-    end
+    #column (I18n.t :filter_sources) do |user|
+    #  user.sources_size_per_month(Time.now - 1.month, Time.now)
+    #end
 
     column :active do |user|
       user.active? ? status_tag( "yes", :ok  ) : status_tag( "no"  )

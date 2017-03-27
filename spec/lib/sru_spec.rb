@@ -1,4 +1,4 @@
-describe Sru::Query do
+RSpec.describe Sru::Query do
  
   describe "Return all records" do
     context "Simple fulltext search with astersik" do

@@ -1,4 +1,4 @@
-describe Institution do
+RSpec.describe Institution do
 
   describe "#update_workgroups" do
     context "update workgroups should trigger update workgroups after creating new institution with siglum" do
