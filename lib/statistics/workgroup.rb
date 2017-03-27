@@ -1,11 +1,11 @@
-module Statistic
+module Statistics
   class Workgroup
     # sources_workgroups are not indexed ar the moment
     def self.sources_by_month(from_date, to_date, workgroups)
       res = ActiveSupport::OrderedHash.new
       workgroups.each do |wg|
         #FIXME from_date etc are as UTC!
-        s = Statistic::User.sources_by_month(from_date.localtime, to_date.localtime, wg.users)
+        s = Statistics::User.sources_by_month(from_date.localtime, to_date.localtime, wg.users)
         line = ActiveSupport::OrderedHash.new(0)
         s.values.each do |value|
           value.each do |k,v|

@@ -1,4 +1,4 @@
-module Statistic
+module Statistics
   class Person
     #Returns hash of person => {siglum => count}
     def self.libraries(people)

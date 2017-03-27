@@ -1,4 +1,4 @@
-module Statistic
+module Statistics
   class Institution
     #Returns hash of institution => {siglum => count}
     def self.sources_per_date(from_date, to_date, institutions)

@@ -1,5 +1,5 @@
-<% s = Statistic::Source.sources_per_wf_stage(@from_date, @to_date) %>
-<% f = Statistic::Factory.new(s)%>
+<% s = Statistics::Source.sources_per_wf_stage(@from_date, @to_date) %>
+<% f = Statistics::Spreadsheet.new(s)%>
 <% res = {}
    f.objects.each do |item|
     res[item.object] = item.row.values

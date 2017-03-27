@@ -3,8 +3,8 @@
  <% else %>
     <% sigla = Institution.where.not(:siglum => nil)  %>
 <%end%>
-<% s = Statistic::Institution.sources_per_date(@from_date, @to_date, sigla) %>
-<% f = Statistic::Factory.new(s)%>
+<% s = Statistics::Institution.sources_per_date(@from_date, @to_date, sigla) %>
+<% f = Statistics::Spreadsheet.new(s)%>
 <% pie = f.to_pie(:siglum, :limit => 12) %>
 <% dta = {labels: pie.keys,
        datasets: [   {

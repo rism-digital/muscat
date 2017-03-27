@@ -1,4 +1,4 @@
-ActiveAdmin.register_page "Statistic" do
+ActiveAdmin.register_page "Statistics" do
 
   # FIXME right management
   menu :parent => "admin_menu", :label => "Statistics"
@@ -8,7 +8,7 @@ ActiveAdmin.register_page "Statistic" do
   end
   
   sidebar :search do
-    active_admin_form_for :search, :url => admin_statistic_index_path do |f|
+    active_admin_form_for :search, :url => admin_statistics_index_path do |f|
       f.input :from_date, :label => "From:", :as => :datepicker, :input_html => {:style => 'width: 90%' }
       f.input :to_date, :label => "To:", :as => :datepicker, :input_html => {:style => 'width: 90%' }
       div do
@@ -42,8 +42,8 @@ ActiveAdmin.register_page "Statistic" do
         @att = :name
         users = User.where.not(:id => 1).joins(:workgroups).where('workgroups.id' => @workgroup).order('workgroups.name', :name)
       end
-      stats = Statistic::User.sources_by_month(@from_date.beginning_of_month, @to_date, users)
-      @statistic = Statistic::Factory.new(stats)
+      stats = Statistics::User.sources_by_month(@from_date.beginning_of_month, @to_date, users)
+      @statistic = Statistics::Spreadsheet.new(stats)
     end
   end
 

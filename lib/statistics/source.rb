@@ -1,4 +1,4 @@
-module Statistic
+module Statistics
   class Source
     def self.sources_per_wf_stage(from_date, to_date)
       result = ActiveSupport::OrderedHash.new

@@ -1,4 +1,4 @@
-module Statistic
+module Statistics
 
   # The factory class is a helper class to create and reuse statistical data from objects.
   # Main core is an array of ordered objects with key-value pairs in a hash. 
@@ -6,7 +6,7 @@ module Statistic
   # The to_* classes returning objects for partial views.
   # The to_chart and to_pie method builds objects ready to use in chart.js
   # The to_table object return an array of rows, where the first is the header. It can be used in ActiveAdmin table_for builder.
-  class Factory
+  class Spreadsheet
 
     class Item
       attr_accessor :object, :row
