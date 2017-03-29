@@ -10,12 +10,30 @@ FactoryGirl.define do
     roles { [ FactoryGirl.create(:admin_role) ] }
   end
 
+  factory :cataloger_user, :parent => :user do
+    roles { [ FactoryGirl.create(:cataloger_role) ] }
+  end
+  
+  factory :editor_user, :parent => :user do
+    roles { [ FactoryGirl.create(:editor_role) ] }
+  end
+
   factory :role do
     name { "Role_#{rand(9999)}"  }
   end
 
   factory :admin_role, :parent => :role do
-    name "Admin"
+    name "admin"
   end
+
+  factory :cataloger_role, :parent => :role do
+    name "cataloger"
+  end
+
+  factory :editor_role, :parent => :role do
+    name "editor"
+  end
+
+
 
 end
