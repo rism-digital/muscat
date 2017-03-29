@@ -19,7 +19,7 @@ FactoryGirl.define do
   end
 
   factory :role do
-    name { "Role_#{rand(9999)}"  }
+    name        { "Role_#{rand(9999)}"  }
   end
 
   factory :admin_role, :parent => :role do
@@ -33,7 +33,5 @@ FactoryGirl.define do
   factory :editor_role, :parent => :role do
     name "editor"
   end
-
-
 
 end

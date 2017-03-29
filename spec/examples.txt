@@ -1,23 +1,23 @@
-example_id                                        | status  | run_time             |
-------------------------------------------------- | ------- | -------------------- |
-./spec/controllers/sru/error_spec.rb[1:2]         | passed  | 0.01111 seconds      |
-./spec/controllers/sru/explain_spec.rb[1:2]       | passed  | 0.07596 seconds      |
-./spec/lib/sru_spec.rb[1:1:1:1]                   | passed  | 0.00427 seconds      |
-./spec/lib/sru_spec.rb[1:2:1:1]                   | passed  | 0.01237 seconds      |
-./spec/lib/sru_spec.rb[1:3:1:1]                   | passed  | 0.00654 seconds      |
-./spec/lib/sru_spec.rb[1:4:1:1]                   | passed  | 0.00597 seconds      |
-./spec/lib/sru_spec.rb[1:5:1:1]                   | passed  | 0.01469 seconds      |
-./spec/lib/sru_spec.rb[1:6:1:1]                   | passed  | 0.00949 seconds      |
-./spec/lib/sru_spec.rb[1:7:1:1]                   | passed  | 0.00885 seconds      |
-./spec/lib/sru_spec.rb[1:8:1:1]                   | passed  | 0.02498 seconds      |
-./spec/lib/sru_spec.rb[1:9:1:1]                   | passed  | 0.01711 seconds      |
-./spec/lib/sru_spec.rb[1:10:1:1]                  | passed  | 0.00892 seconds      |
-./spec/lib/sru_spec.rb[1:11:1:1]                  | passed  | 0.00793 seconds      |
-./spec/lib/sru_spec.rb[1:12:1:1]                  | passed  | 0.05308 seconds      |
-./spec/lib/sru_spec.rb[1:13:1]                    | pending | 0.00001 seconds      |
-./spec/mailers/admin_notifications_spec.rb[1:1]   | pending | 0.00002 seconds      |
-./spec/mailers/comment_notifications_spec.rb[1:1] | pending | 0.00001 seconds      |
-./spec/models/institution_spec.rb[1:1:1:1]        | passed  | 0.00079 seconds      |
-./spec/models/workgroup_spec.rb[1:1]              | passed  | 0.27298 seconds      |
-./spec/views/sources_index_spec.rb[1:1:1]         | passed  | 0.43232 seconds      |
-./spec/views/statistics_index_spec.rb[1:1:1]      | passed  | 19 minutes 3 seconds |
+example_id                                         | status  | run_time        |
+-------------------------------------------------- | ------- | --------------- |
+./spec/controllers/sources_index_spec.rb[1:1:1]    | passed  | 0.51636 seconds |
+./spec/controllers/sru_spec.rb[1:1:1]              | passed  | 0.01142 seconds |
+./spec/controllers/sru_spec.rb[1:2:1]              | passed  | 0.41661 seconds |
+./spec/controllers/statistics_index_spec.rb[1:1:1] | passed  | 4.38 seconds    |
+./spec/lib/sru_spec.rb[1:1:1:1]                    | passed  | 0.02377 seconds |
+./spec/lib/sru_spec.rb[1:2:1:1]                    | passed  | 0.01404 seconds |
+./spec/lib/sru_spec.rb[1:3:1:1]                    | passed  | 0.00668 seconds |
+./spec/lib/sru_spec.rb[1:4:1:1]                    | passed  | 0.00824 seconds |
+./spec/lib/sru_spec.rb[1:5:1:1]                    | passed  | 0.00711 seconds |
+./spec/lib/sru_spec.rb[1:6:1:1]                    | passed  | 0.01082 seconds |
+./spec/lib/sru_spec.rb[1:7:1:1]                    | passed  | 0.01114 seconds |
+./spec/lib/sru_spec.rb[1:8:1:1]                    | passed  | 0.0405 seconds  |
+./spec/lib/sru_spec.rb[1:9:1:1]                    | passed  | 0.01264 seconds |
+./spec/lib/sru_spec.rb[1:10:1:1]                   | passed  | 0.00854 seconds |
+./spec/lib/sru_spec.rb[1:11:1:1]                   | passed  | 0.00941 seconds |
+./spec/lib/sru_spec.rb[1:12:1:1]                   | passed  | 0.05933 seconds |
+./spec/lib/sru_spec.rb[1:13:1]                     | pending | 0.00002 seconds |
+./spec/mailers/admin_notifications_spec.rb[1:1]    | pending | 0.00001 seconds |
+./spec/mailers/comment_notifications_spec.rb[1:1]  | pending | 0.00002 seconds |
+./spec/models/institution_spec.rb[1:1:1:1]         | passed  | 0.00077 seconds |
+./spec/models/workgroup_spec.rb[1:1]               | passed  | 0.25814 seconds |
