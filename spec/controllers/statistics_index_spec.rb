@@ -9,7 +9,6 @@ RSpec.describe Admin::StatisticsController, :type => :controller do
   end
     it "read page" do
       get :index
-      binding.pry
       expect(response.body).to have_css ("div#user-table")
     end
   end

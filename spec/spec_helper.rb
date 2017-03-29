@@ -22,4 +22,7 @@ RSpec.configure do |config|
   config.profile_examples = 10
   config.order = :random
   Kernel.srand config.seed
+  config.color = true
+  config.tty = true
+  config.formatter = :documentation
 end
