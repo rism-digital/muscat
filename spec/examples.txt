@@ -1,23 +1,26 @@
-example_id                                         | status  | run_time        |
--------------------------------------------------- | ------- | --------------- |
-./spec/controllers/sources_index_spec.rb[1:1:1]    | passed  | 0.48905 seconds |
-./spec/controllers/sru_spec.rb[1:1:1]              | passed  | 0.03723 seconds |
-./spec/controllers/sru_spec.rb[1:2:1]              | passed  | 0.12089 seconds |
-./spec/controllers/statistics_index_spec.rb[1:1:1] | passed  | 16.72 seconds   |
-./spec/lib/sru_spec.rb[1:1:1:1]                    | passed  | 0.00768 seconds |
-./spec/lib/sru_spec.rb[1:2:1:1]                    | passed  | 0.01893 seconds |
-./spec/lib/sru_spec.rb[1:3:1:1]                    | passed  | 0.02346 seconds |
-./spec/lib/sru_spec.rb[1:4:1:1]                    | passed  | 0.00833 seconds |
-./spec/lib/sru_spec.rb[1:5:1:1]                    | passed  | 0.00937 seconds |
-./spec/lib/sru_spec.rb[1:6:1:1]                    | passed  | 0.01528 seconds |
-./spec/lib/sru_spec.rb[1:7:1:1]                    | passed  | 0.01604 seconds |
-./spec/lib/sru_spec.rb[1:8:1:1]                    | passed  | 0.04416 seconds |
-./spec/lib/sru_spec.rb[1:9:1:1]                    | passed  | 0.02131 seconds |
-./spec/lib/sru_spec.rb[1:10:1:1]                   | passed  | 0.01301 seconds |
-./spec/lib/sru_spec.rb[1:11:1:1]                   | passed  | 0.01421 seconds |
-./spec/lib/sru_spec.rb[1:12:1:1]                   | passed  | 0.06272 seconds |
-./spec/lib/sru_spec.rb[1:13:1]                     | pending | 0.00002 seconds |
-./spec/mailers/admin_notifications_spec.rb[1:1]    | pending | 0.00002 seconds |
-./spec/mailers/comment_notifications_spec.rb[1:1]  | pending | 0.00001 seconds |
-./spec/models/institution_spec.rb[1:1:1:1]         | passed  | 0.00137 seconds |
-./spec/models/workgroup_spec.rb[1:1]               | passed  | 0.24025 seconds |
+example_id                                                 | status  | run_time        |
+---------------------------------------------------------- | ------- | --------------- |
+./spec/controllers/sources_spec.rb[1:1:1]                  | passed  | 1.06 seconds    |
+./spec/controllers/sources_spec.rb[1:2:1]                  | passed  | 3.01 seconds    |
+./spec/controllers/sru_spec.rb[1:1:1]                      | passed  | 0.01759 seconds |
+./spec/controllers/sru_spec.rb[1:2:1]                      | passed  | 0.04064 seconds |
+./spec/controllers/statistics_index_spec.rb[1:1:1]         | passed  | 5.07 seconds    |
+./spec/features/standard_title/standard_title_spec.rb[1:2] | failed  | 6.25 seconds    |
+./spec/features/standard_title/standard_title_spec.rb[1:3] | failed  | 1.56 seconds    |
+./spec/lib/sru_spec.rb[1:1:1:1]                            | passed  | 0.00608 seconds |
+./spec/lib/sru_spec.rb[1:2:1:1]                            | passed  | 0.01494 seconds |
+./spec/lib/sru_spec.rb[1:3:1:1]                            | passed  | 0.00787 seconds |
+./spec/lib/sru_spec.rb[1:4:1:1]                            | passed  | 0.0089 seconds  |
+./spec/lib/sru_spec.rb[1:5:1:1]                            | passed  | 0.00775 seconds |
+./spec/lib/sru_spec.rb[1:6:1:1]                            | passed  | 0.01269 seconds |
+./spec/lib/sru_spec.rb[1:7:1:1]                            | passed  | 0.07197 seconds |
+./spec/lib/sru_spec.rb[1:8:1:1]                            | passed  | 0.0288 seconds  |
+./spec/lib/sru_spec.rb[1:9:1:1]                            | passed  | 0.01465 seconds |
+./spec/lib/sru_spec.rb[1:10:1:1]                           | passed  | 0.01065 seconds |
+./spec/lib/sru_spec.rb[1:11:1:1]                           | passed  | 0.02216 seconds |
+./spec/lib/sru_spec.rb[1:12:1:1]                           | passed  | 0.06108 seconds |
+./spec/lib/sru_spec.rb[1:13:1]                             | pending | 0.00002 seconds |
+./spec/mailers/admin_notifications_spec.rb[1:1]            | pending | 0.00001 seconds |
+./spec/mailers/comment_notifications_spec.rb[1:1]          | pending | 0.00001 seconds |
+./spec/models/institution_spec.rb[1:1:1:1]                 | passed  | 0.00125 seconds |
+./spec/models/workgroup_spec.rb[1:1]                       | passed  | 0.29169 seconds |

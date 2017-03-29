@@ -6,15 +6,15 @@ FactoryGirl.define do
     password_confirmation "password"
   end
 
-  factory :admin_user, :parent => :user do
+  factory :admin, :parent => :user do
     roles { [ FactoryGirl.create(:admin_role) ] }
   end
 
-  factory :cataloger_user, :parent => :user do
+  factory :cataloger, :parent => :user do
     roles { [ FactoryGirl.create(:cataloger_role) ] }
   end
   
-  factory :editor_user, :parent => :user do
+  factory :editor, :parent => :user do
     roles { [ FactoryGirl.create(:editor_role) ] }
   end
 
