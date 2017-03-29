@@ -126,6 +126,8 @@ Source.all.each do |sa|
   
   
   # #207 Move 563 to 500
+  # FIXME see #351
+=begin
   marc.each_by_tag("563") do |t|
 
     node = t.deep_copy
@@ -136,7 +138,16 @@ Source.all.each do |sa|
     
     t.destroy_yourself
   end
-  
+=end
+
+  # #351 - instead of @207
+  # Set them to the material group 01
+  # It will have a special table to override where necessary
+  marc.each_by_tag("563") do |t|
+    t.add_at(MarcNode.new("source", "8", "01", nil), 0)
+    t.sort_alphabetically
+  end
+
   # #192 move 594 to 598
   marc.each_by_tag("594") do |t|
 
