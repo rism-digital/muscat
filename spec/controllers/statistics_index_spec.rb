@@ -4,7 +4,7 @@ RSpec.describe Admin::StatisticsController, :type => :controller do
   render_views
   describe "GET index" do
   before(:each) do
-    @user = FactoryGirl.create(:admin_user)
+    @user = FactoryGirl.create(:admin)
     sign_in @user
   end
     it "read page" do
