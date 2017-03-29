@@ -20,8 +20,8 @@ RSpec.describe "StandardTitle", :type => :feature, :js => true do
     existent_title = FactoryGirl.create(:standard_title)
     new_title = "new title"
     visit edit_admin_standard_title_path(existent_title)
-    #fill_in('standard_title_title', :with => new_title)
-    page.save_screenshot('public/pg.png', :full => true)
+    fill_in('standard_title_title', :with => new_title)
+    #page.save_screenshot('public/pg.png', :full => true)
     expect(find('#standard_title_title').value).to be == new_title
   end
 
