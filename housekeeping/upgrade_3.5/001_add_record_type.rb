@@ -2,6 +2,8 @@ require 'progress_bar'
 
 pb = ProgressBar.new(Source.all.count)
 
+preserve508 = YAML::load(File.read("housekeeping/upgrade_3.5/508_conversion.yml"))
+
 Source.all.each do |sa|
   
   s = Source.find(sa.id)
@@ -160,6 +162,28 @@ Source.all.each do |sa|
     t.destroy_yourself
   end
   
+  # 359 - move or delete, 508
+  if preserve508.has_key?(s.id)
+    # Item in the preserve list. Whould 508 be kept?
+    content = preserve508[s.id]
+    marc.each_by_tag("508") do |t|
+      tn = t.fetch_first_by_tag("a")
+      if content.include?(tn.content)
+        # In the list, preserve it
+        node = t.deep_copy
+        node.tag = "500"
+        node.indicator = "##"
+        node.sort_alphabetically
+        marc.root.children.insert(marc.get_insert_position("500"), node)
+      end
+      # Drop the 508
+      t.destroy_yourself
+    end
+  else
+    # Item not in the preserve list. Kill all 508
+    marc.each_by_tag("508") {|t| t.destroy_yourself}
+  end
+
   # #208, drop 600
   marc.each_by_tag("600") {|t| t.destroy_yourself}
   
