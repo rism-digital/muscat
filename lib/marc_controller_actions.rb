@@ -76,7 +76,7 @@ module MarcControllerActions
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       
       # Send the validation notification
-      SourceValidationNotifications.mail_validation(@item).deliver_now if RISM::SEND_VALIDATION_NOTIFICATIONS
+      SourceValidationNotifications.mail_validation(@item).deliver_now if RISM::SEND_VALIDATION_NOTIFICATIONS && @item.is_a?(Source)
       
       # if we arrived here it means nothing crashed
       # Rejoice! and launch the background jobs
