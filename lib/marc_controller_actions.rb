@@ -190,7 +190,13 @@ module MarcControllerActions
     
     dsl.collection_action :marc_editor_version, :method => :post do
       
-      version = PaperTrail::Version.find( params[:version_id] )
+      begin
+        version = PaperTrail::Version.find( params[:version_id] )
+      rescue ActiveRecord::RecordNotFound
+        # Can happen, if people have two windows open
+        redirect_to resource_path(@item), notice: "Selected version does not appear to exist anymore"
+        return
+      end
       @item = version.reify
       
       # Do not resolve external since we might foreign object that might have been deleted since then
@@ -206,8 +212,14 @@ module MarcControllerActions
     
     dsl.collection_action :marc_editor_version_diff, :method => :post do
       
-      version = PaperTrail::Version.find( params[:version_id] )
-
+      begin
+        version = PaperTrail::Version.find( params[:version_id] )
+      rescue ActiveRecord::RecordNotFound
+        # Can happen, if people have two windows open
+        redirect_to resource_path(@item), notice: "Selected version does not appear to exist anymore"
+        return
+      end
+      
       @item = version.item_type.singularize.classify.constantize.new
       @item.marc.load_from_array( VersionChecker.get_diff_with_next( params[:version_id] ) )
       @editor_profile = EditorConfiguration.get_show_layout @item
@@ -228,7 +240,14 @@ module MarcControllerActions
       model = self.resource_class
       @item = model.find(params[:id])
       
-      version = PaperTrail::Version.find( params[:version_id] )
+      begin
+        version = PaperTrail::Version.find( params[:version_id] )
+      rescue ActiveRecord::RecordNotFound
+        # Can happen, if people have two windows open
+        redirect_to resource_path(@item), notice: "Selected version does not appear to exist anymore"
+        return
+      end
+    
       old_item = version.reify
 
       classname = "Marc" + model.to_s
@@ -257,7 +276,13 @@ module MarcControllerActions
     
     dsl.member_action :marc_delete_version, method: :put do
       
-      version = PaperTrail::Version.find( params[:version_id] )
+      begin
+        version = PaperTrail::Version.find( params[:version_id] )
+      rescue ActiveRecord::RecordNotFound
+        # Can happen, if people have two windows open
+        redirect_to resource_path(@item), notice: "Selected version does not appear to exist anymore"
+        return
+      end
       @item = version.reify
       version.delete
       
