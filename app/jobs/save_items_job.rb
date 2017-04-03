@@ -26,8 +26,12 @@ class SaveItemsJob < ProgressJob::Base
     count = 1
     items.each do |i|
       i.paper_trail_event = "auth save"
+      # By the time the job executes, things can get stale
+      next if !i.class.exists?(i.id)
+      # Force a reload of the object
+      reloaded_element = i.class.find(i.id)
       # let the job crash in case
-      i.save
+      reloaded_element.save
       update_stage_progress("Saving record #{count}/#{items.count}", step: 1)
       count += 1
     end
