@@ -194,7 +194,7 @@ module MarcControllerActions
         version = PaperTrail::Version.find( params[:version_id] )
       rescue ActiveRecord::RecordNotFound
         # Can happen, if people have two windows open
-        redirect_to resource_path(@item), notice: "Selected version does not appear to exist anymore"
+        redirect_to admin_root_path, :flash => { :error => "Selected version does not appear to exist anymore" }
         return
       end
       @item = version.reify
@@ -216,7 +216,7 @@ module MarcControllerActions
         version = PaperTrail::Version.find( params[:version_id] )
       rescue ActiveRecord::RecordNotFound
         # Can happen, if people have two windows open
-        redirect_to resource_path(@item), notice: "Selected version does not appear to exist anymore"
+        redirect_to admin_root_path, :flash => { :error => "Selected version does not appear to exist anymore" }
         return
       end
       
@@ -244,7 +244,7 @@ module MarcControllerActions
         version = PaperTrail::Version.find( params[:version_id] )
       rescue ActiveRecord::RecordNotFound
         # Can happen, if people have two windows open
-        redirect_to resource_path(@item), notice: "Selected version does not appear to exist anymore"
+        redirect_to admin_root_path, :flash => { :error => "Selected version does not appear to exist anymore" }
         return
       end
     
@@ -280,7 +280,7 @@ module MarcControllerActions
         version = PaperTrail::Version.find( params[:version_id] )
       rescue ActiveRecord::RecordNotFound
         # Can happen, if people have two windows open
-        redirect_to resource_path(@item), notice: "Selected version does not appear to exist anymore"
+        redirect_to admin_root_path, :flash => { :error => "Selected version does not appear to exist anymore" }
         return
       end
       @item = version.reify
