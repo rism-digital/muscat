@@ -42,6 +42,8 @@ end
 pb = ProgressBar.new(Source.all.count)
 
 preserve508 = YAML::load(File.read("housekeeping/upgrade_3.5/508_conversion.yml"))
+move505 = YAML::load(File.read("housekeeping/upgrade_3.5/505-520_conversion.yml"))
+
 
 Source.all.each do |sa|
   
@@ -149,11 +151,14 @@ Source.all.each do |sa|
     
     next if !(ta && ta.content)
     
+    next if !move505.include?(ta.content)
+    #puts "#{s.id} moved 505"
+    
     new_520 = MarcNode.new("source", "520", "", "##")
     new_520.add_at(MarcNode.new("source", "a", ta.content, nil), 0)
     new_520.sort_alphabetically
 
-    marc.root.children.insert(marc.get_insert_position("500"), new_520)
+    marc.root.children.insert(marc.get_insert_position("520"), new_520)
     
     #adios
     t.destroy_yourself
