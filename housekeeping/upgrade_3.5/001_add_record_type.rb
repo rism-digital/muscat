@@ -1,5 +1,44 @@
 require 'progress_bar'
 
+def parse_240n(s)
+  catalog = ""
+  opus = ""
+
+  if s.downcase.include?("op.")
+    if s.downcase.start_with?("op")
+      # we have only an opus nr
+      opus = s.strip
+    else
+      # try to split it
+      if s.downcase.include?(",")
+        parts = s.split(",")
+        if parts.count == 2
+      
+          if parts[1].downcase.include?("op.")
+            # Assume part 0 is the catalogue
+            catalog = parts[0].strip
+            opus = parts[1].strip
+          else
+            $stderr.puts "OP not in part 1 #{s}"
+          end
+      
+        else
+          $stderr. puts "Too many \",\": #{s}"
+        end
+      else
+        $stderr.puts "String contains op, but not after comma: #{s}"
+      end
+    end
+
+  else
+    catalog = s.strip
+  end
+
+  #puts "#{s.strip} \t #{opus} \t #{catalog}"
+  
+  return opus
+end
+
 pb = ProgressBar.new(Source.all.count)
 
 preserve508 = YAML::load(File.read("housekeeping/upgrade_3.5/508_conversion.yml"))
@@ -39,13 +78,16 @@ Source.all.each do |sa|
   end
   
   #339 Migrate 240 $n to 383 $b
+  # NOTE EXPERIMENTAL: automatically parse
   marc.each_by_tag("240") do |t|
     tn = t.fetch_first_by_tag("n")
     
     next if !(tn && tn.content)
     
+    opus = parse_240n(tn.content)
+    
     new_383 = MarcNode.new("source", "383", "", "##")
-    new_383.add_at(MarcNode.new("source", "b", tn.content, nil), 0)
+    new_383.add_at(MarcNode.new("source", "b", opus, nil), 0)
     new_383.sort_alphabetically
 
     marc.root.children.insert(marc.get_insert_position("383"), new_383)
