@@ -116,17 +116,7 @@ Source.all.each do |sa|
     #adios
     t.destroy_yourself
   end
-  
-  # Drop $2pe in 031, see #194
-  marc.each_by_tag("031") do |t|
-    st = t.fetch_first_by_tag("2")
-    if st && st.content && st.content != "pe"
-      puts "Unknown 031 $2 value: #{st.content}"
-    end
-    st.destroy_yourself if st
-  end
-  
-  
+    
   # #207 Move 563 to 500
   # FIXME see #351
 =begin
@@ -184,6 +174,68 @@ Source.all.each do |sa|
     marc.each_by_tag("508") {|t| t.destroy_yourself}
   end
 
+  #398 Migrate 653 to 595
+  # Save, for convenience, the contents of 595
+  marc.each_by_tag("653") do |t|
+    ta = t.fetch_first_by_tag("a")
+    
+    next if !(ta && ta.content)
+    
+    new_595 = MarcNode.new("source", "595", "", "##")
+    # 1) 653 $a should go to 595 $u as it is
+    new_595.add_at(MarcNode.new("source", "u", ta.content, nil), 0)
+    
+    # 2) 653 $a also to 595 $a but without information in parenthesis (voice)
+    parts = ta.split("(")
+    if parts.count > 0 # it contains a (
+      # We preserve the fist part
+      new_595.add_at(MarcNode.new("source", "a", parts[0].strip, nil), 0)
+    end
+    
+    new_595.sort_alphabetically
+
+    marc.root.children.insert(marc.get_insert_position("595"), new_595)
+    
+    #adios
+    t.destroy_yourself
+  end
+  
+  # Drop $2pe in 031, see #194
+  #398 migrate 031 $e to 595, without diplicates
+  marc.each_by_tag("031") do |t|
+    # First, drop the $2
+    st = t.fetch_first_by_tag("2")
+    if st && st.content && st.content != "pe"
+      puts "Unknown 031 $2 value: #{st.content}"
+    end
+    st.destroy_yourself if st
+    
+    # Now take care of the $e
+    # duplicate 031$e to 595 $a (delete double entries)
+    se = t.fetch_first_by_tag("e")
+    next if !(se && se.content) 
+    found = false
+    # Go though the 595. We could already have had some
+    marc.each_by_tag("595") do |t595|
+       sa = t595.fetch_first_by_tag("a")
+       next if !(sa && sa.content)
+       if sa.content == se.content
+         found = true
+         break
+       end
+    end
+    
+    # No duplicate, create new with the content of 031 $e
+    if !found
+      new_595 = MarcNode.new("source", "595", "", "##")
+      new_595.add_at(MarcNode.new("source", "a", se.content, nil), 0)
+      new_595.sort_alphabetically
+      marc.root.children.insert(marc.get_insert_position("595"), new_595)
+    end
+    ## NOTE 031 $e is DUPCATE and NOT deleted
+    
+  end
+  
   # #208, drop 600
   marc.each_by_tag("600") {|t| t.destroy_yourself}
   
