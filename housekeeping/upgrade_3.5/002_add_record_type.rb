@@ -168,20 +168,11 @@ Source.all.each do |sa|
     t.destroy_yourself
   end
     
-  # #207 Move 563 to 500
-  # FIXME see #351
-=begin
+  #351 Add 563 to the first material group
   marc.each_by_tag("563") do |t|
-
-    node = t.deep_copy
-    node.tag = "500"
-    node.indicator = "##"
-    node.sort_alphabetically
-    marc.root.children.insert(marc.get_insert_position("500"), node)
-    
-    t.destroy_yourself
+    t.add_at(MarcNode.new("source", "8", "01", nil), 0)
+    t.sort_alphabetically
   end
-=end
 
   # #351 - instead of @207
   # Set them to the material group 01
