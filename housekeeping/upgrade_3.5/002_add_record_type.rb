@@ -48,6 +48,7 @@ move505 = YAML::load(File.read("housekeeping/upgrade_3.5/505-520_conversion.yml"
 Source.all.each do |sa|
   
   s = Source.find(sa.id)
+  s.paper_trail_event = "system upgrade"
   
   marc = s.marc
   marc.load_source(false)
