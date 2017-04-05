@@ -90,6 +90,7 @@ Source.all.each do |sa|
     next if !(tn && tn.content)
     
     opus = parse_240n(tn.content)
+    next if opus.empty?
     
     new_383 = MarcNode.new("source", "383", "", "##")
     new_383.add_at(MarcNode.new("source", "b", opus, nil), 0)
