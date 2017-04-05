@@ -54,8 +54,10 @@ Source.all.each do |sa|
   marc.load_source(false)
   
   # convert to intergal marc
-  marc.to_internal
-  rt = marc.record_type
+  # DO THIS AT THE END!
+#  marc.to_internal
+#  rt = marc.record_type
+  rt = marc.match_leader
   if (rt)
     s.record_type = rt
   else
@@ -290,6 +292,9 @@ Source.all.each do |sa|
 	s.suppress_update_77x
 	s.suppress_update_count
   s.suppress_reindex
+  
+  # Convert marc to the internal format
+  marc.to_internal
   
   new_marc_txt = marc.to_marc
   new_marc = MarcSource.new(new_marc_txt, s.record_type)
