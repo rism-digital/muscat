@@ -153,7 +153,7 @@ ActiveAdmin.register Source do
         @source.record_type = base_item.record_type
         @template_name = @source.get_record_type.to_s
       elsif File.exists?("#{Rails.root}/config/marc/#{RISM::MARC}/source/" + params[:new_type] + '.marc')
-        new_marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/source/" +params[:new_type] + '.marc'), MarcSource::RECORD_TYPES[@template_name.to_sym])
+        new_marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/source/" + params[:new_type] + '.marc'), MarcSource::RECORD_TYPES[@template_name.to_sym])
         new_marc.load_source false # this will need to be fixed
         @source.marc = new_marc
         @template_name = params[:new_type].sub(/[^_]*_/,"")
@@ -240,9 +240,9 @@ ActiveAdmin.register Source do
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
-      label: I18n.t('status_codes.' + source.wf_stage, locale: :en))} 
+      label: I18n.t('status_codes.' + (source.wf_stage != nil ? source.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_record_type) {|source| status_tag(source.get_record_type.to_s, 
-      label: I18n.t('record_types_codes.' + source.record_type.to_s, locale: :en))} 
+      label: I18n.t('record_types_codes.' + (source.record_type != nil ? source.record_type.to_s : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title_shelforder, sortable: :std_title_shelforder do |element|
