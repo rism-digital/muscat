@@ -447,13 +447,13 @@ class MarcSource < Marc
       wvno = t.fetch_first_by_tag("n")
       content = "#{wv.content rescue nil} #{wvno.content rescue nil}"
       next if existent.include?(content)
-      n240.add_at(MarcNode.new(@model, "n", content, nil), 0)
+      n240.add_at(MarcNode.new(@model, "n", content, nil), 0) if n240
     end
     each_by_tag("383") do |t|
       wvno = t.fetch_first_by_tag("b")
       content = "#{wvno.content rescue nil}"
       next if existent.include?(content)
-      n240.add_at(MarcNode.new(@model, "n", content, nil), 0)
+      n240.add_at(MarcNode.new(@model, "n", content, nil), 0) rescue nil
     end
 
     # Adding digital object links to 500 with new records
