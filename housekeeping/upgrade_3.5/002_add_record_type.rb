@@ -44,6 +44,8 @@ pb = ProgressBar.new(Source.all.count)
 preserve508 = YAML::load(File.read("housekeeping/upgrade_3.5/508_conversion.yml"))
 move505 = YAML::load(File.read("housekeeping/upgrade_3.5/505-520_conversion.yml"))
 
+substitute031r = YAML::load(File.read("housekeeping/upgrade_3.5/031r.yml"))
+substitute240r = YAML::load(File.read("housekeeping/upgrade_3.5/240r.yml"))
 
 Source.all.each do |sa|
   
@@ -85,6 +87,22 @@ Source.all.each do |sa|
   #339 Migrate 240 $n to 383 $b
   # NOTE EXPERIMENTAL: automatically parse
   marc.each_by_tag("240") do |t|
+    
+    # Normalize the $r
+    st = t.fetch_first_by_tag("r")
+    if st && st.content
+      if substitute240r.has_key? st.content
+        if substitute240r[st.content] != nil
+          st.content = substitute240r[st.content]
+        else
+          # If is the table it is nil drop it
+          puts "240 dropped #{st.content}"
+          st.destroy_yourself
+        end
+      end
+    end
+    
+    # Do the magic in the $n
     tn = t.fetch_first_by_tag("n")
     
     next if !(tn && tn.content)
@@ -251,6 +269,20 @@ Source.all.each do |sa|
       puts "Unknown 031 $2 value: #{st.content}"
     end
     st.destroy_yourself if st
+    
+    # Normalize the $r
+    st = t.fetch_first_by_tag("r")
+    if st && st.content
+      if substitute031r.has_key? st.content
+        if substitute031r[st.content] != nil
+          st.content = substitute031r[st.content]
+        else
+          # If is the table it is nil drop it
+          puts "031 dropped #{st.content}"
+          st.destroy_yourself
+        end
+      end
+    end
     
     # Now take care of the $e
     # duplicate 031$e to 595 $a (delete double entries)

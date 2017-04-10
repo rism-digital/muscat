@@ -1,0 +1,67 @@
+---
+" c": c
+'1': 
+10t: 10t
+11t: 11t
+12t: 12t
+1t: 1t
+2/4: 
+2t: 2t
+3/4: 
+3t: 3t
+4t: 4t
+5t: 5t
+6t: 6t
+7t: 7t
+8t: 8t
+9t: 9t
+A: A
+Ab: A|b
+B: B
+Bb: B|b
+B|b: B|b
+C: C
+C        -: C
+C#: C|x
+C-1: 
+Cb: C|b
+Cx: C|x
+D: D
+D#: D|x
+Db: D|b
+E: E
+Eb: E|b
+E|b: E|b
+F: F
+F#: F|x
+Fb: 
+Fx: F|x
+G: G
+G#: G|x
+Gb: G|b
+H: B
+Hôte du diable quelle tièdeur: 
+S: 
+a: a
+a#: a|x
+ab: a|b
+b: b
+bE: E|b
+bb: b|b
+c: c
+c#: c|x
+cx: c|x
+d: d
+d#: d|x
+e: e
+eb: e|b
+f: f
+f#: F|x
+fx: F|x
+g: g
+g        -: g
+g / G: 
+g#: g|x
+gb: g|b
+gx: g|x
+h: b
