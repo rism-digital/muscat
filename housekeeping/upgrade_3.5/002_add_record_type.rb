@@ -91,7 +91,7 @@ Source.all.each do |sa|
     # Normalize the $r
     st = t.fetch_first_by_tag("r")
     if st && st.content
-      if substitute240r.has_key? st.content
+      if substitute240r.has_key? st.content.strip
         if substitute240r[st.content] != nil
           st.content = substitute240r[st.content]
         else
