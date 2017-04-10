@@ -185,12 +185,6 @@ Source.all.each do |sa|
     #adios
     t.destroy_yourself
   end
-    
-  #351 Add 563 to the first material group
-  marc.each_by_tag("563") do |t|
-    t.add_at(MarcNode.new("source", "8", "01", nil), 0)
-    t.sort_alphabetically
-  end
 
   # #351 - instead of @207
   # Set them to the material group 01
