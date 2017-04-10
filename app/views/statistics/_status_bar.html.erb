@@ -1,0 +1,49 @@
+<% s = Statistics::Source.sources_per_wf_stage(@from_date, @to_date) %>
+<% f = Statistics::Spreadsheet.new(s)%>
+<% res = {}
+   f.objects.each do |item|
+    res[item.object] = item.row.values
+    end
+%>
+
+<% dta = {labels: res.keys, datasets: []} %>
+<% dta[:datasets] <<
+              {
+                label: "Published",
+                backgroundColor: "blue",
+                data: res.values.map{|i| i[0]}
+              } 
+            %>
+<% dta[:datasets] <<
+              {
+                label: "Unpublished",
+                backgroundColor: "red",
+                data: res.values.map{|i| i[1]}
+              } 
+            %>
+<div style="height: 60%; margin-right: auto">
+  <canvas id="status_bar"/>
+</div>
+
+<%= javascript_tag do %>
+  var data = <%= dta.to_json.html_safe %>
+  var pie =  new Chart($("#status_bar"), {
+    type: 'bar', 
+    data: data,
+    options: {
+        barValueSpacing: 20,
+        scales: {
+        yAxes: [{
+        ticks: {
+                  min: 0,
+                  }
+                  }]
+                  }
+    }    
+    
+    });
+<% end %>
+
+
+
+

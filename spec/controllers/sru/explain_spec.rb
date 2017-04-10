@@ -1,4 +1,4 @@
-describe SruController, :type => :controller do
+RSpec.describe SruController, :type => :controller do
   render_views
   context "Default action should return the explain page"
   it "returns the explain page" do

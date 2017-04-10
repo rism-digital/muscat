@@ -1,0 +1,16 @@
+collection = statistic.to_table :attributes => [:id, :name, :workgroup], :summarize => true
+
+div class: "srutable_wrapper" do
+  div id: "user_statistic", class: "srutable_scroll" do
+    table_for(collection[1..-1], class: "srutable") do |t|
+      collection[1].each_with_index do |e, index|
+        label = collection[0][index]
+        t.column(label) {|w| w[index]} 
+      end
+    end
+  end
+end
+div class: "srutable_download" do
+  link_to("Download as CSV/Excel", "#", class: "csv_export", datatable: "user_statistic", style: "float: right;")
+end
+

@@ -81,17 +81,27 @@ body.active_admin {
     background-color: lighten($primary-color, 20%)
 }
 
+.srutable_wrapper {
+  position:relative;
+  border: 1px;
+  border-style: inset;
+  border-color: #dadad8;
+}
+
+.srutable_scroll {
+  height:640px;
+  overflow:auto;  
+}
+
 .srutable {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-
 }
 
 .srutable td, .srutable th {
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   padding: 8px;
-
 }
 
 .srutable tr:nth-child(even){background-color: #f2f2f2;}
@@ -99,9 +109,50 @@ body.active_admin {
 .srutable tr:hover {background-color: #ddd;}
 
 .srutable th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   text-align: left;
   background-color: $primary-color;
   color: white;
 }
+.srutable_download{
+  padding: 10px;
+  margin-bottom: 10px;
+}
+//HACK to improve the css obf tabs which is hardcoded in AA
+.tab-content {
+  border: 1px solid #dadad8;
+  padding: 0px;
+  padding-top: 0px;
+}
+.ui-tabs .ui-tabs-panel {
+  border-width: 0;
+  padding: 1em 0em;
+  background-color: #e6e6e6;
+  padding: 5px;
+}
+.ui-widget-content {
+  border: 0px
+}
+
+.ui-tabs-nav li:first-child a {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.ui-tabs-nav li:last-child a {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.ui-widget-header {
+  border: 0px solid #aaaaaa;
+  color: #222222;
+  background: #e6e6e6;
+  font-weight: bold;
+
+}
+.ui-tabs-nav {
+  overflow: hidden;
+}
+
+

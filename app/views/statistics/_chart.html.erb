@@ -1,0 +1,25 @@
+<% chart = @statistic.to_chart %>
+<% dta = {labels: @statistic.header,
+       datasets: [   {
+      label: "Monthly",
+      fillColor: "rgba(220,220,220,0.2)",
+      borderWidth: "2",
+      borderColor: "#1B4E7D",
+
+
+      strokeColor: "#1B4E7D",
+      pointColor: "rgba(220,220,220,1)",
+      pointStrokeColor: "#fff",
+      pointHighlightFill: "#fff",
+      pointHighlightStroke: "rgba(220,220,220,1)",
+      data: chart.values},  ] }
+%>
+<div style="margin-right: auto">
+  <canvas id="chart" />
+</div>
+
+<%= javascript_tag do %>
+  var data = <%= dta.to_json.html_safe %>
+  var pie =  new Chart($("#chart"), {type: 'line', data: data});
+<% end %>
+
