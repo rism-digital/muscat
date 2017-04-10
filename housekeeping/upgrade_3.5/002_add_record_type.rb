@@ -67,7 +67,7 @@ Source.all.each do |sa|
   end
   
   #204 Move 300 $b to 500
-  marc.each_by_tag("300") do |t|
+  marc.by_tags("300").each do |t|
     t8 = t.fetch_first_by_tag("8")
     tb = t.fetch_first_by_tag("b")
     
@@ -86,14 +86,14 @@ Source.all.each do |sa|
   
   #339 Migrate 240 $n to 383 $b
   # NOTE EXPERIMENTAL: automatically parse
-  marc.each_by_tag("240") do |t|
+  marc.by_tags("240").each do |t|
     
     # Normalize the $r
     st = t.fetch_first_by_tag("r")
     if st && st.content
       if substitute240r.has_key? st.content.strip
-        if substitute240r[st.content] != nil
-          st.content = substitute240r[st.content]
+        if substitute240r[st.content.strip] != nil
+          st.content = substitute240r[st.content.strip]
         else
           # If is the table it is nil drop it
           puts "240 dropped #{st.content}"
@@ -108,13 +108,13 @@ Source.all.each do |sa|
     next if !(tn && tn.content)
     
     opus = parse_240n(tn.content)
-    next if opus.empty?
-    
-    new_383 = MarcNode.new("source", "383", "", "##")
-    new_383.add_at(MarcNode.new("source", "b", opus, nil), 0)
-    new_383.sort_alphabetically
+    if !opus.empty?
+      new_383 = MarcNode.new("source", "383", "", "##")
+      new_383.add_at(MarcNode.new("source", "b", opus, nil), 0)
+      new_383.sort_alphabetically
 
-    marc.root.children.insert(marc.get_insert_position("383"), new_383)
+      marc.root.children.insert(marc.get_insert_position("383"), new_383)
+    end
     
     #adios
     tn.destroy_yourself
@@ -129,7 +129,7 @@ Source.all.each do |sa|
   end
   
   #191 Remove 730 $r $n $m 
-  marc.each_by_tag("730") do |t|
+  marc.by_tags("730").each do |t|
     t.fetch_all_by_tag("r").each {|st| st.destroy_yourself}
     t.fetch_all_by_tag("n").each {|st| st.destroy_yourself}
     t.fetch_all_by_tag("m").each {|st| st.destroy_yourself}
@@ -137,11 +137,11 @@ Source.all.each do |sa|
   
   #198 Remove 110 for collections
   if s.record_type == MarcSource::RECORD_TYPES[:collection] || MarcSource::RECORD_TYPES[:convolutum]
-    marc.each_by_tag("110") {|t| t.destroy_yourself}
+    marc.by_tags("110").each {|t| t.destroy_yourself}
   end 
   
   #202 Map 100 $j and 700 $j
-  marc.each_by_tag("100") do |t|
+  marc.by_tags("100").each do |t|
     tj = t.fetch_first_by_tag("j")
     
     if tj && tj.content && tj.content == "Attributed to"
@@ -152,7 +152,7 @@ Source.all.each do |sa|
   end
   
   # Migrate 852 $0 to $x
-  marc.each_by_tag("852") do |t|
+  marc.by_tags("852").each do |t|
     t0 = t.fetch_first_by_tag("0")
     
     if !(t0 && t0.content)
@@ -168,7 +168,7 @@ Source.all.each do |sa|
   end
   
   #193 Migrate 505 to 520
-  marc.each_by_tag("505") do |t|
+  marc.by_tags("505").each do |t|
     ta = t.fetch_first_by_tag("a")
     
     next if !(ta && ta.content)
@@ -189,13 +189,13 @@ Source.all.each do |sa|
   # #351 - instead of @207
   # Set them to the material group 01
   # It will have a special table to override where necessary
-  marc.each_by_tag("563") do |t|
+  marc.by_tags("563").each do |t|
     t.add_at(MarcNode.new("source", "8", "01", nil), 0)
     t.sort_alphabetically
   end
 
   # #192 move 594 to 598
-  marc.each_by_tag("594") do |t|
+  marc.by_tags("594").each do |t|
 
     node = t.deep_copy
     node.tag = "598"
@@ -210,7 +210,7 @@ Source.all.each do |sa|
   if preserve508.has_key?(s.id)
     # Item in the preserve list. Whould 508 be kept?
     content = preserve508[s.id]
-    marc.each_by_tag("508") do |t|
+    marc.by_tags("508").each do |t|
       tn = t.fetch_first_by_tag("a")
       if content.include?(tn.content)
         # In the list, preserve it
@@ -225,12 +225,12 @@ Source.all.each do |sa|
     end
   else
     # Item not in the preserve list. Kill all 508
-    marc.each_by_tag("508") {|t| t.destroy_yourself}
+    marc.by_tags("508").each {|t| t.destroy_yourself}
   end
 
   #398 Migrate 653 to 595
   # Save, for convenience, the contents of 595
-  marc.each_by_tag("653") do |t|
+  marc.by_tags("653").each do |t|
     ta = t.fetch_first_by_tag("a")
     
     next if !(ta && ta.content)
@@ -256,7 +256,7 @@ Source.all.each do |sa|
   
   # Drop $2pe in 031, see #194
   #398 migrate 031 $e to 595, without diplicates
-  marc.each_by_tag("031") do |t|
+  marc.by_tags("031").each do |t|
     # First, drop the $2
     st = t.fetch_first_by_tag("2")
     if st && st.content && st.content != "pe"
@@ -284,7 +284,7 @@ Source.all.each do |sa|
     next if !(se && se.content) 
     found = false
     # Go though the 595. We could already have had some
-    marc.each_by_tag("595") do |t595|
+    marc.by_tags("595").each do |t595|
        sa = t595.fetch_first_by_tag("a")
        next if !(sa && sa.content)
        if sa.content == se.content
@@ -305,7 +305,7 @@ Source.all.each do |sa|
   end
   
   # #208, drop 600
-  marc.each_by_tag("600") {|t| t.destroy_yourself}
+  marc.by_tags("600").each {|t| t.destroy_yourself}
   
 	s.suppress_update_77x
 	s.suppress_update_count
