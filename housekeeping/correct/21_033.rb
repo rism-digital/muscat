@@ -1,7 +1,9 @@
 Source.find_in_batches do |batch|
   batch.each do |s|
 
-    s.marc.load_source false
+		next if s.source_id != nil
+
+		s.marc.load_source false
     # IF none we do not care
     next if s.marc.by_tags("033").count == 0
   
@@ -66,11 +68,16 @@ Source.find_in_batches do |batch|
     
     user = s.user != nil ? s.user.name : "not set"
     
+		tag260 = s.marc.root.fetch_all_by_tag("260")
+		
+		tagc = tag260.map {|t| t.fetch_all_by_tag("c").count}
+		tagc = tagc.reduce(0, :+)
+
     marc_s = m.to_marc
     puts "MAMME" if marc_s == nil
     all_dates.each do |d|
       found =  marc_s.include?(d)
-      puts "#{s.id}\t#{d}\t#{s.lib_siglum}\t#{user}" if !found
+      puts "#{s.id}\t#{d}\t#{s.lib_siglum}\t#{user}\t260: #{tag260.count}\tc: #{tagc}" if !found
     end
     
   end

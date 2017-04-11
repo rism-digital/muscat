@@ -47,6 +47,8 @@ move505 = YAML::load(File.read("housekeeping/upgrade_3.5/505-520_conversion.yml"
 substitute031r = YAML::load(File.read("housekeeping/upgrade_3.5/031r.yml"))
 substitute240r = YAML::load(File.read("housekeeping/upgrade_3.5/240r.yml"))
 
+move852d = YAML::load(File.read("housekeeping/upgrade_3.5/852d.yml"))
+
 Source.all.each do |sa|
   
   s = Source.find(sa.id)
@@ -151,8 +153,52 @@ Source.all.each do |sa|
     end
   end
   
+  # #195 Migrate 852 $d
   # Migrate 852 $0 to $x
   marc.by_tags("852").each do |t|
+    
+    # Step 1) migrate the 852 $2
+    # #195
+    if move852d.has_key?(s.id) # Only if in the list
+      puts "found"
+      td = t.fetch_first_by_tag("d")
+      if td && td.content
+        table = move852d[s.id]
+        # Matches the content.
+        if table[:text] == td.content
+          puts "yeah"
+          transform = table[:transform] != nil ? table[:transform] : td.content
+          #What shall we do?
+          if table[:tag] == "852$d"
+            #leave it alone
+          elsif table[:tag] == "852$z"
+            t.add_at(MarcNode.new("source", "z", transform, nil), 0)
+            t.sort_alphabetically
+            td.destroy_yourself
+            puts "Moved 852 $d to $z"
+          elsif table[:tag] == "541$e"
+            
+            if marc.by_tags("541").count == 0
+              new_541 = MarcNode.new("source", "541", "", "1#")
+              puts "Created 541"
+            else
+              new_541 = marc.by_tags("541")[0]
+              puts "Found 541"
+            end
+            new_541.add_at(MarcNode.new("source", "e", transform, nil), 0)
+            new_541.sort_alphabetically
+            #add it only if not there
+            marc.root.children.insert(marc.get_insert_position("541"), new_541) if marc.by_tags("541").count == 0
+            td.destroy_yourself
+          else
+            puts "Unknown #{table[:tag]}"
+          end
+        end
+      end
+    end
+    
+    # Step 2) migrate the 852 $0
+    # This is another old ticket
     t0 = t.fetch_first_by_tag("0")
     
     if !(t0 && t0.content)
