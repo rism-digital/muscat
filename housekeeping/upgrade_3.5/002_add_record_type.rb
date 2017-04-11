@@ -159,43 +159,47 @@ Source.all.each do |sa|
     
     # Step 1) migrate the 852 $2
     # #195
-    if move852d.has_key?(s.id) # Only if in the list
-      puts "found"
-      td = t.fetch_first_by_tag("d")
-      if td && td.content
-        table = move852d[s.id]
-        # Matches the content.
-        if table[:text] == td.content
-          puts "yeah"
-          transform = table[:transform] != nil ? table[:transform] : td.content
-          #What shall we do?
-          if table[:tag] == "852$d"
-            #leave it alone
-          elsif table[:tag] == "852$z"
-            t.add_at(MarcNode.new("source", "z", transform, nil), 0)
-            t.sort_alphabetically
-            td.destroy_yourself
-            puts "Moved 852 $d to $z"
-          elsif table[:tag] == "541$e"
-            
-            if marc.by_tags("541").count == 0
-              new_541 = MarcNode.new("source", "541", "", "1#")
-              puts "Created 541"
+    if move852d.has_key?(s.id.to_s) # Only if in the list
+      #puts "found #{s.id}".blue
+      td = t.fetch_all_by_tag("d").each do |td|
+        if td && td.content
+          table = move852d[s.id.to_s]
+          #puts "#{td.content}~~~~#{table[:text]}".green
+          # Matches the content.
+          if table[:text].strip.downcase == td.content.strip.downcase
+            #puts "yeah".red
+            transform = table[:transform] != nil ? table[:transform] : td.content
+            #What shall we do?
+            if table[:tag] == "852$d"
+              #leave it alone
+            elsif table[:tag] == "852$z"
+              # move it to $z, then drop it
+              t.add_at(MarcNode.new("source", "z", transform, nil), 0)
+              t.sort_alphabetically
+              td.destroy_yourself
+              puts "Moved 852 $d to $z"
+            elsif table[:tag] == "541$e"
+              #move it to 541, but check if it is there
+              if marc.by_tags("541").count == 0
+                new_541 = MarcNode.new("source", "541", "", "1#")
+                puts "Created 541"
+              else
+                new_541 = marc.by_tags("541")[0]
+                puts "Found 541"
+              end
+              new_541.add_at(MarcNode.new("source", "e", transform, nil), 0)
+              new_541.sort_alphabetically
+              #add it only if not there
+              marc.root.children.insert(marc.get_insert_position("541"), new_541) if marc.by_tags("541").count == 0
+              td.destroy_yourself
             else
-              new_541 = marc.by_tags("541")[0]
-              puts "Found 541"
-            end
-            new_541.add_at(MarcNode.new("source", "e", transform, nil), 0)
-            new_541.sort_alphabetically
-            #add it only if not there
-            marc.root.children.insert(marc.get_insert_position("541"), new_541) if marc.by_tags("541").count == 0
-            td.destroy_yourself
-          else
-            puts "Unknown #{table[:tag]}"
-          end
-        end
-      end
-    end
+              puts "Unknown #{table[:tag]}"
+            end #if table[:tag]
+          end #if table[:text]
+          
+        end # if td
+      end # each
+    end # if move852d.has_key
     
     # Step 2) migrate the 852 $0
     # This is another old ticket
