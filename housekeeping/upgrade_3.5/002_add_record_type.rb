@@ -177,15 +177,15 @@ Source.all.each do |sa|
               t.add_at(MarcNode.new("source", "z", transform, nil), 0)
               t.sort_alphabetically
               td.destroy_yourself
-              puts "Moved 852 $d to $z"
+              #puts "Moved 852 $d to $z"
             elsif table[:tag] == "541$e"
               #move it to 541, but check if it is there
               if marc.by_tags("541").count == 0
                 new_541 = MarcNode.new("source", "541", "", "1#")
-                puts "Created 541"
+                #puts "Created 541"
               else
                 new_541 = marc.by_tags("541")[0]
-                puts "Found 541"
+                #puts "Found 541"
               end
               new_541.add_at(MarcNode.new("source", "e", transform, nil), 0)
               new_541.sort_alphabetically
@@ -353,6 +353,20 @@ Source.all.each do |sa|
     ## NOTE 031 $e is DUPCATE and NOT deleted
     
   end
+  
+  # Move the / to | in 245
+  s.marc.each_by_tag("245") do |t|
+    t.each_by_tag("a") do |tn|
+
+      next if !(tn && tn.content)
+      next if !tn.content.include?("/")
+      
+      tn.content = tn.content.gsub(" / ", " | ")
+      
+      #$stderr.puts "Check 245$a #{s.id}: #{tn.content}" if tn.content.include?("/")
+    end
+  end
+
   
   # #208, drop 600
   marc.by_tags("600").each {|t| t.destroy_yourself}
