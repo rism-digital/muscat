@@ -59,13 +59,17 @@ def split_033_code(code, subcode)
   return toks[1][0, 3], toks[1][3, 1]
 end
 
-def migrate033(tag, code, date)
+def migrate033(tag, code, date, s)
   return if code.include?("?")
+  return if !code
   
   if code == "d"
-    marc.by_tags("033").each {|t| t.destroy_yourself}
+    #tag.destroy_yourself
+    puts "#{s.id} 033 destroy on d, #{tag.to_s.strip}, #{date}"
   elsif code.include?("[]")
-    marc.by_tags("033").each {|t| t.destroy_yourself}
+    #tag.destroy_yourself
+    puts "#{s.id} 033 destroy on [], #{tag.to_s.strip}, #{date}"
+    
   elsif code.include?("mig")
     a, b = split_033_code(code, "mig")
     return if !a
@@ -81,16 +85,18 @@ def migrate033(tag, code, date)
     return if !m
     date = m[1]
     # Kill the old 033
-    marc.by_tags("033").each {|t| t.destroy_yourself}
+#    ###marc.by_tags("033").each {|t| t.destroy_yourself}
     # Make the new one
     # set it as single date
-    new_033 = MarcNode.new("source", "033", "", "0#")
-    new_033.add_at(MarcNode.new("source", "a", "#{date}----", nil), 0)
-    new_033.sort_alphabetically
+#    new_033 = MarcNode.new("source", "033", "", "0#")
+#    new_033.add_at(MarcNode.new("source", "a", "#{date}----", nil), 0)
+#    new_033.sort_alphabetically
 
-    marc.root.children.insert(marc.get_insert_position("033"), new_033)
+#    marc.root.children.insert(marc.get_insert_position("033"), new_033)
   elsif code.include?("ny")
-    marc.by_tags("033").each {|t| t.destroy_yourself}
+    #tag.destroy_yourself
+    puts "#{s.id} 033 destroy on ny, #{tag.to_s.strip}, #{date}"
+    
   end
   
 end
@@ -109,7 +115,7 @@ convert033 = YAML::load(File.read("housekeeping/upgrade_3.5/033.yml"))
 
 Source.all.each do |sa|
   
-  next if !convert033.has_key?(sa.id.to_s)
+###  next if !convert033.has_key?(sa.id.to_s)
   
   s = Source.find(sa.id)
   s.paper_trail_event = "system upgrade"
@@ -130,20 +136,20 @@ Source.all.each do |sa|
   
   #401 - First and frontmost, migrate 033
   
-  if convert033.has_key?(s.id.to_s)
+  if convert033.has_key?(s.id.to_s) && convert033[s.id.to_s][1] != "NOT PARSABLE"
     found  = false
     marc.by_tags("033").each do |t|
       t.fetch_all_by_tag("a").each do |ta|
         next if !ta || !ta.content
       
         next if ta.content[0, 4] != convert033[s.id.to_s][1]
-      
-        migrate033(t, convert033[s.id.to_s][0], convert033[s.id.to_s][1])
+        
+        migrate033(t, convert033[s.id.to_s][0], convert033[s.id.to_s][1], s)
         found = true
       end
     end
   
-    puts "#{s.id} - could not match 033 in table" if !found
+    puts "#{s.id} - could not match 033 in table #{convert033[s.id.to_s][1]}" if !found
   
   end
 
