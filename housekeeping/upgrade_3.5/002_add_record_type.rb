@@ -39,6 +39,62 @@ def parse_240n(s)
   return opus
 end
 
+def split_033_code(code, subcode)
+  #migrate the 033
+  t = code.split("\n")
+  line = nil
+  for i in 0..t.count - 1
+    line = t[i] if t[i].include?(subcode)
+  end 
+  if line == nil
+    puts "033 cannot parse: #{code}"
+    return false, false
+  end
+  toks = line.split(" ")
+  if toks.length < 2
+    puts "033-2 cannot parse: #{code}"
+    return false, false
+  end
+  
+  return toks[1][0, 3], toks[1][3, 1]
+end
+
+def migrate033(tag, code, date)
+  return if code.include?("?")
+  
+  if code == "d"
+    marc.by_tags("033").each {|t| t.destroy_yourself}
+  elsif code.include?("[]")
+    marc.by_tags("033").each {|t| t.destroy_yourself}
+  elsif code.include?("mig")
+    a, b = split_033_code(code, "mig")
+    return if !a
+   
+    # Move it to the selected tag
+    ###
+   
+  elsif code.include?("cd")
+    # Copy the date in () to 033
+    # do the matchy-matchy
+    m = code.match(/\((\d{4})\)$/)
+    puts "Cannot parse #{code}" if !m
+    return if !m
+    date = m[1]
+    # Kill the old 033
+    marc.by_tags("033").each {|t| t.destroy_yourself}
+    # Make the new one
+    # set it as single date
+    new_033 = MarcNode.new("source", "033", "", "0#")
+    new_033.add_at(MarcNode.new("source", "a", "#{date}----", nil), 0)
+    new_033.sort_alphabetically
+
+    marc.root.children.insert(marc.get_insert_position("033"), new_033)
+  elsif code.include?("ny")
+    marc.by_tags("033").each {|t| t.destroy_yourself}
+  end
+  
+end
+
 pb = ProgressBar.new(Source.all.count)
 
 preserve508 = YAML::load(File.read("housekeeping/upgrade_3.5/508_conversion.yml"))
@@ -49,7 +105,11 @@ substitute240r = YAML::load(File.read("housekeeping/upgrade_3.5/240r.yml"))
 
 move852d = YAML::load(File.read("housekeeping/upgrade_3.5/852d.yml"))
 
+convert033 = YAML::load(File.read("housekeeping/upgrade_3.5/033.yml"))
+
 Source.all.each do |sa|
+  
+  next if !convert033.has_key?(sa.id.to_s)
   
   s = Source.find(sa.id)
   s.paper_trail_event = "system upgrade"
@@ -67,6 +127,26 @@ Source.all.each do |sa|
   else
     "Empty record type for #{s.id}"
   end
+  
+  #401 - First and frontmost, migrate 033
+  
+  if convert033.has_key?(s.id.to_s)
+    found  = false
+    marc.by_tags("033").each do |t|
+      t.fetch_all_by_tag("a").each do |ta|
+        next if !ta || !ta.content
+      
+        next if ta.content[0, 4] != convert033[s.id.to_s][1]
+      
+        migrate033(t, convert033[s.id.to_s][0], convert033[s.id.to_s][1])
+        found = true
+      end
+    end
+  
+    puts "#{s.id} - could not match 033 in table" if !found
+  
+  end
+
   
   #204 Move 300 $b to 500
   marc.by_tags("300").each do |t|
