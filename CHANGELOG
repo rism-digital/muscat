@@ -1,6 +1,11 @@
 Muscat Changelog
 ================
 
+v3.6.10
+* Added statics page for admins/editors
+* Added rspec for application testing with some prototypes
+* Added 852c/591a to SRU index
+
 v3.6.9
 * Prevent crash when listing sources without wf_stage
 * When manipulating old version show message to the user if the version is stale
