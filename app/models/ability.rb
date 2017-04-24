@@ -31,7 +31,7 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
-      can :read, ActiveAdmin::Page, :name => "Statistic"
+      can :read, ActiveAdmin::Page, :name => "Statistics"
       can [:read], User, :id => user.id
     
     ##############
