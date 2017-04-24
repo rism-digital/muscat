@@ -99,6 +99,9 @@ index:
   rism.shelfmark:
     solr: shelf_mark_shelforder
     type: s
+  rism.furtherShelfmark:
+    solr: 591a
+    type: text
   rism.changed:
     solr: updated_at
     type: d
