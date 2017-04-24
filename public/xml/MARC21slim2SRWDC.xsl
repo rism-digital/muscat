@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:srw_dc="info:srw/schema/1/dc-schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://purl.org/dc/elements/1.1/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="marc">
-	<xsl:import href="http://www.loc.gov/standards/marcxml/xslt/MARC21slimUtils.xsl"/>
+  <xsl:import href="public/xml/MARC21slimUtils.xsl"/>
 	<xsl:output method="xml" indent="yes" encoding="UTF-8"/>
 	<!-- modification log 
 	ntra 01/22/2008:   Suppressed duplicate 520,521.  fixed 752 subfield list, suppressed 856q, added 662.  
