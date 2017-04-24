@@ -1,5 +1,5 @@
-<% s = Statistic::Person.libraries([@item]) %>
-<% pie = Statistic::Factory.new(s).to_chart %>
+<% s = Statistics::Person.libraries([@item]) %>
+<% pie = Statistics::Spreadsheet.new(s).to_chart %>
 
 <% dta = {labels: pie.keys,
        datasets: [   {
