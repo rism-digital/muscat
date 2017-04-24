@@ -1,6 +1,7 @@
 <% s = Statistics::Person.libraries([@item]) %>
-<% pie = Statistics::Spreadsheet.new(s).to_chart %>
+<% pie = Statistics::Spreadsheet.new(s).to_chart rescue nil  %>
 
+<% return 0 unless pie %>
 <% dta = {labels: pie.keys,
        datasets: [   {
       label: "Monthly",
