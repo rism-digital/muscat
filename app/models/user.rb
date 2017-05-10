@@ -69,6 +69,6 @@ class User < ActiveRecord::Base
  
   def active?
     return false unless last_sign_in_at
-    last_sign_in_at > (DateTime.now - 4.weeks) ? true : false
+    last_sign_in_at > (DateTime.now - 12.weeks) ? true : false
   end
 end
