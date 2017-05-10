@@ -2342,7 +2342,7 @@ por:
   label: 
     it: Portoghese
     fr: Portugais
-    de: Portugisisch
+    de: Portugiesisch
     en: Portuguese
 roh: 
   label: 
@@ -2440,6 +2440,12 @@ ukr:
     FR: Ukrainien
     de: Ukrainisch
     en: Ukrainian
+vie:
+  label:
+    IT: Vietnamita
+    FR: Vietnamien
+    de: Vietnamesisch
+    en: Vietnamese
 wel: 
   label: 
     IT: Gallese
