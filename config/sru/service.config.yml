@@ -111,7 +111,9 @@ index:
   rism.wv:
     solr: 690n
     type: text
-
+  rism.scoring:
+    solr: 594b
+    type: sms
   #bath.genreForm:
     #title: genreForm
     #solr: 001
