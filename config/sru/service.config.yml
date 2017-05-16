@@ -10,6 +10,7 @@ schemas:
   - mods
   - dc
   - html
+  - bibframe
 sets:
   cql: info:srw/cql-context-set/1/cql-v1.1
   rec: info:srw/cql-context-set/2/rec-1.1
