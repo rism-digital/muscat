@@ -20,7 +20,7 @@ Any version of Ruby that supports Rails 4 is ok. Use the package manager to inst
 
 == Bootstrap the application
 
-Get the sources if necessary (https://github.com/rism-ch/muscat and https://github-com/rism-ch/muscat-guidelines):
+Get the sources if necessary (https://github.com/rism-ch/muscat and https://github.com/rism-ch/muscat-guidelines):
 
  git clone https://github.com/rism-ch/muscat.git --recursive
 
