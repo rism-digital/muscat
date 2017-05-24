@@ -26,7 +26,7 @@ module ActiveAdmin
             "Unknown param: #{value}"
           end
         end
-        
+
         def input_name
           "#{super}"
         end
