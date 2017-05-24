@@ -28,7 +28,9 @@ class StandardTerm < ActiveRecord::Base
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
-  
+
+  alias_attribute :id_for_fulltext, :id
+
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
   
@@ -44,6 +46,9 @@ class StandardTerm < ActiveRecord::Base
 
   searchable :auto_index => false do
     integer :id
+    text :id_text do
+      id_for_fulltext
+    end
     string :term_order do
       term
     end
