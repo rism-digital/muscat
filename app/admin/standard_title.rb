@@ -69,6 +69,21 @@ ActiveAdmin.register StandardTitle do
         success.html { redirect_to collection_path }
         failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
+
+      # Run the eventual triggers
+      if params[:triggers]
+        triggers = JSON.parse(params[:triggers])
+        
+        triggers.each do |k, relations|
+          if k == "save"
+            relations.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@standard_title, model)) }
+          elsif k == "reindex"
+            relations.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@standard_title, model)) }
+          else
+            puts "Unknown trigger #{k}"
+          end
+        end
+      end
     end
     
     # redirect create failure for preserving sidebars
@@ -153,9 +168,10 @@ ActiveAdmin.register StandardTitle do
   
   form do |f|
     f.inputs do
-      f.input :title, :label => (I18n.t :filter_title), :input_html => { :disabled => true } 
+      f.input :title, :label => (I18n.t :filter_title), 
+              input_html: {data: {trigger: [{save: ["referring_sources"]}].to_json.html_safe }}
       f.input :latin, :label => (I18n.t :menu_latin) 
-      f.input :alternate_terms, :label => (I18n.t :filter_variants) 
+      f.input :alternate_terms, :label => (I18n.t :filter_variants)
       #f.input :typus, :label => (I18n.t :filter_record_type) 
       f.input :notes, :label => (I18n.t :filter_notes) 
       f.input :lock_version, :as => :hidden

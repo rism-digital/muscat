@@ -2,6 +2,16 @@ var init_sidebar_actions = function () {
     
     $('a[data-save-form]').click(function(e) {
         form = $("#" + $(this).data("save-form"));
+        
+        // Triggers work as for marc editor:
+        // extract them, and pass them to the request form
+        triggers = marc_editor_get_triggers();
+        //Append them to the form as a hidden value
+        // this way we can use the same code we use in the marc ed
+        var $input = $('<input type="hidden" name="triggers" />')
+        $input.val(JSON.stringify(triggers));
+        form.append($input);
+        
         form.submit();
     });
     
