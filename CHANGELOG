@@ -2,10 +2,34 @@ Muscat Changelog
 ================
 
 v3.6.10
+* Added migration with index of owner; dynamic field in workgroups
+* Added time range to application helper
+* Improved js charts
+* Enhanced csv export to support multiple tables
+* Modified csv export to include table header
+* Fixed crash with zero sigla
+* Added publishing/unpublishing statistic
+* Updated Rspec examples
+* #398 Implement changes
+* #339, testing automatic opus number splitter
+* #193, migrate some 505 to 520
+* #351 Add 01 material gorup by default to 563
+* #351 - fix duplicate code.
+* #195 code for migrating 852 $d
+* #195 make the 852 conversion work
+* Substitute / with | in 245
+* #401 better migration, also fix a couple errors
+* Added marcutils for sru XSLT to filesystem
+* Fixed typo and added vietnamese to languages
+* Added viet nam to country codes
+* Fix new window select so it selects the value of the fields and not the id in links-to
+* Make IDs searchable through the “any field” seach
+* #492 Make the date sanitization not crash 
 * Added statics page for admins/editors
 * Added rspec for application testing with some prototypes
 * Added 852c/591a to SRU index
 * Added DC, MODS and Bibframe record schema to SRU with local helper file
+
 
 v3.6.9
 * Prevent crash when listing sources without wf_stage
