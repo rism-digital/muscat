@@ -9,7 +9,7 @@ def join_values(tag, subtag, marc)
   values
 end
 
-puts "id\tcatalog\txml\tdate\tsiglum\tuser\t518$a\t541$d\t260$c\t500$a\t245$a\t246$a"
+puts "id\tcatalog\txml\tedit\tdate\tsiglum\tuser\t518$a\t541$d\t260$c\t500$a\t245$a\t246$a"
 Source.find_in_batches do |batch|
   batch.each do |s|
 
@@ -97,7 +97,8 @@ Source.find_in_batches do |batch|
         #ap a
         link_catalog = "http://admin.rism-ch.org/catalog/#{s.id}"
         link_admin = "http://admin.rism-ch.org/admin/sources/#{s.id}.xml"
-        print "#{s.id}\t#{link_catalog}\t#{link_admin}\t#{d}\t#{s.lib_siglum}\t#{user}"
+        link_edit = "http://admin.rism-ch.org/admin/sources/#{s.id}/edit"
+        print "#{s.id}\t#{link_catalog}\t#{link_admin}\t#{link_edit}\t#{d}\t#{s.lib_siglum}\t#{user}"
         
         run = true
         count = 0
