@@ -5,7 +5,7 @@ v3.6.10
 * Added statics page for admins/editors
 * Added rspec for application testing with some prototypes
 * Added 852c/591a to SRU index
-* Added DC and MODS to SRU schema with local helper file
+* Added DC, MODS and Bibframe record schema to SRU with local helper file
 
 v3.6.9
 * Prevent crash when listing sources without wf_stage
