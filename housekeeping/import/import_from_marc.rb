@@ -7,7 +7,6 @@ Holding.paper_trail.disable
 Institution.paper_trail.disable
 Person.paper_trail.disable
 Source.paper_trail.disable
-
 if ARGV.length >= 2
   source_file = ARGV[0]
   model = ARGV[1]

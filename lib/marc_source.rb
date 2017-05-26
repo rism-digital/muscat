@@ -447,18 +447,18 @@ class MarcSource < Marc
       wvno = t.fetch_first_by_tag("n")
       content = "#{wv.content rescue nil} #{wvno.content rescue nil}"
       next if existent.include?(content)
-      n240.add_at(MarcNode.new(@model, "n", content, nil), 0)
+      n240.add_at(MarcNode.new(@model, "n", content, nil), 0) if n240
     end
     each_by_tag("383") do |t|
       wvno = t.fetch_first_by_tag("b")
       content = "#{wvno.content rescue nil}"
       next if existent.include?(content)
-      n240.add_at(MarcNode.new(@model, "n", content, nil), 0)
+      n240.add_at(MarcNode.new(@model, "n", content, nil), 0) rescue nil
     end
 
     # Adding digital object links to 500 with new records
     #TODO whe should drop the dublet entries in 500 with Digital Object Link prefix for older records
-    if !parent_object.digital_objects.empty? && parent_object.id >= 1001000000
+    if !parent_object.digital_objects.empty?# && parent_object.id >= 1001000000
       parent_object.digital_objects.each do |image|
         # FIXME we should use the domain name from application.rb instead
         path = image.attachment.path.gsub("/path/to/the/digital/objects/directory/", "http://muscat.rism.info/")

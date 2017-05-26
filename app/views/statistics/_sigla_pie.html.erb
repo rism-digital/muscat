@@ -1,0 +1,61 @@
+<% if !@workgroup.blank? %>
+    <% sigla = Workgroup.where(:id => params['search']['workgroup']).take.institutions.where.not(:siglum => nil) %>
+ <% else %>
+    <% sigla = Institution.where.not(:siglum => nil)  %>
+<%end%>
+<% s = Statistics::Institution.sources_per_date(@from_date, @to_date, sigla) %>
+<% f = Statistics::Spreadsheet.new(s)%>
+<% pie = f.to_pie(:siglum, :limit => 12) %>
+<% dta = {labels: pie.keys,
+       datasets: [   {
+  label: "Count of siglum between #{@from_date.localtime.strftime("%Y-%m")} - #{@to_date.localtime.strftime("%Y-%m")}",
+      fillColor: "rgba(220,220,220,0.2)",
+      backgroundColor: [
+        '#ff0000',
+        '#0066cc',
+        '#ffcc00',
+        '#009933',
+        '#ff6600',
+        '#ff6699',
+        '#33cc00',
+        '#4db8ff',
+        '#cc9966',
+        '#d11aff',
+        '#ffff1a',
+        '#85adad',
+        '#b6b6e2'
+      ],
+      hoverBackgroundColor: [
+        '#cc0000',
+        '#004d99',
+        '#cca300',
+        '#006622',
+        '#cc5200',
+        '#ff3377',
+        '#269900',
+        '#1aa3ff',
+        '#bf8040',
+        '#b800e6',
+        '#e6e600',
+        '#669999',
+        '#9898d6'
+      ],
+      strokeColor: "#1B4E7D",
+      pointColor: "rgba(220,220,220,1)",
+      pointStrokeColor: "#fff",
+      pointHighlightFill: "#fff",
+      pointHighlightStroke: "rgba(220,220,220,1)",
+      data: pie.values},  ] }
+%>
+<div style="height: 60%; margin-right: auto">
+  <canvas id="sigla_pie"/>
+</div>
+
+<%= javascript_tag do %>
+  var data = <%= dta.to_json.html_safe %>
+  var pie =  new Chart($("#sigla_pie"), {type: 'bar', data: data});
+<% end %>
+
+
+
+

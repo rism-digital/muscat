@@ -196,6 +196,11 @@ ActiveAdmin.register Person do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => person }
   end
   
+  sidebar :libraries, :only => :show do
+    render :partial => "people/library_pie"
+  end
+  
+
  
   ##########
   ## Edit ##

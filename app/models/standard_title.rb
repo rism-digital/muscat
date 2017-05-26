@@ -28,6 +28,7 @@ class StandardTitle < ActiveRecord::Base
   
   attr_accessor :suppress_reindex_trigger
   alias_attribute :name, :title
+  alias_attribute :id_for_fulltext, :id
   
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
@@ -44,6 +45,10 @@ class StandardTitle < ActiveRecord::Base
 
   searchable :auto_index => false do
     integer :id
+    text :id_text do
+      id_for_fulltext
+    end
+    
     string :title_order do
       title
     end
@@ -66,17 +71,17 @@ class StandardTitle < ActiveRecord::Base
               :join => { :from => :item_id, :to => :id })
     
     integer :src_count_order, :stored => true do
-			tit = title
-			s = Source.solr_search do 
-				any_of do
-					with("031t_filter", tit)
-					with("240a_filter", tit)
-					with("730a_filter", tit)
-				end
-			end
-			s.total
+      tit = title
+      s = Source.solr_search do 
+        any_of do
+          with("031t_filter", tit)
+          with("240a_filter", tit)
+          with("730a_filter", tit)
+        end
+      end
+      s.total
       #StandardTitle.count_by_sql("select count(*) from sources_to_standard_titles where standard_title_id = #{self[:id]}")
-		end
+    end
   end
   
   def check_dependencies

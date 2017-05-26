@@ -32,6 +32,8 @@ class Place < ActiveRecord::Base
 
   attr_accessor :suppress_reindex_trigger
 
+  alias_attribute :id_for_fulltext, :id
+
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
 
@@ -47,6 +49,9 @@ class Place < ActiveRecord::Base
 
   searchable :auto_index => false do
     integer :id
+    text :id_text do
+      id_for_fulltext
+    end
     string :name_order do
       name
     end

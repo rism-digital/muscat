@@ -36,6 +36,11 @@ class SaveItemsJob < ProgressJob::Base
       count += 1
     end
     
+    update_stage("Reindexing parent")
+    # reindex the parent obj as needed
+    if @parent_obj.respond_to? :reindex
+      @parent_obj.reindex
+    end
   end
   
   

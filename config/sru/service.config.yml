@@ -10,6 +10,7 @@ schemas:
   - mods
   - dc
   - html
+  - bibframe
 sets:
   cql: info:srw/cql-context-set/1/cql-v1.1
   rec: info:srw/cql-context-set/2/rec-1.1
@@ -96,6 +97,12 @@ index:
   rism.librarySiglum:
     solr: 110g
     type: text
+  rism.shelfmark:
+    solr: shelf_mark_shelforder
+    type: s
+  rism.furtherShelfmark:
+    solr: 591a
+    type: text
   rism.changed:
     solr: updated_at
     type: d
@@ -105,7 +112,9 @@ index:
   rism.wv:
     solr: 690n
     type: text
-
+  rism.scoring:
+    solr: 594b
+    type: sms
   #bath.genreForm:
     #title: genreForm
     #solr: 001

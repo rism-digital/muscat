@@ -33,7 +33,13 @@ function newWindowUpdateValue(id, label) {
 	var element_class = marc_editor_validate_className(_nw_destination.data("tag"), _nw_destination.data("subfield"));
 	_nw_destination.addClass(element_class);
 	// Write the data
-	_nw_destination.val(id);
+	if (_nw_destination.data("has-links-to") == false) {
+		// Normal autocomplete writes the ID of the linked resource in the hidden
+		_nw_destination.val(id);
+	} else {
+		// links-to need the TEXT not the id
+		_nw_destination.val(label);
+	}
 	_nw_destination.data("status", "selected");
 	
 	ac.removeClass("serialize_marc");

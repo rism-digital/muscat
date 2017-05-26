@@ -80,6 +80,8 @@ class Person < ActiveRecord::Base
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
 
+  alias_attribute :id_for_fulltext, :id
+
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
 
@@ -208,6 +210,9 @@ class Person < ActiveRecord::Base
 
   searchable :auto_index => false do |sunspot_dsl|
     sunspot_dsl.integer :id
+    sunspot_dsl.text :id_text do
+      id_for_fulltext
+    end
     sunspot_dsl.string :full_name_order do
       full_name
     end

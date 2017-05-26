@@ -1,3 +1,5 @@
+#include Triggers
+  
 ActiveAdmin.register StandardTitle do
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_titles)}
@@ -69,6 +71,11 @@ ActiveAdmin.register StandardTitle do
         success.html { redirect_to collection_path }
         failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
+
+      # Run the eventual triggers
+      ##POSTPONED to 3.6.11
+      ##execute_triggers_from_params(params, @standard_title)
+
     end
     
     # redirect create failure for preserving sidebars
@@ -153,9 +160,11 @@ ActiveAdmin.register StandardTitle do
   
   form do |f|
     f.inputs do
-      f.input :title, :label => (I18n.t :filter_title), :input_html => { :disabled => true } 
+      f.input :title, :label => (I18n.t :filter_title), :input_html => { :disabled => true }
+      ## POSTPONED to 3.6.11
+      ##        input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources"]}) }}
       f.input :latin, :label => (I18n.t :menu_latin) 
-      f.input :alternate_terms, :label => (I18n.t :filter_variants) 
+      f.input :alternate_terms, :label => (I18n.t :filter_variants)
       #f.input :typus, :label => (I18n.t :filter_record_type) 
       f.input :notes, :label => (I18n.t :filter_notes) 
       f.input :lock_version, :as => :hidden

@@ -1,6 +1,7 @@
 # Override collection_action so it is public
 # from activeadmin lib/active_admin/resource_dsl.rb
 require 'resource_dsl_extensions.rb'
+include Triggers
 
 # Extension module, see
 # https://github.com/gregbell/active_admin/wiki/Content-rendering-API
@@ -81,20 +82,8 @@ module MarcControllerActions
       # if we arrived here it means nothing crashed
       # Rejoice! and launch the background jobs
       # if any
-      if params[:triggers]
-        triggers = JSON.parse(params[:triggers])
-        
-        triggers.each do |k, relations|
-          if k == "save"
-            relations.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(@item, model)) }
-          elsif k == "reindex"
-            relations.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(@item, model)) }
-          else
-            puts "Unknown trigger #{k}"
-          end
-        end
-      end
-     
+      execute_triggers_from_params(params, @item)
+
       # build the dynamic model path
       
       # Redirect decides if we ar reloading the editor or redirecting

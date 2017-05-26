@@ -1186,6 +1186,12 @@ voc:
     fr: "Venezuela, Bolivarian Republic of"
     de: "Venezuela, Bolivarian Republic of"
     en: "Venezuela, Bolivarian Republic of"
+"XB-VN":
+  label:
+    it: "Viet Nam"
+    fr: "Viet Nam"
+    de: "Viet Nam"
+    en: "Viet Nam"
 "Library":
   label:
     it: "Biblioteca"

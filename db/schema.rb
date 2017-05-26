@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902073728) do
+ActiveRecord::Schema.define(version: 20170316142555) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -513,6 +513,7 @@ ActiveRecord::Schema.define(version: 20160902073728) do
   add_index "sources", ["source_id"], name: "index_sources_on_source_id", using: :btree
   add_index "sources", ["std_title"], name: "index_sources_on_std_title", length: {"std_title"=>255}, using: :btree
   add_index "sources", ["std_title_d"], name: "index_sources_on_std_title_d", length: {"std_title_d"=>255}, using: :btree
+  add_index "sources", ["wf_owner"], name: "index_sources_on_wf_owner", using: :btree
   add_index "sources", ["wf_stage"], name: "index_sources_on_wf_stage", using: :btree
 
   create_table "sources_to_catalogues", id: false, force: :cascade do |t|

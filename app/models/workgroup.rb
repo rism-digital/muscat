@@ -5,12 +5,13 @@ class Workgroup < ActiveRecord::Base
     after_save :change_institutions
     validates_presence_of :name 
     before_destroy :check_dependencies
+    has_many :sources, :through => :users
 
-   searchable :auto_index => false do
-    integer :id
-    text :name
-  end
- 
+    searchable :auto_index => false do
+      integer :id
+      text :name
+    end
+   
   def get_institutions
     self.institutions.map {|lib| lib}
   end

@@ -116,11 +116,22 @@ module ApplicationHelper
   def self.to_sanitized_date(string)
     return if string.blank?
     if string =~ /[0-9]{4}\-[0-9]{2}\-[0-9]{2}/
-      string.to_date
+      #string.to_date
+      d = DateTime.parse(string) rescue d = DateTime.now
+      return d
     elsif string.size == 4
       return DateTime.strptime(string, "%Y")
     else
       return DateTime.now
     end
   end
+
+  # Calculate the month distance between two dates for the statistics
+  def self.month_distance(from_date, to_date)
+    raise ArgumentError, "from date > to_date" if from_date > to_date
+    target = (to_date.year * 12 + to_date.month) - (Time.now.localtime.year * 12 + Time.now.localtime.month)
+    start =  target + (from_date.year * 12 + from_date.month) - (to_date.year * 12 + to_date.month)
+    (start..target)
+  end
+
 end

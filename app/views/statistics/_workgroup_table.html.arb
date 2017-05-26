@@ -1,0 +1,20 @@
+workgroups = Statistics::Workgroup.sources_by_month(from_date, to_date, Workgroup.all.order(:name))
+stat = Statistics::Spreadsheet.new(workgroups)
+
+collection = stat.to_table :attributes => [:id,:name], :summarize => true
+
+div class: "srutable_wrapper" do
+  div id: "workgroup_statistic", class: "srutable_scroll" do
+    table_for(collection[1..-1], class: "srutable") do |t|
+      collection[1].each_with_index do |e, index|
+        label = collection[0][index]
+        t.column(label) {|w| w[index]} 
+      end
+    end
+  end
+end
+
+div class: "srutable_download" do
+  link_to("Download as CSV/Excel", "#", class: "csv_export", datatable: "workgroup_statistic", style: "float: right;")
+end
+

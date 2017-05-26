@@ -32,7 +32,7 @@ class MarcImport
   def each_record(filename, &block)
     File.open(filename) do |file|
       Nokogiri::XML::Reader.from_io(file).each do |node|
-        if node.name == 'record' and node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
+        if node.name == 'record' || node.name == 'marc:record' and node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
           yield(Nokogiri::XML(node.outer_xml).root)
         end
       end

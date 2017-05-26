@@ -45,3 +45,5 @@
 
 #= require diva/diva.js
 #= require diva/utils.js
+#= require Chart
+#= require html2csv.js
