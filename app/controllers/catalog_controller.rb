@@ -1,9 +1,65 @@
 # -*- encoding : utf-8 -*-
 #
 class CatalogController < ApplicationController  
+  include Blacklight::Catalog
+  
+  DEFAULT_FACET_LIMIT = 20
   
   before_action :redirect_legacy_values, :only => :show
   
+  def facet_list_limit
+  	if defined? @default_limit
+      @default_limit
+    else
+      DEFAULT_FACET_LIMIT + 1
+    end
+  end
+
+  def make_geoterm
+    out = []
+    @pagination.items.each do |item|
+      lib = Institution.find_by_siglum(item[:value])
+      next if !lib
+      
+      marc = lib.marc
+      marc.load_source false
+      lat = marc.first_occurance("034", "f")
+      lon = marc.first_occurance("034", "d")
+      
+      lat = (lat && lat.content) ? lat.content : 0
+      lon = (lon && lon.content) ? lon.content : 0
+      
+      out << {
+        name: item[:value],
+        weight: item[:hits],
+        lon: lon,
+        lat: lat
+      }
+    end
+    out
+  end
+
+  def geosearch
+    #if params.include? :map
+      @default_limit = 100000
+      #else
+    #  @default_limit = DEFAULT_FACET_LIMIT
+    #end
+    #facet
+    
+    @facet = blacklight_config.facet_fields[params[:id]]
+    @response = get_facet_field_response(@facet.key, params)
+    @display_facet = @response.aggregations[@facet.key]
+
+    @pagination = facet_paginator(@facet, @display_facet)
+
+    respond_to do |format|
+      format.json { render json: make_geoterm }
+    end
+    
+    @default_limit = DEFAULT_FACET_LIMIT
+  end
+
   def redirect_legacy_values
     # Rewrite old IDS with five leading zeros
     if params[:id].start_with?('00000')
@@ -35,8 +91,6 @@ class CatalogController < ApplicationController
     )
   end
   
-  include Blacklight::Catalog
-
   configure_blacklight do |config|
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = { 

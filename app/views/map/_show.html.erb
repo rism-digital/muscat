@@ -52,7 +52,8 @@
 		//var storytellingWidget = new StorytellingWidget(storytelling,storytellingDiv);
 		*/
 		
-        var data1 = GeoTemConfig.getCsv('/test.csv');
+        //var data1 = GeoTemConfig.getCsv('/test.csv');
+				var data1 = GeoTemConfig.getJson("/catalog/geosearch/852a_facet_sm.json?utf8=✓&search_field=any_field&q=bach")
         datasets.push(new Dataset(GeoTemConfig.loadJson(data1),'Muscat query'));
         
         map.display(datasets);
