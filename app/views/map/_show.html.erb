@@ -1,0 +1,65 @@
+<script src="/geo-browser/PLATIN/js/Util/Publisher.js"></script>
+<script src="/geo-browser/PLATIN/js/Build/Loader/DynaJsLoader.js"></script>
+<script src="/geo-browser/PLATIN/js/Build/Loader/Loader.js"></script>
+
+<div class="col-xs-12">
+	<div style="display:none;">
+		<div id="dataloaderContainerDiv"></div>
+		<div id="overlayloaderContainerDiv"></div>
+		<div id="storytellingContainerDiv"></div>
+	</div>
+	<div id="geoTemCoContainers">
+		<div id="mapContainerDiv" style="position:relative;"></div>
+		<div id="plotContainerDiv" style="position:relative;"></div>
+		<br>
+		<div id="tableContainerDiv" style="position:relative;"></div>
+	</div>
+	<script>
+		Publisher.Subscribe( 'GeoTemCoReady', this, function(){
+		var datasets = [];
+		var mapDiv = document.getElementById("mapContainerDiv");
+		var map = new WidgetWrapper();
+		var mapWidget = new MapWidget(map,mapDiv,{
+			alternativeMap: [],
+            mapSelection : false,
+            proxyHost: '',
+            mapTitle: "RISM"
+		});
+		/*var timeDiv = document.getElementById("plotContainerDiv");
+		var time = new WidgetWrapper();
+		var timeWidget = new TimeWidget(time,timeDiv,{
+		timeTitle: "Publication Date"
+		});*/
+		/*
+		var timeDiv = document.getElementById("plotContainerDiv");
+		var time = new WidgetWrapper();
+		var timeWidget = new FuzzyTimelineWidget(time,timeDiv,{
+		timeTitle: "Publication Date"
+		});
+		timeWidget.options.timelineMode = 'stacking';
+		var tableDiv = document.getElementById("tableContainerDiv");
+		var table = new WidgetWrapper();
+		var tableWidget = new TableWidget(table,tableDiv);
+		var dataloaderDiv = document.getElementById("dataloaderContainerDiv");
+		var dataloader = new WidgetWrapper();
+		var dataloaderWidget = new DataloaderWidget(dataloader,dataloaderDiv);
+		var overlayloaderDiv = document.getElementById("overlayloaderContainerDiv");
+		var overlayloader = new WidgetWrapper();
+		var overlayloaderWidget = new OverlayloaderWidget(overlayloader,overlayloaderDiv);
+		overlayloaderWidget.attachMapWidget(mapWidget);
+		var storytellingDiv = document.getElementById("storytellingContainerDiv");
+		var storytelling = new WidgetWrapper();
+		//var storytellingWidget = new StorytellingWidget(storytelling,storytellingDiv);
+		*/
+		
+        var data1 = GeoTemConfig.getCsv('/test.csv');
+        datasets.push(new Dataset(GeoTemConfig.loadJson(data1),'Muscat query'));
+        
+        map.display(datasets);
+        //time.display(datasets);
+        //table.display(datasets);
+        //storytelling.display(datasets);
+
+	});
+	</script>
+</div>

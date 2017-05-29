@@ -1,0 +1,17 @@
+<div id="sidebar" class="<%= sidebar_classes %>">
+  <%= render 'search_sidebar' %>
+</div>
+
+<div id="content" class="<%= main_content_classes %>">
+  <% unless has_search_parameters? %>
+    <%# if there are no input/search related params, display the "home" partial -%>
+    <%= render 'home' %>
+  <% else %>
+    <%- if params[:map] %>
+    	<%= render :partial => "map/show" %>
+    <%- else %>
+        <%= render 'search_results' %>
+    <%- end %>
+
+  <% end %>
+</div>

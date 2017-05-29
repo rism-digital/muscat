@@ -6,7 +6,7 @@ class EnlargeStdtitle < ActiveRecord::Migration
       t.change :std_title_d, :string, {:limit => 512}
     end
     
-    add_index :sources, :std_title
-    add_index :sources, :std_title_d
+    #add_index :sources, :std_title
+    #add_index :sources, :std_title_d
   end
 end
