@@ -293,7 +293,7 @@ GeoTemConfig.getJson = function(url,asyncFunc) {
 		}
 	});
 	
-	if (async){
+	if (!async){
 		return data;
 	}
 }

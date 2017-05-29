@@ -32037,7 +32037,6 @@ GeoTemConfig.getJson = function(url,asyncFunc) {
 	if( asyncFunc ){
 		async = true;
 	}
-	
 	var data;
 	$.ajax({
 		url : url,
@@ -32051,7 +32050,7 @@ GeoTemConfig.getJson = function(url,asyncFunc) {
 		}
 	});
 	
-	if (async){
+	if (!async){
 		return data;
 	}
 }
