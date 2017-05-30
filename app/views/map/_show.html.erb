@@ -71,7 +71,7 @@
 								// This is for source-based navigation
 								//var data1 = GeoTemConfig.getJson("/catalog.json?utf8=✓&search_field=any_field&per_page=2000000&q=<%=params[:q]%>");
 
-								datasets.push(new Dataset(GeoTemConfig.loadJson(data1),'Muscat query'));
+								datasets.push(new Dataset(GeoTemConfig.loadJson(data1.data),'Muscat query'));
 								
 								map.display(datasets);
 								//time.display(datasets);

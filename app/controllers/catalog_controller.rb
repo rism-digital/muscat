@@ -17,6 +17,9 @@ class CatalogController < ApplicationController
 
   def make_geoterm
     out = []
+    noinfo_sources = 0
+    noinfo_libraries = 0
+    
     @pagination.items.each do |item|
       lib = Institution.find_by_siglum(item[:value])
       next if !lib
@@ -29,6 +32,13 @@ class CatalogController < ApplicationController
       lat = (lat && lat.content) ? lat.content : 0
       lon = (lon && lon.content) ? lon.content : 0
       
+      # If the info is not there, skip it
+      if lat == 0 || lon == 0
+        noinfo_sources += item[:hits]
+        noinfo_libraries +=1
+        next
+      end
+      
       out << {
         name: item[:value],
         weight: item[:hits],
@@ -38,7 +48,10 @@ class CatalogController < ApplicationController
         place: lib.place
       }
     end
-    out
+    
+    {info: {noinfo_libraries: noinfo_libraries, noinfo_sources: noinfo_sources},
+     data: out
+    }
   end
 
   def geosearch
