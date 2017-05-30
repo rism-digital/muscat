@@ -70,7 +70,9 @@
 								var data1 = GeoTemConfig.getJson("/catalog/geosearch/852a_facet_sm.json?utf8=✓&search_field=any_field&q=<%=params[:q]%>");
 								// This is for source-based navigation
 								//var data1 = GeoTemConfig.getJson("/catalog.json?utf8=✓&search_field=any_field&per_page=2000000&q=<%=params[:q]%>");
-
+								
+								$("#mapInfo").html(data1.info.noinfo_libraries + " libraries have no location info, containing " + data1.info.noinfo_sources + " sources.");
+								
 								datasets.push(new Dataset(GeoTemConfig.loadJson(data1.data),'Muscat query'));
 								
 								map.display(datasets);
@@ -82,9 +84,8 @@
 					});
 				
 				</script>
-				
-				
 			</div>
+			<div id="mapInfo" class="modal-footer"></div>
 		</div>
 	</div>
 </div>
