@@ -372,12 +372,17 @@ footer {
 }
 @media (min-width: 992px) {
   .modal-fullscreen .modal-dialog {
-    width: 970px;
+    width: 980px;
   }
 }
 @media (min-width: 1200px) {
   .modal-fullscreen .modal-dialog {
-     width: 1170px;
+     width: 1180px;
+  }
+}
+@media (min-width: 1600px) {
+  .modal-fullscreen .modal-dialog {
+     width: 1580px;
   }
 }
 
