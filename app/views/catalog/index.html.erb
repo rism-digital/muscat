@@ -7,11 +7,9 @@
     <%# if there are no input/search related params, display the "home" partial -%>
     <%= render 'home' %>
   <% else %>
-    <%- if params[:map] %>
+
     	<%= render :partial => "map/show" %>
-    <%- else %>
         <%= render 'search_results' %>
-    <%- end %>
 
   <% end %>
 </div>
