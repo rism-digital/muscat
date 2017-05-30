@@ -33,7 +33,9 @@ class CatalogController < ApplicationController
         name: item[:value],
         weight: item[:hits],
         lon: lon,
-        lat: lat
+        lat: lat,
+        description: lib.name,
+        place: lib.place
       }
     end
     out
@@ -60,6 +62,26 @@ class CatalogController < ApplicationController
     @default_limit = DEFAULT_FACET_LIMIT
   end
 
+  
+  def render_search_results_as_json_disable
+    out = []
+    @document_list.each do |item|
+      
+      latlon = item[:location_lls]
+      lat, lon = latlon.split(",")
+
+      out << {
+        id: item[:id],
+        description: item[:lib_siglum_ss],
+        name: item[:std_title_texts].first,
+        #weight: item[:hits],
+        lon: lon,
+        lat: lat
+      }
+    end
+    out
+  end
+  
   def redirect_legacy_values
     # Rewrite old IDS with five leading zeros
     if params[:id].start_with?('00000')
@@ -111,6 +133,7 @@ class CatalogController < ApplicationController
     # items to show per page, each number in the array represent another option to choose from.
     config.per_page = [10,20,50,100]
     config.default_per_page = 20
+    config.max_per_page = 20000000
 
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SolrHelper#solr_doc_params) or 
     ## parameters included in the Blacklight-jetty document requestHandler.
