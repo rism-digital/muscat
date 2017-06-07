@@ -73,7 +73,7 @@
 								// This is for source-based navigation
 								//var data1 = GeoTemConfig.getJson("/catalog.json?utf8=✓&search_field=any_field&per_page=2000000&q=<%=params[:q]%>");
 								
-								$("#mapInfo").html(data1.info.noinfo_libraries + " libraries have no location info, containing " + data1.info.noinfo_sources + " sources.");
+								$("#mapInfo").html(data1.info.noinfo_libraries + " libraries have no location information, containing " + data1.info.noinfo_sources + " sources. Total sources: " + (data1.info.total - data1.info.unique_sources));
 								
 								datasets.push(new Dataset(GeoTemConfig.loadJson(data1.data),'Muscat query'));
 								
