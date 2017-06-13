@@ -90,9 +90,13 @@
     <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
 	
     <fieldtype name="text_pae" class="solr.TextField">
-      <analyzer>
+      <analyzer type="index">
         <!--solr.KeywordTokenizerFactory-->
         <tokenizer class="org.rismch.PAETokenizerFactory"/>
+			</analyzer>
+				<analyzer type="query">
+					<tokenizer class="solr.KeywordTokenizerFactory"/>
+					<filter class="org.rismch.PAEFilterFactory"/>
         <!--<tokenizer class="solr.KeywordTokenizerFactory"/>
         +        <filter class="org.rismch.PAEFilterFactory"/>-->
         <!--<tokenizer class="solr.WhitespaceTokenizerFactory"/>-->
