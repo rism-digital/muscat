@@ -27,11 +27,11 @@ fields:
   "031m":
   "031p":
       :store: true
-#  "pae_complete":
-#       :store: true
-#       :as: pae
-#       :from_tag: "031"
-#       :index_processor_helper: :marc_create_pae_entry
+  "pae_complete":
+       :store: true
+       :as: pae
+       :from_tag: "031"
+       :index_processor_helper: :marc_create_pae_entry
   "031q":
   "031t_filter":
       :type: string
