@@ -12,27 +12,27 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    Incipit Search
+    <%=t('incipit_search.incipit_search')%>
   </div>
   <div class="panel-body">
     <div class="form-group">
-      <label for="incipit_type">Query Type:</label>
+      <label for="incipit_type"><%=t('incipit_search.query_type')%></label>
       <select id="incipit_type" class="form-control">
-        <option value="PCH">Exact Pitch (Exactest match)</option>
-        <option value="12I">Interval</option>
-        <option value="PRC">Refined Pitch Contour</option>
-        <option value="PGC">Gross Pitch Contour (Fuzziest Match)</option>
+        <option value="PCH"><%=t('incipit_search.exact_pitch')%></option>
+        <option value="12I"><%=t('incipit_search.interval')%></option>
+        <option value="PRC"><%=t('incipit_search.refined_pitch')%></option>
+        <option value="PGC"><%=t('incipit_search.gross_pitch')%></option>
       </select>
     </div>
     <div class="checkbox">
       <label>
-        <input type="checkbox" id="anchor" value="anchor" checked>Search only beginning
+        <input type="checkbox" id="anchor" value="anchor" checked><%=t('incipit_search.anchor')%>
       </label>
     </div>
 
     <div class="row">
       <div class="col-xs-1">
-        <button id="erase_note" type="button" class="btn btn-default btn-sm" onclick="javascript:onundo()" data-toggle="tooltip" title="Erase one Note">
+        <button id="erase_note" type="button" class="btn btn-default btn-sm" onclick="javascript:onundo()" data-toggle="tooltip" title="<%=t('incipit_search.erase')%>">
           <span class="glyphicon glyphicon-erase"></span>
         </button>
       </div>
