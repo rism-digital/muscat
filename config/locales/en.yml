@@ -609,10 +609,10 @@ en:
   incipit_search:
     incipit_search: "Incipit Search"
     query_type: "Query Type:"
-    exact_pitch: "Exact Pitch (More exact match)"
+    exact_pitch: "Exact Pitch (Exact Match)"
     interval: "Interval"
     refined_pitch: "Refined Pitch Contour"
-    gross_pitch: "Gross Pitch Contour (More fuzzy search)"
+    gross_pitch: "Gross Pitch Contour (Fuzziest match)"
     anchor: "Search only beginning"
     erase: "Erase one note"
     
