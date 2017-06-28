@@ -1,26 +1,30 @@
-example_id                                                 | status  | run_time        |
----------------------------------------------------------- | ------- | --------------- |
-./spec/controllers/sources_spec.rb[1:1:1]                  | passed  | 1.44 seconds    |
-./spec/controllers/sources_spec.rb[1:2:1]                  | passed  | 3.11 seconds    |
-./spec/controllers/sru_spec.rb[1:1:1]                      | passed  | 0.5092 seconds  |
-./spec/controllers/sru_spec.rb[1:2:1]                      | passed  | 0.08219 seconds |
-./spec/controllers/statistics_index_spec.rb[1:1:1]         | passed  | 5.62 seconds    |
-./spec/features/standard_title/standard_title_spec.rb[1:2] | failed  | 3.33 seconds    |
-./spec/features/standard_title/standard_title_spec.rb[1:3] | failed  | 3.94 seconds    |
-./spec/lib/sru_spec.rb[1:1:1:1]                            | passed  | 0.0073 seconds  |
-./spec/lib/sru_spec.rb[1:2:1:1]                            | passed  | 0.01565 seconds |
-./spec/lib/sru_spec.rb[1:3:1:1]                            | passed  | 0.00821 seconds |
-./spec/lib/sru_spec.rb[1:4:1:1]                            | passed  | 0.00916 seconds |
-./spec/lib/sru_spec.rb[1:5:1:1]                            | passed  | 0.03107 seconds |
-./spec/lib/sru_spec.rb[1:6:1:1]                            | passed  | 0.02095 seconds |
-./spec/lib/sru_spec.rb[1:7:1:1]                            | passed  | 0.01043 seconds |
-./spec/lib/sru_spec.rb[1:8:1:1]                            | passed  | 0.03931 seconds |
-./spec/lib/sru_spec.rb[1:9:1:1]                            | passed  | 0.01481 seconds |
-./spec/lib/sru_spec.rb[1:10:1:1]                           | passed  | 0.01092 seconds |
-./spec/lib/sru_spec.rb[1:11:1:1]                           | passed  | 0.01329 seconds |
-./spec/lib/sru_spec.rb[1:12:1:1]                           | passed  | 0.08471 seconds |
-./spec/lib/sru_spec.rb[1:13:1]                             | pending | 0.00001 seconds |
-./spec/mailers/admin_notifications_spec.rb[1:1]            | pending | 0.00002 seconds |
-./spec/mailers/comment_notifications_spec.rb[1:1]          | pending | 0.00003 seconds |
-./spec/models/institution_spec.rb[1:1:1:1]                 | passed  | 0.00317 seconds |
-./spec/models/workgroup_spec.rb[1:1]                       | passed  | 0.1949 seconds  |
+example_id                                                       | status  | run_time        |
+---------------------------------------------------------------- | ------- | --------------- |
+./spec/controllers/sources_spec.rb[1:1:1]                        | passed  | 0.68759 seconds |
+./spec/controllers/sources_spec.rb[1:2:1]                        | passed  | 1.13 seconds    |
+./spec/controllers/sru_spec.rb[1:1:1]                            | passed  | 0.49893 seconds |
+./spec/controllers/sru_spec.rb[1:2:1]                            | passed  | 0.08591 seconds |
+./spec/controllers/statistics_index_spec.rb[1:1:1]               | passed  | 4.22 seconds    |
+./spec/features/editor_abilities/editor_abilities_spec.rb[1:1:1] | passed  | 4.52 seconds    |
+./spec/features/editor_abilities/editor_abilities_spec.rb[1:2:1] | passed  | 1.39 seconds    |
+./spec/features/standard_title/standard_title_spec.rb[1:2]       | failed  | 3.26 seconds    |
+./spec/features/standard_title/standard_title_spec.rb[1:3]       | failed  | 3.55 seconds    |
+./spec/lib/sru_spec.rb[1:1:1:1]                                  | passed  | 0.00619 seconds |
+./spec/lib/sru_spec.rb[1:2:1:1]                                  | passed  | 0.01746 seconds |
+./spec/lib/sru_spec.rb[1:3:1:1]                                  | passed  | 0.00985 seconds |
+./spec/lib/sru_spec.rb[1:4:1:1]                                  | passed  | 0.01064 seconds |
+./spec/lib/sru_spec.rb[1:5:1:1]                                  | passed  | 0.01767 seconds |
+./spec/lib/sru_spec.rb[1:6:1:1]                                  | passed  | 0.01609 seconds |
+./spec/lib/sru_spec.rb[1:7:1:1]                                  | passed  | 0.01219 seconds |
+./spec/lib/sru_spec.rb[1:8:1:1]                                  | passed  | 0.0313 seconds  |
+./spec/lib/sru_spec.rb[1:9:1:1]                                  | passed  | 0.02349 seconds |
+./spec/lib/sru_spec.rb[1:10:1:1]                                 | passed  | 0.01354 seconds |
+./spec/lib/sru_spec.rb[1:11:1:1]                                 | passed  | 0.01282 seconds |
+./spec/lib/sru_spec.rb[1:12:1:1]                                 | passed  | 0.07554 seconds |
+./spec/lib/sru_spec.rb[1:13:1]                                   | pending | 0.00001 seconds |
+./spec/mailers/admin_notifications_spec.rb[1:1]                  | pending | 0.00002 seconds |
+./spec/mailers/comment_notifications_spec.rb[1:1]                | pending | 0.00001 seconds |
+./spec/models/institution_spec.rb[1:1:1:1]                       | passed  | 0.00322 seconds |
+./spec/models/person_editor_spec.rb[1:1:1]                       | passed  | 0.13132 seconds |
+./spec/models/person_editor_spec.rb[1:2:1]                       | passed  | 0.23304 seconds |
+./spec/models/workgroup_spec.rb[1:1]                             | passed  | 0.25313 seconds |

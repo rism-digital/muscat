@@ -18,6 +18,10 @@ FactoryGirl.define do
     roles { [ FactoryGirl.create(:editor_role) ] }
   end
 
+  factory :person_editor, :parent => :user do
+    roles { [ FactoryGirl.create(:editor_role),  FactoryGirl.create(:person_editor_role),  ] }
+  end
+
   factory :role do
     name        { "Role_#{rand(9999)}"  }
   end
@@ -33,5 +37,10 @@ FactoryGirl.define do
   factory :editor_role, :parent => :role do
     name "editor"
   end
+
+  factory :person_editor_role, :parent => :role do
+    name "person_editor"
+  end
+
 
 end
