@@ -1,6 +1,9 @@
 Muscat Changelog
 ================
 
+v3.6.11
+* Added user role "person_editor" for restricted management of people (as sublevel of "editor")
+
 v3.6.10
 * Added migration with index of owner; dynamic field in workgroups
 * Added time range to application helper
