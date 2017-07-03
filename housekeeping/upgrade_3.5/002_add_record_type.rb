@@ -522,6 +522,11 @@ Source.all.each do |sa|
     end
   end
 
+  # Move 772 to 774
+  all772 = marc.root.fetch_all_by_tag("772")
+  all772.each do |t|
+    t.tag = "774"
+  end
   
   # #208, drop 600
   marc.by_tags("600").each {|t| t.destroy_yourself}
