@@ -11,7 +11,7 @@ production:
 development:
   solr:
     hostname: localhost
-    port: 8910
+    port: 8982
     log_level: INFO
     path: /solr/development
     auto_commit_after_request: false
