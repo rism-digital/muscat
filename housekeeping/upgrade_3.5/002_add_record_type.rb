@@ -214,7 +214,7 @@ Source.all.each do |sa|
       marc.by_tags("033").each {|t| t.destroy_yourself}
     when "nnn"
       # nnn =no change in 260$c nor in 033 required
-      puts "033 conversion: nothing to do (nnn) for source #{s.id}"
+      #puts "033 conversion: nothing to do (nnn) for source #{s.id}"
     else
       # Wait what?
       #puts "033 conversion: unrecognized directive #{fix033[s.id]}, source #{s.id}"
@@ -225,16 +225,15 @@ Source.all.each do |sa|
   #Now process the remaining 033
   marc.by_tags("033").each do |t|
 
-    node = t.deep_copy
-    node.tag = "599"
-    node.indicator = "##"
-    node.fetch_all_by_tag("a").each do |ta|
+    new_tag = MarcNode.new("source", "500", "", "##")
+
+    t.fetch_all_by_tag("a").each do |ta|
       next if !ta || !ta.content
-      ta.content = "Migrated from 033: #{ta.content}"
+      new_tag.add_at(MarcNode.new("source", "a", "Migrated from 033: #{ta.content}", nil), 0)
     end
     
-    node.sort_alphabetically
-    marc.root.children.insert(marc.get_insert_position("599"), node)
+    new_tag.sort_alphabetically
+    marc.root.children.insert(marc.get_insert_position("500"), new_tag)
     
     t.destroy_yourself
   end
@@ -416,18 +415,18 @@ Source.all.each do |sa|
   end
 
   #Move the composer 518 to 500
-  marc.by_tags("518").each do |t|
+  #marc.by_tags("518").each do |t|
+  xt = marc.root.fetch_all_by_tag("518")
+  xt.each do |t|
     ta = t.fetch_first_by_tag("a")
     
     next if !(ta && ta.content)
-    
     next if !ta.content.downcase.include?("composition")
-    
-    node = t.deep_copy
-    node.tag = "500"
-    node.indicator = "##"
-    node.sort_alphabetically
-    marc.root.children.insert(marc.get_insert_position("500"), node)
+
+    new_tag = MarcNode.new("source", "500", "", "##")
+    new_tag.add_at(MarcNode.new("source", "a", ta.content, nil), 0)
+    new_tag.sort_alphabetically
+    marc.root.children.insert(marc.get_insert_position("500"), new_tag)
     
     t.destroy_yourself
   end
