@@ -19,10 +19,16 @@ class CatalogController < ApplicationController
     out = []
     noinfo_sources = 0
     noinfo_libraries = 0
-    
+    total = 0
+  
     @pagination.items.each do |item|
+      total += item[:hits]
       lib = Institution.find_by_siglum(item[:value])
-      next if !lib
+      if !lib
+        noinfo_sources += item[:hits]
+        noinfo_libraries +=1
+        next
+      end
       
       marc = lib.marc
       marc.load_source false
@@ -49,7 +55,7 @@ class CatalogController < ApplicationController
       }
     end
     
-    {info: {noinfo_libraries: noinfo_libraries, noinfo_sources: noinfo_sources},
+    {info: {noinfo_libraries: noinfo_libraries, noinfo_sources: noinfo_sources, total: total, unique_sources: @response[:response]["numFound"]},
      data: out
     }
   end
