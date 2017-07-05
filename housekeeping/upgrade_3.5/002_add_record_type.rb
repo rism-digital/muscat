@@ -148,7 +148,7 @@ Source.all.each do |sa|
     case fix033[s.id]
     when "cbn"
       # cbn =copy date from 033 to 260$c in Group 1 adding ‘before', no change in 033
-      puts "033 conversion: cbn #{s.id}"
+      #puts "033 conversion: cbn #{s.id}"
       marc.by_tags("033").each do |t|
         t.fetch_all_by_tag("a").each do |ta|
           next if !ta || !ta.content
@@ -163,7 +163,7 @@ Source.all.each do |sa|
 
     when "cnn"
       # cnn =copy date from 033 to 260$c in Group 1 without adding 'before', no change in 033
-      puts "033 conversion: cnn #{s.id}"
+      #puts "033 conversion: cnn #{s.id}"
       marc.by_tags("033").each do |t|
         t.fetch_all_by_tag("a").each do |ta|
           next if !ta || !ta.content
@@ -178,7 +178,7 @@ Source.all.each do |sa|
       
     when "mnd"
       # mnd =move date from 033 to 260$c in Group 1 without adding 'before', delete 033
-      puts "033 conversion: mnd #{s.id}"
+      #puts "033 conversion: mnd #{s.id}"
       marc.by_tags("033").each do |t|
         t.fetch_all_by_tag("a").each do |ta|
           next if !ta || !ta.content
@@ -194,7 +194,7 @@ Source.all.each do |sa|
       
     when "mbd"
       # mbd =move date from 033 to 260$c in Group 1 adding 'before', delete 033
-      puts "033 conversion: mbd #{s.id}"
+      #puts "033 conversion: mbd #{s.id}"
       marc.by_tags("033").each do |t|
         t.fetch_all_by_tag("a").each do |ta|
           next if !ta || !ta.content
@@ -210,16 +210,33 @@ Source.all.each do |sa|
       
     when "nnd"
       # nnd =no change in 260$c required, delete 033
-      puts "033 conversion: remove 033 for #{s.id}"
+      #puts "033 conversion: remove 033 for #{s.id}"
       marc.by_tags("033").each {|t| t.destroy_yourself}
     when "nnn"
       # nnn =no change in 260$c nor in 033 required
       puts "033 conversion: nothing to do (nnn) for source #{s.id}"
     else
       # Wait what?
-      puts "033 conversion: unrecognized directive #{fix033[s.id]}, source #{s.id}"
+      #puts "033 conversion: unrecognized directive #{fix033[s.id]}, source #{s.id}"
     end
       
+  end
+
+  #Now process the remaining 033
+  marc.by_tags("033").each do |t|
+
+    node = t.deep_copy
+    node.tag = "599"
+    node.indicator = "##"
+    node.fetch_all_by_tag("a").each do |ta|
+      next if !ta || !ta.content
+      ta.content = "Migrated from 033: #{ta.content}"
+    end
+    
+    node.sort_alphabetically
+    marc.root.children.insert(marc.get_insert_position("599"), node)
+    
+    t.destroy_yourself
   end
 
   
@@ -368,8 +385,15 @@ Source.all.each do |sa|
     t.add_at(MarcNode.new("source", "x", t0.content, nil), 0)
     t.sort_alphabetically
     
-    #adios
-    t0.destroy_yourself
+    # Step 3, migrate $p to $c
+    tp = t.fetch_first_by_tag("p")
+    
+    if tp && tp.content
+      t.add_at(MarcNode.new("source", "c", tp.content, nil), 0)
+      t.sort_alphabetically
+      tp.destroy_yourself
+    end
+   
   end
   
   #193 Migrate 505 to 520
@@ -388,6 +412,23 @@ Source.all.each do |sa|
     marc.root.children.insert(marc.get_insert_position("520"), new_520)
     
     #adios
+    t.destroy_yourself
+  end
+
+  #Move the composer 518 to 500
+  marc.by_tags("518").each do |t|
+    ta = t.fetch_first_by_tag("a")
+    
+    next if !(ta && ta.content)
+    
+    next if !ta.content.downcase.include?("composition")
+    
+    node = t.deep_copy
+    node.tag = "500"
+    node.indicator = "##"
+    node.sort_alphabetically
+    marc.root.children.insert(marc.get_insert_position("500"), node)
+    
     t.destroy_yourself
   end
 
