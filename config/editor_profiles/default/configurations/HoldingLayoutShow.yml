@@ -1,15 +1,37 @@
 --- !map:Settings 
 group_order: 
-- main
+- edit_library
+- edit_names
+- edit_material
+- edit_references
+
 groups: 
-  main: 
+  administration: 
+    all_tags: 
+    - "001"
+  edit_library: 
     all_tags: 
     - "852"
-    - '506'
-    - '541'
-    - '561'
     - '591'
+    - '506'
+    - '561'
+    - '541'
     - '856'
-    - "001"
     all_tag_templates: 
       "856": marc_show/show_link
+  edit_names:
+    all_tags: 
+    - '700'
+    - '710'
+
+  edit_material:
+    all_tags: 
+    - '592'
+    - '563'
+
+  edit_references:
+    all_tags: 
+    - '500'
+    - '691'
+    - '651'
+    - '518'
