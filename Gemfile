@@ -39,6 +39,7 @@ end
 
 group :development do
   gem 'web-console', '~> 2.0'
+	gem 'rb-readline'
 end
 
 # For generating both digest and no digest assets
