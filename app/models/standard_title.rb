@@ -72,14 +72,19 @@ class StandardTitle < ActiveRecord::Base
     
     integer :src_count_order, :stored => true do
       tit = title
-      s = Source.solr_search do 
-        any_of do
-          with("031t_filter", tit)
-          with("240a_filter", tit)
-          with("730a_filter", tit)
+      if !tit || tit.empty?
+        puts "StandardTitle #{id_for_fulltext} has a nil .title"
+        0
+      else
+        s = Source.solr_search do 
+          any_of do
+            with("031t_filter", tit)
+            with("240a_filter", tit)
+            with("730a_filter", tit)
+          end
         end
+        s.total
       end
-      s.total
       #StandardTitle.count_by_sql("select count(*) from sources_to_standard_titles where standard_title_id = #{self[:id]}")
     end
   end
