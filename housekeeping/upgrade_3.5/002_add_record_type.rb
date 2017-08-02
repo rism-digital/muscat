@@ -225,7 +225,7 @@ Source.all.each do |sa|
   #Now process the remaining 033
   marc.by_tags("033").each do |t|
 
-    new_tag = MarcNode.new("source", "500", "", "##")
+    new_tag = MarcNode.new("source", "599", "", "##")
 
     t.fetch_all_by_tag("a").each do |ta|
       next if !ta || !ta.content
@@ -233,7 +233,7 @@ Source.all.each do |sa|
     end
     
     new_tag.sort_alphabetically
-    marc.root.children.insert(marc.get_insert_position("500"), new_tag)
+    marc.root.children.insert(marc.get_insert_position("599"), new_tag)
     
     t.destroy_yourself
   end
