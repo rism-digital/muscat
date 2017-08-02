@@ -302,11 +302,12 @@ Source.all.each do |sa|
   end
   
   #191 Remove 730 $r $n $m 
-  marc.by_tags("730").each do |t|
-    t.fetch_all_by_tag("r").each {|st| st.destroy_yourself}
-    t.fetch_all_by_tag("n").each {|st| st.destroy_yourself}
-    t.fetch_all_by_tag("m").each {|st| st.destroy_yourself}
-  end
+  ## THIS IS REVERTED
+#  marc.by_tags("730").each do |t|
+#    t.fetch_all_by_tag("r").each {|st| st.destroy_yourself}
+#    t.fetch_all_by_tag("n").each {|st| st.destroy_yourself}
+#    t.fetch_all_by_tag("m").each {|st| st.destroy_yourself}
+#  end
   
   #198 Remove 110 for collections
   if s.record_type == MarcSource::RECORD_TYPES[:collection] || MarcSource::RECORD_TYPES[:convolutum]
