@@ -38,7 +38,7 @@ function translateIncipCode(incip, out_format) {
 		
 		globalIncipitStrings.push(pae);
 		
-		options = JSON.stringify({
+		options = {
 					inputFormat: 'pae',
 					//pageHeight: 250,
 					pageWidth: 1024 / 0.4,
@@ -47,12 +47,12 @@ function translateIncipCode(incip, out_format) {
 					scale: 40,
 					ignoreLayout: 0,
 					adjustPageHeight: 1
-				});
+				};
 				
 		vrvToolkit.setOptions( options );
 		vrvToolkit.loadData(pae + "\n" );
 		if (out_format == "svg")
-			var outXml = vrvToolkit.renderPage(1, "");
+			var outXml = vrvToolkit.renderPage(1, {});
 		else
 			var outXml = vrvToolkit.getMEI(1, 1);
 		
@@ -99,7 +99,7 @@ function typesetIncipits(incip, out_format) {
 			in_data = oSerializer.serializeToString(containerDoc);
 		}
 		
-		options = JSON.stringify({
+		options = {
 					inputFormat: out_format,
 					//pageHeight: 250,
 					pageWidth: 1024 / 0.4,
@@ -108,12 +108,12 @@ function typesetIncipits(incip, out_format) {
 					scale: 40,
 					ignoreLayout: 0,
 					adjustPageHeight: 1
-				});
+				};
 				
 		vrvToolkit.setOptions( options );
 		vrvToolkit.loadData(in_data + "\n" );
 
-		var outXml = vrvToolkit.renderPage(1, "");
+		var outXml = vrvToolkit.renderPage(1, {});
 		
 		$("#mei-html-output").append(outXml);
 	}

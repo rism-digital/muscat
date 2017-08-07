@@ -10,6 +10,7 @@ Muscat is a framework for cataloging music documents (handwritten and printed mu
 * [Configuration](4-%20CONFIG.rdoc)
 * [Upgrading old versions](5-%20UPGRADE.rdoc)
 * [MARC21 Configuration and management](6-%20MARC_CONFIG.rdoc)
+* [RSPEC](7-%20RSPEC.rdoc)
 
 The full code documentation is available on RDoc:
 
