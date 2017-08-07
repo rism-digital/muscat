@@ -39,6 +39,7 @@ def parse_240n(s)
   return opus
 end
 
+=begin
 def split_033_code(code, subcode)
   #migrate the 033
   t = code.split("\n")
@@ -100,6 +101,7 @@ def migrate033(tag, code, date, s)
   end
   
 end
+=end
 
 pb = ProgressBar.new(Source.all.count)
 
@@ -111,7 +113,12 @@ substitute240r = YAML::load(File.read("housekeeping/upgrade_3.5/240r.yml"))
 
 move852d = YAML::load(File.read("housekeeping/upgrade_3.5/852d.yml"))
 
-convert033 = YAML::load(File.read("housekeeping/upgrade_3.5/033.yml"))
+##convert033 = YAML::load(File.read("housekeeping/upgrade_3.5/033.yml"))
+
+fix033 = {}
+CSV.foreach("housekeeping/upgrade_3.5/033_fix.csv") do |row|
+	fix033[row[0].to_i] = row[1]
+end
 
 Source.all.each do |sa|
   
@@ -136,21 +143,99 @@ Source.all.each do |sa|
   
   #401 - First and frontmost, migrate 033
   
-  if convert033.has_key?(s.id.to_s) && convert033[s.id.to_s][1] != "NOT PARSABLE"
-    found  = false
-    marc.by_tags("033").each do |t|
-      t.fetch_all_by_tag("a").each do |ta|
-        next if !ta || !ta.content
-      
-        next if ta.content[0, 4] != convert033[s.id.to_s][1]
-        
-        migrate033(t, convert033[s.id.to_s][0], convert033[s.id.to_s][1], s)
-        found = true
+  if fix033.has_key?(s.id)
+
+    case fix033[s.id]
+    when "cbn"
+      # cbn =copy date from 033 to 260$c in Group 1 adding ‘before', no change in 033
+      #puts "033 conversion: cbn #{s.id}"
+      marc.by_tags("033").each do |t|
+        t.fetch_all_by_tag("a").each do |ta|
+          next if !ta || !ta.content
+          new_260 = MarcNode.new("source", "260", "", "##")
+          new_260.add_at(MarcNode.new("source", "c", "before #{ta.content}", nil), 0)
+          new_260.add_at(MarcNode.new("source", "8", "01", nil), 1)
+          new_260.sort_alphabetically
+
+          marc.root.children.insert(marc.get_insert_position("260"), new_260)
+        end
       end
+
+    when "cnn"
+      # cnn =copy date from 033 to 260$c in Group 1 without adding 'before', no change in 033
+      #puts "033 conversion: cnn #{s.id}"
+      marc.by_tags("033").each do |t|
+        t.fetch_all_by_tag("a").each do |ta|
+          next if !ta || !ta.content
+          new_260 = MarcNode.new("source", "260", "", "##")
+          new_260.add_at(MarcNode.new("source", "c", ta.content, nil), 0)
+          new_260.add_at(MarcNode.new("source", "8", "01", nil), 1)
+          new_260.sort_alphabetically
+
+          marc.root.children.insert(marc.get_insert_position("260"), new_260)
+        end
+      end
+      
+    when "mnd"
+      # mnd =move date from 033 to 260$c in Group 1 without adding 'before', delete 033
+      #puts "033 conversion: mnd #{s.id}"
+      marc.by_tags("033").each do |t|
+        t.fetch_all_by_tag("a").each do |ta|
+          next if !ta || !ta.content
+          new_260 = MarcNode.new("source", "260", "", "##")
+          new_260.add_at(MarcNode.new("source", "c", ta.content, nil), 0)
+          new_260.add_at(MarcNode.new("source", "8", "01", nil), 1)
+          new_260.sort_alphabetically
+
+          marc.root.children.insert(marc.get_insert_position("260"), new_260)
+        end
+      end
+      marc.by_tags("033").each {|t| t.destroy_yourself}
+      
+    when "mbd"
+      # mbd =move date from 033 to 260$c in Group 1 adding 'before', delete 033
+      #puts "033 conversion: mbd #{s.id}"
+      marc.by_tags("033").each do |t|
+        t.fetch_all_by_tag("a").each do |ta|
+          next if !ta || !ta.content
+          new_260 = MarcNode.new("source", "260", "", "##")
+          new_260.add_at(MarcNode.new("source", "c", "before #{ta.content}", nil), 0)
+          new_260.add_at(MarcNode.new("source", "8", "01", nil), 1)
+          new_260.sort_alphabetically
+
+          marc.root.children.insert(marc.get_insert_position("260"), new_260)
+        end
+      end
+      marc.by_tags("033").each {|t| t.destroy_yourself}
+      
+    when "nnd"
+      # nnd =no change in 260$c required, delete 033
+      #puts "033 conversion: remove 033 for #{s.id}"
+      marc.by_tags("033").each {|t| t.destroy_yourself}
+    when "nnn"
+      # nnn =no change in 260$c nor in 033 required
+      #puts "033 conversion: nothing to do (nnn) for source #{s.id}"
+    else
+      # Wait what?
+      #puts "033 conversion: unrecognized directive #{fix033[s.id]}, source #{s.id}"
     end
-  
-    puts "#{s.id} - could not match 033 in table #{convert033[s.id.to_s][1]}" if !found
-  
+      
+  end
+
+  #Now process the remaining 033
+  marc.by_tags("033").each do |t|
+
+    new_tag = MarcNode.new("source", "599", "", "##")
+
+    t.fetch_all_by_tag("a").each do |ta|
+      next if !ta || !ta.content
+      new_tag.add_at(MarcNode.new("source", "a", "Migrated from 033: #{ta.content}", nil), 0)
+    end
+    
+    new_tag.sort_alphabetically
+    marc.root.children.insert(marc.get_insert_position("599"), new_tag)
+    
+    t.destroy_yourself
   end
 
   
@@ -217,11 +302,12 @@ Source.all.each do |sa|
   end
   
   #191 Remove 730 $r $n $m 
-  marc.by_tags("730").each do |t|
-    t.fetch_all_by_tag("r").each {|st| st.destroy_yourself}
-    t.fetch_all_by_tag("n").each {|st| st.destroy_yourself}
-    t.fetch_all_by_tag("m").each {|st| st.destroy_yourself}
-  end
+  ## THIS IS REVERTED
+#  marc.by_tags("730").each do |t|
+#    t.fetch_all_by_tag("r").each {|st| st.destroy_yourself}
+#    t.fetch_all_by_tag("n").each {|st| st.destroy_yourself}
+#    t.fetch_all_by_tag("m").each {|st| st.destroy_yourself}
+#  end
   
   #198 Remove 110 for collections
   if s.record_type == MarcSource::RECORD_TYPES[:collection] || MarcSource::RECORD_TYPES[:convolutum]
@@ -299,8 +385,15 @@ Source.all.each do |sa|
     t.add_at(MarcNode.new("source", "x", t0.content, nil), 0)
     t.sort_alphabetically
     
-    #adios
-    t0.destroy_yourself
+    # Step 3, migrate $p to $c
+    tp = t.fetch_first_by_tag("p")
+    
+    if tp && tp.content
+      t.add_at(MarcNode.new("source", "c", tp.content, nil), 0)
+      t.sort_alphabetically
+      tp.destroy_yourself
+    end
+   
   end
   
   #193 Migrate 505 to 520
@@ -319,6 +412,23 @@ Source.all.each do |sa|
     marc.root.children.insert(marc.get_insert_position("520"), new_520)
     
     #adios
+    t.destroy_yourself
+  end
+
+  #Move the composer 518 to 500
+  #marc.by_tags("518").each do |t|
+  xt = marc.root.fetch_all_by_tag("518")
+  xt.each do |t|
+    ta = t.fetch_first_by_tag("a")
+    
+    next if !(ta && ta.content)
+    next if !ta.content.downcase.include?("composition")
+
+    new_tag = MarcNode.new("source", "500", "", "##")
+    new_tag.add_at(MarcNode.new("source", "a", ta.content, nil), 0)
+    new_tag.sort_alphabetically
+    marc.root.children.insert(marc.get_insert_position("500"), new_tag)
+    
     t.destroy_yourself
   end
 
@@ -453,6 +563,11 @@ Source.all.each do |sa|
     end
   end
 
+  # Move 772 to 774
+  all772 = marc.root.fetch_all_by_tag("772")
+  all772.each do |t|
+    t.tag = "774"
+  end
   
   # #208, drop 600
   marc.by_tags("600").each {|t| t.destroy_yourself}

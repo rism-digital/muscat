@@ -26,7 +26,12 @@ class ReindexForeignRelationsJob < ProgressJob::Base
       next if !element[:class].exists?(element[:id])
       
       link = element[:class].find(element[:id])
-      link.reindex
+      begin
+        link.reindex
+      rescue Errno::ECONNREFUSED
+        sleep rand(5)
+        link.reindex
+      end
       update_stage_progress("Reindexing #{link.class} relation", step: 1)
     end
   end

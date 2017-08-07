@@ -50,7 +50,7 @@ function render_music( music, format, target, width ) {
 		return;
 	}
 	
-	options = JSON.stringify({
+	options = {
 				inputFormat: 'pae',
 				pageWidth: width / 0.4,
 				spacingStaff: 1,
@@ -58,11 +58,11 @@ function render_music( music, format, target, width ) {
 				scale: 40,
 				ignoreLayout: 0,
 				adjustPageHeight: 1
-			});
+			};
 			
 	vrvToolkit.setOptions( options );
 	vrvToolkit.loadData(music + "\n" );
-	svg = vrvToolkit.renderPage(1, "");
+	svg = vrvToolkit.renderPage(1, {});
 	
 	$(target).html(svg);
 };

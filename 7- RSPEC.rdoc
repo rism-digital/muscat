@@ -1,0 +1,8 @@
+= RSPEC
+
+This software has some basic rspec tests in the 'spec' folder. 
+
+To execute the complete suite call:
+  bundle exec rspec -fd
+
+

@@ -22,7 +22,12 @@ class Ability
     ##########
 
     elsif user.has_role?(:editor)
-      can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+      if user.has_role?(:person_editor)
+        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+      else
+        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+        can [:read, :create], Person
+      end
       can :create_editions, Source
       can :update_editions, Source
       can :manage, Folder, :wf_owner => user.id

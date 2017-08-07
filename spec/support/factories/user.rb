@@ -13,9 +13,17 @@ FactoryGirl.define do
   factory :cataloger, :parent => :user do
     roles { [ FactoryGirl.create(:cataloger_role) ] }
   end
+ 
+  factory :guest, :parent => :user do
+    roles { [ FactoryGirl.create(:guest_role) ] }
+  end
   
   factory :editor, :parent => :user do
     roles { [ FactoryGirl.create(:editor_role) ] }
+  end
+
+  factory :person_editor, :parent => :user do
+    roles { [ FactoryGirl.create(:editor_role),  FactoryGirl.create(:person_editor_role),  ] }
   end
 
   factory :role do
@@ -33,5 +41,14 @@ FactoryGirl.define do
   factory :editor_role, :parent => :role do
     name "editor"
   end
+
+  factory :guest_role, :parent => :role do
+    name "guest"
+  end
+
+  factory :person_editor_role, :parent => :role do
+    name "person_editor"
+  end
+
 
 end

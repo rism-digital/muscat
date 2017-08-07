@@ -347,7 +347,7 @@ class MarcSource < Marc
       each_by_tag("774") do |t|
         w = t.fetch_first_by_tag("w")
         if w && w.content
-          source = Source.find(w.content)
+          source = Source.find(w.content) rescue next
           type = "dc" if source.record_type != RECORD_TYPES[:edition_content]
           t.add_at(MarcNode.new(@model, "a", source.name, nil), 0)
         else
