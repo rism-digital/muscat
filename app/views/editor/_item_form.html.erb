@@ -2,7 +2,24 @@
 	groups = Array.new
 	@editor_profile.each_group_in_layout @item do |group|
 		groups << group
-	end
+  end
+
+  @restricted = ""
+  current_user.roles.select {|r| r.name =~ /restricted/}.each do |role|
+    restricted_model = role.name.split("_")[0]
+    if @editor_profile.model != restricted_model
+      next
+    else
+      @restricted = "disabled"
+    end
+  end
+
+
+
+
+
+
+
 -%>
 
 <div id="<%= render_panel -%>" class="panel-hidable" data-editor-model="<%= model %>" style="display: <%= @show_history ? "none" : "block" -%>;">
