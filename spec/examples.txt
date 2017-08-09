@@ -12,7 +12,8 @@ example_id                                                     | status  | run_t
 ./spec/features/abilities_spec.rb[1:3:2]                       | passed  | 1.43 seconds    |
 ./spec/features/abilities_spec.rb[1:4:1]                       | passed  | 1.48 seconds    |
 ./spec/features/abilities_spec.rb[1:4:2]                       | passed  | 1.33 seconds    |
-./spec/features/cataloger_with_people_abilities_spec.rb[1:1:1] | passed  | 6.75 seconds    |
+./spec/features/cataloger_with_people_abilities_spec.rb[1:1:1] | passed  | 5.19 seconds    |
+./spec/features/cataloger_with_people_abilities_spec.rb[1:1:2] | failed  | 3.56 seconds    |
 ./spec/features/editor_abilities_spec.rb[1:1:1]                | passed  | 4.94 seconds    |
 ./spec/features/standard_title/standard_title_spec.rb[1:2]     | passed  | 1.84 seconds    |
 ./spec/lib/sru_spec.rb[1:1:1:1]                                | passed  | 0.08113 seconds |

@@ -344,6 +344,8 @@
     fields: 
     - - u
       - cols: 2
+        unrestricted: true
     - - y
       - cols: 2
+        unrestricted: true
     columns: 4

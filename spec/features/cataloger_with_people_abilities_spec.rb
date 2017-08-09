@@ -9,12 +9,18 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       fill_in :user_email, :with => user.email
       fill_in :user_password, :with => user.password
       click_button('Login')
+      visit edit_admin_person_path(person)
     end
     it "Catalogers with people ability should not have all fields writeable" do
-      visit edit_admin_person_path(person)
       input_field = page.find(:xpath, "//input[@data-tag='100' and @data-subfield='a']")
       expect(input_field["disabled"]).to eq(true) 
     end
+    
+    it "Some special fields should be writeable for person_restricted" do
+      input_field = page.find(:xpath, "//input[@data-tag='856' and @data-subfield='u']")
+      expect(input_field["disabled"]).to eq(false) 
+    end
+ 
   end
 end
 
