@@ -44,5 +44,25 @@ RSpec.describe Role do
     it{ is_expected.to be_able_to(:update, Person.new)  }
     it{ is_expected.to be_able_to(:destroy, Person.new)  }
   end
+end
+
+RSpec.describe Role do
+  subject(:ability){ Ability.new(user)  }
+  let(:user){ FactoryGirl.build(:user, roles: [role, role_people])  }
+  context "when is a cataloger with people abilities" do
+    let(:role){ FactoryGirl.build(:cataloger_role)  }
+    let(:role_people){ FactoryGirl.build(:cataloger_with_people_abilities_role)  }
+    it{ is_expected.to be_able_to(:create, Person.new)  }
+    it{ is_expected.to be_able_to(:read, Person.new)  }
+    it{ is_expected.to be_able_to(:update, Person.new)  }
+    it{ is_expected.not_to be_able_to(:destroy, Person.new)  }
+  end
+
+
+
+
+
+
+
 
 end
