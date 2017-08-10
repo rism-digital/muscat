@@ -17,6 +17,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
     end
     
     it "Some special fields should be writeable for person_restricted" do
+      page.find(:xpath, "//div[@class='tag_group' and @data-tag='856']//a[@title='Add tag']").click
       input_field = page.find(:xpath, "//input[@data-tag='856' and @data-subfield='u']")
       expect(input_field["disabled"]).to eq(false) 
     end
