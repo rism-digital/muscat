@@ -12,37 +12,33 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       visit edit_admin_person_path(person)
     end
     it "Catalogers with people ability should not have all fields writeable" do
-      input_field = page.find(:xpath, "//input[@data-tag='100' and @data-subfield='a']")
-      expect(input_field["disabled"]).to eq(true) 
+      collapsables = page.find_all(:xpath, "//div[@class='tag_group']//a[@title='Add tag']")
+      collapsables.each do |c| 
+        c.click 
+      end
+      save_screenshot('/tmp/screenshot.jpg', :full => true)
+      #input_field = page.find(:xpath, "//input[@data-tag='100' and @data-subfield='a']")
+      ec = (EditorConfiguration.get_default_layout Person.first).options_config
+      unrestricted_fields = Hash.new([])
+      ec.each do |e|
+        if e[1]["layout"] && e[1]["layout"]["fields"]
+          e[1]["layout"]["fields"].each do |subfield|
+            if subfield[1]["unrestricted"] && subfield[1]["unrestricted"].include?("person_restricted")
+              unrestricted_fields[e[0]] += [subfield[0]]
+            end
+          end
+        end
+      end
+         
+      input_fields = page.find_all(:xpath, "//input[@data-tag]|//select[@data-tag]")
+      input_fields.each do |field|
+        #puts field["outerHTML"] 
+        if unrestricted_fields[field["data-tag"]] && unrestricted_fields[field["data-tag"]].include?(field["data-subfield"])
+           expect(field["disabled"]).to eq(false) 
+        else
+           expect(field["disabled"]).to eq(true)
+        end
+      end
     end
-    
-    it "Some special fields should be writeable for person_restricted" do
-      page.find(:xpath, "//div[@class='tag_group' and @data-tag='856']//a[@title='Add tag']").click
-      input_field = page.find(:xpath, "//input[@data-tag='856' and @data-subfield='u']")
-      expect(input_field["disabled"]).to eq(false) 
-    end
- 
-  end
+  end 
 end
-
-=begin
-RSpec.describe "Abilities", :type => :feature, :js => true do 
-  describe "Cataloger with people abilities" do
-    let(:editor) { FactoryGirl.create(:editor)  }
-    let(:person) { FactoryGirl.create(:person)  }
-    before do
-      visit user_session_path
-      fill_in :user_email, :with => editor.email
-      fill_in :user_password, :with => editor.password
-      click_button('Login')
-    end
-    it "Editors should have all fields writeable" do
-      visit edit_admin_person_path(person)
-      binding.pry
-      input_field = page.find(:xpath, "//input[@data-tag='100' and @data-subfield='a']")
-      expect(input_field.readonly?).to eq(false) 
-    end
-  end
-=end
-
-
