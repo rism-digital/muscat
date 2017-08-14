@@ -17,22 +17,19 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
         c.click 
       end
       save_screenshot('/tmp/screenshot.jpg', :full => true)
-      #input_field = page.find(:xpath, "//input[@data-tag='100' and @data-subfield='a']")
-      ec = (EditorConfiguration.get_default_layout Person.first).options_config
+      tags = (EditorConfiguration.get_default_layout Person.first).options_config
       unrestricted_fields = Hash.new([])
-      ec.each do |e|
-        if e[1]["layout"] && e[1]["layout"]["fields"]
-          e[1]["layout"]["fields"].each do |subfield|
-            if subfield[1]["unrestricted"] && subfield[1]["unrestricted"].include?("person_restricted")
-              unrestricted_fields[e[0]] += [subfield[0]]
+      tags.each do |tag|
+        if flatten_all(tag).include?("unrestricted")
+          tag[1]["layout"]["fields"].each do |subfield|
+            if flatten_all(subfield).include?("unrestricted")
+              unrestricted_fields[tag[0]] += [subfield[0]]
             end
           end
         end
       end
-         
       input_fields = page.find_all(:xpath, "//input[@data-tag]|//select[@data-tag]")
       input_fields.each do |field|
-        #puts field["outerHTML"] 
         if unrestricted_fields[field["data-tag"]] && unrestricted_fields[field["data-tag"]].include?(field["data-subfield"])
            expect(field["disabled"]).to eq(false) 
         else
