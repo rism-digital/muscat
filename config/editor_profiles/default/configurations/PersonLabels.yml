@@ -11,7 +11,7 @@ doc_cataloguing_collections:
   label:
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
-doc_functions:
+doc_edit_functions:
   label:
     de: "Grundsätzliche Funktionen"
     en: Basic functions
@@ -38,10 +38,6 @@ doc_editor:
   label: 
     de: "Editor Hilfe"
     en: Editor help
-doc_edit_functions: 
-  label: 
-    de: "Grundsätzliche Funktionen"
-    en: Basic functions
 doc_edit_workflow: 
   label: 
     de: "Workflow"
