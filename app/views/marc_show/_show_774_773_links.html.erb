@@ -12,6 +12,8 @@
 						<td valign="top">
 							<% if opac %>
 								<%= link_to @item.parent_source.id.to_s, catalog_path(@item.parent_source.id.to_s)%>
+							<% elsif is_selection_mode? %>
+								<%= @item.parent_source.id.to_s%>
 							<% else %>
 								<%= application_helper_link_source_id(@item.parent_source.id, "", opac).html_safe %>
 							<% end %>
@@ -35,6 +37,8 @@
 						<td>
 							<% if opac %>
 								<%= link_to child.id.to_s, catalog_path(child.id.to_s)%>
+							<% elsif is_selection_mode? %>
+								<%= child.id.to_s%>
 							<% else %>
 								<%= application_helper_link_source_id(child.id, "", opac).html_safe %>
 							<% end %>
