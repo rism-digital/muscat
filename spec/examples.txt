@@ -12,7 +12,7 @@ example_id                                                     | status  | run_t
 ./spec/features/abilities_spec.rb[1:3:2]                       | passed  | 1.39 seconds    |
 ./spec/features/abilities_spec.rb[1:4:1]                       | passed  | 0.86876 seconds |
 ./spec/features/abilities_spec.rb[1:4:2]                       | passed  | 1.37 seconds    |
-./spec/features/cataloger_with_people_abilities_spec.rb[1:1:1] | passed  | 6.65 seconds    |
+./spec/features/cataloger_with_people_abilities_spec.rb[1:1:1] | passed  | 7.74 seconds    |
 ./spec/features/editor_abilities_spec.rb[1:1:1]                | passed  | 1.49 seconds    |
 ./spec/features/standard_title/standard_title_spec.rb[1:2]     | passed  | 1.75 seconds    |
 ./spec/lib/sru_spec.rb[1:1:1:1]                                | passed  | 0.03466 seconds |
