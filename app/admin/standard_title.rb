@@ -1,4 +1,4 @@
-#include Triggers
+include Triggers
   
 ActiveAdmin.register StandardTitle do
 
@@ -73,8 +73,7 @@ ActiveAdmin.register StandardTitle do
       end
 
       # Run the eventual triggers
-      ##POSTPONED to 3.6.11
-      ##execute_triggers_from_params(params, @standard_title)
+      execute_triggers_from_params(params, @standard_title)
 
     end
     
@@ -160,9 +159,12 @@ ActiveAdmin.register StandardTitle do
   
   form do |f|
     f.inputs do
-      f.input :title, :label => (I18n.t :filter_title), :input_html => { :disabled => true }
-      ## POSTPONED to 3.6.11
-      ##        input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources"]}) }}
+      ## Enable the trigger, only for editors
+      if current_user.has_any_role?(:editor, :admin)
+        f.input :title, :label => (I18n.t :filter_title), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources"]}) }}
+      else
+        f.input :title, :label => (I18n.t :filter_title), :input_html => { :disabled => true }
+      end
       f.input :latin, :label => (I18n.t :menu_latin) 
       f.input :alternate_terms, :label => (I18n.t :filter_variants)
       #f.input :typus, :label => (I18n.t :filter_record_type) 
