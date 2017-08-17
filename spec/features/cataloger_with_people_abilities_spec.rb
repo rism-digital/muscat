@@ -20,9 +20,9 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       tags = (EditorConfiguration.get_default_layout Person.first).options_config
       unrestricted_fields = Hash.new([])
       tags.each do |tag|
-        if flatten_all(tag).include?("unrestricted")
+        if CollectionHelper::ConfigHash.new(tag).contains?("unrestricted")
           tag[1]["layout"]["fields"].each do |subfield|
-            if flatten_all(subfield).include?("unrestricted")
+            if CollectionHelper::ConfigHash.new(subfield).contains?("unrestricted")
               unrestricted_fields[tag[0]] += [subfield[0]]
             end
           end
