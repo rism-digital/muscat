@@ -512,6 +512,19 @@
   layout: 
     fields: 
     - - a
+      - values: 
+        - "A/I"
+        - "B/I"
+        - "B/II"
+        - "B/III"
+        - "B/IV"
+        - "B/VIII"
+        - "B/IX/1"
+        - "B/IX/2"
+        - "B/XIII"
+        - "B/XV"
+        - "B/XVII"
+        editor_partial: subfield_select
     - - b
 "597": 
   layout: 
