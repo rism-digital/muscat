@@ -1,6 +1,7 @@
 
 var _nw_destination = null;
 var _child = null;
+var _interval = null;
 
 function deselectSession() {
 	$.ajax({
@@ -159,6 +160,13 @@ function newWindowIsSelect() {
 				}
 				// Open up the new window
 				_child = window.open('/admin/' + controller + '?select=true' + encodeURI(search), null, "location=no");
+				
+				_interval = setInterval(function() {
+					if (_child && _child.closed) {
+						clearInterval(_interval);
+						newWindowCancel();
+					}
+				}, 2000)
 				
 			});
 		}
