@@ -407,6 +407,7 @@ it:
   filter_revue_title: "Titolo del periodico o della miscellanea"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
+  filter_images: "Immagini"
   filter_scoring: "Organico"
   filter_series_items: "Elemento nella serie"
   filter_siglum: "Sigla"

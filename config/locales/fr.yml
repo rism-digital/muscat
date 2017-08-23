@@ -407,6 +407,7 @@ fr:
   filter_revue_title: "Titre de la revue"
   filter_id: "No RISM"
   filter_id_no: "No RISM"
+  filter_images: "IMAGES"
   filter_scoring: "Distribution"
   filter_series_items: "Eléments de la série"
   filter_siglum: "Sigle"

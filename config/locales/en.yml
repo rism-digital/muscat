@@ -1,9 +1,6 @@
 
 en:
   active_admin:
-# Pad for italian, it has 2 missing items
-#
-#
     dashboard: Dashboard
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."
@@ -38,7 +35,6 @@ en:
         ends_with: "Ends with"
         greater_than: "Greater than"
         less_than: "Less than"
-        with_integer: "Filter"
     status_tag:
       "yes": "Yes"
       "no": "No"
@@ -143,17 +139,14 @@ en:
     formats:
       default: "%H:%M"
       short: "%H:%M"
-      long: "%Y-%m-%d %H:%M"
+      long: "%H:%M"
       
   #################### MODELS      
   activerecord:
     models:
-      digital_object:
-        one: "Image"
-        other: "Images"
       catalogue:
-        one: "Secondary literature"
-        other: "Secondary literature"
+        one: "Catalogue"
+        other: "Catalogues"
       folder:
         one: "Folder"
         other: "Folders"
@@ -164,54 +157,37 @@ en:
         one: "Institution"
         other: "Institutions"
       liturgical_feast:
-        one: "Liturgical festivals"
-        other: "Liturgical festivals"
+        one: "Liturgical Feast"
+        other: "Liturgical Feasts"
       person:
-        one: "Personal name"
-        other: "Personal names"
+        one: "Person"
+        other: "People"
       source:
         one: "Source"
         other: "Sources"
       standard_term:
-        one: "Subject heading"
-        other: "Subject headings"
+        one: "Standard Term"
+        other: "Standard Terms"
       standard_title:
-        one: "Standard title"
-        other: "Standard titles"
+        one: "Standard Title"
+        other: "Standard Titles"
       user:
         one: "User"
         other: "Users"
-        
-  #################### RECORD TYPES (TEMPLATES)
-  select_template: "Select new template"
-  available_templates: "Available templates"
-  from_existing_source: "Create from existing source"
-  create_from_existing: "Create"
-  record_types:
-    unspecified: "[Unknown template]"
-    collection: "Collection"
-    source: "Music manuscript"
-    edition_content: "Music imprint"
-    libretto_source: "Libretto, handwritten"
-    libretto_edition_content: "Libretto, printed"
-    theoretica_source: "Treatise, handwritten"
-    theoretica_edition_content: "Treatise, printed"
-    edition: "Edition*"
         
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Sources"
   menu_simple_search: "Simple search"
   menu_advanced_search: "Advanced search"
-  menu_indexes: "Authorities"
-  menu_people: "Personal names"
+  menu_indexes: "Indexes"
+  menu_people: "People"
   menu_institutions: "Institutions"
-  menu_titles: "Titles / text incipits"
-  menu_subjects: "Subject headings"
-  menu_library_sigla: "Library siglum"
-  menu_catalogues: "Secondary literature"
-  menu_liturgical_feasts: "Liturgical festivals"
-  menu_latin: "Latin text"
+  menu_titles: "Title / Textual Incipit"
+  menu_subjects: "Subjects"
+  menu_library_sigla: "Library Sigla"
+  menu_catalogues: "Catalogues"
+  menu_liturgical_feasts: "Liturgical Feasts"
   menu_places: "Places"
   menu_help: "Help"
   menu_folders: "Folders"
@@ -219,16 +195,12 @@ en:
   menu_workgroups: "Workgroups"
   menu_administration: "Administration"
   menu_comments: "Comments"
-  menu_catalog: "Faceted search"
   menu_languages: "Language"
   menu_contact: "Contact"
   menu_search_history: "Search history"
   menu_guidelines: "Cataloguing guidelines"
   menu_marc_documentation: "Marc configuration"
   menu_guidelines_top: "Guidelines"
-  menu_cataloging: "Cataloguing"
-  menu_jobs: "Jobs"
-  menu_holdings: "Holdings"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
@@ -246,70 +218,14 @@ en:
   search_sources: "Search Sources"
   created_at: "Creation date"
   updated_at: "Last modification"
-  status: "Status"
-  progress_stage: "Stage"
-  object: "Object"
-  queue: "Queue"
-  failed_at: "Failed At"
-  run_at: "Run At"
-  created_at: "Created At"
-  progress: "Progress"
-  failed: "Failed"
-  waiting: "Waiting"
-  running: "Running"
-  finished: "Finished"
-  lib_siglum: "Library Siglum"
-  holding_records: "Exemplar Information"
-  new_holding: "Add holdings"
-  new_digital_object: "Attach a new image"
-  record_actions: "Record Actions"
-  record_status: "Record Status"
-  record_owner: "Record Owner"
-  link_type: "Linked object type"
-  linked_object: "Linked Object"
-  links: "Links"
-  link_remove: "Remove Link"
-  link_remove_confirm: "Are you sure you want to delete this link?"
-  unloadable_record: "This record experienced loading errors: it can be viewed but not edited. Please contact an administrator."
-  validation_level_error: "There are errors, please solve before saving"
-  validation_level_warning: "There are warnings, save again to override"
-  
-  jobs:
-    not_set: "[No status set]"
-    ok: "Job ended successfully"
-    no_status: "There was an Error Reading job Status"
-    error: "ERROR: "
-    running_jobs: "Running Jobs Cannot be Deleted."
-    auto_delete: "Cannot Delete: Finished job was Automatically Deleted."
-    no_view: "Cannot View: Finished job was Automatically Deleted."
-
-  # Sidebar
-  delete: "Delete"
-  to_the_list: "Return to the list"
-  edit: "Edit"
-  new: "Create"
-  duplicate: "Duplicate"
-  no_action: "No action available"
-  reindex: "Reindex sources"
-  resave: "Resave sources"
-  publish: "Publish"
-  unpublish: "Unpublish"
-  select: "Select"
-  create_folder: "Add to a new folder"
-  append_folder: "Add to an existing folder"
-  add_source: "Link Source"
-  add_person: "Link Person"
   
   # Editor sidebar
   show_all_groups: "Show all sections"
   show_preview: "Show preview"
-  hide_preview: "Hide preview"
   show_history: "Show modification history"
-  show_viaf: "VIAF Search"
   save_and_continue: "Save and continue editing"
-  save_and_exit: "Save and close"
+  save_and_exit: "Save and terminate"
   cancel: "Cancel"
-  duplicate_confirm: "Are you sure you want to duplicate this record?"
   
   # Version history
   history_date: "Date"
@@ -327,15 +243,7 @@ en:
   folders:
     save: "Save results to Folder"
     success: "Folder %{name} created with %{count} items."
-    too_many: "Cannot add more than %{max} items (%{count} selected)."
-    added: "Added %{count} items to Folder %{name}."
-    added_bg: "Added items to folder, job %{job} enqueued."
-    success_bg: "Folder %{name} created, job %{job} enqueued."
-
-  ### Digital objects
-  digital_objects: "Images"
-  digital_object_new: "Add a new image"
-  digital_object_add: "Add"
+    too_many: "Cannot add more than %{max} items (%{count} SÉLÉCTIONÉS)."
   
   ############ filters
   filter_address: "Address"
@@ -345,7 +253,6 @@ en:
   filter_alternates: "Alternate names"
   filter_any_field: "Any field"
   filter_author: "Author"
-  filter_author_or_editor: "Author/Editor"
   filter_autograph_of: "Autograph of"
   filter_birth_place: "Birth place"
   filter_catalog: "Catalog"
@@ -379,11 +286,8 @@ en:
   filter_life_dates: "Life dates"
   filter_links: "Links"
   filter_liturgical_feast: "Liturgical feast"
-  filter_location_and_name: "Name and location"
+  filter_location_and_name: "Name ion"
   filter_manuscript_no: "Manuscript No."
-  filter_male: "Male"
-  filter_female: "Female"
-  filter_unknown: "Unknown"
   filter_shelf_mark: "Shelfmark"
   filter_name: "Name"
   filter_notes: "Notes"
@@ -392,48 +296,32 @@ en:
   filter_pages: "Pages"
   filter_pattern: "Siglum patterns"
   filter_people: "People"
-  filter_person_100d: "Life Dates"
-  filter_person_550a: "Profession"
-  filter_person_375a: "Gender"
-  filter_person_043c: "Country Code"
-  filter_person_551a: "Places"
-  filter_person_100d_birthdate: "Year of Birth"
-  filter_person_100d_deathdate: "Year of Death"
   filter_phone: "Phone"
   filter_place: "Place"
   filter_provenance: "Provenance"
-  filter_record_type: "Type"
-  filter_source_type: "Source Type"
-  filter_publisher: "Publisher"
   filter_revue_title: "Revue title"
-  filter_id: "RISM ID"
-  filter_id_no: "RISM ID"
+  filter_id: "Rism ID"
+  filter_id_no: "Rism ID"
+  filter_images: "Images"
   filter_scoring: "Scoring"
-  filter_series_items: "Series items"
   filter_siglum: "Siglum"
   filter_source: "Source"
   filter_sources: "Sources"
   filter_source_type: "Source Type"
-  filter_std_title: "Standardized title"
+  filter_std_title: "Standardised title"
   filter_subject: "Subject"
   filter_term: "Term"
   filter_thematic_opus: "Thematic cat. / Opus no."
   filter_title: "Title"
   filter_titles: "Titles"
   filter_title_on_ms: "Title on source"
-  filter_topic: "Topic"
-  filter_sub_topic: "Subtopic"
   filter_url: "Internet address"
   filter_variants: "Variants"
   filter_versions: "Versions"
   filter_volume: "Volume"
-  filter_image: "Image"
-  filter_file_name: "File name"
-  filter_file_size: "File size"
-  filter_content_type: "Type"
   filter_wf: "WF"
-  filter_wf_audit: "Audit"
-  filter_wf_stage: "Status"
+  filter_wf_audit: "WF audit"
+  filter_wf_stage: "WF stage"
   filter_distribution: "Scoring"
   filter_dist_exclude: "Exclude"
   filter_dist_594a: "Vocal parts (solo)"
@@ -443,13 +331,13 @@ en:
   filter_dist_594e: "Solo instrument"
   filter_dist_594f: "Strings"
   filter_dist_594g: "Woodwinds"
-  filter_dist_594h: "Brass instruments"
+  filter_dist_594h: "Brasses"
   filter_dist_594i: "Plucked instruments"
   filter_dist_594k: "Percussion instruments"
   filter_dist_594l: "Keyboard instruments"
   filter_dist_594m: "Other instruments"
   filter_dist_594n: "Basso continuo instruments"
- 
+  
   rism_any_key: "Any key"
   rism_a_flat: "A flat major/minor"
   rism_a: "A major/minor"
@@ -468,27 +356,21 @@ en:
   
   # Assorted error messages
   error_not_found: "The resource you are trying to access does not exist or has been deleted."
-  error_saving: "The resource is not complete or generates a duplicate"
   unknown_tags: "There are some unknown fields in this record"
-  cannot_update_source: "You are not authorized to edit this type of source"
-  cannot_create_source: "You are not authorized to create this type of source"
   
   #
   entry:
-    one: "entry"
-    other: "entries"
-  digital_object:
-    one: "digital object"
-    other: "digital objects"
+     one: "entry"
+     other: "entries"
   catalogue:
     one: "catalogue"
     other: "catalogues"
   institution: 
-    one: "institution"
-    other: "institutions"
+     one: "institution"
+     other: "institutions"
   library: 
-    one: "library"
-    other: "libraries"
+     one: "library"
+     other: "libraries"
   liturgicalfeast: 
     one: "litrugical feast"
     other: "liturgical feasts"
@@ -499,8 +381,8 @@ en:
     one: "place"
     other: "places"
   person: 
-    one: "person"
-    other: "poeple"
+     one: "person"
+     other: "poeple"
   standardterm:
     one: "subject"
     other: "subjects" 
@@ -539,10 +421,10 @@ en:
   themefinder_c: "pitch refined contour"
   themefinder_C: "pitch gross contour"
   themefinder_d: "diatonic scale degree"
-  themefinder_i: "twelve-tone interval"
+  themefinder_i: "twelwe-tone interval"
   themefinder_I: "diatonic interval"
   themefinder_p: "diatonic pitch class"
-  themefinder_P: "twelve-tone pitch class"
+  themefinder_P: "twelwe-tone pitch class"
   themefinder_p0: "no pitch search"
 
   themefinder_u: "exact duration"
@@ -595,69 +477,9 @@ en:
     download: "Download"
     more: "More"
     banner: 'Please click "Preview" to show the MEI-converted output.'
-
-  wf_stage:
-    inprogress: "In Progress"
-    published: "Published"
-    deleted: "Deleted"
   
-  # editor validation 
-  validation:
-    missing_message: "A value in this field is mandatory"
-    warning_message: "A value for this field should be provided"
-   
-  # date:
-  # Empty lines for matching line numbers with other translation files  
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-
-######################################################################################################
-# End of translation in all languages - make sure all the file have the same line number for this line
-
- 
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
   blacklight:
     application_name: 'Muscat'
     header_links:
       logout: 'Logout'
-      
- 
-######################################################################################################
-# Record types, English only
-      
-  record_types_codes:
-    "0": "UNK"
-    "1": "COL"
-    "2": "MSR"
-    "3": "MEC"
-    "4": "LSR"
-    "5": "LEC"
-    "6": "TSR"
-    "7": "TEC"
-    "8": "EDT"
-    
-  status_codes:
-    published: "PUB"
-    inprogress: "UNP"
 
