@@ -127,3 +127,5 @@ gem 'database_cleaner'
 gem 'exception_notification'
 gem 'cql-ruby', '0.9.1', :git => 'https://github.com/jrochkind/cql-ruby'
 gem 'chart-js-rails'
+
+gem 'osullivan'
