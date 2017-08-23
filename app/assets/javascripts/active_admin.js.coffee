@@ -44,6 +44,5 @@
 #= require modification_trigger_ujs.js
 
 #= require diva/diva.js
-#= require diva/utils.js
 #= require Chart
 #= require html2csv.js
