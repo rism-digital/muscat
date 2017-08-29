@@ -1,3 +1,21 @@
+## Make the JSON manifest for the images
+## it reads a yml file with the image list
+## so the images do not need to be stored on the same system
+## and the other system does not need a rails installation
+## The YAML is simply a listing of the files + the record in
+## for example this script:
+
+# require 'yaml'
+#
+# out = {}
+# ARGV.each do |dir|
+#   images = Dir.entries(dir).select{|x| x.match("tif") }.sort
+#   out[dir] = images
+# end
+
+# File.write("dirs.yml", out.to_yaml)
+#####
+
 require 'awesome_print'
 require 'iiif/presentation'
 require 'yaml'
@@ -44,6 +62,10 @@ dirs.keys.each do |dir|
   
   # If running in Rails get some ms info
   if defined?(Rails)
+    id = dir
+    toks = dir.split("-")
+    ## if it contains the -xxx just get the ID
+    id = toks[0] if toks != [dir]
     source = Source.find(dir)
     title = source.title
   end
@@ -93,20 +115,18 @@ dirs.keys.each do |dir|
   if source
     marc = source.marc
     marc.load_source true
-    
-    if marc.by_tags("856").length == 0
-    
-      new_tag = MarcNode.new("source", "856", "", "##")
-      new_tag.add_at(MarcNode.new("source", "x", "IIIF", nil), 0)
-      new_tag.add_at(MarcNode.new("source", "u", "http://iiif.rism-ch.org/manifest/#{dir}.json", nil), 0)
 
-      pi = marc.get_insert_position("856")
-      marc.root.children.insert(pi, new_tag)
-    
-      source.save!
-    else
-      puts "Source #{source.id} already has 856, not overwriting"
-    end
+    # The source can contain more than one 856
+    # as some sources have more image groups
+    # -01 -02 etc
+    new_tag = MarcNode.new("source", "856", "", "##")
+    new_tag.add_at(MarcNode.new("source", "x", "IIIF", nil), 0)
+    new_tag.add_at(MarcNode.new("source", "u", "http://iiif.rism-ch.org/manifest/#{dir}.json", nil), 0)
+
+    pi = marc.get_insert_position("856")
+    marc.root.children.insert(pi, new_tag)
+  
+    source.save!
   end
 
 end
