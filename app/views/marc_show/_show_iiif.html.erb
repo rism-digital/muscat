@@ -16,10 +16,13 @@
 	
 	description = subfield_z && subfield_z.content ? "(#{subfield_z.content})" : ""
 	
+	anchor = make_iiif_anchor(subfield_u.content)
+	
 	random_string = SecureRandom.hex
 -%>
 
 	<div class="panel">
+		<a id="<%=anchor%>"></a>
 		<strong><%=subfield_u.content%></strong> <%=description%>
 		<p>
 		<div id="<%= random_string -%>"></div>

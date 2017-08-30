@@ -13,6 +13,13 @@
 		<%- end %>
 	</th>
 	<td>
-		<%= link_to(display, link, :target => "_blank") %><%= " [#{subfield_x.content.html_safe}]" if (subfield_x && subfield_x.content) %>
+		<% if subfield_x && subfield_x.content && subfield_x.content == "IIIF"%>
+			<%
+			link = make_iiif_anchor(link)
+			%>
+			<%= link_to(display, "#" + link) %><%= " [#{subfield_x.content.html_safe}]" if (subfield_x && subfield_x.content) %>
+		<% else %>
+			<%= link_to(display, link, :target => "_blank") %><%= " [#{subfield_x.content.html_safe}]" if (subfield_x && subfield_x.content) %>
+		<% end %>
 	</td>
 </tr>
