@@ -14,11 +14,13 @@
 	next if !subfield_x || !subfield_x.content || subfield_x.content != "IIIF"
 	next if !subfield_u || !subfield_u.content
 	
+	description = subfield_z && subfield_z.content ? "(#{subfield_z.content})" : ""
+	
 	random_string = SecureRandom.hex
 -%>
 
 	<div class="panel">
-		<strong><%=subfield_u.content%></strong> (<%=subfield_z.content%>)
+		<strong><%=subfield_u.content%></strong> <%=description%>
 		<p>
 		<div id="<%= random_string -%>"></div>
 		<script type="text/javascript">
