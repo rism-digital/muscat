@@ -2,6 +2,9 @@
 	tags = item.marc.by_tags_with_order(["856"])
 -%>
 
+<div class="panel panel_group">
+<h3><%=t(:do_images_title)%></h3>
+
 <%- tags.each do |tag|
 
 	subfield_u = tag.fetch_first_by_tag('u')
@@ -14,20 +17,25 @@
 	random_string = SecureRandom.hex
 -%>
 
-	<div id="<%= random_string -%>"></div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			window.viewer = $('#<%= random_string -%>').diva({
-				enableAutoHeight: true,
-				enableLinkIcon: false,
-				fixedHeightGrid: false,
-				enableDownload: false,
-				enableAutoTitle: false,
-				inGrid: true,
-				objectData: "<%= subfield_u.content -%>"
-			}).data('diva');
+	<div class="panel">
+		<strong><%=subfield_u.content%></strong> (<%=subfield_z.content%>)
+		<p>
+		<div id="<%= random_string -%>"></div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				window.viewer = $('#<%= random_string -%>').diva({
+					enableAutoHeight: true,
+					enableLinkIcon: false,
+					fixedHeightGrid: false,
+					enableDownload: false,
+					enableAutoTitle: false,
+					inGrid: true,
+					objectData: "<%= subfield_u.content -%>"
+				}).data('diva');
 
-		});
-	</script>
+			});
+		</script>
+	</div>
+</div>
 
 <%- end %>
