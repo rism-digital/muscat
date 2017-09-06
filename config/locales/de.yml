@@ -302,7 +302,7 @@ de:
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
   show_preview: "Vorschau anzeigen"
-  hide_preview: "Vorschau vergeben"
+  hide_preview: "Vorschau verbergen"
   show_history: "Änderungsgeschichte"
   show_viaf: "VIAF Suche"
   save_and_continue: "Speichern und weiter bearbeiten"
