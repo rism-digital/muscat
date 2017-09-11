@@ -431,11 +431,11 @@ class Source < ActiveRecord::Base
     end
   end
   
-  def self.find_recent_updated(limit, user)
+  def self.find_recent_modified(limit, modification, user)
     if user != -1
-      where("updated_at > ?", 5.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
+      where("updated_at > ?", 7.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
     else
-      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
+      where("updated_at > ?", 7.days.ago).limit(limit).order("updated_at DESC") 
     end
   end
   

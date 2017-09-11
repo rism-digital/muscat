@@ -602,6 +602,17 @@ en:
     published: "Published"
     deleted: "Deleted"
   
+  dashboard:
+    selection: "Selection"
+    type: "Change type"
+    type_created: "Recently created"
+    type_modified: "Recently modified"
+    owner: "Owner"
+    owner_user: "Myself"
+    owner_any: "Any"
+    quantity: "Last"
+    update: "Update"
+  
   # editor validation 
   validation:
     missing_message: "A value in this field is mandatory"
