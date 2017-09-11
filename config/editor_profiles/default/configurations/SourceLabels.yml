@@ -2332,6 +2332,12 @@ oci:
     FR: Occitan
     de: Okzitanisch
     en: Occitan
+per:
+  label: 
+    it: Persiano
+    fr: Persan
+    de: Persisch
+    en: Persian
 pol: 
   label: 
     it: Polacco
