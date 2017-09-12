@@ -270,6 +270,7 @@ it:
   links: "Collegamenti"
   link_remove: "Elimina Collegamento"
   link_remove_confirm: "Sei sicuro di voler eliminare il collegamento?"
+  unloadable_record: "This record experienced loading errors: it can be viewed but not edited. Please contact an administrator."
   validation_level_error: "Sono presenti errori, correggerli prima di continuare"
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
   

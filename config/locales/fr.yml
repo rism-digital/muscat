@@ -270,6 +270,7 @@ fr:
   links: "Liens"
   link_remove: "Supprimer le lien"
   link_remove_confirm: "Désirez-vous supprimer le lien?"
+  unloadable_record: "Ce titre présente un problème: il peut être visualisé mais pas édité. Merci de contacter l'administrateur."
   validation_level_error: "Il y a des erreurs à corriger avant d'enregistrer."
   validation_level_warning: "Il y a des avertissements. Enregistrer à nouveau pour ignorer."
   

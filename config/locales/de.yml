@@ -270,6 +270,7 @@ de:
   links: "Verlinkungen"
   link_remove: "Link entfernen"
   link_remove_confirm: "Link entfernen?"
+  unloadable_record: "THIS RECORD EXPERIENCED LOADING ERRORS: IT CAN BE VIEWED BUT NOT EDITED. PLEASE CONTACT AN ADMINISTRATOR."
   validation_level_error: "Die Fehler müssen vor dem Speichern behoben werden."
   validation_level_warning: "Erneut speichern, um die Warnung(en) zu ignorieren."
   
