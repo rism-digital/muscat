@@ -4,7 +4,7 @@ de:
 # Pad for italian, it has 2 missing items
 #
 #
-    dashboard: Übersicht
+    dashboard: "LAST WEEK ACTIVITY"
     dashboard_welcome:
       welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
       call_to_action: "Siehe 'app/admin/dashboard.rb', um Übersichts-Bereiche hinzuzufügen."
@@ -602,6 +602,18 @@ de:
     published: "Veröffentlicht"
     deleted: "Gelöscht"
 
+  
+  dashboard:
+    selection: "SELECTION"
+    type: "CHANGE TYPE"
+    type_created: "RECENTLY CREATED"
+    type_updated: "RECENTLY UPDATED"
+    owner: "OWNER"
+    owner_user: "MYSELF"
+    owner_any: "ANY"
+    quantity: "DISPLAY"
+    update: "UPDATE"
+  
   # editor validation 
   validation:
     missing_message: "Dieses Feld muss zwingend ausgefüllt werden."

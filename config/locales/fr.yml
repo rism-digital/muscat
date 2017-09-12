@@ -4,7 +4,7 @@ fr:
 # Pad for italian, it has 2 missing items
 #
 #
-    dashboard: "Tableau de bord"
+    dashboard: "Activité de la semaine dernière"
     dashboard_welcome:
       welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
       call_to_action: "Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboard.rb'"
@@ -602,6 +602,18 @@ fr:
     published: "Publié"
     deleted: "Supprimé"
 
+  
+  dashboard:
+    selection: "Sélection"
+    type: "Type de modifications"
+    type_created: "Créé récemment"
+    type_updated: "Modifié récemment"
+    owner: "Propriétaire"
+    owner_user: "Moi-même"
+    owner_any: "N'importe quel utilisateur"
+    quantity: "Afficher"
+    update: "Mettre à jour"
+  
   # editor validation 
   validation:
     missing_message: "Une valeur dans ce champ est nécessaire"

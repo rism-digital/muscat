@@ -122,9 +122,13 @@ ActiveAdmin.register Catalogue do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
-    column (I18n.t :filter_id), :id    
-#   column (I18n.t :filter_name), :name
-    column (I18n.t :filter_name), :description do |catalogue| 
+    column (I18n.t :filter_wf_stage) {|catalogue| status_tag(catalogue.wf_stage,
+      label: I18n.t('status_codes.' + (catalogue.wf_stage != nil ? catalogue.wf_stage : ""), locale: :en))}  
+    column (I18n.t :filter_id), :id  
+    column (I18n.t :filter_name), :name do |catalogue| 
+      catalogue.name.truncate(30) if catalogue.name
+    end
+    column (I18n.t :filter_description), :description do |catalogue| 
       catalogue.description.truncate(60) if catalogue.description
     end
     column (I18n.t :filter_author), :author

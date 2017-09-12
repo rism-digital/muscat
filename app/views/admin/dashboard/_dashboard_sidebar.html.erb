@@ -13,7 +13,7 @@
 	<div>
 		<label class="label"><%= I18n.t("dashboard.type") %></label>
 		<% select_id = "dashboard_" + model + "_type" -%>
-		<%= select_tag(select_id, options_for_select([[I18n.t("dashboard.type_created"), :created], [I18n.t("dashboard.type_modified"), :modified]], params[select_id.to_s])) %>
+		<%= select_tag(select_id, options_for_select([[I18n.t("dashboard.type_created"), :created], [I18n.t("dashboard.type_updated"), :updated]], params[select_id.to_s])) %>
 	</div>
 	<hr style="margin-top: 1.em; margin-bottom: 0.8em"/>
   <% end %>

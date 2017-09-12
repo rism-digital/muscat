@@ -242,8 +242,8 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
       label: I18n.t('status_codes.' + (source.wf_stage != nil ? source.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_record_type) {|source| status_tag(source.get_record_type.to_s, 
-      label: I18n.t('record_types_codes.' + (source.record_type != nil ? source.record_type.to_s : ""), locale: :en))} 
-    column (I18n.t :filter_id), :id  
+      label: I18n.t('record_types_codes.' + (source.record_type != nil ? source.record_type.to_s : ""), locale: :en))}  
+    column (I18n.t :filter_id), :id 
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title_shelforder, sortable: :std_title_shelforder do |element|
       element.std_title
