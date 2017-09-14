@@ -27,6 +27,7 @@ class Ability
       else
         can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, Holding]
         can [:read, :create], Person
+        can :update, Person, :wf_owner => user.id
       end
       can :create_editions, Source
       can :update_editions, Source

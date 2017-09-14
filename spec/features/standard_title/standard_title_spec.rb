@@ -13,7 +13,7 @@ RSpec.describe "StandardTitle", :type => :feature, :js => true do
   it "Standard title title field should be readonly" do
     existent_title = FactoryGirl.create(:standard_title)
     visit edit_admin_standard_title_path(existent_title)
-    expect(page).to have_css("#standard_title_title[disabled]") 
+    expect(page).not_to have_css("#standard_title_title[disabled]") 
   end
   #This will fail also if the field is disabeled
   #it "Editors should be able to change standard title authority" do
