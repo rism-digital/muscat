@@ -71,4 +71,15 @@ class User < ActiveRecord::Base
     return false unless last_sign_in_at
     last_sign_in_at > (DateTime.now - 12.weeks) ? true : false
   end
+ 
+  # returns a list of users sorted by lastname with admin at first place; utf-8 chars included
+  def self.sort_all_by_last_name
+    res = {}
+    User.all.each do |u|
+      res[u.id] = [I18n.transliterate(u.name.sub("Admin", "00admin").split(" ").last).downcase, u]
+    end
+    return res.sort_by{|_key, value| value.first}.map {|e| e[1][1] }
+  end
+
+
 end

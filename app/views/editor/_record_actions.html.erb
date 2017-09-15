@@ -46,7 +46,7 @@
 	    			<div class="grid_cell">
 	    				<div style="vertical-align: bottom; background-color: transparent">
 							<select id="record_owner" width="100" <%= (current_user.has_role?(:editor)||current_user.has_role?(:admin)) ? "a" : "disabled=\"disabled\""%> >
-								<% User.all.order(:name).each do |u| %>
+								<% User.sort_all_by_last_name.each do |u| %>
 									<% if @item.id == nil %>
 										<%if u == current_user %>
 											<option value="<%=u.id%>" selected="true"><%=u.name%></option>
