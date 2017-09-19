@@ -1898,6 +1898,12 @@ ctb:
     fr: Contributeur
     de: Mitkomponist
     en: Co-composer
+ccp:
+  label:
+    it: Ideatore
+    fr: Concepteur
+    de: Autor der Textvorlage
+    en: Conceptor
 dnc: 
   label: 
     it: Ballerino
