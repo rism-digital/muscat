@@ -43,7 +43,6 @@
 #= require viaf_interface.js
 #= require modification_trigger_ujs.js
 
-#= require diva/diva.js
-#= require diva/utils.js
+#= require diva/diva.min.js
 #= require Chart
 #= require html2csv.js

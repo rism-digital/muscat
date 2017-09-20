@@ -349,6 +349,9 @@ class Source < ActiveRecord::Base
     
       parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
       return if !parent_manuscript
+      
+      parent_manuscript.paper_trail_event = "Add 774 link #{id.to_s}"
+      
       # check if the 774 tag already exists
       parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
         subfield = tag.fetch_first_by_tag("w")
@@ -375,12 +378,14 @@ class Source < ActiveRecord::Base
         return if !parent_manuscript
         modified = false
         
+        parent_manuscript.paper_trail_event = "Remove 774 link #{id.to_s}"
+        
         # check if the 774 tag already exists
         parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
           subfield = tag.fetch_first_by_tag("w")
           next if !subfield || !subfield.content
-          puts "Deleting 774 $w#{subfield.content} for #{@old_parent}, from #{id}"
           if subfield.content.to_i == id
+            puts "Deleting 774 $w#{subfield.content} for #{@old_parent}, from #{id}"
             tag.destroy_yourself
             modified = true
           end

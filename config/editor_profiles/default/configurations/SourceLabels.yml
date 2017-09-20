@@ -65,7 +65,7 @@ doc_aid:
   label: 
     de: Arbeitshilfen
     en: Aide
-    it: AIDE
+    it: Aiuti alla catalogazione
 doc_aid_liturgical_feasts: 
   label: 
     de: "Liturgische Feste"
@@ -1898,6 +1898,12 @@ ctb:
     fr: Contributeur
     de: Mitkomponist
     en: Co-composer
+ccp:
+  label:
+    it: Ideatore
+    fr: Concepteur
+    de: Autor der Textvorlage
+    en: Conceptor
 dnc: 
   label: 
     it: Ballerino
@@ -2332,6 +2338,12 @@ oci:
     FR: Occitan
     de: Okzitanisch
     en: Occitan
+per:
+  label: 
+    it: Persiano
+    fr: Persan
+    de: Persisch
+    en: Persian
 pol: 
   label: 
     it: Polacco
@@ -2475,38 +2487,38 @@ Excerpts:
   label:
     it: Estratti
     fr: Extraits
-    de: EXCERPTS
+    de: Ausschnitte
     en: Excerpts
 Sketches:
   label:
     it: Schizzi
     fr: Esquisses
-    de: SKETCHES
+    de: Skizzen
     en: Sketches
 Fragments:
   label:
     it: Frammenti
     fr: Fragments
-    de: FRAGMENTS
+    de: Fragmente
     en: Fragments
 Inserts:
   label:
     it: Inserimenti
     fr: Insertions
-    de: INSERTS
+    de: Einlagen
     en: Inserts
 #Arrangement statement 240o / 730o
 Arr:
   label:
     it: Arrangiamento
     fr: Arrangement
-    de: ARR
+    de: Bearbeitung
     en: Arrangement
 Var:
   label:
     it: Variazioni
     fr: Variations
-    de: VAR
+    de: Variationen
     en: Variations
 #Keys
 A:
@@ -3224,7 +3236,7 @@ pe_043:
 pe_024:
   label:
     en: "Other standard identifier"
-    it: "Altro identificatore standare"
+    it: "Altro identificatore standard"
     de: "OTHER STANDARD IDENTIFIER"
 pe_400:
   label:
@@ -3550,17 +3562,17 @@ aid_opera:
 aid_faq:
   label:
     en: "Frequently asked questions"
-    it: "Domande freqienti"
+    it: "Domande frequenti"
     de: "FAQ"
 aid_tt:
   label:
     en: "How do I ... Tips & Tricks"
-    it: "Come faccio ... Tips & Tricks"
+    it: "Come faccio ... Suggerimenti e trucchi"
     de: "Wie kann ich ... Tipps & Tricks"
 aid_best:
   label:
-    en: "RISM best practises"
-    it: "RISM Best practises"
+    en: "RISM best practices"
+    it: "Miglior pratica RISM"
     de: "RISM BEST PRACTISES"
 aid_error:
   label:

@@ -2,6 +2,9 @@
 	tags = item.marc.by_tags_with_order(["856"])
 -%>
 
+<div class="panel panel_group">
+<h3><%=t(:do_images_title)%></h3>
+
 <%- tags.each do |tag|
 
 	subfield_u = tag.fetch_first_by_tag('u')
@@ -11,23 +14,34 @@
 	next if !subfield_x || !subfield_x.content || subfield_x.content != "IIIF"
 	next if !subfield_u || !subfield_u.content
 	
+	description = subfield_z && subfield_z.content ? "(#{subfield_z.content})" : ""
+	
+	anchor = make_iiif_anchor(subfield_u.content)
+	
 	random_string = SecureRandom.hex
 -%>
 
-	<div id="<%= random_string -%>"></div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			window.viewer = $('#<%= random_string -%>').diva({
-				enableAutoHeight: true,
-				enableLinkIcon: false,
-				fixedHeightGrid: false,
-				enableDownload: false,
-				enableAutoTitle: false,
-				inGrid: true,
-				objectData: "<%= subfield_u.content -%>"
-			}).data('diva');
+	<div class="panel">
+		<a id="<%=anchor%>"></a>
+		<strong><%=subfield_u.content%></strong> <%=description%>
+		<br>
+		<div id="<%= random_string -%>"></div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				window.viewer = $('#<%= random_string -%>').diva({
+					enableAutoHeight: true,
+					enableLinkIcon: false,
+					fixedHeightGrid: false,
+					enableDownload: false,
+					enableAutoTitle: false,
+					inGrid: true,
+					objectData: "<%= subfield_u.content -%>"
+				}).data('diva');
 
-		});
-	</script>
+			});
+		</script>
+	</div>
+
 
 <%- end %>
+</div>

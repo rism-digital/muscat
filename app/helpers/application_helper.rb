@@ -134,4 +134,8 @@ module ApplicationHelper
     (start..target)
   end
 
+  def make_iiif_anchor(link)
+    return link.gsub("http://", "").gsub("/", "").gsub(":", "").gsub(".", "")
+  end
+
 end

@@ -13,7 +13,11 @@ subfield_c = tag.fetch_first_by_tag('c')
   <td>
     <% if subfield_a && subfield_a.content %>
       <% if subfield_x && subfield_x.content %>
-        <%=link_to(subfield_a.content, admin_institution_path(subfield_x.content.to_s)) + " #{subfield_c.content if subfield_c && subfield_c.content}"%>
+        <% if !is_selection_mode?%>
+          <%=link_to(subfield_a.content, admin_institution_path(subfield_x.content.to_s)) + " #{subfield_c.content if subfield_c && subfield_c.content}"%>
+        <%else%>
+          <%= "#{subfield_a.content} #{subfield_c.content if subfield_c && subfield_c.content}"%>
+        <%end%>
       <% else %>
         <%= subfield_a.content%>
       <% end %>

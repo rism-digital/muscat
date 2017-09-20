@@ -1,6 +1,7 @@
 
 var _nw_destination = null;
 var _child = null;
+var _interval = null;
 
 function deselectSession() {
 	$.ajax({
@@ -152,13 +153,20 @@ function newWindowIsSelect() {
 						search = "&q[" + new_window_field + "]=" + value;
 					}
 				}
-				
+
 				// In selection mode, for sources, we can force the record type
 				if (selection_record_type) {
 					search += "&q[record_type_with_integer]=record_type:" + selection_record_type;
 				}
 				// Open up the new window
 				_child = window.open('/admin/' + controller + '?select=true' + encodeURI(search), null, "location=no");
+				
+				_interval = setInterval(function() {
+					if (_child && _child.closed) {
+						clearInterval(_interval);
+						newWindowCancel();
+					}
+				}, 2000)
 				
 			});
 		}

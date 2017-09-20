@@ -408,6 +408,7 @@ en:
   filter_revue_title: "Revue title"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
+  filter_images: "Images"
   filter_scoring: "Scoring"
   filter_series_items: "Series items"
   filter_siglum: "Siglum"
