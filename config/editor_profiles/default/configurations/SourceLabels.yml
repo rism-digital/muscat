@@ -1861,7 +1861,7 @@ clb:
     it: Autore secondario
     fr: Collabarateur
     de: Mitverfasser
-    en: Contributer
+    en: Contributor
 cmp: 
   label: 
     it: Rimando ad altro compositore
