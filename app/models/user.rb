@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
           
   }
   
+  validate :secure_password
+  
   searchable :auto_index => false do
     integer :id
     text :name
@@ -81,5 +83,25 @@ class User < ActiveRecord::Base
     return res.sort_by{|_key, value| value.first}.map {|e| e[1][1] }
   end
 
+  def secure_password
+    return true if !password
+    if (password.length < 8)
+      errors.add :password, "the password hast to be at least 8 characters long"
+      return false
+    end
+    if (password =~ /[a-z]/).blank?
+      errors.add :password, "the password hast to contain at least one lower case letter"
+      return false
+    end
+    if (password =~ /[A-Z]/).blank?
+      errors.add :password, "the password hast to contain at least one upper case letter"
+      return false
+    end
+    if (password =~ /[0-9]/).blank?
+      errors.add :password, "the password hast to contain at least one number"
+      return false
+    end
+    return true
+	end
 
 end
