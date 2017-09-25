@@ -82,4 +82,6 @@ Muscat::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   
   config.serve_static_files = true
+
+  config.i18n.available_locales = [:de, :fr, :it, :es, :en]
 end
