@@ -1809,7 +1809,7 @@ unmatched:
 ungrouped: 
   label: 
     it: Campi non raggruppati
-    fr: UNGROUPED FIELDS
+    fr: "Champs non rgroupés"
     de: UNGROUPED FIELDS
     en: Ungrouped fields
 
