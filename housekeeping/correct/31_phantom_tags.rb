@@ -10,7 +10,17 @@ all_tags = []
 config.each_data_tag do |t|
   all_tags << t
 end
+all_tags << "000"
 all_tags << "001"
+all_tags << "003"
+all_tags << "007"
+
+# These are deprecated tags
+#all_tags << "772"
+#all_tags << "600"
+#all_tags << "110"
+#all_tags << "653"
+#all_tags << "130"
 
 Source.all.each do |s|
   pb.increment!
