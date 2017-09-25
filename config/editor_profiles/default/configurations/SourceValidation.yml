@@ -48,6 +48,9 @@
 "593": 
   tags:
     a: required
+"594": 
+  tags:
+    b: required    
 #"595": 
 #  tags:
 #    a:
