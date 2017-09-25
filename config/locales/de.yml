@@ -470,6 +470,7 @@ de:
   error_not_found: "Der gesuchte Eintrag existiert nicht oder wurde gelöscht."
   error_saving: "Dieser Eintrag ist unvollständig oder erstellt eine Dublette."
   unknown_tags: "Dieser Eintrag enthält falsch verwendete Felder."
+  ungrouped_tags: "THERE ARE UNGROUPED FIELDS IN THIS RECORD"
   cannot_update_source: "Sie sind nicht berechtigt, diese Art von Quellen zu bearbeiten"
   cannot_create_source: "Sie sind nicht berechtigt, diese Art von Quellen zu erstellen"
 

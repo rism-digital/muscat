@@ -39,6 +39,11 @@
 	<li><a data-scroll-target="<%= missing_group_link.gsub(/ /, "_") -%>" data-panel="marc_editor_panel" href="#"><%= missing_group_link -%></a></li>
 <%- end -%>
 
+<%- if !@editor_profile.layout_config[:marc_editor_unknown_tag_links].empty? -%>
+	<%- missing_group_link = @editor_profile.layout_config[:marc_editor_unknown_tag_links] %>
+	<li><a data-scroll-target="<%= missing_group_link.gsub(/ /, "_") -%>" data-panel="marc_editor_panel" href="#"><%= missing_group_link -%></a></li>
+<%- end -%>
+
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
 		<a data-scroll-target="show_toplevel" data-panel="marc_editor_panel" href="#" class="muscat_icon_link muscat_icon_link_all"><%=(I18n.t :show_all_groups)%></a>

@@ -17,10 +17,10 @@
 	<%- tags_with_no_subfield = tags_with_no_subfield.select{ |t| !@editor_profile.layout_tags_not_in_subfield_grouping.include? t.tag } %>
 	
    <%- if tags_with_no_subfield.size > 0 %>
-		<%- group_title = @editor_profile.get_label("unmatched") %>
+		<%- group_title = @editor_profile.get_label("ungrouped") %>
 		<%- @editor_profile.layout_config[:marc_editor_missing_group_links] = group_title -%>
 		<div class="panel tab_panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">
-			<div class="editor-flash" data-flash="<%=I18n.t(:unknown_tags)%>" data-type="warning"></div>
+			<div class="editor-flash" data-flash="<%=I18n.t(:ungrouped_tags)%>" data-type="warning"></div>
 			<h3><%= group_title -%></h3>
 			<div class="marc_editor_panel_content">
 				<div class="marc_editor_group_contents">
