@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
           
   }
   
-  validate :secure_password
+  #515 postponed to 3.7
+  #validate :secure_password
   
   searchable :auto_index => false do
     integer :id
@@ -83,6 +84,7 @@ class User < ActiveRecord::Base
     return res.sort_by{|_key, value| value.first}.map {|e| e[1][1] }
   end
 
+=begin #515 postponed to 3.7
   def secure_password
     return true if !password
     if (password.length < 8)
@@ -103,5 +105,6 @@ class User < ActiveRecord::Base
     end
     return true
 	end
+=end
 
 end

@@ -38,7 +38,8 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
       can :read, ActiveAdmin::Page, :name => "Statistics"
-      can [:read, :update], User, :id => user.id
+      #515 postponed to 3.7, add :update
+      can [:read], User, :id => user.id
     
     ##############
     # Cataloguer #
