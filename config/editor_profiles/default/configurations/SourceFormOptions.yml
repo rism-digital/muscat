@@ -372,7 +372,7 @@
 "340": 
   layout: 
     fields: 
-    - - a
+    - - d
       - values: 
         - "Autography"
         - "Computer printout"
