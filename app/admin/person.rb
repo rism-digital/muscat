@@ -53,6 +53,7 @@ ActiveAdmin.register Person do
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+      @restricted = current_user.restricted?("person") ? "disabled" : ""
     end
     
     def show

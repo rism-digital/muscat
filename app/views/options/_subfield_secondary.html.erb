@@ -46,7 +46,7 @@ options = {
 	:"data-field"=>"#{tag_name}",
 	:"min-length" => 1
 }
-	options[:disabled] = "disabled" if disabled
+	options[:disabled] = "disabled" if disabled || @restricted=='disabled'
 %>
 
 

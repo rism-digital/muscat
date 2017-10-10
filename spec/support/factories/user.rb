@@ -1,6 +1,7 @@
 FactoryGirl.define do
 
   factory :user do
+    name "Fred"
     email "admin@example.com"
     password "password"
     password_confirmation "password"
@@ -26,6 +27,12 @@ FactoryGirl.define do
     roles { [ FactoryGirl.create(:editor_role),  FactoryGirl.create(:person_editor_role),  ] }
   end
 
+  factory :person_restricted, :parent => :user do
+    roles { [ FactoryGirl.create(:cataloger_role),  
+              FactoryGirl.create(:person_restricted_role),  ] }
+  end
+
+
   factory :role do
     name        { "Role_#{rand(9999)}"  }
   end
@@ -48,6 +55,10 @@ FactoryGirl.define do
 
   factory :person_editor_role, :parent => :role do
     name "person_editor"
+  end
+
+  factory :person_restricted_role, :parent => :role do
+    name "person_restricted"
   end
 
 

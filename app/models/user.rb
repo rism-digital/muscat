@@ -74,7 +74,19 @@ class User < ActiveRecord::Base
     return false unless last_sign_in_at
     last_sign_in_at > (DateTime.now - 12.weeks) ? true : false
   end
- 
+
+  def restricted?(model)
+    roles.select {|r| r.name =~ /restricted/}.each do |role|
+      restricted_model = role.name.split("_")[0]
+      if model != restricted_model
+        next
+      else
+        return true
+      end
+    end
+    return false
+  end
+
   # returns a list of users sorted by lastname with admin at first place; utf-8 chars included
   def self.sort_all_by_last_name
     res = {}

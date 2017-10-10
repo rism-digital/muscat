@@ -344,6 +344,10 @@
     fields: 
     - - u
       - cols: 2
+        unrestricted:
+          - person_restricted
     - - y
       - cols: 2
+        unrestricted:
+          - person_restricted
     columns: 4
