@@ -452,6 +452,7 @@ es:
   error_not_found: "El recursos al que Vd. quiere acceder no existe o fue borrado."
   error_saving: "El recurso no está completo o crea un duplicado"
   unknown_tags: "Hay algunos campos desconocidos en este recurso"
+  ungrouped_tags: "THERE ARE UNGROUPED FIELDS IN THIS RECORD"
   cannot_update_source: "YOU ARE NOT AUTHORIZED TO EDIT THIS TYPE OF SOURCE"
   cannot_create_source: "YOU ARE NOT AUTHORIZED TO CREATE THIS TYPE OF SOURCE"
  

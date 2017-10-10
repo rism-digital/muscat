@@ -734,17 +734,17 @@ doc_references:
         en: Set
 "340": 
   label: 
-    it: Supporto fisico
-    fr: "Support matériel"
-    de: Physisches Medium
-    en: Physical medium
+    it: Tecnica di produzione speciale
+    fr: "Technique de production spéciale"
+    de: Spezielle Fertigungstechnik
+    en: Special production technique
   fields: 
     d: 
       label: 
-        it: Tecnica di produzione
-        fr: Technique de production
-        de: Herstellungsverfahren
-        en: Recording technique
+        it: Tecnica di stampa
+        fr: "Technique d'impression"
+        de: Drucktechnik
+        en: Printing technique
     "8": 
       label: 
         it: Gruppo di materiale
@@ -1806,6 +1806,13 @@ unmatched:
     de: Unbekannte Felder
     en: Unknown fields
 
+ungrouped: 
+  label: 
+    it: Campi non raggruppati
+    fr: "Champs non rgroupés"
+    de: UNGROUPED FIELDS
+    en: Ungrouped fields
+
 ################
 
 arr: 
@@ -1861,7 +1868,7 @@ clb:
     it: Autore secondario
     fr: Collabarateur
     de: Mitverfasser
-    en: Contributer
+    en: Contributor
 cmp: 
   label: 
     it: Rimando ad altro compositore
@@ -1955,7 +1962,7 @@ egr:
 evp:
   label: 
     it: "Luogo dell’evento"
-    fr: "Lieu de l'énénement"
+    fr: "Lieu de l'événement"
     de: Veranstaltungsort
     en: Event place
 fmo: 

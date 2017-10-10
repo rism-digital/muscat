@@ -372,7 +372,7 @@
 "340": 
   layout: 
     fields: 
-    - - a
+    - - d
       - values: 
         - "Autography"
         - "Computer printout"
@@ -674,6 +674,7 @@
       - edt
       - asn
       - oth
+      - evt
 "730":
   new_window: standard_titles
   new_window_field: title_equals

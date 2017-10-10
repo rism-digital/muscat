@@ -470,6 +470,7 @@ fr:
   error_not_found: "La ressource à laquelle vous essayez d'accéder n'existe pas ou a été supprimée."
   error_saving: "La ressource n'est pas complète ou engendre un doublon"
   unknown_tags: "Ce titre contient des champs non reconnus."
+  ungrouped_tags: "Ce titre contient des champs non groupés"
   cannot_update_source: "Vous n'êtes pas autorisé à traiter ce type de source"
   cannot_create_source: "Vous n'êtes pas autorisé à créer ce type de source"
 
