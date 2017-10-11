@@ -8,12 +8,13 @@ ids = {}
 Source.find_in_batches do |batch|
 
 	batch.each do |s|
-		pb.increment!
+		#pb.increment!
+		s.marc.load_source false
 		s.marc.each_by_tag("710") do |t|
 			tn = t.fetch_first_by_tag("4")
+			#ta = t.fetch_first_by_tag("a")
 
 			next if !(tn && tn.content)
-
 			ids[s.id.to_s] = tn.content
 
 			if codes.include?(tn.content)
