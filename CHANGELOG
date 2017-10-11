@@ -3,12 +3,15 @@ Muscat Changelog
 
 v3.6.12
 
-* #515: Enable editors to change password
+* Add restricted fields from -devel-rights
 * #517: update validation fields
 * #527: Add better warning for ungrouped tags
 * #500: Add informative description to 774 link creation
 * #499: add control to avoid nesting of 774 links
 * #497: fix missing translations
+* Fix labels for 340 and evp
+* Use 340 $d instead of $a
+* Make subfield_select show "missing" elements in the popup menu
 * Fixed Person update access for editors if wf_owner
 * Add ccp relator code
 * Various migrations for CH data
