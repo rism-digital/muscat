@@ -44,7 +44,7 @@ Source.find_in_batches do |batch|
 
       if codes700.keys.include? tn.content.to_sym
         # Should not!!!
-        puts "was #{tn.content.to_sym}" if tn.content == "ctb"
+        puts "was #{tn.content.to_sym}" if tn.content == "ctb" || tn.content == "clb"
         tn.content = codes700[tn.content.to_sym]
         #puts "is #{tn.content.to_sym}"
         modified  = true
@@ -60,7 +60,7 @@ Source.find_in_batches do |batch|
 
       if codes710.keys.include? tn.content.to_sym
         # Should not!!!
-        puts "was #{tn.content.to_sym}" if tn.content == "scr" || tn.content = "dpt"
+        puts "was #{tn.content.to_sym}" if tn.content == "scr" || tn.content == "dpt"
         tn.content = codes710[tn.content.to_sym]
         #puts "is #{tn.content.to_sym}"
         modified  = true
