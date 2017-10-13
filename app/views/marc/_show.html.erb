@@ -34,7 +34,7 @@
 <% if @item.class == Source && @item.holdings.count > 0 %>
 	<div class="panel_group_space"></div>
 	<% @item.holdings.each do |h| %>
-		<div id="holding_records_div-<%=h.id%>"></div>
+    <div id="holding_records_div-<%=h.id%>"></div>
 		<script>
 			_marc_editor_embedded_holding("holding_records_div-<%=h.id%>", "holdings", <%= h.id %>, <%= opac_resolved %>)
 		</script>
