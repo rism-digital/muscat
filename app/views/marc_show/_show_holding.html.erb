@@ -15,7 +15,7 @@ subfield_c = tag.fetch_first_by_tag('c').content rescue ""
   <td>
     <% if subfield_a %>
       <% if subfield_x && subfield_x.content %>
-        <% if current_user.can_edit?(@item) %>
+        <% if current_user.can_edit?(@item) || current_user.has_any_role?(:editor, :admin) %>
           <%=link_to(content, edit_admin_holding_path(@item.id))%>
         <%else %>
           <%= content %>
