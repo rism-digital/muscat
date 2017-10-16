@@ -1,6 +1,9 @@
 Muscat Changelog
 ================
 
+v 3.7.0 
+* #538: fix display of VIAF form 
+
 v3.6.12
 
 * Add restricted fields from -devel-rights
