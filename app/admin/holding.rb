@@ -3,6 +3,7 @@ ActiveAdmin.register Holding do
   # Hide the menu
   menu false
 
+  config.clear_action_items!
   # Remove mass-delete action
   batch_action :destroy, false
 
@@ -81,17 +82,6 @@ ActiveAdmin.register Holding do
     end
 
     def show
-      
-      begin
-        @holding = Holding.find(params[:id])
-      rescue ActiveRecord::RecordNotFound
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Holding #{params[:id]})" }
-        return
-      end
-      
-      redirect_to edit_admin_source_path(@holding.source)
-      
-=begin
       begin
         @item = @holding = Holding.find(params[:id])
       rescue ActiveRecord::RecordNotFound
@@ -105,7 +95,6 @@ ActiveAdmin.register Holding do
         format.html
         format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
       end
-=end
     end
     
     def index
@@ -192,11 +181,15 @@ ActiveAdmin.register Holding do
     else
       render :partial => "marc/show"
     end
-    active_admin_embedded_source_list( self, holding, params[:qe], params[:src_list_page], !is_selection_mode? )
     active_admin_user_wf( self, holding )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
   end
+  
+  sidebar :actions, :only => :show do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+  end
+ 
   
 begin  
   sidebar I18n.t(:search_sources), :only => :show do

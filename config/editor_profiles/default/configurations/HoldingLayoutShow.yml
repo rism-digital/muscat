@@ -18,7 +18,6 @@ groups:
     - '541'
     - '856'
     all_tag_templates: 
-      "852": marc_show/show_holding
       "856": marc_show/show_link
   edit_names:
     all_tags: 
