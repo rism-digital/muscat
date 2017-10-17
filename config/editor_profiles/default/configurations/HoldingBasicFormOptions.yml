@@ -5,6 +5,12 @@
     read_only: true
     no_delete: true
   tag_header: none
+"300": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - c
 "500": 
   layout: 
     fields: 

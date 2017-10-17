@@ -294,6 +294,37 @@ doc_references:
     fr: No. RISM
     de: RISM Dokumentnummer
     en: RISM ID No.
+"300": 
+  label: 
+    it: Materiale
+    fr: "Matériel"
+    de: Material
+    en: Physical description
+  fields: 
+    a: 
+      label: 
+        it: Categoria di fonte, estensione
+        fr: Type de source
+        de: Quellenart, Umfang
+        en: Format, extent
+    b: 
+      label: 
+        it: Altri dettagli sul materiale
+        fr: Autres détails du matériau
+        de: Zusätzliche Materialbeschreibung
+        en: Other physical details
+    c: 
+      label: 
+        it: Dimensioni
+        fr: Dimension
+        de: Format
+        en: Dimensions
+    "8": 
+      label: 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
 "500": 
   label: 
     it: Osservazioni

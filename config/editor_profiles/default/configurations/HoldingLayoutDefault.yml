@@ -24,6 +24,7 @@ groups:
 
   edit_material:
     all_tags: 
+    - '300'
     - '592'
     - '563'
 
