@@ -22,6 +22,7 @@ group_exclude:
 
 tag_exclude:
   collection:
+  - '026'
   - '546'
   - '595'
   - '651'
@@ -41,6 +42,7 @@ tag_exclude:
   - '787'
   - '852'
   source:
+  - '026'
   - '597'
   - '774'
   - '775'
@@ -150,6 +152,7 @@ groups:
     - '740'
     - '041'
     - '546'
+    - '026'
   edit_material:
     all_tags:
     - '593'

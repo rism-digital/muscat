@@ -294,6 +294,43 @@ doc_references:
     fr: No. RISM
     de: RISM Dokumentnummer
     en: RISM ID No.
+"026": 
+  label: 
+    it: FINGERPRINT IDENTIFIER
+    fr: FINGERPRINT IDENTIFIER
+    de: Fingerprint Identifier 
+    en: Fingerprint Identifier
+  fields: 
+    a: 
+      label: 
+        it: FIRST/SECOND GROUP
+        fr: FIRST/SECOND GROUP
+        de: FIRST/SECOND GROUP
+        en: First/second group
+    b: 
+      label: 
+        it: THIRD/FOURTH GROUP
+        fr: THIRD/FOURTH GROUP
+        de: THIRD/FOURTH GROUP
+        en: Third/fourth group
+    c: 
+      label: 
+        it: DATE
+        fr: DATE
+        de: Datum
+        en: Date
+    d: 
+      label: 
+        it: NUMBER OF VOLUME/PART
+        fr: NUMBER OF VOLUME/PART
+        de: NUMBER OF VOLUME/PART
+        en: Number of volume/part
+    e: 
+      label: 
+        it: UNPARSED FINGERPRINT
+        fr: UNPARSED FINGERPRINT
+        de: UNPARSED FINGERPRINT
+        en: Unparsed fingerprint
 028: 
   label: 
     it: Numero dell'editore

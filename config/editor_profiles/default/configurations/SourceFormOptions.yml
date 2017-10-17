@@ -5,6 +5,14 @@
     read_only: true
     no_delete: true
   tag_header: none
+"026": 
+  layout: 
+    fields: 
+    - - a
+    - - b
+    - - c
+    - - d
+    - - e
 "028": 
   layout: 
     fields: 
