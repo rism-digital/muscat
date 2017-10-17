@@ -395,6 +395,17 @@
         - "Typography"
         - "Woodcut"
         editor_partial: subfield_select
+    - - m
+      - values: 
+        - "2°"
+        - "4°"
+        - "8°"
+        - "12°"
+        - "16°"
+        - "18°"
+        - "20°"
+        - "24°"
+        editor_partial: subfield_select
 "383": 
   layout: 
     fields: 

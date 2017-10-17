@@ -782,6 +782,12 @@ doc_references:
         fr: Technique de production
         de: Herstellungsverfahren
         en: Recording technique
+    m: 
+      label: 
+        it: BOOK FORMAT
+        fr: BOOK FORMAT
+        de: BOOK FORMAT
+        en: Book format
     "8": 
       label: 
         it: Gruppo di materiale
