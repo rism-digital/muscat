@@ -83,20 +83,14 @@ ActiveAdmin.register Holding do
 
     def show
       begin
-        @item = @holding = Holding.find(params[:id])
+        @holding = Holding.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Holding #{params[:id]})" }
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Holding #{params[:id]})"  }
         return
       end
-      @editor_profile = EditorConfiguration.get_show_layout @holding
-      @prev_item, @next_item, @prev_page, @next_page = Holding.near_items_as_ransack(params, @holding)
-      
-      respond_to do |format|
-        format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
-      end
+      redirect_to edit_admin_source_path(@holding.source)
     end
-    
+   
     def index
       @results, @hits = Holding.search_as_ransack(params)
       
