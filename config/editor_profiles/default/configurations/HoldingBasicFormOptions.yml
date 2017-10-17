@@ -10,6 +10,7 @@
     fields: 
     - - a
       - growfield: true
+    - - b
     - - c
 "500": 
   layout: 

@@ -368,6 +368,7 @@
     fields: 
     - - a
       - growfield: true
+    - - b
     - - c
 "340": 
   layout: 
