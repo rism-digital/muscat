@@ -2,12 +2,13 @@
 	groups = Array.new
 	@editor_profile.each_group_in_layout @item do |group|
 		groups << group
-	end
+  end
 -%>
 
 <div id="<%= render_panel -%>" class="panel-hidable" data-editor-model="<%= model %>" style="display: <%= @show_history ? "none" : "block" -%>;">
 	<%# we don't want the form to be submitted directly (with enter for example), so the 'onSubmit return false %>
 	<%- @editor_profile.layout_config[:marc_editor_group_links] = [] -%>
+	<%- @editor_profile.layout_config[:marc_editor_unknown_tag_links] = "" -%>
 	<%- @editor_profile.layout_config[:marc_editor_missing_group_links] = "" -%>
 	<%= form_tag( "#", {:id => "marc_editor_form_#{render_panel}", :onSubmit => 'return false;'} ) do %>
 		<%= hidden_field_tag 'id', @item.id -%>

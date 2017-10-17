@@ -11,6 +11,8 @@
 	<td>
 		<% if opac %>
 			<%= link_to t_tag, institution_index_path(:search_field => "any_field", :q => institution)%>
+		<% elsif is_selection_mode?%>
+			<%= t_tag %>
 		<% else %>
 			<%= link_to t_tag, admin_institution_path(db_id) -%>
 		<% end %>

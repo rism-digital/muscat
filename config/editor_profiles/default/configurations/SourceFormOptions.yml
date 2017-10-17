@@ -381,7 +381,7 @@
 "340": 
   layout: 
     fields: 
-    - - a
+    - - d
       - values: 
         - "Autography"
         - "Computer printout"
@@ -533,6 +533,19 @@
   layout: 
     fields: 
     - - a
+      - values: 
+        - "A/I"
+        - "B/I"
+        - "B/II"
+        - "B/III"
+        - "B/IV"
+        - "B/VIII"
+        - "B/IX/1"
+        - "B/IX/2"
+        - "B/XIII"
+        - "B/XV"
+        - "B/XVII"
+        editor_partial: subfield_select
     - - b
 "597": 
   layout: 
@@ -646,6 +659,7 @@
       - oth
       - dub
       - ctb
+      - ccp
 "710":
   new_window: institutions
   new_window_field: name_equals
@@ -681,6 +695,7 @@
       - edt
       - asn
       - oth
+      - evt
 "730":
   new_window: standard_titles
   new_window_field: title_equals

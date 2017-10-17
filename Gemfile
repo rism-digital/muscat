@@ -39,6 +39,7 @@ end
 
 group :development do
   gem 'web-console', '~> 2.0'
+	#gem 'rb-readline'
 end
 
 # For generating both digest and no digest assets
@@ -126,3 +127,8 @@ gem 'database_cleaner'
 gem 'exception_notification'
 gem 'cql-ruby', '0.9.1', :git => 'https://github.com/jrochkind/cql-ruby'
 gem 'chart-js-rails'
+
+gem 'osullivan'
+
+## Add translations for activerecord and co
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x

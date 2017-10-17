@@ -3,6 +3,7 @@ var show_viaf_actions = function () {
 
 	$("#viaf-sidebar").click(function(){
 		marc_editor_show_panel("viaf-form");
+    $('#viaf-form').children('div.tab_panel').show();
 	});
 
 	$viaf_table.delegate('.data', 'click', function() {

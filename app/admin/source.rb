@@ -216,7 +216,7 @@ ActiveAdmin.register Source do
   filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
          collection: proc {
            if current_user.has_any_role?(:editor, :admin)
-             User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}.sort
+             User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
            else
              [[current_user.name, "wf_owner:#{current_user.id}"]]
            end

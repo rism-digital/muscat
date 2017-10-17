@@ -6,7 +6,7 @@
 	# Do not render anything if nothing needs to go in other
 	return if tag_names.empty?
 	group_title = @editor_profile.get_label("unmatched")
-	@editor_profile.layout_config[:marc_editor_missing_group_links] = group_title
+	@editor_profile.layout_config[:marc_editor_unknown_tag_links] = group_title
 -%>
 
 <div class="panel tab_panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">

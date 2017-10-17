@@ -408,6 +408,7 @@ en:
   filter_revue_title: "Revue title"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
+  filter_images: "Images"
   filter_scoring: "Scoring"
   filter_series_items: "Series items"
   filter_siglum: "Siglum"
@@ -470,6 +471,7 @@ en:
   error_not_found: "The resource you are trying to access does not exist or has been deleted."
   error_saving: "The resource is not complete or generates a duplicate"
   unknown_tags: "There are some unknown fields in this record"
+  ungrouped_tags: "There are ungrouped fields in this record"
   cannot_update_source: "You are not authorized to edit this type of source"
   cannot_create_source: "You are not authorized to create this type of source"
   

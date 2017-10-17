@@ -5,6 +5,18 @@ ActiveAdmin.register User do
 
   # Remove all action items
   config.clear_action_items!
+	
+=begin #515 postponed to 3.7
+	controller do
+	  def update
+	    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+	      params[:user].delete("password")
+	      params[:user].delete("password_confirmation")
+	    end
+	    super
+	  end
+	end
+=end
 
   ###########
   ## Index ##
@@ -77,8 +89,14 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs I18n.t(:user_details) do
-      f.input :name
-      f.input :email
+      #515 postponed to 3.7
+      #if can? :manage, User
+        f.input :name
+        f.input :email
+      #elsif can? :update, User
+      #  f.input :name, :input_html => {:disabled => true}
+      #  f.input :email, :input_html => {:disabled => true}
+      #end
 
       if can? :update, User
         f.input :password

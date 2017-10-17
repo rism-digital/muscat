@@ -2,7 +2,14 @@
 <% label = params.has_key?("select_label") ? params['select_label'] : "Select" %>
 <% codes_reference = params.include?("codes_reference") ? params["codes_reference"] : "codes"%>
 <% show_error = (!tag_params[codes_reference].include?(marc_subfield.content) && marc_subfield.content) ? "" : "" %>
-<select class="serialize_marc marc_editor_hotkey <%=show_error%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100">
+
+<% if params["unrestricted"] && !(params["unrestricted"] & current_user.roles.pluck(:name)).empty?
+           restricted = ""
+        else
+           restricted = @restricted
+        end %>
+
+<select class="serialize_marc marc_editor_hotkey <%=show_error%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100" <%=restricted %>>
 	<option value="">--- <%= label %> ---</option>
 	<% if !tag_params[codes_reference].include?(marc_subfield.content) && marc_subfield.content %>
 	<option value="<%= marc_subfield.content %>" selected><%= marc_subfield.content%></option>

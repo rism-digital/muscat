@@ -15,7 +15,9 @@ Muscat::Application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-	config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+	config.logger = Logger.new("#{Rails.root}/log/#{ENV['RAILS_ENV']}.log", 10, 1048576)
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -28,4 +30,7 @@ Muscat::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.web_console.whitelisted_ips =  %w( 127.0.0.1 141.2.23.10 141.2.23.8)
+
+  config.i18n.available_locales = [:de, :fr, :it, :es, :en]
+
 end

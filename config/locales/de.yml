@@ -24,7 +24,7 @@ de:
     previous: "Zurück"
     next: "Weiter"
     download: "Herunterladen:"
-    has_many_new: "%{model} hinzufügen"
+    has_many_new: "%{model} Hinzufügen"
     has_many_delete: "Löschen"
     has_many_remove: "Entfernen"
     filters:
@@ -80,13 +80,13 @@ de:
         folder: "Erstelle Ordner mit"
 
     comments:
-      resource_type: "Ressourcen-Typ"
+      resource_type: "Quellentyp"
       author_type: "Autor-Typ"
       body: "Inhalt"
       author: "Autor"
       title: "Kommentar"
       add: "Kommentar hinzufügen"
-      resource: "Ressource"
+      resource: "Quelle"
       no_comments_yet: "Es gibt noch keine Kommentare."
       author_missing: "Unbekannt"
       title_content: "Kommentare (%{count})"
@@ -126,11 +126,11 @@ de:
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
         resend_unlock_instructions: "Anleitung zur Aufhebung der Blockierung nochmals schicken"
     unsupported_browser:
-      headline: "Muscat unterstützt nicht länger den Internet Explorer in Version 8 oder niedriger."
+      headline: "Muscat unterstützt den Internet Explorer Version 8 oder niedriger nicht mehr."
       recommendation: "Wir empfehlen die Nutzung von <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, oder <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
       turn_off_compatibility_view: "Wenn Sie den Internet Explorer 9 oder neuer benutzen, achten Sie darauf, dass Sie den <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Kompatibilitätsansicht\" ausgeschaltet</a> haben."
     access_denied:
-      message: "Sie haben nicht die Berechtigung, diese Aktion auszuführen." 
+      message: "Sie haben keine Berechtigung, diese Aktion auszuführen." 
     index_list:
       table: "Tabelle"
       block: "Liste"
@@ -185,7 +185,7 @@ de:
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Auswahl der Vorlage"
   available_templates: "Verfügbare Vorlagen"
-  from_existing_source: "Erstellen von vorhandener Quelle"
+  from_existing_source: "Erstellen aus vorhandener Quelle"
   create_from_existing: "Erstellen"
   record_types:
     unspecified: "[Unbekannte Vorlage]"
@@ -259,8 +259,8 @@ de:
   running: "Läuft"
   finished: "Beendet"
   lib_siglum: "Bibliothekssigel"
-  holding_records: "Exemplar Information"
-  new_holding: "Neuer Examplar Eintrag"
+  holding_records: "Exemplarinformation"
+  new_holding: "Neuer Examplareintrag"
   new_digital_object: "Neues Bild hinzufügen"
   record_actions: "Aktion für Eintrag"
   record_status: "Status des Eintrags"
@@ -276,7 +276,7 @@ de:
   jobs:
     not_set: "[Kein Status gesetzt]"
     ok: "Prozess erfolgreich abgeschlossen"
-    no_status: "Fehler beim Lesen des Prozess-status"
+    no_status: "Fehler beim Lesen des Prozess-Status'"
     error: "Fehler: "
     running_jobs: "Laufender Prozess kann nicht gelöscht werden."
     auto_delete: "Löschen nicht möglich: Abgeschlossener Prozess wurde bereits automatisch gelöscht."
@@ -302,7 +302,7 @@ de:
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
   show_preview: "Vorschau anzeigen"
-  hide_preview: "Vorschau vergeben"
+  hide_preview: "Vorschau verbergen"
   show_history: "Änderungsgeschichte"
   show_viaf: "VIAF Suche"
   save_and_continue: "Speichern und weiter bearbeiten"
@@ -328,8 +328,8 @@ de:
     success: "Ordner %{name} generiert aus %{count} Datensätzen."
     too_many: "Es können nicht mehr als %{max} Datensätze ausgewählt werden (%{count} wurden ausgewählt)."
     added: "%{count} Einträge zum Ordner %{name} hinzugefügt."
-    added_bg: "Einträge in den Ordner hinzugefügt, Auftrag %{job} in Warteschlange."
-    success_bg: "Ordner %{name} erstellt, Auftrag %{job} in Warteschlange."
+    added_bg: "Einträge in den Ordner hinzugefügt, Auftrag %{job} in Warteschleife."
+    success_bg: "Ordner %{name} erstellt, Auftrag %{job} in Warteschleife."
 
   ### Digital objects
   digital_objects: "Bild"
@@ -407,6 +407,7 @@ de:
   filter_revue_title: "Zeitschriftentitel"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
+  filter_images: "IMAGES"
   filter_scoring: "Besetzung"
   filter_series_items: "Zugehörige Einträge"
   filter_siglum: "Sigel"
@@ -466,11 +467,12 @@ de:
   rism_g_sharp: "Gis-Dur/Moll"
   
   # Assorted error messages
-  error_not_found: "Der gesuchte Eintrag existiert nicht odrer wurde gelöscht."
+  error_not_found: "Der gesuchte Eintrag existiert nicht oder wurde gelöscht."
   error_saving: "Dieser Eintrag ist unvollständig oder erstellt eine Dublette."
   unknown_tags: "Dieser Eintrag enthält falsch verwendete Felder."
-  cannot_update_source: "YOU ARE NOT AUTHORIZED TO EDIT THIS TYPE OF SOURCE"
-  cannot_create_source: "YOU ARE NOT AUTHORIZED TO CREATE THIS TYPE OF SOURCE"
+  ungrouped_tags: "THERE ARE UNGROUPED FIELDS IN THIS RECORD"
+  cannot_update_source: "Sie sind nicht berechtigt, diese Art von Quellen zu bearbeiten"
+  cannot_create_source: "Sie sind nicht berechtigt, diese Art von Quellen zu erstellen"
 
   #
   entry:
@@ -643,7 +645,7 @@ de:
       range_begin: "%{field_label} Bereichsanfang"
       range_end: "%{field_label} Bereichsende"
       submit_limit: 'Beschränken'
-      remove_limit: 'entfernen'
+      remove_limit: 'Entfernen'
   blacklight_advanced_search:
     all: allen Eigenschaften
     any: irgendeiner Eigenschaft

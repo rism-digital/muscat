@@ -407,6 +407,7 @@ it:
   filter_revue_title: "Titolo del periodico o della miscellanea"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
+  filter_images: "Immagini"
   filter_scoring: "Organico"
   filter_series_items: "Elemento nella serie"
   filter_siglum: "Sigla"
@@ -469,6 +470,7 @@ it:
   error_not_found: "La risorsa specificata non esiste oppure è stata cancellata."
   error_saving: "La risorsa non è completa oppure genera un duplicato"
   unknown_tags: "Il record contiene dei campi sconosciuti"
+  ungrouped_tags: "Il record contiene campi non raggruppati"
   cannot_update_source: "Non sei autorizzato a modificare questo tipo di fonte"
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
 

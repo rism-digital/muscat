@@ -12,7 +12,7 @@ doc_cataloguing_collections:
   label: 
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
-doc_functions: 
+doc_edit_functions: 
   label: 
     de: "Grundätzliche Funktionen"
     en: Basic functions
@@ -848,14 +848,14 @@ voc:
         en: ""
 "520": 
   label: 
-    it: Indicazione di possesso
+    it: Indicazione di contenuto
     fr: Indication de copie
     de: Bestandsangabe
     en: Contents note
   fields: 
     a: 
       label: 
-        it: Indicazione di possesso
+        it: Indicazione di contenuto
         fr: Indication de copie
         de: Bestandsangabe
         en: Contents note

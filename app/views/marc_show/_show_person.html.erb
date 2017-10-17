@@ -45,6 +45,8 @@
 				query_type = four_tags.empty? ? "composer" : "any_field"
 			%>
 			<%= link_to content, catalog_index_path(:search_field => query_type, :q => content)%>
+		<% elsif is_selection_mode?%>
+			<%= content%>
 		<% else %>
 		
 			<%= person_id != nil ? link_to( content, admin_person_path(person_id)) : content %>

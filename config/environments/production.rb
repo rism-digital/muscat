@@ -50,7 +50,7 @@ Muscat::Application.configure do
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
-
+	
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
@@ -82,4 +82,6 @@ Muscat::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   
   config.serve_static_files = true
+
+  config.i18n.available_locales = [:de, :fr, :it, :es, :en]
 end
