@@ -1,0 +1,5 @@
+<ul>
+  <% @item.holdings.sort_by(&:lib_siglum).each do |h| %>
+    <li style="padding: 2px"><%= link_to(h.marc.description, "#holding_#{h.id}") %></li>
+    <% end %>
+</ul>
