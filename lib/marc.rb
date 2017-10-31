@@ -713,6 +713,25 @@ class Marc
     
     return out
   end
+	
+  def marc_extract_dates(conf_tag, conf_properties, marc, model)
+    out = []
+    tag = conf_properties && conf_properties.has_key?(:from_tag) ? conf_properties[:from_tag] : nil
+    subtag = conf_properties && conf_properties.has_key?(:from_subtag) ? conf_properties[:from_subtag] : nil
+
+    return if tag == nil
+    return if subtag == nil
+
+    marc.each_by_tag(tag) do |marctag|
+      marctag.each_by_tag(subtag) do |marcsubtag|
+        
+        out.concat(date_to_array(marcsubtag.content)) if marcsubtag && marcsubtag.content
+        
+      end
+    end
+    
+    return out.sort.uniq
+  end
   
   # Get the birth date from MARC 100$d
   def marc_helper_get_birthdate(value)

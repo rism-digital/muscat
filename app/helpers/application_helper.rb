@@ -165,5 +165,29 @@ module ApplicationHelper
       end
     end
   end
+  
+  def date_to_array(line)
+    arr = []
+    len = 0
+	
+    len = 4 if line.match(/(\d{4})/)
+    len = 8 if line.match(/(\d{8})/)
+
+    return [] if len == 0
+	
+    a = line.scan(/(\d{#{len}})/)
+    return [] if !a
+
+    flat = a.sort.uniq
+    flat.each do |i|
+      if len == 8
+        arr << i[0][0..3]
+      else
+        arr << i[0]
+      end
+    end
+
+    arr
+  end
 
 end
