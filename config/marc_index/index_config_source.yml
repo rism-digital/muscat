@@ -80,6 +80,11 @@ fields:
   "260a":
   "260b":
   "260c":
+  "260c_year":
+       :type: integer
+       :from_tag: "260"
+       :from_subtag: "c"
+       :index_processor_helper: :marc_extract_dates
   "260e":
   "260f":
   "270a":
