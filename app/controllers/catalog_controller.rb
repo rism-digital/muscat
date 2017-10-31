@@ -111,7 +111,7 @@ class CatalogController < ApplicationController
     config.add_facet_field '593a_filter_sm', :label => :filter_source_type, :limit => 10
     config.add_facet_field '240m_filter_sm', :label => :filter_scoring, :limit => 10
     ##config.add_facet_field '240m_sms', :label => 'Publisher', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field 'date_from_i', :label => :filter_date, :range => true, :limit => 5
+    config.add_facet_field '260c_year_ims', :label => :filter_date, :range => true, :limit => 5
     config.add_facet_field '852a_facet_sm', :label => :filter_lib_siglum, :limit => 10
     config.add_facet_field '650a_filter_sm', :label => :filter_subject, :limit => 10
     config.add_facet_field '856x_sm', :label => :filter_images, :limit => 10
