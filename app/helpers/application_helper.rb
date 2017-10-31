@@ -138,4 +138,32 @@ module ApplicationHelper
     return link.gsub("http://", "").gsub("/", "").gsub(":", "").gsub(".", "")
   end
 
+  def date_to_range(line)
+    len = 0
+	
+    len = 4 if line.match(/(\d{4})/)
+    len = 8 if line.match(/(\d{8})/)
+
+    return nil, nil if len == 0
+	
+    a = line.scan(/(\d{#{len}})/)
+    return nil, nil if !a
+
+    flat = a.sort.uniq
+    if flat.count > 1
+      if len == 8
+        return flat.first[0][0..3], flat.last[0][0..3]
+      else
+
+        return flat.first[0], flat.last[0]
+      end
+    else
+      if len == 8
+        return flat.first[0][0..3], 0
+      else
+        return flat.first[0], 0
+      end
+    end
+  end
+
 end

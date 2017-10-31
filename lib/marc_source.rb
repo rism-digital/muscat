@@ -176,12 +176,16 @@ class MarcSource < Marc
         language = LANGUAGES[marc_helper_get_008_language(node.content)] || "Unknown"
       end
     end
-    
-    if node = first_occurance("033", "a")
-      if node && node.content
-        date_from = marc_get_range(node.content, 0, 4) || nil
-        date_to = marc_get_range(node.content, 4, 4) || nil
-      end
+
+		## 033 IS NOT USED ANYMORE
+#    if node = first_occurance("033", "a")
+#      if node && node.content
+#        date_from = marc_get_range(node.content, 0, 4) || nil
+#        date_to = marc_get_range(node.content, 4, 4) || nil
+#      end
+#    end
+    if node = first_occurance("260", "c")
+      date_from, date_to = date_to_range(node.content) if node && node.content
     end
 
     # Force it to nil if 0, this used to work in the past
