@@ -181,8 +181,10 @@ module ApplicationHelper
     flat = a.sort.uniq
     flat.each do |i|
       if len == 8
+        next if i[0][0..3].to_i < 1000 || i[0][0..3].to_i > 2017
         arr << i[0][0..3]
       else
+        next if i[0].to_i < 1000 || i[0].to_i > 2017
         arr << i[0]
       end
     end
