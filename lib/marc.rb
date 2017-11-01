@@ -724,9 +724,18 @@ class Marc
 
     marc.each_by_tag(tag) do |marctag|
       marctag.each_by_tag(subtag) do |marcsubtag|
-        
         out.concat(date_to_array(marcsubtag.content)) if marcsubtag && marcsubtag.content
-        
+      end
+    end
+    
+    # are we part of a collection? Or have a parent?
+    if model.source_id
+      parent = Source.find(model.source_id)
+      parent.marc.load_source false
+      parent.marc.each_by_tag(tag) do |marctag|
+        marctag.each_by_tag(subtag) do |marcsubtag|
+          out.concat(date_to_array(marcsubtag.content)) if marcsubtag && marcsubtag.content
+        end
       end
     end
     
