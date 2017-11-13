@@ -37,5 +37,39 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
         end
       end
     end
-  end 
+
+    it "Catalogers with people ability should be able to edit own people" do
+      person.update(wf_owner: user.id)
+      visit edit_admin_person_path(person)
+      collapsables = page.find_all(:xpath, "//div[@class='tag_group']//a[@title='Add tag']")
+      collapsables.each do |c| 
+        c.click 
+      end
+      save_screenshot('/tmp/unrestricted_screenshot.jpg', :full => true)
+      tags = (EditorConfiguration.get_default_layout Person.first).options_config
+      unrestricted_fields = Hash.new([])
+      tags.each do |tag|
+        if CollectionHelper::ConfigHash.new(tag).contains?("unrestricted")
+          tag[1]["layout"]["fields"].each do |subfield|
+            if CollectionHelper::ConfigHash.new(subfield).contains?("unrestricted")
+              unrestricted_fields[tag[0]] += [subfield[0]]
+            end
+          end
+        end
+      end
+      input_fields = page.find_all(:xpath, "//input[@data-tag]|//select[@data-tag]")
+      input_fields.each do |field|
+        expect(field["disabled"]).to eq(false)
+      end
+    end
+  end
+
+
+
+
+
+
+
+
+
 end
