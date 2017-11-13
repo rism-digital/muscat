@@ -407,7 +407,7 @@ de:
   filter_revue_title: "Zeitschriftentitel"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
-  filter_images: "IMAGES"
+  filter_images: "Digitalisate"
   filter_scoring: "Besetzung"
   filter_series_items: "Zugehörige Einträge"
   filter_siglum: "Sigel"
