@@ -175,15 +175,15 @@ class Source < ActiveRecord::Base
     
     sunspot_dsl.text :source_id
     
-		# For ordering
+    # For ordering
     sunspot_dsl.string :std_title_shelforder, :as => "std_title_shelforder_s" do 
       std_title
     end
-		# For facet
+    # For facet
     sunspot_dsl.string :std_title_order do 
       std_title
     end
-		# For fulltext search
+    # For fulltext search
     sunspot_dsl.text :std_title, :stored => true
     sunspot_dsl.text :std_title_d
     
@@ -218,45 +218,46 @@ class Source < ActiveRecord::Base
       lib_siglum
     end
     sunspot_dsl.text :lib_siglum, :stored => true, :as => "lib_siglum_s"
-    
-    sunspot_dsl.integer :date_from do 
-      date_from != nil && date_from > 0 ? date_from : nil
-    end
-    sunspot_dsl.integer :date_to do 
-      date_to != nil && date_to > 0 ? date_to : nil
-    end
+
+    # Dates now come directly from MARC
+#    sunspot_dsl.integer :date_from do 
+#      date_from != nil && date_from > 0 ? date_from : nil
+#    end
+#    sunspot_dsl.integer :date_to do 
+#      date_to != nil && date_to > 0 ? date_to : nil
+#    end
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
-	sunspot_dsl.time :updated_at
-	sunspot_dsl.time :created_at
+    sunspot_dsl.time :updated_at
+    sunspot_dsl.time :created_at
 
     sunspot_dsl.integer :catalogues, :multiple => true do
-          catalogues.map { |catalogue| catalogue.id }
+      catalogues.map { |catalogue| catalogue.id }
     end
     
     sunspot_dsl.integer :people, :multiple => true do
-          people.map { |person| person.id }
+      people.map { |person| person.id }
     end
     
     sunspot_dsl.integer :places, :multiple => true do
-          places.map { |place| place.id }
+      places.map { |place| place.id }
     end
     
     sunspot_dsl.integer :institutions, :multiple => true do
-          institutions.map { |institution| institution.id }
+      institutions.map { |institution| institution.id }
     end
     
     sunspot_dsl.integer :liturgical_feasts, :multiple => true do
-          liturgical_feasts.map { |lf| lf.id }
+      liturgical_feasts.map { |lf| lf.id }
     end
     
     sunspot_dsl.integer :standard_terms, :multiple => true do
-          standard_terms.map { |st| st.id }
+      standard_terms.map { |st| st.id }
     end
     
     sunspot_dsl.integer :standard_titles, :multiple => true do
-          standard_titles.map { |stit| stit.id }
+      standard_titles.map { |stit| stit.id }
     end
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 

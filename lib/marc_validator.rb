@@ -1,5 +1,6 @@
 class MarcValidator
-  
+include ApplicationHelper
+
 	DEBUG = false
 	
   def initialize(object, warnings = true)
@@ -145,6 +146,42 @@ class MarcValidator
     end
   end
   
+  def validate_dates
+    
+    @object.marc.each_by_tag("260") do |marctag|
+      marctag.each_by_tag("c") do |marcsubtag|
+        next if !marcsubtag || !marcsubtag.content
+        dates = []
+        dates = date_to_array(marcsubtag.content, false)
+        
+        next if dates.count == 0
+        ap dates
+        dates.sort!.uniq!
+
+        max = min = dates[0].to_i
+        
+        if dates.count > 1
+          max = dates.last.to_i
+          min = dates.first.to_i
+        end
+        
+        # Make a warning for a year n the future
+        # I can be legitimate, like a forthcoming publication
+        if max > Date.today.year
+          add_error("260", "c", "Date in the future: #{max} (#{marcsubtag.content})")
+        end
+        
+        # Make a warning if it is before the 11th century
+        # we have sources in the 11th century
+        if min < 1000
+          add_error("260", "c", "Date too far in the past: #{min} (#{marcsubtag.content})")
+        end
+        
+      end
+    end
+  end
+
+
   def validate_unknown_tags
     @unknown_tags = []
     #begin

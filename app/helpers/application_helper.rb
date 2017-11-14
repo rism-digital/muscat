@@ -137,54 +137,34 @@ module ApplicationHelper
   def make_iiif_anchor(link)
     return link.gsub("http://", "").gsub("/", "").gsub(":", "").gsub(".", "")
   end
-
-  def date_to_range(line)
-    len = 0
-	
-    len = 4 if line.match(/(\d{4})/)
-    len = 8 if line.match(/(\d{8})/)
-
-    return nil, nil if len == 0
-	
-    a = line.scan(/(\d{#{len}})/)
-    return nil, nil if !a
-
-    flat = a.sort.uniq
-    if flat.count > 1
-      if len == 8
-        return flat.first[0][0..3], flat.last[0][0..3]
-      else
-
-        return flat.first[0], flat.last[0]
-      end
-    else
-      if len == 8
-        return flat.first[0][0..3], 0
-      else
-        return flat.first[0], 0
-      end
-    end
-  end
   
-  def date_to_array(line)
+  ## Parses an arbitrary string and extracts 4- or 8- digit
+  # dates, such as 1600 or 18000110 (YYYYDDMM)
+  # Bound checking is set to > 1000 and < current year
+  # Dates out of bounds are discarded
+  # Bound checking can be disabled by callind the funcion
+  # with bounds = false (handy for validation)
+  # In case of mixed dates it parses the lenght
+  # of the first one found
+  def date_to_array(line, bounds = true)
     arr = []
     len = 0
-	
+
     len = 4 if line.match(/(\d{4})/)
     len = 8 if line.match(/(\d{8})/)
 
     return [] if len == 0
-	
+
     a = line.scan(/(\d{#{len}})/)
     return [] if !a
 
     flat = a.sort.uniq
     flat.each do |i|
       if len == 8
-        next if i[0][0..3].to_i < 1000 || i[0][0..3].to_i > 2017
+        next if (i[0][0..3].to_i < 1000 || i[0][0..3].to_i > Date.today.year) && bounds
         arr << i[0][0..3]
       else
-        next if i[0].to_i < 1000 || i[0].to_i > 2017
+        next if (i[0].to_i < 1000 || i[0].to_i > Date.today.year) && bounds
         arr << i[0]
       end
     end

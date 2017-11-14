@@ -8,6 +8,7 @@ class SourceValidationNotifications < ApplicationMailer
       # Note: we need to load MARC again from an unloaded state
       validator = MarcValidator.new(Source.find(@source_id), false)
       validator.validate
+      validator.validate_dates
       validator.validate_links
       validator.validate_unknown_tags
       @errors = validator.get_errors
