@@ -825,5 +825,14 @@
       - values: 
         - "IIIF"
         editor_partial: subfield_select
+"931": 
+  new_window: works
+  new_window_field: title_equals
+  layout: 
+    fields: 
+    - - a
+      - type: work
+        editor_partial: subfield_secondary
+        allow_new: true
 ui: 
   hide_marc_identifiers: true

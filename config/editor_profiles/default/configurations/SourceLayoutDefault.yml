@@ -166,6 +166,7 @@ groups:
   edit_incipits:
     all_tags:
     - '031'
+    - '931'
     template: show_incipit
   edit_references:
     all_tags:
