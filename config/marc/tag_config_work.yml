@@ -65,8 +65,10 @@
     :fields:
     - - a
       - :occurrences: "?"
+    - - d
+      - :occurrences: "?"
     - - f
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - r
       - :occurrences: "?"
     - - s

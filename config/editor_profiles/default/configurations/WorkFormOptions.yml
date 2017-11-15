@@ -27,6 +27,7 @@
   layout: 
     fields:
     - - a
+    - - d
     - - f
     - - r
     - - s
