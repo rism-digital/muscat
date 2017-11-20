@@ -102,8 +102,8 @@ doc_cataloguing:
 doc_cat_collections: 
   label: 
     de: Erfassung von Sammlungen
-    en: Cataloging collection and convoluta
-    it: Catalogo delle collezioni e convoluta
+    en: Cataloging collections
+    it: Catalogo delle raccolte
 doc_cat_templates: 
   label: 
     de: Templates
@@ -113,7 +113,7 @@ doc_cat_authorities:
   label: 
     de: Normdaten
     en: Authorities
-    it: Autorità
+    it: Voci di autorità
 
 ################
 
@@ -146,7 +146,7 @@ doc_library:
   label: 
     de: Besitzerangaben
     en: Library information
-    it: Informazione sulla libreria
+    it: Informazioni sulla biblioteca
 doc_provenance: 
   label: 
     de: Provenienz
@@ -186,7 +186,7 @@ doc_added_entries:
   label: 
     de: Nebeneintragungen
     en: Added entry name
-    it: Nome di entità aggiunto
+    it: Nomi aggiuntivi
 doc_performance: 
   label: 
     de: "Aufführungen"
