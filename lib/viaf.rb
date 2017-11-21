@@ -24,10 +24,17 @@ module Viaf
         else
           return "Sorry, no results were found in VIAF!"
         end
+      elsif model.to_s == "Work"
+        if query["result"]
+          r = query["result"].map{|e| e if e['nametype']=='uniformtitlework'}.compact
+        else
+          return "Sorry, no work results were found in VIAF!"
+        end
       else
         #TODO adopt for other marc classes
         r = query["result"].map{|e| e if e['nametype']=='personal'}.compact
       end
+      ap r
       provider_doc = ""
       r.each do |record|
         providers.keys.each do |provider|
