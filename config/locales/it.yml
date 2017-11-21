@@ -607,6 +607,16 @@ it:
     missing_message: "Questo campo deve contendere un valore"
     warning_message: "Questo campo dovrebbe contenere un valore"
 
+  incipit_search:
+    incipit_search: "Ricerca negli incipit"
+    query_type: "Tipo di ricerca:"
+    exact_pitch: "Altezza esatta (ricerca più accurata)"
+    interval: "Intervalli"
+    refined_pitch: "Contorno melodico accurato"
+    gross_pitch: "Contorno melodico approssimato (ricerca più approssimativa)"
+    anchor: "Ricerca solo nell'inizio"
+    erase: "Cancella una nota"
+
   date:
     month_names:
      -

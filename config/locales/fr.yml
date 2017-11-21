@@ -607,6 +607,16 @@ fr:
     missing_message: "Une valeur dans ce champ est nécessaire"
     warning_message: "Une valeur devrait être présente pour ce champ"
 
+  incipit_search:
+    incipit_search: "Recherche par incipit"
+    query_type: "Type de recherche:"
+    exact_pitch: "Note exact (similarité précise)"
+    interval: "Interval"
+    refined_pitch: "Contour mélodique fin"
+    gross_pitch: "Contour mélodique grossier (similarité approximative)"
+    anchor: "Au début uniquement"
+    erase: "Effacer une note"
+
   date:
     month_names:
     -
