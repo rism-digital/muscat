@@ -218,7 +218,9 @@ class Source < ActiveRecord::Base
       lib_siglum
     end
     sunspot_dsl.text :lib_siglum, :stored => true, :as => "lib_siglum_s"
-
+    # This one will be called lib_siglum_ss (note the second s) in solr
+    # We use it for GIS
+    sunspot_dsl.string :lib_siglum, :stored => true
     # Dates now come directly from MARC
 #    sunspot_dsl.integer :date_from do 
 #      date_from != nil && date_from > 0 ? date_from : nil
@@ -262,6 +264,28 @@ class Source < ActiveRecord::Base
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
+
+    #For geolocation
+    sunspot_dsl.latlon :location, :stored => true do
+      #lib = Institution.find_by_siglum(item[:value])
+      #next if !lib
+      lat = 0
+      lon = 0
+      
+      lib = marc.first_occurance("852")
+      if lib && lib.foreign_object
+        lib_marc = lib.foreign_object.marc
+        lib_marc.load_source false
+        
+        lat = lib_marc.first_occurance("034", "f")
+        lon = lib_marc.first_occurance("034", "d")
+    
+        lat = (lat && lat.content) ? lat.content : 0
+        lon = (lon && lon.content) ? lon.content : 0
+      end
+      
+      Sunspot::Util::Coordinates.new(lat, lon)
+    end
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end

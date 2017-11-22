@@ -1,0 +1,94 @@
+<script src="/geo-browser/PLATIN/js/Util/Publisher.js"></script>
+<script src="/geo-browser/PLATIN/js/Build/Loader/DynaJsLoader.js"></script>
+<script src="/geo-browser/PLATIN/js/Build/Loader/Loader.js"></script>
+
+<div class="modal fade modal-fullscreen" id="geo-modal" tabindex="-1" role="dialog" aria-labelledby="Geo-browser view">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				<h4 class="modal-title" id="myModalLabel">
+					Geo-browser view
+				</h4>
+			</div>
+			<div class="modal-body">
+				
+				<div style="display:none;">
+					<div id="dataloaderContainerDiv"></div>
+					<div id="overlayloaderContainerDiv"></div>
+					<div id="storytellingContainerDiv"></div>
+				</div>
+				<div id="geoTemCoContainers">
+					<div id="mapContainerDiv" style="position:relative;"></div>
+					<div id="plotContainerDiv" style="position:relative;"></div>
+					<br>
+					<div id="tableContainerDiv" style="position:relative;"></div>
+				</div>
+
+				<script>
+					$(document).ready(function() {
+						$('#geo-modal').on('shown.bs.modal', function() {
+
+							//Publisher.Publish( 'GeoTemCoReady', null, function(){
+								var mapHeight =  (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) - 200;
+								var datasets = [];
+								var mapDiv = document.getElementById("mapContainerDiv");
+								mapDiv.innerHTML = "";
+								var map = new WidgetWrapper();
+								var mapWidget = new MapWidget(map,mapDiv,{
+									alternativeMap: [],
+									mapSelection : false,
+									proxyHost: '',
+									mapHeight : mapHeight + 'px',
+									mapTitle: "RISM"
+								});
+								/*var timeDiv = document.getElementById("plotContainerDiv");
+								var time = new WidgetWrapper();
+								var timeWidget = new TimeWidget(time,timeDiv,{
+								timeTitle: "Publication Date"
+								});*/
+								/*
+								var timeDiv = document.getElementById("plotContainerDiv");
+								var time = new WidgetWrapper();
+								var timeWidget = new FuzzyTimelineWidget(time,timeDiv,{
+								timeTitle: "Publication Date"
+								});
+								timeWidget.options.timelineMode = 'stacking';
+								var tableDiv = document.getElementById("tableContainerDiv");
+								var table = new WidgetWrapper();
+								var tableWidget = new TableWidget(table,tableDiv);
+								var dataloaderDiv = document.getElementById("dataloaderContainerDiv");
+								var dataloader = new WidgetWrapper();
+								var dataloaderWidget = new DataloaderWidget(dataloader,dataloaderDiv);
+								var overlayloaderDiv = document.getElementById("overlayloaderContainerDiv");
+								var overlayloader = new WidgetWrapper();
+								var overlayloaderWidget = new OverlayloaderWidget(overlayloader,overlayloaderDiv);
+								overlayloaderWidget.attachMapWidget(mapWidget);
+								var storytellingDiv = document.getElementById("storytellingContainerDiv");
+								var storytelling = new WidgetWrapper();
+								//var storytellingWidget = new StorytellingWidget(storytelling,storytellingDiv);
+								*/
+
+								var data1 = GeoTemConfig.getJson("/catalog/geosearch/852a_facet_sm.json?<%=params.to_query.html_safe%>");
+								// This is for source-based navigation
+								//var data1 = GeoTemConfig.getJson("/catalog.json?utf8=✓&search_field=any_field&per_page=2000000&q=<%=params[:q]%>");
+								
+								$("#mapInfo").html(data1.info.noinfo_libraries + " libraries have no location information, containing " + data1.info.noinfo_sources + " sources. Total sources: " + (data1.info.total - data1.info.unique_sources));
+								
+								datasets.push(new Dataset(GeoTemConfig.loadJson(data1.data),'Muscat query'));
+								
+								map.display(datasets);
+								//time.display(datasets);
+								//table.display(datasets);
+								//storytelling.display(datasets);
+							//});
+						})
+					});
+				
+				</script>
+			</div>
+			<div id="mapInfo" class="modal-footer"></div>
+		</div>
+	</div>
+</div>
+

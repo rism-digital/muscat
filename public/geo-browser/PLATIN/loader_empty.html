@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>PLATIN</title>
+
+ 	<style type="text/css">
+		.legend > table, .legend > div {
+			width: 200px !important;
+		    height: 100px !important;
+			display: block;
+			overflow-y: scroll;
+			position: absolute;
+			right: 0px;
+			bottom: 0px;
+			font-size: 12px;
+		}
+	</style>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<link href="css/platin.css" rel="stylesheet" type="text/css">
+ 	<script src="platin-min.js"></script>
+  </head>
+
+  <body>
+
+    <noscript>
+      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled in order for this application to display correctly.
+      </div>
+    </noscript>
+
+	<table width=100%>
+		<tr>
+			<td colspan=2 width=100% align="center">
+				<div style="width:100%; position:relative">
+					<div style='width: 100%; float:left;'>
+						<a href="http://www.informatik.uni-leipzig.de:8080/geotemco/" target="_"><img width='18%' src='images/geotemco.png'></a>
+						<a href="http://www.topoi.org/group/d-6/" target="_"><img width='18%' src='images/topoi.png'></a>
+						<a href="http://skruse.github.io/PLATIN/" target="_"><img width='18%' src='images/platin.png'></a>
+						<a href="http://www.mpiwg-berlin.mpg.de						/de/index.html" target=""><img width='18%' src='images/mpiwg.gif'></a>
+						<a href="https://de.dariah.eu/geobrowser" target="_"><img width='18%' src='images/dariah.png'></a>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr >
+			<td width=50%>
+				<fieldset id="dataloaderContainerDiv" style="position:relative;">
+					<legend>Load Data</legend>
+				</fieldset>
+			</td>
+			<td rowspan=2 width=50% valign=top>
+				<fieldset id="storytellingContainerDiv" style="position:relative;">
+					<legend>Data History</legend>
+				</fieldset>			
+			</td>
+		</tr>
+		<tr>
+			<td width=50%>
+				<fieldset id="overlayloaderContainerDiv" style="position:relative;">
+					<legend>Load Overlay</legend>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td width=50%>
+			    <div id="mapContainerDiv" style="position:relative;"></div>
+			</td>
+			<td width=50%>
+				<div id="piechartContainerDiv" style="height:580px; position:relative;"></div>
+			</td>
+		</tr>
+	</table>
+    <div id="plotContainerDiv" style="position:relative;"></div>
+    <div id="tableContainerDiv" style="position:relative;"></div>
+
+    <script>
+		var datasets = [];
+		var mapDiv = document.getElementById("mapContainerDiv");
+		var map = new WidgetWrapper();
+		var mapWidget = new MapWidget(map,mapDiv,{
+			mapTitle: "Publication Place"
+		});
+		var timeDiv = document.getElementById("plotContainerDiv");
+		var time = new WidgetWrapper();
+		var timeWidget = new FuzzyTimelineWidget(time,timeDiv,{
+			timeTitle: "Publication Date"
+		});
+		var tableDiv = document.getElementById("tableContainerDiv");
+		var table = new WidgetWrapper();
+		var tableWidget = new TableWidget(table,tableDiv);
+		
+		var dataloaderDiv = document.getElementById("dataloaderContainerDiv");
+		var dataloader = new WidgetWrapper();
+		var dataloaderWidget = new DataloaderWidget(dataloader,dataloaderDiv);
+
+		var overlayloaderDiv = document.getElementById("overlayloaderContainerDiv");
+		var overlayloader = new WidgetWrapper();
+		var overlayloaderWidget = new OverlayloaderWidget(overlayloader,overlayloaderDiv);
+		overlayloaderWidget.attachMapWidget(mapWidget);
+		
+		var piechartDiv = document.getElementById("piechartContainerDiv");
+		var piechart = new WidgetWrapper();
+		var piechartWidget = new PieChartWidget(piechart,piechartDiv);
+		
+		var storytellingDiv = document.getElementById("storytellingContainerDiv");
+		var storytelling = new WidgetWrapper();
+		var storytellingWidget = new StorytellingWidget(storytelling,storytellingDiv);
+		
+		dataloaderWidget.loadFromURL();
+    </script>
+
+  </body>
+
+</html>
