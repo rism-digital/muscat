@@ -2183,6 +2183,12 @@ est:
     FR: Estonien
     de: Estnisch
     en: Estonian
+fas:
+  label:
+    IT: PERSIAN
+    FR: PERSIAN
+    de: Persisch
+    en: Persian
 fin: 
   label: 
     IT: Finlandese
