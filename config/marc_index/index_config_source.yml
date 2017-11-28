@@ -196,11 +196,6 @@ fields:
   "787a":
   "787n":
   "787w":
-  "787w":
-  "787w":
-  "787w":
-  "787w":
-  "787w":
   "852a_facet":
       :type: text ## hack for sunspot: make this field work as fulltext
       :from_tag: "852"
@@ -225,6 +220,7 @@ fields:
   "856u":
   "856x":
       :type: string
+  "856z":
   "740_autocomplete":
       :index_processor_helper: marc_create_aggregated_text
       :tags:
