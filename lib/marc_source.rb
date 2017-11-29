@@ -509,9 +509,9 @@ class MarcSource < Marc
         end
       end
     end
-		
+
   end
-  
+    
   def set_record_type(rt)
     @record_type = rt
   end
