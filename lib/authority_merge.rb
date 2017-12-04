@@ -55,6 +55,8 @@ module AuthorityMerge
 
       # set marc and save
       s.marc = new_marc
+      
+      s.paper_trail_event = "#{self.class} change id from #{self.id} to #{new_id}"
       s.save
     end
     
