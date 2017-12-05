@@ -417,6 +417,7 @@ en:
   filter_source_type: "Source Type"
   filter_std_title: "Standardized title"
   filter_subject: "Subject"
+  filter_subsequent_entries: "Subsequent Entries"
   filter_term: "Term"
   filter_thematic_opus: "Thematic cat. / Opus no."
   filter_title: "Title"

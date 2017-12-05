@@ -416,6 +416,7 @@ fr:
   filter_source_type: "Type de source"
   filter_std_title: "Titre uniforme"
   filter_subject: "Sujet"
+  filter_subsequent_entries: "Entrées suivants"
   filter_term: "Terme"
   filter_thematic_opus: "Cat. thématique / No d'opus"
   filter_title: "Titre"

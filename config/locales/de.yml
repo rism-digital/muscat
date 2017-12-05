@@ -416,6 +416,7 @@ de:
   filter_source_type: "Quellentyp"
   filter_std_title: "Standardtitel"
   filter_subject: "Schlagwörter"
+  filter_subsequent_entries: "Späteren Eintrag"
   filter_term: "Begriff"
   filter_thematic_opus: "Them. Kat. / Op.-Nr."
   filter_title: "Titel"

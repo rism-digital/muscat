@@ -400,6 +400,7 @@ es:
   filter_source_type: "Tipo de fuente"
   filter_std_title: "Título estandardizado"
   filter_subject: "Tema"
+  filter_subsequent_entries: "LATER ENTRIES"
   filter_term: "Término"
   filter_thematic_opus: "Catálogo temático / Opus no."
   filter_title: "Título"

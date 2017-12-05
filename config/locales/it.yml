@@ -416,6 +416,7 @@ it:
   filter_source_type: "Tipo di fonte"
   filter_std_title: "Titolo uniforme"
   filter_subject: "Soggetto"
+  filter_subsequent_entries: "Notizie Successive"
   filter_term: "Termine"
   filter_thematic_opus: "Catalogo / Num. d'opera"
   filter_title: "Titolo"
