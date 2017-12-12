@@ -1,8 +1,105 @@
 # -*- encoding : utf-8 -*-
 #
 class CatalogController < ApplicationController  
+  include Blacklight::Catalog
+  
+  DEFAULT_FACET_LIMIT = 20
   
   before_action :redirect_legacy_values, :only => :show
+  
+  def facet_list_limit
+  	if defined? @default_limit
+      @default_limit
+    else
+      DEFAULT_FACET_LIMIT + 1
+    end
+  end
+
+  def make_geoterm
+    out = []
+    noinfo_sources = 0
+    noinfo_libraries = 0
+    total = 0
+  
+    @pagination.items.each do |item|
+      total += item[:hits]
+      lib = Institution.find_by_siglum(item[:value])
+      if !lib
+        noinfo_sources += item[:hits]
+        noinfo_libraries +=1
+        next
+      end
+      
+      marc = lib.marc
+      marc.load_source false
+      lat = marc.first_occurance("034", "f")
+      lon = marc.first_occurance("034", "d")
+      
+      lat = (lat && lat.content) ? lat.content : 0
+      lon = (lon && lon.content) ? lon.content : 0
+      
+      # If the info is not there, skip it
+      if lat == 0 || lon == 0
+        noinfo_sources += item[:hits]
+        noinfo_libraries +=1
+        next
+      end
+      
+      out << {
+        name: item[:value],
+        weight: item[:hits],
+        lon: lon,
+        lat: lat,
+        description: lib.name,
+        place: lib.place
+      }
+    end
+    
+    {info: {noinfo_libraries: noinfo_libraries, noinfo_sources: noinfo_sources, total: total, unique_sources: @response[:response]["numFound"]},
+     data: out
+    }
+  end
+
+  def geosearch
+    #if params.include? :map
+      @default_limit = 100000
+      #else
+    #  @default_limit = DEFAULT_FACET_LIMIT
+    #end
+    #facet
+    
+    @facet = blacklight_config.facet_fields[params[:id]]
+    @response = get_facet_field_response(@facet.key, params)
+    @display_facet = @response.aggregations[@facet.key]
+
+    @pagination = facet_paginator(@facet, @display_facet)
+
+    respond_to do |format|
+      format.json { render json: make_geoterm }
+    end
+    
+    @default_limit = DEFAULT_FACET_LIMIT
+  end
+
+  
+  def render_search_results_as_json_disable
+    out = []
+    @document_list.each do |item|
+      
+      latlon = item[:location_lls]
+      lat, lon = latlon.split(",")
+
+      out << {
+        id: item[:id],
+        description: item[:lib_siglum_ss],
+        name: item[:std_title_texts].first,
+        #weight: item[:hits],
+        lon: lon,
+        lat: lat
+      }
+    end
+    out
+  end
   
   def redirect_legacy_values
     # Rewrite old IDS with five leading zeros
@@ -35,8 +132,6 @@ class CatalogController < ApplicationController
     )
   end
   
-  include Blacklight::Catalog
-
   configure_blacklight do |config|
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = { 
@@ -57,6 +152,7 @@ class CatalogController < ApplicationController
     # items to show per page, each number in the array represent another option to choose from.
     config.per_page = [10,20,50,100]
     config.default_per_page = 20
+    config.max_per_page = 20000000
 
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SolrHelper#solr_doc_params) or 
     ## parameters included in the Blacklight-jetty document requestHandler.
