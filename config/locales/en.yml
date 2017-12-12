@@ -608,7 +608,17 @@ en:
   validation:
     missing_message: "A value in this field is mandatory"
     warning_message: "A value for this field should be provided"
-   
+    
+  incipit_search:
+    incipit_search: "Incipit Search"
+    query_type: "Query Type:"
+    exact_pitch: "Exact Pitch (Exact Match)"
+    interval: "Interval"
+    refined_pitch: "Refined Pitch Contour"
+    gross_pitch: "Gross Pitch Contour (Fuzziest match)"
+    anchor: "Search only beginning"
+    erase: "Erase one note"
+    
   # date:
   # Empty lines for matching line numbers with other translation files  
   #
@@ -632,6 +642,7 @@ en:
   #
   #
   #
+
 
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line

@@ -138,7 +138,7 @@ class CatalogController < ApplicationController
       :qt => 'search',
       :"q.alt" => "*:*",
       :rows => 20,
-      :defType => 'dismax',
+      :defType => 'edismax',
       :fq => "type:Source wf_stage_s:published",
       :hl => 'false',
       :"hl.simple.pre" => '<span class="highlight">',
@@ -164,7 +164,7 @@ class CatalogController < ApplicationController
        :rows => 1,
        :q => '{!raw f=id v=$id}' ,
       # Added by RZ
-      :defType => 'dismax',
+      :defType => 'edismax',
     }
 
     # solr field configuration for search results/index views
@@ -326,6 +326,10 @@ class CatalogController < ApplicationController
       }
     end
     
+    config.advanced_search = {
+      :query_parser => "edismax"
+    }
+
     # Add some filters for the adv search
     config.add_search_field("title") do |field|
       field.label = :filter_title_on_ms
@@ -410,6 +414,12 @@ class CatalogController < ApplicationController
     config.add_search_field("subject") do |field|
       field.label = :filter_subject
       field.solr_parameters = { :qf => "650a_text" }
+    end
+    
+    config.add_search_field("pae") do |field|
+      field.label = "Incipit"
+      field.include_in_simple_select = false
+      field.solr_parameters = { :qf => "pae" }
     end
 
     # "sort results by" select (pulldown)

@@ -607,6 +607,16 @@ de:
   validation:
     missing_message: "Dieses Feld muss zwingend ausgefüllt werden."
     warning_message: "Dieses Feld enthält üblicherweise einen Eintrag."
+
+  incipit_search:
+    incipit_search: "INCIPIT SEARCH"
+    query_type: "QUERY TYPE:"
+    exact_pitch: "EXACT PITCH (MORE EXACT MATCH)"
+    interval: "INTERVAL"
+    refined_pitch: "REFINED PITCH CONTOUR"
+    gross_pitch: "GROSS PITCH CONTOUR (MORE FUZZY SEARCH)"
+    anchor: "SEARCH ONLY BEGINNING"
+    erase: "ERASE ONE NOTE"
     
   date:
     month_names:
