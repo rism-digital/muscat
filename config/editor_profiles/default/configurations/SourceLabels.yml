@@ -236,7 +236,7 @@ doc_numbers:
   label:
     de: "Nummern und Codes"
     en: "Numbers and code fields"
-    it: "Campi di numero e codici"
+    it: "Campi numerici e codici"
 doc_name_variants:
   label:
     de: "Namensvarianten"
@@ -3148,7 +3148,7 @@ in_678:
 in_670:
   label:
     en: "Literature"
-    it: "Letteratura"
+    it: "Bibliografia"
     de: "Literatur"
 in_680:
   label:
@@ -3193,7 +3193,7 @@ in_003:
 in_005:
   label:
     en: "Date and time of last transaction"
-    it: "Date ed ora dell'ultima transazione"
+    it: "Data ed ora dell'ultima transazione"
     de: "Zeitpunkt der letzten Transaktion"
 in_008:
   label:
@@ -3229,7 +3229,7 @@ doc_in_control:
 pe_100:
   label:
     en: "Heading-Personal name"
-    it: "Intestazione-nome di persona"
+    it: "Nome di persona"
     de: "Personenname"
 pe_042:
   label:
@@ -3264,7 +3264,7 @@ pe_500:
 pe_510:
   label:
     en: "Associated institution"
-    it: "Istitutione associate"
+    it: "Istitutione associata"
     de: "Zugehörige Körperschaften"
 pe_550:
   label:
@@ -3284,12 +3284,12 @@ pe_667:
 pe_670:
   label:
     en: "Source data found"
-    it: "Dati originali trovati"
+    it: "Fonte dei dati"
     de: "SOURCE DATA FOUND"
 pe_678:
   label:
     en: "Additional biographical information"
-    it: "Informazioni bibliografiche addizionali"
+    it: "Informazioni bibliografiche aggiuntive"
     de: "zusätzliche biographische Informationen"
 pe_680:
   label:
@@ -3309,7 +3309,7 @@ pe_040:
 pe_main_entry_fields:
   label:
     de: "Haupteintragungen"
-    it: "Campi primcipali"
+    it: "Campi principali"
     en: "Main entry fields"
 pe_numbers:
   label:
@@ -3345,22 +3345,22 @@ doc_places:
 li_100:
   label:
     en: "Author / Editor"
-    it: "Autore / Editore"
+    it: "Autore / curatore"
     de: "Autor / Herausgeber"
 li_700:
   label:
     en: "Additional personal name"
-    it: "Nomi di persona addizionali"
+    it: "Persona"
     de: "Zusätzliche Personen"
 li_245:
   label:
     en: "Title of item"
-    it: "Titolo della voce"
+    it: "Titolo"
     de: "Titel"
 li_260:
   label:
     en: "Imprint"
-    it: "Firma"
+    it: "Dati editoriali"
     de: "IMPRINT"
 li_300:
   label:
@@ -3370,7 +3370,7 @@ li_300:
 li_337:
   label:
     en: "Media type"
-    it: "Tipo di media"
+    it: "Mezzo fisico"
     de: "Medientyp"
 li_210:
   label:
@@ -3405,17 +3405,17 @@ li_044:
 li_710:
   label:
     en: "Additional institution"
-    it: "Istituzione addizionale"
+    it: "Istituzione aggiuntiva"
     de: "Zusätzliche Körperschaften"
 li_760:
   label:
     en: "Item part of"
-    it: "Voce parte di"
+    it: "Fa parte di"
     de: "ITEM PART OF"
 li_650:
   label:
     en: "Subject heading"
-    it: "Intestazione del soggetto"
+    it: "Parola chiave"
     de: "SUBJECT HEADING"
 li_651:
   label:
@@ -3425,12 +3425,12 @@ li_651:
 li_780:
   label:
     en: "Preceding entry"
-    it: "Entità precedente"
+    it: "Titolo precedente"
     de: "Ersteintrag"
 li_785:
   label:
     en: "Succeeding entry"
-    it: "Entità successiva"
+    it: "Titolo successivo"
     de: "Folgeeintrag"
 li_500:
   label:
@@ -3450,7 +3450,7 @@ li_856:
 li_520:
   label:
     en: "Contents note"
-    it: "Nota al contenuto"
+    it: "Indicazione di contenuto"
     de: "CONTENTS NOTE"
 li_000:
   label:
@@ -3465,7 +3465,7 @@ li_001:
 li_003:
   label:
     en: "Control number identifier"
-    it: "Identificativo del numero di controllo"
+    it: "Identificatore del numero di controllo"
     de: "CONTROL NUMBER IDENTIFIER"
 li_005:
   label:
@@ -3480,7 +3480,7 @@ li_main_entry_fields:
 li_subject:
   label:
     en: "Subject access fields"
-    it: "Campi di accesso al soggetto"
+    it: "Campi delle parole chiave"
     de: "SUBJECT ACCESS FIELDS"
 li_note:
   label:
@@ -3495,12 +3495,12 @@ li_control:
 li_lit:
   label:
     en: "Secondary literature"
-    it: "Letteratura secondaria"
+    it: "Bibliografia di riferimento"
     de: "Sekundärliteratur"
 doc_titles_and_text:
   label:
     en: "Titles / text incipits"  
-    it: "Titoli / Incipit testuali"  
+    it: "Titoli / incipit testuali"  
     de: "Titel und  Texte"  
 aid_terms:
   label:
@@ -3510,7 +3510,7 @@ aid_terms:
 aid_watermarks:
   label:
     en: "Standard watermarks"
-    it: "Filigrana standard"
+    it: "Descrizione standard di filigrane"
     de: "Wasserzeichen"
 aid_general:
   label:
@@ -3530,27 +3530,27 @@ aid_eccl:
 aid_keys:
   label:
     en: "Keys"
-    it: "Tasti"
+    it: "Tonalità"
     de: "Tonarten"
 aid_language:
   label:
     en: "Language codes"
-    it: "Codice lingua"
+    it: "Codici lingue"
     de: "Sprachcodes"
 doc_other:
   label:
     en: "Other help"
-    it: "OTHER HELP"
+    it: "Altri aiuti"
     de: "Weitere Hilfen"
 aid_titles:
   label:
     en: "Standardized titles - Subject headings"
-    it: "Titoli standard - Intestazione del soggetto"
+    it: "Titoli uniformi – Parole chiave"
     de: "STANDARDIZED TITLES - SUBJECT HEADINGS"
 aid_texts:
   label:
     en: "Standard texts of sacred works"
-    it: "Testi standard"
+    it: "Testi standard di composizioni sacre"
     de: "Liturgische Texte"
 aid_lit:
   label:
@@ -3560,12 +3560,12 @@ aid_lit:
 aid_figured:
   label:
     en: "Figured bass in scores and/or other parts"
-    it: "Basso figurato nella partitura e/o altre parti"
+    it: "Basso cifrato in partitura e/o in altre parti"
     de: "Generalbass"
 aid_transpose:
   label:
     en: "Help for transposing instruments"
-    it: "Aiuto agli strumenti traspositori"
+    it: "Tabella degli strumenti traspositori"
     de: "Hilfe zu transponierenden Instrumenten"
 aid_opera:
   label:
