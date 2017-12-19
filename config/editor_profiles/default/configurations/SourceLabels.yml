@@ -2823,6 +2823,54 @@ g|b:
     fr: "Mode: 12t – Hypoionian"
     de: "Mode: 12t – Hypoionian"
     en: "Mode: 12t – Hypoionian"
+1byz:
+  label:
+    it: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+    fr: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+    de: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+    en: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+2byz:
+  label:
+    it: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+    fr: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+    de: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+    en: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+3byz:
+  label:
+    it: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+    fr: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+    de: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+    en: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+4byz:
+  label: 
+    it: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+    fr: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+    de: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+    en: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+5byz:
+  label: 
+    it: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+    fr: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+    de: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+    en: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+6byz:
+  label: 
+    it: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+    fr: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+    de: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+    en: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+7byz:
+  label: 
+    it: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+    fr: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+    de: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+    en: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+8byz:
+  label: 
+    it: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
+    fr: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
+    de: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
+    en: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
 #Clefs (031)
 01_modern_clefs:
   label:

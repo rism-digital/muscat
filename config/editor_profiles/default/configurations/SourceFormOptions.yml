@@ -108,6 +108,14 @@
       - "10t"
       - "11t"
       - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
     clef_groups:
       01_modern_clefs:
       - C-1
@@ -351,6 +359,14 @@
       - "10t"
       - "11t"
       - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
 "245": 
   layout: 
     fields: 
@@ -761,6 +777,14 @@
       - "10t"
       - "11t"
       - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
 "740":
   layout: 
     fields: 
