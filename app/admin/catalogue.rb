@@ -109,8 +109,8 @@ ActiveAdmin.register Catalogue do
   filter :description_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
   filter :"240g_contains", :label => proc {I18n.t(:filter_record_type)}, :as => :string
   filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
-  filter :"place_contains", :label => proc {I18n.t(:filter_place)}, :as => :string
-  filter :"date_contains", :label => proc {I18n.t(:filter_date)}, :as => :string
+  filter :"place_contains", :label => proc {I18n.t(:filter_place_of_publication)}, :as => :string
+  filter :"date_contains", :label => proc {I18n.t(:filter_date_of_publication)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
 
@@ -123,9 +123,9 @@ ActiveAdmin.register Catalogue do
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id    
-#   column (I18n.t :filter_name), :name
-    column (I18n.t :filter_name), :description do |catalogue| 
-      catalogue.description.truncate(60) if catalogue.description
+    column (I18n.t :filter_title_short), :name
+    column (I18n.t :filter_title), :description do |catalogue| 
+      catalogue.description.truncate(64, separator: ' ') if catalogue.description
     end
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
@@ -159,7 +159,7 @@ ActiveAdmin.register Catalogue do
     end
     active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode? )
 
-    if resource.revue_title.empty? && !resource.get_items.empty?
+    if !resource.get_items.empty?
       panel I18n.t :filter_series_items do
         search=Catalogue.solr_search do 
           fulltext(params[:id], :fields=>['7600'])
