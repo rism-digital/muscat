@@ -1832,7 +1832,7 @@ asn:
     it: Altro nome
     fr: Autre nom
     de: Weiterer Name
-    en: Other
+    en: Associated name
 aut: 
   label: 
     it: Autore
@@ -2006,7 +2006,7 @@ oth:
     it: Altra funzione
     fr: Autre function
     de: Sonstige Funktion
-    en: Other function
+    en: Other
 otm: 
   label: 
     it: Organizzatore
