@@ -383,7 +383,7 @@ asn:
   label: 
     it: Altro nome
     fr: Autre nom
-    de: Weiterer Name
+    de: Behandelte Person
     en: Associated name
 aut: 
   label: 
@@ -619,6 +619,12 @@ other:
     fr: Divers
     de: Verschiedenes
     en: Miscellaneous
+oth: 
+  label: 
+    it: Altra funzione
+    fr: Autre function
+    de: Sonstige Funktion
+    en: Other function
 otm: 
   label: 
     it: Organizzatore
