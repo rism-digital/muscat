@@ -146,7 +146,7 @@ ActiveAdmin.setup do |config|
   #
   # You can disable the menu item for the comments index page:
   # Menus set by hand for translation, see below
-  config.show_comments_in_menu = false
+  config.comments_menu = false
   #
   # You can change the name under which comments are registered:
   #config.comments_registration_name = 'AdminComment'
