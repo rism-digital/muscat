@@ -34,6 +34,7 @@ ActiveAdmin.register Catalogue do
     
     def check_model_errors(object)
       return unless object.errors.any?
+
       flash[:error] ||= []
       flash[:error].concat(object.errors.full_messages)
     end
@@ -46,6 +47,7 @@ ActiveAdmin.register Catalogue do
       @item = Catalogue.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
     end
 
@@ -94,6 +96,7 @@ ActiveAdmin.register Catalogue do
         @catalogue.marc = new_marc
       end
       @editor_profile = EditorConfiguration.get_default_layout @catalogue
+      @editor_validation = EditorValidation.get_default_validation(@catalogue)
       @item = @catalogue
     end
   end

@@ -72,7 +72,7 @@ class Catalogue < ActiveRecord::Base
 
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
-
+  
   def after_initialize
     @last_user_save = nil
     @last_event_save = "update"

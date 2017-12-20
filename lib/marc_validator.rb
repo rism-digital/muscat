@@ -21,8 +21,8 @@ include ApplicationHelper
   end
 
   def validate
+
     @rules.each do |tag, tag_rules|
-      
       #mandatory =  tag_rules["tags"].has_value? "mandatory"
       # Mandatory tags are tags that need to be there entirely
       # In the editor leaving a tag emply will remove it
@@ -60,7 +60,6 @@ include ApplicationHelper
         end
         
         marc_tags.each do |marc_tag|
-          
           marc_subtag = marc_tag.fetch_first_by_tag(subtag)
           #ap marc_subtag
           
@@ -72,6 +71,8 @@ include ApplicationHelper
                 add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
                 puts "Missing #{tag} #{subtag}, #{rule}" if DEBUG
               end
+            elsif rule == "uniq"
+              binding.pry
             else
               puts "Unknown rule #{rule}" if rule != "mandatory"
             end
