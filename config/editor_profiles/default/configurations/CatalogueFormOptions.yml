@@ -113,6 +113,7 @@
   layout: 
     fields: 
     - - a
+      - growfield: true
     - - g
       - cols: 1
         values:
@@ -177,7 +178,7 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
+      - growfield: true
 "520": 
   layout: 
     fields: 
@@ -187,7 +188,7 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
+      - growfield: true
 "650":
   allow_new: true
   new_window: standard_terms
