@@ -225,10 +225,10 @@ doc_templates:
         en: Production
 "700": 
   label: 
-    it: Persona
-    fr: Personne
-    de: Person
-    en: Person
+    it: ADDITIONAL PERSONAL NAME
+    fr: ADDITIONAL PERSONAL NAME
+    de: Sonstige Person
+    en: Additional personal name
   fields: 
     a: 
       label: 
