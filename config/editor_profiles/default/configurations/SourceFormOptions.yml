@@ -116,6 +116,14 @@
       - "10t"
       - "11t"
       - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
     clef_groups:
       01_modern_clefs:
       - C-1
@@ -209,6 +217,7 @@
       - "eng"
       - "enm"
       - "est"
+      - "fas"
       - "fin"
       - "fre"
       - "frr"
@@ -358,6 +367,14 @@
       - "10t"
       - "11t"
       - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
 "245": 
   layout: 
     fields: 
@@ -693,9 +710,8 @@
       - prf
       - prt
       - edt
-      - asn
       - oth
-      - evt
+      - evp
 "730":
   new_window: standard_titles
   new_window_field: title_equals
@@ -781,6 +797,14 @@
       - "10t"
       - "11t"
       - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
 "740":
   layout: 
     fields: 

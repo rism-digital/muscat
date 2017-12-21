@@ -113,6 +113,7 @@
   layout: 
     fields: 
     - - a
+      - growfield: true
     - - g
       - cols: 1
         values:
@@ -177,7 +178,7 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
+      - growfield: true
 "520": 
   layout: 
     fields: 
@@ -187,7 +188,7 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
+      - growfield: true
 "650":
   allow_new: true
   new_window: standard_terms
@@ -213,48 +214,14 @@
       - type: person
         editor_partial: subfield_secondary
     - - "4"
-      - editor_partial: subfield_select_codes_grouped
+      - editor_partial: subfield_select_codes
   tag_params: 
-    groups: 
-      01_codes_artistic: 
-      - cmp
-      - com
-      - arr
-      - aut
-      - clb
-      - lyr
-      - ccp
-      - lbt
-      - trl
-      02_codes_performing: 
-      - prf
-      - voc
-      - itr
-      - dnc
-      - cnd
-      - chr
-      - art
-      - cst
-      - prd
-      - cns
-      04_codes_other: 
-      - fmo
-      - dnr
-      - dte
-      - pat
-      - otm
-      - bsl
-      - asn
-      - dub
-      03_codes_technical: 
-      - scr
-      - ltg
-      - egr
-      - ill
-      - prt
-      - pbl
-      - edt
-      - bnd
+    codes: 
+    - aut
+    - edt
+    - cmp
+    - asn
+    - oth
 "710":
   allow_new: true
   new_window: institutions
@@ -279,7 +246,7 @@
     - pbl
     - edt
     - bsl
-    - asn
+    - oth
     - dub
 "760": 
   allow_new: true

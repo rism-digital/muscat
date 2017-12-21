@@ -69,7 +69,6 @@ ActiveAdmin.register Catalogue do
     
     def index
       @results, @hits = Catalogue.search_as_ransack(params)
-      
       index! do |format|
         @catalogues = @results
         format.html
@@ -78,18 +77,25 @@ ActiveAdmin.register Catalogue do
     
     def new
       @catalogue = Catalogue.new
-      
-      new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc"))
-      new_marc.load_source false # this will need to be fixed
-      @catalogue.marc = new_marc
-
+      if params[:existing_title] and !params[:existing_title].empty?
+        begin
+          base_item = Catalogue.find(params[:existing_title])
+        rescue ActiveRecord::RecordNotFound
+          redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Catalogue #{params[:id]})" }
+          return
+        end
+        
+        new_marc = MarcCatalogue.new(base_item.marc.marc_source)
+        new_marc.reset_to_new
+        @catalogue.marc = new_marc
+      else
+        new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc"))
+        new_marc.load_source false # this will need to be fixed
+        @catalogue.marc = new_marc
+      end
       @editor_profile = EditorConfiguration.get_default_layout @catalogue
-      # Since we have only one default template, no need to change the title
-      #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
-      #To transmit correctly @item we need to have @source initialized
       @item = @catalogue
     end
-    
   end
   
   include MarcControllerActions
@@ -98,6 +104,12 @@ ActiveAdmin.register Catalogue do
     job = Delayed::Job.enqueue(ReindexItemsJob.new(Catalogue.find(params[:id]), "referring_sources"))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
+  
+  member_action :duplicate, method: :get do
+    redirect_to action: :new, :existing_title => params[:id]
+    return
+  end
+ 
 
   ###########
   ## Index ##
@@ -107,10 +119,12 @@ ActiveAdmin.register Catalogue do
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"100a_or_700a_contains", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
   filter :description_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
-  filter :"240g_contains", :label => proc {I18n.t(:filter_record_type)}, :as => :string
+  filter :"240g_contains", :label => proc {I18n.t(:filter_record_type)}, :as => :select,
+    collection: proc{["Bibliography", "Catalog", "Collective catalogue", "Encyclopedia", "Music edition", "Other",
+      "Thematic catalog", "Work catalog"] }
   filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
-  filter :"place_contains", :label => proc {I18n.t(:filter_place)}, :as => :string
-  filter :"date_contains", :label => proc {I18n.t(:filter_date)}, :as => :string
+  filter :"place_contains", :label => proc {I18n.t(:filter_place_of_publication)}, :as => :string
+  filter :"date_contains", :label => proc {I18n.t(:filter_date_of_publication)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
 
@@ -123,9 +137,9 @@ ActiveAdmin.register Catalogue do
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id    
-#   column (I18n.t :filter_name), :name
-    column (I18n.t :filter_name), :description do |catalogue| 
-      catalogue.description.truncate(60) if catalogue.description
+    column (I18n.t :filter_title_short), :name
+    column (I18n.t :filter_title), :description do |catalogue| 
+      catalogue.description.truncate(64, separator: ' ') if catalogue.description
     end
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
@@ -159,7 +173,7 @@ ActiveAdmin.register Catalogue do
     end
     active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode? )
 
-    if resource.revue_title.empty? && !resource.get_items.empty?
+    if !resource.get_items.empty?
       panel I18n.t :filter_series_items do
         search=Catalogue.solr_search do 
           fulltext(params[:id], :fields=>['7600'])

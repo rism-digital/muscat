@@ -225,10 +225,10 @@ doc_templates:
         en: Production
 "700": 
   label: 
-    it: Persona
-    fr: Personne
-    de: Person
-    en: Person
+    it: ADDITIONAL PERSONAL NAME
+    fr: ADDITIONAL PERSONAL NAME
+    de: Sonstige Person
+    en: Additional personal name
   fields: 
     a: 
       label: 
@@ -383,7 +383,7 @@ asn:
   label: 
     it: Altro nome
     fr: Autre nom
-    de: Weiterer Name
+    de: Behandelte Person
     en: Associated name
 aut: 
   label: 
@@ -619,6 +619,12 @@ other:
     fr: Divers
     de: Verschiedenes
     en: Miscellaneous
+oth: 
+  label: 
+    it: Altra funzione
+    fr: Autre function
+    de: Sonstige Funktion
+    en: Other function
 otm: 
   label: 
     it: Organizzatore

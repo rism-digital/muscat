@@ -537,6 +537,44 @@ class Marc
     end
   end
 
+  def change_authority_links(old_auth, new_auth)
+    return if old_auth.class != new_auth.class
+    
+    auth_model = old_auth.class.to_s
+    
+    # Get the tags to update
+    rewrite_tags = @marc_configuration.get_remote_tags_for(auth_model)
+    return if rewrite_tags.empty?
+    
+    rewrite_tags.each do |rewrite_tag|
+      master = @marc_configuration.get_master(rewrite_tag)
+      
+      each_by_tag(rewrite_tag) do |t|
+        # Get the ID in the tag, print a warning if it is not there!
+        marc_auth_id = t.fetch_first_by_tag(master)
+        if !marc_auth_id || !marc_auth_id.content
+          puts "#{ref.id} tag #{rtag} does not have subtag #{master}"
+          next
+        end
+    
+        # Skip if this link is to another auth file
+        next if marc_auth_id.content.to_i != old_auth.id
+        
+        # We need to preserve the position of this tag
+        # So we remove all the foreign elements from the tag
+        # and just add there the new empty master
+        t.all_children.each {|ch| ch.destroy_yourself if @marc_configuration.is_foreign?(t.tag, ch.tag)}
+        
+        t.add(MarcNode.new(auth_model.downcase, master, new_auth.id, nil))
+        t.sort_alphabetically
+        
+      end
+      
+    end
+    
+  end
+
+
   def ==(other)
     load_source unless @loaded
     @source_id == other.get_marc_source_id
@@ -712,6 +750,34 @@ class Marc
     end
     
     return out
+  end
+	
+  def marc_extract_dates(conf_tag, conf_properties, marc, model)
+    out = []
+    tag = conf_properties && conf_properties.has_key?(:from_tag) ? conf_properties[:from_tag] : nil
+    subtag = conf_properties && conf_properties.has_key?(:from_subtag) ? conf_properties[:from_subtag] : nil
+
+    return if tag == nil
+    return if subtag == nil
+
+    marc.each_by_tag(tag) do |marctag|
+      marctag.each_by_tag(subtag) do |marcsubtag|
+        out.concat(date_to_array(marcsubtag.content)) if marcsubtag && marcsubtag.content
+      end
+    end
+    
+    # are we part of a collection? Or have a parent?
+    if model.source_id
+      parent = Source.find(model.source_id)
+      parent.marc.load_source false
+      parent.marc.each_by_tag(tag) do |marctag|
+        marctag.each_by_tag(subtag) do |marcsubtag|
+          out.concat(date_to_array(marcsubtag.content)) if marcsubtag && marcsubtag.content
+        end
+      end
+    end
+    
+    return out.sort.uniq
   end
   
   # Get the birth date from MARC 100$d
