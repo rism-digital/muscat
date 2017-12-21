@@ -5,6 +5,14 @@
     read_only: true
     no_delete: true
   tag_header: none
+"026": 
+  layout: 
+    fields: 
+    - - a
+    - - b
+    - - c
+    - - d
+    - - e
 "028": 
   layout: 
     fields: 
@@ -385,6 +393,7 @@
     fields: 
     - - a
       - growfield: true
+    - - b
     - - c
 "340": 
   layout: 
@@ -401,6 +410,18 @@
         - "Transparency"
         - "Typescript"
         - "Typography"
+        - "Woodcut"
+        editor_partial: subfield_select
+    - - m
+      - values: 
+        - "2°"
+        - "4°"
+        - "8°"
+        - "12°"
+        - "16°"
+        - "18°"
+        - "20°"
+        - "24°"
         editor_partial: subfield_select
 "383": 
   layout: 
@@ -689,7 +710,6 @@
       - prf
       - prt
       - edt
-      - asn
       - oth
       - evp
 "730":

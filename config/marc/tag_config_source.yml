@@ -80,6 +80,21 @@
     :fields:
     - - ""
       - :no_browse: true
+  "026":
+    :master: a
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - a
+      - :occurrences: "1"
+    - - b
+      - :occurrences: "1"
+    - - c
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
   "028":
     :master: a
     :indicator: "20"
@@ -270,6 +285,8 @@
     :occurrences: "*"
     :fields:
     - - d
+      - :occurrences: "*"
+    - - m
       - :occurrences: "*"
     - - "8"
       - :occurrences: "?"
