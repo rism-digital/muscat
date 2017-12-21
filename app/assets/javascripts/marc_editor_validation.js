@@ -161,7 +161,7 @@ function marc_validate_presence(value, element) {
 	});
 	
 	var validate_level = $(element).data("validate-level");
-	
+
 	if (value == "") {
 		// There are other values in the form
 		// it is mandatory that this field is filled
@@ -327,7 +327,6 @@ function marc_editor_init_validation(form, validation_conf) {
 			if (placeholders.length > 0 && tags.length > 0) {
 				return true;
 			}
-			
 			// Other case: in tags that can be edited or new
 			// we have a duplicate entry that is not shown
 			// a .tag_containter data-function [new, edit]

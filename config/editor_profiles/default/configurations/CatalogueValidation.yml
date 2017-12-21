@@ -1,7 +1,7 @@
 --- !map:Settings
 "041":
   tags:
-    a: required
+    a: required, warning
 "240":
   tags:
     a: required
