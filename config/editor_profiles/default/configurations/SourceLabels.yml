@@ -294,6 +294,43 @@ doc_references:
     fr: No. RISM
     de: RISM Dokumentnummer
     en: RISM ID No.
+"026": 
+  label: 
+    it: FINGERPRINT IDENTIFIER
+    fr: FINGERPRINT IDENTIFIER
+    de: Fingerprint Identifier 
+    en: Fingerprint Identifier
+  fields: 
+    a: 
+      label: 
+        it: FIRST/SECOND GROUP
+        fr: FIRST/SECOND GROUP
+        de: FIRST/SECOND GROUP
+        en: First/second group
+    b: 
+      label: 
+        it: THIRD/FOURTH GROUP
+        fr: THIRD/FOURTH GROUP
+        de: THIRD/FOURTH GROUP
+        en: Third/fourth group
+    c: 
+      label: 
+        it: DATE
+        fr: DATE
+        de: Datum
+        en: Date
+    d: 
+      label: 
+        it: NUMBER OF VOLUME/PART
+        fr: NUMBER OF VOLUME/PART
+        de: NUMBER OF VOLUME/PART
+        en: Number of volume/part
+    e: 
+      label: 
+        it: UNPARSED FINGERPRINT
+        fr: UNPARSED FINGERPRINT
+        de: UNPARSED FINGERPRINT
+        en: Unparsed fingerprint
 028: 
   label: 
     it: Numero dell'editore
@@ -745,6 +782,12 @@ doc_references:
         fr: "Technique d'impression"
         de: Drucktechnik
         en: Printing technique
+    m: 
+      label: 
+        it: BOOK FORMAT
+        fr: BOOK FORMAT
+        de: BOOK FORMAT
+        en: Book format
     "8": 
       label: 
         it: Gruppo di materiale
@@ -1832,7 +1875,7 @@ asn:
     it: Altro nome
     fr: Autre nom
     de: Weiterer Name
-    en: Other
+    en: Associated name
 aut: 
   label: 
     it: Autore
@@ -2006,7 +2049,7 @@ oth:
     it: Altra funzione
     fr: Autre function
     de: Sonstige Funktion
-    en: Other function
+    en: Other
 otm: 
   label: 
     it: Organizzatore

@@ -54,7 +54,11 @@ class Ability
         can :update, Person
       end
       can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding], :wf_owner => user.id
-      can [:destroy, :update], [DigitalObject, Holding], :wf_owner => user.id
+      can [:destroy, :update], [DigitalObject], :wf_owner => user.id
+      can [:destroy], [Holding], :wf_owner => user.id
+      can [:update], [Holding] do |holding|
+        user.can_edit?(holding)
+      end
       can [:read, :create, :add_item, :remove_item], DigitalObject
       can [:read, :update, :create], DigitalObjectLink
       can [:destroy], DigitalObjectLink do |link|

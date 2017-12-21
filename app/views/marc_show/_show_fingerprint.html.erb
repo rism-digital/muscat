@@ -1,0 +1,26 @@
+
+<%-
+  content = Array.new
+  group=Array.new
+  root=tag.parent
+  root.each_by_tag(tag.tag) do |t| group<< t end
+  group.each do |t|
+    t.children.each do |c|
+      content << c.content if c.content
+    end
+  end
+-%>
+<% if tag==group.first %>
+  <tr class="row">
+	<th valign="top">
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td valign="top">
+		<%= content.uniq.join(' ') %>
+	</td>
+  </tr>
+<%end%>
+
+
