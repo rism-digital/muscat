@@ -4,13 +4,10 @@
     a: required, warning
 "240":
   tags:
-    a: required
-"245":
-  tags:
-    a: required
+    a: required, warning
 "337":
   tags:
-    a: required
+    a: required, warning
 
 
 

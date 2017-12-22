@@ -459,6 +459,7 @@ es:
   ungrouped_tags: "THERE ARE UNGROUPED FIELDS IN THIS RECORD"
   cannot_update_source: "YOU ARE NOT AUTHORIZED TO EDIT THIS TYPE OF SOURCE"
   cannot_create_source: "YOU ARE NOT AUTHORIZED TO CREATE THIS TYPE OF SOURCE"
+  validate_name_uniqness: "RECORD NOT SAVED: SAME SHORT TITLE '%{term}' ALREADY EXISTS."
  
   #
   entry:

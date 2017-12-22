@@ -23,6 +23,7 @@ ActiveAdmin.register Catalogue do
     autocomplete :catalogue, [:name, :author, :description], :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
     
     after_destroy :check_model_errors
+    
     before_create do |item|
       item.user = current_user
     end
@@ -44,6 +45,7 @@ ActiveAdmin.register Catalogue do
     end
     
     def edit
+      flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
       @item = Catalogue.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
@@ -55,7 +57,7 @@ ActiveAdmin.register Catalogue do
       begin
         @item = @catalogue = Catalogue.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Catalogue #{params[:id]})" }
+        redirect_to admin_catalogues_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Catalogue #{params[:id]})" }
         return
       end
       @editor_profile = EditorConfiguration.get_show_layout @catalogue
@@ -78,6 +80,7 @@ ActiveAdmin.register Catalogue do
     end
     
     def new
+      flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
       @catalogue = Catalogue.new
       if params[:existing_title] and !params[:existing_title].empty?
         begin

@@ -63,7 +63,25 @@ class Catalogue < ActiveRecord::Base
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
   after_initialize :after_initialize
-  
+  validate :validate_name_uniqness
+
+  def name_is_duplicate?
+    short_title = marc.get_name
+    return false if short_title.blank?
+    cat = Catalogue.where.not(id: id).where(name: short_title).take
+    if cat
+      return "validate_name_uniqness"
+    end
+    return false
+  end
+
+  def validate_name_uniqness
+    if e = name_is_duplicate?
+      errors.add(:base, e)
+      errors.add(:term, marc.get_name)
+    end
+  end
+
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
