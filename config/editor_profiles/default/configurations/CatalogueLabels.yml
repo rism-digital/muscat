@@ -152,14 +152,14 @@ doc_templates:
     it: Abbreviazione
     fr: Abbreviation
     de: Kürzel
-    en: Abbreviation
+    en: Short title
   fields: 
     a: 
       label: 
         it: Abbreviazione
         fr: Abbreviation
         de: Kürzel
-        en: Abbreviation
+        en: Short title
 "240": 
   label: 
     it: Titolo 

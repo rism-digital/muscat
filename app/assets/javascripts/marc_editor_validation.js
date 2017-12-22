@@ -173,7 +173,10 @@ function marc_validate_presence(value, element) {
 			return false;
 		}
 		else
-			return true;
+			if (validate_level == "warning") {
+				marc_validate_add_warnings(element);
+	    }
+		  return true;
 		// if all the other fields are empty
 		// the form will not be serialized
 		// so validation should pass
