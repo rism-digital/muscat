@@ -189,14 +189,14 @@ de:
   create_from_existing: "Erstellen"
   record_types:
     unspecified: "[Unbekannte Vorlage]"
-    collection: "Sammlung"
-    source: "Musikhandschrift"
-    edition_content: "Musikdruck"
-    libretto_source: "Handschriftliches Libretto"
-    libretto_edition_content: "Gedrucktes Libretto"
-    theoretica_source: "Handschriftliches Theoreticum"
-    theoretica_edition_content: "Gedrucktes Theoreticum"
-    edition: "Bibliographischer Eintrag Musikdruck"
+    collection: "Musikhandschrift, Haupteintrag Sammlung"
+    source: "Musikhandschrift, Indvidual- oder Teileintrag"
+    edition_content: "Musikdruck, Teileintrag"
+    libretto_source: "Libretto, handschriftlich"
+    libretto_edition_content: "Libretto, gedruckt"
+    theoretica_source: "Theoreticum, handschriftlich"
+    theoretica_edition_content: "Theoreticum, gedruckt"
+    edition: "Musikdruck, Haupteintrag Sammlung oder Individualeintrag"
   
   #################### MENUS
   menu_home: "Home"

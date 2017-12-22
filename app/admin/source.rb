@@ -297,6 +297,10 @@ ActiveAdmin.register Source do
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
   end
+
+  sidebar I18n.t(:holding_records), :only => :show , if: proc{ !resource.holdings.empty? } do
+    render :partial => "holdings/holdings_sidebar_show"#, :locals => { :item => @arbre_context.assigns[:item] }
+  end
   
   ##########
   ## Edit ##

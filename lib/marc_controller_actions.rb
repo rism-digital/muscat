@@ -33,7 +33,12 @@ module MarcControllerActions
       # @item is used in the Marc Editor
       @item = nil
       if new_marc.get_id != "__TEMP__" 
-        @item = model.find(new_marc.get_marc_source_id)
+        # To get the ID for holdings
+        if params[:controller] == "admin/holdings"
+          @item = model.find(params[:id])
+        else
+          @item = model.find(new_marc.get_marc_source_id)
+        end
       end
 
       if !@item
@@ -108,7 +113,7 @@ module MarcControllerActions
         model_for_path = self.resource_class.to_s.underscore.downcase
         if (model_for_path == "holding") && params.include?(:parent_object_id)
           if can?(:create_editions, Source) && can?(:update, @item.source)
-            path = edit_admin_source_path(params[:parent_object_id])
+            path = admin_source_path(params[:parent_object_id])
           else
             path = admin_source_path(params[:parent_object_id])
           end
