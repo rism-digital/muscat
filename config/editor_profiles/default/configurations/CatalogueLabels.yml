@@ -178,7 +178,7 @@ doc_templates:
         it: Tipo
         fr: Type
         de: Art/Inhalt
-        en: Type
+        en: Category
     h: 
       label: 
         it: Tipo di pubblicazione
@@ -188,16 +188,16 @@ doc_templates:
 "260": 
   label: 
     it: Dati editoriali 
-    fr: Impressum
-    de: Impressum
-    en: Impressum
+    fr: Imprint
+    de: Imprint
+    en: Imprint
   fields: 
     a: 
       label: 
         it: Luogo
         fr: Endroit
-        de: Ort
-        en: Place 
+        de: Verlagsort
+        en: Place of publication
     b: 
       label: 
         it: Editore
@@ -816,7 +816,7 @@ voc:
     it: Materiale
     fr: "Matériel"
     de: Material
-    en: Material
+    en: Physical Description
   fields: 
     a: 
       label: 
@@ -829,14 +829,14 @@ voc:
     it: Mezzo fisico
     fr: Moyen phyisuqe 
     de: Physisches Medium 
-    en: Physical Medium
+    en: Media type
   fields: 
     a: 
       label: 
         it: Mezzo fisico 
         fr: Moyen physique 
         de: Physisches Medium 
-        en: Physical Medium
+        en: Media type
 "500": 
   label: 
     it: Osservazioni
