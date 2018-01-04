@@ -476,7 +476,8 @@ fr:
   unknown_tags: "Ce titre contient des champs non reconnus."
   ungrouped_tags: "Ce titre contient des champs non groupés"
   cannot_update_source: "Vous n'êtes pas autorisé à traiter ce type de source"
-  cannot_create_source: "Vous n'êtes pas autorisé à créer ce type de source"
+  cannot_create_source: "Vous n'êtes pas autorisé à créer ce type de source" 
+  validate_name_uniqness: "RECORD NOT SAVED: SAME SHORT TITLE '%{term}' ALREADY EXISTS."
 
   #
   entry:

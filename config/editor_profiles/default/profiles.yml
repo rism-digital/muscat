@@ -114,6 +114,7 @@
   :filter:
     show_all: false
     show: true
+  :validation: "CatalogueValidation"
 ## Holding Record
 - :id: DefaultHolding
   :name: Holding

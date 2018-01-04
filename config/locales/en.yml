@@ -478,6 +478,7 @@ en:
   ungrouped_tags: "There are ungrouped fields in this record"
   cannot_update_source: "You are not authorized to edit this type of source"
   cannot_create_source: "You are not authorized to create this type of source"
+  validate_name_uniqness: "Record not saved: Same short title '%{term}' already exists."
   
   #
   entry:

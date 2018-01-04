@@ -19,6 +19,7 @@ groups:
       "700": marc_show/show_person
   subject:
     all_tags:
+    - "020"
     - "041"
     - "710"
     - "760"
