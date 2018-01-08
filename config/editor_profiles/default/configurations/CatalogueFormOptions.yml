@@ -83,15 +83,78 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
-
-
-
-
-
-
-
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        select_label: "Country"
+    columns: 2
+  tag_params:
+    codes:
+      - "XC-DZ"
+      - "XD-AR"
+      - "XB-AM"
+      - "XE-AU"
+      - "XA-AT"
+      - "XA-BE"
+      - "XC-BJ"
+      - "XD-BR"
+      - "XA-BG"
+      - "XB-KH"
+      - "XD-CA"
+      - "XD-CL"
+      - "XB-CN"
+      - "XD-CO"
+      - "XA-HR"
+      - "XD-CU"
+      - "XA-CZ"
+      - "XA-DK"
+      - "XC-EG"
+      - "XA-EE"
+      - "XA-FI"
+      - "XA-FR"
+      - "XA-DE"
+      - "XA-GR"
+      - "XA-VA"
+      - "XD-HN"
+      - "XA-HU"
+      - "XA-IS"
+      - "XB-IN"
+      - "XB-IR"
+      - "XA-IE"
+      - "XB-IL"
+      - "XA-IT"
+      - "XB-JP"
+      - "XB-KR"
+      - "XA-LV"
+      - "XA-LT"
+      - "XA-LU"
+      - "XA-MT"
+      - "XD-MX"
+      - "XA-ME"
+      - "XA-NL"
+      - "XE-NZ"
+      - "XA-NO"
+      - "XD-PY"
+      - "XA-PL"
+      - "XA-PT"
+      - "XD-PR"
+      - "XA-RO"
+      - "XA-RU"
+      - "XA-RS"
+      - "XA-SK"
+      - "XA-SI"
+      - "XC-ZA"
+      - "XA-ES"
+      - "XA-SE"
+      - "XA-CH"
+      - "XA-CH-VD"
+      - "XB-SY"
+      - "XD-TT"
+      - "XB-TR"
+      - "XA-UA"
+      - "XA-GB"
+      - "XD-US"
+      - "XD-UY"
+      - "XD-VE"
 "100": 
   allow_new: true
   new_window: people
