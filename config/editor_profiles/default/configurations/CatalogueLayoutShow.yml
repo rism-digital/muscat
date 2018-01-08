@@ -10,6 +10,7 @@ groups:
     - "100"
     - "700"
     - "240"
+    - "730"
     - "260"
     - "300"     
     - "337" 
@@ -25,6 +26,7 @@ groups:
     - "760"
     - "650"
     - "651" 
+    - "250"
     all_tag_templates:
       "650": marc_show/show_subject
       "710": marc_show/show_institution
@@ -39,6 +41,7 @@ groups:
   notes: 
     all_tags: 
     - "500"
+    - "502"
     - "599"
     - "856"
     - "520"

@@ -185,6 +185,19 @@ doc_templates:
         fr: Type de publication
         de: Ausgabeform
         en: Type of publication
+"250": 
+  label: 
+    it: EDITION STATEMENT
+    fr: EDITION STATEMENT
+    de: EDITION STATEMENT
+    en: Edition statement
+  fields: 
+    a: 
+      label: 
+        it: EDITION STATEMENT
+        fr: EDITION STATEMENT
+        de: EDITION STATEMENT
+        en: Edition statement
 "260": 
   label: 
     it: Dati editoriali 
@@ -253,14 +266,14 @@ doc_templates:
   label:
     it: Titolo uniforme alternativo
     fr: Titres uniformes additionnels
-    de: Alternativer Einordnungstitel
+    de: Zusätzlicher Titel
     en: Additional title
   fields:
     a: 
       label: 
         it: Titolo uniforme alternativo
         fr: Titres uniformes additionnels
-        de: Alternativer Einordnungstitel
+        de: Zusätzlicher Titel
         en: Additional title
 "760": 
   label: 
@@ -851,7 +864,20 @@ voc:
         de: Bemerkungen
         en: General note
       edit_label: 
-        en: ""
+      en: ""
+"502": 
+  label: 
+    it: DISSERTATION NOTE
+    fr: DISSERTATION NOTE
+    de: DISSERTATION NOTE
+    en: Dissertation note
+  fields: 
+    a: 
+      label: 
+        it: DISSERTATION NOTE
+        fr: DISSERTATION NOTE
+        de: DISSERTATION NOTE
+        en: Dissertation note
 "520": 
   label: 
     it: Indicazione di contenuto
