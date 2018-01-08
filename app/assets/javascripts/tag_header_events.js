@@ -191,7 +191,7 @@ used for _tag_header partial
 		};
 		
 		if (jQuery.fn.on !== undefined) {
-			return jQuery(document).on('mousedown', this.selector, handler);
+			return jQuery(document).on('mousedown', '.abutton', handler);
 		} else {
 			return this.live('mousedown', handler);
 		}

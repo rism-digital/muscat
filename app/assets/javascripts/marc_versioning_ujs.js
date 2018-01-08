@@ -13,7 +13,7 @@
 		};
 		
 		if (jQuery.fn.on !== undefined) {
-			return jQuery(document).on('mousedown', this.selector, handler);
+			return jQuery(document).on('mousedown', ".marc_versioning", handler);
 		} else {
 			return this.live('mousedown', handler);
 		}

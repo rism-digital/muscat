@@ -18,8 +18,8 @@
 		}
 		
 		if (jQuery.fn.on !== undefined) {
-			jQuery(document).on('update', this.selector, handler);
-			return jQuery(document).on('focus', this.selector, handler);
+			jQuery(document).on('update', ".autogrow", handler);
+			return jQuery(document).on('focus', ".autogrow", handler);
 			//return 
 		} else {
 			return this.live('load', handler);

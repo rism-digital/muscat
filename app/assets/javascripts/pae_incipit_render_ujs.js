@@ -14,7 +14,7 @@
 		
 		if (jQuery.fn.on !== undefined) {
 			jQuery(document).on('update', this.selector, handler);
-			return jQuery(document).on('keydown', this.selector, handler);
+			return jQuery(document).on('keydown', ".pae_input", handler);
 		} else {
 			return this.live('keydown', handler);
 		}
