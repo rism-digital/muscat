@@ -477,6 +477,7 @@ it:
   ungrouped_tags: "Il record contiene campi non raggruppati"
   cannot_update_source: "Non sei autorizzato a modificare questo tipo di fonte"
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
+  validate_name_uniqness: "RECORD NOT SAVED: SAME SHORT TITLE '%{term}' ALREADY EXISTS."
 
   #
   entry:

@@ -77,12 +77,26 @@ module MarcControllerActions
       # Set the user name to the model class variable
       # This is used by the VersionChecker module to see if we want a version to be stored
       @item.last_user_save = current_user.name
-      
       @item.save
+
+      # This uses the AR validation messages for checking server side validation; only used for catalogue for now
+      if @item.is_a?(Catalogue) && !@item.errors.messages.empty?
+        message = @item.errors.messages[:base].join(";")
+        term = @item.errors.messages[:term].join(";")
+        url = request.env['HTTP_REFERER']
+        par = Rack::Utils.parse_query(URI(url).query)
+        sep = par.any? ? "&" : "?" 
+        respond_to do |format|
+          format.json {  render :json => {:redirect => url + "#{sep}validation_error=#{message}&validation_term=#{term}"}}
+        end
+        return
+      end
+
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       
       # Send the validation notification
       SourceValidationNotifications.mail_validation(@item).deliver_now if RISM::SEND_VALIDATION_NOTIFICATIONS && @item.is_a?(Source)
+      #CatalogueValidationNotifications.mail_validation(@item).deliver_now if @item.is_a?(Catalogue)
       
       # if we arrived here it means nothing crashed
       # Rejoice! and launch the background jobs
