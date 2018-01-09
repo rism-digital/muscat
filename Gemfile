@@ -81,12 +81,12 @@ group :development do
     gem 'webrick', '~> 1.3.1'
 end
 
-gem 'blacklight', "~> 6.0"
-gem "blacklight_advanced_search", "~> 6.0"
+gem 'blacklight', "~> 5.14"
+gem "blacklight_advanced_search"
 gem 'bootstrap-sass', "3.3.4.1"
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
-gem "blacklight_range_limit", "~> 6.0"
+gem "blacklight_range_limit", "~> 5.1"
 gem 'devise', "~> 3.5.6"
 gem 'devise-i18n'
 
