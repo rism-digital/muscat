@@ -27,10 +27,14 @@ groups:
     - "650"
     - "651" 
     - "250"
+    - "780"
+    - "785"
     all_tag_templates:
       "650": marc_show/show_subject
       "710": marc_show/show_institution
       "760": marc_show/show_catalogue
+      "780": marc_show/show_related_catalogue
+      "785": marc_show/show_related_catalogue
       #"651": marc_show/show_place
   control: 
     all_tags: 

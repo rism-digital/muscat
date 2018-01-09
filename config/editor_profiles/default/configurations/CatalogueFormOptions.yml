@@ -326,7 +326,7 @@
   new_window: catalogues
   layout: 
     fields: 
-    - - a
+    - - t
       - type: catalogue
         editor_partial: subfield_secondary
 "785": 
@@ -334,7 +334,7 @@
   new_window: catalogues
   layout: 
     fields: 
-    - - a
+    - - t
       - type: catalogue
         editor_partial: subfield_secondary
 "856": 
