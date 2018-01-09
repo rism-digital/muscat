@@ -22,6 +22,16 @@ GIT
       activesupport (>= 4.0)
 
 GIT
+  remote: https://github.com/rism-ch/blacklight_range_limit
+  revision: 54a63df8018f9a18fe9439bbbbb2c6e2b9a83d4a
+  branch: jquery3
+  specs:
+    blacklight_range_limit (5.2.0)
+      blacklight (~> 5.14)
+      jquery-rails
+      rails (>= 3.0, < 5.0)
+
+GIT
   remote: https://github.com/rism-ch/delayed_job
   revision: d13077cb039ae27f44082f92c4e3caf1602f7a2e
   specs:
@@ -120,10 +130,6 @@ GEM
     blacklight_advanced_search (5.3.1)
       blacklight (~> 5.15)
       parslet
-    blacklight_range_limit (5.2.0)
-      blacklight (~> 5.15)
-      jquery-rails
-      rails (>= 3.0, < 5.0)
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
@@ -393,7 +399,7 @@ DEPENDENCIES
   awesome_print
   blacklight (~> 5.14)
   blacklight_advanced_search
-  blacklight_range_limit (~> 5.1)
+  blacklight_range_limit!
   bootstrap-sass (= 3.3.4.1)
   cancan
   chart-js-rails
