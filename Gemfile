@@ -66,7 +66,7 @@ gem 'htmlentities'
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', '1.0.0' #, git: 'https://github.com/rism-ch/activeadmin'#, ref: 'a2cd960'
+gem 'activeadmin', '1.2.0' #, git: 'https://github.com/rism-ch/activeadmin'#, ref: 'a2cd960'
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
@@ -81,12 +81,12 @@ group :development do
     gem 'webrick', '~> 1.3.1'
 end
 
-gem 'blacklight', "5.14"
-gem "blacklight_advanced_search"
+gem 'blacklight', "~> 6.0"
+gem "blacklight_advanced_search", "~> 6.0"
 gem 'bootstrap-sass', "3.3.4.1"
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
-gem "blacklight_range_limit"
+gem "blacklight_range_limit", "~> 6.0"
 gem 'devise', "~> 3.5.6"
 gem 'devise-i18n'
 

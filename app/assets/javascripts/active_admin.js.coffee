@@ -102,5 +102,5 @@
 #= require modification_trigger_ujs.js
 
 #= require diva/diva.min.js
-#= require Chart
+###= require Chart.min
 #= require html2csv.js
