@@ -2,7 +2,7 @@
 :version:
   :name: tag_config
   :current: 2.0
-  :authors: ["Chad Thatcher", "Sandra Tuppen", "Laurent Pugin", "Rodolfo Zitellini"]
+  :authors: ["Chad Thatcher", "Sandra Tuppen", "Laurent Pugin", "Rodolfo Zitellini", "Stephan Hirsch"]
 
 
 # NOTES FOR "tags" SECTION:
@@ -197,6 +197,13 @@
       - :occurrences: "?"
     - - r
       - :occurrences: "?"
+  "250":
+    :master: a
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - a
+      - :occurrences: "?"
   "260":
     :master: a
     :indicator: "##"
@@ -256,6 +263,13 @@
     - - "5"
       - :occurrences: "?"
         :no_browse: true
+  "502":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
   "520":
     :master: a
     :indicator: "##"
@@ -409,7 +423,13 @@
     :fields:
     - - "w"
       - :occurrences: "?"
-
+        :foreign_class: Catalogue
+        :foreign_field: id
+        :no_show: true
+    - - t
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: description
   "785":
     :master: "w"
     :indicator: "##"
@@ -417,6 +437,13 @@
     :fields:
     - - "w"
       - :occurrences: "?"
+        :foreign_class: Catalogue
+        :foreign_field: id
+        :no_show: true
+    - - t
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: description
   "856":
     :master: u
     :indicator: "##"

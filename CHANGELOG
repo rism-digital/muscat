@@ -8,6 +8,7 @@ v 3.7.0
 * Fixed senior cataloger can edit own people
 * Various adjustments for secondary literature
 * Added "persian" to language codes
+* Added new fields for catalogue (250 & 502)
 
 v3.6.12
 
