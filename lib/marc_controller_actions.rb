@@ -73,6 +73,11 @@ module MarcControllerActions
         new_user = User.find(params[:record_owner]) rescue new_user = nil
         @item.user = new_user if new_user
       end
+      
+      if params.has_key?(:record_audit) &&
+        (current_user.has_role?(:cataloger) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
+        @item.wf_audit = params[:record_audit]
+      end
 
       # Set the user name to the model class variable
       # This is used by the VersionChecker module to see if we want a version to be stored

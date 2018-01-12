@@ -100,7 +100,7 @@ class Source < ActiveRecord::Base
   attr_accessor :suppress_update_count_trigger
   
   enum wf_stage: [ :inprogress, :published, :deleted ]
-  enum wf_audit: [ :basic, :minimal, :full ]
+  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
   
   def after_initialize
     @old_parent = nil
