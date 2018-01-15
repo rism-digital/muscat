@@ -520,6 +520,8 @@
     :fields:
     - - a
       - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
   "650":
     :master: "0"
     :indicator: "07"
