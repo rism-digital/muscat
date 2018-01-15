@@ -1155,6 +1155,13 @@ doc_references:
         en: RISM series number
       edit_label: 
       en: ""
+    c: 
+      label: 
+        it: REFERENCE RECORD ID
+        fr: REFERENCE RECORD ID
+        de: REFERENCE RECORD ID
+        en: REFERENCE RECORD ID
+      edit_label: 
 "597": 
   label: 
     it: Dati editoriali originali

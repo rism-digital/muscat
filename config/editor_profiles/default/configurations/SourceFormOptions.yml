@@ -557,6 +557,7 @@
     - - a
     - - u
 "596":
+  new_window: sources
   layout: 
     fields: 
     - - a
@@ -574,6 +575,10 @@
         - "B/XVII"
         editor_partial: subfield_select
     - - b
+    - - c
+      - type: source
+        editor_partial: subfield_secondary
+        only_new_window: true
 "597": 
   layout: 
     fields: 
