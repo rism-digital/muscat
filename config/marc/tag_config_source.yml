@@ -395,11 +395,13 @@
     - - a
       - :occurrences: "?"
   "563":
-    :master: a
+    :master: u
     :indicator: "##"
     :occurrences: "*"
     :fields:
     - - a
+      - :occurrences: "?"
+    - - u
       - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
