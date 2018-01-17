@@ -17,13 +17,13 @@
 			<li class="muscat_icon_separator"></li>
 			<li class="muscat_icon_link">
 			<!-- Create the link to the function, pass the params fo q is preserved -->
-			<%= link_to("#{I18n.t :create_folder}", send("create_new_folder_admin_#{model_plural}_path", params.except(:action, :controller)),
+			<%= link_to("#{I18n.t :create_folder}", send("create_new_folder_admin_#{model_plural}_path", params.permit!.except(:action, :controller)),
 				:class => "muscat_icon_link muscat_icon_link_new_folder") %>
 			</li>
 			
 			<li class="muscat_icon_link">
 			<!-- Create the link to the function, pass the params fo q is preserved -->
-			<%= link_to("#{I18n.t :append_folder}", send("append_to_folder_admin_#{model_plural}_path", params.except(:action, :controller)),
+			<%= link_to("#{I18n.t :append_folder}", send("append_to_folder_admin_#{model_plural}_path", params.permit!.except(:action, :controller)),
 				:class => "muscat_icon_link muscat_icon_link_append_folder") %>
 			</li>
 			
