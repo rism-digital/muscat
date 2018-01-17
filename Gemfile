@@ -78,7 +78,7 @@ gem "rails3-jquery-autocomplete", git: 'https://github.com/rism-ch/rails3-jquery
 gem "cancan"
 gem "rolify"
 group :development do
-    gem 'webrick', '~> 1.3.1'
+    gem 'puma'
 end
 
 gem 'blacklight'
