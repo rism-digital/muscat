@@ -86,7 +86,7 @@ gem "blacklight_advanced_search"
 gem 'bootstrap-sass'
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
-#gem "blacklight_range_limit", git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3"
+gem "blacklight_range_limit" #, git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3"
 gem 'devise'
 gem 'devise-i18n'
 
