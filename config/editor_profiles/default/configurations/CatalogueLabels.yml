@@ -152,14 +152,14 @@ doc_templates:
     it: Abbreviazione
     fr: Abbreviation
     de: Kürzel
-    en: Abbreviation
+    en: Short title
   fields: 
     a: 
       label: 
         it: Abbreviazione
         fr: Abbreviation
         de: Kürzel
-        en: Abbreviation
+        en: Short title
 "240": 
   label: 
     it: Titolo 
@@ -178,26 +178,40 @@ doc_templates:
         it: Tipo
         fr: Type
         de: Art/Inhalt
-        en: Type
+        en: Category
     h: 
       label: 
         it: Tipo di pubblicazione
         fr: Type de publication
         de: Ausgabeform
         en: Type of publication
+"250": 
+  label: 
+    it: EDITION STATEMENT
+    fr: EDITION STATEMENT
+    de: EDITION STATEMENT
+    en: Edition statement
+  fields: 
+    a: 
+      label: 
+        it: EDITION STATEMENT
+        fr: EDITION STATEMENT
+        de: EDITION STATEMENT
+        en: Edition statement
+      comment: "NEW IN 2018"
 "260": 
   label: 
     it: Dati editoriali 
-    fr: Impressum
-    de: Impressum
-    en: Impressum
+    fr: Imprint
+    de: Imprint
+    en: Imprint
   fields: 
     a: 
       label: 
         it: Luogo
         fr: Endroit
-        de: Ort
-        en: Place 
+        de: Verlagsort
+        en: Place of publication
     b: 
       label: 
         it: Editore
@@ -225,10 +239,10 @@ doc_templates:
         en: Production
 "700": 
   label: 
-    it: Persona
-    fr: Personne
-    de: Person
-    en: Person
+    it: ADDITIONAL PERSONAL NAME
+    fr: ADDITIONAL PERSONAL NAME
+    de: Sonstige Person
+    en: Additional personal name
   fields: 
     a: 
       label: 
@@ -253,14 +267,14 @@ doc_templates:
   label:
     it: Titolo uniforme alternativo
     fr: Titres uniformes additionnels
-    de: Alternativer Einordnungstitel
+    de: Zusätzlicher Titel
     en: Additional title
   fields:
     a: 
       label: 
         it: Titolo uniforme alternativo
         fr: Titres uniformes additionnels
-        de: Alternativer Einordnungstitel
+        de: Zusätzlicher Titel
         en: Additional title
 "760": 
   label: 
@@ -383,7 +397,7 @@ asn:
   label: 
     it: Altro nome
     fr: Autre nom
-    de: Weiterer Name
+    de: Behandelte Person
     en: Associated name
 aut: 
   label: 
@@ -619,6 +633,12 @@ other:
     fr: Divers
     de: Verschiedenes
     en: Miscellaneous
+oth: 
+  label: 
+    it: Altra funzione
+    fr: Autre function
+    de: Sonstige Funktion
+    en: Other function
 otm: 
   label: 
     it: Organizzatore
@@ -810,7 +830,7 @@ voc:
     it: Materiale
     fr: "Matériel"
     de: Material
-    en: Material
+    en: Physical Description
   fields: 
     a: 
       label: 
@@ -823,14 +843,14 @@ voc:
     it: Mezzo fisico
     fr: Moyen phyisuqe 
     de: Physisches Medium 
-    en: Physical Medium
+    en: Media type
   fields: 
     a: 
       label: 
         it: Mezzo fisico 
         fr: Moyen physique 
         de: Physisches Medium 
-        en: Physical Medium
+        en: Media type
 "500": 
   label: 
     it: Osservazioni
@@ -845,7 +865,21 @@ voc:
         de: Bemerkungen
         en: General note
       edit_label: 
-        en: ""
+      en: ""
+"502": 
+  label: 
+    it: DISSERTATION NOTE
+    fr: DISSERTATION NOTE
+    de: DISSERTATION NOTE
+    en: Dissertation note
+  fields: 
+    a: 
+      label: 
+        it: DISSERTATION NOTE
+        fr: DISSERTATION NOTE
+        de: DISSERTATION NOTE
+        en: Dissertation note
+      comment: "NEW IN 2018"
 "520": 
   label: 
     it: Indicazione di contenuto
@@ -1098,4 +1132,401 @@ zxx:
     fr: Sans contenu linguistique
     de: ohne Sprache
     en: No linguistic content
+#Country Codes
+"XC-DZ":
+  label:
+    it: "Algeria"
+    fr: "Algeria"
+    de: "Algeria"
+    en: "Algeria"
+"XD-AR":
+  label:
+    it: "Argentina"
+    fr: "Argentina"
+    de: "Argentina"
+    en: "Argentina"
+"XB-AM":
+  label:
+    it: "Armenia"
+    fr: "Armenia"
+    de: "Armenia"
+    en: "Armenia"
+"XE-AU":
+  label:
+    it: "Australia"
+    fr: "Australia"
+    de: "Australia"
+    en: "Australia"
+"XA-AT":
+  label:
+    it: "Austria"
+    fr: "Austria"
+    de: "Austria"
+    en: "Austria"
+"XA-BE":
+  label:
+    it: "Belgium"
+    fr: "Belgium"
+    de: "Belgium"
+    en: "Belgium"
+"XC-BJ":
+  label:
+    it: "Benin"
+    fr: "Benin"
+    de: "Benin"
+    en: "Benin"
+"XD-BR":
+  label:
+    it: "Brazil"
+    fr: "Brazil"
+    de: "Brazil"
+    en: "Brazil"
+"XA-BG":
+  label:
+    it: "Bulgaria"
+    fr: "Bulgaria"
+    de: "Bulgaria"
+    en: "Bulgaria"
+"XB-KH":
+  label:
+    it: "Cambodia"
+    fr: "Cambodia"
+    de: "Cambodia"
+    en: "Cambodia"
+"XD-CA":
+  label:
+    it: "Canada"
+    fr: "Canada"
+    de: "Canada"
+    en: "Canada"
+"XD-CL":
+  label:
+    it: "Chile"
+    fr: "Chile"
+    de: "Chile"
+    en: "Chile"
+"XB-CN":
+  label:
+    it: "China"
+    fr: "China"
+    de: "China"
+    en: "China"
+"XD-CO":
+  label:
+    it: "Colombia"
+    fr: "Colombia"
+    de: "Colombia"
+    en: "Colombia"
+"XA-HR":
+  label:
+    it: "Croatia"
+    fr: "Croatia"
+    de: "Croatia"
+    en: "Croatia"
+"XD-CU":
+  label:
+    it: "Cuba"
+    fr: "Cuba"
+    de: "Cuba"
+    en: "Cuba"
+"XA-CZ":
+  label:
+    it: "Czech Republic"
+    fr: "Czech Republic"
+    de: "Czech Republic"
+    en: "Czech Republic"
+"XA-DK":
+  label:
+    it: "Denmark"
+    fr: "Denmark"
+    de: "Denmark"
+    en: "Denmark"
+"XC-EG":
+  label:
+    it: "Egypt"
+    fr: "Egypt"
+    de: "Egypt"
+    en: "Egypt"
+"XA-EE":
+  label:
+    it: "Estonia"
+    fr: "Estonia"
+    de: "Estonia"
+    en: "Estonia"
+"XA-FI":
+  label:
+    it: "Finland"
+    fr: "Finland"
+    de: "Finland"
+    en: "Finland"
+"XA-FR":
+  label:
+    it: "France"
+    fr: "France"
+    de: "France"
+    en: "France"
+"XA-DE":
+  label:
+    it: "Germany"
+    fr: "Germany"
+    de: "Germany"
+    en: "Germany"
+"XA-GR":
+  label:
+    it: "Greece"
+    fr: "Greece"
+    de: "Greece"
+    en: "Greece"
+"XA-VA":
+  label:
+    it: "Holy See"
+    fr: "Holy See"
+    de: "Holy See"
+    en: "Holy See"
+"XD-HN":
+  label:
+    it: "Honduras"
+    fr: "Honduras"
+    de: "Honduras"
+    en: "Honduras"
+"XA-HU":
+  label:
+    it: "Hungary"
+    fr: "Hungary"
+    de: "Hungary"
+    en: "Hungary"
+"XA-IS":
+  label:
+    it: "Iceland"
+    fr: "Iceland"
+    de: "Iceland"
+    en: "Iceland"
+"XB-IN":
+  label:
+    it: "India"
+    fr: "India"
+    de: "India"
+    en: "India"
+"XB-IR":
+  label:
+    it: "Iran, Islamic Republic of"
+    fr: "Iran, Islamic Republic of"
+    de: "Iran, Islamic Republic of"
+    en: "Iran, Islamic Republic of"
+"XA-IE":
+  label:
+    it: "Ireland"
+    fr: "Ireland"
+    de: "Ireland"
+    en: "Ireland"
+"XB-IL":
+  label:
+    it: "Israel"
+    fr: "Israel"
+    de: "Israel"
+    en: "Israel"
+"XA-IT":
+  label:
+    it: "Italy"
+    fr: "Italy"
+    de: "Italy"
+    en: "Italy"
+"XB-JP":
+  label:
+    it: "Japan"
+    fr: "Japan"
+    de: "Japan"
+    en: "Japan"
+"XB-KR":
+  label:
+    it: "Korea, Republic of"
+    fr: "Korea, Republic of"
+    de: "Korea, Republic of"
+    en: "Korea, Republic of"
+"XA-LV":
+  label:
+    it: "Latvia"
+    fr: "Latvia"
+    de: "Latvia"
+    en: "Latvia"
+"XA-LT":
+  label:
+    it: "Lithuania"
+    fr: "Lithuania"
+    de: "Lithuania"
+    en: "Lithuania"
+"XA-LU":
+  label:
+    it: "Luxembourg"
+    fr: "Luxembourg"
+    de: "Luxembourg"
+    en: "Luxembourg"
+"XA-MT":
+  label:
+    it: "Malta"
+    fr: "Malta"
+    de: "Malta"
+    en: "Malta"
+"XD-MX":
+  label:
+    it: "Mexico"
+    fr: "Mexico"
+    de: "Mexico"
+    en: "Mexico"
+"XA-ME":
+  label:
+    it: "Montenegro"
+    fr: "Montenegro"
+    de: "Montenegro"
+    en: "Montenegro"
+"XA-NL":
+  label:
+    it: "Netherlands"
+    fr: "Netherlands"
+    de: "Netherlands"
+    en: "Netherlands"
+"XE-NZ":
+  label:
+    it: "New Zealand"
+    fr: "New Zealand"
+    de: "New Zealand"
+    en: "New Zealand"
+"XA-NO":
+  label:
+    it: "Norway"
+    fr: "Norway"
+    de: "Norway"
+    en: "Norway"
+"XD-PY":
+  label:
+    it: "Paraguay"
+    fr: "Paraguay"
+    de: "Paraguay"
+    en: "Paraguay"
+"XA-PL":
+  label:
+    it: "Poland"
+    fr: "Poland"
+    de: "Poland"
+    en: "Poland"
+"XA-PT":
+  label:
+    it: "Portugal"
+    fr: "Portugal"
+    de: "Portugal"
+    en: "Portugal"
+"XD-PR":
+  label:
+    it: "Puerto Rico"
+    fr: "Puerto Rico"
+    de: "Puerto Rico"
+    en: "Puerto Rico"
+"XA-RO":
+  label:
+    it: "Romania"
+    fr: "Romania"
+    de: "Romania"
+    en: "Romania"
+"XA-RU":
+  label:
+    it: "Russian Federation"
+    fr: "Russian Federation"
+    de: "Russian Federation"
+    en: "Russian Federation"
+"XA-RS":
+  label:
+    it: "Serbia"
+    fr: "Serbia"
+    de: "Serbia"
+    en: "Serbia"
+"XA-SK":
+  label:
+    it: "Slovakia"
+    fr: "Slovakia"
+    de: "Slovakia"
+    en: "Slovakia"
+"XA-SI":
+  label:
+    it: "Slovenia"
+    fr: "Slovenia"
+    de: "Slovenia"
+    en: "Slovenia"
+"XC-ZA":
+  label:
+    it: "South Africa"
+    fr: "South Africa"
+    de: "South Africa"
+    en: "South Africa"
+"XA-ES":
+  label:
+    it: "Spain"
+    fr: "Spain"
+    de: "Spain"
+    en: "Spain"
+"XA-SE":
+  label:
+    it: "Sweden"
+    fr: "Sweden"
+    de: "Sweden"
+    en: "Sweden"
+"XA-CH-VD":
+  label:
+    it: "Switzerland: Vaud"
+    fr: "Switzerland: Vaud"
+    de: "Switzerland: Vaud"
+    en: "Switzerland: Vaud"
+"XA-CH":
+  label:
+    it: "Switzerland"
+    fr: "Switzerland"
+    de: "Switzerland"
+    en: "Switzerland"
+"XB-SY":
+  label:
+    it: "Syrian Arab Republic"
+    fr: "Syrian Arab Republic"
+    de: "Syrian Arab Republic"
+    en: "Syrian Arab Republic"
+"XD-TT":
+  label:
+    it: "Trinidad and Tobago"
+    fr: "Trinidad and Tobago"
+    de: "Trinidad and Tobago"
+    en: "Trinidad and Tobago"
+"XB-TR":
+  label:
+    it: "Turkey"
+    fr: "Turkey"
+    de: "Turkey"
+    en: "Turkey"
+"XA-UA":
+  label:
+    it: "Ukraine"
+    fr: "Ukraine"
+    de: "Ukraine"
+    en: "Ukraine"
+"XA-GB":
+  label:
+    it: "United Kingdom"
+    fr: "United Kingdom"
+    de: "United Kingdom"
+    en: "United Kingdom"
+"XD-US":
+  label:
+    it: "United States of America"
+    fr: "United States of America"
+    de: "United States of America"
+    en: "United States of America"
+"XD-UY":
+  label:
+    it: "Uruguay"
+    fr: "Uruguay"
+    de: "Uruguay"
+    en: "Uruguay"
+"XD-VE":
+  label:
+    it: "Venezuela, Bolivarian Republic of"
+    fr: "Venezuela, Bolivarian Republic of"
+    de: "Venezuela, Bolivarian Republic of"
+    en: "Venezuela, Bolivarian Republic of"
 

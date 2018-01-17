@@ -64,5 +64,11 @@ class MarcCatalogue < Marc
     end
     title
   end
+  
+  def reset_to_new
+    first_occurance("001").content = "__TEMP__"
+  end
+
+
 
 end

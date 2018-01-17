@@ -138,6 +138,14 @@ class EditorConfiguration
     end
     return false
   end
+ 
+  # Returns a comment if this label has one
+  def get_comment(id, sub_id)
+    if labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id] && labels_config[id][:fields][sub_id][:comment]
+      return labels_config[id][:fields][sub_id][:comment]
+    end
+    return false
+  end
   
   # Gets the localized label for the speficied field. Ex:<p>
   # <tt>

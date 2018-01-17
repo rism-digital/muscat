@@ -18,6 +18,8 @@ development:
   username: rism
   password: rism689
   socket: /tmp/mysql.sock
+# On Debian or Ubuntu comment out the line before and use this:
+#  socket: /var/run/mysqld/mysqld.sock 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

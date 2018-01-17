@@ -13,7 +13,8 @@ module ActiveAdmin::ViewsHelper
     c = item.referring_sources
     # do not display the panel if no source attached
     return if c.empty?
-    context.panel (I18n.t :filter_sources), :class => "muscat_panel"  do
+    panel_title = item.is_a?(Source) ? I18n.t(:filter_subsequent_entries) : I18n.t(:filter_sources)
+    context.panel panel_title, :class => "muscat_panel"  do
       
       # Sometimes if a query is already present query comes with the
       # parameters for ransack, filter this out so only text queries
@@ -32,8 +33,8 @@ module ActiveAdmin::ViewsHelper
           context.column (I18n.t :filter_composer), :composer
           context.column (I18n.t :filter_std_title), :std_title
           context.column (I18n.t :filter_title), :title
-          context.column (I18n.t :filter_lib_siglum), :lib_siglum
-          context.column (I18n.t :filter_shelf_mark), :shelf_mark
+          context.column (I18n.t :filter_lib_siglum), :lib_siglum if !item.is_a? Source
+          context.column (I18n.t :filter_shelf_mark), :shelf_mark if !item.is_a? Source
           if enable_view_src
             context.column "" do |source|
               link_to "View", controller: :sources, action: :show, id: source.id
@@ -43,7 +44,7 @@ module ActiveAdmin::ViewsHelper
       end
     end
   end 
-  
+ 
   def is_selection_mode?
     return params && params[:select].present?
   end
@@ -58,6 +59,7 @@ module ActiveAdmin::ViewsHelper
     context.panel (I18n.t :filter_wf) do
       context.attributes_table_for item  do
         context.row (I18n.t :filter_owner) { |r| r.user.name } if ( item.user )
+        context.row (I18n.t :record_audit) { |r| I18n.t("#{r.wf_audit}_level") } if ( item.user )
         context.row (I18n.t :created_at) { |r| I18n.localize(r.created_at ? r.created_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
         context.row (I18n.t :updated_at) { |r| I18n.localize(r.updated_at ? r.updated_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
       end

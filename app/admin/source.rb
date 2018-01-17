@@ -22,6 +22,8 @@ ActiveAdmin.register Source do
   # temporarily allow all parameters
   controller do
     
+    after_destroy :check_model_errors
+
     before_filter :only => [:index] do
         if params['commit'].blank?
                  #params['q'] = {:std_title_contains => "[Holding]"} 
@@ -30,6 +32,12 @@ ActiveAdmin.register Source do
     autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => true, :solr => false}
     autocomplete :source, "740_autocomplete_sms", :solr => true
     autocomplete :source, "594b_sms", :solr => true
+    
+    def check_model_errors(object)
+      return unless object.errors.any?
+      flash[:error] ||= []
+      flash[:error].concat(object.errors.full_messages)
+    end
     
     def action_methods
       return super - ['new', 'edit', 'destroy'] if is_selection_mode?
@@ -279,6 +287,7 @@ ActiveAdmin.register Source do
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]
     render :partial => "marc/show"
+    active_admin_embedded_source_list( self, @item, params[:qe], params[:src_list_page], !is_selection_mode? )
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, @item )
     active_admin_navigation_bar( self )
@@ -287,6 +296,10 @@ ActiveAdmin.register Source do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+  end
+
+  sidebar I18n.t(:holding_records), :only => :show , if: proc{ !resource.holdings.empty? } do
+    render :partial => "holdings/holdings_sidebar_show"#, :locals => { :item => @arbre_context.assigns[:item] }
   end
   
   ##########
