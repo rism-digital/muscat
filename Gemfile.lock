@@ -117,6 +117,10 @@ GEM
     blacklight_advanced_search (6.3.1)
       blacklight (~> 6.0, >= 6.0.1)
       parslet
+    blacklight_range_limit (6.3.2)
+      blacklight (>= 6.0.2)
+      jquery-rails
+      rails (>= 3.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -399,6 +403,7 @@ DEPENDENCIES
   awesome_print
   blacklight
   blacklight_advanced_search
+  blacklight_range_limit
   bootstrap-sass
   cancan
   chart-js-rails
@@ -446,4 +451,4 @@ DEPENDENCIES
   uglifier
 
 BUNDLED WITH
-   1.15.4
+   1.16.1
