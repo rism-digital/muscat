@@ -82,7 +82,7 @@ class Work < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["people", "catalogues"]
+    allowed_relations = ["person"]
     recreate_links(marc, allowed_relations)
   end
 
@@ -134,6 +134,9 @@ class Work < ActiveRecord::Base
   end
 
   def set_object_fields
+    return if marc_source == nil
+    self.title = marc.get_title
+    self.person = marc.get_composer
   end
 
   def check_dependencies

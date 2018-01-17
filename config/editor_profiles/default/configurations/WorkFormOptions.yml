@@ -23,16 +23,21 @@
     - - b
       - cols: 2
     columns: 4
-"100": 
+"100":
+  new_window: people
+  new_window_field: full_name_equals
   layout: 
-    fields:
+    fields: 
     - - a
+      - type: person
+        editor_partial: subfield_secondary
+        allow_new: true
     - - d
-    - - f
+      - autocomplete_extra: life_dates
+    - - m
+    - - n
     - - r
-    - - s
     - - t
-    - - u
     columns: 4
 "400": 
   layout: 

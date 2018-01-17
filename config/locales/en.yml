@@ -229,6 +229,7 @@ en:
   menu_cataloging: "Cataloguing"
   menu_jobs: "Jobs"
   menu_holdings: "Holdings"
+  menu_works: "Works"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"

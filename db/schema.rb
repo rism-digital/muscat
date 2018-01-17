@@ -13,6 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20171115073728) do
 
+  create_table "DNB", id: false, force: :cascade do |t|
+    t.integer "id",     limit: 4,     default: 0, null: false
+    t.text    "ext_id", limit: 65535
+  end
+
+  create_table "VIAF", id: false, force: :cascade do |t|
+    t.integer "id",     limit: 4,          default: 0, null: false
+    t.text    "ext_id", limit: 4294967295
+  end
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
     t.text     "body",          limit: 65535
@@ -49,14 +59,14 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.string   "place",        limit: 255
     t.string   "date",         limit: 255
     t.string   "pages",        limit: 255
+    t.integer  "wf_audit",     limit: 4,     default: 0
+    t.integer  "wf_stage",     limit: 4,     default: 0
     t.string   "wf_notes",     limit: 255
     t.integer  "wf_owner",     limit: 4,     default: 0
     t.integer  "wf_version",   limit: 4,     default: 0
     t.integer  "src_count",    limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",     limit: 4,     default: 0
-    t.integer  "wf_stage",     limit: 4,     default: 0
     t.text     "marc_source",  limit: 65535
     t.integer  "lock_version", limit: 4,     default: 0, null: false
   end
@@ -124,9 +134,9 @@ ActiveRecord::Schema.define(version: 20171115073728) do
   add_index "crono_jobs", ["job_id"], name: "index_crono_jobs_on_job_id", unique: true, using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",         limit: 4,     default: 0, null: false
-    t.integer  "attempts",         limit: 4,     default: 0, null: false
-    t.text     "handler",          limit: 65535,             null: false
+    t.integer  "priority",         limit: 4,          default: 0, null: false
+    t.integer  "attempts",         limit: 4,          default: 0, null: false
+    t.text     "handler",          limit: 65535,                  null: false
     t.text     "last_error",       limit: 65535
     t.datetime "run_at"
     t.datetime "locked_at"
@@ -135,9 +145,9 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.string   "queue",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "progress_stage",   limit: 255
-    t.integer  "progress_current", limit: 4,     default: 0
-    t.integer  "progress_max",     limit: 4,     default: 0
+    t.text     "progress_stage",   limit: 4294967295
+    t.integer  "progress_current", limit: 4,          default: 0
+    t.integer  "progress_max",     limit: 4,          default: 0
     t.string   "parent_type",      limit: 255
     t.integer  "parent_id",        limit: 4
   end
@@ -172,6 +182,12 @@ ActiveRecord::Schema.define(version: 20171115073728) do
 
   add_index "digital_objects", ["wf_stage"], name: "index_digital_objects_on_wf_stage", using: :btree
 
+  create_table "dnb", id: false, force: :cascade do |t|
+    t.integer "id",       limit: 4,     default: 0,  null: false
+    t.string  "provider", limit: 3,     default: "", null: false
+    t.text    "ext_id",   limit: 65535
+  end
+
   create_table "do_div_files", force: :cascade do |t|
     t.integer  "do_file_id", limit: 4
     t.integer  "do_div_id",  limit: 4
@@ -180,19 +196,14 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.datetime "updated_at"
   end
 
-  add_index "do_div_files", ["do_div_id"], name: "do_div_fk1", using: :btree
-  add_index "do_div_files", ["do_file_id"], name: "do_file_fk1", using: :btree
-
   create_table "do_divs", force: :cascade do |t|
-    t.integer  "do_item_id",  limit: 4
-    t.string   "title",       limit: 255
-    t.integer  "subdiv_id",   limit: 4
-    t.string   "subdiv_type", limit: 255
+    t.integer  "do_item_id",   limit: 4
+    t.string   "title_string", limit: 255
+    t.integer  "subdiv_id",    limit: 4
+    t.string   "subdiv_type",  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "do_divs", ["do_item_id"], name: "do_item_fk1", using: :btree
 
   create_table "do_file_groups", force: :cascade do |t|
     t.integer  "do_item_id", limit: 4
@@ -201,8 +212,6 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.datetime "updated_at"
   end
 
-  add_index "do_file_groups", ["do_item_id"], name: "do_item_fg_fk1", using: :btree
-
   create_table "do_files", force: :cascade do |t|
     t.integer  "do_file_group_id", limit: 4
     t.integer  "do_image_id",      limit: 4
@@ -210,9 +219,6 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "do_files", ["do_file_group_id"], name: "do_file_group_fk1", using: :btree
-  add_index "do_files", ["do_image_id"], name: "do_image_fk1", using: :btree
 
   create_table "do_images", force: :cascade do |t|
     t.string   "file_name",   limit: 255
@@ -227,27 +233,23 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.integer  "res_number",  limit: 4
     t.integer  "tile_width",  limit: 4
     t.integer  "tile_height", limit: 4
+    t.string   "file_type",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "file_type",   limit: 16
   end
 
-  add_index "do_images", ["file_type"], name: "type_index", using: :btree
+  add_index "do_images", ["file_type"], name: "index_do_images_on_file_type", using: :btree
 
   create_table "do_items", force: :cascade do |t|
-    t.string   "item_ext_id", limit: 14
-    t.string   "title",       limit: 255
-    t.string   "wf_audit",    limit: 16,  default: "unapproved"
-    t.string   "wf_stage",    limit: 16,  default: "unpublished"
-    t.string   "wf_notes",    limit: 255
-    t.integer  "wf_owner",    limit: 4,   default: 0
-    t.integer  "wf_version",  limit: 4,   default: 0
+    t.string   "item_id",    limit: 255
+    t.string   "title",      limit: 255
+    t.string   "item_type",  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "item_type",   limit: 255
   end
 
-  add_index "do_items", ["item_type"], name: "type_index", using: :btree
+  add_index "do_items", ["item_id"], name: "index_do_items_on_item_id", using: :btree
+  add_index "do_items", ["item_type"], name: "index_do_items_on_item_type", using: :btree
 
   create_table "folder_items", force: :cascade do |t|
     t.integer  "folder_id",  limit: 4
@@ -303,24 +305,23 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.string   "url",          limit: 255
     t.string   "phone",        limit: 255
     t.string   "email",        limit: 255
-    t.text     "alternates",   limit: 65535
-    t.text     "notes",        limit: 65535
+    t.integer  "wf_audit",     limit: 4,     default: 0
+    t.integer  "wf_stage",     limit: 4,     default: 0
     t.string   "wf_notes",     limit: 255
     t.integer  "wf_owner",     limit: 4,     default: 0
     t.integer  "wf_version",   limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",     limit: 4,     default: 0
-    t.integer  "wf_stage",     limit: 4,     default: 0
     t.string   "place",        limit: 255
     t.text     "marc_source",  limit: 65535
     t.text     "comments",     limit: 65535
+    t.text     "alternates",   limit: 65535
+    t.text     "notes",        limit: 65535
     t.integer  "lock_version", limit: 4,     default: 0, null: false
   end
 
   add_index "institutions", ["siglum"], name: "index_institutions_on_siglum", using: :btree
   add_index "institutions", ["wf_stage"], name: "index_institutions_on_wf_stage", using: :btree
-  add_index "institutions", ["wf_stage"], name: "index_libraries_on_wf_stage", using: :btree
 
   create_table "institutions_institutions", id: false, force: :cascade do |t|
     t.integer "institution_a_id", limit: 4
@@ -362,6 +363,14 @@ ActiveRecord::Schema.define(version: 20171115073728) do
   add_index "institutions_to_standard_terms", ["institution_id"], name: "index_institutions_to_standard_terms_on_institution_id", using: :btree
   add_index "institutions_to_standard_terms", ["standard_term_id"], name: "index_institutions_to_standard_terms_on_standard_term_id", using: :btree
 
+  create_table "institutions_users", id: false, force: :cascade do |t|
+    t.integer "user_id",        limit: 4
+    t.integer "institution_id", limit: 4
+  end
+
+  add_index "institutions_users", ["institution_id"], name: "index_institutions_users_on_institution_id", using: :btree
+  add_index "institutions_users", ["user_id"], name: "index_institutions_users_on_user_id", using: :btree
+
   create_table "institutions_workgroups", id: false, force: :cascade do |t|
     t.integer "workgroup_id",   limit: 4
     t.integer "institution_id", limit: 4
@@ -373,13 +382,13 @@ ActiveRecord::Schema.define(version: 20171115073728) do
   create_table "liturgical_feasts", force: :cascade do |t|
     t.string   "name",            limit: 255,               null: false
     t.text     "notes",           limit: 65535
+    t.integer  "wf_audit",        limit: 4,     default: 0
+    t.integer  "wf_stage",        limit: 4,     default: 0
     t.string   "wf_notes",        limit: 255
     t.integer  "wf_owner",        limit: 4,     default: 0
     t.integer  "wf_version",      limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",        limit: 4,     default: 0
-    t.integer  "wf_stage",        limit: 4,     default: 0
     t.integer  "lock_version",    limit: 4,     default: 0, null: false
     t.text     "alternate_terms", limit: 65535
     t.text     "sub_topic",       limit: 65535
@@ -387,6 +396,7 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.string   "gnd",             limit: 255
   end
 
+  add_index "liturgical_feasts", ["name"], name: "index_liturgical_feasts_on_name", using: :btree
   add_index "liturgical_feasts", ["wf_stage"], name: "index_liturgical_feasts_on_wf_stage", using: :btree
 
   create_table "people", force: :cascade do |t|
@@ -400,18 +410,31 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.text     "alternate_names", limit: 65535
     t.text     "alternate_dates", limit: 65535
     t.text     "comments",        limit: 65535
+    t.text     "marc_source",     limit: 65535
+    t.integer  "wf_audit",        limit: 4,     default: 0
+    t.integer  "wf_stage",        limit: 4,     default: 0
     t.string   "wf_notes",        limit: 255
     t.integer  "wf_owner",        limit: 4,     default: 0
     t.integer  "wf_version",      limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",        limit: 4,     default: 0
-    t.integer  "wf_stage",        limit: 4,     default: 0
-    t.text     "marc_source",     limit: 65535
     t.integer  "lock_version",    limit: 4,     default: 0, null: false
   end
 
+  add_index "people", ["full_name"], name: "index_people_on_full_name", using: :btree
   add_index "people", ["wf_stage"], name: "index_people_on_wf_stage", using: :btree
+
+  create_table "people_authorities_links", id: false, force: :cascade do |t|
+    t.integer "ID",       limit: 4,     default: 0,  null: false
+    t.string  "provider", limit: 4,     default: "", null: false
+    t.text    "ext_id",   limit: 65535
+  end
+
+  create_table "people_authority_links", id: false, force: :cascade do |t|
+    t.integer "ID",       limit: 4,     default: 0,  null: false
+    t.string  "provider", limit: 4,     default: "", null: false
+    t.text    "ext_id",   limit: 65535
+  end
 
   create_table "people_to_catalogues", id: false, force: :cascade do |t|
     t.integer "person_id",    limit: 4
@@ -445,18 +468,30 @@ ActiveRecord::Schema.define(version: 20171115073728) do
   add_index "people_to_places", ["person_id"], name: "index_people_to_places_on_person_id", using: :btree
   add_index "people_to_places", ["place_id"], name: "index_people_to_places_on_place_id", using: :btree
 
+  create_table "person_authorities_link", id: false, force: :cascade do |t|
+    t.integer "id",     limit: 4,     default: 0,  null: false
+    t.string  "type",   limit: 4,     default: "", null: false
+    t.text    "ext_id", limit: 65535
+  end
+
+  create_table "person_authorities_links", id: false, force: :cascade do |t|
+    t.integer "id",       limit: 4,     default: 0,  null: false
+    t.string  "provider", limit: 4,     default: "", null: false
+    t.text    "ext_id",   limit: 65535
+  end
+
   create_table "places", force: :cascade do |t|
     t.string   "name",            limit: 255,               null: false
     t.string   "country",         limit: 255
     t.string   "district",        limit: 255
     t.text     "notes",           limit: 65535
+    t.integer  "wf_audit",        limit: 4,     default: 0
+    t.integer  "wf_stage",        limit: 4,     default: 0
     t.string   "wf_notes",        limit: 255
     t.integer  "wf_owner",        limit: 4,     default: 0
     t.integer  "wf_version",      limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",        limit: 4,     default: 0
-    t.integer  "wf_stage",        limit: 4,     default: 0
     t.integer  "lock_version",    limit: 4,     default: 0, null: false
     t.text     "alternate_terms", limit: 65535
     t.text     "topic",           limit: 65535
@@ -465,6 +500,7 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.string   "gnd",             limit: 255
   end
 
+  add_index "places", ["name"], name: "index_places_on_name", using: :btree
   add_index "places", ["wf_stage"], name: "index_places_on_wf_stage", using: :btree
 
   create_table "roles", force: :cascade do |t|
@@ -488,22 +524,13 @@ ActiveRecord::Schema.define(version: 20171115073728) do
 
   add_index "searches", ["user_id"], name: "index_searches_on_user_id", using: :btree
 
-  create_table "sessions", force: :cascade do |t|
-    t.string   "session_id", limit: 255,   null: false
-    t.text     "data",       limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
-
   create_table "sources", force: :cascade do |t|
     t.integer  "source_id",    limit: 4
+    t.integer  "record_type",  limit: 1,     default: 0
     t.string   "std_title",    limit: 512
     t.string   "std_title_d",  limit: 512
     t.string   "composer",     limit: 255
-    t.string   "composer_d",   limit: 128
+    t.string   "composer_d",   limit: 255
     t.string   "title",        limit: 256
     t.string   "title_d",      limit: 256
     t.string   "shelf_mark",   limit: 255
@@ -512,29 +539,29 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.integer  "date_to",      limit: 4
     t.string   "lib_siglum",   limit: 255
     t.text     "marc_source",  limit: 65535
+    t.integer  "wf_audit",     limit: 4,     default: 0
+    t.integer  "wf_stage",     limit: 4,     default: 0
     t.string   "wf_notes",     limit: 255
     t.integer  "wf_owner",     limit: 4,     default: 0
     t.integer  "wf_version",   limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",     limit: 4,     default: 0
-    t.integer  "wf_stage",     limit: 4,     default: 0
-    t.integer  "record_type",  limit: 1,     default: 0
     t.integer  "lock_version", limit: 4,     default: 0, null: false
   end
 
-  add_index "sources", ["source_id"], name: "index_manuscripts_on_manuscript_id", using: :btree
+  add_index "sources", ["record_type"], name: "index_sources_on_record_type", using: :btree
+  add_index "sources", ["source_id"], name: "index_sources_on_source_id", using: :btree
   add_index "sources", ["std_title"], name: "index_sources_on_std_title", length: {"std_title"=>255}, using: :btree
   add_index "sources", ["std_title_d"], name: "index_sources_on_std_title_d", length: {"std_title_d"=>255}, using: :btree
-  add_index "sources", ["wf_stage"], name: "index_manuscripts_on_wf_stage", using: :btree
+  add_index "sources", ["wf_stage"], name: "index_sources_on_wf_stage", using: :btree
 
   create_table "sources_to_catalogues", id: false, force: :cascade do |t|
     t.integer "catalogue_id", limit: 4
     t.integer "source_id",    limit: 4
   end
 
-  add_index "sources_to_catalogues", ["catalogue_id"], name: "catalogue_index", using: :btree
-  add_index "sources_to_catalogues", ["source_id"], name: "manuscript_index", using: :btree
+  add_index "sources_to_catalogues", ["catalogue_id"], name: "index_sources_to_catalogues_on_catalogue_id", using: :btree
+  add_index "sources_to_catalogues", ["source_id"], name: "index_sources_to_catalogues_on_source_id", using: :btree
 
   create_table "sources_to_institutions", id: false, force: :cascade do |t|
     t.integer "institution_id", limit: 4
@@ -542,33 +569,31 @@ ActiveRecord::Schema.define(version: 20171115073728) do
   end
 
   add_index "sources_to_institutions", ["institution_id"], name: "index_sources_to_institutions_on_institution_id", using: :btree
-  add_index "sources_to_institutions", ["institution_id"], name: "library_index", using: :btree
   add_index "sources_to_institutions", ["source_id"], name: "index_sources_to_institutions_on_source_id", using: :btree
-  add_index "sources_to_institutions", ["source_id"], name: "manuscript_index", using: :btree
 
   create_table "sources_to_liturgical_feasts", id: false, force: :cascade do |t|
     t.integer "liturgical_feast_id", limit: 4
     t.integer "source_id",           limit: 4
   end
 
-  add_index "sources_to_liturgical_feasts", ["liturgical_feast_id"], name: "liturgical_feast_index", using: :btree
-  add_index "sources_to_liturgical_feasts", ["source_id"], name: "manuscript_index", using: :btree
+  add_index "sources_to_liturgical_feasts", ["liturgical_feast_id"], name: "index_sources_to_liturgical_feasts_on_liturgical_feast_id", using: :btree
+  add_index "sources_to_liturgical_feasts", ["source_id"], name: "index_sources_to_liturgical_feasts_on_source_id", using: :btree
 
   create_table "sources_to_people", id: false, force: :cascade do |t|
-    t.integer "person_id", limit: 4, default: 0, null: false
+    t.integer "person_id", limit: 4
     t.integer "source_id", limit: 4
   end
 
-  add_index "sources_to_people", ["person_id"], name: "person_index", using: :btree
-  add_index "sources_to_people", ["source_id"], name: "manuscript_index", using: :btree
+  add_index "sources_to_people", ["person_id"], name: "index_sources_to_people_on_person_id", using: :btree
+  add_index "sources_to_people", ["source_id"], name: "index_sources_to_people_on_source_id", using: :btree
 
   create_table "sources_to_places", id: false, force: :cascade do |t|
     t.integer "place_id",  limit: 4
     t.integer "source_id", limit: 4
   end
 
-  add_index "sources_to_places", ["place_id"], name: "place_index", using: :btree
-  add_index "sources_to_places", ["source_id"], name: "manuscript_index", using: :btree
+  add_index "sources_to_places", ["place_id"], name: "index_sources_to_places_on_place_id", using: :btree
+  add_index "sources_to_places", ["source_id"], name: "index_sources_to_places_on_source_id", using: :btree
 
   create_table "sources_to_sources", id: false, force: :cascade do |t|
     t.integer "source_a_id", limit: 4
@@ -583,55 +608,56 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.integer "source_id",        limit: 4
   end
 
-  add_index "sources_to_standard_terms", ["source_id"], name: "manuscript_index", using: :btree
-  add_index "sources_to_standard_terms", ["standard_term_id"], name: "standard_term_index", using: :btree
+  add_index "sources_to_standard_terms", ["source_id"], name: "index_sources_to_standard_terms_on_source_id", using: :btree
+  add_index "sources_to_standard_terms", ["standard_term_id"], name: "index_sources_to_standard_terms_on_standard_term_id", using: :btree
 
   create_table "sources_to_standard_titles", id: false, force: :cascade do |t|
     t.integer "standard_title_id", limit: 4
     t.integer "source_id",         limit: 4
   end
 
-  add_index "sources_to_standard_titles", ["source_id"], name: "manuscript_index", using: :btree
-  add_index "sources_to_standard_titles", ["standard_title_id"], name: "standard_title_index", using: :btree
+  add_index "sources_to_standard_titles", ["source_id"], name: "index_sources_to_standard_titles_on_source_id", using: :btree
+  add_index "sources_to_standard_titles", ["standard_title_id"], name: "index_sources_to_standard_titles_on_standard_title_id", using: :btree
 
-  create_table "sources_to_works", force: :cascade do |t|
+  create_table "sources_to_works", id: false, force: :cascade do |t|
     t.integer "source_id", limit: 4
     t.integer "work_id",   limit: 4
   end
 
-  add_index "sources_to_works", ["source_id"], name: "manuscript_index", using: :btree
-  add_index "sources_to_works", ["work_id"], name: "work_index", using: :btree
+  add_index "sources_to_works", ["source_id"], name: "index_sources_to_works_on_source_id", using: :btree
+  add_index "sources_to_works", ["work_id"], name: "index_sources_to_works_on_work_id", using: :btree
 
   create_table "standard_terms", force: :cascade do |t|
     t.string   "term",            limit: 255,               null: false
     t.text     "alternate_terms", limit: 65535
     t.text     "notes",           limit: 65535
+    t.integer  "wf_audit",        limit: 4,     default: 0
+    t.integer  "wf_stage",        limit: 4,     default: 0
     t.string   "wf_notes",        limit: 255
     t.integer  "wf_owner",        limit: 4,     default: 0
     t.integer  "wf_version",      limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",        limit: 4,     default: 0
-    t.integer  "wf_stage",        limit: 4,     default: 0
     t.integer  "lock_version",    limit: 4,     default: 0, null: false
     t.text     "sub_topic",       limit: 65535
     t.string   "viaf",            limit: 255
     t.string   "gnd",             limit: 255
   end
 
+  add_index "standard_terms", ["term"], name: "index_standard_terms_on_term", using: :btree
   add_index "standard_terms", ["wf_stage"], name: "index_standard_terms_on_wf_stage", using: :btree
 
   create_table "standard_titles", force: :cascade do |t|
     t.string   "title",           limit: 255,               null: false
     t.string   "title_d",         limit: 128
     t.text     "notes",           limit: 65535
+    t.integer  "wf_audit",        limit: 4,     default: 0
+    t.integer  "wf_stage",        limit: 4,     default: 0
     t.string   "wf_notes",        limit: 255
     t.integer  "wf_owner",        limit: 4,     default: 0
     t.integer  "wf_version",      limit: 4,     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wf_audit",        limit: 4,     default: 0
-    t.integer  "wf_stage",        limit: 4,     default: 0
     t.integer  "lock_version",    limit: 4,     default: 0, null: false
     t.string   "typus",           limit: 255
     t.text     "alternate_terms", limit: 65535
@@ -641,12 +667,8 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.boolean  "latin"
   end
 
+  add_index "standard_titles", ["title"], name: "index_standard_titles_on_title", using: :btree
   add_index "standard_titles", ["wf_stage"], name: "index_standard_titles_on_wf_stage", using: :btree
-
-  create_table "synchronizations", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255, default: "", null: false
@@ -694,6 +716,12 @@ ActiveRecord::Schema.define(version: 20171115073728) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  create_table "viaf", id: false, force: :cascade do |t|
+    t.integer "id",       limit: 4,     default: 0,  null: false
+    t.string  "provider", limit: 4,     default: "", null: false
+    t.text    "ext_id",   limit: 65535
+  end
+
   create_table "work_incipits", force: :cascade do |t|
     t.integer  "work_id",          limit: 4
     t.string   "nr_work",          limit: 255
@@ -723,8 +751,6 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.datetime "updated_at"
   end
 
-  add_index "work_incipits", ["work_id"], name: "work_incipits_fk1", using: :btree
-
   create_table "workgroups", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
@@ -749,29 +775,7 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.integer  "lock_version", limit: 4,     default: 0, null: false
   end
 
+  add_index "works", ["title"], name: "index_works_on_title", using: :btree
   add_index "works", ["wf_stage"], name: "index_works_on_wf_stage", using: :btree
 
-  add_foreign_key "do_div_files", "do_divs", name: "do_div_fk1", on_update: :cascade
-  add_foreign_key "do_div_files", "do_files", name: "do_file_fk1", on_update: :cascade
-  add_foreign_key "do_divs", "do_items", name: "do_item_fk1", on_update: :cascade
-  add_foreign_key "do_file_groups", "do_items", name: "do_item_fg_fk1", on_update: :cascade
-  add_foreign_key "do_files", "do_file_groups", name: "do_file_group_fk1", on_update: :cascade
-  add_foreign_key "do_files", "do_images", name: "do_image_fk1", on_update: :cascade
-  add_foreign_key "sources_to_catalogues", "catalogues", name: "catalogues_sources_fk2", on_update: :cascade
-  add_foreign_key "sources_to_catalogues", "sources", name: "catalogues_manuscripts_fk1", on_update: :cascade
-  add_foreign_key "sources_to_institutions", "institutions", name: "institutions_sources_fk2", on_update: :cascade
-  add_foreign_key "sources_to_institutions", "sources", name: "institutions_sources_fk1", on_update: :cascade
-  add_foreign_key "sources_to_liturgical_feasts", "liturgical_feasts", name: "liturgical_feasts_sources_fk2", on_update: :cascade
-  add_foreign_key "sources_to_liturgical_feasts", "sources", name: "liturgical_feasts_sources_fk1", on_update: :cascade
-  add_foreign_key "sources_to_people", "people", name: "people_sources_fk2", on_update: :cascade
-  add_foreign_key "sources_to_people", "sources", name: "people_sources_fk1", on_update: :cascade
-  add_foreign_key "sources_to_places", "places", name: "places_sources_fk2", on_update: :cascade
-  add_foreign_key "sources_to_places", "sources", name: "places_sources_fk1", on_update: :cascade
-  add_foreign_key "sources_to_standard_terms", "sources", name: "sources_standard_terms_fk1", on_update: :cascade
-  add_foreign_key "sources_to_standard_terms", "standard_terms", name: "sources_standard_terms_fk2", on_update: :cascade
-  add_foreign_key "sources_to_standard_titles", "sources", name: "sources_standard_titles_fk1", on_update: :cascade
-  add_foreign_key "sources_to_standard_titles", "standard_titles", name: "sources_standard_titles_fk2", on_update: :cascade
-  add_foreign_key "sources_to_works", "sources", name: "sources_works_fk1", on_update: :cascade
-  add_foreign_key "sources_to_works", "works", name: "sources_works_fk2", on_update: :cascade
-  add_foreign_key "work_incipits", "works", name: "work_incipits_fk1", on_update: :cascade
 end

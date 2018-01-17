@@ -70,6 +70,7 @@ module ActiveAdmin::ViewsHelper
     
     name = "[Model does not have a label]"
     name = item.name if item.respond_to?(:name)
+    name = item.title if item.respond_to?(:title)
     name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
     
     link_to("Select", "#", :data => { :marc_editor_select => item.id, :marc_editor_label => name })

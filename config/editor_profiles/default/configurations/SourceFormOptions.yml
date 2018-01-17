@@ -606,6 +606,15 @@
       - growfield: true
     - - b
       - hidden: true 
+"630":
+  new_window: works
+  new_window_field: title_equals
+  layout: 
+    fields: 
+    - - a
+      - type: work
+        editor_partial: subfield_secondary
+        allow_new: true
 "650":
   new_window: standard_terms
   new_window_field: term_equals

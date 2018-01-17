@@ -229,6 +229,7 @@ fr:
   menu_cataloging: "Catalogage"
   menu_jobs: "Tâches"
   menu_holdings: "Exemplaires"
+  menu_works: "WORKS"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"

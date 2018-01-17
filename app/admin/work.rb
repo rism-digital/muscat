@@ -159,7 +159,7 @@ ActiveAdmin.register Work do
   end
   
   sidebar :actions, :only => :show do
-    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => title }
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work }
   end
   
   
