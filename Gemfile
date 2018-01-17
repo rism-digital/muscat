@@ -1,19 +1,19 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.0', '< 5.1'
+gem 'rails', '>= 5.1', '< 5.2'
 
 # Use mysql2 as the database for Active Record
 # USE THIS VERSION for 4.1
 # http://stackoverflow.com/questions/32457657/rails-4-gemloaderror-specified-mysql2-for-database-adapter-but-the-gem-i
 # https://github.com/rails/rails/issues/21544
-gem 'mysql2', '~> 0.3.18'
+gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'#, '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'#, '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails'#, '~> 4.2'
@@ -23,14 +23,14 @@ gem 'coffee-rails'#, '~> 4.2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails', '~> 6.0'
+gem 'jquery-ui-rails'#, '~> 6.0'
 gem 'js_cookie_rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'#, '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -70,8 +70,8 @@ gem 'activeadmin', '1.2.0' #, git: 'https://github.com/rism-ch/activeadmin'#, re
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails', "2.2.0" #, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
-gem 'sunspot_solr', "2.2.0"
+gem 'sunspot_rails', "2.2.7" #, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
+gem 'sunspot_solr', "2.2.7"
 gem 'awesome_print'
 gem 'progress_bar', git: 'https://github.com/rism-ch/progress_bar'
 gem "rails3-jquery-autocomplete", git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
@@ -106,7 +106,7 @@ gem 'pry', :group => :development
 
 # Background tasks
 # https://github.com/collectiveidea/delayed_job/issues/776
-gem 'delayed_job', "4.1.1", git: 'https://github.com/rism-ch/delayed_job'
+gem 'delayed_job', git: 'https://github.com/rism-ch/delayed_job'
 gem 'delayed_job_active_record'
 gem 'progress_job', git: "https://github.com/rism-ch/progress_job"
 
