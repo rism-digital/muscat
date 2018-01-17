@@ -10,7 +10,7 @@
 # Other standard wf_* not shown
 # The other functions are standard, see Catalogue for a general description
 
-class StandardTitle < ActiveRecord::Base
+class StandardTitle < ApplicationRecord
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
   has_many :folder_items, :as => :item

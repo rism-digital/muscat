@@ -14,7 +14,7 @@
 # === Relations
 # * many to many with Sources
 
-class Catalogue < ActiveRecord::Base
+class Catalogue < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   resourcify

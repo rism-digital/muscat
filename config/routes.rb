@@ -1,11 +1,11 @@
-Muscat::Application.routes.draw do
+Rails.application.routes.draw do
   #root :to => "catalog#index"
   root :to => redirect(RISM::ROOT_REDIRECT)
 	get 'catalog/:id/mei' => 'catalog#mei'
 	get 'catalog/geosearch/:id' => 'catalog#geosearch'
   post 'catalog/holding' => 'catalog#holding'
   get "catalog/download_xslt" => 'catalog#download_xslt'
-  blacklight_for :catalog
+  ##blacklight_for :catalog
   
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

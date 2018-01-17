@@ -9,7 +9,7 @@
 #
 # Usual wf_* fields are not shown
 
-class Place < ActiveRecord::Base
+class Place < ApplicationRecord
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_places")

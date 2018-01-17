@@ -17,7 +17,7 @@
 #
 # Other wf_* fields are not shown
 
-class Person < ActiveRecord::Base
+class Person < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge

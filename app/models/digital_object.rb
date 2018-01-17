@@ -1,4 +1,4 @@
-class DigitalObject < ActiveRecord::Base
+class DigitalObject < ApplicationRecord
   
     # attachments
     has_attached_file :attachment, 

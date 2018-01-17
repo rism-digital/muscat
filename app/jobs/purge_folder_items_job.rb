@@ -1,4 +1,4 @@
-class PurgeFolderItemsJob < ActiveJob::Base
+class PurgeFolderItemsJob < ApplicationJob
   queue_as :default
   
   def perform(*args)

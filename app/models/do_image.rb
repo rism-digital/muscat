@@ -1,2 +1,2 @@
-class DoImage < ActiveRecord::Base
+class DoImage < ApplicationRecord
 end

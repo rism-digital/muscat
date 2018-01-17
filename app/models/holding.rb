@@ -1,4 +1,4 @@
-class Holding < ActiveRecord::Base
+class Holding < ApplicationRecord
   include ForeignLinks
   resourcify
 

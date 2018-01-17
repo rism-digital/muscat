@@ -1,4 +1,4 @@
-class PurgeSearchesJob < ActiveJob::Base
+class PurgeSearchesJob < ApplicationJob
   queue_as :default
   
   def perform(*args)

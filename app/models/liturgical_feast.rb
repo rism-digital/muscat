@@ -8,7 +8,7 @@
 # the other standard wf_* fields are not shown.
 # The class provides the same functionality as similar models, see Catalogue
 
-class LiturgicalFeast < ActiveRecord::Base
+class LiturgicalFeast < ApplicationRecord
   
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")
   has_many :folder_items, :as => :item

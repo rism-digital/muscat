@@ -12,7 +12,7 @@
 # the other standard wf_* fields are not shown.
 # The class provides the same functionality as similar models, see Catalogue
 
-class Institution < ActiveRecord::Base
+class Institution < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge

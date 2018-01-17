@@ -1,2 +1,2 @@
-class DoFileGroup < ActiveRecord::Base
+class DoFileGroup < ApplicationRecord
 end

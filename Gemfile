@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.0'
+gem 'rails', '>= 5.0', '< 5.1'
 
 # Use mysql2 as the database for Active Record
 # USE THIS VERSION for 4.1
@@ -10,13 +10,13 @@ gem 'rails', '~> 4.2.0'
 gem 'mysql2', '~> 0.3.18'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'#, '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'#, '~> 4.2'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
@@ -81,13 +81,13 @@ group :development do
     gem 'webrick', '~> 1.3.1'
 end
 
-gem 'blacklight', "~> 5.14"
+gem 'blacklight'
 gem "blacklight_advanced_search"
-gem 'bootstrap-sass', "3.3.4.1"
+gem 'bootstrap-sass'
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
-gem "blacklight_range_limit", git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3"
-gem 'devise', "~> 3.5.6"
+#gem "blacklight_range_limit", git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3"
+gem 'devise'
 gem 'devise-i18n'
 
 # paperclip for image storage
@@ -119,7 +119,7 @@ gem "i18n-js", ">= 3.0.0.rc11"
 gem 'colorize'
 
 gem "rspec"
-gem 'rspec-rails', '~> 3.5'
+gem 'rspec-rails'#, '~> 3.5'
 gem 'factory_girl_rails'
 gem 'poltergeist', "1.11.0"
 gem 'database_cleaner'
@@ -131,4 +131,4 @@ gem 'chart-js-rails'
 gem 'osullivan'
 
 ## Add translations for activerecord and co
-gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
+gem 'rails-i18n'#, github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x

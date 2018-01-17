@@ -1,4 +1,4 @@
-class Folder < ActiveRecord::Base
+class Folder < ApplicationRecord
   
   has_many :folder_items, :dependent => :delete_all
   has_many :delayed_jobs, -> { where parent_type: "folder" }, class_name: Delayed::Job, foreign_key: "parent_id"
