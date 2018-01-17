@@ -164,11 +164,11 @@ ActiveAdmin.setup do |config|
   # You can add before, after and around filters to all of your
   # Active Admin resources and pages from here.
   #
-  # config.before_filter :do_something_awesome
+  # config.before_action :do_something_awesome
   
   # LP - for caching filters, pagination and order
-  config.before_filter :restore_search_filters
-  config.after_filter :save_search_filters
+  config.before_action :restore_search_filters
+  config.after_action :save_search_filters
   
   
   # == Setting a Favicon

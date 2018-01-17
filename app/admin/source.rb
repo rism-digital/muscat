@@ -24,7 +24,7 @@ ActiveAdmin.register Source do
     
     after_destroy :check_model_errors
 
-    before_filter :only => [:index] do
+    before_action :only => [:index] do
         if params['commit'].blank?
                  #params['q'] = {:std_title_contains => "[Holding]"} 
         end
