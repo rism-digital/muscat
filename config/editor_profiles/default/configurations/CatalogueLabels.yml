@@ -198,6 +198,7 @@ doc_templates:
         fr: EDITION STATEMENT
         de: EDITION STATEMENT
         en: Edition statement
+      comment: "NEW IN 2018"
 "260": 
   label: 
     it: Dati editoriali 
@@ -878,6 +879,7 @@ voc:
         fr: DISSERTATION NOTE
         de: DISSERTATION NOTE
         en: Dissertation note
+      comment: "NEW IN 2018"
 "520": 
   label: 
     it: Indicazione di contenuto
