@@ -599,6 +599,13 @@
     - - l
     - - m
     - - n
+"599": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - b
+      - hidden: true 
 "650":
   new_window: standard_terms
   new_window_field: term_equals

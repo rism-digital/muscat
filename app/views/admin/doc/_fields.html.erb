@@ -1,6 +1,6 @@
 <% if @model != nil -%>
     <%- @marc_config = MarcConfigCache.get_configuration @model_name %>
-    <%- @editor_config = EditorConfiguration.get_default_layout(@model) %>  
+    <%- @editor_config = EditorConfiguration.get_default_layout(@model) %> 
     <%- @marc_config.each_data_tag do |tag| %>
         <div class="panel tab_panel">
             <h3 class="panel-title"><%= tag %></h3>
