@@ -70,8 +70,8 @@ gem 'activeadmin', '1.2.0' #, git: 'https://github.com/rism-ch/activeadmin'#, re
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails', "2.2.0" #, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
-gem 'sunspot_solr', "2.2.0"
+gem 'sunspot_rails', "2.2.7" #, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
+gem 'sunspot_solr', "2.2.7"
 gem 'awesome_print'
 gem 'progress_bar', git: 'https://github.com/rism-ch/progress_bar'
 gem "rails3-jquery-autocomplete", git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
@@ -106,7 +106,7 @@ gem 'pry', :group => :development
 
 # Background tasks
 # https://github.com/collectiveidea/delayed_job/issues/776
-gem 'delayed_job', "4.1.1", git: 'https://github.com/rism-ch/delayed_job'
+gem 'delayed_job',  git: 'https://github.com/rism-ch/delayed_job'
 gem 'delayed_job_active_record'
 gem 'progress_job', git: "https://github.com/rism-ch/progress_job"
 
