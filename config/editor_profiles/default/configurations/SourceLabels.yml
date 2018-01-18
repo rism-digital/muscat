@@ -1357,22 +1357,6 @@ doc_references:
       edit_label: 
         en: ""
       comment: "NEW IN 2018; filled out automatically by wf_stage"
-"630": 
-  label: 
-    it: WORK
-    fr: WORK
-    de: Werktitel
-    en: WORK
-  fields: 
-    a: 
-      label: 
-        it: WORK
-        de: Werktitel
-        fr: WORK
-        en: WORK
-      edit_label: 
-        en: ""
-      comment: "NEW IN 2018; experimental stage"
 "650": 
   label: 
     it: Parola chiave
@@ -1771,7 +1755,23 @@ doc_references:
         fr: Type de lien
         de: Linktyp
         en: Link type
-        
+"931": 
+  label: 
+    it: WORK
+    fr: WORK
+    de: Werktitel
+    en: WORK
+  fields: 
+    a: 
+      label: 
+        it: WORK
+        de: Werktitel
+        fr: WORK
+        en: WORK
+      edit_label: 
+        en: ""
+      comment: "NEW IN 2018; experimental stage"
+       
 ################
 
 show_admin: 

@@ -522,24 +522,6 @@
       - :occurrences: "?"
     - - b
       - :occurrences: "?"
-  "630":
-    :master: "0"
-    :indicator: "07"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Work
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: title
-    - - "2"
-      - :occurrences: "?"
-        :no_browse: true
-        # value must be added during exportation
   "650":
     :master: "0"
     :indicator: "07"
