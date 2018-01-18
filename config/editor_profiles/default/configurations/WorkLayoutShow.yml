@@ -1,6 +1,7 @@
 --- !map:Settings 
 group_order: 
 - main_work
+- codes
 #- people
 #- variants
 #- relations
@@ -9,6 +10,11 @@ groups:
   main_work: 
     all_tags: 
     - "100"
+  codes: 
+    all_tags: 
+    - "024"
+    all_tag_templates:
+      "024": marc_show/show_dnb_link
 #  people:
 #    all_tags:
 #    - "500"

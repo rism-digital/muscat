@@ -36,6 +36,8 @@ class Work < ActiveRecord::Base
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :basic, :minimal, :full ]
 
+  alias_attribute :name, :title
+
   def after_initialize
     @last_user_save = nil
     @last_event_save = "update"
@@ -142,5 +144,10 @@ class Work < ActiveRecord::Base
   def check_dependencies
     return false if self.child_sources.count > 0
   end
-  
+ 
+  def self.get_viaf(str)
+    str.gsub!("\"", "")
+    Viaf::Interface.search(str, self.to_s)
+  end
+ 
 end

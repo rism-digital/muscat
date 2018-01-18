@@ -1,7 +1,7 @@
 --- !map:Settings 
 group_order: 
 - main_work
-#- people
+- codes
 #- variants
 #- relations
 - control
@@ -19,6 +19,9 @@ groups:
 #  relations:
 #    all_tags:
 #    - "700"
+  codes: 
+    all_tags: 
+    - "024"
   control: 
     all_tags: 
     - "040"

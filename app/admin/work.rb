@@ -12,6 +12,13 @@ ActiveAdmin.register Work do
   
   collection_action :autocomplete_work_title, :method => :get
 
+  collection_action :viaf, method: :get do
+    respond_to do |format|
+        format.json { render json: Work.get_viaf(params[:viaf_input])  }
+    end
+  end
+
+
   breadcrumb do
     active_admin_muscat_breadcrumb
   end

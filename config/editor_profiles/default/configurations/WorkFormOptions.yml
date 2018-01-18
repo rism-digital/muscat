@@ -10,7 +10,28 @@
     read_only: true
     no_delete: true
   tag_header: none
-
+"024": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - "2"
+      - values: 
+        - "BNE"
+        - "BNF"
+        - "DNB"
+        - "ICCU"
+        - "ISNI"
+        - "LC"
+        - "NLP"
+        - "NKC"
+        - "SWNL"
+        - "VIAF"
+        - "WKP"
+        default: "VIAF"
+        editor_partial: subfield_select
+      - cols: 2
+    columns: 4
 "040": 
   layout: 
     fields: 
