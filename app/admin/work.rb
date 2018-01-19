@@ -2,7 +2,7 @@ include Triggers
   
 ActiveAdmin.register Work do
 
-  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_works)}
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_works)}, :if => proc{ can? :edit, Work  }
 
   # Remove mass-delete action
   batch_action :destroy, false

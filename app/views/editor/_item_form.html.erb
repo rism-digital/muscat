@@ -1,6 +1,7 @@
 <%- 
 	groups = Array.new
-	@editor_profile.each_group_in_layout @item do |group|
+  @editor_profile.each_group_in_layout @item do |group|
+    next if group == "edit_works" && !current_user.has_any_role?(:editor, :admin)
 		groups << group
   end
 -%>

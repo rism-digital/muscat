@@ -1755,7 +1755,7 @@ doc_references:
         fr: Type de lien
         de: Linktyp
         en: Link type
-"931": 
+"930": 
   label: 
     it: WORK
     fr: WORK
@@ -1885,6 +1885,12 @@ edit_references:
     fr: "Références et notes"
     de: Literatur und Fussnoten
     en: References and notes
+edit_works: 
+  label: 
+    it: WORK
+    fr: WORK
+    de: Werk
+    en: Work
 
 unmatched: 
   label: 
