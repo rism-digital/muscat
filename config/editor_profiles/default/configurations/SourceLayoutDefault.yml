@@ -195,6 +195,7 @@ groups:
   edit_works:
     all_tags:
     - "930"
+    editor_only: true
   edit_administration:
     all_tags:
     - '001'
