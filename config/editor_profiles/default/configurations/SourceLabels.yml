@@ -338,9 +338,9 @@ doc_references:
       comment: "NEW IN 2018"
 028: 
   label: 
-    it: Numero dell'editore
-    fr: "Numéro d'éditeur"
-    de: Verlagsnummer
+    it: Numero della lastra
+    fr: "Numéro de plaque"
+    de: Plattennummer
     en: Plate Number
   fields: 
     a: 
