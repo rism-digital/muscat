@@ -142,7 +142,7 @@ class Work < ActiveRecord::Base
   end
 
   def check_dependencies
-    return false if self.child_sources.count > 0
+    return false if self.referring_sources.count > 0
   end
  
   def self.get_viaf(str)
