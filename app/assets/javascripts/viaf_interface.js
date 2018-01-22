@@ -107,11 +107,16 @@ var show_viaf_actions = function () {
 
 function _update_marc_tag(target, data) {
 	block = $(".marc_editor_tag_block[data-tag='" + target + "']")
+  var model = $("#marc_editor_panel").attr("data-editor-model");
 	for (code in data){
 		subfield = block.find(".subfield_entry[data-tag='" + target + "'][data-subfield='" + code + "']").first()
+    if (model == "works" && target == "100" && code == "a") {
+  		subfield = $("#100a");
+    }
 		subfield.val(data[code]);
 		subfield.css("background-color", "#ffffb3");
 	}
+
 }
 
 function _new_marc_tag(target, data) {
