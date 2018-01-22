@@ -628,9 +628,9 @@ doc_references:
     q: 
       label: 
         it: Materiale conservato
-        fr: Parties préservées
+        fr: Matériaux préservées
         de: Erhaltenes Material
-        en: Preserved Parts
+        en: Material held
     u: 
       label: 
         it: URI

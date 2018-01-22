@@ -341,11 +341,11 @@ doc_references:
     it: Numero dell'editore
     fr: "Numéro d'éditeur"
     de: Verlagsnummer
-    en: Publisher Number
+    en: Plate Number
   fields: 
     a: 
       label: 
-        it: Numero di lastra
+        it: Numero della lastra
         fr: "Numéro de plaque"
         de: Plattennummer
         en: Plate number
@@ -1715,9 +1715,9 @@ doc_references:
     q: 
       label: 
         it: Materiale conservato
-        fr: Parties préservées
+        fr: Matériaux préservées
         de: Erhaltenes Material
-        en: Preserved Parts
+        en: Material held
     u: 
       label: 
         it: URI

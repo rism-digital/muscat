@@ -74,10 +74,11 @@ it:
         other: "Eliminati con successo %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"
       link: "Crea uno"
-      action_label: "%{title} Selezionati"
+      action_label: "%{title}"
       labels:
         destroy: "Elimina"
-        folder: "Crea nuova cartella con gli elementi "
+        folder: "Crea nuova cartella con gli elementi selezionati"
+        add_to_folder: "Aggiungi gli elementi selezionati ad una cartella esistente"
 
     comments:
       resource_type: "Tipo di risorsa"
@@ -409,7 +410,8 @@ it:
   filter_place: "Luogo"
   filter_place_of_publication: "PLACE OF PUBLICATION"
   filter_provenance: "Provenienza"
-  filter_record_type: "Tipo"
+  filter_record_type: "Tipo del Template"
+  filter_record_type_short: "Tipo"
   filter_source_type: "Tipologia della fonte"
   filter_publisher: "Editore"
   filter_revue_title: "Titolo del periodico o della miscellanea"

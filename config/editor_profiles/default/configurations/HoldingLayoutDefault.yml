@@ -4,9 +4,9 @@ group_order:
 - edit_names
 - edit_material
 - edit_references
-- administration
+- edit_administration
 groups: 
-  administration: 
+  edit_administration: 
     all_tags: 
     - "001"
   edit_library: 

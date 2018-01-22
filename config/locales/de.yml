@@ -74,10 +74,11 @@ de:
         other: "Erfolgreich %{count} %{plural_model} gelöscht"
       selection_toggle_explanation: "(Auswahl umschalten)"
       link: "erstellen"
-      action_label: "%{title} ausgewählte"
+      action_label: "%{title}"
       labels:
         destroy: "Lösche"
         folder: "Erstelle Ordner mit"
+        add_to_folder: "Hinzufügen von Elementen zum einem vorhandenen Ordner"
 
     comments:
       resource_type: "Quellentyp"
@@ -410,7 +411,8 @@ de:
   filter_place: "Ort"
   filter_place_of_publication: "Verlagsort"
   filter_provenance: "Herkunft"
-  filter_record_type: "Typ"
+  filter_record_type: "Template Typ"
+  filter_record_type_short: "Typ"
   filter_source_type: "Quellen Typ"
   filter_publisher: "Verlag"
   filter_revue_title: "Zeitschriftentitel"
