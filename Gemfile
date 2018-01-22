@@ -46,7 +46,7 @@ end
 gem 'non-stupid-digest-assets'
 
 # Papertrail for old version support
-gem 'paper_trail'
+gem 'paper_trail', '~> 5.0'
 
 # for aligning marc
 gem 'needleman_wunsch_aligner', "1.0.4"
