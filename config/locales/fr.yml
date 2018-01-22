@@ -261,6 +261,7 @@ fr:
   lib_siglum: "Sigle de bibliothèque"
   holding_records: "Copie"
   new_holding: "Ajouter une copie"
+  new_holding_page: "Copie non enregistré"
   new_digital_object: "Attacher une nouvelle image"
   record_actions: "Actions"
   record_status: "Status"

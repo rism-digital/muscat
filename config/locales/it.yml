@@ -261,6 +261,7 @@ it:
   lib_siglum: "Sigla della Biblioteca"
   holding_records: "Informazioni sugli esemplari"
   new_holding: "Nuovo Esemplare"
+  new_holding_page: "Esemplare non salvato"
   new_digital_object: "Aggiungi una nuova immagine"
   record_actions: "Impostazioni Record "
   record_status: "Stato pubblicazione"

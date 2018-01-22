@@ -66,7 +66,7 @@ en:
     dropdown_actions:
       button_label: "Actions"
     batch_actions:
-      button_label: "Batch Actions"
+      button_label: "Batch actions"
       default_confirmation: "Are you sure you want to do this?"
       delete_confirmation: "Are you sure you want to delete these %{plural_model}?"
       succesfully_destroyed:
@@ -261,6 +261,7 @@ en:
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
   new_holding: "Add holdings"
+  new_holding_page: "New holdings information"
   new_digital_object: "Attach a new image"
   record_actions: "Record Actions"
   record_status: "Record Status"

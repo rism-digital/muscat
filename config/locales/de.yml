@@ -261,6 +261,7 @@ de:
   lib_siglum: "Bibliothekssigel"
   holding_records: "Exemplarinformation"
   new_holding: "Neuer Examplareintrag"
+  new_holding_page: "NEW HOLDINGS INFORMATION"
   new_digital_object: "Neues Bild hinzufügen"
   record_actions: "Aktion für Eintrag"
   record_status: "Status des Eintrags"
