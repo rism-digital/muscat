@@ -82,6 +82,9 @@ class Ability
       else
         can :create_editions, Source
         can :update_editions, Source
+        can :update, Source do |s|
+          user.can_edit_edition?(s)
+        end
       end
       
       can :read, ActiveAdmin::Page, :name => "Dashboard"
