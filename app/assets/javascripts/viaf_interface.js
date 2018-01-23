@@ -152,7 +152,7 @@ function _append_marc_tag(target, data) {
 
 function _size_of_marc_tag(tag){
 	fields = $(".tag_toplevel_container[data-tag='"+ tag +"']")
-	return fields.size()		
+	return fields.length
 }
 
 function _marc_tag_is_empty(tag){
