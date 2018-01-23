@@ -189,14 +189,14 @@ it:
   create_from_existing: "Crea"
   record_types:
     unspecified: "[Template sconosciuto]"
-    collection: "Raccolta"
+    collection: "MUSIC MANUSCRIPT, COLLECTION PARENT RECORD"
     source: "Manoscritto musicale"
-    edition_content: "Elemento in una edizione musicale"
+    edition_content: "PRINTED MUSIC EDITION, ITEM IN COLLECTION"
     libretto_source: "Libretto manoscritto"
     libretto_edition_content: "Elemento di un libretto edito"
     theoretica_source: "Manoscritto di teoria musicale"
     theoretica_edition_content: "Elemento di un edizione di teoria musicale"
-    edition: "Edizione musicale"
+    edition: "PRINTED MUSIC EDITION, COLLECTION PARENT RECORD OR INDIVIDUAL ITEM"
 
   #################### MENUS
   menu_home: "Home"
