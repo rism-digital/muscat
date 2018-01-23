@@ -120,7 +120,7 @@ gem 'colorize'
 
 gem "rspec"
 gem 'rspec-rails', '~> 3.5'
-gem 'factory_girl_rails'
+gem 'factory_bot_rails'
 gem 'poltergeist', "1.11.0"
 gem 'database_cleaner'
 
