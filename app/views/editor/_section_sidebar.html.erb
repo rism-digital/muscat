@@ -25,7 +25,7 @@
 %>
 <ul>
 	
-<%- @editor_profile.layout_config[:marc_editor_group_links].each do |gl| -%>
+  <%- @editor_profile.layout_config[:marc_editor_group_links].each do |gl| -%>
 	<li><a data-scroll-target="<%= gl.gsub(/ /, "_") -%>" data-panel="marc_editor_panel" href="#"><%= gl -%></a></li>
 <%- end -%>
 

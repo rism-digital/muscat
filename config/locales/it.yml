@@ -229,6 +229,7 @@ it:
   menu_cataloging: "Catalogazione"
   menu_jobs: "Processi in Background"
   menu_holdings: "Esemplari"
+  menu_works: "WORKS"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"

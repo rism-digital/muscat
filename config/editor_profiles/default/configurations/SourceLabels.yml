@@ -1755,7 +1755,23 @@ doc_references:
         fr: Type de lien
         de: Linktyp
         en: Link type
-        
+"930": 
+  label: 
+    it: WORK
+    fr: WORK
+    de: Werktitel
+    en: WORK
+  fields: 
+    a: 
+      label: 
+        it: WORK
+        de: Werktitel
+        fr: WORK
+        en: WORK
+      edit_label: 
+        en: ""
+      comment: "NEW IN 2018; experimental stage"
+       
 ################
 
 show_admin: 
@@ -1869,6 +1885,12 @@ edit_references:
     fr: "Références et notes"
     de: Literatur und Fussnoten
     en: References and notes
+edit_works: 
+  label: 
+    it: WORK
+    fr: WORK
+    de: Werk
+    en: Work
 
 unmatched: 
   label: 
