@@ -277,7 +277,7 @@ class Institution < ActiveRecord::Base
     "#{name}#{sigla}"
   end
  
-  ransacker :"110g_facet_contains", proc{ |v| } do |parent| end
+  ransacker :"110g_facet", proc{ |v| } do |parent| parent.table[:id] end
   
   def get_deposita
     #FIXME Search should not test for siglum; intermediate hack to speed up institutions show

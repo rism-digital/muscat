@@ -71,7 +71,6 @@ ActiveAdmin.register Institution do
    
     def index
       @results, @hits = Institution.search_as_ransack(params)
-      
       index! do |format|
         @institutions = @results
         format.html
