@@ -6,6 +6,7 @@ group_order:
 - edit_material
 - edit_incipits
 - edit_references
+- edit_works
 - edit_administration
 
 group_exclude:
@@ -175,7 +176,6 @@ groups:
   edit_incipits:
     all_tags:
     - '031'
-    - '931'
     template: show_incipit
   edit_references:
     all_tags:
@@ -192,6 +192,10 @@ groups:
     ungrouped_tags:
      "500": 8
      "856": 8
+  edit_works:
+    all_tags:
+    - "930"
+    editor_only: true
   edit_administration:
     all_tags:
     - '001'

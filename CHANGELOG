@@ -9,6 +9,7 @@ v 3.7.0
 * Various adjustments for secondary literature
 * Added "persian" to language codes
 * Added new fields for catalogue (250 & 502)
+* Show comments to marc fields on configuration page
 
 v3.6.12
 

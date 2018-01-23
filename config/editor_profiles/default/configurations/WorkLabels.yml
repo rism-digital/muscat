@@ -151,40 +151,44 @@ doc_edit_workflow:
     it: Nome di persona
     fr: Compositeur/Auteur
     de: Ansetzungsform
-    en: Heading - Personal name
-  accepts: 
-  - "700"
+    en: Heading
   fields:
     a:
       label:
-        it: Nome
-        fr: Nom
-        de: Name
-        en: Heading - personal name
-    c:
-      label:
-        it: Ordine/Titolo
-        fr: Ordre/titre
-        de: Orden/Titel
-        en: Religious order
+        it: COMPOSER
+        fr: COMPOSER
+        de: Komponist
+        en: Heading - composer name
     d:
       label:
         it: Data di nascita e di morte
         fr: Dates de vie
         de: Geburts- und Todesdaten
         en: Years of birth and death
-    w:
+    m:
       label:
-        it: Status
-        fr: Status
-        de: Status
-        en: Status
-    y:
+        it: Organico sintetico
+        fr: Distribution
+        de: Besetzungshinweis
+        en: Scoring summary
+    n:
       label:
-        it: Altre date
-        fr: Autres dates
-        de: Andere Lebensdaten
-        en: Other life dates
+        it: NUMBER OF PART/SECTION OF A WORK
+        fr: NUMBER OF PART/SECTION OF A WORK
+        de: NUMBER OF PART/SECTION OF A WORK
+        en: Number of part/section of a work
+    r:
+      label: 
+        it: "Tonalità"
+        fr: "Tonalité"
+        de: Tonart
+        en: Key or mode
+    t:
+      label:
+        it: TITLE OF WORK
+        fr: TITLE OF WORK
+        de: Werktitel
+        en: Title of work
 "370":
   label:
     it: Luogo associato
@@ -198,19 +202,6 @@ doc_edit_workflow:
         fr: Lieu de naissance
         de: Geburtsort  
         en: Place of birth
-"375":
-  label:
-    it: Genere
-    fr: Gender
-    de: Geschlecht
-    en: Gender
-  fields:
-    a:
-      label:
-        it: Genere
-        fr: Gender
-        de: Geschlecht 
-        en: Gender
 "400":
   label:
     it: Varianti del nome
@@ -385,7 +376,7 @@ doc_edit_workflow:
         fr: Ressource externe
         de: Uniform Resource Identifier
         en: External resource
-main_person:
+main_work:
   label:
     it: Campi principali
     fr: "Entrées principales"

@@ -233,9 +233,9 @@ ActiveAdmin.register Source do
   filter :"593a_filter_with_integer", :label => proc{I18n.t(:filter_source_type)}, as: :select, 
   collection: proc{@source_types.sort.collect {|k| [k.camelize, "593a_filter:#{k}"]}}
   
-  filter :record_type_select_with_integer, :label => proc {I18n.t(:filter_record_type)}, as: :select, 
+  filter :record_type_select_with_integer, as: :select, 
   collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
-	if: proc { !is_selection_mode? }
+	if: proc { !is_selection_mode? }, :label => proc {I18n.t(:filter_record_type)}
 
   filter :record_type_with_integer,
   if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:record_type_with_integer)},
@@ -249,7 +249,7 @@ ActiveAdmin.register Source do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
       label: I18n.t('status_codes.' + (source.wf_stage != nil ? source.wf_stage : ""), locale: :en))} 
-    column (I18n.t :filter_record_type) {|source| status_tag(source.get_record_type.to_s, 
+    column (I18n.t :filter_record_type_short) {|source| status_tag(source.get_record_type.to_s, 
       label: I18n.t('record_types_codes.' + (source.record_type != nil ? source.record_type.to_s : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_composer), :composer

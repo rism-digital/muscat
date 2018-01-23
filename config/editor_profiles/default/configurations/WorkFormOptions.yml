@@ -10,7 +10,28 @@
     read_only: true
     no_delete: true
   tag_header: none
-
+"024": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - "2"
+      - values: 
+        - "BNE"
+        - "BNF"
+        - "DNB"
+        - "ICCU"
+        - "ISNI"
+        - "LC"
+        - "NLP"
+        - "NKC"
+        - "SWNL"
+        - "VIAF"
+        - "WKP"
+        default: "VIAF"
+        editor_partial: subfield_select
+      - cols: 2
+    columns: 4
 "040": 
   layout: 
     fields: 
@@ -23,16 +44,21 @@
     - - b
       - cols: 2
     columns: 4
-"100": 
+"100":
+  new_window: people
+  new_window_field: full_name_equals
   layout: 
-    fields:
+    fields: 
     - - a
+      - type: person
+        editor_partial: subfield_secondary
+        allow_new: true
     - - d
-    - - f
+      - autocomplete_extra: life_dates
+    - - m
+    - - n
     - - r
-    - - s
     - - t
-    - - u
     columns: 4
 "400": 
   layout: 

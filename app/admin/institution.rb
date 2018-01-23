@@ -107,7 +107,7 @@ ActiveAdmin.register Institution do
   
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  filter :siglum_contains, :label => proc {I18n.t(:filter_siglum)}, :as => :string
+  filter :"110g_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
   filter :place_contains, :label => proc {I18n.t(:filter_place)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range

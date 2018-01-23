@@ -12,10 +12,12 @@ module Viaf
     def self.search(term, model)
       providers = YAML::load(File.open("config/viaf/#{model.to_s.downcase}.yml"))
       result = []
-      begin 
-        query = JSON.load(open(URI.escape("http://viaf.org/viaf/AutoSuggest?query="+term)))
-      rescue 
-        return "ERROR connecting VIAF AutoSuggest"
+      if model.to_s == 'Person'
+        begin 
+          query = JSON.load(open(URI.escape("http://viaf.org/viaf/AutoSuggest?query="+term)))
+        rescue 
+          return "ERROR connecting VIAF AutoSuggest"
+        end
       end
 
       if model.to_s == 'Person'
@@ -24,10 +26,33 @@ module Viaf
         else
           return "Sorry, no results were found in VIAF!"
         end
+      #this needs another approach because autosuggest is not well supported
       elsif model.to_s == "Work"
-        if query["result"]
-          r = query["result"].map{|e| e if e['nametype']=='uniformtitlework'}.compact
-        else
+        r = []
+        uri = URI("http://viaf.org/viaf/search?query=local.uniformTitleWorks+all+#{URI.escape(term)}&sortKeys=holdingscount&httpAccept=application/json")
+        json = Net::HTTP.get(uri)
+        res = JSON(json)
+        return "Sorry, no work results were found in VIAF!" unless res["searchRetrieveResponse"]["records"]
+        res["searchRetrieveResponse"]["records"].each do |record|
+          e = {}
+          e["viafid"] = record["record"]["recordData"]["viafID"]
+          if record["record"]["recordData"]["mainHeadings"]["data"].is_a? Hash
+            e["term"] = record["record"]["recordData"]["mainHeadings"]["data"]["text"]
+            sources = record["record"]["recordData"]["mainHeadings"]["data"]["sources"]["sid"]
+          elsif record["record"]["recordData"]["mainHeadings"]["data"].is_a? Array
+            e["term"] = record["record"]["recordData"]["mainHeadings"]["data"][0]["text"]
+            sources = record["record"]["recordData"]["mainHeadings"]["data"][0]["sources"]["sid"]
+          end
+          if sources.is_a? Array
+            sources.each do |v|
+              e["#{v.split("|").first.downcase}"] = "#{v.split("|").last}"
+            end
+          elsif sources.is_a? String
+            e["#{sources.split("|").first.downcase}"] = "#{sources.split("|").last}"
+          end
+          r << e
+        end
+        if res.empty?
           return "Sorry, no work results were found in VIAF!"
         end
       else
@@ -44,13 +69,13 @@ module Viaf
           else
             next
           end
-          provider_url="http://viaf.org/processed/#{provider}%7C#{provider_id}?httpAccept=application/xml"
+          provider_url="http://viaf.org/processed/#{provider}%7C#{URI.escape(provider_id)}?httpAccept=application/xml"
           begin
             links = JSON.load(open(URI.escape("http://viaf.org/viaf/#{record["viafid"]}/justlinks.json")))
           rescue
             return "ERROR connecting VIAF Justlinks"
           end
-          
+        
           if !links.is_a?(Hash)
             return "ERROR VIAF Justlinks returned invalid data"
           end
@@ -60,6 +85,18 @@ module Viaf
           rescue 
             return "ERROR connecting VIAF Provider"
           end
+          if model.to_s == "Work"
+            provider_composer = provider_doc.xpath('//marc:datafield[@tag="100"]/marc:subfield[@code="a"]', NAMESPACE).first.content rescue "Anonymus"
+            #provider_composer = record["term"].split("|").first.gsub([0-9,\-], "")
+            composer = Sunspot.search(Person) {fulltext "#{provider_composer}", :fields => [:full_name]}.results.first
+            node_100 = provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE)
+            next if node_100.empty?
+            sfa = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
+            sfa['code'] = '0'
+            sfa.content = composer.id rescue 30004985
+            node_100.first << sfa
+          end
+
           provider_doc.xpath('//marc:controlfield[@tag="001"]', NAMESPACE).first.content = record["viafid"]
           node_24 = provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE)
           provider_doc.xpath('//marc:datafield[@tag="024"]', NAMESPACE).remove

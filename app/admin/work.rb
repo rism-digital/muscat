@@ -2,7 +2,7 @@ include Triggers
   
 ActiveAdmin.register Work do
 
-  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_works)}
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_works)}, :if => proc{ can? :edit, Work  }
 
   # Remove mass-delete action
   batch_action :destroy, false
@@ -11,6 +11,13 @@ ActiveAdmin.register Work do
   config.clear_action_items!
   
   collection_action :autocomplete_work_title, :method => :get
+
+  collection_action :viaf, method: :get do
+    respond_to do |format|
+        format.json { render json: Work.get_viaf(params[:viaf_input])  }
+    end
+  end
+
 
   breadcrumb do
     active_admin_muscat_breadcrumb
@@ -159,7 +166,7 @@ ActiveAdmin.register Work do
   end
   
   sidebar :actions, :only => :show do
-    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => title }
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work }
   end
   
   

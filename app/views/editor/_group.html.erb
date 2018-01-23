@@ -1,11 +1,13 @@
 <%- 
 	tag_names = @editor_profile.layout_tag_names_for_group(@item, group)
-	group_title = @editor_profile.get_label(group)
-   @editor_profile.layout_config[:marc_editor_group_links] << group_title
+  group_title = @editor_profile.get_label(group)
+  editor_only = @editor_profile.layout_config["groups"][group]["editor_only"] && !current_user.has_any_role?(:editor, :admin)
+  unless editor_only
+    @editor_profile.layout_config[:marc_editor_group_links] << group_title
+  end
 -%>
 
 <%- if @editor_profile.layout_config["groups"][group]["subfield_grouping"] %>
-
 	<%- subfield = @editor_profile.layout_config["groups"][group]["subfield_grouping"] %>
 	<div class="tab_panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">
 		<%= render :partial => "editor/group_by_subfield", 
@@ -49,7 +51,12 @@
 		end
 	end
 -%>
-<div class="panel tab_panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">
+
+<% if editor_only %>
+  <div class="panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">
+<% else %>
+  <div class="panel tab_panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">
+<% end %>
 	<h3><%= group_title -%></h3>
 	<div class="marc_editor_panel_content">
 		<div class="marc_editor_group_contents">

@@ -307,40 +307,45 @@ doc_references:
         fr: FIRST/SECOND GROUP
         de: FIRST/SECOND GROUP
         en: First/second group
+      comment: "NEW IN 2018"
     b: 
       label: 
         it: THIRD/FOURTH GROUP
         fr: THIRD/FOURTH GROUP
         de: THIRD/FOURTH GROUP
         en: Third/fourth group
+      comment: "NEW IN 2018"
     c: 
       label: 
         it: DATE
         fr: DATE
         de: Datum
         en: Date
+      comment: "NEW IN 2018"
     d: 
       label: 
         it: NUMBER OF VOLUME/PART
         fr: NUMBER OF VOLUME/PART
         de: NUMBER OF VOLUME/PART
         en: Number of volume/part
+      comment: "NEW IN 2018"
     e: 
       label: 
         it: UNPARSED FINGERPRINT
         fr: UNPARSED FINGERPRINT
         de: UNPARSED FINGERPRINT
         en: Unparsed fingerprint
+      comment: "NEW IN 2018"
 028: 
   label: 
-    it: Numero dell'editore
-    fr: "Numéro d'éditeur"
-    de: Verlagsnummer
-    en: Publisher Number
+    it: Numero della lastra
+    fr: "Numéro de plaque"
+    de: Plattennummer
+    en: Plate Number
   fields: 
     a: 
       label: 
-        it: Numero di lastra
+        it: Numero della lastra
         fr: "Numéro de plaque"
         de: Plattennummer
         en: Plate number
@@ -788,6 +793,7 @@ doc_references:
         fr: BOOK FORMAT
         de: BOOK FORMAT
         en: Book format
+      comment: "NEW IN 2018"
     "8": 
       label: 
         it: Gruppo di materiale
@@ -1017,6 +1023,7 @@ doc_references:
         fr: RELATED RECORD
         de: RELATED RECORD
         en: RELATED RECORD
+      comment: "NEW IN 2018"
 "590": 
   label: 
     it: Parti staccate
@@ -1162,6 +1169,7 @@ doc_references:
         de: REFERENCE RECORD ID
         en: REFERENCE RECORD ID
       edit_label: 
+      comment: "NEW IN 2018"
 "597": 
   label: 
     it: Dati editoriali originali
@@ -1340,6 +1348,15 @@ doc_references:
         en: Local notes field
       edit_label: 
         en: ""
+    b: 
+      label: 
+        it: RECORD AUDIT
+        fr: RECORD AUDIT
+        de: RECORD AUDIT
+        en: RECORD AUDIT
+      edit_label: 
+        en: ""
+      comment: "NEW IN 2018; filled out automatically by wf_stage"
 "650": 
   label: 
     it: Parola chiave
@@ -1698,9 +1715,9 @@ doc_references:
     q: 
       label: 
         it: Materiale conservato
-        fr: Parties préservées
+        fr: Matériaux préservées
         de: Erhaltenes Material
-        en: Preserved Parts
+        en: Material held
     u: 
       label: 
         it: URI
@@ -1738,7 +1755,23 @@ doc_references:
         fr: Type de lien
         de: Linktyp
         en: Link type
-        
+"930": 
+  label: 
+    it: WORK
+    fr: WORK
+    de: Werktitel
+    en: WORK
+  fields: 
+    a: 
+      label: 
+        it: WORK
+        de: Werktitel
+        fr: WORK
+        en: WORK
+      edit_label: 
+        en: ""
+      comment: "NEW IN 2018; experimental stage"
+       
 ################
 
 show_admin: 
@@ -1852,6 +1885,12 @@ edit_references:
     fr: "Références et notes"
     de: Literatur und Fussnoten
     en: References and notes
+edit_works: 
+  label: 
+    it: WORK
+    fr: WORK
+    de: Werk
+    en: Work
 
 unmatched: 
   label: 
