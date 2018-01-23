@@ -6,7 +6,7 @@ var show_viaf_actions = function () {
     $('#viaf-form').children('div.tab_panel').show();
 	});
 
-	$viaf_table.delegate('.data', 'click', function() {
+	$viaf_table.on('click', '.data', function() {
 		_update_form($(this).data("viaf"));
 		marc_editor_show_panel("marc_editor_panel");
 	});
