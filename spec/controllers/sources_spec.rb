@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Admin::SourcesController, :type => :controller do 
   render_views
   before(:each) do
-    @user = FactoryGirl.create(:admin)
+    @user = FactoryBot.create(:admin)
     sign_in @user
   end
 
@@ -16,7 +16,7 @@ RSpec.describe Admin::SourcesController, :type => :controller do
 
   describe "CREATE" do
     it "creates record" do
-      expect { post :create, :source => FactoryGirl.attributes_for(:source) }.to change(Source, :count).by(1)
+      expect { post :create, :source => FactoryBot.attributes_for(:source) }.to change(Source, :count).by(1)
     end
   end
 

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Abilities", :type => :feature, :js => true do 
   describe "Cataloger with restricted person access" do
-    let(:user) { FactoryGirl.create(:person_restricted)  }
-    let(:person) { FactoryGirl.create(:person)  }
+    let(:user) { FactoryBot.create(:person_restricted)  }
+    let(:person) { FactoryBot.create(:person)  }
     before do
       visit user_session_path
       fill_in :user_email, :with => user.email

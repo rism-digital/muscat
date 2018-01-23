@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :person do
     full_name "Westmorland, John Fane of"
     life_dates "1784-1859"
