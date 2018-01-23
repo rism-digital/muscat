@@ -1,24 +1,27 @@
 --- !map:Settings 
 group_order: 
 - main_work
-- people
-- variants
-- relations
+- codes
+#- variants
+#- relations
 - control
 groups:   
   main_work: 
     all_tags: 
     - "100"
-  people:
-    all_tags:
-    - "500"
-  variants:
-    all_tags:
-    - "400"
-    - "440"
-  relations:
-    all_tags:
-    - "700"
+#  people:
+#    all_tags:
+#    - "500"
+#  variants:
+#    all_tags:
+#    - "400"
+#    - "440"
+#  relations:
+#    all_tags:
+#    - "700"
+  codes: 
+    all_tags: 
+    - "024"
   control: 
     all_tags: 
     - "040"

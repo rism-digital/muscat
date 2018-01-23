@@ -892,7 +892,7 @@
       - values: 
         - "IIIF"
         editor_partial: subfield_select
-"931": 
+"930": 
   new_window: works
   new_window_field: title_equals
   layout: 
