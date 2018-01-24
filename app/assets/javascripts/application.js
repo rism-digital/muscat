@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery3
-//= require jquery-migrate-3.0.1
 //= require 'blacklight_advanced_search'
 
 

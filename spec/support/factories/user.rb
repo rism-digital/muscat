@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :user do
     name "Fred"
@@ -8,28 +8,28 @@ FactoryGirl.define do
   end
 
   factory :admin, :parent => :user do
-    roles { [ FactoryGirl.create(:admin_role) ] }
+    roles { [ FactoryBot.create(:admin_role) ] }
   end
 
   factory :cataloger, :parent => :user do
-    roles { [ FactoryGirl.create(:cataloger_role) ] }
+    roles { [ FactoryBot.create(:cataloger_role) ] }
   end
  
   factory :guest, :parent => :user do
-    roles { [ FactoryGirl.create(:guest_role) ] }
+    roles { [ FactoryBot.create(:guest_role) ] }
   end
   
   factory :editor, :parent => :user do
-    roles { [ FactoryGirl.create(:editor_role) ] }
+    roles { [ FactoryBot.create(:editor_role) ] }
   end
 
   factory :person_editor, :parent => :user do
-    roles { [ FactoryGirl.create(:editor_role),  FactoryGirl.create(:person_editor_role),  ] }
+    roles { [ FactoryBot.create(:editor_role),  FactoryBot.create(:person_editor_role),  ] }
   end
 
   factory :person_restricted, :parent => :user do
-    roles { [ FactoryGirl.create(:cataloger_role),  
-              FactoryGirl.create(:person_restricted_role),  ] }
+    roles { [ FactoryBot.create(:cataloger_role),  
+              FactoryBot.create(:person_restricted_role),  ] }
   end
 
 

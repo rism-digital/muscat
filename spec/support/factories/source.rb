@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :source do
     record_type 2
     std_title "Il trionfo di Camilla regina de Volsci - Excerpts;..."

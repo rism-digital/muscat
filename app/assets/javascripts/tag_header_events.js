@@ -64,7 +64,7 @@ used for _tag_header partial
 	}
     
     function update_empty_tag(tag_group) {
-        if ( tag_group.children(".marc_editor_tag_block").children().size() > 0 ) {
+        if ( tag_group.children(".marc_editor_tag_block").children().length > 0 ) {
             tag_group.children(".tag_empty_container").hide();
         }
         else {

@@ -315,7 +315,6 @@ class Source < ApplicationRecord
       errors.add :base, "The source could not be deleted because it has #{self.referring_sources.count} subsequent entry(s)"
       return false
     end
-		BAWAAAHH
   end
     
   # Method: set_object_fields

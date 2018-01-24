@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Abilities", :type => :feature, :js => true do 
   describe "Person editor" do
-    let(:user) { FactoryGirl.create(:person_editor)  }
-    let(:person) { FactoryGirl.create(:person)  }
+    let(:user) { FactoryBot.create(:person_editor)  }
+    let(:person) { FactoryBot.create(:person)  }
     before do
       visit user_session_path
       fill_in :user_email, :with => user.email

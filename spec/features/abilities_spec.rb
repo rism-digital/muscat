@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Abilities", :type => :feature, :js => true do 
 
   describe "Person_editor" do
-    let(:user) { FactoryGirl.create(:person_editor)  }
+    let(:user) { FactoryBot.create(:person_editor)  }
     before do
       visit user_session_path
       fill_in :user_email, :with => user.email
@@ -17,7 +17,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
   end
 
   describe "Editor" do
-    let(:user) { FactoryGirl.create(:editor)  }
+    let(:user) { FactoryBot.create(:editor)  }
     before do
       visit user_session_path
       fill_in :user_email, :with => user.email
@@ -34,7 +34,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
   end
 
   describe "Cataloger" do
-    let(:user) { FactoryGirl.create(:editor)  }
+    let(:user) { FactoryBot.create(:editor)  }
     before do
       visit user_session_path
       fill_in :user_email, :with => user.email
@@ -51,7 +51,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
   end
 
   describe "Guest" do
-    let(:user) { FactoryGirl.create(:guest)  }
+    let(:user) { FactoryBot.create(:guest)  }
     before do
       visit user_session_path
       fill_in :user_email, :with => user.email

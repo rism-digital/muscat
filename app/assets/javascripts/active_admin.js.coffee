@@ -1,7 +1,6 @@
 #= require active_admin/base
 #= require admin/index-filters.coffee
 #= require jquery3
-#= require jquery-migrate-3.0.1
 #= require jquery-ui
 #= require jquery-ui/widgets/autocomplete
 #= require jquery_ujs

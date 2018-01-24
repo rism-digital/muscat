@@ -6,7 +6,7 @@ var show_viaf_actions = function () {
     $('#viaf-form').children('div.tab_panel').show();
 	});
 
-	$viaf_table.delegate('.data', 'click', function() {
+	$viaf_table.on('click', '.data', function() {
 		_update_form($(this).data("viaf"));
 		marc_editor_show_panel("marc_editor_panel");
 	});
@@ -152,7 +152,7 @@ function _append_marc_tag(target, data) {
 
 function _size_of_marc_tag(tag){
 	fields = $(".tag_toplevel_container[data-tag='"+ tag +"']")
-	return fields.size()		
+	return fields.length
 }
 
 function _marc_tag_is_empty(tag){

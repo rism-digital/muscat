@@ -4,8 +4,8 @@ require "cancan/matchers"
 RSpec.describe User do
 
   describe 'editor_abilities' do
-    let(:editor) { FactoryGirl.create(:editor)  }
-    let(:person) { FactoryGirl.create(:person)  }
+    let(:editor) { FactoryBot.create(:editor)  }
+    let(:person) { FactoryBot.create(:person)  }
     subject(:ability) { Ability.new(editor)  }
     it "editors should not to be able to edit people" do
       expect(ability).not_to be_able_to(:update, person)
@@ -15,8 +15,8 @@ RSpec.describe User do
   end
 
   describe 'person_editor_abilities' do
-    let(:person_editor) { FactoryGirl.create(:person_editor)  }
-    let(:person) { FactoryGirl.create(:person)  }
+    let(:person_editor) { FactoryBot.create(:person_editor)  }
+    let(:person) { FactoryBot.create(:person)  }
     subject(:ability) { Ability.new(person_editor)  }
     it "person_editor should be able to edit people" do
       expect(ability).to be_able_to(:update, person)
@@ -28,9 +28,9 @@ end
 
 RSpec.describe Role do
   subject(:ability){ Ability.new(user)  }
-  let(:user){ FactoryGirl.build(:user, roles: [role])  }
+  let(:user){ FactoryBot.build(:user, roles: [role])  }
   context "when is a editor" do
-    let(:role){ FactoryGirl.build(:editor_role)  }
+    let(:role){ FactoryBot.build(:editor_role)  }
     it{ is_expected.to be_able_to(:create, Person.new)  }
     it{ is_expected.to be_able_to(:read, Person.new)  }
     it{ is_expected.not_to be_able_to(:update, Person.new)  }
@@ -39,7 +39,7 @@ RSpec.describe Role do
   end
   
   context "when is a admin" do
-    let(:role){ FactoryGirl.build(:admin_role)  }
+    let(:role){ FactoryBot.build(:admin_role)  }
     it{ is_expected.to be_able_to(:create, Person.new)  }
     it{ is_expected.to be_able_to(:read, Person.new)  }
     it{ is_expected.to be_able_to(:update, Person.new)  }
@@ -49,10 +49,10 @@ end
 
 RSpec.describe Role do
   subject(:ability){ Ability.new(user)  }
-  let(:user){ FactoryGirl.create(:user, roles: [role, role_people])  }
+  let(:user){ FactoryBot.create(:user, roles: [role, role_people])  }
   context "when is a cataloger with people abilities" do
-    let(:role){ FactoryGirl.build(:cataloger_role)  }
-    let(:role_people){ FactoryGirl.build(:person_restricted_role)  }
+    let(:role){ FactoryBot.build(:cataloger_role)  }
+    let(:role_people){ FactoryBot.build(:person_restricted_role)  }
     it{ is_expected.to be_able_to(:create, Person.new)  }
     it{ is_expected.to be_able_to(:read, Person.new)  }
     it{ is_expected.to be_able_to(:update, Person.new)  }

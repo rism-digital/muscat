@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Abilities", :type => :feature, :js => true do 
   describe "Cataloger with restricted person access" do
-    let(:user) { FactoryGirl.create(:person_restricted)  }
-    let(:person) { FactoryGirl.create(:person)  }
+    let(:user) { FactoryBot.create(:person_restricted)  }
+    let(:person) { FactoryBot.create(:person)  }
     before do
       visit user_session_path
       fill_in :user_email, :with => user.email
@@ -13,7 +13,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
     end
     it "Catalogers with people ability should not have all fields writeable" do
       collapsables = page.find_all(:xpath, "//div[@class='tag_group']//a[@title='Add tag']")
-      collapsables.each do |c| 
+      collapsables.each do |c|
         c.click 
       end
       save_screenshot('/tmp/screenshot.jpg', :full => true)

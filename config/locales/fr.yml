@@ -190,14 +190,14 @@ fr:
   create_from_existing: "Créer"
   record_types:
     unspecified: "[type indéterminé]"
-    collection: "Collection"
+    collection: "MUSIC MANUSCRIPT, COLLECTION PARENT RECORD"
     source: "Manuscrit musical"
-    edition_content: "Contenu d'un livre de musique imprimé"
+    edition_content: "PRINTED MUSIC EDITION, ITEM IN COLLECTION"
     libretto_source: "Livret manuscrit"
     libretto_edition_content: "Contenu d'un livret imprimé"
     theoretica_source: "Traité manuscrit"
     theoretica_edition_content: "Contenu d'un traité imprimé"
-    edition: "Musique imprimée"
+    edition: "PRINTED MUSIC EDITION, COLLECTION PARENT RECORD OR INDIVIDUAL ITEM"
 
   #################### MENUS
   menu_home: "Home"

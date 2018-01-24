@@ -57,7 +57,7 @@
        
               <lib dir="./lib" />
     -->
-  <lib dir="./jar-mac/" />
+  <lib dir="./jar/" />
   <dataDir>${solr.data.dir:}</dataDir>
 
 

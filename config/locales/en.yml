@@ -190,14 +190,14 @@ en:
   create_from_existing: "Create"
   record_types:
     unspecified: "[Unknown template]"
-    collection: "Collection"
+    collection: "Music manuscript, collection parent record"
     source: "Music manuscript"
-    edition_content: "Music imprint"
+    edition_content: "Printed music edition, item in collection"
     libretto_source: "Libretto, handwritten"
     libretto_edition_content: "Libretto, printed"
     theoretica_source: "Treatise, handwritten"
     theoretica_edition_content: "Treatise, printed"
-    edition: "Edition*"
+    edition: "Printed music edition, collection parent record or individual item"
         
   #################### MENUS
   menu_home: "Home"
