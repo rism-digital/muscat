@@ -221,6 +221,7 @@
       - "fin"
       - "fre"
       - "frr"
+      - "fry"
       - "gem"
       - "ger"
       - "gle"
@@ -482,6 +483,7 @@
         - "B/I"
         - "B/II"
         - "B/IV"
+        - "B/VI"
         editor_partial: subfield_select
     - - c  
 "518": 

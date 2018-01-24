@@ -2294,6 +2294,12 @@ frr:
     FR: Frison du Nord
     de: Nordfriesisch
     en: North Frisian
+fry: 
+  label: 
+    IT: Dialetto frisone occidentale
+    FR: Frison occidental
+    de: Westfriesisch
+    en: West Frisian
 fre: 
   label: 
     it: Francese
