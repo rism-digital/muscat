@@ -8,7 +8,8 @@ v 3.7.0
 * Fixed senior cataloger can edit own people
 * Various adjustments for secondary literature
 * Added "persian" to language codes
-* Fixed senior cataloguer can edit own person
+* Added new fields for catalogue (250 & 502)
+* Show comments to marc fields on configuration page
 
 v3.6.12
 * Add restricted fields from -devel-rights
