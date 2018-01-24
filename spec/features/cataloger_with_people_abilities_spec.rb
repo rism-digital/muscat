@@ -13,7 +13,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
     end
     it "Catalogers with people ability should not have all fields writeable" do
       collapsables = page.find_all(:xpath, "//div[@class='tag_group']//a[@title='Add tag']")
-      collapsables.each do |c| 
+      collapsables.each do |c|
         c.click 
       end
       save_screenshot('/tmp/screenshot.jpg', :full => true)
