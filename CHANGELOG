@@ -12,6 +12,7 @@ v 3.7.0
 * Show comments to marc fields on configuration page
 
 v3.6.12
+
 * Add restricted fields from -devel-rights
 * #517: update validation fields
 * #527: Add better warning for ungrouped tags
