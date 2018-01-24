@@ -33,12 +33,12 @@
       - collection
       - theoretica_source
   tags:
-    "0": required
-    a: required
+    "0": mandatory
+    #a: required
     m: required, warning
 "245": 
   tags:
-    a: required
+    a: mandatory
 "260": 
   tags:
     c: required
@@ -50,7 +50,8 @@
     a: required
 "594": 
   tags:
-    b: required    
+    a: required    
+    #b: required    
 #"595": 
 #  tags:
 #    a:
@@ -103,9 +104,9 @@
     w: required
 "852": 
   tags:
-    c: required, warning
-    a: required
-    x: required
+    c: required
+    #a: mandatory
+    x: mandatory
 #"856": 
 #  tags:
 #    z:

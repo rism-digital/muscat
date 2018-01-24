@@ -39,6 +39,8 @@ en:
         greater_than: "Greater than"
         less_than: "Less than"
         with_integer: "Filter"
+        from: "Date from"
+        to: "Date to"
     status_tag:
       "yes": "Yes"
       "no": "No"

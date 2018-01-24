@@ -39,6 +39,8 @@ it:
         greater_than: "Maggiore di"
         less_than: "Minore di"
         with_integer: "Filtro"
+        from: "Data da"
+        to: "Data a"
     status_tag:
       "yes": "Sì"
       "no": "No"

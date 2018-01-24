@@ -39,6 +39,8 @@ fr:
         greater_than: "Plus grand que"
         less_than: "Plus petit que"
         with_integer: "Filtrer"
+        from: "Depuis la date"
+        to: "Jusqu'à la date"
     status_tag:
       "yes": "Oui"
       "no": "Non"
