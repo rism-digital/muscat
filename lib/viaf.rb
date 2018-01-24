@@ -59,11 +59,11 @@ module Viaf
         #TODO adopt for other marc classes
         r = query["result"].map{|e| e if e['nametype']=='personal'}.compact
       end
-      ap r
+      #ap r
       provider_doc = ""
       r.each do |record|
         providers.keys.each do |provider|
-          puts provider
+          #puts provider
           if record[provider.downcase]
             provider_id=record[provider.downcase]
           else
