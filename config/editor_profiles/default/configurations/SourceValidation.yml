@@ -64,18 +64,18 @@
       - collection
   tags:
     "0": mandatory
-"651": 
-  tags:
-    "0": required
-    a: required
-"657": 
-  tags:
-    "0": required
-    a: required
-"690": 
-  tags:
-    "0": required
-    a: required
+#"651": 
+#  tags:
+#    "0": required
+#    a: required
+#"657": 
+#  tags:
+#    "0": required
+#    a: required
+#"690": 
+#  tags:
+#    "0": required
+#    a: required
 #    n: required
 #"691": 
 #  tags:
@@ -92,16 +92,16 @@
 #    "0": required
 #    a: required
 #    j: required
-"730": 
-  tags:
-    "0": required
-    a: required
-"740": 
-  tags:
-    a: required
-"773": 
-  tags:
-    w: required
+#"730": 
+#  tags:
+#    "0": required
+#    a: required
+#"740": 
+#  tags:
+#    a: required
+#"773": 
+#  tags:
+#    w: required
 "852": 
   tags:
     c: required
