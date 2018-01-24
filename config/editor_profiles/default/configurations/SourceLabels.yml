@@ -114,6 +114,21 @@ doc_cat_authorities:
     de: Normdaten
     en: Authorities
     it: Voci di autorità
+doc_when_new_record:
+  label: 
+    de: WHEN TO INPUT A NEW RECORD (PRINTED MUSIC)
+    en: When to input a new record (printed music)
+    it: WHEN TO INPUT A NEW RECORD (PRINTED MUSIC)
+doc_scope_printed_music:  
+  label: 
+    de: SCOPE OF PRINTED MUSIC IN RISM
+    en: Scope of printed music in RISM
+    it: SCOPE OF PRINTED MUSIC IN RISM
+doc_standardized_titles_printed_music:  
+  label: 
+    de: STANDARDIZED TITLES FOR PRINTED MUSIC
+    en: Standardized titles for printed music
+    it: STANDARDIZED TITLES FOR PRINTED MUSIC
 
 ################
 
