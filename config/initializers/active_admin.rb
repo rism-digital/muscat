@@ -312,6 +312,10 @@ require 'active_admin/filter_saver/controller'
 # LP - added for forcing kaminari to always include page param (necessary for FilterSaver)
 require "kaminari/helpers/tag"
  
+## RZ This monkey patch enables some filter labels to be translated in the Search Status
+## sidebar.
+require 'active_admin/filter_label'
+
 ActiveAdmin.before_load do |app|
   # Add our Extensions
   ActiveAdmin::BaseController.send :include, ActiveAdmin::FilterSaver::Controller
