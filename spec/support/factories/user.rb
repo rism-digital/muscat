@@ -5,6 +5,7 @@ FactoryBot.define do
     email "admin@example.com"
     password "password"
     password_confirmation "password"
+    workgroups { [association(:workgroup)]  }
   end
 
   factory :admin, :parent => :user do
@@ -13,6 +14,10 @@ FactoryBot.define do
 
   factory :cataloger, :parent => :user do
     roles { [ FactoryBot.create(:cataloger_role) ] }
+  end
+ 
+  factory :cataloger_prints, :parent => :user do
+    roles { [ FactoryBot.create(:cataloger_prints_role) ] }
   end
  
   factory :guest, :parent => :user do
@@ -43,6 +48,10 @@ FactoryBot.define do
 
   factory :cataloger_role, :parent => :role do
     name "cataloger"
+  end
+
+  factory :cataloger_prints_role, :parent => :role do
+    name "cataloger_prints"
   end
 
   factory :editor_role, :parent => :role do
