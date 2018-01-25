@@ -16,7 +16,7 @@ var activeadmin_filter_workaround = function () {
 
 	if ($("#filter_workaround").length == 0) {
 		// no partial
-		console.log("No #filter_workaround div");
+		//console.log("No #filter_workaround div");
 		return;
 	}
 
