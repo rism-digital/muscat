@@ -3,6 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f  }
 
+$original_sunspot_session = Sunspot.session
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -27,3 +28,5 @@ RSpec.configure do |config|
   config.tty = true
   config.formatter = :documentation
 end
+
+
