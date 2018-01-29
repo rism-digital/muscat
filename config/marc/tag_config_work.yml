@@ -1,0 +1,159 @@
+
+:version:
+  :name: tag_config
+  :current: 0.1
+  :authors: ["Chad Thatcher", "Sandra Tuppen", "Laurent Pugin", "Rodolfo Zitellini"]
+
+
+# Works auth data
+
+:model: work
+:tags:
+  "000":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "001":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :zero_padding: "14"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "003":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "005":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "008":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "024":
+    :master: a
+    :indicator: "7#"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "1"
+    - - "2"
+      - :occurrences: "1"
+  "040":
+    :master: a
+    :indicator: "##"
+    :occurrences: "1"
+    :fields:
+    - - a
+      - :occurrences: "1"
+    - - b
+      - :occurrences: "1"
+    - - c
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "?"
+  "100":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Person
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
+    - - m
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - r
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
+  "400":
+    :master: a
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "?"
+    - - e
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
+  "440":
+    :master: a
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - f
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
+    - - l
+      - :occurrences: "?"
+# This is a linked field
+  "500":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Person
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
+    - - "d"
+      - :occurrences: "?"
+    - - "e"
+      - :occurrences: "?"
+  "700":
+    :master: a
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - f
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
+    - - l
+      - :occurrences: "?"

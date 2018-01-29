@@ -1,0 +1,1440 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold&subset=latin);
+
+body {
+	font-family: "Droid Sans", verdana, arial, serif;
+}
+
+/*
+  settings for slider object
+*/
+.dynamic-slider-control {
+	width: 20px;
+	position: relative;
+	margin: auto;
+}
+
+.vertical {
+	height:	80px;
+}
+
+.horizontal {
+	width:	60px;
+}
+
+.dynamic-slider-control input {
+	display:	none;
+}
+
+.dynamic-slider-control .handle {
+	position:			absolute;
+	font-size:			1px;
+	overflow:			hidden;
+}
+
+.dynamic-slider-control.vertical .handle {
+	width:				20px;
+	height:				30px;
+	background-image:	url("../images/sliderDot.png");
+}
+
+.dynamic-slider-control.horizontal .handle {
+	width:				30px;
+	height:				20px;
+	background-image:	url("../images/sliderDot-horizontal.png");
+}
+
+.dynamic-slider-control .line {
+	position:			absolute;
+	font-size:			0.01mm;
+	overflow:			hidden;
+	border:				1px solid rgb(90,97,90);
+	background:			rgb(189,190,189);
+}
+
+.dynamic-slider-control.vertical .line {
+	width:				3px;
+}
+
+.dynamic-slider-control .line div {
+	width:		1px;
+	height:		1px;
+	
+	border:		1px solid;
+	border-color:	rgb(230,230,230) rgb(189,190,189)
+			rgb(189,190,189) rgb(230,230,230);
+}
+
+/*
+  settings for timeplot widget (some are overwritten timeplot css classes)
+*/
+.plotWindow {
+	position: relative;
+	border-bottom: 1px solid #ADADAD;
+	z-index: 1;
+	width: 100%;
+}
+
+.plotContainer {
+	position: absolute;
+	padding: 0px;
+	border: none;
+	top: 12px;
+	left: 0px;
+	z-index: 1;
+	overflow: hidden;
+	width: 100%;
+}
+
+.plotCanvas {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -2;
+}
+
+.timeplot-background {
+    display: none;
+    z-index: -2;
+}
+
+.timeplot-container {
+	position: absolute;
+	left: 16px;
+	padding: 0px;
+	border: none;
+	z-index: 1;
+	top: 0px;
+	overflow: visible;
+}
+
+.timeplot-copyright {
+    visibility: hidden;
+}
+
+.timeplot-timeflag {
+    font-size: 0.8em;
+    font-weight: normal;
+}
+
+.timeplot-valueflag {
+    font-size: 0.8em;
+}
+
+.timeplot-dayflag-pole {
+    display: none;
+    z-index: 999;
+}
+
+.timeplot-dayflag {
+    display: none;
+    border: 1px solid #FF0000;
+    padding: 1px;
+    text-align: center;
+    background-color: #FFCCCC;
+    z-index: 1000;    
+}
+
+.range-box {
+    display: none;
+    background-repeat: repeat;
+    opacity: 0.6;
+filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    z-index: -1;
+}
+
+.popup-click-div {
+    display: none;
+    z-index: 1010;
+    cursor: pointer;    
+}
+
+.left-feather {
+    display: none;
+    z-index: -1;
+}
+
+.right-feather {
+    display: none;
+    z-index: -1;
+}
+
+.plotHandle {
+	position: absolute;
+	visibility: hidden;
+	cursor: pointer;
+    z-index: 1002;
+}
+
+.plotHandleLabel {
+    padding: 2px 5px;
+    font-size: 0.8em;
+}
+
+.plotHandleIcon {
+    height: 43px;
+    width: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+.plotHandleBox {
+	position: absolute;
+	border: solid 1px #d0ba9a; 
+	background-color: #e8cfac;
+	filter: alpha(opacity=40);
+	opacity: 0.4;
+	margin: 0;
+	padding: 0;	
+}
+
+.plotToolbar {
+	position: absolute;
+	visibility: hidden;
+	z-index: 1;
+}
+
+.featherSlider {
+    position: absolute;
+    top: 9px;
+    right: 64px;		
+}
+
+.timeOverview {
+	position: absolute;
+	top: 0px;
+	height: 12px;
+	z-index: 0;
+	visibility: hidden;
+	opacity: 0.5;
+filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	overflow: hidden; 
+	border-bottom: 1px solid rgb(100,100,100);
+}
+
+.plotLabels {
+	position: absolute;
+	overflow: hidden; 
+	top: 0px;
+	left: 0px;
+	height: 12px;
+	z-index: 0;
+}
+
+.plotLabel {
+	position: absolute;
+	font-size: 9px;
+	height: 10px;
+	padding: 1px 2px;
+	border-left: solid 1px rgb(214,214,214);	
+}
+
+.overviewRange {
+	position: absolute;
+	top: 0px;
+	height: 12px;
+	background: white;
+}
+
+.overviewLabel {
+	position: absolute;
+	font-size: 9px;
+	height: 10px;
+	padding: 1px 2px;
+	border-left: solid 1px black;	
+}
+
+.shiftLeft {
+	position: absolute;
+	left: 4px;
+	top: 0px;
+	height: 12px;
+	width: 12px;
+filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	opacity: 0.8;
+	background-image: url(../images/shiftLeft.png);
+	visibility: hidden;
+}	
+
+.shiftLeft:hover {
+	cursor: pointer;
+	background-image: url(../images/shiftLeftOver.png);
+}	
+
+.shiftRight {
+	position: absolute;
+	right: 4px;
+	top: 0px;
+	height: 12px;
+	width: 12px;
+	opacity: 0.8;
+filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    background-image: url(../images/shiftRight.png);
+	visibility: hidden;
+}
+
+.shiftRight:hover {
+	cursor: pointer;
+	background-image: url(../images/shiftRightOver.png);
+}
+
+/*
+  settings for map widget
+*/
+.mapWindow {
+	position: absolute;
+	overflow: hidden;
+	z-index: 2;
+	width: 100%;
+}
+
+.mapContainer {
+	width: 100%;
+}
+
+.mapCanvas {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -2;
+}
+
+.mapsMenu {
+	position: absolute;
+	z-index: 1000;
+}
+
+.mapsMenu dl {
+	margin: 0px;
+	display: block;
+}
+
+.mapsMenu dt {
+  	padding: 2px;
+	display: block;
+  	cursor: pointer;
+}
+
+.mapsMenu dt:hover {
+	background: #C9C9CB;
+}
+
+.selectedMapEntry {
+	color: white;
+	background: #C9C9CB;
+}
+
+.pointClickDiv {
+	position: absolute;
+	visibility: hidden;
+	z-index: 4;
+}
+
+.pointClickDivBackground {
+	width: 100%;
+	height: 100%;
+	z-index: 4;
+	filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+
+.mapInfo {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	padding: 3px;
+}
+
+.tagCloudDiv {
+    position: absolute;
+}
+
+.mapToolbar {
+	position: absolute;
+	visibility: hidden;
+	z-index: 1009;
+	opacity: 0.8;
+filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+}
+
+.tagCloudItem {
+	z-index: 1009;
+	cursor: pointer;
+}
+
+.controlLock {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1008;
+	visibility: hidden; 	
+}
+
+/*
+  sti toolbar settings
+*/
+.toolbarTop {
+	top: 0px;	
+}
+
+.toolbarBottom {
+	bottom: 0px;	
+}
+
+.toolbarLeft {
+	left: 0px;	
+}
+
+.toolbarRight {
+	right: 0px;	
+}
+
+.toolbarLeftLight {
+	background-image: url(../images/bg-left.png);
+	background-repeat: repeat-y;
+	border-right: 1px solid white;
+}
+
+.toolbarRightLight {
+	background-image: url(../images/bg-right.png);
+	background-repeat: repeat-y;
+	border-left: 1px solid white;
+}
+
+/*
+  settings for zoom slider
+*/
+.sliderStyle {
+	position: relative;
+	width: 20px;
+	height: 100px;
+	border:	1px solid rgb(68,68,68);
+	margin: 3px;
+}
+
+.zoomSliderContainer {
+	position: absolute;
+	top: 10px;
+	left: 0px;	
+}
+
+.zoomSliderIn {
+	position: absolute;
+	top: 0px;
+	left: 2px;	
+}
+
+.zoomSliderOut {
+	position: absolute;
+	top: 84px;
+	left: 2px;	
+}
+
+/*
+  settings for widgets integrated toolbars
+*/
+.dragTimeRangeAlt {
+	position: relative;
+	height: 12px;
+    width: 43px;
+	cursor: pointer;
+}
+
+.cancelRangeAlt {
+    position: absolute;
+	height: 16px;
+    width: 16px;
+    background-image: url(../images/cancel.png);
+	cursor: pointer;
+	visibility: hidden;
+}
+
+.widgetHeadline {
+	position: absolute;
+	top: 3px;
+	font-size: 18px;
+	padding: 3px;		
+}
+
+/*
+  settings for widgets popup window
+*/
+.popupDiv {
+	position: absolute;
+	background-color: white;
+	border: 2px solid #666666;
+	padding: 25px;
+	visibility: hidden;
+}
+
+.back {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    top: 2px;
+    left: 5px;
+    background-image: url(../images/back.png);
+    background-repeat: no-repeat;
+    cursor: pointer;
+	display: none;
+}
+
+.next {
+    position: absolute;
+	height: 16px;
+    width: 16px;
+    bottom: 5px;
+    right: 5px;
+    background-image: url(../images/next.png);
+    background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.previous {
+    position: absolute;
+	height: 16px;
+    width: 16px;
+    bottom: 5px;
+    left: 5px;
+    background-image: url(../images/prev.png);
+    background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.popupTriangleDown {
+	position: absolute;
+	height: 18px;
+    width: 31px;
+    background-image: url(../images/popupTriangleDown.png);
+    background-repeat: no-repeat;
+    z-index: 1000;
+}
+
+.popupTriangleUp {
+	position: absolute;
+	height: 18px;
+    width: 31px;
+    background-image: url(../images/popupTriangleUp.png);
+    background-repeat: no-repeat;
+    z-index: 1000;
+}
+
+.popupTriangleLeft {
+	position: absolute;
+	height: 31px;
+    width: 18px;
+    background-image: url(../images/popupTriangleLeft.png);
+    background-repeat: no-repeat;
+    z-index: 1000;
+}
+
+.popupTriangleRight {
+	position: absolute;
+	height: 31px;
+    width: 18px;
+    background-image: url(../images/popupTriangleRight.png);
+    background-repeat: no-repeat;
+    z-index: 1000;
+}
+
+.popupResultsLabel {
+	position: absolute;
+	bottom: 5px;
+	font-size: 60%;
+	color:#999999;
+}
+
+.popupDescription {
+	font-size: 60%;
+}
+
+.popupDiv ul {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+.popupDiv ol li:hover {
+	text-decoration:underline;
+}
+
+.popupDiv li {
+	padding: 5px;
+	cursor: pointer;
+}
+
+.popupContent {
+	font-size: 60%;
+	font-weight: bold;
+}
+
+.animation {
+	position: absolute;
+	width: 18px;
+	height: 18px;
+    cursor: pointer;
+	visibility: hidden;
+}
+
+.osmLink {
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+	font-size: 11px;
+	color: blue;
+	visibility: hidden;
+	z-index: 1100;
+}
+
+.osmLink a {
+	color: blue;
+}
+
+.osmLink a:visited {
+	color: blue;
+}
+
+.absoluteToolbar {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1002;
+}
+
+.ddbToolbar {
+	width: 100%;
+	background-color: #878380;
+	position: relative;
+	opacity: 0.85;		
+	filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	border-spacing: 0px;
+	z-index: 10000;
+}
+
+.ddbToolbar table {
+	border-spacing: 0px;
+}
+
+.ddbToolbar td {
+	color: white;
+	font-size: 13px;
+	font-weight: bold;
+	border: none;
+	text-align: center;
+}
+
+.ddbTooltip {
+	position: absolute;
+	width: 20px;	
+	height: 20px;
+	background-image: url(../images/tooltip.png);
+	top: 5px;
+	right: 5px;
+	cursor: help;
+}
+
+.dropdown {
+	display: inline-block;
+	height: 25px;
+	max-height: 25px;
+	white-space: nowrap;
+}
+
+.dropdownLeft {
+	display: table-cell;
+	width: 5px;	
+	height: 25px;
+	background-image: url(../images/dropdownLeft.png);
+}
+
+.dropdownSelection {
+	text-align: center;
+	height: 25px;
+	color: #6f6b68;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 13px;
+	display: table-cell;	
+	vertical-align: middle;
+	background-image: url(../images/dropdownMiddle.png);
+	white-space: nowrap;
+}
+
+.dropdownButtonEnabled {
+	display: table-cell;
+	width: 25px;	
+	height: 25px;
+	background-image: url(../images/dropdownEnabled1.png);
+	cursor: pointer;
+}
+
+.dropdownButtonDisabled {
+	display: table-cell;
+	width: 25px;	
+	height: 25px;
+	background-image: url(../images/dropdownDisabled1.png);
+	cursor: pointer;
+}
+
+.dropdownMenu {
+	display: inline-block;
+	font-size: 13px;
+	background-color: white;
+	opacity: 0.85;
+	filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	max-height: 200px;
+	overflow: auto;
+	position: absolute;
+	z-index: 3;
+}
+
+.dropdownMenu dl {
+	margin: 0px;
+	display: block;
+	white-space: nowrap;
+}
+
+.dropdownMenu dt {
+	padding: 2px 10px;
+	display: block;
+  	cursor: pointer;
+  	text-align: center;
+	color: #6f6b68;
+	font-weight: normal;
+	white-space: nowrap;
+}
+
+.dropdownMenu dt:hover {
+	background: #DFDFDD;
+	white-space: nowrap;
+}
+
+.dropdownSelectedEntry {
+	color: #6f6b68;
+	font-style: italic;
+	font-weight: normal;
+	display: table-cell;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.dropdownUnselectedEntry {
+	color: #6f6b68;
+	font-style: normal;
+	font-weight: normal;
+	display: table-cell;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.ddbElementsCount {
+	font-family: Calibri,Arial,sans-serif;
+	color: white;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 13px;
+}
+
+/*
+  settings for slider object
+*/
+.dynamic-slider-control {
+	width: 20px;
+	height: 18px;
+	position: relative;
+}
+
+.vertical {
+	height:	123px;
+}
+
+.horizontal {
+	width:	123px;
+}
+
+.dynamic-slider-control input {
+	display:	none;
+}
+
+.dynamic-slider-control .handle {
+	position:			absolute;
+	font-size:			1px;
+	overflow:			hidden;
+}
+
+.dynamic-slider-control.vertical .handle {
+	width:				20px;
+	height:				12px;
+	cursor: pointer;
+	background-image:	url("../images/zoom_slider-vertical.png");
+}
+
+.dynamic-slider-control.horizontal .handle {
+	width:				12px;
+	height:				20px;
+	cursor: pointer;
+	background-image:	url("../images/zoom_slider-horizontal.png");
+}
+
+.dynamic-slider-control .line {
+	position:			absolute;
+	font-size:			0.01mm;
+	overflow:			hidden;
+	border:				none;
+	background:			rgb(189,190,189);
+}
+
+.dynamic-slider-control.vertical .line {
+	width:				0px;
+}
+
+.dynamic-slider-control .line div {
+	width:		0px;
+	height:		0px;	
+	border:		none;
+}
+
+/*
+  settings for zoom slider
+*/
+.sliderStyle-horizontal {
+	position: relative;
+	width: 167px;
+	height: 21px;
+	border:	1px solid #bebdbc;
+	margin: 3px;
+	background: white;
+}
+
+.sliderStyle-vertical {
+	position: absolute;
+	width: 27px;
+	height: 173px;
+/*	border:	1px solid #bebdbc;*/
+/*	margin: 3px;*/
+/*	background: white;*/
+	background-image: url("../images/ZoomBgWithIncrements.png");
+	z-index: 1001;
+}
+
+.zoomSliderContainer-horizontal {
+	position: absolute;
+	top: 2px;
+	left: 22px;
+	height: 16px;	
+	background-image: url("../images/zoom_grid-horizontal.png");
+}
+
+.zoomSliderContainer-vertical {
+	position: absolute;
+	top: 24px;
+	width: 27px;
+/*	background-image: url("../images/zoom_grid-vertical.png");*/
+}
+
+.zoomSliderIn-horizontal {
+	position: absolute;
+	top: 1px;
+	left: 149px;
+	cursor: pointer;
+}
+
+.zoomSliderOut-horizontal {
+	position: absolute;
+	top: 1px;
+	left: 2px;
+	cursor: pointer;
+}
+
+.zoomSliderIn-vertical {
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	cursor: pointer;
+}
+
+.zoomSliderOut-vertical {
+	position: absolute;
+	bottom: 5px;
+	left: 4px;
+	cursor: pointer;
+}
+
+.ddbPopupDiv {
+	position: absolute;
+	background-color: white;
+	padding: 15px;
+	visibility: visible;
+	z-index: 1000;
+	cursor: default;
+}
+
+.ddbPopupInput {
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+.ddbPopupInput tr {
+	font-size: 13px;
+}
+
+.ddbPopupInput th {
+	font-size: 13px;
+}
+
+.ddbPopupInput td {
+	font-size: 13px;
+}
+
+.viewResults {
+	width: 121px;
+	height: 18px;
+	background-image: url("../images/Viewresultsbutton.png");
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.popupRight {
+	position: absolute;
+	width: 10px;
+	right: -4px;
+	top: 8px;
+	background-image: url("../images/right.png");
+	background-repeat: repeat-y;
+	z-index: 3;
+}
+
+.popupBottom {
+	position: absolute;
+	height: 10px;
+	bottom: -4px;
+	left: 16px;
+	background-image: url("../images/bottom.png");
+	background-repeat: repeat-x;
+	z-index: 3;
+}
+
+.popupBottomRight {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	bottom: -4px;
+	right: -4px;
+	background-image: url("../images/bottom_right.png");
+	z-index: 4;
+}
+
+.popupTopRight {
+	position: absolute;
+	width: 10px;
+	height: 8px;
+	top: 0px;
+	right: -4px;
+	background-image: url("../images/top_right.png");
+	z-index: 4;
+}
+
+.popupPeak {
+	position: absolute;
+	width: 26px;
+	height: 29px;
+	bottom: -14px;
+	left: -10px;
+	background-image: url("../images/peak.png");
+	z-index: 4;
+}
+
+.popupDDBResults {
+	font-weight: bold;
+	font-size: 12px;
+	color: #3e3a37;
+	cursor: default;	
+	padding-bottom: 10px;
+}
+
+.ddbPopupCancel {
+    position: absolute;
+	height: 16px;
+    width: 16px;
+    top: 2px;
+    right: 2px;
+    background-image: url(../images/cancel.png);
+	cursor: pointer;	
+	z-index: 5;
+}
+
+.ddbPopupLabel {
+	display: inline-block;
+    	font-size: 12px;
+	color: #56524f;
+	cursor: pointer;
+}
+
+.zoomPopup {
+    height: 20px;
+    width: 20px;
+    margin-left: 5px;
+    background-image: url(../images/zoom.png);
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+.descriptions {	
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-image: url(../images/descriptions.png);
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.mapLegend {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	opacity: 0.7;
+	filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	background-color: #EEE;
+	font-size: 12px;
+}
+
+.mapHome {
+	position: absolute;
+	cursor: pointer;
+	z-index: 1001;
+	background-image: url("../images/ResetMap.png");
+	height: 27px;
+	width: 27px;
+}
+
+.geoLocationOn {
+	position: absolute;
+	cursor: pointer;
+	z-index: 1001;
+	background-image: url("../images/GeoLocation.png");
+	height: 27px;
+	width: 27px;
+}
+
+.geoLocationOff {
+	position: absolute;
+	cursor: pointer;
+	z-index: 1001;
+	background-image: url("../images/GeoLocation2.png");
+	height: 27px;
+	width: 27px;
+}
+
+.aggregation {
+	display: inline-block;
+	cursor: pointer;
+	background-image: url("../images/aggregation.png");
+	height: 30px;
+	width: 31px;
+}
+
+.noAggregation {
+	display: inline-block;
+	cursor: pointer;
+	background-image: url("../images/no_aggregation.png");
+	height: 30px;
+	width: 31px;
+}
+
+.showBbox {
+	display: inline-block;
+	cursor: pointer;
+	background-image: url("../images/bbox_icon.png");
+	height: 30px;
+	width: 31px;
+}
+
+.hideBbox {
+	display: inline-block;
+	cursor: pointer;
+	background-image: url("../images/hidebbox_icon.png");
+	height: 30px;
+	width: 31px;
+}
+
+.nextItem {
+	display: none;
+	cursor: pointer;
+	background-image: url("../images/next.png");
+	height: 7px;
+	width: 9px;
+	margin-left: 3px;
+}
+
+.prevItem {
+	display: none;
+	cursor: pointer;
+	background-image: url("../images/prev.png");
+	height: 7px;
+	width: 9px;
+	margin-right: 3px;
+}
+
+.singleTable {
+	width: 100%;
+}
+
+.smallButton {
+	display: inline-block;
+	cursor: pointer;
+	height: 27px;
+	width: 27px;
+}
+
+.paginationButton {
+	display: table-cell;
+	cursor: pointer;
+	height: 26px;
+	width: 27px;
+}
+
+.firstPageEnabled {
+	background-image: url("../images/firstPageEnabled.png");
+}
+
+.firstPageDisabled {
+	background-image: url("../images/firstPageDisabled.png");
+}
+
+.nextPageEnabled {
+	background-image: url("../images/nextPageEnabled.png");
+}
+
+.nextPageDisabled {
+	background-image: url("../images/nextPageDisabled.png");
+}
+
+.previousPageEnabled {
+	background-image: url("../images/previousPageEnabled.png");
+}
+
+.previousPageDisabled {
+	background-image: url("../images/previousPageDisabled.png");
+}
+
+.lastPageEnabled {
+	background-image: url("../images/lastPageEnabled.png");
+}
+
+.lastPageDisabled {
+	background-image: url("../images/lastPageDisabled.png");
+}
+
+.pageInfo {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 0px 10px;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.resultsInfo {
+	display: table-cell;
+	vertical-align: middle;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.resultsDropdown {
+	display: table-cell;
+	padding-left: 10px;
+}
+
+.tableEntry {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+	padding-left: 100px;
+	border-bottom: 1px solid #878380;
+	text-align: left;
+}
+
+.tableTabs {
+	text-align: left;
+	opacity: 0.85;		
+	filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	border-spacing: 0px;
+	height:47px;
+	overflow:auto;
+}
+
+.tableTab {
+	display: inline-block;
+	padding: 5px 20px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 13px;
+	margin-right: 10px;
+	border-top: 1px solid #878380;
+	border-left: 1px solid #878380;
+	border-right: 1px solid #878380;
+}
+
+.mapControl {
+	display: inline-block;
+	width: 31px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.squareDisabled {
+	background-image: url("../images/square-disabled.png");
+}
+
+.squareActivated {
+	background-image: url("../images/square-activated.png");
+}
+
+.squareDeactivated {
+	background-image: url("../images/square-deactivated.png");
+}
+
+.circleDisabled {
+	background-image: url("../images/circle-disabled.png");
+}
+
+.circleActivated {
+	background-image: url("../images/circle-activated.png");
+}
+
+.circleDeactivated {
+	background-image: url("../images/circle-deactivated.png");
+}
+
+.polygonDisabled {
+	background-image: url("../images/polygon-disabled.png");
+}
+
+.polygonActivated {
+	background-image: url("../images/polygon-activated.png");
+}
+
+.polygonDeactivated {
+	background-image: url("../images/polygon-deactivated.png");
+}
+
+.countryDisabled {
+	background-image: url("../images/country-disabled.png");
+}
+
+.countryActivated {
+	background-image: url("../images/country-activated.png");
+}
+
+.countryDeactivated {
+	background-image: url("../images/country-deactivated.png");
+}
+
+.linearPlotActivated {
+	background-image: url("../images/lin-activated.png");
+}
+
+.linearPlotDeactivated {
+	background-image: url("../images/lin-deactivated.png");
+}
+
+.logarithmicPlotActivated {
+	background-image: url("../images/log-activated.png");
+}
+
+.logarithmicPlotDeactivated {
+	background-image: url("../images/log-deactivated.png");
+}
+
+.playEnabled {
+	background-image: url("../images/play-enabled.png");
+}
+
+.playDisabled {
+	background-image: url("../images/play-disabled.png");
+}
+
+.pauseEnabled {
+	background-image: url("../images/pause-enabled.png");
+}
+
+.pauseDisabled {
+	background-image: url("../images/pause-disabled.png");
+}
+
+.lockDeactivated {
+	background-image: url("../images/lock-deactivated.png");
+}
+
+.lockActivated {
+	background-image: url("../images/lock-activated.png");
+}
+
+.dragControl {
+	display: inline-block;
+	height: 19px;
+	width: 19px;
+	cursor: pointer;
+}
+
+.dragDisabled {
+	background-image: url("../images/drag-disabled.png");
+}
+
+.dragActivated {
+	background-image: url("../images/drag-activated.png");
+}
+
+.dragDeactivated {
+	background-image: url("../images/drag-deactivated.png");
+}
+
+.selectAll {
+	background-image: url("../images/selectAll.png");
+}
+
+.invertSelection {
+	background-image: url("../images/invertSelection.png");
+}
+
+.deselectAll {
+	background-image: url("../images/deselectAll.png");
+}
+
+.showAll {
+	background-image: url("../images/showAll.png");
+}
+
+.showSelected {
+	background-image: url("../images/showSelected.png");
+}
+
+.createNewRefined {
+	background-image: url("../images/createNewRefined.png");
+}
+
+.selectPage {
+	background-image: url("../images/selectPage.png");
+}
+
+.deselectPage {
+	background-image: url("../images/deselectPage.png");
+}
+
+.resultList {
+	z-index: 2;
+	width: 100%;
+	background-color: #878380;
+	opacity: 0.85;		
+	filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	border-spacing: 0px;
+}
+
+.resultList table {
+	border-spacing: 0px;
+}
+
+.resultList th {
+	font-family: Calibri,Arial,sans-serif;
+	color: white;
+	font-size: 13px;
+	font-weight: bold;
+	border: none;
+}
+
+.resultList td {
+	font-family: Calibri,Arial,sans-serif;
+	font-size: 13px;
+	padding: 10px;
+	border-bottom: 1px solid #878380;
+	text-align: left;
+}
+
+.sortDescActive {
+	background-image: url("../images/descActive.png");
+}
+
+.sortDescDeactive {
+	background-image: url("../images/descDeactive.png");
+}
+
+.sortAscActive {
+	background-image: url("../images/ascActive.png");
+}
+
+.sortAscDeactive {
+	background-image: url("../images/ascDeactive.png");
+}
+
+.sort {
+	height: 11px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.headerLabel {
+	vertical-align: middle;
+	padding: 0px 10px;
+}
+
+.smallButton {
+	display: inline-block;
+	height: 27px;
+	width: 27px;
+	cursor: pointer;
+}
+
+.filter {
+	background-image: url("../images/filter.png");
+}
+
+.filterDisabled {
+	background-image: url("../images/filterDisabled.png");
+}
+
+.filterInverse {
+	background-image: url("../images/filterInverse.png");
+}
+
+.filterInverseDisabled {
+	background-image: url("../images/filterInverseDisabled.png");
+}
+
+.filterCancel {
+	background-image: url("../images/filterCancel.png");
+}
+
+.filterCancelDisabled {
+	background-image: url("../images/filterCancelDisabled.png");
+}
+
+.removeDataset {
+	background-image: url("../images/filterCancel.png");
+}
+
+.exportDataset {
+	background-image: url("../images/exportDataset.png");
+}
+
+.externalLink {
+	display: inline-block;
+	height: 10px;
+	width: 10px;
+	cursor: pointer;
+	padding-left: 5px;
+	padding-right: 5px;
+	background: url("../images/externalLink.png") top no-repeat;
+}

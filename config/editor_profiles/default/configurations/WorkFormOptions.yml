@@ -1,0 +1,82 @@
+--- !map:Settings 
+"000": 
+  tag: tag_no_subfield
+  tag_params: 
+    editor_only: true
+  tag_header: none
+"001": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+    no_delete: true
+  tag_header: none
+"024": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - "2"
+      - values: 
+        - "BNE"
+        - "BNF"
+        - "DNB"
+        - "ICCU"
+        - "ISNI"
+        - "LC"
+        - "NLP"
+        - "NKC"
+        - "SWNL"
+        - "VIAF"
+        - "WKP"
+        default: "VIAF"
+        editor_partial: subfield_select
+      - cols: 2
+    columns: 4
+"040": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    - - c
+      - cols: 2
+    - - d
+      - cols: 2
+    - - b
+      - cols: 2
+    columns: 4
+"100":
+  new_window: people
+  new_window_field: full_name_equals
+  layout: 
+    fields: 
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - d
+      - autocomplete_extra: life_dates
+    - - m
+    - - n
+    - - r
+    - - t
+    columns: 4
+"400": 
+  layout: 
+    fields: 
+    - - a
+    - - d
+    - - e
+    - - t
+    columns: 4
+"500": 
+  allow_new: true
+  new_window: people
+  layout: 
+    fields: 
+    - - "a"
+      - type: person
+        editor_partial: subfield_secondary
+      - cols: 4
+    - - d
+    - - e
+    columns: 4

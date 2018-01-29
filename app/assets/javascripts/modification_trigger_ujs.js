@@ -13,7 +13,7 @@
 		}
 		
 		if (jQuery.fn.on !== undefined) {
-			return jQuery(document).on('focus', this.selector, handler);
+			return jQuery(document).on('focus', "[data-trigger]", handler);
 		} else {
 			return this.live('focus', handler);
 		}

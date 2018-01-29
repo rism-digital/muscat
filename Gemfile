@@ -23,7 +23,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~> 6.0'
 gem 'js_cookie_rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -37,16 +37,16 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development do
-  gem 'web-console', '~> 2.0'
+#group :development do
+#  gem 'web-console', '~> 2.0'
 	#gem 'rb-readline'
-end
+#end
 
 # For generating both digest and no digest assets
 gem 'non-stupid-digest-assets'
 
 # Papertrail for old version support
-gem 'paper_trail'
+gem 'paper_trail', '~> 5.0'
 
 # for aligning marc
 gem 'needleman_wunsch_aligner', "1.0.4"
@@ -66,7 +66,7 @@ gem 'htmlentities'
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', '1.0.0.pre2' #, git: 'https://github.com/rism-ch/activeadmin'#, ref: 'a2cd960'
+gem 'activeadmin', '~> 1.2' #, git: 'https://github.com/rism-ch/activeadmin'#, ref: 'a2cd960'
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
@@ -78,15 +78,15 @@ gem "rails3-jquery-autocomplete", git: 'https://github.com/rism-ch/rails3-jquery
 gem "cancan"
 gem "rolify"
 group :development do
-    gem 'webrick', '~> 1.3.1'
+    gem 'puma'
 end
 
-gem 'blacklight', "5.14"
+gem 'blacklight', "~> 5.14"
 gem "blacklight_advanced_search"
 gem 'bootstrap-sass', "3.3.4.1"
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
-gem "blacklight_range_limit"
+gem "blacklight_range_limit", git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3"
 gem 'devise', "~> 3.5.6"
 gem 'devise-i18n'
 
@@ -106,7 +106,7 @@ gem 'pry', :group => :development
 
 # Background tasks
 # https://github.com/collectiveidea/delayed_job/issues/776
-gem 'delayed_job', "4.1.1", git: 'https://github.com/rism-ch/delayed_job'
+gem 'delayed_job',  git: 'https://github.com/rism-ch/delayed_job'
 gem 'delayed_job_active_record'
 gem 'progress_job', git: "https://github.com/rism-ch/progress_job"
 
@@ -120,7 +120,7 @@ gem 'colorize'
 
 gem "rspec"
 gem 'rspec-rails', '~> 3.5'
-gem 'factory_girl_rails'
+gem 'factory_bot_rails'
 gem 'poltergeist', "1.11.0"
 gem 'database_cleaner'
 

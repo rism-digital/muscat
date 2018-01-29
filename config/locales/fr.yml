@@ -39,6 +39,8 @@ fr:
         greater_than: "Plus grand que"
         less_than: "Plus petit que"
         with_integer: "Filtrer"
+        from: "Depuis la date"
+        to: "Jusqu'à la date"
     status_tag:
       "yes": "Oui"
       "no": "Non"
@@ -74,10 +76,11 @@ fr:
         other: "%{count} %{plural_model} supprimés"
       selection_toggle_explanation: "(Inverser la sélection)"
       link: "Créer un"
-      action_label: "%{title} les éléments sélectionnés"
+      action_label: "%{title}"
       labels:
         destroy: "Supprimer"
-        folder: "Créer un dossier avec"
+        folder: "Créer un dossier avec les éléments sélectionnés"
+        add_to_folder: "Ajouter les éléments à un dossier existant"
 
     comments:
       resource_type: "Type de ressource"
@@ -189,14 +192,14 @@ fr:
   create_from_existing: "Créer"
   record_types:
     unspecified: "[type indéterminé]"
-    collection: "Collection"
+    collection: "Musique manuscrit, collection parent"
     source: "Manuscrit musical"
-    edition_content: "Contenu d'un livre de musique imprimé"
+    edition_content: "Edition imprimé, dans une collection"
     libretto_source: "Livret manuscrit"
     libretto_edition_content: "Contenu d'un livret imprimé"
     theoretica_source: "Traité manuscrit"
     theoretica_edition_content: "Contenu d'un traité imprimé"
-    edition: "Musique imprimée"
+    edition: "Edition imprimé, collection parent ou item individuel"
 
   #################### MENUS
   menu_home: "Home"
@@ -229,6 +232,7 @@ fr:
   menu_cataloging: "Catalogage"
   menu_jobs: "Tâches"
   menu_holdings: "Exemplaires"
+  menu_works: "Ouvres"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"
@@ -252,7 +256,6 @@ fr:
   queue: "Queue"
   failed_at: "Echec à"
   run_at: "Lancé à"
-  created_at: "Créé à"
   progress: "Progrès"
   failed: "Echec"
   waiting: "En attente"
@@ -261,10 +264,17 @@ fr:
   lib_siglum: "Sigle de bibliothèque"
   holding_records: "Copie"
   new_holding: "Ajouter une copie"
+  new_holding_page: "Copie non enregistré"
   new_digital_object: "Attacher une nouvelle image"
   record_actions: "Actions"
   record_status: "Status"
   record_owner: "Propriétaire"
+  record_audit: "Origine du dossier"
+  full_level: "Notice complète"
+  #full_level: "Notice complète, matériel examiné"
+  abbreviated_level: "Notice abrégée, matériel examiné"
+  retro_level: "Retrocataloging"
+  imported_level: "Notice importée"  
   link_type: "Type de lien"
   linked_object: "Objet lié"
   links: "Liens"
@@ -356,6 +366,7 @@ fr:
   filter_creation_date: "Date de création"
   filter_date: "Date"
   filter_date_from: "Depuis la date"
+  filter_date_of_publication: "DATE OF PUBLICATION"
   filter_date_to: "Jusqu'à la date"
   filter_description: "Description"
   filter_digital_objects: "Digital Objects"
@@ -400,8 +411,10 @@ fr:
   filter_person_100d_deathdate: "Date de décès"
   filter_phone: "Téléphone"
   filter_place: "Endroit"
+  filter_place_of_publication: "PLACE OF PUBLICATION"
   filter_provenance: "Provenance"
-  filter_record_type: "Type"
+  filter_record_type: "Template Type"
+  filter_record_type_short: "Type"
   filter_source_type: "Type de source"
   filter_publisher: "éditeur"
   filter_revue_title: "Titre de la revue"
@@ -416,11 +429,13 @@ fr:
   filter_source_type: "Type de source"
   filter_std_title: "Titre uniforme"
   filter_subject: "Sujet"
+  filter_subsequent_entries: "Entrées suivants"
   filter_term: "Terme"
   filter_thematic_opus: "Cat. thématique / No d'opus"
   filter_title: "Titre"
   filter_titles: "Titres"
   filter_title_on_ms: "Titre diplomatique"
+  filter_title_short: "SHORT TITLE"
   filter_topic: "Sujet"
   filter_sub_topic: "Sujet secondaire"
   filter_url: "Adresse Internet"
@@ -430,7 +445,7 @@ fr:
   filter_image: "Image"
   filter_file_name: "Nom de fichier"
   filter_file_size: "Taille de fichier"
-  filter_content_type: "Type"
+  filter_content_type: "Type de notice"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
   filter_wf_stage: "Statut"
@@ -472,7 +487,8 @@ fr:
   unknown_tags: "Ce titre contient des champs non reconnus."
   ungrouped_tags: "Ce titre contient des champs non groupés"
   cannot_update_source: "Vous n'êtes pas autorisé à traiter ce type de source"
-  cannot_create_source: "Vous n'êtes pas autorisé à créer ce type de source"
+  cannot_create_source: "Vous n'êtes pas autorisé à créer ce type de source" 
+  validate_name_uniqness: "Record non enregistré: le titre abrégé existe déjà ('%{term}')."
 
   #
   entry:
@@ -606,6 +622,16 @@ fr:
   validation:
     missing_message: "Une valeur dans ce champ est nécessaire"
     warning_message: "Une valeur devrait être présente pour ce champ"
+
+  incipit_search:
+    incipit_search: "Recherche par incipit"
+    query_type: "Type de recherche:"
+    exact_pitch: "Note exact (similarité précise)"
+    interval: "Interval"
+    refined_pitch: "Contour mélodique fin"
+    gross_pitch: "Contour mélodique grossier (similarité approximative)"
+    anchor: "Au début uniquement"
+    erase: "Effacer une note"
 
   date:
     month_names:

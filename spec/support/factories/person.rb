@@ -1,8 +1,9 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :person do
     full_name "Westmorland, John Fane of"
     life_dates "1784-1859"
-    wf_stage 1
+    wf_stage 0
+    wf_notes "BAWAHH :-)"
     marc_source <<STRING
 =001  91008161
 =024  7\#$a45033010$2VIAF

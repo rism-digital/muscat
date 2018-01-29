@@ -171,22 +171,29 @@ class MarcSource < Marc
     date_from = nil
     date_to = nil
 
-    if node = first_occurance("008")
-      unless node.content.empty?
-        language = LANGUAGES[marc_helper_get_008_language(node.content)] || "Unknown"
+    ## Language is not used anumore
+    #if node = first_occurance("008")
+    #  unless node.content.empty?
+    #    language = LANGUAGES[marc_helper_get_008_language(node.content)] || "Unknown"
+    #  end
+    #end
+
+    out = []
+    each_by_tag("260") do |marctag|
+      marctag.each_by_tag("c") do |marcsubtag|
+        out.concat(date_to_array(marcsubtag.content)) if marcsubtag && marcsubtag.content
       end
     end
     
-    if node = first_occurance("033", "a")
-      if node && node.content
-        date_from = marc_get_range(node.content, 0, 4) || nil
-        date_to = marc_get_range(node.content, 4, 4) || nil
+    out.sort!.uniq!
+    if out.count > 0
+      if out.count > 1
+        date_from = out.first
+        date_to = out.last
+      else
+        date_from = date_to = out[0]
       end
     end
-
-    # Force it to nil if 0, this used to work in the past
-    date_from = nil if date_from.to_i == 0
-    date_to = nil if date_to.to_i == 0
     
     return [language.truncate(16), date_from, date_to]
 
@@ -477,7 +484,12 @@ class MarcSource < Marc
 
     # First drop all internal remarks 
     by_tags("599").each {|t| t.destroy_yourself}
-    
+ 
+    entry = "#{parent_object.wf_audit rescue '[without indication]'}"
+    n599 = MarcNode.new(@model, "599", "", nil)
+    n599.add_at(MarcNode.new(@model, "b", entry, nil), 0)
+    @root.add_at(n599, get_insert_position("599"))
+   
     # Then add some if we include versions
     if versions
       versions.each do |v|
@@ -502,9 +514,9 @@ class MarcSource < Marc
         end
       end
     end
-		
+
   end
-  
+    
   def set_record_type(rt)
     @record_type = rt
   end

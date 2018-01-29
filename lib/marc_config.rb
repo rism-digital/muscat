@@ -135,6 +135,23 @@ class MarcConfig
     return @foreign_tag_groups.rindex(tag)
   end
 
+  def get_remote_tags_for(link_model)
+    remote_tags = []
+    get_foreign_tag_groups.each do |foreign_tag|
+      each_subtag(foreign_tag) do |subtag|
+        tag_letter = subtag[0]
+        if is_foreign?(foreign_tag, tag_letter)
+          # Note: in the configuration only ID has the Foreign class
+          # The others use ^0
+          next if get_foreign_class(foreign_tag, tag_letter) != link_model
+          remote_tags << foreign_tag if !remote_tags.include? foreign_tag
+        end
+      end
+    end
+    
+    remote_tags
+  end
+
   def has_links_to(tag)
 		return false if !@tag_config.include? tag
 	  @tag_config[tag][:fields].each do |st|

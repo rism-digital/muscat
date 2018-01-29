@@ -149,10 +149,11 @@ body.active_admin {
   color: #222222;
   background: #e6e6e6;
   font-weight: bold;
-
 }
 .ui-tabs-nav {
   overflow: hidden;
 }
-
-
+.holding_actions {
+  float: right; 
+  margin-right: 8px; 
+}

@@ -1,5 +1,10 @@
 <tr class="doc-subfield">
+  <% comment = @editor_config.get_comment(tag, subtag[0] ) %>
+  <% unless comment.blank? %>
+    <th>$<%= "#{subtag[0]} [#{comment}]" %></th>
+  <% else %>
     <th>$<%= subtag[0] %></th>
+  <% end %>
 </tr>
     <tr>
         <td>

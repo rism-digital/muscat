@@ -25,8 +25,17 @@ class User < ActiveRecord::Base
     text :name
   end
 
-
   def can_edit?(source)
+    if source.is_a? Holding
+      lib = source.institutions.take
+      self.workgroups.each do |workgroup|
+        #binding.pry
+        if workgroup.get_institutions.include?(lib)
+          return true
+        end
+      end
+      return false
+    end
     if source.child_sources.count > 0
       libs=[]
       source.child_sources.each do |so| 
@@ -52,6 +61,16 @@ class User < ActiveRecord::Base
      end
    end
    true
+  end
+
+  def can_edit_edition?(source)
+    source.holdings.each do |holding|
+      return true if self.can_edit?(holding)
+    end
+    if source.source_id
+      return true if self.can_edit_edition?(Source.find(source.source_id))
+    end
+    return false
   end
 
   def get_workgroups

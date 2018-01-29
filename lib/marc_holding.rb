@@ -13,5 +13,23 @@ class MarcHolding < Marc
     end
     title
   end
+
+  def description
+    res = {}
+    begin
+      first_occurance("852").each do |t|
+        if %w(a c q).include?(t.tag)
+          res[t.tag]=t.content
+        end
+      end
+    rescue
+      return "HOLDING WITHOUT SIGLUM"
+    end
+    begin
+      return "#{res['a']}#{" " + res['c'] if res['c']}#{" [" + res['q'] +"]" if res['q']}"
+    rescue 
+      return "HOLDING WITHOUT SIGLUM"
+    end
+  end
   
 end

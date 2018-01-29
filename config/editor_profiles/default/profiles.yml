@@ -114,6 +114,7 @@
   :filter:
     show_all: false
     show: true
+  :validation: "CatalogueValidation"
 ## Holding Record
 - :id: DefaultHolding
   :name: Holding
@@ -139,6 +140,31 @@
   - HoldingBasicFormOptions
   :layout: 
   - HoldingLayoutShow
+  :filter:
+    show_all: false
+    show: true
+# Configuration for work
+- :id: DefaultWork
+  :name: Work
+  :model: work
+  :labels: 
+  - WorkLabels
+  :options: 
+  - WorkFormOptions
+  :layout: 
+  - WorkLayoutDefault
+  :filter:
+    default: true 
+###
+- :id: ShowWork
+  :name: Work
+  :model: work
+  :labels: 
+  - WorkLabels
+  :options: 
+  - WorkFormOptions
+  :layout: 
+  - WorkLayoutShow
   :filter:
     show_all: false
     show: true

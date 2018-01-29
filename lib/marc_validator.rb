@@ -1,5 +1,6 @@
 class MarcValidator
-  
+include ApplicationHelper
+
 	DEBUG = false
 	
   def initialize(object, warnings = true)
@@ -20,8 +21,8 @@ class MarcValidator
   end
 
   def validate
+
     @rules.each do |tag, tag_rules|
-      
       #mandatory =  tag_rules["tags"].has_value? "mandatory"
       # Mandatory tags are tags that need to be there entirely
       # In the editor leaving a tag emply will remove it
@@ -59,7 +60,6 @@ class MarcValidator
         end
         
         marc_tags.each do |marc_tag|
-          
           marc_subtag = marc_tag.fetch_first_by_tag(subtag)
           #ap marc_subtag
           
@@ -71,6 +71,8 @@ class MarcValidator
                 add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
                 puts "Missing #{tag} #{subtag}, #{rule}" if DEBUG
               end
+            elsif rule == "uniq"
+              binding.pry
             else
               puts "Unknown rule #{rule}" if rule != "mandatory"
             end
@@ -145,6 +147,42 @@ class MarcValidator
     end
   end
   
+  def validate_dates
+    
+    @object.marc.each_by_tag("260") do |marctag|
+      marctag.each_by_tag("c") do |marcsubtag|
+        next if !marcsubtag || !marcsubtag.content
+        dates = []
+        dates = date_to_array(marcsubtag.content, false)
+        
+        next if dates.count == 0
+        ap dates
+        dates.sort!.uniq!
+
+        max = min = dates[0].to_i
+        
+        if dates.count > 1
+          max = dates.last.to_i
+          min = dates.first.to_i
+        end
+        
+        # Make a warning for a year n the future
+        # I can be legitimate, like a forthcoming publication
+        if max > Date.today.year
+          add_error("260", "c", "Date in the future: #{max} (#{marcsubtag.content})")
+        end
+        
+        # Make a warning if it is before the 11th century
+        # we have sources in the 11th century
+        if min < 1000
+          add_error("260", "c", "Date too far in the past: #{min} (#{marcsubtag.content})")
+        end
+        
+      end
+    end
+  end
+
+
   def validate_unknown_tags
     @unknown_tags = []
     #begin
