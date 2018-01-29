@@ -5,6 +5,14 @@
     read_only: true
     no_delete: true
   tag_header: none
+"026": 
+  layout: 
+    fields: 
+    - - a
+    - - b
+    - - c
+    - - d
+    - - e
 "028": 
   layout: 
     fields: 
@@ -108,6 +116,14 @@
       - "10t"
       - "11t"
       - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
     clef_groups:
       01_modern_clefs:
       - C-1
@@ -201,9 +217,11 @@
       - "eng"
       - "enm"
       - "est"
+      - "fas"
       - "fin"
       - "fre"
       - "frr"
+      - "fry"
       - "gem"
       - "ger"
       - "gle"
@@ -350,6 +368,14 @@
       - "10t"
       - "11t"
       - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
 "245": 
   layout: 
     fields: 
@@ -368,6 +394,7 @@
     fields: 
     - - a
       - growfield: true
+    - - b
     - - c
 "340": 
   layout: 
@@ -384,6 +411,18 @@
         - "Transparency"
         - "Typescript"
         - "Typography"
+        - "Woodcut"
+        editor_partial: subfield_select
+    - - m
+      - values: 
+        - "2°"
+        - "4°"
+        - "8°"
+        - "12°"
+        - "16°"
+        - "18°"
+        - "20°"
+        - "24°"
         editor_partial: subfield_select
 "383": 
   layout: 
@@ -444,6 +483,7 @@
         - "B/I"
         - "B/II"
         - "B/IV"
+        - "B/VI"
         editor_partial: subfield_select
     - - c  
 "518": 
@@ -463,6 +503,16 @@
     - - a
     - - d
     - - e
+"563": 
+  new_window: sources
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - u
+      - type: source
+        editor_partial: subfield_secondary
+        only_new_window: true
 "590": 
   layout: 
     fields: 
@@ -509,6 +559,7 @@
     - - a
     - - u
 "596":
+  new_window: sources
   layout: 
     fields: 
     - - a
@@ -526,6 +577,10 @@
         - "B/XVII"
         editor_partial: subfield_select
     - - b
+    - - c
+      - type: source
+        editor_partial: subfield_secondary
+        only_new_window: true
 "597": 
   layout: 
     fields: 
@@ -546,6 +601,13 @@
     - - l
     - - m
     - - n
+"599": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - b
+      - hidden: true 
 "650":
   new_window: standard_terms
   new_window_field: term_equals
@@ -672,9 +734,8 @@
       - prf
       - prt
       - edt
-      - asn
       - oth
-      - evt
+      - evp
 "730":
   new_window: standard_titles
   new_window_field: title_equals
@@ -760,6 +821,14 @@
       - "10t"
       - "11t"
       - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
 "740":
   layout: 
     fields: 
@@ -825,5 +894,14 @@
       - values: 
         - "IIIF"
         editor_partial: subfield_select
+"930": 
+  new_window: works
+  new_window_field: title_equals
+  layout: 
+    fields: 
+    - - a
+      - type: work
+        editor_partial: subfield_secondary
+        allow_new: true
 ui: 
   hide_marc_identifiers: true

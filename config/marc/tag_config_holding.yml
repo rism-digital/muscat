@@ -28,7 +28,39 @@
     :fields:
     - - ""
       - :no_browse: true
+  "300":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "*"
+    - - b
+      - :occurrences: "*"
+    - - c
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "500":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+        :browse_helper: application_helper_link_http
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
   "506":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "518":
     :master: a
     :indicator: "##"
     :occurrences: "*"
@@ -55,6 +87,17 @@
     :fields:
     - - a
       - :occurrences: "?"
+  "563":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+ 
   "591":
     :master: a
     :indicator: "##"
@@ -62,6 +105,105 @@
     :fields:
     - - a
       - :occurrences: "?"
+  "592":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "651":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Place
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - "2"
+      - :occurrences: "?"
+        :no_browse: true
+        # value must be added during exportation
+  "691":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Catalogue
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - n
+      - :occurrences: "?"
+ 
+  "700":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Person
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
+    - - j
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "*"
+        :browse_inline: true
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "710":
+    :master: "0"
+    :indicator: "2#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - b
+      - :occurrences: "*"
+    - - c
+      - :occurrences: "*"
+    - - g
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "*"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+ 
   "852":
     :master: "x"
     :indicator: "##"

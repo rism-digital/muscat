@@ -17,7 +17,6 @@ class EditorValidation
     if File.exists?(file)
       settings.squeeze(Settings.new(IO.read(file)))
     end
-
     return settings
   end
     

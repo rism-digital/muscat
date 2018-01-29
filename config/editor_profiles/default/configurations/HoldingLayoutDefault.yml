@@ -1,17 +1,39 @@
 --- !map:Settings 
 group_order: 
-- main
-- administration
+- edit_library
+- edit_names
+- edit_material
+- edit_references
+- edit_administration
 groups: 
-  administration: 
+  edit_administration: 
     all_tags: 
     - "001"
-  main: 
+  edit_library: 
     all_tags: 
     - "852"
-    - '506'
-    - '541'
-    - '561'
     - '591'
+    - '506'
+    - '561'
+    - '541'
     - '856'
+  edit_names:
+    all_tags: 
+    - '700'
+    - '710'
+
+  edit_material:
+    all_tags: 
+    - '300'
+    - '592'
+    - '563'
+
+  edit_references:
+    all_tags: 
+    - '500'
+    - '691'
+    - '651'
+    - '518'
+
+
 

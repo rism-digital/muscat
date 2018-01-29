@@ -15,6 +15,7 @@
 class Institution < ActiveRecord::Base
   include ForeignLinks
   include MarcIndex
+  include AuthorityMerge
   resourcify
   
   # class variables for storing the user name and the event from the controller
@@ -77,7 +78,8 @@ class Institution < ActiveRecord::Base
   alias_attribute :id_for_fulltext, :id
 
   enum wf_stage: [ :inprogress, :published, :deleted ]
-  enum wf_audit: [ :basic, :minimal, :full ]
+  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  
 
   def after_initialize
     @last_user_save = nil
@@ -275,6 +277,8 @@ class Institution < ActiveRecord::Base
     "#{name}#{sigla}"
   end
  
+  ransacker :"110g_facet", proc{ |v| } do |parent| parent.table[:id] end
+  
   def get_deposita
     #FIXME Search should not test for siglum; intermediate hack to speed up institutions show
     if self.siglum

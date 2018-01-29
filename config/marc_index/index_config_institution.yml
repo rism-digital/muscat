@@ -13,6 +13,11 @@ fields:
     "110a":
     "110c":
     "110g":
+    "110g_facet":
+      :type: text
+      :from_tag: "110"
+      :from_subtag: "g"
+      :as: "110g_facet_sm"
     "410a":
     "371a":
     "371u":

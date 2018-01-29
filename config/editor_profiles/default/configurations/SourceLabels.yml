@@ -102,8 +102,8 @@ doc_cataloguing:
 doc_cat_collections: 
   label: 
     de: Erfassung von Sammlungen
-    en: Cataloging collection and convoluta
-    it: Catalogo delle collezioni e convoluta
+    en: Cataloging collections
+    it: Catalogo delle raccolte
 doc_cat_templates: 
   label: 
     de: Templates
@@ -113,7 +113,22 @@ doc_cat_authorities:
   label: 
     de: Normdaten
     en: Authorities
-    it: Autorità
+    it: Voci di autorità
+doc_when_new_record:
+  label: 
+    de: Wann soll einen neuen Eintrag erstellt werden (Musikdrucke)
+    en: When to input a new record (printed music)
+    it: Quando inserire una nuova scheda (edizioni musicali a stampa)
+doc_scope_printed_music:  
+  label: 
+    de: Umfang der Dokumentation von Musikdrucke in RISM
+    en: Scope of printed music in RISM
+    it: Copertura delle edizioni musicali a stampa in RISM
+doc_standardized_titles_printed_music:  
+  label: 
+    de: Einordnungstitel für Musikdrucke
+    en: Standardized titles for printed music
+    it: Titolo uniforme
 
 ################
 
@@ -146,7 +161,7 @@ doc_library:
   label: 
     de: Besitzerangaben
     en: Library information
-    it: Informazione sulla libreria
+    it: Informazioni sulla biblioteca
 doc_provenance: 
   label: 
     de: Provenienz
@@ -186,7 +201,7 @@ doc_added_entries:
   label: 
     de: Nebeneintragungen
     en: Added entry name
-    it: Nome di entità aggiunto
+    it: Nomi aggiuntivi
 doc_performance: 
   label: 
     de: "Aufführungen"
@@ -236,7 +251,7 @@ doc_numbers:
   label:
     de: "Nummern und Codes"
     en: "Numbers and code fields"
-    it: "Campi di numero e codici"
+    it: "Campi numerici e codici"
 doc_name_variants:
   label:
     de: "Namensvarianten"
@@ -294,16 +309,58 @@ doc_references:
     fr: No. RISM
     de: RISM Dokumentnummer
     en: RISM ID No.
-028: 
+"026": 
   label: 
-    it: Numero dell'editore
-    fr: "Numéro d'éditeur"
-    de: Verlagsnummer
-    en: Publisher Number
+    it: Impronta
+    fr: Indentificateur d'empreintes
+    de: Fingerprint-Erkennung 
+    en: Fingerprint Identifier
   fields: 
     a: 
       label: 
-        it: Numero di lastra
+        it: Primo/Secondo gruppo
+        fr: Premier/deuxième groupe de caractères
+        de: Erste und zweite Zeichengruppe
+        en: First/second group
+      comment: "NEW IN 2018"
+    b: 
+      label: 
+        it: Terzo/Quarto gruppo
+        fr: Troisième/quatrième groupe de caractères
+        de: Dritte und vierte Zeichengruppe
+        en: Third/fourth group
+      comment: "NEW IN 2018"
+    c: 
+      label: 
+        it: Data
+        fr: Date
+        de: Datum
+        en: Date
+      comment: "NEW IN 2018"
+    d: 
+      label: 
+        it: Numero del volume/parte
+        fr: Nombre de volumes ou de pièces
+        de: Nummer des Bandes oder Teils
+        en: Number of volume/part
+      comment: "NEW IN 2018"
+    e: 
+      label: 
+        it: Impronta non analizzata
+        fr: Empreinte non analysée
+        de: Nicht analysierter Fingerprint
+        en: Unparsed fingerprint
+      comment: "NEW IN 2018"
+028: 
+  label: 
+    it: Numero della lastra
+    fr: "Numéro de plaque"
+    de: Plattennummer
+    en: Plate Number
+  fields: 
+    a: 
+      label: 
+        it: Numero della lastra
         fr: "Numéro de plaque"
         de: Plattennummer
         en: Plate number
@@ -745,6 +802,13 @@ doc_references:
         fr: "Technique d'impression"
         de: Drucktechnik
         en: Printing technique
+    m: 
+      label: 
+        it: BOOK FORMAT
+        fr: BOOK FORMAT
+        de: BOOK FORMAT
+        en: Book format
+      comment: "NEW IN 2018"
     "8": 
       label: 
         it: Gruppo di materiale
@@ -968,8 +1032,13 @@ doc_references:
         fr: Reliure
         de: Einband
         en: Binding note
-      edit_label: 
-        en: ""
+    u: 
+      label: 
+        it: RELATED RECORD
+        fr: RELATED RECORD
+        de: RELATED RECORD
+        en: RELATED RECORD
+      comment: "NEW IN 2018"
 "590": 
   label: 
     it: Parti staccate
@@ -1108,6 +1177,14 @@ doc_references:
         en: RISM series number
       edit_label: 
       en: ""
+    c: 
+      label: 
+        it: REFERENCE RECORD ID
+        fr: REFERENCE RECORD ID
+        de: REFERENCE RECORD ID
+        en: REFERENCE RECORD ID
+      edit_label: 
+      comment: "NEW IN 2018"
 "597": 
   label: 
     it: Dati editoriali originali
@@ -1286,6 +1363,15 @@ doc_references:
         en: Local notes field
       edit_label: 
         en: ""
+    b: 
+      label: 
+        it: RECORD AUDIT
+        fr: RECORD AUDIT
+        de: RECORD AUDIT
+        en: RECORD AUDIT
+      edit_label: 
+        en: ""
+      comment: "NEW IN 2018; filled out automatically by wf_stage"
 "650": 
   label: 
     it: Parola chiave
@@ -1644,9 +1730,9 @@ doc_references:
     q: 
       label: 
         it: Materiale conservato
-        fr: Parties préservées
+        fr: Matériaux préservées
         de: Erhaltenes Material
-        en: Preserved Parts
+        en: Material held
     u: 
       label: 
         it: URI
@@ -1684,7 +1770,23 @@ doc_references:
         fr: Type de lien
         de: Linktyp
         en: Link type
-        
+"930": 
+  label: 
+    it: Composizione
+    fr: Oeuvre
+    de: Werktitel
+    en: Work
+  fields: 
+    a: 
+      label: 
+        it: Composizione
+        de: Werktitel
+        fr: Oeuvre
+        en: Work
+      edit_label: 
+        en: ""
+      comment: "NEW IN 2018; experimental stage"
+       
 ################
 
 show_admin: 
@@ -1728,7 +1830,7 @@ show_material:
     it: Descrizione del materiale
     fr: "Description du matériel"
     de: Materialbeschreibung
-    en: Material description     
+    en: Material description
 show_references: 
   label: 
     it: Bibliografia
@@ -1756,7 +1858,7 @@ show_terms:
         
 ################
         
-edit_administration: 
+edit_administration:
   label: 
     it: Amministrazione
     fr: Administration
@@ -1798,6 +1900,12 @@ edit_references:
     fr: "Références et notes"
     de: Literatur und Fussnoten
     en: References and notes
+edit_works: 
+  label: 
+    it: Composizione
+    fr: Oeuvre
+    de: Werk
+    en: Work
 
 unmatched: 
   label: 
@@ -1810,7 +1918,7 @@ ungrouped:
   label: 
     it: Campi non raggruppati
     fr: "Champs non rgroupés"
-    de: UNGROUPED FIELDS
+    de: Nicht zugeteilte Felder
     en: Ungrouped fields
 
 ################
@@ -1832,7 +1940,7 @@ asn:
     it: Altro nome
     fr: Autre nom
     de: Weiterer Name
-    en: Other
+    en: Associated name
 aut: 
   label: 
     it: Autore
@@ -2006,7 +2114,7 @@ oth:
     it: Altra funzione
     fr: Autre function
     de: Sonstige Funktion
-    en: Other function
+    en: Other
 otm: 
   label: 
     it: Organizzatore
@@ -2080,13 +2188,13 @@ voc:
     fr: "Vérifié"
     de: Gesichert
     en: Verified
-"Ascertained":   
+"Ascertained":
   label:
     it: Accertato
     fr: "Authentifié"
     de: Ermittelt
     en: Ascertained
-"Alleged":   
+"Alleged":
   label:
     it: Presunto
     fr: "Présumé"
@@ -2183,6 +2291,12 @@ est:
     FR: Estonien
     de: Estnisch
     en: Estonian
+fas:
+  label:
+    IT: PERSIAN
+    FR: PERSIAN
+    de: Persisch
+    en: Persian
 fin: 
   label: 
     IT: Finlandese
@@ -2195,6 +2309,12 @@ frr:
     FR: Frison du Nord
     de: Nordfriesisch
     en: North Frisian
+fry: 
+  label: 
+    IT: Dialetto frisone occidentale
+    FR: Frison occidental
+    de: Westfriesisch
+    en: West Frisian
 fre: 
   label: 
     it: Francese
@@ -2817,6 +2937,54 @@ g|b:
     fr: "Mode: 12t – Hypoionian"
     de: "Mode: 12t – Hypoionian"
     en: "Mode: 12t – Hypoionian"
+1byz:
+  label:
+    it: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+    fr: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+    de: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+    en: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+2byz:
+  label:
+    it: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+    fr: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+    de: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+    en: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+3byz:
+  label:
+    it: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+    fr: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+    de: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+    en: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+4byz:
+  label: 
+    it: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+    fr: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+    de: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+    en: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+5byz:
+  label: 
+    it: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+    fr: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+    de: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+    en: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+6byz:
+  label: 
+    it: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+    fr: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+    de: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+    en: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+7byz:
+  label: 
+    it: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+    fr: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+    de: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+    en: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+8byz:
+  label: 
+    it: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
+    fr: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
+    de: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
+    en: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
 #Clefs (031)
 01_modern_clefs:
   label:
@@ -3142,7 +3310,7 @@ in_678:
 in_670:
   label:
     en: "Literature"
-    it: "Letteratura"
+    it: "Bibliografia"
     de: "Literatur"
 in_680:
   label:
@@ -3187,7 +3355,7 @@ in_003:
 in_005:
   label:
     en: "Date and time of last transaction"
-    it: "Date ed ora dell'ultima transazione"
+    it: "Data ed ora dell'ultima transazione"
     de: "Zeitpunkt der letzten Transaktion"
 in_008:
   label:
@@ -3223,7 +3391,7 @@ doc_in_control:
 pe_100:
   label:
     en: "Heading-Personal name"
-    it: "Intestazione-nome di persona"
+    it: "Nome di persona"
     de: "Personenname"
 pe_042:
   label:
@@ -3258,7 +3426,7 @@ pe_500:
 pe_510:
   label:
     en: "Associated institution"
-    it: "Istitutione associate"
+    it: "Istitutione associata"
     de: "Zugehörige Körperschaften"
 pe_550:
   label:
@@ -3278,12 +3446,12 @@ pe_667:
 pe_670:
   label:
     en: "Source data found"
-    it: "Dati originali trovati"
+    it: "Fonte dei dati"
     de: "SOURCE DATA FOUND"
 pe_678:
   label:
     en: "Additional biographical information"
-    it: "Informazioni bibliografiche addizionali"
+    it: "Informazioni bibliografiche aggiuntive"
     de: "zusätzliche biographische Informationen"
 pe_680:
   label:
@@ -3303,7 +3471,7 @@ pe_040:
 pe_main_entry_fields:
   label:
     de: "Haupteintragungen"
-    it: "Campi primcipali"
+    it: "Campi principali"
     en: "Main entry fields"
 pe_numbers:
   label:
@@ -3339,22 +3507,22 @@ doc_places:
 li_100:
   label:
     en: "Author / Editor"
-    it: "Autore / Editore"
+    it: "Autore / curatore"
     de: "Autor / Herausgeber"
 li_700:
   label:
     en: "Additional personal name"
-    it: "Nomi di persona addizionali"
+    it: "Persona"
     de: "Zusätzliche Personen"
 li_245:
   label:
     en: "Title of item"
-    it: "Titolo della voce"
+    it: "Titolo"
     de: "Titel"
 li_260:
   label:
     en: "Imprint"
-    it: "Firma"
+    it: "Dati editoriali"
     de: "IMPRINT"
 li_300:
   label:
@@ -3364,7 +3532,7 @@ li_300:
 li_337:
   label:
     en: "Media type"
-    it: "Tipo di media"
+    it: "Mezzo fisico"
     de: "Medientyp"
 li_210:
   label:
@@ -3399,18 +3567,18 @@ li_044:
 li_710:
   label:
     en: "Additional institution"
-    it: "Istituzione addizionale"
+    it: "Istituzione aggiuntiva"
     de: "Zusätzliche Körperschaften"
 li_760:
   label:
     en: "Item part of"
-    it: "Voce parte di"
+    it: "Fa parte di"
     de: "ITEM PART OF"
 li_650:
   label:
     en: "Subject heading"
-    it: "Intestazione del soggetto"
-    de: "SUBJECT HEADING"
+    it: "Parola chiave"
+    de: "Schlagworteintragung"
 li_651:
   label:
     en: "Related place"
@@ -3419,12 +3587,12 @@ li_651:
 li_780:
   label:
     en: "Preceding entry"
-    it: "Entità precedente"
+    it: "Titolo precedente"
     de: "Ersteintrag"
 li_785:
   label:
     en: "Succeeding entry"
-    it: "Entità successiva"
+    it: "Titolo successivo"
     de: "Folgeeintrag"
 li_500:
   label:
@@ -3440,11 +3608,11 @@ li_856:
   label:
     en: "External resource"
     it: "Risorsa esterna"
-    de: "EXTERNAL RESOURCE"
+    de: "Elektronische Lokalisierung und Zugriff"
 li_520:
   label:
     en: "Contents note"
-    it: "Nota al contenuto"
+    it: "Indicazione di contenuto"
     de: "CONTENTS NOTE"
 li_000:
   label:
@@ -3455,11 +3623,11 @@ li_001:
   label:
     en: "RISM ID Number"
     it: "Numero RISM"
-    de: "RISM ID NUMBER"
+    de: "Zusammenfassende Beschreibung"
 li_003:
   label:
     en: "Control number identifier"
-    it: "Identificativo del numero di controllo"
+    it: "Identificatore del numero di controllo"
     de: "CONTROL NUMBER IDENTIFIER"
 li_005:
   label:
@@ -3474,7 +3642,7 @@ li_main_entry_fields:
 li_subject:
   label:
     en: "Subject access fields"
-    it: "Campi di accesso al soggetto"
+    it: "Campi delle parole chiave"
     de: "SUBJECT ACCESS FIELDS"
 li_note:
   label:
@@ -3489,12 +3657,12 @@ li_control:
 li_lit:
   label:
     en: "Secondary literature"
-    it: "Letteratura secondaria"
+    it: "Bibliografia di riferimento"
     de: "Sekundärliteratur"
 doc_titles_and_text:
   label:
     en: "Titles / text incipits"  
-    it: "Titoli / Incipit testuali"  
+    it: "Titoli / incipit testuali"  
     de: "Titel und  Texte"  
 aid_terms:
   label:
@@ -3504,7 +3672,7 @@ aid_terms:
 aid_watermarks:
   label:
     en: "Standard watermarks"
-    it: "Filigrana standard"
+    it: "Descrizione standard di filigrane"
     de: "Wasserzeichen"
 aid_general:
   label:
@@ -3524,27 +3692,27 @@ aid_eccl:
 aid_keys:
   label:
     en: "Keys"
-    it: "Tasti"
+    it: "Tonalità"
     de: "Tonarten"
 aid_language:
   label:
     en: "Language codes"
-    it: "Codice lingua"
+    it: "Codici lingue"
     de: "Sprachcodes"
 doc_other:
   label:
     en: "Other help"
-    it: "OTHER HELP"
+    it: "Altri aiuti"
     de: "Weitere Hilfen"
 aid_titles:
   label:
     en: "Standardized titles - Subject headings"
-    it: "Titoli standard - Intestazione del soggetto"
+    it: "Titoli uniformi – Parole chiave"
     de: "STANDARDIZED TITLES - SUBJECT HEADINGS"
 aid_texts:
   label:
     en: "Standard texts of sacred works"
-    it: "Testi standard"
+    it: "Testi standard di composizioni sacre"
     de: "Liturgische Texte"
 aid_lit:
   label:
@@ -3554,12 +3722,12 @@ aid_lit:
 aid_figured:
   label:
     en: "Figured bass in scores and/or other parts"
-    it: "Basso figurato nella partitura e/o altre parti"
+    it: "Basso cifrato in partitura e/o in altre parti"
     de: "Generalbass"
 aid_transpose:
   label:
     en: "Help for transposing instruments"
-    it: "Aiuto agli strumenti traspositori"
+    it: "Tabella degli strumenti traspositori"
     de: "Hilfe zu transponierenden Instrumenten"
 aid_opera:
   label:

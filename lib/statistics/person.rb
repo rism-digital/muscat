@@ -4,9 +4,13 @@ module Statistics
     def self.libraries(people)
       res = ActiveSupport::OrderedHash.new
       people.each do |person|
-        s = Sunspot.search(::Source) do
-          with(:composer_order, person.full_name)
-          facet(:lib_siglum_order)
+        begin
+          s = Sunspot.search(::Source) do
+            with(:composer_order, person.full_name)
+            facet(:lib_siglum_order)
+          end
+        rescue
+          return res
         end
         line = ActiveSupport::OrderedHash.new
         s.facet(:lib_siglum_order).rows[0..4].each do |f|

@@ -45,7 +45,6 @@ ActiveAdmin.register User do
     #end
 
     column :active do |user|
-      user.active? ? status_tag( "yes", :ok  ) : status_tag( "no"  )
       user.active?
     end
     actions

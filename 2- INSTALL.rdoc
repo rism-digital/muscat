@@ -11,6 +11,9 @@ The following other libraries and programs are needed
 * MySQL > 5.0
 * Git
 * Passenger for Apache 2
+* rails
+* ruby-bundler
+* libmysqlclient-dev
 
 On a Debian or Ubuntu system all these packages are available via apt-get. No special configuration is needed
 
@@ -64,6 +67,7 @@ Default (development) startup:
 
 For startup in production mode:
 
+ cd bin
  ./bundle exec rake RAILS_ENV=production assets:precompile
  ./bundle exec rake RAILS_ENV=production sunspot:solr:start
  ./rails s -e production

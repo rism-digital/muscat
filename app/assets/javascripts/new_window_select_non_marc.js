@@ -85,11 +85,11 @@ function nonMarcNewWindowIsSelect() {
 			}
 		};
 		
-		if (jQuery.fn.on !== undefined) {
-			return jQuery(document).on('mousedown', this.selector, handler);
-		} else {
-			return this.live('mousedown', handler);
-		}
+		//if (jQuery.fn.on !== undefined) {
+			return jQuery(document).on('mousedown', "#new_window_select_nomarc", handler);
+		//} else {
+		//	return this.live('mousedown', handler);
+		//}
 	};
 
 	jQuery.NewWindowSelectNonMarc = function (e) {

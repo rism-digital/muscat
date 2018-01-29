@@ -39,6 +39,8 @@ en:
         greater_than: "Greater than"
         less_than: "Less than"
         with_integer: "Filter"
+        from: "Date from"
+        to: "Date to"
     status_tag:
       "yes": "Yes"
       "no": "No"
@@ -66,7 +68,7 @@ en:
     dropdown_actions:
       button_label: "Actions"
     batch_actions:
-      button_label: "Batch Actions"
+      button_label: "Batch actions"
       default_confirmation: "Are you sure you want to do this?"
       delete_confirmation: "Are you sure you want to delete these %{plural_model}?"
       succesfully_destroyed:
@@ -74,10 +76,11 @@ en:
         other: "Successfully destroyed %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"
       link: "Create one"
-      action_label: "%{title} Selected"
+      action_label: "%{title}"
       labels:
         destroy: "Delete"
-        folder: "Create Folder with"
+        folder: "Create folder with items"
+        add_to_folder: "Add items to existing folder"
 
     comments:
       resource_type: "Resource Type"
@@ -189,14 +192,14 @@ en:
   create_from_existing: "Create"
   record_types:
     unspecified: "[Unknown template]"
-    collection: "Collection"
+    collection: "Music manuscript, collection parent record"
     source: "Music manuscript"
-    edition_content: "Music imprint"
+    edition_content: "Printed music edition, item in collection"
     libretto_source: "Libretto, handwritten"
     libretto_edition_content: "Libretto, printed"
     theoretica_source: "Treatise, handwritten"
     theoretica_edition_content: "Treatise, printed"
-    edition: "Edition*"
+    edition: "Printed music edition, collection parent record or individual item"
         
   #################### MENUS
   menu_home: "Home"
@@ -229,6 +232,7 @@ en:
   menu_cataloging: "Cataloguing"
   menu_jobs: "Jobs"
   menu_holdings: "Holdings"
+  menu_works: "Works"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
@@ -244,7 +248,7 @@ en:
   sections: "Sections"
   edit: "Edit"
   search_sources: "Search Sources"
-  created_at: "Creation date"
+  created_at: "Created on"
   updated_at: "Last modification"
   status: "Status"
   progress_stage: "Stage"
@@ -252,7 +256,6 @@ en:
   queue: "Queue"
   failed_at: "Failed At"
   run_at: "Run At"
-  created_at: "Created At"
   progress: "Progress"
   failed: "Failed"
   waiting: "Waiting"
@@ -261,10 +264,17 @@ en:
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
   new_holding: "Add holdings"
+  new_holding_page: "New holdings information"
   new_digital_object: "Attach a new image"
   record_actions: "Record Actions"
   record_status: "Record Status"
   record_owner: "Record Owner"
+  record_audit: "Record Origin"
+  full_level: "Full record"
+  #full_level: "Full record, material examined"
+  abbreviated_level: "Brief record, material examined"
+  retro_level: "Retrocataloging"
+  imported_level: "Imported record"
   link_type: "Linked object type"
   linked_object: "Linked Object"
   links: "Links"
@@ -295,8 +305,8 @@ en:
   publish: "Publish"
   unpublish: "Unpublish"
   select: "Select"
-  create_folder: "Add to a new folder"
-  append_folder: "Add to an existing folder"
+  create_folder: "Add all to a new folder"
+  append_folder: "Add all to an existing folder"
   add_source: "Link Source"
   add_person: "Link Person"
   
@@ -357,6 +367,7 @@ en:
   filter_creation_date: "Creation date"
   filter_date: "Date"
   filter_date_from: "Date from"
+  filter_date_of_publication: "Date of publication"
   filter_date_to: "Date to"
   filter_description: "Description"
   filter_digital_objects: "Digital Objects"
@@ -401,8 +412,10 @@ en:
   filter_person_100d_deathdate: "Year of Death"
   filter_phone: "Phone"
   filter_place: "Place"
+  filter_place_of_publication: "Place of publication"
   filter_provenance: "Provenance"
-  filter_record_type: "Type"
+  filter_record_type: "Template Type"
+  filter_record_type_short: "Type"
   filter_source_type: "Source Type"
   filter_publisher: "Publisher"
   filter_revue_title: "Revue title"
@@ -417,11 +430,13 @@ en:
   filter_source_type: "Source Type"
   filter_std_title: "Standardized title"
   filter_subject: "Subject"
+  filter_subsequent_entries: "Subsequent Entries"
   filter_term: "Term"
   filter_thematic_opus: "Thematic cat. / Opus no."
   filter_title: "Title"
   filter_titles: "Titles"
   filter_title_on_ms: "Title on source"
+  filter_title_short: "Short title"
   filter_topic: "Topic"
   filter_sub_topic: "Subtopic"
   filter_url: "Internet address"
@@ -474,6 +489,7 @@ en:
   ungrouped_tags: "There are ungrouped fields in this record"
   cannot_update_source: "You are not authorized to edit this type of source"
   cannot_create_source: "You are not authorized to create this type of source"
+  validate_name_uniqness: "Record not saved: Same short title '%{term}' already exists."
   
   #
   entry:
@@ -607,7 +623,17 @@ en:
   validation:
     missing_message: "A value in this field is mandatory"
     warning_message: "A value for this field should be provided"
-   
+    
+  incipit_search:
+    incipit_search: "Incipit Search"
+    query_type: "Query Type:"
+    exact_pitch: "Exact Pitch (Exact Match)"
+    interval: "Interval"
+    refined_pitch: "Refined Pitch Contour"
+    gross_pitch: "Gross Pitch Contour (Fuzziest match)"
+    anchor: "Search only beginning"
+    erase: "Erase one note"
+    
   # date:
   # Empty lines for matching line numbers with other translation files  
   #
@@ -632,6 +658,7 @@ en:
   #
   #
 
+
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
 
@@ -652,7 +679,7 @@ en:
     "0": "UNK"
     "1": "COL"
     "2": "MSR"
-    "3": "MEC"
+    "3": "SUB"
     "4": "LSR"
     "5": "LEC"
     "6": "TSR"

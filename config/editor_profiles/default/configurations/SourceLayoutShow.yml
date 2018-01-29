@@ -105,10 +105,12 @@ groups:
     all_tags: 
     - "650"
     - "041"
+    - "026"
     - "700"
     - "710"
     - "651"
     all_tag_templates: 
+      "026": marc_show/show_fingerprint
       "700": marc_show/show_person
       "710": marc_show/show_institution
       "752": marc_show/show_place

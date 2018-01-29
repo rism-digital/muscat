@@ -1,8 +1,105 @@
 # -*- encoding : utf-8 -*-
 #
 class CatalogController < ApplicationController  
+  include Blacklight::Catalog
+  
+  DEFAULT_FACET_LIMIT = 20
   
   before_action :redirect_legacy_values, :only => :show
+  
+  def facet_list_limit
+  	if defined? @default_limit
+      @default_limit
+    else
+      DEFAULT_FACET_LIMIT + 1
+    end
+  end
+
+  def make_geoterm
+    out = []
+    noinfo_sources = 0
+    noinfo_libraries = 0
+    total = 0
+  
+    @pagination.items.each do |item|
+      total += item[:hits]
+      lib = Institution.find_by_siglum(item[:value])
+      if !lib
+        noinfo_sources += item[:hits]
+        noinfo_libraries +=1
+        next
+      end
+      
+      marc = lib.marc
+      marc.load_source false
+      lat = marc.first_occurance("034", "f")
+      lon = marc.first_occurance("034", "d")
+      
+      lat = (lat && lat.content) ? lat.content : 0
+      lon = (lon && lon.content) ? lon.content : 0
+      
+      # If the info is not there, skip it
+      if lat == 0 || lon == 0
+        noinfo_sources += item[:hits]
+        noinfo_libraries +=1
+        next
+      end
+      
+      out << {
+        name: item[:value],
+        weight: item[:hits],
+        lon: lon,
+        lat: lat,
+        description: lib.name,
+        place: lib.place
+      }
+    end
+    
+    {info: {noinfo_libraries: noinfo_libraries, noinfo_sources: noinfo_sources, total: total, unique_sources: @response[:response]["numFound"]},
+     data: out
+    }
+  end
+
+  def geosearch
+    #if params.include? :map
+      @default_limit = 100000
+      #else
+    #  @default_limit = DEFAULT_FACET_LIMIT
+    #end
+    #facet
+    
+    @facet = blacklight_config.facet_fields[params[:id]]
+    @response = get_facet_field_response(@facet.key, params)
+    @display_facet = @response.aggregations[@facet.key]
+
+    @pagination = facet_paginator(@facet, @display_facet)
+
+    respond_to do |format|
+      format.json { render json: make_geoterm }
+    end
+    
+    @default_limit = DEFAULT_FACET_LIMIT
+  end
+
+  
+  def render_search_results_as_json_disable
+    out = []
+    @document_list.each do |item|
+      
+      latlon = item[:location_lls]
+      lat, lon = latlon.split(",")
+
+      out << {
+        id: item[:id],
+        description: item[:lib_siglum_ss],
+        name: item[:std_title_texts].first,
+        #weight: item[:hits],
+        lon: lon,
+        lat: lat
+      }
+    end
+    out
+  end
   
   def redirect_legacy_values
     # Rewrite old IDS with five leading zeros
@@ -35,15 +132,13 @@ class CatalogController < ApplicationController
     )
   end
   
-  include Blacklight::Catalog
-
   configure_blacklight do |config|
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = { 
       :qt => 'search',
       :"q.alt" => "*:*",
       :rows => 20,
-      :defType => 'dismax',
+      :defType => 'edismax',
       :fq => "type:Source wf_stage_s:published",
       :hl => 'false',
       :"hl.simple.pre" => '<span class="highlight">',
@@ -57,6 +152,7 @@ class CatalogController < ApplicationController
     # items to show per page, each number in the array represent another option to choose from.
     config.per_page = [10,20,50,100]
     config.default_per_page = 20
+    config.max_per_page = 20000000
 
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SolrHelper#solr_doc_params) or 
     ## parameters included in the Blacklight-jetty document requestHandler.
@@ -68,7 +164,7 @@ class CatalogController < ApplicationController
        :rows => 1,
        :q => '{!raw f=id v=$id}' ,
       # Added by RZ
-      :defType => 'dismax',
+      :defType => 'edismax',
     }
 
     # solr field configuration for search results/index views
@@ -111,7 +207,7 @@ class CatalogController < ApplicationController
     config.add_facet_field '593a_filter_sm', :label => :filter_source_type, :limit => 10
     config.add_facet_field '240m_filter_sm', :label => :filter_scoring, :limit => 10
     ##config.add_facet_field '240m_sms', :label => 'Publisher', :limit => 10, solr_params: { 'facet.mincount' => 1 }
-    config.add_facet_field 'date_from_i', :label => :filter_date, :range => true, :limit => 5
+    config.add_facet_field '260c_year_ims', :label => :filter_date, :range => true, :limit => 5
     config.add_facet_field '852a_facet_sm', :label => :filter_lib_siglum, :limit => 10
     config.add_facet_field '650a_filter_sm', :label => :filter_subject, :limit => 10
     config.add_facet_field '856x_sm', :label => :filter_images, :limit => 10
@@ -200,7 +296,7 @@ class CatalogController < ApplicationController
       field.solr_local_parameters = { 
         # THIS IS THE HACK OF THE DAY
         #FIXME FIXME FIXME
-        :qf => 'id_fulltext_text source_id_text std_title_texts std_title_d_text composer_texts composer_d_text title_texts title_d_text shelf_mark_texts lib_siglum_texts 001_text 008_date1_text 008_date2_text 008_language_text 028a_text 028b_text 031d_text 031e_text 031m_text 031p_texts 031q_text 031t_text 033a_text 035a_text 041a_text 041e_text 041h_text 100a_text 100d_text 110a_text 110b_text 130k_text 130m_text 130n_texts 130o_text 130p_text 130r_text 240k_text 240m_texts 240n_texts 240o_text 240p_text 240r_texts 245a_text 245b_text 245c_text 246a_text 246i_text 254a_text 260a_text 260b_text 260c_text 260e_text 260f_text 270a_text 300a_text 300b_text 300c_text 340c_text 340d_text 351a_text 500a_text 5005_text 505a_text 506a_text 508a_text 510a_text 510c_text 511a_text 518a_text 520a_text 525a_text 533a_text 541a_text 541c_text 541d_text 545a_text 546a_text 555a_text 561a_text 5615_text 562a_text 5625_text 563a_text 5635_text 590a_text 590b_text 591a_text 592a_text 593a_texts 594a_text 594b_text 594c_text 594d_text 594e_text 594f_text 594g_text 594h_text 594i_text 594k_text 594l_text 594m_text 594n_text 595a_text 596a_text 597a_text 598a_text 599a_text 600a_texts 650a_text 651a_text 653a_text 657a_text 690a_text 690n_text 691a_text 700a_text 700d_text 700e_text 700t_text 7004_text 7005_text 710a_text 710b_text 710k_text 710e_text 7104_text 7105_text 730a_text 730k_text 730m_text 730n_text 730o_text 730p_text 730r_text 740a_text 752a_text 752d_text 774w_text 773w_text 786a_text 786d_text 786i_text 786o_text 786t_text 787a_text 787n_text 787w_text 852a_text 852b_text 852d_text 852e_text 852c_texts 852q_text 852z_text 856u_text'
+        :qf => 'id_fulltext_text source_id_text std_title_texts std_title_d_text composer_texts composer_d_text title_texts title_d_text shelf_mark_text lib_siglum_s 001_text 008_date1_text 008_date2_text 008_language_text 028a_text 028b_text 031d_text 031e_text 031m_text 031p_texts 031q_text 031t_text 033a_text 035a_text 041a_text 041e_text 041h_text 100a_text 100d_text 110a_text 110b_text 130k_text 130m_text 130n_texts 130o_text 130p_text 130r_text 240a_text 240k_text 240m_text 240n_texts 240o_text 240p_text 240r_texts 245a_text 245b_text 245c_text 246a_text 246i_text 254a_text 260a_text 260b_text 260c_text 260e_text 260f_text 270a_text 300a_text 300b_text 300c_text 340d_text 351a_text 383b_text 500a_text 5005_text 505a_text 506a_text 508a_text 510a_text 510c_text 511a_text 518a_text 520a_text 525a_text 533a_text 541a_text 541c_text 541d_text 545a_text 546a_text 555a_text 561a_text 5615_text 562a_text 5625_text 563a_text 5635_text 590a_text 590b_text 591a_text 592a_text 593a_texts 594a_text 594c_text 594d_text 594e_text 594f_text 594g_text 594h_text 594i_text 594k_text 594l_text 594m_text 594n_text 595a_text 595u_text 596a_text 597a_text 598a_text 599a_text 650a_text 651a_text 657a_text 690a_text 690n_text 691a_text 700a_text 700d_text 700e_text 700t_text 7004_text 7005_text 710a_text 710b_text 710k_text 710e_text 7104_text 7105_text 730a_text 730k_text 730m_text 730n_text 730o_text 730p_text 730r_text 740a_text 752a_text 752d_text 773w_text 774w_text 786a_text 786d_text 786i_text 786o_text 786t_text 787a_text 787n_text 787w_text 852a_facet_sm 852a_text 852b_text 852c_texts 852d_text 852e_text 852q_text 852z_text 856u_text 856z_text'
       }
     end
     
@@ -230,6 +326,10 @@ class CatalogController < ApplicationController
       }
     end
     
+    config.advanced_search = {
+      :query_parser => "edismax"
+    }
+
     # Add some filters for the adv search
     config.add_search_field("title") do |field|
       field.label = :filter_title_on_ms
@@ -315,13 +415,19 @@ class CatalogController < ApplicationController
       field.label = :filter_subject
       field.solr_parameters = { :qf => "650a_text" }
     end
+    
+    config.add_search_field("pae") do |field|
+      field.label = "Incipit"
+      field.include_in_simple_select = false
+      field.solr_parameters = { :qf => "pae" }
+    end
 
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     config.add_sort_field 'std_title_order_s asc', :label => :filter_std_title;
-    config.add_sort_field ':date_from_i asc', :label => :filter_date;
+    config.add_sort_field ':260c_year_ims asc', :label => :filter_date;
     config.add_sort_field ':composer_order_s asc', :label => :filter_composer;
     #config.add_sort_field 'score desc, pub_date_sort desc, title_sort asc', :label => 'relevance'
     #config.add_sort_field 'pub_date_sort desc, title_sort asc', :label => 'year'

@@ -2,7 +2,7 @@ module ActiveAdmin
   module Views
     class Footer < Component
 
-      def build
+      def build(param)
         super :id => "footer"
         super :style => "text-align: left;"
 
