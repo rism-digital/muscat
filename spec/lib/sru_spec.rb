@@ -108,9 +108,9 @@ RSpec.describe Sru::Query do
     end
   end
   
-  describe "creator=Bach,%20Johann gives syntax error" do
-    pending
-  end
+  #describe "creator=Bach,%20Johann gives syntax error" do
+  #  pending
+  #end
 
 
 

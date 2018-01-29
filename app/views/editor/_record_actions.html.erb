@@ -46,11 +46,13 @@
 	    		<td colspan="3">
 	    			<div class="grid_cell">
 	    				<div style="vertical-align: bottom; background-color: transparent">
-                <select id="record_audit" width="100">
-                  <option value="full" <%="selected='true'" if @item.wf_audit=='full'%> ><%=I18n.t(:full_level)%></option>
+                <select id="record_audit" width="100" disabled>
+                  <option value="full" <%="selected='true'"%> ><%=I18n.t(:full_level)%></option>
+                  <!--
                   <option value="abbreviated" <%="selected='true'" if @item.wf_audit=='abbreviated'%> ><%=I18n.t(:abbreviated_level)%></option>
                   <option value="retro" <%="selected='true'" if @item.wf_audit=='retro'%> ><%=I18n.t(:retro_level)%></option>
                   <option value="imported" <%="selected='true'" if @item.wf_audit=='imported'%> ><%=I18n.t(:imported_level)%></option>
+                  -->
 							</select>
 	    				</div>
 	    			</div>

@@ -28,7 +28,8 @@ class User < ActiveRecord::Base
   def can_edit?(source)
     if source.is_a? Holding
       lib = source.institutions.take
-      self.workgroups.each do |workgroup| 
+      self.workgroups.each do |workgroup|
+        #binding.pry
         if workgroup.get_institutions.include?(lib)
           return true
         end
