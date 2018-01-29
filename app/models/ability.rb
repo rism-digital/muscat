@@ -101,8 +101,8 @@ class Ability
       can :read, :all
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, User, :id => user.id
-    
-    
+      cannot :read, ActiveAdmin::Page, :name => "Statistics"
+      cannot :read, Workgroup
     end
     
     
