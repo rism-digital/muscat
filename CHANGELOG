@@ -1,18 +1,91 @@
 Muscat Changelog
 ================
 
-v 3.7.0 
+v 4.0
+* Incipit indexing and searching from PAE data
+* GIS Visualization and localization of libraries
+* Added revised templates for musical prints
+* Date Parsing in Index
+* Update to ActiveAdmin 1.2.1
+* Update to Jquery 3
 * #538: fix display of VIAF form 
 * #541: added byzantine modes
-* Added revised templates for musical prints
 * Fixed senior cataloger can edit own people
 * Various adjustments for secondary literature
 * Added "persian" to language codes
 * Added new fields for catalogue (250 & 502)
 * Show comments to marc fields on configuration page
+* Template sorting & relabeling
+* Removed 525 from source with edition & edition_content
+* Removed watermark 592 from source with edition & edition_content
+* Added holding link on source show
+* Fix holding edit ability for admin & editor
+* Modified holding ability for cataloger
+* Show holding actions on sources view
+* Show toggle of holding in source view
+* Added 300 to holding & remove 740 from edition_content
+* Added 597 to the default edit layout
+* Added 300 to form
+* Added woodcut to 340 dropdown
+* Added 026 marc field for fingerprint
+* Added subfield 340 to source configuration/form
+* Added sidebar for holding records
+* Import date range in the DB cache when needed, add date validator that sends an email
+* Fixed person restricted with wf_owner
+* Remove redundand URL from IIIF display
+* Remove 856$u from validation
+* Update "all field" fields in Blacklight, add 856z
+* Module for changind IDs of authority and updating the children.
+* Removed 563 from bibl. edition
+* Added duplicate action to catalogue controller
+* Revised 700 relator codes in catalogue
+* Removed 'asn' from 710 relator codes
+* Added selection box filter in catalogue
+* Added growfields to catalogue
+* Added catalogue validation
+* Revised catalogue validation
+* Added ActiveRecord validation for catalogue (duplicate name)
+* Added new fields for catalogue (250 & 502)
+* Update jquery-ui to 1.12
+* Added country selector to cataloguer 044
+* Fixed 780/785 relation in catalogue
+* Added wf_audit to editor form
+* Added 563 for related binding records
+* Added 596 to link reference source id
+* Added 599 for exporting wf_audit
+* Added comment to subfields, closes #558
+* Merge branch '3.7.0-devel' of https://github.com/rism-ch/muscat into 3.7.0-devel
+* Add puma instead of webrick
+* Update a couple more gems
+* Viaf form for works
+* Using marc 931 for works
+* Changed 931 to 930 && hide the work section for catalogers
+* Fixed lost 930 with saved records by catalogers
+* #562 ransacker updates
+* Fix #561
+* Fix #568
+* Fixed show viaf value in 100a autocomplete
+* Fixed undefined method child_sources for work
+* Fix #564
+* Fix #569.
+* Using fulltext for siglum/institution filter fixes #570
+* Fix #567
+* Fix #568
+* Rename factory_girl to factory_bot
+* Relabeling (en) templates #566
+* Removed deprecated size from viaf js
+* Removed duplicate user activity
+* Fixed #576 deprecated size() call of jquery
+* Rspec testing viaf interface
+* Rspec for new truncated siglum search
+* Fix for #559
+* Added Westfrisian closes #574
+* New guideline labels
+* Disabling wf_audit in edit form
+* Fixed error with empty holdings
+* Fixed senior cataloguer can edit own person
 
 v3.6.12
-
 * Add restricted fields from -devel-rights
 * #517: update validation fields
 * #527: Add better warning for ungrouped tags

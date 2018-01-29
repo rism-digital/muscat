@@ -175,7 +175,7 @@ doc_edit_workflow:
       label:
         it: NUMBER OF PART/SECTION OF A WORK
         fr: NUMBER OF PART/SECTION OF A WORK
-        de: NUMBER OF PART/SECTION OF A WORK
+        de: Anzahl Teile oder Abschnitte eines Werks
         en: Number of part/section of a work
     r:
       label: 

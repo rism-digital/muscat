@@ -239,8 +239,8 @@ doc_templates:
         en: Production
 "700": 
   label: 
-    it: ADDITIONAL PERSONAL NAME
-    fr: ADDITIONAL PERSONAL NAME
+    it: Nome addizionale di persona
+    fr: "Nom supplémentaire de la personne"
     de: Sonstige Person
     en: Additional personal name
   fields: 
@@ -868,16 +868,16 @@ voc:
       en: ""
 "502": 
   label: 
-    it: DISSERTATION NOTE
-    fr: DISSERTATION NOTE
-    de: DISSERTATION NOTE
+    it: Nota alla dissertazione
+    fr: Note à la thèse
+    de: Hinweis zur Dissertation
     en: Dissertation note
   fields: 
     a: 
       label: 
-        it: DISSERTATION NOTE
-        fr: DISSERTATION NOTE
-        de: DISSERTATION NOTE
+        it: Nota alla dissertazione
+        fr: Note à la thèse
+        de: Hinweis zur Dissertation
         en: Dissertation note
       comment: "NEW IN 2018"
 "520": 

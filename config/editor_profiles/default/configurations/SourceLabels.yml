@@ -116,19 +116,19 @@ doc_cat_authorities:
     it: Voci di autorità
 doc_when_new_record:
   label: 
-    de: WHEN TO INPUT A NEW RECORD (PRINTED MUSIC)
+    de: Wann soll einen neuen Eintrag erstellt werden (Musikdrucke)
     en: When to input a new record (printed music)
-    it: WHEN TO INPUT A NEW RECORD (PRINTED MUSIC)
+    it: Quando inserire una nuova scheda (edizioni musicali a stampa)
 doc_scope_printed_music:  
   label: 
-    de: SCOPE OF PRINTED MUSIC IN RISM
+    de: Umfang der Dokumentation von Musikdrucke in RISM
     en: Scope of printed music in RISM
-    it: SCOPE OF PRINTED MUSIC IN RISM
+    it: Copertura delle edizioni musicali a stampa in RISM
 doc_standardized_titles_printed_music:  
   label: 
-    de: STANDARDIZED TITLES FOR PRINTED MUSIC
+    de: Einordnungstitel für Musikdrucke
     en: Standardized titles for printed music
-    it: STANDARDIZED TITLES FOR PRINTED MUSIC
+    it: Titolo uniforme
 
 ################
 
@@ -311,44 +311,44 @@ doc_references:
     en: RISM ID No.
 "026": 
   label: 
-    it: FINGERPRINT IDENTIFIER
-    fr: FINGERPRINT IDENTIFIER
-    de: Fingerprint Identifier 
+    it: Impronta
+    fr: Indentificateur d'empreintes
+    de: Fingerprint-Erkennung 
     en: Fingerprint Identifier
   fields: 
     a: 
       label: 
-        it: FIRST/SECOND GROUP
-        fr: FIRST/SECOND GROUP
-        de: FIRST/SECOND GROUP
+        it: Primo/Secondo gruppo
+        fr: Premier/deuxième groupe de caractères
+        de: Erste und zweite Zeichengruppe
         en: First/second group
       comment: "NEW IN 2018"
     b: 
       label: 
-        it: THIRD/FOURTH GROUP
-        fr: THIRD/FOURTH GROUP
-        de: THIRD/FOURTH GROUP
+        it: Terzo/Quarto gruppo
+        fr: Troisième/quatrième groupe de caractères
+        de: Dritte und vierte Zeichengruppe
         en: Third/fourth group
       comment: "NEW IN 2018"
     c: 
       label: 
-        it: DATE
-        fr: DATE
+        it: Data
+        fr: Date
         de: Datum
         en: Date
       comment: "NEW IN 2018"
     d: 
       label: 
-        it: NUMBER OF VOLUME/PART
-        fr: NUMBER OF VOLUME/PART
-        de: NUMBER OF VOLUME/PART
+        it: Numero del volume/parte
+        fr: Nombre de volumes ou de pièces
+        de: Nummer des Bandes oder Teils
         en: Number of volume/part
       comment: "NEW IN 2018"
     e: 
       label: 
-        it: UNPARSED FINGERPRINT
-        fr: UNPARSED FINGERPRINT
-        de: UNPARSED FINGERPRINT
+        it: Impronta non analizzata
+        fr: Empreinte non analysée
+        de: Nicht analysierter Fingerprint
         en: Unparsed fingerprint
       comment: "NEW IN 2018"
 028: 
@@ -1772,17 +1772,17 @@ doc_references:
         en: Link type
 "930": 
   label: 
-    it: WORK
-    fr: WORK
+    it: Composizione
+    fr: Oeuvre
     de: Werktitel
-    en: WORK
+    en: Work
   fields: 
     a: 
       label: 
-        it: WORK
+        it: Composizione
         de: Werktitel
-        fr: WORK
-        en: WORK
+        fr: Oeuvre
+        en: Work
       edit_label: 
         en: ""
       comment: "NEW IN 2018; experimental stage"
@@ -1830,7 +1830,7 @@ show_material:
     it: Descrizione del materiale
     fr: "Description du matériel"
     de: Materialbeschreibung
-    en: Material description     
+    en: Material description
 show_references: 
   label: 
     it: Bibliografia
@@ -1858,7 +1858,7 @@ show_terms:
         
 ################
         
-edit_administration: 
+edit_administration:
   label: 
     it: Amministrazione
     fr: Administration
@@ -1902,8 +1902,8 @@ edit_references:
     en: References and notes
 edit_works: 
   label: 
-    it: WORK
-    fr: WORK
+    it: Composizione
+    fr: Oeuvre
     de: Werk
     en: Work
 
@@ -1918,7 +1918,7 @@ ungrouped:
   label: 
     it: Campi non raggruppati
     fr: "Champs non rgroupés"
-    de: UNGROUPED FIELDS
+    de: Nicht zugeteilte Felder
     en: Ungrouped fields
 
 ################
@@ -2188,13 +2188,13 @@ voc:
     fr: "Vérifié"
     de: Gesichert
     en: Verified
-"Ascertained":   
+"Ascertained":
   label:
     it: Accertato
     fr: "Authentifié"
     de: Ermittelt
     en: Ascertained
-"Alleged":   
+"Alleged":
   label:
     it: Presunto
     fr: "Présumé"
@@ -3578,7 +3578,7 @@ li_650:
   label:
     en: "Subject heading"
     it: "Parola chiave"
-    de: "SUBJECT HEADING"
+    de: "Schlagworteintragung"
 li_651:
   label:
     en: "Related place"
@@ -3608,7 +3608,7 @@ li_856:
   label:
     en: "External resource"
     it: "Risorsa esterna"
-    de: "EXTERNAL RESOURCE"
+    de: "Elektronische Lokalisierung und Zugriff"
 li_520:
   label:
     en: "Contents note"
@@ -3623,7 +3623,7 @@ li_001:
   label:
     en: "RISM ID Number"
     it: "Numero RISM"
-    de: "RISM ID NUMBER"
+    de: "Zusammenfassende Beschreibung"
 li_003:
   label:
     en: "Control number identifier"
