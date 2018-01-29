@@ -192,14 +192,14 @@ fr:
   create_from_existing: "Créer"
   record_types:
     unspecified: "[type indéterminé]"
-    collection: "MUSIC MANUSCRIPT, COLLECTION PARENT RECORD"
+    collection: "Musique manuscrit, collection parent"
     source: "Manuscrit musical"
-    edition_content: "PRINTED MUSIC EDITION, ITEM IN COLLECTION"
+    edition_content: "Edition imprimé, dans une collection"
     libretto_source: "Livret manuscrit"
     libretto_edition_content: "Contenu d'un livret imprimé"
     theoretica_source: "Traité manuscrit"
     theoretica_edition_content: "Contenu d'un traité imprimé"
-    edition: "PRINTED MUSIC EDITION, COLLECTION PARENT RECORD OR INDIVIDUAL ITEM"
+    edition: "Edition imprimé, collection parent ou item individuel"
 
   #################### MENUS
   menu_home: "Home"
@@ -232,7 +232,7 @@ fr:
   menu_cataloging: "Catalogage"
   menu_jobs: "Tâches"
   menu_holdings: "Exemplaires"
-  menu_works: "WORKS"
+  menu_works: "Ouvres"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"
@@ -488,7 +488,7 @@ fr:
   ungrouped_tags: "Ce titre contient des champs non groupés"
   cannot_update_source: "Vous n'êtes pas autorisé à traiter ce type de source"
   cannot_create_source: "Vous n'êtes pas autorisé à créer ce type de source" 
-  validate_name_uniqness: "RECORD NOT SAVED: SAME SHORT TITLE '%{term}' ALREADY EXISTS."
+  validate_name_uniqness: "Record non enregistré: le titre abrégé existe déjà ('%{term}')."
 
   #
   entry:

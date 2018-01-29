@@ -192,14 +192,14 @@ it:
   create_from_existing: "Crea"
   record_types:
     unspecified: "[Template sconosciuto]"
-    collection: "MUSIC MANUSCRIPT, COLLECTION PARENT RECORD"
+    collection: "Manoscritto musicale, scheda madre della collezione "
     source: "Manoscritto musicale"
-    edition_content: "PRINTED MUSIC EDITION, ITEM IN COLLECTION"
+    edition_content: "Edizione a stampa, in una collezione"
     libretto_source: "Libretto manoscritto"
     libretto_edition_content: "Elemento di un libretto edito"
     theoretica_source: "Manoscritto di teoria musicale"
     theoretica_edition_content: "Elemento di un edizione di teoria musicale"
-    edition: "PRINTED MUSIC EDITION, COLLECTION PARENT RECORD OR INDIVIDUAL ITEM"
+    edition: "Edizione musicale, scheda madre della collezione o scheda individuale"
 
   #################### MENUS
   menu_home: "Home"
@@ -232,7 +232,7 @@ it:
   menu_cataloging: "Catalogazione"
   menu_jobs: "Processi in Background"
   menu_holdings: "Esemplari"
-  menu_works: "WORKS"
+  menu_works: "Composizioni"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"
@@ -488,7 +488,7 @@ it:
   ungrouped_tags: "Il record contiene campi non raggruppati"
   cannot_update_source: "Non sei autorizzato a modificare questo tipo di fonte"
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
-  validate_name_uniqness: "RECORD NOT SAVED: SAME SHORT TITLE '%{term}' ALREADY EXISTS."
+  validate_name_uniqness: "Scheda non salvata: il titolo breve '%{term}' è già esistente."
 
   #
   entry:
