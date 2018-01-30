@@ -249,6 +249,10 @@ class Marc
     @all_foreign_associations
   end
 
+  def get_all_foreign_classes
+    @marc_configuration.get_all_foreign_classes
+  end
+
   # Test if the root element starts with =xxx where xxx are digits
   # Also check (and correct) zero padding for fields and subfield with zero-padding requirement (e.g., IDs)
   def is_valid?(pad = true)
