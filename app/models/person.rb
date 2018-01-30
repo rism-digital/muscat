@@ -20,6 +20,7 @@
 class Person < ActiveRecord::Base
   include ForeignLinks
   include MarcIndex
+  include AuthorityMerge
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -83,7 +84,7 @@ class Person < ActiveRecord::Base
   alias_attribute :id_for_fulltext, :id
 
   enum wf_stage: [ :inprogress, :published, :deleted ]
-  enum wf_audit: [ :basic, :minimal, :full ]
+  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
 
   def after_initialize
     @last_user_save = nil
@@ -297,14 +298,14 @@ class Person < ActiveRecord::Base
     "#{full_name}" + (life_dates && !life_dates.empty? ? "  - #{life_dates}" : "")
   end
 
-  ransacker :"100d_contains", proc{ |v| } do |parent| end
-  ransacker :"375a_contains", proc{ |v| } do |parent| end
-  ransacker :"550a_contains", proc{ |v| } do |parent| end
-  ransacker :"100d_birthdate_contains", proc{ |v| } do |parent| end
-  ransacker :"100d_deathdate_contains", proc{ |v| } do |parent| end
-  ransacker :"043c_contains", proc{ |v| } do |parent| end
-  ransacker :"551a_contains", proc{ |v| } do |parent| end
-	ransacker :"full_name_or_400a_contains", proc{ |v| } do |parent| end
+  ransacker :"100d", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"375a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"550a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"100d_birthdate", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"100d_deathdate", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"043c", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"551a", proc{ |v| } do |parent| parent.table[:id] end
+	ransacker :"full_name_or_400a", proc{ |v| } do |parent| parent.table[:id] end
 
   def self.get_viaf(str)
     str.gsub!("\"", "")

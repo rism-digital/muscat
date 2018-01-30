@@ -146,7 +146,7 @@ ActiveAdmin.setup do |config|
   #
   # You can disable the menu item for the comments index page:
   # Menus set by hand for translation, see below
-  config.show_comments_in_menu = false
+  config.comments_menu = false
   #
   # You can change the name under which comments are registered:
   #config.comments_registration_name = 'AdminComment'
@@ -312,6 +312,10 @@ require 'active_admin/filter_saver/controller'
 # LP - added for forcing kaminari to always include page param (necessary for FilterSaver)
 require "kaminari/helpers/tag"
  
+## RZ This monkey patch enables some filter labels to be translated in the Search Status
+## sidebar.
+require 'active_admin/filter_label'
+
 ActiveAdmin.before_load do |app|
   # Add our Extensions
   ActiveAdmin::BaseController.send :include, ActiveAdmin::FilterSaver::Controller

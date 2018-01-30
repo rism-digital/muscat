@@ -6,6 +6,8 @@ ActiveAdmin.register User do
   # Remove all action items
   config.clear_action_items!
 	
+
+=begin #515 postponed to 3.7
 	controller do
 	  def update
 	    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
@@ -15,6 +17,7 @@ ActiveAdmin.register User do
 	    super
 	  end
 	end
+=end
 
   ###########
   ## Index ##
@@ -43,7 +46,6 @@ ActiveAdmin.register User do
     #end
 
     column :active do |user|
-      user.active? ? status_tag( "yes", :ok  ) : status_tag( "no"  )
       user.active?
     end
     actions
@@ -87,6 +89,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs I18n.t(:user_details) do
+<<<<<<< HEAD
       if can? :manage, User
         f.input :name
         f.input :email
@@ -94,6 +97,16 @@ ActiveAdmin.register User do
         f.input :name, :input_html => {:disabled => true}
         f.input :email, :input_html => {:disabled => true}
       end
+=======
+      #515 postponed to 3.7
+      #if can? :manage, User
+        f.input :name
+        f.input :email
+      #elsif can? :update, User
+      #  f.input :name, :input_html => {:disabled => true}
+      #  f.input :email, :input_html => {:disabled => true}
+      #end
+>>>>>>> 4.1-devel
 
       if can? :update, User
         f.input :password

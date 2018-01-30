@@ -39,6 +39,8 @@ de:
         greater_than: "Größer als"
         less_than: "Kleiner als"
         with_integer: "Filter"
+        from: "Datum von"
+        to: "Datum bis"
     status_tag:
       "yes": "Ja"
       "no": "Nein"
@@ -74,10 +76,11 @@ de:
         other: "Erfolgreich %{count} %{plural_model} gelöscht"
       selection_toggle_explanation: "(Auswahl umschalten)"
       link: "erstellen"
-      action_label: "%{title} ausgewählte"
+      action_label: "%{title}"
       labels:
         destroy: "Lösche"
         folder: "Erstelle Ordner mit"
+        add_to_folder: "Hinzufügen von Elementen zum einem vorhandenen Ordner"
 
     comments:
       resource_type: "Quellentyp"
@@ -189,14 +192,14 @@ de:
   create_from_existing: "Erstellen"
   record_types:
     unspecified: "[Unbekannte Vorlage]"
-    collection: "Sammlung"
-    source: "Musikhandschrift"
-    edition_content: "Musikdruck"
-    libretto_source: "Handschriftliches Libretto"
-    libretto_edition_content: "Gedrucktes Libretto"
-    theoretica_source: "Handschriftliches Theoreticum"
-    theoretica_edition_content: "Gedrucktes Theoreticum"
-    edition: "Bibliographischer Eintrag Musikdruck"
+    collection: "Musikhandschrift, Haupteintrag Sammlung"
+    source: "Musikhandschrift, Indvidual- oder Teileintrag"
+    edition_content: "Musikdruck, Teileintrag"
+    libretto_source: "Libretto, handschriftlich"
+    libretto_edition_content: "Libretto, gedruckt"
+    theoretica_source: "Theoreticum, handschriftlich"
+    theoretica_edition_content: "Theoreticum, gedruckt"
+    edition: "Musikdruck, Haupteintrag Sammlung oder Individualeintrag"
   
   #################### MENUS
   menu_home: "Home"
@@ -229,6 +232,7 @@ de:
   menu_cataloging: "Katalogisierung"
   menu_jobs: "Jobs"
   menu_holdings: "Examplare"
+  menu_works: "Werktitel"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Letzte Änderungen"
@@ -252,7 +256,6 @@ de:
   queue: "Warteschleife"
   failed_at: "Fehlgeschlagen am"
   run_at: "Durchgeführt am"
-  created_at: "Erstellt am"
   progress: "Fortschritt"
   failed: "Fehlgeschlagen"
   waiting: "Wartet"
@@ -261,16 +264,23 @@ de:
   lib_siglum: "Bibliothekssigel"
   holding_records: "Exemplarinformation"
   new_holding: "Neuer Examplareintrag"
+  new_holding_page: "Neuer Exemplareintrag"
   new_digital_object: "Neues Bild hinzufügen"
   record_actions: "Aktion für Eintrag"
   record_status: "Status des Eintrags"
   record_owner: "Besitzer des Eintrags"
+  record_audit: "Vorlageform"
+  full_level: "Vollkatalogisat"
+  #full_level: "Vollkatalogisat mittels Autopsie"
+  abbreviated_level: "Kurzkatalogisat mittels Autopsie"
+  retro_level: "Retroeinspielung"
+  imported_level: "Fremdeinspielung"
   link_type: "Verlinkungstyp"
   linked_object: "Verknüpftes Objekt"
   links: "Verlinkungen"
   link_remove: "Link entfernen"
   link_remove_confirm: "Link entfernen?"
-  unloadable_record: "THIS RECORD EXPERIENCED LOADING ERRORS: IT CAN BE VIEWED BUT NOT EDITED. PLEASE CONTACT AN ADMINISTRATOR."
+  unloadable_record: "Fehler beim Laden des Eintrags: Änderung nicht möglich, bitte einen Administrator kontaktieren."
   validation_level_error: "Die Fehler müssen vor dem Speichern behoben werden."
   validation_level_warning: "Erneut speichern, um die Warnung(en) zu ignorieren."
   
@@ -357,6 +367,7 @@ de:
   filter_creation_date: "Erfassungsdatum"
   filter_date: "Datum"
   filter_date_from: "Datum von"
+  filter_date_of_publication: "Publikationsjahr"
   filter_date_to: "Datum bis"
   filter_description: "Beschreibung"
   filter_digital_objects: "Digitale Objekte"
@@ -401,14 +412,16 @@ de:
   filter_person_100d_deathdate: "Todesjahr"
   filter_phone: "Telefon"
   filter_place: "Ort"
+  filter_place_of_publication: "Verlagsort"
   filter_provenance: "Herkunft"
-  filter_record_type: "Typ"
+  filter_record_type: "Template Typ"
+  filter_record_type_short: "Typ"
   filter_source_type: "Quellen Typ"
   filter_publisher: "Verlag"
   filter_revue_title: "Zeitschriftentitel"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
-  filter_images: "IMAGES"
+  filter_images: "Bilder"
   filter_scoring: "Besetzung"
   filter_series_items: "Zugehörige Einträge"
   filter_siglum: "Sigel"
@@ -417,11 +430,13 @@ de:
   filter_source_type: "Quellentyp"
   filter_std_title: "Standardtitel"
   filter_subject: "Schlagwörter"
+  filter_subsequent_entries: "Späteren Eintrag"
   filter_term: "Begriff"
   filter_thematic_opus: "Them. Kat. / Op.-Nr."
   filter_title: "Titel"
   filter_titles: "Titel"
   filter_title_on_ms: "Diplomatischer Titel"
+  filter_title_short: "Kürzel"
   filter_topic: "Oberbegriff"
   filter_sub_topic: "Unterbegriff"
   filter_url: "Internet-Adresse"
@@ -471,8 +486,10 @@ de:
   error_not_found: "Der gesuchte Eintrag existiert nicht oder wurde gelöscht."
   error_saving: "Dieser Eintrag ist unvollständig oder erstellt eine Dublette."
   unknown_tags: "Dieser Eintrag enthält falsch verwendete Felder."
+  ungrouped_tags: "Dieser Eintrag enthält Felder, die keiner Gruppe zugeteilt sind"
   cannot_update_source: "Sie sind nicht berechtigt, diese Art von Quellen zu bearbeiten"
   cannot_create_source: "Sie sind nicht berechtigt, diese Art von Quellen zu erstellen"
+  validate_name_uniqness: "Eintrag nicht gespeichert: Das Kürzel '%{term}' existiert bereits."
 
   #
   entry:
@@ -595,7 +612,7 @@ de:
     preview: "Vorschau"
     download: "Download"
     more: "Mehr"
-    banner: 'Bitte "Vorschau" wählen, um die MEI-Konvertierung anzuzeigen.'  
+    banner: 'Bitte "Vorschau" wählen, um die MEI-Konvertierung anzuzeigen.'
 
   wf_stage:
     inprogress: "In Arbeit"
@@ -618,6 +635,16 @@ de:
   validation:
     missing_message: "Dieses Feld muss zwingend ausgefüllt werden."
     warning_message: "Dieses Feld enthält üblicherweise einen Eintrag."
+
+  incipit_search:
+    incipit_search: "Incipit Suche"
+    query_type: "Art der Anfrage:"
+    exact_pitch: "Genaue Tonhöhe (genaueste Suche)"
+    interval: "Intervall"
+    refined_pitch: "Melodisches Profil (fein)"
+    gross_pitch: "Melodisches Profil (grob, unschärfste Suche)"
+    anchor: "Suche nur den Anfang"
+    erase: "Lösche eine Note"
     
   date:
     month_names:

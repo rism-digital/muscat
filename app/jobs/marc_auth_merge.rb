@@ -44,7 +44,7 @@ module Util
       # 1) Get the remote tags which point to this authority file model
       remote_tags = get_remote_tags_for(link_model)
       
-      references =  @src_auth.send(link_model.pluralize.underscore)
+      references =  @src_auth.send("referring_" + link_model.pluralize.underscore)
   
       if references.count == 0
         puts "#{@model} #{@src_auth.id} has no references to #{link_model}"

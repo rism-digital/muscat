@@ -257,7 +257,7 @@ Source.where("marc_source LIKE ?", "%=511%").each do |s|
       marc.root.children.insert(marc.get_insert_position("518"), new_tag)
     else
       new_tag = MarcNode.new("source", "500", "", "##")
-      new_tag.add_at(MarcNode.new("source", "a", " [note about performance:] #{ta.content}", nil), 0)
+      new_tag.add_at(MarcNode.new("source", "a", "Performance note: #{ta.content}", nil), 0)
       new_tag.sort_alphabetically
       marc.root.children.insert(marc.get_insert_position("500"), new_tag)
     end

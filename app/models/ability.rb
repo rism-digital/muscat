@@ -27,6 +27,7 @@ class Ability
       else
         can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, Holding]
         can [:read, :create], Person
+        can :update, Person, :wf_owner => user.id
       end
       can :create_editions, Source
       can :update_editions, Source
@@ -37,7 +38,9 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
       can :read, ActiveAdmin::Page, :name => "Statistics"
-      can [:read, :update], User, :id => user.id
+
+      #515 postponed to 3.7, add :update
+      can [:read], User, :id => user.id
     
     ##############
     # Cataloguer #
@@ -45,9 +48,18 @@ class Ability
 
     elsif user.has_role?(:cataloger) || user.has_role?(:cataloger_prints)
       # A cataloguer can create new items but modify only the ones ho made
-      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding]
-      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding], :wf_owner => user.id
-      can [:destroy, :update], [DigitalObject, Holding], :wf_owner => user.id
+      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding]
+      if user.has_role?(:person_restricted)
+        # catalogers can get restriced access to the persons form
+        # the general design of the role allows extensions alike for e.g. institudions
+        can :update, Person
+      end
+      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding], :wf_owner => user.id
+      can [:destroy, :update], [DigitalObject], :wf_owner => user.id
+      can [:destroy], [Holding], :wf_owner => user.id
+      can [:update], [Holding] do |holding|
+        user.can_edit?(holding)
+      end
       can [:read, :create, :add_item, :remove_item], DigitalObject
       can [:read, :update, :create], DigitalObjectLink
       can [:destroy], DigitalObjectLink do |link|
@@ -71,6 +83,9 @@ class Ability
       else
         can :create_editions, Source
         can :update_editions, Source
+        can :update, Source do |s|
+          user.can_edit_edition?(s)
+        end
       end
       
       can :read, ActiveAdmin::Page, :name => "Dashboard"
@@ -87,8 +102,8 @@ class Ability
       can :read, :all
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, User, :id => user.id
-    
-    
+      cannot :read, ActiveAdmin::Page, :name => "Statistics"
+      cannot :read, Workgroup
     end
     
     

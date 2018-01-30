@@ -1,30 +1,42 @@
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :user do
+    name "Fred"
     email "admin@example.com"
     password "password"
     password_confirmation "password"
+    workgroups { [association(:workgroup)]  }
   end
 
   factory :admin, :parent => :user do
-    roles { [ FactoryGirl.create(:admin_role) ] }
+    roles { [ FactoryBot.create(:admin_role) ] }
   end
 
   factory :cataloger, :parent => :user do
-    roles { [ FactoryGirl.create(:cataloger_role) ] }
+    roles { [ FactoryBot.create(:cataloger_role) ] }
+  end
+ 
+  factory :cataloger_prints, :parent => :user do
+    roles { [ FactoryBot.create(:cataloger_prints_role) ] }
   end
  
   factory :guest, :parent => :user do
-    roles { [ FactoryGirl.create(:guest_role) ] }
+    roles { [ FactoryBot.create(:guest_role) ] }
   end
   
   factory :editor, :parent => :user do
-    roles { [ FactoryGirl.create(:editor_role) ] }
+    roles { [ FactoryBot.create(:editor_role) ] }
   end
 
   factory :person_editor, :parent => :user do
-    roles { [ FactoryGirl.create(:editor_role),  FactoryGirl.create(:person_editor_role),  ] }
+    roles { [ FactoryBot.create(:editor_role),  FactoryBot.create(:person_editor_role),  ] }
   end
+
+  factory :person_restricted, :parent => :user do
+    roles { [ FactoryBot.create(:cataloger_role),  
+              FactoryBot.create(:person_restricted_role),  ] }
+  end
+
 
   factory :role do
     name        { "Role_#{rand(9999)}"  }
@@ -38,6 +50,10 @@ FactoryGirl.define do
     name "cataloger"
   end
 
+  factory :cataloger_prints_role, :parent => :role do
+    name "cataloger_prints"
+  end
+
   factory :editor_role, :parent => :role do
     name "editor"
   end
@@ -48,6 +64,10 @@ FactoryGirl.define do
 
   factory :person_editor_role, :parent => :role do
     name "person_editor"
+  end
+
+  factory :person_restricted_role, :parent => :role do
+    name "person_restricted"
   end
 
 

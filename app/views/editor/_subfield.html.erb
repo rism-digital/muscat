@@ -1,7 +1,8 @@
 <%
-	read_only = false
-	triggers = ""
-	@editor_profile.each_subfield_for(tag_name) do |subfieldopt, field_settings|
+  read_only = false
+  triggers = ""
+
+  @editor_profile.each_subfield_for(tag_name) do |subfieldopt, field_settings|
 		field_settings = Hash.new if !field_settings
 		if subfieldopt == subfield
 			read_only = field_settings["read_only"] != nil ? field_settings["read_only"] : false
@@ -35,18 +36,29 @@
 		disabled_by_autocomplete = ""
 	end
 	
+	if params["unrestricted"] && !(params["unrestricted"] & current_user.roles.pluck(:name)).empty?
+		restricted = ""
+	else
+		restricted = @restricted
+	end
+	
 	# read_only vs disabled_by_autocomplete
 	# read_only if for tags that can NEVER be edited
 	# disabled_by_autocomplete is for tags that can be disabled/enabled by autocomplete
 %>
 
 <%- if (params['growfield'])  %>
-	</span><textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%> <%=autocomplete_extra_class%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" <%=triggers%> <%=name_tag%> <%=disabled_by_autocomplete%> data-autocomplete-extra="<%=autocomplete_extra%>" data-validate-level="<%=validate_level%>"><%= h content %></textarea>
+  </span><textarea rows="1" cols="100" class="autogrow subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%> <%=autocomplete_extra_class%>" data-tag="<%=tag_name%>" <%=restricted%> data-subfield="<%=subfield%>" <%=triggers%> <%=name_tag%> <%=disabled_by_autocomplete%> data-autocomplete-extra="<%=autocomplete_extra%>" data-validate-level="<%=validate_level%>"><%= h content %></textarea>
+
 <%- else %>
-	<% if read_only %>
-			<input class="subfield_entry <%=autocomplete_extra_class%>"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h content %>"/>
-			<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
-	<% else %>
-		</span><input class="subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%> <%=autocomplete_extra_class%>" sizeU="<%= params['width'] -%>" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" <%=triggers%> <%=name_tag%> value="<%= h content %>" <%=disabled_by_autocomplete%> data-autocomplete-extra="<%=autocomplete_extra%>" data-validate-level="<%=validate_level%>" />
-	<% end %>
+  
+  <% if read_only %>
+      <input class="subfield_entry <%=autocomplete_extra_class%>"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h content %>"/>
+                    <input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
+                  
+    <% else %>
+
+  </span><input class="subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%> <%=autocomplete_extra_class%>" size="<%= params['width'] -%>" <%=restricted%> type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" <%=triggers%> <%=name_tag%> value="<%= h content %>" <%=disabled_by_autocomplete%> data-autocomplete-extra="<%=autocomplete_extra%>" data-validate-level="<%=validate_level%>" />
+  <% end %>
+
 <%- end %>

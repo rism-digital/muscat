@@ -33,12 +33,12 @@
       - collection
       - theoretica_source
   tags:
-    "0": required
-    a: required
+    "0": mandatory
+    #a: required
     m: required, warning
 "245": 
   tags:
-    a: required
+    a: mandatory
 "260": 
   tags:
     c: required
@@ -48,6 +48,9 @@
 "593": 
   tags:
     a: required
+"594": 
+  tags:
+    b: required
 #"595": 
 #  tags:
 #    a:
@@ -60,18 +63,18 @@
       - collection
   tags:
     "0": mandatory
-"651": 
-  tags:
-    "0": required
-    a: required
-"657": 
-  tags:
-    "0": required
-    a: required
-"690": 
-  tags:
-    "0": required
-    a: required
+#"651": 
+#  tags:
+#    "0": required
+#    a: required
+#"657": 
+#  tags:
+#    "0": required
+#    a: required
+#"690": 
+#  tags:
+#    "0": required
+#    a: required
 #    n: required
 #"691": 
 #  tags:
@@ -88,23 +91,22 @@
 #    "0": required
 #    a: required
 #    j: required
-"730": 
-  tags:
-    "0": required
-    a: required
-"740": 
-  tags:
-    a: required
-"773": 
-  tags:
-    w: required
+#"730": 
+#  tags:
+#    "0": required
+#    a: required
+#"740": 
+#  tags:
+#    a: required
+#"773": 
+#  tags:
+#    w: required
 "852": 
   tags:
-    c: required, warning
-    a: required
-    x: required
-"856": 
-  tags:
-    z:
-      required_if:
-        "856": "u"
+    c: required
+    x: mandatory
+#"856": 
+#  tags:
+#    z:
+#      required_if:
+#        "856": "u"

@@ -168,10 +168,10 @@ module Muscat
 								field, id = options[k].split(":")
 								with[field] = id
 							elsif k.to_s.match("gteq") # :Greather than time range
-								field = k.to_s.gsub("_gteq", "")
+								field = k.to_s.gsub("_gteq_datetime", "")
 								time_gteq[field] = options[k]
 							elsif k.to_s.match("lteq") # :Lesser than time range
-								field = k.to_s.gsub("_lteq", "")
+								field = k.to_s.gsub("_lteq_datetime", "")
 								time_lteq[field] = options[k]
 							else # all the other ransack predicates
 								# make an "any" search, field is empty

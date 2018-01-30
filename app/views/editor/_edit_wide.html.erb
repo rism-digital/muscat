@@ -1,5 +1,5 @@
 <%
-	rails_model = @item.class.to_s.pluralize.downcase
+    rails_model = @item.class.to_s.pluralize.downcase
 %>
 
 <!-- place holders -->
@@ -28,6 +28,7 @@
 	
 <% if @editor_validation %>
 	validation_conf = <%= raw JSON.dump(EditorValidation.get_default_validation(@item).rules) -%>;
+
 	marc_editor_init_validation($('#marc_editor_form_marc_editor_panel'), validation_conf);
 <%end%>
 	$.ajax;

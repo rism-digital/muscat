@@ -27,6 +27,11 @@ fields:
   "031m":
   "031p":
       :store: true
+  "pae_complete":
+       :store: true
+       :as: pae
+       :from_tag: "031"
+       :index_processor_helper: :marc_create_pae_entry
   "031q":
   "031t_filter":
       :type: string
@@ -80,13 +85,18 @@ fields:
   "260a":
   "260b":
   "260c":
+  "260c_year":
+       :type: integer
+       :store: true
+       :from_tag: "260"
+       :from_subtag: "c"
+       :index_processor_helper: :marc_extract_dates
   "260e":
   "260f":
   "270a":
   "300a":
   "300b":
   "300c":
-  "340c":
   "340d":
   "351a":
   "383b":
@@ -191,11 +201,6 @@ fields:
   "787a":
   "787n":
   "787w":
-  "787w":
-  "787w":
-  "787w":
-  "787w":
-  "787w":
   "852a_facet":
       :type: text ## hack for sunspot: make this field work as fulltext
       :from_tag: "852"
@@ -220,6 +225,7 @@ fields:
   "856u":
   "856x":
       :type: string
+  "856z":
   "740_autocomplete":
       :index_processor_helper: marc_create_aggregated_text
       :tags:

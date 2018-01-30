@@ -23,7 +23,7 @@
 		}
 		
 		if (jQuery.fn.on !== undefined) {
-			return jQuery(document).on('focus', this.selector, handler);
+			return jQuery(document).on('focus', ".inline-autocomplete", handler);
 		} else {
 			return this.live('load', handler);
 		}

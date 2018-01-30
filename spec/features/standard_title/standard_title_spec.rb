@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "StandardTitle", :type => :feature, :js => true do 
   describe "Edit"
-  let(:user) { FactoryGirl.create(:editor)  }
+  let(:user) { FactoryBot.create(:editor)  }
   before do
     visit user_session_path
     fill_in :user_email, :with => user.email
@@ -11,13 +11,13 @@ RSpec.describe "StandardTitle", :type => :feature, :js => true do
   end
   
   it "Standard title title field should be readonly" do
-    existent_title = FactoryGirl.create(:standard_title)
+    existent_title = FactoryBot.create(:standard_title)
     visit edit_admin_standard_title_path(existent_title)
-    expect(page).to have_css("#standard_title_title[disabled]") 
+    expect(page).not_to have_css("#standard_title_title[disabled]") 
   end
   #This will fail also if the field is disabeled
   #it "Editors should be able to change standard title authority" do
-  #  existent_title = FactoryGirl.create(:standard_title)
+  #  existent_title = FactoryBot.create(:standard_title)
   #  new_title = "new title"
   #  visit edit_admin_standard_title_path(existent_title)
   #  fill_in('standard_title_title', :with => new_title)

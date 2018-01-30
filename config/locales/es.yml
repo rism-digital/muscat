@@ -342,6 +342,7 @@ es:
   filter_creation_date: "Fecha de creación"
   filter_date: "Fecha"
   filter_date_from: "Desde"
+  filter_date_of_publication: "DATE OF PUBLICATION"
   filter_date_to: "Hasta"
   filter_description: "Descripción"
   filter_digital_objects: "Objetos digitales"
@@ -386,6 +387,7 @@ es:
   filter_person_100d_deathdate: "Año de la muerte"
   filter_phone: "Teléfono"
   filter_place: "Lugar"
+  filter_place_of_publication: "PLACE OF PUBLICATION"
   filter_provenance: "Procedencia"
   filter_record_type: "Tipo"
   filter_publisher: "Editor"
@@ -400,11 +402,13 @@ es:
   filter_source_type: "Tipo de fuente"
   filter_std_title: "Título estandardizado"
   filter_subject: "Tema"
+  filter_subsequent_entries: "LATER ENTRIES"
   filter_term: "Término"
   filter_thematic_opus: "Catálogo temático / Opus no."
   filter_title: "Título"
   filter_titles: "Títulos"
   filter_title_on_ms: "Título en la fuente"
+  filter_title_short: "SHORT TITLE"
   filter_url: "URL"
   filter_variants: "Variantes"
   filter_versions: "Versiones"
@@ -452,8 +456,10 @@ es:
   error_not_found: "El recursos al que Vd. quiere acceder no existe o fue borrado."
   error_saving: "El recurso no está completo o crea un duplicado"
   unknown_tags: "Hay algunos campos desconocidos en este recurso"
+  ungrouped_tags: "THERE ARE UNGROUPED FIELDS IN THIS RECORD"
   cannot_update_source: "YOU ARE NOT AUTHORIZED TO EDIT THIS TYPE OF SOURCE"
   cannot_create_source: "YOU ARE NOT AUTHORIZED TO CREATE THIS TYPE OF SOURCE"
+  validate_name_uniqness: "RECORD NOT SAVED: SAME SHORT TITLE '%{term}' ALREADY EXISTS."
  
   #
   entry:
@@ -582,6 +588,21 @@ es:
     inprogress: "En progreso"
     published: "Publicado"
     deleted: "Borrado"
+
+  # editor validation 
+  validation:
+    missing_message: "A VALUE IN THIS FIELD IS MANDATORY"
+    warning_message: "A VALUE FOR THIS FIELD SHOULD BE PROVIDED"
+
+  incipit_search:
+    incipit_search: "INCIPIT SEARCH"
+    query_type: "QUERY TYPE:"
+    exact_pitch: "EXACT PITCH (MORE EXACT MATCH)"
+    interval: "INTERVAL"
+    refined_pitch: "REFINED PITCH CONTOUR"
+    gross_pitch: "GROSS PITCH CONTOUR (MORE FUZZY SEARCH)"
+    anchor: "SEARCH ONLY BEGINNING"
+    erase: "ERASE ONE NOTE"
    
   # date:
   # Empty lines for matching line numbers with other translation files  

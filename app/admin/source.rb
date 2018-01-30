@@ -22,6 +22,8 @@ ActiveAdmin.register Source do
   # temporarily allow all parameters
   controller do
     
+    after_destroy :check_model_errors
+
     before_filter :only => [:index] do
         if params['commit'].blank?
                  #params['q'] = {:std_title_contains => "[Holding]"} 
@@ -30,6 +32,12 @@ ActiveAdmin.register Source do
     autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => true, :solr => false}
     autocomplete :source, "740_autocomplete_sms", :solr => true
     autocomplete :source, "594b_sms", :solr => true
+    
+    def check_model_errors(object)
+      return unless object.errors.any?
+      flash[:error] ||= []
+      flash[:error].concat(object.errors.full_messages)
+    end
     
     def action_methods
       return super - ['new', 'edit', 'destroy'] if is_selection_mode?
@@ -216,7 +224,7 @@ ActiveAdmin.register Source do
   filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
          collection: proc {
            if current_user.has_any_role?(:editor, :admin)
-             User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}.sort
+             User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
            else
              [[current_user.name, "wf_owner:#{current_user.id}"]]
            end
@@ -225,9 +233,9 @@ ActiveAdmin.register Source do
   filter :"593a_filter_with_integer", :label => proc{I18n.t(:filter_source_type)}, as: :select, 
   collection: proc{@source_types.sort.collect {|k| [k.camelize, "593a_filter:#{k}"]}}
   
-  filter :record_type_select_with_integer, :label => proc {I18n.t(:filter_record_type)}, as: :select, 
+  filter :record_type_select_with_integer, as: :select, 
   collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
-	if: proc { !is_selection_mode? }
+	if: proc { !is_selection_mode? }, :label => proc {I18n.t(:filter_record_type)}
 
   filter :record_type_with_integer,
   if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:record_type_with_integer)},
@@ -241,9 +249,9 @@ ActiveAdmin.register Source do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
       label: I18n.t('status_codes.' + (source.wf_stage != nil ? source.wf_stage : ""), locale: :en))} 
-    column (I18n.t :filter_record_type) {|source| status_tag(source.get_record_type.to_s, 
-      label: I18n.t('record_types_codes.' + (source.record_type != nil ? source.record_type.to_s : ""), locale: :en))}  
-    column (I18n.t :filter_id), :id 
+    column (I18n.t :filter_record_type_short) {|source| status_tag(source.get_record_type.to_s, 
+      label: I18n.t('record_types_codes.' + (source.record_type != nil ? source.record_type.to_s : ""), locale: :en))} 
+    column (I18n.t :filter_id), :id  
     column (I18n.t :filter_composer), :composer
     column (I18n.t :filter_std_title), :std_title_shelforder, sortable: :std_title_shelforder do |element|
       element.std_title
@@ -279,6 +287,7 @@ ActiveAdmin.register Source do
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]
     render :partial => "marc/show"
+    active_admin_embedded_source_list( self, @item, params[:qe], params[:src_list_page], !is_selection_mode? )
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, @item )
     active_admin_navigation_bar( self )
@@ -287,6 +296,10 @@ ActiveAdmin.register Source do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+  end
+
+  sidebar I18n.t(:holding_records), :only => :show , if: proc{ !resource.holdings.empty? } do
+    render :partial => "holdings/holdings_sidebar_show"#, :locals => { :item => @arbre_context.assigns[:item] }
   end
   
   ##########

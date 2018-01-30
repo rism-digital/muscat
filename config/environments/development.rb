@@ -29,5 +29,8 @@ Muscat::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-  config.web_console.whitelisted_ips =  %w( 127.0.0.1 141.2.23.10 141.2.23.8)
+  #config.web_console.whitelisted_ips =  %w( 127.0.0.1 141.2.23.10 141.2.23.8)
+
+  config.i18n.available_locales = [:de, :fr, :it, :es, :en]
+
 end

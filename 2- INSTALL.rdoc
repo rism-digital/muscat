@@ -6,23 +6,29 @@ This document describes how to bootstrap into the webapplication.
 
 The following other libraries and programs are needed
 
-* ruby: > 1.9.3
+* ruby: > 2.3
 * Apache 2.2
 * MySQL > 5.0
 * Git
 * Passenger for Apache 2
+* rails
+* ruby-bundler
+* libmysqlclient-dev
 
 On a Debian or Ubuntu system all these packages are available via apt-get. No special configuration is needed
 
 == Ruby and Rails
 
-Any version of Ruby that supports Rails 4 is ok. Use the package manager to install any version of Rails 4, the system will be then updated with bundler.
+Muscat 4 now requires ruby 2.3 by default. Rails is installed with the correct version with bundle. On some systems it is necessary to uncomment therubyracer from the gemfile
 
 == Bootstrap the application
 
 Get the sources if necessary (https://github.com/rism-ch/muscat and https://github.com/rism-ch/muscat-guidelines):
 
  git clone https://github.com/rism-ch/muscat.git --recursive
+
+ gem install bundler
+ bundle install --deployment # deployment is for the production system
 
 Use bundle to install all the gems for the app:
 
@@ -64,9 +70,10 @@ Default (development) startup:
 
 For startup in production mode:
 
- ./bundle exec rake RAILS_ENV=production assets:precompile
- ./bundle exec rake RAILS_ENV=production sunspot:solr:start
- ./rails s -e production
+ sudo bundle exec rake RAILS_ENV=production assets:precompile
+ sudo bundle exec rake RAILS_ENV=production sunspot:solr:start
+ sudo RAILS_ENV=production bundle exec crono start # Muscat periodic jobs
+ sudo RAILS_ENV=production bin/delayed_job -n 4 restart # Background jobs, tune the n to your system
 
 For refreshing an installation in production mode:
 
@@ -145,20 +152,6 @@ Start Apache and Solr.
 If all this works, you can access the rism application:
 
  http://IP
-
-== Installation on Ubuntu 14.04
-
-Install the necessary packages
-
- sudo apt-get install ruby1.9.3 git ruby-passenger apache2 mysql-server openjdk-7-jre libapache2-mod-passenger make libmysqlclient-dev g++
-
-Clone GIT repo in /var/www/rails (instead ad /usr/local/www as used on FreeBSD). Remember to remove the default html site.
-
- cd /var/www/rails/$DIR
- sudo gem install rails
- sudo bundle install
-
-Use the above example apache conf in /etc/httpd/sites-enabled, create the DB and start Solr as above.
 
 == Add clean up in crontab for blacklight
 

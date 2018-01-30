@@ -106,18 +106,18 @@ function newWindowIsSelect() {
 (function(jQuery) {
 	
 	var self = null;
-	jQuery.fn.NewWindowSelect = function() {
+	jQuery.fn.NewWindowSelect = function(options) {
 		var handler = function() {
 			if (!this.NewWindowSelect) {
 				this.NewWindowSelect = new jQuery.NewWindowSelect(this);
 			}
 		};
-		
-		if (jQuery.fn.on !== undefined) {
-			return jQuery(document).on('mousedown', this.selector, handler);
-		} else {
-			return this.live('mousedown', handler);
-		}
+
+		//if (jQuery.fn.on !== undefined) {
+			return jQuery(document).on('mousedown', ".new_window_select", handler);
+		//} else {
+			//return this.live('mousedown', handler);
+			//}
 	};
 
 	jQuery.NewWindowSelect = function (e) {

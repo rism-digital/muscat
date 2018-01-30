@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>GeoTemCo</title>
+	<link rel="stylesheet" href="css/geotemco.css" type="text/css" />
+ 	<script src="geotemco.js"></script>
+  </head>
+
+  <body>
+
+    <noscript>
+      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled in order for this application to display correctly.
+      </div>
+    </noscript>
+
+    <div align=center>
+        <div id="mapContainerDiv" style="position:relative;"></div>
+        <div id="plotContainerDiv" style="position:relative;margin-top:20px;"></div>
+        <div id="tableContainerDiv" style="position:relative;margin-top:20px;"></div>
+    </div>
+
+    <script>
+		var datasets = [];
+		var mapDiv = document.getElementById("mapContainerDiv");
+		var map = new WidgetWrapper();
+		var mapWidget = new MapWidget(map,mapDiv,{
+			mapTitle: "Publication Place"
+		});
+		var timeDiv = document.getElementById("plotContainerDiv");
+		var time = new WidgetWrapper();
+		var timeWidget = new TimeWidget(time,timeDiv,{
+			timeTitle: "Publication Date"
+		});
+		var tableDiv = document.getElementById("tableContainerDiv");
+		var table = new WidgetWrapper();
+		var tableWidget = new TableWidget(table,tableDiv);
+		var kml1 = GeoTemConfig.getKml('data/heine.kml');
+		datasets.push(new Dataset(GeoTemConfig.loadKml(kml1),'Heinrich Heine'));
+		var kml2 = GeoTemConfig.getKml('data/kafka.kml');
+		datasets.push(new Dataset(GeoTemConfig.loadKml(kml2),'Franz Kafka'));
+		var kml3 = GeoTemConfig.getKml('data/goethe.kml');
+		datasets.push(new Dataset(GeoTemConfig.loadKml(kml3),'Johann Wolfgang von Goethe'));
+		map.display(datasets);
+		time.display(datasets);
+		table.display(datasets);
+/*
+		$.ajax({
+			url: 'data/test2.json',
+			async: false,
+			dataType: 'json',
+			success: function(json){
+				var data = STIStatic.loadSpatioTemporalJSONData(json);
+				gui.initializeMapGUI("mapContainerDiv");
+				gui.initializePlotGUI("plotContainerDiv");
+				gui.initializeTableGUI("tableContainerDiv");
+				SpaceWrapper.display([data]);
+				TimeWrapper.display([data]);
+				TableWrapper.display([data],['Test']);
+			}
+		});
+*/
+    </script>
+
+  </body>
+
+</html>

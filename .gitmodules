@@ -1,8 +1,8 @@
 [submodule "public/help"]
 	path = public/help
 	url = https://github.com/rism-ch/muscat-guidelines.git
-	branch = 3.6.10
+	branch = 3.7.0
 	ignore = dirty
 [submodule "housekeeping/maintenance"]
-	path = housekeeping/maintenance
-	url = https://github.com/rism-t3/muscat-maintenance.git
+  path = housekeeping/maintenance
+  url = https://github.com/rism-international/muscat-maintenance.git

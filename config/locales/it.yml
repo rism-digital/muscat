@@ -39,6 +39,8 @@ it:
         greater_than: "Maggiore di"
         less_than: "Minore di"
         with_integer: "Filtro"
+        from: "Data da"
+        to: "Data a"
     status_tag:
       "yes": "Sì"
       "no": "No"
@@ -74,10 +76,11 @@ it:
         other: "Eliminati con successo %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"
       link: "Crea uno"
-      action_label: "%{title} Selezionati"
+      action_label: "%{title}"
       labels:
         destroy: "Elimina"
-        folder: "Crea nuova cartella con gli elementi "
+        folder: "Crea nuova cartella con gli elementi selezionati"
+        add_to_folder: "Aggiungi gli elementi selezionati ad una cartella esistente"
 
     comments:
       resource_type: "Tipo di risorsa"
@@ -189,14 +192,14 @@ it:
   create_from_existing: "Crea"
   record_types:
     unspecified: "[Template sconosciuto]"
-    collection: "Raccolta"
+    collection: "Manoscritto musicale, scheda madre della collezione "
     source: "Manoscritto musicale"
-    edition_content: "Elemento in una edizione musicale"
+    edition_content: "Edizione a stampa, in una collezione"
     libretto_source: "Libretto manoscritto"
     libretto_edition_content: "Elemento di un libretto edito"
     theoretica_source: "Manoscritto di teoria musicale"
     theoretica_edition_content: "Elemento di un edizione di teoria musicale"
-    edition: "Edizione musicale"
+    edition: "Edizione musicale, scheda madre della collezione o scheda individuale"
 
   #################### MENUS
   menu_home: "Home"
@@ -229,6 +232,7 @@ it:
   menu_cataloging: "Catalogazione"
   menu_jobs: "Processi in Background"
   menu_holdings: "Esemplari"
+  menu_works: "Composizioni"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"
@@ -252,7 +256,6 @@ it:
   queue: "Coda"
   failed_at: "Data Fallimento"
   run_at: "Data Esecuzione"
-  created_at: "Data Creazione"
   progress: "Avanzamento"
   failed: "Fallito"
   waiting: "In Attesa"
@@ -261,10 +264,17 @@ it:
   lib_siglum: "Sigla della Biblioteca"
   holding_records: "Informazioni sugli esemplari"
   new_holding: "Nuovo Esemplare"
+  new_holding_page: "Esemplare non salvato"
   new_digital_object: "Aggiungi una nuova immagine"
   record_actions: "Impostazioni Record "
   record_status: "Stato pubblicazione"
   record_owner: "Proprietario"
+  record_audit: "Revisione"
+  full_level: "Record completo"
+  #full_level: "Record completo, materiale esaminato"
+  abbreviated_level: "Record abbreviato, materiale esaminato"
+  retro_level: "Retrocataloging"
+  imported_level: "Record importato"
   link_type: "Tipo Oggetto"
   linked_object: "Oggetto Collegato"
   links: "Collegamenti"
@@ -357,6 +367,7 @@ it:
   filter_creation_date: "Data di composizione"
   filter_date: "Data"
   filter_date_from: "Data da"
+  filter_date_of_publication: "Luogo della pubblicatione"
   filter_date_to: "Data a"
   filter_description: "Descrizione"
   filter_digital_objects: "Digital Objects"
@@ -401,8 +412,10 @@ it:
   filter_person_100d_deathdate: "Data di morte"
   filter_phone: "Telefono"
   filter_place: "Luogo"
+  filter_place_of_publication: "PLACE OF PUBLICATION"
   filter_provenance: "Provenienza"
-  filter_record_type: "Tipo"
+  filter_record_type: "Tipo del Template"
+  filter_record_type_short: "Tipo"
   filter_source_type: "Tipologia della fonte"
   filter_publisher: "Editore"
   filter_revue_title: "Titolo del periodico o della miscellanea"
@@ -417,11 +430,13 @@ it:
   filter_source_type: "Tipo di fonte"
   filter_std_title: "Titolo uniforme"
   filter_subject: "Soggetto"
+  filter_subsequent_entries: "Notizie Successive"
   filter_term: "Termine"
   filter_thematic_opus: "Catalogo / Num. d'opera"
   filter_title: "Titolo"
   filter_titles: "Titoli"
   filter_title_on_ms: "Titolo diplomatico"
+  filter_title_short: "Titolo Breve"
   filter_topic: "Argomento"
   filter_sub_topic: "Sub-argomenti"
   filter_url: "Indirizzo url"
@@ -471,8 +486,10 @@ it:
   error_not_found: "La risorsa specificata non esiste oppure è stata cancellata."
   error_saving: "La risorsa non è completa oppure genera un duplicato"
   unknown_tags: "Il record contiene dei campi sconosciuti"
+  ungrouped_tags: "Il record contiene campi non raggruppati"
   cannot_update_source: "Non sei autorizzato a modificare questo tipo di fonte"
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
+  validate_name_uniqness: "Scheda non salvata: il titolo breve '%{term}' è già esistente."
 
   #
   entry:
@@ -617,6 +634,16 @@ it:
   validation:
     missing_message: "Questo campo deve contendere un valore"
     warning_message: "Questo campo dovrebbe contenere un valore"
+
+  incipit_search:
+    incipit_search: "Ricerca negli incipit"
+    query_type: "Tipo di ricerca:"
+    exact_pitch: "Altezza esatta (ricerca più accurata)"
+    interval: "Intervalli"
+    refined_pitch: "Contorno melodico accurato"
+    gross_pitch: "Contorno melodico approssimato (ricerca più approssimativa)"
+    anchor: "Ricerca solo nell'inizio"
+    erase: "Cancella una nota"
 
   date:
     month_names:

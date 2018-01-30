@@ -100,7 +100,7 @@ class Source < ActiveRecord::Base
   attr_accessor :suppress_update_count_trigger
   
   enum wf_stage: [ :inprogress, :published, :deleted ]
-  enum wf_audit: [ :basic, :minimal, :full ]
+  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
   
   def after_initialize
     @old_parent = nil
@@ -137,7 +137,7 @@ class Source < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings", "sources"]
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings", "sources", "works"]
     recreate_links(marc, allowed_relations)
     
     # update the parent manuscript when having 773/774 relationships
@@ -175,15 +175,15 @@ class Source < ActiveRecord::Base
     
     sunspot_dsl.text :source_id
     
-		# For ordering
+    # For ordering
     sunspot_dsl.string :std_title_shelforder, :as => "std_title_shelforder_s" do 
       std_title
     end
-		# For facet
+    # For facet
     sunspot_dsl.string :std_title_order do 
       std_title
     end
-		# For fulltext search
+    # For fulltext search
     sunspot_dsl.text :std_title, :stored => true
     sunspot_dsl.text :std_title_d
     
@@ -218,60 +218,101 @@ class Source < ActiveRecord::Base
       lib_siglum
     end
     sunspot_dsl.text :lib_siglum, :stored => true, :as => "lib_siglum_s"
-    
-    sunspot_dsl.integer :date_from do 
-      date_from != nil && date_from > 0 ? date_from : nil
-    end
-    sunspot_dsl.integer :date_to do 
-      date_to != nil && date_to > 0 ? date_to : nil
-    end
+    # This one will be called lib_siglum_ss (note the second s) in solr
+    # We use it for GIS
+    sunspot_dsl.string :lib_siglum, :stored => true
+    # Dates now come directly from MARC
+#    sunspot_dsl.integer :date_from do 
+#      date_from != nil && date_from > 0 ? date_from : nil
+#    end
+#    sunspot_dsl.integer :date_to do 
+#      date_to != nil && date_to > 0 ? date_to : nil
+#    end
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
-	sunspot_dsl.time :updated_at
-	sunspot_dsl.time :created_at
+    sunspot_dsl.time :updated_at
+    sunspot_dsl.time :created_at
 
     sunspot_dsl.integer :catalogues, :multiple => true do
-          catalogues.map { |catalogue| catalogue.id }
+      catalogues.map { |catalogue| catalogue.id }
     end
     
     sunspot_dsl.integer :people, :multiple => true do
-          people.map { |person| person.id }
+      people.map { |person| person.id }
     end
     
     sunspot_dsl.integer :places, :multiple => true do
-          places.map { |place| place.id }
+      places.map { |place| place.id }
     end
     
     sunspot_dsl.integer :institutions, :multiple => true do
-          institutions.map { |institution| institution.id }
+      institutions.map { |institution| institution.id }
     end
     
     sunspot_dsl.integer :liturgical_feasts, :multiple => true do
-          liturgical_feasts.map { |lf| lf.id }
+      liturgical_feasts.map { |lf| lf.id }
     end
     
     sunspot_dsl.integer :standard_terms, :multiple => true do
-          standard_terms.map { |st| st.id }
+      standard_terms.map { |st| st.id }
     end
     
     sunspot_dsl.integer :standard_titles, :multiple => true do
-          standard_titles.map { |stit| stit.id }
+      standard_titles.map { |stit| stit.id }
     end
     
+    sunspot_dsl.integer :sources, :multiple => true do
+      sources.map { |source| source.id }
+    end
+
+    sunspot_dsl.integer :works, :multiple => true do
+      works.map { |w| w.id }
+    end
+ 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
+
+    #For geolocation
+    sunspot_dsl.latlon :location, :stored => true do
+      #lib = Institution.find_by_siglum(item[:value])
+      #next if !lib
+      lat = 0
+      lon = 0
+      
+      lib = marc.first_occurance("852")
+      if lib && lib.foreign_object
+        lib_marc = lib.foreign_object.marc
+        lib_marc.load_source false
+        
+        lat = lib_marc.first_occurance("034", "f")
+        lon = lib_marc.first_occurance("034", "d")
+    
+        lat = (lat && lat.content) ? lat.content : 0
+        lon = (lon && lon.content) ? lon.content : 0
+      end
+      
+      Sunspot::Util::Coordinates.new(lat, lon)
+    end
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
     
   def check_dependencies
     if (self.child_sources.count > 0)
-      errors.add :base, "The source could not be deleted because it is used"
+      errors.add :base, "The source could not be deleted because it has #{self.child_sources.count} child source(s)"
       return false
     end
     if (self.digital_objects.count > 0)
-      errors.add :base, "The source could not be deleted because it is used"
+      errors.add :base, "The source could not be deleted because it has digital objects attached"
+      return false
+    end
+    if (self.sources.count > 0)
+      errors.add :base, "The source could not be deleted because it refers to #{self.sources.count} source(s)"
+      return false
+    end
+    if (self.referring_sources.count > 0)
+      errors.add :base, "The source could not be deleted because it has #{self.referring_sources.count} subsequent entry(s)"
       return false
     end
   end
@@ -447,8 +488,8 @@ class Source < ActiveRecord::Base
     "Anonymous"
   end
 
-  ransacker :"852a_facet_contains", proc{ |v| } do |parent| end
-  ransacker :"593a_filter_with_integer", proc{ |v| } do |parent| end
-	ransacker :record_type_select_with_integer, proc{ |v| } do |parent| end
+  ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
+	ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
+	ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
 	
 end
