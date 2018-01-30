@@ -89,15 +89,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs I18n.t(:user_details) do
-<<<<<<< HEAD
-      if can? :manage, User
-        f.input :name
-        f.input :email
-      elsif can? :update, User
-        f.input :name, :input_html => {:disabled => true}
-        f.input :email, :input_html => {:disabled => true}
-      end
-=======
+
       #515 postponed to 3.7
       #if can? :manage, User
         f.input :name
@@ -106,7 +98,7 @@ ActiveAdmin.register User do
       #  f.input :name, :input_html => {:disabled => true}
       #  f.input :email, :input_html => {:disabled => true}
       #end
->>>>>>> 4.1-devel
+
 
       if can? :update, User
         f.input :password
