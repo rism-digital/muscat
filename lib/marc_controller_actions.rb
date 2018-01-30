@@ -64,7 +64,7 @@ module MarcControllerActions
       
       # Some housekeeping, change owner and status
       if params.has_key?(:record_status) &&
-        (current_user.has_role?(:cataloger) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
+          (current_user.has_role?(:cataloger) || current_user.has_role?(:cataloger_prints) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
         @item.wf_stage = params[:record_status]
       end
       
