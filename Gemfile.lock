@@ -120,15 +120,15 @@ GEM
       execjs
     awesome_print (1.8.0)
     bcrypt (3.1.11)
-    blacklight (5.19.2)
+    blacklight (5.14.0)
       bootstrap-sass (~> 3.2)
       deprecation
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
       rails (>= 3.2.6, < 5)
-      rsolr (~> 1.0, >= 1.0.11)
-    blacklight_advanced_search (5.3.1)
-      blacklight (~> 5.15)
+      rsolr (~> 1.0.11)
+    blacklight_advanced_search (5.1.4)
+      blacklight (~> 5.10)
       parslet
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
@@ -249,7 +249,7 @@ GEM
     multipart-post (2.0.0)
     mysql2 (0.3.21)
     needleman_wunsch_aligner (1.0.4)
-    nokogiri (1.8.1)
+    nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
@@ -397,8 +397,8 @@ DEPENDENCIES
   activeadmin (~> 1.2)
   activerecord-import (>= 0.4.0)
   awesome_print
-  blacklight (~> 5.14)
-  blacklight_advanced_search
+  blacklight (= 5.14)
+  blacklight_advanced_search (= 5.1.4)
   blacklight_range_limit!
   bootstrap-sass (= 3.3.4.1)
   cancan

@@ -235,9 +235,13 @@ class Person < ActiveRecord::Base
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
     
+    sunspot_dsl.integer :catalogues, :multiple => true do
+      catalogues.map { |catalogue| catalogue.id }
+    end
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
- 	
+
     sunspot_dsl.integer :src_count_order, :stored => true do 
       Person.count_by_sql("select count(*) from sources_to_people where person_id = #{self[:id]}")
     end

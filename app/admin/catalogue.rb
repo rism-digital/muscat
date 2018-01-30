@@ -178,7 +178,7 @@ ActiveAdmin.register Catalogue do
       render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode? )
-
+		active_admin_embedded_link_list(self, catalogue, "Person", params[:current_page], true)
     if !resource.get_items.empty?
       panel I18n.t :filter_series_items do
         search=Catalogue.solr_search do 
