@@ -81,7 +81,7 @@ group :development do
     gem 'puma'
 end
 
-gem 'blacklight', "~> 5.14"
+gem 'blacklight', "5.14"
 gem "blacklight_advanced_search"
 gem 'bootstrap-sass', "3.3.4.1"
 # For nice date ranges

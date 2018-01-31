@@ -1,6 +1,15 @@
 Muscat Changelog
 ================
 
+v 4.0.1
+* Update install documentation
+* Fix incipits not showing in editor
+* Fix sources with source.id == source.source_id
+* Fix "any field" search which returned wrong results
+* Update a couple IT and FR labels
+* Limit search to collections in secondary window for collections too
+* Downgrade blacklight to 5.14 or it breaks reindexing in development
+
 v 4.0
 * Incipit indexing and searching from PAE data
 * GIS Visualization and localization of libraries
