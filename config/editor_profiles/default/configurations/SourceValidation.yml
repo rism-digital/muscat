@@ -101,7 +101,12 @@
 #"773": 
 #  tags:
 #    w: required
-"852": 
+"852":
+  tag_overrides:
+    exclude:
+      "x":
+      - edition
+      - edition_content
   tags:
     c: required
     x: mandatory
