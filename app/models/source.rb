@@ -47,6 +47,7 @@ class Source < ActiveRecord::Base
 #  include MarcIndex
   include ForeignLinks
   include MarcIndex
+  include ActiveRecordValidation
   resourcify
   
   belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
@@ -94,6 +95,8 @@ class Source < ActiveRecord::Base
   after_save :update_links, :reindex
   before_destroy :update_links_for_destroy
   
+  validate :validates_parent_id
+
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_77x_trigger
