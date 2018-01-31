@@ -15,11 +15,31 @@ The following other libraries and programs are needed
 * ruby-bundler
 * libmysqlclient-dev
 
-On a Debian or Ubuntu system all these packages are available via apt-get. No special configuration is needed
-
 == Ruby and Rails
 
 Muscat 4 now requires ruby 2.3 by default. Rails is installed with the correct version with bundle. On some systems it is necessary to uncomment therubyracer from the gemfile
+
+On older Debian systems the easyest way to get ruby 2.3 is via rbenv adding for all users.
+
+On Ubuntu systems pre-packaged binaries exist: add
+
+ deb http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu trusty main
+ deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main
+ 
+To /etc/apt/sources.list or create a relevant file in /etc/apt/sources.list.d
+
+Then (all as root or with sudo)
+
+ apt-get update
+ apt-get install ruby2.3 ruby2.3-dev
+ apt-get install passenger libapache2-mod-passenger
+ a2enmod passenger
+ update-alternatives --set ruby /usr/bin/ruby2.3
+ 
+Passenger also wants to compile a binary module, this is optional but will enable it
+
+ mkdir /var/www/.passenger
+ sudo chown -R www-data:www-data /var/www/.passenger
 
 == Bootstrap the application
 
@@ -29,10 +49,6 @@ Get the sources if necessary (https://github.com/rism-ch/muscat and https://gith
 
  gem install bundler
  bundle install --deployment # deployment is for the production system
-
-Use bundle to install all the gems for the app:
-
- sudo bundle install --deployment
 
 Install base configuration:
 
@@ -55,35 +71,35 @@ Set up databases access:
  # Remember
  # username and pass should be the same as in database.yml
 
-Migrate the database:
+Migrate the database NOTE in a production environment all the tasks must declare RAILS_ENV=production to run. For local development this is not necessary
 
- rake db:migrate
+ bundle exec rake db:migrate
+ RAILS_ENV=production bundle exec rake db:migrate ## on a production system
 
 Add basic dataset:
 
- rake db:seed
+ bundle exec rake db:seed
 
 Default (development) startup:
 
  bundle exec rake sunspot:solr:start
  rails s -e development
-
-For startup in production mode:
-
- sudo bundle exec rake RAILS_ENV=production assets:precompile
- sudo bundle exec rake RAILS_ENV=production sunspot:solr:start
- sudo RAILS_ENV=production bundle exec crono start # Muscat periodic jobs
- sudo RAILS_ENV=production bin/delayed_job -n 4 restart # Background jobs, tune the n to your system
-
-For refreshing an installation in production mode:
-
- sudo -u www rake assets:clean
- sudo -u www rake assets:precompile
-
+ 
 Try to open :
 
  http://ip:3000/
 
+For startup in production mode (with sudo or as root):
+
+ bundle exec rake RAILS_ENV=production assets:precompile
+ bundle exec rake RAILS_ENV=production sunspot:solr:start
+ RAILS_ENV=production bundle exec crono start # Muscat periodic jobs
+ RAILS_ENV=production bin/delayed_job -n 4 restart # Background jobs, tune the n to your system
+
+For refreshing an installation in production mode (with sudo, as root or sudo -u www-data depending on the permissions on the installation dir):
+
+ bundle exec rake RAILS_ENV=production assets:clean
+ bundle exec rake RAILS_ENV=production assets:precompile
 
 == Logging In
 
@@ -110,10 +126,6 @@ Specify only a model:
 Do reindex in 1 record batches, useful if reindex crashes to see in which one (very slow to start)
 
  rake sunspot:reindex[1]
-
-==== Updating from an older version of Muscat
-
-For upgrading from an older version, see the {5- UPGRADE}[link:5-%20UPGRADE.rdoc] page.
 
 ==== To install on Mac OS X Lion
 
