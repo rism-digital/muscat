@@ -4,7 +4,7 @@ en:
 # Pad for italian, it has 2 missing items
 #
 #
-    dashboard: Dashboard
+    dashboard: "Last week activity"
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."
       call_to_action: "To add dashboard sections, checkout 'app/admin/dashboard.rb'"
@@ -620,6 +620,17 @@ en:
     inprogress: "In Progress"
     published: "Published"
     deleted: "Deleted"
+  
+  dashboard:
+    selection: "Selection"
+    type: "Change type"
+    type_created: "Recently created"
+    type_updated: "Recently updated"
+    owner: "Owner"
+    owner_user: "Myself"
+    owner_any: "Any"
+    quantity: "Display"
+    update: "Update"
   
   # editor validation 
   validation:

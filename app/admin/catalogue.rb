@@ -142,10 +142,12 @@ ActiveAdmin.register Catalogue do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
+
     column (I18n.t :filter_id), :id    
     column (I18n.t :filter_title_short), :name
     column (I18n.t :filter_title), :description do |catalogue| 
       catalogue.description.truncate(64, separator: ' ') if catalogue.description
+
     end
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
