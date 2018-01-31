@@ -84,10 +84,10 @@ module MarcControllerActions
       @item.last_user_save = current_user.name
       @item.save
 
-      # This uses the AR validation messages for checking server side validation; only used for catalogue for now
-      if @item.is_a?(Catalogue) && !@item.errors.messages.empty?
+      # This uses the AR validation messages for checking server side validation; only used for catalogue && source for now
+      if (@item.is_a?(Catalogue) || @item.is_a?(Source)) && !@item.errors.messages.empty?
         message = @item.errors.messages[:base].join(";")
-        term = @item.errors.messages[:term].join(";")
+        term = @item.errors.messages[:term].join(";") rescue "-"
         url = request.env['HTTP_REFERER']
         par = Rack::Utils.parse_query(URI(url).query)
         sep = par.any? ? "&" : "?" 

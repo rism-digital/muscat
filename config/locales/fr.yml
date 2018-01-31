@@ -489,6 +489,7 @@ fr:
   cannot_update_source: "Vous n'êtes pas autorisé à traiter ce type de source"
   cannot_create_source: "Vous n'êtes pas autorisé à créer ce type de source" 
   validate_name_uniqness: "Record non enregistré: le titre abrégé existe déjà ('%{term}')."
+  validates_parent_id: "RECORD NOT SAVED: PARENT RECORD (773) CANNOT BE SAME AS THIS RECORD"
 
   #
   entry:
