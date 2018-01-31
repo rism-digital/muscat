@@ -152,6 +152,22 @@ class MarcConfig
     remote_tags
   end
 
+
+  def get_all_foreign_classes()
+    foreign_classes = []
+    get_foreign_tag_groups.each do |foreign_tag|
+      each_subtag(foreign_tag) do |subtag|
+        tag_letter = subtag[0]
+        if is_foreign?(foreign_tag, tag_letter)
+          next if get_foreign_class(foreign_tag, tag_letter).include?("^")
+          foreign_classes << get_foreign_class(foreign_tag, tag_letter).pluralize.underscore
+        end
+      end
+    end
+    
+    foreign_classes
+  end
+
   def has_links_to(tag)
 		return false if !@tag_config.include? tag
 	  @tag_config[tag][:fields].each do |st|

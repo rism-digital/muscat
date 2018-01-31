@@ -43,7 +43,7 @@ module ForeignLinks
   
   def recreate_links(marc, allowed_relations)
     marc_foreign_objects = Hash.new
-		reindex_items = Array.new
+    reindex_items = Array.new
     
     # All the allowed relation types *must* be in this array or they will be dropped
     #allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places"]
@@ -60,27 +60,34 @@ module ForeignLinks
       marc_foreign_objects[foreign_class] << object
     end
     
+    all_foreign_classes = marc.get_all_foreign_classes
+    
     # allowed_relations explicitly needs to contain the classes we will repond to
     # Log if in the Marc there are "unknown" classes, should never happen
-    unknown_classes = marc_foreign_objects.keys - allowed_relations
+    unknown_classes = all_foreign_classes - allowed_relations
     # If there are unknown classes purge them
-    related_classes = marc_foreign_objects.keys - unknown_classes
+    related_classes = all_foreign_classes - unknown_classes
     if !unknown_classes.empty?
       $stderr.puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')} [#{self.id}]"
     end
-        
+    
     related_classes.each do |foreign_class|
       relation = self.send(foreign_class)
       
       # The foreign class array holds the correct number of object
       # We want to delete or add only the difference betweend
       # what is in marc and what is in the DB relations
-      new_items = marc_foreign_objects[foreign_class] - relation.to_a
-      remove_items = relation.to_a - marc_foreign_objects[foreign_class]
+      if marc_foreign_objects[foreign_class]
+        new_items = marc_foreign_objects[foreign_class] - relation.to_a
+        remove_items = relation.to_a - marc_foreign_objects[foreign_class]
+      else
+        new_items = []
+        remove_items = relation.to_a
+      end
       
-			reindex_items += new_items
-			reindex_items += remove_items
-			
+      reindex_items += new_items
+      reindex_items += remove_items
+      
       # Delete or add to the DB relation
       relation.delete(remove_items)
       new_items.each do |ni|
@@ -103,9 +110,9 @@ module ForeignLinks
     # that triggers the change. In other cases (like people linking to institutions)
     # there is no such count field.
     if self.is_a?(Source) && !self.suppress_update_count_trigger && reindex_items.size > 0
-			# just pass the minumum necessary information
-			ids_hash = reindex_items.map {|i| {class: i.class, id: i.id}}
-	    job = Delayed::Job.enqueue(ReindexForeignRelationsJob.new(self.id, ids_hash))
+      # just pass the minumum necessary information
+      ids_hash = reindex_items.map {|i| {class: i.class, id: i.id}}
+      job = Delayed::Job.enqueue(ReindexForeignRelationsJob.new(self.id, ids_hash))
     end
     
   end

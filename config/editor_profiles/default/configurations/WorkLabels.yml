@@ -155,8 +155,8 @@ doc_edit_workflow:
   fields:
     a:
       label:
-        it: COMPOSER
-        fr: COMPOSER
+        it: Compositore
+        fr: Compositeur
         de: Komponist
         en: Heading - composer name
     d:
@@ -173,8 +173,8 @@ doc_edit_workflow:
         en: Scoring summary
     n:
       label:
-        it: NUMBER OF PART/SECTION OF A WORK
-        fr: NUMBER OF PART/SECTION OF A WORK
+        it: Numero della parte/sezione di una composizione
+        fr: "uméro de partie / section d'une œuvre"
         de: Anzahl Teile oder Abschnitte eines Werks
         en: Number of part/section of a work
     r:
@@ -185,8 +185,8 @@ doc_edit_workflow:
         en: Key or mode
     t:
       label:
-        it: TITLE OF WORK
-        fr: TITLE OF WORK
+        it: Titolo della composizione
+        fr: Titre de la composition
         de: Werktitel
         en: Title of work
 "370":

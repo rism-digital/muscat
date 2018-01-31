@@ -32,4 +32,3 @@ How the Marc21 data is managed, and how the interaction between Marc records and
 
 The behavior of the show/edit pages for Marc records is controlled in the config/editor_profiles directory, using the EditorConfiguration, which, on the base of the MarcConfig (described above), decide which/how tags are shown or edited.
 
-Lastly, an implementation of METS (http://www.loc.gov/standards/mets) permits the linking of Digital Objects (Do* classes) to each source. For the moment, only linking and showing images (using DoFile and DoImage) is implemented, but the system is designed to accept othe media types.

@@ -277,14 +277,6 @@ class Catalogue < ApplicationRecord
       return false
     end
   end
-  
-  def self.find_recent_updated(limit, user)
-    if user != -1
-      where("updated_at > ?", 5.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
-    else
-      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
-    end
-  end
 
   def autocomplete_label
     

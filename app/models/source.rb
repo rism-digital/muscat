@@ -47,6 +47,7 @@ class Source < ApplicationRecord
 #  include MarcIndex
   include ForeignLinks
   include MarcIndex
+  include ActiveRecordValidation
   resourcify
   
   belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
@@ -94,6 +95,8 @@ class Source < ApplicationRecord
   after_save :update_links, :reindex
   before_destroy :update_links_for_destroy
   
+  validate :validates_parent_id
+
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_77x_trigger
@@ -469,14 +472,6 @@ class Source < ApplicationRecord
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
       self.without_versioning :save
-    end
-  end
-  
-  def self.find_recent_updated(limit, user)
-    if user != -1
-      where("updated_at > ?", 5.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
-    else
-      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
     end
   end
   

@@ -67,7 +67,7 @@ class User < ApplicationRecord
     source.holdings.each do |holding|
       return true if self.can_edit?(holding)
     end
-    if source.source_id
+    if source.source_id && source.id != source.source_id
       return true if self.can_edit_edition?(Source.find(source.source_id))
     end
     return false
