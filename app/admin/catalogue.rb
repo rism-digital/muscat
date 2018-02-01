@@ -179,8 +179,58 @@ ActiveAdmin.register Catalogue do
     else
       render :partial => "marc/show"
     end
-    active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode? )
-		active_admin_embedded_link_list(self, catalogue, "Person", params[:current_page], true)
+    
+    ## FIXME remove the old code for the old "sources" box
+    ###active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode? )
+
+    # Box for sources referring to this catalogue
+    active_admin_embedded_link_list(self, catalogue, Source, (I18n.t :referring_sources_catalogue)) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_composer), :composer
+        context.column (I18n.t :filter_std_title), :std_title
+        context.column (I18n.t :filter_title), :title
+        context.column (I18n.t :filter_lib_siglum), :lib_siglum
+        context.column (I18n.t :filter_shelf_mark), :shelf_mark
+        if !is_selection_mode?
+          context.column "" do |source|
+            link_to "View", controller: :sources, action: :show, id: source.id
+          end
+        end
+      end
+    end
+
+    # Box for people referring to this catalogue
+    active_admin_embedded_link_list(self, catalogue, Person, (I18n.t :referring_people_catalogue)) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_full_name), :full_name
+        context.column (I18n.t :filter_life_dates), :life_dates
+        context.column (I18n.t :filter_birth_place), :birth_place
+        context.column (I18n.t :filter_alternate_names), :alternate_names
+        if !is_selection_mode?
+          context.column "" do |person|
+            link_to "View", controller: :people, action: :show, id: person.id
+          end
+        end
+      end
+    end
+    
+    # Box for institutions referring to this catalogue
+    active_admin_embedded_link_list(self, catalogue, Institution, (I18n.t :referring_institutions_catalogue)) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :siglum
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_place), :place
+        if !is_selection_mode?
+          context.column "" do |ins|
+            link_to "View", controller: :institutions, action: :show, id: ins.id
+          end
+        end
+      end
+    end
+    
     if !resource.get_items.empty?
       panel I18n.t :filter_series_items do
         search=Catalogue.solr_search do 

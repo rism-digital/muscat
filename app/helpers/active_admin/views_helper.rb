@@ -45,29 +45,17 @@ module ActiveAdmin::ViewsHelper
     end
   end
 	
-  def active_admin_embedded_link_list(context, item, link_class, current_page, enable_view_src = true )
-		c = item.send("referring_" + link_class.pluralize.underscore)
+  def active_admin_embedded_link_list(context, item, link_class, panel_title = nil, &block)
+    current_page_name = link_class.to_s.downcase + "_list_page"
+    current_page = params[current_page_name]
+    c = item.send("referring_" + link_class.to_s.pluralize.underscore)
     # do not display the panel if no source attached
     return if c.empty?
-    panel_title = link_class
+    panel_title = link_class.to_s if !panel_title
+    
     context.panel panel_title, :class => "muscat_panel"  do
- 
-      # filter the list of sources
-      c = link_class.constantize.solr_search do
-        fulltext "*"
-        with item.class.name.underscore.pluralize.to_sym, item.id
-        paginate :page => current_page, :per_page => 15 
-      end
-      
-      context.paginated_collection(c.results, param_name: 'current_page',  download_links: false) do
-        context.table_for(context.collection) do |cr|
-          context.column "id", :id
-          if enable_view_src
-            context.column "" do |source|
-              link_to "View", controller: :sources, action: :show, id: source.id
-            end
-          end
-        end
+      context.paginated_collection(c.page(current_page).per(10), param_name: current_page_name,  download_links: false) do
+        yield(context)
       end
     end
   end 
