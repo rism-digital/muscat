@@ -4,7 +4,7 @@ it:
     search_status:
       headline: "Ambito"
       current_filters: "Filtri in uso"
-    dashboard: Pannello
+    dashboard: "LAST WEEK ACTIVITY"
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
       call_to_action: "Per aggiungere sezioni alla dashboard controlla il file 'app/admin/dashboard.rb'"
@@ -280,6 +280,7 @@ it:
   links: "Collegamenti"
   link_remove: "Elimina Collegamento"
   link_remove_confirm: "Sei sicuro di voler eliminare il collegamento?"
+  unloadable_record: "This record experienced loading errors: it can be viewed but not edited. Please contact an administrator."
   validation_level_error: "Sono presenti errori, correggerli prima di continuare"
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
   
@@ -489,6 +490,7 @@ it:
   cannot_update_source: "Non sei autorizzato a modificare questo tipo di fonte"
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
   validate_name_uniqness: "Scheda non salvata: il titolo breve '%{term}' è già esistente."
+  validates_parent_id: "RECORD NOT SAVED: PARENT RECORD (773) CANNOT BE SAME AS THIS RECORD"
 
   #
   entry:
@@ -618,6 +620,17 @@ it:
     published: "Pubblicato"
     deleted: "Cancellato"
 
+  dashboard:
+    selection: "SELECTION"
+    type: "CHANGE TYPE"
+    type_created: "RECENTLY CREATED"
+    type_updated: "RECENTLY UPDATED"
+    owner: "OWNER"
+    owner_user: "MYSELF"
+    owner_any: "ANY"
+    quantity: "DISPLAY"
+    update: "UPDATE"
+  
   # editor validation 
   validation:
     missing_message: "Questo campo deve contendere un valore"

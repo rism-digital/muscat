@@ -1,0 +1,26 @@
+<%= form_tag("dashboard", method: "get") do %>
+  <% ["source", "person", "catalogue", "institution"].each do |model|=%>
+    <label class="label">
+		<h5 style="margin-bottom: 0.5em"><%= I18n.t("activerecord.models." + model, count: 2) %></h5>
+	</label>	
+	<%# if current_user.has_any_role?(:editor, :admin) %>
+	<div style="margin-bottom: 2px;">
+		<label class="label"><%= I18n.t("dashboard.owner") %></label>
+		<% select_id = "dashboard_" + model + "_owner" -%>
+		<%= select_tag("dashboard_" + model + "_owner", options_for_select([[I18n.t("dashboard.owner_user"), :user], [I18n.t("dashboard.owner_any"), :any]], params[select_id.to_s])) %>
+	</div>
+	<%# end -%>
+	<div>
+		<label class="label"><%= I18n.t("dashboard.type") %></label>
+		<% select_id = "dashboard_" + model + "_type" -%>
+		<%= select_tag(select_id, options_for_select([[I18n.t("dashboard.type_created"), :created], [I18n.t("dashboard.type_updated"), :updated]], params[select_id.to_s])) %>
+	</div>
+	<hr style="margin-top: 1.em; margin-bottom: 0.8em"/>
+  <% end %>
+  <div>
+    <label class="label"><%= I18n.t("dashboard.quantity") %></label>
+    <%= select_tag("dashboard_quantity", options_for_select([[10, 10], [20, 20], [50, 50]], params[:dashboard_quantity])) %>
+  </div>
+  <hr style="margin-top: 1.em; margin-bottom: .4em"/>
+  <%= submit_tag(I18n.t("dashboard.update")) %>
+<% end %>

@@ -6,6 +6,7 @@ ActiveAdmin.register User do
   # Remove all action items
   config.clear_action_items!
 	
+
 =begin #515 postponed to 3.7
 	controller do
 	  def update
@@ -88,6 +89,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs I18n.t(:user_details) do
+
       #515 postponed to 3.7
       #if can? :manage, User
         f.input :name
@@ -96,6 +98,7 @@ ActiveAdmin.register User do
       #  f.input :name, :input_html => {:disabled => true}
       #  f.input :email, :input_html => {:disabled => true}
       #end
+
 
       if can? :update, User
         f.input :password

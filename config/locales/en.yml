@@ -4,7 +4,7 @@ en:
 # Pad for italian, it has 2 missing items
 #
 #
-    dashboard: Dashboard
+    dashboard: "Last week activity"
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."
       call_to_action: "To add dashboard sections, checkout 'app/admin/dashboard.rb'"
@@ -184,6 +184,7 @@ en:
       user:
         one: "User"
         other: "Users"
+    
         
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Select new template"
@@ -490,6 +491,7 @@ en:
   cannot_update_source: "You are not authorized to edit this type of source"
   cannot_create_source: "You are not authorized to create this type of source"
   validate_name_uniqness: "Record not saved: Same short title '%{term}' already exists."
+  validates_parent_id: "Record not saved: Parent record (773) cannot be same as this record"
   
   #
   entry:
@@ -618,6 +620,17 @@ en:
     inprogress: "In Progress"
     published: "Published"
     deleted: "Deleted"
+  
+  dashboard:
+    selection: "Selection"
+    type: "Change type"
+    type_created: "Recently created"
+    type_updated: "Recently updated"
+    owner: "Owner"
+    owner_user: "Myself"
+    owner_any: "Any"
+    quantity: "Display"
+    update: "Update"
   
   # editor validation 
   validation:

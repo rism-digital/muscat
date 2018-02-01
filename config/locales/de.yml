@@ -4,7 +4,7 @@ de:
 # Pad for italian, it has 2 missing items
 #
 #
-    dashboard: Übersicht
+    dashboard: "LAST WEEK ACTIVITY"
     dashboard_welcome:
       welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
       call_to_action: "Siehe 'app/admin/dashboard.rb', um Übersichts-Bereiche hinzuzufügen."
@@ -490,6 +490,7 @@ de:
   cannot_update_source: "Sie sind nicht berechtigt, diese Art von Quellen zu bearbeiten"
   cannot_create_source: "Sie sind nicht berechtigt, diese Art von Quellen zu erstellen"
   validate_name_uniqness: "Eintrag nicht gespeichert: Das Kürzel '%{term}' existiert bereits."
+  validates_parent_id: "Eintrag nicht gespeichert: Übergeordneter Eintrag (773) kann nicht mit diesem Eintrag identisch sein."
 
   #
   entry:
@@ -619,6 +620,18 @@ de:
     published: "Veröffentlicht"
     deleted: "Gelöscht"
 
+  
+  dashboard:
+    selection: "SELECTION"
+    type: "CHANGE TYPE"
+    type_created: "RECENTLY CREATED"
+    type_updated: "RECENTLY UPDATED"
+    owner: "OWNER"
+    owner_user: "MYSELF"
+    owner_any: "ANY"
+    quantity: "DISPLAY"
+    update: "UPDATE"
+  
   # editor validation 
   validation:
     missing_message: "Dieses Feld muss zwingend ausgefüllt werden."

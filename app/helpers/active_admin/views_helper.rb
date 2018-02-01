@@ -264,5 +264,21 @@ module ActiveAdmin::ViewsHelper
     end
     return Hash[local_hash.sort_by{|k, v| v}].keys
   end
+	
+  def pretty_truncate(text, length = 30, truncate_string = "...")
+    return if text.nil?
+    l = length - truncate_string.mb_chars.length
+    text.mb_chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
+  end
+	
+  def dashboard_find_recent(model, limit, modification, user, days = 7) 
+    modif_at = modification.to_s + "_at"
+    puts modification.to_s, modif_at
+    if user != -1
+      model.where((modif_at + " > ?"), days.days.ago).where("wf_owner = ?", user).limit(limit).order(modif_at + " DESC")
+    else
+      model.where((modif_at + "> ?"), days.days.ago).limit(limit).order(modif_at + " DESC") 
+    end
+  end
 
 end

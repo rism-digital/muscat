@@ -293,15 +293,7 @@ class Person < ActiveRecord::Base
     self.life_dates = self.life_dates.truncate(24) if self.life_dates and self.life_dates.length > 24
     self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
   end
-  
-  def self.find_recent_updated(limit, user)
-    if user != -1
-      where("updated_at > ?", 5.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
-    else
-      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
-    end
-  end
-  
+
   def name
     return full_name
   end

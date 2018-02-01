@@ -119,6 +119,8 @@ ActiveAdmin.register Institution do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
+    column (I18n.t :filter_wf_stage) {|institution| status_tag(institution.wf_stage,
+      label: I18n.t('status_codes.' + (institution.wf_stage != nil ? institution.wf_stage : ""), locale: :en))}  
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_siglum), :siglum
     column (I18n.t :filter_location_and_name), :name
