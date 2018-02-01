@@ -467,9 +467,7 @@ fr:
   filter_dist_594n: "Instruments de basse continue"
  
   ## Referring lists for auth files
-  referring_sources_catalogue: "Sources se référant à ce catalogue"
-  referring_people_catalogue: "Personnes se référant à ce catalogue"
-  referring_institutions_catalogue: "Institutions se référant à ce catalogue"
+  refers_to_this: "%{model_from} que se référant à cet(te) %{model_to}"
 
   rism_any_key: "N'importe quelle tonalité"
   rism_a_flat: "La bémol majeur/mineur"

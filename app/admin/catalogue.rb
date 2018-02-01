@@ -184,7 +184,7 @@ ActiveAdmin.register Catalogue do
     ###active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode? )
 
     # Box for sources referring to this catalogue
-    active_admin_embedded_link_list(self, catalogue, Source, (I18n.t :referring_sources_catalogue)) do |context|
+    active_admin_embedded_link_list(self, catalogue, Source) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
         context.column (I18n.t :filter_composer), :composer
@@ -201,7 +201,7 @@ ActiveAdmin.register Catalogue do
     end
 
     # Box for people referring to this catalogue
-    active_admin_embedded_link_list(self, catalogue, Person, (I18n.t :referring_people_catalogue)) do |context|
+    active_admin_embedded_link_list(self, catalogue, Person) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
         context.column (I18n.t :filter_full_name), :full_name
@@ -217,7 +217,7 @@ ActiveAdmin.register Catalogue do
     end
     
     # Box for institutions referring to this catalogue
-    active_admin_embedded_link_list(self, catalogue, Institution, (I18n.t :referring_institutions_catalogue)) do |context|
+    active_admin_embedded_link_list(self, catalogue, Institution) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
         context.column (I18n.t :filter_siglum), :siglum

@@ -467,9 +467,8 @@ de:
   filter_dist_594n: "Basso-continuo-Instrumente"
  
   ## Referring lists for auth files
-  referring_sources_catalogue: "Quellen, die sich auf diesen Katalog beziehen"
-  referring_people_catalogue: "Personen, die sich auf diesen Katalog beziehen"
-  referring_institutions_catalogue: "Institutionen, die sich auf diesen Katalog beziehen"
+  refers_to_this: "%{model_from} die sich auf diesen %{model_to} beziehen"
+
 
   rism_any_key: "Irgendeine Tonart"
   rism_a_flat: "As-Dur/Moll"

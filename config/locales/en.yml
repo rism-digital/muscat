@@ -467,9 +467,7 @@ en:
   filter_dist_594n: "Basso continuo instruments"
  
   ## Referring lists for auth files
-  referring_sources_catalogue: "Sources referring to this Catalogue"
-  referring_people_catalogue: "People referring to this Catalogue"
-  referring_institutions_catalogue: "Institutions referring to this Catalogue"
+  refers_to_this: "%{model_from} referring to this %{model_to}"
  
   rism_any_key: "Any key"
   rism_a_flat: "A flat major/minor"

@@ -51,7 +51,7 @@ module ActiveAdmin::ViewsHelper
     c = item.send("referring_" + link_class.to_s.pluralize.underscore)
     # do not display the panel if no source attached
     return if c.empty?
-    panel_title = link_class.to_s if !panel_title
+    panel_title = I18n.t(:refers_to_this, model_from: link_class.model_name.human(count: 2), model_to: item.model_name.human) if !panel_title
     
     context.panel panel_title, :class => "muscat_panel"  do
       context.paginated_collection(c.page(current_page).per(10), param_name: current_page_name,  download_links: false) do
