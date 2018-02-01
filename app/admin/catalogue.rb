@@ -180,25 +180,8 @@ ActiveAdmin.register Catalogue do
       render :partial => "marc/show"
     end
     
-    ## FIXME remove the old code for the old "sources" box
-    ###active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode? )
-
-    # Box for sources referring to this catalogue
-    active_admin_embedded_link_list(self, catalogue, Source) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_composer), :composer
-        context.column (I18n.t :filter_std_title), :std_title
-        context.column (I18n.t :filter_title), :title
-        context.column (I18n.t :filter_lib_siglum), :lib_siglum
-        context.column (I18n.t :filter_shelf_mark), :shelf_mark
-        if !is_selection_mode?
-          context.column "" do |source|
-            link_to "View", controller: :sources, action: :show, id: source.id
-          end
-        end
-      end
-    end
+    ## Source box. Use the standard helper so it is the same everywhere
+    active_admin_embedded_source_list(self, catalogue, !is_selection_mode? )
 
     # Box for people referring to this catalogue
     active_admin_embedded_link_list(self, catalogue, Person) do |context|

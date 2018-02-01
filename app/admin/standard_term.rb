@@ -130,7 +130,7 @@ ActiveAdmin.register StandardTerm do
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
       row (I18n.t :filter_notes) { |r| r.notes }    
     end
-    active_admin_embedded_source_list( self, standard_term, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, standard_term, !is_selection_mode? )
     active_admin_user_wf( self, standard_term )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
