@@ -467,7 +467,7 @@ fr:
   filter_dist_594n: "Instruments de basse continue"
  
   ## Referring lists for auth files
-  refers_to_this: "%{model_from} que se référant à cet(te) %{model_to}"
+  refers_to_this: "%{model_from} se référant à cet(te) %{model_to}"
 
   rism_any_key: "N'importe quelle tonalité"
   rism_a_flat: "La bémol majeur/mineur"
