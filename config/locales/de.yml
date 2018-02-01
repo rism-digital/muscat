@@ -469,7 +469,6 @@ de:
   ## Referring lists for auth files
   refers_to_this: "%{model_from} die sich auf diesen %{model_to} beziehen"
 
-
   rism_any_key: "Irgendeine Tonart"
   rism_a_flat: "As-Dur/Moll"
   rism_a: "A-Dur/Moll"
