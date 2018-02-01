@@ -466,6 +466,11 @@ it:
   filter_dist_594m: "Altri strumenti"
   filter_dist_594n: "Strumenti del basso continuo"
   
+  ## Referring lists for auth files
+  referring_sources_catalogue: "Fonti che fanno riferimento a questo Catalogo"
+  referring_people_catalogue: "Persone che fanno riferimento a questo Catalogo"
+  referring_institutions_catalogue: "Istitutzioni che fanno riferimento a questo Catalogo"
+  
   rism_any_key: "ogni tonalità"
   rism_a_flat: "La bemolle maggiore/minore"
   rism_a: "La maggiore/minore"

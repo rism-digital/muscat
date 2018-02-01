@@ -465,7 +465,12 @@ fr:
   filter_dist_594l: "Instruments à clavier"
   filter_dist_594m: "Autres instruments"
   filter_dist_594n: "Instruments de basse continue"
-  
+ 
+  ## Referring lists for auth files
+  referring_sources_catalogue: "Sources se référant à ce catalogue"
+  referring_people_catalogue: "Personnes se référant à ce catalogue"
+  referring_institutions_catalogue: "Institutions se référant à ce catalogue"
+
   rism_any_key: "N'importe quelle tonalité"
   rism_a_flat: "La bémol majeur/mineur"
   rism_a: "La majeur/mineur"

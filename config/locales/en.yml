@@ -184,8 +184,7 @@ en:
       user:
         one: "User"
         other: "Users"
-    
-        
+  
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Select new template"
   available_templates: "Available templates"
@@ -466,6 +465,11 @@ en:
   filter_dist_594l: "Keyboard instruments"
   filter_dist_594m: "Other instruments"
   filter_dist_594n: "Basso continuo instruments"
+ 
+  ## Referring lists for auth files
+  referring_sources_catalogue: "Sources referring to this Catalogue"
+  referring_people_catalogue: "People referring to this Catalogue"
+  referring_institutions_catalogue: "Institutions referring to this Catalogue"
  
   rism_any_key: "Any key"
   rism_a_flat: "A flat major/minor"
