@@ -1,4 +1,4 @@
-ENV['RAILS_ENV'] ||= 'development'
+ENV['RAILS_ENV'] ||= 'test bundle exec rake sunspot:solr:start'
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'

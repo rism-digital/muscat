@@ -1,15 +1,18 @@
 RSpec.describe Institution do
 
   describe "#update_workgroups" do
-    context "update workgroups should trigger update workgroups after creating new institution with siglum" do
-      before_size = Workgroup.where(:name => 'Germany').take.institutions.size
-      institution = Institution.create(:name => "Entenhausen", :siglum => "D-Enteh")
-      after_size = Workgroup.where(:name => 'Germany').take.institutions.size
-      it "compares the sizes of depending workgroups" do
-        expect((before_size + 1)).to be == after_size
-      end
+    let!(:workgroup) { FactoryBot.create(:workgroup)  }
+
+    it "compares the sizes of depending workgroups" do
+      binding.pry
+      #context "update workgroups should trigger update workgroups after creating new institution with siglum" do
+      before_size = Workgroup.where(:name => 'GB').take.institutions.size
+      institution = Institution.create(:name => "Entenhausen", :siglum => "GB-Enteh")
+      after_size = Workgroup.where(:name => 'GB').take.institutions.size
+      binding.pry
+      expect((before_size + 1)).to be == after_size
       institution.destroy
     end
   end
 end
- 
+

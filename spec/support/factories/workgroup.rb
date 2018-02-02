@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :workgroup do
     name "GB"
-    libpatterns "^GB-Lxxx$"
+    libpatterns "^GB-*$"
   end
 end

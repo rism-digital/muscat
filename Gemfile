@@ -81,6 +81,17 @@ group :development do
     gem 'puma'
 end
 
+group :test do
+  gem 'sqlite3'
+  gem 'sqlite3_ar_regexp'
+  gem "rspec"
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_bot_rails'
+  gem 'poltergeist', "1.11.0"
+  gem 'database_cleaner'
+  gem 'pry'
+end
+
 gem 'blacklight', "5.14"
 gem "blacklight_advanced_search"
 gem 'bootstrap-sass', "3.3.4.1"
@@ -117,12 +128,6 @@ gem 'daemons'
 # Add I18n in js
 gem "i18n-js", ">= 3.0.0.rc11"
 gem 'colorize'
-
-gem "rspec"
-gem 'rspec-rails', '~> 3.5'
-gem 'factory_bot_rails'
-gem 'poltergeist', "1.11.0"
-gem 'database_cleaner'
 
 gem 'exception_notification'
 gem 'cql-ruby', '0.9.1', :git => 'https://github.com/jrochkind/cql-ruby'
