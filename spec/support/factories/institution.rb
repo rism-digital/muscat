@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :institution do
+    id 30001581
     siglum "GB-Lxxx"
     marc_source <<STRING
 =034  2\#$d-0.1266$f51.52903

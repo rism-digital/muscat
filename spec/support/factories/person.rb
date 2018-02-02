@@ -5,7 +5,7 @@ FactoryBot.define do
     wf_stage 0
     wf_notes "BAWAHH :-)"
     marc_source <<STRING
-=001  91008161
+=001  20000426
 =024  7\#$a45033010$2VIAF
 =024  7\#$a115445382$2DNB
 =024  7\#$aQ5978904$2WKP

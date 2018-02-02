@@ -3,7 +3,7 @@
   <cores adminPath="/admin/cores" host="${host:}" hostPort="${jetty.port:}">
     <core name="default"     instanceDir="." dataDir="default/data"/>
     <core name="development" instanceDir="." dataDir="default/data"/>
-	<core name="production" instanceDir="." dataDir="default/data"/>
-    <core name="test"        instanceDir="." dataDir="default/data"/>
+	  <core name="production" instanceDir="." dataDir="default/data"/>
+    <core name="test"        instanceDir="." dataDir="default/test"/>
   </cores>
 </solr>

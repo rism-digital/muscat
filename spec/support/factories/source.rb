@@ -27,8 +27,6 @@ FactoryBot.define do
 =594  #\#$bvla$c1
 =594  #\#$bbc$c1
 =650  00$aOperas$025160
-=650  00$aArias (voc.)$025224
-=700  1\#$aStampiglia, Silvio$d1664-1725$jAscertained$020000669$4lyr
 =852  #\#$aGB-Lbl$cAdd. 14186$eThe British Library$x30001581
 STRING
   end
