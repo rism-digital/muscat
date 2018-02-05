@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :source do
     record_type 2
+    source_id nil
     std_title "Il trionfo di Camilla regina de Volsci - Excerpts;..."
     composer "Bononcini, Giovanni"
     title "Non son paga d'esser vaga"
@@ -10,7 +11,6 @@ FactoryBot.define do
     wf_stage "published"
     #wf_owner 1
     marc_source <<STRING
-=001  806154267
 =031  #\#$a1$b1$c1$dVivace$gF-4$mbc$o6/8$p{,8A'6DxC8D}{,8A'6DxC8D}/{,8A6bBA8B}{8B6AG8A}/$rd$u32414757
 =031  #\#$a1$b1$c2$dVivace$gC-1$mS$o6/8$p=8/'8A{''6DxC8D}'8A''{6DxC8D}/'8A{6bBA8B}8BA-/$rd$tNon son paga d'esser vaga$u32414758
 =041  #\#$aita

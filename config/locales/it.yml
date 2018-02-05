@@ -227,7 +227,7 @@ it:
   menu_contact: "Contatti"
   menu_search_history: "Ricerche effettuate"
   menu_guidelines: "Regole di Catalogazione"
-  menu_marc_documentation: "Configurazione Marc"
+  menu_marc_documentation: "Configurazione MARC"
   menu_guidelines_top: "Documentazione"
   menu_cataloging: "Catalogazione"
   menu_jobs: "Processi in Background"
