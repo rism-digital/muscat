@@ -50,8 +50,7 @@
     a: required
 "594": 
   tags:
-    a: required    
-    #b: required    
+    b: required
 #"595": 
 #  tags:
 #    a:
@@ -102,10 +101,14 @@
 #"773": 
 #  tags:
 #    w: required
-"852": 
+"852":
+  tag_overrides:
+    exclude:
+      "x":
+      - edition
+      - edition_content
   tags:
     c: required
-    #a: mandatory
     x: mandatory
 #"856": 
 #  tags:

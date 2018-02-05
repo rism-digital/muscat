@@ -64,7 +64,7 @@ module MarcControllerActions
       
       # Some housekeeping, change owner and status
       if params.has_key?(:record_status) &&
-        (current_user.has_role?(:cataloger) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
+          (current_user.has_role?(:cataloger) || current_user.has_role?(:cataloger_prints) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
         @item.wf_stage = params[:record_status]
       end
       
@@ -84,10 +84,10 @@ module MarcControllerActions
       @item.last_user_save = current_user.name
       @item.save
 
-      # This uses the AR validation messages for checking server side validation; only used for catalogue for now
-      if @item.is_a?(Catalogue) && !@item.errors.messages.empty?
+      # This uses the AR validation messages for checking server side validation; only used for catalogue && source for now
+      if (@item.is_a?(Catalogue) || @item.is_a?(Source)) && !@item.errors.messages.empty?
         message = @item.errors.messages[:base].join(";")
-        term = @item.errors.messages[:term].join(";")
+        term = @item.errors.messages[:term].join(";") rescue "-"
         url = request.env['HTTP_REFERER']
         par = Rack::Utils.parse_query(URI(url).query)
         sep = par.any? ? "&" : "?" 
