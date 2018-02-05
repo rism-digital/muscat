@@ -49,7 +49,7 @@ module RISM
   # Header menu
   MENUS = {
     :menu_help       => "http://www.rism.info/help",
-    :menu_home       => "http://www.rism.info/"
+    :menu_home       => :root
   }
   # Locales for Blacklight
   LOCALES = {
