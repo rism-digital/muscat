@@ -199,6 +199,7 @@ es:
     print_theoretica: "Tratado impreso"
         
   #################### MENUS
+  menu_admin: "Admin"
   menu_home: "Home"
   menu_sources: "Fuentes"
   menu_simple_search: "Búsqueda simple"

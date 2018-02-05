@@ -202,6 +202,7 @@ it:
     edition: "Edizione musicale, scheda madre della collezione o scheda individuale"
 
   #################### MENUS
+  menu_admin: "Admin"
   menu_home: "Home"
   menu_sources: "Fonti"
   menu_simple_search: "Ricerca semplice"

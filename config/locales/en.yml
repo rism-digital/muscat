@@ -203,6 +203,7 @@ en:
     edition: "Printed music edition, collection parent record or individual item"
         
   #################### MENUS
+  menu_admin: "Admin"
   menu_home: "Home"
   menu_sources: "Sources"
   menu_simple_search: "Simple search"
