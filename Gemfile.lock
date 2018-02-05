@@ -23,10 +23,10 @@ GIT
 
 GIT
   remote: https://github.com/rism-ch/blacklight_range_limit
-  revision: 54a63df8018f9a18fe9439bbbbb2c6e2b9a83d4a
+  revision: cace590a67f0d405a4521a6d90fac4376c25cefc
   branch: jquery3
   specs:
-    blacklight_range_limit (5.2.0)
+    blacklight_range_limit (5.2.1)
       blacklight (~> 5.14)
       jquery-rails
       rails (>= 3.0, < 5.0)
