@@ -6,6 +6,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f  }
 silence_stream STDOUT do
     load "#{Rails.root}/db/schema.rb"
 end
+Dir[Rails.root.join('spec', 'support', 'factories', '**','*.rb')].each { |file| require(file)  } 
 #$original_sunspot_session = Sunspot.session
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

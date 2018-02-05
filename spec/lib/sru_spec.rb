@@ -1,19 +1,24 @@
 RSpec.describe Sru::Query do
- 
+  before(:all) do 
+    binding.pry
+    FactoryBot.create(:manuscript_source)
+    #FactoryBot.create(:edition)
+  end
   describe "Return all records" do
     context "Simple fulltext search with astersik" do
-      it "returns > 1.000.000" do
+      it "returns = 1 " do
+        binding.pry
         query = Sru::Query.new("sources", {:query => "*", :operation => "searchRetrieve"})
-        expect(query.result.total).to be > 1000000
+        expect(query.result.total).to be == 1
       end
     end
   end
  
   describe "#initialize" do
     context "Simple fulltext search" do
-      it "returns > 20000" do
-        query = Sru::Query.new("sources", {:query => "Bach", :operation => "searchRetrieve"})
-        expect(query.result.total).to be > 20000
+      it "returns = 1" do
+        query = Sru::Query.new("sources", {:query => "Westmorland", :operation => "searchRetrieve"})
+        expect(query.result.total).to be == 1
       end
     end
   end
@@ -21,8 +26,9 @@ RSpec.describe Sru::Query do
   describe "#initialize" do
     context "Simple index search with base" do
       it "returns ~ 104" do
-        query = Sru::Query.new("sources", {:query => "dc.creator=Bach", :operation => "searchRetrieve"})
-        expect(query.result.total).to be_within(100).of(200)
+        query = Sru::Query.new("sources", {:query => "dc.creator=Westmorland", :operation => "searchRetrieve"})
+        binding.pry
+        expect(query.result.total).to be == 1
       end
     end
   end
@@ -30,8 +36,8 @@ RSpec.describe Sru::Query do
   describe "#initialize" do
     context "Simple index search without base" do
       it "returns ~ 104" do
-        query = Sru::Query.new("sources", {:query => "creator=Bach", :operation => "searchRetrieve"})
-        expect(query.result.total).to be_within(100).of(200)
+        query = Sru::Query.new("sources", {:query => "creator=Westmorland", :operation => "searchRetrieve"})
+        expect(query.result.total).to be == 1
       end
     end
   end
@@ -39,7 +45,7 @@ RSpec.describe Sru::Query do
   describe "#initialize" do
     context "ID search without base" do
       it "returns = 1" do
-        query = Sru::Query.new("sources", {:query => "id=469285100", :operation => "searchRetrieve"})
+        query = Sru::Query.new("sources", {:query => "id=#{Source.last.id}", :operation => "searchRetrieve"})
         expect(query.result.total).to be == 1
       end
     end

@@ -18,6 +18,7 @@ RSpec.describe Admin::WorksController, type: :controller do
 
   describe "CREATE" do
     it "creating #{model}" do
+      Person.last.destroy
       expect { post :create, :params => {model => FactoryBot.attributes_for(model)}   }.to change(model.to_s.capitalize.constantize, :count).by(1)
     end
   end

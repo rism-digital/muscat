@@ -9,6 +9,11 @@ FactoryBot.define do
     language "Unknown"
     lib_siglum "GB-Lbl"
     wf_stage "published"
+    people { [association(:person)]  }
+    institutions { [association(:institution)]  }
+    standard_titles { [association(:standard_title)]  }
+    standard_terms { [association(:standard_term)]  }
+#    places { [association(:place)] }
     #wf_owner 1
     marc_source <<STRING
 =031  #\#$a1$b1$c1$dVivace$gF-4$mbc$o6/8$p{,8A'6DxC8D}{,8A'6DxC8D}/{,8A6bBA8B}{8B6AG8A}/$rd$u32414757
@@ -39,7 +44,10 @@ STRING
     shelf_mark ""
     language "Unknown"
     wf_stage "published"
-    holdings { [association(:holding)]  }
+    people { [association(:person_bach)]  }
+    holdings { [association(:holding_fr)]  }
+    standard_titles { [association(:standard_title_variations)]  }
+    standard_terms { [association(:standard_term_variations)]  }
     marc_source <<STRING
 =040  #\#$aDE-633
 =100  1\#$aBach, Johann Sebastian$d1685-1750$02539
