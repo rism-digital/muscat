@@ -48,6 +48,7 @@ module RISM
   FOOTER= "<a href=\"http://www.rism.info/en/service/disclaimer.html\">Impressum</a> &ndash; &copy; 2016 &ndash; The Association <em>Internationales Quellenlexikon der Musik</em><br>Johann Wolfgang Goethe-Universit&auml;t &ndash; Senckenberganlage 31-33 &ndash; D-60325 Frankfurt am Main"
   # Header menu
   MENUS = {
+    :menu_admin      => :admin_root,
     :menu_help       => "http://www.rism.info/help",
     :menu_home       => :root
   }
