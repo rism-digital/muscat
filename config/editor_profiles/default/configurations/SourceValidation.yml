@@ -1,16 +1,16 @@
 --- !map:Settings
-"031":
-  tags:
-    a: required
-    b: required
-    c: required
+#"031":
+#  tags:
+    #a: required
+    #b: required
+    #c: required
 #    e:
 #      required_if:
 #        "031": "m"
 #    n:
 #      required_if:
 #        "031": "p"
-    o: required, warning
+#o: required, warning
 #      required_if:
 #        "031": "p"
 #"041": 
