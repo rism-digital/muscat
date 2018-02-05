@@ -159,6 +159,7 @@
         trigger:
         - save:
           - referring_sources
+          - holdings
     - - c
       - cols: 2
     - - g
@@ -166,6 +167,7 @@
         trigger:
         - save:
           - referring_sources
+          - holdings
     columns: 4
 "368": 
   layout: 
