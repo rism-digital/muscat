@@ -1,11 +1,8 @@
 FactoryBot.define do
   factory :standard_term do
-    id 25160
-    name "Operas"
-  end
-
-  factory :standard_term_variations, parent: :standard_term do 
-    id 25218
-    name "Variations"
+    id               25240
+    term             "Motets"
+    alternate_terms  "Motetten"
+    initialize_with { StandardTerm.find_or_create_by(id: id)  } 
   end
 end

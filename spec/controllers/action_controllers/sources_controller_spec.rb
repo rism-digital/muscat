@@ -2,7 +2,7 @@ require 'rails_helper'
 model = :source
 changeable_ar_attribute = :wf_stage
 RSpec.describe Admin::SourcesController, type: :controller do
-  let!(:resource) { create model  }
+  let!(:resource) { create :manuscript_source }
   let(:user) { create :admin   }
   render_views
   before(:each) do

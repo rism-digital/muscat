@@ -17,9 +17,10 @@
 ##Rough method to prevent messing up development index with rspec
 ## TODO transfer to some testing environment
 RSpec.configure do |config|
-  #config.before(:all) do
+  config.after(:all) do
+    Sunspot.remove_all!(Source)
   #  %x( rake sunspot:solr:start )
-  #end
+  end
 
   #config.after(:all) do
   #  %x( rake sunspot:solr:stop )

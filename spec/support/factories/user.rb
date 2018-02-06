@@ -1,8 +1,9 @@
 FactoryBot.define do
 
   factory :user do
+    id 2
     name "Fred"
-    email "admin@example.com"
+    email "fred@example.com"
     password "password"
     password_confirmation "password"
     workgroups { [association(:workgroup)]  }

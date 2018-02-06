@@ -20,7 +20,7 @@ module Statistics
       if !result.empty?
         return result
       else
-        return {::Institution.find(5) => {"ZERO" => 0}}
+        return {::Institution.first => {"ZERO" => 0}}
       end
     end
   end

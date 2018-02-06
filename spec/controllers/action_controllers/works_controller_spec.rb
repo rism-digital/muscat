@@ -2,6 +2,7 @@ require 'rails_helper'
 model = :work
 changeable_ar_attribute = :wf_stage
 RSpec.describe Admin::WorksController, type: :controller do
+  FactoryBot.create(:person)
   let!(:resource) { create model }
   let(:user) { create :admin   }
   render_views
