@@ -89,10 +89,9 @@ group :test do
   gem 'factory_bot_rails'
   gem 'poltergeist', "1.11.0"
   gem 'database_cleaner'
-  gem 'pry'
 end
 
-gem 'blacklight', "5.14"
+gem 'blacklight', "5.15"
 gem "blacklight_advanced_search"
 gem 'bootstrap-sass', "3.3.4.1"
 # For nice date ranges
@@ -113,7 +112,9 @@ gem 'activerecord-import', ">= 0.4.0"
 # gem 'selenium-webdriver'
 
 gem 'ruby-prof'
-gem 'pry', :group => :development
+group :development, :test do
+  gem 'pry'
+end
 
 # Background tasks
 # https://github.com/collectiveidea/delayed_job/issues/776

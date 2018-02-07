@@ -79,3 +79,4 @@ example_id                                                              | status
 ./spec/mailers/comment_notifications_spec.rb[1:1]                       | pending | 0.00001 seconds |
 ./spec/models/institution_spec.rb[1:1:1]                                | passed  | 0.09645 seconds |
 ./spec/models/workgroup_spec.rb[1:1]                                    | passed  | 0.96853 seconds |
+
