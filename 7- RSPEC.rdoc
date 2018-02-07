@@ -1,8 +1,18 @@
 = RSPEC
 
-This software has some basic rspec tests in the 'spec' folder. 
+This software has a suite of spec tests in the 'spec' folder. 
 
-To execute the complete suite call:
+Before strating the suite solr should be started in the test environment:
+
+  RAILS_ENV=test rake sunspot:solr:start
+
+Then to execute the complete suite call:
+  
   bundle exec rspec -fd
+
+After finishing the sunspot session could be stopped:
+
+  RAILS_ENV=test rake sunspot:solr:stop
+ 
 
 
