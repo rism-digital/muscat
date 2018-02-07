@@ -1,12 +1,7 @@
 RSpec.describe Sru::Query do
-  before(:all) do
-    Sunspot.remove(Source) { with(:created_at).greater_than(5.minutes.ago)   }
-    Sunspot.index[StandardTitle]
-    Sunspot.commit
-    FactoryBot.create(:person)
-    FactoryBot.create(:institution)
+  before(:each) do
     FactoryBot.create(:manuscript_source)
-    sleep 8
+    Sunspot.index![Source]
   end
   describe "Return all records" do
     context "Simple fulltext search with astersik" do
