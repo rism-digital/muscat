@@ -4,8 +4,6 @@ changeable_ar_attribute = :wf_stage
 RSpec.describe Admin::PeopleController, type: :controller do
   let!(:resource) { create model  }
   let(:user) { create :admin   }
-  Source.destroy_all
-  Catalogue.destroy_all
   render_views
   before(:each) do
     sign_in user
@@ -41,6 +39,7 @@ RSpec.describe Admin::PeopleController, type: :controller do
 
   describe "DELETE" do
     it "deleting resource" do
+      Source.destroy_all
       delete :destroy, id: resource.id
       message = flash[:notice]
       expect(message).to match(/successful/)

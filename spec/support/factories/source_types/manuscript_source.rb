@@ -16,7 +16,7 @@ FactoryBot.define do
     date_from         nil
     date_to           nil
     lib_siglum       "D-B"
-    wf_owner          nil
+    wf_owner          2
     wf_audit         "full"
     people { [association(:person)]  }
     institutions { [association(:institution)]  }

@@ -25,13 +25,15 @@ RSpec.describe Admin::SourcesController, type: :controller do
   describe "updating record" do
     let!(:standard_title) { create :standard_title, title: "xxx"   }
     it "should change the solr index result" do
-      Sunspot.index[StandardTitle]
-      Sunspot.commit
+      #binding.pry
+      #StandardTitle.destroy_all
+      #Sunspot.index[StandardTitle]
+      #Sunspot.commit
       #TODO imrpove solr test
       #Sunspot.index[StandardTitle]
       initial_size = Source.solr_search { with("240a_filter", "Jesu meine Freude")  }.total
       FactoryBot.create(:manuscript_source)
-      resource = Source.first
+      resource = Source.where(std_title: "Jesu meine Freude").take
       marc = resource.marc.dup
       marc.each_by_tag("240") do |tag|
         zero_tag = tag.fetch_first_by_tag("0")
@@ -46,9 +48,9 @@ RSpec.describe Admin::SourcesController, type: :controller do
         tag.sort_alphabetically
       end
       resource.save
+      #binding.pry
       Sunspot.index[Source]
       Sunspot.commit
-      binding.pry
       #sleep 10
       after_create_size = Source.solr_search { with("240a_filter", "xxx")  }.total
       expect(after_create_size).to eq(initial_size + 1)
