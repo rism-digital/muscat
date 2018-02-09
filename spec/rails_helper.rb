@@ -1,4 +1,4 @@
-ENV['RAILS_ENV'] ||= 'test bundle exec rake sunspot:solr:start'
+ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
@@ -8,7 +8,7 @@ Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
   config.include Devise::TestHelpers, :type => :controller
   config.infer_spec_type_from_file_location!
   config.include Warden::Test::Helpers

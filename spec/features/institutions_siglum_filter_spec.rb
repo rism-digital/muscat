@@ -2,12 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "Institutions siglum filter", :type => :feature, :js => true do 
   describe "Siglum filter on index page" do
-    FactoryBot.create(:institution)
-    FactoryBot.create(:source)
-    Sunspot.index[Source]
-    Sunspot.commit
     let(:user) { FactoryBot.create(:cataloger)  }
     before do
+      FactoryBot.create(:institution)
+      FactoryBot.create(:source)
+      Sunspot.index![Source]
       visit user_session_path
       fill_in :user_email, :with => user.email
       fill_in :user_password, :with => user.password
