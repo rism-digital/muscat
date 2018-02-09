@@ -21,6 +21,13 @@ To execute the full suite call:
 After finishing the sunspot session could be stopped with:
 
   RAILS_ENV=test rake sunspot:solr:stop
+
+==Sunspot
+
+Some examples are relying on a clean Sunspot:Solr index. It should be switched on by setting "solr: true" as an argument, eg:
+  
+  RSpec.describe Admin::SourcesController, :type => :controller, solr: true do 
+  end
  
 
 

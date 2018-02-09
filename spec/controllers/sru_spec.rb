@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SruController, :type => :controller do
+RSpec.describe SruController, :type => :controller, solr: true do
   render_views
   
   context "MaximumRecords should be limited to 100" do

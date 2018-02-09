@@ -1,4 +1,4 @@
-RSpec.describe Sru::Query do
+RSpec.describe Sru::Query, solr: true do
   before(:each) do
     FactoryBot.create(:manuscript_source)
     Sunspot.index![Source]

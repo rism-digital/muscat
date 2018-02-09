@@ -1,4 +1,4 @@
-RSpec.describe Institution do
+RSpec.describe Institution, solr: true do
 
   describe "#update_workgroups" do
     let!(:workgroup) { FactoryBot.create(:workgroup)  }

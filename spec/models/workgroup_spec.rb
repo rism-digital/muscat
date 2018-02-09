@@ -1,4 +1,4 @@
-RSpec.describe "Workgroup statistic" do
+RSpec.describe "Workgroup statistic", solr: true do
   describe "solr result of workgroup total sources" do
     let!(:user) { FactoryBot.create(:user)  }
     before do

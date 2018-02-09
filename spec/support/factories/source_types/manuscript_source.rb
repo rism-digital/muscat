@@ -1,4 +1,5 @@
 FactoryBot.define do
+  
   factory :manuscript_source, parent: :source do
     id 989000434
     source_id         nil

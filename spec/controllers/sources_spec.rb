@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Admin::SourcesController, :type => :controller do 
+RSpec.describe Admin::SourcesController, :type => :controller, solr: true do 
   render_views
   before(:each) do
     Source.destroy_all
