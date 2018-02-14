@@ -5,7 +5,7 @@ Marc records can be imported into muscat. They can be fed and imported using the
  ./script/runner housekeeping/import/import_from_marc.rb $FILE $MODEL
 
 Records for thesaurus models like Places, StandardTerms etc., which are not related to marc, should be imported first with:
- ./script/runner housekeeping/import/import_thesaurus_from marc.rb $File
+ ./script/runner housekeeping/import/import_thesaurus_from_marc.rb $File
 	
 <tt>$FILE</tt> contains all the Marc records in MarcXML format.
 <tt>$MODEL</tt> refers to the model of the records (e.g. Source, Person etc.)
