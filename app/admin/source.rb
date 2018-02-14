@@ -78,7 +78,7 @@ ActiveAdmin.register Source do
     end
 
     def edit
-      flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
+      flash.now[:error] = params[:validation_error] if params[:validation_error]
       flash.now[:warning] = params[:validation_warning].html_safe if params[:validation_warning]
       @item = Source.find(params[:id])
       @holdings = @item.holdings

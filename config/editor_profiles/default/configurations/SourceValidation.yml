@@ -59,7 +59,7 @@
   tags:
     b: required
   warnings:
-    c: 
+    c:
       - should_be_numeric
 #"595": 
 #  tags:
@@ -108,9 +108,12 @@
 #"740": 
 #  tags:
 #    a: required
-#"773": 
-#  tags:
-#    w: required
+"773": 
+  tags:
+    w:
+  mandatory:
+    w:
+      - must_have_different_id
 "852":
   tag_overrides:
     exclude:

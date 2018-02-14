@@ -1,9 +1,15 @@
 module ActiveRecordValidation
 
-  def validates_parent_id
-    parent = marc.get_parent
-    if parent && parent.id && self.id == parent.id
-      errors.add(:base, "validates_parent_id")
+  def check_mandatory
+    validator = MarcValidator.new(Source.find(self.id), false)
+    validator.rules.each do |k,v|
+      if v["mandatory"]
+        v["mandatory"].each do |subfield, methods|
+          methods.each do |m|
+            self.send(m, k, subfield)
+          end
+        end
+      end
     end
   end
 
@@ -15,6 +21,17 @@ module ActiveRecordValidation
           methods.each do |m|
             self.send(m, k, subfield)
           end
+        end
+      end
+    end
+  end
+
+  def must_have_different_id(t,s)
+    marc.each_by_tag(t) do |tag|
+      tag.each_by_tag(s) do |subtag|
+        next unless subtag.content
+        if subtag.content == self.id.to_s
+          errors.add(:base, "#{t}$#{s} must have different id")
         end
       end
     end

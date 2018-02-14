@@ -96,7 +96,7 @@ class Source < ActiveRecord::Base
   after_save :update_links, :reindex
   before_destroy :update_links_for_destroy
   
-  validate :validates_parent_id
+  validate :check_mandatory
 
   warnings do
     validate :check_warnings
