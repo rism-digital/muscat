@@ -138,3 +138,4 @@ gem 'osullivan'
 
 ## Add translations for activerecord and co
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
+gem 'active_warnings'

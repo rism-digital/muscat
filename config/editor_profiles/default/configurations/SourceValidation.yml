@@ -1,6 +1,13 @@
 --- !map:Settings
-#"031":
-#  tags:
+"031":
+  tags: 
+    a:
+  warnings:
+    a: 
+      - should_be_numeric
+      - should_be_lt_200
+
+  #  tags:
     #a: required
     #b: required
     #c: required
@@ -51,6 +58,9 @@
 "594": 
   tags:
     b: required
+  warnings:
+    c: 
+      - should_be_numeric
 #"595": 
 #  tags:
 #    a:

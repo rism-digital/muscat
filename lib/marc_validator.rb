@@ -3,6 +3,7 @@ include ApplicationHelper
 
 	DEBUG = false
 	
+  attr_accessor :rules
   def initialize(object, warnings = true)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules

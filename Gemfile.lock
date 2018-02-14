@@ -82,6 +82,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_warnings (0.1.5)
+      activemodel (> 4.1.0)
     activeadmin (1.2.1)
       arbre (>= 1.1.1)
       coffee-rails
@@ -398,6 +400,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_warnings
   activeadmin (~> 1.2)
   activerecord-import (>= 0.4.0)
   awesome_print

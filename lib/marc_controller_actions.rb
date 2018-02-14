@@ -96,6 +96,19 @@ module MarcControllerActions
         end
         return
       end
+      # Warning flow
+      unless @item.safe?
+        message = @item.warnings.full_messages.join("<br/>")
+        url = request.env['HTTP_REFERER']
+        par = Rack::Utils.parse_query(URI(url).query) 
+        sep = par.any? ? "&" : "?"
+        unless par["validation_warning"]
+          respond_to do |format|
+            format.json {  render :json => {:redirect => url + "#{sep}validation_warning=#{URI.escape(message)}"}}
+          end
+          return
+        end
+      end
 
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       
