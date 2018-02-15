@@ -2,8 +2,7 @@
 "031":
   tags: 
     a:
-  warnings:
-    a: 
+      warnings:
       - should_be_numeric
       - should_be_lt_200
 
@@ -58,8 +57,8 @@
 "594": 
   tags:
     b: required
-  warnings:
     c:
+      warnings:
       - should_be_numeric
 #"595": 
 #  tags:
@@ -111,8 +110,7 @@
 "773": 
   tags:
     w:
-  mandatory:
-    w:
+      mandatory:
       - must_have_different_id
 "852":
   tag_overrides:
