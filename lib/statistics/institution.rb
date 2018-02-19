@@ -10,7 +10,7 @@ module Statistics
       facet_rows = Hash.new(0)
       s.facet(:lib_siglum_order).rows.each do |r|
         facet_rows[r.value] = r.count
-      end  
+      end
       sigla = institutions.pluck(:siglum)
       facet_rows.each do |k,v|
         institution = ::Institution.where(:siglum => k).take
@@ -20,7 +20,7 @@ module Statistics
       if !result.empty?
         return result
       else
-        return {::Institution.find(5) => {"ZERO" => 0}}
+        return {::Institution.first => {"ZERO" => 0}}
       end
     end
   end

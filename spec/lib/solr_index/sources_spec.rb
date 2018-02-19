@@ -1,28 +1,39 @@
 require 'rails_helper'
-model = :source
-title = "XXXXX"
 RSpec.describe Admin::SourcesController, type: :controller do
-  let!(:resource) { create model  }
-  let!(:standard_title) { create :standard_title, title: title  }
+  FactoryBot.create(:person)
   let(:user) { create :admin   }
   render_views
   before(:each) do
+    Sunspot.remove_all!(Source)
     sign_in user
   end
 
   describe "creating record" do
-    it "should change the solr index result" do
-      title_previous = "Il trionfo di Camilla regina de Volsci"
-      initial_size = Source.solr_search { with("240a_filter", title_previous)  }.total
-      post :create, :params => {model => FactoryBot.attributes_for(model)}
-      after_create_size = Source.solr_search { with("240a_filter", title_previous)  }.total
+   it "should change the solr index result" do
+      initial_size = Source.solr_search { with("240a_filter", "Jesu meine Freude")  }.total
+      FactoryBot.create(:manuscript_source)
+      #post :create, :params => {model => FactoryBot.attributes_for(model)}
+      # Indexing needs some time
+      #sleep 5
+      Sunspot.index[Source]
+      Sunspot.commit
+      after_create_size = Source.solr_search { with("240a_filter", "Jesu meine Freude")  }.total
       expect(after_create_size).to eq(initial_size + 1)
     end
   end
   
   describe "updating record" do
+    let!(:standard_title) { create :standard_title, title: "xxx"   }
     it "should change the solr index result" do
-      initial_size = Source.solr_search { with("240a_filter", title)  }.total
+      #binding.pry
+      #StandardTitle.destroy_all
+      #Sunspot.index[StandardTitle]
+      #Sunspot.commit
+      #TODO imrpove solr test
+      #Sunspot.index[StandardTitle]
+      initial_size = Source.solr_search { with("240a_filter", "Jesu meine Freude")  }.total
+      FactoryBot.create(:manuscript_source)
+      resource = Source.where(std_title: "Jesu meine Freude").take
       marc = resource.marc.dup
       marc.each_by_tag("240") do |tag|
         zero_tag = tag.fetch_first_by_tag("0")
@@ -37,9 +48,13 @@ RSpec.describe Admin::SourcesController, type: :controller do
         tag.sort_alphabetically
       end
       resource.save
-      resource.index!
-      after_create_size = Source.solr_search { with("240a_filter", title)  }.total
+      #binding.pry
+      Sunspot.index[Source]
+      Sunspot.commit
+      #sleep 10
+      after_create_size = Source.solr_search { with("240a_filter", "xxx")  }.total
       expect(after_create_size).to eq(initial_size + 1)
+      #expect(1).to eq(1)
     end
   end
 

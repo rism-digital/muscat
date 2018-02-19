@@ -11,17 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115073728) do
-
-  create_table "DNB", id: false, force: :cascade do |t|
-    t.integer "id",     limit: 4,     default: 0, null: false
-    t.text    "ext_id", limit: 65535
-  end
-
-  create_table "VIAF", id: false, force: :cascade do |t|
-    t.integer "id",     limit: 4,          default: 0, null: false
-    t.text    "ext_id", limit: 4294967295
-  end
+ActiveRecord::Schema.define(version: 20180202101517) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255

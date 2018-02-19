@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :workgroup do
-    name "GB"
-    libpatterns "^GB-Lxxx$"
+    name "Germany"
+    libpatterns "^D-*"
+    institutions { [association(:institution)] }
   end
 end

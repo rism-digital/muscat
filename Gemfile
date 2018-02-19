@@ -81,6 +81,16 @@ group :development do
     gem 'puma'
 end
 
+group :test do
+  gem 'sqlite3'
+  gem 'sqlite3_ar_regexp'
+  gem "rspec"
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_bot_rails'
+  gem 'poltergeist', "1.11.0"
+  gem 'database_cleaner'
+end
+
 gem 'blacklight', "5.15"
 gem "blacklight_advanced_search"
 gem 'bootstrap-sass', "3.3.4.1"
@@ -102,7 +112,9 @@ gem 'activerecord-import', ">= 0.4.0"
 # gem 'selenium-webdriver'
 
 gem 'ruby-prof'
-gem 'pry', :group => :development
+group :development, :test do
+  gem 'pry'
+end
 
 # Background tasks
 # https://github.com/collectiveidea/delayed_job/issues/776
@@ -117,12 +129,6 @@ gem 'daemons'
 # Add I18n in js
 gem "i18n-js", ">= 3.0.0.rc11"
 gem 'colorize'
-
-gem "rspec"
-gem 'rspec-rails', '~> 3.5'
-gem 'factory_bot_rails'
-gem 'poltergeist', "1.11.0"
-gem 'database_cleaner'
 
 gem 'exception_notification'
 gem 'cql-ruby', '0.9.1', :git => 'https://github.com/jrochkind/cql-ruby'

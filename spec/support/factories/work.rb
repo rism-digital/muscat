@@ -2,6 +2,8 @@ FactoryBot.define do
   factory :work do
     title "Bach, Johann Sebastian: Was Gott tut, das ist wohlgetan BWV 98 ; "
     wf_stage "published"
+    person { FactoryBot.create(:person) }
+    #people { [association(:bach)]  }
     marc_source <<STRING
 =001  3
 =024  7\#$a183554358$2VIAF

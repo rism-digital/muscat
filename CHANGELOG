@@ -1,6 +1,11 @@
 Muscat Changelog
 ================
 
+v 4.0.2
+* Facets not properly showing in Blacklight
+* Fixes 773 selection for edition content
+* Properly reindexes holdings when an Institution changes siglum
+
 v 4.0.1
 * Update install documentation
 * Fix incipits not showing in editor

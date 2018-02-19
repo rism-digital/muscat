@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Abilities", :type => :feature, :js => true do 
-
+  
   describe "Person_editor" do
     let(:user) { FactoryBot.create(:person_editor)  }
     before do
+      FactoryBot.create(:person)
+      Sunspot.index![Person]
       visit user_session_path
       fill_in :user_email, :with => user.email
       fill_in :user_password, :with => user.password
@@ -19,6 +21,8 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
   describe "Editor" do
     let(:user) { FactoryBot.create(:editor)  }
     before do
+      FactoryBot.create(:person)
+      Sunspot.index![Person]
       visit user_session_path
       fill_in :user_email, :with => user.email
       fill_in :user_password, :with => user.password
@@ -36,6 +40,8 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
   describe "Cataloger" do
     let(:user) { FactoryBot.create(:editor)  }
     before do
+      FactoryBot.create(:person)
+      Sunspot.index![Person]
       visit user_session_path
       fill_in :user_email, :with => user.email
       fill_in :user_password, :with => user.password
@@ -53,6 +59,8 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
   describe "Guest" do
     let(:user) { FactoryBot.create(:guest)  }
     before do
+      FactoryBot.create(:person)
+      Sunspot.index![Person]
       visit user_session_path
       fill_in :user_email, :with => user.email
       fill_in :user_password, :with => user.password

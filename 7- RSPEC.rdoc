@@ -1,8 +1,33 @@
 = RSPEC
 
-This software has some basic rspec tests in the 'spec' folder. 
+==Description
+This software has a suite of spec tests in the 'spec' folder. 
 
-To execute the complete suite call:
+The schema will be loaded into a sqlite3 in memory database; all objects are created by FactoryBot during the suite.
+
+It connects to the following sunspot-solr instance (see config/solr.yml):
+  test: &test
+    url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8981/solr/test" %>
+
+==Workflow
+Before starting the suite solr server should be initialized in the test environment:
+
+  RAILS_ENV=test rake sunspot:solr:start
+
+To execute the full suite call:
+  
   bundle exec rspec -fd
+
+After finishing the sunspot session could be stopped with:
+
+  RAILS_ENV=test rake sunspot:solr:stop
+
+==Sunspot
+
+Some examples are relying on a clean Sunspot:Solr index. It should be switched on by setting "solr: true" as an argument, eg:
+  
+  RSpec.describe Admin::SourcesController, :type => :controller, solr: true do 
+  end
+ 
 
 

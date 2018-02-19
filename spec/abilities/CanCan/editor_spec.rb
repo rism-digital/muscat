@@ -16,7 +16,7 @@ RSpec.describe User do
 
   describe 'For editor abilities for sources' do
     let(:editor) { FactoryBot.create(:editor)  }
-    let(:source) { FactoryBot.create(:source)  }
+    let(:source) { FactoryBot.create(:manuscript_source)  }
     subject(:ability) { Ability.new(editor)  }
     it "should be able to CRUD sources" do
       expect(ability).to be_able_to(:show, source)

@@ -2,6 +2,7 @@ require 'rails_helper'
 model = :work
 changeable_ar_attribute = :wf_stage
 RSpec.describe Admin::WorksController, type: :controller do
+  FactoryBot.create(:person)
   let!(:resource) { create model }
   let(:user) { create :admin   }
   render_views
@@ -18,6 +19,7 @@ RSpec.describe Admin::WorksController, type: :controller do
 
   describe "CREATE" do
     it "creating #{model}" do
+      Person.last.destroy
       expect { post :create, :params => {model => FactoryBot.attributes_for(model)}   }.to change(model.to_s.capitalize.constantize, :count).by(1)
     end
   end

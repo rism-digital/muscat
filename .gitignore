@@ -13,7 +13,7 @@ solr/second
 solr/test
 log/sunspot-solr-development.log
 vendor/assets/stylesheets/muscat-custom.scss
-
+spec/examples.txt
 .idea
 help.sh
 .DS_Store

@@ -39,8 +39,10 @@ RSpec.describe Admin::PeopleController, type: :controller do
 
   describe "DELETE" do
     it "deleting resource" do
+      Source.destroy_all
       delete :destroy, id: resource.id
-      expect(flash[:notice]).to match(/successful/)
+      message = flash[:notice]
+      expect(message).to match(/successful/)
     end
   end
 end
