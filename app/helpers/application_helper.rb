@@ -1,5 +1,8 @@
 module ApplicationHelper
-  
+  def canonic_technique_default_autocomplete
+    autocomplete_canonic_technique_canon_type_admin_canonic_techniques_path
+  end
+
   def catalogue_default_autocomplete
     autocomplete_catalogue_name_admin_catalogues_path
   end
@@ -47,7 +50,7 @@ module ApplicationHelper
   def work_default_autocomplete
     autocomplete_work_title_admin_works_path
   end
-  
+
   # Create a link for a page in a new window
   def application_helper_link_http(value, node, opac)
     result = []

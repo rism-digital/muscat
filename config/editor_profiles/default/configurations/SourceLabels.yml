@@ -1786,6 +1786,37 @@ doc_references:
       edit_label: 
         en: ""
       comment: "NEW IN 2018; experimental stage"
+"999":
+  label:
+    en: Canonic Technique
+  fields:
+    a:
+      label:
+        en: Type
+    b:
+      label:
+        en: Written canonic voices/numerator
+    c:
+      label:
+        en: Relationship Operator
+    d:
+      label:
+        en: Sounding canonic voices/denominator
+    e:
+      label:
+        en: Interval of imitation
+    f:
+      label:
+        en: Above or below
+    g:
+      label:
+        en: Temporal offset between voices
+    h:
+      label:
+        en: Temporal offset unit
+    i:
+      label:
+        en: Mensurations/time signatures
        
 ################
 
@@ -1795,6 +1826,9 @@ show_admin:
     fr: Administration
     de: Administration
     en: Administration
+show_canonic_techniques:
+  label:
+    en: Canonic Technique(s)
 show_content: 
   label: 
     it: Contenuto
@@ -1864,7 +1898,10 @@ edit_administration:
     fr: Administration
     de: Administration
     en: Administration
-edit_content: 
+edit_canonic_techniques:
+  label:
+    en: Canonic techniques
+edit_content:
   label: 
     it: Titolo e descrizione del contenuto
     fr: Titre et description du contenu

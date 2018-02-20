@@ -63,6 +63,7 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
   has_and_belongs_to_many :works, join_table: "sources_to_works"
+  has_and_belongs_to_many :canonic_techniques, join_table: "sources_to_canonic_techniques"
   has_many :folder_items, :as => :item
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -140,7 +141,7 @@ class Source < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings", "sources", "works"]
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings", "sources", "works", "canonic_techniques"]
     recreate_links(marc, allowed_relations)
     
     # update the parent manuscript when having 773/774 relationships
@@ -272,7 +273,11 @@ class Source < ActiveRecord::Base
     sunspot_dsl.integer :works, :multiple => true do
       works.map { |w| w.id }
     end
- 
+
+    sunspot_dsl.integer :canonic_techniques, :multiple => true do
+      canonic_techniques.map { |ct| ct.id }
+    end
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 

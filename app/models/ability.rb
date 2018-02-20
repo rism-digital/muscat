@@ -23,9 +23,9 @@ class Ability
 
     elsif user.has_role?(:editor)
       if user.has_role?(:person_editor)
-        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding, CanonicTechnique]
       else
-        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, Holding, CanonicTechnique]
         can [:read, :create], Person
         can :update, Person, :wf_owner => user.id
       end
@@ -47,13 +47,13 @@ class Ability
 
     elsif user.has_role?(:cataloger) || user.has_role?(:cataloger_prints)
       # A cataloguer can create new items but modify only the ones ho made
-      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding]
+      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, CanonicTechnique]
       if user.has_role?(:person_restricted)
         # catalogers can get restriced access to the persons form
         # the general design of the role allows extensions alike for e.g. institudions
         can :update, Person
       end
-      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding], :wf_owner => user.id
+      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, CanonicTechnique], :wf_owner => user.id
       can [:destroy, :update], [DigitalObject], :wf_owner => user.id
       can [:destroy], [Holding], :wf_owner => user.id
       can [:update], [Holding] do |holding|

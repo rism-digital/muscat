@@ -806,3 +806,49 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: title
+  "999":
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: CanonicTechnique
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "1"
+        :foreign_class: ^0
+        :foreign_field: canon_type
+    - - b
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: relation_numerator
+    - - c
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: relation_operator
+    - - d
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: relation_denominator
+    - - e
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: interval
+    - - f
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: interval_direction
+    - - g
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: temporal_offset
+    - - h
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: offset_units
+    - - i
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: mensurations
