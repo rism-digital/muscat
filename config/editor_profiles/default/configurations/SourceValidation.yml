@@ -28,6 +28,11 @@
 #"033": 
 #  tags:
 #    a: required
+"040":
+  tags:
+    a:
+      mandatory:
+      - must_have_ability_to_create
 "100": 
   tags:
     "0": required

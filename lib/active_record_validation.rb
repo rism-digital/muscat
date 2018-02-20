@@ -1,6 +1,7 @@
 module ActiveRecordValidation
 
   def checking(level)
+    return if !Source.where(id: self.id).any?
     validator = MarcValidator.new(Source.find(self.id), false)
     validator.rules.each do |datafield, rule|
       rule.each do |d,options|
@@ -9,7 +10,7 @@ module ActiveRecordValidation
             option.each do |k,v|
               if k == level
                 v.each do |method|
-                  self.send(method, datafield, subfield)
+                  self.send(method, {datafield: datafield, subfield: subfield})
                 end
               end
             end
@@ -27,35 +28,40 @@ module ActiveRecordValidation
     checking "warnings"
   end
 
-  def selected_fields(t,s)
-    arry = []
-    marc.each_by_tag(t) { |tag| tag.each_by_tag(s) {|subfield| arry << subfield if subfield.content } }
-    return arry
-  end
-
-  def must_have_different_id(t,s)
-    selected_fields(t,s).each do |subtag|
-      if subtag.content == self.id.to_s
-        errors.add(:base, "#{t}$#{s} value '#{subtag.content}' must have different id")
+  def must_have_different_id(hash={})
+    t,s = hash[:datafield], hash[:subfield]
+    marc.all_values_for_tags_with_subtag(t,s).each do |subtag|
+      if subtag == self.id.to_s
+        errors.add(:base, "#{t}$#{s} value '#{subtag}' must have different id")
       end
     end
   end
 
-  def should_be_numeric(t, s)
-    selected_fields(t,s).each do |subtag|
-      unless subtag.content =~ /[0-9]/
-        errors.add(:base, "#{t}$#{s} value '#{subtag.content}' is not numeric")
+  def should_be_numeric(hash={})
+    t,s = hash[:datafield], hash[:subfield]
+    marc.all_values_for_tags_with_subtag(t,s).each do |subtag|
+      unless subtag =~ /[0-9]/
+        errors.add(:base, "#{t}$#{s} value '#{subtag}' is not numeric")
       end
     end
   end
 
-  def should_be_lt_200(t, s)
-    selected_fields(t,s).each do |subtag|
-      unless subtag.content.to_i < 200
-        errors.add(:base, "#{t}$#{s} value '#{subtag.content}' is greater than 200")
+  def should_be_lt_200(hash={})
+    t,s = hash[:datafield], hash[:subfield]
+    marc.all_values_for_tags_with_subtag(t,s).each do |subtag|
+      unless subtag.to_i < 200
+        errors.add(:base, "#{t}$#{s} value '#{subtag}' is greater than 200")
       end
     end
   end
 
+  def must_have_ability_to_create(hash={})
+    if versions.empty?
+      return unless user
+      unless user.can_edit? self
+        errors.add(:base, "Your are not allowed to create sources with this siglum.")
+      end
+    end
+  end
 
 end

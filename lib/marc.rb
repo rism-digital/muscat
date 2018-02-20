@@ -381,7 +381,7 @@ class Marc
       next if !tag_names.include?(child.tag)
       next if !child.fetch_first_by_tag( subtag )
       next if !child.fetch_first_by_tag( subtag ).content
-      next if child.fetch_first_by_tag( subtag ).content.empty?
+      next if child.fetch_first_by_tag( subtag ).content.blank?
       values << child.fetch_first_by_tag( subtag ).content
     end
     # Sort the return value

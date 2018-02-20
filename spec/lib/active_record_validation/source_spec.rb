@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Admin::SourcesController, :type => :controller do
   describe "Source validation" do
-    let(:user) { FactoryBot.create(:editor)  }
+    let!(:user) { FactoryBot.create(:editor)  }
     let!(:source) { FactoryBot.create(:manuscript_source)  }
     before do
       visit user_session_path
@@ -16,10 +16,8 @@ RSpec.describe Admin::SourcesController, :type => :controller do
       ip = marc.get_insert_position("773")
       new_773.add(MarcNode.new(Source, "w", "#{source.id}", nil))
       marc.root.children.insert(ip, new_773)
-      source.save
-      source.reload
       source.valid?
-      expect(source.errors[:base].first).to eq "validates_parent_id"
+      expect(source.errors[:base].first).to eq "773$w value '989000434' must have different id"
     end
     it "parent.id != self.id should not raise validation error" do
       FactoryBot.create(:collection)

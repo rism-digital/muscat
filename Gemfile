@@ -89,6 +89,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'poltergeist', "1.11.0"
   gem 'database_cleaner'
+  gem 'selenium-webdriver'
 end
 
 gem 'blacklight', "5.15"
