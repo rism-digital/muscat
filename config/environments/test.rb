@@ -1,8 +1,3 @@
-require 'capybara/poltergeist'
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, {js_errors: false})
-end
-Capybara.javascript_driver = :poltergeist
 
 Muscat::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.

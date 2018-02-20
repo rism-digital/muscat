@@ -1,3 +1,4 @@
+require 'selenium/webdriver'
 IS_DEBUG_MODE = -> { ENV['DEBUG'].present? ? :chrome : :headless_chrome  }
 
 Capybara.register_driver :chrome do |app|
