@@ -1,5 +1,8 @@
 = RSPEC
 
+==Requirements
+For headless chrome: Chrome 59+ and ChromeDriver installed
+
 ==Description
 This software has a suite of spec tests in the 'spec' folder. 
 
