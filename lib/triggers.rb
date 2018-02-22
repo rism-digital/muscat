@@ -19,4 +19,26 @@ module Triggers
     [triggers].to_json.html_safe
   end
   
+  def validate_input(hash={})
+      item = hash[:item]
+      level = hash[:level] == :warning ? :validation_warning : :validation_error
+      if level == :validation_error
+        message = item.errors.messages[:base].join(";")
+      else
+        message = item.warnings.full_messages.join("<br/>")
+      end
+      url = request.env['HTTP_REFERER']
+      par = Rack::Utils.parse_query(URI(url).query)
+      sep = par.any? ? "&" : "?"
+      params[:marc] = item.marc
+      params[level] = "#{message}"
+      url_with_params = "#{url}#{sep}#{params.to_query}"
+      unless par["validation_warning"]
+        respond_to do |format|
+          format.json {  render :json => {:redirect => url_with_params}}
+        end
+      end
+  end
+
+
 end

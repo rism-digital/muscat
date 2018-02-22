@@ -59,7 +59,6 @@ module MarcControllerActions
       end
       @item.marc = new_marc
       @item.lock_version = params[:lock_version]
-      
       @item.record_type = params[:record_type] if (@item.respond_to? :record_type)
       
       # Some housekeeping, change owner and status
@@ -82,16 +81,32 @@ module MarcControllerActions
       # Set the user name to the model class variable
       # This is used by the VersionChecker module to see if we want a version to be stored
       @item.last_user_save = current_user.name
-      @item.save
-
       # This uses the AR validation messages for checking server side validation; only used for catalogue && source for now
-      if (@item.is_a?(Catalogue) || @item.is_a?(Source)) && !@item.errors.messages.empty?
+      
+      if (@item.is_a?(Catalogue) || @item.is_a?(Source)) && !@item.valid?
+        validate_input({item: @item, level: :error})
+        return
+      end
+      
+      url = request.env['HTTP_REFERER']
+      par = Rack::Utils.parse_query(URI(url).query)
+      unless par["validation_warning"]
+      unless @item.safe?
+        validate_input({item: @item, level: :warning})
+        return
+      end
+      end
+=begin
+      if (@item.is_a?(Catalogue) || @item.is_a?(Source)) && !@item.valid?
         message = @item.errors.messages[:base].join(";")
         url = request.env['HTTP_REFERER']
         par = Rack::Utils.parse_query(URI(url).query)
-        sep = par.any? ? "&" : "?" 
+        sep = par.any? ? "&" : "?"
+        params[:marc] = @item.marc
+        params[:validation_error] = "#{message}"
+        url_with_params = "#{url}#{sep}#{params.to_query}"
         respond_to do |format|
-          format.json {  render :json => {:redirect => url + "#{sep}validation_error=#{message}"}}
+          format.json {  render :json => {:redirect => url_with_params}}
         end
         return
       end
@@ -99,16 +114,21 @@ module MarcControllerActions
       unless @item.safe?
         message = @item.warnings.full_messages.join("<br/>")
         url = request.env['HTTP_REFERER']
-        par = Rack::Utils.parse_query(URI(url).query) 
+        par = Rack::Utils.parse_query(URI(url).query)
         sep = par.any? ? "&" : "?"
+        params[:marc] = @item.marc
+        params[:validation_warning] = "#{message}"
+        url_with_params = "#{url}#{sep}#{params.to_query}"
         unless par["validation_warning"]
           respond_to do |format|
-            format.json {  render :json => {:redirect => url + "#{sep}validation_warning=#{URI.escape(message)}"}}
+            format.json {  render :json => {:redirect => url_with_params}}
           end
           return
         end
       end
 
+=end
+      @item.save
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       
       # Send the validation notification

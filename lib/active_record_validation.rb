@@ -1,8 +1,7 @@
 module ActiveRecordValidation
 
   def checking(level)
-    return if !Source.where(id: self.id).any?
-    validator = MarcValidator.new(Source.find(self.id), false)
+    validator = MarcValidator.new(Source.new, false)
     validator.rules.each do |datafield, rule|
       rule.each do |d,options|
         options.each do |subfield, option|
@@ -55,11 +54,27 @@ module ActiveRecordValidation
     end
   end
 
-  def must_have_ability_to_create(hash={})
+  def must_have_ability_to_create(hash={})   
     if versions.empty?
       return unless user
-      unless user.can_edit? self
-        errors.add(:base, "Your are not allowed to create sources with this siglum.")
+      return if user.has_role?("admin") || user.has_role?("editor")
+      sigla = []
+      workgroup_sigla = []
+      user.workgroups.each do |w|
+        w.institutions.map {|i| workgroup_sigla << i.id}
+      end
+      return if workgroup_sigla.empty?
+      marc.each_by_tag("852") do |e|
+        e.each_by_tag("x") do |i|
+          sigla << i.content.to_i rescue next
+        end
+      end
+      sigla.each do |siglum|
+        unless workgroup_sigla.include?(siglum)
+          library = Institution.where(id: siglum).take
+          errors.add(:base, "Your are not allowed to create sources with siglum '#{library.siglum}'.")
+          return
+        end
       end
     end
   end

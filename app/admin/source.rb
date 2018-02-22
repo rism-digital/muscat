@@ -138,6 +138,8 @@ ActiveAdmin.register Source do
     end
 
     def new
+      flash.now[:error] = params[:validation_error] if params[:validation_error]
+      flash.now[:warning] = params[:validation_warning].html_safe if params[:validation_warning]
       @source = Source.new
       @template_name = ""
       
@@ -182,6 +184,11 @@ ActiveAdmin.register Source do
       @editor_validation = EditorValidation.get_default_validation(@source)
       @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{I18n.t('record_types.' + @template_name)}"
       #To transmit correctly @item we need to have @source initialized
+      if params[:marc]
+        @template_name = params[:new_type].sub(/[^_]*_/,"")
+        record_type = MarcSource::RECORD_TYPES[@template_name.to_sym]
+        @source.marc = MarcSource.new(params[:marc], record_type)
+      end
       @item = @source
     end
 

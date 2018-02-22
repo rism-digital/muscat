@@ -16,7 +16,6 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       collapsables.each do |c|
         c.click 
       end
-      save_screenshot('/tmp/screenshot.jpg', :full => true)
       tags = (EditorConfiguration.get_default_layout Person.first).options_config
       unrestricted_fields = Hash.new([])
       tags.each do |tag|
@@ -31,9 +30,9 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       input_fields = page.find_all(:xpath, "//input[@data-tag]|//select[@data-tag]")
       input_fields.each do |field|
         if unrestricted_fields[field["data-tag"]] && unrestricted_fields[field["data-tag"]].include?(field["data-subfield"])
-           expect(field["disabled"]).to eq(false) 
+           expect(field["disabled"]).to be_nil 
         else
-           expect(field["disabled"]).to eq(true)
+           expect(field["disabled"]).to eq("true")
         end
       end
     end
@@ -45,7 +44,6 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       collapsables.each do |c| 
         c.click 
       end
-      save_screenshot('/tmp/unrestricted_screenshot.jpg', :full => true)
       tags = (EditorConfiguration.get_default_layout Person.first).options_config
       unrestricted_fields = Hash.new([])
       tags.each do |tag|
@@ -59,7 +57,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       end
       input_fields = page.find_all(:xpath, "//input[@data-tag]|//select[@data-tag]")
       input_fields.each do |field|
-        expect(field["disabled"]).to eq(false)
+        expect(field["disabled"]).to be_nil
       end
     end
   end

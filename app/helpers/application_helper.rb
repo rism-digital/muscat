@@ -175,5 +175,4 @@ module ApplicationHelper
 
     arr
   end
-
 end
