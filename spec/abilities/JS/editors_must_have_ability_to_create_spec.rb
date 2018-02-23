@@ -4,6 +4,7 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
   describe "Editors"
   let!(:user) { FactoryBot.create(:editor)  }
   let!(:institution) { FactoryBot.create(:institution) }
+  let!(:person) { FactoryBot.create(:person) }
   let!(:foreign_institution) { FactoryBot.create(:foreign_institution) }
   let!(:standard_title) { FactoryBot.create(:standard_title) }
   let!(:standard_term) { FactoryBot.create(:standard_term) }
@@ -14,7 +15,8 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     fill_in :user_password, :with => user.password
     click_button('Login')
     visit new_admin_source_path(new_type: "002_source")
-    open_all_fields
+    #open_all_fields
+    set_field("100$0", person.id)
     set_field("240$0", standard_title.id)
     set_field("650$0", standard_term.id)
     set_field("852$c", "MS2777")
@@ -24,7 +26,7 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     set_field("260$a", "Bremen")
     set_field("594$b", "pf")
     set_field("594$c", "1")
-    set_field("383$b", "123")
+    #set_field("383$b", "123")
   end
 
   it "can create source from library" do
