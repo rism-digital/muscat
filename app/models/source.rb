@@ -278,6 +278,10 @@ class Source < ActiveRecord::Base
       canonic_techniques.map { |ct| ct.id }
     end
 
+   sunspot_dsl.text :canonic_techniques_canon_type do
+     canonic_techniques.map { |ct| ct.canon_type }
+   end
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
