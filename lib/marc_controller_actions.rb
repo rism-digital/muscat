@@ -85,12 +85,12 @@ module MarcControllerActions
       
       #Serverside validation
       if (@item.is_a?(Catalogue) || @item.is_a?(Source)) && !@item.valid?
-        trigger_validation({item: @item, level: :error})
+        trigger_validation({item: @item, level: :error, user: current_user.id})
         return
       end
       unless (Rack::Utils.parse_query(URI(request.env['HTTP_REFERER']).query))["validation_warning"]
         unless @item.safe?
-          trigger_validation({item: @item, level: :warning})
+          trigger_validation({item: @item, level: :warning, user: current_user.id})
           return
         end
       end

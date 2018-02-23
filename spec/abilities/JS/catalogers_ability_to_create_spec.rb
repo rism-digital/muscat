@@ -62,11 +62,11 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     set_field("852$x", institution.id)
     set_field("031$a", "211")
     find(:xpath, "//a[@data-action='exit']").click
-    save_screenshot('/tmp/scr1.png', :full => true)
+    #save_screenshot('/tmp/scr1.png', :full => true)
     sleep 2
     find(:xpath, "//a[@data-action='exit']").click
     sleep 2
-    save_screenshot('/tmp/scr2.png', :full => true)
+    #save_screenshot('/tmp/scr2.png', :full => true)
     warning = first("div[class='flash flash_warning']", visible: false)
     expect(warning).to be_nil
   end
@@ -88,6 +88,24 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     sleep 2
     error = first("div[class='flash flash_error']", visible: false)
     expect(error.text).to match(/is mandatory for this template/)
+  end
+ 
+  it "error should have higher priority than warning", gui: true do
+    skip "is in development" do
+      set_field("100$0", person.id)
+      set_field("852$x", institution.id)
+      set_field("031$a", "211")
+      find(:xpath, "//a[@data-action='exit']").click
+      sleep 2
+      #warning = first("div[class='flash flash_warning']", visible: false)
+      remove_field("100$0")
+      remove_field("100$a")
+      find(:xpath, "//a[@data-action='exit']").click
+
+      save_screenshot('/tmp/scr1.png', :full => true)
+      expect(1).to be 2
+    end
+    #expect(warning.text).to match(/value '211' is greater than 200/)
   end
  
 end

@@ -20,24 +20,31 @@ module Triggers
   end
   
   def trigger_validation(hash={})
-      item = hash[:item]
-      level = hash[:level] == :warning ? :validation_warning : :validation_error
-      if level == :validation_error
-        message = item.errors.messages[:base].join(";")
-      else
-        message = item.warnings.full_messages.join("<br/>")
+    params_hash = {}
+    item = hash[:item]
+    user = hash[:user]
+    return unless user || item
+    level = hash[:level] == :warning ? :validation_warning : :validation_error
+    if level == :validation_error
+      message = item.errors.messages[:base].join(";")
+    else
+      message = item.warnings.full_messages.join("<br/>")
+    end
+    url = request.env['HTTP_REFERER']
+    par = Rack::Utils.parse_query(URI(url).query)
+    sep = par.any? ? "&" : "?"
+    filename = "#{Rails.root}/tmp/#{user}"
+    File.open(filename, 'w') {|f| f.write(item.marc.to_s) }
+    par[level] = "#{message}"
+    par.each do |k,v|
+      params_hash[k] = v.is_a?(Array) ? v.first : v
+    end
+    url_with_params = "#{url}#{sep}#{params_hash.to_query}"
+    unless par["validation_warning"]
+      respond_to do |format|
+        format.json {  render :json => {:redirect => url_with_params}}
       end
-      url = request.env['HTTP_REFERER']
-      par = Rack::Utils.parse_query(URI(url).query)
-      sep = par.any? ? "&" : "?"
-      params[:marc] = item.marc
-      params[level] = "#{message}"
-      url_with_params = "#{url}#{sep}#{params.to_query}"
-      unless par["validation_warning"]
-        respond_to do |format|
-          format.json {  render :json => {:redirect => url_with_params}}
-        end
-      end
+    end
   end
 
 

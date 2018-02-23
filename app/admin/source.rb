@@ -116,8 +116,10 @@ ActiveAdmin.register Source do
       # PREVENT opening the editor. Redirect to the show page
       # and inform the admins.
       begin
-        if params[:marc]
-          @item.marc = MarcSource.new(params[:marc], template)
+        if params[:validation_error] || params[:validation_warning]
+          marc = File.read("#{Rails.root}/tmp/#{current_user.id}")
+
+          @item.marc = MarcSource.new(marc, template)
         else
           @item.marc.load_source true
         end
@@ -188,10 +190,11 @@ ActiveAdmin.register Source do
       @editor_validation = EditorValidation.get_default_validation(@source)
       @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{I18n.t('record_types.' + @template_name)}"
       #To transmit correctly @item we need to have @source initialized
-      if params[:marc]
+      if params[:validation_error] || params[:validation_warning]
         @template_name = params[:new_type].sub(/[^_]*_/,"")
         record_type = MarcSource::RECORD_TYPES[@template_name.to_sym]
-        @source.marc = MarcSource.new(params[:marc], record_type)
+        marc = File.read("#{Rails.root}/tmp/#{current_user.id}")
+        @source.marc = MarcSource.new(marc, record_type)
       end
       @item = @source
     end
