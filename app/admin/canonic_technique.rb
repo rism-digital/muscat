@@ -85,11 +85,11 @@ ActiveAdmin.register CanonicTechnique do
   ###########
 
   # ToDo: debug why filters don't retrieve results
-  filter :canon_type
-  filter :interval
-  filter :interval_direction_equals
-  filter :temporal_offset
-  filter :offset_units
+  filter :canon_type_contains, :label => proc {I18n.t(:filter_canon_type)}, :as => :string
+  filter :interval_contains, :label => proc {I18n.t(:filter_interval)}, :as => :string
+  filter :interval_direction_contains, :label => proc {I18n.t(:filter_interval_direction)}, :as => :string
+  filter :temporal_offset, :label => proc {I18n.t(:filter_temporal_offset)}, :as => :numeric
+  filter :offset_units_contains, :label => proc {I18n.t(:filter_offset_units)}, :as => :string
 
   index :download_links => false do
     selectable_column if !is_selection_mode?
