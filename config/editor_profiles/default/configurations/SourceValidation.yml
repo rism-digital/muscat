@@ -36,7 +36,9 @@
 "100": 
   tags:
     "0": required
-    a: required
+    a:
+      mandatory:
+      - must_have_composer
 "240":
   tag_overrides:
     exclude:

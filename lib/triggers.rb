@@ -19,7 +19,7 @@ module Triggers
     [triggers].to_json.html_safe
   end
   
-  def validate_input(hash={})
+  def trigger_validation(hash={})
       item = hash[:item]
       level = hash[:level] == :warning ? :validation_warning : :validation_error
       if level == :validation_error

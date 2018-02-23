@@ -116,7 +116,11 @@ ActiveAdmin.register Source do
       # PREVENT opening the editor. Redirect to the show page
       # and inform the admins.
       begin
-        @item.marc.load_source true
+        if params[:marc]
+          @item.marc = MarcSource.new(params[:marc], template)
+        else
+          @item.marc.load_source true
+        end
       rescue ActiveRecord::RecordNotFound
         redirect_to admin_source_path @item
         return

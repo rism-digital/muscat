@@ -36,6 +36,15 @@ module ActiveRecordValidation
     end
   end
 
+  def must_have_composer(hash={})
+    t,s = hash[:datafield], hash[:subfield]
+    if self.record_type == 2
+      unless marc.first_occurance(t)
+        errors.add(:base, "Composer in '#{t}$#{s}' is mandatory for this template")    
+      end
+    end
+  end
+
   def should_be_numeric(hash={})
     t,s = hash[:datafield], hash[:subfield]
     marc.all_values_for_tags_with_subtag(t,s).each do |subtag|

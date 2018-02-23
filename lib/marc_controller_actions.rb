@@ -83,51 +83,18 @@ module MarcControllerActions
       @item.last_user_save = current_user.name
       # This uses the AR validation messages for checking server side validation; only used for catalogue && source for now
       
+      #Serverside validation
       if (@item.is_a?(Catalogue) || @item.is_a?(Source)) && !@item.valid?
-        validate_input({item: @item, level: :error})
+        trigger_validation({item: @item, level: :error})
         return
       end
-      
-      url = request.env['HTTP_REFERER']
-      par = Rack::Utils.parse_query(URI(url).query)
-      unless par["validation_warning"]
-      unless @item.safe?
-        validate_input({item: @item, level: :warning})
-        return
-      end
-      end
-=begin
-      if (@item.is_a?(Catalogue) || @item.is_a?(Source)) && !@item.valid?
-        message = @item.errors.messages[:base].join(";")
-        url = request.env['HTTP_REFERER']
-        par = Rack::Utils.parse_query(URI(url).query)
-        sep = par.any? ? "&" : "?"
-        params[:marc] = @item.marc
-        params[:validation_error] = "#{message}"
-        url_with_params = "#{url}#{sep}#{params.to_query}"
-        respond_to do |format|
-          format.json {  render :json => {:redirect => url_with_params}}
-        end
-        return
-      end
-      # Warning flow
-      unless @item.safe?
-        message = @item.warnings.full_messages.join("<br/>")
-        url = request.env['HTTP_REFERER']
-        par = Rack::Utils.parse_query(URI(url).query)
-        sep = par.any? ? "&" : "?"
-        params[:marc] = @item.marc
-        params[:validation_warning] = "#{message}"
-        url_with_params = "#{url}#{sep}#{params.to_query}"
-        unless par["validation_warning"]
-          respond_to do |format|
-            format.json {  render :json => {:redirect => url_with_params}}
-          end
+      unless (Rack::Utils.parse_query(URI(request.env['HTTP_REFERER']).query))["validation_warning"]
+        unless @item.safe?
+          trigger_validation({item: @item, level: :warning})
           return
         end
       end
 
-=end
       @item.save
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       
