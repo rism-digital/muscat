@@ -84,7 +84,6 @@ ActiveAdmin.register CanonicTechnique do
   ## Index ##
   ###########
 
-  # ToDo: debug why filters don't retrieve results
   filter :canon_type_contains, :label => proc {I18n.t(:filter_canon_type)}, :as => :string
   filter :interval_contains, :label => proc {I18n.t(:filter_interval)}, :as => :string
   filter :interval_direction_contains, :label => proc {I18n.t(:filter_interval_direction)}, :as => :string
