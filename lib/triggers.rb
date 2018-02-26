@@ -31,9 +31,8 @@ module Triggers
     end
     url = request.env['HTTP_REFERER']
     par = Rack::Utils.parse_query(URI(url).query)
-    #sep = par.any? ? "&" : "?"
     filename = "#{Rails.root}/tmp/#{user}"
-    File.open(filename, 'w') {|f| f.write(item.marc.to_s) }
+    File.write("#{filename}", item.to_yaml)
     par[level] = "#{message}"
     new_url_with_params = "#{request.base_url}#{URI(url).path}?#{par.to_query}"
     respond_to do |format|

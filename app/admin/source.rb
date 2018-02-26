@@ -118,8 +118,7 @@ ActiveAdmin.register Source do
       begin
         if params[:validation_error] || params[:validation_warning]
           if File.exist?("#{Rails.root}/tmp/#{current_user.id}")
-            marc = File.read("#{Rails.root}/tmp/#{current_user.id}")
-            @item.marc = MarcSource.new(marc, template)
+            @item = YAML.load_file("#{Rails.root}/tmp/#{current_user.id}")
           end
         else
           @item.marc.load_source true
@@ -192,11 +191,9 @@ ActiveAdmin.register Source do
       @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{I18n.t('record_types.' + @template_name)}"
       #To transmit correctly @item we need to have @source initialized
       if params[:validation_error] || params[:validation_warning]
-        @template_name = params[:new_type].sub(/[^_]*_/,"")
-        record_type = MarcSource::RECORD_TYPES[@template_name.to_sym]
         if File.exist?("#{Rails.root}/tmp/#{current_user.id}")
-          marc = File.read("#{Rails.root}/tmp/#{current_user.id}")
-          @source.marc = MarcSource.new(marc, record_type)
+          @source = YAML.load_file("#{Rails.root}/tmp/#{current_user.id}")
+          @template_name = @source.record_type
         end
       end
       @item = @source
