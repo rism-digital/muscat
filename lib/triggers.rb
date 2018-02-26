@@ -20,7 +20,6 @@ module Triggers
   end
   
   def trigger_validation(hash={})
-    params_hash = {}
     item = hash[:item]
     user = hash[:user]
     return unless user || item
@@ -32,18 +31,13 @@ module Triggers
     end
     url = request.env['HTTP_REFERER']
     par = Rack::Utils.parse_query(URI(url).query)
-    sep = par.any? ? "&" : "?"
+    #sep = par.any? ? "&" : "?"
     filename = "#{Rails.root}/tmp/#{user}"
     File.open(filename, 'w') {|f| f.write(item.marc.to_s) }
     par[level] = "#{message}"
-    par.each do |k,v|
-      params_hash[k] = v.is_a?(Array) ? v.first : v
-    end
-    url_with_params = "#{url}#{sep}#{params_hash.to_query}"
-    unless par["validation_warning"]
-      respond_to do |format|
-        format.json {  render :json => {:redirect => url_with_params}}
-      end
+    new_url_with_params = "#{request.base_url}#{URI(url).path}?#{par.to_query}"
+    respond_to do |format|
+      format.json {  render :json => {:redirect => new_url_with_params}}
     end
   end
 

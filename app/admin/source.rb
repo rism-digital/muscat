@@ -117,9 +117,10 @@ ActiveAdmin.register Source do
       # and inform the admins.
       begin
         if params[:validation_error] || params[:validation_warning]
-          marc = File.read("#{Rails.root}/tmp/#{current_user.id}")
-
-          @item.marc = MarcSource.new(marc, template)
+          if File.exist?("#{Rails.root}/tmp/#{current_user.id}")
+            marc = File.read("#{Rails.root}/tmp/#{current_user.id}")
+            @item.marc = MarcSource.new(marc, template)
+          end
         else
           @item.marc.load_source true
         end
@@ -193,8 +194,10 @@ ActiveAdmin.register Source do
       if params[:validation_error] || params[:validation_warning]
         @template_name = params[:new_type].sub(/[^_]*_/,"")
         record_type = MarcSource::RECORD_TYPES[@template_name.to_sym]
-        marc = File.read("#{Rails.root}/tmp/#{current_user.id}")
-        @source.marc = MarcSource.new(marc, record_type)
+        if File.exist?("#{Rails.root}/tmp/#{current_user.id}")
+          marc = File.read("#{Rails.root}/tmp/#{current_user.id}")
+          @source.marc = MarcSource.new(marc, record_type)
+        end
       end
       @item = @source
     end
