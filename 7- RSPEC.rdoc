@@ -1,12 +1,20 @@
 = RSPEC
 
-==Requirements
-For headless chrome: Chrome 59+ and ChromeDriver installed
-
 ==Description
 This software has a suite of spec tests in the 'spec' folder. 
 
 The schema will be loaded into a sqlite3 in memory database; all objects are created by FactoryBot during the suite.
+
+==Requirements
+For headless chrome: Chrome 59+ and ChromeDriver installed.
+
+In config/database.yaml:
+  test:
+    adapter: sqlite3
+    database: ":memory:"
+    pool: 5
+    timeout: 5000
+    verbosity: quiet
 
 It connects to the following sunspot-solr instance (see config/solr.yml):
   test: &test
