@@ -87,7 +87,7 @@ ActiveAdmin.register CanonicTechnique do
   filter :canon_type_contains, :label => proc {I18n.t(:filter_canon_type)}, :as => :string
   filter :interval_contains, :label => proc {I18n.t(:filter_interval)}, :as => :string
   filter :interval_direction_contains, :label => proc {I18n.t(:filter_interval_direction)}, :as => :string
-  filter :temporal_offset, :label => proc {I18n.t(:filter_temporal_offset)}, :as => :numeric
+  filter :temporal_offset_contains, :label => proc {I18n.t(:filter_temporal_offset)}, :as => :string
   filter :offset_units_contains, :label => proc {I18n.t(:filter_offset_units)}, :as => :string
 
   index :download_links => false do
