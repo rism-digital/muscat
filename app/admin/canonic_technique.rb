@@ -157,6 +157,7 @@ ActiveAdmin.register CanonicTechnique do
   ##########
 
   form do |f|
+    f.object.relation_operator = "ex" unless f.object.persisted?
     f.inputs do
       f.input :canon_type, :label => (I18n.t :filter_canon_type), :as => :select,
               :collection => ["unison canon", "double canon", "triple canon", "retrograde motion canon (cancrizans or crab canon)",

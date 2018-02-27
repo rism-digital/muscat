@@ -937,8 +937,10 @@
     - - b
     - - c
       - values:
+        - ""
         - "ex"
         - "to"
+        default: "ex"
         editor_partial: subfield_select
     - - d
     - - e
