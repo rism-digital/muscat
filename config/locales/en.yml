@@ -475,7 +475,7 @@ en:
   filter_relation_denominator: "Sounding canonic voices/denominator"
   filter_interval: "Interval of imitation"
   filter_interval_direction: "Above or below"
-  filter_temporal_offset: "Temporal offset between voices"
+  filter_temporal_offset: "Temporal offset"
   filter_offset_units: "Temporal offset unit"
   filter_mensurations: "Mensurations/time signatures"
 

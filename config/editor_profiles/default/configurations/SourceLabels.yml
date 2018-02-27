@@ -1810,7 +1810,7 @@ doc_references:
         en: Above or below
     g:
       label:
-        en: Temporal offset between voices
+        en: Temporal offset
     h:
       label:
         en: Temporal offset unit
