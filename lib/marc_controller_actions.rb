@@ -89,9 +89,11 @@ module MarcControllerActions
         return
       end
       unless (Rack::Utils.parse_query(URI(request.env['HTTP_REFERER']).query))["validation_warning"]
-        unless @item.safe?
-          trigger_validation({item: @item, level: :warning, user: current_user.id})
-          return
+        if @item.is_a? Source
+          unless @item.safe?
+            trigger_validation({item: @item, level: :warning, user: current_user.id})
+            return
+          end
         end
       end
 
