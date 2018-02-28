@@ -294,7 +294,7 @@ doc_templates:
         it: Titolo del periodico o della miscellanea
         fr: Titre de la revue
         de: "In: "
-        en: Title of periodical or book
+        en: "Title of periodical, book, or series"
 "780": 
   label: 
     it: Titolo precedente
