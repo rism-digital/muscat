@@ -34,6 +34,16 @@
     - - a
     - - d
     - - e
+"563": 
+  new_window: sources
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - u
+      - type: source
+        editor_partial: subfield_secondary
+        only_new_window: true
 "592": 
   layout: 
     fields: 
