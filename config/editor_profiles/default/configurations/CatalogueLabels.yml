@@ -401,10 +401,10 @@ asn:
     en: Associated name
 aut: 
   label: 
-    it: Autore
-    fr: Auteur
-    de: Autor
-    en: Author
+    it: "Autore addizionale"
+    fr: "Auteur supplémentaire"
+    de: "Zusätzlicher Autor"
+    en: "Additional author"
 bibliographical_reference: 
   label: 
     it: Bibliografia
