@@ -334,6 +334,7 @@ es:
   filter_autograph_of: "Autógrafo de"
   filter_birth_place: "Lugar de nacimiento"
   filter_catalog: "Catálogo"
+  filter_category_type: "Categoría"
   filter_collection: "Colección"
   filter_comments: "Comentarios"
   filter_composer: "Compositor"

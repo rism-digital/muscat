@@ -360,6 +360,7 @@ de:
   filter_birth_place: "Geburtsort"
   filter_catalog: "WV / Katalog"
   filter_collection: "Sammlung"
+  filter_category_type: "Kategorie"
   filter_comments: "Kommentare"
   filter_composer: "Komponist"
   filter_connected_libraries: "Bibliotheken"

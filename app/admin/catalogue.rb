@@ -125,7 +125,7 @@ ActiveAdmin.register Catalogue do
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"100a_or_700a_contains", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
   filter :description_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
-  filter :"240g_contains", :label => proc {I18n.t(:filter_record_type)}, :as => :select,
+  filter :"240g_contains", :label => proc {I18n.t(:filter_category_type)}, :as => :select,
     collection: proc{["Bibliography", "Catalog", "Collective catalogue", "Encyclopedia", "Music edition", "Other",
       "Thematic catalog", "Work catalog"] }
   filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
