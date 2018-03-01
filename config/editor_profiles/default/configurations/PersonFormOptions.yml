@@ -199,7 +199,7 @@
     - - j
       - cols: 2
         editor_partial: subfield_select_codes
-        select_label: "Kind of Variant"
+        select_label: "Type of Variant"
     columns: 2
   tag_params:
     codes:
@@ -282,7 +282,7 @@
     - - i
       - cols: 2
         editor_partial: subfield_select_codes
-        select_label: "Place"
+        select_label: "Type"
     columns: 2
   tag_params:
     codes:

@@ -214,7 +214,7 @@ doc_edit_workflow:
 "400":
   label:
     it: Varianti del nome
-    fr: Name variants
+    fr: Name variant
     de: Namensvarianten
     en: Name variants
   fields:
@@ -223,19 +223,19 @@ doc_edit_workflow:
         it: Varianti del nome
         fr: Name variants
         de: Namensvarianten  
-        en: Name variants
+        en: Name variant
     d:
       label:
         it: Data di nascita e di morte
         fr: Dates de vie
         de: Geburts- und Todesdaten
-        en: Life dates    
+        en: Life dates
     j:
       label:
         it: Descrizione della variante del nome
         fr: Description de la variante du nom
         de: Art der Namensvariante
-        en: Description of name variant
+        en: Type of name variant
 "500":
   label:
     it: Persone correlate
@@ -273,21 +273,21 @@ doc_edit_workflow:
   label:
     it: Professione o funzione
     fr: Sujet
-    de: Sachbegriff
-    en: Topical Term
+    de: Beruf oder Funktion
+    en: Profession or function
   fields:
     a:
       label:
         it: Professione o funzione
         fr: Sujet
-        de: Sachbegriff
-        en: Topical Term
+        de: Beruf oder Funktion
+        en: Profession or function
     i:
       label:
         it:  Relazione
         fr:  Relation
         de:  Bedeutung
-        en:  Relation
+        en:  Type
 "551":
   label:
     it: Nome geografico
@@ -343,16 +343,16 @@ doc_edit_workflow:
 "678":
   label:
     it: Informazioni biografiche addizionali 
-    fr: Référence bibliographique additionnelle 
-    de: Weitere bibliographische Angaben
-    en: Additional bibliographical information
+    fr: Référence biographique additionnelle 
+    de: Weitere biographische Angaben
+    en: Additional biographical information
   fields:
     a:
       label:
-        it: Riferimento bibliografico addizionale 
-        fr: Référence bibliographique additionnelle
-        de: Weitere bibliographische Angaben
-        en: Additional bibliographical information
+        it: Riferimento biografico addizionale 
+        fr: Référence biographique additionnelle
+        de: Weitere biographische Angaben
+        en: Additional biographical information
 "680":
   label:
     it: Osservazioni
@@ -371,7 +371,7 @@ doc_edit_workflow:
     it: Localizzazione e accesso elettronico
     fr: "Ressource électronique externe"
     de: Elektronische Lokalisierung und Zugriff
-    en: External resource URI
+    en: External resource
   fields:
     y:
       label:
@@ -381,10 +381,10 @@ doc_edit_workflow:
         en: Note about external resource
     u:
       label:
-        it: Risorsa esterna
-        fr: Ressource externe
+        it: Risorsa esterna URL
+        fr: Ressource externe URL
         de: Uniform Resource Identifier
-        en: External resource
+        en: External resource URL
 main_person:
   label:
     it: Campi principali
@@ -432,7 +432,7 @@ references:
     it: Riferimento
     fr: "Références"
     de: Literatur und Bemerkungen
-    en: References
+    en: References and notes
 relations:
   label:
     it: Relazione
@@ -476,13 +476,13 @@ go:
     it: Luogo di nascita
     fr: Lieu de naissance
     de: Geburtsort
-    en: Place of Birth
+    en: Place of birth
 ha:
   label:
     it: Luogo di origine
     fr: "Lieu d'origine"
     de: Herkunftsangabe
-    en: Place of Origin
+    en: Place of origin
 po:
   label:
     it: Luogo postale
@@ -494,25 +494,25 @@ so:
     it: Luogo di morte
     fr: Lieu de décès
     de: Sterbeort
-    en: Place of Death
+    en: Place of death
 wl:
   label:
     it: "Paese di attività"
     fr: "Pays d'activité"
     de: Wirkungsland
-    en: Country of activity
+    en: Country active
 wo:
   label:
     it: "Luogo di attività"
     fr: "Lieu d'activité"
     de: Wirkungsort
-    en: Place of activity
+    en: Place active
 wr:
   label:
     it: "Regione di attività"
     fr: "Région d'activité"
     de: Wirkungsregion
-    en: Region of activity
+    en: Region active
 #Country Codes
 "XC-DZ":
   label:
@@ -1032,7 +1032,7 @@ bn:
     it: Soprannome
     fr: Surnom
     de: Beiname
-    en: Byname
+    en: Nickname
 da:
   label:
     it: Pseudonimo
@@ -1044,43 +1044,43 @@ do:
     it: Nome di religione
     fr: "Nom d'ordre"
     de: Ordensname
-    en: Order Name
+    en: Religious name
 dv:
   label:
     it: Altra forma di ricerca
     fr: Autre forme de recherche
     de: andere Suchform
-    en: Other Searchform
+    en: Other variant
 ee:
   label:
     it: Nome da sposato
     fr: Nom de mariage
     de: Ehename
-    en: Marriage Name
+    en: Married name
 ef:
   label:
     it: Nome di famiglia
     fr: Nom de famillie
     de: Familienname
-    en: Family Name
+    en: Name of family
 ff:
   label:
     it: Nome di persona
     fr: Nom de la personne
     de: Personenname
-    en: Person Name
+    en: Personal name
 gg:
   label:
     it: Nome da nubile/celibe
     fr: Nom de naissance
     de: Geburtsname
-    en: Birthname
+    en: Birth name
 in:
   label:
     it: Iniziali
     fr: Initiale
     de: Initiale
-    en: Initial
+    en: Initials
 mo:
   label:
     it: Monogramma
@@ -1092,7 +1092,7 @@ tn:
     it: Nome di battesimo
     fr: Nom baptismale
     de: Taufname
-    en: Baptsimal Name
+    en: Baptsimal name
 ub:
   label:
     it: Traduzione
@@ -1104,7 +1104,7 @@ z:
     it: Ortografia alternativa
     fr: Autres formes
     de: Andere Schreibweise
-    en: Other form
+    en: Alternate spelling
 xx:
   label:
     it: Sconosciuto
