@@ -21,6 +21,7 @@ RSpec.describe User do
     let!(:foreign_institution) { FactoryBot.create(:foreign_institution)  }
     subject(:ability) { Ability.new(user)  }
     it "should not to be able to edit prints with foreign holdings" do
+      edition.holdings.first.institutions.clear
       edition.holdings.first.institutions << foreign_institution
       expect(ability).to be_able_to(:show, edition)
       expect(ability).not_to be_able_to(:edit, edition)

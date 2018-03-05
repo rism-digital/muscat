@@ -1,14 +1,13 @@
-#Rough method to prevent messing up development index with rspec
-# TODO transfer to some testing environment
+models = [ Source, Person, Catalogue, Institution ]
+
 RSpec.configure do |config|
-  config.after(:suite) do
-    puts "CLEANING THE INDEX....".yellow
-    Sunspot.remove(Source) { with(:created_at).greater_than(5.minutes.ago)  }
-    Sunspot.remove(Person) { with(:created_at).greater_than(5.minutes.ago)  }
-    Sunspot.remove(Institution) { with(:created_at).greater_than(5.minutes.ago)  }
-    Sunspot.remove(Catalogue) { with(:created_at).greater_than(5.minutes.ago)  }
+  config.before(:each, solr: true) do
+    models.each do |model|
+      unless Sunspot.search(model).hits.empty?
+        model.remove_all_from_index
+      end
+    end
     Sunspot.commit
-    puts "READY!".green
+    puts "Cleaned Sunspot::Solr".blue
   end
 end
-

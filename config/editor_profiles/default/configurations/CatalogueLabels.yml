@@ -294,7 +294,7 @@ doc_templates:
         it: Titolo del periodico o della miscellanea
         fr: Titre de la revue
         de: "In: "
-        en: Title of periodical or book
+        en: "Title of periodical, book, or series"
 "780": 
   label: 
     it: Titolo precedente
@@ -401,10 +401,10 @@ asn:
     en: Associated name
 aut: 
   label: 
-    it: Autore
-    fr: Auteur
-    de: Autor
-    en: Author
+    it: "Autore addizionale"
+    fr: "Auteur supplémentaire"
+    de: "Zusätzlicher Autor"
+    en: "Additional author"
 bibliographical_reference: 
   label: 
     it: Bibliografia

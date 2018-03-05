@@ -125,7 +125,7 @@ ActiveAdmin.register Catalogue do
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"100a_or_700a_contains", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
   filter :description_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
-  filter :"240g_contains", :label => proc {I18n.t(:filter_record_type)}, :as => :select,
+  filter :"240g_contains", :label => proc {I18n.t(:filter_category_type)}, :as => :select,
     collection: proc{["Bibliography", "Catalog", "Collective catalogue", "Encyclopedia", "Music edition", "Other",
       "Thematic catalog", "Work catalog"] }
   filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
@@ -179,8 +179,41 @@ ActiveAdmin.register Catalogue do
     else
       render :partial => "marc/show"
     end
-    active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode? )
+    
+    ## Source box. Use the standard helper so it is the same everywhere
+    active_admin_embedded_source_list(self, catalogue, !is_selection_mode? )
 
+    # Box for people referring to this catalogue
+    active_admin_embedded_link_list(self, catalogue, Person) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_full_name), :full_name
+        context.column (I18n.t :filter_life_dates), :life_dates
+        context.column (I18n.t :filter_birth_place), :birth_place
+        context.column (I18n.t :filter_alternate_names), :alternate_names
+        if !is_selection_mode?
+          context.column "" do |person|
+            link_to "View", controller: :people, action: :show, id: person.id
+          end
+        end
+      end
+    end
+    
+    # Box for institutions referring to this catalogue
+    active_admin_embedded_link_list(self, catalogue, Institution) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :siglum
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_place), :place
+        if !is_selection_mode?
+          context.column "" do |ins|
+            link_to "View", controller: :institutions, action: :show, id: ins.id
+          end
+        end
+      end
+    end
+    
     if !resource.get_items.empty?
       panel I18n.t :filter_series_items do
         search=Catalogue.solr_search do 

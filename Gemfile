@@ -81,6 +81,16 @@ group :development do
     gem 'puma'
 end
 
+group :test do
+  gem 'sqlite3'
+  gem 'sqlite3_ar_regexp'
+  gem "rspec"
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_bot_rails'
+  gem 'poltergeist', "1.11.0"
+  gem 'database_cleaner'
+end
+
 gem 'blacklight'
 gem "blacklight_advanced_search"
 gem 'bootstrap-sass'
@@ -102,7 +112,9 @@ gem 'activerecord-import', ">= 0.4.0"
 # gem 'selenium-webdriver'
 
 gem 'ruby-prof'
-gem 'pry', :group => :development
+group :development, :test do
+  gem 'pry'
+end
 
 # Background tasks
 # https://github.com/collectiveidea/delayed_job/issues/776

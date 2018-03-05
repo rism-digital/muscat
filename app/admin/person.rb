@@ -192,7 +192,7 @@ ActiveAdmin.register Person do
     else
       render :partial => "marc/show"
     end
-    active_admin_embedded_source_list( self, person, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, person, !is_selection_mode? )
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, person )
     active_admin_navigation_bar( self )

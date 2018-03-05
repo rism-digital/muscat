@@ -360,6 +360,7 @@ fr:
   filter_birth_place: "Lieu de naissance"
   filter_catalog: "Catalogue"
   filter_collection: "Collection"
+  filter_category_type: "Catégorie"
   filter_comments: "Commentaires"
   filter_composer: "Compositeur"
   filter_connected_libraries: "Bibliothèques"
@@ -367,7 +368,7 @@ fr:
   filter_creation_date: "Date de création"
   filter_date: "Date"
   filter_date_from: "Depuis la date"
-  filter_date_of_publication: "DATE OF PUBLICATION"
+  filter_date_of_publication: "Année de publication"
   filter_date_to: "Jusqu'à la date"
   filter_description: "Description"
   filter_digital_objects: "Digital Objects"
@@ -465,7 +466,10 @@ fr:
   filter_dist_594l: "Instruments à clavier"
   filter_dist_594m: "Autres instruments"
   filter_dist_594n: "Instruments de basse continue"
-  
+ 
+  ## Referring lists for auth files
+  refers_to_this: "%{model_from} se référant à cet(te) %{model_to}"
+
   rism_any_key: "N'importe quelle tonalité"
   rism_a_flat: "La bémol majeur/mineur"
   rism_a: "La majeur/mineur"

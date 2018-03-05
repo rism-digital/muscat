@@ -34,7 +34,7 @@ RSpec.describe Role do
     it{ is_expected.to be_able_to(:create, Person.new)  }
     it{ is_expected.to be_able_to(:read, Person.new)  }
     it{ is_expected.not_to be_able_to(:update, Person.new)  }
-    it{ is_expected.to be_able_to(:update, Person.new(:wf_owner => :user))  }
+    it{ is_expected.to be_able_to(:update, Person.new(:wf_owner => user.id))  }
     it{ is_expected.not_to be_able_to(:destroy, Person.new)  }
   end
   

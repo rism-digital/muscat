@@ -257,7 +257,9 @@ class Catalogue < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
     
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      Catalogue.count_by_sql("select count(*) from sources_to_catalogues where catalogue_id = #{self[:id]}")
+      (Catalogue.count_by_sql("select count(*) from sources_to_catalogues where catalogue_id = #{self[:id]}") +
+      Catalogue.count_by_sql("select count(*) from institutions_to_catalogues where catalogue_id = #{self[:id]}") +
+      Catalogue.count_by_sql("select count(*) from people_to_catalogues where catalogue_id = #{self[:id]}"))
     end
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
