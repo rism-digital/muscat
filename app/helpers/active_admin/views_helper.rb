@@ -3,44 +3,37 @@ require 'sunspot_extensions.rb'
 
 module ActiveAdmin::ViewsHelper
   
-  # embedds a list of sources from a foreign (authority) model
-  # - context is the show context is the AA
-  # - item is the instance of the model
-  # - query is the fitler for the source list
-  # - src_list_page is the pagination
-  def active_admin_embedded_source_list( context, item, query, src_list_page, enable_view_src = true )
-    # get the list of sources for the item
-    c = item.referring_sources
-    # do not display the panel if no source attached
-    return if c.empty?
-    panel_title = item.is_a?(Source) ? I18n.t(:filter_subsequent_entries) : I18n.t(:filter_sources)
-    context.panel panel_title, :class => "muscat_panel"  do
-      
-      # Sometimes if a query is already present query comes with the
-      # parameters for ransack, filter this out so only text queries
-      # pass
-      query = "*" if !query.is_a? String
-      
-      # filter the list of sources
-      c = Source.solr_search do
-        fulltext query
-        with item.class.name.underscore.pluralize.to_sym, item.id
-        paginate :page => src_list_page, :per_page => 15 
-      end
-      
-      context.paginated_collection(c.results, param_name: 'src_list_page',  download_links: false) do
-        context.table_for(context.collection) do |cr|
-          context.column (I18n.t :filter_composer), :composer
-          context.column (I18n.t :filter_std_title), :std_title
-          context.column (I18n.t :filter_title), :title
-          context.column (I18n.t :filter_lib_siglum), :lib_siglum if !item.is_a? Source
-          context.column (I18n.t :filter_shelf_mark), :shelf_mark if !item.is_a? Source
-          if enable_view_src
-            context.column "" do |source|
-              link_to "View", controller: :sources, action: :show, id: source.id
-            end
+  # This is repeated the same everywhere, so we just make one function with the contents
+  def active_admin_embedded_source_list(context, item, enable_view_src = true)
+    # The columns should be the same for every list in every page!
+    active_admin_embedded_link_list(context, item, Source) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_composer), :composer
+        context.column (I18n.t :filter_std_title), :std_title
+        context.column (I18n.t :filter_title), :title
+        context.column (I18n.t :filter_lib_siglum), :lib_siglum
+        context.column (I18n.t :filter_shelf_mark), :shelf_mark
+        if enable_view_src
+          context.column "" do |source|
+            link_to "View", controller: :sources, action: :show, id: source.id
           end
         end
+      end
+    end
+  end
+	
+  def active_admin_embedded_link_list(context, item, link_class, panel_title = nil, &block)
+    current_page_name = link_class.to_s.downcase + "_list_page"
+    current_page = params[current_page_name]
+    c = item.send("referring_" + link_class.to_s.pluralize.underscore)
+    # do not display the panel if no source attached
+    return if c.empty?
+    panel_title = I18n.t(:refers_to_this, model_from: link_class.model_name.human(count: 2), model_to: item.model_name.human) if !panel_title
+    
+    context.panel panel_title, :class => "muscat_panel"  do
+      context.paginated_collection(c.page(current_page).per(10), param_name: current_page_name,  download_links: false) do
+        yield(context)
       end
     end
   end 

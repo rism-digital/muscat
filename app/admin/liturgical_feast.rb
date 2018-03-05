@@ -130,7 +130,7 @@ ActiveAdmin.register LiturgicalFeast do
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
       row (I18n.t :filter_notes) { |r| r.notes } 
     end
-    active_admin_embedded_source_list( self, liturgical_feast, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, liturgical_feast, !is_selection_mode? )
     active_admin_user_wf( self, liturgical_feast )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?

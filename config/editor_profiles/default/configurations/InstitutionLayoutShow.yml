@@ -38,6 +38,8 @@ groups:
     - "551"
     - "710"
     - "700"
+    all_tag_templates:
+      "670": people/show_catalogue
   control: 
     all_tags: 
     - "000"
