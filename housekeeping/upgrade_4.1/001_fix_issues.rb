@@ -71,7 +71,7 @@ excludes = [402003662,
     end
   end
 
-  # 593
+  # 548
   if s.record_type == 1 #collection
 
     # Collections with no 100 but with only one author
@@ -89,6 +89,8 @@ excludes = [402003662,
     name = s.marc.first_occurance("100", "a")
     next if !name || !name.content
     
+    children_material = []
+    
     #puts name.content
     found = true
     s.child_sources.each do |rs|
@@ -97,6 +99,12 @@ excludes = [402003662,
       
       authman = rs.marc.first_occurance("593", "a")
       found = false if !authman || !authman.content || !authman.content.include?("Autograph")
+      children_material << rs.marc.by_tags("593").count
+    end
+    
+    total = [s.marc.by_tags("593").count].concat children_material
+    if total.sort.uniq.count > 1
+      puts "#{s.id} has #{s.marc.by_tags("593").count} groups, children have: #{children_material.to_s}".yellow
     end
     
     if found
@@ -117,8 +125,8 @@ excludes = [402003662,
     
   end
 
-  puts s.id if modified
-  s.save! if modified
+  #puts s.id if modified
+  #s.save! if modified
 end
 
 =begin
