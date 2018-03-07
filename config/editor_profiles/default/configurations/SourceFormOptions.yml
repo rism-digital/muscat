@@ -936,13 +936,13 @@
         editor_partial: subfield_select
     - - b
     - - c
+    - - d
       - values:
         - ""
         - "ex"
         - "to"
         default: "ex"
         editor_partial: subfield_select
-    - - d
     - - e
       - values:
         - "unison"

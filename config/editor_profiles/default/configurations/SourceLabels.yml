@@ -1798,10 +1798,10 @@ doc_references:
         en: Written canonic voices/numerator
     c:
       label:
-        en: Relationship Operator
+        en: Sounding canonic voices/denominator
     d:
       label:
-        en: Sounding canonic voices/denominator
+        en: Relationship Operator
     e:
       label:
         en: Interval of imitation

@@ -827,11 +827,11 @@
     - - c
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: relation_operator
+        :foreign_field: relation_denominator
     - - d
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: relation_denominator
+        :foreign_field: relation_operator
     - - e
       - :occurrences: "?"
         :foreign_class: ^0
