@@ -848,7 +848,7 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: offset_units
-    - - i
+    - - o
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: mensurations

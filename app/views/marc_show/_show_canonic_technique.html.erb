@@ -8,7 +8,7 @@
   f_tag = tag.fetch_first_by_tag(:f)
   g_tag = tag.fetch_first_by_tag(:g)
   h_tag = tag.fetch_first_by_tag(:h)
-  i_tag = tag.fetch_first_by_tag(:i)
+  o_tag = tag.fetch_first_by_tag(:o)
 
   type = nil
   if a_tag && a_tag.content
@@ -32,8 +32,8 @@
     if h_tag && h_tag.content
       temporal_offset = temporal_offset + ' ' + h_tag.content
     end
-    if i_tag && i_tag.content
-      temporal_offset = temporal_offset + ' in ' + i_tag.content
+    if o_tag && o_tag.content
+      temporal_offset = temporal_offset + ' in ' + o_tag.content
     end
   end
 -%>

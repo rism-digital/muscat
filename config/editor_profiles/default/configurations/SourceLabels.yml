@@ -1814,7 +1814,7 @@ doc_references:
     h:
       label:
         en: Temporal offset unit
-    i:
+    o:
       label:
         en: Mensurations/time signatures
        

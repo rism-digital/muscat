@@ -990,6 +990,6 @@
         - "dotted long(s)"
         - "other"
         editor_partial: subfield_select
-    - - i
+    - - o
 ui: 
   hide_marc_identifiers: true
