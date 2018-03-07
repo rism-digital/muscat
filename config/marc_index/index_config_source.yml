@@ -165,6 +165,26 @@ fields:
       :from_subtag: "a"
   "690n":
   "691a":
+  "695a":
+  "695a_filter":
+      :type: string
+      :from_tag: "695"
+      :from_subtag: "a"
+  "695e":
+  "695e_filter":
+      :type: string
+      :from_tag: "695"
+      :from_subtag: "e"
+  "695g":
+  "695g_filter":
+      :type: string
+      :from_tag: "695"
+      :from_subtag: "g"
+  "695h":
+  "695h_filter":
+      :type: string
+      :from_tag: "695"
+      :from_subtag: "h"
   "700a":
   "700d":
   "700e":
@@ -235,23 +255,3 @@ fields:
           :130: "a"
       :store: true
       :type: string
-  "999a":
-  "999a_filter":
-      :type: string
-      :from_tag: "999"
-      :from_subtag: "a"
-  "999e":
-  "999e_filter":
-      :type: string
-      :from_tag: "999"
-      :from_subtag: "e"
-  "999g":
-  "999g_filter":
-      :type: string
-      :from_tag: "999"
-      :from_subtag: "g"
-  "999h":
-  "999h_filter":
-      :type: string
-      :from_tag: "999"
-      :from_subtag: "h"

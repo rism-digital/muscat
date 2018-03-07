@@ -655,6 +655,94 @@
         editor_partial: subfield_secondary
         allow_new: false
     - - n
+"695":
+  layout:
+    fields:
+    - - a
+      - values:
+        - "unison canon"
+        - "double canon"
+        - "triple canon"
+        - "retrograde motion canon (cancrizans or crab canon)"
+        - "contrary motion canon (inversion canon)"
+        - "proportional canon"
+        - "mensuration canon"
+        - "continuous canon"
+        - "riddle canon"
+        - "puzzle canon"
+        - "enigmatic canon"
+        - "resolved canon"
+        - "invertible canon"
+        - "stacked canon"
+        - "octave transposition (parallel)"
+        - "canon per tonos"
+        - "interval canon"
+        - "precusor canon"
+        - "retrograde contrary motion canon"
+        - "verbal canon"
+        - "quadruple canon"
+        - "parallel canon"
+        - "perpetual canon"
+        - "permutation canon"
+        - "polymorphous canon"
+        editor_partial: subfield_select
+    - - b
+    - - c
+    - - d
+      - values:
+        - ""
+        - "ex"
+        - "to"
+        default: "ex"
+        editor_partial: subfield_select
+    - - e
+      - values:
+        - "unison"
+        - "2nd"
+        - "3rd"
+        - "4th"
+        - "5th"
+        - "6th"
+        - "7th"
+        - "8ve"
+        - "9th"
+        - "10th"
+        - "11th"
+        - "12th"
+        - "13th"
+        - "14th"
+        - "15th"
+        - "8ve and 4th"
+        - "8ve and 5th"
+        - "other"
+        editor_partial: subfield_select
+    - - f
+      - values:
+        - "above"
+        - "below"
+        editor_partial: subfield_select
+    - - g
+    - - h
+      - values:
+        - "semiminim(s)"
+        - "minim(s)"
+        - "semibreve(s)"
+        - "breve(s)"
+        - "long(s)"
+        - "maxima(e)"
+        - "tempus"
+        - "tempora"
+        - "semiquaver(s)"
+        - "quaver(s)"
+        - "crotchet(s)"
+        - "dotted semiminim(s)"
+        - "dotted minim(s)"
+        - "dotted semibreve(s)"
+        - "dotted breve(s)"
+        - "dotted long(s)"
+        - "other"
+        editor_partial: subfield_select
+    - - o
 "700":
   new_window: people
   new_window_field: full_name_equals
@@ -903,93 +991,5 @@
       - type: work
         editor_partial: subfield_secondary
         allow_new: true
-"999":
-  layout:
-    fields:
-    - - a
-      - values:
-        - "unison canon"
-        - "double canon"
-        - "triple canon"
-        - "retrograde motion canon (cancrizans or crab canon)"
-        - "contrary motion canon (inversion canon)"
-        - "proportional canon"
-        - "mensuration canon"
-        - "continuous canon"
-        - "riddle canon"
-        - "puzzle canon"
-        - "enigmatic canon"
-        - "resolved canon"
-        - "invertible canon"
-        - "stacked canon"
-        - "octave transposition (parallel)"
-        - "canon per tonos"
-        - "interval canon"
-        - "precusor canon"
-        - "retrograde contrary motion canon"
-        - "verbal canon"
-        - "quadruple canon"
-        - "parallel canon"
-        - "perpetual canon"
-        - "permutation canon"
-        - "polymorphous canon"
-        editor_partial: subfield_select
-    - - b
-    - - c
-    - - d
-      - values:
-        - ""
-        - "ex"
-        - "to"
-        default: "ex"
-        editor_partial: subfield_select
-    - - e
-      - values:
-        - "unison"
-        - "2nd"
-        - "3rd"
-        - "4th"
-        - "5th"
-        - "6th"
-        - "7th"
-        - "8ve"
-        - "9th"
-        - "10th"
-        - "11th"
-        - "12th"
-        - "13th"
-        - "14th"
-        - "15th"
-        - "8ve and 4th"
-        - "8ve and 5th"
-        - "other"
-        editor_partial: subfield_select
-    - - f
-      - values:
-        - "above"
-        - "below"
-        editor_partial: subfield_select
-    - - g
-    - - h
-      - values:
-        - "semiminim(s)"
-        - "minim(s)"
-        - "semibreve(s)"
-        - "breve(s)"
-        - "long(s)"
-        - "maxima(e)"
-        - "tempus"
-        - "tempora"
-        - "semiquaver(s)"
-        - "quaver(s)"
-        - "crotchet(s)"
-        - "dotted semiminim(s)"
-        - "dotted minim(s)"
-        - "dotted semibreve(s)"
-        - "dotted breve(s)"
-        - "dotted long(s)"
-        - "other"
-        editor_partial: subfield_select
-    - - o
 ui: 
   hide_marc_identifiers: true

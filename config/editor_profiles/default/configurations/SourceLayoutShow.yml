@@ -32,9 +32,9 @@ groups:
 
   show_canonic_techniques:
     all_tags:
-    - "999"
+    - "695"
     all_tag_templates:
-      "999": marc_show/show_canonic_technique
+      "695": marc_show/show_canonic_technique
 
   show_library: 
     all_tags:

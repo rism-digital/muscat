@@ -200,7 +200,7 @@ groups:
     editor_only: true
   edit_canonic_techniques:
     all_tags:
-    - "999"
+    - "695"
   edit_administration:
     all_tags:
     - '001'

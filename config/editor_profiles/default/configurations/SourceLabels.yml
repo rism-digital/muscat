@@ -1455,7 +1455,38 @@ doc_references:
         fr: "Numéro/page"
         de: Fundstelle
         en: Number/page
-"700": 
+"695":
+  label:
+    en: Canonic Technique
+  fields:
+    a:
+      label:
+        en: Type
+    b:
+      label:
+        en: Written canonic voices/numerator
+    c:
+      label:
+        en: Sounding canonic voices/denominator
+    d:
+      label:
+        en: Relationship Operator
+    e:
+      label:
+        en: Interval of imitation
+    f:
+      label:
+        en: Above or below
+    g:
+      label:
+        en: Temporal offset
+    h:
+      label:
+        en: Temporal offset unit
+    o:
+      label:
+        en: Mensurations/time signatures
+"700":
   label: 
     it: Nomi di persone aggiuntivi
     fr: Noms de personnes additionnels
@@ -1786,37 +1817,6 @@ doc_references:
       edit_label: 
         en: ""
       comment: "NEW IN 2018; experimental stage"
-"999":
-  label:
-    en: Canonic Technique
-  fields:
-    a:
-      label:
-        en: Type
-    b:
-      label:
-        en: Written canonic voices/numerator
-    c:
-      label:
-        en: Sounding canonic voices/denominator
-    d:
-      label:
-        en: Relationship Operator
-    e:
-      label:
-        en: Interval of imitation
-    f:
-      label:
-        en: Above or below
-    g:
-      label:
-        en: Temporal offset
-    h:
-      label:
-        en: Temporal offset unit
-    o:
-      label:
-        en: Mensurations/time signatures
        
 ################
 
