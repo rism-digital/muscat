@@ -21,7 +21,9 @@ class ApplicationController < ActionController::Base
   end
 
   def auth_user
-    redirect_to "/admin/login" unless (request.path == "/admin/login" or user_signed_in?)
+    if request.path.starts_with? '/admin'
+      redirect_to "/admin/login" unless (request.path == "/admin/login" or user_signed_in?)
+    end
   end
   
   def test_version_warning

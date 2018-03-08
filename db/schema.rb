@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115073728) do
 
   create_table "DNB", id: false, force: :cascade do |t|
     t.integer "id",     limit: 4,     default: 0, null: false
@@ -22,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171115073728) do
     t.integer "id",     limit: 4,          default: 0, null: false
     t.text    "ext_id", limit: 4294967295
   end
+ActiveRecord::Schema.define(version: 20180220031507) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -49,6 +49,33 @@ ActiveRecord::Schema.define(version: 20171115073728) do
   end
 
   add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
+
+  create_table "canonic_techniques", force: :cascade do |t|
+    t.string   "canon_type",           limit: 255
+    t.string   "relation_operator",    limit: 255
+    t.string   "relation_numerator",   limit: 255
+    t.string   "relation_denominator", limit: 255
+    t.string   "interval",             limit: 255
+    t.string   "interval_direction",   limit: 255
+    t.string   "temporal_offset",      limit: 255
+    t.string   "offset_units",         limit: 255
+    t.string   "mensurations",         limit: 255
+    t.integer  "wf_audit",             limit: 4,     default: 0
+    t.integer  "wf_stage",             limit: 4,     default: 0
+    t.string   "wf_notes",             limit: 255
+    t.integer  "wf_owner",             limit: 4,     default: 0
+    t.integer  "wf_version",           limit: 4,     default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "lock_version",         limit: 4,     default: 0, null: false
+  end
+
+  add_index "canonic_techniques", ["canon_type"], name: "index_canonic_techniques_on_canon_type", using: :btree
+  add_index "canonic_techniques", ["interval"], name: "index_canonic_techniques_on_interval", using: :btree
+  add_index "canonic_techniques", ["interval_direction"], name: "index_canonic_techniques_on_interval_direction", using: :btree
+  add_index "canonic_techniques", ["offset_units"], name: "index_canonic_techniques_on_offset_units", using: :btree
+  add_index "canonic_techniques", ["temporal_offset"], name: "index_canonic_techniques_on_temporal_offset", using: :btree
+  add_index "canonic_techniques", ["wf_stage"], name: "index_canonic_techniques_on_wf_stage", using: :btree
 
   create_table "catalogues", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -554,6 +581,14 @@ ActiveRecord::Schema.define(version: 20171115073728) do
   add_index "sources", ["std_title"], name: "index_sources_on_std_title", length: {"std_title"=>255}, using: :btree
   add_index "sources", ["std_title_d"], name: "index_sources_on_std_title_d", length: {"std_title_d"=>255}, using: :btree
   add_index "sources", ["wf_stage"], name: "index_sources_on_wf_stage", using: :btree
+
+  create_table "sources_to_canonic_techniques", id: false, force: :cascade do |t|
+    t.integer "canonic_technique_id", limit: 4
+    t.integer "source_id",            limit: 4
+  end
+
+  add_index "sources_to_canonic_techniques", ["canonic_technique_id"], name: "index_sources_to_canonic_techniques_on_canonic_technique_id", using: :btree
+  add_index "sources_to_canonic_techniques", ["source_id"], name: "index_sources_to_canonic_techniques_on_source_id", using: :btree
 
   create_table "sources_to_catalogues", id: false, force: :cascade do |t|
     t.integer "catalogue_id", limit: 4

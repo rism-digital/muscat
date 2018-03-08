@@ -235,6 +235,7 @@ en:
   menu_jobs: "Jobs"
   menu_holdings: "Holdings"
   menu_works: "Works"
+  menu_canonic_techniques: "Canonic Techniques"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
@@ -243,6 +244,7 @@ en:
   std_title_contains: "Standardized title contains"
   composer_contains: "Composer contains"
   library_sigla_contains: "Siglum contains"
+  canon_type_contains: "Canon Type contains"
   is_in_folder: "Is in folder"
   workgroups: "Workgroups"
   roles: "Roles"
@@ -467,7 +469,22 @@ en:
   filter_dist_594l: "Keyboard instruments"
   filter_dist_594m: "Other instruments"
   filter_dist_594n: "Basso continuo instruments"
- 
+  filter_canon_type: "Canon type"
+  filter_relation_operator: "Relationship operator"
+  filter_relation_numerator: "Written canonic voices/numerator"
+  filter_relation_denominator: "Sounding canonic voices/denominator"
+  filter_interval: "Interval of imitation"
+  filter_interval_direction: "Above or below"
+  filter_above: "Above"
+  filter_below: "Below"
+  filter_temporal_offset: "Temporal offset"
+  filter_offset_units: "Temporal offset unit"
+  filter_mensurations: "Mensurations/time signatures"
+
+  display_canon_type: "Type"
+  display_interval: "Imitation interval"
+  display_temporal_offset: "Temporal offset"
+
   rism_any_key: "Any key"
   rism_a_flat: "A flat major/minor"
   rism_a: "A major/minor"

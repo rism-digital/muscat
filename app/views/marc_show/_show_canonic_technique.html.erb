@@ -1,0 +1,78 @@
+<%
+  last_canonic_technique_for_source = tag == tag.parent.fetch_all_by_tag(tag.tag).last
+  a_tag = tag.fetch_first_by_tag(:a)
+  b_tag = tag.fetch_first_by_tag(:b)
+  c_tag = tag.fetch_first_by_tag(:c)
+  d_tag = tag.fetch_first_by_tag(:d)
+  e_tag = tag.fetch_first_by_tag(:e)
+  f_tag = tag.fetch_first_by_tag(:f)
+  g_tag = tag.fetch_first_by_tag(:g)
+  h_tag = tag.fetch_first_by_tag(:h)
+  o_tag = tag.fetch_first_by_tag(:o)
+
+  type = nil
+  if a_tag && a_tag.content
+    type = a_tag.content
+    if (b_tag && b_tag.content) && (c_tag && c_tag.content) && (d_tag && d_tag.content)
+      type = type + ': ' + c_tag.content + ' ' + d_tag.content + ' ' + b_tag.content
+    end
+  end
+
+  interval = nil
+  if e_tag && e_tag.content
+    interval = e_tag.content
+    if f_tag && f_tag.content
+      interval = interval + ' ' + f_tag.content
+    end
+  end
+
+  temporal_offset = nil
+  if g_tag && g_tag.content
+    temporal_offset = g_tag.content
+    if h_tag && h_tag.content
+      temporal_offset = temporal_offset + ' ' + h_tag.content
+    end
+    if o_tag && o_tag.content
+      temporal_offset = temporal_offset + ' in ' + o_tag.content
+    end
+  end
+-%>
+
+<% unless type.nil? && interval.nil? && temporal_offset.nil? %>
+  <% unless type.nil? %>
+      <tr class="row">
+        <th>
+         <%= I18n.t(:display_canon_type) %>
+        </th>
+        <td>
+          <%= type %>
+        </td>
+      </tr>
+  <% end %>
+  <% unless interval.nil? %>
+      <tr class="row">
+        <th>
+          <%= I18n.t(:display_interval) %>
+        </th>
+        <td>
+          <%= interval %>
+        </td>
+      </tr>
+  <% end %>
+  <% unless temporal_offset.nil? %>
+      <tr class="row">
+        <th>
+          <%= I18n.t(:display_temporal_offset) %>
+        </th>
+        <td>
+          <%= temporal_offset %>
+        </td>
+      </tr>
+  <% end %>
+
+  <% unless last_canonic_technique_for_source %>
+    <tr class="row">
+      <th colspan="2" style="border-top: 2px solid #cdcdcd; height: 1px; padding: 0; border-bottom: 0;"></th>
+    </tr>
+  <% end %>
+<% end %>

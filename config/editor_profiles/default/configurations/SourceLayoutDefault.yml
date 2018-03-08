@@ -7,6 +7,7 @@ group_order:
 - edit_incipits
 - edit_references
 - edit_works
+- edit_canonic_techniques
 - edit_administration
 
 group_exclude:
@@ -197,6 +198,9 @@ groups:
     all_tags:
     - "930"
     editor_only: true
+  edit_canonic_techniques:
+    all_tags:
+    - "695"
   edit_administration:
     all_tags:
     - '001'

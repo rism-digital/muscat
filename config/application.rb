@@ -21,6 +21,7 @@ module RISM
   ROOT_REDIRECT = '/catalog'
   
   BASE_NEW_IDS = { 
+    :canonic_techniques => 0,
     :catalogue        => 0,
     :holding          => 0,
     :institution      => 0,

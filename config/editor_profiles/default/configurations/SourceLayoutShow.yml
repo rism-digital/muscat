@@ -1,6 +1,7 @@
 --- !map:Settings 
 group_order: 
 - show_summary
+- show_canonic_techniques
 - show_library
 - show_content
 - show_distribution
@@ -28,6 +29,12 @@ groups:
       "100": marc_show/show_person
       "246": marc_show/show_title_variant  
       "001": marc_show/show_rism_id
+
+  show_canonic_techniques:
+    all_tags:
+    - "695"
+    all_tag_templates:
+      "695": marc_show/show_canonic_technique
 
   show_library: 
     all_tags:
