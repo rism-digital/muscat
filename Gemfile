@@ -70,8 +70,8 @@ gem 'activeadmin', '~> 1.2' #, git: 'https://github.com/rism-ch/activeadmin'#, r
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails', "2.2.7" #, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
-gem 'sunspot_solr', "2.2.7"
+gem 'sunspot_rails', "~> 2.2" #, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
+gem 'sunspot_solr', "~> 2.2"
 gem 'awesome_print'
 gem 'progress_bar', git: 'https://github.com/rism-ch/progress_bar'
 gem "rails3-jquery-autocomplete", git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
@@ -79,16 +79,6 @@ gem "cancan"
 gem "rolify"
 group :development do
     gem 'puma'
-end
-
-group :test do
-  gem 'sqlite3'
-  gem 'sqlite3_ar_regexp'
-  gem "rspec"
-  gem 'rspec-rails', '~> 3.5'
-  gem 'factory_bot_rails'
-  gem 'poltergeist', "1.11.0"
-  gem 'database_cleaner'
 end
 
 gem 'blacklight'
@@ -131,10 +121,6 @@ gem "i18n-js", ">= 3.0.0.rc11"
 gem 'colorize'
 
 gem "rspec"
-gem 'rspec-rails'#, '~> 3.5'
-gem 'factory_girl_rails'
-gem 'poltergeist', "1.11.0"
-gem 'database_cleaner'
 
 gem 'exception_notification'
 gem 'cql-ruby', '0.9.1', :git => 'https://github.com/jrochkind/cql-ruby'
