@@ -5,10 +5,10 @@ config/sunspot.yml
 development.log
 /tmp
 /log
-/solr/default
+/solr/default/data
 /solr/pids
-/solr/development
-solr/production
+/solr/development/data
+solr/production/data
 solr/second
 solr/test
 log/sunspot-solr-development.log
