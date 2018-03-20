@@ -132,3 +132,8 @@ gem 'osullivan'
 gem 'rails-i18n'#, github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
 
 gem 'gruff'
+group :development, :test do
+  gem 'solr_wrapper', '>= 0.3'
+end
+
+gem 'rsolr', '>= 1.0'
