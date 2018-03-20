@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 	### Blacklight 6 configuration
 
   mount Blacklight::Engine => '/'
+  mount BlacklightAdvancedSearch::Engine => '/'
+
 
   concern :searchable, Blacklight::Routes::Searchable.new
   concern :exportable, Blacklight::Routes::Exportable.new
