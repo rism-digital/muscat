@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   root :to => redirect(RISM::ROOT_REDIRECT)
 	
 	## TO BE REVISED!
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
 
   resource :catalog, only: [:index], controller: 'catalog' do
     concerns :searchable
+    concerns :range_searchable
+
   end
 
   resources :solr_documents, only: [:show], controller: 'catalog' do

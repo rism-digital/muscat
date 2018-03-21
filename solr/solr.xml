@@ -28,7 +28,7 @@
 
 <solr>
 
-<str name='sharedLib'>/Users/xhero/devel/muscat/solr.old/jar-mac</str>
+<str name='sharedLib'>./jar-mac</str>
 
   <solrcloud>
 

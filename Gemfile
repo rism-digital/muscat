@@ -70,7 +70,7 @@ gem 'activeadmin', '~> 1.2' #, git: 'https://github.com/rism-ch/activeadmin'#, r
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails', "~> 2.2" #, git: 'https://github.com/sunspot/sunspot.git', ref: '9c4ec23'
+gem 'sunspot_rails', "~> 2.2", git: 'https://github.com/rism-ch/sunspot', branch: "java9-stack"
 gem 'sunspot_solr', "~> 2.2"
 gem 'awesome_print'
 gem 'progress_bar', git: 'https://github.com/rism-ch/progress_bar'
@@ -81,12 +81,12 @@ group :development do
     gem 'puma'
 end
 
-gem 'blacklight'
+gem 'blacklight', git: 'https://github.com/rism-ch/blacklight', branch: "release-6.x"
 gem "blacklight_advanced_search"
 gem 'bootstrap-sass'
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
-gem "blacklight_range_limit" #, git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3"
+gem "blacklight_range_limit", git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3-6.3.x"
 gem 'devise'
 gem 'devise-i18n'
 
