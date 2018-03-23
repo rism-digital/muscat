@@ -1,6 +1,9 @@
 Muscat Changelog
 ================
 
+v 4.1.0
+* Holdings with "published" as default value #611
+
 v 4.0.2
 * Facets not properly showing in Blacklight
 * Fixes 773 selection for edition content
