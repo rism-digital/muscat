@@ -30,7 +30,7 @@ pb = ProgressBar.new(@limit)
   
   count = 0
   Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
-    record = Source.find(sid)
+    record = Source.find(sid.id)
     Sunspot.index record
     #record.reindex
     #Sunspot.commit
