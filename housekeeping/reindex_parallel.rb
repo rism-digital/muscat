@@ -37,7 +37,7 @@ pb = ProgressBar.new(@limit)
     pb.increment!
     count += 1
     if count == 50
-      Sunspot.commit
+      #Sunspot.commit
       count = 0
     end
     record = nil
