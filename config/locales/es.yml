@@ -604,7 +604,11 @@ es:
     gross_pitch: "GROSS PITCH CONTOUR (MORE FUZZY SEARCH)"
     anchor: "SEARCH ONLY BEGINNING"
     erase: "ERASE ONE NOTE"
-   
+
+  # This is used for the "incipit" seach in the search history in BL
+  # Note the capital 'I'
+  Incipit: "Incipit"
+
   # date:
   # Empty lines for matching line numbers with other translation files  
   #

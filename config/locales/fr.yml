@@ -651,6 +651,10 @@ fr:
     anchor: "Au début uniquement"
     erase: "Effacer une note"
 
+  # This is used for the "incipit" seach in the search history in BL
+  # Note the capital 'I'
+  Incipit: "Incipit"
+
   date:
     month_names:
     -

@@ -649,7 +649,11 @@ en:
     gross_pitch: "Gross Pitch Contour (Fuzziest match)"
     anchor: "Search only beginning"
     erase: "Erase one note"
-    
+
+  # This is used for the "incipit" seach in the search history in BL
+  # Note the capital 'I'
+  Incipit: "Incipit"
+
   # date:
   # Empty lines for matching line numbers with other translation files  
   #
