@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202101517) do
+ActiveRecord::Schema.define(version: 20180403144322) do
 
   create_table "active_admin_comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -156,77 +156,6 @@ ActiveRecord::Schema.define(version: 20180202101517) do
     t.integer "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.index ["wf_stage"], name: "index_digital_objects_on_wf_stage"
-  end
-
-  create_table "do_div_files", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "do_file_id"
-    t.integer "do_div_id"
-    t.integer "file_order"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["do_div_id"], name: "do_div_fk1"
-    t.index ["do_file_id"], name: "do_file_fk1"
-  end
-
-  create_table "do_divs", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "do_item_id"
-    t.string "title"
-    t.integer "subdiv_id"
-    t.string "subdiv_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["do_item_id"], name: "do_item_fk1"
-  end
-
-  create_table "do_file_groups", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "do_item_id"
-    t.string "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["do_item_id"], name: "do_item_fg_fk1"
-  end
-
-  create_table "do_files", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "do_file_group_id"
-    t.integer "do_image_id"
-    t.string "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["do_file_group_id"], name: "do_file_group_fk1"
-    t.index ["do_image_id"], name: "do_image_fk1"
-  end
-
-  create_table "do_images", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "file_name"
-    t.string "page_name"
-    t.string "label"
-    t.text "notes"
-    t.integer "width"
-    t.integer "height"
-    t.text "exif"
-    t.text "software"
-    t.string "orientation"
-    t.integer "res_number"
-    t.integer "tile_width"
-    t.integer "tile_height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "file_type", limit: 16
-    t.index ["file_type"], name: "type_index"
-  end
-
-  create_table "do_items", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "item_ext_id", limit: 14
-    t.string "title"
-    t.string "wf_audit", limit: 16, default: "unapproved"
-    t.string "wf_stage", limit: 16, default: "unpublished"
-    t.string "wf_notes"
-    t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "item_type"
-    t.index ["item_type"], name: "type_index"
   end
 
   create_table "folder_items", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -692,12 +621,6 @@ ActiveRecord::Schema.define(version: 20180202101517) do
     t.index ["wf_stage"], name: "index_works_on_wf_stage"
   end
 
-  add_foreign_key "do_div_files", "do_divs", name: "do_div_fk1", on_update: :cascade
-  add_foreign_key "do_div_files", "do_files", name: "do_file_fk1", on_update: :cascade
-  add_foreign_key "do_divs", "do_items", name: "do_item_fk1", on_update: :cascade
-  add_foreign_key "do_file_groups", "do_items", name: "do_item_fg_fk1", on_update: :cascade
-  add_foreign_key "do_files", "do_file_groups", name: "do_file_group_fk1", on_update: :cascade
-  add_foreign_key "do_files", "do_images", name: "do_image_fk1", on_update: :cascade
   add_foreign_key "sources_to_catalogues", "catalogues", name: "catalogues_sources_fk2", on_update: :cascade
   add_foreign_key "sources_to_catalogues", "sources", name: "catalogues_manuscripts_fk1", on_update: :cascade
   add_foreign_key "sources_to_institutions", "institutions", name: "institutions_sources_fk2", on_update: :cascade
