@@ -1,4 +1,4 @@
-class CreateDoFiles < ActiveRecord::Migration
+class CreateDoFiles < ActiveRecord::Migration[4.2]
   def change
     create_table :do_files do |t|
       t.integer :do_file_group_id

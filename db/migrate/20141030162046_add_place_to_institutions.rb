@@ -1,4 +1,4 @@
-class AddPlaceToInstitutions < ActiveRecord::Migration
+class AddPlaceToInstitutions < ActiveRecord::Migration[4.2]
   def change
     add_column :institutions, :place, :string
   end

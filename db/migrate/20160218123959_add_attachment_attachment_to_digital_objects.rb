@@ -1,4 +1,4 @@
-class AddAttachmentAttachmentToDigitalObjects < ActiveRecord::Migration
+class AddAttachmentAttachmentToDigitalObjects < ActiveRecord::Migration[4.2]
   def self.up
     change_table :digital_objects do |t|
       t.attachment :attachment

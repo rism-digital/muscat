@@ -1,4 +1,4 @@
-class CreatePeopleLinks < ActiveRecord::Migration
+class CreatePeopleLinks < ActiveRecord::Migration[4.2]
 
   def self.up
     

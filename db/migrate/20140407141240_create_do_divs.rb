@@ -1,4 +1,4 @@
-class CreateDoDivs < ActiveRecord::Migration
+class CreateDoDivs < ActiveRecord::Migration[4.2]
   def change
     create_table :do_divs do |t|
       t.integer :do_item_id

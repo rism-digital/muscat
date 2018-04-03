@@ -1,4 +1,4 @@
-class CreateUsersWorkgroups < ActiveRecord::Migration
+class CreateUsersWorkgroups < ActiveRecord::Migration[4.2]
   def change
     create_table :users_workgroups, id: false, force: true do |t|
     t.integer "user_id"

@@ -1,4 +1,4 @@
-class CreateDigitalObjects < ActiveRecord::Migration
+class CreateDigitalObjects < ActiveRecord::Migration[4.2]
   def self.up
     create_table :digital_objects do |t|
       t.belongs_to :source, index: true

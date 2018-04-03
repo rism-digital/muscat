@@ -1,7 +1,7 @@
 # Add locking to all classes, people is already done in another migration
 # It was split during development so we could migrate without reimporting
 # all data back and forth.
-class AddLockingSupportLast < ActiveRecord::Migration
+class AddLockingSupportLast < ActiveRecord::Migration[4.2]
   def change
     unless column_exists? :catalogues, :lock_version
       add_column :catalogues, :lock_version, :integer, { :default => 0, :null => false }

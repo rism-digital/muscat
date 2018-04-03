@@ -1,4 +1,4 @@
-class CreateDoItems < ActiveRecord::Migration
+class CreateDoItems < ActiveRecord::Migration[4.2]
   def change
     create_table :do_items do |t|
       t.string :item_id

@@ -1,4 +1,4 @@
-class CreateLiturgicalFeasts < ActiveRecord::Migration
+class CreateLiturgicalFeasts < ActiveRecord::Migration[4.2]
   def self.up
     create_table(:liturgical_feasts, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8') do |t|
     
