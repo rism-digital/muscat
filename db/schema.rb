@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180403144322) do
+ActiveRecord::Schema.define(version: 20180403152222) do
 
   create_table "active_admin_comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -46,14 +46,14 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.string "place"
     t.string "date"
     t.string "pages"
+    t.integer "wf_audit", default: 0
+    t.integer "wf_stage", default: 0
     t.string "wf_notes"
     t.integer "wf_owner", default: 0
     t.integer "wf_version", default: 0
     t.integer "src_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "wf_audit", default: 0
-    t.integer "wf_stage", default: 0
     t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
     t.index ["name"], name: "index_catalogues_on_name"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.string "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "progress_stage"
+    t.text "progress_stage", limit: 4294967295
     t.integer "progress_current", default: 0
     t.integer "progress_max", default: 0
     t.string "parent_type"
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
     t.string "wf_audit", limit: 16, default: "unapproved"
-    t.string "wf_stage", limit: 16, default: "unpublished"
+    t.string "wf_stage", limit: 16, default: "published"
     t.string "wf_notes"
     t.integer "wf_owner", default: 0
     t.integer "wf_version", default: 0
@@ -201,6 +201,27 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.index ["institution_id"], name: "index_holdings_institutions_on_institution_id"
   end
 
+  create_table "holdings_to_catalogues", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "catalogue_id"
+    t.integer "holding_id"
+    t.index ["catalogue_id"], name: "index_holdings_to_catalogues_on_catalogue_id"
+    t.index ["holding_id"], name: "index_holdings_to_catalogues_on_holding_id"
+  end
+
+  create_table "holdings_to_people", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "person_id"
+    t.integer "holding_id"
+    t.index ["holding_id"], name: "index_holdings_to_people_on_holding_id"
+    t.index ["person_id"], name: "index_holdings_to_people_on_person_id"
+  end
+
+  create_table "holdings_to_places", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "place_id"
+    t.integer "holding_id"
+    t.index ["holding_id"], name: "index_holdings_to_places_on_holding_id"
+    t.index ["place_id"], name: "index_holdings_to_places_on_place_id"
+  end
+
   create_table "institutions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "siglum", limit: 32
     t.string "name"
@@ -208,22 +229,21 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.string "url"
     t.string "phone"
     t.string "email"
-    t.text "alternates"
-    t.text "notes"
+    t.integer "wf_audit", default: 0
+    t.integer "wf_stage", default: 0
     t.string "wf_notes"
     t.integer "wf_owner", default: 0
     t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "wf_audit", default: 0
-    t.integer "wf_stage", default: 0
     t.string "place"
     t.text "marc_source"
     t.text "comments"
+    t.text "alternates"
+    t.text "notes"
     t.integer "lock_version", default: 0, null: false
     t.index ["siglum"], name: "index_institutions_on_siglum"
     t.index ["wf_stage"], name: "index_institutions_on_wf_stage"
-    t.index ["wf_stage"], name: "index_libraries_on_wf_stage"
   end
 
   create_table "institutions_institutions", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -261,6 +281,13 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.index ["standard_term_id"], name: "index_institutions_to_standard_terms_on_standard_term_id"
   end
 
+  create_table "institutions_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id"
+    t.integer "institution_id"
+    t.index ["institution_id"], name: "index_institutions_users_on_institution_id"
+    t.index ["user_id"], name: "index_institutions_users_on_user_id"
+  end
+
   create_table "institutions_workgroups", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "workgroup_id"
     t.integer "institution_id"
@@ -271,18 +298,19 @@ ActiveRecord::Schema.define(version: 20180403144322) do
   create_table "liturgical_feasts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
     t.text "notes"
+    t.integer "wf_audit", default: 0
+    t.integer "wf_stage", default: 0
     t.string "wf_notes"
     t.integer "wf_owner", default: 0
     t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "wf_audit", default: 0
-    t.integer "wf_stage", default: 0
     t.integer "lock_version", default: 0, null: false
     t.text "alternate_terms"
     t.text "sub_topic"
     t.string "viaf"
     t.string "gnd"
+    t.index ["name"], name: "index_liturgical_feasts_on_name"
     t.index ["wf_stage"], name: "index_liturgical_feasts_on_wf_stage"
   end
 
@@ -297,15 +325,16 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.text "alternate_names"
     t.text "alternate_dates"
     t.text "comments"
+    t.text "marc_source"
+    t.integer "wf_audit", default: 0
+    t.integer "wf_stage", default: 0
     t.string "wf_notes"
     t.integer "wf_owner", default: 0
     t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "wf_audit", default: 0
-    t.integer "wf_stage", default: 0
-    t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
+    t.index ["full_name"], name: "index_people_on_full_name"
     t.index ["wf_stage"], name: "index_people_on_wf_stage"
   end
 
@@ -342,19 +371,20 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.string "country"
     t.string "district"
     t.text "notes"
+    t.integer "wf_audit", default: 0
+    t.integer "wf_stage", default: 0
     t.string "wf_notes"
     t.integer "wf_owner", default: 0
     t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "wf_audit", default: 0
-    t.integer "wf_stage", default: 0
     t.integer "lock_version", default: 0, null: false
     t.text "alternate_terms"
     t.text "topic"
     t.text "sub_topic"
     t.string "viaf"
     t.string "gnd"
+    t.index ["name"], name: "index_places_on_name"
     t.index ["wf_stage"], name: "index_places_on_wf_stage"
   end
 
@@ -377,21 +407,13 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
-  create_table "sessions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "session_id", null: false
-    t.text "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["session_id"], name: "index_sessions_on_session_id"
-    t.index ["updated_at"], name: "index_sessions_on_updated_at"
-  end
-
   create_table "sources", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "source_id"
+    t.integer "record_type", limit: 1, default: 0
     t.string "std_title", limit: 512
     t.string "std_title_d", limit: 512
     t.string "composer"
-    t.string "composer_d", limit: 128
+    t.string "composer_d"
     t.string "title", limit: 256
     t.string "title_d", limit: 256
     t.string "shelf_mark"
@@ -400,56 +422,54 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.integer "date_to"
     t.string "lib_siglum"
     t.text "marc_source"
+    t.integer "wf_audit", default: 0
+    t.integer "wf_stage", default: 0
     t.string "wf_notes"
     t.integer "wf_owner", default: 0
     t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "wf_audit", default: 0
-    t.integer "wf_stage", default: 0
-    t.integer "record_type", limit: 1, default: 0
     t.integer "lock_version", default: 0, null: false
-    t.index ["source_id"], name: "index_manuscripts_on_manuscript_id"
+    t.index ["record_type"], name: "index_sources_on_record_type"
+    t.index ["source_id"], name: "index_sources_on_source_id"
     t.index ["std_title"], name: "index_sources_on_std_title", length: { std_title: 255 }
     t.index ["std_title_d"], name: "index_sources_on_std_title_d", length: { std_title_d: 255 }
-    t.index ["wf_stage"], name: "index_manuscripts_on_wf_stage"
+    t.index ["wf_stage"], name: "index_sources_on_wf_stage"
   end
 
   create_table "sources_to_catalogues", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "catalogue_id"
     t.integer "source_id"
-    t.index ["catalogue_id"], name: "catalogue_index"
-    t.index ["source_id"], name: "manuscript_index"
+    t.index ["catalogue_id"], name: "index_sources_to_catalogues_on_catalogue_id"
+    t.index ["source_id"], name: "index_sources_to_catalogues_on_source_id"
   end
 
   create_table "sources_to_institutions", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "institution_id"
     t.integer "source_id"
     t.index ["institution_id"], name: "index_sources_to_institutions_on_institution_id"
-    t.index ["institution_id"], name: "library_index"
     t.index ["source_id"], name: "index_sources_to_institutions_on_source_id"
-    t.index ["source_id"], name: "manuscript_index"
   end
 
   create_table "sources_to_liturgical_feasts", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "liturgical_feast_id"
     t.integer "source_id"
-    t.index ["liturgical_feast_id"], name: "liturgical_feast_index"
-    t.index ["source_id"], name: "manuscript_index"
+    t.index ["liturgical_feast_id"], name: "index_sources_to_liturgical_feasts_on_liturgical_feast_id"
+    t.index ["source_id"], name: "index_sources_to_liturgical_feasts_on_source_id"
   end
 
   create_table "sources_to_people", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "person_id", default: 0, null: false
+    t.integer "person_id"
     t.integer "source_id"
-    t.index ["person_id"], name: "person_index"
-    t.index ["source_id"], name: "manuscript_index"
+    t.index ["person_id"], name: "index_sources_to_people_on_person_id"
+    t.index ["source_id"], name: "index_sources_to_people_on_source_id"
   end
 
   create_table "sources_to_places", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "place_id"
     t.integer "source_id"
-    t.index ["place_id"], name: "place_index"
-    t.index ["source_id"], name: "manuscript_index"
+    t.index ["place_id"], name: "index_sources_to_places_on_place_id"
+    t.index ["source_id"], name: "index_sources_to_places_on_source_id"
   end
 
   create_table "sources_to_sources", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -462,39 +482,40 @@ ActiveRecord::Schema.define(version: 20180403144322) do
   create_table "sources_to_standard_terms", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "standard_term_id"
     t.integer "source_id"
-    t.index ["source_id"], name: "manuscript_index"
-    t.index ["standard_term_id"], name: "standard_term_index"
+    t.index ["source_id"], name: "index_sources_to_standard_terms_on_source_id"
+    t.index ["standard_term_id"], name: "index_sources_to_standard_terms_on_standard_term_id"
   end
 
   create_table "sources_to_standard_titles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "standard_title_id"
     t.integer "source_id"
-    t.index ["source_id"], name: "manuscript_index"
-    t.index ["standard_title_id"], name: "standard_title_index"
+    t.index ["source_id"], name: "index_sources_to_standard_titles_on_source_id"
+    t.index ["standard_title_id"], name: "index_sources_to_standard_titles_on_standard_title_id"
   end
 
-  create_table "sources_to_works", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "sources_to_works", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "source_id"
     t.integer "work_id"
-    t.index ["source_id"], name: "manuscript_index"
-    t.index ["work_id"], name: "work_index"
+    t.index ["source_id"], name: "index_sources_to_works_on_source_id"
+    t.index ["work_id"], name: "index_sources_to_works_on_work_id"
   end
 
   create_table "standard_terms", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "term", null: false
     t.text "alternate_terms"
     t.text "notes"
+    t.integer "wf_audit", default: 0
+    t.integer "wf_stage", default: 0
     t.string "wf_notes"
     t.integer "wf_owner", default: 0
     t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "wf_audit", default: 0
-    t.integer "wf_stage", default: 0
     t.integer "lock_version", default: 0, null: false
     t.text "sub_topic"
     t.string "viaf"
     t.string "gnd"
+    t.index ["term"], name: "index_standard_terms_on_term"
     t.index ["wf_stage"], name: "index_standard_terms_on_wf_stage"
   end
 
@@ -502,13 +523,13 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.string "title", null: false
     t.string "title_d", limit: 128
     t.text "notes"
+    t.integer "wf_audit", default: 0
+    t.integer "wf_stage", default: 0
     t.string "wf_notes"
     t.integer "wf_owner", default: 0
     t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "wf_audit", default: 0
-    t.integer "wf_stage", default: 0
     t.integer "lock_version", default: 0, null: false
     t.string "typus"
     t.text "alternate_terms"
@@ -516,12 +537,8 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.string "viaf"
     t.string "gnd"
     t.boolean "latin"
+    t.index ["title"], name: "index_standard_titles_on_title"
     t.index ["wf_stage"], name: "index_standard_titles_on_wf_stage"
-  end
-
-  create_table "synchronizations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -593,7 +610,6 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["work_id"], name: "work_incipits_fk1"
   end
 
   create_table "workgroups", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -618,24 +634,8 @@ ActiveRecord::Schema.define(version: 20180403144322) do
     t.datetime "updated_at"
     t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
+    t.index ["title"], name: "index_works_on_title"
     t.index ["wf_stage"], name: "index_works_on_wf_stage"
   end
 
-  add_foreign_key "sources_to_catalogues", "catalogues", name: "catalogues_sources_fk2", on_update: :cascade
-  add_foreign_key "sources_to_catalogues", "sources", name: "catalogues_manuscripts_fk1", on_update: :cascade
-  add_foreign_key "sources_to_institutions", "institutions", name: "institutions_sources_fk2", on_update: :cascade
-  add_foreign_key "sources_to_institutions", "sources", name: "institutions_sources_fk1", on_update: :cascade
-  add_foreign_key "sources_to_liturgical_feasts", "liturgical_feasts", name: "liturgical_feasts_sources_fk2", on_update: :cascade
-  add_foreign_key "sources_to_liturgical_feasts", "sources", name: "liturgical_feasts_sources_fk1", on_update: :cascade
-  add_foreign_key "sources_to_people", "people", name: "people_sources_fk2", on_update: :cascade
-  add_foreign_key "sources_to_people", "sources", name: "people_sources_fk1", on_update: :cascade
-  add_foreign_key "sources_to_places", "places", name: "places_sources_fk2", on_update: :cascade
-  add_foreign_key "sources_to_places", "sources", name: "places_sources_fk1", on_update: :cascade
-  add_foreign_key "sources_to_standard_terms", "sources", name: "sources_standard_terms_fk1", on_update: :cascade
-  add_foreign_key "sources_to_standard_terms", "standard_terms", name: "sources_standard_terms_fk2", on_update: :cascade
-  add_foreign_key "sources_to_standard_titles", "sources", name: "sources_standard_titles_fk1", on_update: :cascade
-  add_foreign_key "sources_to_standard_titles", "standard_titles", name: "sources_standard_titles_fk2", on_update: :cascade
-  add_foreign_key "sources_to_works", "sources", name: "sources_works_fk1", on_update: :cascade
-  add_foreign_key "sources_to_works", "works", name: "sources_works_fk2", on_update: :cascade
-  add_foreign_key "work_incipits", "works", name: "work_incipits_fk1", on_update: :cascade
 end

@@ -30,6 +30,7 @@ class Catalogue < ApplicationRecord
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_catalogues")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_catalogues")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_catalogues")
+  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_catalogues")
   has_and_belongs_to_many :people, join_table: "catalogues_to_people"
   has_and_belongs_to_many :institutions, join_table: "catalogues_to_institutions"
   has_and_belongs_to_many :places, join_table: "catalogues_to_places"
