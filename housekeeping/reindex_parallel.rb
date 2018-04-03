@@ -37,6 +37,7 @@ pb = ProgressBar.new(@limit)
     pb.increment!
     count += 1
     if count == 50
+      # In SOLR 5 we use the autocommit
       #Sunspot.commit
       count = 0
     end
