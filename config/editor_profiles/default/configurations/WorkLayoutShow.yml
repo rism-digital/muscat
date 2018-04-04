@@ -3,8 +3,9 @@ group_order:
 - main_work
 - codes
 #- people
-#- variants
-#- relations
+- incipits
+- variants
+- relations
 - control
 groups:   
   main_work: 
@@ -15,16 +16,23 @@ groups:
     - "024"
     all_tag_templates:
       "024": marc_show/show_dnb_link
+  incipits:
+    all_tags:
+    - "031"
+    all_tag_templates: 
+      "031": marc_show/show_incipit
 #  people:
 #    all_tags:
 #    - "500"
-#  variants:
-#    all_tags:
-#    - "400"
+  variants:
+    all_tags:
+    - "400"
 #    - "440"
-#  relations:
-#    all_tags:
-#    - "700"
+  relations:
+    all_tags:
+    - "670"
+    all_tag_templates:
+      "670": people/show_catalogue
   control: 
     all_tags: 
     - "040"

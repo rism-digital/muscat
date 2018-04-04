@@ -29,7 +29,7 @@ module Viaf
       #this needs another approach because autosuggest is not well supported
       elsif model.to_s == "Work"
         r = []
-        uri = URI("http://viaf.org/viaf/search?query=local.uniformTitleWorks+all+#{URI.escape(term)}&sortKeys=holdingscount&httpAccept=application/json")
+        uri = URI("http://viaf.org/viaf/search?query=local.uniformTitleWorks=#{URI.escape(term)}&sortKeys=holdingscount&httpAccept=application/json")
         json = Net::HTTP.get(uri)
         res = JSON(json)
         return "Sorry, no work results were found in VIAF!" unless res["searchRetrieveResponse"]["records"]

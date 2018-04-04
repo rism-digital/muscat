@@ -16,6 +16,7 @@ class Work < ActiveRecord::Base
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
+  has_and_belongs_to_many :catalogues, join_table: "works_to_catalogues"
   has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -37,6 +38,7 @@ class Work < ActiveRecord::Base
   enum wf_audit: [ :basic, :minimal, :full ]
 
   alias_attribute :name, :title
+  alias_attribute :id_for_fulltext, :id
 
   def after_initialize
     @last_user_save = nil
@@ -84,7 +86,7 @@ class Work < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["person"]
+    allowed_relations = ["person", "catalogue"]
     recreate_links(marc, allowed_relations)
   end
 
@@ -121,19 +123,32 @@ class Work < ActiveRecord::Base
     self.index
   end
 
-  searchable :auto_index => false do
-    integer :id
-    string :title_order do
+  searchable :auto_index => false do |sunspot_dsl|
+    sunspot_dsl.integer :id
+    sunspot_dsl.text :id_text do
+      id_for_fulltext
+    end
+    sunspot_dsl.string :title_order do
       title
     end
-    text :title
-    text :form
-    text :notes
+    sunspot_dsl.text :title
+    sunspot_dsl.text :title
     
-    integer :src_count_order, :stored => true do 
+    sunspot_dsl.integer :wf_owner
+    sunspot_dsl.string :wf_stage
+    sunspot_dsl.time :updated_at
+    sunspot_dsl.time :created_at
+    
+    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
+              :join => { :from => :item_id, :to => :id })
+
+    sunspot_dsl.integer :src_count_order, :stored => true do 
       Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
     end
+    
+    MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
+ 
 
   def set_object_fields
     return if marc_source == nil
