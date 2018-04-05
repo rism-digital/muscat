@@ -340,31 +340,66 @@ doc_edit_workflow:
         fr: Lieu de naissance
         de: Geburtsort  
         en: Place of birth
+"380": 
+  label: 
+    it: Parola chiave
+    fr: Sujets
+    de: Schlagworteintragung
+    en: Subject heading
+  fields: 
+    a: 
+      label: 
+        it: Parola chiave
+        de: Sachschlagwort
+        fr: Sujet
+        en: Subject heading
+      edit_label: 
+      en: ""
+
 "400":
   label:
-    it: Varianti del nome
-    fr: Name variants
-    de: Namensvarianten
-    en: Name variants
+    it: Nome di persona
+    fr: Compositeur/Auteur
+    de: Ansetzungsform
+    en: Heading
   fields:
     a:
       label:
-        it: Varianti del nome
-        fr: Name variants
-        de: Namensvarianten  
-        en: Name variants
+        it: Compositore
+        fr: Compositeur
+        de: Komponist
+        en: Heading - composer name
     d:
       label:
         it: Data di nascita e di morte
         fr: Dates de vie
         de: Geburts- und Todesdaten
-        en: Life dates    
-    j:
+        en: Years of birth and death
+    m:
       label:
-        it: Descrizione della variante del nome
-        fr: Description de la variante du nom
-        de: Art der Namensvariante
-        en: Description of name variant
+        it: Organico sintetico
+        fr: Distribution
+        de: Besetzungshinweis
+        en: Scoring summary
+    n:
+      label:
+        it: Numero della parte/sezione di una composizione
+        fr: "uméro de partie / section d'une œuvre"
+        de: Anzahl Teile oder Abschnitte eines Werks
+        en: Number of part/section of a work
+    r:
+      label: 
+        it: "Tonalità"
+        fr: "Tonalité"
+        de: Tonart
+        en: Key or mode
+    t:
+      label:
+        it: Titolo della composizione
+        fr: Titre de la composition
+        de: Werktitel
+        en: Title of work
+
 "500":
   label:
     it: Persone correlate
@@ -544,6 +579,12 @@ subject:
     fr: "Entrées de sujets"
     de: Schlagworteintragungen
     en: Subject access fields
+incipits: 
+  label: 
+    it: Incipit
+    fr: Incipits
+    de: Incipits
+    en: Incipits
 places:
   label:
     it: Luoghi

@@ -137,10 +137,24 @@
       - :occurrences: "?"
     - - t
       - :occurrences: "?"
+  "380":
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTerm
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: term
   "400":
     :master: "0"
     :indicator: "1#"
-    :occurrences: "?"
+    :occurrences: "*"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -214,6 +228,13 @@
         :foreign_class: ^w
         :foreign_field: name
     - - b
+      - :occurrences: "?"
+  "680":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
       - :occurrences: "?"
   "700":
     :master: a

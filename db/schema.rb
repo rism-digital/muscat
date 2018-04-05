@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323082659) do
+ActiveRecord::Schema.define(version: 20180404062917) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -767,5 +767,29 @@ ActiveRecord::Schema.define(version: 20180323082659) do
 
   add_index "works", ["title"], name: "index_works_on_title", using: :btree
   add_index "works", ["wf_stage"], name: "index_works_on_wf_stage", using: :btree
+
+  create_table "works_to_catalogues", force: :cascade do |t|
+    t.integer "work_id",      limit: 4
+    t.integer "catalogue_id", limit: 4
+  end
+
+  add_index "works_to_catalogues", ["catalogue_id"], name: "index_works_to_catalogues_on_catalogue_id", using: :btree
+  add_index "works_to_catalogues", ["work_id"], name: "index_works_to_catalogues_on_work_id", using: :btree
+
+  create_table "works_to_standard_terms", force: :cascade do |t|
+    t.integer "work_id",          limit: 4
+    t.integer "standard_term_id", limit: 4
+  end
+
+  add_index "works_to_standard_terms", ["standard_term_id"], name: "index_works_to_standard_terms_on_standard_term_id", using: :btree
+  add_index "works_to_standard_terms", ["work_id"], name: "index_works_to_standard_terms_on_work_id", using: :btree
+
+  create_table "works_to_standard_titles", force: :cascade do |t|
+    t.integer "work_id",           limit: 4
+    t.integer "standard_title_id", limit: 4
+  end
+
+  add_index "works_to_standard_titles", ["standard_title_id"], name: "index_works_to_standard_titles_on_standard_title_id", using: :btree
+  add_index "works_to_standard_titles", ["work_id"], name: "index_works_to_standard_titles_on_work_id", using: :btree
 
 end

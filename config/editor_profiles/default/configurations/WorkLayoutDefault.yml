@@ -23,6 +23,7 @@ groups:
   codes: 
     all_tags: 
     - "024"
+    - "380"
   incipits:
     all_tags:
     - "031"
@@ -31,3 +32,4 @@ groups:
     - "040"
     - "000"
     - "001"
+    - "680"

@@ -17,6 +17,8 @@ class Work < ActiveRecord::Base
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
   has_and_belongs_to_many :catalogues, join_table: "works_to_catalogues"
+  has_and_belongs_to_many :standard_terms, join_table: "works_to_standard_terms"
+  has_and_belongs_to_many :standard_titles, join_table: "works_to_standard_titles"
   has_many :folder_items, :as => :item
   has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: Delayed::Job, foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -86,7 +88,7 @@ class Work < ActiveRecord::Base
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["person", "catalogue"]
+    allowed_relations = ["person", "catalogues", "standard_terms", "standard_titles"]
     recreate_links(marc, allowed_relations)
   end
 

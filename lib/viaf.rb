@@ -95,6 +95,13 @@ module Viaf
             sfa['code'] = '0'
             sfa.content = composer.id rescue 30004985
             node_100.first << sfa
+            nodes_400 = provider_doc.xpath('//marc:datafield[@tag="400"]', NAMESPACE)
+            nodes_400.each do |node|
+              sfa = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
+              sfa['code'] = '0'
+              sfa.content = composer.id rescue 30004985
+              node << sfa
+            end
           end
 
           provider_doc.xpath('//marc:controlfield[@tag="001"]', NAMESPACE).first.content = record["viafid"]

@@ -208,6 +208,16 @@
     - - r
     - - t
     columns: 4
+"380": 
+  allow_new: true
+  new_window: standard_terms
+  layout: 
+    fields: 
+    - - "a"
+      - type: standard_term
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
 "400":
   new_window: people
   new_window_field: full_name_equals
@@ -248,3 +258,9 @@
     - - "b"
       - cols: 2
     columns: 4
+"680": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+

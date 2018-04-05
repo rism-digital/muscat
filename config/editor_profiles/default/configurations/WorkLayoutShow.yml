@@ -14,6 +14,7 @@ groups:
   codes: 
     all_tags: 
     - "024"
+    - "380"
     all_tag_templates:
       "024": marc_show/show_dnb_link
   incipits:
@@ -27,6 +28,8 @@ groups:
   variants:
     all_tags:
     - "400"
+    all_tag_templates:
+      "400": works/show_variants
 #    - "440"
   relations:
     all_tags:
@@ -38,3 +41,4 @@ groups:
     - "040"
     - "000"
     - "001"
+    - "680"
