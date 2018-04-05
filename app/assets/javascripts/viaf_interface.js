@@ -54,16 +54,14 @@ var show_viaf_actions = function () {
 		}
 	}
 
-	$("#viaf_button").on('keydown click', function(e){
-    var keyCode = e.keyCode || e.which;
-    if (keyCode == 13) {
-      $viaf_table.html("");
-      var term = $("#viaf_input").val();
-      var model = $("#marc_editor_panel").attr("data-editor-model");
+  function searchViaf(){
+    $viaf_table.html("");
+    var term = $("#viaf_input").val();
+    var model = $("#marc_editor_panel").attr("data-editor-model");
       $.ajax({
         type: "GET",
         url: "/admin/"+model+"/viaf.json?viaf_input="+term,
-        beforeSend: function() {
+        beforeSend: function() { 
           $('#loader').show();
         },
         complete: function(){
@@ -77,7 +75,16 @@ var show_viaf_actions = function () {
           drawTable(data);
         }
       });
+  }
 
+  $("#viaf_button").click(function(){ 
+    searchViaf()
+  })
+
+  $('#viaf_input').keydown(function (e) {
+    var keyCode = e.keyCode || e.which;
+    if (keyCode == 13) { 
+      searchViaf()
     }
   });
 
