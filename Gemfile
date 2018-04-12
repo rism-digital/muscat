@@ -71,7 +71,7 @@ gem 'activeadmin', '~> 1.2' #, git: 'https://github.com/rism-ch/activeadmin'#, r
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
 gem 'sunspot_rails', "~> 2.2", git: 'https://github.com/rism-ch/sunspot', branch: "java9-stack"
-gem 'sunspot_solr', "~> 2.2"
+gem 'sunspot_solr', "~> 2.2", git: 'https://github.com/rism-ch/sunspot', branch: "java9-stack"
 gem 'awesome_print'
 gem 'progress_bar', git: 'https://github.com/rism-ch/progress_bar'
 gem "rails3-jquery-autocomplete", git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
