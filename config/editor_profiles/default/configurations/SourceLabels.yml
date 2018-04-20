@@ -1187,17 +1187,17 @@ doc_references:
       comment: "NEW IN 2018"
 "597": 
   label: 
-    it: Dati editoriali originali
-    fr: Impressum original
-    de: Impressum (original)
-    en: Imprint on source
+    it: COLOPHON
+    fr: COLOPHON
+    de: Kolophon
+    en: Colophon
   fields: 
     a: 
       label: 
-        it: Dati editoriali originali
-        fr: Impressum original
-        de: Impressum (original)
-        en: Imprint on source
+        it: COLOPHON
+        fr: COLOPHON
+        de: Kolophon
+        en: Colophon
 "598": 
   label: 
     it: Codice della strumentazione
