@@ -804,9 +804,9 @@ doc_references:
         en: Printing technique
     m: 
       label: 
-        it: BOOK FORMAT
-        fr: BOOK FORMAT
-        de: BOOK FORMAT
+        it: Formato librario
+        fr: Format du livre
+        de: Buchformat
         en: Book format
       comment: "NEW IN 2018"
     "8": 
