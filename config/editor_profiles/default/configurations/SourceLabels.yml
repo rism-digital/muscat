@@ -446,10 +446,10 @@ doc_references:
         en: Time signature
     e: 
       label: 
-        it: Ruolo
-        fr: "Rôle"
-        de: Rolle
-        en: Role
+        it: Rubrica
+        fr: Rubrique
+        de: Rubrik
+        en: Rubric
     p: 
       label: 
         it: Incipit musicale
