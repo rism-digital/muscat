@@ -28,8 +28,6 @@
 
 <solr>
 
-<str name='sharedLib'>./jar-mac</str>
-
   <solrcloud>
 
     <str name="host">${host:}</str>

@@ -45,7 +45,7 @@
        configuration.
     -->
   <dataDir>${solr.data.dir:}</dataDir>
-  <lib dir="../../solr.old/jar-mac" />
+  <lib dir="../../jar" />
 
   <!-- The DirectoryFactory to use for indexes.
        
