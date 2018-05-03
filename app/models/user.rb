@@ -27,10 +27,8 @@ class User < ActiveRecord::Base
 
   def can_edit?(source)
     if source.is_a? Holding
-      lib = source.institutions.take
       self.workgroups.each do |workgroup|
-        #binding.pry
-        if workgroup.get_institutions.include?(lib)
+        if workgroup.institutions.pluck(:siglum).include?(source.lib_siglum)
           return true
         end
       end

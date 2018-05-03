@@ -45,10 +45,12 @@ RSpec.describe User do
   describe 'Cataloger abilities for editions with own holding' do
     let(:user) { FactoryBot.create(:cataloger) }
     let(:edition) { FactoryBot.create(:edition)  }
+    let(:foreign_holding) { FactoryBot.create(:foreign_holding)  }
     let!(:institution) { FactoryBot.create(:institution)  }
     subject(:ability) { Ability.new(user)  }
     it "should not be able to edit edition" do
-      edition.holdings.first.institutions << institution
+      edition.holdings.clear
+      edition.holdings << foreign_holding
       expect(ability).to be_able_to(:show, edition)
       expect(ability).not_to be_able_to(:edit, edition)
     end
@@ -57,10 +59,12 @@ RSpec.describe User do
   describe 'Cataloger abilities for editions without own holding' do
     let(:user) { FactoryBot.create(:cataloger) }
     let(:edition) { FactoryBot.create(:edition)  }
+    let(:foreign_holding) { FactoryBot.create(:foreign_holding)  }
     let!(:institution) { FactoryBot.create(:foreign_institution)  }
     subject(:ability) { Ability.new(user)  }
     it "should not be able to edit edition" do
-      edition.holdings.first.institutions << institution
+      edition.holdings.clear
+      edition.holdings << foreign_holding
       expect(ability).to be_able_to(:show, edition)
       expect(ability).not_to be_able_to(:edit, edition)
     end

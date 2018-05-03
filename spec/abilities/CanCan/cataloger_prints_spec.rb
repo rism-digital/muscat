@@ -17,12 +17,14 @@ RSpec.describe User do
   
   describe 'Cataloger_prints abilities for editions' do
     let(:user) { FactoryBot.create(:cataloger_prints) }
+    let(:workgroup) { FactoryBot.create(:workgroup) }
     let(:edition) { FactoryBot.create(:edition)  }
-    let!(:foreign_institution) { FactoryBot.create(:foreign_institution)  }
+    let!(:foreign_holding) { FactoryBot.create(:foreign_holding)  }
     subject(:ability) { Ability.new(user)  }
     it "should not to be able to edit prints with foreign holdings" do
-      edition.holdings.first.institutions.clear
-      edition.holdings.first.institutions << foreign_institution
+      user.workgroups << workgroup
+      edition.holdings.clear
+      edition.holdings << foreign_holding
       expect(ability).to be_able_to(:show, edition)
       expect(ability).not_to be_able_to(:edit, edition)
     end
