@@ -10,6 +10,7 @@ development.log
 solr/production/data
 solr/second
 solr/test
+solr/default
 log/sunspot-solr-development.log
 vendor/assets/stylesheets/muscat-custom.scss
 spec/examples.txt

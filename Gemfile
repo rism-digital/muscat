@@ -120,8 +120,6 @@ gem 'daemons'
 gem "i18n-js", ">= 3.0.0.rc11"
 gem 'colorize'
 
-gem "rspec"
-
 gem 'exception_notification'
 gem 'cql-ruby', '0.9.1', :git => 'https://github.com/jrochkind/cql-ruby'
 gem 'chart-js-rails'
@@ -137,3 +135,11 @@ group :development, :test do
 end
 
 gem 'rsolr', '>= 1.0'
+
+group :test do
+  gem "rspec"
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_bot_rails'
+  gem 'poltergeist', "1.11.0"
+  gem 'database_cleaner'
+end

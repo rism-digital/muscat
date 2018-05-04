@@ -12,7 +12,7 @@ class LiturgicalFeast < ApplicationRecord
   
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")
   has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "LiturgicalFeast" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_many :delayed_jobs, -> { where parent_type: "LiturgicalFeast" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
     
   validates_presence_of :name

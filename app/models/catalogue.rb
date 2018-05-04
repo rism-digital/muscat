@@ -36,7 +36,7 @@ class Catalogue < ApplicationRecord
   has_and_belongs_to_many :places, join_table: "catalogues_to_places"
   has_and_belongs_to_many :standard_terms, join_table: "catalogues_to_standard_terms"
   has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "Catalogue" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_many :delayed_jobs, -> { where parent_type: "Catalogue" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   # This is the forward link
