@@ -6,10 +6,8 @@ RSpec.describe User do
   describe 'Cataloger_prints abilities for editions' do
     let(:user) { FactoryBot.create(:cataloger_prints) }
     let(:edition) { FactoryBot.create(:edition)  }
-    let!(:institution) { FactoryBot.create(:institution)  }
     subject(:ability) { Ability.new(user)  }
     it "should be able to edit edition with own holding" do
-      edition.holdings.first.institutions << institution
       expect(ability).to be_able_to(:show, edition)
       expect(ability).to be_able_to(:edit, edition)
     end

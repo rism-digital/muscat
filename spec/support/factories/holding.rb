@@ -4,6 +4,7 @@ FactoryBot.define do
     wf_stage "published"
     institutions { [association(:institution)]  }
     marc_source <<STRING
+=001  123
 =852  #\#$aD-B$cMus.ms.Bach P 48, Faszikel 7$eStaatsbibliothek zu Berlin - Preußischer Kulturbesitz, Musikabteilung$x30000655
 STRING
   end
@@ -13,6 +14,7 @@ STRING
     wf_stage "published"
     institutions { [association(:foreign_institution)]  }
     marc_source <<STRING
+=001  234
 =852  #\#$aF-Pn$cMs 100$eBibliothèque nationale de France$x30001488
 STRING
   end
