@@ -1034,7 +1034,7 @@ doc_references:
         en: Binding note
     u: 
       label: 
-        it: RELATED RECORD
+        it: Scheda correlata
         fr: RELATED RECORD
         de: RELATED RECORD
         en: RELATED RECORD
@@ -1187,14 +1187,14 @@ doc_references:
       comment: "NEW IN 2018"
 "597": 
   label: 
-    it: COLOPHON
+    it: Colofone
     fr: COLOPHON
     de: Kolophon
     en: Colophon
   fields: 
     a: 
       label: 
-        it: COLOPHON
+        it: Colofone
         fr: COLOPHON
         de: Kolophon
         en: Colophon
