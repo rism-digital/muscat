@@ -270,6 +270,7 @@ it:
   record_status: "Stato pubblicazione"
   record_owner: "Proprietario"
   record_audit: "Revisione"
+  basic_level: "Record di base"
   full_level: "Record completo"
   #full_level: "Record completo, materiale esaminato"
   abbreviated_level: "Record abbreviato, materiale esaminato"

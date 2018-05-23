@@ -270,6 +270,7 @@ fr:
   record_status: "Status"
   record_owner: "Propriétaire"
   record_audit: "Origine du dossier"
+  basic_level: "Notice de base"
   full_level: "Notice complète"
   #full_level: "Notice complète, matériel examiné"
   abbreviated_level: "Notice abrégée, matériel examiné"
