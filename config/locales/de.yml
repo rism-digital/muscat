@@ -270,6 +270,7 @@ de:
   record_status: "Status des Eintrags"
   record_owner: "Besitzer des Eintrags"
   record_audit: "Vorlageform"
+  basic_level: "Basiskatalog"
   full_level: "Vollkatalogisat"
   #full_level: "Vollkatalogisat mittels Autopsie"
   abbreviated_level: "Kurzkatalogisat mittels Autopsie"
