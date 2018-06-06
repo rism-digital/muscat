@@ -31,7 +31,11 @@ pb = ProgressBar.new(@limit)
   count = 0
   Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
     record = Source.find(sid.id)
-    Sunspot.index record
+    begin
+      Sunspot.index record
+    rescue => e
+      puts "Could not load #{sid.id}: #{e.exception}"
+    end
     #record.reindex
     #Sunspot.commit
     pb.increment!
