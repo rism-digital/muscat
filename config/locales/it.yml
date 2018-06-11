@@ -495,7 +495,7 @@ it:
   cannot_update_source: "Non sei autorizzato a modificare questo tipo di fonte"
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
   validate_name_uniqness: "Scheda non salvata: il titolo breve '%{term}' è già esistente."
-  validates_parent_id: "RECORD NOT SAVED: PARENT RECORD (773) CANNOT BE SAME AS THIS RECORD"
+  validates_parent_id: "Scheda non salvata: una fonte non può linkare a se stessa (tag 773) "
 
   #
   entry:
@@ -626,15 +626,15 @@ it:
     deleted: "Cancellato"
 
   dashboard:
-    selection: "SELECTION"
-    type: "CHANGE TYPE"
-    type_created: "RECENTLY CREATED"
-    type_updated: "RECENTLY UPDATED"
-    owner: "OWNER"
-    owner_user: "MYSELF"
-    owner_any: "ANY"
-    quantity: "DISPLAY"
-    update: "UPDATE"
+    selection: "Selezione"
+    type: "Tipo"
+    type_created: "Create recentemente"
+    type_updated: "Modificate recentemente"
+    owner: "Proprietario"
+    owner_user: "Io"
+    owner_any: "Chiunque"
+    quantity: "Mostra"
+    update: "Aggiorna"
   
   # editor validation 
   validation:

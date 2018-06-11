@@ -627,15 +627,15 @@ de:
 
   
   dashboard:
-    selection: "SELECTION"
-    type: "CHANGE TYPE"
-    type_created: "RECENTLY CREATED"
-    type_updated: "RECENTLY UPDATED"
-    owner: "OWNER"
-    owner_user: "MYSELF"
-    owner_any: "ANY"
-    quantity: "DISPLAY"
-    update: "UPDATE"
+    selection: "Auswahl"
+    type: "Typ ändern"
+    type_created: "Kürzlich erstellt"
+    type_updated: "Kürzlich aktualisiert"
+    owner: "Inhaber"
+    owner_user: "Mich"
+    owner_any: "Irgendein"
+    quantity: "Anzeige"
+    update: "Aktualisieren"
   
   # editor validation 
   validation:
