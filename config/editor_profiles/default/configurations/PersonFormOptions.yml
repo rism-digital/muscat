@@ -263,15 +263,6 @@
     fields: 
     - - a
       - cols: 2
-    - - i
-      - cols: 2
-        values:
-        - "profession"
-        - "academic" 
-        - "religion"
-        - "unknown"
-        default: "profession"
-        editor_partial: subfield_select
     columns: 2
 "551": 
   layout: 
