@@ -2049,6 +2049,12 @@ dte:
     fr: "Dédicataire"
     de: "Widmungsträger"
     en: Dedicatee
+dst: 
+  label: 
+    it: Distributeur
+    fr: "Dédicataire"
+    de: "Vertrieb"
+    en: Distributor
 dub: 
   label: 
     it: Dubbio
