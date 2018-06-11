@@ -14,8 +14,9 @@ class User < ApplicationRecord
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+	# remove :recoverable
   devise :database_authenticatable, 
-         :recoverable, :rememberable, :trackable, :validatable
+         :rememberable, :trackable, :validatable
 
   enum preference_wf_stage: [ :inprogress, :published, :deleted ]
   scope :ordered, -> {
