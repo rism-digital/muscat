@@ -348,7 +348,7 @@ doc_references:
       label: 
         it: Impronta non analizzata
         fr: Empreinte non analysée
-        de: Nicht analysierter Fingerprint
+        de: Zusammenhängender Fingerprint
         en: Unparsed fingerprint
       comment: "NEW IN 2018"
 028: 
