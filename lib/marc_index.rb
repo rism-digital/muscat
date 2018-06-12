@@ -67,7 +67,7 @@ module MarcIndex
 
                   holding_marc.each_by_tag("852") do |t|
                     new_852 = t.deep_copy
-                    obj.marc.root.children.insert(marc.get_insert_position("852"), new_852)
+                    obj.marc.root.children.insert(obj.marc.get_insert_position("852"), new_852)
                   end
 
                 end # holdings.each
