@@ -804,9 +804,9 @@ doc_references:
         en: Printing technique
     m: 
       label: 
-        it: BOOK FORMAT
-        fr: BOOK FORMAT
-        de: BOOK FORMAT
+        it: Formato librario
+        fr: Format du livre
+        de: Buchformat
         en: Book format
       comment: "NEW IN 2018"
     "8": 
@@ -1034,7 +1034,7 @@ doc_references:
         en: Binding note
     u: 
       label: 
-        it: RELATED RECORD
+        it: Scheda correlata
         fr: RELATED RECORD
         de: RELATED RECORD
         en: RELATED RECORD
@@ -1187,17 +1187,17 @@ doc_references:
       comment: "NEW IN 2018"
 "597": 
   label: 
-    it: Dati editoriali originali
-    fr: Impressum original
-    de: Impressum (original)
-    en: Imprint on source
+    it: Colofone
+    fr: COLOPHON
+    de: Kolophon
+    en: Colophon
   fields: 
     a: 
       label: 
-        it: Dati editoriali originali
-        fr: Impressum original
-        de: Impressum (original)
-        en: Imprint on source
+        it: Colofone
+        fr: COLOPHON
+        de: Kolophon
+        en: Colophon
 "598": 
   label: 
     it: Codice della strumentazione
