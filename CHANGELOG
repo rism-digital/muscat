@@ -12,7 +12,6 @@ Major update to the Muscat infrastructure components:
 Other improvements:
 * Holdings with "published" as default value #611
 * Finalising the dashboard
-* Remove webrick, use Puma instead
 * Workaround for params.permit in folder search
 * Generic box for inter-model relationships, implemented for Catalogue
 * Add some basic missing translations
@@ -74,6 +73,7 @@ Other improvements:
 * Fix #608, Correct "unkown" and remove from 042, Remove 550 $i
 * Fix #621, add 657 for Music Prints
 * Fix dashboard missing translations
+* Fix #604 - replace 695 tag in libretto source with 595
 * Update gems to silence Github warning
 
 v 4.0.2
