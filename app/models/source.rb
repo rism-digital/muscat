@@ -237,42 +237,6 @@ class Source < ApplicationRecord
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
 
-    sunspot_dsl.integer :catalogues, :multiple => true do |s|
-      s.catalogues.map { |catalogue| catalogue.id }
-    end
-    
-    sunspot_dsl.integer :people, :multiple => true do |s|
-      s.people.map { |person| person.id }
-    end
-    
-    sunspot_dsl.integer :places, :multiple => true do |s|
-      s.places.map { |place| place.id }
-    end
-    
-    sunspot_dsl.integer :institutions, :multiple => true do |s|
-      s.institutions.map { |institution| institution.id }
-    end
-    
-    sunspot_dsl.integer :liturgical_feasts, :multiple => true do |s|
-      s.liturgical_feasts.map { |lf| lf.id }
-    end
-    
-    sunspot_dsl.integer :standard_terms, :multiple => true do |s|
-      s.standard_terms.map { |st| st.id }
-    end
-    
-    sunspot_dsl.integer :standard_titles, :multiple => true do |s|
-      s.standard_titles.map { |stit| stit.id }
-    end
-    
-    sunspot_dsl.integer :sources, :multiple => true do |s|
-      s.sources.map { |source| source.id }
-    end
-
-    sunspot_dsl.integer :works, :multiple => true do |s|
-      s.works.map { |w| w.id }
-    end
-
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
