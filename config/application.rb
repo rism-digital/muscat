@@ -42,11 +42,11 @@ module RISM
   VERSION_TIMEOUT = 43200
   
   # The project line in the header
-  PROJECTLINE = "R&eacute;pertoire International des Sources Musicales"
+  PROJECTLINE = "The Canons Database"
   # The strap line in the header 
-  STRAPLINE = "Schweiz - Suisse - Svizzera - Switzerland"
+  STRAPLINE = ""
   # The left footer
-  FOOTER= "<a href=\"http://www.rism.info/en/service/disclaimer.html\">Impressum</a> &ndash; &copy; 2016 &ndash; The Association <em>Internationales Quellenlexikon der Musik</em><br>Johann Wolfgang Goethe-Universit&auml;t &ndash; Senckenberganlage 31-33 &ndash; D-60325 Frankfurt am Main"
+  FOOTER= "&copy; 2018 &ndash; <a href=\"http://www.arc.gov.au/\">Australian Research Council</a> &ndash; <a href=\"http://www.une.edu.au/\">University of New England <img src=\"/images/une-logo.jpg\" height=\"25\" width=\"25\"></a> &ndash; <a href=\"https://www.uq.edu.au/\">University of Queensland</a><br>This site enhances the MUSCAT platform by the Répertoire International des Sources Musicales. Powered by <a href=\"https://intersect.org.au/\">Intersect Australia.</a>"
   # Header menu
   MENUS = {
     :menu_admin      => :admin_root,
