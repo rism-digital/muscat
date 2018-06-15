@@ -6,10 +6,11 @@ ActiveAdmin.register StandardTitle do
 
   # Remove mass-delete action
   batch_action :destroy, false
-  
+ 
   # Remove all action items
   config.clear_action_items!
-  
+  config.per_page = [10, 30, 50, 100]
+
   collection_action :autocomplete_standard_title_title, :method => :get
 
   breadcrumb do
