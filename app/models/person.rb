@@ -125,7 +125,7 @@ class Person < ApplicationRecord
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.without_versioning :save
+      paper_trail.without_versioning :save
     end
   end
   
