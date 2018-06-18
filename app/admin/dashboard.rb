@@ -36,6 +36,8 @@ ActiveAdmin.register_page "Dashboard" do
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
     
+    render("dashboard_welcome")
+    
     #user = current_user.has_any_role?(:editor, :admin) ? -1 : current_user.id
     user_id = (params[:dashboard_source_owner].to_s == "user") ? current_user.id : -1
     sources = dashboard_find_recent(Source, params[:dashboard_quantity], params[:dashboard_source_type], user_id, 15)
@@ -69,7 +71,7 @@ ActiveAdmin.register_page "Dashboard" do
     end
     
     user_id = (params[:dashboard_person_owner].to_s == "user") ? current_user.id : -1  
-    people = dashboard_find_recent(Person, params[:dashboard_quantity], params[:dashboard_person_type], user_id)
+    people = dashboard_find_recent(Person, params[:dashboard_quantity], params[:dashboard_person_type], user_id, 15)
     columns do
       column do
         panel "#{Person.model_name.human(count: 2)}" do
@@ -90,7 +92,7 @@ ActiveAdmin.register_page "Dashboard" do
     end
 
     user_id = (params[:dashboard_catalogue_owner].to_s == "user") ? current_user.id : -1
-    catalogues = dashboard_find_recent(Catalogue, params[:dashboard_quantity], params[:dashboard_catalogue_type], user_id)
+    catalogues = dashboard_find_recent(Catalogue, params[:dashboard_quantity], params[:dashboard_catalogue_type], user_id, 15)
     columns do
       column do
         panel "#{Catalogue.model_name.human(count: 2)}" do
@@ -115,7 +117,7 @@ ActiveAdmin.register_page "Dashboard" do
     end
 
     user_id = (params[:dashboard_institution_owner].to_s == "user") ? current_user.id : -1
-    institutions = dashboard_find_recent(Institution, params[:dashboard_quantity], params[:dashboard_institution_type], user_id)
+    institutions = dashboard_find_recent(Institution, params[:dashboard_quantity], params[:dashboard_institution_type], user_id, 15)
     columns do
       column do
         panel "#{Institution.model_name.human(count: 2)}" do
