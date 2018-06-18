@@ -29,8 +29,8 @@ ActiveAdmin.register_page "Dashboard" do
     end
   end
   
-  #menu priority: 3, label: proc{ I18n.t("active_admin.dashboard") }
-  menu false
+  menu priority: 3, label: proc{ I18n.t("active_admin.dashboard") }
+  #menu false
   
   limit = 10;
 
