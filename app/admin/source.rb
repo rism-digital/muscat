@@ -9,7 +9,6 @@ ActiveAdmin.register Source do
   
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
   
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
