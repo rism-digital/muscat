@@ -636,6 +636,7 @@ fr:
     owner_any: "N'importe quel utilisateur"
     quantity: "Afficher"
     update: "Mettre à jour"
+    no_items: "NO ELEMENTS TO SHOW WITH THE CURRENT FILTERS"
   
   # editor validation 
   validation:

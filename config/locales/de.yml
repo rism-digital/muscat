@@ -636,6 +636,7 @@ de:
     owner_any: "Irgendein"
     quantity: "Anzeige"
     update: "Aktualisieren"
+    no_items: "NO ELEMENTS TO SHOW WITH THE CURRENT FILTERS"
   
   # editor validation 
   validation:

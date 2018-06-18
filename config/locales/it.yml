@@ -4,7 +4,7 @@ it:
     search_status:
       headline: "Ambito"
       current_filters: "Filtri in uso"
-    dashboard: "LAST WEEK ACTIVITY"
+    dashboard: "Attività della scorsa settimana"
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
       call_to_action: "Per aggiungere sezioni alla dashboard controlla il file 'app/admin/dashboard.rb'"
@@ -635,6 +635,7 @@ it:
     owner_any: "Chiunque"
     quantity: "Mostra"
     update: "Aggiorna"
+    no_items: "Nessun elemento da mostrare con i filtri selezionati"
   
   # editor validation 
   validation:

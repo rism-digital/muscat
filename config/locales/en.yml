@@ -635,6 +635,7 @@ en:
     owner_any: "Any"
     quantity: "Display"
     update: "Update"
+    no_items: "No elements to show with the current filters"
   
   # editor validation 
   validation:

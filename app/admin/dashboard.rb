@@ -42,24 +42,29 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "#{Source.model_name.human(count: 2)}" do
-          table_for sources.map do
-            column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
-              label: I18n.t('status_codes.' + (source.wf_stage != nil ? source.wf_stage : ""), locale: :en))} 
-            column (I18n.t :filter_record_type) {|source| status_tag(source.get_record_type.to_s, 
-              label: I18n.t('record_types_codes.' + (source.record_type != nil ? source.record_type.to_s : ""), locale: :en))} 
-            column(I18n.t :filter_id) {|source| link_to(source.id, admin_source_path(source)) }
-            column(I18n.t :filter_composer) {|source| source.composer }
-            column(I18n.t :filter_std_title) {|source| source.std_title } 
-            column (I18n.t :filter_lib_siglum), :lib_siglum do |source|
-              if source.child_sources.count > 0
-                 source.child_sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
-              else
-                source.lib_siglum
+          if sources.count > 0
+            table_for sources.map do
+              column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
+                label: I18n.t('status_codes.' + (source.wf_stage != nil ? source.wf_stage : ""), locale: :en))} 
+              column (I18n.t :filter_record_type) {|source| status_tag(source.get_record_type.to_s, 
+                label: I18n.t('record_types_codes.' + (source.record_type != nil ? source.record_type.to_s : ""), locale: :en))} 
+              column(I18n.t :filter_id) {|source| link_to(source.id, admin_source_path(source)) }
+              column(I18n.t :filter_composer) {|source| source.composer }
+              column(I18n.t :filter_std_title) {|source| source.std_title } 
+              column (I18n.t :filter_lib_siglum), :lib_siglum do |source|
+                if source.child_sources.count > 0
+                   source.child_sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
+                else
+                  source.lib_siglum
+                end
               end
+              column(I18n.t :filter_shelf_mark) {|source| source.shelf_mark } 
             end
-            column(I18n.t :filter_shelf_mark) {|source| source.shelf_mark } 
+          else
+            text_node(I18n.t('dashboard.no_items'))
           end
         end
+
       end
     end
     
@@ -68,13 +73,17 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "#{Person.model_name.human(count: 2)}" do
-          table_for people.map do
-            column (I18n.t :filter_wf_stage) {|person| status_tag(person.wf_stage,
-              label: I18n.t('status_codes.' + (person.wf_stage != nil ? person.wf_stage : ""), locale: :en))} 
-            column (I18n.t :filter_id) {|person| link_to(person.id, admin_person_path(person)) }
-            column (I18n.t :filter_full_name), :full_name
-            column (I18n.t :filter_life_dates), :life_dates
-            column (I18n.t :filter_owner) {|person| User.find(person.wf_owner).name rescue 0} if current_user.has_any_role?(:editor, :admin)
+          if people.count > 0
+            table_for people.map do
+              column (I18n.t :filter_wf_stage) {|person| status_tag(person.wf_stage,
+                label: I18n.t('status_codes.' + (person.wf_stage != nil ? person.wf_stage : ""), locale: :en))} 
+              column (I18n.t :filter_id) {|person| link_to(person.id, admin_person_path(person)) }
+              column (I18n.t :filter_full_name), :full_name
+              column (I18n.t :filter_life_dates), :life_dates
+              column (I18n.t :filter_owner) {|person| User.find(person.wf_owner).name rescue 0} if current_user.has_any_role?(:editor, :admin)
+            end
+          else
+            text_node(I18n.t('dashboard.no_items'))
           end
         end
       end
@@ -85,17 +94,21 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "#{Catalogue.model_name.human(count: 2)}" do
-          table_for catalogues.map do
-            column (I18n.t :filter_wf_stage) {|catalogue| status_tag(catalogue.wf_stage,
-              label: I18n.t('status_codes.' + (catalogue.wf_stage != nil ? catalogue.wf_stage : ""), locale: :en))}  
-            column (I18n.t :filter_id) {|catalogue| link_to(catalogue.id, admin_catalogue_path(catalogue)) }
-            column (I18n.t :filter_name), :name do |catalogue| 
-              catalogue.name.truncate(30) if catalogue.name
+          if catalogues.count > 0
+            table_for catalogues.map do
+              column (I18n.t :filter_wf_stage) {|catalogue| status_tag(catalogue.wf_stage,
+                label: I18n.t('status_codes.' + (catalogue.wf_stage != nil ? catalogue.wf_stage : ""), locale: :en))}  
+              column (I18n.t :filter_id) {|catalogue| link_to(catalogue.id, admin_catalogue_path(catalogue)) }
+              column (I18n.t :filter_name), :name do |catalogue| 
+                catalogue.name.truncate(30) if catalogue.name
+              end
+              column (I18n.t :filter_description), :description do |catalogue| 
+                catalogue.description.truncate(60) if catalogue.description
+              end
+              column (I18n.t :filter_author), :author
             end
-            column (I18n.t :filter_description), :description do |catalogue| 
-              catalogue.description.truncate(60) if catalogue.description
-            end
-            column (I18n.t :filter_author), :author
+          else
+            text_node(I18n.t('dashboard.no_items'))
           end
         end
       end
@@ -106,13 +119,17 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "#{Institution.model_name.human(count: 2)}" do
-          table_for institutions.map do
-            column (I18n.t :filter_wf_stage) {|institution| status_tag(institution.wf_stage,
-              label: I18n.t('status_codes.' + (institution.wf_stage != nil ? institution.wf_stage : ""), locale: :en))}  
-            column (I18n.t :filter_id) {|institution| link_to(institution.id, admin_institution_path(institution)) } 
-            column (I18n.t :filter_siglum), :siglum
-            column (I18n.t :filter_location_and_name), :name
-            column (I18n.t :filter_place), :place
+          if institutions.count > 0
+            table_for institutions.map do
+              column (I18n.t :filter_wf_stage) {|institution| status_tag(institution.wf_stage,
+                label: I18n.t('status_codes.' + (institution.wf_stage != nil ? institution.wf_stage : ""), locale: :en))}  
+              column (I18n.t :filter_id) {|institution| link_to(institution.id, admin_institution_path(institution)) } 
+              column (I18n.t :filter_siglum), :siglum
+              column (I18n.t :filter_location_and_name), :name
+              column (I18n.t :filter_place), :place
+            end
+          else
+            text_node(I18n.t('dashboard.no_items'))
           end
         end
       end
