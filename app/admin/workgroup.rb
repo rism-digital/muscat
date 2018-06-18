@@ -64,7 +64,7 @@ ActiveAdmin.register Workgroup do
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
-  index :download_links => false do
+  index :download_links => [:xml] do
     selectable_column
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
