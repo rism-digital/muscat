@@ -7,6 +7,8 @@ ActiveAdmin.register Person do
   
   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
+
   config.sort_order = 'full_name_asc'
   breadcrumb do
     active_admin_muscat_breadcrumb
