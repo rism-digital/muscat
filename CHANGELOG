@@ -1,5 +1,8 @@
 Muscat Changelog
 ================
+v 4.1.1
+* Fix some deprecated functions is the latest update of PaperTrail
+* Fix comment mail host
 
 v 4.1
 Major update to the Muscat infrastructure components:
