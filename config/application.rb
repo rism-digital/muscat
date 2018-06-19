@@ -46,7 +46,7 @@ module RISM
   # The strap line in the header 
   STRAPLINE = ""
   # The left footer
-  FOOTER= "&copy; 2018 &ndash; <a href=\"http://www.arc.gov.au/\">Australian Research Council</a> &ndash; <a href=\"http://www.une.edu.au/\">University of New England <img src=\"/images/une-logo.jpg\" height=\"25\" width=\"25\"></a> &ndash; <a href=\"https://www.uq.edu.au/\">University of Queensland</a><br>This site enhances the MUSCAT platform by the Répertoire International des Sources Musicales. Powered by <a href=\"https://intersect.org.au/\">Intersect Australia.</a>"
+  FOOTER= "&copy; 2018 &ndash; <a href=\"http://www.arc.gov.au/\">Australian Research Council</a> &ndash; <a href=\"http://www.une.edu.au/\">University of New England</a> <img src=\"/images/une-logo.jpg\"> &ndash; <a href=\"https://www.uq.edu.au/\">University of Queensland</a><br>This site enhances the MUSCAT platform by the Répertoire International des Sources Musicales. Powered by <a href=\"https://intersect.org.au/\">Intersect Australia.</a>"
   # Header menu
   MENUS = {
     :menu_admin      => :admin_root,
