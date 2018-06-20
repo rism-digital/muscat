@@ -121,7 +121,12 @@ class CatalogController < ApplicationController
     
     @item = Holding.find( params[:object_id] )
     
-    @item.marc.load_source(true)
+    begin
+      @item.marc.load_source(true)
+    rescue ActiveRecord::RecordNotFound
+      puts "Could not properly load MarcHolding #{@item.id}"
+    end
+    
     @editor_profile = EditorConfiguration.get_show_layout @item
     
     render :template => 'marc_show/show_preview', :locals => { :opac => opac }

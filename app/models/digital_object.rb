@@ -10,7 +10,7 @@ class DigitalObject < ApplicationRecord
 		validates_attachment :attachment, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
   
     has_many :digital_object_links, :dependent => :delete_all
-    has_many :folder_items, :as => :item
+    has_many :folder_items, as: :item, dependent: :destroy
     belongs_to :user, :foreign_key => "wf_owner"
     
     # fake accessor for allowing to pass additional parameters when creating an object from an object

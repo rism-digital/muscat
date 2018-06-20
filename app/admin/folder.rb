@@ -115,10 +115,12 @@ ActiveAdmin.register Folder do
       
       paginated_collection(fitems.page(params[:src_list_page]).per(10), param_name: 'src_list_page',  download_links: false) do
         table_for(collection) do |cr|
-          column ("Name") {|fitem| fitem.item.name}
-          column ("Id") {|fitem| fitem.item.id}
+          column ("Name") {|fitem| fitem.item ? fitem.item.name : "DELETED"}
+          column ("Id") {|fitem| fitem.item ? fitem.item.id : "n/a, was #{fitem.item_id}"}
           column "" do |fitem|
-            link_to "View", controller: fitem.item.class.to_s.pluralize.underscore.downcase.to_sym, action: :show, id: fitem.item.id
+            if fitem.item
+              link_to "View", controller: fitem.item.class.to_s.pluralize.underscore.downcase.to_sym, action: :show, id: fitem.item.id
+            end
           end
         end
       end

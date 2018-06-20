@@ -268,7 +268,7 @@ function _marc_editor_version_view( version_id, destination, rails_model ) {
 		error: function (jqXHR, textStatus, errorThrown) {
 			alert ("Error loading version. (" 
 					+ textStatus + " " 
-					+ errorThrown);
+					+ errorThrown + ")");
 		}
 	});
 }
@@ -289,9 +289,9 @@ function _marc_editor_embedded_holding(destination, rails_model, id, opac ) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error loading version. (" 
-					+ textStatus + " " 
-					+ errorThrown);
+			alert ("Error loading holding information. " +
+					"(" + textStatus + " " 
+					+ errorThrown + ")");
 		}
 	});
 }
@@ -311,9 +311,9 @@ function _marc_editor_summary_view(destination, rails_model, id ) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error loading version. (" 
+			alert ("Error loading summary. (" 
 					+ textStatus + " " 
-					+ errorThrown);
+					+ errorThrown + ")");
 		}
 	});
 }

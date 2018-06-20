@@ -45,7 +45,7 @@ class Person < ApplicationRecord
   has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
   has_and_belongs_to_many :places, join_table: "people_to_places"
   has_and_belongs_to_many :catalogues, join_table: "people_to_catalogues"
-  has_many :folder_items, :as => :item
+  has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
@@ -250,12 +250,13 @@ class Person < ApplicationRecord
   # before_destroy, will delete Person only if it has no links referring to
   def check_dependencies
     if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0
+         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
       errors.add :base, %{The person could not be deleted because it is used by
         #{self.referring_sources.count} sources,
         #{self.referring_institutions.count} institutions, 
         #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people}
+        #{self.referring_people.count} people
+        #{self.referring_holdings.count} holdings}
       return false
     end
   end

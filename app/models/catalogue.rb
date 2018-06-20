@@ -35,7 +35,7 @@ class Catalogue < ApplicationRecord
   has_and_belongs_to_many :institutions, join_table: "catalogues_to_institutions"
   has_and_belongs_to_many :places, join_table: "catalogues_to_places"
   has_and_belongs_to_many :standard_terms, join_table: "catalogues_to_standard_terms"
-  has_many :folder_items, :as => :item
+  has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Catalogue" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
@@ -271,12 +271,13 @@ class Catalogue < ApplicationRecord
   
   def check_dependencies
     if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0
+         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
       errors.add :base, %{The catalogue could not be deleted because it is used by
         #{self.referring_sources.count} sources,
         #{self.referring_institutions.count} institutions, 
         #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people}
+        #{self.referring_people.count} people
+        #{self.referring_holdings.count} holdings}
       return false
     end
   end
