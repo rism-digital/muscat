@@ -58,6 +58,7 @@ ActiveAdmin.register Holding do
       @parent_object_type = "Source" #hardcoded for now
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_show_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = format_holding(@item)
     end
 
@@ -124,6 +125,7 @@ ActiveAdmin.register Holding do
       @holding.marc = new_marc
 
       @editor_profile = EditorConfiguration.get_default_layout @holding
+      @editor_validation = EditorValidation.get_default_validation(@holding)
       # Override the default to have a better name
       @page_title = I18n.t('new_holding_page')
       #To transmit correctly @item we need to have @source initialized
