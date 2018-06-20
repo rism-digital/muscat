@@ -8,7 +8,7 @@ class LogModelErrorsJob < ApplicationJob
       batch.each do |s|
         begin
           s.marc.load_source true
-        else
+        rescue
           AdminNotifications.notify("AUTO NOTIFICAION: Source #{s.id} has errors", s).deliver_now
         end
       end
