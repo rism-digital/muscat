@@ -16,4 +16,4 @@
 
 Crono.perform(PurgeSearchesJob).every 1.day, at: {hour: 1, min: 00}
 Crono.perform(PurgeFolderItemsJob).every 1.day, at: {hour: 3, min: 0}
-Crono.perform(LogModelErrors).ebery 1.day, at: {hour: 5, min: 0}
+Crono.perform(LogModelErrors).every 1.day, at: {hour: 5, min: 0}
