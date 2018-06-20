@@ -59,6 +59,17 @@ ActiveAdmin.register Holding do
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_show_layout @item
       @page_title = format_holding(@item)
+      
+      # Force marc to load
+      begin
+        @item.marc.load_source(true)
+      rescue ActiveRecord::RecordNotFound
+        flash[:error] = I18n.t(:unloadable_record)
+        AdminNotifications.notify("Holding #{@item.id} seems unloadable, please check", @item).deliver_now
+        redirect_to admin_holding_path @item
+        return
+      end
+      
     end
 
     def destroy
