@@ -263,6 +263,7 @@ en:
   finished: "Finished"
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
+  holding_no_siglum: "Holding without silgum"
   new_holding: "Add holdings"
   new_holding_page: "New holdings information"
   new_digital_object: "Attach a new image"

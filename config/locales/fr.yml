@@ -263,6 +263,7 @@ fr:
   finished: "Achevé"
   lib_siglum: "Sigle de bibliothèque"
   holding_records: "Copie"
+  holding_no_siglum: "HOLDING WITHOUT SILGUM"
   new_holding: "Ajouter une copie"
   new_holding_page: "Copie non enregistré"
   new_digital_object: "Attacher une nouvelle image"

@@ -263,6 +263,7 @@ it:
   finished: "Completato"
   lib_siglum: "Sigla della Biblioteca"
   holding_records: "Informazioni sugli esemplari"
+  holding_no_siglum: "Esemplare senza sigla di biblioteca"
   new_holding: "Nuovo Esemplare"
   new_holding_page: "Esemplare non salvato"
   new_digital_object: "Aggiungi una nuova immagine"

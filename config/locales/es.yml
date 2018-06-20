@@ -259,6 +259,7 @@ es:
   finished: "Terminando"
   lib_siglum: "Sigla de biblioteca"
   holding_records: "Información del recurso"
+  holding_no_siglum: "HOLDING WITHOUT SILGUM"
   new_holding: "Crear recurso"
   
   jobs:
