@@ -1,4 +1,4 @@
-class LogModelErrors < ApplicationJob
+class LogModelErrorsJob < ApplicationJob
   queue_as :default
   
   def perform(*args)
