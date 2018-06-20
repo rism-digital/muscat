@@ -1,5 +1,14 @@
 Muscat Changelog
 ================
+
+v 4.1.2
+* Fix deleting People, Places or Catalogues when used by a Holding
+* Fix crash with holding when one of the above was deleted
+* Fix editor AJAX error messages
+* Clean up Folder Items when an element is deleted
+* Show a Folder item as deleted if it was deleted and not cleaned up
+* Fix warning with session#deselect
+
 v 4.1.1
 * Fix some deprecated functions is the latest update of PaperTrail
 * Fix comment mail host
