@@ -79,7 +79,7 @@ it:
       action_label: "%{title}"
       labels:
         destroy: "Elimina"
-        folder: "Crea nuova cartella con gli elementi selezionati"
+        folder: "Crea una nuova cartella con gli elementi selezionati"
         add_to_folder: "Aggiungi gli elementi selezionati ad una cartella esistente"
 
     comments:
