@@ -9,7 +9,7 @@ class LogModelErrorsJob < ApplicationJob
         begin
           s.marc.load_source true
         rescue
-          AdminNotifications.notify("AUTO NOTIFICAION: Source #{s.id} has errors", s).deliver_now
+          AdminNotifications.notify("AUTO NOTIFICATION: Source #{s.id} has errors", s).deliver_now
         end
       end
     end
