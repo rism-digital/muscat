@@ -12,7 +12,7 @@ class Holding < ApplicationRecord
 
   has_and_belongs_to_many :institutions
   belongs_to :source
-  has_many :folder_items, :as => :item
+  has_many :folder_items, as: :item, dependent: :destroy
   belongs_to :user, :foreign_key => "wf_owner"
   
   has_and_belongs_to_many :people, join_table: "holdings_to_people"

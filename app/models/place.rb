@@ -16,7 +16,7 @@ class Place < ApplicationRecord
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_places")
   has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_places")
   has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_places")
-  has_many :folder_items, :as => :item
+  has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
 
