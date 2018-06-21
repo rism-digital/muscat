@@ -1,22 +1,30 @@
 class LogModelErrorsJob < ApplicationJob
   queue_as :default
   
+  def initialize
+    super
+    @parallel_jobs = 10
+    @all_src = Source.all.count
+    @limit = @all_src / @parallel_jobs
+  end
+  
   def perform(*args)
     errors = []
-    Source.find_in_batches do |batch|
+    count = 0
+    results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs, progress: "Doing stuff") do |jobid|
+      offset = @limit * jobid
 
-      batch.each do |s|
+      Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
+        s = Source.find(sid.id)
         begin
           s.marc.load_source true
         rescue
-          AdminNotifications.notify("AUTO NOTIFICAION: Source #{s.id} has errors", s).deliver_now
+          errors << sid.id
         end
+        
       end
+      errors
     end
-    
-#    if errors.length > 0
-      
-#    end
     
   end
   
