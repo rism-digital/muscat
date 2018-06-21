@@ -14,3 +14,22 @@ Message: <%= @message %>
 	</tr>
 <% end %>
 </table>
+
+<p>
+
+<%@validations.each do |id, errors|%>
+<b>Validation Result for: <%=id%></b>
+  <table>
+  <% errors.each do |tag, subtags| %>
+    <% subtags.each do |subtag, messages|  %>
+      <% messages.each do |message|  %>
+      <tr>
+        <td><strong><%= tag %></strong></td>
+        <td><%= subtag %></td>
+        <td><i><%= message %></i></td>
+      </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+  </table>
+<% end %>
