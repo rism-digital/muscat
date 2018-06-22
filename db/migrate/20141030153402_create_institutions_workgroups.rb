@@ -1,4 +1,4 @@
-class CreateInstitutionsWorkgroups < ActiveRecord::Migration
+class CreateInstitutionsWorkgroups < ActiveRecord::Migration[4.2]
   def change
     create_table :institutions_workgroups, id:false, force:true do |t|
       t.integer "workgroup_id"

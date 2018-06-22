@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
 #
 class CatalogController < ApplicationController  
+
+  include BlacklightRangeLimit::ControllerOverride
+  include BlacklightAdvancedSearch::Controller
   include Blacklight::Catalog
   
   DEFAULT_FACET_LIMIT = 20
@@ -118,7 +121,12 @@ class CatalogController < ApplicationController
     
     @item = Holding.find( params[:object_id] )
     
-    @item.marc.load_source(true)
+    begin
+      @item.marc.load_source(true)
+    rescue ActiveRecord::RecordNotFound
+      puts "Could not properly load MarcHolding #{@item.id}"
+    end
+    
     @editor_profile = EditorConfiguration.get_show_layout @item
     
     render :template => 'marc_show/show_preview', :locals => { :opac => opac }
@@ -133,6 +141,13 @@ class CatalogController < ApplicationController
   end
   
   configure_blacklight do |config|
+    # default advanced config values
+    config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
+    # config.advanced_search[:qt] ||= 'advanced'
+    config.advanced_search[:url_key] ||= 'advanced'
+    config.advanced_search[:query_parser] ||= 'edismax'
+    config.advanced_search[:form_solr_parameters] ||= {}
+
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = { 
       :qt => 'search',
@@ -325,10 +340,6 @@ class CatalogController < ApplicationController
         :qf => 'title_texts std_title_texts',
       }
     end
-    
-    config.advanced_search = {
-      :query_parser => "edismax"
-    }
 
     # Add some filters for the adv search
     config.add_search_field("title") do |field|

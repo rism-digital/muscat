@@ -1,4 +1,4 @@
-class AddUserToFolders < ActiveRecord::Migration
+class AddUserToFolders < ActiveRecord::Migration[4.2]
   def change
     
     change_table :folders do |t|

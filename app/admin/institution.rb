@@ -7,6 +7,7 @@ ActiveAdmin.register Institution do
   
   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
   
   collection_action :autocomplete_institution_siglum, :method => :get
   collection_action :autocomplete_institution_name, :method => :get
@@ -117,7 +118,7 @@ ActiveAdmin.register Institution do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Institution").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
-  index :download_links => false do
+  index :download_links => [:xml] do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|institution| status_tag(institution.wf_stage,
       label: I18n.t('status_codes.' + (institution.wf_stage != nil ? institution.wf_stage : ""), locale: :en))}  
@@ -166,7 +167,7 @@ ActiveAdmin.register Institution do
         end
       end
     end
-    active_admin_embedded_source_list( self, institution, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, institution, !is_selection_mode? )
     active_admin_user_wf( self, institution )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?

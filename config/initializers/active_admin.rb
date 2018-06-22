@@ -133,8 +133,8 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  # config.root_to = 'dashboard#index'
-  config.root_to = 'sources#index'
+  config.root_to = 'dashboard#index'
+  #config.root_to = 'sources#index'
 
 
   # == Admin Comments
@@ -164,11 +164,11 @@ ActiveAdmin.setup do |config|
   # You can add before, after and around filters to all of your
   # Active Admin resources and pages from here.
   #
-  # config.before_filter :do_something_awesome
+  # config.before_action :do_something_awesome
   
   # LP - for caching filters, pagination and order
-  config.before_filter :restore_search_filters
-  config.after_filter :save_search_filters
+  config.before_action :restore_search_filters
+  config.after_action :save_search_filters
   
   
   # == Setting a Favicon
@@ -198,7 +198,7 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
-  #config.register_stylesheet 'jquery.ui.theme.css'
+  config.register_stylesheet 'jquery-ui.css'
   #config.register_javascript 'marc_editor.js'
   #config.register_javascript 'marc_json.js'
   #config.register_javascript 'jquery.blockUI.js'

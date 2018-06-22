@@ -9,7 +9,8 @@ require 'capybara/rspec'
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
   config.use_transactional_fixtures = false
-  config.include Devise::TestHelpers, :type => :controller
+  #config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.infer_spec_type_from_file_location!
   config.include Warden::Test::Helpers
   config.include Capybara::DSL

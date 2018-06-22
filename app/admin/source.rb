@@ -9,6 +9,7 @@ ActiveAdmin.register Source do
   
   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
   
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
@@ -24,7 +25,7 @@ ActiveAdmin.register Source do
     
     after_destroy :check_model_errors
 
-    before_filter :only => [:index] do
+    before_action :only => [:index] do
         if params['commit'].blank?
                  #params['q'] = {:std_title_contains => "[Holding]"} 
         end
@@ -261,7 +262,7 @@ ActiveAdmin.register Source do
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
   
   
-  index :download_links => false do
+  index :download_links => [:xml] do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
       label: I18n.t('status_codes.' + (source.wf_stage != nil ? source.wf_stage : ""), locale: :en))} 
@@ -303,7 +304,7 @@ ActiveAdmin.register Source do
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]
     render :partial => "marc/show"
-    active_admin_embedded_source_list( self, @item, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, @item, !is_selection_mode? )
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, @item )
     active_admin_navigation_bar( self )

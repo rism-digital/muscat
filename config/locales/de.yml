@@ -263,6 +263,7 @@ de:
   finished: "Beendet"
   lib_siglum: "Bibliothekssigel"
   holding_records: "Exemplarinformation"
+  holding_no_siglum: "HOLDING WITHOUT SILGUM"
   new_holding: "Neuer Examplareintrag"
   new_holding_page: "Neuer Exemplareintrag"
   new_digital_object: "Neues Bild hinzufügen"
@@ -270,6 +271,7 @@ de:
   record_status: "Status des Eintrags"
   record_owner: "Besitzer des Eintrags"
   record_audit: "Vorlageform"
+  basic_level: "Basiskatalog"
   full_level: "Vollkatalogisat"
   #full_level: "Vollkatalogisat mittels Autopsie"
   abbreviated_level: "Kurzkatalogisat mittels Autopsie"
@@ -360,6 +362,7 @@ de:
   filter_birth_place: "Geburtsort"
   filter_catalog: "WV / Katalog"
   filter_collection: "Sammlung"
+  filter_category_type: "Kategorie"
   filter_comments: "Kommentare"
   filter_composer: "Komponist"
   filter_connected_libraries: "Bibliotheken"
@@ -406,7 +409,7 @@ de:
   filter_person_100d: "Lebensdaten"
   filter_person_550a: "Beruf"
   filter_person_375a: "Geschlecht"
-  filter_person_043c: "Länder Code"
+  filter_person_043c: "Nationalität"
   filter_person_551a: "Orte"
   filter_person_100d_birthdate: "Geburtsjahr"
   filter_person_100d_deathdate: "Todesjahr"
@@ -466,6 +469,9 @@ de:
   filter_dist_594m: "Weitere Instrumente"
   filter_dist_594n: "Basso-continuo-Instrumente"
  
+  ## Referring lists for auth files
+  refers_to_this: "%{model_from} die sich auf diesen %{model_to} beziehen"
+
   rism_any_key: "Irgendeine Tonart"
   rism_a_flat: "As-Dur/Moll"
   rism_a: "A-Dur/Moll"
@@ -622,15 +628,16 @@ de:
 
   
   dashboard:
-    selection: "SELECTION"
-    type: "CHANGE TYPE"
-    type_created: "RECENTLY CREATED"
-    type_updated: "RECENTLY UPDATED"
-    owner: "OWNER"
-    owner_user: "MYSELF"
-    owner_any: "ANY"
-    quantity: "DISPLAY"
-    update: "UPDATE"
+    selection: "Auswahl"
+    type: "Typ ändern"
+    type_created: "Kürzlich erstellt"
+    type_updated: "Kürzlich aktualisiert"
+    owner: "Inhaber"
+    owner_user: "Mich"
+    owner_any: "Irgendein"
+    quantity: "Anzeige"
+    update: "Aktualisieren"
+    no_items: "NO ELEMENTS TO SHOW WITH THE CURRENT FILTERS"
   
   # editor validation 
   validation:
@@ -646,7 +653,11 @@ de:
     gross_pitch: "Melodisches Profil (grob, unschärfste Suche)"
     anchor: "Suche nur den Anfang"
     erase: "Lösche eine Note"
-    
+
+  # This is used for the "incipit" seach in the search history in BL
+  # Note the capital 'I'
+  Incipit: "Incipit"
+
   date:
     month_names:
     -

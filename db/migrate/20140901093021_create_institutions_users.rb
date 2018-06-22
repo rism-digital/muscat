@@ -1,4 +1,4 @@
-class CreateInstitutionsUsers < ActiveRecord::Migration
+class CreateInstitutionsUsers < ActiveRecord::Migration[4.2]
   def change
     create_table :institutions_users, id: false, force: true do |t|
     t.integer "user_id"

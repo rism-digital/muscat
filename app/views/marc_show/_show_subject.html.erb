@@ -12,7 +12,7 @@
 	</th>
 	<td>
 		<% if opac %>
-			<%= link_to subject, catalog_index_path(:search_field => "subject", :q => subject) %>
+			<%= link_to subject, search_catalog_path(:search_field => "subject", :q => subject) %>
 		<% elsif is_selection_mode?%>
 			<%= subject%>
 		<% else %>

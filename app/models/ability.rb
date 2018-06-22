@@ -78,8 +78,12 @@ class Ability
       
       # The difference between withouth or with print rights
       if user.has_role?(:cataloger)
-        cannot :create_editions, Source
-        cannot :update_editions, Source
+        can :create_editions, Source
+        can :update_editions, Source
+        can :update, Source do |s|
+          user.can_edit_edition?(s)
+        end
+      #TODO role cataloger_prints can be deleted after all catalogers have special rights
       else
         can :create_editions, Source
         can :update_editions, Source

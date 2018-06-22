@@ -263,6 +263,7 @@ fr:
   finished: "Achevé"
   lib_siglum: "Sigle de bibliothèque"
   holding_records: "Copie"
+  holding_no_siglum: "HOLDING WITHOUT SILGUM"
   new_holding: "Ajouter une copie"
   new_holding_page: "Copie non enregistré"
   new_digital_object: "Attacher une nouvelle image"
@@ -270,6 +271,7 @@ fr:
   record_status: "Status"
   record_owner: "Propriétaire"
   record_audit: "Origine du dossier"
+  basic_level: "Notice de base"
   full_level: "Notice complète"
   #full_level: "Notice complète, matériel examiné"
   abbreviated_level: "Notice abrégée, matériel examiné"
@@ -360,6 +362,7 @@ fr:
   filter_birth_place: "Lieu de naissance"
   filter_catalog: "Catalogue"
   filter_collection: "Collection"
+  filter_category_type: "Catégorie"
   filter_comments: "Commentaires"
   filter_composer: "Compositeur"
   filter_connected_libraries: "Bibliothèques"
@@ -367,7 +370,7 @@ fr:
   filter_creation_date: "Date de création"
   filter_date: "Date"
   filter_date_from: "Depuis la date"
-  filter_date_of_publication: "DATE OF PUBLICATION"
+  filter_date_of_publication: "Année de publication"
   filter_date_to: "Jusqu'à la date"
   filter_description: "Description"
   filter_digital_objects: "Digital Objects"
@@ -465,7 +468,10 @@ fr:
   filter_dist_594l: "Instruments à clavier"
   filter_dist_594m: "Autres instruments"
   filter_dist_594n: "Instruments de basse continue"
-  
+ 
+  ## Referring lists for auth files
+  refers_to_this: "%{model_from} se référant à cet(te) %{model_to}"
+
   rism_any_key: "N'importe quelle tonalité"
   rism_a_flat: "La bémol majeur/mineur"
   rism_a: "La majeur/mineur"
@@ -631,6 +637,7 @@ fr:
     owner_any: "N'importe quel utilisateur"
     quantity: "Afficher"
     update: "Mettre à jour"
+    no_items: "NO ELEMENTS TO SHOW WITH THE CURRENT FILTERS"
   
   # editor validation 
   validation:
@@ -646,6 +653,10 @@ fr:
     gross_pitch: "Contour mélodique grossier (similarité approximative)"
     anchor: "Au début uniquement"
     erase: "Effacer une note"
+
+  # This is used for the "incipit" seach in the search history in BL
+  # Note the capital 'I'
+  Incipit: "Incipit"
 
   date:
     month_names:

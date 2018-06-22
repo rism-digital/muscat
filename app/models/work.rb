@@ -1,4 +1,4 @@
-class Work < ActiveRecord::Base
+class Work < ApplicationRecord
   include ForeignLinks
   include MarcIndex
 
@@ -16,8 +16,8 @@ class Work < ActiveRecord::Base
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
-  has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_many :folder_items, as: :item, dependent: :destroy
+  has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   composed_of :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
@@ -77,7 +77,7 @@ class Work < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.without_versioning :save
+      paper_trail.without_versioning :save
     end
   end
   

@@ -1,4 +1,4 @@
-class CreatePeopleToCatalogues < ActiveRecord::Migration
+class CreatePeopleToCatalogues < ActiveRecord::Migration[4.2]
   def change
     # People -> Place
     create_table(:people_to_catalogues, :id => false) do |t|

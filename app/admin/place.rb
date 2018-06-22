@@ -8,6 +8,7 @@ ActiveAdmin.register Place do
 
   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
 
   collection_action :autocomplete_place_name, :method => :get
 
@@ -98,7 +99,7 @@ ActiveAdmin.register Place do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
     collection: proc{Folder.where(folder_type: "Place").collect {|c| [c.name, "folder_id:#{c.id}"]}}
 
-  index :download_links => false do
+  index :download_links => [:xml] do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
@@ -134,7 +135,7 @@ ActiveAdmin.register Place do
       row (I18n.t :filter_district) { |r| r.district }    
       row (I18n.t :filter_notes) { |r| r.notes }    
     end
-    active_admin_embedded_source_list( self, place, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, place, !is_selection_mode? )
     active_admin_user_wf( self, place )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?

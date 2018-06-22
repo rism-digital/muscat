@@ -7,6 +7,7 @@ ActiveAdmin.register LiturgicalFeast do
   
   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
   
   collection_action :autocomplete_liturgical_feast_name, :method => :get
 
@@ -98,7 +99,7 @@ ActiveAdmin.register LiturgicalFeast do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "LiturgicalFeast").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
-  index :download_links => false do
+  index :download_links => [:xml] do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
@@ -130,7 +131,7 @@ ActiveAdmin.register LiturgicalFeast do
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
       row (I18n.t :filter_notes) { |r| r.notes } 
     end
-    active_admin_embedded_source_list( self, liturgical_feast, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, liturgical_feast, !is_selection_mode? )
     active_admin_user_wf( self, liturgical_feast )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?

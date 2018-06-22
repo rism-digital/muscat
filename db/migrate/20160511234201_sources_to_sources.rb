@@ -1,4 +1,4 @@
-class SourcesToSources < ActiveRecord::Migration
+class SourcesToSources < ActiveRecord::Migration[4.2]
   def change
     # People -> Place
     create_table(:sources_to_sources, :id => false) do |t|

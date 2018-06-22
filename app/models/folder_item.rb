@@ -1,4 +1,4 @@
-class FolderItem < ActiveRecord::Base
+class FolderItem < ApplicationRecord
 
   belongs_to :item, polymorphic: true
   belongs_to :folder

@@ -34,14 +34,14 @@ end
     		      </td>
     		      <td>
     			      <h5 class="index_title document-title-heading">
-    			          <%= render_index_field_value document, field: "source_composer_field" %>
+    			          <%= presenter(document).field_value("source_composer_field") %>
     		          </h5>
     		      </td>
     	      </tr>
     	      <tr>
     		      <td>&nbsp;</td>
     		      <td>
-    			      <%= link_to_document document, render_index_field_value(document, field: 'source_title_field'), counter: counter %>
+    			      <%= link_to_document document, presenter(document).field_value('source_title_field'), counter: counter %>
     		      </td>
     	      </tr>
     	      <% if first_match %>

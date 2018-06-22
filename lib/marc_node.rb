@@ -340,7 +340,7 @@ class MarcNode
       rescue => e
         $stderr.puts "MarcNode set_foreign_object error".red
         $stderr.puts e.exception.to_s.blue
-        $stderr.puts "MarcNode tag dummp " + self.parent.to_marc.strip.yellow
+        $stderr.puts "MarcNode tag dump " + self.parent.to_marc.strip.yellow
         $stderr.puts "MarcNode offending or missing tag: " + self.to_marc.yellow
         raise e
       end

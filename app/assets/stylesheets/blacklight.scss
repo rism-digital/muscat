@@ -1,6 +1,12 @@
+@import 'bootstrap-sprockets';
 
-@import 'variables';
-@import 'rism_theme';
 @import 'bootstrap';
+
+@import 'blacklight/blacklight';
+
+// From muscat
+@import 'variables';
+
 @import 'blacklight/blacklight';
 @import 'ekko-lightbox';
+@import 'rism_theme';

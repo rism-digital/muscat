@@ -12,7 +12,7 @@
 # the other standard wf_* fields are not shown.
 # The class provides the same functionality as similar models, see Catalogue
 
-class Institution < ActiveRecord::Base
+class Institution < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
@@ -35,8 +35,8 @@ class Institution < ActiveRecord::Base
   has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
   
   has_and_belongs_to_many :holdings
-  #has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  #has_many :folder_items, as: :item, dependent: :destroy
+  has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   has_and_belongs_to_many :workgroups
   belongs_to :user, :foreign_key => "wf_owner"
   

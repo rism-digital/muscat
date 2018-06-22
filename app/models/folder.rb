@@ -1,7 +1,7 @@
-class Folder < ActiveRecord::Base
+class Folder < ApplicationRecord
   
   has_many :folder_items, :dependent => :delete_all
-  has_many :delayed_jobs, -> { where parent_type: "folder" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_many :delayed_jobs, -> { where parent_type: "folder" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   #after_destroy :remove_links

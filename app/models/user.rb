@@ -1,4 +1,10 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
+
+  if Blacklight::Utils.needs_attr_accessible?
+    attr_accessible :email, :password, :password_confirmation
+  end
+  # Connects this user object to Blacklights Bookmarks.
+  include Blacklight::User
 
   has_and_belongs_to_many :workgroups
   attr_accessible :email, :password, :preference_wf_stage, :password_confirmation if Rails::VERSION::MAJOR < 4
@@ -8,8 +14,9 @@ class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+	# remove :recoverable
   devise :database_authenticatable, 
-         :recoverable, :rememberable, :trackable, :validatable
+         :rememberable, :trackable, :validatable
 
   enum preference_wf_stage: [ :inprogress, :published, :deleted ]
   scope :ordered, -> {
@@ -27,10 +34,8 @@ class User < ActiveRecord::Base
 
   def can_edit?(source)
     if source.is_a? Holding
-      lib = source.institutions.take
       self.workgroups.each do |workgroup|
-        #binding.pry
-        if workgroup.get_institutions.include?(lib)
+        if workgroup.institutions.pluck(:siglum).include?(source.lib_siglum)
           return true
         end
       end

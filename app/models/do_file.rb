@@ -1,2 +1,2 @@
-class DoFile < ActiveRecord::Base
+class DoFile < ApplicationRecord
 end

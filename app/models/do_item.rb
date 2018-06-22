@@ -1,2 +1,2 @@
-class DoItem < ActiveRecord::Base
+class DoItem < ApplicationRecord
 end

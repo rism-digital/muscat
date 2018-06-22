@@ -70,7 +70,6 @@
         values:
         - "individualized" 
         - "not individualized"
-        - "unkown"
         editor_partial: subfield_select
     columns: 4
 "043": 
@@ -199,7 +198,7 @@
     - - j
       - cols: 2
         editor_partial: subfield_select_codes
-        select_label: "Kind of Variant"
+        select_label: "Type of Variant"
     columns: 2
   tag_params:
     codes:
@@ -264,15 +263,6 @@
     fields: 
     - - a
       - cols: 2
-    - - i
-      - cols: 2
-        values:
-        - "profession"
-        - "academic" 
-        - "religion"
-        - "unkown"
-        default: "profession"
-        editor_partial: subfield_select
     columns: 2
 "551": 
   layout: 
@@ -282,7 +272,7 @@
     - - i
       - cols: 2
         editor_partial: subfield_select_codes
-        select_label: "Place"
+        select_label: "Type"
     columns: 2
   tag_params:
     codes:

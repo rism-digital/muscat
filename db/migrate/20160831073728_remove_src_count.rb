@@ -1,4 +1,4 @@
-class RemoveSrcCount < ActiveRecord::Migration
+class RemoveSrcCount < ActiveRecord::Migration[4.2]
   def change
     remove_column :people, :src_count, :integer
 		remove_column :standard_terms, :src_count, :integer

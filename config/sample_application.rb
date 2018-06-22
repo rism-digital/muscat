@@ -93,10 +93,8 @@ module Muscat
     config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", RISM::BASE, '*.{rb,yml}'))]
     
     config.autoload_paths << "#{Rails.root}/lib"
+    config.eager_load_paths << Rails.root.join('lib')
     config.active_job.queue_adapter = :delayed_job
-    
-    config.active_record.raise_in_transactional_callbacks = true
-    
   end
 end
 

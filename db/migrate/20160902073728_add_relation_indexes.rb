@@ -1,4 +1,4 @@
-class AddRelationIndexes < ActiveRecord::Migration
+class AddRelationIndexes < ActiveRecord::Migration[4.2]
   def change
     add_index :folder_items, :folder_id
 		add_index :folder_items, :item_id
