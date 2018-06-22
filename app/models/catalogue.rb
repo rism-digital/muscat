@@ -14,7 +14,7 @@
 # === Relations
 # * many to many with Sources
 
-class Catalogue < ActiveRecord::Base
+class Catalogue < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   resourcify
@@ -30,12 +30,13 @@ class Catalogue < ActiveRecord::Base
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_catalogues")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_catalogues")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_catalogues")
+  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_catalogues")
   has_and_belongs_to_many :people, join_table: "catalogues_to_people"
   has_and_belongs_to_many :institutions, join_table: "catalogues_to_institutions"
   has_and_belongs_to_many :places, join_table: "catalogues_to_places"
   has_and_belongs_to_many :standard_terms, join_table: "catalogues_to_standard_terms"
-  has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "Catalogue" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_many :folder_items, as: :item, dependent: :destroy
+  has_many :delayed_jobs, -> { where parent_type: "Catalogue" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   # This is the forward link
@@ -123,7 +124,7 @@ class Catalogue < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.without_versioning :save
+      paper_trail.without_versioning :save
     end
   end
   
@@ -270,12 +271,13 @@ class Catalogue < ActiveRecord::Base
   
   def check_dependencies
     if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0
+         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
       errors.add :base, %{The catalogue could not be deleted because it is used by
         #{self.referring_sources.count} sources,
         #{self.referring_institutions.count} institutions, 
         #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people}
+        #{self.referring_people.count} people
+        #{self.referring_holdings.count} holdings}
       return false
     end
   end

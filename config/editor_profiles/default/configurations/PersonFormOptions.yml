@@ -70,7 +70,6 @@
         values:
         - "individualized" 
         - "not individualized"
-        - "unkown"
         editor_partial: subfield_select
     columns: 4
 "043": 
@@ -264,15 +263,6 @@
     fields: 
     - - a
       - cols: 2
-    - - i
-      - cols: 2
-        values:
-        - "profession"
-        - "academic" 
-        - "religion"
-        - "unkown"
-        default: "profession"
-        editor_partial: subfield_select
     columns: 2
 "551": 
   layout: 

@@ -263,6 +263,7 @@ en:
   finished: "Finished"
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
+  holding_no_siglum: "Holding without silgum"
   new_holding: "Add holdings"
   new_holding_page: "New holdings information"
   new_digital_object: "Attach a new image"
@@ -270,6 +271,7 @@ en:
   record_status: "Record Status"
   record_owner: "Record Owner"
   record_audit: "Record Origin"
+  basic_level: "Basic record"
   full_level: "Full record"
   #full_level: "Full record, material examined"
   abbreviated_level: "Brief record, material examined"
@@ -634,6 +636,7 @@ en:
     owner_any: "Any"
     quantity: "Display"
     update: "Update"
+    no_items: "No elements to show with the current filters"
   
   # editor validation 
   validation:
@@ -649,7 +652,11 @@ en:
     gross_pitch: "Gross Pitch Contour (Fuzziest match)"
     anchor: "Search only beginning"
     erase: "Erase one note"
-    
+
+  # This is used for the "incipit" seach in the search history in BL
+  # Note the capital 'I'
+  Incipit: "Incipit"
+
   # date:
   # Empty lines for matching line numbers with other translation files  
   #

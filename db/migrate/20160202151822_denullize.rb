@@ -1,4 +1,4 @@
-class Denullize < ActiveRecord::Migration
+class Denullize < ActiveRecord::Migration[4.2]
 
   def self.up
     # Make some values NULLable so import works

@@ -4,7 +4,7 @@ it:
     search_status:
       headline: "Ambito"
       current_filters: "Filtri in uso"
-    dashboard: "LAST WEEK ACTIVITY"
+    dashboard: "Attività della scorsa settimana"
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
       call_to_action: "Per aggiungere sezioni alla dashboard controlla il file 'app/admin/dashboard.rb'"
@@ -79,7 +79,7 @@ it:
       action_label: "%{title}"
       labels:
         destroy: "Elimina"
-        folder: "Crea nuova cartella con gli elementi selezionati"
+        folder: "Crea una nuova cartella con gli elementi selezionati"
         add_to_folder: "Aggiungi gli elementi selezionati ad una cartella esistente"
 
     comments:
@@ -263,6 +263,7 @@ it:
   finished: "Completato"
   lib_siglum: "Sigla della Biblioteca"
   holding_records: "Informazioni sugli esemplari"
+  holding_no_siglum: "Esemplare senza sigla di biblioteca"
   new_holding: "Nuovo Esemplare"
   new_holding_page: "Esemplare non salvato"
   new_digital_object: "Aggiungi una nuova immagine"
@@ -270,6 +271,7 @@ it:
   record_status: "Stato pubblicazione"
   record_owner: "Proprietario"
   record_audit: "Revisione"
+  basic_level: "Record di base"
   full_level: "Record completo"
   #full_level: "Record completo, materiale esaminato"
   abbreviated_level: "Record abbreviato, materiale esaminato"
@@ -494,7 +496,7 @@ it:
   cannot_update_source: "Non sei autorizzato a modificare questo tipo di fonte"
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
   validate_name_uniqness: "Scheda non salvata: il titolo breve '%{term}' è già esistente."
-  validates_parent_id: "RECORD NOT SAVED: PARENT RECORD (773) CANNOT BE SAME AS THIS RECORD"
+  validates_parent_id: "Scheda non salvata: una fonte non può linkare a se stessa (tag 773) "
 
   #
   entry:
@@ -625,15 +627,16 @@ it:
     deleted: "Cancellato"
 
   dashboard:
-    selection: "SELECTION"
-    type: "CHANGE TYPE"
-    type_created: "RECENTLY CREATED"
-    type_updated: "RECENTLY UPDATED"
-    owner: "OWNER"
-    owner_user: "MYSELF"
-    owner_any: "ANY"
-    quantity: "DISPLAY"
-    update: "UPDATE"
+    selection: "Selezione"
+    type: "Tipo"
+    type_created: "Create recentemente"
+    type_updated: "Modificate recentemente"
+    owner: "Proprietario"
+    owner_user: "Io"
+    owner_any: "Chiunque"
+    quantity: "Mostra"
+    update: "Aggiorna"
+    no_items: "Nessun elemento da mostrare con i filtri selezionati"
   
   # editor validation 
   validation:
@@ -649,6 +652,10 @@ it:
     gross_pitch: "Contorno melodico approssimato (ricerca più approssimativa)"
     anchor: "Ricerca solo nell'inizio"
     erase: "Cancella una nota"
+
+  # This is used for the "incipit" seach in the search history in BL
+  # Note the capital 'I'
+  Incipit: "Incipit"
 
   date:
     month_names:

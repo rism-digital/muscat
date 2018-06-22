@@ -222,7 +222,6 @@
       - "fre"
       - "frr"
       - "fry"
-      - "gem"
       - "ger"
       - "gle"
       - "glg"
@@ -701,6 +700,7 @@
       - dub
       - ctb
       - ccp
+      - dst
 "710":
   new_window: institutions
   new_window_field: name_equals
@@ -736,6 +736,7 @@
       - edt
       - oth
       - evp
+      - dst
 "730":
   new_window: standard_titles
   new_window_field: title_equals

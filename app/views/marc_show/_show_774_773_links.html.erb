@@ -11,7 +11,7 @@
 						</th>
 						<td valign="top">
 							<% if opac %>
-								<%= link_to @item.parent_source.id.to_s, catalog_path(@item.parent_source.id.to_s)%>
+								<%= link_to @item.parent_source.id.to_s, solr_document_path(@item.parent_source.id.to_s)%>
 							<% elsif is_selection_mode? %>
 								<%= @item.parent_source.id.to_s%>
 							<% else %>
@@ -36,7 +36,7 @@
 						</th>
 						<td>
 							<% if opac %>
-								<%= link_to child.id.to_s, catalog_path(child.id.to_s)%>
+								<%= link_to child.id.to_s, solr_document_path(child.id.to_s)%>
 							<% elsif is_selection_mode? %>
 								<%= child.id.to_s%>
 							<% else %>

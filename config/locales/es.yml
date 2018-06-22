@@ -4,7 +4,7 @@ es:
 # Pad for italian, it has 2 missing items
 #
 #
-    dashboard: Dashboard # dudoso
+    dashboard: "LAST WEEK ACTIVITY"
     dashboard_welcome:
       welcome: "¡Bienvenidos a Active Admin! Eso es la página dashboard."
       call_to_action: "Para añadir secciones dashboard, checkout app/admin/dashboard'"
@@ -259,6 +259,7 @@ es:
   finished: "Terminando"
   lib_siglum: "Sigla de biblioteca"
   holding_records: "Información del recurso"
+  holding_no_siglum: "HOLDING WITHOUT SILGUM"
   new_holding: "Crear recurso"
   
   jobs:
@@ -590,6 +591,18 @@ es:
     published: "Publicado"
     deleted: "Borrado"
 
+  dashboard:
+    selection: "SELECTION"
+    type: "CHANGE TYPE"
+    type_created: "RECENTLY CREATED"
+    type_updated: "RECENTLY UPDATED"
+    owner: "OWNER"
+    owner_user: "MYSELF"
+    owner_any: "ANY"
+    quantity: "DISPLAY"
+    update: "UPDATE"
+    no_items: "NO ELEMENTS TO SHOW WITH THE CURRENT FILTERS"
+
   # editor validation 
   validation:
     missing_message: "A VALUE IN THIS FIELD IS MANDATORY"
@@ -604,7 +617,11 @@ es:
     gross_pitch: "GROSS PITCH CONTOUR (MORE FUZZY SEARCH)"
     anchor: "SEARCH ONLY BEGINNING"
     erase: "ERASE ONE NOTE"
-   
+
+  # This is used for the "incipit" seach in the search history in BL
+  # Note the capital 'I'
+  Incipit: "Incipit"
+
   # date:
   # Empty lines for matching line numbers with other translation files  
   #

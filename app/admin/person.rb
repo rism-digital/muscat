@@ -7,6 +7,8 @@ ActiveAdmin.register Person do
   
   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
+
   config.sort_order = 'full_name_asc'
   breadcrumb do
     active_admin_muscat_breadcrumb
@@ -153,7 +155,7 @@ ActiveAdmin.register Person do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Person").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
-  index :download_links => false do
+  index :download_links => [:xml] do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|person| status_tag(person.wf_stage,
       label: I18n.t('status_codes.' + (person.wf_stage != nil ? person.wf_stage : ""), locale: :en))} 

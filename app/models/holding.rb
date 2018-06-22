@@ -1,4 +1,4 @@
-class Holding < ActiveRecord::Base
+class Holding < ApplicationRecord
   include ForeignLinks
   resourcify
 
@@ -12,9 +12,13 @@ class Holding < ActiveRecord::Base
 
   has_and_belongs_to_many :institutions
   belongs_to :source
-  has_many :folder_items, :as => :item
+  has_many :folder_items, as: :item, dependent: :destroy
   belongs_to :user, :foreign_key => "wf_owner"
   
+  has_and_belongs_to_many :people, join_table: "holdings_to_people"
+  has_and_belongs_to_many :catalogues, join_table: "holdings_to_catalogues"
+  has_and_belongs_to_many :places, join_table: "holdings_to_places"
+	
   composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
   
   before_save :set_object_fields
@@ -65,14 +69,14 @@ class Holding < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.without_versioning :save
+      paper_trail.without_versioning :save
     end
   end
   
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["institutions"]
+    allowed_relations = ["institutions", "catalogues", "people", "places"]
     recreate_links(marc, allowed_relations)
   end
   

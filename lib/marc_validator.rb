@@ -156,7 +156,6 @@ include ApplicationHelper
         dates = date_to_array(marcsubtag.content, false)
         
         next if dates.count == 0
-        ap dates
         dates.sort!.uniq!
 
         max = min = dates[0].to_i

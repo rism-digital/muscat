@@ -1,2 +1,2 @@
-class DoDivFile < ActiveRecord::Base
+class DoDivFile < ApplicationRecord
 end

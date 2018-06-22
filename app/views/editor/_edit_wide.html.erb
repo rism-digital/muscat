@@ -12,7 +12,7 @@
 
 <%= render :partial => "editor/item_form", :locals => { :render_panel => "marc_editor_panel", :model => rails_model } -%>
 
-<% if @item.respond_to?('paper_trail_enabled_for_model?') %>
+<% if PaperTrail.request.enabled_for_model?(@item.class) %>
 	<%= render :partial => "editor/versions" -%>
 <% end %>
 

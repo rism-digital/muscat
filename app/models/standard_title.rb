@@ -10,11 +10,11 @@
 # Other standard wf_* not shown
 # The other functions are standard, see Catalogue for a general description
 
-class StandardTitle < ActiveRecord::Base
+class StandardTitle < ApplicationRecord
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
-  has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "StandardTitle" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_many :folder_items, as: :item, dependent: :destroy
+  has_many :delayed_jobs, -> { where parent_type: "StandardTitle" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
     
   validates_presence_of :title

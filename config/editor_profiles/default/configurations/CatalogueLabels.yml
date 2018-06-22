@@ -187,16 +187,16 @@ doc_templates:
         en: Type of publication
 "250": 
   label: 
-    it: EDITION STATEMENT
-    fr: EDITION STATEMENT
-    de: EDITION STATEMENT
+    it: Edizione
+    fr: Édition
+    de: Ausgabe
     en: Edition statement
   fields: 
     a: 
       label: 
-        it: EDITION STATEMENT
-        fr: EDITION STATEMENT
-        de: EDITION STATEMENT
+        it: Edizione
+        fr: Édition
+        de: Ausgabe
         en: Edition statement
       comment: "NEW IN 2018"
 "260": 

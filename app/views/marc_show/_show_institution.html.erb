@@ -13,7 +13,7 @@
 	</th>
 	<td>
 		<% if opac %>
-			<%= link_to institution, catalog_index_path(:search_field => "any_field", :q => institution)%>
+			<%= link_to institution,  solr_document_path(:search_field => "any_field", :q => institution)%>
 		<% elsif is_selection_mode?%>
 			<%= institution%>
 		<% else %>

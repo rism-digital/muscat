@@ -29,7 +29,7 @@ ActiveAdmin.register User do
   filter :sign_in_count
   filter :created_at
 
-  index :download_links => false do
+  index :download_links => [:xml] do
     selectable_column
     id_column
     column :name

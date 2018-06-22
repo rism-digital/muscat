@@ -1,11 +1,44 @@
-Muscat::Application.routes.draw do
-  #root :to => "catalog#index"
+Rails.application.routes.draw do
+
+  concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   root :to => redirect(RISM::ROOT_REDIRECT)
+	
+	## TO BE REVISED!
 	get 'catalog/:id/mei' => 'catalog#mei'
 	get 'catalog/geosearch/:id' => 'catalog#geosearch'
   post 'catalog/holding' => 'catalog#holding'
   get "catalog/download_xslt" => 'catalog#download_xslt'
-  blacklight_for :catalog
+  
+	##############################
+	### Blacklight 6 configuration
+
+  mount Blacklight::Engine => '/'
+  mount BlacklightAdvancedSearch::Engine => '/'
+
+
+  concern :searchable, Blacklight::Routes::Searchable.new
+  concern :exportable, Blacklight::Routes::Exportable.new
+
+  resource :catalog, only: [:index], controller: 'catalog' do
+    concerns :searchable
+    concerns :range_searchable
+		concerns :exportable
+
+  end
+
+  resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
+    concerns :exportable
+  end
+
+  resources :bookmarks do
+    concerns :exportable
+
+    collection do
+      delete 'clear'
+    end
+  end
+	
+	##############################
   
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -1,4 +1,4 @@
-class CreateWorksRelations < ActiveRecord::Migration
+class CreateWorksRelations < ActiveRecord::Migration[5.1]
   def change
     create_table :works_to_catalogues do |t|
       t.column :work_id, :integer 

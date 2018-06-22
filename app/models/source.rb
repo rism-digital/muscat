@@ -32,7 +32,7 @@
 
 
 
-class Source < ActiveRecord::Base
+class Source < ApplicationRecord
   
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -63,7 +63,7 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
   has_and_belongs_to_many :works, join_table: "sources_to_works"
-  has_many :folder_items, :as => :item
+  has_many :folder_items, as: :item, dependent: :destroy
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
@@ -94,7 +94,7 @@ class Source < ActiveRecord::Base
 	after_initialize :after_initialize
   after_save :update_links, :reindex
   before_destroy :update_links_for_destroy
-  
+
   validate :validates_parent_id
 
   attr_accessor :suppress_reindex_trigger
@@ -155,7 +155,7 @@ class Source < ActiveRecord::Base
     suppress_update_77x
     update_links
   end
-  
+
   # Suppresses the solr reindex
   def suppress_reindex
     self.suppress_reindex_trigger = true
@@ -165,8 +165,6 @@ class Source < ActiveRecord::Base
     return if self.suppress_reindex_trigger == true
     self.index
   end
-
-  
 
   searchable :auto_index => false do |sunspot_dsl|
    sunspot_dsl.integer :id

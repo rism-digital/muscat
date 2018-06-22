@@ -1,4 +1,4 @@
-class CreateStandardTitles < ActiveRecord::Migration
+class CreateStandardTitles < ActiveRecord::Migration[4.2]
   def self.up
     create_table(:standard_titles, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8') do |t|
     

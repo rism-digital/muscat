@@ -253,7 +253,7 @@
     :occurrences: "+"
     :fields:
     - - a
-      - :occurrences: "1"
+      - :occurrences: "*"
     - - b
       - :occurrences: "1"
     - - c

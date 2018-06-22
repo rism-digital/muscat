@@ -1,4 +1,4 @@
-class ChangeDataTypeForNotes < ActiveRecord::Migration
+class ChangeDataTypeForNotes < ActiveRecord::Migration[4.2]
   def self.up
     change_column :liturgical_feasts, :notes, :text
     change_column :places, :notes, :text

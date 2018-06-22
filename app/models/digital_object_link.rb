@@ -1,4 +1,4 @@
-class DigitalObjectLink < ActiveRecord::Base
+class DigitalObjectLink < ApplicationRecord
   
     belongs_to :digital_object
     belongs_to :object_link, polymorphic: true

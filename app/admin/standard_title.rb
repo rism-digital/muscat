@@ -6,10 +6,11 @@ ActiveAdmin.register StandardTitle do
 
   # Remove mass-delete action
   batch_action :destroy, false
-  
+ 
   # Remove all action items
   config.clear_action_items!
-  
+  config.per_page = [10, 30, 50, 100]
+
   collection_action :autocomplete_standard_title_title, :method => :get
 
   breadcrumb do
@@ -104,7 +105,7 @@ ActiveAdmin.register StandardTitle do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "StandardTitle").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
-  index :download_links => false do
+  index :download_links => [:xml] do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_title), :title

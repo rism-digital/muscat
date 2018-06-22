@@ -21,7 +21,7 @@ RSpec.describe Admin::SourcesController, :type => :controller, solr: true do
     FactoryBot.create(:standard_title) 
     FactoryBot.create(:standard_term) 
     it "creates record" do
-      expect { post :create, :source => FactoryBot.build(:manuscript_source).attributes.except("wf_audit", "wf_stage") }.to change(Source, :count).by(1)
+      expect { post :create, :params => FactoryBot.build(:manuscript_source).attributes.except("wf_audit", "wf_stage") }.to change(Source, :count).by(1)
     end
   end
 
