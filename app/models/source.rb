@@ -191,7 +191,23 @@ class Source < ApplicationRecord
     sunspot_dsl.string :composer_order do |s|
       s.composer == "" ? nil : s.composer
     end
-    sunspot_dsl.text :composer, :stored => true
+    
+    sunspot_dsl.text :composer, stored: true do |s|
+      "" if s.composer.empty?
+      
+      begin
+        tag = s.marc.first_occurance("100", "0")
+      rescue ActiveRecord::RecordNotFound
+        s.composer
+      end
+
+      if tag && tag.foreign_object && tag.foreign_object.alternate_names
+        s.composer + "\n" + tag.foreign_object.alternate_names
+      end
+        
+      s.composer
+    end
+    
     sunspot_dsl.text :composer_d
         
     sunspot_dsl. string :title, as: "title_order_s" #do |s|
@@ -245,16 +261,20 @@ class Source < ApplicationRecord
       lat = 0
       lon = 0
       
-      lib = s.marc.first_occurance("852")
-      if lib && lib.foreign_object
-        lib_marc = lib.foreign_object.marc
-        lib_marc.load_source false
+      begin
+        lib = s.marc.first_occurance("852")
+        if lib && lib.foreign_object
+          lib_marc = lib.foreign_object.marc
+          lib_marc.load_source false
         
-        lat = lib_marc.first_occurance("034", "f")
-        lon = lib_marc.first_occurance("034", "d")
+          lat = lib_marc.first_occurance("034", "f")
+          lon = lib_marc.first_occurance("034", "d")
     
-        lat = (lat && lat.content) ? lat.content : 0
-        lon = (lon && lon.content) ? lon.content : 0
+          lat = (lat && lat.content) ? lat.content : 0
+          lon = (lon && lon.content) ? lon.content : 0
+        end
+      rescue ActiveRecord::RecordNotFound
+        puts "Could not load marc for coordinates"
       end
       
       Sunspot::Util::Coordinates.new(lat, lon)
