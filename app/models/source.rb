@@ -202,10 +202,12 @@ class Source < ApplicationRecord
       end
 
       if tag && tag.foreign_object && tag.foreign_object.alternate_names
+				ap 'ANSELMO'
+				ap tag.foreign_object.alternate_names
         s.composer + "\n" + tag.foreign_object.alternate_names
+			else
+				s.composer
       end
-        
-      s.composer
     end
     
     sunspot_dsl.text :composer_d
