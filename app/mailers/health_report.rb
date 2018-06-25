@@ -11,7 +11,7 @@ class HealthReport < ApplicationMailer
     path = Rails.root.join('public', "validation.html")
 
     ## Bush fix!!
-    ##File.open(path, "w") { |file| file.write(render(partial: "health_report/validation.html.erb")) }
+    File.open(path, "w") { |file| file.write(render(partial: "health_report/validation.html.erb")) }
 
     mail(to: RISM::NOTIFICATION_EMAIL,
       name: "Muscat Admin Notificator",
