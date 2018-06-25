@@ -16,3 +16,26 @@ Message: <%= @message %>
 </table>
 
 <p>
+  
+<%@validations.each do |id, errors|%>
+<b>Validation Result for: <a href="https://muscat.rism.info/admin/sources/<%=id%>"><%=id%></a></b>
+  <table>
+  <% errors.each do |tag, subtags| %>
+    <% subtags.each do |subtag, messages|  %>
+      <% messages.each do |message|  %>
+      <tr>
+        <td><strong><%= tag %></strong></td>
+        <td><%= subtag %></td>
+        <td><i><%= message %></i></td>
+      </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+  </table>
+<% end %>
+
+<p>
+
+<%@foreign_tag_errors.each do |ferror|%>
+  <%=ferror%><br>
+<%end%>

@@ -1,4 +1,5 @@
 require 'stringio'
+require 'set'
 class LogModelErrorsJob < ApplicationJob
   queue_as :default
   
@@ -61,11 +62,12 @@ class LogModelErrorsJob < ApplicationJob
       total_validations.merge!(r[:validations])
     end
     
-    end_time = Time.now
+    foreign_tag_errors = extract_foreign_errors!(total_validations)
     
+    end_time = Time.now
     message = "Source report started at #{begin_time.to_s}, (#{end_time - begin_time} seconds run time)"
     
-    HealthReport.notify("Source", message, total_errors, total_validations).deliver_now
+    HealthReport.notify("Source", message, total_errors, total_validations, foreign_tag_errors).deliver_now
     
   end
   
@@ -83,6 +85,29 @@ class LogModelErrorsJob < ApplicationJob
       puts e.message
     end
     
+  end
+  
+  def extract_foreign_errors!(validations)
+    foreign_tag_errors = Set.new
+    
+    validations.delete_if do |id, errors|
+      errors.delete_if do |tag, subtags|
+        subtags.delete_if do |subtag, messages|
+          messages.delete_if do |message|
+            if message.include?("foreign-tag: different unresolved value:")
+              # Keep the error but make the message smaller
+              foreign_tag_errors.add(tag + subtag + " " + message.gsub("foreign-tag: different unresolved value:", "old val:"))
+              true
+            end
+          end
+          true if messages.length == 0
+        end
+        true if subtags.length == 0
+      end
+      true if errors.length == 0
+    end
+    
+    foreign_tag_errors.to_a
   end
   
 end
