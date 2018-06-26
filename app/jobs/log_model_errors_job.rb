@@ -94,7 +94,8 @@ class LogModelErrorsJob < ApplicationJob
       errors.delete_if do |tag, subtags|
         subtags.delete_if do |subtag, messages|
           messages.delete_if do |message|
-            if message.include?("foreign-tag: different unresolved value:")
+            if message.include?("foreign-tag: different unresolved value:") ||
+              message.include?("foreign-tag: tag not present in unresolved")
               # Keep the error but make the message smaller
               foreign_tag_errors.add(tag + subtag + " " + message.gsub("foreign-tag: different unresolved value:", "old val:"))
               true
