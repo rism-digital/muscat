@@ -68,6 +68,7 @@ class Ability
         (link.object_link.wf_owner == user.id) or (link.wf_owner == user.id)
       end
       can [:manage], Folder, :wf_owner => user.id
+			cannot [:publish, :unpublish, :reindex], Folder
       can [:read, :create], ActiveAdmin::Comment
       can [:destroy, :update], ActiveAdmin::Comment, :author_id => user.id
       can [:read, :create], Source
