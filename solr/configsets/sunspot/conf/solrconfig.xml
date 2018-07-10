@@ -653,6 +653,8 @@
     -->
   <searchComponent name="terms" class="solr.TermsComponent"/>
 
+<queryParser name="incipit" class="org.rismch.MusicIncipitQParserPlugin"></queryParser>
+
   <!-- A request handler for demonstrating the terms component -->
   <requestHandler name="/terms" class="solr.SearchHandler" startup="lazy">
      <lst name="defaults">
