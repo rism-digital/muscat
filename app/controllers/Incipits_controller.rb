@@ -30,7 +30,8 @@ class IncipitsController < ApplicationController
     # items to show per page, each number in the array represent another option to choose from.
     config.per_page = [10,20,50,100]
     config.default_per_page = 20
-    config.max_per_page = 20000000
+    config.max_per_page = 20
+    config.search_builder_class = IncipitSearchBuilder
 
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SolrHelper#solr_doc_params) or 
     ## parameters included in the Blacklight-jetty document requestHandler.
@@ -47,13 +48,14 @@ class IncipitsController < ApplicationController
 
     # solr field configuration for search results/index views
     config.index.title_field = 'id'
-    #config.index.display_type_field = 'id'
+    config.index.display_type_field = 'id'
     # call out own partial index_header_rism_default
     # it could be called just index_header_default but this
     # way it implyies that it is customized
-   # config.index.partials = [:index_header_rism]
-    #config.add_index_field 'source_title_field',   :accessor => 'source_index_description'
-    #config.add_index_field 'source_composer_field',   :accessor => 'source_index_composer'
+    #config.index.partials = [:index_header]
+    config.add_index_field 'composer_ss', label: :filter_composer
+    config.add_index_field 'title_ss', label: :filter_title
+    config.add_index_field 'lib_siglum_ss', label: :lib_siglum
 
     # solr field configuration for document/show views
     #config.show.title_field = 'title_display'
@@ -79,7 +81,7 @@ class IncipitsController < ApplicationController
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
 
-    #config.add_facet_field 'title_order', :label => 'Standard Title', :single => true
+    #config.add_facet_field 'lib_siglum_ss', :label => 'Composer'
     #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     #config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
     #config.add_facet_field 'lc_1letter_facet', :label => 'Call Number' 
@@ -158,9 +160,9 @@ class IncipitsController < ApplicationController
     #end
    
     
-    config.add_search_field("pae") do |field|
+    config.add_search_field("id") do |field|
       field.label = "Incipit"
-      field.solr_parameters = { :qf => "pae" }
+      field.solr_parameters = { :qf => "id" }
     end
 
     # "sort results by" select (pulldown)

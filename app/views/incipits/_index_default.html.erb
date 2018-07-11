@@ -1,7 +1,12 @@
+<%
+	id = document.first(:id)
+	pae = document.first(:pae_texts)
+	image_render_div = "incipit_#{id.gsub(' ', '').gsub('.', '')}"
+%>
 <% doc_presenter = index_presenter(document) %> 
 <%# default partial to display solr document fields in catalog index view -%>
 <dl class="document-metadata dl-horizontal dl-invert">
-  
+
   <% index_fields(document).each do |field_name, field| -%>
     <% if should_render_index_field? document, field %>
 	    <dt class="blacklight-<%= field_name.parameterize %>"><%= render_index_field_label document, field: field_name %></dt>
@@ -10,3 +15,12 @@
   <% end -%>
 
 </dl>
+
+<div id="<%= image_render_div %>"></div>
+
+<script>
+
+	pae = <%=pae.to_json.html_safe%>
+	render_music(pae, 'pae', $("#" + "<%=image_render_div%>"));
+
+</script>

@@ -1,14 +1,14 @@
 require 'progress_bar'
 
-
 @parallel_jobs = 10
 @all_src = Source.all.count
 @limit = @all_src / @parallel_jobs
 
-results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
-	offset = @limit * jobid
+pb = ProgressBar.new(@limit)
 
-	#pb = ProgressBar.new(@limit)
+results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
+
+	offset = @limit * jobid
 	solr = RSolr.connect :url => 'http://localhost:8982/solr/development/'
 
 	Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
@@ -39,9 +39,12 @@ results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobi
 			solr.add(
 				id: "Incipit #{source.id} #{pae_nr}",
 				incipit_source_i: source.id,
-				pae: s)
+				composer_ss: source.composer,
+				title_ss: source.title,
+				lib_siglum_ss: source.lib_siglum,
+				pae_texts: s)
       
 		end
-		#pb.increment!
+		pb.increment! if jobid == 0
 	end
 end

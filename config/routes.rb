@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
 	resources :incipits, only: %i[index show] do
 	      concerns :exportable
+		    concerns :searchable
+		    concerns :range_searchable
 	end
 
 

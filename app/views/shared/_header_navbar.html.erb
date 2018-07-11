@@ -32,7 +32,22 @@
     </div>
   </div>
 </div>
-<% if request.path != "/advanced" %>
+<% if request.path == "/advanced" || request.path == '/incipits' %>
+
+<div id="search-navbar" class="navbar navbar-default navbar-static-top advanced" role="navigation">
+    <div class="container"> 
+        <div class="col-md-12 search-navbar-right">
+            <div class="search-navbar-locale pull-right">
+                <%- RISM::LOCALES.each do |l| %>
+                <a href="?locale=<%= l[0] -%>"><%= l[1].html_safe -%></a>
+                <%- end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% else %>
+
 <div id="search-navbar" class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
         <div class="col-md-3 hidden-sm hidden-xs search-navbar-logo">
@@ -50,16 +65,6 @@
         </div>
     </div>
 </div>
-<% else %>
-<div id="search-navbar" class="navbar navbar-default navbar-static-top advanced" role="navigation">
-    <div class="container"> 
-        <div class="col-md-12 search-navbar-right">
-            <div class="search-navbar-locale pull-right">
-                <%- RISM::LOCALES.each do |l| %>
-                <a href="?locale=<%= l[0] -%>"><%= l[1].html_safe -%></a>
-                <%- end %>
-            </div>
-        </div>
-    </div>
-</div>
+
+
 <% end %>
