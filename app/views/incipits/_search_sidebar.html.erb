@@ -14,6 +14,9 @@
 		<%= text_field_tag :q, params[:q], placeholder: t('blacklight.search.form.search.placeholder'), class: "search_q q form-control", id: "q", autofocus: should_autofocus_on_search_box?, data: { autocomplete_enabled: autocomplete_enabled?, autocomplete_path: blacklight.suggest_index_path }  %>
 	</div>
 
+<!-- Remember to include jquery-ui in the blacklight ad application css -->
+<!-- autocomplete_field_tag :q, params[:q], autocomplete_source_id_admin_sources_path, {class: "search_q q form-control"} -->
+
 	<div class="top-panel-heading panel-heading">
 		<h2 class='facets-heading'>
 			Matching Method
@@ -33,7 +36,7 @@
 					
 					<fieldset id="pitch">
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="pitch" id="pitch" value="pi2" <%= "checked" if params.include?("pitch") && params[:pitch] == "pi2"%> >
+							<input class="form-check-input" type="radio" name="pitch" id="pitch" value="pi2" <%= "checked" if params.include?("pitch") && params[:pitch] == "pi2" || !params.include?("pitch")  %> >
 							<label class="form-check-label" for="pi2">
 								Exact pitch
 							</label>
@@ -67,7 +70,7 @@
 					
 					<fieldset id="duration">
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="duration" id="duration" value="dur0" <%= "checked" if params.include?("duration") && params[:duration] == "dur0"%> >
+							<input class="form-check-input" type="radio" name="duration" id="duration" value="dur0" <%= "checked" if params.include?("duration") && params[:duration] == "dur0" || !params.include?("duration") %> >
 							<label class="form-check-label" for="dur0">
 								None
 							</label>
@@ -101,7 +104,7 @@
 					
 					<fieldset id="metric">
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="metric" id="metric" value="mw0" <%= "checked" if params.include?("metric") && params[:metric] == "mw0"%> >
+							<input class="form-check-input" type="radio" name="metric" id="metric" value="mw0" <%= "checked" if params.include?("metric") && params[:metric] == "mw0"  || !params.include?("metric") %> >
 							<label class="form-check-label" for="mw0">
 								None
 							</label>
@@ -126,18 +129,35 @@
 			
 	</div>
 		
-    <span class="input-group-btn">
-      <button type="submit" class="btn btn-primary search-btn" id="search">
-        <span class="submit-search-text">Search</span>
+    <span class="pull-right">
+      <button type="submit" class="btn btn-primary search-btn" id="search" onclick="block_match();">
+        <span class="submit-search-text">Match</span>
         <span class="glyphicon glyphicon-search"></span>
-      </button>
-      <button type="clear" class="btn btn-primary" id="clear">
-        <span class="submit-search-text">Clear</span>
-        <span class="glyphicon glyphicon-clear"></span>
       </button>
     </span>
 		
 </div>
 <%end%>
+
+<script>
+	// FIXME
+	// Remember to put this function in a separate file
+	// when the autocomplete ajax is implemented
+	function block_match() {
+		$('#blockable_content').block({ css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff',
+						top: '100px'
+        },
+				centerY: 0,
+				message: "Matching in progress..."
+			 }); 
+	}
+</script>
 
 <%= render 'facets' %>

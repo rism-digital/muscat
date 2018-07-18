@@ -7,6 +7,51 @@ class IncipitsController < ApplicationController
   include Blacklight::Catalog
 	include Blacklight::Configurable
   
+  # FIXME for the autocomplete when needed
+  #autocomplete :incipits, :id
+  
+  def info
+    incipits = {}
+    source = nil
+    begin
+      source = Source.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    end
+    
+    if source
+      source.marc.each_by_tag("031") do |t|
+            
+        subtags = [:a, :b, :c, :g, :n, :o, :p]
+        vals = {}
+      
+        subtags.each do |st|
+          v = t.fetch_first_by_tag(st)
+          vals[st] = v && v.content ? v.content : "0"
+        end
+
+        next if vals[:p] == "0"
+
+        pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
+      
+        s = "@start:#{pae_nr}\n";
+        s = s + "@clef:#{vals[:g]}\n";
+        s = s + "@keysig:#{vals[:n]}\n";
+        s = s + "@key:\n";
+        s = s + "@timesig:#{vals[:o]}\n";
+        s = s + "@data:#{vals[:p]}\n";
+        s = s + "@end:#{pae_nr}\n"
+      
+        incipits[pae_nr] = s
+      end
+    end
+    
+    respond_to do |format|
+      format.json { render json: incipits.to_json }
+      format.html { render json: incipits.to_json }
+    end
+    
+  end
+  
   configure_blacklight do |config|
     # default advanced config values
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
@@ -81,7 +126,7 @@ class IncipitsController < ApplicationController
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
 
-    #config.add_facet_field 'lib_siglum_ss', :label => 'Composer'
+    #config.add_facet_field 'composer_ss', :label => 'Composer'
     #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     #config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
     #config.add_facet_field 'lc_1letter_facet', :label => 'Call Number' 

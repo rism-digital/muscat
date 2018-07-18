@@ -8,7 +8,10 @@ Rails.application.routes.draw do
 	get 'catalog/geosearch/:id' => 'catalog#geosearch'
   post 'catalog/holding' => 'catalog#holding'
   get "catalog/download_xslt" => 'catalog#download_xslt'
-  
+  ## For the incipit info, not yet used
+  #get "incipits/info" => 'incipits#info'
+  #get 'incipits/autocomplete_incipits_id' => 'incipits#autocomplete_incipits_id'
+
 	##############################
 	### Blacklight 6 configuration
 
