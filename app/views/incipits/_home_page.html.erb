@@ -1,1 +1,163 @@
-ciao
+<%= form_tag search_action_url, method: :get, class: 'search-query-form clearfix', role: 'search' do %>
+<div id="incipit-search" class="facets sidenav">
+
+<%= hidden_field_tag :search_field, search_fields.first.last %>
+
+	<div class="top-panel-heading panel-heading">
+		<h2 class='facets-heading'>
+			Match to RISM ID
+		</h2>
+	</div>
+
+	<div id="facet-panel-collapse" class="collapse panel-group">
+		<label for="q" class="sr-only">RISM ID and Incipit Number</label>
+		<%= text_field_tag :q, params[:q], placeholder: t('blacklight.search.form.search.placeholder'), class: "search_q q form-control", id: "q", autofocus: should_autofocus_on_search_box?, data: { autocomplete_enabled: autocomplete_enabled?, autocomplete_path: blacklight.suggest_index_path }  %>
+	</div>
+
+<!-- Remember to include jquery-ui in the blacklight ad application css -->
+<!-- autocomplete_field_tag :q, params[:q], autocomplete_source_id_admin_sources_path, {class: "search_q q form-control"} -->
+
+	<div class="top-panel-heading panel-heading">
+		<h2 class='facets-heading'>
+			Matching Method
+		</h2>
+	</div>
+
+	<div id="facet-panel-collapse" class="collapse panel-group">
+
+		<div class="panel panel-default ">
+			<div class="-toggle panel-heading ">
+				<h5 class="panel-title facet-field-heading">
+					Pitch Matching Method
+				</h5>
+			</div>
+			<div id="facet-std_title_order_s" class="facet-content" >
+				<div class="panel-body">
+					
+					<fieldset id="pitch">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="pitch" id="pitch" value="pi2" <%= "checked" if params.include?("pitch") && params[:pitch] == "pi2" || !params.include?("pitch")  %> >
+							<label class="form-check-label" for="pi2">
+								Exact pitch
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="pitch" id="pitch" value="pi3" <%= "checked" if params.include?("pitch") && params[:pitch] == "pi3"%> >
+							<label class="form-check-label" for="pi3">
+								Zigzag pitch
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="pitch" id="pitch" value="pi1" <%= "checked" if params.include?("pitch") && params[:pitch] == "pi1"%> >
+							<label class="form-check-label" for="pi1">
+								Kranenburg Pitch
+							</label>
+						</div>
+					</fieldset>
+
+				</div>
+			</div>
+		</div>
+			
+		<div class="panel panel-default ">
+			<div class="-toggle panel-heading">
+				<h5 class="panel-title facet-field-heading">
+					Duration Matching Method
+				</h5>
+			</div>
+			<div id="facet-std_title_order_s" class="facet-content" >
+				<div class="panel-body">
+					
+					<fieldset id="duration">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="duration" id="duration" value="dur0" <%= "checked" if params.include?("duration") && params[:duration] == "dur0" || !params.include?("duration") %> >
+							<label class="form-check-label" for="dur0">
+								None
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="duration" id="duration" value="dur1" <%= "checked" if params.include?("duration") && params[:duration] == "dur1"%> >
+							<label class="form-check-label" for="dur1">
+								Fixed
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="duration" id="duration" value="dur2" <%= "checked" if params.include?("duration") && params[:duration] == "dur2"%> >
+							<label class="form-check-label" for="dur2">
+								Scaled
+							</label>
+						</div>
+					</fieldset>
+
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel panel-default ">
+			<div class="-toggle panel-heading">
+				<h5 class="panel-title facet-field-heading">
+					Metric Wheight
+				</h5>
+			</div>
+			<div id="facet-std_title_order_s" class="facet-content" >
+				<div class="panel-body">
+					
+					<fieldset id="metric">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="metric" id="metric" value="mw0" <%= "checked" if params.include?("metric") && params[:metric] == "mw0"  || !params.include?("metric") %> >
+							<label class="form-check-label" for="mw0">
+								None
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="metric" id="metric" value="mw1" <%= "checked" if params.include?("metric") && params[:metric] == "mw1"%> >
+							<label class="form-check-label" for="mw1">
+								Weight pitch
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="metric" id="metric" value="mw2" <%= "checked" if params.include?("metric") && params[:metric] == "mw2"%> >
+							<label class="form-check-label" for="mw2">
+								Combine with pitch
+							</label>
+						</div>
+					</fieldset>
+
+				</div>
+			</div>
+		</div>	
+			
+	</div>
+		
+    <span class="pull-right">
+      <button type="submit" class="btn btn-primary search-btn" id="search" onclick="block_match();">
+        <span class="submit-search-text">Match</span>
+        <span class="glyphicon glyphicon-search"></span>
+      </button>
+    </span>
+		
+</div>
+<%end%>
+
+<script>
+	// FIXME
+	// Remember to put this function in a separate file
+	// when the autocomplete ajax is implemented
+	function block_match() {
+		$('#blockable_content').block({ css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff',
+						top: '100px'
+        },
+				centerY: 0,
+				message: "Matching in progress..."
+			 }); 
+	}
+</script>
+
+<%= render 'facets' %>
