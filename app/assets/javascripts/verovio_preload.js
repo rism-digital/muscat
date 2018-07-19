@@ -67,4 +67,5 @@ function render_music( music, format, target, width ) {
 	svg = vrvToolkit.renderToSVG(1, {});
 	
 	$(target).html(svg);
+	$(".search-btn").show();
 };

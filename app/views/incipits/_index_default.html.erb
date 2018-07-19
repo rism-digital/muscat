@@ -1,6 +1,7 @@
 <%
 	id = document.first(:id)
 	pae = document.first(:pae_texts)
+	query_str = id.gsub("Incipit ", "")
 	image_render_div = "incipit_#{id.gsub(' ', '').gsub('.', '')}"
 %>
 <% doc_presenter = index_presenter(document) %> 
@@ -16,15 +17,23 @@
 
 </dl>
 
-<div id="<%= image_render_div %>">
-	
-        <span><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Rendering Incipit...</span>
+<table><tr class="row">
 
-</div>
+<td>
+	<div id="<%= image_render_div %>" class="inline">
+		<span><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Rendering Incipit...</span>
+	</div>
+</td>
+
+<td style="text-align:center;vertical-align:middle">
+	<%= link_to incipits_path(search_field: :id, q: query_str), {class: "btn btn-default search-btn", onclick: "block_match();", style: "display: none"} do %>
+	        <span class="glyphicon glyphicon-search"></span>
+	<%end%>
+</td>
+
+</tr></table>
 
 <script>
-
 	pae = <%=pae.to_json.html_safe%>
 	render_music(pae, 'pae', $("#" + "<%=image_render_div%>"));
-
 </script>
