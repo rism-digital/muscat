@@ -278,7 +278,7 @@ class Catalogue < ApplicationRecord
         #{self.referring_catalogues.count} catalogues and 
         #{self.referring_people.count} people
         #{self.referring_holdings.count} holdings}
-      return false
+      throw :abort
     end
   end
 

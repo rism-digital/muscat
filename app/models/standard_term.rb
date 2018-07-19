@@ -76,7 +76,7 @@ class StandardTerm < ApplicationRecord
         #{self.referring_sources.count} sources,
         #{self.referring_institutions.count} institutions and 
         #{self.referring_catalogues.count} catalogues}
-      return false
+      throw :abort
     end
   end
   
