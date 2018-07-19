@@ -627,7 +627,7 @@ en:
     deleted: "Deleted"
   
   dashboard:
-    selection: "Select Recent Activity"
+    selection: "Select recent activity"
     type: "Change type"
     type_created: "Recently created"
     type_updated: "Recently updated"
