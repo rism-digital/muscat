@@ -15,14 +15,16 @@
 		:ungrouped_tags => group_config["ungrouped_tags"]
 	} -%>
 
-	<% unless group_config["admin_only"] and not (current_user && current_user.has_any_role?(:editor, :admin)) -%>
-		<%= render :partial => (group_config["template"] && !@diff ? group_config["template"] : "marc/show_group" ), 
-			:locals => { 
-				:item => @item, 
-				:group => group, 
-				:opac => opac_resolved,
-				:holdings => holdings_resolved } %>
-	<% end -%>
+	<% next if group_config["admin_only"] && !(current_user && current_user.has_any_role?(:editor, :admin)) %>
+	<% next if group_config["admin_only"] && opac_resolved %>
+
+	<%= render :partial => (group_config["template"] && !@diff ? group_config["template"] : "marc/show_group" ), 
+		:locals => { 
+			:item => @item, 
+			:group => group, 
+			:opac => opac_resolved,
+			:holdings => holdings_resolved } %>
+				
 <%- end -%>
 
 <% if @item.class == Source && @item.holdings.count > 0 %>
