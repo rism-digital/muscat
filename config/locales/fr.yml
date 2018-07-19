@@ -263,7 +263,7 @@ fr:
   finished: "Achevé"
   lib_siglum: "Sigle de bibliothèque"
   holding_records: "Copie"
-  holding_no_siglum: "HOLDING WITHOUT SILGUM"
+  holding_no_siglum: "Copie sans cote"
   new_holding: "Ajouter une copie"
   new_holding_page: "Copie non enregistré"
   new_digital_object: "Attacher une nouvelle image"
@@ -415,7 +415,7 @@ fr:
   filter_person_100d_deathdate: "Date de décès"
   filter_phone: "Téléphone"
   filter_place: "Endroit"
-  filter_place_of_publication: "PLACE OF PUBLICATION"
+  filter_place_of_publication: "Lieu de publication"
   filter_provenance: "Provenance"
   filter_record_type: "Template Type"
   filter_record_type_short: "Type"
@@ -439,7 +439,7 @@ fr:
   filter_title: "Titre"
   filter_titles: "Titres"
   filter_title_on_ms: "Titre diplomatique"
-  filter_title_short: "SHORT TITLE"
+  filter_title_short: "Titre court"
   filter_topic: "Sujet"
   filter_sub_topic: "Sujet secondaire"
   filter_url: "Adresse Internet"
@@ -495,8 +495,8 @@ fr:
   ungrouped_tags: "Ce titre contient des champs non groupés"
   cannot_update_source: "Vous n'êtes pas autorisé à traiter ce type de source"
   cannot_create_source: "Vous n'êtes pas autorisé à créer ce type de source" 
-  validate_name_uniqness: "Record non enregistré: le titre abrégé existe déjà ('%{term}')."
-  validates_parent_id: "RECORD NOT SAVED: PARENT RECORD (773) CANNOT BE SAME AS THIS RECORD"
+  validate_name_uniqness: "Titre non sauvé: le titre abrégé existe déjà ('%{term}')."
+  validates_parent_id: "Titre non sauvé: le titre parent (773) ne peut pas être identique."
 
   #
   entry:
@@ -637,7 +637,7 @@ fr:
     owner_any: "N'importe quel utilisateur"
     quantity: "Afficher"
     update: "Mettre à jour"
-    no_items: "NO ELEMENTS TO SHOW WITH THE CURRENT FILTERS"
+    no_items: "Aucun élément avec le fitre sélectionné"
   
   # editor validation 
   validation:
