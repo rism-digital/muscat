@@ -4,7 +4,7 @@ fr:
 # Pad for italian, it has 2 missing items
 #
 #
-    dashboard: "Activité de la semaine dernière"
+    dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
       call_to_action: "Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboard.rb'"
@@ -628,7 +628,7 @@ fr:
 
   
   dashboard:
-    selection: "Sélection"
+    selection: "Sélection de l'activité récente"
     type: "Type de modifications"
     type_created: "Créé récemment"
     type_updated: "Modifié récemment"
