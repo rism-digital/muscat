@@ -4,7 +4,7 @@ it:
     search_status:
       headline: "Ambito"
       current_filters: "Filtri in uso"
-    dashboard: "Attività della scorsa settimana"
+    dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
       call_to_action: "Per aggiungere sezioni alla dashboard controlla il file 'app/admin/dashboard.rb'"
@@ -627,7 +627,7 @@ it:
     deleted: "Cancellato"
 
   dashboard:
-    selection: "Selezione"
+    selection: "Selezione attività recenti"
     type: "Tipo"
     type_created: "Create recentemente"
     type_updated: "Modificate recentemente"

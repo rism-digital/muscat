@@ -1,3 +1,6 @@
 <% render_panel = params[:marc_editor_dest] %>
+<%- 
+	holdings_resolved = holdings rescue holdings_resolved = false 
+-%>	
 
-$('#<%= render_panel %>').html("<%= escape_javascript(render(:partial =>  "marc/show", :locals => { :opac => opac } )) -%>");
+$('#<%= render_panel %>').html("<%= escape_javascript(render(:partial =>  "marc/show", :locals => { :opac => opac, :holdings => holdings_resolved } )) -%>");

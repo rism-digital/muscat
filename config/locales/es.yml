@@ -4,7 +4,7 @@ es:
 # Pad for italian, it has 2 missing items
 #
 #
-    dashboard: "LAST WEEK ACTIVITY"
+    dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "¡Bienvenidos a Active Admin! Eso es la página dashboard."
       call_to_action: "Para añadir secciones dashboard, checkout app/admin/dashboard'"

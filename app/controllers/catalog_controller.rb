@@ -129,7 +129,7 @@ class CatalogController < ApplicationController
     
     @editor_profile = EditorConfiguration.get_show_layout @item
     
-    render :template => 'marc_show/show_preview', :locals => { :opac => opac }
+    render :template => 'marc_show/show_preview', :locals => { :opac => opac, :holdings => true }
   end
   
   def download_xslt
