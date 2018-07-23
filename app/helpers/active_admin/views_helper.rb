@@ -239,7 +239,6 @@ module ActiveAdmin::ViewsHelper
 	
   def dashboard_find_recent(model, limit, modification, user, days = 7) 
     modif_at = modification.to_s + "_at"
-    puts modification.to_s, modif_at
     if user != -1
       model.where((modif_at + " > ?"), days.days.ago).where("wf_owner = ?", user).limit(limit).order(modif_at + " DESC")
     else
