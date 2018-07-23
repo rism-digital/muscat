@@ -1,4 +1,4 @@
-<%= form_tag("dashboard", method: "get") do %>
+<%= form_tag(admin_dashboard_path, method: "get") do %>
   <% ["source", "person", "catalogue", "institution"].each do |model|=%>
     <label class="label">
 		<h5 style="margin-bottom: 0.5em"><%= I18n.t("activerecord.models." + model, count: 2) %></h5>
