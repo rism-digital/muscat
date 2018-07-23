@@ -286,19 +286,19 @@ class Source < ApplicationRecord
   def check_dependencies
     if (self.child_sources.count > 0)
       errors.add :base, "The source could not be deleted because it has #{self.child_sources.count} child source(s)"
-      return false
+      throw :abort
     end
     if (self.digital_objects.count > 0)
       errors.add :base, "The source could not be deleted because it has digital objects attached"
-      return false
+      throw :abort
     end
     if (self.sources.count > 0)
       errors.add :base, "The source could not be deleted because it refers to #{self.sources.count} source(s)"
-      return false
+      throw :abort
     end
     if (self.referring_sources.count > 0)
       errors.add :base, "The source could not be deleted because it has #{self.referring_sources.count} subsequent entry(s)"
-      return false
+      throw :abort
     end
   end
     

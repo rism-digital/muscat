@@ -1,6 +1,37 @@
 Muscat Changelog
 ================
 
+v 4.2
+* Optimized Source indexing
+* Remove idexing of linked IDs
+* #649, turn on dashboard
+* #279 enable selection of result number
+* Add translated "no item" message to dashboard, #649
+* Activate the download_links to have .xml #587
+* Better IT translation
+* Enable validation for holdings
+* Make dashboard first page, add localized message if a holding has no siglum
+* Parallel implementation for log error script
+* Lower default log level in production
+* Create mailer for Model Errors
+* Add validation in the batch process
+* Reindex alternate names
+* Make the MarcValidator safe when the marc on a source is reused without reloading
+* Aggregate repeated messages in the vaidator
+* Make small script for parallel re-saving of sources
+* Backport spinning icon from -devel-incipit-align
+* Initial holding show restyling
+* Hide the "adminstration" panel in the Blacklight
+* Hide redundant library information in Blacklight
+* Low level marc editing scripts
+
+v 4.1.4
+* Fixes a critical issue with deleting authority files.
+
+v 4 1 3
+* Add constraints so only editors/admins can run folder actions
+* Add a version trigger when wf_stage is modified.
+
 v 4.1.2
 * Fix deleting People, Places or Catalogues when used by a Holding
 * Fix crash with holding when one of the above was deleted
