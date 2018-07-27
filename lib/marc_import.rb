@@ -25,7 +25,7 @@ class MarcImport
     end
     
     MarcConfigCache.get_configuration model.downcase
-    MarcConfigCache.add_overlay(model, "#{Rails.root}/housekeeping/import/import_tags_source.yml")
+    MarcConfigCache.add_overlay(model, "#{Rails.root}/housekeeping/import/import_tags_source.yml") if @model == "Source"
   end
 
   #Helper method to parse huge files with nokogiri
