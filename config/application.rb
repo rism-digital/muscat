@@ -50,7 +50,7 @@ module RISM
   # Header menu
   MENUS = {
     :menu_admin      => :admin_root,
-    :menu_help       => "http://www.rism.info/help",
+    :menu_help       => "https://art-of-canon.blog/the-canons-database-help/",
     :menu_home       => :root
   }
   # Locales for Blacklight
