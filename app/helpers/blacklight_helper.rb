@@ -4,7 +4,7 @@ module BlacklightHelper
   include Blacklight::BlacklightHelperBehavior
 
   def application_name
-    "Canons Database"
+    "Répertoire International des Sources Musicales"
   end
   
   def muscat_translate fields
