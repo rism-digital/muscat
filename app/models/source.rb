@@ -193,7 +193,7 @@ class Source < ApplicationRecord
     end
     
     sunspot_dsl.text :composer, stored: true do |s|
-      "" if s.composer.empty?
+      "" if s.composer.blank?
       
       begin
         tag = s.marc.first_occurance("100", "0")
