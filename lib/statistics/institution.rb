@@ -5,10 +5,10 @@ module Statistics
       result = ActiveSupport::OrderedHash.new
       s = Sunspot.search(::Source) do
         with(:created_at, from_date..to_date)
-        facet(:lib_siglum_order, :limit => -1, :minimum_count => 10)
+        facet(:lib_siglum, :limit => -1, :minimum_count => 10)
       end
       facet_rows = Hash.new(0)
-      s.facet(:lib_siglum_order).rows.each do |r|
+      s.facet(:lib_siglum).rows.each do |r|
         facet_rows[r.value] = r.count
       end
       sigla = institutions.pluck(:siglum)

@@ -5,13 +5,20 @@ This software has a suite of spec tests in the 'spec' folder.
 
 ==Requirements
 Update the schema with:
-```bash
-rake db:migrate RAILS_ENV=test
-```
+  rake db:migrate RAILS_ENV=test
+
+Please prepare the correct folder structure for the test environment:  
+
+  |--muscat /
+  |--|-solr /
+  |--|-|-test /
+  |--|-|-|-data /
+  |--|-|-|-core.properties
+  
 
 The schema will be loaded into a mysql database; all objects are created by FactoryBot during the suite.
 
-It connects to the following sunspot-solr instance (see config/solr.yml):
+This connects to the following sunspot-solr instance (see config/solr.yml):
   test: &test
     url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8981/solr/test" %>
 
