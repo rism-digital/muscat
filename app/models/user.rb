@@ -72,8 +72,17 @@ class User < ApplicationRecord
     source.holdings.each do |holding|
       return true if self.can_edit?(holding)
     end
-    if source.source_id && source.id != source.source_id
-      return true if self.can_edit_edition?(Source.find(source.source_id))
+    if source.source_id
+      ## These two statuses are pretty major, send a mail
+      if source.id == source.source_id
+        puts "Source #{source.id} has identical source_id (#{source.source_id})"
+        AdminNotifications.notify("Source #{source.id} has identical source_id (#{source.source_id})", @item).deliver_now
+      elsif source.parent_source.source_id == source.id
+        puts "Source #{source.id} has a parent (#{source.parent_source.id}) that has this source as parent!"
+        AdminNotifications.notify("Source #{source.id} has a parent (#{source.parent_source.id}) that has has this source as parent!", @item).deliver_now
+      else
+          return true if self.can_edit_edition?(source.parent_source)
+      end
     end
     return false
   end
