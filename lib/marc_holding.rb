@@ -16,16 +16,19 @@ class MarcHolding < Marc
 
   def description
     res = {}
-      first_occurance("852").each do |t|
+    node = first_occurance("852")
+    if node
+      node.each do |t|
         if %w(a c q).include?(t.tag)
           res[t.tag] = t.content if t.content
         end
       end
-      if res.length > 0
-        return "#{res['a']}#{" " + res['c'] if res['c']}#{" [" + res['q'] +"]" if res['q']}"
-      else
-        I18n.t(:holding_no_siglum)
-      end
+    end
+    if res.length > 0
+      return "#{res['a']}#{" " + res['c'] if res['c']}#{" [" + res['q'] +"]" if res['q']}"
+    else
+      I18n.t(:holding_no_siglum)
+    end
   end
-  
+
 end
