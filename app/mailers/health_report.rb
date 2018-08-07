@@ -9,10 +9,10 @@ class HealthReport < ApplicationMailer
     @foreign_tag_errors = foreign_tag_errors
 		@unknown_tags = unknown_tags
     
-    path = Rails.root.join('public', "validation.html")
+    #path = Rails.root.join('public', "validation.html")
 
     ## Bush fix!!
-    File.open(path, "w") { |file| file.write(render(partial: "health_report/validation.html.erb")) }
+    #File.open(path, "w") { |file| file.write(render(partial: "health_report/validation.html.erb")) }
 
     mail(to: RISM::NOTIFICATION_EMAIL,
       name: "Muscat Admin Notificator",

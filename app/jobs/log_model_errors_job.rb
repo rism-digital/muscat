@@ -90,7 +90,7 @@ class LogModelErrorsJob < ApplicationJob
   def postprocess_results!(validations)
     foreign_tag_errors = Set.new
     unknown_tags = {}
-    
+
     validations.delete_if do |id, errors|
       errors.delete_if do |tag, subtags|
         subtags.delete_if do |subtag, messages|
@@ -103,9 +103,10 @@ class LogModelErrorsJob < ApplicationJob
             elsif message.include?("Unknown tag in layout") || message.include?("mandatory")
               key = "#{tag}-#{subtag}: #{message}"
               if unknown_tags.key?(key)
-                unknown_tags[key] += 1
+                unknown_tags[key][:count] = unknown_tags[key][:count] + 1
+                unknown_tags[key][:items] << id if unknown_tags[key][:items].count < 10
               else
-                unknown_tags[key] = 1
+                unknown_tags[key] = {count: 1, items: [id]}
               end
             end
           end
