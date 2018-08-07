@@ -17,6 +17,7 @@ FactoryBot.define do
 =856  #\#$uhttp://www.oxfordmusiconline.com/subscriber/article/grove/music/40023pg10$yChristoph Wolff, et al. "Bach." Grove Music Online. Oxford Music Online. Oxford University Press. Web. 10 Aug. 2017
 STRING
   end
+#=670  #\#$aNBA$bBach, PDQ$w1536
 end
 
 
