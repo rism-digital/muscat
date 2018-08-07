@@ -1,12 +1,13 @@
 class HealthReport < ApplicationMailer
 
-  def notify(model, message, errors, validations, foreign_tag_errors)
+  def notify(model, message, errors, validations, foreign_tag_errors, unknown_tags)
     
     @message = message
     @model = model
     @errors = errors
     @validations = validations
     @foreign_tag_errors = foreign_tag_errors
+		@unknown_tags = unknown_tags
     
     path = Rails.root.join('public', "validation.html")
 

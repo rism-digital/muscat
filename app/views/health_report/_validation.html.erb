@@ -20,3 +20,9 @@
 <%@foreign_tag_errors.each do |ferror|%>
   <%=ferror%><br>
 <%end%>
+
+<h3> Generic Errors </h3>
+
+<%@unknown_tags.each do |key, value|%>
+  <%="#{key}: #{value} items"%><br>
+<%end%>

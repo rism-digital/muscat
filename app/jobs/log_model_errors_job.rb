@@ -62,12 +62,12 @@ class LogModelErrorsJob < ApplicationJob
       total_validations.merge!(r[:validations])
     end
     
-    foreign_tag_errors = extract_foreign_errors!(total_validations)
+    foreign_tag_errors, unknown_tags = postprocess_results!(total_validations)
     
     end_time = Time.now
     message = "Source report started at #{begin_time.to_s}, (#{end_time - begin_time} seconds run time)"
     
-    HealthReport.notify("Source", message, total_errors, total_validations, foreign_tag_errors).deliver_now
+    HealthReport.notify("Source", message, total_errors, total_validations, foreign_tag_errors, unknown_tags).deliver_now
     
   end
   
@@ -87,8 +87,9 @@ class LogModelErrorsJob < ApplicationJob
     
   end
   
-  def extract_foreign_errors!(validations)
+  def postprocess_results!(validations)
     foreign_tag_errors = Set.new
+    unknown_tags = {}
     
     validations.delete_if do |id, errors|
       errors.delete_if do |tag, subtags|
@@ -99,6 +100,13 @@ class LogModelErrorsJob < ApplicationJob
               # Keep the error but make the message smaller
               foreign_tag_errors.add(tag + subtag + " " + message.gsub("foreign-tag: different unresolved value:", "old val:"))
               true
+            elsif message.include?("Unknown tag in layout") || message.include?("mandatory")
+              key = "#{tag}-#{subtag}: #{message}"
+              if unknown_tags.key?(key)
+                unknown_tags[key] += 1
+              else
+                unknown_tags[key] = 1
+              end
             end
           end
           true if messages.length == 0
@@ -108,7 +116,7 @@ class LogModelErrorsJob < ApplicationJob
       true if errors.length == 0
     end
     
-    foreign_tag_errors.to_a
+    [foreign_tag_errors.to_a, unknown_tags]
   end
   
 end
