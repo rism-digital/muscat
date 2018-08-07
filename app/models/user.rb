@@ -73,7 +73,10 @@ class User < ApplicationRecord
       return true if self.can_edit?(holding)
     end
     if source.source_id && source.id != source.source_id
-      return true if self.can_edit_edition?(Source.find(source.source_id))
+      related_source = Source.find(source.source_id)
+      # check for mutually recursive ids and prevent indef loop
+      return false if related_source.source_id == source.id
+      return true if self.can_edit_edition?(related_source)
     end
     return false
   end
