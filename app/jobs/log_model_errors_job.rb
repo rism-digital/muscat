@@ -6,7 +6,7 @@ class LogModelErrorsJob < ApplicationJob
   def initialize
     super
     @parallel_jobs = 10
-    @all_src = Source.all.count / 100
+    @all_src = Source.all.count
     @limit = @all_src / @parallel_jobs
   end
   
