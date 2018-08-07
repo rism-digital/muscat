@@ -6,7 +6,7 @@ class LogModelErrorsJob < ApplicationJob
   def initialize
     super
     @parallel_jobs = 10
-    @all_src = Source.all.count
+    @all_src = Source.all.count / 100
     @limit = @all_src / @parallel_jobs
   end
   
@@ -100,11 +100,12 @@ class LogModelErrorsJob < ApplicationJob
               # Keep the error but make the message smaller
               foreign_tag_errors.add(tag + subtag + " " + message.gsub("foreign-tag: different unresolved value:", "old val:"))
               true
-            elsif message.include?("Unknown tag in layout")
-              if unknown_tags.key?(tag + subtag)
-                unknown_tags[tag + subtag] += 1
+            elsif message.include?("Unknown tag in layout") || message.include?("mandatory")
+              key = "#{tag}-#{subtag}: #{message}"
+              if unknown_tags.key?(key)
+                unknown_tags[key] += 1
               else
-                unknown_tags[tag + subtag] = 1
+                unknown_tags[key] = 1
               end
             end
           end
