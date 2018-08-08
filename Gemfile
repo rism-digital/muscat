@@ -143,6 +143,7 @@ group :test do
   gem "rspec"
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_bot_rails'
-  gem 'poltergeist', "1.11.0"
+  gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'database_cleaner'
 end

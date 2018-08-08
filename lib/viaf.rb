@@ -29,7 +29,7 @@ module Viaf
       #this needs another approach because autosuggest is not well supported
       elsif model.to_s == "Work"
         r = []
-        uri = URI("http://viaf.org/viaf/search?query=local.uniformTitleWorks+all+#{URI.escape(term)}&sortKeys=holdingscount&httpAccept=application/json")
+        uri = URI("http://viaf.org/viaf/search?query=local.uniformTitleWorks=#{URI.escape(term)}&sortKeys=holdingscount&httpAccept=application/json")
         json = Net::HTTP.get(uri)
         res = JSON(json)
         return "Sorry, no work results were found in VIAF!" unless res["searchRetrieveResponse"]["records"]
@@ -95,6 +95,13 @@ module Viaf
             sfa['code'] = '0'
             sfa.content = composer.id rescue 30004985
             node_100.first << sfa
+            nodes_400 = provider_doc.xpath('//marc:datafield[@tag="400"]', NAMESPACE)
+            nodes_400.each do |node|
+              sfa = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
+              sfa['code'] = '0'
+              sfa.content = composer.id rescue 30004985
+              node << sfa
+            end
           end
 
           provider_doc.xpath('//marc:controlfield[@tag="001"]', NAMESPACE).first.content = record["viafid"]

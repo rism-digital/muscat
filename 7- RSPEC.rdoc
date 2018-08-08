@@ -18,6 +18,13 @@ Please prepare the correct folder structure for the test environment:
 
 The schema will be loaded into a mysql database; all objects are created by FactoryBot during the suite.
 
+==Requirements
+For headless chrome: Chrome 59+ and ChromeDriver installed.
+  CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
+  wget -N http://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -P ~/
+  apt install gconf-service libgconf-2-4 libnspr4 libnss3 libpango1.0-0 libappindicator1 libcurl3
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
 This connects to the following sunspot-solr instance (see config/solr.yml):
   test: &test
     url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8981/solr/test" %>

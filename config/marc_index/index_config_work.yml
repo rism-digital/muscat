@@ -1,0 +1,23 @@
+
+# Version 2 - For SOLR and Muscat 3
+
+config:
+    :version: 2.0
+    :model: work
+
+fields:  
+    "001":
+    "008":
+    "100a":
+    "100d":
+      :type: text 
+    "100d_birthdate":
+      :from_tag: "100"
+      :from_subtag: "d"
+      :index_helper: :marc_helper_get_birthdate
+    "100d_deathdate":
+      :from_tag: "100"
+      :from_subtag: "d"
+      :index_helper: :marc_helper_get_deathdate
+    "400a":
+    "670a":
