@@ -49,13 +49,14 @@
 	<xsl:template match="marc:datafield">
 		<xsl:if test="@tag='024' or 
 							@tag='100' or 
+							@tag='400' or 
 							@tag='998' ">
 			<xsl:text>=</xsl:text>
 			<xsl:choose>
 				<xsl:when test="@tag='100'">
 					<xsl:value-of select="100"/>
 					</xsl:when>
-				<xsl:when test="@tag='998'">
+				<xsl:when test="@tag='400'">
 					<xsl:value-of select="400"/>
 				</xsl:when>
 	

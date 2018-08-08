@@ -70,8 +70,8 @@ module Muscat
 						if !order.empty?
 							order_by order[:field], order[:order]
 						end
-            
-						fields.each do |f|
+						
+            fields.each do |f|
 							if f[:fields].empty?
 								#without(:record_type, 2) if model=="Source"
 								fulltext f[:value] do
@@ -99,7 +99,6 @@ module Muscat
 								with(field, value)
 							end
 						end
-            
 						paginate :page => page, :per_page => per_page
 					end
 					return solr_results.results, solr_results.hits

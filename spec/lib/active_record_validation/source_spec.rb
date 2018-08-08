@@ -12,9 +12,9 @@ RSpec.describe Admin::SourcesController, :type => :controller do
     end
     it "parent.id == self.id should raise validation error" do
       marc = source.marc
-      new_773 = MarcNode.new(Source, "773", "", "4#")
+      new_773 = MarcNode.new("source", "773", "", "4#")
       ip = marc.get_insert_position("773")
-      new_773.add(MarcNode.new(Source, "w", "#{source.id}", nil))
+      new_773.add(MarcNode.new("source", "w", "#{source.id}", nil))
       marc.root.children.insert(ip, new_773)
       source.save
       source.reload
@@ -24,9 +24,9 @@ RSpec.describe Admin::SourcesController, :type => :controller do
     it "parent.id != self.id should not raise validation error" do
       FactoryBot.create(:collection)
       marc = source.marc
-      new_773 = MarcNode.new(Source, "773", "", "4#")
+      new_773 = MarcNode.new("source", "773", "", "4#")
       ip = marc.get_insert_position("773")
-      new_773.add(MarcNode.new(Source, "w", "51649", nil))
+      new_773.add(MarcNode.new("source", "w", "51649", nil))
       marc.root.children.insert(ip, new_773)
       source.save
       source.reload

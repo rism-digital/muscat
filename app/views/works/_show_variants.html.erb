@@ -1,0 +1,15 @@
+<%
+    wv = tag.fetch_first_by_tag("n").content rescue ""
+    title = tag.fetch_first_by_tag("t").content rescue ""
+    key = tag.fetch_first_by_tag("r").content rescue ""
+-%>
+<tr class="row">
+	<th valign="top">
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td valign="top">
+    <%= "#{title} #{key} #{wv}" %>
+	</td>
+</tr>
