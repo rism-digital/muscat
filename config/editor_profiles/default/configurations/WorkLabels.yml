@@ -89,6 +89,144 @@ doc_edit_workflow:
         fr: "Agence d'authorité"
         de: Normdatenagentur
         en: Source of number or code
+"031": 
+  label: 
+    it: Incipit musicale
+    fr: Incipit musical
+    de: Musikincipit
+    en: Incipit
+  fields: 
+    a: 
+      label: 
+        it: Numero dell'incipit
+        fr: "Numéro de l'œuvre"
+        de: Incipitnummer
+        en: Work number
+      edit_label: 
+        it: Numero
+        fr: "No. de l'œuvre"
+        de: Nummer
+        en: Work number
+    b: 
+      label: 
+        it: Movimento N.
+        fr: "Numéro du mouvement"
+        de: Satznummer
+        en: Movement number
+      edit_label: 
+        it: Movimento N.
+        fr: "No. du mouvement"
+        de: Satznummer
+        en: Movement number
+    c: 
+      label: 
+        it: Numero dell'estratto
+        fr: "Numéro de l'extrait"
+        de: Abschnitt
+        en: Incipit number
+      edit_label: 
+        it: Estratto No.
+        fr: "No. de l'extrait"
+        de: Nummer Abschnitt
+        en: Incipit number
+    m: 
+      label: 
+        it: Organico
+        fr: Voix/instrument
+        de: Besetzung
+        en: Voice/instrument
+    n: 
+      label: 
+        it: Armatura di chiave
+        fr: Armure
+        de: Akzidentien
+        en: Key signature
+      edit_label: 
+        it: Armat.
+        fr: Armure
+        de: Vorzeichen
+        en: Key signature
+    d: 
+      label: 
+        it: Intestazione, Tempo
+        fr: Titre/tempo
+        de: Satztitel, Tempo
+        en: Title of movement, tempo
+    o: 
+      label: 
+        it: Misura
+        fr: Indication de mesure
+        de: Metrum
+        en: Time signature
+      edit_label: 
+        it: Misura
+        fr: Ind. mesure
+        de: Metrum
+        en: Time signature
+    e: 
+      label: 
+        it: Ruolo
+        fr: "Rôle"
+        de: Rolle
+        en: Role
+    p: 
+      label: 
+        it: Incipit musicale
+        fr: Notation musicale
+        de: Musikincipit
+        en: Music incipit
+    q: 
+      label: 
+        it: Commento all'incipit mus.
+        fr: "Note générale"
+        de: Kommentar zum Musikincipit
+        en: General note
+    g: 
+      label: 
+        it: Chiave
+        fr: "Clé"
+        de: "Schlüssel"
+        en: Clef
+      edit_label: 
+        it: Chiave
+        fr: "Clé"
+        de: "Schlüssel"
+        en: Clef
+    r: 
+      label: 
+        it: "Tonalità, modo"
+        fr: "Tonalité, mode"
+        de: Tonart, Modus
+        en: Key or mode
+      edit_label: 
+        it: "Tonalità"
+        fr: "Tonalité"
+        de: Tonart
+        en: Key
+    s: 
+      label: 
+        it: "Validità"
+        fr: "Validité"
+        de: "Gültigkeit"
+        en: Validity
+      edit_label: 
+        it: "Validità"
+        fr: "Validité"
+        de: "Gültigkeit"
+        en: "Validity"
+    t: 
+      label: 
+        it: Incipit testuale
+        fr: Incipit du texte
+        de: Textincipit
+        en: Text incipit
+    z: 
+      label: 
+        it: Organico del movimento
+        fr: Distribution du mouvement
+        de: Besetzung Satz
+        en: Scoring in movement
+
 "040":
   label:
     it: Fonte della catalogazione
@@ -202,31 +340,66 @@ doc_edit_workflow:
         fr: Lieu de naissance
         de: Geburtsort  
         en: Place of birth
+"380": 
+  label: 
+    it: Parola chiave
+    fr: Sujets
+    de: Schlagworteintragung
+    en: Subject heading
+  fields: 
+    a: 
+      label: 
+        it: Parola chiave
+        de: Sachschlagwort
+        fr: Sujet
+        en: Subject heading
+      edit_label: 
+      en: ""
+
 "400":
   label:
-    it: Varianti del nome
-    fr: Name variants
-    de: Namensvarianten
-    en: Name variants
+    it: Nome di persona
+    fr: Compositeur/Auteur
+    de: Ansetzungsform
+    en: Heading
   fields:
     a:
       label:
-        it: Varianti del nome
-        fr: Name variants
-        de: Namensvarianten  
-        en: Name variants
+        it: Compositore
+        fr: Compositeur
+        de: Komponist
+        en: Heading - composer name
     d:
       label:
         it: Data di nascita e di morte
         fr: Dates de vie
         de: Geburts- und Todesdaten
-        en: Life dates    
-    j:
+        en: Years of birth and death
+    m:
       label:
-        it: Descrizione della variante del nome
-        fr: Description de la variante du nom
-        de: Art der Namensvariante
-        en: Description of name variant
+        it: Organico sintetico
+        fr: Distribution
+        de: Besetzungshinweis
+        en: Scoring summary
+    n:
+      label:
+        it: Numero della parte/sezione di una composizione
+        fr: "uméro de partie / section d'une œuvre"
+        de: Anzahl Teile oder Abschnitte eines Werks
+        en: Number of part/section of a work
+    r:
+      label: 
+        it: "Tonalità"
+        fr: "Tonalité"
+        de: Tonart
+        en: Key or mode
+    t:
+      label:
+        it: Titolo della composizione
+        fr: Titre de la composition
+        de: Werktitel
+        en: Title of work
+
 "500":
   label:
     it: Persone correlate
@@ -406,6 +579,12 @@ subject:
     fr: "Entrées de sujets"
     de: Schlagworteintragungen
     en: Subject access fields
+incipits: 
+  label: 
+    it: Incipit
+    fr: Incipits
+    de: Incipits
+    en: Incipits
 places:
   label:
     it: Luoghi
@@ -1102,4 +1281,539 @@ xx:
     fr: Inconnu
     de: Unbekannt
     en: Unknown
-
+A:
+  label:
+    it: "La maggiore"
+    fr: "La majeur"
+    de: "A major"
+    en: "A major"
+a:
+  label:
+    it: "La minore"
+    fr: "La mineur"
+    de: "A minor"
+    en: "A minor"
+A|x: 
+  label:
+    it: "La♯ maggiore"
+    fr: "La♯ majeur"
+    de: "A♯ major"
+    en: "A♯ major"
+a|x: 
+  label:
+    it: "La♯ minore"
+    fr: "La♯ mineur"
+    de: "A♯ minor"
+    en: "A♯ minor"
+A|b: 
+  label:
+    it: "La♭ maggiore"
+    fr: "La♭ majeur"
+    de: "A♭ major"
+    en: "A♭ major"
+a|b: 
+  label:
+    it: "La♭ minore"
+    fr: "La♭ mineur"
+    de: "A♭ minor"
+    en: "A♭ minor"
+B:
+  label:
+    it: "Si maggiore"
+    fr: "Si majeur"
+    de: "B major"
+    en: "B major"
+b:
+  label:
+    it: "Si minore"
+    fr: "Si mineur"
+    de: "B minor"
+    en: "B minor"
+B|b: 
+  label:
+    it: "Si♭ maggiore"
+    fr: "Si♭ majeur"
+    de: "B♭ major"
+    en: "B♭ major"
+b|b: 
+  label:
+    it: "Si♭ minore"
+    fr: "Si♭ mineur"
+    de: "B♭ minor"
+    en: "B♭ minor"
+C:
+  label:
+    it: "Do maggiore"
+    fr: "Do majeur"
+    de: "C major"
+    en: "C major"
+c:
+  label:
+    it: "Do minore"
+    fr: "Do mineur"
+    de: "C minor"
+    en: "C minor"
+C|x: 
+  label:
+    it: "Do♯ maggiore"
+    fr: "Do♯ majeur"
+    de: "C♯ major"
+    en: "C♯ major"
+c|x: 
+  label:
+    it: "Do♯ minore"
+    fr: "Do♯ mineur"
+    de: "C♯ minor"
+    en: "C♯ minor"
+C|b: 
+  label:
+    it: "Do♭ maggiore"
+    fr: "Do♭ majeur"
+    de: "C♭ major"
+    en: "C♭ major"
+c|b: 
+  label:
+    it: "Do♭ minore"
+    fr: "Do♭ mineur"
+    de: "C♭ minor"
+    en: "C♭ minor"
+D:
+  label:
+    it: "Re maggiore"
+    fr: "Ré majeur"
+    de: "D major"
+    en: "D major"
+d:
+  label:
+    it: "Re minore"
+    fr: "Ré minor"
+    de: "D minor"
+    en: "D minor"
+D|x: 
+  label:
+    it: "Re♯ maggiore"
+    fr: "Ré♯ majeur"
+    de: "D♯ major"
+    en: "D♯ major"
+d|x: 
+  label:
+    it: "Re♯ minore"
+    fr: "Ré♯ mineur"
+    de: "D♯ minor"
+    en: "D♯ minor"
+D|b: 
+  label:
+    it: "Re♭ maggiore"
+    fr: "Ré♭ majeur"
+    de: "D♭ major"
+    en: "D♭ major"
+d|b: 
+  label:
+    it: "Re♭ minore"
+    fr: "Ré♭ mineur"
+    de: "D♭ minor"
+    en: "D♭ minor"
+E:
+  label:
+    it: "Mi maggiore"
+    fr: "Mi majeur"
+    de: "E major"
+    en: "E major"
+e:
+  label:
+    it: "Mi minore"
+    fr: "Mi mineur"
+    de: "E minor"
+    en: "E minor"
+E|b: 
+  label:
+    it: "Mi♭ maggiore"
+    fr: "Mi♭ majeur"
+    de: "E♭ major"
+    en: "E♭ major"
+e|b: 
+  label:
+    it: "Mi♭ minore"
+    fr: "Mi♭ mineur"
+    de: "E♭ minor"
+    en: "E♭ minor"
+F:
+  label:
+    it: "Fa maggiore"
+    fr: "Fa majeur"
+    de: "F major"
+    en: "F major"
+f:
+  label:
+    it: "Fa minore"
+    fr: "Fa mineur"
+    de: "F minor"
+    en: "F minor"
+F|x: 
+  label:
+    it: "Fa♯ maggiore"
+    fr: "Fa♯ majeur"
+    de: "F♯ major"
+    en: "F♯ major"
+f|x: 
+  label:
+    it: "Fa♯ minore"
+    fr: "Fa♯ mineur"
+    de: "F♯ minor"
+    en: "F♯ minor"
+G:
+  label:
+    it: "Sol maggiore"
+    fr: "Sol majeur"
+    de: "G major"
+    en: "G major"
+g:
+  label:
+    it: "Sol minore"
+    fr: "Sol mineur"
+    de: "G minor"
+    en: "G minor"
+G|x: 
+  label:
+    it: "Sol♯ maggiore"
+    fr: "Sol♯ majeur"
+    de: "G♯ major"
+    en: "G♯ major"
+g|x: 
+  label:
+    it: "Sol♯ minore"
+    fr: "Sol♯ mineur"
+    de: "G♯ minor"
+    en: "G♯ minor"
+G|b: 
+  label:
+    it: "Sol♭ maggiore"
+    fr: "Sol♭ majeur"
+    de: "G♭ major"
+    en: "G♭ major"
+g|b: 
+  label:
+    it: "Sol♭ minore"
+    fr: "Sol♭ mineur"
+    de: "G♭ minor"
+    en: "G♭ minor"
+# modes
+1t:
+  label:
+    it: "Mode:  1t – Dorian"
+    fr: "Mode:  1t – Dorian"
+    de: "Mode:  1t – Dorian"
+    en: "Mode:  1t – Dorian"
+2t:
+  label:
+    it: "Mode:  2t – Hypodorian"
+    fr: "Mode:  2t – Hypodorian"
+    de: "Mode:  2t – Hypodorian"
+    en: "Mode:  2t – Hypodorian"
+3t:
+  label:
+    it: "Mode:  3t – Phrygian"
+    fr: "Mode:  3t – Phrygian"
+    de: "Mode:  3t – Phrygian"
+    en: "Mode:  3t – Phrygian"
+4t:
+  label:
+    it: "Mode:  4t – Hypophrygian"
+    fr: "Mode:  4t – Hypophrygian"
+    de: "Mode:  4t – Hypophrygian"
+    en: "Mode:  4t – Hypophrygian"
+5t:
+  label:
+    it: "Mode:  5t – Lydian"
+    fr: "Mode:  5t – Lydian"
+    de: "Mode:  5t – Lydian"
+    en: "Mode:  5t – Lydian"
+6t:
+  label:
+    it: "Mode:  6t – Hypolydian"
+    fr: "Mode:  6t – Hypolydian"
+    de: "Mode:  6t – Hypolydian"
+    en: "Mode:  6t – Hypolydian"
+7t:
+  label:
+    it: "Mode:  7t – Mixolydian"
+    fr: "Mode:  7t – Mixolydian"
+    de: "Mode:  7t – Mixolydian"
+    en: "Mode:  7t – Mixolydian"
+8t:
+  label:
+    it: "Mode:  8t – Hypomixolydian"
+    fr: "Mode:  8t – Hypomixolydian"
+    de: "Mode:  8t – Hypomixolydian"
+    en: "Mode:  8t – Hypomixolydian"
+9t:
+  label:
+    it: "Mode:  9t – Aeolian"
+    fr: "Mode:  9t – Aeolian"
+    de: "Mode:  9t – Aeolian"
+    en: "Mode:  9t – Aeolian"
+10t:
+  label:
+    it: "Mode: 10t – Hypoaeolian"
+    fr: "Mode: 10t – Hypoaeolian"
+    de: "Mode: 10t – Hypoaeolian"
+    en: "Mode: 10t – Hypoaeolian"
+11t:
+  label:
+    it: "Mode: 11t – Ionian"
+    fr: "Mode: 11t – Ionian"
+    de: "Mode: 11t – Ionian"
+    en: "Mode: 11t – Ionian"
+12t:
+  label:
+    it: "Mode: 12t – Hypoionian"
+    fr: "Mode: 12t – Hypoionian"
+    de: "Mode: 12t – Hypoionian"
+    en: "Mode: 12t – Hypoionian"
+1byz:
+  label:
+    it: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+    fr: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+    de: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+    en: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+2byz:
+  label:
+    it: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+    fr: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+    de: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+    en: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+3byz:
+  label:
+    it: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+    fr: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+    de: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+    en: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+4byz:
+  label: 
+    it: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+    fr: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+    de: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+    en: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
+5byz:
+  label: 
+    it: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+    fr: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+    de: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+    en: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+6byz:
+  label: 
+    it: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+    fr: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+    de: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+    en: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+7byz:
+  label: 
+    it: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+    fr: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+    de: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+    en: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+8byz:
+  label: 
+    it: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
+    fr: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
+    de: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
+    en: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
+#Clefs (031)
+01_modern_clefs:
+  label:
+    it: "Chiavi comuni"
+    fr: "Clés communes"
+    de: "Common clefs"
+    en: "Common clefs"
+C-1:
+  label:
+    it: "C-1"
+    fr: "C-1"
+    de: "C-1"
+    en: "C-1"
+C-2:
+  label:
+    it: "C-2"
+    fr: "C-2"
+    de: "C-2"
+    en: "C-2"
+C-3:
+  label:
+    it: "C-3"
+    fr: "C-3"
+    de: "C-3"
+    en: "C-3"
+C-4:
+  label:
+    it: "C-4"
+    fr: "C-4"
+    de: "C-4"
+    en: "C-4"
+C-5:
+  label:
+    it: "C-5"
+    fr: "C-5"
+    de: "C-5"
+    en: "C-5"
+F-1:
+  label:
+    it: "F-1"
+    fr: "F-1"
+    de: "F-1"
+    en: "F-1"
+F-2:
+  label:
+    it: "F-2"
+    fr: "F-2"
+    de: "F-2"
+    en: "F-2"
+F-3:
+  label:
+    it: "F-3"
+    fr: "F-3"
+    de: "F-3"
+    en: "F-3"
+F-4:
+  label:
+    it: "F-4 (chiave di basso)"
+    fr: "F-4 (clé fa)"
+    de: "F-4 (bass clef)"
+    en: "F-4 (bass clef)"
+F-5:
+  label:
+    it: "F-5"
+    fr: "F-5"
+    de: "F-5"
+    en: "F-5"
+G-1:
+  label:
+    it: "G-1"
+    fr: "G-1"
+    de: "G-1"
+    en: "G-1"
+G-2:
+  label:
+    it: "G-2 (chiave di violino)"
+    fr: "G-2 (clé de sol)"
+    de: "G-2 (treble clef)"
+    en: "G-2 (treble clef)"
+G-3:
+  label:
+    it: "G-3"
+    fr: "G-3"
+    de: "G-3"
+    en: "G-3"
+G-4:
+  label:
+    it: "G-4"
+    fr: "G-4"
+    de: "G-4"
+    en: "G-4"
+G-5:
+  label:
+    it: "G-5"
+    fr: "G-5"
+    de: "G-5"
+    en: "G-5"
+g-2:
+  label:
+    it: "g-2 (Chiave di violino ottavizzata)"
+    fr: "g-2 (octava bassa)"
+    de: "g-2 (oktavierenden Violinschlüssels)"
+    en: "g-2 (Octaved treble clef)"
+02_mensural_clefs:
+  label:
+    it: "Chiavi mensurali"
+    fr: "Clés anciennes"
+    de: "Mensural clefs"
+    en: "Mensural clefs"
+C+1:
+  label:
+    it: "C+1"
+    fr: "C+1"
+    de: "C+1"
+    en: "C+1"
+C+2:
+  label:
+    it: "C+2"
+    fr: "C+2"
+    de: "C+2"
+    en: "C+2"
+C+3:
+  label:
+    it: "C+3"
+    fr: "C+3"
+    de: "C+3"
+    en: "C+3"
+C+4:
+  label:
+    it: "C+4"
+    fr: "C+4"
+    de: "C+4"
+    en: "C+4"
+C+5:
+  label:
+    it: "C+5"
+    fr: "C+5"
+    de: "C+5"
+    en: "C+5"
+F+1:
+  label:
+    it: "F+1"
+    fr: "F+1"
+    de: "F+1"
+    en: "F+1"
+F+2:
+  label:
+    it: "F+2"
+    fr: "F+2"
+    de: "F+2"
+    en: "F+2"
+F+3:
+  label:
+    it: "F+3"
+    fr: "F+3"
+    de: "F+3"
+    en: "F+3"
+F+4:
+  label:
+    it: "F+4"
+    fr: "F+4"
+    de: "F+4"
+    en: "F+4"
+F+5:
+  label:
+    it: "F+5"
+    fr: "F+5"
+    de: "F+5"
+    en: "F+5"
+G+1:
+  label:
+    it: "G+1"
+    fr: "G+1"
+    de: "G+1"
+    en: "G+1"
+G+2:
+  label:
+    it: "G+2"
+    fr: "G+2"
+    de: "G+2"
+    en: "G+2"
+G+3:
+  label:
+    it: "G+3"
+    fr: "G+3"
+    de: "G+3"
+    en: "G+3"
+G+4:
+  label:
+    it: "G+4"
+    fr: "G+4"
+    de: "G+4"
+    en: "G+4"
+G+5:
+  label:
+    it: "G+5"
+    fr: "G+5"
+    de: "G+5"
+    en: "G+5"
