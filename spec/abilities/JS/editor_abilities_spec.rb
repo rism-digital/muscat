@@ -13,7 +13,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
     it "Person editor should have all fields writeable with person" do
       visit edit_admin_person_path(person)
       input_field = page.find(:xpath, "//input[@data-tag='100' and @data-subfield='a']")
-      expect(input_field["disabled"]).to eq(false) 
+      expect(input_field["disabled"]).to eq(nil) 
     end
   end
 end

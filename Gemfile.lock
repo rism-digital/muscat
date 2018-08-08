@@ -151,17 +151,18 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     cancan (1.6.10)
-    capybara (2.18.0)
+    capybara (3.5.1)
       addressable
       mini_mime (>= 0.1.3)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      xpath (>= 2.0, < 4.0)
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      xpath (~> 3.1)
     chart-js-rails (0.1.6)
       railties (> 3.1)
+    childprocess (0.9.0)
+      ffi (~> 1.0, >= 1.0.11)
     climate_control (0.2.0)
-    cliver (0.3.2)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.2)
@@ -290,10 +291,6 @@ GEM
       mimemagic (= 0.3.0)
     parallel (1.12.1)
     parslet (1.8.2)
-    poltergeist (1.11.0)
-      capybara (~> 2.1)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     polyamorous (1.3.3)
       activerecord (>= 3.0)
     pr_geohash (1.0.0)
@@ -390,6 +387,9 @@ GEM
       tilt (>= 1.1, < 3)
     sdoc (1.0.0)
       rdoc (>= 5.0)
+    selenium-webdriver (3.14.0)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.2)
     solr_wrapper (1.2.0)
       faraday
       retriable
@@ -436,6 +436,7 @@ DEPENDENCIES
   blacklight_range_limit!
   bootstrap-sass
   cancan
+  capybara
   chart-js-rails
   coffee-rails
   colorize
@@ -463,7 +464,6 @@ DEPENDENCIES
   paper_trail
   paperclip (~> 4.3)
   parallel
-  poltergeist (= 1.11.0)
   progress_bar!
   progress_job!
   pry
@@ -478,6 +478,7 @@ DEPENDENCIES
   ruby-prof
   sass-rails
   sdoc
+  selenium-webdriver
   solr_wrapper (>= 0.3)
   sunspot_rails (~> 2.2)!
   sunspot_solr (~> 2.2)!
