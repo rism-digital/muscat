@@ -103,6 +103,8 @@ ActiveAdmin.register User do
       if can? :update, User
         f.input :password
         f.input :password_confirmation
+        f.input :notifications
+        f.input :notification_type, as: :select, multiple: false, collection: [:each, :daily, :weekly]
       end
       if can? :manage, User
         f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all.sort_by {|w| w.name} 
