@@ -701,7 +701,7 @@ class Marc
   
   def marc_create_pae_entry(conf_tag, conf_properties, marc, model)
     out = []
-    
+   
     tag = conf_properties && conf_properties.has_key?(:from_tag) ? conf_properties[:from_tag] : nil
     
     return if tag == nil
@@ -719,17 +719,16 @@ class Marc
       next if vals[:p] == "0"
 
       pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
-      
+
       s = "@start:#{pae_nr}\n";
-	    s = s + "@clef:#{vals[:g]}\n";
-	    s = s + "@keysig:#{vals[:n]}\n";
-	    s = s + "@key:\n";
-	    s = s + "@timesig:#{vals[:o]}\n";
-	    s = s + "@data:#{vals[:p]}\n";
-	    s = s + "@end:#{pae_nr}\n"
+	    s << "@clef:#{vals[:g]}\n";
+	    s << "@keysig:#{vals[:n]}\n";
+	    s << "@key:\n";
+	    s << "@timesig:#{vals[:o]}\n";
+	    s << "@data:#{vals[:p]}\n";
+	    s << "@end:#{pae_nr}\n"
 
       out << s
-
     end
 
     return out

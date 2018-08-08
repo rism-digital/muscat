@@ -1,5 +1,7 @@
 <%- 
-	opac_resolved = opac rescue opac_resolved = false 
+# if these two parameters do not exist, make them false as default
+	opac_resolved = opac rescue opac_resolved = false
+	holdings_resolved = holdings rescue holdings_resolved = false
 	layout_config = @editor_profile.layout_config
 -%>	
 
@@ -13,16 +15,31 @@
 		:ungrouped_tags => group_config["ungrouped_tags"]
 	} -%>
 
-	<% unless group_config["admin_only"] and not (current_user && current_user.has_any_role?(:editor, :admin)) -%>
-		<%= render :partial => (group_config["template"] && !@diff ? group_config["template"] : "marc/show_group" ), 
-			:locals => { 
-				:item => @item, 
-				:group => group, 
-				:opac => opac_resolved } %>
-	<% end -%>
+	<% next if group_config["admin_only"] && !(current_user && current_user.has_any_role?(:editor, :admin)) %>
+	<% next if group_config["admin_only"] && opac_resolved %>
+
+	<%= render :partial => (group_config["template"] && !@diff ? group_config["template"] : "marc/show_group" ), 
+		:locals => { 
+			:item => @item, 
+			:group => group, 
+			:opac => opac_resolved,
+			:holdings => holdings_resolved } %>
+				
 <%- end -%>
 
-<% if !@diff && opac_resolved  %>
+<% if @item.class == Source && @item.holdings.count > 0 %>
+	<%if opac_resolved %>
+		<%= render :partial => "holdings/show_opac_holdings" %>
+	<%else%>
+  	<%= render :partial => "holdings/show_holdings", :locals => {opac: opac_resolved } %> 
+	<%end%>
+<% end %>
+
+<%if !opac_resolved%>
+	<div class="panel_group_space"></div>
+<%end%>
+
+<% if !@diff && opac_resolved && !holdings_resolved %>
 	
 	<%= render :partial => "marc_show/show_iiif", 
 		:locals => { 
@@ -31,8 +48,4 @@
 
 <% end %>
 
-<% if @item.class == Source && @item.holdings.count > 0 %>
-  <%= render :partial => "holdings/show_holdings", :locals => {opac: opac_resolved } %> 
-<% end %>
 
-<div class="panel_group_space"></div>

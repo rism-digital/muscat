@@ -1,23 +1,24 @@
 <%- 
 	tags = item.marc.by_tags_with_order(["856"])
--%>
 
-<div class="panel panel_group">
-<h3><%=t(:do_images_title)%></h3>
-
-<%- tags.each do |tag|
-
+ tags.each do |tag|
 	subfield_u = tag.fetch_first_by_tag('u')
 	subfield_x = tag.fetch_first_by_tag('x')	
 	subfield_z = tag.fetch_first_by_tag('z')	
 	
 	next if !subfield_x || !subfield_x.content || subfield_x.content != "IIIF"
 	next if !subfield_u || !subfield_u.content
-	
+-%>
+
+	<% if tag == tags.first %>
+		<div class="panel panel_group">
+		<h3><%=t(:do_images_title)%></h3>
+	<% end %>
+
+
+<%-
 	description = subfield_z && subfield_z.content ? "(#{subfield_z.content})" : ""
-	
 	anchor = make_iiif_anchor(subfield_u.content)
-	
 	random_string = SecureRandom.hex
 -%>
 
@@ -41,7 +42,9 @@
 			});
 		</script>
 	</div>
-
-
+	
+	<% if tag == tags.first %>
+		</div>
+	<% end %>
+	
 <%- end %>
-</div>

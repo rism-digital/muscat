@@ -159,7 +159,7 @@ class Work < ApplicationRecord
   end
 
   def check_dependencies
-    return false if self.referring_sources.count > 0
+    throw :abort if self.referring_sources.count > 0
   end
  
   def self.get_viaf(str)

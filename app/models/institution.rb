@@ -249,7 +249,7 @@ class Institution < ApplicationRecord
         #{self.referring_institutions.count} institutions, 
         #{self.referring_catalogues.count} catalogues and 
         #{self.referring_people.count} people}
-      return false
+      throw :abort
     end
   end
 

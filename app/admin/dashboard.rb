@@ -34,10 +34,7 @@ ActiveAdmin.register_page "Dashboard" do
   
   limit = 10;
 
-  content title: proc{ I18n.t("active_admin.dashboard") } do
-    
-    render("dashboard_welcome")
-    
+  content title: proc{ I18n.t("active_admin.dashboard") } do 
     #user = current_user.has_any_role?(:editor, :admin) ? -1 : current_user.id
     user_id = (params[:dashboard_source_owner].to_s == "user") ? current_user.id : -1
     sources = dashboard_find_recent(Source, params[:dashboard_quantity], params[:dashboard_source_type], user_id, 15)

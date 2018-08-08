@@ -1,3 +1,17 @@
+<h3> Generic Errors </h3>
+
+<%@unknown_tags.each do |key, value|%>
+  <%="#{key}: #{value[:count]} items, first 10: #{value[:items]}"%><br>
+<%end%>
+
+<h3>Not updated foreign tags (need to re-save record)</h3>
+
+<%@foreign_tag_errors.each do |ferror|%>
+  <%=ferror%><br>
+<%end%>
+
+<h3>Failed validations</h3>
+
 <%@validations.each do |id, errors|%>
 <b>Validation Result for: <a href="https://muscat.rism.info/admin/sources/<%=id%>"><%=id%></a></b>
   <table>
@@ -14,3 +28,5 @@
   <% end %>
   </table>
 <% end %>
+
+<p>

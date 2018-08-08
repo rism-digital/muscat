@@ -4,7 +4,7 @@ de:
 # Pad for italian, it has 2 missing items
 #
 #
-    dashboard: "LAST WEEK ACTIVITY"
+    dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
       call_to_action: "Siehe 'app/admin/dashboard.rb', um Übersichts-Bereiche hinzuzufügen."
@@ -628,7 +628,7 @@ de:
 
   
   dashboard:
-    selection: "Auswahl"
+    selection: "Wählen Sie Letzte Aktivität"
     type: "Typ ändern"
     type_created: "Kürzlich erstellt"
     type_updated: "Kürzlich aktualisiert"
@@ -637,7 +637,7 @@ de:
     owner_any: "Irgendein"
     quantity: "Anzeige"
     update: "Aktualisieren"
-    no_items: "NO ELEMENTS TO SHOW WITH THE CURRENT FILTERS"
+    no_items: "Keine Elemente, die mit den aktuellen Filtern angezeigt werden"
   
   # editor validation 
   validation:
