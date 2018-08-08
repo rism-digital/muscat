@@ -2,9 +2,6 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
-#require 'capybara/poltergeist'
-
-#Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers

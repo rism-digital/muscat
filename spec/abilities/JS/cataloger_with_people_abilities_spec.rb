@@ -16,6 +16,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       collapsables.each do |c|
         c.click 
       end
+      save_screenshot('/tmp/screenshot.png', :full => true)
       tags = (EditorConfiguration.get_default_layout Person.first).options_config
       unrestricted_fields = Hash.new([])
       tags.each do |tag|
@@ -44,6 +45,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       collapsables.each do |c| 
         c.click 
       end
+      save_screenshot('/tmp/unrestricted_screenshot.png', :full => true)
       tags = (EditorConfiguration.get_default_layout Person.first).options_config
       unrestricted_fields = Hash.new([])
       tags.each do |tag|
