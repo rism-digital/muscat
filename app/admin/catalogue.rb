@@ -190,7 +190,6 @@ ActiveAdmin.register Catalogue do
         context.column "id", :id
         context.column (I18n.t :filter_full_name), :full_name
         context.column (I18n.t :filter_life_dates), :life_dates
-        context.column (I18n.t :filter_birth_place), :birth_place
         context.column (I18n.t :filter_alternate_names), :alternate_names
         if !is_selection_mode?
           context.column "" do |person|

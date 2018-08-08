@@ -92,7 +92,7 @@ class StandardTitle < ApplicationRecord
   def check_dependencies
     if (self.referring_sources.count > 0)
       errors.add :base, "The standard title could not be deleted because it is used"
-      return false
+      throw :abort
     end
   end
    

@@ -5,9 +5,16 @@ This software has a suite of spec tests in the 'spec' folder.
 
 ==Requirements
 Update the schema with:
-```bash
-rake db:migrate RAILS_ENV=test
-```
+  rake db:migrate RAILS_ENV=test
+
+Please prepare the correct folder structure for the test environment:  
+
+  |--muscat /
+  |--|-solr /
+  |--|-|-test /
+  |--|-|-|-data /
+  |--|-|-|-core.properties
+  
 
 The schema will be loaded into a mysql database; all objects are created by FactoryBot during the suite.
 
@@ -17,14 +24,6 @@ For headless chrome: Chrome 59+ and ChromeDriver installed.
   wget -N http://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -P ~/
   apt install gconf-service libgconf-2-4 libnspr4 libnss3 libpango1.0-0 libappindicator1 libcurl3
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-
-In config/database.yaml:
-  test:
-    adapter: sqlite3
-    database: ":memory:"
-    pool: 5
-    timeout: 5000
-    verbosity: quiet
 
 It connects to the following sunspot-solr instance (see config/solr.yml):
   test: &test

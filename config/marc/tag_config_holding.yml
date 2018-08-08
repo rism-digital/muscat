@@ -219,7 +219,8 @@
       - :occurrences: "1"
         :foreign_class: ^x
         :foreign_field: siglum
-        :browse_helper: application_helper_link_to_library
+#        :browse_helper: application_helper_link_to_library
+        :no_browse: true
     - - b
       - :occurrences: "?"
     - - c

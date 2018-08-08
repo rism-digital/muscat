@@ -40,7 +40,7 @@ class Source < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
   
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
   # include the override for group_values
   require 'solr_search.rb'
@@ -176,54 +176,70 @@ class Source < ApplicationRecord
    sunspot_dsl.integer :id
    sunspot_dsl.integer :record_type
 
-    sunspot_dsl.text :id_fulltext do
-      id_for_fulltext
-    end
+    sunspot_dsl.text :id, as: "id_fulltext_text"
+#      s.id_for_fulltext
+#    end
     
     sunspot_dsl.text :source_id
     
     # For ordering
-    sunspot_dsl.string :std_title_shelforder, :as => "std_title_shelforder_s" do 
-      std_title
-    end
+    sunspot_dsl.string :std_title, as: "std_title_shelforder_s"
+#      s.std_title
+#    end
     # For facet
-    sunspot_dsl.string :std_title_order do 
-      std_title
-    end
+    sunspot_dsl.string :std_title, as: "std_title_order_s"
+#      s.std_title
+#    end
     # For fulltext search
     sunspot_dsl.text :std_title, :stored => true
     sunspot_dsl.text :std_title_d
     
-    sunspot_dsl.string :composer_order do 
-      composer == "" ? nil : composer
+    sunspot_dsl.string :composer_order do |s|
+      s.composer == "" ? nil : s.composer
     end
-    sunspot_dsl.text :composer, :stored => true
+    
+    sunspot_dsl.text :composer, stored: true do |s|
+      "" if s.composer.blank?
+      
+      begin
+        tag = s.marc.first_occurance("100", "0")
+      rescue ActiveRecord::RecordNotFound
+        s.composer
+      end
+
+      if tag && tag.foreign_object && tag.foreign_object.alternate_names
+        s.composer + "\n" + tag.foreign_object.alternate_names
+      else
+        s.composer
+      end
+    end
+    
     sunspot_dsl.text :composer_d
         
-    sunspot_dsl. string :title_order do 
-      title
-    end
+    sunspot_dsl. string :title, as: "title_order_s" #do |s|
+#      s.title
+#    end
 
     sunspot_dsl.text :title, :stored => true
     sunspot_dsl.text :title_d
     
-    sunspot_dsl.string :shelf_mark_order do 
-      shelf_mark
-    end
+    sunspot_dsl.string :shelf_mark, as: "shelf_mark_order_s"
+#      s.shelf_mark
+#    end
 	
 	# This is a _very special_ case to have advanced indexing of shelfmarks
 	# the solr dynamic field is "*_shelforder_s", so we can "trick" sunspot to load it
 	# by calling the field :shelf_mark_shelforder -> sunspot translated it into shelf_mark_shelforder_s
 	# when doing searches since the type is string.
 	# This field type must be also configured in the schema.xml solr configuration
-    sunspot_dsl.string :shelf_mark_shelforder, :stored => true, :as => "shelf_mark_shelforder_s" do
-			shelf_mark
-		end
+    sunspot_dsl.string :shelf_mark, :stored => true, :as => "shelf_mark_shelforder_s"
+#			s.shelf_mark
+#		end
     sunspot_dsl.text :shelf_mark
 	
-    sunspot_dsl.string :lib_siglum_order do
-      lib_siglum
-    end
+    sunspot_dsl.string :lib_siglum, as: "lib_siglum_order_s"
+#      s.lib_siglum
+#    end
     sunspot_dsl.text :lib_siglum, :stored => true, :as => "lib_siglum_s"
     # This one will be called lib_siglum_ss (note the second s) in solr
     # We use it for GIS
@@ -241,62 +257,30 @@ class Source < ApplicationRecord
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
 
-    sunspot_dsl.integer :catalogues, :multiple => true do
-      catalogues.map { |catalogue| catalogue.id }
-    end
-    
-    sunspot_dsl.integer :people, :multiple => true do
-      people.map { |person| person.id }
-    end
-    
-    sunspot_dsl.integer :places, :multiple => true do
-      places.map { |place| place.id }
-    end
-    
-    sunspot_dsl.integer :institutions, :multiple => true do
-      institutions.map { |institution| institution.id }
-    end
-    
-    sunspot_dsl.integer :liturgical_feasts, :multiple => true do
-      liturgical_feasts.map { |lf| lf.id }
-    end
-    
-    sunspot_dsl.integer :standard_terms, :multiple => true do
-      standard_terms.map { |st| st.id }
-    end
-    
-    sunspot_dsl.integer :standard_titles, :multiple => true do
-      standard_titles.map { |stit| stit.id }
-    end
-    
-    sunspot_dsl.integer :sources, :multiple => true do
-      sources.map { |source| source.id }
-    end
-
-    sunspot_dsl.integer :works, :multiple => true do
-      works.map { |w| w.id }
-    end
- 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
     #For geolocation
-    sunspot_dsl.latlon :location, :stored => true do
+    sunspot_dsl.latlon :location, :stored => true do |s|
       #lib = Institution.find_by_siglum(item[:value])
       #next if !lib
       lat = 0
       lon = 0
       
-      lib = marc.first_occurance("852")
-      if lib && lib.foreign_object
-        lib_marc = lib.foreign_object.marc
-        lib_marc.load_source false
+      begin
+        lib = s.marc.first_occurance("852")
+        if lib && lib.foreign_object
+          lib_marc = lib.foreign_object.marc
+          lib_marc.load_source false
         
-        lat = lib_marc.first_occurance("034", "f")
-        lon = lib_marc.first_occurance("034", "d")
+          lat = lib_marc.first_occurance("034", "f")
+          lon = lib_marc.first_occurance("034", "d")
     
-        lat = (lat && lat.content) ? lat.content : 0
-        lon = (lon && lon.content) ? lon.content : 0
+          lat = (lat && lat.content) ? lat.content : 0
+          lon = (lon && lon.content) ? lon.content : 0
+        end
+      rescue ActiveRecord::RecordNotFound
+        puts "Could not load marc for coordinates"
       end
       
       Sunspot::Util::Coordinates.new(lat, lon)
@@ -308,19 +292,19 @@ class Source < ApplicationRecord
   def check_dependencies
     if (self.child_sources.count > 0)
       errors.add :base, "The source could not be deleted because it has #{self.child_sources.count} child source(s)"
-      return false
+      throw :abort
     end
     if (self.digital_objects.count > 0)
       errors.add :base, "The source could not be deleted because it has digital objects attached"
-      return false
+      throw :abort
     end
     if (self.sources.count > 0)
       errors.add :base, "The source could not be deleted because it refers to #{self.sources.count} source(s)"
-      return false
+      throw :abort
     end
     if (self.referring_sources.count > 0)
       errors.add :base, "The source could not be deleted because it has #{self.referring_sources.count} subsequent entry(s)"
-      return false
+      throw :abort
     end
   end
     
