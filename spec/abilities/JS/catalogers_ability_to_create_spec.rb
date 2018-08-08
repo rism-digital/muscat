@@ -34,7 +34,7 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     find(:xpath, "//a[@data-action='exit']").click
     sleep 2
     #save_screenshot('/tmp/scr1.png', :full => true)
-    error = first("div[class='flash flash_error']", visible: false)
+    error = first("div[class='flash flash_error']", visible: false) rescue nil
     expect(error).to be_nil
   end
   
@@ -43,7 +43,7 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     set_field("852$x", foreign_institution.id)
     find(:xpath, "//a[@data-action='exit']").click
     sleep 2
-    error = first("div[class='flash flash_error']", visible: false)
+    error = first("div[class='flash flash_error']", visible: false) rescue nil
     expect(error.text).to match(/Your are not allowed to create sources with siglum/)
   end
   
@@ -53,7 +53,7 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     set_field("031$a", "211")
     find(:xpath, "//a[@data-action='exit']").click
     sleep 2
-    warning = first("div[class='flash flash_warning']", visible: false)
+    warning = first("div[class='flash flash_warning']", visible: false) rescue nil
     expect(warning.text).to match(/value '211' is greater than 200/)
   end
  
@@ -62,12 +62,12 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     set_field("852$x", institution.id)
     set_field("031$a", "211")
     find(:xpath, "//a[@data-action='exit']").click
-    #save_screenshot('/tmp/scr1.png', :full => true)
     sleep 2
+    save_screenshot('/tmp/scr1.png', :full => true)
     find(:xpath, "//a[@data-action='exit']").click
     sleep 2
-    #save_screenshot('/tmp/scr2.png', :full => true)
-    warning = first("div[class='flash flash_warning']", visible: false)
+    save_screenshot('/tmp/scr2.png', :full => true)
+    warning = first("div[class='flash flash_warning']", visible: false) rescue nil
     expect(warning).to be_nil
   end
    
@@ -78,7 +78,7 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     sleep 2
     find(:xpath, "//a[@data-action='exit']").click
     sleep 2
-    error = first("div[class='flash flash_error']", visible: false)
+    error = first("div[class='flash flash_error']", visible: false) rescue nil
     expect(error.text).to match(/Your are not allowed to create sources with siglum/)
   end
   
@@ -86,7 +86,7 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     set_field("852$x", institution.id)
     find(:xpath, "//a[@data-action='exit']").click
     sleep 2
-    error = first("div[class='flash flash_error']", visible: false)
+    error = first("div[class='flash flash_error']", visible: false) rescue nil
     expect(error.text).to match(/is mandatory for this template/)
   end
  
@@ -100,7 +100,7 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     sleep 2
     find(:xpath, "//a[@data-action='exit']").click
     sleep 2
-    error = first("div[class='flash flash_error']", visible: false)
+    error = first("div[class='flash flash_error']", visible: false) rescue nil
     expect(error.text).to match(/is mandatory for this template/)
   end
 

@@ -34,7 +34,7 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     find(:xpath, "//a[@data-action='exit']").click
     sleep 3
     save_screenshot('/tmp/scr1.png', :full => true)
-    error = first("div[class='flash flash_error']", visible: false)
+    error = first("div[class='flash flash_error']", visible: false) rescue nil
     expect(error).to be_nil
   end
   
@@ -43,7 +43,7 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
     find(:xpath, "//a[@data-action='exit']").click
     sleep 3
     save_screenshot('/tmp/scr1.png', :full => true)
-    error = first("div[class='flash flash_error']", visible: false)
+    error = first("div[class='flash flash_error']", visible: false) rescue nil
     expect(error).to be_nil
   end
 end

@@ -101,7 +101,7 @@ class Source < ApplicationRecord
     validate :check_warnings
   end
 
-  validate :validates_parent_id
+  #validate :validates_parent_id
 
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
