@@ -54,28 +54,39 @@ var show_viaf_actions = function () {
 		}
 	}
 
-	$("#viaf_button").click(function(){
-		$viaf_table.html("");
-		var term = $("#viaf_input").val();
+  function searchViaf(){
+    $viaf_table.html("");
+    var term = $("#viaf_input").val();
     var model = $("#marc_editor_panel").attr("data-editor-model");
-		$.ajax({
-			type: "GET",
-			url: "/admin/"+model+"/viaf.json?viaf_input="+term,
-			beforeSend: function() {
-				$('#loader').show();
-			},
-			complete: function(){
-				$('#loader').hide();
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				alert(jqXHR.responseText);
-			},
-			success: function(data){
-				var result = (JSON.stringify(data));
-				drawTable(data);
-			}
-		});
-	});
+      $.ajax({
+        type: "GET",
+        url: "/admin/"+model+"/viaf.json?viaf_input="+term,
+        beforeSend: function() { 
+          $('#loader').show();
+        },
+        complete: function(){
+          $('#loader').hide();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          alert(jqXHR.responseText);
+        },
+        success: function(data){
+          var result = (JSON.stringify(data));
+          drawTable(data);
+        }
+      });
+  }
+
+  $("#viaf_button").click(function(){ 
+    searchViaf()
+  })
+
+  $('#viaf_input').keydown(function (e) {
+    var keyCode = e.keyCode || e.which;
+    if (keyCode == 13) { 
+      searchViaf()
+    }
+  });
 
 	function drawTable(data) {
 		for (var i = 0; i < data.length; i++) {
