@@ -44,14 +44,14 @@ ActiveAdmin.register Workgroup do
     def update
       update! do |success,failure|
         success.html { redirect_to collection_path }
-        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+        failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
     end
     
     # redirect create failure for preserving sidebars
     def create
       create! do |success,failure|
-        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+        failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
     end
     
