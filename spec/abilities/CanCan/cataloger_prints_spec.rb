@@ -3,8 +3,8 @@ require "cancan/matchers"
 
 RSpec.describe User do
 
-  describe 'Cataloger_prints abilities for editions' do
-    let(:user) { FactoryBot.create(:cataloger_prints) }
+  describe 'DEPRECATED:Cataloger_prints abilities for editions' do
+    let(:user) { FactoryBot.create(:cataloger) }
     let(:edition) { FactoryBot.create(:edition)  }
     subject(:ability) { Ability.new(user)  }
     it "should be able to edit edition with own holding" do
@@ -13,8 +13,8 @@ RSpec.describe User do
     end
   end
   
-  describe 'Cataloger_prints abilities for editions' do
-    let(:user) { FactoryBot.create(:cataloger_prints) }
+  describe 'DEPRECATED: Cataloger_prints abilities for editions' do
+    let(:user) { FactoryBot.create(:cataloger) }
     let(:workgroup) { FactoryBot.create(:workgroup) }
     let(:edition) { FactoryBot.create(:edition)  }
     let!(:foreign_holding) { FactoryBot.create(:foreign_holding)  }
