@@ -20,6 +20,7 @@ fields:
   "008_language":
       :from_tag: 008
       :index_helper: :marc_helper_get_008_language
+  "026e":
   "028a":
   "028b":
   "031d":
