@@ -622,8 +622,8 @@ en:
     banner: 'Please click "Preview" to show the MEI-converted output.'
 
   wf_stage:
-    inprogress: "In Progress"
-    published: "Published"
+    inprogress: "Unpublished (UNP)"
+    published: "Published (PUB)"
     deleted: "Deleted"
   
   dashboard:
