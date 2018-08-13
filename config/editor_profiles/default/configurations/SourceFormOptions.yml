@@ -902,5 +902,6 @@
       - type: work
         editor_partial: subfield_secondary
         allow_new: true
-ui: 
-  hide_marc_identifiers: true
+
+triggers:
+  - notify_changes

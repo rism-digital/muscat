@@ -170,5 +170,3 @@
       - values: 
         - "IIIF"
         editor_partial: subfield_select
-ui: 
-  hide_marc_identifiers: true

@@ -1,16 +1,11 @@
 class User < ApplicationRecord
-
-  if Blacklight::Utils.needs_attr_accessible?
-    attr_accessible :email, :password, :password_confirmation
-  end
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
 
   has_and_belongs_to_many :workgroups
-  attr_accessible :email, :password, :preference_wf_stage, :password_confirmation if Rails::VERSION::MAJOR < 4
+
   has_many :sources, foreign_key: 'wf_owner'
-# Connects this user object to Blacklights Bookmarks. 
-  include Blacklight::User
+
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

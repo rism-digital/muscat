@@ -15,6 +15,26 @@ module Triggers
     end
   end
   
+  def execute_global_triggers
+    conf = EditorConfiguration.get_default_layout(@item)
+    if !conf
+      puts "Could not read editor configurations for #{@item.class} for triggers"
+      return
+    end
+    
+    return if !conf.get_triggers
+    
+    if !conf.get_triggers.is_a?(Array)
+      puts "Invalid trigger configuration for #{@item.class}"
+    end
+    
+    conf.get_triggers.each do |trigger|
+      if trigger == "notify_changes"
+      end
+    end
+    
+  end
+  
   def triggers_from_hash(triggers)
     [triggers].to_json.html_safe
   end
