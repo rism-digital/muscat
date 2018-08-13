@@ -958,6 +958,22 @@ doc_references:
         en: Supplementary material
       edit_label: 
         en: ""
+"535": 
+  label: 
+    it: MASTER EXEMPLAR
+    fr: MASTER EXEMPLAR
+    de: Vorlageexemplar
+    en: MASTER EXEMPLAR
+  fields: 
+    a: 
+      label: 
+        it: MASTER EXEMPLAR
+        fr: MASTER EXEMPLAR
+        de: Vorlageexemplar
+        en: MASTER EXEMPLAR
+      edit_label: 
+        en: ""
+      comment: "NEW IN 2018"
 "541": 
   label: 
     it: Fonte immediata d'acquisto
