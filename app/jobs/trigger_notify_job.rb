@@ -16,11 +16,15 @@ class TriggerNotifyJob < ProgressJob::Base
     return if !@object
     
     User.where(notification_type: :each).each do |user|
-      ap user
+      matcher = NotificationMatcher.new(@object, user)
+      
+      if matcher.matches?
+        ModificationNotification.notify(matcher.get_matches, @object, user).deliver_now
+      end
+      
     end
     
   end
-  
   
   def destroy_failed_jobs?
     false

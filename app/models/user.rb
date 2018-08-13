@@ -116,6 +116,21 @@ class User < ApplicationRecord
     return false
   end
 
+  def get_notifications
+    return false if !notifications || notifications.empty?
+    
+    elements = {}
+    
+    notifications.each_line do |line|
+      parts = line.strip.split(":")
+      next if parts.count < 2
+      next if parts[0].empty? # :xxx case
+      elements[parts[0]] = parts[1]
+    end
+    
+    return elements
+  end
+
   # returns a list of users sorted by lastname with admin at first place; utf-8 chars included
   def self.sort_all_by_last_name
     res = {}
@@ -124,7 +139,7 @@ class User < ApplicationRecord
     end
     return res.sort_by{|_key, value| value.first}.map {|e| e[1][1] }
   end
-
+  
 =begin #515 postponed to 3.7
   def secure_password
     return true if !password

@@ -15,8 +15,8 @@ module Triggers
     end
   end
   
-  def execute_global_triggers
-    conf = EditorConfiguration.get_default_layout(@item)
+  def execute_global_triggers(object)
+    conf = EditorConfiguration.get_default_layout(object)
     if !conf
       puts "Could not read editor configurations for #{@item.class} for triggers"
       return
@@ -30,6 +30,7 @@ module Triggers
     
     conf.get_triggers.each do |trigger|
       if trigger == "notify_changes"
+        Delayed::Job.enqueue(TriggerNotifyJob.new(object))
       end
     end
     

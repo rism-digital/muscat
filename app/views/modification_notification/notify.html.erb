@@ -1,0 +1,9 @@
+You are receiving this mail becase source <%=@source.id%> was saved and matched the following pattern(s):
+<p>
+<ul>
+<% @matches.each do |m| %>
+
+	<li><%= m%></li>
+
+<% end %>
+</ul>
