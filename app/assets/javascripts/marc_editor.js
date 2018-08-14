@@ -236,10 +236,12 @@ function _marc_editor_validate( source_form, destination, rails_model ) {
 		data: {
 			marc: JSON.stringify(json_marc), 
 			marc_editor_dest: destination, 
-			id: $('#id').val()
+			id: $('#id').val(),
+			record_type: $('#record_type').val(),
+      current_user: $('#current_user').find('a').attr('href').split("/")[3],
 		},
 		dataType: 'script',
-		timeout: 20000,
+		timeout: 60000,
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {

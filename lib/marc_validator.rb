@@ -184,11 +184,22 @@ include ApplicationHelper
         if min < 1000
           add_error("260", "c", "Date too far in the past: #{min} (#{marcsubtag.content})")
         end
-        
       end
     end
   end
 
+  #User should not be able to create record from foreign library
+  def validate_user_abilities(user)
+    return if user.has_role?(:admin) || user.has_role?(:editor)
+    return if @marc.get_id != '__TEMP__' || !@marc.get_siglum
+    sigla = []
+    user.workgroups.each do |w|
+      sigla.push(*w.get_institutions.pluck(:siglum))
+    end
+    unless sigla.include?(@marc.get_siglum)
+      add_error("852", "x", "User has insuffiecent rights to create record of this library")
+    end
+  end
 
   def validate_unknown_tags
     @unknown_tags = []

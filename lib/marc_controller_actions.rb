@@ -318,6 +318,7 @@ module MarcControllerActions
       model = self.resource_class
 
       marc_hash = JSON.parse params[:marc]
+      current_user = User.find(params[:current_user])
       
       # This is the tricky part. Get the MARC subclass
       # e.g. MarcSource or MarcPerson
@@ -338,7 +339,12 @@ module MarcControllerActions
       validator.validate
       validator.validate_links
       validator.validate_unknown_tags
-      render json: validator.get_errors if validator.has_errors
+      validator.validate_user_abilities(current_user) if model == Source
+      if validator.has_errors
+        render json: {status: validator.get_errors}
+      else
+        render json: {status: "ok"}
+      end
     end
 
  
