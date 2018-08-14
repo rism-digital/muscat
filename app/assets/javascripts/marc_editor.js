@@ -231,7 +231,8 @@ function _marc_editor_validate( source_form, destination, rails_model ) {
 	
 	$.ajax({
 		success: function(data) {
-			alert(data);
+      var message_box = $("#marc_errors");
+      message_box.html(data).css('visibility', 'visible');
 		},
 		data: {
 			marc: JSON.stringify(json_marc), 
