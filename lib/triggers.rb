@@ -24,6 +24,10 @@ module Triggers
     
     return if !conf.get_triggers
     
+    if object.respond_to?(:last_updated_at)
+      return if object.updated_at - object.last_updated_at < RISM::VERSION_TIMEOUT
+    end
+    
     if !conf.get_triggers.is_a?(Array)
       puts "Invalid trigger configuration for #{@item.class}"
     end
