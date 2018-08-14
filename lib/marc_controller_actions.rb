@@ -307,6 +307,41 @@ module MarcControllerActions
       redirect_to send(link_function, @item.id, {:show_history => true}), notice: "Deleted snapshot #{params[:version_id]}"
     end
   
+    #############
+    ##Validate ##
+    #############
+    
+    dsl.collection_action :marc_editor_validate, :method => :post do
+      puts "--------------VALIDATE -------------------"
+      
+      #Get the model we are working on
+      model = self.resource_class
+
+      marc_hash = JSON.parse params[:marc]
+      
+      # This is the tricky part. Get the MARC subclass
+      # e.g. MarcSource or MarcPerson
+      classname = "Marc" + model.to_s
+      # Let it crash is the class is not fond
+      dyna_marc_class = Kernel.const_get(classname)
+      
+      new_marc = dyna_marc_class.new()
+      # Load marc, do not resolve externals
+      new_marc.load_from_hash(marc_hash)
+
+      @item = model.new
+      @item.marc = new_marc
+      
+      @item.set_object_fields
+      @item.generate_id if @item.respond_to?(:generate_id)
+      validator = MarcValidator.new(@item, false)
+      validator.validate
+      validator.validate_links
+      validator.validate_unknown_tags
+      render json: validator.get_errors if validator.has_errors
+    end
+
+ 
   end
   
 end

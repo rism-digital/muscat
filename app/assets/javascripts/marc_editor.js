@@ -223,6 +223,34 @@ function _marc_editor_preview( source_form, destination, rails_model ) {
 	});
 }
 
+function _marc_editor_validate( source_form, destination, rails_model ) {
+	form = $('form', "#" + source_form);
+	json_marc = serialize_marc_editor_form(form);
+	
+	url = "/admin/" + rails_model + "/marc_editor_validate";
+	
+	$.ajax({
+		success: function(data) {
+			console.log(data);
+		},
+		data: {
+			marc: JSON.stringify(json_marc), 
+			marc_editor_dest: destination, 
+			id: $('#id').val()
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			alert ("Error in validation process. (" 
+					+ textStatus + " " 
+					+ errorThrown);
+		}
+	});
+}
+
+
 function _marc_editor_help( destination, help, title, rails_model ) {
 
 	url = "/admin/" + rails_model + "/marc_editor_help";
@@ -385,6 +413,11 @@ function marc_editor_send_form(redirect) {
 
 function marc_editor_show_preview() {
     _marc_editor_preview('marc_editor_panel','marc_editor_preview', marc_editor_get_model());
+    window.scrollTo(0, 0);
+}
+
+function marc_editor_validate() {
+    _marc_editor_validate('marc_editor_panel','marc_editor_validate', marc_editor_get_model());
     window.scrollTo(0, 0);
 }
 	

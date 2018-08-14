@@ -73,6 +73,7 @@ var init_sidebar_actions = function () {
 			// This is for showing/hiding subtabs in marc
 			marc_editor_set_last_tab(tname, panel);
 			marc_editor_show_tab_in_panel(tname, panel);
+			marc_editor_validate();
 		}
 				
 		window.scrollTo(0, 0);
