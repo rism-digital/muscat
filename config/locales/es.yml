@@ -290,6 +290,7 @@ es:
   show_all_groups: "Mostrar todas las secciones"
   show_preview: "Mostrar vista anticipada"
   hide_preview: "Ocultar vista anticipada"
+  show_validate: "VALIDATE"
   show_history: "Mostrar historia de modificaciones"
   show_viaf: "Búsqueda VIAF"
   save_and_continue: "Guardar y continuar editando"

@@ -50,6 +50,7 @@ var init_sidebar_actions = function () {
 		if (tname == "show_toplevel") {
 			// Show a specific toplevel panel
 			show_toplevel(panel);
+			marc_editor_validate();
 			// Save the full view
 			marc_editor_set_last_tab("full", "full");
 		} else if (tname == "action") {
@@ -73,7 +74,6 @@ var init_sidebar_actions = function () {
 			// This is for showing/hiding subtabs in marc
 			marc_editor_set_last_tab(tname, panel);
 			marc_editor_show_tab_in_panel(tname, panel);
-			marc_editor_validate();
 		}
 				
 		window.scrollTo(0, 0);

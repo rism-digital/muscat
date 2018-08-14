@@ -316,6 +316,7 @@ en:
   show_all_groups: "Show all sections"
   show_preview: "Show preview"
   hide_preview: "Hide preview"
+  show_validate: "Validate"
   show_history: "Show modification history"
   show_viaf: "VIAF Search"
   save_and_continue: "Save and continue editing"

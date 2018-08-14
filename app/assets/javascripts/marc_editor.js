@@ -231,7 +231,7 @@ function _marc_editor_validate( source_form, destination, rails_model ) {
 	
 	$.ajax({
 		success: function(data) {
-			console.log(data);
+			alert(data);
 		},
 		data: {
 			marc: JSON.stringify(json_marc), 
@@ -417,7 +417,7 @@ function marc_editor_show_preview() {
 }
 
 function marc_editor_validate() {
-    _marc_editor_validate('marc_editor_panel','marc_editor_validate', marc_editor_get_model());
+    _marc_editor_validate('marc_editor_panel','marc_editor', marc_editor_get_model());
     window.scrollTo(0, 0);
 }
 	

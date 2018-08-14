@@ -316,6 +316,7 @@ it:
   show_all_groups: "Mostra tutti i gruppi"
   show_preview: "Mostra anteprima"
   hide_preview: "Nascondi anteprima"
+  show_validate: "VALIDATE"
   show_history: "Mostra lo storico"
   show_viaf: "Ricerca VIAF"
   save_and_continue: "Salva e continua"
