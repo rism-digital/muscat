@@ -19,7 +19,7 @@ class TriggerNotifyJob < ProgressJob::Base
       matcher = NotificationMatcher.new(@object, user)
       
       if matcher.matches?
-        ModificationNotification.notify(matcher.get_matches, @object, user).deliver_now
+        ModificationNotification.notify(user, {@object.id => matcher.get_matches}).deliver_now
       end
       
     end
@@ -29,11 +29,11 @@ class TriggerNotifyJob < ProgressJob::Base
   def destroy_failed_jobs?
     false
   end
-  
+
   def max_attempts
     1
   end
-  
+
   def queue_name
     'triggers'
   end
