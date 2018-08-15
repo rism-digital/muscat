@@ -3,12 +3,13 @@ class ModificationDigestJob < ApplicationJob
   
   def initialize(period = :weekly)
     super
-    @period = period
-    @period = :weekly if ![:daily, :weekly].include?(@period)
-    @days = @period == :weekly ? 7 : 1
+    set_period(period)
   end
   
   def perform(*args)
+    ## For compatibility between crono and delayed job
+    set_period(args[0]) if !args.empty? && args[0].is_a?(Symbol)
+    
     User.where(notification_type: @period).each do |user|
       # get the last modified sources
       
@@ -24,6 +25,14 @@ class ModificationDigestJob < ApplicationJob
       
       ModificationNotification.notify(user, results).deliver_now if !results.empty?
     end
+  end
+
+  private
+  def set_period(period)
+    @period = period
+    @period = :weekly if ![:daily, :weekly].include?(@period)
+    @days = @period == :weekly ? 7 : 1
+    puts "Set #{@period} for #{@days} days"
   end
 
 end
