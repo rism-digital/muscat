@@ -494,10 +494,6 @@
         - "First performance date: "
         - "Performance date: "
         editor_partial: subfield_autocomplete
-"535": 
-  layout: 
-    fields: 
-    - - a   
 "541": 
   layout: 
     fields: 
@@ -516,6 +512,10 @@
       - type: source
         editor_partial: subfield_secondary
         only_new_window: true
+"588": 
+  layout: 
+    fields: 
+    - - a   
 "590": 
   layout: 
     fields: 
