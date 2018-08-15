@@ -8,6 +8,6 @@ RSpec.configure do |config|
       end
     end
     Sunspot.commit
-    puts "Cleaned Sunspot::Solr".blue
+    #puts "Cleaned Sunspot::Solr".blue
   end
 end
