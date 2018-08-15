@@ -312,8 +312,6 @@ module MarcControllerActions
     #############
     
     dsl.collection_action :marc_editor_validate, :method => :post do
-      puts "--------------VALIDATE -------------------"
-      
       #Get the model we are working on
       model = self.resource_class
 
