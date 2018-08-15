@@ -152,7 +152,7 @@ module Sru
         @error_code = {:code => 16, :message => "Unsupported index"}
         return 0
       end
-      puts "#{cql_string} => #{solr_string}"
+      #puts "#{cql_string} => #{solr_string}"
       return solr_string
     end
 

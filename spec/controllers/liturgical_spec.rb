@@ -8,17 +8,16 @@ RSpec.describe Admin::LiturgicalFeastsController, :type => :controller do
     sign_in @user
   end
 
-  describe "GET index" do
-    it "read liturgicalfeast index" do
+  context "GET index" do
+    it do
       get :index
       expect(response.body).to have_css ("#titlebar_left")
     end
   end
 
-  describe "correct redirect" do
-    it "incorrect input should redirect to root path" do
-      f = LiturgicalFeast.last
-      patch :update, params: { :id => f.id, :liturgical_feast => { :name => nil  } }
+  context "redirect_to back" do
+    it do
+      patch :update, params: { :id => feast.id, :liturgical_feast => { :name => nil  } }
       expect(response).to redirect_to(root_path)
     end
   end
