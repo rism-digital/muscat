@@ -161,8 +161,14 @@ var nonmarc_add_window_select_actions = function () {
 	});
 }
 
-if (window.opener != null && window.opener.$("#new_window_select_nomarc").length > 0) {
-	$(document).ready(nonmarc_add_window_select_actions);
-	// Fix for turbolinks: it will not call againg document.ready
-	$(document).on('page:load', nonmarc_add_window_select_actions);
+
+try {
+	if (window.opener != null && window.opener.$("#new_window_select_nomarc").length > 0) {
+		$(document).ready(nonmarc_add_window_select_actions);
+		// Fix for turbolinks: it will not call againg document.ready
+		$(document).on('page:load', nonmarc_add_window_select_actions);
+	}
+} catch(e) {
+	console.log("New Window select (non marc) disabled - link not from muscat");
+	console.log(e);
 }
