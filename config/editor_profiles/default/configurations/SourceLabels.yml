@@ -104,6 +104,11 @@ doc_cat_collections:
     de: Erfassung von Sammlungen
     en: Cataloging collections
     it: Catalogo delle raccolte
+doc_cat_language: 
+  label: 
+    de: Katalogisierungsspache
+    en: Cataloging language
+    it: CATALOGING LANGUAGE  
 doc_cat_templates: 
   label: 
     de: Templates
@@ -247,6 +252,11 @@ doc_main_entry_fields:
     de: "Haupteintragungen"
     en: "Main entry fields"
     it: "Campi principali"
+doc_mult_copies:
+  label:
+    de: "Mehrere Exemplare"
+    en: "Multiple copies"
+    it: "MULTIPLE COPIES"
 doc_numbers:
   label:
     de: "Nummern und Codes"
