@@ -3,26 +3,22 @@ require "cancan/matchers"
 
 RSpec.describe User do
 
-  describe 'editor_abilities' do
+  context 'with editor abilities' do
     let(:editor) { FactoryBot.create(:editor)  }
     let(:person) { FactoryBot.create(:person)  }
     subject(:ability) { Ability.new(editor)  }
-    it "editors should not to be able to edit people" do
-      expect(ability).not_to be_able_to(:update, person)
-      expect(ability).not_to be_able_to(:destroy, person)
-      expect(ability).to be_able_to(:create, person)
-    end
+    it { expect(ability).not_to be_able_to(:update, person) }
+    it { expect(ability).not_to be_able_to(:destroy, person) }
+    it { expect(ability).to be_able_to(:create, person) }
   end
 
-  describe 'person_editor_abilities' do
+  context 'with person editor abilities' do
     let(:person_editor) { FactoryBot.create(:person_editor)  }
     let(:person) { FactoryBot.create(:person)  }
     subject(:ability) { Ability.new(person_editor)  }
-    it "person_editor should be able to edit people" do
-      expect(ability).to be_able_to(:update, person)
-      expect(ability).to be_able_to(:destroy, person)
-      expect(ability).to be_able_to(:create, person)
-    end
+    it { expect(ability).to be_able_to(:update, person) }
+    it { expect(ability).to be_able_to(:destroy, person) }
+    it { expect(ability).to be_able_to(:create, person) }
   end
 end
 
