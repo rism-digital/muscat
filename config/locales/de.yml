@@ -622,8 +622,8 @@ de:
     banner: 'Bitte "Vorschau" wählen, um die MEI-Konvertierung anzuzeigen.'
 
   wf_stage:
-    inprogress: "In Arbeit"
-    published: "Veröffentlicht"
+    inprogress: "In Arbeit (UNP)"
+    published: "Veröffentlicht (PUB)"
     deleted: "Gelöscht"
 
   
