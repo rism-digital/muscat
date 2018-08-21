@@ -111,14 +111,22 @@ module ActiveAdmin
       def save_search_filters
         session[:select] = nil
         if params[:action].to_sym == :index
-          session[:last_search_filter] ||= Hash.new
-          session[:last_search_filter][controller_name] = params[:q]
-          session[:last_search_page] ||= Hash.new
-          session[:last_search_page][controller_name] = params[:page]
-          session[:last_order_page] ||= Hash.new
-          session[:last_order_page][controller_name] = params[:order]
-          session[:last_scope] ||= Hash.new
-          session[:last_scope][controller_name] = params[:scope]
+          if params.include?(:q)
+            session[:last_search_filter] ||= Hash.new
+            session[:last_search_filter][controller_name] = params[:q]
+          end
+          if params.include?(:page)
+            session[:last_search_page] ||= Hash.new
+            session[:last_search_page][controller_name] = params[:page]
+          end
+          if params.include?(:order)
+            session[:last_order_page] ||= Hash.new
+            session[:last_order_page][controller_name] = params[:order]
+          end
+          if params.include?(:scope)
+            session[:last_scope] ||= Hash.new
+            session[:last_scope][controller_name] = params[:scope] if params.include?(:scope)
+          end
           session[:select] = controller_name if params[:select]
         # We also need to save the page param in show because it might be change 
         # by the prev/next navigation 
@@ -126,6 +134,16 @@ module ActiveAdmin
           session[:last_search_page] ||= Hash.new
           session[:last_search_page][controller_name] = params[:page]
           session[:select] = controller_name if params[:select]
+        end
+        purge_params
+      end
+ 
+      def purge_params
+        session.each do |k, v|
+          if v.is_a?(Hash)
+            v.delete_if {|h_key, h_value| h_value == nil}
+            session.delete(k) if v.empty?
+          end
         end
       end
  
