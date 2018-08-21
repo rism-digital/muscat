@@ -14,6 +14,7 @@ FactoryBot.define do
     standard_terms { [association(:standard_term)]  }
     initialize_with { Source.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
     marc_source <<STRING
+=026  #\#$eFINGERPRINT12345
 =040  #\#$aDE-633
 =100  1\#$aBach, Johann Sebastian$d1685-1750$02539
 =240  10$aJesu meine Freude$nBC C 5$03905618

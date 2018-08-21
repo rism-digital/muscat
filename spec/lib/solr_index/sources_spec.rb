@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe Admin::SourcesController, type: :controller do
+RSpec.describe Admin::SourcesController, type: :controller, solr: true do
   FactoryBot.create(:person)
   let(:user) { create :admin   }
   render_views
@@ -58,6 +58,17 @@ RSpec.describe Admin::SourcesController, type: :controller do
     end
   end
 
+  describe "Edition fingerprint" do
+   it "fulltext search should contain record with fingerprint in 026e" do
+      initial_size = Source.solr_search {fulltext 'FINGERPRINT12345'}.total
+      FactoryBot.create(:edition)
+      Sunspot.index[Source]
+      Sunspot.commit
+      after_create_size = Source.solr_search { fulltext 'FINGERPRINT12345' }.total
+      expect(after_create_size).to eq(initial_size + 1)
+    end
+  end
+ 
 
 
 end

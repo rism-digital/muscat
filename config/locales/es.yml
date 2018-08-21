@@ -587,8 +587,8 @@ es:
     banner: 'Por favor haga clic en "Vista anticipada" para mostrar output convertido en MEI.'
 
   wf_stage:
-    inprogress: "En progreso"
-    published: "Publicado"
+    inprogress: "En progreso (UNP)"
+    published: "Publicado (PUB)"
     deleted: "Borrado"
 
   dashboard:

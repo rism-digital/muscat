@@ -36,7 +36,7 @@ module Sru
         @error_code = {:code => 7, :message => "Mandatory parameter not supplied"}
       end
       @maximumRecords=params.fetch(:maximumRecords, 10).to_i rescue 10
-      if @maximumRecords.instance_of?(Fixnum) && @maximumRecords > sru_config['server']['maximumRecords']
+      if @maximumRecords.instance_of?(Integer) && @maximumRecords > sru_config['server']['maximumRecords']
         @error_code = {:code => 60, :message => "Result set not created: too many matching records (code 60): MaximumRecords is limited to #{sru_config['server']['maximumRecords']} records"}
       end
       @offset = params.fetch("startRecord", 1).to_i rescue 1
@@ -152,7 +152,7 @@ module Sru
         @error_code = {:code => 16, :message => "Unsupported index"}
         return 0
       end
-      puts "#{cql_string} => #{solr_string}"
+      #puts "#{cql_string} => #{solr_string}"
       return solr_string
     end
 

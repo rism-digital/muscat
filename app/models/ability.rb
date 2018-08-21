@@ -40,13 +40,14 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "Statistics"
 
       #515 postponed to 3.7, add :update
-      can [:read], User, :id => user.id
+      # NOTE password is in :manage
+      can [:read, :update], User, :id => user.id
     
     ##############
     # Cataloguer #
     ##############
 
-    elsif user.has_role?(:cataloger) || user.has_role?(:cataloger_prints)
+    elsif user.has_role?(:cataloger)
       # A cataloguer can create new items but modify only the ones ho made
       can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding]
       if user.has_role?(:person_restricted)
@@ -77,15 +78,7 @@ class Ability
         user.can_edit? source
       end
       
-      # The difference between withouth or with print rights
       if user.has_role?(:cataloger)
-        can :create_editions, Source
-        can :update_editions, Source
-        can :update, Source do |s|
-          user.can_edit_edition?(s)
-        end
-      #TODO role cataloger_prints can be deleted after all catalogers have special rights
-      else
         can :create_editions, Source
         can :update_editions, Source
         can :update, Source do |s|
@@ -96,7 +89,7 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
-      can [:read], User, :id => user.id
+      can [:read, :update], User, :id => user.id
     
     #########
     # Guest #
