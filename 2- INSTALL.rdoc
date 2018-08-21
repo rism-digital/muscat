@@ -43,7 +43,7 @@ On 18.40, also enable GPG verification of Passenger:
 Then install all the dependencies and setup passenger:
 
  apt-get update
- apt-get install mysql-server apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev libmysqlclient-dev default-jre
+ apt-get install mysql-server apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev libmysqlclient-dev openjdk-8-jdk-headless
  a2enmod passenger
  
 Passenger also wants to compile a binary module, this is optional but will enable it
