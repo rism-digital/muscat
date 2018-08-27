@@ -3786,3 +3786,21 @@ aid_error:
     en: "Technical errors"
     it: "Errori tecnici"
     de: "Technische Fehler"
+IIIF: 
+  label: 
+    it: "DIGITIZED MUSIC (WITH IIIF)"
+    fr: "DIGITIZED MUSIC (WITH IIIF)"
+    de: "Notendigitalisat (mit IIIF)"
+    en: "Digitized music (with IIIF)"
+Digitalization: 
+  label: 
+    it: "DIGITIZED MUSIC (WITHOUT IIIF)"
+    fr: "DIGITIZED MUSIC (WITHOUT IIIF)"
+    de: "Notendigitalisat (ohne IIIF)"
+    en: "Digitized music (without IIIF)"
+Other: 
+  label: 
+    it: "OTHER"
+    fr: "OTHER"
+    de: "Sonstiges"
+    en: "Other"
