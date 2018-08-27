@@ -3788,19 +3788,19 @@ aid_error:
     de: "Technische Fehler"
 IIIF: 
   label: 
-    it: "DIGITIZED MUSIC (WITH IIIF)"
-    fr: "DIGITIZED MUSIC (WITH IIIF)"
-    de: "Notendigitalisat (mit IIIF)"
-    en: "Digitized music (with IIIF)"
+    it: "IIIF MANIFEST"
+    fr: "Manifeste IIIF"
+    de: "IIIF manifest"
+    en: "IIIF manifest"
 Digitalization: 
   label: 
-    it: "DIGITIZED MUSIC (WITHOUT IIIF)"
-    fr: "DIGITIZED MUSIC (WITHOUT IIIF)"
-    de: "Notendigitalisat (ohne IIIF)"
-    en: "Digitized music (without IIIF)"
+    it: "DIGITIZED MUSIC"
+    fr: "Sources numériées"
+    de: "Notendigitalisat"
+    en: "Digitized music"
 Other: 
   label: 
     it: "OTHER"
-    fr: "OTHER"
+    fr: "Autre"
     de: "Sonstiges"
     en: "Other"
