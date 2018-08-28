@@ -11,7 +11,6 @@ solr/production
 solr/second
 solr/test
 log/sunspot-solr-development.log
-vendor/assets/stylesheets/muscat-custom.scss
 
 .idea
 help.sh
