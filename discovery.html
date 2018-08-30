@@ -1,0 +1,154 @@
+---
+layout: default
+title: Discovery interface
+---
+<main role="main">
+    <div class="container muscat-main">
+        
+        <h4>Discovery interface</h4>
+       
+        <p>
+           The very first versions of Muscat developed by the RISM-UK from 2002 (see the <a href="{{ site.baseurl }}/history.html">history of the project</a>) were essentially a discovery interface for their data. The cataloguing side of Muscat was only developed later with the overarching idea being to avoid developing twice the same search functions that needed to be provided both to the end-users and to the cataloguers.
+        </p>
+        
+        <p>
+            Considerable developments had to be made in the improvement of the cataloguing side of Muscat because data production is significantly more complex than data publishing. For example, data production requires user access to be fully controlled and data integrity to be constantly ensured. Nonetheless, the discovery interface in Muscat has remained in use from the beginning on.
+        </p>
+        
+        <div class="muscat-hand">
+            <p>
+                An example installation of the discovery interface of Muscat is freely accessible for the <a href="http://www.rism-ch.org/catalog/" target="_blank">RISM Switzerland</a> dataset, including the <a href="http://www.rism-ch.org/advanced/" target="_blank">advanced search</a> option.
+            </p>
+        </div>
+       
+        <h4>Blacklight</h4>
+
+        <p>
+            <div class="float-right d-none d-sm-block"><img src="{{ site.baseurl }}/images/logos/blacklight.png"></div>
+           The current version of Muscat uses <a href="http://projectblacklight.org/" target="_blank">Blacklight</a> for its discovery interface. Blacklight is an open-source project initiated by the <a href="https://www.emeraldinsight.com/doi/pdfplus/10.1108/07378830910942919" target="_blank">Library of Virginia</a> in 2007. It is used by numerous libraries, including <a href="https://searchworks.stanford.edu"  target   ="_blank">Stanford University</a>, <a href="https://www.europeana.eu/portal"  target   ="_blank">Europeana</a>, <a href="http://collection-media.yale.edu/"  target   ="_blank">Yale University</a>, the <a href="https://medieval.bodleian.ox.ac.uk/" target="_blank">Bodleian</a>, or <a href="https://hrwa.cul.columbia.edu/" target="_blank">Columbia University</a>. The Blacklight project can rely on a solid community of user institutions and developers that meets <a href="https://github.com/projectblacklight/blacklight/wiki/Blacklight-Summits-and-Events" target="_blank">annually</a> with recurrent support from the Princeton University Library.
+        </p>
+        
+        <h4>
+            Features
+        </h4>
+        
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-5 col-lg-4">
+                <h5>Faceted search</h5>
+                <p>
+                    The discovery interface features a standard faceted search that enables search results to be refined interactively. The drop-down facets are dynamically updated according to the current search results. Each facet can also be navigated from a popup modal window where the list can be sorted alphabetically or according to the number of matches. See also the <a href="{{ site.baseurl }}/visualization.html">visualization</a> page for a description of the map view of the search results.
+                </p>
+            </div>
+        
+            <div class="col-sm-12 col-md-7 col-lg-8">
+                <div class="mb-3">
+                    <video id="facets" preload="auto" loop="true" muted="true" class="img-fluid border border-muscat mx-auto d-block">
+                        <source src="{{ site.baseurl }}/movies/facets.mp4" type="video/mp4">
+                        <source src="{{ site.baseurl }}/movies/facets.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-7 col-lg-8">
+                <div class="mb-3">
+                    <video id="advanced" preload="auto" loop="true" muted="true" class="img-fluid border border-muscat mx-auto d-block">
+                        <source src="{{ site.baseurl }}/movies/advanced.mp4" type="video/mp4">
+                        <source src="{{ site.baseurl }}/movies/advanced.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+            
+            <div class="col-sm-12 col-md-5 col-lg-4">
+                <h5>Advanced search and search history</h5>
+                <p>
+                    The advanced search interface allows for incipits search and complex filter combinations. For example "-" can be used to exclude terms, and expressions "OR", "AND", and "NOT" and parentheses can be used to create complex boolean logic filters. A search history is also available for quickly retrieving previous search results. See also the <a href="{{ site.baseurl }}/incipits.html">incipit display and searching</a> page for more information about the tools and search algorithms. 
+                </p>
+            </div>
+        </div>
+        
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-5 col-lg-4">
+                <h5>Date range facet</h5>
+                <p>
+                    Dates are an important search criteria for music sources and the discovery interface includes a dedicated facet for it. A slider and form fields make it easy to adjust the upper and lower date range limits. A clickable histogram view of the results is displayed in the facet.
+                </p>
+            </div>
+            
+            <div class="col-sm-12 col-md-7 col-lg-8">
+                <div class="mb-3">
+                    <video id="dates" preload="auto" loop="true" muted="true" class="img-fluid border border-muscat mx-auto d-block">
+                        <source src="{{ site.baseurl }}/movies/dates.mp4" type="video/mp4">
+                        <source src="{{ site.baseurl }}/movies/dates.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-7 col-lg-8">
+                <div class="mb-3">
+                    <video id="images" preload="auto" loop="true" muted="true" class="img-fluid border border-muscat mx-auto d-block">
+                        <source src="{{ site.baseurl }}/movies/images.mp4" type="video/mp4">
+                        <source src="{{ site.baseurl }}/movies/images.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+            
+            <div class="col-sm-12 col-md-5 col-lg-4">
+                <h5>Embedded images</h5>
+                <p>
+                    Images uploaded to Muscat are displayed inline as an image gallery directly in the discovery interface. See the page about <a href="{{ site.baseurl }}/images-and-iiif.html">images</a> for more information about it and for the support for displaying inline images served by libraries via IIIF thanks to the Diva.js high-resolution image viewer.
+                </p>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-sm-6 col-md-8 col-lg-9">
+                <h5>Responsive design</h5>
+                <p>
+                    The discovery interface features a fully responsive interface that works equally well on computer screens, tablets or even small mobile devices. The facet search and browsing the results remain easy even on small screens.
+                </p>
+            </div>
+            
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="mb-3">
+                    <video id="responsive" preload="auto" loop="true" muted="true" class="img-fluid border border-muscat mx-auto d-block">
+                        <source src="{{ site.baseurl }}/movies/responsive.mp4" type="video/mp4">
+                        <source src="{{ site.baseurl }}/movies/responsive.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+        </div>
+        
+        <h5>
+            Multiple languages
+        </h5>
+
+        <p>
+            Muscat is multilingual and so is its discovery interface. It is currently available in English, German, French and Italian. The Muscat development team itself added the Italian translation to Blacklight (<a href="https://github.com/projectblacklight/blacklight/releases/tag/v5.14.0" target="_blank">5.14</a>). Other languages can easily be added by loading translation files into the system.
+        </p>
+        
+        {% include nav-footer.html %}
+
+    </div>
+</main>
+<script type="text/javascript">
+    var videos = ["facets", "advanced", "dates", "images", "responsive"];
+    
+    var checkView = function ()
+    {
+        for (var i = 0; i < videos.length; i++) {
+            if (isInView(document.getElementById(videos[i])))
+                document.getElementById(videos[i]).play();
+            else
+                document.getElementById(videos[i]).pause();
+        }
+    };
+
+    window.addEventListener('scroll', checkView, false);
+    window.addEventListener('resize', checkView, false);
+    
+    //document.getElementById(videos[0]).play();
+</script>

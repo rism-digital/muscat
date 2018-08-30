@@ -1,0 +1,85 @@
+---
+layout: default
+title: Images and IIIF
+---
+<main role="main">
+    <div class="container muscat-main">
+        
+        <h4>Embedded images</h4>
+        
+        <p>
+            Muscat supports the upload of single embedded images. These are useful for enhancing the cataloguing work with, for example, hand-writing or watermark illustrations. Images are directly stored on the server. They can be linked to various resources in a many-to-many way. This means that an image can be linked to both a personal name (e.g., the composer or copyist) and to a source (e.g., the manuscript description from which the image was taken). 
+        </p>
+        
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-7 col-lg-8">
+                <div class="mb-3">
+                    <video id="image-upload" preload="auto" loop="true" muted="true" class="img-fluid border border-muscat mx-auto d-block">
+                        <source src="{{ site.baseurl }}/movies/image-upload.mp4" type="video/mp4">
+                        <source src="{{ site.baseurl }}/movies/image-upload.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+            
+            <div class="col-sm-12 col-md-5 col-lg-4">
+                <p>
+                    Embedded images simply have to be uploaded from the Muscat cataloguing interface. A short description of the image must be added. Links to other resources can be added to the image where appropriate.
+                </p>
+            </div>
+        </div>
+       
+        <h4>IIIF support</h4>
+        
+        <p>
+            In addition to embedded images, Muscat also supports the <a href="https://iiif.io/" target="_blank">International Image Interoperability Framework</a> (IIIF). This means that images published by libraries or archives through this protocol can be displayed directly within the discovery interface of Muscat. The images do not need to be uploaded and hosted on the Muscat server but are instead accessed dynamically directly from the original hosting institution. The display of IIIF images in Muscat is powered by <a href="http://ddmal.github.io/diva.js/" target="_blank">Diva.js</a>, a high resolution open-source image viewer developed by the DDMAL at McGill University.
+        </p>
+        
+        
+        <div class="muscat-hand">
+            <p>
+                See a live example of the display of the complete set of high-resolution images for a source served via IIIF on the <a href="http://www.rism-ch.org/catalog/400014686" target="_blank">RISM Switzerland</a> installation of Muscat.
+            </p>
+        </div>
+        
+        <p>
+            One interesting feature of this architecture is that it makes it possible to gather images in one place. For prints, where in many cases multiple copies exist, this means they can be viewed directly within Muscat while held physically in libraries located around the world, and their images served from independent servers.
+        </p>
+        
+        <figure class="text-center">
+            <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/images-and-iiif/iiif-and-diva.png" alt="comments for a source">
+            <figcaption class="figure-caption text-center">The use of IIIF with Diva.js for displaying images hosted by different libraries</figcaption>
+        </figure>
+        
+        <p>
+            Diva.js is fully integrated into the Muscat discovery interface and the images are displayed within the source description. It is also possible to open it in full-screen mode and to adjust the zoom level as desired.
+        </p>
+        
+        <div class="mb-3">
+            <video id="iiif" preload="auto" loop="true" muted="true" class="img-fluid border border-muscat mx-auto d-block">
+                <source src="{{ site.baseurl }}/movies/iiif.mp4" type="video/mp4">
+                <source src="{{ site.baseurl }}/movies/iiif.webm" type="video/webm">
+            </video>
+        </div>
+        
+        {% include nav-footer.html %}
+
+    </div>
+</main>
+<script type="text/javascript">
+    var videos = ["image-upload", "iiif"];
+    
+    var checkView = function ()
+    {
+        for (var i = 0; i < videos.length; i++) {
+            if (isInView(document.getElementById(videos[i])))
+                document.getElementById(videos[i]).play();
+            else
+                document.getElementById(videos[i]).pause();
+        }
+    };
+
+    window.addEventListener('scroll', checkView, false);
+    window.addEventListener('resize', checkView, false);
+    
+    //document.getElementById(videos[0]).play();
+</script>

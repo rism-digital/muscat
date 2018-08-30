@@ -1,0 +1,71 @@
+---
+layout: default
+title: Authorities
+---
+<main role="main">
+    <div class="container muscat-main">
+        
+        <h4>Authority linking</h4>
+        
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-5 col-lg-4">
+                <p>
+                    Personal name authorities and works (as of Muscat 5.0) are linked to the <a href="https://viaf.org/" target="_blank">Virtual International Authority File</a> (VIAF). A field in the cataloguing interface allows for searching VIAF directly from Muscat and selecting the corresponding entry. The mapping between the RISM authority entry and VIAF makes it possible to link further with other resources that use VIAF.
+                </p>
+            </div>
+            
+            <div class="col-sm-12 col-md-7 col-lg-8">
+                <div class="mb-3">
+                    <video id="viaf" preload="auto" loop="true" muted="true" class="img-fluid border border-muscat mx-auto d-block">
+                        <source src="{{ site.baseurl }}/movies/viaf.mp4" type="video/mp4">
+                        <source src="{{ site.baseurl }}/movies/viaf.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+        </div>
+        
+
+        
+
+        
+        <h4>Interoperability with MEI</h4>
+        
+        <p>
+            In recent years, the <a href="http://music-encoding.org" target="_blank">Music Encoding Initiative</a> (MEI) has become increasingly used in scholarly projects dealing with music sources. For this reason, it is important for Muscat to be interoperable with this standard. To do so, Muscat leverages the fact that both its internal source description format (MarcXML) and MEI are in XML. This means that a transformation with the XML technology XSL can be used to export Muscat source descriptions directly to MEI.
+        </p>
+        
+        <figure class="text-center">
+            <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/authorities-and-mei/mei-export.png" alt="comments for a source">
+            <figcaption class="figure-caption text-center">The transformation of MarcXML Muscat source description to MEI can be performed via XSL.</figcaption>
+        </figure>
+        
+        <p>
+           Muscat currently embeds a default XSL stylesheet that performs this transformation. However, because the needs of projects concerned by this approach can vary, it is also possible to upload a custom stylesheet. 
+        </p>
+        
+        <p>
+            Music incipits in the MEI export can be left as Plaine and Easie incipits or converted to MEI encoding by Verovio.
+        </p>
+        
+        {% include nav-footer.html %}
+
+    </div>
+</main>
+<script type="text/javascript">
+    var videos = ["viaf"];
+    
+    var checkView = function ()
+    {
+        for (var i = 0; i < videos.length; i++) {
+            if (isInView(document.getElementById(videos[i])))
+                document.getElementById(videos[i]).play();
+            else
+                document.getElementById(videos[i]).pause();
+        }
+    };
+
+    window.addEventListener('scroll', checkView, false);
+    window.addEventListener('resize', checkView, false);
+    
+    document.getElementById(videos[0]).play();
+</script>

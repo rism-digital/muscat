@@ -1,0 +1,22 @@
+# Site settings
+title: Muscat Project
+email: info@rism-ch.org
+description: "A Rails application for the inventory of handwritten and printed music scores"
+baseurl: ""
+resources: "http://muscat-project.org"
+resources: "http://muscat-project.org"
+
+sass:
+  sass_dir: css
+
+navbar_menu:
+    - id: github
+      url: "https://github.com/rism-ch/muscat/"
+      label: "GitHub"
+      blank: true
+    - id: releases
+      url: "https://github.com/rism-ch/muscat/releases"
+      label: "Releases"
+      blank: true
+
+markdown: redcarpet

@@ -1,0 +1,103 @@
+---
+layout: default
+---
+
+<main role="main">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-9">
+                    <h3 class="mb-4">
+                        Muscat is the online web-application for cataloguing and publishing music sources developed by the RISM
+                    </h3>
+                    <p>
+                        <a class="btn btn-primary btn-sm" href="{{ site.baseurl }}/history.html" role="button">History of the project »</a>
+                    </p>
+                </div>
+                <div class="col-md-6 col-lg-3 d-none d-md-block">
+                    <img class="img-fluid" src="{{ site.baseurl}}/images/muscat-sm.png">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="row">
+        {% for c in site.data.cards %}
+            <div class="col-lg-4 col-md-6 col-sm-12 d-flex mb-4">
+                <div class="card mx-auto">
+                      <img class="card-img-top {% if c.crop %}muscat-crop{% endif %}" src="{{ site.baseurl}}/images/cards/{{ c.image }}" alt="{{ c.title }}">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ c.title }}</h5>
+                          <p class="card-text">{{ c.text }}</p>
+                          
+                      </div>
+                      <div class="card-footer muscat-footer">
+                          <a href="{{ site.baseurl }}/{{ c.page }}.html" class="float-right btn btn-sm btn-primary">Read more ...</a>
+                      </div>
+                </div>   
+            </div> 
+        {% endfor %}  
+        </div>
+        
+        <p class="muscat-news text-center">Latest news</p>
+        
+        <div>
+        {% for post in site.posts %}
+            <div class="news">
+                <h5>
+                    <div>{{ post.title }}</div>
+                </h5>
+                {{ post.excerpt }}
+                <p class="news-more"><a href="{{ post.url }}"></a></p>
+            </div>
+        {% endfor %}
+        </div>
+        
+        <div class="muscat-sponsors">
+            <div class="row align-items-center">
+                <div class="col-lg-2 col-md-3 col-xs-12 mb-2">
+                    <img class="mx-auto d-block img-fluid" src="{{ site.baseurl }}/images/logos/rism.png" alt="RISM">
+                </div>
+                <div class="col-lg-10 col-md-9 col-xs-12">
+                    <p>
+                        <strong class="text-muted">Muscat is a project of the Répertoire International des Sources Musicales (RISM) and is currently maintained and developed by the <a href="http://www.rism-ch.org/" target="_blank">Swiss RISM Office</a> and the <a href="http://www.rism.info/" target="_blank">RISM Central Office</a>. The Muscat installation of the RISM Central Office is hosted by the <a href="http://staatsbibliothek-berlin.de/" target="_blank">Staatsbibliothek zu Berlin - Preußischer Kulturbesitz</a>.</strong>
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="muscat-sponsors">    
+            <p>
+                <strong class="text-muted">The project has received direct or indirect support from the following grant agencies and institutions:</strong>
+            </p>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-xs-12 mb-2">
+                    <a href="https://ahrc.ukri.org/" target="_blank"><img class="mx-auto d-block img-fluid" src="{{ site.baseurl }}/images/sponsors/ahrc.png" alt="AHRC"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 col-xs-12 mb-2">
+                    <a href="http://www.snf.ch/en/" target="_blank"><img class="mx-auto d-block  img-fluid" src="{{ site.baseurl }}/images/sponsors/snf.png" alt="SNF"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 col-xs-12 mb-2">
+                    <a href="http://www.sagw.ch/en/sagw.html" target="_blank"><img class="mx-auto d-block img-fluid" src="{{ site.baseurl }}/images/sponsors/sagw.png" alt="SAGW"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 col-xs-12 mb-2">
+                    <a href="http://www.adwmainz.de/startseite.html" target="_blank"><img class="mx-auto d-block img-fluid" src="{{ site.baseurl }}/images/sponsors/adwmainz.png" alt="ADWMAINZ"></a>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /container -->
+</main>
+
+
+
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+
+	});
+</script>

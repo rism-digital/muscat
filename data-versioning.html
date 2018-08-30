@@ -1,0 +1,39 @@
+---
+layout: default
+title: Versioning
+---
+<main role="main">
+    <div class="container muscat-main">
+        
+        <h4>Data versioning</h4>
+        
+        <p>
+            In a collaborative project with dozens of contributors it is very important to be able to keep track of changes. For this reason, a complete versioning architecture is built into Muscat. For all resources that are mapped to a MarcXML record, all changes made to the data are preserved and previous versions of the records are stored in the system.
+        </p>
+        
+        <p>
+            For each entry in Muscat it is possible to see the list of changes, with the date, the author, and the type of change. There is also a bar indicating approximately how much data was modified.
+        </p>
+        
+        <figure class="text-center">
+            <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/data-versioning/versions.png" alt="comments for a source">
+            <figcaption class="figure-caption text-center">The list of changes for a source description in Muscat</figcaption>
+        </figure>
+        
+        <p>
+            For each stage stored it is possible to see a so-called diff that shows the differences with the previous stage. The diff uses a dynamic programming algorithm for aligning and comparing the MarcXML records, implemented specifically for Muscat. It allows the changes to be highlighted. Insertions and deletions are displayed in green and red respectively, and a modification is displayed in yellow in the side bar.
+        </p>
+        
+        <figure class="text-center">
+            <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/data-versioning/diff.png" alt="comments for a source">
+            <figcaption class="figure-caption text-center">The display of the comparison of two stages in Muscat with differences highlighted in green, red, and yellow</figcaption>
+        </figure>
+        
+        <p>
+            For each stored stage it is possible to perform various actions, including restoring a stage or removing it from the history. A restored stage will create another stage in the history, which means that it will remain trackable in the history of the data.
+        </p>
+        
+        {% include nav-footer.html %}
+
+    </div>
+</main>

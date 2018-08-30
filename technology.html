@@ -1,0 +1,78 @@
+---
+layout: default
+title: Technology
+---
+<main role="main">
+    <div class="container muscat-main">
+        
+        <h4>Open-source technology</h4>
+        
+        <p>
+            <div class="float-right d-none d-sm-block"><img src="{{ site.baseurl }}/images/logos/opensource.png"></div>
+            Muscat is no ad-hoc solution developed from scratch but is instead built on robust and modern existing technology with the aim of not re-inventing the wheel, and to benefit from third party developments. Muscat is developed with sustainability in mind and all the technology used in Muscat is open-source. This is crucial because Muscat is a long-term research infrastructure that needs to be maintained. Using open-source technology is important for sustainability but also for providing the project with flexibility in the long run. It leaves open the option to move the project from one institution to another, provided the current host is willing to pass the hosting to another institution.
+        </p> 
+        
+        <p>
+           At the core of Muscat stand the following important open-source components:
+        </p>
+       
+        <div class="row align-items-center">
+            <div class="d-none d-sm-block col-sm-3 col-md-2">
+                <a href="https://rubyonrails.org/" target="_blank"><img class="img-fluid" src="{{ site.baseurl }}/images/logos/rails.png"></a>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-10">
+                <h5>Ruby on Rails</h5>
+                <p>
+                    <a href="https://rubyonrails.org/" target="_blank">Ruby on Rails</a> is the main web application framework. It is used in many well-known projects, such as GitHub, SoundClound or Airbnb. The cataloguing user interface of Muscat is built on <a href="" target="_blank">ActiveAdmin</a>, a popular front-end framework for Ruby on Rails applications.
+                </p>
+            </div>
+
+            <div class="d-none d-sm-block col-sm-3 col-md-2">
+                <a href="http://lucene.apache.org/solr/" target="_blank"><img class="img-fluid" src="{{ site.baseurl }}/images/logos/solr.png"></a>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-10">
+                <h5>Solr</h5>
+                <p>
+                    The data in Muscat is indexed using <a href="http://lucene.apache.org/solr/" target="_blank">Solr</a>, quite likely the most widely used search engine designed for indexing large datasets. It is customizable and fits in Muscat the specific searching needs yielded by the domain of music sources.
+                </p>
+            </div>
+
+            <div class="d-none d-sm-block col-sm-3 col-md-2">
+                <a href="http://projectblacklight.org/" target="_blank"><img class="img-fluid" src="{{ site.baseurl }}/images/logos/blacklight.png"></a>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-10">
+                <h5>Blacklight</h5>
+                <p>
+                    The discovery interface of Muscat uses <a href="http://projectblacklight.org/" target="_blank">Blacklight</a>, an open-source project used by many libraries and institutions. The page concerning the <a href="{{ site.baseurl }}/discovery.html">discovery interface</a> provides more information about the use of Blacklight in Muscat.
+                    </p>
+            </div>
+            
+            <div class="d-none d-sm-block col-sm-3 col-md-2">
+                <a href="https://www.verovio.org" target="_blank"><img class="img-fluid" src="{{ site.baseurl }}/images/logos/verovio.png"></a>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-10">
+                <h5>Verovio</h5>
+                <p>The incipit display is powered by <a href="https://www.verovio.org" target="_blank">Verovio</a>, a separate project of the <a href="http://rism-ch.org" target="_blank">RISM Switzerland</a> working group. With Verovio, incipits are displayed dynamically in the application and in the search interface.</p>
+            </div>
+        </div>
+
+        <h4>Muscat source code</h4>
+        
+        <p>
+            <div class="float-right d-none d-sm-block"><img src="{{ site.baseurl }}/images/logos/github.png"></div>
+            Not only does Muscat use open-source technology, but it is itself open-source. The full source code of the application is hosted on <a href="https://github.com/rism-ch/muscat">GitHub</a> where additional technical documentation is also provided. It includes documentation about the structure of the system, about the dependencies and about the installation procedure, should you want to install Muscat on your own server.
+        </p>
+        <p>
+            The GitHub repository also serves as a hub for discussion for the members of the community involved in the development of Muscat. These members are not necessarily all computer programmers; they might also include editors or cataloguers who bring their expertise and feedback directly to the development process. The <a href="https://github.com/rism-ch/muscat/issues">issue page</a> is the place where ideas or problems are collected.
+        </p>
+        
+        <h4>Re-use and extensions</h4>
+            
+        <p>
+            Making a technology available as open-source greatly facilitates its re-use by others and this is also the case with Muscat. It is the basis for several research projects whose data do not directly fit the RISM scope – at least not at this stage – and which require some adjustments or extensions. Muscat was adopted by the University of New England in Australia for a project led by Prof. Jason Stoessel. Their adjustments to Muscat are made by <a href="https://www.intersect.org.au/" target="_blank">Intersect</a>, Australia's largest full-service eResearch support agency. Muscat is also adjusted for a Motet database project led by Prof. Wolfgang Fuhrmann at the University of Mainz.
+        </p>
+
+        {% include nav-footer.html %}
+
+    </div>
+</main>

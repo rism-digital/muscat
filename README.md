@@ -1,4 +1,4 @@
-muscat
+Muscat
 ======
 
-A Rails application for cataloging handwritten and printed music scores
+This branch holds the content of the muscat-project.org presentation pages for Muscat

@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="{{ site.baseurl }}/"><img src="images/muscat-inv-xs.png"></a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-end" id="navbar">
+            <ul class="navbar-nav">
+                {% for s in site.navbar_menu %} 
+                {% capture link %}{{ site.baseurl }}/{{ s.id }}.html{% endcapture %} 
+                {% if s.url.size > 0 %} 
+                    {% capture link %}{{ s.url }}{% endcapture %} 
+                {% endif %}
+                <li>
+                    <a class="nav-link" {% if s.blank %}target="_blank"{% endif %} href="{{ link }}">{{ s.label }}</a>
+                </li>{% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>

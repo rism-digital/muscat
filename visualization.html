@@ -1,0 +1,45 @@
+---
+layout: default
+title: Visualization
+---
+<main role="main">
+    <div class="container muscat-main">
+        
+        <h4>Geo-spatial visualization</h4>
+        
+        <p>
+            With large data sets it can often be useful to have ways of visualizing the data and not to have the search results available only as list of items. At the IAML Conference in 2015, the RISM Switzerland presented visualization experiments conducted on the A/I print data set of the RISM. These experiments focused on spatio-temporal visualization taking into account both time and place. 
+        </p>
+        
+        
+        <p>
+            Geo-spatial visualization is now integrated into the discovery interface of Muscat. For any queries it is possible to see on a map where the sources are located. The visualization is performed with the <a href="https://geobrowser.de.dariah.eu/" target="_blank">Dariah GeoBrowser</a>.
+        </p>
+
+        <figure class="text-center">
+            <img class="figure-img img-fluid border muscat-border" src="{{ site.baseurl }}/images/visualization/map.png" alt="comments for a source">
+            <figcaption class="figure-caption text-center">Map view of the search results in Muscat discovery interface</figcaption>
+        </figure>
+        
+        {% include nav-footer.html %}
+
+    </div>
+</main>
+<script type="text/javascript">
+    var videos = ["viaf"];
+    
+    var checkView = function ()
+    {
+        for (var i = 0; i < videos.length; i++) {
+            if (isInView(document.getElementById(videos[i])))
+                document.getElementById(videos[i]).play();
+            else
+                document.getElementById(videos[i]).pause();
+        }
+    };
+
+    window.addEventListener('scroll', checkView, false);
+    window.addEventListener('resize', checkView, false);
+    
+    document.getElementById(videos[0]).play();
+</script>

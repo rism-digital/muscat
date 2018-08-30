@@ -1,0 +1,111 @@
+---
+layout: default
+title: Incipits
+---
+<main role="main">
+    <div class="container muscat-main">
+        
+        <h4>Incipit display</h4>
+       
+        <p>
+            <div class="float-right d-none d-sm-block"><img src="{{ site.baseurl }}/images/logos/verovio.png"></div>
+            The incipit display in Muscat is powered by the <a href="https://www.verovio.org" target="_blank">Verovio</a> rendering library, a project of the <a href="http://rism-ch.org" target="_blank">RISM Switzerland</a> working group. The project was started as an integrated Muscat component but was eventually promoted to a full and independent open-source project in order to make it easier for use by others. Verovio  currently receives financial support from the Digital Mozart Edition, a joint project of the Salzburg Mozarteum Foundation and the Packard Humanities Institute, Los Altos/CA.
+        </p>
+        
+        <p>
+            <div class="float-right d-none d-sm-block"><img src="{{ site.baseurl }}/images/logos/mei.png"></div>
+            Verovio is developed in close collaboration with the <a href="http://music-encoding.org" target="_blank">Music Encoding Initiative</a>. Verovio significantly widened its original scope and it can be now be used for rendering full scores rather than just music incipits. One strength of Verovio is that the structure of its output is designed to facilitate user interaction. Another one is that the music notation can be rendered directly in the web-browser without requiring any plugin to be installed. It is used by a wide variety of projects dealing with music notation encoding. They include, for example, digital editions, Music Information Retrieval (MIR) projects, library projects or music performance related projects.
+        </p>
+        
+        <div class="muscat-hand">
+            <p>
+                See the Verovio <a href="https://www.verovio.org/pae-examples.xhtml" target="_blank">Plaine & Easie Input</a> page for some example incipits rendered by Verovio directly in the web browser, and the <a href="https://www.verovio.org/mei-viewer.xhtml" target="_blank">MEI Viewer</a> for the rendering of a full score encoded in MEI.
+            </p>
+        </div>
+        
+        <h4>Incipit searching</h4>
+        
+        <p>
+            Incipit searching in the <a href="{{ site.baseurl }}/discovery.html">discovery interface</a> of Muscat is built on the <a href="http://www.themefinder.org/" target="_blank">Themefinder</a> search engine developed by the <a href="http://www.ccarh.org" target="_blank">Center for Computer Assisted Research in the Humanities </a> (CCARH) at Stanford University and the <a href="https://csml.som.ohio-state.edu/CSM_lab.html" target="_blank"> Cognitive and Systematic Musicology Laboratory</a> at Ohio State University.
+        </p>
+
+        <p>
+            Themefinder searches look for melodies that match a pattern using so-called regular expression. One key idea behind Themefinder is that a melody can be represented in different ways, allowing for various levels of search fuzziness to be offered. In the Muscat implementation of Themefinder, the levels of fuzziness are:
+        </p>
+        
+        <ol>
+            <li><strong>Exact Pitch</strong>: exact match of the diatonic pitch names</li>
+            <li><strong>Interval</strong>: match of 12-tone interval series</li>
+            <li><strong>Refined Pitch Contour</strong>: match of directional contours of steps (one or two semitones) and leaps (bigger than minor third)</li>
+            <li><strong>Gross Pitch Contour</strong>: match of directional contours regardless of the interval</li>
+        </ol>
+        
+        <p>
+            The implementation of Themefinder in Muscat is directly embedded in the Solr index, making the incipit search fully integrated with all the metadata search options available in the advanced search of the discovery interface. The query interface includes a music keyboard data input with instant music notation rendering with Verovio. 
+        </p>
+            
+        <p>
+            The priority in Muscat was for Themefinder to be easy to understand and to use. For this reason, the query interface does not require any specific syntax to be known for using it, as the case in the original version of Themefinder. Instead, the user chooses the level of fuzziness from a drop-down list.
+        </p>
+        
+        <figure class="text-center">
+            <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/incipits/query.png" alt="incipits query interface">
+            <figcaption class="figure-caption text-center">The incipit query interface with the drop-down list for the fuzziness level selection</figcaption>
+        </figure>
+            
+        <h4>Incipit melodic similarity</h4>
+        
+        <p>
+            The incipit search approach embedded in the advanced search of Muscat is very useful and brings valuable results, in particular thanks to the various fuzziness levels it offers and because of its integration with metadata search. The original version of Themefinder offers even more fuzziness features, for example with the use of wildcards. However, these advanced options require the underlying syntax to be known by the user. More importantly, the approach of Themefinder reaches limits when melodic sequences that are similar present differences that makes them unlikely to be matched with a reasonably simple Themefinder query, as illustrated by the incipits below.
+        </p>
+        
+        <figure>
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <td class="align-middle">RISM incipit 190016489-1.1.1</td>
+                        <td>
+                            <img src="{{ site.baseurl }}/images/incipits/190016489-1.1.1.svg">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">RISM incipit 452509339-1.1.1</td>
+                        <td>
+                            <img src="{{ site.baseurl }}/images/incipits/452509339-1.1.1.svg">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">RISM incipit 454013562-1.1.1</td>
+                        <td>
+                            <img src="{{ site.baseurl }}/images/incipits/454013562-1.1.1.svg">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">RISM incipit 603001069-1.1.1</td>
+                        <td>
+                            <img src="{{ site.baseurl }}/images/incipits/603001069-1.1.1.svg">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">RISM incipit 702006855-1.1.1</td>
+                        <td>
+                            <img src="{{ site.baseurl }}/images/incipits/702006855-1.1.1.svg">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <figcaption class="figure-caption text-center">Examples of slightly different RISM incipits featuring the theme <em>Ah vous dirai-je maman</em></figcaption>
+        </figure>
+        
+        <p>
+            In the field of Music Information Retrieval (MIR) there has been continuous research for developing algorithms that can cope with these types of differences and tools that are more “musically” informed. The next version of Muscat (5.0) will integrate the <a href="https://www.projects.science.uu.nl/monochord/risma2/about" target="_blank">Monochord</a> tool developed at the University of Utrecht under the supervision of Prof. Franz Wiering
+        </p>
+        
+        <p>
+            The tool acts as in incipit similarity ranking with the results returned starting from the most similar incipit. Various parameters allow for the adjustment of the similarity focus (e.g. pitch or duration) and the balancing of them.
+        </p>
+        
+        {% include nav-footer.html %}
+        
+    </div>
+</main>

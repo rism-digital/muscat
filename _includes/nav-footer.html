@@ -1,0 +1,33 @@
+<hr class="muscat-line"> 
+<div class="d-flex justify-content-center">
+        {% assign page = page.path | remove: "*/" | remove: ".html" %}
+        {% assign prev_i = -1 %}
+        {% assign next_i = -1 %}
+        {% assign current_i = -1 %}
+        {% for c in (0..site.data.cards.size) %}
+            {% if site.data.cards[c].page == page %}
+                {% assign current_i = forloop.index0 %}
+                {% assign next_i = forloop.index0 | plus: 1 %}
+                {% assign prev_i = forloop.index0 | minus: 1 %}
+                {% if next_i == site.data.cards.size %}
+                    {% assign next_i = -1 %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        {% if prev_i != -1 %}
+        <a href="{{ site.baseurl }}/{{ site.data.cards[prev_i].page }}.html" class="mr-2 btn btn-secondary btn-sm" title="{{ site.data.cards[prev_i].title }}">
+             « <span class="d-none d-sm-inline">{{ site.data.cards[prev_i].title }}</span>
+        </a>
+        {% endif %} 
+        {% if next_i != -1 %}
+        <a href="{{ site.baseurl }}/{{ site.data.cards[next_i].page }}.html" class="ml-2 btn btn-secondary btn-sm" title="{{ site.data.cards[next_i].title }}">
+             <span class="d-none d-sm-inline">{{ site.data.cards[next_i].title }}</span> »
+        </a>
+        {% endif %}
+</div>
+<script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

@@ -1,0 +1,47 @@
+- title: "Open source technology"
+  text: "Muscat is based on robust, modern and open-source technology that is widely used around the world. Muscat itself is also fully open-source and all the code is available on GitHub."
+  page: "technology"
+  image: "technology.png"
+  
+- title: "Integrated discovery interface"
+  text: "Muscat integrates a full and responsive discovery interface built on the open-source project Blacklight. Search options range from simple single-field search to advanced boolean filtering."
+  page: "discovery"
+  image: "discovery.png"
+  crop: true
+
+- title: "Tailored data model"
+  text: "The data model in Muscat is tailored to the inventory of music sources. It follows state-of-the art library data modelling practice and is designed to fulfill the needs of the contributing institutions."
+  page: "model"
+  image: "model.png"
+
+- title: "Incipit display and searching"
+  text: "Support for incipit display and searching is integrated into Muscat, including the most advanced search algorithms developed by researchers in Music Information Retrieval (MIR)."
+  page: "incipits"
+  image: "incipits.png"
+  
+- title: "User management and feedback"
+  text: "User access can be freely defined, from guest users with no write access to full admin users. Users can send comments and feedback to the community directly from Muscat."
+  page: "users-and-feedback"
+  image: "users.png"
+
+- title: "Images and IIIF support"
+  text: "It is possible to upload images directly into Muscat. There is also support for displaying inline images served by libraries via IIIF thanks to the Diva.js high-resolution image viewer."
+  page: "images-and-iiif"
+  image: "images.png"
+  crop: true
+  
+- title: "Data versioning"
+  text: "Muscat keeps track of all changes made to the source inventory. A so-called diff tool makes it possible to see precisely who changed what and to revert the changes if necessary."
+  page: "data-versioning"
+  image: "versioning.png"
+  crop: true
+  
+- title: "Authority linking and MEI"
+  text: "Authority data sets are linked to external and larger authority resources, such as VIAF, whenever this is possible. Muscat also offers an option to export manuscript descriptions to MEI."
+  page: "authorities-and-mei"
+  image: "links.png"
+    
+- title: "Geo-spatial visualization"
+  text: "Muscat provides geo-spatial visualization of the search results. It is integrated directly in the discovery interface, making it possible to dynamically visualize subsets of the data."
+  page: "visualization"
+  image: "gis.png"

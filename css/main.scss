@@ -1,0 +1,82 @@
+---
+#
+---
+
+@import "custom/variables";
+@import 'bootstrap/bootstrap';
+
+a {
+    text-decoration: underline;
+}
+
+a.btn, a.nav-link {
+    text-decoration: none;
+}
+
+.jumbotron {
+    //background-color: $light-panel-bg !important; 
+    border-bottom: solid 3px #edf5fb;
+    background: url('/images/bg.png');
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.card {
+    border: solid 1px lighten($primary, 50%);
+    max-width: 348px;
+    img.muscat-crop {
+        object-fit: none; /* Do not scale the image */
+        object-position: center; /* Center the image within the element */
+        width: 100%;
+    }
+    .muscat-footer {
+        background-color: transparent;
+        border-top: 0px;
+        padding-top: 0px;
+    }
+}
+
+div.muscat-main {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+border-muscat {
+    border-color: $light-panel-bg !important;
+}
+
+hr.muscat-line {
+    height: 1px;
+    margin-bottom: 1rem;
+    background-color: $primary;
+}
+
+p.muscat-news {
+    background-color: $primary;
+    color: $light-panel-bg;
+    border-radius: 4px;
+}
+
+div.muscat-sponsors {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    background-color: $light-panel-bg;
+}
+
+div.muscat-hand {
+    min-height: 60px;
+    padding: 0.5rem;
+    padding-left: 130px;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    display: block;
+    background: url({{ site.baseurl }}/images/finger2.png) no-repeat;
+    background-color: $light-panel-bg;
+    background-position: 20px center;
+    p {
+        margin-bottom: 0rem;
+    }
+}
+
+@import "timeline";

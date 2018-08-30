@@ -1,0 +1,49 @@
+---
+layout: default
+title: Model
+---
+<main role="main">
+    <div class="container muscat-main">
+        
+        <h4>Data model</h4>
+       
+        <p>
+           The data model in Muscat is balanced between the distinct requirements of music source inventory on the one side and compatibility with non-music specific library systems on the other. From the beginning of the development of Muscat by the RISM-UK in 2002 the choice was made to work with the international Marc (or MarcXML) library format. Using MarcXML, which was also a requirement from the Swiss funding agency when supporting Muscat, is advantageous because it facilitates data exchange with Muscat, and this is valid for both directions. That is, for exporting data from Muscat into a library system, and for importing data from a library system into Muscat. Of course, these operations frequently require fine tuning and adjustments, but having the same underlying format greatly facilitates the process.
+        </p>
+       
+        <h4>Resource classes</h4>
+
+        <p>
+            The data model in Muscat is based on different resource classes. Whenever possible, a class is mapped to a MarcXML record. The core class in Muscat is the <em>source</em> class, which embeds a MarcXML bibliographic record. The Marc data is stored directly in the system and indexed with Solr. 
+        </p>
+        
+        <p>
+            For prints, Muscat also makes a distinction at the model level between bibliographic records, which describe the editions, and holdings, which describe each preserved copy of an edition. A holding is also mapped to a MarcXML record. As a result, two types of hierarchies are bound to the source class. That is, sources can be hierarchically linked to represent collections and collection items, or sources can be hierarchically linked to the holdings of a print.
+        </p>
+        
+        <figure class="text-center">
+            <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/model/hierachies.png" alt="hierarchies">
+            <figcaption class="figure-caption text-center">A hierarchy representing a collection and its items, and a hierarchy representing a print and the holdings.</figcaption>
+        </figure>
+           
+        <p>
+            Having separate holdings in Muscat not only allows for fine-tuned user access management (see the page on <a href="{{ site.baseurl }}/users-and-feedback.html">user management</a>) but also for information about each copy to be properly presented to the user.
+        </p>
+        
+        <figure class="text-center">
+            <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/model/990033870-discovery.png" alt="holding">
+            <figcaption class="figure-caption text-center">The content of a holding in the discovery interface for print RISM-ID 990033870.</figcaption>
+        </figure>
+
+        <p>
+            The source is put in relation with the authority data, or foreign classes, also stored directly in the system. The foreign classes describe <em>personal names</em>, <em>institutions</em>, <em>subject headings</em>, <em>titles / text incipits</em>, <em>liturgical festivals</em>, <em>secondary literature</em>, <em>places</em>, and <em>works</em>.
+        </p>
+        
+        <p>
+            When appropriate, the foreign classes are also mapped to corresponding authority MarcXML records. This is the case for <em>personal names</em>, <em>institutions</em>, <em>secondary literature,</em> and <em>works</em>. The corresponding Marc data is also embedded and indexed with Solr. Whenever possible, the authorities are linked to external data resources. See the page on <a href="{{ site.baseurl }}/authorities-and-mei.html">authorities</a> for more information.
+        </p>
+        
+        {% include nav-footer.html %}
+        
+    </div>
+</main>

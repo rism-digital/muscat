@@ -1,0 +1,85 @@
+---
+layout: default
+title: History
+
+timeline:
+    - date: "2002"
+      title: "RISM-UK initial project"
+      text: "The initial development of Muscat was supported by the AHRB with a project conducted by the RISM-UK branch. The first version of the online database application was developed during this project and manuscript descriptions of the RISM-UK were imported into it."
+      
+    - date: "2004"
+      title: "Release of the first version"
+      text: "At the end of the project, about 30,000 manuscript descriptions of the RISM-UK were published in the first online discovery interface."
+            
+    - date: "2007"
+      title: "RISM-UK follow-up project"
+      text: "An updated version built on Ruby on Rails was developed through a second phase of funding. It was released in 2007 with about 54,000 manuscript descriptions. This version of Muscat included a very basic cataloguing interface that was not used for data entry but developed solely to enable future data editing."
+    
+    - date: "2008"
+      title: "Initial collaboration with the RISM-CH"
+      text: "A collaboration agreement was signed between the RISM-UK and the RISM-CH in order to extend the cataloguing interface of Muscat and make it a complete application for both publishing and cataloguing. The discovery interface and the concept were presented to the RISM working groups at the IAML Conference in Naples."
+    
+    - date: "2009"
+      title: "Release of the RISM-CH first version"
+      text: "The approximately 60,000 source descriptions of the RISM-CH were imported into Muscat. For the first time, a RISM working group started to carry out its daily cataloguing work with Muscat. The project was presented at the IAML Conference in Amsterdam."
+    
+    - date: "2010"
+      title: "Incipit search with Themefinder"
+      text: "The Themefinder incipit search engine was integrated into Muscat in order to offer a fuzzy incipit search option. The version in Muscat offered a new and more intuitive interface than the original one."
+    
+    - date: "2012"
+      title: "Release of Muscat 2.0"
+      text: "Release of a new version featuring a complete update of the technical architecture with a release of the source code of the application and of its documentation. The code was eventually moved to GitHub."
+    
+    - date: "2012"
+      title: "Muscat evaluated for a replacement of Kallisto"
+      text: "A group of international experts from the RISM partners evaluated different solutions for a replacement of the Kallisto cataloguing application. Muscat was selected and the choice was approved by the RISM Board."
+      
+    - date: "2013"
+      title: "Initial collaboration with the RISM Central Office"
+      text: "A collaboration agreement was signed between the RISM-UK, RISM-CH and the RISM Central Office in order to develop Muscat further and to make it available to all RISM working groups. The community started to work together on the development of Muscat 3.0 and on the migration of the Kallisto data."
+    
+    - date: "2014"
+      title: "Release of Muscat 3.0"
+      text: "This new version featured a complete refactoring of Muscat including a switch to the Solr indexing engine, the use of the Blacklight discovery interface, and dynamic music incipit rendering with Verovio. It also included better user access rights management and improved authority data structure."
+    
+    - date: "2016"
+      title: "Migration from Kallisto to Muscat 3.6"
+      text: "Muscat was made available to the entire RISM community with the migration of the full RISM data set and the release of Muscat 3.6. This release was the result of intensive work on the part of the community for improving its interface and facilitating the cataloguing work."
+    
+    - date: "2018"
+      title: "Release of Muscat 4.0"
+      text: "The release of Muscat version 4.0 and of the following minor updates featured, amongst others, better incipit search and the geo-spatial visualization of the results. All the major server-side dependencies were also updated."
+      
+    - date: "2018"
+      title: "Release of Muscat 5.0 (in preparation)"
+      text: "The release of Muscat version 5.0 will include incipit melodic similarity ranking, authority linking with musical works, and user weekly notification for subscribed searches."
+
+
+---
+<main role="main">
+    <div class="container muscat-main">
+        
+        <h4>History of the Muscat Project</h4>
+        
+        <p>
+            The project was initiated in 2002 by the United Kingdom working group of RISM and then developed further by the RISM Switzerland. Since early 2014, Muscat has been developed in collaboration with the RISM Central Office in Frankfurt thanks to the decision of the RISM-UK and the RISM Switzerland to make it open-source.
+        </p>
+
+        <h4>Timeline</h4>
+
+        <div class="row">
+            <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+                <ul class="timeline">
+                {% for t in page.timeline %}
+                    <li>
+                        <h5>{{ t.date }} – {{ t.title }}</h5>
+                        <p>{{ t.text }}</p>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+</div>

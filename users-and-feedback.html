@@ -1,0 +1,72 @@
+---
+layout: default
+title: Users
+---
+<main role="main">
+    <div class="container muscat-main">
+        
+        <h4>User management</h4>
+        
+        <p>
+            User management in Muscat is essential for controlling read and write access to the data. It not only needs to be highly secure and robust, but also flexible because the user access policy can change over time and the corresponding adjustments must be simple to do. Muscat uses the standard Ruby on Rails plugins for this, namely:
+        </p>
+        
+        <ul>
+            <li><a href="https://github.com/plataformatec/devise" target="_blank">Devise</a> used for the authentication and the login</li>
+            <li><a href="http://rolifycommunity.github.io/rolify" target="_blank">Rolify</a> used for creating different kinds of roles and assigning them to users</li>
+            <li><a href="https://github.com/ryanb/cancan" target="_blank">CanCan</a> used for defining abilities and access to users with different kinds of roles</li>
+        </ul>
+        
+        <p>
+            Each class in the <a href="{{ site.baseurl }}/model.html">data model</a> has an ownership field for controlling the access rights in each instance. This means that, for example, each manuscript description has an owner, as does each entry in the authority data. With this in hand it is possible to define roles and for each role to define abilities for each class. For example, we can configure Muscat in order to have:
+        </p>
+        
+        <ul>
+            <li>unregistered guest user access (potentially without login) that can only search and view the data but modify nothing; access to some resources can be forbidden if desired</li>
+            <li>registered guest user access with read only access and write access for adding comments to resources (see below)</li>
+            <li>cataloguer user access that can create new source descriptions (which they will own) but not modify or delete any entries they do not own</li>
+            <li>editor user access who can also edit resources, including authorities, owned by other users</li>
+            <li>admin user access with full rights, including ownership and user management</li>
+        </ul>   
+        
+        <p>
+            These are only examples and the number of roles can be extended and refined as desired. Muscat also implements a concept of user workgroups. Traditionally, these would represent the working group of a country but it does not have to. In Muscat, access rights for a workgroup are given using library sigla, for example <strong>D-B, D-Bsa, D-NEZsn</strong>. They can also be specified using patterns with wildcards. For example, a workgroup can receive access to all libraries in Geneva with the expression <strong>^CH-G*</strong>, or to all libraries in Brazil with the pattern <strong>^BR-*</strong>.
+        </p>
+        
+        <h4>User feedback</h4>
+        
+        <p>
+            All resources in Muscat have an embedded <em>comment</em> field for registered users to provide feedback messages. A message remains attached to the resources (e.g., the manuscript description) together with follow-up messages, making it a discussion-like feature. The messages can be deleted when necessary.
+        </p>
+        
+        <figure class="text-center">
+            <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/users/comments.png" alt="comments for a source">
+            <figcaption class="figure-caption text-center">Example of user feedback and follow-up conversation with the message input field at the bottom</figcaption>
+        </figure>
+        
+        <p>
+            When a message is added to a resource its owner will automatically receive an email notification about it. It is also possible to configure Muscat for the message also to be send to other email addresses, for example to editors or administrators that are in charge of a particular resource set (e.g., personal name authorities).
+            
+        </p>
+        
+        <h4>Dashboard</h4>
+        
+        <p>
+            A dashboard in Muscat provides the users with an overview of the latest activity. For each of the main resources (sources, personal names, secondary literature and institution) a list of the latest changes is given. Users can choose to see their changes or all the changes. The can also opt to see the latest additions (recently created) or the latest modifications (recently updated).
+        </p>
+                
+        <figure class="text-center">
+            <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/users/dashboard.png" alt="dashboard">
+            <figcaption class="figure-caption text-center">Excerpt of the Muscat dashboard providing an overview of the latest additions or modifications</figcaption>
+        </figure>
+        
+        <h4>Notifications</h4>
+        
+        <p>
+            For people wishing to follow additions and modifications in Muscat, it is time-consuming and unrealistic to have to keep checking it occasionally to see if a source or another entry has been added or modified. The upcoming version of Muscat (5.0) will include the ability to create alerts following the creation or modification of entries. Alerts will be set with patterns and fields. For example, a user might want to create an alert for sources matching a certain library sigla and/or a shelfmark, or sources composed by a certain composer. Once this is set in the user profile, the user will receive weekly notifications with a list of created and modified entries matching the alert.
+        </p>
+        
+        {% include nav-footer.html %}
+        
+    </div>
+</main>
