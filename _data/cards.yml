@@ -36,9 +36,9 @@
   image: "versioning.png"
   crop: true
   
-- title: "Authority linking and MEI"
-  text: "Authority data sets are linked to external and larger authority resources, such as VIAF, whenever this is possible. Muscat also offers an option to export manuscript descriptions to MEI."
-  page: "authorities-and-mei"
+- title: "Data access and interoperability"
+  text: "Authority data sets are linked to external and larger authority resources, such as VIAF. Muscat also offers a SRU interface and an option to export manuscript descriptions to MEI."
+  page: "data-interoperability"
   image: "links.png"
     
 - title: "Geo-spatial visualization"
