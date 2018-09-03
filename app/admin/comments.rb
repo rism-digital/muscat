@@ -13,17 +13,21 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   
   controller do    
     def index
-      index! do |format|
-        a = ActiveAdmin::Comment.all
-        a = a.where("body LIKE '%#{params[:q][:body_contains]}%'") if params[:q] and params[:q][:body_contains]
-        a = a.where("author_id = #{params[:q][:author_id_eq]}") if params[:q] and params[:q][:author_id_eq]
-        a = a.where("resource_type = '#{params[:q][:resource_type_eq]}'") if params[:q] and params[:q][:resource_type_eq]
-        scope = a.select(:resource_id, :resource_type).distinct
-        @collection = scope.page(params[:page])
-      end
+			if params[:as] and params[:as] == "table"
+				index!
+			else
+	      index! do |format|
+	        a = ActiveAdmin::Comment.all
+	        a = a.where("body LIKE '%#{params[:q][:body_contains]}%'") if params[:q] and params[:q][:body_contains]
+	        a = a.where("author_id = #{params[:q][:author_id_eq]}") if params[:q] and params[:q][:author_id_eq]
+	        a = a.where("resource_type = '#{params[:q][:resource_type_eq]}'") if params[:q] and params[:q][:resource_type_eq]
+	        scope = a.select(:resource_id, :resource_type).distinct
+	        @collection = scope.page(params[:page])
+	      end
+			end
     end
   end
-  
+
   index as: :comment do |c|
     scope = ActiveAdmin::Comment.where("resource_id = #{c.resource_id}", "resource_type = #{c.resource_type}")
     comments = scope.page(1)

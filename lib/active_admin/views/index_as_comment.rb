@@ -21,7 +21,7 @@ module ActiveAdmin
       end
 
       def self.index_name
-        "table"
+        "conversation"
       end
 
       protected
