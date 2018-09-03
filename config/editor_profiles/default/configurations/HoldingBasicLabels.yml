@@ -489,14 +489,14 @@ doc_references:
     it: Riferimenti bibliografici
     fr: "Référence bibliographique"
     de: Literaturverweis
-    en: Bibliographical reference
+    en: Bibliographic reference
   fields: 
     a: 
       label: 
         it: Bibliografia
         fr: "Référence bibliographique"
         de: Literatur
-        en: Bibliographical reference
+        en: Bibliographic reference
     n: 
       label: 
         it: Numero/pagina
