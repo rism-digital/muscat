@@ -149,9 +149,6 @@ Example:
          de: Name
          en: Name
 
-== Options
-hide_marc_identifiers: <true or false>
-
 Example:
 
  --- !map:Settings 

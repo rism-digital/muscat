@@ -1,4 +1,6 @@
-<%- extended_help = @editor_profile.get_tag_extended_help(tag_name, @item.class.to_s) %>
+<!-- Holding shares help text with source -->
+<% help_model = @item.class.to_s == 'Holding' ? 'Source' : @item.class.to_s %>
+<%- extended_help = @editor_profile.get_tag_extended_help(tag_name, help_model) %>
 <%
 	no_add = false
 	no_delete = false

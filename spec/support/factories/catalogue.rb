@@ -1,19 +1,19 @@
 FactoryBot.define do
   factory :catalogue do
-    id 	 1536
-    name 	 "NBA"
-    initialize_with { Catalogue.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
-    description 	 "Johann Sebastian Bach: Neue Ausgabe sämtlicher Werke"
-    revue_title 	 ""
-    volume 	 nil
-    place 	 "Kassel, Basel"
-    date 	 "1954-"
-    pages 	 nil
-    wf_audit 	 "full"
-    wf_stage 	 "published"
-    people { [association(:person)]  }
-    #referring_sources { [association(:source)]  }
-    wf_notes 	 nil
+    id 1536
+    name "NBA"
+    #initialize_with { Catalogue.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
+    description "Johann Sebastian Bach: Neue Ausgabe sämtlicher Werke"
+    revue_title ""
+    volume nil
+    place "Kassel, Basel"
+    date "1954-"
+    wf_audit "full"
+    wf_stage "published"
+    people { [FactoryBot.create(:person)] }
+    #people { [association(:person)]  }
+    #referring_sources { [association(:manuscript_source)]  }
+    wf_notes nil
     marc_source <<STRING
 =001  1536
 =041  0\#$ager

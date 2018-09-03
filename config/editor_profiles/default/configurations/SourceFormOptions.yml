@@ -512,6 +512,10 @@
       - type: source
         editor_partial: subfield_secondary
         only_new_window: true
+"588": 
+  layout: 
+    fields: 
+    - - a   
 "590": 
   layout: 
     fields: 
@@ -737,6 +741,7 @@
       - oth
       - evp
       - dst
+      - bsl
 "730":
   new_window: standard_titles
   new_window_field: title_equals
@@ -890,9 +895,13 @@
     - - u
     - - z
     - - x
-      - values: 
-        - "IIIF"
-        editor_partial: subfield_select
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params: 
+    codes:
+      - "IIIF"
+      - "Digitalization"
+      - "Other"
 "930": 
   new_window: works
   new_window_field: title_equals

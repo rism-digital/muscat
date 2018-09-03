@@ -127,7 +127,7 @@ GEM
       activemodel (= 5.1.6)
       activesupport (= 5.1.6)
       arel (~> 8.0)
-    activerecord-import (0.24.0)
+    activerecord-import (0.25.0)
       activerecord (>= 3.2)
     activesupport (5.1.6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -139,7 +139,7 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (8.0.0)
-    autoprefixer-rails (8.6.3)
+    autoprefixer-rails (9.1.0)
       execjs
     awesome_print (1.8.0)
     bcrypt (3.1.12)
@@ -151,17 +151,18 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     cancan (1.6.10)
-    capybara (2.18.0)
+    capybara (3.5.1)
       addressable
       mini_mime (>= 0.1.3)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      xpath (>= 2.0, < 4.0)
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      xpath (~> 3.1)
     chart-js-rails (0.1.6)
       railties (> 3.1)
+    childprocess (0.9.0)
+      ffi (~> 1.0, >= 1.0.11)
     climate_control (0.2.0)
-    cliver (0.3.2)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.2)
@@ -188,7 +189,7 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.6.2)
+    devise-i18n (1.6.4)
       devise (>= 4.4)
     diff-lcs (1.3)
     erubi (1.7.1)
@@ -218,7 +219,7 @@ GEM
     htmlentities (4.3.4)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
-    i18n-js (3.0.8)
+    i18n-js (3.0.11)
       i18n (>= 0.6.6, < 2)
     inherited_resources (1.8.0)
       actionpack (>= 4.2, <= 5.2)
@@ -264,10 +265,10 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     multipart-post (2.0.0)
-    mysql2 (0.5.1)
+    mysql2 (0.5.2)
     needleman_wunsch_aligner (1.0.4)
     nio4r (2.3.1)
-    nokogiri (1.8.3)
+    nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
@@ -290,10 +291,6 @@ GEM
       mimemagic (= 0.3.0)
     parallel (1.12.1)
     parslet (1.8.2)
-    poltergeist (1.11.0)
-      capybara (~> 2.1)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     polyamorous (1.3.3)
       activerecord (>= 3.0)
     pr_geohash (1.0.0)
@@ -301,9 +298,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (3.0.2)
-    puma (3.11.4)
+    puma (3.12.0)
     rack (2.0.5)
-    rack-test (1.0.0)
+    rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.1.6)
       actioncable (= 5.1.6)
@@ -353,31 +350,31 @@ GEM
     rsolr (2.2.1)
       builder (>= 2.1.2)
       faraday (>= 0.9.0)
-    rspec (3.7.0)
-      rspec-core (~> 3.7.0)
-      rspec-expectations (~> 3.7.0)
-      rspec-mocks (~> 3.7.0)
-    rspec-core (3.7.1)
-      rspec-support (~> 3.7.0)
-    rspec-expectations (3.7.0)
+    rspec (3.8.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+    rspec-core (3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-expectations (3.8.1)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.7.0)
-    rspec-mocks (3.7.0)
+      rspec-support (~> 3.8.0)
+    rspec-mocks (3.8.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.7.0)
-    rspec-rails (3.7.2)
+      rspec-support (~> 3.8.0)
+    rspec-rails (3.8.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (~> 3.7.0)
-      rspec-expectations (~> 3.7.0)
-      rspec-mocks (~> 3.7.0)
-      rspec-support (~> 3.7.0)
-    rspec-support (3.7.1)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-support (3.8.0)
     ruby-prof (0.17.0)
     ruby-progressbar (1.9.0)
     rubyzip (1.2.1)
-    sass (3.5.6)
+    sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -390,7 +387,10 @@ GEM
       tilt (>= 1.1, < 3)
     sdoc (1.0.0)
       rdoc (>= 5.0)
-    solr_wrapper (1.2.0)
+    selenium-webdriver (3.14.0)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.2)
+    solr_wrapper (2.0.0)
       faraday
       retriable
       ruby-progressbar
@@ -414,7 +414,7 @@ GEM
       railties (>= 3.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.11)
+    uglifier (4.1.17)
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
@@ -436,6 +436,7 @@ DEPENDENCIES
   blacklight_range_limit!
   bootstrap-sass
   cancan
+  capybara
   chart-js-rails
   coffee-rails
   colorize
@@ -463,7 +464,6 @@ DEPENDENCIES
   paper_trail
   paperclip (~> 4.3)
   parallel
-  poltergeist (= 1.11.0)
   progress_bar!
   progress_job!
   pry
@@ -478,6 +478,7 @@ DEPENDENCIES
   ruby-prof
   sass-rails
   sdoc
+  selenium-webdriver
   solr_wrapper (>= 0.3)
   sunspot_rails (~> 2.2)!
   sunspot_solr (~> 2.2)!

@@ -104,6 +104,11 @@ doc_cat_collections:
     de: Erfassung von Sammlungen
     en: Cataloging collections
     it: Catalogo delle raccolte
+doc_cat_language: 
+  label: 
+    de: Katalogisierungsspache
+    en: Cataloging language
+    it: CATALOGING LANGUAGE  
 doc_cat_templates: 
   label: 
     de: Templates
@@ -247,6 +252,11 @@ doc_main_entry_fields:
     de: "Haupteintragungen"
     en: "Main entry fields"
     it: "Campi principali"
+doc_mult_copies:
+  label:
+    de: "Mehrere Exemplare"
+    en: "Multiple copies"
+    it: "MULTIPLE COPIES"
 doc_numbers:
   label:
     de: "Nummern und Codes"
@@ -925,7 +935,7 @@ doc_references:
         it: Nota sull'esecuzione
         fr: "Remarque sur les interprètes"
         de: "Bemerkungen zu den Aufführungen"
-        en: Performer note
+        en: Note on Performance
       edit_label: 
         en: ""
 "520": 
@@ -1038,6 +1048,22 @@ doc_references:
         fr: RELATED RECORD
         de: RELATED RECORD
         en: RELATED RECORD
+        comment: "NEW IN 2018"
+"588": 
+  label: 
+    it: MASTER EXEMPLAR
+    fr: MASTER EXEMPLAR
+    de: Vorlageexemplar
+    en: MASTER EXEMPLAR
+  fields: 
+    a: 
+      label: 
+        it: MASTER EXEMPLAR
+        fr: MASTER EXEMPLAR
+        de: Vorlageexemplar
+        en: MASTER EXEMPLAR
+      edit_label: 
+        en: ""
       comment: "NEW IN 2018"
 "590": 
   label: 
@@ -1441,14 +1467,14 @@ doc_references:
     it: Riferimenti bibliografici
     fr: "Référence bibliographique"
     de: Literaturverweis
-    en: Bibliographical reference
+    en: Bibliographic reference
   fields: 
     a: 
       label: 
         it: Bibliografia
         fr: "Référence bibliographique"
         de: Literatur
-        en: Bibliographical reference
+        en: Bibliographic reference
     n: 
       label: 
         it: Numero/pagina
@@ -3760,3 +3786,21 @@ aid_error:
     en: "Technical errors"
     it: "Errori tecnici"
     de: "Technische Fehler"
+IIIF: 
+  label: 
+    it: "IIIF MANIFEST"
+    fr: "Manifeste IIIF"
+    de: "IIIF manifest"
+    en: "IIIF manifest"
+Digitalization: 
+  label: 
+    it: "DIGITIZED MUSIC"
+    fr: "Sources numériées"
+    de: "Notendigitalisat"
+    en: "Digitized music"
+Other: 
+  label: 
+    it: "OTHER"
+    fr: "Autre"
+    de: "Sonstiges"
+    en: "Other"

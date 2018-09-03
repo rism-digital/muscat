@@ -193,7 +193,7 @@ class Source < ApplicationRecord
     end
     
     sunspot_dsl.text :composer, stored: true do |s|
-      "" if s.composer.empty?
+      "" if s.composer.blank?
       
       begin
         tag = s.marc.first_occurance("100", "0")
@@ -453,6 +453,10 @@ class Source < ApplicationRecord
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
+      # this is the new version
+      #PaperTrail.request(enabled: false) do
+      #  :save
+      #end
       paper_trail.without_versioning :save
     end
   end

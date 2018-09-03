@@ -622,8 +622,8 @@ it:
     banner: 'Usare "Anteprima" per mostrare il risultato della conversione in MEI.'
   
   wf_stage:
-    inprogress: "In Elaborazione"
-    published: "Pubblicato"
+    inprogress: "In Elaborazione (UNP)"
+    published: "Pubblicato (PUB)"
     deleted: "Cancellato"
 
   dashboard:
