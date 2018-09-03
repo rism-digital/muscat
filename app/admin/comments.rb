@@ -51,7 +51,7 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   index as: :comment do |c|
     scope = ActiveAdmin::Comment.where("resource_id = #{c.resource_id}", "resource_type = #{c.resource_type}")
     comments = scope.page(1)
-    table   {:sortable =>false, :class => 'i'}) do
+    table_for(comments, {:sortable =>false, :class => 'i'}) do
       column (I18n.t :filter_creation_date), :created_at
       column (I18n.t :filter_author), :author
       column (I18n.t :filter_comment), :body do |comment|
@@ -60,7 +60,7 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
       column (I18n.t :filter_wf_stage) {|comment| status_tag(comment.namespace, (comment.namespace == "admin" ? :ok : ""))} 
       column "" do |comment|
         if comment.namespace == "archived"
-          link_to (I18n.t :unarchive), archive_admin_comment_path(comment  )
+          link_to (I18n.t :unarchive), archive_admin_comment_path(comment, :do => false)
         else
           link_to (I18n.t :archive), archive_admin_comment_path(comment, :do => true)
         end
