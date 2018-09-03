@@ -438,7 +438,7 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     config.add_sort_field 'std_title_order_s asc', :label => :filter_std_title;
-    config.add_sort_field ':260c_year_ims asc', :label => :filter_date;
+    config.add_sort_field ':date_from_i asc', :label => :filter_date;
     config.add_sort_field ':composer_order_s asc', :label => :filter_composer;
     #config.add_sort_field 'score desc, pub_date_sort desc, title_sort asc', :label => 'relevance'
     #config.add_sort_field 'pub_date_sort desc, title_sort asc', :label => 'year'
