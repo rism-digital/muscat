@@ -1467,14 +1467,14 @@ doc_references:
     it: Riferimenti bibliografici
     fr: "Référence bibliographique"
     de: Literaturverweis
-    en: Bibliographical reference
+    en: Bibliographic reference
   fields: 
     a: 
       label: 
         it: Bibliografia
         fr: "Référence bibliographique"
         de: Literatur
-        en: Bibliographical reference
+        en: Bibliographic reference
     n: 
       label: 
         it: Numero/pagina
@@ -3786,3 +3786,21 @@ aid_error:
     en: "Technical errors"
     it: "Errori tecnici"
     de: "Technische Fehler"
+IIIF: 
+  label: 
+    it: "IIIF MANIFEST"
+    fr: "Manifeste IIIF"
+    de: "IIIF manifest"
+    en: "IIIF manifest"
+Digitalization: 
+  label: 
+    it: "DIGITIZED MUSIC"
+    fr: "Sources numériées"
+    de: "Notendigitalisat"
+    en: "Digitized music"
+Other: 
+  label: 
+    it: "OTHER"
+    fr: "Autre"
+    de: "Sonstiges"
+    en: "Other"
