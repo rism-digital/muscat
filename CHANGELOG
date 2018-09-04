@@ -1,6 +1,54 @@
 Muscat Changelog
 ================
 
+v 4.3
+* Adding migration for relations
+* Fix different naming convention with SOLR/Sunspot that broke index ordering
+* Updated rspec test suite readme
+* Fixed lib_siglum facet for institution statistics
+* Fixes undefined empty for nil with Source composer
+* Removing unused birth place column from related person table partial
+* Fix error when a holding has no siglum
+* Push a fix for the "stack overflow" error and send an email in case of loops between source and source_id
+* Fixes #660 circular dependeny between source.id and source.source_id
+* Merges the more verbose circular loop version
+* Make the mailer include all health messages
+* Guidelines submodule pointing to master
+* Adding rspec too check the correct guidelines version
+* Add proper job running status; make default log leven on production back to debug
+* Switch from poltergeist to headless chrome
+* Merge pull request #665 from rism-ch/4.2-devel-works
+* Relabel 518 fixes #659
+* [RSPEC] Adding chrome headless option to start correctly
+* Fixes #663 deprecated redirect_back for liturgical_feasts
+* Changing all deprecated redirect_to :back in controllers fixes #667
+* Fix deprecated fixnum in sru
+* Removing role cataloger_prints
+* Adding status abbreviation to filter closes #580
+* Adding edition fingerprint 026e to fulltext search
+* [RSPEC] Adding spec for new 535
+* Added 710 relator code 'bsl' (bookseller)
+* Added 535 to marc conf for editions closes #493
+* Switched 535 to 588 closing #493
+* Change port of solr port in ENV test
+* [RSPEC] Improved rspecs
+* Show help with holding fixes #671
+* New guidelines sections
+* Add some purging to make sure we do not fill the session with useless "nil" values
+* Resolve JS crashing when coming from an off-site link
+* Update installation for Ubuntu 18.04
+* Add I18n for 856 see #669
+* Adjusting labels for 856
+* Fix annoying Composer display in BL, make -ch manifest https
+* Fix #673, add 755 Initial Entry
+* Fix #670
+* Fix #640
+* Fix #641
+* Update the catalog all field
+
+v 4.2.1
+* Fix a bug which prevented ordering in index columns to work
+
 v 4.2
 * Optimized Source indexing
 * Remove idexing of linked IDs
