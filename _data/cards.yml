@@ -9,7 +9,7 @@
   image: "discovery.png"
   crop: true
 
-- title: "Tailored data model"
+- title: "Tailored model and architecture"
   text: "The data model in Muscat is tailored to the inventory of music sources. It follows state-of-the art library data modelling practice and is designed to fulfill the needs of the contributing institutions."
   page: "model"
   image: "model.png"

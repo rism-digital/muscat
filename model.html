@@ -43,6 +43,39 @@ title: Model
             When appropriate, the foreign classes are also mapped to corresponding authority MarcXML records. This is the case for <em>personal names</em>, <em>institutions</em>, <em>secondary literature,</em> and <em>works</em>. The corresponding Marc data is also embedded and indexed with Solr. Whenever possible, the authorities are linked to external data resources. See the page on <a href="{{ site.baseurl }}/data-interoperability.html">authorities</a> for more information.
         </p>
         
+        <h4>Application architecture</h4>
+        
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                <p>
+                    The application architecture of Muscat follows the common Model-View-Controller design pattern implemented directly in the Ruby on Rails application framework. The design pattern offers a good separation of data model described above and the application. The application is organized as follow:
+                </p>
+                
+                <ul>
+                    <li>In the application, the MarcXML data is loaded as an <strong>instantiated dataset</strong> where all the links between the objects are resolved and validated.</li>
+                    <li>The core the Muscat application implements the <strong>controllers</strong> that handle the application actions.</li>
+                    <li>The <strong>views</strong>, consisting of view partials, specify how the data is presented to the user through the user interface.</li>
+                    <li>The <strong>configurations</strong> for the layouts in the views (e.g., how the fields are grouped and ordered in the display for a manuscript description), the labels, or the translations, are stored separately.</li>
+                    <li>The <strong>cataloging interface </strong>and the <strong>Blacklight interface</strong> use the same view partials and the same configurations.</li>
+                    <li>The data indexed <strong>Solr</strong> is made available to the different search interfaces that use the same index instance.</li>
+                </ul>
+            </div>
+        
+            <div class="col-sm-12 col-lg-6">        
+                <figure class="text-center">
+                    <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/model/architecture.png" alt="architecture">
+                    <figcaption class="figure-caption text-center">The application architecture of Muscat based on the Model-View-Controller design pattern.</figcaption>
+                </figure>
+            </div>
+        </div>
+        
+        <p>
+            Muscat offers a clear separation of the various components of the application, which makes it very easy to extend and to maintain. In Muscat 3.0, the cataloguing interface was heavily re-factored without having to do major changes to the views and to the controllers because their are independent components.
+        </p>
+        <p>
+            Furthermore, elements are available across the application and can be used by multiple components when these provide identical functionalities or identical display needs. For example, the discovery interface in Muscat 3.0 could be very easily be replaced with Blacklight by using the same view partials and the same configurations as the ones of the cataloguing interface. This also means that a modification in the views or in the configurations, for a label or for the order of the fields for example, will automatically reflect in both interfaces.
+        </p>
+        
         {% include nav-footer.html %}
         
     </div>
