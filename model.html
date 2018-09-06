@@ -11,7 +11,7 @@ title: Model
            The data model in Muscat is balanced between the distinct requirements of music source inventory on the one side and compatibility with non-music specific library systems on the other. From the beginning of the development of Muscat by the RISM-UK in 2002 the choice was made to work with the international Marc (or MarcXML) library format. Using MarcXML, which was also a requirement from the Swiss funding agency when supporting Muscat, is advantageous because it facilitates data exchange with Muscat, and this is valid for both directions. That is, for exporting data from Muscat into a library system, and for importing data from a library system into Muscat. Of course, these operations frequently require fine tuning and adjustments, but having the same underlying format greatly facilitates the process.
         </p>
        
-        <h4>Resource classes</h4>
+        <h5>Resource classes</h5>
 
         <p>
             The data model in Muscat is based on different resource classes. Whenever possible, a class is mapped to a MarcXML record. The core class in Muscat is the <em>source</em> class, which embeds a MarcXML bibliographic record. The Marc data is stored directly in the system and indexed with Solr. 
@@ -43,7 +43,7 @@ title: Model
             When appropriate, the foreign classes are also mapped to corresponding authority MarcXML records. This is the case for <em>personal names</em>, <em>institutions</em>, <em>secondary literature,</em> and <em>works</em>. The corresponding Marc data is also embedded and indexed with Solr. Whenever possible, the authorities are linked to external data resources. See the page on <a href="{{ site.baseurl }}/data-interoperability.html">authorities</a> for more information.
         </p>
         
-        <h4>Application architecture</h4>
+        <h4 id="architecture">Application architecture</h4>
         
         <div class="row">
             <div class="col-sm-12 col-lg-6">
@@ -52,8 +52,8 @@ title: Model
                 </p>
                 
                 <ul>
-                    <li>In the application, the MarcXML data is loaded as an <strong>instantiated dataset</strong> where all the links between the objects are resolved and validated.</li>
-                    <li>The core the Muscat application implements the <strong>controllers</strong> that handle the application actions.</li>
+                    <li>The MarcXML data are loaded as an <strong>instantiated dataset</strong> where all the links between the objects are resolved and validated.</li>
+                    <li>The behavior of the Muscat application is implemented in the <strong>controllers</strong> that handle the application actions.</li>
                     <li>The <strong>views</strong>, consisting of view partials, specify how the data is presented to the user through the user interface.</li>
                     <li>The <strong>configurations</strong> for the layouts in the views (e.g., how the fields are grouped and ordered in the display for a manuscript description), the labels, or the translations, are stored separately.</li>
                     <li>The <strong>cataloging interface </strong>and the <strong>Blacklight interface</strong> use the same view partials and the same configurations.</li>
