@@ -75,6 +75,12 @@
 				:class => "muscat_icon_link muscat_icon_link_unpublish") %>
 			</li>
 		<%- end %>
+		<%- if (self.controller.respond_to? :archive) && (can? :edit, item) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :archive_unarchive}", send("archive_admin_#{model}_path", item, :do => (item.namespace == "archived" ? "false" : "true")),
+				:class => "muscat_icon_link muscat_icon_link_archive") %>
+			</li>
+		<%- end %>
 	<%- else %>
 	
 		<%-
