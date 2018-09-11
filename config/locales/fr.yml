@@ -311,6 +311,9 @@ fr:
   append_folder: "Ajouter à un dossier existant"
   add_source: "Attacher une source"
   add_person: "Attacher une personne"
+  archive_unarchive: "Archiver / désarchiver"
+  archive: "Archiver"
+  unarchive: "Désarchiver"
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"
@@ -363,7 +366,7 @@ fr:
   filter_catalog: "Catalogue"
   filter_collection: "Collection"
   filter_category_type: "Catégorie"
-  filter_comments: "Commentaires"
+  filter_comment: "Commentaire"
   filter_composer: "Compositeur"
   filter_connected_libraries: "Bibliothèques"
   filter_country: "Pays"

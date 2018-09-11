@@ -311,6 +311,9 @@ de:
   append_folder: "Zu Ordner hinzufügen"
   add_source: "Quelle verlinken"
   add_person: "Person verlinken"
+  archive_unarchive: "Archivieren / Dearchivieren"
+  archive: "Archivieren"
+  unarchive: "Dearchivieren"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -363,7 +366,7 @@ de:
   filter_catalog: "WV / Katalog"
   filter_collection: "Sammlung"
   filter_category_type: "Kategorie"
-  filter_comments: "Kommentare"
+  filter_comment: "Kommentar"
   filter_composer: "Komponist"
   filter_connected_libraries: "Bibliotheken"
   filter_country: "Land"
