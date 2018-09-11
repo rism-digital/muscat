@@ -311,6 +311,9 @@ en:
   append_folder: "Add all to an existing folder"
   add_source: "Link Source"
   add_person: "Link Person"
+  archive_unarchive: "Archive / un-archive"
+  archive: "Archive"
+  unarchive: "Un-archive"
   
   # Editor sidebar
   show_all_groups: "Show all sections"
@@ -363,7 +366,7 @@ en:
   filter_catalog: "Catalog"
   filter_category_type: "Category"
   filter_collection: "Collection"
-  filter_comments: "Comments"
+  filter_comment: "Comment"
   filter_composer: "Composer"
   filter_connected_libraries: "Libraries"
   filter_country: "Country"

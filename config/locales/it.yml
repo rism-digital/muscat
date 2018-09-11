@@ -311,6 +311,9 @@ it:
   append_folder: "Aggiungi a Cartella"
   add_source: "Collega Fonte"
   add_person: "Collega Persona"
+  archive_unarchive: "ARCHIVE / UN-ARCHIVE"
+  archive: "ARCHIVE"
+  unarchive: "UN-ARCHIVE"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
@@ -363,7 +366,7 @@ it:
   filter_catalog: "Catalogo"
   filter_category_type: "Categoria"
   filter_collection: "Collezione"
-  filter_comments: "Commenti"
+  filter_comment: "Commento"
   filter_composer: "Compositore"
   filter_connected_libraries: "Biblioteche"
   filter_country: "Paese"
