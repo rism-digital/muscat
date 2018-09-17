@@ -154,7 +154,7 @@ class CatalogController < ApplicationController
       :"q.alt" => "*:*",
       :rows => 20,
       :defType => 'edismax',
-      :fq => "type:Source wf_stage_s:published",
+      :fq => "type:Source wf_stage_s:published pae:*",
       :hl => 'false',
       :"hl.simple.pre" => '<span class="highlight">',
       :"hl.simple.post" => "</span>",
