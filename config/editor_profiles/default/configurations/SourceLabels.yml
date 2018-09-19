@@ -1051,14 +1051,14 @@ doc_references:
         comment: "NEW IN 2018"
 "588": 
   label: 
-    it: MASTER EXEMPLAR
+    it: Copa esaminata per la catalogazione
     fr: MASTER EXEMPLAR
     de: Vorlageexemplar
     en: MASTER EXEMPLAR
   fields: 
     a: 
       label: 
-        it: MASTER EXEMPLAR
+        it: Copa esaminata per la catalogazione
         fr: MASTER EXEMPLAR
         de: Vorlageexemplar
         en: MASTER EXEMPLAR
