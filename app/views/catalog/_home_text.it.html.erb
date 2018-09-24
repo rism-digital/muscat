@@ -1,24 +1,31 @@
 <!-- Overridded to customize welcom page -->
 
 <div style="float: right; margin: 25px 0px 10px 30px;" class="hidden-sm hidden-xs">
-	<img src="/images/magnifier.jpg" alt="magnifier">
+		<a href="https://www.uu.nl/en/organisation/department-of-information-and-computing-sciences" target="_blank">
+		<img src="/images/utrecht.png">
+	</a>
 </div>
 
-<h3 class="welcome">Opzioni di ricerca</h3>
+<h4>Ricerca negli incipit con similarità melodica</h4>
 
 <p>
-La ricerca semplice viene utilizzata per trovare espressioni cercando in tutti i campi. Può produrre, come nei motori di ricerca in Internet, molti risultati. Utilizzando questi come base è possibile rifinire la ricerca utilizzando i criteri disponibili direttamente nella pagina dei risultati.
+Questa installazione dimostrativa di Muscat permette di effettuare ricerche tra i record RISM che contengono incipit. Utilizza l'applicazione <a href="https://www.projects.science.uu.nl/monochord/risma2/about" target="_blank">Monochord</a>, un motore di ricerca sviluppato all'università di Utrecht. In confronto al <a href="/advanced">motore di ricerca incipit originale</a> presente in Muscat, basato su Themefinder, questo sistema opera in una maniera più “musicalmente informata”. Per esempio si possono trovare elementi che si differenziano solamente per piccoli dettagli - una cosa che è facile per un essere umano, ma molto più difficile da ottenere con una macchina usante solo una query Themefinder relativamente semplice. Tutte le ricerche presentate in questa pagina infatti, eseguite con Themefinder, ottengolo solo un risultato (loro stesse), o una manciata di risultati uguali nota per nota. Utilizzando il nuovo sistema, invece, si ottengono dei risultati molto più significativi.
+</p>
+<p>
+	La query di input è combinata con ognuno degli incipit presenti nel dataset, dandogli una classifica. I primi 50 risultati sono presentati quindi all'utente, ordinati in questa classifica (risultato più elevato = corrispondenza migliore).
+</p>
+<p>
+	Utilizzando gli strumenti di rifinitura della ricerca a sinistra è possibile scorrere un sottoinsieme del dataset RISM, contentente solo i record con incipit musicale.
 </p>
 
-<p class="welcome-tip">Se si inseriscono più parole nel campo sono visualizzati soltanto i risultati contenenti <strong>tutte</strong> le parole immesse.</p>
-
-<p class="welcome-tip">Frasi intere o parziali devono essere scritte tra virgolette, per es.: <strong>"benedictus dominus"</strong>.</p>
-
-<p class="welcome-tip">Queste opzioni possono essere combinate. Per es. <strong>"Ave Maria" CH-E</strong> fornisce la lista delle fonti della biblioteca del monastero di Einsiedeln che contengono <em>Ave Maria</em>.</p>
-
-<p class="welcome-tip">Per i caratteri non ASCII, come per es. le parole in cirillico, la ricerca funziona a patto che le due versioni (originale e traslitterata) siano state inserite nella banca dati. Per es. kalinka e калинка forniscono il medesimo risultato.</p>
-
-
-<h4>Ricerca avanzata</h4>
-
-<p>La <a href="/advanced">ricerca avanzata</a> permette di raggiungere rapidamente dei risulati se già ha una precisa idea di cosa cercare nella banca dati.</p>
+<div class="muscat-hand">
+<p>
+	Fare click sull'incona blu della ricerca per avviare un demo live non la nuova funzionalità sperimentale di ricerca incipit! Per ogni esempio verrà mostrata una lista di incipit similari che non sarebbe possibile trovare con Themefinder o un algoritmo ordinario di ricerca.
+</p>
+</div>
+        
+<figure>
+<%= render 'incipits_example' %>
+<figcaption class="figure-caption text-center">Esempi di incipit RISM leggermente diversi sul tema <em>Ah vous dirai-je maman</em> e la relativa ricerca in Muscat.</figcaption>
+</figure>
+<p>&nbsp;</p>
