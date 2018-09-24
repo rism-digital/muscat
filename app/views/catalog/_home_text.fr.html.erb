@@ -1,24 +1,31 @@
 <!-- Overridded to customize welcom page -->
 
 <div style="float: right; margin: 25px 0px 10px 30px;" class="hidden-sm hidden-xs">
-	<img src="/images/magnifier.jpg" alt="magnifier">
+		<a href="https://www.uu.nl/en/organisation/department-of-information-and-computing-sciences" target="_blank">
+		<img src="/images/utrecht.png">
+	</a>
 </div>
 
-<h3 class="welcome">Options de recherche</h3>
+<h4>Incipit search with melodic similarity</h4>
 
 <p>
-Le mode de recherche simple permet de rechercher dans tous les champs. Ce type de recherche donne souvent une longue liste de résultats. Si vous commencez votre recherche par ce point d'accès, vous pourrez ensuite affiner votre recherche en ajoutant des critères directement dans la page de résultats.	
+	This demo installation of Muscat allows to search the RISM records which contain incipits. It uses the <a href="https://www.projects.science.uu.nl/monochord/risma2/about" target="_blank">Monochord</a> search engine, developed at the University of Utrecht. In comparison to the original Muscat <a href="/advanced">incipit search engine</a>, based on Themefinder, this tool is more “musically” informed, for example being able to find elements that differ only by small differences - easy to spot for a human, but unlikely to be matched with a reasonably simple Themefinder query. All the example queries below would find, with Themefinder, only one match (themselves), or a few identical matches, but will return meaningful similar results with this system.
+</p>
+<p>
+	Un inicipit utilisé comme demande de recherche est comparé avec tous les autres incipits avec un score pour chaque comparaison. Les 50 premiers résultats sont présentés à l'utilisateur, triés par score (le plus haut = le plus similaire).
+</p>
+<p>
+	En utilisant la recherche par facette, il est possible de naviguer dans le sous-ensemble des titres du RISM constitué uniquement des titres avec incipit musical.
 </p>
 
-<p class="welcome-tip">Une recherche avec plusieurs mots donne comme résultat uniquement les sources qui réunissent <strong>tous</strong> les critères.</p>
-
-<p class="welcome-tip">Des phases, ou des expressions, peuvent être données entre guillemets: par exemple <strong>"benedictus dominus"</strong>.</p>
-
-<p class="welcome-tip">Ces différentes options peuvent être combinées. Par exemple <strong>"Ave Maria" CH-E</strong> donne la liste de toutes les sources de la bibliothèque du monastère d'Einsiedeln contenant <em>Ave Maria</em>.</p>
-
-<p class="welcome-tip">Pour les caractères non ASCII, comme par exemple les mots en cyrillique, la recherche fonctionne pour autant que les deux versions (originale et translitterée) ont été entrées dans la base de données. Par exemple <strong>kalinka</strong> et <strong>калинка</strong> donneront le même résultat.</p>
-
-
-<h4>Recherche avancée</h4>
-
-<p>La <a href="/advanced">recherche avancée</a> vous permet d'accéder rapidement à des résultats lorsque vous avez une idée préalable assez précise de ce que vous cherchez dans la base de données.</p>
+<div class="muscat-hand">
+<p>
+	En cliquant sur l'icone bleue, vous pouvez voir une demo de cette recherche par incipit dans Muscat! Pour chaque cas, le système retournera une liste de résultat d'incipits similaires qui ne serait pas indentifiés comme tels par une recherche simple avec Themefinder.
+</p>
+</div>
+        
+<figure>
+<%= render 'incipits_example' %>
+<figcaption class="figure-caption text-center">Des exemples d'incipits du RISM légèrement différents sur le thème <em>Ah vous dirai-je maman</em> et leur recherche dans Muscat.</figcaption>
+</figure>
+<p>&nbsp;</p>
