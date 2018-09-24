@@ -1,24 +1,82 @@
 <!-- Overridded to customize welcom page -->
 
 <div style="float: right; margin: 25px 0px 10px 30px;" class="hidden-sm hidden-xs">
-	<img src="/images/magnifier.jpg" alt="magnifier">
+		<a href="https://www.uu.nl/en/organisation/department-of-information-and-computing-sciences
+		" target="_blank">
+		<img src="/images/utrecht.png">
+	</a>
 </div>
 
-<h3 class="welcome">Search options</h3>
-
-<p>
-The simple search mode is the easiest way to start a search. Because the search is performed in all fields, the method produces often a long list of results. If you start your search from there, you will be able to refine your search by adding criteria directly in the result page.	
+<h4>Incipit search with melodic similarity</h4>
+This demo installation of Muscat permits to search the RISM records which contains incipits. It uses the <a href="https://www.projects.science.uu.nl/monochord/risma2/about" target="_blank">Monochord</a> search engine, developed at the University of Utrecht. Contrary to the original Muscat Incipit Search engine, based on Themefinder, this tool is more more “musically” informed, for example being able to find elements that differ only by small differences - easy to spot for a trained eye, but unlikely to be matched with a reasonably simple Themefinder query. All the example queries below would find onli one match (themselves) with Themefinder, but return meaningful results with the new system.
 </p>
-
-<p class="welcome-tip">A search with more than one word will give as result only the sources that match <strong>all</strong> the criteria. However, the words do not have to be in the same field.</p>
-
-<p class="welcome-tip">Phrases, or expressions, can be given between quotes: for example <strong>"benedictus dominus"</strong>.</p>
-
-<p class="welcome-tip">All the different options can be combined. For example <strong>"Ave Maria" CH-E</strong> matches all the sources of the Einsiedeln monastery library with <em>Ave Maria</em>.</p>
-
-<p class="welcome-tip">For non ASCII characters, such as Cyrillic words, the search works as long as both versions (original and transliterated) were entered in the database. For example <strong>kalinka</strong> and <strong>калинка</strong> will return the same results.</p>
-
-
-<h4>Advanced search</h4>
-
-<p>The <a href="/advanced">advanced search</a> enables you to quickly find results when you already have an idea of what you are searching in the database</p>
+<p>
+The the input query matched with all the incipits in the dataset, returning a score for each one. The first 50 results are then presented to the user, ordered by the score (highest = most matching).
+</p>
+        
+<div class="muscat-hand">
+<p>
+	Click on the blue search icons to see a live demo of the Muscat new experimental incipit search! In each case you will see in the result list similar incipits that would not be matched with a simple Themefinder query or a with an ordinary search algorithm.
+</p>
+</div>
+        
+<figure>
+<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<td class="align-middle">
+				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=190016489-1.1.1" target="_blank"><img src="/images/incipits/search.png"/></a>
+			</td>
+			<td class="align-middle">RISM incipit 190016489-1.1.1</td>
+			<td>
+				<img src="/images/incipits/190016489-1.1.1.svg">
+			</td>
+		</tr>
+		<tr>
+			<td class="align-middle">
+				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=452509339-1.1.1" target="_blank">
+					<img src="/images/incipits/search.png"/>
+				</a>
+			</td>
+			<td class="align-middle">RISM incipit 452509339-1.1.1</td>
+			<td>
+				<img src="/images/incipits/452509339-1.1.1.svg">
+			</td>
+		</tr>
+		<tr>
+			<td class="align-middle">
+				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=454013562-1.1.1" target="_blank">
+					<img src="/images/incipits/search.png"/>
+				</a>
+			</td>
+			<td class="align-middle">RISM incipit 454013562-1.1.1</td>
+			<td>
+				<img src="/images/incipits/454013562-1.1.1.svg">
+			</td>
+		</tr>
+		<tr>
+			<td class="align-middle">
+				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=603001069-1.1.1" target="_blank">
+					<img src="/images/incipits/search.png"/>
+				</a>
+			</td>
+			<td class="align-middle">RISM incipit 603001069-1.1.1</td>
+			<td>
+				<img src="/images/incipits/603001069-1.1.1.svg">
+			</td>
+		</tr>
+		<tr>
+			<td class="align-middle">
+				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=702006855-1.1.1" target="_blank">
+					<img src="/images/incipits/search.png"/>
+				</a>
+			</td>
+			<td class="align-middle">RISM incipit 702006855-1.1.1</td>
+			<td>
+				<img src="/images/incipits/702006855-1.1.1.svg">
+			</td>
+		</tr>
+	</table>
+</div>
+<figcaption class="figure-caption text-center">Examples of slightly different RISM incipits featuring the theme <em>Ah vous dirai-je maman</em> and the search in Muscat</figcaption>
+</figure>
