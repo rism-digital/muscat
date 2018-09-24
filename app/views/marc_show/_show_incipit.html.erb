@@ -38,7 +38,7 @@
 <tr class="row">
 	<td style='text-align:center;vertical-align:middle'>
 		<% if opac %>
-			<%= link_to incipits_path(:search_field => :id, :q => "#{@item.id} #{incipit_number}"), {:target => "_blank", :class => "btn btn-default"} do %>
+			<%= link_to incipits_path(:search_field => :id, :q => "#{@item.id} #{incipit_number}"), {:class => "btn btn-default"} do %>
 				<span class="glyphicon glyphicon-search"></span>
 			<%end%>
 		<%end%>
