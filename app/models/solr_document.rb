@@ -42,13 +42,55 @@ class SolrDocument
   end
   
   def source_index_description
-    title = first(:std_title_texts) || "[n.a.]"
-    title = "[n.a.]" if title.nil? || title.empty?
-    #sigla = first(:lib_siglum_texts) || ""
-    #shelf = first(:shelf_mark_texts) || ""
-    #desc = first(:"240m_texts") || ""
-    #"#{title}; #{desc}; #{sigla} #{shelf}"
-    title
+    elements = []
+    
+    profile = EditorConfiguration.get_show_layout(Source.new)
+    
+    case first(:record_type_is).to_i
+    when MarcSource::RECORD_TYPES[:collection]
+    when MarcSource::RECORD_TYPES[:source]
+      std_title = first(:"240a_filter_sms")
+      std_title = "[n.a.]" if std_title.nil? || std_title.empty?
+      std_title += " - "      
+      
+      if first(:"240r_texts")
+        elements << profile.get_label(first(:"240r_texts"))
+      end
+      
+      elements << first(:"240m_filter_sms")
+      
+      if first(:"690a_texts")
+        elements << "#{first(:"690a_texts")} #{first(:"690n_texts")}".strip
+      end
+      
+      elements << first(:"510a_texts")
+      elements << first(:"593a_texts")
+      
+      elements << "#{first(:"852a_texts")} #{first(:"852c_texts")}".strip
+      return std_title + elements.compact.join("; ")
+    when MarcSource::RECORD_TYPES[:edition_content]
+    when MarcSource::RECORD_TYPES[:edition]
+      std_title = first(:"240a_filter_sms")
+      std_title = "[n.a.]" if std_title.nil? || std_title.empty?
+      std_title += " - "      
+      
+      if first(:"240r_texts")
+        elements << profile.get_label(first(:"240r_texts"))
+      end
+      
+      elements << first(:"240m_filter_sms")
+      
+      if first(:"690a_texts")
+        elements << "#{first(:"690a_texts")} #{first(:"690n_texts")}".strip
+      end
+      
+      elements << first(:"593a_texts")
+      elements << "#{first(:"510c_texts")} #{first(:"510c_texts")}".strip
+      
+      return std_title + elements.compact.join("; ")
+    else
+      'title'
+    end
   end
   
 end

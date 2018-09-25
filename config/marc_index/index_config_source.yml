@@ -71,6 +71,7 @@ fields:
       :type: string
       :from_tag: "240"
       :from_subtag: "m"
+      :store: true
   "240n":
       :store: true
   "240o":
@@ -107,7 +108,9 @@ fields:
   "506a":
   "508a":
   "510a":
+      :store: true
   "510c":
+      :store: true
   "511a":
   "518a":
   "520a":
@@ -160,11 +163,13 @@ fields:
   "651a":
   "657a":
   "690a":
+      :store: true
   "650a_filter":
       :type: string
       :from_tag: "650"
       :from_subtag: "a"
   "690n":
+      :store: true
   "691n":
   "700a":
   "700d":
@@ -209,6 +214,7 @@ fields:
       :as: "852a_facet_sm" # But set it manually as string multiple
       :holding_record: true
   "852a":
+      :store: true
       :holding_record: true
   "852b":
       :holding_record: true

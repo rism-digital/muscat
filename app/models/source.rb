@@ -171,7 +171,7 @@ class Source < ApplicationRecord
 
   searchable :auto_index => false do |sunspot_dsl|
    sunspot_dsl.integer :id
-   sunspot_dsl.integer :record_type
+   sunspot_dsl.integer :record_type, :stored => true
 
     sunspot_dsl.text :id_fulltext do |s|
       s.id_for_fulltext
