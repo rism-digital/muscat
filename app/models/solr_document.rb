@@ -43,12 +43,12 @@ class SolrDocument
   
   def source_index_description
     elements = []
-    
     profile = EditorConfiguration.get_show_layout(Source.new)
+    record_type = first(:record_type_is).to_i
     
-    case first(:record_type_is).to_i
-    when MarcSource::RECORD_TYPES[:collection]
-    when MarcSource::RECORD_TYPES[:source]
+    if record_type == MarcSource::RECORD_TYPES[:source] || 
+       record_type == MarcSource::RECORD_TYPES[:collection]
+       
       std_title = first(:"240a_filter_sms")
       std_title = "[n.a.]" if std_title.nil? || std_title.empty?
       std_title += " - "      
@@ -68,8 +68,10 @@ class SolrDocument
       
       elements << "#{first(:"852a_texts")} #{first(:"852c_texts")}".strip
       return std_title + elements.compact.join("; ")
-    when MarcSource::RECORD_TYPES[:edition_content]
-    when MarcSource::RECORD_TYPES[:edition]
+      
+    elsif record_type == MarcSource::RECORD_TYPES[:edition] || 
+          record_type == MarcSource::RECORD_TYPES[:edition_content]
+          
       std_title = first(:"240a_filter_sms")
       std_title = "[n.a.]" if std_title.nil? || std_title.empty?
       std_title += " - "      
@@ -85,11 +87,11 @@ class SolrDocument
       end
       
       elements << first(:"593a_texts")
-      elements << "#{first(:"510c_texts")} #{first(:"510c_texts")}".strip
+      elements << "#{first(:"510a_texts")} #{first(:"510c_texts")}".strip
       
       return std_title + elements.compact.join("; ")
     else
-      'title'
+      return 'title'
     end
   end
   
