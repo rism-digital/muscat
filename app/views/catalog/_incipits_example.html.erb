@@ -3,7 +3,9 @@
 	<table class="table">
 		<tr>
 			<td class="align-middle">
-				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=190016489-1.1.1" ><img src="/images/incipits/search.png"/></a>
+				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=190016489-1.1.1" class="btn btn-default search-btn" onclick="block_match();">
+					<span class="glyphicon glyphicon-search"></span>
+				</a>
 			</td>
 			<td class="align-middle">RISM incipit 190016489-1.1.1</td>
 			<td>
@@ -12,8 +14,8 @@
 		</tr>
 		<tr>
 			<td class="align-middle">
-				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=452509339-1.1.1" >
-					<img src="/images/incipits/search.png"/>
+				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=452509339-1.1.1" class="btn btn-default search-btn" onclick="block_match();">
+					<span class="glyphicon glyphicon-search"></span>
 				</a>
 			</td>
 			<td class="align-middle">RISM incipit 452509339-1.1.1</td>
@@ -23,8 +25,8 @@
 		</tr>
 		<tr>
 			<td class="align-middle">
-				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=454013562-1.1.1" >
-					<img src="/images/incipits/search.png"/>
+				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=454013562-1.1.1" class="btn btn-default search-btn" onclick="block_match();">
+					<span class="glyphicon glyphicon-search"></span>
 				</a>
 			</td>
 			<td class="align-middle">RISM incipit 454013562-1.1.1</td>
@@ -34,8 +36,8 @@
 		</tr>
 		<tr>
 			<td class="align-middle">
-				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=603001069-1.1.1" >
-					<img src="/images/incipits/search.png"/>
+				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=603001069-1.1.1" class="btn btn-default search-btn" onclick="block_match();">
+					<span class="glyphicon glyphicon-search"></span>
 				</a>
 			</td>
 			<td class="align-middle">RISM incipit 603001069-1.1.1</td>
@@ -45,8 +47,8 @@
 		</tr>
 		<tr>
 			<td class="align-middle">
-				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=702006855-1.1.1" >
-					<img src="/images/incipits/search.png"/>
+				<a href="/incipits?utf8=%E2%9C%93&search_field=id&q=702006855-1.1.1" class="btn btn-default search-btn" onclick="block_match();">
+					<span class="glyphicon glyphicon-search"></span>
 				</a>
 			</td>
 			<td class="align-middle">RISM incipit 702006855-1.1.1</td>
@@ -56,3 +58,23 @@
 		</tr>
 	</table>
 </div>
+<script>
+	// FIXME
+	// Remember to put this function in a separate file
+	// when the autocomplete ajax is implemented
+	function block_match() {
+		$('#blockable_content').block({ css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff',
+						top: '100px'
+        },
+				centerY: 0,
+				message: "Matching in progress..."
+			 }); 
+	}
+</script>
