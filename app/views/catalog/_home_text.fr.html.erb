@@ -6,26 +6,27 @@
 	</a>
 </div>
 
-<h4>Incipit search with melodic similarity</h4>
+<h4>Recherche d'incipit par similarité mélodique</h4>
 
 <p>
-	This demo installation of Muscat allows to search the RISM records which contain incipits. It uses the <a href="https://www.projects.science.uu.nl/monochord/risma2/about" target="_blank">Monochord</a> search engine, developed at the University of Utrecht. In comparison to the original Muscat <a href="/advanced">incipit search engine</a>, based on Themefinder, this tool is more “musically” informed, for example being able to find elements that differ only by small differences - easy to spot for a human, but unlikely to be matched with a reasonably simple Themefinder query. All the example queries below would find, with Themefinder, only one match (themselves), or a few identical matches, but will return meaningful similar results with this system.
+	Cette installation demo de Muscat permet la recherche de titre du RISM qui contiennent un incipit musical. Elle utilise l'outil de recherche <a class="underline" href="https://www.projects.science.uu.nl/monochord/risma2/about" target="_blank">Monochord</a> développé par l'Université d'Utrecht. En comparaison avec la <a class="underline" href="/advanced">recherche par incipit</a> originale, basée sur Themefinder, cet outil a une approche plus “musicale”, ce qui permet par exemple de retrouver des incipits qui présentent de petites différences - faciles à détecter pour un humain, mais peu probables d'être retrouvées par une recherche simple avec Themefinder. Pour tous les exemples ci-dessous, Themefinder ne retournera qu'un seul résultat (lui-même), ou quelques résultats identiques, alors ce système retournera de nombreux résultats similaires.
 </p>
 <p>
-	Un inicipit utilisé comme demande de recherche est comparé avec tous les autres incipits avec un score pour chaque comparaison. Les 50 premiers résultats sont présentés à l'utilisateur, triés par score (le plus haut = le plus similaire).
+	Un incipit utilisé comme demande de recherche est comparé avec tous les autres incipits avec un score pour chaque comparaison. Les 50 premiers résultats sont présentés à l'utilisateur, triés par score (le plus haut = le plus similaire).
 </p>
 <p>
 	En utilisant la recherche par facette, il est possible de naviguer dans le sous-ensemble des titres du RISM constitué uniquement des titres avec incipit musical.
 </p>
 
-<div class="muscat-hand">
 <p>
 	En cliquant sur l'icone bleue, vous pouvez voir une demo de cette recherche par incipit dans Muscat! Pour chaque cas, le système retournera une liste de résultat d'incipits similaires qui ne serait pas indentifiés comme tels par une recherche simple avec Themefinder.
 </p>
-</div>
-        
-<figure>
+
+
 <%= render 'incipits_example' %>
-<figcaption class="figure-caption text-center">Des exemples d'incipits du RISM légèrement différents sur le thème <em>Ah vous dirai-je maman</em> et leur recherche dans Muscat.</figcaption>
-</figure>
+
+<div class="text-center">
+	Des exemples d'incipits du RISM légèrement différents sur le thème <em>Ah vous dirai-je maman</em> et leur recherche dans Muscat.
+</div>
+
 <p>&nbsp;</p>
