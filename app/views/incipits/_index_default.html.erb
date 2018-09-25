@@ -18,6 +18,11 @@
 </dl>
 
 <table><tr class="row">
+<td style="text-align:center;vertical-align:middle">
+	<%= link_to incipits_path(search_field: :id, q: query_str), {class: "btn btn-default search-btn", onclick: "block_match();", style: "display: none"} do %>
+	        <span class="glyphicon glyphicon-search"></span>
+	<%end%>
+</td>
 
 <td>
 	<div id="<%= image_render_div %>" class="inline">
@@ -25,11 +30,7 @@
 	</div>
 </td>
 
-<td style="text-align:center;vertical-align:middle">
-	<%= link_to incipits_path(search_field: :id, q: query_str), {class: "btn btn-default search-btn", onclick: "block_match();", style: "display: none"} do %>
-	        <span class="glyphicon glyphicon-search"></span>
-	<%end%>
-</td>
+
 
 </tr></table>
 
