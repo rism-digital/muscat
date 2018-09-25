@@ -278,6 +278,14 @@ h5.index_title {
 	z-index: 99;
 }
 
+.blacklight-catalog {
+    #content {
+        a.underline {
+        	text-decoration: underline;
+        }
+    }
+}
+
 // Catalog Show Page //
 .blacklight-catalog-show {
     #content {

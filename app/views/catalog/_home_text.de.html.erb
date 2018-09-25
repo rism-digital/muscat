@@ -1,24 +1,30 @@
 <!-- Overridded to customize welcom page -->
 
 <div style="float: right; margin: 25px 0px 10px 30px;" class="hidden-sm hidden-xs">
-	<img src="/images/magnifier.jpg" alt="magnifier">
+		<a href="https://www.uu.nl/en/organisation/department-of-information-and-computing-sciences" target="_blank">
+		<img src="/images/utrecht.png">
+	</a>
 </div>
 
-<h3 class="welcome">Suchoptionen</h3>
+<h4>Incipit-Suche mit melodischer Ähnlichkeit</h4>
 
 <p>
-Verwenden Sie die einfache Suche für die Suche nach Begriffen, unabhängig in welchem Feld sich diese befinden. Ähnlich den Internet-Suchmaschinen erhalten Sie in der Regel viele Treffer. Verwenden Sie Quick Search als erstes, um zu überprüfen, ob Ihre Suche überhaupt ein Resultat ergibt. Die Suche kann in einem weiteren Schritt immer noch mittels erweiterter Suche eingegrenzt werden.	
+	Diese Demo-Installation von Muscat ermöglicht die Suche in denjenigen RISM-Datensätzen, die Incipits enthalten. Sie verwendet die an der Universität Utrecht entwickelte  <a class="underline" href="https://www.projects.science.uu.nl/monochord/risma2/about" target="_blank">Monochord-Suchmaschine</a>. Im Vergleich zur ursprünglichen Muscat <a class="underline" href="/advanced">Incipit-Suchmaschine</a>, die auf Themefinder basiert, ist dieses Tool "musikalischer" ausgerichtet, weil es z. B. Elemente finden kann, die sich nur durch kleine Abweichungen unterscheiden. Für einen Menschen ist dies leicht zu erkennen aber mit einer relativ einfachen Themefinder-Suche eher unwahrscheinlich zu entdecken. Alle untenstehenden Beispielabfragen würden mit dem Themefinder nur eine Übereinstimmung (das exakt eingegebene Incipit) oder einige identische Übereinstimmungen finden. Mit diesem System liefern sie aber sinnvolle ähnliche Ergebnisse.
+</p>
+<p>
+	Die Eingabe entsprach allen Incipits im Datensatz und lieferte ein Ranking für jeden einzelnen. Die ersten 50 Ergebnisse werden dann dem Benutzer präsentiert, geordnet nach der Übereinstimmungsgrad (höchste = ähnlichste).
+</p>
+<p>
+	Mit den Facetten auf der linken Seite ist es möglich, eine Teilmenge des RISM-Datensets nur mit denjenigen Einträgen zu durchsuchen, die Musikincipits enthalten.
+</p>
+<p>
+	Klicken Sie auf die blauen Suchsymbole, um eine Live-Demo der neuen experimentellen Incipit-Suche von Muscat zu sehen! In jedem Fall sehen Sie in der Ergebnisliste ähnliche Incipits, die mit einer einfachen Themefinder-Abfrage oder mit einem gewöhnlichen Suchalgorithmus nicht angezeigt würden.
 </p>
 
-<p class="welcome-tip">Bei Eingabe mehrerer Wörter in das Feld, werden nur die Treffer angezeigt, welche <strong>alle</strong> diese Begriffe enthalten.</p>
+<%= render 'incipits_example' %>
 
-<p class="welcome-tip">	Ganze Sätze oder Phrasen werden zwischen Anführungszeichen gesetzt: Z. B.: <strong>"benedictus dominus"</strong>.</p>
+<div class="text-center">
+	Beispiele für nur geringfügig abweichende RISM-Incipits mit dem Thema Ah vous dirai-je maman und der Suche in Muscat.
+</div>
 
-<p class="welcome-tip">Die verschiedenen Suchoptionen können kombiniert werden. Die Suche nach <strong>"Ave Maria" CH-E</strong> ergibt beispielsweise eine Liste mit allen Quellen in der Klosterbibliothek Einsiedeln, welche ein <em>Ave Maria</em> enthalten.</p>
-
-<p class="welcome-tip">Mit Buchstaben, welche Sonderzeichen enthalten, wie zum Beispiel bei Ausdrücken in kyrillischer Schrift, funktioniert die Suche, sofern beide Versionen (Sonderzeichen und transliteriert) in der Datenbank verzeichnet sind. Die Suche nach <strong>kalinka</strong> ergibt dieselben Resultate wie nach <strong>калинка</strong>.</p>
-
-
-<h4>Erweiterte Suche</h4>
-
-<p>Grenzen Sie mit der <a href="/advanced">erweiterten Suche</a> Ihre spezifische Anfrage mittels Kombination ein, um auf die gewünschten Treffer zu gelangen.</p>
+<p>&nbsp;</p>
