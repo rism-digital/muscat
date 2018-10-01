@@ -107,6 +107,7 @@ class Marc
             MarcNode.new(@model, "005", last_transcation, nil))
       end
     end
+    by_tags("599").each {|t| t.destroy_yourself}
   end
   
   # Parse a MARC 21 line
