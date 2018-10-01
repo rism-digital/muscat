@@ -13,3 +13,18 @@
 		<%= render :partial => "catalog/digital_objects" %>
 	<%- end %>
 </dl>
+
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  },
+  "position": "bottom-left"
+})});
+</script>
