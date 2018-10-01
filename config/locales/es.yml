@@ -623,7 +623,7 @@ es:
   Incipit: "Incipit"
 
   cookies:
-    message: "Esta página web utiliza cookies para su uso. Se utiliza para ver el contenido de la aplicación.."
+    message: "Esta página web utiliza cookies para su uso. Se utiliza para ver el contenido de la aplicación."
     dimiss: "Aceptar y cerrar"
     link: 'Aprender mas'
 
