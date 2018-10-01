@@ -11,7 +11,22 @@
 
 	    	<%= render :partial => "map/show" %>
 	        <%= render 'search_results' %>
-
 	  <% end %>
 	</div>
 </div>
+
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  },
+  "position": "bottom-left"
+})});
+</script>
+
