@@ -1051,14 +1051,14 @@ doc_references:
         comment: "NEW IN 2018"
 "588": 
   label: 
-    it: MASTER EXEMPLAR
+    it: Copa esaminata per la catalogazione
     fr: MASTER EXEMPLAR
     de: Vorlageexemplar
     en: MASTER EXEMPLAR
   fields: 
     a: 
       label: 
-        it: MASTER EXEMPLAR
+        it: Copa esaminata per la catalogazione
         fr: MASTER EXEMPLAR
         de: Vorlageexemplar
         en: MASTER EXEMPLAR
@@ -3788,19 +3788,19 @@ aid_error:
     de: "Technische Fehler"
 IIIF: 
   label: 
-    it: "IIIF MANIFEST"
+    it: "IIIF manifest"
     fr: "Manifeste IIIF"
     de: "IIIF manifest"
     en: "IIIF manifest"
 Digitalization: 
   label: 
-    it: "DIGITIZED MUSIC"
+    it: "Musica digitalizzata"
     fr: "Sources numériées"
     de: "Notendigitalisat"
     en: "Digitized music"
 Other: 
   label: 
-    it: "OTHER"
+    it: "Altro"
     fr: "Autre"
     de: "Sonstiges"
     en: "Other"
