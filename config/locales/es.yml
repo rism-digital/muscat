@@ -622,6 +622,11 @@ es:
   # Note the capital 'I'
   Incipit: "Incipit"
 
+  cookies:
+    message: "Esta página web utiliza cookies para su uso. Se utiliza para ver el contenido de la aplicación.."
+    dimiss: "Aceptar y cerrar"
+    link: 'Aprender mas'
+
   # date:
   # Empty lines for matching line numbers with other translation files  
   #

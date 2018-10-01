@@ -661,6 +661,11 @@ fr:
   # Note the capital 'I'
   Incipit: "Incipit"
 
+  cookies:
+    message: "Notre site Web utilise des cookies pour améliorer votre expérience de navigation. En utilisant notre site, vous acceptez notre utilisation des cookies.."
+    dimiss: "Accepter et fermer"
+    link: 'En savoir plus'
+
   date:
     month_names:
     -
