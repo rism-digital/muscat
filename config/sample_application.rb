@@ -73,6 +73,10 @@ module RISM
 	SEND_VALIDATION_NOTIFICATIONS = false
 	# Notification email, also used for Exception Notifications
 	NOTIFICATION_EMAIL = "sample@email.com"
+	# Privacy information page
+	COOKIE_PRIVACY_LINK = "http://www.example.com/privacy.html?lang="
+	# Append locale?
+	COOKIE_PRIVACY_I18N = true
 end
 
 module Muscat
