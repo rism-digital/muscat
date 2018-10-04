@@ -184,10 +184,10 @@ groups:
     template: show_incipit
   edit_references:
     all_tags:
+    - '588'
     - '500'
     - '505'
     - '525'
-    - '588'
     - '691'
     - '510'
     - '596'

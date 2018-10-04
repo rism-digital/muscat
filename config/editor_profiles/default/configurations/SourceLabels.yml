@@ -1054,16 +1054,16 @@ doc_references:
     it: Copa esaminata per la catalogazione
     fr: MASTER EXEMPLAR
     de: Vorlageexemplar
-    en: MASTER EXEMPLAR
+    en: Source of description note
   fields: 
     a: 
       label: 
         it: Copa esaminata per la catalogazione
         fr: MASTER EXEMPLAR
         de: Vorlageexemplar
-        en: MASTER EXEMPLAR
+        en: Copy examined for cataloging
       edit_label: 
-        en: ""
+        en: Copy examined for cataloging
       comment: "NEW IN 2018"
 "590": 
   label: 
