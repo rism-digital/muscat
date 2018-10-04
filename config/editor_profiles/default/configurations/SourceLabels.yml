@@ -1776,7 +1776,7 @@ doc_references:
     it: Localizzazione e accesso elettronico
     fr: "Ressource électronique externe"
     de: Elektronische Lokalisierung und Zugriff
-    en: External resource URI
+    en: External resource
   fields: 
     z: 
       label: 
