@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/javascripts/leaflet/leaflet.css">
+<script src="/javascripts/leaflet/leaflet.js"></script>
+
+<%
+lng = tag.fetch_first_by_tag(:d).content rescue "[NO VALUE GIVEN]"
+lat = tag.fetch_first_by_tag(:f).content rescue "[NO VALUE GIVEN]"
+#FIXME Needs better validation
+#validates lng, numericality: { greater_than_or_equal_to: -90,  less_than_or_equal_to: 90 }
+#validates lat, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
+-%>
+<tr class="row">
+  <th>
+    <% if (no_label == false) -%>
+      <%= @editor_profile.get_label(tag.tag) %>
+    <%- end %>
+  </th>
+  <td>
+    <div id="map" style="height: 400px"></div>
+  </td>
+
+</tr>
+
+<script>
+  $(document).ready(function() {
+    var map = L.map('map').setView([<%=lat %>, <%=lng %>], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    var marker = L.marker([ <%=lat %>, <%=lng %> ]).addTo(map);
+  });
+</script>
