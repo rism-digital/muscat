@@ -291,7 +291,7 @@ include ApplicationHelper
     return if @user.has_role?(:admin) || @user.has_role?(:editor)
     return if @marc.get_id != '__TEMP__' || !@marc.get_siglum
     sigla = []
-    user.workgroups.each do |w|
+    @user.workgroups.each do |w|
       sigla.push(*w.get_institutions.pluck(:siglum))
     end
     unless sigla.include?(@marc.get_siglum)
