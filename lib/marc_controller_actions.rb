@@ -333,11 +333,11 @@ module MarcControllerActions
       
       @item.set_object_fields
       @item.generate_id if @item.respond_to?(:generate_id)
-      validator = MarcValidator.new(@item, false)
+      validator = MarcValidator.new(@item, current_user, false)
       validator.validate
       validator.validate_links
       validator.validate_unknown_tags
-      validator.validate_user_abilities(current_user) if model == Source
+      validator.validate_server_side
       if validator.has_errors
         render json: {status: validator.get_errors}
       else

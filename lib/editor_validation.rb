@@ -25,7 +25,9 @@ class EditorValidation
     @id = conf[:id]
     @validation = conf[:validation]
     @model = conf[:model]
-    @validation_config = squeeze(conf[:validation])
+    @validation_config_global = squeeze(conf[:validation])
+    @validation_config = @validation_config_global["client"]
+    @validation_config_server = @validation_config_global["server"]
   end
 
   def validate_subtag?(tag, subtag, item = nil)
@@ -84,6 +86,10 @@ class EditorValidation
   
   def rules
     return @validation_config
+  end
+
+  def server_rules
+    return @validation_config_server
   end
 
   def self.get_default_validation(model)

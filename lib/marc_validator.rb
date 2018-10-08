@@ -3,9 +3,11 @@ include ApplicationHelper
 
 	DEBUG = false
 	
-  def initialize(object, warnings = true)
+  def initialize(object, user=nil, warnings = true)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
+    @user = user
+    @server_rules = @validation.server_rules
     @editor_profile = EditorConfiguration.get_default_layout(object)
     #ap @rules
     @errors = {}
@@ -188,16 +190,9 @@ include ApplicationHelper
     end
   end
 
-  #User should not be able to create record from foreign library
-  def validate_user_abilities(user)
-    return if user.has_role?(:admin) || user.has_role?(:editor)
-    return if @marc.get_id != '__TEMP__' || !@marc.get_siglum
-    sigla = []
-    user.workgroups.each do |w|
-      sigla.push(*w.get_institutions.pluck(:siglum))
-    end
-    unless sigla.include?(@marc.get_siglum)
-      add_error("852", "x", "User has insuffiecent rights to create record of this library")
+  def validate_server_side
+    @server_rules.each do |rule|
+      self.send(rule)
     end
   end
 
@@ -219,7 +214,11 @@ include ApplicationHelper
   def get_errors
     @errors
   end
-  
+
+  def current_user
+    @user
+  end
+
   def to_s
     output = ""
     @errors.each do |tag, subtags|
@@ -286,4 +285,19 @@ include ApplicationHelper
     return false
   end
   
+  # SERVER VALIDATION
+  #User should not be able to create record from foreign library
+  def validate_user_abilities
+    return if @user.has_role?(:admin) || @user.has_role?(:editor)
+    return if @marc.get_id != '__TEMP__' || !@marc.get_siglum
+    sigla = []
+    user.workgroups.each do |w|
+      sigla.push(*w.get_institutions.pluck(:siglum))
+    end
+    unless sigla.include?(@marc.get_siglum)
+      add_error("852", "x", "User has insuffiecent rights to create record of this library")
+    end
+  end
+
+
 end

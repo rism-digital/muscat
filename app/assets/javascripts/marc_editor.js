@@ -232,8 +232,12 @@ function _marc_editor_validate( source_form, destination, rails_model ) {
 	$.ajax({
 		success: function(data) {
       var message_box = $("#marc_errors");
-      message_box.html(data).css('visibility', 'visible');
-		},
+      if (data["status"]=="ok")
+      {
+        message_box.html("No errors found.").toggleClass('flash_error flash_notice').css('visibility', 'visible');
+      } else{
+        message_box.html(JSON.stringify(data["status"])).css('visibility', 'visible');
+		}},
 		data: {
 			marc: JSON.stringify(json_marc), 
 			marc_editor_dest: destination, 
@@ -241,7 +245,7 @@ function _marc_editor_validate( source_form, destination, rails_model ) {
 			record_type: $('#record_type').val(),
       current_user: $('#current_user').find('a').attr('href').split("/")[3],
 		},
-		dataType: 'script',
+		dataType: 'json',
 		timeout: 60000,
 		type: 'post',
 		url: url, 
