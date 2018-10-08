@@ -13,3 +13,26 @@
 		<%= render :partial => "catalog/digital_objects" %>
 	<%- end %>
 </dl>
+
+<script>
+I18n.defaultLocale = "<%= I18n.default_locale %>";
+I18n.locale = "<%= I18n.locale %>"
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  },
+  "position": "bottom-left",
+  content: {
+    message: I18n.t("cookies.message"),
+    dismiss: I18n.t("cookies.dimiss"),
+    link: I18n.t("cookies.link"),
+    href: '<%=get_cookie_link()%>',
+  }
+})});
+</script>

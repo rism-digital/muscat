@@ -311,6 +311,9 @@ de:
   append_folder: "Zu Ordner hinzufügen"
   add_source: "Quelle verlinken"
   add_person: "Person verlinken"
+  archive_unarchive: "Archivieren / Dearchivieren"
+  archive: "Archivieren"
+  unarchive: "Dearchivieren"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -364,7 +367,7 @@ de:
   filter_catalog: "WV / Katalog"
   filter_collection: "Sammlung"
   filter_category_type: "Kategorie"
-  filter_comments: "Kommentare"
+  filter_comment: "Kommentar"
   filter_composer: "Komponist"
   filter_connected_libraries: "Bibliotheken"
   filter_country: "Land"
@@ -658,6 +661,11 @@ de:
   # This is used for the "incipit" seach in the search history in BL
   # Note the capital 'I'
   Incipit: "Incipit"
+
+  cookies:
+    message: "Unsere Website verwendet Cookies, um Ihre Browser-Erfahrung zu verbessern. Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu."
+    dimiss: "Akzeptieren und schließen"
+    link: 'Mehr erfahren'
 
   date:
     month_names:

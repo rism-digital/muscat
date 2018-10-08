@@ -167,20 +167,20 @@ class Source < ApplicationRecord
    sunspot_dsl.integer :id
    sunspot_dsl.integer :record_type
 
-    sunspot_dsl.text :id, as: "id_fulltext_text"
-#      s.id_for_fulltext
-#    end
+    sunspot_dsl.text :id_fulltext do |s|
+      s.id_for_fulltext
+    end
     
     sunspot_dsl.text :source_id
     
     # For ordering
-    sunspot_dsl.string :std_title, as: "std_title_shelforder_s"
-#      s.std_title
-#    end
+    sunspot_dsl.string :std_title_shelforder, :as => "std_title_shelforder_s" do |s|
+      s.std_title
+    end
     # For facet
-    sunspot_dsl.string :std_title, as: "std_title_order_s"
-#      s.std_title
-#    end
+    sunspot_dsl.string :std_title_order do |s|
+      s.std_title
+    end
     # For fulltext search
     sunspot_dsl.text :std_title, :stored => true
     sunspot_dsl.text :std_title_d
@@ -207,30 +207,30 @@ class Source < ApplicationRecord
     
     sunspot_dsl.text :composer_d
         
-    sunspot_dsl. string :title, as: "title_order_s" #do |s|
-#      s.title
-#    end
+    sunspot_dsl. string :title_order do |s|
+      s.title
+    end
 
     sunspot_dsl.text :title, :stored => true
     sunspot_dsl.text :title_d
     
-    sunspot_dsl.string :shelf_mark, as: "shelf_mark_order_s"
-#      s.shelf_mark
-#    end
+    sunspot_dsl.string :shelf_mark_order do |s|
+      s.shelf_mark
+    end
 	
 	# This is a _very special_ case to have advanced indexing of shelfmarks
 	# the solr dynamic field is "*_shelforder_s", so we can "trick" sunspot to load it
 	# by calling the field :shelf_mark_shelforder -> sunspot translated it into shelf_mark_shelforder_s
 	# when doing searches since the type is string.
 	# This field type must be also configured in the schema.xml solr configuration
-    sunspot_dsl.string :shelf_mark, :stored => true, :as => "shelf_mark_shelforder_s"
-#			s.shelf_mark
-#		end
+    sunspot_dsl.string :shelf_mark_shelforder, :stored => true, :as => "shelf_mark_shelforder_s" do |s|
+			s.shelf_mark
+		end
     sunspot_dsl.text :shelf_mark
 	
-    sunspot_dsl.string :lib_siglum, as: "lib_siglum_order_s"
-#      s.lib_siglum
-#    end
+    sunspot_dsl.string :lib_siglum_order do |s|
+      s.lib_siglum
+    end
     sunspot_dsl.text :lib_siglum, :stored => true, :as => "lib_siglum_s"
     # This one will be called lib_siglum_ss (note the second s) in solr
     # We use it for GIS

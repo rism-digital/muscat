@@ -1,8 +1,8 @@
 = Installation instructions
 
-This document describes how to bootstrap into the webapplication.
+This document describes how to bootstrap into the webapplication. The documentation is updated for Ubuntu 18.14 LTS.
 
-== Preliminaries
+== Requirements
 
 The following other libraries and programs are needed
 
@@ -19,24 +19,32 @@ The following other libraries and programs are needed
 
 == Ruby and Rails
 
-Muscat 4 now requires ruby 2.3 by default. Rails is installed with the correct version with bundle. On some systems it is necessary to uncomment therubyracer from the gemfile
+Muscat 4 now requires ruby 2.3 by default. Rails is installed with the correct version with bundle. Ubuntu comes with ruby 2.5 by default so no actions are necessary. On older Debian systems the easyest way to get ruby 2.3 is via rbenv adding for all users.
 
-On older Debian systems the easyest way to get ruby 2.3 is via rbenv adding for all users.
-
-On Ubuntu systems pre-packaged binaries exist: add
+On older Ubuntu systems add the following repositories
 
  deb http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu trusty main
  deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main
- 
-To /etc/apt/sources.list or create a relevant file in /etc/apt/sources.list.d
 
-Then (all as root or with sudo)
+(On some systems it is necessary to uncomment therubyracer from the gemfile)
+On Ubuntu 18.04 only passenger is needed:
+
+ deb https://oss-binaries.phusionpassenger.com/apt/passenger bionic main
+ 
+(Add /etc/apt/sources.list or create a relevant file in /etc/apt/sources.list.d)
+Also make sure that unniverse repositories are enabled!
+
+On 18.40, also enable GPG verification of Passenger:
+
+ sudo apt-get install -y dirmngr gnupg
+ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+ sudo apt-get install -y apt-transport-https ca-certificates
+
+Then install all the dependencies and setup passenger:
 
  apt-get update
- apt-get install ruby2.3 ruby2.3-dev
- apt-get install passenger libapache2-mod-passenger
+ apt-get install mysql-server apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev libmysqlclient-dev openjdk-8-jdk-headless
  a2enmod passenger
- update-alternatives --set ruby /usr/bin/ruby2.3
  
 Passenger also wants to compile a binary module, this is optional but will enable it
 
@@ -50,7 +58,7 @@ Get the sources if necessary (https://github.com/rism-ch/muscat and https://gith
  git clone https://github.com/rism-ch/muscat.git --recursive
 
  gem install bundler
- bundle install --deployment # deployment is for the production system
+ bundle install #--deployment # deployment is only for the production system
 
 Install base configuration:
 
@@ -65,18 +73,20 @@ Install the base css:
 
 Set up databases access:
 
- mysql
- > CREATE DATABASE muscat_development CHARACTER SET utf8 COLLATE utf8_general_ci;
- > CREATE USER 'username'@'localhost';
- > SET PASSWORD FOR 'username'@'localhost' = PASSWORD('pass');
- > GRANT ALL ON muscat_development.* TO 'username'@'localhost';
- # Remember
- # username and pass should be the same as in database.yml
-
+ sudo mysql # Or log in with a user that has user creation privileges
+ 
+Create the user, substitute with an appropriate user and password!
+ 
+ CREATE DATABASE muscat_development CHARACTER SET utf8 COLLATE utf8_general_ci;
+ CREATE USER 'rism'@'localhost';
+ SET PASSWORD FOR 'rism'@'localhost' = PASSWORD('password');
+ GRANT ALL ON muscat_development.* TO 'rism'@'localhost';
+ 
+Remember username and pass should be the same as in database.yml
 Migrate the database NOTE in a production environment all the tasks must declare RAILS_ENV=production to run. For local development this is not necessary
 
- bundle exec rake db:migrate
- RAILS_ENV=production bundle exec rake db:migrate ## on a production system
+ bundle exec rake db:migrate # development
+ sudo RAILS_ENV=production bundle exec rake db:migrate ## on a production system
 
 Add basic dataset:
 
@@ -87,9 +97,7 @@ Default (development) startup:
  bundle exec rake sunspot:solr:start
  rails s -e development
  
-Try to open :
-
- http://ip:3000/
+Try to open http://$IP_ADDRESS:3000/
 
 For startup in production mode (with sudo or as root):
 
@@ -165,7 +173,7 @@ Start Apache and Solr.
 
 If all this works, you can access the rism application:
 
- http://IP
+ http://$IP_ADDRESS
 
 == Add clean up in crontab for blacklight
 

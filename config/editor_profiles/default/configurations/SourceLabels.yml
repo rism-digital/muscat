@@ -104,6 +104,11 @@ doc_cat_collections:
     de: Erfassung von Sammlungen
     en: Cataloging collections
     it: Catalogo delle raccolte
+doc_cat_language: 
+  label: 
+    de: Katalogisierungsspache
+    en: Cataloging language
+    it: CATALOGING LANGUAGE  
 doc_cat_templates: 
   label: 
     de: Templates
@@ -247,6 +252,11 @@ doc_main_entry_fields:
     de: "Haupteintragungen"
     en: "Main entry fields"
     it: "Campi principali"
+doc_mult_copies:
+  label:
+    de: "Mehrere Exemplare"
+    en: "Multiple copies"
+    it: "MULTIPLE COPIES"
 doc_numbers:
   label:
     de: "Nummern und Codes"
@@ -1041,19 +1051,17 @@ doc_references:
         comment: "NEW IN 2018"
 "588": 
   label: 
-    it: MASTER EXEMPLAR
-    fr: MASTER EXEMPLAR
+    it: Copa esaminata per la catalogazione
+    fr: Copie consultée pour le catalogage
     de: Vorlageexemplar
-    en: MASTER EXEMPLAR
+    en: Source of description note
   fields: 
     a: 
       label: 
-        it: MASTER EXEMPLAR
-        fr: MASTER EXEMPLAR
+        it: Copa esaminata per la catalogazione
+        fr: Copie consultée pour le catalogage
         de: Vorlageexemplar
-        en: MASTER EXEMPLAR
-      edit_label: 
-        en: ""
+        en: Copy examined for cataloging
       comment: "NEW IN 2018"
 "590": 
   label: 
@@ -1457,14 +1465,14 @@ doc_references:
     it: Riferimenti bibliografici
     fr: "Référence bibliographique"
     de: Literaturverweis
-    en: Bibliographical reference
+    en: Bibliographic reference
   fields: 
     a: 
       label: 
         it: Bibliografia
         fr: "Référence bibliographique"
         de: Literatur
-        en: Bibliographical reference
+        en: Bibliographic reference
     n: 
       label: 
         it: Numero/pagina
@@ -1766,7 +1774,7 @@ doc_references:
     it: Localizzazione e accesso elettronico
     fr: "Ressource électronique externe"
     de: Elektronische Lokalisierung und Zugriff
-    en: External resource URI
+    en: External resource
   fields: 
     z: 
       label: 
@@ -1802,7 +1810,35 @@ doc_references:
       edit_label: 
         en: ""
       comment: "NEW IN 2018; experimental stage"
-       
+"980": 
+  label: 
+    it: RECORD ORIGIN
+    fr: RECORD ORIGIN
+    de: Herkunft
+    en: Record origin
+  fields: 
+    a: 
+      label: 
+        it: ORIGIN
+        fr: ORIGIN
+        de: Herkunft
+        en: Origin
+      comment: "NEW IN 2018"
+    b: 
+      label: 
+        it: CATALOGING LEVEL
+        fr: CATALOGING LEVEL
+        de: Erfassungstiefe
+        en: Cataloging level
+      comment: "NEW IN 2018"
+    c: 
+      label: 
+        it: MATERIAL EXAMINED
+        fr: MATERIAL EXAMINED
+        de: Autopsie
+        en: Material examined
+      comment: "NEW IN 2018"
+        
 ################
 
 show_admin: 
@@ -3267,6 +3303,83 @@ Typography:
     fr: "Typographie"
     de: "Typendruck"
     en: "Typography"
+# new for 980
+origin:
+  label:
+    it: "ORIGIN"
+    fr: "ORIGIN"
+    de: "Herkunft"
+    en: "Origin"
+level:
+  label:
+    it: "CATALOGING LEVEL"
+    fr: "CATALOGING LEVEL"
+    de: "Erfassungstiefe"
+    en: "Cataloging level"
+autopsie:
+  label:
+    it: "MATERIAL EXAMINED"
+    fr: "MATERIAL EXAMINED"
+    de: "Autopsie"
+    en: "Material examined"
+RISM:
+  label:
+    it: "RISM"
+    fr: "RISM"
+    de: "RISM"
+    en: "RISM"
+retro:
+  label:
+    it: "RETROSPECTIVE CONVERSION"
+    fr: "RETROSPECTIVE CONVERSION"
+    de: "Retroeinspielung"
+    en: "Retrospective conversion"
+import:
+  label:
+    it: "IMPORT"
+    fr: "IMPORT"
+    de: "Fremddateneinspielung"
+    en: "Import"
+full:
+  label:
+    it: "FULL"
+    fr: "FULL"
+    de: "Vollkatalogisat"
+    en: "Full"
+standard:
+  label:
+    it: "STANDARD"
+    fr: "STANDARD"
+    de: "Standard"
+    en: "Standard"
+brief:
+  label:
+    it: "BRIEF"
+    fr: "BRIEF"
+    de: "Kurzkatalogisat"
+    en: "Brief"
+examined:
+  label:
+    it: "MATERIAL EXAMINED"
+    fr: "MATERIAL EXAMINED"
+    de: "Autopsie"
+    en: "Material examined"
+not_examined:
+  label:
+    it: "MATERIAL NOT EXAMINED"
+    fr: "MATERIAL NOT EXAMINED"
+    de: "Keine Autopsie"
+    en: "Material not examined"
+
+
+
+
+
+
+
+
+
+
 
 ### Addons for authority guidelines
 in_024:
@@ -3776,3 +3889,21 @@ aid_error:
     en: "Technical errors"
     it: "Errori tecnici"
     de: "Technische Fehler"
+IIIF: 
+  label: 
+    it: "IIIF manifest"
+    fr: "Manifeste IIIF"
+    de: "IIIF manifest"
+    en: "IIIF manifest"
+Digitalization: 
+  label: 
+    it: "Musica digitalizzata"
+    fr: "Sources numériées"
+    de: "Notendigitalisat"
+    en: "Digitized music"
+Other: 
+  label: 
+    it: "Altro"
+    fr: "Autre"
+    de: "Sonstiges"
+    en: "Other"

@@ -338,7 +338,7 @@ es:
   filter_catalog: "Catálogo"
   filter_category_type: "Categoría"
   filter_collection: "Colección"
-  filter_comments: "Comentarios"
+  filter_comment: "Comentario"
   filter_composer: "Compositor"
   filter_connected_libraries: "Bibliotecas"
   filter_country: "País"
@@ -622,6 +622,11 @@ es:
   # This is used for the "incipit" seach in the search history in BL
   # Note the capital 'I'
   Incipit: "Incipit"
+
+  cookies:
+    message: "Esta página web utiliza cookies para su uso. Se utiliza para ver el contenido de la aplicación."
+    dimiss: "Aceptar y cerrar"
+    link: 'Aprender mas'
 
   # date:
   # Empty lines for matching line numbers with other translation files  
