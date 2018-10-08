@@ -859,6 +859,8 @@
     fields: 
     - - w
       - read_only: true
+    - - '4'
+      - hidden: true
 "775":
   new_window: sources
   record_type_helper: get_allowed_record_type_775

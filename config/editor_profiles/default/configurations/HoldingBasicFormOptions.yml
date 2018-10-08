@@ -170,5 +170,15 @@
       - values: 
         - "IIIF"
         editor_partial: subfield_select
+"963":
+  new_window: sources
+  record_type_helper: get_allowed_record_type_holding
+  layout: 
+    fields: 
+    - - u
+      - type: source
+        editor_partial: subfield_secondary
+        only_new_window: true
+
 ui: 
   hide_marc_identifiers: true

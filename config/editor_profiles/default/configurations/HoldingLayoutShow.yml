@@ -17,6 +17,7 @@ groups:
     - '561'
     - '541'
     - '856'
+    - '963'
     all_tag_templates: 
       "856": marc_show/show_link
   edit_names:
