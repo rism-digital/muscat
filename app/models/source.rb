@@ -477,8 +477,18 @@ class Source < ApplicationRecord
     "Anonymous"
   end
 
+  def get_collection_holding(holding_id)
+    collection_holdings.each {|ch| return ch if ch.id == holding_id}
+    nil
+  end
+  
+  def get_child_source(source_id)
+    child_sources.each {|ch| return ch if ch.id == source_id}
+    nil
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
-	ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
-	ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
-	
+  ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
+
 end

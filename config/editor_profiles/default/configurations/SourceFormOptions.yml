@@ -855,10 +855,13 @@
         editor_partial: subfield_secondary
         only_new_window: true
 "774": 
+  tag_params: 
+    no_delete: true
   layout: 
+    hide_add_button: true
     fields: 
     - - w
-      - read_only: true
+      - editor_partial: subfield_readonly_links
     - - '4'
       - hidden: true
 "775":
