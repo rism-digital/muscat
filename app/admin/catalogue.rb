@@ -46,7 +46,7 @@ ActiveAdmin.register Catalogue do
     end
     
     def edit
-      flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
+      flash.now[:error] = params[:validation_error] if params[:validation_error]
       @item = Catalogue.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item

@@ -192,7 +192,7 @@ include ApplicationHelper
 
   def validate_server_side
     @server_rules.each do |rule|
-      self.send(rule)
+      self.send(rule) rescue next
     end
   end
 
@@ -295,7 +295,17 @@ include ApplicationHelper
       sigla.push(*w.get_institutions.pluck(:siglum))
     end
     unless sigla.include?(@marc.get_siglum)
-    add_error("852", "", I18n.t('validation.insufficient_rights'))
+      add_error("852", "", I18n.t('validation.insufficient_rights'))
+    end
+  end
+
+  # Name of catalogue entry should be uniq
+  def validate_name_uniqueness
+    short_title = @marc.get_name
+    return false if short_title.blank?
+    cat = Catalogue.where.not(id: @marc.get_id).where(name: short_title).take
+    if cat
+      add_error("210", "", I18n.t('validation.name_uniqueness'))
     end
   end
 

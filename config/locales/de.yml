@@ -648,6 +648,8 @@ de:
     missing_message: "Dieses Feld muss zwingend ausgefüllt werden."
     warning_message: "Dieses Feld enthält üblicherweise einen Eintrag."
     insufficient_rights: "Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen."
+    name_uniqueness: "Das Kürzel des Eintrages ist bereits vergeben."
+    correct: "Der Eintrag enthält keine Validierungsfehler. [200]"
 
   incipit_search:
     incipit_search: "Incipit Suche"

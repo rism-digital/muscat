@@ -95,18 +95,6 @@ module MarcControllerActions
         return
       end
       @item.save
-      # This uses the AR validation messages for checking server side validation; only used for catalogue && source for now
-      if (@item.is_a?(Catalogue) || @item.is_a?(Source)) && !@item.errors.messages.empty?
-        message = @item.errors.messages[:base].join(";")
-        term = @item.errors.messages[:term].join(";") rescue "-"
-        url = request.env['HTTP_REFERER']
-        par = Rack::Utils.parse_query(URI(url).query)
-        sep = par.any? ? "&" : "?" 
-        respond_to do |format|
-          format.json {  render :json => {:redirect => url + "#{sep}validation_error=#{message}&validation_term=#{term}"}}
-        end
-        return
-      end
 
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       
@@ -352,7 +340,7 @@ module MarcControllerActions
       if validator.has_errors
         render json: {status: validator.to_s}
       else
-        render json: {status: "ok"}
+        render json: {status: I18n.t("validation.correct")}
       end
     end
 

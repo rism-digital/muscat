@@ -232,12 +232,13 @@ function _marc_editor_validate( source_form, destination, rails_model ) {
 	$.ajax({
 		success: function(data) {
       var message_box = $("#marc_errors");
-      if (data["status"]=="ok")
+      var message = data["status"];
+      if (message.endsWith("[200]"))
       {
-        message_box.html("No errors found.").toggleClass('flash_error flash_notice').css('visibility', 'visible');
+        message_box.html(message).toggleClass('flash_error flash_notice').css('visibility', 'visible');
       } else{
 
-        message_box.html(data["status"].replace(/\n/g, "<br>")).css('visibility', 'visible');
+        message_box.html(message.replace(/\t/g, "&nbsp;").replace(/\n/g, "<br>")).toggleClass('flash_notice flash_error').css('visibility', 'visible');
 		  }
     },
 		data: {

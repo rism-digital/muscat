@@ -647,6 +647,8 @@ it:
     missing_message: "Questo campo deve contendere un valore"
     warning_message: "Questo campo dovrebbe contenere un valore"
     insufficient_rights: "USER HAS INSUFFICIENT RIGHTS TO CREATE A RECORD OF THIS LIBRARY"
+    name_uniqueness: "SHORT NAME OF ENTRY IS ALREADY TAKEN"
+    correct: "THE RECORD HAS NO VALIDATION ERRORS [200]"
 
   incipit_search:
     incipit_search: "Ricerca negli incipit"
