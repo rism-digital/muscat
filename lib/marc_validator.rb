@@ -191,8 +191,10 @@ include ApplicationHelper
   end
 
   def validate_server_side
-    @server_rules.each do |rule|
-      self.send(rule) rescue next
+    if @server_rules
+      @server_rules.each do |rule|
+        self.send(rule) rescue next
+      end
     end
   end
 
