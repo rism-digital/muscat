@@ -181,4 +181,8 @@ module ApplicationHelper
     arr
   end
 
+  def get_cookie_link
+    RISM::COOKIE_PRIVACY_I18N ? "#{RISM::COOKIE_PRIVACY_LINK}#{I18n.locale}".html_safe : RISM::COOKIE_PRIVACY_LINK.html_safe
+  end
+
 end

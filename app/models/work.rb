@@ -81,7 +81,9 @@ class Work < ApplicationRecord
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      paper_trail.without_versioning :save
+      PaperTrail.request(enabled: false) do
+        :save
+      end
     end
   end
   
