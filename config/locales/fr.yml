@@ -647,6 +647,7 @@ fr:
   validation:
     missing_message: "Une valeur dans ce champ est nécessaire"
     warning_message: "Une valeur devrait être présente pour ce champ"
+    insufficient_rights: "USER HAS INSUFFICIENT RIGHTS TO CREATE A RECORD OF THIS LIBRARY"
 
   incipit_search:
     incipit_search: "Recherche par incipit"

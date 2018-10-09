@@ -47,7 +47,7 @@ include ApplicationHelper
         # This tag has to be there if "mandatory"
         if mandatory.count > 0
           #@errors[tag] = "mandatory"
-          add_error(tag, nil, "mandatory")
+          add_error(tag, nil, I18n.t('validation.missing_message'))
           puts "Missing #{tag}, mandatory" if DEBUG
         end
         next
@@ -295,7 +295,7 @@ include ApplicationHelper
       sigla.push(*w.get_institutions.pluck(:siglum))
     end
     unless sigla.include?(@marc.get_siglum)
-      add_error("852", "x", "User has insuffiecent rights to create record of this library")
+    add_error("852", "", I18n.t('validation.insufficient_rights'))
     end
   end
 

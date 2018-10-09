@@ -646,6 +646,7 @@ en:
   validation:
     missing_message: "A value in this field is mandatory"
     warning_message: "A value for this field should be provided"
+    insufficient_rights: "User has insufficient rights to create a record of this library"
     
   incipit_search:
     incipit_search: "Incipit Search"

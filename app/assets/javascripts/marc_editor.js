@@ -236,8 +236,10 @@ function _marc_editor_validate( source_form, destination, rails_model ) {
       {
         message_box.html("No errors found.").toggleClass('flash_error flash_notice').css('visibility', 'visible');
       } else{
-        message_box.html(JSON.stringify(data["status"])).css('visibility', 'visible');
-		}},
+
+        message_box.html(data["status"].replace(/\n/g, "<br>")).css('visibility', 'visible');
+		  }
+    },
 		data: {
 			marc: JSON.stringify(json_marc), 
 			marc_editor_dest: destination, 
