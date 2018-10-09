@@ -811,3 +811,15 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: title
+  "980":
+    :master: ""
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "*"
+    - - c
+      - :occurrences: "*"
+ 

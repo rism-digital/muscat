@@ -1052,18 +1052,16 @@ doc_references:
 "588": 
   label: 
     it: Copa esaminata per la catalogazione
-    fr: MASTER EXEMPLAR
+    fr: Copie consultée pour le catalogage
     de: Vorlageexemplar
-    en: MASTER EXEMPLAR
+    en: Source of description note
   fields: 
     a: 
       label: 
         it: Copa esaminata per la catalogazione
-        fr: MASTER EXEMPLAR
+        fr: Copie consultée pour le catalogage
         de: Vorlageexemplar
-        en: MASTER EXEMPLAR
-      edit_label: 
-        en: ""
+        en: Copy examined for cataloging
       comment: "NEW IN 2018"
 "590": 
   label: 
@@ -1776,7 +1774,7 @@ doc_references:
     it: Localizzazione e accesso elettronico
     fr: "Ressource électronique externe"
     de: Elektronische Lokalisierung und Zugriff
-    en: External resource URI
+    en: External resource
   fields: 
     z: 
       label: 
@@ -1812,7 +1810,35 @@ doc_references:
       edit_label: 
         en: ""
       comment: "NEW IN 2018; experimental stage"
-       
+"980": 
+  label: 
+    it: RECORD ORIGIN
+    fr: RECORD ORIGIN
+    de: Herkunft
+    en: Record origin
+  fields: 
+    a: 
+      label: 
+        it: ORIGIN
+        fr: ORIGIN
+        de: Herkunft
+        en: Origin
+      comment: "NEW IN 2018"
+    b: 
+      label: 
+        it: CATALOGING LEVEL
+        fr: CATALOGING LEVEL
+        de: Erfassungstiefe
+        en: Cataloging level
+      comment: "NEW IN 2018"
+    c: 
+      label: 
+        it: MATERIAL EXAMINED
+        fr: MATERIAL EXAMINED
+        de: Autopsie
+        en: Material examined
+      comment: "NEW IN 2018"
+        
 ################
 
 show_admin: 
@@ -3277,6 +3303,83 @@ Typography:
     fr: "Typographie"
     de: "Typendruck"
     en: "Typography"
+# new for 980
+origin:
+  label:
+    it: "ORIGIN"
+    fr: "ORIGIN"
+    de: "Herkunft"
+    en: "Origin"
+level:
+  label:
+    it: "CATALOGING LEVEL"
+    fr: "CATALOGING LEVEL"
+    de: "Erfassungstiefe"
+    en: "Cataloging level"
+autopsie:
+  label:
+    it: "MATERIAL EXAMINED"
+    fr: "MATERIAL EXAMINED"
+    de: "Autopsie"
+    en: "Material examined"
+RISM:
+  label:
+    it: "RISM"
+    fr: "RISM"
+    de: "RISM"
+    en: "RISM"
+retro:
+  label:
+    it: "RETROSPECTIVE CONVERSION"
+    fr: "RETROSPECTIVE CONVERSION"
+    de: "Retroeinspielung"
+    en: "Retrospective conversion"
+import:
+  label:
+    it: "IMPORT"
+    fr: "IMPORT"
+    de: "Fremddateneinspielung"
+    en: "Import"
+full:
+  label:
+    it: "FULL"
+    fr: "FULL"
+    de: "Vollkatalogisat"
+    en: "Full"
+standard:
+  label:
+    it: "STANDARD"
+    fr: "STANDARD"
+    de: "Standard"
+    en: "Standard"
+brief:
+  label:
+    it: "BRIEF"
+    fr: "BRIEF"
+    de: "Kurzkatalogisat"
+    en: "Brief"
+examined:
+  label:
+    it: "MATERIAL EXAMINED"
+    fr: "MATERIAL EXAMINED"
+    de: "Autopsie"
+    en: "Material examined"
+not_examined:
+  label:
+    it: "MATERIAL NOT EXAMINED"
+    fr: "MATERIAL NOT EXAMINED"
+    de: "Keine Autopsie"
+    en: "Material not examined"
+
+
+
+
+
+
+
+
+
+
 
 ### Addons for authority guidelines
 in_024:
