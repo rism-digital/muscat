@@ -117,7 +117,7 @@ class Holding < ApplicationRecord
     # If the 563 link is removed, clear the source_id
     # But before save it so we can update the parent
     # source.
-    @old_collection = collection_id if !collection
+    @old_collection = collection_id if !collection || collection.id != collection_id
     self.collection_id = collection ? collection.id : nil
 
     # If the source id is present in the MARC field, set it into the
@@ -140,6 +140,39 @@ class Holding < ApplicationRecord
 	## FIXME
 	## THIS IS HERE FOR TESTING!
   def update_774
+    
+    # We do NOT have a parent ms in the 773.
+    # but we have it in old_parent, it means that
+    # the 773 was deleted or modified. Go into the parent and
+    # find the reference to the id, then delete it
+    if @old_collection
+      
+      parent_manuscript = Source.find_by_id(@old_collection)
+      return if !parent_manuscript
+      modified = false
+      
+      parent_manuscript.paper_trail_event = "Remove 774 link #{id.to_s}"
+      
+      # check if the 774 tag already exists
+      parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
+        subfield = tag.fetch_first_by_tag("w")
+        next if !subfield || !subfield.content
+        if subfield.content.to_i == id
+          puts "Deleting 774 $w#{subfield.content} for #{@old_collection}, from #{id}"
+          tag.destroy_yourself
+          modified = true
+        end
+        
+      end
+      
+      if modified
+        parent_manuscript.suppress_update_77x
+        parent_manuscript.save
+        @old_collection = nil
+      end
+      
+    end
+    
     # do we have a parent manuscript?
     parent_manuscript_id = marc.first_occurance("963", "u")
     
@@ -172,40 +205,7 @@ class Holding < ApplicationRecord
 
       parent_manuscript.suppress_update_77x
       parent_manuscript.save
-    else
-      # We do NOT have a parent ms in the 773.
-      # but we have it in old_parent, it means that
-      # the 773 was deleted. Go into the parent and
-      # find the reference to the id, then delete it
-      if @old_collection
-        parent_manuscript = Source.find_by_id(@old_collection)
-        return if !parent_manuscript
-        modified = false
-        
-        parent_manuscript.paper_trail_event = "Remove 774 link #{id.to_s}"
-        
-        # check if the 774 tag already exists
-        parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
-          subfield = tag.fetch_first_by_tag("w")
-          next if !subfield || !subfield.content
-          if subfield.content.to_i == id
-            puts "Deleting 774 $w#{subfield.content} for #{@old_collection}, from #{id}"
-            tag.destroy_yourself
-            modified = true
-          end
-          
-        end
-        
-        if modified
-          parent_manuscript.suppress_update_77x
-          parent_manuscript.save
-          @old_collection = nil
-        end
-        
-      end
-      
     end
-    
   end
 
 
