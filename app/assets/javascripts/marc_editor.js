@@ -118,7 +118,14 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	} else {
 		$("#validation_warnings").hide();
 	}
-	
+
+  var valid = marc_editor_validate();
+
+  if (!valid.responseJSON["status"].endsWith("[200]")) {
+		return; // Give the user a chance to resubmit
+  }
+
+
 	if (!form_valid) {
 		$('#main_content').unblock();
 		$('#sections_sidebar_section').unblock();
@@ -226,19 +233,16 @@ function _marc_editor_preview( source_form, destination, rails_model ) {
 function _marc_editor_validate( source_form, destination, rails_model ) {
 	form = $('form', "#" + source_form);
 	json_marc = serialize_marc_editor_form(form);
-	
 	url = "/admin/" + rails_model + "/marc_editor_validate";
-	
-	$.ajax({
+	return $.ajax({
 		success: function(data) {
       var message_box = $("#marc_errors");
       var message = data["status"];
-      if (message.endsWith("[200]"))
-      {
-        message_box.html(message).toggleClass('flash_error flash_notice').css('visibility', 'visible');
-      } else{
-
-        message_box.html(message.replace(/\t/g, "&nbsp;").replace(/\n/g, "<br>")).toggleClass('flash_notice flash_error').css('visibility', 'visible');
+      if (message.endsWith("[200]")){
+        message_box.html(message).removeClass('flash_error').addClass('flash_notice').css('visibility', 'visible');
+      } 
+      else{
+        message_box.html(message.replace(/\t/g, "&nbsp;").replace(/\n/g, "<br>")).removeClass('flash_notice').addClass('flash_error').css('visibility', 'visible');
 		  }
     },
 		data: {
@@ -251,7 +255,9 @@ function _marc_editor_validate( source_form, destination, rails_model ) {
 		dataType: 'json',
 		timeout: 60000,
 		type: 'post',
-		url: url, 
+		url: url,
+    // FIXME make this async
+   'async': false, 
 		error: function (jqXHR, textStatus, errorThrown) {
 			alert ("Error in validation process. (" 
 					+ textStatus + " " 
@@ -259,7 +265,6 @@ function _marc_editor_validate( source_form, destination, rails_model ) {
 		}
 	});
 }
-
 
 function _marc_editor_help( destination, help, title, rails_model ) {
 
@@ -427,7 +432,7 @@ function marc_editor_show_preview() {
 }
 
 function marc_editor_validate() {
-    _marc_editor_validate('marc_editor_panel','marc_editor', marc_editor_get_model());
+    return _marc_editor_validate('marc_editor_panel','marc_editor', marc_editor_get_model());
     window.scrollTo(0, 0);
 }
 	

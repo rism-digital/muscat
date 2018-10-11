@@ -82,18 +82,7 @@ module MarcControllerActions
       # Set the user name to the model class variable
       # This is used by the VersionChecker module to see if we want a version to be stored
       @item.last_user_save = current_user.name
-      validator = MarcValidator.new(@item, current_user, false)
-      validator.validate_server_side
-      if validator.has_errors
-        message = validator.to_s
-        url = request.env['HTTP_REFERER']
-        par = Rack::Utils.parse_query(URI(url).query)
-        sep = par.any? ? "&" : "?" 
-        respond_to do |format|
-          format.json {  render :json => {:redirect => url + "#{sep}validation_error=#{message}"}}
-        end
-        return
-      end
+
       @item.save
 
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
