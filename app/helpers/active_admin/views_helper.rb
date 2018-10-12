@@ -228,7 +228,7 @@ module ActiveAdmin::ViewsHelper
     codes.each do |code|
       local_hash[code] = editor_profile.get_label(code)
     end
-    return Hash[local_hash.sort_by{|k, v| v}].keys
+    return Hash[local_hash.sort_by{|k, v| v.downcase}].keys
   end
 	
   def pretty_truncate(text, length = 30, truncate_string = "...")
