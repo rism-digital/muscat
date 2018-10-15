@@ -20,7 +20,7 @@ class CommentNotifications < ApplicationMailer
     
     model_for_path = comment.resource_type.underscore.downcase
     link_function = "admin_#{model_for_path}_url"
-    @resource_path = send(link_function, @resource, host: "cic")
+    @resource_path = send(link_function, @resource)
     
     users = all_comments.map {|c| c.author_id}
     users << @resource.wf_owner
@@ -35,9 +35,7 @@ class CommentNotifications < ApplicationMailer
       next if !email
       email
     end.compact
-    
-    ap addresses
-    
+     
     addresses << RISM::COMMENT_EMAIL if (RISM::COMMENT_EMAIL && RISM::COMMENT_EMAIL.is_a?(String))
 
     return if addresses.empty?
