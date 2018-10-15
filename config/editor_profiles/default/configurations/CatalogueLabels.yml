@@ -252,17 +252,47 @@ doc_templates:
         en: Person
 "710": 
   label: 
-    it: Istituzione
-    fr: Institution
-    de: Körperschaft
-    en: Additional Institution
+    it: Nome di ente
+    fr: "Nom de la collectivité"
+    de: Nebeneintragung Körperschaften
+    en: Additional institution
   fields: 
     a: 
       label: 
-        it: Istituzione
-        fr: Institution
-        de: Körperschaft
-        en: Additional institution
+        it: Nome di ente
+        fr: "Nom de la collectivité"
+        de: Körperschaftsname
+        en: Institution
+    b: 
+      label: 
+        it: Ente subordinato
+        fr: "Collectivité subordonnée"
+        de: Untergeordnete Körperschaft
+        en: Department
+    g: 
+      label: 
+        it: Qualificazione d'attribuzione
+        fr: Qualificatif d'attribution
+        de: Zuschreibungsvermerk
+        en: Attribution qualifier
+      edit_label: 
+        it: Attribuzione
+        fr: Attribution
+        de: Zuschreibung
+        en: Attribution
+
+    "4": 
+      label: 
+        it: Funzione
+        fr: Fonction
+        de: Funktionsbezeichnung
+        en: Function
+    "8": 
+      label: 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
 "730": 
   label:
     it: Titolo uniforme alternativo

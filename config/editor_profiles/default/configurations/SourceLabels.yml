@@ -2710,217 +2710,217 @@ A:
   label:
     it: "La maggiore"
     fr: "La majeur"
-    de: "A major"
+    de: "A-Dur"
     en: "A major"
 a:
   label:
     it: "La minore"
     fr: "La mineur"
-    de: "A minor"
+    de: "a-Moll"
     en: "A minor"
 A|x: 
   label:
     it: "La♯ maggiore"
     fr: "La♯ majeur"
-    de: "A♯ major"
+    de: "Ais-Dur"
     en: "A♯ major"
 a|x: 
   label:
     it: "La♯ minore"
     fr: "La♯ mineur"
-    de: "A♯ minor"
+    de: "ais-Moll"
     en: "A♯ minor"
 A|b: 
   label:
     it: "La♭ maggiore"
     fr: "La♭ majeur"
-    de: "A♭ major"
+    de: "As-Dur"
     en: "A♭ major"
 a|b: 
   label:
     it: "La♭ minore"
     fr: "La♭ mineur"
-    de: "A♭ minor"
+    de: "as-Moll"
     en: "A♭ minor"
 B:
   label:
     it: "Si maggiore"
     fr: "Si majeur"
-    de: "B major"
+    de: "H-Dur"
     en: "B major"
 b:
   label:
     it: "Si minore"
     fr: "Si mineur"
-    de: "B minor"
+    de: "h-Moll"
     en: "B minor"
 B|b: 
   label:
     it: "Si♭ maggiore"
     fr: "Si♭ majeur"
-    de: "B♭ major"
+    de: "B-Dur"
     en: "B♭ major"
 b|b: 
   label:
     it: "Si♭ minore"
     fr: "Si♭ mineur"
-    de: "B♭ minor"
+    de: "b-Moll"
     en: "B♭ minor"
 C:
   label:
     it: "Do maggiore"
     fr: "Do majeur"
-    de: "C major"
+    de: "C-Dur"
     en: "C major"
 c:
   label:
     it: "Do minore"
     fr: "Do mineur"
-    de: "C minor"
+    de: "c-Moll"
     en: "C minor"
 C|x: 
   label:
     it: "Do♯ maggiore"
     fr: "Do♯ majeur"
-    de: "C♯ major"
+    de: "Cis-Dur"
     en: "C♯ major"
 c|x: 
   label:
     it: "Do♯ minore"
     fr: "Do♯ mineur"
-    de: "C♯ minor"
+    de: "cis-Moll"
     en: "C♯ minor"
 C|b: 
   label:
     it: "Do♭ maggiore"
     fr: "Do♭ majeur"
-    de: "C♭ major"
+    de: "Ces-Dur"
     en: "C♭ major"
 c|b: 
   label:
     it: "Do♭ minore"
     fr: "Do♭ mineur"
-    de: "C♭ minor"
+    de: "ces-Moll"
     en: "C♭ minor"
 D:
   label:
     it: "Re maggiore"
     fr: "Ré majeur"
-    de: "D major"
+    de: "D-Dur"
     en: "D major"
 d:
   label:
     it: "Re minore"
     fr: "Ré minor"
-    de: "D minor"
+    de: "d-Moll"
     en: "D minor"
 D|x: 
   label:
     it: "Re♯ maggiore"
     fr: "Ré♯ majeur"
-    de: "D♯ major"
+    de: "Dis-Dur"
     en: "D♯ major"
 d|x: 
   label:
     it: "Re♯ minore"
     fr: "Ré♯ mineur"
-    de: "D♯ minor"
+    de: "dis-Moll"
     en: "D♯ minor"
 D|b: 
   label:
     it: "Re♭ maggiore"
     fr: "Ré♭ majeur"
-    de: "D♭ major"
+    de: "Des-Dur"
     en: "D♭ major"
 d|b: 
   label:
     it: "Re♭ minore"
     fr: "Ré♭ mineur"
-    de: "D♭ minor"
+    de: "des-Moll"
     en: "D♭ minor"
 E:
   label:
     it: "Mi maggiore"
     fr: "Mi majeur"
-    de: "E major"
+    de: "E-Dur"
     en: "E major"
 e:
   label:
     it: "Mi minore"
     fr: "Mi mineur"
-    de: "E minor"
+    de: "e-Moll"
     en: "E minor"
 E|b: 
   label:
     it: "Mi♭ maggiore"
     fr: "Mi♭ majeur"
-    de: "E♭ major"
+    de: "Es-Dur"
     en: "E♭ major"
 e|b: 
   label:
     it: "Mi♭ minore"
     fr: "Mi♭ mineur"
-    de: "E♭ minor"
+    de: "es-Moll"
     en: "E♭ minor"
 F:
   label:
     it: "Fa maggiore"
     fr: "Fa majeur"
-    de: "F major"
+    de: "F-Dur"
     en: "F major"
 f:
   label:
     it: "Fa minore"
     fr: "Fa mineur"
-    de: "F minor"
+    de: "f-Moll"
     en: "F minor"
 F|x: 
   label:
     it: "Fa♯ maggiore"
     fr: "Fa♯ majeur"
-    de: "F♯ major"
+    de: "Fis-Dur"
     en: "F♯ major"
 f|x: 
   label:
     it: "Fa♯ minore"
     fr: "Fa♯ mineur"
-    de: "F♯ minor"
+    de: "fis-Moll"
     en: "F♯ minor"
 G:
   label:
     it: "Sol maggiore"
     fr: "Sol majeur"
-    de: "G major"
+    de: "G-Dur"
     en: "G major"
 g:
   label:
     it: "Sol minore"
     fr: "Sol mineur"
-    de: "G minor"
+    de: "g-Moll"
     en: "G minor"
 G|x: 
   label:
     it: "Sol♯ maggiore"
     fr: "Sol♯ majeur"
-    de: "G♯ major"
+    de: "Gis-Dur"
     en: "G♯ major"
 g|x: 
   label:
     it: "Sol♯ minore"
     fr: "Sol♯ mineur"
-    de: "G♯ minor"
+    de: "gis-Moll"
     en: "G♯ minor"
 G|b: 
   label:
     it: "Sol♭ maggiore"
     fr: "Sol♭ majeur"
-    de: "G♭ major"
+    de: "Ges-Dur"
     en: "G♭ major"
 g|b: 
   label:
     it: "Sol♭ minore"
     fr: "Sol♭ mineur"
-    de: "G♭ minor"
+    de: "ges-Moll"
     en: "G♭ minor"
 # modes
 1t:
@@ -3102,7 +3102,7 @@ F-4:
   label:
     it: "F-4 (chiave di basso)"
     fr: "F-4 (clé fa)"
-    de: "F-4 (bass clef)"
+    de: "F-4 (Baß-Schlüssel)"
     en: "F-4 (bass clef)"
 F-5:
   label:
@@ -3120,7 +3120,7 @@ G-2:
   label:
     it: "G-2 (chiave di violino)"
     fr: "G-2 (clé de sol)"
-    de: "G-2 (treble clef)"
+    de: "G-2 (Violin-Schlüssel)"
     en: "G-2 (treble clef)"
 G-3:
   label:

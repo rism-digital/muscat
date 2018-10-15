@@ -167,19 +167,12 @@
     - - u
     - - z
     - - x
-      - values: 
-        - "IIIF"
-        editor_partial: subfield_select
-"963":
-  new_window: sources
-  record_type_helper: get_allowed_record_type_holding
-  lib_siglum_helper: get_allowed_lib_siglum_holding
-  layout: 
-    fields: 
-    - - u
-      - type: source
-        editor_partial: subfield_secondary
-        only_new_window: true
-
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params: 
+    codes:
+      - "IIIF"
+      - "Digitalization"
+      - "Other"
 ui: 
   hide_marc_identifiers: true

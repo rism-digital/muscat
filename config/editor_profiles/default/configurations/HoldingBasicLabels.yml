@@ -1130,3 +1130,21 @@ Typography:
     fr: "Typographie"
     de: "Typendruck"
     en: "Typography"
+IIIF: 
+  label: 
+    it: "IIIF manifest"
+    fr: "Manifeste IIIF"
+    de: "IIIF manifest"
+    en: "IIIF manifest"
+Digitalization: 
+  label: 
+    it: "Musica digitalizzata"
+    fr: "Sources numériées"
+    de: "Notendigitalisat"
+    en: "Digitized music"
+Other: 
+  label: 
+    it: "Altro"
+    fr: "Autre"
+    de: "Sonstiges"
+    en: "Other"
