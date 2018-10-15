@@ -660,6 +660,11 @@ en:
   # Note the capital 'I'
   Incipit: "Incipit"
 
+  cookies:
+    message: "Our website uses cookies to make your browsing experience better. By using our site you agree to our use of cookies."
+    dimiss: "Accept and Close"
+    link: 'Learn more'
+
   # date:
   # Empty lines for matching line numbers with other translation files  
   #

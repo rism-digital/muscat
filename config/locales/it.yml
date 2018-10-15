@@ -660,6 +660,11 @@ it:
   # Note the capital 'I'
   Incipit: "Incipit"
 
+  cookies:
+    message: "Il nostro sito web utilizza cookie per funzionare. Se utilizzate il nostro sito accettata il nostro utilizzo dei cookie."
+    dimiss: "Accetta e chiudi"
+    link: 'Per saperne di più'
+
   date:
     month_names:
      -

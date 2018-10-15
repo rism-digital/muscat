@@ -911,6 +911,34 @@
       - type: work
         editor_partial: subfield_secondary
         allow_new: true
+"980": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        codes_reference: "980a"
+    - - b
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        codes_reference: "980b"
+    - - c
+      - cols: 2 
+        editor_partial: subfield_select_codes
+        codes_reference: "980c"
+    columns: 2
+  tag_params:
+    980a:
+      - "RISM"
+      - "retro"
+      - "import"
+    980b:
+      - "full"
+      - "standard"
+      - "brief"
+    980c:
+      - "examined"
+      - "not_examined"
 
 triggers:
   - notify_changes

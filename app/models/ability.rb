@@ -49,13 +49,13 @@ class Ability
 
     elsif user.has_role?(:cataloger)
       # A cataloguer can create new items but modify only the ones ho made
-      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding]
+      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding]
       if user.has_role?(:person_restricted)
         # catalogers can get restriced access to the persons form
         # the general design of the role allows extensions alike for e.g. institudions
         can :update, Person
       end
-      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding], :wf_owner => user.id
+      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, Work], :wf_owner => user.id
       can [:destroy, :update], [DigitalObject], :wf_owner => user.id
       can [:destroy], [Holding], :wf_owner => user.id
       can [:update], [Holding] do |holding|

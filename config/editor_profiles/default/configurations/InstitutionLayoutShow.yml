@@ -28,7 +28,7 @@ groups:
     - "371"
     - "034"
     all_tag_templates:
-      "034": marc_show/show_googlemap
+      "034": marc_show/show_map
   description:
     all_tags:
     - "680"
