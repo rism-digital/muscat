@@ -167,8 +167,12 @@
     - - u
     - - z
     - - x
-      - values: 
-        - "IIIF"
-        editor_partial: subfield_select
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params: 
+    codes:
+      - "IIIF"
+      - "Digitalization"
+      - "Other"
 ui: 
   hide_marc_identifiers: true
