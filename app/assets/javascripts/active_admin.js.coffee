@@ -103,3 +103,6 @@
 #= require diva/diva.min.js
 ###= require Chart.min
 #= require html2csv.js
+
+#=require tribute.min
+#=require tribute_load
