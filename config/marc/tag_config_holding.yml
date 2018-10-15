@@ -28,6 +28,13 @@
     :fields:
     - - ""
       - :no_browse: true
+  "035":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
   "300":
     :master: a
     :indicator: "##"
