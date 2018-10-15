@@ -854,9 +854,7 @@
       - type: source
         editor_partial: subfield_secondary
         only_new_window: true
-"774": 
-  tag_params: 
-    no_delete: true
+"774":
   layout: 
     hide_add_button: true
     fields: 

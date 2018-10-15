@@ -173,6 +173,7 @@
 "963":
   new_window: sources
   record_type_helper: get_allowed_record_type_holding
+  lib_siglum_helper: get_allowed_lib_siglum_holding
   layout: 
     fields: 
     - - u
