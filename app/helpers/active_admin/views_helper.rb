@@ -52,6 +52,7 @@ module ActiveAdmin::ViewsHelper
     context.panel (I18n.t :filter_wf) do
       context.attributes_table_for item  do
         context.row (I18n.t :filter_owner) { |r| r.user.name } if ( item.user )
+        context.row (I18n.t :filter_wf_stage) { |r| I18n.t("wf_stage.#{r.wf_stage}") } if ( item.wf_stage )
         context.row (I18n.t :record_audit) { |r| I18n.t("#{r.wf_audit}_level") } if ( item.user )
         context.row (I18n.t :created_at) { |r| I18n.localize(r.created_at ? r.created_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
         context.row (I18n.t :updated_at) { |r| I18n.localize(r.updated_at ? r.updated_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
@@ -228,7 +229,7 @@ module ActiveAdmin::ViewsHelper
     codes.each do |code|
       local_hash[code] = editor_profile.get_label(code)
     end
-    return Hash[local_hash.sort_by{|k, v| v}].keys
+    return Hash[local_hash.sort_by{|k, v| v.downcase}].keys
   end
 	
   def pretty_truncate(text, length = 30, truncate_string = "...")
