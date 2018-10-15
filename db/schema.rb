@@ -432,12 +432,10 @@ ActiveRecord::Schema.define(version: 20181001124650) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "lock_version", default: 0, null: false
-    t.index ["created_at"], name: "index_sources_on_created_at"
     t.index ["record_type"], name: "index_sources_on_record_type"
     t.index ["source_id"], name: "index_sources_on_source_id"
     t.index ["std_title"], name: "index_sources_on_std_title", length: { std_title: 255 }
     t.index ["std_title_d"], name: "index_sources_on_std_title_d", length: { std_title_d: 255 }
-    t.index ["updated_at"], name: "index_sources_on_updated_at"
     t.index ["wf_stage"], name: "index_sources_on_wf_stage"
   end
 
@@ -560,8 +558,6 @@ ActiveRecord::Schema.define(version: 20181001124650) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "preference_wf_stage", default: 1
-    t.text "notifications"
-    t.integer "notification_type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
