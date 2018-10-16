@@ -940,5 +940,5 @@
       - "examined"
       - "not_examined"
 
-ui: 
-  hide_marc_identifiers: true
+triggers:
+  - notify_changes

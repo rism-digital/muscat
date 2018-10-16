@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ can? :manage, User }
   
-  permit_params :preference_wf_stage, :email, :password, :password_confirmation, :name, workgroup_ids: [], role_ids: []
+  permit_params :preference_wf_stage, :email, :password, :password_confirmation, :name, :notifications, :notification_type, workgroup_ids: [], role_ids: []
 
   # Remove all action items
   config.clear_action_items!
@@ -98,20 +98,22 @@ ActiveAdmin.register User do
     f.inputs I18n.t(:user_details) do
 
       #515 postponed to 3.7
-      #if can? :manage, User
+      if can? :manage, User
         f.input :name
         f.input :email
-      #elsif can? :update, User
-      #  f.input :name, :input_html => {:disabled => true}
-      #  f.input :email, :input_html => {:disabled => true}
-      #end
+      elsif can? :update, User
+        f.input :name, :input_html => {:disabled => true}
+        f.input :email, :input_html => {:disabled => true}
+      end
 
 
       if can? :update, User
-        f.input :password
-        f.input :password_confirmation
+        f.input :notifications
+        f.input :notification_type, as: :select, multiple: false, collection: [:each, :daily, :weekly]
       end
       if can? :manage, User
+        f.input :password
+        f.input :password_confirmation
         f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all.sort_by {|w| w.name} 
         f.input :roles, as: :select, multiple: false, collection: Role.all
         f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published, :deleted]

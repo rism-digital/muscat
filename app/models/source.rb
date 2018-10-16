@@ -89,7 +89,7 @@ class Source < ApplicationRecord
   # FIXME id generation
   before_destroy :check_dependencies
   
-  before_save :set_object_fields
+  before_save :set_object_fields, :save_updated_at
   after_create :fix_ids
 	after_initialize :after_initialize
   after_save :update_links, :reindex
@@ -110,7 +110,7 @@ class Source < ApplicationRecord
     @last_user_save = nil
     @last_event_save = "update"
   end
-  
+
   # Suppresses the recreation of the links with foreign MARC elements
   # (es libs, people, ...) on saving
   def suppress_recreate
@@ -125,7 +125,10 @@ class Source < ApplicationRecord
     self.suppress_update_count_trigger = true
   end
   
-  
+  def save_updated_at
+    @old_updated_at = updated_at
+  end
+
   # Sync all the links from MARC data foreign relations
   # To the DB data cache. It will update on the DB
   # only those objects that are added or removed from
@@ -476,6 +479,10 @@ class Source < ApplicationRecord
     "Anonymous"
   end
 
+  def last_updated_at
+    @old_updated_at
+  end
+  
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
 	ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
 	ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end

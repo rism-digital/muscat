@@ -1,0 +1,15 @@
+<h3>Source modification report for <%=@results.count%> source(s)</h3>
+<p>
+
+<% @results.each do |source, matches| %>
+Source <a href="https://muscat.rism.info/admin/sources/<%=source%>"><%=source%></a> matched the following criteria(s):
+<br>
+<ul>
+<% matches.each do |m| %>
+
+	<li><%= m%></li>
+
+<% end %>
+</ul>
+<p>
+<%end%>
