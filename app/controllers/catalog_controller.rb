@@ -185,7 +185,7 @@ class CatalogController < ApplicationController
     # solr field configuration for search results/index views
     #config.index.title_field = 'std_title_texts'
     # Set it as in RISM A/2 OPAC
-    config.index.title_field = 'composer_texts'
+    config.index.title_field = 'std_title_texts'
     config.index.display_type_field = 'composer_order_s'
     # call out own partial index_header_rism_default
     # it could be called just index_header_default but this
