@@ -261,7 +261,9 @@ class EditorConfiguration
     end
   end
   
-  
+  def get_triggers
+    return options_config.include?("triggers") ? options_config["triggers"] : nil
+  end
 
   #################################
 
