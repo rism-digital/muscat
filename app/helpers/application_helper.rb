@@ -115,6 +115,16 @@ module ApplicationHelper
     return nil if !source.is_a? Source
     MarcSource::RECORD_TYPES[:edition]
   end
+	
+  def get_allowed_record_type_holding(holding)
+    return nil if !holding.is_a? Holding
+    MarcSource::RECORD_TYPES[:collection]
+  end
+	
+  def get_allowed_lib_siglum_holding(holding)
+    return nil if !holding.is_a? Holding
+    return holding.lib_siglum
+  end
 
   #Sanitize date of AA filter
   def self.to_sanitized_date(string)

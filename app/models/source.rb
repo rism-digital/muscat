@@ -62,6 +62,7 @@ class Source < ApplicationRecord
   has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
+	has_many :collection_holdings, {class_name: "Holding", foreign_key: "collection_id"}
   has_and_belongs_to_many :works, join_table: "sources_to_works"
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :folders, through: :folder_items, foreign_key: "item_id"
@@ -89,7 +90,7 @@ class Source < ApplicationRecord
   # FIXME id generation
   before_destroy :check_dependencies
   
-  before_save :set_object_fields
+  before_save :set_object_fields, :save_updated_at
   after_create :fix_ids
 	after_initialize :after_initialize
   after_save :update_links, :reindex
@@ -110,7 +111,7 @@ class Source < ApplicationRecord
     @last_user_save = nil
     @last_event_save = "update"
   end
-  
+
   # Suppresses the recreation of the links with foreign MARC elements
   # (es libs, people, ...) on saving
   def suppress_recreate
@@ -125,7 +126,10 @@ class Source < ApplicationRecord
     self.suppress_update_count_trigger = true
   end
   
-  
+  def save_updated_at
+    @old_updated_at = updated_at
+  end
+
   # Sync all the links from MARC data foreign relations
   # To the DB data cache. It will update on the DB
   # only those objects that are added or removed from
@@ -476,8 +480,22 @@ class Source < ApplicationRecord
     "Anonymous"
   end
 
+  def last_updated_at
+    @old_updated_at
+  end
+
+  def get_collection_holding(holding_id)
+    collection_holdings.each {|ch| return ch if ch.id == holding_id}
+    nil
+  end
+  
+  def get_child_source(source_id)
+    child_sources.each {|ch| return ch if ch.id == source_id}
+    nil
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
-	ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
-	ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
-	
+  ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
+
 end

@@ -20,6 +20,7 @@ class MuscatAdminHeader < ActiveAdmin::Views::Header
 end
 
 require 'active_admin_record_type_filter'
+require 'active_admin_lib_siglum_filter'
 
 ActiveAdmin.setup do |config|
 

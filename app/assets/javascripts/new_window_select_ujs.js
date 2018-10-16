@@ -144,6 +144,7 @@ function newWindowIsSelect() {
 				var controller = $(this).data("controller");
 				var new_window_field = $(this).data("new-window-field");
 				var selection_record_type = $(this).data("selection-record-type")
+				var selection_lib_siglum = $(this).data("selection-lib-siglum")
 				
 				var search = "";
 				if (new_window_field) {
@@ -158,6 +159,11 @@ function newWindowIsSelect() {
 				if (selection_record_type) {
 					search += "&q[record_type_with_integer]=record_type:" + selection_record_type;
 				}
+				// And also the lib siglum
+				if (selection_lib_siglum) {
+					search += "&q[lib_siglum_with_integer]=lib_siglum:" + selection_lib_siglum;
+				}
+
 				// Open up the new window
 				_child = window.open('/admin/' + controller + '?select=true' + encodeURI(search), null, "location=no");
 				
