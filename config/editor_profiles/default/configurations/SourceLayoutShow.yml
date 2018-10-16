@@ -23,10 +23,12 @@ groups:
     - "246"
     - "657"
     - "730"
+    - "930"
     - "001"
     all_tag_templates: 
       "100": marc_show/show_person
       "246": marc_show/show_title_variant  
+      "930": marc_show/show_work
       "001": marc_show/show_rism_id
 
   show_library: 
