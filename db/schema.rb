@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180815102017) do
+ActiveRecord::Schema.define(version: 20181001124650) do
 
   create_table "active_admin_comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -190,6 +190,8 @@ ActiveRecord::Schema.define(version: 20180815102017) do
     t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "collection_id"
+    t.index ["collection_id"], name: "index_holdings_on_collection_id"
     t.index ["source_id"], name: "index_holdings_on_source_id"
     t.index ["wf_stage"], name: "index_holdings_on_wf_stage"
   end
@@ -430,13 +432,10 @@ ActiveRecord::Schema.define(version: 20180815102017) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "lock_version", default: 0, null: false
-    t.index ["created_at"], name: "index_sources_on_created_at"
     t.index ["record_type"], name: "index_sources_on_record_type"
     t.index ["source_id"], name: "index_sources_on_source_id"
     t.index ["std_title"], name: "index_sources_on_std_title", length: { std_title: 255 }
     t.index ["std_title_d"], name: "index_sources_on_std_title_d", length: { std_title_d: 255 }
-    t.index ["updated_at"], name: "index_sources_on_updated_at"
-    t.index ["updated_at"], name: "upd"
     t.index ["wf_stage"], name: "index_sources_on_wf_stage"
   end
 
@@ -559,8 +558,6 @@ ActiveRecord::Schema.define(version: 20180815102017) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "preference_wf_stage", default: 1
-    t.text "notifications"
-    t.integer "notification_type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

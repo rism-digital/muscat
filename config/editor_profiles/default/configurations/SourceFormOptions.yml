@@ -854,11 +854,14 @@
       - type: source
         editor_partial: subfield_secondary
         only_new_window: true
-"774": 
+"774":
   layout: 
+    hide_add_button: true
     fields: 
     - - w
-      - read_only: true
+      - editor_partial: subfield_readonly_links
+    - - '4'
+      - hidden: true
 "775":
   new_window: sources
   record_type_helper: get_allowed_record_type_775
@@ -942,7 +945,3 @@
 
 triggers:
   - notify_changes
-
-ui: 
-  hide_marc_identifiers: true
-

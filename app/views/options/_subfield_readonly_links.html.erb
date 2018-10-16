@@ -1,0 +1,26 @@
+<%
+
+type = marc_tag.fetch_first_by_tag("4")
+
+if type && type.content && type.content == "holding"
+  # we should have a holding...
+  holding = @item.get_collection_holding(marc_subfield.content.to_i)
+  if holding && holding.source
+    name = "Holding: #{marc_subfield.content}, for source: #{holding.source.id} #{holding.source.composer} - #{holding.source.std_title}"
+  else
+    name = "Could not find Holding #{marc_subfield.content} or referred source"
+  end
+else
+  
+  src = @item.get_child_source(marc_subfield.content.to_i)
+  if src
+    name = "Source: #{src.id} #{src.composer} - #{src.std_title}"
+  else
+    name = "Could not find Source #{marc_subfield.content}"
+  end
+  
+end
+
+%>
+<input class="subfield_entry"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h name %>"/>
+<input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h marc_subfield.content %>"/>

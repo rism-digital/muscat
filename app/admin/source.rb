@@ -212,7 +212,14 @@ ActiveAdmin.register Source do
   filter :title_contains, :label => proc{I18n.t(:title_contains)}, :as => :string
   filter :std_title_contains, :label => proc{I18n.t(:std_title_contains)}, :as => :string
   filter :composer_contains, :label => proc{I18n.t(:composer_contains)}, :as => :string
-  filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
+  
+  filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
+  # see See lib/active_admin_record_type_filter.rb
+  # The same as above, but when the lib siglum is forced and cannot be changes
+  filter :lib_siglum_with_integer,
+  if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)},
+  :as => :lib_siglum
+  
   # This filter is the "any field" one
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
@@ -239,13 +246,13 @@ ActiveAdmin.register Source do
   collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
 	if: proc { !is_selection_mode? }, :label => proc {I18n.t(:filter_record_type)}
 
+  # See lib/active_admin_record_type_filter.rb
   filter :record_type_with_integer,
   if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:record_type_with_integer)},
   :as => :record_type
 
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
-  
   
   index :download_links => [:xml] do
     selectable_column if !is_selection_mode?

@@ -5,6 +5,10 @@
     read_only: true
     no_delete: true
   tag_header: none
+"035": 
+  layout: 
+    fields: 
+    - - a
 "300": 
   layout: 
     fields: 

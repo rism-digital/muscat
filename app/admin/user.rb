@@ -19,6 +19,13 @@ ActiveAdmin.register User do
 	end
 =end
 
+  collection_action :list, method: :post do
+    users = User.all.collect {|u| {name: u.name, id: u.name.gsub(" ", "_")}}
+    respond_to do |format|
+        format.json { render json: users  }
+    end
+  end
+
   ###########
   ## Index ##
   ###########
@@ -29,7 +36,7 @@ ActiveAdmin.register User do
   filter :sign_in_count
   filter :created_at
 
-  index :download_links => [:xml] do
+  index :download_links => [:xml, :json] do
     selectable_column
     id_column
     column :name

@@ -294,6 +294,21 @@ doc_references:
     fr: No. RISM
     de: RISM Dokumentnummer
     en: RISM ID No.
+"035": 
+  label: 
+    it: Num. locale
+    fr: No. local
+    de: Lokale Nummer
+    en: Local Number
+  fields: 
+    a: 
+      label: 
+        it: Num. locale
+        fr: No. local
+        de: Lokale Nummer
+        en: Local ID no.
+      edit_label:
+        en: ""
 "300": 
   label: 
     it: Materiale

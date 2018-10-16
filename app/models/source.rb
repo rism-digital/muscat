@@ -62,6 +62,7 @@ class Source < ApplicationRecord
   has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
+	has_many :collection_holdings, {class_name: "Holding", foreign_key: "collection_id"}
   has_and_belongs_to_many :works, join_table: "sources_to_works"
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :folders, through: :folder_items, foreign_key: "item_id"
@@ -482,9 +483,19 @@ class Source < ApplicationRecord
   def last_updated_at
     @old_updated_at
   end
+
+  def get_collection_holding(holding_id)
+    collection_holdings.each {|ch| return ch if ch.id == holding_id}
+    nil
+  end
   
+  def get_child_source(source_id)
+    child_sources.each {|ch| return ch if ch.id == source_id}
+    nil
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
-	ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
-	ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
-	
+  ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
+
 end
