@@ -167,6 +167,7 @@ fields:
   "690n":
   "691n":
   "700a":
+      :holding_record: true
   "700d":
   "700e":
   "700t":
