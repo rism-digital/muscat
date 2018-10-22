@@ -1,33 +1,33 @@
 FactoryBot.define do
   
   factory :manuscript_source, parent: :source do
-    id 989000434
-    source_id         nil
-    record_type       2
+    id { 989000434 }
+    source_id         { nil }
+    record_type       { 2 }
     #nitialize_with { Source.find_or_create_by(id: id) } 
     initialize_with { Source.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
-    std_title         "Jesu meine Freude - BWV 227"
-    std_title_d       "jesu meine freude - bwv 227"
-    composer          "Bach, Johann Sebastian"
-    composer_d        "bach, johann sebastian"
-    title             "[unset]"
-    title_d           "[unset]"
-    shelf_mark        "Mus.ms.Bach P 48, Faszikel 7"
-    language          "Unknown"
-    date_from         nil
-    date_to           nil
-    lib_siglum       "D-B"
-    wf_owner          2
-    wf_audit         "full"
+    std_title         { "Jesu meine Freude - BWV 227" }
+    std_title_d       { "jesu meine freude - bwv 227" }
+    composer          { "Bach, Johann Sebastian" }
+    composer_d        { "bach, johann sebastian" }
+    title             { "[unset]" }
+    title_d           { "[unset]" }
+    shelf_mark        { "Mus.ms.Bach P 48, Faszikel 7" }
+    language          { "Unknown" }
+    date_from         { nil }
+    date_to           { nil }
+    lib_siglum       { "D-B" }
+    wf_owner          { 2 }
+    wf_audit         { "full" }
     people { [association(:person)]  }
     institutions { [association(:institution)]  }
     standard_titles { [association(:standard_title)]  }
     standard_terms { [association(:standard_term)]  }
-    created_at Time.now
+    created_at { Time.now }
     #catalogues { [association(:catalogue)]  }
     #sources []
     #places { [association(:manuscript_place)] }
-    marc_source <<STRING
+    marc_source {  <<STRING
 =001  989000434
 =035  #\#$aB00900000
 =100  1\#$aBach, Johann Sebastian$d1685-1750$02539
@@ -45,6 +45,7 @@ FactoryBot.define do
 =852  #\#$aD-B$cMus.ms.Bach P 48, Faszikel 7$eStaatsbibliothek zu Berlin - Preußischer Kulturbesitz, Musikabteilung$x30000655
 =856  40$uhttp://www.bach-digital.de/receive/BachDigitalSource_source_00000900$zBach Digital
 STRING
+    }
   end
 end
  

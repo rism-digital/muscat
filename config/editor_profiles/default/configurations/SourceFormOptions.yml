@@ -172,18 +172,18 @@
     - - d
       - hidden: true 
     - - b
-      - values: 
-        - "eng"
-        - "fre"
-        - "ger"
-        - "grc"
-        - "gsw"
-        - "ita"
-        - "lat"
-        - "roh"
-        - "rus"
-        - "spa"
-        editor_partial: subfield_autocomplete
+      - cols: 2
+        editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+    columns: 2
+  tag_params:
+    codes:
+      - "eng"
+      - "fre"
+      - "ger"
+      - "ita"
+      - "spa"
 "041": 
   layout: 
     fields: 
