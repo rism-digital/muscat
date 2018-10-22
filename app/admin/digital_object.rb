@@ -106,7 +106,7 @@ ActiveAdmin.register DigitalObject do
   filter :attachment_content_type, :label => proc {I18n.t(:filter_content_type)}
   filter :attachment_updated_at, :label => proc {I18n.t(:updated_at)}
   
-  index :as => :grid, :download_links => [:xml] do |obj|
+  index :as => :grid, :download_links => false do |obj|
     div do
         link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
     end
