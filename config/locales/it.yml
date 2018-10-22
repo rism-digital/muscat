@@ -310,6 +310,7 @@ it:
   select: "Seleziona"
   create_folder: "Crea Cartella"
   append_folder: "Aggiungi a Cartella"
+  add_person: "Collega Istituzione"
   add_source: "Collega Fonte"
   add_person: "Collega Persona"
   archive_unarchive: "ARCHIVE / UN-ARCHIVE"

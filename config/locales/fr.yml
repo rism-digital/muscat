@@ -310,6 +310,7 @@ fr:
   select: "Sélectionner"
   create_folder: "Ajouter à un nouveau dossier"
   append_folder: "Ajouter à un dossier existant"
+  add_person: "Attacher une institution"
   add_source: "Attacher une source"
   add_person: "Attacher une personne"
   archive_unarchive: "Archiver / désarchiver"

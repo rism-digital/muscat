@@ -309,6 +309,7 @@ en:
   select: "Select"
   create_folder: "Add all to a new folder"
   append_folder: "Add all to an existing folder"
+  add_institution: "Link Institution"
   add_source: "Link Source"
   add_person: "Link Person"
   archive_unarchive: "Archive / un-archive"

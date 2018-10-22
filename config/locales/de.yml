@@ -310,6 +310,7 @@ de:
   select: "Auswählen"
   create_folder: "Erstelle Ordner"
   append_folder: "Zu Ordner hinzufügen"
+  add_institution: "Institution verlinken"
   add_source: "Quelle verlinken"
   add_person: "Person verlinken"
   archive_unarchive: "Archivieren / Dearchivieren"

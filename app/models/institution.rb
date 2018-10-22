@@ -26,6 +26,8 @@ class Institution < ApplicationRecord
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
+  has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
+  has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
   has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_institutions")
