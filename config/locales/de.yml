@@ -58,6 +58,7 @@ de:
       one_page: "Zeige <b>alle %{n}</b> %{model}"
       multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
       multiple_without_total: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
+      per_page: "Elemente pro Seite:"
       entry:
         one: "Eintrag"
         other: "Einträge"

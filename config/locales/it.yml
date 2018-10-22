@@ -58,6 +58,7 @@ it:
       one_page: "Sto mostrando <b>%{n}</b> %{model}. Lista completa."
       multiple: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{total}</b> in totale"
       multiple_without_total: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Elementi per pagina:"
       entry:
         one: "voce"
         other: "voci"

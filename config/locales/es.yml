@@ -56,6 +56,7 @@ es:
       one_page: "Mostrando <b>todos %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> en total"
       multiple_without_total: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Elementos por página:"
       entry:
         one: "entrada"
         other: "entradas"
