@@ -253,7 +253,9 @@ class Source < ApplicationRecord
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
-    sunspot_dsl.time :created_at
+    sunspot_dsl.time :created_at, multiple: true do |s|
+      s.holdings.map {|e| e.created_at} << s.created_at
+    end
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })

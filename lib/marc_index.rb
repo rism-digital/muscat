@@ -59,6 +59,7 @@ module MarcIndex
           # Get configured fields for holding records. It checks for a
           # configuration item :holding_record in the index config
           # Only for sources with holdings
+          # TODO since this block is called with every configured field we have some considerable overhead
           if obj.is_a? Source
             if !obj.holdings.empty? && properties && properties.has_key?(:holding_record)
               obj.holdings.each do |holding|
