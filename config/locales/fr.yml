@@ -473,7 +473,9 @@ fr:
   filter_dist_594l: "Instruments à clavier"
   filter_dist_594m: "Autres instruments"
   filter_dist_594n: "Instruments de basse continue"
- 
+  filter_source_name: "Nom de la source"
+  filter_source_composer: "Compositeur de la source"
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} se référant à cet(te) %{model_to}"
 
@@ -611,7 +613,8 @@ fr:
   do_ext_link_not_avail: "(Fichiers audio non disponibles depuis cet ordinateur)"
   do_images_title: "Images"
   connected_libraries: "Institutions"
-  
+  view_source: "Montrer la source"
+   
   mei:
     title: "Export en MEI de la source %{source}"
     parameters: "Paramètres"

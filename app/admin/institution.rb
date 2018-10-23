@@ -168,6 +168,37 @@ ActiveAdmin.register Institution do
       end
     end
     active_admin_embedded_source_list( self, institution, !is_selection_mode? )
+    
+    # Box for people referring to this institution
+    active_admin_embedded_link_list(self, institution, Person) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_full_name), :full_name
+        context.column (I18n.t :filter_life_dates), :life_dates
+        context.column (I18n.t :filter_alternate_names), :alternate_names
+        if !is_selection_mode?
+          context.column "" do |person|
+            link_to "View", controller: :people, action: :show, id: person.id
+          end
+        end
+      end
+    end
+    
+    # Box for catalogues referring to this institution
+    active_admin_embedded_link_list(self, institution, Catalogue) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_author), :author
+        context.column (I18n.t :filter_description), :description
+        if !is_selection_mode?
+          context.column "" do |catalogue|
+            link_to "View", controller: :catalogues, action: :show, id: catalogue.id
+          end
+        end
+      end
+    end 
+    
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, institution )
     active_admin_navigation_bar( self )

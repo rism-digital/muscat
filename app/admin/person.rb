@@ -195,6 +195,52 @@ ActiveAdmin.register Person do
       render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, person, !is_selection_mode? )
+
+    # Box for catalogues referring to this person
+    active_admin_embedded_link_list(self, person, Catalogue) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_author), :author
+        context.column (I18n.t :filter_description), :description
+        if !is_selection_mode?
+          context.column "" do |catalogue|
+            link_to "View", controller: :catalogues, action: :show, id: catalogue.id
+          end
+        end
+      end
+    end 
+
+    # Box for institutions referring to this person
+    active_admin_embedded_link_list(self, person, Institution) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :siglum
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_place), :place
+        if !is_selection_mode?
+          context.column "" do |ins|
+            link_to "View", controller: :institutions, action: :show, id: ins.id
+          end
+        end
+      end
+    end
+
+    # Box for holdings referring to this person
+    active_admin_embedded_link_list(self, person, Holding) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :lib_siglum
+        context.column (I18n.t :filter_source_name) {|hld| hld.source.std_title}
+        context.column (I18n.t :filter_source_composer) {|hld| hld.source.composer}
+        if !is_selection_mode?
+          context.column "" do |hold|
+            link_to I18n.t(:view_source), controller: :holdings, action: :show, id: hold.id
+          end
+        end
+      end
+    end
+
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, person )
     active_admin_navigation_bar( self )

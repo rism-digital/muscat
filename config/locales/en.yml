@@ -472,6 +472,8 @@ en:
   filter_dist_594l: "Keyboard instruments"
   filter_dist_594m: "Other instruments"
   filter_dist_594n: "Basso continuo instruments"
+  filter_source_name: "Source Name"
+  filter_source_composer: "Source Composer"
  
   ## Referring lists for auth files
   refers_to_this: "%{model_from} referring to this %{model_to}"
@@ -610,6 +612,7 @@ en:
   do_ext_link_not_avail: "(Audio files not available from this location)"
   do_images_title: "Images"
   connected_libraries: "Libraries"
+  view_source: "View Source"
 
   mei:
     title: "MEI export for source %{source}"

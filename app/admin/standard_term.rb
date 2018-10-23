@@ -132,6 +132,37 @@ ActiveAdmin.register StandardTerm do
       row (I18n.t :filter_notes) { |r| r.notes }    
     end
     active_admin_embedded_source_list( self, standard_term, !is_selection_mode? )
+    
+    # Box for catalogues referring to this standard_term
+    active_admin_embedded_link_list(self, standard_term, Catalogue) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_author), :author
+        context.column (I18n.t :filter_description), :description
+        if !is_selection_mode?
+          context.column "" do |catalogue|
+            link_to "View", controller: :catalogues, action: :show, id: catalogue.id
+          end
+        end
+      end
+    end 
+
+    # Box for institutions referring to this standard_term
+    active_admin_embedded_link_list(self, standard_term, Institution) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :siglum
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_place), :place
+        if !is_selection_mode?
+          context.column "" do |ins|
+            link_to "View", controller: :institutions, action: :show, id: ins.id
+          end
+        end
+      end
+    end
+
     active_admin_user_wf( self, standard_term )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
