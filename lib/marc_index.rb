@@ -1,7 +1,6 @@
 module MarcIndex
   
   def self.attach_marc_index(sunspot_dsl, klass)
-    
     IndexConfig.get_fields(klass).each do |conf_tag, properties|
       
       # index_processor: mash togeather the values of one or more tags/subtags
@@ -65,6 +64,7 @@ module MarcIndex
               obj.holdings.each do |holding|
                 begin
                   holding_marc = holding.marc
+                  holding_marc.load_source false
                   holding_marc.all_values_for_tags_with_subtag(tag, subtag).each do |v|
                     out << v
                   end

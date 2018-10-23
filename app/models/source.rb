@@ -283,7 +283,7 @@ class Source < ApplicationRecord
       
       Sunspot::Util::Coordinates.new(lat, lon)
     end
-
+    
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
     
