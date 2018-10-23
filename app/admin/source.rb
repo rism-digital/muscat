@@ -229,7 +229,7 @@ ActiveAdmin.register Source do
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
-         collection: proc{Folder.where(folder_type: "Source").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+         collection: proc{Folder.for_user_and_type(current_user.id, "Source").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   # and for the wf_owner
   filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
          collection: proc {
