@@ -99,7 +99,7 @@ ActiveAdmin.register Place do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
     collection: proc{Folder.where(folder_type: "Place").collect {|c| [c.name, "folder_id:#{c.id}"]}}
 
-  index :download_links => [:xml] do
+  index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
@@ -136,6 +136,67 @@ ActiveAdmin.register Place do
       row (I18n.t :filter_notes) { |r| r.notes }    
     end
     active_admin_embedded_source_list( self, place, !is_selection_mode? )
+    
+    # Box for people referring to this place
+    active_admin_embedded_link_list(self, place, Person) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_full_name), :full_name
+        context.column (I18n.t :filter_life_dates), :life_dates
+        context.column (I18n.t :filter_alternate_names), :alternate_names
+        if !is_selection_mode?
+          context.column "" do |person|
+            link_to "View", controller: :people, action: :show, id: person.id
+          end
+        end
+      end
+    end
+    
+    # Box for catalogues referring to this place
+    active_admin_embedded_link_list(self, place, Catalogue) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_author), :author
+        context.column (I18n.t :filter_description), :description
+        if !is_selection_mode?
+          context.column "" do |catalogue|
+            link_to "View", controller: :catalogues, action: :show, id: catalogue.id
+          end
+        end
+      end
+    end 
+
+    # Box for institutions referring to this place
+    active_admin_embedded_link_list(self, place, Institution) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :siglum
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_place), :place
+        if !is_selection_mode?
+          context.column "" do |ins|
+            link_to "View", controller: :institutions, action: :show, id: ins.id
+          end
+        end
+      end
+    end
+
+    # Box for holdings referring to this place
+    active_admin_embedded_link_list(self, place, Holding) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :lib_siglum
+        context.column (I18n.t :filter_source_name) {|hld| hld.source.std_title}
+        context.column (I18n.t :filter_source_composer) {|hld| hld.source.composer}
+        if !is_selection_mode?
+          context.column "" do |hold|
+            link_to I18n.t(:view_source), controller: :holdings, action: :show, id: hold.id
+          end
+        end
+      end
+    end
+    
     active_admin_user_wf( self, place )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?

@@ -316,6 +316,8 @@ require "kaminari/helpers/tag"
 ## RZ This monkey patch enables some filter labels to be translated in the Search Status
 ## sidebar.
 require 'active_admin/filter_label'
+## RZ Let the download links disappear BUT have the .xml download for a single item
+require 'active_admin/download_links'
 
 ActiveAdmin.before_load do |app|
   # Add our Extensions

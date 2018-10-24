@@ -19,6 +19,12 @@
 			:class => "muscat_icon_link muscat_icon_link_add") %>
 		</li>
 		
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :add_institution}", "", :id => "new_window_select_nomarc",
+			:data => { controller: "institutions", model: model, id: self.resource.id, object: "Institution" },
+			:class => "muscat_icon_link muscat_icon_link_add") %>
+		</li>
+		
 	<%- end %>
 	
 </ul>

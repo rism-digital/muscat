@@ -58,6 +58,7 @@ it:
       one_page: "Sto mostrando <b>%{n}</b> %{model}. Lista completa."
       multiple: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{total}</b> in totale"
       multiple_without_total: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Elementi per pagina:"
       entry:
         one: "voce"
         other: "voci"
@@ -309,6 +310,7 @@ it:
   select: "Seleziona"
   create_folder: "Crea Cartella"
   append_folder: "Aggiungi a Cartella"
+  add_person: "Collega Istituzione"
   add_source: "Collega Fonte"
   add_person: "Collega Persona"
   archive_unarchive: "ARCHIVE / UN-ARCHIVE"
@@ -471,6 +473,8 @@ it:
   filter_dist_594l: "Strumenti da tasto"
   filter_dist_594m: "Altri strumenti"
   filter_dist_594n: "Strumenti del basso continuo"
+  filter_source_name: "Nome della Fonte"
+  filter_source_composer: "Compositore della Fonte"
   
   ## Referring lists for auth files
   refers_to_this: "%{model_from} che fanno riferimento a questo %{model_to}"
@@ -609,6 +613,7 @@ it:
   do_ext_link_not_avail: "(File audio non disponibile da questa postazione)"
   do_images_title: "Immagini"
   connected_libraries: "Biblioteche"
+  view_source: "Mostra fonte"
   
   mei:
     title: "Esportazione MEI per la fonte %{source}"

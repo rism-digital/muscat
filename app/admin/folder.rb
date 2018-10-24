@@ -82,7 +82,7 @@ ActiveAdmin.register Folder do
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
-  index :download_links => [:xml] do |ad|
+  index :download_links => false do |ad|
     selectable_column
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_folder_type), :folder_type
