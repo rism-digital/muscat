@@ -6,21 +6,21 @@ class MarcWork < Marc
   def get_title
     composer, title, scoring, number, key = ""
     if node = first_occurance("100", "a")
-      composer = node.content
+      composer = node.content.blank? ? "" : "#{node.content}:"
     end
     if node = first_occurance("100", "t")
-      title = node.content
-    end
-    if node = first_occurance("100", "m")
-      scoring = node.content
+      title = node.content.blank? ? " [without title]" : " #{node.content}"
     end
     if node = first_occurance("100", "n")
-      number = node.content
+      number = node.content.blank? ? "" : " #{node.content}"
     end
     if node = first_occurance("100", "r")
-      key = node.content
+      key = node.content.blank? ? "" : " #{node.content}"
     end
-    return "#{composer}: #{title} #{number} #{key}; #{scoring}"
+    if node = first_occurance("100", "m")
+      scoring = node.content.blank? ? "" : "; #{node.content}"
+    end
+    return "#{composer}#{title}#{number}#{key}#{scoring}"
   end
 
   def get_composer

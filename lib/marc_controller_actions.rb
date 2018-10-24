@@ -95,6 +95,8 @@ module MarcControllerActions
       # Rejoice! and launch the background jobs
       # if any
       execute_triggers_from_params(params, @item)
+      # Now run the global ones as specified in the FormOptions
+      execute_global_triggers(@item)
 
       # build the dynamic model path
       

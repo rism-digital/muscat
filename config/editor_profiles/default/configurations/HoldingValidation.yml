@@ -3,3 +3,5 @@ client:
   "852":
     tags:
       a: required
+      c: required
+      x: mandatory

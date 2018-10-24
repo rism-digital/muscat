@@ -72,6 +72,31 @@ module FolderControllerActions
       end
     end
     
+    dsl.batch_action :remove_from_folder, confirm: "Are you sure?", if: proc{ is_folder_selected?} do |ids, input|
+
+      folder_id = get_folder_from_params
+      
+      if !folder_id
+        redirect_to collection_path, :alert => "No Folder selected."
+      else
+        
+        begin
+          f = Folder.find(folder_id)
+          
+          if cannot?(:manage, f)
+            redirect_to collection_path, :alert => "You are not authorized to remove items from #{f.name} (#{f.id})."
+          else
+            f.remove_items(ids)
+            redirect_to collection_path, :notice => "Removed #{ids.count} from folder #{f.name} (#{f.id})"
+          end
+          
+        rescue ActiveRecord::RecordNotFound
+          redirect_to collection_path, :alert => "Folder #{folder_id} does not exist."
+        end
+        
+      end
+    end
+    
     # THIS IS OVERRIDEN from resource_dsl_extensions.rb
     dsl.collection_action :do_create_new_folder, :method => :get do
       

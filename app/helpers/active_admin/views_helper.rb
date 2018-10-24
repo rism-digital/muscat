@@ -42,16 +42,21 @@ module ActiveAdmin::ViewsHelper
     return params && params[:select].present?
   end
   
+  def is_folder_selected?
+    return params && params[:q].present? && params[:q][:id_with_integer].present? && params[:q][:id_with_integer].include?("folder_id:")
+  end
+
   def get_filter_record_type
     if params.include?(:q) && params[:q].include?("record_type_with_integer")
       params[:q]["record_type_with_integer"]
     end
   end
-	
+
   def active_admin_user_wf( context, item )   
     context.panel (I18n.t :filter_wf) do
       context.attributes_table_for item  do
         context.row (I18n.t :filter_owner) { |r| r.user.name } if ( item.user )
+        context.row (I18n.t :filter_wf_stage) { |r| I18n.t("wf_stage.#{r.wf_stage}") } if ( item.wf_stage )
         context.row (I18n.t :record_audit) { |r| I18n.t("#{r.wf_audit}_level") } if ( item.user )
         context.row (I18n.t :created_at) { |r| I18n.localize(r.created_at ? r.created_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
         context.row (I18n.t :updated_at) { |r| I18n.localize(r.updated_at ? r.updated_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
@@ -216,19 +221,19 @@ module ActiveAdmin::ViewsHelper
     
   end
 
-	def active_admin_stored_from_hits(all_hits, object, field)
-		hits = all_hits.select {|h| h.to_param == object.id.to_s}
-		if hits && hits.count > 0
-			hits.first.stored(field).to_s
-		end
-	end
+  def active_admin_stored_from_hits(all_hits, object, field)
+    hits = all_hits.select {|h| h.to_param == object.id.to_s}
+    if hits && hits.count > 0
+      hits.first.stored(field).to_s
+    end
+  end
 
   def local_sorting( codes, editor_profile )
     local_hash = Hash.new
     codes.each do |code|
       local_hash[code] = editor_profile.get_label(code)
     end
-    return Hash[local_hash.sort_by{|k, v| v}].keys
+    return Hash[local_hash.sort_by{|k, v| v.downcase}].keys
   end
 	
   def pretty_truncate(text, length = 30, truncate_string = "...")
@@ -236,7 +241,7 @@ module ActiveAdmin::ViewsHelper
     l = length - truncate_string.mb_chars.length
     text.mb_chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
   end
-	
+
   def dashboard_find_recent(model, limit, modification, user, days = 7) 
     modif_at = modification.to_s + "_at"
     if user != -1

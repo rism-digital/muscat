@@ -326,8 +326,8 @@ class Marc
   # have this handled in the create_links / destroy_links methods
   def get_parent
     parent = nil
-    # holding record
-    if node = first_occurance("004")
+    # holding record pointing to a collection
+    if node = first_occurance("963")
       parent = node.foreign_object
     # item in collection
     elsif node = first_occurance("773", "w")

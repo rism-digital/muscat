@@ -1,4 +1,4 @@
-<% if @item.parent_source || @item.child_sources.count > 0 || @item.sources.count > 0 %>
+<% if @item.parent_source || @item.child_sources.count > 0 || @item.sources.count > 0 || @item.collection_holdings.count > 0 %>
 	<div class="panel">
 		<h3><%= group[:title] %></h3>
 		<div class="panel_contents">
@@ -22,36 +22,46 @@
 					</tr>
 				</table>
 			<% end %>
-			<% if @item.child_sources.count > 0 %>
+			<% if @item.child_sources.count > 0 || @item.collection_holdings.count > 0 %>
 				<table border="0" cellpadding="0" cellspacing="0">
-				<% count = 0 %>
-				<% @item.marc.each_by_tag("774") do |link| %>
-				<% link_id = link.fetch_first_by_tag("w") %>
-				<% next if !link_id || !link_id.content %>
-				<% child = @item.child_sources.select {|cs| cs.id == link_id.content.to_i}[0]%>
-				<% if child%>
+				<% 
+				count = 0
+				@item.marc.each_by_tag("774") do |link|
+					link_id = link.fetch_first_by_tag("w")
+					link_type = link.fetch_first_by_tag("4")
+					next if !link_id || !link_id.content
+					holding_link = true if link_type && link_type.content && link_type.content == "holding"
+					if holding_link
+						holding = @item.get_collection_holding(link_id.content.to_i)
+						child = holding.source if holding && holding.source
+					else
+						child = @item.get_child_source(link_id.content.to_i)
+					end
+					%>
+					<% if child%>
+						<tr class="row">
+							<th><%= count == 0 ? @editor_profile.get_label("774") : "&nbsp;".html_safe %></th>
+							<td>
+								<% if opac %>
+									<%= link_to child.id.to_s, solr_document_path(child.id.to_s)%>
+								<% elsif is_selection_mode? %>
+									<%= child.id.to_s%>
+								<% else %>
+									<%= application_helper_link_source_id(child.id, "", opac).html_safe %>
+								<% end %>
+								<%= " #{child.composer}" if child.composer != "" %><%= ": " if (child.composer != "" && child.std_title != "") %><i><%= "#{child.std_title}" if child.std_title != "" %></i>
+								<% if holding_link%>
+								 [Through holding <%= link_id.content%>]
+								<%end%>
+							</td>
+						</tr>
+					<%else%>
 					<tr class="row">
-						<th>
-							<%= count == 0 ? @editor_profile.get_label("774") : "&nbsp;".html_safe %>
-						</th>
+						<th>&nbsp;</th>
 						<td>
-							<% if opac %>
-								<%= link_to child.id.to_s, solr_document_path(child.id.to_s)%>
-							<% elsif is_selection_mode? %>
-								<%= child.id.to_s%>
-							<% else %>
-								<%= application_helper_link_source_id(child.id, "", opac).html_safe %>
-							<% end %>
-							<%= " #{child.composer}" if child.composer != "" %><%= ": " if (child.composer != "" && child.std_title != "") %><i><%= "#{child.std_title}" if child.std_title != "" %></i>
+							<%= link_id.content %>: DB link does not exist to this item
 						</td>
 					</tr>
-				<%else%>
-				<tr class="row">
-					<th>&nbsp;</th>
-					<td>
-						<%= link_id.content %>: DB link does not exist to this item
-					</td>
-				</tr>
 				<%end%>
 				<% count = count + 1 %>
 				<% end %>

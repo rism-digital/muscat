@@ -3,13 +3,24 @@
 <% codes_reference = params.include?("codes_reference") ? params["codes_reference"] : "codes"%>
 <% show_error = (!tag_params[codes_reference].include?(marc_subfield.content) && marc_subfield.content) ? "" : "" %>
 
+<%
+if @editor_validation && @editor_validation.validate_subtag?(tag_name, subfield, @item)
+	validate_class, unique_name = @editor_validation.get_subtag_class_name(tag_name, subfield)
+	name_tag = raw "name=\"#{unique_name}\""
+	validate_marker = "validating"
+	validate_level = "warning" if @editor_validation.is_warning?(tag_name, subfield)
+else
+	validate_class = ""
+end
+%>
+
 <% if params["unrestricted"] && !(params["unrestricted"] & current_user.roles.pluck(:name)).empty?
            restricted = ""
         else
            restricted = @restricted
         end %>
 
-<select class="serialize_marc marc_editor_hotkey <%=show_error%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100" <%=restricted %>>
+<select class="serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%> <%=show_error%>" <%=name_tag%> data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100" <%=restricted %>>
 	<option value="">--- <%= label %> ---</option>
 	<% if !tag_params[codes_reference].include?(marc_subfield.content) && marc_subfield.content %>
 	<option value="<%= marc_subfield.content %>" selected><%= marc_subfield.content%></option>

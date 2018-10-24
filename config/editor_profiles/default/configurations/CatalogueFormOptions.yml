@@ -20,6 +20,18 @@
   tag_params: 
     read_only: true
   tag_header: none
+"020": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+"022": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
 "041": 
   layout: 
     fields: 
@@ -55,30 +67,7 @@
       - "srp"
       - "swe"
       - "zxx"
-"020": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 4
-    columns: 4
-"022": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 4
-    columns: 4
-"022": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 4
-    columns: 4
-"041": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 4
-    columns: 4
+
 "044": 
   layout: 
     fields: 

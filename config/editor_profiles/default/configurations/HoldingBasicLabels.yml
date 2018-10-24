@@ -294,6 +294,21 @@ doc_references:
     fr: No. RISM
     de: RISM Dokumentnummer
     en: RISM ID No.
+"035": 
+  label: 
+    it: Num. locale
+    fr: No. local
+    de: Lokale Nummer
+    en: Local Number
+  fields: 
+    a: 
+      label: 
+        it: Num. locale
+        fr: No. local
+        de: Lokale Nummer
+        en: Local ID no.
+      edit_label:
+        en: ""
 "300": 
   label: 
     it: Materiale
@@ -1130,3 +1145,21 @@ Typography:
     fr: "Typographie"
     de: "Typendruck"
     en: "Typography"
+IIIF: 
+  label: 
+    it: "IIIF manifest"
+    fr: "Manifeste IIIF"
+    de: "IIIF manifest"
+    en: "IIIF manifest"
+Digitalization: 
+  label: 
+    it: "Musica digitalizzata"
+    fr: "Sources numériées"
+    de: "Notendigitalisat"
+    en: "Digitized music"
+Other: 
+  label: 
+    it: "Altro"
+    fr: "Autre"
+    de: "Sonstiges"
+    en: "Other"

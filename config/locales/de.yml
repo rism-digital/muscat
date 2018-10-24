@@ -58,6 +58,7 @@ de:
       one_page: "Zeige <b>alle %{n}</b> %{model}"
       multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
       multiple_without_total: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
+      per_page: "Elemente pro Seite:"
       entry:
         one: "Eintrag"
         other: "Einträge"
@@ -309,6 +310,7 @@ de:
   select: "Auswählen"
   create_folder: "Erstelle Ordner"
   append_folder: "Zu Ordner hinzufügen"
+  add_institution: "Institution verlinken"
   add_source: "Quelle verlinken"
   add_person: "Person verlinken"
   archive_unarchive: "Archivieren / Dearchivieren"
@@ -472,6 +474,8 @@ de:
   filter_dist_594l: "Tasteninstrumente"
   filter_dist_594m: "Weitere Instrumente"
   filter_dist_594n: "Basso-continuo-Instrumente"
+  filter_source_name: "Name der Quelle"
+  filter_source_composer: "Komponist der Quelle"
  
   ## Referring lists for auth files
   refers_to_this: "%{model_from} die sich auf diesen %{model_to} beziehen"
@@ -610,6 +614,7 @@ de:
   do_ext_link_not_avail: "(Audio-Dateien sind hier nicht verfügbar.)"
   do_images_title: "Bilder"
   connected_libraries: "Bibliotheken"
+  view_source: "Quelle anzeigen"
  
   mei:
     title: "MEI-Export für folgende Quelle: %{source}"

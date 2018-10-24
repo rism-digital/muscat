@@ -55,6 +55,15 @@ class ApplicationController < ActionController::Base
     return params && params[:select].present?
   end
 
+  def is_folder_selected?
+    return params && params[:q].present? && params[:q][:id_with_integer].present? && params[:q][:id_with_integer].include?("folder_id:")
+  end
+
+  def get_folder_from_params
+    t = params[:q][:id_with_integer].split(":")
+    t.count < 2 ? nil : t[1]
+  end
+
   def get_filter_record_type
     if params.include?(:q) && params[:q].include?("record_type_with_integer")
       params[:q]["record_type_with_integer"]
