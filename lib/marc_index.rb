@@ -1,7 +1,6 @@
 module MarcIndex
   
   def self.attach_marc_index(sunspot_dsl, klass)
-    
     IndexConfig.get_fields(klass).each do |conf_tag, properties|
       
       # index_processor: mash togeather the values of one or more tags/subtags
@@ -47,34 +46,6 @@ module MarcIndex
         
           out = []
 
-          # Get the 852 from holding records. It checks for a
-          # configuration item :holding_record in the index config
-          # Only for sources with no 852 (i.e. prints)
-          if obj.is_a? Source
-            if properties && properties.has_key?(:holding_record)
-              # If the 852 tag is present do not duplicate it
-              if obj.marc.by_tags("852").count == 0
-
-                obj.holdings.each do |h|
-                  begin
-                    holding_marc = h.marc
-                    holding_marc.load_source false
-                  rescue => e
-                    $stderr.puts "Index: Could not load holding record #{h.id} (ref. from #{obj.id})"
-                    $stderr.puts e.message.blue
-                    next
-                  end
-
-                  holding_marc.each_by_tag("852") do |t|
-                    new_852 = t.deep_copy
-                    obj.marc.root.children.insert(obj.marc.get_insert_position("852"), new_852)
-                  end
-
-                end # holdings.each
-              end # count == 0
-            end # properties has
-          end #is_a? Source
-
           if !tag
             # By convention the first three digits
             tag = conf_tag[0..2]
@@ -85,6 +56,28 @@ module MarcIndex
             end
           end
     
+          # Get configured fields for holding records. It checks for a
+          # configuration item :holding_record in the index config
+          # Only for sources with holdings
+          # TODO since this block is called with every configured field we have some considerable overhead
+          if obj.is_a? Source
+            if !obj.holdings.empty? && properties && properties.has_key?(:holding_record)
+              obj.holdings.each do |holding|
+                begin
+                  holding_marc = holding.marc
+                  holding_marc.load_source false
+                  holding_marc.all_values_for_tags_with_subtag(tag, subtag).each do |v|
+                    out << v
+                  end
+                rescue => e
+                  $stderr.puts "Index: Could not load holding record #{h.id} (ref. from #{obj.id})"
+                  $stderr.puts e.message.blue
+                  next
+                end
+              end
+            end
+          end
+
           begin
             tags = obj.marc.by_tags(tag)
 

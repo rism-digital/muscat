@@ -236,7 +236,7 @@ class Institution < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
     
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      Institution.count_by_sql("select count(*) from sources_to_institutions where institution_id = #{self[:id]}")
+      referring_sources.size + holdings.size
     end
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at

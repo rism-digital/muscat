@@ -26,7 +26,13 @@ module ActiveAdmin::ViewsHelper
   def active_admin_embedded_link_list(context, item, link_class, panel_title = nil, &block)
     current_page_name = link_class.to_s.downcase + "_list_page"
     current_page = params[current_page_name]
-    c = item.send("referring_" + link_class.to_s.pluralize.underscore)
+    if link_class == Source && item.respond_to?("referring_sources") && item.respond_to?("referring_holdings")
+      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
+    elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
+      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
+    else
+      c = item.send("referring_" + link_class.to_s.pluralize.underscore)
+    end    
     # do not display the panel if no source attached
     return if c.empty?
     panel_title = I18n.t(:refers_to_this, model_from: link_class.model_name.human(count: 2), model_to: item.model_name.human) if !panel_title
