@@ -313,15 +313,15 @@ it:
   add_person: "Collega Istituzione"
   add_source: "Collega Fonte"
   add_person: "Collega Persona"
-  archive_unarchive: "ARCHIVE / UN-ARCHIVE"
-  archive: "ARCHIVE"
-  unarchive: "UN-ARCHIVE"
+  archive_unarchive: "Archivia / Disarchivia"
+  archive: "Archivia"
+  unarchive: "Disarchivia"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
   show_preview: "Mostra anteprima"
   hide_preview: "Nascondi anteprima"
-  show_validate: "VALIDATE"
+  show_validate: "Valida Record"
   show_history: "Mostra lo storico"
   show_viaf: "Ricerca VIAF"
   save_and_continue: "Salva e continua"
@@ -649,11 +649,11 @@ it:
   
   # editor validation 
   validation:
-    missing_message: "Questo campo deve contendere un valore"
+    missing_message: "Questo campo deve contenere un valore"
     warning_message: "Questo campo dovrebbe contenere un valore"
-    insufficient_rights: "USER HAS INSUFFICIENT RIGHTS TO CREATE A RECORD OF THIS LIBRARY"
-    name_uniqueness: "SHORT NAME OF ENTRY IS ALREADY TAKEN"
-    correct: "THE RECORD HAS NO VALIDATION ERRORS [200]"
+    insufficient_rights: "L'utente non ha i diritti necessari per creare un record con questa biblioteca"
+    name_uniqueness: "Il nome breve dell'elemento è già in uso"
+    correct: "Il record non contiene errori [200]"
 
   incipit_search:
     incipit_search: "Ricerca negli incipit"

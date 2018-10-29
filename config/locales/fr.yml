@@ -321,7 +321,7 @@ fr:
   show_all_groups: "Afficher tous les groupes"
   show_preview: "Afficher l'aperçu"
   hide_preview: "Masquer l'aperçu"
-  show_validate: "VALIDATE"
+  show_validate: "Valider"
   show_history: "Afficher l'historique"
   show_viaf: "Recherche VIAF"
   save_and_continue: "Enregistrer et continuer"
@@ -652,9 +652,9 @@ fr:
   validation:
     missing_message: "Une valeur dans ce champ est nécessaire"
     warning_message: "Une valeur devrait être présente pour ce champ"
-    insufficient_rights: "USER HAS INSUFFICIENT RIGHTS TO CREATE A RECORD OF THIS LIBRARY"
-    name_uniqueness: "SHORT NAME OF ENTRY IS ALREADY TAKEN"
-    correct: "THE RECORD HAS NO VALIDATION ERRORS [200]"
+    insufficient_rights: "L'utilisateur ne dispose pas des droits nécessaires pour créer un enregistrement avec cette bibliothèque."
+    name_uniqueness: "Le nom abrégé de l'élément est déjà utilisé"
+    correct: "L'enregistrement ne contient aucune erreur [200]"
 
   incipit_search:
     incipit_search: "Recherche par incipit"
