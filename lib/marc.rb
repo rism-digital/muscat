@@ -417,7 +417,7 @@ class Marc
     return marc_json
   end
 
-  def to_xml(updated_at = nil, versions = nil, holdings = false)
+  def to_xml(updated_at = nil, versions = nil, holdings = true)
     out = Array.new
     out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
     out << "<!-- Exported from RISM CH (http://www.rism-ch.org/) Date: #{Time.now.utc} -->\n"

@@ -338,7 +338,7 @@ class MarcSource < Marc
     end
   end
   
-  def to_external(updated_at = nil, versions = nil, holdings = false)
+  def to_external(updated_at = nil, versions = nil, holdings = true)
     super(updated_at, versions)
     parent_object = Source.find(get_id)
     # See #176
