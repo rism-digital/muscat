@@ -28,6 +28,8 @@ module ActiveAdmin::ViewsHelper
     current_page = params[current_page_name]
     if link_class == Source && item.respond_to?("referring_sources") && item.respond_to?("referring_holdings")
       c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
+    elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
+      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
     else
       c = item.send("referring_" + link_class.to_s.pluralize.underscore)
     end    

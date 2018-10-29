@@ -78,7 +78,6 @@ class Institution < ApplicationRecord
   attr_accessor :suppress_update_workgroups_trigger
 
   alias_attribute :id_for_fulltext, :id
-  alias_method :referring_holdings, :holdings
 
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
@@ -237,7 +236,7 @@ class Institution < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
     
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      referring_sources.size + referring_holdings.size
+      referring_sources.size + holdings.size
     end
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
