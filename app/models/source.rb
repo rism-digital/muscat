@@ -439,8 +439,12 @@ class Source < ApplicationRecord
   end
   
   def allow_holding?
-    return false if (self.record_type != MarcSource::RECORD_TYPES[:edition])
-    return true
+    if  (self.record_type == MarcSource::RECORD_TYPES[:edition] ||
+         self.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
+         self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content])
+      return true
+    end
+    return false
   end
   
   def fix_ids

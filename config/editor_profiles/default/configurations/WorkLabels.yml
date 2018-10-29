@@ -313,8 +313,8 @@ doc_edit_workflow:
       label:
         it: Numero della parte/sezione di una composizione
         fr: "uméro de partie / section d'une œuvre"
-        de: Anzahl Teile oder Abschnitte eines Werks
-        en: Number of part/section of a work
+        de: "Opus / WV-Nummer"
+        en: "Opus / Thematic index number"
     r:
       label: 
         it: "Tonalità"
