@@ -323,6 +323,8 @@ module MarcControllerActions
       
       @item.set_object_fields
       @item.generate_id if @item.respond_to?(:generate_id)
+      @item.record_type = params[:record_type] if (@item.respond_to? :record_type)
+      
       validator = MarcValidator.new(@item, current_user, false)
       validator.validate
       validator.validate_links
