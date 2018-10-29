@@ -179,10 +179,10 @@ ActiveAdmin.register DigitalObject do
       f.input :attachment, as: :file, :label => I18n.t(:filter_image)
       f.input :lock_version, :as => :hidden
       # passing additional parameters for adding the object link directly after the creation
-      if (params[:object_link_type] &&  params[:object_link_id])
-        f.input :new_object_link_type, :as => :hidden, :input_html => {:value =>  params[:object_link_type]}
-        f.input :new_object_link_id, :as => :hidden, :input_html => {:value =>  params[:object_link_id]}
-      end
+      #if (params[:new_object_link_type] &&  params[:new_object_link_id])
+        f.input :new_object_link_type, :as => :hidden #:input_html => {:value =>  params[:new_object_link_type]}
+        f.input :new_object_link_id, :as => :hidden #:input_html => {:value =>  params[:new_object_link_id]}
+				#end
     end
   end
 
