@@ -3,9 +3,11 @@ include ApplicationHelper
 
 	DEBUG = false
 	
-  def initialize(object, warnings = true)
+  def initialize(object, user=nil, warnings = true)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
+    @user = user
+    @server_rules = @validation.server_rules
     @editor_profile = EditorConfiguration.get_default_layout(object)
     #ap @rules
     @errors = {}
@@ -45,7 +47,7 @@ include ApplicationHelper
         # This tag has to be there if "mandatory"
         if mandatory.count > 0
           #@errors[tag] = "mandatory"
-          add_error(tag, nil, "mandatory")
+          add_error(tag, nil, I18n.t('validation.missing_message'))
           puts "Missing #{tag}, mandatory" if DEBUG
         end
         next
@@ -184,11 +186,17 @@ include ApplicationHelper
         if min < 1000
           add_error("260", "c", "Date too far in the past: #{min} (#{marcsubtag.content})")
         end
-        
       end
     end
   end
 
+  def validate_server_side
+    if @server_rules
+      @server_rules.each do |rule|
+        self.send(rule) rescue next
+      end
+    end
+  end
 
   def validate_unknown_tags
     @unknown_tags = []
@@ -208,7 +216,11 @@ include ApplicationHelper
   def get_errors
     @errors
   end
-  
+
+  def current_user
+    @user
+  end
+
   def to_s
     output = ""
     @errors.each do |tag, subtags|
@@ -275,4 +287,29 @@ include ApplicationHelper
     return false
   end
   
+  # SERVER VALIDATION
+  #User should not be able to create record from foreign library
+  def validate_user_abilities
+    return if @user.has_role?(:admin) || @user.has_role?(:editor)
+    return if @marc.get_id != '__TEMP__' || !@marc.get_siglum
+    sigla = []
+    @user.workgroups.each do |w|
+      sigla.push(*w.get_institutions.pluck(:siglum))
+    end
+    unless sigla.include?(@marc.get_siglum)
+      add_error("852", "", I18n.t('validation.insufficient_rights'))
+    end
+  end
+
+  # Name of catalogue entry should be uniq
+  def validate_name_uniqueness
+    short_title = @marc.get_name
+    return false if short_title.blank?
+    cat = Catalogue.where.not(id: @marc.get_id).where(name: short_title).take
+    if cat
+      add_error("210", "", I18n.t('validation.name_uniqueness'))
+    end
+  end
+
+
 end

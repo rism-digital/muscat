@@ -82,20 +82,8 @@ module MarcControllerActions
       # Set the user name to the model class variable
       # This is used by the VersionChecker module to see if we want a version to be stored
       @item.last_user_save = current_user.name
-      @item.save
 
-      # This uses the AR validation messages for checking server side validation; only used for catalogue && source for now
-      if (@item.is_a?(Catalogue) || @item.is_a?(Source)) && !@item.errors.messages.empty?
-        message = @item.errors.messages[:base].join(";")
-        term = @item.errors.messages[:term].join(";") rescue "-"
-        url = request.env['HTTP_REFERER']
-        par = Rack::Utils.parse_query(URI(url).query)
-        sep = par.any? ? "&" : "?" 
-        respond_to do |format|
-          format.json {  render :json => {:redirect => url + "#{sep}validation_error=#{message}&validation_term=#{term}"}}
-        end
-        return
-      end
+      @item.save
 
       flash[:notice] = "#{model.to_s} #{@item.id} was successfully saved." 
       
@@ -309,6 +297,45 @@ module MarcControllerActions
       redirect_to send(link_function, @item.id, {:show_history => true}), notice: "Deleted snapshot #{params[:version_id]}"
     end
   
+    #############
+    ##Validate ##
+    #############
+    
+    dsl.collection_action :marc_editor_validate, :method => :post do
+      #Get the model we are working on
+      model = self.resource_class
+
+      marc_hash = JSON.parse params[:marc]
+      current_user = User.find(params[:current_user])
+      
+      # This is the tricky part. Get the MARC subclass
+      # e.g. MarcSource or MarcPerson
+      classname = "Marc" + model.to_s
+      # Let it crash is the class is not fond
+      dyna_marc_class = Kernel.const_get(classname)
+      
+      new_marc = dyna_marc_class.new()
+      # Load marc, do not resolve externals
+      new_marc.load_from_hash(marc_hash)
+
+      @item = model.new
+      @item.marc = new_marc
+      
+      @item.set_object_fields
+      @item.generate_id if @item.respond_to?(:generate_id)
+      validator = MarcValidator.new(@item, current_user, false)
+      validator.validate
+      validator.validate_links
+      validator.validate_unknown_tags
+      validator.validate_server_side
+      if validator.has_errors
+        render json: {status: validator.to_s}
+      else
+        render json: {status: I18n.t("validation.correct")}
+      end
+    end
+
+ 
   end
   
 end

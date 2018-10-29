@@ -50,11 +50,15 @@
 	</li>
 	<li class="muscat_icon_link" id="show_preview_li">
 		<a data-scroll-target="show_preview" data-panel="marc_editor_preview" href="#" class="muscat_icon_link muscat_icon_link_preview"><%=(I18n.t :show_preview)%></a>
-	</li>
+  </li>
 	<li class="muscat_icon_link" id="hide_preview_li" hidden>
 		<a data-scroll-target="hide_preview" data-panel="marc_editor_panel" href="#" class="muscat_icon_link muscat_icon_link_preview_hide" hidden="true"><%=(I18n.t :hide_preview)%></a>
 	</li>
-	
+	 <li class="muscat_icon_link" id="show_validate_li">
+		<a data-scroll-target="show_toplevel" data-panel="marc_editor_panel" href="#" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :show_validate)%></a>
+	</li>
+
+
 <% if @item.class.respond_to?("get_viaf") %>
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">

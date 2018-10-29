@@ -291,6 +291,7 @@ es:
   show_all_groups: "Mostrar todas las secciones"
   show_preview: "Mostrar vista anticipada"
   hide_preview: "Ocultar vista anticipada"
+  show_validate: "VALIDATE"
   show_history: "Mostrar historia de modificaciones"
   show_viaf: "Búsqueda VIAF"
   save_and_continue: "Guardar y continuar editando"
@@ -611,6 +612,9 @@ es:
   validation:
     missing_message: "A VALUE IN THIS FIELD IS MANDATORY"
     warning_message: "A VALUE FOR THIS FIELD SHOULD BE PROVIDED"
+    insufficient_rights: "USER HAS INSUFFICIENT RIGHTS TO CREATE A RECORD OF THIS LIBRARY"
+    name_uniqueness: "SHORT NAME OF ENTRY IS ALREADY TAKEN"
+    correct: "THE RECORD HAS NO VALIDATION ERRORS [200]"
 
   incipit_search:
     incipit_search: "INCIPIT SEARCH"

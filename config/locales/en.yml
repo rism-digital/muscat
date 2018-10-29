@@ -320,6 +320,7 @@ en:
   show_all_groups: "Show all sections"
   show_preview: "Show preview"
   hide_preview: "Hide preview"
+  show_validate: "Validate"
   show_history: "Show modification history"
   show_viaf: "VIAF Search"
   save_and_continue: "Save and continue editing"
@@ -649,6 +650,9 @@ en:
   validation:
     missing_message: "A value in this field is mandatory"
     warning_message: "A value for this field should be provided"
+    insufficient_rights: "User has insufficient rights to create a record of this library"
+    name_uniqueness: "Short name of entry is already taken"
+    correct: "The record has no validation errors [200]"
     
   incipit_search:
     incipit_search: "Incipit Search"

@@ -1,120 +1,56 @@
 --- !map:Settings
-#"031":
-#  tags:
-    #a: required
-    #b: required
-    #c: required
-#    e:
-#      required_if:
-#        "031": "m"
-#    n:
-#      required_if:
-#        "031": "p"
-#o: required, warning
-#      required_if:
-#        "031": "p"
-#"041": 
-#  tags:
-#    a:
-#      required_if:
-#        "031": "t"
-# Postponed until further discussion
-#"033": 
-#  tags:
-#    a: required
-"100": 
-  tags:
-    "0": required
-    a: required
-"240":
-  tag_overrides:
-    exclude:
-      m:
-      - collection
-      - theoretica_source
-  tags:
-    "0": mandatory
-    #a: required
-    m: required, warning
-"245": 
-  tags:
-    a: mandatory
-"260": 
-  tags:
-    c: required
-"300": 
-  tags:
-    a: required
-"593": 
-  tags:
-    a: required
-"594": 
-  tags:
-    b: required
-#"595": 
-#  tags:
-#    a:
-#      required_if:
-#        "031": "e"
-"650":
-  tag_overrides:
-    exclude:
-      "0":
-      - collection
-  tags:
-    "0": mandatory
-#"651": 
-#  tags:
-#    "0": required
-#    a: required
-#"657": 
-#  tags:
-#    "0": required
-#    a: required
-#"690": 
-#  tags:
-#    "0": required
-#    a: required
-#    n: required
-#"691": 
-#  tags:
-#    "0": required
-#    a: required
-#    n: required, warning
-#"700": 
-#  tags:
-#    "0": required
-#    a: required
-#    j: required
-#"710": 
-#  tags:
-#    "0": required
-#    a: required
-#    j: required
-#"730": 
-#  tags:
-#    "0": required
-#    a: required
-#"740": 
-#  tags:
-#    a: required
-#"773": 
-#  tags:
-#    w: required
-"852":
-  tag_overrides:
-    exclude:
-      "x":
-      - edition
-      - edition_content
-  tags:
-    c: required
-    x: mandatory
-"856": 
-  tags:
-    z:
-      required_if:
-        "856": "u"
-    x:
-      required_if:
-        "856": "u"
+server:
+  - validate_user_abilities
+client:
+  "100": 
+    tags:
+      "0": required
+      a: required
+  "240":
+    tag_overrides:
+      exclude:
+        m:
+        - collection
+        - theoretica_source
+    tags:
+      "0": mandatory
+      m: required, warning
+  "245": 
+    tags:
+      a: mandatory
+  "260": 
+    tags:
+      c: required
+  "300": 
+    tags:
+      a: required
+  "593": 
+    tags:
+      a: required
+  "594": 
+    tags:
+      b: required
+  "650":
+    tag_overrides:
+      exclude:
+        "0":
+        - collection
+    tags:
+      "0": mandatory
+  "852":
+    tag_overrides:
+      exclude:
+        "x":
+        - edition
+        - edition_content
+    tags:
+      c: required
+      x: mandatory
+  "856": 
+    tags:
+      z:
+        required_if:
+          "856": "u"
+      x:
+        required_if:
+          "856": "u"

@@ -321,6 +321,7 @@ it:
   show_all_groups: "Mostra tutti i gruppi"
   show_preview: "Mostra anteprima"
   hide_preview: "Nascondi anteprima"
+  show_validate: "VALIDATE"
   show_history: "Mostra lo storico"
   show_viaf: "Ricerca VIAF"
   save_and_continue: "Salva e continua"
@@ -650,6 +651,9 @@ it:
   validation:
     missing_message: "Questo campo deve contendere un valore"
     warning_message: "Questo campo dovrebbe contenere un valore"
+    insufficient_rights: "USER HAS INSUFFICIENT RIGHTS TO CREATE A RECORD OF THIS LIBRARY"
+    name_uniqueness: "SHORT NAME OF ENTRY IS ALREADY TAKEN"
+    correct: "THE RECORD HAS NO VALIDATION ERRORS [200]"
 
   incipit_search:
     incipit_search: "Ricerca negli incipit"
