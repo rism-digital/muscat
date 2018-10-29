@@ -44,7 +44,7 @@ client:
         - edition
         - edition_content
     tags:
-      c: required
+      c: required, warning
       x: mandatory
   "856": 
     tags:
