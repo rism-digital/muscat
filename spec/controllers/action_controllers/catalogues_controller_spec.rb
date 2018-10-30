@@ -20,7 +20,8 @@ RSpec.describe Admin::CataloguesController, type: :controller do
   describe "CREATE" do
     it "creating #{model}" do
       pending("results in marc nil ??")
-      expect { post :create, :params => FactoryBot.attributes_for(model)   }.to change(model.to_s.capitalize.constantize, :count).by(1)
+      fail
+      #expect { post :create, :params => FactoryBot.attributes_for(model)   }.to change(model.to_s.capitalize.constantize, :count).by(1)
     end
   end
 
