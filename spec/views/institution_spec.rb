@@ -10,17 +10,16 @@ RSpec.describe "Institutions",  :type => :feature, js: true do
   end
 
   describe "Institution page" do
-    it "should contain a map" do
+    it "should not contain a map" do
       visit "admin/institutions"
-      expect(page).to have_css("#sidebar")
+      expect(page).to_not have_css("#map")
     end
-    it "should contain a sidebar" do
-      visit "admin/institutions"
-      fill_in 'q_110g_facet_contains', with: 'D-Mbs'
-      click_button('Filter') do
-        expect(page).to have_css("#sidebar")
-        expect(page).to have_css("#map")
-      end
+  end
+
+  describe "BSB page" do
+    it "should contain a map" do
+      visit "admin/institutions/30000882"
+      expect(page).to have_css("#map")
     end
   end
 end
