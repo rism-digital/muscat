@@ -8,13 +8,12 @@ RSpec.describe Admin::SourcesController, type: :controller do
     sign_in user
   end
 
-
   context "when user creates a record from foreign library" do
     it "there should be a validation error notice" do
       marc_params = FactoryBot.attributes_for(:foreign_marc_source)[:marc] 
       post :marc_editor_validate, :params => {marc: marc_params, current_user: user.id} 
       hash = JSON.parse(response.body)
-      expect(hash["status"]["852"]["x"].first).to eq "User has insuffiecent rights to create record of this library"
+      expect(hash["status"]).to match /insufficient rights/
     end
   end
 
@@ -23,10 +22,9 @@ RSpec.describe Admin::SourcesController, type: :controller do
       marc_params = FactoryBot.attributes_for(:marc_source)[:marc] 
       post :marc_editor_validate, :params => {marc: marc_params, current_user: user.id} 
       hash = JSON.parse(response.body)
-      expect(hash["status"]["852"]["x"]).to eq nil
+      expect(hash["status"]).to match /\[200\]/
     end
   end
-
 
   context "when 856$a is given" do 
     it "then 856$x should be required" do
