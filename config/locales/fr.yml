@@ -164,6 +164,9 @@ fr:
       workgroup:
         one: "Groupe"
         other: "Groupes"
+      holding:
+        one: "Holding"
+        other: "Holdings"
       institution:
         one: "Institution"
         other: "Institutions"

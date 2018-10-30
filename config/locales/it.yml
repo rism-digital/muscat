@@ -164,6 +164,9 @@ it:
       workgroup:
         one: "Gruppo"
         other: "Gruppi"
+      holding:
+        one: "Holding"
+        other: "Holdings"
       institution:
         one: "Istituzione"
         other: "Istituzioni"

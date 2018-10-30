@@ -163,6 +163,9 @@ en:
       workgroup:
         one: "Group"
         other: "Groups"
+      holding:
+        one: "Holding"
+        other: "Holdings"
       institution:
         one: "Institution"
         other: "Institutions"
