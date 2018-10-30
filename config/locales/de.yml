@@ -164,6 +164,9 @@ de:
       workgroup:
         one: "Gruppe"
         other: "Gruppen"
+      holding:
+        one: "Holding"
+        other: "Holdings"
       institution:
         one: "Körperschaft"
         other: "Körperschaften"

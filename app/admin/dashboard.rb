@@ -10,6 +10,8 @@ ActiveAdmin.register_page "Dashboard" do
       store_or_restore(:dashboard_catalogue_type, :created)
       store_or_restore(:dashboard_institution_owner, :user)
       store_or_restore(:dashboard_institution_type, :created)
+      store_or_restore(:dashboard_holding_owner, :user)
+      store_or_restore(:dashboard_holding_type, :created)
       store_or_restore(:dashboard_quantity, 10)
     end
     
@@ -126,6 +128,25 @@ ActiveAdmin.register_page "Dashboard" do
               column (I18n.t :filter_siglum), :siglum
               column (I18n.t :filter_location_and_name), :name
               column (I18n.t :filter_place), :place
+            end
+          else
+            text_node(I18n.t('dashboard.no_items'))
+          end
+        end
+      end
+    end
+		
+    user_id = (params[:dashboard_holding_owner].to_s == "user") ? current_user.id : -1
+    holdings = dashboard_find_recent(Holding, params[:dashboard_quantity], params[:dashboard_holding_type], user_id, 15)
+    columns do
+      column do
+        panel "#{Holding.model_name.human(count: 2)}" do
+          if holdings.count > 0
+            table_for holdings.map do
+              column (I18n.t :filter_id) {|holding| link_to(holding.id, edit_admin_holding_path(holding)) } 
+              column (I18n.t :filter_siglum), :lib_siglum
+              column (I18n.t :filter_std_title)  {|holding| holding.source.std_title}
+              column (I18n.t :filter_author)  {|holding| holding.source.composer}
             end
           else
             text_node(I18n.t('dashboard.no_items'))

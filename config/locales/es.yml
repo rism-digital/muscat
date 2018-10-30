@@ -161,6 +161,9 @@ es:
       workgroup:
         one: "Grupo"
         other: "Grupos"
+      holding:
+        one: "Holding"
+        other: "Holdings"
       institution:
         one: "Institución"
         other: "Instituciones"
