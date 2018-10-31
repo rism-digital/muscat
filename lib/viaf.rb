@@ -127,6 +127,7 @@ module Viaf
         end
       end
       return result
+
     end
 
 

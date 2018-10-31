@@ -124,6 +124,9 @@ function _update_marc_tag(target, data) {
     if (model == "works" && target == "100" && code == "a") {
       subfield = $("#100a");
     }
+    if (model == "works" && target == "100" && code == "0") {
+      subfield = $("input[data-tag='100'][data-subfield='0']");
+    }
     subfield.val(data[code]);
     subfield.css("background-color", "#ffffb3");
   }
@@ -135,7 +138,8 @@ function _new_marc_tag(target, data) {
   parent_dl = field.parents(".tag_group").children(".marc_editor_tag_block");
   new_dt = placeholder.clone();
   for (code in data){
-    subfield = new_dt.find(".subfield_entry[data-tag='" + target + "'][data-subfield='" + code + "'],.marc_editor_hotkey[data-field='" + target + "'][data-subfield='" + code + "']").first()
+    subfield = new_dt.find(
+      ".subfield_entry[data-tag='" + target + "'][data-subfield='" + code + "'],.serialize_marc[data-tag='" + target + "'][data-subfield='" + code + "'], .marc_editor_hotkey[data-field='" + target + "'][data-subfield='" + code + "']").first()
     subfield.val(data[code]);
     subfield.css("background-color", "#ffffb3");
   }
