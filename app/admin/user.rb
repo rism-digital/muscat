@@ -105,10 +105,10 @@ ActiveAdmin.register User do
         f.input :name, :input_html => {:disabled => true}
         f.input :email, :input_html => {:disabled => true}
       end
-
-
+      
       if can? :update, User
-        f.input :notifications
+        ## size does not work unless there is a dummy class. Hooray!
+        f.input :notifications, :input_html => { :class => 'placeholder', :rows => 2, :style => 'width:50%'}
         f.input :notification_type, as: :select, multiple: false, collection: [:each, :daily, :weekly]
       end
       if can? :manage, User
@@ -119,6 +119,7 @@ ActiveAdmin.register User do
         f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published, :deleted]
       end
     end
+    render partial: 'notifications_help', locals: { f: f }
   end
   
   sidebar :actions, :only => [:edit, :new, :update] do

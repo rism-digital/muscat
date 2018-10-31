@@ -1,0 +1,38 @@
+<div class="panel tab_panel">
+  <div class="guidelines_panel_content">
+    <div class="guidelines">
+      
+      <h3>Comment utiliser les notifications</h3>
+      <p>Les notifications vous permettent de saisir des règles de texte qui, si une correspondance est trouvée, envoient une notification à l'utilisateur lorsque la source correspondante est enregistrée..<br>
+        Par exemple, avec cette règle chaque fois qu'une source contenant les filles de la bibliothèque CH-BEl est enregistrée, le système transfère une notification.:</p>
+        <pre>lib_siglum:CH-BEl</pre>
+        Les règles doivent être entrées une par ligne, chacune correspondant à une notification différente:
+<pre>lib_siglum:CH-BEl
+composer:Bach</pre>
+          Cela signifie: créer une notification pour chaque source avec lib_siglum CH-BEl modifié, créer une notification pour chaque source avec le compositeur Bach modifié.<br>
+          Les règles peuvent inclure wildcards:
+          <pre>lib_siglum:CH*</pre>
+          Crée une notification chaque fois qu'une source avec lib_siglum commençant par CH est enregistrée.<br>
+          Actuellement, les notifications ne sont possibles que pour les <b> Sources </b> et pour les champs suivants:
+          <p>
+            <ul>
+              <li><b>std_title</b> <i>Titre normalisé</i></li>
+              <li><b>composer</b> <i>Nom normalisé du compositeur</i></li>
+              <li><b>title</b> <i>Titre sur la source</i></li>
+              <li><b>shelf_mark</b> <i>Notation de la bibliothèque</i></li>
+            </ul>
+          </p>
+          
+          La liste déroulante vous permet de choisir la cadence globale des notifications:
+          <p>
+            <ul>
+              <li><b>each</b> Envoyer une notification chaque fois qu'une source est enregistrée (avec une période de grâce d'une heure pour éviter plusieurs sauvegardes fermées)</li>
+              <li><b>daily</b> Une liste de toutes les sources est envoyée quotidiennement</li>
+              <li><b>title</b> Une liste de toutes les sources est envoyée chaque semaine</li>
+              <li><b>pas de sélection</b> Les notifications sont désactivées</li>
+            </ul>
+          </p>
+          
+    </div>
+  </div>
+</div>
