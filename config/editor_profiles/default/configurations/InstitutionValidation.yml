@@ -1,0 +1,6 @@
+--- !map:Settings
+client:
+  "110":
+    tags:
+      a: mandatory
+
