@@ -8,17 +8,9 @@ RSpec.describe "Institutions",  :type => :feature, js: true do
     fill_in :user_password, :with => user.password
     click_button('Login')
   end
-
-  describe "Institution page" do
-    it "should not contain a map" do
-      visit "admin/institutions"
-      expect(page).to_not have_css("#map")
-    end
-  end
-
   describe "BSB page" do
     it "should contain a map" do
-      visit "admin/institutions/30000882"
+      visit "admin/institutions/30000655"
       expect(page).to have_css("#map")
     end
   end
