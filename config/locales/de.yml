@@ -188,6 +188,9 @@ de:
       user:
         one: "Benutzer"
         other: "Benutzer"
+      work:
+        one: "Werk"
+        other: "Werk"
   
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Auswahl der Vorlage"

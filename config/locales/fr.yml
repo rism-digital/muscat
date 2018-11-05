@@ -188,6 +188,9 @@ fr:
       user:
         one: "Utilisateur"
         other: "Utilisateurs"
+      work:
+        one: "WORK"
+        other: "WORK"
 
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Choisir un modèle"

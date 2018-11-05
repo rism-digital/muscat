@@ -321,6 +321,7 @@ doc_edit_workflow:
         fr: "Tonalité"
         de: Tonart
         en: Key or mode
+      comment: "(rdaw:P10221)"
     t:
       label:
         it: Titolo della composizione

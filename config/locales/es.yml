@@ -185,6 +185,9 @@ es:
       user:
         one: "Usuario"
         other: "Usuarios"
+      work:
+        one: "WORK"
+        other: "WORK"
         
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Seleccione nuevo modelo"

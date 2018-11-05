@@ -188,6 +188,9 @@ it:
       user:
         one: "Utente"
         other: "Utenti"
+      work:
+        one: "WORK"
+        other: "WORK"
       
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Seleziona un nuovo template"
