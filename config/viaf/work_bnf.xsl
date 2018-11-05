@@ -92,6 +92,15 @@
 						<xsl:with-param name="by" select="'_DOLLAR_'" />
 					</xsl:call-template>
 				</xsl:when>
+    
+        <xsl:when test="../@tag='440' and @code='a'">
+					<xsl:call-template name="string-replace-all">
+						<xsl:with-param name="text" select="concat(text(), ', ', ../marc:subfield[@code='b'])" />
+						<xsl:with-param name="replace" select="'$'" />
+						<xsl:with-param name="by" select="'_DOLLAR_'" />
+					</xsl:call-template>
+				</xsl:when>
+
 
 				<xsl:otherwise>
 					<xsl:call-template name="string-replace-all">
