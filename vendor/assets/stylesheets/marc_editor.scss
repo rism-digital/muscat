@@ -382,7 +382,10 @@ h3 {
         a.muscat_icon_link_save_exit {
             background: image-url("/images/marc-icons/save-exit.png") no-repeat;
         }
-		a.muscat_icon_link_viaf {
+        a.muscat_icon_link_validate{
+            background: image-url("/images/marc-icons/validate.png") no-repeat;
+        }
+        a.muscat_icon_link_viaf {
             background: image-url("/images/marc-icons/viaf.png") no-repeat;
         }
     }
