@@ -683,7 +683,20 @@ doc_references:
         fr: Type de lien
         de: Linktyp
         en: Link type
-        
+"963": 
+  label: 
+    it: Rilegato in
+    fr: Relié en
+    de: Eingesprungen
+    en: Bound with
+  fields: 
+    u: 
+      label: 
+        it: Rilegatura
+        fr: Relié en
+        de: Eingesprungen
+        en: Bound with
+      comment: "NEW IN 2018!"
 ################
 
 show_admin: 
