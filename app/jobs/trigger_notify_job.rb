@@ -17,7 +17,7 @@ class TriggerNotifyJob < ProgressJob::Base
 
     User.where(notification_type: :each).each do |user|
       matcher = NotificationMatcher.new(@object, user)
-      
+
       if matcher.matches?
         ModificationNotification.notify(user, {@object.id => matcher.get_matches}).deliver_now
       end
