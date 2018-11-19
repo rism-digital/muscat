@@ -80,6 +80,8 @@ ActiveAdmin.register User do
       row I18n.t(:roles) do |user|
            user.get_roles.join(", ")
       end
+      row :notifications
+      row :notification_type
       row :sign_in_count
       row :created_at
       row :updated_at
