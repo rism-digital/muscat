@@ -20,7 +20,12 @@ ActiveAdmin.register User do
 =end
 
   collection_action :list, method: :post do
-    users = User.all.collect {|u| {name: u.name, id: u.name.gsub(" ", "_")}}
+    params.permit!
+    if params.include?(:q)
+      users = User.where("name LIKE ?", "#{params[:q]}%").collect {|u| {name: u.name, id: u.name.gsub(" ", "_")}}
+    else
+      users = []
+    end
     respond_to do |format|
         format.json { render json: users  }
     end
