@@ -1,7 +1,28 @@
 Muscat Changelog
 ================
 
-v 5.0
+v 5.0-rc2
+* Spec for openstreetmap to be reachable
+* Added BNF converter for work viaf interface
+* Rspec for institution view containing a map
+* Fixed further wrong composers in 400 from work viaf interface
+* Fix viaf import BNF converter for works
+* Added work to marc configuration page
+* #703 fixed creating new works after update
+* Better guidelines rspec
+* Add a proper "validation" icon
+* Add a label for 963
+* Make 930 available for non-editors
+* Fix bug in notification with multiple identical patterns
+* Show the notifications
+* Update Tribute
+* Fix tribute.js issue with firefox (max-height in css), make menu nicer, add filtering only on the beginning
+* Use a regex to match the second name too
+* Move 973, add scripts to test migration
+* Send comments to everybody
+* Add labels for 963 temp field
+
+v 5.0-rc1
 * Remove deprecated code from User
 * Add global triggers
 * Prettify validation action
