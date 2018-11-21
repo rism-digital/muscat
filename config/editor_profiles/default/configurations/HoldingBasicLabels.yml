@@ -439,16 +439,16 @@ doc_references:
         en: ""
 "563": 
   label: 
-    it: Rilegatura
-    fr: Reliure
-    de: Einband
+    it: Nota sulla rilegatura
+    fr: Reliure note
+    de: Einband note
     en: Binding note
   fields: 
     a: 
       label: 
-        it: Rilegatura
-        fr: Reliure
-        de: Einband
+        it: Nota sulla rilegatura
+        fr: Reliure note
+        de: Einband note
         en: Binding note
       edit_label: 
         en: ""
@@ -683,9 +683,22 @@ doc_references:
         fr: Type de lien
         de: Linktyp
         en: Link type
+"963": 
+  label: 
+    it: Non-migrated bound with value from 563 
+    fr: Non-migrated bound with value from 563
+    de: Non-migrated bound with value from 563
+    en: Non-migrated bound with value from 563
+  fields: 
+    u: 
+      label: 
+        it: Temp val
+        fr: Temp val
+        de: Temp val
+        en: Temp val
 "973": 
   label: 
-    it: Rilegato in
+    it: Rilegato con
     fr: Relié en
     de: Eingesprungen
     en: Bound with
