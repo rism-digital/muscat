@@ -18,7 +18,6 @@ groups:
     - '541'
     - '035'
     - '856'
-    - '963'
   edit_names:
     all_tags: 
     - '700'
@@ -29,6 +28,8 @@ groups:
     - '300'
     - '592'
     - '563'
+    - '963'
+    - '973'
 
   edit_references:
     all_tags: 

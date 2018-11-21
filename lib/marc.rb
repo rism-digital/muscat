@@ -327,7 +327,7 @@ class Marc
   def get_parent
     parent = nil
     # holding record pointing to a collection
-    if node = first_occurance("963")
+    if node = first_occurance("973")
       parent = node.foreign_object
     # item in collection
     elsif node = first_occurance("773", "w")
