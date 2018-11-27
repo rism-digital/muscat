@@ -41,6 +41,7 @@ fields:
   "031t":
   "033a":
   "035a":
+      :holding_record: true
   "041a":
   "041e":
   "041h":
@@ -113,6 +114,7 @@ fields:
       :store: true
   "511a":
   "518a":
+      :holding_record: true
   "520a":
   "525a":
   "533a":
@@ -123,15 +125,19 @@ fields:
   "546a":
   "555a":
   "561a":
+      :holding_record: true
   "5615":
   "562a":
   "5625":
   "563a":
+      :holding_record: true
   "5635":
   "590a":
   "590b":
   "591a":
+      :holding_record: true
   "592a":
+      :holding_record: true
   "593a":
       :store: true
   "593a_filter":
@@ -161,6 +167,7 @@ fields:
   "599a":
   "650a":
   "651a":
+      :holding_record: true
   "657a":
   "690a":
       :store: true
@@ -172,12 +179,14 @@ fields:
       :store: true
   "691n":
   "700a":
+      :holding_record: true
   "700d":
   "700e":
   "700t":
   "7004":
   "7005":
   "710a":
+      :holding_record: true
   "710b":
   "710k":
   "710e":

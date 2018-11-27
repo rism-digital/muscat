@@ -118,7 +118,14 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	} else {
 		$("#validation_warnings").hide();
 	}
-	
+
+  var valid = marc_editor_validate();
+
+  if (!valid.responseJSON["status"].endsWith("[200]")) {
+		return; // Give the user a chance to resubmit
+  }
+
+
 	if (!form_valid) {
 		$('#main_content').unblock();
 		$('#sections_sidebar_section').unblock();
@@ -217,6 +224,42 @@ function _marc_editor_preview( source_form, destination, rails_model ) {
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
 			alert ("Error loading preview. (" 
+					+ textStatus + " " 
+					+ errorThrown);
+		}
+	});
+}
+
+function _marc_editor_validate( source_form, destination, rails_model ) {
+	form = $('form', "#" + source_form);
+	json_marc = serialize_marc_editor_form(form);
+	url = "/admin/" + rails_model + "/marc_editor_validate";
+	return $.ajax({
+		success: function(data) {
+      var message_box = $("#marc_errors");
+      var message = data["status"];
+      if (message.endsWith("[200]")){
+        message_box.html(message).removeClass('flash_error').addClass('flash_notice').css('visibility', 'visible');
+      } 
+      else{
+        message_box.html(message.replace(/\t/g, "&nbsp;").replace(/\n/g, "<br>")).removeClass('flash_notice').addClass('flash_error').css('visibility', 'visible');
+		  }
+    },
+		data: {
+			marc: JSON.stringify(json_marc), 
+			marc_editor_dest: destination, 
+			id: $('#id').val(),
+			record_type: $('#record_type').val(),
+      current_user: $('#current_user').find('a').attr('href').split("/")[3],
+		},
+		dataType: 'json',
+		timeout: 60000,
+		type: 'post',
+		url: url,
+    // FIXME make this async
+   'async': false, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			alert ("Error in validation process. (" 
 					+ textStatus + " " 
 					+ errorThrown);
 		}
@@ -385,6 +428,11 @@ function marc_editor_send_form(redirect) {
 
 function marc_editor_show_preview() {
     _marc_editor_preview('marc_editor_panel','marc_editor_preview', marc_editor_get_model());
+    window.scrollTo(0, 0);
+}
+
+function marc_editor_validate() {
+    return _marc_editor_validate('marc_editor_panel','marc_editor', marc_editor_get_model());
     window.scrollTo(0, 0);
 }
 	

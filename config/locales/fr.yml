@@ -58,6 +58,7 @@ fr:
       one_page: "Affichage des <b>%{n}</b> %{model}"
       multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"
       multiple_without_total: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Eléments par page:"
       entry:
         one: "entrée"
         other: "entrées"
@@ -163,6 +164,9 @@ fr:
       workgroup:
         one: "Groupe"
         other: "Groupes"
+      holding:
+        one: "Holding"
+        other: "Holdings"
       institution:
         one: "Institution"
         other: "Institutions"
@@ -184,6 +188,9 @@ fr:
       user:
         one: "Utilisateur"
         other: "Utilisateurs"
+      work:
+        one: "WORK"
+        other: "WORK"
 
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Choisir un modèle"
@@ -309,6 +316,7 @@ fr:
   select: "Sélectionner"
   create_folder: "Ajouter à un nouveau dossier"
   append_folder: "Ajouter à un dossier existant"
+  add_person: "Attacher une institution"
   add_source: "Attacher une source"
   add_person: "Attacher une personne"
   archive_unarchive: "Archiver / désarchiver"
@@ -319,6 +327,7 @@ fr:
   show_all_groups: "Afficher tous les groupes"
   show_preview: "Afficher l'aperçu"
   hide_preview: "Masquer l'aperçu"
+  show_validate: "Valider"
   show_history: "Afficher l'historique"
   show_viaf: "Recherche VIAF"
   save_and_continue: "Enregistrer et continuer"
@@ -471,7 +480,9 @@ fr:
   filter_dist_594l: "Instruments à clavier"
   filter_dist_594m: "Autres instruments"
   filter_dist_594n: "Instruments de basse continue"
- 
+  filter_source_name: "Nom de la source"
+  filter_source_composer: "Compositeur de la source"
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} se référant à cet(te) %{model_to}"
 
@@ -609,7 +620,8 @@ fr:
   do_ext_link_not_avail: "(Fichiers audio non disponibles depuis cet ordinateur)"
   do_images_title: "Images"
   connected_libraries: "Institutions"
-  
+  view_source: "Montrer la source"
+   
   mei:
     title: "Export en MEI de la source %{source}"
     parameters: "Paramètres"
@@ -646,6 +658,9 @@ fr:
   validation:
     missing_message: "Une valeur dans ce champ est nécessaire"
     warning_message: "Une valeur devrait être présente pour ce champ"
+    insufficient_rights: "L'utilisateur ne dispose pas des droits nécessaires pour créer un enregistrement avec cette bibliothèque."
+    name_uniqueness: "Le nom abrégé de l'élément est déjà utilisé"
+    correct: "L'enregistrement ne contient aucune erreur [200]"
 
   incipit_search:
     incipit_search: "Recherche par incipit"

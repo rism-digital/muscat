@@ -82,7 +82,7 @@ class Work < ApplicationRecord
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
       PaperTrail.request(enabled: false) do
-        :save
+        save
       end
     end
   end
@@ -100,7 +100,7 @@ class Work < ApplicationRecord
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
   
-    new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc"))
+    new_marc = MarcWork.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc"))
     new_marc.load_source true
     
     new_100 = MarcNode.new("work", "100", "", "1#")

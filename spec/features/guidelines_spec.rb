@@ -11,8 +11,8 @@ RSpec.describe Admin::GuidelinesController, type: :feature do
   describe "guidelines documentation" do
     it "version number should be equal to muscat version" do
       visit "admin/guidelines"
-      muscat_version = page.find("#footer").text.split("/")[1].split("-")[0]
-      guidelines_version= page.find_all(:xpath, ".//h3").first.text.split(" ")[1]
+      muscat_version = page.find("#footer").text.split("/")[1].gsub(/[^0-9]/, "")[0..1]
+      guidelines_version= page.find_all(:xpath, ".//h3").first.text.split(" ")[1].gsub(/[^0-9]/, "")[0..1]
       expect(guidelines_version).to eq(muscat_version)
     end
   end

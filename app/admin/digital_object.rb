@@ -45,11 +45,11 @@ ActiveAdmin.register DigitalObject do
           redirect_to admin_digital_object_path(resource.id)
           return
         end
-        failure.html do
-          flash[:error] = "The digital object could not be created"
-          redirect_to collection_path
-          return
-        end
+#        failure.html do
+#          flash[:error] = "The digital object could not be created"
+#          redirect_to collection_path
+#          return
+#        end
       end
     end
     
@@ -106,7 +106,7 @@ ActiveAdmin.register DigitalObject do
   filter :attachment_content_type, :label => proc {I18n.t(:filter_content_type)}
   filter :attachment_updated_at, :label => proc {I18n.t(:updated_at)}
   
-  index :as => :grid, :download_links => [:xml] do |obj|
+  index :as => :grid, :download_links => false do |obj|
     div do
         link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
     end
@@ -179,14 +179,14 @@ ActiveAdmin.register DigitalObject do
       f.input :attachment, as: :file, :label => I18n.t(:filter_image)
       f.input :lock_version, :as => :hidden
       # passing additional parameters for adding the object link directly after the creation
-      if (params[:object_link_type] &&  params[:object_link_id])
-        f.input :new_object_link_type, :as => :hidden, :input_html => {:value =>  params[:object_link_type]}
-        f.input :new_object_link_id, :as => :hidden, :input_html => {:value =>  params[:object_link_id]}
-      end
+      #if (params[:new_object_link_type] &&  params[:new_object_link_id])
+        f.input :new_object_link_type, :as => :hidden #:input_html => {:value =>  params[:new_object_link_type]}
+        f.input :new_object_link_id, :as => :hidden #:input_html => {:value =>  params[:new_object_link_id]}
+				#end
     end
   end
 
-  sidebar :actions, :only => [:edit, :new, :update] do
+  sidebar :actions, :only => [:edit, :new, :update, :create] do
     render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => digital_object }
   end
   

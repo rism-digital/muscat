@@ -24,7 +24,7 @@ class CommentNotifications < ApplicationMailer
     
     users = all_comments.map {|c| c.author_id}
     users << @resource.wf_owner
-    users += parse_comment(comment.body)
+    all_comments.each {|c| users += parse_comment(c.body)}
     users.compact.uniq! # Users can be duplicated
     users -= [comment.author_id] # Don't send the comment to myself!
 

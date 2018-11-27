@@ -26,7 +26,13 @@ module ActiveAdmin::ViewsHelper
   def active_admin_embedded_link_list(context, item, link_class, panel_title = nil, &block)
     current_page_name = link_class.to_s.downcase + "_list_page"
     current_page = params[current_page_name]
-    c = item.send("referring_" + link_class.to_s.pluralize.underscore)
+    if link_class == Source && item.respond_to?("referring_sources") && item.respond_to?("referring_holdings")
+      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
+    elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
+      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
+    else
+      c = item.send("referring_" + link_class.to_s.pluralize.underscore)
+    end    
     # do not display the panel if no source attached
     return if c.empty?
     panel_title = I18n.t(:refers_to_this, model_from: link_class.model_name.human(count: 2), model_to: item.model_name.human) if !panel_title
@@ -42,12 +48,16 @@ module ActiveAdmin::ViewsHelper
     return params && params[:select].present?
   end
   
+  def is_folder_selected?
+    return params && params[:q].present? && params[:q][:id_with_integer].present? && params[:q][:id_with_integer].include?("folder_id:")
+  end
+
   def get_filter_record_type
     if params.include?(:q) && params[:q].include?("record_type_with_integer")
       params[:q]["record_type_with_integer"]
     end
   end
-	
+
   def active_admin_user_wf( context, item )   
     context.panel (I18n.t :filter_wf) do
       context.attributes_table_for item  do
@@ -217,12 +227,12 @@ module ActiveAdmin::ViewsHelper
     
   end
 
-	def active_admin_stored_from_hits(all_hits, object, field)
-		hits = all_hits.select {|h| h.to_param == object.id.to_s}
-		if hits && hits.count > 0
-			hits.first.stored(field).to_s
-		end
-	end
+  def active_admin_stored_from_hits(all_hits, object, field)
+    hits = all_hits.select {|h| h.to_param == object.id.to_s}
+    if hits && hits.count > 0
+      hits.first.stored(field).to_s
+    end
+  end
 
   def local_sorting( codes, editor_profile )
     local_hash = Hash.new
@@ -237,7 +247,7 @@ module ActiveAdmin::ViewsHelper
     l = length - truncate_string.mb_chars.length
     text.mb_chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
   end
-	
+
   def dashboard_find_recent(model, limit, modification, user, days = 7) 
     modif_at = modification.to_s + "_at"
     if user != -1

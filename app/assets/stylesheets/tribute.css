@@ -3,25 +3,34 @@
   top: 0;
   left: 0;
   height: auto;
-  max-height: 300px;
+  max-height: 250px;
   max-width: 500px;
   overflow: auto;
   display: block;
   z-index: 999999; }
   .tribute-container ul {
-    margin: 0;
+    margin: 0px;
     margin-top: 2px;
+
+    background: white;
+    color: black;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+
     padding: 0;
     list-style: none;
-    background: #efefef; }
+	}
   .tribute-container li {
     padding: 5px 5px;
     cursor: pointer; }
     .tribute-container li.highlight, .tribute-container li:hover {
       background: #ddd; }
     .tribute-container li span {
-      font-weight: bold; }
+      font-weight: bold; 
+    color: #1b4e7d;}
     .tribute-container li.no-match {
       cursor: default; }
   .tribute-container .menu-highlighted {
-    font-weight: bold; }
+    font-weight: bold; 
+  }

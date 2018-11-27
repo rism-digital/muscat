@@ -1,6 +1,114 @@
 Muscat Changelog
 ================
 
+v 5.0-rc2
+* Spec for openstreetmap to be reachable
+* Added BNF converter for work viaf interface
+* Rspec for institution view containing a map
+* Fixed further wrong composers in 400 from work viaf interface
+* Fix viaf import BNF converter for works
+* Added work to marc configuration page
+* #703 fixed creating new works after update
+* Better guidelines rspec
+* Add a proper "validation" icon
+* Add a label for 963
+* Make 930 available for non-editors
+* Fix bug in notification with multiple identical patterns
+* Show the notifications
+* Update Tribute
+* Fix tribute.js issue with firefox (max-height in css), make menu nicer, add filtering only on the beginning
+* Use a regex to match the second name too
+* Move 973, add scripts to test migration
+* Send comments to everybody
+* Add labels for 963 temp field
+
+v 5.0-rc1
+* Remove deprecated code from User
+* Add global triggers
+* Prettify validation action
+* Add checks so not each saving triggers a mail
+* Removing AR validator and adding test case
+* Display of error messages in editor
+* Add index on updated_at and created_at on sources to speed up time-based lookup
+* Improve compatibility with crono job
+* [RSPEC] adding at least one validation expectation
+* [RSPEC] adding additional expecations
+* [RSPEC] checking validation controller
+* Solve error that makes jobs die
+* Update installation for Ubuntu 18.04
+* Custom Arbre component for displaying comments grouped by resource_id/type
+* Allow for conversation and table view for comments
+* Using namespace attribute for archiving comments
+* Tab cleanup
+* Fix deletion of linked sources
+* Update gems
+* Fix deprecation warning
+* Fix missing it translations
+* Drop internal remarks (599/667) from to_external
+* Add cookieconsent (https://github.com/insites/cookieconsent) for testing
+* Update fr.yml
+* Update es.yml
+* Add configurable privacy page
+* Fix #678: Rename 588
+* Fix #677: Rename 856
+* Fix #686: Adding 400a to viaf interface 
+* Fix #678: Opening 588 by default 
+* Fix #676: Display map in institution fixes 
+* Fix #618: Adding 980
+* Server side validation in source validation config
+* Fix typo in MarcValidator
+* Add configuration for holding
+* Fix #668: fix paper trail deprecation warning
+* I18n for validation messages
+* Added catalogue validation & removed AR validation
+* Add options partial for 774 in editing mode to distinguish between holdings and sources
+* Fix empty server rules in validation
+* Add holding visualization
+* Add filtering holdings can be added only to collections in the same library
+* Make so that changing a holding link actually removes the 774 in the parent
+* Make a JS call to validate on server
+* Add cataloger rights for work model
+* Labeling catalogue institution
+* Fixed 041 language select with catalogue
+* Fix #628 allow only one 041 with catalogue
+* Fix #689 show publication status on show page
+* Fix #679 Adjust 856 options in holding
+* Fix #691, add proper validation to holding
+* Fix #680 add validation to 856, implement validation in subfield_select
+* Fix #693 added 035 to holding
+* Fix #684 introducing Facecat with @mentions!
+* Improved work.title
+* Show work.title in source display
+* Fix annoying double name in BL title
+* Change static to dynamic attributes with FactoryBot
+* Updated rspec for cataloger_work abilities
+* Adding language selection to 040
+* Fix mildly-annoying "translation missing" in per_page
+* Fix #672, disable the download_links, and make sure .xml still works for single items
+* Include holdings in embedded sources
+* Fix #681 Add images to institutions
+* Adding more holding fields to source index
+* check map in institution (#319 on rism-international/task)
+* Fix #55 Implement "remove from folder"
+* Fix crash when a source has 690 or 691 in selection mode
+* Add show link boxes to institution, person, place and standard term
+* Adding more holding fields to source index
+* Fix #696 Adding holding created_at to sources index
+* Fix #675 Fix allow_holding for sources to include printed libretti & theoretica
+* Renamed works 100 label
+* Added holdings.wf_owner to sources index
+* Fix #697 eneble holdings in marc_source.to_xml by default
+* Fix #695 make parameters persistent when there is an error
+* Merge pull request #699 from rism-ch/5.0-validation
+* Merge pull request #698 from rism-ch/5.0-embedded_holdings
+* Fix #700 fixes excluding record type for validation
+* Fix #701 making 852 really required, not mandatory
+* spec for source validator own and foreign library
+* Fix #687 Add Holdings in dashboard
+* Added some standard validation rules
+* Insert id into master tag of editor
+* Add help panel for Notifications, #638, with translations
+
 v 4.3
 * Adding migration for relations
 * Fix different naming convention with SOLR/Sunspot that broke index ordering

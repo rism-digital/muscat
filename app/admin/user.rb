@@ -20,7 +20,12 @@ ActiveAdmin.register User do
 =end
 
   collection_action :list, method: :post do
-    users = User.all.collect {|u| {name: u.name, id: u.name.gsub(" ", "_")}}
+    params.permit!
+    if params.include?(:q)
+      users = User.where("name REGEXP ?", "[[:<:]]#{params[:q]}").collect {|u| {name: u.name, id: u.name.gsub(" ", "_")}}
+    else
+      users = []
+    end
     respond_to do |format|
         format.json { render json: users  }
     end
@@ -36,7 +41,7 @@ ActiveAdmin.register User do
   filter :sign_in_count
   filter :created_at
 
-  index :download_links => [:xml, :json] do
+  index :download_links => false do
     selectable_column
     id_column
     column :name
@@ -80,6 +85,8 @@ ActiveAdmin.register User do
       row I18n.t(:roles) do |user|
            user.get_roles.join(", ")
       end
+      row :notifications
+      row :notification_type
       row :sign_in_count
       row :created_at
       row :updated_at
@@ -105,10 +112,10 @@ ActiveAdmin.register User do
         f.input :name, :input_html => {:disabled => true}
         f.input :email, :input_html => {:disabled => true}
       end
-
-
+      
       if can? :update, User
-        f.input :notifications
+        ## size does not work unless there is a dummy class. Hooray!
+        f.input :notifications, :input_html => { :class => 'placeholder', :rows => 2, :style => 'width:50%'}
         f.input :notification_type, as: :select, multiple: false, collection: [:each, :daily, :weekly]
       end
       if can? :manage, User
@@ -119,6 +126,7 @@ ActiveAdmin.register User do
         f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published, :deleted]
       end
     end
+    render partial: 'notifications_help', locals: { f: f }
   end
   
   sidebar :actions, :only => [:edit, :new, :update] do

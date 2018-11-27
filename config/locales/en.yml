@@ -163,6 +163,9 @@ en:
       workgroup:
         one: "Group"
         other: "Groups"
+      holding:
+        one: "Holding"
+        other: "Holdings"
       institution:
         one: "Institution"
         other: "Institutions"
@@ -184,6 +187,9 @@ en:
       user:
         one: "User"
         other: "Users"
+      work:
+        one: "Work"
+        other: "Work"
   
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Select new template"
@@ -309,6 +315,7 @@ en:
   select: "Select"
   create_folder: "Add all to a new folder"
   append_folder: "Add all to an existing folder"
+  add_institution: "Link Institution"
   add_source: "Link Source"
   add_person: "Link Person"
   archive_unarchive: "Archive / un-archive"
@@ -319,6 +326,7 @@ en:
   show_all_groups: "Show all sections"
   show_preview: "Show preview"
   hide_preview: "Hide preview"
+  show_validate: "Validate"
   show_history: "Show modification history"
   show_viaf: "VIAF Search"
   save_and_continue: "Save and continue editing"
@@ -471,6 +479,8 @@ en:
   filter_dist_594l: "Keyboard instruments"
   filter_dist_594m: "Other instruments"
   filter_dist_594n: "Basso continuo instruments"
+  filter_source_name: "Source Name"
+  filter_source_composer: "Source Composer"
  
   ## Referring lists for auth files
   refers_to_this: "%{model_from} referring to this %{model_to}"
@@ -609,6 +619,7 @@ en:
   do_ext_link_not_avail: "(Audio files not available from this location)"
   do_images_title: "Images"
   connected_libraries: "Libraries"
+  view_source: "View Source"
 
   mei:
     title: "MEI export for source %{source}"
@@ -645,6 +656,9 @@ en:
   validation:
     missing_message: "A value in this field is mandatory"
     warning_message: "A value for this field should be provided"
+    insufficient_rights: "User has insufficient rights to create a record of this library"
+    name_uniqueness: "Short name of entry is already taken"
+    correct: "The record has no validation errors [200]"
     
   incipit_search:
     incipit_search: "Incipit Search"

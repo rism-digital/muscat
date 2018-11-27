@@ -114,7 +114,7 @@ class Holding < ApplicationRecord
     
     # parent collection source
     collection = marc.get_parent
-    # If the 563 link is removed, clear the source_id
+    # If the 973 link is removed, clear the source_id
     # But before save it so we can update the parent
     # source.
     @old_collection = collection_id if !collection || collection.id != collection_id
@@ -135,10 +135,6 @@ class Holding < ApplicationRecord
   end
   
 
-	## FIXME
-	## FIXME
-	## FIXME
-	## THIS IS HERE FOR TESTING!
   def update_774
     
     # We do NOT have a parent ms in the 773.
@@ -174,7 +170,7 @@ class Holding < ApplicationRecord
     end
     
     # do we have a parent manuscript?
-    parent_manuscript_id = marc.first_occurance("963", "u")
+    parent_manuscript_id = marc.first_occurance("973", "u")
     
     # NOTE we evaluate the strings prefixed by 00000
     # as the field may contain legacy values

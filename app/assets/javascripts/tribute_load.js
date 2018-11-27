@@ -24,11 +24,12 @@ var tribute_load = function () {
         dataType: 'json',
         timeout: 20000,
         type: 'post',
-        url: "/admin/users/list"
+        url: "/admin/users/list",
+        data: {q: text}
       });
     }
   })
-	
+
   tribute.attach($("#active_admin_comment_body"));
 
 };

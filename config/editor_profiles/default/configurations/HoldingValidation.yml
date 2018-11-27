@@ -1,5 +1,7 @@
 --- !map:Settings
-"852":
-  tags:
-    c: required
-    x: mandatory
+client:
+  "852":
+    tags:
+      a: required
+      c: required
+      x: mandatory

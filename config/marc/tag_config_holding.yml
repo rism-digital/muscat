@@ -101,11 +101,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - u
-      - :occurrences: "?"
-    - - "8"
-      - :occurrences: "?"
-        :no_browse: true
   "591":
     :master: a
     :indicator: "##"
@@ -259,6 +254,13 @@
       - :occurrences: "?"
         :no_browse: true
   "963":
+    :master: u
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - u
+      - :occurrences: "?"
+  "973":
     :master: "u"
     :indicator: "##"
     :occurrences: "?"

@@ -56,6 +56,7 @@ es:
       one_page: "Mostrando <b>todos %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> en total"
       multiple_without_total: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Elementos por página:"
       entry:
         one: "entrada"
         other: "entradas"
@@ -160,6 +161,9 @@ es:
       workgroup:
         one: "Grupo"
         other: "Grupos"
+      holding:
+        one: "Holding"
+        other: "Holdings"
       institution:
         one: "Institución"
         other: "Instituciones"
@@ -181,6 +185,9 @@ es:
       user:
         one: "Usuario"
         other: "Usuarios"
+      work:
+        one: "WORK"
+        other: "WORK"
         
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Seleccione nuevo modelo"
@@ -290,6 +297,7 @@ es:
   show_all_groups: "Mostrar todas las secciones"
   show_preview: "Mostrar vista anticipada"
   hide_preview: "Ocultar vista anticipada"
+  show_validate: "Validar"
   show_history: "Mostrar historia de modificaciones"
   show_viaf: "Búsqueda VIAF"
   save_and_continue: "Guardar y continuar editando"
@@ -437,6 +445,8 @@ es:
   filter_dist_594l: "Instrumentos de tecla"
   filter_dist_594m: "Otros instrumentos"
   filter_dist_594n: "Instrumentos de bajo continuo"
+  filter_source_name: "Nombre de la fuente"
+  filter_source_composer: "Compositor de la fuente"
  
   rism_any_key: "Cualquier tonalidad"
   rism_a_flat: "La bemol mayor/menor"
@@ -571,6 +581,7 @@ es:
   do_ext_link_not_avail: "(Archivos de audio no disponibles desde aquí)"
   do_images_title: "Imágenes"
   connected_libraries: "Bibliotecas"
+  view_source: "Mostrar fuente"
 
   mei:
     title: "Exportación MEI para fuente %{source}"
@@ -592,21 +603,24 @@ es:
     deleted: "Borrado"
 
   dashboard:
-    selection: "SELECTION"
-    type: "CHANGE TYPE"
-    type_created: "RECENTLY CREATED"
-    type_updated: "RECENTLY UPDATED"
-    owner: "OWNER"
-    owner_user: "MYSELF"
-    owner_any: "ANY"
-    quantity: "DISPLAY"
-    update: "UPDATE"
-    no_items: "NO ELEMENTS TO SHOW WITH THE CURRENT FILTERS"
+    selection: "Selección"
+    type: "Cambiar el tipo"
+    type_created: "Creado recientemente"
+    type_updated: "Actualizado recientemente"
+    owner: "Propietario"
+    owner_user: "Yo"
+    owner_any: "Cualquier"
+    quantity: "Exposición"
+    update: "Actualizaciones"
+    no_items: "No hay elementos para mostrar con los filtros seleccionados"
 
   # editor validation 
   validation:
-    missing_message: "A VALUE IN THIS FIELD IS MANDATORY"
-    warning_message: "A VALUE FOR THIS FIELD SHOULD BE PROVIDED"
+    missing_message: "Este campo debe contener un valor"
+    warning_message: "Este campo debe contener un valor"
+    insufficient_rights: "El usuario no tiene los derechos necesarios para crear un registro con esta biblioteca"
+    name_uniqueness: "El nombre corto del elemento ya está en uso"
+    correct: "El nombre corto del elemento ya está en uso [200]"
 
   incipit_search:
     incipit_search: "INCIPIT SEARCH"

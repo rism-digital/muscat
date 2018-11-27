@@ -10,17 +10,21 @@ class NotificationMatcher
     user_notifications = @user.get_notifications
     return false if !user_notifications
 
-    user_notifications.each do |field_name, pattern|
-      
-      if @object.respond_to?(field_name)
-        object_value = @object.send(field_name)
-        if object_value
-          @matches << "#{field_name} #{pattern}" if wildcard_match(object_value, pattern)
+    user_notifications.each do |field_name, patterns|
+
+      patterns.each do |pattern|
+
+        if @object.respond_to?(field_name)
+          object_value = @object.send(field_name)
+          if object_value
+            @matches << "#{field_name} #{pattern}" if wildcard_match(object_value, pattern)
+          end
         end
+        
       end
       
     end
-    
+
     return @matches.count > 0
   end
   

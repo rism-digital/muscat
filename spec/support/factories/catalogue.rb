@@ -1,20 +1,20 @@
 FactoryBot.define do
   factory :catalogue do
-    id 1536
-    name "NBA"
+    id { 1536 }
+    name { "NBA" }
     #initialize_with { Catalogue.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
-    description "Johann Sebastian Bach: Neue Ausgabe sämtlicher Werke"
-    revue_title ""
-    volume nil
-    place "Kassel, Basel"
-    date "1954-"
-    wf_audit "full"
-    wf_stage "published"
+    description { "Johann Sebastian Bach: Neue Ausgabe sämtlicher Werke" }
+    revue_title { "" }
+    volume { nil }
+    place { "Kassel, Basel" }
+    date { "1954-" }
+    wf_audit { "full" }
+    wf_stage { "published" }
     people { [FactoryBot.create(:person)] }
     #people { [association(:person)]  }
     #referring_sources { [association(:manuscript_source)]  }
-    wf_notes nil
-    marc_source <<STRING
+    wf_notes { nil }
+    marc_source {  <<STRING
 =001  1536
 =041  0\#$ager
 =210  #\#$aNBA
@@ -27,5 +27,6 @@ FactoryBot.define do
 =500  #\#$aser.2, vol.5 (Kritischer Bericht), p.94-96
 =700  1\#$aBach, Johann Sebastian$d1685-1750$02539$4cmp
 STRING
+    }
   end
  end

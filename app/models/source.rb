@@ -47,7 +47,6 @@ class Source < ApplicationRecord
 #  include MarcIndex
   include ForeignLinks
   include MarcIndex
-  include ActiveRecordValidation
   resourcify
   
   belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
@@ -95,8 +94,6 @@ class Source < ApplicationRecord
 	after_initialize :after_initialize
   after_save :update_links, :reindex
   before_destroy :update_links_for_destroy
-
-  validate :validates_parent_id
 
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
@@ -250,10 +247,15 @@ class Source < ApplicationRecord
 #      date_to != nil && date_to > 0 ? date_to : nil
 #    end
     
-    sunspot_dsl.integer :wf_owner
+    sunspot_dsl.integer :wf_owner, multiple: true do |s|
+      s.holdings.map {|e| e.wf_owner} << s.wf_owner
+    end
+
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
-    sunspot_dsl.time :created_at
+    sunspot_dsl.time :created_at, multiple: true do |s|
+      s.holdings.map {|e| e.created_at} << s.created_at
+    end
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
@@ -283,7 +285,7 @@ class Source < ApplicationRecord
       
       Sunspot::Util::Coordinates.new(lat, lon)
     end
-
+    
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
     
@@ -439,8 +441,12 @@ class Source < ApplicationRecord
   end
   
   def allow_holding?
-    return false if (self.record_type != MarcSource::RECORD_TYPES[:edition])
-    return true
+    if  (self.record_type == MarcSource::RECORD_TYPES[:edition] ||
+         self.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
+         self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content])
+      return true
+    end
+    return false
   end
   
   def fix_ids

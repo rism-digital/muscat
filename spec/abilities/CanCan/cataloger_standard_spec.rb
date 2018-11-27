@@ -30,10 +30,10 @@ RSpec.describe User do
     let(:cataloger) { FactoryBot.create(:cataloger)  }
     let(:work) { FactoryBot.create(:work)  }
     subject(:ability) { Ability.new(cataloger)  }
-    it { expect(ability).not_to be_able_to(:show, work) }
+    it { expect(ability).to be_able_to(:show, work) }
     it { expect(ability).not_to be_able_to(:update, work) }
     it { expect(ability).not_to be_able_to(:destroy, work) }
-    it { expect(ability).not_to be_able_to(:create, work) }
+    it { expect(ability).to be_able_to(:create, work) }
   end
   
   context 'with cataloger abilities for editions with own holding' do

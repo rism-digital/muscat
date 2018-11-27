@@ -125,7 +125,8 @@ class User < ApplicationRecord
       parts = line.strip.split(":")
       next if parts.count < 2
       next if parts[0].empty? # :xxx case
-      elements[parts[0]] = parts[1]
+      elements[parts[0]] = [] if !elements.include?(parts[0])
+      elements[parts[0]] << parts[1]
     end
     
     return elements

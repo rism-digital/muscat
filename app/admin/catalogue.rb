@@ -46,7 +46,7 @@ ActiveAdmin.register Catalogue do
     end
     
     def edit
-      flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
+      flash.now[:error] = params[:validation_error] if params[:validation_error]
       @item = Catalogue.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
@@ -141,7 +141,7 @@ ActiveAdmin.register Catalogue do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Catalogue").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
-  index :download_links => [:xml] do
+  index :download_links => false do
     selectable_column if !is_selection_mode?
 
     column (I18n.t :filter_id), :id    
