@@ -30,7 +30,7 @@ GIT
 
 GIT
   remote: https://github.com/rism-ch/blacklight_range_limit
-  revision: 2f20a12e9d541021adfeb8089059e1e163f033ef
+  revision: 12f92cd44521acbe7489de3d18682344633158be
   branch: jquery3-6.3.x
   specs:
     blacklight_range_limit (6.3.3)

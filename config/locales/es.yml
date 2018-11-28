@@ -447,6 +447,7 @@ es:
   filter_dist_594n: "Instrumentos de bajo continuo"
   filter_source_name: "Nombre de la fuente"
   filter_source_composer: "Compositor de la fuente"
+  filter_printed_exemplars: "Número de ejemplares impresos"
  
   rism_any_key: "Cualquier tonalidad"
   rism_a_flat: "La bemol mayor/menor"

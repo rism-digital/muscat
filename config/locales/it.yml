@@ -482,7 +482,8 @@ it:
   filter_dist_594n: "Strumenti del basso continuo"
   filter_source_name: "Nome della Fonte"
   filter_source_composer: "Compositore della Fonte"
-  
+  filter_printed_exemplars: "Numero di esemplari a stampa"
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} che fanno riferimento a questo %{model_to}"
   

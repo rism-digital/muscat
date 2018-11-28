@@ -226,6 +226,7 @@ class CatalogController < ApplicationController
     config.add_facet_field '852a_facet_sm', :label => :filter_lib_siglum, :limit => 10
     config.add_facet_field '650a_filter_sm', :label => :filter_subject, :limit => 10
     config.add_facet_field '856x_sm', :label => :filter_images, :limit => 10
+    config.add_facet_field 'copies_is', :label => :filter_printed_exemplars, :range => true, :limit => 10
     #config.add_facet_field 'title_order', :label => 'Standard Title', :single => true
     #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     #config.add_facet_field 'language_facet', :label => 'Language', :limit => true 

@@ -286,6 +286,14 @@ class Source < ApplicationRecord
       Sunspot::Util::Coordinates.new(lat, lon)
     end
     
+    sunspot_dsl.integer :copies, :stored => true do |s|
+      if s.holdings.count > 0
+        s.holdings.count
+      else
+        nil
+      end
+    end
+    
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
     

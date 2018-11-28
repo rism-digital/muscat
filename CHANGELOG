@@ -1,6 +1,10 @@
 Muscat Changelog
 ================
 
+v 5.0
+* Remove 563 from Source
+* Add number of exemplars facet, useful for unicums
+
 v 5.0-rc2
 * Spec for openstreetmap to be reachable
 * Added BNF converter for work viaf interface

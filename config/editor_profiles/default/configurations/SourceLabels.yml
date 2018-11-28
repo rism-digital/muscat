@@ -1029,26 +1029,6 @@ doc_references:
         en: Provenance notes
       edit_label: 
         en: ""
-"563": 
-  label: 
-    it: Rilegatura
-    fr: Reliure
-    de: Einband
-    en: Binding note
-  fields: 
-    a: 
-      label: 
-        it: Rilegatura
-        fr: Reliure
-        de: Einband
-        en: Binding note
-    u: 
-      label: 
-        it: Scheda correlata
-        fr: RELATED RECORD
-        de: RELATED RECORD
-        en: RELATED RECORD
-        comment: "NEW IN 2018"
 "588": 
   label: 
     it: Copa esaminata per la catalogazione
