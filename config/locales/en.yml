@@ -481,6 +481,7 @@ en:
   filter_dist_594n: "Basso continuo instruments"
   filter_source_name: "Source Name"
   filter_source_composer: "Source Composer"
+  filter_printed_exemplars: "Number of printed exemplars"
  
   ## Referring lists for auth files
   refers_to_this: "%{model_from} referring to this %{model_to}"
