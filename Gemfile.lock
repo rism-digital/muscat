@@ -69,7 +69,7 @@ GIT
 
 GIT
   remote: https://github.com/rism-ch/sunspot
-  revision: f4089a58025be84d9445d3282c107abafab02f4f
+  revision: 18fa86905668c1edc1d01917ef5fbef16bd4bcd9
   branch: java9-stack
   specs:
     sunspot (2.3.0)
