@@ -509,9 +509,6 @@
     - - a
       - growfield: true
     - - u
-      - type: source
-        editor_partial: subfield_secondary
-        only_new_window: true
 "588": 
   layout: 
     fields: 

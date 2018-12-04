@@ -189,3 +189,8 @@ If all this works, you can access the rism application:
   
 Depending on the env, remove sudo if necessary. RAILS_ENV is needed only on production, and has to come *after* sudo.
   
+Also it is goot to block access to SOLR:
+
+  sudo iptables -A INPUT -p tcp -s localhost --dport 8983 -j ACCEPT
+  sudo iptables -A INPUT -p tcp --dport 8983 -j DROP
+  
