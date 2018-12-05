@@ -86,6 +86,7 @@ ActiveAdmin.register Folder do
     selectable_column
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_folder_type), :folder_type
+    column (I18n.t :filter_owner) {|folder| folder.user.name}
     column ("Items")  {|folder| folder.folder_items.count}
     actions
   end
@@ -107,6 +108,7 @@ ActiveAdmin.register Folder do
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_folder_type) { |r| r.folder_type }
+      row (I18n.t :filter_owner) {|folder| folder.user.name}
     end
     
     panel folder.folder_type.pluralize, :class => "muscat_panel"  do
