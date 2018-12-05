@@ -135,7 +135,11 @@ ActiveAdmin.register DigitalObject do
                 dol.description
             end	
             column "ID" do |dol|
-              link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
+              if dol.object_link_id
+                link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
+              else
+                "Object unattached"
+              end
             end
             column "" do |dol|
               if can?(:destroy, dol)
