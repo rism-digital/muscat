@@ -269,4 +269,3 @@
       - :occurrences: "?"
         :foreign_class: Source
         :foreign_field: id
-        :no_show: true
