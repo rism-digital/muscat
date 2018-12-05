@@ -12,6 +12,7 @@ client:
         m:
         - collection
         - theoretica_source
+        - libretto_edition_content 
     tags:
       "0": mandatory
       m: required, warning
@@ -43,6 +44,7 @@ client:
         "x":
         - edition
         - edition_content
+        - libretto_edition_content 
     tags:
       c: required, warning
       x: mandatory

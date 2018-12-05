@@ -1,6 +1,19 @@
 Muscat Changelog
 ================
 
+v 5.0.2
+* Fix bug that made authorities created from a Source buy Admin and not the current user
+* Remove 240 and 852 in printed libretti validation
+* Prevent a crash if a DO item is not connected
+* Make sure a new DO does not create an empty DO item (unconnected)
+* Display folder owner in list/show
+* Make folders appear to all users again
+* Make 973 visible in the Holding preview 
+
+v 5.0.1
+* Add back 563 in Source
+* Make Solr bind to localhost by default
+
 v 5.0
 * Remove 563 from Source
 * Add number of exemplars facet, useful for unicums
