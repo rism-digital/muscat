@@ -33,13 +33,15 @@ ActiveAdmin.register DigitalObject do
         success.html do
           # If we have a new_object_link_type/id, also create the object link - See the DigitalObjectLink for
           # the fake accessors and the form below for the hidden fields
-          if (params[:digital_object][:new_object_link_type] && params[:digital_object][:new_object_link_id])
+          if (params[:digital_object][:new_object_link_type] && params[:digital_object][:new_object_link_id] &&
+             !params[:digital_object][:new_object_link_type].empty? && !params[:digital_object][:new_object_link_id].empty?
+            )
             dol = DigitalObjectLink.new(
               object_link_type: params[:digital_object][:new_object_link_type],
               object_link_id: params[:digital_object][:new_object_link_id],
               user: resource.user,
-              digital_object_id: resource.id
-            )
+              digital_object_id: resource.id)
+              
             dol.save!
           end
           redirect_to admin_digital_object_path(resource.id)
