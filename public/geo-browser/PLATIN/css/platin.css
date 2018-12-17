@@ -1691,7 +1691,7 @@ body .ui-tooltip {
 	filter: Alpha(Opacity=30);
 	border-radius: 8px;
 }
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold&subset=latin);
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:regular,bold&subset=latin);
 
 body {
 	font-family: "Droid Sans", verdana, arial, serif;
