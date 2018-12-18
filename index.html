@@ -51,7 +51,7 @@ layout: default
                     <div>{{ post.title }}</div>
                 </h5>
                 {{ post.excerpt }}
-                <p class="news-more"><a href="{{ post.url }}"></a></p>
+                {% if (post.more-news) %}<p class="more-news"><a href="{{ post.url }}">Read more ...</a></p>{% endif %}
             </div>
         {% endfor %}
         </div>

@@ -1,0 +1,80 @@
+---
+layout: post
+title: "Release of Muscat 5.0"
+date:   2018-12-18
+post: true
+more-news: true
+---
+
+<p>
+Muscat 5.0 is up and running! It is one of the most feature-rich releases so far. The major features of this release include the link of @mentions in comments of interactive cataloguing, links to music work authority data, filter based notification for modifications on sources, holding records to collections to describe bound together volumes, and faceted search on number of printed copies.
+</p>
+
+<div class="row align-items-center">
+    <div class="col-sm-12 col-md-5 col-lg-4">
+        <h5>Mentions in comments</h5>
+        <p>
+            Comments are more interactive in Muscat 5.0 with the option to use @mentions for addressing other Muscat users directly. Typing the @ will trigger a list of users to be displayed. Users mentioned in a comment will be notified by e-mail and will also receive further notification when additional comments are entered for a resource.
+        </p>
+    </div>
+
+    <div class="col-sm-12 col-md-7 col-lg-8">
+        <div class="mb-3">
+            <video id="facets" preload="auto" loop="true" autoplay="true" muted="true" class="img-fluid border border-muscat mx-auto d-block">
+                <source src="{{ site.baseurl }}/movies/mentions.mp4" type="video/mp4">
+                <source src="{{ site.baseurl }}/movies/mentions.webm" type="video/webm">
+            </video>
+        </div>
+    </div>
+</div>
+
+<h5>Work authorities</h5>
+
+<p>
+    Muscat 5.0 can link to GND work authority entries for musical works. Sources linked to a work will be directly accessible through it.
+</p>
+
+<figure class="text-center">
+    <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/data-interoperability/works.png" alt="holding">
+    <figcaption class="figure-caption text-center">An excerpt of the information provided for a musical work</figcaption>
+</figure>
+
+<div class="row align-items-center">
+    <div class="col-sm-12 col-md-7 col-lg-8">
+        <div class="mb-3">
+            <video id="images" preload="auto" loop="true" autoplay="true" muted="true" class="img-fluid border border-muscat mx-auto d-block">
+                <source src="{{ site.baseurl }}/movies/facets-copies.mp4" type="video/mp4">
+                <source src="{{ site.baseurl }}/movies/facets-copies.webm" type="video/webm">
+            </video>
+        </div>
+    </div>
+    
+    <div class="col-sm-12 col-md-5 col-lg-4">
+        <h5>Filtering by number of copies</h5>
+        <p>
+            In Muscat discovery interface it is now possible to filter by number of copies for the prints. This makes it possible, for example, to retrieve a list of prints inventoried only in two libraries, or the list of unica for a particular library.
+        </p>
+    </div>
+</div>
+
+<h5>Notifications</h5>
+
+<p>
+    For people wishing to follow additions and modifications in Muscat, it is time-consuming and unrealistic to have to keep checking it occasionally to see if a source or another entry has been added or modified. The version of Muscat (5.0) includes the ability to create alerts following the creation or modification of entries. Alerts are set with patterns and fields. For example, a user might want to create an alert for sources matching a certain library sigla and/or a shelfmark, or sources composed by a certain composer. Once this is set in the user profile, the user receives weekly notifications with a list of created and modified entries matching the alert.
+</p>
+
+<figure class="text-center">
+    <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/users/notifications.png" alt="holding">
+    <figcaption class="figure-caption text-center">Users can define patters for receiving notifications about modification or additions in Muscat</figcaption>
+</figure>
+
+<h5>Collections of holdings</h5>
+
+<p>
+    Muscat 5.0 allows for holding items (copies of a print) to be included in a collection. This can be useful for projects willing to provide an in-depth description of how their prints are bound together in a particular collection. It can also be used for describing manuscript collection containing also printed material. See for example the collection <a href="https://muscat.rism.info/admin/sources/1001056386" target="_blank">1001056386</a>, which contains two holdings of a print.
+</p>
+
+<figure class="text-center">
+    <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/model/collection-with-prints.png" alt="holding">
+    <figcaption class="figure-caption text-center">The content of a collection (RISM-ID 1001056386) containing two holdings.</figcaption>
+</figure>
