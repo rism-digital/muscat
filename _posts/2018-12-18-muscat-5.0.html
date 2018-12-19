@@ -78,3 +78,9 @@ Muscat 5.0 is up and running! It is one of the most feature-rich releases so far
     <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/model/collection-with-prints.png" alt="holding">
     <figcaption class="figure-caption text-center">The content of a composite volume (RISM-ID 1001056386) with two printed items bound together.</figcaption>
 </figure>
+
+<h5>Validation</h5>
+
+<p>
+    The record validation was refactored in Muscat 5.0. It is now much more robust, with server-side validation that allows for more verifications to be performed before a record is save. This means that, when saving a record from the user interface, the data is send to the server for validation, and feedback is returned to the user if the validation fails. This new architecture will make it possible to improve the quality of the data further in the future.
+</p>
