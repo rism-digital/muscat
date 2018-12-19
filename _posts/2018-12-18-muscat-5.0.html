@@ -31,7 +31,7 @@ Muscat 5.0 is up and running! It is one of the most feature-rich releases so far
 <h5>Work authorities</h5>
 
 <p>
-    Muscat 5.0 can link to GND work authority entries for musical works. Sources linked to a work will be directly accessible through it.
+    Muscat 5.0 has an authority file for works, which can link to the VIAF work authority entries. An authority record for a work records all information that is true for a work as a whole, no matter what other forms a piece of music exists in, whether it be—for example—an arrangement, a translation, a full score, or a single manuscript. Authority records can include the composer, title, title variants, key, instrumentation, and incipits. Associating a musical source in Muscat with an authority record for a work ensures that all instances of any given piece of music are linked together. This improves the searchability of the catalog and helps users find all relevant sources, regardless of whether, for example, one manuscript calls the famous Mozart opera "Die Zauberflöte" and another is labeled "The Magic Flute," or a small chamber music piece is called a "duet" on one manuscript but a "sonata" on another. Beyond Muscat, in the linked data environment, information on works—and the associated RISM records—can be integrated into web searches, online encyclopedias, and other external databases.
 </p>
 
 <figure class="text-center">
@@ -60,7 +60,7 @@ Muscat 5.0 is up and running! It is one of the most feature-rich releases so far
 <h5>Notifications</h5>
 
 <p>
-    For people wishing to follow additions and modifications in Muscat, it is time-consuming and unrealistic to have to keep checking it occasionally to see if a source or another entry has been added or modified. The version of Muscat (5.0) includes the ability to create alerts following the creation or modification of entries. Alerts are set with patterns and fields. For example, a user might want to create an alert for sources matching a certain library sigla and/or a shelfmark, or sources composed by a certain composer. Once this is set in the user profile, the user receives weekly notifications with a list of created and modified entries matching the alert.
+    For people wishing to follow additions and modifications in Muscat, it is time-consuming and unrealistic to have to keep checking it occasionally to see if a source or another entry has been added or modified. The version of Muscat (5.0) includes the ability to create alerts following the creation or modification of entries. Users can click on their name in the upper right-hand corner in Muscat, then click Edit. Notifications can then be added using pattern. Alerts are set with patterns and fields. For example, a user might want to create an alert for sources matching a certain library sigla and/or a shelfmark, or sources composed by a certain composer. Once this is set in the user profile, the user receives weekly notifications with a list of created and modified entries matching the alert.
 </p>
 
 <figure class="text-center">
@@ -68,13 +68,13 @@ Muscat 5.0 is up and running! It is one of the most feature-rich releases so far
     <figcaption class="figure-caption text-center">Users can define patters for receiving notifications about modification or additions in Muscat</figcaption>
 </figure>
 
-<h5>Collections of holdings</h5>
+<h5>Composite volumes</h5>
 
 <p>
-    Muscat 5.0 allows for holding items (copies of a print) to be included in a collection. This can be useful for projects willing to provide an in-depth description of how their prints are bound together in a particular collection. It can also be used for describing manuscript collection containing also printed material. See for example the collection <a href="https://muscat.rism.info/admin/sources/1001056386" target="_blank">1001056386</a>, which contains two holdings of a print.
+    Muscat 5.0 now allows composite volumes that include printed materials to be described through a parent record with links to the individual items. Parent records can now be created for (1) separately issued printed items bound together and (2) manuscripts bound together with printed items. This can be useful for projects willing to provide an in-depth description of how printed music editions are bound in their particular library. See, for example, record <a href="https://muscat.rism.info/admin/sources/1001056386" target="_blank">1001056386</a>, in which in which two printed items are bound together.
 </p>
 
 <figure class="text-center">
     <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/model/collection-with-prints.png" alt="holding">
-    <figcaption class="figure-caption text-center">The content of a collection (RISM-ID 1001056386) containing two holdings.</figcaption>
+    <figcaption class="figure-caption text-center">The content of a composite volume (RISM-ID 1001056386) with two printed items bound together.</figcaption>
 </figure>

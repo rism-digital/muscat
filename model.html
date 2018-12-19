@@ -43,6 +43,17 @@ title: Model
             When appropriate, the foreign classes are also mapped to corresponding authority MarcXML records. This is the case for <em>personal names</em>, <em>institutions</em>, <em>secondary literature,</em> and <em>works</em>. The corresponding Marc data is also embedded and indexed with Solr. Whenever possible, the authorities are linked to external data resources. See the page on <a href="{{ site.baseurl }}/data-interoperability.html">authorities</a> for more information.
         </p>
         
+        <h5>Composite volumes</h5>
+
+        <p>
+            Muscat 5.0 allows composite volumes that include printed materials to be described through a parent record with links to the individual items. Parent records can now be created for (1) separately issued printed items bound together and (2) manuscripts bound together with printed items. This can be useful for projects willing to provide an in-depth description of how printed music editions are bound in their particular library. See, for example, record <a href="https://muscat.rism.info/admin/sources/1001056386" target="_blank">1001056386</a>, in which in which two printed items are bound together.
+        </p>
+
+        <figure class="text-center">
+            <img class="figure-img img-fluid" src="{{ site.baseurl }}/images/model/collection-with-prints.png" alt="holding">
+            <figcaption class="figure-caption text-center">The content of a composite volume (RISM-ID 1001056386) with two printed items bound together.</figcaption>
+        </figure>
+        
         <h4 id="architecture">Application architecture</h4>
         
         <div class="row">
