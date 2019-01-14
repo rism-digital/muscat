@@ -296,4 +296,19 @@
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
+"930": 
+  allow_new: true
+  new_window: Work
+  layout: 
+    fields: 
+    - - "a"
+      - type: work
+        editor_partial: subfield_secondary
+      - cols: 4
+    - - i
+      - values:
+        - "variation of"  
+        editor_partial: subfield_select
+
+    columns: 4
 

@@ -34,6 +34,7 @@ groups:
     all_tags:
     - "700"
     - "747"
+    - "930"
   control: 
     all_tags: 
     - "040"

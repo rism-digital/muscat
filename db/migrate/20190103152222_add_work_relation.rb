@@ -13,5 +13,13 @@ class AddWorkRelation < ActiveRecord::Migration[5.1]
     end
     add_index :works_to_people, :work_id
     add_index :works_to_people, :person_id
+
+    create_table(:works_to_works, :id => false) do |t|
+      t.column :work_a_id, :integer 
+      t.column :work_b_id, :integer
+    end
+    add_index :works_to_works, :work_a_id
+    add_index :works_to_works, :work_b_id
+  
   end
 end

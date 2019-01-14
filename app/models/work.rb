@@ -24,7 +24,19 @@ class Work < ApplicationRecord
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
+  has_and_belongs_to_many(:works,
+    :class_name => "Work",
+    :foreign_key => "work_a_id",
+    :association_foreign_key => "work_b_id",
+    join_table: "works_to_works")
   
+  # This is the backward link
+  has_and_belongs_to_many(:referring_works,
+    :class_name => "Work",
+    :foreign_key => "work_b_id",
+    :association_foreign_key => "work_a_id",
+    join_table: "works_to_works")
+ 
   composed_of :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
 
   before_destroy :check_dependencies
@@ -92,7 +104,7 @@ class Work < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["person", "catalogues", "standard_terms", "standard_titles", "liturgical_feasts", "people"]
+    allowed_relations = ["person", "catalogues", "standard_terms", "standard_titles", "liturgical_feasts", "people", "works"]
     recreate_links(marc, allowed_relations)
   end
 

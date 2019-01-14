@@ -679,4 +679,11 @@ ActiveRecord::Schema.define(version: 20190103152222) do
     t.index ["work_id"], name: "index_works_to_standard_titles_on_work_id"
   end
 
+  create_table "works_to_works", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "work_a_id"
+    t.integer "work_b_id"
+    t.index ["work_a_id"], name: "index_works_to_works_on_work_a_id"
+    t.index ["work_b_id"], name: "index_works_to_works_on_work_b_id"
+  end
+
 end

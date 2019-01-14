@@ -621,6 +621,26 @@ doc_edit_workflow:
         fr: Ressource externe
         de: Uniform Resource Identifier
         en: External resource
+"930":
+  label:
+    it: RELATED WORK
+    fr: RELATED WORK
+    de: RELATED WORK
+    en: Related work
+  fields:
+    a:
+      label:
+        it:  WORK
+        fr:  WORK
+        de:  Werk
+        en:  WORK
+    i:
+      label:
+        it:  Relazione
+        fr:  Relation
+        de:  Beziehung
+        en:  Type of relationship
+ 
 main_work:
   label:
     it: Campi principali

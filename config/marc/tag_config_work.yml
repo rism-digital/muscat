@@ -298,3 +298,21 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
+  "930":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Work
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+    - - "i"
+      - :occurrences: "?"
+ 
+
