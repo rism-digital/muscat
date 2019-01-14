@@ -31,6 +31,7 @@ groups:
     - "031"
   relations:
     all_tags:
+    - "700"
     - "747"
   control: 
     all_tags: 

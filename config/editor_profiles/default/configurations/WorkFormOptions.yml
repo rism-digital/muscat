@@ -263,6 +263,20 @@
     fields: 
     - - a
       - growfield: true
+"700":
+  allow_new: true
+  new_window: people
+  layout:
+    fields: 
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+    - - "4"
+      - editor_partial: subfield_select_codes
+  tag_params: 
+    codes: 
+    - cmp
+    - oth
 "747": 
   allow_new: true
   new_window: liturgical_feast

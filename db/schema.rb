@@ -658,6 +658,13 @@ ActiveRecord::Schema.define(version: 20190103152222) do
     t.index ["work_id"], name: "index_works_to_liturgical_feasts_on_work_id"
   end
 
+  create_table "works_to_people", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "work_id"
+    t.integer "person_id"
+    t.index ["person_id"], name: "index_works_to_people_on_person_id"
+    t.index ["work_id"], name: "index_works_to_people_on_work_id"
+  end
+
   create_table "works_to_standard_terms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "work_id"
     t.integer "standard_term_id"

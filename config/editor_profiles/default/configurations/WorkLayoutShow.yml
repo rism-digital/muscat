@@ -40,6 +40,7 @@ groups:
       "670": people/show_catalogue
   relations:
     all_tags:
+    - "700"
     - "747"
   control: 
     all_tags: 

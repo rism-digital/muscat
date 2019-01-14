@@ -531,6 +531,42 @@ doc_edit_workflow:
         fr: Remarque générale
         de: Externe Bemerkungen
         en: General note
+"700": 
+  label: 
+    it: Nomi di persone aggiuntivi
+    fr: Noms de personnes additionnels
+    de: Nebeneintragung Personen
+    en: Additional personal name
+  fields: 
+    a: 
+      label: 
+        it: Nome
+        fr: Nom
+        de: Personenname
+        en: Name
+    d: 
+      label: 
+        it: Date di nascita e di morte
+        fr: Dates de vie
+        de: Geburts- und Todesdaten
+        en: Life dates
+    j: 
+      label: 
+        it: Qualificazione d'attribuzione
+        fr: Qualificatif d'attribution
+        de: Zuschreibungsvermerk
+        en: Attribution qualifier
+      edit_label: 
+        it: Attribuzione
+        fr: Attribution
+        de: Zuschreibung
+        en: Attribution
+    "4": 
+      label: 
+        it: Funzione
+        fr: Function
+        de: Funktionsbezeichnung
+        en: Function
 "747": 
   label: 
     it: Feste liturgiche
@@ -1297,6 +1333,18 @@ xx:
     fr: Inconnu
     de: Unbekannt
     en: Unknown
+cmp: 
+  label: 
+    it: Compositore/Compositore secondario
+    fr: Compositeur / Co-compositeur
+    de: Komponist / Mitkomponist
+    en: Composer
+oth: 
+  label: 
+    it: Altra funzione
+    fr: Autre function
+    de: Sonstige Funktion
+    en: Other function
 A:
   label:
     it: "La maggiore"
