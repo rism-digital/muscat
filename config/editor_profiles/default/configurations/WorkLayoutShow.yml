@@ -5,7 +5,7 @@ group_order:
 #- people
 - incipits
 - variants
-- relations
+- references
 - control
 groups:   
   main_work: 
@@ -31,9 +31,10 @@ groups:
     all_tag_templates:
       "400": works/show_variants
 #    - "440"
-  relations:
+  references:
     all_tags:
     - "670"
+    - "680"
     all_tag_templates:
       "670": people/show_catalogue
   control: 
@@ -41,4 +42,3 @@ groups:
     - "040"
     - "000"
     - "001"
-    - "680"

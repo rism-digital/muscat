@@ -3,7 +3,7 @@ group_order:
 - main_work
 - codes
 - variants
-- relations
+- references
 - incipits
 - control
 groups:   
@@ -17,9 +17,10 @@ groups:
     all_tags:
     - "400"
 #    - "440"
-  relations:
+  references:
     all_tags:
     - "670"
+    - "680"
   codes: 
     all_tags: 
     - "024"
@@ -32,4 +33,3 @@ groups:
     - "040"
     - "000"
     - "001"
-    - "680"

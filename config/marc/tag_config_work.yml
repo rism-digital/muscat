@@ -236,6 +236,10 @@
     :fields:
     - - a
       - :occurrences: "?"
+    - - i
+      - :occurrences: "?"
+    - - "5"
+      - :occurrences: "?"
   "700":
     :master: a
     :indicator: "1#"
