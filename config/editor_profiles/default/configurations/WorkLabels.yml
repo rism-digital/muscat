@@ -433,7 +433,27 @@ doc_edit_workflow:
         it:  Sigla
         fr:  Siglum
         de:  Sigel
-        en:  Associated institution 
+        en:  Associated institution
+"548":
+  label:
+    it: CHRONOLOGICAL TERM
+    fr: CHRONOLOGICAL TERM
+    de: Datierungen 
+    en: Chronological term
+  fields:
+    a:
+      label:
+        it:  DATE
+        fr:  DATE
+        de:  Datierung
+        en:  Date
+    i:
+      label:
+        it:  Relazione
+        fr:  Relation
+        de:  Beziehung
+        en:  Type of relationship
+ 
 "550":
   label:
     it: Professione o funzione

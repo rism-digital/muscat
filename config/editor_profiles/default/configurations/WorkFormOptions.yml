@@ -246,6 +246,15 @@
     - - d
     - - e
     columns: 4
+"548": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - i
+      - values:
+        - "Date of origin"  
+        editor_partial: subfield_select
 "670": 
   allow_new: true
   new_window: catalogues
