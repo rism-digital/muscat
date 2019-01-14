@@ -240,18 +240,20 @@
       - :occurrences: "?"
     - - "5"
       - :occurrences: "?"
-  "700":
-    :master: a
-    :indicator: "1#"
+  "747":
+    :master: "0"
+    :indicator: "#7"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: LiturgicalFeast
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "?"
-    - - b
+        :foreign_class: ^0
+        :foreign_field: name
+    - - "2"
       - :occurrences: "?"
-    - - f
-      - :occurrences: "?"
-    - - t
-      - :occurrences: "?"
-    - - l
-      - :occurrences: "?"
+        :no_browse: true

@@ -263,4 +263,14 @@
     fields: 
     - - a
       - growfield: true
+"747": 
+  allow_new: true
+  new_window: liturgical_feast
+  layout: 
+    fields: 
+    - - "a"
+      - type: liturgical_feast
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
 

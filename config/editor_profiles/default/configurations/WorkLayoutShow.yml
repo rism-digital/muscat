@@ -6,6 +6,7 @@ group_order:
 - incipits
 - variants
 - references
+- relations
 - control
 groups:   
   main_work: 
@@ -37,6 +38,9 @@ groups:
     - "680"
     all_tag_templates:
       "670": people/show_catalogue
+  relations:
+    all_tags:
+    - "747"
   control: 
     all_tags: 
     - "040"

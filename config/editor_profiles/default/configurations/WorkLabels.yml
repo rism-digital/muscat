@@ -531,6 +531,21 @@ doc_edit_workflow:
         fr: Remarque générale
         de: Externe Bemerkungen
         en: General note
+"747": 
+  label: 
+    it: Feste liturgiche
+    fr: "Fête liturgique"
+    de: Liturgische Feste
+    en: Liturgical festival
+  fields: 
+    a: 
+      label: 
+        it: Feste liturgiche
+        fr: "Fête liturgique"
+        de: Liturgische Feste
+        en: Liturgical feasts
+      edit_label: 
+        en: ""
 "856":
   label:
     it: Localizzazione e accesso elettronico

@@ -5,6 +5,7 @@ group_order:
 - variants
 - references
 - incipits
+- relations
 - control
 groups:   
   main_work: 
@@ -28,6 +29,9 @@ groups:
   incipits:
     all_tags:
     - "031"
+  relations:
+    all_tags:
+    - "747"
   control: 
     all_tags: 
     - "040"
