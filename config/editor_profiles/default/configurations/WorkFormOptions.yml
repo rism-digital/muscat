@@ -267,6 +267,16 @@
     - - "b"
       - cols: 2
     columns: 4
+"675": 
+  allow_new: true
+  new_window: catalogues
+  layout: 
+    fields: 
+    - - "a"
+      - type: catalogue
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
 "680": 
   layout: 
     fields: 

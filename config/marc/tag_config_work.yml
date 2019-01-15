@@ -238,6 +238,20 @@
         :foreign_field: name
     - - b
       - :occurrences: "?"
+  "675":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - w
+      - :occurrences: "?"
+        :foreign_class: Catalogue
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: name
   "680":
     :master: a
     :indicator: "##"

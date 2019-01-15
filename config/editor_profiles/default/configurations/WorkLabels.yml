@@ -525,6 +525,23 @@ doc_edit_workflow:
         fr: "Numéro/page"
         de: Fundstelle
         en: Information found
+"675":
+  label:
+    it: SOURCE DATA NOT FOUND
+    fr: SOURCE DATA NOT FOUND
+    de: SOURCE DATA NOT FOUND
+    en: Source data not found
+  fields:
+    a:
+      label:
+        it: SOURCE DATA NOT FOUND
+        fr: SOURCE DATA NOT FOUND
+        de: SOURCE DATA NOT FOUND
+        en: Source data not found
+      edit_label: 
+        en: ""
+        de: ""
+
 "678":
   label:
     it: Informazioni biografiche addizionali 

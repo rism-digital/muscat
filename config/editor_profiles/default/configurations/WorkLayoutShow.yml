@@ -36,6 +36,7 @@ groups:
   references:
     all_tags:
     - "670"
+    - "675"
     - "680"
     all_tag_templates:
       "670": people/show_catalogue
