@@ -1,0 +1,18 @@
+<%
+    ref_tag = tag.fetch_first_by_tag("0").content.to_s rescue ""
+    a_tag = tag.fetch_first_by_tag("a").content rescue ""
+    i_tag = tag.fetch_first_by_tag("4").content rescue ""
+
+-%>
+<tr class="row">
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td>
+      <%= link_to a_tag + " ["+ i_tag +"]", ref_tag %>
+	</td>
+</tr>
+
+

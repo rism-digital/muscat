@@ -44,6 +44,9 @@ groups:
     - "700"
     - "747"
     - "930"
+    all_tag_templates:
+      "700": works/show_related_person
+      "930": works/show_work_link
   control: 
     all_tags: 
     - "040"
