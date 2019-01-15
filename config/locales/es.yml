@@ -606,8 +606,8 @@ es:
   dashboard:
     selection: "Selección"
     type: "Cambiar el tipo"
-    type_created: "Creado recientemente"
-    type_updated: "Actualizado recientemente"
+    type_created: "Recientemente creado"
+    type_updated: "Recientemente actualizado"
     owner: "Propietario"
     owner_user: "Yo"
     owner_any: "Cualquier"
