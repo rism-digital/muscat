@@ -46,6 +46,7 @@ groups:
     - "930"
     all_tag_templates:
       "700": works/show_related_person
+      "747": works/show_related_feast
       "930": works/show_work_link
   control: 
     all_tags: 

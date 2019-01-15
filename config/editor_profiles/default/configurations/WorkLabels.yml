@@ -1375,10 +1375,34 @@ xx:
     en: Unknown
 cmp: 
   label: 
-    it: Compositore/Compositore secondario
+    it: Rimando ad altro compositore
     fr: Compositeur / Co-compositeur
-    de: Komponist / Mitkomponist
-    en: Composer
+    de: Komponistenquerverweis
+    en: Composer cross-reference
+dte: 
+  label: 
+    it: Dedicatario
+    fr: "Dédicataire"
+    de: "Widmungsträger"
+    en: Dedicatee
+dub: 
+  label: 
+    it: Dubbio
+    fr: Douteux
+    de: Zweifelhaft
+    en: Uncertain
+lbt: 
+  label: 
+    it: Librettista
+    fr: Librettiste
+    de: Librettist
+    en: Librettist
+lyr: 
+  label: 
+    it: Poeta
+    fr: Parolier
+    de: Textdichter
+    en: Text author
 oth: 
   label: 
     it: Altra funzione

@@ -1,7 +1,6 @@
 <%
     ref_tag = tag.fetch_first_by_tag("0").content.to_s rescue ""
     a_tag = tag.fetch_first_by_tag("a").content rescue ""
-    i_tag = tag.fetch_first_by_tag("4").content rescue ""
 
 -%>
 <tr class="row">
@@ -11,7 +10,7 @@
 		<%- end %>
 	</th>
 	<td>
-      <%= link_to a_tag + " ["+ i_tag +"]", ref_tag %>
+      <%= link_to a_tag, admin_liturgical_feast_path(ref_tag) %>
 	</td>
 </tr>
 

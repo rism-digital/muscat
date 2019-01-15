@@ -282,9 +282,15 @@
         editor_partial: subfield_secondary
     - - "4"
       - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
   tag_params: 
-    codes: 
+    relator_codes: 
     - cmp
+    - dte
+    - dub
+    - lbt
+    - lyr
     - oth
 "747": 
   allow_new: true
@@ -307,8 +313,9 @@
       - cols: 4
     - - i
       - values:
-        - "variation of"  
+        - "Adaption of"  
+        - "Pharaphrase of"  
+        - "Variation of"  
         editor_partial: subfield_select
-
     columns: 4
 
