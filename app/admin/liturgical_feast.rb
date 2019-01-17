@@ -101,6 +101,8 @@ ActiveAdmin.register LiturgicalFeast do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
+    column (I18n.t :filter_wf_stage) {|feast| status_tag(feast.wf_stage,
+      label: I18n.t('status_codes.' + (feast.wf_stage != nil ? feast.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_alternate_terms), :alternate_terms
@@ -154,6 +156,7 @@ ActiveAdmin.register LiturgicalFeast do
       f.input :name, :label => (I18n.t :filter_name)
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
       f.input :notes, :label => (I18n.t :filter_notes)
+      f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
       f.input :lock_version, :as => :hidden
     end
   end
