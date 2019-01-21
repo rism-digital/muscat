@@ -12,11 +12,16 @@ module MergeControllerActions
       if ids.size != 2
         redirect_to request.referer, alert: "Too many entries selected!"      
       else  
-        collection = model.find(ids)
-        if collection.pluck(:wf_stage).sort == ["inprogress", "published"]
-          redirect_to request.referer, notice: "Auth merged! #{ids} #{model}"
-        else
+        collection = model.where(id: ids).order(:wf_stage)
+        if collection.pluck(:wf_stage) != ["inprogress", "published"]
           redirect_to request.referer, alert: "Not containing published and unpublished items!"      
+        else
+          duplicate, target = collection
+          duplicate.migrate_to_id(target.id)
+          Sunspot.index(duplicate)
+          Sunspot.index(target)
+          Sunspot.commit
+          redirect_to request.referer, notice: "#{model} ID#{duplicate.id} successfully merged into ID#{target.id}!"
         end
       end
     end

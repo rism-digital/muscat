@@ -62,7 +62,7 @@ module AuthorityMerge
     
     # EXPERIMENTAL
     # Clear this auth file
-    self.destroy
+    # self.destroy
     
   end
 
