@@ -4,6 +4,7 @@ ActiveAdmin.register Catalogue do
 
   # Remove mass-delete action
   batch_action :destroy, false
+  include MergeControllerActions
   
   # Remove all action items
   config.clear_action_items!

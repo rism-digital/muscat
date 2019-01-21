@@ -4,6 +4,7 @@ ActiveAdmin.register StandardTerm do
 
   # Remove mass-delete action
   batch_action :destroy, false
+  include MergeControllerActions
   
   # Remove all action items
   config.clear_action_items!
@@ -102,6 +103,8 @@ ActiveAdmin.register StandardTerm do
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
+    column (I18n.t :filter_wf_stage) {|term| status_tag(term.wf_stage,
+      label: I18n.t('status_codes.' + (term.wf_stage != nil ? term.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_term), :term
     column (I18n.t :filter_alternate_terms), :alternate_terms
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
@@ -185,6 +188,7 @@ ActiveAdmin.register StandardTerm do
       f.input :term, :label => (I18n.t :filter_term)
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms), :input_html => { :rows => 8 }
       f.input :notes, :label => (I18n.t :filter_notes)
+      f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
       f.input :lock_version, :as => :hidden
     end
   end
