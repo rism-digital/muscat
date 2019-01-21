@@ -82,6 +82,7 @@ de:
         destroy: "Lösche"
         folder: "Erstelle Ordner mit"
         add_to_folder: "Hinzufügen von Elementen zum einem vorhandenen Ordner"
+        merge: "Normdaten zusammenführen"
 
     comments:
       resource_type: "Quellentyp"

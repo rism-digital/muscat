@@ -82,6 +82,7 @@ it:
         destroy: "Elimina"
         folder: "Crea una nuova cartella con gli elementi selezionati"
         add_to_folder: "Aggiungi gli elementi selezionati ad una cartella esistente"
+        merge: "MERGE AUTHORITY RECORDS"
 
     comments:
       resource_type: "Tipo di risorsa"

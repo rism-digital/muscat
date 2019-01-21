@@ -81,6 +81,7 @@ en:
         destroy: "Delete"
         folder: "Create folder with items"
         add_to_folder: "Add items to existing folder"
+        merge: "Merge authority records"
 
     comments:
       resource_type: "Resource Type"

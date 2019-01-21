@@ -79,6 +79,7 @@ es:
       labels:
         destroy: "Borrar"
         folder: "Crear directorio con" # dudoso
+        merge: "MERGE AUTHORITY RECORDS"
 
     comments:
       resource_type: "Tipo de recurso"
