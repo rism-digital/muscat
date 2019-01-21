@@ -45,11 +45,17 @@ module AuthorityMerge
       puts "Creating new #{new_id}"
       new_model = duplicate_to_id(new_id)
     end
-
-    self.referring_sources.each do |s|
+    #include sources and holdings at first
+    #TODO probably add more asscociations
+    refs = []
+    (self.class.reflect_on_all_associations.map{|e| e.name}.select{|e| e.to_s =~ /source|holding/}).each do |s|
+      refs << self.send(s)
+    end
+    refs.flatten.each do |s|
+      klass = s.marc.class
       s.marc.change_authority_links(self, new_model)
 
-      new_marc = MarcSource.new(s.marc.to_marc)
+      new_marc = klass.new(s.marc.to_marc)
       new_marc.load_source(true)
       new_marc.import
 
