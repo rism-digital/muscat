@@ -285,6 +285,7 @@ es:
   edit: "Editar"
   new: "Crear"
   duplicate: "Duplicar"
+  merge: "MERGE"
   no_action: "Ninguna acción disponible"
   reindex: "Reindizar"
   resave: "RESAVE"

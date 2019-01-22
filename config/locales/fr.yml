@@ -309,6 +309,7 @@ fr:
   edit: "Modifier"
   new: "Créer"
   duplicate: "Dupliquer"
+  merge: "MERGE"
   no_action: "Aucune action possible"
   reindex: "Ré-indexer"
   resave: "Resauver"

@@ -1,22 +1,27 @@
-//Custom dialog with merge
+//Custom dialog for merging authorities
 var merge = function () {
   $('.muscat_merge').click(function(e){
     var selected = $(".selected");
     if (selected.length != 2){
-      alert("Please select two records");
+      alert("Please select exactly 2 authorities");
       return;
     }
-    var duplicate = selected.find(".inprogress").parent().parent()[0];
-    var target = selected.find(".published").parent().parent()[0];
-    if (typeof duplicate=='undefined' ||typeof target=='undefined'){
-      alert("Please select exactly one published and one unpublished record");
+    var duplicate = selected.find(".inprogress").parent().parent();
+    var target = selected.find(".published").parent().parent();
+    if (duplicate.length != 1 || target.length != 1){
+      alert("Please select exactly 1 published and 1 unpublished authority");
       return;
     }
+    var duplicate_id = duplicate.find(".col-rism_id").text();
+    var duplicate_size = duplicate.find(".col-quellen");
+    var target_id = target.find(".col-rism_id").text();
+    var target_size = target.find(".col-quellen");
+    var target_new_size = parseInt(target_size.text()) + parseInt(duplicate_size.text());
     e.stopPropagation();  // prevent Rails UJS click event
     e.preventDefault();
     html = "<form id=\"dialog_confirm\" class=\"active_admin_dialog\" title=\"Merge authorities\">" + 
-      "<ul>Should " + duplicate.id + " really be merged into " + target.id +
-      "</ul></form>"
+      "<ul>Should <b>" + duplicate_id + "</b> really be merged into <b>" + target_id +
+      "</b>?</ul></form>"
     form = $(html).appendTo('body');
     $('body').trigger('modal_dialog:before_open', [form]);
     return form.dialog({
@@ -27,7 +32,20 @@ var merge = function () {
       dialogClass: 'active_admin_dialog',
       buttons: {
         OK: function() {
-          callback($(this).serializeObject());
+          $.ajax({
+            type: "GET", 
+            url: location.protocol + '//' + location.host + location.pathname + "/merge",
+            data: {"target": target_id, "duplicate": duplicate_id},
+            dataType: "json",
+            success: function(response){
+              duplicate_size.html("0");
+              target_size.html( target_new_size );
+              console.log(response);
+            },
+            error: function(response){
+              console.log("ERROR");
+            }
+          });
           return $(this).dialog('close');
         },
         Cancel: function() {

@@ -12,9 +12,9 @@
 		<%else %>
 			<li><%= (I18n.t :no_action) -%></li>
 		<%- end %>
-		<%- if (self.resource_class.method_defined? :migrate_to_id) -%>
+		<%- if (self.resource_class.method_defined? :migrate_to_id) && (can? :destroy, resource_class) -%>
       <li class="muscat_icon_link">
-        <%= content_tag("a", "MERGE", :class => "muscat_icon_link muscat_icon_link_new muscat_merge") %>
+        <%= content_tag("a", "#{I18n.t :merge}", :class => "muscat_icon_link muscat_icon_link_new muscat_merge",  style: "cursor: pointer") %>
 			</li>
 		<%- end %>
 

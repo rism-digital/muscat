@@ -308,6 +308,7 @@ en:
   edit: "Edit"
   new: "Create"
   duplicate: "Duplicate"
+  merge: "Merge"
   no_action: "No action available"
   reindex: "Reindex sources"
   resave: "Resave sources"

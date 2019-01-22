@@ -309,6 +309,7 @@ de:
   edit: "Bearbeiten"
   new: "Erstellen"
   duplicate: "Kopieren"
+  merge: "Umhängen"
   no_action: "Keine Aktion verfügbar"
   reindex: "Reindexieren"
   resave: "Erneut speichern"
