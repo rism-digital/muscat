@@ -16,7 +16,6 @@ var merge = function () {
     var duplicate_size = duplicate.find(".col-quellen");
     var target_id = target.find(".col-rism_id").text();
     var target_size = target.find(".col-quellen");
-    var target_new_size = parseInt(target_size.text()) + parseInt(duplicate_size.text());
     e.stopPropagation();  // prevent Rails UJS click event
     e.preventDefault();
     html = "<form id=\"dialog_confirm\" class=\"active_admin_dialog\" title=\"Merge authorities\">" + 
@@ -38,8 +37,8 @@ var merge = function () {
             data: {"target": target_id, "duplicate": duplicate_id},
             dataType: "json",
             success: function(response){
-              duplicate_size.html("0");
-              target_size.html( target_new_size );
+              duplicate_size.html(response["duplicate_size"]);
+              target_size.html(response["target_size"]);
               console.log(response);
             },
             error: function(response){

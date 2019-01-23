@@ -144,7 +144,8 @@ ActiveAdmin.register Catalogue do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
-
+    column (I18n.t :filter_wf_stage) {|cat| status_tag(cat.wf_stage,
+      label: I18n.t('status_codes.' + (cat.wf_stage != nil ? cat.wf_stage : ""), locale: :en))}  
     column (I18n.t :filter_id), :id    
     column (I18n.t :filter_title_short), :name
     column (I18n.t :filter_title), :description do |catalogue| 
