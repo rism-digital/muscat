@@ -1,3 +1,4 @@
+=begin
 module SearchHistoryConstraintsHelper
   include Blacklight::SearchHistoryConstraintsHelperBehavior
 
@@ -10,3 +11,6 @@ module SearchHistoryConstraintsHelper
   end
   
 end
+
+
+=end

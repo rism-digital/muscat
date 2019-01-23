@@ -1,3 +1,4 @@
+@import "bootstrap";
 @import 'variables';
 
 /* require for verovio output with bootstrap */
@@ -143,7 +144,7 @@ a {
 }
 
 p, li {
-    color: $gray;
+    color: $gray50;
     line-height: 1.6;
     padding: 0 0 11px;
 }

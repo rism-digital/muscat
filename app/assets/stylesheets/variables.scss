@@ -1,4 +1,5 @@
-@import 'bootstrap-sprockets';
+//@import 'bootstrap-sprockets';
+@import "bootstrap";
 
 @import 'muscat-custom';
 
@@ -62,5 +63,7 @@ $brandbar-height: 50px;
 $footer-height: 40px;
 
 $link-color: lighten($rismBLColor, 5%);;
+
+$screen-sm-min: 375px;
 
 @import 'bootstrap/variables';

@@ -20,6 +20,7 @@ gem 'coffee-rails'#, '~> 4.2'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
+gem 'mini_racer'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -81,12 +82,12 @@ group :development do
     gem 'puma'
 end
 
-gem 'blacklight', git: 'https://github.com/rism-ch/blacklight', branch: "release-6.x"
-gem "blacklight_advanced_search"
-gem 'bootstrap-sass'
+gem 'blacklight'#, git: 'https://github.com/projectblacklight/blacklight', tag: "v7.0.1"
+gem "blacklight_advanced_search", git: "https://github.com/cdmo/blacklight_advanced_search"
+gem 'bootstrap', '~> 4.2.1'
 # For nice date ranges
 #https://github.com/projectblacklight/blacklight_range_limit
-gem "blacklight_range_limit", git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3-6.3.x"
+gem "blacklight_range_limit"#, git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3-6.3.x"
 gem 'devise'
 gem 'devise-i18n'
 

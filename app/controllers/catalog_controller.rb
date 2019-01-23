@@ -2,9 +2,10 @@
 #
 class CatalogController < ApplicationController  
 
-  include BlacklightRangeLimit::ControllerOverride
-  include BlacklightAdvancedSearch::Controller
+  #include BlacklightRangeLimit::ControllerOverride
+  #include BlacklightAdvancedSearch::Controller
   include Blacklight::Catalog
+  include Blacklight::DefaultComponentConfiguration
   
   DEFAULT_FACET_LIMIT = 20
   

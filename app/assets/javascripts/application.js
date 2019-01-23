@@ -123,4 +123,5 @@
 
 //= require tribute.min
 //= require tribute_load
+//= require bootstrap-sprockets
 
