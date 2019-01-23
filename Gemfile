@@ -66,7 +66,7 @@ gem 'htmlentities'
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', '~> 1.2' #, git: 'https://github.com/rism-ch/activeadmin'#, ref: 'a2cd960'
+gem 'activeadmin', '1.3.1' #, git: 'https://github.com/rism-ch/activeadmin'#, ref: 'a2cd960'
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
