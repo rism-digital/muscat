@@ -91,14 +91,15 @@ module ForeignLinks
       # Delete or add to the DB relation
       relation.delete(remove_items)
       new_items.each do |ni|
-        begin
+       # begin
+			 puts ni
           relation << ni
-        rescue => e
-          $stderr.puts
-          $stderr.puts "Foreign Links: Could not add a record (#{ni.id}) in the relationship with #{self.id} (#{self.class})".red
-          $stderr.puts "- Added records dump: #{new_items}".magenta
-          $stderr.puts e.message.blue
-        end
+					#rescue => e
+          #$stderr.puts
+          #$stderr.puts "Foreign Links: Could not add a record (#{ni.id}) in the relationship with #{self.id} (#{self.class})".red
+          #$stderr.puts "- Added records dump: #{new_items}".magenta
+          #$stderr.puts e.message.blue
+					#end
       end
     end
     

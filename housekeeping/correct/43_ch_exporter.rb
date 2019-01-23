@@ -23,7 +23,7 @@ end
 
 count = 0
 
-Source.where(record_type: 2).each do |s|
+Source.where(record_type: 1).each do |s|
   found = false
       
   s.marc.each_by_tag("593") do |t|
@@ -40,7 +40,7 @@ Source.where(record_type: 2).each do |s|
   count += 1
   
   lines = [s.id]
-  ["100", "245", "260", "300", "500", "505", "691", "510", "596"].each do |t|
+  ["100", "245", "260", "300", "500", "505", "691", "510", "596", "593"].each do |t|
     lines << "~" + tag_printer(t, s.marc) + "~"
   end
   
