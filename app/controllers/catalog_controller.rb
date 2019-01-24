@@ -157,8 +157,8 @@ class CatalogController < ApplicationController
       :defType => 'edismax',
       :fq => "type:Source wf_stage_s:published",
       :hl => 'false',
-      :"hl.simple.pre" => '<span class="highlight">',
-      :"hl.simple.post" => "</span>",
+      #:"hl.simple.pre" => '<span class="highlight">',
+      #:"hl.simple.post" => "</span>",
       :"facet.mincount" => 1,
     }
     
@@ -192,8 +192,8 @@ class CatalogController < ApplicationController
     # it could be called just index_header_default but this
     # way it implyies that it is customized
     config.index.partials = [:index_header_rism]
-    config.add_index_field 'source_title_field',   :accessor => 'source_index_description'
-    config.add_index_field 'source_composer_field',   :accessor => 'source_index_composer'
+#FIXME    config.add_index_field 'source_title_field',   :accessor => 'source_index_description'
+#FIXME    config.add_index_field 'source_composer_field',   :accessor => 'source_index_composer'
 
     # solr field configuration for document/show views
     #config.show.title_field = 'title_display'
