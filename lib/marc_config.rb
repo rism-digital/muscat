@@ -84,14 +84,14 @@ class MarcConfig
   end
 
   # Returns whether a tag is browsable, i.e. it will be shown to the user
-  # @param [String] Tag Name
+  # @param tag [String] Tag Name
   # @return [Boolean]
   def tag_is_browsable?(tag)
     @has_browsable[tag]
   end
 
   # Gets the default indicator for a Marc tag
-  # @param [String] Tag Name
+  # @param tag [String] Tag Name
   # @return [String] Marc Indicator
   def get_default_indicator(tag)
     return @tag_config[tag][:indicator][0] if @tag_config[tag][:indicator].is_a? Array
@@ -99,7 +99,7 @@ class MarcConfig
   end
 
   # Iterates over the Indicators for a Tag
-  # @param [String] Tag Name
+  # @param tag [String] Tag Name
   def each_indicator(tag)
     if @tag_config[tag][:indicator].is_a? Array
       @tag_config[tag][:indicator].each { |ind| yield ind }
@@ -108,7 +108,8 @@ class MarcConfig
     end
   end
 
-  # Gets the all the foreign Tag Groups
+  # Gets the Tags that refere to foreign Classes
+  # @return [Array<String>] Tag Names
   def get_foreign_tag_groups
     @foreign_tag_groups
   end
@@ -126,35 +127,61 @@ class MarcConfig
     end
   end
 
-  # Get the foreign class for a tag and subtag
+  # Gets the disable_create_lookup Flag
+  # @param [String] Tag Name
+  # @param [String] Subtag Name
+  # @return [Boolean]
+  # @todo The return flag should be enough actually
   def disable_create_lookup?(tag, subtag)
     flag = @tag_config[tag][:fields].assoc(subtag)[1][:disable_create_lookup]
     return flag if flag
     false
   end
 
-  # Get the foreign class for a tag and subtag
+  # Gets the foreign class for a tag and subtag
+  # @param [String] Tag Name
+  # @param [String] Subtag Name
+  # @return [String]
   def get_foreign_class(tag, subtag)
     @tag_config[tag][:fields].assoc(subtag)[1][:foreign_class]
   end
 
-  # Get the foreign field that is connected to a foreign class
+  # Gets the foreign field that is connected to a foreign class
+  # @param [String] Tag Name
+  # @param [String] Subtag Name
+  # @return [String]
   def get_foreign_field(tag, subtag)
     @tag_config[tag][:fields].assoc(subtag)[1][:foreign_field]
   end
 
+  # Gets the foreign alternative Field Names
+  # @param [String] Tag Name
+  # @param [String] Subtag Name
+  # @return [String]
   def get_foreign_alternates(tag, subtag)
     @tag_config[tag][:fields].assoc(subtag)[1][:foreign_alternates]
   end
 
+  # Gets the foreign Dependents
+  # @param [String] Tag Name
+  # @param [String] Subtag Name
+  # @return [String] ???
+  # @todo Is this still used? What ist the return value?
   def get_foreign_dependants(tag, subtag)
     return @foreign_dependants[tag + subtag]
   end
 
+  # Looks for the Number of foreign Subfields
+  # @param [String] Tag Name
+  # @return [Integer] Number of foreign Subfields or nil
+  # @todo when and why is there going to be nil
   def has_foreign_subfields(tag)
     return @foreign_tag_groups.rindex(tag)
   end
 
+  # Gets tags with references to a given Model
+  # @param [String] Model Name
+  # @return [Array<String>] Tag Names
   def get_remote_tags_for(link_model)
     remote_tags = []
     get_foreign_tag_groups.each do |foreign_tag|
@@ -168,11 +195,11 @@ class MarcConfig
         end
       end
     end
-    
     remote_tags
   end
 
-
+  # Gets all the References to foreign Models
+  # @return [Array<String>] Model Names
   def get_all_foreign_classes()
     foreign_classes = []
     get_foreign_tag_groups.each do |foreign_tag|
@@ -184,10 +211,13 @@ class MarcConfig
         end
       end
     end
-    
     foreign_classes
   end
 
+  # Gets Links to Tag
+  # @param tag [String] Tag Name
+  # @return [Boolean] False
+  # @todo does this ever not return false?
   def has_links_to(tag)
 		return false if !@tag_config.include? tag
 	  @tag_config[tag][:fields].each do |st|
@@ -196,6 +226,8 @@ class MarcConfig
 	  return false
   end
   
+  # Interates over Links to Tags
+  # @param tag [String] Tag Name
   def each_link_to(tag)
 	  @tag_config[tag][:fields].each do |st|
 		  yield(st[0], st[1][:link_to_model], st[1][:link_to_field]) if st[1].has_key?(:link_to_model) && st[1].has_key?(:link_to_field)
@@ -335,6 +367,4 @@ class MarcConfig
       end
     end
   end
-
-
 end
