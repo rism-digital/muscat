@@ -120,11 +120,12 @@ module ForeignLinks
   def check_dependencies
     msg = {}
     self.class.reflect_on_all_associations.map{|e| e.name}.each do |assoc|
+      next if assoc==:versions || assoc==:workgroups
       dependency_size = self.send(assoc).size rescue next
       msg[assoc] = dependency_size if dependency_size > 0
     end
     unless msg.empty?
-      linked_objects = "#{msg.map{|k,v| "#{v} #{k.to_s.sub("referring_", "")}"}.join(", ")}"
+      linked_objects = "#{msg.map{|k,v| "#{v} #{k.to_s.sub("_", " ")}"}.to_sentence}"
       errors.add :base, %{The #{self.class} could not be deleted because it is used by 
         #{linked_objects}  }
       throw :abort
