@@ -6,17 +6,23 @@ require 'yaml'
 #
 class MarcConfig
 
+  # create a new Instance of a Marc Configuration
+  # @param tag_config_file_path (see #load_config)
   def initialize(tag_config_file_path)
     @model = load_config tag_config_file_path
   end
 
   private
 
+  # load Marc Configuration from File
+  # @param tag_config_file_path [String] Path to Configuration (YAML) File
+  # @param overlay_path [String] Path to Overlay File
+  # @return [MarcConfig]
   def load_config(tag_config_file_path, overlay_path = "")
 
     @whole_config = Settings.new( YAML::load(File.open(tag_config_file_path)) )
 
-    config_file = File.basename(tag_config_file_path)
+    config_file = File.basename(tag_config_file_path) # @todo The variable `config_file` seems to be unused
     overlay_file = overlay_path #File.join(Rails.root, 'config', 'marc', RISM::MARC, 'local_' + config_file)
     if File.exists?(overlay_file)
       @whole_config.squeeze(Settings.new(YAML::load(File.open(overlay_file))))
@@ -59,31 +65,41 @@ class MarcConfig
 
   public
 
+  # Adds overlay to the Model
+  # (see #load_config)
   def add_overlay(tag_config_file_path, overlay_path)
     @model = load_config tag_config_file_path, overlay_path
   end
 
+  # Gets the model
+  # @return [String] Name of the Model
   def get_model
     @model
   end
 
-  # Return all the configuration as YAML
+  # Returns all the configuration as YAML
+  # @return [String] the whole Marc Configuration as YAML
   def to_yaml
     @whole_config.to_yaml
   end
 
-  # Return if a tag is browsable, i.e. it will be shown to the user
+  # Returns whether a tag is browsable, i.e. it will be shown to the user
+  # @param [String] Tag Name
+  # @return [Boolean]
   def tag_is_browsable?(tag)
     @has_browsable[tag]
   end
 
-  # Get the default indicator for a Marc tag
+  # Gets the default indicator for a Marc tag
+  # @param [String] Tag Name
+  # @return [String] Marc Indicator
   def get_default_indicator(tag)
     return @tag_config[tag][:indicator][0] if @tag_config[tag][:indicator].is_a? Array
     @tag_config[tag][:indicator]
   end
 
-  # Block to iterate over the indicators for a tag
+  # Iterates over the Indicators for a Tag
+  # @param [String] Tag Name
   def each_indicator(tag)
     if @tag_config[tag][:indicator].is_a? Array
       @tag_config[tag][:indicator].each { |ind| yield ind }
@@ -92,12 +108,16 @@ class MarcConfig
     end
   end
 
-  # Get the all the foreign classes
+  # Gets the all the foreign Tag Groups
   def get_foreign_tag_groups
     @foreign_tag_groups
   end
 
-  # Check if a tag and subtag should link to a foreign class (i.e. People)
+  # Checks if a Tag and a Subtag should link to a foreign Class (i.e. People)
+  # @param [String] Tag Name
+  # @param [String] Subtag Name
+  # @return [Integer] Index of the Tag plus the Subtag or false
+  # @todo Would be nicer to return 0 if no Tag and Subtag are found
   def is_foreign?(tag, subtag)
     if tag and subtag
       @foreign_tags.rindex(tag + subtag)

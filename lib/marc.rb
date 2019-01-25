@@ -1,7 +1,7 @@
 # Marc is a toplevel MARC element, corresponding to what is found in the
-# <tt>source</tt> field of a Source. In encapsulates a root MarcNode which in
-# turn has as children all the subsequent nodes is the Marc record.
-# TODO: Add String.intern to convert all tags to symbols
+# <tt>source</tt> field of a Source. It encapsulates a root MarcNode which in
+# turn has as children all the subsequent nodes in the Marc record.
+# @todo: Add String.intern to convert all tags to symbols
 
 class Marc
   include ApplicationHelper
@@ -25,7 +25,12 @@ class Marc
   public
   
   DOLLAR_STRING = "_DOLLAR_"
-  
+
+  # Creates a new instance
+  #
+  # @param model [String] the model that should be created,
+  #   one out of Source, Person or Institution
+  # @return [Marc] the new instance
   def initialize(model, source = nil, user = nil)
     @root = MarcNode.new(model)
     @marc21 = Regexp.new('^[\=]([\d]{3,3})[\s]+(.*)$')

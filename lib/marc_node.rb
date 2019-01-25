@@ -7,6 +7,15 @@ class MarcNode
   attr_writer :tag, :content, :indicator, :foreign_object, :foreign_field, :diff, :diff_is_deleted
   attr_accessor :foreign_host, :suppress_scaffold_links_trigger
   
+  # creates a new instance of a Marc Node
+  # @param model [String] the model that should be created,
+  #   one out of Source, Person or Institution
+  # @param tag [String] the tag
+  # @param content [String] the content
+  # @param indicator [String] the indicator
+  # @return [MarcNode] the new instance
+  # @todo We should have some sort of type checking here, like
+  #   raise "Model does not exit in enviroment" if !ActiveRecord::Base.descendants.map(&:name).include?(model.to_s.capitalize)
   def initialize(model, tag = nil, content = nil, indicator = nil)
     @tag = tag
     @content = content
@@ -18,23 +27,23 @@ class MarcNode
     @foreign_host = false
     @diff = nil
     @diff_is_deleted = false
-    # FIX We should have some sort of type checking here
-    #raise "Model does not exit in enviroment" if !ActiveRecord::Base.descendants.map(&:name).include?(model.to_s.capitalize)
     @model = model
     @marc_configuration = MarcConfigCache.get_configuration @model
   end
   
+  # sets suppress_scaffold_links_trigger 
   def suppress_scaffold_links
     self.suppress_scaffold_links_trigger = true
   end  
   
-  
-  # Returns a copy of this object an all of its references
+  # Returns a copy of this object and all of its references
+  # @return [MarcNode] copy of this Object and all of its References
   def deep_copy
     Marshal.load(Marshal.dump(self))
   end
   
-  # Try to get the external references for this object
+  # Trys to get the external References for this Object
+  # @return [Array]
   def resolve_externals
     # Do nothing if the master tag is missing but optional
     if self.tag && @marc_configuration.master_optional?(self.tag)
@@ -104,9 +113,11 @@ class MarcNode
   end
 
 
-  # Try to get a foreign object using the id. If the object does not exist,
-  # create it. It is used during import of a Marc record, so relations (ex People or Library)
-  # are established and in case created
+  # Try to get a foreign object using the id. 
+  # If the Object does not exist, create it. 
+  # @note It is used during import of a Marc record, 
+  #   so relations (ex People or Library) are established and created.
+  # @return [Object] of the type specified in class_name
   def find_or_new_foreign_object_by_foreign_field(class_name, field_name, search_value)
     new_foreign_object = nil
     if foreign_class = get_class(class_name)
@@ -120,8 +131,11 @@ class MarcNode
     return new_foreign_object
   end
 
-  # This works as find_or_new_foreign_object_by_foreign_field but instead of $0 id
-  # it tries to use another field for the relation, as specified from the @marc_configuration.
+  # Same as {#find_or_new_foreign_object_by_foreign_field}
+  # except that instead of $0 id
+  # it tries to use another field for the relation, 
+  # as specified from the @marc_configuration
+  # @return (see #find_or_new_foreign_object_by_foreign_field)
   def find_or_new_foreign_object_by_all_foreign_fields(class_name, tag, nmasters)
     new_foreign_object = nil
     if foreign_class = get_class(class_name)
@@ -139,7 +153,8 @@ class MarcNode
     return new_foreign_object
   end
   
-  # Populate the master object, used during the import
+  # Populate the master object
+  # @note used during the import
   def populate_master( )
     if dependants = @marc_configuration.get_foreign_dependants( self.tag, @marc_configuration.get_master( self.tag ) )
       dependants.each do |dep|
