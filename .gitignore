@@ -18,3 +18,7 @@ spec/examples.txt
 help.sh
 .DS_Store
 system
+/doc
+.yardoc/
+db/schema.rb
+/Gemfile.lock
