@@ -1,18 +1,14 @@
-<div id="sidebar" class="<%= sidebar_classes %>">
+<% content_for(:sidebar) do %>
   <%= render 'search_sidebar' %>
-</div>
+<% end %>
 
-<div id="content" class="<%= main_content_classes %>">
-  <% unless has_search_parameters? %>
-    <%# if there are no input/search related params, display the "home" partial -%>
-    <%= render 'home' %>
-  <% else %>
-
-    	<%= render :partial => "map/show" %>
-        <%= render 'search_results' %>
-
-  <% end %>
-</div>
+<% unless has_search_parameters? %>
+  <%# if there are no input/search related params, display the "home" partial -%>
+  <%= render 'home' %>
+<% else %>
+  <%= render :partial => "map/show" %>
+  <%= render 'search_results' %>
+<% end %>
 
 <script>
 I18n.defaultLocale = "<%= I18n.default_locale %>";
