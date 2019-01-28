@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery3
+//= require popper
 //= require 'blacklight_advanced_search'
 
 
