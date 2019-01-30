@@ -5,11 +5,13 @@ group_order:
 - variants
 - references
 - incipits
+- relations
 - control
 groups:   
   main_work: 
     all_tags: 
     - "100"
+    - "548"
 #  people:
 #    all_tags:
 #    - "500"
@@ -20,6 +22,7 @@ groups:
   references:
     all_tags:
     - "670"
+    - "675"
     - "680"
   codes: 
     all_tags: 
@@ -28,6 +31,11 @@ groups:
   incipits:
     all_tags:
     - "031"
+  relations:
+    all_tags:
+    - "700"
+    - "747"
+    - "930"
   control: 
     all_tags: 
     - "040"
