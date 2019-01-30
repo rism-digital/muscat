@@ -433,7 +433,27 @@ doc_edit_workflow:
         it:  Sigla
         fr:  Siglum
         de:  Sigel
-        en:  Associated institution 
+        en:  Associated institution
+"548":
+  label:
+    it: CHRONOLOGICAL TERM
+    fr: CHRONOLOGICAL TERM
+    de: Datierungen 
+    en: Chronological term
+  fields:
+    a:
+      label:
+        it:  DATE
+        fr:  DATE
+        de:  Datierung
+        en:  Date
+    i:
+      label:
+        it:  Relazione
+        fr:  Relation
+        de:  Beziehung
+        en:  Type of relationship
+ 
 "550":
   label:
     it: Professione o funzione
@@ -505,6 +525,23 @@ doc_edit_workflow:
         fr: "Numéro/page"
         de: Fundstelle
         en: Information found
+"675":
+  label:
+    it: SOURCE DATA NOT FOUND
+    fr: SOURCE DATA NOT FOUND
+    de: SOURCE DATA NOT FOUND
+    en: Source data not found
+  fields:
+    a:
+      label:
+        it: SOURCE DATA NOT FOUND
+        fr: SOURCE DATA NOT FOUND
+        de: SOURCE DATA NOT FOUND
+        en: Source data not found
+      edit_label: 
+        en: ""
+        de: ""
+
 "678":
   label:
     it: Informazioni biografiche addizionali 
@@ -531,6 +568,57 @@ doc_edit_workflow:
         fr: Remarque générale
         de: Externe Bemerkungen
         en: General note
+"700": 
+  label: 
+    it: Nomi di persone aggiuntivi
+    fr: Noms de personnes additionnels
+    de: Nebeneintragung Personen
+    en: Additional personal name
+  fields: 
+    a: 
+      label: 
+        it: Nome
+        fr: Nom
+        de: Personenname
+        en: Name
+    d: 
+      label: 
+        it: Date di nascita e di morte
+        fr: Dates de vie
+        de: Geburts- und Todesdaten
+        en: Life dates
+    j: 
+      label: 
+        it: Qualificazione d'attribuzione
+        fr: Qualificatif d'attribution
+        de: Zuschreibungsvermerk
+        en: Attribution qualifier
+      edit_label: 
+        it: Attribuzione
+        fr: Attribution
+        de: Zuschreibung
+        en: Attribution
+    "4": 
+      label: 
+        it: Funzione
+        fr: Function
+        de: Funktionsbezeichnung
+        en: Function
+"747": 
+  label: 
+    it: Feste liturgiche
+    fr: "Fête liturgique"
+    de: Liturgische Feste
+    en: Liturgical festival
+  fields: 
+    a: 
+      label: 
+        it: Feste liturgiche
+        fr: "Fête liturgique"
+        de: Liturgische Feste
+        en: Liturgical feasts
+      edit_label: 
+        en: ""
 "856":
   label:
     it: Localizzazione e accesso elettronico
@@ -550,6 +638,26 @@ doc_edit_workflow:
         fr: Ressource externe
         de: Uniform Resource Identifier
         en: External resource
+"930":
+  label:
+    it: RELATED WORK
+    fr: RELATED WORK
+    de: RELATED WORK
+    en: Related work
+  fields:
+    a:
+      label:
+        it:  WORK
+        fr:  WORK
+        de:  Werk
+        en:  WORK
+    i:
+      label:
+        it:  Relazione
+        fr:  Relation
+        de:  Beziehung
+        en:  Type of relationship
+ 
 main_work:
   label:
     it: Campi principali
@@ -1282,6 +1390,42 @@ xx:
     fr: Inconnu
     de: Unbekannt
     en: Unknown
+cmp: 
+  label: 
+    it: Rimando ad altro compositore
+    fr: Compositeur / Co-compositeur
+    de: Komponistenquerverweis
+    en: Composer cross-reference
+dte: 
+  label: 
+    it: Dedicatario
+    fr: "Dédicataire"
+    de: "Widmungsträger"
+    en: Dedicatee
+dub: 
+  label: 
+    it: Dubbio
+    fr: Douteux
+    de: Zweifelhaft
+    en: Uncertain
+lbt: 
+  label: 
+    it: Librettista
+    fr: Librettiste
+    de: Librettist
+    en: Librettist
+lyr: 
+  label: 
+    it: Poeta
+    fr: Parolier
+    de: Textdichter
+    en: Text author
+oth: 
+  label: 
+    it: Altra funzione
+    fr: Autre function
+    de: Sonstige Funktion
+    en: Other function
 A:
   label:
     it: "La maggiore"
