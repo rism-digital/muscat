@@ -20,7 +20,7 @@ svg:not(:root){
 }
 
 #header-navbar {
-    &.navbar-rism {
+    &.navbar-inverse {
         background-color: $rismBLColor;
         border-color: $darkRismBLColor;
         .nav-link {
