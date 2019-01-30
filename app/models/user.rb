@@ -83,6 +83,15 @@ class User < ApplicationRecord
     return false
   end
 
+  # check if a folder content all items are the user domain
+  def can_publish?(folder)
+    return false unless folder.folder_type == 'Source'
+    folder_sigla = folder.content.pluck(:lib_siglum).uniq
+    own_sigla = self.workgroups.map{|w| w.institutions.pluck(:siglum)}.flatten
+    return false unless (folder_sigla - own_sigla).empty?
+    return true
+  end
+
   def get_workgroups
     self.workgroups.map {|ins| ins.name}
   end
