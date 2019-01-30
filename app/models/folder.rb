@@ -13,7 +13,19 @@ class Folder < ApplicationRecord
   def has_item?(item)
     return folder_items.where(item_id: item.id, item_type: item.class.to_s).count != 0
   end
-  
+
+  # Get the content of the folder
+  def content
+    return folder_type.constantize.where(id: folder_items.pluck(:item_id))
+  end
+
+  def is_published?
+    content.pluck(:wf_stage).each do |e| 
+      return false if e == "inprogress"
+    end
+    return true
+  end
+
   # Adds an item to the current folder. The type of the item must match the item type
   # for which this folder was created.
   def add_item(item)
