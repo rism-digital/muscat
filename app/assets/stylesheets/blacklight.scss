@@ -1,16 +1,22 @@
 //@import 'bootstrap-sprockets';
-@import 'bootstrap';
+//@import 'bootstrap-sprockets';
 
 @import 'blacklight/blacklight';
 
 // From muscat
 @import 'variables';
 
-@import 'blacklight/blacklight';
-@import 'ekko-lightbox';
+//@import 'blacklight/blacklight';
+//@import 'ekko-lightbox';
 @import 'rism_theme';
 
-@import "jquery-ui";
+//@import "jquery-ui";
+
+$padding-xs-horizontal: 1ch !default;
+$nav-link-padding: $nav-link-padding-y $nav-link-padding-x;
+.badge-default {
+  @extend .badge-secondary;
+}
 
 // Courtesy of https://gist.github.com/alexandrevicenzi/680147013e902a4eaa5d
 .glyphicon-refresh-animate {

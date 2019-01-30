@@ -1,37 +1,35 @@
-<div id="header-navbar" class="navbar navbar-inverse navbar-static-top" role="navigation">
-    <div class="container">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark topbar" role="navigation">
+    <div class="<%= container_classes %>">
+	    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#user-util-collapse" aria-controls="user-util-collapse" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+			
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle btn collapsed" data-toggle="collapse" data-target="#user-util-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <div class="slogan">
                 <a href="/">
-                    <div class="hidden-sm hidden-xs">
+                    <div class="d-sm-none d-none">
                         <span class="slogan-top"><%= RISM::PROJECTLINE.html_safe %></span><br />
                         <span class="slogan-bottom"><%= RISM::STRAPLINE.html_safe %></span>
                     </div>
-                    <div class="hidden-md hidden-lg">
+                    <div class="d-md-none d-lg-none">
                         <img src="/images/logo3.png">
                     </div>
                 </a>
             </div>
     </div>
-    <div class="collapse navbar-collapse" id="user-util-collapse">
-        <div class="navbar-right">
-            <ul class="nav navbar-nav">
+		
+    <div class="collapse navbar-collapse justify-content-md-end" id="user-util-collapse">
+            <ul class="navbar-nav">
                 <%- RISM::MENUS.each do |m| %>
-                <li>
-                    <%= link_to t(m[0]), m[1] %>
+                <li class="nav-item">
+                    <%= link_to t(m[0]), m[1], class: 'nav-link' %>
                 </li>
                 <%- end %>
             </ul>
-        </div>
     </div>
+
   </div>
-</div>
+</nav>
 <% if request.path != "/advanced" %>
 <div id="search-navbar" class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
@@ -40,7 +38,7 @@
         </div>
         <div class="col-md-9 search-navbar-right">
             <div class="search-navbar-locale pull-right">
-                <%- RISM::LOCALES.each do |l| %>
+                <%- RISM::LOCALES.each do |l| %> 
                 <a href="?locale=<%= l[0] -%>"><%= l[1].html_safe -%></a>
                 <%- end %>
             </div>
