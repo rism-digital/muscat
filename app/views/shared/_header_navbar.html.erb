@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark topbar" role="navigation">
+<nav class="navbar navbar-expand-md navbar-inverse topbar" role="navigation">
     <div class="<%= container_classes %>">
 	    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#user-util-collapse" aria-controls="user-util-collapse" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
@@ -7,11 +7,11 @@
         <div class="navbar-header">
             <div class="slogan">
                 <a href="/">
-                    <div class="d-sm-none d-none">
+                    <div class="d-none d-md-block">
                         <span class="slogan-top"><%= RISM::PROJECTLINE.html_safe %></span><br />
                         <span class="slogan-bottom"><%= RISM::STRAPLINE.html_safe %></span>
                     </div>
-                    <div class="d-md-none d-lg-none">
+                    <div class="d-md-none">
                         <img src="/images/logo3.png">
                     </div>
                 </a>

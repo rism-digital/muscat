@@ -23,7 +23,7 @@ svg:not(:root){
     &.navbar-inverse {
         background-color: $rismBLColor;
         border-color: $darkRismBLColor;
-        .navbar-nav > li > a {
+        .nav-link {
             color: #ddd;
             padding-top: 15px;
             padding-bottom: 0;
