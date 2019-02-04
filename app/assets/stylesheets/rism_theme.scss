@@ -17,6 +17,8 @@ svg:not(:root){
 
 .navbar {
     min-height: $brandbar-height !important;
+    height: 50px;
+    line-height: 1.0;
 }
 
 #header-navbar {
