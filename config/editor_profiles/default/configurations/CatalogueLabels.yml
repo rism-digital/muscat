@@ -1156,6 +1156,12 @@ swe:
     fr: "Suédois"
     de: Schwedisch
     en: Swedish
+zho:
+  label:
+    it: CHINESE
+    fr: CHINESE
+    de: Chinesisch
+    en: Chinese
 zxx: 
   label: 
     it: Nessun contesto linguistico
