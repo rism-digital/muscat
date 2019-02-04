@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181001124650) do
+ActiveRecord::Schema.define(version: 20190103152222) do
 
   create_table "active_admin_comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -651,6 +651,20 @@ ActiveRecord::Schema.define(version: 20181001124650) do
     t.index ["work_id"], name: "index_works_to_catalogues_on_work_id"
   end
 
+  create_table "works_to_liturgical_feasts", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "work_id"
+    t.integer "liturgical_feast_id"
+    t.index ["liturgical_feast_id"], name: "index_works_to_liturgical_feasts_on_liturgical_feast_id"
+    t.index ["work_id"], name: "index_works_to_liturgical_feasts_on_work_id"
+  end
+
+  create_table "works_to_people", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "work_id"
+    t.integer "person_id"
+    t.index ["person_id"], name: "index_works_to_people_on_person_id"
+    t.index ["work_id"], name: "index_works_to_people_on_work_id"
+  end
+
   create_table "works_to_standard_terms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "work_id"
     t.integer "standard_term_id"
@@ -663,6 +677,13 @@ ActiveRecord::Schema.define(version: 20181001124650) do
     t.integer "standard_title_id"
     t.index ["standard_title_id"], name: "index_works_to_standard_titles_on_standard_title_id"
     t.index ["work_id"], name: "index_works_to_standard_titles_on_work_id"
+  end
+
+  create_table "works_to_works", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "work_a_id"
+    t.integer "work_b_id"
+    t.index ["work_a_id"], name: "index_works_to_works_on_work_a_id"
+    t.index ["work_b_id"], name: "index_works_to_works_on_work_b_id"
   end
 
 end
