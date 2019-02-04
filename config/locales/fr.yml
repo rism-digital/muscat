@@ -447,6 +447,7 @@ fr:
   filter_subject: "Sujet"
   filter_subsequent_entries: "Entrées suivants"
   filter_term: "Terme"
+  filter_textinipit: "TEXTINCIPIT"
   filter_thematic_opus: "Cat. thématique / No d'opus"
   filter_title: "Titre"
   filter_titles: "Titres"
