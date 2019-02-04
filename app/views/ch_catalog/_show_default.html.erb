@@ -1,0 +1,38 @@
+<!-- Overridded to open our MARC SHOW page -->
+
+<%# See https://github.com/projectblacklight/blacklight/wiki/Providing-your-own-view-templates 
+  This is pretty hackish for now - figure out a better way to do this into the CatalogController! -%>
+
+<%
+	@item = Source.find(@document.id.split(" ")[1]) # hackady-hack! Source 1234567 -> 1234567
+	@editor_profile = EditorConfiguration.get_show_layout @item
+%>
+<dl class="dl-horizontal  dl-invert">
+	<%= render :partial => "marc/show", :locals => { :opac => true } %>
+	<%- if @item.digital_objects.size > 0 %>
+		<%= render :partial => "catalog/digital_objects" %>
+	<%- end %>
+</dl>
+
+<script>
+I18n.defaultLocale = "<%= I18n.default_locale %>";
+I18n.locale = "<%= I18n.locale %>"
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  },
+  "position": "bottom-left",
+  content: {
+    message: I18n.t("cookies.message"),
+    dismiss: I18n.t("cookies.dimiss"),
+    link: I18n.t("cookies.link"),
+    href: '<%=get_cookie_link()%>',
+  }
+})});
+</script>

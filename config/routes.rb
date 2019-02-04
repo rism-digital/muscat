@@ -22,8 +22,13 @@ Rails.application.routes.draw do
   resource :catalog, only: [:index], controller: 'catalog' do
     concerns :searchable
     concerns :range_searchable
-		concerns :exportable
+    concerns :exportable
+  end
 
+  resources :ch_catalog, only: %i[index show], controller: 'ch_catalog' do
+    concerns :exportable
+    concerns :searchable
+    concerns :range_searchable
   end
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
