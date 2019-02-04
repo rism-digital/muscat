@@ -1523,6 +1523,12 @@ zxx:
     fr: "Syrian Arab Republic"
     de: "Syrian Arab Republic"
     en: "Syrian Arab Republic"
+"XB-TW":
+  label:
+    it: "Taiwan (Province of China)"
+    fr: "Taiwan (Province of China)"
+    de: "Taiwan (Province of China)"
+    en: "Taiwan (Province of China)"
 "XD-TT":
   label:
     it: "Trinidad and Tobago"
