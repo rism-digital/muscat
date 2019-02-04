@@ -2,16 +2,6 @@
 #
 class CatalogController < ApplicationController  
 
-  before_action :set_view_path
-
-  
-  def set_view_path
-    
-    puts "ADASFASDFASDFAS"
-    puts view_paths
-  end
-	
-
   #include BlacklightRangeLimit::ControllerOverride
   #include BlacklightAdvancedSearch::Controller
   include Blacklight::Catalog
