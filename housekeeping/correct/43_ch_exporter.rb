@@ -34,8 +34,12 @@ Source.where(record_type: 1).each do |s|
     end
 
   end
-    
+  
   next if !found
+  
+  if s.marc.has_tag?("773")
+    next
+  end
   
   count += 1
   
