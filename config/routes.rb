@@ -27,11 +27,12 @@ Rails.application.routes.draw do
     concerns :exportable
   end
 
-  resources :catalog_ch, only: [:index], as: 'catalog_ch', path: '/catalog_ch', controller: 'catalog_ch' do
+  resource :catalog_ch, only: [:index], as: 'catalog_ch', path: '/catalog_ch', controller: 'catalog_ch' do
     concerns :searchable
     concerns :range_searchable
     concerns :exportable
   end
+
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns :exportable
