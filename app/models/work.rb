@@ -183,4 +183,6 @@ class Work < ApplicationRecord
     Viaf::Interface.search(str, self.to_s)
   end
  
+  ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end
+
 end

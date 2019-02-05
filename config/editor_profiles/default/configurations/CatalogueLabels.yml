@@ -1156,6 +1156,12 @@ swe:
     fr: "Suédois"
     de: Schwedisch
     en: Swedish
+zho:
+  label:
+    it: CHINESE
+    fr: CHINESE
+    de: Chinesisch
+    en: Chinese
 zxx: 
   label: 
     it: Nessun contesto linguistico
@@ -1517,6 +1523,12 @@ zxx:
     fr: "Syrian Arab Republic"
     de: "Syrian Arab Republic"
     en: "Syrian Arab Republic"
+"XB-TW":
+  label:
+    it: "Taiwan (Province of China)"
+    fr: "Taiwan (Province of China)"
+    de: "Taiwan (Province of China)"
+    en: "Taiwan (Province of China)"
 "XD-TT":
   label:
     it: "Trinidad and Tobago"
