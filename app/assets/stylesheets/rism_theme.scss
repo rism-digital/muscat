@@ -17,7 +17,6 @@ svg:not(:root){
 
 .navbar {
     min-height: $brandbar-height !important;
-    height: 50px;
     line-height: 1.0;
 }
 
@@ -27,22 +26,15 @@ svg:not(:root){
         border-color: $darkRismBLColor;
         .nav-link {
             color: #ddd;
-            padding-top: 15px;
             padding-bottom: 0;
         }
-        .navbar-nav > .open > a,
-        .navbar-inverse .navbar-nav > .open > a:hover,
-        .navbar-inverse .navbar-nav > .open > a:focus {
-            background-color: $rismBLColor;
-        }
-
     }
     .navbar-brand {/* The main logo image for the Blacklight instance */
         height: $brandbar-height;
     }
     .slogan {
         padding-left: 10px;
-        padding-top: 6px;
+        //padding-top: 6px;
         a:active, a:hover {
             text-decoration: none;
         }
@@ -55,6 +47,10 @@ svg:not(:root){
             color: $gray30;
         }
 
+    }
+    
+    .navbar-nav > li {
+      padding: 0 0 0;
     }
 
 }
