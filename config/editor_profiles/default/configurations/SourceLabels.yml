@@ -2295,6 +2295,12 @@ arg:
     FR: Aragonais
     de: Aragonesisch
     en: Aragonese
+baq: 
+  label: 
+    it: BASQUE
+    fr: BASQUE
+    de: Baskisch
+    en: Basque
 cat: 
   label: 
     it: Catalano
@@ -3899,8 +3905,8 @@ Digitalization:
   label: 
     it: "Musica digitalizzata"
     fr: "Sources numériées"
-    de: "Notendigitalisat"
-    en: "Digitized music"
+    de: "Quellendigitalisat"
+    en: "Digitized source"
 Other: 
   label: 
     it: "Altro"

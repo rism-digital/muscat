@@ -5,12 +5,14 @@ group_order:
 #- people
 - incipits
 - variants
+- references
 - relations
 - control
 groups:   
   main_work: 
     all_tags: 
     - "100"
+    - "548"
   codes: 
     all_tags: 
     - "024"
@@ -31,14 +33,24 @@ groups:
     all_tag_templates:
       "400": works/show_variants
 #    - "440"
-  relations:
+  references:
     all_tags:
     - "670"
+    - "675"
+    - "680"
     all_tag_templates:
       "670": people/show_catalogue
+  relations:
+    all_tags:
+    - "700"
+    - "747"
+    - "930"
+    all_tag_templates:
+      "700": works/show_related_person
+      "747": works/show_related_feast
+      "930": works/show_work_link
   control: 
     all_tags: 
     - "040"
     - "000"
     - "001"
-    - "680"

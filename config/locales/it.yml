@@ -447,6 +447,7 @@ it:
   filter_subject: "Soggetto"
   filter_subsequent_entries: "Notizie Successive"
   filter_term: "Termine"
+  filter_textinipit: "TEXTINCIPIT"
   filter_thematic_opus: "Catalogo / Num. d'opera"
   filter_title: "Titolo"
   filter_titles: "Titoli"
