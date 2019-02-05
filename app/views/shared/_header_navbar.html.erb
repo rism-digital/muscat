@@ -34,11 +34,13 @@
 <% if request.path != "/advanced" %>
 <div id="search-navbar" class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
-    <div class="col-md-3 hidden-sm hidden-xs search-navbar-logo">
+    
+    <div class="col-md-3 d-none d-md-block search-navbar-logo">
       <img src="/images/logo-large-<%= RISM::BASE %>.png">
     </div>
+    
     <div class="col-md-9 search-navbar-right">
-      <div class="search-navbar-locale pull-right">
+      <div class="search-navbar-locale float-right">
         <%- RISM::LOCALES.each do |l| %> 
         <a href="?locale=<%= l[0] -%>"><%= l[1].html_safe -%></a>
         <%- end %>
@@ -47,6 +49,7 @@
         <%= render_search_bar  %>
       </div>
     </div>
+    
   </div>
 </div>
 <% elsif %>

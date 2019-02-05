@@ -27,6 +27,7 @@ svg:not(:root){
         .nav-link {
             color: #ddd;
             padding-bottom: 0;
+            font-size: 14px;
         }
     }
     .navbar-brand {/* The main logo image for the Blacklight instance */
@@ -64,6 +65,7 @@ svg:not(:root){
         padding-right: 0px;
     }
     .search-navbar-locale {
+      font-size: 14px;
         @media screen and (min-width: 768px) {
             padding-top: 5px;
             height: 20px;
