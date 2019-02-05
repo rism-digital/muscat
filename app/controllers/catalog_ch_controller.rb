@@ -1,12 +1,12 @@
 # -*- encoding : utf-8 -*-
 #
-class ChCatalogController < CatalogController
+class CatalogChController < CatalogController
   
   before_action :set_view_path
   
-  def self.controller_path
-    "catalog" # change path from app/views/ch_catalog to app/views/catalog
-  end
+  #def self.controller_path
+  #  "catalog_ch" # change path from app/views/catalog_ch to app/views/catalog
+  #end
   
   def set_view_path
     prepend_view_path "#{Rails.root}/app/views/#{self.controller_name}"
