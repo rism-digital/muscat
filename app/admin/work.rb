@@ -117,7 +117,6 @@ ActiveAdmin.register Work do
   
   # Solr search all fields: "_equal"
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
