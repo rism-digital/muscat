@@ -45,7 +45,7 @@
        configuration.
     -->
   <dataDir>${solr.data.dir:}</dataDir>
-  <lib dir="../../jar" />
+
 
   <!-- The DirectoryFactory to use for indexes.
        
@@ -254,7 +254,7 @@
                      size="512"
                      initialSize="512"
                      autowarmCount="0"/>
-
+   
     <!-- Document Cache
 
          Caches Lucene Document objects (the stored fields for each
@@ -342,10 +342,7 @@
        handleSelect="true" is not recommended for new users, but is the default
        for backwards compatibility
     -->
-    <!-- By default it is FALSE, set true by RZ for document retrive in blacklight, see:
-      https://blogs.library.ucsf.edu/ckm/2014/03/11/working-with-blacklight-part-3-linking-to-your-solr-index/
-    -->
-    <requestDispatcher handleSelect="true" >
+  <requestDispatcher handleSelect="false" >
     <!-- Request Parsing
 
          These settings indicate how Solr Requests may be parsed, and
@@ -443,51 +440,6 @@
        <str>spellcheck</str>
      </arr>
   </requestHandler>
-
-  <!-- A note on these two handlers
-  https://github.com/projectblacklight/blacklight/wiki/README_SOLR
-  https://github.com/projectblacklight/blacklight-jetty/blob/master/solr/blacklight-core/conf/solrconfig.xml
-  These two implement the qt=search and qt=document /select handlers used by Blacklight
-  to search and get the single documents. They work only if 	handleSelect="true" (see above)
-  BUT as always there is a caveat: they work only if /select is __NOT__ overridden and
-  guess what? it __IS__ overridden by Sunspot. So I left them here but they ARE NOT
-  USED - just fir reference. To have blacklight working I modified the default_solr_params
-  and default_document_solr_params in catalog_controller to use  :defType => 'dismax'
-  and to mimic the document handler. This way we can have searches for both Blacklight and
-  Sunspot. Hope there is a better solution in the future.
-  -->
-
-  <!-- added by RZ, used to retrieve a single doc for blacklight
-  see https://github.com/projectblacklight/blacklight/wiki/Solr-Configuration -->
-  <requestHandler name="document" class="solr.SearchHandler" >
-    <lst name="defaults">
-      <str name="echoParams">all</str>
-      <str name="fl">*</str>
-      <str name="rows">1</str>
-      <bool name="facet">false</bool>
-      <str name="q">{!raw f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
-    </lst>
-  </requestHandler>
-  
-  <requestHandler name="search" class="solr.SearchHandler" >
-          <lst name="defaults">
-              <str name="defType">dismax</str>
-              <str name="echoParams">explicit</str>
-              <!-- list fields to be returned in the "fl" param -->
-              <str name="fl">*,score</str>
-
-              <str name="facet">on</str>
-              <str name="facet.mincount">1</str>
-              <str name="facet.limit">10</str>
-
-              <!-- list fields to be displayed as facets here. -->
-              <str name="facet.field">format</str>
-              <str name="facet.field">language_facet</str>
-
-              <str name="q.alt">*:*</str>
-          </lst>
-      </requestHandler>
-<!-- end added by RZ -->
 
   <!--
     The export request handler is used to export full sorted result sets.
@@ -589,13 +541,13 @@
       <!-- change field to textSpell and use copyField in schema.xml
       to spellcheck multiple fields -->
       <str name="field">textSpell</str>
-      <str name="buildOnCommit">false</str>
+      <str name="buildOnOptimize">true</str>
     </lst>
 
     <lst name="spellchecker">
       <str name="name">example</str>
       <str name="field">title_text</str>
-      <str name="buildOnCommit">false</str>
+      <str name="buildOnOptimize">true</str>
       <str name="classname">solr.DirectSolrSpellChecker</str>
       <!-- the spellcheck distance measure used, the default is the internal levenshtein -->
       <str name="distanceMeasure">internal</str>

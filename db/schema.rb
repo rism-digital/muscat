@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20181001124650) do
     t.text "body"
     t.string "resource_id", null: false
     t.string "resource_type", null: false
-    t.integer "author_id"
     t.string "author_type"
+    t.integer "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20181001124650) do
     t.string "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text "progress_stage", limit: 4294967295
+    t.string "progress_stage"
     t.integer "progress_current", default: 0
     t.integer "progress_max", default: 0
     t.string "parent_type"
@@ -134,8 +134,8 @@ ActiveRecord::Schema.define(version: 20181001124650) do
 
   create_table "digital_object_links", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "digital_object_id"
-    t.integer "object_link_id"
     t.string "object_link_type"
+    t.integer "object_link_id"
     t.integer "wf_owner"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -160,8 +160,8 @@ ActiveRecord::Schema.define(version: 20181001124650) do
 
   create_table "folder_items", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "folder_id"
-    t.integer "item_id"
     t.string "item_type"
+    t.integer "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["folder_id"], name: "index_folder_items_on_folder_id"
@@ -392,8 +392,8 @@ ActiveRecord::Schema.define(version: 20181001124650) do
 
   create_table "roles", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.integer "resource_id"
     t.string "resource_type"
+    t.integer "resource_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
@@ -435,8 +435,8 @@ ActiveRecord::Schema.define(version: 20181001124650) do
     t.index ["created_at"], name: "index_sources_on_created_at"
     t.index ["record_type"], name: "index_sources_on_record_type"
     t.index ["source_id"], name: "index_sources_on_source_id"
-    t.index ["std_title"], name: "index_sources_on_std_title", length: { std_title: 255 }
-    t.index ["std_title_d"], name: "index_sources_on_std_title_d", length: { std_title_d: 255 }
+    t.index ["std_title"], name: "index_sources_on_std_title"
+    t.index ["std_title_d"], name: "index_sources_on_std_title_d"
     t.index ["updated_at"], name: "index_sources_on_updated_at"
     t.index ["wf_stage"], name: "index_sources_on_wf_stage"
   end

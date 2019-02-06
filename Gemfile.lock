@@ -208,6 +208,7 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
+    github-markup (3.0.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     gruff (0.7.0)
@@ -334,6 +335,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rdoc (6.0.4)
+    redcarpet (3.4.0)
     request_store (1.4.1)
       rack (>= 1.4)
     responders (2.4.0)
@@ -418,6 +420,7 @@ GEM
     websocket-extensions (0.1.3)
     xpath (3.1.0)
       nokogiri (~> 1.8)
+    yard (0.9.18)
 
 PLATFORMS
   ruby
@@ -445,6 +448,7 @@ DEPENDENCIES
   devise-i18n
   exception_notification
   factory_bot_rails
+  github-markup
   gruff
   htmlentities
   i18n-js (>= 3.0.0.rc11)
@@ -466,6 +470,7 @@ DEPENDENCIES
   rails (>= 5.1, < 5.2)
   rails-i18n
   rails3-jquery-autocomplete!
+  redcarpet
   rolify
   rsolr (>= 1.0)
   rspec
@@ -479,6 +484,7 @@ DEPENDENCIES
   sunspot_solr (~> 2.2)!
   turbolinks
   uglifier
+  yard
 
 BUNDLED WITH
    1.16.1

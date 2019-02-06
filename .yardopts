@@ -1,7 +1,9 @@
+--markup=markdown
 - 
 "1- INTRODUCTION.rdoc"
+"1.INTRODUCTION.rdoc"
 "2- INSTALL.rdoc"
 "3- IMPORT.rdoc"
 "4- CONFIG.rdoc"
-"5- UPGRADE.rdoc"
 "6- MARC_CONFIG.rdoc"
+--private

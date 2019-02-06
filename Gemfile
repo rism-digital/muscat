@@ -149,3 +149,5 @@ group :test do
 end
 
 gem 'yard'
+gem 'redcarpet'
+gem 'github-markup'

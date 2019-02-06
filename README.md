@@ -4,11 +4,10 @@ Muscat is a framework for cataloging music documents (handwritten and printed mu
 
 ### Application Documentation
 
-* [Introduction](1-%20INTRODUCTION.rdoc)
+* [Introduction](file.1.INTRODUCTION.html)
 * [Installation](2-%20INSTALL.rdoc)
 * [Importing MARC Data](3-%20IMPORT.rdoc)
 * [Configuration](4-%20CONFIG.rdoc)
-* [Upgrading old versions](5-%20UPGRADE.rdoc)
 * [MARC21 Configuration and management](6-%20MARC_CONFIG.rdoc)
 * [RSPEC](7-%20RSPEC.rdoc)
 
@@ -18,7 +17,8 @@ The full code documentation is available on RDoc:
 
 ### Links
 
-* [Example (RISM UK)](http://www.rism.org.uk)
+<!-- * [Example (RISM UK)](http://www.rism.org.uk) The links seems to be dead -->
+* [Example (RISM)](http://www.rism.info)
 * [Example (RISM Switzerland)](http://www.rism-ch.org)
 * [RailsConf presentation](http://docs.rism-ch.org/thatcher2007railsconf.pdf)
 * [IAML presentation](http://docs.rism-ch.org/pugin2009iaml.pdf)

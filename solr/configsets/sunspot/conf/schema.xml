@@ -96,54 +96,6 @@
     </fieldType>
     <!-- A specialized field for geospatial search. If indexed, this fieldType must not be multivalued. -->
     <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
-
-    <!-- ADDED BY RZ FOR MUSCAT -->
-    <fieldtype name="text_pae" class="solr.TextField">
-      <analyzer type="index">
-        <!--solr.KeywordTokenizerFactory-->
-        <tokenizer class="org.rismch.PAETokenizerFactory"/>
-			</analyzer>
-				<analyzer type="query">
-					<tokenizer class="solr.KeywordTokenizerFactory"/>
-					<filter class="org.rismch.PAEFilterFactory"/>
-        <!--<tokenizer class="solr.KeywordTokenizerFactory"/>
-        +        <filter class="org.rismch.PAEFilterFactory"/>-->
-        <!--<tokenizer class="solr.WhitespaceTokenizerFactory"/>-->
-      </analyzer>
-    </fieldtype>
-
-    <fieldType name="text_alphanumeric_sort" class="solr.TextField" sortMissingLast="false" omitNorms="true">
-        <analyzer>
-            <!-- KeywordTokenizer does no actual tokenizing, so the entire
-                 input string is preserved as a single token
-              -->
-            <tokenizer class="solr.KeywordTokenizerFactory"/>
-            <!-- The LowerCase TokenFilter does what you expect, which can be
-                 when you want your sorting to be case insensitive
-              -->
-            <filter class="solr.LowerCaseFilterFactory" />
-            <!-- The TrimFilter removes any leading or trailing whitespace -->
-            <filter class="solr.TrimFilterFactory" />
-            <!-- Remove leading articles -->
-            <filter class="solr.PatternReplaceFilterFactory"
-                    pattern="^(a |the |les |la |le |l'|de la |du |des )" replacement="" replace="all"
-            />
-            <!-- Left-pad numbers with zeroes -->
-            <filter class="solr.PatternReplaceFilterFactory"
-                    pattern="(\d+)" replacement="00000$1" replace="all"
-            />
-            <!-- Left-trim zeroes to produce 6 digit numbers -->
-            <filter class="solr.PatternReplaceFilterFactory"
-                    pattern="0*([0-9]{6,})" replacement="$1" replace="all"
-            />
-            <!-- Remove all but alphanumeric characters -->
-            <filter class="solr.PatternReplaceFilterFactory"
-                    pattern="([^a-z0-9])" replacement="" replace="all"
-            />
-        </analyzer>
-    </fieldType>
-    <!-- END ADDED BY RZ FOR MUSCAT -->
-    
   </types>
   <fields>
     <!-- Valid attributes for fields:
@@ -301,12 +253,6 @@
     <dynamicField name="*_lls" stored="true" type="location" multiValued="false" indexed="true"/>
     <dynamicField name="*_llms" stored="true" type="location" multiValued="true" indexed="true"/>
     <field name="textSpell" stored="false" type="textSpell" multiValued="true" indexed="true"/>
-    
-    <!-- ADDED BY RZ FOR MUSCAT -->
-    <!-- index fields to sort alphanumerically. Useful for things like shelfmarks and folio numbers -->
-    <dynamicField name="*_shelforder_s" type="text_alphanumeric_sort" indexed="true" stored="false" multiValued="false"/>
-    <field name="pae" type="text_pae" indexed="true" stored="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
-    <!-- END ADDED BY RZ FOR MUSCAT -->
     
     <!-- required by Solr 5 -->
     <field name="_version_" type="tlong" indexed="true" stored="true" multiValued="false" />

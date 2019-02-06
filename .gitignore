@@ -21,4 +21,4 @@ system
 /doc
 .yardoc/
 db/schema.rb
-/Gemfile.lock
+*/Gemfile.lock
