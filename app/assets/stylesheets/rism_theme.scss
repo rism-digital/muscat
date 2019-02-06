@@ -214,18 +214,18 @@ h5.card-title > a {
     background-color: $gray15;
 }
 
-.card.bg-success > .card-header, .facet-limit-active > .card-header {
+.bg-success > .card-header, .facet-limit-active > .card-header {
     color: $gray90;
-    background-color: $gray15;
+    background-color: $gray15 !important;
     border-color: $gray25;
 }
 
-.card.bg-success, .facet_limit-active {
-    border-color: $gray25;
+.card.bg-success, .facet-limit-active {
+    border-color: $gray25 !important;
 }
 
-.facet_limit-active > .card-header + .panel-collapse > .card-body {
-    border-color: $gray25;
+.facet-limit-active > .card-header + .panel-collapse > .card-body {
+    border-color: $gray25 !important;
 }
 
 .facet-count {
@@ -233,7 +233,7 @@ h5.card-title > a {
 }
 
 .facet-values li .selected {
-    color: $link-color;
+    color: $link-color !important;
 }
 
 // Results Page //
