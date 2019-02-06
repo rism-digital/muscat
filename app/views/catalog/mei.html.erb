@@ -14,11 +14,11 @@
         </div>
     
         <div class="col-sm-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card card-default">
+                <div class="card-header">
                     <h3 class="panel-title"><%= t('mei.parameters')%></h3>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                 
                     <label for="sel1"><%= t('mei.format')%></label>
                     <select class="form-control" id="mei-output-format" onclick="setRegenerateMei();">
@@ -40,21 +40,21 @@
                     <hr/>
 
                     <div  style="text-align: right">
-                        <button onclick="previewMeiFile(<%=@item.id%>)" class="btn btn-default btn-sm">
+                        <button onclick="previewMeiFile(<%=@item.id%>)" class="btn btn-secondary btn-sm">
                             <span class="glyphicon glyphicon-search"></span> <%= t('mei.preview')%>
                         </button>
-                        <button onclick="downloadMeiFile(<%=@item.id%>)" class="btn btn-default btn-sm" id="form-reset">
+                        <button onclick="downloadMeiFile(<%=@item.id%>)" class="btn btn-secondary btn-sm" id="form-reset">
                             <span class="glyphicon glyphicon-download"></span> <%= t('mei.download')%>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><%= t('mei.more')%></h3>
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title"><%= t('mei.more')%></h3>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     <%= render "mei_more" %>
                 </div>
             </div>

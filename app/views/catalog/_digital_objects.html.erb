@@ -6,7 +6,7 @@
 			<%- next if !obj.attachment_file_size %>
 			<div class="col-xs-12 col-sm-6 col-md-4 digital_object_col">
 				<a class="lightbox" data-title="<%= obj.description -%>" data-gallery="digital_object_gallery" href="<%= obj.attachment.url(:original) -%>">
-					<img class="img-responsive img-thumbnail" src="<%= obj.attachment.url(:medium) -%>" />
+					<img class="img-fluid img-thumbnail" src="<%= obj.attachment.url(:medium) -%>" />
 				</a>
 			</div>
 			<%- end %>

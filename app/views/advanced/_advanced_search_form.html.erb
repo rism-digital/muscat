@@ -10,11 +10,11 @@
 <% end %>
 
 
-<div class="panel panel-default">
-  <div class="panel-heading">
+<div class="card card-default">
+  <div class="card-header">
     <%=t('incipit_search.incipit_search')%>
   </div>
-  <div class="panel-body">
+  <div class="card-body">
     <div class="form-group">
       <label for="incipit_type"><%=t('incipit_search.query_type')%></label>
       <select id="incipit_type" class="form-control">
@@ -32,7 +32,7 @@
 
     <div class="row">
       <div class="col-xs-1">
-        <button id="erase_note" type="button" class="btn btn-default btn-sm" onclick="javascript:onundo()" data-toggle="tooltip" title="<%=t('incipit_search.erase')%>">
+        <button id="erase_note" type="button" class="btn btn-secondary btn-sm" onclick="javascript:onundo()" data-toggle="tooltip" title="<%=t('incipit_search.erase')%>">
           <span class="glyphicon glyphicon-erase"></span>
         </button>
       </div>

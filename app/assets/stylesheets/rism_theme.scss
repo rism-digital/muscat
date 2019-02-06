@@ -200,7 +200,7 @@ p.search-tip {
     padding-left: 0;
 }
 
-h5.panel-title > a {
+h5.card-title > a {
     color: $gray90;
     &:active, &:hover {
         color: $link-color;
@@ -209,22 +209,22 @@ h5.panel-title > a {
 
 }
 
-.panel-default > .panel-heading {
+.card-default > .card-header {
     color: $gray90;
     background-color: $gray15;
 }
 
-.panel-success > .panel-heading, .facet_limit-active > .panel-heading {
+.card.bg-success > .card-header, .facet_limit-active > .card-header {
     color: $gray90;
     background-color: $gray15;
     border-color: $gray25;
 }
 
-.panel-success, .facet_limit-active {
+.card.bg-success, .facet_limit-active {
     border-color: $gray25;
 }
 
-.facet_limit-active > .panel-heading + .panel-collapse > .panel-body {
+.facet_limit-active > .card-header + .panel-collapse > .card-body {
     border-color: $gray25;
 }
 
@@ -237,7 +237,7 @@ h5.panel-title > a {
 }
 
 // Results Page //
-.dropdown-toggle.btn-default:hover, .dropdown-toggle.btn-default:active {
+.dropdown-toggle.btn-secondary:hover, .dropdown-toggle.btn-secondary:active {
     background-color: $gray15;
 }
 
