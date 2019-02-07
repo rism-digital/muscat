@@ -39,6 +39,7 @@ var merge = function () {
             success: function(response){
               duplicate_size.html(response["duplicate_size"]);
               target_size.html(response["target_size"]);
+              $("div.flashes").addClass( "flash flash_notice").html(response['message']);
               console.log(response);
             },
             error: function(response){

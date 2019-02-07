@@ -23,7 +23,8 @@ module MergeControllerActions
       target_size = (associations.map{|method| target.send(method).size}).inject(0){|sum,x| sum + x }
       duplicate.reload
       duplicate_size = (associations.map{|method| duplicate.send(method).size}).inject(0){|sum,x| sum + x }
-      render json: { target_size: target_size, duplicate_size: duplicate_size  }
+      render json: { target_size: target_size, duplicate_size: duplicate_size, message: "Successfully merged #{model} #{params['duplicate']} into #{params['target']}!"  }
+
     end
   end
   
