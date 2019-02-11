@@ -58,7 +58,6 @@ svg:not(:root){
 
 #search-navbar {
     .search-navbar-logo {
-        padding-top: 10px;
         padding-left: 70px;
     }
     .search-navbar-right {
@@ -173,6 +172,7 @@ h3 {
 
 // Welcome and advanced search
 h3.welcome {
+    margin-top: 15px;
     margin-bottom: 25px;
 }
 
