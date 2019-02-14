@@ -6,7 +6,7 @@ class EditorValidation
   attr_accessor :model
   
   # Load all the configurations, first in editor_profiles/default/configurations then ins
-  # editor_profiles/#{RISM::EDITOR_PROFILE}/configurations. If two files share the same name
+  # editor_profiles/# { RISM::EDITOR_PROFILE } /configurations. If two files share the same name
   # in the two directories, they will be merged together.
   def squeeze(config)
     settings = Settings.new(Hash.new())

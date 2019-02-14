@@ -1,6 +1,6 @@
 module Statistics
   class User
-    # Returns hash of person => {:month => size}
+    # Returns hash of person => { :month => size }
     def self.sources_by_month(from_date, to_date, users)
       result = ActiveSupport::OrderedHash.new
       time_range = ApplicationHelper.month_distance(from_date, to_date)

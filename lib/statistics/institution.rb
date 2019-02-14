@@ -1,6 +1,6 @@
 module Statistics
   class Institution
-    #Returns hash of institution => {siglum => count}
+    #Returns hash of institution => { siglum => count }
     def self.sources_per_date(from_date, to_date, institutions)
       result = ActiveSupport::OrderedHash.new
       s = Sunspot.search(::Source) do

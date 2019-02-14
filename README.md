@@ -17,7 +17,7 @@ The full code documentation is available on RDoc:
 
 ### Links
 
-<!-- * [Example (RISM UK)](http://www.rism.org.uk) The links seems to be dead -->
+* [Example (RISM UK)](http://www.rism.org.uk)
 * [Example (RISM)](http://www.rism.info)
 * [Example (RISM Switzerland)](http://www.rism-ch.org)
 * [RailsConf presentation](http://docs.rism-ch.org/thatcher2007railsconf.pdf)
