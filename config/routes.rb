@@ -33,6 +33,10 @@ Rails.application.routes.draw do
     concerns :exportable
   end
 
+  resources :catalog_ch, only: [:show], as: 'catalog_ch', path: '/catalog_ch', controller: 'catalog_ch' do
+    concerns :exportable
+  end
+
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns :exportable
