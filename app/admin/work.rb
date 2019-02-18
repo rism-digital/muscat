@@ -6,6 +6,7 @@ ActiveAdmin.register Work do
 
   # Remove mass-delete action
   batch_action :destroy, false
+  include MergeControllerActions
   
   # Remove all action items
   config.clear_action_items!
@@ -125,6 +126,8 @@ ActiveAdmin.register Work do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
+    column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
+      label: I18n.t('status_codes.' + (work.wf_stage != nil ? work.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|

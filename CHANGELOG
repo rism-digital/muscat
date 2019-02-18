@@ -1,6 +1,9 @@
 Muscat Changelog
 ================
 
+v 5.0.3
+* Update Verovio to 2.0.1 (bug fix for empty beams)
+
 v 5.0.2
 * Fix bug that made authorities created from a Source buy Admin and not the current user
 * Remove 240 and 852 in printed libretti validation
