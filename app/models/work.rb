@@ -56,7 +56,6 @@ class Work < ApplicationRecord
     self.suppress_recreate_trigger = true
   end 
 
-
   # This is the last callback to set the ID to 001 marc
   # A Person can be created in various ways:
   # 1) using new() without an id
@@ -152,7 +151,6 @@ class Work < ApplicationRecord
     
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
- 
 
   def set_object_fields
     return if marc_source == nil

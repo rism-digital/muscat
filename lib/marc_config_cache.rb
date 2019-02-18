@@ -1,5 +1,6 @@
+# Loads all the configurations from the files in config/marc/tag_config*.yml
+
 class MarcConfigCache
-  # Load all the configurations from the files in config/marc/tag_config*.yml
   def self.cache_all
     @configurations = Hash.new
 		Dir.glob("#{Rails.root}/config/marc/tag_config*.yml").sort.each do |file|
@@ -8,12 +9,12 @@ class MarcConfigCache
     end
   end
   
-  # Is that nice to have a Method call inside of the Class-Definition?
+  # @todo Is that nice to have a Method call inside of the Class-Definition?
   self.cache_all
   
   public
   
-  # Get the Marc Configuration for a given Model
+  # Gets the Marc Configuration for a given Model
   # @param model [String] Model Name
   # @return [MarcConfig]
   def self.get_configuration(model)

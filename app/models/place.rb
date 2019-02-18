@@ -1,11 +1,10 @@
 # A Place describes a physical place - like a city - where a Source is found
 #
-# === Fields
-# * <tt>name</tt>
-# * <tt>country</tt>
-# * <tt>district</tt>
-# * <tt>notes</tt>
-# * <tt>src_count</tt>
+# @field <tt>name</tt>
+# @field <tt>country</tt>
+# @field <tt>district</tt>
+# @field <tt>notes</tt>
+# @field <tt>src_count</tt>
 #
 # Usual wf_* fields are not shown
 

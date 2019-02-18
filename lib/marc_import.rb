@@ -5,6 +5,10 @@ require 'logger'
 
 class MarcImport
   
+  # Initializes MarcImport Class instance
+  # @param source_file [String] Filename
+  # @param model [String] Model Name
+  # @return [MarcImport] Instance
   def initialize(source_file, model, from = 0)
     #@log = Logger.new(Rails.root.join('log/', 'import.log'), 'daily')
     @from = from
@@ -28,7 +32,9 @@ class MarcImport
     MarcConfigCache.add_overlay(model, "#{Rails.root}/housekeeping/import/import_tags_source.yml") if @model == "Source"
   end
 
-  #Helper method to parse huge files with nokogiri
+  # Helper method to parse huge files with nokogiri.
+  # The block-parameter is used for the automatic Iteration and should not be set.
+  # @param filename [String] Filename
   def each_record(filename, &block)
     File.open(filename) do |file|
       Nokogiri::XML::Reader.from_io(file).each do |node|
@@ -39,6 +45,9 @@ class MarcImport
     end
   end
 
+  # Performs Import for the given Instance.
+  # @return [String] Results 
+  # @see #create_record
   def import
     each_record(@source_file) { |record|         
         rec = Nokogiri::XML(record.to_s)
@@ -50,6 +59,8 @@ class MarcImport
     puts @import_results
   end
 
+  # Creates a Record from a MarcXML String.
+  # @param buffer [String] MarcXML
   def create_record(buffer)
     @cnt += 1
     #@total_records += 1
@@ -65,6 +76,7 @@ class MarcImport
         # step 1.  update or create a new object
         model = Object.const_get(@model).find_by_id(marc.get_id)
         if !model
+          # @todo possibly unused variable "status"
           status = "created"
           if @model == "Catalogue"
             model = Object.const_get(@model).new(:id => marc.get_id, :name => marc.get_name, :author => marc.get_author, :revue_title=> marc.get_revue_title, :description => marc.get_description, :wf_owner => 1, :wf_stage => "published")
@@ -124,7 +136,7 @@ class MarcImport
         marc.suppress_scaffold_links
         marc.import
         
-        # step 3 resolve external values if it is a source
+        # step 3. resolve external values if it is a source
         begin
           marc.root.resolve_externals if @model == "Source"
         rescue => e
@@ -173,7 +185,7 @@ class MarcImport
           end
         end
         
-         # step 4. insert model into database
+        # step 5. insert model into database
         begin
           model.save! #
 #          @log.info(@model+" record "+marc.get_id.to_s+" "+status)

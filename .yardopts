@@ -6,3 +6,4 @@
 4-CONFIG.rdoc
 6-MARC_CONFIG.rdoc
 --private
+--tag field:"Fields"

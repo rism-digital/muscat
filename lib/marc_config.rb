@@ -390,12 +390,14 @@ class MarcConfig
     end
   end
 
-  # Iterates over every Data-Tag
+  # Returns iteraterable List of every Data-Tag
+  # @return [Array] Data Tags
   def each_data_tag
     @tag_config.keys.sort.each { |tag| yield tag if tag.to_i > 8 }
   end
 
-  # Iterates over every Subtag of a Tag
+  # Returns iteraterable List of every Subtag of a Tag
+  # @return [Array] Subtags
   def each_subtag( tag )
     @tag_config[tag][:fields].each { |subtag| yield subtag }
   end

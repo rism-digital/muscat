@@ -1,19 +1,18 @@
 # A Person is a physical person tied to one or more Sources.
 # a person reference is generally stored also in the source's marc data
 #
-# === Fields
-# * <tt>full_name</tt> - Full name of the person: Second name, Name
-# * <tt>full_name_d</tt> - Downcase with UTF chars stripped 
-# * <tt>life_dates</tt> - Dates in the form xxxx-xxxx
-# * <tt>birth_place</tt>
-# * <tt>gender</tt> - 0 = male, 1 = female
-# * <tt>composer</tt> - 1 =  it is a composer
-# * <tt>source</tt> - Source from where the bio info comes from
-# * <tt>alternate_names</tt> - Alternate spelling of the name
-# * <tt>alternate_dates</tt> - Alternate birth/death dates if uncertain 
-# * <tt>comments</tt>
-# * <tt>src_count</tt> - Incremented every time a Source tied to this person
-# * <tt>hls_id</tt> - Used to match this person with the its biografy at HLS (http://www.hls-dhs-dss.ch/)
+# @field <tt>full_name</tt> - Full name of the person: Second name, Name
+# @field <tt>full_name_d</tt> - Downcase with UTF chars stripped 
+# @field <tt>life_dates</tt> - Dates in the form xxxx-xxxx
+# @field <tt>birth_place</tt>
+# @field <tt>gender</tt> - 0 = male, 1 = female
+# @field <tt>composer</tt> - 1 =  it is a composer
+# @field <tt>source</tt> - Source from where the bio info comes from
+# @field <tt>alternate_names</tt> - Alternate spelling of the name
+# @field <tt>alternate_dates</tt> - Alternate birth/death dates if uncertain 
+# @field <tt>comments</tt>
+# @field <tt>src_count</tt> - Incremented every time a Source tied to this person
+# @field <tt>hls_id</tt> - Used to match this person with the its biografy at HLS (http://www.hls-dhs-dss.ch/)
 #
 # Other wf_* fields are not shown
 

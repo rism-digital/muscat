@@ -1,13 +1,12 @@
 # Describes a Library linked with a Source
 #
-# === Fields
-# * <tt>siglum</tt> - RISM sigla of the lib
-# * <tt>name</tt> -  Fullname of the lib
-# * <tt>address</tt>
-# * <tt>url</tt>
-# * <tt>phone</tt> 
-# * <tt>email</tt>
-# * <tt>src_count</tt> - The number of manuscript that reference this lib.
+# @field <tt>siglum</tt> - RISM sigla of the lib
+# @field <tt>name</tt> -  Fullname of the lib
+# @field <tt>address</tt>
+# @field <tt>url</tt>
+# @field <tt>phone</tt> 
+# @field <tt>email</tt>
+# @field <tt>src_count</tt> - The number of manuscript that reference this lib.
 #
 # the other standard wf_* fields are not shown.
 # The class provides the same functionality as similar models, see Catalogue

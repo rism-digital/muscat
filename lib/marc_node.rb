@@ -112,8 +112,7 @@ class MarcNode
     end
   end
 
-
-  # Try to get a foreign object using the id. 
+  # Trys to get a foreign object using the id. 
   # If the Object does not exist, create it. 
   # @note It is used during import of a Marc record, 
   #   so relations (ex People or Library) are established and created.
@@ -153,7 +152,7 @@ class MarcNode
     return new_foreign_object
   end
   
-  # Populate the master object
+  # Populates the master object
   # @note used during the import
   def populate_master( )
     if dependants = @marc_configuration.get_foreign_dependants( self.tag, @marc_configuration.get_master( self.tag ) )
@@ -171,6 +170,8 @@ class MarcNode
     end    
   end
 
+  # Populates the Links to the given Tag
+  # @param deftag [String] Tagname
   def populate_links_to(deftag)
     return if  !@marc_configuration.has_links_to(deftag)
     
@@ -194,7 +195,6 @@ class MarcNode
       link = link_class.new
       link.send("wf_stage=", 'published')
       link.send("#{field}=", tag.content)
-
       link.suppress_reindex
       link.suppress_scaffold_marc if link.respond_to?(:suppress_scaffold_marc)
       begin
@@ -211,9 +211,13 @@ class MarcNode
   # Once the Marc data is parsed to MarcNodes, it can be
   # inspected to create the relations with the external classes
   # ex. People. This function does this. If the tag has a $0 with an id
-  # (the field is returned by get_master_foreign_subfield) it will try
+  # (the field is returned by {#get_master_foreign_subfield}) it will try
   # to get the corrensponding object from the DB. If no id ($0) is present
   # it will try to look it up
+  # @param overwrite [Boolean]
+  # @param reindex [Boolean]
+  # @param user [Integer]
+  # @return [Hash]
   def import(overwrite = false, reindex = false, user = nil)
     foreign_associations = {}
     if parent == nil
@@ -316,7 +320,9 @@ class MarcNode
     return foreign_associations
   end
 
-  # Check the zero padding for fields or subfields having this requirement (typically 14 charachter ids)
+  # Checks the zero padding for fields or subfields having this requirement (typically 14 charachter ids)
+  # @param tag [String] Tag Name
+  # @param subtag [String] Subtag Name
   def check_padding( tag, subtag )
     if (padding = @marc_configuration.get_zero_padding( tag, subtag )) && self.content != padding.to_i
       padding_string = "%0#{padding}d"
@@ -328,24 +334,35 @@ class MarcNode
     end
   end
   
-  # get the master subfield for a tag
+  # Gets the master subfield for a tag
+  # @return [MarcNode] @todo ???
   def get_master_foreign_subfield 
-    masters = @children.reverse.select { |c| @marc_configuration.is_foreign?(self.tag, c.tag) and !@marc_configuration.get_foreign_class(self.tag, c.tag).match(/^\^/) }
+    masters = @children.reverse.select { 
+      |c| @marc_configuration.is_foreign?(self.tag, c.tag) and 
+      !@marc_configuration.get_foreign_class(self.tag, c.tag).match(/^\^/) 
+    }
     raise "only one master subfield is allowed" if masters.size > 1
     return masters.size > 0 ? masters[0] : nil
   end
   
-  # Get the all the tags that are not master for a subtag
+  # Gets the all the tags that are not master for a subtag
+  # @return [MarcNode] @todo ???
   def get_non_master_foreign_subfields  
-    @children.select { |c| @marc_configuration.is_foreign?(self.tag, c.tag) and !@marc_configuration.disable_create_lookup?(self.tag, c.tag) and @marc_configuration.get_foreign_class(self.tag, c.tag).match(/^\^/) }
+    @children.select { 
+      |c| @marc_configuration.is_foreign?(self.tag, c.tag) and 
+      !@marc_configuration.disable_create_lookup?(self.tag, c.tag) and 
+      @marc_configuration.get_foreign_class(self.tag, c.tag).match(/^\^/) 
+    }
   end
   
-  # Get the all the tags that are foreign subfields (master and non master)
+  # Gets all the tags that are foreign subfields (master and non master)
+  # @return [MarcNode] @todo ???
   def get_foreign_subfields  
     @children.select { |c| @marc_configuration.is_foreign?(self.tag, c.tag) }
   end
   
-  # Get the foreign field and class for a foreign object
+  # Gets the foreign field and class for a foreign object
+  # @return [MarcNode] @todo ???
   def set_foreign_object
     foreign_class = @marc_configuration.get_foreign_class(self.parent.tag, self.tag)
     if parent.foreign_object == nil
@@ -364,7 +381,8 @@ class MarcNode
     self.foreign_object = parent.foreign_object
   end
 
-  # Return the content of this tag.
+  # Returns the content of this tag.
+  # @return [String] Content
   def content
     if @foreign_object and @foreign_host
       return @foreign_object.id
@@ -373,21 +391,20 @@ class MarcNode
     end
   end
   
-  # Return the content of a foreign object non from the Marc data itself
+  # Returns the content of a foreign object non from the Marc data itself
   # but from the corresponding class
+  # For PSMD. If the foreign_filed contains a dot "."
+  # it means it is a relation that has to be resolved.
+  # work.person.full_name. @see #resolve_externals above.
+  # @return [String] Content
   def looked_up_content
     if @foreign_object and @foreign_field
       value = @foreign_object.[](@foreign_field.intern)
-      
-      # For PSMD. If the foreign_filed contains a dot "."
-      # it means it is a relation that has to be resolved.
-      # work.person.full_name. See resolve_externals above.
       if @foreign_field.match(/\./)
         fields = @foreign_field.split('.')
         value = @foreign_object.send(fields[0])
         (1..fields.count - 1).each {|n| value = value.send(fields[n])}
       end
-      
       return value
     else
       return @content
@@ -395,6 +412,8 @@ class MarcNode
   end
   
   # Export to text Marc format
+  # @param no_db_id [Boolean] 
+  # @return [String] MarcXML
   def to_marc(no_db_id = false)
     out = String.new
     # skip the $_ tags (db_id)
@@ -428,11 +447,11 @@ class MarcNode
         @children.each { |child| out += child.to_marc(no_db_id) }       
       end
     end
-
     return out
   end
 
   # Export to MarcXML
+  # @return [String] MarcXML
   def to_xml
     # skip the $_ (db_id)
     #return "" if tag == "_"
@@ -462,11 +481,11 @@ class MarcNode
       cont_sanit = ERB::Util.html_escape(content)
       out += "\t\t\t<marc:subfield code=\"#{@tag}\">#{cont_sanit}</marc:subfield>\n"
     end
-
     return out
   end
   
   # Export to JSON
+  # @return [Array<String>] Data in JSON-Format
   def to_json
     out = Array.new
     content = looked_up_content if looked_up_content
@@ -493,21 +512,24 @@ class MarcNode
     return out
   end
   
-  # Set the foreign object
+  # Sets the foreign object
   def foreign_object=(object)
     @foreign_object = object
   end
   
-  # Get the foreign object
+  # Gets the foreign object
   def foreign_object
     @foreign_object
   end
  
-  # Set the foreign field
+  # Sets the foreign field
   def foreign_field=(field_name)
     @foreign_field = field_name
   end
 
+  # Gets the Class
+  # @param classname [String]
+  # @return [Class] Model Class @todo ???
   def get_class(classname)
     begin
       dyna_class = Kernel.const_get(classname)
@@ -517,29 +539,36 @@ class MarcNode
     dyna_class
   end
   
-  # Set the parent object
+  # Sets the parent object
+  # @param parent [String]
+  # @return [Class] Parent Class @todo ???
   def parent=(parent)
     @parent = parent
   end
   
-  # Return if this object has children
+  # Returns whether this object has children
+  # @return [Boolean] 
   def has_children?
     @children.length != 0
   end
 
-  # Return the number of children
+  # Returns the number of children
+  # @return [Integer]
   def size
     @children.inject(1) {|sum, node| sum + node.size}
   end
 
-  # Add a subfield
+  # Adds a subfield
+  # @param child [String] Subfield Name
+  # @return [MarcNode] @todo ???
   def add(child)
     @children << child
     child.parent = self
     return child
   end
 
-  # Return all children. can be used as block
+  # Returns Iterable with all children. Can be used as block.
+  # @return [Iterable] Children
   def children
     if block_given?
       @children.each { |child| yield child }
@@ -548,7 +577,8 @@ class MarcNode
     end
   end
 
-  # Sort children and return them. can be used as block
+  # Returns Iterable with all children sorted. Can be used as block.
+  # @return [Iterable] Children
   def for_every_child_sorted
     n = 0
     if block_given?
@@ -560,6 +590,8 @@ class MarcNode
     end
   end
   
+  # Returns Children in an Array
+  # @return [Array] Children
   def all_children
     tags = Array.new
     for child in children
@@ -568,17 +600,26 @@ class MarcNode
     return tags
   end
 
+  # Returns Iterable for all Children
+  # The block-parameter is used for the automatic Iteration and should not be set.
+  # @return [Iterable] 
   def each(&block)
     yield self if @parent
     children { |child| child.each(&block) }
   end
   
+  # Returns Iterable for all Children have the given Tag.
+  # @param tag [String] Tagname
+  # @return [Iterable] 
   def each_by_tag(tag)
     @children.each do |child|
       yield child if child.tag == tag.to_s
     end
   end
   
+  # Returns the first Child that has the given Tag.
+  # @param tag [String] Tagname
+  # @return [MarcNode] @todo ???
   def fetch_first_by_tag(tag)
     #s = @children.collect { |c| c.tag }.join(', ')
     @children.each do |child|
@@ -587,6 +628,9 @@ class MarcNode
     return nil
   end
 
+  # Returns an Array of Children with a match in the given Tag
+  # @param tag [String] Tagname
+  # @return [Array<MarcNode>] @todo ????
   def fetch_all_by_tag(tag)
     matching_children = Array.new
     @children.each do |child|
@@ -595,21 +639,28 @@ class MarcNode
     return matching_children  
   end
 
+  # Destroys Parent Node
   def destroy_yourself
     @parent.destroy_child(self) if @parent
   end
   
+  # Destroys given Child Node
+  # @param node [MarcNode]
   def destroy_child(node)
     @children.delete_if { |child| child == node }
   end
   
   # Add an element at specified position
+  # @param child [MarcNode]
+  # @param index [Integer]
+  # @return [MarcNode]
   def add_at(child, index)
     @children.insert(index, child)
     child.parent = self
     return child
   end
 
+  # Sorts Children in alphabetical Order
   def sort_alphabetically
     n = 0
     @children = @children.sort_by {|a|
@@ -625,6 +676,9 @@ class MarcNode
   
   
   private
+  # Cleans String from all Special Characters
+  # @param str [String]
+  # @return [String]
   def clean_string(str)
     single_space = " "
     return str.gsub(/[\r\n]+/, single_space).gsub(/\n+/, single_space).gsub(/\r+/, single_space).gsub(/\$/, Marc::DOLLAR_STRING)

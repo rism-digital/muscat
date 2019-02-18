@@ -1,3 +1,4 @@
+# Provides the Class for the Sources Model
 class MarcSource < Marc
   
   # record_type mapping
@@ -25,16 +26,21 @@ class MarcSource < Marc
     :unspecified
   ]
 
+  # Initializes the Class Instance.
+  # @param source [String] 
   def initialize(source = nil, rt = 0)
     super("source", source)
     @record_type = rt
   end
   
+  # Gets the Record Type.
+  # @return [Integer]
   def record_type
     @record_type
   end
   
-  # Get the std_title and std_title_d values  
+  # Gets the values of std_title and std_title_d
+  # @return [Array<String>]
   def get_std_title  
     std_title = ""
     std_title_d = ""
@@ -96,7 +102,8 @@ class MarcSource < Marc
     [std_title, std_title_d]
   end
   
-  # Get the composer and composer_d values
+  # Gets the composer and composer_d values
+  # @return [Array<String>]
   def get_composer
     composer = ""
     composer_d = ""
@@ -108,13 +115,16 @@ class MarcSource < Marc
     [composer, composer_d]
   end
 
+  # Gets the Siglum
+  # @return [String]
   def get_siglum
     if node = first_occurance("852", "a")
       return node.content
     end
   end
     
-  # Get the Library and shelfmarc for a MARC record
+  # Gets the Library and shelfmarc for a MARC record
+  # @return [Array<String>]
   def get_siglum_and_shelf_mark
     siglum = "" 
     ms_no = ""
@@ -143,15 +153,16 @@ class MarcSource < Marc
     return [siglum.truncate(255), ms_no.truncate(255)]
   end
   
-  # On RISM A/1 ms_no contains the OLD RISM ID, get it from 035
+  # On RISM A/1 ms_no contains the OLD RISM ID, gets it from 035.
+  # @return [String]
   def get_book_rism_id
     if node = first_occurance("035", "a")
       return node.content
     end
   end
-
   
   # For bibliographic records, set the ms_title and ms_title_d field fromMARC 245 or 246
+  # @return [Array<String>]
   def get_source_title
     ms_title = "[unset]"  
     ms_title_field = (RISM::BASE == "in") ? "246" : "245" # one day the ms_title field (and std_title field) should be put in the environmnent.rb file
@@ -164,27 +175,25 @@ class MarcSource < Marc
     return [ms_title.truncate(255), ms_title_d.truncate(255)]
   end
   
-  # Set miscallaneous values
+  # Gets miscallaneous values
+  # @return [Array<Date>]
   def get_miscellaneous_values
 
     language = "Unknown"
     date_from = nil
     date_to = nil
-
     ## Language is not used anumore
     #if node = first_occurance("008")
     #  unless node.content.empty?
     #    language = LANGUAGES[marc_helper_get_008_language(node.content)] || "Unknown"
     #  end
     #end
-
     out = []
     each_by_tag("260") do |marctag|
       marctag.each_by_tag("c") do |marcsubtag|
         out.concat(date_to_array(marcsubtag.content)) if marcsubtag && marcsubtag.content
       end
     end
-    
     out.sort!.uniq!
     if out.count > 0
       if out.count > 1
@@ -194,20 +203,20 @@ class MarcSource < Marc
         date_from = date_to = out[0]
       end
     end
-    
     return [language.truncate(16), date_from, date_to]
-
   end
   
+  # Removes all Data and destroys all the Items
   def reset_to_new
     #load_source false if !@loaded
     first_occurance("001").content = "__TEMP__"
     by_tags("774").each {|t| t.destroy_yourself}
   end
 
+  # Matches Leader against serveral presets
+  # @return [Integer] Record Type
   def match_leader
     rt = RECORD_TYPES[:unspecified]
-    
     leader = nil
     if first_occurance("000") && first_occurance("000").content
       leader = first_occurance("000").content
@@ -215,7 +224,6 @@ class MarcSource < Marc
       puts "No leader present"
       return nil
     end
-    
     if leader.match(/......[dcp]c.............../)
       rt = RECORD_TYPES[:collection]
     elsif leader.match(/......pd.............../) # Mixed material, subunit, ex convolutum
@@ -233,10 +241,10 @@ class MarcSource < Marc
     else
        puts "Unknown leader #{leader}"
     end
-    
     return rt
   end
   
+  # @todo check Muscat Issues for the #Digits
   def to_internal
     # convert leader to record_type
     rt = match_leader
@@ -338,6 +346,7 @@ class MarcSource < Marc
     end
   end
   
+  # @todo Match Muscat Issues (#??? | ? is a Digit)
   def to_external(updated_at = nil, versions = nil, holdings = true)
     super(updated_at, versions)
     parent_object = Source.find(get_id)
@@ -464,10 +473,10 @@ class MarcSource < Marc
     end
 
     # Adding digital object links to 500 with new records
-    #TODO whe should drop the dublet entries in 500 with Digital Object Link prefix for older records
+    # @todo whe should drop the dublet entries in 500 with Digital Object Link prefix for older records
     if !parent_object.digital_objects.empty?# && parent_object.id >= 1001000000
       parent_object.digital_objects.each do |image|
-        # FIXME we should use the domain name from application.rb instead
+        # @todo FIXME we should use the domain name from application.rb instead
         path = image.attachment.path.gsub("/path/to/the/digital/objects/directory/", "http://muscat.rism.info/")
         content = "#{image.description + ': ' rescue nil}#{path}"
         n500 = MarcNode.new(@model, "500", "", "##")
@@ -517,8 +526,9 @@ class MarcSource < Marc
 
   end
     
+  # Sets Record Type
+  # @param rt [Integer]
   def set_record_type(rt)
     @record_type = rt
   end
-  
 end
