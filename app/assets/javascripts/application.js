@@ -111,6 +111,7 @@
 //= require modification_trigger_ujs.js
 //= require filter_workaround.js
 //= require cookieconsent.min.js
+//= require merge_authority.js
 
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
 // this:

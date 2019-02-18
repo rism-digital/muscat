@@ -1,1 +1,1 @@
-verovio-toolkit-light-2.0.0-dev-693939c.js
+verovio-toolkit-light-2.0.1.js

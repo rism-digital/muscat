@@ -103,6 +103,7 @@ fields:
   "351a":
   "383b":
   "500a":
+      :holding_record: true
   "5005":
   "505a":
   "506a":
