@@ -21,6 +21,16 @@ GIT
       activesupport (>= 4.0)
 
 GIT
+  remote: https://github.com/rism-ch/blacklight_range_limit
+  revision: 1ee0175295ff812ee4a360a632317f41f59d3ed3
+  specs:
+    blacklight_range_limit (7.0.0)
+      blacklight
+      jquery-rails
+      rails (>= 3.0)
+      tether-rails
+
+GIT
   remote: https://github.com/rism-ch/delayed_job
   revision: 545fd83a9927952ecaff6a64b66b36e74a1458fb
   specs:
@@ -132,11 +142,6 @@ GEM
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
       rails (~> 5.1)
-    blacklight_range_limit (7.0.0)
-      blacklight
-      jquery-rails
-      rails (>= 3.0)
-      tether-rails
     bootstrap (4.2.1)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
@@ -433,7 +438,7 @@ DEPENDENCIES
   awesome_print
   blacklight
   blacklight_advanced_search!
-  blacklight_range_limit
+  blacklight_range_limit!
   bootstrap (~> 4.2.1)
   cancan
   capybara
