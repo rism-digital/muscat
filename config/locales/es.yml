@@ -79,6 +79,7 @@ es:
       labels:
         destroy: "Borrar"
         folder: "Crear directorio con" # dudoso
+        merge: "MERGE AUTHORITY RECORDS"
 
     comments:
       resource_type: "Tipo de recurso"
@@ -284,6 +285,7 @@ es:
   edit: "Editar"
   new: "Crear"
   duplicate: "Duplicar"
+  merge: "MERGE"
   no_action: "Ninguna acción disponible"
   reindex: "Reindizar"
   resave: "RESAVE"

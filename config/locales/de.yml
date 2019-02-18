@@ -82,6 +82,7 @@ de:
         destroy: "Lösche"
         folder: "Erstelle Ordner mit"
         add_to_folder: "Hinzufügen von Elementen zum einem vorhandenen Ordner"
+        merge: "Normdaten zusammenführen"
 
     comments:
       resource_type: "Quellentyp"
@@ -308,6 +309,7 @@ de:
   edit: "Bearbeiten"
   new: "Erstellen"
   duplicate: "Kopieren"
+  merge: "Umhängen"
   no_action: "Keine Aktion verfügbar"
   reindex: "Reindexieren"
   resave: "Erneut speichern"

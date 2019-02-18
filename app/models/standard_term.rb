@@ -10,7 +10,7 @@
 # The other functions are standard, see Catalogue for a general description
 
 class StandardTerm < ApplicationRecord
-  
+  include AuthorityMerge
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_standard_terms")
   has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_standard_terms")
