@@ -8,7 +8,7 @@ module ForeignLinks
     # Is this a 773 or 775?
     # 773 is a special case
     # and not managed in foreign_links
-    # NOTE the TAG VALUE 'w' is HARDCODED here
+    # @note the TAG VALUE 'w' is HARDCODED here
     marc.each_by_tag("773") do |t|
       a = t.fetch_first_by_tag("w")
       if a && a.content
@@ -41,6 +41,7 @@ module ForeignLinks
     return can_manage #if it is found we can go on
   end
   
+  # recreates the Relations of the current Record to the associated foreign fields
   def recreate_links(marc, allowed_relations)
     marc_foreign_objects = Hash.new
     reindex_items = Array.new
@@ -102,7 +103,6 @@ module ForeignLinks
       end
     end
     
-    
     # If this item was manipulated, update also the src count
     # Unless the suppress_update_count is set
     # Since now classes can link between eachother
@@ -114,7 +114,6 @@ module ForeignLinks
       ids_hash = reindex_items.map {|i| {class: i.class, id: i.id}}
       job = Delayed::Job.enqueue(ReindexForeignRelationsJob.new(self.id, ids_hash))
     end
-    
   end
 end
     

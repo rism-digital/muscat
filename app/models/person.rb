@@ -1,5 +1,5 @@
 # A Person is a physical person tied to one or more Sources.
-# a person reference is generally stored also in the source's marc data
+# A Person reference is generally stored also in the Source's Marc data.
 #
 # @field <tt>full_name</tt> - Full name of the person: Second name, Name
 # @field <tt>full_name_d</tt> - Downcase with UTF chars stripped 
@@ -13,8 +13,7 @@
 # @field <tt>comments</tt>
 # @field <tt>src_count</tt> - Incremented every time a Source tied to this person
 # @field <tt>hls_id</tt> - Used to match this person with the its biografy at HLS (http://www.hls-dhs-dss.ch/)
-#
-# Other wf_* fields are not shown
+# @field Other wf_* fields are not shown
 
 class Person < ApplicationRecord
   include ForeignLinks
@@ -71,7 +70,6 @@ class Person < ApplicationRecord
   #include NewIds
   
   before_destroy :check_dependencies
-  
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
@@ -86,6 +84,7 @@ class Person < ApplicationRecord
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
 
+  # @see #Source.after_initialize
   def after_initialize
     @last_user_save = nil
     @last_event_save = "update"
@@ -96,20 +95,22 @@ class Person < ApplicationRecord
     self.suppress_scaffold_marc_trigger = true
   end
   
+  # Suppresses Recreation
   def suppress_recreate
     self.suppress_recreate_trigger = true
   end 
   
   # This is the last callback to set the ID to 001 marc
   # A Person can be created in various ways:
-  # 1) using new() without an id
-  # 2) from new marc data ("New Person" in editor)
-  # 3) using new(:id) with an existing id (When importing Sources and when created as remote fields)
-  # 4) using existing marc data with an id (When importing MARC data into People)
-  # Items 1 and 3 will scaffold new Marc data, this means that the Id will be copied into 001 field
-  # For this to work, the scaffolding needs to be done in after_create so we already have an ID
-  # Item 2 is like the above, but without scaffolding. In after_create we copy the DB id into 001
-  # Item 4 does the reverse: it copies the 001 id INTO the db id, this is done in before_save
+  # * using new() without an id
+  # * using new(:id) with an existing id (When importing Sources and when created as remote fields)
+  # * from new marc data ("New Person" in editor)
+  # * using existing marc data with an id (When importing MARC data into People)
+  #
+  # The first two options will scaffold new Marc data, this means that the Id will be copied into 001 field.
+  # For this to work, the scaffolding needs to be done in after_create so we already have an ID.
+  # The third option is similar, but without scaffolding. In after_create we copy the DB id into 001.
+  # The last option does the reverse: It copies the 001 id INTO the db id, this is done in before_save.
   def fix_ids
     #generate_new_id
     # If there is no marc, do not add the id
@@ -130,6 +131,7 @@ class Person < ApplicationRecord
     end
   end
   
+  # Updates the Relations to other Records
   def update_links
     return if self.suppress_recreate_trigger == true
 
@@ -137,66 +139,51 @@ class Person < ApplicationRecord
     recreate_links(marc, allowed_relations)
   end
   
-  # Do it in two steps
-  # The second time it creates all the MARC necessary
+  # Creates a scuffold Marc for an empty Record.
+  # Do it in two steps.
+  # The second time it creates all the MARC necessary.
   def scaffold_marc
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
-  
     new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
     new_marc.load_source true
-    
     new_100 = MarcNode.new("person", "100", "", "1#")
     new_100.add_at(MarcNode.new("person", "a", self.full_name, nil), 0)
-    
     if self.life_dates
       new_100.add_at(MarcNode.new("person", "d", self.life_dates, nil), 1)
     end
-    
     pi = new_marc.get_insert_position("100")
     new_marc.root.children.insert(pi, new_100)
-
     if self.id != nil
       new_marc.set_id self.id
     end
-    
     if self.birth_place && !self.birth_place.empty?
       new_field = MarcNode.new("person", "370", "", "##")
       new_field.add_at(MarcNode.new("person", "a", self.birth_place, nil), 0)
-      
       new_marc.root.children.insert(new_marc.get_insert_position("370"), new_field)
     end
-    
     if self.gender && self.gender == 1 # only if female...
       new_field = MarcNode.new("person", "375", "", "##")
       new_field.add_at(MarcNode.new("person", "a", "female", nil), 0)
-
       new_marc.root.children.insert(new_marc.get_insert_position("375"), new_field)
     end
-    
     if (self.alternate_names != nil and !self.alternate_names.empty?) || (self.alternate_dates != nil and !self.alternate_dates.empty?)
       new_field = MarcNode.new("person", "400", "", "1#")
       name = (self.alternate_names != nil and !self.alternate_names.empty?) ? self.alternate_names : self.full_name
       new_field.add_at(MarcNode.new("person", "a", name, nil), 0)
       new_field.add_at(MarcNode.new("person", "d", self.alternate_dates, nil), 1) if (self.alternate_dates != nil and !self.alternate_dates.empty?)
-      
       new_marc.root.children.insert(new_marc.get_insert_position("400"), new_field)
     end
-
     if self.source != nil and !self.source.empty?
       new_field = MarcNode.new("person", "670", "", "##")
       new_field.add_at(MarcNode.new("person", "a", self.source, nil), 0)
-    
       new_marc.root.children.insert(new_marc.get_insert_position("670"), new_field)
     end
-    
     if self.comments != nil and !self.comments.empty?
       new_field = MarcNode.new("person", "680", "", "1#")
       new_field.add_at(MarcNode.new("person", "a", self.comments, nil), 0)
-    
       new_marc.root.children.insert(new_marc.get_insert_position("680"), new_field)
     end    
-    
     self.marc_source = new_marc.to_marc
     self.save!
   end
@@ -206,11 +193,13 @@ class Person < ApplicationRecord
     self.suppress_reindex_trigger = true
   end
   
+  # Reindexes the Marc Record
   def reindex
     return if self.suppress_reindex_trigger == true
     self.index
   end
 
+  # @todo What is this?
   searchable :auto_index => false do |sunspot_dsl|
     sunspot_dsl.integer :id
     sunspot_dsl.text :id_text do
@@ -221,34 +210,28 @@ class Person < ApplicationRecord
     end
     sunspot_dsl.text :full_name
     sunspot_dsl.text :full_name_d
-    
     sunspot_dsl.string :life_dates_order do
       life_dates
     end
     sunspot_dsl.text :life_dates
-    
     sunspot_dsl.text :birth_place
     sunspot_dsl.text :source
     sunspot_dsl.text :alternate_names
     sunspot_dsl.text :alternate_dates
-    
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
-    
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
-
     sunspot_dsl.integer :src_count_order, :stored => true do
       referring_sources.size + referring_holdings.size
     end
-    
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
-    
   end
     
-  # before_destroy, will delete Person only if it has no links referring to
+  # Checks for Relations to other Records.
+  # before_destroy will delete Person only if it has no links referring to
   def check_dependencies
     if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
          self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
@@ -262,12 +245,10 @@ class Person < ApplicationRecord
     end
   end
   
+  # This is called always after we tried to add MARC.
+  # If it was suppressed we do not update it as it will be nil.
   def set_object_fields
-    # This is called always after we tried to add MARC
-    # if it was suppressed we do not update it as it
-    # will be nil
     return if marc_source == nil
-    
     # If the source id is present in the MARC field, set it into the
     # db record
     # if the record is NEW this has to be done after the record is created
@@ -275,32 +256,33 @@ class Person < ApplicationRecord
     # If 001 is empty or new (__TEMP__) let the DB generate an id for us
     # this is done in create(), and we can read it from after_create callback
     self.id = marc_source_id if marc_source_id and marc_source_id != "__TEMP__"
-
     # std_title
     self.full_name, self.full_name_d, self.life_dates = marc.get_full_name_and_dates
-    
     # alternate
     self.alternate_names, self.alternate_dates = marc.get_alternate_names_and_dates
-    
     # varia
     self.gender, self.birth_place, self.source, self.comments = marc.get_gender_birth_place_source_and_comments
-    
     self.marc_source = self.marc.to_marc
   end
   
+  # @todo What does this?
   def field_length
     self.life_dates = self.life_dates.truncate(24) if self.life_dates and self.life_dates.length > 24
     self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
   end
 
+  # Returns the Name
+  # @return [String] Name
   def name
     return full_name
   end
   
+  # Returns the Label for the autocomplete mechanism
   def autocomplete_label
     "#{full_name}" + (life_dates && !life_dates.empty? ? "  - #{life_dates}" : "")
   end
 
+  # @todo What is this?
   ransacker :"100d", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"375a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"550a", proc{ |v| } do |parent| parent.table[:id] end
@@ -310,6 +292,9 @@ class Person < ApplicationRecord
   ransacker :"551a", proc{ |v| } do |parent| parent.table[:id] end
 	ransacker :"full_name_or_400a", proc{ |v| } do |parent| parent.table[:id] end
 
+  # Tries to harvest information from VIAF
+  # @param str [String]
+  # @return [Array]
   def self.get_viaf(str)
     str.gsub!("\"", "")
     Viaf::Interface.search(str, self.to_s)

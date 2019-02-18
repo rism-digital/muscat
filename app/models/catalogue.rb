@@ -1,18 +1,16 @@
 # The Catalogue model describes a basic bibliograpfic catalog
 # and is used to link Sources with its bibliographical info
 #
-# === Fields
-# * <tt>name</tt> - Abbreviated name of the catalogue
-# * <tt>author</tt> - Author
-# * <tt>description</tt> - Full title
-# * <tt>revue_title</tt> - if printed in a journal, the journal's title
-# * <tt>volume</tt> - as above, the journal volume
-# * <tt>place</tt>
-# * <tt>date</tt>
-# * <tt>pages</tt>
+# @field <tt>name</tt> - Abbreviated name of the catalogue
+# @field <tt>author</tt> - Author
+# @field <tt>description</tt> - Full title
+# @field <tt>revue_title</tt> - if printed in a journal, the journal's title
+# @field <tt>volume</tt> - as above, the journal volume
+# @field <tt>place</tt>
+# @field <tt>date</tt>
+# @field <tt>pages</tt>
 #
-# === Relations
-# * many to many with Sources
+# Has a many to many Relation to Sources
 
 class Catalogue < ApplicationRecord
   include ForeignLinks
@@ -53,27 +51,23 @@ class Catalogue < ApplicationRecord
     :association_foreign_key => "catalogue_a_id",
     join_table: "catalogues_to_catalogues")
   
-  
   composed_of :marc, :class_name => "MarcCatalogue", :mapping => %w(marc_source to_marc)
   
   ##include NewIds
   
   before_destroy :check_dependencies
-  
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
   after_initialize :after_initialize
-
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
-
   alias_attribute :id_for_fulltext, :id
-
   enum wf_stage: [ :inprogress, :published, :deleted ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
   
+  # @see #Source.after_initialize
   def after_initialize
     @last_user_save = nil
     @last_event_save = "update"
@@ -84,14 +78,18 @@ class Catalogue < ApplicationRecord
     self.suppress_reindex_trigger = true
   end
 
+  # Suppresses the scaffolding of the Marc Record
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
   
+  # Suppresses Recreation
   def suppress_recreate
     self.suppress_recreate_trigger = true
   end 
   
+  # @see #Person.fix_ids
+  # @todo bring standard to #Source instead, like #after_initialize
   def fix_ids
     #generate_new_id
     # If there is no marc, do not add the id
@@ -103,7 +101,6 @@ class Catalogue < ApplicationRecord
     # THis is basically only for when we have a new item from the editor
     marc_source_id = marc.get_marc_source_id
     if !marc_source_id or marc_source_id == "__TEMP__"
-
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
       PaperTrail.request(enabled: false) do
@@ -112,73 +109,59 @@ class Catalogue < ApplicationRecord
     end
   end
   
+  # Updates Relations to foreign Records
   def update_links
     return if self.suppress_recreate_trigger == true
-
     allowed_relations = ["institutions", "people", "places", "catalogues", "standard_terms"]
     recreate_links(marc, allowed_relations)
   end
   
+  # Creates a scaffold for new Records
   def scaffold_marc
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
- 
     new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc"))
     new_marc.load_source false
-    
     #new_100 = MarcNode.new("catalogue", "100", "", "1#")
     #new_100.add_at(MarcNode.new("catalogue", "a", self.author, nil), 0)
-    
     #new_marc.root.children.insert(new_marc.get_insert_position("100"), new_100)
-    
     # save name
     if self.name
       node = MarcNode.new("catalogue", "210", "", "##")
       node.add_at(MarcNode.new("catalogue", "a", self.name, nil), 0)
-    
       new_marc.root.children.insert(new_marc.get_insert_position("210"), node)
     end
-
     # save decription
     if self.description
       node = MarcNode.new("catalogue", "240", "", "##")
       node.add_at(MarcNode.new("catalogue", "a", self.description, nil), 0)
-    
       new_marc.root.children.insert(new_marc.get_insert_position("240"), node)
     end
-
     # save date and place
     if self.date || self.place
       node = MarcNode.new("catalogue", "260", "", "##")
       node.add_at(MarcNode.new("catalogue", "c", self.date, nil), 0) if self.date
       node.add_at(MarcNode.new("catalogue", "a", self.place, nil), 0) if self.place
-
       new_marc.root.children.insert(new_marc.get_insert_position("260"), node)
     end
-
     # save revue_title
     if self.revue_title
       node = MarcNode.new("catalogue", "760", "", "0#")
       node.add_at(MarcNode.new("catalogue", "t", self.revue_title, nil), 0)
-    
       new_marc.root.children.insert(new_marc.get_insert_position("760"), node)
     end
-
     if self.id != nil
       new_marc.set_id self.id
     end
-
     self.marc_source = new_marc.to_marc
     self.save!
   end
 
 
+  # This is called always after we tried to add MARC.
+  # if it was suppressed we do not update it as it will be nil.
   def set_object_fields
-    # This is called always after we tried to add MARC
-    # if it was suppressed we do not update it as it
-    # will be nil
     return if marc_source == nil
-    
     # If the source id is present in the MARC field, set it into the
     # db record
     # if the record is NEW this has to be done after the record is created
@@ -186,7 +169,6 @@ class Catalogue < ApplicationRecord
     # If 001 is empty or new (__TEMP__) let the DB generate an id for us
     # this is done in create(), and we can read it from after_create callback
     self.id = marc_source_id if marc_source_id and marc_source_id != "__TEMP__"
-
     # std_title
     self.place, self.date = marc.get_place_and_date
     self.name = marc.get_name
@@ -195,52 +177,44 @@ class Catalogue < ApplicationRecord
     self.revue_title = marc.get_revue_title
     self.marc_source = self.marc.to_marc
   end
-  
 
-
+  # Reindexes the Record
   def reindex
     return if self.suppress_reindex_trigger == true
     self.index
   end
 
+  # @todo What is this?
   searchable :auto_index => false do |sunspot_dsl|
     sunspot_dsl.integer :id
     sunspot_dsl.text :id_text do
       id_for_fulltext
     end
-
     sunspot_dsl.string :name_order do
       name
     end
     sunspot_dsl.text :name
-    
     sunspot_dsl.string :author_order do
       author
     end
     sunspot_dsl.text :author
-    
     sunspot_dsl.text :description
     sunspot_dsl.string :description_order do
       description
     end
- 
     sunspot_dsl.text :revue_title
     sunspot_dsl.string :revue_title_order do
       revue_title
     end
- 
     sunspot_dsl.text :volume
     sunspot_dsl.text :place
     sunspot_dsl.text :date
     sunspot_dsl.string :date_order do
       date
     end
- 
     sunspot_dsl.text :pages
-    
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
-    
     sunspot_dsl.integer :src_count_order, :stored => true do 
       (Catalogue.count_by_sql("select count(*) from sources_to_catalogues where catalogue_id = #{self[:id]}") +
       Catalogue.count_by_sql("select count(*) from institutions_to_catalogues where catalogue_id = #{self[:id]}") +
@@ -248,11 +222,10 @@ class Catalogue < ApplicationRecord
     end
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
-
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
-    
   end
   
+  # @see #Source.check_dependencies
   def check_dependencies
     if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
          self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
@@ -266,18 +239,18 @@ class Catalogue < ApplicationRecord
     end
   end
 
+  # Returns Label for the autocomplete Mechanism
+  # @return [String]
   def autocomplete_label
-    
     aut = (author and !author.empty? ? author : nil)
     des = (description and !description.empty? ? description.truncate(45) : nil)
     dat = (date and !date.empty? ? date : nil)
-    
     infos = [aut, dat, des].join(", ")
-    
     "#{name}: #{infos}"
-    
   end
 
+  # @todo Looks like this should return all the Entries
+  #   in the Marc-Field 760$0 but returned is a empty Array
   def get_items
     MarcSearch.select(Catalogue, '760$0', id.to_s).to_a
   end
@@ -285,5 +258,4 @@ class Catalogue < ApplicationRecord
   ransacker :"240g", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"260b", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"100a_or_700a", proc{ |v| } do |parent| parent.table[:id] end
-
 end
