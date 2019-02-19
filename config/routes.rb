@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 	get 'catalog/:id/mei' => 'catalog#mei'
 	get 'catalog/geosearch/:id' => 'catalog#geosearch'
   post 'catalog/holding' => 'catalog#holding'
+  post 'catalog_ch/holding' => 'catalog#holding'
   get "catalog/download_xslt" => 'catalog#download_xslt'
   
 	##############################

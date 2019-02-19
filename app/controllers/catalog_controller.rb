@@ -12,7 +12,7 @@ class CatalogController < ApplicationController
   before_action :save_controller
   before_action :redirect_legacy_values, :only => :show
   
-  protect_from_forgery :except => [:holdings]
+  protect_from_forgery :except => [:holding]
   
   def save_controller
     @catalog_controller = params[:controller]
