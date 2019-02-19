@@ -10,6 +10,10 @@ module Viaf
     require 'open-uri'
     require 'net/http'
 
+    # Searches VIAF for given term.
+    # @param term [String]
+    # @param model [String] Model Name, can be Person or Work
+    # @return [Array<Hash>]
     def self.search(term, model)
       providers = YAML::load(File.open("config/viaf/#{model.to_s.downcase}.yml"))
       result = []
@@ -20,7 +24,6 @@ module Viaf
           return "ERROR connecting VIAF AutoSuggest"
         end
       end
-
       if model.to_s == 'Person'
         if query["result"]
           r = query["result"].map{|e| e if e['nametype']=='personal'}.compact
@@ -76,11 +79,9 @@ module Viaf
           rescue
             return "ERROR connecting VIAF Justlinks"
           end
-        
           if !links.is_a?(Hash)
             return "ERROR VIAF Justlinks returned invalid data"
           end
-          
           begin
             provider_doc = Nokogiri::XML(open(provider_url))
           rescue 
@@ -95,7 +96,6 @@ module Viaf
               next unless title
             end
           end
-
           provider_doc.xpath('//marc:controlfield[@tag="001"]', NAMESPACE).first.content = record["viafid"]
           node_24 = provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE)
           provider_doc.xpath('//marc:datafield[@tag="024"]', NAMESPACE).remove
@@ -104,7 +104,6 @@ module Viaf
           if links["WKP"]
             node_24.first.add_previous_sibling(build_provider_node(provider_doc.root, "WKP", links["WKP"][0]))
           end
-
           if provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE).empty?
             next
           else
@@ -119,10 +118,13 @@ module Viaf
         end
       end
       return result
-
     end
 
-
+    # Makes a Node for a given Provider.
+    # @param parent [MarcNode] Parent Node
+    # @param provider [String]
+    # @param id [Integer]
+    # @return [MarcNode]
     def self.build_provider_node(parent, provider, id)
       tag = Nokogiri::XML::Node.new "mx:datafield", parent
       tag['tag'] = '024'
@@ -138,6 +140,11 @@ module Viaf
       return tag
     end
 
+    # Builds the Title Node for a Providers Marc Record
+    # @param tag [String] Tag Name
+    # @param alt_tag [String] Tag Name
+    # @param provider_doc [String] Marc Data
+    # @return [Boolean]
     def self.build_title_node(tag, alt_tag, provider_doc)
       if tag == "240"
         lastname = provider_doc.xpath("//marc:datafield[@tag='#{tag}']/marc:subfield[@code='a']", NAMESPACE).first.content rescue "Anonymus"
@@ -164,6 +171,8 @@ module Viaf
       return true
     end
 
+    # Tests a File in config/viaf
+    # @todo is this still used?
     def self.xsl_test
       xml = File.open("config/viaf/test.xml") { |f| Nokogiri::XML(f)  }
       xslt  = Nokogiri::XSLT(File.read('config/viaf/person_bnf.xsl'))
