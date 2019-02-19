@@ -32,4 +32,14 @@ class SearchHistoryController < ApplicationController
     redirect_back fallback_location: blacklight.search_history_path
   end
 
+  # RZ copied over from blackligth's controller.rb, it says:
+  # Default route to the search action (used e.g. in global partials). Override this method
+  # in a controller or in your ApplicationController to introduce custom logic for choosing
+  # which action the search form should use
+  def search_action_url options = {}
+    # Rails 4.2 deprecated url helpers accepting string keys for 'controller' or 'action'
+    search_function = "search_#{@catalog_controller}_url"
+    send(search_function, options.except(:controller, :action))
+  end
+
 end
