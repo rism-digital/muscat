@@ -28,6 +28,7 @@ class Person < ApplicationRecord
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
+  # @return [String] Name of the creator of the Record
   def user_name
     user ? user.name : ''
   end
