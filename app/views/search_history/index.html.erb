@@ -1,15 +1,22 @@
+<% @page_title = t('blacklight.search_history.page_title', :application_name => application_name) %>
+
 <div id="content" class="col-md-12">
-<h3><%=t('blacklight.search_history.title')%></h3>
-<%- if @searches.blank? -%>
-  <h2><%=t('blacklight.search_history.no_history')%></h2>
-<%- else -%>
-    <%= link_to t('blacklight.search_history.clear.action_title'), blacklight.clear_search_history_path, :method => :delete, :data => { :confirm => t('blacklight.search_history.clear.action_confirm') }, :class => 'btn btn-danger float-right' %>
-  <table class="table table-striped search_history">
-    <%-  @searches.each_with_index do |search,index| -%>
-    <%= content_tag :tr, :id => "document_#{index + 1}" do %>
-      <td class="query"><%= link_to_previous_search(search.query_params) %></td>
-    <% end #content_tag %>
-  <%- end -%>
+<h1 class='page-heading'><%= t('blacklight.search_history.title') %></h1>
+<% if @searches.blank? %>
+  <h2 class='section-heading'><%= t('blacklight.search_history.no_history') %></h2>
+<% else %>
+  <%= link_to t('blacklight.search_history.clear.action_title'),
+              blacklight.clear_search_history_path(catalog_controller: @catalog_controller),
+              method: :delete,
+              data: { confirm: t('blacklight.search_history.clear.action_confirm') },
+              class: 'btn btn-danger float-md-right' %>
+  <h2 class='section-heading'><%= t('blacklight.search_history.recent') %></h2>
+  <table class="table table-striped search-history">
+    <% @searches.each_with_index do |search,index| %>
+    <tr id="document_<%= index + 1 %>">
+      <td class="query"><%= link_to_previous_search(search_state.reset(search.query_params).to_hash) %></td>
+    </tr>
+  <% end %>
   </table>
-<%- end -%>
+<% end %>
 </div>

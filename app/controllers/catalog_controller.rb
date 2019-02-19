@@ -9,7 +9,12 @@ class CatalogController < ApplicationController
   
   DEFAULT_FACET_LIMIT = 20
   
+  before_action :save_controller
   before_action :redirect_legacy_values, :only => :show
+  
+  def save_controller
+    @catalog_controller = params[:controller]
+  end
   
   def facet_list_limit
   	if defined? @default_limit
