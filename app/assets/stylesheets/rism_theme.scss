@@ -276,6 +276,17 @@ h5.card-title > a {
 
 }
 
+.btn, input.form-control {
+  font-size: 14px;
+  padding-top: 3px;
+  padding-bottom: 4px;
+}
+
+.range_limit > input {
+  height: 29px;
+}
+
+
 div.document {
     margin-top: 0px !important;
     padding-bottom: 6px;
