@@ -231,12 +231,20 @@ h5.card-title > a {
     border-color: $gray25 !important;
 }
 
+.facet-limit {
+  margin-bottom: 3px;
+}
+
 .facet-count {
     white-space: nowrap;
 }
 
 .facet-values li .selected {
     color: $link-color !important;
+}
+
+.facet-field-heading {
+  font-weight: bold;
 }
 
 // Results Page //
