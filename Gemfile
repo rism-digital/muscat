@@ -140,6 +140,9 @@ gem 'rsolr', '>= 1.0'
 ## For better parallel processing
 gem 'parallel'
 
+## Use instead of Glyphicon with Bootstrap 4
+gem "font-awesome-rails"
+
 group :test do
   gem "rspec"
   gem 'rspec-rails', '~> 3.5'
