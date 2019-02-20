@@ -15,7 +15,9 @@ class CatalogController < ApplicationController
   protect_from_forgery :except => [:holding]
   
   def save_controller
-    @catalog_controller = params[:controller]
+    #save the actual controller name
+    suffix = params[:controller].split("_")
+    @catalog_controller = suffix.count > 1 ? suffix.last : nil
   end
   
   def facet_list_limit

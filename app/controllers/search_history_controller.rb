@@ -7,17 +7,18 @@ class SearchHistoryController < ApplicationController
   helper RangeLimitHelper
 	
   def index
-    @catalog_controller = params.include?(:catalog_controller) ? params[:catalog_controller] : "catalog"
+    @catalog_controller = params.include?(:c) ? params[:c] : nil
     if session[:history].blank?
       @searches = ::Search.none
     else
       @searches =  ::Search.where(id: session[:history]).order("updated_at desc").to_a
-      @searches.delete_if {|s| s.query_params[:controller] != @catalog_controller}
+      contr = @catalog_controller && !@catalog_controller.empty? ? "catalog_" + @catalog_controller : "catalog"
+      @searches.delete_if {|s| s.query_params[:controller] != contr}
     end
   end
 
   def clear
-    catalog_controller = params.include?(:catalog_controller) ? params[:catalog_controller] : "catalog"
+    catalog_controller = params.include?(:c) && !params[:c].empty? ? "catalog_" + params[:c] : "catalog"
     
     if !session[:history].blank?
       searches = ::Search.where(id: session[:history]).order("updated_at desc")
@@ -38,7 +39,8 @@ class SearchHistoryController < ApplicationController
   # which action the search form should use
   def search_action_url options = {}
     # Rails 4.2 deprecated url helpers accepting string keys for 'controller' or 'action'
-    search_function = "search_#{@catalog_controller}_url"
+    contr = @catalog_controller && !@catalog_controller.empty? ? "catalog_" + @catalog_controller : "catalog"
+    search_function = "search_#{contr}_url"
     send(search_function, options.except(:controller, :action))
   end
 

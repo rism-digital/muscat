@@ -23,8 +23,8 @@
       <ul class="navbar-nav">
         <%- RISM::MENUS.each do |m| %>
         <li class="nav-item">
-          <%if m[1] == "/advanced" || m[1] == "/search_history" %>
-          <%= link_to t(m[0]), "#{m[1]}?catalog_controller=#{@catalog_controller}", class: 'nav-link' %>
+          <%if @catalog_controller && (m[1] == "/advanced" || m[1] == "/search_history") %>
+          <%= link_to t(m[0]), "#{m[1]}?c=#{@catalog_controller}", class: 'nav-link' %>
           <% else %>
           <%= link_to t(m[0]), m[1], class: 'nav-link' %>
           <% end %>

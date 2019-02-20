@@ -1,7 +1,7 @@
 <%# Overriden to remove the Facets -%>
  
 <%
-catalog_controller = params.include?(:catalog_controller) ? params[:catalog_controller] : "catalog"
+catalog_controller = params.include?(:c) ? "catalog_" + params[:c] : "catalog"
 search_function = "search_#{catalog_controller}_path"
 link = send(search_function)
 %>
