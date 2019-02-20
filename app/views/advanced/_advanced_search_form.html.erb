@@ -1,5 +1,11 @@
 <%# Overriden to remove the Facets -%>
  
+<%
+catalog_controller = params.include?(:catalog_controller) ? params[:catalog_controller] : "catalog"
+search_function = "search_#{catalog_controller}_path"
+link = send(search_function)
+%>
+
 <script src="/javascripts/verovio-toolkit.js" type="text/javascript" ></script>
  
 <% unless (search_context_str = render_search_to_s( advanced_search_context)).blank? %>
@@ -24,6 +30,7 @@
         <option value="PGC"><%=t('incipit_search.gross_pitch')%></option>
       </select>
     </div>
+  
     <div class="checkbox">
       <label>
         <input type="checkbox" id="anchor" value="anchor" checked><%=t('incipit_search.anchor')%>
@@ -32,8 +39,8 @@
 
     <div class="row">
       <div class="col-xs-1">
-        <button id="erase_note" type="button" class="btn btn-secondary btn-sm" onclick="javascript:onundo()" data-toggle="tooltip" title="<%=t('incipit_search.erase')%>">
-          <span class="glyphicon glyphicon-erase"></span>
+        <button id="erase_note" type="button" class="btn btn-link btn-sm" onclick="javascript:onundo()" data-toggle="tooltip" title="<%=t('incipit_search.erase')%>">
+          <span class="fa fa-eraser"></span>
         </button>
       </div>
       <div class="col-xs-11">
@@ -49,16 +56,16 @@
 </div>
 
 <p>
-  <%= form_tag search_catalog_path, onsubmit: "prepare_incipit();", :class => 'advanced form-horizontal', :method => :get do  %>
+  <%= form_tag link, onsubmit: "prepare_incipit();", :class => 'advanced form-horizontal', :method => :get do  %>
 
   <%= render_hash_as_hidden_fields(search_state.params_for_search(advanced_search_context)) %>
 
   <div class="input-criteria">
 
     <div class="query-criteria">
-      <h4 class="query-criteria-heading">
+      <h6 class="query-criteria-heading">
         <%= t('blacklight_advanced_search.form.query_criteria_heading_html', :select_menu =>  select_menu_for_field_operator ) %> 
-      </h4>
+      </h6>
 
       <div id="advanced_search">
         <%= render 'advanced/advanced_search_fields' %>
