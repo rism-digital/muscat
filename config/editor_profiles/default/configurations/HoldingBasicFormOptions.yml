@@ -95,22 +95,15 @@
       - fmo
       - scr
       - cmp
-      - arr
       - prf
       - dte
-      - lyr
-      - lbt
       - trl
-      - pbl
-      - prt
       - edt
       - ltg
       - egr
       - ill
-      - aut
       - oth
       - dub
-      - ctb
 "710":
   new_window: institutions
   new_window_field: name_equals
