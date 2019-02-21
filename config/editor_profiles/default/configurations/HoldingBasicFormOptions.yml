@@ -129,16 +129,10 @@
       - "Doubtful"
       - "Misattributed"
     relator_codes: 
-      - pbl
       - fmo
       - dpt
       - dte
-      - scr
       - prf
-      - prt
-      - edt
-      - asn
-      - oth
 "852": 
   allow_new: true
   new_window: institutions
