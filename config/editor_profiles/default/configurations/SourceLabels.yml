@@ -2631,6 +2631,12 @@ swe:
     fr: "Suédois"
     de: Schwedisch
     en: Swedish
+tib: 
+  label: 
+    it: TIBETAN
+    fr: TIBETAN
+    de: Tibetanisch
+    en: Tibetan
 tur: 
   label: 
     IT: Turco
