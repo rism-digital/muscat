@@ -1,3 +1,4 @@
+# Provides the Class for the Work Model
 class MarcWork < Marc
   # Initializes Class Instance
   # @param source [String]

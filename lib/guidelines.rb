@@ -1,7 +1,14 @@
+# Binds the Guidelines Submodule into Muscat
 class Guidelines
   
   attr_accessor :output, :sidebar, :version
   
+  # Here, the datastructure nescessary for display in muscat, is created.
+  # The Structures are taken from a YAML-file that 
+  # comes with corresponding html-files in a git-submodule.
+  # For further information @see https://github.com/rism-ch/muscat-guidelines
+  # @param ymlfile [String]
+  # @param lang [String] Language Selector (e.g. 'en' for English)
   def initialize(ymlfile, lang)
     @tag_index = Array.new
     @lang = lang
@@ -16,17 +23,14 @@ class Guidelines
     @output = ""
     @sidebar = Array.new
     @version = @tree[:version]
-    
     # numbering
     @chapterNb = 1
     @sectionNb = 1
     @subsectionNb = 1
-    
     cat @tree[:header] if @tree[:header]
     @tree[:doc][:chapters].each do |c| 
       chapter c
     end
-    
     if @tree[:tag_index] && !@tag_index.empty?
       name = "#{@chapterNb} &ndash; #{@coder.encode(@profile.get_label("doc_tag_index"), :named)}"
       @output +=  "<h1 id=\"tag_index\">#{name}</h1>\n"
@@ -37,7 +41,6 @@ class Guidelines
       end
       @output +=  "</table>\n"
     end
-    
     cat @tree[:footer] if @tree[:footer]
   end
   
@@ -68,7 +71,6 @@ class Guidelines
         subsection ss if ss
       end  
     end 
-    
     @sectionNb += 1
   end
   
@@ -79,7 +81,6 @@ class Guidelines
     if ss[:index] 
       @tag_index << { :id => ss[:title], :text => @coder.encode(@profile.get_label(ss[:title]), :named)}
     end
-    
     @subsectionNb += 1
   end
   
