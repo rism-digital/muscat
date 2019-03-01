@@ -68,7 +68,4 @@ RSpec.describe Admin::SourcesController, type: :controller, solr: true do
       expect(after_create_size).to eq(initial_size + 1)
     end
   end
- 
-
-
 end

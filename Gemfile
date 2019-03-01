@@ -151,3 +151,4 @@ end
 gem 'yard'
 gem 'redcarpet'
 gem 'github-markup'
+gem 'sqlite3'

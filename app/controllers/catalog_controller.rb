@@ -85,7 +85,6 @@ class CatalogController < ApplicationController
     @default_limit = DEFAULT_FACET_LIMIT
   end
 
-  
   def render_search_results_as_json_disable
     out = []
     @document_list.each do |item|

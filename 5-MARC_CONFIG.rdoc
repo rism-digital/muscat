@@ -26,7 +26,9 @@ The Marc data handling resides into two classes: Marc and MarcNode. The Marc cla
  =752  ##$aBelgium$dAntwerp
  =852  41$aGB Lbl$pA.234$qCopy at A.234. Imperfect: the tenor part book only
 
-When the Marc class is loaded, each line is parsed and attached to a MarcNode. In turn, all the elements in a single marc tag are again parsed into marc nodes. For example, this line in the marc data:
+When the Marc class is loaded, each line is parsed and attached to a MarcNode. 
+In turn, all the elements in a single marc tag are again parsed into marc nodes. 
+For example, this line in the marc data:
 
  =700  1#$aVecchi, Orazio$d1550-1605$ecomposer
 
@@ -42,7 +44,11 @@ Both Marc and MarcNode provide functions to navigate, search, add or delete the 
 
 
 == Configuration
-The configuration for each model that supports marc is in config/marc/tag_config_<modelname>.yml. To support local overrides for specific installations, an override file can be in each RISM::MARC subdirectory, for example config/marc/a1 or config/marc/ch. It has to be called local_tag_config_<modelname>.yml and it will be loaded automatically if present. The tag configuration contained overrides completely each tag (see more later)
+The configuration for each model that supports marc is in <tt>config/marc/tag_config_<modelname>.yml</tt>. 
+To support local overrides for specific installations, an override file can be in each RISM::MARC subdirectory, 
+for example <tt>config/marc/a1</tt> or <tt>config/marc/ch</tt>. 
+It has to be called <tt>local_tag_config_<modelname>.yml</tt> and it will be loaded automatically if present. 
+The tag configuration contained overrides completely each tag (see more later)
 This is an excerpt from the configuration file:
 
   "041":
@@ -92,9 +98,20 @@ The configuration specifies the basic elements of a tag, in particular the subfi
 * + (one or more must exist.  at least one occurance must be present, more occurrences are allowed)
 * * (none or more. none, one or many may exist)
 
-The no_browse indicates that it is not displayed in the web page when showing or editing. The 100 tag example shows how to attach a DB model to a particular tag. The "master" tag is the MARC tag that holds the foreign key to the relation, in this example the database ID. foreign_class and foreign_field respectively are the model and the remote field. The other two fields use the same principle to connect two fields that are then cashed in the fields indicated from foreign_field in the DB table. Since occurrences is "?" they do not need to be present.
-Marc data has the precedence on data in the db, this means that the db is updated on the basis of the Marc data. The Marc class will attempt to write to the db each time .save() is called on the model. This can be disabled with the appropriate trigger in the model to which marc is attached.
-If the data pointed to by $0 does not exist a fresh new DB record will be created based on the configured marc data. This is used when importing to populate the Authority files on DB.
-When Marc data is loaded this information is used to create objects in memory pointing to the models configured by each single tag. In this case if the master tag is not present or points to an invalid db reference, the loading of the Marc record will stop with an error.
+The no_browse indicates that it is not displayed in the web page when showing or editing. 
+The 100 tag example shows how to attach a DB model to a particular tag. 
+The "master" tag is the MARC tag that holds the foreign key to the relation, in this example the database ID. 
+<tt>foreign_class</tt> and <tt>foreign_field</tt> respectively are the model and the remote field. 
+The other two fields use the same principle to connect two fields that are then cached in the fields indicated from <tt>foreign_field</tt> in the DB table. 
+Since occurrences is "?" they do not need to be present.
+
+Marc data has the precedence on data in the db, this means that the db is updated on the basis of the Marc data. 
+The Marc class will attempt to write to the db each time <tt>.save()</tt> is called on the model. 
+This can be disabled with the appropriate trigger in the model to which marc is attached.
+
+If the data pointed to by $0 does not exist, a fresh new DB record will be created based on the configured marc data. 
+This is used when importing to populate the Authority files on DB.
+When Marc data is loaded this information is used to create objects in memory pointing to the models configured by each single tag. 
+In this case if the master tag is not present or points to an invalid db reference, the loading of the Marc record will stop with an error.
 
 

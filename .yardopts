@@ -4,6 +4,7 @@
 2-INSTALL.rdoc
 3-IMPORT.rdoc
 4-CONFIG.rdoc
-6-MARC_CONFIG.rdoc
+5-MARC_CONFIG.rdoc
+6-RSPEC.rdoc
 --private
 --tag field:"Fields"

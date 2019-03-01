@@ -1,6 +1,7 @@
 = Installation instructions
 
-This document describes how to bootstrap into the webapplication. The documentation is updated for Ubuntu 18.14 LTS.
+This document describes how to bootstrap into the webapplication. 
+The documentation is updated for Ubuntu 18.14 LTS.
 
 == Requirements
 
@@ -19,7 +20,10 @@ The following other libraries and programs are needed
 
 == Ruby and Rails
 
-Muscat 4 now requires ruby 2.3 by default. Rails is installed with the correct version with bundle. Ubuntu comes with ruby 2.5 by default so no actions are necessary. On older Debian systems the easyest way to get ruby 2.3 is via rbenv adding for all users.
+Muscat 5 now requires ruby 2.5 by default. 
+Rails is installed with the correct version with bundle. 
+Ubuntu comes with ruby 2.5 by default so no actions are necessary. 
+On older Debian systems the easyest way to get ruby 2.5 is via rbenv adding for all users.
 
 On older Ubuntu systems add the following repositories
 
