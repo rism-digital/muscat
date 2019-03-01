@@ -1,12 +1,11 @@
 # A StandardTerm is a standardized keyword, ex. "Airs (instr.)"
 #
-# === Fields
-# * <tt>term</tt> - the keyword
-# * <tt>alternate_terms</tt> - alternate spellings for this keyword
-# * <tt>notes</tt>
-# * <tt>src_count</tt> - keeps track of the Source models tied to this element
+# @field  <tt>term</tt> - the keyword
+# @field  <tt>alternate_terms</tt> - alternate spellings for this keyword
+# @field  <tt>notes</tt>
+# @field  <tt>src_count</tt> - keeps track of the Source models tied to this element
+# @field  other standard wf_* not shown
 #
-# Other standard wf_* not shown
 # The other functions are standard, see Catalogue for a general description
 
 class StandardTerm < ApplicationRecord
@@ -83,5 +82,4 @@ class StandardTerm < ApplicationRecord
   def name
     return term
   end
-
 end

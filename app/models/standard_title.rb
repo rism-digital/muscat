@@ -1,13 +1,12 @@
 # A StandardTerm is a standardized title for a musical work, ex. 
 # Septet (from de Winter / VII Septuor)
 #
-# === Fields
-# * <tt>title</tt> - the standardized title
-# * <tt>title_d</tt> - downcase and stripped title
-# * <tt>notes</tt>
-# * <tt>src_count</tt> - keeps track of the Source models tied to this element
+# @field <tt>title</tt> - the standardized title
+# @field <tt>title_d</tt> - downcase and stripped title
+# @field <tt>notes</tt>
+# @field <tt>src_count</tt> - keeps track of the Source models tied to this element
+# @field Other standard wf_* not shown
 #
-# Other standard wf_* not shown
 # The other functions are standard, see Catalogue for a general description
 
 class StandardTitle < ApplicationRecord

@@ -1,4 +1,5 @@
-# FIXME for next revision: implment inheritance
+# Specifies the Abilities of the User-Roles
+# @todo FIXME for next revision: implment inheritance
 class Ability
   include CanCan::Ability
 
@@ -103,9 +104,5 @@ class Ability
       cannot :read, ActiveAdmin::Page, :name => "Statistics"
       cannot :read, Workgroup
     end
-    
-    
-
   end
-  
 end

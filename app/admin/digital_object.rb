@@ -58,7 +58,6 @@ ActiveAdmin.register DigitalObject do
   end
   
   member_action :add_item, method: :get do
-    
     if can?(:create, DigitalObjectLink)
       #begin
         dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
@@ -76,7 +75,6 @@ ActiveAdmin.register DigitalObject do
   end
   
   member_action :remove_item, method: :get do
-
     begin
       dol = DigitalObjectLink.find(params[:digital_object_link_id])
     rescue
@@ -94,8 +92,6 @@ ActiveAdmin.register DigitalObject do
       flash[:error] = "Operation not allowed"
       redirect_to collection_path
     end
-
-
   end
   
   ###########
@@ -195,5 +191,4 @@ ActiveAdmin.register DigitalObject do
   sidebar :actions, :only => [:edit, :new, :update, :create] do
     render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => digital_object }
   end
-  
 end

@@ -1,3 +1,5 @@
+# Folders are used to group entries 
+# and to perform batch actions on them.
 class Folder < ApplicationRecord
   
   has_many :folder_items, :dependent => :delete_all
@@ -9,13 +11,17 @@ class Folder < ApplicationRecord
   
   #after_destroy :remove_links
   	
-  # Looks to see if an item is in the current folder.
+  # Checks whether an item is in the current folder.
+  # @param item
+  # @return [Array]
   def has_item?(item)
     return folder_items.where(item_id: item.id, item_type: item.class.to_s).count != 0
   end
   
   # Adds an item to the current folder. The type of the item must match the item type
   # for which this folder was created.
+  # @param item
+  # @return [Boolean]
   def add_item(item)
     return false if item.class.name != folder_type
     return false if has_item? item
@@ -23,11 +29,13 @@ class Folder < ApplicationRecord
     return true
   end
   
-  # Add an array of items
+  # Adds an array of items
   # It uses activerecord-import and does it using a single
   # SQL IMPORT it has a dramatic improvement (on 5000 new items):
   # Using inserts   25.113613
   # Using Import    3.100459
+  # @param items [Array]
+  # @return [Integer]
   def add_items(items)    
     new_fi = []
     total = items.count
@@ -45,6 +53,8 @@ class Folder < ApplicationRecord
     return count
   end
     
+  # Removes items from folder
+  # @param items [Array]
   def remove_items(items)
     items.each do |item|
       folder_item = folder_items.where(item_id: item)
@@ -56,7 +66,6 @@ class Folder < ApplicationRecord
     Sunspot.commit
   end  
     
-  
   #def remove_links
   #  FolderItem.clean_index_orphans
   #end

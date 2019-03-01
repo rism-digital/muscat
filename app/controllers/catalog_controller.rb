@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
-#
+# Controlls the Catalogue-View
+
 class CatalogController < ApplicationController  
 
   include BlacklightRangeLimit::ControllerOverride
@@ -450,5 +451,4 @@ class CatalogController < ApplicationController
     # mean") suggestion is offered.
     config.spell_max = 5
   end
-
 end 

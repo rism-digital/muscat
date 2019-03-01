@@ -1,3 +1,8 @@
+# The class provides the same functionality as similar models, see {#Catalogue}
+#
+# @field <tt>lib_siglum</tt> - RISM sigla of the lib
+# @field <tt>source_id</tt> - ID of the RISM source
+# @field <tt>collection_id</tt> - ID of the RISM collection
 class Holding < ApplicationRecord
   include ForeignLinks
   resourcify
@@ -34,6 +39,7 @@ class Holding < ApplicationRecord
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_count_trigger
 
+  # @see #Source.after_initialize
   def after_initialize
     @old_collection = nil
     @last_user_save = nil
@@ -45,18 +51,22 @@ class Holding < ApplicationRecord
     self.suppress_reindex_trigger = true
   end
 
+  # Suppresses the marc scaffolding
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
   
+  # Suppresses recreation
   def suppress_recreate
     self.suppress_recreate_trigger = true
   end 
   
+  # Suppresses the trigger to update the counter
   def suppress_update_count
     self.suppress_update_count_trigger = true
   end
   
+  # @see #Person.fix_ids
   def fix_ids
     #generate_new_id
     # If there is no marc, do not add the id
@@ -68,7 +78,6 @@ class Holding < ApplicationRecord
     # THis is basically only for when we have a new item from the editor
     marc_source_id = marc.get_marc_source_id
     if !marc_source_id or marc_source_id == "__TEMP__"
-
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
       PaperTrail.request(enabled: false) do
@@ -77,52 +86,47 @@ class Holding < ApplicationRecord
     end
   end
   
+  # Updates Relations to foreign Records
   def update_links
     return if self.suppress_recreate_trigger == true
-    
     allowed_relations = ["institutions", "catalogues", "people", "places"]
     recreate_links(marc, allowed_relations)
   end
   
   
+  # Creates a scaffold for new Records
   def scaffold_marc
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
- 
     new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
     new_marc.load_source true
-    
     node = MarcNode.new("holding", "852", "", "##")
     node.add_at(MarcNode.new("holding", "a", self.lib_siglum, nil), 0)
-    
     new_marc.root.children.insert(new_marc.get_insert_position("852"), node)
-
     if self.id != nil
       new_marc.set_id self.id
     end
-    
     self.marc_source = new_marc.to_marc
     self.save!
   end
 
-
+  # This is called always after we tried to add MARC.
+  # if it was suppressed we do not update it as it
+  # will be nil.
+  # If the 973 link is removed, clear the source_id.
+  # But before save it so we can update the parent
+  # source.
+  # If the source id is present in the MARC field, set it into the
+  # db record.
+  # If the record is NEW this has to be done after the record is created.
   def set_object_fields
-    # This is called always after we tried to add MARC
-    # if it was suppressed we do not update it as it
-    # will be nil
     return if marc_source == nil
     
     # parent collection source
     collection = marc.get_parent
-    # If the 973 link is removed, clear the source_id
-    # But before save it so we can update the parent
-    # source.
     @old_collection = collection_id if !collection || collection.id != collection_id
     self.collection_id = collection ? collection.id : nil
 
-    # If the source id is present in the MARC field, set it into the
-    # db record
-    # if the record is NEW this has to be done after the record is created
     marc_source_id = marc.get_marc_source_id
     # If 001 is empty or new (__TEMP__) let the DB generate an id for us
     # this is done in create(), and we can read it from after_create callback
@@ -134,13 +138,11 @@ class Holding < ApplicationRecord
     self.marc_source = self.marc.to_marc
   end
   
-
+  # We do NOT have a parent ms in the 773.
+  # But we have it in old_parent, it means that
+  # the 773 was deleted or modified. Go into the parent and
+  # find the reference to the id, then delete it.
   def update_774
-    
-    # We do NOT have a parent ms in the 773.
-    # but we have it in old_parent, it means that
-    # the 773 was deleted or modified. Go into the parent and
-    # find the reference to the id, then delete it
     if @old_collection
       
       parent_manuscript = Source.find_by_id(@old_collection)
@@ -158,7 +160,6 @@ class Holding < ApplicationRecord
           tag.destroy_yourself
           modified = true
         end
-        
       end
       
       if modified
@@ -166,22 +167,19 @@ class Holding < ApplicationRecord
         parent_manuscript.save
         @old_collection = nil
       end
-      
     end
     
     # do we have a parent manuscript?
     parent_manuscript_id = marc.first_occurance("973", "u")
     
-    # NOTE we evaluate the strings prefixed by 00000
+    # @note NOTE we evaluate the strings prefixed by 00000
     # as the field may contain legacy values
     
     if parent_manuscript_id
       # We have a parent manuscript in the 773
       # Open it and add, if necessary, the 774 link
-    
       parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
       return if !parent_manuscript
-      
       parent_manuscript.paper_trail_event = "Add 774 link #{id.to_s}"
       
       # check if the 774 tag already exists
@@ -196,15 +194,13 @@ class Holding < ApplicationRecord
       w774 = MarcNode.new(@model, "774", "", mc.get_default_indicator("774"))
       w774.add_at(MarcNode.new(@model, "w", id.to_s, nil), 0 )
       w774.add_at(MarcNode.new(@model, "4", "holding", nil), 0 )
-      
       parent_manuscript.marc.root.add_at(w774, parent_manuscript.marc.get_insert_position("774") )
-
       parent_manuscript.suppress_update_77x
       parent_manuscript.save
     end
   end
 
-
+  # Reindexes the Record
   def reindex
     return if self.suppress_reindex_trigger == true
     self.index
@@ -221,11 +217,9 @@ class Holding < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
         
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
-    
   end
 
   def display_name
     "#{lib_siglum} [#{id}]"
   end
-
 end

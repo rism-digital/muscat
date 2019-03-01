@@ -1,3 +1,4 @@
+# Proviedes a Calsss for the items  in a folger
 class FolderItem < ApplicationRecord
 
   belongs_to :item, polymorphic: true
@@ -8,5 +9,4 @@ class FolderItem < ApplicationRecord
     integer :folder_id
     integer :item_id
   end
-  
 end

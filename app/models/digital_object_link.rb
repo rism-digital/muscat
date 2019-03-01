@@ -11,5 +11,4 @@ class DigitalObjectLink < ApplicationRecord
         return object_link.name if (object_link_type == "Person" || object_link_type == "Institution")
         "[Unspecified]"
     end
-
 end
