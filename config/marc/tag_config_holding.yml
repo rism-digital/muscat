@@ -118,6 +118,16 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+  "593":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
   "651":
     :master: "0"
     :indicator: "#7"
