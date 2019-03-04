@@ -93,6 +93,7 @@ de:
       add: "Kommentar hinzufügen"
       resource: "Quelle"
       no_comments_yet: "Es gibt noch keine Kommentare."
+      comments_help: "Geben Sie @ ein, um einen bestimmten Benutzer zu nennen, der dann eine Benachrichtigung per E-Mail erhält."
       author_missing: "Unbekannt"
       title_content: "Kommentare (%{count})"
       errors:

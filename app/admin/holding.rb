@@ -89,6 +89,9 @@ ActiveAdmin.register Holding do
       
       source = @holding.source
       
+      # Trigger a reindex of the parent source so this holding gets de-indexed
+      Delayed::Job.enqueue(ReindexForeignRelationsJob.new(source, [{class: Source, id: @holding.source_id}]))
+
       @holding.destroy!
       redirect_to edit_admin_source_path(source)
     end

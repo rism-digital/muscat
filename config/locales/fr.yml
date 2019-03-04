@@ -93,6 +93,7 @@ fr:
       add: "Ajouter un commentaire"
       resource: "Ressource"
       no_comments_yet: "Aucun commentaire actuellement"
+      comments_help: "Tapez @ pour mentionner un utilisateur spécifique, qui recevra alors une notification par e-mail."
       author_missing: "Anonyme"
       title_content: "Commentaires (%{count})"
       errors:

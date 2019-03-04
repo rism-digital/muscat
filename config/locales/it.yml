@@ -93,6 +93,7 @@ it:
       add: "Aggiungi commento"
       resource: "Risorsa"
       no_comments_yet: "Nessun commento."
+      comments_help: "Digitare @ per menzionare un utente specifico, che riceverà una notifica per email."
       author_missing: "Anonimo"
       title_content: "Commenti (%{count})"
       errors:
