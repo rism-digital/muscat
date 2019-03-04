@@ -171,7 +171,8 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 			parent_object_type: $('#parent_object_type').val(),
 			record_status: $('#record_status').val(),
 			record_owner: $('#record_owner').val(),
-			record_audit: $('#record_audit').val(),
+			// Record audit is unused and disabled
+			//record_audit: $('#record_audit').val(),
 			triggers: JSON.stringify(triggers),
 			redirect: redirect
 		},
