@@ -192,3 +192,5 @@
 
 ui: 
   hide_marc_identifiers: true
+triggers:
+  - reindex_source

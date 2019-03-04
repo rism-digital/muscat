@@ -35,6 +35,8 @@ module Triggers
     conf.get_triggers.each do |trigger|
       if trigger == "notify_changes"
         Delayed::Job.enqueue(TriggerNotifyJob.new(object))
+      elsif trigger == "reindex_source"
+        Delayed::Job.enqueue(ReindexForeignRelationsJob.new(object, [{class: Holding, id: object.source_id}]))
       end
     end
     
