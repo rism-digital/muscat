@@ -90,6 +90,7 @@ es:
       add: "Añadir comentario"
       resource: "Recurso"
       no_comments_yet: "Todavía no hay comentarios."
+      comments_help: "Escriba @ para mencionar a un usuario específico, que recibirá una notificación por correo electrónico."
       author_missing: "Anónimo"
       title_content: "Comentarios (%{count})"
       errors:
