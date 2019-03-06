@@ -26,7 +26,7 @@ For headless chrome: Chrome 59+ and ChromeDriver installed.
   sudo install chromedriver /usr/local/bin
   apt install gconf-service libgconf-2-4 libnspr4 libnss3 libpango1.0-0 libappindicator1 libcurl3
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  dpgk -i google-chrome-stable_current_amd64.deb
+  dpkg -i google-chrome-stable_current_amd64.deb
 
 This connects to the following sunspot-solr instance (see config/solr.yml):
   test: &test

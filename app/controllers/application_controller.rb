@@ -1,12 +1,13 @@
+# Conroller for the default view
 class ApplicationController < ActionController::Base
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
   layout 'blacklight'
 
   # Adds a few additional behaviors into the application controller 
-   include Blacklight::Controller
   # Please be sure to impelement current_user and user_session. Blacklight depends on 
   # these methods in order to perform user specific actions. 
+  include Blacklight::Controller
 
   layout 'blacklight'
 
@@ -16,6 +17,7 @@ class ApplicationController < ActionController::Base
   
   before_action :set_locale, :set_paper_trail_whodunnit, :auth_user, :prepare_exception_notifier, :test_version_warning
 
+  # Prepares the Exception Notifier.
   def prepare_exception_notifier
     if current_user
       request.env["exception_notifier.exception_data"] = {:current_user => current_user } 
@@ -24,10 +26,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Makes sure the User is loged in.
   def auth_user
     redirect_to "/admin/login" unless (request.path == "/admin/login" or user_signed_in?)
   end
   
+  # Gives a warning when operating on a Test Server.
   def test_version_warning
     return if (RISM::TEST_SERVER == false)
     if action_name && ["new", "destroy", "edit", "marc_editor_save"].include?(action_name)
@@ -35,7 +39,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # Code for rescueing lock conflicts errors
+  # Code for rescueing lock conflicts errors.
   rescue_from ActiveRecord::StaleObjectError do |exception|
      respond_to do |format|
         format.html {
@@ -46,19 +50,24 @@ class ApplicationController < ActionController::Base
        format.json { head :conflict }
     end
   end
-  	
+
+  # Sets current user for Papertrail.
   def user_for_paper_trail
    current_user.try :name
   end
-  
+
+  # Tests for Selection Mode.
   def is_selection_mode?
     return params && params[:select].present?
   end
 
+  # Tests whether a Folder has been selected.
+  # @return [Boolean]
   def is_folder_selected?
     return params && params[:q].present? && params[:q][:id_with_integer].present? && params[:q][:id_with_integer].include?("folder_id:")
   end
 
+  # Gets Folder
   def get_folder_from_params
     t = params[:q][:id_with_integer].split(":")
     t.count < 2 ? nil : t[1]
@@ -76,7 +85,7 @@ class ApplicationController < ActionController::Base
       current_user.try :touch
   end
 
-  # Find out and set the locale, store into a cookie
+  # Finds out and sets the locale and stores it into a cookie.
   def set_locale 
     # We do not check if the locale is available. The list is actually set in the
     # menu (see active_admin.rb) 
@@ -107,13 +116,13 @@ class ApplicationController < ActionController::Base
   
   private
   
-  # Parse the http header to get a locale
-  # Hard-coded list - to be improved
+  # Parses the http header to get a locale
+  # Hard-coded list 
+  # @todo to be improved
   def _locale_from_http_header 
     return "en" if !request.env || !request.env.include?('HTTP_ACCEPT_LANGUAGE')
     locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first 
     return locale if ["en", "fr", "it", "de"].include?(locale)
     "en"
   end 
-
 end
