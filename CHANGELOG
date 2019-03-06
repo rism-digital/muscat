@@ -1,6 +1,52 @@
 Muscat Changelog
 ================
 
+v 5.1
+* Avoid mixed content in platin css
+* Moving note field with work
+* Adding feast to work relation
+* Adding work to people relationship
+* Added chronological term to works
+* Added work to work relationship
+* Improved display of work linked fields
+* Adding more relator codes to works
+* Fixed person display with works
+* Added 675 data source not found to works
+* Improve Spanish translation
+* Merge pull request #721 from drschoener/5.1-devel
+* Show wf_stage for liturgical feasts
+* Add batch action to merge
+* Adding some basic validation with merge
+* Add reindexing after merge
+* Include more auth objects
+* Adding more associations with merge
+* Moving merge from batch action to index action with js
+* Better abilitie check and I18n
+* Show publish status in index
+* Cataloger can publish folder if content is in his domain
+* Added status filter to person closes #714
+* Fix #710: Change labels
+* Merge pull request #724 from rism-ch/5.1-devel-folders
+* Merge pull request #726 from rism-ch/5.1-devel-works
+* Fix #718: Added chinese to literature
+* Added Taiwan to literature
+* Fix #717: Added basque language to sources
+* Fix #731: Added destroy ability to comments for catalogers
+* Fix #720: Added taiwan to people
+* Added filter for 031t to work
+* Removed special textincipit filter from index
+* Added flash notice after merge
+* Adding 500 holdings to sources index
+* Merge pull request #725 from rism-ch/5.1-devel-authmerge
+* Restore alterations in advanced keyboard
+* Fix #736: Drop some functions from 700 holdings
+* Rename oth in holdings
+* Fix #737: Dropping values from 700holdings
+* Fix 741: Added tibetan language
+
+v 5.0.3
+* Update Verovio to 2.0.1 (bug fix for empty beams)
+
 v 5.0.2
 * Fix bug that made authorities created from a Source buy Admin and not the current user
 * Remove 240 and 852 in printed libretti validation

@@ -8,6 +8,7 @@ config:
 fields:  
     "001":
     "008":
+    "031t":
     "100a":
     "100d":
       :type: text 

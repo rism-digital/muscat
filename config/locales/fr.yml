@@ -82,6 +82,7 @@ fr:
         destroy: "Supprimer"
         folder: "Créer un dossier avec les éléments sélectionnés"
         add_to_folder: "Ajouter les éléments à un dossier existant"
+        merge: "MERGE AUTHORITY RECORDS"
 
     comments:
       resource_type: "Type de ressource"
@@ -308,6 +309,7 @@ fr:
   edit: "Modifier"
   new: "Créer"
   duplicate: "Dupliquer"
+  merge: "MERGE"
   no_action: "Aucune action possible"
   reindex: "Ré-indexer"
   resave: "Resauver"
@@ -447,6 +449,7 @@ fr:
   filter_subject: "Sujet"
   filter_subsequent_entries: "Entrées suivants"
   filter_term: "Terme"
+  filter_textinipit: "TEXTINCIPIT"
   filter_thematic_opus: "Cat. thématique / No d'opus"
   filter_title: "Titre"
   filter_titles: "Titres"

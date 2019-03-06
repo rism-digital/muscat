@@ -79,6 +79,7 @@ es:
       labels:
         destroy: "Borrar"
         folder: "Crear directorio con" # dudoso
+        merge: "MERGE AUTHORITY RECORDS"
 
     comments:
       resource_type: "Tipo de recurso"
@@ -284,6 +285,7 @@ es:
   edit: "Editar"
   new: "Crear"
   duplicate: "Duplicar"
+  merge: "MERGE"
   no_action: "Ninguna acción disponible"
   reindex: "Reindizar"
   resave: "RESAVE"
@@ -414,6 +416,7 @@ es:
   filter_subject: "Tema"
   filter_subsequent_entries: "LATER ENTRIES"
   filter_term: "Término"
+  filter_textinipit: "TEXTINCIPIT"
   filter_thematic_opus: "Catálogo temático / Opus no."
   filter_title: "Título"
   filter_titles: "Títulos"
@@ -606,8 +609,8 @@ es:
   dashboard:
     selection: "Selección"
     type: "Cambiar el tipo"
-    type_created: "Creado recientemente"
-    type_updated: "Actualizado recientemente"
+    type_created: "Recientemente creado"
+    type_updated: "Recientemente actualizado"
     owner: "Propietario"
     owner_user: "Yo"
     owner_any: "Cualquier"

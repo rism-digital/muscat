@@ -82,6 +82,7 @@ it:
         destroy: "Elimina"
         folder: "Crea una nuova cartella con gli elementi selezionati"
         add_to_folder: "Aggiungi gli elementi selezionati ad una cartella esistente"
+        merge: "MERGE AUTHORITY RECORDS"
 
     comments:
       resource_type: "Tipo di risorsa"
@@ -308,6 +309,7 @@ it:
   edit: "Modifica"
   new: "Crea"
   duplicate: "Duplica"
+  merge: "MERGE"
   no_action: "Nessuna azione"
   reindex: "Indicizza le fonti"
   resave: "Salva le fonti"
@@ -447,6 +449,7 @@ it:
   filter_subject: "Soggetto"
   filter_subsequent_entries: "Notizie Successive"
   filter_term: "Termine"
+  filter_textinipit: "TEXTINCIPIT"
   filter_thematic_opus: "Catalogo / Num. d'opera"
   filter_title: "Titolo"
   filter_titles: "Titoli"

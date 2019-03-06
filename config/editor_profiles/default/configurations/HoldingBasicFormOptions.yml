@@ -95,22 +95,15 @@
       - fmo
       - scr
       - cmp
-      - arr
       - prf
       - dte
-      - lyr
-      - lbt
       - trl
-      - pbl
-      - prt
       - edt
       - ltg
       - egr
       - ill
-      - aut
       - oth
       - dub
-      - ctb
 "710":
   new_window: institutions
   new_window_field: name_equals
@@ -136,16 +129,10 @@
       - "Doubtful"
       - "Misattributed"
     relator_codes: 
-      - pbl
       - fmo
       - dpt
       - dte
-      - scr
       - prf
-      - prt
-      - edt
-      - asn
-      - oth
 "852": 
   allow_new: true
   new_window: institutions

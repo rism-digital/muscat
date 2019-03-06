@@ -7,8 +7,10 @@
 # @field the other standard wf_* fields are not shown.
 
 class LiturgicalFeast < ApplicationRecord
+  include AuthorityMerge
   
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")
+  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_liturgical_feasts")
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "LiturgicalFeast" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"

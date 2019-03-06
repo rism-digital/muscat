@@ -15,6 +15,7 @@
 class Catalogue < ApplicationRecord
   include ForeignLinks
   include MarcIndex
+  include AuthorityMerge
   resourcify
 
   # class variables for storing the user name and the event from the controller

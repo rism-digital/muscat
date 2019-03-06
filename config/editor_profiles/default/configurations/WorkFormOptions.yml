@@ -246,6 +246,15 @@
     - - d
     - - e
     columns: 4
+"548": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - i
+      - values:
+        - "Date of origin"  
+        editor_partial: subfield_select
 "670": 
   allow_new: true
   new_window: catalogues
@@ -258,9 +267,65 @@
     - - "b"
       - cols: 2
     columns: 4
+"675": 
+  allow_new: true
+  new_window: catalogues
+  layout: 
+    fields: 
+    - - "a"
+      - type: catalogue
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
 "680": 
   layout: 
     fields: 
     - - a
       - growfield: true
+"700":
+  allow_new: true
+  new_window: people
+  layout:
+    fields: 
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    relator_codes: 
+    - cmp
+    - dte
+    - dub
+    - lbt
+    - lyr
+    - oth
+"747": 
+  allow_new: true
+  new_window: liturgical_feast
+  layout: 
+    fields: 
+    - - "a"
+      - type: liturgical_feast
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
+"930": 
+  allow_new: true
+  new_window: Work
+  layout: 
+    fields: 
+    - - "a"
+      - type: work
+        editor_partial: subfield_secondary
+      - cols: 4
+    - - i
+      - values:
+        - "Adaption of"  
+        - "Pharaphrase of"  
+        - "Variation of"  
+        editor_partial: subfield_select
+    columns: 4
 

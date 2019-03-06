@@ -2295,6 +2295,12 @@ arg:
     FR: Aragonais
     de: Aragonesisch
     en: Aragonese
+baq: 
+  label: 
+    it: BASQUE
+    fr: BASQUE
+    de: Baskisch
+    en: Basque
 cat: 
   label: 
     it: Catalano
@@ -2625,6 +2631,12 @@ swe:
     fr: "Suédois"
     de: Schwedisch
     en: Swedish
+tib: 
+  label: 
+    it: TIBETAN
+    fr: TIBETAN
+    de: Tibetanisch
+    en: Tibetan
 tur: 
   label: 
     IT: Turco
@@ -3899,8 +3911,8 @@ Digitalization:
   label: 
     it: "Musica digitalizzata"
     fr: "Sources numériées"
-    de: "Notendigitalisat"
-    en: "Digitized music"
+    de: "Quellendigitalisat"
+    en: "Digitized source"
 Other: 
   label: 
     it: "Altro"

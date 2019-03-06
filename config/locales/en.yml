@@ -81,6 +81,7 @@ en:
         destroy: "Delete"
         folder: "Create folder with items"
         add_to_folder: "Add items to existing folder"
+        merge: "Merge authority records"
 
     comments:
       resource_type: "Resource Type"
@@ -307,6 +308,7 @@ en:
   edit: "Edit"
   new: "Create"
   duplicate: "Duplicate"
+  merge: "Merge"
   no_action: "No action available"
   reindex: "Reindex sources"
   resave: "Resave sources"
@@ -446,6 +448,7 @@ en:
   filter_subject: "Subject"
   filter_subsequent_entries: "Subsequent Entries"
   filter_term: "Term"
+  filter_textincipit: "Textincipit"
   filter_thematic_opus: "Thematic cat. / Opus no."
   filter_title: "Title"
   filter_titles: "Titles"

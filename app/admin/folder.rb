@@ -84,6 +84,9 @@ ActiveAdmin.register Folder do
   
   index :download_links => false do |ad|
     selectable_column
+    column (I18n.t :filter_wf_stage) {|folder| status_tag(folder.is_published?,
+      label: I18n.t('status_codes.' + (folder.is_published? ? "published" : "inprogress"), locale: :en))} 
+ 
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_folder_type), :folder_type
     column (I18n.t :filter_owner) {|folder| folder.user.name}
