@@ -177,6 +177,7 @@ used for _tag_header partial
 		
 		var new_group = placeholder.clone();
 		dt = $("<dt />").append(new_group);
+		dt.addClass("inner_group_dt");
 		dt.appendTo(toplevel_dl);
 		dt.fadeIn('fast');
 	}
