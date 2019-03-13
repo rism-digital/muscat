@@ -10,6 +10,8 @@ results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs, progress
   Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
     s = Source.find(sid.id)
     
+    s.marc.load_source false
+    
     grp_ids = []
     
     s.marc.each_by_tag("593") do |t|
@@ -22,7 +24,7 @@ results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs, progress
     end
     
     if grp_ids.length - grp_ids.uniq.length > 0
-      $stderr.puts s.id
+      puts s.id
     end
     
   end
