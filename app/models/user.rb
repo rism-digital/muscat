@@ -54,7 +54,7 @@ class User < ApplicationRecord
     if (source.record_type == MarcSource::RECORD_TYPES[:edition] ||
       source.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
       source.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
-      source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content])
+      source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition])
      if can? :create_edition?, source
        true
      else

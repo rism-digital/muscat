@@ -14,7 +14,7 @@
 				if (trecord_type == MarcSource::RECORD_TYPES[:edition] ||
 						trecord_type == MarcSource::RECORD_TYPES[:edition_content] ||
 						trecord_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
-						trecord_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]) &&
+						trecord_type == MarcSource::RECORD_TYPES[:theoretica_edition]) &&
 						cannot?(:create_editions, Source)
 					next
 				end %>

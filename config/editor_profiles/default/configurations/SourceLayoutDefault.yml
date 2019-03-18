@@ -18,7 +18,7 @@ group_exclude:
   - edit_incipits
   theoretica_source:
   - edit_incipits
-  theoretica_edition_content:
+  theoretica_edition:
   - edit_incipits
 
 tag_exclude:
@@ -97,7 +97,7 @@ tag_exclude:
   - '690'
   - '774'
   - '787'
-  theoretica_edition_content:
+  theoretica_edition:
   - '506'
   - '541'
   - '561'

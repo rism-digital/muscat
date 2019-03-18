@@ -207,7 +207,7 @@ fr:
     libretto_source: "Livret manuscrit"
     libretto_edition: "Contenu d'un livret imprimé"
     theoretica_source: "Traité manuscrit"
-    theoretica_edition_content: "Contenu d'un traité imprimé"
+    theoretica_edition: "Contenu d'un traité imprimé"
     edition: "Edition imprimé, collection parent ou item individuel"
 
   #################### MENUS

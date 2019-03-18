@@ -206,7 +206,7 @@ en:
     libretto_source: "Libretto, handwritten"
     libretto_edition: "Libretto, printed"
     theoretica_source: "Treatise, handwritten"
-    theoretica_edition_content: "Treatise, printed"
+    theoretica_edition: "Treatise, printed"
     edition: "Printed music edition, collection parent record or individual item"
         
   #################### MENUS

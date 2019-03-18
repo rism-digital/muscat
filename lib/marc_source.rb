@@ -9,7 +9,7 @@ class MarcSource < Marc
     :libretto_source => 4,
     :libretto_edition => 5,
     :theoretica_source => 6,
-    :theoretica_edition_content => 7,
+    :theoretica_edition => 7,
     :edition => 8
   }
   
@@ -21,7 +21,7 @@ class MarcSource < Marc
     :edition,
     :edition_content,
     :libretto_edition,
-    :theoretica_edition_content,
+    :theoretica_edition,
     :unspecified
   ]
 
