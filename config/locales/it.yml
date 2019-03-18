@@ -205,7 +205,7 @@ it:
     source: "Manoscritto musicale"
     edition_content: "Edizione a stampa, in una collezione"
     libretto_source: "Libretto manoscritto"
-    libretto_edition_content: "Elemento di un libretto edito"
+    libretto_edition: "Elemento di un libretto edito"
     theoretica_source: "Manoscritto di teoria musicale"
     theoretica_edition_content: "Elemento di un edizione di teoria musicale"
     edition: "Edizione musicale, scheda madre della collezione o scheda individuale"

@@ -205,7 +205,7 @@ fr:
     source: "Manuscrit musical"
     edition_content: "Edition imprimé, dans une collection"
     libretto_source: "Livret manuscrit"
-    libretto_edition_content: "Contenu d'un livret imprimé"
+    libretto_edition: "Contenu d'un livret imprimé"
     theoretica_source: "Traité manuscrit"
     theoretica_edition_content: "Contenu d'un traité imprimé"
     edition: "Edition imprimé, collection parent ou item individuel"

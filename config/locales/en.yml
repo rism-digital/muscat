@@ -204,7 +204,7 @@ en:
     source: "Music manuscript"
     edition_content: "Printed music edition, item in collection"
     libretto_source: "Libretto, handwritten"
-    libretto_edition_content: "Libretto, printed"
+    libretto_edition: "Libretto, printed"
     theoretica_source: "Treatise, handwritten"
     theoretica_edition_content: "Treatise, printed"
     edition: "Printed music edition, collection parent record or individual item"

@@ -14,7 +14,7 @@ group_exclude:
   - edit_incipits
   libretto_source:
   - edit_incipits
-  libretto_edition_content:
+  libretto_edition:
   - edit_incipits
   theoretica_source:
   - edit_incipits
@@ -72,7 +72,7 @@ tag_exclude:
   - '774'
   - '775'
   - '787'
-  libretto_edition_content:
+  libretto_edition:
   - '506'
   - '541'
   - '541'

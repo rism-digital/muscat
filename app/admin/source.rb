@@ -93,7 +93,7 @@ ActiveAdmin.register Source do
       # Make sure user can update this type of edition
       if  (@item.record_type == MarcSource::RECORD_TYPES[:edition] ||
           @item.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
-          @item.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
+          @item.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
           @item.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]) &&
           cannot?(:update_editions, @item)
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:cannot_update_source)} (#{I18n.t("record_types." + @item.get_record_type.to_s)})" }
@@ -105,7 +105,7 @@ ActiveAdmin.register Source do
         when :source then "002_source.marc"
         when :edition_content then "013_edition_content.marc"
         when :libretto_source then "004_libretto_source.marc"
-        when :libretto_edition_content then "015_libretto_edition_content.marc"
+        when :libretto_edition then "015_libretto_edition.marc"
         when :theoretica_source then "006_theoretica_source.marc"
         when :theoretica_edition_content then "017_theoretica_edition_content.marc"
         when :edition then "011_edition.marc"
@@ -173,7 +173,7 @@ ActiveAdmin.register Source do
       # Make sure user can create this type of edition
       if  (@source.record_type == MarcSource::RECORD_TYPES[:edition] ||
           @source.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
-          @source.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
+          @source.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
           @source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]) &&
           cannot?(:create_editions, @source)
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:cannot_create_source)} (#{I18n.t("record_types." + @source.get_record_type.to_s)})" }
