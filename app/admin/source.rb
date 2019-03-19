@@ -99,18 +99,9 @@ ActiveAdmin.register Source do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:cannot_update_source)} (#{I18n.t("record_types." + @item.get_record_type.to_s)})" }
         return
       end
-
-      template = case @item.get_record_type
-        when :collection then "000_collection.marc"
-        when :source then "002_source.marc"
-        when :edition_content then "013_edition_content.marc"
-        when :libretto_source then "004_libretto_source.marc"
-        when :libretto_edition then "015_libretto_edition.marc"
-        when :theoretica_source then "006_theoretica_source.marc"
-        when :theoretica_edition then "017_theoretica_edition.marc"
-        when :edition then "011_edition.marc"
-        else nil
-      end
+      
+      template = EditorConfiguration.get_source_default_file(@item.get_record_type)
+      
       
       # Try to load the MARC object.
       # This is the same trap as in show but here we
@@ -142,7 +133,7 @@ ActiveAdmin.register Source do
       @source = Source.new
       @template_name = ""
       
-      if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_type] || params[:new_type].empty?)
+      if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_record_type] || params[:new_record_type].empty?)
         redirect_to action: :select_new_template 
         return
       end
@@ -163,12 +154,18 @@ ActiveAdmin.register Source do
         @source.marc = new_marc
         @source.record_type = base_item.record_type
         @template_name = @source.get_record_type.to_s
-      elsif File.exists?("#{Rails.root}/config/marc/#{RISM::MARC}/source/" + params[:new_type] + '.marc')
-        new_marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/source/" + params[:new_type] + '.marc'), MarcSource::RECORD_TYPES[@template_name.to_sym])
-        new_marc.load_source false # this will need to be fixed
-        @source.marc = new_marc
-        @template_name = params[:new_type].sub(/[^_]*_/,"")
-        @source.record_type = MarcSource::RECORD_TYPES[@template_name.to_sym]
+      else 
+        
+        default_file_name = EditorConfiguration.get_source_default_file(params[:new_record_type])
+        default_file = "#{Rails.root}/config/marc/#{RISM::MARC}/source/" + default_file_name + '.marc'
+        
+        if File.exists?(default_file)
+          new_marc = MarcSource.new(File.read(default_file), MarcSource::RECORD_TYPES[params[:new_record_type].to_sym])
+          new_marc.load_source false # this will need to be fixed
+          @source.marc = new_marc
+          @template_name = params[:new_record_type]
+          @source.record_type = MarcSource::RECORD_TYPES[params[:new_record_type].to_sym]
+        end
       end
       # Make sure user can create this type of edition
       if  (@source.record_type == MarcSource::RECORD_TYPES[:edition] ||
@@ -179,7 +176,7 @@ ActiveAdmin.register Source do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:cannot_create_source)} (#{I18n.t("record_types." + @source.get_record_type.to_s)})" }
         return
       end
-      @editor_profile = EditorConfiguration.get_default_layout @source
+      @editor_profile = EditorConfiguration.get_default_layout(@source)
       @editor_validation = EditorValidation.get_default_validation(@source)
       @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{I18n.t('record_types.' + @template_name)}"
       #To transmit correctly @item we need to have @source initialized
