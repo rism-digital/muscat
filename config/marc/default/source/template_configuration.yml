@@ -64,7 +64,7 @@ default_mapping:
   edition_content: "013_edition_content"
   libretto_source: "004_libretto_source"
   libretto_edition: "015_libretto_edition"
-  theoretica_source: "006_theorerica_source"
+  theoretica_source: "006_theoretica_source"
   theoretica_edition: "017_theoretica_edition"
   edition: "011_edition"
   libretto_edition_content: "015_libretto_edition"
