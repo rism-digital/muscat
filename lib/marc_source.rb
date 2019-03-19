@@ -7,9 +7,9 @@ class MarcSource < Marc
     :source => 2,
     :edition_content => 3,
     :libretto_source => 4,
-    :libretto_edition_content => 5,
+    :libretto_edition => 5,
     :theoretica_source => 6,
-    :theoretica_edition_content => 7,
+    :theoretica_edition => 7,
     :edition => 8
   }
   
@@ -20,8 +20,8 @@ class MarcSource < Marc
     :theoretica_source,
     :edition,
     :edition_content,
-    :libretto_edition_content,
-    :theoretica_edition_content,
+    :libretto_edition,
+    :theoretica_edition,
     :unspecified
   ]
 
@@ -227,7 +227,7 @@ class MarcSource < Marc
     elsif leader.match(/......tm.............../)
       rt = RECORD_TYPES[:libretto_source]
     elsif leader.match(/......am.............../)
-      rt = RECORD_TYPES[:libretto_edition_content]
+      rt = RECORD_TYPES[:libretto_edition]
     elsif leader.match(/......pm.............../) # Mixed material, item
       rt = RECORD_TYPES[:source]
     else
@@ -373,7 +373,7 @@ class MarcSource < Marc
       leader = base_leader.gsub("XX", type)
     elsif @record_type == RECORD_TYPES[:libretto_source]
       leader = base_leader.gsub("XX", "tm")
-    elsif @record_type == RECORD_TYPES[:libretto_edition_content]
+    elsif @record_type == RECORD_TYPES[:libretto_edition]
       leader = base_leader.gsub("XX", "am")
     elsif @record_type == RECORD_TYPES[:theoretica_source] # we cannot make the distinction between ms and print
       leader = base_leader.gsub("XX", "pm")

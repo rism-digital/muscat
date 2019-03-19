@@ -205,9 +205,9 @@ de:
     source: "Musikhandschrift, Indvidual- oder Teileintrag"
     edition_content: "Musikdruck, Teileintrag"
     libretto_source: "Libretto, handschriftlich"
-    libretto_edition_content: "Libretto, gedruckt"
+    libretto_edition: "Libretto, gedruckt"
     theoretica_source: "Theoreticum, handschriftlich"
-    theoretica_edition_content: "Theoreticum, gedruckt"
+    theoretica_edition: "Theoreticum, gedruckt"
     edition: "Musikdruck, Haupteintrag Sammlung oder Individualeintrag"
   
   #################### MENUS
