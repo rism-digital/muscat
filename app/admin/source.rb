@@ -89,12 +89,6 @@ ActiveAdmin.register Source do
       record_type = @item.get_record_type
       record_type = record_type ? " - #{I18n.t('record_types.' + record_type.to_s)}" : ""
       @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
-
-      # Make sure user can update this type of edition
-      if  MarcSource.is_edition?(@item.record_type) && cannot?(:update_editions, @item)
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:cannot_update_source)} (#{I18n.t("record_types." + @item.get_record_type.to_s)})" }
-        return
-      end
       
       template = EditorConfiguration.get_source_default_file(@item.get_record_type)
       
@@ -163,11 +157,7 @@ ActiveAdmin.register Source do
           @source.record_type = MarcSource::RECORD_TYPES[params[:new_record_type].to_sym]
         end
       end
-      # Make sure user can create this type of edition
-      if MarcSource.is_edition?(@source.record_type) && cannot?(:create_editions, @source)
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:cannot_create_source)} (#{I18n.t("record_types." + @source.get_record_type.to_s)})" }
-        return
-      end
+
       @editor_profile = EditorConfiguration.get_default_layout(@source)
       @editor_validation = EditorValidation.get_default_validation(@source)
       @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{I18n.t('record_types.' + @template_name)}"
