@@ -29,6 +29,22 @@ class MarcSource < Marc
     :unspecified
   ]
 
+  def self.is_edition?(record_type)
+    
+    if record_type.is_a? String
+      record_type = RECORD_TYPES[record_type.to_sym]
+    elsif record_type.is_a? Symbol
+      record_type = RECORD_TYPES[record_type]
+    end
+    
+    [MarcSource::RECORD_TYPES[:edition],
+    MarcSource::RECORD_TYPES[:edition_content],
+    MarcSource::RECORD_TYPES[:libretto_edition],
+    MarcSource::RECORD_TYPES[:theoretica_edition],
+    MarcSource::RECORD_TYPES[:libretto_edition_content],
+    MarcSource::RECORD_TYPES[:theoretica_edition_content]].include? record_type
+  end
+
   def initialize(source = nil, rt = 0)
     super("source", source)
     @record_type = rt
@@ -524,5 +540,5 @@ class MarcSource < Marc
   def set_record_type(rt)
     @record_type = rt
   end
-  
+
 end

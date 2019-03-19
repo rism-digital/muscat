@@ -91,11 +91,7 @@ ActiveAdmin.register Source do
       @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
 
       # Make sure user can update this type of edition
-      if  (@item.record_type == MarcSource::RECORD_TYPES[:edition] ||
-          @item.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
-          @item.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
-          @item.record_type == MarcSource::RECORD_TYPES[:theoretica_edition]) &&
-          cannot?(:update_editions, @item)
+      if  MarcSource.is_edition?(@item.record_type) && cannot?(:update_editions, @item)
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:cannot_update_source)} (#{I18n.t("record_types." + @item.get_record_type.to_s)})" }
         return
       end
@@ -168,11 +164,7 @@ ActiveAdmin.register Source do
         end
       end
       # Make sure user can create this type of edition
-      if  (@source.record_type == MarcSource::RECORD_TYPES[:edition] ||
-          @source.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
-          @source.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
-          @source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition]) &&
-          cannot?(:create_editions, @source)
+      if MarcSource.is_edition?(@source.record_type) && cannot?(:create_editions, @source)
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:cannot_create_source)} (#{I18n.t("record_types." + @source.get_record_type.to_s)})" }
         return
       end
