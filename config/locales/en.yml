@@ -208,6 +208,40 @@ en:
     theoretica_source: "Treatise, handwritten"
     theoretica_edition: "Treatise, printed"
     edition: "Printed music edition, collection parent record or individual item"
+
+    composite_volumes: "Composite volumes"
+    composite_volume: "Record for a composite volume"
+    
+    music_manuscripts: "Music manuscripts"
+    collection_record: "Collection record for a music manuscript"
+    individual_entry: "Individual entry in a music manuscript collection"
+    single_manuscript: "Single music manuscript"
+    
+    printed_music: "Printed music"
+    collection_record_edition: "Collection record for a printed music edition"
+    individual_entry_edition: "Individual entry in a printed edition collection"
+    single_edition: "Single printed music edition"
+
+    libretti_handwritten: "Libretti, handwritten"
+    collection_record_libretti: "Collection record for handwritten libretti"
+    individual_entry_libretti: "Individual entry in a handwritten libretto collection"
+    single_libretto: "Single handwritten libretto"
+    
+    libretti_printed: "Libretti, printed"
+    collection_record_libretti_printed: "Collection record for printed libretti"
+    individual_entry_libretti_printed: "Individual entry in a printed libretto collection"
+    single_libretto_printed: "Single printed libretto"
+    
+    threatise_handwritten: "Treatise, handwritten"
+    collection_record_threatise: "Collection record for handwritten treatises"
+    individual_entry_threatise: "Individual entry in a handwritten treatise collection"
+    single_threatise: "Single handwritten treatise"
+    
+    threatise_printed: "Treatise, printed"
+    collection_record_threatise_printed: "Collection record for printed treatises"
+    individual_entry_threatise_printed: "Individual entry in a printed treatise collection"
+    single_threatise_printed: "Single printed treatise"
+
         
   #################### MENUS
   menu_home: "Home"
