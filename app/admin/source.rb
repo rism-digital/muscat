@@ -299,6 +299,10 @@ ActiveAdmin.register Source do
     render("editor/section_sidebar") # Calls a partial
   end
   
+  sidebar :help, :only => [:select_new_template] do
+    render :partial => "template_help"
+  end
+
   form :partial => "editor/edit_wide"
   
 end
