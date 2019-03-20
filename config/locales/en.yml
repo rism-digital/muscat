@@ -58,6 +58,7 @@ en:
       one_page: "Displaying <b>all %{n}</b> %{model}"
       multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
       multiple_without_total: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Elements per page:"
       entry:
         one: "entry"
         other: "entries"
@@ -241,7 +242,6 @@ en:
     collection_record_threatise_printed: "Collection record for printed treatises"
     individual_entry_threatise_printed: "Individual entry in a printed treatise collection"
     single_threatise_printed: "Single printed treatise"
-
         
   #################### MENUS
   menu_home: "Home"
