@@ -157,3 +157,10 @@ body.active_admin {
   float: right; 
   margin-right: 8px; 
 }
+
+.template_ul {
+	margin: 0 0 0 0 !important;
+	ul {
+		list-style-type: circle;
+	}
+}

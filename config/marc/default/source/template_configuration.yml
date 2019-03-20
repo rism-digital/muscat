@@ -1,0 +1,70 @@
+display:
+  music_manuscripts:
+    collection_record:
+      record_type: collection
+      sub_type:
+        individual_entry:
+          record_type: source
+    single_manuscript:
+      record_type: source
+      
+  printed_music:
+    collection_record_edition:
+      record_type: edition
+      sub_type:
+        individual_entry_edition:
+          record_type: edition_content
+    single_edition:
+      record_type: edition
+      
+  libretti_handwritten:
+    collection_record_libretti:
+      record_type: collection
+      sub_type:
+        individual_entry_libretti:
+          record_type: libretto_source
+    single_libretto:
+      record_type: libretto_source
+    
+  libretti_printed:
+    collection_record_libretti_printed:
+      record_type: libretto_edition
+      sub_type:
+        individual_entry_libretti_printed:
+          record_type: libretto_edition_content
+    single_libretto_printed:
+      record_type: libretto_edition
+    
+  threatise_handwritten:
+    collection_record_threatise:
+      record_type: collection
+      sub_type:
+        individual_entry_threatise:
+          record_type: theoretica_source
+    single_threatise:
+      record_type: theoretica_source
+    
+  threatise_printed:
+    collection_record_threatise_printed:
+      record_type: theoretica_edition
+      sub_type:
+        individual_entry_threatise_printed:
+          record_type: theoretica_edition_content
+    single_threatise_printed:
+      record_type: theoretica_edition
+  
+  composite_volumes:
+    composite_volume:
+      record_type: collection
+
+default_mapping:
+  collection: "000_collection"
+  source: "002_source"
+  edition_content: "013_edition_content"
+  libretto_source: "004_libretto_source"
+  libretto_edition: "015_libretto_edition"
+  theoretica_source: "006_theoretica_source"
+  theoretica_edition: "017_theoretica_edition"
+  edition: "011_edition"
+  libretto_edition_content: "015_libretto_edition"
+  theoretica_edition_content: "017_theoretica_edition"
