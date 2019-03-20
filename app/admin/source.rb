@@ -90,7 +90,7 @@ ActiveAdmin.register Source do
       record_type = record_type ? " - #{I18n.t('record_types.' + record_type.to_s)}" : ""
       @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
       
-      template = EditorConfiguration.get_source_default_file(@item.get_record_type)
+      template = EditorConfiguration.get_source_default_file(@item.get_record_type) + ".marc"
       
       
       # Try to load the MARC object.
