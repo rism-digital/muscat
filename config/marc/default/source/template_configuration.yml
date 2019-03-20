@@ -1,8 +1,4 @@
 display:
-  composite_volumes:
-    composite_volume:
-      record_type: collection
-      
   music_manuscripts:
     collection_record:
       record_type: collection
@@ -12,7 +8,6 @@ display:
     single_manuscript:
       record_type: source
       
-    
   printed_music:
     collection_record_edition:
       record_type: edition
@@ -57,7 +52,11 @@ display:
           record_type: theoretica_edition_content
     single_threatise_printed:
       record_type: theoretica_edition
-      
+  
+  composite_volumes:
+    composite_volume:
+      record_type: collection
+
 default_mapping:
   collection: "000_collection"
   source: "002_source"
