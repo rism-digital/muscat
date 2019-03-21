@@ -24,7 +24,8 @@ groups:
     - '710'
 
   edit_material:
-    all_tags: 
+    all_tags:
+    - '593' 
     - '300'
     - '592'
     - '563'

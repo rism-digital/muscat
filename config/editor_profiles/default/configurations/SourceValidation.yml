@@ -25,9 +25,13 @@ client:
   "300": 
     tags:
       a: required
-  "593": 
+  "593":
+    tag_overrides:
+      exclude:
+        "a":
+        - collection
     tags:
-      a: required
+      "a": mandatory
   "594": 
     tags:
       b: required

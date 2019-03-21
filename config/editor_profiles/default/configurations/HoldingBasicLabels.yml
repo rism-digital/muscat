@@ -484,6 +484,19 @@ doc_references:
         fr: Documents
         de: Set
         en: Set
+"593": 
+  label: 
+    it: Categoria di fonte
+    fr: Type de source
+    de: Quellentyp
+    en: Source type
+  fields: 
+    a: 
+      label: 
+        it: Categoria
+        fr: Type
+        de: Typ
+        en: Type
 "651": 
   label: 
     it: Luogo di un evento

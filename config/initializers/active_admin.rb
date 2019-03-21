@@ -319,6 +319,8 @@ require "kaminari/helpers/tag"
 require 'active_admin/filter_label'
 ## RZ Let the download links disappear BUT have the .xml download for a single item
 require 'active_admin/download_links'
+## RZ Add some text to the comments box, for help
+require 'active_admin/active_admin_comments'
 
 ActiveAdmin.before_load do |app|
   # Add our Extensions
