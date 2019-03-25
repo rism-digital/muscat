@@ -352,6 +352,7 @@
       - values:
         - "Adaption of"  
         - "Inspired by"
+        - "Other"
         - "Pharaphrase of"  
         - "Variation of"  
         editor_partial: subfield_select
