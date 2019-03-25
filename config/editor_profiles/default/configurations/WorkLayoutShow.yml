@@ -43,10 +43,12 @@ groups:
   relations:
     all_tags:
     - "700"
+    - "710"
     - "747"
     - "930"
     all_tag_templates:
       "700": works/show_related_person
+      "710": marc_show/show_institution 
       "747": works/show_related_feast
       "930": works/show_work_link
   control: 
