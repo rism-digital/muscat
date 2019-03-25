@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190103152222) do
+ActiveRecord::Schema.define(version: 20190325074740) do
 
   create_table "active_admin_comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -312,6 +312,7 @@ ActiveRecord::Schema.define(version: 20190103152222) do
     t.text "sub_topic"
     t.string "viaf"
     t.string "gnd"
+    t.string "task"
     t.index ["name"], name: "index_liturgical_feasts_on_name"
     t.index ["wf_stage"], name: "index_liturgical_feasts_on_wf_stage"
   end

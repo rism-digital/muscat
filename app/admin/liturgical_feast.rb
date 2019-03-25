@@ -1,6 +1,6 @@
 ActiveAdmin.register LiturgicalFeast do
   
-  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_liturgical_feasts)}
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_events)}
 
   # Remove mass-delete action
   batch_action :destroy, false
@@ -48,7 +48,7 @@ ActiveAdmin.register LiturgicalFeast do
       begin
         @liturgical_feast = LiturgicalFeast.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (LiturgicalFeast #{params[:id]})" }
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Event #{params[:id]})" }
         return
       end
       @prev_item, @next_item, @prev_page, @next_page = LiturgicalFeast.near_items_as_ransack(params, @liturgical_feast)
@@ -100,13 +100,14 @@ ActiveAdmin.register LiturgicalFeast do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "LiturgicalFeast").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
-  index :download_links => false do
+  index :download_links => false, :title => proc {I18n.t(:menu_events)} do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|feast| status_tag(feast.wf_stage,
       label: I18n.t('status_codes.' + (feast.wf_stage != nil ? feast.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_alternate_terms), :alternate_terms
+    column (I18n.t :filter_task), :task
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			all_hits = @arbre_context.assigns[:hits]
 			active_admin_stored_from_hits(all_hits, element, :src_count_order)
@@ -152,11 +153,12 @@ ActiveAdmin.register LiturgicalFeast do
   ## Edit ##
   ##########
   
-  form do |f|
+  form :title => proc {I18n.t(:menu_events)} do |f|
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name)
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
       f.input :notes, :label => (I18n.t :filter_notes)
+      f.input :task, :label =>  (I18n.t :filter_task), :as => :select, :collection => %w(sacred secular), selected: "sacred", include_blank: false
       f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
       f.input :lock_version, :as => :hidden
     end

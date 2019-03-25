@@ -606,17 +606,17 @@ doc_edit_workflow:
         en: Function
 "747": 
   label: 
-    it: Feste liturgiche
-    fr: "Fête liturgique"
-    de: Liturgische Feste
-    en: Liturgical festival
+    it: EVENT
+    fr: EVENT
+    de: Gelegenheit
+    en: Event
   fields: 
     a: 
       label: 
-        it: Feste liturgiche
-        fr: "Fête liturgique"
-        de: Liturgische Feste
-        en: Liturgical feasts
+        it: EVENT
+        fr: EVENT
+        de: Gelegenheit
+        en: Event
       edit_label: 
         en: ""
 "856":

@@ -172,6 +172,9 @@ fr:
       institution:
         one: "Institution"
         other: "Institutions"
+      event:
+        one: "EVENT"
+        other: "EVENTS"
       liturgical_feast:
         one: "Fête liturgique"
         other: "Fêtes liturgiques"
@@ -255,6 +258,7 @@ fr:
   menu_subjects: "Sujets"
   menu_library_sigla: "Sigles de bibliothèque"
   menu_catalogues: "Catalogues"
+  menu_events: "EVENTS"
   menu_liturgical_feasts: "Fêtes liturgiques"
   menu_latin: "Textes latins"
   menu_places: "Lieux"
@@ -520,6 +524,7 @@ fr:
   filter_source_name: "Nom de la source"
   filter_source_composer: "Compositeur de la source"
   filter_printed_exemplars: "Nombre d'exemplaires imprimés"
+  filter_task: "FUNCTION"
 
   ## Referring lists for auth files
   refers_to_this: "%{model_from} se référant à cet(te) %{model_to}"
