@@ -288,10 +288,10 @@ include ApplicationHelper
   end
   
   # SERVER VALIDATION
-  #User should not be able to create record from foreign library
+  #User should not be able to create or save record from foreign library
   def validate_user_abilities
     return if @user.has_role?(:admin) || @user.has_role?(:editor)
-    return if @marc.get_id != '__TEMP__' || !@marc.get_siglum
+    return if !@marc.get_siglum
     sigla = []
     @user.workgroups.each do |w|
       sigla.push(*w.get_institutions.pluck(:siglum))
