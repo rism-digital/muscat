@@ -7,6 +7,10 @@ module BlacklightHelper
     "Répertoire International des Sources Musicales"
   end
   
+  def render_page_title
+    ((content_for(:page_title) if content_for?(:page_title)) || @page_title || application_name).sub! application_name, 'The Canons Database'
+  end
+
   def muscat_translate fields
     fields.each do |f|
       f[0] = muscat_translate_if_symbol f[0]
