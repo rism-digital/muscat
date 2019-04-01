@@ -758,6 +758,7 @@
         - "RISM"
         - "RDA"
         - "RAK"
+        - "ICCU"
         default: "RISM"
         editor_partial: subfield_select
     - - k
