@@ -55,7 +55,7 @@ display:
   
   composite_volumes:
     composite_volume:
-      record_type: collection
+      record_type: composite_volume
 
 default_mapping:
   collection: "000_collection"
@@ -68,3 +68,4 @@ default_mapping:
   edition: "011_edition"
   libretto_edition_content: "015_libretto_edition"
   theoretica_edition_content: "017_theoretica_edition"
+  composite_volume: "019_composite"

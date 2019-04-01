@@ -769,6 +769,7 @@ en:
     "6": "TSR"
     "7": "TEC"
     "8": "EDT"
+    "11": "CMP"
     
   status_codes:
     published: "PUB"
