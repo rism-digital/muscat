@@ -158,10 +158,10 @@ Example Apache configuration:
                  Order allow,deny
                  Allow from all
          </Directory>
-         RailsEnv development
+         RailsEnv production
  </VirtualHost>
 
-Double check permissions to make sure apache can at least write to log/.
+Double check permissions in the muscat installation. Also make sure DocumentRoot and Directory point to public/ in the muscat installation location.
 
 Start Apache, Solr and the related services in production mode (see below).
 
