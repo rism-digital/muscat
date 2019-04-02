@@ -103,12 +103,7 @@ Default (development) startup:
  
 Try to open http://$IP_ADDRESS:3000/
 
-For startup in production mode (with sudo or as root):
-
- bundle exec rake RAILS_ENV=production assets:precompile
- bundle exec rake RAILS_ENV=production sunspot:solr:start
- RAILS_ENV=production bundle exec crono start # Muscat periodic jobs
- RAILS_ENV=production bin/delayed_job -n 4 restart # Background jobs, tune the n to your system
+For startup in production mode see "Starting Daemons in Production Mode"
 
 For refreshing an installation in production mode (with sudo, as root or sudo -u www-data depending on the permissions on the installation dir):
 
@@ -183,7 +178,7 @@ If all this works, you can access the rism application:
 
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
  
- == Starting Daemons
+== Starting Daemons in Production Mode
  
  Muscat has three running daemons that should be started:
  
