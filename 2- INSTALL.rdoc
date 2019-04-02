@@ -57,7 +57,7 @@ Get the sources if necessary (https://github.com/rism-ch/muscat and https://gith
 
  git clone https://github.com/rism-ch/muscat.git --recursive
 
- gem install bundler
+ gem install bundler -v '< 2.0' ## force 1.7 until we get compatibile with 2.0
  bundle install #--deployment # deployment is only for the production system
 
 Install base configuration:
