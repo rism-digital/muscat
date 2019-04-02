@@ -48,7 +48,7 @@ Then install all the dependencies and setup passenger:
  
 Passenger also wants to compile a binary module, this is optional but will enable it
 
- mkdir /var/www/.passenger
+ sudo mkdir /var/www/.passenger
  sudo chown -R www-data:www-data /var/www/.passenger
 
 == Bootstrap the application
@@ -57,8 +57,8 @@ Get the sources if necessary (https://github.com/rism-ch/muscat and https://gith
 
  git clone https://github.com/rism-ch/muscat.git --recursive
 
- gem install bundler -v '< 2.0' ## force 1.7 until we get compatibile with 2.0
- bundle install #--deployment # deployment is only for the production system
+ sudo gem install bundler -v '< 2.0' ## force 1.7 until we get compatibile with 2.0
+ sudo bundle install #--deployment # deployment is only for the production system
 
 Install base configuration:
 
@@ -70,6 +70,10 @@ Install the base css:
 
  cd muscat/config
  cp muscat-custom-sample.scss ../vendor/assets/stylesheets/muscat-custom.scss
+
+Make sure the directory is owned by the right user (www-data on ubuntu)
+
+  sudo chown -R www-data:www-data muscat/
 
 Set up databases access:
 
@@ -185,7 +189,8 @@ If all this works, you can access the rism application:
  
   sudo RAILS_ENV=production bin/delayed_job start
   sudo RAILS_ENV=production bundle exec crono start
-  sudo bundle exec rake RAILS_ENV=production sunspot:solr:start
+  # Make sure solr is not running as root!
+  sudo -u www-data bundle exec rake RAILS_ENV=production sunspot:solr:start
   
 Depending on the env, remove sudo if necessary. RAILS_ENV is needed only on production, and has to come *after* sudo.
   
