@@ -161,23 +161,10 @@ Example Apache configuration:
          RailsEnv development
  </VirtualHost>
 
-Double check permissions:
+Double check permissions to make sure apache can at least write to log/.
 
- # Create /var/rails and populate with software
- mkdir /var/rails
- <command to checkout as needed TBD>
- chown -R www /var/rails
+Start Apache, Solr and the related services in production mode (see below).
 
-Start Apache and Solr.
-
-If all this works, you can access the rism application:
-
- http://$IP_ADDRESS
-
-== Add clean up in crontab for blacklight
-
- 0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
- 
 == Starting Daemons in Production Mode
  
  Muscat has three running daemons that should be started:
@@ -193,4 +180,9 @@ Also it is goot to block access to SOLR:
 
   sudo iptables -A INPUT -p tcp -s localhost --dport 8983 -j ACCEPT
   sudo iptables -A INPUT -p tcp --dport 8983 -j DROP
+
+== Add clean up in crontab for blacklight
+
+ 0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
+ 
   
