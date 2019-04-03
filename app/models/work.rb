@@ -52,7 +52,7 @@ class Work < ApplicationRecord
   after_save :update_links, :reindex
   after_initialize :after_initialize
 
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :basic, :minimal, :full ]
 
   alias_attribute :name, :title

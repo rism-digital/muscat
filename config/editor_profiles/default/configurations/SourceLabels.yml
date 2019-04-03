@@ -2580,6 +2580,12 @@ rus:
     fr: Russe
     de: Russisch
     en: Russian
+san:
+  label:
+    it: SANSKRIT
+    fr: SANSKRIT
+    de: Sanskrit
+    en: Sanskrit
 scn: 
   label: 
     IT: Siciliano

@@ -611,6 +611,7 @@ es:
     inprogress: "En progreso (UNP)"
     published: "Publicado (PUB)"
     deleted: "Borrado"
+    deprecated: "DEPRECATED"
 
   dashboard:
     selection: "Selección"

@@ -650,6 +650,7 @@ de:
     inprogress: "In Arbeit (UNP)"
     published: "Veröffentlicht (PUB)"
     deleted: "Gelöscht"
+    deprecated: "Überholt"
 
   
   dashboard:
