@@ -645,6 +645,7 @@ it:
     inprogress: "In Elaborazione (UNP)"
     published: "Pubblicato (PUB)"
     deleted: "Cancellato"
+    deprecated: "DEPRECATED"
 
   dashboard:
     selection: "Selezione attività recenti"

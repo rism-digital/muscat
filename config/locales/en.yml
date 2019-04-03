@@ -678,6 +678,7 @@ en:
     inprogress: "Unpublished (UNP)"
     published: "Published (PUB)"
     deleted: "Deleted"
+    deprecated: "Deprecated"
   
   dashboard:
     selection: "Select recent activity"
@@ -773,4 +774,5 @@ en:
   status_codes:
     published: "PUB"
     inprogress: "UNP"
+    deprecated: "DEP"
 
