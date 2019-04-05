@@ -16,13 +16,17 @@ module Template
     return marc_tags - excluded_tags
   end
 
+  # returns a list with differences between two templates
+  def difference(rt1, rt2)
+    return template_tags(rt1) - template_tags(rt2)
+  end
+
   # return difference between existing tags and tags of the new template
   def template_difference(rt)
     return marc.all_tags.map{|e| e.tag}.uniq - template_tags(rt).uniq
   end
 
   # creates a holding record if the new template has no 852
-  # TODO
   def create_holding
     marc.by_tags("852").each do |t|
       holding = Holding.new
@@ -66,12 +70,20 @@ module Template
   end
 
   # Restore a backup tag from 599; probably never used due to template incompatibility
-  # TODO
-  def restore_tag
+  def restore_tags
+    marc.by_tags("599").each do |t|
+      new_content = t.fetch_first_by_tag("a").content
+      if new_content =~ /=[0-9]{3}\s{2}/
+        tag, content = new_content.split("  ")
+        marc.parse_marc21(tag[1..4], content)
+        t.destroy_yourself
+      end
+    end
+    self.save
   end
 
   # Moving tags which are not part of the target template to a holding or to 599 as temp storage
-  def move_tags(rt)
+  def change_template_to(rt)
     template_difference(rt).each do |e|
       if e == '852'
         create_holding
