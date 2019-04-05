@@ -25,5 +25,9 @@ module Template
       create_holding
     end
   end
+
+  def tag_rate
+    ((marc.all_tags.map{|e| e.tag}.uniq.size.to_f / (template_tags(record_type).uniq.size.to_f * 100)) * 100).round(2)
+  end
   
 end
