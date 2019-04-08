@@ -75,6 +75,9 @@ module RISM
 	SEND_VALIDATION_NOTIFICATIONS = false
 	# Notification email, also used for Exception Notifications
 	NOTIFICATION_EMAIL = "sample@email.com"
+
+  # Google Analytics Tracking ID
+  GOOGLE_ANALYTICS_ID = "UA-7219229-28"
 end
 
 module Muscat
