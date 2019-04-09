@@ -85,7 +85,7 @@ class Person < ApplicationRecord
 
   alias_attribute :id_for_fulltext, :id
 
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
 
   def after_initialize

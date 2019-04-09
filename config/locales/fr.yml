@@ -678,6 +678,7 @@ fr:
     inprogress: "Non publié (UNP)"
     published: "Publié (PUB)"
     deleted: "Supprimé"
+    deprecated: "DEPRECATED"
 
   
   dashboard:
