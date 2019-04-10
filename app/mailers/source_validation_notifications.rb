@@ -19,7 +19,7 @@ class SourceValidationNotifications < ApplicationMailer
     return if @errors.count == 0 && !@failed
 
     mail(to: RISM::NOTIFICATION_EMAIL,
-        name: "Muscat Validation",
+        from: "#{RISM::DEFAULT_EMAIL_NAME} Validation Bot <#{RISM::DEFAULT_NOREPLY_EMAIL}>",
         subject: "Source Validation Failure #{@source_id}")
  
   end
