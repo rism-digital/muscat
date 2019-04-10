@@ -118,7 +118,7 @@ module ApplicationHelper
 	
   def get_allowed_record_type_holding(holding)
     return nil if !holding.is_a? Holding
-    MarcSource::RECORD_TYPES[:collection]
+    MarcSource::RECORD_TYPES[:composite_volume]
   end
 	
   def get_allowed_lib_siglum_holding(holding)

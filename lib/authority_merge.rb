@@ -52,6 +52,7 @@ module AuthorityMerge
       refs << self.send(s)
     end
     refs.flatten.each do |s|
+      record_type = s.has_attribute?(:record_type) ? s.record_type : nil
       klass = s.marc.class
       s.marc.change_authority_links(self, new_model)
 
@@ -61,7 +62,7 @@ module AuthorityMerge
 
       # set marc and save
       s.marc = new_marc
-      
+      s.record_type = record_type if record_type
       s.paper_trail_event = "#{self.class} change id from #{self.id} to #{new_id}"
       s.save
     end

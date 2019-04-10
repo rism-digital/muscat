@@ -100,7 +100,7 @@ class Source < ApplicationRecord
   attr_accessor :suppress_update_77x_trigger
   attr_accessor :suppress_update_count_trigger
   
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
   
   def after_initialize
@@ -450,8 +450,8 @@ class Source < ApplicationRecord
   
   def allow_holding?
     if  (self.record_type == MarcSource::RECORD_TYPES[:edition] ||
-         self.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
-         self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content])
+         self.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
+         self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition])
       return true
     end
     return false

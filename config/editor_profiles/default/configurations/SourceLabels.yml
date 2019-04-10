@@ -277,7 +277,16 @@ doc_references:
     de: "Literatur und Bemerkungen"
     en: "References"
     it: "Riferimenti"
-
+doc_record_actions:
+  label:
+    de: "Titel veröffentlichen"
+    en: "Record actions"
+    it: "RECORD ACTIONS"
+doc_record_status:
+  label:
+    de: "RECORD STATUS"
+    en: "Record status"
+    it: "RECORD STATUS"
 ################
 
 01_codes_artistic: 
@@ -2571,6 +2580,12 @@ rus:
     fr: Russe
     de: Russisch
     en: Russian
+san:
+  label:
+    it: SANSKRIT
+    fr: SANSKRIT
+    de: Sanskrit
+    en: Sanskrit
 scn: 
   label: 
     IT: Siciliano
@@ -3661,7 +3676,7 @@ li_700:
     en: "Additional personal name"
     it: "Persona"
     de: "Zusätzliche Personen"
-li_245:
+li_240:
   label:
     en: "Title of item"
     it: "Titolo"

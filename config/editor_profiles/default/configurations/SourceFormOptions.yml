@@ -252,6 +252,7 @@
       - "rom"
       - "rum"
       - "rus"
+      - "san"
       - "scn"
       - "sla"
       - "slo"
@@ -543,7 +544,6 @@
         - Libretto, printed
         - Treatise, handwritten
         - Treatise, printed
-        - Music periodical
         - Other 
         editor_partial: subfield_select
 "594":
@@ -758,6 +758,7 @@
         - "RISM"
         - "RDA"
         - "RAK"
+        - "ICCU"
         default: "RISM"
         editor_partial: subfield_select
     - - k

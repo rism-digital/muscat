@@ -205,10 +205,43 @@ de:
     source: "Musikhandschrift, Indvidual- oder Teileintrag"
     edition_content: "Musikdruck, Teileintrag"
     libretto_source: "Libretto, handschriftlich"
-    libretto_edition_content: "Libretto, gedruckt"
+    libretto_edition: "Libretto, gedruckt"
     theoretica_source: "Theoreticum, handschriftlich"
-    theoretica_edition_content: "Theoreticum, gedruckt"
+    theoretica_edition: "Theoreticum, gedruckt"
     edition: "Musikdruck, Haupteintrag Sammlung oder Individualeintrag"
+ 
+    composite_volumes: "Volumes composites"
+    composite_volume: "Contenu d'un volume composite"
+    
+    music_manuscripts: "Musique manuscrite"
+    collection_record: "Collection de manuscrit musicaux"
+    individual_entry: "Entrée dans une collection de manuscrits musicaux"
+    single_manuscript: "Manuscrit musical individuel"
+    
+    printed_music: "Musique imprimée"
+    collection_record_edition: "Collection d'éditions musicales imprimées"
+    individual_entry_edition: "Entrée dans une collection d'éditions musicales imprimées"
+    single_edition: "Edition musicale individuelle"
+
+    libretti_handwritten: "Libretti manuscrits"
+    collection_record_libretti: "Collection de libretti manuscrits"
+    individual_entry_libretti: "Entrée dans une collection de libretti manuscrits"
+    single_libretto: "Libretto manuscrit individuel"
+    
+    libretti_printed: "Libretti imprimés"
+    collection_record_libretti_printed: "Collection de traités imprimés"
+    individual_entry_libretti_printed: "Entrée dans une collection de traités imprimés"
+    single_libretto_printed: "Traité imprimé individuel"
+    
+    threatise_handwritten: "Traités manuscrits"
+    collection_record_threatise: "Collection de traités manuscrits"
+    individual_entry_threatise: "Entrée dans une collection traités manuscrits"
+    single_threatise: "Traité manuscrit individuel"
+    
+    threatise_printed: "Traités imprimés"
+    collection_record_threatise_printed: "Collection de traités imprimés"
+    individual_entry_threatise_printed: "Entrée dans une collection de traités imprimés"
+    single_threatise_printed: Traité imprimé individuel"
   
   #################### MENUS
   menu_home: "Home"
@@ -645,6 +678,7 @@ de:
     inprogress: "In Arbeit (UNP)"
     published: "Veröffentlicht (PUB)"
     deleted: "Gelöscht"
+    deprecated: "Überholt"
 
   
   dashboard:
@@ -663,7 +697,7 @@ de:
   validation:
     missing_message: "Dieses Feld muss zwingend ausgefüllt werden."
     warning_message: "Dieses Feld enthält üblicherweise einen Eintrag."
-    insufficient_rights: "Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen."
+    insufficient_rights: "Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen/zu ändern."
     name_uniqueness: "Das Kürzel des Eintrages ist bereits vergeben."
     correct: "Der Eintrag enthält keine Validierungsfehler. [200]"
 
