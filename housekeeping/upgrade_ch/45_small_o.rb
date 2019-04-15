@@ -1565,7 +1565,7 @@ origFile = File::open("orig_lines.txt",'w')
 newFile = File::open("new_lines.txt",'w')
 
 
-incorrect = YAML::load(File.read("subst_sanit.yml"))
+incorrect = YAML::load(File.read("housekeeping/upgrade_ch/subst_sanit.yml"))
 count = 0
 Source.all.each do |su|
 #items.each do |sid|
