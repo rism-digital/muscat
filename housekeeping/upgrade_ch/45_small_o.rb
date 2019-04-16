@@ -32,7 +32,7 @@ Parallel.each(Source.all, in_processes: 10, progress: "Fixing Ü") do |su|
             #tok = more[:correct]
             #tok.sub!(/\b(#{Regexp.quote(inc)})\b/, more[:correct])
             found = true
-            count += 1
+            count += 1 if !found
           end
           toks << tok
         end #split
