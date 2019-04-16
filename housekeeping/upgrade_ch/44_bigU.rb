@@ -1581,7 +1581,7 @@ items.each do |sid|
           subst[wrong][:tags] = {}
         end
     
-        subst[wrong][:corect] = m.to_s
+        subst[wrong][:correct] = m.to_s
         if !subst[wrong][:tags].keys.include?(tag.tag)
           subst[wrong][:tags][tag.tag] = []
         end

@@ -1586,11 +1586,11 @@ Source.all.each do |su|
           #puts tok.blue
           #if tok == inc
           #if tok.match(/\b(#{Regexp.quote(inc)})\b/)# == inc
-					if tok.sub!(/\b(#{Regexp.quote(inc)})\b/, more[:corect])
+					if tok.sub!(/\b(#{Regexp.quote(inc)})\b/, more[:correct])
 						origFile << subt.content.strip if !found #just print it once
 						origFile << "\n" if !found
-            #tok = more[:corect]
-            #tok.sub!(/\b(#{Regexp.quote(inc)})\b/, more[:corect])
+            #tok = more[:correct]
+            #tok.sub!(/\b(#{Regexp.quote(inc)})\b/, more[:correct])
             found = true
             count += 1
           end
