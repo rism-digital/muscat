@@ -51,7 +51,7 @@ Parallel.each(Source.all, in_processes: 10, progress: "Fixing encoding") do |su|
   end #all_tags
   
   #puts source.marc.to_s
-  s.paper_trail_event = "Fix encoding: #{found_words.sort.uniq.join(" ")}"
+  source.paper_trail_event = "Fix encoding: #{found_words.sort.uniq.join(" ")}"
   source.save if modified
   source = nil
 end
