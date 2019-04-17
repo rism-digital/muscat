@@ -65,7 +65,7 @@ class Catalogue < ApplicationRecord
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
   alias_attribute :id_for_fulltext, :id
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
   
   # @see #Source.after_initialize
@@ -157,7 +157,6 @@ class Catalogue < ApplicationRecord
     self.marc_source = new_marc.to_marc
     self.save!
   end
-
 
   # This is called always after we tried to add MARC.
   # if it was suppressed we do not update it as it will be nil.

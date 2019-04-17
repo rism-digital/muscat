@@ -12,7 +12,8 @@ client:
         m:
         - collection
         - theoretica_source
-        - libretto_edition_content 
+        - libretto_edition 
+        - composite_volume
     tags:
       "0": mandatory
       m: required, warning
@@ -30,6 +31,7 @@ client:
       exclude:
         "a":
         - collection
+        - composite_volume
     tags:
       "a": mandatory
   "594": 
@@ -40,6 +42,7 @@ client:
       exclude:
         "0":
         - collection
+        - composite_volume
     tags:
       "0": mandatory
   "852":
@@ -48,7 +51,7 @@ client:
         "x":
         - edition
         - edition_content
-        - libretto_edition_content 
+        - libretto_edition 
     tags:
       c: required, warning
       x: mandatory

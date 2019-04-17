@@ -296,7 +296,7 @@ doc_edit_workflow:
         it: Compositore
         fr: Compositeur
         de: Komponist
-        en: Heading - composer name
+        en: Composer
     d:
       label:
         it: Data di nascita e di morte
@@ -723,7 +723,7 @@ variants:
     it: Varianti
     fr: Variantes
     de: Namensvarianten
-    en: Name Variants
+    en: Title variants
 administration:
   label:
     it: Amministrazione

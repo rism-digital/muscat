@@ -24,7 +24,7 @@ class LiturgicalFeast < ApplicationRecord
   after_save :reindex
   attr_accessor :suppress_reindex_trigger
   alias_attribute :id_for_fulltext, :id 
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :basic, :minimal, :full ]
   
   # Suppresses the solr reindex
@@ -53,6 +53,7 @@ class LiturgicalFeast < ApplicationRecord
     string :alternate_terms_order do
       alternate_terms
     end
+    string :wf_stage
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     integer :src_count_order, :stored => true do 
@@ -67,5 +68,4 @@ class LiturgicalFeast < ApplicationRecord
       throw :abort
     end
   end
-  
 end

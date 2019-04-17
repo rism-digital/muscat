@@ -40,10 +40,10 @@ class CommentNotifications < ApplicationMailer
 
     return if addresses.empty?
 
-    mail(to: "noreply-muscat@rism.info",
-        name: "Muscat Comments",
+    mail(to: RISM::DEFAULT_NOREPLY_EMAIL,
+        name: "Muscat",
         bcc: addresses,
-        subject: "New Comment on Muscat [#{comment.resource_type} #{comment.resource_id}]")
+        subject: "[Muscat] Comment on #{comment.resource_type} #{comment.resource_id}")
  
   end
 
