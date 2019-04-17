@@ -4,14 +4,15 @@ origFile = File::open("orig_lines.txt",'w')
 newFile = File::open("new_lines.txt",'w')
 
 
-incorrect = YAML::load(File.read("housekeeping/upgrade_ch/subst_sanit.yml"))
+incorrect = YAML::load(File.read("housekeeping/upgrade_ch/all_words.yml"))
 count = 0
 #Source.all.each do |su|
-Parallel.each(Source.all, in_processes: 10, progress: "Fixing Ü") do |su|
+Parallel.each(Source.all, in_processes: 10, progress: "Fixing encoding") do |su|
 #items.each do |sid|
   source = su #Source.find(su.id)
 
   modified = false
+  found_words = []
   source.marc.load_source true
   source.marc.all_tags.each do |tag|
 
@@ -33,6 +34,7 @@ Parallel.each(Source.all, in_processes: 10, progress: "Fixing Ü") do |su|
             #tok.sub!(/\b(#{Regexp.quote(inc)})\b/, more[:correct])
             found = true
             count += 1 if !found
+            found_words << tok #sve all the changed words
           end
           toks << tok
         end #split
@@ -49,7 +51,8 @@ Parallel.each(Source.all, in_processes: 10, progress: "Fixing Ü") do |su|
   end #all_tags
   
   #puts source.marc.to_s
-  #source.save if modified
+  s.paper_trail_event = "Fix encoding: #{found_words.sort.uniq.join(" ")}"
+  source.save if modified
   source = nil
 end
 
