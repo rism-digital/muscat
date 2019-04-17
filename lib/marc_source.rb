@@ -169,20 +169,17 @@ class MarcSource < Marc
     if node = first_occurance(ms_title_field, "a")
       ms_title = node.content
     end
-
     ms_title_d = DictionaryOrder::normalize(ms_title)
-   
     return [ms_title.truncate(255), ms_title_d.truncate(255)]
   end
   
   # Gets miscallaneous values
-  # @return [Array<Date>]
+  # @return [Array<String, Date, Date>]
   def get_miscellaneous_values
-
     language = "Unknown"
     date_from = nil
     date_to = nil
-    ## Language is not used anumore
+    ## Language is not used anymore
     #if node = first_occurance("008")
     #  unless node.content.empty?
     #    language = LANGUAGES[marc_helper_get_008_language(node.content)] || "Unknown"
