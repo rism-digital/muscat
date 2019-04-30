@@ -47,6 +47,7 @@ class Source < ApplicationRecord
 #  include MarcIndex
   include ForeignLinks
   include MarcIndex
+  include Template
   resourcify
   
   belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
