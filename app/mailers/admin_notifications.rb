@@ -6,7 +6,7 @@ class AdminNotifications < ApplicationMailer
     @data = data
     
     mail(to: RISM::NOTIFICATION_EMAIL,
-        name: "Muscat Admin Notificator",
+        from: "#{RISM::DEFAULT_EMAIL_NAME} Admin Notificator Bot <#{RISM::DEFAULT_NOREPLY_EMAIL}>",
         subject: "A problem occurred")
   end
 
