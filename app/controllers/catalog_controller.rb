@@ -321,7 +321,7 @@ class CatalogController < ApplicationController
     #end
     
     config.add_search_field('any_field') do |field|
-      field.label = :filter_any_field
+      field.label = I18n.t :filter_any_field
       # Dumb was here
       field.solr_local_parameters = { 
         # THIS IS THE HACK OF THE DAY
@@ -331,7 +331,7 @@ class CatalogController < ApplicationController
     end
     
     config.add_search_field('composer') do |field|
-      field.label = :filter_composer
+      field.label = I18n.t :filter_composer
       field.solr_local_parameters = { 
         :qf => 'composer_texts',
       }
@@ -342,7 +342,7 @@ class CatalogController < ApplicationController
     # of Solr search fields. 
     
     config.add_search_field('title_all') do |field|
-      field.label = :filter_title
+      field.label = I18n.t :filter_title
       field.include_in_advanced_search = false # This is only for the topbar
       # solr_parameters hash are sent to Solr as ordinary url query params. 
       #field.solr_parameters = { :'spellcheck.dictionary' => 'title_d_text' }
@@ -358,87 +358,87 @@ class CatalogController < ApplicationController
 
     # Add some filters for the adv search
     config.add_search_field("title") do |field|
-      field.label = :filter_title_on_ms
+      field.label = I18n.t :filter_title_on_ms
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "title_texts" }
     end
 
     # Add some filters for the adv search
     config.add_search_field("genre") do |field|
-      field.label = :filter_std_title
+      field.label = I18n.t :filter_std_title
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "std_title_texts" }
     end
     
     config.add_search_field("provenance") do |field|
-      field.label = :filter_provenance
+      field.label = I18n.t :filter_provenance
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "561a_text" }
     end
     
     config.add_search_field("source_type") do |field|
-      field.label = :filter_source_type
+      field.label = I18n.t :filter_source_type
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "593a_texts" }
     end
     
     config.add_search_field("liturgical_feast") do |field|
-      field.label = :filter_liturgical_feast
+      field.label = I18n.t :filter_liturgical_feast
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "657a_text" }
     end
     
     config.add_search_field("institution") do |field|
-      field.label = :filter_institution
+      field.label = I18n.t :filter_institution
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "110a_test" }
     end
     
     config.add_search_field("catalogue") do |field|
-      field.label = :filter_catalog
+      field.label = I18n.t :filter_catalog
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "690a_text" }
     end
     
     config.add_search_field("scoring") do |field|
-      field.label = :filter_scoring
+      field.label = I18n.t :filter_scoring
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "240m_texts" }
     end
     
     # This is shown in the topbar
     config.add_search_field("library_siglum") do |field|
-      field.label = :filter_lib_siglum
+      field.label = I18n.t :filter_lib_siglum
       field.solr_parameters = { :qf => "852a_text" }
     end
     
     config.add_search_field("rism_id_no") do |field|
-      field.label = :filter_id
+      field.label = I18n.t :filter_id
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "id_i" }
     end
     
     config.add_search_field("year") do |field|
-      field.label = :filter_date
+      field.label = I18n.t :filter_date
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "date_from_i" }
     end
     
     config.add_search_field("shelfmark") do |field|
-      field.label = :filter_shelf_mark
+      field.label = I18n.t :filter_shelf_mark
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "852c_texts" }
     end
     
     config.add_search_field("language") do |field|
-      field.label = :filter_language
+      field.label = I18n.t :filter_language
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "041a_text" }
     end
 
     # Show in topbar too
     config.add_search_field("subject") do |field|
-      field.label = :filter_subject
+      field.label = I18n.t :filter_subject
       field.solr_parameters = { :qf => "650a_text" }
     end
     
