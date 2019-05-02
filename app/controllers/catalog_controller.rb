@@ -192,6 +192,10 @@ class CatalogController < ApplicationController
       :defType => 'edismax',
     }
 
+    config.index.document_actions.delete(:bookmark)
+    config.show.document_actions.delete(:bookmark)
+    config.navbar.partials.delete(:bookmark)
+
     # solr field configuration for search results/index views
     #config.index.title_field = 'std_title_texts'
     # Set it as in RISM A/2 OPAC
