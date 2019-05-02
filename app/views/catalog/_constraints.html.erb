@@ -3,7 +3,6 @@
     <div class="float-right"> 
       <%=link_to t('blacklight.search.start_over'), start_over_path, class: "catalog_startOverLink btn btn-sm btn-text" %>
     </div>
-    <h6 class=""><%= t('blacklight.search.search_constraints_header') %></h6>
 
     <span class="constraints-label"><%= t('blacklight.search.filters.title') %></span>
     <%= render_constraints(params) %>
