@@ -10,6 +10,7 @@ svg:not(:root){
   background: image-url("paper-96-R.png");
   height: 120px;
   border-bottom: solid 2px $gray30;
+  margin-bottom: 20px;
 }
 #search-navbar.advanced {
   height: 30px;
@@ -336,6 +337,8 @@ h5.index_title {
 .blacklight-catalog-show {
   #content {
     width: 100%;
+    max-width: 100%;
+    flex-basis: 100%;
   }
   // We want to hide the sidebar
   #sidebar {
@@ -396,6 +399,7 @@ footer {
   background-color: $gray20;
   border-top: 1px solid $gray30;
   .rism-footer-text {
+    line-height: 1.5;
     min-height: $footer-height;
     padding: 5px 0px;
   }
