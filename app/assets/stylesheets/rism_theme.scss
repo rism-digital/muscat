@@ -128,7 +128,7 @@ body {
   line-height: 1.0;
 }
 
-a {
+a, .page-link {
   color: $link-color;
   &:active, &:hover {
     color: $link-color;
@@ -163,9 +163,13 @@ h2 {
   padding-bottom: 5px;
 }
 
-.pagination > .active > a, .pagination > .active > a:hover {
-  background-color: #5f574f;
-  border-color: $gray100;
+.pagination {
+  margin-top: 20px;
+}
+
+.page-item.active > .page-link {
+  background-color: $link-color;;
+  border-color: $link-color;;
 }
 
 h3 {
@@ -288,6 +292,10 @@ h5.card-title > a {
   font-size: 14px;
   padding-top: 3px;
   padding-bottom: 4px;
+}
+
+.btn-text {
+  color: $link-color;
 }
 
 .range_limit > input {
