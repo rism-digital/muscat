@@ -1378,7 +1378,7 @@ filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 	background-image: url("../images/ascDeactive.png");
 }
 
-.sort {
+#geo-browser > .sort {
 	height: 11px;
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -1397,7 +1397,7 @@ filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 	cursor: pointer;
 }
 
-.filter {
+#geo-modal > .filter {
 	background-image: url("../images/filter.png");
 }
 

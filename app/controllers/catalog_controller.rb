@@ -5,7 +5,6 @@ class CatalogController < ApplicationController
   include BlacklightRangeLimit::ControllerOverride
   include BlacklightAdvancedSearch::Controller
   include Blacklight::Catalog
-  include Blacklight::DefaultComponentConfiguration
   
   DEFAULT_FACET_LIMIT = 20
   
@@ -82,9 +81,13 @@ class CatalogController < ApplicationController
     #facet
     
     @facet = blacklight_config.facet_fields[params[:id]]
-    @response = get_facet_field_response(@facet.key, params)
-    @display_facet = @response.aggregations[@facet.key]
+    #@response = get_facet_field_response(@facet.key, params)
+    #@display_facet = @response.aggregations[@facet.key]
 
+    #@pagination = facet_paginator(@facet, @display_facet)
+
+    @response = search_service.facet_field_response(@facet.key)
+    @display_facet = @response.aggregations[@facet.field]
     @pagination = facet_paginator(@facet, @display_facet)
 
     respond_to do |format|
@@ -195,6 +198,12 @@ class CatalogController < ApplicationController
     config.index.document_actions.delete(:bookmark)
     config.show.document_actions.delete(:bookmark)
     config.navbar.partials.delete(:bookmark)
+
+    # Default actions are deprecated in 6.0
+    # Put them here explicitally as per docs
+    config.add_results_collection_tool(:sort_widget)
+    config.add_results_collection_tool(:per_page_widget)
+    config.add_results_collection_tool(:view_type_group)
 
     # solr field configuration for search results/index views
     #config.index.title_field = 'std_title_texts'
