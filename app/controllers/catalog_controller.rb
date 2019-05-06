@@ -5,9 +5,7 @@ class CatalogController < ApplicationController
   include BlacklightRangeLimit::ControllerOverride
   include BlacklightAdvancedSearch::Controller
   include Blacklight::Catalog
-  
-  DEFAULT_FACET_LIMIT = 20
-  
+
   before_action :save_controller
   before_action :redirect_legacy_values, :only => :show
   
@@ -17,14 +15,6 @@ class CatalogController < ApplicationController
     #save the actual controller name
     suffix = params[:controller].split("_")
     @catalog_controller = suffix.count > 1 ? suffix.last : nil
-  end
-  
-  def facet_list_limit
-  	if defined? @default_limit
-      @default_limit
-    else
-      DEFAULT_FACET_LIMIT + 1
-    end
   end
 
   def make_geoterm
@@ -73,28 +63,27 @@ class CatalogController < ApplicationController
   end
 
   def geosearch
-    #if params.include? :map
-      @default_limit = 100000
-      #else
-    #  @default_limit = DEFAULT_FACET_LIMIT
-    #end
-    #facet
+    limit_name = "f.#{params[:id]}.facet.limit"
     
     @facet = blacklight_config.facet_fields[params[:id]]
-    #@response = get_facet_field_response(@facet.key, params)
-    #@display_facet = @response.aggregations[@facet.key]
-
-    #@pagination = facet_paginator(@facet, @display_facet)
-
-    @response = search_service.facet_field_response(@facet.key)
+    # Set the limit for the facet to none
+    @response = search_service.facet_field_response(@facet.key, "#{limit_name}": -1)
     @display_facet = @response.aggregations[@facet.field]
-    @pagination = facet_paginator(@facet, @display_facet)
+
+    # To override the facet count we need to create the
+    # paginator by hand
+    @pagination = blacklight_config.facet_paginator_class.new(
+      @display_facet.items,
+      sort: @display_facet.sort,
+      offset: @display_facet.offset,
+      prefix: @display_facet.prefix,
+      limit: 1000000 # Blacklight does not accept -1 as "all results". Rejoyce!
+    )
 
     respond_to do |format|
       format.json { render json: make_geoterm }
     end
     
-    @default_limit = DEFAULT_FACET_LIMIT
   end
 
   
