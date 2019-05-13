@@ -1,8 +1,8 @@
 @urlregex = '(.*?((?:http|https)(?::\\/{2}[\\w]+)(?:[\\/|\\.]?)(?:[^\\s"]*)))'
 @matcher = Regexp.new(@urlregex, Regexp::IGNORECASE)
 
-Source.paper_trail.disable
-Holding.paper_trail.disable
+PaperTrail.request.disable_model(Holding)
+PaperTrail.request.disable_model(Source)
 
 def create_holdings(source, marc)
   count = 0
