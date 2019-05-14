@@ -169,9 +169,6 @@ es:
       institution:
         one: "Institución"
         other: "Instituciones"
-      event:
-        one: "EVENT"
-        other: "EVENTS"
       liturgical_feast:
         one: "Fiesta litúrgica"
         other: "Fiestas litúrgicas"
@@ -222,7 +219,6 @@ es:
   menu_subjects: "Temas"
   menu_library_sigla: "Siglas de bibliotecas"
   menu_catalogues: "Catálogos"
-  menu_events: "EVENTS"
   menu_liturgical_feasts: "Fiestas litúrgicas"
   menu_places: "Sitios"
   menu_help: "Ayuda"
@@ -456,7 +452,6 @@ es:
   filter_source_name: "Nombre de la fuente"
   filter_source_composer: "Compositor de la fuente"
   filter_printed_exemplars: "Número de ejemplares impresos"
-  filter_task: "FUNCTION"
  
   rism_any_key: "Cualquier tonalidad"
   rism_a_flat: "La bemol mayor/menor"

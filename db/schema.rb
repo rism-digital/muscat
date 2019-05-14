@@ -312,7 +312,6 @@ ActiveRecord::Schema.define(version: 20190325082715) do
     t.text "sub_topic"
     t.string "viaf"
     t.string "gnd"
-    t.string "task"
     t.index ["name"], name: "index_liturgical_feasts_on_name"
     t.index ["wf_stage"], name: "index_liturgical_feasts_on_wf_stage"
   end

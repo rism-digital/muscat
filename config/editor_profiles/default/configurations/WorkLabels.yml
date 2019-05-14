@@ -650,17 +650,17 @@ doc_edit_workflow:
 
 "747": 
   label: 
-    it: EVENT
-    fr: EVENT
-    de: Gelegenheit
-    en: Event
+    it: Feste liturgiche
+    fr: "Fête liturgique"
+    de: Liturgische Feste
+    en: Liturgical festival
   fields: 
     a: 
       label: 
-        it: EVENT
-        fr: EVENT
-        de: Gelegenheit
-        en: Event
+        it: Feste liturgiche
+        fr: "Fête liturgique"
+        de: Liturgische Feste
+        en: Liturgical feasts
       edit_label: 
         en: ""
 "856":

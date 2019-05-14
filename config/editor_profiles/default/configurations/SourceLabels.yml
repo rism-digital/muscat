@@ -68,9 +68,9 @@ doc_aid:
     it: Aiuti alla catalogazione
 doc_aid_liturgical_feasts: 
   label: 
-    de: "Gelegenheiten"
-    en: "Events"
-    it: "EVENTS"
+    de: "Liturgische Feste"
+    en: "Liturgical festivals"
+    it: "Feste liturgiche"
 doc_aid_locations: 
   label: 
     de: "Fundorte auf Quellen"
@@ -1437,17 +1437,17 @@ doc_record_status:
         en: ""
 "657": 
   label: 
-    it: EVENT
-    fr: EVENT
-    de: Gelegenheit
-    en: Event
+    it: Feste liturgiche
+    fr: "Fête liturgique"
+    de: Liturgische Feste
+    en: Liturgical festival
   fields: 
     a: 
       label: 
-        it: EVENT
-        fr: EVENT
-        de: Gelegenheit
-        en: Event
+        it: Feste liturgiche
+        fr: "Fête liturgique"
+        de: Liturgische Feste
+        en: Liturgical feasts
       edit_label: 
         en: ""
 "690": 
