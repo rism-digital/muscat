@@ -20,6 +20,9 @@ group_exclude:
   - edit_incipits
   theoretica_edition:
   - edit_incipits
+  composite_volume:
+  - edit_incipits
+  - edit_works
 
 tag_exclude:
   collection:
@@ -113,7 +116,33 @@ tag_exclude:
   - '772'
   - '787'
   - '852'
-  
+  composite_volume:
+  - '026'
+  - '028'
+  - '033'
+  - '041'
+  - '100'
+  - '383'
+  - '510'
+  - '518'
+  - '546'
+  - '588'
+  - '590'
+  - '592'
+  - '594'
+  - '595'
+  - '596'
+  - '597'
+  - '598'
+  - '650'
+  - '651'
+  - '657'
+  - '690'
+  - '740'
+  - '773'
+  - '775'
+  - '787'
+
 tag_exclude_with_holdings:
   collection:
   - '506'

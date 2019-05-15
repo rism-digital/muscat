@@ -255,6 +255,12 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_shelf_mark), :shelf_mark_shelforder, sortable: :shelf_mark_shelforder do |element|
       element.shelf_mark
     end
+    if current_user.has_any_role?(:admin)
+      column "Quality" do |element|
+        element.tag_rate
+      end
+    end
+
     
     active_admin_muscat_actions( self )
   end

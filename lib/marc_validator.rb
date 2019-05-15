@@ -199,14 +199,13 @@ include ApplicationHelper
   end
 
   def validate_unknown_tags
+    # Skipping this until template change is ready
+=begin
     @unknown_tags = []
-    #begin
       @editor_profile.each_tag_not_in_layout(@object) do |t|
         add_error(t, "unknown-tag", "Unknown tag in layout")
       end
-      #rescue
-    #  add_error("load", "unknown-tag", "Could not read tag layout")
-    #end
+=end
   end
   
   def has_errors

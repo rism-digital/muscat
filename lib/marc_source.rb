@@ -12,7 +12,8 @@ class MarcSource < Marc
     theoretica_edition: 7,
     edition: 8,
     libretto_edition_content: 9,
-    theoretica_edition_content: 10
+    theoretica_edition_content: 10,
+    composite_volume: 11,
   }
   
   RECORD_TYPE_ORDER = [
@@ -26,6 +27,7 @@ class MarcSource < Marc
     :theoretica_edition,
     :libretto_edition_content,
     :theoretica_edition_content,
+    :composite_volume,
     :unspecified
   ]
 
