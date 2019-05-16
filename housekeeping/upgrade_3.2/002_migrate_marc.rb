@@ -6,7 +6,7 @@ require 'progress_bar'
 fields3 = ["260", "300", "340", "351", "590", "592", "593"]
 
 # Do not save old versions
-Source.paper_trail_off!
+PaperTrail.request.disable_model(Source)
 
 check_by_hand = []
 unloadable_marc = []
