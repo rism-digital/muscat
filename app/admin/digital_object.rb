@@ -183,6 +183,7 @@ ActiveAdmin.register DigitalObject do
     f.inputs do
       f.input :description,:label => I18n.t(:filter_description)
       f.input :attachment, as: :file, :label => I18n.t(:filter_image)
+      f.input :wf_owner, label: I18n.t(:record_owner), as: :select, multiple: false, include_blank: false, collection: User.sort_all_by_last_name if current_user.has_role?(:admin) || current_user.has_role?(:editor)
       f.input :lock_version, :as => :hidden
       # passing additional parameters for adding the object link directly after the creation
       #if (params[:new_object_link_type] &&  params[:new_object_link_id])
