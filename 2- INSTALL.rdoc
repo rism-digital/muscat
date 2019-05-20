@@ -146,18 +146,16 @@ With MySQL 64 bit binaries, add:
 
 == Basic Apache configuration
 
-Example Apache configuration:
+Example Apache 2.4 configuration:
 
- # create /usr/local/etc/apache22/Includes/default.conf
+ # create /usr/local/etc/apache/Includes/default.conf
  # and add default site:
  <VirtualHost *:80>
          # ServerName www..org
          DocumentRoot /var/rails/rism-ch/public
          <Directory "/var/rails/rism-ch/public">
                  Options All -Indexes +ExecCGI -Includes +MultiViews
-                 AllowOverride All
-                 Order allow,deny
-                 Allow from all
+                 Require all granted
          </Directory>
          RailsEnv development
  </VirtualHost>
