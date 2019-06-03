@@ -2,10 +2,10 @@
 
 Marc records can be imported into muscat. They can be fed and imported using the command line script:
 
- ./script/runner housekeeping/import/import_from_marc.rb $FILE $MODEL
+ rails runner housekeeping/import/import_from_marc.rb $FILE $MODEL
 
 Records for thesaurus models like Places, StandardTerms etc., which are not related to marc, should be imported first with:
- ./script/runner housekeeping/import/import_thesaurus_from_marc.rb $File
+ rails runner housekeeping/import/import_thesaurus_from_marc.rb $File
 	
 <tt>$FILE</tt> contains all the Marc records in MarcXML format.
 <tt>$MODEL</tt> refers to the model of the records (e.g. Source, Person etc.)
@@ -26,14 +26,6 @@ During the import, all fields with a $0 (100, 240, 852), this value will be used
 For imported fields without $0, a match will be search on the other fields (name, dates, etc.).
 
 For the StandardTitle authority, fields without a $0 (e.g., 740) can create problems during the import if a StandardTitle without $0 (740) is imported before a value with a $0 (e.g., 240). The first one will cause a new ext_id to be generated which will then cause a duplicates validation error with the one with the ext_id. The fix is either to temporarily allow duplicates in the StandardTitle class, or to add a $0 value to the 740 field to the data to be imported.
-
-== Source count
-Many object, like Person, Library, StandardTitle, ... cointain a field <tt>src_count</tt> which caches the total Sources
-related to any of them. This field is not updated during import, and a separate script needs to be run afterwards:
-
- rails r housekeeping/correct/01_update_src_count.rb
-	
-It will update all the ms_counts for each class. 
 
 == Importing from XML data
 
