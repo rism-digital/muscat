@@ -18,6 +18,7 @@ FactoryBot.define do
     date_to           { nil }
     lib_siglum       { "D-B" }
     wf_owner          { 2 }
+    wf_stage          { "published" }
     wf_audit         { "full" }
     people { [association(:person)]  }
     institutions { [association(:institution)]  }
