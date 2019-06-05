@@ -302,6 +302,33 @@
     - lbt
     - lyr
     - oth
+"710":
+  new_window: institutions
+  new_window_field: name_equals
+  layout: 
+    fields: 
+    - - a
+      - type: institution
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - b
+    - - g
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Doubtful"
+      - "Misattributed"
+    relator_codes: 
+      - dte
+      - oth
 "747": 
   allow_new: true
   new_window: liturgical_feast
@@ -324,6 +351,8 @@
     - - i
       - values:
         - "Adaption of"  
+        - "Inspired by"
+        - "Other"
         - "Pharaphrase of"  
         - "Variation of"  
         editor_partial: subfield_select

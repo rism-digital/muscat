@@ -17,18 +17,18 @@
 								<% if @item.id == nil %>
 									<% if current_user.preference_wf_stage == "published" %>
 										<option value="published" selected="true">Published</option>
-										<option value="inprogress">In Progress</option>
+										<option value="inprogress">Unpublished</option>
 									<%else%>
 										<option value="published">Published</option>
-										<option value="inprogress" selected="true">In Progress</option>
+										<option value="inprogress" selected="true">Unpublished</option>
 									<%end%>
 								<%else%>
 									<% if @item.wf_stage == "published" %>
 										<option value="published" selected="true">Published</option>
-										<option value="inprogress">In Progress</option>
+										<option value="inprogress">Unpublished</option>
 									<%else%>
 										<option value="published">Published</option>
-										<option value="inprogress" selected="true">In Progress</option>
+										<option value="inprogress" selected="true">Unpublished</option>
 									<%end%>
 								<%end%>
 							</select>

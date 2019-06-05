@@ -1,6 +1,74 @@
 Muscat Changelog
 ================
 
+v 5.2
+
+* Fix #707 improved link to library siglum
+* Fix #735 Added 593 for holdings
+* Add triggers for Holdings
+* Fix #739, reindex the parent source when saving a Holding record
+* Fix #739 run reindex also when the holding is deleted
+* Fix #743 and #491 remove wf_audit from the interface
+* Fix #716, add possibility for help (and help text) to comments
+* Fix #715, add note
+* Change lit label
+* Make 593 mandatory except for collections
+* Fix #706. Override the default :page parameter for kaminari in comments
+* Merge pull request #748 from rism-ch/5.1-opac
+* Fix #752, make the new groups properly identified
+* Group cleanup
+* #733 Remove music periodical
+* Fix #709
+* Fix #708
+* Rename libretto_edition_content to libretto_edition
+* Rename theoretica_edition_content to theoretica_edition
+* Rename the default files
+* Fix #733, Removed musical periodical from 593
+* Fix #566 new structure for templates
+* Fix #566 Add configuration file and english text
+* Fix #566 add css for <ul>
+* Fix #566 fix typo
+* Make edition checks more sane
+* Remove redundant :update_editions and :create_editions abilities
+* Move composite volume at the end
+* Labels for guidlines related to #465
+* Update French translations
+* Fix #566 add help sidebar
+* Fix #755 in progress -> unpublished
+* Fix #754, Fix user can save foreign sources
+* Adding work to institution migration
+* Added institution relation to work
+* Adding some new relation types to work
+* Fix #753, Added sanskrit closes
+* Added ICCU to 730 rules
+* Updated configuration for composite_volume
+* Remove the unniverse, add libapache2-mod-passenger
+* Update Installation docs 
+* Initial template module
+* Fix #760, Added 'deprecated' as wf_stage
+* Check tag_rate and display on index with sources
+* Added a create holding method for move_tags
+* Making 599 tags restoreable
+* Merge pull request #762 from rism-ch/5.2-devel-composite
+* Make to-from in the emails better
+* Set meaningful names to all the emailers
+* Fix #536, Skipping unknown tags from validation
+* Added 510 in sources view
+* Change ability for editors to read all folders
+* Merge pull request #769 from rism-ch/5.2-devel-templatechange
+* Fix SRU publish statement with solr
+* Merge pull request #780 from fjorba/5.1-doc-fixes
+* Fix #781 update deprecated paper trail disables
+* Fix #776, Added japanese closing
+* Fix #782, Allow editors to change wf_owner with DO closing
+* Update Apache configuration to 2.4
+* Merge pull request #758 from rism-ch/5.2-devel-works
+* Merge pull request #786 from fjorba/update-apache-docs
+* Update Verovio to latest release
+* DE translations templates
+* Changed translation and template help
+* Updated rspec factory for published status
+
 v 5.1
 * Avoid mixed content in platin css
 * Moving note field with work

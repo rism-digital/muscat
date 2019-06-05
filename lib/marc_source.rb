@@ -2,15 +2,18 @@ class MarcSource < Marc
   
   # record_type mapping
   RECORD_TYPES = {
-    :unspecified => 0,
-    :collection => 1,
-    :source => 2,
-    :edition_content => 3,
-    :libretto_source => 4,
-    :libretto_edition_content => 5,
-    :theoretica_source => 6,
-    :theoretica_edition_content => 7,
-    :edition => 8
+    unspecified: 0,
+    collection: 1,
+    source: 2,
+    edition_content: 3,
+    libretto_source: 4,
+    libretto_edition: 5,
+    theoretica_source: 6,
+    theoretica_edition: 7,
+    edition: 8,
+    libretto_edition_content: 9,
+    theoretica_edition_content: 10,
+    composite_volume: 11,
   }
   
   RECORD_TYPE_ORDER = [
@@ -20,10 +23,29 @@ class MarcSource < Marc
     :theoretica_source,
     :edition,
     :edition_content,
+    :libretto_edition,
+    :theoretica_edition,
     :libretto_edition_content,
     :theoretica_edition_content,
+    :composite_volume,
     :unspecified
   ]
+
+  def self.is_edition?(record_type)
+    
+    if record_type.is_a? String
+      record_type = RECORD_TYPES[record_type.to_sym]
+    elsif record_type.is_a? Symbol
+      record_type = RECORD_TYPES[record_type]
+    end
+    
+    [MarcSource::RECORD_TYPES[:edition],
+    MarcSource::RECORD_TYPES[:edition_content],
+    MarcSource::RECORD_TYPES[:libretto_edition],
+    MarcSource::RECORD_TYPES[:theoretica_edition],
+    MarcSource::RECORD_TYPES[:libretto_edition_content],
+    MarcSource::RECORD_TYPES[:theoretica_edition_content]].include? record_type
+  end
 
   def initialize(source = nil, rt = 0)
     super("source", source)
@@ -227,7 +249,7 @@ class MarcSource < Marc
     elsif leader.match(/......tm.............../)
       rt = RECORD_TYPES[:libretto_source]
     elsif leader.match(/......am.............../)
-      rt = RECORD_TYPES[:libretto_edition_content]
+      rt = RECORD_TYPES[:libretto_edition]
     elsif leader.match(/......pm.............../) # Mixed material, item
       rt = RECORD_TYPES[:source]
     else
@@ -373,7 +395,7 @@ class MarcSource < Marc
       leader = base_leader.gsub("XX", type)
     elsif @record_type == RECORD_TYPES[:libretto_source]
       leader = base_leader.gsub("XX", "tm")
-    elsif @record_type == RECORD_TYPES[:libretto_edition_content]
+    elsif @record_type == RECORD_TYPES[:libretto_edition]
       leader = base_leader.gsub("XX", "am")
     elsif @record_type == RECORD_TYPES[:theoretica_source] # we cannot make the distinction between ms and print
       leader = base_leader.gsub("XX", "pm")
@@ -520,5 +542,5 @@ class MarcSource < Marc
   def set_record_type(rt)
     @record_type = rt
   end
-  
+
 end
