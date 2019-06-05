@@ -188,6 +188,13 @@ p.search-tip {
     background: image-url("/images/list.png") no-repeat;
 }
 
+p.demo-tip {
+    border-radius: 5px;
+    background: $gray30;
+    padding: 10px;
+	margin-bottom: 10px;
+}
+
 // Facets //
 .facets > div > h4 {
    @media (max-width: $screen-sm-min) {
