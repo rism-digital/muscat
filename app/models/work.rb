@@ -21,6 +21,7 @@ class Work < ApplicationRecord
   has_and_belongs_to_many :standard_terms, join_table: "works_to_standard_terms"
   has_and_belongs_to_many :standard_titles, join_table: "works_to_standard_titles"
   has_and_belongs_to_many :liturgical_feasts, join_table: "works_to_liturgical_feasts"
+  has_and_belongs_to_many :institutions, join_table: "works_to_institutions"
   has_and_belongs_to_many :people, join_table: "works_to_people"
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
@@ -105,7 +106,7 @@ class Work < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["person", "catalogues", "standard_terms", "standard_titles", "liturgical_feasts", "people", "works"]
+    allowed_relations = ["person", "catalogues", "standard_terms", "standard_titles", "liturgical_feasts", "institutions", "people", "works"]
     recreate_links(marc, allowed_relations)
   end
 

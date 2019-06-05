@@ -604,6 +604,50 @@ doc_edit_workflow:
         fr: Function
         de: Funktionsbezeichnung
         en: Function
+"710": 
+  label: 
+    it: Nome di ente
+    fr: "Nom de la collectivité"
+    de: Nebeneintragung Körperschaften
+    en: Additional institution
+  fields: 
+    a: 
+      label: 
+        it: Nome di ente
+        fr: "Nom de la collectivité"
+        de: Körperschaftsname
+        en: Institution
+    b: 
+      label: 
+        it: Ente subordinato
+        fr: "Collectivité subordonnée"
+        de: Untergeordnete Körperschaft
+        en: Department
+    g: 
+      label: 
+        it: Qualificazione d'attribuzione
+        fr: Qualificatif d'attribution
+        de: Zuschreibungsvermerk
+        en: Attribution qualifier
+      edit_label: 
+        it: Attribuzione
+        fr: Attribution
+        de: Zuschreibung
+        en: Attribution
+
+    "4": 
+      label: 
+        it: Funzione
+        fr: Fonction
+        de: Funktionsbezeichnung
+        en: Function
+    "8": 
+      label: 
+        it: Gruppo di materiale
+        fr: Documents
+        de: Set
+        en: Set
+
 "747": 
   label: 
     it: Feste liturgiche
@@ -1962,3 +2006,41 @@ G+5:
     fr: "G+5"
     de: "G+5"
     en: "G+5"
+#Attribution qualifier for 710$j
+"Verified":
+  label:
+    it: Verificato
+    fr: "Vérifié"
+    de: Gesichert
+    en: Verified
+"Ascertained":
+  label:
+    it: Accertato
+    fr: "Authentifié"
+    de: Ermittelt
+    en: Ascertained
+"Alleged":
+  label:
+    it: Presunto
+    fr: "Présumé"
+    de: Angeblich
+    en: Alleged
+"Doubtful":   
+  label:
+    it: Dubbio
+    fr: "Douteux"
+    de: Zweifelhaft
+    en: Doubtful
+"Misattributed":   
+  label:
+    it: Attribuito erroneamente
+    fr: "Erroné"
+    de: Fälschlich
+    en: Misattributed
+"Conjectural":   
+  label:
+    it: Congetturale
+    fr: Conjectural
+    de: Mutmaßlich
+    en: Conjectural
+

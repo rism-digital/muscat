@@ -295,6 +295,31 @@
     - - "5"
       - :occurrences: "?"
         :no_browse: true
+  "710":
+    :master: "0"
+    :indicator: "2#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - b
+      - :occurrences: "*"
+    - - c
+      - :occurrences: "*"
+    - - g
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "*"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
   "747":
     :master: "0"
     :indicator: "#7"

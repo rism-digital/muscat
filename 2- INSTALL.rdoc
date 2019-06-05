@@ -147,16 +147,14 @@ With MySQL 64 bit binaries, add:
 
 Example Apache configuration:
 
- # create /usr/local/etc/apache22/Includes/default.conf
+ # create /usr/local/etc/apache/Includes/default.conf
  # and add default site:
  <VirtualHost *:80>
          # ServerName www..org
          DocumentRoot /var/rails/rism-ch/public
          <Directory "/var/rails/rism-ch/public">
-                 Options All -Indexes +ExecCGI -Includes +MultiViews
-                 AllowOverride All
-                 Order allow,deny
-                 Allow from all
+                 Options All -Indexes +ExecCGI -Includes +MultiViewsny
+                 Require all granted
          </Directory>
          RailsEnv production
  </VirtualHost>
@@ -184,5 +182,3 @@ Also it is goot to block access to SOLR:
 == Add clean up in crontab for blacklight
 
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
- 
-  

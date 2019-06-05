@@ -218,7 +218,7 @@ en:
     individual_entry: "Individual entry in a music manuscript collection"
     single_manuscript: "Single music manuscript"
     
-    printed_music: "Printed music"
+    printed_music: "Printed music editions"
     collection_record_edition: "Collection record for a printed music edition"
     individual_entry_edition: "Individual entry in a printed edition collection"
     single_edition: "Single printed music edition"
@@ -233,12 +233,12 @@ en:
     individual_entry_libretti_printed: "Individual entry in a printed libretto collection"
     single_libretto_printed: "Single printed libretto"
     
-    threatise_handwritten: "Treatise, handwritten"
+    threatise_handwritten: "Treatises, handwritten"
     collection_record_threatise: "Collection record for handwritten treatises"
     individual_entry_threatise: "Individual entry in a handwritten treatise collection"
     single_threatise: "Single handwritten treatise"
     
-    threatise_printed: "Treatise, printed"
+    threatise_printed: "Treatises, printed"
     collection_record_threatise_printed: "Collection record for printed treatises"
     individual_entry_threatise_printed: "Individual entry in a printed treatise collection"
     single_threatise_printed: "Single printed treatise"
