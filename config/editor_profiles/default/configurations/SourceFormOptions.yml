@@ -208,6 +208,7 @@
       - "afr"
       - "ara"
       - "arg"
+      - "baq"
       - "cat"
       - "chi"
       - "chu"
@@ -251,6 +252,7 @@
       - "rom"
       - "rum"
       - "rus"
+      - "san"
       - "scn"
       - "sla"
       - "slo"
@@ -262,6 +264,7 @@
       - "spa"
       - "srp"
       - "swe"
+      - "tib"
       - "tur"
       - "ukr"
       - "vie"
@@ -541,7 +544,6 @@
         - Libretto, printed
         - Treatise, handwritten
         - Treatise, printed
-        - Music periodical
         - Other 
         editor_partial: subfield_select
 "594":
@@ -756,6 +758,7 @@
         - "RISM"
         - "RDA"
         - "RAK"
+        - "ICCU"
         default: "RISM"
         editor_partial: subfield_select
     - - k

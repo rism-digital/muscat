@@ -79,6 +79,7 @@ es:
       labels:
         destroy: "Borrar"
         folder: "Crear directorio con" # dudoso
+        merge: "MERGE AUTHORITY RECORDS"
 
     comments:
       resource_type: "Tipo de recurso"
@@ -89,6 +90,7 @@ es:
       add: "Añadir comentario"
       resource: "Recurso"
       no_comments_yet: "Todavía no hay comentarios."
+      comments_help: "Escriba @ para mencionar a un usuario específico, que recibirá una notificación por correo electrónico."
       author_missing: "Anónimo"
       title_content: "Comentarios (%{count})"
       errors:
@@ -284,6 +286,7 @@ es:
   edit: "Editar"
   new: "Crear"
   duplicate: "Duplicar"
+  merge: "MERGE"
   no_action: "Ninguna acción disponible"
   reindex: "Reindizar"
   resave: "RESAVE"
@@ -414,6 +417,7 @@ es:
   filter_subject: "Tema"
   filter_subsequent_entries: "LATER ENTRIES"
   filter_term: "Término"
+  filter_textinipit: "TEXTINCIPIT"
   filter_thematic_opus: "Catálogo temático / Opus no."
   filter_title: "Título"
   filter_titles: "Títulos"
@@ -602,6 +606,7 @@ es:
     inprogress: "En progreso (UNP)"
     published: "Publicado (PUB)"
     deleted: "Borrado"
+    deprecated: "DEPRECATED"
 
   dashboard:
     selection: "Selección"

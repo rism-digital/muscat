@@ -12,9 +12,7 @@ class Ability
       can :manage, :all
       can :reindex, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Folder]
       can :publish, [Folder]
-      can :upublish, [Folder]
-      can :create_editions, Source
-      can :update_editions, Source      
+      can :unpublish, [Folder]
       can :resave, :all
 
     ##########
@@ -29,10 +27,9 @@ class Ability
         can [:read, :create], Person
         can :update, Person, :wf_owner => user.id
       end
-      can :create_editions, Source
-      can :update_editions, Source
+      can [:read], Folder
       can :manage, Folder, :wf_owner => user.id
-      can :upublish, [Folder]
+      can :unpublish, [Folder]
       can [:read, :create, :destroy], ActiveAdmin::Comment
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
@@ -68,24 +65,24 @@ class Ability
         # so only the first condition will happen. We could change this eventually
         (link.object_link.wf_owner == user.id) or (link.wf_owner == user.id)
       end
+      can [:read], Folder
       can [:manage], Folder, :wf_owner => user.id
-      cannot [:publish, :unpublish, :reindex], Folder
-      can [:read, :create], ActiveAdmin::Comment
-      can [:destroy, :update], ActiveAdmin::Comment, :author_id => user.id
+      can [:publish], Folder do |folder|
+        user.can_publish?(folder)
+      end
+      cannot [:unpublish, :reindex], Folder
+      can [:read, :create, :destroy], ActiveAdmin::Comment
+      can [:update], ActiveAdmin::Comment, :author_id => user.id
       can [:read, :create], Source
       can :update, Source, :wf_owner => user.id
       can :update, Source do |source|
         user.can_edit? source
       end
       
-      if user.has_role?(:cataloger)
-        can :create_editions, Source
-        can :update_editions, Source
-        can :update, Source do |s|
-          user.can_edit_edition?(s)
-        end
+      can :update, Source do |s|
+        user.can_edit_edition?(s)
       end
-      
+
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"

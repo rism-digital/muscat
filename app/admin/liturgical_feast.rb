@@ -4,7 +4,8 @@ ActiveAdmin.register LiturgicalFeast do
 
   # Remove mass-delete action
   batch_action :destroy, false
-  
+  include MergeControllerActions
+
   # Remove all action items
   config.clear_action_items!
   config.per_page = [10, 30, 50, 100]
@@ -99,8 +100,13 @@ ActiveAdmin.register LiturgicalFeast do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "LiturgicalFeast").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
+  filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
+  collection: proc{[:inprogress, :published, :deleted, :deprecated].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
+ 
   index :download_links => false do
     selectable_column if !is_selection_mode?
+    column (I18n.t :filter_wf_stage) {|feast| status_tag(feast.wf_stage,
+      label: I18n.t('status_codes.' + (feast.wf_stage != nil ? feast.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_alternate_terms), :alternate_terms
@@ -154,6 +160,7 @@ ActiveAdmin.register LiturgicalFeast do
       f.input :name, :label => (I18n.t :filter_name)
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
       f.input :notes, :label => (I18n.t :filter_notes)
+      f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
       f.input :lock_version, :as => :hidden
     end
   end

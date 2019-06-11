@@ -1,6 +1,6 @@
 require 'progress_bar'
 
-Source.paper_trail.disable
+PaperTrail.request.disable_model(Source)
 
 pb = ProgressBar.new(Source.all.count)
 

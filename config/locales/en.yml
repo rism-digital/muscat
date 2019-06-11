@@ -58,6 +58,7 @@ en:
       one_page: "Displaying <b>all %{n}</b> %{model}"
       multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
       multiple_without_total: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Elements per page:"
       entry:
         one: "entry"
         other: "entries"
@@ -81,6 +82,7 @@ en:
         destroy: "Delete"
         folder: "Create folder with items"
         add_to_folder: "Add items to existing folder"
+        merge: "Merge authority records"
 
     comments:
       resource_type: "Resource Type"
@@ -91,6 +93,7 @@ en:
       add: "Add Comment"
       resource: "Resource"
       no_comments_yet: "No comments yet."
+      comments_help: "Type @ to mention a specific user, who will then receive a notification by email."
       author_missing: "Anonymous"
       title_content: "Comments (%{count})"
       errors:
@@ -202,10 +205,43 @@ en:
     source: "Music manuscript"
     edition_content: "Printed music edition, item in collection"
     libretto_source: "Libretto, handwritten"
-    libretto_edition_content: "Libretto, printed"
+    libretto_edition: "Libretto, printed"
     theoretica_source: "Treatise, handwritten"
-    theoretica_edition_content: "Treatise, printed"
+    theoretica_edition: "Treatise, printed"
     edition: "Printed music edition, collection parent record or individual item"
+
+    composite_volumes: "Composite volumes"
+    composite_volume: "Record for a composite volume"
+    
+    music_manuscripts: "Music manuscripts"
+    collection_record: "Collection record for a music manuscript"
+    individual_entry: "Individual entry in a music manuscript collection"
+    single_manuscript: "Single music manuscript"
+    
+    printed_music: "Printed music editions"
+    collection_record_edition: "Collection record for a printed music edition"
+    individual_entry_edition: "Individual entry in a printed edition collection"
+    single_edition: "Single printed music edition"
+
+    libretti_handwritten: "Libretti, handwritten"
+    collection_record_libretti: "Collection record for handwritten libretti"
+    individual_entry_libretti: "Individual entry in a handwritten libretto collection"
+    single_libretto: "Single handwritten libretto"
+    
+    libretti_printed: "Libretti, printed"
+    collection_record_libretti_printed: "Collection record for printed libretti"
+    individual_entry_libretti_printed: "Individual entry in a printed libretto collection"
+    single_libretto_printed: "Single printed libretto"
+    
+    threatise_handwritten: "Treatises, handwritten"
+    collection_record_threatise: "Collection record for handwritten treatises"
+    individual_entry_threatise: "Individual entry in a handwritten treatise collection"
+    single_threatise: "Single handwritten treatise"
+    
+    threatise_printed: "Treatises, printed"
+    collection_record_threatise_printed: "Collection record for printed treatises"
+    individual_entry_threatise_printed: "Individual entry in a printed treatise collection"
+    single_threatise_printed: "Single printed treatise"
         
   #################### MENUS
   menu_home: "Home"
@@ -307,6 +343,7 @@ en:
   edit: "Edit"
   new: "Create"
   duplicate: "Duplicate"
+  merge: "Merge"
   no_action: "No action available"
   reindex: "Reindex sources"
   resave: "Resave sources"
@@ -446,6 +483,7 @@ en:
   filter_subject: "Subject"
   filter_subsequent_entries: "Subsequent Entries"
   filter_term: "Term"
+  filter_textincipit: "Textincipit"
   filter_thematic_opus: "Thematic cat. / Opus no."
   filter_title: "Title"
   filter_titles: "Titles"
@@ -640,6 +678,7 @@ en:
     inprogress: "Unpublished (UNP)"
     published: "Published (PUB)"
     deleted: "Deleted"
+    deprecated: "Deprecated"
   
   dashboard:
     selection: "Select recent activity"
@@ -657,7 +696,7 @@ en:
   validation:
     missing_message: "A value in this field is mandatory"
     warning_message: "A value for this field should be provided"
-    insufficient_rights: "User has insufficient rights to create a record of this library"
+    insufficient_rights: "User has insufficient rights to create/update a record of this library"
     name_uniqueness: "Short name of entry is already taken"
     correct: "The record has no validation errors [200]"
     
@@ -731,8 +770,10 @@ en:
     "6": "TSR"
     "7": "TEC"
     "8": "EDT"
+    "11": "CMP"
     
   status_codes:
     published: "PUB"
     inprogress: "UNP"
+    deprecated: "DEP"
 

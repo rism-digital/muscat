@@ -53,8 +53,8 @@ class User < ApplicationRecord
   def can_create_edition?(source)
     if (source.record_type == MarcSource::RECORD_TYPES[:edition] ||
       source.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
-      source.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
-      source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content])
+      source.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
+      source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition])
      if can? :create_edition?, source
        true
      else
@@ -81,6 +81,15 @@ class User < ApplicationRecord
       end
     end
     return false
+  end
+
+  # check if a folder content all items are the user domain
+  def can_publish?(folder)
+    return false unless folder.folder_type == 'Source'
+    folder_sigla = folder.content.pluck(:lib_siglum).uniq
+    own_sigla = self.workgroups.map{|w| w.institutions.pluck(:siglum)}.flatten
+    return false unless (folder_sigla - own_sigla).empty?
+    return true
   end
 
   def get_workgroups

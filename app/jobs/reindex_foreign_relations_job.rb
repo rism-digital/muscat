@@ -24,7 +24,7 @@ class ReindexForeignRelationsJob < ProgressJob::Base
       # Just skip it if it does not exists, this way the
       # job itelf does not crash
       next if !element[:class].exists?(element[:id])
-      
+
       link = element[:class].find(element[:id])
       begin
         link.reindex

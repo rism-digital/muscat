@@ -96,6 +96,7 @@
 #= require jsdiff.js
 #= require job_progress_bar
 #= require filter_workaround
+#= require merge_authority
 
 #= require viaf_interface.js
 #= require modification_trigger_ujs.js

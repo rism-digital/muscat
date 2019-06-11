@@ -82,6 +82,7 @@ it:
         destroy: "Elimina"
         folder: "Crea una nuova cartella con gli elementi selezionati"
         add_to_folder: "Aggiungi gli elementi selezionati ad una cartella esistente"
+        merge: "MERGE AUTHORITY RECORDS"
 
     comments:
       resource_type: "Tipo di risorsa"
@@ -92,6 +93,7 @@ it:
       add: "Aggiungi commento"
       resource: "Risorsa"
       no_comments_yet: "Nessun commento."
+      comments_help: "Digitare @ per menzionare un utente specifico, che riceverà una notifica per email."
       author_missing: "Anonimo"
       title_content: "Commenti (%{count})"
       errors:
@@ -203,9 +205,9 @@ it:
     source: "Manoscritto musicale"
     edition_content: "Edizione a stampa, in una collezione"
     libretto_source: "Libretto manoscritto"
-    libretto_edition_content: "Elemento di un libretto edito"
+    libretto_edition: "Elemento di un libretto edito"
     theoretica_source: "Manoscritto di teoria musicale"
-    theoretica_edition_content: "Elemento di un edizione di teoria musicale"
+    theoretica_edition: "Elemento di un edizione di teoria musicale"
     edition: "Edizione musicale, scheda madre della collezione o scheda individuale"
 
   #################### MENUS
@@ -308,6 +310,7 @@ it:
   edit: "Modifica"
   new: "Crea"
   duplicate: "Duplica"
+  merge: "MERGE"
   no_action: "Nessuna azione"
   reindex: "Indicizza le fonti"
   resave: "Salva le fonti"
@@ -447,6 +450,7 @@ it:
   filter_subject: "Soggetto"
   filter_subsequent_entries: "Notizie Successive"
   filter_term: "Termine"
+  filter_textinipit: "TEXTINCIPIT"
   filter_thematic_opus: "Catalogo / Num. d'opera"
   filter_title: "Titolo"
   filter_titles: "Titoli"
@@ -641,6 +645,7 @@ it:
     inprogress: "In Elaborazione (UNP)"
     published: "Pubblicato (PUB)"
     deleted: "Cancellato"
+    deprecated: "DEPRECATED"
 
   dashboard:
     selection: "Selezione attività recenti"
