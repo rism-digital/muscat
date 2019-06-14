@@ -250,20 +250,6 @@ class Person < ApplicationRecord
     
   end
     
-  # before_destroy, will delete Person only if it has no links referring to
-  def check_dependencies
-    if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
-      errors.add :base, %{The person could not be deleted because it is used by
-        #{self.referring_sources.count} sources,
-        #{self.referring_institutions.count} institutions, 
-        #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people
-        #{self.referring_holdings.count} holdings}
-      throw :abort
-    end
-  end
-  
   def set_object_fields
     # This is called always after we tried to add MARC
     # if it was suppressed we do not update it as it

@@ -175,10 +175,6 @@ class Work < ApplicationRecord
     self.title = marc.get_title
     self.person = marc.get_composer
   end
-
-  def check_dependencies
-    throw :abort if self.referring_sources.count > 0
-  end
  
   def self.get_viaf(str)
     str.gsub!("\"", "")

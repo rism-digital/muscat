@@ -77,18 +77,5 @@ class Place < ApplicationRecord
     end
   end
 
-  def check_dependencies
-    if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
-      errors.add :base, %{The place could not be deleted because it is used by
-        #{self.referring_sources.count} sources,
-        #{self.referring_institutions.count} institutions, 
-        #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people
-        #{self.referring_holdings.count} holdings}
-      throw :abort
-    end
-  end
-
 end
 

@@ -119,6 +119,8 @@ module ForeignLinks
 
   def check_dependencies
     msg = {}
+    #TODO this will select ANY relation except versions and workgroups
+    #whitelist should be in the calling class as enum :whitelist
     self.class.reflect_on_all_associations.map{|e| e.name}.each do |assoc|
       next if assoc==:versions || assoc==:workgroups
       dependency_size = self.send(assoc).size rescue next

@@ -70,11 +70,4 @@ class LiturgicalFeast < ApplicationRecord
     end
   end
 
-  def check_dependencies
-    if (self.referring_sources.count > 0)
-      errors.add :base, "The liturgical fease could not be deleted because it is used"
-      throw :abort
-    end
-  end
-  
 end
