@@ -128,7 +128,7 @@ module ForeignLinks
       linked_objects = "#{msg.map{|k,v| "#{v} #{k.to_s.sub("_", " ")}"}.to_sentence}"
       errors.add :base, %{The #{self.class} could not be deleted because it is used by 
         #{linked_objects}  }
-      throw :abort
+      raise ActiveRecord::RecordNotDestroyed, "Record #{self.class} #{self.id} has active dependencies"
     end
   end
 end
