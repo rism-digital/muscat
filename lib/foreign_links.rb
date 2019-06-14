@@ -119,18 +119,21 @@ module ForeignLinks
 
   def check_dependencies
     msg = {}
-    #TODO this will select ANY relation except versions and workgroups
-    #whitelist should be in the calling class as enum :whitelist
-    self.class.reflect_on_all_associations.map{|e| e.name}.each do |assoc|
-      next if assoc==:versions || assoc==:workgroups
-      dependency_size = self.send(assoc).size rescue next
-      msg[assoc] = dependency_size if dependency_size > 0
+    #TODO this will select ANY relation except 
+    # - versions and workgroups
+    # - AR relations with the :skip_check_dependencies flag
+    #FIXME probably the :skip_check_dependencies are the same as allowed_relation in foreign_links?
+    #
+    self.class.reflect_on_all_associations.each do |assoc|
+      next if assoc.name == :versions || assoc.name == :workgroups || assoc.options[:skip_check_dependencies]
+      dependency_size = self.send(assoc.name).size rescue next
+      msg[assoc.name] = dependency_size if dependency_size > 0
     end
     unless msg.empty?
       linked_objects = "#{msg.map{|k,v| "#{v} #{k.to_s.sub("_", " ")}"}.to_sentence}"
       errors.add :base, %{The #{self.class} could not be deleted because it is used by 
         #{linked_objects}  }
-      raise ActiveRecord::RecordNotDestroyed, "Record #{self.class} #{self.id} has active dependencies"
+      raise ActiveRecord::RecordNotDestroyed, "Record #{self.class} #{self.id} has active dependencies #{msg.keys}"
     end
   end
 end
