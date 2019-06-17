@@ -119,21 +119,31 @@ module ForeignLinks
 
   def check_dependencies
     msg = {}
-    #TODO this will select ANY relation except 
-    # - versions and workgroups
-    # - AR relations with the :skip_check_dependencies flag
-    #FIXME probably the :skip_check_dependencies are the same as allowed_relation in foreign_links?
-    #
+    # all other classes with relation to this class from the MarcConfig
+    linked_classes = MarcConfigCache.get_foreign_associations self.class
+
     self.class.reflect_on_all_associations.each do |assoc|
-      next if assoc.name == :versions || assoc.name == :workgroups || assoc.options[:skip_check_dependencies]
-      dependency_size = self.send(assoc.name).size rescue next
-      msg[assoc.name] = dependency_size if dependency_size > 0
+      # do not check versions or workgroups
+      next if assoc.name == :versions || assoc.name == :workgroups
+      check = false
+      check = true if assoc.plural_name == "digital_objects"
+      linked_classes.each do |e|
+        # set the check flag if the assiociation matches the marc relation class
+        if assoc.plural_name =~ Regexp.new(e)
+          check = true
+          break
+        end
+      end
+      if check
+        dependency_size = self.send(assoc.plural_name).size rescue next
+        msg[assoc.plural_name] = dependency_size if dependency_size > 0
+      end
     end
     unless msg.empty?
       linked_objects = "#{msg.map{|k,v| "#{v} #{k.to_s.sub("_", " ")}"}.to_sentence}"
       errors.add :base, %{The #{self.class} could not be deleted because it is used by 
         #{linked_objects}  }
-      raise ActiveRecord::RecordNotDestroyed, "Record #{self.class} #{self.id} has active dependencies #{msg.keys}"
+      raise ActiveRecord::RecordNotDestroyed, "Record #{self.class} #{self.id} has active dependencies [#{msg.keys.join}]"
     end
   end
 end

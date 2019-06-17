@@ -35,5 +35,21 @@ class MarcConfigCache
     @configurations[model].add_overlay(filename, overlay_path)
   
   end
+
+  def self.get_foreign_associations(model)
+    configurations = Hash.new
+    res = []
+		Dir.glob("#{Rails.root}/config/marc/tag_config*.yml").sort.each do |file|
+      config = MarcConfig.new(file)
+      configurations[config.get_model] = config.get_all_foreign_classes
+    end
+    configurations.each do |k,v|
+      if v.include?(model.to_s.pluralize.underscore)
+        res << k.pluralize.underscore
+      end
+    end
+    return res
+  end
+
   
 end

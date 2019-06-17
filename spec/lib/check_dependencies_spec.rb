@@ -7,7 +7,7 @@ RSpec.describe "Dependency_checks" do
     let!(:feast) { create :liturgical_feast }
     it "institution could not be destroyed due to dependencies" do
       i = Institution.find(30000655)
-      expect { i.check_dependencies  }.to raise_error(ActiveRecord::RecordNotDestroyed, "Record #{i.class} #{i.id} has active dependencies")
+      expect { i.check_dependencies  }.to raise_error(ActiveRecord::RecordNotDestroyed, "Record #{i.class} #{i.id} has active dependencies [referring_sources]")
     end
     
     it "feast without any dependencies can be destroyed" do

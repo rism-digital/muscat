@@ -54,13 +54,13 @@ class Source < ApplicationRecord
   has_many :child_sources, {class_name: "Source"}
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
-  has_and_belongs_to_many :institutions, join_table: "sources_to_institutions", skip_check_dependencies: true
-  has_and_belongs_to_many :people, join_table: "sources_to_people", skip_check_dependencies: true
-  has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles", skip_check_dependencies: true
-  has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms", skip_check_dependencies: true
-  has_and_belongs_to_many :catalogues, join_table: "sources_to_catalogues", skip_check_dependencies: true
-  has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts", skip_check_dependencies: true
-  has_and_belongs_to_many :places, join_table: "sources_to_places", skip_check_dependencies: true
+  has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
+  has_and_belongs_to_many :people, join_table: "sources_to_people"
+  has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
+  has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
+  has_and_belongs_to_many :catalogues, join_table: "sources_to_catalogues"
+  has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
+  has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
 	has_many :collection_holdings, {class_name: "Holding", foreign_key: "collection_id"}
   has_and_belongs_to_many :works, join_table: "sources_to_works"
@@ -140,7 +140,6 @@ class Source < ApplicationRecord
   # It will also update the 77x relations in MARC data
   # unless suppress_update_77x is set
   def update_links
-    binding.pry
     return if self.suppress_recreate_trigger == true
     
     allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings", "sources", "works"]

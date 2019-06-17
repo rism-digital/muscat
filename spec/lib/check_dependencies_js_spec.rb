@@ -17,7 +17,7 @@ RSpec.describe "JS check dependencies", :type => :feature, :js => true do
       find(:css, ".muscat_icon_link.muscat_icon_link_delete").click
       page.driver.browser.switch_to.alert.accept
       alert = page.find(:css, ".flash.flash_error")
-      expect(alert.text).to eq("The Institution could not be deleted because it is used by 1 referring sources and 1 places")
+      expect(alert.text).to eq("The Institution could not be deleted because it is used by 1 referring sources")
     end
     
     context "Destroying unlinked feast should not raise error notice" do

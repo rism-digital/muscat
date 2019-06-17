@@ -9,6 +9,7 @@
 # The class provides the same functionality as similar models, see Catalogue
 
 class LiturgicalFeast < ApplicationRecord
+  include ForeignLinks
   include AuthorityMerge
   
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")
