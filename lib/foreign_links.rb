@@ -121,6 +121,7 @@ module ForeignLinks
     msg = {}
     # all other classes with relation to this class from the MarcConfig
     linked_classes = MarcConfigCache.get_foreign_associations self.class
+    print linked_classes
 
     self.class.reflect_on_all_associations.each do |assoc|
       # do not check versions or workgroups
@@ -135,6 +136,7 @@ module ForeignLinks
         end
       end
       if check
+        puts assoc.plural_name
         dependency_size = self.send(assoc.plural_name).size rescue next
         msg[assoc.plural_name] = dependency_size if dependency_size > 0
       end
