@@ -499,10 +499,10 @@ doc_record_status:
         de: Tonart, Modus
         en: Key or mode
       edit_label: 
-        it: "Tonalità"
-        fr: "Tonalité"
-        de: Tonart
-        en: Key
+        it: "Tonalità, modo"
+        fr: "Tonalité, mode"
+        de: Tonart, Modus
+        en: Key or mode
     s: 
       label: 
         it: "Validità"
