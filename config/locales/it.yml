@@ -206,9 +206,44 @@ it:
     edition_content: "Edizione a stampa, in una collezione"
     libretto_source: "Libretto manoscritto"
     libretto_edition: "Elemento di un libretto edito"
+    libretto_edition_content: "Libretto a stampa, in una collezione"
     theoretica_source: "Manoscritto di teoria musicale"
     theoretica_edition: "Elemento di un edizione di teoria musicale"
+    theoretica_edition_content: "Edizione di teoria musicale, in una collezione"
     edition: "Edizione musicale, scheda madre della collezione o scheda individuale"
+    
+    composite_volumes: "Volumi compositi"
+    composite_volume: "Volume composito"
+    
+    music_manuscripts: "Manoscritti musicali"
+    collection_record: "Collezione di manoscritti musicali"
+    individual_entry: "Singolo elemento in una collezione di manoscritti musicali"
+    single_manuscript: "Manoscritto musicale singolo"
+    
+    printed_music: "Edizioni a stampa"
+    collection_record_edition: "Collezione di edizioni a stampa"
+    individual_entry_edition: "Singolo elemento di una collezione di edizioni a stampa"
+    single_edition: "Edizione a stampa singola"
+
+    libretti_handwritten: "Libretti, manoscritti"
+    collection_record_libretti: "Collezione di libretti manoscritti"
+    individual_entry_libretti: "Singolo elemento in una collezione di libretti manoscritti"
+    single_libretto: "Libretto manoscritto singolo"
+    
+    libretti_printed: "Libretti, a stampa"
+    collection_record_libretti_printed: "Collezione di libretti a stampa"
+    individual_entry_libretti_printed: "Singolo elemento in una collezione di libretti a stampa"
+    single_libretto_printed: "Libretto a stampa singolo"
+    
+    threatise_handwritten: "Trattati, manoscritti"
+    collection_record_threatise: "Collezione di trattati manoscritti"
+    individual_entry_threatise: "Singolo elemento in una collezione di trattati manoscritti"
+    single_threatise: "Trattato manoscritto singolo"
+    
+    threatise_printed: "Trattati, a stampa"
+    collection_record_threatise_printed: "Collezione di trattati a stampa"
+    individual_entry_threatise_printed: "Singolo elemento in una collezione di trattati a stampa"
+    single_threatise_printed: "Trattato a stampa singolo"
 
   #################### MENUS
   menu_home: "Home"
