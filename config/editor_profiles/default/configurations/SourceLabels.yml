@@ -499,10 +499,10 @@ doc_record_status:
         de: Tonart, Modus
         en: Key or mode
       edit_label: 
-        it: "Tonalità"
-        fr: "Tonalité"
-        de: Tonart
-        en: Key
+        it: "Tonalità, modo"
+        fr: "Tonalité, mode"
+        de: Tonart, Modus
+        en: Key or mode
     s: 
       label: 
         it: "Validità"
@@ -1618,10 +1618,10 @@ doc_record_status:
         en: Arrangement statement
     r: 
       label: 
-        it: "Tonalità"
-        fr: "Tonalité"
-        de: Tonart
-        en: Key
+        it: "Tonalità, modo"
+        fr: "Tonalité, mode"
+        de: Tonart, Modus
+        en: Key or mode
 "740": 
   label: 
     it: Testo
@@ -3022,6 +3022,78 @@ g|b:
     fr: "Mode: 12t – Hypoionian"
     de: "Mode: 12t – Hypoionian"
     en: "Mode: 12t – Hypoionian"
+1tt:
+  label:
+    it: "Mode:  1tt – Dorian, transposed"
+    fr: "Mode:  1tt – Dorian, transposed"
+    de: "Mode:  1tt – Dorian, transposed"
+    en: "Mode:  1tt – Dorian, transposed"
+2tt:
+  label:
+    it: "Mode:  2tt – Hypodorian, transposed"
+    fr: "Mode:  2tt – Hypodorian, transposed"
+    de: "Mode:  2tt – Hypodorian, transposed"
+    en: "Mode:  2tt – Hypodorian, transposed"
+3tt:
+  label:
+    it: "Mode:  3tt – Phrygian, transposed"
+    fr: "Mode:  3tt – Phrygian, transposed"
+    de: "Mode:  3tt – Phrygian, transposed"
+    en: "Mode:  3tt – Phrygian, transposed"
+4tt:
+  label:
+    it: "Mode:  4tt – Hypophrygian, transposed"
+    fr: "Mode:  4tt – Hypophrygian, transposed"
+    de: "Mode:  4tt – Hypophrygian, transposed"
+    en: "Mode:  4tt – Hypophrygian, transposed"
+5tt:
+  label:
+    it: "Mode:  5tt – Lydian, transposed"
+    fr: "Mode:  5tt – Lydian, transposed"
+    de: "Mode:  5tt – Lydian, transposed"
+    en: "Mode:  5tt – Lydian, transposed"
+6tt:
+  label:
+    it: "Mode:  6tt – Hypolydian, transposed"
+    fr: "Mode:  6tt – Hypolydian, transposed"
+    de: "Mode:  6tt – Hypolydian, transposed"
+    en: "Mode:  6tt – Hypolydian, transposed"
+7tt:
+  label:
+    it: "Mode:  7tt – Mixolydian, transposed"
+    fr: "Mode:  7tt – Mixolydian, transposed"
+    de: "Mode:  7tt – Mixolydian, transposed"
+    en: "Mode:  7tt – Mixolydian, transposed"
+8tt:
+  label:
+    it: "Mode:  8tt – Hypomixolydian, transposed"
+    fr: "Mode:  8tt – Hypomixolydian, transposed"
+    de: "Mode:  8tt – Hypomixolydian, transposed"
+    en: "Mode:  8tt – Hypomixolydian, transposed"
+9tt:
+  label:
+    it: "Mode:  9tt – Aeolian, transposed"
+    fr: "Mode:  9tt – Aeolian, transposed"
+    de: "Mode:  9tt – Aeolian, transposed"
+    en: "Mode:  9tt – Aeolian, transposed"
+10tt:
+  label:
+    it: "Mode: 10tt – Hypoaeolian, transposed"
+    fr: "Mode: 10tt – Hypoaeolian, transposed"
+    de: "Mode: 10tt – Hypoaeolian, transposed"
+    en: "Mode: 10tt – Hypoaeolian, transposed"
+11tt:
+  label:
+    it: "Mode: 11tt – Ionian, transposed"
+    fr: "Mode: 11tt – Ionian, transposed"
+    de: "Mode: 11tt – Ionian, transposed"
+    en: "Mode: 11tt – Ionian, transposed"
+12tt:
+  label:
+    it: "Mode: 12tt – Hypoionian, transposed"
+    fr: "Mode: 12tt – Hypoionian, transposed"
+    de: "Mode: 12tt – Hypoionian, transposed"
+    en: "Mode: 12tt – Hypoionian, transposed"
 1byz:
   label:
     it: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
