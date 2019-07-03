@@ -17,7 +17,6 @@ class ReindexItemsJob < ProgressJob::Base
     return if !@parent_obj
     
     update_progress_max(-1)
-      
     items = @parent_obj.send(@relation)
     
     update_stage("Look up Sources")
