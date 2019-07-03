@@ -976,6 +976,13 @@ wr:
     fr: "Venezuela, Bolivarian Republic of"
     de: "Venezuela, Bolivarian Republic of"
     en: "Venezuela, Bolivarian Republic of"
+"XB-VN":
+  label:
+    it: "Vietnam"
+    fr: "Vietnam"
+    de: "Vietnam"
+    en: "Vietnam"
+
 # Relationships
 brother of:
   label:
