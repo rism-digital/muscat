@@ -103,12 +103,12 @@ doc_cat_collections:
   label: 
     de: Erfassung von Sammlungen
     en: Cataloging collections
-    it: Catalogo delle raccolte
+    it: Catalogazione delle raccolte
 doc_cat_language: 
   label: 
     de: Katalogisierungsspache
     en: Cataloging language
-    it: CATALOGING LANGUAGE  
+    it: Lingua di catalogazione  
 doc_cat_templates: 
   label: 
     de: Templates
@@ -133,7 +133,7 @@ doc_standardized_titles_printed_music:
   label: 
     de: Einordnungstitel für Musikdrucke
     en: Standardized titles for printed music
-    it: Titolo uniforme
+    it: Titolo uniforme per edizioni musicali a stampa
 
 ################
 
@@ -281,12 +281,12 @@ doc_record_actions:
   label:
     de: "Titel veröffentlichen"
     en: "Record actions"
-    it: "RECORD ACTIONS"
+    it: "Pubblicare la scheda"
 doc_record_status:
   label:
     de: "RECORD STATUS"
     en: "Record status"
-    it: "RECORD STATUS"
+    it: "Stato della scheda"
 ################
 
 01_codes_artistic: 
@@ -1212,7 +1212,7 @@ doc_record_status:
       en: ""
     c: 
       label: 
-        it: REFERENCE RECORD ID
+        it: ID della scheda di riferimento
         fr: REFERENCE RECORD ID
         de: REFERENCE RECORD ID
         en: REFERENCE RECORD ID
@@ -1606,7 +1606,7 @@ doc_record_status:
         en: Scoring summary
     n: 
       label: 
-        it: Catalogo/Numero d'opera
+        it: Numero d'opera/di catalogo
         fr: "No. de catalogue thématique/Opus"
         de: Werkverzeichnis/Opus
         en: Catalogue number/Opus number
@@ -1821,28 +1821,28 @@ doc_record_status:
       comment: "NEW IN 2018; experimental stage"
 "980": 
   label: 
-    it: RECORD ORIGIN
+    it: Origine della scheda
     fr: RECORD ORIGIN
     de: Herkunft
     en: Record origin
   fields: 
     a: 
       label: 
-        it: ORIGIN
+        it: Origine
         fr: ORIGIN
         de: Herkunft
         en: Origin
       comment: "NEW IN 2018"
     b: 
       label: 
-        it: CATALOGING LEVEL
+        it: Livello di catalogazione
         fr: CATALOGING LEVEL
         de: Erfassungstiefe
         en: Cataloging level
       comment: "NEW IN 2018"
     c: 
       label: 
-        it: MATERIAL EXAMINED
+        it: Materiale esaminato
         fr: MATERIAL EXAMINED
         de: Autopsie
         en: Material examined
@@ -2306,7 +2306,7 @@ arg:
     en: Aragonese
 baq: 
   label: 
-    it: BASQUE
+    it: Basco
     fr: BASQUE
     de: Baskisch
     en: Basque
@@ -2354,7 +2354,7 @@ eng:
     en: English
 enm: 
   label: 
-    IT: Lingua inglese medievale
+    IT: Inglese medievale
     FR: Anglais médiéval
     de: Mittelenglisch
     en: Middle English
@@ -2366,7 +2366,7 @@ est:
     en: Estonian
 fas:
   label:
-    IT: PERSIAN
+    IT: Persiano
     FR: PERSIAN
     de: Persisch
     en: Persian
@@ -2378,7 +2378,7 @@ fin:
     en: Finnish
 frr: 
   label: 
-    IT: Dialetto Frisone Settentrionale
+    IT: Dialetto frisone settentrionale
     FR: Frison du Nord
     de: Nordfriesisch
     en: North Frisian
@@ -2582,7 +2582,7 @@ rus:
     en: Russian
 san:
   label:
-    it: SANSKRIT
+    it: Sanscrito
     fr: SANSKRIT
     de: Sanskrit
     en: Sanskrit
@@ -2618,13 +2618,13 @@ srp:
     en: Serbian
 dsb:
   label:
-    it: Sorabo Inferiore
+    it: Sorabo inferiore
     fr: Sorabe, Sorabe inférieur
     de: Sorbisch, Niedersorbisch
     en: Sorbian, Lower Sorbian
 hsb:
   label:
-    it: Sorabo Superiore
+    it: Sorabo superiore
     fr: Sorabe, Sorabe supérieur
     de: Sorbisch, Obersorbisch
     en: Sorbian, Upper Sorbian
@@ -2648,7 +2648,7 @@ swe:
     en: Swedish
 tib: 
   label: 
-    it: TIBETAN
+    it: Tibetano
     fr: TIBETAN
     de: Tibetanisch
     en: Tibetan
@@ -3241,7 +3241,7 @@ G-5:
     en: "G-5"
 g-2:
   label:
-    it: "g-2 (Chiave di violino ottavizzata)"
+    it: "g-2 (chiave di violino tenorizzata)"
     fr: "g-2 (octava bassa)"
     de: "g-2 (oktavierenden Violinschlüssels)"
     en: "g-2 (octave treble clef)"
@@ -3405,19 +3405,19 @@ Typography:
 # new for 980
 origin:
   label:
-    it: "ORIGIN"
+    it: "Origine"
     fr: "ORIGIN"
     de: "Herkunft"
     en: "Origin"
 level:
   label:
-    it: "CATALOGING LEVEL"
+    it: "Livello di catalogazione"
     fr: "CATALOGING LEVEL"
     de: "Erfassungstiefe"
     en: "Cataloging level"
 autopsie:
   label:
-    it: "MATERIAL EXAMINED"
+    it: "Materiale esaminato"
     fr: "MATERIAL EXAMINED"
     de: "Autopsie"
     en: "Material examined"
@@ -3429,43 +3429,43 @@ RISM:
     en: "RISM"
 retro:
   label:
-    it: "RETROSPECTIVE CONVERSION"
+    it: "Conversione retrospettiva"
     fr: "RETROSPECTIVE CONVERSION"
     de: "Retroeinspielung"
     en: "Retrospective conversion"
 import:
   label:
-    it: "IMPORT"
+    it: "Dati importati"
     fr: "IMPORT"
     de: "Fremddateneinspielung"
     en: "Import"
 full:
   label:
-    it: "FULL"
+    it: "Completo"
     fr: "FULL"
     de: "Vollkatalogisat"
     en: "Full"
 standard:
   label:
-    it: "STANDARD"
+    it: "Standard"
     fr: "STANDARD"
     de: "Standard"
     en: "Standard"
 brief:
   label:
-    it: "BRIEF"
+    it: "Breve"
     fr: "BRIEF"
     de: "Kurzkatalogisat"
     en: "Brief"
 examined:
   label:
-    it: "MATERIAL EXAMINED"
+    it: "Autopsia effettuata"
     fr: "MATERIAL EXAMINED"
     de: "Autopsie"
     en: "Material examined"
 not_examined:
   label:
-    it: "MATERIAL NOT EXAMINED"
+    it: "Autopsia non effettuata"
     fr: "MATERIAL NOT EXAMINED"
     de: "Keine Autopsie"
     en: "Material not examined"
@@ -3508,9 +3508,9 @@ in_110:
     de: "Körperschaft"
 in_510:
   label:
-    en: "Paralell form of name"
+    en: "Parallel form of name"
     it: "Forma parallela del nome"
-    de: "Paralelle Namensform"
+    de: "Parallele Namensform"
 in_410:
   label:
     en: "Other form of name"
@@ -3990,7 +3990,7 @@ aid_error:
     de: "Technische Fehler"
 IIIF: 
   label: 
-    it: "IIIF manifest"
+    it: "Manifesto IIIF"
     fr: "Manifeste IIIF"
     de: "IIIF manifest"
     en: "IIIF manifest"
