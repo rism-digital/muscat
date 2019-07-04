@@ -82,7 +82,7 @@ it:
         destroy: "Elimina"
         folder: "Crea una nuova cartella con gli elementi selezionati"
         add_to_folder: "Aggiungi gli elementi selezionati ad una cartella esistente"
-        merge: "MERGE AUTHORITY RECORDS"
+        merge: "Riunisci le voci di autorità"
 
     comments:
       resource_type: "Tipo di risorsa"
@@ -191,8 +191,8 @@ it:
         one: "Utente"
         other: "Utenti"
       work:
-        one: "WORK"
-        other: "WORK"
+        one: "Opera"
+        other: "Opere"
       
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Seleziona un nuovo template"
@@ -205,7 +205,7 @@ it:
     source: "Manoscritto musicale"
     edition_content: "Edizione a stampa, in una collezione"
     libretto_source: "Libretto manoscritto"
-    libretto_edition: "Elemento di un libretto edito"
+    libretto_edition: "Elemento di un libretto stampato"
     theoretica_source: "Manoscritto di teoria musicale"
     theoretica_edition: "Elemento di un edizione di teoria musicale"
     edition: "Edizione musicale, scheda madre della collezione o scheda individuale"
@@ -299,7 +299,7 @@ it:
     not_set: "[Nessuno stato]"
     ok: "Processo terminato con successo"
     no_status: "Errore durante la lettura del messaggio di stato"
-    error: "ERRORE: "
+    error: "Errore: "
     running_jobs: "I processi correntemente in esecuzione non possono essere candellati."
     auto_delete: "Impossibile cancellare: il processo terminato è già stato eliminato automaticamente."
     no_view: "Impossibile visualizzare: il processo terminato è già stato eliminato automaticamente."
@@ -310,7 +310,7 @@ it:
   edit: "Modifica"
   new: "Crea"
   duplicate: "Duplica"
-  merge: "MERGE"
+  merge: "Riunisci"
   no_action: "Nessuna azione"
   reindex: "Indicizza le fonti"
   resave: "Salva le fonti"
@@ -410,9 +410,9 @@ it:
   filter_liturgical_feast: "Feste liturgiche"
   filter_location_and_name: "Nome e luogo"
   filter_manuscript_no: "Manoscritto num."
-  filter_male: "MALE"
-  filter_female: "FEMALE"
-  filter_unknown: "UNKNOWN"
+  filter_male: "Maschile"
+  filter_female: "Femminile"
+  filter_unknown: "Sconosciuto"
   filter_shelf_mark: "Ms. num."
   filter_name: "Nome"
   filter_notes: "Note"
@@ -450,7 +450,7 @@ it:
   filter_subject: "Soggetto"
   filter_subsequent_entries: "Notizie Successive"
   filter_term: "Termine"
-  filter_textinipit: "TEXTINCIPIT"
+  filter_textinipit: "Incipit testuale"
   filter_thematic_opus: "Catalogo / Num. d'opera"
   filter_title: "Titolo"
   filter_titles: "Titoli"
@@ -522,8 +522,8 @@ it:
      one: "voce"
      other: "voci"
   digital_object:
-      one: "Oggetto Digitale"
-      other: "Oggetti Digitali"
+      one: "Oggetto digitale"
+      other: "Oggetti digitali"
   catalogue:
     one: "catalogo"
     other: "cataloghi"
@@ -645,7 +645,7 @@ it:
     inprogress: "In Elaborazione (UNP)"
     published: "Pubblicato (PUB)"
     deleted: "Cancellato"
-    deprecated: "DEPRECATED"
+    deprecated: "Rigettato"
 
   dashboard:
     selection: "Selezione attività recenti"
@@ -740,5 +740,5 @@ it:
       limit_criteria_heading_html: "<strong>E</strong> hanno questi attributi"
       query_criteria_heading_html: "Cerca gli elementi che corrispondono a %{select_menu}"
       sort_label: "Ordina per"
-      start_over: "Reset"
+      start_over: "Ripristina"
       search_btn: 'Cerca'
