@@ -824,7 +824,7 @@ trl:
     it: Traduttore
     fr: Traducteur
     de: "Übersetzer"
-    en: Translater
+    en: Translator
 voc: 
   label: 
     it: Cantante
@@ -871,7 +871,7 @@ voc:
 "337": 
   label: 
     it: Mezzo fisico
-    fr: Moyen phyisuqe 
+    fr: Moyen physique 
     de: Physisches Medium 
     en: Media type
   fields: 
@@ -1068,7 +1068,7 @@ gre:
     en: Greek, Modern (1453-)
 gsw: 
   label: 
-    it: Tedesco Svizzero
+    it: Svizzero tedesco 
     fr: Suisse allemand
     de: Schweizerdeutsch
     en: Swiss German
@@ -1164,8 +1164,8 @@ swe:
     en: Swedish
 zho:
   label:
-    it: CHINESE
-    fr: CHINESE
+    it: Cinese
+    fr: Chinois
     de: Chinesisch
     en: Chinese
 zxx: 
