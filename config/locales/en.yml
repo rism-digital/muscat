@@ -206,8 +206,10 @@ en:
     edition_content: "Printed music edition, item in collection"
     libretto_source: "Libretto, handwritten"
     libretto_edition: "Libretto, printed"
+    libretto_edition_content: "Printed libretto, item in collection"
     theoretica_source: "Treatise, handwritten"
     theoretica_edition: "Treatise, printed"
+    theoretica_edition_content: "Printed treatise, item in collection"
     edition: "Printed music edition, collection parent record or individual item"
 
     composite_volumes: "Composite volumes"

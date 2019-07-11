@@ -52,8 +52,8 @@ function render_music( music, format, target, width ) {
 	
 	options = {
 				inputFormat: 'pae',
-				pageMarginTop: 20,
-				pageMarginBottom: 20,
+				pageMarginTop: 40,
+				pageMarginBottom: 60,
 				pageMarginLeft: 20,
 				pageMarginRight: 20,
 				pageWidth: width / 0.4,

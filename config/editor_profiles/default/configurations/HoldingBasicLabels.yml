@@ -14,7 +14,7 @@ doc_tag_index:
   label: 
     de: MARC Tag Index
     en: Index of MARC fields
-    it: Indice dei Tag MARC
+    it: Indice dei campi MARC
 
 ################
 
@@ -64,8 +64,8 @@ doc_abbr_voices_instr2:
 doc_aid: 
   label: 
     de: Arbeitshilfen
-    en: Aide
-    it: AIDE
+    en: Aids
+    it: Aiuti
 doc_aid_liturgical_feasts: 
   label: 
     de: "Liturgische Feste"
@@ -103,7 +103,7 @@ doc_cat_collections:
   label: 
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
-    it: Catalogo delle collezioni e convoluta
+    it: Catalogazione delle collezioni e dei volumi compositi
 doc_cat_templates: 
   label: 
     de: Templates
@@ -146,7 +146,7 @@ doc_library:
   label: 
     de: Besitzerangaben
     en: Library information
-    it: Informazione sulla libreria
+    it: Informazioni sulla biblioteca
 doc_provenance: 
   label: 
     de: Provenienz
@@ -211,7 +211,7 @@ doc_images:
   label:
     de: "Bilder"
     en: "Images"
-    it: "immagini"
+    it: "Immagini"
 doc_institutions:
   label:
     de: "Körperschaften"
@@ -236,7 +236,7 @@ doc_numbers:
   label:
     de: "Nummern und Codes"
     en: "Numbers and code fields"
-    it: "Campi di numero e codici"
+    it: "Campi numerici e codici"
 doc_name_variants:
   label:
     de: "Namensvarianten"
@@ -1193,7 +1193,7 @@ IIIF:
 Digitalization: 
   label: 
     it: "Musica digitalizzata"
-    fr: "Sources numériées"
+    fr: "Sources numérisées"
     de: "Notendigitalisat"
     en: "Digitized music"
 Other: 
