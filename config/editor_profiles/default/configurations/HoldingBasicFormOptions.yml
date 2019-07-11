@@ -52,12 +52,8 @@
     fields: 
     - - a
       - values: 
-        - Print
         - Print with autograph annotations
         - Print with non-autograph annotations
-        - Libretto, printed
-        - Treatise, printed
-        - Other 
         editor_partial: subfield_select
 "651":
   new_window: places
@@ -145,6 +141,8 @@
       - dpt
       - dte
       - prf
+      - bsl
+      - evp
 "852": 
   allow_new: true
   new_window: institutions

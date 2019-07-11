@@ -1822,7 +1822,7 @@ doc_record_status:
 "980": 
   label: 
     it: Origine della scheda
-    fr: RECORD ORIGIN
+    fr: Origine du document
     de: Herkunft
     en: Record origin
   fields: 
@@ -1836,14 +1836,14 @@ doc_record_status:
     b: 
       label: 
         it: Livello di catalogazione
-        fr: CATALOGING LEVEL
+        fr: Niveau de catalogage
         de: Erfassungstiefe
         en: Cataloging level
       comment: "NEW IN 2018"
     c: 
       label: 
         it: Materiale esaminato
-        fr: MATERIAL EXAMINED
+        fr: "Matériel examiné"
         de: Autopsie
         en: Material examined
       comment: "NEW IN 2018"
@@ -3022,78 +3022,6 @@ g|b:
     fr: "Mode: 12t – Hypoionian"
     de: "Mode: 12t – Hypoionian"
     en: "Mode: 12t – Hypoionian"
-1tt:
-  label:
-    it: "Mode:  1tt – Dorian, transposed"
-    fr: "Mode:  1tt – Dorian, transposed"
-    de: "Mode:  1tt – Dorian, transposed"
-    en: "Mode:  1tt – Dorian, transposed"
-2tt:
-  label:
-    it: "Mode:  2tt – Hypodorian, transposed"
-    fr: "Mode:  2tt – Hypodorian, transposed"
-    de: "Mode:  2tt – Hypodorian, transposed"
-    en: "Mode:  2tt – Hypodorian, transposed"
-3tt:
-  label:
-    it: "Mode:  3tt – Phrygian, transposed"
-    fr: "Mode:  3tt – Phrygian, transposed"
-    de: "Mode:  3tt – Phrygian, transposed"
-    en: "Mode:  3tt – Phrygian, transposed"
-4tt:
-  label:
-    it: "Mode:  4tt – Hypophrygian, transposed"
-    fr: "Mode:  4tt – Hypophrygian, transposed"
-    de: "Mode:  4tt – Hypophrygian, transposed"
-    en: "Mode:  4tt – Hypophrygian, transposed"
-5tt:
-  label:
-    it: "Mode:  5tt – Lydian, transposed"
-    fr: "Mode:  5tt – Lydian, transposed"
-    de: "Mode:  5tt – Lydian, transposed"
-    en: "Mode:  5tt – Lydian, transposed"
-6tt:
-  label:
-    it: "Mode:  6tt – Hypolydian, transposed"
-    fr: "Mode:  6tt – Hypolydian, transposed"
-    de: "Mode:  6tt – Hypolydian, transposed"
-    en: "Mode:  6tt – Hypolydian, transposed"
-7tt:
-  label:
-    it: "Mode:  7tt – Mixolydian, transposed"
-    fr: "Mode:  7tt – Mixolydian, transposed"
-    de: "Mode:  7tt – Mixolydian, transposed"
-    en: "Mode:  7tt – Mixolydian, transposed"
-8tt:
-  label:
-    it: "Mode:  8tt – Hypomixolydian, transposed"
-    fr: "Mode:  8tt – Hypomixolydian, transposed"
-    de: "Mode:  8tt – Hypomixolydian, transposed"
-    en: "Mode:  8tt – Hypomixolydian, transposed"
-9tt:
-  label:
-    it: "Mode:  9tt – Aeolian, transposed"
-    fr: "Mode:  9tt – Aeolian, transposed"
-    de: "Mode:  9tt – Aeolian, transposed"
-    en: "Mode:  9tt – Aeolian, transposed"
-10tt:
-  label:
-    it: "Mode: 10tt – Hypoaeolian, transposed"
-    fr: "Mode: 10tt – Hypoaeolian, transposed"
-    de: "Mode: 10tt – Hypoaeolian, transposed"
-    en: "Mode: 10tt – Hypoaeolian, transposed"
-11tt:
-  label:
-    it: "Mode: 11tt – Ionian, transposed"
-    fr: "Mode: 11tt – Ionian, transposed"
-    de: "Mode: 11tt – Ionian, transposed"
-    en: "Mode: 11tt – Ionian, transposed"
-12tt:
-  label:
-    it: "Mode: 12tt – Hypoionian, transposed"
-    fr: "Mode: 12tt – Hypoionian, transposed"
-    de: "Mode: 12tt – Hypoionian, transposed"
-    en: "Mode: 12tt – Hypoionian, transposed"
 1byz:
   label:
     it: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
@@ -3412,13 +3340,13 @@ origin:
 level:
   label:
     it: "Livello di catalogazione"
-    fr: "CATALOGING LEVEL"
+    fr: "Niveau de catalogage"
     de: "Erfassungstiefe"
     en: "Cataloging level"
 autopsie:
   label:
     it: "Materiale esaminato"
-    fr: "MATERIAL EXAMINED"
+    fr: "Matériel examiné"
     de: "Autopsie"
     en: "Material examined"
 RISM:
@@ -3430,7 +3358,7 @@ RISM:
 retro:
   label:
     it: "Conversione retrospettiva"
-    fr: "RETROSPECTIVE CONVERSION"
+    fr: "Conversion rétrospective"
     de: "Retroeinspielung"
     en: "Retrospective conversion"
 import:
@@ -3442,43 +3370,33 @@ import:
 full:
   label:
     it: "Completo"
-    fr: "FULL"
+    fr: "Complète"
     de: "Vollkatalogisat"
     en: "Full"
 standard:
   label:
     it: "Standard"
-    fr: "STANDARD"
+    fr: "Standard"
     de: "Standard"
     en: "Standard"
 brief:
   label:
     it: "Breve"
-    fr: "BRIEF"
+    fr: "Standard"
     de: "Kurzkatalogisat"
     en: "Brief"
 examined:
   label:
-    it: "Autopsia effettuata"
-    fr: "MATERIAL EXAMINED"
+    it: "Materiale esaminato"
+    fr: "Matériel examiné"
     de: "Autopsie"
     en: "Material examined"
 not_examined:
   label:
     it: "Autopsia non effettuata"
-    fr: "MATERIAL NOT EXAMINED"
+    fr: "Matériel non examiné"
     de: "Keine Autopsie"
     en: "Material not examined"
-
-
-
-
-
-
-
-
-
-
 
 ### Addons for authority guidelines
 in_024:
@@ -3807,7 +3725,7 @@ li_760:
   label:
     en: "Item part of"
     it: "Fa parte di"
-    de: "ITEM PART OF"
+    de: "Es ist Teil von"
 li_650:
   label:
     en: "Subject heading"
@@ -3847,7 +3765,7 @@ li_520:
   label:
     en: "Contents note"
     it: "Indicazione di contenuto"
-    de: "CONTENTS NOTE"
+    de: "Inhaltsangabe"
 li_000:
   label:
     en: "Leader"
@@ -3862,7 +3780,7 @@ li_003:
   label:
     en: "Control number identifier"
     it: "Identificatore del numero di controllo"
-    de: "CONTROL NUMBER IDENTIFIER"
+    de: "Identifikation der Kontrollnummer"
 li_005:
   label:
     en: "Date and time of last transaction"
@@ -3877,7 +3795,7 @@ li_subject:
   label:
     en: "Subject access fields"
     it: "Campi delle parole chiave"
-    de: "SUBJECT ACCESS FIELDS"
+    de: "Keyword-Felder"
 li_note:
   label:
     en: "Note fields"
@@ -3902,7 +3820,7 @@ aid_terms:
   label:
     en: "Standard music terms"
     it: "Terminologia musicale standard"
-    de: "STANDARD MUSIC TERMS"
+    de: "Standard-Musikterminologie"
 aid_watermarks:
   label:
     en: "Standard watermarks"
@@ -3912,7 +3830,7 @@ aid_general:
   label:
     en: "General abbreviations and terms"
     it: "Terminologia ed abbreviazioni generali"
-    de: "GENERAL ABBREVIATIONS AND TERMS"
+    de: "Allgemeine Terminologie und Abkürzungen"
 aid_dates:
   label:
     en: "Dates"
@@ -3942,7 +3860,7 @@ aid_titles:
   label:
     en: "Standardized titles - Subject headings"
     it: "Titoli uniformi – Parole chiave"
-    de: "STANDARDIZED TITLES - SUBJECT HEADINGS"
+    de: "Einheitliche Titel - Schlüsselwörter"
 aid_texts:
   label:
     en: "Standard texts of sacred works"
