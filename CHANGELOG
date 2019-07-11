@@ -1,8 +1,21 @@
 Muscat Changelog
 ================
 
-v 5.2
+v 5.2.1
+* Fix #774
+* Fix #807, correct lavel was only in view
+* Fix #789, added more top and bottom margin
+* Fix #738
+* Fix #744, make fields non repeatable
+* Fix #772, some translation missing
+* Added XB-VN to person country codes
+* Fixing typos
+* Updating it translation
+* Updating fr translations
+* Updating de translations
+* Fix #811 remove fields from 593
 
+v 5.2
 * Fix #707 improved link to library siglum
 * Fix #735 Added 593 for holdings
 * Add triggers for Holdings

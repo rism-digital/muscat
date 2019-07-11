@@ -111,7 +111,7 @@ module Viaf
             xslt  = Nokogiri::XSLT(File.read('config/viaf/' + providers[provider]))
             doc = xslt.transform(provider_doc)
             # Escaping for json
-            doc = doc.to_s.gsub(/'/, "&apos;")
+            doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
             marc = Object.const_get("Marc#{model.to_s.capitalize}").new(doc)
             result << marc.to_json
             break
@@ -144,7 +144,7 @@ module Viaf
         prename = provider_doc.xpath("//marc:datafield[@tag='#{tag}']/marc:subfield[@code='b']", NAMESPACE).first.content rescue "Anonymus"
         provider_composer = "#{lastname}, #{prename}"
       else
-        provider_composer = provider_doc.xpath("//marc:datafield[@tag='#{tag}']/marc:subfield[@code='a']", NAMESPACE).first.content rescue "Anonymus"
+        provider_composer = provider_doc.xpath("//marc:datafield[@tag='#{tag}']/marc:subfield[@code='a']", NAMESPACE).first.content.unicode_normalize rescue "Anonymus"
       end
       #provider_composer = record["term"].split("|").first.gsub([0-9,\-], "")
       composer = Sunspot.search(Person) {fulltext "#{provider_composer}", :fields => [:full_name]}.results.first

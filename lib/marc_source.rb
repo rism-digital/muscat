@@ -385,6 +385,8 @@ class MarcSource < Marc
       end
       
       leader = base_leader.gsub("XX", type)
+    elsif @record_type == RECORD_TYPES[:composite_volume]
+      leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
       type = "dm"
       type = "dd" if by_tags("773").count > 0
