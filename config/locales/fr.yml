@@ -206,8 +206,10 @@ fr:
     edition_content: "Edition imprimé, dans une collection"
     libretto_source: "Livret manuscrit"
     libretto_edition: "Contenu d'un livret imprimé"
+    libretto_edition_content: "Livret imprimé, dans une collection"
     theoretica_source: "Traité manuscrit"
     theoretica_edition: "Contenu d'un traité imprimé"
+    theoretica_edition_content: "Traité imprimé, dans une collection"
     edition: "Edition imprimé, collection parent ou item individuel"
 
     composite_volumes: "Volumes composites"
