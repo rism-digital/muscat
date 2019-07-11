@@ -163,7 +163,7 @@ doc_edit_workflow:
         en: Heading - personal name
     c:
       label:
-        it: Ordine/Titolo
+        it: Ordine religioso
         fr: Ordre/titre
         de: Orden/Titel
         en: Religious order
@@ -976,6 +976,13 @@ wr:
     fr: "Venezuela, Bolivarian Republic of"
     de: "Venezuela, Bolivarian Republic of"
     en: "Venezuela, Bolivarian Republic of"
+"XB-VN":
+  label:
+    it: "Vietnam"
+    fr: "Vietnam"
+    de: "Vietnam"
+    en: "Vietnam"
+
 # Relationships
 brother of:
   label:

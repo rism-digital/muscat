@@ -206,8 +206,10 @@ de:
     edition_content: "Musikdruck, Teileintrag"
     libretto_source: "Libretto, handschriftlich"
     libretto_edition: "Libretto, gedruckt"
+    libretto_edition_content: "Libretto, gedruckt - Teileintrag der Sammlung"
     theoretica_source: "Theoreticum, handschriftlich"
     theoretica_edition: "Theoreticum, gedruckt"
+    theoretica_edition_content: "Theoreticum, gedruckt - Teileintrag der Sammlung"
     edition: "Musikdruck, Haupteintrag Sammlung oder Individualeintrag"
  
     composite_volumes: "Konvolut"

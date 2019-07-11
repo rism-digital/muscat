@@ -6,7 +6,7 @@ doc_abbreviations:
 doc_aid:
   label:
     de: Arbeitshilfen
-    en: Aide
+    en: Aids
 doc_cataloguing_collections:
   label:
     de: Erfassung von Sammlungen
@@ -436,14 +436,14 @@ doc_edit_workflow:
         en:  Associated institution
 "548":
   label:
-    it: CHRONOLOGICAL TERM
-    fr: CHRONOLOGICAL TERM
+    it: Date
+    fr: Datation
     de: Datierungen 
     en: Chronological term
   fields:
     a:
       label:
-        it:  DATE
+        it:  Data
         fr:  DATE
         de:  Datierung
         en:  Date
@@ -527,16 +527,16 @@ doc_edit_workflow:
         en: Information found
 "675":
   label:
-    it: SOURCE DATA NOT FOUND
-    fr: SOURCE DATA NOT FOUND
-    de: SOURCE DATA NOT FOUND
+    it: Fonte consultata senza esito
+    fr: Source consultée sans résultat
+    de: Quelle ohne Ergebnis konsultiert
     en: Source data not found
   fields:
     a:
       label:
-        it: SOURCE DATA NOT FOUND
-        fr: SOURCE DATA NOT FOUND
-        de: SOURCE DATA NOT FOUND
+        it: Fonte consultata senza esito 
+        fr: Source consultée sans résultat
+        de: Quelle ohne Ergebnis konsultiert
         en: Source data not found
       edit_label: 
         en: ""
@@ -684,15 +684,15 @@ doc_edit_workflow:
         en: External resource
 "930":
   label:
-    it: RELATED WORK
-    fr: RELATED WORK
-    de: RELATED WORK
+    it: Opera correlata
+    fr: Ouvrage connexe
+    de: zugehörige Werke
     en: Related work
   fields:
     a:
       label:
-        it:  WORK
-        fr:  WORK
+        it:  Opera
+        fr:  Ouvrage
         de:  Werk
         en:  WORK
     i:

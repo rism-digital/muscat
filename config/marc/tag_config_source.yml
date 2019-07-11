@@ -790,12 +790,12 @@
     :occurrences: "*"
     :fields:
     - - u
-      - :occurrences: "*"
+      - :occurrences: "?"
         :browse_helper: application_helper_link_http
     - - x
       - :occurrences: "?"
     - - z
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
