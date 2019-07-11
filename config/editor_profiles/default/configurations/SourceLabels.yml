@@ -1822,7 +1822,7 @@ doc_record_status:
 "980": 
   label: 
     it: Origine della scheda
-    fr: RECORD ORIGIN
+    fr: Origine du document
     de: Herkunft
     en: Record origin
   fields: 
@@ -1836,14 +1836,14 @@ doc_record_status:
     b: 
       label: 
         it: Livello di catalogazione
-        fr: CATALOGING LEVEL
+        fr: Niveau de catalogage
         de: Erfassungstiefe
         en: Cataloging level
       comment: "NEW IN 2018"
     c: 
       label: 
         it: Materiale esaminato
-        fr: MATERIAL EXAMINED
+        fr: "Matériel examiné"
         de: Autopsie
         en: Material examined
       comment: "NEW IN 2018"
@@ -3340,13 +3340,13 @@ origin:
 level:
   label:
     it: "Livello di catalogazione"
-    fr: "CATALOGING LEVEL"
+    fr: "Niveau de catalogage"
     de: "Erfassungstiefe"
     en: "Cataloging level"
 autopsie:
   label:
     it: "Materiale esaminato"
-    fr: "MATERIAL EXAMINED"
+    fr: "Matériel examiné"
     de: "Autopsie"
     en: "Material examined"
 RISM:
@@ -3358,7 +3358,7 @@ RISM:
 retro:
   label:
     it: "Conversione retrospettiva"
-    fr: "RETROSPECTIVE CONVERSION"
+    fr: "Conversion rétrospective"
     de: "Retroeinspielung"
     en: "Retrospective conversion"
 import:
@@ -3370,43 +3370,33 @@ import:
 full:
   label:
     it: "Completo"
-    fr: "FULL"
+    fr: "Complète"
     de: "Vollkatalogisat"
     en: "Full"
 standard:
   label:
     it: "Standard"
-    fr: "STANDARD"
+    fr: "Standard"
     de: "Standard"
     en: "Standard"
 brief:
   label:
     it: "Breve"
-    fr: "BRIEF"
+    fr: "Standard"
     de: "Kurzkatalogisat"
     en: "Brief"
 examined:
   label:
-    it: "Autopsia effettuata"
-    fr: "MATERIAL EXAMINED"
+    it: "Materiale esaminato"
+    fr: "Matériel examiné"
     de: "Autopsie"
     en: "Material examined"
 not_examined:
   label:
     it: "Autopsia non effettuata"
-    fr: "MATERIAL NOT EXAMINED"
+    fr: "Matériel non examiné"
     de: "Keine Autopsie"
     en: "Material not examined"
-
-
-
-
-
-
-
-
-
-
 
 ### Addons for authority guidelines
 in_024:
@@ -3735,7 +3725,7 @@ li_760:
   label:
     en: "Item part of"
     it: "Fa parte di"
-    de: "ITEM PART OF"
+    de: "Es ist Teil von"
 li_650:
   label:
     en: "Subject heading"
@@ -3775,7 +3765,7 @@ li_520:
   label:
     en: "Contents note"
     it: "Indicazione di contenuto"
-    de: "CONTENTS NOTE"
+    de: "Inhaltsangabe"
 li_000:
   label:
     en: "Leader"
@@ -3790,7 +3780,7 @@ li_003:
   label:
     en: "Control number identifier"
     it: "Identificatore del numero di controllo"
-    de: "CONTROL NUMBER IDENTIFIER"
+    de: "Identifikation der Kontrollnummer"
 li_005:
   label:
     en: "Date and time of last transaction"
@@ -3805,7 +3795,7 @@ li_subject:
   label:
     en: "Subject access fields"
     it: "Campi delle parole chiave"
-    de: "SUBJECT ACCESS FIELDS"
+    de: "Keyword-Felder"
 li_note:
   label:
     en: "Note fields"
@@ -3830,7 +3820,7 @@ aid_terms:
   label:
     en: "Standard music terms"
     it: "Terminologia musicale standard"
-    de: "STANDARD MUSIC TERMS"
+    de: "Standard-Musikterminologie"
 aid_watermarks:
   label:
     en: "Standard watermarks"
@@ -3840,7 +3830,7 @@ aid_general:
   label:
     en: "General abbreviations and terms"
     it: "Terminologia ed abbreviazioni generali"
-    de: "GENERAL ABBREVIATIONS AND TERMS"
+    de: "Allgemeine Terminologie und Abkürzungen"
 aid_dates:
   label:
     en: "Dates"
@@ -3870,7 +3860,7 @@ aid_titles:
   label:
     en: "Standardized titles - Subject headings"
     it: "Titoli uniformi – Parole chiave"
-    de: "STANDARDIZED TITLES - SUBJECT HEADINGS"
+    de: "Einheitliche Titel - Schlüsselwörter"
 aid_texts:
   label:
     en: "Standard texts of sacred works"
