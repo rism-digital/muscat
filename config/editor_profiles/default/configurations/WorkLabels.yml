@@ -437,7 +437,7 @@ doc_edit_workflow:
 "548":
   label:
     it: Date
-    fr: CHRONOLOGICAL TERM
+    fr: Datation
     de: Datierungen 
     en: Chronological term
   fields:
@@ -528,15 +528,15 @@ doc_edit_workflow:
 "675":
   label:
     it: Fonte consultata senza esito
-    fr: SOURCE DATA NOT FOUND
-    de: SOURCE DATA NOT FOUND
+    fr: Source consultée sans résultat
+    de: Quelle ohne Ergebnis konsultiert
     en: Source data not found
   fields:
     a:
       label:
         it: Fonte consultata senza esito 
-        fr: SOURCE DATA NOT FOUND
-        de: SOURCE DATA NOT FOUND
+        fr: Source consultée sans résultat
+        de: Quelle ohne Ergebnis konsultiert
         en: Source data not found
       edit_label: 
         en: ""
@@ -685,14 +685,14 @@ doc_edit_workflow:
 "930":
   label:
     it: Opera correlata
-    fr: RELATED WORK
-    de: RELATED WORK
+    fr: Ouvrage connexe
+    de: zugehörige Werke
     en: Related work
   fields:
     a:
       label:
         it:  Opera
-        fr:  WORK
+        fr:  Ouvrage
         de:  Werk
         en:  WORK
     i:
