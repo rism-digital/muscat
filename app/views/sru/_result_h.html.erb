@@ -56,9 +56,12 @@
 
 <%= render :partial => 'html_pager' %>
 
-<div>
-<a href="#" class="csv_export" datatable="rism_export" style="float: right;">Download as CSV/Excel</a>
+<div style="float: right;">
+  <!-- <a href="#" class="csv_export" datatable="rism_export">Download as CSV/Excel</a><br> -->
+  <%= link_to("Download as CSV", url_for( request.params.merge({"x-action" => "csv"}) )) %> <br>
+  <%= link_to("Download as XML", url_for( request.params.merge({"x-action" => "download"}) )) %>
 </div>
+
 </div>
 <%#= "Number of results: #{@result.total}" %>
 </body>
