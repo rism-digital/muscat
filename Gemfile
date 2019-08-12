@@ -139,6 +139,12 @@ gem 'rsolr', '>= 1.0'
 ## For better parallel processing
 gem 'parallel'
 
+# RDF export
+gem "rdf"
+gem "rdf-n3"
+gem "rdf-turtle"
+gem "rdf-vocab"
+
 group :test do
   gem "rspec"
   gem 'rspec-rails', '~> 3.5'
