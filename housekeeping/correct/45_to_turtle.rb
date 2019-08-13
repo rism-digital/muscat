@@ -41,7 +41,7 @@ codes2relation = {
 @all_src = Source.all.count / 100000
 @limit = @all_src / @parallel_jobs
 
-#begin_time = Time.now
+begin_time = Time.now
 
 pb = ProgressBar.new(Source.count)
 Source.find_in_batches do |batch|
@@ -140,7 +140,7 @@ PREFIXES = {
 #w = RDF::Writer.for(:ttl).buffer do |writer|
 RDF::Writer.open("rism.ttl", format: :ttl) do |writer|
     writer.prefixes = PREFIXES
-    r#esults.each do |g|
+    #results.each do |g|
         graph.each_statement do |statement|
             writer << statement
         end
