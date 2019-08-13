@@ -4,7 +4,7 @@ include RDF
 SOURCES_URI = "http://muscat.rism.info/sources/"
 
 GND = RDF::Vocabulary.new("https://d-nb.info/standards/elementset/gnd/")
-FAAF = RDF::Vocabulary.new("http://xmlns.com/foaf/0.1/")
+FOAF = RDF::Vocabulary.new("http://xmlns.com/foaf/0.1/")
 MO = RDF::Vocabulary.new("http://purl.org/ontology/mo/")
 
 graph = RDF::Graph.new
@@ -118,7 +118,7 @@ PREFIXES = {
   dc: RDF::Vocab::DC.to_uri,
   dc11: RDF::Vocab::DC11.to_uri,
   mo: MO.to_uri,
-  faaf: FAAF.to_uri
+  foaf: FOAF.to_uri
 }
 
 #w = RDF::Writer.for(:ttl).buffer do |writer|
