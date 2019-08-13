@@ -37,7 +37,7 @@ codes2relation = {
 }
 
 pb = ProgressBar.new(Source.count)
-Source.each do |s|
+Source.all.each do |s|
 
     uri = "#{s.id}"
 
