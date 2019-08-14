@@ -183,7 +183,7 @@ File.open("rism.ttl", 'w') do |writer|
     end #batch
 end #writer
 
-message = "Source exporting started at #{begin_time.to_s}, (#{Time.now - begin_time} seconds run time)"
+puts "Source exporting started at #{begin_time.to_s}, (#{Time.now - begin_time} seconds run time)"
 
 #puts graph.to_ttl(prefixes: {gnd: GND.to_uri})
 
