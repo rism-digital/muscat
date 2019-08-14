@@ -55,7 +55,7 @@ File.open("rism.ttl", 'w') do |writer|
 #    writer.prefixes = PREFIXES
 
     @parallel_jobs = 10
-    @all_src = Source.all.count / 10000
+    @all_src = Source.all.count
     @limit = @all_src / @parallel_jobs
 
     #pb = ProgressBar.new(Source.count)
