@@ -130,7 +130,7 @@ File.open("rism.ttl", 'w') do |writer|
                 
                 subtags.each do |st|
                   v = t.fetch_first_by_tag(st)
-                  vals[st] = v && v.content ? v.content : "0"
+                  vals[st] = v && v.content ? v.content.strip : "0"
                 end
           
                 next if vals[:p] == "0"
