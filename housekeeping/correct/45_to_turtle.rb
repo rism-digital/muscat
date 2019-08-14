@@ -135,7 +135,7 @@ File.open("rism.ttl", 'w') do |writer|
           
                 next if vals[:p] == "0"
 
-                incipit_id = "#{s.id}-#{vals[:a]}.#{vals[:b]}.#{vals[:c]}".strip
+                incipit_id = "#{s.id}-#{vals[:a].to_i.to_s}.#{vals[:b].to_i.to_s}.#{vals[:c].to_i.to_s}".strip
                 incipit_uri = INCIPIT_URI + incipit_id
 
                 graph << [data_incipit[incipit_id], RDF::Vocab::DC.identifier, incipit_id]
