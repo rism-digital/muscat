@@ -2,13 +2,16 @@ require 'progress_bar'
 include RDF
 
 SOURCES_URI = "http://muscat.rism.info/sources/"
+INCIPIT_URI = "http://muscat.rism.info/incipits/"
 
 GND = RDF::Vocabulary.new("https://d-nb.info/standards/elementset/gnd/")
 FOAF = RDF::Vocabulary.new("http://xmlns.com/foaf/0.1/")
 MO = RDF::Vocabulary.new("http://purl.org/ontology/mo/")
+PAE = RDF::Vocabulary.new("https://www.iaml.info/plaine-easie-code/")
 
 #graph = RDF::Graph.new
 data = RDF::Vocabulary.new(SOURCES_URI)
+data_incipit = RDF::Vocabulary.new(INCIPIT_URI)
 
 codes2relation = {
     arr: GND.arranger,
@@ -43,7 +46,8 @@ PREFIXES = {
   dc: RDF::Vocab::DC.to_uri,
   dc11: RDF::Vocab::DC11.to_uri,
   mo: MO.to_uri,
-  foaf: FOAF.to_uri
+  foaf: FOAF.to_uri,
+  pae: PAE.to_uri
 }
 
 #RDF::Writer.open("rism.ttl", format: :ttl) do |writer|
@@ -51,7 +55,7 @@ File.open("rism.ttl", 'w') do |writer|
 #    writer.prefixes = PREFIXES
 
     @parallel_jobs = 10
-    @all_src = Source.all.count
+    @all_src = Source.all.count / 10000
     @limit = @all_src / @parallel_jobs
 
     #pb = ProgressBar.new(Source.count)
@@ -119,6 +123,37 @@ File.open("rism.ttl", 'w') do |writer|
                 end
             end
 
+            # Now do the incipits
+            s.marc.each_by_tag("031") do |t|
+
+                subtags = [:a, :b, :c, :g, :n, :o, :p, :m, :t, :e, :r, :q, :z]
+                vals = {}
+                
+                subtags.each do |st|
+                  v = t.fetch_first_by_tag(st)
+                  vals[st] = v && v.content ? v.content : "0"
+                end
+          
+                next if vals[:p] == "0"
+
+                incipit_id = "#{s.id}-#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
+                incipit_uri = INCIPIT_URI + incipit_id
+
+                graph << [data_incipit[incipit_id], RDF::Vocab::DC.identifier, incipit_id]
+                graph << [data_incipit[incipit_id], PAE.incipit, vals[:p]]
+
+                graph << [data_incipit[incipit_id], PAE.role, vals[:e]]         if vals[:e] != 0
+                graph << [data_incipit[incipit_id], PAE.text, vals[:t]]         if vals[:t] != 0
+                graph << [data_incipit[incipit_id], PAE.keyOrMode, vals[:r]]    if vals[:r] != 0
+                graph << [data_incipit[incipit_id], PAE.key, vals[:n]]          if vals[:n] != 0
+                graph << [data_incipit[incipit_id], PAE.time, vals[:o]]         if vals[:o] != 0
+                graph << [data_incipit[incipit_id], PAE.clef, vals[:g]]         if vals[:g] != 0
+                graph << [data_incipit[incipit_id], PAE.description, vals[:q]]  if vals[:q] != 0
+                graph << [data_incipit[incipit_id], PAE.scoring, vals[:z]]      if vals[:z] != 0
+
+                graph << [data_incipit[incipit_id], RDF::Vocab::DC.isPartOf, data[s.id]]
+            end
+
             # in a collection
             if s.source_id
                 graph << [data[uri], RDF::Vocab::DC.isPartOf, data[s.source_id]]
@@ -137,7 +172,13 @@ File.open("rism.ttl", 'w') do |writer|
             #pb.increment!
             s = nil
             #graphs << graph
-            writer << graph.to_ttl
+            #writer << graph.to_ttl
+
+            out = RDF::Writer.for(:ttl).buffer do |w|
+                w.prefixes = PREFIXES
+                w << graph
+            end
+            writer << out
             graph = nil
         end #batch.each
     end #batch
