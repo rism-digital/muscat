@@ -46,12 +46,24 @@ PREFIXES = {
   foaf: FOAF.to_uri
 }
 
-RDF::Writer.open("rism.ttl", format: :ttl) do |writer|
-    writer.prefixes = PREFIXES
+#RDF::Writer.open("rism.ttl", format: :ttl) do |writer|
+File.open("rism.ttl", 'w') do |writer|
+#    writer.prefixes = PREFIXES
 
-    pb = ProgressBar.new(Source.count)
-    Source.find_in_batches do |batch|
-        batch.each do |sid|
+    @parallel_jobs = 10
+    @all_src = Source.all.count
+    @limit = @all_src / @parallel_jobs
+
+    #pb = ProgressBar.new(Source.count)
+    #Source.find_in_batches do |batch|
+    #    batch.each do |sid|
+
+    results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs, progress: "Saving sources") do |jobid|
+        offset = @limit * jobid
+      
+        Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
+            s = Source.find(sid.id)
+
             graph = RDF::Graph.new
             s = Source.find(sid.id)
             s.marc.load_source false
@@ -122,10 +134,10 @@ RDF::Writer.open("rism.ttl", format: :ttl) do |writer|
             graph << [data[uri], RDF::Vocab::DC.issued, s.date_from] if s.date_from
             graph << [data[uri], RDF::Vocab::DC.issued, s.date_to] if !s.date_from && s.date_to
 
-            pb.increment!
+            #pb.increment!
             s = nil
             #graphs << graph
-            writer << graph
+            writer << graph.to_ttl
             graph = nil
         end #batch.each
     end #batch
