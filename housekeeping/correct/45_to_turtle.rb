@@ -27,7 +27,7 @@ codes2relation = {
     fmo: GND.formerOwner,
     ill: GND.illustratorOrIlluminator,
     lbt: GND.librettist,
-    lgt: GND.lithographer,
+    ltg: GND.lithographer,
     oth: RDF::Vocab::DC11.contributor,
     prf: RDF::Vocab::DC11.contributor,
     prt: GND.printer,
@@ -37,21 +37,11 @@ codes2relation = {
     dub: RDF::Vocab::DC11.contributor,
 }
 
-@parallel_jobs = 2
-@all_src = Source.all.count / 100000
-@limit = @all_src / @parallel_jobs
-
 begin_time = Time.now
 
 pb = ProgressBar.new(Source.count)
 Source.find_in_batches do |batch|
    batch.each do |sid|
-
-#results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs, progress: "RDFing sources") do |jobid|
-#    offset = @limit * jobid
-#    graph = RDF::Graph.new
-
-    #Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
         s = Source.find(sid.id)
         s.marc.load_source false
 
@@ -127,6 +117,8 @@ Source.find_in_batches do |batch|
     #graph
 end
 
+message = "Source exporting started at #{begin_time.to_s}, (#{Time.now - begin_time} seconds run time)"
+
 #puts graph.to_ttl(prefixes: {gnd: GND.to_uri})
 
 PREFIXES = {
@@ -140,14 +132,9 @@ PREFIXES = {
 #w = RDF::Writer.for(:ttl).buffer do |writer|
 RDF::Writer.open("rism.ttl", format: :ttl) do |writer|
     writer.prefixes = PREFIXES
-    #results.each do |g|
-        graph.each_statement do |statement|
-            writer << statement
-        end
+    #graph.each_statement do |statement|
+    #    writer << statement
     #end
+    writer << graph
 end
 #puts w
-
-message = "Source exporting started at #{begin_time.to_s}, (#{Time.now - begin_time} seconds run time)"
-
-
