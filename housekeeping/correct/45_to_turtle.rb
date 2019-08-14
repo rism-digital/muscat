@@ -69,7 +69,6 @@ File.open("rism.ttl", 'w') do |writer|
             s = Source.find(sid.id)
 
             graph = RDF::Graph.new
-            s = Source.find(sid.id)
             s.marc.load_source false
 
             uri = "#{s.id}"
@@ -136,7 +135,7 @@ File.open("rism.ttl", 'w') do |writer|
           
                 next if vals[:p] == "0"
 
-                incipit_id = "#{s.id}-#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
+                incipit_id = "#{s.id}-#{vals[:a]}.#{vals[:b]}.#{vals[:c]}".strip
                 incipit_uri = INCIPIT_URI + incipit_id
 
                 graph << [data_incipit[incipit_id], RDF::Vocab::DC.identifier, incipit_id]
