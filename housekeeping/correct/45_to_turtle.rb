@@ -7,7 +7,7 @@ GND = RDF::Vocabulary.new("https://d-nb.info/standards/elementset/gnd/")
 FOAF = RDF::Vocabulary.new("http://xmlns.com/foaf/0.1/")
 MO = RDF::Vocabulary.new("http://purl.org/ontology/mo/")
 
-graph = RDF::Graph.new
+#graph = RDF::Graph.new
 data = RDF::Vocabulary.new(SOURCES_URI)
 
 
@@ -39,9 +39,12 @@ codes2relation = {
 
 begin_time = Time.now
 
+graphs = []
+
 pb = ProgressBar.new(Source.count)
 Source.find_in_batches do |batch|
    batch.each do |sid|
+        graph = RDF::Graph.new
         s = Source.find(sid.id)
         s.marc.load_source false
 
@@ -113,8 +116,8 @@ Source.find_in_batches do |batch|
 
         pb.increment!
         s = nil
+        graphs << graph
     end
-    #graph
 end
 
 message = "Source exporting started at #{begin_time.to_s}, (#{Time.now - begin_time} seconds run time)"
@@ -134,7 +137,9 @@ RDF::Writer.open("rism.ttl", format: :ttl) do |writer|
     writer.prefixes = PREFIXES
     #graph.each_statement do |statement|
     #    writer << statement
-    #end
-    writer << graph
+    #en
+    graphs.each do |graph|
+        writer << graph
+    end
 end
 #puts w
