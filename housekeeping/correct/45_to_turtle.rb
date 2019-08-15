@@ -125,14 +125,14 @@ File.open("rism.ttl", 'w') do |writer|
             # Now do the incipits
             s.marc.each_by_tag("031") do |t|
 
-                subtags = [:a, :b, :c, :g, :n, :o, :p, :m, :t, :e, :r, :q, :z]
+                subtags = [:a, :b, :c, :d, :g, :n, :o, :p, :m, :t, :e, :r, :q, :z]
                 vals = {}
-                
+
                 subtags.each do |st|
                   v = t.fetch_first_by_tag(st)
                   vals[st] = v && v.content ? v.content.strip : "0"
                 end
-          
+
                 next if vals[:p] == "0"
 
                 incipit_id = "#{s.id}-#{vals[:a].to_i.to_s}.#{vals[:b].to_i.to_s}.#{vals[:c].to_i.to_s}".strip
@@ -150,6 +150,8 @@ File.open("rism.ttl", 'w') do |writer|
                 graph << [data_incipit[incipit_id], PAE.description, vals[:q]]  if vals[:q] != 0
                 graph << [data_incipit[incipit_id], PAE.scoring, vals[:z]]      if vals[:z] != 0
 
+                graph << [data_incipit[incipit_id], MO.movement_number, vals[:b].to_i.to_s]
+                graph << [data_incipit[incipit_id], RDF::Vocab::DC.title, vals[:d]] if vals[:d] != 0
                 graph << [data_incipit[incipit_id], RDF::Vocab::DC.isPartOf, data[s.id]]
             end
 
