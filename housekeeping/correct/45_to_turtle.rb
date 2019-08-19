@@ -168,7 +168,9 @@ File.open("rism.ttl", 'w') do |writer|
 
                 tindex =  RubyTindex.get_text(pae, incipit_id)
                 if tindex && !tindex.empty?
-                    puts tindex.split("\t")
+                    #puts tindex.split("\t")
+                    ##THIS IS HERE FOR TESTING
+                    graph << [data_incipit[incipit_id], PAE.scoring, tindex]
                 end
 
             end
