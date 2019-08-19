@@ -8,35 +8,36 @@ GND = RDF::Vocabulary.new("https://d-nb.info/standards/elementset/gnd/")
 FOAF = RDF::Vocabulary.new("http://xmlns.com/foaf/0.1/")
 MO = RDF::Vocabulary.new("http://purl.org/ontology/mo/")
 PAE = RDF::Vocabulary.new("https://www.iaml.info/plaine-easie-code/")
+MREL = RDF::Vocabulary.new("http://id.loc.gov/vocabulary/relators/")
 
 #graph = RDF::Graph.new
 data = RDF::Vocabulary.new(SOURCES_URI)
 data_incipit = RDF::Vocabulary.new(INCIPIT_URI)
 
 codes2relation = {
-    arr: GND.arranger,
-    asn: RDF::Vocab::DC11.contributor,
-    aut: GND.author,
-    ctb: RDF::Vocab::DC11.contributor,
-    cmp: RDF::Vocab::DC11.contributor,
-    ccp: RDF::Vocab::DC11.contributor,
-    cur: GND.curator,
-    scr: GND.copist,
-    dte: GND.dedicatee,
-    dst: RDF::Vocab::DC11.contributor,
-    edt: GND.editor,
-    egr: GND.engraver,
-    fmo: GND.formerOwner,
-    ill: GND.illustratorOrIlluminator,
-    lbt: GND.librettist,
-    ltg: GND.lithographer,
-    oth: RDF::Vocab::DC11.contributor,
-    prf: RDF::Vocab::DC11.contributor,
-    prt: GND.printer,
-    pbl: RDF::Vocab::DC11.contributor,
-    lyr: RDF::Vocab::DC11.contributor,
-    trl: GND.translator,
-    dub: RDF::Vocab::DC11.contributor,
+    arr: MREL.arr,
+    asn: MREL.asn,
+    aut: MREL.aut,
+    ctb: MREL.ctb,
+    cmp: MREL.cmp,
+    ccp: MREL.ccp,
+    cur: MREL.cur,
+    scr: MREL.scr,
+    dte: MREL.dte,
+    dst: MREL.dst,
+    edt: MREL.edt,
+    egr: MREL.egr,
+    fmo: MREL.fmo,
+    ill: MREL.ill,
+    lbt: MREL.lbt,
+    ltg: MREL.ltg,
+    oth: MREL.oth,
+    prf: MREL.prf,
+    prt: MREL.prt,
+    pbl: MREL.pbl,
+    lyr: MREL.lyr,
+    trl: MREL.trl,
+    dub: MREL.dub,
 }
 
 begin_time = Time.now
@@ -64,7 +65,7 @@ File.open("rism.ttl", 'w') do |writer|
 
     results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs, progress: "Saving sources") do |jobid|
         offset = @limit * jobid
-      
+
         Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
             s = Source.find(sid.id)
 
@@ -125,14 +126,14 @@ File.open("rism.ttl", 'w') do |writer|
             # Now do the incipits
             s.marc.each_by_tag("031") do |t|
 
-                subtags = [:a, :b, :c, :g, :n, :o, :p, :m, :t, :e, :r, :q, :z]
+                subtags = [:a, :b, :c, :d, :g, :n, :o, :p, :m, :t, :e, :r, :q, :z]
                 vals = {}
-                
+
                 subtags.each do |st|
                   v = t.fetch_first_by_tag(st)
                   vals[st] = v && v.content ? v.content.strip : "0"
                 end
-          
+
                 next if vals[:p] == "0"
 
                 incipit_id = "#{s.id}-#{vals[:a].to_i.to_s}.#{vals[:b].to_i.to_s}.#{vals[:c].to_i.to_s}".strip
@@ -150,6 +151,8 @@ File.open("rism.ttl", 'w') do |writer|
                 graph << [data_incipit[incipit_id], PAE.description, vals[:q]]  if vals[:q] != 0
                 graph << [data_incipit[incipit_id], PAE.scoring, vals[:z]]      if vals[:z] != 0
 
+                graph << [data_incipit[incipit_id], MO.movement_number, vals[:b].to_i.to_s]
+                graph << [data_incipit[incipit_id], RDF::Vocab::DC.title, vals[:d]] if vals[:d] != 0
                 graph << [data_incipit[incipit_id], RDF::Vocab::DC.isPartOf, data[s.id]]
             end
 
