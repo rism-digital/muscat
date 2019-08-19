@@ -10,6 +10,7 @@ FOAF = RDF::Vocabulary.new("http://xmlns.com/foaf/0.1/")
 MO = RDF::Vocabulary.new("http://purl.org/ontology/mo/")
 PAE = RDF::Vocabulary.new("https://www.iaml.info/plaine-easie-code/")
 MREL = RDF::Vocabulary.new("http://id.loc.gov/vocabulary/relators/")
+THFDR = RDF::Vocabulary.new("http://www.themefinder.org/help/")
 
 #graph = RDF::Graph.new
 data = RDF::Vocabulary.new(SOURCES_URI)
@@ -164,13 +165,12 @@ File.open("rism.ttl", 'w') do |writer|
                 pae = pae + "@timesig:#{vals[:o]}\n";
                 pae = pae + "@data:#{vals[:p]}\n";
                 pae = pae + "@end:#{incipit_id}\n"
-                #puts pae
 
                 tindex =  RubyTindex.get_text(pae, incipit_id)
                 if tindex && !tindex.empty?
-                    #puts tindex.split("\t")
-                    ##THIS IS HERE FOR TESTING
-                    graph << [data_incipit[incipit_id], PAE.scoring, tindex]
+                    tindex.split("\t").each do |idx|
+                        graph << [data_incipit[incipit_id], THFDR.index, idx]
+                    end
                 end
 
             end
