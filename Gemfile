@@ -145,6 +145,9 @@ gem "rdf-n3"
 gem "rdf-turtle"
 gem "rdf-vocab"
 
+# For Tindex export
+gem "ruby_tindex", git: 'https://github.com/rism-ch/ruby_tindex'
+
 group :test do
   gem "rspec"
   gem 'rspec-rails', '~> 3.5'

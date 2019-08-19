@@ -1,4 +1,5 @@
 require 'progress_bar'
+require 'ruby_tindex'
 include RDF
 
 SOURCES_URI = "http://muscat.rism.info/sources/"
@@ -154,6 +155,22 @@ File.open("rism.ttl", 'w') do |writer|
                 graph << [data_incipit[incipit_id], MO.movement_number, vals[:b].to_i.to_s]
                 graph << [data_incipit[incipit_id], RDF::Vocab::DC.title, vals[:d]] if vals[:d] != 0
                 graph << [data_incipit[incipit_id], RDF::Vocab::DC.isPartOf, data[s.id]]
+
+                # Now add the TINDEX data
+                pae = "@start:#{incipit_id}\n";
+                pae = pae + "@clef:#{vals[:g]}\n";
+                pae = pae + "@keysig:#{vals[:n]}\n";
+                pae = pae + "@key:\n";
+                pae = pae + "@timesig:#{vals[:o]}\n";
+                pae = pae + "@data:#{vals[:p]}\n";
+                pae = pae + "@end:#{incipit_id}\n"
+                #puts pae
+
+                tindex =  RubyTindex.get_text(pae, incipit_id)
+                if tindex && !tindex.empty?
+                    puts tindex.split("\t")
+                end
+
             end
 
             # in a collection
