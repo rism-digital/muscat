@@ -146,8 +146,8 @@ File.open("rism.ttl", 'w') do |writer|
                 graph << [data_incipit[incipit_id], PAE.role, vals[:e]]         if vals[:e] != 0
                 graph << [data_incipit[incipit_id], PAE.text, vals[:t]]         if vals[:t] != 0
                 graph << [data_incipit[incipit_id], PAE.keyOrMode, vals[:r]]    if vals[:r] != 0
-                graph << [data_incipit[incipit_id], PAE.key, vals[:n]]          if vals[:n] != 0
-                graph << [data_incipit[incipit_id], PAE.time, vals[:o]]         if vals[:o] != 0
+                graph << [data_incipit[incipit_id], PAE.keysig, vals[:n]]       if vals[:n] != 0
+                graph << [data_incipit[incipit_id], PAE.timesig, vals[:o]]      if vals[:o] != 0
                 graph << [data_incipit[incipit_id], PAE.clef, vals[:g]]         if vals[:g] != 0
                 graph << [data_incipit[incipit_id], PAE.description, vals[:q]]  if vals[:q] != 0
                 graph << [data_incipit[incipit_id], PAE.scoring, vals[:z]]      if vals[:z] != 0
