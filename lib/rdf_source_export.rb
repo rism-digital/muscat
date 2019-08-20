@@ -58,7 +58,7 @@ class RdfSourceExport
         pae = pae + "@keysig:#{vals[:n]}\n";
         pae = pae + "@key:\n";
         pae = pae + "@timesig:#{vals[:o]}\n";
-        pae = pae + "@@data:#{vals[:p]}\n";
+        pae = pae + "@data:#{vals[:p]}\n";
         pae = pae + "@end:#{incipit_id}\n"
 
         tindex =  RubyTindex.get_text(pae, "unused")
