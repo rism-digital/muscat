@@ -69,7 +69,7 @@ GIT
 
 GIT
   remote: https://github.com/rism-ch/ruby_tindex
-  revision: 0e2b6c4d83b1f9bd6965384eb3f06fed56411ac9
+  revision: c92ab1f78fe550a35d2a7273615bc864b9709a46
   specs:
     ruby_tindex (0.1.0)
       rice
