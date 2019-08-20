@@ -62,9 +62,7 @@ class RdfSourceExport
         pae = pae + "@end:#{incipit_id}\n"
 
         tindex =  RubyTindex.get_text(pae, "unused")
-        puts pae
-        ap tindex
-        #return if !tindex || tindex.empty?
+        return if !tindex || tindex.empty?
 
         tindex.split("\t").each do |idx|
             next if idx.include?("unused")
@@ -107,7 +105,7 @@ class RdfSourceExport
             else
                 puts "Unsecognized start #{idx[0]}".red
             end
-            puts idx
+            
             @graph << [@data_incipit[incipit_id], type, idx.strip]
         end
 
