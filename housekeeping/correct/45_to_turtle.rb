@@ -50,7 +50,8 @@ PREFIXES = {
   dc11: RDF::Vocab::DC11.to_uri,
   mo: MO.to_uri,
   foaf: FOAF.to_uri,
-  pae: PAE.to_uri
+  pae: PAE.to_uri,
+  thfdr: THFDR.to_uri
 }
 
 #RDF::Writer.open("rism.ttl", format: :ttl) do |writer|
@@ -157,6 +158,9 @@ File.open("rism.ttl", 'w') do |writer|
                 graph << [data_incipit[incipit_id], RDF::Vocab::DC.title, vals[:d]] if vals[:d] != 0
                 graph << [data_incipit[incipit_id], RDF::Vocab::DC.isPartOf, data[s.id]]
 
+                # Also add the incipit to the source
+                graph << [data[uri], RDF::Vocab::DC.hasPart, data_incipit[incipit_id]]
+
                 # Now add the TINDEX data
                 pae = "@start:#{incipit_id}\n";
                 pae = pae + "@clef:#{vals[:g]}\n";
@@ -166,10 +170,51 @@ File.open("rism.ttl", 'w') do |writer|
                 pae = pae + "@data:#{vals[:p]}\n";
                 pae = pae + "@end:#{incipit_id}\n"
 
-                tindex =  RubyTindex.get_text(pae, incipit_id)
+                tindex =  RubyTindex.get_text(pae, "unused")
                 if tindex && !tindex.empty?
                     tindex.split("\t").each do |idx|
-                        graph << [data_incipit[incipit_id], THFDR.index, idx]
+                        next if idx.include?("unused")
+                        next if idx.include?("ZC=")
+
+                        type = THFDR.unknown
+
+                        if idx[0] == '@'
+                            type = THFDR.opt1
+                        elsif idx[0] =='#'
+                            type = THFDR.opt2
+                        elsif idx[0] =='{'
+                            type = THFDR.opt3
+                        elsif idx[0] =='~'
+                            type = THFDR.opt4
+                        elsif idx[0] =='`'
+                            type = THFDR.opt5
+                        elsif idx[0] =='%'
+                            type = THFDR.opt6
+                        elsif idx[0] =='M'
+                            type = THFDR.opt7
+                        elsif idx[0] =='J'
+                            type = THFDR.opt8
+                        elsif idx[0] =='j'  
+                            type = THFDR.opt9  
+                        elsif idx[0] =='='
+                            type = THFDR.opt10
+                        elsif idx[0] ==':'
+                            type = THFDR.opt11
+                        elsif idx[0] ==';'
+                            type = THFDR.opt12
+                        elsif idx[0] =='\''
+                            type = THFDR.opt13
+                        elsif idx[0] =='}'
+                            type = THFDR.opt14
+                        elsif idx[0] =='&'
+                            type = THFDR.opt15
+                        elsif idx[0] =='^'
+                            type = THFDR.opt16
+                        else
+                            puts "Unsecognized start #{idx[0]}".red
+                        end
+                        
+                        graph << [data_incipit[incipit_id], type, idx.strip]
                     end
                 end
 
