@@ -16,5 +16,3 @@ File.open("rism.ttl", 'w') do |writer|
         end #batch.each
     end #batch
 end #writer
-
-puts "Source exporting started at #{begin_time.to_s}, (#{Time.now - begin_time} seconds run time)"
