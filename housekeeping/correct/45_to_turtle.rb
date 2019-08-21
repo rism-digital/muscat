@@ -10,9 +10,9 @@ File.open("rism.ttl", 'w') do |writer|
 
         Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
             s = Source.find(sid.id)
-
-            RdfSourceExport.new(s).to_ttl
-
+            s.marc.load_source false
+            writer << RdfSourceExport.new(s).to_ttl
+            s = nil
         end #batch.each
     end #batch
 end #writer
