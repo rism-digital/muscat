@@ -3,8 +3,8 @@ include RDF
 
 class RdfSourceExport
 
-    SOURCES_URI = "http://muscat.rism.info/sources/"
-    INCIPIT_URI = "http://muscat.rism.info/incipits/"
+    SOURCES_URI = "http://demo.muscat-project.org/sources/"
+    INCIPIT_URI = "http://demo.muscat-project.org/incipits/"
 
     GND = RDF::Vocabulary.new("https://d-nb.info/standards/elementset/gnd/")
     FOAF = RDF::Vocabulary.new("http://xmlns.com/foaf/0.1/")
