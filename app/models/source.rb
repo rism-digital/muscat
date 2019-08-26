@@ -30,7 +30,7 @@
 # Database is UTF8 and collation utf8_general_ci which is NOT the strict UTF collation but rather one that
 # is more suitable for english speakers.
 
-
+include RDF
 
 class Source < ApplicationRecord
   
@@ -48,6 +48,7 @@ class Source < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include Template
+  include RdfExportExtension
   resourcify
   
   belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
@@ -166,6 +167,27 @@ class Source < ApplicationRecord
   def reindex
     return if self.suppress_reindex_trigger == true
     self.index
+  end
+
+  rdfable do 
+    prefix :FOAF, "http://xmlns.com/foaf/0.1/"
+    prefix :DC11, RDF::Vocab::DC11.to_uri
+    prefix :DC, RDF::Vocab::DC.to_uri
+    prefix :MO, "http://purl.org/ontology/mo/"
+
+    field :std_title, :DC, :title
+    field :composer, :DC11, :creator
+    field :id, :DC, :identifier
+
+    marc_field "240", :m, :MO, :arrangement_of
+    marc_field "240", :r, :MO, :key
+    marc_field "500", :a, :DC11, :description
+    marc_field "650", :a, :DC, :subject
+    marc_field "300", :a, :DC, :format
+    marc_field "300", :c, :DC, :extent
+
+    marc_field_link "774", :w, :DC, :hasPart
+    
   end
 
   searchable :auto_index => false do |sunspot_dsl|
