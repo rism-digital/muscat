@@ -47,6 +47,18 @@ module RdfExportExtension
       @@exporter.add_prefix name, url
     end
 
+    def incipits(tag)
+      @@exporter.set_marc_incipit_tag(tag)
+    end
+
+    def uri(u)
+      @@exporter.uri = u
+    end
+
+    def incipit_uri(u)
+      @@exporter.incipit_uri = u
+    end
+
     def rdf_exporter
       @@exporter
     end

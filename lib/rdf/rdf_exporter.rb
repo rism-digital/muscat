@@ -10,6 +10,9 @@ class RdfExporter
     attr_reader :marc_code_mappings
     attr_reader :marc_coded_field_mappings
     attr_reader :prefixes
+    attr_reader :marc_incipit_tag
+    attr_accessor :uri
+    attr_accessor :incipit_uri
 
     def initialize(model)
         @prefixes = {}
@@ -19,6 +22,9 @@ class RdfExporter
         @link_mappings = []
         @marc_link_mappings = []
         @marc_coded_field_mappings =[]
+        @marc_incipit_tag = nil
+        @uri = nil
+        @incipit_uri = nil
 
         @model = model
     end
@@ -91,7 +97,13 @@ class RdfExporter
         }
     end
 
+    def set_marc_incipit_tag(tag)
+        @marc_incipit_tag = tag
+    end
+
     def export_one(source_id)
+        Throw "URI unspecified" if !uri
+
         ex = RdfMarcExporter.new(source_id, self)
         ex.export
     end

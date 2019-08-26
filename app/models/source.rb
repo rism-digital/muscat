@@ -169,53 +169,59 @@ class Source < ApplicationRecord
     self.index
   end
 
-  rdfable do 
-    prefix :FOAF, "http://xmlns.com/foaf/0.1/"
-    prefix :DC11, RDF::Vocab::DC11.to_uri
-    prefix :DC, RDF::Vocab::DC.to_uri
-    prefix :MO, "http://purl.org/ontology/mo/"
-    prefix :MREL, "http://id.loc.gov/vocabulary/relators/"
+  rdfable do
+    uri "http://demo.muscat-project.org/sources/"
 
-    field :std_title, :DC, :title
-    field :composer, :DC11, :creator
-    field :id, :DC, :identifier
+    prefix :foaf, "http://xmlns.com/foaf/0.1/"
+    prefix :dc11, RDF::Vocab::DC11.to_uri
+    prefix :dc, RDF::Vocab::DC.to_uri
+    prefix :mo, "http://purl.org/ontology/mo/"
+    prefix :mrel, "http://id.loc.gov/vocabulary/relators/"
 
-    link :source_id, :DC, :isPartOf
+    field :std_title, :dc, :title
+    field :composer, :dc11, :creator
+    field :id, :dc, :identifier
+    field :date_from, :dc, :issued
 
-    marc_field "240", :m, :MO, :arrangement_of
-    marc_field "240", :r, :MO, :key
-    marc_field "500", :a, :DC11, :description
-    marc_field "650", :a, :DC, :subject
-    marc_field "300", :a, :DC, :format
-    marc_field "300", :c, :DC, :extent
+    link :source_id, :dc, :isPartOf
 
-    marc_field_link "774", :w, :DC, :hasPart
+    marc_field "240", :m, :mo, :arrangement_of
+    marc_field "240", :r, :mo, :key
+    marc_field "500", :a, :dc11, :description
+    marc_field "650", :a, :dc, :subject
+    marc_field "300", :a, :dc, :format
+    marc_field "300", :c, :dc, :extent
+
+    marc_field_link "774", :w, :dc, :hasPart
     
     marc_field_coded "700", :a, :"4"
 
-    code_map :arr, :MREL, :arr
-    code_map :asn, :MREL, :asn
-    code_map :aut, :MREL, :aut
-    code_map :ctb, :MREL, :ctb
-    code_map :cmp, :MREL, :cmp
-    code_map :ccp, :MREL, :ccp
-    code_map :cur, :MREL, :cur
-    code_map :scr, :MREL, :scr
-    code_map :dte, :MREL, :dte
-    code_map :dst, :MREL, :dst
-    code_map :edt, :MREL, :edt
-    code_map :egr, :MREL, :egr
-    code_map :fmo, :MREL, :fmo
-    code_map :ill, :MREL, :ill
-    code_map :lbt, :MREL, :lbt
-    code_map :ltg, :MREL, :ltg
-    code_map :oth, :MREL, :oth
-    code_map :prf, :MREL, :prf
-    code_map :prt, :MREL, :prt
-    code_map :pbl, :MREL, :pbl
-    code_map :lyr, :MREL, :lyr
-    code_map :trl, :MREL, :trl
-    code_map :dub, :MREL, :dub
+    incipit_uri "http://demo.muscat-project.org/incipits/"
+    incipits "031"
+
+    code_map :arr, :mrel, :arr
+    code_map :asn, :mrel, :asn
+    code_map :aut, :mrel, :aut
+    code_map :ctb, :mrel, :ctb
+    code_map :cmp, :mrel, :cmp
+    code_map :ccp, :mrel, :ccp
+    code_map :cur, :mrel, :cur
+    code_map :scr, :mrel, :scr
+    code_map :dte, :mrel, :dte
+    code_map :dst, :mrel, :dst
+    code_map :edt, :mrel, :edt
+    code_map :egr, :mrel, :egr
+    code_map :fmo, :mrel, :fmo
+    code_map :ill, :mrel, :ill
+    code_map :lbt, :mrel, :lbt
+    code_map :ltg, :mrel, :ltg
+    code_map :oth, :mrel, :oth
+    code_map :prf, :mrel, :prf
+    code_map :prt, :mrel, :prt
+    code_map :pbl, :mrel, :pbl
+    code_map :lyr, :mrel, :lyr
+    code_map :trl, :mrel, :trl
+    code_map :dub, :mrel, :dub
 
   end
 
