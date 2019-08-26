@@ -238,6 +238,7 @@ class RdfMarcExporter
 
     def create_record_links
         @configuration.link_mappings.each do |mapping|
+            next if !@source[mapping[:field]]
             @graph << [@data[@uri], mapping[:prefix][mapping[:predicate]], @data[@source[mapping[:field]]]]
         end
     end
@@ -253,6 +254,27 @@ class RdfMarcExporter
         end
     end
 
+    def create_marc_coded_fields
+        ap @configuration.marc_coded_field_mappings
+        @configuration.marc_coded_field_mappings.each do |mapping|
+            ap mapping
+            @source.marc.each_by_tag(mapping[:tag]) do |t|
+ap t
+                data_tag = t.fetch_first_by_tag(mapping[:subtag])
+                next if !data_tag || !data_tag.content
+                
+                t.each_by_tag(mapping[:code_subtag]) do |stc|
+                    next if !stc || !stc.content
+
+                    if @configuration.marc_code_mappings.include?(stc.content.to_sym)
+                        @graph << [@data[@uri], @configuration.marc_code_mappings[stc.content.to_sym], data_tag.content]
+                    else
+                        puts "Unknown code #{stc.content}"
+                    end
+                end
+            end
+        end
+    end
 
     def create_link_fields
         @configuration.marc_link_mappings.each do |mapping|
@@ -269,6 +291,7 @@ class RdfMarcExporter
         
         create_record_fields
         create_marc_fields
+        create_marc_coded_fields
         create_link_fields
         create_record_links
 

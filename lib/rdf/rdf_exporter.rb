@@ -7,14 +7,18 @@ class RdfExporter
     attr_reader :field_mappings
     attr_reader :link_mappings
     attr_reader :marc_link_mappings
+    attr_reader :marc_code_mappings
+    attr_reader :marc_coded_field_mappings
     attr_reader :prefixes
 
     def initialize(model)
-        @prefixes = Hash.new
+        @prefixes = {}
+        @marc_code_mappings = {}
         @marc_mappings = []
         @field_mappings = []
         @link_mappings = []
         @marc_link_mappings = []
+        @marc_coded_field_mappings =[]
 
         @model = model
     end
@@ -26,6 +30,13 @@ class RdfExporter
         @prefixes[name] = prefix
     end
 
+    def add_code_mapping(code, prefix, predicate)
+        throw "Undeclared prefix #{prefix}" if !@prefixes.keys.include?(prefix)
+
+        @marc_code_mappings[code] = @prefixes[prefix][predicate]
+
+    end
+
     def add_marc_mapping(marc_tag, marc_subtag, prefix, predicate)
         throw "Undeclared prefix #{prefix}" if !@prefixes.keys.include?(prefix)
 
@@ -34,6 +45,16 @@ class RdfExporter
             subtag: marc_subtag,
             prefix: @prefixes[prefix],
             predicate: predicate
+        }
+
+    end
+
+    def add_marc_coded_field_mapping(marc_tag, marc_subtag, code_subtag)
+
+        @marc_coded_field_mappings << {
+            tag: marc_tag,
+            subtag: marc_subtag,
+            code_subtag: code_subtag
         }
 
     end

@@ -174,10 +174,13 @@ class Source < ApplicationRecord
     prefix :DC11, RDF::Vocab::DC11.to_uri
     prefix :DC, RDF::Vocab::DC.to_uri
     prefix :MO, "http://purl.org/ontology/mo/"
+    prefix :MREL, "http://id.loc.gov/vocabulary/relators/"
 
     field :std_title, :DC, :title
     field :composer, :DC11, :creator
     field :id, :DC, :identifier
+
+    link :source_id, :DC, :isPartOf
 
     marc_field "240", :m, :MO, :arrangement_of
     marc_field "240", :r, :MO, :key
@@ -188,6 +191,32 @@ class Source < ApplicationRecord
 
     marc_field_link "774", :w, :DC, :hasPart
     
+    marc_field_coded "700", :a, :"4"
+
+    code_map :arr, :MREL, :arr
+    code_map :asn, :MREL, :asn
+    code_map :aut, :MREL, :aut
+    code_map :ctb, :MREL, :ctb
+    code_map :cmp, :MREL, :cmp
+    code_map :ccp, :MREL, :ccp
+    code_map :cur, :MREL, :cur
+    code_map :scr, :MREL, :scr
+    code_map :dte, :MREL, :dte
+    code_map :dst, :MREL, :dst
+    code_map :edt, :MREL, :edt
+    code_map :egr, :MREL, :egr
+    code_map :fmo, :MREL, :fmo
+    code_map :ill, :MREL, :ill
+    code_map :lbt, :MREL, :lbt
+    code_map :ltg, :MREL, :ltg
+    code_map :oth, :MREL, :oth
+    code_map :prf, :MREL, :prf
+    code_map :prt, :MREL, :prt
+    code_map :pbl, :MREL, :pbl
+    code_map :lyr, :MREL, :lyr
+    code_map :trl, :MREL, :trl
+    code_map :dub, :MREL, :dub
+
   end
 
   searchable :auto_index => false do |sunspot_dsl|
