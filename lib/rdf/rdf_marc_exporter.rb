@@ -18,39 +18,6 @@ class RdfMarcExporter
     SOURCES_URI = "http://demo.muscat-project.org/sources/"
     INCIPIT_URI = "http://demo.muscat-project.org/incipits/"
 
-    GND = RDF::Vocabulary.new("https://d-nb.info/standards/elementset/gnd/")
-    FOAF = RDF::Vocabulary.new("http://xmlns.com/foaf/0.1/")
-    MO = RDF::Vocabulary.new("http://purl.org/ontology/mo/")
-    PAE = RDF::Vocabulary.new("https://www.iaml.info/plaine-easie-code/")
-    MREL = RDF::Vocabulary.new("http://id.loc.gov/vocabulary/relators/")
-    THFDR = RDF::Vocabulary.new("http://www.themefinder.org/help/")
-
-    CODES2RELATION = {
-        arr: MREL.arr,
-        asn: MREL.asn,
-        aut: MREL.aut,
-        ctb: MREL.ctb,
-        cmp: MREL.cmp,
-        ccp: MREL.ccp,
-        cur: MREL.cur,
-        scr: MREL.scr,
-        dte: MREL.dte,
-        dst: MREL.dst,
-        edt: MREL.edt,
-        egr: MREL.egr,
-        fmo: MREL.fmo,
-        ill: MREL.ill,
-        lbt: MREL.lbt,
-        ltg: MREL.ltg,
-        oth: MREL.oth,
-        prf: MREL.prf,
-        prt: MREL.prt,
-        pbl: MREL.pbl,
-        lyr: MREL.lyr,
-        trl: MREL.trl,
-        dub: MREL.dub,
-    }
-
     def incipit_tindex(vals, incipit_id)
         # Now add the TINDEX @data
         pae = "@start:#{incipit_id}\n";
@@ -149,50 +116,6 @@ class RdfMarcExporter
     end
 
     def export_marc_tags()
-        #there should be just 1...
-        @source.marc.each_by_tag("240") do |t|
-            scoring = t.fetch_first_by_tag("m")
-            @graph << [@data[@uri], MO.arrangement_of, scoring.content] if scoring && scoring.content
-
-            key = t.fetch_first_by_tag("r")
-            @graph << [@data[@uri], MO.key, key.content] if key && key.content
-        end
-
-        @source.marc.each_by_tag("700") do |t|
-            name = t.fetch_first_by_tag("a")
-            code = t.fetch_first_by_tag("4")
-            if name && name.content
-                if code && code.content
-                    if !CODES2RELATION.include?(code.content.to_sym)
-                        ap code.content
-                        next
-                    end
-                    @graph << [@data[@uri], CODES2RELATION[code.content.to_sym], name.content]
-                else
-                    @graph << [@data[@uri], RDF::Vocab::DC11.contributor, name.content]
-                end
-            end
-        end
-
-        @source.marc.each_by_tag("500") do |t|
-            name = t.fetch_first_by_tag("a").content
-            @graph << [@data[@uri], RDF::Vocab::DC11.description, name]
-        end
-
-        @source.marc.each_by_tag("650") do |t|
-            name = t.fetch_first_by_tag("a").content
-            @graph << [@data[@uri], RDF::Vocab::DC.subject, name]
-        end
-
-        @source.marc.each_by_tag("300") do |t|
-            t.each_by_tag("a") do |st|
-                @graph << [@data[@uri], RDF::Vocab::DC.extent, st.content]
-            end
-
-            t.each_by_tag("c") do |st|
-                @graph << [@data[@uri], RDF::Vocab::DC.format, st.content]
-            end
-        end
 
         # Now do the incipits
         @source.marc.each_by_tag("031") do |t|
@@ -200,38 +123,9 @@ class RdfMarcExporter
         end
     end
 
-    def to_ttl()
-        @graph << [@data[@uri], RDF::Vocab::DC.title, @source.std_title]
-        @graph << [@data[@uri], RDF::Vocab::DC11.creator, @source.composer]
-        @graph << [@data[@uri], RDF::Vocab::DC.identifier, @source.id]
-
-        # Export all the marc tags
-        export_marc_tags
-
-        # in a collection
-        if @source.source_id
-            @graph << [@data[@uri], RDF::Vocab::DC.isPartOf, @data[@source.source_id]]
-        end
-
-        # a collection
-        @source.marc.each_by_tag("774") do |t|
-            t.each_by_tag("w") do |st|
-                @graph << [@data[@uri], RDF::Vocab::DC.hasPart, @data[st.content]]
-            end
-        end
-
-        @graph << [@data[@uri], RDF::Vocab::DC.issued, @source.date_from] if @source.date_from
-        @graph << [@data[@uri], RDF::Vocab::DC.issued, @source.date_to] if !@source.date_from && @source.date_to
-
-        out = RDF::Writer.for(:ttl).buffer do |w|
-            w.prefixes = PREFIXES
-            w << @graph
-        end
-        return out
-    end
-
     def create_record_fields
         @configuration.field_mappings.each do |mapping|
+            next if !@source[mapping[:field]]
             @graph << [@data[@uri], mapping[:prefix][mapping[:predicate]], @source[mapping[:field]]]
         end
     end
@@ -255,11 +149,8 @@ class RdfMarcExporter
     end
 
     def create_marc_coded_fields
-        ap @configuration.marc_coded_field_mappings
         @configuration.marc_coded_field_mappings.each do |mapping|
-            ap mapping
             @source.marc.each_by_tag(mapping[:tag]) do |t|
-ap t
                 data_tag = t.fetch_first_by_tag(mapping[:subtag])
                 next if !data_tag || !data_tag.content
                 
