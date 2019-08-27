@@ -86,9 +86,8 @@ class RdfIncipitExporter
 
             return if vals[:p] == "0"
 
-            incipit_id = "#{source.id}-#{vals[:a].to_i.to_s}.#{vals[:b].to_i.to_s}.#{vals[:c].to_i.to_s}".strip
-            incipit_uri = @uri + incipit_id
-
+            incipit_id = "#{source.id}\#incipit-#{vals[:a].to_i.to_s}.#{vals[:b].to_i.to_s}.#{vals[:c].to_i.to_s}".strip
+           
             @graph << [@data_incipit[incipit_id], RDF::Vocab::DC.identifier, incipit_id]
             @graph << [@data_incipit[incipit_id], PAE.incipit, vals[:p]]
 

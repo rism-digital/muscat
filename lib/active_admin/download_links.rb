@@ -11,7 +11,7 @@ module ActiveAdmin
     alias_method :"old_restrict_format_access!", :"restrict_format_access!"
     
     def restrict_format_access!
-      if action_name = "show" && request.format.xml?
+      if action_name = "show" && (request.format.xml? || request.format.ttl?)
         true
       else
         old_restrict_format_access!

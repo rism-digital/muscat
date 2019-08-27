@@ -170,7 +170,7 @@ class Source < ApplicationRecord
   end
 
   rdfable do
-    uri "http://demo.muscat-project.org/sources/"
+    uri "http://dev.muscat-project.org/sources/"
 
     prefix :foaf, "http://xmlns.com/foaf/0.1/"
     prefix :dc11, RDF::Vocab::DC11.to_uri
@@ -196,7 +196,7 @@ class Source < ApplicationRecord
     
     marc_field_coded "700", :a, :"4"
 
-    incipit_uri "http://demo.muscat-project.org/incipits/"
+    incipit_uri "http://dev.muscat-project.org/sources/"
     incipits "031"
 
     code_map :arr, :mrel, :arr
