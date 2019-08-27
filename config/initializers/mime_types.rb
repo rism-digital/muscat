@@ -5,3 +5,4 @@
 
 Mime::Type.register "application/marcxml+xml", :marcxml
 Mime::Type.register "application/x-turtle", :ttl
+Mime::Type.register "text/plain", :txt
