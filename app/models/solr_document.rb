@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 require 'blacklight/marcxml.rb'
+require 'blacklight/marctxt.rb'
 
 class SolrDocument
 
@@ -22,6 +23,7 @@ class SolrDocument
   use_extension( Blacklight::Document::DublinCore)
   
   use_extension( Muscat::Blacklight::MarcXML ) 
+  use_extension( Muscat::Blacklight::MarcTXT ) 
 
   #self.unique_key = 'std_title_texts'
 
