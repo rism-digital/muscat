@@ -51,7 +51,7 @@ en:
       filters: "Filters"
       sections: "Sections and actions"
       actions: "Actions"
-      toc: "Table of content"
+      toc: "Table of contents"
     pagination:
       empty: "No %{model} found"
       one: "Displaying <b>1</b> %{model}"

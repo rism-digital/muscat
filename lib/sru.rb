@@ -14,7 +14,7 @@ module Sru
   class Query
     NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim"}
     PARAMS = ["query", :query, "maximumRecords", "operation", :operation, "version", "startRecord", 
-            "maximumTerms", "responsePosition", "scanClause", "controller", "action", "recordSchema"]
+            "maximumTerms", "responsePosition", "scanClause", "controller", "action", "recordSchema", "x-action"]
     
     attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code, :schema, :scan, :version
 
@@ -37,7 +37,14 @@ module Sru
       end
       @maximumRecords=params.fetch(:maximumRecords, 10).to_i rescue 10
       if @maximumRecords.instance_of?(Integer) && @maximumRecords > sru_config['server']['maximumRecords']
-        @error_code = {:code => 60, :message => "Result set not created: too many matching records (code 60): MaximumRecords is limited to #{sru_config['server']['maximumRecords']} records"}
+        if params['x-action']
+          # To prevent backdoor download
+          if @maximumRecords > 2000
+            @error_code = {:code => 60, :message => "Result set not created: too many matching records (code 60): MaximumRecords is limited to 2000"}
+          end
+        else
+          @error_code = {:code => 60, :message => "Result set not created: too many matching records (code 60): MaximumRecords is limited to #{sru_config['server']['maximumRecords']} records"}
+        end
       end
       @offset = params.fetch("startRecord", 1).to_i rescue 1
       @error_code = self._check if !@error_code
