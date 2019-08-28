@@ -1793,10 +1793,10 @@ doc_record_status:
         en: Note about external resource
     u: 
       label: 
-        it: Risorsa esterna
-        fr: Ressource externe
-        de: Uniform Resource Identifier
-        en: External resource
+        it: Risorsa esterna URL
+        fr: Ressource externe URL
+        de: Uniform Resource Identifier URL
+        en: External resource URL
     x: 
       label: 
         it: Tipo di collegamento
