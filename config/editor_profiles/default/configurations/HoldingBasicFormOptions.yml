@@ -144,6 +144,7 @@
       - prf
       - bsl
       - evp
+      - oth
 "852": 
   allow_new: true
   new_window: institutions
