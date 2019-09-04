@@ -22,12 +22,10 @@
 <%- end %>
 </dl>
 
-<% unless @item.record_type == 11 %>
 <div style="height: 20px;" class="ui-corner-all">
 	<div style="float:right;" class="abuttonset abuttonset-multi">
 		<a class="abutton ui-state-default abutton-icon-left ui-corner-all" href="#" data-group-button="add" title="Add group"><span class="ui-icon ui-icon-plus"></span>Add a group</a>
 	</div>
 </div>
-<% end %>
 <%= render :partial => "editor/group_by_subfield_placeholders", :locals => { :tag_names => tag_names } %>
 
