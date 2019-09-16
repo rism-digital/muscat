@@ -110,14 +110,11 @@ class MarcNode
   def find_or_new_foreign_object_by_foreign_field(class_name, field_name, search_value)
     new_foreign_object = nil
     if foreign_class = get_class(class_name)
-      $stderr.puts "DEBUG find_or_new_foreign_object_by_foreign_field #{class_name} #{field_name} #{search_value}".yellow
       new_foreign_object = foreign_class.send("find_by_" + field_name, search_value)
       if !new_foreign_object
-        $stderr.puts "DEBUG find_or_new_foreign_object_by_foreign_field NOT FOUND".red
-        return nil
-        #new_foreign_object = foreign_class.new
-        #new_foreign_object.send("#{field_name}=", search_value)
-        #new_foreign_object.send("wf_stage=", 'published')
+        new_foreign_object = foreign_class.new
+        new_foreign_object.send("#{field_name}=", search_value)
+        new_foreign_object.send("wf_stage=", 'published')
       end
     end
     return new_foreign_object
@@ -128,7 +125,6 @@ class MarcNode
   def find_or_new_foreign_object_by_all_foreign_fields(class_name, tag, nmasters)
     new_foreign_object = nil
     if foreign_class = get_class(class_name)
-      $stderr.puts "DEBUG find_or_new_foreign_object_by_all_foreign_fields #{class_name} #{tag} #{nmasters.to_s}".green
       conditions = Hash.new
       # put all the fields into a condition hash
       nmasters.each do |nmaster|
@@ -136,12 +132,9 @@ class MarcNode
       end
       new_foreign_object = foreign_class.send("where", conditions).first
       if !new_foreign_object
-        $stderr.puts "DEBUG find_or_new_foreign_object_by_all_foreign_fields CREATE #{class_name} #{tag} #{nmasters.to_s}".red.underline
-        
         new_foreign_object = foreign_class.new
         new_foreign_object.send("wf_stage=", 'published')
       end
-      $stderr.puts "DEBUG find_or_new_foreign_object_by_all_foreign_fields FOUND #{new_foreign_object.id}".green.underline
     end
     return new_foreign_object
   end
@@ -233,11 +226,6 @@ class MarcNode
         if master
           master_field = @marc_configuration.get_foreign_field(tag, master.tag)
           self.foreign_object = find_or_new_foreign_object_by_foreign_field(@marc_configuration.get_foreign_class(tag, master.tag), master_field, master.looked_up_content)
-          if !self.foreign_object
-            master_tag = @marc_configuration.get_master( self.tag )
-            #add_master = true
-            self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters )
-          end
         # If we have no master subfiled but master is actually empty "" (e.g. 004) with holding records
         elsif !master && @marc_configuration.get_master( self.tag ) == ""
           add_db_master = false
