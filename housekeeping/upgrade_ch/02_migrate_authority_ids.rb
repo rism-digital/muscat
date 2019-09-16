@@ -130,7 +130,7 @@ Source.all.each do |orig_source|
     chmarc.each_by_tag("240") do |t|
         id = fetch_single_subtag(t, "0")
         if old_240_ids.include?(id)
-            puts "690 replace #{id} with #{old_240_ids[id]}".green
+            puts "240 replace #{id} with #{old_240_ids[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", old_240_ids[id])
             mod = true
