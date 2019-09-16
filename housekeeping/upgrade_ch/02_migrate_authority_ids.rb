@@ -80,7 +80,7 @@ Source.all.each do |orig_source|
     chmarc.each_by_tag("100") do |t|
         id = fetch_single_subtag(t, "0")
         if old_person_ids.include?(id)
-            puts "100 replace #{id} with #{old_person_ids[id]}".green
+            #puts "100 replace #{id} with #{old_person_ids[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", old_person_ids[id])
             mod = true
@@ -90,7 +90,7 @@ Source.all.each do |orig_source|
     chmarc.each_by_tag("700") do |t|
         id = fetch_single_subtag(t, "0")
         if old_person_ids.include?(id)
-            puts "700 replace #{id} with #{old_person_ids[id]}".green
+            #puts "700 replace #{id} with #{old_person_ids[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", old_person_ids[id])
             mod = true
@@ -100,7 +100,7 @@ Source.all.each do |orig_source|
     chmarc.each_by_tag("650") do |t|
         id = fetch_single_subtag(t, "0")
         if old_650_ids.include?(id)
-            puts "650 replace #{id} with #{old_650_ids[id]}".green
+            #puts "650 replace #{id} with #{old_650_ids[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", old_650_ids[id])
             mod = true
@@ -110,7 +110,7 @@ Source.all.each do |orig_source|
     chmarc.each_by_tag("657") do |t|
         id = fetch_single_subtag(t, "0")
         if old_657_ids.include?(id)
-            puts "657 replace #{id} with #{old_657_ids[id]}".green
+            #puts "657 replace #{id} with #{old_657_ids[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", old_657_ids[id])
             mod = true
@@ -120,7 +120,17 @@ Source.all.each do |orig_source|
     chmarc.each_by_tag("690") do |t|
         id = fetch_single_subtag(t, "0")
         if old_690_ids.include?(id)
-            puts "690 replace #{id} with #{old_690_ids[id]}".green
+            #puts "690 replace #{id} with #{old_690_ids[id]}".green
+            delete_single_subtag(t, "a")
+            replace_single_subtag(t, "0", old_690_ids[id])
+            mod = true
+        end
+    end
+
+    chmarc.each_by_tag("691") do |t|
+        id = fetch_single_subtag(t, "0")
+        if old_690_ids.include?(id)
+            #puts "690 replace #{id} with #{old_690_ids[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", old_690_ids[id])
             mod = true
@@ -130,7 +140,7 @@ Source.all.each do |orig_source|
     chmarc.each_by_tag("240") do |t|
         id = fetch_single_subtag(t, "0")
         if old_240_ids.include?(id)
-            puts "240 replace #{id} with #{old_240_ids[id]}".green
+            #puts "240 replace #{id} with #{old_240_ids[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", old_240_ids[id])
             mod = true

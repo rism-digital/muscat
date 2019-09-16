@@ -92,7 +92,6 @@ module ForeignLinks
       relation.delete(remove_items)
       new_items.each do |ni|
        # begin
-			 puts ni
           relation << ni
 					#rescue => e
           #$stderr.puts
