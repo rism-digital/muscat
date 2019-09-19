@@ -1,5 +1,8 @@
 require 'net/http'
 
+# Dump the sources table with this command:
+# mysqldump -n -t -u rism -p muscat_development sources > mod_sources.sql
+
 def fetch_single_subtag(marctag, subtag)
     st = marctag.fetch_first_by_tag(subtag)
     if st && st.content
@@ -59,6 +62,12 @@ old_240_ids = {}
 # Format is BM id, CH id
 CSV.foreach("housekeeping/upgrade_ch/changed_240.tsv", col_sep: "\t") do |r|
     old_240_ids[r[2].to_i] = r[0].to_i
+end
+
+old_651_ids = {}
+# Format is BM id, CH id
+CSV.foreach("housekeeping/upgrade_ch/changed_651.tsv", col_sep: "\t") do |r|
+    old_651_ids[r[2].to_i] = r[0].to_i
 end
 
 URL = "http://dev.muscat-project.org/catalog/"
@@ -123,6 +132,16 @@ Source.all.each do |orig_source|
             #puts "690 replace #{id} with #{old_690_ids[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", old_690_ids[id])
+            mod = true
+        end
+    end
+
+    chmarc.each_by_tag("651") do |t|
+        id = fetch_single_subtag(t, "0")
+        if old_651_ids.include?(id)
+            puts "651 replace #{id} with #{old_651_ids[id]}".green
+            delete_single_subtag(t, "a")
+            replace_single_subtag(t, "0", old_651_ids[id])
             mod = true
         end
     end
