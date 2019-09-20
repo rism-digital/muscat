@@ -30,7 +30,7 @@ def remove_marc_tag(marc, tag)
     marc.by_tags(tag).each {|t| t.destroy_yourself}
 end
 
-puts "Loading new ids"
+print "Loading new ids "
 new_person_ids = {}
 old_person_ids = {}
 CSV.foreach("housekeeping/upgrade_ch/people_newids.csv") do |r|
@@ -38,37 +38,48 @@ CSV.foreach("housekeeping/upgrade_ch/people_newids.csv") do |r|
     new_person_ids[r[1].to_i] = r[0].to_i
     old_person_ids[r[0].to_i] = r[1].to_i
 end
-puts "done"
+print "."
 
 old_650_ids = {}
 # Format is BM id, CH id
 CSV.foreach("housekeeping/upgrade_ch/changed_650.tsv", col_sep: "\t") do |r|
     old_650_ids[r[2].to_i] = r[0].to_i
 end
+print "."
 
 old_657_ids = {}
 # Format is BM id, CH id
 CSV.foreach("housekeeping/upgrade_ch/changed_657.tsv", col_sep: "\t") do |r|
     old_657_ids[r[2].to_i] = r[0].to_i
 end
+print "."
 
 old_690_ids = {}
 # Format is BM id, CH id
 CSV.foreach("housekeeping/upgrade_ch/changed_690.tsv", col_sep: "\t") do |r|
     old_690_ids[r[2].to_i] = r[0].to_i
 end
+print "."
 
 old_240_ids = {}
 # Format is BM id, CH id
 CSV.foreach("housekeeping/upgrade_ch/changed_240.tsv", col_sep: "\t") do |r|
     old_240_ids[r[2].to_i] = r[0].to_i
 end
+print "."
 
 old_651_ids = {}
 # Format is BM id, CH id
 CSV.foreach("housekeeping/upgrade_ch/changed_651.tsv", col_sep: "\t") do |r|
     old_651_ids[r[2].to_i] = r[0].to_i
 end
+print "."
+
+# Just one!
+# 30000010	CH-MÜ	50000010	CH-MÜ
+old_852_ids = {50000010 => 30000010}
+print "."
+puts " done."
 
 URL = "http://dev.muscat-project.org/catalog/"
 
@@ -162,6 +173,16 @@ Source.all.each do |orig_source|
             #puts "240 replace #{id} with #{old_240_ids[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", old_240_ids[id])
+            mod = true
+        end
+    end
+
+    chmarc.each_by_tag("852") do |t|
+        id = fetch_single_subtag(t, "x")
+        if old_852_ids.include?(id)
+            #puts "240 replace #{id} with #{old_240_ids[id]}".green
+            delete_single_subtag(t, "a")
+            replace_single_subtag(t, "0", old_852_ids[id])
             mod = true
         end
     end
