@@ -77,7 +77,8 @@ print "."
 
 # Just one!
 # 30000010	CH-MÜ	50000010	CH-MÜ
-old_852_ids = {50000010 => 30000010}
+# 50006835 => 30079405 is CH-FI, which did not show up?
+old_852_ids = {50000010 => 30000010, 50006835 => 30079405}
 print "."
 puts " done."
 
