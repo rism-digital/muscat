@@ -114,6 +114,7 @@ def migrate_source(orig_source)
         if @old_650_ids.include?(id)
             #puts "650 replace #{id} with #{@old_650_ids[id]}".green
             delete_single_subtag(t, "a")
+            delete_single_subtag(t, "2") #remove $2CH-BeSRO
             replace_single_subtag(t, "0", @old_650_ids[id])
             mod = true
         end
@@ -174,7 +175,8 @@ def migrate_source(orig_source)
         if @old_852_ids.include?(id)
             #puts "852 replace #{id} with #{@old_852_ids[id]}".green
             delete_single_subtag(t, "a")
-            replace_single_subtag(t, "0", @old_852_ids[id])
+            delete_single_subtag(t, "0")
+            replace_single_subtag(t, "x", @old_852_ids[id])
             mod = true
         end
     end
