@@ -172,7 +172,7 @@ def migrate_source(orig_source)
     chmarc.each_by_tag("852") do |t|
         id = fetch_single_subtag(t, "x")
         if @old_852_ids.include?(id)
-            puts "852 replace #{id} with #{@old_240_ids[id]}".green
+            #puts "852 replace #{id} with #{@old_852_ids[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", @old_852_ids[id])
             mod = true
@@ -204,13 +204,16 @@ def migrate_source(orig_source)
 end
 
 
-#pb = ProgressBar.new(Source.count)
+pb = ProgressBar.new(Source.count)
 
 # Non parallel version
-#Source.all.each do |orig_source|
-#    migrate_source(orig_source)
-#end
+Source.all.each do |orig_source|
+    migrate_source(orig_source)
+    orig_source = nil
+    pb.increment!
+end
 
+=begin
 @parallel_jobs = 10
 @all_src = Source.all.count
 @limit = @all_src / @parallel_jobs
@@ -226,3 +229,4 @@ results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs, progress
     s = nil
   end
 end
+=end
