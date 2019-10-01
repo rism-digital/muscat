@@ -69,14 +69,19 @@ module Template
     end
   end
 
-  # Restore a backup tag from 599; probably never used due to template incompatibility
-  def restore_tags
+  # Restore a backup tag from 599; checks target template tags before
+  def restore_tags(rt)
+    tags = template_tags(rt) 
     marc.by_tags("599").each do |t|
       new_content = t.fetch_first_by_tag("a").content
       if new_content =~ /=[0-9]{3}\s{2}/
         tag, content = new_content.split("  ")
-        marc.parse_marc21(tag[1..4], content)
-        t.destroy_yourself
+        unless tags.include?(tag[1..4])
+          next 
+        else
+          marc.parse_marc21(tag[1..4], content)
+          t.destroy_yourself
+        end
       end
     end
     self.save
@@ -91,6 +96,9 @@ module Template
         backup_tag(e)
       end
     end
+    restore_tags(rt)
+
+    #self.restore_tags
     self.record_type = rt
     self.save
   end

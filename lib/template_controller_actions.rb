@@ -13,8 +13,7 @@ module TemplateControllerActions
         sources.each do |source|
           source.change_template_to(target_template)
         end
-
-        redirect_to collection_path#, :notice => I18n.t(:success, scope: :folders, name: inputs[:name], count: results.count)
+        redirect_to collection_path
     end
      
   end
