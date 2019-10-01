@@ -165,3 +165,7 @@ body.active_admin {
 		list-style-type: circle;
 	}
 }
+
+select[name="target_template"] { 
+  width: 280px;
+}

@@ -83,6 +83,7 @@ en:
         folder: "Create folder with items"
         add_to_folder: "Add items to existing folder"
         merge: "Merge authority records"
+        change_template: "Change template"
 
     comments:
       resource_type: "Resource Type"
