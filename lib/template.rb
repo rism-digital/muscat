@@ -51,54 +51,57 @@ module Template
     end
   end
 
-  # Move a holding record back to the parent
-  # needs high caution
-  # TODO
+  # Move a holding record back to the parent with 852
   def move_holding_to_852
-  end
-
-  # In case there is no target tag, the tag should be traversed to 599$ as raw string
-  def backup_tag(tag)
-    marc.by_tags(tag).each do |t|
-      new_599 = MarcNode.new(Source, "599", "", "4#")
-      ip = marc.get_insert_position("599")
-      new_599.add(MarcNode.new(Source, "a", "#{t.to_s.strip}", nil))
-      new_599.sort_alphabetically
-      marc.root.children.insert(ip, new_599)
-      t.destroy_yourself
+    holdings.each do |holding|
+      new_852 = holding.marc.first_occurance("852").deep_copy
+      marc.root.add_at(new_852, marc.get_insert_position("852") )
+      holding.destroy
     end
   end
 
-  # Restore a backup tag from 599; checks target template tags before
+  # Restore tags from previous template in versions
   def restore_tags(rt)
-    tags = template_tags(rt) 
-    marc.by_tags("599").each do |t|
-      new_content = t.fetch_first_by_tag("a").content
-      if new_content =~ /=[0-9]{3}\s{2}/
-        tag, content = new_content.split("  ")
-        unless tags.include?(tag[1..4])
-          next 
-        else
-          marc.parse_marc21(tag[1..4], content)
-          t.destroy_yourself
+    restore_version = nil
+    latest_versions = self.versions.order(created_at: :desc)
+    latest_versions.each do |v|
+      s = v.reify
+      if s.record_type == rt
+        restore_version = v.reify
+        break
+      end
+    end
+    if restore_version
+      restore_version.template_difference(self.record_type).each do |tag|
+        next if self.marc.has_tag?(tag)
+        restore_version.marc.by_tags(tag).each do |t|
+          new_tag = t.deep_copy
+          marc.root.add_at(new_tag, marc.get_insert_position(tag) )
+        end
+        if tag == "852" && marc.has_tag?("852") && holdings.first
+          holdings.first.destroy
         end
       end
     end
-    self.save
+    if !marc.has_tag?("852") && holdings.first && template_tags(rt).include?("852")
+      move_holding_to_852
+    end
   end
 
-  # Moving tags which are not part of the target template to a holding or to 599 as temp storage
+  # Change source template to new record_type
   def change_template_to(rt)
+    return if rt == self.record_type
+    self.paper_trail.save_with_version if versions.empty?
     template_difference(rt).each do |e|
       if e == '852'
         create_holding
       else
-        backup_tag(e)
+        marc.by_tags(e).each do |t|
+          t.destroy_yourself
+        end
       end
     end
     restore_tags(rt)
-
-    #self.restore_tags
     self.record_type = rt
     self.save
   end
