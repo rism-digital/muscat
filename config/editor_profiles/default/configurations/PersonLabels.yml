@@ -688,6 +688,12 @@ wr:
     fr: "France"
     de: "France"
     en: "France"
+"XB-GE":
+  label:
+    it: "Georgien"
+    fr: "Georgia"
+    de: "Georgia"
+    en: "Georgia"
 "XA-DE":
   label:
     it: "Germany"
