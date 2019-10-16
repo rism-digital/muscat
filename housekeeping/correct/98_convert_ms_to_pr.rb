@@ -27,7 +27,7 @@ def insert_single_marc_tag(marc, tag, subtag, value)
     new_tag = MarcNode.new("source", tag, "", "##")
     new_tag.add_at(MarcNode.new("source", subtag, value, nil), 0)
     new_tag.sort_alphabetically
-    marc.root.children.insert(s.marc.get_insert_position(tag), new_tag)
+    marc.root.children.insert(marc.get_insert_position(tag), new_tag)
 end
 
 def count_marc_tag(marc, tag)
@@ -54,10 +54,36 @@ def copy_tag(marc, new_marc, tag, new_tag_name = nil)
     end
 end
 
-def create_holding(row, source, marc)    
-    holding = Holding.new
-    new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
-    new_marc.load_source false
+def create_holding(row, source, marc, replace = nil, old_siglum = nil)
+    holding = nil
+    new_marc = nil
+
+    if replace
+        # A holding already exists, just get that one
+        holdings = Holding.where(source_id: replace, lib_siglum: old_siglum)
+        if holdings.count == 0
+            puts "No holding found for #{replace} and #{old_siglum}".red
+            replace = false # Just add one
+        elsif holdings.count > 1
+            puts "Multiple holdings found for #{replace} and #{old_siglum}".red
+            return
+        else
+
+            holding = holdings.first
+            new_marc = holding.marc
+            new_marc.load_source false
+
+            puts "Found holding #{holding.id} for #{replace} and #{old_siglum}".yellow
+        end
+    end
+
+    if !replace
+        holding = Holding.new
+        new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
+        new_marc.load_source false
+    else
+
+    end
 
     # Kill old 852s
     new_marc.each_by_tag("852") {|t2| t2.destroy_yourself}
@@ -75,7 +101,7 @@ def create_holding(row, source, marc)
     copy_tag(marc, new_marc, "700")
     copy_tag(marc, new_marc, "710")
     ## !!!!!! check
-    copy_tag(marc, new_marc, "773", "973")
+    ##copy_tag(marc, new_marc, "773", "973")
 
     copy_tag(marc, new_marc, "852")
     copy_tag(marc, new_marc, "856")
@@ -116,11 +142,13 @@ def create_holding(row, source, marc)
 
 end
 
-def tag_migrate_collection(row, source, marc)
+def tag_migrate_collection_and_sigle_item(row, source, marc)
     rename_marc_tag(marc, "598", "594")
     remove_marc_tag(marc, "852")
 end
 
+=begin
+NOT USED, for edition_content
 def tag_migrate_ms(row, source, marc)
     remove_marc_tag(marc, "506")
     remove_marc_tag(marc, "525")
@@ -137,18 +165,14 @@ def tag_migrate_ms(row, source, marc)
 
     rename_marc_tag(marc, "598", "594")
 end
+=end
 
 def migrate(row, s)
 
     create_holding(row, source, marc)
 
-    if s.record_type == 1
-        tag_migrate_collection(row, s, s.marc)
-    elsif s.record_type == 2
-        tag_migrate_ms(row, s, s.marc)
-    else
-        puts s.record_type
-    end
+    tag_migrate_collection_and_sigle_item(row, s, s.marc)
+
 
     source.record_type = 8
 
@@ -160,49 +184,71 @@ def migrate(row, s)
 
 end
 
-def merge(row, s)
+def merge(row, s, overwrite_source = true)
+    replace = false
 
     # Force a reload
     s = Source.find(s.id)
 
     ## TODO
     if row[:z] != nil
-        "Puts find holding"
-        return
+        replace = row[:z] 
     end
 
     # We need the new id, in AB
-    a1_rec = Source.find(row[:ab])
-
-    puts "old: #{s.id} new: #{a1_rec.id}"
-
-    # THEN we overwrite the contents with our record
-    a1_rec.marc_source = s.marc_source
-    old_record_type = s.record_type
-    # Delete the old record
-    s.delete
-    # ok now load the ource
-    a1_rec.marc.load_source true
-
-    create_holding(row, a1_rec, a1_rec.marc)    
-
-    # Migrate the tags
-    if old_record_type == 1
-        tag_migrate_collection(row, a1_rec, a1_rec.marc)
-    elsif old_record_type == 2
-        tag_migrate_ms(row, a1_rec, a1_rec.marc)
-    else
-        puts s.record_type
+    begin
+        a1_rec = Source.find(row[:ab])
+    rescue ActiveRecord::RecordNotFound
+        puts "NOT found #{row[:d]}".red
+        return
     end
 
-    # Insert the 500 note
-    insert_single_marc_tag(a1_rec, "500", "a", row[:ac])
+    puts "old: #{s.id} new: #{a1_rec.id} " + (overwrite_source ? "merged" : "")
 
-    a1_rec.suppress_reindex
-    a1_rec.suppress_update_count
-    a1_rec.suppress_update_77x
-    a1_rec.save
+    # THEN we overwrite the contents with our record
+    # This is only for records that are merged
+    # For the others (deleted), we keep the contents
+    a1_rec.marc_source = s.marc_source if overwrite_source
 
+    old_record_type = s.record_type
+    old_siglum = s.lib_siglum
+    # ok now load the ource
+    a1_rec.marc.load_source false
+
+    # When merging, pull the data from the "new" source
+    if overwrite_source
+        create_holding(row, a1_rec, a1_rec.marc, replace, old_siglum)
+    else
+        # When deleting, use the old source as ref
+        create_holding(row, a1_rec, s.marc, replace, old_siglum)
+    end
+
+    # Delete the old record
+ #   s.delete
+
+    # If we are merging, migrate the tags
+    # And then save
+    if overwrite_source
+        # Migrate the tags, if merging
+        tag_migrate_collection_and_sigle_item(row, a1_rec, a1_rec.marc) 
+
+        # Insert the 500 note, only for merging
+        insert_single_marc_tag(a1_rec.marc, "500", "a", row[:ac]) 
+
+        a1_rec.suppress_reindex
+        a1_rec.suppress_update_count
+        a1_rec.suppress_update_77x
+        a1_rec.save
+    end
+
+end
+
+# Delete removes the old ch source
+# but before that makes holdings with it
+# and attaches them to thr BM Source
+# KEEPING THE CONTENTS OF THE BM SOURCE
+def delete(row, s)
+    merge(row, s, false)
 end
 
 CSV::foreach("migrate_ms.csv", quote_char: '~', col_sep: "\t", headers: headers) do |r|
@@ -226,7 +272,9 @@ CSV::foreach("migrate_ms.csv", quote_char: '~', col_sep: "\t", headers: headers)
     if r[:w] == "migrate"
         #migrate(r, s)
     elsif r[:w] == "merge"
-        merge(r, s)
+        #merge(r, s)
+    elsif r[:w] == "delete"
+        delete(r, s)
     end
 end
 

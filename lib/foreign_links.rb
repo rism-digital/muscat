@@ -68,7 +68,7 @@ module ForeignLinks
     # If there are unknown classes purge them
     related_classes = all_foreign_classes - unknown_classes
     if !unknown_classes.empty?
-      $stderr.puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')} [#{self.id}]"
+      $stderr.puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')} [#{self.id}, #{self.class}]"
     end
     
     related_classes.each do |foreign_class|
