@@ -169,18 +169,17 @@ end
 
 def migrate(row, s)
 
-    create_holding(row, source, marc)
+    create_holding(row, s, s.marc)
 
     tag_migrate_collection_and_sigle_item(row, s, s.marc)
 
+    s.record_type = 8
 
-    source.record_type = 8
+    s.suppress_reindex
+    s.suppress_update_count
+    s.suppress_update_77x
 
-    source.suppress_reindex
-    source.suppress_update_count
-    source.suppress_update_77x
-
-    source.save
+    s.save
 
 end
 
@@ -213,7 +212,7 @@ def merge(row, s, overwrite_source = true)
     old_record_type = s.record_type
     old_siglum = s.lib_siglum
     # ok now load the ource
-    a1_rec.marc.load_source false
+    a1_rec.marc.load_source true
 
     # When merging, pull the data from the "new" source
     if overwrite_source
@@ -229,6 +228,7 @@ def merge(row, s, overwrite_source = true)
     # If we are merging, migrate the tags
     # And then save
     if overwrite_source
+        puts "Saving #{a1_rec.id}".blue
         # Migrate the tags, if merging
         tag_migrate_collection_and_sigle_item(row, a1_rec, a1_rec.marc) 
 
@@ -251,6 +251,21 @@ def delete(row, s)
     merge(row, s, false)
 end
 
+[403005228, 402003262, 410003035, 407002601, 
+ 408002157, 400111321, 408000451, 400102496, 
+ 400102503, 400101502, 410000687, 408001320,
+ 410000725].each do |q|
+    z = Source.find(q)
+    z.marc.load_source(false)
+    z.marc.import
+
+    z.suppress_reindex
+    z.suppress_update_count
+    z.suppress_update_77x
+
+    z.save
+end
+
 CSV::foreach("migrate_ms.csv", quote_char: '~', col_sep: "\t", headers: headers) do |r|
     begin
         s = Source.find(r[:d])
@@ -270,9 +285,9 @@ CSV::foreach("migrate_ms.csv", quote_char: '~', col_sep: "\t", headers: headers)
     s.save
 
     if r[:w] == "migrate"
-        #migrate(r, s)
+        migrate(r, s)
     elsif r[:w] == "merge"
-        #merge(r, s)
+        merge(r, s)
     elsif r[:w] == "delete"
         delete(r, s)
     end
