@@ -398,7 +398,7 @@ end
 [403005228, 402003262, 410003035, 407002601, 
  408002157, 400111321, 408000451, 400102496, 
  400102503, 400101502, 410000687, 408001320,
- 410000725].each do |q|
+ 410000725, 408002496].each do |q|
     z = Source.find(q)
     z.marc.load_source(false)
     z.marc.import
@@ -431,22 +431,22 @@ CSV::foreach("migrate_ms.csv", quote_char: '~', col_sep: "\t", headers: headers)
     s.save
 
     if r[:w] == "migrate"
-        #migrate(r, s)
+        migrate(r, s)
     elsif r[:w] == "merge"
-        #merge(r, s)
+        merge(r, s)
     elsif r[:w] == "delete"
-        #delete(r, s)
+        delete(r, s)
     elsif r[:w] == "purge"
-        #purge(r, s)
+        purge(r, s)
     elsif r[:w] == "purge, migrate"
-        #purge(r, s)
-        #migrate(r, s)
+        purge(r, s)
+        migrate(r, s)
     elsif r[:w] == "purge, delete"
-        #purge(r, s)
-        #delete(r, s)
+        purge(r, s)
+        delete(r, s)
     elsif r[:w] == "purge, merge"
-        #purge(r, s)
-        #merge(r, s)
+        purge(r, s)
+        merge(r, s)
     elsif r[:w] == "split"
         split(r, s)
     else
