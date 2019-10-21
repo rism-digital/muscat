@@ -54,6 +54,29 @@ def copy_tag(marc, new_marc, tag, new_tag_name = nil)
     end
 end
 
+def tag_to_text(marc, tag, groups)
+
+    text = marc.by_tags(tag).map do |t|
+        grp = t.fetch_first_by_tag("8")
+        next if !grp || !grp.content
+        next if !groups.include?(grp.content.to_i)
+    
+        t.map do |st|
+            next if st.tag == "8"
+            next if st.tag == tag
+            "#{st.tag} #{st.content}"
+        end.compact.join(", ") + " [#{grp.content}]"
+
+    end.compact
+
+    if !text.empty?
+        "#{tag}: " + text.join("; ")
+    else
+        nil
+    end
+
+end
+
 def create_holding(row, source, marc, replace = nil, old_siglum = nil)
     holding = nil
     new_marc = nil
@@ -251,6 +274,58 @@ def delete(row, s)
     merge(row, s, false)
 end
 
+def concatenate_group_tags
+end
+
+def delete_group(marc, group)
+    marc.all_tags.each do |tgs|
+        grp = tgs.fetch_first_by_tag("8")
+        next if !grp || !grp.content
+
+        if grp.content.to_i == group
+            tgs.destroy_yourself
+        end
+    end
+end
+
+# Purge removes selected groups from the record
+def purge(row, s)
+    groups = []
+
+    if row[:y] == nil
+        puts "#{s.id} purge no group id!".red
+        return
+    end
+
+    if row[:y].include?(",")
+        groups = row[:y].split(",").map {|id| id.to_i}
+    else
+        groups << row[:y].to_i
+    end
+
+    groups.each {|g| puts "#{s.id} invalid group #{g}".red if g < 1}
+
+    note = ["593", "260", "300", "590"].map do |tag|
+        tag_to_text(s.marc, tag, groups)
+    end.compact.join("\n")
+
+    groups.each do |grp|
+        delete_group(s.marc, grp)
+    end
+
+    # Add the note in the 500
+    insert_single_marc_tag(s.marc, "500", "a", "Additional material group(s): " + note)
+
+    s.suppress_reindex
+    s.suppress_update_count
+    s.suppress_update_77x
+
+    s.save
+
+    puts "Purged groups #{groups.to_s} in #{s.id}"
+
+end
+
 [403005228, 402003262, 410003035, 407002601, 
  408002157, 400111321, 408000451, 400102496, 
  400102503, 400101502, 410000687, 408001320,
@@ -267,6 +342,8 @@ end
 end
 
 CSV::foreach("migrate_ms.csv", quote_char: '~', col_sep: "\t", headers: headers) do |r|
+    next if !r[:w]
+
     begin
         s = Source.find(r[:d])
     rescue ActiveRecord::RecordNotFound
@@ -290,7 +367,18 @@ CSV::foreach("migrate_ms.csv", quote_char: '~', col_sep: "\t", headers: headers)
         merge(r, s)
     elsif r[:w] == "delete"
         delete(r, s)
+    elsif r[:w] == "purge"
+        purge(r, s)
+    elsif r[:w] == "purge, migrate"
+        purge(r, s)
+        migrate(r, s)
+    elsif r[:w] == "purge, delete"
+        purge(r, s)
+        delete(r, s)
+    elsif r[:w] == "purge, merge"
+        purge(r, s)
+        merge(r, s)
+    else
+        puts "WHAT IS #{r[:w]}".purple
     end
 end
-
-
