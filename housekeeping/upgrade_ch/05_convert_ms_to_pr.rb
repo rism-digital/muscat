@@ -410,7 +410,7 @@ end
     z.save
 end
 
-CSV::foreach("migrate_ms.csv", quote_char: '~', col_sep: "\t", headers: headers) do |r|
+CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep: "\t", headers: headers) do |r|
     next if !r[:w]
 
     begin
