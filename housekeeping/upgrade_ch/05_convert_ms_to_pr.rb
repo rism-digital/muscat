@@ -30,6 +30,14 @@ def insert_single_marc_tag(marc, tag, subtag, value)
     marc.root.children.insert(marc.get_insert_position(tag), new_tag)
 end
 
+def tag_contains_value(marctag, subtag, value)
+    marctag.each_by_tag(subtag) do |st|
+        next if !st || !st.content
+        return true if st.content == value
+    end
+    false
+end
+
 def count_marc_tag(marc, tag)
     return marc.by_tags(tag).count
 end
@@ -51,6 +59,16 @@ def copy_tag(marc, new_marc, tag, new_tag_name = nil)
             new_tag.tag = new_tag_name
         end
         new_marc.root.children.insert(new_marc.get_insert_position(new_tag.tag), new_tag)
+    end
+end
+
+def move_tag_with_subtag(marc, new_marc, tag, subtag, subtag_val)
+    marc.by_tags(tag).each do |old_tag|   
+        next if !tag_contains_value(old_tag, subtag, subtag_val)
+
+        new_tag = old_tag.deep_copy
+        new_marc.root.children.insert(new_marc.get_insert_position(new_tag.tag), new_tag)
+        old_tag.destroy_yourself
     end
 end
 
@@ -99,6 +117,20 @@ def delete_group(marc, group)
     end
 end
 
+def move_or_not_tag(marc, new_marc, tag, source_row)
+    return if !source_row || source_row.empty?
+
+    if source_row == "move"
+        copy_tag(marc, new_marc, tag)
+        remove_marc_tag(marc, tag)
+    elsif source_row == "delete"
+        remove_marc_tag(marc, tag)
+    else
+        puts "I don't understand #{source_row} for #{tag}".purple
+    end
+
+end
+
 def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_group = nil)
     holding = nil
     new_marc = nil
@@ -134,19 +166,31 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
     new_marc.each_by_tag("852") {|t2| t2.destroy_yourself}
 
     if !only_group
+        # Migrate 852 to 588
+        if count_marc_tag("852") > 0
+            a852 = fetch_single_subtag(marc.first_occurance("852"), "a")
+            c852 = fetch_single_subtag(marc.first_occurance("852"), "c")
+            insert_single_marc_tag(marc, "588", "a", "#{a852} #{c852}")
+        end
+
         # Here we manage a full record with only 1 material group
         copy_tag(marc, new_marc, "300")
-        copy_tag(marc, new_marc, "500")
-        copy_tag(marc, new_marc, "505", "500")
+        
         copy_tag(marc, new_marc, "506")
         copy_tag(marc, new_marc, "541")
         copy_tag(marc, new_marc, "561")
         copy_tag(marc, new_marc, "563")
         copy_tag(marc, new_marc, "591")
         copy_tag(marc, new_marc, "592")
-        ## CHECK
-        copy_tag(marc, new_marc, "700")
-        copy_tag(marc, new_marc, "710")
+
+        move_tag_with_subtag(marc, new_marc, "700", "4", "fmo")
+        move_tag_with_subtag(marc, new_marc, "700", "4", "scr")
+        move_tag_with_subtag(marc, new_marc, "700", "4", "dpt")
+
+        move_tag_with_subtag(marc, new_marc, "710", "4", "fmo")
+        move_tag_with_subtag(marc, new_marc, "710", "4", "scr")
+        move_tag_with_subtag(marc, new_marc, "710", "4", "dpt")
+
         ## !!!!!! check
         ##copy_tag(marc, new_marc, "773", "973")
 
@@ -155,9 +199,6 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
 
 
         # Remove the tags in the old marc
-        remove_marc_tag(marc, "300")
-        remove_marc_tag(marc, "500")
-        remove_marc_tag(marc, "505")
         remove_marc_tag(marc, "506")
         remove_marc_tag(marc, "541")
         remove_marc_tag(marc, "561")
@@ -166,6 +207,10 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
         remove_marc_tag(marc, "592")
         remove_marc_tag(marc, "852")
         remove_marc_tag(marc, "856")
+
+        # "conditional" tags, on the hardcoded side
+        move_or_not_tag(marc, new_marc, "500", row[:o])
+        move_or_not_tag(marc, new_marc, "691", row[:s])
     else
         # in this case we move only the indicated group
         copy_group(marc, new_marc, only_group)
@@ -226,7 +271,9 @@ def migrate(row, s)
     tag_migrate_collection_and_sigle_item(row, s, s.marc)
 
     # Insert the 500 note
-    insert_single_marc_tag(s.marc, "500", "a", row[:ac])
+    # FIXME
+    # DO WE NEED THIS?
+    ##insert_single_marc_tag(s.marc, "500", "a", row[:ac])
 
     s.record_type = 8
 
@@ -386,6 +433,7 @@ def split(row, s)
     a1_rec.save
 
     # Now save the CH record
+    insert_single_marc_tag(s.marc, "500", "a", row[:ad]) #Comment for splitted
     s.suppress_reindex
     s.suppress_update_count
     s.suppress_update_77x
@@ -409,7 +457,7 @@ end
 
     z.save
 end
-
+pippo = []
 CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep: "\t", headers: headers) do |r|
     next if !r[:w]
 
@@ -453,3 +501,5 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
         puts "WHAT IS #{r[:w]}".purple
     end
 end
+
+ap pippo.sort.uniq

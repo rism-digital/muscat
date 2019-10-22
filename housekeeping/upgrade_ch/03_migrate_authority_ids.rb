@@ -175,10 +175,10 @@ def migrate_source(orig_source)
         if @old_852_ids.include?(id)
             #puts "852 replace #{id} with #{@old_852_ids[id]}".green
             delete_single_subtag(t, "a")
-            delete_single_subtag(t, "0")
             replace_single_subtag(t, "x", @old_852_ids[id])
-            mod = true
         end
+        delete_single_subtag(t, "0") # This tag is unused!!!
+        mod = true
     end
 
 =begin
