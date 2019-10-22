@@ -3,6 +3,8 @@ headers = [:a, :b, :c, :d, :e, :f, :g, :h, :i, :j, :k, :l, :m, :n, :o, :p, :q, :
 
 items = []
 
+# Disable snapshots?
+#PaperTrail.request.disable_model(Source)
 
 def fetch_single_subtag(marctag, subtag)
     st = marctag.fetch_first_by_tag(subtag)
@@ -167,7 +169,7 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
 
     if !only_group
         # Migrate 852 to 588
-        if count_marc_tag("852") > 0
+        if count_marc_tag(marc, "852") > 0
             a852 = fetch_single_subtag(marc.first_occurance("852"), "a")
             c852 = fetch_single_subtag(marc.first_occurance("852"), "c")
             insert_single_marc_tag(marc, "588", "a", "#{a852} #{c852}")

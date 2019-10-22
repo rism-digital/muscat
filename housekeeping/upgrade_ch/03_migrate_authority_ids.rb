@@ -1,7 +1,17 @@
 require 'net/http'
 
 # Dump the sources table with this command:
-# mysqldump -n -t -u rism -p muscat_development sources > mod_sources.sql
+# mysqldump -n -t --complete-insert -u rism -p muscat_development sources > mod_sources.sql
+
+# To copy the versions:
+# create table copy_versions like versions;
+# insert into copy_versions select * from versions;
+# alter table copy_versions drop column id;
+# mysqldump --complete-insert -u rism -p muscat_development copy_versions > copy_versions.sql
+
+# Copy to new sys
+# insert into versions (item_type, item_id, event, whodunnit, object,created_at) select item_type, item_id, event, whodunnit, object,created_at FROM copy_versions;
+# drop table copy_versions;
 
 def fetch_single_subtag(marctag, subtag)
     st = marctag.fetch_first_by_tag(subtag)
