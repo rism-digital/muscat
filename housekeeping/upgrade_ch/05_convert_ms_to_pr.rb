@@ -154,6 +154,8 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
 
             puts "Found holding #{holding.id} for #{replace} and #{old_siglum}".yellow
         end
+        # If the holding is not found a new one is created
+        holding.paper_trail_event = "CH Migration modified holding" if holding
     end
 
     if !replace
@@ -282,7 +284,7 @@ def migrate(row, s)
     s.suppress_reindex
     s.suppress_update_count
     s.suppress_update_77x
-
+    s.paper_trail_event = "CH Migration migrated record"
     s.save
 
 end
@@ -342,6 +344,7 @@ def merge(row, s, overwrite_source = true)
         a1_rec.suppress_reindex
         a1_rec.suppress_update_count
         a1_rec.suppress_update_77x
+        a1_rec.paper_trail_event = "CH Migration merged record"
         a1_rec.save
     end
 
@@ -386,7 +389,7 @@ def purge(row, s)
     s.suppress_reindex
     s.suppress_update_count
     s.suppress_update_77x
-
+    s.paper_trail_event = "CH Migration purged groups"
     s.save
 
     puts "Purged groups #{groups.to_s} in #{s.id}"
@@ -432,6 +435,7 @@ def split(row, s)
     a1_rec.suppress_reindex
     a1_rec.suppress_update_count
     a1_rec.suppress_update_77x
+    a1_rec.paper_trail_event = "CH Migration added holding"
     a1_rec.save
 
     # Now save the CH record
@@ -439,7 +443,7 @@ def split(row, s)
     s.suppress_reindex
     s.suppress_update_count
     s.suppress_update_77x
-
+    s.paper_trail_event = "CH Migration split groups"
     s.save
 
     puts "split group #{group} from #{s.id} to #{a1_rec.id}".green
@@ -477,7 +481,7 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
     s.suppress_reindex
     s.suppress_update_count
     s.suppress_update_77x
-
+    s.paper_trail_event = "CH Migration link authority files"
     s.save
 
     if r[:w] == "migrate"
