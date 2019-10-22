@@ -35,7 +35,7 @@ CSV::foreach("housekeeping/upgrade_ch/rewrite_titles.csv") do |title|
         s.suppress_reindex
         s.suppress_update_count
         s.suppress_update_77x
-        s.paper_trail_event = "Fixed title #{old_title}: #{new_title)}"
+        s.paper_trail_event = "Fixed title #{old_title}: #{new_title}"
         s.save
     end
 
