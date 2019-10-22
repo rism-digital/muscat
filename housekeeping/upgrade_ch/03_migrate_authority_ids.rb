@@ -209,7 +209,8 @@ end
 pb = ProgressBar.new(Source.count)
 
 # Non parallel version
-Source.all.each do |orig_source|
+Source.all.each do |s|
+    orig_source = Source.find(s.id)
     migrate_source(orig_source)
     orig_source = nil
     pb.increment!
