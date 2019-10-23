@@ -21,7 +21,7 @@ end
 
 def replace_single_subtag(marctag, subtag, value)
     delete_single_subtag(marctag, subtag)
-    marctag.add_at(MarcNode.new("source", "0", value, nil), 0)
+    marctag.add_at(MarcNode.new("source", subtag, value, nil), 0)
     marctag.sort_alphabetically
 end
 
@@ -326,6 +326,32 @@ def merge(row, s, overwrite_source = true)
     else
         # When deleting, use the old source as ref
         create_holding(row, a1_rec, s.marc, replace, old_siglum)
+    end
+
+    # Before deleting, we should fix the child records
+    # if there are child records!
+    if count_marc_tag(s.marc, "774") > 0
+        s.marc.each_by_tag("774") do |link|
+            st = link.fetch_first_by_tag("w")
+            next if !st || !st.content
+
+            child = Source.find(st.content)
+            child.marc.load_source(false)
+
+            # Swap to the new record
+            child.source_id = a1_rec.id
+            w773 = child.marc.first_occurance("773").fetch_first_by_tag("w")
+            w773.content = a1_rec.id
+        
+            child.marc.import
+
+            child.suppress_reindex
+            child.suppress_update_count
+            child.suppress_update_77x
+            child.paper_trail_event = "CH Migration parent #{s.id} to #{a1_rec.id}"
+            child.save
+            puts "Saved child #{child.id}, 773 from #{s.id} to #{a1_rec.id}".yellow
+        end
     end
 
     # Delete the old record
