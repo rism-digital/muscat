@@ -133,6 +133,48 @@ def move_or_not_tag(marc, new_marc, tag, source_row)
 
 end
 
+def update_parent_ms(marc, old_record, new_record)
+    parent_manuscript_id = marc.first_occurance("773", "w")
+    
+    # NOTE we evaluate the strings prefixed by 00000
+    # as the field may contain legacy values
+    
+    return if !parent_manuscript_id
+    # We have a parent manuscript in the 773
+    # Open it and add, if necessary, the 774 link
+
+    parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
+    if !parent_manuscript
+        puts "UPDATE 774 PARENT NOT FOUND, did it change id? #{parent_manuscript_id.content}".red
+    end
+    
+    # Update the parent for the new record
+    new_record.source_id = parent_manuscript.id
+
+    parent_manuscript.marc.load_source false
+    
+    # check if the 774 tag already exists
+    parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
+        subfield = tag.fetch_first_by_tag("w")
+        next if !subfield || !subfield.content
+        if subfield.content.to_i == old_record.id
+            subfield.content = new_record.id
+            
+            puts "Saving #{parent_manuscript_id.content}"
+
+            parent_manuscript.paper_trail_event = "CH Migration update 774 #{old_record.id} #{new_record.id}"
+            parent_manuscript.marc.import
+            parent_manuscript.suppress_reindex
+            parent_manuscript.suppress_update_count
+            parent_manuscript.suppress_update_77x
+            parent_manuscript.save
+
+            puts "Update 774 in #{parent_manuscript_id.content} from #{old_record.id} to #{new_record.id}".green
+        end
+    end
+end
+    
+
 def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_group = nil)
     holding = nil
     new_marc = nil
@@ -328,14 +370,11 @@ def merge(row, s, overwrite_source = true)
         create_holding(row, a1_rec, s.marc, replace, old_siglum)
     end
 
-    # Before deleting, we should fix the child records
-    # if there are child records!
-    #if count_marc_tag(s.marc, "774") > 0
-    #    s.marc.each_by_tag("774") do |link|
-    #        st = link.fetch_first_by_tag("w")
-    #        next if !st || !st.content
+    # If we have a parent MS, we need to update the 774
+    # in there, and update our source_id
+    update_parent_ms(s.marc, s, a1_rec)
 
-    #        child = Source.find(st.content)
+    # Before deleting, we should fix the child records
     s.child_sources.each do |child|
         child.marc.load_source(false)
 
@@ -352,7 +391,6 @@ def merge(row, s, overwrite_source = true)
         child.paper_trail_event = "CH Migration parent #{s.id} to #{a1_rec.id}"
         child.save
         puts "Saved child #{child.id}, 773 from #{s.id} to #{a1_rec.id}".yellow
-        #end
     end
 
     # Delete the old record
