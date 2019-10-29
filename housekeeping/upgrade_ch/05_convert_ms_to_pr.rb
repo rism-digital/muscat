@@ -269,7 +269,7 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
     end
 
     # Insert the 500 note, only if Z is filled
-    insert_single_marc_tag(new_marc, "500", "a", row[:ac]) if !row[:z].empty?
+    insert_single_marc_tag(new_marc, "500", "a", row[:ac]) if row[:z]
     
     # Save the holding
     new_marc.suppress_scaffold_links
