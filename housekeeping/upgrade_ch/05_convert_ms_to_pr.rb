@@ -128,11 +128,16 @@ def move_or_not_tag(marc, new_marc, tag, source_row)
     elsif source_row == "delete"
         remove_marc_tag(marc, tag)
     else
-        puts "I don't understand #{source_row} for #{tag}".purple
+        puts "I don't understand #{source_row} for #{tag}".purple if !source_row.include?("man")
     end
 
 end
 
+
+## Note, in some cases (408000789), the new record does not
+# have a 773, but the parent gets updated because we
+# use old_record as a basis
+# FIXME should we add the 773 in new record?
 def update_parent_ms(marc, old_record, new_record)
     parent_manuscript_id = marc.first_occurance("773", "w")
     
@@ -152,7 +157,7 @@ def update_parent_ms(marc, old_record, new_record)
     new_record.source_id = parent_manuscript.id
 
     parent_manuscript.marc.load_source false
-    
+
     # check if the 774 tag already exists
     parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
         subfield = tag.fetch_first_by_tag("w")
@@ -263,9 +268,9 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
         delete_group(marc, only_group)
     end
 
-    # Insert the 500 note
-    insert_single_marc_tag(new_marc, "500", "a", row[:ac])
-
+    # Insert the 500 note, only if Z is filled
+    insert_single_marc_tag(new_marc, "500", "a", row[:ac]) if !row[:z].empty?
+    
     # Save the holding
     new_marc.suppress_scaffold_links
     new_marc.import
@@ -316,11 +321,6 @@ def migrate(row, s)
 
     tag_migrate_collection_and_sigle_item(row, s, s.marc)
 
-    # Insert the 500 note
-    # FIXME
-    # DO WE NEED THIS?
-    ##insert_single_marc_tag(s.marc, "500", "a", row[:ac])
-
     s.record_type = 8
 
     s.suppress_reindex
@@ -331,15 +331,17 @@ def migrate(row, s)
 
 end
 
-def merge(row, s, overwrite_source = true)
-    replace = false
+def merge(row, s, do_merge = true)
+    replace_holding = false
 
     # Force a reload
     s = Source.find(s.id)
 
-    ## TODO
+    # Is there an EXISTING holding?
+    # We pull the data from CH into
+    # that holding
     if row[:z] != nil
-        replace = row[:z] 
+        replace_holding = row[:z] 
     end
 
     # We need the new id, in AB
@@ -350,12 +352,12 @@ def merge(row, s, overwrite_source = true)
         return
     end
 
-    puts "old: #{s.id} new: #{a1_rec.id} " + (overwrite_source ? "merged" : "")
+    puts "old: #{s.id} new: #{a1_rec.id} " + (do_merge ? "merged" : "")
 
     # THEN we overwrite the contents with our record
     # This is only for records that are merged
     # For the others (deleted), we keep the contents
-    a1_rec.marc_source = s.marc_source if overwrite_source
+    a1_rec.marc_source = s.marc_source if do_merge
 
     old_record_type = s.record_type
     old_siglum = s.lib_siglum
@@ -363,11 +365,12 @@ def merge(row, s, overwrite_source = true)
     a1_rec.marc.load_source true
 
     # When merging, pull the data from the "new" source
-    if overwrite_source
-        create_holding(row, a1_rec, a1_rec.marc, replace, old_siglum)
+    if do_merge
+        create_holding(row, a1_rec, a1_rec.marc, replace_holding, old_siglum)
     else
         # When deleting, use the old source as ref
-        create_holding(row, a1_rec, s.marc, replace, old_siglum)
+        # But attach the holdings to the BM record!
+        create_holding(row, a1_rec, s.marc, replace_holding, old_siglum)
     end
 
     # If we have a parent MS, we need to update the 774
@@ -393,26 +396,26 @@ def merge(row, s, overwrite_source = true)
         puts "Saved child #{child.id}, 773 from #{s.id} to #{a1_rec.id}".yellow
     end
 
-    # Delete the old record
+    # Delete the old record always
+    # When "merge" the contents are
+    # preserved into the BM one
     s.delete
 
     # If we are merging, migrate the tags
     # And then save
-    if overwrite_source
-        puts "Saving #{a1_rec.id}".blue
-        # Migrate the tags, if merging
+    if do_merge
         tag_migrate_collection_and_sigle_item(row, a1_rec, a1_rec.marc) 
-
-        # Insert the 500 note, only for merging
-        insert_single_marc_tag(a1_rec.marc, "500", "a", row[:ac]) 
-
-        a1_rec.suppress_reindex
-        a1_rec.suppress_update_count
-        a1_rec.suppress_update_77x
-        a1_rec.paper_trail_event = "CH Migration merged record"
-        a1_rec.save
     end
 
+    puts "Saving #{a1_rec.id}".blue
+
+    # Insert the 500 note in the BM record, for delete and merge
+    insert_single_marc_tag(a1_rec.marc, "500", "a", row[:ac]) 
+
+    a1_rec.suppress_reindex
+    a1_rec.suppress_update_count
+    a1_rec.suppress_update_77x
+    a1_rec.paper_trail_event = "CH Migration merged record"
 end
 
 # Delete removes the old ch source
@@ -486,6 +489,8 @@ def split(row, s)
         return
     end
 
+    puts "Splitting #{s.id} to #{a1_rec.id}"
+
     # We transform the group into a holding
     # In this case, it is an existing holding
     # to find it we need the source id (in replace)
@@ -517,7 +522,7 @@ end
 [403005228, 402003262, 410003035, 407002601, 
  408002157, 400111321, 408000451, 400102496, 
  400102503, 400101502, 410000687, 408001320,
- 410000725, 408002496].each do |q|
+ 410000725, 408002496, 402006544].each do |q|
     z = Source.find(q)
     z.marc.load_source(false)
     z.marc.import
@@ -528,9 +533,11 @@ end
 
     z.save
 end
-pippo = []
+test_array = []
 CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep: "\t", headers: headers) do |r|
     next if !r[:w]
+
+    next if r[:w].include? "man."
 
     begin
         s = Source.find(r[:d])
@@ -549,28 +556,32 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
     s.paper_trail_event = "CH Migration link authority files"
     s.save
 
-    if r[:w] == "migrate"
+    case r[:w].strip
+    when "migrate"
         migrate(r, s)
-    elsif r[:w] == "merge"
+    when "merge"
         merge(r, s)
-    elsif r[:w] == "delete"
+    when "delete"
         delete(r, s)
-    elsif r[:w] == "purge"
+    when "purge"
         purge(r, s)
-    elsif r[:w] == "purge, migrate"
+    when"purge, migrate"
         purge(r, s)
         migrate(r, s)
-    elsif r[:w] == "purge, delete"
+    when "purge, delete"
         purge(r, s)
         delete(r, s)
-    elsif r[:w] == "purge, merge"
+    when "purge, merge"
         purge(r, s)
         merge(r, s)
-    elsif r[:w] == "split"
+    when "split"
         split(r, s)
+    when "split, migrate"
+        split(r, s)
+        migrate(r, s)
     else
         puts "WHAT IS #{r[:w]}".purple
     end
 end
 
-ap pippo.sort.uniq
+ap test_array.sort.uniq
