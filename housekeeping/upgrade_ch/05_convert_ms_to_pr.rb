@@ -295,9 +295,7 @@ def tag_migrate_collection_and_sigle_item(row, source, marc)
     remove_marc_tag(marc, "852")
 end
 
-=begin
-NOT USED, for edition_content
-def tag_migrate_ms(row, source, marc)
+def tag_migrate_child_ms(marc)
     remove_marc_tag(marc, "506")
     remove_marc_tag(marc, "525")
     remove_marc_tag(marc, "541")
@@ -313,14 +311,59 @@ def tag_migrate_ms(row, source, marc)
 
     rename_marc_tag(marc, "598", "594")
 end
-=end
+
+def migrate_children(source, new_id = false, purge_groups = false)
+
+    source.child_sources.each do |child|
+        child.marc.load_source(false)
+
+        if new_id
+            # Swap to the new record
+            # This is when a record changes ID
+            child.source_id = new_id
+            w773 = child.marc.first_occurance("773").fetch_first_by_tag("w")
+            w773.content = new_id
+        end
+    
+        if purge_groups
+            note = ["593", "260", "300", "590"].map do |tag|
+                tag_to_text(child.marc, tag, purge_groups)
+            end.compact.join("\n")
+        
+            purge_groups.each do |grp|
+                delete_group(child.marc, purge_groups)
+            end
+        
+            # Add the note in the 500
+            insert_single_marc_tag(child.marc, "500", "a", "Additional material group(s): " + note)
+        end
+
+        tag_migrate_child_ms(child.marc)
+
+        child.marc.import
+
+        child.suppress_reindex
+        child.suppress_update_count
+        child.suppress_update_77x
+        if new_id
+            child.paper_trail_event = "CH Migration parent #{source.id} to #{new_id}"
+            puts "Saving child #{child.id}, 773 from #{source.id} to #{new_id}".yellow
+        else
+            child.paper_trail_event = "CH Migration child record update"
+            puts "Saving child #{child.id}".yellow
+        end
+        child.record_type = 3
+        child.save
+    end
+
+end
+
 
 def migrate(row, s)
-
+    puts "Migrating #{s.id}".green
     create_holding(row, s, s.marc)
 
     tag_migrate_collection_and_sigle_item(row, s, s.marc)
-
     s.record_type = 8
 
     s.suppress_reindex
@@ -328,6 +371,9 @@ def migrate(row, s)
     s.suppress_update_77x
     s.paper_trail_event = "CH Migration migrated record"
     s.save
+
+    # Migrate the children too
+    migrate_children(s)
 
 end
 
@@ -378,23 +424,7 @@ def merge(row, s, do_merge = true)
     update_parent_ms(s.marc, s, a1_rec)
 
     # Before deleting, we should fix the child records
-    s.child_sources.each do |child|
-        child.marc.load_source(false)
-
-        # Swap to the new record
-        child.source_id = a1_rec.id
-        w773 = child.marc.first_occurance("773").fetch_first_by_tag("w")
-        w773.content = a1_rec.id
-    
-        child.marc.import
-
-        child.suppress_reindex
-        child.suppress_update_count
-        child.suppress_update_77x
-        child.paper_trail_event = "CH Migration parent #{s.id} to #{a1_rec.id}"
-        child.save
-        puts "Saved child #{child.id}, 773 from #{s.id} to #{a1_rec.id}".yellow
-    end
+    migrate_children(s, a1_rec.id)
 
     # Delete the old record always
     # When "merge" the contents are
@@ -462,6 +492,9 @@ def purge(row, s)
     s.save
 
     puts "Purged groups #{groups.to_s} in #{s.id}"
+
+    # Also migrate the children and purge eventual groups
+    migrate_children(s, false, groups)
 
 end
 
