@@ -204,6 +204,9 @@ def migrate_source(orig_source)
     end
 =end
 
+    # Kill the dreaded 740
+    remove_marc_tag(chmarc, "740")
+
     #puts orig_source.marc.to_marc if mod
 
     orig_source.suppress_reindex
