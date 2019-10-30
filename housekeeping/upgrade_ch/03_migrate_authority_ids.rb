@@ -28,7 +28,7 @@ end
 
 def replace_single_subtag(marctag, subtag, value)
     delete_single_subtag(marctag, subtag)
-    marctag.add_at(MarcNode.new("source", "0", value, nil), 0)
+    marctag.add_at(MarcNode.new("source", subtag, value, nil), 0)
     marctag.sort_alphabetically
 end
 
