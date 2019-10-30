@@ -103,7 +103,7 @@ def copy_group(marc, new_marc, group)
         next if !grp || !grp.content
 
         if grp.content.to_i == group
-            copy_tag(marc, new_marc. tgs.tag)
+            new_marc.root.children.insert(new_marc.get_insert_position(tgs.tag), tgs.deep_copy)
         end
     end
 end
@@ -266,6 +266,7 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
         # in this case we move only the indicated group
         copy_group(marc, new_marc, only_group)
         delete_group(marc, only_group)
+        copy_tag(marc, new_marc, "852")
     end
 
     # Insert the 500 note, only if Z is filled
@@ -471,9 +472,9 @@ def purge(row, s)
     end
 
     if row[:y].include?(",")
-        groups = row[:y].split(",").map {|id| id.to_i}
+        groups = row[:y].split(",").map {|id| id.gsub("'","").to_i}
     else
-        groups << row[:y].to_i
+        groups << row[:y].gsub("'","").to_i
     end
 
     groups.each {|g| puts "#{s.id} invalid group #{g}".red if g < 1}
@@ -512,7 +513,7 @@ def split(row, s)
         return
     end
 
-    group = row[:y].to_i
+    group = row[:x].gsub("'","").to_i
     
     # Replace an existing holding?
     if row[:z] != nil
@@ -576,6 +577,8 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
     next if !r[:w]
 
     next if r[:w].include? "man."
+
+    #next if r[:d] != "407001498"
 
     begin
         s = Source.find(r[:d])
