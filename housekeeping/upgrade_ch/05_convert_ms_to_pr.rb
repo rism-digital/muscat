@@ -292,9 +292,13 @@ end
 
 def tag_migrate_collection_and_sigle_item(row, source, marc)
     rename_marc_tag(marc, "598", "594")
+    remove_marc_tag(marc, "740")
     remove_marc_tag(marc, "852")
 end
 
+## FIXME
+## MIGRATION OF 594
+## if run two times, 594 is deleted
 def tag_migrate_child_ms(marc)
     remove_marc_tag(marc, "506")
     remove_marc_tag(marc, "525")
