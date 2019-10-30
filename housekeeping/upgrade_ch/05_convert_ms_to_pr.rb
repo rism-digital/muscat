@@ -109,14 +109,19 @@ def copy_group(marc, new_marc, group)
 end
 
 def delete_group(marc, group)
+    tags_to_delete = []
     marc.all_tags.each do |tgs|
         grp = tgs.fetch_first_by_tag("8")
         next if !grp || !grp.content
-
-        if grp.content.to_i == group
-            tgs.destroy_yourself
+        
+        if grp.content.to_i == group.to_i
+            #tgs.destroy_yourself
+            tags_to_delete << tgs
         end
     end
+    
+    # Make sure we iterate over all the tags to remove!
+    tags_to_delete.each {|tag| tag.destroy_yourself}
 end
 
 def move_or_not_tag(marc, new_marc, tag, source_row)
@@ -319,7 +324,8 @@ end
 
 def migrate_children(source, new_id = false, purge_groups = false)
 
-    source.child_sources.each do |child|
+    source.child_sources.each do |child_link|
+        child = Source.find(child_link.id)
         child.marc.load_source(false)
 
         if new_id
@@ -336,15 +342,17 @@ def migrate_children(source, new_id = false, purge_groups = false)
             end.compact.join("\n")
         
             purge_groups.each do |grp|
-                delete_group(child.marc, purge_groups)
+                delete_group(child.marc, grp)
             end
         
             # Add the note in the 500
             insert_single_marc_tag(child.marc, "500", "a", "Additional material group(s): " + note)
         end
 
-        tag_migrate_child_ms(child.marc)
+        # Migrate the tags only if it was not already migrated
+        tag_migrate_child_ms(child.marc) if child.record_type != 3
 
+        # Still save, because it could be for a 773 update
         child.marc.import
 
         child.suppress_reindex
@@ -359,6 +367,7 @@ def migrate_children(source, new_id = false, purge_groups = false)
         end
         child.record_type = 3
         child.save
+        child = nil
     end
 
 end
@@ -578,7 +587,7 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
 
     next if r[:w].include? "man."
 
-    #next if r[:d] != "407001498"
+    #next if r[:d] != "407001497"
 
     begin
         s = Source.find(r[:d])
