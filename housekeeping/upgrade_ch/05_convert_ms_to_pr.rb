@@ -416,6 +416,7 @@ def merge(row, s, do_merge = true)
     a1_rec.suppress_update_count
     a1_rec.suppress_update_77x
     a1_rec.paper_trail_event = "CH Migration merged record"
+    a1_rec.save
 end
 
 # Delete removes the old ch source
@@ -522,7 +523,7 @@ end
 [403005228, 402003262, 410003035, 407002601, 
  408002157, 400111321, 408000451, 400102496, 
  400102503, 400101502, 410000687, 408001320,
- 410000725, 408002496, 402006544].each do |q|
+ 410000725, 408002496, 402006544, 410002229].each do |q|
     z = Source.find(q)
     z.marc.load_source(false)
     z.marc.import
