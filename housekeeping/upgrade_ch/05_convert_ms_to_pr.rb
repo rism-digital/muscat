@@ -101,9 +101,24 @@ def copy_group(marc, new_marc, group)
     marc.all_tags.each do |tgs|
         grp = tgs.fetch_first_by_tag("8")
         next if !grp || !grp.content
-
+        
         if grp.content.to_i == group
-            new_marc.root.children.insert(new_marc.get_insert_position(tgs.tag), tgs.deep_copy)
+            if tgs.tag == "590"
+                # pull the 852
+                the852 = new_marc.first_occurance("852")
+                q852 = fetch_single_subtag(the852, "q")
+                if q852
+                    # Substitute the existing one
+                    q852.content = fetch_single_subtag(tgs, "a")
+                else
+                    # Append a new one
+                    the852.add_at(MarcNode.new("source", "q", fetch_single_subtag(tgs, "a"), nil), 0)
+                    the852.sort_alphabetically
+                end
+
+            else
+                new_marc.root.children.insert(new_marc.get_insert_position(tgs.tag), tgs.deep_copy)
+            end
         end
     end
 end
@@ -269,9 +284,9 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
         move_or_not_tag(marc, new_marc, "691", row[:s])
     else
         # in this case we move only the indicated group
+        copy_tag(marc, new_marc, "852")
         copy_group(marc, new_marc, only_group)
         delete_group(marc, only_group)
-        copy_tag(marc, new_marc, "852")
     end
 
     # Insert the 500 note, only if Z is filled
@@ -587,7 +602,7 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
 
     next if r[:w].include? "man."
 
-    #next if r[:d] != "407001497"
+    #next if r[:d] != "400008194"
 
     begin
         s = Source.find(r[:d])
