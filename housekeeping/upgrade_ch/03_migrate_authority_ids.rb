@@ -119,6 +119,15 @@ def migrate_source(orig_source)
         end
     end
 
+    chmarc.each_by_tag("246") do |t|
+        name = fetch_single_subtag(t, "a")
+        if name == "[Manuscript music, untitled]" || name == "[Printed music, untitled]"
+            puts "245 replaced [Printed music, untitled] or [Manuscript music, untitled]".red
+            replace_single_subtag(t, "a", "[without title]")
+            mod = true
+        end
+    end
+
     chmarc.each_by_tag("700") do |t|
         id = fetch_single_subtag(t, "0")
         if @old_person_ids.include?(id)
