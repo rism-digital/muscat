@@ -1,7 +1,5 @@
 require 'net/http'
 
-@mutex = Mutex.new
-
 # Dump the sources table with this command:
 # mysqldump -n -t --complete-insert -u rism -p muscat_development sources > mod_sources.sql
 
@@ -392,20 +390,17 @@ def migrate_source(orig_source)
     orig_source.suppress_update_count
     orig_source.suppress_update_77x
 
-    @mutex.synchronize do
     orig_source.marc.import
     
     # Just save it, we modify the user too
     #orig_source.save if mod
     orig_source.save
-    end
 end
 
 
 pb = ProgressBar.new(Source.count)
 
 # Non parallel version
-=begin
 Source.all.each do |s|
     #next if s.id != 400003761
     orig_source = Source.find(s.id)
@@ -413,9 +408,8 @@ Source.all.each do |s|
     orig_source = nil
     pb.increment!
 end
-=end
 
-
+=begin
 @parallel_jobs = 10
 @all_src = Source.all.count
 @limit = @all_src / @parallel_jobs
@@ -431,4 +425,4 @@ results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs, progress
     s = nil
   end
 end
-
+=end
