@@ -249,7 +249,10 @@ def migrate_source(orig_source)
 
     orig_source.marc.import
     orig_source.paper_trail_event = "CH Migration update authority files"
-    orig_source.save if mod
+
+    # Just save it, we modify the user too
+    #orig_source.save if mod
+    orig_source.save
 end
 
 
