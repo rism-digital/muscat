@@ -111,6 +111,51 @@ print "."
     16 => 240  # MR
 }
 
+@modify_340 = {
+"Autographie" =>	"Autography",
+"Autography" =>	"Autography",
+"Fotokopien bzw. Umdrucke von Abschriften" =>	"Autography",
+"Umdruck" =>	"Autography",
+"Computer printout" =>	"Computer printout",
+"Engraving" =>	"Engraving",
+"Stich" =>	"Engraving",
+"Facsimile" =>	"Facsimile",
+"Lithografie" =>	"Lithography",
+"Lithografie [Noten]" =>	"Lithography",
+"Lithografie [p.3-16]" =>	"Lithography",
+"Lithographie" =>	"Lithography",
+"Lithography" =>	"Lithography",
+"Lithograpie" =>	"Lithography",
+"Fotocopy" =>	"Photoreproductive process",
+"Fotocopy."	 =>"Photoreproductive process",
+"Fotokopie"	 =>"Photoreproductive process",
+"Fotokopie des Autographs" =>	"Photoreproductive process",
+"Fotokopie." =>	"Photoreproductive process",
+"Heliokopie" =>	"Photoreproductive process",
+"Heliokopie" =>	"Photoreproductive process",
+"Photocopie" =>	"Photoreproductive process",
+"Photocopy" =>	"Photoreproductive process",
+"Photocopy." =>	"Photoreproductive process",
+"Photocoy" =>	"Photoreproductive process",
+"Photokopie" =>	"Photoreproductive process",
+"Photoreproductive process"	 => "Photoreproductive process",
+"Tirage hélio" =>	"Photoreproductive process",
+"photocopy"	 => "Photoreproductive process",
+"Mechanische Reproduktion der Handschrift" =>	"Reproduction",
+"Reproduction" =>	"Reproduction",
+"Reproduction."	=> "Reproduction",
+"Reproduktion" => "Reproduction",
+"Reproduktion."	=> "Reproduction",
+"Vervielfältigung" =>	"Reproduction",
+"Vervielfältigung der Handschrift" =>	"Reproduction",
+"Vervielfältigung." =>	"Reproduction",
+"Transparentfolie" =>	"Transparency",
+"Transparentfolien"	 =>"Transparency",
+"Transparentpapier"	 =>"Transparency",
+"Typescript" =>	"Typescript",
+"Typendruck" =>	"Typography",
+}
+
 print "."
 puts " done."
 
@@ -146,6 +191,15 @@ def migrate_source(orig_source)
             #puts "245 replaced [Printed music, untitled] or [Manuscript music, untitled]".red
             replace_single_subtag(t, "a", "[without title]")
             mod = true
+        end
+    end
+
+    chmarc.each_by_tag("340") do |t|
+        id = fetch_single_subtag(t, "d")
+        if @modify_340.include?(id)
+            puts "340 replace #{id} with #{@modify_340[id]}".green
+            delete_single_subtag(t, "d")
+            replace_single_subtag(t, "d", @modify_340[id])
         end
     end
 
@@ -252,11 +306,53 @@ def migrate_source(orig_source)
 
                 # Delete the old subtag
                 delete_single_subtag(t, "b")
-                puts "#{orig_source.id} Modified 590".green
+                #puts "#{orig_source.id} Modified 590".green
             end
         end
     end
 
+    # MOgrating 300 $a should happen AFTER 590 $b is fixed
+    chmarc.each_by_tag("300") do |t|
+        a = fetch_single_subtag(t, "a")
+        next if !a
+        next if !a.include? "part"
+
+        parts = a.split(":")
+        next if parts.count < 2
+
+        a300_content = parts[0].strip
+        b590_content = parts[1].strip
+
+        group = fetch_single_subtag(t, "8")
+    
+        # First, replace the a subtag in this 300
+        replace_single_subtag(t, "a", a300_content)
+
+        # Now we need to get the 590, if it is there.        
+        added = false
+        chmarc.each_by_tag("590") do |th|
+            the8 = fetch_single_subtag(th, "8")
+
+            # Can work also if both are nil when there is no group!
+            if the8 == group
+                th.add_at(MarcNode.new("source", "b", b590_content, nil), 0)
+                th.add_at(MarcNode.new("source", "8", group, nil), 0) if group # is it in a group?
+                th.sort_alphabetically
+                added = true
+                #puts "Added to 590 #{b590_content} with group #{group} id #{orig_source.id}"
+            end
+        end
+
+        # No 590s there or no one matches this groups
+        if !added
+            new_tag = MarcNode.new("source", "590", "", "##")
+            new_tag.add_at(MarcNode.new("source", "b", b590_content, nil), 0)
+            new_tag.add_at(MarcNode.new("source", "8", group, nil), 0) if group # is it in a group?
+            new_tag.sort_alphabetically
+            chmarc.root.children.insert(chmarc.get_insert_position(new_tag.tag), new_tag)
+            #puts "Added new 590 #{b590_content} with group #{group} id #{orig_source.id}"
+        end
+    end
 
 =begin
     if (count_marc_tag(bmmarc, "700") > count_marc_tag(chmarc, "700"))
@@ -295,15 +391,16 @@ end
 pb = ProgressBar.new(Source.count)
 
 # Non parallel version
+=begin
 Source.all.each do |s|
-    #next if s.id != 400003534
+    #next if s.id != 400003761
     orig_source = Source.find(s.id)
     migrate_source(orig_source)
     orig_source = nil
     pb.increment!
 end
+=end
 
-=begin
 @parallel_jobs = 10
 @all_src = Source.all.count
 @limit = @all_src / @parallel_jobs
@@ -319,4 +416,4 @@ results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs, progress
     s = nil
   end
 end
-=end
+
