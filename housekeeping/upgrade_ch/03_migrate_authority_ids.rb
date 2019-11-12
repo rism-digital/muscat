@@ -83,6 +83,15 @@ print "."
 CSV.foreach("housekeeping/upgrade_ch/changed_651.tsv", col_sep: "\t") do |r|
     @old_651_ids[r[2].to_i] = r[0].to_i
 end
+
+
+@modify_590 = {}
+# Format is BM id, CH id
+CSV.foreach("housekeeping/upgrade_ch/changed_590b.tsv", col_sep: "\t") do |r|
+    next if r[2] == "x"
+    @modify_590[r[0].to_i] = {text: r[1].strip, add: r[2]}
+end
+
 print "."
 
 # Just one!
@@ -222,6 +231,33 @@ def migrate_source(orig_source)
         mod = true
     end
 
+    if @modify_590.keys.include?(orig_source.id)
+        new590 = @modify_590[orig_source.id]
+
+        chmarc.each_by_tag("590") do |t|
+            b = fetch_single_subtag(t, "b")
+            next if !b
+
+            if new590[:text] == b.strip
+
+                if new590[:add] && new590[:add] == "missing"
+                    new590[:text] += " missing"
+                end
+
+                # Move it to a 500
+                new_tag = MarcNode.new("source", "500", "", "##")
+                new_tag.add_at(MarcNode.new("source", "a", new590[:text], nil), 0)
+                new_tag.sort_alphabetically
+                chmarc.root.children.insert(chmarc.get_insert_position(new_tag.tag), new_tag)
+
+                # Delete the old subtag
+                delete_single_subtag(t, "b")
+                puts "#{orig_source.id} Modified 590".green
+            end
+        end
+    end
+
+
 =begin
     if (count_marc_tag(bmmarc, "700") > count_marc_tag(chmarc, "700"))
         # Remove all the tags here
@@ -260,6 +296,7 @@ pb = ProgressBar.new(Source.count)
 
 # Non parallel version
 Source.all.each do |s|
+    #next if s.id != 400003534
     orig_source = Source.find(s.id)
     migrate_source(orig_source)
     orig_source = nil
