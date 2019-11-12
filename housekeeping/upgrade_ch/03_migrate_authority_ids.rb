@@ -84,12 +84,18 @@ CSV.foreach("housekeeping/upgrade_ch/changed_651.tsv", col_sep: "\t") do |r|
     @old_651_ids[r[2].to_i] = r[0].to_i
 end
 
-
 @modify_590 = {}
 # Format is BM id, CH id
 CSV.foreach("housekeeping/upgrade_ch/changed_590b.tsv", col_sep: "\t") do |r|
     next if r[2] == "x"
     @modify_590[r[0].to_i] = {text: r[1].strip, add: r[2]}
+end
+
+@old_institutions = {}
+# Format is BM id, CH id
+CSV.foreach("housekeeping/upgrade_ch/changed_institutions.tsv", col_sep: "\t") do |r|
+    next if r[2] == "x"
+    @old_institutions[r[0].to_i] = r[1].to_i
 end
 
 print "."
@@ -197,7 +203,7 @@ def migrate_source(orig_source)
     chmarc.each_by_tag("340") do |t|
         id = fetch_single_subtag(t, "d")
         if @modify_340.include?(id)
-            puts "340 replace #{id} with #{@modify_340[id]}".green
+            #puts "340 replace #{id} with #{@modify_340[id]}".green
             delete_single_subtag(t, "d")
             replace_single_subtag(t, "d", @modify_340[id])
         end
@@ -209,6 +215,16 @@ def migrate_source(orig_source)
             #puts "700 replace #{id} with #{@old_person_ids[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", @old_person_ids[id])
+            mod = true
+        end
+    end
+
+    chmarc.each_by_tag("710") do |t|
+        id = fetch_single_subtag(t, "0")
+        if @old_institutions.include?(id)
+            puts "710 replace #{id} with #{@old_institutions[id]}".green
+            delete_single_subtag(t, "a")
+            replace_single_subtag(t, "0", @old_institutions[id])
             mod = true
         end
     end
@@ -276,10 +292,10 @@ def migrate_source(orig_source)
 
     chmarc.each_by_tag("852") do |t|
         id = fetch_single_subtag(t, "x")
-        if @old_852_ids.include?(id)
-            #puts "852 replace #{id} with #{@old_852_ids[id]}".green
+        if @old_institutions.include?(id)
+            puts "852 replace #{id} with #{@old_institutions[id]}".green
             delete_single_subtag(t, "a")
-            replace_single_subtag(t, "x", @old_852_ids[id])
+            replace_single_subtag(t, "x", @old_institutions[id])
         end
         delete_single_subtag(t, "0") # This tag is unused!!!
         mod = true
