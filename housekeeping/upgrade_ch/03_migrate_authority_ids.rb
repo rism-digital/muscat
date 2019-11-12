@@ -1,5 +1,7 @@
 require 'net/http'
 
+@mutex = Mutex.new
+
 # Dump the sources table with this command:
 # mysqldump -n -t --complete-insert -u rism -p muscat_development sources > mod_sources.sql
 
@@ -216,7 +218,7 @@ def migrate_source(orig_source)
     chmarc.each_by_tag("710") do |t|
         id = fetch_single_subtag(t, "0")
         if @old_institutions.include?(id)
-            puts "710 replace #{id} with #{@old_institutions[id]}".green
+            #puts "710 replace #{id} with #{@old_institutions[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", @old_institutions[id])
             mod = true
@@ -287,7 +289,7 @@ def migrate_source(orig_source)
     chmarc.each_by_tag("852") do |t|
         id = fetch_single_subtag(t, "x")
         if @old_institutions.include?(id)
-            puts "852 replace #{id} with #{@old_institutions[id]}".green
+            #puts "852 replace #{id} with #{@old_institutions[id]}".green
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "x", @old_institutions[id])
         end
@@ -384,17 +386,19 @@ def migrate_source(orig_source)
 
     # Update the user to the BM one
     orig_source.wf_owner = @user_map[orig_source.wf_owner] if orig_source.wf_owner != nil
+    orig_source.paper_trail_event = "CH Migration update authority files"
 
     orig_source.suppress_reindex
     orig_source.suppress_update_count
     orig_source.suppress_update_77x
 
+    @mutex.synchronize do
     orig_source.marc.import
-    orig_source.paper_trail_event = "CH Migration update authority files"
-
+    
     # Just save it, we modify the user too
     #orig_source.save if mod
     orig_source.save
+    end
 end
 
 
@@ -410,6 +414,7 @@ Source.all.each do |s|
     pb.increment!
 end
 =end
+
 
 @parallel_jobs = 10
 @all_src = Source.all.count
