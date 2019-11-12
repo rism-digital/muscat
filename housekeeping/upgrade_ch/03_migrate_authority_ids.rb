@@ -90,6 +90,18 @@ print "."
 # 50006835 => 30079405 is CH-FI, which did not show up?
 # 50007932 => 30080410 CH-NYan
 @old_852_ids = {50000010 => 30000010, 50006835 => 30079405, 50007932 => 30080410}
+
+@user_map = {
+    2 => 49,    # L
+    3 => 97,    # Y
+    4 => 12,    # C
+    7 => 1,     # G
+    9 => 17,    # CB
+    12 => 106,  # F
+    13 => 1,    # M
+    16, 240 =>  # MR
+}
+
 print "."
 puts " done."
 
@@ -113,7 +125,7 @@ def migrate_source(orig_source)
     chmarc.each_by_tag("245") do |t|
         name = fetch_single_subtag(t, "a")
         if name == "[Manuscript music, untitled]" || name == "[Printed music, untitled]"
-            puts "245 replaced [Printed music, untitled] or [Manuscript music, untitled]".green
+            #puts "245 replaced [Printed music, untitled] or [Manuscript music, untitled]".green
             replace_single_subtag(t, "a", "[without title]")
             mod = true
         end
@@ -122,7 +134,7 @@ def migrate_source(orig_source)
     chmarc.each_by_tag("246") do |t|
         name = fetch_single_subtag(t, "a")
         if name == "[Manuscript music, untitled]" || name == "[Printed music, untitled]"
-            puts "245 replaced [Printed music, untitled] or [Manuscript music, untitled]".red
+            #puts "245 replaced [Printed music, untitled] or [Manuscript music, untitled]".red
             replace_single_subtag(t, "a", "[without title]")
             mod = true
         end
@@ -227,6 +239,9 @@ def migrate_source(orig_source)
     remove_marc_tag(chmarc, "740")
 
     #puts orig_source.marc.to_marc if mod
+
+    # Update the user to the BM one
+    orig_source.wf_owner = @user_map[orig_source.wf_owner] if orig_source.wf_owner != nil
 
     orig_source.suppress_reindex
     orig_source.suppress_update_count
