@@ -98,6 +98,16 @@ CSV.foreach("housekeeping/upgrade_ch/changed_institutions.tsv", col_sep: "\t") d
     @old_institutions[r[0].to_i] = r[1].to_i
 end
 
+@old_300a = {}
+# Format is BM id, CH id
+CSV.foreach("housekeeping/upgrade_ch/changed_300a.tsv", col_sep: "\t") do |r|
+    if r[2]
+        @old_300a["#{r[1]}: #{r[2]}"] = r[0]
+    else
+        @old_300a["#{r[1]}"] = r[0]
+    end
+end
+
 print "."
 
 @user_map = {
@@ -112,47 +122,47 @@ print "."
 }
 
 @modify_340 = {
-"Autographie" =>	"Autography",
-"Autography" =>	"Autography",
-"Fotokopien bzw. Umdrucke von Abschriften" =>	"Autography",
-"Umdruck" =>	"Autography",
-"Computer printout" =>	"Computer printout",
-"Engraving" =>	"Engraving",
-"Stich" =>	"Engraving",
-"Facsimile" =>	"Facsimile",
-"Lithografie" =>	"Lithography",
-"Lithografie [Noten]" =>	"Lithography",
-"Lithografie [p.3-16]" =>	"Lithography",
-"Lithographie" =>	"Lithography",
-"Lithography" =>	"Lithography",
-"Lithograpie" =>	"Lithography",
-"Fotocopy" =>	"Photoreproductive process",
-"Fotocopy."	 =>"Photoreproductive process",
-"Fotokopie"	 =>"Photoreproductive process",
-"Fotokopie des Autographs" =>	"Photoreproductive process",
-"Fotokopie." =>	"Photoreproductive process",
-"Heliokopie" =>	"Photoreproductive process",
-"Photocopie" =>	"Photoreproductive process",
-"Photocopy" =>	"Photoreproductive process",
-"Photocopy." =>	"Photoreproductive process",
-"Photocoy" =>	"Photoreproductive process",
-"Photokopie" =>	"Photoreproductive process",
-"Photoreproductive process"	 => "Photoreproductive process",
-"Tirage hélio" =>	"Photoreproductive process",
-"photocopy"	 => "Photoreproductive process",
-"Mechanische Reproduktion der Handschrift" =>	"Reproduction",
-"Reproduction" =>	"Reproduction",
-"Reproduction."	=> "Reproduction",
-"Reproduktion" => "Reproduction",
-"Reproduktion."	=> "Reproduction",
-"Vervielfältigung" =>	"Reproduction",
-"Vervielfältigung der Handschrift" =>	"Reproduction",
-"Vervielfältigung." =>	"Reproduction",
-"Transparentfolie" =>	"Transparency",
-"Transparentfolien"	 =>"Transparency",
-"Transparentpapier"	 =>"Transparency",
-"Typescript" =>	"Typescript",
-"Typendruck" =>	"Typography",
+    "Autographie" =>	"Autography",
+    "Autography" =>	"Autography",
+    "Fotokopien bzw. Umdrucke von Abschriften" =>	"Autography",
+    "Umdruck" =>	"Autography",
+    "Computer printout" =>	"Computer printout",
+    "Engraving" =>	"Engraving",
+    "Stich" =>	"Engraving",
+    "Facsimile" =>	"Facsimile",
+    "Lithografie" =>	"Lithography",
+    "Lithografie [Noten]" =>	"Lithography",
+    "Lithografie [p.3-16]" =>	"Lithography",
+    "Lithographie" =>	"Lithography",
+    "Lithography" =>	"Lithography",
+    "Lithograpie" =>	"Lithography",
+    "Fotocopy" =>	"Photoreproductive process",
+    "Fotocopy."	 =>"Photoreproductive process",
+    "Fotokopie"	 =>"Photoreproductive process",
+    "Fotokopie des Autographs" =>	"Photoreproductive process",
+    "Fotokopie." =>	"Photoreproductive process",
+    "Heliokopie" =>	"Photoreproductive process",
+    "Photocopie" =>	"Photoreproductive process",
+    "Photocopy" =>	"Photoreproductive process",
+    "Photocopy." =>	"Photoreproductive process",
+    "Photocoy" =>	"Photoreproductive process",
+    "Photokopie" =>	"Photoreproductive process",
+    "Photoreproductive process"	 => "Photoreproductive process",
+    "Tirage hélio" =>	"Photoreproductive process",
+    "photocopy"	 => "Photoreproductive process",
+    "Mechanische Reproduktion der Handschrift" =>	"Reproduction",
+    "Reproduction" =>	"Reproduction",
+    "Reproduction."	=> "Reproduction",
+    "Reproduktion" => "Reproduction",
+    "Reproduktion."	=> "Reproduction",
+    "Vervielfältigung" =>	"Reproduction",
+    "Vervielfältigung der Handschrift" =>	"Reproduction",
+    "Vervielfältigung." =>	"Reproduction",
+    "Transparentfolie" =>	"Transparency",
+    "Transparentfolien"	 =>"Transparency",
+    "Transparentpapier"	 =>"Transparency",
+    "Typescript" =>	"Typescript",
+    "Typendruck" =>	"Typography",
 }
 
 print "."
@@ -324,17 +334,32 @@ def migrate_source(orig_source, mutex)
     chmarc.each_by_tag("300") do |t|
         a = fetch_single_subtag(t, "a")
         next if !a
-        next if !a.include? "part"
 
-        parts = a.split(":")
-        next if parts.count < 2
+        # is this in the manual or exclude list?
+        exclude = @old_300a[a]
+        next if exclude && exclude.include?("man") # Skip this
 
-        a300_content = parts[0].strip
-        b590_content = parts[1].strip
+        # Copy it verbatim to 590 without spliting
+        if exclude == "590$b"
+            # In this case, only the 590 is filled
+            a300_content = ""
+            b590_content = a
+            #puts "SPECIAL CASE".red
+        else
+            # This happens only when 300 contains "part"
+            # Split it into 300 and 590
+            next if !a.include? "part"
+
+            parts = a.split(":")
+            next if parts.count < 2
+            a300_content = parts[0].strip
+            b590_content = parts[1].strip
+        end
 
         group = fetch_single_subtag(t, "8")
     
         # First, replace the a subtag in this 300
+        #puts "300 is #{a300_content}".yellow
         replace_single_subtag(t, "a", a300_content)
 
         # Now we need to get the 590, if it is there.        
@@ -396,6 +421,7 @@ def migrate_source(orig_source, mutex)
     #orig_source.save if mod
         orig_source.save
     end
+
 end
 
 
