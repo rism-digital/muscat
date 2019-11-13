@@ -165,10 +165,16 @@ print "."
     "Typendruck" =>	"Typography",
 }
 
+@map_593 = {
+    "Manuscript with autograph annotations" => "Manuscript copy with autograph annotations",
+    "Print with autograph annotations" => "Print with autograph annotations",
+    "Print with non-autograph annotations" => "Print with non-autograph annotations",
+}
+
 print "."
 puts " done."
 
-def migrate_source(orig_source, mutex)
+def migrate_source(orig_source)
     mod = false
     #pb.increment!
 
@@ -207,8 +213,15 @@ def migrate_source(orig_source, mutex)
         id = fetch_single_subtag(t, "d")
         if @modify_340.include?(id)
             #puts "340 replace #{id} with #{@modify_340[id]}".green
-            delete_single_subtag(t, "d")
             replace_single_subtag(t, "d", @modify_340[id])
+        end
+    end
+
+    chmarc.each_by_tag("593") do |t|
+        id = fetch_single_subtag(t, "a")
+        if @map_593.include?(id)
+            #puts "593 replace #{id} with #{@map_593[id]}".green
+            replace_single_subtag(t, "a", @map_593[id])
         end
     end
 
@@ -414,13 +427,12 @@ def migrate_source(orig_source, mutex)
     orig_source.suppress_update_count
     orig_source.suppress_update_77x
 
-    mutex.synchronize do
-        orig_source.marc.import
+    orig_source.marc.import
     
     # Just save it, we modify the user too
     #orig_source.save if mod
-        orig_source.save
-    end
+    orig_source.save
+
 
 end
 
@@ -428,7 +440,6 @@ end
 pb = ProgressBar.new(Source.count)
 
 # Non parallel version
-=begin
 Source.all.each do |s|
     #next if s.id != 400003761
     orig_source = Source.find(s.id)
@@ -436,7 +447,6 @@ Source.all.each do |s|
     orig_source = nil
     pb.increment!
 end
-=enf
 
 =begin
 @parallel_jobs = 10
@@ -456,6 +466,7 @@ results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs, progress
 end
 =end
 
+=begin
 @parallel_jobs = 10
 @all_src = Source.all.count
 @limit = @all_src / @parallel_jobs
@@ -477,3 +488,4 @@ threads = 10.times.map do |jobid|
     end
 end
 threads.each(&:join)
+=end
