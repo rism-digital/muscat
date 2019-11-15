@@ -304,7 +304,9 @@ def migrate_source(orig_source)
             replace_single_subtag(t, "0", @old_240_ids[id])
             mod = true
         else
-            delete_single_subtag(t, "0")
+            if id.to_i > 50000000
+                replace_single_subtag(t, "0", id + 100000)
+            end
         end
     end
 
