@@ -303,6 +303,8 @@ def migrate_source(orig_source)
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", @old_240_ids[id])
             mod = true
+        else
+            delete_single_subtag(t, "0")
         end
     end
 
