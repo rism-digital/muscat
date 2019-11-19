@@ -220,6 +220,7 @@ def migrate_source(orig_source)
 
     chmarc.each_by_tag("593") do |t|
         id = fetch_single_subtag(t, "a")
+        next if !id
         if @map_593.include?(id.downcase)
             #puts "593 replace #{id} with #{@map_593[id]}".green
             replace_single_subtag(t, "a", @map_593[id])
