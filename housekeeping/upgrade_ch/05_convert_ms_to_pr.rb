@@ -473,7 +473,7 @@ def merge(row, s, do_merge = true)
     # Delete the old record always
     # When "merge" the contents are
     # preserved into the BM one
-    ##s.delete
+    s.delete
 
     # If we are merging, migrate the tags
     # And then save
@@ -514,8 +514,6 @@ end
 # Purge removes selected groups from the record
 def purge(row, s)
     groups = []
-
-    ap row
 
     if row[:y] == nil
         puts "#{s.id} purge no group id!".red
@@ -629,7 +627,7 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
 
     next if r[:w].include? "man."
 
-    #next if r[:d] != "403009174"
+    #next if r[:d] != "402009390"
 
     begin
         s = Source.find(r[:d])
