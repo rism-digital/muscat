@@ -336,10 +336,20 @@ def migrate_source(orig_source)
                 end
 
                 # Move it to a 500
+                # BUT BEFORE! is it already there?
+
                 new_tag = MarcNode.new("source", "500", "", "##")
                 new_tag.add_at(MarcNode.new("source", "a", new590[:text], nil), 0)
+
+                # is this is  a group?
+                the8 = fetch_single_subtag(t, "8")
+                if the8
+                    new_tag.add_at(MarcNode.new("source", "8", the8, nil), 0)
+                end
+
                 new_tag.sort_alphabetically
                 chmarc.root.children.insert(chmarc.get_insert_position(new_tag.tag), new_tag)
+
 
                 # Delete the old subtag
                 delete_single_subtag(t, "b")
@@ -388,7 +398,6 @@ def migrate_source(orig_source)
             # Can work also if both are nil when there is no group!
             if the8 == group
                 th.add_at(MarcNode.new("source", "b", b590_content, nil), 0)
-                th.add_at(MarcNode.new("source", "8", group, nil), 0) if group # is it in a group?
                 th.sort_alphabetically
                 added = true
                 #puts "Added to 590 #{b590_content} with group #{group} id #{orig_source.id}"
@@ -446,7 +455,7 @@ pb = ProgressBar.new(Source.count)
 
 # Non parallel version
 Source.all.each do |s|
-    #next if s.id != 400003761
+    #next if s.id != 405000310
     orig_source = Source.find(s.id)
     migrate_source(orig_source)
     orig_source = nil
