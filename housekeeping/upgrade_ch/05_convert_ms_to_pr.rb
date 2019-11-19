@@ -408,6 +408,7 @@ end
 
 def merge(row, s, do_merge = true)
     replace_holding = false
+    preserve_510 = []
 
     # Force a reload
     s = Source.find(s.id)
@@ -432,12 +433,26 @@ def merge(row, s, do_merge = true)
     # THEN we overwrite the contents with our record
     # This is only for records that are merged
     # For the others (deleted), we keep the contents
-    a1_rec.marc_source = s.marc_source if do_merge
+    if do_merge
+        # Preserve 510
+        # This is ultra tricky, as we cannot load
+        # The source two times
+        a1_rec_safe_copy = Source.find(a1_rec.id)
+        a1_rec_safe_copy.marc.load_source false # We do not need the links
+        a1_rec_safe_copy.marc.each_by_tag("510") do |tag|
+            preserve_510 << tag.deep_copy
+        end
+
+        # Move the source, note that
+        # Marc source in a1_res is still unloaded
+        a1_rec.marc_source = s.marc_source
+    end
 
     old_record_type = s.record_type
     old_siglum = s.lib_siglum
     # ok now load the ource
     a1_rec.marc.load_source true
+    a1_rec.marc.set_id(a1_rec.id) # Make sure the 001 field is always updated
 
     # When merging, pull the data from the "new" source
     if do_merge
@@ -458,12 +473,22 @@ def merge(row, s, do_merge = true)
     # Delete the old record always
     # When "merge" the contents are
     # preserved into the BM one
-    s.delete
+    ##s.delete
 
     # If we are merging, migrate the tags
     # And then save
     if do_merge
         tag_migrate_collection_and_sigle_item(row, a1_rec, a1_rec.marc) 
+    end
+
+    # Move back the 510
+    if preserve_510.count > 0
+        # Purge eventual old 510s
+        remove_marc_tag(a1_rec.marc, "510")
+
+        preserve_510.each do |tag|
+            a1_rec.marc.root.children.insert(a1_rec.marc.get_insert_position("510"), tag)
+        end
     end
 
     puts "Saving #{a1_rec.id}".blue
@@ -489,6 +514,8 @@ end
 # Purge removes selected groups from the record
 def purge(row, s)
     groups = []
+
+    ap row
 
     if row[:y] == nil
         puts "#{s.id} purge no group id!".red
@@ -602,7 +629,7 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
 
     next if r[:w].include? "man."
 
-    #next if r[:d] != "400008194"
+    #next if r[:d] != "403009174"
 
     begin
         s = Source.find(r[:d])
