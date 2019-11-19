@@ -166,9 +166,10 @@ print "."
 }
 
 @map_593 = {
-    "Manuscript with autograph annotations" => "Manuscript copy with autograph annotations",
-    "Print with autograph annotations" => "Print with autograph annotations",
-    "Print with non-autograph annotations" => "Print with non-autograph annotations",
+    "manuscript with autograph annotations" => "Manuscript copy with autograph annotations",
+    "print with autograph annotations" => "Print with autograph annotations",
+    "print with non-autograph annotations" => "Print with non-autograph annotations",
+    "manuscript" => "Manuscript copy"
 }
 
 print "."
@@ -219,7 +220,7 @@ def migrate_source(orig_source)
 
     chmarc.each_by_tag("593") do |t|
         id = fetch_single_subtag(t, "a")
-        if @map_593.include?(id)
+        if @map_593.include?(id.downcase)
             #puts "593 replace #{id} with #{@map_593[id]}".green
             replace_single_subtag(t, "a", @map_593[id])
         end
