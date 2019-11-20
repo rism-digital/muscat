@@ -1996,6 +1996,12 @@ art:
     fr: "Metteur en scène"
     de: "Bühnenbildner"
     en: Artist
+asg:
+  label:
+    it: ASSIGNEE
+    fr: ASSIGNEE
+    de: Lizenznehmer
+    en: Assignee
 asn: 
   label: 
     it: Altro nome
@@ -2062,6 +2068,12 @@ com:
     fr: Compilateur
     de: Kompilator
     en: Compiler
+cph: 
+  label: 
+    it: COPYRIGHT HOLDER
+    fr: COPYRIGHT HOLDER
+    de: Rechteinhaber
+    en: Copyright holder
 cst: 
   label: 
     it: Costumista
@@ -2164,6 +2176,12 @@ lbt:
     fr: Librettiste
     de: Librettist
     en: Librettist
+lse: 
+  label: 
+    it: LICENSEE
+    fr: LICENSEE
+    de: Lizenzinhaber
+    en: Licensee
 ltg: 
   label: 
     it: Litografo
