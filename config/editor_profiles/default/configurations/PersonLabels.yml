@@ -820,6 +820,12 @@ wr:
     fr: "Mexico"
     de: "Mexico"
     en: "Mexico"
+"XA-MD":
+  label:
+    it: "MOLDAVIA"
+    fr: "MOLDAVIA"
+    de: "Moldawien"
+    en: "Moldavia"
 "XA-ME":
   label:
     it: "Montenegro"
