@@ -277,5 +277,5 @@
     :fields:
     - - "u"
       - :occurrences: "?"
-#        :foreign_class: Source
-#        :foreign_field: id
+        :foreign_class: Source
+        :foreign_field: id
