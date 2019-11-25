@@ -13,4 +13,3 @@ Source.where("id > 400000000 and id < 420000000").each do |se|
 	s.save
 	s = nil
 end
-	

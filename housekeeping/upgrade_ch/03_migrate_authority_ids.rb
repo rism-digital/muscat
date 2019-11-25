@@ -222,8 +222,8 @@ def migrate_source(orig_source)
         id = fetch_single_subtag(t, "a")
         next if !id
         if @map_593.include?(id.downcase)
-            #puts "593 replace #{id} with #{@map_593[id]}".green
-            replace_single_subtag(t, "a", @map_593[id])
+            puts "593 replace #{id.downcase} with #{@map_593[id.downcase]}".green
+            replace_single_subtag(t, "a", @map_593[id.downcase])
         end
     end
 
@@ -359,7 +359,7 @@ def migrate_source(orig_source)
         end
     end
 
-    # MOgrating 300 $a should happen AFTER 590 $b is fixed
+    # Migrating 300 $a should happen AFTER 590 $b is fixed
     chmarc.each_by_tag("300") do |t|
         a = fetch_single_subtag(t, "a")
         next if !a
