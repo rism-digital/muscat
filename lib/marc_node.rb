@@ -458,22 +458,22 @@ class MarcNode
     if @tag =~ /^[\d]{3,3}$/
       if tag.to_i < 10
         #control
-        out = {:type => 'controlfield', :tag => @tag, :content => content}
+        out = {@tag => content}
       else
         #data
-        ind0 = " "
         ind1 = " "
+        ind2 = " "
         if indicator
-          ind0 = indicator[0,1]
-          ind1 = indicator[1,1]
+          ind1 = indicator[0,1]
+          ind2 = indicator[1,1]
         end
-        thisfield = {:type =>'datafield', :tag => @tag, :ind0 => ind0, :ind1 => ind1, :subfields => []}
-        for_every_child_sorted { |child| thisfield[:subfields] += [child.to_json] }
+        thisfield = {@tag => {:subfields => []}, :ind1 => ind1, :ind2 => ind2}
+        for_every_child_sorted { |child| thisfield[@tag][:subfields] += [child.to_json] }
         out = thisfield
       end
     else
       # subfield
-      out = {:type => 'subfield', :code => @tag, :content => content}
+      out = {@tag => content}
     end
     return out
   end
