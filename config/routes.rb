@@ -66,7 +66,9 @@ Rails.application.routes.draw do
   get 'sru/institutions' => 'sru#service'
   get 'sru/catalogues' => 'sru#service'
 
-  get 'api' => 'api#show'
+  get 'api' => 'record#show'
+  get 'api/search' => 'record#search'
+  post 'api' => 'record#update'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
