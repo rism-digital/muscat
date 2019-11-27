@@ -416,7 +416,7 @@ class Marc
     array.each do |node|
       marc_json["fields"] << node.to_json
     end
-    return marc_json.to_json
+    return marc_json
   end
 
   def to_xml(updated_at = nil, versions = nil, holdings = true)
