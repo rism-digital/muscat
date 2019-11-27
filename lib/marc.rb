@@ -411,7 +411,7 @@ class Marc
  
   def to_json
     load_source unless @loaded
-    marc_json = {"leader" => "01471cjm a2200349 a 4500", "fields" => []}
+    marc_json = {"fields" => []}
     array = self.root.each{|c| c}
     array.each do |node|
       marc_json["fields"] << node.to_json

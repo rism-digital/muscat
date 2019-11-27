@@ -20,7 +20,6 @@ module MarcControllerActions
       model = self.resource_class
 
       marc_hash = JSON.parse params[:marc]
-        
       # This is the tricky part. Get the MARC subclass
       # e.g. MarcSource or MarcPerson
       classname = "Marc" + model.to_s
