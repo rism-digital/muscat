@@ -147,6 +147,24 @@ def groups_to_human_readable_text(marc, group)
     tokens.compact.join("; ")
 end
 
+def migrate_590(new_marc, the590)
+    the8 = nil
+    # pull the 852
+    the852 = new_marc.first_occurance("852")
+    the8 = the852.fetch_first_by_tag("8") if the852
+    if the8 && the8.content
+        # Substitute the existing one
+        the8.content = fetch_single_subtag(the590, "a")
+    else
+        # Append a new one
+        the852.add_at(MarcNode.new("source", "q", fetch_single_subtag(the590, "a"), nil), 0)
+        the852.sort_alphabetically
+    end
+    
+    # Remove the $8 and make it a regular 590
+    the590.each_by_tag("8") {|the8| the8.destroy_yourself}
+end
+
 def copy_group(marc, new_marc, group)
     marc.all_tags.each do |tgs|
         grp = tgs.fetch_first_by_tag("8")
@@ -154,18 +172,7 @@ def copy_group(marc, new_marc, group)
         
         if grp.content.to_i == group
             if tgs.tag == "590"
-                # pull the 852
-                the852 = new_marc.first_occurance("852")
-                q852 = fetch_single_subtag(the852, "q")
-                if q852
-                    # Substitute the existing one
-                    q852.content = fetch_single_subtag(tgs, "a")
-                else
-                    # Append a new one
-                    the852.add_at(MarcNode.new("source", "q", fetch_single_subtag(tgs, "a"), nil), 0)
-                    the852.sort_alphabetically
-                end
-
+                migrate_590(new_marc, tgs)
             else
                 new_marc.root.children.insert(new_marc.get_insert_position(tgs.tag), tgs.deep_copy)
             end
@@ -312,12 +319,11 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
         move_tag_with_subtag(marc, new_marc, "710", "4", "scr")
         move_tag_with_subtag(marc, new_marc, "710", "4", "dpt")
 
-        ## !!!!!! check
-        ##copy_tag(marc, new_marc, "773", "973")
-
         copy_tag(marc, new_marc, "852")
         copy_tag(marc, new_marc, "856")
 
+        # Copy the 590s, after the 852 is created
+        marc.each_by_tag("590") {|tgs| migrate_590(new_marc, tgs)}
 
         # Remove the tags in the old marc
         remove_marc_tag(marc, "506")
@@ -339,6 +345,12 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
         delete_group(marc, only_group)
     end
 
+    # As a last goodie, remove alle the remaining $8 that could be there
+    new_marc.all_tags.each do |tag|
+        tag.each_by_tag("8") {|the8| the8.destroy_yourself}
+    end
+
+
     # Insert the 500 note, only if Z is filled
     # or if this is a result of a split
     insert_single_marc_tag(new_marc, "500", "a", row[:ac]) if row[:z] || row[:w].include?("split")
@@ -352,13 +364,13 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
     
     holding.suppress_reindex
     
-    begin
+    #begin
       holding.save
       puts "Saved holding #{holding.id}"
-    rescue => e
-      $stderr.puts"Could not save holding record for #{source.id}"
-      $stderr.puts e.message.blue
-    end
+    #rescue => e
+    #  $stderr.puts"Could not save holding record for #{source.id}"
+    #  $stderr.puts e.message.blue
+    #end
 
 end
 
@@ -685,8 +697,8 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
 
     next if r[:w].include? "man."
 
-    #next if r[:d] != "402007083"
-
+    #next if r[:d] != "402005040" #&& r[:d] != "410002263"
+    
     begin
         s = Source.find(r[:d])
     rescue ActiveRecord::RecordNotFound
