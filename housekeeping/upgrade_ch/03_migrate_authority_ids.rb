@@ -312,6 +312,21 @@ def migrate_source(orig_source)
         end
     end
 
+    # ALSO THE 730 CONTAINS STANDARD TITLES!
+    chmarc.each_by_tag("730") do |t|
+        id = fetch_single_subtag(t, "0")
+        if @old_240_ids.include?(id)
+            #puts "240 replace #{id} with #{@old_240_ids[id]}".green
+            delete_single_subtag(t, "a")
+            replace_single_subtag(t, "0", @old_240_ids[id])
+            mod = true
+        else
+            if id.to_i > 50000000
+                replace_single_subtag(t, "0", id + 100000)
+            end
+        end
+    end
+
     chmarc.each_by_tag("852") do |t|
         id = fetch_single_subtag(t, "x")
         if @old_institutions.include?(id)
