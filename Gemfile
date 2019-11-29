@@ -148,3 +148,4 @@ group :test do
   gem 'database_cleaner'
 end
 gem 'active_model_serializers'
+gem 'jwt'

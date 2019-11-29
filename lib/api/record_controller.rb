@@ -1,5 +1,8 @@
 class RecordController < ActionController::API
+  
+  before_action :authenticate_user!
   def show
+    puts current_user.email
     model, id = params[:model], params[:id]
     record = Record.new(model, id)
     if record.record_status == "inprogress"
