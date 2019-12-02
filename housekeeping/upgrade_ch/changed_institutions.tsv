@@ -1,15 +1,15 @@
 50007821	6430		NULL	Gombart & Comp., Augsburg
 50007428	6812		NULL	Basler Kammerorchester
 50007879	11915		NULL	Bureau de Musique C. F. Peters, Leipzig
-50007798	13377		NULL	Schlesinger'sche Buch- und Musik-Handlung, Berlin
+50007798	71028		NULL	Schlesinger'sche Buch- und Musik-Handlung, Berlin
 50007735	16697		NULL	Bern, Stadttheater
 50007653	18619		NULL	Neue Zürcher Nachrichten
-50007636	29199		NULL	Böhm, Anton, Sohn
+50007636	78931		NULL	Böhm, Anton, Sohn
 50007436	33180		NULL	Allgemeiner Deutscher Cäcilienverein
 50007410	36228		NULL	Radio Bern
 50007913	38768		NULL	Cocks & Comp., London
 50007429	38900		NULL	Liederkranz Frankfurt am Main
-50007868	39250		NULL	Nikolaus Simrock, Bonn
+50007868	40010191		NULL	Nikolaus Simrock, Bonn
 50007911	40535		NULL	Tobias Haslinger, Wien
 50007061	44900		NULL	Aschaffenburg, Städtische Musikschule
 50007165	46200		NULL	Frankfurter Liederkranz
@@ -17,9 +17,8 @@
 50007502	56880		NULL	Dresdner Lehrergesangsverein
 50007213	62689		NULL	Basler Liedertafel
 50007898	62701		NULL	Tobias Haslingers Witwe und Sohn, Wien
-50007904	62761		NULL	Brandus & Cie, Paris
 50007834	62769		NULL	Verlag J. J. Weber, Leipzig
-50007901	62774		NULL	August Cranz, Hamburg
+50007901	40002683		NULL	August Cranz, Hamburg
 50007787	62778		NULL	Ries & Erler, Berlin
 50007256	63346		NULL	Liedertafel Innsbruck
 50007374	63413		NULL	Thomanerchor Leipzig
@@ -37,11 +36,10 @@
 50007360	79793		NULL	Mainzer Liedertafel
 50007750	79923		NULL	Wiener Männergesangverein
 50007484	79924		NULL	Wiener Schubertbund
-50007681	79928		NULL	Festival Strings Lucerne
 50007718	80802		NULL	Fondation de la Confédération Suisse
 50007405	82930		NULL	Universität Bern
 50007936	85398		NULL	Gesellschaft für das Gute und Gemeinnützige Basel
-50007139	310166		NULL	Artaria
+50007139	40000434		NULL	Artaria
 50007843	20000006		NULL	J. J. Hummel, Berlin
 50007124	30000001		NULL	Aargauische Kantonsbibliothek
 50007119	30000002		NULL	Napoleonmuseum
@@ -389,7 +387,7 @@
 50006804	30052729		I-CALf	Franziskanerkloster
 50007382	30060910		NULL	Amerikanischer Cäcilienverein
 50007952	30061095		NULL	Imprimerie Moucelot
-50007581	30061355		NULL	Schott, A., Antwerpen
+50007581	40009858		NULL	Schott, A., Antwerpen
 50006446	30061505		H-Bmàg	Mûemlékek Állami Gondnoksàga
 50006451	30061510		PL-ŚLj	Święta Lipka - Sanktuarium Maryjne
 50006515	30061577		MEX-Msaldívar	Dr. Gabriel Saldívar, private collection
@@ -439,7 +437,7 @@
 50007355	30077162		NULL	Männerchor St. Fiden - St. Gallen
 50007531	30077163		NULL	Studiencommission für die höheren Lehranstalten Sankt Gallen
 50005553	30077184		CZ-Kb	Zàmeckà knihovna
-50007611	30077276		NULL	Bureau d'Arts et d'Industrie
+50007611	40005932		NULL	Bureau d'Arts et d'Industrie
 50007517	30077400		NULL	Bezirks-Cäcilien-Verein Rorschach
 50007548	30077401		NULL	Caecilien-Verein Bern
 50007694	30077401		NULL	Cäcilienverein Bern
@@ -493,9 +491,9 @@
 50007524	30078157		NULL	Société de Musique de Chambre pour Instruments á Vent Paris
 50007202	30078177		NULL	Allgemeiner Schweizerischer Sängerverein
 50007523	30078178		NULL	Fondation de l'Hospice du Samaritain de Vevey
-50007721	30078299		NULL	F.E.C. Leuckart, Leipzig
+50007721	40006702		NULL	F.E.C. Leuckart, Leipzig
 50007863	30078314		NULL	Universal Edition, Wien
-50007891	30078327		NULL	B. Schott, Mainz
+50007891	51000530		NULL	B. Schott, Mainz
 50007722	30078348		NULL	C. F. Peters, Leipzig
 50007648	30078454		NULL	Volksliturgisches Apostolat, Klosterneuburg
 50007748	30078458		NULL	Möseler
@@ -752,7 +750,7 @@
 50007932	30080410		CH-NYan	Association Niedermeyer - Centre de documentation
 50007783	40001493		NULL	Boyer, Paris
 50007872	40002228		NULL	Chabal, Paris
-50007890	40002260		NULL	Chappell, London
+50007890	30061105		NULL	Chappell, London
 50007899	40002456		NULL	Rober Cocks, London
 50007830	40002754		NULL	Paris, D'Enouville
 50007841	40003353		NULL	Melles Erard, Paris
@@ -761,7 +759,7 @@
 50007846	40005073		NULL	Hoffmeister & Kühnel (Bureau de Musique), Leipzig
 50007824	40005335		NULL	Imbault, Paris
 50007784	40006448		NULL	Le Menu, Paris
-50007871	40006653		NULL	Henry Lemoine, Paris
+50007871	51000071		NULL	Henry Lemoine, Paris
 50007815	40006811		NULL	Longman & Broderip, London
 50007874	40009854		NULL	Schonenberger, Paris
 50007790	40010070		NULL	Sieber
@@ -777,15 +775,14 @@
 50007762	40003989		NULL	ADDED
 50007844	30080634		NULL	ADDED
 50007851	40004485		NULL	ADDED
-71028	13377		NULL	ADDED
-78931	29199		NULL	ADDED
-40010191	39250		NULL	ADDED
-30080936	62761		NULL	ADDED
-40002683	62774		NULL	ADDED
-40000434	310166		NULL	ADDED
-40009858	30061355		NULL	ADDED
-40005932	30077276		NULL	ADDED
-40006702	30078299		NULL	ADDED
-51000530	30078327		NULL	ADDED
-30061105	40002260		NULL	ADDED
-51000071	40006653		NULL	ADDED
+13377	71028		NULL	ADDED
+29199	78931		NULL	ADDED
+39250	40010191		NULL	ADDED
+62774	40002683		NULL	ADDED
+310166	40000434		NULL	ADDED
+30061355	40009858		NULL	ADDED
+30077276	40005932		NULL	ADDED
+30078299	40006702		NULL	ADDED
+30078327	51000530		NULL	ADDED
+40002260	30061105		NULL	ADDED
+40006653	51000071		NULL	ADDED
