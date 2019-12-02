@@ -222,7 +222,7 @@ def migrate_source(orig_source)
         id = fetch_single_subtag(t, "a")
         next if !id
         if @map_593.include?(id.downcase)
-            puts "593 replace #{id.downcase} with #{@map_593[id.downcase]}".green
+            #puts "593 replace #{id.downcase} with #{@map_593[id.downcase]}".green
             replace_single_subtag(t, "a", @map_593[id.downcase])
         end
     end
