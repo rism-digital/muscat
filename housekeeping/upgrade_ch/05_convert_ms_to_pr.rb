@@ -257,7 +257,7 @@ def update_parent_ms(marc, old_record, new_record)
 end
     
 
-def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_group = nil)
+def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_group = nil, additional_notes = nil)
     holding = nil
     new_marc = nil
 
@@ -355,6 +355,17 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
     # or if this is a result of a split
     insert_single_marc_tag(new_marc, "500", "a", row[:ac]) if row[:z] || row[:w].include?("split")
     
+    ## Add the "additional group" notes
+    if additional_notes
+        if additional_notes[:"note500"]
+            insert_single_marc_tag(new_marc, "500", "a", "Additional material group: " + additional_notes[:"note500"])
+        end
+
+        if additional_notes[:"note599"]
+            insert_single_marc_tag(new_marc, "599", "a", "Deleted groups: " + additional_notes[:"note599"])
+        end
+    end
+
     # Save the holding
     new_marc.suppress_scaffold_links
     new_marc.import
@@ -413,7 +424,8 @@ def migrate_children(source, new_id = false, purge_groups = false)
             w773 = child.marc.first_occurance("773").fetch_first_by_tag("w")
             w773.content = new_id
         end
-    
+# DO NOT create the group note for children
+=begin
         if purge_groups
             note = ["593", "260", "300", "590"].map do |tag|
                 tag_to_text(child.marc, tag, purge_groups)
@@ -430,6 +442,7 @@ def migrate_children(source, new_id = false, purge_groups = false)
             # ...and non human readable one
             insert_single_marc_tag(child.marc, "599", "a", "Deleted groups: " + note)
         end
+=end
 
         # Migrate the tags only if it was not already migrated
         tag_migrate_child_ms(child.marc) if child.record_type != 3
@@ -455,9 +468,9 @@ def migrate_children(source, new_id = false, purge_groups = false)
 end
 
 
-def migrate(row, s)
+def migrate(row, s, holding_note = nil)
     puts "Migrating #{s.id}".green
-    create_holding(row, s, s.marc)
+    create_holding(row, s, s.marc, nil, nil, nil, holding_note)
 
     tag_migrate_collection_and_sigle_item(row, s, s.marc)
     s.record_type = 8
@@ -473,7 +486,7 @@ def migrate(row, s)
 
 end
 
-def merge(row, s, do_merge = true)
+def merge(row, s, note, do_merge = true)
     replace_holding = false
     preserve_510 = []
 
@@ -523,11 +536,11 @@ def merge(row, s, do_merge = true)
 
     # When merging, pull the data from the "new" source
     if do_merge
-        create_holding(row, a1_rec, a1_rec.marc, replace_holding, old_siglum)
+        create_holding(row, a1_rec, a1_rec.marc, replace_holding, old_siglum, nil, note)
     else
         # When deleting, use the old source as ref
         # But attach the holdings to the BM record!
-        create_holding(row, a1_rec, s.marc, replace_holding, old_siglum)
+        create_holding(row, a1_rec, s.marc, replace_holding, old_siglum, nil, note)
     end
 
     # If we have a parent MS, we need to update the 774
@@ -561,7 +574,8 @@ def merge(row, s, do_merge = true)
     puts "Saving #{a1_rec.id}".blue
 
     # Insert the 500 note in the BM record, for merge
-    insert_single_marc_tag(a1_rec.marc, "500", "a", row[:ac]) if do_merge
+    insert_single_marc_tag(a1_rec.marc, "500", "a", row[:ac]) if do_merge # Merge case
+    insert_single_marc_tag(a1_rec.marc, "500", "a", "This record replaces #{s.id}") if !do_merge #Delete case
 
     a1_rec.suppress_reindex
     a1_rec.suppress_update_count
@@ -574,13 +588,14 @@ end
 # but before that makes holdings with it
 # and attaches them to thr BM Source
 # KEEPING THE CONTENTS OF THE BM SOURCE
-def delete(row, s)
-    merge(row, s, false)
+def delete(row, s, note)
+    merge(row, s, note, false)
 end
 
 # Purge removes selected groups from the record
 def purge(row, s)
     groups = []
+    result_note = {}
 
     if row[:y] == nil
         puts "#{s.id} purge no group id!".red
@@ -601,13 +616,15 @@ def purge(row, s)
 
     groups.each do |grp|
         human_note =  groups_to_human_readable_text(s.marc, format('%02d', grp).to_str)
-        insert_single_marc_tag(s.marc, "500", "a", "Additional material group: " + human_note)
+        result_note[:"note500"] = human_note
+        #insert_single_marc_tag(s.marc, "500", "a", "Additional material group: " + human_note)
 
         delete_group(s.marc, grp)
     end
 
     # As above non human readable one in 599
-    insert_single_marc_tag(s.marc, "599", "a", "Deleted groups: " + note)
+    result_note[:"note599"] = note
+    #insert_single_marc_tag(s.marc, "599", "a", "Deleted groups: " + note)
 
     s.suppress_reindex
     s.suppress_update_count
@@ -620,6 +637,7 @@ def purge(row, s)
     # Also migrate the children and purge eventual groups
     migrate_children(s, false, groups)
 
+    return result_note
 end
 
 # Split moves the group to a holding record
@@ -697,7 +715,7 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
 
     next if r[:w].include? "man."
 
-    #next if r[:d] != "402005040" #&& r[:d] != "410002263"
+    #next if r[:d] != "402006521" #&& r[:d] != "410002263"
     
     begin
         s = Source.find(r[:d])
@@ -720,20 +738,20 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
     when "migrate"
         migrate(r, s)
     when "merge"
-        merge(r, s)
+        merge(r, s, nil)
     when "delete"
-        delete(r, s)
+        delete(r, s, nil)
     when "purge"
         purge(r, s)
     when"purge, migrate"
-        purge(r, s)
-        migrate(r, s)
+        note = purge(r, s)
+        migrate(r, s, note)
     when "purge, delete"
-        purge(r, s)
-        delete(r, s)
+        note = purge(r, s)
+        delete(r, s, note)
     when "purge, merge"
-        purge(r, s)
-        merge(r, s)
+        note = purge(r, s)
+        merge(r, s, note)
     when "split"
         split(r, s)
     when "split, migrate"
