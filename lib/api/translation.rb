@@ -32,7 +32,8 @@ class Translation
         leaf[key_parts.last] = key[lang]
       end
     end
-    File.write("tmp/#{lang}.yml", hash.to_yaml)
+    File.write("config/locales/#{lang}.yml", hash.to_yaml)
+    #File.write("tmp/#{lang}.yml", hash.to_yaml)
     hash.to_yaml
   end
 
@@ -80,21 +81,25 @@ class Translation
         e[lang] = value
         model = key.split(".").first
         #labels_to_yaml(model)
-        Translation.merge_labels(Translation.new("en"), self, model)
-
+        tx = languages - [lang]
+        translations = tx.map{|e| Translation.new(e)}
+        translations << self
+        Translation.merge_labels(translations, model)
         return self
       end
     end
   end
 
   # merging label files from different languages
-  def self.merge_labels(*translations, model)
+  def self.merge_labels(translations, model)
+    line = "--- !map:ActiveSupport::HashWithIndifferentAccess\n"
     res = translations.first.labels_to_yaml(model)
     translations[1..-1].each do |t|
       hash = t.labels_to_yaml(model)
       res.deep_merge!(hash)
     end
-    File.write("tmp/#{model}.yml", res.to_yaml)
+    File.write("config/editor_profiles/default/configurations/#{model}.yml", line + res.to_yaml.gsub("---\n", ''))
+    #File.write("tmp/#{model}.yml", line + res.to_yaml.gsub("---\n", ''))
     return res
   end
 
@@ -128,7 +133,7 @@ class Translation
   end
 
   def languages
-    %w( en de fr it )
+    %w( en de fr it es)
   end
 
   def models
