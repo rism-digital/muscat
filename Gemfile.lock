@@ -305,6 +305,8 @@ GEM
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.5)
+    rack-cors (1.1.0)
+      rack (>= 2.0.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.1.6)
@@ -474,6 +476,7 @@ DEPENDENCIES
   progress_job!
   pry
   puma
+  rack-cors
   rails (>= 5.1, < 5.2)
   rails-i18n
   rails3-jquery-autocomplete!

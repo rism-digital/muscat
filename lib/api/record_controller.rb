@@ -20,7 +20,6 @@ class RecordController < ActionController::API
     render json: {"status": "Sucess"}
   end
 
-
   def search
     records = Record.search(params[:model], params)
     render json: records

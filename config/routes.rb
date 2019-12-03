@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   get 'api/search' => 'record#search'
   put 'api' => 'record#update'
   get 'translation' => 'translation#show'
+  post 'translation' => 'translation#update'
   post 'user_token' => 'user_token#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

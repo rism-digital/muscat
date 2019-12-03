@@ -1,33 +1,35 @@
 #Wrapper for accessing YAML I18n files
 class Translation
   
-  attr_accessor :lang, :labels, :locales
+  attr_accessor :lang, :labels, :locales, :languages
   def initialize(lang)
     @lang = lang
-    @labels = [] 
+    @labels = []
+    labels_from_yaml
     @locales = []
+    locales_from_yaml
   end
 
   # returning list of ["de.alert", "alarm"] key-value pairs
   def locales_from_yaml
-    res = {}
+    res = []
     yaml = YAML.load_file("config/locales/#{lang}.yml")
     _flat_hash(yaml).each do |k,v|
-      res[k[1..-1].join(".")] = v
+      res << {"code" => k[1..-1].join("."), lang => v}
     end
-    @locales = res.sort
+    @locales = res
     return self
   end
 
   # writing back key-value pairs as yaml-hash
   def locales_to_yaml
-    hash = locales.to_h.each_with_object({}) do |(key,value), all|
-      key_parts = [lang] + key.split('.').map!(&:to_s)
+    hash = locales.each_with_object({}) do |(key), all|
+      key_parts = [lang] + key["code"].split('.').map!(&:to_s)
       leaf = key_parts[0...-1].inject(all) { |h, k| h[k] ||= {}  }
-      if value.include?("___ARR___")
-        leaf[key_parts.last] = value.split("___ARR___")
+      if key[lang].include?("___ARR___")
+        leaf[key_parts.last] = key[lang].split("___ARR___")
       else
-        leaf[key_parts.last] = value
+        leaf[key_parts.last] = key[lang]
       end
     end
     File.write("tmp/#{lang}.yml", hash.to_yaml)
@@ -38,26 +40,20 @@ class Translation
   def labels_from_yaml
     arr = []
     Dir["config/editor_profiles/default/configurations/*Labels.yml"].each do |file|
-      file_hash = {}
       filename = File.basename(file, ".yml")
       yaml = YAML.load_file(file)
       _flat_hash(yaml).each do |k,v|
-        file_hash[filename + "." + k[0..-2].join(".")] = v if k.last == lang
-      end
-      arr << file_hash.sort
-    end
-    arr.each do |e|
-      e.each do |k|
-        labels << k
+        arr << {"code" => filename + "." + k[0..-2].join("."), lang => v} if k.last == lang
       end
     end
+    @labels = arr
     return self
   end
 
   # returning key-value pairs as yaml hash
   def labels_to_yaml(model)
-    x = labels.select{|e| e[0].starts_with?(model)}
-    y = x.map{|e| [e[0].gsub("#{model}.", "") + ".#{lang}", e[1]]}
+    x = labels.select{|e| e["code"].starts_with?(model)}
+    y = x.map{|e| [e["code"].gsub("#{model}.", "") + ".#{lang}", e[lang]]}
     hash = y.to_h.each_with_object({}) do |(key,value), all|
       key_parts = key.split('.').map!(&:to_s)# unless key.starts_with?(model)
       leaf = key_parts[0...-1].inject(all) { |h, k| h[k] ||= {}  }
@@ -68,6 +64,27 @@ class Translation
       end
     end
     return hash
+  end
+
+  def update(key, value)
+    model = nil
+    locales.each do |e|
+      if e["code"] == key
+        e[lang] = value
+        locales_to_yaml
+        return self
+      end
+    end
+    labels.each do |e|
+      if e["code"] == key
+        e[lang] = value
+        model = key.split(".").first
+        #labels_to_yaml(model)
+        Translation.merge_labels(Translation.new("en"), self, model)
+
+        return self
+      end
+    end
   end
 
   # merging label files from different languages
@@ -81,6 +98,24 @@ class Translation
     return res
   end
 
+  def self.combine(*translations)
+    t1 = translations.first.locales
+    codes1 = t1.map{|e| e["code"]}
+    translations[1..-1].each do |t|
+      t.locales.each do |e|
+        t1[codes1.index(e["code"])].merge!(e) rescue next
+      end
+    end
+    t2 = translations.first.labels
+    codes1 = t2.map{|e| e["code"]}
+    translations[1..-1].each do |t|
+      t.labels.each do |e|
+        t2[codes1.index(e["code"])].merge!(e) rescue next
+      end
+    end
+    return t1 + t2
+  end
+
   # helper method to flatten yaml hash
   def _flat_hash(h,f=[],g={})
     if h.is_a? String
@@ -90,6 +125,14 @@ class Translation
     end
     h.each { |k,r| _flat_hash(r,f+[k],g)  } rescue nil
     g
+  end
+
+  def languages
+    %w( en de fr it )
+  end
+
+  def models
+    %w( Source Holding Person Institution Catalogue Work )
   end
 
 end
