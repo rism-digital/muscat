@@ -497,6 +497,21 @@ doc_references:
         fr: Type
         de: Typ
         en: Type
+"599": 
+  label: 
+    it: Commenti interni
+    fr: Commentaires internes
+    de: Interne Fussnoten
+    en: Local notes field
+  fields: 
+    a: 
+      label: 
+        it: Commenti interni
+        fr: Commentaires internes
+        de: Interne Fussnoten
+        en: Local notes field
+      edit_label: 
+        en: ""
 "651": 
   label: 
     it: Luogo di un evento
