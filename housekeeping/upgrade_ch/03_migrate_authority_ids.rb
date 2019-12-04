@@ -175,6 +175,11 @@ print "."
 print "."
 puts " done."
 
+# We need to preserve MARC data for catalogues
+# And user id for people
+@save_catalogues = {}
+@save_people = {}
+
 def migrate_source(orig_source)
     mod = false
     #pb.increment!
@@ -188,6 +193,11 @@ def migrate_source(orig_source)
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", @old_person_ids[id])
             mod = true
+        else
+            if !@save_people.keys.include?(id)
+                p = Person.find(id)
+                @save_people[id] = p.wf_owner if p.wf_owner > 0
+            end
         end
     end
 
@@ -234,6 +244,11 @@ def migrate_source(orig_source)
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", @old_person_ids[id])
             mod = true
+        else
+            if !@save_people.keys.include?(id)
+                p = Person.find(id)
+                @save_people[id] = p.wf_owner if p.wf_owner > 0
+            end
         end
     end
 
@@ -275,6 +290,11 @@ def migrate_source(orig_source)
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", @old_690_ids[id])
             mod = true
+        else
+            if !@save_catalogues.keys.include?(id) && id.to_i > 50000000
+                c = Catalogue.find(id)
+                @save_catalogues[id] = c.marc_source
+            end
         end
     end
 
@@ -295,6 +315,11 @@ def migrate_source(orig_source)
             delete_single_subtag(t, "a")
             replace_single_subtag(t, "0", @old_690_ids[id])
             mod = true
+        else
+            if !@save_catalogues.keys.include?(id) && id.to_i > 50000000
+                c = Catalogue.find(id)
+                @save_catalogues[id] = c.marc_source
+            end
         end
     end
 
@@ -470,13 +495,16 @@ end
 pb = ProgressBar.new(Source.count)
 
 # Non parallel version
-Source.all.each do |s|
+Source.limit(500).each do |s|
     #next if s.id != 405000310
     orig_source = Source.find(s.id)
     migrate_source(orig_source)
     orig_source = nil
     pb.increment!
 end
+
+File.write('migration_people_ids.yml', @save_people.to_yaml)
+File.write('migration_catalogues.yml', @save_catalogues.to_yaml)
 
 =begin
 @parallel_jobs = 10
