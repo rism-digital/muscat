@@ -162,7 +162,7 @@ def migrate_590(new_marc, the590)
     end
     
     # Remove the $8 and make it a regular 590
-    the590.each_by_tag("8") {|the8| the8.destroy_yourself}
+    ##the590.each_by_tag("8") {|the8| the8.destroy_yourself}
 end
 
 def copy_group(marc, new_marc, group)
@@ -358,7 +358,9 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
     ## Add the "additional group" notes
     if additional_notes
         if additional_notes[:"note500"]
-            insert_single_marc_tag(new_marc, "500", "a", "Additional material group: " + additional_notes[:"note500"])
+            additional_notes[:"note500"].each do |note|
+                insert_single_marc_tag(new_marc, "500", "a", "Additional material group: " + note)
+            end
         end
 
         if additional_notes[:"note599"]
@@ -424,25 +426,12 @@ def migrate_children(source, new_id = false, purge_groups = false)
             w773 = child.marc.first_occurance("773").fetch_first_by_tag("w")
             w773.content = new_id
         end
-# DO NOT create the group note for children
-=begin
+        # DO NOT create the group note for children, but delete the group!
         if purge_groups
-            note = ["593", "260", "300", "590"].map do |tag|
-                tag_to_text(child.marc, tag, purge_groups)
-            end.compact.join("\n")
-
             purge_groups.each do |grp|
-                # Preserve the old groups as human readable note
-                human_note = groups_to_human_readable_text(child.marc, format('%02d', grp).to_str)
-                insert_single_marc_tag(child.marc, "500", "a", "Additional material group: " + human_note)
-
                 delete_group(child.marc, grp)
             end
-        
-            # ...and non human readable one
-            insert_single_marc_tag(child.marc, "599", "a", "Deleted groups: " + note)
         end
-=end
 
         # Migrate the tags only if it was not already migrated
         tag_migrate_child_ms(child.marc) if child.record_type != 3
@@ -616,7 +605,8 @@ def purge(row, s)
 
     groups.each do |grp|
         human_note =  groups_to_human_readable_text(s.marc, format('%02d', grp).to_str)
-        result_note[:"note500"] = human_note
+        result_note[:"note500"] = [] if !result_note.include?(:"note500")
+        result_note[:"note500"] << human_note
         #insert_single_marc_tag(s.marc, "500", "a", "Additional material group: " + human_note)
 
         delete_group(s.marc, grp)
@@ -715,7 +705,7 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
 
     next if r[:w].include? "man."
 
-    #next if r[:d] != "402006521" #&& r[:d] != "410002263"
+    #next if r[:d] != "400108662" #&& r[:d] != "410002263"
     
     begin
         s = Source.find(r[:d])
