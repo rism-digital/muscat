@@ -9,7 +9,7 @@ groups:
   edit_administration: 
     all_tags: 
     - "001"
-    
+
   edit_library: 
     all_tags: 
     - "852"
