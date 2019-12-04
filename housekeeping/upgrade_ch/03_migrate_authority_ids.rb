@@ -495,7 +495,7 @@ end
 pb = ProgressBar.new(Source.count)
 
 # Non parallel version
-Source.limit(500).each do |s|
+Source.all.each do |s|
     #next if s.id != 405000310
     orig_source = Source.find(s.id)
     migrate_source(orig_source)
