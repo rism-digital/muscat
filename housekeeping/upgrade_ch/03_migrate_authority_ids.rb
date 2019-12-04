@@ -196,7 +196,7 @@ def migrate_source(orig_source)
         else
             if !@save_people.keys.include?(id)
                 p = Person.find(id)
-                @save_people[id] = p.wf_owner if p.wf_owner > 0
+                @save_people[id] = p.wf_owner if p.wf_owner && p.wf_owner > 0
             end
         end
     end
@@ -247,7 +247,7 @@ def migrate_source(orig_source)
         else
             if !@save_people.keys.include?(id)
                 p = Person.find(id)
-                @save_people[id] = p.wf_owner if p.wf_owner > 0
+                @save_people[id] = p.wf_owner if p.wf_owner && p.wf_owner > 0
             end
         end
     end
