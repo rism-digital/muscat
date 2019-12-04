@@ -291,7 +291,7 @@ def migrate_source(orig_source)
             replace_single_subtag(t, "0", @old_690_ids[id])
             mod = true
         else
-            if !@save_catalogues.keys.include?(id) && id.to_i > 50000000
+            if id && !@save_catalogues.keys.include?(id) && id.to_i > 50000000
                 c = Catalogue.find(id)
                 @save_catalogues[id] = c.marc_source
             end
@@ -316,7 +316,7 @@ def migrate_source(orig_source)
             replace_single_subtag(t, "0", @old_690_ids[id])
             mod = true
         else
-            if !@save_catalogues.keys.include?(id) && id.to_i > 50000000
+            if id && !@save_catalogues.keys.include?(id) && id.to_i > 50000000
                 c = Catalogue.find(id)
                 @save_catalogues[id] = c.marc_source
             end
