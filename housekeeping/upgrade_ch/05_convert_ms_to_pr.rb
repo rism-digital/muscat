@@ -388,7 +388,7 @@ def create_holding(row, source, marc, replace = nil, old_siglum = nil, only_grou
 end
 
 def tag_migrate_collection_and_sigle_item(row, source, marc)
-    rename_marc_tag(marc, "598", "594")
+    #rename_marc_tag(marc, "598", "594")
     remove_marc_tag(marc, "740")
     remove_marc_tag(marc, "852")
 end
@@ -404,13 +404,13 @@ def tag_migrate_child_ms(marc)
     remove_marc_tag(marc, "563")
     remove_marc_tag(marc, "591")
     remove_marc_tag(marc, "592")
-    remove_marc_tag(marc, "594")
+    ##remove_marc_tag(marc, "594")
     remove_marc_tag(marc, "651")
     remove_marc_tag(marc, "852")
     remove_marc_tag(marc, "856")
     remove_marc_tag(marc, "740")
 
-    rename_marc_tag(marc, "598", "594")
+    ##rename_marc_tag(marc, "598", "594")
 end
 
 def migrate_children(source, new_id = false, purge_groups = false)
