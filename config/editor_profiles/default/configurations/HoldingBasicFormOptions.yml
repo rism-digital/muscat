@@ -118,6 +118,7 @@
       - ltg
       - egr
       - ill
+      - prt
       - oth
       - dub
 "710":
@@ -151,6 +152,7 @@
       - prf
       - bsl
       - evp
+      - oth
 "852": 
   allow_new: true
   new_window: institutions

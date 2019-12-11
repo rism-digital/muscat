@@ -110,6 +110,9 @@ body.active_admin {
 .srutable tr:hover {background-color: #ddd;}
 
 .srutable th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   padding-top: 2px;
   padding-bottom: 2px;
   text-align: left;

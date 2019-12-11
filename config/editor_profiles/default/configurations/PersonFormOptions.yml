@@ -132,6 +132,7 @@
       - "XA-LU"
       - "XA-MT"
       - "XD-MX"
+      - "XA-MD"
       - "XA-ME"
       - "XA-NL"
       - "XE-NZ"
@@ -160,6 +161,7 @@
       - "XD-VE"
       - "XB-VN"
       - "XB-TW"
+      - "XB-GE"
 "100": 
   layout: 
     fields: 
