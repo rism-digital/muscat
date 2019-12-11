@@ -77,7 +77,7 @@ pt:
         other: "Destruídos com sucesso %{count} %{plural_model}"
       selection_toggle_explanation: "(Seleção Alternada)"
       link: "Criar"
-      action_label: "%{title}"
+      action_label: "%{Título}"
       labels:
         destroy: "Apagar"
         folder: "Criar pasta com itens"
@@ -215,7 +215,7 @@ pt:
     
     music_manuscripts: "Manuscritos musicais"
     collection_record: "Manuscrito musical, registro principal de coletânea"
-    individual_entry: "Individual entry in a music manuscript collection"
+    individual_entry: "Manuscrito musical, registro individual em coletânea manuscrita"
     single_manuscript: "Manuscrito musical único"
     
     printed_music: "Música impressa"
@@ -253,11 +253,11 @@ pt:
   menu_institutions: "Instituições"
   menu_titles: "Títulos / incipits literários"
   menu_subjects: "Títulos de assunto"
-  menu_library_sigla: "Sigla da instituição"
+  menu_library_sigla: "Sigla da Instituição"
   menu_catalogues: "Literatura Secundária"
   menu_liturgical_feasts: "Festas litúrgicas"
   menu_latin: "Texto latino"
-  menu_places: "Lugares"
+  menu_places: "Locais"
   menu_help: "Ajuda"
   menu_folders: "Pastas"
   menu_users: "Usuários"
@@ -265,7 +265,7 @@ pt:
   menu_administration: "Administração"
   menu_comments: "Comentários"
   menu_catalog: "Busca facetada"
-  menu_languages: "Busca facetada"
+  menu_languages: "Língua"
   menu_contact: "Contato"
   menu_search_history: "Histórico da busca"
   menu_guidelines: "Diretrizes para catalogação"
@@ -303,7 +303,7 @@ pt:
   waiting: "Esperando"
   running: "Em execução"
   finished: "Concluído"
-  lib_siglum: "Sigla da instituição"
+  lib_siglum: "Sigla da Instituição"
   holding_records: "Informação do exemplar"
   holding_no_siglum: "Materia sem sigla"
   new_holding: "Adicionar material"
@@ -330,7 +330,7 @@ pt:
   
   jobs:
     not_set: "[Nenhum estado determinado]"
-    ok: "Trabalho concluído com sucesso"
+    ok: "Trabalho realizada com sucesso"
     no_status: "Houve um Erro na leitura do Estado do trabalho"
     error: "ERRO: "
     running_jobs: "Trabalhos em execução não podem ser excluídos."
@@ -437,7 +437,7 @@ pt:
   filter_key: "Tonalidade"
   filter_language: "Língua"
   filter_last_updated: "Última atualização"
-  filter_lib_siglum: "Sigla da Biblioteca"
+  filter_lib_siglum: "Sigla da Instituição"
   filter_life_dates: "Datas de nascimento e morte"
   filter_links: "Links"
   filter_liturgical_feast: "Festa Litúrgica"
@@ -573,8 +573,8 @@ pt:
     one: "fonte"
     other: "fontes"
   place:
-    one: "lugar"
-    other: "lugares"
+    one: "local"
+    other: "locais"
   person: 
     one: "pessoa"
     other: "pessoas"
@@ -776,5 +776,4 @@ pt:
     published: "PUB"
     inprogress: "UNP"
     deprecated: "DEP"
-
 
