@@ -17,8 +17,8 @@ class StandardTerm < ApplicationRecord
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
-  #validates_presence_of :term
-  #validates_uniqueness_of :term
+  validates_presence_of :term
+  validates_uniqueness_of :term
   alias_attribute :name, :term
   #include NewIds
   

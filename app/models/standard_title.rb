@@ -17,7 +17,7 @@ class StandardTitle < ApplicationRecord
   has_many :delayed_jobs, -> { where parent_type: "StandardTitle" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
     
-  #validates_presence_of :title
+  validates_presence_of :title
   
   #include NewIds
   
@@ -105,4 +105,5 @@ class StandardTitle < ApplicationRecord
   def name
     return title
   end
+
 end
