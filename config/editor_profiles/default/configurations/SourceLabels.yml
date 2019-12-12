@@ -1637,7 +1637,7 @@ doc_record_status:
     it: Commenti interni
     fr: Commentaires internes
     de: Interne Fussnoten
-    en: Local notes field
+    en: Internal note
     pt: Campo de notas locais
   fields: 
     a: 
@@ -1645,7 +1645,7 @@ doc_record_status:
         it: Commenti interni
         fr: Commentaires internes
         de: Interne Fussnoten
-        en: Local notes field
+        en: Internal note
         pt: Campo de notas locais
       edit_label: 
         en: ""
