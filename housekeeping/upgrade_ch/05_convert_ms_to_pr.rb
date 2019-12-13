@@ -708,7 +708,7 @@ CSV::foreach("housekeeping/upgrade_ch/migrate_ms.csv", quote_char: '~', col_sep:
 
     #next if r[:d] != "400108662" #&& r[:d] != "410002263"
     
-    next if r[:d] == "400108729"
+    #next if r[:d] == "400108729"
 
     begin
         s = Source.find(r[:d])
