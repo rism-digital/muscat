@@ -118,6 +118,9 @@ ActiveAdmin.register Institution do
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Institution").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+  filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
+  collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
+ 
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
