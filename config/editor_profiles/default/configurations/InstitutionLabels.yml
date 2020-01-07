@@ -928,6 +928,12 @@ voc:
     fr: "Greece"
     de: "Greece"
     en: "Greece"
+"XD-GT":
+  label:
+    it: "Guatemala"
+    fr: "Guatemala"
+    de: "Guatemala"
+    en: "Guatemala"
 "XA-VA":
   label:
     it: "Holy See"
