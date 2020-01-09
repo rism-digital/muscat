@@ -215,6 +215,7 @@
       - cols: 4
     columns: 4
 "670": 
+  new_window: catalogues
   layout: 
     fields: 
     - - "a"
