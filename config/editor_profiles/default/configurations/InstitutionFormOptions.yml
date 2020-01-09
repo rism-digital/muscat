@@ -221,6 +221,8 @@
       - type: catalogue
         editor_partial: subfield_secondary
       - cols: 4
+    - - "b"
+      - cols: 2
     columns: 4
 "680": 
   layout: 
