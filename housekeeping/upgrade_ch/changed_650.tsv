@@ -1,0 +1,278 @@
+25133	Masses	50000001	Masses
+25134	Requiems	50000002	Requiems
+25137	Litanies	50000004	Litanies
+25138	Konzertstücke	50000005	Konzertstücke
+25139	Passacaglias	50000006	Passacaglias
+25140	Pasticcios	50000007	Pasticcios
+25141	Melodramas	50000008	Melodramas
+25143	Operettas	50000010	Operettas
+25145	Hours of the Office	50000012	Hours of the Office
+25148	Stage music	50000014	Stage music
+25149	Vespers	50000015	Vespers
+25150	Introits	50000016	Introits
+25151	Communions	50000017	Communions
+25156	Tracts	50000018	Tracts
+25157	Improperia	50000019	Improperia
+25158	Movements	50000020	Movements
+25159	Funeral music	50000021	Funeral music
+25160	Operas	50000022	Operas
+25161	Concerti grossi	50000023	Concerti grossi
+25162	Divertimentos	50000024	Divertimentos
+25167	Duets (voc.)	50000025	Duets (voc.)
+25169	Fugues (voc.)	50000026	Fugues (voc.)
+25170	Symphonies concertantes	50000027	Symphonies concertantes
+25171	Solfeggios (voc.)	50000028	Solfeggios (voc.)
+25172	Ballets	50000029	Ballets
+25175	Glees	50000032	Glees
+25176	Concertos	50000033	Concertos
+25178	Dances	50000034	Dances
+25185	Fantasies	50000038	Fantasies
+25188	Incidental music	50000040	Incidental music
+25189	Marches	50000041	Marches
+25192	Minuets	50000042	Minuets
+25196	Overtures	50000045	Overtures
+25199	Partitas	50000046	Partitas
+25202	Postludes	50000048	Postludes
+25203	Polonaises	50000049	Polonaises
+25204	Preludes	50000050	Preludes
+25213	Sonatas	50000059	Sonatas
+25214	Suites	50000060	Suites
+25215	Symphonies	50000061	Symphonies
+25216	Toccatas	50000062	Toccatas
+25218	Variations	50000064	Variations
+25220	Waltzes	50000066	Waltzes
+25224	Arias (voc.)	50000068	Arias (voc.)
+25226	Cantatas	50000070	Cantatas
+25227	Lieder	50000071	Lieder
+25229	Liederspiele	50000072	Liederspiele
+25230	Oratorios	50000073	Oratorios
+25233	Songs	50000075	Songs
+25234	Anthems	50000076	Anthems
+25237	Chorales	50000078	Chorales
+25238	Hymns	50000079	Hymns
+25239	Graduals	50000080	Graduals
+25240	Motets	50000081	Motets
+25241	Lamentations	50000082	Lamentations
+25242	Offertories	50000083	Offertories
+25243	Instrumental pieces	50000084	Instrumental pieces
+25244	Terzets (voc.)	50000085	Terzets (voc.)
+25246	Passions	50000086	Passions
+25248	Responsories	50000088	Responsories
+25249	Sequences	50000089	Sequences
+25250	Sacred songs	50000090	Sacred songs
+25252	Character pieces	50000091	Character pieces
+25254	Chorale arrangements	50000092	Chorale arrangements
+25256	Serenatas	50000093	Serenatas
+25257	Madrigals	50000094	Madrigals
+25258	Canzoni (voc.)	50000095	Canzoni (voc.)
+25259	Recitatives	50000096	Recitatives
+25260	Festive music	50000097	Festive music
+25262	Programme music	50000099	Programme music
+25264	Pantomimes	50000100	Pantomimes
+25268	Symphonic poems	50000104	Symphonic poems
+25270	Cavatinas	50000105	Cavatinas
+25271	Scenes	50000106	Scenes
+25272	National anthems	50000107	National anthems
+25273	Notturni (voc.)	50000108	Notturni (voc.)
+25274	Pieces	50000109	Pieces
+25275	Vocal pieces	50000110	Vocal pieces
+25276	Fanfares	50000111	Fanfares
+25278	Chansons	50000113	Chansons
+25280	Ballad operas	50000114	Ballad operas
+25285	Entr'actes	50000118	Entr'actes
+25286	Gigues	50000119	Gigues
+25297	Tarantellas	50000122	Tarantellas
+25302	Tambourins	50000124	Tambourins
+25309	Courantes	50000128	Courantes
+25313	Folk songs	50000130	Folk songs
+25315	Canzonettas	50000131	Canzonettas
+25316	Sarabandes	50000132	Sarabandes
+25318	Inventions	50000133	Inventions
+25319	Exercises (voc.)	50000134	Exercises (voc.)
+25320	Services	50000135	Services
+25327	Allemandes	50000140	Allemandes
+25329	Possen	50000141	Possen
+25338	Quodlibets	50000149	Quodlibets
+25343	Parodies	50000150	Parodies
+25362	Sacred concerts (voc.)	50000161	Sacred concerts (voc.)
+25365	Lamentos	50000162	Lamentos
+25366	Odes	50000163	Odes
+25367	Couplets	50000164	Couplets
+25368	Vaudevilles	50000165	Vaudevilles
+25370	Intradas	50000167	Intradas
+25377	Contredanses	50000168	Contredanses
+25379	Canaries	50000169	Canaries
+25384	Bourrées	50000171	Bourrées
+25390	Galliards	50000172	Galliards
+25395	Gavottes	50000173	Gavottes
+25404	Ländler	50000179	Ländler
+25407	Quadrilles	50000180	Quadrilles
+25411	Polkas	50000181	Polkas
+25413	Écossaises	50000182	Écossaises
+25414	Anglaises	50000183	Anglaises
+25419	Galops	50000184	Galops
+25423	Pavans	50000186	Pavans
+25428	Seguidillas	50000189	Seguidillas
+25433	Branles	50000191	Branles
+25438	Musettes	50000192	Musettes
+25440	Hopser	50000193	Hopser
+25444	Rigaudons	50000196	Rigaudons
+25446	Deutsche Tänze	50000197	Deutsche Tänze
+25448	Elevations	50000198	Elevations
+25452	Pastoral plays	50000200	Pastoral plays
+25455	Contrafacta	50000203	Contrafacta
+25458	Farse	50000205	Farse
+25459	Insertions	50000206	Insertions
+25460	Partsongs	50000207	Partsongs
+25462	Potpourris	50000209	Potpourris
+25467	Sketches	50000211	Sketches
+25471	Romances (voc.)	50000215	Romances (voc.)
+25472	Pastorales (voc.)	50000216	Pastorales (voc.)
+25473	Ballettos (voc.)	50000217	Ballettos (voc.)
+25478	Canticles	50000220	Canticles
+25480	Mazurkas	50000222	Mazurkas
+25484	Compilations	50000224	Compilations
+25486	Singspiele	50000226	Singspiele
+25487	Canons (voc.)	50000227	Canons (voc.)
+25488	Tragédies lyriques	50000228	Tragédies lyriques
+25489	Invitatories	50000229	Invitatories
+25493	Film music	50000233	Film music
+25498	Versi (voc.)	50000238	Versi (voc.)
+25500	Quartets (voc.)	50000239	Quartets (voc.)
+25501	Schottische	50000240	Schottische
+25505	Langaus	50000241	Langaus
+25525	Springtänze	50000258	Springtänze
+25529	Chaconnes	50000260	Chaconnes
+25533	Correnti	50000261	Correnti
+25545	Foxtrots	50000268	Foxtrots
+25551	March songs	50000271	March songs
+25554	Ballads (voc.)	50000273	Ballads (voc.)
+25555	Burlesques	50000274	Burlesques
+25559	Barcarolles (voc.)	50000277	Barcarolles (voc.)
+25569	Children's songs	50000280	Children's songs
+25576	Album leaves	50000283	Album leaves
+25583	Airs (voc.)	50000288	Airs (voc.)
+25590	Impromptus	50000290	Impromptus
+25592	Humoresken	50000292	Humoresken
+25595	Airs (dances)	50000295	Airs (dances)
+3000057	Psalms	50000087	Psalms
+3000084	Dancing songs	50000115	Dancing songs
+3000091	Bergamascas	50000123	Bergamascas
+3000099	Opéra-ballets	50000137	Opéra-ballets
+3000118	Cotillions	50000170	Cotillions
+3000134	Keyboard pieces	50000210	Keyboard pieces
+3000136	Choruses	50000212	Choruses
+3000147	Jeux	50000231	Jeux
+3000150	Verbunkos	50000236	Verbunkos
+3000157	Masses (cantus firmus-, paraphrase-, parody masses)	50000250	Masses (cantus firmus-, paraphrase-, parody masses)
+3000162	Rondos (voc.)	50000251	Rondos (voc.)
+3000166	Rounds (voc.)	50000252	Rounds (voc.)
+3000181	Battle music (voc.)	50000282	Battle music (voc.)
+3000200	Passacaglias (dances)	50000301	Passacaglias (dances)
+3000206	Mélodies	50000305	Mélodies
+3006204	Applausi musici	50000323	Applausi musici
+3006395	Tiranas	50000306	Tiranas
+3006396	Masonic music	50000307	Masonic music
+3901022	Triosonatas	50000112	Triosonatas
+25507	Arrangements	50000243	Arrangements
+25426	Boleros	50000188	Boleros
+3016747	Christmas carols	50000152	Christmas carols
+3000201	Continuo tutors	50000302	Continuo tutors
+3901646	Instrumental music	50000327	Instrumental music
+3025686	Inventories	50000337	Inventories
+3900079	Keyboard music	50000332	Keyboard music
+3011528	Librettos	50000335	Librettos
+25308	Short comic stage music	50000127	Short comic stage music
+3000174	Sicilianas (voc.)	50000272	Sicilianas (voc.)
+25506	Tangos	50000242	Tangos
+3000203	Theory of harmony	50000303	Theory of harmony
+25333	Tutors (voc.)	50000145	Tutors (voc.)
+3000074	Writings	50000103	Writings
+25351	Afterpieces	50000156	Afterpieces
+25507	Arrangements	50000243	Arrangements
+3006398	Bicinia	50000308	Bicinia
+25426	Boleros	50000188	Boleros
+25426	Boleros	50000188	Boleros
+25454	Brass music	50000202	Brass music
+3000199	Chaconnes (dances)	50000300	Chaconnes (dances)
+3016747	Christmas carols	50000152	Christmas carols
+3016747	Christmas carols	50000152	Christmas carols
+25330	Dialogues	50000142	Dialogues
+3000047	Ensembles (voc.)	50000074	Ensembles (voc.)
+3000047	Ensembles (voc.)	50000074	Ensembles (voc.)
+25290	Folias	50000120	Folias
+25290	Folias	50000120	Folias
+3901646	Instrumental music	50000327	Instrumental music
+25261	Interludes	50000098	Interludes
+25261	Interludes	50000098	Interludes
+25349	Intonations (voc.)	50000154	Intonations (voc.)
+3900079	Keyboard music	50000332	Keyboard music
+25539	Krakowiaks	50000264	Krakowiaks
+25514	Lais	50000248	Lais
+25477	Lections	50000219	Lections
+3011528	Librettos	50000335	Librettos
+25344	Masques	50000151	Masques
+3011416	Minnesang	50000313	Minnesang
+2000081	Orchesterlieder	50000341	Orchesterlieder
+25403	Saltarellos	50000178	Saltarellos
+25403	Saltarellos	50000178	Saltarellos
+25524	Schleifer	50000257	Schleifer
+25308	Short comic stage music	50000127	Short comic stage music
+25308	Short comic stage music	50000127	Short comic stage music
+3006401	Slovankas	50000311	Slovankas
+25506	Tangos	50000242	Tangos
+25506	Tangos	50000242	Tangos
+3004563	Two-steps	50000315	Two-steps
+3005779	Versus alleluiatici	50000314	Versus alleluiatici
+3006405	Villanelle	50000312	Villanelle
+25511	Virelais (forme fixe)	50000246	Virelais (forme fixe)
+25497	Wedding music	50000237	Wedding music
+25283	Wind music	50000117	Wind music
+25283	Wind music	50000117	Wind music
+3000074	Writings	50000103	Writings
+25138	Concertinos	50000342	Concertinos
+25147	Elegies (instr./voc.)	50000013	Elegies (instr./voc.)
+25173	Capriccios (instr.)	50000030	Capriccios (instr.)
+25181	Duets (instr.)	50000035	Duets (instr.)
+25184	Exercises (instr.)	50000037	Exercises (instr.)
+25184	Excercises and Tutors	50000329	Excercises and Tutors
+25187	Fugues (instr.)	50000039	Fugues (instr.)
+25205	Quartets (instr.)	50000051	Quartets (instr.)
+25207	Ricercares (instr.)	50000053	Ricercares (instr.)
+25212	Contrapuntal studies (instr./voc.)	50000058	Contrapuntal studies (instr./voc.)
+25213	Sonatinas	50000343	Sonatinas
+25217	Trios (instr.)	50000063	Trios (instr.)
+25223	Airs (instr.)	50000067	Airs (instr.)
+25225	Canons (instr.)	50000069	Canons (instr.)
+25235	Antiphonies	50000077	Antiphonies
+25250	Rituals	50000338	Rituals
+25275	Vocal music	50000328	Vocal music
+25335	Rhapsodies (instr.)	50000146	Rhapsodies (instr.)
+25337	Romances (instr.)	50000148	Romances (instr.)
+25350	Intonazione (instr.)	50000155	Intonazione (instr.)
+25358	Canzonas (instr.)	50000159	Canzonas (instr.)
+25449	Versets (instr.)	50000199	Versets (instr.)
+25508	Pastorales (instr.)	50000244	Pastorales (instr.)
+25579	Intermezzos	50000284	Intermezzos
+25588	Tutors (instr.)	50000289	Tutors (instr.)
+25591	Nocturnes (instr.)	50000291	Nocturnes (instr.)
+25593	Ballades (instr.)	50000293	Ballades (instr.)
+25596	Barcarolles (instr.)	50000296	Barcarolles (instr.)
+3000014	Etudes (instr.)	50000036	Etudes (instr.)
+3000023	Nonets (instr.)	50000043	Nonets (instr.)
+3000025	Octets (instr.)	50000044	Octets (instr.)
+3000033	Quintets (instr.)	50000052	Quintets (instr.)
+3000036	Rondos (instr.)	50000055	Rondos (instr.)
+3000037	Septets (instr.)	50000056	Septets (instr.)
+3000039	Sextets (instr.)	50000057	Sextets (instr.)
+3000100	Scales (instr./voc.)	50000138	Scales (instr./voc.)
+3000102	Arpeggios (instr.)	50000139	Arpeggios (instr.)
+3000133	Scherzos (instr.)	50000208	Scherzos (instr.)
+3000180	Sicilianas (dances/instr.)	50000281	Sicilianas (dances/instr.)
+3000184	Battle music (instr.)	50000285	Battle music (instr.)
+3000197	Csàrdàs	50000298	Csàrdàs
+3006396	Freimaurermusik	50000336	Freimaurermusik
+3021398	Theory of music	50000331	Theory of music
+3901023	Cadences (instr.)	50000011	Cadences (instr.)
+3901631	Sacred music	50000325	Sacred music
+3901803	Orchestral pieces	50000345	Orchestral pieces

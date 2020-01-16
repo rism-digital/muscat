@@ -40,7 +40,7 @@
         <!-- For some record types, it is necessary to show two different select windows -->
         <!-- For two different types ot document -->
        	<a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=selection_record_type[0]%>" data-selection-lib-siglum="<%=selection_lib_siglum%>" title="Search Collection"><span class="muscat-ui-icon search-button-collection"></span>_</a>
- 	  	  <a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=selection_record_type[1]%>" data-selection-lib-siglum="<%=selection_lib_siglum%>" title="Search Compisute"><span class="muscat-ui-icon search-button-composite"></span>_</a>
+ 	  	  <a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=selection_record_type[1]%>" data-selection-lib-siglum="<%=selection_lib_siglum%>" title="Search Composite"><span class="muscat-ui-icon search-button-composite"></span>_</a>
       <% else %>
  	  	  <a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=selection_record_type%>" data-selection-lib-siglum="<%=selection_lib_siglum%>" title="Search"><span class="ui-icon ui-icon-search"></span>_</a>
       <% end %>
@@ -62,7 +62,7 @@
 	    <% end %>
 
         <%- if !empty_header -%>
-	    <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="toggle"  title="Toggle"><span class="ui-icon ui-icon-triangle-1-s"></span>_</a>
+	    <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="toggle"  title="Show/Hide"><span class="ui-icon ui-icon-triangle-1-s"></span>_</a>
         <% end %>
 		
 	</div>

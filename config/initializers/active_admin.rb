@@ -251,7 +251,7 @@ ActiveAdmin.setup do |config|
         lang.add :label => "DE", :url => proc { url_for(:locale => 'de') }, id: 'i18n-de', :priority => 2, :html_options   => {:style => 'float:left;'}
         lang.add :label => "FR", :url => proc { url_for(:locale => 'fr') }, id: 'i18n-fr', :priority => 3, :html_options   => {:style => 'float:left;'}
         lang.add :label => "IT", :url => proc { url_for(:locale => 'it') }, id: 'i18n-it', :priority => 4, :html_options   => {:style => 'float:left;'}
-        lang.add :label => "ES", :url => proc { url_for(:locale => 'es') }, id: 'i18n-is', :priority => 5, :html_options   => {:style => 'float:left;'}
+        lang.add :label => "PT", :url => proc { url_for(:locale => 'pt') }, id: 'i18n-is', :priority => 5, :html_options   => {:style => 'float:left;'}
       end
       # Add the menu by hand because otherwise it is not getting translated
       menu.add :label => proc {I18n.t(:menu_comments)}, id: 'comments_menu', :priority => 4, :url => "/admin/comments"

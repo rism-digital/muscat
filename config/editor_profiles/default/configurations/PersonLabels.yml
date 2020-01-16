@@ -688,6 +688,12 @@ wr:
     fr: "France"
     de: "France"
     en: "France"
+"XB-GE":
+  label:
+    it: "Georgien"
+    fr: "Georgia"
+    de: "Georgia"
+    en: "Georgia"
 "XA-DE":
   label:
     it: "Germany"
@@ -814,6 +820,12 @@ wr:
     fr: "Mexico"
     de: "Mexico"
     en: "Mexico"
+"XA-MD":
+  label:
+    it: "MOLDAVIA"
+    fr: "MOLDAVIA"
+    de: "Moldawien"
+    en: "Moldavia"
 "XA-ME":
   label:
     it: "Montenegro"

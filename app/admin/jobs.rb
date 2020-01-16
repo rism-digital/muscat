@@ -62,7 +62,11 @@ ActiveAdmin.register Delayed::Job, as: 'Job' do
       span(job.progress_stage, id: "progress-status-#{job.id}")
     end
     column I18n.t(:object) do |job|
-      link_to "#{job.parent_type} #{job.parent_id}", controller: job.parent_type.pluralize.underscore.downcase.to_sym, action: :show, id: job.parent_id
+      if job.parent_id
+        link_to "#{job.parent_type} #{job.parent_id}", controller: job.parent_type.pluralize.underscore.downcase.to_sym, action: :show, id: job.parent_id
+      else
+        "No Object ID"
+      end
     end
     column I18n.t(:queue), :queue
     column I18n.t(:failed_at), :failed_at

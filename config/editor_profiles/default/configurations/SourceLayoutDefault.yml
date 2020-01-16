@@ -12,10 +12,6 @@ group_order:
 group_exclude:
   collection:
   - edit_incipits
-  libretto_source:
-  - edit_incipits
-  libretto_edition:
-  - edit_incipits
   theoretica_source:
   - edit_incipits
   theoretica_edition:

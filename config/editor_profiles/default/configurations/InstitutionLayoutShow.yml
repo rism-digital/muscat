@@ -40,6 +40,7 @@ groups:
     - "700"
     all_tag_templates:
       "670": people/show_catalogue
+      "856": marc_show/show_link
   control: 
     all_tags: 
     - "000"

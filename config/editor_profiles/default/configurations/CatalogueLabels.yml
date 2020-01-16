@@ -937,7 +937,7 @@ voc:
         it: Commenti interni
         fr: Commentaires internes
         de: Interne Fussnoten
-        en: Local notes field
+        en: Internal note
       edit_label: 
         en: ""
 "650": 
@@ -1007,10 +1007,10 @@ voc:
         en: Note about external resource
     u: 
       label: 
-        it: Risorsa esterna
-        fr: Ressource externe
-        de: Uniform Resource Identifier
-        en: External resource
+        it: Risorsa esterna URL
+        fr: Ressource externe URL
+        de: Uniform Resource Identifier URL
+        en: External resource URL
 # Marc Language codes
 cat: 
   label: 
