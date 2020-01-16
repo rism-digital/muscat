@@ -7,26 +7,28 @@
         <zs:record>
           <zs:recordPacking>xml</zs:recordPacking>
           <zs:recordData>
-            <% if @sru.schema == 'marc' %>
-              <%= hit.result.marc.to_xml_record(hit.result.updated_at, nil, true).html_safe %>
-            <% elsif @sru.schema == 'mods'%>
-              <% xml = Nokogiri::XML(hit.result.marc.to_xml(hit.result.updated_at, nil, true)) %>
-              <% template =  Nokogiri::XSLT(File.read('public/xml/MARC21slim2MODS3-6.xsl')) %>
-              <% mods_record = template.transform(xml) %>
-              <% mods_record.xpath("//ns:modsCollection", "ns" => "http://www.loc.gov/mods/v3").children.first["xmlns:mods"] = "http://www.loc.gov/mods/v3" %>
-              <%= mods_record.xpath("//mods:modsCollection", "mods" => "http://www.loc.gov/mods/v3").children.to_s.html_safe %>
-            <% elsif @sru.schema == 'dc'%>
-              <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true)) %>
-              <% template =  Nokogiri::XSLT(File.read('public/xml/MARC21slim2SRWDC.xsl')) %>
-              <% mods_record = template.transform(xml) %>
-              <% mods_record.remove_namespaces! %>
-              <% mods_record.xpath("//dcCollection").children.first["xmlns"] = "http://purl.org/dc/elements/1.1/" %>
-              <%= mods_record.xpath("//dcCollection").children.to_s.html_safe %>
-            <% elsif @sru.schema == 'bibframe'%>
-              <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true)) %>
-              <% template =  Nokogiri::XSLT(File.read('public/xml/marc2bibframe2/marc2bibframe2.xsl')) %>
-              <% mods_record = template.transform(xml) %>
-              <%= mods_record.children.to_s.html_safe %>
+            <% if hit.result %>
+              <% if @sru.schema == 'marc' %>
+                <%= hit.result.marc.to_xml_record(hit.result.updated_at, nil, true).html_safe %>
+              <% elsif @sru.schema == 'mods'%>
+                <% xml = Nokogiri::XML(hit.result.marc.to_xml(hit.result.updated_at, nil, true)) %>
+                <% template =  Nokogiri::XSLT(File.read('public/xml/MARC21slim2MODS3-6.xsl')) %>
+                <% mods_record = template.transform(xml) %>
+                <% mods_record.xpath("//ns:modsCollection", "ns" => "http://www.loc.gov/mods/v3").children.first["xmlns:mods"] = "http://www.loc.gov/mods/v3" %>
+                <%= mods_record.xpath("//mods:modsCollection", "mods" => "http://www.loc.gov/mods/v3").children.to_s.html_safe %>
+              <% elsif @sru.schema == 'dc'%>
+                <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true)) %>
+                <% template =  Nokogiri::XSLT(File.read('public/xml/MARC21slim2SRWDC.xsl')) %>
+                <% mods_record = template.transform(xml) %>
+                <% mods_record.remove_namespaces! %>
+                <% mods_record.xpath("//dcCollection").children.first["xmlns"] = "http://purl.org/dc/elements/1.1/" %>
+                <%= mods_record.xpath("//dcCollection").children.to_s.html_safe %>
+              <% elsif @sru.schema == 'bibframe'%>
+                <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true)) %>
+                <% template =  Nokogiri::XSLT(File.read('public/xml/marc2bibframe2/marc2bibframe2.xsl')) %>
+                <% mods_record = template.transform(xml) %>
+                <%= mods_record.children.to_s.html_safe %>
+              <% end %>
             <% end %>
           </zs:recordData>
           <zs:recordPosition><%= offset %></zs:recordPosition>

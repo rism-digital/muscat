@@ -55,6 +55,14 @@
         - Print with autograph annotations
         - Print with non-autograph annotations
         editor_partial: subfield_select
+"599": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - b
+      - hidden: true
+
 "651":
   new_window: places
   new_window_field: name_equals
@@ -110,6 +118,7 @@
       - ltg
       - egr
       - ill
+      - prt
       - oth
       - dub
 "710":
@@ -143,6 +152,7 @@
       - prf
       - bsl
       - evp
+      - oth
 "852": 
   allow_new: true
   new_window: institutions

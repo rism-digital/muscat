@@ -195,6 +195,7 @@
       - "fre"
       - "ger"
       - "ita"
+      - "por"
       - "spa"
 "041": 
   layout: 
@@ -432,6 +433,7 @@
         - "Engraving"
         - "Facsimile"
         - "Lithography"
+        - "Offset printing"
         - "Photoreproductive process"
         - "Reproduction"
         - "Transparency"
@@ -728,6 +730,10 @@
       - ctb
       - ccp
       - dst
+      - asg
+      - cph
+      - lse
+      - ppm
 "710":
   new_window: institutions
   new_window_field: name_equals
@@ -765,6 +771,10 @@
       - evp
       - dst
       - bsl
+      - asg
+      - cph
+      - lse
+      - ppm
 "730":
   new_window: standard_titles
   new_window_field: title_equals

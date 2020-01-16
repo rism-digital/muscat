@@ -51,7 +51,7 @@ en:
       filters: "Filters"
       sections: "Sections and actions"
       actions: "Actions"
-      toc: "Table of content"
+      toc: "Table of contents"
     pagination:
       empty: "No %{model} found"
       one: "Displaying <b>1</b> %{model}"
@@ -439,7 +439,7 @@ en:
   filter_key: "Key"
   filter_language: "Language"
   filter_last_updated: "Last updated"
-  filter_lib_siglum: "Library sigla"
+  filter_lib_siglum: "Library siglum"
   filter_life_dates: "Life dates"
   filter_links: "Links"
   filter_liturgical_feast: "Liturgical feast"

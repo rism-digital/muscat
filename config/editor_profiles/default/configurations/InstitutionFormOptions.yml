@@ -46,6 +46,7 @@
         - "SWNL"
         - "VIAF"
         - "WKP"
+        - "MOC"
         default: "ISIL"
         editor_partial: subfield_select
       - cols: 2
@@ -107,6 +108,7 @@
       - "XA-DE-BY"
       - "XA-DE-SN"
       - "XA-GR"
+      - "XD-GT"
       - "XA-VA"
       - "XD-HN"
       - "XA-HU"
@@ -214,12 +216,15 @@
       - cols: 4
     columns: 4
 "670": 
+  new_window: catalogues
   layout: 
     fields: 
     - - "a"
       - type: catalogue
         editor_partial: subfield_secondary
       - cols: 4
+    - - "b"
+      - cols: 2
     columns: 4
 "680": 
   layout: 
