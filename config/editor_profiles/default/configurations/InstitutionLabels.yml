@@ -279,7 +279,7 @@ doc_templates:
   label:
     it: Forma parallela del nome
     fr: Forme de nom parallèle
-    de: Parallelle ...
+    de: Parallele Namensformen
     en: Parallel form of name
   fields:
     a:
@@ -340,6 +340,12 @@ doc_templates:
         fr: Littérature
         de: Literatur
         en: Literature
+    b:
+      label:
+        it: Informazione rinvenuta
+        fr: "Numéro/page"
+        de: Fundstelle
+        en: Information found
 "678":
   label:
     it: "Storia dell'istituzione"
@@ -928,6 +934,12 @@ voc:
     fr: "Greece"
     de: "Greece"
     en: "Greece"
+"XD-GT":
+  label:
+    it: "Guatemala"
+    fr: "Guatemala"
+    de: "Guatemala"
+    en: "Guatemala"
 "XA-VA":
   label:
     it: "Holy See"
