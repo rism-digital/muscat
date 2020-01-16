@@ -66,7 +66,8 @@ Rails.application.configure do
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
-  config.i18n.fallbacks = true
+  #config.i18n.fallbacks = true old version
+  config.i18n.fallbacks = [I18n.default_locale] # i18n 1.1
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
@@ -84,7 +85,7 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.logger = Logger.new("log/#{Rails.env}.log", 10, 104857600)
+  #config.logger = Logger.new("log/#{Rails.env}.log", 10, 104857600)
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
