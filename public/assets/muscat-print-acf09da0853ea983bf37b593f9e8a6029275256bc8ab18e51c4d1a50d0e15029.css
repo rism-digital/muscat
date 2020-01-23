@@ -1,0 +1,16 @@
+/* line 4, /home/dev/projects/muscat/vendor/assets/stylesheets/muscat-print.scss */
+.attributes_table th:after {
+  content: '';
+}
+
+/* line 11, /home/dev/projects/muscat/vendor/assets/stylesheets/muscat-print.scss */
+.panel {
+  border-bottom: none;
+  margin-bottom: 0em;
+  padding-bottom: 2em;
+}
+
+/* line 17, /home/dev/projects/muscat/vendor/assets/stylesheets/muscat-print.scss */
+#sidebar {
+  display: none;
+}
