@@ -11,6 +11,8 @@
         content << link_to("DNB: " + a_tag.content, "http://d-nb.info/gnd/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
       elsif two_tag.content == "VIAF"
         content << link_to("VIAF: " + a_tag.content, "http://viaf.org/viaf/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
+      elsif two_tag.content == "ICCU"
+        content << link_to("ICCU: " + a_tag.content, "https://opac.sbn.it/opacsbn/opac/iccu/scheda_authority.jsp?bid=IT%5cICCU%5c"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
       elsif two_tag.content == "WKP"
         content << link_to("Wikidata: " + a_tag.content, "https://www.wikidata.org/wiki/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
       else
