@@ -253,7 +253,7 @@
   layout: 
     fields: 
     - - "a"
-      - type: library
+      - type: institution
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
