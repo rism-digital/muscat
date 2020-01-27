@@ -70,10 +70,10 @@
   "042":
     :master: a
     :indicator: "##"
-    :occurrences: "*"
+    :occurrences: "1"
     :fields:
     - - a
-      - :occurrences: "?"
+      - :occurrences: "1"
   "043":
     :master: c
     :indicator: "##"

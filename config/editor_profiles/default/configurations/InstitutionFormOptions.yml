@@ -182,10 +182,14 @@
   tag_params:
     codes:
       - "Archive" 
+      - "Documentation center"
       - "Institution"
       - "Library"
+      - "Museum"
       - "Publisher"
       - "Other"
+      - "Printer"
+      - "Research institute"
 "410": 
   layout: 
     fields: 
@@ -193,6 +197,7 @@
       - cols: 4
     columns: 4
 "551": 
+  new_window: places
   layout: 
     fields: 
     - - "a"

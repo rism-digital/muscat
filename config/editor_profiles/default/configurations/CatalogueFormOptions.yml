@@ -175,12 +175,12 @@
         # http://www.loc.gov/standards/valuelist/marcgt.html
         - "Bibliography"
         - "Catalog"
-        - "Collective catalogue"
+        - "Catalog of works"
+        - "Collective catalog"
         - "Encyclopedia"
         - "Music edition"
         - "Other"
         - "Thematic catalog"
-        - "Work catalog"
         editor_partial: subfield_select
     - - h
       - cols: 1

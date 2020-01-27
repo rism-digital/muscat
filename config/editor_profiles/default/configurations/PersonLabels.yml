@@ -760,6 +760,12 @@ wr:
     fr: "Ireland"
     de: "Ireland"
     en: "Ireland"
+"XB-IQ":
+  label:
+    it: "IRAQ"
+    fr: "IRAQ"
+    de: "Irak"
+    en: "Iraq"
 "XB-IL":
   label:
     it: "Israel"
@@ -1026,12 +1032,12 @@ sister of:
     fr: Soeur de
     de: Schwester von
     en: sister of
-married with:
+married to:
   label:
     it: Sposato/sposata con
     fr: "Marié avec"
     de: Verheiratet mit
-    en: married with
+    en: married to
 father of:
   label:
     it: Padre di

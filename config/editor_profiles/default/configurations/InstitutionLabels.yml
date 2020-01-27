@@ -1234,3 +1234,27 @@ voc:
     fr: "Institution"
     de: "Körperschaft"
     en: "Institution"
+"Documentation center":
+  label:
+    it: "DOCUMENTATION CENTER"
+    fr: "DOCUMENTATION CENTER"
+    de: "Dokumentationszentrum"
+    en: "Documentation center"
+"Museum":
+  label:
+    it: "MUSEUM"
+    fr: "MUSEUM"
+    de: "Museum"
+    en: "Museum"
+"Printer":
+  label:
+    it: "PRINTER"
+    fr: "PRINTER"
+    de: "Druckerei"
+    en: "Printer"
+"Research institute":
+  label:
+    it: "RESEARCH INSTITUTE"
+    fr: "RESEARCH INSTITUTE"
+    de: "Forschungsinstitut"
+    en: "Research institute"
