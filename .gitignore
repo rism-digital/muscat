@@ -13,6 +13,8 @@ solr/test
 solr/default
 log/sunspot-solr-development.log
 vendor/assets/stylesheets/muscat-custom.scss
+public/assets
+public/help
 spec/examples.txt
 .idea
 help.sh
