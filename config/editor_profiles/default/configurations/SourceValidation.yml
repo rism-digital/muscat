@@ -20,10 +20,18 @@ client:
   "245": 
     tags:
       a: mandatory
-  "260": 
+  "260":
+    tag_overrides:
+      exclude:
+        "c":
+        - composite_volume
     tags:
       c: required
   "300": 
+    tag_overrides:
+      exclude:
+        "a":
+        - composite_volume
     tags:
       a: required
   "593":
@@ -35,6 +43,10 @@ client:
     tags:
       "a": mandatory
   "594": 
+    tag_overrides:
+      exclude:
+        "b":
+        - composite_volume
     tags:
       b: required
   "650":
