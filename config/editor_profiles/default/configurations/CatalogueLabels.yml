@@ -250,6 +250,13 @@ doc_templates:
         fr: Personne
         de: Person
         en: Person
+    "4": 
+      label: 
+        it: Funzione
+        fr: Function
+        de: Funktionsbezeichnung
+        en: Function
+        pt: "Função"
 "710": 
   label: 
     it: Nome di ente
@@ -332,7 +339,7 @@ doc_templates:
     de: Früherer Eintrag
     en: Preceding entry
   fields: 
-    a: 
+    t: 
       label: 
         it: Titolo precedente
         fr: Entrée précédente
@@ -345,7 +352,7 @@ doc_templates:
     de: Folgeeintrag
     en: Succeeding entry
   fields: 
-    a: 
+    t: 
       label: 
         it: Titolo successivo
         fr: Entrée suivante
@@ -923,8 +930,6 @@ voc:
         fr: Indication de copie
         de: Bestandsangabe
         en: Contents note
-      edit_label: 
-        en: ""
 "599": 
   label: 
     it: Commenti interni
@@ -938,8 +943,6 @@ voc:
         fr: Commentaires internes
         de: Interne Fussnoten
         en: Internal note
-      edit_label: 
-        en: ""
 "650": 
   label: 
     it: Parola chiave
@@ -990,8 +993,6 @@ voc:
         fr: "Lieu"
         de: "Ort"
         en: Place
-      edit_label: 
-        en: ""
 "856": 
   label: 
     it: Localizzazione e accesso elettronico
