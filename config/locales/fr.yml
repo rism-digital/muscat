@@ -83,6 +83,7 @@ fr:
         folder: "Créer un dossier avec les éléments sélectionnés"
         add_to_folder: "Ajouter les éléments à un dossier existant"
         merge: "MERGE AUTHORITY RECORDS"
+        change_template: "CHANGE TEMPLATE"
 
     comments:
       resource_type: "Type de ressource"

@@ -80,6 +80,7 @@ es:
         destroy: "Borrar"
         folder: "Crear directorio con" # dudoso
         merge: "MERGE AUTHORITY RECORDS"
+        change_template: "CHANGE TEMPLATE"
 
     comments:
       resource_type: "Tipo de recurso"

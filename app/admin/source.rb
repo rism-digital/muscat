@@ -272,6 +272,9 @@ ActiveAdmin.register Source do
   
   # Include the folder actions
   include FolderControllerActions
+
+  # Include the template changer
+  include TemplateControllerActions
   
   ##########
   ## Show ##
