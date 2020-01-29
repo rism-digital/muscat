@@ -146,7 +146,7 @@
     - - a
       - :occurrences: "1"
         :foreign_class: ^0
-        :foreign_field: siglum
+        :foreign_field: name
   "550":
     :master: a
     :indicator: "##"
