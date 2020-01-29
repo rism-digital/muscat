@@ -44,6 +44,10 @@ module ApplicationHelper
     autocomplete_source_594b_sms_admin_sources_path
   end
 	
+  def person_550a_solr_default_autocomplete
+    autocomplete_person_550a_sms_admin_people_path
+  end
+	
   def work_default_autocomplete
     autocomplete_work_title_admin_works_path
   end

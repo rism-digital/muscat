@@ -263,12 +263,14 @@
     - - a
       - cols: 2
     columns: 2
-"550": 
+"550":
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 2
+      - type: person_550a_solr
+        field: value
+        editor_partial: subfield_secondary
+        allow_new: true
 "551": 
   layout: 
     fields: 
