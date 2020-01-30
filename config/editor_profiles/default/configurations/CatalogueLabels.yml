@@ -250,6 +250,13 @@ doc_templates:
         fr: Personne
         de: Person
         en: Person
+    "4": 
+      label: 
+        it: Funzione
+        fr: Function
+        de: Funktionsbezeichnung
+        en: Function
+        pt: "Função"
 "710": 
   label: 
     it: Nome di ente
@@ -332,7 +339,7 @@ doc_templates:
     de: Früherer Eintrag
     en: Preceding entry
   fields: 
-    a: 
+    t: 
       label: 
         it: Titolo precedente
         fr: Entrée précédente
@@ -345,7 +352,7 @@ doc_templates:
     de: Folgeeintrag
     en: Succeeding entry
   fields: 
-    a: 
+    t: 
       label: 
         it: Titolo successivo
         fr: Entrée suivante
@@ -824,7 +831,7 @@ trl:
     it: Traduttore
     fr: Traducteur
     de: "Übersetzer"
-    en: Translater
+    en: Translator
 voc: 
   label: 
     it: Cantante
@@ -871,7 +878,7 @@ voc:
 "337": 
   label: 
     it: Mezzo fisico
-    fr: Moyen phyisuqe 
+    fr: Moyen physique 
     de: Physisches Medium 
     en: Media type
   fields: 
@@ -923,8 +930,6 @@ voc:
         fr: Indication de copie
         de: Bestandsangabe
         en: Contents note
-      edit_label: 
-        en: ""
 "599": 
   label: 
     it: Commenti interni
@@ -937,9 +942,7 @@ voc:
         it: Commenti interni
         fr: Commentaires internes
         de: Interne Fussnoten
-        en: Local notes field
-      edit_label: 
-        en: ""
+        en: Internal note
 "650": 
   label: 
     it: Parola chiave
@@ -990,8 +993,6 @@ voc:
         fr: "Lieu"
         de: "Ort"
         en: Place
-      edit_label: 
-        en: ""
 "856": 
   label: 
     it: Localizzazione e accesso elettronico
@@ -1007,10 +1008,10 @@ voc:
         en: Note about external resource
     u: 
       label: 
-        it: Risorsa esterna
-        fr: Ressource externe
-        de: Uniform Resource Identifier
-        en: External resource
+        it: Risorsa esterna URL
+        fr: Ressource externe URL
+        de: Uniform Resource Identifier URL
+        en: External resource URL
 # Marc Language codes
 cat: 
   label: 
@@ -1068,7 +1069,7 @@ gre:
     en: Greek, Modern (1453-)
 gsw: 
   label: 
-    it: Tedesco Svizzero
+    it: Svizzero tedesco 
     fr: Suisse allemand
     de: Schweizerdeutsch
     en: Swiss German
@@ -1096,6 +1097,12 @@ ita:
     fr: Italien
     de: Italienisch
     en: Italian
+jpn: 
+  label: 
+    it: Giapponese
+    fr: Japonais
+    de: Japanisch
+    en: Japanese
 kor: 
   label: 
     it: Coreano
@@ -1158,8 +1165,8 @@ swe:
     en: Swedish
 zho:
   label:
-    it: CHINESE
-    fr: CHINESE
+    it: Cinese
+    fr: Chinois
     de: Chinesisch
     en: Chinese
 zxx: 

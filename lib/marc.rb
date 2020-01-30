@@ -382,7 +382,9 @@ class Marc
       next if !tag_names.include?(child.tag)
       next if !child.fetch_first_by_tag( subtag )
       next if !child.fetch_first_by_tag( subtag ).content
-      next if child.fetch_first_by_tag( subtag ).content.empty?
+      if child.fetch_first_by_tag( subtag ).content.is_a? String
+        next if child.fetch_first_by_tag( subtag ).content.empty?
+      end
       values << child.fetch_first_by_tag( subtag ).content
     end
     # Sort the return value
@@ -444,6 +446,31 @@ class Marc
     out += "\t</marc:record>\n"
     
     return out
+  end
+
+  # Export a dump of the contents
+  # just the text, as is
+  def to_raw_text
+    lines = []
+    
+    @source.each_line do |data|
+      line = []
+      if data =~ /^[\s]*([^$]*)([$].*)$/
+        indicator = $1
+        record = $2
+      end
+            
+      while record =~ /^[$]([\d\w]{1,1})([^$]*)(.*)$/
+        content = $2
+        record  = $3
+        
+        line << content.gsub(DOLLAR_STRING, "$")
+      end
+      
+      lines << line.join(" ")
+    end
+    
+    lines.join("\n")
   end
 
   # Return all tags

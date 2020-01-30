@@ -12,23 +12,41 @@ client:
         m:
         - collection
         - theoretica_source
-        - libretto_edition_content 
+        - libretto_edition 
+        - composite_volume
     tags:
       "0": mandatory
       m: required, warning
   "245": 
     tags:
       a: mandatory
-  "260": 
+  "260":
+    tag_overrides:
+      exclude:
+        "c":
+        - composite_volume
     tags:
       c: required
   "300": 
+    tag_overrides:
+      exclude:
+        "a":
+        - composite_volume
     tags:
       a: required
-  "593": 
+  "593":
+    tag_overrides:
+      exclude:
+        "a":
+        - collection
+        - composite_volume
     tags:
-      a: required
+      "a": mandatory
   "594": 
+    tag_overrides:
+      exclude:
+        "b":
+        - composite_volume
     tags:
       b: required
   "650":
@@ -36,6 +54,7 @@ client:
       exclude:
         "0":
         - collection
+        - composite_volume
     tags:
       "0": mandatory
   "852":
@@ -44,7 +63,7 @@ client:
         "x":
         - edition
         - edition_content
-        - libretto_edition_content 
+        - libretto_edition 
     tags:
       c: required, warning
       x: mandatory

@@ -15,6 +15,7 @@ ActiveAdmin.register Person do
   end
   
   collection_action :autocomplete_person_full_name, :method => :get
+  collection_action :autocomplete_person_550a_sms, :method => :get
   
   collection_action :viaf, method: :get do
     respond_to do |format|
@@ -29,6 +30,7 @@ ActiveAdmin.register Person do
   controller do
     
     autocomplete :person, :full_name, :display_value => :autocomplete_label , :extra_data => [:life_dates]
+    autocomplete :person, "550a_sms", :solr => true
     
     after_destroy :check_model_errors
     before_create do |item|

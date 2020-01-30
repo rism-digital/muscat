@@ -44,6 +44,10 @@ module ApplicationHelper
     autocomplete_source_594b_sms_admin_sources_path
   end
 	
+  def person_550a_solr_default_autocomplete
+    autocomplete_person_550a_sms_admin_people_path
+  end
+	
   def work_default_autocomplete
     autocomplete_work_title_admin_works_path
   end
@@ -103,7 +107,7 @@ module ApplicationHelper
     return nil if !source.is_a? Source
 
     if source.record_type == MarcSource::RECORD_TYPES[:source] || source.record_type == MarcSource::RECORD_TYPES[:collection]
-      MarcSource::RECORD_TYPES[:collection]
+      [MarcSource::RECORD_TYPES[:collection], MarcSource::RECORD_TYPES[:composite_volume]]
     elsif source.record_type == MarcSource::RECORD_TYPES[:edition_content]
       MarcSource::RECORD_TYPES[:edition]
     else
@@ -118,7 +122,7 @@ module ApplicationHelper
 	
   def get_allowed_record_type_holding(holding)
     return nil if !holding.is_a? Holding
-    MarcSource::RECORD_TYPES[:collection]
+    MarcSource::RECORD_TYPES[:composite_volume]
   end
 	
   def get_allowed_lib_siglum_holding(holding)

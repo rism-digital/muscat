@@ -12,14 +12,13 @@ group_order:
 group_exclude:
   collection:
   - edit_incipits
-  libretto_source:
-  - edit_incipits
-  libretto_edition_content:
-  - edit_incipits
   theoretica_source:
   - edit_incipits
-  theoretica_edition_content:
+  theoretica_edition:
   - edit_incipits
+  composite_volume:
+  - edit_incipits
+  - edit_works
 
 tag_exclude:
   collection:
@@ -72,7 +71,7 @@ tag_exclude:
   - '774'
   - '775'
   - '787'
-  libretto_edition_content:
+  libretto_edition:
   - '506'
   - '541'
   - '541'
@@ -97,7 +96,7 @@ tag_exclude:
   - '690'
   - '774'
   - '787'
-  theoretica_edition_content:
+  theoretica_edition:
   - '506'
   - '541'
   - '561'
@@ -113,7 +112,32 @@ tag_exclude:
   - '772'
   - '787'
   - '852'
-  
+  composite_volume:
+  - '026'
+  - '028'
+  - '033'
+  - '041'
+  - '100'
+  - '383'
+  - '510'
+  - '518'
+  - '546'
+  - '588'
+  - '590'
+  - '594'
+  - '595'
+  - '596'
+  - '597'
+  - '598'
+  - '650'
+  - '651'
+  - '657'
+  - '690'
+  - '740'
+  - '773'
+  - '775'
+  - '787'
+
 tag_exclude_with_holdings:
   collection:
   - '506'

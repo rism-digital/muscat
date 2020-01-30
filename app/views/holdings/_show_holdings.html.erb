@@ -1,7 +1,7 @@
 <div class="panel_group_space"></div>
   <% @item.holdings.sort_by(&:lib_siglum).each_with_index do |h, index| %>
     <div class="panel tag_container"><h3 id="holding_<%=h.id%>"> Exemplar <%= " #{h.marc.description}" %>
-      <a style="float: right; margin-top: -4px; margin-right: -5px" class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="toggle" title="Toggle"><span class="ui-icon ui-icon-triangle-1-w"></span>_</a>
+      <a style="float: right; margin-top: -4px; margin-right: -5px" class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="toggle" title="Show/Hide"><span class="ui-icon ui-icon-triangle-1-w"></span>_</a>
      <span class="holding_actions"><%= link_to(I18n.t('active_admin.edit'), edit_admin_holding_path(h.id)) if current_user.can_edit?(h) || current_user.has_any_role?(:editor, :admin) %></span>  
     </h3>
     <div id="holding_records_div-<%=h.id%>" class="tag_content_collapsable" style="display: none; padding: 10px;"></div>

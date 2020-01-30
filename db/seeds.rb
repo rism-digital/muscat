@@ -9,4 +9,5 @@ Role.create :name => "admin"
 Role.create :name => "editor"
 Role.create :name => "cataloger"
 Role.create :name => "guest"
+Role.create :name => "junior_editor"
 User.create!(:name => "Admin", :email => 'admin@example.com', :roles => [Role.first], :password => 'password', :password_confirmation => 'password')

@@ -83,6 +83,7 @@ de:
         folder: "Erstelle Ordner mit"
         add_to_folder: "Hinzufügen von Elementen zum einem vorhandenen Ordner"
         merge: "Normdaten zusammenführen"
+        change_template: "Ändere Template"
 
     comments:
       resource_type: "Quellentyp"
@@ -93,6 +94,7 @@ de:
       add: "Kommentar hinzufügen"
       resource: "Quelle"
       no_comments_yet: "Es gibt noch keine Kommentare."
+      comments_help: "Geben Sie @ ein, um einen bestimmten Benutzer zu nennen, der dann eine Benachrichtigung per E-Mail erhält."
       author_missing: "Unbekannt"
       title_content: "Kommentare (%{count})"
       errors:
@@ -204,10 +206,45 @@ de:
     source: "Musikhandschrift, Indvidual- oder Teileintrag"
     edition_content: "Musikdruck, Teileintrag"
     libretto_source: "Libretto, handschriftlich"
-    libretto_edition_content: "Libretto, gedruckt"
+    libretto_edition: "Libretto, gedruckt"
+    libretto_edition_content: "Libretto, gedruckt - Teileintrag der Sammlung"
     theoretica_source: "Theoreticum, handschriftlich"
-    theoretica_edition_content: "Theoreticum, gedruckt"
+    theoretica_edition: "Theoreticum, gedruckt"
+    theoretica_edition_content: "Theoreticum, gedruckt - Teileintrag der Sammlung"
     edition: "Musikdruck, Haupteintrag Sammlung oder Individualeintrag"
+ 
+    composite_volumes: "Konvolut"
+    composite_volume: "Haupteintrag für ein Konvolut"
+
+    music_manuscripts: "Musikhandschrift"
+    collection_record: "Musikhandschrift, Haupteintrag Sammlung"
+    individual_entry: "Musikhandschrift, Teileintrag der Sammlung"
+    single_manuscript: "Musikhandschrift, Individualeintrag"
+    
+    printed_music: "Musikdruck"
+    collection_record_edition: "Musikdruck, Haupteintrag Sammlung"
+    individual_entry_edition: "Musikdruck, Teileintrag der Sammlung"
+    single_edition: "Musikdruck, Individualeintrag"
+    
+    libretti_handwritten: "Libretto, handschriftlich"
+    collection_record_libretti: "Libretto, handschriftlich - Haupteintrag Sammlung"
+    individual_entry_libretti: "Libretto, handschriftlich - Teileintrag der Sammlung"
+    single_libretto: "Libretto, handschriftlich - Individualeintrag"
+    
+    libretti_printed: "Libretto, gedruckt"
+    collection_record_libretti_printed: "Libretto, gedruckt - Haupteintrag Sammlung"
+    individual_entry_libretti_printed: "Libretto, gedruckt - Teileintrag der Sammlung"
+    single_libretto_printed: "Libretto, gedruckt - Individualeintrag"
+
+    threatise_handwritten: "Theoreticum, handschriftlich"
+    collection_record_threatise: "Theoreticum, handschriftlich - Haupteintrag Sammlung"
+    individual_entry_threatise: "Theoreticum, handschriftlich - Teileintrag der Sammlung"
+    single_threatise: "Theoreticum, handschriftlich - Individualeintrag"
+
+    threatise_printed: "Theoreticum, gedruckt"
+    collection_record_threatise_printed: "Theoreticum, gedruckt - Haupteintrag Sammlung"
+    individual_entry_threatise_printed: "Theoreticum, gedruckt - Teileintrag der Sammlung"
+    single_threatise_printed: "Theoreticum, gedruckt - Individualeintrag"
   
   #################### MENUS
   menu_home: "Home"
@@ -644,6 +681,7 @@ de:
     inprogress: "In Arbeit (UNP)"
     published: "Veröffentlicht (PUB)"
     deleted: "Gelöscht"
+    deprecated: "Überholt"
 
   
   dashboard:
@@ -662,7 +700,7 @@ de:
   validation:
     missing_message: "Dieses Feld muss zwingend ausgefüllt werden."
     warning_message: "Dieses Feld enthält üblicherweise einen Eintrag."
-    insufficient_rights: "Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen."
+    insufficient_rights: "Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen/zu ändern."
     name_uniqueness: "Das Kürzel des Eintrages ist bereits vergeben."
     correct: "Der Eintrag enthält keine Validierungsfehler. [200]"
 

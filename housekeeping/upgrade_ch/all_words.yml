@@ -1,0 +1,908 @@
+---
+öbermütig:
+  :tags:
+    '031':
+    - d
+  :correct: Übermütig
+öber's:
+  :tags:
+    '031':
+    - t
+    '240':
+    - a
+  :correct: Über's
+öber:
+  :tags:
+    '031':
+    - t
+    '500':
+    - a
+    '240':
+    - a
+    '245':
+    - a
+  :correct: Über
+öbersetzung:
+  :tags:
+    '245':
+    - a
+    '500':
+    - a
+  :correct: Übersetzung
+öbel:
+  :tags:
+    '031':
+    - t
+    '240':
+    - a
+    '245':
+    - a
+  :correct: Übel
+öbergänge:
+  :tags:
+    '245':
+    - a
+  :correct: Übergänge
+öberzeugend:
+  :tags:
+    '031':
+    - d
+  :correct: Überzeugend
+öbersetzung:
+  :tags:
+    '245':
+    - a
+    '500':
+    - a
+  :correct: Übersetzung
+ösen:
+  :tags:
+    '031':
+    - t
+    '240':
+    - a
+    '500':
+    - a
+  :correct: Üsen
+öberschriften:
+  :tags:
+    '500':
+    - a
+    '245':
+    - a
+  :correct: Überschriften
+öbers:
+  :tags:
+    '240':
+    - a
+    '245':
+    - a
+    '031':
+    - t
+  :correct: Übers
+öserherrged:
+  :tags:
+    '031':
+    - t
+    '245':
+    - a
+  :correct: Üserherrged
+öberfahrt:
+  :tags:
+    '240':
+    - a
+    '245':
+    - a
+  :correct: Überfahrt
+öbereinstim:
+  :tags:
+    '245':
+    - a
+  :correct: Übereinstim
+öber:
+  :tags:
+    '500':
+    - a
+    '245':
+    - a
+  :correct: Über
+öbersetzt:
+  :tags:
+    '245':
+    - a
+  :correct: Übersetzt
+öbung:
+  :tags:
+    '031':
+    - t
+    '240':
+    - a
+    '500':
+    - a
+  :correct: Übung
+öberwinder:
+  :tags:
+    '031':
+    - t
+    '240':
+    - a
+  :correct: Überwinder
+öbertragung:
+  :tags:
+    '500':
+    - a
+    '245':
+    - a
+  :correct: Übertragung
+öbrige:
+  :tags:
+    '500':
+    - a
+  :correct: Übrige
+öbern:
+  :tags:
+    '031':
+    - t
+  :correct: Übern
+öbers:
+  :tags:
+    '500':
+    - a
+  :correct: Übers
+öbungen:
+  :tags:
+    '245':
+    - a
+  :correct: Übungen
+öbungen:
+  :tags:
+    '730':
+    - a
+    '500':
+    - a
+  :correct: Übungen
+öbergabe:
+  :tags:
+    '500':
+    - a
+  :correct: Übergabe
+FöR:
+  :tags:
+    '245':
+    - a
+    '031':
+    - d
+  :correct: FÜR
+öberwinden:
+  :tags:
+    '031':
+    - t
+  :correct: Überwinden
+TONSTÖCKEN:
+  :tags:
+    '245':
+    - a
+  :correct: TONSTÜCKEN
+CLAVIERSTöCKE:
+  :tags:
+    '245':
+    - a
+  :correct: CLAVIERSTÜCKE
+öbergebe:
+  :tags:
+    '240':
+    - a
+  :correct: Übergebe
+öbertretung:
+  :tags:
+    '031':
+    - t
+  :correct: Übertretung
+BöHLER:
+  :tags:
+    '245':
+    - a
+  :correct: BÜHLER
+BöHLER:
+  :tags:
+    '245':
+    - a
+  :correct: BÜHLER
+BöHLER:
+  :tags:
+    '245':
+    - a
+  :correct: BÜHLER
+FLöGEL:
+  :tags:
+    '245':
+    - a
+  :correct: FLÜGEL
+ORGELSTöCKE:
+  :tags:
+    '245':
+    - a
+  :correct: ORGELSTÜCKE
+öBERBACHER:
+  :tags:
+    '245':
+    - a
+  :correct: ÜBERBACHER
+öberleitungen:
+  :tags:
+    '500':
+    - a
+  :correct: Überleitungen
+MöLLER:
+  :tags:
+    '245':
+    - a
+  :correct: MÜLLER
+MöLLER:
+  :tags:
+    '245':
+    - a
+  :correct: MÜLLER
+öbrigen:
+  :tags:
+    '500':
+    - a
+  :correct: Übrigen
+FöHRER:
+  :tags:
+    '245':
+    - a
+  :correct: FÜHRER
+FöHRER:
+  :tags:
+    '245':
+    - a
+  :correct: FÜHRER
+öberschrift:
+  :tags:
+    '500':
+    - a
+    '240':
+    - a
+  :correct: Überschrift
+GRöNBERGER:
+  :tags:
+    '245':
+    - a
+  :correct: GRÜNBERGER
+MöLLER:
+  :tags:
+    '245':
+    - a
+  :correct: MÜLLER
+HOCHWöRDIGSTEN:
+  :tags:
+    '245':
+    - a
+  :correct: HOCHWÜRDIGSTEN
+CONCERTSTöCK:
+  :tags:
+    '245':
+    - a
+  :correct: CONCERTSTÜCK
+FöRST:
+  :tags:
+    '245':
+    - a
+  :correct: FÜRST
+GLöCKLICHE:
+  :tags:
+    '031':
+    - d
+  :correct: GLÜCKLICHE
+öbersetzung:
+  :tags:
+    '245':
+    - a
+    '500':
+    - a
+  :correct: Übersetzung
+öbersicht:
+  :tags:
+    '500':
+    - a
+  :correct: Übersicht
+KöHNE:
+  :tags:
+    '245':
+    - a
+  :correct: KÜHNE
+SöSSMAIR:
+  :tags:
+    '245':
+    - a
+  :correct: SÜSSMAIR
+öBUNG:
+  :tags:
+    '031':
+    - d
+  :correct: ÜBUNG
+öBUNGEN:
+  :tags:
+    '245':
+    - a
+  :correct: ÜBUNGEN
+HöNTEN:
+  :tags:
+    '245':
+    - a
+  :correct: HÜNTEN
+FöNFTER:
+  :tags:
+    '500':
+    - a
+  :correct: FÜNFTER
+FRöHLING:
+  :tags:
+    '245':
+    - a
+  :correct: FRÜHLING
+öbersetzung:
+  :tags:
+    '500':
+    - a
+  :correct: Übersetzung
+BöLOW:
+  :tags:
+    '245':
+    - a
+  :correct: BÜLOW
+ön:
+  :tags:
+    '031':
+    - t
+    '240':
+    - a
+    '245':
+    - a
+  :correct: Ün
+LIEDERFRöHLING:
+  :tags:
+    '500':
+    - a
+  :correct: LIEDERFRÜHLING
+öberzeugung:
+  :tags:
+    '500':
+    - a
+    '599':
+    - a
+  :correct: Überzeugung
+Daumenuntersatz-öbungen:
+  :tags:
+    '031':
+    - d
+  :correct: Daumenuntersatz-Übungen
+öberschlagen:
+  :tags:
+    '245':
+    - a
+  :correct: Überschlagen
+KLAVIERSTöCKE:
+  :tags:
+    '245':
+    - a
+  :correct: KLAVIERSTÜCKE
+ZöRCHER:
+  :tags:
+    '500':
+    - a
+  :correct: ZÜRCHER
+öberklebten:
+  :tags:
+    '500':
+    - a
+  :correct: Überklebten
+öbersetzt:
+  :tags:
+    '500':
+    - a
+    '245':
+    - a
+  :correct: Übersetzt
+öber:
+  :tags:
+    '245':
+    - a
+  :correct: Über
+FöNFUNDDREISSIG:
+  :tags:
+    '245':
+    - a
+  :correct: FÜNFUNDDREISSIG
+HöLFE:
+  :tags:
+    '245':
+    - a
+  :correct: HÜLFE
+SöNDER:
+  :tags:
+    '245':
+    - a
+  :correct: SÜNDER
+RUHMWöRDIGE:
+  :tags:
+    '245':
+    - a
+  :correct: RUHMWÜRDIGE
+TROSTSPRöCHLEIN:
+  :tags:
+    '245':
+    - a
+  :correct: TROSTSPRÜCHLEIN
+FRöHLINGSTRÄUMEN:
+  :tags:
+    '245':
+    - a
+  :correct: FRÜHLINGSTRÄUMEN
+FRöHLINGSLUST:
+  :tags:
+    '245':
+    - a
+  :correct: FRÜHLINGSLUST
+FöNF:
+  :tags:
+    '245':
+    - a
+  :correct: FÜNF
+STöCKE:
+  :tags:
+    '245':
+    - a
+  :correct: STÜCKE
+FANTASIESTöCKE:
+  :tags:
+    '245':
+    - a
+  :correct: FANTASIESTÜCKE
+ERFöLLUNG:
+  :tags:
+    '245':
+    - a
+  :correct: ERFÜLLUNG
+ZöRICHSEE:
+  :tags:
+    '245':
+    - a
+  :correct: ZÜRICHSEE
+"SöSS-KASTROPP":
+  :tags:
+    '245':
+    - a
+  :correct: "SÜSS-KASTROPP"
+ZöRICH:
+  :tags:
+    '245':
+    - a
+  :correct: ZÜRICH
+öbungsstücke:
+  :tags:
+    '500':
+    - a
+  :correct: Übungsstücke
+öber:
+  :tags:
+    '031':
+    - t
+  :correct: Über
+öberleitung:
+  :tags:
+    '500':
+    - a
+  :correct: Überleitung
+CH-Mö:
+  :tags:
+    '852':
+    - a
+    '500':
+    - a
+  :correct: CH-MÜ
+Mö:
+  :tags:
+    '500':
+    - a
+  :correct: MÜ
+Mö:
+  :tags:
+    '599':
+    - a
+    '500':
+    - a
+  :correct: MÜ
+öberbacher:
+  :tags:
+    '500':
+    - a
+  :correct: Überbacher
+öbersetzungsversuche:
+  :tags:
+    '500':
+    - a
+  :correct: Übersetzungsversuche
+öbriges:
+  :tags:
+    '500':
+    - a
+  :correct: Übriges
+öna:
+  :tags:
+    '031':
+    - t
+    '240':
+    - a
+  :correct: Üna
+ösol:
+  :tags:
+    '031':
+    - t
+  :correct: Üsol
+Mös:
+  :tags:
+    '500':
+    - a
+  :correct: MÜs
+Clavier-öbung:
+  :tags:
+    '730':
+    - a
+    '240':
+    - a
+  :correct: Clavier-Übung
+öbel:
+  :tags:
+    '245':
+    - a
+  :correct: Übel
+öberklebungen:
+  :tags:
+    '500':
+    - a
+  :correct: Überklebungen
+öberklebung:
+  :tags:
+    '500':
+    - a
+  :correct: Überklebung
+öbungen:
+  :tags:
+    '500':
+    - a
+  :correct: Übungen
+öbungszwecken:
+  :tags:
+    '500':
+    - a
+  :correct: Übungszwecken
+öelisbrunner:
+  :tags:
+    '500':
+    - a
+  :correct: Üelisbrunner
+Violoncell-öbung:
+  :tags:
+    '500':
+    - a
+  :correct: Violoncell-Übung
+Violoncell-öbung:
+  :tags:
+    '245':
+    - a
+  :correct: Violoncell-Übung
+öbung:
+  :tags:
+    '500':
+    - a
+  :correct: Übung
+öberquellend:
+  :tags:
+    '031':
+    - d
+  :correct: Überquellend
+öelisbrunner:
+  :tags:
+    '240':
+    - a
+    '245':
+    - a
+  :correct: Üelisbrunner
+öberarbeitung:
+  :tags:
+    '500':
+    - a
+  :correct: Überarbeitung
+öbergangs:
+  :tags:
+    '240':
+    - a
+  :correct: Übergangs
+öbergangs:
+  :tags:
+    '245':
+    - a
+  :correct: Übergangs
+öberklebungen:
+  :tags:
+    '500':
+    - a
+  :correct: Überklebungen
+öbernommen:
+  :tags:
+    '500':
+    - a
+  :correct: Übernommen
+Bibel-öbersetzungen:
+  :tags:
+    '500':
+    - a
+  :correct: Bibel-Übersetzungen
+öberlegungen:
+  :tags:
+    '500':
+    - a
+  :correct: Überlegungen
+öberwunden:
+  :tags:
+    '031':
+    - t
+  :correct: Überwunden
+öberschrift:
+  :tags:
+    '500':
+    - a
+  :correct: Überschrift
+Mö:
+  :tags:
+    '500':
+    - a
+  :correct: MÜ
+öberhaupt:
+  :correct: Überhaupt
+öberlieferung:
+  :correct: Überlieferung
+öbersetzungen:
+  :correct: Übersetzungen
+SöSS:
+  :correct: SÜSS
+FRöHLINGSTR:
+  :correct: FRÜHLINGSTR
+WILLKöHRLICHER:
+  :correct: WILLKÜHRLICHER
+BöRGERMEISTER:
+  :correct: BÜRGERMEISTER
+AUSFöHRBAR:
+  :correct: AUSFÜHRBAR
+AUFZöGE:
+  :correct: AUFZÜGE
+RöTTIMANN:
+  :correct: RüTTIMANN
+BRöCKLMAYER:
+  :correct: BRÜCKLMAYER
+MöNCHEN:
+  :correct: MÜNCHEN
+Arrang.á:
+  :correct: Arrang.à
+Bfá:
+  :correct: Bfà
+COMITIáMONTFORT:
+  :correct: COMITIàMONTFORT
+Cadrá:
+  :correct: Cadrà
+Canadá:
+  :correct: Canadà
+Colá:
+  :correct: Colà
+Déjá:
+  :correct: Déjà
+Elafá:
+  :correct: Elafà
+Fedeltá:
+  :correct: Fedeltà
+Fingiá:
+  :correct: Fingià
+Frá:
+  :correct: Frà
+Giá:
+  :correct: Già
+Gravitá:
+  :correct: Gravità
+Holá:
+  :correct: Holà
+Holáho:
+  :correct: Holàho
+Hôlá:
+  :correct: Hôlà
+Já:
+  :correct: Jà
+LeoncavalloZazá:
+  :correct: LeoncavalloZazà
+Libertá:
+  :correct: Libertà
+Lá:
+  :correct: Là
+Lá-bas:
+  :correct: Là-bas
+Lá-haut:
+  :correct: Là-haut
+Maestá:
+  :correct: Maestà
+Majestá:
+  :correct: Majestà
+Masdá:
+  :correct: Masdà
+Mathiás:
+  :correct: Mathiàs
+Mazzolá:
+  :correct: Mazzolà
+Maëstá:
+  :correct: Maëstà
+Moralitá:
+  :correct: Moralità
+Neuchátel:
+  :correct: Neuchàtel
+Niccolá:
+  :correct: Niccolà
+Nicolá:
+  :correct: Nicolà
+Olá:
+  :correct: Olà
+Overture]"á:
+  :correct: Overture]"à
+Pietá:
+  :correct: Pietà
+Plá:
+  :correct: Plà
+Podestá:
+  :correct: Podestà
+Proprietá:
+  :correct: Proprietà
+Sinfoniá:
+  :correct: Sinfonià
+Societá:
+  :correct: Società
+Touchez-lá:
+  :correct: Touchez-là
+Trinitá:
+  :correct: Trinità
+Trá:
+  :correct: Trà
+V'lá:
+  :correct: V'là
+Vis-á-vis:
+  :correct: Vis-à-vis
+Voilá:
+  :correct: Voilà
+Vá:
+  :correct: Và
+Vánetta:
+  :correct: Vànetta
+Zazá:
+  :correct: Zazà
+beltá:
+  :correct: beltà
+bontá:
+  :correct: bontà
+cadrá:
+  :correct: cadrà
+celui-lá:
+  :correct: celui-là
+crudeltá:
+  :correct: crudeltà
+delá:
+  :correct: delà
+divinitá:
+  :correct: divinità
+dá:
+  :correct: dà
+déjá:
+  :correct: déjà
+etá:
+  :correct: età
+fará:
+  :correct: farà
+fedeltá:
+  :correct: fedeltà
+felicitá:
+  :correct: felicità
+frá:
+  :correct: frà
+fuggirá:
+  :correct: fuggirà
+fá:
+  :correct: fà
+giá:
+  :correct: già
+gravitá:
+  :correct: gravità
+guarderá:
+  :correct: guarderà
+há:
+  :correct: hà
+jour-lá:
+  :correct: jour-là
+jusqu'á:
+  :correct: jusqu'à
+l'eternitá:
+  :correct: l'eternità
+libertá:
+  :correct: libertà
+ludá:
+  :correct: ludà
+lá:
+  :correct: là
+lá-bas:
+  :correct: là-bas
+lá-haut:
+  :correct: là-haut
+lá-même:
+  :correct: là-même
+lábas:
+  :correct: làbas
+maestá:
+  :correct: maestà
+má:
+  :correct: mà
+onestá:
+  :correct: onestà
+parlerá:
+  :correct: parlerà
+pietá:
+  :correct: pietà
+potrá:
+  :correct: potrà
+qu'á:
+  :correct: qu'à
+quá:
+  :correct: quà
+sará:
+  :correct: sarà
+scorderá:
+  :correct: scorderà
+societá:
+  :correct: società
+solá:
+  :correct: solà
+suprá:
+  :correct: suprà
+sá:
+  :correct: sà
+tiá:
+  :correct: tià
+trouverá:
+  :correct: trouverà
+troverá:
+  :correct: troverà
+trágliaguati:
+  :correct: tràgliaguati
+uná:
+  :correct: unà
+v'lá:
+  :correct: v'là
+v'lá-t-il:
+  :correct: v'là-t-il
+verrá:
+  :correct: verrà
+vitá:
+  :correct: vità
+vivacitá:
+  :correct: vivacità
+voilá:
+  :correct: voilà
+á:
+  :correct: à
+á4:
+  :correct: à4
+áb:
+  :correct: àb
+ál:
+  :correct: àl
+áppresso:
+  :correct: àppresso
+ároef:
+  :correct: àroef
+átem:
+  :correct: àtem

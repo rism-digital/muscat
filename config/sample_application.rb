@@ -69,6 +69,11 @@ module RISM
 	# All the comments go to this email here, set it to and address to activate
 	COMMENT_EMAIL = false
 	
+	# Default "from" email
+	DEFAULT_NOREPLY_EMAIL = "sample@email.com"
+	# Default system name
+	DEFAULT_EMAIL_NAME = "Muscat"
+	
 	# Sent the validation notifications
 	SEND_VALIDATION_NOTIFICATIONS = false
 	# Notification email, also used for Exception Notifications
@@ -110,6 +115,4 @@ Mime::Type.register "application/xml", :mei
 Mime::Type.register "application/xml", :tei
 # Mime types for download of MARC records.
 Mime::Type.register "application/marc", :marc
-# Same as above but with txt extension.
-Mime::Type.register "application/txt", :txt
 

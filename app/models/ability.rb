@@ -13,8 +13,6 @@ class Ability
       can :reindex, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Folder]
       can :publish, [Folder]
       can :unpublish, [Folder]
-      can :create_editions, Source
-      can :update_editions, Source      
       can :resave, :all
 
     ##########
@@ -24,13 +22,14 @@ class Ability
     elsif user.has_role?(:editor)
       if user.has_role?(:person_editor)
         can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+      elsif user.has_role?(:junior_editor)
+        can [:read, :create, :update], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding]
       else
         can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, Holding]
         can [:read, :create], Person
         can :update, Person, :wf_owner => user.id
       end
-      can :create_editions, Source
-      can :update_editions, Source
+      can [:read], Folder
       can :manage, Folder, :wf_owner => user.id
       can :unpublish, [Folder]
       can [:read, :create, :destroy], ActiveAdmin::Comment
@@ -82,14 +81,10 @@ class Ability
         user.can_edit? source
       end
       
-      if user.has_role?(:cataloger)
-        can :create_editions, Source
-        can :update_editions, Source
-        can :update, Source do |s|
-          user.can_edit_edition?(s)
-        end
+      can :update, Source do |s|
+        user.can_edit_edition?(s)
       end
-      
+
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"

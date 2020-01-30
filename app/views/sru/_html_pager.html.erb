@@ -1,0 +1,37 @@
+<!-- Easy pager for html view of sru interface -->
+<% start_record = params[:startRecord] ? (params[:startRecord]).to_i : 1 %>
+<% maximum_records = (params[:maximumRecords]).to_i %>
+<% total = @result.total.to_i %>
+<% to_add = total % maximum_records == 0 ? 0 : 1 %>
+<% pages = (total / maximum_records) + to_add %>
+
+<div style="width: 100%;  text-align: center;">
+  <div style="display: inline-block;">
+    <span>
+      <% (1..pages).each do |p|  %>
+        <% sr = (p - 1) * maximum_records + 1  %>
+        <% if sr == start_record %>
+          <span style="font-weight: bold;"> <%= p %> </span>
+        <% else %>
+          <%= link_to(p.to_s, url_for( request.params.merge({:startRecord => sr.to_s} ))) %>
+        <% end %>
+      <% end %>
+      <%= " / #{pages}"%>
+    </span>
+    <span style="margin-left: 10px">
+      (
+      <% if start_record + maximum_records > total  %>
+        <%= " #{start_record} - #{start_record + ((total % maximum_records) - 1 )} of #{total} items." %>
+      <% else %>
+        <%= " #{start_record} - #{((start_record + maximum_records) - 1) } of #{total} items." %>
+      <% end %>
+      )
+    </span>
+  </div>
+  <div style="margin: auto;  width: 100%;">
+    <%= "   Items per page: " %>
+    <% [20, 50, 100].each do |i| %>
+      <%= link_to(i.to_s, url_for( request.params.merge({:maximumRecords => i.to_s} )))          %>
+    <% end %>
+  </div>
+</div>

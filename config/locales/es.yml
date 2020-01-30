@@ -80,6 +80,7 @@ es:
         destroy: "Borrar"
         folder: "Crear directorio con" # dudoso
         merge: "MERGE AUTHORITY RECORDS"
+        change_template: "CHANGE TEMPLATE"
 
     comments:
       resource_type: "Tipo de recurso"
@@ -90,6 +91,7 @@ es:
       add: "Añadir comentario"
       resource: "Recurso"
       no_comments_yet: "Todavía no hay comentarios."
+      comments_help: "Escriba @ para mencionar a un usuario específico, que recibirá una notificación por correo electrónico."
       author_missing: "Anónimo"
       title_content: "Comentarios (%{count})"
       errors:
@@ -605,6 +607,7 @@ es:
     inprogress: "En progreso (UNP)"
     published: "Publicado (PUB)"
     deleted: "Borrado"
+    deprecated: "DEPRECATED"
 
   dashboard:
     selection: "Selección"

@@ -118,6 +118,7 @@
       - "XA-VA"
       - "XD-HN"
       - "XA-HU"
+      - "XB-IQ"
       - "XA-IS"
       - "XB-IN"
       - "XB-IR"
@@ -132,6 +133,7 @@
       - "XA-LU"
       - "XA-MT"
       - "XD-MX"
+      - "XA-MD"
       - "XA-ME"
       - "XA-NL"
       - "XE-NZ"
@@ -158,7 +160,9 @@
       - "XD-US"
       - "XD-UY"
       - "XD-VE"
+      - "XB-VN"
       - "XB-TW"
+      - "XB-GE"
 "100": 
   layout: 
     fields: 
@@ -239,7 +243,7 @@
       - mother of
       - confused with
       - sister of
-      - married with
+      - married to
       - father of
       - related to
       - other
@@ -249,7 +253,7 @@
   layout: 
     fields: 
     - - "a"
-      - type: library
+      - type: institution
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
@@ -259,12 +263,14 @@
     - - a
       - cols: 2
     columns: 2
-"550": 
+"550":
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 2
+      - type: person_550a_solr
+        field: value
+        editor_partial: subfield_secondary
+        allow_new: true
 "551": 
   layout: 
     fields: 

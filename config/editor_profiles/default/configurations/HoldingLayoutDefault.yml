@@ -9,6 +9,7 @@ groups:
   edit_administration: 
     all_tags: 
     - "001"
+
   edit_library: 
     all_tags: 
     - "852"
@@ -24,7 +25,8 @@ groups:
     - '710'
 
   edit_material:
-    all_tags: 
+    all_tags:
+    - '593' 
     - '300'
     - '592'
     - '563'
@@ -37,3 +39,5 @@ groups:
     - '691'
     - '651'
     - '518'
+    - "599"
+
