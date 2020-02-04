@@ -210,17 +210,12 @@
       - "bn"
       - "da"
       - "do"
-      - "dv"
       - "ee"
-      - "ef"
-      - "ff"
       - "gg"
       - "in"
-      - "mo"
       - "tn"
       - "ub"
       - "z"
-      - "xx"
     columns: 4
 "500": 
   allow_new: true
