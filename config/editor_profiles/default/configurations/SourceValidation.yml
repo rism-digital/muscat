@@ -63,7 +63,10 @@ client:
         "x":
         - edition
         - edition_content
-        - libretto_edition 
+        - libretto_edition
+        - libretto_edition_content
+        - theoretica_edition
+        - theoretica_edition_content
     tags:
       c: required, warning
       x: mandatory
