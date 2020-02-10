@@ -80,7 +80,7 @@
     :occurrences: "*"
     :fields:
     - - c
-      - :occurrences: "*"
+      - :occurrences: "1"
   "100":
     :master: a
     :indicator: "1#"
