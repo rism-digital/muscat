@@ -4,65 +4,77 @@ doc_abbreviations:
   label: 
     de: "Abkürzungen"
     en: Abbreviations
+    es: Abreviaturas
 doc_aid: 
   label: 
     de: Arbeitshilfen
     en: Aide
+    es: Asistencia
 doc_cataloguing_collections: 
   label: 
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
+    es: "Catalogación de colecciones y volúmenes compuestos"
 doc_edit_functions: 
   label: 
     de: "Grundätzliche Funktionen"
     en: Basic functions
+    es: "Funciones básicas"
 doc_introduction: 
   label: 
     de: Einleitung
     en: Introduction
+    es: "Introducción"
 doc_masks: 
   label: 
     de: Masken
     en: Cataloging forms
+    es: "Formularios de catalogación"
 doc_tag_index: 
   label: 
     de: MARC Tag Index
     en: MARC tag index
+    es: "Índice de etiquetas MARC"
 doc_templates: 
   label: 
     de: Templates
     en: Templates
+    es: Plantillas
 "000": 
   label: 
     it: Leader
     fr: Guide
     de: Leader
     en: Leader
+    es: "Líder"
 "001": 
   label: 
     it: Numero documento RISM
     fr: No. RISM
     de: RISM Dokumentnummer
     en: RISM ID No.
+    es: "Número de ID de RISM"
 "003": 
   label: 
     it: Identificatore del numero di controllo
     fr: "Identité du numéro de contrôle"
     de: Kontrollnummer-Bezeichnung
     en: Control number identifier
+    es: "Identificador de número de control"
 "005": 
   label: 
     it: Data e ora dell'ultima transazione
     fr: "Date/heure de la dernière transaction"
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
-
+    es: "Fecha y hora de la última transacción" 
 "020": 
   label: 
     it: ISBN
     fr: ISBN
     de: ISBN
     en: ISBN
+    es: ISBN
   fields: 
     a: 
       label: 
@@ -70,6 +82,7 @@ doc_templates:
         fr: ISBN
         de: ISBN
         en: ISBN
+        es: ISBN
 
 "022": 
   label: 
@@ -77,6 +90,7 @@ doc_templates:
     fr: ISSN
     de: ISSN
     en: ISSN
+    es: ISSN
   fields: 
     a: 
       label: 
@@ -84,6 +98,7 @@ doc_templates:
         fr: ISSN
         de: ISSN
         en: ISSN
+        es: ISSN
 
 "024": 
   label: 
@@ -91,6 +106,7 @@ doc_templates:
     fr: ISMN
     de: ISMN
     en: ISMN
+    es: ISMN
   fields: 
     a: 
       label: 
@@ -98,6 +114,7 @@ doc_templates:
         fr: ISMN
         de: ISMN
         en: ISMN
+        es: ISMN
 
 "041": 
   label: 
@@ -105,6 +122,7 @@ doc_templates:
     fr: Code de langue
     de: Sprache
     en: Language Code
+    es: "Código de idioma"
   fields: 
     a: 
       label: 
@@ -112,12 +130,14 @@ doc_templates:
         fr: Code de langue
         de: Sprach-Code
         en: Language Code
+        es: "Código de idioma"
 "044": 
   label: 
     it: Paese
     fr: Pays
     de: Land
     en: Country of publication
+    es: "País de publicación"
   fields: 
     a: 
       label: 
@@ -125,6 +145,7 @@ doc_templates:
         fr: Pays
         de: Land
         en: Country of publication
+        es: "País de publicación"
 
 "100": 
   label: 
@@ -132,6 +153,7 @@ doc_templates:
     fr: Auteur
     de: Autor
     en: Author
+    es: Autor
   accepts: 
   - "710"
   fields: 
@@ -141,18 +163,21 @@ doc_templates:
         fr: Auteur
         de: Autor
         en: Author
+        es: Autor
     d: 
       label: 
         it: Data di nascita e di morte
         fr: Dates de vie
         de: Geburts- und Todesdaten
         en: Life dates
+        es: Fechas de nacimiento y muerte
 "210": 
   label: 
     it: Abbreviazione
     fr: Abbreviation
     de: Kürzel
     en: Short title
+    es: "Título corto"
   fields: 
     a: 
       label: 
@@ -160,12 +185,14 @@ doc_templates:
         fr: Abbreviation
         de: Kürzel
         en: Short title
+        es: "Título corto"
 "240": 
   label: 
     it: Titolo 
     fr: Title
     de: Titel
     en: Title
+    es: "Título"
   fields: 
     a: 
       label: 
@@ -173,24 +200,28 @@ doc_templates:
         fr: Title
         de: Titel
         en: Title
+        es: "Título"
     g: 
       label: 
         it: Tipo
         fr: Type
         de: Art/Inhalt
         en: Category
+        es: "Categoría"
     h: 
       label: 
         it: Tipo di pubblicazione
         fr: Type de publication
         de: Ausgabeform
         en: Type of publication
+        es: "Tipo de publicación"
 "250": 
   label: 
     it: Edizione
     fr: Édition
     de: Ausgabe
     en: Edition statement
+    es: "Declaración de edición"
   fields: 
     a: 
       label: 
@@ -198,6 +229,7 @@ doc_templates:
         fr: Édition
         de: Ausgabe
         en: Edition statement
+        es: "Declaración de edición"
       comment: "NEW IN 2018"
 "260": 
   label: 
@@ -205,6 +237,7 @@ doc_templates:
     fr: Imprint
     de: Imprint
     en: Imprint
+    es: Datos editoriales
   fields: 
     a: 
       label: 
@@ -212,24 +245,28 @@ doc_templates:
         fr: Endroit
         de: Verlagsort
         en: Place of publication
+        es: Lugar de publicación
     b: 
       label: 
         it: Editore
         fr: "éditeur"
         de: Verlag
         en: Publisher
+        es: Editor
     c: 
       label: 
         it: Anno
         fr: Année
         de: Jahr
         en: Year
+        es: Año
 "264": 
   label: 
     it: Produzione
     fr: Production
     de: Verlauf
     en: Production
+    es: "Producción"
   fields: 
     c: 
       label: 
@@ -237,12 +274,14 @@ doc_templates:
         fr: Production
         de: Verlauf
         en: Production
+        es: Producción
 "700": 
   label: 
     it: Nome addizionale di persona
     fr: "Nom supplémentaire de la personne"
     de: Sonstige Person
     en: Additional personal name
+    es: Nombre personal adicional
   fields: 
     a: 
       label: 
@@ -250,12 +289,14 @@ doc_templates:
         fr: Personne
         de: Person
         en: Person
+        es: Persona
 "710": 
   label: 
     it: Nome di ente
     fr: "Nom de la collectivité"
     de: Nebeneintragung Körperschaften
     en: Additional institution
+    es: "Institución adicional"
   fields: 
     a: 
       label: 
@@ -263,23 +304,27 @@ doc_templates:
         fr: "Nom de la collectivité"
         de: Körperschaftsname
         en: Institution
+        es: "Institución"
     b: 
       label: 
         it: Ente subordinato
         fr: "Collectivité subordonnée"
         de: Untergeordnete Körperschaft
         en: Department
+        es: Departamento
     g: 
       label: 
         it: Qualificazione d'attribuzione
         fr: Qualificatif d'attribution
         de: Zuschreibungsvermerk
         en: Attribution qualifier
+        es: "Calificador de atribución"
       edit_label: 
         it: Attribuzione
         fr: Attribution
         de: Zuschreibung
         en: Attribution
+        es: Atribución
 
     "4": 
       label: 
@@ -287,18 +332,21 @@ doc_templates:
         fr: Fonction
         de: Funktionsbezeichnung
         en: Function
+        es: Función
     "8": 
       label: 
         it: Gruppo di materiale
         fr: Documents
         de: Set
         en: Set
+        es: "Grupo de materiales"
 "730": 
   label:
     it: Titolo uniforme alternativo
     fr: Titres uniformes additionnels
     de: Zusätzlicher Titel
     en: Additional title
+    es: Título adicional
   fields:
     a: 
       label: 
@@ -306,12 +354,14 @@ doc_templates:
         fr: Titres uniformes additionnels
         de: Zusätzlicher Titel
         en: Additional title
+        es: Título adicional
 "760": 
   label: 
     it: Fa parte di
     fr: Titre de la revue
     de: In
     en: Item part of
+    es: "Ítem integrante de"
   fields: 
     g: 
       label: 
@@ -319,18 +369,21 @@ doc_templates:
         fr: Partie
         de: Jahrgang, Seite
         en: Volume, year, page
+        es: "Volumen, año, página"
     t: 
       label: 
         it: Titolo del periodico o della miscellanea
         fr: Titre de la revue
         de: "In: "
         en: "Title of periodical, book, or series"
+        es: "Título del periódico, libro o serie"
 "780": 
   label: 
     it: Titolo precedente
     fr: Entrée précédente
     de: Früherer Eintrag
     en: Preceding entry
+    es: Entrada anterior
   fields: 
     a: 
       label: 
@@ -338,12 +391,14 @@ doc_templates:
         fr: Entrée précédente
         de: Früherer Eintrag
         en: Preceding entry
+        es: Entrada anterior
 "785": 
   label: 
     it: Titolo successivo
     fr: Entrée suivante
     de: Folgeeintrag
     en: Succeeding entry
+    es: Entrada siguiente
   fields: 
     a: 
       label: 
@@ -351,516 +406,602 @@ doc_templates:
         fr: Entrée suivante
         de: Folgeeintrag
         en: Succeeding entry
+        es: Entrada siguiente
 main: 
   label: 
     it: Campi principali
     fr: "Entrées principales"
     de: Haupteintragungen
     en: Main entry fields
+    es: Campos principales
 codes: 
   label: 
     it: Numeri e codici
     fr: "Numéros et codes"
     de: Nummern und Codes
     en: Numbers and code fields
+    es: "Números y códigos"
 control: 
   label: 
     fr: "Champs de contrôle"
     de: Kontrollfelder
     it: Campi di controllo
     en: Control Fields
+    es: Campos de control
 notes: 
   label: 
     it: Note
     fr: Notes
     de: Fussnoten
     en: Note fields
+    es: Notas
 other: 
   label: 
     it: Varia
     fr: Divers
     de: Verschiedenes
     en: Miscellaneous
+    es: Varios
 administration: 
   label: 
     it: Amministrazione
     fr: Administration
     de: Administration
     en: Administration
+    es: Administración
 ed: 
   label: 
     it: Edizione
     fr: "édition"
     de: Edition
     en: Edition
+    es: Edición
 H: 
   label: 
     it: Curatore
     fr: Editeur
     de: Herausgeber
     en: Editor
+    es: Editor
 added_series: 
   label: 
     it: Note secondarie sul titolo sovraordinato
     fr: "Entrées de collection"
     de: Nebeneintragungen Gesamttitel
     en: Series added entry fields
+    es: "Entradas adicionales de la serie"
 administration: 
   label: 
     it: Amministrazione
     fr: Administration
     de: Administration
     en: Administration
+    es: Administración
 arr: 
   label: 
     it: Arrangiatore
     fr: Arrangeur
     de: Bearbeiter
     en: Arranger
+    es: Arreglador
 art: 
   label: 
     it: Scenografo
     fr: "Metteur en scène"
     de: "Bühnenbildner"
     en: Artist
+    es: Artista
 asn: 
   label: 
     it: Altro nome
     fr: Autre nom
     de: Behandelte Person
     en: Associated name
+    es: Nombre asociado
 aut: 
   label: 
     it: "Autore addizionale"
     fr: "Auteur supplémentaire"
     de: "Zusätzlicher Autor"
     en: "Additional author"
+    es: "Autor adicional"
 bibliographical_reference: 
   label: 
     it: Bibliografia
     fr: "Références"
     de: Literatur
     en: References
+    es: Referencias
 bnd: 
   label: 
     it: Rilegatore
     fr: Relieur
     de: Buchbinder
     en: Binder
+    es: Encuadernador
 bsl: 
   label: 
     it: Libraio musicale
     fr: Libraire
     de: "Musikalienhändler"
     en: Bookseller
+    es: Librero
 ccp: 
   label: 
     it: Autore della fonte letteraria
     fr: Auteur du texte
     de: Autor der Textvorlage
     en: Conceptor
+    es: Autor de la idea
 chr: 
   label: 
     it: Coreografo
     fr: "Chorégraphe"
     de: Choreograph
     en: Choreographer
+    es: Coreógrafo
 clb: 
   label: 
     it: Autore secondario
     fr: Collabarateur
     de: Mitverfasser
     en: Collaborator
+    es: Colaborador
 cmp: 
   label: 
     it: Compositore/Compositore secondario
     fr: Compositeur / Co-compositeur
     de: Komponist / Mitkomponist
     en: Composer
+    es: Compositor / Co-compositor
 cnd: 
   label: 
     it: Direttore d'orchestra
     fr: Chef d'orchestre
     de: Dirigent
     en: Conductor
+    es: Director musical
 cns: 
   label: 
     it: Censore
     fr: Censeur
     de: Zensor
     en: Censor
+    es: Censor
 codes: 
   label: 
     it: Numeri e codici
     fr: "Numéros et codes"
     de: Nummern und Codes
     en: Numbers and code fields
+    es: "Números y códigos"
 com: 
   label: 
     it: Compilatore
     fr: Compilateur
     de: Kompilator
     en: Compiler
+    es: Compilador
 content: 
   label: 
     it: Descrizione del contenuto
     fr: Description du contenu
     de: Inhaltsangaben
     en: Content description
+    es: "Descripción del contenido"
 control: 
   label: 
     fr: "Champs de contrôle"
     de: Kontrollfelder
     it: Campi di controllo
     en: Control Fields
+    es: Campos de control
 cst: 
   label: 
     it: Costumista
     fr: Costumier
     de: "Kostümbildner"
     en: Costume designer
+    es: Vestuarista
 date: 
   label: 
     it: Date
     fr: Dates
     de: Daten
     en: Dates
+    es: Fechas
 description: 
   label: 
     it: Campi per la descrizione fisica
     fr: "Description matérielle"
     de: "Felder für die physische Beschreibung"
     en: Physical description, etc. fields
+    es: "Campos para la descripción Material"
 diplomatic_title: 
   label: 
     it: Titolo diplomatico
     fr: Titre diplomatique
     de: Diplomatischer Titel
     en: Diplomatic title
+    es: "Título diplomático"
 dnc: 
   label: 
     it: Ballerino
     fr: Danceur
     de: "Tänzer"
     en: Dancer
+    es: "Bailarín(a)"
 dnr: 
   label: 
     it: Donatore
     fr: Donateur
     de: Donator
     en: Donor
+    es: Donante
 dte: 
   label: 
     it: Dedicatario
     fr: "Dédicataire"
     de: "Widmungsträger"
     en: Dedicatee
+    es: Dedicatario
 dub: 
   label: 
     it: Dubbio
     fr: Douteux
     de: Zweifelhaft
     en: Dubious
+    es: Dudoso
 edition: 
   label: 
     it: Campi per i dati editoriali
     fr: Edition, adresse bibliographique, etc.
     de: Ausgabe- und Impressumsfelder
     en: Edition, imprint, etc. fields
+    es: "Campos para los datos editoriales"
 edt: 
   label: 
     it: Curatore
     fr: Editeur
     de: Herausgeber
     en: Editor
+    es: "Editor (curador)/Editorial"
 egr: 
   label: 
     it: Incisore
     fr: Graveur
     de: Stecher
     en: Engraver
+    es: Grabador
 fmo: 
   label: 
     it: Proprietario precedente
     fr: "Propriétaire précédent"
     de: Vorbesitzer
     en: Former owner
+    es: Propietario anterior
 holding: 
   label: 
     it: Informazioni sul fondo
     fr: "Données bibliographiques, fonds, etc."
     de: Bestandsdaten
     en: Holdings, location, etc. fields
+    es: "Campos de los ejemplares y su ubicación"
 ill: 
   label: 
     it: Disegnatore
     fr: Illustrateur
     de: Illustrator
     en: Illustrator
+    es: Ilustrador
 incipit: 
   label: 
     it: Incipit
     fr: Incipits
     de: Incipits
     en: Incipits
+    es: Íncipits
 itr: 
   label: 
     it: Strumentista
     fr: Instrumentiste
     de: Instrumentalist
     en: Instrumentalist
+    es: Instrumentista
 lbt: 
   label: 
     it: Librettista
     fr: Librettiste
     de: Librettist
     en: Librettist
+    es: Libretista
 library: 
   label: 
     it: Biblioteca
     fr: "Bibliothèque"
     de: Besitzerangaben
     en: Library information
+    es: "Información del repositorio"
 linkage: 
   label: 
     it: Collegamento
     fr: Liens
     de: Verlinkung
     en: Linkage
+    es: Vínculos
 linking: 
   label: 
     it: Note su collegamenti
     fr: "Entrées de liens"
     de: "Verknüpfungseintragungen"
     en: Linking entry fields
+    es: "Campos de entrada de vínculos"
 ltg: 
   label: 
     it: Litografo
     fr: Litographe
     de: Lithograph
     en: Lithograph
+    es: Litógrafo
 lyr: 
   label: 
     it: Poeta
     fr: Parolier
     de: Textdichter
     en: Lyricist
+    es: Letrista
 main: 
   label: 
     it: Campi principali
     fr: "Entrées principales"
     de: Haupteintragungen
     en: Main entry fields
+    es: Campos principales
 notes: 
   label: 
     it: Note
     fr: Notes
     de: Fussnoten
     en: Note fields
+    es: Notas
 other: 
   label: 
     it: Varia
     fr: Divers
     de: Verschiedenes
     en: Miscellaneous
+    es: Varios
 oth: 
   label: 
     it: Altra funzione
     fr: Autre function
     de: Sonstige Funktion
     en: Other function
+    es: "Otra función"
 otm: 
   label: 
     it: Organizzatore
     fr: Organisateur
     de: Veranstalter
     en: Event organizer
+    es: "Organizador del evento"
 pat: 
   label: 
     it: Committente
     fr: "Mécène"
     de: "Mäzen/Auftraggeber"
     en: Patron
+    es: Comitente
 pbl: 
   label: 
     it: Editore
     fr: Editeur
     de: Verleger
     en: Publisher
+    es: "Editor (publicador)/Editorial (publicadora)"
 performance: 
   label: 
     it: Rappresentazioni
     fr: Performances
     de: "Aufführungen"
     en: Performances
+    es: Interpretaciones
 physical_description: 
   label: 
     it: Descrizione fisica
     fr: "Description matérielle"
     de: Physische Beschreibung
     en: Physical description
+    es: "Descripción física"
 ppm: 
   label: 
     it: Fabbricante di carta
     fr: Papetier
     de: Papierhersteller
     en: Paper maker
+    es: "Fabricante de papel"
 prd: 
   label: 
     it: Personale alla produzione
     fr: "Personnel de réalisation"
     de: Produktionspersonal
     en: Production personnel
+    es: "Personal de producción"
 prf: 
   label: 
     it: Interprete
     fr: "Interprète"
     de: Interpret
     en: Performer
+    es: "Intérprete"
 provenance: 
   label: 
     it: Provenienza
     fr: Provenance
     de: Provenienz
     en: Provenance
+    es: Procedencia
 prt: 
   label: 
     it: Stampatore
     fr: Imprimeur
     de: Drucker
     en: Printer
+    es: Impresor
 scr: 
   label: 
     it: Copista
     fr: Scribe
     de: Schreiber
     en: Scribe
+    es: Copista
 series: 
   label: 
     it: Informazioni sul titolo sovraordinato
     fr: Mentions de collection
     de: Gesamttitelangaben
     en: Series statement fields
+    es: "Información de serie"
 show_admin: 
   label: 
     it: Amministrazione
     fr: Administration
     de: Administration
     en: Administration
+    es: Administración
 show_content: 
   label: 
     it: Contenuto
     fr: Contenu
     de: Inhalt
     en: Content
+    es: Contenido
 show_details: 
   label: 
     it: Descrizione fisica
     fr: "Détail de la source"
     de: Physische Beschreibung
     en: Source details
+    es: "Detalles de la fuente"
 show_distribution: 
   label: 
     it: Organico
     fr: Formation
     de: Besetzung
     en: Distribution
+    es: "Distribución"
 show_information: 
   label: 
     it: Note
     fr: "Information supplémentaire"
     de: Anmerkungen
     en: Further information
+    es: "Más información"
 show_library: 
   label: 
     it: Biblioteca
     fr: "Bibliothèque"
     de: Besitzerangaben
     en: Library information
+    es: "Información del repositorio"
 show_links: 
   label: 
     it: Titoli connessi
     fr: Titres connexes
     de: Verlinkungen
     en: Related Titles
+    es: "Títulos relacionados"
 show_references: 
   label: 
     it: Bibliografia
     fr: "Références"
     de: Literatur
     en: References
+    es: "Bibliografía"
 show_resources: 
   label: 
     it: Collegamenti
     fr: Liens
     de: Links
     en: Related resources
+    es: Recursos relacionados
 show_summary: 
   label: 
     it: Riassunto
     fr: "Résumé"
     de: Zusammenfassung
     en: Summary
+    es: Resumen
 show_terms: 
   label: 
     it: Descrittori
     fr: Termes
     de: Deskriptoren
     en: Index terms
+    es: "Términos de indexación"
 subject: 
   label: 
     it: Note sul titolo uniforme
     fr: "Entrées de sujets"
     de: Schlagworteintragungen
     en: Subject access fields
+    es: "Campos de los puntos de acceso"
 title: 
   label: 
     it: Titolo e campi correlati
     fr: "Titre et champs associés"
     de: Titel- und damit verbundene Felder
     en: Title and title-related fields
+    es: "Título y campos relacionados"
 trl: 
   label: 
     it: Traduttore
     fr: Traducteur
     de: "Übersetzer"
     en: Translator
+    es: Traductor
 voc: 
   label: 
     it: Cantante
     fr: Vocaliste
     de: "Sänger"
     en: Vocalist
+    es: Cantante
 01_codes_artistic: 
   label: 
     it: Autore
     fr: Auteur
     de: Verfasser
     en: Artistic production
+    es: Producción artística
 02_codes_performing: 
   label: 
     it: Partecipanti
     fr: Performance
     de: Mitwirkende
     en: Performance
+    es: Interpretación
 03_codes_technical: 
   label: 
     it: Produttore
     fr: "Création"
     de: Hersteller
     en: Technical production
+    es: "Producción técnica"
 04_codes_other: 
   label: 
     it: Altri
     fr: Autre
     de: Weitere
     en: Other
+    es: Otro
 "300": 
   label: 
     it: Materiale
     fr: "Matériel"
     de: Material
     en: Physical Description
+    es: "Descripción física"
   fields: 
     a: 
       label: 
@@ -868,12 +1009,14 @@ voc:
         fr: Extension
         de: Umfang
         en: Extent
+        es: "Extensión"
 "337": 
   label: 
     it: Mezzo fisico
     fr: Moyen physique 
     de: Physisches Medium 
     en: Media type
+    es: "Tipo de medio físico"
   fields: 
     a: 
       label: 
@@ -881,12 +1024,14 @@ voc:
         fr: Moyen physique 
         de: Physisches Medium 
         en: Media type
+        es: "Tipo de medio físico"
 "500": 
   label: 
     it: Osservazioni
     fr: "Remarque générale"
     de: Bemerkungen
     en: General note
+    es: Nota general
   fields: 
     a: 
       label: 
@@ -894,6 +1039,7 @@ voc:
         fr: "Remarque générale"
         de: Bemerkungen
         en: General note
+        es: Nota general
       edit_label: 
       en: ""
 "502": 
@@ -902,6 +1048,7 @@ voc:
     fr: Note à la thèse
     de: Hinweis zur Dissertation
     en: Dissertation note
+    es: "Nota de disertación"
   fields: 
     a: 
       label: 
@@ -909,6 +1056,7 @@ voc:
         fr: Note à la thèse
         de: Hinweis zur Dissertation
         en: Dissertation note
+        es: "Nota de disertación"
       comment: "NEW IN 2018"
 "520": 
   label: 
@@ -916,6 +1064,7 @@ voc:
     fr: Indication de copie
     de: Bestandsangabe
     en: Contents note
+    es: "Nota sobre el contenido"
   fields: 
     a: 
       label: 
@@ -923,6 +1072,7 @@ voc:
         fr: Indication de copie
         de: Bestandsangabe
         en: Contents note
+        es: "Nota sobre el contenido"
       edit_label: 
         en: ""
 "599": 
@@ -931,6 +1081,7 @@ voc:
     fr: Commentaires internes
     de: Interne Fussnoten
     en: Internal note
+    es: Nota interna
   fields: 
     a: 
       label: 
@@ -938,6 +1089,7 @@ voc:
         fr: Commentaires internes
         de: Interne Fussnoten
         en: Internal note
+        es: Nota interna
       edit_label: 
         en: ""
 "650": 
@@ -946,6 +1098,7 @@ voc:
     fr: Sujets
     de: Schlagworteintragung
     en: Subject heading
+    es: Descriptor
   fields: 
     v: 
       label: 
@@ -953,36 +1106,42 @@ voc:
         fr: Subdivision de forme
         de: Unterteilung nach der Form
         en: Form subdivision
+        es: "Subdivisión de forma"
     a: 
       label: 
         it: Parola chiave
         de: Sachschlagwort
         fr: Sujet
         en: Subject heading
+        es: Decriptor
     x: 
       label: 
         it: Suddivisione generale
         fr: "Subdivision générale"
         de: Allgemeine Unterteilung
         en: Subheading General subdivision
+        es: "Subdivisión general"
     y: 
       label: 
         it: Suddivisione cronologica
         fr: Subdivision chronologique
         de: Chronologische Unterteilung
         en: Chronological subdivision
+        es: "Subdivisión cronológica"
     z: 
       label: 
         it: Suddivisione geografica
         fr: "Subdivision géographique"
         de: Geographische Unterteilung
         en: Geographic subdivision
+        es: "Subdivisión geográfica"
 "651": 
   label: 
     it: Luogo
     fr: "Lieu"
     de: "Ort"
     en: Related place
+    es: Lugar relacionado
   fields: 
     a: 
       label: 
@@ -990,6 +1149,7 @@ voc:
         fr: "Lieu"
         de: "Ort"
         en: Place
+        es: Lugar
       edit_label: 
         en: ""
 "856": 
@@ -998,6 +1158,7 @@ voc:
     fr: "Ressource électronique externe"
     de: Elektronische Lokalisierung und Zugriff
     en: External resource
+    es: Recurso externo
   fields: 
     z: 
       label: 
@@ -1005,12 +1166,14 @@ voc:
         fr: Remarque sur la ressource externe
         de: "Für das Publikum bestimmte Fussnote"
         en: Note about external resource
+        es: Nota sobre recurso externo
     u: 
       label: 
         it: Risorsa esterna URL
         fr: Ressource externe URL
         de: Uniform Resource Identifier URL
         en: External resource URL
+        es: URL del recurso externo
 # Marc Language codes
 cat: 
   label: 
@@ -1018,162 +1181,189 @@ cat:
     fr: Catalan
     de: Katalanisch
     en: Catalan 
+    es: Catalán
 cze: 
   label: 
     it: Ceco
     fr: Tchèque
     de: Tschechisch
     en: Czech
+    es: Checo
 dan: 
   label: 
     it: Danese
     fr: Danois
     de: Dänisch
     en: Danish
+    es: "Danés"
 dut: 
   label: 
     it: Olandese
     fr: Néerlandais
     de: Niederländisch
     en: Dutch
+    es: "Holandés"
 eng: 
   label: 
     it: Inglese
     fr: Anglais
     de: Englisch
     en: English
+    es: "Inglés"
 fre: 
   label: 
     it: Francese
     fr: Français
     de: Französisch
     en: French
+    es: "Francés"
 ger: 
   label: 
     it: Tedesco
     fr: Allemand
     de: Deutsch
     en: German
+    es: "Alemán"
 grc: 
   label: 
     it: Greco, antico (fino al 1453)
     fr: Grec, ancien (TO 1453)
     de: Altgriechisch (bis 1453)
     en: Greek, Ancient (to 1453)
+    es: Griego, Antiguo (hasta 1453)
 gre:  
   label: 
     it: Greco, moderno (1453-)
     fr: Grec, moderne (1453-)
     de: Neugriechisch (1453-)
     en: Greek, Modern (1453-)
+    es: Griego, Moderno (1453-)
 gsw: 
   label: 
     it: Svizzero tedesco 
     fr: Suisse allemand
     de: Schweizerdeutsch
     en: Swiss German
+    es: "Suizo alemán"
 heb: 
   label: 
     it: Ebreo
     fr: "Hébraïque"
     de: Hebräisch
     en: Hebrew
+    es: "Hebreo"
 hrv: 
   label: 
     it: Croato
     fr: Croate
     de: Kroatisch
     en: Croatian
+    es: "Croata"
 hun: 
   label: 
     it: Ungherese
     fr: Hongrois
     de: Ungarisch
     en: Hungarian
+    es: "Húngaro"
 ita: 
   label: 
     it: Italiano
     fr: Italien
     de: Italienisch
     en: Italian
+    es: "Italiano"
 jpn: 
   label: 
     it: Giapponese
     fr: Japonais
     de: Japanisch
     en: Japanese
+    es: "Japonés"
 kor: 
   label: 
     it: Coreano
     fr: "Coréen"
     de: Koreanisch
     en: Korean
+    es: "Coreano"
 lat: 
   label: 
     it: Latino
     fr: Latin
     de: Lateinisch
     en: Latin
+    es: "Latín"
 pol: 
   label: 
     it: Polacco
     fr: Polonais
     de: Polnisch
     en: Polish
+    es: Polaco
 por: 
   label: 
     it: Portoghese
     fr: Portugais
     de: Portugisisch
     en: Portuguese
+    es: "Portugués"
 rus: 
   label: 
     it: Russo
     fr: Russe
     de: Russisch
     en: Russian
+    es: Ruso
 slo: 
   label: 
     it: Slovacco
     fr: Slovaque
     de: Slowakisch
     en: Slovak
+    es: Eslovaco
 slv: 
   label: 
     it: Sloveno
     fr: "Slovène"
     de: Slowenisch
     en: Slovenian
+    es: Eslovenio
 spa: 
   label: 
     it: Spagnolo
     fr: Espanol
     de: Spanisch
     en: Spanish
+    es: "Español"
 srp: 
   label: 
     it: Serbo
     fr: Serbe
     de: Serbisch
     en: Serbian
+    es: Serbio
 swe: 
   label: 
     it: Svedese
     fr: "Suédois"
     de: Schwedisch
     en: Swedish
+    es: Sueco
 zho:
   label:
     it: Cinese
     fr: Chinois
     de: Chinesisch
     en: Chinese
+    es: Chino
 zxx: 
   label: 
     it: Nessun contesto linguistico
     fr: Sans contenu linguistique
     de: ohne Sprache
     en: No linguistic content
+    es: "Sin contenido lingüístico"
 #Country Codes
 "XC-DZ":
   label:
@@ -1181,400 +1371,468 @@ zxx:
     fr: "Algeria"
     de: "Algeria"
     en: "Algeria"
+    es: "Argelia"
 "XD-AR":
   label:
     it: "Argentina"
     fr: "Argentina"
     de: "Argentina"
     en: "Argentina"
+    es: "Argentina"
 "XB-AM":
   label:
     it: "Armenia"
     fr: "Armenia"
     de: "Armenia"
     en: "Armenia"
+    es: "Armenia"
 "XE-AU":
   label:
     it: "Australia"
     fr: "Australia"
     de: "Australia"
     en: "Australia"
+    es: "Australia"
 "XA-AT":
   label:
     it: "Austria"
     fr: "Austria"
     de: "Austria"
     en: "Austria"
+    es: "Austria"
 "XA-BE":
   label:
     it: "Belgium"
     fr: "Belgium"
     de: "Belgium"
     en: "Belgium"
+    es: "Bélgica"
 "XC-BJ":
   label:
     it: "Benin"
     fr: "Benin"
     de: "Benin"
     en: "Benin"
+    es: "Benín"
 "XD-BR":
   label:
     it: "Brazil"
     fr: "Brazil"
     de: "Brazil"
     en: "Brazil"
+    es: "Brasil"
 "XA-BG":
   label:
     it: "Bulgaria"
     fr: "Bulgaria"
     de: "Bulgaria"
     en: "Bulgaria"
+    es: "Bulgaria"
 "XB-KH":
   label:
     it: "Cambodia"
     fr: "Cambodia"
     de: "Cambodia"
     en: "Cambodia"
+    es: "Camboya"
 "XD-CA":
   label:
     it: "Canada"
     fr: "Canada"
     de: "Canada"
     en: "Canada"
+    es: "Canadá"
 "XD-CL":
   label:
     it: "Chile"
     fr: "Chile"
     de: "Chile"
     en: "Chile"
+    es: "Chile"
 "XB-CN":
   label:
     it: "China"
     fr: "China"
     de: "China"
     en: "China"
+    es: "China"
 "XD-CO":
   label:
     it: "Colombia"
     fr: "Colombia"
     de: "Colombia"
     en: "Colombia"
+    es: "Colombia"
 "XA-HR":
   label:
     it: "Croatia"
     fr: "Croatia"
     de: "Croatia"
     en: "Croatia"
+    es: "Croacia"
+
 "XD-CU":
   label:
     it: "Cuba"
     fr: "Cuba"
     de: "Cuba"
     en: "Cuba"
+    es: "Cuba"
 "XA-CZ":
   label:
     it: "Czech Republic"
     fr: "Czech Republic"
     de: "Czech Republic"
     en: "Czech Republic"
+    es: "República Checa"
 "XA-DK":
   label:
     it: "Denmark"
     fr: "Denmark"
     de: "Denmark"
     en: "Denmark"
+    es: "Dinamarca"
 "XC-EG":
   label:
     it: "Egypt"
     fr: "Egypt"
     de: "Egypt"
     en: "Egypt"
+    es: "Egipto"
 "XA-EE":
   label:
     it: "Estonia"
     fr: "Estonia"
     de: "Estonia"
     en: "Estonia"
+    es: "Estonia"
 "XA-FI":
   label:
     it: "Finland"
     fr: "Finland"
     de: "Finland"
     en: "Finland"
+    es: "Finlandia"
 "XA-FR":
   label:
     it: "France"
     fr: "France"
     de: "France"
     en: "France"
+    es: "Francia"
 "XA-DE":
   label:
     it: "Germany"
     fr: "Germany"
     de: "Germany"
     en: "Germany"
+    es: "Alemania"
 "XA-GR":
   label:
     it: "Greece"
     fr: "Greece"
     de: "Greece"
     en: "Greece"
+    es: "Grecia"
 "XA-VA":
   label:
     it: "Holy See"
     fr: "Holy See"
     de: "Holy See"
     en: "Holy See"
+    es: "Santa Sede"
 "XD-HN":
   label:
     it: "Honduras"
     fr: "Honduras"
     de: "Honduras"
     en: "Honduras"
+    es: "Honduras"
 "XA-HU":
   label:
     it: "Hungary"
     fr: "Hungary"
     de: "Hungary"
     en: "Hungary"
+    es: "Hungría"
 "XA-IS":
   label:
     it: "Iceland"
     fr: "Iceland"
     de: "Iceland"
     en: "Iceland"
+    es: "Islandia"
 "XB-IN":
   label:
     it: "India"
     fr: "India"
     de: "India"
     en: "India"
+    es: "India"
 "XB-IR":
   label:
     it: "Iran, Islamic Republic of"
     fr: "Iran, Islamic Republic of"
     de: "Iran, Islamic Republic of"
     en: "Iran, Islamic Republic of"
+    es: "Irán, República Islámica de"
 "XA-IE":
   label:
     it: "Ireland"
     fr: "Ireland"
     de: "Ireland"
     en: "Ireland"
+    es: "Irlanda"
 "XB-IL":
   label:
     it: "Israel"
     fr: "Israel"
     de: "Israel"
     en: "Israel"
+    es: "Israel"
 "XA-IT":
   label:
     it: "Italy"
     fr: "Italy"
     de: "Italy"
     en: "Italy"
+    es: "Italia"
 "XB-JP":
   label:
     it: "Japan"
     fr: "Japan"
     de: "Japan"
     en: "Japan"
+    es: "Japón"
 "XB-KR":
   label:
     it: "Korea, Republic of"
     fr: "Korea, Republic of"
     de: "Korea, Republic of"
     en: "Korea, Republic of"
+    es: "Corea, República de"
 "XA-LV":
   label:
     it: "Latvia"
     fr: "Latvia"
     de: "Latvia"
     en: "Latvia"
+    es: "Letonia"
 "XA-LT":
   label:
     it: "Lithuania"
     fr: "Lithuania"
     de: "Lithuania"
     en: "Lithuania"
+    es: "Lituania"
 "XA-LU":
   label:
     it: "Luxembourg"
     fr: "Luxembourg"
     de: "Luxembourg"
     en: "Luxembourg"
+    es: "Luxemburgo"
 "XA-MT":
   label:
     it: "Malta"
     fr: "Malta"
     de: "Malta"
     en: "Malta"
+    es: "Malta"
 "XD-MX":
   label:
     it: "Mexico"
     fr: "Mexico"
     de: "Mexico"
     en: "Mexico"
+    es: "México"
 "XA-ME":
   label:
     it: "Montenegro"
     fr: "Montenegro"
     de: "Montenegro"
     en: "Montenegro"
+    es: "Montenegro"
 "XA-NL":
   label:
     it: "Netherlands"
     fr: "Netherlands"
     de: "Netherlands"
     en: "Netherlands"
+    es: "Países Bajos"
 "XE-NZ":
   label:
     it: "New Zealand"
     fr: "New Zealand"
     de: "New Zealand"
     en: "New Zealand"
+    es: "Nueva Zelanda"
 "XA-NO":
   label:
     it: "Norway"
     fr: "Norway"
     de: "Norway"
     en: "Norway"
+    es: "Noruega"
 "XD-PY":
   label:
     it: "Paraguay"
     fr: "Paraguay"
     de: "Paraguay"
     en: "Paraguay"
+    es: "Paraguay"
 "XA-PL":
   label:
     it: "Poland"
     fr: "Poland"
     de: "Poland"
     en: "Poland"
+    es: "Polonia"
 "XA-PT":
   label:
     it: "Portugal"
     fr: "Portugal"
     de: "Portugal"
     en: "Portugal"
+    es: "Portugal"
 "XD-PR":
   label:
     it: "Puerto Rico"
     fr: "Puerto Rico"
     de: "Puerto Rico"
     en: "Puerto Rico"
+    es: "Puerto Rico"
 "XA-RO":
   label:
     it: "Romania"
     fr: "Romania"
     de: "Romania"
     en: "Romania"
+    es: "Rumania"
 "XA-RU":
   label:
     it: "Russian Federation"
     fr: "Russian Federation"
     de: "Russian Federation"
     en: "Russian Federation"
+    es: "Federación Rusa"
 "XA-RS":
   label:
     it: "Serbia"
     fr: "Serbia"
     de: "Serbia"
     en: "Serbia"
+    es: "Serbia"
 "XA-SK":
   label:
     it: "Slovakia"
     fr: "Slovakia"
     de: "Slovakia"
     en: "Slovakia"
+    es: "Eslovaquia"
 "XA-SI":
   label:
     it: "Slovenia"
     fr: "Slovenia"
     de: "Slovenia"
     en: "Slovenia"
+    es: "Eslovenia"
 "XC-ZA":
   label:
     it: "South Africa"
     fr: "South Africa"
     de: "South Africa"
     en: "South Africa"
+    es: "Sudáfrica"
 "XA-ES":
   label:
     it: "Spain"
     fr: "Spain"
     de: "Spain"
     en: "Spain"
+    es: "España"
 "XA-SE":
   label:
     it: "Sweden"
     fr: "Sweden"
     de: "Sweden"
     en: "Sweden"
+    es: "Suecia"
 "XA-CH-VD":
   label:
     it: "Switzerland: Vaud"
     fr: "Switzerland: Vaud"
     de: "Switzerland: Vaud"
     en: "Switzerland: Vaud"
+    es: "Suiza: cantón de Vaud"
 "XA-CH":
   label:
     it: "Switzerland"
     fr: "Switzerland"
     de: "Switzerland"
     en: "Switzerland"
+    es: "Suiza"
 "XB-SY":
   label:
     it: "Syrian Arab Republic"
     fr: "Syrian Arab Republic"
     de: "Syrian Arab Republic"
     en: "Syrian Arab Republic"
+    es: "República Árabe Siria"
 "XB-TW":
   label:
     it: "Taiwan (Province of China)"
     fr: "Taiwan (Province of China)"
     de: "Taiwan (Province of China)"
     en: "Taiwan (Province of China)"
+    es: "Taiwán (Provincia de China)"
 "XD-TT":
   label:
     it: "Trinidad and Tobago"
     fr: "Trinidad and Tobago"
     de: "Trinidad and Tobago"
     en: "Trinidad and Tobago"
+    es: "Trinidad y Tobago"
 "XB-TR":
   label:
     it: "Turkey"
     fr: "Turkey"
     de: "Turkey"
     en: "Turkey"
+    es: "Turquía"
 "XA-UA":
   label:
     it: "Ukraine"
     fr: "Ukraine"
     de: "Ukraine"
     en: "Ukraine"
+    es: "Ucrania"
 "XA-GB":
   label:
     it: "United Kingdom"
     fr: "United Kingdom"
     de: "United Kingdom"
     en: "United Kingdom"
+    es: "Reino Unido"
 "XD-US":
   label:
     it: "United States of America"
     fr: "United States of America"
     de: "United States of America"
     en: "United States of America"
+    es: "Estados Unidos de América"
 "XD-UY":
   label:
     it: "Uruguay"
     fr: "Uruguay"
     de: "Uruguay"
     en: "Uruguay"
+    es: "Uruguay"
 "XD-VE":
   label:
     it: "Venezuela, Bolivarian Republic of"
     fr: "Venezuela, Bolivarian Republic of"
     de: "Venezuela, Bolivarian Republic of"
     en: "Venezuela, Bolivarian Republic of"
+    es: "Venezuela, República Bolivariana de"
 
