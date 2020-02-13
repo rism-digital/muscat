@@ -1,30 +1,31 @@
 
 es:
   active_admin:
-# Pad for italian, it has 2 missing items
+# Translation to Spanish: I have added missing lines form en.yml, so this file has all
+# current labels translated and the lines number matches that of the english version. (Lucas Reccitelli from Córdoba).
+#  
 #
-#
-    dashboard: "Dashboard"
+    dashboard: "Panel de actividad"
     dashboard_welcome:
-      welcome: "¡Bienvenidos a Active Admin! Eso es la página dashboard."
-      call_to_action: "Para añadir secciones dashboard, checkout app/admin/dashboard'"
+      welcome: "¡Bienvenidos a Active Admin! Este es el panel de actividad."
+      call_to_action: "Para añadir secciones al panel, checkout app/admin/dashboard'"
     view: "Ver"
     edit: "Editar"
     delete: "Borrar"
-    delete_confirmation: "¿Está Vd. cierto que quiere borrar eso?"
-    new_model: "Nuevo %{model}"
-    create_model: "Nuevo %{model}"
+    delete_confirmation: "¿Está seguro de que desea borrar esto?"
+    new_model: "Nuevo/a %{model}"
+    create_model: "Crear %{model}"
     edit_model: "Editar %{model}"
-    update_model: "Editar %{model}"
+    update_model: "Actualizar %{model}"
     delete_model: "Borrar %{model}"
     save_model: "Guardar"
-    details: "%{model} detalles"
+    details: "Detalles de %{model}"
     cancel: "Cancelar"
     empty: "Vaciar"
-    previous: "Precediente"
+    previous: "Anterior"
     next: "Siguiente"
-    download: "Descargar"
-    has_many_new: "Añadir %{model} nuevo"
+    download: "Descargar:"
+    has_many_new: "Añadir nuevo/a %{model}"
     has_many_delete: "Borrar"
     has_many_remove: "Quitar"
     filters:
@@ -32,29 +33,31 @@ es:
         filter: "Filtro"
         clear: "Quitar filtro"
       predicates:
-        contains: "contiene"
-        equals: "es igual a"
-        starts_with: "comienza con"
-        ends_with: "termina con"
-        greater_than: "mayor de"
-        less_than: "menor de"
-        with_integer: "Filter" # dudoso, no entiendo qué siginifica
+        contains: "Contiene"
+        equals: "Es igual a"
+        starts_with: "Comienza con"
+        ends_with: "Termina con"
+        greater_than: "Es mayor a"
+        less_than: "Es menor a"
+        with_integer: "Filtro" # dudoso, no entiendo qué siginifica
+        from: "Desde la fecha"
+        to: "Hasta la fecha"
     status_tag:
       "yes": "Sí" # dudoso
       "no": "No" # dudoso
     main_content: "Por favor implemente %{model}#main_content para mostrar contenido."
-    logout: "Logout"
+    logout: "Cerrar sesión"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtros"
       sections: "Secciones y acciones"
       actions: "Acciones"
-      toc: "Tabla de materias"
+      toc: "Índice de contenidos"
     pagination:
-      empty: "Ningún %{model} encontrado"
+      empty: "No se han encontrado %{model}"
       one: "Mostrando <b>1</b> %{model}"
-      one_page: "Mostrando <b>todos %{n}</b> %{model}"
-      multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> en total"
+      one_page: "Mostrando el <b>total de %{n}</b> %{model}"
+      multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
       multiple_without_total: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       per_page: "Elementos por página:"
       entry:
@@ -63,23 +66,24 @@ es:
     any: "cualquier"
     blank_slate:
       content: "Ya no hay %{resource_name}."
-      link: "Crear" # dudoso
+      link: "Crear uno" # dudoso
     dropdown_actions:
       button_label: "Acciones"
     batch_actions:
       button_label: "Procesamiento por lotes"
-      default_confirmation: "¿Está seguro que quiere hacer eso?"
-      delete_confirmation: "¿Está seguro que quiere borrar esos %{plural_model}?"
+      default_confirmation: "¿Está seguro de que desea completar esta acción?"
+      delete_confirmation: "¿Está seguro de que desea borrar este conjunto de %{plural_model}?"
       succesfully_destroyed:
-        one: "Borrado 1 %{model} con éxito"
-        other: "Borrado %{count} %{plural_model} con éxito"
+        one: "Se ha borrado 1 %{model} con éxito"
+        other: "Se han borrado %{count} %{plural_model} con éxito"
       selection_toggle_explanation: "(Alternar selección)"
       link: "Crea uno"
       action_label: "%{title} seleccionado"
       labels:
         destroy: "Borrar"
-        folder: "Crear directorio con" # dudoso
-        merge: "MERGE AUTHORITY RECORDS"
+        folder: "Crear carpeta con" # dudoso
+        add_to_folder: "Añadir ítems a una carpeta existente"
+        merge: "Fusionar registros de autoridad"
         change_template: "CHANGE TEMPLATE"
 
     comments:
@@ -95,10 +99,10 @@ es:
       author_missing: "Anónimo"
       title_content: "Comentarios (%{count})"
       errors:
-        empty_text: "Comentario no fue guardado, sin texto."
+        empty_text: "El comentario no fue guardado debido a que no presenta texto."
     devise:
       username:
-        title: "Nombre del usuario"
+        title: "Usuario"
       email:
         title: "Correo electrónico"
       subdomain:
@@ -106,15 +110,15 @@ es:
       password:
         title: "Contraseña"
       sign_up:
-        title: "Registrar"
-        submit: "Registrar"
+        title: "Registrarse"
+        submit: "Registrarse"
       login:
         title: "Iniciar sesión"
         remember_me: "Recuérdame"
         submit: "Iniciar sesión"
       reset_password:
         title: "¿Ha olvidado su contraseña?"
-        submit: "Restablece contraseña"
+        submit: "Restablecer contraseña"
       change_password:
         title: "Cambiar contraseña"
         submit: "Cambiar contraseña"
@@ -130,15 +134,15 @@ es:
         sign_in_with_omniauth_provider: "Iniciar sesión con %{provider}"
         resend_unlock_instructions: "Reenviar instrucciones de confirmación"
     unsupported_browser:
-      headline: "Por favor nótese que Muscat ya no sirve con Internet Explorer 8."
-      recommendation: "Recomendamos usen el más reciente <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a> o <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Si usen IE 9 o superior, asegúrese que <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">apague \"Vista de compatibilidad\"</a>."
+      headline: "Nótese que Muscat ya no funciona con Internet Explorer 8."
+      recommendation: "Se recomienda el uso de la versión más reciente de <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a> o <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Si utiliza IE 9 o superior, asegúrese de <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">desactivar la \"Vista de compatibilidad\"</a>."
     access_denied:
-      message: "Vd. no está autorizado performar esa acción."
+      message: "Usted no posee permisos para realizar esta acción."
     index_list:
       table: "Tabla"
       block: "Lista"
-      grid: "Grid" # dudoso
+      grid: "Grilla" # dudoso
       blog: "Blog"
   switch_language: "Cambiar idioma" 
   this_file_language: "Español"
@@ -153,35 +157,35 @@ es:
   activerecord:
     models:
       digital_object:
-        one: "Objeto digital"
-        other: "Objetos digitales"
+        one: "Imagen"
+        other: "Imágenes"
       catalogue:
-        one: "Catálogo"
-        other: "Catálogos"
+        one: "Bibliografía secundaria"
+        other: "Ítems de bibliografía secundaria"
       folder:
-        one: "Directorio"
-        other: "Directorios"
+        one: "Carpeta"
+        other: "Carpetas"
       workgroup:
         one: "Grupo"
         other: "Grupos"
       holding:
-        one: "Holding"
-        other: "Holdings"
+        one: "Registro de ejemplar"
+        other: "Registros de ejemplares"
       institution:
         one: "Institución"
         other: "Instituciones"
       liturgical_feast:
-        one: "Fiesta litúrgica"
-        other: "Fiestas litúrgicas"
+        one: "Festividad litúrgica"
+        other: "Festividades litúrgicas"
       person:
-        one: "Persona"
-        other: "Personas"
+        one: "Nombre personal"
+        other: "Nombres personales"
       source:
         one: "Fuente"
         other: "Fuentes"
       standard_term:
-        one: "Término estándar"
-        other: "Términos estándar"
+        one: "Descriptor"
+        other: "Descriptores"
       standard_title:
         one: "Título estándar"
         other: "Títulos estándar"
@@ -189,66 +193,103 @@ es:
         one: "Usuario"
         other: "Usuarios"
       work:
-        one: "WORK"
-        other: "WORK"
+        one: "Obra"
+        other: "Obras"
         
   #################### RECORD TYPES (TEMPLATES)
-  select_template: "Seleccione nuevo modelo"
-  available_templates: "Modelos disponibles"
-  from_existing_source: "Crear a partir de recurso existiente"
+  select_template: "Seleccione una plantilla"
+  available_templates: "Plantillas disponibles"
+  from_existing_source: "Crear a partir de un registro existente"
   create_from_existing: "Crear"
   record_types:
-    unspecified: "[Modelo desconocido]"
-    convolutum: "Convoluto"
-    collection: "Colección"
-    manuscript: "Manuscrito musical"
-    print: "Impreso musical"
-    manuscript_libretto: "Libreto manuscrito"
-    print_libretto: "Libreto impreso"
-    manuscript_theoretica: "Tratado manuscrito"
-    print_theoretica: "Tratado impreso"
+    unspecified: "[Plantilla desconocida]"
+    collection: "Manuscrito musical, registro madre de colección"
+    source: "Manuscrito musical"
+    edition_content: "Edición musical impresa, ítem en colección"
+    libretto_source: "Libreto, manuscrito"
+    libretto_edition: "Libreto, impreso"
+    libretto_edition_content: "Libreto impreso, ítem en colección"
+    theoretica_source: "Tratado, manuscrito"
+    theoretica_edition: "Tratado, impreso"
+    theoretica_edition_content: "Tratado impreso, ítem en colección"
+    edition: "Edición musical impresa, registro madre de colección o ítem individual"
+
+    composite_volumes: "Volúmenes compuestos"
+    composite_volume: "Registro de volumen compuesto"
+    
+    music_manuscripts: "Manuscritos musicales"
+    collection_record: "Registro de colección para un manuscrito musical"
+    individual_entry: "Entrada individual en una colección musical manuscrita"
+    single_manuscript: "Manuscrito musical individual"
+    
+    printed_music: "Ediciones musicales impresas"
+    collection_record_edition: "Registro de colección para una edición musical impresa"
+    individual_entry_edition: "Entrada individual en una colección musical impresa"
+    single_edition: "Edición musical impresa individual"
+
+    libretti_handwritten: "Libretos, manuscritos"
+    collection_record_libretti: "Registro de colección para libretos manuscritos"
+    individual_entry_libretti: "Entrada individual en una colección de libretos manuscritos"
+    single_libretto: "Libreto manuscrito individual"
+    
+    libretti_printed: "Libretos, impresos"
+    collection_record_libretti_printed: "Registro de colección para libretos impresos"
+    individual_entry_libretti_printed: "Entrada individual en una colección de libretos impresos"
+    single_libretto_printed: "Libreto impreso individual"
+    
+    threatise_handwritten: "Tratados, manuscritos"
+    collection_record_threatise: "Registro de colección para tratados manuscritos"
+    individual_entry_threatise: "Entrada individual en una colección de tratados manuscritos"
+    single_threatise: "Tratado manuscrito individual"
+    
+    threatise_printed: "Tratados, impresos"
+    collection_record_threatise_printed: "Registro de colección para tratados impresos"
+    individual_entry_threatise_printed: "Entrada individual en una colección de tratados impresos"
+    single_threatise_printed: "Tratado impreso individual"
         
   #################### MENUS
-  menu_home: "Home"
+  menu_home: "Página principal"
   menu_sources: "Fuentes"
   menu_simple_search: "Búsqueda simple"
   menu_advanced_search: "Búsqueda avanzada"
-  menu_indexes: "Índices"
+  menu_indexes: "Autoridades"
   menu_people: "Personas"
   menu_institutions: "Instituciones"
-  menu_titles: "Título / Íncipit textual"
-  menu_subjects: "Temas"
-  menu_library_sigla: "Siglas de bibliotecas"
-  menu_catalogues: "Catálogos"
+  menu_titles: "Títulos/íncipits literarios"
+  menu_subjects: "Descriptores"
+  menu_library_sigla: "Siglas de repositorios"
+  menu_catalogues: "Bibliografía secundaria"
   menu_liturgical_feasts: "Fiestas litúrgicas"
-  menu_places: "Sitios"
+  menu_latin: "Texto en latín"
+  menu_places: "Lugares"
   menu_help: "Ayuda"
-  menu_folders: "Directorios"
+  menu_folders: "Carpetas"
   menu_users: "Usuarios"
-  menu_workgroups: "Grupos de trabajo" # dudoso
+  menu_workgroups: "Grupos de trabajo"
   menu_administration: "Administración"
   menu_comments: "Comentarios"
-  menu_catalog: "Búsqueda de faceta"
+  menu_catalog: "Búsqueda por facetas"
   menu_languages: "Idioma"
   menu_contact: "Contacto"
-  menu_search_history: "Historia de búsquedas"
-  menu_guidelines: "Guía para catalogizar"
+  menu_search_history: "Historial de búsquedas"
+  menu_guidelines: "Lineamientos para la catalogación"
   menu_marc_documentation: "Configuración MARC"
-  menu_guidelines_top: "Guía"
-  menu_cataloging: "Catalogizando"
+  menu_guidelines_top: "Lineamientos"
+  menu_cataloging: "Catalogación"
   menu_jobs: "Tareas" # dudoso, tal vez empleos
-  menu_holdings: "Holdings" # dudoso, no idea what it means
+  menu_holdings: "Registros de ejemplares"
+  menu_works: "Obras" 
   
   ### VARIOUS ELEMENTS
-  recent_changes: "Modificaciones más recientes"
+  recent_changes: "Modificaciones recientes"
   any_field_contains: "Cualquier campo contiene"
   title_contains: "Título diplomático contiene"
-  std_title_contains: "Título estándar contiene"
+  std_title_contains: "Título uniforme contiene"
   composer_contains: "Compositor contiene"
   library_sigla_contains: "Sigla contiene"
-  is_in_folder: "Está en directorio"
-  workgroups: "Workgroups" # dudoso
-  roles: "Papel"
+  is_in_folder: "Está en la carpeta"
+  workgroups: "Grupos de trabajo"
+  roles: "Roles"
   user_details: "Detalles del usuario"
   sections: "Secciones"
   edit: "Editar"
@@ -259,27 +300,46 @@ es:
   progress_stage: "Fase"
   object: "Objeto"
   queue: "Cola"
-  failed_at: "Fallado"
-  run_at: "Ejecutado"
-  created_at: "Creado"
+  failed_at: "Error en"
+  run_at: "Ejecutado en"
   progress: "Progreso"
-  failed: "Fallado"
+  failed: "Error"
   waiting: "Esperando"
   running: "Ejecutando"
   finished: "Terminando"
-  lib_siglum: "Sigla de biblioteca"
-  holding_records: "Información del recurso"
-  holding_no_siglum: "HOLDING WITHOUT SILGUM"
-  new_holding: "Crear recurso"
+  lib_siglum: "Sigla del repositorio"
+  holding_records: "Información del ejemplar"
+  holding_no_siglum: "EJEMPLAR SIN SIGLA"
+  new_holding: "Crear nuevo registro de ejemplar"
+  new_holding_page: "Nuevo registro de ejemplar"
+  new_digital_object: "Añadir una nueva imagen"
+  record_actions: "Acciones del registro"
+  record_status: "Estado del registro"
+  record_owner: "Propietario del registro"
+  record_audit: "Origen del registro"
+  basic_level: "Registro básico"
+  full_level: "Registro completo"
+  #full_level: "Full record, material examined"
+  abbreviated_level: "Registro breve, material examinado"
+  retro_level: "Retrocataloging"
+  imported_level: "Registro importado"
+  link_type: "Tipo de objeto vinculado"
+  linked_object: "Objeto vinculado"
+  links: "Vínculos"
+  link_remove: "Quitar vínculo"
+  link_remove_confirm: "Esta seguro de que desea quitar este vínculo?"
+  unloadable_record: "Este registro presenta errores de carga: puede ser leido pero no editado. Por favor, póngase en contacto con un administrador."
+  validation_level_error: "El registro tiene errores. Por favor, resuélvalos antes de guardar."
+  validation_level_warning: "El registro presenta advertencias. Si desea ignorarlas, pulse nuevamente en guardar."
   
   jobs:
-    not_set: "[Estado no puesto]"
-    ok: "Tarea terminado con éxito"
-    no_status: "Ha habido un error leyendo el estado de la tarea"
+    not_set: "[Estado aún no disponible]"
+    ok: "Tarea completada con éxito"
+    no_status: "Ha habido un error mientras se leía el estado de la tarea"
     error: "ERROR: "
-    running_jobs: "Tareas pendientes no se puden borrar."
-    auto_delete: "No se puede borrar: Tarea terminada fue borrado automáticamente."
-    no_view: "No se pude ver: Tarea terminada fue borrado automáticamente."
+    running_jobs: "Las tareas pendientes no se puden borrar."
+    auto_delete: "No se puede borrar: la tarea terminada fue borrada automáticamente."
+    no_view: "No se pude ver: la tarea terminada fue borrada automáticamente."
 
   # Sidebar
   delete: "Borrar"
@@ -287,52 +347,58 @@ es:
   edit: "Editar"
   new: "Crear"
   duplicate: "Duplicar"
-  merge: "MERGE"
-  no_action: "Ninguna acción disponible"
-  reindex: "Reindizar"
-  resave: "RESAVE"
+  merge: "Fusionar"
+  no_action: "Sin acciones disponibles"
+  reindex: "Reindizar las fuentes"
+  resave: "Volver a guardar las fuentes"
   publish: "Publicar"
-  unpublish: "UNPUBLISH"
+  unpublish: "No publicar"
   select: "Seleccionar"
-  create_folder: "Añadir a directorio nuevo"
-  append_folder: "Añadir a directorio existente"
+  create_folder: "Añadir todo a una nueva carpeta"
+  append_folder: "Añadir todo a una carpeta existente"
+  add_institution: "Vincular institución"
+  add_source: "Vincular fuente"
+  add_person: "Vincular persona"
+  archive_unarchive: "Archivar / desarchivar"
+  archive: "Archivar"
+  unarchive: "Desarchivar"
   
   # Editor sidebar
   show_all_groups: "Mostrar todas las secciones"
-  show_preview: "Mostrar vista anticipada"
-  hide_preview: "Ocultar vista anticipada"
+  show_preview: "Mostrar vista preliminar"
+  hide_preview: "Ocultar vista preliminar"
   show_validate: "Validar"
-  show_history: "Mostrar historia de modificaciones"
+  show_history: "Mostrar historial de modificaciones"
   show_viaf: "Búsqueda VIAF"
   save_and_continue: "Guardar y continuar editando"
-  save_and_exit: "Guardar y terminar"
+  save_and_exit: "Guardar y cerrar"
   cancel: "Cancelar"
-  duplicate_confirm: "ARE YOU SURE YOU WANT TO DUPLICATE THIS RECORD?"
+  duplicate_confirm: "¿Está seguro de que desea duplicar este registro?"
   
   # Version history
   history_date: "Fecha"
   history_author: "Autor"
-  history_event: "Suceso"
+  history_event: "Evento"
   history_modification: "Modificación"
   history_view: "Vista"
   history_diff: "Diferencia"
   history_restore: "Restaurar"
   history_delete: "Borrar"
-  history_restore_confirm: "¿Quiere restaurar esta versión?"
-  history_delete_confirm: "¿Quiere borrar esta versión?"
+  history_restore_confirm: "¿Desea restaurar esta versión?"
+  history_delete_confirm: "¿Desea borrar esta versión?"
   
   #### FOLDER MESSAGES
   folders:
-    save: "Guardar resultados en directorio"
-    success: "Directorio %{name} creado con %{count} ítems."
+    save: "Guardar resultados en la carpeta"
+    success: "Carpeta %{name} creada con %{count} ítems."
     too_many: "No se puede añadir más de %{max} ítems (%{count} seleccionados)."
-    added: "Añadido %{count} ítems a directorio %{name}."
-    added_bg: "Añadido ítems a directorio, tarea %{job} pendiente."
-    success_bg: "Directorio %{name} creado, tarea %{job} pendiente."
+    added: "Se han añadido %{count} ítems a la carpeta %{name}."
+    added_bg: "Se han añadido los ítems a la carpeta, tarea %{job} pendiente."
+    success_bg: "Carpeta %{name} creada, tarea %{job} pendiente."
 
   ### Digital objects
   digital_objects: "Imágenes"
-  digital_object_new: "Añadir imagen nuevo"
+  digital_object_new: "Añadir una nueva imagen"
   digital_object_add: "Añadir"
   
   ############ filters
@@ -351,83 +417,88 @@ es:
   filter_collection: "Colección"
   filter_comment: "Comentario"
   filter_composer: "Compositor"
-  filter_connected_libraries: "Bibliotecas"
+  filter_connected_libraries: "Repositorios"
   filter_country: "País"
   filter_creation_date: "Fecha de creación"
   filter_date: "Fecha"
-  filter_date_from: "Desde"
-  filter_date_of_publication: "DATE OF PUBLICATION"
-  filter_date_to: "Hasta"
+  filter_date_from: "Desde la fecha"
+  filter_date_of_publication: "Año de publicación"
+  filter_date_to: "Hasta la fecha"
   filter_description: "Descripción"
   filter_digital_objects: "Objetos digitales"
   filter_district: "Distrito"
   filter_email: "Correo electrónico"
-  filter_folder_type: "Tipo de directorio"
-  filter_full_name: "Apellido"
-  filter_gender: "Sexo"
+  filter_folder_type: "Tipo de carpeta"
+  filter_full_name: "Nombre"
+  filter_gender: "Género"
   filter_id: "ID"
   filter_incipits: "Íncipits"
   filter_incipits_ng: "Íncipits (ngrams)"
   filter_incipits_tf: "Íncipits (descubridor tema)"
-  filter_incipit_key: "Íncipit clave"
+  filter_incipit_key: "Tonalidad del íncipit"
   filter_institution: "Institución"
   filter_institutions: "Instituciones"
-  filter_key: "Clave"
+  filter_key: "Tonalidad"
   filter_language: "Idioma"
-  filter_last_updated: "Actualizado"
-  filter_lib_siglum: "Sigla de biblioteca"
-  filter_life_dates: "Fechas biográficas"
+  filter_last_updated: "Actualizado por última vez"
+  filter_lib_siglum: "Sigla del repositorio"
+  filter_life_dates: "Fechas de nacimiento y muerte"
   filter_links: "Enlace"
-  filter_liturgical_feast: "Fiesta litúrgica"
-  filter_location_and_name: "Appellido y lugar"
+  filter_liturgical_feast: "Festividad litúrgica"
+  filter_location_and_name: "Nombre y lugar"
   filter_manuscript_no: "Manuscrito número"
   filter_male: "Masculino"
   filter_female: "Femenino"
   filter_unknown: "Desconocido"
   filter_shelf_mark: "Signatura"
-  filter_name: "Apellido"
+  filter_name: "Nombre"
   filter_notes: "Notas"
   filter_old_versions: "Versiones anteriores"
   filter_owner: "Propietario"
   filter_pages: "Páginas"
   filter_pattern: "Modelo de sigla"
   filter_people: "Personas"
-  filter_person_100d: "Fechas biográficas"
+  filter_person_100d: "Fechas de nacimiento y muerte"
   filter_person_550a: "Profesión"
-  filter_person_375a: "Sexo"
-  filter_person_043c: "Código del país"
+  filter_person_375a: "Género"
+  filter_person_043c: "Nacionalidad"
   filter_person_551a: "Lugares"
   filter_person_100d_birthdate: "Año de nacimiento"
   filter_person_100d_deathdate: "Año de la muerte"
   filter_phone: "Teléfono"
   filter_place: "Lugar"
-  filter_place_of_publication: "PLACE OF PUBLICATION"
+  filter_place_of_publication: "Lugar de publicación"
   filter_provenance: "Procedencia"
-  filter_record_type: "Tipo"
+  filter_record_type: "Tipo de plantilla"
+  filter_record_type_short: "Tipo"
+  filter_source_type: "Tipo de fuente"
   filter_publisher: "Editor"
   filter_revue_title: "Título" # dudoso
-  filter_id: "ID Rism"
-  filter_id_no: "ID Rism"
-  filter_scoring: "Tanteo"
-  filter_series_items: "Ítems de seria"
+  filter_id: "ID de RISM"
+  filter_id_no: "ID de RISM"
+  filter_images: "Images"
+  filter_scoring: "Plantilla/orgánico"
+  filter_series_items: "Ítems de la serie"
   filter_siglum: "Sigla"
   filter_source: "Fuente"
   filter_sources: "Fuentes"
   filter_source_type: "Tipo de fuente"
-  filter_std_title: "Título estandardizado"
-  filter_subject: "Tema"
-  filter_subsequent_entries: "LATER ENTRIES"
+  filter_std_title: "Título uniforme"
+  filter_subject: "Descriptor"
+  filter_subsequent_entries: "Registros posteriores"
   filter_term: "Término"
-  filter_textinipit: "TEXTINCIPIT"
+  filter_textinipit: "Íncipit literario"
   filter_thematic_opus: "Catálogo temático / Opus no."
   filter_title: "Título"
   filter_titles: "Títulos"
   filter_title_on_ms: "Título en la fuente"
-  filter_title_short: "SHORT TITLE"
-  filter_url: "URL"
+  filter_title_short: "Título breve"
+  filter_topic: "Tema"
+  filter_sub_topic: "Subtema"
+  filter_url: "Dirección de internet"
   filter_variants: "Variantes"
   filter_versions: "Versiones"
-  filter_volume: "Tomo"
+  filter_volume: "Volumen"
   filter_image: "Imagen"
   filter_file_name: "Nombre del archivo"
   filter_file_size: "Tamaño del archivo"
@@ -435,7 +506,7 @@ es:
   filter_wf: "WF"
   filter_wf_audit: "Revisión" # dudoso
   filter_wf_stage: "Estado"
-  filter_distribution: "Tanteo"
+  filter_distribution: "Plantilla/orgánico"
   filter_dist_exclude: "Excluir"
   filter_dist_594a: "Partes vocales (solistas)"
   filter_dist_594b: "Otras partes vocales (solistas)"
@@ -445,7 +516,7 @@ es:
   filter_dist_594f: "Instrumentos de cuerda"
   filter_dist_594g: "Instrumentos de viento-madera"
   filter_dist_594h: "Instrumentos de viento-metal"
-  filter_dist_594i: "Instrumentos de cuerda pinzada"
+  filter_dist_594i: "Instrumentos de cuerda pulsada"
   filter_dist_594k: "Instrumentos de percusión"
   filter_dist_594l: "Instrumentos de tecla"
   filter_dist_594m: "Otros instrumentos"
@@ -454,6 +525,9 @@ es:
   filter_source_composer: "Compositor de la fuente"
   filter_printed_exemplars: "Número de ejemplares impresos"
  
+  ## Referring lists for auth files
+  refers_to_this: "%{model_from} refiere a este %{model_to}"
+
   rism_any_key: "Cualquier tonalidad"
   rism_a_flat: "La bemol mayor/menor"
   rism_a: "La mayor/menor"
@@ -471,18 +545,19 @@ es:
   rism_g_sharp: "Sol sostenido mayor/menor"
   
   # Assorted error messages
-  error_not_found: "El recursos al que Vd. quiere acceder no existe o fue borrado."
+  error_not_found: "El recurso al que intenta acceder no existe o fue borrado."
   error_saving: "El recurso no está completo o crea un duplicado"
-  unknown_tags: "Hay algunos campos desconocidos en este recurso"
-  ungrouped_tags: "THERE ARE UNGROUPED FIELDS IN THIS RECORD"
-  cannot_update_source: "YOU ARE NOT AUTHORIZED TO EDIT THIS TYPE OF SOURCE"
-  cannot_create_source: "YOU ARE NOT AUTHORIZED TO CREATE THIS TYPE OF SOURCE"
-  validate_name_uniqness: "RECORD NOT SAVED: SAME SHORT TITLE '%{term}' ALREADY EXISTS."
+  unknown_tags: "Hay algunos campos desconocidos en este registro"
+  ungrouped_tags: "Hay campos no agrupados en este registro"
+  cannot_update_source: "Ud. no está autorizado para editar este tipo de fuente"
+  cannot_create_source: "Ud. no está autorizado para crear este tipo de fuente"
+  validate_name_uniqness: "El registro no fue guardado: el título breve '%{term}' ya existe."
+  validates_parent_id: "El registro no fue guardado: el Registro Madre (773) no puede ser igual a este registro."
  
   #
   entry:
-    one: "ítem"
-    other: "ítems"
+    one: "entrada"
+    other: "entradas"
   digital_object:
     one: "objeto digital"
     other: "objetos digitales"
@@ -493,11 +568,11 @@ es:
     one: "institución"
     other: "instituciones"
   library: 
-    one: "biblioteca"
-    other: "bibliotecas"
+    one: "repositorio"
+    other: "repositorios"
   liturgicalfeast: 
-    one: "fiesta litúrgica"
-    other: "fiestas litúrgicas"
+    one: "festividad litúrgica"
+    other: "festividades litúrgicas"
   source:
     one: "fuente"
     other: "fuentes"
@@ -511,8 +586,8 @@ es:
     one: "tema"
     other: "temas" 
   standardtitle:
-    one: "título o íncipit del texto"
-    other: "títulos o íncipits del texto" 
+    one: "título o íncipit de texto"
+    other: "títulos o íncipits de texto" 
 
   user:
     one: "usuario"
@@ -521,16 +596,16 @@ es:
     one: "tarea"
     other: "tareas"
   folder:
-    one: "directorio"
-    other: "directorios"
+    one: "carpeta"
+    other: "carpetas"
 
   will_paginate:
     page_entries_info:
       single_page_html:
-        zero: "Ningún %{model} encontrado" 
+        zero: "No se han encontrado %{model}" 
         one: "Mostrando <b>1</b> %{model}"
-        other: "Mostranto <b>todos %{count}</b> %{model}"
-      multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b> en total"
+        other: "Mostranto un <b> total de %{count}</b> %{model}"
+      multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{count}</b>"
   
     models:
       person: 
@@ -542,41 +617,41 @@ es:
      other: "%{count} fuentes" 
      
   # themefinder
-  themefinder_c: "altura contorno refinado"
-  themefinder_C: "altura contorno grueso"
-  themefinder_d: "grado musical diatónico"
-  themefinder_i: "intervalo dodecafónico" # dudoso, tal vez "cromático"
+  themefinder_c: "contorno de alturas refinado"
+  themefinder_C: "contorno de alturas grueso"
+  themefinder_d: "grado de la escala diatónica"
+  themefinder_i: "intervalo cromático" 
   themefinder_I: "intervalo diatónico"
-  themefinder_p: "clase de altura diatónico"
-  themefinder_P: "clase de altura dodecafónico"
-  themefinder_p0: "ninguna búsqueda altura"
+  themefinder_p: "clase de altura diatónica"
+  themefinder_P: "clase de altura dodecafónica"
+  themefinder_p0: "ninguna búsqueda de altura"
 
-  themefinder_u: "duración exacta"
-  themefinder_r: "duración contorno refinado"
-  themefinder_R: "duración contorno grueso"
-  themefinder_d0: "ninguna búsqueda duración"
+  themefinder_u: "duraciones exactas"
+  themefinder_r: "contorno de duraciones refinado"
+  themefinder_R: "contorno de duraciones grueso"
+  themefinder_d0: "ninguna búsqueda de duraciones"
   
-  themefinder_L: "nivel métrica" # dudoso
+  themefinder_L: "nivel métrico" # dudoso
   themefinder_l: "posición métrica" # dudoso
-  themefinder_e: "métrica contorno refinado"
-  themefinder_E: "métrica contorno grueso"
-  themefinder_b: "nivel pulso"
+  themefinder_e: "contorno métrico refinado"
+  themefinder_E: "contorno métrico grueso"
+  themefinder_b: "nivel del pulso"
   themefinder_m0: "ninguna búsqueda métrica"
   
   tf_pitch_search: "Altura"
   tf_duration_search: "Duración"
   tf_metric_search: "Métrica"
   tf_meter: "Métrica"
-  tf_anchor: "Búsquese sólo al comienzo del íncipit"
+  tf_anchor: "Buscar sólo al comienzo del íncipit"
   
-  tf_pitch_help: "Avisos para búsqueda altura"
-  tf_duration_help: "Avisos para búsqueda duración"
-  tf_metric_help: "Avisos para búsqueda métrica"
-  tf_anchor_help: "Avisos búsqueda anclada" # dudoso
-  tf_timesig_help: "Ayuda tiempo"
+  tf_pitch_help: "Sugerencias para la búsqueda por alturas"
+  tf_duration_help: "ASugerencias para la búsqueda por duraciones"
+  tf_metric_help: "Sugerencias para la búsqueda por métrica"
+  tf_anchor_help: "Sugerencias para la búsqueda anclada" # dudoso
+  tf_timesig_help: "Ayuda sobre las indicaciones de compás"
   btn_themefinder_reset: "Reiniciar"
   
-  tf_acknowledgments: "Búsqueda íncipits está realizado con <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> desarrollado por <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
+  tf_acknowledgments: "La búsqueda por íncipits se realiza con <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> desarrollado por <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
 
   hls_link_lang: "es"
   hls_link_name: "HDS" # dudoso
@@ -584,7 +659,7 @@ es:
   do_link_lang: "es"
   do_media_files_title: "Archivos multimedia"
   do_ext_res_link: "Recursos externos:"
-  do_ext_link_not_avail: "(Archivos de audio no disponibles desde aquí)"
+  do_ext_link_not_avail: "(No hay archivos de audio disponibles en esta ubicación.)"
   do_images_title: "Imágenes"
   connected_libraries: "Bibliotecas"
   view_source: "Mostrar fuente"
@@ -592,59 +667,59 @@ es:
   mei:
     title: "Exportación MEI para fuente %{source}"
     parameters: "Parámetros"
-    format: "Formato output del íncipit:"
+    format: "Formato de salida del íncipit:"
     format_mei: "MEI"
     format_pae: "PAE (sin conversión)"
     stylesheet: "Hoja de estilo"
-    default_stylesheet: "Hoja de estilo estándar:"
-    custom_stylesheet: "Hoja de estilo acostumbrada:"
-    preview: "Vista anticipada"
+    default_stylesheet: "Hoja de estilo por defecto:"
+    custom_stylesheet: "Hoja de estilo personalizada:"
+    preview: "Vista preliminar"
     download: "Descargar"
     more: "Más"
-    banner: 'Por favor haga clic en "Vista anticipada" para mostrar output convertido en MEI.'
+    banner: 'Por favor haga clic en "Vista preliminar" para mostrar la salida convertida a MEI.'
 
   wf_stage:
     inprogress: "En progreso (UNP)"
     published: "Publicado (PUB)"
     deleted: "Borrado"
-    deprecated: "DEPRECATED"
+    deprecated: "Descartado"
 
   dashboard:
-    selection: "Selección"
+    selection: "Seleccionar la actividad reciente"
     type: "Cambiar el tipo"
     type_created: "Recientemente creado"
     type_updated: "Recientemente actualizado"
     owner: "Propietario"
     owner_user: "Yo"
-    owner_any: "Cualquier"
-    quantity: "Exposición"
-    update: "Actualizaciones"
+    owner_any: "Cualquiera"
+    quantity: "Mostrar"
+    update: "Actualizar"
     no_items: "No hay elementos para mostrar con los filtros seleccionados"
 
   # editor validation 
   validation:
     missing_message: "Este campo debe contener un valor"
-    warning_message: "Este campo debe contener un valor"
-    insufficient_rights: "El usuario no tiene los derechos necesarios para crear un registro con esta biblioteca"
+    warning_message: "Debería proveerse un valor para este campo"
+    insufficient_rights: "El usuario no tiene los derechos necesarios para crear/actualizar un registro de este repositorio"
     name_uniqueness: "El nombre corto del elemento ya está en uso"
-    correct: "El nombre corto del elemento ya está en uso [200]"
+    correct: "El registro no presenta errores de validación [200]"
 
   incipit_search:
-    incipit_search: "INCIPIT SEARCH"
-    query_type: "QUERY TYPE:"
-    exact_pitch: "EXACT PITCH (MORE EXACT MATCH)"
-    interval: "INTERVAL"
-    refined_pitch: "REFINED PITCH CONTOUR"
-    gross_pitch: "GROSS PITCH CONTOUR (MORE FUZZY SEARCH)"
-    anchor: "SEARCH ONLY BEGINNING"
-    erase: "ERASE ONE NOTE"
+    incipit_search: "Búsqueda por íncipit"
+    query_type: "Tipo de búsqueda:"
+    exact_pitch: "Altura exacta (búsqueda más exacta)"
+    interval: "Intervalo"
+    refined_pitch: "Contorno de alturas refinado"
+    gross_pitch: "Contorno de alturas grueso (búsqueda más flexible)"
+    anchor: "Buscar sólo en el comienzo"
+    erase: "Borrar una nota"
 
   # This is used for the "incipit" seach in the search history in BL
   # Note the capital 'I'
-  Incipit: "Incipit"
+  Incipit: "Íncipit"
 
   cookies:
-    message: "Esta página web utiliza cookies para su uso. Se utiliza para ver el contenido de la aplicación."
+    message: "Nuestro sitio web utiliza cookies para mejorar su experiencia de navegación. Al usar nuestro sitio, Ud. manifiesta su conformidad con el uso de cookies."
     dimiss: "Aceptar y cerrar"
     link: 'Aprender mas'
 
@@ -671,6 +746,7 @@ es:
   #
   #
   #
+
 
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
