@@ -13,7 +13,7 @@ es:
     edit: "Editar"
     delete: "Borrar"
     delete_confirmation: "¿Está seguro de que desea borrar esto?"
-    new_model: "Nuevo/a %{model}"
+    new_model: "Crear %{model}"
     create_model: "Crear %{model}"
     edit_model: "Editar %{model}"
     update_model: "Actualizar %{model}"
@@ -25,7 +25,7 @@ es:
     previous: "Anterior"
     next: "Siguiente"
     download: "Descargar:"
-    has_many_new: "Añadir nuevo/a %{model}"
+    has_many_new: "Crear %{model}"
     has_many_delete: "Borrar"
     has_many_remove: "Quitar"
     filters:
@@ -41,7 +41,7 @@ es:
         less_than: "Es menor a"
         with_integer: "Filtro" # dudoso, no entiendo qué siginifica
         from: "Desde la fecha"
-        to: "Hasta la fecha"
+        to: "Hasta"
     status_tag:
       "yes": "Sí" # dudoso
       "no": "No" # dudoso
@@ -63,7 +63,7 @@ es:
       entry:
         one: "entrada"
         other: "entradas"
-    any: "cualquier"
+    any: "Cualquiera"
     blank_slate:
       content: "Ya no hay %{resource_name}."
       link: "Crear uno" # dudoso
@@ -186,8 +186,8 @@ es:
         one: "Descriptor"
         other: "Descriptores"
       standard_title:
-        one: "Título estándar"
-        other: "Títulos estándar"
+        one: "Títulos uniformes"
+        other: "Títulos uniformes"
       user:
         one: "Usuario"
         other: "Usuarios"
@@ -258,7 +258,7 @@ es:
   menu_subjects: "Descriptores"
   menu_library_sigla: "Siglas de repositorios"
   menu_catalogues: "Bibliografía secundaria"
-  menu_liturgical_feasts: "Fiestas litúrgicas"
+  menu_liturgical_feasts: "Festividades litúrgicas"
   menu_latin: "Texto en latín"
   menu_places: "Lugares"
   menu_help: "Ayuda"
@@ -402,10 +402,10 @@ es:
   
   ############ filters
   filter_address: "Dirección"
-  filter_alternate_dates: "Alternar fechas"
-  filter_alternate_names: "Alternar nombres"
-  filter_alternate_terms: "Alternar términos"
-  filter_alternates: "Alternar nombres"
+  filter_alternate_dates: "Fechas alternativas"
+  filter_alternate_names: "Nombres alternativos"
+  filter_alternate_terms: "Términos alternativos"
+  filter_alternates: "Nombres alternativos"
   filter_any_field: "Cualquier campo"
   filter_author: "Autor"
   filter_author_or_editor: "Autor/Editor"
@@ -422,7 +422,7 @@ es:
   filter_date: "Fecha"
   filter_date_from: "Desde la fecha"
   filter_date_of_publication: "Año de publicación"
-  filter_date_to: "Hasta la fecha"
+  filter_date_to: "Hasta"
   filter_description: "Descripción"
   filter_digital_objects: "Objetos digitales"
   filter_district: "Distrito"
@@ -644,7 +644,7 @@ es:
   tf_anchor: "Buscar sólo al comienzo del íncipit"
   
   tf_pitch_help: "Sugerencias para la búsqueda por alturas"
-  tf_duration_help: "ASugerencias para la búsqueda por duraciones"
+  tf_duration_help: "Sugerencias para la búsqueda por duraciones"
   tf_metric_help: "Sugerencias para la búsqueda por métrica"
   tf_anchor_help: "Sugerencias para la búsqueda anclada" # dudoso
   tf_timesig_help: "Ayuda sobre las indicaciones de compás"
@@ -684,8 +684,8 @@ es:
     deprecated: "Descartado"
 
   dashboard:
-    selection: "Seleccionar la actividad reciente"
-    type: "Cambiar el tipo"
+    selection: "Seleccionar actividad reciente"
+    type: "Cambiar tipo"
     type_created: "Recientemente creado"
     type_updated: "Recientemente actualizado"
     owner: "Propietario"
