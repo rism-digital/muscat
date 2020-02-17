@@ -3970,6 +3970,102 @@ g|b:
     en: "Mode: 12t – Hypoionian"
     pt: "Modo:  12º modo (Hipojônio)"
     es: "Modo:  12º tono (Hipojónico)"
+1tt:
+  label:
+    it: "Mode:  1tt – Dorian, transposed"
+    fr: "Mode:  1tt – Dorian, transposed"
+    de: "Mode:  1tt – Dorian, transposed"
+    en: "Mode:  1tt – Dorian, transposed"
+    pt: "Modo:  1º tom (Dórico), transposta"
+    es: "Modo: 1º tono (Dórico), transpuesto"
+2tt:
+  label:
+    it: "Mode:  2tt – Hypodorian, transposed"
+    fr: "Mode:  2tt – Hypodorian, transposed"
+    de: "Mode:  2tt – Hypodorian, transposed"
+    en: "Mode:  2tt – Hypodorian, transposed"
+    pt: "Modo:  2º tom (Hipodórico), transposta"
+    es: "Modo:  2º tono (Hipodórico), transpuesto"
+3tt:
+  label:
+    it: "Mode:  3tt – Phrygian, transposed"
+    fr: "Mode:  3tt – Phrygian, transposed"
+    de: "Mode:  3tt – Phrygian, transposed"
+    en: "Mode:  3tt – Phrygian, transposed"
+    pt: "Modo:  3º tom (Frígio), transposta"
+    es: "Modo:  3º tono (Frigio), transpuesto"
+4tt:
+  label:
+    it: "Mode:  4tt – Hypophrygian, transposed"
+    fr: "Mode:  4tt – Hypophrygian, transposed"
+    de: "Mode:  4tt – Hypophrygian, transposed"
+    en: "Mode:  4tt – Hypophrygian, transposed"
+    pt: "Modo:  4º tom (Hipofrígio), transposta"
+    es: "Modo:  4º tono (Hipofrigio), transpuesto"
+5tt:
+  label:
+    it: "Mode:  5tt – Lydian, transposed"
+    fr: "Mode:  5tt – Lydian, transposed"
+    de: "Mode:  5tt – Lydian, transposed"
+    en: "Mode:  5tt – Lydian, transposed"
+    pt: "Modo:  5º tom (Lídio), transposta"
+    es: "Modo:  5º tono (Lidio), transpuesto"
+6tt:
+  label:
+    it: "Mode:  6tt – Hypolydian, transposed"
+    fr: "Mode:  6tt – Hypolydian, transposed"
+    de: "Mode:  6tt – Hypolydian, transposed"
+    en: "Mode:  6tt – Hypolydian, transposed"
+    pt: "Modo:  6º tom (Hipolídio), transposta"
+    es: "Modo:  6º tono (Hipolidio), transpuesto"
+7tt:
+  label:
+    it: "Mode:  7tt – Mixolydian, transposed"
+    fr: "Mode:  7tt – Mixolydian, transposed"
+    de: "Mode:  7tt – Mixolydian, transposed"
+    en: "Mode:  7tt – Mixolydian, transposed"
+    pt: "Modo:  7º tom (Mixolídio), transposta"
+    es: "Modo:  7º tono (Mixolidio), transpuesto"
+8tt:
+  label:
+    it: "Mode:  8tt – Hypomixolydian, transposed"
+    fr: "Mode:  8tt – Hypomixolydian, transposed"
+    de: "Mode:  8tt – Hypomixolydian, transposed"
+    en: "Mode:  8tt – Hypomixolydian, transposed"
+    pt: "Modo:  8º tom (Hipomixolídio), transposta"
+    es: "Modo:  8º tono (Hipomixolidio), transpuesto"
+9tt:
+  label:
+    it: "Mode:  9tt – Aeolian, transposed"
+    fr: "Mode:  9tt – Aeolian, transposed"
+    de: "Mode:  9tt – Aeolian, transposed"
+    en: "Mode:  9tt – Aeolian, transposed"
+    pt: "Modo:  9º tom (Eólio), transposta"
+    es: "Modo:  9º tono (Eólico), transpuesto"
+10tt:
+  label:
+    it: "Mode: 10tt – Hypoaeolian, transposed"
+    fr: "Mode: 10tt – Hypoaeolian, transposed"
+    de: "Mode: 10tt – Hypoaeolian, transposed"
+    en: "Mode: 10tt – Hypoaeolian, transposed"
+    pt: "Modo: 10º tom (Hipoeólio), transposta"
+    es: "Modo: 10º tono (Hipoeólico), transpuesto"
+11tt:
+  label:
+    it: "Mode: 11tt – Ionian, transposed"
+    fr: "Mode: 11tt – Ionian, transposed"
+    de: "Mode: 11tt – Ionian, transposed"
+    en: "Mode: 11tt – Ionian, transposed"
+    pt: "Modo:  11º tom (Jônio), transposta"
+    es: "Modo:  11º tono (Jónico), transpuesto"
+12tt:
+  label:
+    it: "Mode: 12tt – Hypoionian, transposed"
+    fr: "Mode: 12tt – Hypoionian, transposed"
+    de: "Mode: 12tt – Hypoionian, transposed"
+    en: "Mode: 12tt – Hypoionian, transposed"
+    pt: "Modo:  12º modo (Hipojônio), transposta"
+    es: "Modo:  12º tono (Hipojónico), transpuesto"
 1byz:
   label:
     it: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
@@ -3978,7 +4074,6 @@ g|b:
     en: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
     pt: "Octoechos 1: Ēchos prōtos (Primeiro modo bizantino)"
     es: "Octoechos 1: Ēchos prōtos (Primer modo bizantino)"
-
 2byz:
   label:
     it: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
