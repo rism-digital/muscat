@@ -85,6 +85,12 @@ ActiveAdmin.register Person do
     end
     
     def index
+      person = Person.new
+      new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
+      new_marc.load_source false # this will need to be fixed
+      person.marc = new_marc
+      @editor_profile = EditorConfiguration.get_default_layout person
+     
       @results, @hits = Person.search_as_ransack(params)
       index! do |format|
         @people = @results
@@ -134,7 +140,10 @@ ActiveAdmin.register Person do
   # FIXME locale not read
     :collection => [[I18n.t(:filter_male), 'male'], [ I18n.t(:filter_female), 'female'], [I18n.t(:filter_unknown), 'unknown']]
   filter :"550a_contains", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
-  filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, :as => :string
+  filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, as: :select, 
+    collection: proc {
+      @editor_profile.options_config["043"]["tag_params"]["codes"].map{|e| [@editor_profile.get_label(e), e]}.sort_by{|k,v| k}
+    }
   filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string

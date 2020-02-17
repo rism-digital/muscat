@@ -289,23 +289,6 @@ doc_templates:
         de: Bemerkungen
         en: Public Note
         es: "Nota pública"
-
-"373":
-  label:
-    it: Ora in
-    fr: Maintenant à
-    de: In
-    en: Now in
-    es: Actualmente en
-  fields:
-    x:
-      label:
-        t: Ora In
-        fr: Maintenant à
-        de: In
-        en: Now in
-        es: Actualmente en
-
 "410":
   label:
     it: Altre forme del nome

@@ -121,6 +121,7 @@
       - prt
       - oth
       - dub
+      - dpt
 "710":
   new_window: institutions
   new_window_field: name_equals
@@ -153,6 +154,7 @@
       - bsl
       - evp
       - oth
+      - prt
 "852": 
   allow_new: true
   new_window: institutions
