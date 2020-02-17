@@ -1713,12 +1713,14 @@ oth:
     en: Other function
     es: Otra función
 #Keys
+#Keys
 A:
   label:
     it: "La maggiore"
     fr: "La majeur"
     de: "A-Dur"
     en: "A major"
+    pt: "Lá  maior"
     es: "La Mayor"
 a:
   label:
@@ -1726,6 +1728,7 @@ a:
     fr: "La mineur"
     de: "a-Moll"
     en: "A minor"
+    pt: "Lá menor"
     es: "La menor"
 A|x: 
   label:
@@ -1733,6 +1736,7 @@ A|x:
     fr: "La♯ majeur"
     de: "Ais-Dur"
     en: "A♯ major"
+    pt: "Lá sustenido maior"
     es: "La sostenido Mayor"
 a|x: 
   label:
@@ -1740,6 +1744,7 @@ a|x:
     fr: "La♯ mineur"
     de: "ais-Moll"
     en: "A♯ minor"
+    pt: "Lá sustenido menor"
     es: "La sostenido menor"
 A|b: 
   label:
@@ -1747,6 +1752,7 @@ A|b:
     fr: "La♭ majeur"
     de: "As-Dur"
     en: "A♭ major"
+    pt: "Lá bemol maior"
     es: "La bemol Mayor"
 a|b: 
   label:
@@ -1754,6 +1760,7 @@ a|b:
     fr: "La♭ mineur"
     de: "as-Moll"
     en: "A♭ minor"
+    pt: "Lá bemol menor"
     es: "La bemol menor"
 B:
   label:
@@ -1761,6 +1768,7 @@ B:
     fr: "Si majeur"
     de: "H-Dur"
     en: "B major"
+    pt: Si maior
     es: "Si Mayor"
 b:
   label:
@@ -1768,6 +1776,7 @@ b:
     fr: "Si mineur"
     de: "h-Moll"
     en: "B minor"
+    pt: Si menor
     es: "Si menor"
 B|b: 
   label:
@@ -1775,6 +1784,7 @@ B|b:
     fr: "Si♭ majeur"
     de: "B-Dur"
     en: "B♭ major"
+    pt: Si bemol maior
     es: "Si bemol Mayor"
 b|b: 
   label:
@@ -1782,6 +1792,7 @@ b|b:
     fr: "Si♭ mineur"
     de: "b-Moll"
     en: "B♭ minor"
+    pt: Si bemol menor
     es: "Si bemol menor"
 C:
   label:
@@ -1789,6 +1800,7 @@ C:
     fr: "Do majeur"
     de: "C-Dur"
     en: "C major"
+    pt: "Dó maior"
     es: "Do Mayor"
 c:
   label:
@@ -1796,6 +1808,7 @@ c:
     fr: "Do mineur"
     de: "c-Moll"
     en: "C minor"
+    pt: "Dó menor"
     es: "Do menor"
 C|x: 
   label:
@@ -1803,6 +1816,7 @@ C|x:
     fr: "Do♯ majeur"
     de: "Cis-Dur"
     en: "C♯ major"
+    pt: "Dó sustenido maior"
     es: "Do sostenido Mayor"
 c|x: 
   label:
@@ -1810,6 +1824,7 @@ c|x:
     fr: "Do♯ mineur"
     de: "cis-Moll"
     en: "C♯ minor"
+    pt: "Dó sustenido menor"
     es: "Do sostenido menor"
 C|b: 
   label:
@@ -1817,6 +1832,7 @@ C|b:
     fr: "Do♭ majeur"
     de: "Ces-Dur"
     en: "C♭ major"
+    pt: "Dó bemol maior"
     es: "Do bemol Mayor"
 c|b: 
   label:
@@ -1824,6 +1840,7 @@ c|b:
     fr: "Do♭ mineur"
     de: "ces-Moll"
     en: "C♭ minor"
+    pt: "Dó bemol menor"
     es: "Do bemol menor"
 D:
   label:
@@ -1831,6 +1848,7 @@ D:
     fr: "Ré majeur"
     de: "D-Dur"
     en: "D major"
+    pt: "Ré maior"
     es: "Re Mayor"
 d:
   label:
@@ -1838,6 +1856,7 @@ d:
     fr: "Ré minor"
     de: "d-Moll"
     en: "D minor"
+    pt: "Ré menor"
     es: "Re menor"
 D|x: 
   label:
@@ -1845,6 +1864,7 @@ D|x:
     fr: "Ré♯ majeur"
     de: "Dis-Dur"
     en: "D♯ major"
+    pt: "Ré sustenido maior"
     es: "Re sostenido Mayor"
 d|x: 
   label:
@@ -1852,6 +1872,7 @@ d|x:
     fr: "Ré♯ mineur"
     de: "dis-Moll"
     en: "D♯ minor"
+    pt: "Ré sustenido menor"
     es: "Re sostenido menor"
 D|b: 
   label:
@@ -1859,6 +1880,7 @@ D|b:
     fr: "Ré♭ majeur"
     de: "Des-Dur"
     en: "D♭ major"
+    pt: "Ré bemol maior"
     es: "Re bemol Mayor"
 d|b: 
   label:
@@ -1866,6 +1888,7 @@ d|b:
     fr: "Ré♭ mineur"
     de: "des-Moll"
     en: "D♭ minor"
+    pt: "Ré bemol menor"
     es: "Re bemol menor"
 E:
   label:
@@ -1873,6 +1896,7 @@ E:
     fr: "Mi majeur"
     de: "E-Dur"
     en: "E major"
+    pt: "Mi maior"
     es: "Mi Mayor"
 e:
   label:
@@ -1880,6 +1904,7 @@ e:
     fr: "Mi mineur"
     de: "e-Moll"
     en: "E minor"
+    pt: "Mi menor"
     es: "Mi menor"
 E|b: 
   label:
@@ -1887,6 +1912,7 @@ E|b:
     fr: "Mi♭ majeur"
     de: "Es-Dur"
     en: "E♭ major"
+    pt: "Mi bemol maior"
     es: "Mi bemol Mayor"
 e|b: 
   label:
@@ -1894,6 +1920,7 @@ e|b:
     fr: "Mi♭ mineur"
     de: "es-Moll"
     en: "E♭ minor"
+    pt: "Mi bemol menor"
     es: "Mi bemol menor"
 F:
   label:
@@ -1901,6 +1928,7 @@ F:
     fr: "Fa majeur"
     de: "F-Dur"
     en: "F major"
+    pt: "Fá maior"
     es: "Fa Mayor"
 f:
   label:
@@ -1908,6 +1936,7 @@ f:
     fr: "Fa mineur"
     de: "f-Moll"
     en: "F minor"
+    pt: "Fá menor"
     es: "Fa menor"
 F|x: 
   label:
@@ -1915,6 +1944,7 @@ F|x:
     fr: "Fa♯ majeur"
     de: "Fis-Dur"
     en: "F♯ major"
+    pt: "Fá sustenido maior"
     es: "Fa sostenido menor"
 f|x: 
   label:
@@ -1922,6 +1952,7 @@ f|x:
     fr: "Fa♯ mineur"
     de: "fis-Moll"
     en: "F♯ minor"
+    pt: "Fá sustenido menor"
     es: "Fa sostenido Mayor"
 G:
   label:
@@ -1929,6 +1960,7 @@ G:
     fr: "Sol majeur"
     de: "G-Dur"
     en: "G major"
+    pt: "Sol maior"
     es: "Sol Mayor"
 g:
   label:
@@ -1936,6 +1968,7 @@ g:
     fr: "Sol mineur"
     de: "g-Moll"
     en: "G minor"
+    pt: "Sol menor"
     es: "Sol menor"
 G|x: 
   label:
@@ -1943,6 +1976,7 @@ G|x:
     fr: "Sol♯ majeur"
     de: "Gis-Dur"
     en: "G♯ major"
+    pt: "Sol sustenido maior"
     es: "Sol sostenido menor"
 g|x: 
   label:
@@ -1950,6 +1984,7 @@ g|x:
     fr: "Sol♯ mineur"
     de: "gis-Moll"
     en: "G♯ minor"
+    pt: "Sol sustenido menor"
     es: "Sol sostenido menor"
 G|b: 
   label:
@@ -1957,6 +1992,7 @@ G|b:
     fr: "Sol♭ majeur"
     de: "Ges-Dur"
     en: "G♭ major"
+    pt: "Sol bemol maior"
     es: "Sol bemol Mayor"
 g|b: 
   label:
@@ -1964,7 +2000,9 @@ g|b:
     fr: "Sol♭ mineur"
     de: "ges-Moll"
     en: "G♭ minor"
+    pt: "Sol bemol menor"
     es: "Sol bemol menor"
+# modes
 # modes
 1t:
   label:
@@ -1972,6 +2010,7 @@ g|b:
     fr: "Mode:  1t – Dorian"
     de: "Mode:  1t – Dorian"
     en: "Mode:  1t – Dorian"
+    pt: "Modo:  1º tom (Dórico)"
     es: "Modo: 1º tono (Dórico)"
 2t:
   label:
@@ -1979,6 +2018,7 @@ g|b:
     fr: "Mode:  2t – Hypodorian"
     de: "Mode:  2t – Hypodorian"
     en: "Mode:  2t – Hypodorian"
+    pt: "Modo:  2º tom (Hipodórico)"
     es: "Modo:  2º tono (Hipodórico)"
 3t:
   label:
@@ -1986,6 +2026,7 @@ g|b:
     fr: "Mode:  3t – Phrygian"
     de: "Mode:  3t – Phrygian"
     en: "Mode:  3t – Phrygian"
+    pt: "Modo:  3º tom (Frígio)"
     es: "Modo:  3º tono (Frigio)"
 4t:
   label:
@@ -1993,6 +2034,7 @@ g|b:
     fr: "Mode:  4t – Hypophrygian"
     de: "Mode:  4t – Hypophrygian"
     en: "Mode:  4t – Hypophrygian"
+    pt: "Modo:  4º tom (Hipofrígio)"
     es: "Modo:  4º tono (Hipofrigio)"
 5t:
   label:
@@ -2000,6 +2042,7 @@ g|b:
     fr: "Mode:  5t – Lydian"
     de: "Mode:  5t – Lydian"
     en: "Mode:  5t – Lydian"
+    pt: "Modo:  5º tom (Lídio)"
     es: "Modo:  5º tono (Lidio)"
 6t:
   label:
@@ -2007,6 +2050,7 @@ g|b:
     fr: "Mode:  6t – Hypolydian"
     de: "Mode:  6t – Hypolydian"
     en: "Mode:  6t – Hypolydian"
+    pt: "Modo:  6º tom (Hipolídio)"
     es: "Modo:  6º tono (Hipolidio)"
 7t:
   label:
@@ -2014,6 +2058,7 @@ g|b:
     fr: "Mode:  7t – Mixolydian"
     de: "Mode:  7t – Mixolydian"
     en: "Mode:  7t – Mixolydian"
+    pt: "Modo:  7º tom (Mixolídio)"
     es: "Modo:  7º tono (Mixolidio)"
 8t:
   label:
@@ -2021,6 +2066,7 @@ g|b:
     fr: "Mode:  8t – Hypomixolydian"
     de: "Mode:  8t – Hypomixolydian"
     en: "Mode:  8t – Hypomixolydian"
+    pt: "Modo:  8º tom (Hipomixolídio)"
     es: "Modo:  8º tono (Hipomixolidio)"
 9t:
   label:
@@ -2028,6 +2074,7 @@ g|b:
     fr: "Mode:  9t – Aeolian"
     de: "Mode:  9t – Aeolian"
     en: "Mode:  9t – Aeolian"
+    pt: "Modo:  9º tom (Eólio)"
     es: "Modo:  9º tono (Eólico)"
 10t:
   label:
@@ -2035,6 +2082,7 @@ g|b:
     fr: "Mode: 10t – Hypoaeolian"
     de: "Mode: 10t – Hypoaeolian"
     en: "Mode: 10t – Hypoaeolian"
+    pt: "Modo: 10º tom (Hipoeólio)"
     es: "Modo: 10º tono (Hipoeólico)"
 11t:
   label:
@@ -2042,6 +2090,7 @@ g|b:
     fr: "Mode: 11t – Ionian"
     de: "Mode: 11t – Ionian"
     en: "Mode: 11t – Ionian"
+    pt: "Modo:  11º tom (Jônio)"
     es: "Modo:  11º tono (Jónico)"
 12t:
   label:
@@ -2049,21 +2098,119 @@ g|b:
     fr: "Mode: 12t – Hypoionian"
     de: "Mode: 12t – Hypoionian"
     en: "Mode: 12t – Hypoionian"
+    pt: "Modo:  12º modo (Hipojônio)"
     es: "Modo:  12º tono (Hipojónico)"
+1tt:
+  label:
+    it: "Mode:  1tt – Dorian, transposed"
+    fr: "Mode:  1tt – Dorian, transposed"
+    de: "Mode:  1tt – Dorian, transposed"
+    en: "Mode:  1tt – Dorian, transposed"
+    pt: "Modo:  1º tom (Dórico), transposta"
+    es: "Modo: 1º tono (Dórico), transpuesto"
+2tt:
+  label:
+    it: "Mode:  2tt – Hypodorian, transposed"
+    fr: "Mode:  2tt – Hypodorian, transposed"
+    de: "Mode:  2tt – Hypodorian, transposed"
+    en: "Mode:  2tt – Hypodorian, transposed"
+    pt: "Modo:  2º tom (Hipodórico), transposta"
+    es: "Modo:  2º tono (Hipodórico), transpuesto"
+3tt:
+  label:
+    it: "Mode:  3tt – Phrygian, transposed"
+    fr: "Mode:  3tt – Phrygian, transposed"
+    de: "Mode:  3tt – Phrygian, transposed"
+    en: "Mode:  3tt – Phrygian, transposed"
+    pt: "Modo:  3º tom (Frígio), transposta"
+    es: "Modo:  3º tono (Frigio), transpuesto"
+4tt:
+  label:
+    it: "Mode:  4tt – Hypophrygian, transposed"
+    fr: "Mode:  4tt – Hypophrygian, transposed"
+    de: "Mode:  4tt – Hypophrygian, transposed"
+    en: "Mode:  4tt – Hypophrygian, transposed"
+    pt: "Modo:  4º tom (Hipofrígio), transposta"
+    es: "Modo:  4º tono (Hipofrigio), transpuesto"
+5tt:
+  label:
+    it: "Mode:  5tt – Lydian, transposed"
+    fr: "Mode:  5tt – Lydian, transposed"
+    de: "Mode:  5tt – Lydian, transposed"
+    en: "Mode:  5tt – Lydian, transposed"
+    pt: "Modo:  5º tom (Lídio), transposta"
+    es: "Modo:  5º tono (Lidio), transpuesto"
+6tt:
+  label:
+    it: "Mode:  6tt – Hypolydian, transposed"
+    fr: "Mode:  6tt – Hypolydian, transposed"
+    de: "Mode:  6tt – Hypolydian, transposed"
+    en: "Mode:  6tt – Hypolydian, transposed"
+    pt: "Modo:  6º tom (Hipolídio), transposta"
+    es: "Modo:  6º tono (Hipolidio), transpuesto"
+7tt:
+  label:
+    it: "Mode:  7tt – Mixolydian, transposed"
+    fr: "Mode:  7tt – Mixolydian, transposed"
+    de: "Mode:  7tt – Mixolydian, transposed"
+    en: "Mode:  7tt – Mixolydian, transposed"
+    pt: "Modo:  7º tom (Mixolídio), transposta"
+    es: "Modo:  7º tono (Mixolidio), transpuesto"
+8tt:
+  label:
+    it: "Mode:  8tt – Hypomixolydian, transposed"
+    fr: "Mode:  8tt – Hypomixolydian, transposed"
+    de: "Mode:  8tt – Hypomixolydian, transposed"
+    en: "Mode:  8tt – Hypomixolydian, transposed"
+    pt: "Modo:  8º tom (Hipomixolídio), transposta"
+    es: "Modo:  8º tono (Hipomixolidio), transpuesto"
+9tt:
+  label:
+    it: "Mode:  9tt – Aeolian, transposed"
+    fr: "Mode:  9tt – Aeolian, transposed"
+    de: "Mode:  9tt – Aeolian, transposed"
+    en: "Mode:  9tt – Aeolian, transposed"
+    pt: "Modo:  9º tom (Eólio), transposta"
+    es: "Modo:  9º tono (Eólico), transpuesto"
+10tt:
+  label:
+    it: "Mode: 10tt – Hypoaeolian, transposed"
+    fr: "Mode: 10tt – Hypoaeolian, transposed"
+    de: "Mode: 10tt – Hypoaeolian, transposed"
+    en: "Mode: 10tt – Hypoaeolian, transposed"
+    pt: "Modo: 10º tom (Hipoeólio), transposta"
+    es: "Modo: 10º tono (Hipoeólico), transpuesto"
+11tt:
+  label:
+    it: "Mode: 11tt – Ionian, transposed"
+    fr: "Mode: 11tt – Ionian, transposed"
+    de: "Mode: 11tt – Ionian, transposed"
+    en: "Mode: 11tt – Ionian, transposed"
+    pt: "Modo:  11º tom (Jônio), transposta"
+    es: "Modo:  11º tono (Jónico), transpuesto"
+12tt:
+  label:
+    it: "Mode: 12tt – Hypoionian, transposed"
+    fr: "Mode: 12tt – Hypoionian, transposed"
+    de: "Mode: 12tt – Hypoionian, transposed"
+    en: "Mode: 12tt – Hypoionian, transposed"
+    pt: "Modo:  12º modo (Hipojônio), transposta"
+    es: "Modo:  12º tono (Hipojónico), transpuesto"
 1byz:
   label:
     it: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
     fr: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
     de: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
     en: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
+    pt: "Octoechos 1: Ēchos prōtos (Primeiro modo bizantino)"
     es: "Octoechos 1: Ēchos prōtos (Primer modo bizantino)"
-
 2byz:
   label:
     it: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
     fr: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
     de: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
     en: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
+    pt: "Octoechos 2: Ēchos deuteros (Segundo modo bizantino)"
     es: "Octoechos 2: Ēchos deuteros (Segundo modo bizantino)"
 3byz:
   label:
@@ -2071,6 +2218,7 @@ g|b:
     fr: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
     de: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
     en: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
+    pt: "Octoechos 3: Ēchos tritos (Terceiro modo bizantino)"
     es: "Octoechos 3: Ēchos tritos (Tercer modo bizantino)"
 4byz:
   label: 
@@ -2078,13 +2226,15 @@ g|b:
     fr: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
     de: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
     en: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
-    es: "Octoechos 4: Ēchos tetartos (Cuarto modo bizantino)"
+    pt: "Octoechos 4: Ēchos tetartos (Quarto modo bizantino)"
+    pt: "Octoechos 4: Ēchos tetartos (Cuarto modo bizantino)"
 5byz:
   label: 
     it: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
     fr: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
     de: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
     en: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
+    pt: "Octoechos 5: Ēchos plagios prōtos (Primeiro modo bizantino plagal)"
     es: "Octoechos 5: Ēchos plagios prōtos (Primer modo bizantino plagal)"
 6byz:
   label: 
@@ -2092,6 +2242,7 @@ g|b:
     fr: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
     de: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
     en: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
+    pt: "Octoechos 6: Ēchos plagios deuteros (Segundo modo bizantino plagal)"
     es: "Octoechos 6: Ēchos plagios deuteros (Segundo modo bizantino plagal)"
 7byz:
   label: 
@@ -2099,6 +2250,7 @@ g|b:
     fr: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
     de: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
     en: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
+    pt: "Octoechos 7: Ēchos barys (Terceiro modo bizantino plagal)"
     es: "Octoechos 7: Ēchos barys (Tercer modo bizantino plagal)"
 8byz:
   label: 
@@ -2106,6 +2258,7 @@ g|b:
     fr: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
     de: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
     en: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
+    pt: "Octoechos 8: Ēchos plagios tetartos (Quarto modo bizantino plagal)"
     es: "Octoechos 8: Ēchos plagios tetartos (Cuarto modo bizantino plagal)"
 #Clefs (031)
 01_modern_clefs:
