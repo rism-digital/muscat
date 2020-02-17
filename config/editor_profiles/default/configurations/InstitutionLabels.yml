@@ -178,6 +178,7 @@ doc_templates:
     fr: "Nom de la collectivité"
     de: "Körperschaftsname"
     en: Institution
+    es: "Institución"
   accepts: 
   - "710"
   fields:
@@ -187,7 +188,7 @@ doc_templates:
         fr: "Nom de la collectivité"
         de: "Körperschaftsname"
         en: Institution
-        es: Institución
+        es: "Institución"
     b:
       label:
         it: Ente subordinato

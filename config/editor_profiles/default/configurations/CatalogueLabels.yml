@@ -177,7 +177,7 @@ doc_templates:
     fr: Abbreviation
     de: Kürzel
     en: Short title
-    es: "Título corto"
+    es: "Título breve"
   fields: 
     a: 
       label: 
@@ -185,7 +185,7 @@ doc_templates:
         fr: Abbreviation
         de: Kürzel
         en: Short title
-        es: "Título corto"
+        es: "Título breve"
 "240": 
   label: 
     it: Titolo 

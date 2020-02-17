@@ -1526,7 +1526,7 @@ doc_record_status:
         de: Anzahl
         en: Number
         pt: "Número"
-        es: "Voz/instrumento"
+        es: "Número"
 "595": 
   label: 
     it: "Ruoli: nomi  dei personaggi"
@@ -1588,7 +1588,7 @@ doc_record_status:
         de: REFERENCE RECORD ID
         en: REFERENCE RECORD ID
         pt: REFERENCE RECORD ID
-        es: REFERENCE RECORD ID
+        es: ID del Registro de Referencia
       edit_label: 
       comment: "NEW IN 2018"
 "597": 
@@ -1904,6 +1904,7 @@ doc_record_status:
     de: Werkverzeichnis
     en: Catalog of works
     pt: "Catálogo de obras"
+    es: "Catálogo de obras"
   fields: 
     a: 
       label: 
@@ -1912,6 +1913,7 @@ doc_record_status:
         de: Werkverzeichnis
         en: Catalog of works
         pt: "Catálogo de obras"
+        es: "Catálogo de obras"
     n: 
       label: 
         it: Numero/pagina
@@ -1919,6 +1921,7 @@ doc_record_status:
         de: Nummer/Seitenzahl
         en: Number/page
         pt: "Número/página"
+        es: "Número/página"
 "691": 
   label: 
     it: Riferimenti bibliografici
@@ -2300,7 +2303,7 @@ doc_record_status:
         de: Bibliothek
         en: Library
         pt: "Instituição"
-        pt: "Repositorio"
+        es: "Repositorio"
     q: 
       label: 
         it: Materiale conservato
@@ -2604,7 +2607,7 @@ asg:
     fr: ASSIGNEE
     de: Lizenznehmer
     en: Assignee
-    es: Assignee
+    es: Asignatario
 asn: 
   label: 
     it: Altro nome
@@ -2643,6 +2646,7 @@ ccp:
     de: Autor der Textvorlage
     en: Conceptor
     pt: Conceptor
+    es: Autor del concepto
 chr: 
   label: 
     it: Coreografo
@@ -2745,6 +2749,7 @@ dsr:
     fr: Décorateur
     de: Designer
     en: Designer
+    es: "Diseñador"
 dte: 
   label: 
     it: Dedicatario
@@ -2829,7 +2834,7 @@ lse:
     fr: LICENSEE
     de: Lizenzinhaber
     en: Licensee
-    es: Licensee
+    es: Licenciatario
 ltg: 
   label: 
     it: Litografo

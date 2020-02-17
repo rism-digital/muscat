@@ -373,7 +373,7 @@ doc_edit_workflow:
         fr:  Note non publique
         de:  Non public note
         en:  Internal note
-        es:  Nota Internal
+        es:  Nota Interna
 "670":
   label:
     it: Fonte dei dati 
@@ -517,7 +517,7 @@ variants:
     fr: Variantes
     de: Namensvarianten
     en: Name Variants
-    es: Variantes de nombre
+    es: Variantes del nombre
 administration:
   label:
     it: Amministrazione
