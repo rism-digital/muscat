@@ -1,14 +1,14 @@
 <h3>Source modification report for <%=@results.count%> source(s)</h3>
 <p>
 
-<% @results.each do |source, matches| %>
-Source <a href="https://muscat.rism.info/admin/sources/<%=source%>"><%=source%></a> matched the following criteria(s):
+<% @results_by_criteria.each do |criteria, sources| %>
+<b><%=sources.count%> source(s) matched the pattern:</b> <code><%=criteria%></code><br>
 <br>
 <ul>
-<% matches.each do |m| %>
-
-	<li><%= m%></li>
-
+<% sources.each do |source| %>
+	<%composer = !source.composer.empty? ? source.composer : "n.a."%>
+	<%title = !source.std_title.empty? ? source.std_title : "none"%>
+	<li><a href="https://muscat.rism.info/admin/sources/<%=source.id%>"><%=source.id%></a>, <%=composer%>: <%=title%> [created: <%=source.created_at%>, modified: <%=source.updated_at%>]</li>
 <% end %>
 </ul>
 <p>
