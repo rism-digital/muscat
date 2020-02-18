@@ -1388,6 +1388,13 @@ voc:
     de: "Viet Nam"
     en: "Viet Nam"
     es: "Vietnam"
+"XD-EC":
+  label:
+    it: "Ecuador"
+    fr: "Ecuador"
+    de: "Ecuador"
+    en: "Ecuador"
+    es: "Ecuador"
 "Library":
   label:
     it: "Biblioteca"

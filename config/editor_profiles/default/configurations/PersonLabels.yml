@@ -1164,7 +1164,13 @@ wr:
     de: "Vietnam"
     en: "Vietnam"
     es: "Vietnam"
-
+"XD-EC":
+  label:
+    it: "Ecuador"
+    fr: "Ecuador"
+    de: "Ecuador"
+    en: "Ecuador"
+    es: "Ecuador"
 # Relationships
 brother of:
   label:
