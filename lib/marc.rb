@@ -748,6 +748,17 @@ class Marc
 
       pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
 
+      # FIXME a bit ugly here
+      # SEE #860
+      # Timesigs can be fractions, and a division by 0
+      # will bomb solr.
+      # This will also be done in solr
+
+      if vals[:o].split("/").count > 1
+        # Set it to C, time is ignored anyways 
+        vals[:o] = "c" if vals[:o].split("/")[1].to_i == 0
+      end
+
       s = "@start:#{pae_nr}\n";
 	    s << "@clef:#{vals[:g]}\n";
 	    s << "@keysig:#{vals[:n]}\n";
