@@ -301,17 +301,17 @@ doc_edit_workflow:
 
 "510":
   label:
-    it: Sigle correlate
-    fr: Sigle de relation
-    de: Zugehörige Sigel 
+    it: Istituzioni correlate
+    fr: Institutions liées
+    de: Beziehung Körperschaft 
     en: Associated institution
     es: "Institución asociada"
   fields:
     a:
       label:
-        it:  Sigla
-        fr:  Siglum
-        de:  Sigel
+        it:  Istituzioni correlate
+        fr:  Institutions liées
+        de:  Beziehung Körperschaft
         en:  Associated institution
         es:  "Institución asociada" 
 "550":
