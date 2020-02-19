@@ -170,12 +170,6 @@
       - G+3
       - G+4
       - G+5
-"033": 
-  layout: 
-    fields: 
-    - - indicator
-      - editor_partial: subfield_indicator
-    - - a
 "040": 
   layout: 
     fields:
