@@ -111,11 +111,11 @@ doc_aid_texts_sacred_works:
     es: "Textos estándar de obras sacras"
 doc_aid_titles_keywords: 
   label: 
-    de: "Einordnungstitel - Schlagworte"
-    en: "Standardized titles - Subject headings"
-    it: "Titolo standard - intestazione del soggetto"
-    pt: "Títulos uniformes – Cabeçalhos de assunto"
-    es: "Títulos uniformes – Descriptores"
+    de: "Schlagworte"
+    en: "Subject headings"
+    it: "Intestazione del soggetto"
+    pt: "Cabeçalhos de assunto"
+    es: "Descriptores"
 doc_aid_transposing_instruments: 
   label: 
     de: "Hilfe zur Transponierung von Instrumenten"
@@ -5230,12 +5230,12 @@ doc_other:
     pt: "Outra ajuda"
     es: "Otra Ayuda"
 aid_titles:
-  label:
+  label: 
+    de: "Einordnungstitel - Schlagworte"
     en: "Standardized titles - Subject headings"
-    it: "Titoli uniformi – Parole chiave"
-    de: "STANDARDIZED TITLES - SUBJECT HEADINGS"
+    it: "Titolo standard - intestazione del soggetto"
     pt: "Títulos uniformes – Cabeçalhos de assunto"
-    es: "Títulos uniformes - Descriptores"
+    es: "Títulos uniformes – Descriptores"
 aid_texts:
   label:
     en: "Standard texts of sacred works"
