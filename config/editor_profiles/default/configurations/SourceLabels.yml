@@ -4983,6 +4983,13 @@ li_210:
     de: "Kurztitel"
     pt: "Título abreviado"
     es: "Título breve"
+li_250: 
+  label: 
+    it: Edizione
+    fr: Édition
+    de: Ausgabe
+    en: Edition statement
+    es: "Declaración de edición"
 li_020:
   label:
     en: "ISBN"
@@ -5067,6 +5074,13 @@ li_500:
     de: "Allgemeine Bemerkungen"
     pt: "Nota geral"
     es: "Nota general" 
+li_502: 
+  label: 
+    it: Nota alla dissertazione
+    fr: Note à la thèse
+    de: Hinweis zur Dissertation
+    en: Dissertation note
+    es: "Nota de disertación"
 li_599:
   label:
     en: "Local note field"
