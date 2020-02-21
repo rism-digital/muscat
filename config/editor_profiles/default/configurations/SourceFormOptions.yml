@@ -597,6 +597,7 @@
         - "B/XIII"
         - "B/XV"
         - "B/XVII"
+        - "Other"
         editor_partial: subfield_select
     - - b
     - - c
