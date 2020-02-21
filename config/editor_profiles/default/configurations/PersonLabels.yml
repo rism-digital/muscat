@@ -252,7 +252,7 @@ doc_edit_workflow:
     it: Varianti del nome
     fr: Name variant
     de: Namensvarianten
-    en: Name variants
+    en: Name variant
     es: Variantes del nombre
   fields:
     a:
