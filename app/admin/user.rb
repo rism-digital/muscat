@@ -22,7 +22,7 @@ ActiveAdmin.register User do
   collection_action :list, method: :post do
     params.permit!
     if params.include?(:q)
-      users = User.where("name REGEXP ?", "[[:<:]]#{params[:q]}").collect {|u| {name: u.name, id: u.name.gsub(" ", "_")}}
+      users = User.where("name REGEXP ?", "\\b#{params[:q]}").collect {|u| {name: u.name, id: u.name.gsub(" ", "_")}}
     else
       users = []
     end
