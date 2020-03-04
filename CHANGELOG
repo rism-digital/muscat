@@ -1,6 +1,80 @@
 Muscat Changelog
 ================
 
+v 6.1
+* Changed composite configuration
+* Removed add group restriction from view
+* Added role junior_editor
+* Build batch action
+* Restrict template change to admin, editors
+* Restoring tags with template_change
+* Restore from versions
+* Merge branch '5.3-devel' of https://github.com/rism-ch/muscat into 5.3-devel-templatechange
+* Fixed devel solr port
+* Fix #875, annoying sru
+* Fix #797, Added wf_stage to institution filer
+* Fix #794, Added Guatemala to 043 institution
+* Fix #801, Change 510 label with institutions
+* Added wf_owner to institution filter
+* Fix #803, Added 670 to institutions
+* Fix #795, Added magnifying to 670 with institutions
+* Added link to 856 insitution show
+* Update rails minor version
+* Update i18n setting, remove log rotation
+* Fix #368. institution types added
+* Fix #883, silence error with sprockets
+* Fix #798, adding magnify to places at institution
+* Change "married with" to "married to"
+* Added Iraq to person country labels
+* Renaming catalogue values
+* Default profession for people
+* Default 042 non multiple with people
+* Autocomplete of 510 people changed to institutions
+* Default opened 375 with people
+* Added work to dashboard closing
+* Added field labels with catalog
+* Merge pull request #877 from rism-ch/5.3-devel-templatechange
+* Merge pull request #878 from rism-ch/5.3-devel-role
+* Merge pull request #879 from rism-ch/5.3-devel-composite
+* Autocomplete for profession with people
+* Show institution with people
+* Removed other name qualifiers
+* Fix #886, 852 validation related 
+* Removing multi 043 with people
+* Spanish translation
+* Added dpt to 700 holdings
+* Added prt to 710 holdings
+* Dropped 373 from institutions
+* Filter person 043 contrynames as select, not codes
+* Clickable url with catalogues
+* Update some long overdue (including an update to AA)
+* Fix #791, add back transposed tones which got lost before 6.0
+* Fix #849
+* Fix #887, make the notification digest actually useful
+* Fix #882
+* Fix #851, add link
+* Renaming 510 with people
+* Fix #856, sru nil query
+* First step in #674, remove 033 from editor
+* Fix #851. remove popup menu
+* Fix #860, patch crashing fractions
+* Fix #839, Guidelines titles
+* Fix #829, Relabeling guidelines
+* Fix #889, Added other to 596
+* Removed postal from people
+* Relabeld 400 with people
+* Fix #899, Add more items to autocomplete
+* Fix #896, Update autocomplete
+* Update documentation for mysql 8
+
+v 6.0.1
+* Initial fix for #896, use a version of the autocomplete which uses LIKE and not REGEXP
+* Bump rack from 2.0.7 to 2.0.8
+* Merge pull request #874 from rism-ch/dependabot/bundler/rack-2.0.8
+* Bump nokogiri from 1.10.7 to 1.10.8
+* Test if users work
+* Merge pull request #893 from rism-ch/dependabot/bundler/nokogiri-1.10.8
+
 v 6.0
 * Migration scripts
 * Fix #658: add Workflow to diff list, it shows the WF at the time of saving
