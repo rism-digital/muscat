@@ -62,9 +62,9 @@ GIT
 
 GIT
   remote: https://github.com/rism-ch/rails3-jquery-autocomplete
-  revision: 5561a23c0b2d356afe28281b37bfd49ed5ba7def
+  revision: bad74458d877d380a8a444f554d71fa1daf50e2c
   specs:
-    rails3-jquery-autocomplete (1.0.19)
+    rails3-jquery-autocomplete (1.0.21)
       rails (>= 4.2)
 
 GIT
