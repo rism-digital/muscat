@@ -206,3 +206,18 @@ Also it is goot to block access to SOLR:
 == Add clean up in crontab for blacklight
 
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
+
+
+ = Some MySQL optimizations
+
+ Add to /etc/mysql.cnf
+
+ [mysqld]
+
+ innodb_buffer_pool_size = 8G
+ innodb_log_buffer_size = 512M
+ innodb_log_file_size = 1G
+ innodb_write_io_threads = 16
+ innodb_flush_log_at_trx_commit = 0
+
+To speed up imports. [See here for more](https://www.percona.com/blog/2014/01/28/10-mysql-performance-tuning-settings-after-installation/)
