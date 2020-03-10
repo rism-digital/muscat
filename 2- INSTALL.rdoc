@@ -208,7 +208,7 @@ Also it is goot to block access to SOLR:
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
 
 
- = Some MySQL optimizations
+== Some MySQL optimizations
 
  Add to /etc/mysql.cnf
 
@@ -220,4 +220,4 @@ Also it is goot to block access to SOLR:
  innodb_write_io_threads = 16
  innodb_flush_log_at_trx_commit = 0
 
-To speed up imports. [See here for more](https://www.percona.com/blog/2014/01/28/10-mysql-performance-tuning-settings-after-installation/)
+To speed up imports. (See here for more)[https://www.percona.com/blog/2014/01/28/10-mysql-performance-tuning-settings-after-installation/]
