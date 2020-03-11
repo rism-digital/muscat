@@ -210,7 +210,7 @@ Also it is goot to block access to SOLR:
 
 == Some MySQL optimizations
 
- Add to /etc/mysql.cnf
+Add to /etc/mysql.cnf
 
  [mysqld]
 
