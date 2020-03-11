@@ -92,7 +92,7 @@ ActiveAdmin.register Person do
       @editor_profile = EditorConfiguration.get_default_layout person
      
       # Get the terms for 550a, the "profession filter"
-      @profession_types = Source.get_tems("550a_sms")
+      @profession_types = Source.get_terms("550a_sms")
 
       @results, @hits = Person.search_as_ransack(params)
       index! do |format|

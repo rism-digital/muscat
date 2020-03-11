@@ -111,7 +111,7 @@ ActiveAdmin.register Source do
       @results, @hits = Source.search_as_ransack(params)
 
       # Get the terms for 593a_filter, the "source type"
-      @source_types = Source.get_tems("593a_filter_sm")
+      @source_types = Source.get_terms("593a_filter_sm")
 
       index! do |format|
        @sources = @results
