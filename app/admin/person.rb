@@ -91,6 +91,9 @@ ActiveAdmin.register Person do
       person.marc = new_marc
       @editor_profile = EditorConfiguration.get_default_layout person
      
+      # Get the terms for 550a, the "profession filter"
+      @profession_types = Source.get_tems("550a_sms")
+
       @results, @hits = Person.search_as_ransack(params)
       index! do |format|
         @people = @results
@@ -139,7 +142,11 @@ ActiveAdmin.register Person do
   filter :"375a_contains", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
   # FIXME locale not read
     :collection => [[I18n.t(:filter_male), 'male'], [ I18n.t(:filter_female), 'female'], [I18n.t(:filter_unknown), 'unknown']]
-  filter :"550a_contains", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
+  #filter :"550a_contains", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
+
+  filter :"550a_with_integer", :label => proc{I18n.t(:filter_person_550a)}, as: :select, 
+  collection: proc{@profession_types.sort.collect {|k| [k.camelize, "550a:#{k}"]}}
+
   filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, as: :select, 
     collection: proc {
       @editor_profile.options_config["043"]["tag_params"]["codes"].map{|e| [@editor_profile.get_label(e), e]}.sort_by{|k,v| k}
