@@ -5,7 +5,7 @@ module Muscat
   
 				MAX_PER_PAGE = 30
   
-			  def get_tems(field)
+			  def get_terms(field)
 			    solr = Sunspot.session.get_connection
 			    response = solr.get 'terms', :params => {:"terms.fl" => field, :"terms.limit" => -1, :"terms.mincount" => 1}
 			    Hash[*response["terms"][field]].keys
