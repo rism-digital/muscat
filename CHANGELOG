@@ -1,6 +1,9 @@
 Muscat Changelog
 ================
 
+v 6.1.1
+* Fix #905, "profession" filter in People causes a crash
+
 v 6.1
 * Changed composite configuration
 * Removed add group restriction from view
