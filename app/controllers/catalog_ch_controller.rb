@@ -18,7 +18,7 @@ class CatalogChController < CatalogController
       :"q.alt" => "*:*",
       :rows => 20,
       :defType => 'edismax',
-      :fq => "type:Source wf_stage_s:inprogress pae:*",
+      :fq => "type:Source wf_stage_s:published 852a_facet_sm:CH*",
       :hl => 'false',
       :"hl.simple.pre" => '<span class="highlight">',
       :"hl.simple.post" => "</span>",

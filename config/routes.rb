@@ -2,15 +2,16 @@ Rails.application.routes.draw do
 
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   root :to => redirect(RISM::ROOT_REDIRECT)
-	
-	## TO BE REVISED!
-	get 'catalog/:id/mei' => 'catalog#mei'
-	get 'catalog/geosearch/:id' => 'catalog#geosearch'
+
+  ## TO BE REVISED!
+  get 'catalog/:id/mei' => 'catalog#mei'
+  get 'catalog/geosearch/:id' => 'catalog#geosearch'
   post 'catalog/holding' => 'catalog#holding'
+  post 'catalog_ch/holding' => 'catalog#holding'
   get "catalog/download_xslt" => 'catalog#download_xslt'
   
-	##############################
-	### Blacklight 6 configuration
+  ##############################
+  ### Blacklight 6 configuration
 
   mount Blacklight::Engine => '/'
   mount BlacklightAdvancedSearch::Engine => '/'
@@ -33,6 +34,10 @@ Rails.application.routes.draw do
     concerns :exportable
   end
 
+  resources :catalog_ch, only: [:show], as: 'catalog_ch', path: '/catalog_ch', controller: 'catalog_ch' do
+    concerns :exportable
+  end
+
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns :exportable
@@ -46,7 +51,7 @@ Rails.application.routes.draw do
     end
   end
 	
-	##############################
+  ##############################
   
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
