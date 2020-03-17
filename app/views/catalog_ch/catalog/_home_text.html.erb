@@ -6,6 +6,10 @@
 
 <h3 class="welcome">Search CH options</h3>
 
+<% if MuscatProcess.is_reindexing? %>
+<h2>Muscat is reindexing! Results may be incomplete</h2>
+<%end%>
+
 <p>
 The simple search mode is the easiest way to start a search. Because the search is performed in all fields, the method produces often a long list of results. If you start your search from there, you will be able to refine your search by adding criteria directly in the result page.	
 </p>
