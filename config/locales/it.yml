@@ -249,6 +249,7 @@ it:
     single_threatise_printed: "Trattato a stampa singolo"
 
   #################### MENUS
+  menu_admin: "Admin"
   menu_home: "Home"
   menu_sources: "Fonti"
   menu_simple_search: "Ricerca semplice"

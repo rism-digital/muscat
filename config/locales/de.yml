@@ -247,6 +247,7 @@ de:
     single_threatise_printed: "Theoreticum, gedruckt - Individualeintrag"
   
   #################### MENUS
+  menu_admin: "Admin"
   menu_home: "Home"
   menu_sources: "Quellen"
   menu_simple_search: "Einfache Suche"

@@ -9,7 +9,7 @@ config:
     :version: 2.0
     :model: source
 
-fields:  
+fields:
   "001":
   "008_date1":
       :from_tag: 008
@@ -173,7 +173,28 @@ fields:
       :from_tag: "650"
       :from_subtag: "a"
   "690n":
+  "691a":
   "691n":
+  "695a":
+  "695a_filter":
+      :type: string
+      :from_tag: "695"
+      :from_subtag: "a"
+  "695e":
+  "695e_filter":
+      :type: string
+      :from_tag: "695"
+      :from_subtag: "e"
+  "695g":
+  "695g_filter":
+      :type: string
+      :from_tag: "695"
+      :from_subtag: "g"
+  "695h":
+  "695h_filter":
+      :type: string
+      :from_tag: "695"
+      :from_subtag: "h"
   "700a":
       :holding_record: true
   "700d":

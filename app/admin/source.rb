@@ -202,6 +202,7 @@ ActiveAdmin.register Source do
   
   # This filter is the "any field" one
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :canonic_techniques_canon_type_contains, :label => proc{I18n.t(:canon_type_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
   # This filter passes the value to the with() function in seach

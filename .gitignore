@@ -1,4 +1,3 @@
-config/application.rb
 config/database.yml
 config/solr.yml
 development.log

@@ -247,6 +247,7 @@ fr:
     single_threatise_printed: Traité imprimé individuel"
 
   #################### MENUS
+  menu_admin: "Admin"
   menu_home: "Home"
   menu_sources: "Sources"
   menu_simple_search: "Recherche simple"

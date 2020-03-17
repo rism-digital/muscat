@@ -3,7 +3,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    
+
     #########
     # Admin #
     #########
@@ -21,11 +21,13 @@ class Ability
 
     elsif user.has_role?(:editor)
       if user.has_role?(:person_editor)
-        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+
+        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding, CanonicTechnique]
       elsif user.has_role?(:junior_editor)
-        can [:read, :create, :update], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+        can [:read, :create, :update],           [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding, CanonicTechnique]
+
       else
-        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, Holding, CanonicTechnique]
         can [:read, :create], Person
         can :update, Person, :wf_owner => user.id
       end
@@ -41,20 +43,23 @@ class Ability
       #515 postponed to 3.7, add :update
       # NOTE password is in :manage
       can [:read, :update], User, :id => user.id
-    
+
     ##############
     # Cataloguer #
     ##############
 
     elsif user.has_role?(:cataloger)
       # A cataloguer can create new items but modify only the ones ho made
-      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding]
+      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding, CanonicTechnique]
+
       if user.has_role?(:person_restricted)
         # catalogers can get restriced access to the persons form
         # the general design of the role allows extensions alike for e.g. institudions
         can :update, Person
       end
-      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, Work], :wf_owner => user.id
+
+      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, Work, CanonicTechnique], :wf_owner => user.id
+
       can [:destroy, :update], [DigitalObject], :wf_owner => user.id
       can [:destroy], [Holding], :wf_owner => user.id
       can [:update], [Holding] do |holding|
@@ -80,7 +85,7 @@ class Ability
       can :update, Source do |source|
         user.can_edit? source
       end
-      
+
       can :update, Source do |s|
         user.can_edit_edition?(s)
       end
@@ -89,7 +94,7 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
       can [:read, :update], User, :id => user.id
-    
+
     #########
     # Guest #
     #########
@@ -102,9 +107,9 @@ class Ability
       cannot :read, ActiveAdmin::Page, :name => "Statistics"
       cannot :read, Workgroup
     end
-    
-    
+
+
 
   end
-  
+
 end

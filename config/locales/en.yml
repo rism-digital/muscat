@@ -143,16 +143,16 @@ en:
       block: "List"
       grid: "Grid"
       blog: "Blog"
-  switch_language: "Switch language" 
+  switch_language: "Switch language"
   this_file_language: "English"
-  
+
   time:
     formats:
       default: "%H:%M"
       short: "%H:%M"
       long: "%Y-%m-%d %H:%M"
-      
-  #################### MODELS      
+
+  #################### MODELS
   activerecord:
     models:
       digital_object:
@@ -194,7 +194,7 @@ en:
       work:
         one: "Work"
         other: "Work"
-  
+
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Select new template"
   available_templates: "Available templates"
@@ -215,12 +215,12 @@ en:
 
     composite_volumes: "Composite volumes"
     composite_volume: "Record for a composite volume"
-    
+
     music_manuscripts: "Music manuscripts"
     collection_record: "Collection record for a music manuscript"
     individual_entry: "Individual entry in a music manuscript collection"
     single_manuscript: "Single music manuscript"
-    
+
     printed_music: "Printed music editions"
     collection_record_edition: "Collection record for a printed music edition"
     individual_entry_edition: "Individual entry in a printed edition collection"
@@ -230,23 +230,24 @@ en:
     collection_record_libretti: "Collection record for handwritten libretti"
     individual_entry_libretti: "Individual entry in a handwritten libretto collection"
     single_libretto: "Single handwritten libretto"
-    
+
     libretti_printed: "Libretti, printed"
     collection_record_libretti_printed: "Collection record for printed libretti"
     individual_entry_libretti_printed: "Individual entry in a printed libretto collection"
     single_libretto_printed: "Single printed libretto"
-    
+
     threatise_handwritten: "Treatises, handwritten"
     collection_record_threatise: "Collection record for handwritten treatises"
     individual_entry_threatise: "Individual entry in a handwritten treatise collection"
     single_threatise: "Single handwritten treatise"
-    
+
     threatise_printed: "Treatises, printed"
     collection_record_threatise_printed: "Collection record for printed treatises"
     individual_entry_threatise_printed: "Individual entry in a printed treatise collection"
     single_threatise_printed: "Single printed treatise"
-        
+
   #################### MENUS
+  menu_admin: "Admin"
   menu_home: "Home"
   menu_sources: "Sources"
   menu_simple_search: "Simple search"
@@ -278,7 +279,8 @@ en:
   menu_jobs: "Jobs"
   menu_holdings: "Holdings"
   menu_works: "Works"
-  
+  menu_canonic_techniques: "Canonic Techniques"
+
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
   any_field_contains: "Any field contains"
@@ -286,6 +288,7 @@ en:
   std_title_contains: "Standardized title contains"
   composer_contains: "Composer contains"
   library_sigla_contains: "Siglum contains"
+  canon_type_contains: "Canon Type contains"
   is_in_folder: "Is in folder"
   workgroups: "Workgroups"
   roles: "Roles"
@@ -330,7 +333,7 @@ en:
   unloadable_record: "This record experienced loading errors: it can be viewed but not edited. Please contact an administrator."
   validation_level_error: "There are errors, please solve before saving"
   validation_level_warning: "There are warnings, save again to override"
-  
+
   jobs:
     not_set: "[No status set]"
     ok: "Job ended successfully"
@@ -361,7 +364,7 @@ en:
   archive_unarchive: "Archive / un-archive"
   archive: "Archive"
   unarchive: "Un-archive"
-  
+
   # Editor sidebar
   show_all_groups: "Show all sections"
   show_preview: "Show preview"
@@ -373,7 +376,7 @@ en:
   save_and_exit: "Save and close"
   cancel: "Cancel"
   duplicate_confirm: "Are you sure you want to duplicate this record?"
-  
+
   # Version history
   history_date: "Date"
   history_author: "Author"
@@ -385,7 +388,7 @@ en:
   history_delete: "Delete"
   history_restore_confirm: "Do you want to restore this version?"
   history_delete_confirm: "Do you want to delete this version?"
-  
+
   #### FOLDER MESSAGES
   folders:
     save: "Save results to Folder"
@@ -399,7 +402,7 @@ en:
   digital_objects: "Images"
   digital_object_new: "Add a new image"
   digital_object_add: "Add"
-  
+
   ############ filters
   filter_address: "Address"
   filter_alternate_dates: "Alternate dates"
@@ -520,13 +523,28 @@ en:
   filter_dist_594l: "Keyboard instruments"
   filter_dist_594m: "Other instruments"
   filter_dist_594n: "Basso continuo instruments"
+
   filter_source_name: "Source Name"
   filter_source_composer: "Source Composer"
   filter_printed_exemplars: "Number of printed copies"
- 
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} referring to this %{model_to}"
- 
+  filter_canon_type: "Canon type"
+  filter_relation_operator: "Relationship operator"
+  filter_relation_numerator: "Written canonic voices/numerator"
+  filter_relation_denominator: "Sounding canonic voices/denominator"
+  filter_interval: "Interval of imitation"
+  filter_interval_direction: "Above or below"
+  filter_above: "Above"
+  filter_below: "Below"
+  filter_temporal_offset: "Temporal offset"
+  filter_offset_units: "Temporal offset unit"
+  filter_mensurations: "Mensurations/time signatures"
+  display_canon_type: "Type"
+  display_interval: "Imitation interval"
+  display_temporal_offset: "Temporal offset"
+
   rism_any_key: "Any key"
   rism_a_flat: "A flat major/minor"
   rism_a: "A major/minor"
@@ -542,7 +560,7 @@ en:
   rism_f_sharp: "F sharp major/minor"
   rism_g: "G major/minor"
   rism_g_sharp: "G sharp major/minor"
-  
+
   # Assorted error messages
   error_not_found: "The resource you are trying to access does not exist or has been deleted."
   error_saving: "The resource is not complete or generates a duplicate"
@@ -552,7 +570,7 @@ en:
   cannot_create_source: "You are not authorized to create this type of source"
   validate_name_uniqness: "Record not saved: Same short title '%{term}' already exists."
   validates_parent_id: "Record not saved: Parent record (773) cannot be same as this record"
-  
+
   #
   entry:
     one: "entry"
@@ -563,13 +581,13 @@ en:
   catalogue:
     one: "catalogue"
     other: "catalogues"
-  institution: 
+  institution:
     one: "institution"
     other: "institutions"
-  library: 
+  library:
     one: "library"
     other: "libraries"
-  liturgicalfeast: 
+  liturgicalfeast:
     one: "litrugical feast"
     other: "liturgical feasts"
   source:
@@ -578,19 +596,19 @@ en:
   place:
     one: "place"
     other: "places"
-  person: 
+  person:
     one: "person"
     other: "poeple"
   standardterm:
     one: "subject"
-    other: "subjects" 
+    other: "subjects"
   standardtitle:
     one: "title or text incipit"
-    other: "titles or text incipits" 
+    other: "titles or text incipits"
 
   user:
     one: "user"
-    other: "users" 
+    other: "users"
   job:
     one: "job"
     other: "jobs"
@@ -601,20 +619,20 @@ en:
   will_paginate:
     page_entries_info:
       single_page_html:
-        zero: "No %{model} found" 
+        zero: "No %{model} found"
         one: "Displaying <b>1</b> %{model}"
         other: "Displaying <b>all %{count}</b> %{model}"
       multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
-  
+
     models:
-      person: 
+      person:
         one: "Person"
         other: "People"
 
   manuscript_links:
      one: "1 source"
-     other: "%{count} sources" 
-     
+     other: "%{count} sources"
+
   # themefinder
   themefinder_c: "pitch refined contour"
   themefinder_C: "pitch gross contour"
@@ -629,32 +647,32 @@ en:
   themefinder_r: "duration refined contour"
   themefinder_R: "duration gross contour"
   themefinder_d0: "no duration search"
-  
+
   themefinder_L: "metric level"
   themefinder_l: "metric position"
   themefinder_e: "metric refined contour"
   themefinder_E: "metric gross contour"
   themefinder_b: "beat level"
   themefinder_m0: "no metric search"
-  
+
   tf_pitch_search: "Pitch"
   tf_duration_search: "Duration"
   tf_metric_search: "Metric"
   tf_meter: "Meter"
   tf_anchor: "Search only at the begining of the incipit"
-  
+
   tf_pitch_help: "Tips for pitch search"
   tf_duration_help: "Tips for duration search"
   tf_metric_help: "Tips for metric help"
   tf_anchor_help: "Anchored searching tips"
   tf_timesig_help: "Time signature help"
   btn_themefinder_reset: "Reset"
-  
+
   tf_acknowledgments: "Incipits search is performed with <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> developed by the <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
 
   hls_link_lang: "e"
   hls_link_name: "HDS"
-  
+
   do_link_lang: "eng"
   do_media_files_title: "Multimedia files"
   do_ext_res_link: "External resources:"
@@ -682,7 +700,7 @@ en:
     published: "Published (PUB)"
     deleted: "Deleted"
     deprecated: "Deprecated"
-  
+
   dashboard:
     selection: "Select recent activity"
     type: "Change type"
@@ -694,15 +712,15 @@ en:
     quantity: "Display"
     update: "Update"
     no_items: "No elements to show with the current filters"
-  
-  # editor validation 
+
+  # editor validation
   validation:
     missing_message: "A value in this field is mandatory"
     warning_message: "A value for this field should be provided"
     insufficient_rights: "User has insufficient rights to create/update a record of this library"
     name_uniqueness: "Short name of entry is already taken"
     correct: "The record has no validation errors [200]"
-    
+
   incipit_search:
     incipit_search: "Incipit Search"
     query_type: "Query Type:"
@@ -723,7 +741,7 @@ en:
     link: 'Learn more'
 
   # date:
-  # Empty lines for matching line numbers with other translation files  
+  # Empty lines for matching line numbers with other translation files
   #
   #
   #
@@ -750,7 +768,7 @@ en:
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
 
- 
+
 ######################################################################################################
 # Blacklights overriden translations - the list can vary from one language to another
 
@@ -758,11 +776,11 @@ en:
     application_name: 'Muscat'
     header_links:
       logout: 'Logout'
-      
- 
+
+
 ######################################################################################################
 # Record types, English only
-      
+
   record_types_codes:
     "0": "UNK"
     "1": "COL"
@@ -774,9 +792,8 @@ en:
     "7": "TEC"
     "8": "EDT"
     "11": "CMP"
-    
+
   status_codes:
     published: "PUB"
     inprogress: "UNP"
     deprecated: "DEP"
-

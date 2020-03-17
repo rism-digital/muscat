@@ -3,7 +3,7 @@ es:
   active_admin:
 # Translation to Spanish: I have added missing lines form en.yml, so this file has all
 # current labels translated and the lines number matches that of the english version. (Lucas Reccitelli from Córdoba).
-#  
+#
 #
     dashboard: "Panel de actividad"
     dashboard_welcome:
@@ -144,16 +144,16 @@ es:
       block: "Lista"
       grid: "Grilla" # dudoso
       blog: "Blog"
-  switch_language: "Cambiar idioma" 
+  switch_language: "Cambiar idioma"
   this_file_language: "Español"
-  
+
   time:
     formats:
       default: "%H:%M" # dudoso
       short: "%H:%M" # dudoso
       long: "%Y-%m-%d %H:%M" # dudoso
-      
-  #################### MODELS      
+
+  #################### MODELS
   activerecord:
     models:
       digital_object:
@@ -195,7 +195,7 @@ es:
       work:
         one: "Obra"
         other: "Obras"
-        
+
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Seleccione una plantilla"
   available_templates: "Plantillas disponibles"
@@ -216,12 +216,12 @@ es:
 
     composite_volumes: "Volúmenes compuestos"
     composite_volume: "Registro de volumen compuesto"
-    
+
     music_manuscripts: "Manuscritos musicales"
     collection_record: "Registro de colección para un manuscrito musical"
     individual_entry: "Entrada individual en una colección musical manuscrita"
     single_manuscript: "Manuscrito musical individual"
-    
+
     printed_music: "Ediciones musicales impresas"
     collection_record_edition: "Registro de colección para una edición musical impresa"
     individual_entry_edition: "Entrada individual en una colección musical impresa"
@@ -231,24 +231,25 @@ es:
     collection_record_libretti: "Registro de colección para libretos manuscritos"
     individual_entry_libretti: "Entrada individual en una colección de libretos manuscritos"
     single_libretto: "Libreto manuscrito individual"
-    
+
     libretti_printed: "Libretos, impresos"
     collection_record_libretti_printed: "Registro de colección para libretos impresos"
     individual_entry_libretti_printed: "Entrada individual en una colección de libretos impresos"
     single_libretto_printed: "Libreto impreso individual"
-    
+
     threatise_handwritten: "Tratados, manuscritos"
     collection_record_threatise: "Registro de colección para tratados manuscritos"
     individual_entry_threatise: "Entrada individual en una colección de tratados manuscritos"
     single_threatise: "Tratado manuscrito individual"
-    
+
     threatise_printed: "Tratados, impresos"
     collection_record_threatise_printed: "Registro de colección para tratados impresos"
     individual_entry_threatise_printed: "Entrada individual en una colección de tratados impresos"
     single_threatise_printed: "Tratado impreso individual"
-        
+
   #################### MENUS
-  menu_home: "Página principal"
+  menu_home: "Home"
+  menu_admin: "Admin"
   menu_sources: "Fuentes"
   menu_simple_search: "Búsqueda simple"
   menu_advanced_search: "Búsqueda avanzada"
@@ -278,8 +279,8 @@ es:
   menu_cataloging: "Catalogación"
   menu_jobs: "Tareas" # dudoso, tal vez empleos
   menu_holdings: "Registros de ejemplares"
-  menu_works: "Obras" 
-  
+  menu_works: "Obras"
+
   ### VARIOUS ELEMENTS
   recent_changes: "Modificaciones recientes"
   any_field_contains: "Cualquier campo contiene"
@@ -331,7 +332,7 @@ es:
   unloadable_record: "Este registro presenta errores de carga: puede ser leido pero no editado. Por favor, póngase en contacto con un administrador."
   validation_level_error: "El registro tiene errores. Por favor, resuélvalos antes de guardar."
   validation_level_warning: "El registro presenta advertencias. Si desea ignorarlas, pulse nuevamente en guardar."
-  
+
   jobs:
     not_set: "[Estado aún no disponible]"
     ok: "Tarea completada con éxito"
@@ -362,7 +363,7 @@ es:
   archive_unarchive: "Archivar / desarchivar"
   archive: "Archivar"
   unarchive: "Desarchivar"
-  
+
   # Editor sidebar
   show_all_groups: "Mostrar todas las secciones"
   show_preview: "Mostrar vista preliminar"
@@ -374,7 +375,7 @@ es:
   save_and_exit: "Guardar y cerrar"
   cancel: "Cancelar"
   duplicate_confirm: "¿Está seguro de que desea duplicar este registro?"
-  
+
   # Version history
   history_date: "Fecha"
   history_author: "Autor"
@@ -386,7 +387,7 @@ es:
   history_delete: "Borrar"
   history_restore_confirm: "¿Desea restaurar esta versión?"
   history_delete_confirm: "¿Desea borrar esta versión?"
-  
+
   #### FOLDER MESSAGES
   folders:
     save: "Guardar resultados en la carpeta"
@@ -400,7 +401,7 @@ es:
   digital_objects: "Imágenes"
   digital_object_new: "Añadir una nueva imagen"
   digital_object_add: "Añadir"
-  
+
   ############ filters
   filter_address: "Dirección"
   filter_alternate_dates: "Fechas alternativas"
@@ -524,7 +525,7 @@ es:
   filter_source_name: "Nombre de la fuente"
   filter_source_composer: "Compositor de la fuente"
   filter_printed_exemplars: "Número de ejemplares impresos"
- 
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} refiere a este %{model_to}"
 
@@ -543,7 +544,7 @@ es:
   rism_f_sharp: "Fa sostenido mayor/menor"
   rism_g: "Sol mayor/menor"
   rism_g_sharp: "Sol sostenido mayor/menor"
-  
+
   # Assorted error messages
   error_not_found: "El recurso al que intenta acceder no existe o fue borrado."
   error_saving: "El recurso no está completo o crea un duplicado"
@@ -553,7 +554,7 @@ es:
   cannot_create_source: "Ud. no está autorizado para crear este tipo de fuente"
   validate_name_uniqness: "El registro no fue guardado: el título breve '%{term}' ya existe."
   validates_parent_id: "El registro no fue guardado: el Registro Madre (773) no puede ser igual a este registro."
- 
+
   #
   entry:
     one: "entrada"
@@ -564,13 +565,13 @@ es:
   catalogue:
     one: "catálogo"
     other: "catálogos"
-  institution: 
+  institution:
     one: "institución"
     other: "instituciones"
-  library: 
+  library:
     one: "repositorio"
     other: "repositorios"
-  liturgicalfeast: 
+  liturgicalfeast:
     one: "festividad litúrgica"
     other: "festividades litúrgicas"
   source:
@@ -579,19 +580,19 @@ es:
   place:
     one: "lugar"
     other: "lugares"
-  person: 
+  person:
     one: "persona"
     other: "personas"
   standardterm:
     one: "tema"
-    other: "temas" 
+    other: "temas"
   standardtitle:
     one: "título o íncipit de texto"
-    other: "títulos o íncipits de texto" 
+    other: "títulos o íncipits de texto"
 
   user:
     one: "usuario"
-    other: "usuarios" 
+    other: "usuarios"
   job:
     one: "tarea"
     other: "tareas"
@@ -602,25 +603,25 @@ es:
   will_paginate:
     page_entries_info:
       single_page_html:
-        zero: "No se han encontrado %{model}" 
+        zero: "No se han encontrado %{model}"
         one: "Mostrando <b>1</b> %{model}"
         other: "Mostranto un <b> total de %{count}</b> %{model}"
       multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{count}</b>"
-  
+
     models:
-      person: 
+      person:
         one: "Persona"
         other: "Personas"
 
   manuscript_links:
      one: "1 fuente"
-     other: "%{count} fuentes" 
-     
+     other: "%{count} fuentes"
+
   # themefinder
   themefinder_c: "contorno de alturas refinado"
   themefinder_C: "contorno de alturas grueso"
   themefinder_d: "grado de la escala diatónica"
-  themefinder_i: "intervalo cromático" 
+  themefinder_i: "intervalo cromático"
   themefinder_I: "intervalo diatónico"
   themefinder_p: "clase de altura diatónica"
   themefinder_P: "clase de altura dodecafónica"
@@ -630,32 +631,32 @@ es:
   themefinder_r: "contorno de duraciones refinado"
   themefinder_R: "contorno de duraciones grueso"
   themefinder_d0: "ninguna búsqueda de duraciones"
-  
+
   themefinder_L: "nivel métrico" # dudoso
   themefinder_l: "posición métrica" # dudoso
   themefinder_e: "contorno métrico refinado"
   themefinder_E: "contorno métrico grueso"
   themefinder_b: "nivel del pulso"
   themefinder_m0: "ninguna búsqueda métrica"
-  
+
   tf_pitch_search: "Altura"
   tf_duration_search: "Duración"
   tf_metric_search: "Métrica"
   tf_meter: "Métrica"
   tf_anchor: "Buscar sólo al comienzo del íncipit"
-  
+
   tf_pitch_help: "Sugerencias para la búsqueda por alturas"
   tf_duration_help: "Sugerencias para la búsqueda por duraciones"
   tf_metric_help: "Sugerencias para la búsqueda por métrica"
   tf_anchor_help: "Sugerencias para la búsqueda anclada" # dudoso
   tf_timesig_help: "Ayuda sobre las indicaciones de compás"
   btn_themefinder_reset: "Reiniciar"
-  
+
   tf_acknowledgments: "La búsqueda por íncipits se realiza con <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> desarrollado por <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
 
   hls_link_lang: "es"
   hls_link_name: "HDS" # dudoso
-  
+
   do_link_lang: "es"
   do_media_files_title: "Archivos multimedia"
   do_ext_res_link: "Recursos externos:"
@@ -696,7 +697,7 @@ es:
     update: "Actualizar"
     no_items: "No hay elementos para mostrar con los filtros seleccionados"
 
-  # editor validation 
+  # editor validation
   validation:
     missing_message: "Este campo debe contener un valor"
     warning_message: "Debería proveerse un valor para este campo"
@@ -724,7 +725,7 @@ es:
     link: 'Aprender mas'
 
   # date:
-  # Empty lines for matching line numbers with other translation files  
+  # Empty lines for matching line numbers with other translation files
   #
   #
   #
@@ -751,7 +752,7 @@ es:
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
 
- 
+
 ######################################################################################################
 # Blacklights overriden translations - the list can vary from one language to another
 
@@ -759,11 +760,11 @@ es:
     application_name: 'Muscat'
     header_links:
       logout: 'Cerrar sesión'
-      
- 
+
+
 ######################################################################################################
 # Record types, English only
-      
+
   record_types_codes:
     "0": "UNK"
     "1": "COL"
@@ -774,8 +775,7 @@ es:
     "6": "TMS"
     "7": "TPR"
     "8": "CVT"
-    
+
   status_codes:
     published: "PUB"
     inprogress: "INP"
-
