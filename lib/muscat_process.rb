@@ -4,6 +4,8 @@ module MuscatProcess
         true
     rescue Errno::ESRCH
         false
+    rescue Errno::EPERM #Operation not permitted, it is running
+        true
     end
 
     def get_reindex_pid
