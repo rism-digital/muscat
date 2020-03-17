@@ -279,7 +279,7 @@ h5.index_title {
 }
 
 // Catalog Show Page //
-.blacklight-catalog-show {
+.blacklight-catalog-show{
     #content {
         width: 100%;
     }
@@ -288,6 +288,16 @@ h5.index_title {
         display: none;
     }
 
+}
+
+.blacklight-catalog_ch-show {
+    #content {
+        width: 100%;
+    }
+    // We want to hide the sidebar
+    #sidebar {
+        display: none;
+    }
 }
 
 .digital_object_row {
