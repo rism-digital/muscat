@@ -61,8 +61,9 @@ module MarcIndex
           # Only for sources with holdings
           # TODO since this block is called with every configured field we have some considerable overhead
           if obj.is_a? Source
-            if !obj.holdings.empty? && properties && properties.has_key?(:holding_record)
-              obj.holdings.each do |holding|
+            holdings = obj.record_type == MarcSource::RECORD_TYPES[:edition_content] ? obj.parent_source.holdings : obj.holdings
+            if !holdings.empty? && properties && properties.has_key?(:holding_record)
+              holdings.each do |holding|
                 begin
                   holding_marc = holding.marc
                   holding_marc.load_source false
