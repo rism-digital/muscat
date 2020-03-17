@@ -1206,14 +1206,13 @@ sister of:
     fr: Soeur de
     de: Schwester von
     en: sister of
-married with:
+married to:
   label:
     it: Sposato/sposata con
     fr: "Marié avec"
     de: Verheiratet mit
     es: hermana de
     en: married to
-    en: married with
     es: "casado/a con"
 father of:
   label:
