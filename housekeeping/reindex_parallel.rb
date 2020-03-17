@@ -1,3 +1,5 @@
+Pathname.new(REINDEX_PIDFILE).write(Process.pid)
+
 @parallel_jobs = 10
 @all_src = Source.all.count
 @limit = @all_src / @parallel_jobs
@@ -31,3 +33,5 @@ indexed_sources = results.inject(0){|n, item| n += item[0]}
 error_sources = results.inject(0){|n, item| n += item[1]}
 
 puts "Indexed sources: #{indexed_sources}, Unloadable sources: #{error_sources}"
+
+Pathname.delete(REINDEX_PIDFILE)
