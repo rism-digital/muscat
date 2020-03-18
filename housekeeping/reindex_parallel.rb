@@ -5,8 +5,9 @@ Pathname.new(REINDEX_PIDFILE).write(Process.pid)
 @limit = @all_src / @parallel_jobs
 
 begin_time = Time.now
-  
-results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs, progress: "Reindexing sources") do |jobid|
+puts "Reindexing #{@all_src} in #{@parallel_jobs} processes"
+
+results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |jobid|
     offset = @limit * jobid
     count = 0
     e_count = 0
@@ -25,7 +26,7 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs, prog
 end
 
 end_time = Time.now
-puts "Reindex saving started at #{begin_time.to_s}, ended at: #{end_time.to_s}"
+puts "Reindex started at #{begin_time.to_s}, ended at: #{end_time.to_s}"
 puts "(#{end_time - begin_time} seconds run time)"
 puts "Results are: #{results.to_s}"
 
@@ -34,4 +35,4 @@ error_sources = results.inject(0){|n, item| n += item[1]}
 
 puts "Indexed sources: #{indexed_sources}, Unloadable sources: #{error_sources}"
 
-Pathname.delete(REINDEX_PIDFILE)
+Pathname.new(REINDEX_PIDFILE).delete

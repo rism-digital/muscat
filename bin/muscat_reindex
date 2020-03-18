@@ -1,30 +1,39 @@
 #!/bin/sh
 
-## Uncomment this t purge the sources!
-##echo "Sunspot.remove_all(Source)" | bundle exec rails c
+if [ $# -eq 0 ]; then
+    export RAILS_ENV=production
+else
+    if [ $1 == "production" ] || [ $1 == "development" ] || [ $1 == "test" ]; then
+        export RAILS_ENV=$1
+    else
+        echo "Invalid RAILS_ENV $1"
+        exit 1
+    fi
+fi
+echo "Running in $RAILS_ENV mode"
+
+DELETE_SOURCES=0
+
+## Uncomment this to purge the sources!
+if [ $DELETE_SOURCES -eq 0 ]; then
+    echo "Sources are not deleted from the index"
+else
+    echo "Deleting sources from index"
+    echo "Sunspot.remove_all(Source)" | bundle exec rails c
+fi
 
 echo "Starting parallel reindex in background"
-
-RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 0 > reindex0.txt 2>&1 &
-RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 1 > reindex1.txt 2>&1 &
-RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 2 > reindex2.txt 2>&1 &
-RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 3 > reindex3.txt 2>&1 &
-RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 4 > reindex4.txt 2>&1 &
-RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 5 > reindex5.txt 2>&1 &
-RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 6 > reindex6.txt 2>&1 &
-RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 7 > reindex7.txt 2>&1 &
-RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 8 > reindex8.txt 2>&1 &
-RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 9 > reindex9.txt 2>&1 &
-RAILS_ENV=production rails r housekeeping/reindex_parallel.rb 10 > reindex10.txt 2>&1 &
+rails r housekeeping/reindex_parallel.rb > log/reindex.log 2>&1 &
+echo "Source reindex PID: $!"
 
 echo "Starting single indexers"
-bundle exec rake RAILS_ENV=production sunspot:reindex[,Catalogue]
-bundle exec rake RAILS_ENV=production sunspot:reindex[,Institution]
-bundle exec rake RAILS_ENV=production sunspot:reindex[,LiturgicalFeast]
-bundle exec rake RAILS_ENV=production sunspot:reindex[,Person]
-bundle exec rake RAILS_ENV=production sunspot:reindex[,Place]
-bundle exec rake RAILS_ENV=production sunspot:reindex[,StandardTerm]
-bundle exec rake RAILS_ENV=production sunspot:reindex[,StandardTitle]
+bundle exec rake sunspot:reindex[,Catalogue]
+bundle exec rake sunspot:reindex[,Institution]
+bundle exec rake sunspot:reindex[,LiturgicalFeast]
+bundle exec rake sunspot:reindex[,Person]
+bundle exec rake sunspot:reindex[,Place]
+bundle exec rake sunspot:reindex[,StandardTerm]
+bundle exec rake sunspot:reindex[,StandardTitle]
 
 echo "Remember to re-run Standard title by hand to get correct source count"
-echo "bundle exec rake RAILS_ENV=production sunspot:reindex[,StandardTitle]"
+echo "bundle exec rake RAILS_ENV=$RAILS_ENV sunspot:reindex[,StandardTitle]"
