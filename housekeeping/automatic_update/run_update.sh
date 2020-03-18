@@ -49,8 +49,12 @@ if [ $? -ne 0 ]; then echo "Could not drop database $CURRENT_DB, clean up"; fi
 
 rm $DB_FILE
 
+# Write the timestamp of the last update
+date > $MUSCAT_DIR/tmp/muscat_update.txt
+
 } > $MUSCAT_DIR/log/update.log 2>&1 
 
+# No need to actually log this stuff here, see the reindex log
 echo "Reindexing Muscat"
 cd $MUSCAT_DIR
 ./bin/muscat_reindex > /dev/null
