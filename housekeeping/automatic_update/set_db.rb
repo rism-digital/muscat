@@ -1,6 +1,6 @@
 # Can be run directly with ruby
 # without rails
-require 'YAML'
+require 'yaml'
 
 if ARGV.length == 0
     puts "please provide a new database name"
