@@ -12,6 +12,9 @@ DB_NAME="muscat$DATE"
 USER=db_user
 PASSWORD=password
 
+FILE_USER=user
+FILE_PASSWORD=password
+
 DB_FILE=/var/www/mp.tar.gz
 
 pwd=`pwd`
@@ -21,7 +24,7 @@ cd $MUSCAT_DIR
 echo "Copy database snapshot"
 
 if [ -e $DB_FILE ]; then rm $DB_FILE; fi
-curl https://muscat.rism.info/mp.tar.gz -o $DB_FILE
+curl --user $FILE_USER:$FILE_PASSWORD https://muscat.rism.info/mp.tar.gz -o $DB_FILE
 if [ $? -ne 0 ]; then echo "Could not get DB dump, exit"; exit 1; fi
 
 # Get the current DB name
