@@ -49,7 +49,7 @@ if [ $? -ne 0 ]; then echo "Could not drop database $CURRENT_DB, clean up"; fi
 
 rm $DB_FILE
 
-} > $MUSCAT_DIR/update.log 2>&1 
+} > $MUSCAT_DIR/log/update.log 2>&1 
 
 echo "Reindexing Muscat"
 cd $MUSCAT_DIR
