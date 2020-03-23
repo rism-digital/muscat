@@ -1,16 +1,20 @@
 require 'stringio'
 require 'set'
-class LogModelErrorsJob < ApplicationJob
-  queue_as :default
-  
-  def initialize
-    super
-    @parallel_jobs = 10
-    @all_src = Source.all.count
-    @limit = @all_src / @parallel_jobs
-  end
-  
-  def perform(*args)
+
+class MuscatCheckup  
+
+    def initialize(options = {})
+        @parallel_jobs = 10
+        @all_src = options.include?(:limit) ? options[:limit] : Source.all.count
+        @limit = @all_src / @parallel_jobs
+
+        @skip_validation = (options.include?(:skip_validation) && options[:skip_validation] == true)
+        @skip_dates = (options.include?(:skip_dates) && options[:skip_dates] == true)
+        @skip_links = (options.include?(:skip_links) && options[:skip_links] == true)
+        @skip_unknown_tags = (options.include?(:skip_unknown_tags) && options[:skip_unknown_tags] == true)
+    end
+
+  def run_parallel()
     # Capture all the puts from the inner classes
     new_stdout = StringIO.new
     old_stdout = $stdout
@@ -63,23 +67,19 @@ class LogModelErrorsJob < ApplicationJob
     end
     
     foreign_tag_errors, unknown_tags = postprocess_results!(total_validations)
-    
-    end_time = Time.now
-    message = "Source report started at #{begin_time.to_s}, (#{end_time - begin_time} seconds run time)"
-    
-    HealthReport.notify("Source", message, total_errors, total_validations, foreign_tag_errors, unknown_tags).deliver_now
+    return total_errors, total_validations, foreign_tag_errors, unknown_tags
     
   end
   
   private
   def validate_record(record)
-    
+
     begin
       validator = MarcValidator.new(record, false)
-      validator.validate
-      validator.validate_dates
-      validator.validate_links
-      validator.validate_unknown_tags
+      validator.validate if !@skip_validation
+      validator.validate_dates if !@skip_dates
+      validator.validate_links if !@skip_links
+      validator.validate_unknown_tags if !@skip_unknown_tags
       return validator.get_errors
     rescue Exception => e
       puts e.message
