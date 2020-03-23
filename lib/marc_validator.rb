@@ -147,10 +147,10 @@ include ApplicationHelper
         subtag = unresolved_tag.fetch_first_by_tag(foreign_subtag.tag) # get the first
         if subtag && subtag.content
           if subtag.content != foreign_subtag.content
-            add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content} ##{foreign_subtag.foreign_object.id}")
+            add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content} from: ##{foreign_subtag.foreign_object.class}:#{foreign_subtag.foreign_object.id}")
           end
         else
-          add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: tag not present in unresolved marc")
+          add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: tag not present in unresolved marc, from: ##{foreign_subtag.foreign_object.class}:#{foreign_subtag.foreign_object.id}")
         end
       end
       

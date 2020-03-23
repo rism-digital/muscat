@@ -4,7 +4,7 @@ require 'set'
 class MuscatCheckup  
 
     def initialize(options = {})
-        @parallel_jobs = 10
+        @parallel_jobs = options.include?(:jobs) ? options[:jobs] : 10
         @all_src = options.include?(:limit) ? options[:limit] : Source.all.count
         @limit = @all_src / @parallel_jobs
 
