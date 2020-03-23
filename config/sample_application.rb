@@ -109,7 +109,7 @@ end
 
 #####################################################################################################################
 
-REINDEX_PIDFILE = "#{Rails.root}/tmp/muscat_reindex.pid"
+REINDEX_PIDFILE = "#{Rails.root}/tmp/pids/muscat_reindex.pid"
 
 # Mime types for MEI files
 Mime::Type.register "application/xml", :mei
