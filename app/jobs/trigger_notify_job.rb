@@ -19,7 +19,7 @@ class TriggerNotifyJob < ProgressJob::Base
       matcher = NotificationMatcher.new(@object, user)
 
       if matcher.matches?
-        ModificationNotification.notify(user, {@object.id => matcher.get_matches}).deliver_now
+        ModificationNotification.notify(user, {@object => matcher.get_matches}, {matcher.get_matches.to_s => [@object]}).deliver_now
       end
       
     end

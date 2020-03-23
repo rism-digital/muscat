@@ -316,10 +316,6 @@
     fields: 
     - - a
       - cols: 2
-    - - b
-      - cols: 2
-    - - u
-      - cols: 4
     columns: 4
 "680": 
   layout: 

@@ -2,8 +2,6 @@ config/application.rb
 config/database.yml
 config/solr.yml
 development.log
-/tmp
-/log
 /solr/default/data
 /solr/pids
 /solr/development/data
