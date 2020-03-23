@@ -1,7 +1,7 @@
 <%# Overriden to remove the Facets -%>
- 
-<script src="/javascripts/verovio-toolkit.js" type="text/javascript" ></script>
- 
+
+<script src="/javascripts/verovio-toolkit.js" type="text/javascript"></script>
+
 <%
 catalog_controller = params.include?(:c) ? "catalog_" + params[:c] : "catalog"
 search_function = "search_#{catalog_controller}_path"
@@ -10,185 +10,196 @@ link = send(search_function)
 
 <% unless (search_context_str = render_search_to_s( advanced_search_context)).blank? %>
 <div class="constraints well search_history">
-  <h4><%= t 'blacklight_advanced_search.form.search_context' %></h4>
-  <%= search_context_str %>
+    <h4><%= t 'blacklight_advanced_search.form.search_context' %></h4>
+    <%= search_context_str %>
 </div>
 <% end %>
 
 
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <%=t('incipit_search.incipit_search')%>
-  </div>
-  <div class="panel-body">
-    <div class="form-group">
-      <label for="incipit_type"><%=t('incipit_search.query_type')%></label>
-      <select id="incipit_type" class="form-control">
-        <option value="PCH"><%=t('incipit_search.exact_pitch')%></option>
-        <option value="12I"><%=t('incipit_search.interval')%></option>
-        <option value="PRC"><%=t('incipit_search.refined_pitch')%></option>
-        <option value="PGC"><%=t('incipit_search.gross_pitch')%></option>
-      </select>
+    <div class="panel-heading">
+        <%=t('incipit_search.incipit_search')%>
     </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" id="anchor" value="anchor" checked><%=t('incipit_search.anchor')%>
-      </label>
-    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label for="incipit_type"><%=t('incipit_search.query_type')%></label>
+            <select id="incipit_type" class="form-control">
+                <option value="PCH"><%=t('incipit_search.exact_pitch')%></option>
+                <option value="12I"><%=t('incipit_search.interval')%></option>
+                <option value="PRC"><%=t('incipit_search.refined_pitch')%></option>
+                <option value="PGC"><%=t('incipit_search.gross_pitch')%></option>
+            </select>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="anchor" value="anchor" checked><%=t('incipit_search.anchor')%>
+            </label>
+        </div>
 
-    <div class="row">
-      <div class="col-xs-1">
-        <button id="erase_note" type="button" class="btn btn-default btn-sm" onclick="javascript:onundo()" data-toggle="tooltip" title="<%=t('incipit_search.erase')%>">
-          <span class="glyphicon glyphicon-erase"></span>
-        </button>
-      </div>
-      <div class="col-xs-11">
-        <%= render "advanced/advanced_piano" %>	
-      </div>
+        <div class="row">
+            <div class="col-xs-1">
+                <button id="erase_note" type="button" class="btn btn-default btn-sm" onclick="javascript:onundo()" data-toggle="tooltip" title="<%=t('incipit_search.erase')%>">
+                    <span class="glyphicon glyphicon-erase"></span>
+                </button>
+            </div>
+            <div class="col-xs-11">
+                <%= render "advanced/advanced_piano" %>
+            </div>
 
+        </div>
+        &nbsp;
+        <div class="well">
+            <div id="render_01" class=""></div>
+        </div>
     </div>
-    &nbsp;
-    <div class="well">
-      <div id="render_01" class=""></div>
-    </div>
-  </div>
 </div>
 
 <p>
-  <%= form_tag link, onsubmit: "prepare_incipit();", :class => 'advanced form-horizontal', :method => :get do  %>
+    <%= form_tag link, onsubmit: "prepare_incipit();", :class => 'advanced form-horizontal', :method => :get do  %>
 
-  <%= render_hash_as_hidden_fields(search_state.params_for_search(advanced_search_context)) %>
+    <%= render_hash_as_hidden_fields(search_state.params_for_search(advanced_search_context)) %>
 
-  <div class="input-criteria">
+    <div class="input-criteria">
 
-    <div class="query-criteria">
-      <h4 class="query-criteria-heading">
-        <%= t('blacklight_advanced_search.form.query_criteria_heading_html', :select_menu =>  select_menu_for_field_operator ) %> 
-      </h4>
+        <div class="query-criteria">
+            <h4 class="query-criteria-heading">
+                <%= t('blacklight_advanced_search.form.query_criteria_heading_html', :select_menu =>  select_menu_for_field_operator ) %>
+            </h4>
 
-      <div id="advanced_search">
-        <%= render 'advanced/advanced_search_fields' %>
-      </div>
+            <div id="advanced_search">
+                <%= render 'advanced/advanced_search_fields' %>
+            </div>
+        </div>
+
+
     </div>
-      
-     
-  </div>
 
-  <hr>
+    <hr>
 
-  <div class="sort-submit-buttons clearfix">
-    <%= render 'advanced_search_submit_btns' %>
-  </div>
+    <div class="sort-submit-buttons clearfix">
+        <%= render 'advanced_search_submit_btns' %>
+    </div>
 
-  <% end %>
+    <% end %>
 
-  <script>
-    var vrvToolkit = new verovio.toolkit();
-    var current_oct = -1;
-    var undos = new Array();
- 
-    function prepare_incipit() {
-      var prefix = ""
-      
-      if (!$("#anchor").is(':checked')) {
-        prefix = "*"
-      }
-      
-      var search_type = $("#incipit_type").val();
-      $('#pae').val(prefix + $('#pae').val() + "-" + search_type + "*" );
-    }
+    <script>
+        var vrvToolkit = new verovio.toolkit();
+        var current_oct = -1;
+        var undos = new Array();
 
-    // keyup event for updating when the text input is modified
-    $('#pae').keyup(function(event){
-      update_display();
-    });
-	
-    // keydown events for shortcuts to the buttons - only when #kb_focus (empty) has focus (hacky)
-    $('#kb_focus').keypress(function(event) {
-      if ((event.charCode == 85) || (event.charCode == 117)) { onundo(); }
-    });
-	
-    function onundo() {
-      undo_str = undos.pop()
-      $('#pae').val( undo_str );
-      update_display();
-      
-    }
-	
-    function onpitch(pitch, oct, alteration, midi) {
-      pitch_str = '';
-      
-      if (oct != current_oct) {
-        switch (oct) {
-        case 3:
-          pitch_str += '\'';
-        case 2:
-          pitch_str += '\'';
-        case 1:
-          pitch_str += '\'';
+        function prepare_incipit() {
+            var prefix = ""
+
+            if (!$('#pae').val())
+                return;
+
+            if (!$("#anchor").is(':checked')) {
+                prefix = "*"
+            }
+
+            var search_type = $("#incipit_type").val();
+            $('#pae').val(prefix + $('#pae').val() + "-" + search_type + "*");
         }
-      }
-      current_oct = oct;
-      
-      pitch_str += pitch;
-      undos.push( $('#pae').val() );
-      $('#pae').val($('#pae').val() + pitch_str );
-      update_display();
-    }
-	
-    function update_display() {
-      pe_incipit('', 
-      "clef_01",
-      "key_01",
-      "timesig_01",
-      "pae",
-      "render_01");
-    }
-	
-    function render_music( music, format ) {    
-      // The trailing newline is needed so we can read the file lines
-      // correctly if the file does not end with a newline
-      var svg = vrvToolkit.renderData(music + "\n", {inputFormat: 'pae', scale: 50, adjustPageHeight: 1, pageWidth: 1048, border: 0, spacingStaff: 2});
-      document.getElementById('render_01').innerHTML = svg;
-    };
 
-    function pe_incipit(destination_column, clef, keysig, timesig, incipit, target) {
-      jquery_incipit = incipit.replace(/(\[|\])/g, '\\$1');
-            
-      pae_clef = "G-2"
-      pae_keysig =  "";
-      pae_timesig = "c";
-      pae_incipit = $('#' + jquery_incipit).val();
+        // keyup event for updating when the text input is modified
+        $('#pae').keyup(function(event) {
+            update_display();
+        });
 
-      if (pae_incipit == "") {
-        pae_incipit = "1-"
-      }
+        // keydown events for shortcuts to the buttons - only when #kb_focus (empty) has focus (hacky)
+        $('#kb_focus').keypress(function(event) {
+            if ((event.charCode == 85) || (event.charCode == 117)) {
+                onundo();
+            }
+        });
 
-      pae = "@start:pae-file\n";
-      pae = pae + "@clef:" + pae_clef + "\n";
-      pae = pae + "@keysig:" + pae_keysig + "\n";
-      pae = pae + "@key:\n";
-      pae = pae + "@timesig:" + pae_timesig + "\n";
-      pae = pae + "@data: " + pae_incipit + "\n";
-      pae = pae + "@end:pae-file\n"
-      render_music(pae, 'pae');
-  
-    }
-	
-    $( document ).ready(function() {
-  
-  $('[data-toggle="tooltip"]').tooltip();
-  
-      if ($("#pae").val()) {
-        val = $("#pae").val();
-        val = val.replace("-PCH*", "");
-        val = val.replace("-PGC*", "");
-        val = val.replace("-12I*", "");
-        val = val.replace("-PRC*", "");
-        val = val.replace("*", "");
-        $("#pae").val(val);
-      }
-      update_display();
-    });
-  
+        function onundo() {
+            undo_str = undos.pop()
+            $('#pae').val(undo_str);
+            update_display();
+
+        }
+
+        function onpitch(pitch, oct, alteration, midi) {
+            pitch_str = '';
+
+            if (oct != current_oct) {
+                switch (oct) {
+                    case 3:
+                        pitch_str += '\'';
+                    case 2:
+                        pitch_str += '\'';
+                    case 1:
+                        pitch_str += '\'';
+                }
+            }
+            current_oct = oct;
+
+            pitch_str += pitch;
+            undos.push($('#pae').val());
+            $('#pae').val($('#pae').val() + pitch_str);
+            update_display();
+        }
+
+        function update_display() {
+            pe_incipit('',
+                "clef_01",
+                "key_01",
+                "timesig_01",
+                "pae",
+                "render_01");
+        }
+
+        function render_music(music, format) {
+            // The trailing newline is needed so we can read the file lines
+            // correctly if the file does not end with a newline
+            var svg = vrvToolkit.renderData(music + "\n", {
+                inputFormat: 'pae',
+                scale: 50,
+                adjustPageHeight: 1,
+                pageWidth: 1048,
+                border: 0,
+                spacingStaff: 2
+            });
+            document.getElementById('render_01').innerHTML = svg;
+        };
+
+        function pe_incipit(destination_column, clef, keysig, timesig, incipit, target) {
+            jquery_incipit = incipit.replace(/(\[|\])/g, '\\$1');
+
+            pae_clef = "G-2"
+            pae_keysig = "";
+            pae_timesig = "c";
+            pae_incipit = $('#' + jquery_incipit).val();
+
+            if (pae_incipit == "") {
+                pae_incipit = "1-"
+            }
+
+            pae = "@start:pae-file\n";
+            pae = pae + "@clef:" + pae_clef + "\n";
+            pae = pae + "@keysig:" + pae_keysig + "\n";
+            pae = pae + "@key:\n";
+            pae = pae + "@timesig:" + pae_timesig + "\n";
+            pae = pae + "@data: " + pae_incipit + "\n";
+            pae = pae + "@end:pae-file\n"
+            render_music(pae, 'pae');
+
+        }
+
+        $(document).ready(function() {
+
+            $('[data-toggle="tooltip"]').tooltip();
+
+            if ($("#pae").val()) {
+                val = $("#pae").val();
+                val = val.replace("-PCH*", "");
+                val = val.replace("-PGC*", "");
+                val = val.replace("-12I*", "");
+                val = val.replace("-PRC*", "");
+                val = val.replace("*", "");
+                $("#pae").val(val);
+            }
+            update_display();
+        });
     </script>
