@@ -10,7 +10,9 @@ module MuscatProcess
 
     def get_reindex_pid
         begin
-            File.read(REINDEX_PIDFILE).to_i
+            pid = File.read(REINDEX_PIDFILE).to_i
+            #if the file is empty it returns 0
+            pid > 0 ? pid : nil
         rescue Errno::ENOENT
             nil
         end
