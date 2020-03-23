@@ -54,6 +54,7 @@ class MuscatCheckup
           new_stdout.rewind
         end
         
+        s = nil
       end
       {errors: errors, validations: validations}
     end
