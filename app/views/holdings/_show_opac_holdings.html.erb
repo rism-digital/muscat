@@ -2,15 +2,15 @@
     <% match = @item.holdings.select {|h| h.lib_siglum.start_with?(holding_filter)}.sort_by(&:lib_siglum)%>
     <% others = @item.holdings.select {|h| !h.lib_siglum.start_with?(holding_filter)}.sort_by(&:lib_siglum)%>
 
-    <h3>Sources</h4>
+    <h3>Exemplars</h3>
     <%= render :partial => "holdings/show_opac_holdings_list", :locals => {holdings: match } %> 
 
     <% if others.count > 1%>
-        <h3>Other Sources</h4>
+        <h3>Other Exemplars</h3>
         <%= render :partial => "holdings/show_opac_holdings_list", :locals => {holdings: others } %> 
     <%end%>
 
 <%else%>
-    <h3>Exemplar Information</h4>
+    <h3>Exemplars</h3>
     <%= render :partial => "holdings/show_opac_holdings_list", :locals => {holdings: @item.holdings.sort_by(&:lib_siglum) } %> 
 <%end%>
