@@ -22,6 +22,7 @@ module Blacklight
                     insert_position = subhash.index(subhash.assoc(args[0]))
                     # Remove from hash
                     self[config_key.pluralize].delete(args[0])
+                    subhash.delete(args[0]) #also here!
                 end
             end
 
