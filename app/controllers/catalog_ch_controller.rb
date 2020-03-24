@@ -26,4 +26,8 @@ class CatalogChController < CatalogController
     }
   end
 
+  def holding_filter
+    "CH"
+  end
+  helper_method :holding_filter
 end 

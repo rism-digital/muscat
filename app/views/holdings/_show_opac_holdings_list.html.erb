@@ -1,0 +1,9 @@
+<% holdings.each_with_index do |h, index| %>
+<h4 id="holding_<%=h.id%>"><%= h.lib_siglum %></h4>
+<div id="holding_records_div-<%=h.id%>" style="padding: 10px;">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
+</div>
+<script>
+    _marc_editor_embedded_holding("holding_records_div-<%=h.id%>", "holdings", <%= h.id %> , true)
+</script>
+<% end %>
