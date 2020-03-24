@@ -12,17 +12,18 @@ module Blacklight
         def add_blacklight_field config_key, *args, &block
             override = false
             insert_position = 0
-            subhash = nil
+            sub_array = nil
 
             if args.count > 1 && args[1].is_a?(Hash)
                 if args[1].include?(:override) && args[1][:override] == true
                     override = true
                     # Get the current position to insert it later
-                    subhash = self[config_key.pluralize].to_a
-                    insert_position = subhash.index(subhash.assoc(args[0]))
+                    sub_array = self[config_key.pluralize].to_a
+                    insert_position = sub_array.index(sub_array.assoc(args[0]))
                     # Remove from hash
                     self[config_key.pluralize].delete(args[0])
-                    subhash.delete(args[0]) #also here!
+                    sub_array.delete_at(insert_position) # also here!
+
                 end
             end
 
@@ -37,7 +38,7 @@ module Blacklight
                 # Remove it
                 self[config_key.pluralize].delete(args[0])
                 # Insert it back at te right posision
-                self[config_key.pluralize] = Hash[subhash.insert(insert_position, element)]
+                self[config_key.pluralize] = Hash[sub_array.insert(insert_position, [args[0], element])]
             end
 
         end
