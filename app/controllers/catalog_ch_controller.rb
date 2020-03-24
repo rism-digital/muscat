@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 #
+require 'blacklight_remove_facet'
 class CatalogChController < CatalogController
   
   before_action :set_view_path
@@ -24,6 +25,8 @@ class CatalogChController < CatalogController
       :"hl.simple.post" => "</span>",
       :"facet.mincount" => 1,
     }
+    config.ciao
+    config.add_facet_field '852a_facet_sm', :label => :filter_lib_siglum, :limit => 10, :override => true, solr_params: { 'facet.prefix' => 'CH' }
   end
 
   def holding_filter
