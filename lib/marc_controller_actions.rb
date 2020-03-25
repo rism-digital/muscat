@@ -321,8 +321,8 @@ module MarcControllerActions
       @item.generate_id if @item.respond_to?(:generate_id)
       @item.record_type = params[:record_type] if (@item.respond_to? :record_type)
       
-      validator = MarcValidator.new(@item, current_user, false)
-      validator.validate
+      validator = MarcValidator.new(@item, current_user)
+      validator.validate_tags
       validator.validate_links
       validator.validate_unknown_tags
       validator.validate_server_side

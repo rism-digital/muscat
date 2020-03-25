@@ -9,8 +9,8 @@
         
 
         mail(to: RISM::NOTIFICATION_EMAIL,
-        from: "#{RISM::DEFAULT_EMAIL_NAME} Periodic Validation Bot <#{RISM::DEFAULT_NOREPLY_EMAIL}>",
-        subject: "Muscat Maintainance Report")
+        from: "#{RISM::DEFAULT_EMAIL_NAME} Periodic Maintenance Bot <#{RISM::DEFAULT_NOREPLY_EMAIL}>",
+        subject: "Muscat Maintenance Report")
     end
 
     end

@@ -12,6 +12,7 @@ class MuscatCheckup
         @skip_dates = (options.include?(:skip_dates) && options[:skip_dates] == true)
         @skip_links = (options.include?(:skip_links) && options[:skip_links] == true)
         @skip_unknown_tags = (options.include?(:skip_unknown_tags) && options[:skip_unknown_tags] == true)
+        @skip_holdings = (options.include?(:skip_holdings) && options[:skip_holdings] == true)
     end
 
   def run_parallel()
@@ -76,11 +77,12 @@ class MuscatCheckup
   def validate_record(record)
 
     begin
-      validator = MarcValidator.new(record, false)
-      validator.validate if !@skip_validation
+      validator = MarcValidator.new(record)
+      validator.validate_tags if !@skip_validation
       validator.validate_dates if !@skip_dates
       validator.validate_links if !@skip_links
       validator.validate_unknown_tags if !@skip_unknown_tags
+      validator.validate_holdings if !@skip_holdings
       return validator.get_errors
     rescue Exception => e
       puts e.message
