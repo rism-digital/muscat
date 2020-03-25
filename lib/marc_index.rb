@@ -66,7 +66,7 @@ module MarcIndex
             # For cild prints, we index the holdings from the parent
             if obj.record_type == MarcSource::RECORD_TYPES[:edition_content]
               if obj.parent_source
-                holdings = obj.parent_source
+                holdings = obj.parent_source.holdings
               else
                 # No parent!
                 $stderr.puts "Index: Source #{obj.id} is a print child with no parent, cannot index holdings"
