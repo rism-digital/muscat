@@ -12,8 +12,11 @@
         begin_time = Time.now
 
         # Run the checkup function
-        checkup = MuscatCheckup.new({jobs: 20, skip_validation: true, skip_dates: true, skip_unknown_tags: true})
+        checkup = MuscatCheckup.new({jobs: 10, skip_validation: true, skip_dates: true, skip_unknown_tags: true})
         total_errors, total_validations, foreign_tag_errors, unknown_tags = checkup.run_parallel
+
+        # Force a reconnect
+        ActiveRecord::Base.connection.reconnect!
 
         foreign_tag_errors.each do |error|
             model_id = error.partition("from: #").last.split(":") #yeeeeeeeah

@@ -3,7 +3,7 @@ include ApplicationHelper
 
 	DEBUG = false
 	
-  def initialize(object, user=nil, warnings = true)
+  def initialize(object, user = nil, warnings = false)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
     @user = user
@@ -30,7 +30,7 @@ include ApplicationHelper
     @show_warnings = warnings
   end
 
-  def validate
+  def validate_tags
 
     @rules.each do |tag, tag_rules|
       #mandatory =  tag_rules["tags"].has_value? "mandatory"
@@ -199,15 +199,34 @@ include ApplicationHelper
   end
 
   def validate_unknown_tags
-    # Skipping this until template change is ready
-=begin
     @unknown_tags = []
       @editor_profile.each_tag_not_in_layout(@object) do |t|
         add_error(t, "unknown-tag", "Unknown tag in layout")
       end
-=end
   end
-  
+
+  def validate_holdings
+    return if !@object.is_a? Source
+
+    if @object.record_type == MarcSource::RECORD_TYPES[:edition]
+      add_error("record", "holdings", "No holding records") if @object.holdings.empty?
+    elsif @object.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
+      @object.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content] ||
+      @object.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content]
+      add_error("record", "holdings", "#{@object.get_record_type} should not have holding records") if !@object.holdings.empty?
+      add_error("record", "holdings", "#{@object.get_record_type} must have a parent") if !@object.parent_source
+    end
+  end
+
+  def validate
+    validate_tags
+    validate_dates
+    validate_links
+    validate_holdings
+    validate_unknown_tags
+    return @errors
+  end
+
   def has_errors
     return @errors.count > 0
   end
