@@ -91,7 +91,10 @@ module MarcIndex
                 end
               end
             else
-              $stderr.puts "Index: Source #{obj.id} (type #{obj.get_record_type}) has no holding records"
+              # Print an error, only for regular Edition parent records
+              # Edition child records should not have holdings!
+              # This can be checked with mainteaince scripts
+              $stderr.puts "Index: Source #{obj.id} (type #{obj.get_record_type}) has no holding records" if !obj.record_type == MarcSource::RECORD_TYPES[:edition_content]
             end
           end
 
