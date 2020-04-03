@@ -142,7 +142,7 @@ pt:
       block: "Lista"
       grid: "Grade"
       blog: "Blog"
-  switch_language: "Mudar de língua" 
+  switch_language: "Mudar de idioma" 
   this_file_language: "English"
   
   time:
