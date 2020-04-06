@@ -322,10 +322,6 @@
     fields: 
     - - a
       - cols: 2
-    - - i
-      - cols: 2
-    - - "5"
-      - cols: 4
     columns: 4
 "856": 
   layout: 
