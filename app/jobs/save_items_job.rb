@@ -53,6 +53,6 @@ class SaveItemsJob < ProgressJob::Base
   end
   
   def queue_name
-    'authority'
+    'resave'
   end
 end
