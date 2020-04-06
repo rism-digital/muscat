@@ -46,6 +46,6 @@ class ReindexForeignRelationsJob < ProgressJob::Base
   end
   
   def queue_name
-    'authority'
+    'reindex_foreign'
   end
 end

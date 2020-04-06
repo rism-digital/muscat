@@ -102,7 +102,7 @@ include ApplicationHelper
                     # if it is not here raise an error
                     if !marc_subtag || !marc_subtag.content
                       #@errors["#{tag}#{subtag}"] = "required_if-#{other_tag}#{other_subtag}"
-                      add_error(tag, subtag, ": #{tag}$#{subtag} required if #{other_tag}$#{other_subtag}")
+                      add_error(tag, subtag, "required_if-#{other_tag}#{other_subtag}")
                       puts "Missing #{tag} #{subtag}, required_if-#{other_tag}#{other_subtag}" if DEBUG
                     end
                   end

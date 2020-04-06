@@ -7,7 +7,7 @@ module Triggers
         if k == "save"
           relations.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(object, model)) }
         elsif k == "reindex"
-          relations.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(object, model)) }
+          relations.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(object.id, object.class, model)) }
         else
           puts "Unknown trigger #{k}"
         end
