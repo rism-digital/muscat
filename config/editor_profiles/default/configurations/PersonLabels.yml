@@ -968,6 +968,13 @@ wr:
     de: "Moldawien"
     en: "Moldavia"
     es: "Moldavia"
+"XA-MC":
+  label:
+    it: "Monaco"
+    fr: "Monaco"
+    de: "Monaco"
+    en: "Monaco"
+    es: "Mónaco"
 "XA-ME":
   label:
     it: "Montenegro"
