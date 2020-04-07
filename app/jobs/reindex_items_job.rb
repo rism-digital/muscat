@@ -1,5 +1,12 @@
 class ReindexItemsJob < ProgressJob::Base
   
+  # The median value of items in the People auth file is 491
+  # Is is also a good break point to decide if to divide the
+  # reindex from single process to multiple procesess, as 500
+  # does not take that much time to reindex and will not clog
+  # the worker pool
+  MEDIAN = 500
+
   # We could pass direcrly and object here, but sometimes the object is
   # deleted before the job is run. In this case when unmarshalling it from
   # the database it will theow an error we cannot catch here in the job.
@@ -34,8 +41,8 @@ class ReindexItemsJob < ProgressJob::Base
     update_progress_max(-1)
     items = parent_obj.send(@relation)
 
-    # if we are a sub-job or just less than 200 items
-    if @offset > 0 || items.count < 200
+    # if we are a sub-job or just less than MEDIAN items
+    if @offset > 0 || items.count < MEDIAN
       reindex_batch(items)
     else
       # Split the job into subjobs
@@ -81,6 +88,7 @@ class ReindexItemsJob < ProgressJob::Base
   end
 
   def enqueue_new_jobs
+    # The new jobs are enquequed in a different pool dedicated this
     (1..MAX_SLICES).each do |n|
       Delayed::Job.enqueue(ReindexItemsJob.new(@parent_obj_id, @parent_obj_class, @relation, n), :queue => 'sub_reindex')
     end
