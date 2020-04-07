@@ -10,6 +10,7 @@
 # The other functions are standard, see Catalogue for a general description
 
 class StandardTerm < ApplicationRecord
+  include ForeignLinks
   include AuthorityMerge
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_standard_terms")
@@ -68,18 +69,7 @@ class StandardTerm < ApplicationRecord
       StandardTerm.count_by_sql("select count(*) from sources_to_standard_terms where standard_term_id = #{self[:id]}")
     end
   end
-  
-  def check_dependencies
-    if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0
-      errors.add :base, %{The catalogue could not be deleted because it is used by
-        #{self.referring_sources.count} sources,
-        #{self.referring_institutions.count} institutions and 
-        #{self.referring_catalogues.count} catalogues}
-      throw :abort
-    end
-  end
-  
+   
   def name
     return term
   end
