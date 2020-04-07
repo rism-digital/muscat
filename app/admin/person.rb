@@ -126,7 +126,7 @@ ActiveAdmin.register Person do
   end
 	
   member_action :resave, method: :get do
-    job = Delayed::Job.enqueue(SaveItemsJob.new(Person.find(params[:id]), "referring_sources"))
+    job = Delayed::Job.enqueue(SaveItemsJob.new(params[:id], Person, "referring_sources"))
     redirect_to resource_path(params[:id]), notice: "Save Job started #{job.id}"
   end
   

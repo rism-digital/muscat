@@ -1,23 +1,32 @@
 class SaveItemsJob < ProgressJob::Base
   
-  def initialize(parent_obj, relation = "referring_sources")
-    @parent_obj = parent_obj
+  # See the ReindexItemsJob for an explanation of why we pass a separate obj id and class
+  def initialize(parent_obj_id, parent_obj_class, relation = "referring_sources")
+    @parent_obj_id = parent_obj_id
+    @parent_obj_class = parent_obj_class
     @relation = relation
   end
   
   def enqueue(job)
-    if @parent_obj
-      job.parent_id = @parent_obj.id
-      job.parent_type = @parent_obj.class
-      job.save!
-    end
+    return if !@parent_obj_id || !@parent_obj_class
+
+    # We want a class here
+    return if !@parent_obj_class.is_a? Class
+
+    job.parent_id = @parent_obj_id
+    job.parent_type = @parent_obj_class
+    job.save!
   end
 
   def perform
-    return if !@parent_obj
-    return if !@relation
+    # Sometimes, the record is deleted before the job is run
+    begin
+      parent_obj = @parent_obj_class.send("find", @parent_obj_id)
+    rescue ActiveRecord::RecordNotFound
+      return # Just exit
+    end
     
-    items = @parent_obj.send(@relation)
+    items = parent_obj.send(@relation)
     
     update_progress_max(-1)
     update_stage("Look up #{@relation}")
@@ -32,14 +41,15 @@ class SaveItemsJob < ProgressJob::Base
       reloaded_element = i.class.find(i.id)
       # let the job crash in case
       reloaded_element.save
+      reloaded_element = nil # Force it to free
       update_stage_progress("Saving record #{count}/#{items.count}", step: 1)
       count += 1
     end
     
     update_stage("Reindexing parent")
     # reindex the parent obj as needed
-    if @parent_obj.respond_to? :reindex
-      @parent_obj.reindex
+    if parent_obj.respond_to? :reindex
+      parent_obj.reindex
     end
   end
   
