@@ -368,7 +368,7 @@
     relator_codes: 
     - cmp
     - dte
-    - dub
+    - asn
     - lbt
     - lyr
     - oth

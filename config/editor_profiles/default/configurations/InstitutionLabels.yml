@@ -708,13 +708,14 @@ dte:
     de: "Widmungsträger"
     en: Dedicatee
     es: Dedicatario
-dub:
-  label:
-    it: Dubbio
-    fr: Douteux
-    de: Zweifelhaft
-    en: Dubious
-    es: Dudoso
+asn: 
+  label: 
+    it: Nome associato
+    fr: Nom associé
+    de: Zugehöriger Name
+    en: Associated name
+    es: Nombre asociado
+    pt: Nome associado
 edt:
   label:
     it: Curatore

@@ -120,7 +120,7 @@
       - ill
       - prt
       - oth
-      - dub
+      - asn
 "710":
   new_window: institutions
   new_window_field: name_equals

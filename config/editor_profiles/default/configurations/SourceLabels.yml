@@ -2766,13 +2766,14 @@ dst:
     en: Distributor
     pt: Distribuidor
     es: Distribuidor
-dub: 
+asn: 
   label: 
-    it: Dubbio
-    fr: Douteux
-    de: Zweifelhaft
-    en: Uncertain
-    es: Incierto
+    it: Nome associato
+    fr: Nom associé
+    de: Zugehöriger Name
+    en: Associated name
+    es: Nombre asociado
+    pt: Nome associado
 edt: 
   label: 
     it: Curatore

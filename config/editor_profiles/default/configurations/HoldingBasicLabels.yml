@@ -1118,13 +1118,14 @@ dte:
     de: "Widmungsträger"
     en: Dedicatee
     es: "Dedicatario(a)"
-dub: 
+asn: 
   label: 
-    it: Dubbio
-    fr: Douteux
-    de: Zweifelhaft
-    en: Uncertain
-    es: Distribuidor
+    it: Nome associato
+    fr: Nom associé
+    de: Zugehöriger Name
+    en: Associated name
+    es: Nombre asociado
+    pt: Nome associado
 edt: 
   label: 
     it: Curatore
