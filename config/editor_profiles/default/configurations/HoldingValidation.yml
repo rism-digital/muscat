@@ -1,5 +1,15 @@
 --- !map:Settings
 client:
+  "700": 
+    tags:
+      "4":
+        required_if:
+          "700": "0"
+  "710": 
+    tags:
+      "4":
+        required_if:
+          "710": "0"
   "852":
     tags:
       a: required
