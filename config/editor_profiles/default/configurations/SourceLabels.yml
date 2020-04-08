@@ -2603,11 +2603,12 @@ art:
     es: Puestista
 asg:
   label:
-    it: ASSIGNEE
-    fr: ASSIGNEE
+    it: Incaricato
+    fr: Cessionnaire
     de: Lizenznehmer
     en: Assignee
     es: Asignatario
+    pt: Cessionário
 asn: 
   label: 
     it: Altro nome
@@ -2693,11 +2694,12 @@ com:
     es: Compilador
 cph: 
   label: 
-    it: COPYRIGHT HOLDER
-    fr: COPYRIGHT HOLDER
+    it: Titolare dei diritti d'autore
+    fr: Titulaire du droit d'auteur
     de: Rechteinhaber
     en: Copyright holder
     es: Titular de los derechos de copia
+    pt: Titular dos direitos de autor
 cst: 
   label: 
     it: Costumista
@@ -2831,11 +2833,12 @@ lbt:
     es: Libretista
 lse: 
   label: 
-    it: LICENSEE
-    fr: LICENSEE
+    it: Licenziatario
+    fr: Licencié
     de: Lizenzinhaber
     en: Licensee
     es: Licenciatario
+    pt: Licenciado
 ltg: 
   label: 
     it: Litografo
