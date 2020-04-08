@@ -36,20 +36,15 @@ class MarcConfigCache
   
   end
 
-  def self.get_foreign_associations(model)
-    configurations = Hash.new
+  def self.get_referring_associations_for(model)
     res = []
-		Dir.glob("#{Rails.root}/config/marc/tag_config*.yml").sort.each do |file|
-      config = MarcConfig.new(file)
-      configurations[config.get_model] = config.get_all_foreign_classes
-    end
-    configurations.each do |k,v|
-      if v.include?(model.to_s.pluralize.underscore)
-        res << k.pluralize.underscore
+
+    @configurations.each do |conf_model, c|
+      if c.get_all_foreign_classes.include?(model.to_s.pluralize.underscore)
+        res << conf_model.pluralize.underscore
       end
     end
     return res
   end
 
-  
 end

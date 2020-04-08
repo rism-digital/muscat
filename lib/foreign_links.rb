@@ -120,8 +120,8 @@ module ForeignLinks
   def referring_dependencies
     res = {}
     # all other classes with relation to this class from the MarcConfig
-    linked_classes = MarcConfigCache.get_foreign_associations self.class
-    print linked_classes
+    linked_classes = MarcConfigCache.get_referring_associations_for self.class
+    #print linked_classes
 
     self.class.reflect_on_all_associations.each do |assoc|
       # do not check versions or workgroups
