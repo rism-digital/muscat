@@ -52,5 +52,5 @@ class SolrDocument
     #"#{title}; #{desc}; #{sigla} #{shelf}"
     title
   end
-  
+ 
 end
