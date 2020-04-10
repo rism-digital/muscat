@@ -126,7 +126,7 @@ doc_cat_templates:
   label: 
     de: Templates
     en: Templates
-    it: Modelli
+    it: Template
     es: Plantillas
 doc_cat_authorities: 
   label: 
@@ -844,7 +844,7 @@ doc_references:
   fields: 
     u: 
       label: 
-        it: Rilegatura
+        it: Rilegato con
         fr: Relié en
         de: Eingesprungen
         en: Bound with
@@ -1389,14 +1389,14 @@ Typography:
     es: "Tipografía"
 IIIF: 
   label: 
-    it: "IIIF manifest"
+    it: "Manifesto IIIF"
     fr: "Manifeste IIIF"
     de: "IIIF manifest"
     en: "IIIF manifest"
     es: "Manifiesto IIIF"
 Digitalization: 
   label: 
-    it: "Musica digitalizzata"
+    it: "Fonte digitalizzata"
     fr: "Sources numérisées"
     de: "Notendigitalisat"
     en: "Digitized music"
