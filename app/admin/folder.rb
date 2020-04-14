@@ -57,7 +57,7 @@ ActiveAdmin.register Folder do
   end
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexFolderJob.new(params[:id]))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Folder, :folder_items))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
