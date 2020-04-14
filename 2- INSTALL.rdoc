@@ -191,11 +191,23 @@ Start Apache, Solr and the related services in production mode (see below).
  
  Muscat has three running daemons that should be started:
  
-  sudo RAILS_ENV=production bin/delayed_job start
   sudo RAILS_ENV=production bundle exec crono start
   # Make sure solr is not running as root!
   sudo -u www-data bundle exec rake RAILS_ENV=production sunspot:solr:start
   
+`DelayedJob` now is a bit more tricky, as different queues get different worker pools:
+
+  sudo -u www-data RAILS_ENV=production bin/delayed_job start --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool:resave
+
+Other ways to start delayed_job:
+
+  sudo RAILS_ENV=production bin/delayed_job start
+  rake jobs:work # Run in foreground
+  rake jobs:workoff # Run all jobs in foreground and exit
+  rake jobs:clear # Clear failed jobs
+  ## in production it is then...
+  RAILS_ENV=production bundle exec rake jobs:<xxx>
+
 Depending on the env, remove sudo if necessary. RAILS_ENV is needed only on production, and has to come *after* sudo.
   
 Also it is goot to block access to SOLR:
