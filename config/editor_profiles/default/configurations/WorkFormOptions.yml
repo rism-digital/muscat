@@ -401,7 +401,7 @@
       - oth
 "747": 
   allow_new: true
-  new_window: liturgical_feast
+  new_window: liturgical_feasts
   layout: 
     fields: 
     - - "a"
@@ -411,7 +411,7 @@
     columns: 4
 "930": 
   allow_new: true
-  new_window: Work
+  new_window: works
   layout: 
     fields: 
     - - "a"
