@@ -1,7 +1,7 @@
 class SaveItemsJob < ProgressJob::Base
   
   # See the ReindexItemsJob for an explanation of why we pass a separate obj id and class
-  def initialize(parent_obj_id, parent_obj_class, relation = "referring_sources")
+  def initialize(parent_obj_id, parent_obj_class, relation = :referring_sources)
     @parent_obj_id = parent_obj_id
     @parent_obj_class = parent_obj_class
     @relation = relation
@@ -29,7 +29,7 @@ class SaveItemsJob < ProgressJob::Base
     items = parent_obj.send(@relation)
     
     update_progress_max(-1)
-    update_stage("Look up #{@relation}")
+    update_stage("Look up #{@relation.to_s}")
     update_progress_max(items.count)
     
     count = 1

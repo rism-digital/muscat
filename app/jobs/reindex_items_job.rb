@@ -11,7 +11,7 @@ class ReindexItemsJob < ProgressJob::Base
   # deleted before the job is run. In this case when unmarshalling it from
   # the database it will theow an error we cannot catch here in the job.
   # On the other hand, using id + class we can run a find and manage the error
-  def initialize(parent_obj_id, parent_obj_class, relation = "referring_sources", offset = 0)
+  def initialize(parent_obj_id, parent_obj_class, relation = :referring_sources, offset = 0)
     @parent_obj_id = parent_obj_id
     @parent_obj_class = parent_obj_class
     @relation = relation
@@ -76,7 +76,7 @@ class ReindexItemsJob < ProgressJob::Base
       job_id = "[#{@offset}] "
     end
 
-    update_stage("#{job_id}Processing #{items.count} items for #{@relation}")
+    update_stage("#{job_id}Processing #{items.count} items for #{@relation.to_s}")
     update_progress_max(items.count)
     progress = 1
     items.each do |item|

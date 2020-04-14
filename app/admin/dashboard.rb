@@ -148,8 +148,8 @@ ActiveAdmin.register_page "Dashboard" do
             table_for holdings.map do
               column (I18n.t :filter_id) {|holding| link_to(holding.id, edit_admin_holding_path(holding)) } 
               column (I18n.t :filter_siglum), :lib_siglum
-              column (I18n.t :filter_std_title)  {|holding| holding.source.std_title}
-              column (I18n.t :filter_author)  {|holding| holding.source.composer}
+              column (I18n.t :filter_std_title)  {|holding| holding.source ? holding.source.std_title : "No source"}
+              column (I18n.t :filter_author)  {|holding| holding.source ? holding.source.composer : "No source"}
             end
           else
             text_node(I18n.t('dashboard.no_items'))

@@ -121,12 +121,12 @@ ActiveAdmin.register Person do
   include MarcControllerActions
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Person, "referring_sources"))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Person, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
 	
   member_action :resave, method: :get do
-    job = Delayed::Job.enqueue(SaveItemsJob.new(params[:id], Person, "referring_sources"))
+    job = Delayed::Job.enqueue(SaveItemsJob.new(params[:id], Person, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Save Job started #{job.id}"
   end
   
