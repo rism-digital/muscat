@@ -197,7 +197,7 @@ Start Apache, Solr and the related services in production mode (see below).
   
 `DelayedJob` now is a bit more tricky, as different queues get different worker pools:
 
-  sudo -u www-data RAILS_ENV=production bin/delayed_job start --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool:resave
+  sudo -u www-data RAILS_ENV=production bin/delayed_job start --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave
 
 Other ways to start delayed_job:
 
