@@ -1,41 +1,49 @@
 ---  !map:ActiveSupport::HashWithIndifferentAccess 
 doc_abbreviations:
   label:
+    it: Abbreviazioni
     de: "Abkürzungen"
     en: Abbreviations
     es: Abreviaturas
 doc_aid:
   label:
+    it: Aiuti
     de: Arbeitshilfen
     en: Aide
     es: Asistencia
 doc_cataloguing_collections:
   label:
+    it: Catalogazione di raccolte e volumi compositi
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
     es: "Catalogación de colecciones y volúmenes compuestos"
 doc_edit_functions:
   label:
+    it: Funzioni base
     de: "Grundsätzliche Funktionen"
     en: Basic functions
     es: "Funciones básicas"
 doc_introduction:
   label:
+    it: Introduzione
     de: Einleitung
     en: Introduction
     es: "Introducción"
 doc_masks:
   label:
+    it: Formulari di catalogazione
     de: Masken
     en: Cataloging forms
     es: "Formularios de catalogación"
 doc_tag_index:
   label:
+    it: indice dei campi MARC
     de: MARC Tag Index
     en: MARC tag index
     es: "Índice de etiquetas MARC"
 doc_templates:
   label:
+    it: Template
     de: Templates
     en: Templates
     es: Plantillas
@@ -44,11 +52,13 @@ doc_templates:
 
 doc_editor: 
   label: 
+    it: Guida all'editor
     de: "Editor Hilfe"
     en: Editor help
     es: Ayuda del editor
 doc_edit_workflow: 
   label: 
+    it: Workflow
     de: "Workflow"
     en: Workflow
     es: Flujo de trabajo
@@ -635,42 +645,42 @@ wr:
     es: "Austria"
 "XA-AT-2":
   label:
-    it: "Austria: Carinthia"
+    it: "Austria: Carinzia"
     fr: "Austria: Carinthia"
     de: "Austria: Carinthia"
     en: "Austria: Carinthia"
     es: "Austria: Carintia"
 "XA-AT-3":
   label:
-    it: "Austria: Lower Austria"
+    it: "Austria: Austria Inferiore"
     fr: "Austria: Lower Austria"
     de: "Austria: Lower Austria"
     en: "Austria: Lower Austria"
     es: "Austria: Baja Austria"
 "XA-AT-5":
   label:
-    it: "Austria: Salzburg"
+    it: "Austria: Salisburgo"
     fr: "Austria: Salzburg"
     de: "Austria: Salzburg"
     en: "Austria: Salzburg"
     es: "Austria: Salzburgo"
 "XA-AT-6":
   label:
-    it: "Austria: Styria"
+    it: "Austria: Stiria"
     fr: "Austria: Styria"
     de: "Austria: Styria"
     en: "Austria: Styria"
     es: "Austria: Estiria"
 "XA-AT-7":
   label:
-    it: "Austria: Tyrol"
+    it: "Austria: Tirolo"
     fr: "Austria: Tyrol"
     de: "Austria: Tyrol"
     en: "Austria: Tyrol"
     es: "Austria: Tirol"
 "XA-AT-4":
   label:
-    it: "Austria: Upper Austria"
+    it: "Austria: Austria Superiore"
     fr: "Austria: Upper Austria"
     de: "Austria: Upper Austria"
     en: "Austria: Upper Austria"
@@ -684,7 +694,7 @@ wr:
     es: "Austria: Viena"
 "XA-BE":
   label:
-    it: "Belgium"
+    it: "Belgio"
     fr: "Belgium"
     de: "Belgium"
     en: "Belgium"
@@ -698,7 +708,7 @@ wr:
     es: "Benín"
 "XD-BR":
   label:
-    it: "Brazil"
+    it: "Brasile"
     fr: "Brazil"
     de: "Brazil"
     en: "Brazil"
@@ -712,7 +722,7 @@ wr:
     es: "Bulgaria"
 "XB-KH":
   label:
-    it: "Cambodia"
+    it: "Cambogia"
     fr: "Cambodia"
     de: "Cambodia"
     en: "Cambodia"
@@ -726,14 +736,14 @@ wr:
     es: "Canadá"
 "XD-CL":
   label:
-    it: "Chile"
+    it: "Cile"
     fr: "Chile"
     de: "Chile"
     en: "Chile"
     es: "Chile"
 "XB-CN":
   label:
-    it: "China"
+    it: "Cina"
     fr: "China"
     de: "China"
     en: "China"
@@ -747,7 +757,7 @@ wr:
     es: "Colombia"
 "XA-HR":
   label:
-    it: "Croatia"
+    it: "Croazia"
     fr: "Croatia"
     de: "Croatia"
     en: "Croatia"
@@ -761,21 +771,21 @@ wr:
     es: "Cuba"
 "XA-CZ":
   label:
-    it: "Czech Republic"
+    it: "Repubblica Ceca"
     fr: "Czech Republic"
     de: "Czech Republic"
     en: "Czech Republic"
     es: "República Checa"
 "XA-DK":
   label:
-    it: "Denmark"
+    it: "Danimarca"
     fr: "Denmark"
     de: "Denmark"
     en: "Denmark"
     es: "Dinamarca"
 "XC-EG":
   label:
-    it: "Egypt"
+    it: "Egitto"
     fr: "Egypt"
     de: "Egypt"
     en: "Egypt"
@@ -789,56 +799,56 @@ wr:
     es: "Estonia"
 "XA-FI":
   label:
-    it: "Finland"
+    it: "Finlandia"
     fr: "Finland"
     de: "Finland"
     en: "Finland"
     es: "Finlandia"
 "XA-FR":
   label:
-    it: "France"
+    it: "Francia"
     fr: "France"
     de: "France"
     en: "France"
     es: "Francia"
 "XB-GE":
   label:
-    it: "Georgien"
+    it: "Georgia"
     fr: "Georgia"
     de: "Georgia"
     en: "Georgia"
     es: "Georgia"
 "XA-DE":
   label:
-    it: "Germany"
+    it: "Germania"
     fr: "Germany"
     de: "Germany"
     en: "Germany"
     es: "Alemania"
 "XA-DE-BY":
   label:
-    it: "Germany: Bavaria"
+    it: "Germana: Baviera"
     fr: "Germany: Bavaria"
     de: "Germany: Bavaria"
     en: "Germany: Bavaria"
     es: "Alemania: Bavaria"
 "XA-DE-SN":
   label:
-    it: "Germany: Saxony"
+    it: "Germania: Sassonia"
     fr: "Germany: Saxony"
     de: "Germany: Saxony"
     en: "Germany: Saxony"
     es: "Alemania: Sajonia"
 "XA-GR":
   label:
-    it: "Greece"
+    it: "Grecia"
     fr: "Greece"
     de: "Greece"
     en: "Greece"
     es: "Grecia"
 "XA-VA":
   label:
-    it: "Holy See"
+    it: "Santa Sede"
     fr: "Holy See"
     de: "Holy See"
     en: "Holy See"
@@ -852,14 +862,14 @@ wr:
     es: "Honduras"
 "XA-HU":
   label:
-    it: "Hungary"
+    it: "Ungheria"
     fr: "Hungary"
     de: "Hungary"
     en: "Hungary"
     es: "Hungría"
 "XA-IS":
   label:
-    it: "Iceland"
+    it: "Islanda"
     fr: "Iceland"
     de: "Iceland"
     en: "Iceland"
@@ -873,76 +883,76 @@ wr:
     es: "India"
 "XB-IR":
   label:
-    it: "Iran, Islamic Republic of"
+    it: "Iran, Repubblica Islamica dell'"
     fr: "Iran, Islamic Republic of"
     de: "Iran, Islamic Republic of"
     en: "Iran, Islamic Republic of"
     es: "Irán, República Islámica de"
 "XA-IE":
   label:
-    it: "Ireland"
+    it: "Irlanda"
     fr: "Ireland"
     de: "Ireland"
     en: "Ireland"
     es: "Irlanda"
 "XB-IQ":
   label:
-    it: "IRAQ"
+    it: "Iraq"
     fr: "IRAQ"
     de: "Irak"
     en: "Iraq"
 "XB-IL":
   label:
-    it: "Israel"
+    it: "Israele"
     fr: "Israel"
     de: "Israel"
     en: "Israel"
     es: "Israel"
 "XA-IT-32":
   label:
-    it: "Italy: Trentino-Alto Adige"
+    it: "Italia: Trentino-Alto Adige"
     fr: "Italy: Trentino-Alto Adige"
     de: "Italy: Trentino-Alto Adige"
     en: "Italy: Trentino-Alto Adige"
     es: "Italia: Trentino-Alto Adigio"
 "XA-IT":
   label:
-    it: "Italy"
+    it: "Italia"
     fr: "Italy"
     de: "Italy"
     en: "Italy"
     es: "Italia"
 "XB-JP":
   label:
-    it: "Japan"
+    it: "Giappone"
     fr: "Japan"
     de: "Japan"
     en: "Japan"
     es: "Japón"
 "XB-KR":
   label:
-    it: "Korea, Republic of"
+    it: "Corea, Repubblica di"
     fr: "Korea, Republic of"
     de: "Korea, Republic of"
     en: "Korea, Republic of"
     es: "Corea, República de"
 "XA-LV":
   label:
-    it: "Latvia"
+    it: "Lettonia"
     fr: "Latvia"
     de: "Latvia"
     en: "Latvia"
     es: "Letonia"
 "XA-LT":
   label:
-    it: "Lithuania"
+    it: "Lituania"
     fr: "Lithuania"
     de: "Lithuania"
     en: "Lithuania"
     es: "Lituania"
 "XA-LU":
   label:
-    it: "Luxembourg"
+    it: "Lussemburgo"
     fr: "Luxembourg"
     de: "Luxembourg"
     en: "Luxembourg"
@@ -956,14 +966,14 @@ wr:
     es: "Malta"
 "XD-MX":
   label:
-    it: "Mexico"
+    it: "Messico"
     fr: "Mexico"
     de: "Mexico"
     en: "Mexico"
     es: "México"
 "XA-MD":
   label:
-    it: "MOLDAVIA"
+    it: "Moldavia"
     fr: "MOLDAVIA"
     de: "Moldawien"
     en: "Moldavia"
@@ -984,21 +994,21 @@ wr:
     es: "Montenegro"
 "XA-NL":
   label:
-    it: "Netherlands"
+    it: "Paesi Bassi"
     fr: "Netherlands"
     de: "Netherlands"
     en: "Netherlands"
     es: "Países Bajos"
 "XE-NZ":
   label:
-    it: "New Zealand"
+    it: "Nuova Zelanda"
     fr: "New Zealand"
     de: "New Zealand"
     en: "New Zealand"
     es: "Nueva Zelanda"
 "XA-NO":
   label:
-    it: "Norway"
+    it: "Norvegia"
     fr: "Norway"
     de: "Norway"
     en: "Norway"
@@ -1012,14 +1022,14 @@ wr:
     es: "Paraguay"
 "XA-PL":
   label:
-    it: "Poland"
+    it: "Polonia"
     fr: "Poland"
     de: "Poland"
     en: "Poland"
     es: "Polonia"
 "XA-PT":
   label:
-    it: "Portugal"
+    it: "Portogallo"
     fr: "Portugal"
     de: "Portugal"
     en: "Portugal"
@@ -1040,7 +1050,7 @@ wr:
     es: "Rumania"
 "XA-RU":
   label:
-    it: "Russian Federation"
+    it: "Federazione Russa"
     fr: "Russian Federation"
     de: "Russian Federation"
     en: "Russian Federation"
@@ -1054,7 +1064,7 @@ wr:
     es: "Serbia"
 "XA-SK":
   label:
-    it: "Slovakia"
+    it: "Slovacchia"
     fr: "Slovakia"
     de: "Slovakia"
     en: "Slovakia"
@@ -1068,84 +1078,84 @@ wr:
     es: "Eslovenia"
 "XC-ZA":
   label:
-    it: "South Africa"
+    it: "Sudafrica"
     fr: "South Africa"
     de: "South Africa"
     en: "South Africa"
     es: "Sudáfrica"
 "XA-ES":
   label:
-    it: "Spain"
+    it: "Spagna"
     fr: "Spain"
     de: "Spain"
     en: "Spain"
     es: "España"
 "XA-SE":
   label:
-    it: "Sweden"
+    it: "Svezia"
     fr: "Sweden"
     de: "Sweden"
     en: "Sweden"
     es: "Suecia"
 "XA-CH-VD":
   label:
-    it: "Switzerland: Vaud"
+    it: "Svizzera: Vaud"
     fr: "Switzerland: Vaud"
     de: "Switzerland: Vaud"
     en: "Switzerland: Vaud"
     es: "Suiza: cantón de Vaud"
 "XA-CH":
   label:
-    it: "Switzerland"
+    it: "Svizzera"
     fr: "Switzerland"
     de: "Switzerland"
     en: "Switzerland"
     es: "Suiza"
 "XB-SY":
   label:
-    it: "Syrian Arab Republic"
+    it: "Repubblica Araba Siriana"
     fr: "Syrian Arab Republic"
     de: "Syrian Arab Republic"
     en: "Syrian Arab Republic"
     es: "República Árabe Siria"
 "XB-TW":
   label:
-    it: "Taiwan (Province of China)"
+    it: "Taiwan (provincia della Cina)"
     fr: "Taiwan (Province of China)"
     de: "Taiwan (Province of China)"
     en: "Taiwan (Province of China)"
     es: "Taiwán (Provincia de China)"
 "XD-TT":
   label:
-    it: "Trinidad and Tobago"
+    it: "Trinidad e Tobago"
     fr: "Trinidad and Tobago"
     de: "Trinidad and Tobago"
     en: "Trinidad and Tobago"
     es: "Trinidad y Tobago"
 "XB-TR":
   label:
-    it: "Turkey"
+    it: "Turchia"
     fr: "Turkey"
     de: "Turkey"
     en: "Turkey"
     es: "Turquía"
 "XA-UA":
   label:
-    it: "Ukraine"
+    it: "Ucraina"
     fr: "Ukraine"
     de: "Ukraine"
     en: "Ukraine"
     es: "Ucrania"
 "XA-GB":
   label:
-    it: "United Kingdom"
+    it: "Regno Unito"
     fr: "United Kingdom"
     de: "United Kingdom"
     en: "United Kingdom"
     es: "Reino Unido"
 "XD-US":
   label:
-    it: "United States of America"
+    it: "Stati Uniti d'America"
     fr: "United States of America"
     de: "United States of America"
     en: "United States of America"
@@ -1159,7 +1169,7 @@ wr:
     es: "Uruguay"
 "XD-VE":
   label:
-    it: "Venezuela, Bolivarian Republic of"
+    it: "Venezuela, Repubblica Bolivariana del"
     fr: "Venezuela, Bolivarian Republic of"
     de: "Venezuela, Bolivarian Republic of"
     en: "Venezuela, Bolivarian Republic of"

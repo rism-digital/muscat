@@ -18,7 +18,7 @@ doc_tag_index:
   label: 
     de: MARC Tag Index
     en: Index of MARC fields
-    it: Indice dei Tag MARC
+    it: Indice dei campi MARC
     pt: "Índice dos campos MARC"
     es: "Índice de campos MARC"
 
@@ -49,7 +49,7 @@ doc_abbr_keys:
   label: 
     de: "Tonarten"
     en: "Keys"
-    it: "Tasti"
+    it: "Tonalità"
     es: "Tonalidades"
     pt: Tonalidades
 doc_abbr_lang: 
@@ -120,7 +120,7 @@ doc_aid_transposing_instruments:
   label: 
     de: "Hilfe zur Transponierung von Instrumenten"
     en: "Help for transposing instruments"
-    it: "Aiuto agli strumenti traspositori"
+    it: "Aiuto per gli strumenti traspositori"
     pt: Ajuda para instrumentos transpositores
     es: Ayuda para instrumentos transpositores
 
@@ -137,21 +137,21 @@ doc_cat_collections:
   label: 
     de: Erfassung von Sammlungen
     en: Cataloging collections
-    it: Catalogo delle raccolte
+    it: Catalogazione delle raccolte
     pt: "Catalogação de coletâneas"
     es: "Catalogación de colecciones"
 doc_cat_language: 
   label: 
     de: Katalogisierungsspache
     en: Cataloging language
-    it: CATALOGING LANGUAGE  
+    it: Lingua di catalogazione  
     pt: "Idioma de catalogação"
     es: "Idioma de catalogación"
 doc_cat_templates: 
   label: 
     de: Templates
     en: Templates
-    it: Modelli
+    it: Template
     pt: Modelos
     es: Plantillas
 doc_cat_authorities: 
@@ -309,7 +309,7 @@ doc_institutions:
   label:
     de: "Körperschaften"
     en: "Institutions"
-    it: "Istituzioni"
+    it: "Enti collettivi"
     pt: "Instituições"
     es: "Instituciones"
 doc_title:
@@ -323,7 +323,7 @@ doc_people:
   label:
     de: "Personen und Körperschaften"
     en: "People and institutions"
-    it: "Persone ed istituzioni"
+    it: "Persone ed enti colletivi"
     pt: "Pessoas e instituições"
     es: "Personas e instituciones"
 doc_main_entry_fields:
@@ -337,7 +337,7 @@ doc_mult_copies:
   label:
     de: "Mehrere Exemplare"
     en: "Multiple copies"
-    it: "MULTIPLE COPIES"
+    it: "Exemplari multipli"
     pt: "Múltiplos exemplares em uma instituição"
     es: "Múltiples ejemplares en una institución"
 doc_numbers:
@@ -372,14 +372,14 @@ doc_record_actions:
   label:
     de: "Titel veröffentlichen"
     en: "Record actions"
-    it: "RECORD ACTIONS"
+    it: "Azioni per la scheda"
     pt: "Ações do registro"
     es: "Acciones del registro"
 doc_record_status:
   label:
     de: "RECORD STATUS"
     en: "Record status"
-    it: "RECORD STATUS"
+    it: "Stato della scheda"
     pt: "Estado do registro"
     es: "Estado del registro"
 ################
@@ -1215,7 +1215,7 @@ doc_record_status:
         es: Serie
     c: 
       label: 
-        it: No
+        it: N.o
         fr: No
         de: No
         en: No
@@ -1376,7 +1376,7 @@ doc_record_status:
         es: "Nota de encuadernación"
     u: 
       label: 
-        it: "UNUSED - WILL BE REMOVED"
+        it: "INUTILIZZATO - VERRÀ RIMOSSO"
         fr: "UNUSED - WILL BE REMOVED"
         de: "UNUSED - WILL BE REMOVED"
         en: "UNUSED - WILL BE REMOVED"
@@ -1583,7 +1583,7 @@ doc_record_status:
       en: ""
     c: 
       label: 
-        it: REFERENCE RECORD ID
+        it: Numero identificativo della scheda di riferimento
         fr: REFERENCE RECORD ID
         de: REFERENCE RECORD ID
         en: REFERENCE RECORD ID
@@ -2241,7 +2241,7 @@ doc_record_status:
         es: "Ubiación de la inserción"
     g: 
       label: 
-        it: Incipit num.
+        it: N.o dell'incipit
         fr: No. d'incipit
         de: Incipitnummer
         en: Incipit number
@@ -2383,7 +2383,7 @@ doc_record_status:
       comment: "NEW IN 2018; experimental stage"
 "980": 
   label: 
-    it: RECORD ORIGIN
+    it: Origine della scheda
     fr: RECORD ORIGIN
     de: Herkunft
     en: Record origin
@@ -2392,7 +2392,7 @@ doc_record_status:
   fields: 
     a: 
       label: 
-        it: ORIGIN
+        it: Origine
         fr: ORIGIN
         de: Herkunft
         en: Origin
@@ -2401,7 +2401,7 @@ doc_record_status:
       comment: "NEW IN 2018"
     b: 
       label: 
-        it: CATALOGING LEVEL
+        it: Livello di catalogazione
         fr: CATALOGING LEVEL
         de: Erfassungstiefe
         en: Cataloging level
@@ -2409,7 +2409,7 @@ doc_record_status:
       comment: "NEW IN 2018"
     c: 
       label: 
-        it: MATERIAL EXAMINED
+        it: Materiale esaminato
         fr: MATERIAL EXAMINED
         de: Autopsie
         en: Material examined
@@ -3022,7 +3022,7 @@ arg:
     es: "Aragonés"
 baq: 
   label: 
-    it: BASQUE
+    it: Basco
     fr: BASQUE
     de: Baskisch
     en: Basque
@@ -3102,7 +3102,7 @@ est:
     es: Estonio
 fas:
   label:
-    IT: PERSIAN
+    IT: Persiano
     FR: PERSIAN
     de: Persisch
     en: Persian
@@ -3118,7 +3118,7 @@ fin:
     es: "Finés"
 frr: 
   label: 
-    IT: Dialetto Frisone Settentrionale
+    IT: Dialetto frisone settentrionale
     FR: Frison du Nord
     de: Nordfriesisch
     en: North Frisian
@@ -3389,7 +3389,7 @@ rus:
     es: Ruso
 san:
   label:
-    it: SANSKRIT
+    it: Sanscrito
     fr: SANSKRIT
     de: Sanskrit
     en: Sanskrit
@@ -3437,7 +3437,7 @@ srp:
     es: Serbio
 dsb:
   label:
-    it: Sorabo Inferiore
+    it: Sorabo inferiore
     fr: Sorabe, Sorabe inférieur
     de: Sorbisch, Niedersorbisch
     en: Sorbian, Lower Sorbian
@@ -3445,7 +3445,7 @@ dsb:
     es: Sorbio, Bajo Sorbio
 hsb:
   label:
-    it: Sorabo Superiore
+    it: Sorabo superiore
     fr: Sorabe, Sorabe supérieur
     de: Sorbisch, Obersorbisch
     en: Sorbian, Upper Sorbian
@@ -3477,7 +3477,7 @@ swe:
     es: Sueco
 tib: 
   label: 
-    it: TIBETAN
+    it: Tibetano
     fr: TIBETAN
     de: Tibetanisch
     en: Tibetan
@@ -4483,7 +4483,7 @@ Typography:
 # new for 980
 origin:
   label:
-    it: "ORIGIN"
+    it: "Origine"
     fr: "ORIGIN"
     de: "Herkunft"
     en: "Origin"
@@ -4491,7 +4491,7 @@ origin:
     es: "Orígen"
 level:
   label:
-    it: "CATALOGING LEVEL"
+    it: "Livello di catalogazione"
     fr: "CATALOGING LEVEL"
     de: "Erfassungstiefe"
     en: "Cataloging level"
@@ -4499,7 +4499,7 @@ level:
     es: "Nivel de catalogación"
 autopsie:
   label:
-    it: "MATERIAL EXAMINED"
+    it: "Materiale esaminato"
     fr: "MATERIAL EXAMINED"
     de: "Autopsie"
     en: "Material examined"
@@ -4514,7 +4514,7 @@ RISM:
     es: "RISM"
 retro:
   label:
-    it: "RETROSPECTIVE CONVERSION"
+    it: "Conversione retrospettiva"
     fr: "RETROSPECTIVE CONVERSION"
     de: "Retroeinspielung"
     en: "Retrospective conversion"
@@ -4522,7 +4522,7 @@ retro:
     es: "Conversión retrospectiva"
 import:
   label:
-    it: "IMPORT"
+    it: "Dati importati"
     fr: "IMPORT"
     de: "Fremddateneinspielung"
     en: "Import"
@@ -4530,7 +4530,7 @@ import:
     es: "Importación"
 full:
   label:
-    it: "FULL"
+    it: "Completo"
     fr: "FULL"
     de: "Vollkatalogisat"
     en: "Full"
@@ -4538,7 +4538,7 @@ full:
     es: "Completo"
 standard:
   label:
-    it: "STANDARD"
+    it: "Standard"
     fr: "STANDARD"
     de: "Standard"
     en: "Standard"
@@ -4546,14 +4546,14 @@ standard:
     es: "Estándar"
 brief:
   label:
-    it: "BRIEF"
+    it: "Breve"
     fr: "BRIEF"
     de: "Kurzkatalogisat"
     en: "Brief"
     pt: "Breve"
 examined:
   label:
-    it: "MATERIAL EXAMINED"
+    it: "Materiale esaminato"
     fr: "MATERIAL EXAMINED"
     de: "Autopsie"
     en: "Material examined"
@@ -4561,7 +4561,7 @@ examined:
     es: Material examinado
 not_examined:
   label:
-    it: "MATERIAL NOT EXAMINED"
+    it: "Materiale non esaminato"
     fr: "MATERIAL NOT EXAMINED"
     de: "Keine Autopsie"
     en: "Material not examined"
