@@ -1,5 +1,8 @@
 class ReindexItemsJob < ProgressJob::Base
   
+  # To start delayed job use a reasonable amount of workers:
+  # --pool=reindex:10 --pool=sub_reindex:10
+
   # The median value of items in the People auth file is 491
   # Is is also a good break point to decide if to divide the
   # reindex from single process to multiple procesess, as 500
