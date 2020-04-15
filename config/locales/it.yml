@@ -704,6 +704,8 @@ it:
     insufficient_rights: "L'utente non ha i diritti necessari per creare un record con questa biblioteca"
     name_uniqueness: "Il nome breve dell'elemento è già in uso"
     correct: "Il record non contiene errori [200]"
+    begins_with_message: "Il campo deve iniziare con \"{0}\""
+    required_if_message: "Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}"
 
   incipit_search:
     incipit_search: "Ricerca negli incipit"

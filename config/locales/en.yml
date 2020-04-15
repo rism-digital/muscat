@@ -702,6 +702,8 @@ en:
     insufficient_rights: "User has insufficient rights to create/update a record of this library"
     name_uniqueness: "Short name of entry is already taken"
     correct: "The record has no validation errors [200]"
+    begins_with_message: "Must begin with \"{0}\""
+    required_if_message: "Field is mandatory because {0} ${1} is not empty"
     
   incipit_search:
     incipit_search: "Incipit Search"
