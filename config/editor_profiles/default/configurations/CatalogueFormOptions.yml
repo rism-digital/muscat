@@ -292,18 +292,8 @@
         select_label: "Function"
   tag_params: 
     codes: 
-    - fmo
-    - dnr
-    - dte
-    - prf
-    - otm
-    - ppm
-    - prt
-    - pbl
     - edt
-    - bsl
     - oth
-    - dub
 "760": 
   allow_new: true
   new_window: catalogues
