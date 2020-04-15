@@ -15,3 +15,13 @@ client:
       a: required
       c: required
       x: mandatory
+  "856": 
+    tags:
+      u:
+        begins_with: "http"
+      z:
+        required_if:
+          "856": "u"
+      x:
+        required_if:
+          "856": "u"
