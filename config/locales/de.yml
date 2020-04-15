@@ -703,7 +703,7 @@ de:
     insufficient_rights: "Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen/zu ändern."
     name_uniqueness: "Das Kürzel des Eintrages ist bereits vergeben."
     correct: "Der Eintrag enthält keine Validierungsfehler. [200]"
-    begins_with_message: "Das Feld muss beginnen mit \"{0}\""
+    begins_with_message: "Das Feld muss mit \"{0}\" beginnen"
     required_if_message: "Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}"
 
   incipit_search:
