@@ -88,7 +88,14 @@ include ApplicationHelper
             end
             
           elsif rule.is_a? Hash
-            if rule.has_key?("required_if")
+            if rule.has_key?("begins_with")
+              subst = rule["begins_with"]
+              if marc_subtag && marc_subtag.content && !marc_subtag.content.start_with?(subst)
+                add_error(tag, subtag, "begin_with:#{subst}")
+                puts "#{tag} #{subtag} should begin with #{subst}" if DEBUG
+              end
+
+            elsif rule.has_key?("required_if")
               # This is another hash! gotta love json
               rule["required_if"].each do |other_tag, other_subtag|
                 # Try to get this other tag first

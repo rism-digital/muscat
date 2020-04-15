@@ -52,6 +52,6 @@ class PublishFolderJob < ProgressJob::Base
   end
   
   def queue_name
-    'folders'
+    'resave'
   end
 end

@@ -699,6 +699,8 @@ pt:
     insufficient_rights: "O usuário não tem concessão para criar/atualizar um registro para esta instituição"
     name_uniqueness: "O nome abreviado do registro já está em uso"
     correct: "O registro não tem erros de validação [200]"
+    begins_with_message: "O campo deve começar com \"{0}\""
+    required_if_message: "Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}"
     
   incipit_search:
     incipit_search: "Busca por Incipit"

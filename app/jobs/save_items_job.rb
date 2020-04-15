@@ -1,7 +1,12 @@
 class SaveItemsJob < ProgressJob::Base
-  
+  # The "save" jobs are all "unsave" in the sense that multiple copies should not
+  # run at the same moment, i.e. saving the same record at the same moment
+  # So it is important to start them in a dedicated "resave" queue with only 1 worker
+  # to ensure they are processed 1-by-1, In delayedjob use
+  # --pool:resave to get 1 worker
+
   # See the ReindexItemsJob for an explanation of why we pass a separate obj id and class
-  def initialize(parent_obj_id, parent_obj_class, relation = "referring_sources")
+  def initialize(parent_obj_id, parent_obj_class, relation = :referring_sources)
     @parent_obj_id = parent_obj_id
     @parent_obj_class = parent_obj_class
     @relation = relation
@@ -29,7 +34,7 @@ class SaveItemsJob < ProgressJob::Base
     items = parent_obj.send(@relation)
     
     update_progress_max(-1)
-    update_stage("Look up #{@relation}")
+    update_stage("Look up #{@relation.to_s}")
     update_progress_max(items.count)
     
     count = 1

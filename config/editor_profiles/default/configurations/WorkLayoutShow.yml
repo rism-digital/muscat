@@ -38,6 +38,7 @@ groups:
     - "670"
     - "675"
     - "680"
+    - "667"
     all_tag_templates:
       "670": people/show_catalogue
   relations:

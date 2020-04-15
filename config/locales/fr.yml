@@ -703,6 +703,8 @@ fr:
     insufficient_rights: "L'utilisateur ne dispose pas des droits nécessaires pour créer un enregistrement avec cette bibliothèque."
     name_uniqueness: "Le nom abrégé de l'élément est déjà utilisé"
     correct: "L'enregistrement ne contient aucune erreur [200]"
+    begins_with_message: "Le champ doit commencer par \"{0}\""
+    required_if_message: "Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}"
 
   incipit_search:
     incipit_search: "Recherche par incipit"

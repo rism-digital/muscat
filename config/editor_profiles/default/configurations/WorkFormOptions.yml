@@ -325,6 +325,12 @@
       - values:
         - "Date of origin"  
         editor_partial: subfield_select
+"667": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    columns: 2
 "670": 
   allow_new: true
   new_window: catalogues
@@ -420,9 +426,11 @@
       - cols: 4
     - - i
       - values:
-        - "Adaption of"  
+        - "Adaption of"
+        - "Continuation of"
         - "Inspired by"
         - "Other"
+        - "Part of"
         - "Pharaphrase of"  
         - "Variation of"  
         editor_partial: subfield_select
