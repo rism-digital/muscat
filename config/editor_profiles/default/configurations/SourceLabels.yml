@@ -2592,7 +2592,7 @@ arr:
     fr: Arrangeur
     de: Bearbeiter
     en: Arranger
-    pt: Arranjador
+    pt: "Arranjador [arr]"
     es: Arreglador
 art: 
   label: 
@@ -2608,14 +2608,14 @@ asg:
     de: Lizenznehmer
     en: Assignee
     es: Asignatario
-    pt: Cessionário
+    pt: "Cessionário [asg]"
 asn: 
   label: 
     it: Altro nome
     fr: Autre nom
     de: Weiterer Name
     en: Associated name
-    pt: Nome associado
+    pt: "Nome associado [asn]"
     es: Nombre asociado
 aut: 
   label: 
@@ -2623,7 +2623,7 @@ aut:
     fr: Auteur
     de: Autor
     en: Author
-    pt: Autor
+    pt: "Autor [aut]"
     es: Autor
 bnd: 
   label: 
@@ -2638,7 +2638,7 @@ bsl:
     fr: Libraire
     de: "Musikalienhändler"
     en: Bookseller
-    pt: Livreiro
+    pt: "Livreiro [bsl]"
     es: Librero
 ccp: 
   label: 
@@ -2646,7 +2646,7 @@ ccp:
     fr: Auteur du texte
     de: Autor der Textvorlage
     en: Conceptor
-    pt: Conceptor
+    pt: "Conceptor [ccp]"
     es: Autor del concepto
 chr: 
   label: 
@@ -2668,7 +2668,7 @@ cmp:
     fr: Compositeur / Co-compositeur
     de: Komponistenquerverweis
     en: Composer cross-reference
-    pt: "Referência cruzada de compositor"
+    pt: "Referência cruzada de compositor [cmp]"
     es: Referencia cruzada de compositor
 cnd: 
   label: 
@@ -2683,7 +2683,7 @@ cns:
     fr: Censeur
     de: Zensor
     en: Censor
-    pt: Censor
+    pt: "Censor [cns]"
     es: Censor
 com: 
   label: 
@@ -2699,7 +2699,7 @@ cph:
     de: Rechteinhaber
     en: Copyright holder
     es: Titular de los derechos de copia
-    pt: Titular dos direitos de autor
+    pt: "Titular dos direitos de autor [cph]"
 cst: 
   label: 
     it: Costumista
@@ -2713,7 +2713,7 @@ ctb:
     fr: Contributeur
     de: Mitkomponist
     en: Co-composer
-    pt: "Co-compositor"
+    pt: "Co-compositor [ctb]"
     es: "Co-compositor"
 ccp:
   label:
@@ -2721,7 +2721,7 @@ ccp:
     fr: Concepteur
     de: Autor der Textvorlage
     en: Conceptor
-    pt: Conceptor
+    pt: "Conceptor [ccp]"
     es: Autor del concepto
 dnc: 
   label: 
@@ -2743,7 +2743,7 @@ dpt:
     fr: Dépositeur
     de: Depositor
     en: Depositor
-    pt: Depositante
+    pt: "Depositante [dpt]"
     es: Depositario
 dsr: 
   label: 
@@ -2758,7 +2758,7 @@ dte:
     fr: "Dédicataire"
     de: "Widmungsträger"
     en: Dedicatee
-    pt: "Dedicatário(a)"
+    pt: "Dedicatário(a) [dte]"
     es: "Dedicatario(a)"
 dst: 
   label: 
@@ -2766,7 +2766,7 @@ dst:
     fr: "Distributeur"
     de: "Vertrieb"
     en: Distributor
-    pt: Distribuidor
+    pt: "Distribuidor [dst]"
     es: Distribuidor
 asn: 
   label: 
@@ -2775,14 +2775,14 @@ asn:
     de: Zugehöriger Name
     en: Associated name
     es: Nombre asociado
-    pt: Nome associado
+    pt: "Nome associado [asn]"
 edt: 
   label: 
     it: Curatore
     fr: Editeur
     de: Herausgeber
     en: Editor
-    pt: Editor
+    pt: "Editor [edt]"
     es: "Editor (curador)/Editorial"
 egr: 
   label: 
@@ -2790,7 +2790,7 @@ egr:
     fr: Graveur
     de: Stecher
     en: Engraver
-    pt: Gravador
+    pt: "Gravador [egr]"
     es: Grabador
 evp:
   label: 
@@ -2798,7 +2798,7 @@ evp:
     fr: "Lieu de l'événement"
     de: Veranstaltungsort
     en: Event place
-    pt: Local do evento
+    pt: "Local do evento [evp]"
     es: Lugar del evento
 fmo: 
   label: 
@@ -2806,7 +2806,7 @@ fmo:
     fr: "Propriétaire précédent"
     de: Vorbesitzer
     en: Former owner
-    pt: "Proprietário anterior"
+    pt: "Proprietário anterior [fmo]"
     es: Propietario anterior
 ill: 
   label: 
@@ -2814,7 +2814,7 @@ ill:
     fr: Illustrateur
     de: Illustrator
     en: Illustrator
-    pt: Ilustrador
+    pt: "Ilustrador [ill]"
     es: Ilustrador
 itr: 
   label: 
@@ -2829,7 +2829,7 @@ lbt:
     fr: Librettiste
     de: Librettist
     en: Librettist
-    pt: Libretista
+    pt: "Libretista [lbt]"
     es: Libretista
 lse: 
   label: 
@@ -2838,14 +2838,14 @@ lse:
     de: Lizenzinhaber
     en: Licensee
     es: Licenciatario
-    pt: Licenciado
+    pt: "Licenciado [lse]"
 ltg: 
   label: 
     it: Litografo
     fr: Litographe
     de: Lithograph
     en: Lithographer
-    pt: "Litógrafo"
+    pt: "Litógrafo [ltg]"
     es: "Litógrafo"
 lyr: 
   label: 
@@ -2853,7 +2853,7 @@ lyr:
     fr: Parolier
     de: Textdichter
     en: Text author
-    pt: "Autor literário"
+    pt: "Autor literário [lyr]"
     es: Autor del texto
 oth: 
   label: 
@@ -2861,7 +2861,7 @@ oth:
     fr: Autre function
     de: Sonstige Funktion
     en: Other
-    pt: Outro
+    pt: "Outro(a) [oth]"
     es: Otro
 otm: 
   label: 
@@ -2883,7 +2883,7 @@ pbl:
     fr: Editeur
     de: Verleger
     en: Publisher 
-    pt: Publicador
+    pt: "Publicador [pbl]"
     es: "Editor (publicador)/Editorial (publicadora)"
 ppm: 
   label: 
@@ -2892,6 +2892,7 @@ ppm:
     de: Papierhersteller
     en: Papermaker
     es: Fabricante de papel
+    pt: "Fabricante de papel [ppm]" 
 prd: 
   label: 
     it: Personale alla produzione
@@ -2905,7 +2906,7 @@ prf:
     fr: "Interprète"
     de: Interpret
     en: Performer
-    pt: "Intérprete"
+    pt: "Intérprete [prf]"
     es: "Intérprete"
 prt: 
   label: 
@@ -2913,7 +2914,7 @@ prt:
     fr: Imprimeur
     de: Drucker
     en: Printer
-    pt: Impressor
+    pt: "Impressor(a) [prt]"
     es: Impresor
 pub: 
   label: 
@@ -2921,7 +2922,7 @@ pub:
     fr: Editeur
     de: Verleger
     en: Publisher
-    pt: Publicador
+    pt: "Publicador [pub]"
     es: Editor
 scr: 
   label: 
@@ -2929,7 +2930,7 @@ scr:
     fr: Copiste / Scribe
     de: Schreiber
     en: Copyist
-    pt: Copista
+    pt: "Copista [scr]"
     es: Copista
 trl: 
   label: 
@@ -2937,7 +2938,7 @@ trl:
     fr: Traducteur
     de: "Übersetzer"
     en: Translator
-    pt: Tradutor
+    pt: "Tradutor [trl]"
     es: Traductor
 voc: 
   label: 
