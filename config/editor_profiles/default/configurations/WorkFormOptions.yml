@@ -420,9 +420,11 @@
       - cols: 4
     - - i
       - values:
-        - "Adaption of"  
+        - "Adaption of"
+        - "Continuation of"
         - "Inspired by"
         - "Other"
+        - "Part of"
         - "Pharaphrase of"  
         - "Variation of"  
         editor_partial: subfield_select
