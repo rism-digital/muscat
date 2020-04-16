@@ -139,7 +139,7 @@ ActiveAdmin.register CanonicTechnique do
       row (I18n.t :filter_mensurations) { |r| r.mensurations }
     end
 
-    active_admin_embedded_source_list( self, canonic_technique, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, canonic_technique, !is_selection_mode? )
     active_admin_user_wf( self, canonic_technique )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
