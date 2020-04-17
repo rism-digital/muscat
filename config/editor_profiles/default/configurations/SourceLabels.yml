@@ -2646,7 +2646,7 @@ ccp:
     fr: Auteur du texte
     de: Autor der Textvorlage
     en: Conceptor
-    pt: "Conceptor [ccp]"
+    pt: "Criador [ccp]"
     es: Autor del concepto
 chr: 
   label: 
@@ -2699,7 +2699,7 @@ cph:
     de: Rechteinhaber
     en: Copyright holder
     es: Titular de los derechos de copia
-    pt: "Titular dos direitos de autor [cph]"
+    pt: "Detentor dos direitos de cópia/reprodução [cph]"
 cst: 
   label: 
     it: Costumista
@@ -2838,7 +2838,7 @@ lse:
     de: Lizenzinhaber
     en: Licensee
     es: Licenciatario
-    pt: "Licenciado [lse]"
+    pt: "Titular [lse]"
 ltg: 
   label: 
     it: Litografo
@@ -2883,7 +2883,7 @@ pbl:
     fr: Editeur
     de: Verleger
     en: Publisher 
-    pt: "Publicador [pbl]"
+    pt: "Casa editora [pbl]"
     es: "Editor (publicador)/Editorial (publicadora)"
 ppm: 
   label: 
