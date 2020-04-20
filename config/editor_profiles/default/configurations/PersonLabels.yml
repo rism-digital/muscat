@@ -1020,6 +1020,13 @@ wr:
     de: "Paraguay"
     en: "Paraguay"
     es: "Paraguay"
+"XD-PE":
+  label:
+    it: "Perù"
+    fr: "Pérou"
+    de: "Peru"
+    en: "Peru"
+    es: "Perú"
 "XA-PL":
   label:
     it: "Polonia"
