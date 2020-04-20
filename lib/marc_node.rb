@@ -181,7 +181,9 @@ class MarcNode
       link.send("wf_stage=", 'published')
       link.send("#{field}=", tag.content)
 
-      link.suppress_reindex
+      # Link was not reindexed so it would not immediately show up in the list
+      # This was done to save a bit of time when saving
+      # link.suppress_reindex
       link.suppress_scaffold_marc if link.respond_to?(:suppress_scaffold_marc)
       begin
         link.save!
