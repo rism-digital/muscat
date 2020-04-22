@@ -154,7 +154,7 @@ class MarcSource < Marc
           
     elsif tags_852.length == 1 # single copy
       if node = first_occurance("852", "a")
-        siglum = node.foreign_object.siglum
+        siglum = node.foreign_object.siglum rescue siglum = ""
         siglum = "" if !siglum
       end
       if node = first_occurance("852", "c")
