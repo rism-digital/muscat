@@ -1,6 +1,73 @@
 Muscat Changelog
 ================
 
+v 6.2
+* Generic method to check dependencies
+* Add helper and routes to account for different #show action on controllers
+* Make search history work with different catalogs
+* Make the search links point to the correct controller
+* Disable CSRF for API call to holdings
+* Added rspec concerning dependency checks
+* Replace all check dependencies with the generic one
+* Intermedate skip_check_dependencies flag with AR relations
+* Default values for 980
+* Removed depostor from 700 holdings
+* Add mysql optimizations
+* Removing internal remark from people export
+* Merge pull request #909 from rism-ch/dependabot/bundler/puma-4.3.3
+* Merge branch '5.1-devel-bl-view' into 6.2-catalogs
+* Merge branch '5.2-devel-updates' into 6.2-catalogs-merge
+* Add more items with @catalog_controller
+* Removed unused subfields from person editor
+* Reindex print child records
+* Fix #906 Restate married_to
+* Fix sidebar, 5 hours of work, 2 lines of code
+* New reindex script
+* DB copying scripts
+* Auto-update script
+* Fix the empty PCH query in advanced
+* Fix #912, make triggers work with 1 source
+* Fix #908
+* Fix #872
+* Tweak .gitignore
+* Make the Checkup Report modular
+* New background maintainance jobs
+* Hide the "pae" field
+* Visualize only filtered holdings
+* "exemplar" not sources, next step I18n
+* Monkeypatch to filter lib_siglum in facets
+* Workaround for Kaminari bug, to "span" element that gets escaped
+* New & improved index error messages
+* Removed unused subfields with people
+* Fix #914, added some 700/710 validation closing
+* Add initializer for delayed job
+* Update pt.yml
+* Added Country Monaco to people
+* New and improved reindex job for referring items
+* Modify save items job to avoid the "record not found" issue
+* Merge pull request #910 from rism-ch/5.3-devel-assoc
+* Optimize config file loading
+* Fix #773, remove dub
+* Translate more missing terms
+* Add 700 / 710 validation in holding (see #914)
+* Add reindex flash bar
+* Update it translations
+* Fix new window works error with works
+* Use the new reindex job
+* Add some installation notes
+* Change queues
+* FIx #818, by removing the truncation (which was quite long), if we find records that are unporportionately long we can truncate again
+* Fix #850, add new relationships to 930
+* Fix #846, add 667 field
+* Fix #900, implement a simple begins_with rule
+* Added some sru fields
+* Make localization work in the editor
+* Fix #916, remove functions
+* Added country Peru to people
+* Small update of PT functions
+* Fix #863, reindex every time a links_to field is populated
+* Fix #915
+
 v 6.1.1
 * Fix #905, "profession" filter in People causes a crash
 
