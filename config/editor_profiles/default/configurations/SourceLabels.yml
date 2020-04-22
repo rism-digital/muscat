@@ -57,7 +57,7 @@ doc_abbr_lang:
     de: "Sprachcodes"
     en: "Language codes"
     it: "Codice lingua"
-    pt: "Código de língua"
+    pt: "Código de idioma"
     es: "Código de Idioma"
 doc_abbr_modes:
   label: 
@@ -774,7 +774,7 @@ doc_record_status:
         fr: Langue de catalogage
         de: Katalogisierungssprache
         en: Language of cataloguing
-        pt: "Língua de catalogação"
+        pt: "Idioma de catalogação"
         es: "Idioma de catalogación"
 "041": 
   label: 
@@ -782,7 +782,7 @@ doc_record_status:
     fr: Code de langue
     de: Sprachcode
     en: Language code
-    pt: "Código de língua"
+    pt: "Código de idioma"
     es: "Código de idioma"
   fields: 
     a: 
@@ -791,7 +791,7 @@ doc_record_status:
         fr: "Langue du texte chanté"
         de: Sprachcode
         en: Language of text
-        pt: "Língua do texto"
+        pt: "Idioma do texto"
         es: "Idioma del texto"
     e: 
       label: 
@@ -799,7 +799,7 @@ doc_record_status:
         fr: Langue du livret
         de: Sprachcode von Libretti
         en: Language of libretto
-        pt: "Língua do libreto"
+        pt: "Idioma do libreto"
         es: "Idioma del libreto"
     h: 
       label: 
@@ -807,7 +807,7 @@ doc_record_status:
         fr: Langue du texte original
         de: Sprachcode des Originaltextes
         en: Language of original text
-        pt: "Língua do texto original"
+        pt: "Idioma do texto original"
         es: "Idioma del texto original"
     indicator: 
       label: 
@@ -1325,7 +1325,7 @@ doc_record_status:
     fr: Note sur la langue
     de: Sprachenvermerk
     en: Language note
-    pt: "Nota de língua"
+    pt: "Nota de idioma"
     es: "Nota de idioma"
   fields: 
     a: 
@@ -1334,7 +1334,7 @@ doc_record_status:
         fr: Note sur la langue
         de: Sprachenvermerk
         en: Language note
-        pt: "Nota de língua"
+        pt: "Nota de idioma"
         es: "Nota de idioma"
       edit_label: 
         en: ""
@@ -2182,7 +2182,7 @@ doc_record_status:
     fr: Source principale
     de: Übergeordneter Eintrag
     en: Parent record
-    pt: "Registro inicial"
+    pt: "Registro principal"
     es: Registro madre
   fields: 
     w: 
@@ -2406,6 +2406,7 @@ doc_record_status:
         de: Erfassungstiefe
         en: Cataloging level
         es: Nivel de catalogación
+        pt: "Nível de catalogação"
       comment: "NEW IN 2018"
     c: 
       label: 
@@ -4521,6 +4522,7 @@ autopsie:
     de: "Autopsie"
     en: "Material examined"
     es: "Material examinado"
+    pt: "Material examinado"
 RISM:
   label:
     it: "RISM"
@@ -5037,7 +5039,7 @@ li_041:
     en: "Language code"
     it: "Codice della lingua"
     de: "Sprachcode"
-    pt: "Código de língua"
+    pt: "Código de idioma"
     es: "Código de idioma"
 li_044:
   label:
@@ -5065,7 +5067,7 @@ li_650:
     en: "Subject heading"
     it: "Parola chiave"
     de: "Schlagworteintragung"
-    pt: "Cabeçalho de assunto"
+    pt: "Assunto"
     es: "Descriptor"
 li_651:
   label:
@@ -5241,7 +5243,7 @@ aid_language:
     en: "Language codes"
     it: "Codici lingue"
     de: "Sprachcodes"
-    pt: "Código de língua"
+    pt: "Código de idioma"
     es: "Código de idioma"
 doc_other:
   label:

@@ -182,8 +182,8 @@ pt:
         one: "Fonte"
         other: "Fontes"
       standard_term:
-        one: "Títulos de Assunto"
-        other: "Títulos de Assunto"
+        one: "Assunto"
+        other: "Assunto"
       standard_title:
         one: "Título uniforme"
         other: "Títulos uniformes"
