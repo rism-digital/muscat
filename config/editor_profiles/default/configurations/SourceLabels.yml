@@ -3300,6 +3300,14 @@ mon:
     en: Mongolian
     pt: Mongol
     es: Mongol
+mul:
+  label:
+    it: Multiple
+    fr: Multiple
+    de: Mehrere
+    en: Multiple
+    pt: Múltiplos
+    es: Múltiples
 nap: 
   label: 
     it: Napoletano
@@ -3396,6 +3404,14 @@ san:
     en: Sanskrit
     pt: "Sânscrito"
     es: "Sánscrito"
+sco:
+  label:
+    it: Scozzese
+    fr: Écosse
+    de: Schottisch
+    en: Scots
+    pt: Escocês
+    es: Scozzese
 scn: 
   label: 
     IT: Siciliano
