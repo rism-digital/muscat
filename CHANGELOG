@@ -67,6 +67,7 @@ v 6.2
 * Small update of PT functions
 * Fix #863, reindex every time a links_to field is populated
 * Fix #915
+* Avoid crash if siglum is unavailable when saving source
 
 v 6.1.1
 * Fix #905, "profession" filter in People causes a crash
