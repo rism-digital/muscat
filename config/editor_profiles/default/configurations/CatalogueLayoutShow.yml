@@ -49,3 +49,6 @@ groups:
     - "599"
     - "856"
     - "520"
+    all_tag_templates: 
+      "856": marc_show/show_link
+ 

@@ -9,6 +9,7 @@
 # The class provides the same functionality as similar models, see Catalogue
 
 class LiturgicalFeast < ApplicationRecord
+  include ForeignLinks
   include AuthorityMerge
   
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")
@@ -70,11 +71,4 @@ class LiturgicalFeast < ApplicationRecord
     end
   end
 
-  def check_dependencies
-    if (self.referring_sources.count > 0)
-      errors.add :base, "The liturgical fease could not be deleted because it is used"
-      throw :abort
-    end
-  end
-  
 end

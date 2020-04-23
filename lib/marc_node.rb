@@ -52,10 +52,11 @@ class MarcNode
         #  master = add(MarcNode.new( @marc_configuration.get_master( self.tag ) , "", nil))
         #end
         master = get_master_foreign_subfield
+        
         if !master
           #raise NoMethodError, "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
           $stderr.puts "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
-          self.destroy_yourself
+          #self.destroy_yourself
           return
         end
         
@@ -180,7 +181,9 @@ class MarcNode
       link.send("wf_stage=", 'published')
       link.send("#{field}=", tag.content)
 
-      link.suppress_reindex
+      # Link was not reindexed so it would not immediately show up in the list
+      # This was done to save a bit of time when saving
+      # link.suppress_reindex
       link.suppress_scaffold_marc if link.respond_to?(:suppress_scaffold_marc)
       begin
         link.save!

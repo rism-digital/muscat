@@ -1,7 +1,27 @@
 --- !map:Settings
 client:
+  "700": 
+    tags:
+      "4":
+        required_if:
+          "700": "0"
+  "710": 
+    tags:
+      "4":
+        required_if:
+          "710": "0"
   "852":
     tags:
       a: required
       c: required
       x: mandatory
+  "856": 
+    tags:
+      u:
+        begins_with: "http"
+      z:
+        required_if:
+          "856": "u"
+      x:
+        required_if:
+          "856": "u"

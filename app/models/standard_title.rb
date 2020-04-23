@@ -11,6 +11,7 @@
 # The other functions are standard, see Catalogue for a general description
 
 class StandardTitle < ApplicationRecord
+  include ForeignLinks
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
   has_many :folder_items, as: :item, dependent: :destroy
@@ -88,14 +89,7 @@ class StandardTitle < ApplicationRecord
       #StandardTitle.count_by_sql("select count(*) from sources_to_standard_titles where standard_title_id = #{self[:id]}")
     end
   end
-  
-  def check_dependencies
-    if (self.referring_sources.count > 0)
-      errors.add :base, "The standard title could not be deleted because it is used"
-      throw :abort
-    end
-  end
-   
+    
 #	def get_indexed_terms
 #    solr = Sunspot.session.get_connection
 #    response = solr.get 'terms', :params => {:"terms.fl" => "240a_shingle_sms", :"terms.limit" => 1, :"terms.prefix" => self.title}
@@ -105,4 +99,5 @@ class StandardTitle < ApplicationRecord
   def name
     return title
   end
+
 end

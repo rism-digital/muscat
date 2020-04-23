@@ -66,17 +66,6 @@
     :fields:
     - - ""
       - :no_browse: true
-  "004":
-    # this is a special used internally for holding records
-    :master: ""
-    :indicator: ""
-    :occurrences: "?"
-    :fields:
-    - - ""
-      - :occurrences: "1"
-        :foreign_class: Source
-        :foreign_field: id
-        :zero_padding: "14"
   "005":
     :master: ""
     :indicator: ""

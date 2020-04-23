@@ -83,6 +83,7 @@ it:
         folder: "Crea una nuova cartella con gli elementi selezionati"
         add_to_folder: "Aggiungi gli elementi selezionati ad una cartella esistente"
         merge: "Riunisci le voci di autorità"
+        change_template: "Modifica il template"
 
     comments:
       resource_type: "Tipo di risorsa"
@@ -272,7 +273,7 @@ it:
   menu_languages: "Lingue"
   menu_contact: "Contatti"
   menu_search_history: "Ricerche effettuate"
-  menu_guidelines: "Regole di Catalogazione"
+  menu_guidelines: "Regole di catalogazione"
   menu_marc_documentation: "Configurazione MARC"
   menu_guidelines_top: "Documentazione"
   menu_cataloging: "Catalogazione"
@@ -337,7 +338,7 @@ it:
     ok: "Processo terminato con successo"
     no_status: "Errore durante la lettura del messaggio di stato"
     error: "Errore: "
-    running_jobs: "I processi correntemente in esecuzione non possono essere candellati."
+    running_jobs: "I processi correntemente in esecuzione non possono essere cancellati."
     auto_delete: "Impossibile cancellare: il processo terminato è già stato eliminato automaticamente."
     no_view: "Impossibile visualizzare: il processo terminato è già stato eliminato automaticamente."
 
@@ -485,16 +486,16 @@ it:
   filter_source_type: "Tipo di fonte"
   filter_std_title: "Titolo uniforme"
   filter_subject: "Soggetto"
-  filter_subsequent_entries: "Notizie Successive"
+  filter_subsequent_entries: "Notizie successive"
   filter_term: "Termine"
   filter_textinipit: "Incipit testuale"
   filter_thematic_opus: "Catalogo / Num. d'opera"
   filter_title: "Titolo"
   filter_titles: "Titoli"
   filter_title_on_ms: "Titolo diplomatico"
-  filter_title_short: "Titolo Breve"
+  filter_title_short: "Titolo breve"
   filter_topic: "Argomento"
-  filter_sub_topic: "Sub-argomenti"
+  filter_sub_topic: "Argomenti secondari"
   filter_url: "Indirizzo url"
   filter_variants: "Varianti"
   filter_versions: "Versioni"
@@ -521,8 +522,8 @@ it:
   filter_dist_594l: "Strumenti da tasto"
   filter_dist_594m: "Altri strumenti"
   filter_dist_594n: "Strumenti del basso continuo"
-  filter_source_name: "Nome della Fonte"
-  filter_source_composer: "Compositore della Fonte"
+  filter_source_name: "Nome della fonte"
+  filter_source_composer: "Compositore della fonte"
   filter_printed_exemplars: "Numero di esemplari a stampa"
 
   ## Referring lists for auth files
@@ -679,7 +680,7 @@ it:
     banner: 'Usare "Anteprima" per mostrare il risultato della conversione in MEI.'
   
   wf_stage:
-    inprogress: "In Elaborazione (UNP)"
+    inprogress: "In elaborazione (UNP)"
     published: "Pubblicato (PUB)"
     deleted: "Cancellato"
     deprecated: "Rigettato"
@@ -703,6 +704,8 @@ it:
     insufficient_rights: "L'utente non ha i diritti necessari per creare un record con questa biblioteca"
     name_uniqueness: "Il nome breve dell'elemento è già in uso"
     correct: "Il record non contiene errori [200]"
+    begins_with_message: "Il campo deve iniziare con \"{0}\""
+    required_if_message: "Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}"
 
   incipit_search:
     incipit_search: "Ricerca negli incipit"

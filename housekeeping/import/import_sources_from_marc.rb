@@ -62,7 +62,7 @@ class Marc21Import
         # step 1.  update or create a new source
         #source = Source.find_by_id( marc.get_marc_source_id )
         #if !source
-          source = Source.new(:id => marc.get_id, :lib_siglum => marc.get_siglum, :wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
+          source = Source.new(:id => marc.get_id, :lib_siglum => marc.get_siglum, :wf_owner => 1, :wf_stage => "published", :wf_audit => "imported")
         #end
           
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
@@ -80,7 +80,8 @@ class Marc21Import
         #source.suppress_create_incipit
         #source.suppress_reindex
         #source.suppress_recreate
-        source.save rescue $stderr.puts "Failed to save SOURCE #{source.to_yaml}"
+        source.save #rescue $stderr.puts "Failed to save SOURCE #{sou
+        rce.to_yaml}"
 
         puts "Last offset: #{@total_records}, Last RISM ID: #{source.id}" #"#{marc.first_occurance('001').content}"
       else

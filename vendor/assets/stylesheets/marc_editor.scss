@@ -489,3 +489,24 @@ a.warning {
   color: orange;
   text-decoration: underline;
 }
+
+
+.muscat-ui-icon {
+    background-position: 0 0;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    margin-top: -8px;
+    margin-left: -8px;
+    vertical-align: middle;
+  }
+  
+.search-button-collection {
+    background: image-url("/images/marc-icons/search_collection.png") no-repeat
+}
+.search-button-composite {
+    background: image-url("/images/marc-icons/search_composite.png") no-repeat
+  }

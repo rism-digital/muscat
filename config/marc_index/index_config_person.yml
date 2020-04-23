@@ -33,6 +33,8 @@ fields:
     "5099":
     "549a":
     "550a":
+      :store: true
+      :type: string
     "551a": 
     "667a":
       :type: text

@@ -10,6 +10,7 @@
 # Usual wf_* fields are not shown
 
 class Place < ApplicationRecord
+  include ForeignLinks
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_places")
@@ -74,19 +75,6 @@ class Place < ApplicationRecord
     
     integer :src_count_order, :stored => true do 
       Place.count_by_sql("select count(*) from sources_to_places where place_id = #{self[:id]}")
-    end
-  end
-
-  def check_dependencies
-    if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
-      errors.add :base, %{The place could not be deleted because it is used by
-        #{self.referring_sources.count} sources,
-        #{self.referring_institutions.count} institutions, 
-        #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people
-        #{self.referring_holdings.count} holdings}
-      throw :abort
     end
   end
 

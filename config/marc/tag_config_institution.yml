@@ -123,14 +123,6 @@
       - :occurrences: "*"
     - - z
       - :occurrences: "*"
-  "373": 
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields: 
-    - - a
-      - :occurrences: "*"
-
   "410": 
     :master: a
     :indicator: "##"
@@ -194,6 +186,8 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: name
+    - - b
+      - :occurrences: "?"
   "678": 
     :master: a
     :indicator: "1#"

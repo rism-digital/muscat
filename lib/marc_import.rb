@@ -125,15 +125,15 @@ class MarcImport
         marc.import
         
         # step 3 resolve external values if it is a source
-        begin
+        #begin
           marc.root.resolve_externals if @model == "Source"
-        rescue => e
-          $stderr.puts
-          $stderr.puts "Marc Import: Could not resolve externals on record".red
-          $stderr.puts e.message.blue
-          $stderr.puts "Record Id: #{model.id}".magenta
-          $stderr.puts "#{marc.to_marc}"
-        end
+					#rescue => e
+          #$stderr.puts
+          #$stderr.puts "Marc Import: Could not resolve externals on record".red
+          #$stderr.puts e.message.blue
+          #$stderr.puts "Record Id: #{model.id}".magenta
+          #$stderr.puts "#{marc.to_marc}"
+					#end
         
         # step 4. associate Marc to record
         model.marc = marc
@@ -174,19 +174,19 @@ class MarcImport
         end
         
          # step 4. insert model into database
-        begin
+        #begin
           model.save! #
 #          @log.info(@model+" record "+marc.get_id.to_s+" "+status)
 #        rescue ActiveRecord::RecordNotUnique
 #          @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
-        rescue => e
-          $stderr.puts
-          $stderr.puts "Marc Import: Could not save the imported record".red
-          $stderr.puts e.message.blue
-          $stderr.puts "Record Id: #{model.id}".magenta
-          $stderr.puts "#{marc.to_marc}"
+        #rescue => e
+          #$stderr.puts
+          #$stderr.puts "Marc Import: Could not save the imported record".red
+          #$stderr.puts e.message.blue
+          #$stderr.puts "Record Id: #{model.id}".magenta
+          #$stderr.puts "#{marc.to_marc}"
           #puts e.backtrace.join("\n")
-        end
+					#end
         print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S").green + " -- Record #{@cnt} of #{@total_records} processed".yellow
         #puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"
       else

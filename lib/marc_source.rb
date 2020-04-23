@@ -154,7 +154,7 @@ class MarcSource < Marc
           
     elsif tags_852.length == 1 # single copy
       if node = first_occurance("852", "a")
-        siglum = node.foreign_object.siglum
+        siglum = node.foreign_object.siglum rescue siglum = ""
         siglum = "" if !siglum
       end
       if node = first_occurance("852", "c")
@@ -385,6 +385,8 @@ class MarcSource < Marc
       end
       
       leader = base_leader.gsub("XX", type)
+    elsif @record_type == RECORD_TYPES[:composite_volume]
+      leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
       type = "dm"
       type = "dd" if by_tags("773").count > 0

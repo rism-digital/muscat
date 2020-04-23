@@ -70,17 +70,17 @@
   "042":
     :master: a
     :indicator: "##"
-    :occurrences: "*"
+    :occurrences: "1"
     :fields:
     - - a
-      - :occurrences: "?"
+      - :occurrences: "1"
   "043":
     :master: c
     :indicator: "##"
     :occurrences: "*"
     :fields:
     - - c
-      - :occurrences: "*"
+      - :occurrences: "1"
   "100":
     :master: a
     :indicator: "1#"
@@ -146,7 +146,7 @@
     - - a
       - :occurrences: "1"
         :foreign_class: ^0
-        :foreign_field: siglum
+        :foreign_field: name
   "550":
     :master: a
     :indicator: "##"

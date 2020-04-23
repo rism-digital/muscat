@@ -61,8 +61,23 @@ module MarcIndex
           # Only for sources with holdings
           # TODO since this block is called with every configured field we have some considerable overhead
           if obj.is_a? Source
-            if !obj.holdings.empty? && properties && properties.has_key?(:holding_record)
-              obj.holdings.each do |holding|
+            holdings = []
+
+            # For cild prints, we index the holdings from the parent
+            if obj.record_type == MarcSource::RECORD_TYPES[:edition_content]
+              if obj.parent_source
+                holdings = obj.parent_source.holdings
+              else
+                # No parent!
+                $stderr.puts "Index: Source #{obj.id} is a print child with no parent, cannot index holdings"
+              end
+            else
+              # For all other cases
+              holdings = obj.holdings
+            end
+
+            if !holdings.empty? && properties && properties.has_key?(:holding_record)
+              holdings.each do |holding|
                 begin
                   holding_marc = holding.marc
                   holding_marc.load_source false
@@ -75,6 +90,11 @@ module MarcIndex
                   next
                 end
               end
+            else
+              # Print an error, only for regular Edition parent records
+              # Edition child records should not have holdings!
+              # This can be checked with mainteaince scripts
+              $stderr.puts "Index: Source #{obj.id} (type #{obj.get_record_type}) has no holding records" if !obj.record_type == MarcSource::RECORD_TYPES[:edition_content]
             end
           end
 

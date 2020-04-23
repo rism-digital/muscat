@@ -111,7 +111,7 @@ ActiveAdmin.register Source do
       @results, @hits = Source.search_as_ransack(params)
 
       # Get the terms for 593a_filter, the "source type"
-      @source_types = Source.get_tems("593a_filter_sm")
+      @source_types = Source.get_terms("593a_filter_sm")
 
       index! do |format|
        @sources = @results
@@ -255,8 +255,8 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_shelf_mark), :shelf_mark_shelforder, sortable: :shelf_mark_shelforder do |element|
       element.shelf_mark
     end
-    if current_user.has_any_role?(:admin)
-      column "Quality" do |element|
+    if current_user.has_any_role?(:admin, :editor)
+      column "Level" do |element|
         element.tag_rate
       end
     end
@@ -272,6 +272,9 @@ ActiveAdmin.register Source do
   
   # Include the folder actions
   include FolderControllerActions
+
+  # Include the template changer
+  include TemplateControllerActions
   
   ##########
   ## Show ##

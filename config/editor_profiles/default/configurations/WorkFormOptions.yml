@@ -208,6 +208,76 @@
     - - r
     - - t
     columns: 4
+  tag_params:
+      100r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
+      - "1tt"
+      - "2tt"
+      - "3tt"
+      - "4tt"
+      - "5tt"
+      - "6tt"
+      - "7tt"
+      - "8tt"
+      - "9tt"
+      - "10tt"
+      - "11tt"
+      - "12tt"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
 "380": 
   allow_new: true
   new_window: standard_terms
@@ -255,6 +325,12 @@
       - values:
         - "Date of origin"  
         editor_partial: subfield_select
+"667": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 2
+    columns: 2
 "670": 
   allow_new: true
   new_window: catalogues
@@ -298,7 +374,7 @@
     relator_codes: 
     - cmp
     - dte
-    - dub
+    - asn
     - lbt
     - lyr
     - oth
@@ -331,7 +407,7 @@
       - oth
 "747": 
   allow_new: true
-  new_window: liturgical_feast
+  new_window: liturgical_feasts
   layout: 
     fields: 
     - - "a"
@@ -341,7 +417,7 @@
     columns: 4
 "930": 
   allow_new: true
-  new_window: Work
+  new_window: works
   layout: 
     fields: 
     - - "a"
@@ -350,9 +426,11 @@
       - cols: 4
     - - i
       - values:
-        - "Adaption of"  
+        - "Adaption of"
+        - "Continuation of"
         - "Inspired by"
         - "Other"
+        - "Part of"
         - "Pharaphrase of"  
         - "Variation of"  
         editor_partial: subfield_select

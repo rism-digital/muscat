@@ -1,5 +1,5 @@
 <%= form_tag(admin_dashboard_path, method: "get") do %>
-  <% ["source", "person", "catalogue", "institution", "holding"].each do |model|=%>
+  <% ["source", "person", "catalogue", "institution", "holding", "work"].each do |model|=%>
     <label class="label">
 		<h5 style="margin-bottom: 0.5em"><%= I18n.t("activerecord.models." + model, count: 2) %></h5>
 	</label>	

@@ -147,6 +147,7 @@
       - "XD-UY"
       - "XD-VE"
       - "XB-TW"
+      - "XD-EC"
 "100": 
   allow_new: true
   new_window: people
@@ -175,12 +176,12 @@
         # http://www.loc.gov/standards/valuelist/marcgt.html
         - "Bibliography"
         - "Catalog"
-        - "Collective catalogue"
+        - "Catalog of works"
+        - "Collective catalog"
         - "Encyclopedia"
         - "Music edition"
         - "Other"
         - "Thematic catalog"
-        - "Work catalog"
         editor_partial: subfield_select
     - - h
       - cols: 1
@@ -291,18 +292,8 @@
         select_label: "Function"
   tag_params: 
     codes: 
-    - fmo
-    - dnr
-    - dte
-    - prf
-    - otm
-    - ppm
-    - prt
-    - pbl
     - edt
-    - bsl
     - oth
-    - dub
 "760": 
   allow_new: true
   new_window: catalogues

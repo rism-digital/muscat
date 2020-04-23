@@ -12,6 +12,9 @@ ActiveAdmin.register_page "Dashboard" do
       store_or_restore(:dashboard_institution_type, :created)
       store_or_restore(:dashboard_holding_owner, :user)
       store_or_restore(:dashboard_holding_type, :created)
+      store_or_restore(:dashboard_work_owner, :user)
+      store_or_restore(:dashboard_work_type, :created)
+
       store_or_restore(:dashboard_quantity, 10)
     end
     
@@ -145,8 +148,8 @@ ActiveAdmin.register_page "Dashboard" do
             table_for holdings.map do
               column (I18n.t :filter_id) {|holding| link_to(holding.id, edit_admin_holding_path(holding)) } 
               column (I18n.t :filter_siglum), :lib_siglum
-              column (I18n.t :filter_std_title)  {|holding| holding.source.std_title}
-              column (I18n.t :filter_author)  {|holding| holding.source.composer}
+              column (I18n.t :filter_std_title)  {|holding| holding.source ? holding.source.std_title : "No source"}
+              column (I18n.t :filter_author)  {|holding| holding.source ? holding.source.composer : "No source"}
             end
           else
             text_node(I18n.t('dashboard.no_items'))
@@ -155,6 +158,26 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+    user_id = (params[:dashboard_work_owner].to_s == "user") ? current_user.id : -1
+    works = dashboard_find_recent(Work, params[:dashboard_quantity], params[:dashboard_work_type], user_id, 15)
+    columns do
+      column do
+        panel "#{Work.model_name.human(count: 2)}" do
+          if works.count > 0
+            table_for works.map do
+              column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
+                label: I18n.t('status_codes.' + (work.wf_stage != nil ? work.wf_stage : ""), locale: :en))}  
+              column (I18n.t :filter_id) {|work| link_to(work.id, admin_work_path(work)) } 
+              column(I18n.t :filter_composer) {|work| work.person }
+              column (I18n.t :filter_title), :title
+            end
+          else
+            text_node(I18n.t('dashboard.no_items'))
+          end
+        end
+      end
+    end
+	
   end # content
   
   sidebar I18n.t "dashboard.selection", :class => "sidebar_tabs", :only => [:index] do

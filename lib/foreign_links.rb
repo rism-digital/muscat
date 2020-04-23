@@ -68,7 +68,7 @@ module ForeignLinks
     # If there are unknown classes purge them
     related_classes = all_foreign_classes - unknown_classes
     if !unknown_classes.empty?
-      $stderr.puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')} [#{self.id}]"
+      $stderr.puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')} [#{self.id}, #{self.class}]"
     end
     
     related_classes.each do |foreign_class|
@@ -91,14 +91,14 @@ module ForeignLinks
       # Delete or add to the DB relation
       relation.delete(remove_items)
       new_items.each do |ni|
-        begin
+       # begin
           relation << ni
-        rescue => e
-          $stderr.puts
-          $stderr.puts "Foreign Links: Could not add a record (#{ni.id}) in the relationship with #{self.id} (#{self.class})".red
-          $stderr.puts "- Added records dump: #{new_items}".magenta
-          $stderr.puts e.message.blue
-        end
+					#rescue => e
+          #$stderr.puts
+          #$stderr.puts "Foreign Links: Could not add a record (#{ni.id}) in the relationship with #{self.id} (#{self.class})".red
+          #$stderr.puts "- Added records dump: #{new_items}".magenta
+          #$stderr.puts e.message.blue
+					#end
       end
     end
     
@@ -115,6 +115,43 @@ module ForeignLinks
       job = Delayed::Job.enqueue(ReindexForeignRelationsJob.new(self.id, ids_hash))
     end
     
+  end
+
+  def referring_dependencies
+    res = {}
+    # all other classes with relation to this class from the MarcConfig
+    linked_classes = MarcConfigCache.get_referring_associations_for self.class
+    #print linked_classes
+
+    self.class.reflect_on_all_associations.each do |assoc|
+      # do not check versions or workgroups
+      next if assoc.name == :versions || assoc.name == :workgroups
+      check = false
+      check = true if assoc.plural_name == "digital_objects"
+      linked_classes.each do |e|
+        # set the check flag if the assiociation matches the marc relation class
+        if assoc.plural_name =~ Regexp.new(e)
+          check = true
+          break
+        end
+      end
+      if check
+        puts assoc.plural_name
+        dependency_size = self.send(assoc.plural_name).size rescue next
+        res[assoc.plural_name] = dependency_size
+      end
+    end
+    return res
+  end
+
+  def check_dependencies
+    msg = self.referring_dependencies.select { |key, value| value > 0  }
+    unless msg.empty?
+      linked_objects = "#{msg.map{|k,v| "#{v} #{k.to_s.sub("_", " ")}"}.to_sentence}"
+      errors.add :base, %{The #{self.class} could not be deleted because it is used by 
+      #{linked_objects}  }
+      raise ActiveRecord::RecordNotDestroyed, "Record #{self.class} #{self.id} has active dependencies [#{msg.keys.join}]"
+    end
   end
 end
     

@@ -116,6 +116,18 @@
       - "10t"
       - "11t"
       - "12t"
+      - "1tt"
+      - "2tt"
+      - "3tt"
+      - "4tt"
+      - "5tt"
+      - "6tt"
+      - "7tt"
+      - "8tt"
+      - "9tt"
+      - "10tt"
+      - "11tt"
+      - "12tt"
       - "1byz"
       - "2byz"
       - "3byz"
@@ -158,12 +170,6 @@
       - G+3
       - G+4
       - G+5
-"033": 
-  layout: 
-    fields: 
-    - - indicator
-      - editor_partial: subfield_indicator
-    - - a
 "040": 
   layout: 
     fields:
@@ -183,6 +189,7 @@
       - "fre"
       - "ger"
       - "ita"
+      - "por"
       - "spa"
 "041": 
   layout: 
@@ -242,6 +249,7 @@
       - "ltz"
       - "mac"
       - "mon"
+      - "mul"
       - "nap"
       - "nds"
       - "nor"
@@ -258,6 +266,7 @@
       - "slo"
       - "slv"
       - "scn"
+      - "sco"
       - "srp"
       - "dsb"
       - "hsb"
@@ -370,6 +379,18 @@
       - "10t"
       - "11t"
       - "12t"
+      - "1tt"
+      - "2tt"
+      - "3tt"
+      - "4tt"
+      - "5tt"
+      - "6tt"
+      - "7tt"
+      - "8tt"
+      - "9tt"
+      - "10tt"
+      - "11tt"
+      - "12tt"
       - "1byz"
       - "2byz"
       - "3byz"
@@ -408,6 +429,7 @@
         - "Engraving"
         - "Facsimile"
         - "Lithography"
+        - "Offset printing"
         - "Photoreproductive process"
         - "Reproduction"
         - "Transparency"
@@ -577,6 +599,7 @@
         - "B/XIII"
         - "B/XV"
         - "B/XVII"
+        - "Other"
         editor_partial: subfield_select
     - - b
     - - c
@@ -700,10 +723,14 @@
       - ill
       - aut
       - oth
-      - dub
+      - asn
       - ctb
       - ccp
       - dst
+      - asg
+      - cph
+      - lse
+      - ppm
 "710":
   new_window: institutions
   new_window_field: name_equals
@@ -741,6 +768,10 @@
       - evp
       - dst
       - bsl
+      - asg
+      - cph
+      - lse
+      - ppm
 "730":
   new_window: standard_titles
   new_window_field: title_equals

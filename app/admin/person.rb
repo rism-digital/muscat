@@ -15,6 +15,7 @@ ActiveAdmin.register Person do
   end
   
   collection_action :autocomplete_person_full_name, :method => :get
+  collection_action :autocomplete_person_550a_sms, :method => :get
   
   collection_action :viaf, method: :get do
     respond_to do |format|
@@ -29,6 +30,7 @@ ActiveAdmin.register Person do
   controller do
     
     autocomplete :person, :full_name, :display_value => :autocomplete_label , :extra_data => [:life_dates]
+    autocomplete :person, "550a_sms", :solr => true
     
     after_destroy :check_model_errors
     before_create do |item|
@@ -83,6 +85,15 @@ ActiveAdmin.register Person do
     end
     
     def index
+      person = Person.new
+      new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
+      new_marc.load_source false # this will need to be fixed
+      person.marc = new_marc
+      @editor_profile = EditorConfiguration.get_default_layout person
+     
+      # Get the terms for 550a, the "profession filter"
+      @profession_types = Source.get_terms("550a_sms")
+
       @results, @hits = Person.search_as_ransack(params)
       index! do |format|
         @people = @results
@@ -110,12 +121,12 @@ ActiveAdmin.register Person do
   include MarcControllerActions
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexItemsJob.new(Person.find(params[:id]), "referring_sources"))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Person, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
 	
   member_action :resave, method: :get do
-    job = Delayed::Job.enqueue(SaveItemsJob.new(Person.find(params[:id]), "referring_sources"))
+    job = Delayed::Job.enqueue(SaveItemsJob.new(params[:id], Person, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Save Job started #{job.id}"
   end
   
@@ -131,8 +142,15 @@ ActiveAdmin.register Person do
   filter :"375a_contains", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
   # FIXME locale not read
     :collection => [[I18n.t(:filter_male), 'male'], [ I18n.t(:filter_female), 'female'], [I18n.t(:filter_unknown), 'unknown']]
-  filter :"550a_contains", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
-  filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, :as => :string
+  #filter :"550a_contains", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
+
+  filter :"550a_with_integer", :label => proc{I18n.t(:filter_person_550a)}, as: :select, 
+  collection: proc{@profession_types.sort.collect {|k| [k.camelize, "550a:#{k}"]}}
+
+  filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, as: :select, 
+    collection: proc {
+      @editor_profile.options_config["043"]["tag_params"]["codes"].map{|e| [@editor_profile.get_label(e), e]}.sort_by{|k,v| k}
+    }
   filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string

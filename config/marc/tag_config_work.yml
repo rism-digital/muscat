@@ -222,6 +222,13 @@
       - :occurrences: "?"
     - - i
       - :occurrences: "?"
+  "667":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
   "670":
     :master: "w"
     :indicator: "##"

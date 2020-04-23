@@ -8,7 +8,7 @@ The following other libraries and programs are needed
 
 * ruby: > 2.3
 * Apache 2.2
-* MySQL > 5.0
+* MySQL > 8.0.4
 * Git
 * Passenger for Apache 2
 * rails
@@ -16,6 +16,28 @@ The following other libraries and programs are needed
 * libmysqlclient-dev
 * imagemagick
 * libmagickwand-dev
+
+*NOTE* From Muscat 6.1 MySQL *8.0.4 is required* for autocomplete and comments to properly work, as the REGEX library was changed.
+
+== Mysql 8
+Depending on your system, a package for Mysql 8 may not exist. In this case use the official package provided by Oracle https://dev.mysql.com/downloads/repo/apt/
+NOTE: Download the latest version or the GPG keys may have been expired! Copy the file from the link provided in that page, there is no need for an account, follow the "No thanks, just start my download" link. In this case it points to https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+
+ wget https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+ sudo dpkg -i mysql-apt-config_0.8.15-1_all.deb
+
+(obviously subsitute with the exact file name in the link).
+dpk will prompt a screen to configure tha package, select option to configure the server version and select 8, then exit.
+
+Then update and install mysql:
+
+ sudo apt-get update
+ sudo apt-get install mysql-server
+
+When propmpted, select *use legacy passwords* as not all connectors for the moment work with the new system. This will be updated in the future.
+Also install the newest versions of the connector libraries:
+
+ sudo apt-get install libmysqlclient21 libmysqlclient-dev
 
 == Ruby and Rails
 
@@ -43,7 +65,8 @@ On 18.40, also enable GPG verification of Passenger:
 Then install all the dependencies and setup passenger:
 
  sudo apt-get update
- sudo apt-get install mysql-server apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev libmysqlclient-dev openjdk-8-jdk-headless passenger libapache2-mod-passenger
+ sudo apt-get install mysql-server libmysqlclient-dev # If mysql was not installed separately
+ sudo apt-get install apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev  openjdk-8-jdk-headless passenger libapache2-mod-passenger
  sudo a2enmod passenger
  
 Passenger also wants to compile a binary module, this is optional but will enable it
@@ -83,7 +106,8 @@ Create the user, substitute with an appropriate user and password!
  
  CREATE DATABASE muscat_development CHARACTER SET utf8 COLLATE utf8_general_ci;
  CREATE USER 'rism'@'localhost';
- SET PASSWORD FOR 'rism'@'localhost' = PASSWORD('password');
+ SET PASSWORD FOR 'rism'@'localhost' = PASSWORD('password'); ## ON Mysql 5
+ ALTER USER 'rism'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'; # On Mysql 8
  GRANT ALL ON muscat_development.* TO 'rism'@'localhost';
  
 Remember username and pass should be the same as in database.yml
@@ -167,11 +191,23 @@ Start Apache, Solr and the related services in production mode (see below).
  
  Muscat has three running daemons that should be started:
  
-  sudo RAILS_ENV=production bin/delayed_job start
   sudo RAILS_ENV=production bundle exec crono start
   # Make sure solr is not running as root!
   sudo -u www-data bundle exec rake RAILS_ENV=production sunspot:solr:start
   
+`DelayedJob` now is a bit more tricky, as different queues get different worker pools:
+
+  sudo -u www-data RAILS_ENV=production bin/delayed_job start --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave
+
+Other ways to start delayed_job:
+
+  sudo RAILS_ENV=production bin/delayed_job start
+  rake jobs:work # Run in foreground
+  rake jobs:workoff # Run all jobs in foreground and exit
+  rake jobs:clear # Clear failed jobs
+  ## in production it is then...
+  RAILS_ENV=production bundle exec rake jobs:<xxx>
+
 Depending on the env, remove sudo if necessary. RAILS_ENV is needed only on production, and has to come *after* sudo.
   
 Also it is goot to block access to SOLR:
@@ -182,3 +218,18 @@ Also it is goot to block access to SOLR:
 == Add clean up in crontab for blacklight
 
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
+
+
+== Some MySQL optimizations
+
+Add to /etc/mysql.cnf
+
+ [mysqld]
+
+ innodb_buffer_pool_size = 8G
+ innodb_log_buffer_size = 512M
+ innodb_log_file_size = 1G
+ innodb_write_io_threads = 16
+ innodb_flush_log_at_trx_commit = 0
+
+To speed up imports. (See here for more)[https://www.percona.com/blog/2014/01/28/10-mysql-performance-tuning-settings-after-installation/]

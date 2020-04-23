@@ -2,8 +2,6 @@ config/application.rb
 config/database.yml
 config/solr.yml
 development.log
-/tmp
-/log
 /solr/default/data
 /solr/pids
 /solr/development/data
@@ -13,6 +11,8 @@ solr/test
 solr/default
 log/sunspot-solr-development.log
 vendor/assets/stylesheets/muscat-custom.scss
+public/assets
+public/help
 spec/examples.txt
 .idea
 help.sh

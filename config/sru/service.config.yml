@@ -62,11 +62,13 @@ index:
       - 700a
     type: text
   bath.personalName:
-    solr: 100a
-    type: text
+    solr: 
+      - 100a
+      - 700a
   bath.corporateName:
-    solr: 110a
-    type: text
+    solr: 
+      - 110a
+      - 710a
   bath.uniformTitle:
     solr: 240a
     type: text

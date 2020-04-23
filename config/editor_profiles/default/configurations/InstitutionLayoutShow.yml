@@ -18,7 +18,6 @@ groups:
     - "110"
     - "510"
     - "410"
-    - "373"
     - "368"
     - "580"
     all_tag_templates:
@@ -40,6 +39,7 @@ groups:
     - "700"
     all_tag_templates:
       "670": people/show_catalogue
+      "856": marc_show/show_link
   control: 
     all_tags: 
     - "000"

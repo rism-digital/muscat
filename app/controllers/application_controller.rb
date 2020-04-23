@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  before_action :set_locale, :set_paper_trail_whodunnit, :auth_user, :prepare_exception_notifier, :test_version_warning
+  before_action :set_locale, :set_paper_trail_whodunnit, :auth_user, :prepare_exception_notifier, :test_version_warning, :test_muscat_reindexing
 
   def prepare_exception_notifier
     if current_user
@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
     if action_name && ["new", "destroy", "edit", "marc_editor_save"].include?(action_name)
       flash[:warning] = "You are operating on a test server and changes will be overwritten."
     end
+  end
+
+  def test_muscat_reindexing
+    flash[:notice] = "Muscat in reindexing, search results may be incomplete" if ::MuscatProcess.is_reindexing?
   end
 
   # Code for rescueing lock conflicts errors
@@ -112,7 +116,7 @@ class ApplicationController < ActionController::Base
   def _locale_from_http_header 
     return "en" if !request.env || !request.env.include?('HTTP_ACCEPT_LANGUAGE')
     locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first 
-    return locale if ["en", "fr", "it", "de"].include?(locale)
+    return locale if ["en", "fr", "it", "de", "es", "pt"].include?(locale)
     "en"
   end 
 

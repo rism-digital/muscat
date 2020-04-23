@@ -1,5 +1,6 @@
 <%
   related_work = tag.fetch_first_by_tag("a").content rescue ""
+  type = tag.fetch_first_by_tag("i").content rescue ""
 	master_tag = @item.marc.config.get_master(tag.tag) rescue master_tag = ""
 	db_id = tag.fetch_first_by_tag(master_tag).content rescue db_id = ""
 -%>
@@ -11,5 +12,9 @@
 	</th>
 	<td valign="top">
     <%= link_to "#{related_work}", admin_work_path(db_id) rescue "" -%>
+	<% if !type.empty?%>
+		<br>
+		<%= @editor_profile.get_sub_label(tag.tag, "i") %>: <%=type%> 
+	<%end%>
 	</td>
 </tr>

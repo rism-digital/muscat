@@ -35,7 +35,7 @@ groups:
     - "667"
     all_tag_templates:
       "500": people/show_related_person
-      "550": people/show_subfield_concat
+      "510": marc_show/show_institution
       "551": people/show_subfield_concat
   references:
     all_tags:

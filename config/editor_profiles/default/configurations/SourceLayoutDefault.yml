@@ -12,10 +12,6 @@ group_order:
 group_exclude:
   collection:
   - edit_incipits
-  libretto_source:
-  - edit_incipits
-  libretto_edition:
-  - edit_incipits
   theoretica_source:
   - edit_incipits
   theoretica_edition:
@@ -119,7 +115,6 @@ tag_exclude:
   composite_volume:
   - '026'
   - '028'
-  - '033'
   - '041'
   - '100'
   - '383'
@@ -128,7 +123,6 @@ tag_exclude:
   - '546'
   - '588'
   - '590'
-  - '592'
   - '594'
   - '595'
   - '596'
@@ -195,7 +189,6 @@ groups:
     all_tags:
     - '593'
     - '260'
-    - '033'
     - '300'
     - '590'
     - '340'
