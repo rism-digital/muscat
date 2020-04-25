@@ -1,7 +1,8 @@
 = Editor Configuration
 
-The Editor Configurations permit to customize the contents of a Source in view and edit. See EditorConfgiuration model for the internals.
-An EditorConfgiuration is attached to a Source py parsing its leader, of falling back to default. Each EditorConfgiuration has associated four property stacks: 
+The Editor Configurations permit to customize the contents of a Source in view and edit. See EditorConfiguration model for the internals.
+
+An EditorConfiguration is attached to a Source by parsing its leader, of falling back to default. Each EditorConfiguration has associated four property stacks: 
 
 * Rules: cataloguing rules, ex. the default publication state of a new Source (not implemented! left for reference).
 * Options: Editor options for each tag in a Source, ex. how many columns a text area for editing a tag should be.
@@ -10,7 +11,7 @@ An EditorConfgiuration is attached to a Source py parsing its leader, of falling
 
 === Default configuration
 
-The default behaivour of the EditorConfiguration is loaded from YAML files in <tt>config/editor_profiles/profiles.yml</tt>. This file contains a list of configuration stacks, eg:
+The default behaivour of the EditorConfiguration is loaded from YAML files in <tt>config/editor_profiles/default/profiles.yml</tt>. This file contains a list of configuration stacks, eg:
 
  ---
  - :id: DefaultCH
@@ -26,8 +27,8 @@ The default behaivour of the EditorConfiguration is loaded from YAML files in <t
    :filter:
      default: true
 
-
 This example configures the default fallback. The main elements are:
+
 * <tt>id</tt> - a string identification used internally (no spaces)
 * <tt>name</tt> - The name shown in the web page
 * <tt>labels</tt> - an array containing a list of YAML files from which to load the label configuration
@@ -36,18 +37,19 @@ This example configures the default fallback. The main elements are:
 * <tt>layout</tt> - idem, for the layout
 * <tt>filter</tt> - Specifies the filter to see which Sources should be shown with this stack. Refer to EditorConfiguration for more details.
 
-Each of the YAML files abobe (in the list without .yml extension) will be searched in config/editor_profiles/configurations
+Each of the YAML files above (in the list without .yml extension) will be searched in config/editor_profiles/default/default/configurations/
 
 === Configuration customization
 
-The default files do not need to be modified directly. Instead it is possibile to put all customizations in a user-specified dir into config/editor_profiles. This directory is configured in RISM::EDITOR_PROFILES in application.rb, for example RISM::EDITOR_PROFILES="ch" will set config/editor_profiles/ch as the custom config dir.
-If config/editor_profiles/ch/profiles.yml is present, it will OVERRIDE COMPLETELY the default one in config/editor_profiles/default/profiles.yml. The files in configurations/ on the other hand are overlayed: this means that if a file with the same name exists in default/configurations and RISM::EDITOR_PROFILES/configurations, the contents of the two will be merged together. In this way, a completely new configuration can be made, or just a small piece can be overridden (eg. this is handy in labels).
+The default files do not need to be modified directly. Instead it is possible to put all customizations in a user-specified dir into config/editor_profiles. This directory is configured in RISM::EDITOR_PROFILES in application.rb, for example RISM::EDITOR_PROFILES="ch" will set config/editor_profiles/ch/ as the custom config dir.
+
+If config/editor_profiles/ch/profiles.yml is present, it will OVERRIDE COMPLETELY the default one in config/editor_profiles/default/profiles.yml. The files in configurations/ on the other hand are overlayed: this means that if a file with the same name exists in default/configurations/ and RISM::EDITOR_PROFILES/configurations/, the contents of the two will be merged together. In this way, a completely new configuration can be made, or just a small piece can be overridden (eg. this is handy in labels).
 
 === Configuration
 
-On operning the display/edit of a Source, the EditorConfigurations are cicled: if one matched the filter[leader] or filter[tag], it will be used for displaying/editing of that manuscript. If none is found, the configuration with filter[show] (for displaying) or filter[default] (for editing) will be used. Refer to EditorConfiguration for the configuration of :filter.
+On opening the display/edit of a Source, the EditorConfigurations are cycled: if one matched the <tt>filter[leader]</tt> or <tt>filter[tag]</tt>, it will be used for displaying/editing of that manuscript. If none is found, the configuration with <tt>filter[show]</tt> (for displaying) or <tt>filter[default]</tt> (for editing) will be used. Refer to EditorConfiguration for the configuration of :filter.
 
-The first setting in the configuration shoul be the <tt>group_order</tt>, which specifies the display order of the various display/edit groups.
+The first setting in the configuration should be the <tt>group_order</tt>, which specifies the display order of the various display/edit groups.
 
  --- !map:Settings 
  group_order: 
@@ -58,8 +60,8 @@ So the EditorConfiguration that is loaded will be the first one that matches the
 
 == General formatting rules for the embedded YAML data
 
-Do not use tabs. Use 2 spaces for each level of indentation
-Mismatched indentation is a common source of bugs
+Do not use tabs. Use 2 spaces for each level of indentation. Mismatched indentation is a common source of bugs.
+
 Lists always start on the next line (below the element name) and are lined up with the beginning of the element name. Each member of a list is prefixed with "- " (a dash followed by a space) e.g.:
 
  --- !map:Settings
@@ -69,8 +71,7 @@ Lists always start on the next line (below the element name) and are lined up wi
      - "033"
      - "518"
 		
-To override an element from a configuration higher up in the stack simply set the element to the desired value.
-Stacking is non-destructive. For example:
+To override an element from a configuration higher up in the stack simply set the element to the desired value. Stacking is non-destructive. For example:
 
 config A:
 
@@ -88,6 +89,7 @@ config B:
 Config B is further down in the stack and so is applied later meaning the tag will ultimately use the label "B label". However, the tag will still be restricted to administrator access as config B did not override that value and omitting it does not remove it.
 
 == Rules
+
 They are the basic cataloguing rules, this is the default configuration:
 	
  --- !map:Settings 
@@ -107,7 +109,8 @@ Settings within the above sections will only apply to the named role. Any settin
 * published_state_after_save: <wf_stage value>
 
 == Labels
-Labels for tag field/subfield names and group namesmust be quoted wherever they are used. e.g. "001", "100", "789", "a", "4" etc.
+
+Labels for tag field/subfield names and group names must be quoted wherever they are used, e.g. "001", "100", "789", "a", "4", etc.
 
 * label: <label text>
 * accepts: <LIST of tag names>
@@ -174,6 +177,7 @@ Example:
      columns: 3
 		
 == Layout:
+
 At the top level a Layout contains settings that pertain to the overall layout:
 
 * arrange: <"columns" or "list" or "tabs">
