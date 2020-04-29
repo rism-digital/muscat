@@ -5,7 +5,7 @@
 # Layout options define how the editor fields will be constructed.
 # Each EditorConfiguration can be applied only to a Source that has certain features, i.e. a regex match with the leader, the presence of a tag
 # or the absence of a tag. Each of these rules is configured in the :filter field of the configuration file.
-# The default configuration is in editor_profiles/defaul/profiles.yml; If an application wants to override it, it can define a new directory,
+# The default configuration is in config/editor_profiles/default/profiles.yml; If an application wants to override it, it can define a new directory,
 # e.g. editor_profiles/ch, and configure RISM::EDITOR_PROFILE="ch", for example. The new profiles completely overrides the default one.
 # profiles.yml consists of an array of configurations, in this form:<p>
 # <tt>
@@ -31,8 +31,8 @@
 #
 class EditorConfiguration
   
-  # Load all the configurations, first in editor_profiles/default/configurations then ins
-  # editor_profiles/#{RISM::EDITOR_PROFILE}/configurations. If two files share the same name
+  # Load all the configurations, first in config/editor_profiles/default/configurations/ then in
+  # config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/. If two files share the same name
   # in the two directories, they will be merged together.
   def squeeze(list)
     configs = list #YAML::load(yaml_list)
@@ -42,6 +42,9 @@ class EditorConfiguration
     if RISM::EDITOR_PROFILE != ""
       configs.each do |config|
         file = "#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml"
+        unless File.exists?(file)
+	  file = "#{Rails.root}/config/editor_profiles/default/configurations/#{config}.yml"
+	end
         if File.exists?(file)
           settings.squeeze(Settings.new(IO.read(file)))
         end
