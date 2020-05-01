@@ -546,7 +546,7 @@ en:
   # Assorted error messages
   error_not_found: "The resource you are trying to access does not exist or has been deleted."
   error_saving: "The resource is not complete or generates a duplicate"
-  unknown_tags: "There are some unknown fields in this record"
+  unknown_tags: "There are unknown fields in this record, defined either in /config/editor_profiles/#{RISM::MARC}/configurations/SourceLayoutShow.yml or in the default values (/config/marc/#{RISM::MARC}/source/#{record_type}.marc) but not in /config/editor_profiles/#{RISM::MARC}/configurations/SourceLayoutDefault.yml. See them in the Unknown fields section of the right column"
   ungrouped_tags: "There are ungrouped fields in this record"
   cannot_update_source: "You are not authorized to edit this type of source"
   cannot_create_source: "You are not authorized to create this type of source"
