@@ -2951,7 +2951,7 @@ voc:
 #Attribution qualifier for 100/700$j
 "Verified":
   label:
-    it: Verificato
+    it: Verificata
     fr: "Vérifié"
     de: Gesichert
     en: Verified
@@ -2959,7 +2959,7 @@ voc:
     pt: Verificada
 "Ascertained":
   label:
-    it: Accertato
+    it: Accertata
     fr: "Authentifié"
     de: Ermittelt
     en: Ascertained
@@ -2967,7 +2967,7 @@ voc:
     pt: Certificada
 "Alleged":
   label:
-    it: Presunto
+    it: Presunta
     fr: "Présumé"
     de: Angeblich
     en: Alleged
@@ -2975,7 +2975,7 @@ voc:
     pt: Suposta
 "Doubtful":   
   label:
-    it: Dubbio
+    it: Dubbia
     fr: "Douteux"
     de: Zweifelhaft
     en: Doubtful
@@ -2983,7 +2983,7 @@ voc:
     pt: Duvidosa
 "Misattributed":   
   label:
-    it: Attribuito erroneamente
+    it: Erronea
     fr: "Erroné"
     de: Fälschlich
     en: Misattributed
@@ -5324,7 +5324,7 @@ aid_error:
     es: "Problemas técnicos"
 IIIF: 
   label: 
-    it: "IIIF manifest"
+    it: "Manifesto IIIF"
     fr: "Manifeste IIIF"
     de: "IIIF manifest"
     en: "IIIF manifest"
