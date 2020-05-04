@@ -120,6 +120,12 @@ class EditorValidation
       # Load local configurations
       file = "#{Rails.root}/config/editor_profiles/#{profile_name}/profiles.yml"
 
+      # Fallback to default if no specific profile exist
+      unless File.exists?(file)
+        profile_name = "default"
+        file = "#{Rails.root}/config/editor_profiles/#{profile_name}/profiles.yml"
+      end
+
       configurations = YAML::load(IO.read(file))
       configurations.each do |conf|
         next if !conf[:validation]
