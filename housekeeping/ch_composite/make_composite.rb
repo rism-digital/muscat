@@ -67,6 +67,12 @@ def adapt_print_link(composite, child)
     h2.suppress_update_77x
     h2.save
 
+    # Last step, purge the 774 link from the child
+    cs = Source.find(child[:id])
+    cs.marc.by_tags("773").each {|t| t.destroy_yourself}
+    cs.suppress_update_77x
+    cs.save
+
     puts "Fixed child #{child[:id]} to #{composite.id}"
 end
 
