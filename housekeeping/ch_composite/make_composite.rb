@@ -270,7 +270,7 @@ def process_child(composite, child)
     if !child[:new_template]
         # For print we need to move the link
         # from the print to the holding
-#        adapt_print_link(composite, child) if child[:old_template] == "p" 
+        adapt_print_link(composite, child) if child[:old_template] == "p" 
         # NOTE: the case "m" does nothing as the linking already works
         puts "c #{child[:id]}" if child[:old_template] == "c"  # This snould not happen! correct the data
         # The case "m" is not touched
