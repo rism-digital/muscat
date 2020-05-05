@@ -7,7 +7,48 @@ end
 def print2ms(composite, child)
 end
 
+# This happens only when the collection is a edition parent record
 def child2parent(composite, child)
+    child_source = Source.find(child[:id])
+
+    # duplicate the holding record from the parent
+    if !composite.record_type == MarcSource::RECORD_TYPES[:edition]
+        # We should have 0
+        puts "Not a parent #{composite.record_type} #{child[:id]}"
+        return
+    end
+
+    # No holding? Copy it from parent
+    if child_source.holdings.count == 0
+        # we need to make a duplicate of the parent's record holding
+        # First, make a holding record
+        holding = Holding.new
+
+        new_marc = MarcHolding.new(composite.holdings.first.marc.marc_source)
+        # Reset the basic fields to default values
+        new_marc.first_occurance("001").content = "__TEMP__"
+        new_marc.by_tags("974").each {|t| t.destroy_yourself}
+
+        # Import the marc
+        new_marc.suppress_scaffold_links
+        new_marc.import
+        
+        # Attach it to the child
+        holding.marc = new_marc
+        holding.source = child_source
+        
+        # Save the holding
+        holding.suppress_reindex
+        
+        holding.save
+        puts "Added holding #{holding.id} to #{child_source.id}"
+    end
+
+    # Make the child into a print
+    child_source.record_type = MarcSource::RECORD_TYPES[:edition]
+    child_source.suppress_update_77x
+    child_source.save
+    puts "#{child_source.id} is now a parent edition"
 end
 
 def parent2child(composite, child)
@@ -23,12 +64,22 @@ def adapt_print_link(composite, child)
     b = composite.marc.by_tags_with_subtag(["774"], "w", "00000#{child[:id]}")
 
     if (a + b).empty?
-        #puts "No child #{child[:id]} found in #{composite.id}".green
-        return
+        # In some rare cases, there was no 774 in the original ms...
+        # if the source_id of the child is set, we need to add one
+        # and continue
+        # Create a brand new 774 and add it to the parent
+        mc = MarcConfigCache.get_configuration("source")
+        w774 = MarcNode.new("source", "774", "", mc.get_default_indicator("774"))
+        w774.add_at(MarcNode.new("source", "w", child_source.id.to_s, nil), 0 )
+        composite.marc.root.add_at(w774, composite.marc.get_insert_position("774") )
+        # Now add it in our array, I know it is a lazy way to do ie
+        a << w774
+
+        puts "No child #{child[:id]} found in #{composite.id}, adding it".green
     end
 
     if (a + b).count > 1
-        #puts "Multiple child occurances #{child[:id]} in #{composite.id}".blue
+        puts "Multiple child occurances #{child[:id]} in #{composite.id}".blue
         return
     end
 
@@ -70,6 +121,7 @@ def adapt_print_link(composite, child)
     # Last step, purge the 774 link from the child
     cs = Source.find(child[:id])
     cs.marc.by_tags("773").each {|t| t.destroy_yourself}
+    cs.source_id = nil # We are attached to a composite
     cs.suppress_update_77x
     cs.save
 
@@ -81,6 +133,15 @@ def process_child(composite, child)
         # For print we need to move the link
         # from the print to the holding
         adapt_print_link(composite, child) if child[:old_template] == "p" 
+        puts "c #{child[:id]}" if child[:old_template] == "c"  # This snould not happen! correct the data
+        # The case "m" is not touched
+    else
+        # Child record gets "upgraded" to print parent
+        # NOTE: there are no cases when the composite is a manuscript
+        if child[:old_template] == "c" && child[:new_template] == "p"
+            child2parent(composite, child) # Make it into a parent
+            adapt_print_link(composite, child) # Fix the linking to the composite
+        end
     end
 end
 
@@ -106,22 +167,25 @@ CSV::foreach("housekeeping/ch_composite/composites.csv", col_sep: "\t", headers:
         end
         composites[composite_id]["collection_#{r[:childindex_g]}"] << {id: child_id, holding_id: r[:holding_h], new_template: r[:newtemplatechild_j], old_template: r[:origtemplate_child_i]}
     end
-
 end
 
 composites.each do |id, elements|
 
     collection = Source.find(id)
-    # make it a composite volume
-    collection.record_type = MarcSource::RECORD_TYPES[:composite_volume]
+
 
     elements.each do |type, children|
         if type.starts_with?("item_")
 
             process_child(collection, children) ## only one child in this case
-            collection.save
+            
         end
 
     end
+
+
+    # make it a composite volume
+    collection.record_type = MarcSource::RECORD_TYPES[:composite_volume]
+    collection.save
 
 end
