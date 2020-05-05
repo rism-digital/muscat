@@ -1,7 +1,136 @@
 headers = [:man_a, :ignore_b, :collid_c, :ignore_d, :childid_e, :ignore_f, :childindex_g, :holding_h, :origtemplate_child_i, :newtemplatechild_j, :done_k]
 composites = {}
 
+## Some marc navigating functions
+# shamelessly copied from the CH migration
+def fetch_single_subtag(marctag, subtag)
+    st = marctag.fetch_first_by_tag(subtag)
+    if st && st.content
+      return st.content
+    end
+    return nil
+end
+
+def tag_contains_value(marctag, subtag, value)
+    marctag.each_by_tag(subtag) do |st|
+        next if !st || !st.content
+        return true if st.content == value
+    end
+    false
+end
+
+def copy_tag(marc, new_marc, tag, new_tag_name = nil)
+    marc.by_tags(tag).each do |old_tag|            
+        new_tag = old_tag.deep_copy
+        if new_tag_name
+            new_tag.tag = new_tag_name
+        end
+        new_marc.root.children.insert(new_marc.get_insert_position(new_tag.tag), new_tag)
+    end
+end
+
+def move_tag_with_subtag(marc, new_marc, tag, subtag, subtag_val)
+    marc.by_tags(tag).each do |old_tag|   
+        next if !tag_contains_value(old_tag, subtag, subtag_val)
+
+        new_tag = old_tag.deep_copy
+        new_marc.root.children.insert(new_marc.get_insert_position(new_tag.tag), new_tag)
+        old_tag.destroy_yourself
+    end
+end
+
+def remove_marc_tag(marc, tag)
+    marc.by_tags(tag).each {|t| t.destroy_yourself}
+end
+
+def migrate_590(new_marc, the590)
+    the8 = nil
+    # pull the 852
+    the852 = new_marc.first_occurance("852")
+    the8 = the852.fetch_first_by_tag("8") if the852
+    if the8 && the8.content
+        # Substitute the existing one
+        the8.content = fetch_single_subtag(the590, "a")
+    else
+        # Append a new one
+        the852.add_at(MarcNode.new("source", "q", fetch_single_subtag(the590, "a"), nil), 0)
+        the852.sort_alphabetically
+    end
+end
+
+# End shameless copying
+
 def ms2print(composite, child)
+    child_source = Source.find(child[:id])
+    marc = child_source.marc
+
+    if !composite.record_type == MarcSource::RECORD_TYPES[:collection]
+        # We should have 0, check the data!
+        puts "Parent is not a collection #{composite.record_type} #{child[:id]}"
+        return
+    end
+
+    # Copy the 852 to a new holding record
+    holding = Holding.new
+
+    new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
+
+    # Kill empty
+    new_marc.each_by_tag("852") {|t2| t2.destroy_yourself}
+
+    # Move the tags from the MS to the Holding
+    copy_tag(marc, new_marc, "300")
+    
+    copy_tag(marc, new_marc, "506")
+    copy_tag(marc, new_marc, "541")
+    copy_tag(marc, new_marc, "561")
+    copy_tag(marc, new_marc, "563")
+    copy_tag(marc, new_marc, "591")
+    copy_tag(marc, new_marc, "592")
+
+    move_tag_with_subtag(marc, new_marc, "700", "4", "fmo")
+    move_tag_with_subtag(marc, new_marc, "700", "4", "scr")
+    move_tag_with_subtag(marc, new_marc, "700", "4", "dpt")
+
+    move_tag_with_subtag(marc, new_marc, "710", "4", "fmo")
+    move_tag_with_subtag(marc, new_marc, "710", "4", "scr")
+    move_tag_with_subtag(marc, new_marc, "710", "4", "dpt")
+
+    copy_tag(marc, new_marc, "852")
+    copy_tag(marc, new_marc, "856")
+
+    # Copy the 590s, after the 852 is created
+    marc.each_by_tag("590") {|tgs| migrate_590(new_marc, tgs)}
+
+    # Remove the tags in the old marc
+    remove_marc_tag(marc, "506")
+    remove_marc_tag(marc, "541")
+    remove_marc_tag(marc, "561")
+    remove_marc_tag(marc, "563")
+    remove_marc_tag(marc, "591")
+    remove_marc_tag(marc, "592")
+    remove_marc_tag(marc, "852")
+    remove_marc_tag(marc, "856")
+
+
+    # Import the marc
+    new_marc.suppress_scaffold_links
+    new_marc.import
+    
+    # Attach it to the child
+    holding.marc = new_marc
+    holding.source = child_source
+    
+    # Save the holding
+    holding.suppress_reindex
+    
+    holding.save
+    puts "Created holding #{holding.id} to #{child_source.id}"
+
+    child_source.record_type = MarcSource::RECORD_TYPES[:edition]
+    child_source.suppress_update_77x
+    child_source.save
+    puts "#{child_source.id} is now a print"
 end
 
 def print2ms(composite, child)
@@ -132,15 +261,18 @@ def process_child(composite, child)
     if !child[:new_template]
         # For print we need to move the link
         # from the print to the holding
-        adapt_print_link(composite, child) if child[:old_template] == "p" 
+#        adapt_print_link(composite, child) if child[:old_template] == "p" 
         puts "c #{child[:id]}" if child[:old_template] == "c"  # This snould not happen! correct the data
         # The case "m" is not touched
     else
         # Child record gets "upgraded" to print parent
         # NOTE: there are no cases when the composite is a manuscript
         if child[:old_template] == "c" && child[:new_template] == "p"
-            child2parent(composite, child) # Make it into a parent
-            adapt_print_link(composite, child) # Fix the linking to the composite
+#            child2parent(composite, child) # Make it into a parent
+#            adapt_print_link(composite, child) # Fix the linking to the composite
+        elsif child[:old_template] == "m" && child[:new_template] == "p"
+            ms2print(composite, child) # Make the MS a print
+            adapt_print_link(composite, child) # then fix the linking to the composite
         end
     end
 end
