@@ -145,19 +145,7 @@ def print2ms(composite, child)
     puts "DO NOTHING p to m!!! #{child_source.id}".bold
 end
 
-# This happens only when the collection is a edition parent record
-def child2parent(composite, child)
-    child_source = Source.find(child[:id])
-
-    # duplicate the holding record from the parent
-    if !composite.record_type == MarcSource::RECORD_TYPES[:edition]
-        # We should have 0
-        puts "Not a parent #{composite.record_type} #{child[:id]}"
-        return
-    end
-
-    # No holding? Copy it from parent
-    if child_source.holdings.count == 0
+def duplicate_holding(composite, child_source)
         # we need to make a duplicate of the parent's record holding
         # First, make a holding record
         holding = Holding.new
@@ -180,6 +168,22 @@ def child2parent(composite, child)
         
         holding.save
         puts "Added holding #{holding.id} to #{child_source.id}"
+end
+
+# This happens only when the collection is a edition parent record
+def child2parent(composite, child)
+    child_source = Source.find(child[:id])
+
+    # duplicate the holding record from the parent
+    if !composite.record_type == MarcSource::RECORD_TYPES[:edition]
+        # We should have 0
+        puts "Not a parent #{composite.record_type} #{child[:id]}"
+        return
+    end
+
+    # No holding? Copy it from parent
+    if child_source.holdings.count == 0
+        duplicate_holding(composite, child_source)
     end
 
     # Make the child into a print
@@ -189,7 +193,29 @@ def child2parent(composite, child)
     puts "#{child_source.id} is now a parent edition"
 end
 
-def parent2child(composite, child)
+def parent2child(child)
+    # We need to merge the holding in the record
+    # the remove the holding
+    child_source = Source.find(child[:id])
+
+    if child_source.holdings.count > 1
+        Puts "#{child_source.id} has #{child_source.holdings.count} holdings".red
+    end
+
+    holding = child_source.holdings.first
+
+    copy_tag(holding.marc, child_source.marc, "300")
+
+    # Sayonara
+    child_source.holdings.destroy_all
+    puts "Purged holdings for #{child_source.id}".yellow
+
+    child_source.record_type = MarcSource::RECORD_TYPES[:edition_content]
+    child_source.suppress_reindex
+    child_source.suppress_recreate
+    child_source.suppress_update_77x
+    child_source.suppress_update_count
+    child_source.save
 end
 
 # Prints need to have the appropriate 973 in the holding
@@ -264,13 +290,15 @@ def adapt_print_link(composite, child)
     cs.save
 
     puts "Fixed child #{child[:id]} to #{composite.id}"
+    return holding
 end
 
 def process_child(composite, child)
+    link_to_composite = nil
     if !child[:new_template]
         # For print we need to move the link
         # from the print to the holding
-        adapt_print_link(composite, child) if child[:old_template] == "p" 
+        link_to_composite = adapt_print_link(composite, child) if child[:old_template] == "p" 
         # NOTE: the case "m" does nothing as the linking already works
         puts "c #{child[:id]}" if child[:old_template] == "c"  # This snould not happen! correct the data
         # The case "m" is not touched
@@ -279,16 +307,66 @@ def process_child(composite, child)
         # NOTE: there are no cases when the composite is a manuscript
         if child[:old_template] == "c" && child[:new_template] == "p"
             child2parent(composite, child) # Make it into a parent
-            adapt_print_link(composite, child) # Fix the linking to the composite
+            link_to_composite = adapt_print_link(composite, child) # Fix the linking to the composite
         elsif child[:old_template] == "m" && child[:new_template] == "p"
             ms2print(composite, child) # Make the MS a print
-            adapt_print_link(composite, child) # then fix the linking to the composite
+            link_to_composite = adapt_print_link(composite, child) # then fix the linking to the composite
         elsif child[:old_template] == "p" && child[:new_template] == "m"
             # in this case a pr becomes a ms
             # there seems to be only one, just do nothing
             print2ms(composite, child)
         end
     end
+    return link_to_composite
+end
+
+def create_or_copy_holding_for_collection(composite, collection) 
+    holding = Holding.new
+
+    if (composite.record_type == MarcSource::RECORD_TYPES[:edition])
+        new_marc = MarcHolding.new(composite.holdings.first.marc.marc_source)
+        # Reset the basic fields to default values
+        new_marc.first_occurance("001").content = "__TEMP__"
+        new_marc.by_tags("974").each {|t| t.destroy_yourself}
+    else
+        new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
+        # Reset the basic fields to default values
+        new_marc.first_occurance("001").content = "__TEMP__"
+        new_marc.by_tags("974").each {|t| t.destroy_yourself}
+
+        # The 852 comes from the composite!
+        copy_tag(composite.marc, new_marc, "852")
+        copy_tag(composite.marc, new_marc, "300")
+    end
+
+    # Make a 973 to tie the holding to the composite
+    mc = MarcConfigCache.get_configuration("holding")
+    u973 = MarcNode.new("holding", "973", "", mc.get_default_indicator("973"))
+    u973.add_at(MarcNode.new("holding", "u", composite.id.to_s, nil), 0 )
+    # Add the 973 to the tree
+    new_marc.root.add_at(u973, new_marc.get_insert_position("973") )
+
+    # Import the marc
+    new_marc.suppress_scaffold_links
+    new_marc.import
+    
+    # Attach it to the child
+    holding.marc = new_marc
+    holding.source = collection
+    holding.collection_id = composite.id
+    
+    # Save the holding
+    holding.suppress_reindex
+    holding.suppress_update_77x
+    holding.save
+    # Make it recreate the links
+    h2 = Holding.find(holding.id)
+    h2.marc.load_source true
+    h2.suppress_update_77x
+    h2.save
+
+    puts "Added holding #{holding.id} to #{collection.id}"
+    return holding
 end
 
 def make_collection(composite, children)
@@ -322,43 +400,9 @@ def make_collection(composite, children)
     collection.save
 
     # Now we need to add a holding to it
-    holding = Holding.new
-
-    new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
-    # Reset the basic fields to default values
-    new_marc.first_occurance("001").content = "__TEMP__"
-    new_marc.by_tags("974").each {|t| t.destroy_yourself}
-
-    # The 852 comes from the composite!
-    copy_tag(composite.marc, new_marc, "852")
-
-    # Make a 973 to tie the holding to the composite
-    mc = MarcConfigCache.get_configuration("holding")
-    u973 = MarcNode.new("holding", "973", "", mc.get_default_indicator("973"))
-    u973.add_at(MarcNode.new("holding", "u", composite.id.to_s, nil), 0 )
-    # Add the 973 to the tree
-    new_marc.root.add_at(u973, new_marc.get_insert_position("973") )
-
-    # Import the marc
-    new_marc.suppress_scaffold_links
-    new_marc.import
-    
-    # Attach it to the child
-    holding.marc = new_marc
-    holding.source = collection
-    holding.collection_id = composite.id
-    
-    # Save the holding
-    holding.suppress_reindex
-    holding.suppress_update_77x
-    holding.save
-    # Make it recreate the links
-    h2 = Holding.find(holding.id)
-    h2.marc.load_source true
-    h2.suppress_update_77x
-    h2.save
-
-    puts "Added holding #{holding.id} to #{collection.id}"
+    # If the composite is a MS, copy 852
+    # Else duplicate the first holding
+    holding = create_or_copy_holding_for_collection(composite, collection)
 
     # Now we need to link the holding into the composite
     mc = MarcConfigCache.get_configuration("source")
@@ -370,10 +414,46 @@ def make_collection(composite, children)
 
     puts "created #{collection.id} from #{composite.id}"
 
+    # We need to detach the children from the composite
+    # And attach them to the new collection 
     children.each do |child|
+        # Do we need to transform the child? 
+        parent2child(child) if child[:new_template] == "c" && child[:old_template] == "p"
         
+        child_source = Source.find(child[:id])
+
+        # First step, nuke the 774 from the composite
+        composite.marc.each_data_tag_from_tag("774") do |tag|
+            subfield = tag.fetch_first_by_tag("w")
+            next if !subfield || !subfield.content
+            if subfield.content.to_i == child_source.id
+                puts "Deleting 774 $w#{subfield.content} for #{composite.id}, from #{child_source.id}"
+                tag.destroy_yourself
+            end
+        end
+
+        # Remove the eventual old 773
+        child_source.marc.by_tags("773").each {|t| t.destroy_yourself}
+
+        # Add the 773 link in the child to the collection
+        mc = MarcConfigCache.get_configuration("source")
+        w773 = MarcNode.new("source", "773", "", mc.get_default_indicator("773"))
+        w773.add_at(MarcNode.new("source", "w", collection.id, nil), 0 )
+
+        child_source.marc.root.add_at(w773, child_source.marc.get_insert_position("773") )
+        # This will recreate the 774 in the collection
+        child_source.source_id = collection.id
+        child_source.suppress_reindex
+        child_source.save
+        puts "Added 773 #{child_source.id} to #{collection.id}"
+        
+        # Fix linking
+        c2 = Source.find(child_source.id)
+        c2.suppress_reindex
+        c2.save
     end
 
+    return holding
 end
 
 CSV::foreach("housekeeping/ch_composite/composites.csv", col_sep: "\t", headers: headers) do |r|
@@ -401,19 +481,42 @@ CSV::foreach("housekeeping/ch_composite/composites.csv", col_sep: "\t", headers:
 end
 
 composites.each do |id, elements|
-
+    ordering = []
     collection = Source.find(id)
-
 
     elements.each do |type, children|
         if type.starts_with?("item_")
-            process_child(collection, children) ## only one child in this case
+            link = process_child(collection, children) ## only one child in this case
         else
-            make_collection(collection, children)
+            link = make_collection(collection, children)
         end
-
+        ordering << {item: type, id: link ? link.id : nil, type: link ? link.class : nil}
     end
 
+    # Now we need to fix the positioning...
+    links = collection.marc.by_tags("774").count
+
+    if links > ordering.count
+        puts "Manual check: #{collection.id} #{links} vs #{ordering.count}".red
+    else
+        # Nuke and recreate 774s
+        new_marc.each_by_tag("774") {|t2| t2.destroy_yourself}
+        #Re-create them in the correct order
+        ordering.each do |order|
+            if order[:id] == nil
+                id = type.split("_")[2] 
+            else
+                id = oder[:id]
+            end
+
+            mc = MarcConfigCache.get_configuration("source")
+            w774 = MarcNode.new("source", "774", "", mc.get_default_indicator("774"))
+            w774.add_at(MarcNode.new("source", "w", id, nil), 0 )
+            w774.add_at(MarcNode.new("source", "4", "holding", nil), 0 ) if order[:class] && order[:class].is_a? Holding
+            w774.sort_alphabetically
+            composite.marc.root.add_at(w774, composite.marc.get_insert_position("774") )
+        end
+    end
 
     # make it a composite volume
     collection.record_type = MarcSource::RECORD_TYPES[:composite_volume]
