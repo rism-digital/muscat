@@ -83,7 +83,7 @@ def ms2print(composite, child)
     new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
 
     # Kill empty
-    new_marc.each_by_tag("852") {|t2| t2.destroy_yourself}
+    remove_marc_tag(new_marc, "852")
 
     # Move the tags from the MS to the Holding
     copy_tag(marc, new_marc, "300")
@@ -153,7 +153,7 @@ def duplicate_holding(composite, child_source)
         new_marc = MarcHolding.new(composite.holdings.first.marc.marc_source)
         # Reset the basic fields to default values
         new_marc.first_occurance("001").content = "__TEMP__"
-        new_marc.by_tags("974").each {|t| t.destroy_yourself}
+        remove_marc_tag(new_marc, "973")
 
         # Import the marc
         new_marc.suppress_scaffold_links
@@ -284,7 +284,7 @@ def adapt_print_link(composite, child)
 
     # Last step, purge the 774 link from the child
     cs = Source.find(child[:id])
-    cs.marc.by_tags("773").each {|t| t.destroy_yourself}
+    remove_marc_tag(cs.marc, "773")
     cs.source_id = nil # We are attached to a composite
     cs.suppress_update_77x
     cs.save
@@ -327,12 +327,12 @@ def create_or_copy_holding_for_collection(composite, collection)
         new_marc = MarcHolding.new(composite.holdings.first.marc.marc_source)
         # Reset the basic fields to default values
         new_marc.first_occurance("001").content = "__TEMP__"
-        new_marc.by_tags("974").each {|t| t.destroy_yourself}
+        remove_marc_tag(new_marc, "973")
     else
         new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
         # Reset the basic fields to default values
         new_marc.first_occurance("001").content = "__TEMP__"
-        new_marc.by_tags("974").each {|t| t.destroy_yourself}
+        remove_marc_tag(new_marc, "973")
 
         # The 852 comes from the composite!
         copy_tag(composite.marc, new_marc, "852")
@@ -375,11 +375,12 @@ def make_collection(composite, children)
     collection = Source.new
     collection.record_type = MarcSource::RECORD_TYPES[:edition]
     new_marc = MarcSource.new(File.read( "#{Rails.root}/config/marc/#{RISM::MARC}/source/011_edition.marc"), MarcSource::RECORD_TYPES[:edition])
+
     # Purge the default marc
-    new_marc.by_tags("240").each {|t| t.destroy_yourself}
-    new_marc.by_tags("691").each {|t| t.destroy_yourself}
-    new_marc.by_tags("700").each {|t| t.destroy_yourself}
-    new_marc.by_tags("710").each {|t| t.destroy_yourself}
+    remove_marc_tag(new_marc, "240")
+    remove_marc_tag(new_marc, "691")
+    remove_marc_tag(new_marc, "700")
+    remove_marc_tag(new_marc, "710")
 
     # Copy some basic stuff from the composite
     copy_tag(composite.marc, new_marc, "100")
@@ -433,7 +434,7 @@ def make_collection(composite, children)
         end
 
         # Remove the eventual old 773
-        child_source.marc.by_tags("773").each {|t| t.destroy_yourself}
+        remove_marc_tag(child_source.marc, "773")
 
         # Add the 773 link in the child to the collection
         mc = MarcConfigCache.get_configuration("source")
@@ -483,6 +484,7 @@ end
 composites.each do |id, elements|
     ordering = []
     collection = Source.find(id)
+    #next if collection.id != 400102853
 
     elements.each do |type, children|
         if type.starts_with?("item_")
@@ -500,21 +502,22 @@ composites.each do |id, elements|
         puts "Manual check: #{collection.id} #{links} vs #{ordering.count}".red
     else
         # Nuke and recreate 774s
-        new_marc.each_by_tag("774") {|t2| t2.destroy_yourself}
+        remove_marc_tag(collection.marc, "774")
+
         #Re-create them in the correct order
         ordering.each do |order|
             if order[:id] == nil
-                id = type.split("_")[2] 
+                id = order[:item].split("_")[1] 
             else
-                id = oder[:id]
+                id = order[:id]
             end
 
             mc = MarcConfigCache.get_configuration("source")
             w774 = MarcNode.new("source", "774", "", mc.get_default_indicator("774"))
             w774.add_at(MarcNode.new("source", "w", id, nil), 0 )
-            w774.add_at(MarcNode.new("source", "4", "holding", nil), 0 ) if order[:class] && order[:class].is_a? Holding
+            w774.add_at(MarcNode.new("source", "4", "holding", nil), 0 ) if order[:type] && order[:type] == Holding
             w774.sort_alphabetically
-            composite.marc.root.add_at(w774, composite.marc.get_insert_position("774") )
+            collection.marc.root.add_at(w774, collection.marc.get_insert_position("774") )
         end
     end
 
