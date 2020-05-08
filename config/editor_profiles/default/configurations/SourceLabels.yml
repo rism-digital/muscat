@@ -1420,8 +1420,8 @@ doc_record_status:
         es: Particellas conservadas
     b: 
       label: 
-        it: Parti staccate mancanti
-        fr: Parties manquantes
+        it: Estensione (parti)
+        fr: Extension (parties)
         de: Umfang Stimmenmaterial
         en: Extent (parts)
         pt: "Extensão das partes"
