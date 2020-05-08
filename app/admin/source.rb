@@ -147,7 +147,7 @@ ActiveAdmin.register Source do
       else 
         
         default_file_name = EditorConfiguration.get_source_default_file(params[:new_record_type])
-        default_file = "#{Rails.root}/config/marc/#{RISM::MARC}/source/" + default_file_name + '.marc'
+        default_file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/source/#{default_file_name}.marc")
         
         if File.exists?(default_file)
           new_marc = MarcSource.new(File.read(default_file), MarcSource::RECORD_TYPES[params[:new_record_type].to_sym])

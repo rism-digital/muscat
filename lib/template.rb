@@ -30,7 +30,7 @@ module Template
   def create_holding
     marc.by_tags("852").each do |t|
       holding = Holding.new
-      new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
+      new_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
       new_marc.load_source false
       new_marc.each_by_tag("852") {|t2| t2.destroy_yourself}
       new_852 = t.deep_copy

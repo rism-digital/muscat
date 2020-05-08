@@ -96,7 +96,7 @@ ActiveAdmin.register Catalogue do
         new_marc.reset_to_new
         @catalogue.marc = new_marc
       else
-        new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc"))
+        new_marc = MarcCatalogue.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc")))
         new_marc.load_source false # this will need to be fixed
         @catalogue.marc = new_marc
       end
