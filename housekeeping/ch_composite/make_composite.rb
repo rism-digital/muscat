@@ -526,7 +526,8 @@ composites.each do |id, elements|
         puts "WARNING multiple holdings in #{collection.id}" if collection.holdings.count > 1
         h = collection.holdings.first # always use the first one
         copy_tag(h.marc, collection.marc, "852")
-        copy_tag(h.marc, collection.marc, "300")
+        copy_tag(h.marc, collection.marc, "541")
+        copy_tag(h.marc, collection.marc, "561")
         copy_tag(h.marc, collection.marc, "700")
         copy_tag(h.marc, collection.marc, "710")
         copy_tag(h.marc, collection.marc, "500")
