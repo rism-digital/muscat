@@ -521,6 +521,20 @@ composites.each do |id, elements|
         end
     end
 
+    # move the holding record if any to the composite
+    if collection.holdings.count > 0
+        puts "WARNING multiple holdings in #{collection.id}" if collection.holdings.count > 1
+        h = collection.holdings.first # always use the first one
+        copy_tag(h.marc, collection.marc, "852")
+        copy_tag(h.marc, collection.marc, "300")
+        copy_tag(h.marc, collection.marc, "700")
+        copy_tag(h.marc, collection.marc, "710")
+        copy_tag(h.marc, collection.marc, "500")
+        copy_tag(h.marc, collection.marc, "599")
+
+        collection.holdings.destroy_all
+    end
+
     # make it a composite volume
     collection.record_type = MarcSource::RECORD_TYPES[:composite_volume]
     collection.save
