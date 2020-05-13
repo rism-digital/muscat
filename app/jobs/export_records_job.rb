@@ -23,15 +23,35 @@ class ExportRecordsJob < ProgressJob::Base
 
         f = Folder.find(@parent_obj_id)
 
-        update_progress_max(f.folder_items.count)
-
+ 
+=begin
         File.open("#{Rails.root}/tmp/test.xml", "w") do |file| 
             f.folder_items.limit(30000).each do |f|
                 file.write(f.item.marc.to_xml_record(nil, nil, true))
                 update_stage_progress("Exporting #{f.item.id}")
             end
         end
-      
+=end
+        # Force a reconnect
+
+
+        limit = f.folder_items.count / 10
+        max = f.folder_items.count
+        update_progress_max(max)
+        count = 0
+        Parallel.map(0..10, in_processes: 10) do |jobid|
+            ActiveRecord::Base.connection.reconnect!
+            offset = limit * jobid
+            File.open("#{Rails.root}/tmp/test#{jobid}.xml", "w") do |file|
+                f.folder_items.order(:id).limit(limit).offset(offset).each do |fi|
+                    file.write(fi.item.marc.to_xml_record(nil, nil, true))
+                    count += 1
+                    update_stage_progress("Updated #{count * 10}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+                end
+            end
+            ActiveRecord::Base.connection.reconnect!
+        end
+        ActiveRecord::Base.connection.reconnect!
     end
     
     def destroy_failed_jobs?
