@@ -20,6 +20,7 @@ class MuscatAdminHeader < ActiveAdmin::Views::Header
 end
 
 require 'active_admin_record_type_filter'
+require 'active_admin_lib_siglum_filter'
 
 ActiveAdmin.setup do |config|
 
@@ -133,8 +134,8 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  # config.root_to = 'dashboard#index'
-  config.root_to = 'sources#index'
+  config.root_to = 'dashboard#index'
+  #config.root_to = 'sources#index'
 
 
   # == Admin Comments
@@ -164,11 +165,11 @@ ActiveAdmin.setup do |config|
   # You can add before, after and around filters to all of your
   # Active Admin resources and pages from here.
   #
-  # config.before_filter :do_something_awesome
+  # config.before_action :do_something_awesome
   
   # LP - for caching filters, pagination and order
-  config.before_filter :restore_search_filters
-  config.after_filter :save_search_filters
+  config.before_action :restore_search_filters
+  config.after_action :save_search_filters
   
   
   # == Setting a Favicon
@@ -198,7 +199,7 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
-  #config.register_stylesheet 'jquery.ui.theme.css'
+  config.register_stylesheet 'jquery-ui.css'
   #config.register_javascript 'marc_editor.js'
   #config.register_javascript 'marc_json.js'
   #config.register_javascript 'jquery.blockUI.js'
@@ -250,7 +251,8 @@ ActiveAdmin.setup do |config|
         lang.add :label => "DE", :url => proc { url_for(:locale => 'de') }, id: 'i18n-de', :priority => 2, :html_options   => {:style => 'float:left;'}
         lang.add :label => "FR", :url => proc { url_for(:locale => 'fr') }, id: 'i18n-fr', :priority => 3, :html_options   => {:style => 'float:left;'}
         lang.add :label => "IT", :url => proc { url_for(:locale => 'it') }, id: 'i18n-it', :priority => 4, :html_options   => {:style => 'float:left;'}
-        lang.add :label => "ES", :url => proc { url_for(:locale => 'es') }, id: 'i18n-is', :priority => 5, :html_options   => {:style => 'float:left;'}
+        lang.add :label => "PT", :url => proc { url_for(:locale => 'pt') }, id: 'i18n-pt', :priority => 5, :html_options   => {:style => 'float:left;'}
+        lang.add :label => "ES", :url => proc { url_for(:locale => 'es') }, id: 'i18n-es', :priority => 6, :html_options   => {:style => 'float:left;'}
       end
       # Add the menu by hand because otherwise it is not getting translated
       menu.add :label => proc {I18n.t(:menu_comments)}, id: 'comments_menu', :priority => 4, :url => "/admin/comments"
@@ -271,20 +273,22 @@ ActiveAdmin.setup do |config|
   # or customize the formats shown per namespace/globally
   #
   # To disable/customize for the :admin namespace:
-  #
-  #   config.namespace :admin do |admin|
+  
+          
+config.namespace :admin do |admin|
   #
   #     # Disable the links entirely
   #     admin.download_links = false
   #
   #     # Only show XML & PDF options
-  #     admin.download_links = [:xml, :pdf]
+      admin.download_links = [:xml, :json]
   #
   #     # Enable/disable the links based on block
   #     #   (for example, with cancan)
   #     admin.download_links = proc { can?(:view_download_links) }
   #
-  #   end
+  end
+
 
 
   # == Pagination
@@ -315,6 +319,10 @@ require "kaminari/helpers/tag"
 ## RZ This monkey patch enables some filter labels to be translated in the Search Status
 ## sidebar.
 require 'active_admin/filter_label'
+## RZ Let the download links disappear BUT have the .xml download for a single item
+require 'active_admin/download_links'
+## RZ Add some text to the comments box, for help
+require 'active_admin/active_admin_comments'
 
 ActiveAdmin.before_load do |app|
   # Add our Extensions

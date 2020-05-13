@@ -1,11 +1,12 @@
 ActiveAdmin.register User do
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ can? :manage, User }
   
-  permit_params :preference_wf_stage, :email, :password, :password_confirmation, :name, workgroup_ids: [], role_ids: []
+  permit_params :preference_wf_stage, :email, :password, :password_confirmation, :name, :notifications, :notification_type, workgroup_ids: [], role_ids: []
 
   # Remove all action items
   config.clear_action_items!
 	
+
 =begin #515 postponed to 3.7
 	controller do
 	  def update
@@ -17,6 +18,18 @@ ActiveAdmin.register User do
 	  end
 	end
 =end
+
+  collection_action :list, method: :post do
+    params.permit!
+    if params.include?(:q)
+      users = User.where("name REGEXP ?", "\\b#{params[:q]}").collect {|u| {name: u.name, id: u.name.gsub(" ", "_")}}
+    else
+      users = []
+    end
+    respond_to do |format|
+        format.json { render json: users  }
+    end
+  end
 
   ###########
   ## Index ##
@@ -72,6 +85,8 @@ ActiveAdmin.register User do
       row I18n.t(:roles) do |user|
            user.get_roles.join(", ")
       end
+      row :notifications
+      row :notification_type
       row :sign_in_count
       row :created_at
       row :updated_at
@@ -88,25 +103,30 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs I18n.t(:user_details) do
+
       #515 postponed to 3.7
-      #if can? :manage, User
+      if can? :manage, User
         f.input :name
         f.input :email
-      #elsif can? :update, User
-      #  f.input :name, :input_html => {:disabled => true}
-      #  f.input :email, :input_html => {:disabled => true}
-      #end
-
+      elsif can? :update, User
+        f.input :name, :input_html => {:disabled => true}
+        f.input :email, :input_html => {:disabled => true}
+      end
+      
       if can? :update, User
-        f.input :password
-        f.input :password_confirmation
+        ## size does not work unless there is a dummy class. Hooray!
+        f.input :notifications, :input_html => { :class => 'placeholder', :rows => 2, :style => 'width:50%'}
+        f.input :notification_type, as: :select, multiple: false, collection: [:each, :daily, :weekly]
       end
       if can? :manage, User
+        f.input :password
+        f.input :password_confirmation
         f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all.sort_by {|w| w.name} 
         f.input :roles, as: :select, multiple: false, collection: Role.all
         f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published, :deleted]
       end
     end
+    render partial: 'notifications_help', locals: { f: f }
   end
   
   sidebar :actions, :only => [:edit, :new, :update] do

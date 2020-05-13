@@ -1,28 +1,34 @@
-<%- extended_help = @editor_profile.get_tag_extended_help(tag_name, @item.class.to_s) %>
+<!-- Holding shares help text with source -->
+<% help_model = @item.class.to_s == 'Holding' ? 'Source' : @item.class.to_s %>
+<%- extended_help = @editor_profile.get_tag_extended_help(tag_name, help_model) %>
 <%
-	no_add = false
-	no_delete = false
-	new_window_controller = false
-	if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name]["layout"]
-		if @editor_profile.options_config[tag_name]["layout"]["hide_add_button"]
-			no_add = true
-		end
-	end
-	
-	if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name]["tag_params"]
-		if @editor_profile.options_config[tag_name]["tag_params"]["no_delete"]
-			no_delete = true
-		end
-	end
-	
-	if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name].include?("new_window")
-		new_window_controller = @editor_profile.options_config[tag_name]["new_window"]
-		new_window_field = @editor_profile.options_config[tag_name]["new_window_field"]
-		record_type_helper = @editor_profile.options_config[tag_name]["record_type_helper"]
-		if record_type_helper != nil#&& respond_to?(record_type_helper)
-			selection_record_type = send(record_type_helper, @item)
+  no_add = false
+  no_delete = false
+  new_window_controller = false
+  if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name]["layout"]
+    if @editor_profile.options_config[tag_name]["layout"]["hide_add_button"]
+      no_add = true
     end
-	end
+  end
+	
+  if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name]["tag_params"]
+    if @editor_profile.options_config[tag_name]["tag_params"]["no_delete"]
+      no_delete = true
+    end
+  end
+	
+  if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name].include?("new_window")
+    new_window_controller = @editor_profile.options_config[tag_name]["new_window"]
+    new_window_field = @editor_profile.options_config[tag_name]["new_window_field"]
+    record_type_helper = @editor_profile.options_config[tag_name]["record_type_helper"]
+    if record_type_helper != nil#&& respond_to?(record_type_helper)
+      selection_record_type = send(record_type_helper, @item)
+    end
+    lib_siglum_helper = @editor_profile.options_config[tag_name]["lib_siglum_helper"]
+    if lib_siglum_helper != nil #&& respond_to?(lib_siglum_helper)
+      selection_lib_siglum = send(lib_siglum_helper, @item)
+    end
+  end
 
 %>
 
@@ -30,8 +36,15 @@
 	<div  class="abuttonset abuttonset-multi">
 		<%if new_window_controller && !empty_header %>
 		<!-- this is a special case, see new_window_select_ujs.js -->
- 		<a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=selection_record_type%>" title="Search"><span class="ui-icon ui-icon-search"></span>_</a>
-		<%end%>
+      <% if selection_record_type != nil && selection_record_type.is_a?(Array) && selection_record_type.count > 1 %>
+        <!-- For some record types, it is necessary to show two different select windows -->
+        <!-- For two different types ot document -->
+       	<a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=selection_record_type[0]%>" data-selection-lib-siglum="<%=selection_lib_siglum%>" title="Search Collection"><span class="muscat-ui-icon search-button-collection"></span>_</a>
+ 	  	  <a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=selection_record_type[1]%>" data-selection-lib-siglum="<%=selection_lib_siglum%>" title="Search Composite"><span class="muscat-ui-icon search-button-composite"></span>_</a>
+      <% else %>
+ 	  	  <a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=selection_record_type%>" data-selection-lib-siglum="<%=selection_lib_siglum%>" title="Search"><span class="ui-icon ui-icon-search"></span>_</a>
+      <% end %>
+    <%end%>
 
 		<%- if !extended_help.empty? %>
         <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="help" data-help="<%= extended_help -%>"  title="Help"><span class="ui-icon ui-icon-help"></span>_</a>
@@ -49,7 +62,7 @@
 	    <% end %>
 
         <%- if !empty_header -%>
-	    <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="toggle"  title="Toggle"><span class="ui-icon ui-icon-triangle-1-s"></span>_</a>
+	    <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="toggle"  title="Show/Hide"><span class="ui-icon ui-icon-triangle-1-s"></span>_</a>
         <% end %>
 		
 	</div>

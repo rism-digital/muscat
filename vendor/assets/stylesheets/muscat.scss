@@ -70,10 +70,11 @@ body.active_admin {
     .status_tag.source { background: #2976bd; }
     .status_tag.edition_content { background: #81b5e4; }
     .status_tag.libretto_source { background: #267348; }
-    .status_tag.libretto_edition_content { background: #40bf79; }
+    .status_tag.libretto_edition { background: #40bf79; }
     .status_tag.theoretica_source { background: #8c6027; }
-    .status_tag.theoretica_edition_content { background: #deb887; }
+    .status_tag.theoretica_edition { background: #deb887; }
     .status_tag.edition { background: #808080; }
+    .status_tag.composite_volume { background: #87CEFA; }
 }
 
 .progress_bar {
@@ -113,6 +114,9 @@ body.active_admin {
 .srutable tr:hover {background-color: #ddd;}
 
 .srutable th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   padding-top: 2px;
   padding-bottom: 2px;
   text-align: left;
@@ -160,4 +164,15 @@ body.active_admin {
 .holding_actions {
   float: right; 
   margin-right: 8px; 
+}
+
+.template_ul {
+	margin: 0 0 0 0 !important;
+	ul {
+		list-style-type: circle;
+	}
+}
+
+select[name="target_template"] { 
+  width: 280px;
 }

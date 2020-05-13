@@ -4,7 +4,7 @@ it:
     search_status:
       headline: "Ambito"
       current_filters: "Filtri in uso"
-    dashboard: Pannello
+    dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
       call_to_action: "Per aggiungere sezioni alla dashboard controlla il file 'app/admin/dashboard.rb'"
@@ -58,6 +58,7 @@ it:
       one_page: "Sto mostrando <b>%{n}</b> %{model}. Lista completa."
       multiple: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{total}</b> in totale"
       multiple_without_total: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Elementi per pagina:"
       entry:
         one: "voce"
         other: "voci"
@@ -79,8 +80,10 @@ it:
       action_label: "%{title}"
       labels:
         destroy: "Elimina"
-        folder: "Crea nuova cartella con gli elementi selezionati"
+        folder: "Crea una nuova cartella con gli elementi selezionati"
         add_to_folder: "Aggiungi gli elementi selezionati ad una cartella esistente"
+        merge: "Riunisci le voci di autorità"
+        change_template: "CHANGE TEMPLATE"
 
     comments:
       resource_type: "Tipo di risorsa"
@@ -91,6 +94,7 @@ it:
       add: "Aggiungi commento"
       resource: "Risorsa"
       no_comments_yet: "Nessun commento."
+      comments_help: "Digitare @ per menzionare un utente specifico, che riceverà una notifica per email."
       author_missing: "Anonimo"
       title_content: "Commenti (%{count})"
       errors:
@@ -155,14 +159,17 @@ it:
         one: "Immagine"
         other: "Immagini"
       catalogue:
-        one: "Catalogo"
-        other: "Cataloghi"
+        one: "Riferimento"
+        other: "Riferimenti"
       folder:
         one: "Cartella"
         other: "Cartelle"
       workgroup:
         one: "Gruppo"
         other: "Gruppi"
+      holding:
+        one: "Informazione di possesso"
+        other: "Informazioni di possesso"
       institution:
         one: "Istituzione"
         other: "Istituzioni"
@@ -184,6 +191,9 @@ it:
       user:
         one: "Utente"
         other: "Utenti"
+      work:
+        one: "Opera"
+        other: "Opere"
       
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Seleziona un nuovo template"
@@ -196,10 +206,47 @@ it:
     source: "Manoscritto musicale"
     edition_content: "Edizione a stampa, in una collezione"
     libretto_source: "Libretto manoscritto"
-    libretto_edition_content: "Elemento di un libretto edito"
+
+    libretto_edition: "Elemento di un libretto stampato"
+    libretto_edition_content: "Libretto a stampa, in una collezione"
+
     theoretica_source: "Manoscritto di teoria musicale"
-    theoretica_edition_content: "Elemento di un edizione di teoria musicale"
+    theoretica_edition: "Elemento di un edizione di teoria musicale"
+    theoretica_edition_content: "Edizione di teoria musicale, in una collezione"
     edition: "Edizione musicale, scheda madre della collezione o scheda individuale"
+    
+    composite_volumes: "Volumi compositi"
+    composite_volume: "Volume composito"
+    
+    music_manuscripts: "Manoscritti musicali"
+    collection_record: "Collezione di manoscritti musicali"
+    individual_entry: "Singolo elemento in una collezione di manoscritti musicali"
+    single_manuscript: "Manoscritto musicale singolo"
+    
+    printed_music: "Edizioni a stampa"
+    collection_record_edition: "Collezione di edizioni a stampa"
+    individual_entry_edition: "Singolo elemento di una collezione di edizioni a stampa"
+    single_edition: "Edizione a stampa singola"
+
+    libretti_handwritten: "Libretti, manoscritti"
+    collection_record_libretti: "Collezione di libretti manoscritti"
+    individual_entry_libretti: "Singolo elemento in una collezione di libretti manoscritti"
+    single_libretto: "Libretto manoscritto singolo"
+    
+    libretti_printed: "Libretti, a stampa"
+    collection_record_libretti_printed: "Collezione di libretti a stampa"
+    individual_entry_libretti_printed: "Singolo elemento in una collezione di libretti a stampa"
+    single_libretto_printed: "Libretto a stampa singolo"
+    
+    threatise_handwritten: "Trattati, manoscritti"
+    collection_record_threatise: "Collezione di trattati manoscritti"
+    individual_entry_threatise: "Singolo elemento in una collezione di trattati manoscritti"
+    single_threatise: "Trattato manoscritto singolo"
+    
+    threatise_printed: "Trattati, a stampa"
+    collection_record_threatise_printed: "Collezione di trattati a stampa"
+    individual_entry_threatise_printed: "Singolo elemento in una collezione di trattati a stampa"
+    single_threatise_printed: "Trattato a stampa singolo"
 
   #################### MENUS
   menu_admin: "Admin"
@@ -228,7 +275,7 @@ it:
   menu_contact: "Contatti"
   menu_search_history: "Ricerche effettuate"
   menu_guidelines: "Regole di Catalogazione"
-  menu_marc_documentation: "Configurazione Marc"
+  menu_marc_documentation: "Configurazione MARC"
   menu_guidelines_top: "Documentazione"
   menu_cataloging: "Catalogazione"
   menu_jobs: "Processi in Background"
@@ -255,32 +302,35 @@ it:
   progress_stage: "Fase"
   object: "Oggetto"
   queue: "Coda"
-  failed_at: "Data Fallimento"
-  run_at: "Data Esecuzione"
+  failed_at: "Data fallimento"
+  run_at: "Data esecuzione"
   progress: "Avanzamento"
   failed: "Fallito"
-  waiting: "In Attesa"
-  running: "In Esecuzione"
+  waiting: "In attesa"
+  running: "In esecuzione"
   finished: "Completato"
-  lib_siglum: "Sigla della Biblioteca"
-  holding_records: "Informazioni sugli esemplari"
+  lib_siglum: "Sigla della biblioteca"
+  holding_records: "Informazioni di possesso"
+  holding_no_siglum: "Esemplare senza sigla di biblioteca"
   new_holding: "Nuovo Esemplare"
   new_holding_page: "Esemplare non salvato"
   new_digital_object: "Aggiungi una nuova immagine"
-  record_actions: "Impostazioni Record "
-  record_status: "Stato pubblicazione"
+  record_actions: "Impostazioni scheda"
+  record_status: "Stato di pubblicazione"
   record_owner: "Proprietario"
   record_audit: "Revisione"
+  basic_level: "Record di base"
   full_level: "Record completo"
   #full_level: "Record completo, materiale esaminato"
   abbreviated_level: "Record abbreviato, materiale esaminato"
-  retro_level: "Retrocataloging"
+  retro_level: "Retrocatalogazione"
   imported_level: "Record importato"
-  link_type: "Tipo Oggetto"
-  linked_object: "Oggetto Collegato"
+  link_type: "Tipo oggetto"
+  linked_object: "Oggetto collegato"
   links: "Collegamenti"
-  link_remove: "Elimina Collegamento"
+  link_remove: "Elimina collegamento"
   link_remove_confirm: "Sei sicuro di voler eliminare il collegamento?"
+  unloadable_record: "Questa scheda ha avuto problemi nel caricamento: può essere consultata ma non modificata. Si prega di contattare un amministratore."
   validation_level_error: "Sono presenti errori, correggerli prima di continuare"
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
   
@@ -288,7 +338,7 @@ it:
     not_set: "[Nessuno stato]"
     ok: "Processo terminato con successo"
     no_status: "Errore durante la lettura del messaggio di stato"
-    error: "ERRORE: "
+    error: "Errore: "
     running_jobs: "I processi correntemente in esecuzione non possono essere candellati."
     auto_delete: "Impossibile cancellare: il processo terminato è già stato eliminato automaticamente."
     no_view: "Impossibile visualizzare: il processo terminato è già stato eliminato automaticamente."
@@ -299,21 +349,27 @@ it:
   edit: "Modifica"
   new: "Crea"
   duplicate: "Duplica"
+  merge: "Riunisci"
   no_action: "Nessuna azione"
   reindex: "Indicizza le fonti"
   resave: "Salva le fonti"
   publish: "Pubblica"
   unpublish: "Annulla pubblicazione"
   select: "Seleziona"
-  create_folder: "Crea Cartella"
-  append_folder: "Aggiungi a Cartella"
-  add_source: "Collega Fonte"
-  add_person: "Collega Persona"
+  create_folder: "Crea cartella"
+  append_folder: "Aggiungi a cartella"
+  add_person: "Collega istituzione"
+  add_source: "Collega fonte"
+  add_person: "Collega persona"
+  archive_unarchive: "Archivia / disarchivia"
+  archive: "Archivia"
+  unarchive: "Disarchivia"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
   show_preview: "Mostra anteprima"
   hide_preview: "Nascondi anteprima"
+  show_validate: "Valida Record"
   show_history: "Mostra lo storico"
   show_viaf: "Ricerca VIAF"
   save_and_continue: "Salva e continua"
@@ -359,21 +415,22 @@ it:
   filter_autograph_of: "Autografo di"
   filter_birth_place: "Luogo di nascita"
   filter_catalog: "Catalogo"
+  filter_category_type: "Categoria"
   filter_collection: "Collezione"
-  filter_comments: "Commenti"
+  filter_comment: "Commento"
   filter_composer: "Compositore"
   filter_connected_libraries: "Biblioteche"
   filter_country: "Paese"
   filter_creation_date: "Data di composizione"
   filter_date: "Data"
   filter_date_from: "Data da"
-  filter_date_of_publication: "Luogo della pubblicatione"
+  filter_date_of_publication: "Anno della pubblicatione"
   filter_date_to: "Data a"
   filter_description: "Descrizione"
-  filter_digital_objects: "Digital Objects"
+  filter_digital_objects: "Oggetti digitali"
   filter_district: "Regione"
   filter_email: "E-mail"
-  filter_folder_type: "Folder Type"
+  filter_folder_type: "Tipo di cartella"
   filter_full_name: "Nome"
   filter_gender: "Sesso"
   filter_id: "Id"
@@ -392,9 +449,9 @@ it:
   filter_liturgical_feast: "Feste liturgiche"
   filter_location_and_name: "Nome e luogo"
   filter_manuscript_no: "Manoscritto num."
-  filter_male: "MALE"
-  filter_female: "FEMALE"
-  filter_unknown: "UNKNOWN"
+  filter_male: "Maschile"
+  filter_female: "Femminile"
+  filter_unknown: "Sconosciuto"
   filter_shelf_mark: "Ms. num."
   filter_name: "Nome"
   filter_notes: "Note"
@@ -412,7 +469,7 @@ it:
   filter_person_100d_deathdate: "Data di morte"
   filter_phone: "Telefono"
   filter_place: "Luogo"
-  filter_place_of_publication: "PLACE OF PUBLICATION"
+  filter_place_of_publication: "Luogo della pubblicazione"
   filter_provenance: "Provenienza"
   filter_record_type: "Tipo del Template"
   filter_record_type_short: "Tipo"
@@ -432,6 +489,7 @@ it:
   filter_subject: "Soggetto"
   filter_subsequent_entries: "Notizie Successive"
   filter_term: "Termine"
+  filter_textinipit: "Incipit testuale"
   filter_thematic_opus: "Catalogo / Num. d'opera"
   filter_title: "Titolo"
   filter_titles: "Titoli"
@@ -465,6 +523,12 @@ it:
   filter_dist_594l: "Strumenti da tasto"
   filter_dist_594m: "Altri strumenti"
   filter_dist_594n: "Strumenti del basso continuo"
+  filter_source_name: "Nome della Fonte"
+  filter_source_composer: "Compositore della Fonte"
+  filter_printed_exemplars: "Numero di esemplari a stampa"
+
+  ## Referring lists for auth files
+  refers_to_this: "%{model_from} che fanno riferimento a questo %{model_to}"
   
   rism_any_key: "ogni tonalità"
   rism_a_flat: "La bemolle maggiore/minore"
@@ -490,15 +554,15 @@ it:
   cannot_update_source: "Non sei autorizzato a modificare questo tipo di fonte"
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
   validate_name_uniqness: "Scheda non salvata: il titolo breve '%{term}' è già esistente."
-  validates_parent_id: "RECORD NOT SAVED: PARENT RECORD (773) CANNOT BE SAME AS THIS RECORD"
+  validates_parent_id: "Scheda non salvata: una fonte non può linkare a se stessa (tag 773) "
 
   #
   entry:
      one: "voce"
      other: "voci"
   digital_object:
-      one: "Oggetto Digitale"
-      other: "Oggetti Digitali"
+      one: "Oggetto digitale"
+      other: "Oggetti digitali"
   catalogue:
     one: "catalogo"
     other: "cataloghi"
@@ -600,6 +664,7 @@ it:
   do_ext_link_not_avail: "(File audio non disponibile da questa postazione)"
   do_images_title: "Immagini"
   connected_libraries: "Biblioteche"
+  view_source: "Mostra fonte"
   
   mei:
     title: "Esportazione MEI per la fonte %{source}"
@@ -616,14 +681,30 @@ it:
     banner: 'Usare "Anteprima" per mostrare il risultato della conversione in MEI.'
   
   wf_stage:
-    inprogress: "In Elaborazione"
-    published: "Pubblicato"
+    inprogress: "In Elaborazione (UNP)"
+    published: "Pubblicato (PUB)"
     deleted: "Cancellato"
+    deprecated: "Rigettato"
 
+  dashboard:
+    selection: "Selezione attività recenti"
+    type: "Tipo"
+    type_created: "Create recentemente"
+    type_updated: "Modificate recentemente"
+    owner: "Proprietario"
+    owner_user: "Io"
+    owner_any: "Chiunque"
+    quantity: "Mostra"
+    update: "Aggiorna"
+    no_items: "Nessun elemento da mostrare con i filtri selezionati"
+  
   # editor validation 
   validation:
-    missing_message: "Questo campo deve contendere un valore"
+    missing_message: "Questo campo deve contenere un valore"
     warning_message: "Questo campo dovrebbe contenere un valore"
+    insufficient_rights: "L'utente non ha i diritti necessari per creare un record con questa biblioteca"
+    name_uniqueness: "Il nome breve dell'elemento è già in uso"
+    correct: "Il record non contiene errori [200]"
 
   incipit_search:
     incipit_search: "Ricerca negli incipit"
@@ -634,6 +715,15 @@ it:
     gross_pitch: "Contorno melodico approssimato (ricerca più approssimativa)"
     anchor: "Ricerca solo nell'inizio"
     erase: "Cancella una nota"
+
+  # This is used for the "incipit" seach in the search history in BL
+  # Note the capital 'I'
+  Incipit: "Incipit"
+
+  cookies:
+    message: "Il nostro sito web utilizza cookie per funzionare. Se utilizzate il nostro sito accettata il nostro utilizzo dei cookie."
+    dimiss: "Accetta e chiudi"
+    link: 'Per saperne di più'
 
   date:
     month_names:
@@ -689,5 +779,5 @@ it:
       limit_criteria_heading_html: "<strong>E</strong> hanno questi attributi"
       query_criteria_heading_html: "Cerca gli elementi che corrispondono a %{select_menu}"
       sort_label: "Ordina per"
-      start_over: "Reset"
+      start_over: "Ripristina"
       search_btn: 'Cerca'

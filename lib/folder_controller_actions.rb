@@ -45,8 +45,8 @@ module FolderControllerActions
     end
     
     # This action adds to an existing folder, from the menu
-    dsl.batch_action :add_to_folder, if: proc{ Folder.where(folder_type: self.resource_class).count > 0 }, form: -> {
-      folders = Folder.where(folder_type: self.resource_class)
+    dsl.batch_action :add_to_folder, if: proc{ Folder.where(folder_type: self.resource_class.to_s).count > 0 }, form: -> {
+      folders = Folder.where(folder_type: self.resource_class.to_s)
       ids = folders.map {|f| [f.name, f.id]}.collect
       {folder: ids}
     } do |ids, inputs|
@@ -69,6 +69,31 @@ module FolderControllerActions
         Sunspot.commit
 
         redirect_to collection_path, :notice => I18n.t(:added, scope: :folders, name: f.name, count: results.count)
+      end
+    end
+    
+    dsl.batch_action :remove_from_folder, confirm: "Are you sure?", if: proc{ is_folder_selected?} do |ids, input|
+
+      folder_id = get_folder_from_params
+      
+      if !folder_id
+        redirect_to collection_path, :alert => "No Folder selected."
+      else
+        
+        begin
+          f = Folder.find(folder_id)
+          
+          if cannot?(:manage, f)
+            redirect_to collection_path, :alert => "You are not authorized to remove items from #{f.name} (#{f.id})."
+          else
+            f.remove_items(ids)
+            redirect_to collection_path, :notice => "Removed #{ids.count} from folder #{f.name} (#{f.id})"
+          end
+          
+        rescue ActiveRecord::RecordNotFound
+          redirect_to collection_path, :alert => "Folder #{folder_id} does not exist."
+        end
+        
       end
     end
     

@@ -4,15 +4,18 @@ ActiveAdmin.register Person do
 
   # Remove mass-delete action
   batch_action :destroy, false
-  
-  # Remove all action items
+  include MergeControllerActions
+   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
+
   config.sort_order = 'full_name_asc'
   breadcrumb do
     active_admin_muscat_breadcrumb
   end
   
   collection_action :autocomplete_person_full_name, :method => :get
+  collection_action :autocomplete_person_550a_sms, :method => :get
   
   collection_action :viaf, method: :get do
     respond_to do |format|
@@ -27,6 +30,7 @@ ActiveAdmin.register Person do
   controller do
     
     autocomplete :person, :full_name, :display_value => :autocomplete_label , :extra_data => [:life_dates]
+    autocomplete :person, "550a_sms", :solr => true
     
     after_destroy :check_model_errors
     before_create do |item|
@@ -81,6 +85,15 @@ ActiveAdmin.register Person do
     end
     
     def index
+      person = Person.new
+      new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
+      new_marc.load_source false # this will need to be fixed
+      person.marc = new_marc
+      @editor_profile = EditorConfiguration.get_default_layout person
+     
+      # Get the terms for 550a, the "profession filter"
+      @profession_types = Source.get_terms("550a_sms")
+
       @results, @hits = Person.search_as_ransack(params)
       index! do |format|
         @people = @results
@@ -129,8 +142,15 @@ ActiveAdmin.register Person do
   filter :"375a_contains", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
   # FIXME locale not read
     :collection => [[I18n.t(:filter_male), 'male'], [ I18n.t(:filter_female), 'female'], [I18n.t(:filter_unknown), 'unknown']]
-  filter :"550a_contains", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
-  filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, :as => :string
+  #filter :"550a_contains", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
+
+  filter :"550a_with_integer", :label => proc{I18n.t(:filter_person_550a)}, as: :select, 
+  collection: proc{@profession_types.sort.collect {|k| [k.camelize, "550a:#{k}"]}}
+
+  filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, as: :select, 
+    collection: proc {
+      @editor_profile.options_config["043"]["tag_params"]["codes"].map{|e| [@editor_profile.get_label(e), e]}.sort_by{|k,v| k}
+    }
   filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
@@ -152,12 +172,15 @@ ActiveAdmin.register Person do
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Person").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+  filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
+    collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
   
+
   index :download_links => false do
     selectable_column if !is_selection_mode?
-    column (I18n.t :filter_id), :id
     column (I18n.t :filter_wf_stage) {|person| status_tag(person.wf_stage,
       label: I18n.t('status_codes.' + (person.wf_stage != nil ? person.wf_stage : ""), locale: :en))} 
+    column (I18n.t :filter_id), :id
     column (I18n.t :filter_full_name), :full_name
     column (I18n.t :filter_life_dates), :life_dates
     column (I18n.t :filter_owner) {|person| User.find(person.wf_owner).name rescue 0} if current_user.has_any_role?(:editor, :admin)
@@ -192,7 +215,38 @@ ActiveAdmin.register Person do
     else
       render :partial => "marc/show"
     end
-    active_admin_embedded_source_list( self, person, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, person, !is_selection_mode? )
+
+    # Box for catalogues referring to this person
+    active_admin_embedded_link_list(self, person, Catalogue) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_author), :author
+        context.column (I18n.t :filter_description), :description
+        if !is_selection_mode?
+          context.column "" do |catalogue|
+            link_to "View", controller: :catalogues, action: :show, id: catalogue.id
+          end
+        end
+      end
+    end 
+
+    # Box for institutions referring to this person
+    active_admin_embedded_link_list(self, person, Institution) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :siglum
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_place), :place
+        if !is_selection_mode?
+          context.column "" do |ins|
+            link_to "View", controller: :institutions, action: :show, id: ins.id
+          end
+        end
+      end
+    end
+
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, person )
     active_admin_navigation_bar( self )

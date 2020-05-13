@@ -3,7 +3,7 @@
 <%- if @searches.blank? -%>
   <h2><%=t('blacklight.search_history.no_history')%></h2>
 <%- else -%>
-    <%= link_to t('blacklight.search_history.clear.action_title'), clear_search_history_path, :method => :delete, :data => { :confirm => t('blacklight.search_history.clear.action_confirm') }, :class => 'btn btn-danger pull-right' %>
+    <%= link_to t('blacklight.search_history.clear.action_title'), blacklight.clear_search_history_path, :method => :delete, :data => { :confirm => t('blacklight.search_history.clear.action_confirm') }, :class => 'btn btn-danger pull-right' %>
   <table class="table table-striped search_history">
     <%-  @searches.each_with_index do |search,index| -%>
     <%= content_tag :tr, :id => "document_#{index + 1}" do %>

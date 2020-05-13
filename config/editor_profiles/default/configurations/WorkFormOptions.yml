@@ -32,6 +32,154 @@
         editor_partial: subfield_select
       - cols: 2
     columns: 4
+"031": 
+  new_window: standard_titles
+  new_window_field: title_equals
+  layout: 
+    fields:
+    - - u
+      - hidden: true
+    - - a
+    - - b
+    - - c
+    - - d
+    - - m
+    - - e
+    - - t
+      - growfield: true
+        type: standard_title
+        field: title
+        editor_partial: subfield_secondary
+        allow_new: true
+        has_links_to: true
+    - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "031r"
+    - - n
+      - values: 
+        - "xF"
+        - "xFC"
+        - "xFCG"
+        - "xFCGD"
+        - "xFCGDA"
+        - "xFCGDAE"
+        - "xFCGDAEB"
+        - "bB"
+        - "bBE"
+        - "bBEA"
+        - "bBEAD"
+        - "bBEADG"
+        - "bBEADGC"
+        - "bBEADGCF"
+        editor_partial: subfield_autocomplete
+    - - o
+    - - g
+      - editor_partial: subfield_select_codes_grouped
+        codes_reference: clef_groups
+    - - s
+    - - p
+      - editor_partial: subfield_pae
+    - - q
+    - - z
+  tag_params:
+    031r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b" 
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
+    clef_groups:
+      01_modern_clefs:
+      - C-1
+      - C-2
+      - C-3
+      - C-4
+      - C-5
+      - F-1
+      - F-2
+      - F-3
+      - F-4
+      - F-5
+      - G-1
+      - G-2
+      - G-3
+      - G-4
+      - G-5
+      - g-2
+      02_mensural_clefs:
+      - C+1
+      - C+2
+      - C+3
+      - C+4
+      - C+5
+      - F+1
+      - F+2
+      - F+3
+      - F+4
+      - F+5
+      - G+1
+      - G+2
+      - G+3
+      - G+4
+      - G+5
+"033": 
+  layout: 
+    fields: 
+    - - indicator
+      - editor_partial: subfield_indicator
+    - - a
+
 "040": 
   layout: 
     fields: 
@@ -60,12 +208,100 @@
     - - r
     - - t
     columns: 4
-"400": 
+  tag_params:
+      100r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
+      - "1tt"
+      - "2tt"
+      - "3tt"
+      - "4tt"
+      - "5tt"
+      - "6tt"
+      - "7tt"
+      - "8tt"
+      - "9tt"
+      - "10tt"
+      - "11tt"
+      - "12tt"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
+"380": 
+  allow_new: true
+  new_window: standard_terms
+  layout: 
+    fields: 
+    - - "a"
+      - type: standard_term
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
+"400":
+  new_window: people
+  new_window_field: full_name_equals
   layout: 
     fields: 
     - - a
+      - type: person
+        editor_partial: subfield_secondary
+        allow_new: true
     - - d
-    - - e
+      - autocomplete_extra: life_dates
+    - - m
+    - - n
+    - - r
     - - t
     columns: 4
 "500": 
@@ -80,3 +316,115 @@
     - - d
     - - e
     columns: 4
+"548": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - i
+      - values:
+        - "Date of origin"  
+        editor_partial: subfield_select
+"670": 
+  allow_new: true
+  new_window: catalogues
+  layout: 
+    fields: 
+    - - "a"
+      - type: catalogue
+        editor_partial: subfield_secondary
+      - cols: 4
+    - - "b"
+      - cols: 2
+    columns: 4
+"675": 
+  allow_new: true
+  new_window: catalogues
+  layout: 
+    fields: 
+    - - "a"
+      - type: catalogue
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
+"680": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+"700":
+  allow_new: true
+  new_window: people
+  layout:
+    fields: 
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    relator_codes: 
+    - cmp
+    - dte
+    - dub
+    - lbt
+    - lyr
+    - oth
+"710":
+  new_window: institutions
+  new_window_field: name_equals
+  layout: 
+    fields: 
+    - - a
+      - type: institution
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - b
+    - - g
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Doubtful"
+      - "Misattributed"
+    relator_codes: 
+      - dte
+      - oth
+"747": 
+  allow_new: true
+  new_window: liturgical_feast
+  layout: 
+    fields: 
+    - - "a"
+      - type: liturgical_feast
+        editor_partial: subfield_secondary
+      - cols: 4
+    columns: 4
+"930": 
+  allow_new: true
+  new_window: Work
+  layout: 
+    fields: 
+    - - "a"
+      - type: work
+        editor_partial: subfield_secondary
+      - cols: 4
+    - - i
+      - values:
+        - "Adaption of"  
+        - "Inspired by"
+        - "Other"
+        - "Pharaphrase of"  
+        - "Variation of"  
+        editor_partial: subfield_select
+    columns: 4
+

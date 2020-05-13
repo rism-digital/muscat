@@ -3,7 +3,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    
+
     #########
     # Admin #
     #########
@@ -12,9 +12,7 @@ class Ability
       can :manage, :all
       can :reindex, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Folder]
       can :publish, [Folder]
-      can :upublish, [Folder]
-      can :create_editions, Source
-      can :update_editions, Source      
+      can :unpublish, [Folder]
       can :resave, :all
 
     ##########
@@ -23,37 +21,45 @@ class Ability
 
     elsif user.has_role?(:editor)
       if user.has_role?(:person_editor)
+
         can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding, CanonicTechnique]
+      elsif user.has_role?(:junior_editor)
+        can [:read, :create, :update],           [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding, CanonicTechnique]
+
       else
         can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Catalogue, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, Holding, CanonicTechnique]
         can [:read, :create], Person
         can :update, Person, :wf_owner => user.id
       end
-      can :create_editions, Source
-      can :update_editions, Source
+      can [:read], Folder
       can :manage, Folder, :wf_owner => user.id
-      can :upublish, [Folder]
+      can :unpublish, [Folder]
       can [:read, :create, :destroy], ActiveAdmin::Comment
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
       can :read, ActiveAdmin::Page, :name => "Statistics"
+
       #515 postponed to 3.7, add :update
-      can [:read], User, :id => user.id
-    
+      # NOTE password is in :manage
+      can [:read, :update], User, :id => user.id
+
     ##############
     # Cataloguer #
     ##############
 
-    elsif user.has_role?(:cataloger) || user.has_role?(:cataloger_prints)
+    elsif user.has_role?(:cataloger)
       # A cataloguer can create new items but modify only the ones ho made
-      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, CanonicTechnique]
+      can [:read, :create], [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding, CanonicTechnique]
+
       if user.has_role?(:person_restricted)
         # catalogers can get restriced access to the persons form
         # the general design of the role allows extensions alike for e.g. institudions
         can :update, Person
       end
-      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, CanonicTechnique], :wf_owner => user.id
+
+      can :update, [Catalogue, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, Work, CanonicTechnique], :wf_owner => user.id
+
       can [:destroy, :update], [DigitalObject], :wf_owner => user.id
       can [:destroy], [Holding], :wf_owner => user.id
       can [:update], [Holding] do |holding|
@@ -66,32 +72,29 @@ class Ability
         # so only the first condition will happen. We could change this eventually
         (link.object_link.wf_owner == user.id) or (link.wf_owner == user.id)
       end
+      can [:read], Folder
       can [:manage], Folder, :wf_owner => user.id
-      can [:read, :create], ActiveAdmin::Comment
-      can [:destroy, :update], ActiveAdmin::Comment, :author_id => user.id
+      can [:publish], Folder do |folder|
+        user.can_publish?(folder)
+      end
+      cannot [:unpublish, :reindex], Folder
+      can [:read, :create, :destroy], ActiveAdmin::Comment
+      can [:update], ActiveAdmin::Comment, :author_id => user.id
       can [:read, :create], Source
       can :update, Source, :wf_owner => user.id
       can :update, Source do |source|
         user.can_edit? source
       end
-      
-      # The difference between withouth or with print rights
-      if user.has_role?(:cataloger)
-        cannot :create_editions, Source
-        cannot :update_editions, Source
-      else
-        can :create_editions, Source
-        can :update_editions, Source
-        can :update, Source do |s|
-          user.can_edit_edition?(s)
-        end
+
+      can :update, Source do |s|
+        user.can_edit_edition?(s)
       end
-      
+
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
-      can [:read], User, :id => user.id
-    
+      can [:read, :update], User, :id => user.id
+
     #########
     # Guest #
     #########
@@ -104,9 +107,9 @@ class Ability
       cannot :read, ActiveAdmin::Page, :name => "Statistics"
       cannot :read, Workgroup
     end
-    
-    
+
+
 
   end
-  
+
 end

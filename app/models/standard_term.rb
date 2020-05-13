@@ -9,13 +9,13 @@
 # Other standard wf_* not shown
 # The other functions are standard, see Catalogue for a general description
 
-class StandardTerm < ActiveRecord::Base
-  
+class StandardTerm < ApplicationRecord
+  include AuthorityMerge
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_standard_terms")
   has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_standard_terms")
-  has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_many :folder_items, as: :item, dependent: :destroy
+  has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   validates_presence_of :term
   validates_uniqueness_of :term
@@ -31,7 +31,7 @@ class StandardTerm < ActiveRecord::Base
 
   alias_attribute :id_for_fulltext, :id
 
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :basic, :minimal, :full ]
   
   # Suppresses the solr reindex
@@ -76,7 +76,7 @@ class StandardTerm < ActiveRecord::Base
         #{self.referring_sources.count} sources,
         #{self.referring_institutions.count} institutions and 
         #{self.referring_catalogues.count} catalogues}
-      return false
+      throw :abort
     end
   end
   

@@ -1,5 +1,15 @@
 class CommentNotifications < ApplicationMailer
-	
+
+  def parse_comment(comment)
+    matches = comment.scan(/@[A-Za-z0-9_-]*/)
+    [] if matches.empty?
+    
+    user_ids = matches.each.map do |name|
+      User.find_by_name(name.gsub("@", "").gsub("_", " ")).id rescue next
+    end
+    user_ids.compact
+  end
+
   def new_comment(comment)
     
     all_comments = ActiveAdmin::Comment.where(resource_type: comment.resource_type, resource_id: comment.resource_id)
@@ -14,7 +24,8 @@ class CommentNotifications < ApplicationMailer
     
     users = all_comments.map {|c| c.author_id}
     users << @resource.wf_owner
-    users.uniq! # Users can be duplicated
+    all_comments.each {|c| users += parse_comment(c.body)}
+    users.compact.uniq! # Users can be duplicated
     users -= [comment.author_id] # Don't send the comment to myself!
 
     addresses = users.each.map do |u|
@@ -24,15 +35,15 @@ class CommentNotifications < ApplicationMailer
       next if !email
       email
     end.compact
-    
+     
     addresses << RISM::COMMENT_EMAIL if (RISM::COMMENT_EMAIL && RISM::COMMENT_EMAIL.is_a?(String))
 
     return if addresses.empty?
 
-    mail(to: "noreply-muscat@rism.info",
-        name: "Muscat Comments",
+    mail(to: RISM::DEFAULT_NOREPLY_EMAIL,
+        name: "Muscat",
         bcc: addresses,
-        subject: "New Comment on Muscat [#{comment.resource_type} #{comment.resource_id}]")
+        subject: "[Muscat] Comment on #{comment.resource_type} #{comment.resource_id}")
  
   end
 

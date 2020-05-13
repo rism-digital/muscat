@@ -12,6 +12,7 @@
 			<th><%=(I18n.t :history_date)%></th>
 			<th><%=(I18n.t :history_author)%></th>
 			<th><%=(I18n.t :history_event)%></th>
+			<th>WF</th>
 			<th><%=(I18n.t :history_modification)%></th>
 			<th></th>
 		</tr>
@@ -19,11 +20,13 @@
 		<%- @item.versions.reverse.each do |version| %>
 			<% restore_path =  send(link_function_restore, @item.id, {version_id: version.id}) %>
 			<% delete_path =  send(link_function_delete, @item.id, {version_id: version.id}) %>
+			<% old_wf_stage = version.reify.wf_stage %>
 			
 			<tr class="<%= cycle('even', 'odd') -%>" id="person_50036437">
 				<td class="col"><%= I18n.localize(version.created_at.localtime, :format => '%A %e %B %Y - %H:%M') -%></td>
 				<td class="col"><%= version.whodunnit ? version.whodunnit : "[system]" %></td>
 				<td class="col"><%= version.event ? version.event.humanize : "[unknown]" %></td>
+				<td class="col"><%= old_wf_stage %></td>
 				<td class="col">
 					<div class="modification_bar">
 						<div class="modification_bar_content" data-version-modification="<%= VersionChecker.get_similarity_with_next( version.id ) %>" class="version_modification">&nbsp;</div>

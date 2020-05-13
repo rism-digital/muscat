@@ -5,6 +5,10 @@
     read_only: true
     no_delete: true
   tag_header: none
+"035": 
+  layout: 
+    fields: 
+    - - a
 "300": 
   layout: 
     fields: 
@@ -34,10 +38,31 @@
     - - a
     - - d
     - - e
+"563": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
 "592": 
   layout: 
     fields: 
     - - a
+"593": 
+  layout: 
+    fields: 
+    - - a
+      - values: 
+        - Print with autograph annotations
+        - Print with non-autograph annotations
+        editor_partial: subfield_select
+"599": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - b
+      - hidden: true
+
 "651":
   new_window: places
   new_window_field: name_equals
@@ -86,22 +111,17 @@
       - fmo
       - scr
       - cmp
-      - arr
       - prf
       - dte
-      - lyr
-      - lbt
       - trl
-      - pbl
-      - prt
       - edt
       - ltg
       - egr
       - ill
-      - aut
+      - prt
       - oth
       - dub
-      - ctb
+      - dpt
 "710":
   new_window: institutions
   new_window_field: name_equals
@@ -127,16 +147,14 @@
       - "Doubtful"
       - "Misattributed"
     relator_codes: 
-      - pbl
       - fmo
       - dpt
       - dte
-      - scr
       - prf
-      - prt
-      - edt
-      - asn
+      - bsl
+      - evp
       - oth
+      - prt
 "852": 
   allow_new: true
   new_window: institutions
@@ -157,8 +175,31 @@
     - - u
     - - z
     - - x
-      - values: 
-        - "IIIF"
-        editor_partial: subfield_select
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params: 
+    codes:
+      - "IIIF"
+      - "Digitalization"
+      - "Other"
+"963": 
+  tag_params: 
+    read_only: true
+  layout: 
+    fields: 
+      - - u
+"973":
+  new_window: sources
+  record_type_helper: get_allowed_record_type_holding
+  lib_siglum_helper: get_allowed_lib_siglum_holding
+  layout: 
+    fields: 
+    - - u
+      - type: source
+        editor_partial: subfield_secondary
+        only_new_window: true
+
 ui: 
   hide_marc_identifiers: true
+triggers:
+  - reindex_source

@@ -70,7 +70,6 @@
         values:
         - "individualized" 
         - "not individualized"
-        - "unkown"
         editor_partial: subfield_select
     columns: 4
 "043": 
@@ -119,6 +118,7 @@
       - "XA-VA"
       - "XD-HN"
       - "XA-HU"
+      - "XB-IQ"
       - "XA-IS"
       - "XB-IN"
       - "XB-IR"
@@ -133,6 +133,7 @@
       - "XA-LU"
       - "XA-MT"
       - "XD-MX"
+      - "XA-MD"
       - "XA-ME"
       - "XA-NL"
       - "XE-NZ"
@@ -159,6 +160,10 @@
       - "XD-US"
       - "XD-UY"
       - "XD-VE"
+      - "XB-VN"
+      - "XB-TW"
+      - "XB-GE"
+      - "XD-EC"
 "100": 
   layout: 
     fields: 
@@ -199,24 +204,19 @@
     - - j
       - cols: 2
         editor_partial: subfield_select_codes
-        select_label: "Kind of Variant"
+        select_label: "Type of Variant"
     columns: 2
   tag_params:
     codes:
       - "bn"
       - "da"
       - "do"
-      - "dv"
       - "ee"
-      - "ef"
-      - "ff"
       - "gg"
       - "in"
-      - "mo"
       - "tn"
       - "ub"
       - "z"
-      - "xx"
     columns: 4
 "500": 
   allow_new: true
@@ -239,7 +239,7 @@
       - mother of
       - confused with
       - sister of
-      - married with
+      - married to
       - father of
       - related to
       - other
@@ -249,7 +249,7 @@
   layout: 
     fields: 
     - - "a"
-      - type: library
+      - type: institution
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
@@ -259,21 +259,14 @@
     - - a
       - cols: 2
     columns: 2
-"550": 
+"550":
   layout: 
     fields: 
     - - a
-      - cols: 2
-    - - i
-      - cols: 2
-        values:
-        - "profession"
-        - "academic" 
-        - "religion"
-        - "unkown"
-        default: "profession"
-        editor_partial: subfield_select
-    columns: 2
+      - type: person_550a_solr
+        field: value
+        editor_partial: subfield_secondary
+        allow_new: true
 "551": 
   layout: 
     fields: 
@@ -282,13 +275,12 @@
     - - i
       - cols: 2
         editor_partial: subfield_select_codes
-        select_label: "Place"
+        select_label: "Type"
     columns: 2
   tag_params:
     codes:
       - go
       - ha
-      - po
       - so
       - wl
       - wo

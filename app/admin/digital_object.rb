@@ -33,23 +33,25 @@ ActiveAdmin.register DigitalObject do
         success.html do
           # If we have a new_object_link_type/id, also create the object link - See the DigitalObjectLink for
           # the fake accessors and the form below for the hidden fields
-          if (params[:digital_object][:new_object_link_type] && params[:digital_object][:new_object_link_id])
+          if (params[:digital_object][:new_object_link_type] && params[:digital_object][:new_object_link_id] &&
+             !params[:digital_object][:new_object_link_type].empty? && !params[:digital_object][:new_object_link_id].empty?
+            )
             dol = DigitalObjectLink.new(
               object_link_type: params[:digital_object][:new_object_link_type],
               object_link_id: params[:digital_object][:new_object_link_id],
               user: resource.user,
-              digital_object_id: resource.id
-            )
+              digital_object_id: resource.id)
+              
             dol.save!
           end
           redirect_to admin_digital_object_path(resource.id)
           return
         end
-        failure.html do
-          flash[:error] = "The digital object could not be created"
-          redirect_to collection_path
-          return
-        end
+#        failure.html do
+#          flash[:error] = "The digital object could not be created"
+#          redirect_to collection_path
+#          return
+#        end
       end
     end
     
@@ -135,7 +137,11 @@ ActiveAdmin.register DigitalObject do
                 dol.description
             end	
             column "ID" do |dol|
-              link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
+              if dol.object_link_id
+                link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
+              else
+                "Object unattached"
+              end
             end
             column "" do |dol|
               if can?(:destroy, dol)
@@ -177,16 +183,17 @@ ActiveAdmin.register DigitalObject do
     f.inputs do
       f.input :description,:label => I18n.t(:filter_description)
       f.input :attachment, as: :file, :label => I18n.t(:filter_image)
+      f.input :wf_owner, label: I18n.t(:record_owner), as: :select, multiple: false, include_blank: false, collection: User.sort_all_by_last_name if current_user.has_role?(:admin) || current_user.has_role?(:editor)
       f.input :lock_version, :as => :hidden
       # passing additional parameters for adding the object link directly after the creation
-      if (params[:object_link_type] &&  params[:object_link_id])
-        f.input :new_object_link_type, :as => :hidden, :input_html => {:value =>  params[:object_link_type]}
-        f.input :new_object_link_id, :as => :hidden, :input_html => {:value =>  params[:object_link_id]}
-      end
+      #if (params[:new_object_link_type] &&  params[:new_object_link_id])
+        f.input :new_object_link_type, :as => :hidden #:input_html => {:value =>  params[:new_object_link_type]}
+        f.input :new_object_link_id, :as => :hidden #:input_html => {:value =>  params[:new_object_link_id]}
+				#end
     end
   end
 
-  sidebar :actions, :only => [:edit, :new, :update] do
+  sidebar :actions, :only => [:edit, :new, :update, :create] do
     render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => digital_object }
   end
   

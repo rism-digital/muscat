@@ -1,0 +1,788 @@
+50007821	6430		NULL	Gombart & Comp., Augsburg
+50007428	6812		NULL	Basler Kammerorchester
+50007879	11915		NULL	Bureau de Musique C. F. Peters, Leipzig
+50007798	71028		NULL	Schlesinger'sche Buch- und Musik-Handlung, Berlin
+50007735	16697		NULL	Bern, Stadttheater
+50007653	18619		NULL	Neue Zürcher Nachrichten
+50007636	78931		NULL	Böhm, Anton, Sohn
+50007436	33180		NULL	Allgemeiner Deutscher Cäcilienverein
+50007410	36228		NULL	Radio Bern
+50007913	38768		NULL	Cocks & Comp., London
+50007429	38900		NULL	Liederkranz Frankfurt am Main
+50007868	40010191		NULL	Nikolaus Simrock, Bonn
+50007911	40535		NULL	Tobias Haslinger, Wien
+50007061	44900		NULL	Aschaffenburg, Städtische Musikschule
+50007165	46200		NULL	Frankfurter Liederkranz
+50007225	56870		NULL	Berner Liedertafel
+50007502	56880		NULL	Dresdner Lehrergesangsverein
+50007213	62689		NULL	Basler Liedertafel
+50007898	62701		NULL	Tobias Haslingers Witwe und Sohn, Wien
+50007834	62769		NULL	Verlag J. J. Weber, Leipzig
+50007901	40002683		NULL	August Cranz, Hamburg
+50007787	62778		NULL	Ries & Erler, Berlin
+50007256	63346		NULL	Liedertafel Innsbruck
+50007374	63413		NULL	Thomanerchor Leipzig
+50007384	66700		NULL	Universität Freiburg
+50007925	69462		NULL	Friedrich Pustet (Regensburg)
+50007609	71008		NULL	Norddeutscher Rundfunk (NDR)
+50007414	71469		NULL	Berner Männerchor
+50007399	74066		NULL	Freies Gymnasium Bern
+50007684	75478		NULL	Radio Basel
+50007740	77956		NULL	Oscar Brandstetter
+50007883	78513		NULL	H.F. Müller, Wien
+50007059	79231		NULL	Basel, Stadttheater
+50007861	79471		NULL	Amadeus Verlag, Winterthur
+50007204	79500		NULL	Tonhallegesellschaft
+50007360	79793		NULL	Mainzer Liedertafel
+50007750	79923		NULL	Wiener Männergesangverein
+50007484	79924		NULL	Wiener Schubertbund
+50007718	80802		NULL	Fondation de la Confédération Suisse
+50007405	82930		NULL	Universität Bern
+50007936	85398		NULL	Gesellschaft für das Gute und Gemeinnützige Basel
+50007139	40000434		NULL	Artaria
+50007843	20000006		NULL	J. J. Hummel, Berlin
+50007124	30000001		NULL	Aargauische Kantonsbibliothek
+50007119	30000002		NULL	Napoleonmuseum
+50007115	30000003		NULL	Öffentliche Bibliothek der Universität Basel, Musiksammlung
+50007123	30000004		NULL	Schweizerische Nationalbibliothek
+50007116	30000005		NULL	Musikbibliothek des Stifts
+50007120	30000006		NULL	Kloster Einsiedeln, Musikbibliothek
+50007096	30000007		NULL	Engelberg, Musik-Bibliothek Stift Engelberg
+50007110	30000007		NULL	Kloster, Musikbibliothek
+50007125	30000008		NULL	Thurgauische Kantonsbibliothek
+50007128	30000009		NULL	St. Martin
+50000010	30000010		CH-MÜ	Frauenkloster St. Johann, Müstair
+50007109	30000010		NULL	Frauenkloster St. Johann
+50007198	30000010		NULL	Kloster S Johann Müstair
+50007114	30000011		NULL	Benediktinerinnen-Abtei St. Andreas
+50007122	30000012		NULL	Zentralbibliothek Solothurn, Musiksammlung
+50007922	30000012		NULL	CH-SO
+50007126	30000013		NULL	Stadtbibliothek, Studienbibliothek
+50007117	30000014		NULL	Zentralbibliothek Zürich, Musikabteilung
+50000047	30000051		D-KÖ	Historisches Museum und Bachgedenkstätte
+50000053	30000059		D-MöG	Evangelisch-lutherisches Pfarramt St. Johannis, Kantoreiarchiv
+50000101	30000113		D-GÖs	Oberlausitzische Bibliothek der Wissenschaften
+50007129	30000122		NULL	Christkatholisches Pfarramt
+50000121	30000135		H-KŐ	Plébàniatemplom Kottatàra
+50000166	30000186		D-Möu	Universitäts- und Landesbibliothek
+50007130	30000212		NULL	Urner Staatsarchiv und Kantonsbibliothek
+50007131	30000213		NULL	Domchorarchiv
+50007134	30000214		NULL	Kloster St. Katharina
+50007133	30000219		NULL	Benediktinerkloster
+50007150	30000220		NULL	Pfarrarchiv St. Michael
+50007135	30000222		NULL	Hochschule der Künste Bern, Musikbibliothek
+50007132	30000224		NULL	Zisterzienserinnenkloster Magdenau
+50007136	30000232		NULL	Staatsarchiv des Kantons Wallis
+50007137	30000233		NULL	Bibliothèque publique et universitaire de Neuchâtel
+50007138	30000234		NULL	Conservatoire de Musique, Bibliothèque
+50000218	30000239		D-Mös	Santini-Bibliothek
+50000219	30000241		D-Möp	Diözesanbibliothek
+50007140	30000244		NULL	Privatbibliothek Huber
+50007141	30000246		NULL	Landesbibliothek des Kantons Glarus
+50007142	30000247		NULL	Kloster Glattburg
+50007143	30000255		NULL	Archiv der evangelischen Brüdersozietät
+50007182	30000276		NULL	Staatsarchiv des Kantons Schaffhausen
+50007144	30000277		NULL	Staatsarchiv des Kantons Graubünden
+50007183	30000278		NULL	Katholische Pfarrgemeinde
+50007200	30000279		NULL	Universität Bern, Institut für Musikwissenschaft
+50007145	30000280		NULL	Privatbibliothek Dr. Hans Gugger
+50007146	30000281		NULL	Archives cantonales vaudoises
+50007184	30000283		NULL	Stadtarchiv
+50007789	30000283		NULL	Stadtarchiv Olten
+50007187	30000294		NULL	Biblioteca Fundaziun Planta
+50000316	30000342		A-GÖ	Göttweig, Benediktinerstift Göttweig, Musikarchiv
+50000317	30000343		A-Gö	Franziskaner-Kloster, Bibliothek
+50000336	30000362		A-MÖ	Pfarrkirche St. Othmar, Bibliothek
+50000341	30000367		A-Sangermüller	Privatbibliothek Dr. Rudolph Angermüller
+50000361	30000387		A-Wdtö	Gesellschaft zur Herausgabe von Denkmälern der Tonkunst in Österreich, Bibliothek
+50007813	30000398		NULL	Österreichische Nationalbibliothek, Musiksammlung
+50000374	30000400		A-Wögm	Österreichische Gesellschaft für Musik
+50007539	30000405		NULL	Schubertbund Wien
+50007147	30000506		NULL	Fondation Martin Bodmer, Bibliotheca Bodmeriana
+50007074	30000507		NULL	Disentis, Musikbibliothek Stift Disentis
+50007194	30000507		NULL	Stift Disentis, Musikbibliothek
+50007149	30000509		NULL	Bibliothèque cantonale et universitaire de Fribourg
+50007005	30000515		NULL	Weingarten, Chor
+50007192	30000516		NULL	Bibliothèque de Genève
+50007185	30000518		NULL	Klosterarchiv
+50007168	30000523		NULL	Zentral- und Hochschulbibliothek Luzern
+50007232	30000524		NULL	Bibliothèque du Conservatoire de Musique
+50007197	30000526		NULL	Bibliothèque cantonale et universitaire de Lausanne
+50007188	30000537		NULL	Stiftsbibliothek
+50007602	30000538		NULL	Kantonsbibliothek St. Gallen (Vadiana)
+50007148	30000542		NULL	Bischöfliches Ordinariat der Diözese Basel, Diözesanarchiv des Bistums Basel
+50000562	30000604		CZ-Pdobrovského	Nàrodní muzeum, Dobrovského (Nostickà) knihovna
+50000604	30000649		D-AÖ	Kapuziner-Kloster St. Konrad, Bibliothek
+50000657	30000705		D-Bö	Kulturgut Fürst zu Ysenburg und Büdingen
+50000674	30000724		D-DÖF	Pfarrbibliothek
+50000679	30000730		D-Dögg	Staatliches Görres-Gymnasium, Lehrerbibliothek
+50000680	30000731		D-Döha	Nordrhein-Westfälisches Hauptstaatsarchiv
+50000681	30000732		D-Dök	Goethe-Museum, Anton und Katharina Kippenberg-Stiftung
+50000682	30000733		D-Döl	Universitätsbibliothek
+50000683	30000734		D-Dömb	Stadtbüchereien Düsseldorf, Musikbücherei
+50000684	30000735		D-DöN	Bibliothek Graf zu Toerring-Jettenbach
+50000685	30000736		D-DöR	Stadtbücherei, Leopold-Hoesch-Museum
+50005395	30000761		D-FLz	Landeszentralbibliothek Schleswig-Holstein
+50000818	30000877		D-Löh	Bibliothek der Hansestadt Lübeck, Musikabteilung
+50000856	30000915		D-MÖ	Evangelisch-lutherische Kirchengemeinde St. Nikolai, Bibliothek
+50000859	30000918		D-Möd	Bischöfliches Diözesanarchiv
+50000860	30000919		D-Möms	Musikwissenschaftliches Seminar der Westfälischen Wilhelms-Universität
+50000861	30000920		D-Mört	Seminar für reformierte Theologie
+50000862	30000921		D-Mösa	Staatsarchiv
+50000918	30000982		D-Rö	Fürst Castell-Rüdenhausen, Bibliothek
+50000930	30000996		D-SCHÄ	Klosterbibliothek
+50000959	30001027		D-ö	Leopold-Sophien-Bibliothek
+50000987	30001057		D-Wöd	Diözesanarchiv
+50000988	30001058		D-Wöms	Musikwissenschaftliches Seminar der Universität
+50000989	30001059		D-Wöp	Priesterseminar
+50000990	30001060		D-Wösa	Stadtarchiv
+50000991	30001061		D-Wöu	Julius-Maximilians-Universität, Universitätsbibliothek
+50001019	30001091		D-BKÖ	Pfarrarchiv
+50001020	30001092		D-BKÖs	Forschungs- und Gedenkstätte im Geburtshaus des Komponisten Heinrich-Schütz-Haus
+50001036	30001108		D-DÖ	Pfarrbibliothek Sankt Nikolai
+50001037	30001109		D-DRö	Evangelische Kirchengemeinden Bartholomäus
+50001060	30001132		D-FRÖ	Pfarrarchiv
+50001063	30001135		D-Fökahl	Privatsammlung Annemarie Kahl
+50001078	30001151		D-GLAUhüttel	Privatbibliothek Dr. Walter Hüttel
+50001082	30001155		D-GÖp	Evangelischer Parochialverband, Bibliothek
+50001083	30001156		D-GÖspp	Kirchenbibliothek St. Peter und Paul
+50001087	30001160		D-GRÄk	Kantoreiarchiv
+50001088	30001161		D-GRö	Pfarrarchiv
+50001090	30001163		D-Gö	Museum der Stadt
+50001091	30001164		D-GöG	Evangelisch-lutherische Kirche, Pfarrarchiv
+50001118	30001192		D-Jö	Nicolaikirche, Pfarrarchiv
+50001121	30001195		D-KARr	Stadtarchiv
+50001122	30001196		D-KARj	Stadtkirche St. Jacobi, Pfarrarchiv
+50001123	30001197		D-KARs	Stadtbibliothek
+50001138	30001214		D-LÖ	Pfarrarchiv
+50001171	30001251		D-PÖ	Kreiskirchenamt, Archiv
+50001181	30001261		D-RÖ	Pfarrbibliothek
+50001182	30001262		D-RÖM	Evangelisch-lutherisches Pfarramt, Pfarrarchiv
+50001188	30001268		D-SAschönheit	Privatbibliothek KMD Schönheit
+50001226	30001307		D-WERgroßmann	Privatbibliothek Hans Großmann
+50001393	30001482		F-Pgérard	Collection Yves Gérard
+50001595	30001690		H-Efkö	Foszékesegyhàzi Könyvtàr
+50001605	30001700		H-KŐm	Jurisich Múzeum
+50001726	30001825		I-Mdoná	Biblioteca privata Mariangela Doná
+50006222	30002006		J-Tmam	Musashino Academia Musicae
+50006130	30002016		N-Ouh	Universitetsbiblioteket, Bibliotek for humaniora og samfunnsvitenskap
+50001963	30002084		PL-KÓ	Biblioteka Kórnicka Polskiej Akademii Nauk
+50001966	30002087		PL-ŁA	Biblioteka Muzeum-Zamku w Łańcucie
+50001968	30002089		PL-ŁO	Wyższe Seminarium Duchowne. Biblioteka
+50001969	30002090		PL-ŁŹu	Biblioteka Uniwersytetu Łódzkiego, Sekcja Muzykaliów w Oddziale Zbiorów Specjalnych
+50001974	30002095		PL-PŁp	Biblioteka im. Zielińskich Towarzystwa Naukowego Płockiego
+50002007	30002133		S-GÄ	Vasaskolan, Biblioteket
+50002010	30002136		S-HÄ	Länsmuseet-Murberget
+50002011	30002137		S-HÖ	Biblioteket
+50002016	30002142		S-KÖ	Köpings museum
+50002020	30002148		S-Ö	Höskolan i örebro
+50002021	30002149		S-ÖS	Jämtlands läns bibliotek
+50002393	30002545		HR-KŠf	Franjevački samostan na Košljunu
+50002401	30002553		SI-Mš	Škofijski arhiv
+50007191	30002614		NULL	Burgerbibliothek
+50007760	30002633		NULL	Bibliothek des Frey-Grynäischen Instituts, Basel
+50002485	30002641		CH-BUbärtschi	Privatbibliothek Lehrer Alfred Bärtschi
+50002493	30002650		CH-RORrüesch	Privatbibliothek Ernst Rüesch
+50002567	30002731		D-BDVschöneich	Privatbibliothek Dr. Friedrich Schöneich
+50002584	30002749		D-Dölk	Evangelische Kirche im Rheinland, Landeskirchliche Bibliothek
+50002594	30002760		D-FöHwölfel	Privatbibliothek K. Wölfel
+50002617	30002783		D-LöDameln	Privatbibliothek Dr. Konrad Ameln
+50002635	30002801		D-NIDmöckel	Privatsammlung Dieter Möckel
+50002654	30002823		D-SCHÖB	Kirchenbibliothek Schönberg
+50002655	30002824		D-SLöblankenburg	Privatbibliothek Dr. Walter Blankenburg
+50002678	30002849		D-Wök	Bibliothek des Kapuzinerklosters
+50002679	30002850		D-Wöi	Pfarrei St. Joseph
+50002703	30002875		D-BöLZ	Archiv des Pfarramtes
+50002704	30002876		D-BöR	Pfarrarchiv
+50002723	30002895		D-GLÖB	Pfarrarchiv
+50002734	30002907		D-HMÖ	Archiv der Superintendentur
+50002744	30002917		D-LÖD	Pfarrarchiv Oberlödla
+50002746	30002919		D-LöTZ	Pfarrarchiv
+50002751	30002924		D-MÖB	Pfarrarchiv
+50002752	30002925		D-MÖCH	Pfarrarchiv
+50002753	30002926		D-MÖR	Pfarrarchiv
+50002754	30002927		D-MÖSCH	Pfarrarchiv
+50002770	30002943		D-SCHÖ	Kirchenbibliothek St. Johann, Schönebeck-Salzelmen
+50002772	30002945		D-SPÖR	Pfarrarchiv
+50003034	30003220		TR-Iü	öniversite kütüphanesi
+50003081	30003271		D-Löd	Distler Archiv
+50003087	30003278		D-SÖNp	Pfarrbibliothek Schönau
+50005749	30003402		GR-AOv	Monē Vatopaidiou
+50003397	30003595		YU-Bn	Narodna Biblioteka
+50003462	30003660		D-Dös	Stadtmuseum
+50003468	30003667		D-FöS	Katholisches Stadtpfarramt St. Mang
+50003506	30003705		D-SöN	Schloß
+50003524	30003723		A-ETgoëss	Privatbibliothek Goëss
+50003534	30003733		F-Pbérès	Librairie Pierre Bérès
+50003544	30003743		SI-Šk	Kapucinski samostan, Knjižnica
+50003546	30003745		D-KÖa	Stadtarchiv
+50003561	30003761		D-AÖhk	Heilige Kapelle
+50003593	30003795		D-KHÄp	Pfarrarchiv
+50003594	30003796		D-KÖDp	Pfarrarchiv
+50003606	30003808		D-PÖLp	Evangelisch-lutherisches Pfarramt, Pfarrarchiv
+50003607	30003809		D-PÖWp	Pfarrarchiv
+50003615	30003817		D-SÖLp	Pfarrarchiv
+50003664	30003869		AS-M'āḥ	Medina (=Al-Madīna)
+50003683	30003888		IR-Hā	Bibliothèque de Madrisa Aḫond
+50003686	30003891		IR-K'ā	Bibliothèque privée de Ḥasan-e-'Aṭifī
+50003688	30003893		IR-Māq	Bibliothèque de Astān-e-Quds
+50003693	30003898		IR-Qā	Bibliothèque de Astāna Muqaddasa
+50003699	30003904		IR-Sḥ	Bibliothèque de Ḥāfiẓīyya
+50003708	30003913		IR-Tpṣ	Bibliothèque privée de Mehdī Ṣadrī
+50003709	30003914		IR-Tpṭ	Bibliothèque privée de Muḥīt-e-Ṭabāṭabā'ī
+50007781	30003952		NULL	Silcher-Museum Schnait i. R.
+50003799	30004004		HR-KČ	Opatska riznica sv. Marka
+50003820	30004025		HR-ŠIBf	Samostan franjevaca konventualaca
+50003838	30004043		HR-Čm	Muzej Medimurja
+50003841	30004046		HR-KŽm	Gradski muzej
+50003864	30004069		HR-KČm	Gradski muzej
+50003904	30004109		SI-PIž	Župnijski arhiv
+50003906	30004111		SI-Pž	Župnijski urad Sv. Jurija, Glasbeni arhiv
+50003911	30004117		D-Möwl	Westfälisches Landesmuseum für Kunst und Kulturgeschichte
+50003921	30004127		S-ÖSa	Landsarkivet i Östersund
+50003925	30004131		S-HÄa	Landsarkivet i Härnösand
+50003942	30004148		D-DöLs	Stadtbücherei, Nebenstelle - Musikbücherei der Städtischen Musikschule
+50003956	30004162		D-Mösb	Stadtbücherei, Musikabteilung
+50003974	30004180		D-Wösb	Stadtbücherei, Musikabteilung
+50004055	30004261		FIN-Hsä	Suomen äänitearkisto
+50004102	30004308		D-Lömh	Musikhochschule, Bibliothek
+50004293	30004502		PL-ŁOap	Biblioteka Archiwum Państwowego
+50004294	30004503		PL-ŁOk	Biblioteka Kapitulna
+50004303	30004512		D-BöC	Niedersächsisches Staatsarchiv
+50004304	30004513		SI-Kš	Škofijski arhiv
+50004333	30004542		YU-Ba	Srpska Akademija nauka i umetnosti (SANiU), Centralna Biblioteka/Arhiv
+50004334	30004543		YU-Bm	Muzej srpske pravoslavne crkve
+50004335	30004544		YU-Bma	Muzička Akademija
+50004336	30004545		YU-Bmi	Muzikološki institut Srpske akademije nauka i umetnosti
+50004337	30004546		YU-Bp	Biblioteka Srpske pravoslavne patrijaršije
+50004338	30004547		YU-Bu	Univerzitetska biblioteka Svetozar Marković
+50004340	30004549		YU-CEm	Cetinjski manastir
+50004342	30004551		YU-KTf	Franjevački samostan sv. Klare, knjižnica
+50004343	30004552		YU-KTi	Istorijski arhiv
+50004344	30004553		YU-KTp	Pravoslavna crkva sv. Nikole
+50004348	30004557		YU-NSm	Biblioteka Matice srpske
+50004349	30004558		YU-P	Manastir sv. Trojice
+50004363	30004572		D-Döhh	Heinrich-Heine-Institut
+50004366	30004575		CZ-Pkřiž	Rytířský řàd křižovníků s červenou hvězdou, hudební sbírka
+50004830	30005048		D-BöCh	Fürstlich Schaumburg-Lippische Hofbibliothek
+50005134	30005356		I-RIMluisé	Biblioteca privata G. Luisé
+50005266	30005489		E-VPsm	Parroquia de Santa María, Archivo
+50007193	30005552		NULL	Société Jean-Jacques Rousseau
+50005361	30005586		I-Vravá	Biblioteca privata Ravá
+50005394	30005619		D-Löbi	Brahms-Institut in der Musikhochschule
+50005404	30005629		D-Wöst	Staatsarchiv
+50005416	30005641		D-Wöf	Franziskanerkloster
+50005739	30005967		F-SÈT	Médiathèque
+50005791	30006019		D-GÖsb	Stadtbibliothek
+50005808	30006036		F-SÉEbm	Bibliothèque municipale
+50005837	30006065		CZ-Cm	Městské muzeum
+50005851	30006079		D-Lömk	Museum für Kunst und Kulturgeschichte der Hansestadt Lübeck
+50005954	30006182		RUS-KLč	Naučnaja biblioteka gosudarstvennogo doma-muzeja P. I. Čajkovskogo
+50005959	30006187		RUS-ČE	Čerdynskij kraevedčeskij muzej im. A. S. Puškina
+50006017	30006246		P-BÇad	Arquivo Distrital
+50006056	30006286		PL-PŁsem	Biblioteka Wyższego Seminarium Duchownego
+50006060	30006290		PL-Żbened	Klasztor SS. Benedyktynek
+50006067	30006297		CZ-JIČm	Okresní muzeum
+50006089	30006319		CZ-POČm	Městské muzeum
+50006090	30006320		CZ-PŘERm	Muzeum J. A. Komenského
+50006091	30006321		CZ-PŘIBm	Městské muzeum
+50006092	30006322		CZ-PŘLm	Městské muzeum
+50006103	30006333		CZ-UOnygrín	soukromà sbírka J. Nygrína
+50006116	30006346		CZ-Pmalotín	Soukromà sbírka B. Malotína
+50006122	30006352		PL-ŚWjadwiszczok	Własność prywatna Ks. K. Jadwiszczoka
+50006167	30006365		A-Web	Erzbischöfliche Bibliothek
+50006154	30006384		F-EPmé	Médiathèque
+50006158	30006388		D-Döloos	Privatsammlung Renate Loos
+50006181	30006412		MEX-Mvaldés	Private collection Octaviano Valdés
+50006273	30006506		PL-WŁs	Biblioteka Wyżego Seminarium Duchownego im. Księży Chodyńskich
+50006277	30006510		PL-PŁm	Muzeum Diecezjalne
+50006278	30006511		PL-ŁŹa	Archiwum Państwowe w Łodzi
+50006407	30006642		D-KÖFl	Gräflich Lerchenfeldische Schloßbibliothek
+50007931	30006707		NULL	Thomasschule Leipzig
+50007002	30022245		NULL	Chor S Ulrich
+50007003	30022248		NULL	Sankt Ulrich, Chor
+50007004	30022250		NULL	Salem, Zisterzienserkloster
+50007006	30022254		NULL	Engelberg, Schule
+50007007	30022259		NULL	Sarnen, S Andreas
+50007008	30022343		NULL	Weingarten, Kloster
+50007009	30022346		NULL	Basel, Collegium musicum
+50007012	30022433		NULL	Fahr, Frauenkloster
+50007014	30022448		NULL	Frauenthal, Kloster
+50007016	30022473		NULL	Ottobeuren, Chor
+50007017	30022523		NULL	Engelberg, Kloster
+50007076	30022523		NULL	Engelberg
+50007018	30022540		NULL	Altdorf, Chor
+50007019	30022674		NULL	Petershausen, Kloster S Gregor
+50007020	30022681		NULL	Chor Pethrusianum
+50007021	30022701		NULL	Solothurn, Jesuitenkollegium
+50007022	30022750		NULL	Muri, Chor
+50007024	30022755		NULL	Rychenberg-Stiftung
+50007025	30022756		NULL	Gnadenthal, Chor
+50007026	30022759		NULL	Solothurn, Kathedrale S Urs
+50007027	30022965		NULL	Rheinfelden, Choro S Martini
+50007028	30022966		NULL	Stift St. Martin
+50007029	30022967		NULL	Solothurn, Franziskaner-Bibliothek
+50007030	30022970		NULL	Sankt Gallen, Stiftskirche
+50007031	30022983		NULL	Sankt Gallen, Katholisches Institut
+50007064	30023002		NULL	Zug, Kirchenchor S Michael
+50007032	30023005		NULL	Firenze, Archivo Gran Ducale
+50007033	30023021		NULL	Puzzi-Sammlung
+50007034	30023022		NULL	Sankt Gallen, Kloster
+50007035	30023027		NULL	Chor S Nicolai
+50007037	30023028		NULL	Ettenheimmünster, Chor
+50007038	30023029		NULL	Fribourg, Chorus Ettonianus
+50007039	30023030		NULL	Fribourg, Chorus Eccl. St. Nicol.
+50007065	30023034		NULL	Zug, Chor
+50007066	30023035		NULL	Zug, Kirchenchorarchiv S Michael
+50007067	30023037		NULL	Zug, Theater- und Musikgesellschaft
+50007068	30023038		NULL	Zug, Cäcilienverein S Michael
+50007069	30023039		NULL	Zug, Kirchgemeinde S Michael
+50007070	30023040		NULL	Luzern, Stiftschor S Leodegar
+50007040	30023041		NULL	Zug, Cäcilienverein
+50007071	30023050		NULL	Zug, Kirche
+50007072	30023055		NULL	Zug, Kirchgemeinde
+50007041	30023058		NULL	Frauenthal, Zisterzienserinnenkloster
+50007078	30023064		NULL	Wurmsbach, Archiv Mariazell
+50007080	30023147		NULL	Magdenau, Zisterzienserinnenkloster
+50007081	30023154		NULL	Frauenthal, Zisterzienserkloster
+50007082	30023179		NULL	Altdorf, Pfarrkirche
+50007084	30023221		NULL	Fribourg, Kathedrale S Nicolas
+50007085	30023222		NULL	Solothurn, Lehrerseminar
+50007042	30023233		NULL	Sankt Gallen, Katholischer Administrationsrat
+50007043	30023237		NULL	Eschenbach, Monasterium Chorus
+50007086	30023261		NULL	Cham, Cäcilienverein
+50007046	30023262		NULL	Gnadenthal, Gemeindechor
+50007186	30023263		NULL	Gemeindechor, Wettingen
+50007047	30023264		NULL	Luzern, Bürgerbibliothek
+50007049	30023297		NULL	Schloß Hünigen
+50007050	30023298		NULL	Schloß Wildegg
+50007051	30023299		NULL	Müllers Musikalien-Leihe-Bibiliothek
+50007073	30023302		NULL	Weesen, Kloster
+50007075	30023303		NULL	Petershausen, Monasterium S Gregorii Chorus
+50007052	30023304		NULL	Münsterlingen, Monasterium Chorus
+50007053	30023319		NULL	Winterthur, Musik-Collegium
+50007090	30023320		NULL	Winterthur, Cäcilienverein
+50007056	30023336		NULL	Zürich, Bibliothek Tonhalle
+50007054	30023337		NULL	Zürich, Direktion des Stadttheaters
+50007055	30023338		NULL	Zürich, Theater Actiengesellschaft
+50007092	30023362		NULL	Zürich, Künstler-Vereinigung
+50007057	30023363		NULL	Solothurn, Musik-Schule des Cantons
+50007094	30023367		NULL	Solothurn, Cäcilienverein
+50007058	30023370		NULL	Basel, Universitätsbibliothek
+50007095	30023383		NULL	Solothurn, Musikbibliothek der Kantonsschule
+50007060	30023389		NULL	Basel, Bibliothek Stadttheater
+50007097	30023391		NULL	Vevey, Société d'orchestre
+50007098	30023392		NULL	Vevey, Choeur des Dames
+50007099	30023394		NULL	Vevey, Société Chorale
+50007102	30023396		NULL	Sankt Gallen, Domchor
+50007378	30023396		NULL	Domchor Sankt Gallen
+50007062	30023407		NULL	Sankt Gallen, Kantonsschule
+50007103	30023408		NULL	Sankt Gallen, Kathedrale
+50007104	30023410		NULL	Sankt Gallen, Liedertafel
+50007105	30023411		NULL	Sankt Gallen, Gesellschaft zum Frohsinn
+50007101	30023427		NULL	Sankt Gallen, Domchor, Cäcilienverein
+50007106	30023446		NULL	Sankt Gallen, Männerchor-Domchor
+50007107	30023449		NULL	Basel, Gymnasiasten-Verein
+50007089	30023450		NULL	Bellenz, Benediktiner Gymnasium
+50006804	30052729		I-CALf	Franziskanerkloster
+50007382	30060910		NULL	Amerikanischer Cäcilienverein
+50007952	30061095		NULL	Imprimerie Moucelot
+50007581	40009858		NULL	Schott, A., Antwerpen
+50006446	30061505		H-Bmàg	Mûemlékek Állami Gondnoksàga
+50006451	30061510		PL-ŚLj	Święta Lipka - Sanktuarium Maryjne
+50006515	30061577		MEX-Msaldívar	Dr. Gabriel Saldívar, private collection
+50007015	30063674		NULL	Zürich, Allgemeine Musikgesellschaft
+50007534	30070178		NULL	Singverein Karlsruhe
+50006536	30070236		PL-ŁSm	Muzeum parafialne w kolegiacie Łaskiej
+50006705	30070405		D-JöLm	Museum Zitadelle Stadtgeschichtliches Museum
+50006716	30070416		PL-ŁŹbp	Wojewódzka i Miejska Biblioteka Publiczna im. Marszałka J. Piłsudskiego w Łodzi
+50006718	30070418		PL-ŁŹmh	Muzeum Historii Miasta Łodzi. Zbiory Muzyczne - Galeria Muzyki im. Artura Rubinsteina
+50006742	30070442		PL-KŁmzk	Muzeum Ziemi Kłodzkiej. Oddział Historyczny
+50006756	30070456		D-BöCha	Fürstlich Schaumburg-Lippisches Hausarchiv
+50006782	30070482		IRL-Df	Franciscan Library Dún Mhuire
+50006806	30070506		D-Mösta	Stadtarchiv
+50006808	30070508		D-Dösm	Katholische Pfarrei St. Margareta, Gerresheim
+50006809	30070509		D-Dösl	Katholische Pfarrgemeinde St. Lambertus
+50006815	30070515		A-Wös	Österreichisches Staatsrchiv
+50007088	30072901		NULL	Einsiedeln, Kloster
+50007579	30076037		NULL	Feuchtinger & Gleichauf, Regensburg
+50007442	30076291		NULL	Karl Friedrich Kistner, Leipzig
+50006829	30076335		CH-BULb	Musée gruérien. Bibliothèque de Bulle
+50006831	30076339		CH-LEpms	Peter Mieg-Stiftung
+50007236	30076346		NULL	Turnverein Offenbach am Main
+50007366	30076349		NULL	Bristol Madrigal Society
+50007063	30076473		NULL	Einsiedeln, Gymnasium
+50007895	30076585		NULL	C.F. Leede, Leipzig
+50007829	30076592		NULL	Druckerei Oscar Brandstetter, Leipzig
+50007174	30076686		NULL	Erk'scher Männergesangverein Berlin
+50006825	30076732		CH-Za	Stadtarchiv Zürich
+50007900	30076795		NULL	T. Trautwein, Berlin
+50007394	30076803		NULL	Eidgenössischer Sängerverein
+50007465	30076810		NULL	Basler Männerchor
+50007211	30076811		NULL	Basler Gesangverein
+50007265	30076812		NULL	Basler Liederkranz
+50007216	30076813		NULL	Basler Musikschule
+50007541	30076814		NULL	Basler Vokalquartett
+50006202	30076859		D-ZHbeer	Privatbibliothek Prof. Dr. Axel Beer
+50007207	30076861		NULL	Cäcilienverein Thun
+50007208	30076862		NULL	Orchesterverein Thun
+50007488	30076959		NULL	Chanson valaisanne
+50007426	30077033		NULL	Bernische Musikgesellschaft
+50007538	30077106		NULL	Berwald-Stiftung
+50007275	30077156		NULL	Stadtsängerverein Frohsinn St. Gallen
+50007341	30077158		NULL	Harmonie St. Gallen
+50007346	30077159		NULL	Mädchen-Realschule St. Gallen
+50007467	30077160		NULL	Kantonsschülerchor S Gallen
+50007458	30077161		NULL	Männerchor Sankt Gallen
+50007355	30077162		NULL	Männerchor St. Fiden - St. Gallen
+50007531	30077163		NULL	Studiencommission für die höheren Lehranstalten Sankt Gallen
+50005553	30077184		CZ-Kb	Zàmeckà knihovna
+50007611	40005932		NULL	Bureau d'Arts et d'Industrie
+50007517	30077400		NULL	Bezirks-Cäcilien-Verein Rorschach
+50007548	30077401		NULL	Caecilien-Verein Bern
+50007694	30077401		NULL	Cäcilienverein Bern
+50007479	30077412		NULL	Schwarz'scher Männergesangverein Magdeburg
+50007173	30077421		NULL	Liederkranz Klein-Steinheim
+50007356	30077422		NULL	Liederkranz Frohsinn Bern
+50007172	30077423		NULL	Liederkranz Karlsruhe
+50007237	30077424		NULL	Liederkranz Riedlingen
+50007175	30077425		NULL	Liederkranz Siebnen
+50007388	30077426		NULL	Männerchor Liederkranz Einsiedeln
+50007266	30077427		NULL	Männerchor Liederkranz Reinach
+50007221	30077428		NULL	Männergesangverein Straßburg
+50007364	30077428		NULL	Männergesangverein Strassbourg
+50007219	30077429		NULL	Männerchor Basel
+50007419	30077443		NULL	Kammerchor Chur
+50007427	30077486		NULL	Kammerensemble des Radios Bern
+50007585	30077508		NULL	Salzburger Cäcilien-Verein
+50007728	30077524		NULL	Hochschule Luzern, Musikbibliothek
+50007459	30077748		NULL	Liedertafel Basel
+50007217	30077772		NULL	Cäcilienverein Zug
+50007218	30077773		NULL	Männerchor Zug
+50007415	30077774		NULL	Cäcilienchor Küssnacht am Rigi
+50007425	30077775		NULL	Cäcilienverein Chur
+50007540	30077776		NULL	Cäcilienverein Karlsruhe
+50007234	30077778		NULL	Cäcilienverein Luzern
+50007349	30077779		NULL	Cäcilienverein Neuenkirch
+50007214	30077780		NULL	Cäcilienverein Schönenwerd
+50007161	30077781		NULL	Cäcilienverein Solothurn
+50007268	30077782		NULL	Cäcilienverein Weggis
+50007480	30077783		NULL	Männerchor des Cäcilienvereins Aarau
+50007368	30077931		NULL	Freimaurerloge Zum goldenen Hirsch Offenburg
+50007407	30077934		NULL	Füri-Quartett
+50007406	30077935		NULL	Zurbrügg-Quartett
+50007377	30077936		NULL	Hellmesberger Quartett
+50007206	30077937		NULL	Rudolf Mosersches Quartett
+50007551	30077938		NULL	Schlosswilerquartett
+50007344	30077978		NULL	Christkatholischer Kirchenchor Aarau
+50007180	30077980		NULL	Kirchenchor Aldegund
+50007496	30077981		NULL	Kirchenchor Egg
+50007462	30077982		NULL	Kirchenchor Enge
+50007444	30077983		NULL	Kirchenchor Netstal
+50007167	30077984		NULL	Kirchenchor Rain
+50007209	30077985		NULL	Kirchenchor Schönenwerd
+50007395	30077986		NULL	Kirchenchor St. Anton Zürich
+50007396	30077987		NULL	Kirchenchor Zweisimmen
+50007343	30077988		NULL	Reformierter Kirchenchor Aarau
+50007397	30077989		NULL	Reformierter Kirchenchor Liestal
+50007282	30077990		NULL	Kirchenchor der Liebfrauenkirche Gebweiler
+50007421	30078006		NULL	Sankt Galler Bläserquintett
+50007235	30078009		NULL	Institut der Englischen Fräulein, Augsburg
+50007524	30078157		NULL	Société de Musique de Chambre pour Instruments á Vent Paris
+50007202	30078177		NULL	Allgemeiner Schweizerischer Sängerverein
+50007523	30078178		NULL	Fondation de l'Hospice du Samaritain de Vevey
+50007721	40006702		NULL	F.E.C. Leuckart, Leipzig
+50007863	30078314		NULL	Universal Edition, Wien
+50007891	51000530		NULL	B. Schott, Mainz
+50007722	30078348		NULL	C. F. Peters, Leipzig
+50007648	30078454		NULL	Volksliturgisches Apostolat, Klosterneuburg
+50007748	30078458		NULL	Möseler
+50007698	30078508		NULL	Bosworth & Co., Leipzig
+50007263	30078796		NULL	Sängerbund S Gotthard
+50007416	30078803		NULL	Coppenrath, Alfred
+50007337	30078901		NULL	Section Moléson du Club Alpin
+50007274	30078925		NULL	Asperchor Aarau
+50007164	30078943		NULL	Bürgergesangverein Schöningen
+50007252	30078944		NULL	Akademischer Gesangsverein der Universität Wien
+50007392	30078947		NULL	Berliner Lehrer Gesangverein
+50007351	30078948		NULL	Berner Kantonalgesangverein
+50007279	30079033		NULL	Martins-Chor, Freiburg
+50007536	30079166		NULL	Männergesangverein Arion New York
+50007515	30079233		NULL	Lehrergesangverein Leipzig
+50007273	30079234		NULL	Gesangverein Langenthal
+50007535	30079234		NULL	Gesangsverein Langenthal
+50007404	30079235		NULL	Berner Kammerchor
+50007254	30079293		NULL	Volksliedertafel Halle
+50007118	30079331		NULL	Musikalische Gesellschaft Zürich
+50007434	30079349		NULL	Chor zu Wurmsbach
+50007287	30079358		NULL	Société cantonale des Chanteurs Fribourgeois
+50007332	30079359		NULL	Céciliennes du canton de Fribourg
+50007313	30079360		NULL	Instituteurs du canton de Fribourg
+50007545	30079379		NULL	Gemischter Chor Lützelflüh
+50007111	30079382		NULL	Engelberg, Chor
+50007529	30079383		NULL	Gemischter Chor Baden
+50007271	30079385		NULL	Gemischter Chor Libertas Zürich
+50007177	30079386		NULL	Gemischter Chor Schüpfheim
+50007373	30079387		NULL	Gemischter Chor Vitznau
+50007430	30079388		NULL	Graschuner Chor
+50006835	30079405		CH-FI	Katholisches Pfarr- und Kirchgemeindearchiv, Fischingen TG
+50007856	30079405		NULL	Katholisches Pfarr- und Kirchgemeindearchiv Fischingen
+50007507	30079432		NULL	Frauenchor Basel
+50007439	30079433		NULL	Römisch-katholische Gemeinde Basel
+50007431	30079445		NULL	Oratorianerkloster Edgbaston, Birmingham
+50007363	30079465		NULL	Liedertafel des deutschen Turnvereins London
+50007525	30079503		NULL	Concordia Mulhouse
+50007526	30079504		NULL	Choeur des Dames de la Concordia Mulhouse
+50007261	30079505		NULL	Gesangverein Concordia Glückstadt
+50007454	30079506		NULL	Männerchor Concordia Altstätten
+50007258	30079507		NULL	Männergesangverein Concordia Düsseldorf
+50007481	30079508		NULL	Gesangssektion des Kaufmännischen Vereins Zürich
+50007437	30079522		NULL	Steiermärkischer Männergesangsverein
+50007508	30079545		NULL	Schweizer Gesellschaft, Leipzig
+50007724	30079545		NULL	Schweizergesellschaft in Leipzig
+50007157	30079685		NULL	Deutscher Sängerkreis, Mönchengladbach
+50007381	30079686		NULL	Deutscher Cäcilienverein
+50007412	30079687		NULL	Berner Kammerorchester
+50007267	30079688		NULL	Uebeschi-Chor der Berner Liedertafel
+50007205	30079738		NULL	Allgemeine Musikgesellschaft
+50007375	30079739		NULL	Trautenauer Harmonie
+50007226	30079742		NULL	Männerchor Harmonie Zürich
+50007347	30079743		NULL	Männerchor Arbon
+50007424	30079744		NULL	Männerchor Arosa
+50007446	30079745		NULL	Männerchor Aussersihl
+50007246	30079746		NULL	Männerchor Bachtel
+50007340	30079747		NULL	Männerchor Baden
+50007445	30079748		NULL	Männerchor Burgdorf
+50007196	30079749		NULL	Männerchor Chur
+50007251	30079750		NULL	Männerchor Enge
+50007464	30079751		NULL	Männerchor Frauenfeld
+50007326	30079752		NULL	Männerchor Fribourg
+50007354	30079753		NULL	Männerchor Frohsinn Brugg
+50007248	30079754		NULL	Männerchor Frohsinn Glarus
+50007478	30079755		NULL	Männerchor Frohsinn Interlaken
+50007530	30079756		NULL	Männerchor Frohsinn Luzern
+50007448	30079757		NULL	Männerchor Frohsinn Neuenburg
+50007557	30079757		NULL	Männerchor Frohsinn Neuenburg
+50007453	30079758		NULL	Männerchor Harmonie Maienfeld
+50007452	30079759		NULL	Männerchor Horgen
+50007455	30079760		NULL	Männerchor La Chaux-de-Fonds
+50007447	30079761		NULL	Männerchor Ligia grischa Ilanz
+50007500	30079762		NULL	Männerchor Luzern
+50007244	30079763		NULL	Männerchor Meggen
+50007272	30079764		NULL	Männerchor Pfäffikon
+50007457	30079765		NULL	Männerchor Rapperswil
+50007353	30079766		NULL	Männerchor Riehen
+50007473	30079767		NULL	Männerchor Rüti Zürich
+50007250	30079768		NULL	Männerchor Samaden
+50007264	30079769		NULL	Männerchor Schwyz
+50007277	30079770		NULL	Männerchor Solothurn
+50007450	30079771		NULL	Männerchor Stäfa
+50007449	30079772		NULL	Männerchor Thusis
+50007472	30079773		NULL	Männerchor Trogen
+50007249	30079774		NULL	Männerchor Unterstrass
+50007247	30079775		NULL	Männerchor Uster
+50007269	30079776		NULL	Männerchor Weggis
+50007451	30079777		NULL	Männerchor Wil
+50007169	30079778		NULL	Männerchor Wollishofen
+50007227	30079779		NULL	Männerchor Zürich
+50007527	30079784		NULL	Choeur des Dames de la Société Chorale Neuchâtel
+50007422	30079785		NULL	Damenchor Pontresina
+50007372	30079786		NULL	Domchor Augsburg
+50007528	30079789		NULL	Société d'orchestre Mulhouse
+50007485	30079790		NULL	Heimatschutz-Verein Bärnerland Zürich
+50007242	30079791		NULL	Männergesang-Verein Klagenfurt
+50007215	30079795		NULL	Verein Schweizerischer Tonkünstler
+50007482	30079797		NULL	Akademische Vereine
+50007483	30079798		NULL	Alpenvereine
+50007380	30079800		NULL	Cäcilienvereine der Schweiz
+50007501	30079802		NULL	Eidgenössische Sängervereine
+50007166	30079803		NULL	Gesangsclub des Vereins Merkur Nürnberg
+50007171	30079806		NULL	Gesangverein Harlem-Eintracht
+50007223	30079807		NULL	Gesangverein Olten
+50007463	30079809		NULL	Gesangverein Technikum
+50007260	30079810		NULL	Gesangverein Weidenau
+50007477	30079811		NULL	Glarner Kantonalsängerverein
+50007552	30079812		NULL	Gymnasialverein der Lerberschule Bern
+50007181	30079816		NULL	Kölner Zitherverein
+50007239	30079818		NULL	Lehrergesangsverein Elberfeld
+50007339	30079819		NULL	Lehrergesangverein des Amtes Konolfingen
+50007156	30079820		NULL	Lehrergesangverein Zürich
+50007278	30079822		NULL	Leipziger Lehrergesangverein
+50007393	30079823		NULL	Luzerner Kantonalgesangverein
+50007176	30079824		NULL	Luzernischer kantonaler Cäcilienverein
+50007554	30079826		NULL	Musikverein Harmonia
+50007474	30079828		NULL	Sänger des Statistenvereins am Stadttheater Zürich
+50007151	30079829		NULL	Schweizerischer Studentenverein (StV)
+50007549	30079830		NULL	Schweizerischer Zofingerverein, Sektion Bern
+50007469	30079831		NULL	Seeländischer Lehrergesangverein
+50007270	30079832		NULL	Singchor des Kaufmännischen Vereins Stuttgart
+50007348	30079834		NULL	St. Gallischer Kantonalsängerverein
+50007476	30079835		NULL	Techniker-Gesangverein Winterthur
+50007179	30079836		NULL	Thurgauischer Cäcilienverein
+50007153	30079842		NULL	Cherubinigesellschaft Florenz
+50007432	30079843		NULL	Musikgesellschaft Altdorf
+50007220	30079847		NULL	Konservatorium Basel
+50007506	30079848		NULL	Musikschule Basel
+50007443	30079849		NULL	Kantonsschule Luzern
+50007201	30079850		NULL	Knabensingschulen Zürich
+50007553	30079851		NULL	Lerberschule Bern
+50007400	30079852		NULL	Neue Mädchenschule Bern
+50007401	30079853		NULL	Pflegerinnenschule Lindenhof Bern
+50007544	30079854		NULL	Sekundarschule Langnau
+50007510	30079865		NULL	Musique de la Ville de Lucerne
+50007511	30079866		NULL	Musique de Porrentruy
+50007253	30079868		NULL	Union musicale Strasbourg
+50007466	30079871		NULL	Frauenchor des Stuttgarter Liederkranzes
+50007550	30079872		NULL	Münsterchor Bern
+50007280	30079875		NULL	Pfarrkirchenchor Zillisheim
+50007358	30079876		NULL	Töchterchor Thalwil
+50007044	30079877		NULL	Beromünster, Stiftschor
+50007163	30079877		NULL	Stiftschor S Michael Beromünster
+50007369	30079878		NULL	Stiftschor S Leodegar Luzern
+50007499	30079879		NULL	Stiftschor Luzern
+50007162	30079880		NULL	Stiftschor Beromünster
+50007281	30079881		NULL	S Stephanschor Mühlhausen
+50007228	30079884		NULL	Domchor S Urs Solothurn
+50007001	30079885		NULL	Bolzano, Chor
+50007276	30079890		NULL	Liedertafel Löbenhain
+50007345	30079891		NULL	Liedertafel Luzern
+50007367	30079892		NULL	Liedertafel Stuttgart
+50007537	30079893		NULL	Liedertafel Ulm an der Donau
+50007365	30079896		NULL	Ottakringer Liedertafel Wien
+50007411	30079897		NULL	Evangelisches Seminar Muristalden
+50007160	30079904		NULL	Liederhalle Karlsruhe
+50007408	30079915		NULL	Akademie Amriswil
+50007468	30079916		NULL	Akademie der Tonkunst Magdeburg
+50007543	30079917		NULL	Sing-Akademie Dessau
+50007519	30079926		NULL	Choeur d'hommes de Lausanne
+50007520	30079927		NULL	Société Chorale de Vevey
+50007283	30079929		NULL	Choeur mixte de la cathédrale S Nicolas Fribourg
+50007489	30079930		NULL	Joli choeur
+50007203	30079931		NULL	Société Chorale de Genève
+50007391	30079932		NULL	Société Chorale Italienne de Genève
+50007259	30079933		NULL	Société chorale Mutzig
+50007292	30079934		NULL	Société de chant d'Albeuve
+50007320	30079935		NULL	Société de chant de Charmey
+50007329	30079935		NULL	Société de chant de Estavayer-le-Lac
+50007322	30079937		NULL	Société de chant de la Tour-de-Trême
+50007336	30079938		NULL	Société de chant de la Ville de Fribourg
+50007299	30079939		NULL	Société de chant de Morlon
+50007319	30079940		NULL	Société de chant de Neirivue
+50007304	30079941		NULL	Société de chant de Promasens
+50007301	30079942		NULL	Société de chant de Vuadens
+50007296	30079943		NULL	Société de chant de Vuippens
+50007514	30079944		NULL	Société de chant du Conservatoire de Genève
+50007352	30079947		NULL	Société des Etudiants Suisses
+50007233	30079948		NULL	Société des traditions populaires Bâle
+50007230	30079949		NULL	Société fédérale de Chant
+50007127	30079950		NULL	Société philarmonique Petersbourg
+50007308	30079957		NULL	Sociétés chorales de Romont
+50007231	30079958		NULL	Sociétés chorales Suisse romande
+50007112	30079959		NULL	Chorus Mariastein
+50007195	30079963		NULL	Kloster S Joseph Solothurn
+50007438	30079964		NULL	Kloster St. Maria Stern, Augsburg
+50007077	30079965		NULL	Mehrerau, Zisterzienserkloster
+50007533	30079965		NULL	Kloster Wettingen-Mehrerau
+50007398	30079966		NULL	Gemeinde Muri-Gümligen
+50007178	30079970		NULL	Priesterseminar St. Emmeran, Regensburg
+50007435	30079970		NULL	S Emmeran, Regensburg
+50007403	30079977		NULL	Evangelische Singgemeinde
+50007423	30079981		NULL	Benediktinerkloster Disentis
+50007370	30079983		NULL	Kapuzinerkloster Solothurn
+50007495	30079984		NULL	Klosterfrauen auf dem Gubel
+50007471	30079988		NULL	Badischer Sängerbund
+50007413	30079989		NULL	Christlicher Sängerbund der Schweiz
+50007262	30079990		NULL	Pfälzischer Sängerbund
+50007245	30079991		NULL	Rheinischer Sängerbund
+50007460	30079992		NULL	Sängerbund Arminius Wien
+50007158	30079994		NULL	Sängerbund Göppingen
+50007518	30079995		NULL	Sängerbund Vitznau
+50007470	30079996		NULL	Sängerbund Wetzikon
+50007255	30079997		NULL	Sängerbund Wien
+50007362	30079998		NULL	Sängerrunde Bodan Konstanz
+50007461	30080000		NULL	Schwäbischer Sängerbund
+50007334	30080007		NULL	Cécilienne d'Avry-devant-Pont
+50007324	30080008		NULL	Cécilienne d'Ependes
+50007302	30080009		NULL	Cécilienne de Cerniat
+50007316	30080010		NULL	Cécilienne de Grandvillars
+50007331	30080011		NULL	Cécilienne de Gruyères
+50007298	30080012		NULL	Cécilienne de La Roche
+50007291	30080013		NULL	Cécilienne de Le-Pasquier
+50007295	30080014		NULL	Cécilienne de Montbovon
+50007317	30080015		NULL	Cécilienne de Pont-la-Ville
+50007318	30080016		NULL	Cécilienne de Sâles
+50007321	30080017		NULL	Cécilienne de Vaulruz
+50007297	30080018		NULL	Cécilienne de Villarvolard
+50007305	30080019		NULL	Cécilienne l'Espérance de Bulle
+50007306	30080020		NULL	Cécilienne Vuisternens
+50007386	30080022		NULL	Chöre der österreichisch-ungarischen Monarchie
+50007284	30080023		NULL	Choeurs d'église broyards
+50007294	30080024		NULL	Chorale de Notre-Dame les Pâquis Genève
+50007516	30080025		NULL	Conservatoire de Genève
+50007323	30080034		NULL	Ecole d'agriculture de Grangeneuve
+50007494	30080035		NULL	Einsiedlische Schuljugend
+50007240	30080036		NULL	Erziehungs-Institute Lautrach
+50007433	30080039		NULL	Lehr- und Erziehungsinstitut Freiburg im Breisgau
+50007385	30080040		NULL	Lehrschwesterninstitut Menzingen
+50007371	30080044		NULL	Franziskushaus Solothurn
+50007532	30080049		NULL	Gesellenhaus Stuttgart
+50007493	30080050		NULL	Groupe choral fribourgeois
+50007307	30080051		NULL	Gymnastes fribourgeois
+50007338	30080053		NULL	Harmonie de Broc
+50007361	30080057		NULL	Infanterie-Regiment 19
+50007335	30080059		NULL	Inspecteurs des Ecoles Primaires
+50007243	30080062		NULL	Kursteilnehmer des Worb Spieltages
+50007328	30080063		NULL	Landsturm fribourgeois
+50007190	30080064		NULL	Löbliches Gotteshaus O.S.F in Nockersegg
+50007487	30080069		NULL	Mélodie pastorale Gruyères
+50007359	30080074		NULL	Nidwaldner Kirchenchöre
+50007350	30080079		NULL	Pensionnat du Sacré coeur Estavayer-le-lac
+50007509	30080094		NULL	Lyre de Vevey et Montreux
+50007512	30080095		NULL	Concordia
+50007513	30080096		NULL	La Jurassienne du Sentier
+50007387	30080120		NULL	Zentralverband Katholischer Jünglinge der Schweiz
+50007289	30080191		NULL	Zaehringia Freiburg
+50007314	30080199		NULL	Village de Crésuz
+50007229	30080202		NULL	Union Chorale de Lausanne
+50007560	30080202		NULL	Union Chorale de Lausanne
+50007379	30080205		NULL	Theresianum Ingenbohl
+50007420	30080207		NULL	Trio Stradivarius
+50007932	30080410		CH-NYan	Association Niedermeyer - Centre de documentation
+50007783	40001493		NULL	Boyer, Paris
+50007872	40002228		NULL	Chabal, Paris
+50007890	30061105		NULL	Chappell, London
+50007899	40002456		NULL	Rober Cocks, London
+50007830	40002754		NULL	Paris, D'Enouville
+50007841	40003353		NULL	Melles Erard, Paris
+50007612	40003432		NULL	Falter und Sohn München
+50007610	40003958		NULL	Gail und Hedler
+50007846	40005073		NULL	Hoffmeister & Kühnel (Bureau de Musique), Leipzig
+50007824	40005335		NULL	Imbault, Paris
+50007784	40006448		NULL	Le Menu, Paris
+50007871	51000071		NULL	Henry Lemoine, Paris
+50007815	40006811		NULL	Longman & Broderip, London
+50007874	40009854		NULL	Schonenberger, Paris
+50007790	40010070		NULL	Sieber
+50007599	40011222		NULL	Wanaz, Albert
+50007859	40012207		NULL	Orell, Geßner, Füßli & Co. (Zürich)
+50007873	40090331		NULL	Colombier, Paris
+50007769	40090675		NULL	H. Wagenführ, Berlin
+50007011	50007013		NULL	Beromünster
+50007577	50007222		NULL	Hug, Gebrüder, Zürich
+50007241	30079053		NULL	ADDED
+50007522	40005090		NULL	ADDED
+50007578	40001558		NULL	ADDED
+50007762	40003989		NULL	ADDED
+50007844	30080634		NULL	ADDED
+50007851	40004485		NULL	ADDED
+13377	71028		NULL	ADDED
+29199	78931		NULL	ADDED
+39250	40010191		NULL	ADDED
+62774	40002683		NULL	ADDED
+310166	40000434		NULL	ADDED
+30061355	40009858		NULL	ADDED
+30077276	40005932		NULL	ADDED
+30078299	40006702		NULL	ADDED
+30078327	51000530		NULL	ADDED
+40002260	30061105		NULL	ADDED
+40006653	51000071		NULL	ADDED

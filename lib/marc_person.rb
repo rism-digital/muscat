@@ -25,12 +25,13 @@ class MarcPerson < Marc
   end
   
   def get_alternate_names_and_dates
-    names = nil
+    names = []
     dates = nil
-
-    if node = first_occurance("400", "a")
-      if node.content
-        names = node.content
+    
+    each_by_tag("400") do |t|
+      t.fetch_all_by_tag("a").each do |tn|
+        next if !(tn && tn.content)
+        names << tn.content
       end
     end
     
@@ -40,7 +41,7 @@ class MarcPerson < Marc
       end
     end
     
-    [names, dates]
+    [names.join("\n"), dates]
   end
     
   def get_gender_birth_place_source_and_comments

@@ -1,4 +1,4 @@
-class CreateCatalogues < ActiveRecord::Migration
+class CreateCatalogues < ActiveRecord::Migration[4.2]
   def self.up
     create_table(:catalogues, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8') do |t|
     

@@ -1,2 +1,2 @@
-class DoDiv < ActiveRecord::Base
+class DoDiv < ApplicationRecord
 end

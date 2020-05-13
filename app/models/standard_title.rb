@@ -10,11 +10,11 @@
 # Other standard wf_* not shown
 # The other functions are standard, see Catalogue for a general description
 
-class StandardTitle < ActiveRecord::Base
+class StandardTitle < ApplicationRecord
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
-  has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "StandardTitle" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_many :folder_items, as: :item, dependent: :destroy
+  has_many :delayed_jobs, -> { where parent_type: "StandardTitle" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
     
   validates_presence_of :title
@@ -30,7 +30,7 @@ class StandardTitle < ActiveRecord::Base
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
   
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
   
   # Suppresses the solr reindex
@@ -92,7 +92,7 @@ class StandardTitle < ActiveRecord::Base
   def check_dependencies
     if (self.referring_sources.count > 0)
       errors.add :base, "The standard title could not be deleted because it is used"
-      return false
+      throw :abort
     end
   end
    
@@ -105,4 +105,5 @@ class StandardTitle < ActiveRecord::Base
   def name
     return title
   end
+
 end

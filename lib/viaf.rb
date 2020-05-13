@@ -8,6 +8,7 @@ module Viaf
   class Interface
     NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim"}
     require 'open-uri'
+    require 'net/http'
 
     def self.search(term, model)
       providers = YAML::load(File.open("config/viaf/#{model.to_s.downcase}.yml"))
@@ -29,7 +30,7 @@ module Viaf
       #this needs another approach because autosuggest is not well supported
       elsif model.to_s == "Work"
         r = []
-        uri = URI("http://viaf.org/viaf/search?query=local.uniformTitleWorks+all+#{URI.escape(term)}&sortKeys=holdingscount&httpAccept=application/json")
+        uri = URI("http://viaf.org/viaf/search?query=local.uniformTitleWorks=#{URI.escape(term)}&sortKeys=holdingscount&httpAccept=application/json")
         json = Net::HTTP.get(uri)
         res = JSON(json)
         return "Sorry, no work results were found in VIAF!" unless res["searchRetrieveResponse"]["records"]
@@ -86,15 +87,13 @@ module Viaf
             return "ERROR connecting VIAF Provider"
           end
           if model.to_s == "Work"
-            provider_composer = provider_doc.xpath('//marc:datafield[@tag="100"]/marc:subfield[@code="a"]', NAMESPACE).first.content rescue "Anonymus"
-            #provider_composer = record["term"].split("|").first.gsub([0-9,\-], "")
-            composer = Sunspot.search(Person) {fulltext "#{provider_composer}", :fields => [:full_name]}.results.first
-            node_100 = provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE)
-            next if node_100.empty?
-            sfa = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
-            sfa['code'] = '0'
-            sfa.content = composer.id rescue 30004985
-            node_100.first << sfa
+            if provider == "BNF"
+              title = build_title_node("240", "440", provider_doc)
+              next unless title
+            else
+              title = build_title_node("100", "400", provider_doc)
+              next unless title
+            end
           end
 
           provider_doc.xpath('//marc:controlfield[@tag="001"]', NAMESPACE).first.content = record["viafid"]
@@ -112,7 +111,7 @@ module Viaf
             xslt  = Nokogiri::XSLT(File.read('config/viaf/' + providers[provider]))
             doc = xslt.transform(provider_doc)
             # Escaping for json
-            doc = doc.to_s.gsub(/'/, "&apos;")
+            doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
             marc = Object.const_get("Marc#{model.to_s.capitalize}").new(doc)
             result << marc.to_json
             break
@@ -120,6 +119,7 @@ module Viaf
         end
       end
       return result
+
     end
 
 
@@ -138,6 +138,31 @@ module Viaf
       return tag
     end
 
+    def self.build_title_node(tag, alt_tag, provider_doc)
+      if tag == "240"
+        lastname = provider_doc.xpath("//marc:datafield[@tag='#{tag}']/marc:subfield[@code='a']", NAMESPACE).first.content rescue "Anonymus"
+        prename = provider_doc.xpath("//marc:datafield[@tag='#{tag}']/marc:subfield[@code='b']", NAMESPACE).first.content rescue "Anonymus"
+        provider_composer = "#{lastname}, #{prename}"
+      else
+        provider_composer = provider_doc.xpath("//marc:datafield[@tag='#{tag}']/marc:subfield[@code='a']", NAMESPACE).first.content.unicode_normalize rescue "Anonymus"
+      end
+      #provider_composer = record["term"].split("|").first.gsub([0-9,\-], "")
+      composer = Sunspot.search(Person) {fulltext "#{provider_composer}", :fields => [:full_name]}.results.first
+      node_100 = provider_doc.xpath("//marc:datafield[@tag='#{tag}']", NAMESPACE)
+      return false if node_100.empty?
+      sfa = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
+      sfa['code'] = '0'
+      sfa.content = composer.id rescue 30004985
+      node_100.first << sfa
+      nodes_400 = provider_doc.xpath("//marc:datafield[@tag='#{alt_tag}']", NAMESPACE)
+      nodes_400.each do |node|
+        sfa = Nokogiri::XML::Node.new "mx:subfield", provider_doc.root
+        sfa['code'] = '0'
+        sfa.content = composer.id rescue 30004985
+        node << sfa
+      end
+      return true
+    end
 
     def self.xsl_test
       xml = File.open("config/viaf/test.xml") { |f| Nokogiri::XML(f)  }

@@ -1,16 +1,19 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
+  # Connects this user object to Blacklights Bookmarks.
+  include Blacklight::User
 
   has_and_belongs_to_many :workgroups
-  attr_accessible :email, :password, :preference_wf_stage, :password_confirmation if Rails::VERSION::MAJOR < 4
+
   has_many :sources, foreign_key: 'wf_owner'
-# Connects this user object to Blacklights Bookmarks. 
-  include Blacklight::User
+
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+	# remove :recoverable
   devise :database_authenticatable, 
-         :recoverable, :rememberable, :trackable, :validatable
+         :rememberable, :trackable, :validatable
 
+  enum notification_type: [:each, :daily, :weekly ]
   enum preference_wf_stage: [ :inprogress, :published, :deleted ]
   scope :ordered, -> {
     joins(:workgroups).order("workgroup.name")
@@ -27,10 +30,8 @@ class User < ActiveRecord::Base
 
   def can_edit?(source)
     if source.is_a? Holding
-      lib = source.institutions.take
       self.workgroups.each do |workgroup|
-        #binding.pry
-        if workgroup.get_institutions.include?(lib)
+        if workgroup.institutions.pluck(:siglum).include?(source.lib_siglum)
           return true
         end
       end
@@ -52,8 +53,8 @@ class User < ActiveRecord::Base
   def can_create_edition?(source)
     if (source.record_type == MarcSource::RECORD_TYPES[:edition] ||
       source.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
-      source.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
-      source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content])
+      source.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
+      source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition])
      if can? :create_edition?, source
        true
      else
@@ -67,10 +68,28 @@ class User < ActiveRecord::Base
     source.holdings.each do |holding|
       return true if self.can_edit?(holding)
     end
-    if source.source_id && source.id != source.source_id
-      return true if self.can_edit_edition?(Source.find(source.source_id))
+    if source.source_id
+      ## These two statuses are pretty major, send a mail
+      if source.id == source.source_id
+        puts "Source #{source.id} has identical source_id (#{source.source_id})"
+        AdminNotifications.notify("Source #{source.id} has identical source_id (#{source.source_id})", @item).deliver_now
+      elsif source.parent_source.source_id == source.id
+        puts "Source #{source.id} has a parent (#{source.parent_source.id}) that has this source as parent!"
+        AdminNotifications.notify("Source #{source.id} has a parent (#{source.parent_source.id}) that has has this source as parent!", @item).deliver_now
+      else
+          return true if self.can_edit_edition?(source.parent_source)
+      end
     end
     return false
+  end
+
+  # check if a folder content all items are the user domain
+  def can_publish?(folder)
+    return false unless folder.folder_type == 'Source'
+    folder_sigla = folder.content.pluck(:lib_siglum).uniq
+    own_sigla = self.workgroups.map{|w| w.institutions.pluck(:siglum)}.flatten
+    return false unless (folder_sigla - own_sigla).empty?
+    return true
   end
 
   def get_workgroups
@@ -106,6 +125,22 @@ class User < ActiveRecord::Base
     return false
   end
 
+  def get_notifications
+    return false if !notifications || notifications.empty?
+    
+    elements = {}
+    
+    notifications.each_line do |line|
+      parts = line.strip.split(":")
+      next if parts.count < 2
+      next if parts[0].empty? # :xxx case
+      elements[parts[0]] = [] if !elements.include?(parts[0])
+      elements[parts[0]] << parts[1]
+    end
+    
+    return elements
+  end
+
   # returns a list of users sorted by lastname with admin at first place; utf-8 chars included
   def self.sort_all_by_last_name
     res = {}
@@ -114,7 +149,7 @@ class User < ActiveRecord::Base
     end
     return res.sort_by{|_key, value| value.first}.map {|e| e[1][1] }
   end
-
+  
 =begin #515 postponed to 3.7
   def secure_password
     return true if !password

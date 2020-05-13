@@ -1,7 +1,26 @@
-RSpec.describe "solr result of workgroup total sources" do
-  it "should return solr result set of sources" do
-    ix = Statistics::Workgroup.sources_by_month(Time.parse("2016-01-01"), Time.parse("2017-01-01"), Workgroup.where(:id => 1))
-    f = Statistics::Spreadsheet.new(ix)
-    expect(f.objects.first.row["2016-10"]).to be == 574
+RSpec.describe "Workgroup statistic", solr: true do
+  describe "solr result of workgroup total sources" do
+    let!(:user) { FactoryBot.create(:user)  }
+    before do
+      FactoryBot.create(:manuscript_source)
+      Sunspot.index![Source]
+    end
+
+    it "should return solr result set if source exist" do
+      ix = Statistics::Workgroup.sources_by_month(Time.parse("2017-01-01"), Time.now, [Workgroup.last])
+      f = Statistics::Spreadsheet.new(ix)
+      expect(f.objects.last.row[Time.now.strftime("%Y-%m")]).to be == 1
+    end
   end
+ 
+  describe "solr result of workgroup total sources" do
+    let!(:user) { FactoryBot.create(:user)  }
+  
+    it "should return zero set if there is no source" do
+      ix = Statistics::Workgroup.sources_by_month(Time.parse("2017-01-01"), Time.now, [Workgroup.last])
+      f = Statistics::Spreadsheet.new(ix)
+      expect(f.objects.last.row[Time.now.strftime("%Y-%m")]).to be == 0
+    end
+  end
+
 end

@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 require 'blacklight/marcxml.rb'
+require 'blacklight/marctxt.rb'
 
 class SolrDocument
 
@@ -22,6 +23,7 @@ class SolrDocument
   use_extension( Blacklight::Document::DublinCore)
   
   use_extension( Muscat::Blacklight::MarcXML ) 
+  use_extension( Muscat::Blacklight::MarcTXT ) 
 
   #self.unique_key = 'std_title_texts'
 
@@ -30,7 +32,15 @@ class SolrDocument
   end
   
   def source_index_composer
-      first(:composer_texts) == "" ? "[n.a.]" : first(:composer_texts)
+    if first(:composer_texts) == "" || first(:composer_texts) == nil
+      "[n.a.]"
+    else
+      ## :composer_texts is multivalued, one value per line
+      ## The first line is always the "official" name
+      ## all the alternates are appended. We need just 
+      ## the first line for the title.
+      first(:composer_texts).split("\n")[0]
+    end
   end
   
   def source_index_description

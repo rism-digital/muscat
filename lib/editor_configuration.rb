@@ -261,7 +261,9 @@ class EditorConfiguration
     end
   end
   
-  
+  def get_triggers
+    return options_config.include?("triggers") ? options_config["triggers"] : nil
+  end
 
   #################################
 
@@ -464,6 +466,24 @@ class EditorConfiguration
         templates[file_dir] = file_label
     end
     return templates
+  end
+  
+  def self.get_source_templates
+    file = "#{Rails.root}/config/marc/#{RISM::MARC}/source/template_configuration.yml"
+    return {} if !File.exists?(file)
+    
+    conf = YAML::load(IO.read(file))
+    return {} if !conf.has_key? "display"
+    conf["display"]
+  end
+  
+  def self.get_source_default_file(record_type)
+    file = "#{Rails.root}/config/marc/#{RISM::MARC}/source/template_configuration.yml"
+    return nil if !File.exists?(file)
+    
+    conf = YAML::load(IO.read(file))
+    return nil if !conf.has_key? "default_mapping"
+    conf["default_mapping"][record_type.to_s]
   end
   
 end

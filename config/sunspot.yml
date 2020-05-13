@@ -4,8 +4,8 @@ production:
     port: 8983
     log_level: WARNING
     path: /solr/production
-    auto_commit_after_request: false
-    max_memory: 1G
+    memory: 2G
+    bind_address: 127.0.0.1
     # read_timeout: 2
     # open_timeout: 0.5
 
@@ -15,14 +15,12 @@ development:
     port: 8982
     log_level: INFO
     path: /solr/development
-    auto_commit_after_request: false
-    max_memory: 1G
+    bind_address: 127.0.0.1
 
 test:
   solr:
     hostname: localhost
-    port: 8981
+    port: 8982
     log_level: WARNING
     path: /solr/test
- 
-auto_commit_after_request: false
+    bind_address: 127.0.0.1

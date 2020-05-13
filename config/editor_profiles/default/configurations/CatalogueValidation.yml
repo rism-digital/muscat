@@ -1,13 +1,16 @@
 --- !map:Settings
-"041":
-  tags:
-    a: required, warning
-"240":
-  tags:
-    a: required, warning
-"337":
-  tags:
-    a: required, warning
+server:
+  - validate_name_uniqueness
+client:
+  "041":
+    tags:
+      a: required, warning
+  "240":
+    tags:
+      a: required, warning
+  "337":
+    tags:
+      a: required, warning
 
 
 

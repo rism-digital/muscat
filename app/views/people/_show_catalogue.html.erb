@@ -1,5 +1,9 @@
 <%
     ref_tag = tag.fetch_first_by_tag("w").content rescue ref_tag = nil
+    ## Also try in $0
+    if !ref_tag
+      ref_tag = tag.fetch_first_by_tag("0").content rescue ref_tag = nil
+    end
     a_tag = tag.fetch_first_by_tag("a").content rescue a_tag = " "
     b_tag = tag.fetch_first_by_tag("b").content rescue b_tag = " "
 

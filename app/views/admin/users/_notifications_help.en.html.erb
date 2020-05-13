@@ -1,0 +1,39 @@
+<div class="panel tab_panel">
+  <div class="guidelines_panel_content">
+    <div class="guidelines">
+      
+      <h3>How to use Notifications</h3>
+      <p>The notifications box permits to insert some patterns that, when matches, will send a notification to the user.<br>
+        For example, a pattern can be made so that every time a source in CH-BEl is saved the user receives a notification:</p>
+        <pre>lib_siglum:CH-BEl</pre>
+        <b>Note that there is no space after the colon.</b> 
+        One rule per each line will be evaluated separately:
+<pre>lib_siglum:CH-BEl
+composer:Bach</pre>
+          Means: create a notification for each modified source with lib_siglum CH-BEl, create a notification for each modified source with composer Bach.<br>
+          Rules can include wildcards:
+          <pre>lib_siglum:CH*</pre>
+          Create a notification for each source with lib_siglum beginning with CH.<br>
+          Currently the notification system is available only for <b>Sources</b> and for the following fields:
+          <p>
+            <ul>
+              <li><b>std_title</b> <i>Standardized title</i></li>
+              <li><b>composer</b> <i>Composer full name</i></li>
+              <li><b>title</b> <i>Title on source</i></li>
+              <li><b>shelf_mark</b> <i>Library shelf mark</i></li>
+            </ul>
+          </p>
+          
+          The pop-up selector under the field chooses the cadence with which the notifications are made:
+          <p>
+            <ul>
+              <li><b>each</b> Send a notification each time a source is saved (with a grace period of one hour to filter multiple saves)</li>
+              <li><b>daily</b> A list of the modified sources is sent each day</li>
+              <li><b>title</b> A list of the modified sources is sent each week</li>
+              <li><b>no selection</b> Notifications are disabled</li>
+            </ul>
+          </p>
+          
+    </div>
+  </div>
+</div>

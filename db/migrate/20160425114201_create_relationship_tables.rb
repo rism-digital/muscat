@@ -1,4 +1,4 @@
-class CreateRelationshipTables < ActiveRecord::Migration
+class CreateRelationshipTables < ActiveRecord::Migration[4.2]
   def change
     # People -> Place
     create_table(:people_to_places, :id => false) do |t|

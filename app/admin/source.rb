@@ -9,6 +9,7 @@ ActiveAdmin.register Source do
   
   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
   
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
@@ -24,7 +25,7 @@ ActiveAdmin.register Source do
     
     after_destroy :check_model_errors
 
-    before_filter :only => [:index] do
+    before_action :only => [:index] do
         if params['commit'].blank?
                  #params['q'] = {:std_title_contains => "[Holding]"} 
         end
@@ -33,6 +34,7 @@ ActiveAdmin.register Source do
     autocomplete :source, "740_autocomplete_sms", :solr => true
     autocomplete :source, "594b_sms", :solr => true
     
+
     def check_model_errors(object)
       return unless object.errors.any?
       flash[:error] ||= []
@@ -78,7 +80,7 @@ ActiveAdmin.register Source do
     end
 
     def edit
-      flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
+      flash.now[:error] = params[:validation_error] if params[:validation_error]
       @item = Source.find(params[:id])
       @holdings = @item.holdings
       @show_history = true if params[:show_history]
@@ -87,28 +89,9 @@ ActiveAdmin.register Source do
       record_type = @item.get_record_type
       record_type = record_type ? " - #{I18n.t('record_types.' + record_type.to_s)}" : ""
       @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
-
-      # Make sure user can update this type of edition
-      if  (@item.record_type == MarcSource::RECORD_TYPES[:edition] ||
-          @item.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
-          @item.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
-          @item.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]) &&
-          cannot?(:update_editions, @item)
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:cannot_update_source)} (#{I18n.t("record_types." + @item.get_record_type.to_s)})" }
-        return
-      end
-
-      template = case @item.get_record_type
-        when :collection then "000_collection.marc"
-        when :source then "002_source.marc"
-        when :edition_content then "013_edition_content.marc"
-        when :libretto_source then "004_libretto_source.marc"
-        when :libretto_edition_content then "015_libretto_edition_content.marc"
-        when :theoretica_source then "006_theoretica_source.marc"
-        when :theoretica_edition_content then "017_theoretica_edition_content.marc"
-        when :edition then "011_edition.marc"
-        else nil
-      end
+      
+      template = EditorConfiguration.get_source_default_file(@item.get_record_type) + ".marc"
+      
       
       # Try to load the MARC object.
       # This is the same trap as in show but here we
@@ -128,7 +111,7 @@ ActiveAdmin.register Source do
       @results, @hits = Source.search_as_ransack(params)
 
       # Get the terms for 593a_filter, the "source type"
-      @source_types = Source.get_tems("593a_filter_sm")
+      @source_types = Source.get_terms("593a_filter_sm")
 
       index! do |format|
        @sources = @results
@@ -140,7 +123,7 @@ ActiveAdmin.register Source do
       @source = Source.new
       @template_name = ""
       
-      if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_type] || params[:new_type].empty?)
+      if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_record_type] || params[:new_record_type].empty?)
         redirect_to action: :select_new_template 
         return
       end
@@ -161,23 +144,21 @@ ActiveAdmin.register Source do
         @source.marc = new_marc
         @source.record_type = base_item.record_type
         @template_name = @source.get_record_type.to_s
-      elsif File.exists?("#{Rails.root}/config/marc/#{RISM::MARC}/source/" + params[:new_type] + '.marc')
-        new_marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/source/" + params[:new_type] + '.marc'), MarcSource::RECORD_TYPES[@template_name.to_sym])
-        new_marc.load_source false # this will need to be fixed
-        @source.marc = new_marc
-        @template_name = params[:new_type].sub(/[^_]*_/,"")
-        @source.record_type = MarcSource::RECORD_TYPES[@template_name.to_sym]
+      else 
+        
+        default_file_name = EditorConfiguration.get_source_default_file(params[:new_record_type])
+        default_file = "#{Rails.root}/config/marc/#{RISM::MARC}/source/" + default_file_name + '.marc'
+        
+        if File.exists?(default_file)
+          new_marc = MarcSource.new(File.read(default_file), MarcSource::RECORD_TYPES[params[:new_record_type].to_sym])
+          new_marc.load_source false # this will need to be fixed
+          @source.marc = new_marc
+          @template_name = params[:new_record_type]
+          @source.record_type = MarcSource::RECORD_TYPES[params[:new_record_type].to_sym]
+        end
       end
-      # Make sure user can create this type of edition
-      if  (@source.record_type == MarcSource::RECORD_TYPES[:edition] ||
-          @source.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
-          @source.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
-          @source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]) &&
-          cannot?(:create_editions, @source)
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:cannot_create_source)} (#{I18n.t("record_types." + @source.get_record_type.to_s)})" }
-        return
-      end
-      @editor_profile = EditorConfiguration.get_default_layout @source
+
+      @editor_profile = EditorConfiguration.get_default_layout(@source)
       @editor_validation = EditorValidation.get_default_validation(@source)
       @page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{I18n.t('record_types.' + @template_name)}"
       #To transmit correctly @item we need to have @source initialized
@@ -211,7 +192,14 @@ ActiveAdmin.register Source do
   filter :title_contains, :label => proc{I18n.t(:title_contains)}, :as => :string
   filter :std_title_contains, :label => proc{I18n.t(:std_title_contains)}, :as => :string
   filter :composer_contains, :label => proc{I18n.t(:composer_contains)}, :as => :string
-  filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
+  
+  filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
+  # see See lib/active_admin_record_type_filter.rb
+  # The same as above, but when the lib siglum is forced and cannot be changes
+  filter :lib_siglum_with_integer,
+  if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)},
+  :as => :lib_siglum
+  
   # This filter is the "any field" one
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :canonic_techniques_canon_type_contains, :label => proc{I18n.t(:canon_type_contains)}, :as => :string
@@ -221,7 +209,7 @@ ActiveAdmin.register Source do
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
-         collection: proc{Folder.where(folder_type: "Source").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+         collection: proc{Folder.for_type("Source").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   # and for the wf_owner
   filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
          collection: proc {
@@ -239,13 +227,13 @@ ActiveAdmin.register Source do
   collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
 	if: proc { !is_selection_mode? }, :label => proc {I18n.t(:filter_record_type)}
 
+  # See lib/active_admin_record_type_filter.rb
   filter :record_type_with_integer,
   if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:record_type_with_integer)},
   :as => :record_type
 
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
-  
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
@@ -268,6 +256,12 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_shelf_mark), :shelf_mark_shelforder, sortable: :shelf_mark_shelforder do |element|
       element.shelf_mark
     end
+    if current_user.has_any_role?(:admin, :editor)
+      column "Level" do |element|
+        element.tag_rate
+      end
+    end
+
     
     active_admin_muscat_actions( self )
   end
@@ -279,6 +273,9 @@ ActiveAdmin.register Source do
   
   # Include the folder actions
   include FolderControllerActions
+
+  # Include the template changer
+  include TemplateControllerActions
   
   ##########
   ## Show ##
@@ -289,7 +286,7 @@ ActiveAdmin.register Source do
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]
     render :partial => "marc/show"
-    active_admin_embedded_source_list( self, @item, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, @item, !is_selection_mode? )
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, @item )
     active_admin_navigation_bar( self )
@@ -312,6 +309,10 @@ ActiveAdmin.register Source do
     render("editor/section_sidebar") # Calls a partial
   end
   
+  sidebar :help, :only => [:select_new_template] do
+    render :partial => "template_help"
+  end
+
   form :partial => "editor/edit_wide"
   
 end

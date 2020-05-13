@@ -4,7 +4,7 @@
 	in the text box after filtering.
 	It requires on each page a div filter_workaround, with the params[] data
 	from rails. This is necessary because params will contain the filters
-	restored in config.before_filter :restore_search_filters
+	restored in config.before_action :restore_search_filters
 	so the saved string is persistent.
 	See the ActiveAdmin bug here:
 	https://github.com/activeadmin/activeadmin/issues/4554
@@ -16,7 +16,7 @@ var activeadmin_filter_workaround = function () {
 
 	if ($("#filter_workaround").length == 0) {
 		// no partial
-		console.log("No #filter_workaround div");
+		//console.log("No #filter_workaround div");
 		return;
 	}
 

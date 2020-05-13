@@ -14,5 +14,11 @@
 # Crono.perform(TestJob).every 2.days, at: '15:30'
 #
 
+# Digest jobs
+Crono.perform(ModificationDigestJob, :weekly).every 1.week, on: :sunday, at: "08:00"
+Crono.perform(ModificationDigestJob, :daily).every 1.day, at: "20:00"
+
+# Maintainance jobs
 Crono.perform(PurgeSearchesJob).every 1.day, at: {hour: 1, min: 00}
 Crono.perform(PurgeFolderItemsJob).every 1.day, at: {hour: 3, min: 0}
+Crono.perform(LogModelErrorsJob).every 1.week, on: :sunday, at: "07:00"

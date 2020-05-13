@@ -69,7 +69,7 @@
 								//var storytellingWidget = new StorytellingWidget(storytelling,storytellingDiv);
 								*/
 
-								var data1 = GeoTemConfig.getJson("/catalog/geosearch/852a_facet_sm.json?<%=params.to_query.html_safe%>");
+								var data1 = GeoTemConfig.getJson("/catalog/geosearch/852a_facet_sm.json?<%=params.permit!.to_query.html_safe%>");
 								// This is for source-based navigation
 								//var data1 = GeoTemConfig.getJson("/catalog.json?utf8=✓&search_field=any_field&per_page=2000000&q=<%=params[:q]%>");
 								

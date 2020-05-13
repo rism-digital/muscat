@@ -1,0 +1,20 @@
+<strong>Muscat Model Health report: <%= @model%></strong><p>
+Message: <%= @message %>
+<p>
+
+<table border="1">
+	<tr>
+		<th>ID</th>
+		<th>Message</th>
+	</tr>
+<% @errors.each do |id, msg| %>
+	<tr>
+		<td><a href="https://muscat.rism.info/admin/sources/<%=id%>"><%=id%></a></td>
+		<td><%=msg.gsub("\n", "<br>").html_safe%></td>
+	</tr>
+<% end %>
+</table>
+
+<p>
+
+<% #render partial: "health_report/validation.html.erb"%>

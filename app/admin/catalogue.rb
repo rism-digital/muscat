@@ -4,9 +4,11 @@ ActiveAdmin.register Catalogue do
 
   # Remove mass-delete action
   batch_action :destroy, false
+  include MergeControllerActions
   
   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
 
   collection_action :autocomplete_catalogue_name, :method => :get
 
@@ -45,7 +47,7 @@ ActiveAdmin.register Catalogue do
     end
     
     def edit
-      flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
+      flash.now[:error] = params[:validation_error] if params[:validation_error]
       @item = Catalogue.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
@@ -125,7 +127,7 @@ ActiveAdmin.register Catalogue do
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"100a_or_700a_contains", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
   filter :description_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
-  filter :"240g_contains", :label => proc {I18n.t(:filter_record_type)}, :as => :select,
+  filter :"240g_contains", :label => proc {I18n.t(:filter_category_type)}, :as => :select,
     collection: proc{["Bibliography", "Catalog", "Collective catalogue", "Encyclopedia", "Music edition", "Other",
       "Thematic catalog", "Work catalog"] }
   filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
@@ -142,10 +144,13 @@ ActiveAdmin.register Catalogue do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
+    column (I18n.t :filter_wf_stage) {|cat| status_tag(cat.wf_stage,
+      label: I18n.t('status_codes.' + (cat.wf_stage != nil ? cat.wf_stage : ""), locale: :en))}  
     column (I18n.t :filter_id), :id    
     column (I18n.t :filter_title_short), :name
     column (I18n.t :filter_title), :description do |catalogue| 
       catalogue.description.truncate(64, separator: ' ') if catalogue.description
+
     end
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
@@ -177,8 +182,40 @@ ActiveAdmin.register Catalogue do
     else
       render :partial => "marc/show"
     end
-    active_admin_embedded_source_list( self, catalogue, params[:qe], params[:src_list_page], !is_selection_mode? )
+    
+    ## Source box. Use the standard helper so it is the same everywhere
+    active_admin_embedded_source_list(self, catalogue, !is_selection_mode? )
 
+    # Box for people referring to this catalogue
+    active_admin_embedded_link_list(self, catalogue, Person) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_full_name), :full_name
+        context.column (I18n.t :filter_life_dates), :life_dates
+        context.column (I18n.t :filter_alternate_names), :alternate_names
+        if !is_selection_mode?
+          context.column "" do |person|
+            link_to "View", controller: :people, action: :show, id: person.id
+          end
+        end
+      end
+    end
+    
+    # Box for institutions referring to this catalogue
+    active_admin_embedded_link_list(self, catalogue, Institution) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :siglum
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_place), :place
+        if !is_selection_mode?
+          context.column "" do |ins|
+            link_to "View", controller: :institutions, action: :show, id: ins.id
+          end
+        end
+      end
+    end
+    
     if !resource.get_items.empty?
       panel I18n.t :filter_series_items do
         search=Catalogue.solr_search do 

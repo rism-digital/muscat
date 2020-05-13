@@ -14,9 +14,10 @@
 # === Relations
 # * many to many with Sources
 
-class Catalogue < ActiveRecord::Base
+class Catalogue < ApplicationRecord
   include ForeignLinks
   include MarcIndex
+  include AuthorityMerge
   resourcify
 
   # class variables for storing the user name and the event from the controller
@@ -30,12 +31,13 @@ class Catalogue < ActiveRecord::Base
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_catalogues")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_catalogues")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_catalogues")
+  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_catalogues")
   has_and_belongs_to_many :people, join_table: "catalogues_to_people"
   has_and_belongs_to_many :institutions, join_table: "catalogues_to_institutions"
   has_and_belongs_to_many :places, join_table: "catalogues_to_places"
   has_and_belongs_to_many :standard_terms, join_table: "catalogues_to_standard_terms"
-  has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "Catalogue" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_many :folder_items, as: :item, dependent: :destroy
+  has_many :delayed_jobs, -> { where parent_type: "Catalogue" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   # This is the forward link
@@ -63,24 +65,6 @@ class Catalogue < ActiveRecord::Base
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
   after_initialize :after_initialize
-  validate :validate_name_uniqness
-
-  def name_is_duplicate?
-    short_title = marc.get_name
-    return false if short_title.blank?
-    cat = Catalogue.where.not(id: id).where(name: short_title).take
-    if cat
-      return "validate_name_uniqness"
-    end
-    return false
-  end
-
-  def validate_name_uniqness
-    if e = name_is_duplicate?
-      errors.add(:base, e)
-      errors.add(:term, marc.get_name)
-    end
-  end
 
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
@@ -88,7 +72,7 @@ class Catalogue < ActiveRecord::Base
 
   alias_attribute :id_for_fulltext, :id
 
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
   
   def after_initialize
@@ -123,7 +107,9 @@ class Catalogue < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.without_versioning :save
+      PaperTrail.request(enabled: false) do
+        save
+      end
     end
   end
   
@@ -257,7 +243,9 @@ class Catalogue < ActiveRecord::Base
               :join => { :from => :item_id, :to => :id })
     
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      Catalogue.count_by_sql("select count(*) from sources_to_catalogues where catalogue_id = #{self[:id]}")
+      (Catalogue.count_by_sql("select count(*) from sources_to_catalogues where catalogue_id = #{self[:id]}") +
+      Catalogue.count_by_sql("select count(*) from institutions_to_catalogues where catalogue_id = #{self[:id]}") +
+      Catalogue.count_by_sql("select count(*) from people_to_catalogues where catalogue_id = #{self[:id]}"))
     end
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
@@ -268,21 +256,14 @@ class Catalogue < ActiveRecord::Base
   
   def check_dependencies
     if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0
+         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
       errors.add :base, %{The catalogue could not be deleted because it is used by
         #{self.referring_sources.count} sources,
         #{self.referring_institutions.count} institutions, 
         #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people}
-      return false
-    end
-  end
-  
-  def self.find_recent_updated(limit, user)
-    if user != -1
-      where("updated_at > ?", 5.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
-    else
-      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
+        #{self.referring_people.count} people
+        #{self.referring_holdings.count} holdings}
+      throw :abort
     end
   end
 

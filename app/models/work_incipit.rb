@@ -1,4 +1,4 @@
-class WorkIncipit < ActiveRecord::Base
+class WorkIncipit < ApplicationRecord
   
   belongs_to :work
   

@@ -4,6 +4,7 @@
 
 <!-- place holders -->
 <div class="marc_flashes"></div>
+<div id="marc_errors" class="flash flash_error" style="visibility: hidden;"></div>
 <div id="dialog"></div>
 <div id="spacer" style="min-width: 700px; min-height: 1px"></div>
 <div id="marc_editor_preview" class="panel-hidable"></div>
@@ -12,7 +13,7 @@
 
 <%= render :partial => "editor/item_form", :locals => { :render_panel => "marc_editor_panel", :model => rails_model } -%>
 
-<% if @item.respond_to?('paper_trail_enabled_for_model?') %>
+<% if PaperTrail.request.enabled_for_model?(@item.class) %>
 	<%= render :partial => "editor/versions" -%>
 <% end %>
 

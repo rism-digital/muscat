@@ -1,4 +1,4 @@
-class CreateInstitutions < ActiveRecord::Migration
+class CreateInstitutions < ActiveRecord::Migration[4.2]
   def self.up
     create_table(:institutions, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8') do |t|
           

@@ -58,7 +58,19 @@ ActiveAdmin.register Holding do
       @parent_object_type = "Source" #hardcoded for now
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_show_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = format_holding(@item)
+      
+      # Force marc to load
+      begin
+        @item.marc.load_source(true)
+      rescue ActiveRecord::RecordNotFound
+        flash[:error] = I18n.t(:unloadable_record)
+        AdminNotifications.notify("Holding #{@item.id} seems unloadable, please check", @item).deliver_now
+        redirect_to admin_holding_path @item
+        return
+      end
+      
     end
 
     def destroy
@@ -77,6 +89,9 @@ ActiveAdmin.register Holding do
       
       source = @holding.source
       
+      # Trigger a reindex of the parent source so this holding gets de-indexed
+      Delayed::Job.enqueue(ReindexForeignRelationsJob.new(source, [{class: Source, id: @holding.source_id}]))
+
       @holding.destroy!
       redirect_to edit_admin_source_path(source)
     end
@@ -124,6 +139,7 @@ ActiveAdmin.register Holding do
       @holding.marc = new_marc
 
       @editor_profile = EditorConfiguration.get_default_layout @holding
+      @editor_validation = EditorValidation.get_default_validation(@holding)
       # Override the default to have a better name
       @page_title = I18n.t('new_holding_page')
       #To transmit correctly @item we need to have @source initialized

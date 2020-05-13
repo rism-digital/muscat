@@ -1,5 +1,5 @@
---- !map:Settings 
-group_order: 
+--- !map:Settings
+group_order:
 - edit_library
 - edit_names
 - edit_content
@@ -13,19 +13,19 @@ group_order:
 group_exclude:
   collection:
   - edit_incipits
-  libretto_source:
-  - edit_incipits
-  libretto_edition_content:
-  - edit_incipits
   theoretica_source:
   - edit_incipits
-  theoretica_edition_content:
+  theoretica_edition:
   - edit_incipits
+  composite_volume:
+  - edit_incipits
+  - edit_works
 
 tag_exclude:
   collection:
   - '026'
   - '546'
+  - '588'
   - '595'
   - '651'
   - '657'
@@ -39,13 +39,13 @@ tag_exclude:
   - '563'
   - '591'
   - '592'
-  - '657'
   - '740'
   - '773'
   - '787'
   - '852'
   source:
   - '026'
+  - '588'
   - '597'
   - '774'
   - '775'
@@ -56,12 +56,14 @@ tag_exclude:
   - '541'
   - '561'
   - '563'
+  - '588'
   - '591'
   - '592'
   - '740'
   - '774'
   - '852'
   libretto_source:
+  - '588'
   - '590'
   - '594'
   - '596'
@@ -70,8 +72,9 @@ tag_exclude:
   - '774'
   - '775'
   - '787'
-  libretto_edition_content:
+  libretto_edition:
   - '506'
+  - '541'
   - '541'
   - '561'
   - '590'
@@ -83,6 +86,7 @@ tag_exclude:
   - '787'
   - '852'
   theoretica_source:
+  - '588'
   - '590'
   - '594'
   - '595'
@@ -93,7 +97,7 @@ tag_exclude:
   - '690'
   - '774'
   - '787'
-  theoretica_edition_content:
+  theoretica_edition:
   - '506'
   - '541'
   - '561'
@@ -109,7 +113,31 @@ tag_exclude:
   - '772'
   - '787'
   - '852'
-  
+  composite_volume:
+  - '026'
+  - '028'
+  - '041'
+  - '100'
+  - '383'
+  - '510'
+  - '518'
+  - '546'
+  - '588'
+  - '590'
+  - '594'
+  - '595'
+  - '596'
+  - '597'
+  - '598'
+  - '650'
+  - '651'
+  - '657'
+  - '690'
+  - '740'
+  - '773'
+  - '775'
+  - '787'
+
 tag_exclude_with_holdings:
   collection:
   - '506'
@@ -162,8 +190,6 @@ groups:
     all_tags:
     - '593'
     - '260'
-    - '597'
-    - '033'
     - '300'
     - '590'
     - '340'
@@ -181,6 +207,7 @@ groups:
     template: show_incipit
   edit_references:
     all_tags:
+    - '588'
     - '500'
     - '505'
     - '525'
@@ -205,4 +232,5 @@ groups:
     all_tags:
     - '001'
     - '040'
+    - '980'
     - '599'

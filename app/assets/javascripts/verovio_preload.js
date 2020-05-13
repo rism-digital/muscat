@@ -52,17 +52,19 @@ function render_music( music, format, target, width ) {
 	
 	options = {
 				inputFormat: 'pae',
+				pageMarginTop: 40,
+				pageMarginBottom: 60,
+				pageMarginLeft: 20,
+				pageMarginRight: 20,
 				pageWidth: width / 0.4,
 				spacingStaff: 1,
-				border: 20,
 				scale: 40,
-				ignoreLayout: 0,
 				adjustPageHeight: 1
 			};
 			
 	vrvToolkit.setOptions( options );
 	vrvToolkit.loadData(music + "\n" );
-	svg = vrvToolkit.renderPage(1, {});
+	svg = vrvToolkit.renderToSVG(1, {});
 	
 	$(target).html(svg);
 };

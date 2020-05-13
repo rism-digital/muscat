@@ -78,6 +78,9 @@ module RISM
 
   # Google Analytics Tracking ID
   GOOGLE_ANALYTICS_ID = "UA-7219229-28"
+
+  DEFAULT_EMAIL_NAME = "The Canons Database"
+  DEFAULT_NOREPLY_EMAIL = "noreply@canons.org.au"
 end
 
 module Muscat
@@ -96,7 +99,9 @@ module Muscat
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", RISM::BASE, '*.{rb,yml}'))]
-    
+
+    config.eager_load_paths << Rails.root.join('lib')
+
     config.autoload_paths << "#{Rails.root}/lib"
     config.active_job.queue_adapter = :delayed_job
     

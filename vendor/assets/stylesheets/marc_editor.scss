@@ -322,6 +322,9 @@ h3 {
         a.muscat_icon_link_all {
             background: image-url("/images/marc-icons/all.png") no-repeat;
         }
+        a.muscat_icon_link_archive {
+            background: image-url("/images/marc-icons/archive.png") no-repeat;
+        }		
         a.muscat_icon_link_cancel {
             background: image-url("/images/marc-icons/cancel.png") no-repeat;
         }
@@ -379,7 +382,10 @@ h3 {
         a.muscat_icon_link_save_exit {
             background: image-url("/images/marc-icons/save-exit.png") no-repeat;
         }
-		a.muscat_icon_link_viaf {
+        a.muscat_icon_link_validate{
+            background: image-url("/images/marc-icons/validate.png") no-repeat;
+        }
+        a.muscat_icon_link_viaf {
             background: image-url("/images/marc-icons/viaf.png") no-repeat;
         }
     }
@@ -483,3 +489,24 @@ a.warning {
   color: orange;
   text-decoration: underline;
 }
+
+
+.muscat-ui-icon {
+    background-position: 0 0;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    margin-top: -8px;
+    margin-left: -8px;
+    vertical-align: middle;
+  }
+  
+.search-button-collection {
+    background: image-url("/images/marc-icons/search_collection.png") no-repeat
+}
+.search-button-composite {
+    background: image-url("/images/marc-icons/search_composite.png") no-repeat
+  }

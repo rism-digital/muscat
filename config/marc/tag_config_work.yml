@@ -54,6 +54,48 @@
       - :occurrences: "1"
     - - "2"
       - :occurrences: "1"
+  "031":
+    :master: t
+    :master_optional: true
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - c
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "*"
+    - - e
+      - :occurrences: "?"
+    - - g
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - o
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "?"
+    - - q
+      - :occurrences: "*"
+    - - r
+      - :occurrences: "?"
+    - - s
+      - :occurrences: "*"
+    - - t
+      - :occurrences: "*"
+        :link_to_model: StandardTitle
+        :link_to_field: title
+    - - u
+      - :occurrences: "?"
+        :no_browse: true
+    - - z
+      - :occurrences: "*"
+
   "040":
     :master: a
     :indicator: "##"
@@ -95,16 +137,45 @@
       - :occurrences: "?"
     - - t
       - :occurrences: "?"
+  "380":
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTerm
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: term
   "400":
-    :master: a
+    :master: "0"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Person
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
     - - d
       - :occurrences: "?"
-    - - e
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
+    - - m
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - r
       - :occurrences: "?"
     - - t
       - :occurrences: "?"
@@ -142,18 +213,145 @@
       - :occurrences: "?"
     - - "e"
       - :occurrences: "?"
-  "700":
+  "548":
     :master: a
-    :indicator: "1#"
+    :indicator: "##"
     :occurrences: "*"
     :fields:
     - - a
       - :occurrences: "?"
+    - - i
+      - :occurrences: "?"
+  "670":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - w
+      - :occurrences: "?"
+        :foreign_class: Catalogue
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: name
     - - b
       - :occurrences: "?"
-    - - f
+  "675":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - w
       - :occurrences: "?"
-    - - t
+        :foreign_class: Catalogue
+        :foreign_field: id
+        :no_show: true
+    - - a
       - :occurrences: "?"
-    - - l
+        :foreign_class: ^w
+        :foreign_field: name
+  "680":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
       - :occurrences: "?"
+    - - i
+      - :occurrences: "?"
+    - - "5"
+      - :occurrences: "?"
+  "700":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Person
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
+        #:no_browse: true
+    - - "e"
+      - :occurrences: "*"
+    - - "t"
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "*"
+        :browse_inline: true
+        #:no_browse: true
+    - - "5"
+      - :occurrences: "?"
+        :no_browse: true
+  "710":
+    :master: "0"
+    :indicator: "2#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - b
+      - :occurrences: "*"
+    - - c
+      - :occurrences: "*"
+    - - g
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "*"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "747":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: LiturgicalFeast
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - "2"
+      - :occurrences: "?"
+        :no_browse: true
+  "930":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Work
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+    - - "i"
+      - :occurrences: "?"
+ 
+

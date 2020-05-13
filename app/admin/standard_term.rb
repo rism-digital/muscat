@@ -4,9 +4,11 @@ ActiveAdmin.register StandardTerm do
 
   # Remove mass-delete action
   batch_action :destroy, false
+  include MergeControllerActions
   
   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
   
   collection_action :autocomplete_standard_term_term, :method => :get
 
@@ -67,14 +69,14 @@ ActiveAdmin.register StandardTerm do
     def update
       update! do |success,failure|
         success.html { redirect_to collection_path }
-        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+        failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
     end
     
     # redirect create failure for preserving sidebars
     def create
       create! do |success,failure|
-        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+        failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
     end
     
@@ -100,6 +102,8 @@ ActiveAdmin.register StandardTerm do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
+    column (I18n.t :filter_wf_stage) {|term| status_tag(term.wf_stage,
+      label: I18n.t('status_codes.' + (term.wf_stage != nil ? term.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_term), :term
     column (I18n.t :filter_alternate_terms), :alternate_terms
@@ -130,7 +134,38 @@ ActiveAdmin.register StandardTerm do
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
       row (I18n.t :filter_notes) { |r| r.notes }    
     end
-    active_admin_embedded_source_list( self, standard_term, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, standard_term, !is_selection_mode? )
+    
+    # Box for catalogues referring to this standard_term
+    active_admin_embedded_link_list(self, standard_term, Catalogue) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_author), :author
+        context.column (I18n.t :filter_description), :description
+        if !is_selection_mode?
+          context.column "" do |catalogue|
+            link_to "View", controller: :catalogues, action: :show, id: catalogue.id
+          end
+        end
+      end
+    end 
+
+    # Box for institutions referring to this standard_term
+    active_admin_embedded_link_list(self, standard_term, Institution) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :siglum
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_place), :place
+        if !is_selection_mode?
+          context.column "" do |ins|
+            link_to "View", controller: :institutions, action: :show, id: ins.id
+          end
+        end
+      end
+    end
+
     active_admin_user_wf( self, standard_term )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
@@ -153,6 +188,7 @@ ActiveAdmin.register StandardTerm do
       f.input :term, :label => (I18n.t :filter_term)
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms), :input_html => { :rows => 8 }
       f.input :notes, :label => (I18n.t :filter_notes)
+      f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
       f.input :lock_version, :as => :hidden
     end
   end

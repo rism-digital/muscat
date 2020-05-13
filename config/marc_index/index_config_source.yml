@@ -9,7 +9,7 @@ config:
     :version: 2.0
     :model: source
 
-fields:  
+fields:
   "001":
   "008_date1":
       :from_tag: 008
@@ -20,6 +20,7 @@ fields:
   "008_language":
       :from_tag: 008
       :index_helper: :marc_helper_get_008_language
+  "026e":
   "028a":
   "028b":
   "031d":
@@ -40,6 +41,7 @@ fields:
   "031t":
   "033a":
   "035a":
+      :holding_record: true
   "041a":
   "041e":
   "041h":
@@ -101,6 +103,7 @@ fields:
   "351a":
   "383b":
   "500a":
+      :holding_record: true
   "5005":
   "505a":
   "506a":
@@ -109,6 +112,7 @@ fields:
   "510c":
   "511a":
   "518a":
+      :holding_record: true
   "520a":
   "525a":
   "533a":
@@ -119,15 +123,19 @@ fields:
   "546a":
   "555a":
   "561a":
+      :holding_record: true
   "5615":
   "562a":
   "5625":
   "563a":
+      :holding_record: true
   "5635":
   "590a":
   "590b":
   "591a":
+      :holding_record: true
   "592a":
+      :holding_record: true
   "593a":
       :store: true
   "593a_filter":
@@ -157,6 +165,7 @@ fields:
   "599a":
   "650a":
   "651a":
+      :holding_record: true
   "657a":
   "690a":
   "650a_filter":
@@ -165,6 +174,7 @@ fields:
       :from_subtag: "a"
   "690n":
   "691a":
+  "691n":
   "695a":
   "695a_filter":
       :type: string
@@ -186,12 +196,14 @@ fields:
       :from_tag: "695"
       :from_subtag: "h"
   "700a":
+      :holding_record: true
   "700d":
   "700e":
   "700t":
   "7004":
   "7005":
   "710a":
+      :holding_record: true
   "710b":
   "710k":
   "710e":

@@ -1,4 +1,4 @@
-class RenameRelationshipTables < ActiveRecord::Migration
+class RenameRelationshipTables < ActiveRecord::Migration[4.2]
   def change
     rename_table :catalogues_sources, :sources_to_catalogues
     rename_table :institutions_sources, :sources_to_institutions

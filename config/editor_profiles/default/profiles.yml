@@ -62,6 +62,7 @@
   :filter:
     show_all: false
     show: true
+  :validation: "PersonValidation"
 
 # Configuration for institution
 - :id: DefaultInstitution
@@ -88,6 +89,7 @@
   :filter:
     show_all: false
     show: true
+  :validation: "InstitutionValidation"
 
 # Configuration for catalogue
 - :id: DefaultCatalogue
@@ -143,6 +145,8 @@
   :filter:
     show_all: false
     show: true
+  :validation: "HoldingValidation"
+
 # Configuration for work
 - :id: DefaultWork
   :name: Work
@@ -168,3 +172,4 @@
   :filter:
     show_all: false
     show: true
+  :validation: "WorkValidation"

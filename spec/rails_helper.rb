@@ -1,15 +1,13 @@
-ENV['RAILS_ENV'] ||= 'development'
+ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
-require 'capybara/poltergeist'
-
-Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
-  config.use_transactional_fixtures = true
-  config.include Devise::TestHelpers, :type => :controller
+  config.use_transactional_fixtures = false
+  #config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.infer_spec_type_from_file_location!
   config.include Warden::Test::Helpers
   config.include Capybara::DSL

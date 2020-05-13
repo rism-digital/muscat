@@ -17,7 +17,7 @@
 #
 # Other wf_* fields are not shown
 
-class Person < ActiveRecord::Base
+class Person < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
@@ -41,11 +41,13 @@ class Person < ActiveRecord::Base
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_people")
   has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_people")
+  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_people")
+  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
   has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
   has_and_belongs_to_many :places, join_table: "people_to_places"
   has_and_belongs_to_many :catalogues, join_table: "people_to_catalogues"
-  has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_many :folder_items, as: :item, dependent: :destroy
+  has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   # People can link to themselves
@@ -83,7 +85,7 @@ class Person < ActiveRecord::Base
 
   alias_attribute :id_for_fulltext, :id
 
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
 
   def after_initialize
@@ -124,7 +126,9 @@ class Person < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.without_versioning :save
+      PaperTrail.request(enabled: false) do
+        save
+      end
     end
   end
   
@@ -237,9 +241,9 @@ class Person < ActiveRecord::Base
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
- 	
-    sunspot_dsl.integer :src_count_order, :stored => true do 
-      Person.count_by_sql("select count(*) from sources_to_people where person_id = #{self[:id]}")
+
+    sunspot_dsl.integer :src_count_order, :stored => true do
+      referring_sources.size + referring_holdings.size
     end
     
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
@@ -249,13 +253,14 @@ class Person < ActiveRecord::Base
   # before_destroy, will delete Person only if it has no links referring to
   def check_dependencies
     if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0
+         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
       errors.add :base, %{The person could not be deleted because it is used by
         #{self.referring_sources.count} sources,
         #{self.referring_institutions.count} institutions, 
         #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people}
-      return false
+        #{self.referring_people.count} people
+        #{self.referring_holdings.count} holdings}
+      throw :abort
     end
   end
   
@@ -289,15 +294,7 @@ class Person < ActiveRecord::Base
     self.life_dates = self.life_dates.truncate(24) if self.life_dates and self.life_dates.length > 24
     self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
   end
-  
-  def self.find_recent_updated(limit, user)
-    if user != -1
-      where("updated_at > ?", 5.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
-    else
-      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
-    end
-  end
-  
+
   def name
     return full_name
   end

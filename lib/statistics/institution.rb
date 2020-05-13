@@ -5,12 +5,12 @@ module Statistics
       result = ActiveSupport::OrderedHash.new
       s = Sunspot.search(::Source) do
         with(:created_at, from_date..to_date)
-        facet(:lib_siglum_order, :limit => -1, :minimum_count => 10)
+        facet(:lib_siglum, :limit => -1, :minimum_count => 10)
       end
       facet_rows = Hash.new(0)
-      s.facet(:lib_siglum_order).rows.each do |r|
+      s.facet(:lib_siglum).rows.each do |r|
         facet_rows[r.value] = r.count
-      end  
+      end
       sigla = institutions.pluck(:siglum)
       facet_rows.each do |k,v|
         institution = ::Institution.where(:siglum => k).take
@@ -20,7 +20,7 @@ module Statistics
       if !result.empty?
         return result
       else
-        return {::Institution.find(5) => {"ZERO" => 0}}
+        return {::Institution.first => {"ZERO" => 0}}
       end
     end
   end

@@ -9,14 +9,15 @@
 #
 # Usual wf_* fields are not shown
 
-class Place < ActiveRecord::Base
+class Place < ApplicationRecord
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_places")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_places")
   has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_places")
-  has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_places")
+  has_many :folder_items, as: :item, dependent: :destroy
+  has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
 
   validates_presence_of :name
@@ -34,7 +35,7 @@ class Place < ActiveRecord::Base
 
   alias_attribute :id_for_fulltext, :id
 
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :basic, :minimal, :full ]
 
   # Suppresses the solr reindex
@@ -78,13 +79,14 @@ class Place < ActiveRecord::Base
 
   def check_dependencies
     if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0
-      errors.add :base, %{The catalogue could not be deleted because it is used by
+         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
+      errors.add :base, %{The place could not be deleted because it is used by
         #{self.referring_sources.count} sources,
         #{self.referring_institutions.count} institutions, 
         #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people}
-      return false
+        #{self.referring_people.count} people
+        #{self.referring_holdings.count} holdings}
+      throw :abort
     end
   end
 

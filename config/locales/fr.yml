@@ -4,7 +4,7 @@ fr:
 # Pad for italian, it has 2 missing items
 #
 #
-    dashboard: "Tableau de bord"
+    dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
       call_to_action: "Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboard.rb'"
@@ -58,6 +58,7 @@ fr:
       one_page: "Affichage des <b>%{n}</b> %{model}"
       multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"
       multiple_without_total: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Eléments par page:"
       entry:
         one: "entrée"
         other: "entrées"
@@ -81,6 +82,8 @@ fr:
         destroy: "Supprimer"
         folder: "Créer un dossier avec les éléments sélectionnés"
         add_to_folder: "Ajouter les éléments à un dossier existant"
+        merge: "MERGE AUTHORITY RECORDS"
+        change_template: "CHANGE TEMPLATE"
 
     comments:
       resource_type: "Type de ressource"
@@ -91,6 +94,7 @@ fr:
       add: "Ajouter un commentaire"
       resource: "Ressource"
       no_comments_yet: "Aucun commentaire actuellement"
+      comments_help: "Tapez @ pour mentionner un utilisateur spécifique, qui recevra alors une notification par e-mail."
       author_missing: "Anonyme"
       title_content: "Commentaires (%{count})"
       errors:
@@ -163,6 +167,9 @@ fr:
       workgroup:
         one: "Groupe"
         other: "Groupes"
+      holding:
+        one: "Holding"
+        other: "Holdings"
       institution:
         one: "Institution"
         other: "Institutions"
@@ -184,7 +191,10 @@ fr:
       user:
         one: "Utilisateur"
         other: "Utilisateurs"
-
+      work:
+        one: "WORK"
+        other: "WORK"
+  
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Choisir un modèle"
   available_templates: "Modèles disponibles"
@@ -196,10 +206,45 @@ fr:
     source: "Manuscrit musical"
     edition_content: "Edition imprimé, dans une collection"
     libretto_source: "Livret manuscrit"
-    libretto_edition_content: "Contenu d'un livret imprimé"
+    libretto_edition: "Contenu d'un livret imprimé"
+    libretto_edition_content: "Livret imprimé, dans une collection"
     theoretica_source: "Traité manuscrit"
-    theoretica_edition_content: "Contenu d'un traité imprimé"
+    theoretica_edition: "Contenu d'un traité imprimé"
+    theoretica_edition_content: "Traité imprimé, dans une collection"
     edition: "Edition imprimé, collection parent ou item individuel"
+
+    composite_volumes: "Volumes composites"
+    composite_volume: "Contenu d'un volume composite"
+    
+    music_manuscripts: "Musique manuscrite"
+    collection_record: "Collection de manuscrit musicaux"
+    individual_entry: "Entrée dans une collection de manuscrits musicaux"
+    single_manuscript: "Manuscrit musical individuel"
+    
+    printed_music: "Musique imprimée"
+    collection_record_edition: "Collection d'éditions musicales imprimées"
+    individual_entry_edition: "Entrée dans une collection d'éditions musicales imprimées"
+    single_edition: "Edition musicale individuelle"
+
+    libretti_handwritten: "Libretti manuscrits"
+    collection_record_libretti: "Collection de libretti manuscrits"
+    individual_entry_libretti: "Entrée dans une collection de libretti manuscrits"
+    single_libretto: "Libretto manuscrit individuel"
+    
+    libretti_printed: "Libretti imprimés"
+    collection_record_libretti_printed: "Collection de traités imprimés"
+    individual_entry_libretti_printed: "Entrée dans une collection de traités imprimés"
+    single_libretto_printed: "Traité imprimé individuel"
+    
+    threatise_handwritten: "Traités manuscrits"
+    collection_record_threatise: "Collection de traités manuscrits"
+    individual_entry_threatise: "Entrée dans une collection traités manuscrits"
+    single_threatise: "Traité manuscrit individuel"
+    
+    threatise_printed: "Traités imprimés"
+    collection_record_threatise_printed: "Collection de traités imprimés"
+    individual_entry_threatise_printed: "Entrée dans une collection de traités imprimés"
+    single_threatise_printed: Traité imprimé individuel"
 
   #################### MENUS
   menu_admin: "Admin"
@@ -228,7 +273,7 @@ fr:
   menu_contact: "Contact"
   menu_search_history: "Historique de recherche"
   menu_guidelines: "Directives de catalogage"
-  menu_marc_documentation: "Configuration Marc"
+  menu_marc_documentation: "Configuration MARC"
   menu_guidelines_top: "Instructions"
   menu_cataloging: "Catalogage"
   menu_jobs: "Tâches"
@@ -264,6 +309,7 @@ fr:
   finished: "Achevé"
   lib_siglum: "Sigle de bibliothèque"
   holding_records: "Copie"
+  holding_no_siglum: "Copie sans cote"
   new_holding: "Ajouter une copie"
   new_holding_page: "Copie non enregistré"
   new_digital_object: "Attacher une nouvelle image"
@@ -271,6 +317,7 @@ fr:
   record_status: "Status"
   record_owner: "Propriétaire"
   record_audit: "Origine du dossier"
+  basic_level: "Notice de base"
   full_level: "Notice complète"
   #full_level: "Notice complète, matériel examiné"
   abbreviated_level: "Notice abrégée, matériel examiné"
@@ -281,6 +328,7 @@ fr:
   links: "Liens"
   link_remove: "Supprimer le lien"
   link_remove_confirm: "Désirez-vous supprimer le lien?"
+  unloadable_record: "Ce titre présente un problème: il peut être visualisé mais pas édité. Merci de contacter l'administrateur."
   validation_level_error: "Il y a des erreurs à corriger avant d'enregistrer."
   validation_level_warning: "Il y a des avertissements. Enregistrer à nouveau pour ignorer."
   
@@ -299,6 +347,7 @@ fr:
   edit: "Modifier"
   new: "Créer"
   duplicate: "Dupliquer"
+  merge: "MERGE"
   no_action: "Aucune action possible"
   reindex: "Ré-indexer"
   resave: "Resauver"
@@ -307,13 +356,18 @@ fr:
   select: "Sélectionner"
   create_folder: "Ajouter à un nouveau dossier"
   append_folder: "Ajouter à un dossier existant"
+  add_person: "Attacher une institution"
   add_source: "Attacher une source"
   add_person: "Attacher une personne"
+  archive_unarchive: "Archiver / désarchiver"
+  archive: "Archiver"
+  unarchive: "Désarchiver"
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"
   show_preview: "Afficher l'aperçu"
   hide_preview: "Masquer l'aperçu"
+  show_validate: "Valider"
   show_history: "Afficher l'historique"
   show_viaf: "Recherche VIAF"
   save_and_continue: "Enregistrer et continuer"
@@ -360,14 +414,15 @@ fr:
   filter_birth_place: "Lieu de naissance"
   filter_catalog: "Catalogue"
   filter_collection: "Collection"
-  filter_comments: "Commentaires"
+  filter_category_type: "Catégorie"
+  filter_comment: "Commentaire"
   filter_composer: "Compositeur"
   filter_connected_libraries: "Bibliothèques"
   filter_country: "Pays"
   filter_creation_date: "Date de création"
   filter_date: "Date"
   filter_date_from: "Depuis la date"
-  filter_date_of_publication: "DATE OF PUBLICATION"
+  filter_date_of_publication: "Année de publication"
   filter_date_to: "Jusqu'à la date"
   filter_description: "Description"
   filter_digital_objects: "Digital Objects"
@@ -412,7 +467,7 @@ fr:
   filter_person_100d_deathdate: "Date de décès"
   filter_phone: "Téléphone"
   filter_place: "Endroit"
-  filter_place_of_publication: "PLACE OF PUBLICATION"
+  filter_place_of_publication: "Lieu de publication"
   filter_provenance: "Provenance"
   filter_record_type: "Template Type"
   filter_record_type_short: "Type"
@@ -432,11 +487,12 @@ fr:
   filter_subject: "Sujet"
   filter_subsequent_entries: "Entrées suivants"
   filter_term: "Terme"
+  filter_textinipit: "TEXTINCIPIT"
   filter_thematic_opus: "Cat. thématique / No d'opus"
   filter_title: "Titre"
   filter_titles: "Titres"
   filter_title_on_ms: "Titre diplomatique"
-  filter_title_short: "SHORT TITLE"
+  filter_title_short: "Titre court"
   filter_topic: "Sujet"
   filter_sub_topic: "Sujet secondaire"
   filter_url: "Adresse Internet"
@@ -465,7 +521,13 @@ fr:
   filter_dist_594l: "Instruments à clavier"
   filter_dist_594m: "Autres instruments"
   filter_dist_594n: "Instruments de basse continue"
-  
+  filter_source_name: "Nom de la source"
+  filter_source_composer: "Compositeur de la source"
+  filter_printed_exemplars: "Nombre d'exemplaires imprimés"
+
+  ## Referring lists for auth files
+  refers_to_this: "%{model_from} se référant à cet(te) %{model_to}"
+
   rism_any_key: "N'importe quelle tonalité"
   rism_a_flat: "La bémol majeur/mineur"
   rism_a: "La majeur/mineur"
@@ -489,8 +551,8 @@ fr:
   ungrouped_tags: "Ce titre contient des champs non groupés"
   cannot_update_source: "Vous n'êtes pas autorisé à traiter ce type de source"
   cannot_create_source: "Vous n'êtes pas autorisé à créer ce type de source" 
-  validate_name_uniqness: "Record non enregistré: le titre abrégé existe déjà ('%{term}')."
-  validates_parent_id: "RECORD NOT SAVED: PARENT RECORD (773) CANNOT BE SAME AS THIS RECORD"
+  validate_name_uniqness: "Titre non sauvé: le titre abrégé existe déjà ('%{term}')."
+  validates_parent_id: "Titre non sauvé: le titre parent (773) ne peut pas être identique."
 
   #
   entry:
@@ -600,7 +662,8 @@ fr:
   do_ext_link_not_avail: "(Fichiers audio non disponibles depuis cet ordinateur)"
   do_images_title: "Images"
   connected_libraries: "Institutions"
-  
+  view_source: "Montrer la source"
+   
   mei:
     title: "Export en MEI de la source %{source}"
     parameters: "Paramètres"
@@ -616,14 +679,31 @@ fr:
     banner: 'Cliquez "Aperçu" pour voir le résultat de la conversion en MEI.'
 
   wf_stage:
-    inprogress: "En cours"
-    published: "Publié"
+    inprogress: "Non publié (UNP)"
+    published: "Publié (PUB)"
     deleted: "Supprimé"
+    deprecated: "DEPRECATED"
 
+  
+  dashboard:
+    selection: "Sélection de l'activité récente"
+    type: "Type de modifications"
+    type_created: "Créé récemment"
+    type_updated: "Modifié récemment"
+    owner: "Propriétaire"
+    owner_user: "Moi-même"
+    owner_any: "N'importe quel utilisateur"
+    quantity: "Afficher"
+    update: "Mettre à jour"
+    no_items: "Aucun élément avec le fitre sélectionné"
+  
   # editor validation 
   validation:
     missing_message: "Une valeur dans ce champ est nécessaire"
     warning_message: "Une valeur devrait être présente pour ce champ"
+    insufficient_rights: "L'utilisateur ne dispose pas des droits nécessaires pour créer un enregistrement avec cette bibliothèque."
+    name_uniqueness: "Le nom abrégé de l'élément est déjà utilisé"
+    correct: "L'enregistrement ne contient aucune erreur [200]"
 
   incipit_search:
     incipit_search: "Recherche par incipit"
@@ -634,6 +714,15 @@ fr:
     gross_pitch: "Contour mélodique grossier (similarité approximative)"
     anchor: "Au début uniquement"
     erase: "Effacer une note"
+
+  # This is used for the "incipit" seach in the search history in BL
+  # Note the capital 'I'
+  Incipit: "Incipit"
+
+  cookies:
+    message: "Notre site utilise des cookies pour améliorer votre expérience de navigation. En utilisant notre site, vous acceptez notre utilisation des cookies."
+    dimiss: "Accepter et fermer"
+    link: 'En savoir plus'
 
   date:
     month_names:

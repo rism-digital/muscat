@@ -88,7 +88,7 @@
 #= require textarea_autogrow_ujs
 #= require marc_versioning_ujs
 #= require marc_messages_ujs.js
-#= require blacklight_range_limit
+#### require blacklight_range_limit
 #= require editor_hotkeys
 #= require verovio_preload
 #= require new_window_select_ujs
@@ -96,6 +96,7 @@
 #= require jsdiff.js
 #= require job_progress_bar
 #= require filter_workaround
+#= require merge_authority
 
 #= require viaf_interface.js
 #= require modification_trigger_ujs.js
@@ -103,3 +104,6 @@
 #= require diva/diva.min.js
 ###= require Chart.min
 #= require html2csv.js
+
+#=require tribute.min
+#=require tribute_load

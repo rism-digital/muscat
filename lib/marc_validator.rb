@@ -3,19 +3,29 @@ include ApplicationHelper
 
 	DEBUG = false
 	
-  def initialize(object, warnings = true)
+  def initialize(object, user=nil, warnings = true)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
+    @user = user
+    @server_rules = @validation.server_rules
     @editor_profile = EditorConfiguration.get_default_layout(object)
     #ap @rules
     @errors = {}
     @object = object
     
-    @object.marc.load_source false
-    @unresolved_marc = @object.marc.deep_copy
-    @unresolved_marc.root = @object.marc.root.deep_copy
+    ## The marc could be already resolved
+    ## Make a new safe internal version
+    classname = "Marc" + object.class.to_s
+    dyna_marc_class = Kernel.const_get(classname)
+    @marc = dyna_marc_class.new(object.marc_source)
     
-    @object.marc.root.resolve_externals
+    # Parse the marc but don't read the foreign
+    @marc.load_source false
+    # Make the unresolved version
+    @unresolved_marc = @marc.deep_copy
+    @unresolved_marc.root = @marc.root.deep_copy
+    # Now resolve
+    @marc.root.resolve_externals
     
     @show_warnings = warnings
   end
@@ -31,13 +41,13 @@ include ApplicationHelper
       # not for this template
       mandatory = tag_rules["tags"].map {|st, v| st if v == "mandatory" && !is_subtag_excluded(tag, st)}.compact
       
-      marc_tags = @object.marc.by_tags(tag)
+      marc_tags = @marc.by_tags(tag)
       
       if marc_tags.count == 0
         # This tag has to be there if "mandatory"
         if mandatory.count > 0
           #@errors[tag] = "mandatory"
-          add_error(tag, nil, "mandatory")
+          add_error(tag, nil, I18n.t('validation.missing_message'))
           puts "Missing #{tag}, mandatory" if DEBUG
         end
         next
@@ -83,7 +93,7 @@ include ApplicationHelper
               rule["required_if"].each do |other_tag, other_subtag|
                 # Try to get this other tag first
                 # the validation passes if it is not there
-                other_marc_tag = @object.marc.first_occurance(other_tag)
+                other_marc_tag = @marc.first_occurance(other_tag)
                 if other_marc_tag
                   other_marc_subtag = other_marc_tag.fetch_first_by_tag(other_subtag)
                   # The other subtag is there. see if we have the subtag 
@@ -110,14 +120,14 @@ include ApplicationHelper
   end
   
   def validate_links
-    @object.marc.all_tags.each do |marctag|
+    @marc.all_tags.each do |marctag|
       
       foreigns = marctag.get_foreign_subfields
       next if foreigns.empty?
       
       master = marctag.get_master_foreign_subfield
       unresolved_tags = @unresolved_marc.by_tags_with_subtag([marctag.tag], master.tag, master.content.to_s)
-      
+
       if unresolved_tags.empty?
         add_error(marctag.tag, master.tag, "foreign-tag: Searching resolved master value in unresolved marc yields no results")
         next
@@ -137,7 +147,7 @@ include ApplicationHelper
         subtag = unresolved_tag.fetch_first_by_tag(foreign_subtag.tag) # get the first
         if subtag && subtag.content
           if subtag.content != foreign_subtag.content
-            add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content}")
+            add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content} ##{foreign_subtag.foreign_object.id}")
           end
         else
           add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: tag not present in unresolved marc")
@@ -149,14 +159,13 @@ include ApplicationHelper
   
   def validate_dates
     
-    @object.marc.each_by_tag("260") do |marctag|
+    @marc.each_by_tag("260") do |marctag|
       marctag.each_by_tag("c") do |marcsubtag|
         next if !marcsubtag || !marcsubtag.content
         dates = []
         dates = date_to_array(marcsubtag.content, false)
         
         next if dates.count == 0
-        ap dates
         dates.sort!.uniq!
 
         max = min = dates[0].to_i
@@ -177,21 +186,26 @@ include ApplicationHelper
         if min < 1000
           add_error("260", "c", "Date too far in the past: #{min} (#{marcsubtag.content})")
         end
-        
       end
     end
   end
 
+  def validate_server_side
+    if @server_rules
+      @server_rules.each do |rule|
+        self.send(rule) rescue next
+      end
+    end
+  end
 
   def validate_unknown_tags
+    # Skipping this until template change is ready
+=begin
     @unknown_tags = []
-    #begin
       @editor_profile.each_tag_not_in_layout(@object) do |t|
         add_error(t, "unknown-tag", "Unknown tag in layout")
       end
-      #rescue
-    #  add_error("load", "unknown-tag", "Could not read tag layout")
-    #end
+=end
   end
   
   def has_errors
@@ -201,7 +215,11 @@ include ApplicationHelper
   def get_errors
     @errors
   end
-  
+
+  def current_user
+    @user
+  end
+
   def to_s
     output = ""
     @errors.each do |tag, subtags|
@@ -268,4 +286,29 @@ include ApplicationHelper
     return false
   end
   
+  # SERVER VALIDATION
+  #User should not be able to create or save record from foreign library
+  def validate_user_abilities
+    return if @user.has_role?(:admin) || @user.has_role?(:editor)
+    return if !@marc.get_siglum
+    sigla = []
+    @user.workgroups.each do |w|
+      sigla.push(*w.get_institutions.pluck(:siglum))
+    end
+    unless sigla.include?(@marc.get_siglum)
+      add_error("852", "", I18n.t('validation.insufficient_rights'))
+    end
+  end
+
+  # Name of catalogue entry should be uniq
+  def validate_name_uniqueness
+    short_title = @marc.get_name
+    return false if short_title.blank?
+    cat = Catalogue.where.not(id: @marc.get_id).where(name: short_title).take
+    if cat
+      add_error("210", "", I18n.t('validation.name_uniqueness'))
+    end
+  end
+
+
 end

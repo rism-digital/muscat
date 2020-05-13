@@ -1,6 +1,549 @@
 Muscat Changelog
 ================
 
+v 6.1.1
+* Fix #905, "profession" filter in People causes a crash
+
+v 6.1
+* Changed composite configuration
+* Removed add group restriction from view
+* Added role junior_editor
+* Build batch action
+* Restrict template change to admin, editors
+* Restoring tags with template_change
+* Restore from versions
+* Merge branch '5.3-devel' of https://github.com/rism-ch/muscat into 5.3-devel-templatechange
+* Fixed devel solr port
+* Fix #875, annoying sru
+* Fix #797, Added wf_stage to institution filer
+* Fix #794, Added Guatemala to 043 institution
+* Fix #801, Change 510 label with institutions
+* Added wf_owner to institution filter
+* Fix #803, Added 670 to institutions
+* Fix #795, Added magnifying to 670 with institutions
+* Added link to 856 insitution show
+* Update rails minor version
+* Update i18n setting, remove log rotation
+* Fix #368. institution types added
+* Fix #883, silence error with sprockets
+* Fix #798, adding magnify to places at institution
+* Change "married with" to "married to"
+* Added Iraq to person country labels
+* Renaming catalogue values
+* Default profession for people
+* Default 042 non multiple with people
+* Autocomplete of 510 people changed to institutions
+* Default opened 375 with people
+* Added work to dashboard closing
+* Added field labels with catalog
+* Merge pull request #877 from rism-ch/5.3-devel-templatechange
+* Merge pull request #878 from rism-ch/5.3-devel-role
+* Merge pull request #879 from rism-ch/5.3-devel-composite
+* Autocomplete for profession with people
+* Show institution with people
+* Removed other name qualifiers
+* Fix #886, 852 validation related 
+* Removing multi 043 with people
+* Spanish translation
+* Added dpt to 700 holdings
+* Added prt to 710 holdings
+* Dropped 373 from institutions
+* Filter person 043 contrynames as select, not codes
+* Clickable url with catalogues
+* Update some long overdue (including an update to AA)
+* Fix #791, add back transposed tones which got lost before 6.0
+* Fix #849
+* Fix #887, make the notification digest actually useful
+* Fix #882
+* Fix #851, add link
+* Renaming 510 with people
+* Fix #856, sru nil query
+* First step in #674, remove 033 from editor
+* Fix #851. remove popup menu
+* Fix #860, patch crashing fractions
+* Fix #839, Guidelines titles
+* Fix #829, Relabeling guidelines
+* Fix #889, Added other to 596
+* Removed postal from people
+* Relabeld 400 with people
+* Fix #899, Add more items to autocomplete
+* Fix #896, Update autocomplete
+* Update documentation for mysql 8
+
+v 6.0.1
+* Initial fix for #896, use a version of the autocomplete which uses LIKE and not REGEXP
+* Bump rack from 2.0.7 to 2.0.8
+* Merge pull request #874 from rism-ch/dependabot/bundler/rack-2.0.8
+* Bump nokogiri from 1.10.7 to 1.10.8
+* Test if users work
+* Merge pull request #893 from rism-ch/dependabot/bundler/nokogiri-1.10.8
+
+v 6.0
+* Migration scripts
+* Fix #658: add Workflow to diff list, it shows the WF at the time of saving
+* Fix #706. Override the default :page parameter for kaminari in comments
+* Ü correction script
+* Fix #791, Adding transposed modes closes
+* Fix #734, Added default values for 980 closing
+* Fix wrong umlaute from DNB in VIAF interface
+* Fix #807, correct lavel was only in view
+* Fix #774
+* Experimental Awesome Print Formatter for Marc
+* Rspec edition initial index check
+* Mini-patch to make the composite volumes selectable too
+* Add exporting option for a marc record as a text blob
+* Add icons
+* Updating it translations
+* Fixing typos
+* Fix #793 and #813
+* Add mailer name
+* Change TOC translation
+* Adding pager to sru html
+* Added download to sru html
+* Add a plain marc exporter. note: REMOVE application/txt from application.rb! it is defined in the initializer
+* Added protuguese to 040 closes #841
+* Added prt to holdings 700 closes #819
+* Fix #775, Adding incipits to libretto templates
+* Fix #737, Bringing back oth to holdings 710
+* Fix #836, Renamed 856 label
+* Added Georgia to person country codes
+* Fix #855, Added Offset printing to sources 340
+* Bump loofah from 2.2.2 to 2.3.1
+* Editors see level column
+* Added Moldavia to people 043
+* Make statistics header sticky
+* Add Portoguese translation
+* Bump puma from 3.12.0 to 3.12.2
+* Bump rubyzip from 1.2.2 to 1.3.0
+* Bump rack from 2.0.5 to 2.0.7
+* Update devise
+* Update bootstra-sass
+* Update nokogiri
+* Fix #868
+* Fix #865
+* Try to make logs rotate
+* Fix #837
+* Fix #840
+* Fix #838
+
+v 5.2.1
+* Fix #774
+* Fix #807, correct lavel was only in view
+* Fix #789, added more top and bottom margin
+* Fix #738
+* Fix #744, make fields non repeatable
+* Fix #772, some translation missing
+* Added XB-VN to person country codes
+* Fixing typos
+* Updating it translation
+* Updating fr translations
+* Updating de translations
+* Fix #811 remove fields from 593
+
+v 5.2
+* Fix #707 improved link to library siglum
+* Fix #735 Added 593 for holdings
+* Add triggers for Holdings
+* Fix #739, reindex the parent source when saving a Holding record
+* Fix #739 run reindex also when the holding is deleted
+* Fix #743 and #491 remove wf_audit from the interface
+* Fix #716, add possibility for help (and help text) to comments
+* Fix #715, add note
+* Change lit label
+* Make 593 mandatory except for collections
+* Fix #706. Override the default :page parameter for kaminari in comments
+* Merge pull request #748 from rism-ch/5.1-opac
+* Fix #752, make the new groups properly identified
+* Group cleanup
+* #733 Remove music periodical
+* Fix #709
+* Fix #708
+* Rename libretto_edition_content to libretto_edition
+* Rename theoretica_edition_content to theoretica_edition
+* Rename the default files
+* Fix #733, Removed musical periodical from 593
+* Fix #566 new structure for templates
+* Fix #566 Add configuration file and english text
+* Fix #566 add css for <ul>
+* Fix #566 fix typo
+* Make edition checks more sane
+* Remove redundant :update_editions and :create_editions abilities
+* Move composite volume at the end
+* Labels for guidlines related to #465
+* Update French translations
+* Fix #566 add help sidebar
+* Fix #755 in progress -> unpublished
+* Fix #754, Fix user can save foreign sources
+* Adding work to institution migration
+* Added institution relation to work
+* Adding some new relation types to work
+* Fix #753, Added sanskrit closes
+* Added ICCU to 730 rules
+* Updated configuration for composite_volume
+* Remove the unniverse, add libapache2-mod-passenger
+* Update Installation docs 
+* Initial template module
+* Fix #760, Added 'deprecated' as wf_stage
+* Check tag_rate and display on index with sources
+* Added a create holding method for move_tags
+* Making 599 tags restoreable
+* Merge pull request #762 from rism-ch/5.2-devel-composite
+* Make to-from in the emails better
+* Set meaningful names to all the emailers
+* Fix #536, Skipping unknown tags from validation
+* Added 510 in sources view
+* Change ability for editors to read all folders
+* Merge pull request #769 from rism-ch/5.2-devel-templatechange
+* Fix SRU publish statement with solr
+* Merge pull request #780 from fjorba/5.1-doc-fixes
+* Fix #781 update deprecated paper trail disables
+* Fix #776, Added japanese closing
+* Fix #782, Allow editors to change wf_owner with DO closing
+* Update Apache configuration to 2.4
+* Merge pull request #758 from rism-ch/5.2-devel-works
+* Merge pull request #786 from fjorba/update-apache-docs
+* Update Verovio to latest release
+* DE translations templates
+* Changed translation and template help
+* Updated rspec factory for published status
+
+v 5.1
+* Avoid mixed content in platin css
+* Moving note field with work
+* Adding feast to work relation
+* Adding work to people relationship
+* Added chronological term to works
+* Added work to work relationship
+* Improved display of work linked fields
+* Adding more relator codes to works
+* Fixed person display with works
+* Added 675 data source not found to works
+* Improve Spanish translation
+* Merge pull request #721 from drschoener/5.1-devel
+* Show wf_stage for liturgical feasts
+* Add batch action to merge
+* Adding some basic validation with merge
+* Add reindexing after merge
+* Include more auth objects
+* Adding more associations with merge
+* Moving merge from batch action to index action with js
+* Better abilitie check and I18n
+* Show publish status in index
+* Cataloger can publish folder if content is in his domain
+* Added status filter to person closes #714
+* Fix #710: Change labels
+* Merge pull request #724 from rism-ch/5.1-devel-folders
+* Merge pull request #726 from rism-ch/5.1-devel-works
+* Fix #718: Added chinese to literature
+* Added Taiwan to literature
+* Fix #717: Added basque language to sources
+* Fix #731: Added destroy ability to comments for catalogers
+* Fix #720: Added taiwan to people
+* Added filter for 031t to work
+* Removed special textincipit filter from index
+* Added flash notice after merge
+* Adding 500 holdings to sources index
+* Merge pull request #725 from rism-ch/5.1-devel-authmerge
+* Restore alterations in advanced keyboard
+* Fix #736: Drop some functions from 700 holdings
+* Rename oth in holdings
+* Fix #737: Dropping values from 700holdings
+* Fix 741: Added tibetan language
+
+v 5.0.3
+* Update Verovio to 2.0.1 (bug fix for empty beams)
+
+v 5.0.2
+* Fix bug that made authorities created from a Source buy Admin and not the current user
+* Remove 240 and 852 in printed libretti validation
+* Prevent a crash if a DO item is not connected
+* Make sure a new DO does not create an empty DO item (unconnected)
+* Display folder owner in list/show
+* Make folders appear to all users again
+* Make 973 visible in the Holding preview 
+
+v 5.0.1
+* Add back 563 in Source
+* Make Solr bind to localhost by default
+
+v 5.0
+* Remove 563 from Source
+* Add number of exemplars facet, useful for unicums
+
+v 5.0-rc2
+* Spec for openstreetmap to be reachable
+* Added BNF converter for work viaf interface
+* Rspec for institution view containing a map
+* Fixed further wrong composers in 400 from work viaf interface
+* Fix viaf import BNF converter for works
+* Added work to marc configuration page
+* #703 fixed creating new works after update
+* Better guidelines rspec
+* Add a proper "validation" icon
+* Add a label for 963
+* Make 930 available for non-editors
+* Fix bug in notification with multiple identical patterns
+* Show the notifications
+* Update Tribute
+* Fix tribute.js issue with firefox (max-height in css), make menu nicer, add filtering only on the beginning
+* Use a regex to match the second name too
+* Move 973, add scripts to test migration
+* Send comments to everybody
+* Add labels for 963 temp field
+
+v 5.0-rc1
+* Remove deprecated code from User
+* Add global triggers
+* Prettify validation action
+* Add checks so not each saving triggers a mail
+* Removing AR validator and adding test case
+* Display of error messages in editor
+* Add index on updated_at and created_at on sources to speed up time-based lookup
+* Improve compatibility with crono job
+* [RSPEC] adding at least one validation expectation
+* [RSPEC] adding additional expecations
+* [RSPEC] checking validation controller
+* Solve error that makes jobs die
+* Update installation for Ubuntu 18.04
+* Custom Arbre component for displaying comments grouped by resource_id/type
+* Allow for conversation and table view for comments
+* Using namespace attribute for archiving comments
+* Tab cleanup
+* Fix deletion of linked sources
+* Update gems
+* Fix deprecation warning
+* Fix missing it translations
+* Drop internal remarks (599/667) from to_external
+* Add cookieconsent (https://github.com/insites/cookieconsent) for testing
+* Update fr.yml
+* Update es.yml
+* Add configurable privacy page
+* Fix #678: Rename 588
+* Fix #677: Rename 856
+* Fix #686: Adding 400a to viaf interface 
+* Fix #678: Opening 588 by default 
+* Fix #676: Display map in institution fixes 
+* Fix #618: Adding 980
+* Server side validation in source validation config
+* Fix typo in MarcValidator
+* Add configuration for holding
+* Fix #668: fix paper trail deprecation warning
+* I18n for validation messages
+* Added catalogue validation & removed AR validation
+* Add options partial for 774 in editing mode to distinguish between holdings and sources
+* Fix empty server rules in validation
+* Add holding visualization
+* Add filtering holdings can be added only to collections in the same library
+* Make so that changing a holding link actually removes the 774 in the parent
+* Make a JS call to validate on server
+* Add cataloger rights for work model
+* Labeling catalogue institution
+* Fixed 041 language select with catalogue
+* Fix #628 allow only one 041 with catalogue
+* Fix #689 show publication status on show page
+* Fix #679 Adjust 856 options in holding
+* Fix #691, add proper validation to holding
+* Fix #680 add validation to 856, implement validation in subfield_select
+* Fix #693 added 035 to holding
+* Fix #684 introducing Facecat with @mentions!
+* Improved work.title
+* Show work.title in source display
+* Fix annoying double name in BL title
+* Change static to dynamic attributes with FactoryBot
+* Updated rspec for cataloger_work abilities
+* Adding language selection to 040
+* Fix mildly-annoying "translation missing" in per_page
+* Fix #672, disable the download_links, and make sure .xml still works for single items
+* Include holdings in embedded sources
+* Fix #681 Add images to institutions
+* Adding more holding fields to source index
+* check map in institution (#319 on rism-international/task)
+* Fix #55 Implement "remove from folder"
+* Fix crash when a source has 690 or 691 in selection mode
+* Add show link boxes to institution, person, place and standard term
+* Adding more holding fields to source index
+* Fix #696 Adding holding created_at to sources index
+* Fix #675 Fix allow_holding for sources to include printed libretti & theoretica
+* Renamed works 100 label
+* Added holdings.wf_owner to sources index
+* Fix #697 eneble holdings in marc_source.to_xml by default
+* Fix #695 make parameters persistent when there is an error
+* Merge pull request #699 from rism-ch/5.0-validation
+* Merge pull request #698 from rism-ch/5.0-embedded_holdings
+* Fix #700 fixes excluding record type for validation
+* Fix #701 making 852 really required, not mandatory
+* spec for source validator own and foreign library
+* Fix #687 Add Holdings in dashboard
+* Added some standard validation rules
+* Insert id into master tag of editor
+* Add help panel for Notifications, #638, with translations
+
+v 4.3
+* Adding migration for relations
+* Fix different naming convention with SOLR/Sunspot that broke index ordering
+* Updated rspec test suite readme
+* Fixed lib_siglum facet for institution statistics
+* Fixes undefined empty for nil with Source composer
+* Removing unused birth place column from related person table partial
+* Fix error when a holding has no siglum
+* Push a fix for the "stack overflow" error and send an email in case of loops between source and source_id
+* Fixes #660 circular dependeny between source.id and source.source_id
+* Merges the more verbose circular loop version
+* Make the mailer include all health messages
+* Guidelines submodule pointing to master
+* Adding rspec too check the correct guidelines version
+* Add proper job running status; make default log leven on production back to debug
+* Switch from poltergeist to headless chrome
+* Merge pull request #665 from rism-ch/4.2-devel-works
+* Relabel 518 fixes #659
+* [RSPEC] Adding chrome headless option to start correctly
+* Fixes #663 deprecated redirect_back for liturgical_feasts
+* Changing all deprecated redirect_to :back in controllers fixes #667
+* Fix deprecated fixnum in sru
+* Removing role cataloger_prints
+* Adding status abbreviation to filter closes #580
+* Adding edition fingerprint 026e to fulltext search
+* [RSPEC] Adding spec for new 535
+* Added 710 relator code 'bsl' (bookseller)
+* Added 535 to marc conf for editions closes #493
+* Switched 535 to 588 closing #493
+* Change port of solr port in ENV test
+* [RSPEC] Improved rspecs
+* Show help with holding fixes #671
+* New guidelines sections
+* Add some purging to make sure we do not fill the session with useless "nil" values
+* Resolve JS crashing when coming from an off-site link
+* Update installation for Ubuntu 18.04
+* Add I18n for 856 see #669
+* Adjusting labels for 856
+* Fix annoying Composer display in BL, make -ch manifest https
+* Fix #673, add 755 Initial Entry
+* Fix #670
+* Fix #640
+* Fix #641
+* Update the catalog all field
+
+v 4.2.1
+* Fix a bug which prevented ordering in index columns to work
+
+v 4.2
+* Optimized Source indexing
+* Remove idexing of linked IDs
+* #649, turn on dashboard
+* #279 enable selection of result number
+* Add translated "no item" message to dashboard, #649
+* Activate the download_links to have .xml #587
+* Better IT translation
+* Enable validation for holdings
+* Make dashboard first page, add localized message if a holding has no siglum
+* Parallel implementation for log error script
+* Lower default log level in production
+* Create mailer for Model Errors
+* Add validation in the batch process
+* Reindex alternate names
+* Make the MarcValidator safe when the marc on a source is reused without reloading
+* Aggregate repeated messages in the vaidator
+* Make small script for parallel re-saving of sources
+* Backport spinning icon from -devel-incipit-align
+* Initial holding show restyling
+* Hide the "adminstration" panel in the Blacklight
+* Hide redundant library information in Blacklight
+* Low level marc editing scripts
+
+v 4.1.4
+* Fixes a critical issue with deleting authority files.
+
+v 4 1 3
+* Add constraints so only editors/admins can run folder actions
+* Add a version trigger when wf_stage is modified.
+
+v 4.1.2
+* Fix deleting People, Places or Catalogues when used by a Holding
+* Fix crash with holding when one of the above was deleted
+* Fix editor AJAX error messages
+* Clean up Folder Items when an element is deleted
+* Show a Folder item as deleted if it was deleted and not cleaned up
+* Fix warning with session#deselect
+
+v 4.1.1
+* Fix some deprecated functions is the latest update of PaperTrail
+* Fix comment mail host
+
+v 4.1
+Major update to the Muscat infrastructure components:
+* Rails > 5.1
+* Solr 5.0
+* Sunspot 2.3.0
+* ActiveAdmin 1.3.0
+* Blacklight 6.14
+* Ruby > 2.3
+Other improvements:
+* Holdings with "published" as default value #611
+* Finalising the dashboard
+* Workaround for params.permit in folder search
+* Generic box for inter-model relationships, implemented for Catalogue
+* Add some basic missing translations
+* Add link to catalogue in institution
+* Automatic titling with translations
+* Fix #591: Relabeling marc fixes
+* Using sqlite3 && dropping DNB table
+* Using database_cleaner && cleaning sunspot indexes
+* Merge pull request #602 from paddytobias/patch-1
+* #477 remove $q
+* #549 more fixes
+* Added 563 to holdings
+* Fix #605, add checks for new migration
+* Fix #606 change Author
+* Fix #607
+* Fix #608 change labels
+* Giving all catalogers special prints abilities
+* Fix #611, Changed default value of holdings
+* Explicitly use .id for rails 5
+* Disable hard commits and use SOLR autocommitter
+* Fix old blacklight link
+* Improving CSS
+* Make solr documents point to /catalog and not /solr_documents
+* Fix some deprecation warnings
+* Fix translation missing in search history
+* Update migrations to work on Rails 5
+* Fix #614 Remove the old do_* tables
+* Rescue if the do_* does not have a foreign key (as in when created from scratch with db:migrate)
+* Fix #613 and #614 add DB backed for Holding links
+* Fix disappearing incons in marc editor.
+* Enlarge SOLR memory
+* Make production evnv permanent
+* Update loofah gem
+* Properly convert self.resource_class to string
+* Fix #615, Making =260 repeatable
+* Add the proper jar path for linux x86
+* Remove shared lim - configured in solrconfig.xml
+* Update Solr Incipit search JAR for mac
+* Add JAR for PC
+* Add proper eager_load_paths
+* Remove raise_in_transactional_callbacks
+* Fix #636 ability to edit workgroup holdings
+* Updated rspec according rails 5
+* Rspec to check the sidebar
+* Fix #633 - symbolic links to RISM logo as default large logo
+* Adds localisations for basic_level I18n element
+* Add required dependencies for digital object upload
+* Merge pull request #645 from IntersectAustralia/digital_object-libraries
+* Merge pull request #644 from IntersectAustralia/basic-level-localisations
+* Merge pull request #643 from IntersectAustralia/default-large-logo
+* Remove Spell Check auto-build in SOLR 5.
+* Add rescue if Marc does not load when reindexing
+* Update verovio
+* Fix #624
+* Fix #646
+* Fix #634
+* Fix #623 add dst
+* Fix #639, remove 'gem', fix Distributor translation
+* Fix #608, Correct "unkown" and remove from 042, Remove 550 $i
+* Fix #621, add 657 for Music Prints
+* Fix dashboard missing translations
+* Fix #604 - replace 695 tag in libretto source with 595
+* Update gems to silence Github warning
+
 v 4.0.2
 * Facets not properly showing in Blacklight
 * Fixes 773 selection for edition content

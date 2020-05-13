@@ -12,7 +12,7 @@
 	</th>
 	<td>
 		<% if opac %>
-			<%= link_to catalogue, catalog_index_path(:search_field => "any_field", :q => catalogue)%>
+			<%= link_to catalogue, search_catalog_path(:search_field => "any_field", :q => catalogue)%>
 		<% elsif is_selection_mode?%>
 			<%= "#{external_title}"%>
 		<% else %>

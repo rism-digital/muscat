@@ -101,7 +101,7 @@ svg:not(:root){
 
     }
     .search-query-form {
-        @extend .col-md-12;
+ //       @extend .col-md-12;
         padding-left: 0;
     }
 
@@ -165,6 +165,11 @@ h2 {
     border-color: $gray100;
 }
 
+h3 {
+	    font-size: 20px;
+			font-weight: bold;
+}
+
 // Welcome and advanced search
 h3.welcome {
     margin-bottom: 25px;
@@ -220,6 +225,10 @@ h5.panel-title > a {
 
 .facet_limit-active > .panel-heading + .panel-collapse > .panel-body {
     border-color: $gray25;
+}
+
+.facet-count {
+    white-space: nowrap;
 }
 
 .facet-values li .selected {

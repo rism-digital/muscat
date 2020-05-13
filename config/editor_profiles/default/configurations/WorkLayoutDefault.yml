@@ -2,26 +2,41 @@
 group_order: 
 - main_work
 - codes
-#- variants
-#- relations
+- variants
+- references
+- incipits
+- relations
 - control
 groups:   
   main_work: 
     all_tags: 
     - "100"
+    - "548"
 #  people:
 #    all_tags:
 #    - "500"
-#  variants:
-#    all_tags:
-#    - "400"
+  variants:
+    all_tags:
+    - "400"
 #    - "440"
-#  relations:
-#    all_tags:
-#    - "700"
+  references:
+    all_tags:
+    - "670"
+    - "675"
+    - "680"
   codes: 
     all_tags: 
     - "024"
+    - "380"
+  incipits:
+    all_tags:
+    - "031"
+  relations:
+    all_tags:
+    - "700"
+    - "710"
+    - "747"
+    - "930"
   control: 
     all_tags: 
     - "040"

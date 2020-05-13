@@ -27,7 +27,15 @@ end
 	<td>
     <% if subfield_a && subfield_a.content %>
       <% if subfield_0 && subfield_0.content %>
-        <%=link_to(subfield_a.content, admin_catalogue_path(subfield_0.content.to_s))%>
+			
+				<% if opac %>
+					<%= link_to subfield_a.content, search_catalog_path(:search_field => "any_field", :q => subfield_a.content)%>
+				<% elsif is_selection_mode?%>
+					<%= "#{subfield_a.content} #{subfield_n.content if subfield_n && subfield_n.content}"%>
+				<% else %>
+		      <%=link_to(subfield_a.content, admin_catalogue_path(subfield_0.content.to_s))%>
+				<% end %>
+				
       <% else %>
         <%= subfield_a.content%>
       <% end %>

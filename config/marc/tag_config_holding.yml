@@ -28,6 +28,13 @@
     :fields:
     - - ""
       - :no_browse: true
+  "035":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
   "300":
     :master: a
     :indicator: "##"
@@ -88,16 +95,12 @@
     - - a
       - :occurrences: "?"
   "563":
-    :master: a
+    :master: u
     :indicator: "##"
     :occurrences: "*"
     :fields:
     - - a
       - :occurrences: "?"
-    - - "8"
-      - :occurrences: "?"
-        :no_browse: true
- 
   "591":
     :master: a
     :indicator: "##"
@@ -115,6 +118,25 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+  "593":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "599":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
   "651":
     :master: "0"
     :indicator: "#7"
@@ -218,7 +240,8 @@
       - :occurrences: "1"
         :foreign_class: ^x
         :foreign_field: siglum
-        :browse_helper: application_helper_link_to_library
+#        :browse_helper: application_helper_link_to_library
+        :no_browse: true
     - - b
       - :occurrences: "?"
     - - c
@@ -249,3 +272,19 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+  "963":
+    :master: u
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - u
+      - :occurrences: "?"
+  "973":
+    :master: "u"
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - "u"
+      - :occurrences: "?"
+        :foreign_class: Source
+        :foreign_field: id

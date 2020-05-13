@@ -107,6 +107,7 @@ class Marc
             MarcNode.new(@model, "005", last_transcation, nil))
       end
     end
+    by_tags("599").each {|t| t.destroy_yourself}
   end
   
   # Parse a MARC 21 line
@@ -325,8 +326,8 @@ class Marc
   # have this handled in the create_links / destroy_links methods
   def get_parent
     parent = nil
-    # holding record
-    if node = first_occurance("004")
+    # holding record pointing to a collection
+    if node = first_occurance("973")
       parent = node.foreign_object
     # item in collection
     elsif node = first_occurance("773", "w")
@@ -381,7 +382,9 @@ class Marc
       next if !tag_names.include?(child.tag)
       next if !child.fetch_first_by_tag( subtag )
       next if !child.fetch_first_by_tag( subtag ).content
-      next if child.fetch_first_by_tag( subtag ).content.empty?
+      if child.fetch_first_by_tag( subtag ).content.is_a? String
+        next if child.fetch_first_by_tag( subtag ).content.empty?
+      end
       values << child.fetch_first_by_tag( subtag ).content
     end
     # Sort the return value
@@ -416,7 +419,7 @@ class Marc
     return marc_json
   end
 
-  def to_xml(updated_at = nil, versions = nil, holdings = false)
+  def to_xml(updated_at = nil, versions = nil, holdings = true)
     out = Array.new
     out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
     out << "<!-- Exported from RISM CH (http://www.rism-ch.org/) Date: #{Time.now.utc} -->\n"
@@ -443,6 +446,31 @@ class Marc
     out += "\t</marc:record>\n"
     
     return out
+  end
+
+  # Export a dump of the contents
+  # just the text, as is
+  def to_raw_text
+    lines = []
+    
+    @source.each_line do |data|
+      line = []
+      if data =~ /^[\s]*([^$]*)([$].*)$/
+        indicator = $1
+        record = $2
+      end
+            
+      while record =~ /^[$]([\d\w]{1,1})([^$]*)(.*)$/
+        content = $2
+        record  = $3
+        
+        line << content.gsub(DOLLAR_STRING, "$")
+      end
+      
+      lines << line.join(" ")
+    end
+    
+    lines.join("\n")
   end
 
   # Return all tags
@@ -701,7 +729,7 @@ class Marc
   
   def marc_create_pae_entry(conf_tag, conf_properties, marc, model)
     out = []
-    
+   
     tag = conf_properties && conf_properties.has_key?(:from_tag) ? conf_properties[:from_tag] : nil
     
     return if tag == nil
@@ -719,17 +747,27 @@ class Marc
       next if vals[:p] == "0"
 
       pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
-      
+
+      # FIXME a bit ugly here
+      # SEE #860
+      # Timesigs can be fractions, and a division by 0
+      # will bomb solr.
+      # This will also be done in solr
+
+      if vals[:o].split("/").count > 1
+        # Set it to C, time is ignored anyways 
+        vals[:o] = "c" if vals[:o].split("/")[1].to_i == 0
+      end
+
       s = "@start:#{pae_nr}\n";
-	    s = s + "@clef:#{vals[:g]}\n";
-	    s = s + "@keysig:#{vals[:n]}\n";
-	    s = s + "@key:\n";
-	    s = s + "@timesig:#{vals[:o]}\n";
-	    s = s + "@data:#{vals[:p]}\n";
-	    s = s + "@end:#{pae_nr}\n"
+	    s << "@clef:#{vals[:g]}\n";
+	    s << "@keysig:#{vals[:n]}\n";
+	    s << "@key:\n";
+	    s << "@timesig:#{vals[:o]}\n";
+	    s << "@data:#{vals[:p]}\n";
+	    s << "@end:#{pae_nr}\n"
 
       out << s
-
     end
 
     return out

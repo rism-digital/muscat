@@ -52,11 +52,16 @@
     <%= html_record.to_s.html_safe %>
   <% end %>
 <% end %>
-
 </table> 
-<div>
-<a href="#" class="csv_export" datatable="rism_export" style="float: right;">Download as CSV/Excel</a>
+
+<%= render :partial => 'html_pager' %>
+
+<div style="float: right;">
+  <!-- <a href="#" class="csv_export" datatable="rism_export">Download as CSV/Excel</a><br> -->
+  <%= link_to("Download as CSV", url_for( request.params.merge({"x-action" => "csv"}) )) %> <br>
+  <%= link_to("Download as XML", url_for( request.params.merge({"x-action" => "download"}) )) %>
 </div>
+
 </div>
-<%= "Number of results: #{@result.total}" %>
+<%#= "Number of results: #{@result.total}" %>
 </body>

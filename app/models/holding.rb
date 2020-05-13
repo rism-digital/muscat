@@ -1,4 +1,4 @@
-class Holding < ActiveRecord::Base
+class Holding < ApplicationRecord
   include ForeignLinks
   resourcify
 
@@ -12,14 +12,19 @@ class Holding < ActiveRecord::Base
 
   has_and_belongs_to_many :institutions
   belongs_to :source
-  has_many :folder_items, :as => :item
+	belongs_to :collection, {class_name: "Source", foreign_key: "collection_id"}
+  has_many :folder_items, as: :item, dependent: :destroy
   belongs_to :user, :foreign_key => "wf_owner"
   
+  has_and_belongs_to_many :people, join_table: "holdings_to_people"
+  has_and_belongs_to_many :catalogues, join_table: "holdings_to_catalogues"
+  has_and_belongs_to_many :places, join_table: "holdings_to_places"
+	
   composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
   
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
-  after_save :update_links, :reindex
+  after_save :update_links, :update_774, :reindex
   after_initialize :after_initialize
   before_destroy :update_links
   
@@ -30,6 +35,7 @@ class Holding < ActiveRecord::Base
   attr_accessor :suppress_update_count_trigger
 
   def after_initialize
+    @old_collection = nil
     @last_user_save = nil
     @last_event_save = "update"
   end
@@ -65,14 +71,16 @@ class Holding < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.without_versioning :save
+      PaperTrail.request(enabled: false) do
+        save
+      end
     end
   end
   
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["institutions"]
+    allowed_relations = ["institutions", "catalogues", "people", "places"]
     recreate_links(marc, allowed_relations)
   end
   
@@ -104,6 +112,14 @@ class Holding < ActiveRecord::Base
     # will be nil
     return if marc_source == nil
     
+    # parent collection source
+    collection = marc.get_parent
+    # If the 973 link is removed, clear the source_id
+    # But before save it so we can update the parent
+    # source.
+    @old_collection = collection_id if !collection || collection.id != collection_id
+    self.collection_id = collection ? collection.id : nil
+
     # If the source id is present in the MARC field, set it into the
     # db record
     # if the record is NEW this has to be done after the record is created
@@ -118,6 +134,75 @@ class Holding < ActiveRecord::Base
     self.marc_source = self.marc.to_marc
   end
   
+
+  def update_774
+    
+    # We do NOT have a parent ms in the 773.
+    # but we have it in old_parent, it means that
+    # the 773 was deleted or modified. Go into the parent and
+    # find the reference to the id, then delete it
+    if @old_collection
+      
+      parent_manuscript = Source.find_by_id(@old_collection)
+      return if !parent_manuscript
+      modified = false
+      
+      parent_manuscript.paper_trail_event = "Remove 774 link #{id.to_s}"
+      
+      # check if the 774 tag already exists
+      parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
+        subfield = tag.fetch_first_by_tag("w")
+        next if !subfield || !subfield.content
+        if subfield.content.to_i == id
+          puts "Deleting 774 $w#{subfield.content} for #{@old_collection}, from #{id}"
+          tag.destroy_yourself
+          modified = true
+        end
+        
+      end
+      
+      if modified
+        parent_manuscript.suppress_update_77x
+        parent_manuscript.save
+        @old_collection = nil
+      end
+      
+    end
+    
+    # do we have a parent manuscript?
+    parent_manuscript_id = marc.first_occurance("973", "u")
+    
+    # NOTE we evaluate the strings prefixed by 00000
+    # as the field may contain legacy values
+    
+    if parent_manuscript_id
+      # We have a parent manuscript in the 773
+      # Open it and add, if necessary, the 774 link
+    
+      parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
+      return if !parent_manuscript
+      
+      parent_manuscript.paper_trail_event = "Add 774 link #{id.to_s}"
+      
+      # check if the 774 tag already exists
+      parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
+        subfield = tag.fetch_first_by_tag("w")
+        next if !subfield || !subfield.content
+        return if subfield.content.to_i == id
+      end
+      
+      # nothing found, add it in the parent manuscript
+      mc = MarcConfigCache.get_configuration("source")
+      w774 = MarcNode.new(@model, "774", "", mc.get_default_indicator("774"))
+      w774.add_at(MarcNode.new(@model, "w", id.to_s, nil), 0 )
+      w774.add_at(MarcNode.new(@model, "4", "holding", nil), 0 )
+      
+      parent_manuscript.marc.root.add_at(w774, parent_manuscript.marc.get_insert_position("774") )
+
+      parent_manuscript.suppress_update_77x
+      parent_manuscript.save
+    end
+  end
 
 
   def reindex
@@ -137,14 +222,6 @@ class Holding < ActiveRecord::Base
         
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
-  end
-  
-  def self.find_recent_updated(limit, user)
-    if user != -1
-      where("updated_at > ?", 5.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
-    else
-      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
-    end
   end
 
   def display_name

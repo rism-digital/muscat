@@ -1,6 +1,7 @@
-class Work < ActiveRecord::Base
+class Work < ApplicationRecord
   include ForeignLinks
   include MarcIndex
+  include AuthorityMerge
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -16,10 +17,28 @@ class Work < ActiveRecord::Base
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
-  has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  has_and_belongs_to_many :catalogues, join_table: "works_to_catalogues"
+  has_and_belongs_to_many :standard_terms, join_table: "works_to_standard_terms"
+  has_and_belongs_to_many :standard_titles, join_table: "works_to_standard_titles"
+  has_and_belongs_to_many :liturgical_feasts, join_table: "works_to_liturgical_feasts"
+  has_and_belongs_to_many :institutions, join_table: "works_to_institutions"
+  has_and_belongs_to_many :people, join_table: "works_to_people"
+  has_many :folder_items, as: :item, dependent: :destroy
+  has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
+  has_and_belongs_to_many(:works,
+    :class_name => "Work",
+    :foreign_key => "work_a_id",
+    :association_foreign_key => "work_b_id",
+    join_table: "works_to_works")
   
+  # This is the backward link
+  has_and_belongs_to_many(:referring_works,
+    :class_name => "Work",
+    :foreign_key => "work_b_id",
+    :association_foreign_key => "work_a_id",
+    join_table: "works_to_works")
+ 
   composed_of :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
 
   before_destroy :check_dependencies
@@ -33,10 +52,11 @@ class Work < ActiveRecord::Base
   after_save :update_links, :reindex
   after_initialize :after_initialize
 
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :basic, :minimal, :full ]
 
   alias_attribute :name, :title
+  alias_attribute :id_for_fulltext, :id
 
   def after_initialize
     @last_user_save = nil
@@ -77,14 +97,16 @@ class Work < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.without_versioning :save
+      PaperTrail.request(enabled: false) do
+        save
+      end
     end
   end
   
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["person"]
+    allowed_relations = ["person", "catalogues", "standard_terms", "standard_titles", "liturgical_feasts", "institutions", "people", "works"]
     recreate_links(marc, allowed_relations)
   end
 
@@ -94,7 +116,7 @@ class Work < ActiveRecord::Base
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
   
-    new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc"))
+    new_marc = MarcWork.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc"))
     new_marc.load_source true
     
     new_100 = MarcNode.new("work", "100", "", "1#")
@@ -121,19 +143,32 @@ class Work < ActiveRecord::Base
     self.index
   end
 
-  searchable :auto_index => false do
-    integer :id
-    string :title_order do
+  searchable :auto_index => false do |sunspot_dsl|
+    sunspot_dsl.integer :id
+    sunspot_dsl.text :id_text do
+      id_for_fulltext
+    end
+    sunspot_dsl.string :title_order do
       title
     end
-    text :title
-    text :form
-    text :notes
+    sunspot_dsl.text :title
+    sunspot_dsl.text :title
     
-    integer :src_count_order, :stored => true do 
+    sunspot_dsl.integer :wf_owner
+    sunspot_dsl.string :wf_stage
+    sunspot_dsl.time :updated_at
+    sunspot_dsl.time :created_at
+    
+    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
+              :join => { :from => :item_id, :to => :id })
+
+    sunspot_dsl.integer :src_count_order, :stored => true do 
       Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
     end
+    
+    MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
+ 
 
   def set_object_fields
     return if marc_source == nil
@@ -142,7 +177,7 @@ class Work < ActiveRecord::Base
   end
 
   def check_dependencies
-    return false if self.referring_sources.count > 0
+    throw :abort if self.referring_sources.count > 0
   end
  
   def self.get_viaf(str)
@@ -150,4 +185,6 @@ class Work < ActiveRecord::Base
     Viaf::Interface.search(str, self.to_s)
   end
  
+  ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end
+
 end

@@ -29,8 +29,10 @@ class PublishFolderJob < ProgressJob::Base
     f2.folder_items.each do |fi|
       fi.item.wf_stage = new_wf_stage
       
-      if fi.item.respond_to?('paper_trail_enabled_for_model?')
-        fi.item.paper_trail.without_versioning :save
+      if  PaperTrail.request.enabled_for_model?(fi.item.class) 
+        PaperTrail.request(enabled: false) do
+          fi.item.save
+        end
       else
         fi.item.save
       end

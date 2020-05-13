@@ -3,44 +3,43 @@ require 'sunspot_extensions.rb'
 
 module ActiveAdmin::ViewsHelper
   
-  # embedds a list of sources from a foreign (authority) model
-  # - context is the show context is the AA
-  # - item is the instance of the model
-  # - query is the fitler for the source list
-  # - src_list_page is the pagination
-  def active_admin_embedded_source_list( context, item, query, src_list_page, enable_view_src = true )
-    # get the list of sources for the item
-    c = item.referring_sources
-    # do not display the panel if no source attached
-    return if c.empty?
-    panel_title = item.is_a?(Source) ? I18n.t(:filter_subsequent_entries) : I18n.t(:filter_sources)
-    context.panel panel_title, :class => "muscat_panel"  do
-      
-      # Sometimes if a query is already present query comes with the
-      # parameters for ransack, filter this out so only text queries
-      # pass
-      query = "*" if !query.is_a? String
-      
-      # filter the list of sources
-      c = Source.solr_search do
-        fulltext query
-        with item.class.name.underscore.pluralize.to_sym, item.id
-        paginate :page => src_list_page, :per_page => 15 
-      end
-      
-      context.paginated_collection(c.results, param_name: 'src_list_page',  download_links: false) do
-        context.table_for(context.collection) do |cr|
-          context.column (I18n.t :filter_composer), :composer
-          context.column (I18n.t :filter_std_title), :std_title
-          context.column (I18n.t :filter_title), :title
-          context.column (I18n.t :filter_lib_siglum), :lib_siglum if !item.is_a? Source
-          context.column (I18n.t :filter_shelf_mark), :shelf_mark if !item.is_a? Source
-          if enable_view_src
-            context.column "" do |source|
-              link_to "View", controller: :sources, action: :show, id: source.id
-            end
+  # This is repeated the same everywhere, so we just make one function with the contents
+  def active_admin_embedded_source_list(context, item, enable_view_src = true)
+    # The columns should be the same for every list in every page!
+    active_admin_embedded_link_list(context, item, Source) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_composer), :composer
+        context.column (I18n.t :filter_std_title), :std_title
+        context.column (I18n.t :filter_title), :title
+        context.column (I18n.t :filter_lib_siglum), :lib_siglum
+        context.column (I18n.t :filter_shelf_mark), :shelf_mark
+        if enable_view_src
+          context.column "" do |source|
+            link_to "View", controller: :sources, action: :show, id: source.id
           end
         end
+      end
+    end
+  end
+	
+  def active_admin_embedded_link_list(context, item, link_class, panel_title = nil, &block)
+    current_page_name = link_class.to_s.downcase + "_list_page"
+    current_page = params[current_page_name]
+    if link_class == Source && item.respond_to?("referring_sources") && item.respond_to?("referring_holdings")
+      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
+    elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
+      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
+    else
+      c = item.send("referring_" + link_class.to_s.pluralize.underscore)
+    end    
+    # do not display the panel if no source attached
+    return if c.empty?
+    panel_title = I18n.t(:refers_to_this, model_from: link_class.model_name.human(count: 2), model_to: item.model_name.human) if !panel_title
+    
+    context.panel panel_title, :class => "muscat_panel"  do
+      context.paginated_collection(c.page(current_page).per(10), param_name: current_page_name,  download_links: false) do
+        yield(context)
       end
     end
   end 
@@ -49,17 +48,22 @@ module ActiveAdmin::ViewsHelper
     return params && params[:select].present?
   end
   
+  def is_folder_selected?
+    return params && params[:q].present? && params[:q][:id_with_integer].present? && params[:q][:id_with_integer].include?("folder_id:")
+  end
+
   def get_filter_record_type
     if params.include?(:q) && params[:q].include?("record_type_with_integer")
       params[:q]["record_type_with_integer"]
     end
   end
-	
+
   def active_admin_user_wf( context, item )   
     context.panel (I18n.t :filter_wf) do
       context.attributes_table_for item  do
         context.row (I18n.t :filter_owner) { |r| r.user.name } if ( item.user )
-        context.row (I18n.t :record_audit) { |r| I18n.t("#{r.wf_audit}_level") } if ( item.user )
+        context.row (I18n.t :filter_wf_stage) { |r| I18n.t("wf_stage.#{r.wf_stage}") } if ( item.wf_stage )
+        #context.row (I18n.t :record_audit) { |r| I18n.t("#{r.wf_audit}_level") } if ( item.user )
         context.row (I18n.t :created_at) { |r| I18n.localize(r.created_at ? r.created_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
         context.row (I18n.t :updated_at) { |r| I18n.localize(r.updated_at ? r.updated_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
       end
@@ -223,19 +227,34 @@ module ActiveAdmin::ViewsHelper
     
   end
 
-	def active_admin_stored_from_hits(all_hits, object, field)
-		hits = all_hits.select {|h| h.to_param == object.id.to_s}
-		if hits && hits.count > 0
-			hits.first.stored(field).to_s
-		end
-	end
+  def active_admin_stored_from_hits(all_hits, object, field)
+    hits = all_hits.select {|h| h.to_param == object.id.to_s}
+    if hits && hits.count > 0
+      hits.first.stored(field).to_s
+    end
+  end
 
   def local_sorting( codes, editor_profile )
     local_hash = Hash.new
     codes.each do |code|
       local_hash[code] = editor_profile.get_label(code)
     end
-    return Hash[local_hash.sort_by{|k, v| v}].keys
+    return Hash[local_hash.sort_by{|k, v| v.downcase}].keys
+  end
+	
+  def pretty_truncate(text, length = 30, truncate_string = "...")
+    return if text.nil?
+    l = length - truncate_string.mb_chars.length
+    text.mb_chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
+  end
+
+  def dashboard_find_recent(model, limit, modification, user, days = 7) 
+    modif_at = modification.to_s + "_at"
+    if user != -1
+      model.where((modif_at + " > ?"), days.days.ago).where("wf_owner = ?", user).limit(limit).order(modif_at + " DESC")
+    else
+      model.where((modif_at + "> ?"), days.days.ago).limit(limit).order(modif_at + " DESC") 
+    end
   end
 
 end

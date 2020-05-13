@@ -24,10 +24,12 @@ groups:
     - "246"
     - "657"
     - "730"
+    - "930"
     - "001"
     all_tag_templates: 
       "100": marc_show/show_person
       "246": marc_show/show_title_variant  
+      "930": marc_show/show_work
       "001": marc_show/show_rism_id
 
   show_canonic_techniques:
@@ -92,6 +94,7 @@ groups:
     - "520"
     - "505"
     - "525"
+    - "588"
     - "546"
     - "561"
     ungrouped_tags:
@@ -104,7 +107,9 @@ groups:
     - "690"
     - "383"
     - "691"
+    - "510"
     all_tag_templates: 
+      "510": marc_show/show_subfield_concat
       "690": marc_show/show_69x_url
       "691": marc_show/show_69x_url
 

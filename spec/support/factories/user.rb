@@ -1,10 +1,11 @@
 FactoryBot.define do
 
   factory :user do
-    name "Fred"
-    email "admin@example.com"
-    password "password"
-    password_confirmation "password"
+    id { 2 }
+    name { "Fred" }
+    email { "fred@example.com" }
+    password { "password" }
+    password_confirmation { "password" }
     workgroups { [association(:workgroup)]  }
   end
 
@@ -43,31 +44,31 @@ FactoryBot.define do
   end
 
   factory :admin_role, :parent => :role do
-    name "admin"
+    name { "admin" }
   end
 
   factory :cataloger_role, :parent => :role do
-    name "cataloger"
+    name { "cataloger" }
   end
 
   factory :cataloger_prints_role, :parent => :role do
-    name "cataloger_prints"
+    name { "cataloger_prints" }
   end
 
   factory :editor_role, :parent => :role do
-    name "editor"
+    name { "editor" }
   end
 
   factory :guest_role, :parent => :role do
-    name "guest"
+    name { "guest" }
   end
 
   factory :person_editor_role, :parent => :role do
-    name "person_editor"
+    name { "person_editor" }
   end
 
   factory :person_restricted_role, :parent => :role do
-    name "person_restricted"
+    name { "person_restricted" }
   end
 
 

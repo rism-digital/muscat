@@ -6,9 +6,11 @@ ActiveAdmin.register Work do
 
   # Remove mass-delete action
   batch_action :destroy, false
+  include MergeControllerActions
   
   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
   
   collection_action :autocomplete_work_title, :method => :get
 
@@ -116,7 +118,6 @@ ActiveAdmin.register Work do
   
   # Solr search all fields: "_equal"
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
@@ -125,6 +126,8 @@ ActiveAdmin.register Work do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
+    column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
+      label: I18n.t('status_codes.' + (work.wf_stage != nil ? work.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
@@ -158,7 +161,7 @@ ActiveAdmin.register Work do
     else
       render :partial => "marc/show"
     end
-    active_admin_embedded_source_list( self, work, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, work, !is_selection_mode? )
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, work )
     active_admin_navigation_bar( self )

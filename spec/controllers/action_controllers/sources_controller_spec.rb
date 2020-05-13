@@ -2,7 +2,7 @@ require 'rails_helper'
 model = :source
 changeable_ar_attribute = :wf_stage
 RSpec.describe Admin::SourcesController, type: :controller do
-  let!(:resource) { create model  }
+  let!(:resource) { create :manuscript_source }
   let(:user) { create :admin   }
   render_views
   before(:each) do
@@ -18,28 +18,28 @@ RSpec.describe Admin::SourcesController, type: :controller do
 
   describe "CREATE" do
     it "creating sources" do
-      expect { post :create, :params => {model => FactoryBot.attributes_for(model)}   }.to change(model.to_s.capitalize.constantize, :count).by(1)
+      expect { post :create, :params => FactoryBot.attributes_for(model)  }.to change(model.to_s.capitalize.constantize, :count).by(1)
     end
   end
 
   describe "SHOW" do
     it "render show template" do
-      get :show, id: resource.id
+      get :show, params: { id: resource.id  }
       expect(response.status).to eq(200)
     end
   end
 
   describe "UPDATE" do
-    it "updating source" do 
-      patch :update, :id => resource.id, model => { changeable_ar_attribute => "published"  } 
+    it "updating source" do
+      patch :update, params: {:id => resource.id, model => { changeable_ar_attribute => "published"  } }
       resource.reload
-      expect(resource[changeable_ar_attribute]).to eq(1)
+      expect(resource[changeable_ar_attribute]).to eq("published")
     end
   end
 
   describe "DELETE" do
     it "deleting source" do
-      delete :destroy, id: resource.id
+      delete :destroy, params: {id: resource.id}
       expect(flash[:notice]).to match(/successful/)
     end
   end

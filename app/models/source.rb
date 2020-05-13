@@ -1,15 +1,15 @@
-## A Source is the base entity that is catalogued in RISM. 
+## A Source is the base entity that is catalogued in RISM.
 #
 # All the data is stored in the manuscripts
 # table in a TEXT blob as MARC data. Fields that are important for brief display are
 # mapped directly to fields in manuscripts and used exclusively for that purpose.  Any browsing or
 # editting is performed on the marc record itself which is stored in the "source" field.  This field
-# is aggregated to the Marc class which understands the marc format.  All operations on the marc record 
+# is aggregated to the Marc class which understands the marc format.  All operations on the marc record
 # are handled by the Marc class.  See that class for more details.
-# 
+#
 # === Fields
 # * <tt>id</tt> - numerical RISM id
-# * <tt>ms_lib_siglums</tt> - List of the library siglums, Library_id is nost stored anymore here, we use LibrariesSource for many-to-many 
+# * <tt>ms_lib_siglums</tt> - List of the library siglums, Library_id is nost stored anymore here, we use LibrariesSource for many-to-many
 # * <tt>record_type</tt> - set to 1 id the ms. is anonymous, set to 2 if the ms. is a holding record
 # * <tt>std_title</tt> - Standard Title
 # * <tt>std_title_d</tt> - Standard title, downcase, with all UTF chars stripped (and substituted by ASCII chars)
@@ -32,24 +32,24 @@
 
 
 
-class Source < ActiveRecord::Base
-  
+class Source < ApplicationRecord
+
   # class variables for storing the user name and the event from the controller
   @last_user_save
   attr_accessor :last_user_save
   @last_event_save
   attr_accessor :last_event_save
-  
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
-  
+
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+
   # include the override for group_values
   require 'solr_search.rb'
 #  include MarcIndex
   include ForeignLinks
   include MarcIndex
-  include ActiveRecordValidation
+  include Template
   resourcify
-  
+
   belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
   has_many :child_sources, {class_name: "Source"}
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
@@ -62,71 +62,75 @@ class Source < ActiveRecord::Base
   has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
+	has_many :collection_holdings, {class_name: "Holding", foreign_key: "collection_id"}
   has_and_belongs_to_many :works, join_table: "sources_to_works"
+
   has_and_belongs_to_many :canonic_techniques, join_table: "sources_to_canonic_techniques"
-  has_many :folder_items, :as => :item
+  has_many :folder_items, as: :item, dependent: :destroy
+
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
-  
+
   # This is the forward link
   has_and_belongs_to_many(:sources,
     :class_name => "Source",
     :foreign_key => "source_a_id",
     :association_foreign_key => "source_b_id",
     join_table: "sources_to_sources")
-  
+
   # This is the backward link
   has_and_belongs_to_many(:referring_sources,
     :class_name => "Source",
     :foreign_key => "source_b_id",
     :association_foreign_key => "source_a_id",
     join_table: "sources_to_sources")
-  
+
   composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
   alias_attribute :id_for_fulltext, :id
-  
+
   scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
-  
+
   # FIXME id generation
   before_destroy :check_dependencies
-  
-  before_save :set_object_fields
+
+  before_save :set_object_fields, :save_updated_at
   after_create :fix_ids
 	after_initialize :after_initialize
   after_save :update_links, :reindex
   before_destroy :update_links_for_destroy
-  
-  validate :validates_parent_id
 
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_77x_trigger
   attr_accessor :suppress_update_count_trigger
-  
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
-  
+
   def after_initialize
     @old_parent = nil
     @last_user_save = nil
     @last_event_save = "update"
   end
-  
+
   # Suppresses the recreation of the links with foreign MARC elements
   # (es libs, people, ...) on saving
   def suppress_recreate
     self.suppress_recreate_trigger = true
-  end  
-  
+  end
+
   def suppress_update_77x
     self.suppress_update_77x_trigger = true
   end
-  
+
   def suppress_update_count
     self.suppress_update_count_trigger = true
   end
-  
-  
+
+  def save_updated_at
+    @old_updated_at = updated_at
+  end
+
   # Sync all the links from MARC data foreign relations
   # To the DB data cache. It will update on the DB
   # only those objects that are added or removed from
@@ -140,14 +144,14 @@ class Source < ActiveRecord::Base
   # unless suppress_update_77x is set
   def update_links
     return if self.suppress_recreate_trigger == true
-    
+
     allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings", "sources", "works", "canonic_techniques"]
     recreate_links(marc, allowed_relations)
-    
+
     # update the parent manuscript when having 773/774 relationships
-    update_77x unless self.suppress_update_77x_trigger == true 
+    update_77x unless self.suppress_update_77x_trigger == true
   end
-  
+
   # A special case: if we are deleting the source
   # do not update the 77x links. This permits
   # us to delete sources that have invalid MARC data
@@ -156,118 +160,105 @@ class Source < ActiveRecord::Base
     suppress_update_77x
     update_links
   end
-  
+
   # Suppresses the solr reindex
   def suppress_reindex
     self.suppress_reindex_trigger = true
   end
-  
+
   def reindex
     return if self.suppress_reindex_trigger == true
     self.index
   end
 
-  
-
   searchable :auto_index => false do |sunspot_dsl|
    sunspot_dsl.integer :id
    sunspot_dsl.integer :record_type
 
-    sunspot_dsl.text :id_fulltext do
-      id_for_fulltext
+    sunspot_dsl.text :id_fulltext do |s|
+      s.id_for_fulltext
     end
-    
+
     sunspot_dsl.text :source_id
-    
+
     # For ordering
-    sunspot_dsl.string :std_title_shelforder, :as => "std_title_shelforder_s" do 
-      std_title
+    sunspot_dsl.string :std_title_shelforder, :as => "std_title_shelforder_s" do |s|
+      s.std_title
     end
     # For facet
-    sunspot_dsl.string :std_title_order do 
-      std_title
+    sunspot_dsl.string :std_title_order do |s|
+      s.std_title
     end
     # For fulltext search
     sunspot_dsl.text :std_title, :stored => true
     sunspot_dsl.text :std_title_d
-    
-    sunspot_dsl.string :composer_order do 
-      composer == "" ? nil : composer
+
+    sunspot_dsl.string :composer_order do |s|
+      s.composer == "" ? nil : s.composer
     end
-    sunspot_dsl.text :composer, :stored => true
+
+    sunspot_dsl.text :composer, stored: true do |s|
+      "" if s.composer.blank?
+
+      begin
+        tag = s.marc.first_occurance("100", "0")
+      rescue ActiveRecord::RecordNotFound
+        s.composer
+      end
+
+      if tag && tag.foreign_object && tag.foreign_object.alternate_names
+        s.composer + "\n" + tag.foreign_object.alternate_names
+      else
+        s.composer
+      end
+    end
+
     sunspot_dsl.text :composer_d
-        
-    sunspot_dsl. string :title_order do 
-      title
+
+    sunspot_dsl. string :title_order do |s|
+      s.title
     end
 
     sunspot_dsl.text :title, :stored => true
     sunspot_dsl.text :title_d
-    
-    sunspot_dsl.string :shelf_mark_order do 
-      shelf_mark
+
+    sunspot_dsl.string :shelf_mark_order do |s|
+      s.shelf_mark
     end
-	
+
 	# This is a _very special_ case to have advanced indexing of shelfmarks
 	# the solr dynamic field is "*_shelforder_s", so we can "trick" sunspot to load it
 	# by calling the field :shelf_mark_shelforder -> sunspot translated it into shelf_mark_shelforder_s
 	# when doing searches since the type is string.
 	# This field type must be also configured in the schema.xml solr configuration
-    sunspot_dsl.string :shelf_mark_shelforder, :stored => true, :as => "shelf_mark_shelforder_s" do
-			shelf_mark
+    sunspot_dsl.string :shelf_mark_shelforder, :stored => true, :as => "shelf_mark_shelforder_s" do |s|
+			s.shelf_mark
 		end
     sunspot_dsl.text :shelf_mark
-	
-    sunspot_dsl.string :lib_siglum_order do
-      lib_siglum
+
+    sunspot_dsl.string :lib_siglum_order do |s|
+      s.lib_siglum
     end
     sunspot_dsl.text :lib_siglum, :stored => true, :as => "lib_siglum_s"
     # This one will be called lib_siglum_ss (note the second s) in solr
     # We use it for GIS
     sunspot_dsl.string :lib_siglum, :stored => true
     # Dates now come directly from MARC
-#    sunspot_dsl.integer :date_from do 
+#    sunspot_dsl.integer :date_from do
 #      date_from != nil && date_from > 0 ? date_from : nil
 #    end
-#    sunspot_dsl.integer :date_to do 
+#    sunspot_dsl.integer :date_to do
 #      date_to != nil && date_to > 0 ? date_to : nil
 #    end
-    
-    sunspot_dsl.integer :wf_owner
+
+    sunspot_dsl.integer :wf_owner, multiple: true do |s|
+      s.holdings.map {|e| e.wf_owner} << s.wf_owner
+    end
+
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
-    sunspot_dsl.time :created_at
-
-    sunspot_dsl.integer :catalogues, :multiple => true do
-      catalogues.map { |catalogue| catalogue.id }
-    end
-    
-    sunspot_dsl.integer :people, :multiple => true do
-      people.map { |person| person.id }
-    end
-    
-    sunspot_dsl.integer :places, :multiple => true do
-      places.map { |place| place.id }
-    end
-    
-    sunspot_dsl.integer :institutions, :multiple => true do
-      institutions.map { |institution| institution.id }
-    end
-    
-    sunspot_dsl.integer :liturgical_feasts, :multiple => true do
-      liturgical_feasts.map { |lf| lf.id }
-    end
-    
-    sunspot_dsl.integer :standard_terms, :multiple => true do
-      standard_terms.map { |st| st.id }
-    end
-    
-    sunspot_dsl.integer :standard_titles, :multiple => true do
-      standard_titles.map { |stit| stit.id }
-    end
-    
-    sunspot_dsl.integer :sources, :multiple => true do
-      sources.map { |source| source.id }
+    sunspot_dsl.time :created_at, multiple: true do |s|
+      s.holdings.map {|e| e.created_at} << s.created_at
     end
 
     sunspot_dsl.integer :works, :multiple => true do
@@ -282,53 +273,65 @@ class Source < ActiveRecord::Base
      canonic_techniques.map { |ct| ct.canon_type }
    end
 
-    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
+    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
 
     #For geolocation
-    sunspot_dsl.latlon :location, :stored => true do
+    sunspot_dsl.latlon :location, :stored => true do |s|
       #lib = Institution.find_by_siglum(item[:value])
       #next if !lib
       lat = 0
       lon = 0
-      
-      lib = marc.first_occurance("852")
-      if lib && lib.foreign_object
-        lib_marc = lib.foreign_object.marc
-        lib_marc.load_source false
-        
-        lat = lib_marc.first_occurance("034", "f")
-        lon = lib_marc.first_occurance("034", "d")
-    
-        lat = (lat && lat.content) ? lat.content : 0
-        lon = (lon && lon.content) ? lon.content : 0
+
+      begin
+        lib = s.marc.first_occurance("852")
+        if lib && lib.foreign_object
+          lib_marc = lib.foreign_object.marc
+          lib_marc.load_source false
+
+          lat = lib_marc.first_occurance("034", "f")
+          lon = lib_marc.first_occurance("034", "d")
+
+          lat = (lat && lat.content) ? lat.content : 0
+          lon = (lon && lon.content) ? lon.content : 0
+        end
+      rescue ActiveRecord::RecordNotFound
+        puts "Could not load marc for coordinates"
       end
-      
+
       Sunspot::Util::Coordinates.new(lat, lon)
+    end
+
+    sunspot_dsl.integer :copies, :stored => true do |s|
+      if s.holdings.count > 0
+        s.holdings.count
+      else
+        nil
+      end
     end
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
-    
+
   def check_dependencies
     if (self.child_sources.count > 0)
       errors.add :base, "The source could not be deleted because it has #{self.child_sources.count} child source(s)"
-      return false
+      throw :abort
     end
     if (self.digital_objects.count > 0)
       errors.add :base, "The source could not be deleted because it has digital objects attached"
-      return false
+      throw :abort
     end
     if (self.sources.count > 0)
       errors.add :base, "The source could not be deleted because it refers to #{self.sources.count} source(s)"
-      return false
+      throw :abort
     end
     if (self.referring_sources.count > 0)
       errors.add :base, "The source could not be deleted because it has #{self.referring_sources.count} subsequent entry(s)"
-      return false
+      throw :abort
     end
   end
-    
+
   # Method: set_object_fields
   # Parameters: none
   # Return: none
@@ -336,7 +339,7 @@ class Source < ActiveRecord::Base
   # Brings in the real data into the fields from marc structure
   # seeing as all other models are involved in x-many-x relationships and ids
   # are stored outside of the manuscripts table.
-  # 
+  #
   # Fields are:
   #  std_title
   #  std_title_d
@@ -344,7 +347,7 @@ class Source < ActiveRecord::Base
   #  composer_d
   #  ms_title
   #  ms_title_d
-  # 
+  #
   # the _d variant fields store a normalized lower case version with accents removed
   # the _d columns are used for western dictionary sorting in list forms
   def set_object_fields
@@ -355,7 +358,7 @@ class Source < ActiveRecord::Base
     ##self.id = marc_source_id if marc_source_id
     # FIXME how do we generate ids?
     #self.marc.set_id self.id
-    
+
     # parent source
     parent = marc.get_parent
     # If the 773 link is removed, clear the source_id
@@ -363,13 +366,13 @@ class Source < ActiveRecord::Base
     # source.
     @old_parent = source_id if !parent
     self.source_id = parent ? parent.id : nil
-        
+
     # std_title
     self.std_title, self.std_title_d = marc.get_std_title
-    
+
     # composer
     self.composer, self.composer_d = marc.get_composer
-    
+
     # NOTE we now decided to leave composer empty in all cases
     # when 100 is not set
     # Is composer set? if not this could be an anonymous
@@ -378,45 +381,45 @@ class Source < ActiveRecord::Base
     #end
 
     self.lib_siglum, self.shelf_mark = marc.get_siglum_and_shelf_mark
-    
+
     # ms_title for bibliographic records
     self.title, self.title_d = marc.get_source_title
-        
+
     # miscallaneous
     self.language, self.date_from, self.date_to = marc.get_miscellaneous_values
 
     self.marc_source = self.marc.to_marc
   end
-  
+
   # If this manuscript is linked with another via 774/773, update if it is our parent
   def update_77x
     # do we have a parent manuscript?
     parent_manuscript_id = marc.first_occurance("773", "w")
-    
+
     # NOTE we evaluate the strings prefixed by 00000
     # as the field may contain legacy values
-    
+
     if parent_manuscript_id
       # We have a parent manuscript in the 773
       # Open it and add, if necessary, the 774 link
-    
+
       parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
       return if !parent_manuscript
-      
+
       parent_manuscript.paper_trail_event = "Add 774 link #{id.to_s}"
-      
+
       # check if the 774 tag already exists
       parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
         subfield = tag.fetch_first_by_tag("w")
         next if !subfield || !subfield.content
         return if subfield.content.to_i == id
       end
-      
+
       # nothing found, add it in the parent manuscript
       mc = MarcConfigCache.get_configuration("source")
       w774 = MarcNode.new(@model, "774", "", mc.get_default_indicator("774"))
       w774.add_at(MarcNode.new(@model, "w", id.to_s, nil), 0 )
-      
+
       parent_manuscript.marc.root.add_at(w774, parent_manuscript.marc.get_insert_position("774") )
 
       parent_manuscript.suppress_update_77x
@@ -430,9 +433,9 @@ class Source < ActiveRecord::Base
         parent_manuscript = Source.find_by_id(@old_parent)
         return if !parent_manuscript
         modified = false
-        
+
         parent_manuscript.paper_trail_event = "Remove 774 link #{id.to_s}"
-        
+
         # check if the 774 tag already exists
         parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
           subfield = tag.fetch_first_by_tag("w")
@@ -442,30 +445,34 @@ class Source < ActiveRecord::Base
             tag.destroy_yourself
             modified = true
           end
-          
+
         end
-        
+
         if modified
           parent_manuscript.suppress_update_77x
           parent_manuscript.save
           @old_parent = nil
         end
-        
+
       end
-      
+
     end
-    
+
   end
-  
+
   def get_record_type
     MarcSource::RECORD_TYPES.key(self.record_type)
   end
-  
+
   def allow_holding?
-    return false if (self.record_type != MarcSource::RECORD_TYPES[:edition])
-    return true
+    if  (self.record_type == MarcSource::RECORD_TYPES[:edition] ||
+         self.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
+         self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition])
+      return true
+    end
+    return false
   end
-  
+
   def fix_ids
     #generate_new_id
     # If there is no marc, do not add the id
@@ -480,36 +487,45 @@ class Source < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.without_versioning :save
+      # this is the new version
+      PaperTrail.request(enabled: false) do
+        save
+      end
     end
   end
-  
-  def self.find_recent_updated(limit, user)
-    if user != -1
-      where("updated_at > ?", 5.days.ago).where("wf_owner = ?", user).limit(limit).order("updated_at DESC")
-    else
-      where("updated_at > ?", 5.days.ago).limit(limit).order("updated_at DESC") 
-    end
-  end
-  
-  def name  
+
+  def name
     "#{composer} - #{std_title}"
   end
-  
+
   def autocomplete_label
     "#{self.id}: #{self.composer} - #{self.std_title}"
   end
-  
+
   def to_marcxml
 	  marc.to_xml(updated_at, versions)
   end
-    
+
   def marc_helper_set_anonymous
     "Anonymous"
   end
 
+  def last_updated_at
+    @old_updated_at
+  end
+
+  def get_collection_holding(holding_id)
+    collection_holdings.each {|ch| return ch if ch.id == holding_id}
+    nil
+  end
+
+  def get_child_source(source_id)
+    child_sources.each {|ch| return ch if ch.id == source_id}
+    nil
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
-	ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
-	ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
-	
+  ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
+
 end

@@ -6,10 +6,11 @@ ActiveAdmin.register StandardTitle do
 
   # Remove mass-delete action
   batch_action :destroy, false
-  
+ 
   # Remove all action items
   config.clear_action_items!
-  
+  config.per_page = [10, 30, 50, 100]
+
   collection_action :autocomplete_standard_title_title, :method => :get
 
   breadcrumb do
@@ -69,7 +70,7 @@ ActiveAdmin.register StandardTitle do
     def update
       update! do |success,failure|
         success.html { redirect_to collection_path }
-        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+        failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
 
       # Run the eventual triggers
@@ -80,7 +81,7 @@ ActiveAdmin.register StandardTitle do
     # redirect create failure for preserving sidebars
     def create
       create! do |success,failure|
-        failure.html { redirect_to :back, flash: { :error => "#{I18n.t(:error_saving)}" } }
+        failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
     end
     
@@ -139,7 +140,7 @@ ActiveAdmin.register StandardTitle do
       row (I18n.t :menu_latin) { |r| r.latin }
       row (I18n.t :filter_notes) { |r| r.notes }  
     end
-    active_admin_embedded_source_list( self, standard_title, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, standard_title, !is_selection_mode? )
     active_admin_user_wf( self, standard_title )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?

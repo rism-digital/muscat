@@ -20,6 +20,18 @@
   tag_params: 
     read_only: true
   tag_header: none
+"020": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
+"022": 
+  layout: 
+    fields: 
+    - - a
+      - cols: 4
+    columns: 4
 "041": 
   layout: 
     fields: 
@@ -44,6 +56,7 @@
       - "hrv"
       - "hun"
       - "ita"
+      - "jpn"
       - "kor"
       - "lat"
       - "pol"
@@ -54,31 +67,9 @@
       - "spa"
       - "srp"
       - "swe"
+      - "zho"
       - "zxx"
-"020": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 4
-    columns: 4
-"022": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 4
-    columns: 4
-"022": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 4
-    columns: 4
-"041": 
-  layout: 
-    fields: 
-    - - a
-      - cols: 4
-    columns: 4
+
 "044": 
   layout: 
     fields: 
@@ -155,6 +146,8 @@
       - "XD-US"
       - "XD-UY"
       - "XD-VE"
+      - "XB-TW"
+      - "XD-EC"
 "100": 
   allow_new: true
   new_window: people
@@ -183,12 +176,12 @@
         # http://www.loc.gov/standards/valuelist/marcgt.html
         - "Bibliography"
         - "Catalog"
-        - "Collective catalogue"
+        - "Catalog of works"
+        - "Collective catalog"
         - "Encyclopedia"
         - "Music edition"
         - "Other"
         - "Thematic catalog"
-        - "Work catalog"
         editor_partial: subfield_select
     - - h
       - cols: 1

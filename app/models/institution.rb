@@ -12,7 +12,7 @@
 # the other standard wf_* fields are not shown.
 # The class provides the same functionality as similar models, see Catalogue
 
-class Institution < ActiveRecord::Base
+class Institution < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
@@ -26,6 +26,8 @@ class Institution < ActiveRecord::Base
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
+  has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
+  has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
   has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_institutions")
@@ -35,8 +37,8 @@ class Institution < ActiveRecord::Base
   has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
   
   has_and_belongs_to_many :holdings
-  #has_many :folder_items, :as => :item
-  has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: Delayed::Job, foreign_key: "parent_id"
+  #has_many :folder_items, as: :item, dependent: :destroy
+  has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   has_and_belongs_to_many :workgroups
   belongs_to :user, :foreign_key => "wf_owner"
   
@@ -77,7 +79,7 @@ class Institution < ActiveRecord::Base
 
   alias_attribute :id_for_fulltext, :id
 
-  enum wf_stage: [ :inprogress, :published, :deleted ]
+  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
   
 
@@ -117,7 +119,9 @@ class Institution < ActiveRecord::Base
 
       self.marc.set_id self.id
       self.marc_source = self.marc.to_marc
-      self.without_versioning :save
+      PaperTrail.request(enabled: false) do
+        save
+      end
     end
   end
   
@@ -232,8 +236,10 @@ class Institution < ActiveRecord::Base
               :join => { :from => :item_id, :to => :id })
     
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      Institution.count_by_sql("select count(*) from sources_to_institutions where institution_id = #{self[:id]}")
+      referring_sources.size + holdings.size
     end
+    sunspot_dsl.integer :wf_owner
+    sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
 
@@ -243,13 +249,14 @@ class Institution < ActiveRecord::Base
   
   def check_dependencies
     if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0
+         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.holdings.count > 0
       errors.add :base, %{The institution could not be deleted because it is used by
         #{self.referring_sources.count} sources,
         #{self.referring_institutions.count} institutions, 
-        #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people}
-      return false
+        #{self.referring_catalogues.count} catalogues, 
+        #{self.referring_people.count} people and
+        #{self.holdings.count} holdings}
+      throw :abort
     end
   end
 

@@ -16,20 +16,19 @@ class MarcHolding < Marc
 
   def description
     res = {}
-    begin
-      first_occurance("852").each do |t|
+    node = first_occurance("852")
+    if node
+      node.each do |t|
         if %w(a c q).include?(t.tag)
-          res[t.tag]=t.content
+          res[t.tag] = t.content if t.content
         end
       end
-    rescue
-      return "HOLDING WITHOUT SIGLUM"
     end
-    begin
+    if res.length > 0
       return "#{res['a']}#{" " + res['c'] if res['c']}#{" [" + res['q'] +"]" if res['q']}"
-    rescue 
-      return "HOLDING WITHOUT SIGLUM"
+    else
+      I18n.t(:holding_no_siglum)
     end
   end
-  
+
 end

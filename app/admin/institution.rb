@@ -4,9 +4,11 @@ ActiveAdmin.register Institution do
 
   # Remove mass-delete action
   batch_action :destroy, false
+  include MergeControllerActions
   
   # Remove all action items
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100]
   
   collection_action :autocomplete_institution_siglum, :method => :get
   collection_action :autocomplete_institution_name, :method => :get
@@ -116,9 +118,22 @@ ActiveAdmin.register Institution do
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Institution").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+         collection: proc {
+           if current_user.has_any_role?(:editor, :admin)
+             User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
+           else
+             [[current_user.name, "wf_owner:#{current_user.id}"]]
+           end
+         }
+  filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
+  collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
+ 
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
+    column (I18n.t :filter_wf_stage) {|institution| status_tag(institution.wf_stage,
+      label: I18n.t('status_codes.' + (institution.wf_stage != nil ? institution.wf_stage : ""), locale: :en))}  
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_siglum), :siglum
     column (I18n.t :filter_location_and_name), :name
@@ -164,7 +179,39 @@ ActiveAdmin.register Institution do
         end
       end
     end
-    active_admin_embedded_source_list( self, institution, params[:qe], params[:src_list_page], !is_selection_mode? )
+    active_admin_embedded_source_list( self, institution, !is_selection_mode? )
+    
+    # Box for people referring to this institution
+    active_admin_embedded_link_list(self, institution, Person) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_full_name), :full_name
+        context.column (I18n.t :filter_life_dates), :life_dates
+        context.column (I18n.t :filter_alternate_names), :alternate_names
+        if !is_selection_mode?
+          context.column "" do |person|
+            link_to "View", controller: :people, action: :show, id: person.id
+          end
+        end
+      end
+    end
+    
+    # Box for catalogues referring to this institution
+    active_admin_embedded_link_list(self, institution, Catalogue) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_author), :author
+        context.column (I18n.t :filter_description), :description
+        if !is_selection_mode?
+          context.column "" do |catalogue|
+            link_to "View", controller: :catalogues, action: :show, id: catalogue.id
+          end
+        end
+      end
+    end 
+    
+    active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, institution )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
