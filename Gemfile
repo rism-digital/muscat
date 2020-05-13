@@ -139,6 +139,8 @@ gem 'rsolr', '>= 1.0'
 ## For better parallel processing
 gem 'parallel'
 
+gem 'rubyzip'
+
 group :test do
   gem "rspec"
   gem 'rspec-rails', '~> 3.5'

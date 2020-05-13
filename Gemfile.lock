@@ -478,6 +478,7 @@ DEPENDENCIES
   rspec
   rspec-rails (~> 3.5)
   ruby-prof
+  rubyzip
   sass-rails
   sdoc
   selenium-webdriver
