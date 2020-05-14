@@ -33,11 +33,11 @@ module MarcControllerActions
       # @item is used in the Marc Editor
       @item = nil
       if new_marc.get_id != "__TEMP__" 
-        # To get the ID for holdings
-        if params[:controller] == "admin/holdings"
-          @item = model.find(params[:id])
-        else
+        if params[:controller] == "admin/sources"
           @item = model.find(new_marc.get_marc_source_id)
+        else
+          # To get the ID for any other Marc record
+          @item = model.find(params[:id])
         end
       end
 
