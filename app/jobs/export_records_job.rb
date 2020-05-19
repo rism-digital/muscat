@@ -97,8 +97,11 @@ private
     # Now concatenate the files together
     time = Time.now.strftime('%Y-%m-%d_%H%M%S')
     filename = "export_#{time}"
+
     File.open("#{Rails.root}/public/#{filename}.xml", "w") do |file|
-        tempfiles.each {|tf| file.write(tf.read)}
+      file.write(xml_preamble)
+      tempfiles.each {|tf| file.write(tf.read)}
+      file.write(xml_conclusion)
     end
 
     # Clean up the tempfiles
@@ -115,15 +118,30 @@ private
     update_progress_max(@getter.get_item_count)
 
     File.open("#{Rails.root}/public/#{filename}.xml", "w") do |file|
+      file.write(xml_preamble)
+
       @getter.get_items.each do |source_id|
         source = Source.find(source_id)
         file.write(source.marc.to_xml_record(nil, nil, true))
         count += 1
         update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
       end
+
+      file.write(xml_conclusion)
     end
 
     return filename
+  end
+
+  def xml_preamble
+    out = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+    out += "<!-- Exported from RISM Muscat (http://www.rism-ch.org/) Date: #{Time.now.utc} -->\n"
+    out += "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
+    return out
+  end
+
+  def xml_conclusion
+    "</marc:collection>" 
   end
 
   class FolderGetter
