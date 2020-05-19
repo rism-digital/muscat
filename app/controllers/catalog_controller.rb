@@ -149,6 +149,17 @@ class CatalogController < ApplicationController
     )
   end
   
+  def download
+    if params.include?(:email) && !params[:email].empty?
+      # run the job
+      #CatalogSearch.new("rodolfo.zitellini@rism-ch.org", "4728hamk").search(params.permit!.to_hash)
+      Delayed::Job.enqueue(ExportRecordsJob.new(:catalog, {search_params: params.permit!.to_hash}))
+      render template: "catalog_download/confirm"
+    else
+      render template: "catalog_download/download"
+    end
+  end
+
   configure_blacklight do |config|
     # default advanced config values
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
