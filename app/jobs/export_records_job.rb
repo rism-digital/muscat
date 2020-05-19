@@ -156,11 +156,7 @@ private
     end
 
     def get_items_in_range(slice, limit)
-      start = limit * slice
-      end_range = start + limit - 1
-      
-      ap "id:#{slice} #{start} #{end_range}, #{limit}"
-      @results[start..end_range]
+      @results.in_groups(MAX_PROCESSES, false)[slice]
     end
 
     def get_items
