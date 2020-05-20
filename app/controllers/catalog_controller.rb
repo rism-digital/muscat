@@ -153,7 +153,7 @@ class CatalogController < ApplicationController
     if params.include?(:email) && !params[:email].empty?
       # run the job
       #CatalogSearch.new("rodolfo.zitellini@rism-ch.org", "4728hamk").search(params.permit!.to_hash)
-      Delayed::Job.enqueue(ExportRecordsJob.new(:catalog, {search_params: params.permit!.to_hash}))
+      Delayed::Job.enqueue(ExportRecordsJob.new(:catalog, {search_params: params.permit!.to_hash, email: params[:email]}))
       render template: "catalog_download/confirm"
     else
       render template: "catalog_download/download"

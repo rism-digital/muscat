@@ -49,6 +49,10 @@ class ExportRecordsJob < ProgressJob::Base
     end
       
     File.unlink(EXPORT_PATH.join(filename + '.xml'))
+
+    # Send the user a notification
+    ExportReadyNotification.notify(@job_options[:email], filename + ".zip").deliver_now
+
   end
     
   def destroy_failed_jobs?
