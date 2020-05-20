@@ -223,7 +223,7 @@ class Marc
 	def superimpose_template(template_name = "default.marc")
 		load_source unless @loaded
 		
-    template = self.class.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/#{@model}/#{template_name}"))
+    template = self.class.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/#{@model}/#{template_name}")))
     template.load_source false
 		
 		template.all_tags.each do |tag|

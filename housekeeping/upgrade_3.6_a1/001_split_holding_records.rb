@@ -10,7 +10,7 @@ def create_holdings(source, marc)
     
     # Make a nice new holding record
     holding = Holding.new
-    new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
+    new_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
     new_marc.load_source false
     
     # Kill old 852s

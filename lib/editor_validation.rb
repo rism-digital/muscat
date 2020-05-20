@@ -12,11 +12,9 @@ class EditorValidation
     settings = Settings.new(Hash.new())
     
     profile_name = RISM::EDITOR_PROFILE != "" ? RISM::EDITOR_PROFILE : "default"
-
     file = "#{Rails.root}/config/editor_profiles/#{profile_name}/configurations/#{config}.yml"
-    if File.exists?(file)
-      settings.squeeze(Settings.new(IO.read(file)))
-    end
+    settings.squeeze(Settings.new(IO.read(ConfigFilePath.get_marc_editor_profile_path(file))))
+
     return settings
   end
     

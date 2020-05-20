@@ -82,7 +82,7 @@ ActiveAdmin.register Institution do
     def new
       @institution = Institution.new
       
-      new_marc = MarcInstitution.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/institution/default.marc"))
+      new_marc = MarcInstitution.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/institution/default.marc")))
       new_marc.load_source false # this will need to be fixed
       @institution.marc = new_marc
 
