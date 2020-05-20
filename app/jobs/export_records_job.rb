@@ -84,7 +84,12 @@ private
         count = 0
 
         @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
-          source = Source.find(source_id)
+          begin
+            source = Source.find(source_id)
+          rescue ActiveRecord::RecordNotFound
+            next
+          end
+
           tempfiles[jobid].write(source.marc.to_xml_record(nil, nil, true))
 
           # We approximante the progress by having only one process write to it
