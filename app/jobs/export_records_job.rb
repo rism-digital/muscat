@@ -64,7 +64,6 @@ class ExportRecordsJob < ProgressJob::Base
 private
 
   def export_parallel
-    limit = @getter.get_item_count / MAX_PROCESSES
     max = @getter.get_item_count
     update_progress_max(max)
 
@@ -75,19 +74,17 @@ private
     Parallel.map(0..MAX_PROCESSES - 1, in_processes: MAX_PROCESSES) do |jobid|
         ActiveRecord::Base.connection.reconnect!
         count = 0
-        # Account for rounding errors
-        #if jobid == 9
-        #  limit += max - limit * MAX_PROCESSES
-        #end
-        #f.folder_items.order(:id).limit(limit).offset(offset).each do |fi|
-        @getter.get_items_in_range(jobid, limit).each do |source_id|
+
+        @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
           source = Source.find(source_id)
           tempfiles[jobid].write(source.marc.to_xml_record(nil, nil, true))
+
           # We approximante the progress by having only one process write to it
           if jobid == 0
               count += 1
               update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
           end
+          # Force a cleanup
           source = nil
         end
         tempfiles[jobid].rewind
@@ -159,9 +156,10 @@ private
       @folder.folder_items.count
     end
 
-    def get_items_in_range(slice, limit)
-      offset = limit * slice
-      return @folder.folder_items.order(:id).limit(limit).offset(offset).collect {|fi| fi.item.id}
+    def get_items_in_range(slice, max_slices)
+      #return @folder.folder_items.order(:id).limit(limit).offset(offset).collect {|fi| fi.item.id}
+      # Every time you do something by hand, Rails has a better way
+      return @folder.folder_items.in_groups(max_slices, false)[slice].collect {|fi| fi.item.id}
     end
 
     def get_items
@@ -179,8 +177,8 @@ private
       @results.count
     end
 
-    def get_items_in_range(slice, limit)
-      @results.in_groups(MAX_PROCESSES, false)[slice]
+    def get_items_in_range(slice, max_slices)
+      @results.in_groups(max_slices, false)[slice]
     end
 
     def get_items
