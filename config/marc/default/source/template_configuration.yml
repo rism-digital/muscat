@@ -60,6 +60,7 @@ display:
 default_mapping:
   collection: "000_collection"
   source: "002_source"
+  unspecified: "002_source"
   edition_content: "013_edition_content"
   libretto_source: "004_libretto_source"
   libretto_edition: "015_libretto_edition"
