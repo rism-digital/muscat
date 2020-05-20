@@ -492,6 +492,7 @@ class MarcSource < Marc
     if !parent_object.digital_objects.empty?# && parent_object.id >= 1001000000
       parent_object.digital_objects.each do |image|
         # FIXME we should use the domain name from application.rb instead
+        next if !image || !image.attachment || !image.attachment.path #in come cases the image was reoved
         path = image.attachment.path.gsub("/path/to/the/digital/objects/directory/", "http://muscat.rism.info/")
         content = "#{image.description + ': ' rescue nil}#{path}"
         n500 = MarcNode.new(@model, "500", "", "##")

@@ -1,62 +1,65 @@
 class ExportRecordsJob < ProgressJob::Base
     
-    MAX_PROCESSES = 10
+  MAX_PROCESSES = 10
 
-    def initialize(type = :folder, options = {})
-      @type = type
-      @job_options = options
+  EXPORT_PATH = Rails.public_path.join('export')
+
+  def initialize(type = :folder, options = {})
+    @type = type
+    @job_options = options
+  end
+
+  def enqueue(job)
+    return if @type != :folder && @type != :catalog
+
+    if @type == :folder 
+      if @job_options.include?(:id)
+        job.parent_id = @job_options[:id]
+      else
+        throw "Cannot export folder without id"
+      end
+    end
+
+    job.parent_type = @type.to_s
+    job.save!
+
+  end
+  
+  def perform
+    update_stage("Starting export")
+
+    if @type == :folder
+      @getter = FolderGetter.new(@job_options[:id])
+    else
+      update_stage("Running query")
+      @getter = CatalogGetter.new(@job_options[:search_params])
+    end
+
+    if @getter.get_item_count > 500
+      filename = export_parallel
+    else
+      filename = export
     end
     
-    def enqueue(job)
-      return if @type != :folder && @type != :catalog
-  
-      if @type == :folder 
-        if @job_options.include?(:id)
-          job.parent_id = @job_options[:id]
-        else
-          throw "Cannot export folder without id"
-        end
-      end
-
-      job.parent_type = @type.to_s
-      job.save!
-  
+    # Compress it so the user soes not faint
+    Zip::File.open(EXPORT_PATH.join(filename + '.zip'), Zip::File::CREATE) do |zipfile|
+        zipfile.add(filename + '.xml', EXPORT_PATH.join(filename + '.xml'))
     end
-  
-    def perform
-      update_stage("Starting export")
-
-      if @type == :folder
-        @getter = FolderGetter.new(@job_options[:id])
-      else
-        @getter = CatalogGetter.new(@job_options[:search_params])
-      end
-
-      if @getter.get_item_count > 500
-        filename = export_parallel
-      else
-        filename = export
-      end
       
-      # Compress it so the user soes not faint
-      Zip::File.open("#{Rails.root}/public/#{filename}.zip", Zip::File::CREATE) do |zipfile|
-          zipfile.add(filename + ".xml", "#{Rails.root}/public/#{filename}.xml")
-      end
-        
-      File.unlink("#{Rails.root}/public/#{filename}.xml")
-    end
+    File.unlink(EXPORT_PATH.join(filename + '.xml'))
+  end
     
-    def destroy_failed_jobs?
-      false
-    end
-    
-    def max_attempts
-      1
-    end
-    
-    def queue_name
-      'export'
-    end
+  def destroy_failed_jobs?
+    false
+  end
+  
+  def max_attempts
+    1
+  end
+  
+  def queue_name
+    'export'
+  end
 
 private
 
@@ -95,10 +98,9 @@ private
     update_stage("Finalizing export")
 
     # Now concatenate the files together
-    time = Time.now.strftime('%Y-%m-%d_%H%M%S')
-    filename = "export_#{time}"
+    filename = create_filename
 
-    File.open("#{Rails.root}/public/#{filename}.xml", "w") do |file|
+    File.open(EXPORT_PATH.join(filename + '.xml'), "w") do |file|
       file.write(xml_preamble)
       tempfiles.each {|tf| file.write(tf.read)}
       file.write(xml_conclusion)
@@ -112,12 +114,11 @@ private
 
   def export
     count = 0
-    time = Time.now.strftime('%Y-%m-%d_%H%M%S')
-    filename = "export_#{time}"
+    filename = create_filename
 
     update_progress_max(@getter.get_item_count)
 
-    File.open("#{Rails.root}/public/#{filename}.xml", "w") do |file|
+    File.open(EXPORT_PATH.join(filename + '.xml'), "w") do |file|
       file.write(xml_preamble)
 
       @getter.get_items.each do |source_id|
@@ -131,6 +132,11 @@ private
     end
 
     return filename
+  end
+
+  def create_filename
+    time = Time.now.strftime('%Y-%m-%d-%H%M')
+    filename = "export-#{time}-" + SecureRandom.hex(4)
   end
 
   def xml_preamble
