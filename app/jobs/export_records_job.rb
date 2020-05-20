@@ -2,6 +2,8 @@ class ExportRecordsJob < ProgressJob::Base
     
   MAX_PROCESSES = 10
 
+  EXPORT_PATH = Rails.public_path.join('export')
+
   def initialize(type = :folder, options = {})
     @type = type
     @job_options = options
