@@ -9,9 +9,6 @@ gem 'rails', '>= 5.1', '< 5.2'
 # https://github.com/rails/rails/issues/21544
 gem 'mysql2'
 
-# Use sqlite3 for testing db
-gem 'sqlite3'
-
 # Use SCSS for stylesheets
 gem 'sass-rails'#, '~> 4.0.0'
 
@@ -151,4 +148,6 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  # Use sqlite3 for testing db
+  gem 'sqlite3'
 end
