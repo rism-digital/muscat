@@ -134,7 +134,7 @@ ActiveAdmin.register Holding do
       @parent_object_id = params[:source_id]
       @parent_object_type = "Source" #hardcoded for now
       
-      new_marc = MarcHolding.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
+      new_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
       new_marc.load_source false # this will need to be fixed
       @holding.marc = new_marc
 

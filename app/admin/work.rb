@@ -91,7 +91,7 @@ ActiveAdmin.register Work do
     def new
       @work = Work.new
       
-      new_marc = MarcWork.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc"))
+      new_marc = MarcWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc")))
       new_marc.load_source false # this will need to be fixed
       @work.marc = new_marc
       
