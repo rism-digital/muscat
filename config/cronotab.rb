@@ -18,7 +18,13 @@
 Crono.perform(ModificationDigestJob, :weekly).every 1.week, on: :sunday, at: "08:00"
 Crono.perform(ModificationDigestJob, :daily).every 1.day, at: "20:00"
 
-# Maintainance jobs
+# Cleanup jobs
 Crono.perform(PurgeSearchesJob).every 1.day, at: {hour: 1, min: 00}
 Crono.perform(PurgeFolderItemsJob).every 1.day, at: {hour: 3, min: 0}
+Crono.perform(ExportCleanupJob).every 1.day, at: {hour: 5, min: 0}
+
+# Maintenance and weekly report
+Crono.perform(MuscatMaintenanceJob).every 1.week, on: :sunday, at: "04:00"
 Crono.perform(MuscatCheckupReportJob).every 1.week, on: :sunday, at: "07:00"
+
+

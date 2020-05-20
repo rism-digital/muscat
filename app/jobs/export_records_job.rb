@@ -2,8 +2,6 @@ class ExportRecordsJob < ProgressJob::Base
     
   MAX_PROCESSES = 10
 
-  EXPORT_PATH = Rails.public_path.join('export')
-
   def initialize(type = :folder, options = {})
     @type = type
     @job_options = options
@@ -29,6 +27,8 @@ class ExportRecordsJob < ProgressJob::Base
     update_stage("Starting export")
 
     if @type == :folder
+      # Note: a deleted folder will crash the job
+      # We don't trap it so we have a log in the jobs
       @getter = FolderGetter.new(@job_options[:id])
     else
       update_stage("Running query")
@@ -138,7 +138,7 @@ private
 
   def xml_preamble
     out = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-    out += "<!-- Exported from RISM Muscat (http://www.rism-ch.org/) Date: #{Time.now.utc} -->\n"
+    out += "<!-- Exported from RISM Muscat (#{@type}) Date: #{Time.now.utc} -->\n"
     out += "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
     return out
   end

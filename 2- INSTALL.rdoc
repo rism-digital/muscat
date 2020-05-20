@@ -197,7 +197,7 @@ Start Apache, Solr and the related services in production mode (see below).
   
 `DelayedJob` now is a bit more tricky, as different queues get different worker pools:
 
-  sudo -u www-data RAILS_ENV=production bin/delayed_job start --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave
+  sudo -u www-data RAILS_ENV=production bin/delayed_job start --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave --pool=export
 
 Other ways to start delayed_job:
 
@@ -233,3 +233,12 @@ Add to /etc/mysql.cnf
  innodb_flush_log_at_trx_commit = 0
 
 To speed up imports. (See here for more)[https://www.percona.com/blog/2014/01/28/10-mysql-performance-tuning-settings-after-installation/]
+
+=== Lazy's man import speedup
+
+On a full muscat DB there can be many many _old versions_ in the ```versions``` table, since version snapshots are kept for each saved item.
+When doing development this can be quite annoying since it can take up to 30 minutes to restore a db.
+
+ sed '/INSERT INTO `versions`/d' muscat_dump.sql > muscat_no_versions.sql
+
+Removes all the old versions. From 30 minutes to 9.
