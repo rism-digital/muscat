@@ -1,3 +1,5 @@
+require 'zip'
+
 class ExportRecordsJob < ProgressJob::Base
     
   MAX_PROCESSES = 10
