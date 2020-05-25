@@ -91,7 +91,7 @@ ActiveAdmin.register Folder do
     end
 
     if f.folder_items.count > 25000
-      redirect_to resource_path(params[:id]), :flash => {error: I18n.t(:export_limit, scope: :folders, max: 2500, count: f.folder_items.count)}
+      redirect_to resource_path(params[:id]), :flash => {error: I18n.t(:export_limit, scope: :folders, max: 25000, count: f.folder_items.count)}
       return
     end
 
