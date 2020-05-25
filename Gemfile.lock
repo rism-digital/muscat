@@ -336,6 +336,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rdoc (6.2.0)
+    recaptcha (5.5.0)
+      json
     regexp_parser (1.6.0)
     request_store (1.5.0)
       rack (>= 1.4)
@@ -404,6 +406,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -473,6 +476,7 @@ DEPENDENCIES
   rails (>= 5.1, < 5.2)
   rails-i18n
   rails3-jquery-autocomplete!
+  recaptcha
   rolify
   rsolr (>= 1.0)
   rspec
@@ -483,6 +487,7 @@ DEPENDENCIES
   sdoc
   selenium-webdriver
   solr_wrapper (>= 0.3)
+  sqlite3
   sunspot_rails (~> 2.2)!
   sunspot_solr (~> 2.2)!
   turbolinks

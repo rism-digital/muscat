@@ -141,6 +141,9 @@ gem 'parallel'
 
 gem 'rubyzip'
 
+#For the download action
+gem "recaptcha"
+
 group :test do
   gem "rspec"
   gem 'rspec-rails', '~> 3.5'

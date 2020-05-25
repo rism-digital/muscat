@@ -81,6 +81,12 @@
 				:class => "muscat_icon_link muscat_icon_link_archive") %>
 			</li>
 		<%- end %>
+		<%- if (self.controller.respond_to? :export_folder) && (can? :edit, item) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :export_folder}", send("export_folder_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_publish") %>
+			</li>
+		<%- end %>
 	<%- else %>
 	
 		<%-

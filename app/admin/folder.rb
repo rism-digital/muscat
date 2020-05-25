@@ -75,6 +75,31 @@ ActiveAdmin.register Folder do
     redirect_to resource_path(params[:id]), notice: "Unpublish Job started #{job.id}"
   end
  
+  ## Shows a page so the user can select the folder name
+  member_action :export_folder, :method => :get do
+    begin
+      f = Folder.find(params[:id])
+    rescue
+      # This should really never happen
+      redirect_to collection_path, :flash => {error: "Folder #{params[:id]} does not exit"}
+      return
+    end
+
+    if !f.folder_items || f.folder_items.empty?
+      redirect_to resource_path(params[:id]), :flash => {error: "The folder contains no items."}
+      return
+    end
+
+    if f.folder_items.count > 30000
+      redirect_to resource_path(params[:id]), :flash => {error: "The limit on exportable items is 30000, this folder contains #{f.folder_items.count} items."}
+      return
+    end
+
+    job = Delayed::Job.enqueue(ExportRecordsJob.new(:folder, {id: params[:id]}))
+    redirect_to resource_path(params[:id]), notice: "An email will be sent to #{current_user.email} with the download link (Export job id: #{job.id})."
+
+  end 
+
   ###########
   ## Index ##
   ###########
