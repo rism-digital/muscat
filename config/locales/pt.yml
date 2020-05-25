@@ -358,6 +358,7 @@ pt:
   archive_unarchive: "Arquivar / desarquivar"
   archive: "Arquivar"
   unarchive: "Desarquivar"
+  export_folder: "Exportar a pasta em MarcXML"
   
   # Editor sidebar
   show_all_groups: "Mostrar todas as seções"
@@ -391,6 +392,14 @@ pt:
     added: "Adicionados %{count}  itens na Pasta %{name}."
     added_bg: "Itens adicionados à pasta, trabalho %{job} na fila."
     success_bg: "Pasta %{name} criada, trabalho %{job} na fila."
+    items: "Elementos"
+    export_started: "Foi enviado um e-mail contendo o link para download para %{email} (Export job id: %{job})."
+    export_limit: "O número máximo de itens descarregáveis é %{max}, enquanto esta pasta contém %{count} de itens."
+    folder_empty: "A pasta está vazia"
+    not_found: "A pasta %{id} é inexistente."
+    publish_job: "Início do Job de publicação (id: %{id})"
+    unpublish_job: "Início do Job de cancelamento da publicação (id: %{id})"
+    reindex_job: "Início do trabalho de reindexação (id: %{id})"
 
   ### Digital objects
   digital_objects: "Imagens"

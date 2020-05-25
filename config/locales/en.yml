@@ -361,6 +361,7 @@ en:
   archive_unarchive: "Archive / un-archive"
   archive: "Archive"
   unarchive: "Un-archive"
+  export_folder: "Export Folder as MarcXML"
   
   # Editor sidebar
   show_all_groups: "Show all sections"
@@ -394,6 +395,14 @@ en:
     added: "Added %{count} items to Folder %{name}."
     added_bg: "Added items to folder, job %{job} enqueued."
     success_bg: "Folder %{name} created, job %{job} enqueued."
+    items: "Items"
+    export_started: "An email will be sent to %{email} with the download link (Export job id: %{job})."
+    export_limit: "The limit on exportable items is %{max}, this folder contains %{count} items."
+    folder_empty: "Folder contains no items"
+    not_found: "Folder %{id} does not exist"
+    publish_job: "Publish job started (id: %{id})"
+    unpublish_job: "Unpublish job started (id: %{id})"
+    reindex_job: "Reindex job started (id: %{id})"
 
   ### Digital objects
   digital_objects: "Images"

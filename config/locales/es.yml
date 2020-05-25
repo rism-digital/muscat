@@ -362,6 +362,7 @@ es:
   archive_unarchive: "Archivar / desarchivar"
   archive: "Archivar"
   unarchive: "Desarchivar"
+  export_folder: "Exportar la carpeta en formato MarcXML"
   
   # Editor sidebar
   show_all_groups: "Mostrar todas las secciones"
@@ -395,6 +396,14 @@ es:
     added: "Se han añadido %{count} ítems a la carpeta %{name}."
     added_bg: "Se han añadido los ítems a la carpeta, tarea %{job} pendiente."
     success_bg: "Carpeta %{name} creada, tarea %{job} pendiente."
+    items: "Elementos"
+    export_started: "Se ha enviado un correo electrónico con el enlace de descarga a %{email}. (Export job id: %{job})."
+    export_limit: "El número máximo de elementos descargables es %{max}, mientras que esta carpeta contiene %{count} de elementos."
+    folder_empty: "La carpeta está vacía"
+    not_found: "La carpeta %{id} es inexistente"
+    publish_job: "El Job de publicación comenzó (id: %{id})"
+    unpublish_job: "El Job de cancelación de la publicación comenzó (id: %{id})"
+    reindex_job: "El Job de reindexación comenzó (id: %{id})"
 
   ### Digital objects
   digital_objects: "Imágenes"

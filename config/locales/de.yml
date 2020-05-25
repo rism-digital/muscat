@@ -361,6 +361,8 @@ de:
   archive_unarchive: "Archivieren / Dearchivieren"
   archive: "Archivieren"
   unarchive: "Dearchivieren"
+  export_folder: "Ordner als MarcXML exportieren"
+
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -394,6 +396,14 @@ de:
     added: "%{count} Einträge zum Ordner %{name} hinzugefügt."
     added_bg: "Einträge in den Ordner hinzugefügt, Auftrag %{job} in Warteschleife."
     success_bg: "Ordner %{name} erstellt, Auftrag %{job} in Warteschleife."
+    items: "Einträge"
+    export_started: "Es wird eine E-Mail mit dem Download-Link an %{email} geschickt (Export job id: %{job})."
+    export_limit: "Die Grenze für exportierbare Elemente ist %{max}, dieser Ordner enthält %{count} Elemente."
+    folder_empty: "Ordner enthält keine Elemente"
+    not_found: "Ordner %{id} existiert nicht"
+    publish_job: "Job der Veröffentlichung gestartet (id: %{id})"
+    unpublish_job: "Job der Unveröffentlichung gestartet (id: %{id})"
+    reindex_job: "Neuindizierung begonnen (id: %{id})"
 
   ### Digital objects
   digital_objects: "Bild"

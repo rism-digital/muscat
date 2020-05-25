@@ -361,6 +361,8 @@ fr:
   archive_unarchive: "Archiver / désarchiver"
   archive: "Archiver"
   unarchive: "Désarchiver"
+  export_folder: "Exporter le dossier en MarcXML"
+
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"
@@ -394,6 +396,14 @@ fr:
     added: "%{COUNT} éléments ajoutés au dossier %{NAME}."
     added_bg: "Eléments ajoutés au dossier, tâche %{JOB} ajoutée à la queue."
     success_bg: "Dossier %{NAME} créé, tâche %{JOB} ajoutée à la queue."
+    items: "Éléments"
+    export_started: "Un courriel contenant le lien de téléchargement a été envoyé à %{email} (Export job id: %{job})."
+    export_limit: "Le nombre maximal d'éléments téléchargeables est de %{max}, alors que ce dossier contient %{count} éléments."
+    folder_empty: "Le dossier est vide"
+    not_found: "Le dossier %{id} est inexistant"
+    publish_job: "Début du Job de publication (id: %{id})"
+    unpublish_job: "Début du Job d'annulation de la publication (id: %{id})"
+    reindex_job: "Réindexation Job commencé (id: %{id})"
   
   ### Digital objects
   digital_objects: "Images"
