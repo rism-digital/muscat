@@ -95,7 +95,7 @@ ActiveAdmin.register Folder do
       return
     end
 
-    job = Delayed::Job.enqueue(ExportRecordsJob.new(:folder, {id: params[:id]}))
+    job = Delayed::Job.enqueue(ExportRecordsJob.new(:folder, {id: params[:id], email: current_user.email}))
     redirect_to resource_path(params[:id]), notice: I18n.t(:export_started, scope: :folders, email: current_user.email, job: job.id)
   end 
 
