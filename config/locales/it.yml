@@ -399,7 +399,7 @@ it:
     added_bg: "Aggiunti elementi, job %{job} in coda."
     success_bg: "Creata cartella %{name}, job %{job} in coda."
     items: "Elementi"
-    export_started: "Una email contenente il link per lo scaricamento è stata inviata a %{email} (Export job id: %{job})."
+    export_started: "Una email contenente il link per lo scaricamento sarà inviata a %{email} (Export job id: %{job})."
     export_limit: "Il numero massimo di elementi scaricabili è %{max}, mentre questa cartella contiene %{count} elementi."
     folder_empty: "La cartella è vuota"
     not_found: "La cartella %{id} è inesistente"
