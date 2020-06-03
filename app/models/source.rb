@@ -490,6 +490,24 @@ class Source < ApplicationRecord
     nil
   end
 
+  def siglum_matches?(siglum)
+    if self.record_type == MarcSource::RECORD_TYPES[:edition]
+      holdings.each do |h|
+        return true if h.lib_siglum.downcase.start_with? siglum.downcase
+      end
+    elsif self.record_type == MarcSource::RECORD_TYPES[:edition_content]
+      puts "Edition content #{self.id} has no parent" if !self.parent_source
+      return false if !self.parent_source
+      self.parent_source.holdings.each do |h|
+        return true if h.lib_siglum.downcase.start_with? siglum.downcase
+      end
+    else
+      return true if lib_siglum.downcase.start_with? siglum.downcase
+    end
+
+    false
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end

@@ -20,9 +20,14 @@ class Folder < ApplicationRecord
   end
 
   def is_published?
-    content.pluck(:wf_stage).each do |e| 
-      return false if e == "inprogress"
-    end
+    relation = folder_type.pluralize.underscore.downcase
+    #if folder_type == "Source"
+    return false if folder_items.joins("INNER JOIN #{relation} ON folder_items.item_id = #{relation}.id").where("#{relation}.wf_stage = 0").count > 0
+    #else
+    #  content.pluck(:wf_stage).each do |e| 
+    #    return false if e == "inprogress"
+    #  end
+    #end
     return true
   end
 
