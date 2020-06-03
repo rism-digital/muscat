@@ -115,10 +115,8 @@ class EditorValidation
       # load global configurations
       @squeezed_profiles = Array.new
     
-      profile_name = RISM::EDITOR_PROFILE != "" ? RISM::EDITOR_PROFILE : "default"
-    
       # Load local configurations
-      file = "#{Rails.root}/config/editor_profiles/#{profile_name}/profiles.yml"
+      file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/profiles.yml")
 
       configurations = YAML::load(IO.read(file))
       configurations.each do |conf|
