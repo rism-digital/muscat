@@ -15,7 +15,7 @@ class TriggerNotifyJob < ProgressJob::Base
   def perform
     return if !@object
 
-    User.where(notification_type: :each).each do |user|
+    User.where(notification_type: :every).each do |user|
       matcher = NotificationMatcher.new(@object, user)
 
       if matcher.matches?
