@@ -482,6 +482,8 @@ CSV::foreach("housekeeping/ch_composite/composites.csv", col_sep: "\t", headers:
 end
 
 composites.each do |id, elements|
+    ms_count = 0
+    pr_count = 0
     ordering = []
     collection = Source.find(id)
     #next if collection.id != 400102853
@@ -518,8 +520,24 @@ composites.each do |id, elements|
             w774.add_at(MarcNode.new("source", "4", "holding", nil), 0 ) if order[:type] && order[:type] == Holding
             w774.sort_alphabetically
             collection.marc.root.add_at(w774, collection.marc.get_insert_position("774") )
+
+            if order[:type] == Holding
+                pr_count += 1
+            else
+                ms_count += 1
+            end
         end
     end
+
+    if pr_count == 0
+        txt = "Composite volume with #{ms_count} manuscript copies"
+    elsif ms_count == 0
+        txt = "Composite volume with #{pr_count} printed music editions"
+    else
+        txt = "Composite volume with #{pr_count}  printed music editions and #{ms_count} manuscript copies"
+    end
+
+    insert_single_marc_tag(collection.marc, "520", "a", txt)
 
     # move the holding record if any to the composite
     if collection.holdings.count > 0
