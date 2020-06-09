@@ -539,6 +539,8 @@ composites.each do |id, elements|
 
     insert_single_marc_tag(collection.marc, "520", "a", txt)
 
+    insert_single_marc_tag(collection.marc, "240", "a", "#{ms_count + pr_count} items")
+
     # move the holding record if any to the composite
     if collection.holdings.count > 0
         puts "WARNING multiple holdings in #{collection.id}" if collection.holdings.count > 1
