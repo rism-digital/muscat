@@ -578,8 +578,8 @@ composites.each do |id, ignore|
         new_marc = MarcSource.new(s.marc_source)
         new_marc.load_source false
         new_marc.import
-
         s.marc = new_marc
+        s.record_type = MarcSource::RECORD_TYPES[:composite_volume]
         s.save
 end
     
