@@ -27,6 +27,7 @@ def tag_contains_value(marctag, subtag, value)
 end
 
 def copy_tag(marc, new_marc, tag, new_tag_name = nil)
+    new_tag = nil
     marc.by_tags(tag).each do |old_tag|            
         new_tag = old_tag.deep_copy
         if new_tag_name
@@ -34,6 +35,7 @@ def copy_tag(marc, new_marc, tag, new_tag_name = nil)
         end
         new_marc.root.children.insert(new_marc.get_insert_position(new_tag.tag), new_tag)
     end
+    return new_tag
 end
 
 def move_tag_with_subtag(marc, new_marc, tag, subtag, subtag_val)
@@ -537,9 +539,17 @@ composites.each do |id, elements|
         txt = "Composite volume with #{pr_count}  printed music editions and #{ms_count} manuscript copies"
     end
 
-    insert_single_marc_tag(collection.marc, "520", "a", txt)
+    # Backup the old 240
+    t = copy_tag(collection.marc, collection.marc, "240", "599")
+    st = t.fetch_first_by_tag("0") if t
+    st.destroy_yourself if st
 
+    remove_marc_tag(collection.marc, "240")
+    # Add the new proper one
+    insert_single_marc_tag(collection.marc, "520", "a", txt)
     insert_single_marc_tag(collection.marc, "240", "a", "#{ms_count + pr_count} items")
+    copy_tag(collection.marc, collection.marc, "100", "700")
+    remove_marc_tag(collection.marc, "100")
 
     # move the holding record if any to the composite
     if collection.holdings.count > 0
@@ -559,5 +569,17 @@ composites.each do |id, elements|
     # make it a composite volume
     collection.record_type = MarcSource::RECORD_TYPES[:composite_volume]
     collection.save
-
 end
+
+composites.each do |id, ignore|
+        # Second pass!
+        s = Source.find(id) ## avoid cached values
+        s.marc.load_source true
+        new_marc = MarcSource.new(s.marc_source)
+        new_marc.load_source false
+        new_marc.import
+
+        s.marc = new_marc
+        s.save
+end
+    
