@@ -19,18 +19,18 @@ class CatalogUkController < CatalogController
       :"q.alt" => "*:*",
       :rows => 20,
       :defType => 'edismax',
-      :fq => "type:Source wf_stage_s:published 852a_facet_sm:UK*",
+      :fq => "type:Source wf_stage_s:published 852a_facet_sm:GB*",
       :hl => 'false',
       :"hl.simple.pre" => '<span class="highlight">',
       :"hl.simple.post" => "</span>",
       :"facet.mincount" => 1,
     }
     config.ciao
-    config.add_facet_field '852a_facet_sm', :label => :filter_lib_siglum, :limit => 10, :override => true, solr_params: { 'facet.prefix' => 'UK' }
+    config.add_facet_field '852a_facet_sm', :label => :filter_lib_siglum, :limit => 10, :override => true, solr_params: { 'facet.prefix' => 'GB' }
   end
 
   def holding_filter
-    "UK"
+    "GB"
   end
   helper_method :holding_filter
 end 
