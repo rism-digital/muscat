@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'catalog_uk/holding' => 'catalog#holding'
   get "catalog/download_xslt" => 'catalog#download_xslt'
   get 'catalog/download' => 'catalog#download'
+  get 'catalog_uk/download' => 'catalog#download'
+  get 'catalog_ch/download' => 'catalog#download'
 
   ##############################
   ### Blacklight 6 configuration

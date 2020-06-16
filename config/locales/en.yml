@@ -717,7 +717,7 @@ en:
   incipit_search:
     incipit_search: "Incipit Search"
     query_type: "Query Type:"
-    exact_pitch: "Exact Pitch (Exact Match)"
+    exact_pitch: "Exact Pitch Name"
     interval: "Interval"
     refined_pitch: "Refined Pitch Contour"
     gross_pitch: "Gross Pitch Contour (Fuzziest match)"
