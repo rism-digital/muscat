@@ -694,17 +694,6 @@
       - :occurrences: "?"
     - - r
       - :occurrences: "?"
-  "740":
-     :master: "a"
-     :indicator: "0#"
-     :occurrences: "*"
-     :fields:
-     - - a
-       - :occurrences: "?"
-     - - n
-       - :occurrences: "*"
-     - - p
-       - :occurrences: "*"
   "773":
     :master: w
     :indicator: "18"
