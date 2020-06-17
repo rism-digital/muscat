@@ -729,6 +729,7 @@ de:
   # This is used for the "incipit" seach in the search history in BL
   # Note the capital 'I'
   Incipit: "Incipit"
+  Images: "Bilder"
 
   cookies:
     message: "Unsere Website verwendet Cookies, um Ihre Browser-Erfahrung zu verbessern. Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu."

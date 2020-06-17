@@ -724,6 +724,7 @@ pt:
   # This is used for the "incipit" seach in the search history in BL
   # Note the capital 'I'
   Incipit: "Incipit"
+  Images: "Imagens"
 
   cookies:
     message: "osso sítio web usa cookies para tornar sua navegação melhor. Ao utilizá-lo, o usuário está de acordo com o uso de cookies."
