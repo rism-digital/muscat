@@ -728,6 +728,14 @@ en:
   # Note the capital 'I'
   Incipit: "Incipit"
   Images: "Images"
+  "Standardized title": "Standardized Title"
+  Composer: "Composer"
+  "Source Type": "Source Type"
+  Scoring: "Scoring"
+  Date: "Date"
+  "Library siglum": "Library siglum"
+  Subject: "Subject"
+  "Number of printed copies": "Number of printed copies"
 
   cookies:
     message: "Our website uses cookies to make your browsing experience better. By using our site you agree to our use of cookies."

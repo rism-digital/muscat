@@ -730,6 +730,14 @@ fr:
   # Note the capital 'I'
   Incipit: "Incipit"
   Images: "Images"
+  "Standardized title": "Titre uniforme"
+  Composer: "Compositeur"
+  "Source Type": "Type de source"
+  Scoring: "Distribution"
+  Date: "Date"
+  "Library siglum": "Sigle de bibliothèque"
+  Subject: "Sujet"
+  "Number of printed copies": "Nombre d'exemplaires imprimés"
 
   cookies:
     message: "Notre site utilise des cookies pour améliorer votre expérience de navigation. En utilisant notre site, vous acceptez notre utilisation des cookies."

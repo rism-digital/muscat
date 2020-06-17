@@ -729,6 +729,14 @@ es:
   # Note the capital 'I'
   Incipit: "Íncipit"
   Images: "Imágenes"
+  "Standardized title": "Título uniforme"
+  Composer: "Compositor"
+  "Source Type": "Tipo de fuente"
+  Scoring: "Orgánico"
+  Date: "Fecha"
+  "Library siglum": "Sigla de la biblioteca"
+  Subject: "Sujeto"
+  "Number of printed copies": "Número de copias impresas"
 
   cookies:
     message: "Nuestro sitio web utiliza cookies para mejorar su experiencia de navegación. Al usar nuestro sitio, Ud. manifiesta su conformidad con el uso de cookies."
