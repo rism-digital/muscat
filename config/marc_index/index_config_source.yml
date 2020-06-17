@@ -199,7 +199,6 @@ fields:
   "730o":
   "730p":
   "730r":
-  "740a":
   "752a":
   "752d":
   "773w":
@@ -237,12 +236,3 @@ fields:
   "856x":
       :type: string
   "856z":
-  "740_autocomplete":
-      :index_processor_helper: marc_create_aggregated_text
-      :tags:
-          :740: "a"
-          :730: "a"
-          :240: "a"
-          :130: "a"
-      :store: true
-      :type: string

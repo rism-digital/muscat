@@ -866,16 +866,6 @@
       - "6byz"
       - "7byz"
       - "8byz"
-"740":
-  layout: 
-    fields: 
-    - - a
-      - type: source_solr
-        field: value
-        editor_partial: subfield_secondary
-        allow_new: true
-    - - n
-    - - p
 "773":
   new_window: sources
   record_type_helper: get_allowed_record_type

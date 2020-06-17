@@ -45,7 +45,6 @@ groups:
   show_content: 
     all_tags: 
     - "031"
-    - "740"
     all_tag_templates: 
       "031": marc_show/show_incipit
   

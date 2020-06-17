@@ -2124,39 +2124,6 @@ doc_record_status:
         en: Key
         pt: Tonalidade
         es: Tonalidad
-"740": 
-  label: 
-    it: Testo
-    fr: Texte
-    de: Text
-    en: Text
-    pt: Texto
-    es: Texto
-  fields: 
-    a: 
-      label: 
-        it: Testo
-        fr: Texte
-        de: Text
-        en: Text
-        pt: "Incipit literário"
-        es: "Íncipit literario"
-    n: 
-      label: 
-        it: Atto o sezione, intestazione
-        fr: "Numéro de la partie ou section"
-        de: "Aktnummer/Fundstelle, Überschrift"
-        en: Number of part or section
-        pt: "Número de parte ou seção"
-        es: "Número de parte o sección"
-    p: 
-      label: 
-        it: Denominazione della parte o sezione
-        fr: Nom de la partie ou section
-        de: Name des Werkteils
-        en: Name of part or section
-        pt: "Nome de parte ou seção"
-        es: "Número de parte o sección"
 "774": 
   label: 
     it: Singoli oggetti nella fonte
