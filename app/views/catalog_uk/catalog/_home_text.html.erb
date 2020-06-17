@@ -1,0 +1,32 @@
+<!-- Overridded to customize welcom page -->
+
+<div style="float: right; margin: 25px 0px 10px 30px;" class="hidden-sm hidden-xs">
+    <img src="/images/magnifier.jpg" alt="magnifier">
+</div>
+
+<h3 class="welcome">RISM UK Catalog</h3>
+
+<% if MuscatProcess.is_reindexing? %>
+<h2>Muscat is reindexing! Results may be incomplete</h2>
+<%end%>
+
+<%if AutoUpdateVersion::LATEST%>
+<h6>Latest update: <%=AutoUpdateVersion::LATEST%></h6>
+<%end%>
+
+<p>
+    The simple search mode is the easiest way to start a search. Because the search is performed in all fields, the method produces often a long list of results. If you start your search from there, you will be able to refine your search by adding criteria directly in the result page.
+</p>
+
+<p class="welcome-tip">A search with more than one word will give as result only the sources that match <strong>all</strong> the criteria. However, the words do not have to be in the same field.</p>
+
+<p class="welcome-tip">Phrases, or expressions, can be given between quotes: for example <strong>"benedictus dominus"</strong>.</p>
+
+<p class="welcome-tip">All the different options can be combined. For example <strong>"Ave Maria" CH-E</strong> matches all the sources of the Einsiedeln monastery library with <em>Ave Maria</em>.</p>
+
+<p class="welcome-tip">For non ASCII characters, such as Cyrillic words, the search works as long as both versions (original and transliterated) were entered in the database. For example <strong>kalinka</strong> and <strong>калинка</strong> will return the same results.</p>
+
+
+<h4>Advanced search</h4>
+
+<p>The <a href="/advanced">advanced search</a> enables you to quickly find results when you already have an idea of what you are searching in the database</p>

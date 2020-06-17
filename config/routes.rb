@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   get 'catalog/geosearch/:id' => 'catalog#geosearch'
   post 'catalog/holding' => 'catalog#holding'
   post 'catalog_ch/holding' => 'catalog#holding'
+  post 'catalog_uk/holding' => 'catalog#holding'
   get "catalog/download_xslt" => 'catalog#download_xslt'
   get 'catalog/download' => 'catalog#download'
+  get 'catalog_uk/download' => 'catalog#download'
+  get 'catalog_ch/download' => 'catalog#download'
 
   ##############################
   ### Blacklight 6 configuration
@@ -19,6 +22,8 @@ Rails.application.routes.draw do
 
   get 'catalog_ch/:id/facet' => 'catalog_ch#facet'
   get 'catalog_ch/suggest' => 'catalog_ch#suggest'
+  get 'catalog_uk/:id/facet' => 'catalog_uk#facet'
+  get 'catalog_uk/suggest' => 'catalog_uk#suggest'
 
   concern :searchable, Blacklight::Routes::Searchable.new
   concern :exportable, Blacklight::Routes::Exportable.new
@@ -36,6 +41,16 @@ Rails.application.routes.draw do
   end
 
   resources :catalog_ch, only: [:show], as: 'catalog_ch', path: '/catalog_ch', controller: 'catalog_ch' do
+    concerns :exportable
+  end
+
+  resource :catalog_uk, only: [:index], as: 'catalog_uk', path: '/catalog_uk', controller: 'catalog_uk' do
+    concerns :searchable
+    concerns :range_searchable
+    concerns :exportable
+  end
+
+  resources :catalog_uk, only: [:show], as: 'catalog_uk', path: '/catalog_uk', controller: 'catalog_uk' do
     concerns :exportable
   end
 
