@@ -789,10 +789,12 @@ en:
     "2": "MSR"
     "3": "SUB"
     "4": "LSR"
-    "5": "LEC"
+    "5": "LED"
     "6": "TSR"
-    "7": "TEC"
+    "7": "TED"
     "8": "EDT"
+    "9": "LEC"
+    "10": "TEC"
     "11": "CMP"
     
   status_codes:
