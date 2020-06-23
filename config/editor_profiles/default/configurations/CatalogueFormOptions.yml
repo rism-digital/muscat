@@ -156,6 +156,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
 "210": 
   layout: 
     fields: 
@@ -253,6 +254,7 @@
     - - a
       - type: standard_term
         editor_partial: subfield_secondary
+        allow_new: true
 "651": 
   allow_new: true
   new_window: places
@@ -261,6 +263,7 @@
     - - a
       - type: place
         editor_partial: subfield_secondary
+        allow_new: true
 "700":
   allow_new: true
   new_window: people
@@ -269,6 +272,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
     - - "4"
       - editor_partial: subfield_select_codes
   tag_params: 
@@ -302,6 +306,7 @@
     - - t
       - type: catalogue
         editor_partial: subfield_secondary
+        allow_new: true
     - - g     
 
 "780": 
