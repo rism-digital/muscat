@@ -15,6 +15,7 @@
 		<%= hidden_field_tag 'parent_object_type', @parent_object_type if @parent_object_type -%>
 		<%= hidden_field_tag 'lock_version', @item.lock_version if @item.lock_version -%>
         <%= hidden_field_tag 'record_type', @item.record_type if (@item.respond_to? :record_type) && @item.record_type -%>
+		<%= hidden_field_tag 'user_skip_validation', @current_user.has_role?(:editor) || @current_user.has_role?(:admin) ? "True" : "False" -%>
 		<%- groups.each do |group| -%>
 			<%= render :partial => @editor_profile.get_group_partial(group), 
 				:locals => { :render_panel => render_panel , :group => group } -%>
