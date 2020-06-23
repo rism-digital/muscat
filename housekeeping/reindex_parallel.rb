@@ -6,7 +6,7 @@ Pathname.new(REINDEX_PIDFILE).write(Process.pid)
 @reminder = @source_count - (@sources_per_chunk * @parallel_jobs)
 
 begin_time = Time.now
-puts "Reindexing #{@source_count} sources in #{@parallel_jobs} processes with a reminder of #{@reminder} (#{@sources_per_chunk}) per chunk)"
+puts "Reindexing #{@source_count} sources in #{@parallel_jobs} processes with a reminder of #{@reminder} (#{@sources_per_chunk} per chunk)"
 
 results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |jobid|
     offset = @sources_per_chunk * jobid
@@ -27,7 +27,7 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
             puts "Could not load #{sid.id}: #{e.exception}"
             e_count += 1
         end
-        
+
     end
     [count, e_count]
 end
