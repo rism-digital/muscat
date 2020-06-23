@@ -80,7 +80,7 @@ tag_exclude:
   - '594'
   - '596'
   - '598'
-  - '774'
+  - '773'
   - '787'
   - '852'
   libretto_edition_content:
@@ -118,6 +118,7 @@ tag_exclude:
   - '657'
   - '690'
   - '772'
+  - '773'
   - '787'
   - '852'
   theoretica_edition_content:
