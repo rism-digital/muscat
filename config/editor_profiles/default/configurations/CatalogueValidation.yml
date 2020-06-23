@@ -11,3 +11,13 @@ client:
   "337":
     tags:
       a: required, warning
+  "856": 
+    tags:
+      u:
+        begins_with: "http"
+      z:
+        required_if:
+          "856": "u"
+      x:
+        required_if:
+          "856": "u"
