@@ -83,6 +83,13 @@ tag_exclude:
   - '774'
   - '787'
   - '852'
+  libretto_edition_content:
+  - '506'
+  - '541'
+  - '561'
+  - '591'
+  - '774'
+  - '852'
   theoretica_source:
   - '563'
   - '588'
@@ -112,6 +119,13 @@ tag_exclude:
   - '690'
   - '772'
   - '787'
+  - '852'
+  theoretica_edition_content:
+  - '506'
+  - '541'
+  - '561'
+  - '591'
+  - '774'
   - '852'
   composite_volume:
   - '026'
