@@ -363,28 +363,16 @@ class MarcSource < Marc
   def to_external(updated_at = nil, versions = nil, holdings = true)
     super(updated_at, versions)
     parent_object = Source.find(get_id)
-    # See #176
-    # Step 1, rmake leader
-    # collection, if we have prints only (......cc...............) or not (......dc...............)
+    # See #933, supersedes #176
+    # Step 1, make leader
     # manuscript and print, if it is part of a collection (......[cd]d...............) or not (......[cd]m...............)
 
     base_leader = "00000nXX#a2200000#u#4500"
 
-    if ((@record_type == RECORD_TYPES[:collection]) || (@record_type == RECORD_TYPES[:edition]))
-      type = "cc"
-      
-      each_by_tag("774") do |t|
-        w = t.fetch_first_by_tag("w")
-        if w && w.content
-          source = Source.find(w.content) rescue next
-          type = "dc" if source.record_type != RECORD_TYPES[:edition_content]
-          t.add_at(MarcNode.new(@model, "a", source.name, nil), 0)
-        else
-          raise "Empty $w in 774"
-        end
-      end
-      
-      leader = base_leader.gsub("XX", type)
+    if (@record_type == RECORD_TYPES[:collection])
+      leader = base_leader.gsub("XX", "dc")
+    elsif (@record_type == RECORD_TYPES[:edition])
+      leader = base_leader.gsub("XX", "cc")
     elsif @record_type == RECORD_TYPES[:composite_volume]
       leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
