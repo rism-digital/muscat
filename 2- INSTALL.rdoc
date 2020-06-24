@@ -136,6 +136,9 @@ This will automatically create credentials.yml.enc and the master key, along wit
    password: "xx"
 
 The user and password are needed for background search and export, and should be a muscat user with minimum guest access.
+Remember that they key must be readable from the user running apache, so check the permissions and change the user is needed:
+
+ chown www-data:www-data config/master.key
 
 === Development Startup
 
@@ -237,7 +240,6 @@ Also it is goot to block access to SOLR:
 == Add clean up in crontab for blacklight
 
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
-
 
 == Some MySQL optimizations
 
