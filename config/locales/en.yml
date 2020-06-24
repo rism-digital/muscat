@@ -717,7 +717,7 @@ en:
   incipit_search:
     incipit_search: "Incipit Search"
     query_type: "Query Type:"
-    exact_pitch: "Exact Pitch (Exact Match)"
+    exact_pitch: "Exact Pitch Name"
     interval: "Interval"
     refined_pitch: "Refined Pitch Contour"
     gross_pitch: "Gross Pitch Contour (Fuzziest match)"
@@ -727,6 +727,15 @@ en:
   # This is used for the "incipit" seach in the search history in BL
   # Note the capital 'I'
   Incipit: "Incipit"
+  Images: "Images"
+  "Standardized title": "Standardized Title"
+  Composer: "Composer"
+  "Source Type": "Source Type"
+  Scoring: "Scoring"
+  Date: "Date"
+  "Library siglum": "Library siglum"
+  Subject: "Subject"
+  "Number of printed copies": "Number of printed copies"
 
   cookies:
     message: "Our website uses cookies to make your browsing experience better. By using our site you agree to our use of cookies."
@@ -780,10 +789,12 @@ en:
     "2": "MSR"
     "3": "SUB"
     "4": "LSR"
-    "5": "LEC"
+    "5": "LED"
     "6": "TSR"
-    "7": "TEC"
+    "7": "TED"
     "8": "EDT"
+    "9": "LEC"
+    "10": "TEC"
     "11": "CMP"
     
   status_codes:

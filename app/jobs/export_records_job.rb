@@ -182,7 +182,7 @@ private
 
   class CatalogGetter
     def initialize(search_params)
-      @catalog_search = CatalogSearch.new(EXPORT_USER, EXPORT_PASS)
+      @catalog_search = CatalogSearch.new(Rails.application.credentials.export[:user], Rails.application.credentials.export[:password])
       @results = @catalog_search.search(search_params)
     end
 

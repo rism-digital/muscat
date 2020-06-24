@@ -116,7 +116,7 @@ ActiveAdmin.register User do
       if can? :update, User
         ## size does not work unless there is a dummy class. Hooray!
         f.input :notifications, :input_html => { :class => 'placeholder', :rows => 2, :style => 'width:50%'}
-        f.input :notification_type, as: :select, multiple: false, collection: [:each, :daily, :weekly]
+        f.input :notification_type, as: :select, multiple: false, collection: [:every, :daily, :weekly]
       end
       if can? :manage, User
         f.input :password

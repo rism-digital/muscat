@@ -1,19 +1,25 @@
 Pathname.new(REINDEX_PIDFILE).write(Process.pid)
 
 @parallel_jobs = 10
-@all_src = Source.all.count
-@limit = @all_src / @parallel_jobs
+@source_count = Source.all.count
+@sources_per_chunk = @source_count / @parallel_jobs
+@reminder = @source_count - (@sources_per_chunk * @parallel_jobs)
 
 begin_time = Time.now
-puts "Reindexing #{@all_src} in #{@parallel_jobs} processes"
+puts "Reindexing #{@source_count} sources in #{@parallel_jobs} processes with a reminder of #{@reminder} (#{@sources_per_chunk} per chunk)"
 
 results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |jobid|
-    offset = @limit * jobid
+    offset = @sources_per_chunk * jobid
+
+    limit = @sources_per_chunk
+    # On the last job add the reminder
+    limit += @reminder if jobid == @parallel_jobs - 1
+
     count = 0
     e_count = 0
-    Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
+    Source.order(:id).limit(limit).offset(offset).select(:id).each do |sid|
         s = Source.find(sid.id)
-    
+
         begin
             Sunspot.index s
             count += 1
@@ -21,6 +27,7 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
             puts "Could not load #{sid.id}: #{e.exception}"
             e_count += 1
         end
+
     end
     [count, e_count]
 end

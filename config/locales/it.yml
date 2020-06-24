@@ -730,6 +730,15 @@ it:
   # This is used for the "incipit" seach in the search history in BL
   # Note the capital 'I'
   Incipit: "Incipit"
+  Images: "Immagini"
+  "Standardized title": "Titolo uniforme"
+  Composer: "Compositore"
+  "Source Type": "Tipo di fonte"
+  Scoring: "Organico"
+  Date: "Data"
+  "Library siglum": "Sigla della biblioteca"
+  Subject: "Soggetto"
+  "Number of printed copies": "Numero di esemplari a stampa"
 
   cookies:
     message: "Il nostro sito web utilizza cookie per funzionare. Se utilizzate il nostro sito accettata il nostro utilizzo dei cookie."

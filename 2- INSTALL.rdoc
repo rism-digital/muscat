@@ -120,6 +120,28 @@ Add basic dataset:
 
  bundle exec rake db:seed
 
+=== Create credential file
+
+All the secret keys are now stored in the rails 5.2 credentials file, which is not included in the repo. a blank on must be created with
+
+ rails credentials:edit
+
+This will automatically create credentials.yml.enc and the master key, along with a cookie secret key. To use the other services on Muscat, such as history, add to this file:
+
+ recaptcha:
+   site_key: 'xx'
+   secret_key: 'xx'
+ export:
+   user: "xx"
+   password: "xx"
+
+The user and password are needed for background search and export, and should be a muscat user with minimum guest access.
+Remember that they key must be readable from the user running apache, so check the permissions and change the user is needed:
+
+ chown www-data:www-data config/master.key
+
+=== Development Startup
+
 Default (development) startup:
 
  bundle exec rake sunspot:solr:start
@@ -218,7 +240,6 @@ Also it is goot to block access to SOLR:
 == Add clean up in crontab for blacklight
 
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
-
 
 == Some MySQL optimizations
 

@@ -772,6 +772,7 @@
       - cph
       - lse
       - ppm
+      - asn
 "730":
   new_window: standard_titles
   new_window_field: title_equals
