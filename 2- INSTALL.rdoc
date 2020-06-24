@@ -120,6 +120,25 @@ Add basic dataset:
 
  bundle exec rake db:seed
 
+=== Create credential file
+
+All the secret keys are now stored in the rails 5.2 credentials file, which is not included in the repo. a blank on must be created with
+
+ rails credentials:edit
+
+This will automatically create credentials.yml.enc and the master key, along with a cookie secret key. To use the other services on Muscat, such as history, add to this file:
+
+ recaptcha:
+   site_key: 'xx'
+   secret_key: 'xx'
+ export:
+   user: "xx"
+   password: "xx"
+
+The user and password are needed for background search and export, and should be a muscat user with minimum guest access.
+
+=== Development Startup
+
 Default (development) startup:
 
  bundle exec rake sunspot:solr:start
