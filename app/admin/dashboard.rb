@@ -16,8 +16,14 @@ ActiveAdmin.register_page "Dashboard" do
       store_or_restore(:dashboard_work_type, :created)
 
       store_or_restore(:dashboard_quantity, 10)
+
+      @file = get_news_file
+      if params.include?(:clear_news) && params[:clear_news] == "true"
+        session[:news_file] = @file if @file # we should not get here if it is nil
+        flash[:alert] = "User not found."
+        @file = nil
+      end
     end
-    
   
     # Store or restore session parameter
     def store_or_restore(value, default)
@@ -32,6 +38,21 @@ ActiveAdmin.register_page "Dashboard" do
         params[value] = default
       end
     end
+
+    def get_news_file
+      news_files = Dir.glob("#{Rails.root}/app/views/muscat_news/*.en.md")
+      names = news_files.collect{|f| File.basename(f, '.en.md') }
+      last_file = names.sort.last
+      last_file[0] = '' # strip the _, guaranteed fastest method on stackoverflow
+
+      # Not stored in the session, need to visualize
+      return last_file if session.include? :news_files
+      # Stored in the session, not visualize again
+      return nil if session[:news_file] == last_file
+      # Different file in the session, show it
+      last_file
+    end
+
   end
   
   menu priority: 3, label: proc{ I18n.t("active_admin.dashboard") }
@@ -40,6 +61,15 @@ ActiveAdmin.register_page "Dashboard" do
   limit = 10;
 
   content title: proc{ I18n.t("active_admin.dashboard") } do 
+
+    @file = @arbre_context.assigns[:file]
+    if @file
+      panel "Muscat News" do
+        render 'muscat_news/' + @file
+        render 'dashboard_silence_news'
+      end
+    end
+
     #user = current_user.has_any_role?(:editor, :admin) ? -1 : current_user.id
     user_id = (params[:dashboard_source_owner].to_s == "user") ? current_user.id : -1
     sources = dashboard_find_recent(Source, params[:dashboard_quantity], params[:dashboard_source_type], user_id, 15)
