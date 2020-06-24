@@ -144,8 +144,11 @@ gem 'parallel'
 
 gem 'rubyzip'
 
-#For the download action
+# For the download action
 gem "recaptcha"
+
+# To render markdown
+gem 'redcarpet'
 
 group :test do
   gem "rspec"

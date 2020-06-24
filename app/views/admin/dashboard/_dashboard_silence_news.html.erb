@@ -1,5 +1,5 @@
 <%= form_tag(admin_dashboard_path, method: "get") do %>
     <%= hidden_field_tag 'clear_news', "true" -%>
-  <%= submit_tag("Got it!") %>
-  Clicking on this button will silence the news untl the next one is released.
+  <%= submit_tag(I18n.t('dashboard.got_it')) %>
+  <%= I18n.t('dashboard.got_it_explanation') %>
 <% end %>

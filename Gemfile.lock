@@ -331,6 +331,7 @@ GEM
     rdoc (6.2.1)
     recaptcha (5.5.0)
       json
+    redcarpet (3.5.0)
     regexp_parser (1.7.0)
     request_store (1.5.0)
       rack (>= 1.4)
@@ -479,6 +480,7 @@ DEPENDENCIES
   rails-i18n
   rails3-jquery-autocomplete (~> 1.0.21)!
   recaptcha
+  redcarpet
   rolify (~> 5.2.0)
   rsolr (>= 1.0)
   rspec

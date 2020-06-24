@@ -20,7 +20,7 @@ ActiveAdmin.register_page "Dashboard" do
       @file = get_news_file
       if params.include?(:clear_news) && params[:clear_news] == "true"
         session[:news_file] = @file if @file # we should not get here if it is nil
-        flash[:alert] = "User not found."
+        flash[:alert] = I18n.t('dashboard.message_silenced')
         @file = nil
       end
     end
@@ -64,7 +64,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     @file = @arbre_context.assigns[:file]
     if @file
-      panel "Muscat News" do
+      panel I18n.t('dashboard.news') do
         render 'muscat_news/' + @file
         render 'dashboard_silence_news'
       end
