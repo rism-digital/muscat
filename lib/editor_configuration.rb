@@ -45,7 +45,7 @@ class EditorConfiguration
         settings.squeeze(Settings.new(IO.read(default_conf)))
       end
     end
-    if RISM::EDITOR_PROFILE != ""
+    if RISM::EDITOR_PROFILE != "default"
       configs.each do |config|
         file = "#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml"
         if File.exists?(file)
