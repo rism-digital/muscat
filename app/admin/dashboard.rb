@@ -19,7 +19,7 @@ ActiveAdmin.register_page "Dashboard" do
 
       @file = get_news_file
       if params.include?(:clear_news) && params[:clear_news] == "true"
-        session[:news_file] = @file if @file # we should not get here if it is nil
+        cookies.permanent[:news_file] = @file if @file # we should not get here if it is nil
         flash[:alert] = I18n.t('dashboard.message_silenced')
         @file = nil
       end
@@ -45,11 +45,11 @@ ActiveAdmin.register_page "Dashboard" do
       last_file = names.sort.last
       last_file[0] = '' # strip the _, guaranteed fastest method on stackoverflow
 
-      # Not stored in the session, need to visualize
-      return last_file if session.include? :news_files
-      # Stored in the session, not visualize again
-      return nil if session[:news_file] == last_file
-      # Different file in the session, show it
+      # Not stored in the cookies.permanent, need to visualize
+      return last_file if cookies.permanent[:news_file] == nil
+      # Stored in the cookies.permanent, not visualize again
+      return nil if cookies.permanent[:news_file] == last_file
+      # Different file in the cookies.permanent, show it
       last_file
     end
 
