@@ -209,7 +209,7 @@ Double check permissions in the muscat installation. Also make sure DocumentRoot
 
 Start Apache, Solr and the related services in production mode (see below).
 
-== Starting Daemons in Production Mode
+== Production Installation and daemons
  
  Muscat has three running daemons that should be started:
  
@@ -236,6 +236,10 @@ Also it is goot to block access to SOLR:
 
   sudo iptables -A INPUT -p tcp -s localhost --dport 8983 -j ACCEPT
   sudo iptables -A INPUT -p tcp --dport 8983 -j DROP
+
+Also make sure that if there is a proxy, it is configured in `config/initializers/recaptcha.rb`:
+
+ config.proxy = 'http://myproxy.com.au:8080'
 
 == Add clean up in crontab for blacklight
 
