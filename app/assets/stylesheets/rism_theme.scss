@@ -20,17 +20,17 @@ svg:not(:root){
 
 #header-navbar {
     &.navbar-inverse {
-        background-color: $rismBLColor;
+        background-color: $rismBLnavbarColor;
         border-color: $darkRismBLColor;
         .navbar-nav > li > a {
-            color: #ddd;
+            color: $rismNavbarTextColor;
             padding-top: 15px;
             padding-bottom: 0;
         }
         .navbar-nav > .open > a,
         .navbar-inverse .navbar-nav > .open > a:hover,
         .navbar-inverse .navbar-nav > .open > a:focus {
-            background-color: $rismBLColor;
+            background-color: $rismBLnavbarColor;
         }
 
     }
@@ -45,7 +45,7 @@ svg:not(:root){
         }
         .slogan-top {
             font-size: 14px;
-            color: $gray0;
+            color: $rismNavbarTextColor;
         }
         .slogan-bottom {
             font-size: 12px;
