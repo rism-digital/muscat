@@ -706,6 +706,10 @@ it:
     quantity: "Mostra"
     update: "Aggiorna"
     no_items: "Nessun elemento da mostrare con i filtri selezionati"
+    message_silenced: "La news è stata nascosta."
+    got_it: "Ok!"
+    got_it_explanation: "Facendo click su questo pusante si nasconderà la news finché una nuova non sarà disponilbe."
+    news: "Novità in Muscat"
   
   # editor validation 
   validation:

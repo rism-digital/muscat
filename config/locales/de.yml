@@ -705,7 +705,11 @@ de:
     quantity: "Anzeige"
     update: "Aktualisieren"
     no_items: "Keine Elemente, die mit den aktuellen Filtern angezeigt werden"
-  
+    message_silenced: "Die Nachricht wurde zum Schweigen gebracht."
+    got_it: "Verstanden!"
+    got_it_explanation: "Wenn Sie auf diese Schaltfläche klicken, wird die Nachricht zum Schweigen gebracht, bis die nächste veröffentlicht wird."
+    news: "Muscat Nachrichten"
+
   # editor validation 
   validation:
     missing_message: "Dieses Feld muss zwingend ausgefüllt werden."

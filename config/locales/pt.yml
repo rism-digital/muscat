@@ -700,7 +700,11 @@ pt:
     quantity: "Exibir"
     update: "Atualizar"
     no_items: "Nenhum elemento para exibir com os filtros atuais"
-  
+    message_silenced: "A mensagem da notícia foi silenciada."
+    got_it: "Entendido!"
+    got_it_explanation: "Clicando neste botão, as notícias serão silenciadas até que a próxima seja liberada.."
+    news: "Muscat Notícias"
+
   # editor validation 
   validation:
     missing_message: "Um valor neste campo é obrigatório"

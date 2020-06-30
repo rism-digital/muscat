@@ -705,6 +705,10 @@ fr:
     quantity: "Afficher"
     update: "Mettre à jour"
     no_items: "Aucun élément avec le fitre sélectionné"
+    message_silenced: "Le message d'information a été supprimé."
+    got_it: "Je l'ai !"
+    got_it_explanation: "Cliquer sur ce bouton fera taire la nouvelle jusqu'à ce que la prochaine soit publiée."
+    news: "Nouvelles de Muscat"
   
   # editor validation 
   validation:

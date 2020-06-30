@@ -704,6 +704,10 @@ es:
     quantity: "Mostrar"
     update: "Actualizar"
     no_items: "No hay elementos para mostrar con los filtros seleccionados"
+    message_silenced: "El mensaje de las noticias fue silenciado."
+    got_it: "Entendido!"
+    got_it_explanation: "Al hacer clic en este botón se silenciará la noticia hasta que se libere la siguiente."
+    news: "Noticias de Muscat."
 
   # editor validation 
   validation:

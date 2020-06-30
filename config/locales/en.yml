@@ -703,6 +703,10 @@ en:
     quantity: "Display"
     update: "Update"
     no_items: "No elements to show with the current filters"
+    message_silenced: "The news message was silenced."
+    got_it: "Got it!"
+    got_it_explanation: "Clicking on this button will silence the news until the next one is released."
+    news: "Muscat News"
   
   # editor validation 
   validation:
