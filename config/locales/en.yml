@@ -782,6 +782,10 @@ en:
     application_name: 'Muscat'
     header_links:
       logout: 'Logout'
+    search:
+      start_over: Start again
+      facets:
+        title: "Refine your search"
       
  
 ######################################################################################################
