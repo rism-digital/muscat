@@ -1,6 +1,72 @@
 Muscat Changelog
 ================
 
+v 6.3
+Merge pull request #1 from fjorba/add-sqlite3-to-gemfile
+Minor corrections in the documentation
+Updating it translations
+Make sure to read the default profiles.yml
+Merge pull request #923 from fjorba/update-editor-configuration-docs
+Merge pull request #928 from fjorba/read-default-editor-profiles-yml
+Add suppress 77x to holdings
+Scripts for fixing CH composites
+Remove the 774s
+Make new empty collections
+Updating it translations
+Move holdings from edition to composite 852
+Provide a default template for records with unspecified record type
+Use get_marc_editor_profile_path to safely open conf files
+Experimental backend search engine for blacklight
+Initial MARC downloader for Blacklight
+Remove annoying delay in delayed_job
+Avoid rounding errors when reindexing
+Make the exported XML actually correct to the schema
+Merge pull request #934 from fjorba/provide-a-fallback-for-unspecified-record-type
+Merge pull request #936 from fjorba/generalise-fallback-to-default-file
+Move sqlite in the testing group
+New crono script for cleaning up exports
+Use conservative locking in delayed job
+A source should not be deleted while the job is running
+Bump puma from 4.3.3 to 4.3.5
+Add folder download action
+Add captcha validation
+Bump kaminari from 1.2.0 to 1.2.1
+Merge pull request #942 from rism-ch/dependabot/bundler/puma-4.3.5
+Merge pull request #944 from rism-ch/dependabot/bundler/kaminari-1.2.1
+Initial rails 5.2 setup
+Require default EDITOR_PROFILE to be set as "default"
+Disable bootsnap
+Optimize folder plucking and provide siglum_matches
+Fix Marc AwesomePrint module
+Bump websocket-extensions from 0.1.4 to 0.1.5
+Remove status.log
+Add 240 title
+Create UK Catalog
+Hide the map view
+Rename Exact Pitch
+Remove 740 tag
+Fix missing translation for label in BL
+Account for rounding errors so we do not have "orphan" sources
+Validation skip for superusers
+Fix #951 remove 563
+Fix #943 add asn to Source#710$4
+Fix #949, remove library-related tags
+Fix #950, removed 773 in the toplevel libretto and threatise template
+Fix #673, make tags repeatable
+Fix #632 rearrange fields
+Fix #631, allow creation of new items from the interface
+Fix #955 add validation for catalogue 856
+Fix #947 add missing translations
+Use rails 5.2 encrypted credentials
+Merge pull request #945 from fjorba/explicitly-set-default-editor-profile
+Merge pull request #946 from rism-ch/dependabot/bundler/websocket-extensions-0.1.5
+Fix #933, remove an old piece of code for "convolutums"
+Merge branch 'develop' of https://github.com/rism-ch/muscat into develop
+Basic landing page
+Update gemfile to add our mods to sunspot, synced with 2.5.0
+Add example configuration, documentation for export
+Add empty "export" directory
+
 v 6.2
 * Generic method to check dependencies
 * Add helper and routes to account for different #show action on controllers
