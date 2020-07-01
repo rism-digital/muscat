@@ -29,8 +29,8 @@ class Ability
         can [:read, :create], Person
         can :update, Person, :wf_owner => user.id
       end
-      can [:read], Folder
-      can :manage, Folder, :wf_owner => user.id
+      #can [:read], Folder
+      can :manage, Folder#, :wf_owner => user.id
       can :unpublish, [Folder]
       can [:read, :create, :destroy], ActiveAdmin::Comment
       can :read, ActiveAdmin::Page, :name => "Dashboard"
