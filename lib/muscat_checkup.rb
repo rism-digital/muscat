@@ -134,7 +134,9 @@ class MuscatCheckup
     validations = {}
 
     @folder.folder_items.each do |fi|
+      next if !fi.item
       s = fi.item
+
       begin
         ## Capture STDOUT and STDERR
         ## Only for the marc loading!
