@@ -8,7 +8,7 @@
         @unsavable_sources = unsavable_sources
         
 
-        mail(to: RISM::NOTIFICATION_EMAIL,
+        mail(to: RISM::NOTIFICATION_EMAILS,
         from: "#{RISM::DEFAULT_EMAIL_NAME} Periodic Maintenance Bot <#{RISM::DEFAULT_NOREPLY_EMAIL}>",
         subject: "Muscat Maintenance Report")
     end

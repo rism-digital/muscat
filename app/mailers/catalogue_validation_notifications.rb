@@ -15,7 +15,7 @@ class CatalogueValidationNotifications < ApplicationMailer
 
     return if @errors.count == 0 && !@failed
 
-    #mail(to: RISM::NOTIFICATION_EMAIL,
+    #mail(to: RISM::NOTIFICATION_EMAILS,
     #    name: "Muscat Validation",
     #    subject: "Source Validation Failure #{@source_id}")
  
