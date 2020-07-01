@@ -38,8 +38,9 @@ class FolderValidationReportJob < ApplicationJob
     end
 
     def queue_name
-        'reindex'
+        'folders'
     end
 
 end
-  
++config.action_mailer.delivery_method = :sendmail
++    config.proxy = 'http://http-proxy.sbb.spk-berlin.de:3128'
