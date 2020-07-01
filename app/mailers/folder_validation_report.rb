@@ -14,7 +14,7 @@ class FolderValidationReport < ApplicationMailer
       ## Bush fix!!
       #File.open(path, "w") { |file| file.write(render(partial: "health_report/validation.html.erb")) }
   
-      attachments["validation.html"] = render(partial: "health_report/validation.html.erb")
+      #attachments["validation.html"] = render(partial: "health_report/validation.html.erb")
   
       mail(to: user.email,
         from: "#{RISM::DEFAULT_EMAIL_NAME} Folder Validator <#{RISM::DEFAULT_NOREPLY_EMAIL}>",

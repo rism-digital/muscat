@@ -99,6 +99,29 @@ ActiveAdmin.register Folder do
     redirect_to resource_path(params[:id]), notice: I18n.t(:export_started, scope: :folders, email: current_user.email, job: job.id)
   end 
 
+  member_action :validate_folder, method: :get do
+    begin
+      f = Folder.find(params[:id])
+    rescue
+      # This should really never happen
+      redirect_to collection_path, :flash => {error: I18n.t(:not_found, scope: :folders, id: params[:id])}
+      return
+    end
+
+    if !f.folder_items || f.folder_items.empty?
+      redirect_to resource_path(params[:id]), :flash => {error:I18n.t(:folder_empty, scope: :folders)}
+      return
+    end
+
+    if f.folder_type != "Source"
+      redirect_to resource_path(params[:id]), :flash => {error:I18n.t(:folder_not_source, scope: :folders)}
+      return
+    end
+
+    job = Delayed::Job.enqueue(FolderValidationReportJob.new(f.id, current_user.id))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:validation_started, scope: :folders, id: job.id)
+  end
+
   ###########
   ## Index ##
   ###########

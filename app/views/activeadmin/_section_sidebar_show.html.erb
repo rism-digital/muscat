@@ -87,6 +87,12 @@
 				:class => "muscat_icon_link muscat_icon_link_publish") %>
 			</li>
 		<%- end %>
+		<%- if (self.controller.respond_to? :validate_folder) && (can? :edit, item) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :validate_folder}", send("validate_folder_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_publish") %>
+			</li>
+		<%- end %>
 	<%- else %>
 	
 		<%-

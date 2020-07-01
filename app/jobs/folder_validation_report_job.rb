@@ -42,5 +42,3 @@ class FolderValidationReportJob < ApplicationJob
     end
 
 end
-+config.action_mailer.delivery_method = :sendmail
-+    config.proxy = 'http://http-proxy.sbb.spk-berlin.de:3128'
