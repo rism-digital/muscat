@@ -133,7 +133,8 @@ class MuscatCheckup
     errors = {}
     validations = {}
 
-    @folder.folder_items.each do |s|
+    @folder.folder_items.each do |fi|
+      s = fi.item
       begin
         ## Capture STDOUT and STDERR
         ## Only for the marc loading!
