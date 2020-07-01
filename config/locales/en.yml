@@ -403,6 +403,7 @@ en:
     publish_job: "Publish job started (id: %{id})"
     unpublish_job: "Unpublish job started (id: %{id})"
     reindex_job: "Reindex job started (id: %{id})"
+    validate_folder: "Validate items"
     validation_started: "An email will be sent to %{email} with the validation has ended (Validation job id: %{job})."
     folder_not_source: "Only folders containing Sources can be validated"
 
