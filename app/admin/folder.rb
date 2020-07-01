@@ -119,7 +119,7 @@ ActiveAdmin.register Folder do
     end
 
     job = Delayed::Job.enqueue(FolderValidationReportJob.new(f.id, current_user.id))
-    redirect_to resource_path(params[:id]), notice: I18n.t(:validation_started, scope: :folders, id: job.id)
+    redirect_to resource_path(params[:id]), notice: I18n.t(:export_started, scope: :folders, email: current_user.email, job: job.id)
   end
 
   ###########
