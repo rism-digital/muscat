@@ -846,6 +846,13 @@ wr:
     de: "Greece"
     en: "Greece"
     es: "Grecia"
+"XC-GN":
+  label:
+    it: "GUINEA"
+    fr: "GUINEA"
+    de: "Guinea"
+    en: "Guinea"
+    es: "Guinea"
 "XA-VA":
   label:
     it: "Santa Sede"
