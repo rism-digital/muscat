@@ -91,24 +91,39 @@ private
     Parallel.map(0..MAX_PROCESSES - 1, in_processes: MAX_PROCESSES) do |jobid|
         ActiveRecord::Base.connection.reconnect!
         count = 0
+        if @format == :xml
+          @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
+            begin
+              source = Source.find(source_id)
+            rescue ActiveRecord::RecordNotFound
+              next
+            end
 
-        @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
-          begin
-            source = Source.find(source_id)
-          rescue ActiveRecord::RecordNotFound
-            next
+            tempfiles[jobid].write(source.marc.to_xml_record(nil, nil, true))
+
+            # We approximante the progress by having only one process write to it
+            if jobid == 0
+                count += 1
+                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+            end
+            # Force a cleanup
+            source = nil
           end
-
-          tempfiles[jobid].write(source.marc.to_xml_record(nil, nil, true))
-
-          # We approximante the progress by having only one process write to it
-          if jobid == 0
-              count += 1
-              update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+        else
+          headers = csv_headers
+          CSV.open(tempfiles[jobid].path, "wb", headers: headers, write_headers: jobid == 0 ? true : false) do |csv|
+            @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
+              source = Source.find(source_id)
+                csv << marc2csv(source)
+                if jobid == 0
+                  count += 1
+                  update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+              end
+              source = nil
+            end
           end
-          # Force a cleanup
-          source = nil
         end
+
         tempfiles[jobid].rewind
         ActiveRecord::Base.connection.reconnect!
     end
@@ -120,9 +135,9 @@ private
     filename = create_filename
 
     File.open(EXPORT_PATH.join(filename + @extension), "w") do |file|
-      file.write(xml_preamble)
+      file.write(xml_preamble) if @format == :xml
       tempfiles.each {|tf| file.write(tf.read)}
-      file.write(xml_conclusion)
+      file.write(xml_conclusion) if @format == :xml
     end
 
     # Clean up the tempfiles
@@ -152,10 +167,12 @@ private
       end
     else
       headers = csv_headers
-      CSV.open(EXPORT_PATH.join(filename + @extension), "wb", :headers => headers, :write_headers => true) do |csv|
+      CSV.open(EXPORT_PATH.join(filename + @extension), "wb", headers: headers, write_headers: true) do |csv|
         @getter.get_items.each do |source_id|
           source = Source.find(source_id)
             csv << marc2csv(source)
+            count += 1
+            update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
         end
       end
     end
