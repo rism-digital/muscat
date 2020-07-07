@@ -247,7 +247,7 @@ en:
     single_threatise_printed: "Single printed treatise"
         
   #################### MENUS
-  menu_home: "Home"
+  menu_home: "Home page"
   menu_sources: "Sources"
   menu_simple_search: "Simple search"
   menu_advanced_search: "Advanced search"
@@ -425,7 +425,7 @@ en:
   filter_author_or_editor: "Author/Editor"
   filter_autograph_of: "Autograph of"
   filter_birth_place: "Birth place"
-  filter_catalog: "Catalog"
+  filter_catalog: "Catalogue"
   filter_category_type: "Category"
   filter_collection: "Collection"
   filter_comment: "Comment"
@@ -792,6 +792,11 @@ en:
       start_over: Start again
       facets:
         title: "Refine your search"
+    range_limit:
+      submit_limit: "Refine"
+  blacklight_advanced_search:
+    form:
+      start_over: "Start again"
       
  
 ######################################################################################################
