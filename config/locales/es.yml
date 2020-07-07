@@ -744,6 +744,7 @@ es:
   "Library siglum": "Sigla de la biblioteca"
   Subject: "Sujeto"
   "Number of printed copies": "Número de copias impresas"
+  Publisher: "Publicador"
 
   cookies:
     message: "Nuestro sitio web utiliza cookies para mejorar su experiencia de navegación. Al usar nuestro sitio, Ud. manifiesta su conformidad con el uso de cookies."
