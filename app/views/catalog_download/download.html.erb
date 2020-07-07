@@ -13,8 +13,16 @@
         <%= form_tag('/catalog/download', {:method => :get}) do %>
             <%= render_hash_as_hidden_fields(search_state.params_for_search.except(:page)) %>
 
-            <p>A compressed archive with the requested export in marc forma will be generated. This will take
-            approximately 10 minutes and a download link will be sent to your provided email address.</p>
+            <p>A compressed archive with the requested export will be generated. This will take
+            approximately 10 minutes and a download link will be sent to the email address provided below.</p>
+
+            <div class="input-group">
+                <label for="cars">Select output format: </label>
+                <select name="out_format" id="out_format">
+                <option value="csv">CSV</option>
+                <option value="xml">MARCXML</option>
+                </select>
+            </div><br>
 
             <% if current_user %>
                 You appear to be already logged in Muscat, please confirm you email address or enter another one.

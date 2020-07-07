@@ -155,7 +155,9 @@ class CatalogController < ApplicationController
       if !verify_recaptcha # Make sure the user verified the captcha
         render template: "catalog_download/download"
       else
-        Delayed::Job.enqueue(ExportRecordsJob.new(:catalog, {search_params: params.permit!.to_hash, email: params[:email]}))
+        format = params.include?(:out_format) && params[:out_format] == "csv" ? :csv : :xml
+
+        Delayed::Job.enqueue(ExportRecordsJob.new(:catalog, {search_params: params.permit!.to_hash, email: params[:email], format: format}))
         render template: "catalog_download/confirm"
       end
     else
