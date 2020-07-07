@@ -362,7 +362,9 @@ es:
   archive_unarchive: "Archivar / desarchivar"
   archive: "Archivar"
   unarchive: "Desarchivar"
-  export_folder: "Exportar la carpeta en formato MarcXML"
+  export_folder: "Exportar la carpeta en formato MARCXML"
+  export_folder_csv: "Exportar la carpeta en formato CSV"
+  validate_folder: "Validar la carpeta"
   
   # Editor sidebar
   show_all_groups: "Mostrar todas las secciones"

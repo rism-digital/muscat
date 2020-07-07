@@ -154,6 +154,7 @@
       - evp
       - oth
       - prt
+      - asn
 "852": 
   allow_new: true
   new_window: institutions

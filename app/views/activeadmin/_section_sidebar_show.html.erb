@@ -84,13 +84,17 @@
 		<%- if (self.controller.respond_to? :export_folder) && (can? :edit, item) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :export_folder}", send("export_folder_admin_#{model}_path", item),
-				:class => "muscat_icon_link muscat_icon_link_publish") %>
+				:class => "muscat_icon_link muscat_icon_link_download") %>
+			</li>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :export_folder_csv}", send("export_folder_admin_#{model}_path", item, csv: true),
+				:class => "muscat_icon_link muscat_icon_link_download") %>
 			</li>
 		<%- end %>
 		<%- if (self.controller.respond_to? :validate_folder) && (can? :edit, item) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :validate_folder}", send("validate_folder_admin_#{model}_path", item),
-				:class => "muscat_icon_link muscat_icon_link_publish") %>
+				:class => "muscat_icon_link muscat_icon_link_validate") %>
 			</li>
 		<%- end %>
 	<%- else %>

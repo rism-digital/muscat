@@ -9,6 +9,15 @@ class ExportRecordsJob < ProgressJob::Base
   def initialize(type = :folder, options = {})
     @type = type
     @job_options = options
+
+    @format = :xml
+    @extension = ".xml"
+    if @job_options.include?(:format)
+      if @job_options[:format] == :csv
+        @format = :csv
+        @extension = ".csv"
+      end
+    end
   end
 
   def enqueue(job)
@@ -47,10 +56,10 @@ class ExportRecordsJob < ProgressJob::Base
     
     # Compress it so the user soes not faint
     Zip::File.open(EXPORT_PATH.join(filename + '.zip'), Zip::File::CREATE) do |zipfile|
-        zipfile.add(filename + '.xml', EXPORT_PATH.join(filename + '.xml'))
+        zipfile.add(filename + @extension, EXPORT_PATH.join(filename + @extension))
     end
       
-    File.unlink(EXPORT_PATH.join(filename + '.xml'))
+    File.unlink(EXPORT_PATH.join(filename + @extension))
 
     # Send the user a notification
     ExportReadyNotification.notify(@job_options[:email], filename + ".zip").deliver_now
@@ -82,24 +91,44 @@ private
     Parallel.map(0..MAX_PROCESSES - 1, in_processes: MAX_PROCESSES) do |jobid|
         ActiveRecord::Base.connection.reconnect!
         count = 0
+        if @format == :xml
+          @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
+            begin
+              source = Source.find(source_id)
+            rescue ActiveRecord::RecordNotFound
+              next
+            end
 
-        @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
-          begin
-            source = Source.find(source_id)
-          rescue ActiveRecord::RecordNotFound
-            next
+            tempfiles[jobid].write(source.marc.to_xml_record(nil, nil, true))
+
+            # We approximante the progress by having only one process write to it
+            if jobid == 0
+                count += 1
+                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+            end
+            # Force a cleanup
+            source = nil
           end
+        else
+          headers = csv_headers
+          CSV.open(tempfiles[jobid].path, "wb", headers: headers, write_headers: jobid == 0 ? true : false) do |csv|
+            @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
+              begin
+                source = Source.find(source_id)
+              rescue ActiveRecord::RecordNotFound
+                next
+              end
 
-          tempfiles[jobid].write(source.marc.to_xml_record(nil, nil, true))
-
-          # We approximante the progress by having only one process write to it
-          if jobid == 0
-              count += 1
-              update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+              csv << marc2csv(source)
+              if jobid == 0
+                count += 1
+                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+              end
+              source = nil
+            end
           end
-          # Force a cleanup
-          source = nil
         end
+
         tempfiles[jobid].rewind
         ActiveRecord::Base.connection.reconnect!
     end
@@ -110,10 +139,10 @@ private
     # Now concatenate the files together
     filename = create_filename
 
-    File.open(EXPORT_PATH.join(filename + '.xml'), "w") do |file|
-      file.write(xml_preamble)
+    File.open(EXPORT_PATH.join(filename + @extension), "w") do |file|
+      file.write(xml_preamble) if @format == :xml
       tempfiles.each {|tf| file.write(tf.read)}
-      file.write(xml_conclusion)
+      file.write(xml_conclusion) if @format == :xml
     end
 
     # Clean up the tempfiles
@@ -128,17 +157,29 @@ private
 
     update_progress_max(@getter.get_item_count)
 
-    File.open(EXPORT_PATH.join(filename + '.xml'), "w") do |file|
-      file.write(xml_preamble)
+    if @format == :xml
+      File.open(EXPORT_PATH.join(filename + @extension), "w") do |file|
+        file.write(xml_preamble)
 
-      @getter.get_items.each do |source_id|
-        source = Source.find(source_id)
-        file.write(source.marc.to_xml_record(nil, nil, true))
-        count += 1
-        update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
+        @getter.get_items.each do |source_id|
+          source = Source.find(source_id)
+          file.write(source.marc.to_xml_record(nil, nil, true))
+          count += 1
+          update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
+        end
+
+        file.write(xml_conclusion)
       end
-
-      file.write(xml_conclusion)
+    else
+      headers = csv_headers
+      CSV.open(EXPORT_PATH.join(filename + @extension), "wb", headers: headers, write_headers: true) do |csv|
+        @getter.get_items.each do |source_id|
+          source = Source.find(source_id)
+            csv << marc2csv(source)
+            count += 1
+            update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
+        end
+      end
     end
 
     return filename
@@ -158,6 +199,87 @@ private
 
   def xml_conclusion
     "</marc:collection>" 
+  end
+
+  def csv_headers
+    [:record_id, :signature, :copies, :in, :composer, :title, :standard_title, :literature, :keywords, :source_type, :date_to, :date_from, :material, :plate_no ]
+  end
+
+  def marc2csv(source)
+    csv_line = {}
+    
+    csv_line[:record_id] = source.id
+    if source.holdings.count > 0
+        signature = []
+        source.holdings.each do |h|
+            h.marc.each_by_tag("852") do |t|
+                ta = t.fetch_first_by_tag("a").content rescue ta = ""
+                tc = t.fetch_first_by_tag("c").content rescue tc = ""
+
+                signature << ta + " " + tc
+            end
+        end
+        csv_line[:signature] = signature.join("\n")
+        csv_line[:copies] = ""
+    else
+        csv_line[:signature] = source.lib_siglum + " " + source.shelf_mark
+        csv_line[:copies] = ""
+    end
+
+    if source.parent_source
+        csv_line[:in] = source.parent_source.id
+    else
+        csv_line[:in] = ""
+    end
+
+    csv_line[:composer] = source.composer
+    csv_line[:title] = source.title
+    csv_line[:standard_title] = source.std_title
+
+    literature = []
+    source.marc.each_by_tag("690") do |t|
+        ta = t.fetch_first_by_tag("a").content rescue ta = ""
+        tn = t.fetch_first_by_tag("n").content rescue tn = ""
+
+        literature << ta + " " + tn
+    end
+    csv_line[:literature] = literature.join("\n")
+
+    keywords = []
+    source.marc.each_by_tag("650") do |t|
+      ta = t.fetch_first_by_tag("a").content rescue ta = ""
+
+      keywords << ta
+    end
+    csv_line[:keywords] = keywords.join("\n")
+
+    csv_line[:source_type] = ""
+    t = source.marc.first_occurance("593")
+    if t
+      ta = t.fetch_first_by_tag("a").content rescue ta = ""
+      csv_line[:source_type] = ta
+    end
+
+    csv_line[:date_to] = source.date_to
+    csv_line[:date_from] = source.date_from
+
+    material = []
+    source.marc.each_by_tag("300") do |t|
+      ta = t.fetch_first_by_tag("a").content rescue ta = ""
+
+      material << ta
+    end
+    csv_line[:material] = material.join("\n")
+
+    plate = []
+    source.marc.each_by_tag("0128") do |t|
+      ta = t.fetch_first_by_tag("a").content rescue ta = ""
+
+      plate << ta
+    end
+    csv_line[:plate] = plate.join("\n")
+
+    return csv_line
   end
 
   class FolderGetter

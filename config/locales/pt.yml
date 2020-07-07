@@ -358,7 +358,9 @@ pt:
   archive_unarchive: "Arquivar / desarquivar"
   archive: "Arquivar"
   unarchive: "Desarquivar"
-  export_folder: "Exportar a pasta em MarcXML"
+  export_folder: "Exportar a pasta em MARCXML"
+  export_folder_csv: "Exportar a pasta em CSV"
+  validate_folder: "Validar pasta"
   
   # Editor sidebar
   show_all_groups: "Mostrar todas as seções"

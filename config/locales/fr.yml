@@ -361,7 +361,9 @@ fr:
   archive_unarchive: "Archiver / désarchiver"
   archive: "Archiver"
   unarchive: "Désarchiver"
-  export_folder: "Exporter le dossier en MarcXML"
+  export_folder: "Exporter le dossier en MARCXML"
+  export_folder_csv: "Exporter le dossier en CSV"
+  validate_folder: "Valider le dossier"
 
   
   # Editor sidebar

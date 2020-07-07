@@ -361,7 +361,9 @@ de:
   archive_unarchive: "Archivieren / Dearchivieren"
   archive: "Archivieren"
   unarchive: "Dearchivieren"
-  export_folder: "Ordner als MarcXML exportieren"
+  export_folder: "Ordner als MARCXML exportieren"
+  export_folder_csv: "Ordner als CSV exportieren"
+  validate_folder: "Ordner validieren"
 
   
   # Editor sidebar
@@ -707,7 +709,7 @@ de:
     no_items: "Keine Elemente, die mit den aktuellen Filtern angezeigt werden"
     message_silenced: "Die Nachricht wurde zum Schweigen gebracht."
     got_it: "Verstanden!"
-    got_it_explanation: "Wenn Sie auf diese Schaltfläche klicken, wird die Nachricht zum Schweigen gebracht, bis die nächste veröffentlicht wird."
+    got_it_explanation: "Wenn Sie auf diese Schaltfläche klicken, wird die Nachricht nicht mehr angezeigt, bis die nächste veröffentlicht wird."
     news: "Muscat Nachrichten"
 
   # editor validation 
