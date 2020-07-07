@@ -157,7 +157,7 @@ class CatalogController < ApplicationController
       else
         format = params.include?(:out_format) && params[:out_format] == "csv" ? :csv : :xml
 
-        Delayed::Job.enqueue(ExportRecordsJob.new(:catalog, {search_params: params.permit!.to_hash, email: params[:email], format: format}))
+        Delayed::Job.enqueue(ExportRecordsJob.new(:catalog, {search_params: params.permit!.to_hash, email: params[:email], format: format, controller: @catalog_controller}))
         render template: "catalog_download/confirm"
       end
     else

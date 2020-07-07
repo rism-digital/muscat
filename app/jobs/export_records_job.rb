@@ -18,6 +18,9 @@ class ExportRecordsJob < ProgressJob::Base
         @extension = ".csv"
       end
     end
+
+    @controller = @job_options.include?(:controller) && @job_options[:controller]
+
   end
 
   def enqueue(job)
@@ -45,7 +48,7 @@ class ExportRecordsJob < ProgressJob::Base
       @getter = FolderGetter.new(@job_options[:id])
     else
       update_stage("Running query")
-      @getter = CatalogGetter.new(@job_options[:search_params])
+      @getter = CatalogGetter.new(@job_options[:search_params], @controller)
     end
 
     if @getter.get_item_count > 500
@@ -303,8 +306,8 @@ private
   end
 
   class CatalogGetter
-    def initialize(search_params)
-      @catalog_search = CatalogSearch.new(Rails.application.credentials.export[:user], Rails.application.credentials.export[:password])
+    def initialize(search_params, controller)
+      @catalog_search = CatalogSearch.new(Rails.application.credentials.export[:user], Rails.application.credentials.export[:password], controller)
       @results = @catalog_search.search(search_params)
     end
 

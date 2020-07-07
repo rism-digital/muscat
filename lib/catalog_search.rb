@@ -14,10 +14,11 @@
 class CatalogSearch < Object
     PER_PAGE = 2000
 
-    def initialize(user = nil, pass = nil)
+    def initialize(user = nil, pass = nil, controller = nil)
         @user = user
         @pass = pass
         @logged_in = false
+        @controller = controller ? "_" + controller : ""
         @csrf_token
         @app = ActionDispatch::Integration::Session.new(Rails.application)
     end
@@ -61,7 +62,7 @@ class CatalogSearch < Object
     end
 
     def query_catalog(params, page)
-        @app.post('/catalog.json', params: params.merge({per_page: PER_PAGE, page: page}))
+        @app.post("/catalog#{@controller}.json", params: params.merge({per_page: PER_PAGE, page: page}))
 
         catalog_response = JSON.parse(@app.response.body)
   

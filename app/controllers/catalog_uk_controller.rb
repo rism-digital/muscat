@@ -25,8 +25,13 @@ class CatalogUkController < CatalogController
       :"hl.simple.post" => "</span>",
       :"facet.mincount" => 1,
     }
-    config.ciao
+
     config.add_facet_field '852a_facet_sm', :label => :filter_lib_siglum, :limit => 10, :override => true, solr_params: { 'facet.prefix' => 'GB' }
+  end
+
+  # We need this to get the catalog name
+  def download
+    super
   end
 
   def holding_filter
