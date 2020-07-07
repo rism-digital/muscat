@@ -113,11 +113,16 @@ private
           headers = csv_headers
           CSV.open(tempfiles[jobid].path, "wb", headers: headers, write_headers: jobid == 0 ? true : false) do |csv|
             @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
-              source = Source.find(source_id)
-                csv << marc2csv(source)
-                if jobid == 0
-                  count += 1
-                  update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+              begin
+                source = Source.find(source_id)
+              rescue ActiveRecord::RecordNotFound
+                next
+              end
+
+              csv << marc2csv(source)
+              if jobid == 0
+                count += 1
+                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
               end
               source = nil
             end
