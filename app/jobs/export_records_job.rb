@@ -217,7 +217,7 @@ private
   def csv_headers
     { record_id: "RISM ID",
       signature: "LIBRARY INFO (852)",
-      in: "PART OF(773)",
+      in: "PART OF (773)",
       composer: "COMPOSER (100)",
       title: "TITLE (240)",
       standard_title: "STANDARD TITLE (240)",
