@@ -740,7 +740,7 @@ pt:
   "Library siglum": "Código da biblioteca"
   Subject: "Sujeito"
   "Number of printed copies": "Número de exemplares impressos"
-  Publisher: "Casa editora"
+  publisher: "Casa editora"
 
   cookies:
     message: "osso sítio web usa cookies para tornar sua navegação melhor. Ao utilizá-lo, o usuário está de acordo com o uso de cookies."

@@ -745,7 +745,7 @@ fr:
   "Library siglum": "Sigle de bibliothèque"
   Subject: "Sujet"
   "Number of printed copies": "Nombre d'exemplaires imprimés"
-  Publisher: "Editeur"
+  publisher: "Editeur"
 
   cookies:
     message: "Notre site utilise des cookies pour améliorer votre expérience de navigation. En utilisant notre site, vous acceptez notre utilisation des cookies."

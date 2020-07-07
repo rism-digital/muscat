@@ -746,8 +746,8 @@ en:
   "Library siglum": "Library siglum"
   Subject: "Subject"
   "Number of printed copies": "Number of printed copies"
-  Publisher: "Publisher"
-  
+  publisher: "Publisher"
+
 
   cookies:
     message: "Our website uses cookies to make your browsing experience better. By using our site you agree to our use of cookies."
