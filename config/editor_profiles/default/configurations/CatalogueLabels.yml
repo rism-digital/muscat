@@ -1387,6 +1387,13 @@ zxx:
     de: "Algeria"
     en: "Algeria"
     es: "Argelia"
+"XA-AD":
+  label:
+    it: "ANDORRA"
+    fr: "ANDORRA"
+    de: "Andorra"
+    en: "Andorra"
+    es: "ANDORRA"
 "XD-AR":
   label:
     it: "Argentina"
