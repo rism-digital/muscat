@@ -114,7 +114,8 @@ private
           end
         else
           headers = csv_headers
-          CSV.open(tempfiles[jobid].path, "wb", headers: headers, write_headers: jobid == 0 ? true : false) do |csv|
+          header_mapper = lambda { |header| csv_headers[header] }
+          CSV.open(tempfiles[jobid].path, "wb", headers: headers.keys, write_headers: jobid == 0 ? true : false, header_converters: header_mapper) do |csv|
             @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
               begin
                 source = Source.find(source_id)
@@ -175,7 +176,8 @@ private
       end
     else
       headers = csv_headers
-      CSV.open(EXPORT_PATH.join(filename + @extension), "wb", headers: headers, write_headers: true) do |csv|
+      header_mapper = lambda { |header| csv_headers[header] }
+      CSV.open(EXPORT_PATH.join(filename + @extension), "wb", headers: headers.keys, write_headers: true, header_converters: header_mapper) do |csv|
         @getter.get_items.each do |source_id|
           source = Source.find(source_id)
             csv << marc2csv(source)
@@ -204,14 +206,36 @@ private
     "</marc:collection>" 
   end
 
+  # Few things are as asinine as the headers in CSV
+  # If you provide an array of values, they can match
+  # thet keys in your hash of values to export.
+  # But if you want a human readable label, good luck!
+  # You can transform the headers with header_transform,
+  # but then the match is done in the transformed output!
+  # So actually to get this to work we need to map the
+  # gumar readable values directly in the output hash.
   def csv_headers
-    [:record_id, :signature, :copies, :in, :composer, :title, :standard_title, :literature, :keywords, :source_type, :date_to, :date_from, :material, :plate_no ]
+    { record_id: "RISM ID",
+      signature: "LIBRARY INFO (852)",
+      in: "PART OF(773)",
+      composer: "COMPOSER (100)",
+      title: "TITLE (240)",
+      standard_title: "STANDARD TITLE (240)",
+      literature: "WORK CATALOG (690)",
+      keywords: "SUBJECT HEADING (650)",
+      source_type: "SOURCE TYPE (593)",
+      date_to: "DATE TO (260)",
+      date_from: "DATE FROM (260)",
+      material: "MATERIAL (300)",
+      plate_no: "PLATE NR (028)"
+    }
   end
+
 
   def marc2csv(source)
     csv_line = {}
     
-    csv_line[:record_id] = source.id
+    csv_line[csv_headers[:record_id]] = source.id
     if source.holdings.count > 0
         signature = []
         source.holdings.each do |h|
@@ -222,22 +246,20 @@ private
                 signature << ta + " " + tc
             end
         end
-        csv_line[:signature] = signature.join("\n")
-        csv_line[:copies] = ""
+        csv_line[csv_headers[:signature]] = signature.join("\n")
     else
-        csv_line[:signature] = source.lib_siglum + " " + source.shelf_mark
-        csv_line[:copies] = ""
+        csv_line[csv_headers[:signature]] = source.lib_siglum + " " + source.shelf_mark
     end
 
     if source.parent_source
-        csv_line[:in] = source.parent_source.id
+        csv_line[csv_headers[:in]] = source.parent_source.id
     else
-        csv_line[:in] = ""
+        csv_line[csv_headers[:in]] = ""
     end
 
-    csv_line[:composer] = source.composer
-    csv_line[:title] = source.title
-    csv_line[:standard_title] = source.std_title
+    csv_line[csv_headers[:composer]] = source.composer
+    csv_line[csv_headers[:title]] = source.title
+    csv_line[csv_headers[:standard_title]] = source.std_title
 
     literature = []
     source.marc.each_by_tag("690") do |t|
@@ -246,7 +268,7 @@ private
 
         literature << ta + " " + tn
     end
-    csv_line[:literature] = literature.join("\n")
+    csv_line[csv_headers[:literature]] = literature.join("\n")
 
     keywords = []
     source.marc.each_by_tag("650") do |t|
@@ -254,17 +276,17 @@ private
 
       keywords << ta
     end
-    csv_line[:keywords] = keywords.join("\n")
+    csv_line[csv_headers[:keywords]] = keywords.join("\n")
 
-    csv_line[:source_type] = ""
+    csv_line[csv_headers[:source_type]] = ""
     t = source.marc.first_occurance("593")
     if t
       ta = t.fetch_first_by_tag("a").content rescue ta = ""
-      csv_line[:source_type] = ta
+      csv_line[csv_headers[:source_type]] = ta
     end
 
-    csv_line[:date_to] = source.date_to
-    csv_line[:date_from] = source.date_from
+    csv_line[csv_headers[:date_to]] = source.date_to
+    csv_line[csv_headers[:date_from]] = source.date_from
 
     material = []
     source.marc.each_by_tag("300") do |t|
@@ -272,15 +294,15 @@ private
 
       material << ta
     end
-    csv_line[:material] = material.join("\n")
+    csv_line[csv_headers[:material]] = material.join("\n")
 
     plate = []
-    source.marc.each_by_tag("0128") do |t|
+    source.marc.each_by_tag("028") do |t|
       ta = t.fetch_first_by_tag("a").content rescue ta = ""
 
       plate << ta
     end
-    csv_line[:plate] = plate.join("\n")
+    csv_line[csv_headers[:plate]] = plate.join("\n")
 
     return csv_line
   end
