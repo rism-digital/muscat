@@ -380,7 +380,12 @@ class CatalogController < ApplicationController
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "std_title_texts" }
     end
-    
+    config.add_search_field("publisher") do |field|
+      field.label = :publisher
+      field.include_in_simple_select = false
+      field.solr_parameters = { :qf => "publisher_texts" }
+    end
+
     config.add_search_field("plate_no") do |field|
       field.label = :filter_plate_no
       field.include_in_simple_select = false

@@ -236,3 +236,7 @@ fields:
   "856x":
       :type: string
   "856z":
+  "publisher":
+    :index_processor_helper: marc_extract_publisher
+    :store: true
+    :type: text

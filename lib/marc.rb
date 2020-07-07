@@ -794,6 +794,22 @@ class Marc
     return out
   end
 	
+  def marc_extract_publisher(conf_tag, conf_properties, marc, model)
+    out = []
+
+    ["700", "710"].each do |tag, subtag|
+      marc.each_by_tag(tag) do |marctag|
+        code = marctag.fetch_first_by_tag("4")
+        if code && code.content && code.content == "pbl"
+          name = marctag.fetch_first_by_tag("a")
+          out << name.content if name && name.content
+        end
+      end
+    end
+    
+    return out
+  end
+
   def marc_extract_dates(conf_tag, conf_properties, marc, model)
     out = []
     tag = conf_properties && conf_properties.has_key?(:from_tag) ? conf_properties[:from_tag] : nil
