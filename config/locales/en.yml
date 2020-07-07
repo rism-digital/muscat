@@ -481,6 +481,7 @@ en:
   filter_phone: "Phone"
   filter_place: "Place"
   filter_place_of_publication: "Place of publication"
+  filter_plate_no: "Plate number"
   filter_provenance: "Provenance"
   filter_record_type: "Template Type"
   filter_record_type_short: "Type"

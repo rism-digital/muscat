@@ -479,6 +479,7 @@ de:
   filter_phone: "Telefon"
   filter_place: "Ort"
   filter_place_of_publication: "Verlagsort"
+  filter_plate_no: "Plattennummer"
   filter_provenance: "Herkunft"
   filter_record_type: "Template Typ"
   filter_record_type_short: "Typ"

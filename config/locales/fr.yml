@@ -479,6 +479,7 @@ fr:
   filter_phone: "Téléphone"
   filter_place: "Endroit"
   filter_place_of_publication: "Lieu de publication"
+  filter_plate_no: "Numéro de plaque"
   filter_provenance: "Provenance"
   filter_record_type: "Template Type"
   filter_record_type_short: "Type"

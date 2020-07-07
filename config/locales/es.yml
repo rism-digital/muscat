@@ -479,6 +479,7 @@ es:
   filter_phone: "Teléfono"
   filter_place: "Lugar"
   filter_place_of_publication: "Lugar de publicación"
+  filter_plate_no: "Número de plancha"
   filter_provenance: "Procedencia"
   filter_record_type: "Tipo de plantilla"
   filter_record_type_short: "Tipo"

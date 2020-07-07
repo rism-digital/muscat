@@ -381,6 +381,12 @@ class CatalogController < ApplicationController
       field.solr_parameters = { :qf => "std_title_texts" }
     end
     
+    config.add_search_field("plate_no") do |field|
+      field.label = :filter_plate_no
+      field.include_in_simple_select = false
+      field.solr_parameters = { :qf => "028a_text" }
+    end
+
     config.add_search_field("provenance") do |field|
       field.label = :filter_provenance
       field.include_in_simple_select = false

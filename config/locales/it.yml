@@ -482,6 +482,7 @@ it:
   filter_phone: "Telefono"
   filter_place: "Luogo"
   filter_place_of_publication: "Luogo della pubblicazione"
+  filter_plate_no: "Numero lastra"
   filter_provenance: "Provenienza"
   filter_record_type: "Tipo del Template"
   filter_record_type_short: "Tipo"

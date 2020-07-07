@@ -475,6 +475,7 @@ pt:
   filter_phone: "Telefone"
   filter_place: "Local"
   filter_place_of_publication: "Local de Publicação"
+  filter_plate_no: "Número de chapa"
   filter_provenance: "Local de Publicação"
   filter_record_type: "Tipo de modelo"
   filter_record_type_short: "Tipo"
