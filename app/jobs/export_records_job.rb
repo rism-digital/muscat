@@ -13,7 +13,7 @@ class ExportRecordsJob < ProgressJob::Base
     @format = :xml
     @extension = ".xml"
     if @job_options.include?(:format)
-      if @job_options[:format] == "csv"
+      if @job_options[:format] == :csv
         @format = :csv
         @extension = ".csv"
       end

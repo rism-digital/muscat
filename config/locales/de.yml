@@ -361,7 +361,9 @@ de:
   archive_unarchive: "Archivieren / Dearchivieren"
   archive: "Archivieren"
   unarchive: "Dearchivieren"
-  export_folder: "Ordner als MarcXML exportieren"
+  export_folder: "Ordner als MARCXML exportieren"
+  export_folder_csv: "Ordner als CSV exportieren"
+  validate_folder: "Ordner validieren"
 
   
   # Editor sidebar

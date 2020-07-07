@@ -363,7 +363,10 @@ it:
   archive_unarchive: "Archivia / disarchivia"
   archive: "Archivia"
   unarchive: "Disarchivia"
-  export_folder: "Esporta la cartella in MarcXML"
+  export_folder: "Esporta la cartella in MARCXML"
+  export_folder_csv: "Esporta la cartella in CSV"
+  validate_folder: "Valida cartella"
+
 
   
   # Editor sidebar
