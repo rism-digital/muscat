@@ -2997,6 +2997,14 @@ baq:
     en: Basque
     pt: Basco
     es: Vasco
+bul:
+  label:
+    it: Bulgaro
+    fr: Bulgare
+    de: Bulgarisch
+    en: Bulgarian
+    pt: "Búlgaro"
+    es: "Búlgaro"
 cat: 
   label: 
     it: Catalano
@@ -3077,6 +3085,14 @@ fas:
     en: Persian
     pt: Persa
     es: Persa
+fij:
+  label:
+    it: Figi
+    fr: Fidjien
+    de: Fidschianisch
+    en: Fijian
+    pt: Fijianas
+    es: Fijiano
 fin: 
   label: 
     IT: Finlandese
@@ -3085,6 +3101,22 @@ fin:
     en: Finnish
     pt: "Finlandês"
     es: "Finés"
+frm:
+  label:
+    it: "Francese, medio (ca. 1300-1600)"
+    fr: "Français, Moyen (env. 1300-1600)"
+    de: "Französisch, Mitte (ca. 1300-1600)"
+    en: "French, Middle (ca. 1300-1600)"
+    pt: "Francês, Médio (ca. 1300-1600)"
+    es: "Francés, Medio (ca. 1300-1600)"
+fro:
+  label:
+    it: "Francese, antico (ca. 842-1300)"
+    fr: "Français, ancien (ca. 842-1300)"
+    de: "Französisch, alt (ca. 842-1300)"
+    en: "French, Old (ca. 842-1300)"
+    pt: "Francês, antigo (ca. 842-1300)"
+    es: "Francés, antiguo (ca. 842-1300)"
 frr: 
   label: 
     IT: Dialetto frisone settentrionale
@@ -3109,6 +3141,14 @@ fre:
     en: French
     pt: "Francês"
     es: "Francés"
+fur:
+  label:
+    it: Friulano
+    ft: Friulano
+    de: Friulano
+    en: Friulano
+    pt: Friulano
+    es: Friulano
 gem: 
   label: 
     IT: Germanico
@@ -3124,6 +3164,14 @@ ger:
     en: German
     pt: "Alemão"
     es: "Alemán"
+gez:
+  label:
+    it: Etiope
+    fr: "Éthiopien"
+    de: "Äthiopisch"
+    en: Ethiopic
+    pt: "Etíope"
+    es: "Etiópico"
 gle: 
   label: 
     IT: Irlandese
@@ -3196,6 +3244,14 @@ hun:
     en: Hungarian
     pt: "Húngaro"
     es: "Húngaro"
+iii:
+  label:
+    it: Sichuan Yi
+    fr: Sichuan Yi
+    de: Sichuan Yi
+    en: Sichuan Yi
+    pt: Sichuan Yi
+    es: Sichuan Yi
 ita: 
   label: 
     it: Italiano
@@ -3412,6 +3468,14 @@ slv:
     en: Slovenian
     pt: Esloveno
     es: Esloveno
+smn:
+  label:
+    it: Inari Sami
+    fr: Inari Sami
+    de: Inari Sami
+    en: Inari Sami
+    pt: Inari Sami
+    es: Inari Sami
 srp: 
   label: 
     IT: Serbo
@@ -3468,6 +3532,14 @@ tib:
     en: Tibetan
     pt: Tibetano
     es: Tibetano
+tsi:
+  label:
+    it: Tsimshian
+    fr: Tsimshian
+    de: Tsimshian
+    en: Tsimshian
+    pt: Tsimshian
+    es: Tsimshian
 tur: 
   label: 
     IT: Turco
@@ -3476,6 +3548,14 @@ tur:
     en: Turkish
     pt: Turco
     es: Turco
+und:
+  label:
+    it: Indeterminato
+    fr: "Indéterminé"
+    de: Unbestimmt
+    en: Undetermined
+    pt: Indeterminado
+    es: Indeterminado
 ukr: 
   label: 
     IT: Ucraino
