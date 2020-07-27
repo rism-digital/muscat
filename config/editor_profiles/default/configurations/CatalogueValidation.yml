@@ -18,6 +18,3 @@ client:
       z:
         required_if:
           "856": "u"
-      x:
-        required_if:
-          "856": "u"
