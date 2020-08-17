@@ -371,8 +371,10 @@ class MarcSource < Marc
 
     if (@record_type == RECORD_TYPES[:collection])
       leader = base_leader.gsub("XX", "dc")
+      get_subentry_title
     elsif (@record_type == RECORD_TYPES[:edition])
       leader = base_leader.gsub("XX", "cc")
+      get_subentry_title
     elsif @record_type == RECORD_TYPES[:composite_volume]
       leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
@@ -532,6 +534,18 @@ class MarcSource < Marc
     
   def set_record_type(rt)
     @record_type = rt
+  end
+
+  def get_subentry_title
+    each_by_tag("774") do |t|
+      w = t.fetch_first_by_tag("w")
+      if w && w.content
+        source = Source.find(w.content) rescue next
+        t.add_at(MarcNode.new(@model, "a", source.name, nil), 0)
+      else
+        raise "Empty $w in 774"
+      end
+    end
   end
 
 end
