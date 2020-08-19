@@ -170,6 +170,7 @@ ActiveAdmin.register StandardTitle do
       f.input :alternate_terms, :label => (I18n.t :filter_variants)
       #f.input :typus, :label => (I18n.t :filter_record_type) 
       f.input :notes, :label => (I18n.t :filter_notes) 
+      f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
       f.input :lock_version, :as => :hidden
     end
   end
