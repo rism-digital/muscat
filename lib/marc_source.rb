@@ -430,7 +430,7 @@ class MarcSource < Marc
       end
       root.children.insert(get_insert_position("035"), n035) if n035
     end
-    
+   
     # Add 040 if not exists; if 040$a!=DE-633 then add 040$c
     if by_tags("040").count == 0
         n040 = MarcNode.new(@model, "040", "", "##")
@@ -439,6 +439,10 @@ class MarcSource < Marc
     else
       each_by_tag("040") do |t|
         existent = t.fetch_first_by_tag("a").content rescue nil
+        unless existent
+          t.add_at(MarcNode.new("source", "a", RISM::AGENCY, nil), 0)
+          t.sort_alphabetically
+        end
         if existent && existent != RISM::AGENCY
           t.add_at(MarcNode.new("source", "c", RISM::AGENCY, nil), 0)
           t.sort_alphabetically
