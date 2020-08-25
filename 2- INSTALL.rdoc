@@ -1,14 +1,14 @@
 = Installation instructions
 
-This document describes how to bootstrap into the webapplication. The documentation is updated for Ubuntu 18.14 LTS.
+This document describes how to bootstrap into the webapplication. The documentation is updated for Ubuntu 18.04 LTS and Debian 10 (Buster).
 
 == Requirements
 
 The following other libraries and programs are needed
 
-* ruby: > 2.3
-* Apache 2.2
-* MySQL > 8.0.4
+* Ruby > 2.3
+* Apache 2.4
+* MySQL > 8.0.4 or MariaDB 10.x
 * Git
 * Passenger for Apache 2
 * rails
@@ -17,62 +17,40 @@ The following other libraries and programs are needed
 * imagemagick
 * libmagickwand-dev
 
-*NOTE* From Muscat 6.1 MySQL *8.0.4 is required* for autocomplete and comments to properly work, as the REGEX library was changed.
+*NOTE* From Muscat 6.1 MySQL *8.0.4 is required* for autocomplete and comments to properly work, as the REGEX library was changed.  MariaDB 10.x, as provided by Debian 10 (Buster) also seems to work properly.
 
 == Mysql 8
+
 Depending on your system, a package for Mysql 8 may not exist. In this case use the official package provided by Oracle https://dev.mysql.com/downloads/repo/apt/
+
 NOTE: Download the latest version or the GPG keys may have been expired! Copy the file from the link provided in that page, there is no need for an account, follow the "No thanks, just start my download" link. In this case it points to https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
 
  wget https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
  sudo dpkg -i mysql-apt-config_0.8.15-1_all.deb
 
-(obviously subsitute with the exact file name in the link).
-dpk will prompt a screen to configure tha package, select option to configure the server version and select 8, then exit.
+(obviously subsitute with the exact file name in the link).  dpk will prompt a screen to configure tha package, select option to configure the server version and select 8, then exit.
 
 Then update and install mysql:
 
  sudo apt-get update
  sudo apt-get install mysql-server
 
-When propmpted, select *use legacy passwords* as not all connectors for the moment work with the new system. This will be updated in the future.
-Also install the newest versions of the connector libraries:
+When prompted, select *use legacy passwords* as not all connectors for the moment work with the new system. This will be updated in the future. Also install the newest versions of the connector libraries:
 
  sudo apt-get install libmysqlclient21 libmysqlclient-dev
 
+
+== MariaDB 10
+
+If you are using Debian 10 (Buster), the default MariaDB server (mariadb-server, that pulls 10.3) and clients (ruby-mysql2) are just fine.
+
+
 == Ruby and Rails
 
-Muscat 4 now requires ruby 2.3 by default. Rails is installed with the correct version with bundle. Ubuntu comes with ruby 2.5 by default so no actions are necessary. On older Debian systems the easyest way to get ruby 2.3 is via rbenv adding for all users.
+Muscat 6 requires Ruby 2.3 or higher and Bundler 2.1.4 or higher.  Rails (5.2) is installed with the correct version with bundle.
 
-On older Ubuntu systems add the following repositories
+Recent Ubuntu releases (from 18.4 LTS) and Debian 10 (Buster) provide come Ruby 2.5 by default so no actions are necessary.  On Debian Buster, Bundler 2.1.4 is provided as a backport.  Versions for Passenger, Java (as required for Solr) are also fine.
 
- deb http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu trusty main
- deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main
-
-(On some systems it is necessary to uncomment therubyracer from the gemfile)
-On Ubuntu 18.04 only passenger is needed:
-
- deb https://oss-binaries.phusionpassenger.com/apt/passenger bionic main
- 
-(Add /etc/apt/sources.list or create a relevant file in /etc/apt/sources.list.d)
-Also make sure that universe repositories are enabled!
-
-On 18.40, also enable GPG verification of Passenger:
-
- sudo apt-get install -y dirmngr gnupg
- sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
- sudo apt-get install -y apt-transport-https ca-certificates
-
-Then install all the dependencies and setup passenger:
-
- sudo apt-get update
- sudo apt-get install mysql-server libmysqlclient-dev # If mysql was not installed separately
- sudo apt-get install apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev  openjdk-8-jdk-headless passenger libapache2-mod-passenger
- sudo a2enmod passenger
- 
-Passenger also wants to compile a binary module, this is optional but will enable it
-
- sudo mkdir /var/www/.passenger
- sudo chown -R www-data:www-data /var/www/.passenger
 
 == Bootstrap the application
 
@@ -80,8 +58,9 @@ Get the sources if necessary (https://github.com/rism-ch/muscat and https://gith
 
  git clone https://github.com/rism-ch/muscat.git --recursive
 
- sudo gem install bundler -v '< 2.0' ## force 1.7 until we get compatibile with 2.0
  sudo bundle install #--deployment # deployment is only for the production system
+
+Alternatively, you can just download and use the stable release tarballs found in https://github.com/rism-ch/muscat/releases.
 
 Install base configuration:
 
@@ -94,7 +73,7 @@ Install the base css:
  cd muscat/config
  cp muscat-custom-sample.scss ../vendor/assets/stylesheets/muscat-custom.scss
 
-Make sure the directory is owned by the right user (www-data on ubuntu)
+Make sure the directory is owned by the right user (www-data on Ubuntu or Debian)
 
   sudo chown -R www-data:www-data muscat/
 
@@ -106,27 +85,33 @@ Create the user, substitute with an appropriate user and password!
  
  CREATE DATABASE muscat_development CHARACTER SET utf8 COLLATE utf8_general_ci;
  CREATE USER 'rism'@'localhost';
- SET PASSWORD FOR 'rism'@'localhost' = PASSWORD('password'); ## ON Mysql 5
- ALTER USER 'rism'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'; # On Mysql 8
+ ALTER USER 'rism'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
  GRANT ALL ON muscat_development.* TO 'rism'@'localhost';
  
-Remember username and pass should be the same as in database.yml
-Migrate the database NOTE in a production environment all the tasks must declare RAILS_ENV=production to run. For local development this is not necessary
+Remember username and pass should be the same as in database.yml.  Then, migrate the database (that us, update the structure):
 
  bundle exec rake db:migrate # development
+
+NOTE: in a production environment all the tasks must declare RAILS_ENV=production to run. For local development this is not necessary
+
  sudo RAILS_ENV=production bundle exec rake db:migrate ## on a production system
 
 Add basic dataset:
 
  bundle exec rake db:seed
 
+
 === Create credential file
 
-All the secret keys are now stored in the rails 5.2 credentials file, which is not included in the repo. a blank on must be created with
+All the secret keys are now stored in the rails 5.2 credentials file, which is not included in the repo.  A blank on must be created with:
 
  rails credentials:edit
 
-This will automatically create credentials.yml.enc and the master key, along with a cookie secret key. To use the other services on Muscat, such as history, add to this file:
+This will automatically create credentials.yml.enc and the master key, along with a cookie secret key.  If you are not familiarised with this Rails 5.2 feature, this guide is very didactic: https://youtu.be/BHgvPPr2nLE.
+
+Default configuration for Muscat requires the user to check the recaptcha challenge in order to download bibliographic records.  So you will have to create a (free) Google Recaptcha account for your site (https://www.google.com/recaptcha/about/) in order to get the site_key and the secret_key.
+
+The user and password are needed for background search and export, and should be a muscat user with minimum guest access.  So, to use the other services on Muscat, such as history, add to this file:
 
  recaptcha:
    site_key: 'xx'
@@ -135,7 +120,6 @@ This will automatically create credentials.yml.enc and the master key, along wit
    user: "xx"
    password: "xx"
 
-The user and password are needed for background search and export, and should be a muscat user with minimum guest access.
 Remember that they key must be readable from the user running apache, so check the permissions and change the user is needed:
 
  chown www-data:www-data config/master.key
@@ -156,6 +140,7 @@ For refreshing an installation in production mode (with sudo, as root or sudo -u
  bundle exec rake RAILS_ENV=production assets:clean
  bundle exec rake RAILS_ENV=production assets:precompile
 
+
 == Logging In
 
 A default administrative user has been created as part of the installation process. To log in,
@@ -170,7 +155,7 @@ It is advised that you delete this account after creating a new administrative u
 
  rake sunspot:reindex
 
-it in production mode run
+In production mode run:
 
  RAILS_ENV=production rake sunspot:reindex
 
@@ -209,9 +194,10 @@ Double check permissions in the muscat installation. Also make sure DocumentRoot
 
 Start Apache, Solr and the related services in production mode (see below).
 
+
 == Production Installation and daemons
  
- Muscat has three running daemons that should be started:
+Muscat has three running daemons that should be started:
  
   sudo RAILS_ENV=production bundle exec crono start
   # Make sure solr is not running as root!
@@ -232,7 +218,7 @@ Other ways to start delayed_job:
 
 Depending on the env, remove sudo if necessary. RAILS_ENV is needed only on production, and has to come *after* sudo.
   
-Also it is goot to block access to SOLR:
+It is also good to block access to Solr:
 
   sudo iptables -A INPUT -p tcp -s localhost --dport 8983 -j ACCEPT
   sudo iptables -A INPUT -p tcp --dport 8983 -j DROP
@@ -241,9 +227,11 @@ Also make sure that if there is a proxy, it is configured in `config/initializer
 
  config.proxy = 'http://myproxy.com.au:8080'
 
+
 == Add clean up in crontab for blacklight
 
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
+
 
 == Some MySQL optimizations
 
