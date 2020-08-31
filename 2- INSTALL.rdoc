@@ -55,7 +55,7 @@ Recent Ubuntu releases (from 18.4 LTS) and Debian 10 (Buster) provide come Ruby 
 
  sudo apt-get update
  sudo apt-get install mysql-server libmysqlclient-dev # If mysql was not installed separately
- sudo apt-get install apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev  openjdk-11-jdk-headless passenger libapache2-mod-passenger
+ sudo apt-get install apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev  openjdk-11-jdk-headless passenger make libapache2-mod-passenger
  sudo a2enmod passenger
 
 Passenger also wants to compile a binary module, this is optional but will enable it
