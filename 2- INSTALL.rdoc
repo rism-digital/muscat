@@ -51,13 +51,24 @@ Muscat 6 requires Ruby 2.3 or higher and Bundler 2.1.4 or higher.  Rails (5.2) i
 
 Recent Ubuntu releases (from 18.4 LTS) and Debian 10 (Buster) provide come Ruby 2.5 by default so no actions are necessary.  On Debian Buster, Bundler 2.1.4 is provided as a backport.  Versions for Passenger, Java (as required for Solr) are also fine.
 
+== Base packages
+
+ sudo apt-get update
+ sudo apt-get install mysql-server libmysqlclient-dev # If mysql was not installed separately
+ sudo apt-get install apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev  openjdk-11-jdk-headless passenger libapache2-mod-passenger
+ sudo a2enmod passenger
+
+Passenger also wants to compile a binary module, this is optional but will enable it
+
+ sudo mkdir /var/www/.passenger
+ sudo chown -R www-data:www-data /var/www/.passenger
 
 == Bootstrap the application
 
 Get the sources if necessary (https://github.com/rism-ch/muscat and https://github.com/rism-ch/muscat-guidelines):
 
  git clone https://github.com/rism-ch/muscat.git --recursive
-
+ sudo gem install bundler # We are compatibile with 2.1 now
  sudo bundle install #--deployment # deployment is only for the production system
 
 Alternatively, you can just download and use the stable release tarballs found in https://github.com/rism-ch/muscat/releases.
@@ -255,3 +266,26 @@ When doing development this can be quite annoying since it can take up to 30 min
  sed '/INSERT INTO `versions`/d' muscat_dump.sql > muscat_no_versions.sql
 
 Removes all the old versions. From 30 minutes to 9.
+
+== Installing new ruby and passanger on legacy systems
+
+On older Ubuntu systems add the following repositories
+
+ deb http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu trusty main
+ deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main
+
+(On some systems it is necessary to uncomment therubyracer from the gemfile)
+On Ubuntu 18.04 only passenger is needed:
+
+ deb https://oss-binaries.phusionpassenger.com/apt/passenger bionic main
+ 
+(Add /etc/apt/sources.list or create a relevant file in /etc/apt/sources.list.d)
+Also make sure that universe repositories are enabled!
+
+On 18.40, also enable GPG verification of Passenger:
+
+ sudo apt-get install -y dirmngr gnupg
+ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+ sudo apt-get install -y apt-transport-https ca-certificates
+
+Then install all the dependencies and setup passenger:
