@@ -247,7 +247,7 @@ en:
     single_threatise_printed: "Single printed treatise"
         
   #################### MENUS
-  menu_home: "Home"
+  menu_home: "Home page"
   menu_sources: "Sources"
   menu_simple_search: "Simple search"
   menu_advanced_search: "Advanced search"
@@ -361,6 +361,10 @@ en:
   archive_unarchive: "Archive / un-archive"
   archive: "Archive"
   unarchive: "Un-archive"
+  export_folder: "Export Folder as MARCXML"
+  export_folder_csv: "Export Folder as CSV"
+  validate_folder: "Validate items"
+
   
   # Editor sidebar
   show_all_groups: "Show all sections"
@@ -394,6 +398,16 @@ en:
     added: "Added %{count} items to Folder %{name}."
     added_bg: "Added items to folder, job %{job} enqueued."
     success_bg: "Folder %{name} created, job %{job} enqueued."
+    items: "Items"
+    export_started: "An email will be sent to %{email} with the download link (Export job id: %{job})."
+    export_limit: "The limit on exportable items is %{max}, this folder contains %{count} items."
+    folder_empty: "Folder contains no items"
+    not_found: "Folder %{id} does not exist"
+    publish_job: "Publish job started (id: %{id})"
+    unpublish_job: "Unpublish job started (id: %{id})"
+    reindex_job: "Reindex job started (id: %{id})"
+    validation_started: "An email will be sent to %{email} with the validation has ended (Validation job id: %{job})."
+    folder_not_source: "Only folders containing Sources can be validated"
 
   ### Digital objects
   digital_objects: "Images"
@@ -411,7 +425,7 @@ en:
   filter_author_or_editor: "Author/Editor"
   filter_autograph_of: "Autograph of"
   filter_birth_place: "Birth place"
-  filter_catalog: "Catalog"
+  filter_catalog: "Catalogue"
   filter_category_type: "Category"
   filter_collection: "Collection"
   filter_comment: "Comment"
@@ -467,6 +481,7 @@ en:
   filter_phone: "Phone"
   filter_place: "Place"
   filter_place_of_publication: "Place of publication"
+  filter_plate_no: "Plate number"
   filter_provenance: "Provenance"
   filter_record_type: "Template Type"
   filter_record_type_short: "Type"
@@ -694,6 +709,10 @@ en:
     quantity: "Display"
     update: "Update"
     no_items: "No elements to show with the current filters"
+    message_silenced: "The news message was silenced."
+    got_it: "Got it!"
+    got_it_explanation: "Clicking on this button will silence the news until the next one is released."
+    news: "Muscat News"
   
   # editor validation 
   validation:
@@ -702,11 +721,13 @@ en:
     insufficient_rights: "User has insufficient rights to create/update a record of this library"
     name_uniqueness: "Short name of entry is already taken"
     correct: "The record has no validation errors [200]"
+    begins_with_message: "Must begin with \"{0}\""
+    required_if_message: "Field is mandatory because {0} ${1} is not empty"
     
   incipit_search:
     incipit_search: "Incipit Search"
     query_type: "Query Type:"
-    exact_pitch: "Exact Pitch (Exact Match)"
+    exact_pitch: "Exact Pitch Name"
     interval: "Interval"
     refined_pitch: "Refined Pitch Contour"
     gross_pitch: "Gross Pitch Contour (Fuzziest match)"
@@ -716,6 +737,17 @@ en:
   # This is used for the "incipit" seach in the search history in BL
   # Note the capital 'I'
   Incipit: "Incipit"
+  Images: "Images"
+  "Standardized title": "Standardized Title"
+  Composer: "Composer"
+  "Source Type": "Source Type"
+  Scoring: "Scoring"
+  Date: "Date"
+  "Library siglum": "Library siglum"
+  Subject: "Subject"
+  "Number of printed copies": "Number of printed copies"
+  publisher: "Publisher"
+
 
   cookies:
     message: "Our website uses cookies to make your browsing experience better. By using our site you agree to our use of cookies."
@@ -758,6 +790,15 @@ en:
     application_name: 'Muscat'
     header_links:
       logout: 'Logout'
+    search:
+      start_over: Start again
+      facets:
+        title: "Refine your search"
+    range_limit:
+      submit_limit: "Refine"
+  blacklight_advanced_search:
+    form:
+      start_over: "Start again"
       
  
 ######################################################################################################
@@ -769,10 +810,12 @@ en:
     "2": "MSR"
     "3": "SUB"
     "4": "LSR"
-    "5": "LEC"
+    "5": "LED"
     "6": "TSR"
-    "7": "TEC"
+    "7": "TED"
     "8": "EDT"
+    "9": "LEC"
+    "10": "TEC"
     "11": "CMP"
     
   status_codes:

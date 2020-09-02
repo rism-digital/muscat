@@ -7,6 +7,7 @@ class ModificationDigestJob < ApplicationJob
   end
   
   def perform(*args)
+    results_by_criteria = {}
     ## For compatibility between crono and delayed job
     set_period(args[0]) if !args.empty?
     
@@ -19,11 +20,15 @@ class ModificationDigestJob < ApplicationJob
       
         matcher = NotificationMatcher.new(s, user)
         if matcher.matches?
-          results[s.id] = matcher.get_matches
+          results[s] = matcher.get_matches
         end
       end
       
-      ModificationNotification.notify(user, results).deliver_now if !results.empty?
+      if !results.empty?
+        # Flip them from source -> criteria to criterias-> source
+        results.map { |source_id, criterias| criterias.map { |criteria| results_by_criteria.include?(criteria) ? results_by_criteria[criteria] << source_id : results_by_criteria[criteria] = [source_id]} }
+        ModificationNotification.notify(user, results, results_by_criteria).deliver_now
+      end
     end
   end
 

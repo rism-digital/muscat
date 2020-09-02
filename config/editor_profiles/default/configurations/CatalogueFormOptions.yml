@@ -83,6 +83,7 @@
       - "XC-DZ"
       - "XD-AR"
       - "XB-AM"
+      - "XA-AD"
       - "XE-AU"
       - "XA-AT"
       - "XA-BE"
@@ -147,6 +148,7 @@
       - "XD-UY"
       - "XD-VE"
       - "XB-TW"
+      - "XD-EC"
 "100": 
   allow_new: true
   new_window: people
@@ -155,6 +157,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
 "210": 
   layout: 
     fields: 
@@ -252,6 +255,7 @@
     - - a
       - type: standard_term
         editor_partial: subfield_secondary
+        allow_new: true
 "651": 
   allow_new: true
   new_window: places
@@ -260,6 +264,7 @@
     - - a
       - type: place
         editor_partial: subfield_secondary
+        allow_new: true
 "700":
   allow_new: true
   new_window: people
@@ -268,6 +273,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
     - - "4"
       - editor_partial: subfield_select_codes
   tag_params: 
@@ -291,18 +297,8 @@
         select_label: "Function"
   tag_params: 
     codes: 
-    - fmo
-    - dnr
-    - dte
-    - prf
-    - otm
-    - ppm
-    - prt
-    - pbl
     - edt
-    - bsl
     - oth
-    - dub
 "760": 
   allow_new: true
   new_window: catalogues
@@ -311,6 +307,7 @@
     - - t
       - type: catalogue
         editor_partial: subfield_secondary
+        allow_new: true
     - - g     
 
 "780": 

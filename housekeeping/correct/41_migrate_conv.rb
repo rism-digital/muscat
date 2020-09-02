@@ -18,7 +18,7 @@ source_list.each do |fsrc, holdings|
   first_source = Source.find(fsrc)
   
   new_source = Source.new
-  marc = MarcSource.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/source/000_collection.marc"), MarcSource::RECORD_TYPES[:collection])
+  marc = MarcSource.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/source/000_collection.marc"), MarcSource::RECORD_TYPES[:collection]))
   
   marc.first_occurance("852").destroy_yourself
   marc.first_occurance("700").destroy_yourself

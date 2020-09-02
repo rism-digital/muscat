@@ -33,6 +33,8 @@ class Holding < ApplicationRecord
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_count_trigger
+  attr_accessor :suppress_update_77x_trigger
+
 
   def after_initialize
     @old_collection = nil
@@ -57,6 +59,10 @@ class Holding < ApplicationRecord
     self.suppress_update_count_trigger = true
   end
   
+  def suppress_update_77x
+    self.suppress_update_77x_trigger = true
+  end
+
   def fix_ids
     #generate_new_id
     # If there is no marc, do not add the id
@@ -89,7 +95,7 @@ class Holding < ApplicationRecord
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
  
-    new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc"))
+    new_marc = MarcCatalogue.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
     new_marc.load_source true
     
     node = MarcNode.new("holding", "852", "", "##")
@@ -136,7 +142,8 @@ class Holding < ApplicationRecord
   
 
   def update_774
-    
+      return if self.suppress_update_77x_trigger == true
+
     # We do NOT have a parent ms in the 773.
     # but we have it in old_parent, it means that
     # the 773 was deleted or modified. Go into the parent and

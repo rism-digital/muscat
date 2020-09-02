@@ -1,9 +1,12 @@
 <%# Overriden for handling translations -%>
 
-<!-- Button trigger geo-browser modal -->
+<!-- Button trigger geo-browser modal
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#geo-modal">
 	MAP View <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 </button>
+-->
+
+<%= link_to 'Download Records', catalog_download_path(search_state.params_for_search), class: "btn btn-default" %>
 
 <% if show_sort_and_per_page? and !active_sort_fields.blank? %>
 <div id="sort-dropdown" class="btn-group">

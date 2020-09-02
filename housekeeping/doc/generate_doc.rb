@@ -11,7 +11,7 @@ if ARGV.length >= 3
 end
 
 # arg 1 is input yml file, arg 2 output filename
-guidelines = Guidelines.new("#{Rails.root}/public/help/#{RISM::MARC}/#{ARGV[0]}", lang)
+guidelines = Guidelines.new(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/public/help/#{RISM::MARC}/#{ARGV[0]}"), lang)
 outfile = File.open( ARGV[1] , "w") 
 outfile.write guidelines.output
 outfile.close

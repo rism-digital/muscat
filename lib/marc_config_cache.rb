@@ -35,5 +35,16 @@ class MarcConfigCache
     @configurations[model].add_overlay(filename, overlay_path)
   
   end
-  
+
+  def self.get_referring_associations_for(model)
+    res = []
+
+    @configurations.each do |conf_model, c|
+      if c.get_all_foreign_classes.include?(model.to_s.pluralize.underscore)
+        res << conf_model.pluralize.underscore
+      end
+    end
+    return res
+  end
+
 end

@@ -13,7 +13,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, 
          :rememberable, :trackable, :validatable
 
-  enum notification_type: [:each, :daily, :weekly ]
+  enum notification_type: [:every, :daily, :weekly ]
   enum preference_wf_stage: [ :inprogress, :published, :deleted ]
   scope :ordered, -> {
     joins(:workgroups).order("workgroup.name")

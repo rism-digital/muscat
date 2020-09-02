@@ -116,5 +116,42 @@ module ForeignLinks
     end
     
   end
+
+  def referring_dependencies
+    res = {}
+    # all other classes with relation to this class from the MarcConfig
+    linked_classes = MarcConfigCache.get_referring_associations_for self.class
+    #print linked_classes
+
+    self.class.reflect_on_all_associations.each do |assoc|
+      # do not check versions or workgroups
+      next if assoc.name == :versions || assoc.name == :workgroups
+      check = false
+      check = true if assoc.plural_name == "digital_objects"
+      linked_classes.each do |e|
+        # set the check flag if the assiociation matches the marc relation class
+        if assoc.plural_name =~ Regexp.new(e)
+          check = true
+          break
+        end
+      end
+      if check
+        puts assoc.plural_name
+        dependency_size = self.send(assoc.plural_name).size rescue next
+        res[assoc.plural_name] = dependency_size
+      end
+    end
+    return res
+  end
+
+  def check_dependencies
+    msg = self.referring_dependencies.select { |key, value| value > 0  }
+    unless msg.empty?
+      linked_objects = "#{msg.map{|k,v| "#{v} #{k.to_s.sub("_", " ")}"}.to_sentence}"
+      errors.add :base, %{The #{self.class} could not be deleted because it is used by 
+      #{linked_objects}  }
+      raise ActiveRecord::RecordNotDestroyed, "Record #{self.class} #{self.id} has active dependencies [#{msg.keys.join}]"
+    end
+  end
 end
     

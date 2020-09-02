@@ -82,7 +82,7 @@ ActiveAdmin.register Institution do
     def new
       @institution = Institution.new
       
-      new_marc = MarcInstitution.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/institution/default.marc"))
+      new_marc = MarcInstitution.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/institution/default.marc")))
       new_marc.load_source false # this will need to be fixed
       @institution.marc = new_marc
 
@@ -98,7 +98,7 @@ ActiveAdmin.register Institution do
   include MarcControllerActions
 
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexItemsJob.new(Institution.find(params[:id]), "referring_sources"))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Institution, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   

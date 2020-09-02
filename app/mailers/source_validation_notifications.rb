@@ -6,8 +6,8 @@ class SourceValidationNotifications < ApplicationMailer
     @source_id = source.id
     begin
       # Note: we need to load MARC again from an unloaded state
-      validator = MarcValidator.new(Source.find(@source_id), false)
-      validator.validate
+      validator = MarcValidator.new(Source.find(@source_id))
+      validator.validate_tags
       validator.validate_dates
       validator.validate_links
       validator.validate_unknown_tags
@@ -18,7 +18,7 @@ class SourceValidationNotifications < ApplicationMailer
 
     return if @errors.count == 0 && !@failed
 
-    mail(to: RISM::NOTIFICATION_EMAIL,
+    mail(to: RISM::NOTIFICATION_EMAILS,
         from: "#{RISM::DEFAULT_EMAIL_NAME} Validation Bot <#{RISM::DEFAULT_NOREPLY_EMAIL}>",
         subject: "Source Validation Failure #{@source_id}")
  

@@ -15,5 +15,10 @@ $link-color: $primary-color !default;
 $section-header-text-color: #5E6469 !default;
 
 // BlackLight colors
-$rismBLColor: #1B4E7D;
+$rismBLColor: #1B4E7D; // Links and facets
+$rismBLnavbarColor: $primary-color; // Navbar
 $darkRismBLColor: darken($rismBLColor, 10%);
+// Navbar text
+$rismNavbarTextColor: #ddd;
+
+$catalogBackgroundColor: #F4F3F1; // gray5

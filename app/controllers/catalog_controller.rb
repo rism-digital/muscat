@@ -9,6 +9,15 @@ class CatalogController < ApplicationController
   DEFAULT_FACET_LIMIT = 20
   
   before_action :redirect_legacy_values, :only => :show
+  before_action :save_controller
+     
+  protect_from_forgery :except => [:holding]
+
+  def save_controller
+    #save the actual controller name
+    suffix = params[:controller].split("_")
+    @catalog_controller = suffix.count > 1 ? suffix.last : nil
+  end
   
   def facet_list_limit
   	if defined? @default_limit
@@ -140,6 +149,22 @@ class CatalogController < ApplicationController
     )
   end
   
+  def download
+    if params.include?(:email) && !params[:email].empty?
+      # run the job
+      if !verify_recaptcha # Make sure the user verified the captcha
+        render template: "catalog_download/download"
+      else
+        format = params.include?(:out_format) && params[:out_format] == "csv" ? :csv : :xml
+
+        Delayed::Job.enqueue(ExportRecordsJob.new(:catalog, {search_params: params.permit!.to_hash, email: params[:email], format: format, controller: @catalog_controller}))
+        render template: "catalog_download/confirm"
+      end
+    else
+      render template: "catalog_download/download"
+    end
+  end
+
   configure_blacklight do |config|
     # default advanced config values
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
@@ -355,7 +380,18 @@ class CatalogController < ApplicationController
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "std_title_texts" }
     end
-    
+    config.add_search_field("publisher") do |field|
+      field.label = :publisher
+      field.include_in_simple_select = false
+      field.solr_parameters = { :qf => "publisher_texts" }
+    end
+
+    config.add_search_field("plate_no") do |field|
+      field.label = :filter_plate_no
+      field.include_in_simple_select = false
+      field.solr_parameters = { :qf => "028a_text" }
+    end
+
     config.add_search_field("provenance") do |field|
       field.label = :filter_provenance
       field.include_in_simple_select = false

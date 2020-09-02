@@ -124,7 +124,7 @@ class Catalogue < ApplicationRecord
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
  
-    new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc"))
+    new_marc = MarcCatalogue.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc")))
     new_marc.load_source false
     
     #new_100 = MarcNode.new("catalogue", "100", "", "1#")
@@ -254,19 +254,6 @@ class Catalogue < ApplicationRecord
     
   end
   
-  def check_dependencies
-    if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
-      errors.add :base, %{The catalogue could not be deleted because it is used by
-        #{self.referring_sources.count} sources,
-        #{self.referring_institutions.count} institutions, 
-        #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people
-        #{self.referring_holdings.count} holdings}
-      throw :abort
-    end
-  end
-
   def autocomplete_label
     
     aut = (author and !author.empty? ? author : nil)

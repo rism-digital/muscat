@@ -81,7 +81,9 @@ function marc_editor_get_triggers() {
 
 // Serialize marc to JSON and do an ajax call to save it
 // Ajax sends back and URL to redirect to or an error
+var savedNr = 0;
 function _marc_editor_send_form(form_name, rails_model, redirect) {
+	savedNr++;
 	redirect = redirect || false;
 	form = $('form', "#" + form_name);
 	
@@ -119,19 +121,27 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		$("#validation_warnings").hide();
 	}
 
-  var valid = marc_editor_validate();
+	// Run the validation on the server side
+	var backend_validation = marc_editor_validate();
 
-  if (!valid.responseJSON["status"].endsWith("[200]")) {
-		return; // Give the user a chance to resubmit
-  }
+	if (!form_valid || !backend_validation.responseJSON["status"].endsWith("[200]")) {
+		var superuser = $('#user_skip_validation').val();
+		var skip = false;
 
+		// Admins and editors can skip the validation
+		if (superuser) {
+			if (savedNr >= 2) {
+				skip = confirm("The record does not pass validation, are you sure you want to save it?");
+			}
+		}
 
-	if (!form_valid) {
-		$('#main_content').unblock();
-		$('#sections_sidebar_section').unblock();
-		$("#validation_errors").show();
-		
-		return;
+		if (!skip) {
+			$('#main_content').unblock();
+			$('#sections_sidebar_section').unblock();
+			$("#validation_errors").show();
+			
+			return;
+		}
 		/*
 		// Show the validation override check
 		$("#validation_override_container").show();

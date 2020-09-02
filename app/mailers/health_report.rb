@@ -16,7 +16,7 @@ class HealthReport < ApplicationMailer
 
     attachments["validation.html"] = render(partial: "health_report/validation.html.erb")
 
-    mail(to: RISM::NOTIFICATION_EMAIL,
+    mail(to: RISM::NOTIFICATION_EMAILS,
       from: "#{RISM::DEFAULT_EMAIL_NAME} Periodic Validation Bot <#{RISM::DEFAULT_NOREPLY_EMAIL}>",
       subject: "Muscat Health Report: #{model}")
   end

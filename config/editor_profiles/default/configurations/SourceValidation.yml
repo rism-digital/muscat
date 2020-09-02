@@ -57,18 +57,33 @@ client:
         - composite_volume
     tags:
       "0": mandatory
+  "700": 
+    tags:
+      "4":
+        required_if:
+          "700": "0"
+  "710": 
+    tags:
+      "4":
+        required_if:
+          "710": "0"
   "852":
     tag_overrides:
       exclude:
         "x":
         - edition
         - edition_content
-        - libretto_edition 
+        - libretto_edition
+        - libretto_edition_content
+        - theoretica_edition
+        - theoretica_edition_content
     tags:
       c: required, warning
       x: mandatory
   "856": 
     tags:
+      u:
+        begins_with: "http"
       z:
         required_if:
           "856": "u"

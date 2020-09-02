@@ -16,8 +16,14 @@ ActiveAdmin.register_page "Dashboard" do
       store_or_restore(:dashboard_work_type, :created)
 
       store_or_restore(:dashboard_quantity, 10)
+
+      @file = get_news_file
+      if params.include?(:clear_news) && params[:clear_news] == "true"
+        cookies.permanent[:news_file] = @file if @file # we should not get here if it is nil
+        flash[:alert] = I18n.t('dashboard.message_silenced')
+        @file = nil
+      end
     end
-    
   
     # Store or restore session parameter
     def store_or_restore(value, default)
@@ -32,6 +38,21 @@ ActiveAdmin.register_page "Dashboard" do
         params[value] = default
       end
     end
+
+    def get_news_file
+      news_files = Dir.glob("#{Rails.root}/app/views/muscat_news/*.en.md")
+      names = news_files.collect{|f| File.basename(f, '.en.md') }
+      last_file = names.sort.last
+      last_file[0] = '' # strip the _, guaranteed fastest method on stackoverflow
+
+      # Not stored in the cookies.permanent, need to visualize
+      return last_file if cookies.permanent[:news_file] == nil
+      # Stored in the cookies.permanent, not visualize again
+      return nil if cookies.permanent[:news_file] == last_file
+      # Different file in the cookies.permanent, show it
+      last_file
+    end
+
   end
   
   menu priority: 3, label: proc{ I18n.t("active_admin.dashboard") }
@@ -40,6 +61,15 @@ ActiveAdmin.register_page "Dashboard" do
   limit = 10;
 
   content title: proc{ I18n.t("active_admin.dashboard") } do 
+
+    @file = @arbre_context.assigns[:file]
+    if @file
+      panel I18n.t('dashboard.news') do
+        render 'muscat_news/' + @file
+        render 'dashboard_silence_news'
+      end
+    end
+
     #user = current_user.has_any_role?(:editor, :admin) ? -1 : current_user.id
     user_id = (params[:dashboard_source_owner].to_s == "user") ? current_user.id : -1
     sources = dashboard_find_recent(Source, params[:dashboard_quantity], params[:dashboard_source_type], user_id, 15)
@@ -148,8 +178,8 @@ ActiveAdmin.register_page "Dashboard" do
             table_for holdings.map do
               column (I18n.t :filter_id) {|holding| link_to(holding.id, edit_admin_holding_path(holding)) } 
               column (I18n.t :filter_siglum), :lib_siglum
-              column (I18n.t :filter_std_title)  {|holding| holding.source.std_title}
-              column (I18n.t :filter_author)  {|holding| holding.source.composer}
+              column (I18n.t :filter_std_title)  {|holding| holding.source ? holding.source.std_title : "No source"}
+              column (I18n.t :filter_author)  {|holding| holding.source ? holding.source.composer : "No source"}
             end
           else
             text_node(I18n.t('dashboard.no_items'))

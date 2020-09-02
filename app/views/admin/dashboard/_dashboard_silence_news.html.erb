@@ -1,0 +1,5 @@
+<%= form_tag(admin_dashboard_path, method: "get") do %>
+    <%= hidden_field_tag 'clear_news', "true" -%>
+  <%= submit_tag(I18n.t('dashboard.got_it')) %>
+  <%= I18n.t('dashboard.got_it_explanation') %>
+<% end %>

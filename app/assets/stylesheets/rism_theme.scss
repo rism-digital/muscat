@@ -20,17 +20,17 @@ svg:not(:root){
 
 #header-navbar {
     &.navbar-inverse {
-        background-color: $rismBLColor;
+        background-color: $rismBLnavbarColor;
         border-color: $darkRismBLColor;
         .navbar-nav > li > a {
-            color: #ddd;
+            color: $rismNavbarTextColor;
             padding-top: 15px;
             padding-bottom: 0;
         }
         .navbar-nav > .open > a,
         .navbar-inverse .navbar-nav > .open > a:hover,
         .navbar-inverse .navbar-nav > .open > a:focus {
-            background-color: $rismBLColor;
+            background-color: $rismBLnavbarColor;
         }
 
     }
@@ -45,7 +45,7 @@ svg:not(:root){
         }
         .slogan-top {
             font-size: 14px;
-            color: $gray0;
+            color: $rismNavbarTextColor;
         }
         .slogan-bottom {
             font-size: 12px;
@@ -118,7 +118,7 @@ button#search {
 
 // Global //
 body {
-    background-color: $gray5;
+    background-color: $catalogBackgroundColor;
     font-family: Helvetica, Arial, sans-serif;
     #main-container {
         margin-bottom: $footer-height;
@@ -279,7 +279,7 @@ h5.index_title {
 }
 
 // Catalog Show Page //
-.blacklight-catalog-show {
+.blacklight-catalog-show{
     #content {
         width: 100%;
     }
@@ -288,6 +288,16 @@ h5.index_title {
         display: none;
     }
 
+}
+
+.blacklight-catalog_ch-show {
+    #content {
+        width: 100%;
+    }
+    // We want to hide the sidebar
+    #sidebar {
+        display: none;
+    }
 }
 
 .digital_object_row {

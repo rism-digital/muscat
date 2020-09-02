@@ -69,33 +69,33 @@ class MarcSource < Marc
     # Quartets
     node = first_occurance("240", "a")
     standard_title = node.content.truncate(50) if node && node.content
-    standard_title.strip! if standard_title
+    standard_title = standard_title.strip if standard_title
     
     # try to get the description (240 m)
     # vl (2), vla, vlc
     node = first_occurance("240", "m")
     scoring = node.content.truncate(50) if node && node.content
-    scoring.strip! if scoring
+    scoring = scoring.strip if scoring
    
     node = first_occurance("240", "k")
     extract = node.content.truncate(50) if node && node.content
-    extract.strip! if extract
+    extract = extract.strip if extract
     
     node = first_occurance("240", "o")
     arr = node.content.truncate(50) if node && node.content
-    arr.strip! if arr
+    arr = arr.strip if arr
    
     node = first_occurance("383", "b")
     opus = node.content.truncate(50) if node && node.content
-    opus.strip! if opus
+    opus = opus.strip if opus
    
     node = first_occurance("690", "a")
     cat_a = node.content.truncate(50) if node && node.content
-    cat_a.strip! if cat_a
+    cat_a = cat_a.strip if cat_a
     
     node = first_occurance("690", "n")
     cat_n = node.content.truncate(50) if node && node.content
-    cat_n.strip! if cat_n
+    cat_n = cat_n.strip if cat_n
    
     cat_no = "#{cat_a} #{cat_n}".strip
     cat_no = nil if cat_no.empty? # For the join only nil is skipped 
@@ -154,7 +154,7 @@ class MarcSource < Marc
           
     elsif tags_852.length == 1 # single copy
       if node = first_occurance("852", "a")
-        siglum = node.foreign_object.siglum
+        siglum = node.foreign_object.siglum rescue siglum = ""
         siglum = "" if !siglum
       end
       if node = first_occurance("852", "c")
@@ -363,28 +363,18 @@ class MarcSource < Marc
   def to_external(updated_at = nil, versions = nil, holdings = true)
     super(updated_at, versions)
     parent_object = Source.find(get_id)
-    # See #176
-    # Step 1, rmake leader
-    # collection, if we have prints only (......cc...............) or not (......dc...............)
+    # See #933, supersedes #176
+    # Step 1, make leader
     # manuscript and print, if it is part of a collection (......[cd]d...............) or not (......[cd]m...............)
 
     base_leader = "00000nXX#a2200000#u#4500"
 
-    if ((@record_type == RECORD_TYPES[:collection]) || (@record_type == RECORD_TYPES[:edition]))
-      type = "cc"
-      
-      each_by_tag("774") do |t|
-        w = t.fetch_first_by_tag("w")
-        if w && w.content
-          source = Source.find(w.content) rescue next
-          type = "dc" if source.record_type != RECORD_TYPES[:edition_content]
-          t.add_at(MarcNode.new(@model, "a", source.name, nil), 0)
-        else
-          raise "Empty $w in 774"
-        end
-      end
-      
-      leader = base_leader.gsub("XX", type)
+    if (@record_type == RECORD_TYPES[:collection])
+      leader = base_leader.gsub("XX", "dc")
+      get_subentry_title
+    elsif (@record_type == RECORD_TYPES[:edition])
+      leader = base_leader.gsub("XX", "cc")
+      get_subentry_title
     elsif @record_type == RECORD_TYPES[:composite_volume]
       leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
@@ -440,7 +430,7 @@ class MarcSource < Marc
       end
       root.children.insert(get_insert_position("035"), n035) if n035
     end
-    
+   
     # Add 040 if not exists; if 040$a!=DE-633 then add 040$c
     if by_tags("040").count == 0
         n040 = MarcNode.new(@model, "040", "", "##")
@@ -449,6 +439,10 @@ class MarcSource < Marc
     else
       each_by_tag("040") do |t|
         existent = t.fetch_first_by_tag("a").content rescue nil
+        unless existent
+          t.add_at(MarcNode.new("source", "a", RISM::AGENCY, nil), 0)
+          t.sort_alphabetically
+        end
         if existent && existent != RISM::AGENCY
           t.add_at(MarcNode.new("source", "c", RISM::AGENCY, nil), 0)
           t.sort_alphabetically
@@ -492,6 +486,7 @@ class MarcSource < Marc
     if !parent_object.digital_objects.empty?# && parent_object.id >= 1001000000
       parent_object.digital_objects.each do |image|
         # FIXME we should use the domain name from application.rb instead
+        next if !image || !image.attachment || !image.attachment.path #in come cases the image was reoved
         path = image.attachment.path.gsub("/path/to/the/digital/objects/directory/", "http://muscat.rism.info/")
         content = "#{image.description + ': ' rescue nil}#{path}"
         n500 = MarcNode.new(@model, "500", "", "##")
@@ -543,6 +538,18 @@ class MarcSource < Marc
     
   def set_record_type(rt)
     @record_type = rt
+  end
+
+  def get_subentry_title
+    each_by_tag("774") do |t|
+      w = t.fetch_first_by_tag("w")
+      if w && w.content
+        source = Source.find(w.content) rescue next
+        t.add_at(MarcNode.new(@model, "a", source.name, nil), 0)
+      else
+        raise "Empty $w in 774"
+      end
+    end
   end
 
 end

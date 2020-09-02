@@ -145,7 +145,7 @@ class Person < ApplicationRecord
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
   
-    new_marc = MarcPerson.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
+    new_marc = MarcPerson.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc")))
     new_marc.load_source true
     
     new_100 = MarcNode.new("person", "100", "", "1#")
@@ -250,20 +250,6 @@ class Person < ApplicationRecord
     
   end
     
-  # before_destroy, will delete Person only if it has no links referring to
-  def check_dependencies
-    if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.referring_holdings.count > 0
-      errors.add :base, %{The person could not be deleted because it is used by
-        #{self.referring_sources.count} sources,
-        #{self.referring_institutions.count} institutions, 
-        #{self.referring_catalogues.count} catalogues and 
-        #{self.referring_people.count} people
-        #{self.referring_holdings.count} holdings}
-      throw :abort
-    end
-  end
-  
   def set_object_fields
     # This is called always after we tried to add MARC
     # if it was suppressed we do not update it as it

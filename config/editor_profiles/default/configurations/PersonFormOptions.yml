@@ -42,6 +42,7 @@
         - "LC"
         - "NLP"
         - "NKC"
+        - "ORCID"
         - "SWNL"
         - "VIAF"
         - "WKP"
@@ -115,6 +116,7 @@
       - "XA-DE-BY"
       - "XA-DE-SN"
       - "XA-GR"
+      - "XC-GN"
       - "XA-VA"
       - "XD-HN"
       - "XA-HU"
@@ -134,10 +136,12 @@
       - "XA-MT"
       - "XD-MX"
       - "XA-MD"
+      - "XA-MC"
       - "XA-ME"
       - "XA-NL"
       - "XE-NZ"
       - "XA-NO"
+      - "XD-PE"
       - "XD-PY"
       - "XA-PL"
       - "XA-PT"
@@ -163,6 +167,7 @@
       - "XB-VN"
       - "XB-TW"
       - "XB-GE"
+      - "XD-EC"
 "100": 
   layout: 
     fields: 
@@ -210,17 +215,12 @@
       - "bn"
       - "da"
       - "do"
-      - "dv"
       - "ee"
-      - "ef"
-      - "ff"
       - "gg"
       - "in"
-      - "mo"
       - "tn"
       - "ub"
       - "z"
-      - "xx"
     columns: 4
 "500": 
   allow_new: true
@@ -285,7 +285,6 @@
     codes:
       - go
       - ha
-      - po
       - so
       - wl
       - wo
@@ -321,20 +320,12 @@
     fields: 
     - - a
       - cols: 2
-    - - b
-      - cols: 2
-    - - u
-      - cols: 4
     columns: 4
 "680": 
   layout: 
     fields: 
     - - a
       - cols: 2
-    - - i
-      - cols: 2
-    - - "5"
-      - cols: 4
     columns: 4
 "856": 
   layout: 

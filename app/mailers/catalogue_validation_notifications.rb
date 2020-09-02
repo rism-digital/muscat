@@ -6,8 +6,8 @@ class CatalogueValidationNotifications < ApplicationMailer
     @catalogue_id = catalogue.id
     begin
       # Note: we need to load MARC again from an unloaded state
-      validator = MarcValidator.new(Catalogue.find(@catalogue_id), false)
-      validator.validate
+      validator = MarcValidator.new(Catalogue.find(@catalogue_id))
+      validator.validate_tags
       @errors = validator.get_errors
     rescue Exception => e
       @failed = e
@@ -15,7 +15,7 @@ class CatalogueValidationNotifications < ApplicationMailer
 
     return if @errors.count == 0 && !@failed
 
-    #mail(to: RISM::NOTIFICATION_EMAIL,
+    #mail(to: RISM::NOTIFICATION_EMAILS,
     #    name: "Muscat Validation",
     #    subject: "Source Validation Failure #{@source_id}")
  

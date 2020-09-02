@@ -146,6 +146,13 @@ function _marc_validate_unhighlight( element, errorClass, validClass ) {
 	}
 }
 
+function marc_validate_begins_with(value, element, param) {
+	if (!value)
+		return true;
+
+	return value.startsWith(param);
+}
+
 // This is the simplest validator
 // It checks that a value is present
 // but only in partially filled forms
@@ -275,7 +282,8 @@ function marc_editor_validate_advanced_rule(element_class, rules) {
 			for (var tag in rule_contents) {
 				$.validator.addClassRules(element_class, { required_if: [ tag, rule_contents[tag]] });
 			}
-			
+		} else if (rule_name == "begins_with") {
+			$.validator.addClassRules(element_class, { begins_with: rules[rule_name] });
 		} else {
 			console.log("Unknown advanced validation type: " + rule_name);
 		}
@@ -370,8 +378,10 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("presence", marc_validate_presence, I18n.t("validation.missing_message"));
 	$.validator.addMethod("mandatory", marc_validate_mandatory, I18n.t("validation.missing_message"));
 	$.validator.addMethod("required_if", marc_validate_required_if, 
-			$.validator.format("Missing Mandatory Field, because field {0} ${1} is present"));
-
+			$.validator.format(I18n.t("validation.required_if_message")));
+	$.validator.addMethod("begins_with", marc_validate_begins_with, 
+			$.validator.format(I18n.t("validation.begins_with_message")));
+			
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
 	$.validator.addMethod("new_creation", marc_validate_new_creation, "");

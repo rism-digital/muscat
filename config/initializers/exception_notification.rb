@@ -20,8 +20,8 @@ ExceptionNotification.configure do |config|
   # Email notifier sends notifications by email.
 #  config.add_notifier :email, {
 #    :email_prefix         => "[ERROR] ",
-#    :sender_address       => "Notifier <#{RISM::NOTIFICATION_EMAIL}>",
-#    :exception_recipients => [RISM::NOTIFICATION_EMAIL]
+#    :sender_address       => "Notifier <#{RISM::NOTIFICATION_EMAILS}>",
+#    :exception_recipients => [RISM::NOTIFICATION_EMAILS]
 #  }
 
   # Campfire notifier sends notifications to your Campfire room. Requires 'tinder' gem.

@@ -11,7 +11,7 @@ module AwesomePrint
     #------------------------------------------------------------------------------
     def cast_with_marc_node(object, type)
       cast = cast_without_marc_node(object, type)
-      if (defined?(::MarcNode))
+      if defined?(::MarcNode) && (object.is_a?(::MarcNode) || object.is_a?(::Marc))
         cast = :marc_node
       end
       cast

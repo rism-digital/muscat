@@ -14,7 +14,7 @@ module RISM
   # The MARC letters (used in the new_from.rhtml and in the manuscript_controller for the templates) 
   MARC = "default"
   # Select the configuration for the editor profiles to load
-  EDITOR_PROFILE = ""
+  EDITOR_PROFILE = "default"
   # Url redirection for the deprecated Page controller (to be set only if the installation was previously in Muscat 2 with page)
   LEGACY_PAGES_URL = '/'
   # Root redirect, can be changed to something else than BL
@@ -76,8 +76,8 @@ module RISM
 	
 	# Sent the validation notifications
 	SEND_VALIDATION_NOTIFICATIONS = false
-	# Notification email, also used for Exception Notifications
-	NOTIFICATION_EMAIL = "sample@email.com"
+	# Insert here a set of emails for people to receive notifications
+	NOTIFICATION_EMAILS = ["sample@email.com"]
 	# Privacy information page
 	COOKIE_PRIVACY_LINK = "http://www.example.com/privacy.html?lang="
 	# Append locale?
@@ -108,6 +108,8 @@ module Muscat
 end
 
 #####################################################################################################################
+
+REINDEX_PIDFILE = "#{Rails.root}/tmp/pids/muscat_reindex.pid"
 
 # Mime types for MEI files
 Mime::Type.register "application/xml", :mei

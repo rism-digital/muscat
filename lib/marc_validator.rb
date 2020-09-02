@@ -3,7 +3,7 @@ include ApplicationHelper
 
 	DEBUG = false
 	
-  def initialize(object, user=nil, warnings = true)
+  def initialize(object, user = nil, warnings = false)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
     @user = user
@@ -30,7 +30,7 @@ include ApplicationHelper
     @show_warnings = warnings
   end
 
-  def validate
+  def validate_tags
 
     @rules.each do |tag, tag_rules|
       #mandatory =  tag_rules["tags"].has_value? "mandatory"
@@ -88,7 +88,14 @@ include ApplicationHelper
             end
             
           elsif rule.is_a? Hash
-            if rule.has_key?("required_if")
+            if rule.has_key?("begins_with")
+              subst = rule["begins_with"]
+              if marc_subtag && marc_subtag.content && !marc_subtag.content.start_with?(subst)
+                add_error(tag, subtag, "begin_with:#{subst}")
+                puts "#{tag} #{subtag} should begin with #{subst}" if DEBUG
+              end
+
+            elsif rule.has_key?("required_if")
               # This is another hash! gotta love json
               rule["required_if"].each do |other_tag, other_subtag|
                 # Try to get this other tag first
@@ -147,10 +154,10 @@ include ApplicationHelper
         subtag = unresolved_tag.fetch_first_by_tag(foreign_subtag.tag) # get the first
         if subtag && subtag.content
           if subtag.content != foreign_subtag.content
-            add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content} ##{foreign_subtag.foreign_object.id}")
+            add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content} from: ##{foreign_subtag.foreign_object.class}:#{foreign_subtag.foreign_object.id}")
           end
         else
-          add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: tag not present in unresolved marc")
+          add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: tag not present in unresolved marc, from: ##{foreign_subtag.foreign_object.class}:#{foreign_subtag.foreign_object.id}")
         end
       end
       
@@ -199,15 +206,34 @@ include ApplicationHelper
   end
 
   def validate_unknown_tags
-    # Skipping this until template change is ready
-=begin
     @unknown_tags = []
       @editor_profile.each_tag_not_in_layout(@object) do |t|
         add_error(t, "unknown-tag", "Unknown tag in layout")
       end
-=end
   end
-  
+
+  def validate_holdings
+    return if !@object.is_a? Source
+
+    if @object.record_type == MarcSource::RECORD_TYPES[:edition]
+      add_error("record", "holdings", "No holding records") if @object.holdings.empty?
+    elsif @object.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
+      @object.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content] ||
+      @object.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content]
+      add_error("record", "holdings", "#{@object.get_record_type} should not have holding records") if !@object.holdings.empty?
+      add_error("record", "holdings", "#{@object.get_record_type} must have a parent") if !@object.parent_source
+    end
+  end
+
+  def validate
+    validate_tags
+    validate_dates
+    validate_links
+    validate_holdings
+    validate_unknown_tags
+    return @errors
+  end
+
   def has_errors
     return @errors.count > 0
   end

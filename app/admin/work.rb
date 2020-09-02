@@ -91,7 +91,7 @@ ActiveAdmin.register Work do
     def new
       @work = Work.new
       
-      new_marc = MarcWork.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc"))
+      new_marc = MarcWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc")))
       new_marc.load_source false # this will need to be fixed
       @work.marc = new_marc
       
@@ -108,7 +108,7 @@ ActiveAdmin.register Work do
   include MarcControllerActions
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexItemsJob.new(Work.find(params[:id]), "referring_sources"))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Work, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   

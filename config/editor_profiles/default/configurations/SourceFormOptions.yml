@@ -170,12 +170,6 @@
       - G+3
       - G+4
       - G+5
-"033": 
-  layout: 
-    fields: 
-    - - indicator
-      - editor_partial: subfield_indicator
-    - - a
 "040": 
   layout: 
     fields:
@@ -221,31 +215,47 @@
       - "afr"
       - "ara"
       - "arg"
+      - "arm"
+      - "art"
       - "baq"
+      - "bos"
+      - "bul"
       - "cat"
+      - "cel"
       - "chi"
       - "chu"
+      - "crp"
       - "cze"
       - "dan"
+      - "dsb"
       - "dut"
       - "eng"
       - "enm"
       - "est"
       - "fas"
+      - "fij"
       - "fin"
       - "fre"
+      - "frm"
+      - "fro"
       - "frr"
       - "fry"
+      - "fur"
       - "ger"
+      - "gez"
       - "gle"
       - "glg"
       - "gmh"
+      - "goh"
       - "grc"
-      - "gre" 
+      - "gre"
       - "gsw"
       - "heb"
       - "hrv"
+      - "hsb"
       - "hun"
+      - "ice"
+      - "iii"
       - "ita"
       - "jpn"
       - "kor"
@@ -254,11 +264,14 @@
       - "lit"
       - "ltz"
       - "mac"
+      - "mao"
       - "mon"
+      - "mul"
       - "nap"
       - "nds"
       - "nor"
       - "oci"
+      - "per"
       - "pol"
       - "por"
       - "roh"
@@ -267,22 +280,26 @@
       - "rus"
       - "san"
       - "scn"
+      - "sco"
       - "sla"
       - "slo"
       - "slv"
-      - "scn"
-      - "srp"
-      - "dsb"
-      - "hsb"
+      - "smn"
       - "spa"
       - "srp"
       - "swe"
+      - "tat"
+      - "tgl"
+      - "tha"
       - "tib"
+      - "tsi"
       - "tur"
       - "ukr"
+      - "und"
       - "vie"
       - "wel"
       - "wen"
+      - "xal"
       - "yid"
       - "zxx"
 "100": 
@@ -603,6 +620,7 @@
         - "B/XIII"
         - "B/XV"
         - "B/XVII"
+        - "Other"
         editor_partial: subfield_select
     - - b
     - - c
@@ -726,7 +744,7 @@
       - ill
       - aut
       - oth
-      - dub
+      - asn
       - ctb
       - ccp
       - dst
@@ -775,6 +793,7 @@
       - cph
       - lse
       - ppm
+      - asn
 "730":
   new_window: standard_titles
   new_window_field: title_equals
@@ -869,16 +888,6 @@
       - "6byz"
       - "7byz"
       - "8byz"
-"740":
-  layout: 
-    fields: 
-    - - a
-      - type: source_solr
-        field: value
-        editor_partial: subfield_secondary
-        allow_new: true
-    - - n
-    - - p
 "773":
   new_window: sources
   record_type_helper: get_allowed_record_type

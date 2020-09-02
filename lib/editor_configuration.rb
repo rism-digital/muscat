@@ -1,11 +1,11 @@
-# encoding: UTF-8
+# encoding: utf-8
 # The editor configurations define how each marc_item will be printed/edited/shown. It builds uo the old EditorProfile
 # and retains the full functionality.
 # An editor configuration is comprised of a set of layout rules: i.e. which tags show and in which order. It enables to define labels in the same way.
 # Layout options define how the editor fields will be constructed.
 # Each EditorConfiguration can be applied only to a Source that has certain features, i.e. a regex match with the leader, the presence of a tag
 # or the absence of a tag. Each of these rules is configured in the :filter field of the configuration file.
-# The default configuration is in editor_profiles/defaul/profiles.yml; If an application wants to override it, it can define a new directory,
+# The default configuration is in config/editor_profiles/default/profiles.yml; If an application wants to override it, it can define a new directory,
 # e.g. editor_profiles/ch, and configure RISM::EDITOR_PROFILE="ch", for example. The new profiles completely overrides the default one.
 # profiles.yml consists of an array of configurations, in this form:<p>
 # <tt>
@@ -31,8 +31,8 @@
 #
 class EditorConfiguration
   
-  # Load all the configurations, first in editor_profiles/default/configurations then ins
-  # editor_profiles/#{RISM::EDITOR_PROFILE}/configurations. If two files share the same name
+  # Load all the configurations, first in config/editor_profiles/default/configurations/ then in
+  # config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/. If two files share the same name
   # in the two directories, they will be merged together.
   def squeeze(list)
     configs = list #YAML::load(yaml_list)
@@ -42,6 +42,9 @@ class EditorConfiguration
     if RISM::EDITOR_PROFILE != ""
       configs.each do |config|
         file = "#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml"
+        unless File.exists?(file)
+	  file = "#{Rails.root}/config/editor_profiles/default/configurations/#{config}.yml"
+	end
         if File.exists?(file)
           settings.squeeze(Settings.new(IO.read(file)))
         end
@@ -419,11 +422,11 @@ class EditorConfiguration
   def self.get_help_fname(name, model = "Source")
     model = (model == "Source") ? "" : "#{model.downcase}_"
     # translated version?
-    fname = "/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html"
+    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html")
     #ap fname
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # english?
-    fname = "/help/#{RISM::MARC}/#{model}#{name}_en.html"
+    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_en.html")
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # nope...
     return ""
@@ -439,28 +442,19 @@ class EditorConfiguration
       @squeezed_profiles = Array.new
       
       # Load local configurations
-      file = "#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/profiles.yml"
-      if File.exists?(file)
-        configurations = YAML::load(IO.read(file))
-        configurations.each do |conf|
-          @squeezed_profiles << EditorConfiguration.new(conf)
-        end      
-      else
-        # if it does not exist, load default
-        file = "#{Rails.root}/config/editor_profiles/default/profiles.yml"
-        configurations = YAML::load(IO.read(file))
-        configurations.each do |conf|
-          @squeezed_profiles << EditorConfiguration.new(conf)
-        end
+      configurations = YAML::load(IO.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/profiles.yml")))
+      configurations.each do |conf|
+        @squeezed_profiles << EditorConfiguration.new(conf)
       end
-  
     end
+
     @squeezed_profiles
   end
     
   def self.get_profile_templates(model)
     templates = {}
-    Dir.glob("#{Rails.root}/config/marc/#{RISM::MARC}/#{model}/*").sort.each do |f|
+    dir = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/#{model}/")
+    Dir.glob("#{dir}/*").sort.each do |f|
         file_dir = File.basename(f,'.marc')
         file_label = file_dir.sub(/[^_]*_/,"")
         templates[file_dir] = file_label
@@ -469,19 +463,13 @@ class EditorConfiguration
   end
   
   def self.get_source_templates
-    file = "#{Rails.root}/config/marc/#{RISM::MARC}/source/template_configuration.yml"
-    return {} if !File.exists?(file)
-    
-    conf = YAML::load(IO.read(file))
+    conf = YAML::load(IO.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/source/template_configuration.yml")))
     return {} if !conf.has_key? "display"
     conf["display"]
   end
   
   def self.get_source_default_file(record_type)
-    file = "#{Rails.root}/config/marc/#{RISM::MARC}/source/template_configuration.yml"
-    return nil if !File.exists?(file)
-    
-    conf = YAML::load(IO.read(file))
+    conf = YAML::load(IO.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/source/template_configuration.yml")))
     return nil if !conf.has_key? "default_mapping"
     conf["default_mapping"][record_type.to_s]
   end

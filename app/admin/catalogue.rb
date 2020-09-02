@@ -96,7 +96,7 @@ ActiveAdmin.register Catalogue do
         new_marc.reset_to_new
         @catalogue.marc = new_marc
       else
-        new_marc = MarcCatalogue.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc"))
+        new_marc = MarcCatalogue.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc")))
         new_marc.load_source false # this will need to be fixed
         @catalogue.marc = new_marc
       end
@@ -109,7 +109,7 @@ ActiveAdmin.register Catalogue do
   include MarcControllerActions
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexItemsJob.new(Catalogue.find(params[:id]), "referring_sources"))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Catalogue, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
@@ -148,10 +148,7 @@ ActiveAdmin.register Catalogue do
       label: I18n.t('status_codes.' + (cat.wf_stage != nil ? cat.wf_stage : ""), locale: :en))}  
     column (I18n.t :filter_id), :id    
     column (I18n.t :filter_title_short), :name
-    column (I18n.t :filter_title), :description do |catalogue| 
-      catalogue.description.truncate(64, separator: ' ') if catalogue.description
-
-    end
+    column (I18n.t :filter_title), :description
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			all_hits = @arbre_context.assigns[:hits]

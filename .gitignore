@@ -2,8 +2,6 @@ config/application.rb
 config/database.yml
 config/solr.yml
 development.log
-/tmp
-/log
 /solr/default/data
 /solr/pids
 /solr/development/data
@@ -20,3 +18,10 @@ spec/examples.txt
 help.sh
 .DS_Store
 system
+
+# Ignore encrypted secrets key file.
+config/secrets.yml.key
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+/config/credentials.yml.enc

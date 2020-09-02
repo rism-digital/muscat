@@ -84,7 +84,7 @@ class Guidelines
   end
   
   def cat helpfile
-    text = IO.read("#{Rails.root}/public/help/#{RISM::MARC}/#{helpfile}_#{@lang}.html") rescue "HELP WILL FOLLOW"
+    text = IO.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/public/help/#{RISM::MARC}/#{helpfile}_#{@lang}.html")) rescue "HELP WILL FOLLOW"
     @output += text
   end
 end

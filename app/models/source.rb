@@ -298,25 +298,6 @@ class Source < ApplicationRecord
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
     
-  def check_dependencies
-    if (self.child_sources.count > 0)
-      errors.add :base, "The source could not be deleted because it has #{self.child_sources.count} child source(s)"
-      throw :abort
-    end
-    if (self.digital_objects.count > 0)
-      errors.add :base, "The source could not be deleted because it has digital objects attached"
-      throw :abort
-    end
-    if (self.sources.count > 0)
-      errors.add :base, "The source could not be deleted because it refers to #{self.sources.count} source(s)"
-      throw :abort
-    end
-    if (self.referring_sources.count > 0)
-      errors.add :base, "The source could not be deleted because it has #{self.referring_sources.count} subsequent entry(s)"
-      throw :abort
-    end
-  end
-    
   # Method: set_object_fields
   # Parameters: none
   # Return: none
@@ -507,6 +488,24 @@ class Source < ApplicationRecord
   def get_child_source(source_id)
     child_sources.each {|ch| return ch if ch.id == source_id}
     nil
+  end
+
+  def siglum_matches?(siglum)
+    if self.record_type == MarcSource::RECORD_TYPES[:edition]
+      holdings.each do |h|
+        return true if h.lib_siglum.downcase.start_with? siglum.downcase
+      end
+    elsif self.record_type == MarcSource::RECORD_TYPES[:edition_content]
+      puts "Edition content #{self.id} has no parent" if !self.parent_source
+      return false if !self.parent_source
+      self.parent_source.holdings.each do |h|
+        return true if h.lib_siglum.downcase.start_with? siglum.downcase
+      end
+    else
+      return true if lib_siglum.downcase.start_with? siglum.downcase
+    end
+
+    false
   end
 
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end

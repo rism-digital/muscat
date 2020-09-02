@@ -57,8 +57,8 @@ ActiveAdmin.register Folder do
   end
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexFolderJob.new(params[:id]))
-    redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Folder, :folder_items))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:reindex_job, scope: :folders, id: job.id)
   end
   
   #action_item :publish, only: :show do
@@ -67,14 +67,63 @@ ActiveAdmin.register Folder do
   
   member_action :publish, method: :get do
     job = Delayed::Job.enqueue(PublishFolderJob.new(params[:id]))
-    redirect_to resource_path(params[:id]), notice: "Publish Job started #{job.id}"
+    redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
   end
  
   member_action :unpublish, method: :get do
     job = Delayed::Job.enqueue(PublishFolderJob.new(params[:id], unpublish: true))
-    redirect_to resource_path(params[:id]), notice: "Unpublish Job started #{job.id}"
+    redirect_to resource_path(params[:id]), notice: I18n.t(:unpublish_job, scope: :folders, id: job.id)
   end
  
+  ## Shows a page so the user can select the folder name
+  member_action :export_folder, :method => :get do
+    begin
+      f = Folder.find(params[:id])
+    rescue
+      # This should really never happen
+      redirect_to collection_path, :flash => {error: I18n.t(:not_found, scope: :folders, id: params[:id])}
+      return
+    end
+
+    if !f.folder_items || f.folder_items.empty?
+      redirect_to resource_path(params[:id]), :flash => {error:I18n.t(:folder_empty, scope: :folders)}
+      return
+    end
+
+    if f.folder_items.count > 25000
+      redirect_to resource_path(params[:id]), :flash => {error: I18n.t(:export_limit, scope: :folders, max: 25000, count: f.folder_items.count)}
+      return
+    end
+
+    format = params.include?(:csv) ? :csv : :xml
+
+    job = Delayed::Job.enqueue(ExportRecordsJob.new(:folder, {id: params[:id], email: current_user.email, format: format}))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:export_started, scope: :folders, email: current_user.email, job: job.id)
+  end 
+
+  member_action :validate_folder, method: :get do
+    begin
+      f = Folder.find(params[:id])
+    rescue
+      # This should really never happen
+      redirect_to collection_path, :flash => {error: I18n.t(:not_found, scope: :folders, id: params[:id])}
+      return
+    end
+
+    if !f.folder_items || f.folder_items.empty?
+      redirect_to resource_path(params[:id]), :flash => {error:I18n.t(:folder_empty, scope: :folders)}
+      return
+    end
+
+    if f.folder_type != "Source"
+      redirect_to resource_path(params[:id]), :flash => {error:I18n.t(:folder_not_source, scope: :folders)}
+      return
+    end
+
+    job = Delayed::Job.enqueue(FolderValidationReportJob.new(f.id, current_user.id))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:validation_started, scope: :folders, email: current_user.email, job: job.id)
+  end
+
   ###########
   ## Index ##
   ###########
@@ -90,7 +139,7 @@ ActiveAdmin.register Folder do
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_folder_type), :folder_type
     column (I18n.t :filter_owner) {|folder| folder.user.name}
-    column ("Items")  {|folder| folder.folder_items.count}
+    column (I18n.t "folders.items")  {|folder| folder.folder_items.count}
     actions
   end
   

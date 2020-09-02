@@ -361,6 +361,10 @@ fr:
   archive_unarchive: "Archiver / désarchiver"
   archive: "Archiver"
   unarchive: "Désarchiver"
+  export_folder: "Exporter le dossier en MARCXML"
+  export_folder_csv: "Exporter le dossier en CSV"
+  validate_folder: "Valider le dossier"
+
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"
@@ -394,6 +398,14 @@ fr:
     added: "%{COUNT} éléments ajoutés au dossier %{NAME}."
     added_bg: "Eléments ajoutés au dossier, tâche %{JOB} ajoutée à la queue."
     success_bg: "Dossier %{NAME} créé, tâche %{JOB} ajoutée à la queue."
+    items: "Éléments"
+    export_started: "Un courriel contenant le lien de téléchargement a été envoyé à %{email} (Export job id: %{job})."
+    export_limit: "Le nombre maximal d'éléments téléchargeables est de %{max}, alors que ce dossier contient %{count} éléments."
+    folder_empty: "Le dossier est vide"
+    not_found: "Le dossier %{id} est inexistant"
+    publish_job: "Début du Job de publication (id: %{id})"
+    unpublish_job: "Début du Job d'annulation de la publication (id: %{id})"
+    reindex_job: "Réindexation Job commencé (id: %{id})"
   
   ### Digital objects
   digital_objects: "Images"
@@ -467,6 +479,7 @@ fr:
   filter_phone: "Téléphone"
   filter_place: "Endroit"
   filter_place_of_publication: "Lieu de publication"
+  filter_plate_no: "Numéro de plaque"
   filter_provenance: "Provenance"
   filter_record_type: "Template Type"
   filter_record_type_short: "Type"
@@ -695,6 +708,10 @@ fr:
     quantity: "Afficher"
     update: "Mettre à jour"
     no_items: "Aucun élément avec le fitre sélectionné"
+    message_silenced: "Le message d'information a été supprimé."
+    got_it: "Je l'ai !"
+    got_it_explanation: "Cliquer sur ce bouton fera taire la nouvelle jusqu'à ce que la prochaine soit publiée."
+    news: "Nouvelles de Muscat"
   
   # editor validation 
   validation:
@@ -703,6 +720,8 @@ fr:
     insufficient_rights: "L'utilisateur ne dispose pas des droits nécessaires pour créer un enregistrement avec cette bibliothèque."
     name_uniqueness: "Le nom abrégé de l'élément est déjà utilisé"
     correct: "L'enregistrement ne contient aucune erreur [200]"
+    begins_with_message: "Le champ doit commencer par \"{0}\""
+    required_if_message: "Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}"
 
   incipit_search:
     incipit_search: "Recherche par incipit"
@@ -717,6 +736,16 @@ fr:
   # This is used for the "incipit" seach in the search history in BL
   # Note the capital 'I'
   Incipit: "Incipit"
+  Images: "Images"
+  "Standardized title": "Titre uniforme"
+  Composer: "Compositeur"
+  "Source Type": "Type de source"
+  Scoring: "Distribution"
+  Date: "Date"
+  "Library siglum": "Sigle de bibliothèque"
+  Subject: "Sujet"
+  "Number of printed copies": "Nombre d'exemplaires imprimés"
+  publisher: "Editeur"
 
   cookies:
     message: "Notre site utilise des cookies pour améliorer votre expérience de navigation. En utilisant notre site, vous acceptez notre utilisation des cookies."

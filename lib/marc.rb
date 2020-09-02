@@ -223,7 +223,7 @@ class Marc
 	def superimpose_template(template_name = "default.marc")
 		load_source unless @loaded
 		
-    template = self.class.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/#{@model}/#{template_name}"))
+    template = self.class.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/#{@model}/#{template_name}")))
     template.load_source false
 		
 		template.all_tags.each do |tag|
@@ -748,6 +748,17 @@ class Marc
 
       pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
 
+      # FIXME a bit ugly here
+      # SEE #860
+      # Timesigs can be fractions, and a division by 0
+      # will bomb solr.
+      # This will also be done in solr
+
+      if vals[:o].split("/").count > 1
+        # Set it to C, time is ignored anyways 
+        vals[:o] = "c" if vals[:o].split("/")[1].to_i == 0
+      end
+
       s = "@start:#{pae_nr}\n";
 	    s << "@clef:#{vals[:g]}\n";
 	    s << "@keysig:#{vals[:n]}\n";
@@ -783,6 +794,22 @@ class Marc
     return out
   end
 	
+  def marc_extract_publisher(conf_tag, conf_properties, marc, model)
+    out = []
+
+    ["700", "710"].each do |tag, subtag|
+      marc.each_by_tag(tag) do |marctag|
+        code = marctag.fetch_first_by_tag("4")
+        if code && code.content && code.content == "pbl"
+          name = marctag.fetch_first_by_tag("a")
+          out << name.content if name && name.content
+        end
+      end
+    end
+    
+    return out
+  end
+
   def marc_extract_dates(conf_tag, conf_properties, marc, model)
     out = []
     tag = conf_properties && conf_properties.has_key?(:from_tag) ? conf_properties[:from_tag] : nil

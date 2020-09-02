@@ -1,14 +1,14 @@
 = Installation instructions
 
-This document describes how to bootstrap into the webapplication. The documentation is updated for Ubuntu 18.14 LTS.
+This document describes how to bootstrap into the webapplication. The documentation is updated for Ubuntu 18.04 LTS and Debian 10 (Buster).
 
 == Requirements
 
 The following other libraries and programs are needed
 
-* ruby: > 2.3
-* Apache 2.2
-* MySQL > 5.0
+* Ruby > 2.3
+* Apache 2.4
+* MySQL > 8.0.4 or MariaDB 10.x
 * Git
 * Passenger for Apache 2
 * rails
@@ -17,39 +17,40 @@ The following other libraries and programs are needed
 * imagemagick
 * libmagickwand-dev
 
-== Ruby and Rails
+*NOTE* From Muscat 6.1 MySQL *8.0.4 is required* for autocomplete and comments to properly work, as the REGEX library was changed.  MariaDB 10.x, as provided by Debian 10 (Buster) also seems to work properly.
 
-Muscat 4 now requires ruby 2.3 by default. Rails is installed with the correct version with bundle. Ubuntu comes with ruby 2.5 by default so no actions are necessary. On older Debian systems the easyest way to get ruby 2.3 is via rbenv adding for all users.
+== Mysql 8
 
-On older Ubuntu systems add the following repositories
+Depending on your system, a package for Mysql 8 may not exist. In this case use the official package provided by Oracle https://dev.mysql.com/downloads/repo/apt/
 
- deb http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu trusty main
- deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main
+NOTE: Download the latest version or the GPG keys may have been expired! Copy the file from the link provided in that page, there is no need for an account, follow the "No thanks, just start my download" link. In this case it points to https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
 
-(On some systems it is necessary to uncomment therubyracer from the gemfile)
-On Ubuntu 18.04 only passenger is needed:
+ wget https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+ sudo dpkg -i mysql-apt-config_0.8.15-1_all.deb
 
- deb https://oss-binaries.phusionpassenger.com/apt/passenger bionic main
- 
-(Add /etc/apt/sources.list or create a relevant file in /etc/apt/sources.list.d)
-Also make sure that universe repositories are enabled!
+(obviously subsitute with the exact file name in the link).  dpk will prompt a screen to configure tha package, select option to configure the server version and select 8, then exit.
 
-On 18.40, also enable GPG verification of Passenger:
-
- sudo apt-get install -y dirmngr gnupg
- sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
- sudo apt-get install -y apt-transport-https ca-certificates
-
-Then install all the dependencies and setup passenger:
+Then update and install mysql:
 
  sudo apt-get update
- sudo apt-get install mysql-server apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev libmysqlclient-dev openjdk-8-jdk-headless passenger libapache2-mod-passenger
- sudo a2enmod passenger
- 
-Passenger also wants to compile a binary module, this is optional but will enable it
+ sudo apt-get install mysql-server
 
- sudo mkdir /var/www/.passenger
- sudo chown -R www-data:www-data /var/www/.passenger
+When prompted, select *use legacy passwords* as not all connectors for the moment work with the new system. This will be updated in the future. Also install the newest versions of the connector libraries:
+
+ sudo apt-get install libmysqlclient21 libmysqlclient-dev
+
+
+== MariaDB 10
+
+If you are using Debian 10 (Buster), the default MariaDB server (mariadb-server, that pulls 10.3) and clients (ruby-mysql2) are just fine.
+
+
+== Ruby and Rails
+
+Muscat 6 requires Ruby 2.3 or higher and Bundler 2.1.4 or higher.  Rails (5.2) is installed with the correct version with bundle.
+
+Recent Ubuntu releases (from 18.4 LTS) and Debian 10 (Buster) provide come Ruby 2.5 by default so no actions are necessary.  On Debian Buster, Bundler 2.1.4 is provided as a backport.  Versions for Passenger, Java (as required for Solr) are also fine.
+
 
 == Bootstrap the application
 
@@ -57,8 +58,9 @@ Get the sources if necessary (https://github.com/rism-ch/muscat and https://gith
 
  git clone https://github.com/rism-ch/muscat.git --recursive
 
- sudo gem install bundler -v '< 2.0' ## force 1.7 until we get compatibile with 2.0
  sudo bundle install #--deployment # deployment is only for the production system
+
+Alternatively, you can just download and use the stable release tarballs found in https://github.com/rism-ch/muscat/releases.
 
 Install base configuration:
 
@@ -71,7 +73,7 @@ Install the base css:
  cd muscat/config
  cp muscat-custom-sample.scss ../vendor/assets/stylesheets/muscat-custom.scss
 
-Make sure the directory is owned by the right user (www-data on ubuntu)
+Make sure the directory is owned by the right user (www-data on Ubuntu or Debian)
 
   sudo chown -R www-data:www-data muscat/
 
@@ -83,18 +85,46 @@ Create the user, substitute with an appropriate user and password!
  
  CREATE DATABASE muscat_development CHARACTER SET utf8 COLLATE utf8_general_ci;
  CREATE USER 'rism'@'localhost';
- SET PASSWORD FOR 'rism'@'localhost' = PASSWORD('password');
+ ALTER USER 'rism'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
  GRANT ALL ON muscat_development.* TO 'rism'@'localhost';
  
-Remember username and pass should be the same as in database.yml
-Migrate the database NOTE in a production environment all the tasks must declare RAILS_ENV=production to run. For local development this is not necessary
+Remember username and pass should be the same as in database.yml.  Then, migrate the database (that us, update the structure):
 
  bundle exec rake db:migrate # development
+
+NOTE: in a production environment all the tasks must declare RAILS_ENV=production to run. For local development this is not necessary
+
  sudo RAILS_ENV=production bundle exec rake db:migrate ## on a production system
 
 Add basic dataset:
 
  bundle exec rake db:seed
+
+
+=== Create credential file
+
+All the secret keys are now stored in the rails 5.2 credentials file, which is not included in the repo.  A blank on must be created with:
+
+ rails credentials:edit
+
+This will automatically create credentials.yml.enc and the master key, along with a cookie secret key.  If you are not familiarised with this Rails 5.2 feature, this guide is very didactic: https://youtu.be/BHgvPPr2nLE.
+
+Default configuration for Muscat requires the user to check the recaptcha challenge in order to download bibliographic records.  So you will have to create a (free) Google Recaptcha account for your site (https://www.google.com/recaptcha/about/) in order to get the site_key and the secret_key.
+
+The user and password are needed for background search and export, and should be a muscat user with minimum guest access.  So, to use the other services on Muscat, such as history, add to this file:
+
+ recaptcha:
+   site_key: 'xx'
+   secret_key: 'xx'
+ export:
+   user: "xx"
+   password: "xx"
+
+Remember that they key must be readable from the user running apache, so check the permissions and change the user is needed:
+
+ chown www-data:www-data config/master.key
+
+=== Development Startup
 
 Default (development) startup:
 
@@ -110,6 +140,7 @@ For refreshing an installation in production mode (with sudo, as root or sudo -u
  bundle exec rake RAILS_ENV=production assets:clean
  bundle exec rake RAILS_ENV=production assets:precompile
 
+
 == Logging In
 
 A default administrative user has been created as part of the installation process. To log in,
@@ -124,7 +155,7 @@ It is advised that you delete this account after creating a new administrative u
 
  rake sunspot:reindex
 
-it in production mode run
+In production mode run:
 
  RAILS_ENV=production rake sunspot:reindex
 
@@ -163,22 +194,64 @@ Double check permissions in the muscat installation. Also make sure DocumentRoot
 
 Start Apache, Solr and the related services in production mode (see below).
 
-== Starting Daemons in Production Mode
+
+== Production Installation and daemons
  
- Muscat has three running daemons that should be started:
+Muscat has three running daemons that should be started:
  
-  sudo RAILS_ENV=production bin/delayed_job start
   sudo RAILS_ENV=production bundle exec crono start
   # Make sure solr is not running as root!
   sudo -u www-data bundle exec rake RAILS_ENV=production sunspot:solr:start
   
+`DelayedJob` now is a bit more tricky, as different queues get different worker pools:
+
+  sudo -u www-data RAILS_ENV=production bin/delayed_job start --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave --pool=export
+
+Other ways to start delayed_job:
+
+  sudo RAILS_ENV=production bin/delayed_job start
+  rake jobs:work # Run in foreground
+  rake jobs:workoff # Run all jobs in foreground and exit
+  rake jobs:clear # Clear failed jobs
+  ## in production it is then...
+  RAILS_ENV=production bundle exec rake jobs:<xxx>
+
 Depending on the env, remove sudo if necessary. RAILS_ENV is needed only on production, and has to come *after* sudo.
   
-Also it is goot to block access to SOLR:
+It is also good to block access to Solr:
 
   sudo iptables -A INPUT -p tcp -s localhost --dport 8983 -j ACCEPT
   sudo iptables -A INPUT -p tcp --dport 8983 -j DROP
 
+Also make sure that if there is a proxy, it is configured in `config/initializers/recaptcha.rb`:
+
+ config.proxy = 'http://myproxy.com.au:8080'
+
+
 == Add clean up in crontab for blacklight
 
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
+
+
+== Some MySQL optimizations
+
+Add to /etc/mysql.cnf
+
+ [mysqld]
+
+ innodb_buffer_pool_size = 8G
+ innodb_log_buffer_size = 512M
+ innodb_log_file_size = 1G
+ innodb_write_io_threads = 16
+ innodb_flush_log_at_trx_commit = 0
+
+To speed up imports. (See here for more)[https://www.percona.com/blog/2014/01/28/10-mysql-performance-tuning-settings-after-installation/]
+
+=== Lazy's man import speedup
+
+On a full muscat DB there can be many many _old versions_ in the ```versions``` table, since version snapshots are kept for each saved item.
+When doing development this can be quite annoying since it can take up to 30 minutes to restore a db.
+
+ sed '/INSERT INTO `versions`/d' muscat_dump.sql > muscat_no_versions.sql
+
+Removes all the old versions. From 30 minutes to 9.

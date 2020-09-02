@@ -136,7 +136,7 @@ class Institution < ApplicationRecord
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
   
-    new_marc = MarcInstitution.new(File.read("#{Rails.root}/config/marc/#{RISM::MARC}/institution/default.marc"))
+    new_marc = MarcInstitution.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/institution/default.marc")))
     new_marc.load_source true
     
     new_100 = MarcNode.new("institution", "110", "", "1#")
@@ -247,19 +247,6 @@ class Institution < ApplicationRecord
     
   end
   
-  def check_dependencies
-    if self.referring_sources.count > 0 || self.referring_institutions.count > 0 ||
-         self.referring_catalogues.count > 0 || self.referring_people.count > 0 || self.holdings.count > 0
-      errors.add :base, %{The institution could not be deleted because it is used by
-        #{self.referring_sources.count} sources,
-        #{self.referring_institutions.count} institutions, 
-        #{self.referring_catalogues.count} catalogues, 
-        #{self.referring_people.count} people and
-        #{self.holdings.count} holdings}
-      throw :abort
-    end
-  end
-
   def update_workgroups
     return if self.suppress_update_workgroups_trigger == true || self.siglum.blank?
     Workgroup.all.each do |wg|

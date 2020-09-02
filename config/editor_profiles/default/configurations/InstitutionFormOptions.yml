@@ -153,6 +153,7 @@
       - "XD-UY"
       - "XD-VE"
       - "XB-VN"
+      - "XD-EC"
 "110": 
   layout: 
     fields: 
@@ -278,7 +279,6 @@
       - otm
       - bsl
       - asn
-      - dub
       03_codes_technical: 
       - scr
       - ltg

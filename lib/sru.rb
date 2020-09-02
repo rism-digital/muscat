@@ -95,7 +95,7 @@ module Sru
       unless self.model
         return {:code => 235, :message => "Database does not exist"}
       end
-      if query.empty?
+      if query.blank?
         return {:code => 10, :message => "Query syntax error (code 10): query is empty"}
       end
       return nil

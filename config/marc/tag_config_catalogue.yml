@@ -90,21 +90,21 @@
   "020":
     :master: a
     :indicator: "##"
-    :occurrences: "?"
+    :occurrences: "*"
     :fields:
     - - a
       - :occurrences: "?"
   "022":
     :master: a
     :indicator: "##"
-    :occurrences: "?"
+    :occurrences: "*"
     :fields:
     - - a
       - :occurrences: "?"
   "024":
     :master: a
     :indicator: "##"
-    :occurrences: "?"
+    :occurrences: "*"
     :fields:
     - - a
       - :occurrences: "?"

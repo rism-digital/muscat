@@ -1,6 +1,257 @@
 Muscat Changelog
 ================
 
+v 6.3.1
+* Fix #963 "frozen string literal"
+* Remove 856 $x from Catalogue validation
+
+v 6.3
+* Merge pull request #1 from fjorba/add-sqlite3-to-gemfile
+* Minor corrections in the documentation
+* Updating it translations
+* Make sure to read the default profiles.yml
+* Merge pull request #923 from fjorba/update-editor-configuration-docs
+* Merge pull request #928 from fjorba/read-default-editor-profiles-yml
+* Add suppress 77x to holdings
+* Scripts for fixing CH composites
+* Remove the 774s
+* Make new empty collections
+* Updating it translations
+* Move holdings from edition to composite 852
+* Provide a default template for records with unspecified record type
+* Use get_marc_editor_profile_path to safely open conf files
+* Experimental backend search engine for blacklight
+* Initial MARC downloader for Blacklight
+* Remove annoying delay in delayed_job
+* Avoid rounding errors when reindexing
+* Make the exported XML actually correct to the schema
+* Merge pull request #934 from fjorba/provide-a-fallback-for-unspecified-record-type
+* Merge pull request #936 from fjorba/generalise-fallback-to-default-file
+* Move sqlite in the testing group
+* New crono script for cleaning up exports
+* Use conservative locking in delayed job
+* A source should not be deleted while the job is running
+* Bump puma from 4.3.3 to 4.3.5
+* Add folder download action
+* Add captcha validation
+* Bump kaminari from 1.2.0 to 1.2.1
+* Merge pull request #942 from rism-ch/dependabot/bundler/puma-4.3.5
+* Merge pull request #944 from rism-ch/dependabot/bundler/kaminari-1.2.1
+* Initial rails 5.2 setup
+* Require default EDITOR_PROFILE to be set as "default"
+* Disable bootsnap
+* Optimize folder plucking and provide siglum_matches
+* Fix Marc AwesomePrint module
+* Bump websocket-extensions from 0.1.4 to 0.1.5
+* Remove status.log
+* Add 240 title
+* Create UK Catalog
+* Hide the map view
+* Rename Exact Pitch
+* Remove 740 tag
+* Fix missing translation for label in BL
+* Account for rounding errors so we do not have "orphan" sources
+* Validation skip for superusers
+* Fix #951 remove 563
+* Fix #943 add asn to Source#710$4
+* Fix #949, remove library-related tags
+* Fix #950, removed 773 in the toplevel libretto and threatise template
+* Fix #673, make tags repeatable
+* Fix #632 rearrange fields
+* Fix #631, allow creation of new items from the interface
+* Fix #955 add validation for catalogue 856
+* Fix #947 add missing translations
+* Use rails 5.2 encrypted credentials
+* Merge pull request #945 from fjorba/explicitly-set-default-editor-profile
+* Merge pull request #946 from rism-ch/dependabot/bundler/websocket-extensions-0.1.5
+* Fix #933, remove an old piece of code for "convolutums"
+* Merge branch 'develop' of https://github.com/rism-ch/muscat into develop
+* Basic landing page
+* Update gemfile to add our mods to sunspot, synced with 2.5.0
+* Add example configuration, documentation for export
+* Add empty "export" directory
+* UK Catalog customizations
+* Make the rism theme a bit more customizable, NOTE: Copy again the muscat-custom scss!!
+* Add logos
+* Add link for UK page
+* Add customizable bg for catalog
+* Make the images behave better
+* Make the notification email a list
+* Rename the notification emails
+* Job to validate a folder
+* Use the right queue
+* Add validate folder action
+* Make proper error messages
+* Rescue deleted items
+* Added orcid to people
+* Added guinea to people
+* Add asn
+* Add real news to the landing page
+* Update DE langing page
+* Fix german title, add links
+* Basic, bad and ungly CSV exporter
+* Implement parallel csv export
+* Add spanish welcome text
+* Add proper translations and icons
+* Add csv option to catalog, fix text
+* Rename icons
+* Take in account missing sources
+* Added Andorra to catalogue 044
+* Add catalogue selection
+* Make the headers human readable
+* Add plate number filter, in 6 languages
+* Add publisher filter (note: needs reindex)
+* Fix last things in catalog uk
+* Fix Missing Publisher translation
+* Add text to uk page
+* Fix #957, add languages
+* Ignore credential file
+
+v 6.2
+* Generic method to check dependencies
+* Add helper and routes to account for different #show action on controllers
+* Make search history work with different catalogs
+* Make the search links point to the correct controller
+* Disable CSRF for API call to holdings
+* Added rspec concerning dependency checks
+* Replace all check dependencies with the generic one
+* Intermedate skip_check_dependencies flag with AR relations
+* Default values for 980
+* Removed depostor from 700 holdings
+* Add mysql optimizations
+* Removing internal remark from people export
+* Merge pull request #909 from rism-ch/dependabot/bundler/puma-4.3.3
+* Merge branch '5.1-devel-bl-view' into 6.2-catalogs
+* Merge branch '5.2-devel-updates' into 6.2-catalogs-merge
+* Add more items with @catalog_controller
+* Removed unused subfields from person editor
+* Reindex print child records
+* Fix #906 Restate married_to
+* Fix sidebar, 5 hours of work, 2 lines of code
+* New reindex script
+* DB copying scripts
+* Auto-update script
+* Fix the empty PCH query in advanced
+* Fix #912, make triggers work with 1 source
+* Fix #908
+* Fix #872
+* Tweak .gitignore
+* Make the Checkup Report modular
+* New background maintainance jobs
+* Hide the "pae" field
+* Visualize only filtered holdings
+* "exemplar" not sources, next step I18n
+* Monkeypatch to filter lib_siglum in facets
+* Workaround for Kaminari bug, to "span" element that gets escaped
+* New & improved index error messages
+* Removed unused subfields with people
+* Fix #914, added some 700/710 validation closing
+* Add initializer for delayed job
+* Update pt.yml
+* Added Country Monaco to people
+* New and improved reindex job for referring items
+* Modify save items job to avoid the "record not found" issue
+* Merge pull request #910 from rism-ch/5.3-devel-assoc
+* Optimize config file loading
+* Fix #773, remove dub
+* Translate more missing terms
+* Add 700 / 710 validation in holding (see #914)
+* Add reindex flash bar
+* Update it translations
+* Fix new window works error with works
+* Use the new reindex job
+* Add some installation notes
+* Change queues
+* FIx #818, by removing the truncation (which was quite long), if we find records that are unporportionately long we can truncate again
+* Fix #850, add new relationships to 930
+* Fix #846, add 667 field
+* Fix #900, implement a simple begins_with rule
+* Added some sru fields
+* Make localization work in the editor
+* Fix #916, remove functions
+* Added country Peru to people
+* Small update of PT functions
+* Fix #863, reindex every time a links_to field is populated
+* Fix #915
+* Avoid crash if siglum is unavailable when saving source
+
+v 6.1.1
+* Fix #905, "profession" filter in People causes a crash
+
+v 6.1
+* Changed composite configuration
+* Removed add group restriction from view
+* Added role junior_editor
+* Build batch action
+* Restrict template change to admin, editors
+* Restoring tags with template_change
+* Restore from versions
+* Merge branch '5.3-devel' of https://github.com/rism-ch/muscat into 5.3-devel-templatechange
+* Fixed devel solr port
+* Fix #875, annoying sru
+* Fix #797, Added wf_stage to institution filer
+* Fix #794, Added Guatemala to 043 institution
+* Fix #801, Change 510 label with institutions
+* Added wf_owner to institution filter
+* Fix #803, Added 670 to institutions
+* Fix #795, Added magnifying to 670 with institutions
+* Added link to 856 insitution show
+* Update rails minor version
+* Update i18n setting, remove log rotation
+* Fix #368. institution types added
+* Fix #883, silence error with sprockets
+* Fix #798, adding magnify to places at institution
+* Change "married with" to "married to"
+* Added Iraq to person country labels
+* Renaming catalogue values
+* Default profession for people
+* Default 042 non multiple with people
+* Autocomplete of 510 people changed to institutions
+* Default opened 375 with people
+* Added work to dashboard closing
+* Added field labels with catalog
+* Merge pull request #877 from rism-ch/5.3-devel-templatechange
+* Merge pull request #878 from rism-ch/5.3-devel-role
+* Merge pull request #879 from rism-ch/5.3-devel-composite
+* Autocomplete for profession with people
+* Show institution with people
+* Removed other name qualifiers
+* Fix #886, 852 validation related 
+* Removing multi 043 with people
+* Spanish translation
+* Added dpt to 700 holdings
+* Added prt to 710 holdings
+* Dropped 373 from institutions
+* Filter person 043 contrynames as select, not codes
+* Clickable url with catalogues
+* Update some long overdue (including an update to AA)
+* Fix #791, add back transposed tones which got lost before 6.0
+* Fix #849
+* Fix #887, make the notification digest actually useful
+* Fix #882
+* Fix #851, add link
+* Renaming 510 with people
+* Fix #856, sru nil query
+* First step in #674, remove 033 from editor
+* Fix #851. remove popup menu
+* Fix #860, patch crashing fractions
+* Fix #839, Guidelines titles
+* Fix #829, Relabeling guidelines
+* Fix #889, Added other to 596
+* Removed postal from people
+* Relabeld 400 with people
+* Fix #899, Add more items to autocomplete
+* Fix #896, Update autocomplete
+* Update documentation for mysql 8
+
+v 6.0.1
+* Initial fix for #896, use a version of the autocomplete which uses LIKE and not REGEXP
+* Bump rack from 2.0.7 to 2.0.8
+* Merge pull request #874 from rism-ch/dependabot/bundler/rack-2.0.8
+* Bump nokogiri from 1.10.7 to 1.10.8
+* Test if users work
+* Merge pull request #893 from rism-ch/dependabot/bundler/nokogiri-1.10.8
+
 v 6.0
 * Migration scripts
 * Fix #658: add Workflow to diff list, it shows the WF at the time of saving

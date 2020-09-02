@@ -16,8 +16,8 @@ module MergeControllerActions
       duplicate.migrate_to_id(target.id)
 
       associations.each do |association|
-        Delayed::Job.enqueue(ReindexItemsJob.new(target, association.to_s))
-        Delayed::Job.enqueue(ReindexItemsJob.new(duplicate, association.to_s))
+        Delayed::Job.enqueue(ReindexItemsJob.new(target.id, target.class, association.to_s))
+        Delayed::Job.enqueue(ReindexItemsJob.new(duplicate.id, duplicate.class, association.to_s))
       end
 
       target_size = (associations.map{|method| target.send(method).size}).inject(0){|sum,x| sum + x }
