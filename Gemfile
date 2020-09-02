@@ -149,6 +149,10 @@ gem "recaptcha"
 
 # To render markdown
 gem 'redcarpet'
+# For parsing rism
+gem 'reverse_markdown'
+gem 'kramdown'
+gem 'whatlanguage'
 
 group :test do
   gem "rspec"
