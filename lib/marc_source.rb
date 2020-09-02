@@ -371,8 +371,10 @@ class MarcSource < Marc
 
     if (@record_type == RECORD_TYPES[:collection])
       leader = base_leader.gsub("XX", "dc")
+      get_subentry_title
     elsif (@record_type == RECORD_TYPES[:edition])
       leader = base_leader.gsub("XX", "cc")
+      get_subentry_title
     elsif @record_type == RECORD_TYPES[:composite_volume]
       leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
@@ -428,7 +430,7 @@ class MarcSource < Marc
       end
       root.children.insert(get_insert_position("035"), n035) if n035
     end
-    
+   
     # Add 040 if not exists; if 040$a!=DE-633 then add 040$c
     if by_tags("040").count == 0
         n040 = MarcNode.new(@model, "040", "", "##")
@@ -437,6 +439,10 @@ class MarcSource < Marc
     else
       each_by_tag("040") do |t|
         existent = t.fetch_first_by_tag("a").content rescue nil
+        unless existent
+          t.add_at(MarcNode.new("source", "a", RISM::AGENCY, nil), 0)
+          t.sort_alphabetically
+        end
         if existent && existent != RISM::AGENCY
           t.add_at(MarcNode.new("source", "c", RISM::AGENCY, nil), 0)
           t.sort_alphabetically
@@ -532,6 +538,18 @@ class MarcSource < Marc
     
   def set_record_type(rt)
     @record_type = rt
+  end
+
+  def get_subentry_title
+    each_by_tag("774") do |t|
+      w = t.fetch_first_by_tag("w")
+      if w && w.content
+        source = Source.find(w.content) rescue next
+        t.add_at(MarcNode.new(@model, "a", source.name, nil), 0)
+      else
+        raise "Empty $w in 774"
+      end
+    end
   end
 
 end

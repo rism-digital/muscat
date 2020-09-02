@@ -154,6 +154,10 @@ gem 'reverse_markdown'
 gem 'kramdown'
 gem 'whatlanguage'
 
+# Avoid TypeError: superclass mismatch for class Command
+# See https://github.com/erikhuda/thor/issues/721
+gem 'thor', '~> 0.20.3'
+
 group :test do
   gem "rspec"
   gem 'rspec-rails', '~> 3.5'

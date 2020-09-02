@@ -2989,14 +2989,38 @@ arg:
     en: Aragonese
     pt: "Aragonês"
     es: "Aragonés"
+arm:
+  label:
+    it: Armeno
+    fr: Arménien
+    de: Armenische
+    en: Armenian
+    pt: Arménio
+    es: Armenio
+art:
+  label:
+    it: Artificial (Other)
+    fr: Artificial (Other)
+    de: Artificial (Other)
+    en: Artificial (Other)
+    pt: Artificial (Other)
+    es: Artificial (otros)
 baq: 
   label: 
     it: Basco
-    fr: BASQUE
+    fr: Basque
     de: Baskisch
     en: Basque
     pt: Basco
     es: Vasco
+bos:
+  label:
+    it: Bosniaco
+    fr: Bosnien
+    de: Bosnisch
+    en: Bosnian
+    pt: Bósnio
+    es: Bosnio
 bul:
   label:
     it: Bulgaro
@@ -3013,6 +3037,14 @@ cat:
     en: Catalan
     pt: "Catalão"
     es: "Catalán"
+cel:
+  label:
+    it: Celtic (Other)
+    fr: Celtic (Other)
+    de: Celtic (Other)
+    en: Celtic (Other)
+    pt: Celtic (Other)
+    es: Céltico (otros)
 chi: 
   label: 
     it: Cinese
@@ -3029,6 +3061,14 @@ chu:
     en: Old Church Slavonic
     pt: "Antigo eslavo eclesiástico"
     es: "Antiguo eslavo eclesiástico"
+crp:
+  label:
+    it: Creoles and Pidgins (Other)
+    fr: Creoles and Pidgins (Other)
+    de: Creoles and Pidgins (Other)
+    en: Creoles and Pidgins (Other)
+    pt: Creoles and Pidgins (Other)
+    es: Creoles y Pidgins (otros)
 cze: 
   label: 
     it: Ceco
@@ -3196,6 +3236,14 @@ gmh:
     en: Middle High German
     pt: "Alto-alemão médio"
     es: "Alto alemán medio"
+goh:
+  label:
+    it: German, Old High (ca. 750-1050)
+    fr: German, Old High (ca. 750-1050)
+    de: German, Old High (ca. 750-1050)
+    en: German, Old High (ca. 750-1050)
+    pt: German, Old High (ca. 750-1050)
+    es: Alemán culto antiguo (aprox. 750-1050)
 grc: 
   label: 
     it: Greco antico (fino al 1453)
@@ -3244,6 +3292,14 @@ hun:
     en: Hungarian
     pt: "Húngaro"
     es: "Húngaro"
+ice:
+  label:
+    it: Islandese
+    fr: Islandais
+    de: Isländisch
+    en: Icelandic
+    pt: Islandês
+    es: Islandés
 iii:
   label:
     it: Sichuan Yi
@@ -3308,7 +3364,7 @@ ltz:
     en: Luxembourgish
     pt: "Luxemburguês"
     es: "Luxemburgués"
-mac: 
+mac:
   label: 
     IT: Macedone
     FR: Macédonien
@@ -3316,6 +3372,14 @@ mac:
     en: Macedonian
     pt: "Macedônio"
     es: Macedonio
+mao:
+  label:
+    it: Māori
+    fr: Maori
+    de: Māori
+    en: Maori
+    pt: Maori
+    es: Maorí
 mon: 
   label: 
     IT: Mongolo
@@ -3524,6 +3588,30 @@ swe:
     en: Swedish
     pt: Sueco
     es: Sueco
+tat:
+  label:
+    it: Tataro
+    fr: Tatar
+    de: Tatarische
+    en: Tatar
+    pt: Tártaro
+    es: Tártaro
+tha:
+  label:
+    it: Thailandese
+    fr: Thaï
+    de: Thailändisch
+    en: Thai
+    pt: Tailandês
+    es: Tailandés
+tgl:
+  label:
+    it: Tagalog
+    fr: Tagalog
+    de: Tagalog
+    en: Tagalog
+    pt: Tagalog
+    es: Tagalog
 tib: 
   label: 
     it: Tibetano
@@ -3588,6 +3676,14 @@ wen:
     en: Sorbian
     pt: "Sorábio"
     es: Sorbio
+xal:
+  label:
+    it: Oirato
+    fr: Oïrate
+    de: Oiratische
+    en: Oirat
+    pt: Oirato
+    es: Oirato
 yid: 
   label: 
     IT: Yiddish
