@@ -5,48 +5,56 @@ doc_abbreviations:
     de: "Abkürzungen"
     en: Abbreviations
     es: Abreviaturas
+    pl: Skróty
 doc_aid:
   label:
     it: Aiuti
     de: Arbeitshilfen
     en: Aide
     es: Asistencia
+    pl: Asystent
 doc_cataloguing_collections:
   label:
     it: Catalogazione di raccolte e volumi compositi
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
     es: "Catalogación de colecciones y volúmenes compuestos"
+    pl: Katalogowanie kolekcji i klocka introligatorskiego
 doc_edit_functions:
   label:
     it: Funzioni base
     de: "Grundsätzliche Funktionen"
     en: Basic functions
     es: "Funciones básicas"
+    pl: Podstawowe funkcje
 doc_introduction:
   label:
     it: Introduzione
     de: Einleitung
     en: Introduction
     es: "Introducción"
+    pl: Wprowadzenie
 doc_masks:
   label:
     it: Formulari di catalogazione
     de: Masken
     en: Cataloging forms
     es: "Formularios de catalogación"
+    pl: Formularze katalogowania
 doc_tag_index:
   label:
     it: indice dei campi MARC
     de: MARC Tag Index
     en: MARC tag index
     es: "Índice de etiquetas MARC"
+    pl: Indeks znaczników MARC
 doc_templates:
   label:
     it: Template
     de: Templates
     en: Templates
     es: Plantillas
+    pl: Szablony
 
 ################
 
@@ -56,12 +64,14 @@ doc_editor:
     de: "Editor Hilfe"
     en: Editor help
     es: Ayuda del editor
+    pl: Pomoc do edycji
 doc_edit_workflow: 
   label: 
     it: Workflow
     de: "Workflow"
     en: Workflow
     es: Flujo de trabajo
+    pl: Przepływ pracy
     
 ################
 
@@ -73,6 +83,7 @@ doc_edit_workflow:
     de: Leader
     en: Leader
     es: "Líder"
+    pl: Leader
 "001":
   label:
     it: Numero documento RISM
@@ -80,6 +91,7 @@ doc_edit_workflow:
     de: RISM Dokumentnummer
     en: RISM ID number
     es: "Número de ID de RISM"
+    pl: RISM ID
 "003":
   label:
     it: Identificatore del numero di controllo
@@ -87,6 +99,7 @@ doc_edit_workflow:
     de: Kontrollnummer-Bezeichnung
     en: Control number identifier
     es: "Identificador de número de control"
+    pl: Identyfikator numeru kontrolnego
 "005":
   label:
     it: Data e ora dell'ultima transazione
@@ -94,6 +107,7 @@ doc_edit_workflow:
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
     es: "Fecha y hora de la última transacción"
+    pl: Data i godzina ostatniej operacji
 "024":
   label:
     it: "Riferimento autorità"
@@ -101,6 +115,7 @@ doc_edit_workflow:
     de: Normdatenverweise
     en: Other standard identifier
     es: "Otro identificador estándar"
+    pl: Identyfikator innego standardu
   fields:
     a:
       label:
@@ -109,6 +124,7 @@ doc_edit_workflow:
         de: Normdatenverweise
         en: Standard number or code
         es: "Número o código estándar"
+        pl: Standardowy numer lub kod
     "2":
       label:
         it: "Agenzia autorità"
@@ -116,6 +132,7 @@ doc_edit_workflow:
         de: Normdatenagentur
         en: Source of number or code
         es: "Fuente de número o código"
+        pl: Źródło numeru lub kodu
 "040":
   label:
     it: Fonte della catalogazione
@@ -123,6 +140,7 @@ doc_edit_workflow:
     de: Katalogisierungsquelle
     en: Cataloging source
     es: "Fuente de la catalogación"
+    pl: Katalogowanie źródła
   fields:
     a:
       label:
@@ -131,6 +149,7 @@ doc_edit_workflow:
         de: Original-Katalogisierungsstelle
         en: Original cataloging agency
         es: "Agencia de catalogación original"
+        pl: Jednostka katalogująca pierwotny rekord
     b:
       label:
         it: Lingua della catalogazione
@@ -138,6 +157,7 @@ doc_edit_workflow:
         de: Katalogisierungssprache
         en: Language of cataloging
         es: "Idioma de la catalogación"
+        pl: Język katalogowania
     c:
       label:
         it: Agenzia della trascrizione
@@ -145,6 +165,7 @@ doc_edit_workflow:
         de: "Übertragende Katalogisierungsstelle"
         en: Transcribing agency
         es: "Agencia de la transcripción"
+        pl: Jednostka transkrybująca
     d:
       label:
         it: Agenzia della modifica
@@ -152,6 +173,7 @@ doc_edit_workflow:
         de: Modifizierende Katalogisierungsstelle
         en: Modifying agency
         es: "Agencia de la modificación"
+        pl: Jednostka modyfikująca
 "042":
   label:
     it: Codice di autenticazione
@@ -159,6 +181,7 @@ doc_edit_workflow:
     de: Authentication Code
     en: Authentication Code
     es: "Código de autenticación"
+    pl: Kod uwierzytelnienia
   fields:
     a:
       label:
@@ -167,6 +190,7 @@ doc_edit_workflow:
         de: Authentication Code
         en: Authentication Code
         es: "Código de autenticación"
+        pl: Kod uwierzytelnienia
 "043":
   label:
     it: Codice del Paese
@@ -174,6 +198,7 @@ doc_edit_workflow:
     de: Länder-Code
     en: Nationality
     es: Nacionalidad
+    pl: Narodowość
   fields:
     c:
       label:
@@ -182,6 +207,7 @@ doc_edit_workflow:
         de: Länder-Code  
         en: Nationality
         es: Nacionalidad
+        pl: Narodowość
 "100":
   label:
     it: Nome di persona
@@ -189,6 +215,7 @@ doc_edit_workflow:
     de: Ansetzungsform
     en: Heading - Personal name
     es: Nombre personal
+    pl: Nagłówek – Osoba
   accepts: 
   - "700"
   fields:
@@ -199,6 +226,7 @@ doc_edit_workflow:
         de: Name
         en: Heading - personal name
         es: Nombre personal
+        pl: Nagłówek – Osoba
     c:
       label:
         it: Ordine religioso
@@ -206,6 +234,7 @@ doc_edit_workflow:
         de: Orden/Titel
         en: Religious order
         es: "Orden religiosa"
+        pl: Zgromadzenie zakonne
     d:
       label:
         it: Data di nascita e di morte
@@ -213,6 +242,7 @@ doc_edit_workflow:
         de: Geburts- und Todesdaten
         en: Years of birth and death
         es: "Años de nacimiento y muerte"
+        pl: Lata urodzenia i śmierci
     w:
       label:
         it: Status
@@ -220,6 +250,7 @@ doc_edit_workflow:
         de: Status
         en: Status
         es: Estado
+        pl: Status
     y:
       label:
         it: Altre date
@@ -227,6 +258,7 @@ doc_edit_workflow:
         de: Andere Lebensdaten
         en: Other life dates
         es: "Otras fechas de vida"
+        pl: Pozostałe daty urodzenia i śmierci
 "370":
   label:
     it: Luogo associato
@@ -234,6 +266,7 @@ doc_edit_workflow:
     de: Associated Place
     en: Associated Place
     es: Lugar asociado
+    pl: Powiązane miejsce
   fields:
     a:
       label:
@@ -242,6 +275,7 @@ doc_edit_workflow:
         de: Geburtsort  
         en: Place of birth
         es: Lugar de nacimiento
+        pl: Miejsce urodzenia
 "375":
   label:
     it: Genere
@@ -249,6 +283,7 @@ doc_edit_workflow:
     de: Geschlecht
     en: Gender
     es: "Género"
+    pl: Płeć społeczno-kulturowa
   fields:
     a:
       label:
@@ -257,6 +292,7 @@ doc_edit_workflow:
         de: Geschlecht 
         en: Gender
         es: "Género"
+        pl: Płeć społeczno-kulturowa
 "400":
   label:
     it: Varianti del nome
@@ -264,6 +300,7 @@ doc_edit_workflow:
     de: Namensvarianten
     en: Name variant
     es: Variantes del nombre
+    pl: Alternatywna nazwa osoby
   fields:
     a:
       label:
@@ -272,6 +309,7 @@ doc_edit_workflow:
         de: Namensvarianten  
         en: Name variant
         es: Variantes del nombre
+        pl: Alternatywna nazwa osoby
     d:
       label:
         it: Data di nascita e di morte
@@ -279,6 +317,7 @@ doc_edit_workflow:
         de: Geburts- und Todesdaten
         en: Life dates
         es: Fechas de nacimiento y muerte
+        pl: Daty urodzenia i śmierci
     j:
       label:
         it: Descrizione della variante del nome
@@ -286,6 +325,7 @@ doc_edit_workflow:
         de: Art der Namensvariante
         en: Type of name variant
         es: Tipo de variante de nombre
+        pl: Typ alternatywnej nazwy osoby
 "500":
   label:
     it: Persone correlate
@@ -293,6 +333,7 @@ doc_edit_workflow:
     de: Zugehörige Personen
     en: Related personal name
     es: Nombre personal relacionado
+    pl: Powiązana osoba
   fields:
     a:
       label:
@@ -301,6 +342,7 @@ doc_edit_workflow:
         de:  Name
         en:  Related personal name
         es:  Nombre personal relacionado
+        pl: Powiązana osoba
     y:
       label:
         it:  Relazione
@@ -308,6 +350,7 @@ doc_edit_workflow:
         de:  Beziehung
         en:  Type of relationship
         es:  "Tipo de relación"
+        pl: Rodzaj relacji
 
 "510":
   label:
@@ -316,6 +359,7 @@ doc_edit_workflow:
     de: Beziehung Körperschaft 
     en: Associated institution
     es: "Institución asociada"
+    pl: Powiązana instytucja
   fields:
     a:
       label:
@@ -324,6 +368,7 @@ doc_edit_workflow:
         de:  Beziehung Körperschaft
         en:  Associated institution
         es:  "Institución asociada" 
+        pl: Powiązana instytucja
 "550":
   label:
     it: Professione o funzione
@@ -331,6 +376,7 @@ doc_edit_workflow:
     de: Beruf oder Funktion
     en: Profession or function
     es: "Profesión o función"
+    pl: Zawód lub funkcja
   fields:
     a:
       label:
@@ -339,6 +385,7 @@ doc_edit_workflow:
         de: Beruf oder Funktion
         en: Profession or function
         es: "Profesión o función"
+        pl: Zawód lub funkcja
     i:
       label:
         it:  Relazione
@@ -346,6 +393,7 @@ doc_edit_workflow:
         de:  Bedeutung
         en:  Type
         es:  Tipo
+        pl: Rodzaj
 "551":
   label:
     it: Nome geografico
@@ -353,6 +401,7 @@ doc_edit_workflow:
     de: Orte
     en: Geographic name
     es: "Nombre geográfico"
+    pl: Nazwa geograficzna
   fields:
     a:
       label:
@@ -361,6 +410,7 @@ doc_edit_workflow:
         de:  Ort
         en:  Geographic name
         es:  "Nombre geográfico"
+        pl: Nazwa geograficzna
     i:
       label:
         it:  Tipo
@@ -368,6 +418,7 @@ doc_edit_workflow:
         de:  Ort Bedeutung
         en:  Type
         es:  Tipo
+        pl: Rodzaj
 
 "667":
   label:
@@ -376,6 +427,7 @@ doc_edit_workflow:
     de:  Non public note
     en:  Internal note
     es:  Nota interna
+    pl: Uwaga wewnętrzna
   fields:
     a:
       label:
@@ -384,6 +436,7 @@ doc_edit_workflow:
         de:  Non public note
         en:  Internal note
         es:  Nota Interna
+        pl: Uwaga wewnętrzna
 "670":
   label:
     it: Fonte dei dati 
@@ -391,6 +444,7 @@ doc_edit_workflow:
     de: Literaturnachweis
     en: Source data found 
     es: "Fuente de los datos encontrados"
+    pl: Odnalezione źródło danych
   fields:
     a:
       label:
@@ -399,6 +453,7 @@ doc_edit_workflow:
         de: Literaturnachweis
         en: Source data found
         es: "Fuente de los datos encontrados"
+        pl: Odnalezione źródło danych
     b:
       label:
         it: Informazione rinvenuta
@@ -406,6 +461,7 @@ doc_edit_workflow:
         de: Fundstelle
         en: Information found
         es: "Información encontrada"
+        pl: Odnaleziona informacja
 "678":
   label:
     it: Informazioni biografiche addizionali 
@@ -413,6 +469,7 @@ doc_edit_workflow:
     de: Weitere biographische Angaben
     en: Additional biographical information
     es: "Información biográfica adicional"
+    pl: Dodatkowe informacje biograficzne
   fields:
     a:
       label:
@@ -421,6 +478,7 @@ doc_edit_workflow:
         de: Weitere biographische Angaben
         en: Additional biographical information
         es: "Información biográfica adicional"
+        pl: Dodatkowe informacje biograficzne
 "680":
   label:
     it: Osservazioni
@@ -428,6 +486,7 @@ doc_edit_workflow:
     de: Allgemeine Bemerkungen
     en: General note
     es: Nota general
+    pl: Uwaga ogólna
   fields:
     a:
       label:
@@ -436,6 +495,7 @@ doc_edit_workflow:
         de: Externe Bemerkungen
         en: General note
         es: Nota general
+        pl: Uwaga ogólna
 "856":
   label:
     it: Localizzazione e accesso elettronico
@@ -443,6 +503,7 @@ doc_edit_workflow:
     de: Elektronische Lokalisierung und Zugriff
     en: External resource
     es: Recurso externo
+    pl: Zasób zewnętrzny
   fields:
     y:
       label:
@@ -451,6 +512,7 @@ doc_edit_workflow:
         de: "Für das Publikum bestimmte Fussnote"
         en: Note about external resource
         es: Nota sobre el recurso externo
+        pl: Uwaga o zasobie zewnętrznym
     u:
       label:
         it: Risorsa esterna URL
@@ -458,6 +520,7 @@ doc_edit_workflow:
         de: Uniform Resource Identifier
         en: External resource URL
         es: URL del recurso externo
+        pl: URL zasobu zewnętrznego
 main_person:
   label:
     it: Campi principali
@@ -465,6 +528,7 @@ main_person:
     de: Haupteintragungen
     en: Main entry fields
     es: Campos principales
+    pl: Główne pola edycji
 codes:
   label:
     it: Numeri e codici
@@ -472,6 +536,7 @@ codes:
     de: Nummern und Codes
     en: Numbers and code fields
     es: "Números y códigos"
+    pl: Pola liczb i kodów
 control:
   label:
     fr: "Champs de contrôle"
@@ -479,6 +544,7 @@ control:
     it: Campi di controllo
     en: Control fields
     es: Campos de control
+    pl: Pola kontrolne
 notes:
   label:
     it: Note
@@ -486,6 +552,7 @@ notes:
     de: Bemerkungen
     en: Note fields
     es: Campos de notas
+    pl: Pola uwag
 subject:
   label:
     it: Soggetti
@@ -493,6 +560,7 @@ subject:
     de: Schlagworteintragungen
     en: Subject access fields
     es: Campos de los puntos de acceso
+    pl: Pola haseł tematycznych
 places:
   label:
     it: Luoghi
@@ -500,6 +568,7 @@ places:
     de: Länder und Orte
     en: Countries and Places
     es: "Países y lugares"
+    pl: Kraje i miejsca
 other:
   label:
     it: Varia
@@ -507,6 +576,7 @@ other:
     de: Verschiedenes
     en: Miscellaneous
     es: Varios
+    pl: Pozostałe
 references:
   label:
     it: Riferimento
@@ -514,6 +584,7 @@ references:
     de: Literatur und Bemerkungen
     en: References and notes
     es: Referencias y notas
+    pl: Odniesienia i uwagi
 relations:
   label:
     it: Relazione
@@ -521,6 +592,7 @@ relations:
     de: Beziehungen
     en: Relations
     es: Relaciones
+    pl: Relacje
 variants:
   label:
     it: Varianti
@@ -528,6 +600,7 @@ variants:
     de: Namensvarianten
     en: Name Variants
     es: Variantes del nombre
+    pl: Alternatywne nazwy osoby
 administration:
   label:
     it: Amministrazione
@@ -535,6 +608,7 @@ administration:
     de: Administration
     en: Administration
     es: "Administración"
+    pl: Administracja
 male:
   label:
     it: maschio
@@ -542,6 +616,7 @@ male:
     de: männlich
     en: male
     es: masculino
+    pl: mężczyzna
 female:
   label:
     it: femmina
@@ -549,6 +624,7 @@ female:
     de: weiblich
     en: female
     es: femenino
+    pl: kobieta
 unknown:
   label:
     it: sconosciuto
@@ -556,6 +632,7 @@ unknown:
     de: unbekannt
     en: unknown
     es: desconocido
+    pl: płeć nieznana
 
 #########################
 go:
@@ -565,6 +642,7 @@ go:
     de: Geburtsort
     en: Place of birth
     es: Lugar de nacimiento
+    pl: Miejsce urodzenia
 ha:
   label:
     it: Luogo di origine
@@ -572,6 +650,7 @@ ha:
     de: Herkunftsangabe
     en: Place of origin
     es: Lugar de origen
+    pl: Miejsce pochodzenia
 po:
   label:
     it: Luogo postale
@@ -579,6 +658,7 @@ po:
     de: postalischer Ort
     en: postal Place
     es: "Dirección postal"
+    pl: Rejon pocztowy
 so:
   label:
     it: Luogo di morte
@@ -586,6 +666,7 @@ so:
     de: Sterbeort
     en: Place of death
     es: Lugar de fallecimiento
+    pl: Miejsce śmierci
 wl:
   label:
     it: "Paese di attività"
@@ -593,6 +674,7 @@ wl:
     de: Wirkungsland
     en: Country active
     es: "País de actividad"
+    pl: Kraj aktywności artystycznej
 wo:
   label:
     it: "Luogo di attività"
@@ -600,6 +682,7 @@ wo:
     de: Wirkungsort
     en: Place active
     es: "Lugar de actividad"
+    pl: Miejsce aktywności artystycznej
 wr:
   label:
     it: "Regione di attività"
@@ -607,6 +690,7 @@ wr:
     de: Wirkungsregion
     en: Region active
     es: "Región de actividad"
+    pl: Region aktywności artystycznej
 #Country Codes
 "XC-DZ":
   label:
@@ -615,6 +699,7 @@ wr:
     de: "Algeria"
     en: "Algeria"
     es: "Argelia"
+    pl: Algieria
 "XD-AR":
   label:
     it: "Argentina"
@@ -622,6 +707,7 @@ wr:
     de: "Argentina"
     en: "Argentina"
     es: "Argentina"
+    pl: Argentyna
 "XB-AM":
   label:
     it: "Armenia"
@@ -629,6 +715,7 @@ wr:
     de: "Armenia"
     en: "Armenia"
     es: "Armenia"
+    pl: Armenia
 "XE-AU":
   label:
     it: "Australia"
@@ -636,6 +723,7 @@ wr:
     de: "Australia"
     en: "Australia"
     es: "Australia"
+    pl: Australia
 "XA-AT":
   label:
     it: "Austria"
@@ -643,6 +731,7 @@ wr:
     de: "Austria"
     en: "Austria"
     es: "Austria"
+    pl: Austria
 "XA-AT-2":
   label:
     it: "Austria: Carinzia"
@@ -650,6 +739,7 @@ wr:
     de: "Austria: Carinthia"
     en: "Austria: Carinthia"
     es: "Austria: Carintia"
+    pl: Austria: Karyntia
 "XA-AT-3":
   label:
     it: "Austria: Austria Inferiore"
@@ -657,6 +747,7 @@ wr:
     de: "Austria: Lower Austria"
     en: "Austria: Lower Austria"
     es: "Austria: Baja Austria"
+    pl: Austria: Dolna Austria
 "XA-AT-5":
   label:
     it: "Austria: Salisburgo"
@@ -664,6 +755,7 @@ wr:
     de: "Austria: Salzburg"
     en: "Austria: Salzburg"
     es: "Austria: Salzburgo"
+    pl: Austria: Salzburg
 "XA-AT-6":
   label:
     it: "Austria: Stiria"
@@ -671,6 +763,7 @@ wr:
     de: "Austria: Styria"
     en: "Austria: Styria"
     es: "Austria: Estiria"
+    pl: Austria: Styria
 "XA-AT-7":
   label:
     it: "Austria: Tirolo"
@@ -678,6 +771,7 @@ wr:
     de: "Austria: Tyrol"
     en: "Austria: Tyrol"
     es: "Austria: Tirol"
+    pl: Austria: Tyrol
 "XA-AT-4":
   label:
     it: "Austria: Austria Superiore"
@@ -685,6 +779,7 @@ wr:
     de: "Austria: Upper Austria"
     en: "Austria: Upper Austria"
     es: "Austria: Alta Austria"
+    pl: Austria: Górna Austria
 "XA-AT-9":
   label:
     it: "Austria: Vienna"
@@ -692,6 +787,7 @@ wr:
     de: "Austria: Vienna"
     en: "Austria: Vienna"
     es: "Austria: Viena"
+    pl: Austria: Wiedeń
 "XA-BE":
   label:
     it: "Belgio"
@@ -699,6 +795,7 @@ wr:
     de: "Belgium"
     en: "Belgium"
     es: "Bélgica"
+    pl: Belgia
 "XC-BJ":
   label:
     it: "Benin"
@@ -706,6 +803,7 @@ wr:
     de: "Benin"
     en: "Benin"
     es: "Benín"
+    pl: Benin
 "XD-BR":
   label:
     it: "Brasile"
@@ -713,6 +811,7 @@ wr:
     de: "Brazil"
     en: "Brazil"
     es: "Brasil"
+    pl: Brazylia
 "XA-BG":
   label:
     it: "Bulgaria"
@@ -720,6 +819,7 @@ wr:
     de: "Bulgaria"
     en: "Bulgaria"
     es: "Bulgaria"
+    pl: Bułgaria
 "XB-KH":
   label:
     it: "Cambogia"
@@ -727,6 +827,7 @@ wr:
     de: "Cambodia"
     en: "Cambodia"
     es: "Camboya"
+    pl: Kambodża
 "XD-CA":
   label:
     it: "Canada"
@@ -734,6 +835,7 @@ wr:
     de: "Canada"
     en: "Canada"
     es: "Canadá"
+    pl: Kanada
 "XD-CL":
   label:
     it: "Cile"
@@ -741,6 +843,7 @@ wr:
     de: "Chile"
     en: "Chile"
     es: "Chile"
+    pl: Chile
 "XB-CN":
   label:
     it: "Cina"
@@ -748,6 +851,7 @@ wr:
     de: "China"
     en: "China"
     es: "China"
+    pl: Chiny
 "XD-CO":
   label:
     it: "Colombia"
@@ -755,6 +859,7 @@ wr:
     de: "Colombia"
     en: "Colombia"
     es: "Colombia"
+    pl: Kolumbia
 "XA-HR":
   label:
     it: "Croazia"
@@ -762,6 +867,7 @@ wr:
     de: "Croatia"
     en: "Croatia"
     es: "Croacia"
+    pl: Chorwacja
 "XD-CU":
   label:
     it: "Cuba"
@@ -769,6 +875,7 @@ wr:
     de: "Cuba"
     en: "Cuba"
     es: "Cuba"
+    pl: Kuba
 "XA-CZ":
   label:
     it: "Repubblica Ceca"
@@ -776,6 +883,7 @@ wr:
     de: "Czech Republic"
     en: "Czech Republic"
     es: "República Checa"
+    pl: Czechy
 "XA-DK":
   label:
     it: "Danimarca"
@@ -783,6 +891,7 @@ wr:
     de: "Denmark"
     en: "Denmark"
     es: "Dinamarca"
+    pl: Dania
 "XC-EG":
   label:
     it: "Egitto"
@@ -790,6 +899,7 @@ wr:
     de: "Egypt"
     en: "Egypt"
     es: "Egipto"
+    pl: Egipt
 "XA-EE":
   label:
     it: "Estonia"
@@ -797,6 +907,7 @@ wr:
     de: "Estonia"
     en: "Estonia"
     es: "Estonia"
+    pl: Estonia
 "XA-FI":
   label:
     it: "Finlandia"
@@ -804,6 +915,7 @@ wr:
     de: "Finland"
     en: "Finland"
     es: "Finlandia"
+    pl: Finlandia
 "XA-FR":
   label:
     it: "Francia"
@@ -811,6 +923,7 @@ wr:
     de: "France"
     en: "France"
     es: "Francia"
+    pl: Francja
 "XB-GE":
   label:
     it: "Georgia"
@@ -818,6 +931,7 @@ wr:
     de: "Georgia"
     en: "Georgia"
     es: "Georgia"
+    pl: Gruzja
 "XA-DE":
   label:
     it: "Germania"
@@ -825,6 +939,7 @@ wr:
     de: "Germany"
     en: "Germany"
     es: "Alemania"
+    pl: Niemcy
 "XA-DE-BY":
   label:
     it: "Germana: Baviera"
@@ -832,6 +947,7 @@ wr:
     de: "Germany: Bavaria"
     en: "Germany: Bavaria"
     es: "Alemania: Bavaria"
+    pl: Niemcy: Bawaria
 "XA-DE-SN":
   label:
     it: "Germania: Sassonia"
@@ -839,6 +955,7 @@ wr:
     de: "Germany: Saxony"
     en: "Germany: Saxony"
     es: "Alemania: Sajonia"
+    pl: Niemcy: Saksonia
 "XA-GR":
   label:
     it: "Grecia"
@@ -846,6 +963,7 @@ wr:
     de: "Greece"
     en: "Greece"
     es: "Grecia"
+    pl: Grecja
 "XC-GN":
   label:
     it: "GUINEA"
@@ -853,6 +971,7 @@ wr:
     de: "Guinea"
     en: "Guinea"
     es: "Guinea"
+    pl: Gwinea
 "XA-VA":
   label:
     it: "Santa Sede"
@@ -860,6 +979,7 @@ wr:
     de: "Holy See"
     en: "Holy See"
     es: "Santa Sede"
+    pl: Watykan
 "XD-HN":
   label:
     it: "Honduras"
@@ -867,6 +987,7 @@ wr:
     de: "Honduras"
     en: "Honduras"
     es: "Honduras"
+    pl: Honduras
 "XA-HU":
   label:
     it: "Ungheria"
@@ -874,6 +995,7 @@ wr:
     de: "Hungary"
     en: "Hungary"
     es: "Hungría"
+    pl: Węgry
 "XA-IS":
   label:
     it: "Islanda"
@@ -881,6 +1003,7 @@ wr:
     de: "Iceland"
     en: "Iceland"
     es: "Islandia"
+    pl: Islandia
 "XB-IN":
   label:
     it: "India"
@@ -888,6 +1011,7 @@ wr:
     de: "India"
     en: "India"
     es: "India"
+    pl: Indie
 "XB-IR":
   label:
     it: "Iran, Repubblica Islamica dell'"
@@ -895,6 +1019,7 @@ wr:
     de: "Iran, Islamic Republic of"
     en: "Iran, Islamic Republic of"
     es: "Irán, República Islámica de"
+    pl: Iran, Republika Islamska
 "XA-IE":
   label:
     it: "Irlanda"
@@ -902,12 +1027,14 @@ wr:
     de: "Ireland"
     en: "Ireland"
     es: "Irlanda"
+    pl: Irlandia
 "XB-IQ":
   label:
     it: "Iraq"
     fr: "IRAQ"
     de: "Irak"
     en: "Iraq"
+    pl: Irak
 "XB-IL":
   label:
     it: "Israele"
@@ -915,6 +1042,7 @@ wr:
     de: "Israel"
     en: "Israel"
     es: "Israel"
+    pl: Izrael
 "XA-IT-32":
   label:
     it: "Italia: Trentino-Alto Adige"
@@ -922,6 +1050,7 @@ wr:
     de: "Italy: Trentino-Alto Adige"
     en: "Italy: Trentino-Alto Adige"
     es: "Italia: Trentino-Alto Adigio"
+    pl: Włochy: Trentino-Alto Adige
 "XA-IT":
   label:
     it: "Italia"
@@ -929,6 +1058,7 @@ wr:
     de: "Italy"
     en: "Italy"
     es: "Italia"
+    pl: Włochy
 "XB-JP":
   label:
     it: "Giappone"
@@ -936,6 +1066,7 @@ wr:
     de: "Japan"
     en: "Japan"
     es: "Japón"
+    pl: Japonia
 "XB-KR":
   label:
     it: "Corea, Repubblica di"
@@ -943,6 +1074,7 @@ wr:
     de: "Korea, Republic of"
     en: "Korea, Republic of"
     es: "Corea, República de"
+    pl: Korea, Republika
 "XA-LV":
   label:
     it: "Lettonia"
@@ -950,6 +1082,7 @@ wr:
     de: "Latvia"
     en: "Latvia"
     es: "Letonia"
+    pl: Łotwa
 "XA-LT":
   label:
     it: "Lituania"
@@ -957,6 +1090,7 @@ wr:
     de: "Lithuania"
     en: "Lithuania"
     es: "Lituania"
+    pl: Litwa
 "XA-LU":
   label:
     it: "Lussemburgo"
@@ -964,6 +1098,7 @@ wr:
     de: "Luxembourg"
     en: "Luxembourg"
     es: "Luxemburgo"
+    pl: Luksemburg
 "XA-MT":
   label:
     it: "Malta"
@@ -971,6 +1106,7 @@ wr:
     de: "Malta"
     en: "Malta"
     es: "Malta"
+    pl: Malta
 "XD-MX":
   label:
     it: "Messico"
@@ -978,6 +1114,7 @@ wr:
     de: "Mexico"
     en: "Mexico"
     es: "México"
+    pl: Meksyk
 "XA-MD":
   label:
     it: "Moldavia"
@@ -985,6 +1122,7 @@ wr:
     de: "Moldawien"
     en: "Moldavia"
     es: "Moldavia"
+    pl: Mołdawia
 "XA-MC":
   label:
     it: "Monaco"
@@ -992,6 +1130,7 @@ wr:
     de: "Monaco"
     en: "Monaco"
     es: "Mónaco"
+    pl: Monako
 "XA-ME":
   label:
     it: "Montenegro"
@@ -999,6 +1138,7 @@ wr:
     de: "Montenegro"
     en: "Montenegro"
     es: "Montenegro"
+    pl: Czarnogóra
 "XA-NL":
   label:
     it: "Paesi Bassi"
@@ -1006,6 +1146,7 @@ wr:
     de: "Netherlands"
     en: "Netherlands"
     es: "Países Bajos"
+    pl: Niderlandy
 "XE-NZ":
   label:
     it: "Nuova Zelanda"
@@ -1013,6 +1154,7 @@ wr:
     de: "New Zealand"
     en: "New Zealand"
     es: "Nueva Zelanda"
+    pl: Nowa Zelandia
 "XA-NO":
   label:
     it: "Norvegia"
@@ -1020,6 +1162,7 @@ wr:
     de: "Norway"
     en: "Norway"
     es: "Noruega"
+    pl: Norwegia
 "XD-PY":
   label:
     it: "Paraguay"
@@ -1027,6 +1170,7 @@ wr:
     de: "Paraguay"
     en: "Paraguay"
     es: "Paraguay"
+    pl: Paragwaj
 "XD-PE":
   label:
     it: "Perù"
@@ -1034,6 +1178,7 @@ wr:
     de: "Peru"
     en: "Peru"
     es: "Perú"
+    pl: Peru
 "XA-PL":
   label:
     it: "Polonia"
@@ -1041,6 +1186,7 @@ wr:
     de: "Poland"
     en: "Poland"
     es: "Polonia"
+    pl: Polska
 "XA-PT":
   label:
     it: "Portogallo"
@@ -1048,6 +1194,7 @@ wr:
     de: "Portugal"
     en: "Portugal"
     es: "Portugal"
+    pl: Portugalia
 "XD-PR":
   label:
     it: "Puerto Rico"
@@ -1055,6 +1202,7 @@ wr:
     de: "Puerto Rico"
     en: "Puerto Rico"
     es: "Puerto Rico"
+    pl: Portoryko
 "XA-RO":
   label:
     it: "Romania"
@@ -1062,6 +1210,7 @@ wr:
     de: "Romania"
     en: "Romania"
     es: "Rumania"
+    pl: Rumunia
 "XA-RU":
   label:
     it: "Federazione Russa"
@@ -1069,6 +1218,7 @@ wr:
     de: "Russian Federation"
     en: "Russian Federation"
     es: "Federación Rusa"
+    pl: Federacja Rosyjska
 "XA-RS":
   label:
     it: "Serbia"
@@ -1076,6 +1226,7 @@ wr:
     de: "Serbia"
     en: "Serbia"
     es: "Serbia"
+    pl: Serbia
 "XA-SK":
   label:
     it: "Slovacchia"
@@ -1083,6 +1234,7 @@ wr:
     de: "Slovakia"
     en: "Slovakia"
     es: "Eslovaquia"
+    pl: Słowacja
 "XA-SI":
   label:
     it: "Slovenia"
@@ -1090,6 +1242,7 @@ wr:
     de: "Slovenia"
     en: "Slovenia"
     es: "Eslovenia"
+    pl: Słowenia
 "XC-ZA":
   label:
     it: "Sudafrica"
@@ -1097,6 +1250,7 @@ wr:
     de: "South Africa"
     en: "South Africa"
     es: "Sudáfrica"
+    pl: Republika Południowej Afryki
 "XA-ES":
   label:
     it: "Spagna"
@@ -1104,6 +1258,7 @@ wr:
     de: "Spain"
     en: "Spain"
     es: "España"
+    pl: Hiszpania
 "XA-SE":
   label:
     it: "Svezia"
@@ -1111,6 +1266,7 @@ wr:
     de: "Sweden"
     en: "Sweden"
     es: "Suecia"
+    pl: Szwecja
 "XA-CH-VD":
   label:
     it: "Svizzera: Vaud"
@@ -1118,6 +1274,7 @@ wr:
     de: "Switzerland: Vaud"
     en: "Switzerland: Vaud"
     es: "Suiza: cantón de Vaud"
+    pl: Szwajcaria: kanton Vaud
 "XA-CH":
   label:
     it: "Svizzera"
@@ -1125,6 +1282,7 @@ wr:
     de: "Switzerland"
     en: "Switzerland"
     es: "Suiza"
+    pl: Szwajcaria
 "XB-SY":
   label:
     it: "Repubblica Araba Siriana"
@@ -1132,6 +1290,7 @@ wr:
     de: "Syrian Arab Republic"
     en: "Syrian Arab Republic"
     es: "República Árabe Siria"
+    pl: Syryjska Republika Arabska
 "XB-TW":
   label:
     it: "Taiwan (provincia della Cina)"
@@ -1139,6 +1298,7 @@ wr:
     de: "Taiwan (Province of China)"
     en: "Taiwan (Province of China)"
     es: "Taiwán (Provincia de China)"
+    pl: Tajwan (prowincja Chin)
 "XD-TT":
   label:
     it: "Trinidad e Tobago"
@@ -1146,6 +1306,7 @@ wr:
     de: "Trinidad and Tobago"
     en: "Trinidad and Tobago"
     es: "Trinidad y Tobago"
+    pl: Trynidad i Tobago
 "XB-TR":
   label:
     it: "Turchia"
@@ -1153,6 +1314,7 @@ wr:
     de: "Turkey"
     en: "Turkey"
     es: "Turquía"
+    pl: Turcja
 "XA-UA":
   label:
     it: "Ucraina"
@@ -1160,6 +1322,7 @@ wr:
     de: "Ukraine"
     en: "Ukraine"
     es: "Ucrania"
+    pl: Ukraina
 "XA-GB":
   label:
     it: "Regno Unito"
@@ -1167,6 +1330,7 @@ wr:
     de: "United Kingdom"
     en: "United Kingdom"
     es: "Reino Unido"
+    pl: Zjednoczone Królestwo
 "XD-US":
   label:
     it: "Stati Uniti d'America"
@@ -1174,6 +1338,7 @@ wr:
     de: "United States of America"
     en: "United States of America"
     es: "Estados Unidos de América"
+    pl: Stany Zjednoczone AP
 "XD-UY":
   label:
     it: "Uruguay"
@@ -1181,6 +1346,7 @@ wr:
     de: "Uruguay"
     en: "Uruguay"
     es: "Uruguay"
+    pl: Urugwaj
 "XD-VE":
   label:
     it: "Venezuela, Repubblica Bolivariana del"
@@ -1188,6 +1354,7 @@ wr:
     de: "Venezuela, Bolivarian Republic of"
     en: "Venezuela, Bolivarian Republic of"
     es: "Venezuela, República Bolivariana de"
+    pl: Wenezuela, Republika Boliwariańska
 "XB-VN":
   label:
     it: "Vietnam"
@@ -1195,6 +1362,7 @@ wr:
     de: "Vietnam"
     en: "Vietnam"
     es: "Vietnam"
+    pl: Wietnam
 "XD-EC":
   label:
     it: "Ecuador"
@@ -1202,6 +1370,7 @@ wr:
     de: "Ecuador"
     en: "Ecuador"
     es: "Ecuador"
+    pl: Ekwador
 # Relationships
 brother of:
   label:
@@ -1210,6 +1379,7 @@ brother of:
     de: Bruder von
     en: brother of
     es: hermano de
+    pl: Brat …
 child of:
   label:
     it: Figlio/figlia di
@@ -1217,6 +1387,7 @@ child of:
     de: Kind von
     en: child of
     es: "hijo/a de"
+    pl: Potomek …
 mother of:
   label:
     it: Madre di
@@ -1224,6 +1395,7 @@ mother of:
     de: Mutter von
     en: mother of
     es: madre de
+    pl: Matka …
 confused with:
   label:
     it: Confuso/confusa con
@@ -1231,12 +1403,14 @@ confused with:
     de: Verwechselt mit
     en: confused with
     es: "Confundido/a con"
+    pl: Mylon(y/a) z …
 sister of:
   label:
     it: Sorella di
     fr: Soeur de
     de: Schwester von
     en: sister of
+    pl: Siostra …
 married to:
   label:
     it: Sposato/sposata con
@@ -1245,6 +1419,7 @@ married to:
     es: hermana de
     en: married to
     es: "casado/a con"
+    pl: W małżeństwie z …
 father of:
   label:
     it: Padre di
@@ -1252,6 +1427,7 @@ father of:
     de: Vater von
     en: father of
     es: padre de
+    pl: Ojciec …
 related to:
   label:
     it: Parente di
@@ -1259,6 +1435,7 @@ related to:
     de: Verwandt mit
     en: related to
     es: relacionado/a con
+    pl: W pokrewieństwie z …
 other:
   label:
     it: Altro
@@ -1266,6 +1443,7 @@ other:
     de: Weiteres
     en: other
     es: otro
+    pl: Pozostałe
     
 # Name variant codes
 bn:
@@ -1275,6 +1453,7 @@ bn:
     de: Beiname
     en: Nickname
     es: Apodo
+    pl: Przezwisko
 da:
   label:
     it: Pseudonimo
@@ -1282,6 +1461,7 @@ da:
     de: Pseudonym
     en: Pseudonym
     es: "Seudónimo"
+    pl: Pseudonim
 do:
   label:
     it: Nome di religione
@@ -1289,6 +1469,7 @@ do:
     de: Ordensname
     en: Religious name
     es: Nombre religioso
+    pl: Imię z wyznania
 dv:
   label:
     it: Altra forma di ricerca
@@ -1296,6 +1477,7 @@ dv:
     de: andere Suchform
     en: Other variant
     es: Otra variante
+    pl: Inny wariant
 ee:
   label:
     it: Nome da sposato
@@ -1303,6 +1485,7 @@ ee:
     de: Ehename
     en: Married name
     es: Apellido de casada/o
+    pl: Nazwisko po mężu
 ef:
   label:
     it: Nome di famiglia
@@ -1310,6 +1493,7 @@ ef:
     de: Familienname
     en: Name of family
     es: Apellido
+    pl: Nazwa rodziny
 ff:
   label:
     it: Nome di persona
@@ -1317,6 +1501,7 @@ ff:
     de: Personenname
     en: Personal name
     es: Nombre de pila
+    pl: Imię i nazwisko
 gg:
   label:
     it: Nome da nubile/celibe
@@ -1324,6 +1509,7 @@ gg:
     de: Geburtsname
     en: Birth name
     es: Nombre de nacimiento
+    pl: Nazwisko rodowe
 in:
   label:
     it: Iniziali
@@ -1331,6 +1517,7 @@ in:
     de: Initiale
     en: Initials
     es: Iniciales
+    pl: Inicjały
 mo:
   label:
     it: Monogramma
@@ -1338,6 +1525,7 @@ mo:
     de: Monogramm
     en: Monogram
     es: Monograma
+    pl: Monogram
 tn:
   label:
     it: Nome di battesimo
@@ -1345,6 +1533,7 @@ tn:
     de: Taufname
     en: Baptsimal name
     es: Nombre bautismal
+    pl: Imię z chrztu
 ub:
   label:
     it: Traduzione
@@ -1352,6 +1541,7 @@ ub:
     de: Übersetzung
     en: Translation
     es: Traducción
+    pl: Tłumaczenie
 z:
   label:
     it: Ortografia alternativa
@@ -1359,6 +1549,7 @@ z:
     de: Andere Schreibweise
     en: Alternate spelling
     es: Ortografía alternativa
+    pl: Alternatywna pisownia
 xx:
   label:
     it: Sconosciuto
@@ -1366,4 +1557,5 @@ xx:
     de: Unbekannt
     en: Unknown
     es: Desconcido
+    pl: Nieznane
 
