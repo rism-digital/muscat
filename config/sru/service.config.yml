@@ -20,9 +20,13 @@ index:
   cql.any:
     solr:
       - 100a
+      - 110a
+      - 110c
       - 240a
       - 245a
       - 500a
+      - 371d
+      - 680a
       - 700a
     type: text
   dc.id:
@@ -98,6 +102,9 @@ index:
     type: text
   rism.librarySiglum:
     solr: 110g
+    type: text
+  rism.libraryCountry:
+    solr: 043c
     type: text
   rism.shelfmark:
     solr: shelf_mark_shelforder

@@ -253,6 +253,8 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    kramdown (2.3.0)
+      rexml
     kt-paperclip (6.2.2)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -352,6 +354,9 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     retriable (3.1.2)
+    reverse_markdown (2.0.0)
+      nokogiri
+    rexml (3.2.4)
     rmagick (4.1.2)
     rolify (5.2.0)
     rsolr (2.3.0)
@@ -435,6 +440,7 @@ GEM
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    whatlanguage (1.0.6)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -471,6 +477,7 @@ DEPENDENCIES
   jquery-rails (~> 4.3.5)
   jquery-ui-rails (~> 6.0)
   js_cookie_rails (~> 2.2.0)
+  kramdown
   kt-paperclip (~> 6.2.0)
   mysql2
   needleman_wunsch_aligner (= 1.0.4)
@@ -487,6 +494,7 @@ DEPENDENCIES
   rails3-jquery-autocomplete (~> 1.0.21)!
   recaptcha
   redcarpet
+  reverse_markdown
   rolify (~> 5.2.0)
   rsolr (>= 1.0)
   rspec
@@ -503,6 +511,7 @@ DEPENDENCIES
   thor (~> 0.20.3)
   turbolinks (~> 5.2.1)
   uglifier (~> 4.2)
+  whatlanguage
 
 BUNDLED WITH
    2.1.4
