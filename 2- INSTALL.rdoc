@@ -205,6 +205,25 @@ Double check permissions in the muscat installation. Also make sure DocumentRoot
 
 Start Apache, Solr and the related services in production mode (see below).
 
+== Apache-itk option
+
+Alternatively, you can take advantatge of the Apache itk module, that simplifies not only having more than one Muscat in a single server using virtual hosts, but also the whole file permissions and ownership altogether.  This Apache module (http://mpm-itk.sesse.net/) makes the Apache web server to run as a plain user, so it is the owner of the files, and it is no longer necessary file ownership via chown or users via sudo.  Apache-itk is an official Debian and Ubuntu package, so:
+
+ apt install libapache2-mpm-itk
+
+And add the following stanza in the apache configuration file, for example just before the DocumentRoot declaration:
+
+    <IfModule mpm_itk_module>
+       AssignUserId muscat_linux_user_name muscat_linux_group
+    </IfModule>
+
+where muscat_linux_user_name and muscat_linux_group are the first two fields of the output of the id shell command.
+
+If you run more than Muscat in a single server, there is another change to be done: the Solr ports, so each Muscat access its own Solr server.  This port number has to be the same in those two files:
+
+config/sunspot.yml
+config/blacklight.yml
+
 
 == Production Installation and daemons
  
