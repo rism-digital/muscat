@@ -6,18 +6,21 @@ doc_introduction:
     en: Introduction
     it: Introduzione
     es: "Introducción"
+    pl: Wprowadzenie
 doc_masks: 
   label: 
     de: Katalogisierung von Musikquellen
     en: Cataloging musical sources
     it: Catalogazione delle fonti musicali
     es: "Catalogación de fuentes musicales"
+    pl: Katalogowanie źródeł muzycznych
 doc_tag_index: 
   label: 
     de: MARC Tag Index
     en: Index of MARC fields
     it: Indice dei campi MARC
     es: "Índice de campos MARC"
+    pl: Indeks pól MARC
 
 ################
 
@@ -27,48 +30,56 @@ doc_abbreviations:
     en: "Abbreviations and terminology"
     it: "Abbreviazioni e terminologia"
     es: "Abreviaturas y terminología"
+    pl: Skróty i pojęcia
 doc_abbr_dates: 
   label: 
     de: "Datierung"
     en: "Dates"
     it: "Date"
     es: "Fechas"
+    pl: Daty
 doc_abbr_general: 
   label: 
     de: "Allgemeine Abkürzungen und Begriffe"
     en: "General abbreviations and terms"
     it: "Abbreviazioni generali e terminologia"
     es: "Abreviaturas y términos generales"
+    pl: Ogólne skróty i pojęcia
 doc_abbr_keys: 
   label: 
     de: "Tonarten"
     en: "Keys"
     it: "Tasti"
     es: "Tonalidades"
+    pl: Tonacje
 doc_abbr_lang: 
   label: 
     de: "Sprachcodes"
     en: "Language codes"
     it: "Codice lingua"
     es: "Códigos de idioma"
+    pl: Kody języków
 doc_abbr_modes:
   label: 
     de: "Kirchentonarten"
     en: "Ecclesiastical modes"
     it: "Modi ecclesiastici"
     es: "Modos eclesiásticos"
+    pl: Skale kościelne
 doc_abbr_voices_instr: 
   label: 
     de: "Stimmen- und Instrumentenbezeichnungen"
     en: "Terms for voices and instruments"
     it: "Terminologia per voci e strumenti"
     es: "Terminología para voces e instrumentos"
+    pl: Określenia głosów i instrumentów
 doc_abbr_voices_instr2: 
   label: 
     de: "Stimmen- und Instrumentenbezeichnungen tabellarisch"
     en: "RISM instrument abbreviations"
     it: "Abbreviazioni RISM per gli strumenti"
     pt: "Abreviaturas de instrumentos de RISM"
+    pl: Skróty instrumentów wg RISM
 
 ###############
 
@@ -77,36 +88,42 @@ doc_aid:
     de: Arbeitshilfen
     en: Aids
     it: Aiuti
+    pl: Pomoce
 doc_aid_liturgical_feasts: 
   label: 
     de: "Liturgische Feste"
     en: "Liturgical festivals"
     it: "Feste liturgiche"
     es: "Festividades litúrgicas"
+    pl: Święta liturgiczne
 doc_aid_locations: 
   label: 
     de: "Fundorte auf Quellen"
     en: "Locations on the source"
     it: "Luogo sulla fonte"
     es: "Ubicaciones en la fuente"
+    pl: Lokalizacje w źródle
 doc_aid_texts_sacred_works: 
   label: 
     de: "Standardtexte Sakralwerke"
     en: "Standard texts of sacred works"
     it: "Testo standard dei brani musicali sacri"
     es: "Textos estándar de obras sacras"
+    pl: Standardowe teksty utworów sakralnych
 doc_aid_titles_keywords: 
   label: 
     de: "Einordnungstitel - Schlagworte"
     en: "Standardized titles - Subject headings"
     it: "Titolo standard - intestazione del soggetto"
     es: "Títulos uniformes – Descriptores"
+    pl: Znormalizowane tytuły – słowa kluczowe
 doc_aid_transposing_instruments: 
   label: 
     de: "Hilfe zur Transponierung von Instrumenten"
     en: "Help for transposing instruments"
     it: "Aiuto agli strumenti traspositori"
     es: Ayuda para instrumentos transpositores
+    pl: Pomoc przy transpozycji instrumentów
 
 ################
 
@@ -116,24 +133,28 @@ doc_cataloguing:
     en: General cataloging guidelines
     it: Regole di catalogazione generali
     es: "Lineamientos generales para la catalogación"
+    pl: Ogólne wskazówki do katalogowania
 doc_cat_collections: 
   label: 
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
     it: Catalogazione delle collezioni e dei volumi compositi
     es: "Catalogación de colecciones y volúmenes compuestos"
+    pl: Katalogowanie kolekcji i klocka introligatorskiego
 doc_cat_templates: 
   label: 
     de: Templates
     en: Templates
     it: Template
     es: Plantillas
+    pl: Szablony
 doc_cat_authorities: 
   label: 
     de: Normdaten
     en: Authorities
     it: Autorità
     es: Autoridades
+    pl: Hasła wzorcowe
 
 ################
 
@@ -143,23 +164,27 @@ doc_editor:
     en: Using Muscat
     it: Guida all'editor
     es: Uso de Muscat
+    pl: Korzystanie z Muscatu
 doc_edit_functions: 
   label: 
     de: "Grundsätzliche Funktionen"
     en: Basic functions
     it: Funzioni base
     es: "Funciones básicas"
+    pl: Podstawowe funkcje
 doc_edit_workflow: 
   label: 
     de: "Workflow"
     en: Workflow
     it: Workflow
+    pl: Przepływ pracy
 doc_edit_searching:
   label:
     de: "Suche"
     en: "Searching"
     it: "Ricerca"
     es: "Búsqueda"
+    pl: Wyszukiwanie
 
 
    
@@ -171,131 +196,153 @@ doc_library:
     en: Library information
     it: Informazioni sulla biblioteca
     es: "Información del repositorio"
+    pl: Informacje o bibliotece
 doc_provenance: 
   label: 
     de: Provenienz
     en: Provenance
     it: Provenienza
     es: Procedencia
+    pl: Pochodzenie
 doc_linkage: 
   label: 
     de: Verlinkung
     en: Linkage
     it: Collegamenti
     es: "Vínculos"
+    pl: Powiązanie
 doc_diplomatic_title: 
   label: 
     de: Diplomatischer Titel
     en: Diplomatic title
     it: Titolo diplomatico
     es: "Título diplomático"
+    pl: Tytuł dyplomatyczny
 doc_physical_description: 
   label: 
     de: Materialbeschreibung
     en: Material description
     it: Descrizione del materiale
     es: "Descripción del material"
+    pl: Opis materiału
 doc_content: 
   label: 
     de: Inhalt
     en: Content
     it: Contenuto
     es: Contenido
+    pl: Zawartość
 doc_incipit: 
   label: 
     de: Incipits
     en: Incipits
     it: Incipit
     es: "Íncipits"
+    pl: Incipity
 doc_bibliographical_reference: 
   label: 
     de: Literatur
     en: References
     it: Riferimenti
     es: Referencias
+    pl: Odniesienia
 doc_added_entries: 
   label: 
     de: Nebeneintragungen
     en: Added entry name
     it: Nome di entità aggiunto
+    pl: Dodana nazwa wpisu
 doc_performance: 
   label: 
     de: "Aufführungen"
     en: Performances
     it: Esecuzioni
     es: "Interpretaciones"
+    pl: Wykonania
 doc_date: 
   label: 
     de: Daten
     en: Dates
     it: Date
     es: Fechas
+    pl: Daty
 doc_administration: 
   label: 
     de: Administration
     en: Administration
     it: Amministrazione
     es: "Administración"
+    pl: Administracja
 doc_personal_names:
   label:
     de: "Personen"
     en: "Personal names"
     it: "Nomi di persona"
     es: "Nombres personales"
+    pl: Osoby
 doc_images:
   label:
     de: "Bilder"
     en: "Images"
     it: "Immagini"
     es: "Imágenes"
+    pl: Obrazy
 doc_institutions:
   label:
     de: "Körperschaften"
     en: "Institutions"
     it: "Istituzioni"
     es: "Instituciones"
+    pl: Instytucje
 doc_title:
   label:
     de: "Titel und Inhaltsangaben"
     en: "Title and content description"
     it: "Titolo e descrizione del contenuto"
     es: "Título y descripción del contenido"
+    pl: Tytuł i opis źródła
 doc_people:
   label:
     de: "Personen und Körperschaften"
     en: "People and institutions"
     it: "Persone ed istituzioni"
     es: "Personas e instituciones"
+    pl: Osoby i instytucje
 doc_main_entry_fields:
   label:
     de: "Haupteintragungen"
     en: "Main entry fields"
     it: "Campi principali"
     es: "Campos principales"
+    pl: Główne pola edycji
 doc_numbers:
   label:
     de: "Nummern und Codes"
     en: "Numbers and code fields"
     it: "Campi numerici e codici"
     es: "Números y campos de código"
+    pl: Pola liczb i kodów
 doc_name_variants:
   label:
     de: "Namensvarianten"
     en: "Name variants"
     it: "Varianti del nome"
     es: Variantes del nombre
+    pl: Alternatywne nazwy osoby
 doc_relations:
   label:
     de: "Beziehungen"
     en: "Relations"
     it: "Relazioni"
     es: "Relaciones"
+    pl: Relacje
 doc_references:
   label:
     de: "Literatur und Bemerkungen"
     en: "References"
     it: "Riferimenti"
     es: "Referencias"
+    pl: Odniesienia
 
 ################
 
@@ -305,24 +352,28 @@ doc_references:
     fr: Auteur
     de: Verfasser
     en: Artistic production
+    pl: Autor produkcji artystycznej
 02_codes_performing: 
   label: 
     it: Partecipanti
     fr: Exécuteurs
     de: Mitwirkende
     en: Performance
+    pl: Wykonanie
 03_codes_technical: 
   label: 
     it: Produttore
     fr: "Création"
     de: Hersteller
     en: Technical production  
+    pl: Produkcja techniczna
 04_codes_other: 
   label: 
     it: Altri
     fr: Autre
     de: Weitere
     en: Other 
+    pl: Pozostałe
 
 ################
 
@@ -333,6 +384,7 @@ doc_references:
     de: Leader
     en: Leader
     es: "Líder"
+    pl: Leader
 "001": 
   label: 
     it: Numero documento RISM
@@ -340,6 +392,7 @@ doc_references:
     de: RISM Dokumentnummer
     en: RISM ID No.
     es: "Número de ID de RISM"
+    pl: RISM ID
 "035": 
   label: 
     it: Num. locale
@@ -347,6 +400,7 @@ doc_references:
     de: Lokale Nummer
     en: Local Number
     es: "Número local"
+    pl: Numer kontrolny
   fields: 
     a: 
       label: 
@@ -354,6 +408,7 @@ doc_references:
         fr: No. local
         de: Lokale Nummer
         en: Local ID no.
+        pl: Numer kontrolny
       edit_label:
         en: ""
 "300": 
@@ -363,6 +418,7 @@ doc_references:
     de: Material
     en: Physical description
     es: "Descripción física"
+    pl: Opis fizyczny
   fields: 
     a: 
       label: 
@@ -371,6 +427,7 @@ doc_references:
         de: Quellenart, Umfang
         en: Format, extent
         es: "Formato, extensión"
+        pl: Rodzaj źródła, objętość
     b: 
       label: 
         it: Altri dettagli sul materiale
@@ -378,6 +435,7 @@ doc_references:
         de: Zusätzliche Materialbeschreibung
         en: Other physical details
         es: "Otros detalles físicos"
+        pl: Pozostałe dane fizyczne
     c: 
       label: 
         it: Dimensioni
@@ -385,6 +443,7 @@ doc_references:
         de: Format
         en: Dimensions
         es: Dimensiones
+        pl: Wymiary
     "8": 
       label: 
         it: Gruppo di materiale
@@ -392,6 +451,7 @@ doc_references:
         de: Set
         en: Set
         es: Set
+        pl: Zbiór
 "500": 
   label: 
     it: Osservazioni
@@ -399,6 +459,7 @@ doc_references:
     de: Bemerkungen
     en: General note
     es: Nota general
+    pl: Uwaga ogólna
   fields: 
     a: 
       label: 
@@ -407,6 +468,7 @@ doc_references:
         de: Bemerkungen
         en: General note
         es: Nota general
+        pl: Uwaga ogólna
       edit_label: 
         en: ""
     "8": 
@@ -416,6 +478,7 @@ doc_references:
         de: Set
         en: Set
         es: Set
+        pl: Zbiór
 "506": 
   label: 
     it: Restrizioni all'accesso
@@ -423,6 +486,7 @@ doc_references:
     de: "Zugangsbeschränkungen"
     en: Access restrictions
     es: Restricciones de acceso
+    pl: Ograniczenia dostępu
   fields: 
     a: 
       label: 
@@ -431,6 +495,7 @@ doc_references:
         de: "Zugangsbeschränkungen"
         en: Access restriction
         es: Restricciones de acceso
+        pl: Ograniczenia dostępu
       edit_label: 
         en: ""
 "518": 
@@ -440,6 +505,7 @@ doc_references:
     de: "Bemerkungen zu den Aufführungen"
     en: Note on performance
     es: "Nota sobre ocasión de interpretación"
+    pl: Uwaga o wykonaniu
   fields: 
     a: 
       label: 
@@ -448,6 +514,7 @@ doc_references:
         de: "Bemerkungen zu den Aufführungen"
         es: "Nota sobre ocasión de interpretación"
         en: Performer note
+        pl: Uwaga o wykonaniu
       edit_label: 
         en: ""
 "541": 
@@ -457,6 +524,7 @@ doc_references:
     de: Unmittelbare Beschaffungsquelle
     en: Source of acquisition
     es: "Fuente de adquisición"
+    pl: Źródło nabycia
   fields: 
     a: 
       label: 
@@ -465,6 +533,7 @@ doc_references:
         de: Beschaffungsquelle
         en: Source of acquisition note
         es: "Nota sobre la fuente de adquisición"
+        pl: Uwaga o źródle nabycia
     c: 
       label: 
         it: Metodo d'acquisto
@@ -472,6 +541,7 @@ doc_references:
         de: Beschaffungsart
         en: Method of acquisition
         es: "Método de adquisición"
+        pl: Sposób nabycia
     d: 
       label: 
         it: Data d'acquisto
@@ -479,6 +549,7 @@ doc_references:
         de: Beschaffungsdatum
         en: Date of acquisition
         es: "Fecha de adquisición"
+        pl: Data nabycia
     e: 
       label: 
         it: Numero di acquisizione
@@ -486,6 +557,7 @@ doc_references:
         de: Akzessionsnumer
         en: Accession number
         es: "Número de adquisición"
+        pl: Numer akcesji
 "561": 
   label: 
     it: Provenienza
@@ -493,6 +565,7 @@ doc_references:
     de: Provenienzvermerke
     en: Provenance note
     es: Nota de procedencia
+    pl: Uwaga o pochodzeniu
   fields: 
     a: 
       label: 
@@ -501,6 +574,7 @@ doc_references:
         de: Provenienzvermerke
         en: Provenance notes
         es: Notas de procedencia
+        pl: Uwaga o pochodzeniu
       edit_label: 
         en: ""
 "563": 
@@ -510,6 +584,7 @@ doc_references:
     de: Einband note
     en: Binding note
     es: "Nota de encuadernación"
+    pl: Uwaga o oprawie
   fields: 
     a: 
       label: 
@@ -517,6 +592,7 @@ doc_references:
         fr: Reliure note
         de: Einband note
         en: Binding note
+        pl: Uwaga o oprawie
       edit_label: 
         en: ""
 "591": 
@@ -526,6 +602,7 @@ doc_references:
     de: Weitere Signatur
     en: Other shelfmark
     es: Otra signatura
+    pl: Inna sygnatura
   fields: 
     a: 
       label: 
@@ -534,6 +611,7 @@ doc_references:
         de: Weitere Signatur
         en: Other shelfmark
         es: Otra signatura
+        pl: Inna sygnatura
 "592": 
   label: 
     it: Filigrana
@@ -541,6 +619,7 @@ doc_references:
     de: Wasserzeichen
     en: Watermark description
     es: "Descripción de la marca de agua"
+    pl: Opis znaku wodnego
   fields: 
     a: 
       label: 
@@ -549,6 +628,7 @@ doc_references:
         de: Wasserzeichen
         en: Watermark description
         es: "Descripción de la marca de agua"
+        pl: Opis znaku wodnego
     "8": 
       label: 
         it: Gruppo di materiale
@@ -556,6 +636,7 @@ doc_references:
         de: Set
         en: Set
         es: Set
+        pl: Zbiór
 "593": 
   label: 
     it: Categoria di fonte
@@ -563,6 +644,7 @@ doc_references:
     de: Quellentyp
     en: Source type
     es: Tipo de fuente
+    pl: Rodzaj źródła
   fields: 
     a: 
       label: 
@@ -571,6 +653,7 @@ doc_references:
         de: Typ
         en: Type
         es: Tipo
+        pl: Rodzaj
 "599": 
   label: 
     it: Commenti interni
@@ -578,6 +661,7 @@ doc_references:
     de: Interne Fussnoten
     en: Local notes field
     es: Campo de notas locales
+    pl: Pole uwag wewnętrznych
   fields: 
     a: 
       label: 
@@ -586,6 +670,7 @@ doc_references:
         de: Interne Fussnoten
         en: Local notes field
         es: Campo de notas locales
+        pl: Pole uwag wewnętrznych
       edit_label: 
         en: ""
 "651": 
@@ -595,6 +680,7 @@ doc_references:
     de: "Aufführungsort"
     en: Location of performance
     es: "Lugar de interpretación"
+    pl: Lokalizacja wykonania
   fields: 
     a: 
       label: 
@@ -603,6 +689,7 @@ doc_references:
         de: "Aufführungsort"
         en: Location of performance
         es: "Lugar de interpretación"
+        pl: Lokalizacja wykonania
       edit_label: 
         en: ""
 "691": 
@@ -612,6 +699,7 @@ doc_references:
     de: Literaturverweis
     en: Bibliographic reference
     es: "Referencia bibliográfica"
+    pl: Odniesienie bibliograficzne
   fields: 
     a: 
       label: 
@@ -620,6 +708,7 @@ doc_references:
         de: Literatur
         en: Bibliographic reference
         es: "Referencia Bibliográfica"
+        pl: Odniesienie bibliograficzne
     n: 
       label: 
         it: Numero/pagina
@@ -627,6 +716,7 @@ doc_references:
         de: Fundstelle
         en: Number/page
         es: "Número/página"
+        pl: Numer / strona
 "700": 
   label: 
     it: Nomi di persone aggiuntivi
@@ -634,6 +724,7 @@ doc_references:
     de: Nebeneintragung Personen
     en: Additional personal name
     es: Nombre personal adicional
+    pl: Dodatkowa osoba
   fields: 
     a: 
       label: 
@@ -642,6 +733,7 @@ doc_references:
         de: Personenname
         en: Name
         es: Nombre
+        pl: Imię i nazwisko
     d: 
       label: 
         it: Date di nascita e di morte
@@ -649,6 +741,7 @@ doc_references:
         de: Geburts- und Todesdaten
         en: Life dates
         es: Fechas de nacimiento y muerte
+        pl: Daty urodzenia i śmierci
     j: 
       label: 
         it: Qualificazione d'attribuzione
@@ -656,12 +749,14 @@ doc_references:
         de: Zuschreibungsvermerk
         en: Attribution qualifier
         es: "Calificador de atribución"
+        pl: Kwalifikator atrybucji
       edit_label: 
         it: Attribuzione
         fr: Attribution
         de: Zuschreibung
         en: Attribution
         es: "Atribución"
+        pl: Atrybucja
     "4": 
       label: 
         it: Funzione
@@ -669,6 +764,7 @@ doc_references:
         de: Funktionsbezeichnung
         en: Function
         es: "Función"
+        pl: Funkcja
     "8": 
       label: 
         it: Gruppo di materiale
@@ -676,6 +772,7 @@ doc_references:
         de: Set
         en: Set
         es: Set
+        pl: Zbiór
 "710": 
   label: 
     it: Nome di ente
@@ -683,6 +780,7 @@ doc_references:
     de: Nebeneintragung Körperschaften
     en: Additional institution
     es: "Institución adicional"
+    pl: Dodatkowa instytucja
   fields: 
     a: 
       label: 
@@ -691,6 +789,7 @@ doc_references:
         de: Körperschaftsname
         en: Institution
         es: "Institución"
+        pl: Instytucja
     b: 
       label: 
         it: Ente subordinato
@@ -698,6 +797,7 @@ doc_references:
         de: Untergeordnete Körperschaft
         en: Department
         es: Departamento
+        pl: Wydział
     g: 
       label: 
         it: Qualificazione d'attribuzione
@@ -705,12 +805,14 @@ doc_references:
         de: Zuschreibungsvermerk
         en: Attribution qualifier
         es: "Calificador de atribución"
+        pl: Kwalifikator atrybucji
       edit_label: 
         it: Attribuzione
         fr: Attribution
         de: Zuschreibung
         en: Attribution
         es: "Atribución"
+        pl: Atrybucja
 
     "4": 
       label: 
@@ -719,6 +821,7 @@ doc_references:
         de: Funktionsbezeichnung
         en: Function
         es: "Función"
+        pl: Funkcja
     "8": 
       label: 
         it: Gruppo di materiale
@@ -726,6 +829,7 @@ doc_references:
         de: Set
         en: Set
         es: Set
+        pl: Zbiór
 "852": 
   label: 
     it: Sigla della biblioteca
@@ -733,6 +837,7 @@ doc_references:
     de: Bibliothekssigel
     en: Library siglum
     es: Sigla del repositorio
+    pl: Siglum
   fields: 
     a: 
       label: 
@@ -741,6 +846,7 @@ doc_references:
         de: Bibliothekssigel
         en: Library siglum
         es: Sigla del repositorio
+        pl: Siglum
     b: 
       label: 
         it: Dipartimento
@@ -748,6 +854,7 @@ doc_references:
         de: Abteilung
         en: Department
         es: Departamento
+        pl: Wydział
     c: 
       label: 
         it: Segnatura
@@ -755,6 +862,7 @@ doc_references:
         de: Signatur
         en: Shelfmark
         es: Signatura
+        pl: Sygnatura
     d: 
       label: 
         it: Segnatura vecchia (olim)
@@ -762,6 +870,7 @@ doc_references:
         de: Alte Signatur (olim)
         en: Shelfmark (olim)
         es: Signatura antigua (olim)
+        pl: Sygnatura (wcześniejsza)
     e: 
       label: 
         it: Biblioteca
@@ -769,6 +878,7 @@ doc_references:
         de: Bibliothek
         en: Library
         es: "Repositorio"
+        pl: Biblioteka
     q: 
       label: 
         it: Materiale conservato
@@ -776,6 +886,7 @@ doc_references:
         de: Erhaltenes Material
         en: Material held
         es: Material conservado
+        pl: Posiadany materiał
     u: 
       label: 
         it: URI
@@ -783,6 +894,7 @@ doc_references:
         de: URI
         en: URI
         es: URI
+        pl: URI
     z: 
       label: 
         it: Nome del fondo
@@ -790,6 +902,7 @@ doc_references:
         de: Bestandsname
         en: Provenance
         es: Procedencia
+        pl: Pochodzenie
 "856": 
   label: 
     it: Localizzazione e accesso elettronico
@@ -797,6 +910,7 @@ doc_references:
     de: Elektronische Lokalisierung und Zugriff
     en: External resource URI
     es: URI de recurso externo
+    pl: URI zasobu zewnętrznego
   fields: 
     z: 
       label: 
@@ -805,6 +919,7 @@ doc_references:
         de: "Für das Publikum bestimmte Fussnote"
         en: Note about external resource
         es: Nota sobre recurso externo
+        pl: Uwaga o zasobie zewnętrznym
     u: 
       label: 
         it: Risorsa esterna
@@ -812,6 +927,7 @@ doc_references:
         de: Uniform Resource Identifier
         en: External resource
         es: Recurso externo
+        pl: Zasób zewnętrzny
     x: 
       label: 
         it: Tipo di collegamento
@@ -819,6 +935,7 @@ doc_references:
         de: Linktyp
         en: Link type
         es: Tipo de enlace
+        pl: Typ odsyłacza
 "963": 
   label: 
     it: Non-migrated bound with value from 563 
@@ -826,6 +943,7 @@ doc_references:
     de: Non-migrated bound with value from 563
     en: Non-migrated bound with value from 563
     es: Non-migrated bound with value from 563
+    pl: Non-migrated bound with value from 563 
   fields: 
     u: 
       label: 
@@ -834,6 +952,7 @@ doc_references:
         de: Temp val
         en: Temp val
         es: Temp val
+        pl: Temp val
 "973": 
   label: 
     it: Rilegato con
@@ -841,6 +960,7 @@ doc_references:
     de: Eingesprungen
     en: Bound with
     es: Encuadernado con
+    pl: Współoprawne z
   fields: 
     u: 
       label: 
@@ -849,6 +969,7 @@ doc_references:
         de: Eingesprungen
         en: Bound with
         es: Encuadernado con
+        pl: Współoprawne z
       comment: "NEW IN 2018!"
 ################
 
@@ -859,6 +980,7 @@ show_admin:
     de: Administration
     en: Administration
     es: "Administración"
+    pl: Administracja
 show_content: 
   label: 
     it: Contenuto
@@ -866,6 +988,7 @@ show_content:
     de: Inhalt
     en: Content
     es: Contenido
+    pl: Zawartość
 show_distribution: 
   label: 
     it: Organico
@@ -873,6 +996,7 @@ show_distribution:
     de: Besetzung
     en: Distribution
     es: "Distribución"
+    pl: Dystrybucja
 show_information: 
   label: 
     it: Note
@@ -880,6 +1004,7 @@ show_information:
     de: Anmerkungen
     en: Further information
     es: "Información suplementaria"
+    pl: Dalsze informacje
 show_library: 
   label: 
     it: Biblioteca
@@ -887,6 +1012,7 @@ show_library:
     de: Besitzerangaben
     en: Library information
     es: "Información del repositorio"
+    pl: Informacje o bibliotece
 show_links: 
   label: 
     it: Titoli connessi
@@ -894,6 +1020,7 @@ show_links:
     de: Verlinkungen
     en: Related Titles
     es: "Títulos relacionados"
+    pl: Powiązane tytuły
 show_material: 
   label: 
     it: Descrizione del materiale
@@ -901,6 +1028,7 @@ show_material:
     de: Materialbeschreibung
     en: Material description
     es: "Descripción material"   
+    pl: Opis materiału
 show_references: 
   label: 
     it: Bibliografia
@@ -908,6 +1036,7 @@ show_references:
     de: Literatur
     en: References
     es: "Referencias"
+    pl: Odniesienia
 show_resources: 
   label: 
     it: Collegamenti
@@ -915,6 +1044,7 @@ show_resources:
     de: Links
     en: Related resources
     es: Recursos relacionados
+    pl: Powiązane zasoby
 show_summary: 
   label: 
     it: Riassunto
@@ -922,6 +1052,7 @@ show_summary:
     de: Zusammenfassung
     en: Summary
     es: Resumen
+    pl: Podsumowanie
 show_terms: 
   label: 
     it: Descrittori
@@ -929,6 +1060,7 @@ show_terms:
     de: Deskriptoren
     en: Index terms
     es: "Términos de indexación"
+    pl: Pojęcia indeksowane
         
 ################
         
@@ -939,6 +1071,7 @@ edit_administration:
     de: Administration
     en: Administration
     es: Administración
+    pl: Administracja
 edit_library: 
   label: 
     it: Biblioteca e relazione
@@ -946,6 +1079,7 @@ edit_library:
     de: Besitzerangaben und Verlinkung
     en: Library information and relations
     es: "Información del repositorio y sus relaciones"
+    pl: Informacje i relacje bibliotekarskie
 edit_material: 
   label: 
     it: Descrizione del materiale
@@ -953,6 +1087,7 @@ edit_material:
     de: Materialbeschreibung
     en: Material description
     es: "Descripción del material" 
+    pl: Opis materiału
 edit_names: 
   label: 
     it: Persone e istituzione
@@ -960,6 +1095,7 @@ edit_names:
     de: Personen und Körperschaften
     en: People and institutions
     es: Personas e instituciones
+    pl: Osoby i instytucje
 edit_references: 
   label: 
     it: Bibliografia e note
@@ -967,6 +1103,7 @@ edit_references:
     de: Literatur und Fussnoten
     en: References and notes
     es: Referencias y notas
+    pl: Odniesienia i uwagi
 
 unmatched: 
   label: 
@@ -975,6 +1112,7 @@ unmatched:
     de: Unbekannte Felder
     en: Unknown fields
     es: Campos desconocidos
+    pl: Pola nieznane
 
 ################
 
@@ -985,6 +1123,7 @@ arr:
     de: Bearbeiter
     en: Arranger
     es: Arreglador
+    pl: Aranżer
 art: 
   label: 
     it: Scenografo
@@ -992,6 +1131,7 @@ art:
     de: "Bühnenbildner"
     en: Artist
     es: Puestista
+    pl: Artysta
 asn: 
   label: 
     it: Altro nome
@@ -999,6 +1139,7 @@ asn:
     de: Weiterer Name
     en: Other
     es: Otro nombre
+    pl: Pozostałe
 aut: 
   label: 
     it: Autore
@@ -1006,6 +1147,7 @@ aut:
     de: Autor
     en: Author
     es: Autor
+    pl: Autor
 bnd: 
   label: 
     it: Rilegatore
@@ -1013,6 +1155,7 @@ bnd:
     de: Buchbinder
     en: Binder
     es: Encuadernador
+    pl: Introligator
 bsl: 
   label: 
     it: Libraio musicale
@@ -1020,6 +1163,7 @@ bsl:
     de: "Musikalienhändler"
     en: Bookseller
     es: Librero
+    pl: Księgarz
 ccp: 
   label: 
     it: Autore della fonte letteraria
@@ -1027,6 +1171,7 @@ ccp:
     de: Autor der Textvorlage
     en: Conceptor
     es: "Autor del concepto"
+    pl: Autor koncepcji
 chr: 
   label: 
     it: Coreografo
@@ -1034,6 +1179,7 @@ chr:
     de: Choreograph
     en: Choreographer
     es: "Coreógrafo"
+    pl: Choreograf
 clb: 
   label: 
     it: Autore secondario
@@ -1041,6 +1187,7 @@ clb:
     de: Mitverfasser
     en: Contributer
     es: Colaborador
+    pl: Kontrybutor
 cmp: 
   label: 
     it: Rimando ad altro compositore
@@ -1048,6 +1195,7 @@ cmp:
     de: Komponistenquerverweis
     en: Composer cross-reference
     es: Referencia cruzada de compositor
+    pl: Odniesienie do innego kompozytora
 cnd: 
   label: 
     it: Direttore d'orchestra
@@ -1055,6 +1203,7 @@ cnd:
     de: Dirigent
     en: Conductor
     es: Director musical
+    pl: Dyrygent
 cns: 
   label: 
     it: Censore
@@ -1062,6 +1211,7 @@ cns:
     de: Zensor
     en: Censor
     es: Censor
+    pl: Cenzor
 com: 
   label: 
     it: Compilatore
@@ -1069,6 +1219,7 @@ com:
     de: Kompilator
     en: Compiler
     es: Compilador
+    pl: Kompilator
 cst: 
   label: 
     it: Costumista
@@ -1076,6 +1227,7 @@ cst:
     de: "Kostümbildner"
     en: Costume designer
     es: Vestuarista
+    pl: Projektant kostiumów
 ctb: 
   label: 
     it: Compositore secondario
@@ -1083,6 +1235,7 @@ ctb:
     de: Mitkomponist
     en: Co-composer
     es: Co-compositor
+    pl: Współkompozytor
 dnc: 
   label: 
     it: Ballerino
@@ -1090,6 +1243,7 @@ dnc:
     de: "Tänzer"
     en: Dancer
     es: "Bailarín(a)"
+    pl: Tancerz
 dnr: 
   label: 
     it: Donatore
@@ -1097,6 +1251,7 @@ dnr:
     de: Donator
     en: Donor
     es: Donante
+    pl: Donator
 dpt: 
   label: 
     it: Depositante
@@ -1104,6 +1259,7 @@ dpt:
     de: Depositor
     en: Depositor
     es: Depositante
+    pl: Deponent
 dsr: 
   label: 
     it: Progettista
@@ -1111,6 +1267,7 @@ dsr:
     de: Designer
     en: Designer
     es: "Diseñador"
+    pl: Projektant
 dte: 
   label: 
     it: Dedicatario
@@ -1118,6 +1275,7 @@ dte:
     de: "Widmungsträger"
     en: Dedicatee
     es: "Dedicatario(a)"
+    pl: Adresat dedykacji
 asn: 
   label: 
     it: Nome associato
@@ -1126,6 +1284,7 @@ asn:
     en: Associated name
     es: Nombre asociado
     pt: Nome associado
+    pl: Niepewne
 edt: 
   label: 
     it: Curatore
@@ -1133,6 +1292,7 @@ edt:
     de: Herausgeber
     en: Editor
     es: Incierto
+    pl: Edytor
 egr: 
   label: 
     it: Incisore
@@ -1140,6 +1300,7 @@ egr:
     de: Stecher
     en: Engraver
     es: Editor
+    pl: Rytownik
 evp:
   label: 
     it: "Luogo dell’evento"
@@ -1147,6 +1308,7 @@ evp:
     de: Veranstaltungsort
     en: Event place
     es: Lugar del evento
+    pl: Miejsce wydarzenia
 fmo: 
   label: 
     it: Proprietario precedente
@@ -1154,6 +1316,7 @@ fmo:
     de: Vorbesitzer
     en: Former owner
     es: Propietario anterior
+    pl: Poprzedni właściciel
 ill: 
   label: 
     it: Disegnatore
@@ -1161,6 +1324,7 @@ ill:
     de: Illustrator
     en: Illustrator
     es: Ilustrador
+    pl: Ilustrator
 itr: 
   label: 
     it: Strumentista
@@ -1168,6 +1332,7 @@ itr:
     de: Instrumentalist
     en: Instrumentalist
     es: Instrumentista
+    pl: Instrumentalista
 lbt: 
   label: 
     it: Librettista
@@ -1175,6 +1340,7 @@ lbt:
     de: Librettist
     en: Librettist
     es: Libretista
+    pl: Autor libretta
 ltg: 
   label: 
     it: Litografo
@@ -1182,6 +1348,7 @@ ltg:
     de: Lithograph
     en: Lithographer
     es: "Litógrafo"
+    pl: Litograf
 lyr: 
   label: 
     it: Poeta
@@ -1189,6 +1356,7 @@ lyr:
     de: Textdichter
     en: Text author
     es: Autor del texto
+    pl: Autor tekstu
 oth: 
   label: 
     it: Altra funzione
@@ -1196,6 +1364,7 @@ oth:
     de: Sonstige Funktion
     en: Other
     es: "Otra función"
+    pl: Pozostałe
 otm: 
   label: 
     it: Organizzatore
@@ -1203,6 +1372,7 @@ otm:
     de: Veranstalter
     en: Event organizer
     es: Organizador de evento
+    pl: Organizator wydarzenia
 pat: 
   label: 
     it: Committente
@@ -1210,6 +1380,7 @@ pat:
     de: "Mäzen/Auftraggeber"
     en: Patron
     es: Comitente
+    pl: Sponsor
 pbl: 
   label: 
     it: Editore
@@ -1217,6 +1388,7 @@ pbl:
     de: Verleger
     en: Publisher
     es: Editor
+    pl: Wydawca
 ppm: 
   label: 
     it: Fabbricante di carta
@@ -1224,6 +1396,7 @@ ppm:
     de: Papierhersteller
     en: Papermaker
     es: Fabricante de papel
+    pl: Producent papieru
 prd: 
   label: 
     it: Personale alla produzione
@@ -1231,6 +1404,7 @@ prd:
     de: Produktionspersonal
     en: Production personnel
     es: "Personal de producción"
+    pl: Personel produkcyjny
 prf: 
   label: 
     it: Interprete
@@ -1238,6 +1412,7 @@ prf:
     de: Interpret
     en: Performer
     es: "Intérprete"
+    pl: Wykonawca
 prt: 
   label: 
     it: Stampatore
@@ -1245,6 +1420,7 @@ prt:
     de: Drucker
     en: Printer
     es: Impresor
+    pl: Drukarnia
 pub: 
   label: 
     it: Editore
@@ -1252,6 +1428,7 @@ pub:
     de: Verleger
     en: Publisher
     es: Editor
+    pl: Wydawca
 scr: 
   label: 
     it: Copista
@@ -1259,6 +1436,7 @@ scr:
     de: Schreiber
     en: Copyist
     es: Copista
+    pl: Kopista
 trl: 
   label: 
     it: Traduttore
@@ -1266,6 +1444,7 @@ trl:
     de: "Übersetzer"
     en: Translator
     es: Traductor
+    pl: Tłumacz
 voc: 
   label: 
     it: Cantante
@@ -1273,6 +1452,7 @@ voc:
     de: "Sänger"
     en: Vocalist
     es: Cantante
+    pl: Wokalista
 #Attribution qualifier for 100/700$j
 "Verified":
   label:
@@ -1281,6 +1461,7 @@ voc:
     de: Gesichert
     en: Verified
     es: Verificada
+    pl: Zweryfikowane
 "Ascertained":   
   label:
     it: Accertato
@@ -1288,6 +1469,7 @@ voc:
     de: Ermittelt
     en: Ascertained
     es: Certificada
+    pl: Stwierdzone
 "Alleged":   
   label:
     it: Presunto
@@ -1295,6 +1477,7 @@ voc:
     de: Angeblich
     en: Alleged
     es: Supuesta
+    pl: Domniemane
 "Doubtful":   
   label:
     it: Dubbio
@@ -1302,6 +1485,7 @@ voc:
     de: Zweifelhaft
     en: Doubtful
     es: Dudosa
+    pl: Wątpliwe
 "Misattributed":   
   label:
     it: Attribuito erroneamente
@@ -1309,6 +1493,7 @@ voc:
     de: Fälschlich
     en: Misattributed
     es: Mal atribuida
+    pl: Błędnie przypisane
 "Conjectural":   
   label:
     it: Congetturale
@@ -1316,6 +1501,7 @@ voc:
     de: Mutmaßlich
     en: Conjectural
     es: Conjetural
+    pl: Spekulatywne
 #Physical medium (340 $a) - currently not used by the partial
 Autography:
   label:
@@ -1324,6 +1510,7 @@ Autography:
     de: "Autographie"
     en: "Autography"
     es: "Autógrafo"
+    pl: Autografia
 "Computer printout":
   label:
     it: "Stampata da computer"
@@ -1331,6 +1518,7 @@ Autography:
     de: "Computerausdruck"
     en: "Computer printout"
     es: "Impreso de computadora"
+    pl: Wydruk komputerowy
 Engraving:
   label:
     it: "Incisione"
@@ -1338,6 +1526,7 @@ Engraving:
     de: "Stich"
     en: "Engraving"
     es: "Grabado"
+    pl: Sztych
 Facsimile:
   label:
     it: "Facsimile"
@@ -1345,6 +1534,7 @@ Facsimile:
     de: "Faksimile"
     en: "Facsimile"
     es: "Facsímil"
+    pl: Faksymile
 Lithography:
   label:
     it: "Litografia"
@@ -1352,6 +1542,7 @@ Lithography:
     de: "Lithographie"
     en: "Lithography"
     es: "Litografía"
+    pl: Litografia
 "Photoreproductive process":
   label:
     it: "Cianografia"
@@ -1359,6 +1550,7 @@ Lithography:
     de: "Blaupause"
     en: "Photoreproductive process (bluprint)"
     es: "Proceso fotoreproductivo"
+    pl: Proces optyczny (światłokopia)
 Reproduction:
   label:
     it: "Riproduzione"
@@ -1366,6 +1558,7 @@ Reproduction:
     de: "Reproduktion"
     en: "Reproduction"
     es: "Reproducción"
+    pl: Reprodukcja
 Transparency:
   label:
     it: "Trasparente"
@@ -1373,6 +1566,7 @@ Transparency:
     de: "Transparentfolie"
     en: "Transparency"
     es: "Transparencia"
+    pl: Przezrocze
 Typescript:
   label:
     it: "Dattiloscritto"
@@ -1380,6 +1574,7 @@ Typescript:
     de: "Typescript"
     en: "Typescript"
     es: "Escrito mecanografiado"
+    pl: Maszynopis
 Typography:
   label:
     it: "Stampa tipografica"
@@ -1387,6 +1582,7 @@ Typography:
     de: "Typendruck"
     en: "Typography"
     es: "Tipografía"
+    pl: Typografia
 IIIF: 
   label: 
     it: "Manifesto IIIF"
@@ -1394,6 +1590,7 @@ IIIF:
     de: "IIIF manifest"
     en: "IIIF manifest"
     es: "Manifiesto IIIF"
+    pl: Manifest IIIF
 Digitalization: 
   label: 
     it: "Fonte digitalizzata"
@@ -1401,6 +1598,7 @@ Digitalization:
     de: "Notendigitalisat"
     en: "Digitized music"
     es: "Música digitalizada"
+    pl: Cyfrowa reprodukcja źródła
 Other: 
   label: 
     it: "Altro"
@@ -1408,3 +1606,4 @@ Other:
     de: "Sonstiges"
     en: "Other"
     es: "Otro"
+    pl: Pozostałe

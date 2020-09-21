@@ -5,48 +5,56 @@ doc_abbreviations:
     de: "Abkürzungen"
     en: Abbreviations
     es: Abreviaturas
+    pl: Skróty
 doc_aid:
   label:
     it: Aiuti
     de: Arbeitshilfen
     en: Aids
     es: Asistencia
+    pl: Pomoce
 doc_cataloguing_collections:
   label:
     it: Catalogazione di raccolte e volumi compositi
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
     es: "Catalogación de colecciones y volúmenes compuestos"
+    pl: Katalogowanie kolekcji i klocka introligatorskiego
 doc_edit_functions:
   label:
     it: Funzioni base
     de: "Grundsätzliche Funktionen"
     en: Basic functions
     es: "Funciones básicas"
+    pl: Podstawowe funkcje
 doc_introduction:
   label:
     it: Introduzione
     de: Einleitung
     en: Introduction
     es: "Introducción"
+    pl: Wprowadzenie
 doc_masks:
   label:
     it: Formulari di catalogazione
     de: Masken
     en: Cataloging forms
     es: "Formularios de catalogación"
+    pl: Formularze katalogowania
 doc_tag_index:
   label:
     it: Indice dei campi MARC
     de: MARC Tag Index
     en: MARC tag index
     es: "Índice de etiquetas MARC"
+    pl: Indeks znaczników MARC
 doc_templates:
   label:
     it: Template
     de: Templates
     en: Templates
     es: Plantillas
+    pl: Szablony
 
 ################
 
@@ -56,12 +64,14 @@ doc_editor:
     de: "Editor Hilfe"
     en: Editor help
     es: "Ayuda del editor"
+    pl: Pomoc do edycji
 doc_edit_workflow: 
   label: 
     it: Workflow
     de: "Workflow"
     en: Workflow
     es: Flujo de trabajo
+    pl: Przepływ pracy
     
 ################
 
@@ -73,6 +83,7 @@ doc_edit_workflow:
     de: Leader
     en: Leader
     es: "Líder"
+    pl: Leader
 "001":
   label:
     it: Numero documento RISM
@@ -80,6 +91,7 @@ doc_edit_workflow:
     de: RISM Dokumentnummer
     en: RISM ID number
     es: "Número de ID de RISM"
+    pl: RISM ID
 "003":
   label:
     it: Identificatore del numero di controllo
@@ -87,6 +99,7 @@ doc_edit_workflow:
     de: Kontrollnummer-Bezeichnung
     en: Control number identifier
     es: "Identificador de número de control"
+    pl: Identyfikator numeru kontrolnego
 "005":
   label:
     it: Data e ora dell'ultima transazione
@@ -94,6 +107,7 @@ doc_edit_workflow:
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
     es: "Fecha y hora de la última transacción"
+    pl: Data i godzina ostatniej operacji
 "024":
   label:
     it: "Riferimento autorità"
@@ -101,6 +115,7 @@ doc_edit_workflow:
     de: Normdatenverweise
     en: Other standard identifier
     es: "Otro identificador estándar"
+    pl: Identyfikator innego standardu
   fields:
     a:
       label:
@@ -109,6 +124,7 @@ doc_edit_workflow:
         de: Normdatenverweise
         en: Standard number or code
         es: "Número o código estándar"
+        pl: Standardowy numer lub kod
     "2":
       label:
         it: "Agenzia autorità"
@@ -116,6 +132,7 @@ doc_edit_workflow:
         de: Normdatenagentur
         en: Source of number or code
         es: "Fuente de número o código"
+        pl: Źródło numeru lub kodu
 "031": 
   label: 
     it: Incipit musicale
@@ -123,6 +140,7 @@ doc_edit_workflow:
     de: Musikincipit
     en: Incipit
     es: Íncipit
+    pl: Incipit
   fields: 
     a: 
       label: 
@@ -131,12 +149,14 @@ doc_edit_workflow:
         de: Incipitnummer
         en: Work number
         es: "Número de obra"
+        pl: Numer dzieła
       edit_label: 
         it: Numero
         fr: "No. de l'œuvre"
         de: Nummer
         en: Work number
         es: "Número de obra"
+        pl: Numer dzieła
     b: 
       label: 
         it: Movimento N.
@@ -144,12 +164,14 @@ doc_edit_workflow:
         de: Satznummer
         en: Movement number
         es: "Número de movimiento"
+        pl: Numer części
       edit_label: 
         it: Movimento N.
         fr: "No. du mouvement"
         de: Satznummer
         en: Movement number
         es: "Número de movimiento"
+        pl: Numer części
     c: 
       label: 
         it: Numero dell'estratto
@@ -157,12 +179,14 @@ doc_edit_workflow:
         de: Abschnitt
         en: Incipit number
         es: "Número de íncipit"
+        pl: Numer incipitu
       edit_label: 
         it: Estratto No.
         fr: "No. de l'extrait"
         de: Nummer Abschnitt
         en: Incipit number
         es: "Número de íncipit"
+        pl: Numer incipitu
     m: 
       label: 
         it: Organico
@@ -170,6 +194,7 @@ doc_edit_workflow:
         de: Besetzung
         en: Voice/instrument
         es: Voz/instrumento
+        pl: Głos / instrument
     n: 
       label: 
         it: Armatura di chiave
@@ -177,12 +202,14 @@ doc_edit_workflow:
         de: Akzidentien
         en: Key signature
         es: "Armadura de clave"
+        pl: Znaki przykluczowe
       edit_label: 
         it: Armat.
         fr: Armure
         de: Vorzeichen
         en: Key signature
         es: "Armadura de clave"
+        pl: Znaki przykluczowe
     d: 
       label: 
         it: Intestazione, Tempo
@@ -190,6 +217,7 @@ doc_edit_workflow:
         de: Satztitel, Tempo
         en: Title of movement, tempo
         es: "Título del movimiento, tempo"
+        pl: Tytuł części, tempo
     o: 
       label: 
         it: Misura
@@ -197,12 +225,14 @@ doc_edit_workflow:
         de: Metrum
         en: Time signature
         es: "Indicación de compás"
+        pl: Metrum
       edit_label: 
         it: Misura
         fr: Ind. mesure
         de: Metrum
         en: Time signature
         es: "Indicación de compás"
+        pl: Metrum
     e: 
       label: 
         it: Ruolo
@@ -210,6 +240,7 @@ doc_edit_workflow:
         de: Rolle
         en: Role
         es: Personaje
+        pl: Rola
     p: 
       label: 
         it: Incipit musicale
@@ -217,6 +248,7 @@ doc_edit_workflow:
         de: Musikincipit
         en: Music incipit
         es: "Íncipit musical"
+        pl: Incipit muzyczny
     q: 
       label: 
         it: Commento all'incipit mus.
@@ -224,6 +256,7 @@ doc_edit_workflow:
         de: Kommentar zum Musikincipit
         en: General note
         es: Nota general
+        pl: Uwaga ogólna
     g: 
       label: 
         it: Chiave
@@ -231,12 +264,14 @@ doc_edit_workflow:
         de: "Schlüssel"
         en: Clef
         es: Clave
+        pl: Klucz
       edit_label: 
         it: Chiave
         fr: "Clé"
         de: "Schlüssel"
         en: Clef
         es: Clave
+        pl: Klucz
     r: 
       label: 
         it: "Tonalità, modo"
@@ -244,12 +279,14 @@ doc_edit_workflow:
         de: Tonart, Modus
         en: Key or mode
         es: Tonalidad o modo
+        pl: Tonacja lub modus
       edit_label: 
         it: "Tonalità"
         fr: "Tonalité"
         de: Tonart
         en: Key
         es: Tonalidad
+        pl: Tonacja
     s: 
       label: 
         it: "Validità"
@@ -257,12 +294,14 @@ doc_edit_workflow:
         de: "Gültigkeit"
         en: Validity
         es: Validez
+        pl: Ważność
       edit_label: 
         it: "Validità"
         fr: "Validité"
         de: "Gültigkeit"
         en: "Validity"
         es: Validez
+        pl: Ważność
     t: 
       label: 
         it: Incipit testuale
@@ -270,6 +309,7 @@ doc_edit_workflow:
         de: Textincipit
         en: Text incipit
         es: "Íncipit literario"
+        pl: Incipit tekstowy
     z: 
       label: 
         it: Organico del movimento
@@ -277,6 +317,7 @@ doc_edit_workflow:
         de: Besetzung Satz
         en: Scoring in movement
         es: "Plantilla/orgánico del movimiento"
+        pl: Obsada w części
 
 "040":
   label:
@@ -285,6 +326,7 @@ doc_edit_workflow:
     de: Katalogisierungsquelle
     en: Cataloging source
     es: "Fuente de la catalogación"
+    pl: Katalogowanie źródła
   fields:
     a:
       label:
@@ -293,6 +335,7 @@ doc_edit_workflow:
         de: Original-Katalogisierungsstelle
         en: Original cataloging agency
         es: "Agencia de catalogación original"
+        pl: Jednostka katalogująca pierwotny rekord
     b:
       label:
         it: Lingua della catalogazione
@@ -300,6 +343,7 @@ doc_edit_workflow:
         de: Katalogisierungssprache
         en: Language of cataloging
         es: "Idioma de la catalogación"
+        pl: Język katalogowania
     c:
       label:
         it: Agenzia della trascrizione
@@ -307,6 +351,7 @@ doc_edit_workflow:
         de: "Übertragende Katalogisierungsstelle"
         en: Transcribing agency
         es: "Agencia de la transcripción"
+        pl: Jednostka transkrybująca
     d:
       label:
         it: Agenzia della modifica
@@ -314,6 +359,7 @@ doc_edit_workflow:
         de: Modifizierende Katalogisierungsstelle
         en: Modifying agency
         es: "Agencia de la modificación"
+        pl: Jednostka modyfikująca
 "042":
   label:
     it: Codice di autenticazione
@@ -321,6 +367,7 @@ doc_edit_workflow:
     de: Authentication Code
     en: Authentication Code
     es: "Código de autenticación"
+    pl: Kod uwierzytelnienia
   fields:
     a:
       label:
@@ -329,6 +376,7 @@ doc_edit_workflow:
         de: Authentication Code
         en: Authentication Code
         es: "Código de autenticación"
+        pl: Kod uwierzytelnienia
 "043":
   label:
     it: Codice del Paese
@@ -336,6 +384,7 @@ doc_edit_workflow:
     de: Länder-Code
     en: Nationality
     es: Nacionalidad
+    pl: Narodowość
   fields:
     c:
       label:
@@ -344,6 +393,7 @@ doc_edit_workflow:
         de: Länder-Code  
         en: Nationality
         es: Nacionalidad
+        pl: Narodowość
 "100":
   label:
     it: Nome di persona
@@ -351,6 +401,7 @@ doc_edit_workflow:
     de: Ansetzungsform
     en: Heading
     es: Encabezado
+    pl: Nagłówek
   fields:
     a:
       label:
@@ -359,6 +410,7 @@ doc_edit_workflow:
         de: Komponist
         en: Composer
         es: Compositor
+        pl: Kompozytor
     d:
       label:
         it: Data di nascita e di morte
@@ -366,6 +418,7 @@ doc_edit_workflow:
         de: Geburts- und Todesdaten
         en: Years of birth and death
         es: "Años de nacimiento y muerte"
+        pl: Lata urodzenia i śmierci
     m:
       label:
         it: Organico sintetico
@@ -373,6 +426,7 @@ doc_edit_workflow:
         de: Besetzungshinweis
         en: Scoring summary
         es: "Resumen de Plantilla/Orgánico"
+        pl: Podsumowanie obsady
     n:
       label:
         it: Numero della parte/sezione di una composizione
@@ -380,6 +434,7 @@ doc_edit_workflow:
         de: "Opus / WV-Nummer"
         en: "Opus / Thematic index number"
         es: "Número de Opus/Índice temático"
+        pl: Opus / Numer z katalogu tematycznego 
     r:
       label: 
         it: "Tonalità"
@@ -387,6 +442,7 @@ doc_edit_workflow:
         de: Tonart
         en: Key or mode
         es: Tonalidad o modo
+        pl: Tonacja lub modus
       comment: "(rdaw:P10221)"
     t:
       label:
@@ -395,6 +451,7 @@ doc_edit_workflow:
         de: Werktitel
         en: Title of work
         es: "Título de la obra"
+        pl: Tytuł dzieła
 "370":
   label:
     it: Luogo associato
@@ -402,6 +459,7 @@ doc_edit_workflow:
     de: Associated Place
     en: Associated Place
     es: Lugar asociado
+    pl: Powiązane miejsce
   fields:
     a:
       label:
@@ -410,6 +468,7 @@ doc_edit_workflow:
         de: Geburtsort  
         en: Place of birth
         es: Lugar de nacimiento
+        pl: Miejsce urodzenia
 "380": 
   label: 
     it: Parola chiave
@@ -417,6 +476,7 @@ doc_edit_workflow:
     de: Schlagworteintragung
     en: Subject heading
     es: Descriptor
+    pl: Słowo kluczowe
   fields: 
     a: 
       label: 
@@ -425,6 +485,7 @@ doc_edit_workflow:
         fr: Sujet
         en: Subject heading
         es: Descriptor
+        pl: Słowo kluczowe
       edit_label: 
       en: ""
 
@@ -435,6 +496,7 @@ doc_edit_workflow:
     de: Ansetzungsform
     en: Heading
     es: Encabezado
+    pl: Nagłówek
   fields:
     a:
       label:
@@ -443,6 +505,7 @@ doc_edit_workflow:
         de: Komponist
         en: Heading - composer name
         es: Compositor
+        pl: Nagłówek – imię i nazwisko kompozytora
     d:
       label:
         it: Data di nascita e di morte
@@ -450,6 +513,7 @@ doc_edit_workflow:
         de: Geburts- und Todesdaten
         en: Years of birth and death
         es: "Años de nacimiento y muerte"
+        pl: Lata urodzenia i śmierci
     m:
       label:
         it: Organico sintetico
@@ -457,6 +521,7 @@ doc_edit_workflow:
         de: Besetzungshinweis
         en: Scoring summary
         es: "Resumen de plantilla/orgánico"
+        pl: Podsumowanie obsady
     n:
       label:
         it: Numero della parte/sezione di una composizione
@@ -464,6 +529,7 @@ doc_edit_workflow:
         de: Anzahl Teile oder Abschnitte eines Werks
         en: Number of part/section of a work
         es: "Número de parte/sección de una obra"
+        pl: Numer części / sekcji dzieła
     r:
       label: 
         it: "Tonalità"
@@ -471,6 +537,7 @@ doc_edit_workflow:
         de: Tonart
         en: Key or mode
         es: Tonalidad o modo
+        pl: Tonacja lub modus
     t:
       label:
         it: Titolo della composizione
@@ -478,6 +545,7 @@ doc_edit_workflow:
         de: Werktitel
         en: Title of work
         es: "Título de obra"
+        pl: Tytuł dzieła
 
 "500":
   label:
@@ -486,6 +554,7 @@ doc_edit_workflow:
     de: Zugehörige Personen
     en: Related personal name
     es: Nombre personal relacionado
+    pl: Powiązana osoba
   fields:
     a:
       label:
@@ -494,6 +563,7 @@ doc_edit_workflow:
         de:  Name
         en:  Related personal name
         es:  Nombre personal relacionado
+        pl: Powiązana osoba
     y:
       label:
         it:  Relazione
@@ -501,6 +571,7 @@ doc_edit_workflow:
         de:  Beziehung
         en:  Type of relationship
         es:  "Tipo de relación"
+        pl: Rodzaj relacji
 
 "510":
   label:
@@ -509,6 +580,7 @@ doc_edit_workflow:
     de: Zugehörige Sigel 
     en: Associated institution
     es: "Institución asociada"
+    pl: Powiązana instytucja
   fields:
     a:
       label:
@@ -517,6 +589,7 @@ doc_edit_workflow:
         de:  Sigel
         en:  Associated institution
         es:  "Institución asociada"
+        pl: Powiązana instytucja
 "548":
   label:
     it: Date
@@ -524,6 +597,7 @@ doc_edit_workflow:
     de: Datierungen 
     en: Chronological term
     es: "Término cronológico"
+    pl: Datowanie
   fields:
     a:
       label:
@@ -532,6 +606,7 @@ doc_edit_workflow:
         de:  Datierung
         en:  Date
         es:  Fecha
+        pl: Data
     i:
       label:
         it:  Relazione
@@ -539,6 +614,7 @@ doc_edit_workflow:
         de:  Beziehung
         en:  Type of relationship
         es:  "Tipo de relación"
+        pl: Rodzaj relacji
  
 "550":
   label:
@@ -547,6 +623,7 @@ doc_edit_workflow:
     de: Sachbegriff
     en: Topical Term
     es: "Término temático"
+    pl: Pojęcie tematyczne
   fields:
     a:
       label:
@@ -555,6 +632,7 @@ doc_edit_workflow:
         de: Sachbegriff
         en: Topical Term
         es: "Término temático"
+        pl: Pojęcie tematyczne
     i:
       label:
         it:  Relazione
@@ -562,6 +640,7 @@ doc_edit_workflow:
         de:  Bedeutung
         en:  Relation
         es:  Relación
+        pl: Relacja
 "551":
   label:
     it: Nome geografico
@@ -569,6 +648,7 @@ doc_edit_workflow:
     de: Orte
     en: Geographic name
     es: "Nombre geográfico"
+    pl: Nazwa geograficzna
   fields:
     a:
       label:
@@ -577,6 +657,7 @@ doc_edit_workflow:
         de:  Ort
         en:  Geographic name
         es:  "Nombre geográfico"
+        pl: Nazwa geograficzna
     i:
       label:
         it:  Tipo
@@ -584,6 +665,7 @@ doc_edit_workflow:
         de:  Ort Bedeutung
         en:  Type
         es:  Tipo
+        pl: Rodzaj
 
 "667":
   label:
@@ -592,6 +674,7 @@ doc_edit_workflow:
     de:  Non public note
     en:  Internal note
     es:  Nota interna
+    pl: Uwaga wewnętrzna
   fields:
     a:
       label:
@@ -600,6 +683,7 @@ doc_edit_workflow:
         de:  Non public note
         en:  Internal note
         es:  Nota interna
+        pl: Uwaga wewnętrzna
 "670":
   label:
     it: Fonte dei dati 
@@ -607,6 +691,7 @@ doc_edit_workflow:
     de: Literaturnachweis
     en: Source data found 
     es: "Fuente de los datos encontrados"
+    pl: Odnalezione źródło danych
   fields:
     a:
       label:
@@ -615,6 +700,7 @@ doc_edit_workflow:
         de: Literaturnachweis
         en: Source data found
         es: "Fuente de los datos encontrados"
+        pl: Odnalezione źródło danych
     b:
       label:
         it: Informazione rinvenuta
@@ -622,6 +708,7 @@ doc_edit_workflow:
         de: Fundstelle
         en: Information found
         es: "Información encontrada"
+        pl: Odnaleziona informacja
 "675":
   label:
     it: Fonte consultata senza esito
@@ -629,6 +716,7 @@ doc_edit_workflow:
     de: Quelle ohne Ergebnis konsultiert
     en: Source data not found
     es: "Fuente de los datos no encontrados"
+    pl: Brak źródła danych
   fields:
     a:
       label:
@@ -637,6 +725,7 @@ doc_edit_workflow:
         de: Quelle ohne Ergebnis konsultiert
         en: Source data not found
         en: "Fuente de los datos no encontrados"
+        pl: Brak źródła danych
       edit_label: 
         en: ""
         de: ""
@@ -648,6 +737,7 @@ doc_edit_workflow:
     de: Weitere bibliographische Angaben
     en: Additional bibliographical information
     es: "Información bibliográfica adicional"
+    pl: Dodatkowe informacje bibliograficzne
   fields:
     a:
       label:
@@ -656,6 +746,7 @@ doc_edit_workflow:
         de: Weitere bibliographische Angaben
         en: Additional bibliographical information
         es: "Información bibliográfica adicional"
+        pl: Dodatkowe informacje bibliograficzne
 "680":
   label:
     it: Osservazioni
@@ -663,6 +754,7 @@ doc_edit_workflow:
     de: Allgemeine Bemerkungen
     en: General note
     es: Nota general
+    pl: Uwaga ogólna
   fields:
     a:
       label:
@@ -671,6 +763,7 @@ doc_edit_workflow:
         de: Externe Bemerkungen
         en: General note
         es: Nota general
+        pl: Uwaga ogólna
 "700": 
   label: 
     it: Nomi di persone aggiuntivi
@@ -678,6 +771,7 @@ doc_edit_workflow:
     de: Nebeneintragung Personen
     en: Additional personal name
     es: Nombre personal adicional
+    pl: Dodatkowa osoba
   fields: 
     a: 
       label: 
@@ -686,6 +780,7 @@ doc_edit_workflow:
         de: Personenname
         en: Name
         es: Nombre
+        pl: Imię i nazwisko 
     d: 
       label: 
         it: Date di nascita e di morte
@@ -693,6 +788,7 @@ doc_edit_workflow:
         de: Geburts- und Todesdaten
         en: Life dates
         es: Fechas de nacimiento y muerte
+        pl: Daty urodzenia i śmierci
     j: 
       label: 
         it: Qualificazione d'attribuzione
@@ -700,12 +796,14 @@ doc_edit_workflow:
         de: Zuschreibungsvermerk
         en: Attribution qualifier
         es: "Calificador de atribución"
+        pl: Kwalifikator atrybucji
       edit_label: 
         it: Attribuzione
         fr: Attribution
         de: Zuschreibung
         en: Attribution
         es: "Atribución"
+        pl: Atrybucja
     "4": 
       label: 
         it: Funzione
@@ -713,6 +811,7 @@ doc_edit_workflow:
         de: Funktionsbezeichnung
         en: Function
         es: "Función"
+        pl: Funkcja
 "710": 
   label: 
     it: Nome di ente collettivo
@@ -720,6 +819,7 @@ doc_edit_workflow:
     de: Nebeneintragung Körperschaften
     en: Additional institution
     es: "Institución adicional"
+    pl: Dodatkowa instytucja
   fields: 
     a: 
       label: 
@@ -728,6 +828,7 @@ doc_edit_workflow:
         de: Körperschaftsname
         en: Institution
         es: "Institución"
+        pl: Instytucja
     b: 
       label: 
         it: Ente subordinato
@@ -735,6 +836,7 @@ doc_edit_workflow:
         de: Untergeordnete Körperschaft
         en: Department
         es: Departamento
+        pl: Wydział
     g: 
       label: 
         it: Qualificazione d'attribuzione
@@ -742,12 +844,14 @@ doc_edit_workflow:
         de: Zuschreibungsvermerk
         en: Attribution qualifier
         es: "Calificador de atribución"
+        pl: Kwalifikator atrybucji
       edit_label: 
         it: Attribuzione
         fr: Attribution
         de: Zuschreibung
         en: Attribution
         es: "Atribución"
+        pl: Atrybucja
 
     "4": 
       label: 
@@ -756,6 +860,7 @@ doc_edit_workflow:
         de: Funktionsbezeichnung
         en: Function
         es: Función
+        pl: Funkcja
     "8": 
       label: 
         it: Gruppo di materiale
@@ -763,6 +868,7 @@ doc_edit_workflow:
         de: Set
         en: Set
         es: Conjunto de materiales
+        pl: Zbiór
 
 "747": 
   label: 
@@ -771,6 +877,7 @@ doc_edit_workflow:
     de: Liturgische Feste
     en: Liturgical festival
     es: "Festividad litúrgica"
+    pl: Święto liturgiczne
   fields: 
     a: 
       label: 
@@ -779,6 +886,7 @@ doc_edit_workflow:
         de: Liturgische Feste
         en: Liturgical feasts
         es: "Festividad litúrgica"
+        pl: Święta liturgiczne
       edit_label: 
         en: ""
 "856":
@@ -788,6 +896,7 @@ doc_edit_workflow:
     de: Elektronische Lokalisierung und Zugriff
     en: External resource URI
     es: URI de recurso externo
+    pl: URI zasobu zewnętrznego
   fields:
     y:
       label:
@@ -796,6 +905,7 @@ doc_edit_workflow:
         de: "Für das Publikum bestimmte Fussnote"
         en: Note about external resource
         es: Nota sobre recurso externo
+        pl: Uwaga o zasobie zewnętrznym
     u:
       label:
         it: Risorsa esterna
@@ -803,6 +913,7 @@ doc_edit_workflow:
         de: Uniform Resource Identifier
         en: External resource
         es: Recurso externo
+        pl: Zasób zewnętrzny
 "930":
   label:
     it: Opera correlata
@@ -810,6 +921,7 @@ doc_edit_workflow:
     de: zugehörige Werke
     en: Related work
     es: Obra relacionada
+    pl: Powiązane dzieło
   fields:
     a:
       label:
@@ -818,6 +930,7 @@ doc_edit_workflow:
         de:  Werk
         en:  WORK
         es:  Obra
+        pl: Dzieło
     i:
       label:
         it:  Relazione
@@ -825,6 +938,7 @@ doc_edit_workflow:
         de:  Beziehung
         en:  Type of relationship
         es:  "Tipo de relación"
+        pl: Rodzaj relacji
  
 main_work:
   label:
@@ -833,6 +947,7 @@ main_work:
     de: Haupteintragungen
     en: Main entry fields
     es: Campos principales
+    pl: Główne pola edycji
 codes:
   label:
     it: Numeri e codici
@@ -840,6 +955,7 @@ codes:
     de: Nummern und Codes
     en: Numbers and code fields
     es: "Números y códigos"
+    pl: Pola liczb i kodów
 control:
   label:
     fr: "Champs de contrôle"
@@ -847,6 +963,7 @@ control:
     it: Campi di controllo
     en: Control fields
     es: Campos de control
+    pl: Pola kontrolne
 notes:
   label:
     it: Note
@@ -854,6 +971,7 @@ notes:
     de: Bemerkungen
     en: Note fields
     es: Notas
+    pl: Pola uwag
 subject:
   label:
     it: Soggetti
@@ -861,6 +979,7 @@ subject:
     de: Schlagworteintragungen
     en: Subject access fields
     es: Campos de puntos de acceso
+    pl: Pola haseł tematycznych
 incipits: 
   label: 
     it: Incipit
@@ -868,6 +987,7 @@ incipits:
     de: Incipits
     en: Incipits
     es: "Íncipits"
+    pl: Incipity
 places:
   label:
     it: Luoghi
@@ -875,6 +995,7 @@ places:
     de: Länder und Orte
     en: Countries and Places
     es: "Países y lugares"
+    pl: Kraje i miejsca
 other:
   label:
     it: Varia
@@ -882,6 +1003,7 @@ other:
     de: Verschiedenes
     en: Miscellaneous
     es: Varios
+    pl: Pozostałe
 references:
   label:
     it: Riferimenti
@@ -889,6 +1011,7 @@ references:
     de: Literatur und Bemerkungen
     en: References and notes
     es: Notas y referencias
+    pl: Odniesienia i uwagi
 relations:
   label:
     it: Relazione
@@ -896,6 +1019,7 @@ relations:
     de: Beziehungen
     en: Relations
     es: Relaciones
+    pl: Relacje
 variants:
   label:
     it: Varianti
@@ -903,6 +1027,7 @@ variants:
     de: Namensvarianten
     en: Title variants
     es: "Variantes del título"
+    pl: Warianty tytułu
 administration:
   label:
     it: Amministrazione
@@ -910,6 +1035,7 @@ administration:
     de: Administration
     en: Administration
     es: Administración
+    pl: Administracja
 male:
   label:
     it: maschio
@@ -917,6 +1043,7 @@ male:
     de: männlich
     en: male
     es: masculino
+    pl: mężczyzna
 female:
   label:
     it: femmina
@@ -924,6 +1051,7 @@ female:
     de: weiblich
     en: female
     es: femenino
+    pl: kobieta
 unknown:
   label:
     it: sconosciuto
@@ -931,6 +1059,7 @@ unknown:
     de: unbekannt
     en: unknown
     es: desconocido
+    pl: płeć nieznana
 
 #########################
 go:
@@ -940,6 +1069,7 @@ go:
     de: Geburtsort
     en: Place of Birth
     es: Lugar de nacimiento
+    pl: Miejsce urodzenia
 ha:
   label:
     it: Luogo di origine
@@ -947,6 +1077,7 @@ ha:
     de: Herkunftsangabe
     en: Place of Origin
     es: Lugar de origen
+    pl: Miejsce pochodzenia
 po:
   label:
     it: Luogo postale
@@ -954,6 +1085,7 @@ po:
     de: postalischer Ort
     en: postal Place
     es: "Dirección postal"
+    pl: Rejon pocztowy
 so:
   label:
     it: Luogo di morte
@@ -961,6 +1093,7 @@ so:
     de: Sterbeort
     en: Place of Death
     es: Lugar de fallecimiento
+    pl: Miejsce śmierci
 wl:
   label:
     it: "Paese di attività"
@@ -968,6 +1101,7 @@ wl:
     de: Wirkungsland
     en: Country of activity
     es: "País de actividad"
+    pl: Kraj aktywności artystycznej
 wo:
   label:
     it: "Luogo di attività"
@@ -975,6 +1109,7 @@ wo:
     de: Wirkungsort
     en: Place of activity
     es: "Lugar de actividad"
+    pl: Miejsce aktywności artystycznej
 wr:
   label:
     it: "Regione di attività"
@@ -982,6 +1117,7 @@ wr:
     de: Wirkungsregion
     en: Region of activity
     es: "Región de actividad"
+    pl: Region aktywności artystycznej
 #Country Codes
 "XC-DZ":
   label:
@@ -990,6 +1126,7 @@ wr:
     de: "Algeria"
     en: "Algeria"
     es: "Argelia"
+    pl: Algieria
 "XD-AR":
   label:
     it: "Argentina"
@@ -997,6 +1134,7 @@ wr:
     de: "Argentina"
     en: "Argentina"
     es: "Argentina"
+    pl: Argentyna
 "XB-AM":
   label:
     it: "Armenia"
@@ -1004,6 +1142,7 @@ wr:
     de: "Armenia"
     en: "Armenia"
     es: "Armenia"
+    pl: Armenia
 "XE-AU":
   label:
     it: "Australia"
@@ -1011,6 +1150,7 @@ wr:
     de: "Australia"
     en: "Australia"
     es: "Australia"
+    pl: Australia
 "XA-AT":
   label:
     it: "Austria"
@@ -1018,6 +1158,7 @@ wr:
     de: "Austria"
     en: "Austria"
     es: "Austria"
+    pl: Austria
 "XA-AT-2":
   label:
     it: "Austria: Carinzia"
@@ -1025,6 +1166,7 @@ wr:
     de: "Austria: Carinthia"
     en: "Austria: Carinthia"
     es: "Austria: Carintia"
+    pl: Austria: Karyntia
 "XA-AT-3":
   label:
     it: "Austria: Austria Inferiore"
@@ -1032,6 +1174,7 @@ wr:
     de: "Austria: Lower Austria"
     en: "Austria: Lower Austria"
     es: "Austria: Baja Austria"
+    pl: Austria: Dolna Austria
 "XA-AT-5":
   label:
     it: "Austria: Salisburgo"
@@ -1039,6 +1182,7 @@ wr:
     de: "Austria: Salzburg"
     en: "Austria: Salzburg"
     es: "Austria: Salzburgo"
+    pl: Austria: Salzburg
 "XA-AT-6":
   label:
     it: "Austria: Stiria"
@@ -1046,6 +1190,7 @@ wr:
     de: "Austria: Styria"
     en: "Austria: Styria"
     es: "Austria: Estiria"
+    pl: Austria: Styria
 "XA-AT-7":
   label:
     it: "Austria: Tirolo"
@@ -1053,6 +1198,7 @@ wr:
     de: "Austria: Tyrol"
     en: "Austria: Tyrol"
     es: "Austria: Tirol"
+    pl: Austria: Tyrol
 "XA-AT-4":
   label:
     it: "Austria: Austria Superiore"
@@ -1060,6 +1206,7 @@ wr:
     de: "Austria: Upper Austria"
     en: "Austria: Upper Austria"
     es: "Austria: Alta Austria"
+    pl: Austria: Górna Austria
 "XA-AT-9":
   label:
     it: "Austria: Vienna"
@@ -1067,6 +1214,7 @@ wr:
     de: "Austria: Vienna"
     en: "Austria: Vienna"
     es: "Austria: Viena"
+    pl: Austria: Wiedeń
 "XA-BE":
   label:
     it: "Belgio"
@@ -1074,6 +1222,7 @@ wr:
     de: "Belgium"
     en: "Belgium"
     es: "Bélgica"
+    pl: Belgia
 "XC-BJ":
   label:
     it: "Benin"
@@ -1081,6 +1230,7 @@ wr:
     de: "Benin"
     en: "Benin"
     es: "Benín"
+    pl: Benin
 "XD-BR":
   label:
     it: "Brasile"
@@ -1088,6 +1238,7 @@ wr:
     de: "Brazil"
     en: "Brazil"
     es: "Brasil"
+    pl: Brazylia
 "XA-BG":
   label:
     it: "Bulgaria"
@@ -1095,6 +1246,7 @@ wr:
     de: "Bulgaria"
     en: "Bulgaria"
     es: "Bulgaria"
+    pl: Bułgaria
 "XB-KH":
   label:
     it: "Cambogia"
@@ -1102,6 +1254,7 @@ wr:
     de: "Cambodia"
     en: "Cambodia"
     es: "Camboya"
+    pl: Kambodża
 "XD-CA":
   label:
     it: "Canada"
@@ -1109,6 +1262,7 @@ wr:
     de: "Canada"
     en: "Canada"
     es: "Canadá"
+    pl: Kanada
 "XD-CL":
   label:
     it: "Cile"
@@ -1116,6 +1270,7 @@ wr:
     de: "Chile"
     en: "Chile"
     es: "Chile"
+    pl: Chile
 "XB-CN":
   label:
     it: "Cina"
@@ -1123,6 +1278,7 @@ wr:
     de: "China"
     en: "China"
     es: "China"
+    pl: Chiny
 "XD-CO":
   label:
     it: "Colombia"
@@ -1130,6 +1286,7 @@ wr:
     de: "Colombia"
     en: "Colombia"
     es: "Colombia"
+    pl: Kolumbia
 "XA-HR":
   label:
     it: "Croazia"
@@ -1137,6 +1294,7 @@ wr:
     de: "Croatia"
     en: "Croatia"
     es: "Croacia"
+    pl: Chorwacja
 
 "XD-CU":
   label:
@@ -1145,6 +1303,7 @@ wr:
     de: "Cuba"
     en: "Cuba"
     es: "Cuba"
+    pl: Kuba
 "XA-CZ":
   label:
     it: "Repubblica Ceca"
@@ -1152,6 +1311,7 @@ wr:
     de: "Czech Republic"
     en: "Czech Republic"
     es: "República Checa"
+    pl: Czechy
 "XA-DK":
   label:
     it: "Danimarca"
@@ -1159,6 +1319,7 @@ wr:
     de: "Denmark"
     en: "Denmark"
     es: "Dinamarca"
+    pl: Dania
 "XC-EG":
   label:
     it: "Egitto"
@@ -1166,6 +1327,7 @@ wr:
     de: "Egypt"
     en: "Egypt"
     es: "Egipto"
+    pl: Egipt
 "XA-EE":
   label:
     it: "Estonia"
@@ -1173,6 +1335,7 @@ wr:
     de: "Estonia"
     en: "Estonia"
     es: "Estonia"
+    pl: Estonia
 "XA-FI":
   label:
     it: "Finlandia"
@@ -1180,6 +1343,7 @@ wr:
     de: "Finland"
     en: "Finland"
     es: "Finlandia"
+    pl: Finlandia
 "XA-FR":
   label:
     it: "Francia"
@@ -1187,6 +1351,7 @@ wr:
     de: "France"
     en: "France"
     es: "Francia"
+    pl: Francja
 "XA-DE":
   label:
     it: "Germania"
@@ -1194,6 +1359,7 @@ wr:
     de: "Germany"
     en: "Germany"
     es: "Alemania"
+    pl: Niemcy
 "XA-DE-BY":
   label:
     it: "Germania: Baviera"
@@ -1201,6 +1367,7 @@ wr:
     de: "Germany: Bavaria"
     en: "Germany: Bavaria"
     es: "Alemania: Bavaria"
+    pl: Niemcy: Bawaria
 "XA-DE-SN":
   label:
     it: "Germania: Sassonia"
@@ -1208,6 +1375,7 @@ wr:
     de: "Germany: Saxony"
     en: "Germany: Saxony"
     es: "Alemania: Sajonia"
+    pl: Niemcy: Saksonia
 "XA-GR":
   label:
     it: "Grecia"
@@ -1215,6 +1383,7 @@ wr:
     de: "Greece"
     en: "Greece"
     es: "Grecia"
+    pl: Grecja
 "XA-VA":
   label:
     it: "Santa Sede"
@@ -1222,6 +1391,7 @@ wr:
     de: "Holy See"
     en: "Holy See"
     es: "Santa Sede"
+    pl: Watykan
 "XD-HN":
   label:
     it: "Honduras"
@@ -1229,6 +1399,7 @@ wr:
     de: "Honduras"
     en: "Honduras"
     es: "Honduras"
+    pl: Honduras
 "XA-HU":
   label:
     it: "Ungheria"
@@ -1236,6 +1407,7 @@ wr:
     de: "Hungary"
     en: "Hungary"
     es: "Hungría"
+    pl: Węgry
 "XA-IS":
   label:
     it: "Islanda"
@@ -1243,6 +1415,7 @@ wr:
     de: "Iceland"
     en: "Iceland"
     es: "Islandia"
+    pl: Islandia
 "XB-IN":
   label:
     it: "India"
@@ -1250,6 +1423,7 @@ wr:
     de: "India"
     en: "India"
     es: "India"
+    pl: Indie
 "XB-IR":
   label:
     it: "Iran, Repubblica Islamica dell'"
@@ -1257,6 +1431,7 @@ wr:
     de: "Iran, Islamic Republic of"
     en: "Iran, Islamic Republic of"
     es: "Irán, República Islámica de"
+    pl: Iran, Republika Islamska
 "XA-IE":
   label:
     it: "Irlanda"
@@ -1264,6 +1439,7 @@ wr:
     de: "Ireland"
     en: "Ireland"
     es: "Irlanda"
+    pl: Irlandia
 "XB-IL":
   label:
     it: "Israele"
@@ -1271,6 +1447,7 @@ wr:
     de: "Israel"
     en: "Israel"
     es: "Israel"
+    pl: Izrael
 "XA-IT-32":
   label:
     it: "Italia: Trentino-Alto Adige"
@@ -1278,6 +1455,7 @@ wr:
     de: "Italy: Trentino-Alto Adige"
     en: "Italy: Trentino-Alto Adige"
     es: "Italia: Trentino-Alto Adigio"
+    pl: Włochy: Trentino-Alto Adige
 "XA-IT":
   label:
     it: "Italia"
@@ -1285,6 +1463,7 @@ wr:
     de: "Italy"
     en: "Italy"
     es: "Italia"
+    pl: Włochy
 "XB-JP":
   label:
     it: "Giappone"
@@ -1292,6 +1471,7 @@ wr:
     de: "Japan"
     en: "Japan"
     es: "Japón"
+    pl: Japonia
 "XB-KR":
   label:
     it: "Corea, Repubblica di"
@@ -1299,6 +1479,7 @@ wr:
     de: "Korea, Republic of"
     en: "Korea, Republic of"
     es: "Corea, República de"
+    pl: Korea, Republika
 "XA-LV":
   label:
     it: "Lettonia"
@@ -1306,6 +1487,7 @@ wr:
     de: "Latvia"
     en: "Latvia"
     es: "Letonia"
+    pl: Łotwa
 "XA-LT":
   label:
     it: "Lituania"
@@ -1313,6 +1495,7 @@ wr:
     de: "Lithuania"
     en: "Lithuania"
     es: "Lituania"
+    pl: Litwa
 "XA-LU":
   label:
     it: "Lussemburgo"
@@ -1320,6 +1503,7 @@ wr:
     de: "Luxembourg"
     en: "Luxembourg"
     es: "Luxemburgo"
+    pl: Luksemburg
 "XA-MT":
   label:
     it: "Malta"
@@ -1327,6 +1511,7 @@ wr:
     de: "Malta"
     en: "Malta"
     es: "Malta"
+    pl: Malta
 "XD-MX":
   label:
     it: "Messico"
@@ -1334,6 +1519,7 @@ wr:
     de: "Mexico"
     en: "Mexico"
     es: "México"
+    pl: Meksyk
 "XA-ME":
   label:
     it: "Montenegro"
@@ -1341,6 +1527,7 @@ wr:
     de: "Montenegro"
     en: "Montenegro"
     es: "Montenegro"
+    pl: Czarnogóra
 "XA-NL":
   label:
     it: "Paesi Bassi"
@@ -1348,6 +1535,7 @@ wr:
     de: "Netherlands"
     en: "Netherlands"
     es: "Países Bajos"
+    pl: Niderlandy
 "XE-NZ":
   label:
     it: "Nuova Zelanda"
@@ -1355,6 +1543,7 @@ wr:
     de: "New Zealand"
     en: "New Zealand"
     es: "Nueva Zelanda"
+    pl: Nowa Zelandia
 "XA-NO":
   label:
     it: "Norvegia"
@@ -1362,6 +1551,7 @@ wr:
     de: "Norway"
     en: "Norway"
     es: "Noruega"
+    pl: Norwegia
 "XD-PY":
   label:
     it: "Paraguay"
@@ -1369,6 +1559,7 @@ wr:
     de: "Paraguay"
     en: "Paraguay"
     es: "Paraguay"
+    pl: Paragwaj
 "XA-PL":
   label:
     it: "Polonia"
@@ -1376,6 +1567,7 @@ wr:
     de: "Poland"
     en: "Poland"
     es: "Polonia"
+    pl: Polska
 "XA-PT":
   label:
     it: "Portogallo"
@@ -1383,6 +1575,7 @@ wr:
     de: "Portugal"
     en: "Portugal"
     es: "Portugal"
+    pl: Portugalia
 "XD-PR":
   label:
     it: "Puerto Rico"
@@ -1390,6 +1583,7 @@ wr:
     de: "Puerto Rico"
     en: "Puerto Rico"
     es: "Puerto Rico"
+    pl: Portoryko
 "XA-RO":
   label:
     it: "Romania"
@@ -1397,6 +1591,7 @@ wr:
     de: "Romania"
     en: "Romania"
     es: "Rumania"
+    pl: Rumunia
 "XA-RU":
   label:
     it: "Federazione Russa"
@@ -1404,6 +1599,7 @@ wr:
     de: "Russian Federation"
     en: "Russian Federation"
     es: "Federación Rusa"
+    pl: Federacja Rosyjska
 "XA-RS":
   label:
     it: "Serbia"
@@ -1411,6 +1607,7 @@ wr:
     de: "Serbia"
     en: "Serbia"
     es: "Serbia"
+    pl: Serbia
 "XA-SK":
   label:
     it: "Slovacchia"
@@ -1418,6 +1615,7 @@ wr:
     de: "Slovakia"
     en: "Slovakia"
     es: "Eslovaquia"
+    pl: Słowacja
 "XA-SI":
   label:
     it: "Slovenia"
@@ -1425,6 +1623,7 @@ wr:
     de: "Slovenia"
     en: "Slovenia"
     es: "Eslovenia"
+    pl: Słowenia
 "XC-ZA":
   label:
     it: "Sudafrica"
@@ -1432,6 +1631,7 @@ wr:
     de: "South Africa"
     en: "South Africa"
     es: "Sudáfrica"
+    pl: Republika Południowej Afryki
 "XA-ES":
   label:
     it: "Spagna"
@@ -1439,6 +1639,7 @@ wr:
     de: "Spain"
     en: "Spain"
     es: "España"
+    pl: Hiszpania
 "XA-SE":
   label:
     it: "Svezia"
@@ -1446,6 +1647,7 @@ wr:
     de: "Sweden"
     en: "Sweden"
     es: "Suecia"
+    pl: Szwecja
 "XA-CH-VD":
   label:
     it: "Svizzera: Vaud"
@@ -1453,6 +1655,7 @@ wr:
     de: "Switzerland: Vaud"
     en: "Switzerland: Vaud"
     es: "Suiza: cantón de Vaud"
+    pl: Szwajcaria: kanton Vaud
 "XA-CH":
   label:
     it: "Svizzera"
@@ -1460,6 +1663,7 @@ wr:
     de: "Switzerland"
     en: "Switzerland"
     es: "Suiza"
+    pl: Szwajcaria
 "XB-SY":
   label:
     it: "Repubblica Araba Siriana"
@@ -1467,6 +1671,7 @@ wr:
     de: "Syrian Arab Republic"
     en: "Syrian Arab Republic"
     es: "República Árabe Siria"
+    pl: Syryjska Republika Arabska
 "XD-TT":
   label:
     it: "Trinidad e Tobago"
@@ -1474,6 +1679,7 @@ wr:
     de: "Trinidad and Tobago"
     en: "Trinidad and Tobago"
     es: "Trinidad y Tobago"
+    pl: Trynidad i Tobago
 "XB-TR":
   label:
     it: "Turchia"
@@ -1481,6 +1687,7 @@ wr:
     de: "Turkey"
     en: "Turkey"
     es: "Turquía"
+    pl: Turcja
 "XA-UA":
   label:
     it: "Ucraina"
@@ -1488,6 +1695,7 @@ wr:
     de: "Ukraine"
     en: "Ukraine"
     es: "Ucrania"
+    pl: Ukraina
 "XA-GB":
   label:
     it: "Regno Unito"
@@ -1495,6 +1703,7 @@ wr:
     de: "United Kingdom"
     en: "United Kingdom"
     es: "Reino Unido"
+    pl: Zjednoczone Królestwo
 "XD-US":
   label:
     it: "Stati Uniti d'America"
@@ -1502,6 +1711,7 @@ wr:
     de: "United States of America"
     en: "United States of America"
     es: "Estados Unidos de América"
+    pl: Stany Zjednoczone AP
 "XD-UY":
   label:
     it: "Uruguay"
@@ -1509,6 +1719,7 @@ wr:
     de: "Uruguay"
     en: "Uruguay"
     es: "Uruguay"
+    pl: Urugwaj
 "XD-VE":
   label:
     it: "Venezuela, Repubblica Bolivariana del"
@@ -1516,6 +1727,7 @@ wr:
     de: "Venezuela, Bolivarian Republic of"
     en: "Venezuela, Bolivarian Republic of"
     es: "Venezuela, República Bolivariana de"
+    pl: Wenezuela, Republika Boliwariańska
 # Relationships
 brother of:
   label:
@@ -1524,6 +1736,7 @@ brother of:
     de: Bruder von
     en: brother of
     es: hermano de
+    pl: Brat …
 child of:
   label:
     it: Figlio/figlia di
@@ -1531,6 +1744,7 @@ child of:
     de: Kind von
     en: child of
     es: "hijo/a de"
+    pl: Potomek …
 mother of:
   label:
     it: Madre di
@@ -1538,6 +1752,7 @@ mother of:
     de: Mutter von
     en: mother of
     es: madre de
+    pl: Matka …
 confused with:
   label:
     it: Confuso/confusa con
@@ -1545,6 +1760,7 @@ confused with:
     de: Verwechselt mit
     en: confused with
     es: "Confundido/a con"
+    pl: Mylon(y/a) z …
 sister of:
   label:
     it: Sorella di
@@ -1552,6 +1768,7 @@ sister of:
     de: Schwester von
     en: sister of
     es: hermana de
+    pl: Siostra …
 married with:
   label:
     it: Sposato/sposata con
@@ -1559,6 +1776,7 @@ married with:
     de: Verheiratet mit
     en: married with
     es: "casado/a con"
+    pl: W małżeństwie z …
 father of:
   label:
     it: Padre di
@@ -1566,6 +1784,7 @@ father of:
     de: Vater von
     en: father of
     es: padre de
+    pl: Ojciec …
 related to:
   label:
     it: Parente di
@@ -1573,6 +1792,7 @@ related to:
     de: Verwandt mit
     en: related to
     es: relacionado/a con
+    pl: W pokrewieństwie z …
 other:
   label:
     it: Altro
@@ -1580,6 +1800,7 @@ other:
     de: Weiteres
     en: other
     es: otro
+    pl: Pozostałe
 
 # Name variant codes
 bn:
@@ -1589,6 +1810,7 @@ bn:
     de: Beiname
     en: Byname
     es: Apodo
+    pl: Przydomek
 da:
   label:
     it: Pseudonimo
@@ -1596,6 +1818,7 @@ da:
     de: Pseudonym
     en: Pseudonym
     es: Seudónimo
+    pl: Pseudonim
 do:
   label:
     it: Nome di religione
@@ -1603,6 +1826,7 @@ do:
     de: Ordensname
     en: Order Name
     es: Nombre religioso
+    pl: Imię zakonne
 dv:
   label:
     it: Altra forma di ricerca
@@ -1610,6 +1834,7 @@ dv:
     de: andere Suchform
     en: Other Searchform
     es: Otra variante
+    pl: Inna forma wyszukiwania
 ee:
   label:
     it: Nome da sposato
@@ -1617,6 +1842,7 @@ ee:
     de: Ehename
     en: Marriage Name
     es: Apellido de casado/a
+    pl: Nazwisko po mężu
 ef:
   label:
     it: Nome di famiglia
@@ -1624,6 +1850,7 @@ ef:
     de: Familienname
     en: Family Name
     es: Apellido
+    pl: Nazwisko rodowe
 ff:
   label:
     it: Nome di persona
@@ -1631,6 +1858,7 @@ ff:
     de: Personenname
     en: Person Name
     es: Nombre personal
+    pl: Imię i nazwisko
 gg:
   label:
     it: Nome da nubile/celibe
@@ -1638,6 +1866,7 @@ gg:
     de: Geburtsname
     en: Birthname
     es: Nombre de nacimiento
+    pl: Nazwisko rodowe
 in:
   label:
     it: Iniziali
@@ -1645,6 +1874,7 @@ in:
     de: Initiale
     en: Initial
     es: Iniciales
+    pl: Inicjały
 mo:
   label:
     it: Monogramma
@@ -1652,6 +1882,7 @@ mo:
     de: Monogramm
     en: Monogram
     es: Monograma
+    pl: Monogram
 tn:
   label:
     it: Nome di battesimo
@@ -1659,6 +1890,7 @@ tn:
     de: Taufname
     en: Baptsimal Name
     es: Nombre bautismal
+    pl: Imię z chrztu
 ub:
   label:
     it: Traduzione
@@ -1666,6 +1898,7 @@ ub:
     de: Übersetzung
     en: Translation
     es: "Traducción"
+    pl: Tłumaczenie
 z:
   label:
     it: Ortografia alternativa
@@ -1673,6 +1906,7 @@ z:
     de: Andere Schreibweise
     en: Other form
     es: "Ortografía alternativa"
+    pl: Inna forma
 xx:
   label:
     it: Sconosciuto
@@ -1680,6 +1914,7 @@ xx:
     de: Unbekannt
     en: Unknown
     es: Desconocido
+    pl: Nieznane
 cmp: 
   label: 
     it: Rimando ad altro compositore
@@ -1687,6 +1922,7 @@ cmp:
     de: Komponistenquerverweis
     en: Composer cross-reference
     es: Referencia cruzada de compositor
+    pl: Odniesienie do innego kompozytora
 dte: 
   label: 
     it: Dedicatario
@@ -1694,6 +1930,7 @@ dte:
     de: "Widmungsträger"
     en: Dedicatee
     es: Dedicatario
+    pl: Adresat dedykacji
 asn: 
   label: 
     it: Nome associato
@@ -1702,6 +1939,7 @@ asn:
     en: Associated name
     es: Nombre asociado
     pt: Nome associado
+    pl: Powiązana nazwa
 lbt: 
   label: 
     it: Librettista
@@ -1709,6 +1947,7 @@ lbt:
     de: Librettist
     en: Librettist
     es: Libretista
+    pl: Autor libretta
 lyr: 
   label: 
     it: Poeta
@@ -1716,6 +1955,7 @@ lyr:
     de: Textdichter
     en: Text author
     es: Autor(a) del texto
+    pl: Autor tekstu
 oth: 
   label: 
     it: Altra funzione
@@ -1723,6 +1963,7 @@ oth:
     de: Sonstige Funktion
     en: Other function
     es: Otra función
+    pl: Inna funkcja
 #Keys
 #Keys
 A:
@@ -1733,6 +1974,7 @@ A:
     en: "A major"
     pt: "Lá  maior"
     es: "La Mayor"
+    pl: A-dur
 a:
   label:
     it: "La minore"
@@ -1741,6 +1983,7 @@ a:
     en: "A minor"
     pt: "Lá menor"
     es: "La menor"
+    pl: a-moll
 A|x: 
   label:
     it: "La♯ maggiore"
@@ -1749,6 +1992,7 @@ A|x:
     en: "A♯ major"
     pt: "Lá sustenido maior"
     es: "La sostenido Mayor"
+    pl: Ais-dur
 a|x: 
   label:
     it: "La♯ minore"
@@ -1757,6 +2001,7 @@ a|x:
     en: "A♯ minor"
     pt: "Lá sustenido menor"
     es: "La sostenido menor"
+    pl: ais-moll
 A|b: 
   label:
     it: "La♭ maggiore"
@@ -1765,6 +2010,7 @@ A|b:
     en: "A♭ major"
     pt: "Lá bemol maior"
     es: "La bemol Mayor"
+    pl: As-dur
 a|b: 
   label:
     it: "La♭ minore"
@@ -1773,6 +2019,7 @@ a|b:
     en: "A♭ minor"
     pt: "Lá bemol menor"
     es: "La bemol menor"
+    pl: as-moll
 B:
   label:
     it: "Si maggiore"
@@ -1781,6 +2028,7 @@ B:
     en: "B major"
     pt: Si maior
     es: "Si Mayor"
+    pl: H-dur
 b:
   label:
     it: "Si minore"
@@ -1789,6 +2037,7 @@ b:
     en: "B minor"
     pt: Si menor
     es: "Si menor"
+    pl: h-moll
 B|b: 
   label:
     it: "Si♭ maggiore"
@@ -1797,6 +2046,7 @@ B|b:
     en: "B♭ major"
     pt: Si bemol maior
     es: "Si bemol Mayor"
+    pl: B-dur
 b|b: 
   label:
     it: "Si♭ minore"
@@ -1805,6 +2055,7 @@ b|b:
     en: "B♭ minor"
     pt: Si bemol menor
     es: "Si bemol menor"
+    pl: b-moll
 C:
   label:
     it: "Do maggiore"
@@ -1813,6 +2064,7 @@ C:
     en: "C major"
     pt: "Dó maior"
     es: "Do Mayor"
+    pl: C-dur
 c:
   label:
     it: "Do minore"
@@ -1821,6 +2073,7 @@ c:
     en: "C minor"
     pt: "Dó menor"
     es: "Do menor"
+    pl: c-moll
 C|x: 
   label:
     it: "Do♯ maggiore"
@@ -1829,6 +2082,7 @@ C|x:
     en: "C♯ major"
     pt: "Dó sustenido maior"
     es: "Do sostenido Mayor"
+    pl: Cis-dur
 c|x: 
   label:
     it: "Do♯ minore"
@@ -1837,6 +2091,7 @@ c|x:
     en: "C♯ minor"
     pt: "Dó sustenido menor"
     es: "Do sostenido menor"
+    pl: cis-moll
 C|b: 
   label:
     it: "Do♭ maggiore"
@@ -1845,6 +2100,7 @@ C|b:
     en: "C♭ major"
     pt: "Dó bemol maior"
     es: "Do bemol Mayor"
+    pl: Ces-dur
 c|b: 
   label:
     it: "Do♭ minore"
@@ -1853,6 +2109,7 @@ c|b:
     en: "C♭ minor"
     pt: "Dó bemol menor"
     es: "Do bemol menor"
+    pl: ces-moll
 D:
   label:
     it: "Re maggiore"
@@ -1861,6 +2118,7 @@ D:
     en: "D major"
     pt: "Ré maior"
     es: "Re Mayor"
+    pl: D-dur
 d:
   label:
     it: "Re minore"
@@ -1869,6 +2127,7 @@ d:
     en: "D minor"
     pt: "Ré menor"
     es: "Re menor"
+    pl: d-moll
 D|x: 
   label:
     it: "Re♯ maggiore"
@@ -1877,6 +2136,7 @@ D|x:
     en: "D♯ major"
     pt: "Ré sustenido maior"
     es: "Re sostenido Mayor"
+    pl: Dis-dur
 d|x: 
   label:
     it: "Re♯ minore"
@@ -1885,6 +2145,7 @@ d|x:
     en: "D♯ minor"
     pt: "Ré sustenido menor"
     es: "Re sostenido menor"
+    pl: dis-moll
 D|b: 
   label:
     it: "Re♭ maggiore"
@@ -1893,6 +2154,7 @@ D|b:
     en: "D♭ major"
     pt: "Ré bemol maior"
     es: "Re bemol Mayor"
+    pl: Des-dur
 d|b: 
   label:
     it: "Re♭ minore"
@@ -1901,6 +2163,7 @@ d|b:
     en: "D♭ minor"
     pt: "Ré bemol menor"
     es: "Re bemol menor"
+    pl: des-moll
 E:
   label:
     it: "Mi maggiore"
@@ -1909,6 +2172,7 @@ E:
     en: "E major"
     pt: "Mi maior"
     es: "Mi Mayor"
+    pl: E-dur
 e:
   label:
     it: "Mi minore"
@@ -1917,6 +2181,7 @@ e:
     en: "E minor"
     pt: "Mi menor"
     es: "Mi menor"
+    pl: e-moll
 E|b: 
   label:
     it: "Mi♭ maggiore"
@@ -1925,6 +2190,7 @@ E|b:
     en: "E♭ major"
     pt: "Mi bemol maior"
     es: "Mi bemol Mayor"
+    pl: Es-dur
 e|b: 
   label:
     it: "Mi♭ minore"
@@ -1933,6 +2199,7 @@ e|b:
     en: "E♭ minor"
     pt: "Mi bemol menor"
     es: "Mi bemol menor"
+    pl: es-moll
 F:
   label:
     it: "Fa maggiore"
@@ -1941,6 +2208,7 @@ F:
     en: "F major"
     pt: "Fá maior"
     es: "Fa Mayor"
+    pl: F-dur
 f:
   label:
     it: "Fa minore"
@@ -1949,6 +2217,7 @@ f:
     en: "F minor"
     pt: "Fá menor"
     es: "Fa menor"
+    pl: f-moll
 F|x: 
   label:
     it: "Fa♯ maggiore"
@@ -1957,6 +2226,7 @@ F|x:
     en: "F♯ major"
     pt: "Fá sustenido maior"
     es: "Fa sostenido menor"
+    pl: Fis-dur
 f|x: 
   label:
     it: "Fa♯ minore"
@@ -1965,6 +2235,7 @@ f|x:
     en: "F♯ minor"
     pt: "Fá sustenido menor"
     es: "Fa sostenido Mayor"
+    pl: fis-moll
 G:
   label:
     it: "Sol maggiore"
@@ -1973,6 +2244,7 @@ G:
     en: "G major"
     pt: "Sol maior"
     es: "Sol Mayor"
+    pl: G-dur
 g:
   label:
     it: "Sol minore"
@@ -1981,6 +2253,7 @@ g:
     en: "G minor"
     pt: "Sol menor"
     es: "Sol menor"
+    pl: g-moll
 G|x: 
   label:
     it: "Sol♯ maggiore"
@@ -1989,6 +2262,7 @@ G|x:
     en: "G♯ major"
     pt: "Sol sustenido maior"
     es: "Sol sostenido menor"
+    pl: Gis-dur
 g|x: 
   label:
     it: "Sol♯ minore"
@@ -1997,6 +2271,7 @@ g|x:
     en: "G♯ minor"
     pt: "Sol sustenido menor"
     es: "Sol sostenido menor"
+    pl: gis-moll
 G|b: 
   label:
     it: "Sol♭ maggiore"
@@ -2005,6 +2280,7 @@ G|b:
     en: "G♭ major"
     pt: "Sol bemol maior"
     es: "Sol bemol Mayor"
+    pl: Ges-dur
 g|b: 
   label:
     it: "Sol♭ minore"
@@ -2013,6 +2289,7 @@ g|b:
     en: "G♭ minor"
     pt: "Sol bemol menor"
     es: "Sol bemol menor"
+    pl: ges-moll
 # modes
 # modes
 1t:
@@ -2023,6 +2300,7 @@ g|b:
     en: "Mode:  1t – Dorian"
     pt: "Modo:  1º tom (Dórico)"
     es: "Modo: 1º tono (Dórico)"
+    pl: Skala: 1t – dorycka
 2t:
   label:
     it: "Mode:  2t – Hypodorian"
@@ -2031,6 +2309,7 @@ g|b:
     en: "Mode:  2t – Hypodorian"
     pt: "Modo:  2º tom (Hipodórico)"
     es: "Modo:  2º tono (Hipodórico)"
+    pl: Skala: 2t – hypodorycka
 3t:
   label:
     it: "Mode:  3t – Phrygian"
@@ -2039,6 +2318,7 @@ g|b:
     en: "Mode:  3t – Phrygian"
     pt: "Modo:  3º tom (Frígio)"
     es: "Modo:  3º tono (Frigio)"
+    pl: Skala: 3t – frygijska
 4t:
   label:
     it: "Mode:  4t – Hypophrygian"
@@ -2047,6 +2327,7 @@ g|b:
     en: "Mode:  4t – Hypophrygian"
     pt: "Modo:  4º tom (Hipofrígio)"
     es: "Modo:  4º tono (Hipofrigio)"
+    pl: Skala: 4t – hypofrygijska
 5t:
   label:
     it: "Mode:  5t – Lydian"
@@ -2055,6 +2336,7 @@ g|b:
     en: "Mode:  5t – Lydian"
     pt: "Modo:  5º tom (Lídio)"
     es: "Modo:  5º tono (Lidio)"
+    pl: Skala: 5t – lidyjska
 6t:
   label:
     it: "Mode:  6t – Hypolydian"
@@ -2063,6 +2345,7 @@ g|b:
     en: "Mode:  6t – Hypolydian"
     pt: "Modo:  6º tom (Hipolídio)"
     es: "Modo:  6º tono (Hipolidio)"
+    pl: Skala: 6t – hypolidyjska
 7t:
   label:
     it: "Mode:  7t – Mixolydian"
@@ -2071,6 +2354,7 @@ g|b:
     en: "Mode:  7t – Mixolydian"
     pt: "Modo:  7º tom (Mixolídio)"
     es: "Modo:  7º tono (Mixolidio)"
+    pl: Skala: 7t – miksolidyjska
 8t:
   label:
     it: "Mode:  8t – Hypomixolydian"
@@ -2079,6 +2363,7 @@ g|b:
     en: "Mode:  8t – Hypomixolydian"
     pt: "Modo:  8º tom (Hipomixolídio)"
     es: "Modo:  8º tono (Hipomixolidio)"
+    pl: Skala: 8t – hypomiksolidyjska
 9t:
   label:
     it: "Mode:  9t – Aeolian"
@@ -2087,6 +2372,7 @@ g|b:
     en: "Mode:  9t – Aeolian"
     pt: "Modo:  9º tom (Eólio)"
     es: "Modo:  9º tono (Eólico)"
+    pl: Skala: 9t – eolska
 10t:
   label:
     it: "Mode: 10t – Hypoaeolian"
@@ -2095,6 +2381,7 @@ g|b:
     en: "Mode: 10t – Hypoaeolian"
     pt: "Modo: 10º tom (Hipoeólio)"
     es: "Modo: 10º tono (Hipoeólico)"
+    pl: Skala: 10t – hypoeolska
 11t:
   label:
     it: "Mode: 11t – Ionian"
@@ -2103,6 +2390,7 @@ g|b:
     en: "Mode: 11t – Ionian"
     pt: "Modo:  11º tom (Jônio)"
     es: "Modo:  11º tono (Jónico)"
+    pl: Skala: 11t – jońska
 12t:
   label:
     it: "Mode: 12t – Hypoionian"
@@ -2111,6 +2399,7 @@ g|b:
     en: "Mode: 12t – Hypoionian"
     pt: "Modo:  12º modo (Hipojônio)"
     es: "Modo:  12º tono (Hipojónico)"
+    pl: Skala: 12t – hypojońska
 1tt:
   label:
     it: "Mode:  1tt – Dorian, transposed"
@@ -2119,6 +2408,7 @@ g|b:
     en: "Mode:  1tt – Dorian, transposed"
     pt: "Modo:  1º tom (Dórico), transposta"
     es: "Modo: 1º tono (Dórico), transpuesto"
+    pl: Skala: 1tt – dorycka, transponowana
 2tt:
   label:
     it: "Mode:  2tt – Hypodorian, transposed"
@@ -2127,6 +2417,7 @@ g|b:
     en: "Mode:  2tt – Hypodorian, transposed"
     pt: "Modo:  2º tom (Hipodórico), transposta"
     es: "Modo:  2º tono (Hipodórico), transpuesto"
+    pl: Skala: 2tt – hypodorycka, transponowana
 3tt:
   label:
     it: "Mode:  3tt – Phrygian, transposed"
@@ -2135,6 +2426,7 @@ g|b:
     en: "Mode:  3tt – Phrygian, transposed"
     pt: "Modo:  3º tom (Frígio), transposta"
     es: "Modo:  3º tono (Frigio), transpuesto"
+    pl: Skala: 3tt – frygijska, transponowana
 4tt:
   label:
     it: "Mode:  4tt – Hypophrygian, transposed"
@@ -2143,6 +2435,7 @@ g|b:
     en: "Mode:  4tt – Hypophrygian, transposed"
     pt: "Modo:  4º tom (Hipofrígio), transposta"
     es: "Modo:  4º tono (Hipofrigio), transpuesto"
+    pl: Skala: 4tt – hypofrygijska, transponowana
 5tt:
   label:
     it: "Mode:  5tt – Lydian, transposed"
@@ -2151,6 +2444,7 @@ g|b:
     en: "Mode:  5tt – Lydian, transposed"
     pt: "Modo:  5º tom (Lídio), transposta"
     es: "Modo:  5º tono (Lidio), transpuesto"
+    pl: Skala: 5tt – lidyjska, transponowana
 6tt:
   label:
     it: "Mode:  6tt – Hypolydian, transposed"
@@ -2159,6 +2453,7 @@ g|b:
     en: "Mode:  6tt – Hypolydian, transposed"
     pt: "Modo:  6º tom (Hipolídio), transposta"
     es: "Modo:  6º tono (Hipolidio), transpuesto"
+    pl: Skala: 6tt – hypolidyjska, transponowana
 7tt:
   label:
     it: "Mode:  7tt – Mixolydian, transposed"
@@ -2167,6 +2462,7 @@ g|b:
     en: "Mode:  7tt – Mixolydian, transposed"
     pt: "Modo:  7º tom (Mixolídio), transposta"
     es: "Modo:  7º tono (Mixolidio), transpuesto"
+    pl: Skala: 7tt – miksolidyjska, transponowana
 8tt:
   label:
     it: "Mode:  8tt – Hypomixolydian, transposed"
@@ -2175,6 +2471,7 @@ g|b:
     en: "Mode:  8tt – Hypomixolydian, transposed"
     pt: "Modo:  8º tom (Hipomixolídio), transposta"
     es: "Modo:  8º tono (Hipomixolidio), transpuesto"
+    pl: Skala: 8tt – hypomiksolidyjska, transponowana
 9tt:
   label:
     it: "Mode:  9tt – Aeolian, transposed"
@@ -2183,6 +2480,7 @@ g|b:
     en: "Mode:  9tt – Aeolian, transposed"
     pt: "Modo:  9º tom (Eólio), transposta"
     es: "Modo:  9º tono (Eólico), transpuesto"
+    pl: Skala: 9tt – eolska, transponowana
 10tt:
   label:
     it: "Mode: 10tt – Hypoaeolian, transposed"
@@ -2191,6 +2489,7 @@ g|b:
     en: "Mode: 10tt – Hypoaeolian, transposed"
     pt: "Modo: 10º tom (Hipoeólio), transposta"
     es: "Modo: 10º tono (Hipoeólico), transpuesto"
+    pl: Skala: 10tt – hypoeolska, transponowana
 11tt:
   label:
     it: "Mode: 11tt – Ionian, transposed"
@@ -2199,6 +2498,7 @@ g|b:
     en: "Mode: 11tt – Ionian, transposed"
     pt: "Modo:  11º tom (Jônio), transposta"
     es: "Modo:  11º tono (Jónico), transpuesto"
+    pl: Skala: 11tt – jońska, transponowana
 12tt:
   label:
     it: "Mode: 12tt – Hypoionian, transposed"
@@ -2207,6 +2507,7 @@ g|b:
     en: "Mode: 12tt – Hypoionian, transposed"
     pt: "Modo:  12º modo (Hipojônio), transposta"
     es: "Modo:  12º tono (Hipojónico), transpuesto"
+    pl: Skala: 12tt – hypojońska, transponowana
 1byz:
   label:
     it: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
@@ -2215,6 +2516,7 @@ g|b:
     en: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
     pt: "Octoechos 1: Ēchos prōtos (Primeiro modo bizantino)"
     es: "Octoechos 1: Ēchos prōtos (Primer modo bizantino)"
+    pl: Octoechos 1: Ēchos prōtos (pierwsza skala muzyki bizantyjskiej)
 2byz:
   label:
     it: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
@@ -2223,6 +2525,7 @@ g|b:
     en: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
     pt: "Octoechos 2: Ēchos deuteros (Segundo modo bizantino)"
     es: "Octoechos 2: Ēchos deuteros (Segundo modo bizantino)"
+    pl: Octoechos 2: Ēchos deuteros (druga skala muzyki bizantyjskiej)
 3byz:
   label:
     it: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
@@ -2231,6 +2534,7 @@ g|b:
     en: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
     pt: "Octoechos 3: Ēchos tritos (Terceiro modo bizantino)"
     es: "Octoechos 3: Ēchos tritos (Tercer modo bizantino)"
+    pl: Octoechos 3: Ēchos tritos (trzecia skala muzyki bizantyjskiej)
 4byz:
   label: 
     it: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
@@ -2239,6 +2543,7 @@ g|b:
     en: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
     pt: "Octoechos 4: Ēchos tetartos (Quarto modo bizantino)"
     pt: "Octoechos 4: Ēchos tetartos (Cuarto modo bizantino)"
+    pl: Octoechos 4: Ēchos tetartos (czwarta skala muzyki bizantyjskiej)
 5byz:
   label: 
     it: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
@@ -2247,6 +2552,7 @@ g|b:
     en: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
     pt: "Octoechos 5: Ēchos plagios prōtos (Primeiro modo bizantino plagal)"
     es: "Octoechos 5: Ēchos plagios prōtos (Primer modo bizantino plagal)"
+    pl: Octoechos 5: Ēchos plagios prōtos (pierwsza skala plagalna muzyki bizantyjskiej)
 6byz:
   label: 
     it: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
@@ -2255,6 +2561,7 @@ g|b:
     en: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
     pt: "Octoechos 6: Ēchos plagios deuteros (Segundo modo bizantino plagal)"
     es: "Octoechos 6: Ēchos plagios deuteros (Segundo modo bizantino plagal)"
+    pl: Octoechos 6: Ēchos plagios deuteros (druga skala plagalna muzyki bizantyjskiej)
 7byz:
   label: 
     it: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
@@ -2263,6 +2570,7 @@ g|b:
     en: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
     pt: "Octoechos 7: Ēchos barys (Terceiro modo bizantino plagal)"
     es: "Octoechos 7: Ēchos barys (Tercer modo bizantino plagal)"
+    pl: Octoechos 7: Ēchos barys (trzecia skala plagalna muzyki bizantyjskiej)
 8byz:
   label: 
     it: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
@@ -2271,6 +2579,7 @@ g|b:
     en: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
     pt: "Octoechos 8: Ēchos plagios tetartos (Quarto modo bizantino plagal)"
     es: "Octoechos 8: Ēchos plagios tetartos (Cuarto modo bizantino plagal)"
+    pl: Octoechos 8: Ēchos plagios tetartos (czwarta skala plagalna muzyki bizantyjskiej)
 #Clefs (031)
 01_modern_clefs:
   label:
@@ -2279,6 +2588,7 @@ g|b:
     de: "Common clefs"
     en: "Common clefs"
     es: Claves comunes
+    pl: Klucze współczesne
 C-1:
   label:
     it: "C-1"
@@ -2286,6 +2596,7 @@ C-1:
     de: "C-1"
     en: "C-1"
     es: "C-1"
+    pl: C-1
 C-2:
   label:
     it: "C-2"
@@ -2293,6 +2604,7 @@ C-2:
     de: "C-2"
     en: "C-2"
     es: "C-2"
+    pl: C-2
 C-3:
   label:
     it: "C-3"
@@ -2300,6 +2612,7 @@ C-3:
     de: "C-3"
     en: "C-3"
     es: "C-3"
+    pl: C-3
 C-4:
   label:
     it: "C-4"
@@ -2307,6 +2620,7 @@ C-4:
     de: "C-4"
     en: "C-4"
     es: "C-4"
+    pl: C-4
 C-5:
   label:
     it: "C-5"
@@ -2314,6 +2628,7 @@ C-5:
     de: "C-5"
     en: "C-5"
     es: "C-5"
+    pl: C-5
 F-1:
   label:
     it: "F-1"
@@ -2321,6 +2636,7 @@ F-1:
     de: "F-1"
     en: "F-1"
     es: "F-1"
+    pl: F-1
 F-2:
   label:
     it: "F-2"
@@ -2328,6 +2644,7 @@ F-2:
     de: "F-2"
     en: "F-2"
     es: "F-2"
+    pl: F-2
 F-3:
   label:
     it: "F-3"
@@ -2335,6 +2652,7 @@ F-3:
     de: "F-3"
     en: "F-3"
     es: "F-3"
+    pl: F-3
 F-4:
   label:
     it: "F-4 (chiave di basso)"
@@ -2342,6 +2660,7 @@ F-4:
     de: "F-4 (Baß-Schlüssel)"
     en: "F-4 (bass clef)"
     es: "F-4 (clave de bajo)"
+    pl: F-4 (klucz basowy)
 F-5:
   label:
     it: "F-5"
@@ -2349,6 +2668,7 @@ F-5:
     de: "F-5"
     en: "F-5"
     es: "F-5"
+    pl: F-5
 G-1:
   label:
     it: "G-1"
@@ -2356,6 +2676,7 @@ G-1:
     de: "G-1"
     en: "G-1"
     es: "G-1"
+    pl: G-1
 G-2:
   label:
     it: "G-2 (chiave di violino)"
@@ -2363,6 +2684,7 @@ G-2:
     de: "G-2 (Violin-Schlüssel)"
     en: "G-2 (treble clef)"
     es: "G-2(clave aguda estándar)"
+    pl: G-2 (klucz wiolinowy)
 G-3:
   label:
     it: "G-3"
@@ -2370,6 +2692,7 @@ G-3:
     de: "G-3"
     en: "G-3"
     es: "G-3"
+    pl: G-3
 G-4:
   label:
     it: "G-4"
@@ -2377,6 +2700,7 @@ G-4:
     de: "G-4"
     en: "G-4"
     es: "G-4"
+    pl: G-4
 G-5:
   label:
     it: "G-5"
@@ -2384,6 +2708,7 @@ G-5:
     de: "G-5"
     en: "G-5"
     es: "G-5"
+    pl: G-5
 g-2:
   label:
     it: "g-2 (Chiave di violino ottavizzata)"
@@ -2391,6 +2716,7 @@ g-2:
     de: "g-2 (oktavierenden Violinschlüssels)"
     en: "g-2 (octave treble clef)"
     es: "g-2 (clave de sol octava baja)"
+    pl: g-2 (oktawowy klucz wiolinowy) 
 02_mensural_clefs:
   label:
     it: "Chiavi mensurali"
@@ -2398,6 +2724,7 @@ g-2:
     de: "Mensural clefs"
     en: "Mensural clefs"
     es: "Claves mensurales"
+    pl: Klucze menzuralne
 C+1:
   label:
     it: "C+1"
@@ -2405,6 +2732,7 @@ C+1:
     de: "C+1"
     en: "C+1"
     es: "C+1"
+    pl: C+1
 C+2:
   label:
     it: "C+2"
@@ -2412,6 +2740,7 @@ C+2:
     de: "C+2"
     en: "C+2"
     es: "C+2"
+    pl: C+2
 C+3:
   label:
     it: "C+3"
@@ -2419,6 +2748,7 @@ C+3:
     de: "C+3"
     en: "C+3"
     es: "C+3"
+    pl: C+3
 C+4:
   label:
     it: "C+4"
@@ -2426,6 +2756,7 @@ C+4:
     de: "C+4"
     en: "C+4"
     es: "C+4"
+    pl: C+4
 C+5:
   label:
     it: "C+5"
@@ -2433,6 +2764,7 @@ C+5:
     de: "C+5"
     en: "C+5"
     es: "C+5"
+    pl: C+5
 F+1:
   label:
     it: "F+1"
@@ -2440,6 +2772,7 @@ F+1:
     de: "F+1"
     en: "F+1"
     es: "F+1"
+    pl: F+1
 F+2:
   label:
     it: "F+2"
@@ -2447,6 +2780,7 @@ F+2:
     de: "F+2"
     en: "F+2"
     es: "F+2"
+    pl: F+2
 F+3:
   label:
     it: "F+3"
@@ -2454,6 +2788,7 @@ F+3:
     de: "F+3"
     en: "F+3"
     es: "F+3"
+    pl: F+3
 F+4:
   label:
     it: "F+4"
@@ -2461,6 +2796,7 @@ F+4:
     de: "F+4"
     en: "F+4"
     es: "F+4"
+    pl: F+4
 F+5:
   label:
     it: "F+5"
@@ -2468,6 +2804,7 @@ F+5:
     de: "F+5"
     en: "F+5"
     es: "F+5"
+    pl: F+5
 G+1:
   label:
     it: "G+1"
@@ -2475,6 +2812,7 @@ G+1:
     de: "G+1"
     en: "G+1"
     es: "G+1"
+    pl: G+1
 G+2:
   label:
     it: "G+2"
@@ -2482,6 +2820,7 @@ G+2:
     de: "G+2"
     en: "G+2"
     es: "G+2"
+    pl: G+2
 G+3:
   label:
     it: "G+3"
@@ -2489,6 +2828,7 @@ G+3:
     de: "G+3"
     en: "G+3"
     es: "G+3"
+    pl: G+3
 G+4:
   label:
     it: "G+4"
@@ -2496,6 +2836,7 @@ G+4:
     de: "G+4"
     en: "G+4"
     es: "G+4"
+    pl: G+4
 G+5:
   label:
     it: "G+5"
@@ -2503,6 +2844,7 @@ G+5:
     de: "G+5"
     en: "G+5"
     es: "G+5"
+    pl: G+5
 #Attribution qualifier for 710$j
 "Verified":
   label:
@@ -2511,6 +2853,7 @@ G+5:
     de: Gesichert
     en: Verified
     es: Verificada
+    pl: Zweryfikowane
 "Ascertained":
   label:
     it: Accertato
@@ -2518,6 +2861,7 @@ G+5:
     de: Ermittelt
     en: Ascertained
     es: Certificada
+    pl: Stwierdzone
 "Alleged":
   label:
     it: Presunto
@@ -2525,6 +2869,7 @@ G+5:
     de: Angeblich
     en: Alleged
     es: Supuesta
+    pl: Domniemane
 "Doubtful":   
   label:
     it: Dubbio
@@ -2532,6 +2877,7 @@ G+5:
     de: Zweifelhaft
     en: Doubtful
     es: Dudosa
+    pl: Wątpliwe
 "Misattributed":   
   label:
     it: Attribuito erroneamente
@@ -2539,6 +2885,7 @@ G+5:
     de: Fälschlich
     en: Misattributed
     es: Mal atribuida
+    pl: Błędnie przypisane
 "Conjectural":   
   label:
     it: Congetturale
@@ -2546,4 +2893,5 @@ G+5:
     de: Mutmaßlich
     en: Conjectural
     es: Conjetural
+    pl: Spekulatywne
 
