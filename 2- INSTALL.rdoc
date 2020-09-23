@@ -16,6 +16,7 @@ The following other libraries and programs are needed
 * libmysqlclient-dev
 * imagemagick
 * libmagickwand-dev
+* Java RE 11+
 
 *NOTE* From Muscat 6.1 MySQL *8.0.4 is required* for autocomplete and comments to properly work, as the REGEX library was changed.  MariaDB 10.x, as provided by Debian 10 (Buster) also seems to work properly.
 
