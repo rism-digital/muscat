@@ -111,6 +111,7 @@ ActiveAdmin.register StandardTitle do
     column (I18n.t :filter_wf_stage) {|et| status_tag(et.wf_stage,
       label: I18n.t('status_codes.' + (et.wf_stage != nil ? et.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
+    column ("Type") {|et| et.get_typus}
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_variants), :alternate_terms
     column (I18n.t :menu_latin), :latin

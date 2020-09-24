@@ -90,7 +90,16 @@ class StandardTitle < ApplicationRecord
       #StandardTitle.count_by_sql("select count(*) from sources_to_standard_titles where standard_title_id = #{self[:id]}")
     end
   end
-    
+  
+  def get_typus
+    res = Array.new(3)
+    if (Source.solr_search do with("240a_filter", title) end).total > 0 || self.referring_sources.size > 0
+      res[0] = "standard"
+    end
+    res[1] = (Source.solr_search do with("730a_filter", title) end).total > 0 ? "additional" : nil
+    res[2] = (Source.solr_search do with("031t_filter", title) end).total > 0 ? "text" : nil
+    return res.compact.join(", ")
+  end
 #	def get_indexed_terms
 #    solr = Sunspot.session.get_connection
 #    response = solr.get 'terms', :params => {:"terms.fl" => "240a_shingle_sms", :"terms.limit" => 1, :"terms.prefix" => self.title}
