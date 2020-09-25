@@ -101,8 +101,8 @@ index:
     solr: 700a
     type: text
   rism.librarySiglum:
-    solr: 110g
-    type: text
+    solr: siglum_order
+    type: s
   rism.libraryCountry:
     solr: 043c
     type: text
