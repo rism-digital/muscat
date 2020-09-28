@@ -77,7 +77,7 @@ pt:
         other: "Destruídos com sucesso %{count} %{plural_model}"
       selection_toggle_explanation: "(Seleção Alternada)"
       link: "Criar"
-      action_label: "%{Título}"
+      action_label: "%{title}"
       labels:
         destroy: "Apagar"
         folder: "Criar pasta com itens"
