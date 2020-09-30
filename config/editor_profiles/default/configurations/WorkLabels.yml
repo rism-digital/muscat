@@ -1166,7 +1166,7 @@ wr:
     de: "Austria: Carinthia"
     en: "Austria: Carinthia"
     es: "Austria: Carintia"
-    pl: Austria: Karyntia
+    pl: "Austria: Karyntia"
 "XA-AT-3":
   label:
     it: "Austria: Austria Inferiore"
@@ -1174,7 +1174,7 @@ wr:
     de: "Austria: Lower Austria"
     en: "Austria: Lower Austria"
     es: "Austria: Baja Austria"
-    pl: Austria: Dolna Austria
+    pl: "Austria: Dolna Austria"
 "XA-AT-5":
   label:
     it: "Austria: Salisburgo"
@@ -1182,7 +1182,7 @@ wr:
     de: "Austria: Salzburg"
     en: "Austria: Salzburg"
     es: "Austria: Salzburgo"
-    pl: Austria: Salzburg
+    pl: "Austria: Salzburg"
 "XA-AT-6":
   label:
     it: "Austria: Stiria"
@@ -1190,7 +1190,7 @@ wr:
     de: "Austria: Styria"
     en: "Austria: Styria"
     es: "Austria: Estiria"
-    pl: Austria: Styria
+    pl: "Austria: Styria"
 "XA-AT-7":
   label:
     it: "Austria: Tirolo"
@@ -1198,7 +1198,7 @@ wr:
     de: "Austria: Tyrol"
     en: "Austria: Tyrol"
     es: "Austria: Tirol"
-    pl: Austria: Tyrol
+    pl: "Austria: Tyrol"
 "XA-AT-4":
   label:
     it: "Austria: Austria Superiore"
@@ -1206,7 +1206,7 @@ wr:
     de: "Austria: Upper Austria"
     en: "Austria: Upper Austria"
     es: "Austria: Alta Austria"
-    pl: Austria: Górna Austria
+    pl: "Austria: Górna Austria"
 "XA-AT-9":
   label:
     it: "Austria: Vienna"
@@ -1214,7 +1214,7 @@ wr:
     de: "Austria: Vienna"
     en: "Austria: Vienna"
     es: "Austria: Viena"
-    pl: Austria: Wiedeń
+    pl: "Austria: Wiedeń"
 "XA-BE":
   label:
     it: "Belgio"
@@ -1367,7 +1367,7 @@ wr:
     de: "Germany: Bavaria"
     en: "Germany: Bavaria"
     es: "Alemania: Bavaria"
-    pl: Niemcy: Bawaria
+    pl: "Niemcy: Bawaria"
 "XA-DE-SN":
   label:
     it: "Germania: Sassonia"
@@ -1375,7 +1375,7 @@ wr:
     de: "Germany: Saxony"
     en: "Germany: Saxony"
     es: "Alemania: Sajonia"
-    pl: Niemcy: Saksonia
+    pl: "Niemcy: Saksonia"
 "XA-GR":
   label:
     it: "Grecia"
@@ -1455,7 +1455,7 @@ wr:
     de: "Italy: Trentino-Alto Adige"
     en: "Italy: Trentino-Alto Adige"
     es: "Italia: Trentino-Alto Adigio"
-    pl: Włochy: Trentino-Alto Adige
+    pl: "Włochy: Trentino-Alto Adige"
 "XA-IT":
   label:
     it: "Italia"
@@ -1655,7 +1655,7 @@ wr:
     de: "Switzerland: Vaud"
     en: "Switzerland: Vaud"
     es: "Suiza: cantón de Vaud"
-    pl: Szwajcaria: kanton Vaud
+    pl: "Szwajcaria: kanton Vaud"
 "XA-CH":
   label:
     it: "Svizzera"
@@ -2300,7 +2300,7 @@ g|b:
     en: "Mode:  1t – Dorian"
     pt: "Modo:  1º tom (Dórico)"
     es: "Modo: 1º tono (Dórico)"
-    pl: Skala: 1t – dorycka
+    pl: "Skala: 1t – dorycka"
 2t:
   label:
     it: "Mode:  2t – Hypodorian"
@@ -2309,7 +2309,7 @@ g|b:
     en: "Mode:  2t – Hypodorian"
     pt: "Modo:  2º tom (Hipodórico)"
     es: "Modo:  2º tono (Hipodórico)"
-    pl: Skala: 2t – hypodorycka
+    pl: "Skala: 2t – hypodorycka"
 3t:
   label:
     it: "Mode:  3t – Phrygian"
@@ -2318,7 +2318,7 @@ g|b:
     en: "Mode:  3t – Phrygian"
     pt: "Modo:  3º tom (Frígio)"
     es: "Modo:  3º tono (Frigio)"
-    pl: Skala: 3t – frygijska
+    pl: "Skala: 3t – frygijska"
 4t:
   label:
     it: "Mode:  4t – Hypophrygian"
@@ -2327,7 +2327,7 @@ g|b:
     en: "Mode:  4t – Hypophrygian"
     pt: "Modo:  4º tom (Hipofrígio)"
     es: "Modo:  4º tono (Hipofrigio)"
-    pl: Skala: 4t – hypofrygijska
+    pl: "Skala: 4t – hypofrygijska"
 5t:
   label:
     it: "Mode:  5t – Lydian"
@@ -2336,7 +2336,7 @@ g|b:
     en: "Mode:  5t – Lydian"
     pt: "Modo:  5º tom (Lídio)"
     es: "Modo:  5º tono (Lidio)"
-    pl: Skala: 5t – lidyjska
+    pl: "Skala: 5t – lidyjska"
 6t:
   label:
     it: "Mode:  6t – Hypolydian"
@@ -2345,7 +2345,7 @@ g|b:
     en: "Mode:  6t – Hypolydian"
     pt: "Modo:  6º tom (Hipolídio)"
     es: "Modo:  6º tono (Hipolidio)"
-    pl: Skala: 6t – hypolidyjska
+    pl: "Skala: 6t – hypolidyjska"
 7t:
   label:
     it: "Mode:  7t – Mixolydian"
@@ -2354,7 +2354,7 @@ g|b:
     en: "Mode:  7t – Mixolydian"
     pt: "Modo:  7º tom (Mixolídio)"
     es: "Modo:  7º tono (Mixolidio)"
-    pl: Skala: 7t – miksolidyjska
+    pl: "Skala: 7t – miksolidyjska"
 8t:
   label:
     it: "Mode:  8t – Hypomixolydian"
@@ -2363,7 +2363,7 @@ g|b:
     en: "Mode:  8t – Hypomixolydian"
     pt: "Modo:  8º tom (Hipomixolídio)"
     es: "Modo:  8º tono (Hipomixolidio)"
-    pl: Skala: 8t – hypomiksolidyjska
+    pl: "Skala: 8t – hypomiksolidyjska"
 9t:
   label:
     it: "Mode:  9t – Aeolian"
@@ -2372,7 +2372,7 @@ g|b:
     en: "Mode:  9t – Aeolian"
     pt: "Modo:  9º tom (Eólio)"
     es: "Modo:  9º tono (Eólico)"
-    pl: Skala: 9t – eolska
+    pl: "Skala: 9t – eolska"
 10t:
   label:
     it: "Mode: 10t – Hypoaeolian"
@@ -2381,7 +2381,7 @@ g|b:
     en: "Mode: 10t – Hypoaeolian"
     pt: "Modo: 10º tom (Hipoeólio)"
     es: "Modo: 10º tono (Hipoeólico)"
-    pl: Skala: 10t – hypoeolska
+    pl: "Skala: 10t – hypoeolska"
 11t:
   label:
     it: "Mode: 11t – Ionian"
@@ -2390,7 +2390,7 @@ g|b:
     en: "Mode: 11t – Ionian"
     pt: "Modo:  11º tom (Jônio)"
     es: "Modo:  11º tono (Jónico)"
-    pl: Skala: 11t – jońska
+    pl: "Skala: 11t – jońska"
 12t:
   label:
     it: "Mode: 12t – Hypoionian"
@@ -2399,7 +2399,7 @@ g|b:
     en: "Mode: 12t – Hypoionian"
     pt: "Modo:  12º modo (Hipojônio)"
     es: "Modo:  12º tono (Hipojónico)"
-    pl: Skala: 12t – hypojońska
+    pl: "Skala: 12t – hypojońska"
 1tt:
   label:
     it: "Mode:  1tt – Dorian, transposed"
@@ -2408,7 +2408,7 @@ g|b:
     en: "Mode:  1tt – Dorian, transposed"
     pt: "Modo:  1º tom (Dórico), transposta"
     es: "Modo: 1º tono (Dórico), transpuesto"
-    pl: Skala: 1tt – dorycka, transponowana
+    pl: "Skala: 1tt – dorycka, transponowana"
 2tt:
   label:
     it: "Mode:  2tt – Hypodorian, transposed"
@@ -2417,7 +2417,7 @@ g|b:
     en: "Mode:  2tt – Hypodorian, transposed"
     pt: "Modo:  2º tom (Hipodórico), transposta"
     es: "Modo:  2º tono (Hipodórico), transpuesto"
-    pl: Skala: 2tt – hypodorycka, transponowana
+    pl: "Skala: 2tt – hypodorycka, transponowana"
 3tt:
   label:
     it: "Mode:  3tt – Phrygian, transposed"
@@ -2426,7 +2426,7 @@ g|b:
     en: "Mode:  3tt – Phrygian, transposed"
     pt: "Modo:  3º tom (Frígio), transposta"
     es: "Modo:  3º tono (Frigio), transpuesto"
-    pl: Skala: 3tt – frygijska, transponowana
+    pl: "Skala: 3tt – frygijska, transponowana"
 4tt:
   label:
     it: "Mode:  4tt – Hypophrygian, transposed"
@@ -2435,7 +2435,7 @@ g|b:
     en: "Mode:  4tt – Hypophrygian, transposed"
     pt: "Modo:  4º tom (Hipofrígio), transposta"
     es: "Modo:  4º tono (Hipofrigio), transpuesto"
-    pl: Skala: 4tt – hypofrygijska, transponowana
+    pl: "Skala: 4tt – hypofrygijska, transponowana"
 5tt:
   label:
     it: "Mode:  5tt – Lydian, transposed"
@@ -2444,7 +2444,7 @@ g|b:
     en: "Mode:  5tt – Lydian, transposed"
     pt: "Modo:  5º tom (Lídio), transposta"
     es: "Modo:  5º tono (Lidio), transpuesto"
-    pl: Skala: 5tt – lidyjska, transponowana
+    pl: "Skala: 5tt – lidyjska, transponowana"
 6tt:
   label:
     it: "Mode:  6tt – Hypolydian, transposed"
@@ -2453,7 +2453,7 @@ g|b:
     en: "Mode:  6tt – Hypolydian, transposed"
     pt: "Modo:  6º tom (Hipolídio), transposta"
     es: "Modo:  6º tono (Hipolidio), transpuesto"
-    pl: Skala: 6tt – hypolidyjska, transponowana
+    pl: "Skala: 6tt – hypolidyjska, transponowana"
 7tt:
   label:
     it: "Mode:  7tt – Mixolydian, transposed"
@@ -2462,7 +2462,7 @@ g|b:
     en: "Mode:  7tt – Mixolydian, transposed"
     pt: "Modo:  7º tom (Mixolídio), transposta"
     es: "Modo:  7º tono (Mixolidio), transpuesto"
-    pl: Skala: 7tt – miksolidyjska, transponowana
+    pl: "Skala: 7tt – miksolidyjska, transponowana"
 8tt:
   label:
     it: "Mode:  8tt – Hypomixolydian, transposed"
@@ -2471,7 +2471,7 @@ g|b:
     en: "Mode:  8tt – Hypomixolydian, transposed"
     pt: "Modo:  8º tom (Hipomixolídio), transposta"
     es: "Modo:  8º tono (Hipomixolidio), transpuesto"
-    pl: Skala: 8tt – hypomiksolidyjska, transponowana
+    pl: "Skala: 8tt – hypomiksolidyjska, transponowana"
 9tt:
   label:
     it: "Mode:  9tt – Aeolian, transposed"
@@ -2480,7 +2480,7 @@ g|b:
     en: "Mode:  9tt – Aeolian, transposed"
     pt: "Modo:  9º tom (Eólio), transposta"
     es: "Modo:  9º tono (Eólico), transpuesto"
-    pl: Skala: 9tt – eolska, transponowana
+    pl: "Skala: 9tt – eolska, transponowana"
 10tt:
   label:
     it: "Mode: 10tt – Hypoaeolian, transposed"
@@ -2489,7 +2489,7 @@ g|b:
     en: "Mode: 10tt – Hypoaeolian, transposed"
     pt: "Modo: 10º tom (Hipoeólio), transposta"
     es: "Modo: 10º tono (Hipoeólico), transpuesto"
-    pl: Skala: 10tt – hypoeolska, transponowana
+    pl: "Skala: 10tt – hypoeolska, transponowana"
 11tt:
   label:
     it: "Mode: 11tt – Ionian, transposed"
@@ -2498,7 +2498,7 @@ g|b:
     en: "Mode: 11tt – Ionian, transposed"
     pt: "Modo:  11º tom (Jônio), transposta"
     es: "Modo:  11º tono (Jónico), transpuesto"
-    pl: Skala: 11tt – jońska, transponowana
+    pl: "Skala: 11tt – jońska, transponowana"
 12tt:
   label:
     it: "Mode: 12tt – Hypoionian, transposed"
@@ -2507,7 +2507,7 @@ g|b:
     en: "Mode: 12tt – Hypoionian, transposed"
     pt: "Modo:  12º modo (Hipojônio), transposta"
     es: "Modo:  12º tono (Hipojónico), transpuesto"
-    pl: Skala: 12tt – hypojońska, transponowana
+    pl: "Skala: 12tt – hypojońska, transponowana"
 1byz:
   label:
     it: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
@@ -2516,7 +2516,7 @@ g|b:
     en: "Octoechos 1: Ēchos prōtos (First mode of Byzantine music)"
     pt: "Octoechos 1: Ēchos prōtos (Primeiro modo bizantino)"
     es: "Octoechos 1: Ēchos prōtos (Primer modo bizantino)"
-    pl: Octoechos 1: Ēchos prōtos (pierwsza skala muzyki bizantyjskiej)
+    pl: "Octoechos 1: Ēchos prōtos (pierwsza skala muzyki bizantyjskiej)"
 2byz:
   label:
     it: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
@@ -2525,7 +2525,7 @@ g|b:
     en: "Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)"
     pt: "Octoechos 2: Ēchos deuteros (Segundo modo bizantino)"
     es: "Octoechos 2: Ēchos deuteros (Segundo modo bizantino)"
-    pl: Octoechos 2: Ēchos deuteros (druga skala muzyki bizantyjskiej)
+    pl: "Octoechos 2: Ēchos deuteros (druga skala muzyki bizantyjskiej)"
 3byz:
   label:
     it: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
@@ -2534,7 +2534,7 @@ g|b:
     en: "Octoechos 3: Ēchos tritos (Third mode of Byzantine music)"
     pt: "Octoechos 3: Ēchos tritos (Terceiro modo bizantino)"
     es: "Octoechos 3: Ēchos tritos (Tercer modo bizantino)"
-    pl: Octoechos 3: Ēchos tritos (trzecia skala muzyki bizantyjskiej)
+    pl: "Octoechos 3: Ēchos tritos (trzecia skala muzyki bizantyjskiej)"
 4byz:
   label: 
     it: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
@@ -2543,7 +2543,7 @@ g|b:
     en: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
     pt: "Octoechos 4: Ēchos tetartos (Quarto modo bizantino)"
     pt: "Octoechos 4: Ēchos tetartos (Cuarto modo bizantino)"
-    pl: Octoechos 4: Ēchos tetartos (czwarta skala muzyki bizantyjskiej)
+    pl: "Octoechos 4: Ēchos tetartos (czwarta skala muzyki bizantyjskiej)"
 5byz:
   label: 
     it: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
@@ -2552,7 +2552,7 @@ g|b:
     en: "Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)"
     pt: "Octoechos 5: Ēchos plagios prōtos (Primeiro modo bizantino plagal)"
     es: "Octoechos 5: Ēchos plagios prōtos (Primer modo bizantino plagal)"
-    pl: Octoechos 5: Ēchos plagios prōtos (pierwsza skala plagalna muzyki bizantyjskiej)
+    pl: "Octoechos 5: Ēchos plagios prōtos (pierwsza skala plagalna muzyki bizantyjskiej)"
 6byz:
   label: 
     it: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
@@ -2561,7 +2561,7 @@ g|b:
     en: "Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)"
     pt: "Octoechos 6: Ēchos plagios deuteros (Segundo modo bizantino plagal)"
     es: "Octoechos 6: Ēchos plagios deuteros (Segundo modo bizantino plagal)"
-    pl: Octoechos 6: Ēchos plagios deuteros (druga skala plagalna muzyki bizantyjskiej)
+    pl: "Octoechos 6: Ēchos plagios deuteros (druga skala plagalna muzyki bizantyjskiej)"
 7byz:
   label: 
     it: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
@@ -2570,7 +2570,7 @@ g|b:
     en: "Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)"
     pt: "Octoechos 7: Ēchos barys (Terceiro modo bizantino plagal)"
     es: "Octoechos 7: Ēchos barys (Tercer modo bizantino plagal)"
-    pl: Octoechos 7: Ēchos barys (trzecia skala plagalna muzyki bizantyjskiej)
+    pl: "Octoechos 7: Ēchos barys (trzecia skala plagalna muzyki bizantyjskiej)"
 8byz:
   label: 
     it: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
@@ -2579,7 +2579,7 @@ g|b:
     en: "Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)"
     pt: "Octoechos 8: Ēchos plagios tetartos (Quarto modo bizantino plagal)"
     es: "Octoechos 8: Ēchos plagios tetartos (Cuarto modo bizantino plagal)"
-    pl: Octoechos 8: Ēchos plagios tetartos (czwarta skala plagalna muzyki bizantyjskiej)
+    pl: "Octoechos 8: Ēchos plagios tetartos (czwarta skala plagalna muzyki bizantyjskiej)"
 #Clefs (031)
 01_modern_clefs:
   label:

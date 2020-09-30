@@ -1016,7 +1016,7 @@ voc:
     de: "Austria: Carinthia"
     en: "Austria: Carinthia"
     es: "Austria: Carintia"
-    pl: Austria: Karyntia
+    pl: "Austria: Karyntia"
 "XA-AT-3":
   label:
     it: "Austria: Austria Inferiore"
@@ -1024,7 +1024,7 @@ voc:
     de: "Austria: Lower Austria"
     en: "Austria: Lower Austria"
     es: "Austria: Baja Austria"
-    pl: Austria: Dolna Austria
+    pl: "Austria: Dolna Austria"
 "XA-AT-5":
   label:
     it: "Austria: Salisburgo"
@@ -1032,7 +1032,7 @@ voc:
     de: "Austria: Salzburg"
     en: "Austria: Salzburg"
     es: "Austria: Salzburgo"
-    pl: Austria: Salzburg
+    pl: "Austria: Salzburg"
 "XA-AT-6":
   label:
     it: "Austria: Stiria"
@@ -1040,7 +1040,7 @@ voc:
     de: "Austria: Styria"
     en: "Austria: Styria"
     es: "Austria: Estiria"
-    pl: Austria: Styria
+    pl: "Austria: Styria"
 "XA-AT-7":
   label:
     it: "Austria: Tirole"
@@ -1048,7 +1048,7 @@ voc:
     de: "Austria: Tyrol"
     en: "Austria: Tyrol"
     es: "Austria: Tirol"
-    pl: Austria: Tyrol
+    pl: "Austria: Tyrol"
 "XA-AT-4":
   label:
     it: "Austria: Austria Superiore"
@@ -1056,7 +1056,7 @@ voc:
     de: "Austria: Upper Austria"
     en: "Austria: Upper Austria"
     es: "Austria: Alta Austria"
-    pl: Austria: Górna Austria
+    pl: "Austria: Górna Austria"
 "XA-AT-9":
   label:
     it: "Austria: Vienna"
@@ -1064,7 +1064,7 @@ voc:
     de: "Austria: Vienna"
     en: "Austria: Vienna"
     es: "Austria: Viena"
-    pl: Austria: Wiedeń
+    pl: "Austria: Wiedeń"
 "XA-BE":
   label:
     it: "Belgio"
@@ -1216,7 +1216,7 @@ voc:
     de: "Germany: Bavaria"
     en: "Germany: Bavaria"
     es: "Alemania: Bavaria"
-    pl: Niemcy: Bawaria
+    pl: "Niemcy: Bawaria"
 "XA-DE-SN":
   label:
     it: "Germania: Sassonia"
@@ -1224,7 +1224,7 @@ voc:
     de: "Germany: Saxony"
     en: "Germany: Saxony"
     es: "Alemania: Sajonia"
-    pl: Niemcy: Saksonia
+    pl: "Niemcy: Saksonia"
 "XA-GR":
   label:
     it: "Grecia"
@@ -1312,7 +1312,7 @@ voc:
     de: "Italy: Trentino-Alto Adige"
     en: "Italy: Trentino-Alto Adige"
     es: "Italia: Trentino-Alto Adigio"
-    pl: Włochy: Trentino-Alto Adige
+    pl: "Włochy: Trentino-Alto Adige"
 "XA-IT":
   label:
     it: "Italia"
@@ -1512,7 +1512,7 @@ voc:
     de: "Switzerland: Vaud"
     en: "Switzerland: Vaud"
     es: "Suiza: cantón de Vaud"
-    pl: Szwajcaria: kanton Vaud
+    pl: "Szwajcaria: kanton Vaud"
 "XA-CH":
   label:
     it: "Svizzera"

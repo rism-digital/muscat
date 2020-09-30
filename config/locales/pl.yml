@@ -18,12 +18,12 @@ en:
     update_model: Edytuj %{model}
     delete_model: Usuń %{model}
     save_model: Zapisz
-    details: %{model} Szczegóły
+    details: "%{model} Szczegóły"
     cancel: Anuluj
     empty: Pusty
     previous: Poprzedni
     next: Następny
-    download: Pobierz:
+    download: "Pobierz:"
     has_many_new: Dodaj nowy %{model}
     has_many_delete: Usuń
     has_many_remove: Opróżnij
@@ -58,7 +58,7 @@ en:
       one_page: Wyświetlane <b>wszystkie %{n}</b> %{model}
       multiple: Wyświetlane %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b> łącznie
       multiple_without_total: Wyświetlane %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
-      per_page: Liczba elementów na stronie:
+      per_page: "Liczba elementów na stronie:"
       entry:
         one: Wpis
         other: Wpisy
@@ -77,7 +77,7 @@ en:
         other: Zniszczono %{count} %{plural_model} 
       selection_toggle_explanation: (Przełącz wybór)
       link: Utwórz jeden
-      action_label: %{title}
+      action_label: "%{title}"
       labels:
         destroy: Usuń
         folder: Utwórz folder z pozycjami
@@ -96,7 +96,7 @@ en:
       no_comments_yet: Jeszcze nie ma komentarzy.
       comments_help: "Wpisz @, by wspomnieć określonego użytkownika, który zostanie następnie powiadomiony e-mailem."
       author_missing: Anonimowy
-      title_content: Liczba komentarzy: (%{count})
+      title_content: "Liczba komentarzy: (%{count})"
       errors:
         empty_text: Komentarz nie został zapisany z powodu braku tekstu.
     devise:
@@ -134,8 +134,8 @@ en:
         resend_unlock_instructions: Wyślij ponownie instrukcje odblokowania
     unsupported_browser:
       headline: Muscat nie współpracuje już z wersjami 8 i starszymi Internet Explorera.
-      recommendation: "Zalecamy zainstalowanie najnowszej wersji programu <a href=\http://windows.microsoft.com/ie\">Internet Explorer</a>"
-      turn_off_compatibility_view: "Jeśli używasz IE 9 lub nowszy,  pamiętaj <a href=\http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">o wyłączeniu \"Compatibility View\"</a>."
+      recommendation: "Zalecamy zainstalowanie najnowszej wersji programu <a href='http://windows.microsoft.com/ie'>Internet Explorer</a>"
+      turn_off_compatibility_view: "Jeśli używasz IE 9 lub nowszy,  pamiętaj <a href='http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer'>o wyłączeniu 'Compatibility View'</a>."
     access_denied:
       message: Nie masz uprawnienia do wykonania tego działania.
     index_list:
@@ -148,9 +148,9 @@ en:
   
   time:
     formats:
-      default: %H:%M
-      short: %H:%M
-      long: %R-%m-%d %H:%M
+      default: "%H:%M"
+      short: "%H:%M"
+      long: "%R-%m-%d %H:%M"
       
   #################### MODELS      
   activerecord:
@@ -335,7 +335,7 @@ en:
     not_set: [Nie ustawiono statusu.]
     ok: Zadanie ukończone pomyślnie
     no_status: Błąd odczytu statusu zadania
-    error: BŁĄD:
+    error: "BŁĄD:"
     running_jobs: Nie można usuwać bieżących zadań.
     auto_delete: Nie można usunąć. Ukończone zadanie zostało usunięte automatycznie.
     no_view: Nie można sprawdzić. Ukończone zadanie zostało usunięte automatycznie.
@@ -399,14 +399,14 @@ en:
     added_bg: "Pozycje dodane do foldera, zadanie %{job} zakolejkowane."
     success_bg: "Folder %{name} utworzony, zadanie %{job} zakolejkowane."
     items: Pozycje
-    export_started: Na adres %{e-mail} zostanie wysłana wiadomość z odsyłaczem do pobrania (Export job id: %{job}).
+    export_started: "Na adres %{e-mail} zostanie wysłana wiadomość z odsyłaczem do pobrania (Export job id: %{job})."
     export_limit: Można wyeksportować maks. %{max} pozycji. Ten folder zawiera %{count} pozycji.
     folder_empty: Folder nie zawiera pozycji.
     not_found: Folder %{id} nie istnieje.
-    publish_job: Opublikuj rozpoczęte zadanie (id: %{id})
-    unpublish_job: Cofnij publikację rozpoczętego zadania (id: %{id})
-    reindex_job: Zreindeksuj rozpoczęte zadanie (id: %{id})
-    validation_started: Na adres %{e-mail} zostanie wysłana wiadomość z informacją o zatwierdzeniu (Validation job id: %{job}).
+    publish_job: "Opublikuj rozpoczęte zadanie (id: %{id})"
+    unpublish_job: "Cofnij publikację rozpoczętego zadania (id: %{id})"
+    reindex_job: "Zreindeksuj rozpoczęte zadanie (id: %{id})"
+    validation_started: "Na adres %{e-mail} zostanie wysłana wiadomość z informacją o zatwierdzeniu (Validation job id: %{job})."
     folder_not_source: Można zatwierdzać tylko foldery zawierające źródła.
 
   ### Digital objects
@@ -540,7 +540,7 @@ en:
   filter_printed_exemplars: Liczba drukowanych egzemplarzy
  
   ## Referring lists for auth files
-  refers_to_this: %{model_from} odnosi się do %{model_to}
+  refers_to_this: "%{model_from} odnosi się do %{model_to}"
  
   rism_any_key: Dowolny klucz
   rism_a_flat: As-dur / as-moll
@@ -628,7 +628,7 @@ en:
 
   manuscript_links:
      one: 1 źródło
-     other: Liczba źródeł: %{count}
+     other: "Liczba źródeł: %{count}"
      
   # themefinder
   themefinder_c: Dokładny zapis linii melodycznej
@@ -665,14 +665,14 @@ en:
   tf_timesig_help: Wskazówki do wyszukiwania po metrum
   btn_themefinder_reset: Wyzeruj
   
-  tf_acknowledgments: "Incipity są wyszukiwane na stronie <a href=\http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> opracowanej przez <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
+  tf_acknowledgments: "Incipity są wyszukiwane na stronie <a href='http://www.themefinder.org/' target='_blank'>Themefinder</a> opracowanej przez <a href='http://www.ccarh.org/' target='_blank'>CCARH</a>."
 
   hls_link_lang: e
   hls_link_name: HDS
   
   do_link_lang: eng
   do_media_files_title: Pliki multimedialne
-  do_ext_res_link: Zasoby zewnętrzne:
+  do_ext_res_link: "Zasoby zewnętrzne:"
   do_ext_link_not_avail: (Pliki audio niedostępne z tej lokalizacji)
   do_images_title: Obrazy
   connected_libraries: Biblioteki
@@ -681,7 +681,7 @@ en:
   mei:
     title: Eksport MEI dla źródła %{źródło}
     parameters: Parametry
-    format: Format wyjściowy incipitu:
+    format: "Format wyjściowy incipitu:"
     format_mei: MEI
     format_pae: PAE (bez konwersji)
     stylesheet: Styl szablonu
@@ -721,12 +721,12 @@ en:
     insufficient_rights: Użytkownik ma niewystarczające uprawnienia do utworzenia / zaktualizowania rekordu tej biblioteki
     name_uniqueness: Skrócona nazwa wpisu została już pobrana
     correct: Brak błędów zatwierdzenia rekordu [200]
-    begins_with_message: "Musi rozpoczynać się od \{0}\"
+    begins_with_message: "Musi rozpoczynać się od {0}"
     required_if_message: "Pole obowiązkowe, ponieważ pole {0} ${1} nie jest puste"
     
   incipit_search:
     incipit_search: Wyszukaj incipit
-    query_type: Rodzaj zapytania:
+    query_type: "Rodzaj zapytania:"
     exact_pitch: Dokładna nazwa dźwięku
     interval: Interwał
     refined_pitch: Wyszukiwanie po linii melodycznej z wyłączeniem stosunków interwałowych
