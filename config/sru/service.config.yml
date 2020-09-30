@@ -19,9 +19,12 @@ sets:
 index:
   cql.any:
     solr:
+      - 043c
+      - 043c_filter
       - 100a
       - 110a
       - 110c
+      - 110g
       - 240a
       - 245a
       - 500a
@@ -104,7 +107,7 @@ index:
     solr: siglum_order
     type: s
   rism.libraryCountry:
-    solr: 043c
+    solr: 043c_filter
     type: text
   rism.shelfmark:
     solr: shelf_mark_shelforder
@@ -124,6 +127,9 @@ index:
   rism.scoring:
     solr: 594b
     type: sms
+  rism.place:
+    solr: 110c
+    type: text
   #bath.genreForm:
     #title: genreForm
     #solr: 001

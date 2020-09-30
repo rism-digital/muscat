@@ -855,35 +855,35 @@ voc:
   label:
     it: "Algeria"
     fr: "Algeria"
-    de: "Algeria"
+    de: "Algerien"
     en: "Algeria"
     es: "Argelia"
 "XD-AR":
   label:
     it: "Argentina"
     fr: "Argentina"
-    de: "Argentina"
+    de: "Argentinien"
     en: "Argentina"
     es: "Argentina"
 "XB-AM":
   label:
     it: "Armenia"
     fr: "Armenia"
-    de: "Armenia"
+    de: "Armenien"
     en: "Armenia"
     es: "Armenia"
 "XE-AU":
   label:
     it: "Australia"
     fr: "Australia"
-    de: "Australia"
+    de: "Australien"
     en: "Australia"
     es: "Australia"
 "XA-AT":
   label:
     it: "Austria"
     fr: "Austria"
-    de: "Austria"
+    de: "Österreich"
     en: "Austria"
     es: "Austria"
 "XA-AT-2":
@@ -939,7 +939,7 @@ voc:
   label:
     it: "Belgio"
     fr: "Belgium"
-    de: "Belgium"
+    de: "Belgien"
     en: "Belgium"
     es: "Bélgica"
 "XC-BJ":
@@ -953,14 +953,14 @@ voc:
   label:
     it: "Brasile"
     fr: "Brazil"
-    de: "Brazil"
+    de: "Brasilien"
     en: "Brazil"
     es: "Brasil"
 "XA-BG":
   label:
     it: "Bulgaria"
     fr: "Bulgaria"
-    de: "Bulgaria"
+    de: "Bulgarien"
     en: "Bulgaria"
     es: "Bulgaria"
 "XB-KH":
@@ -974,7 +974,7 @@ voc:
   label:
     it: "Canada"
     fr: "Canada"
-    de: "Canada"
+    de: "Kanada"
     en: "Canada"
     es: "Canadá"
 "XD-CL":
@@ -995,21 +995,21 @@ voc:
   label:
     it: "Colombia"
     fr: "Colombia"
-    de: "Colombia"
+    de: "Kolombien"
     en: "Colombia"
     es: "Colombia"
 "XA-HR":
   label:
     it: "Croazia"
     fr: "Croatia"
-    de: "Croatia"
+    de: "Kroatien"
     en: "Croatia"
     es: "Croacia"
 "XD-CU":
   label:
     it: "Cuba"
     fr: "Cuba"
-    de: "Cuba"
+    de: "Kuba"
     en: "Cuba"
     es: "Cuba"
 "XA-CZ":
@@ -1023,14 +1023,14 @@ voc:
   label:
     it: "Danimarca"
     fr: "Denmark"
-    de: "Denmark"
+    de: "Dänemark"
     en: "Denmark"
     es: "Dinamarca"
 "XC-EG":
   label:
     it: "Egitto"
     fr: "Egypt"
-    de: "Egypt"
+    de: "Ägypten"
     en: "Egypt"
     es: "Egipto"
 "XA-EE":
@@ -1051,14 +1051,14 @@ voc:
   label:
     it: "Francia"
     fr: "France"
-    de: "France"
+    de: "Frankreich"
     en: "France"
     es: "Francia"
 "XA-DE":
   label:
     it: "Germania"
     fr: "Germany"
-    de: "Germany"
+    de: "Deutschland"
     en: "Germany"
     es: "Alemania"
 "XA-DE-BY":
@@ -1079,7 +1079,7 @@ voc:
   label:
     it: "Grecia"
     fr: "Greece"
-    de: "Greece"
+    de: "Griechenland"
     en: "Greece"
     es: "Grecia"
 "XD-GT":
@@ -1107,21 +1107,21 @@ voc:
   label:
     it: "Ungheria"
     fr: "Hungary"
-    de: "Hungary"
+    de: "Ungarn"
     en: "Hungary"
     es: "Hungría"
 "XA-IS":
   label:
     it: "Islanda"
     fr: "Iceland"
-    de: "Iceland"
+    de: "Island"
     en: "Iceland"
     es: "Islandia"
 "XB-IN":
   label:
     it: "India"
     fr: "India"
-    de: "India"
+    de: "Indien"
     en: "India"
     es: "India"
 "XB-IR":
@@ -1135,7 +1135,7 @@ voc:
   label:
     it: "Irlanda"
     fr: "Ireland"
-    de: "Ireland"
+    de: "Irland"
     en: "Ireland"
     es: "Irlanda"
 "XB-IL":
@@ -1156,7 +1156,7 @@ voc:
   label:
     it: "Italia"
     fr: "Italy"
-    de: "Italy"
+    de: "Italien"
     en: "Italy"
     es: "Italia"
 "XB-JP":
@@ -1191,7 +1191,7 @@ voc:
   label:
     it: "Lussemburgo"
     fr: "Luxembourg"
-    de: "Luxembourg"
+    de: "Luxemburg"
     en: "Luxembourg"
     es: "Luxemburgo"
 "XA-MT":
@@ -1205,7 +1205,7 @@ voc:
   label:
     it: "Messico"
     fr: "Mexico"
-    de: "Mexico"
+    de: "Mexiko"
     en: "Mexico"
     es: "México"
 "XA-ME":
@@ -1219,7 +1219,7 @@ voc:
   label:
     it: "Paesi Bassi"
     fr: "Netherlands"
-    de: "Netherlands"
+    de: "Niederlande"
     en: "Netherlands"
     es: "Países Bajos"
 "XE-NZ":
@@ -1233,7 +1233,7 @@ voc:
   label:
     it: "Norvegia"
     fr: "Norway"
-    de: "Norway"
+    de: "Norwegen"
     en: "Norway"
     es: "Noruega"
 "XD-PY":
@@ -1247,7 +1247,7 @@ voc:
   label:
     it: "Polonia"
     fr: "Poland"
-    de: "Poland"
+    de: "Polen"
     en: "Poland"
     es: "Polonia"
 "XA-PT":
@@ -1268,7 +1268,7 @@ voc:
   label:
     it: "Romania"
     fr: "Romania"
-    de: "Romania"
+    de: "Rumänien"
     en: "Romania"
     es: "Rumania"
 "XA-RU":
@@ -1282,7 +1282,7 @@ voc:
   label:
     it: "Serbia"
     fr: "Serbia"
-    de: "Serbia"
+    de: "Serbien"
     en: "Serbia"
     es: "Serbia"
 "XA-SK":
@@ -1296,7 +1296,7 @@ voc:
   label:
     it: "Slovenia"
     fr: "Slovenia"
-    de: "Slovenia"
+    de: "Slovenien"
     en: "Slovenia"
     es: "Eslovenia"
 "XC-ZA":
@@ -1310,14 +1310,14 @@ voc:
   label:
     it: "Spagna"
     fr: "Spain"
-    de: "Spain"
+    de: "Spanien"
     en: "Spain"
     es: "España"
 "XA-SE":
   label:
     it: "Svezia"
     fr: "Sweden"
-    de: "Sweden"
+    de: "Schweden"
     en: "Sweden"
     es: "Suecia"
 "XA-CH-VD":
@@ -1331,7 +1331,7 @@ voc:
   label:
     it: "Svizzera"
     fr: "Switzerland"
-    de: "Switzerland"
+    de: "Schweiz"
     en: "Switzerland"
     es: "Suiza"
 "XB-SY":
@@ -1352,7 +1352,7 @@ voc:
   label:
     it: "Turchia"
     fr: "Turkey"
-    de: "Turkey"
+    de: "Türkei"
     en: "Turkey"
     es: "Turquía"
 "XA-UA":
@@ -1373,7 +1373,7 @@ voc:
   label:
     it: "Stati Uniti d'America"
     fr: "United States of America"
-    de: "United States of America"
+    de: "Vereinigte Staaten von Amerika (USA)"
     en: "United States of America"
     es: "Estados Unidos de América"
 "XD-UY":

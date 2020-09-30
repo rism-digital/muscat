@@ -1,4 +1,5 @@
 class MarcInstitution < Marc
+  @@labels = EditorConfiguration.get_default_layout(Institution.new()).labels_config
   def initialize(source = nil)
     super("institution", source)
   end
@@ -64,6 +65,9 @@ class MarcInstitution < Marc
     end
     by_tags("667").each {|t| t.destroy_yourself}
   end
-  
+ 
+  def marc_helper_get_country(value)
+    return @@labels[value]["label"].values rescue nil
+  end
  
 end
