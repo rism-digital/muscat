@@ -6,48 +6,56 @@ doc_abbreviations:
     de: "Abkürzungen"
     en: Abbreviations
     es: Abreviaturas
+    pl: Skróty
 doc_aid: 
   label: 
     it: Aiuto
     de: Arbeitshilfen
     en: Aide
     es: Asistencia
+    pl: Asystent
 doc_cataloguing_collections: 
   label: 
     it: Catalogazione di raccolte e volumi compositi
     de: Erfassung von Sammlungen
     en: Cataloging collection and convoluta
     es: "Catalogación de colecciones y volúmenes compuestos"
+    pl: Katalogowanie kolekcji i klocka introligatorskiego
 doc_edit_functions: 
   label: 
     it: funzioni di base
     de: "Grundätzliche Funktionen"
     en: Basic functions
     es: "Funciones básicas"
+    pl: Podstawowe funkcje
 doc_introduction: 
   label: 
     it: introduzione
     de: Einleitung
     en: Introduction
     es: "Introducción"
+    pl: Wprowadzenie
 doc_masks: 
   label: 
     it: Formulari di catalogazione
     de: Masken
     en: Cataloging forms
     es: "Formularios de catalogación"
+    pl: Formularze katalogowania
 doc_tag_index: 
   label: 
     it: Indice dei codici MARC
     de: MARC Tag Index
     en: MARC tag index
     es: "Índice de etiquetas MARC"
+    pl: Indeks znaczników MARC
 doc_templates: 
   label: 
     it: Template
     de: Templates
     en: Templates
     es: Plantillas
+    pl: Szablony
 "000": 
   label: 
     it: Leader
@@ -55,6 +63,7 @@ doc_templates:
     de: Leader
     en: Leader
     es: "Líder"
+    pl: Leader
 "001": 
   label: 
     it: Numero documento RISM
@@ -62,6 +71,7 @@ doc_templates:
     de: RISM Dokumentnummer
     en: RISM ID No.
     es: "Número de ID de RISM"
+    pl: RISM ID
 "003": 
   label: 
     it: Identificatore del numero di controllo
@@ -69,6 +79,7 @@ doc_templates:
     de: Kontrollnummer-Bezeichnung
     en: Control number identifier
     es: "Identificador de número de control"
+    pl: Identyfikator numeru kontrolnego
 "005": 
   label: 
     it: Data e ora dell'ultima transazione
@@ -76,6 +87,7 @@ doc_templates:
     de: Datum und Zeit der letzten Transaktion
     en: Date and time of last transaction
     es: "Fecha y hora de la última transacción" 
+    pl: Data i godzina ostatniej operacji
 "020": 
   label: 
     it: ISBN
@@ -83,6 +95,7 @@ doc_templates:
     de: ISBN
     en: ISBN
     es: ISBN
+    pl: ISBN
   fields: 
     a: 
       label: 
@@ -91,6 +104,7 @@ doc_templates:
         de: ISBN
         en: ISBN
         es: ISBN
+        pl: ISBN
 
 "022": 
   label: 
@@ -99,6 +113,7 @@ doc_templates:
     de: ISSN
     en: ISSN
     es: ISSN
+    pl: ISSN
   fields: 
     a: 
       label: 
@@ -107,6 +122,7 @@ doc_templates:
         de: ISSN
         en: ISSN
         es: ISSN
+        pl: ISSN
 
 "024": 
   label: 
@@ -115,6 +131,7 @@ doc_templates:
     de: ISMN
     en: ISMN
     es: ISMN
+    pl: ISMN
   fields: 
     a: 
       label: 
@@ -123,6 +140,7 @@ doc_templates:
         de: ISMN
         en: ISMN
         es: ISMN
+        pl: ISMN
 
 "041": 
   label: 
@@ -131,6 +149,7 @@ doc_templates:
     de: Sprache
     en: Language Code
     es: "Código de idioma"
+    pl: Kod języka
   fields: 
     a: 
       label: 
@@ -139,6 +158,7 @@ doc_templates:
         de: Sprach-Code
         en: Language Code
         es: "Código de idioma"
+        pl: Kod języka
 "044": 
   label: 
     it: Paese
@@ -146,6 +166,7 @@ doc_templates:
     de: Land
     en: Country of publication
     es: "País de publicación"
+    pl: Kraj publikacji
   fields: 
     a: 
       label: 
@@ -154,6 +175,7 @@ doc_templates:
         de: Land
         en: Country of publication
         es: "País de publicación"
+        pl: Kraj publikacji
 
 "100": 
   label: 
@@ -162,6 +184,7 @@ doc_templates:
     de: Autor
     en: Author
     es: Autor
+    pl: Autor
   accepts: 
   - "710"
   fields: 
@@ -172,6 +195,7 @@ doc_templates:
         de: Autor
         en: Author
         es: Autor
+        pl: Autor
     d: 
       label: 
         it: Data di nascita e di morte
@@ -179,6 +203,7 @@ doc_templates:
         de: Geburts- und Todesdaten
         en: Life dates
         es: Fechas de nacimiento y muerte
+        pl: Daty urodzenia i śmierci
 "210": 
   label: 
     it: Abbreviazione
@@ -186,6 +211,7 @@ doc_templates:
     de: Kürzel
     en: Short title
     es: "Título breve"
+    pl: Skrócony tytuł
   fields: 
     a: 
       label: 
@@ -194,6 +220,7 @@ doc_templates:
         de: Kürzel
         en: Short title
         es: "Título breve"
+        pl: Skrócony tytuł
 "240": 
   label: 
     it: Titolo 
@@ -201,6 +228,7 @@ doc_templates:
     de: Titel
     en: Title
     es: "Título"
+    pl: Tytuł
   fields: 
     a: 
       label: 
@@ -209,6 +237,7 @@ doc_templates:
         de: Titel
         en: Title
         es: "Título"
+        pl: Tytuł
     g: 
       label: 
         it: Tipo
@@ -216,6 +245,7 @@ doc_templates:
         de: Art/Inhalt
         en: Category
         es: "Categoría"
+        pl: Kategoria
     h: 
       label: 
         it: Tipo di pubblicazione
@@ -223,6 +253,7 @@ doc_templates:
         de: Ausgabeform
         en: Type of publication
         es: "Tipo de publicación"
+        pl: Rodzaj publikacji
 "250": 
   label: 
     it: Edizione
@@ -230,6 +261,7 @@ doc_templates:
     de: Ausgabe
     en: Edition statement
     es: "Declaración de edición"
+    pl: Wydanie
   fields: 
     a: 
       label: 
@@ -238,6 +270,7 @@ doc_templates:
         de: Ausgabe
         en: Edition statement
         es: "Declaración de edición"
+        pl: Wydanie
       comment: "NEW IN 2018"
 "260": 
   label: 
@@ -246,6 +279,7 @@ doc_templates:
     de: Imprint
     en: Imprint
     es: Datos editoriales
+    pl: Stopka wydawnicza
   fields: 
     a: 
       label: 
@@ -254,6 +288,7 @@ doc_templates:
         de: Verlagsort
         en: Place of publication
         es: Lugar de publicación
+        pl: Miejsce publikacji
     b: 
       label: 
         it: Editore
@@ -261,6 +296,7 @@ doc_templates:
         de: Verlag
         en: Publisher
         es: Editor
+        pl: Wydawca
     c: 
       label: 
         it: Anno
@@ -268,6 +304,7 @@ doc_templates:
         de: Jahr
         en: Year
         es: Año
+        pl: Rok
 "264": 
   label: 
     it: Produzione
@@ -275,6 +312,7 @@ doc_templates:
     de: Verlauf
     en: Production
     es: "Producción"
+    pl: Produkcja
   fields: 
     c: 
       label: 
@@ -283,6 +321,7 @@ doc_templates:
         de: Verlauf
         en: Production
         es: Producción
+        pl: Produkcja
 "700": 
   label: 
     it: Nome addizionale di persona
@@ -290,6 +329,7 @@ doc_templates:
     de: Sonstige Person
     en: Additional personal name
     es: Nombre personal adicional
+    pl: Dodatkowa osoba
   fields: 
     a: 
       label: 
@@ -297,6 +337,7 @@ doc_templates:
         fr: Personne
         de: Person
         en: Person
+        pl: Osoba
     "4": 
       label: 
         it: Funzione
@@ -305,6 +346,7 @@ doc_templates:
         en: Function
         pt: "Função"
         es: Persona
+        pl: Funkcja
 "710": 
   label: 
     it: Nome di ente
@@ -312,6 +354,7 @@ doc_templates:
     de: Nebeneintragung Körperschaften
     en: Additional institution
     es: "Institución adicional"
+    pl: Dodatkowa instytucja
   fields: 
     a: 
       label: 
@@ -320,6 +363,7 @@ doc_templates:
         de: Körperschaftsname
         en: Institution
         es: "Institución"
+        pl: Instytucja
     b: 
       label: 
         it: Ente subordinato
@@ -327,6 +371,7 @@ doc_templates:
         de: Untergeordnete Körperschaft
         en: Department
         es: Departamento
+        pl: Wydział
     g: 
       label: 
         it: Qualificazione d'attribuzione
@@ -334,12 +379,14 @@ doc_templates:
         de: Zuschreibungsvermerk
         en: Attribution qualifier
         es: "Calificador de atribución"
+        pl: Kwalifikator atrybucji
       edit_label: 
         it: Attribuzione
         fr: Attribution
         de: Zuschreibung
         en: Attribution
         es: Atribución
+        pl: Atrybucja
 
     "4": 
       label: 
@@ -348,6 +395,7 @@ doc_templates:
         de: Funktionsbezeichnung
         en: Function
         es: Función
+        pl: Funkcja
     "8": 
       label: 
         it: Gruppo di materiale
@@ -355,6 +403,7 @@ doc_templates:
         de: Set
         en: Set
         es: "Grupo de materiales"
+        pl: Zbiór
 "730": 
   label:
     it: Titolo uniforme alternativo
@@ -362,6 +411,7 @@ doc_templates:
     de: Zusätzlicher Titel
     en: Additional title
     es: Título adicional
+    pl: Dodatkowy tytuł
   fields:
     a: 
       label: 
@@ -370,6 +420,7 @@ doc_templates:
         de: Zusätzlicher Titel
         en: Additional title
         es: Título adicional
+        pl: Dodatkowy tytuł
 "760": 
   label: 
     it: Fa parte di
@@ -377,6 +428,7 @@ doc_templates:
     de: In
     en: Item part of
     es: "Ítem integrante de"
+    pl: Jest częścią…
   fields: 
     g: 
       label: 
@@ -385,6 +437,7 @@ doc_templates:
         de: Jahrgang, Seite
         en: Volume, year, page
         es: "Volumen, año, página"
+        pl: Wolumen, rok, strona
     t: 
       label: 
         it: Titolo del periodico o della miscellanea
@@ -392,6 +445,7 @@ doc_templates:
         de: "In: "
         en: "Title of periodical, book, or series"
         es: "Título del periódico, libro o serie"
+        pl: Tytuł czasopisma, książki lub serii
 "780": 
   label: 
     it: Titolo precedente
@@ -399,6 +453,7 @@ doc_templates:
     de: Früherer Eintrag
     en: Preceding entry
     es: Entrada anterior
+    pl: Poprzedzający wpis
   fields: 
     t: 
       label: 
@@ -407,6 +462,7 @@ doc_templates:
         de: Früherer Eintrag
         en: Preceding entry
         es: Entrada anterior
+        pl: Poprzedzający wpis
 "785": 
   label: 
     it: Titolo successivo
@@ -414,6 +470,7 @@ doc_templates:
     de: Folgeeintrag
     en: Succeeding entry
     es: Entrada siguiente
+    pl: Kolejny wpis
   fields: 
     t: 
       label: 
@@ -422,6 +479,7 @@ doc_templates:
         de: Folgeeintrag
         en: Succeeding entry
         es: Entrada siguiente
+        pl: Kolejny wpis
 main: 
   label: 
     it: Campi principali
@@ -429,6 +487,7 @@ main:
     de: Haupteintragungen
     en: Main entry fields
     es: Campos principales
+    pl: Główne pola edycji
 codes: 
   label: 
     it: Numeri e codici
@@ -436,6 +495,7 @@ codes:
     de: Nummern und Codes
     en: Numbers and code fields
     es: "Números y códigos"
+    pl: Pola liczb i kodów
 control: 
   label: 
     fr: "Champs de contrôle"
@@ -443,6 +503,7 @@ control:
     it: Campi di controllo
     en: Control Fields
     es: Campos de control
+    pl: Pola kontrolne
 notes: 
   label: 
     it: Note
@@ -450,6 +511,7 @@ notes:
     de: Fussnoten
     en: Note fields
     es: Notas
+    pl: Pola uwag
 other: 
   label: 
     it: Varia
@@ -457,6 +519,7 @@ other:
     de: Verschiedenes
     en: Miscellaneous
     es: Varios
+    pl: Pozostałe
 administration: 
   label: 
     it: Amministrazione
@@ -464,6 +527,7 @@ administration:
     de: Administration
     en: Administration
     es: Administración
+    pl: Administracja
 ed: 
   label: 
     it: Edizione
@@ -471,6 +535,7 @@ ed:
     de: Edition
     en: Edition
     es: Edición
+    pl: Edycja
 H: 
   label: 
     it: Curatore
@@ -478,6 +543,7 @@ H:
     de: Herausgeber
     en: Editor
     es: Editor
+    pl: Edytor
 added_series: 
   label: 
     it: Note secondarie sul titolo sovraordinato
@@ -485,6 +551,7 @@ added_series:
     de: Nebeneintragungen Gesamttitel
     en: Series added entry fields
     es: "Entradas adicionales de la serie"
+    pl: Dodatkowe wpisy tytułów
 administration: 
   label: 
     it: Amministrazione
@@ -492,6 +559,7 @@ administration:
     de: Administration
     en: Administration
     es: Administración
+    pl: Administracja
 arr: 
   label: 
     it: Arrangiatore
@@ -499,6 +567,7 @@ arr:
     de: Bearbeiter
     en: Arranger
     es: Arreglador
+    pl: Aranżer
 art: 
   label: 
     it: Scenografo
@@ -506,6 +575,7 @@ art:
     de: "Bühnenbildner"
     en: Artist
     es: Artista
+    pl: Artysta
 asn: 
   label: 
     it: Altro nome
@@ -513,6 +583,7 @@ asn:
     de: Behandelte Person
     en: Associated name
     es: Nombre asociado
+    pl: Powiązana osoba
 aut: 
   label: 
     it: "Autore addizionale"
@@ -520,6 +591,7 @@ aut:
     de: "Zusätzlicher Autor"
     en: "Additional author"
     es: "Autor adicional"
+    pl: Dodatkowy autor
 bibliographical_reference: 
   label: 
     it: Bibliografia
@@ -527,6 +599,7 @@ bibliographical_reference:
     de: Literatur
     en: References
     es: Referencias
+    pl: Odniesienia
 bnd: 
   label: 
     it: Rilegatore
@@ -534,6 +607,7 @@ bnd:
     de: Buchbinder
     en: Binder
     es: Encuadernador
+    pl: Introligator
 bsl: 
   label: 
     it: Libraio musicale
@@ -541,6 +615,7 @@ bsl:
     de: "Musikalienhändler"
     en: Bookseller
     es: Librero
+    pl: Księgarz
 ccp: 
   label: 
     it: Autore della fonte letteraria
@@ -548,6 +623,7 @@ ccp:
     de: Autor der Textvorlage
     en: Conceptor
     es: Autor de la idea
+    pl: Autor koncepcji
 chr: 
   label: 
     it: Coreografo
@@ -555,6 +631,7 @@ chr:
     de: Choreograph
     en: Choreographer
     es: Coreógrafo
+    pl: Choreograf
 clb: 
   label: 
     it: Autore secondario
@@ -562,6 +639,7 @@ clb:
     de: Mitverfasser
     en: Collaborator
     es: Colaborador
+    pl: Współtwórca
 cmp: 
   label: 
     it: Compositore / Compositore secondario
@@ -569,6 +647,7 @@ cmp:
     de: Komponist / Mitkomponist
     en: Composer
     es: Compositor / Co-compositor
+    pl: Kompozytor
 cnd: 
   label: 
     it: Direttore d'orchestra
@@ -576,6 +655,7 @@ cnd:
     de: Dirigent
     en: Conductor
     es: Director musical
+    pl: Dyrygent
 cns: 
   label: 
     it: Censore
@@ -583,6 +663,7 @@ cns:
     de: Zensor
     en: Censor
     es: Censor
+    pl: Cenzor
 codes: 
   label: 
     it: Numeri e codici
@@ -590,6 +671,7 @@ codes:
     de: Nummern und Codes
     en: Numbers and code fields
     es: "Números y códigos"
+    pl: Pola liczb i kodów
 com: 
   label: 
     it: Compilatore
@@ -597,6 +679,7 @@ com:
     de: Kompilator
     en: Compiler
     es: Compilador
+    pl: Kompilator
 content: 
   label: 
     it: Descrizione del contenuto
@@ -604,6 +687,7 @@ content:
     de: Inhaltsangaben
     en: Content description
     es: "Descripción del contenido"
+    pl: Opis źródła
 control: 
   label: 
     fr: "Champs de contrôle"
@@ -611,6 +695,7 @@ control:
     it: Campi di controllo
     en: Control Fields
     es: Campos de control
+    pl: Pola kontrolne
 cst: 
   label: 
     it: Costumista
@@ -618,6 +703,7 @@ cst:
     de: "Kostümbildner"
     en: Costume designer
     es: Vestuarista
+    pl: Projektant kostiumów
 date: 
   label: 
     it: Date
@@ -625,6 +711,7 @@ date:
     de: Daten
     en: Dates
     es: Fechas
+    pl: Daty
 description: 
   label: 
     it: Campi per la descrizione fisica
@@ -632,6 +719,7 @@ description:
     de: "Felder für die physische Beschreibung"
     en: Physical description, etc. fields
     es: "Campos para la descripción Material"
+    pl: Opis fizyczny itp. pola
 diplomatic_title: 
   label: 
     it: Titolo diplomatico
@@ -639,6 +727,7 @@ diplomatic_title:
     de: Diplomatischer Titel
     en: Diplomatic title
     es: "Título diplomático"
+    pl: Tytuł dyplomatyczny
 dnc: 
   label: 
     it: Ballerino
@@ -646,6 +735,7 @@ dnc:
     de: "Tänzer"
     en: Dancer
     es: "Bailarín(a)"
+    pl: Tancerz
 dnr: 
   label: 
     it: Donatore
@@ -653,6 +743,7 @@ dnr:
     de: Donator
     en: Donor
     es: Donante
+    pl: Donator
 dte: 
   label: 
     it: Dedicatario
@@ -660,6 +751,7 @@ dte:
     de: "Widmungsträger"
     en: Dedicatee
     es: Dedicatario
+    pl: Adresat dedykacji
 dub: 
   label: 
     it: Dubbio
@@ -667,6 +759,7 @@ dub:
     de: Zweifelhaft
     en: Dubious
     es: Dudoso
+    pl: Wątpliwe
 edition: 
   label: 
     it: Campi per i dati editoriali
@@ -674,6 +767,7 @@ edition:
     de: Ausgabe- und Impressumsfelder
     en: Edition, imprint, etc. fields
     es: "Campos para los datos editoriales"
+    pl: Edycja, stopka wydawnicza itp. pola
 edt: 
   label: 
     it: Curatore
@@ -681,6 +775,7 @@ edt:
     de: Herausgeber
     en: Editor
     es: "Editor (curador)/Editorial"
+    pl: Edytor
 egr: 
   label: 
     it: Incisore
@@ -688,6 +783,7 @@ egr:
     de: Stecher
     en: Engraver
     es: Grabador
+    pl: Rytownik
 fmo: 
   label: 
     it: Proprietario precedente
@@ -695,6 +791,7 @@ fmo:
     de: Vorbesitzer
     en: Former owner
     es: Propietario anterior
+    pl: Poprzedni właściciel
 holding: 
   label: 
     it: Informazioni sul fondo
@@ -702,6 +799,7 @@ holding:
     de: Bestandsdaten
     en: Holdings, location, etc. fields
     es: "Campos de los ejemplares y su ubicación"
+    pl: Pola egzemplarza, lokalizacji itp.
 ill: 
   label: 
     it: Disegnatore
@@ -709,6 +807,7 @@ ill:
     de: Illustrator
     en: Illustrator
     es: Ilustrador
+    pl: Ilustrator
 incipit: 
   label: 
     it: Incipit
@@ -716,6 +815,7 @@ incipit:
     de: Incipits
     en: Incipits
     es: Íncipits
+    pl: Incipity
 itr: 
   label: 
     it: Strumentista
@@ -723,6 +823,7 @@ itr:
     de: Instrumentalist
     en: Instrumentalist
     es: Instrumentista
+    pl: Instrumentalista
 lbt: 
   label: 
     it: Librettista
@@ -730,6 +831,7 @@ lbt:
     de: Librettist
     en: Librettist
     es: Libretista
+    pl: Autor libretta
 library: 
   label: 
     it: Biblioteca
@@ -737,6 +839,7 @@ library:
     de: Besitzerangaben
     en: Library information
     es: "Información del repositorio"
+    pl: Informacje o bibliotece
 linkage: 
   label: 
     it: Collegamento
@@ -744,6 +847,7 @@ linkage:
     de: Verlinkung
     en: Linkage
     es: Vínculos
+    pl: Powiązanie
 linking: 
   label: 
     it: Note su collegamenti
@@ -751,6 +855,7 @@ linking:
     de: "Verknüpfungseintragungen"
     en: Linking entry fields
     es: "Campos de entrada de vínculos"
+    pl: Łączenie pól wpisów
 ltg: 
   label: 
     it: Litografo
@@ -758,6 +863,7 @@ ltg:
     de: Lithograph
     en: Lithograph
     es: Litógrafo
+    pl: Litograf
 lyr: 
   label: 
     it: Poeta
@@ -765,6 +871,7 @@ lyr:
     de: Textdichter
     en: Lyricist
     es: Letrista
+    pl: Autor słów
 main: 
   label: 
     it: Campi principali
@@ -772,6 +879,7 @@ main:
     de: Haupteintragungen
     en: Main entry fields
     es: Campos principales
+    pl: Główne pola edycji
 notes: 
   label: 
     it: Note
@@ -779,6 +887,7 @@ notes:
     de: Fussnoten
     en: Note fields
     es: Notas
+    pl: Pola uwag
 other: 
   label: 
     it: Varia
@@ -786,6 +895,7 @@ other:
     de: Verschiedenes
     en: Miscellaneous
     es: Varios
+    pl: Pozostałe
 oth: 
   label: 
     it: Altra funzione
@@ -793,6 +903,7 @@ oth:
     de: Sonstige Funktion
     en: Other function
     es: "Otra función"
+    pl: Inna funkcja
 otm: 
   label: 
     it: Organizzatore
@@ -800,6 +911,7 @@ otm:
     de: Veranstalter
     en: Event organizer
     es: "Organizador del evento"
+    pl: Organizator wydarzenia
 pat: 
   label: 
     it: Committente
@@ -807,6 +919,7 @@ pat:
     de: "Mäzen/Auftraggeber"
     en: Patron
     es: Comitente
+    pl: Sponsor
 pbl: 
   label: 
     it: Editore
@@ -814,6 +927,7 @@ pbl:
     de: Verleger
     en: Publisher
     es: "Editor (publicador)/Editorial (publicadora)"
+    pl: Wydawca
 performance: 
   label: 
     it: Rappresentazioni
@@ -821,6 +935,7 @@ performance:
     de: "Aufführungen"
     en: Performances
     es: Interpretaciones
+    pl: Wykonania
 physical_description: 
   label: 
     it: Descrizione fisica
@@ -828,6 +943,7 @@ physical_description:
     de: Physische Beschreibung
     en: Physical description
     es: "Descripción física"
+    pl: Opis fizyczny
 ppm: 
   label: 
     it: Fabbricante di carta
@@ -835,6 +951,7 @@ ppm:
     de: Papierhersteller
     en: Paper maker
     es: "Fabricante de papel"
+    pl: Producent papieru
 prd: 
   label: 
     it: Personale alla produzione
@@ -842,6 +959,7 @@ prd:
     de: Produktionspersonal
     en: Production personnel
     es: "Personal de producción"
+    pl: Personel produkcyjny
 prf: 
   label: 
     it: Interprete
@@ -849,6 +967,7 @@ prf:
     de: Interpret
     en: Performer
     es: "Intérprete"
+    pl: Wykonawca
 provenance: 
   label: 
     it: Provenienza
@@ -856,6 +975,7 @@ provenance:
     de: Provenienz
     en: Provenance
     es: Procedencia
+    pl: Pochodzenie
 prt: 
   label: 
     it: Stampatore
@@ -863,6 +983,7 @@ prt:
     de: Drucker
     en: Printer
     es: Impresor
+    pl: Drukarnia
 scr: 
   label: 
     it: Copista
@@ -870,6 +991,7 @@ scr:
     de: Schreiber
     en: Scribe
     es: Copista
+    pl: Kopista
 series: 
   label: 
     it: Informazioni sul titolo sovraordinato
@@ -877,6 +999,7 @@ series:
     de: Gesamttitelangaben
     en: Series statement fields
     es: "Información de serie"
+    pl: Pola uwag do serii
 show_admin: 
   label: 
     it: Amministrazione
@@ -884,6 +1007,7 @@ show_admin:
     de: Administration
     en: Administration
     es: Administración
+    pl: Administracja
 show_content: 
   label: 
     it: Contenuto
@@ -891,6 +1015,7 @@ show_content:
     de: Inhalt
     en: Content
     es: Contenido
+    pl: Zawartość
 show_details: 
   label: 
     it: Descrizione fisica
@@ -898,6 +1023,7 @@ show_details:
     de: Physische Beschreibung
     en: Source details
     es: "Detalles de la fuente"
+    pl: Dane źródła
 show_distribution: 
   label: 
     it: Organico
@@ -905,6 +1031,7 @@ show_distribution:
     de: Besetzung
     en: Distribution
     es: "Distribución"
+    pl: Dystrybucja
 show_information: 
   label: 
     it: Note
@@ -912,6 +1039,7 @@ show_information:
     de: Anmerkungen
     en: Further information
     es: "Más información"
+    pl: Dalsze informacje
 show_library: 
   label: 
     it: Biblioteca
@@ -919,6 +1047,7 @@ show_library:
     de: Besitzerangaben
     en: Library information
     es: "Información del repositorio"
+    pl: Informacje o bibliotece
 show_links: 
   label: 
     it: Titoli connessi
@@ -926,6 +1055,7 @@ show_links:
     de: Verlinkungen
     en: Related Titles
     es: "Títulos relacionados"
+    pl: Powiązane tytuły
 show_references: 
   label: 
     it: Bibliografia
@@ -933,6 +1063,7 @@ show_references:
     de: Literatur
     en: References
     es: "Bibliografía"
+    pl: Odniesienia
 show_resources: 
   label: 
     it: Collegamenti
@@ -940,6 +1071,7 @@ show_resources:
     de: Links
     en: Related resources
     es: Recursos relacionados
+    pl: Powiązane zasoby
 show_summary: 
   label: 
     it: Riassunto
@@ -947,6 +1079,7 @@ show_summary:
     de: Zusammenfassung
     en: Summary
     es: Resumen
+    pl: Podsumowanie
 show_terms: 
   label: 
     it: Descrittori
@@ -954,6 +1087,7 @@ show_terms:
     de: Deskriptoren
     en: Index terms
     es: "Términos de indexación"
+    pl: Pojęcia indeksowane
 subject: 
   label: 
     it: Note sul titolo uniforme
@@ -961,6 +1095,7 @@ subject:
     de: Schlagworteintragungen
     en: Subject access fields
     es: "Campos de los puntos de acceso"
+    pl: Pola haseł tematycznych
 title: 
   label: 
     it: Titolo e campi correlati
@@ -968,6 +1103,7 @@ title:
     de: Titel- und damit verbundene Felder
     en: Title and title-related fields
     es: "Título y campos relacionados"
+    pl: Tytuł i pola związane z tytułem
 trl: 
   label: 
     it: Traduttore
@@ -975,6 +1111,7 @@ trl:
     de: "Übersetzer"
     en: Translator
     es: Traductor
+    pl: Tłumacz
 voc: 
   label: 
     it: Cantante
@@ -982,6 +1119,7 @@ voc:
     de: "Sänger"
     en: Vocalist
     es: Cantante
+    pl: Wokalista
 01_codes_artistic: 
   label: 
     it: Autore
@@ -989,6 +1127,7 @@ voc:
     de: Verfasser
     en: Artistic production
     es: Producción artística
+    pl: Autor produkcji artystycznej
 02_codes_performing: 
   label: 
     it: Partecipanti
@@ -996,6 +1135,7 @@ voc:
     de: Mitwirkende
     en: Performance
     es: Interpretación
+    pl: Wykonanie
 03_codes_technical: 
   label: 
     it: Produttore
@@ -1003,6 +1143,7 @@ voc:
     de: Hersteller
     en: Technical production
     es: "Producción técnica"
+    pl: Produkcja techniczna
 04_codes_other: 
   label: 
     it: Altri
@@ -1010,6 +1151,7 @@ voc:
     de: Weitere
     en: Other
     es: Otro
+    pl: Pozostałe
 "300": 
   label: 
     it: Materiale
@@ -1017,6 +1159,7 @@ voc:
     de: Material
     en: Physical Description
     es: "Descripción física"
+    pl: Opis fizyczny
   fields: 
     a: 
       label: 
@@ -1025,6 +1168,7 @@ voc:
         de: Umfang
         en: Extent
         es: "Extensión"
+        pl: Zakres
 "337": 
   label: 
     it: Mezzo fisico
@@ -1032,6 +1176,7 @@ voc:
     de: Physisches Medium 
     en: Media type
     es: "Tipo de medio físico"
+    pl: Rodzaj nośnika
   fields: 
     a: 
       label: 
@@ -1040,6 +1185,7 @@ voc:
         de: Physisches Medium 
         en: Media type
         es: "Tipo de medio físico"
+        pl: Rodzaj nośnika
 "500": 
   label: 
     it: Osservazioni
@@ -1047,6 +1193,7 @@ voc:
     de: Bemerkungen
     en: General note
     es: Nota general
+    pl: Uwaga ogólna
   fields: 
     a: 
       label: 
@@ -1055,6 +1202,7 @@ voc:
         de: Bemerkungen
         en: General note
         es: Nota general
+        pl: Uwaga ogólna
       edit_label: 
       en: ""
 "502": 
@@ -1064,6 +1212,7 @@ voc:
     de: Hinweis zur Dissertation
     en: Dissertation note
     es: "Nota de disertación"
+    pl: Uwaga do dysertacji
   fields: 
     a: 
       label: 
@@ -1072,6 +1221,7 @@ voc:
         de: Hinweis zur Dissertation
         en: Dissertation note
         es: "Nota de disertación"
+        pl: Uwaga do dysertacji
       comment: "NEW IN 2018"
 "520": 
   label: 
@@ -1080,6 +1230,7 @@ voc:
     de: Bestandsangabe
     en: Contents note
     es: "Nota sobre el contenido"
+    pl: Uwaga do zawartości
   fields: 
     a: 
       label: 
@@ -1088,6 +1239,7 @@ voc:
         de: Bestandsangabe
         en: Contents note
         es: "Nota sobre el contenido"
+        pl: Uwaga do zawartości
       edit_label: 
         en: ""
 "599": 
@@ -1097,6 +1249,7 @@ voc:
     de: Interne Fussnoten
     en: Internal note
     es: Nota interna
+    pl: Uwaga wewnętrzna
   fields: 
     a: 
       label: 
@@ -1105,6 +1258,7 @@ voc:
         de: Interne Fussnoten
         en: Internal note
         es: Nota interna
+        pl: Uwaga wewnętrzna
       edit_label: 
         en: ""
 "650": 
@@ -1114,6 +1268,7 @@ voc:
     de: Schlagworteintragung
     en: Subject heading
     es: Descriptor
+    pl: Słowo kluczowe
   fields: 
     v: 
       label: 
@@ -1122,6 +1277,7 @@ voc:
         de: Unterteilung nach der Form
         en: Form subdivision
         es: "Subdivisión de forma"
+        pl: Dalszy podział formularza
     a: 
       label: 
         it: Parola chiave
@@ -1129,6 +1285,7 @@ voc:
         fr: Sujet
         en: Subject heading
         es: Decriptor
+        pl: Słowo kluczowe
     x: 
       label: 
         it: Suddivisione generale
@@ -1136,6 +1293,7 @@ voc:
         de: Allgemeine Unterteilung
         en: Subheading General subdivision
         es: "Subdivisión general"
+        pl: Ogólny dalszy podział podnagłówków
     y: 
       label: 
         it: Suddivisione cronologica
@@ -1143,6 +1301,7 @@ voc:
         de: Chronologische Unterteilung
         en: Chronological subdivision
         es: "Subdivisión cronológica"
+        pl: Dalszy podział chronologiczny
     z: 
       label: 
         it: Suddivisione geografica
@@ -1150,6 +1309,7 @@ voc:
         de: Geographische Unterteilung
         en: Geographic subdivision
         es: "Subdivisión geográfica"
+        pl: Dalszy podział geograficzny
 "651": 
   label: 
     it: Luogo
@@ -1157,6 +1317,7 @@ voc:
     de: "Ort"
     en: Related place
     es: Lugar relacionado
+    pl: Powiązane miejsce
   fields: 
     a: 
       label: 
@@ -1165,6 +1326,7 @@ voc:
         de: "Ort"
         en: Place
         es: Lugar
+        pl: Miejsce
       edit_label: 
         en: ""
 "856": 
@@ -1174,6 +1336,7 @@ voc:
     de: Elektronische Lokalisierung und Zugriff
     en: External resource
     es: Recurso externo
+    pl: Zasób zewnętrzny
   fields: 
     z: 
       label: 
@@ -1182,6 +1345,7 @@ voc:
         de: "Für das Publikum bestimmte Fussnote"
         en: Note about external resource
         es: Nota sobre recurso externo
+        pl: Uwaga o zasobie zewnętrznym
     u: 
       label: 
         it: Risorsa esterna URL
@@ -1189,6 +1353,7 @@ voc:
         de: Uniform Resource Identifier URL
         en: External resource URL
         es: URL del recurso externo
+        pl: URL zasobu zewnętrznego
 # Marc Language codes
 cat: 
   label: 
@@ -1197,6 +1362,7 @@ cat:
     de: Katalanisch
     en: Catalan 
     es: Catalán
+    pl: Kataloński
 cze: 
   label: 
     it: Ceco
@@ -1204,6 +1370,7 @@ cze:
     de: Tschechisch
     en: Czech
     es: Checo
+    pl: Czeski
 dan: 
   label: 
     it: Danese
@@ -1211,6 +1378,7 @@ dan:
     de: Dänisch
     en: Danish
     es: "Danés"
+    pl: Duński
 dut: 
   label: 
     it: Olandese
@@ -1218,6 +1386,7 @@ dut:
     de: Niederländisch
     en: Dutch
     es: "Holandés"
+    pl: Holenderski
 eng: 
   label: 
     it: Inglese
@@ -1225,6 +1394,7 @@ eng:
     de: Englisch
     en: English
     es: "Inglés"
+    pl: Angielski
 fre: 
   label: 
     it: Francese
@@ -1232,6 +1402,7 @@ fre:
     de: Französisch
     en: French
     es: "Francés"
+    pl: Francuski
 ger: 
   label: 
     it: Tedesco
@@ -1239,6 +1410,7 @@ ger:
     de: Deutsch
     en: German
     es: "Alemán"
+    pl: Niemiecki
 grc: 
   label: 
     it: Greco, antico (fino al 1453)
@@ -1246,6 +1418,7 @@ grc:
     de: Altgriechisch (bis 1453)
     en: Greek, Ancient (to 1453)
     es: Griego, Antiguo (hasta 1453)
+    pl: Grecki, historyczny (do 1453 r.)
 gre:  
   label: 
     it: Greco, moderno (1453-)
@@ -1253,6 +1426,7 @@ gre:
     de: Neugriechisch (1453-)
     en: Greek, Modern (1453-)
     es: Griego, Moderno (1453-)
+    pl: Grecki, współczesny (1453-)
 gsw: 
   label: 
     it: Svizzero tedesco 
@@ -1260,6 +1434,7 @@ gsw:
     de: Schweizerdeutsch
     en: Swiss German
     es: "Suizo alemán"
+    pl: Niemiecki szwajcarski
 heb: 
   label: 
     it: Ebreo
@@ -1267,6 +1442,7 @@ heb:
     de: Hebräisch
     en: Hebrew
     es: "Hebreo"
+    pl: Hebrajski
 hrv: 
   label: 
     it: Croato
@@ -1274,6 +1450,7 @@ hrv:
     de: Kroatisch
     en: Croatian
     es: "Croata"
+    pl: Chorwacki
 hun: 
   label: 
     it: Ungherese
@@ -1281,6 +1458,7 @@ hun:
     de: Ungarisch
     en: Hungarian
     es: "Húngaro"
+    pl: Węgierski
 ita: 
   label: 
     it: Italiano
@@ -1288,6 +1466,7 @@ ita:
     de: Italienisch
     en: Italian
     es: "Italiano"
+    pl: Włoski
 jpn: 
   label: 
     it: Giapponese
@@ -1295,6 +1474,7 @@ jpn:
     de: Japanisch
     en: Japanese
     es: "Japonés"
+    pl: Japoński
 kor: 
   label: 
     it: Coreano
@@ -1302,6 +1482,7 @@ kor:
     de: Koreanisch
     en: Korean
     es: "Coreano"
+    pl: Koreański
 lat: 
   label: 
     it: Latino
@@ -1309,6 +1490,7 @@ lat:
     de: Lateinisch
     en: Latin
     es: "Latín"
+    pl: Łaciński
 pol: 
   label: 
     it: Polacco
@@ -1316,6 +1498,7 @@ pol:
     de: Polnisch
     en: Polish
     es: Polaco
+    pl: Polski
 por: 
   label: 
     it: Portoghese
@@ -1323,6 +1506,7 @@ por:
     de: Portugisisch
     en: Portuguese
     es: "Portugués"
+    pl: Portugalski
 rus: 
   label: 
     it: Russo
@@ -1330,6 +1514,7 @@ rus:
     de: Russisch
     en: Russian
     es: Ruso
+    pl: Rosyjski
 slo: 
   label: 
     it: Slovacco
@@ -1337,6 +1522,7 @@ slo:
     de: Slowakisch
     en: Slovak
     es: Eslovaco
+    pl: Słowacki
 slv: 
   label: 
     it: Sloveno
@@ -1344,6 +1530,7 @@ slv:
     de: Slowenisch
     en: Slovenian
     es: Eslovenio
+    pl: Słoweński
 spa: 
   label: 
     it: Spagnolo
@@ -1351,6 +1538,7 @@ spa:
     de: Spanisch
     en: Spanish
     es: "Español"
+    pl: Hiszpański
 srp: 
   label: 
     it: Serbo
@@ -1358,6 +1546,7 @@ srp:
     de: Serbisch
     en: Serbian
     es: Serbio
+    pl: Serbski
 swe: 
   label: 
     it: Svedese
@@ -1365,6 +1554,7 @@ swe:
     de: Schwedisch
     en: Swedish
     es: Sueco
+    pl: Szwedzki
 zho:
   label:
     it: Cinese
@@ -1372,6 +1562,7 @@ zho:
     de: Chinesisch
     en: Chinese
     es: Chino
+    pl: Chiński
 zxx: 
   label: 
     it: Nessun contesto linguistico
@@ -1379,6 +1570,7 @@ zxx:
     de: ohne Sprache
     en: No linguistic content
     es: "Sin contenido lingüístico"
+    pl: Brak zawartości językowej
 #Country Codes
 "XC-DZ":
   label:
@@ -1387,6 +1579,7 @@ zxx:
     de: "Algeria"
     en: "Algeria"
     es: "Argelia"
+    pl: Algieria
 "XA-AD":
   label:
     it: "ANDORRA"
@@ -1394,6 +1587,7 @@ zxx:
     de: "Andorra"
     en: "Andorra"
     es: "ANDORRA"
+    pl: Andora
 "XD-AR":
   label:
     it: "Argentina"
@@ -1401,6 +1595,7 @@ zxx:
     de: "Argentina"
     en: "Argentina"
     es: "Argentina"
+    pl: Argentyna
 "XB-AM":
   label:
     it: "Armenia"
@@ -1408,6 +1603,7 @@ zxx:
     de: "Armenia"
     en: "Armenia"
     es: "Armenia"
+    pl: Armenia
 "XE-AU":
   label:
     it: "Australia"
@@ -1415,6 +1611,7 @@ zxx:
     de: "Australia"
     en: "Australia"
     es: "Australia"
+    pl: Australia
 "XA-AT":
   label:
     it: "Austria"
@@ -1422,6 +1619,7 @@ zxx:
     de: "Austria"
     en: "Austria"
     es: "Austria"
+    pl: Austria
 "XA-BE":
   label:
     it: "Belgio"
@@ -1429,6 +1627,7 @@ zxx:
     de: "Belgium"
     en: "Belgium"
     es: "Bélgica"
+    pl: Belgia
 "XC-BJ":
   label:
     it: "Benin"
@@ -1436,6 +1635,7 @@ zxx:
     de: "Benin"
     en: "Benin"
     es: "Benín"
+    pl: Benin
 "XD-BR":
   label:
     it: "Brasile"
@@ -1443,6 +1643,7 @@ zxx:
     de: "Brazil"
     en: "Brazil"
     es: "Brasil"
+    pl: Brazylia
 "XA-BG":
   label:
     it: "Bulgaria"
@@ -1450,6 +1651,7 @@ zxx:
     de: "Bulgaria"
     en: "Bulgaria"
     es: "Bulgaria"
+    pl: Bułgaria
 "XB-KH":
   label:
     it: "Cambogia"
@@ -1457,6 +1659,7 @@ zxx:
     de: "Cambodia"
     en: "Cambodia"
     es: "Camboya"
+    pl: Kambodża
 "XD-CA":
   label:
     it: "Canada"
@@ -1464,6 +1667,7 @@ zxx:
     de: "Canada"
     en: "Canada"
     es: "Canadá"
+    pl: Kanada
 "XD-CL":
   label:
     it: "Chile"
@@ -1471,6 +1675,7 @@ zxx:
     de: "Chile"
     en: "Chile"
     es: "Chile"
+    pl: Chile
 "XB-CN":
   label:
     it: "Cina"
@@ -1478,6 +1683,7 @@ zxx:
     de: "China"
     en: "China"
     es: "China"
+    pl: Chiny
 "XD-CO":
   label:
     it: "Colombia"
@@ -1485,6 +1691,7 @@ zxx:
     de: "Colombia"
     en: "Colombia"
     es: "Colombia"
+    pl: Kolumbia
 "XA-HR":
   label:
     it: "Croazia"
@@ -1492,6 +1699,7 @@ zxx:
     de: "Croatia"
     en: "Croatia"
     es: "Croacia"
+    pl: Chorwacja
 
 "XD-CU":
   label:
@@ -1500,6 +1708,7 @@ zxx:
     de: "Cuba"
     en: "Cuba"
     es: "Cuba"
+    pl: Kuba
 "XA-CZ":
   label:
     it: "Repubblica ceca"
@@ -1507,6 +1716,7 @@ zxx:
     de: "Czech Republic"
     en: "Czech Republic"
     es: "República Checa"
+    pl: Czechy
 "XA-DK":
   label:
     it: "Danimarca"
@@ -1514,6 +1724,7 @@ zxx:
     de: "Denmark"
     en: "Denmark"
     es: "Dinamarca"
+    pl: Dania
 "XC-EG":
   label:
     it: "Egitto"
@@ -1521,6 +1732,7 @@ zxx:
     de: "Egypt"
     en: "Egypt"
     es: "Egipto"
+    pl: Egipt
 "XA-EE":
   label:
     it: "Estonia"
@@ -1528,6 +1740,7 @@ zxx:
     de: "Estonia"
     en: "Estonia"
     es: "Estonia"
+    pl: Estonia
 "XA-FI":
   label:
     it: "Finlandia"
@@ -1535,6 +1748,7 @@ zxx:
     de: "Finland"
     en: "Finland"
     es: "Finlandia"
+    pl: Finlandia
 "XA-FR":
   label:
     it: "Francia"
@@ -1542,6 +1756,7 @@ zxx:
     de: "France"
     en: "France"
     es: "Francia"
+    pl: Francja
 "XA-DE":
   label:
     it: "Germania"
@@ -1549,6 +1764,7 @@ zxx:
     de: "Germany"
     en: "Germany"
     es: "Alemania"
+    pl: Niemcy
 "XA-GR":
   label:
     it: "Grecia"
@@ -1556,6 +1772,7 @@ zxx:
     de: "Greece"
     en: "Greece"
     es: "Grecia"
+    pl: Grecja
 "XA-VA":
   label:
     it: "Santa Sede"
@@ -1563,6 +1780,7 @@ zxx:
     de: "Holy See"
     en: "Holy See"
     es: "Santa Sede"
+    pl: Watykan
 "XD-HN":
   label:
     it: "Honduras"
@@ -1570,6 +1788,7 @@ zxx:
     de: "Honduras"
     en: "Honduras"
     es: "Honduras"
+    pl: Honduras
 "XA-HU":
   label:
     it: "Ungheria"
@@ -1577,6 +1796,7 @@ zxx:
     de: "Hungary"
     en: "Hungary"
     es: "Hungría"
+    pl: Węgry
 "XA-IS":
   label:
     it: "Islanda"
@@ -1584,6 +1804,7 @@ zxx:
     de: "Iceland"
     en: "Iceland"
     es: "Islandia"
+    pl: Islandia
 "XB-IN":
   label:
     it: "India"
@@ -1591,6 +1812,7 @@ zxx:
     de: "India"
     en: "India"
     es: "India"
+    pl: Indie
 "XB-IR":
   label:
     it: "Iran, Repubblica Islamica dell'"
@@ -1598,6 +1820,7 @@ zxx:
     de: "Iran, Islamic Republic of"
     en: "Iran, Islamic Republic of"
     es: "Irán, República Islámica de"
+    pl: Iran, Republika Islamska
 "XA-IE":
   label:
     it: "Irlanda"
@@ -1605,6 +1828,7 @@ zxx:
     de: "Ireland"
     en: "Ireland"
     es: "Irlanda"
+    pl: Irlandia
 "XB-IL":
   label:
     it: "Israele"
@@ -1612,6 +1836,7 @@ zxx:
     de: "Israel"
     en: "Israel"
     es: "Israel"
+    pl: Izrael
 "XA-IT":
   label:
     it: "Italia"
@@ -1619,6 +1844,7 @@ zxx:
     de: "Italy"
     en: "Italy"
     es: "Italia"
+    pl: Włochy
 "XB-JP":
   label:
     it: "Giappone"
@@ -1626,6 +1852,7 @@ zxx:
     de: "Japan"
     en: "Japan"
     es: "Japón"
+    pl: Japonia
 "XB-KR":
   label:
     it: "Corea, Repubblica di"
@@ -1633,6 +1860,7 @@ zxx:
     de: "Korea, Republic of"
     en: "Korea, Republic of"
     es: "Corea, República de"
+    pl: Korea, Republika
 "XA-LV":
   label:
     it: "Lettonia"
@@ -1640,6 +1868,7 @@ zxx:
     de: "Latvia"
     en: "Latvia"
     es: "Letonia"
+    pl: Łotwa
 "XA-LT":
   label:
     it: "Lituania"
@@ -1647,6 +1876,7 @@ zxx:
     de: "Lithuania"
     en: "Lithuania"
     es: "Lituania"
+    pl: Litwa
 "XA-LU":
   label:
     it: "Lussemburgo"
@@ -1654,6 +1884,7 @@ zxx:
     de: "Luxembourg"
     en: "Luxembourg"
     es: "Luxemburgo"
+    pl: Luksemburg
 "XA-MT":
   label:
     it: "Malta"
@@ -1661,6 +1892,7 @@ zxx:
     de: "Malta"
     en: "Malta"
     es: "Malta"
+    pl: Malta
 "XD-MX":
   label:
     it: "Messico"
@@ -1668,6 +1900,7 @@ zxx:
     de: "Mexico"
     en: "Mexico"
     es: "México"
+    pl: Meksyk
 "XA-ME":
   label:
     it: "Montenegro"
@@ -1675,6 +1908,7 @@ zxx:
     de: "Montenegro"
     en: "Montenegro"
     es: "Montenegro"
+    pl: Czarnogóra
 "XA-NL":
   label:
     it: "Paesi Bassi"
@@ -1682,6 +1916,7 @@ zxx:
     de: "Netherlands"
     en: "Netherlands"
     es: "Países Bajos"
+    pl: Niderlandy
 "XE-NZ":
   label:
     it: "Nuova Zelanda"
@@ -1689,6 +1924,7 @@ zxx:
     de: "New Zealand"
     en: "New Zealand"
     es: "Nueva Zelanda"
+    pl: Nowa Zelandia
 "XA-NO":
   label:
     it: "Norvegia"
@@ -1696,6 +1932,7 @@ zxx:
     de: "Norway"
     en: "Norway"
     es: "Noruega"
+    pl: Norwegia
 "XD-PY":
   label:
     it: "Paraguay"
@@ -1703,6 +1940,7 @@ zxx:
     de: "Paraguay"
     en: "Paraguay"
     es: "Paraguay"
+    pl: Paragwaj
 "XA-PL":
   label:
     it: "Polonia"
@@ -1710,6 +1948,7 @@ zxx:
     de: "Poland"
     en: "Poland"
     es: "Polonia"
+    pl: Polska
 "XA-PT":
   label:
     it: "Portogallo"
@@ -1717,6 +1956,7 @@ zxx:
     de: "Portugal"
     en: "Portugal"
     es: "Portugal"
+    pl: Portugalia
 "XD-PR":
   label:
     it: "Puerto Rico"
@@ -1724,6 +1964,7 @@ zxx:
     de: "Puerto Rico"
     en: "Puerto Rico"
     es: "Puerto Rico"
+    pl: Portoryko
 "XA-RO":
   label:
     it: "Romania"
@@ -1731,6 +1972,7 @@ zxx:
     de: "Romania"
     en: "Romania"
     es: "Rumania"
+    pl: Rumunia
 "XA-RU":
   label:
     it: "Federazione Russa"
@@ -1738,6 +1980,7 @@ zxx:
     de: "Russian Federation"
     en: "Russian Federation"
     es: "Federación Rusa"
+    pl: Federacja Rosyjska
 "XA-RS":
   label:
     it: "Serbia"
@@ -1745,6 +1988,7 @@ zxx:
     de: "Serbia"
     en: "Serbia"
     es: "Serbia"
+    pl: Serbia
 "XA-SK":
   label:
     it: "Slovacchia"
@@ -1752,6 +1996,7 @@ zxx:
     de: "Slovakia"
     en: "Slovakia"
     es: "Eslovaquia"
+    pl: Słowacja
 "XA-SI":
   label:
     it: "Slovenia"
@@ -1759,6 +2004,7 @@ zxx:
     de: "Slovenia"
     en: "Slovenia"
     es: "Eslovenia"
+    pl: Słowenia
 "XC-ZA":
   label:
     it: "Sudafrica"
@@ -1766,6 +2012,7 @@ zxx:
     de: "South Africa"
     en: "South Africa"
     es: "Sudáfrica"
+    pl: Republika Południowej Afryki
 "XA-ES":
   label:
     it: "Spagna"
@@ -1773,6 +2020,7 @@ zxx:
     de: "Spain"
     en: "Spain"
     es: "España"
+    pl: Hiszpania
 "XA-SE":
   label:
     it: "Svezia"
@@ -1780,6 +2028,7 @@ zxx:
     de: "Sweden"
     en: "Sweden"
     es: "Suecia"
+    pl: Szwecja
 "XA-CH-VD":
   label:
     it: "Svizzera: Vaud"
@@ -1787,6 +2036,7 @@ zxx:
     de: "Switzerland: Vaud"
     en: "Switzerland: Vaud"
     es: "Suiza: cantón de Vaud"
+    pl: Szwajcaria: kanton Vaud
 "XA-CH":
   label:
     it: "Svizzera"
@@ -1794,6 +2044,7 @@ zxx:
     de: "Switzerland"
     en: "Switzerland"
     es: "Suiza"
+    pl: Szwajcaria
 "XB-SY":
   label:
     it: "Repubblica Araba Siriana"
@@ -1801,6 +2052,7 @@ zxx:
     de: "Syrian Arab Republic"
     en: "Syrian Arab Republic"
     es: "República Árabe Siria"
+    pl: Syryjska Republika Arabska
 "XB-TW":
   label:
     it: "Taiwan (provincia della Ciina)"
@@ -1808,6 +2060,7 @@ zxx:
     de: "Taiwan (Province of China)"
     en: "Taiwan (Province of China)"
     es: "Taiwán (Provincia de China)"
+    pl: Tajwan (prowincja Chin)
 "XD-TT":
   label:
     it: "Trinidad e Tobago"
@@ -1815,6 +2068,7 @@ zxx:
     de: "Trinidad and Tobago"
     en: "Trinidad and Tobago"
     es: "Trinidad y Tobago"
+    pl: Trynidad i Tobago
 "XB-TR":
   label:
     it: "Turchia"
@@ -1822,6 +2076,7 @@ zxx:
     de: "Turkey"
     en: "Turkey"
     es: "Turquía"
+    pl: Turcja
 "XA-UA":
   label:
     it: "Ucraina"
@@ -1829,6 +2084,7 @@ zxx:
     de: "Ukraine"
     en: "Ukraine"
     es: "Ucrania"
+    pl: Ukraina
 "XA-GB":
   label:
     it: "Regno Unito"
@@ -1836,6 +2092,7 @@ zxx:
     de: "United Kingdom"
     en: "United Kingdom"
     es: "Reino Unido"
+    pl: Zjednoczone Królestwo
 "XD-US":
   label:
     it: "Stati Uniti d'America"
@@ -1843,6 +2100,7 @@ zxx:
     de: "United States of America"
     en: "United States of America"
     es: "Estados Unidos de América"
+    pl: Stany Zjednoczone AP
 "XD-UY":
   label:
     it: "Uruguay"
@@ -1850,6 +2108,7 @@ zxx:
     de: "Uruguay"
     en: "Uruguay"
     es: "Uruguay"
+    pl: Urugwaj
 "XD-VE":
   label:
     it: "Venezuela, Repubblica Bolivariana del"
@@ -1857,6 +2116,7 @@ zxx:
     de: "Venezuela, Bolivarian Republic of"
     en: "Venezuela, Bolivarian Republic of"
     es: "Venezuela, República Bolivariana de"
+    pl: Wenezuela, Republika Boliwariańska
 "XD-EC":
   label:
     it: "Ecuador"
@@ -1864,3 +2124,4 @@ zxx:
     de: "Ecuador"
     en: "Ecuador"
     es: "Ecuador"
+    pl: Ekwador
