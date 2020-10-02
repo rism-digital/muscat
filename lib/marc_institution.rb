@@ -47,6 +47,7 @@ class MarcInstitution < Marc
     end
   end
   def to_external(updated_at = nil, versions = nil, holdings = false)
+    parent_object = Institution.find(get_id)
     # cataloguing agency
     _003_tag = first_occurance("003")
     if !_003_tag
@@ -63,7 +64,16 @@ class MarcInstitution < Marc
             MarcNode.new(@model, "005", last_transcation, nil))
       end
     end
+
     by_tags("667").each {|t| t.destroy_yourself}
+    
+    source_size = parent_object.referring_sources.where(wf_stage: 1).size + parent_object.holdings.size rescue 0
+    if source_size > 0
+      n667 = MarcNode.new(@model, "667", "", "##")
+      n667.add_at(MarcNode.new(@model, "a", "Published sources: #{source_size}", nil), 0)
+      root.children.insert(get_insert_position("667"), n667)
+    end
+
   end
  
   def marc_helper_get_country(value)
