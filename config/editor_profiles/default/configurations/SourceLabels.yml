@@ -81,7 +81,7 @@ doc_abbr_voices_instr:
     en: "Terms for voices and instruments"
     it: "Terminologia per voci e strumenti"
     pt: Termos para vozes e instrumentos
-    it: "Terminología para voces e instrumentos"
+    es: "Terminología para voces e instrumentos"
     pl: Określenia głosów i instrumentów
 doc_abbr_voices_instr2:
   label:
@@ -89,7 +89,7 @@ doc_abbr_voices_instr2:
     en: "RISM instrument abbreviations"
     it: "Abbreviazioni RISM per gli strumenti"
     pt: "Abreviaturas de instrumentos do RISM"
-    pt: "Abreviaturas de instrumentos de RISM"
+    es: "Abreviaturas de instrumentos de RISM"
     pl: Skróty instrumentów wg RISM
 
 ###############
@@ -2895,15 +2895,6 @@ asg:
     es: Asignatario
     pt: "Cessionário [asg]"
     pl: Cesjonariusz
-asn:
-  label:
-    it: Altro nome
-    fr: Autre nom
-    de: Weiterer Name
-    en: Associated name
-    pt: "Nome associado [asn]"
-    es: Nombre asociado
-    pl: Powiązana osoba
 aut:
   label:
     it: Autore
@@ -3980,15 +3971,6 @@ smn:
     pt: Inari Sami
     es: Inari Sami
     pl: Samski inarski
-srp:
-  label:
-    IT: Serbo
-    FR: Serbe
-    de: Serbisch
-    en: Serbian
-    pt: "Sérvio"
-    es: Serbio
-    pl: Serbski
 dsb:
   label:
     it: Sorabo inferiore
@@ -4791,7 +4773,7 @@ g|b:
     de: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
     en: "Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)"
     pt: "Octoechos 4: Ēchos tetartos (Quarto modo bizantino)"
-    pt: "Octoechos 4: Ēchos tetartos (Cuarto modo bizantino)"
+    es: "Octoechos 4: Ēchos tetartos (Cuarto modo bizantino)"
     pl: "Octoechos 4: Ēchos tetartos (czwarta skala muzyki bizantyjskiej)"
 5byz:
   label:
@@ -5487,7 +5469,7 @@ in_001:
     it: "Numero RISM"
     de: "RISM ID NUMBER"
     pt: "Número de ID RISM"
-    pt: "Número de ID de RISM"
+    es: "Número de ID de RISM"
     pl: RISM ID
 in_003:
   label:
