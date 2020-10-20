@@ -1,16 +1,17 @@
 ActiveAdmin.register Catalogue do
   
+  include MergeControllerActions
+  
+  collection_action :autocomplete_catalogue_name, :method => :get
+
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_catalogues)}
 
   # Remove mass-delete action
   batch_action :destroy, false
-  include MergeControllerActions
   
   # Remove all action items
   config.clear_action_items!
   config.per_page = [10, 30, 50, 100]
-
-  collection_action :autocomplete_catalogue_name, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
@@ -22,12 +23,18 @@ ActiveAdmin.register Catalogue do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :catalogue, [:name, :author, :description], :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
-    
     after_destroy :check_model_errors
     
     before_create do |item|
       item.user = current_user
+    end
+    autocomplete :catalogue, [:name, :author, :description], :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
+    
+
+    def check_model_errors(object)
+      return unless object.errors.any?
+      flash[:error] ||= []
+      flash[:error].concat(object.errors.full_messages)
     end
     
     def action_methods
@@ -35,26 +42,10 @@ ActiveAdmin.register Catalogue do
       super
     end
     
-    def check_model_errors(object)
-      return unless object.errors.any?
-
-      flash[:error] ||= []
-      flash[:error].concat(object.errors.full_messages)
-    end
-    
     def permitted_params
       params.permit!
     end
     
-    def edit
-      flash.now[:error] = params[:validation_error] if params[:validation_error]
-      @item = Catalogue.find(params[:id])
-      @show_history = true if params[:show_history]
-      @editor_profile = EditorConfiguration.get_default_layout @item
-      @editor_validation = EditorValidation.get_default_validation(@item)
-      @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
-    end
-
     def show
       begin
         @item = @catalogue = Catalogue.find(params[:id])
@@ -62,6 +53,7 @@ ActiveAdmin.register Catalogue do
         redirect_to admin_catalogues_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Catalogue #{params[:id]})" }
         return
       end
+
       @editor_profile = EditorConfiguration.get_show_layout @catalogue
       @prev_item, @next_item, @prev_page, @next_page = Catalogue.near_items_as_ransack(params, @catalogue)
       
@@ -72,19 +64,30 @@ ActiveAdmin.register Catalogue do
         format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
       end
     end
-    
+
+    def edit
+      flash.now[:error] = params[:validation_error] if params[:validation_error]
+      @item = Catalogue.find(params[:id])
+      @show_history = true if params[:show_history]
+      @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
+      @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+    end
+
     def index
       @results, @hits = Catalogue.search_as_ransack(params)
+
       index! do |format|
         @catalogues = @results
         format.html
       end
     end
-    
+
     def new
       flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
       @catalogue = Catalogue.new
       if params[:existing_title] and !params[:existing_title].empty?
+        # Check that the record does exist...
         begin
           base_item = Catalogue.find(params[:existing_title])
         rescue ActiveRecord::RecordNotFound
@@ -104,8 +107,10 @@ ActiveAdmin.register Catalogue do
       @editor_validation = EditorValidation.get_default_validation(@catalogue)
       @item = @catalogue
     end
+
   end
-  
+    
+  # Include the MARC extensions
   include MarcControllerActions
   
   member_action :reindex, method: :get do
@@ -121,7 +126,7 @@ ActiveAdmin.register Catalogue do
 
   ###########
   ## Index ##
-  ###########
+  ###########  
   
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
@@ -135,7 +140,6 @@ ActiveAdmin.register Catalogue do
   filter :"date_contains", :label => proc {I18n.t(:filter_date_of_publication)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
-
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
@@ -244,10 +248,10 @@ ActiveAdmin.register Catalogue do
   ## Edit ##
   ##########
   
-  form :partial => "editor/edit_wide"
-  
   sidebar :sections, :only => [:edit, :new, :update] do
     render("editor/section_sidebar") # Calls a partial
   end
+  
+  form :partial => "editor/edit_wide"
   
 end
