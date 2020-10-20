@@ -38,23 +38,11 @@ class EditorConfiguration
     configs = list #YAML::load(yaml_list)
 
     settings = Settings.new(Hash.new())
-    
-    if RISM::EDITOR_PROFILE != ""
-      configs.each do |config|
-        file = "#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml"
-        unless File.exists?(file)
-	  file = "#{Rails.root}/config/editor_profiles/default/configurations/#{config}.yml"
-	end
-        if File.exists?(file)
-          settings.squeeze(Settings.new(IO.read(file)))
-        end
-      end
-    else
-      configs.each do |config|
-        default_conf = "#{Rails.root}/config/editor_profiles/default/configurations/#{config}.yml"
-        if File.exists?(default_conf)
-          settings.squeeze(Settings.new(IO.read(default_conf)))
-        end
+
+    configs.each do |config|
+      file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml")
+      if File.exists?(file)
+        settings.squeeze(Settings.new(IO.read(file)))
       end
     end
     
