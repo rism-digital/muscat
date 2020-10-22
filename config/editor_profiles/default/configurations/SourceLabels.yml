@@ -1371,11 +1371,11 @@ doc_record_status:
     c:
       label:
         it: N.o
-        fr: No
-        de: No
-        en: No
+        fr: "No"
+        de: "No"
+        en: "No"
         pt: "Não"
-        es: No
+        es: "No"
         pl: Nie
 "518":
   label:
