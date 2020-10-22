@@ -267,3 +267,23 @@ fields:
           :130: "a"
       :store: true
       :type: string
+"901a":
+  "901a_filter":
+    :type: string
+    :from_tag: "901"
+    :from_subtag: "a"
+  "901e":
+  "901e_filter":
+    :type: string
+    :from_tag: "901"
+    :from_subtag: "e"
+  "901g":
+  "901g_filter":
+    :type: string
+    :from_tag: "901"
+    :from_subtag: "g"
+  "901h":
+  "901h_filter":
+    :type: string
+    :from_tag: "901"
+    :from_subtag: "h"

@@ -641,26 +641,45 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: relation_operator
-    - - e
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: interval
-    - - f
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: interval_direction
-    - - g
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: temporal_offset
-    - - h
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: offset_units
-    - - o
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: mensurations
+
+
+#    - - "901"
+#      - :occurrences: "*"
+#        :foreign_class: CanonicImitation
+#        :foreign_field: canonic_technique_id
+#        :no_show: true
+#    - - e
+#      - :occurrences: "1"
+#        :foreign_class: ^1
+#        :foreign_field: interval
+#    - - f
+#      - :occurrences: "1"
+#        :foreign_class: ^1
+#        :foreign_field: interval_direction
+#    - - p
+#        :occurrences: "?"
+#        :foreign_class: "901"
+#        :foreign_field: interval
+#    - - e
+#      - :occurrences: "?"
+#        :foreign_class: ^0
+#        :foreign_field: interval
+#    - - f
+#      - :occurrences: "?"
+#        :foreign_class: ^0
+#        :foreign_field: interval_direction
+#    - - g
+#      - :occurrences: "?"
+#        :foreign_class: ^0
+#        :foreign_field: temporal_offset
+#    - - h
+#      - :occurrences: "?"
+#        :foreign_class: ^0
+#        :foreign_field: offset_units
+#    - - o
+#      - :occurrences: "?"
+#        :foreign_class: ^0
+#        :foreign_field: mensurations
   "700":
     :master: "0"
     :indicator: "1#"
@@ -845,6 +864,38 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+
+  "901":
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+      - - "0"
+        - :occurrences: "?"
+          :foreign_class: CanonicImitation
+          :foreign_field: id
+          :no_show: true
+      - - a
+        - :occurrences: "?"
+          :foreign_class: ^0
+          :foreign_field: interval
+      - - b
+        - :occurrences: "?"
+          :foreign_class: ^0
+          :foreign_field: interval_direction
+      - - c
+        - :occurrences: "?"
+          :foreign_class: ^0
+          :foreign_field: temporal_offset
+      - - d
+        - :occurrences: "?"
+          :foreign_class: ^0
+          :foreign_field: offset_units
+      - - e
+        - :occurrences: "?"
+          :foreign_class: ^0
+          :foreign_field: mensurations
+
   "930":
     :master: "0"
     :indicator: "1#"

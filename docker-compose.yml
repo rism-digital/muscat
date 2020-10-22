@@ -1,0 +1,32 @@
+version: '3.6'
+services:
+  web:
+    build:
+      context: ${PWD}
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/muscat
+    ports:
+      - "3000:3000"
+      - "8982:8982"
+#      - "10872:10872"
+    depends_on:
+      - db
+
+  db:
+    image: "mysql:5.7"
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: muscat_dev
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - "./tmp/db:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+
+volumes:
+  app-sync:
+    external: true
