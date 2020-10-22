@@ -163,6 +163,8 @@
         - save:
           - referring_sources
           - holdings
+    - - b
+      - cols: 2
     - - c
       - cols: 2
     - - g

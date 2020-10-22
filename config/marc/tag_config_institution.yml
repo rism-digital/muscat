@@ -89,7 +89,9 @@
     :occurrences: "?"
     :fields: 
     - - a
-      - :occurrences: "?"
+      - :occurrences: "1"
+    - - b
+      - :occurrences: "*"
     - - c
       - :occurrences: "?"
     - - g
@@ -129,14 +131,18 @@
     :occurrences: "*"
     :fields: 
     - - a
-      - :occurrences: "?"
+      - :occurrences: "1"
+    - - b
+      - :occurrences: "*"
   "510": 
     :master: a
     :indicator: "1#"
     :occurrences: "*"
     :fields: 
     - - a
-      - :occurrences: "?"
+      - :occurrences: "1"
+    - - b
+      - :occurrences: "*"
   "551": 
     :master: "0"
     :indicator: "1#"

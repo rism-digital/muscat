@@ -15,6 +15,7 @@ fields:
       :from_subtag: "c"
       :index_helper: marc_helper_get_country
     "110a":
+    "110b":
     "110c":
     "110g":
     "110g_filter":
