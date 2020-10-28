@@ -1,0 +1,62 @@
+=001 59 =040 ##$aAuArU$beng$cAuArU =100 1#$aAnonymous$m3vv$tSalve regina$02243
+<hr>
+<% if @prev_item %><a href="/work/<%= @prev_item.id%>">Previous</a><% else %>Previous<%end %> | <% if @next_item %><a href="/work/<%= @next_item.id%>">Next</a><% else %>Next<%end %>
+<hr>
+
+<%=@item.inspect %>
+
+<%-
+  # if these two parameters do not exist, make them false as default
+  opac_resolved = opac rescue opac_resolved = false
+  holdings_resolved = holdings rescue holdings_resolved = false
+  layout_config = @editor_profile.layout_config
+-%>
+
+<% layout_config["group_order"].each do |group_name|
+  group_config = layout_config["groups"][group_name]
+  group = {
+    :title => @editor_profile.get_label(group_name),
+    :tags => group_config["all_tags"],
+    :tag_templates => group_config["all_tag_templates"],
+    :subfield_grouping => group_config["subfield_grouping"],
+    :ungrouped_tags => group_config["ungrouped_tags"]
+  } -%>
+
+  <% next if group_config["admin_only"] && !(current_user && current_user.has_any_role?(:editor, :admin)) %>
+  <% next if group_config["admin_only"] && opac_resolved %>
+
+  <%= render :partial => (group_config["template"] && !@diff ? group_config["template"] : "marc/show_group" ),
+             :locals => {
+                 :item => @item,
+                 :group => group,
+                 :opac => opac_resolved,
+                 :holdings => holdings_resolved } %>
+
+<%- end -%>
+
+<% if @item.class == Source && @item.holdings.count > 0 %>
+  <%if opac_resolved %>
+    <%= render :partial => "holdings/show_opac_holdings" %>
+  <%else%>
+    <%= render :partial => "holdings/show_holdings", :locals => {opac: opac_resolved } %>
+  <%end%>
+<% end %>
+
+<%if !opac_resolved%>
+  <div class="panel_group_space"></div>
+<%end%>
+
+<% if !@diff && opac_resolved && !holdings_resolved %>
+
+  <%= render :partial => "marc_show/show_iiif",
+             :locals => {
+                 :item => @item,
+                 :opac => opac_resolved } %>
+
+<% end %>
+
+
+
+
+<hr>
+<% if @prev_item %><a href="/work/<%= @prev_item.id%>">Previous</a><% else %>Previous<%end %> | <% if @next_item %><a href="/work/<%= @next_item.id%>">Next</a><% else %>Next<%end %>
