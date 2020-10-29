@@ -67,9 +67,9 @@ class WorkController < ApplicationController
   #   @restricted=""
   # end
 
-  def admin_embedded_source_list(contextt, item, enable_view_src = true)
+  def admin_embedded_source_list(context, item, enable_view_src = true)
     # The columns should be the same for every list in every page!
-    admin_embedded_link_list(contextt, item, Source) do |context|
+    admin_embedded_link_list(context, item, Source) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
         context.column (I18n.t :filter_composer), :composer
@@ -101,8 +101,8 @@ class WorkController < ApplicationController
     return if c.empty?
     panel_title = I18n.t(:refers_to_this, model_from: link_class.model_name.human(count: 2), model_to: item.model_name.human) if !panel_title
 
-    context.panel panel_title, :class => "muscat_panel"  do
-      context.paginated_collection(c.page(current_page).per(10), param_name: current_page_name,  download_links: false) do
+    panel panel_title, :class => "muscat_panel" do
+      paginated_collection(c.page(current_page).per(10), param_name: current_page_name, download_links: false) do
         yield(context)
       end
     end
@@ -112,26 +112,35 @@ class WorkController < ApplicationController
     begin
       @item = @work = Work.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Work #{params[:id]})" }
+      redirect_to admin_root_path, :flash => {:error => "#{I18n.t(:error_not_found)} (Work #{params[:id]})"}
       return
     end
     @editor_profile = EditorConfiguration.get_show_layout @work
     @prev_item, @next_item, @prev_page, @next_page = Work.near_items_as_ransack(params, @work)
 
     @jobs = @work.delayed_jobs
-    # @item = @arbre_context.assigns[:item]
-    # if @item.marc_source == nil
-    #   render :partial => "marc/missing"
-    # else
-    #   render :partial => "marc/show"
-    # end
+    @is_selection_mode = false;
 
-    work = @work;
-    @is_selection_mode = false ;
+    @query = "select * from sources_to_works where work_id=" + @work.id.to_s;
+    @all_works = Work.find_by_sql(@query);
 
 
-    # admin_embedded_source_list( @contextt, work, !is_selection_mode? )
+    @all_sources = []
+    @all_works.each do |each_work|
+      @sources_dict = {};
+      each_source = Source.find(each_work.source_id);
+      @sources_dict['id'] = each_source.id;
+      @sources_dict['composer'] = each_source.composer;
+      @sources_dict['std_title'] = each_source.std_title;
+      @sources_dict['title'] = each_source.title;
+      @sources_dict['lib_siglum'] = each_source.lib_siglum;
+      @sources_dict['shelf_mark'] = each_source.shelf_mark;
+      @all_sources << @sources_dict;
+    end
 
+    puts "All sources Dict is ";
+    puts @all_sources;
+      # records.collect { |h| h.values_at(*attributes) }
 
     # respond_to do |format|
     #   format.html
@@ -151,10 +160,10 @@ class WorkController < ApplicationController
 
     @no_of_sources = {}
 
-    @works.each_with_index  do |each_work, i |
-      @query = "select count(*) from sources_to_works where work_id = '"+ each_work.id.to_s+ "'";
+    @works.each_with_index do |each_work, i|
+      @query = "select count(*) from sources_to_works where work_id = '" + each_work.id.to_s + "'";
       @sources_count = Work.count_by_sql(@query);
-      @no_of_sources[each_work.id.to_i]= @sources_count;
+      @no_of_sources[each_work.id.to_i] = @sources_count;
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -206,7 +215,7 @@ class WorkController < ApplicationController
   #     all_hits = @arbre_context.assigns[:hits]
   #     # active_admin_stored_from_hits(all_hits, element, :src_count_order)
   #   end
-    # active_admin_muscat_actions( self )
+  # active_admin_muscat_actions( self )
   # end
 
   # sidebar :actions, :only => :index do
@@ -256,7 +265,6 @@ class WorkController < ApplicationController
   #   #To transmit correctly @item we need to have @source initialized
   #   @item = @work
   # end
-
 
 
   # Include the MARC extensions

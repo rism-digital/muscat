@@ -1,32 +1,30 @@
+<link type="text/css" rel="StyleSheet" href="assets/active_admin_for_public.css" />
 <div style="margin:1em;">
-<h2>Works</h2>
-
-  <div style="float:right; margin-top: 3em;">
-    <%= page_entries_info(@works) %>
+  <div style="float:right; margin-top: -1em; margin-left: 1em;">
+    Displaying <%= page_entries_info(@works) %> entries.
   </div>
   <div>
-    <div class="pagination">
-<!--    <div class="col-sm-8" style="float:left; display:inline-flex; margin-top: -1.4em;">-->
-    <div >
-  <ul class="pagination">
-    <!--      <li class="disabled"> <%#= will_paginate(@works,:previous_label => '&laquo; Previous', :next_label => "Next &raquo;",:class=>"small-font",:outer_window => 1,:inner_window => 0) %></li>-->
-    <li class="disabled"> <%= will_paginate(@works,:previous_label => '&laquo; Previous | ', :next_label => " | Next &raquo;",:class=>"",:outer_window => 1,:inner_window => 0) %></li>
-  </ul>
+    <div class="pagination" style="margin-top:-2.8em !important;">
+      <!--    <div class="col-sm-8" style="float:left; display:inline-flex; margin-top: -1.4em;">-->
+      <div >
+        <ul class="pagination">
+          <!--      <li class="disabled"> <%#= will_paginate(@works,:previous_label => '&laquo; Previous', :next_label => "Next &raquo;",:class=>"small-font",:outer_window => 1,:inner_window => 0) %></li>-->
+          <li class="disabled"> <%= will_paginate(@works,:previous_label => '&laquo; Previous ', :next_label => " Next &raquo;",:class=>"",:outer_window => 1,:inner_window => 0) %></li>
+        </ul>
+      </div>
     </div>
   </div>
-  </div>
-
-
-<hr>
+</div>
+<h2>Works</h2>
 <div>
   <% @works.each_with_index  do |each_work, i |%>
     <div>
-        <h5 style="font-size:16px;">
+        <h5 style="font-size:16px; padding-bottom:0.5em !important; margin-top: 0.5em !important;">
         <% if each_work.wf_stage == "published" %>
           <span><%= i.next %>.</span> <a href="/work/<%= each_work.id %>"><%= each_work.title %></a>
         </h5>
             <% if @no_of_sources[each_work.id] %>
-              <span style="margin-left:1.8em;"></span>Sources: <%= @no_of_sources[each_work.id] %>
+              <span style="margin-left:1.8em;float:left; margin-top: -2em;">Sources: <%= @no_of_sources[each_work.id] %></span>
             <%end %>
           <% end %>
         </div>
@@ -55,19 +53,19 @@
 <!--  </ul>-->
 <!--</div>-->
 
-  <div style="float:right; margin-top: 3em;">
-    <%= page_entries_info(@works) %>
-  </div>
-  <div>
-    <div class="pagination">
-      <!--    <div class="col-sm-8" style="float:left; display:inline-flex; margin-top: -1.4em;">-->
-      <div >
-        <ul class="pagination">
-          <!--      <li class="disabled"> <%#= will_paginate(@works,:previous_label => '&laquo; Previous', :next_label => "Next &raquo;",:class=>"small-font",:outer_window => 1,:inner_window => 0) %></li>-->
-          <li class="disabled"> <%= will_paginate(@works,:previous_label => '&laquo; Previous | ', :next_label => " | Next &raquo;",:class=>"",:outer_window => 1,:inner_window => 0) %></li>
-        </ul>
+  <div style="margin:1em;">
+    <div style="float:right; margin-top: -1em; margin-left: 1em;">
+      Displaying <%= page_entries_info(@works) %> entries.
+    </div>
+    <div>
+      <div class="pagination" style="margin-top:-2.8em !important;">
+        <!--    <div class="col-sm-8" style="float:left; display:inline-flex; margin-top: -1.4em;">-->
+        <div >
+          <ul class="pagination">
+            <!--      <li class="disabled"> <%#= will_paginate(@works,:previous_label => '&laquo; Previous', :next_label => "Next &raquo;",:class=>"small-font",:outer_window => 1,:inner_window => 0) %></li>-->
+            <li class="disabled"> <%= will_paginate(@works,:previous_label => '&laquo; Previous ', :next_label => " Next &raquo;",:class=>"",:outer_window => 1,:inner_window => 0) %></li>
+          </ul>
+        </div>
       </div>
-
     </div>
   </div>
-</div>

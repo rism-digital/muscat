@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 	get 'catalog/geosearch/:id' => 'catalog#geosearch'
   post 'catalog/holding' => 'catalog#holding'
   get "catalog/download_xslt" => 'catalog#download_xslt'
-  
+
+
 	##############################
 	### Blacklight 6 configuration
 
@@ -26,9 +27,20 @@ Rails.application.routes.draw do
 
   end
 
+  # resource :pubwork, only: [:index], controller: 'pubwork' do
+  #   concerns :searchable
+  #   concerns :range_searchable
+  #   concerns :exportable
+  #
+  # end
+
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns :exportable
   end
+
+  # resources :solr_documents, only: [:show], path: '/pubwork', controller: 'pubwork' do
+  #   concerns :exportable
+  # end
 
   resources :bookmarks do
     concerns :exportable
@@ -49,12 +61,12 @@ Rails.application.routes.draw do
   
   get "/manuscripts", to: redirect('/sources')
   get "/manuscripts/:name", to: redirect('/sources/%{name}')
-
+  get 'admin/name', to: 'admin/names#index'
   get "/sources", to: redirect('/catalog')
   get "/sources/:name", to: redirect('/catalog/%{name}')
 
   ## Set up routes to redirect legacy /pages from muscat2
-  ## to the new site URL
+  ## to the new site URLActiveAdmin.route
   get '/pages', to: redirect(RISM::LEGACY_PAGES_URL)
   get '/pages/:name', to: redirect(RISM::LEGACY_PAGES_URL + '/pages/%{name}')
 
@@ -65,6 +77,8 @@ Rails.application.routes.draw do
   get 'sru/people' => 'sru#service'
   get 'sru/institutions' => 'sru#service'
   get 'sru/catalogues' => 'sru#service'
+  get "/work", :to => "work#index"
+  get "/work/:id", :to => "work#show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
