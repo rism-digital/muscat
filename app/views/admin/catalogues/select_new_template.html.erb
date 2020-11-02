@@ -1,0 +1,42 @@
+<%- templates = EditorConfiguration.get_catalogue_templates %>
+
+<div class="panel">
+  <h3><%="#{I18n.t(:available_templates)}" %></h3>
+  <div class="panel_contents">
+    <div class="attributes_table">
+      <% templates.each do |toplevel, template_list| %>
+      <p><h5 style="margin-bottom: 0;"><%= I18n.t('record_types.' + toplevel) %></h5>
+        <ul class="template_ul">
+          <% template_list.each do |label, properties| %>
+
+          <li><%= link_to("#{I18n.t('record_types.' + label)}", new_resource_path(new_record_type: properties["record_type"])) %></li>
+
+          <% if properties.has_key? "sub_type" %>
+          <ul class="template_ul">
+            <% properties["sub_type"].each do |sub_label, sub_properties| %>
+              <li><%= link_to("#{I18n.t('record_types.' + sub_label)}", new_resource_path(new_record_type: sub_properties["record_type"])) %></li>
+            <%end %>
+          </ul>
+          <%end%>
+          <% end %>
+        </ul>
+      </p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= form_tag(new_resource_path, {method: "get", :class => 'filter_form'}) do %>
+<div class="panel">
+  <h3><%="#{I18n.t(:from_existing_catalogue)}"%></h3>
+  <div class="panel_contents">
+    <div class="form-group">
+      <input name="existing_title" size="20" type="text"/>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <%= submit_tag("#{I18n.t(:create_from_existing)}") %>
+  </div>
+</div>
+<%end%>
