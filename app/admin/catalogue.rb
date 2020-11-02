@@ -1,14 +1,14 @@
 ActiveAdmin.register Catalogue do
-  
+
   include MergeControllerActions
-  
+
   collection_action :autocomplete_catalogue_name, :method => :get
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_catalogues)}
 
   # Remove mass-delete action
   batch_action :destroy, false
-  
+
   # Remove all action items
   config.clear_action_items!
   config.per_page = [10, 30, 50, 100]
@@ -22,30 +22,30 @@ ActiveAdmin.register Catalogue do
   #
   # temporarily allow all parameters
   controller do
-    
+
     after_destroy :check_model_errors
-    
+
     before_create do |item|
       item.user = current_user
     end
     autocomplete :catalogue, [:name, :author, :description], :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
-    
+
 
     def check_model_errors(object)
       return unless object.errors.any?
       flash[:error] ||= []
       flash[:error].concat(object.errors.full_messages)
     end
-    
+
     def action_methods
       return super - ['new', 'edit', 'destroy'] if is_selection_mode?
       super
     end
-    
+
     def permitted_params
       params.permit!
     end
-    
+
     def show
       begin
         @item = @catalogue = Catalogue.find(params[:id])
@@ -54,11 +54,23 @@ ActiveAdmin.register Catalogue do
         return
       end
 
-      @editor_profile = EditorConfiguration.get_show_layout @catalogue
-      @prev_item, @next_item, @prev_page, @next_page = Catalogue.near_items_as_ransack(params, @catalogue)
+      # Try to load the MARC object.
+      begin
+        @item.marc.load_source true
+      rescue ActiveRecord::RecordNotFound
+        # If resolving the remote objects fails, it means
+        # Something went wrong saving the source, like a DB falure
+        # continue to show the page so the user does not panic, and
+        # show an error message. Also send a mail to the administrators
+        flash[:error] = I18n.t(:unloadable_record)
+        AdminNotifications.notify("Catalogue #{@item.id} seems unloadable, please check", @item).deliver_now
+      end
       
+      @editor_profile = EditorConfiguration.get_show_layout @item
+      @prev_item, @next_item, @prev_page, @next_page = Catalogue.near_items_as_ransack(params, @item)
+
       @jobs = @catalogue.delayed_jobs
-      
+
       respond_to do |format|
         format.html
         format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
@@ -84,8 +96,14 @@ ActiveAdmin.register Catalogue do
     end
 
     def new
-      flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
       @catalogue = Catalogue.new
+      @template_name = ""
+
+      if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_record_type] || params[:new_record_type].empty?)
+        redirect_to action: :select_new_template
+        return
+      end
+
       if params[:existing_title] and !params[:existing_title].empty?
         # Check that the record does exist...
         begin
@@ -94,7 +112,7 @@ ActiveAdmin.register Catalogue do
           redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Catalogue #{params[:id]})" }
           return
         end
-        
+
         new_marc = MarcCatalogue.new(base_item.marc.marc_source)
         new_marc.reset_to_new
         @catalogue.marc = new_marc
@@ -109,25 +127,29 @@ ActiveAdmin.register Catalogue do
     end
 
   end
-    
+
   # Include the MARC extensions
   include MarcControllerActions
-  
+
   member_action :reindex, method: :get do
     job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Catalogue, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
-  
+
   member_action :duplicate, method: :get do
     redirect_to action: :new, :existing_title => params[:id]
     return
   end
- 
+
+  collection_action :select_new_template, :method => :get do
+    @page_title = "#{I18n.t(:select_template)}"
+  end
+
 
   ###########
   ## Index ##
-  ###########  
-  
+  ###########
+
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"100a_or_700a_contains", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
@@ -143,14 +165,14 @@ ActiveAdmin.register Catalogue do
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
-  filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
+  filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select,
          collection: proc{Folder.where(folder_type: "Catalogue").collect {|c| [c.name, "folder_id:#{c.id}"]}}
-  
+
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|cat| status_tag(cat.wf_stage,
-      label: I18n.t('status_codes.' + (cat.wf_stage != nil ? cat.wf_stage : ""), locale: :en))}  
-    column (I18n.t :filter_id), :id    
+      label: I18n.t('status_codes.' + (cat.wf_stage != nil ? cat.wf_stage : ""), locale: :en))}
+    column (I18n.t :filter_id), :id
     column (I18n.t :filter_title_short), :name
     column (I18n.t :filter_title), :description
     column (I18n.t :filter_author), :author
@@ -160,19 +182,19 @@ ActiveAdmin.register Catalogue do
 		end
     active_admin_muscat_actions( self )
   end
-  
+
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
-  
+
   # Include the folder actions
   include FolderControllerActions
-  
+
   ##########
   ## Show ##
   ##########
-  
+
   show :title => proc{ active_admin_catalogue_show_title( @item.author, @item.description.truncate(60), @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
@@ -183,7 +205,7 @@ ActiveAdmin.register Catalogue do
     else
       render :partial => "marc/show"
     end
-    
+
     ## Source box. Use the standard helper so it is the same everywhere
     active_admin_embedded_source_list(self, catalogue, !is_selection_mode? )
 
@@ -201,7 +223,7 @@ ActiveAdmin.register Catalogue do
         end
       end
     end
-    
+
     # Box for institutions referring to this catalogue
     active_admin_embedded_link_list(self, catalogue, Institution) do |context|
       context.table_for(context.collection) do |cr|
@@ -216,10 +238,10 @@ ActiveAdmin.register Catalogue do
         end
       end
     end
-    
+
     if !resource.get_items.empty?
       panel I18n.t :filter_series_items do
-        search=Catalogue.solr_search do 
+        search=Catalogue.solr_search do
           fulltext(params[:id], :fields=>['7600'])
           paginate :page => params[:items_list_page], :per_page=>15
           order_by(:date_order)
@@ -239,7 +261,7 @@ ActiveAdmin.register Catalogue do
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
   end
-  
+
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => catalogue }
   end
@@ -247,11 +269,15 @@ ActiveAdmin.register Catalogue do
   ##########
   ## Edit ##
   ##########
-  
+
   sidebar :sections, :only => [:edit, :new, :update] do
     render("editor/section_sidebar") # Calls a partial
   end
-  
+
+  sidebar :help, :only => [:select_new_template] do
+    render :partial => "template_help"
+  end
+
   form :partial => "editor/edit_wide"
-  
+
 end

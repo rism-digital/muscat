@@ -1,0 +1,7 @@
+display:
+  legacy_templates:
+    legacy_catalogue:
+       record_type: default_catalogue
+
+default_mapping:
+  legacy_catalogue: "default"

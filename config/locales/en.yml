@@ -199,6 +199,7 @@ en:
   select_template: "Select new template"
   available_templates: "Available templates"
   from_existing_source: "Create from existing source"
+  from_existing_catalogue: "Create from existing secondary literature"
   create_from_existing: "Create"
   record_types:
     unspecified: "[Unknown template]"
@@ -245,6 +246,9 @@ en:
     collection_record_threatise_printed: "Collection record for printed treatises"
     individual_entry_threatise_printed: "Individual entry in a printed treatise collection"
     single_threatise_printed: "Single printed treatise"
+
+    legacy_templates: "Legacy templates"
+    legacy_catalogue: "Secondary literature unified template"
         
   #################### MENUS
   menu_home: "Home page"
