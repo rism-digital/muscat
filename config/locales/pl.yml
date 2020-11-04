@@ -1,5 +1,5 @@
 
-en:
+pl:
   active_admin:
 # Pad for italian, it has 2 missing items
 #
@@ -56,6 +56,7 @@ en:
       empty: Nie znaleziono %{model}
       one: Wyświetlany <b>1</b> %{model}
       one_page: Wyświetlane <b>wszystkie %{n}</b> %{model}
+      few: Kilka
       multiple: Wyświetlane %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b> łącznie
       multiple_without_total: Wyświetlane %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
       per_page: "Liczba elementów na stronie:"
