@@ -1,0 +1,23 @@
+<link type="text/css" rel="StyleSheet" href="assets/active_admin_for_public.css"/>
+
+<span style="float:right; margin-top: 1.5em; margin-left: 1em;">Displaying <b><%= @starting_document_number%></b> - <b><%= @ending_document_number%></b>  entries of total: <b><%= @results_count%></b></span>
+<%= will_paginate @works, total_pages: @results_count, list_classes: %w(pagination justify-content-end)   %>
+
+<h2>Works</h2>
+ <% @count = @starting_document_number; %>
+  <% @works.each_with_index do |each_work, i| %>
+    <div>
+      <h5 style="font-size:16px; padding-bottom:0.5em !important; margin-top: 0.5em !important;">
+          <span><%= @count; %>.</span> <a href="/works/<%= each_work.id %>"><%= each_work.title %></a>
+          <% @count = @count+1; %>
+          </h5>
+          <% if @no_of_sources[each_work.id] %>
+            <span style="margin-left:1.8em;float:left; margin-top: -1em;">Sources: <%= @no_of_sources[each_work.id] %></span>
+          <% end %>
+     </div>
+      <hr>
+  <% end %>
+</div>
+
+<span style="float:right; margin-top: 1.5em; margin-left: 1em;">Displaying <b><%= @starting_document_number%></b> - <b><%= @ending_document_number%></b>  entries of total: <b><%= @results_count%></b></span>
+<%= will_paginate @works, total_pages: @results_count, list_classes: %w(pagination justify-content-end)   %>
