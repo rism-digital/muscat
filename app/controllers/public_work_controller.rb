@@ -9,6 +9,7 @@ class PublicWorkController < ApplicationController
   DEFAULT_FACET_LIMIT = 20
 
   def show
+    input_id = params[:id]
     begin
       @item = @work = Work.find(params[:id])
     rescue ActiveRecord::RecordNotFound
@@ -16,7 +17,39 @@ class PublicWorkController < ApplicationController
       return
     end
     @editor_profile = EditorConfiguration.get_show_layout @work
-    @prev_item, @next_item, @prev_page, @next_page = Work.near_items_as_ransack(params, @work)
+    # @prev_item, @next_item, @prev_page, @next_page = Work.near_items_as_ransack(params, @work)
+    # @prev_item, @next_item, @prev_page, @next_page = Work.near_items_as_ransack(params, @work)
+    @works = Work.where(wf_stage: 1).order('title ASC')
+    puts "Works"
+    all_works = []
+    @works.each do |each_work|
+      all_works << each_work.id;
+    end
+
+    work_index = all_works.find_index(input_id.to_i).to_i
+
+    if all_works[work_index+1].nil?
+      @next_item = nil
+    else
+      @next_item = all_works[work_index+1]
+    end
+    if all_works[work_index-1].nil?
+      @prev_item = nil
+    else
+      if work_index == 0
+        @prev_item = nil
+      else
+        @prev_item = all_works[work_index-1]
+      end
+    end
+
+    puts "Work index"
+    puts work_index
+    puts "Prev Page"
+    puts @prev_item
+    puts "Next Page"
+    puts @next_item
+
 
     @jobs = @work.delayed_jobs
     @is_selection_mode = false;
@@ -36,6 +69,7 @@ class PublicWorkController < ApplicationController
       @sources_dict['shelf_mark'] = each_source.shelf_mark;
       @all_sources << @sources_dict;
     end
+
   end
 
   def index

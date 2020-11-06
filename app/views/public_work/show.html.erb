@@ -9,7 +9,7 @@
       <% else %>
         <li class="scope">
           <% if @prev_item %>
-            <a href="/works/<%= @prev_item.id %>" class="table_tools_button">Previous</a>
+            <a href="/works/<%= @prev_item %>" class="table_tools_button">Previous</a>
           <% else %>
             <a class="table_tools_button disabled">Previous</a>
           <% end %>
@@ -19,7 +19,7 @@
         </li>
         <li class="scope">
           <% if @next_item %>
-            <a href="/works/<%= @next_item.id %>" class="table_tools_button">Next</a>
+            <a href="/works/<%= @next_item %>" class="table_tools_button">Next</a>
           <% else %>
             <a class="table_tools_button disabled">Next</a>
           <% end %>
@@ -135,7 +135,7 @@
       <% else %>
         <li class="scope">
           <% if @prev_item %>
-            <a href="/works/<%= @prev_item.id %>" class="table_tools_button">Previous</a>
+            <a href="/works/<%= @prev_item %>" class="table_tools_button">Previous</a>
           <% else %>
             <a class="table_tools_button disabled">Previous</a>
           <% end %>
@@ -145,7 +145,7 @@
         </li>
         <li class="scope">
           <% if @next_item %>
-            <a href="/works/<%= @next_item.id %>" class="table_tools_button">Next</a>
+            <a href="/works/<%= @next_item %>" class="table_tools_button">Next</a>
           <% else %>
             <a class="table_tools_button disabled">Next</a>
           <% end %>
