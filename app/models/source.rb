@@ -508,6 +508,28 @@ class Source < ApplicationRecord
     false
   end
 
+  def self.incipits_for(id)
+    s = Source.find(id)
+
+    incipits = {}
+
+    s.marc.each_by_tag("031") do |t|
+      subtags = [:a, :b, :c, :t]
+      vals = {}
+      
+      subtags.each do |st|
+        v = t.fetch_first_by_tag(st)
+        vals[st] = v && v.content ? v.content : "0"
+      end
+
+      pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
+      text = vals[:t] == "0" ? "" : " #{vals[:t]}"
+      incipits["#{pae_nr}#{text}"] = "#{s.id}:#{pae_nr}"
+    end
+
+    incipits
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end

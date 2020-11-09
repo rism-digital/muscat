@@ -18,6 +18,31 @@ ActiveAdmin.register DigitalObject do
       item.user = current_user
     end
     
+    before_action only: [:new] do |item|
+
+      if !params.include?(:digital_object) || !params[:digital_object].include?(:new_object_link_id) || !params[:digital_object].include?(:new_object_link_type)
+        flash[:error] = "Images or Incipits can only by attached from objects"
+        redirect_to collection_path
+      end
+
+      @attachment_type = params.include?(:attachment_type) && params[:attachment_type] == "incipit" ? :incipit : :image
+
+      if @attachment_type == :incipit
+        begin
+          @incipits = Source.incipits_for(params[:digital_object][:new_object_link_id])
+        rescue ActiveRecord::RecordNotFound
+          flash[:error] = "Object does not exist"
+          redirect_to collection_path
+        end
+
+        if @incipits.empty?
+          flash[:error] = "Object contains no incipits"
+          redirect_to collection_path
+        end
+      end
+
+    end
+
     def show
       begin
         @digital_object = DigitalObject.find(params[:id])
@@ -26,7 +51,7 @@ ActiveAdmin.register DigitalObject do
         return
       end
     end
-    
+
     # Redirect to the resource show page after comment creation
     def create
       create! do |success, failure|
@@ -181,15 +206,18 @@ ActiveAdmin.register DigitalObject do
   
   form :html => {:multipart => true} do |f|
     f.inputs do
-      f.input :description,:label => I18n.t(:filter_description)
-      f.input :attachment, as: :file, :label => I18n.t(:filter_image)
+      if @arbre_context.assigns[:attachment_type] == :incipit
+        f.input :description, label: I18n.t(:filter_incipit), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
+        f.input :attachment, as: :file, :label => I18n.t(:filter_mei)
+      else
+        f.input :description, :label => I18n.t(:filter_description)
+        f.input :attachment, as: :file, :label => I18n.t(:filter_image)
+      end
+
       f.input :wf_owner, label: I18n.t(:record_owner), as: :select, multiple: false, include_blank: false, collection: User.sort_all_by_last_name if current_user.has_role?(:admin) || current_user.has_role?(:editor)
       f.input :lock_version, :as => :hidden
-      # passing additional parameters for adding the object link directly after the creation
-      #if (params[:new_object_link_type] &&  params[:new_object_link_id])
-        f.input :new_object_link_type, :as => :hidden #:input_html => {:value =>  params[:new_object_link_type]}
-        f.input :new_object_link_id, :as => :hidden #:input_html => {:value =>  params[:new_object_link_id]}
-				#end
+      f.input :new_object_link_type, :as => :hidden
+      f.input :new_object_link_id, :as => :hidden
     end
   end
 
