@@ -82,7 +82,6 @@ function render_music(music, format, target, width) {
 		/* Load the file using HTTP GET */
 		$.get(music, function( data ) {
 			var svg = vrvToolkitMei.renderData(data, {});
-			console.log(svg);
 			$(target).html(svg);
 		}, 'text');
 	}
