@@ -194,9 +194,9 @@ module ActiveAdmin::ViewsHelper
   end
   
   def active_admin_digital_object( context, item )   
-    if item.digital_objects.size > 0 
+    if item.digital_objects.images.size > 0 
       context.panel (I18n.t :digital_objects) do
-        item.digital_objects.each do |obj| 
+        item.digital_objects.images.each do |obj| 
           context.attributes_table_for obj do 
             context.row (I18n.t :filter_description) { |r| r.description } 
             context.row (I18n.t :filter_image) { |obj| 

@@ -38,7 +38,7 @@
 	# Loop through the digital objects to see if we have a MEI incipit
 	# MEI incipits have the priority over normal ones 
 	mei_incipit = nil
-	@item.digital_objects.where(attachment_type: 1).each do |obj|
+	@item.digital_objects.incipits.each do |obj|
 		mei_incipit = obj.attachment.url if obj.description.include?(incipit_number)
 	end
 %>

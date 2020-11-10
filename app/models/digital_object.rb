@@ -25,7 +25,7 @@ class DigitalObject < ApplicationRecord
     has_many :folder_items, as: :item, dependent: :destroy
     belongs_to :user, :foreign_key => "wf_owner"
 
-    enum attachment_type: [ :images, :incipit ]
+    enum attachment_type: [ :images, :incipits ]
     
     # fake accessor for allowing to pass additional parameters when creating an object from an object
     # the params are then used to create the digital_object_link item
@@ -38,7 +38,7 @@ class DigitalObject < ApplicationRecord
 
     def set_metadata
       if is_mei_type?
-        self.attachment_type = :incipit
+        self.attachment_type = :incipits
       end
     end
 
@@ -59,7 +59,7 @@ class DigitalObject < ApplicationRecord
     end
 
     Paperclip.interpolates :style do |attachment, style|
-      if attachment.instance.attachment_type == "incipit"
+      if attachment.instance.attachment_type == "incipits"
         "incipits"
       else
         style || attachment.default_style
