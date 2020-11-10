@@ -1,1 +1,0 @@
-verovio-toolkit-light-2.2.0.js
