@@ -59,7 +59,6 @@ class DigitalObject < ApplicationRecord
     end
 
     Paperclip.interpolates :style do |attachment, style|
-      ap attachment.instance.attachment_type
       if attachment.instance.attachment_type == "incipit"
         "incipits"
       else
