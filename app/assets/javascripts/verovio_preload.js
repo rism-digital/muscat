@@ -36,7 +36,7 @@ function load_verovio() {
 // This is the helper function to call to render 
 // an incipit into a target div. It will do the preloading
 // in the background
-function render_music( music, format, target, width ) {	
+function render_music(music, format, target, width) {	
 	width = typeof width !== 'undefined' ? width : 720;
 	
 	if (vrvToolkit == null) {
@@ -50,21 +50,41 @@ function render_music( music, format, target, width ) {
 		return;
 	}
 	
-	options = {
-				inputFormat: 'pae',
-				pageMarginTop: 40,
-				pageMarginBottom: 60,
-				pageMarginLeft: 20,
-				pageMarginRight: 20,
-				pageWidth: width / 0.4,
-				spacingStaff: 1,
-				scale: 40,
-				adjustPageHeight: 1
-			};
-			
-	vrvToolkit.setOptions( options );
-	vrvToolkit.loadData(music + "\n" );
-	svg = vrvToolkit.renderToSVG(1, {});
-	
-	$(target).html(svg);
+	if (format === "pae") {
+		var options = {
+			inputFormat: 'pae',
+			pageMarginTop: 40,
+			pageMarginBottom: 60,
+			pageMarginLeft: 20,
+			pageMarginRight: 20,
+			pageWidth: width / 0.4,
+			spacingStaff: 1,
+			scale: 40,
+			adjustPageHeight: 1
+		};
+				
+		vrvToolkit.setOptions( options );
+		vrvToolkit.loadData(music + "\n" );
+		var svg = vrvToolkit.renderToSVG(1, {});
+		$(target).html(svg);
+	} else {
+		// We need our own instance
+		vrvToolkitMei = new verovio.toolkit();
+
+		var options = {
+			pageWidth: width / 0.4,
+			spacingStaff: 1,
+			scale: 40,
+			adjustPageHeight: 1
+		};
+		
+		vrvToolkitMei.setOptions( options );
+		/* Load the file using HTTP GET */
+		$.get(music, function( data ) {
+			var svg = vrvToolkitMei.renderData(data, {});
+			console.log(svg);
+			$(target).html(svg);
+		}, 'text');
+	}
+
 };

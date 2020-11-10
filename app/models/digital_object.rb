@@ -9,7 +9,7 @@ class DigitalObject < ApplicationRecord
     has_attached_file :attachment, 
       styles: lambda { |a| a.instance.generate_attachment_style},
       default_url: lambda { |a| a.instance.generate_default_url},
-      path: lambda { |a| a.instance.generate_path}
+      path: "#{RISM::DIGITAL_OBJECT_PATH}/system/:class/:attachment/:id_partition/:style/:filename"
 
       #styles: { maximum: "900x900", medium: "300x300", thumb: "100x100>" }, 
       #default_url: "/images/attachment/missing.png",
@@ -58,13 +58,15 @@ class DigitalObject < ApplicationRecord
       end
     end
 
-    def generate_path
-      if is_image_type?
-        "#{RISM::DIGITAL_OBJECT_PATH}/system/:class/:attachment/:id_partition/:style/:filename"
+    Paperclip.interpolates :style do |attachment, style|
+      ap attachment.instance.attachment_type
+      if attachment.instance.attachment_type == "incipit"
+        "incipits"
       else
-        "#{RISM::DIGITAL_OBJECT_PATH}/system/:class/:attachment/:id_partition/incipits/:filename"
+        style || attachment.default_style
       end
     end
+    
 
     def is_image_type?
       attachment_content_type =~ %r(image)

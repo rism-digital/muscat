@@ -105,6 +105,11 @@
 		<%= link_to("#{I18n.t :new_digital_object}", new_admin_digital_object_path(digital_object: {new_object_link_id:  @item.id, new_object_link_type: @item.class}),
 			:class => "muscat_icon_link muscat_icon_link_picture") %>
 	</li>
+
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :new_digital_object_incipit}", new_admin_digital_object_path(digital_object: {new_object_link_id:  @item.id, new_object_link_type: @item.class}, attachment_type: :incipit),
+			:class => "muscat_icon_link muscat_icon_link_picture") %>
+	</li>
 <% end %>
 
 	<li class="muscat_icon_separator"></li>

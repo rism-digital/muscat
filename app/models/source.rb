@@ -519,11 +519,11 @@ class Source < ApplicationRecord
       
       subtags.each do |st|
         v = t.fetch_first_by_tag(st)
-        vals[st] = v && v.content ? v.content : "0"
+        vals[st] = v && v.content ? v.content : "x"
       end
 
       pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
-      text = vals[:t] == "0" ? "" : " #{vals[:t]}"
+      text = vals[:t] == "x" ? "" : " #{vals[:t]}"
       incipits["#{pae_nr}#{text}"] = "#{s.id}:#{pae_nr}"
     end
 
