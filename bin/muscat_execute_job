@@ -15,7 +15,7 @@ fi
 JOB_NAME=$1
 
 if [ -z "$2" ]; then
-    RAILS_ENV=production
+    export RAILS_ENV=production
 else
     if [ $2 == "production" ] || [ $2 == "development" ] || [ $2 == "test" ]; then
         export RAILS_ENV=$2
@@ -32,7 +32,7 @@ start=$SECONDS
 
 echo "Running $JOB_NAME in $RAILS_ENV mode at $DATE" >> $LOGFILE 2>&1
 
-echo "$JOB_NAME.new.perform" | bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log" 2>&1
+echo "$JOB_NAME.new.perform" | bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
 
 end=$SECONDS
 duration=$(( end - start ))
