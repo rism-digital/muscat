@@ -43,6 +43,28 @@ ActiveAdmin.register DigitalObject do
 
     end
 
+    def edit
+      begin
+        @digital_object = DigitalObject.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Digital object #{params[:id]})" }
+        return
+      end
+
+      # We get the incipit popup only if for the FIRST source
+      # But we also prevent incipits to have more than one link to a source, so it should
+      # never happen to find more.
+      if @digital_object.incipits? && @digital_object.digital_object_links.count > 0 && @digital_object.digital_object_links.first.object_link_type == "Source"
+
+        begin
+          @incipits = Source.incipits_for(@digital_object.digital_object_links.first.object_link_id)
+        rescue ActiveRecord::RecordNotFound
+          flash[:error] = "Object does not exist"
+          redirect_to collection_path
+        end
+      end
+    end
+
     def show
       begin
         @digital_object = DigitalObject.find(params[:id])
@@ -130,12 +152,17 @@ ActiveAdmin.register DigitalObject do
   filter :description, :label => proc {I18n.t(:filter_description)}
   filter :attachment_file_name, :label => proc {I18n.t(:filter_file_name)}
   filter :attachment_file_size, :label => proc {I18n.t(:filter_file_size)}
-  filter :attachment_content_type, :label => proc {I18n.t(:filter_content_type)}
+  filter :attachment_type, :label => "ciao", as: :select, 
+          collection: proc{{images: 0, incipits: 1}}
   filter :attachment_updated_at, :label => proc {I18n.t(:updated_at)}
   
   index :as => :grid, :download_links => false do |obj|
     div do
-        link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
+        if obj.images?
+          link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
+        else
+          link_to(image_tag('/images/meilogo.png'), admin_digital_object_path(obj))
+        end
     end
     a truncate(obj.description), :href => admin_digital_object_path(obj)
   end
@@ -179,9 +206,14 @@ ActiveAdmin.register DigitalObject do
       end
     end
     
-    if ad.attachment_file_size
+    if ad.attachment_file_size && ad.images?
       panel (I18n.t :filter_image) do
         image_tag(ad.attachment.url(:maximum))
+      end
+    end
+    if ad.incipits?
+      panel (I18n.t :filter_incipits) do
+        render :partial => "digital_object_incipit", :locals => { :attachment => ad.attachment }
       end
     end
     attributes_table do
@@ -197,7 +229,10 @@ ActiveAdmin.register DigitalObject do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => digital_object }
-    render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
+    # You should not re-link incipit to multiple items
+    if digital_object.images?
+      render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
+    end
   end
   
   ##########
@@ -206,8 +241,13 @@ ActiveAdmin.register DigitalObject do
   
   form :html => {:multipart => true} do |f|
     f.inputs do
-      if @arbre_context.assigns[:attachment_type] == :incipit
-        f.input :description, label: I18n.t(:filter_incipit), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
+      is_incipit = f.object.new_record? ? @arbre_context.assigns[:attachment_type] == :incipit : f.object.incipits?
+      if is_incipit
+        if f.object.new_record?
+          f.input :description, label: I18n.t(:filter_incipit), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
+        else
+          f.input :description, label: I18n.t(:filter_incipit), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
+        end
         f.input :attachment, as: :file, :label => I18n.t(:filter_mei)
       else
         f.input :description, :label => I18n.t(:filter_description)
