@@ -2,6 +2,7 @@
 group_order: 
 - main
 - subject
+- other
 - notes
 - control
 groups: 
@@ -35,7 +36,8 @@ groups:
       "760": marc_show/show_catalogue
       "780": marc_show/show_related_catalogue
       "785": marc_show/show_related_catalogue
-      #"651": marc_show/show_place
+  other:
+    template: marc_show/show_preceding_catalogue
   control: 
     all_tags: 
     - "000"
