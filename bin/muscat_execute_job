@@ -1,0 +1,40 @@
+#!/bin/bash
+
+MUSCAT_ROOT=/var/muscat
+LOGFILE=$MUSCAT_ROOT/log/muscat_execute_job.log
+
+
+if [ $# -eq 0 ]; then
+    echo "muscat_execute_job <job> <env>"
+fi
+
+if [ -z "$1" ]; then
+    echo "No job supplied"
+fi
+
+JOB_NAME=$1
+
+if [ -z "$2" ]; then
+    RAILS_ENV=production
+else
+    if [ $2 == "production" ] || [ $2 == "development" ] || [ $2 == "test" ]; then
+        export RAILS_ENV=$2
+    else
+        echo "Invalid RAILS_ENV $2"
+        exit 1
+    fi
+fi
+
+cd $MUSCAT_ROOT
+
+DATE=`date`
+start=$SECONDS
+
+echo "Running $JOB_NAME in $RAILS_ENV mode at $DATE" >> $LOGFILE 2>&1
+
+echo "$JOB_NAME.new.perform" | bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log" 2>&1
+
+end=$SECONDS
+duration=$(( end - start ))
+DATE=`date`
+echo "Finished $JOB_NAME mode at $DATE, duration $duration seconds" >> $LOGFILE 2>&1
