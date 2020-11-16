@@ -99,7 +99,7 @@ module Muscat
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", RISM::BASE, '*.{rb,yml}'))]
+    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", 'marc_records', '*.{rb,yml}'))]
     
     config.autoload_paths << "#{Rails.root}/lib"
     config.eager_load_paths << Rails.root.join('lib')
