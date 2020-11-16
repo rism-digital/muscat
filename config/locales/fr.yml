@@ -311,7 +311,7 @@ fr:
   holding_no_siglum: "Copie sans cote"
   new_holding: "Ajouter une copie"
   new_holding_page: "Copie non enregistré"
-  new_digital_object: "Attacher une nouvelle image"
+  new_digital_object_image: "Attacher une nouvelle image"
   new_digital_object_incipit: "Attacher un nouveau MEI incipit"
   record_actions: "Actions"
   record_status: "Status"

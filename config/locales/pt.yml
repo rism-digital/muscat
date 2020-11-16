@@ -308,7 +308,7 @@ pt:
   holding_no_siglum: "Materia sem sigla"
   new_holding: "Adicionar material"
   new_holding_page: "Informação de novo material"
-  new_digital_object: "Adicionar uma nova imagem"
+  new_digital_object_image: "Adicionar uma nova imagem"
   new_digital_object_incipit: "Adicionar um novo incipit MEI"
   record_actions: "Ações do Registro"
   record_status: "Estado do Registro"

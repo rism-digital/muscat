@@ -311,7 +311,7 @@ de:
   holding_no_siglum: "HOLDING WITHOUT SILGUM"
   new_holding: "Neuer Examplareintrag"
   new_holding_page: "Neuer Exemplareintrag"
-  new_digital_object: "Neues Bild hinzufügen"
+  new_digital_object_image: "Neues Bild hinzufügen"
   new_digital_object_incipit: "Neues MEI-Incipit hinzufügen"
   record_actions: "Aktion für Eintrag"
   record_status: "Status des Eintrags"

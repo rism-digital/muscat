@@ -312,7 +312,7 @@ es:
   holding_no_siglum: "EJEMPLAR SIN SIGLA"
   new_holding: "Crear nuevo registro de ejemplar"
   new_holding_page: "Nuevo registro de ejemplar"
-  new_digital_object: "Añadir una nueva imagen"
+  new_digital_object_image: "Añadir una nueva imagen"
   new_digital_object_incipit: "Añadir un nuevo incipit MEI"
   record_actions: "Acciones del registro"
   record_status: "Estado del registro"

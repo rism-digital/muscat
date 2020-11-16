@@ -312,7 +312,7 @@ pl:
   holding_no_siglum: Egzemplarz bez siglum
   new_holding: Dodaj egzemplarz
   new_holding_page: Nowe informacje o egzemplarzu
-  new_digital_object: Dołącz nowy obraz
+  new_digital_object_image: Dołącz nowy obraz
   new_digital_object_incipit: "Dołączyć nowy incipit MEI"
   record_actions: Działania na rekordzie
   record_status: Status rekordu

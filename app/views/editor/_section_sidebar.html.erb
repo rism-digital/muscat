@@ -102,7 +102,7 @@
 
 <% if @item.respond_to?("digital_objects") %>
 	<li class="muscat_icon_link">
-		<%= link_to("#{I18n.t :new_digital_object}", new_admin_digital_object_path(digital_object: {new_object_link_id:  @item.id, new_object_link_type: @item.class}),
+		<%= link_to("#{I18n.t :new_digital_object_image}", new_admin_digital_object_path(digital_object: {new_object_link_id:  @item.id, new_object_link_type: @item.class}),
 			:class => "muscat_icon_link muscat_icon_link_picture") %>
 	</li>
 
