@@ -108,13 +108,11 @@ class EditorConfiguration
   def get_sub_label(id, sub_id, edit = false)
     # return :edit_label value only if edit and if existing
     if edit && labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id]&& labels_config[id][:fields][sub_id][:edit_label]
-      return labels_config[id][:fields][sub_id][:edit_label][I18n.locale.to_s] if labels_config[id][:fields][sub_id][:edit_label][I18n.locale.to_s]
-      return labels_config[id][:fields][sub_id][:edit_label][:en] if labels_config[id][:fields][sub_id][:edit_label][:en]
+      return I18n.t(labels_config[id][:fields][sub_id][:edit_label])
     end
-    # else return :label
-    if labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id] && labels_config[id][:fields][sub_id][:label] 
-      return labels_config[id][:fields][sub_id][:label][I18n.locale.to_s] if labels_config[id][:fields][sub_id][:label][I18n.locale.to_s]
-      return labels_config[id][:fields][sub_id][:label][:en] if labels_config[id][:fields][sub_id][:label][:en]
+
+    if labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id] && labels_config[id][:fields][sub_id][:label]
+      return I18n.t(labels_config[id][:fields][sub_id][:label])
     end
     # if nothing found
     return "[unspecified]" 
@@ -124,8 +122,7 @@ class EditorConfiguration
   def has_sub_label?(id, sub_id)
     # we don't care about :edit_label here because we assume that we have an edit_label only if we also have :label
     if labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id] && labels_config[id][:fields][sub_id][:label]
-      return true if labels_config[id][:fields][sub_id][:label][I18n.locale.to_s]
-      return true if labels_config[id][:fields][sub_id][:label][:en]
+      return true
     end
     return false
   end
@@ -151,13 +148,11 @@ class EditorConfiguration
   def get_label(id, edit = false)
     # return :edit_label value only if edit and if existing
     if edit && labels_config[id] && labels_config[id][:edit_label]
-      return labels_config[id][:edit_label][I18n.locale.to_s] if labels_config[id][:edit_label][I18n.locale.to_s]
-      return labels_config[id][:edit_label][:en] if labels_config[id][:edit_label][:en]
+      return I18n.t(labels_config[id][:edit_label])
     end
     # puts I18n.locale
     if labels_config[id] && labels_config[id][:label]
-      return labels_config[id][:label][I18n.locale.to_s] if labels_config[id][:label][I18n.locale.to_s]
-      return labels_config[id][:label][:en] if labels_config[id][:label][:en]
+      return I18n.t(labels_config[id][:label])
     end
     return "[unspecified]"
   end
@@ -165,8 +160,7 @@ class EditorConfiguration
   # Returns if the specified field has a label attached.
   def has_label?(id)
     if labels_config[id] && labels_config[id][:label]
-      return true if labels_config[id][:label][I18n.locale.to_s]
-      return true if labels_config[id][:label][:en]
+      return true
     end
     return false
   end
