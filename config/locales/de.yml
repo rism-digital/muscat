@@ -156,8 +156,8 @@ de:
   activerecord:
     models:
       digital_object:
-        one: "Bild"
-        other: "Bilder"
+        one: "Digitales Objekt"
+        other: "Digitale Objekte"
       catalogue:
         one: "Sekundärliteratur"
         other: "Sekundärliteratur"
@@ -312,6 +312,7 @@ de:
   new_holding: "Neuer Examplareintrag"
   new_holding_page: "Neuer Exemplareintrag"
   new_digital_object: "Neues Bild hinzufügen"
+  new_digital_object_incipit: "Neues MEI-Incipit hinzufügen"
   record_actions: "Aktion für Eintrag"
   record_status: "Status des Eintrags"
   record_owner: "Besitzer des Eintrags"
@@ -408,8 +409,8 @@ de:
     reindex_job: "Neuindizierung begonnen (id: %{id})"
 
   ### Digital objects
-  digital_objects: "Bild"
-  digital_object_new: "Neues Bild hinzufügen"
+  digital_objects: "Digitale Objekte"
+  digital_object_new: "Neues Digitales Objekt hinzufügen"
   digital_object_add: "Hinzufügen"
 
   ############ filters
@@ -419,6 +420,7 @@ de:
   filter_alternate_terms: "Synonym"
   filter_alternates: "Andere Namen"
   filter_any_field: "Irgendein Feld"
+  filter_attachment_type: "Digitaler Objekttyp"
   filter_author: "Autor"
   filter_author_or_editor: "Autor/Herausgeber"
   filter_autograph_of: "Autograph von"

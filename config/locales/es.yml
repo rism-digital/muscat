@@ -157,8 +157,8 @@ es:
   activerecord:
     models:
       digital_object:
-        one: "Imagen"
-        other: "Imágenes"
+        one: "objeto digital"
+        other: "objetos digitales"
       catalogue:
         one: "Bibliografía secundaria"
         other: "Ítems de bibliografía secundaria"
@@ -313,6 +313,7 @@ es:
   new_holding: "Crear nuevo registro de ejemplar"
   new_holding_page: "Nuevo registro de ejemplar"
   new_digital_object: "Añadir una nueva imagen"
+  new_digital_object_incipit: "Añadir un nuevo incipit MEI"
   record_actions: "Acciones del registro"
   record_status: "Estado del registro"
   record_owner: "Propietario del registro"
@@ -408,8 +409,8 @@ es:
     reindex_job: "El Job de reindexación comenzó (id: %{id})"
 
   ### Digital objects
-  digital_objects: "Imágenes"
-  digital_object_new: "Añadir una nueva imagen"
+  digital_objects: "Objetos digitales"
+  digital_object_new: "Añadir un nuevo objecto digitale"
   digital_object_add: "Añadir"
   
   ############ filters
@@ -419,6 +420,7 @@ es:
   filter_alternate_terms: "Términos alternativos"
   filter_alternates: "Nombres alternativos"
   filter_any_field: "Cualquier campo"
+  filter_attachment_type: "Tipo de objeto digital"
   filter_author: "Autor"
   filter_author_or_editor: "Autor/Editor"
   filter_autograph_of: "Autógrafo de"
