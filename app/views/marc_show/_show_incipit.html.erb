@@ -39,7 +39,7 @@
 	# MEI incipits have the priority over normal ones 
 	mei_incipit = nil
 	@item.digital_objects.incipits.each do |obj|
-		mei_incipit = obj.attachment.url if obj.description.include?(incipit_number)
+		mei_incipit = obj.attachment.url if obj.match_pae_nr?(incipit_number)
 	end
 %>
 

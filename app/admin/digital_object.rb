@@ -152,7 +152,7 @@ ActiveAdmin.register DigitalObject do
   filter :description, :label => proc {I18n.t(:filter_description)}
   filter :attachment_file_name, :label => proc {I18n.t(:filter_file_name)}
   filter :attachment_file_size, :label => proc {I18n.t(:filter_file_size)}
-  filter :attachment_type, :label => "ciao", as: :select, 
+  filter :attachment_type, :label => proc {I18n.t(:filter_attachment_type)}, as: :select, 
           collection: proc{{images: 0, incipits: 1}}
   filter :attachment_updated_at, :label => proc {I18n.t(:updated_at)}
   
@@ -179,6 +179,7 @@ ActiveAdmin.register DigitalObject do
   show :title => proc{ active_admin_digital_object_show_title( @digital_object.description, @digital_object.id) } do |ad|
     attributes_table do
       row (I18n.t :filter_description) { |r| r.description }
+      row (I18n.t :filter_attachment_type) { |r| r.attachment_type }
     end
     
     if ad.digital_object_links.size > 0
@@ -212,7 +213,7 @@ ActiveAdmin.register DigitalObject do
       end
     end
     if ad.incipits?
-      panel (I18n.t :filter_incipits) do
+      panel (I18n.t :filter_incipit) do
         render :partial => "digital_object_incipit", :locals => { :attachment => ad.attachment }
       end
     end
@@ -244,9 +245,9 @@ ActiveAdmin.register DigitalObject do
       is_incipit = f.object.new_record? ? @arbre_context.assigns[:attachment_type] == :incipit : f.object.incipits?
       if is_incipit
         if f.object.new_record?
-          f.input :description, label: I18n.t(:filter_incipit), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
+          f.input :description, label: I18n.t(:filter_incipit_number), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
         else
-          f.input :description, label: I18n.t(:filter_incipit), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
+          f.input :description, label: I18n.t(:filter_incipit_number), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
         end
         f.input :attachment, as: :file, :label => I18n.t(:filter_mei)
       else

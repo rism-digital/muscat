@@ -75,4 +75,11 @@ class DigitalObject < ApplicationRecord
       attachment_content_type =~ %r(xml)
     end
 
+    # By default it is ID:pae_nr
+    def match_pae_nr?(pae_nr)
+      id, nr = self.description.split(':')
+      return false if id == nil || nr == nil
+      return nr.strip == pae_nr.strip
+    end
+
 end
