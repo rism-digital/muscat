@@ -156,8 +156,8 @@ en:
   activerecord:
     models:
       digital_object:
-        one: "Image"
-        other: "Images"
+        one: "Digital Object"
+        other: "Digital Objects"
       catalogue:
         one: "Secondary literature"
         other: "Secondary literature"
@@ -411,7 +411,7 @@ en:
     folder_not_source: "Only folders containing Sources can be validated"
 
   ### Digital objects
-  digital_objects: "Images"
+  digital_objects: "Digital Objects"
   digital_object_new: "Add a new image"
   digital_object_add: "Add"
   
@@ -422,6 +422,7 @@ en:
   filter_alternate_terms: "Alternate terms"
   filter_alternates: "Alternate names"
   filter_any_field: "Any field"
+  filter_attachment_type: "Digital Object type"
   filter_author: "Author"
   filter_author_or_editor: "Author/Editor"
   filter_autograph_of: "Autograph of"
@@ -446,7 +447,8 @@ en:
   filter_full_name: "Name"
   filter_gender: "Gender"
   filter_id: "ID"
-  filter_incipit: "Incipit nr."
+  filter_incipit: "Incipit"
+  filter_incipit_number: "Incipit number"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
@@ -519,7 +521,7 @@ en:
   filter_image: "Image"
   filter_file_name: "File name"
   filter_file_size: "File size"
-  filter_content_type: "Type"
+  filter_content_type: "Content Type"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
   filter_wf_stage: "Status"
