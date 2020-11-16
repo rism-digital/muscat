@@ -313,7 +313,7 @@ pl:
   new_holding: Dodaj egzemplarz
   new_holding_page: Nowe informacje o egzemplarzu
   new_digital_object_image: Dołącz nowy obraz
-  new_digital_object_incipit: "Dołączyć nowy incipit MEI"
+  new_digital_object_incipit: "Dołącz nowy incipit MEI"
   record_actions: Działania na rekordzie
   record_status: Status rekordu
   record_owner: Właściciel rekordu
@@ -448,6 +448,8 @@ pl:
   filter_full_name: Nazwa
   filter_gender: Płeć społeczno-kulturowa
   filter_id: ID
+  filter_incipit: "Incipit"
+  filter_incipit_number: "Numer Incipit"
   filter_incipits: Incipity
   filter_incipits_ng: Incipity (ngrams)
   filter_incipits_tf: Incipity (themefinder)

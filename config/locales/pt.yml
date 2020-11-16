@@ -441,6 +441,8 @@ pt:
   filter_full_name: "Nome"
   filter_gender: "Gênero"
   filter_id: "ID"
+  filter_incipit: "Incipit"
+  filter_incipit_number: "Número do Incipit"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
