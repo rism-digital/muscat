@@ -1,3 +1,5 @@
+--- !map:ActiveSupport::HashWithIndifferentAccess
+
 '000':
   label: records.leader
 '001':
