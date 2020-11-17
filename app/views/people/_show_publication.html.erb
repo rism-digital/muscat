@@ -18,7 +18,7 @@
 		<%- end %>
 	</th>
 	<td>
-      <%= link_to a_tag, admin_catalogue_path(ref_tag.to_s) if ref_tag %>
+      <%= link_to a_tag, admin_publication_path(ref_tag.to_s) if ref_tag %>
       <%= ": " + b_tag if b_tag%>
 	</td>
 </tr>

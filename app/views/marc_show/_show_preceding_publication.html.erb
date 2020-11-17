@@ -1,5 +1,5 @@
-<% unless @item.referring_catalogues.empty? %>
-  <% if @item.referring_catalogues.first.marc.has_tag?("785") %>
+<% unless @item.referring_publications.empty? %>
+  <% if @item.referring_publications.first.marc.has_tag?("785") %>
     <div class="panel">
       <h3><%= group[:title] %></h3>
       <div class="panel_contents">
@@ -10,11 +10,11 @@
                 <%= @editor_profile.get_sub_label("780", "t") %>
               </th>
               <td valign="top">
-                <% @item.referring_catalogues.each do |e| %>
+                <% @item.referring_publications.each do |e| %>
                   <%e.marc.each_by_tag("785") do |tag| %>
                     <% external_id = tag.fetch_first_by_tag("w").content rescue nil %>
                     <% if external_id == @item.id %>
-                      <%= link_to e.description, admin_catalogue_path(e.id)%>
+                      <%= link_to e.description, admin_publication_path(e.id)%>
                     <% end %>
                   <% end %>
                 <% end %>
