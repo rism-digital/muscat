@@ -27,7 +27,7 @@ rails r housekeeping/reindex_parallel.rb > log/reindex.log 2>&1 &
 echo "Source reindex PID: $!"
 
 echo "Starting single indexers"
-bundle exec rake sunspot:reindex[,Catalogue]
+bundle exec rake sunspot:reindex[,Publication]
 bundle exec rake sunspot:reindex[,Institution]
 bundle exec rake sunspot:reindex[,LiturgicalFeast]
 bundle exec rake sunspot:reindex[,Person]
