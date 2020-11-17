@@ -682,22 +682,22 @@
         editor_partial: subfield_secondary
         allow_new: true
 "690": 
-  new_window: catalogues
+  new_window: publications
   new_window_field: name_equals
   layout: 
     fields: 
     - - a
-      - type: catalogue
+      - type: publication
         editor_partial: subfield_secondary
         allow_new: false
     - - n
 "691":
-  new_window: catalogues
+  new_window: publications
   new_window_field: name_equals
   layout: 
     fields: 
     - - a
-      - type: catalogue
+      - type: publication
         editor_partial: subfield_secondary
         allow_new: false
     - - n

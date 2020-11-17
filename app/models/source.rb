@@ -58,7 +58,7 @@ class Source < ApplicationRecord
   has_and_belongs_to_many :people, join_table: "sources_to_people"
   has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
   has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
-  has_and_belongs_to_many :catalogues, join_table: "sources_to_catalogues"
+  has_and_belongs_to_many :publications, join_table: "sources_to_publications"
   has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
@@ -142,7 +142,7 @@ class Source < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places", "holdings", "sources", "works"]
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "publications", "liturgical_feasts", "places", "holdings", "sources", "works"]
     recreate_links(marc, allowed_relations)
     
     # update the parent manuscript when having 773/774 relationships

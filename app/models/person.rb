@@ -40,12 +40,12 @@ class Person < ApplicationRecord
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_people")
-  has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_people")
+  has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_people")
   has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_people")
   has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
   has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
   has_and_belongs_to_many :places, join_table: "people_to_places"
-  has_and_belongs_to_many :catalogues, join_table: "people_to_catalogues"
+  has_and_belongs_to_many :publications, join_table: "people_to_publications"
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -135,7 +135,7 @@ class Person < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["institutions", "people", "places", "catalogues"]
+    allowed_relations = ["institutions", "people", "places", "publications"]
     recreate_links(marc, allowed_relations)
   end
   

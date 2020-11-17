@@ -158,7 +158,7 @@ fr:
       digital_object:
         one: "Image"
         other: "Images"
-      catalogue:
+      publication:
         one: "Catalogue"
         other: "Catalogues"
       folder:
@@ -257,7 +257,7 @@ fr:
   menu_titles: "Titres / Incipits de texte"
   menu_subjects: "Sujets"
   menu_library_sigla: "Sigles de bibliothèque"
-  menu_catalogues: "Catalogues"
+  menu_publications: "Catalogues"
   menu_liturgical_feasts: "Fêtes liturgiques"
   menu_latin: "Textes latins"
   menu_places: "Lieux"
@@ -573,7 +573,7 @@ fr:
   digital_object:
     one: "objet digital"
     other: "objets digitaux"
-  catalogue:
+  publication:
     one: "catalogue"
     other: "catalogues"
   institution: 

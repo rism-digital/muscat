@@ -1,12 +1,12 @@
-class CatalogueValidationNotifications < ApplicationMailer
+class PublicationValidationNotifications < ApplicationMailer
 	
-  def mail_validation(catalogue)
+  def mail_validation(publication)
     @errors = []
     @failed = nil
-    @catalogue_id = catalogue.id
+    @publication_id = publication.id
     begin
       # Note: we need to load MARC again from an unloaded state
-      validator = MarcValidator.new(Catalogue.find(@catalogue_id))
+      validator = MarcValidator.new(Publication.find(@publication_id))
       validator.validate_tags
       @errors = validator.get_errors
     rescue Exception => e

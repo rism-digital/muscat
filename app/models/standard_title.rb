@@ -8,7 +8,7 @@
 # * <tt>src_count</tt> - keeps track of the Source models tied to this element
 #
 # Other standard wf_* not shown
-# The other functions are standard, see Catalogue for a general description
+# The other functions are standard, see Publication for a general description
 
 class StandardTitle < ApplicationRecord
   include ForeignLinks

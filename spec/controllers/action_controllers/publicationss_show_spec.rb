@@ -1,6 +1,6 @@
 require 'rails_helper'
-model = :catalogue
-RSpec.describe Admin::CataloguesController, type: :controller do
+model = :publication
+RSpec.describe Admin::PublicationsController, type: :controller do
   let!(:person) { create :person }
   let!(:resource) { create model }
   let(:user) { create :admin   }
@@ -9,7 +9,7 @@ RSpec.describe Admin::CataloguesController, type: :controller do
     sign_in user
   end
 
-  describe "catalogue show" do
+  describe "publication show" do
     it "related person table should not contain birth place column" do
       marc = person.marc
       new_670 = MarcNode.new("person", "670", "", "##")

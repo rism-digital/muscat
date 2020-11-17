@@ -1,8 +1,8 @@
-# The Catalogue model describes a basic bibliograpfic catalog
+# The Publication model describes a basic bibliograpfic catalog
 # and is used to link Sources with its bibliographical info
 #
 # === Fields
-# * <tt>name</tt> - Abbreviated name of the catalogue
+# * <tt>name</tt> - Abbreviated name of the publication
 # * <tt>author</tt> - Author
 # * <tt>description</tt> - Full title
 # * <tt>revue_title</tt> - if printed in a journal, the journal's title
@@ -14,7 +14,7 @@
 # === Relations
 # * many to many with Sources
 
-class Catalogue < ApplicationRecord
+class Publication < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
@@ -28,34 +28,34 @@ class Catalogue < ApplicationRecord
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_catalogues")
-  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_catalogues")
-  has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_catalogues")
-  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_catalogues")
-  has_and_belongs_to_many :people, join_table: "catalogues_to_people"
-  has_and_belongs_to_many :institutions, join_table: "catalogues_to_institutions"
-  has_and_belongs_to_many :places, join_table: "catalogues_to_places"
-  has_and_belongs_to_many :standard_terms, join_table: "catalogues_to_standard_terms"
+  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_publications")
+  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_publications")
+  has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_publications")
+  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_publications")
+  has_and_belongs_to_many :people, join_table: "publications_to_people"
+  has_and_belongs_to_many :institutions, join_table: "publications_to_institutions"
+  has_and_belongs_to_many :places, join_table: "publications_to_places"
+  has_and_belongs_to_many :standard_terms, join_table: "publications_to_standard_terms"
   has_many :folder_items, as: :item, dependent: :destroy
-  has_many :delayed_jobs, -> { where parent_type: "Catalogue" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
+  has_many :delayed_jobs, -> { where parent_type: "Publication" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   # This is the forward link
-  has_and_belongs_to_many(:catalogues,
-    :class_name => "Catalogue",
-    :foreign_key => "catalogue_a_id",
-    :association_foreign_key => "catalogue_b_id",
-    join_table: "catalogues_to_catalogues")
+  has_and_belongs_to_many(:publications,
+    :class_name => "Publication",
+    :foreign_key => "publication_a_id",
+    :association_foreign_key => "publication_b_id",
+    join_table: "publications_to_publications")
   
   # This is the backward link
-  has_and_belongs_to_many(:referring_catalogues,
-    :class_name => "Catalogue",
-    :foreign_key => "catalogue_b_id",
-    :association_foreign_key => "catalogue_a_id",
-    join_table: "catalogues_to_catalogues")
+  has_and_belongs_to_many(:referring_publications,
+    :class_name => "Publication",
+    :foreign_key => "publication_b_id",
+    :association_foreign_key => "publication_a_id",
+    join_table: "publications_to_publications")
   
   
-  composed_of :marc, :class_name => "MarcCatalogue", :mapping => %w(marc_source to_marc)
+  composed_of :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
   
   ##include NewIds
   
@@ -116,7 +116,7 @@ class Catalogue < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["institutions", "people", "places", "catalogues", "standard_terms"]
+    allowed_relations = ["institutions", "people", "places", "publications", "standard_terms"]
     recreate_links(marc, allowed_relations)
   end
   
@@ -124,43 +124,43 @@ class Catalogue < ApplicationRecord
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
  
-    new_marc = MarcCatalogue.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc")))
+    new_marc = MarcPublication.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc")))
     new_marc.load_source false
     
-    #new_100 = MarcNode.new("catalogue", "100", "", "1#")
-    #new_100.add_at(MarcNode.new("catalogue", "a", self.author, nil), 0)
+    #new_100 = MarcNode.new("publication", "100", "", "1#")
+    #new_100.add_at(MarcNode.new("publication", "a", self.author, nil), 0)
     
     #new_marc.root.children.insert(new_marc.get_insert_position("100"), new_100)
     
     # save name
     if self.name
-      node = MarcNode.new("catalogue", "210", "", "##")
-      node.add_at(MarcNode.new("catalogue", "a", self.name, nil), 0)
+      node = MarcNode.new("publication", "210", "", "##")
+      node.add_at(MarcNode.new("publication", "a", self.name, nil), 0)
     
       new_marc.root.children.insert(new_marc.get_insert_position("210"), node)
     end
 
     # save decription
     if self.description
-      node = MarcNode.new("catalogue", "240", "", "##")
-      node.add_at(MarcNode.new("catalogue", "a", self.description, nil), 0)
+      node = MarcNode.new("publication", "240", "", "##")
+      node.add_at(MarcNode.new("publication", "a", self.description, nil), 0)
     
       new_marc.root.children.insert(new_marc.get_insert_position("240"), node)
     end
 
     # save date and place
     if self.date || self.place
-      node = MarcNode.new("catalogue", "260", "", "##")
-      node.add_at(MarcNode.new("catalogue", "c", self.date, nil), 0) if self.date
-      node.add_at(MarcNode.new("catalogue", "a", self.place, nil), 0) if self.place
+      node = MarcNode.new("publication", "260", "", "##")
+      node.add_at(MarcNode.new("publication", "c", self.date, nil), 0) if self.date
+      node.add_at(MarcNode.new("publication", "a", self.place, nil), 0) if self.place
 
       new_marc.root.children.insert(new_marc.get_insert_position("260"), node)
     end
 
     # save revue_title
     if self.revue_title
-      node = MarcNode.new("catalogue", "760", "", "0#")
-      node.add_at(MarcNode.new("catalogue", "t", self.revue_title, nil), 0)
+      node = MarcNode.new("publication", "760", "", "0#")
+      node.add_at(MarcNode.new("publication", "t", self.revue_title, nil), 0)
     
       new_marc.root.children.insert(new_marc.get_insert_position("760"), node)
     end
@@ -243,9 +243,9 @@ class Catalogue < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
     
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      (Catalogue.count_by_sql("select count(*) from sources_to_catalogues where catalogue_id = #{self[:id]}") +
-      Catalogue.count_by_sql("select count(*) from institutions_to_catalogues where catalogue_id = #{self[:id]}") +
-      Catalogue.count_by_sql("select count(*) from people_to_catalogues where catalogue_id = #{self[:id]}"))
+      (Publication.count_by_sql("select count(*) from sources_to_publications where publication_id = #{self[:id]}") +
+      Publication.count_by_sql("select count(*) from institutions_to_publications where publication_id = #{self[:id]}") +
+      Publication.count_by_sql("select count(*) from people_to_publications where publication_id = #{self[:id]}"))
     end
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
@@ -267,7 +267,7 @@ class Catalogue < ApplicationRecord
   end
 
   def get_items
-    MarcSearch.select(Catalogue, '760$0', id.to_s).to_a
+    MarcSearch.select(Publication, '760$0', id.to_s).to_a
   end
 
   ransacker :"240g", proc{ |v| } do |parent| parent.table[:id] end

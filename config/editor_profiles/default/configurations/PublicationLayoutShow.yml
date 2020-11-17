@@ -33,11 +33,11 @@ groups:
     all_tag_templates:
       "650": marc_show/show_subject
       "710": marc_show/show_institution
-      "760": marc_show/show_catalogue
-      "780": marc_show/show_related_catalogue
-      "785": marc_show/show_related_catalogue
+      "760": marc_show/show_publication
+      "780": marc_show/show_related_publication
+      "785": marc_show/show_related_publication
   other:
-    template: marc_show/show_preceding_catalogue
+    template: marc_show/show_preceding_publication
   control: 
     all_tags: 
     - "000"

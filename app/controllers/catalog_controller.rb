@@ -416,7 +416,7 @@ class CatalogController < ApplicationController
       field.solr_parameters = { :qf => "110a_test" }
     end
     
-    config.add_search_field("catalogue") do |field|
+    config.add_search_field("publication") do |field|
       field.label = :filter_catalog
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "690a_text" }

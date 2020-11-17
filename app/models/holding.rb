@@ -17,7 +17,7 @@ class Holding < ApplicationRecord
   belongs_to :user, :foreign_key => "wf_owner"
   
   has_and_belongs_to_many :people, join_table: "holdings_to_people"
-  has_and_belongs_to_many :catalogues, join_table: "holdings_to_catalogues"
+  has_and_belongs_to_many :publications, join_table: "holdings_to_publications"
   has_and_belongs_to_many :places, join_table: "holdings_to_places"
 	
   composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
@@ -86,7 +86,7 @@ class Holding < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["institutions", "catalogues", "people", "places"]
+    allowed_relations = ["institutions", "publications", "people", "places"]
     recreate_links(marc, allowed_relations)
   end
   
@@ -95,7 +95,7 @@ class Holding < ApplicationRecord
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
  
-    new_marc = MarcCatalogue.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
+    new_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
     new_marc.load_source true
     
     node = MarcNode.new("holding", "852", "", "##")

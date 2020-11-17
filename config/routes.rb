@@ -93,6 +93,7 @@ Rails.application.routes.draw do
   get 'muscat' => 'sru#service'
   get 'sru/people' => 'sru#service'
   get 'sru/institutions' => 'sru#service'
+  get 'sru/publications' => 'sru#service'
   get 'sru/catalogues' => 'sru#service'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -2136,7 +2136,7 @@ doc_record_status:
 "690":
   label:
     it: Catalogo tematico
-    fr: Nom de catalogue
+    fr: Nom de publication
     de: Werkverzeichnis
     en: Catalog of works
     pt: "Catálogo de obras"
@@ -2146,7 +2146,7 @@ doc_record_status:
     a:
       label:
         it: Catalogo tematico
-        fr: Nom de catalogue
+        fr: Nom de publication
         de: Werkverzeichnis
         en: Catalog of works
         pt: "Catálogo de obras"

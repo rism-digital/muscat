@@ -1,7 +1,7 @@
 require 'rails_helper'
-model = :catalogue
+model = :publication
 changeable_ar_attribute = :wf_stage
-RSpec.describe Admin::CataloguesController, type: :controller do
+RSpec.describe Admin::PublicationsController, type: :controller do
   let!(:person) { create :person }
   let!(:resource) { create model }
   let(:user) { create :admin   }

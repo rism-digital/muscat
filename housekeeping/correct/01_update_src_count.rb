@@ -25,9 +25,9 @@ StandardTerm.all.each do |st|
   pb.increment!
 end
 
-puts "Fixing Catalogue"
-pb = ProgressBar.new(Catalogue.count)
-Catalogue.all.each do |c|
+puts "Fixing Publication"
+pb = ProgressBar.new(Publication.count)
+Publication.all.each do |c|
   cs = c.referring_sources.count
   c.update_attribute( :src_count, cs ) if cs != c.src_count
   pb.increment!

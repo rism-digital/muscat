@@ -1,10 +1,10 @@
-ActiveAdmin.register Catalogue do
+ActiveAdmin.register Publication do
   
   include MergeControllerActions
   
-  collection_action :autocomplete_catalogue_name, :method => :get
+  collection_action :autocomplete_publication_name, :method => :get
 
-  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_catalogues)}
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_publications)}
 
   # Remove mass-delete action
   batch_action :destroy, false
@@ -28,7 +28,7 @@ ActiveAdmin.register Catalogue do
     before_create do |item|
       item.user = current_user
     end
-    autocomplete :catalogue, [:name, :author, :description], :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
+    autocomplete :publication, [:name, :author, :description], :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
     
 
     def check_model_errors(object)
@@ -48,16 +48,16 @@ ActiveAdmin.register Catalogue do
     
     def show
       begin
-        @item = @catalogue = Catalogue.find(params[:id])
+        @item = @publication = Publication.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        redirect_to admin_catalogues_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Catalogue #{params[:id]})" }
+        redirect_to admin_publications_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Publication #{params[:id]})" }
         return
       end
 
-      @editor_profile = EditorConfiguration.get_show_layout @catalogue
-      @prev_item, @next_item, @prev_page, @next_page = Catalogue.near_items_as_ransack(params, @catalogue)
+      @editor_profile = EditorConfiguration.get_show_layout @publication
+      @prev_item, @next_item, @prev_page, @next_page = Publication.near_items_as_ransack(params, @publication)
       
-      @jobs = @catalogue.delayed_jobs
+      @jobs = @publication.delayed_jobs
       
       respond_to do |format|
         format.html
@@ -67,7 +67,7 @@ ActiveAdmin.register Catalogue do
 
     def edit
       flash.now[:error] = params[:validation_error] if params[:validation_error]
-      @item = Catalogue.find(params[:id])
+      @item = Publication.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
       @editor_validation = EditorValidation.get_default_validation(@item)
@@ -75,37 +75,37 @@ ActiveAdmin.register Catalogue do
     end
 
     def index
-      @results, @hits = Catalogue.search_as_ransack(params)
+      @results, @hits = Publication.search_as_ransack(params)
 
       index! do |format|
-        @catalogues = @results
+        @publications = @results
         format.html
       end
     end
 
     def new
       flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
-      @catalogue = Catalogue.new
+      @publication = Publication.new
       if params[:existing_title] and !params[:existing_title].empty?
         # Check that the record does exist...
         begin
-          base_item = Catalogue.find(params[:existing_title])
+          base_item = Publication.find(params[:existing_title])
         rescue ActiveRecord::RecordNotFound
-          redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Catalogue #{params[:id]})" }
+          redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Publication #{params[:id]})" }
           return
         end
         
-        new_marc = MarcCatalogue.new(base_item.marc.marc_source)
+        new_marc = MarcPublication.new(base_item.marc.marc_source)
         new_marc.reset_to_new
-        @catalogue.marc = new_marc
+        @publication.marc = new_marc
       else
-        new_marc = MarcCatalogue.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/catalogue/default.marc")))
+        new_marc = MarcPublication.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc")))
         new_marc.load_source false # this will need to be fixed
-        @catalogue.marc = new_marc
+        @publication.marc = new_marc
       end
-      @editor_profile = EditorConfiguration.get_default_layout @catalogue
-      @editor_validation = EditorValidation.get_default_validation(@catalogue)
-      @item = @catalogue
+      @editor_profile = EditorConfiguration.get_default_layout @publication
+      @editor_validation = EditorValidation.get_default_validation(@publication)
+      @item = @publication
     end
 
   end
@@ -114,7 +114,7 @@ ActiveAdmin.register Catalogue do
   include MarcControllerActions
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Catalogue, :referring_sources))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Publication, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
@@ -144,7 +144,7 @@ ActiveAdmin.register Catalogue do
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
-         collection: proc{Folder.where(folder_type: "Catalogue").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+         collection: proc{Folder.where(folder_type: "Publication").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
@@ -173,7 +173,7 @@ ActiveAdmin.register Catalogue do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_catalogue_show_title( @item.author, @item.description.truncate(60), @item.id) } do
+  show :title => proc{ active_admin_publication_show_title( @item.author, @item.description.truncate(60), @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     render('jobs/jobs_monitor')
@@ -185,10 +185,10 @@ ActiveAdmin.register Catalogue do
     end
     
     ## Source box. Use the standard helper so it is the same everywhere
-    active_admin_embedded_source_list(self, catalogue, !is_selection_mode? )
+    active_admin_embedded_source_list(self, publication, !is_selection_mode? )
 
-    # Box for people referring to this catalogue
-    active_admin_embedded_link_list(self, catalogue, Person) do |context|
+    # Box for people referring to this publication
+    active_admin_embedded_link_list(self, publication, Person) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
         context.column (I18n.t :filter_full_name), :full_name
@@ -202,8 +202,8 @@ ActiveAdmin.register Catalogue do
       end
     end
     
-    # Box for institutions referring to this catalogue
-    active_admin_embedded_link_list(self, catalogue, Institution) do |context|
+    # Box for institutions referring to this publication
+    active_admin_embedded_link_list(self, publication, Institution) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
         context.column (I18n.t :filter_siglum), :siglum
@@ -219,14 +219,14 @@ ActiveAdmin.register Catalogue do
     
     if !resource.get_items.empty?
       panel I18n.t :filter_series_items do
-        search=Catalogue.solr_search do 
+        search=Publication.solr_search do 
           fulltext(params[:id], :fields=>['7600'])
           paginate :page => params[:items_list_page], :per_page=>15
           order_by(:date_order)
         end
         paginated_collection(search.results, param_name: 'items_list_page', download_links: false) do
           table_for(collection, sortable: true) do
-            column :id do |p| link_to p.id, controller: :catalogues, action: :show, id: p.id end
+            column :id do |p| link_to p.id, controller: :publications, action: :show, id: p.id end
             column :author
             column :description
             column :date
@@ -235,13 +235,13 @@ ActiveAdmin.register Catalogue do
       end
     end
 
-    active_admin_user_wf( self, catalogue )
+    active_admin_user_wf( self, publication )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
   end
   
   sidebar :actions, :only => :show do
-    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => catalogue }
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => publication }
   end
 
   ##########

@@ -6,7 +6,7 @@
 # * <tt>src_count</tt> - The number of sources that reference this lib.
 #
 # the other standard wf_* fields are not shown.
-# The class provides the same functionality as similar models, see Catalogue
+# The class provides the same functionality as similar models, see Publication
 
 class LiturgicalFeast < ApplicationRecord
   include ForeignLinks

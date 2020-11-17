@@ -206,7 +206,7 @@
     :fields:
     - - w
       - :occurrences: "?"
-        :foreign_class: Catalogue
+        :foreign_class: Publication
         :foreign_field: id
         :no_show: true
     - - a
