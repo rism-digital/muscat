@@ -18,6 +18,53 @@ ActiveAdmin.register DigitalObject do
       item.user = current_user
     end
     
+    before_action only: [:new] do |item|
+
+      if !params.include?(:digital_object) || !params[:digital_object].include?(:new_object_link_id) || !params[:digital_object].include?(:new_object_link_type)
+        flash[:error] = "Images or Incipits can only by attached from objects"
+        redirect_to collection_path
+      end
+
+      @attachment_type = params.include?(:attachment_type) && params[:attachment_type] == "incipit" ? :incipit : :image
+
+      if @attachment_type == :incipit
+        begin
+          @incipits = Source.incipits_for(params[:digital_object][:new_object_link_id])
+        rescue ActiveRecord::RecordNotFound
+          flash[:error] = "Object does not exist"
+          redirect_to collection_path
+        end
+
+        if @incipits.empty?
+          flash[:error] = "Object contains no incipits"
+          redirect_to collection_path
+        end
+      end
+
+    end
+
+    def edit
+      begin
+        @digital_object = DigitalObject.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Digital object #{params[:id]})" }
+        return
+      end
+
+      # We get the incipit popup only if for the FIRST source
+      # But we also prevent incipits to have more than one link to a source, so it should
+      # never happen to find more.
+      if @digital_object.incipits? && @digital_object.digital_object_links.count > 0 && @digital_object.digital_object_links.first.object_link_type == "Source"
+
+        begin
+          @incipits = Source.incipits_for(@digital_object.digital_object_links.first.object_link_id)
+        rescue ActiveRecord::RecordNotFound
+          flash[:error] = "Object does not exist"
+          redirect_to collection_path
+        end
+      end
+    end
+
     def show
       begin
         @digital_object = DigitalObject.find(params[:id])
@@ -26,7 +73,7 @@ ActiveAdmin.register DigitalObject do
         return
       end
     end
-    
+
     # Redirect to the resource show page after comment creation
     def create
       create! do |success, failure|
@@ -105,12 +152,17 @@ ActiveAdmin.register DigitalObject do
   filter :description, :label => proc {I18n.t(:filter_description)}
   filter :attachment_file_name, :label => proc {I18n.t(:filter_file_name)}
   filter :attachment_file_size, :label => proc {I18n.t(:filter_file_size)}
-  filter :attachment_content_type, :label => proc {I18n.t(:filter_content_type)}
+  filter :attachment_type, :label => proc {I18n.t(:filter_attachment_type)}, as: :select, 
+          collection: proc{{images: 0, incipits: 1}}
   filter :attachment_updated_at, :label => proc {I18n.t(:updated_at)}
   
   index :as => :grid, :download_links => false do |obj|
     div do
-        link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
+        if obj.images?
+          link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
+        else
+          link_to(image_tag('/images/meilogo.png'), admin_digital_object_path(obj))
+        end
     end
     a truncate(obj.description), :href => admin_digital_object_path(obj)
   end
@@ -127,6 +179,7 @@ ActiveAdmin.register DigitalObject do
   show :title => proc{ active_admin_digital_object_show_title( @digital_object.description, @digital_object.id) } do |ad|
     attributes_table do
       row (I18n.t :filter_description) { |r| r.description }
+      row (I18n.t :filter_attachment_type) { |r| r.attachment_type }
     end
     
     if ad.digital_object_links.size > 0
@@ -154,9 +207,14 @@ ActiveAdmin.register DigitalObject do
       end
     end
     
-    if ad.attachment_file_size
+    if ad.attachment_file_size && ad.images?
       panel (I18n.t :filter_image) do
         image_tag(ad.attachment.url(:maximum))
+      end
+    end
+    if ad.incipits?
+      panel (I18n.t :filter_incipit) do
+        render :partial => "digital_object_incipit", :locals => { :attachment => ad.attachment }
       end
     end
     attributes_table do
@@ -172,7 +230,10 @@ ActiveAdmin.register DigitalObject do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => digital_object }
-    render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
+    # You should not re-link incipit to multiple items
+    if digital_object.images?
+      render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
+    end
   end
   
   ##########
@@ -181,15 +242,23 @@ ActiveAdmin.register DigitalObject do
   
   form :html => {:multipart => true} do |f|
     f.inputs do
-      f.input :description,:label => I18n.t(:filter_description)
-      f.input :attachment, as: :file, :label => I18n.t(:filter_image)
+      is_incipit = f.object.new_record? ? @arbre_context.assigns[:attachment_type] == :incipit : f.object.incipits?
+      if is_incipit
+        if f.object.new_record?
+          f.input :description, label: I18n.t(:filter_incipit_number), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
+        else
+          f.input :description, label: I18n.t(:filter_incipit_number), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
+        end
+        f.input :attachment, as: :file, :label => I18n.t(:filter_mei)
+      else
+        f.input :description, :label => I18n.t(:filter_description)
+        f.input :attachment, as: :file, :label => I18n.t(:filter_image)
+      end
+
       f.input :wf_owner, label: I18n.t(:record_owner), as: :select, multiple: false, include_blank: false, collection: User.sort_all_by_last_name if current_user.has_role?(:admin) || current_user.has_role?(:editor)
       f.input :lock_version, :as => :hidden
-      # passing additional parameters for adding the object link directly after the creation
-      #if (params[:new_object_link_type] &&  params[:new_object_link_id])
-        f.input :new_object_link_type, :as => :hidden #:input_html => {:value =>  params[:new_object_link_type]}
-        f.input :new_object_link_id, :as => :hidden #:input_html => {:value =>  params[:new_object_link_id]}
-				#end
+      f.input :new_object_link_type, :as => :hidden
+      f.input :new_object_link_id, :as => :hidden
     end
   end
 

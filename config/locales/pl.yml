@@ -157,8 +157,8 @@ pl:
   activerecord:
     models:
       digital_object:
-        one: Obraz
-        other: Obrazy
+        one: Obiekt cyfrowy
+        other: Obiekty cyfrowe
       catalogue:
         one: Literatura pomocnicza
         other: Literatura pomocnicza
@@ -312,7 +312,8 @@ pl:
   holding_no_siglum: Egzemplarz bez siglum
   new_holding: Dodaj egzemplarz
   new_holding_page: Nowe informacje o egzemplarzu
-  new_digital_object: Dołącz nowy obraz
+  new_digital_object_image: Dołącz nowy obraz
+  new_digital_object_incipit: "Dołącz nowy incipit MEI"
   record_actions: Działania na rekordzie
   record_status: Status rekordu
   record_owner: Właściciel rekordu
@@ -411,8 +412,8 @@ pl:
     folder_not_source: Można zatwierdzać tylko foldery zawierające źródła.
 
   ### Digital objects
-  digital_objects: Obrazy
-  digital_object_new: Dodaj nowy obraz
+  digital_objects: Obiekty cyfrowe
+  digital_object_new: Dodaj nowy obiektu cyfrowego
   digital_object_add: Dodaj
   
   ############ filters
@@ -422,6 +423,7 @@ pl:
   filter_alternate_terms: Inne pojęcia
   filter_alternates: Inne nazwy
   filter_any_field: Dowolne pole
+  filter_attachment_type: "Typ obiektu cyfrowego"
   filter_author: Autor
   filter_author_or_editor: Autor / Edytor
   filter_autograph_of: Autograf autorstwa
@@ -446,6 +448,8 @@ pl:
   filter_full_name: Nazwa
   filter_gender: Płeć społeczno-kulturowa
   filter_id: ID
+  filter_incipit: "Incipit"
+  filter_incipit_number: "Numer Incipit"
   filter_incipits: Incipity
   filter_incipits_ng: Incipity (ngrams)
   filter_incipits_tf: Incipity (themefinder)

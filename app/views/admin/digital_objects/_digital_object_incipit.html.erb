@@ -1,0 +1,7 @@
+
+<%= link_to "Download MEI File", attachment.url.html_safe%>
+<div id="image_render_div">Loading... <img src="/images/spinner_small.gif" /></div>
+
+<script type="text/javascript">
+    render_music("<%=attachment.url%>", "mei", $("#image_render_div"), 700);
+</script>
