@@ -1,5 +1,8 @@
 # Crontab for Muscat
 # Please copy in /etc/cron.d/
+# NOTE since cron is brain dead, this file name MUST NOT contain a dot '.'
+# or cron will not execute it and say nothing. It is documented crazyness
+# as usual so thanks for this crazyness
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
