@@ -3,7 +3,7 @@ server:
   port: 80
   database: 
     title: RISM Répértoire des sources musicales Muscat 
-    description: SRU Gateway based on Solr. Records in UTF-8 encoding. Contains sources, people, institutions and catalogues. CQL not fully supported.
+    description: SRU Gateway based on Solr. Records in UTF-8 encoding. Contains sources, people, institutions and publications. CQL not fully supported.
   maximumRecords: 100
 schemas:
   - marc

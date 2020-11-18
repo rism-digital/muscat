@@ -38,7 +38,7 @@ groups:
     - "710"
     - "700"
     all_tag_templates:
-      "670": people/show_catalogue
+      "670": people/show_publication
       "856": marc_show/show_link
   control: 
     all_tags: 

@@ -1,6 +1,6 @@
-class MarcCatalogue < Marc
+class MarcPublication < Marc
   def initialize(source = nil)
-    super("catalogue", source)
+    super("publication", source)
   end
   
   def get_author

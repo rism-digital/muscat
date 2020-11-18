@@ -25,7 +25,7 @@ FactoryBot.define do
     standard_titles { [association(:standard_title)]  }
     standard_terms { [association(:standard_term)]  }
     created_at { Time.now }
-    #catalogues { [association(:catalogue)]  }
+    #publications { [association(:publication)]  }
     #sources []
     #places { [association(:manuscript_place)] }
     marc_source {  <<STRING
@@ -73,7 +73,7 @@ STRING
     standard_titles { [association(:standard_title)]  }
     standard_terms { [association(:standard_term)]  }
     created_at { Time.now }
-    #catalogues { [association(:catalogue)]  }
+    #publications { [association(:publication)]  }
     #sources []
     #places { [association(:manuscript_place)] }
     marc_source {  <<STRING

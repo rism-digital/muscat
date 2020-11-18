@@ -159,7 +159,7 @@ es:
       digital_object:
         one: "objeto digital"
         other: "objetos digitales"
-      catalogue:
+      publication:
         one: "Bibliografía secundaria"
         other: "Ítems de bibliografía secundaria"
       folder:
@@ -258,7 +258,7 @@ es:
   menu_titles: "Títulos/íncipits literarios"
   menu_subjects: "Descriptores"
   menu_library_sigla: "Siglas de repositorios"
-  menu_catalogues: "Bibliografía secundaria"
+  menu_publications: "Bibliografía secundaria"
   menu_liturgical_feasts: "Festividades litúrgicas"
   menu_latin: "Texto en latín"
   menu_places: "Lugares"
@@ -577,7 +577,7 @@ es:
   digital_object:
     one: "objeto digital"
     other: "objetos digitales"
-  catalogue:
+  publication:
     one: "catálogo"
     other: "catálogos"
   institution: 

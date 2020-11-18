@@ -2,7 +2,7 @@
 # second is the model name
 # third is the offset to start from
 
-PaperTrail.request.disable_model(Catalogue)
+PaperTrail.request.disable_model(Publication)
 PaperTrail.request.disable_model(Holding)
 PaperTrail.request.disable_model(Institution)
 PaperTrail.request.disable_model(Person)

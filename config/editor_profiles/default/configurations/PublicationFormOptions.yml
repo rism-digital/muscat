@@ -301,30 +301,30 @@
     - oth
 "760": 
   allow_new: true
-  new_window: catalogues
+  new_window: publications
   layout: 
     fields: 
     - - t
-      - type: catalogue
+      - type: publication
         editor_partial: subfield_secondary
         allow_new: true
     - - g     
 
 "780": 
   allow_new: true
-  new_window: catalogues
+  new_window: publications
   layout: 
     fields: 
     - - t
-      - type: catalogue
+      - type: publication
         editor_partial: subfield_secondary
 "785": 
   allow_new: true
-  new_window: catalogues
+  new_window: publications
   layout: 
     fields: 
     - - t
-      - type: catalogue
+      - type: publication
         editor_partial: subfield_secondary
 "856": 
   layout: 

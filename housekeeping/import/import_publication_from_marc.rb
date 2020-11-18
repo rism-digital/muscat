@@ -53,7 +53,7 @@ class Marc21Import
     buffer.gsub!(/ (=[0-9]{3,3})/, "\n\\1")
     
     if @total_records >= @from
-      marc = MarcCatalogue.new(buffer)
+      marc = MarcPublication.new(buffer)
       # load the source but without resolving externals
       marc.load_source(false)
 
@@ -62,9 +62,9 @@ class Marc21Import
         # exit
         
         # step 1.  update or create a new manuscript
-        manuscript = Catalogue.find_by_id( marc.get_marc_source_id )
+        manuscript = Publication.find_by_id( marc.get_marc_source_id )
         if !manuscript
-          manuscript = Catalogue.new(:wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
+          manuscript = Publication.new(:wf_owner => 1, :wf_stage => "published", :wf_audit => "approved")
         end
           
         # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 

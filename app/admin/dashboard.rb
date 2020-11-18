@@ -6,8 +6,8 @@ ActiveAdmin.register_page "Dashboard" do
       store_or_restore(:dashboard_source_type, :created)
       store_or_restore(:dashboard_person_owner, :user)
       store_or_restore(:dashboard_person_type, :created)
-      store_or_restore(:dashboard_catalogue_owner, :user)
-      store_or_restore(:dashboard_catalogue_type, :created)
+      store_or_restore(:dashboard_publication_owner, :user)
+      store_or_restore(:dashboard_publication_type, :created)
       store_or_restore(:dashboard_institution_owner, :user)
       store_or_restore(:dashboard_institution_type, :created)
       store_or_restore(:dashboard_holding_owner, :user)
@@ -123,21 +123,21 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    user_id = (params[:dashboard_catalogue_owner].to_s == "user") ? current_user.id : -1
-    catalogues = dashboard_find_recent(Catalogue, params[:dashboard_quantity], params[:dashboard_catalogue_type], user_id, 15)
+    user_id = (params[:dashboard_publication_owner].to_s == "user") ? current_user.id : -1
+    publications = dashboard_find_recent(Publication, params[:dashboard_quantity], params[:dashboard_publication_type], user_id, 15)
     columns do
       column do
-        panel "#{Catalogue.model_name.human(count: 2)}" do
-          if catalogues.count > 0
-            table_for catalogues.map do
-              column (I18n.t :filter_wf_stage) {|catalogue| status_tag(catalogue.wf_stage,
-                label: I18n.t('status_codes.' + (catalogue.wf_stage != nil ? catalogue.wf_stage : ""), locale: :en))}  
-              column (I18n.t :filter_id) {|catalogue| link_to(catalogue.id, admin_catalogue_path(catalogue)) }
-              column (I18n.t :filter_name), :name do |catalogue| 
-                catalogue.name.truncate(30) if catalogue.name
+        panel "#{Publication.model_name.human(count: 2)}" do
+          if publications.count > 0
+            table_for publications.map do
+              column (I18n.t :filter_wf_stage) {|publication| status_tag(publication.wf_stage,
+                label: I18n.t('status_codes.' + (publication.wf_stage != nil ? publication.wf_stage : ""), locale: :en))}  
+              column (I18n.t :filter_id) {|publication| link_to(publication.id, admin_publication_path(publication)) }
+              column (I18n.t :filter_name), :name do |publication| 
+                publication.name.truncate(30) if publication.name
               end
-              column (I18n.t :filter_description), :description do |catalogue| 
-                catalogue.description.truncate(60) if catalogue.description
+              column (I18n.t :filter_description), :description do |publication| 
+                publication.description.truncate(60) if publication.description
               end
               column (I18n.t :filter_author), :author
             end

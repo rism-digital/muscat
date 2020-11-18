@@ -1,8 +1,8 @@
 FactoryBot.define do
-  factory :catalogue do
+  factory :publication do
     id { 1536 }
     name { "NBA" }
-    #initialize_with { Catalogue.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
+    #initialize_with { Publication.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
     description { "Johann Sebastian Bach: Neue Ausgabe sämtlicher Werke" }
     revue_title { "" }
     volume { nil }

@@ -17,7 +17,7 @@ class Work < ApplicationRecord
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
-  has_and_belongs_to_many :catalogues, join_table: "works_to_catalogues"
+  has_and_belongs_to_many :publications, join_table: "works_to_publications"
   has_and_belongs_to_many :standard_terms, join_table: "works_to_standard_terms"
   has_and_belongs_to_many :standard_titles, join_table: "works_to_standard_titles"
   has_and_belongs_to_many :liturgical_feasts, join_table: "works_to_liturgical_feasts"
@@ -106,7 +106,7 @@ class Work < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["person", "catalogues", "standard_terms", "standard_titles", "liturgical_feasts", "institutions", "people", "works"]
+    allowed_relations = ["person", "publications", "standard_terms", "standard_titles", "liturgical_feasts", "institutions", "people", "works"]
     recreate_links(marc, allowed_relations)
   end
 

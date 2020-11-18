@@ -62,7 +62,7 @@ module RISM
 
   # Record ids for each records type
   BASE_NEW_IDS = {
-    :catalogue        => 0,
+    :publication        => 0,
     :holding          => 0,
     :institution      => 0,
     :liturgical_feast => 0,

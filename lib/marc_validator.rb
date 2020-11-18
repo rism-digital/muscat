@@ -326,11 +326,11 @@ include ApplicationHelper
     end
   end
 
-  # Name of catalogue entry should be uniq
+  # Name of publication entry should be uniq
   def validate_name_uniqueness
     short_title = @marc.get_name
     return false if short_title.blank?
-    cat = Catalogue.where.not(id: @marc.get_id).where(name: short_title).take
+    cat = Publication.where.not(id: @marc.get_id).where(name: short_title).take
     if cat
       add_error("210", "", I18n.t('validation.name_uniqueness'))
     end

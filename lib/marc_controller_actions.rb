@@ -89,7 +89,7 @@ module MarcControllerActions
       
       # Send the validation notification
       SourceValidationNotifications.mail_validation(@item).deliver_now if RISM::SEND_VALIDATION_NOTIFICATIONS && @item.is_a?(Source)
-      #CatalogueValidationNotifications.mail_validation(@item).deliver_now if @item.is_a?(Catalogue)
+      #PublicationValidationNotifications.mail_validation(@item).deliver_now if @item.is_a?(Publication)
       
       # if we arrived here it means nothing crashed
       # Rejoice! and launch the background jobs

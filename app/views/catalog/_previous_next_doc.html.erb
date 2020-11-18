@@ -19,7 +19,7 @@
       <% if @document.id.start_with? "Sources" %>
           <%=link_to t('active_admin.edit'), "/admin/sources/#{@document.id.split(" ")[1]}/edit", class: 'btn' %>
       <% else %>
-          <%=link_to t('active_admin.edit'), "/admin/catalogues/#{@document.id.split(" ")[1]}/edit", class: 'btn' %>
+          <%=link_to t('active_admin.edit'), "/admin/publications/#{@document.id.split(" ")[1]}/edit", class: 'btn' %>
       <% end %>
     </div>
   <% end %>

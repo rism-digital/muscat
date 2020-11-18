@@ -42,7 +42,7 @@
 # inserted or updated in the masters table. See search_config.X.X.yml for more details on search functionality
 # and the fulltext index.
 
-:model: catalogue
+:model: publication
 :tags:
   "000":
     :master: ""
@@ -393,7 +393,7 @@
     :fields:
     - - "0"
       - :occurrences: "?"
-        :foreign_class: Catalogue
+        :foreign_class: Publication
         :foreign_field: id
         :no_show: true
     - - t
@@ -412,7 +412,7 @@
     :fields:
     - - "w"
       - :occurrences: "?"
-        :foreign_class: Catalogue
+        :foreign_class: Publication
         :foreign_field: id
         :no_show: true
     - - t
@@ -426,7 +426,7 @@
     :fields:
     - - "w"
       - :occurrences: "?"
-        :foreign_class: Catalogue
+        :foreign_class: Publication
         :foreign_field: id
         :no_show: true
     - - t

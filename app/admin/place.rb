@@ -152,16 +152,16 @@ ActiveAdmin.register Place do
       end
     end
     
-    # Box for catalogues referring to this place
-    active_admin_embedded_link_list(self, place, Catalogue) do |context|
+    # Box for publications referring to this place
+    active_admin_embedded_link_list(self, place, Publication) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
         context.column (I18n.t :filter_name), :name
         context.column (I18n.t :filter_author), :author
         context.column (I18n.t :filter_description), :description
         if !is_selection_mode?
-          context.column "" do |catalogue|
-            link_to "View", controller: :catalogues, action: :show, id: catalogue.id
+          context.column "" do |publication|
+            link_to "View", controller: :publications, action: :show, id: publication.id
           end
         end
       end

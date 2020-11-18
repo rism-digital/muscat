@@ -33,7 +33,7 @@ end
 				<% elsif is_selection_mode?%>
 					<%= "#{subfield_a.content} #{subfield_n.content if subfield_n && subfield_n.content}"%>
 				<% else %>
-		      <%=link_to(subfield_a.content, admin_catalogue_path(subfield_0.content.to_s))%>
+		      <%=link_to(subfield_a.content, admin_publication_path(subfield_0.content.to_s))%>
 				<% end %>
 				
       <% else %>

@@ -158,7 +158,7 @@ en:
       digital_object:
         one: "Digital Object"
         other: "Digital Objects"
-      catalogue:
+      publication:
         one: "Secondary literature"
         other: "Secondary literature"
       folder:
@@ -257,7 +257,7 @@ en:
   menu_titles: "Titles / text incipits"
   menu_subjects: "Subject headings"
   menu_library_sigla: "Library siglum"
-  menu_catalogues: "Secondary literature"
+  menu_publications: "Secondary literature"
   menu_liturgical_feasts: "Liturgical festivals"
   menu_latin: "Latin text"
   menu_places: "Places"
@@ -580,7 +580,7 @@ en:
   digital_object:
     one: "digital object"
     other: "digital objects"
-  catalogue:
+  publication:
     one: "catalogue"
     other: "catalogues"
   institution: 

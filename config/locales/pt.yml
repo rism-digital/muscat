@@ -157,7 +157,7 @@ pt:
       digital_object:
         one: "objeto digital"
         other: "objetos digitais"
-      catalogue:
+      publication:
         one: "Literatura secundária"
         other: "Literatura secundária"
       folder:
@@ -254,7 +254,7 @@ pt:
   menu_titles: "Títulos / incipits literários"
   menu_subjects: "Títulos de assunto"
   menu_library_sigla: "Sigla da Instituição"
-  menu_catalogues: "Literatura Secundária"
+  menu_publications: "Literatura Secundária"
   menu_liturgical_feasts: "Festas litúrgicas"
   menu_latin: "Texto latino"
   menu_places: "Locais"
@@ -573,7 +573,7 @@ pt:
   digital_object:
     one: "objeto digital"
     other: "objetos digitais"
-  catalogue:
+  publication:
     one: "catálogo"
     other: "catálogos"
   institution: 

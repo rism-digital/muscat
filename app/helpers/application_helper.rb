@@ -1,7 +1,7 @@
 module ApplicationHelper
   
-  def catalogue_default_autocomplete
-    autocomplete_catalogue_name_admin_catalogues_path
+  def publication_default_autocomplete
+    autocomplete_publication_name_admin_publications_path
   end
   
   def institution_default_autocomplete

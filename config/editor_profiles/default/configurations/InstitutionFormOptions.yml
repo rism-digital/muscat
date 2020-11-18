@@ -224,11 +224,11 @@
       - cols: 4
     columns: 4
 "670": 
-  new_window: catalogues
+  new_window: publications
   layout: 
     fields: 
     - - "a"
-      - type: catalogue
+      - type: publication
         editor_partial: subfield_secondary
       - cols: 4
     - - "b"

@@ -159,7 +159,7 @@ pl:
       digital_object:
         one: Obiekt cyfrowy
         other: Obiekty cyfrowe
-      catalogue:
+      publication:
         one: Literatura pomocnicza
         other: Literatura pomocnicza
       folder:
@@ -258,7 +258,7 @@ pl:
   menu_titles: Tytuły / incipity tekstowe
   menu_subjects: Słowa kluczowe
   menu_library_sigla: Siglum
-  menu_catalogues: Literatura pomocnicza
+  menu_publications: Literatura pomocnicza
   menu_liturgical_feasts: Święta liturgiczne
   menu_latin: Tekst łaciński
   menu_places: Miejsca
@@ -580,7 +580,7 @@ pl:
   digital_object:
     one: Obiekt cyfrowy
     other: Obiekty cyfrowe
-  catalogue:
+  publication:
     one: Katalog
     other: Katalogi
   institution: 
