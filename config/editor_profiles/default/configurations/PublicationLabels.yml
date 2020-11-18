@@ -1,2127 +1,536 @@
 --- !map:ActiveSupport::HashWithIndifferentAccess
 
-doc_abbreviations: 
-  label: 
-    it: Abbreviazioni
-    de: "Abkürzungen"
-    en: Abbreviations
-    es: Abreviaturas
-    pl: Skróty
-doc_aid: 
-  label: 
-    it: Aiuto
-    de: Arbeitshilfen
-    en: Aide
-    es: Asistencia
-    pl: Asystent
-doc_cataloguing_collections: 
-  label: 
-    it: Catalogazione di raccolte e volumi compositi
-    de: Erfassung von Sammlungen
-    en: Cataloging collection and convoluta
-    es: "Catalogación de colecciones y volúmenes compuestos"
-    pl: Katalogowanie kolekcji i klocka introligatorskiego
-doc_edit_functions: 
-  label: 
-    it: funzioni di base
-    de: "Grundätzliche Funktionen"
-    en: Basic functions
-    es: "Funciones básicas"
-    pl: Podstawowe funkcje
-doc_introduction: 
-  label: 
-    it: introduzione
-    de: Einleitung
-    en: Introduction
-    es: "Introducción"
-    pl: Wprowadzenie
-doc_masks: 
-  label: 
-    it: Formulari di catalogazione
-    de: Masken
-    en: Cataloging forms
-    es: "Formularios de catalogación"
-    pl: Formularze katalogowania
-doc_tag_index: 
-  label: 
-    it: Indice dei codici MARC
-    de: MARC Tag Index
-    en: MARC tag index
-    es: "Índice de etiquetas MARC"
-    pl: Indeks znaczników MARC
-doc_templates: 
-  label: 
-    it: Template
-    de: Templates
-    en: Templates
-    es: Plantillas
-    pl: Szablony
-"000": 
-  label: 
-    it: Leader
-    fr: Guide
-    de: Leader
-    en: Leader
-    es: "Líder"
-    pl: Leader
-"001": 
-  label: 
-    it: Numero documento RISM
-    fr: No. RISM
-    de: RISM Dokumentnummer
-    en: RISM ID No.
-    es: "Número de ID de RISM"
-    pl: RISM ID
-"003": 
-  label: 
-    it: Identificatore del numero di controllo
-    fr: "Identité du numéro de contrôle"
-    de: Kontrollnummer-Bezeichnung
-    en: Control number identifier
-    es: "Identificador de número de control"
-    pl: Identyfikator numeru kontrolnego
-"005": 
-  label: 
-    it: Data e ora dell'ultima transazione
-    fr: "Date/heure de la dernière transaction"
-    de: Datum und Zeit der letzten Transaktion
-    en: Date and time of last transaction
-    es: "Fecha y hora de la última transacción" 
-    pl: Data i godzina ostatniej operacji
-"020": 
-  label: 
-    it: ISBN
-    fr: ISBN
-    de: ISBN
-    en: ISBN
-    es: ISBN
-    pl: ISBN
-  fields: 
-    a: 
-      label: 
-        it: ISBN
-        fr: ISBN
-        de: ISBN
-        en: ISBN
-        es: ISBN
-        pl: ISBN
-
-"022": 
-  label: 
-    it: ISSN
-    fr: ISSN
-    de: ISSN
-    en: ISSN
-    es: ISSN
-    pl: ISSN
-  fields: 
-    a: 
-      label: 
-        it: ISSN
-        fr: ISSN
-        de: ISSN
-        en: ISSN
-        es: ISSN
-        pl: ISSN
-
-"024": 
-  label: 
-    it: ISMN
-    fr: ISMN
-    de: ISMN
-    en: ISMN
-    es: ISMN
-    pl: ISMN
-  fields: 
-    a: 
-      label: 
-        it: ISMN
-        fr: ISMN
-        de: ISMN
-        en: ISMN
-        es: ISMN
-        pl: ISMN
-
-"041": 
-  label: 
-    it: Codice lingua
-    fr: Code de langue
-    de: Sprache
-    en: Language Code
-    es: "Código de idioma"
-    pl: Kod języka
-  fields: 
-    a: 
-      label: 
-        it: Codice lingua
-        fr: Code de langue
-        de: Sprach-Code
-        en: Language Code
-        es: "Código de idioma"
-        pl: Kod języka
-"044": 
-  label: 
-    it: Paese
-    fr: Pays
-    de: Land
-    en: Country of publication
-    es: "País de publicación"
-    pl: Kraj publikacji
-  fields: 
-    a: 
-      label: 
-        it: Paese
-        fr: Pays
-        de: Land
-        en: Country of publication
-        es: "País de publicación"
-        pl: Kraj publikacji
-
-"100": 
-  label: 
-    it: Autore
-    fr: Auteur
-    de: Autor
-    en: Author
-    es: Autor
-    pl: Autor
-  accepts: 
-  - "710"
-  fields: 
-    a: 
-      label: 
-        it: Autore
-        fr: Auteur
-        de: Autor
-        en: Author
-        es: Autor
-        pl: Autor
-    d: 
-      label: 
-        it: Data di nascita e di morte
-        fr: Dates de vie
-        de: Geburts- und Todesdaten
-        en: Life dates
-        es: Fechas de nacimiento y muerte
-        pl: Daty urodzenia i śmierci
-"210": 
-  label: 
-    it: Abbreviazione
-    fr: Abbreviation
-    de: Kürzel
-    en: Short title
-    es: "Título breve"
-    pl: Skrócony tytuł
-  fields: 
-    a: 
-      label: 
-        it: Abbreviazione
-        fr: Abbreviation
-        de: Kürzel
-        en: Short title
-        es: "Título breve"
-        pl: Skrócony tytuł
-"240": 
-  label: 
-    it: Titolo 
-    fr: Title
-    de: Titel
-    en: Title
-    es: "Título"
-    pl: Tytuł
-  fields: 
-    a: 
-      label: 
-        it: Titolo
-        fr: Title
-        de: Titel
-        en: Title
-        es: "Título"
-        pl: Tytuł
-    g: 
-      label: 
-        it: Tipo
-        fr: Type
-        de: Art/Inhalt
-        en: Category
-        es: "Categoría"
-        pl: Kategoria
-    h: 
-      label: 
-        it: Tipo di pubblicazione
-        fr: Type de publication
-        de: Ausgabeform
-        en: Type of publication
-        es: "Tipo de publicación"
-        pl: Rodzaj publikacji
-"250": 
-  label: 
-    it: Edizione
-    fr: Édition
-    de: Ausgabe
-    en: Edition statement
-    es: "Declaración de edición"
-    pl: Wydanie
-  fields: 
-    a: 
-      label: 
-        it: Edizione
-        fr: Édition
-        de: Ausgabe
-        en: Edition statement
-        es: "Declaración de edición"
-        pl: Wydanie
-      comment: "NEW IN 2018"
-"260": 
-  label: 
-    it: Dati editoriali 
-    fr: Imprint
-    de: Imprint
-    en: Imprint
-    es: Datos editoriales
-    pl: Stopka wydawnicza
-  fields: 
-    a: 
-      label: 
-        it: Luogo
-        fr: Endroit
-        de: Verlagsort
-        en: Place of publication
-        es: Lugar de publicación
-        pl: Miejsce publikacji
-    b: 
-      label: 
-        it: Editore
-        fr: "éditeur"
-        de: Verlag
-        en: Publisher
-        es: Editor
-        pl: Wydawca
-    c: 
-      label: 
-        it: Anno
-        fr: Année
-        de: Jahr
-        en: Year
-        es: Año
-        pl: Rok
-"264": 
-  label: 
-    it: Produzione
-    fr: Production
-    de: Verlauf
-    en: Production
-    es: "Producción"
-    pl: Produkcja
-  fields: 
-    c: 
-      label: 
-        it: Produzione
-        fr: Production
-        de: Verlauf
-        en: Production
-        es: Producción
-        pl: Produkcja
-"700": 
-  label: 
-    it: Nome addizionale di persona
-    fr: "Nom supplémentaire de la personne"
-    de: Sonstige Person
-    en: Additional personal name
-    es: Nombre personal adicional
-    pl: Dodatkowa osoba
-  fields: 
-    a: 
-      label: 
-        it: Persona
-        fr: Personne
-        de: Person
-        en: Person
-        pl: Osoba
-    "4": 
-      label: 
-        it: Funzione
-        fr: Function
-        de: Funktionsbezeichnung
-        en: Function
-        pt: "Função"
-        es: Persona
-        pl: Funkcja
-"710": 
-  label: 
-    it: Nome di ente
-    fr: "Nom de la collectivité"
-    de: Nebeneintragung Körperschaften
-    en: Additional institution
-    es: "Institución adicional"
-    pl: Dodatkowa instytucja
-  fields: 
-    a: 
-      label: 
-        it: Nome di ente
-        fr: "Nom de la collectivité"
-        de: Körperschaftsname
-        en: Institution
-        es: "Institución"
-        pl: Instytucja
-    b: 
-      label: 
-        it: Ente subordinato
-        fr: "Collectivité subordonnée"
-        de: Untergeordnete Körperschaft
-        en: Department
-        es: Departamento
-        pl: Wydział
-    g: 
-      label: 
-        it: Qualificazione d'attribuzione
-        fr: Qualificatif d'attribution
-        de: Zuschreibungsvermerk
-        en: Attribution qualifier
-        es: "Calificador de atribución"
-        pl: Kwalifikator atrybucji
-      edit_label: 
-        it: Attribuzione
-        fr: Attribution
-        de: Zuschreibung
-        en: Attribution
-        es: Atribución
-        pl: Atrybucja
-
-    "4": 
-      label: 
-        it: Funzione
-        fr: Fonction
-        de: Funktionsbezeichnung
-        en: Function
-        es: Función
-        pl: Funkcja
-    "8": 
-      label: 
-        it: Gruppo di materiale
-        fr: Documents
-        de: Set
-        en: Set
-        es: "Grupo de materiales"
-        pl: Zbiór
-"730": 
-  label:
-    it: Titolo uniforme alternativo
-    fr: Titres uniformes additionnels
-    de: Zusätzlicher Titel
-    en: Additional title
-    es: Título adicional
-    pl: Dodatkowy tytuł
+'000':
+  label: records.leader
+'001':
+  label: records.rism_id_number
+'003':
+  label: records.control_number_identifier
+'005':
+  label: records.date_time_last_transaction
+01_codes_artistic:
+  label: records.artistic_production
+'020':
   fields:
-    a: 
-      label: 
-        it: Titolo uniforme alternativo
-        fr: Titres uniformes additionnels
-        de: Zusätzlicher Titel
-        en: Additional title
-        es: Título adicional
-        pl: Dodatkowy tytuł
-"760": 
-  label: 
-    it: Fa parte di
-    fr: Titre de la revue
-    de: In
-    en: Item part of
-    es: "Ítem integrante de"
-    pl: Jest częścią…
-  fields: 
-    g: 
-      label: 
-        it: Volume, anno, pagina
-        fr: Partie
-        de: Jahrgang, Seite
-        en: Volume, year, page
-        es: "Volumen, año, página"
-        pl: Wolumen, rok, strona
-    t: 
-      label: 
-        it: Titolo del periodico o della miscellanea
-        fr: Titre de la revue
-        de: "In: "
-        en: "Title of periodical, book, or series"
-        es: "Título del periódico, libro o serie"
-        pl: Tytuł czasopisma, książki lub serii
-"780": 
-  label: 
-    it: Titolo precedente
-    fr: Entrée précédente
-    de: Früherer Eintrag
-    en: Preceding entry
-    es: Entrada anterior
-    pl: Poprzedzający wpis
-  fields: 
-    t: 
-      label: 
-        it: Titolo precedente
-        fr: Entrée précédente
-        de: Früherer Eintrag
-        en: Preceding entry
-        es: Entrada anterior
-        pl: Poprzedzający wpis
-"785": 
-  label: 
-    it: Titolo successivo
-    fr: Entrée suivante
-    de: Folgeeintrag
-    en: Succeeding entry
-    es: Entrada siguiente
-    pl: Kolejny wpis
-  fields: 
-    t: 
-      label: 
-        it: Titolo successivo
-        fr: Entrée suivante
-        de: Folgeeintrag
-        en: Succeeding entry
-        es: Entrada siguiente
-        pl: Kolejny wpis
-main: 
-  label: 
-    it: Campi principali
-    fr: "Entrées principales"
-    de: Haupteintragungen
-    en: Main entry fields
-    es: Campos principales
-    pl: Główne pola edycji
-codes: 
-  label: 
-    it: Numeri e codici
-    fr: "Numéros et codes"
-    de: Nummern und Codes
-    en: Numbers and code fields
-    es: "Números y códigos"
-    pl: Pola liczb i kodów
-control: 
-  label: 
-    fr: "Champs de contrôle"
-    de: Kontrollfelder
-    it: Campi di controllo
-    en: Control Fields
-    es: Campos de control
-    pl: Pola kontrolne
-notes: 
-  label: 
-    it: Note
-    fr: Notes
-    de: Fussnoten
-    en: Note fields
-    es: Notas
-    pl: Pola uwag
-other: 
-  label: 
-    it: Varia
-    fr: Divers
-    de: Verschiedenes
-    en: Miscellaneous
-    es: Varios
-    pl: Pozostałe
-administration: 
-  label: 
-    it: Amministrazione
-    fr: Administration
-    de: Administration
-    en: Administration
-    es: Administración
-    pl: Administracja
-ed: 
-  label: 
-    it: Edizione
-    fr: "édition"
-    de: Edition
-    en: Edition
-    es: Edición
-    pl: Edycja
-H: 
-  label: 
-    it: Curatore
-    fr: Editeur
-    de: Herausgeber
-    en: Editor
-    es: Editor
-    pl: Edytor
-added_series: 
-  label: 
-    it: Note secondarie sul titolo sovraordinato
-    fr: "Entrées de collection"
-    de: Nebeneintragungen Gesamttitel
-    en: Series added entry fields
-    es: "Entradas adicionales de la serie"
-    pl: Dodatkowe wpisy tytułów
-administration: 
-  label: 
-    it: Amministrazione
-    fr: Administration
-    de: Administration
-    en: Administration
-    es: Administración
-    pl: Administracja
-arr: 
-  label: 
-    it: Arrangiatore
-    fr: Arrangeur
-    de: Bearbeiter
-    en: Arranger
-    es: Arreglador
-    pl: Aranżer
-art: 
-  label: 
-    it: Scenografo
-    fr: "Metteur en scène"
-    de: "Bühnenbildner"
-    en: Artist
-    es: Artista
-    pl: Artysta
-asn: 
-  label: 
-    it: Altro nome
-    fr: Autre nom
-    de: Behandelte Person
-    en: Associated name
-    es: Nombre asociado
-    pl: Powiązana osoba
-aut: 
-  label: 
-    it: "Autore addizionale"
-    fr: "Auteur supplémentaire"
-    de: "Zusätzlicher Autor"
-    en: "Additional author"
-    es: "Autor adicional"
-    pl: Dodatkowy autor
-bibliographical_reference: 
-  label: 
-    it: Bibliografia
-    fr: "Références"
-    de: Literatur
-    en: References
-    es: Referencias
-    pl: Odniesienia
-bnd: 
-  label: 
-    it: Rilegatore
-    fr: Relieur
-    de: Buchbinder
-    en: Binder
-    es: Encuadernador
-    pl: Introligator
-bsl: 
-  label: 
-    it: Libraio musicale
-    fr: Libraire
-    de: "Musikalienhändler"
-    en: Bookseller
-    es: Librero
-    pl: Księgarz
-ccp: 
-  label: 
-    it: Autore della fonte letteraria
-    fr: Auteur du texte
-    de: Autor der Textvorlage
-    en: Conceptor
-    es: Autor de la idea
-    pl: Autor koncepcji
-chr: 
-  label: 
-    it: Coreografo
-    fr: "Chorégraphe"
-    de: Choreograph
-    en: Choreographer
-    es: Coreógrafo
-    pl: Choreograf
-clb: 
-  label: 
-    it: Autore secondario
-    fr: Collabarateur
-    de: Mitverfasser
-    en: Collaborator
-    es: Colaborador
-    pl: Współtwórca
-cmp: 
-  label: 
-    it: Compositore / Compositore secondario
-    fr: Compositeur / Co-compositeur
-    de: Komponist / Mitkomponist
-    en: Composer
-    es: Compositor / Co-compositor
-    pl: Kompozytor
-cnd: 
-  label: 
-    it: Direttore d'orchestra
-    fr: Chef d'orchestre
-    de: Dirigent
-    en: Conductor
-    es: Director musical
-    pl: Dyrygent
-cns: 
-  label: 
-    it: Censore
-    fr: Censeur
-    de: Zensor
-    en: Censor
-    es: Censor
-    pl: Cenzor
-codes: 
-  label: 
-    it: Numeri e codici
-    fr: "Numéros et codes"
-    de: Nummern und Codes
-    en: Numbers and code fields
-    es: "Números y códigos"
-    pl: Pola liczb i kodów
-com: 
-  label: 
-    it: Compilatore
-    fr: Compilateur
-    de: Kompilator
-    en: Compiler
-    es: Compilador
-    pl: Kompilator
-content: 
-  label: 
-    it: Descrizione del contenuto
-    fr: Description du contenu
-    de: Inhaltsangaben
-    en: Content description
-    es: "Descripción del contenido"
-    pl: Opis źródła
-control: 
-  label: 
-    fr: "Champs de contrôle"
-    de: Kontrollfelder
-    it: Campi di controllo
-    en: Control Fields
-    es: Campos de control
-    pl: Pola kontrolne
-cst: 
-  label: 
-    it: Costumista
-    fr: Costumier
-    de: "Kostümbildner"
-    en: Costume designer
-    es: Vestuarista
-    pl: Projektant kostiumów
-date: 
-  label: 
-    it: Date
-    fr: Dates
-    de: Daten
-    en: Dates
-    es: Fechas
-    pl: Daty
-description: 
-  label: 
-    it: Campi per la descrizione fisica
-    fr: "Description matérielle"
-    de: "Felder für die physische Beschreibung"
-    en: Physical description, etc. fields
-    es: "Campos para la descripción Material"
-    pl: Opis fizyczny itp. pola
-diplomatic_title: 
-  label: 
-    it: Titolo diplomatico
-    fr: Titre diplomatique
-    de: Diplomatischer Titel
-    en: Diplomatic title
-    es: "Título diplomático"
-    pl: Tytuł dyplomatyczny
-dnc: 
-  label: 
-    it: Ballerino
-    fr: Danceur
-    de: "Tänzer"
-    en: Dancer
-    es: "Bailarín(a)"
-    pl: Tancerz
-dnr: 
-  label: 
-    it: Donatore
-    fr: Donateur
-    de: Donator
-    en: Donor
-    es: Donante
-    pl: Donator
-dte: 
-  label: 
-    it: Dedicatario
-    fr: "Dédicataire"
-    de: "Widmungsträger"
-    en: Dedicatee
-    es: Dedicatario
-    pl: Adresat dedykacji
-dub: 
-  label: 
-    it: Dubbio
-    fr: Douteux
-    de: Zweifelhaft
-    en: Dubious
-    es: Dudoso
-    pl: Wątpliwe
-edition: 
-  label: 
-    it: Campi per i dati editoriali
-    fr: Edition, adresse bibliographique, etc.
-    de: Ausgabe- und Impressumsfelder
-    en: Edition, imprint, etc. fields
-    es: "Campos para los datos editoriales"
-    pl: Edycja, stopka wydawnicza itp. pola
-edt: 
-  label: 
-    it: Curatore
-    fr: Editeur
-    de: Herausgeber
-    en: Editor
-    es: "Editor (curador)/Editorial"
-    pl: Edytor
-egr: 
-  label: 
-    it: Incisore
-    fr: Graveur
-    de: Stecher
-    en: Engraver
-    es: Grabador
-    pl: Rytownik
-fmo: 
-  label: 
-    it: Proprietario precedente
-    fr: "Propriétaire précédent"
-    de: Vorbesitzer
-    en: Former owner
-    es: Propietario anterior
-    pl: Poprzedni właściciel
-holding: 
-  label: 
-    it: Informazioni sul fondo
-    fr: "Données bibliographiques, fonds, etc."
-    de: Bestandsdaten
-    en: Holdings, location, etc. fields
-    es: "Campos de los ejemplares y su ubicación"
-    pl: Pola egzemplarza, lokalizacji itp.
-ill: 
-  label: 
-    it: Disegnatore
-    fr: Illustrateur
-    de: Illustrator
-    en: Illustrator
-    es: Ilustrador
-    pl: Ilustrator
-incipit: 
-  label: 
-    it: Incipit
-    fr: Incipits
-    de: Incipits
-    en: Incipits
-    es: Íncipits
-    pl: Incipity
-itr: 
-  label: 
-    it: Strumentista
-    fr: Instrumentiste
-    de: Instrumentalist
-    en: Instrumentalist
-    es: Instrumentista
-    pl: Instrumentalista
-lbt: 
-  label: 
-    it: Librettista
-    fr: Librettiste
-    de: Librettist
-    en: Librettist
-    es: Libretista
-    pl: Autor libretta
-library: 
-  label: 
-    it: Biblioteca
-    fr: "Bibliothèque"
-    de: Besitzerangaben
-    en: Library information
-    es: "Información del repositorio"
-    pl: Informacje o bibliotece
-linkage: 
-  label: 
-    it: Collegamento
-    fr: Liens
-    de: Verlinkung
-    en: Linkage
-    es: Vínculos
-    pl: Powiązanie
-linking: 
-  label: 
-    it: Note su collegamenti
-    fr: "Entrées de liens"
-    de: "Verknüpfungseintragungen"
-    en: Linking entry fields
-    es: "Campos de entrada de vínculos"
-    pl: Łączenie pól wpisów
-ltg: 
-  label: 
-    it: Litografo
-    fr: Litographe
-    de: Lithograph
-    en: Lithograph
-    es: Litógrafo
-    pl: Litograf
-lyr: 
-  label: 
-    it: Poeta
-    fr: Parolier
-    de: Textdichter
-    en: Lyricist
-    es: Letrista
-    pl: Autor słów
-main: 
-  label: 
-    it: Campi principali
-    fr: "Entrées principales"
-    de: Haupteintragungen
-    en: Main entry fields
-    es: Campos principales
-    pl: Główne pola edycji
-notes: 
-  label: 
-    it: Note
-    fr: Notes
-    de: Fussnoten
-    en: Note fields
-    es: Notas
-    pl: Pola uwag
-other: 
-  label: 
-    it: Varia
-    fr: Divers
-    de: Verschiedenes
-    en: Miscellaneous
-    es: Varios
-    pl: Pozostałe
-oth: 
-  label: 
-    it: Altra funzione
-    fr: Autre function
-    de: Sonstige Funktion
-    en: Other function
-    es: "Otra función"
-    pl: Inna funkcja
-otm: 
-  label: 
-    it: Organizzatore
-    fr: Organisateur
-    de: Veranstalter
-    en: Event organizer
-    es: "Organizador del evento"
-    pl: Organizator wydarzenia
-pat: 
-  label: 
-    it: Committente
-    fr: "Mécène"
-    de: "Mäzen/Auftraggeber"
-    en: Patron
-    es: Comitente
-    pl: Sponsor
-pbl: 
-  label: 
-    it: Editore
-    fr: Editeur
-    de: Verleger
-    en: Publisher
-    es: "Editor (publicador)/Editorial (publicadora)"
-    pl: Wydawca
-performance: 
-  label: 
-    it: Rappresentazioni
-    fr: Performances
-    de: "Aufführungen"
-    en: Performances
-    es: Interpretaciones
-    pl: Wykonania
-physical_description: 
-  label: 
-    it: Descrizione fisica
-    fr: "Description matérielle"
-    de: Physische Beschreibung
-    en: Physical description
-    es: "Descripción física"
-    pl: Opis fizyczny
-ppm: 
-  label: 
-    it: Fabbricante di carta
-    fr: Papetier
-    de: Papierhersteller
-    en: Paper maker
-    es: "Fabricante de papel"
-    pl: Producent papieru
-prd: 
-  label: 
-    it: Personale alla produzione
-    fr: "Personnel de réalisation"
-    de: Produktionspersonal
-    en: Production personnel
-    es: "Personal de producción"
-    pl: Personel produkcyjny
-prf: 
-  label: 
-    it: Interprete
-    fr: "Interprète"
-    de: Interpret
-    en: Performer
-    es: "Intérprete"
-    pl: Wykonawca
-provenance: 
-  label: 
-    it: Provenienza
-    fr: Provenance
-    de: Provenienz
-    en: Provenance
-    es: Procedencia
-    pl: Pochodzenie
-prt: 
-  label: 
-    it: Stampatore
-    fr: Imprimeur
-    de: Drucker
-    en: Printer
-    es: Impresor
-    pl: Drukarnia
-scr: 
-  label: 
-    it: Copista
-    fr: Scribe
-    de: Schreiber
-    en: Scribe
-    es: Copista
-    pl: Kopista
-series: 
-  label: 
-    it: Informazioni sul titolo sovraordinato
-    fr: Mentions de collection
-    de: Gesamttitelangaben
-    en: Series statement fields
-    es: "Información de serie"
-    pl: Pola uwag do serii
-show_admin: 
-  label: 
-    it: Amministrazione
-    fr: Administration
-    de: Administration
-    en: Administration
-    es: Administración
-    pl: Administracja
-show_content: 
-  label: 
-    it: Contenuto
-    fr: Contenu
-    de: Inhalt
-    en: Content
-    es: Contenido
-    pl: Zawartość
-show_details: 
-  label: 
-    it: Descrizione fisica
-    fr: "Détail de la source"
-    de: Physische Beschreibung
-    en: Source details
-    es: "Detalles de la fuente"
-    pl: Dane źródła
-show_distribution: 
-  label: 
-    it: Organico
-    fr: Formation
-    de: Besetzung
-    en: Distribution
-    es: "Distribución"
-    pl: Dystrybucja
-show_information: 
-  label: 
-    it: Note
-    fr: "Information supplémentaire"
-    de: Anmerkungen
-    en: Further information
-    es: "Más información"
-    pl: Dalsze informacje
-show_library: 
-  label: 
-    it: Biblioteca
-    fr: "Bibliothèque"
-    de: Besitzerangaben
-    en: Library information
-    es: "Información del repositorio"
-    pl: Informacje o bibliotece
-show_links: 
-  label: 
-    it: Titoli connessi
-    fr: Titres connexes
-    de: Verlinkungen
-    en: Related Titles
-    es: "Títulos relacionados"
-    pl: Powiązane tytuły
-show_references: 
-  label: 
-    it: Bibliografia
-    fr: "Références"
-    de: Literatur
-    en: References
-    es: "Bibliografía"
-    pl: Odniesienia
-show_resources: 
-  label: 
-    it: Collegamenti
-    fr: Liens
-    de: Links
-    en: Related resources
-    es: Recursos relacionados
-    pl: Powiązane zasoby
-show_summary: 
-  label: 
-    it: Riassunto
-    fr: "Résumé"
-    de: Zusammenfassung
-    en: Summary
-    es: Resumen
-    pl: Podsumowanie
-show_terms: 
-  label: 
-    it: Descrittori
-    fr: Termes
-    de: Deskriptoren
-    en: Index terms
-    es: "Términos de indexación"
-    pl: Pojęcia indeksowane
-subject: 
-  label: 
-    it: Note sul titolo uniforme
-    fr: "Entrées de sujets"
-    de: Schlagworteintragungen
-    en: Subject access fields
-    es: "Campos de los puntos de acceso"
-    pl: Pola haseł tematycznych
-title: 
-  label: 
-    it: Titolo e campi correlati
-    fr: "Titre et champs associés"
-    de: Titel- und damit verbundene Felder
-    en: Title and title-related fields
-    es: "Título y campos relacionados"
-    pl: Tytuł i pola związane z tytułem
-trl: 
-  label: 
-    it: Traduttore
-    fr: Traducteur
-    de: "Übersetzer"
-    en: Translator
-    es: Traductor
-    pl: Tłumacz
-voc: 
-  label: 
-    it: Cantante
-    fr: Vocaliste
-    de: "Sänger"
-    en: Vocalist
-    es: Cantante
-    pl: Wokalista
-01_codes_artistic: 
-  label: 
-    it: Autore
-    fr: Auteur
-    de: Verfasser
-    en: Artistic production
-    es: Producción artística
-    pl: Autor produkcji artystycznej
-02_codes_performing: 
-  label: 
-    it: Partecipanti
-    fr: Performance
-    de: Mitwirkende
-    en: Performance
-    es: Interpretación
-    pl: Wykonanie
-03_codes_technical: 
-  label: 
-    it: Produttore
-    fr: "Création"
-    de: Hersteller
-    en: Technical production
-    es: "Producción técnica"
-    pl: Produkcja techniczna
-04_codes_other: 
-  label: 
-    it: Altri
-    fr: Autre
-    de: Weitere
-    en: Other
-    es: Otro
-    pl: Pozostałe
-"300": 
-  label: 
-    it: Materiale
-    fr: "Matériel"
-    de: Material
-    en: Physical Description
-    es: "Descripción física"
-    pl: Opis fizyczny
-  fields: 
-    a: 
-      label: 
-        it: Estensione
-        fr: Extension
-        de: Umfang
-        en: Extent
-        es: "Extensión"
-        pl: Zakres
-"337": 
-  label: 
-    it: Mezzo fisico
-    fr: Moyen physique 
-    de: Physisches Medium 
-    en: Media type
-    es: "Tipo de medio físico"
-    pl: Rodzaj nośnika
-  fields: 
-    a: 
-      label: 
-        it: Mezzo fisico 
-        fr: Moyen physique 
-        de: Physisches Medium 
-        en: Media type
-        es: "Tipo de medio físico"
-        pl: Rodzaj nośnika
-"500": 
-  label: 
-    it: Osservazioni
-    fr: "Remarque générale"
-    de: Bemerkungen
-    en: General note
-    es: Nota general
-    pl: Uwaga ogólna
-  fields: 
-    a: 
-      label: 
-        it: Osservazioni
-        fr: "Remarque générale"
-        de: Bemerkungen
-        en: General note
-        es: Nota general
-        pl: Uwaga ogólna
-      edit_label: 
-      en: ""
-"502": 
-  label: 
-    it: Nota alla dissertazione
-    fr: Note à la thèse
-    de: Hinweis zur Dissertation
-    en: Dissertation note
-    es: "Nota de disertación"
-    pl: Uwaga do dysertacji
-  fields: 
-    a: 
-      label: 
-        it: Nota alla dissertazione
-        fr: Note à la thèse
-        de: Hinweis zur Dissertation
-        en: Dissertation note
-        es: "Nota de disertación"
-        pl: Uwaga do dysertacji
-      comment: "NEW IN 2018"
-"520": 
-  label: 
-    it: Indicazione di contenuto
-    fr: Indication de copie
-    de: Bestandsangabe
-    en: Contents note
-    es: "Nota sobre el contenido"
-    pl: Uwaga do zawartości
-  fields: 
-    a: 
-      label: 
-        it: Indicazione di contenuto
-        fr: Indication de copie
-        de: Bestandsangabe
-        en: Contents note
-        es: "Nota sobre el contenido"
-        pl: Uwaga do zawartości
-      edit_label: 
-        en: ""
-"599": 
-  label: 
-    it: Commenti interni
-    fr: Commentaires internes
-    de: Interne Fussnoten
-    en: Internal note
-    es: Nota interna
-    pl: Uwaga wewnętrzna
-  fields: 
-    a: 
-      label: 
-        it: Commenti interni
-        fr: Commentaires internes
-        de: Interne Fussnoten
-        en: Internal note
-        es: Nota interna
-        pl: Uwaga wewnętrzna
-      edit_label: 
-        en: ""
-"650": 
-  label: 
-    it: Parola chiave
-    fr: Sujets
-    de: Schlagworteintragung
-    en: Subject heading
-    es: Descriptor
-    pl: Słowo kluczowe
-  fields: 
-    v: 
-      label: 
-        it: Suddivisione formale
-        fr: Subdivision de forme
-        de: Unterteilung nach der Form
-        en: Form subdivision
-        es: "Subdivisión de forma"
-        pl: Dalszy podział formularza
-    a: 
-      label: 
-        it: Parola chiave
-        de: Sachschlagwort
-        fr: Sujet
-        en: Subject heading
-        es: Decriptor
-        pl: Słowo kluczowe
-    x: 
-      label: 
-        it: Suddivisione generale
-        fr: "Subdivision générale"
-        de: Allgemeine Unterteilung
-        en: Subheading General subdivision
-        es: "Subdivisión general"
-        pl: Ogólny dalszy podział podnagłówków
-    y: 
-      label: 
-        it: Suddivisione cronologica
-        fr: Subdivision chronologique
-        de: Chronologische Unterteilung
-        en: Chronological subdivision
-        es: "Subdivisión cronológica"
-        pl: Dalszy podział chronologiczny
-    z: 
-      label: 
-        it: Suddivisione geografica
-        fr: "Subdivision géographique"
-        de: Geographische Unterteilung
-        en: Geographic subdivision
-        es: "Subdivisión geográfica"
-        pl: Dalszy podział geograficzny
-"651": 
-  label: 
-    it: Luogo
-    fr: "Lieu"
-    de: "Ort"
-    en: Related place
-    es: Lugar relacionado
-    pl: Powiązane miejsce
-  fields: 
-    a: 
-      label: 
-        it: Luogo
-        fr: "Lieu"
-        de: "Ort"
-        en: Place
-        es: Lugar
-        pl: Miejsce
-      edit_label: 
-        en: ""
-"856": 
-  label: 
-    it: Localizzazione e accesso elettronico
-    fr: "Ressource électronique externe"
-    de: Elektronische Lokalisierung und Zugriff
-    en: External resource
-    es: Recurso externo
-    pl: Zasób zewnętrzny
-  fields: 
-    z: 
-      label: 
-        it: Nota destinata al pubblico
-        fr: Remarque sur la ressource externe
-        de: "Für das Publikum bestimmte Fussnote"
-        en: Note about external resource
-        es: Nota sobre recurso externo
-        pl: Uwaga o zasobie zewnętrznym
-    u: 
-      label: 
-        it: Risorsa esterna URL
-        fr: Ressource externe URL
-        de: Uniform Resource Identifier URL
-        en: External resource URL
-        es: URL del recurso externo
-        pl: URL zasobu zewnętrznego
-# Marc Language codes
-cat: 
-  label: 
-    it: Catalano
-    fr: Catalan
-    de: Katalanisch
-    en: Catalan 
-    es: Catalán
-    pl: Kataloński
-cze: 
-  label: 
-    it: Ceco
-    fr: Tchèque
-    de: Tschechisch
-    en: Czech
-    es: Checo
-    pl: Czeski
-dan: 
-  label: 
-    it: Danese
-    fr: Danois
-    de: Dänisch
-    en: Danish
-    es: "Danés"
-    pl: Duński
-dut: 
-  label: 
-    it: Olandese
-    fr: Néerlandais
-    de: Niederländisch
-    en: Dutch
-    es: "Holandés"
-    pl: Holenderski
-eng: 
-  label: 
-    it: Inglese
-    fr: Anglais
-    de: Englisch
-    en: English
-    es: "Inglés"
-    pl: Angielski
-fre: 
-  label: 
-    it: Francese
-    fr: Français
-    de: Französisch
-    en: French
-    es: "Francés"
-    pl: Francuski
-ger: 
-  label: 
-    it: Tedesco
-    fr: Allemand
-    de: Deutsch
-    en: German
-    es: "Alemán"
-    pl: Niemiecki
-grc: 
-  label: 
-    it: Greco, antico (fino al 1453)
-    fr: Grec, ancien (TO 1453)
-    de: Altgriechisch (bis 1453)
-    en: Greek, Ancient (to 1453)
-    es: Griego, Antiguo (hasta 1453)
-    pl: Grecki, historyczny (do 1453 r.)
-gre:  
-  label: 
-    it: Greco, moderno (1453-)
-    fr: Grec, moderne (1453-)
-    de: Neugriechisch (1453-)
-    en: Greek, Modern (1453-)
-    es: Griego, Moderno (1453-)
-    pl: Grecki, współczesny (1453-)
-gsw: 
-  label: 
-    it: Svizzero tedesco 
-    fr: Suisse allemand
-    de: Schweizerdeutsch
-    en: Swiss German
-    es: "Suizo alemán"
-    pl: Niemiecki szwajcarski
-heb: 
-  label: 
-    it: Ebreo
-    fr: "Hébraïque"
-    de: Hebräisch
-    en: Hebrew
-    es: "Hebreo"
-    pl: Hebrajski
-hrv: 
-  label: 
-    it: Croato
-    fr: Croate
-    de: Kroatisch
-    en: Croatian
-    es: "Croata"
-    pl: Chorwacki
-hun: 
-  label: 
-    it: Ungherese
-    fr: Hongrois
-    de: Ungarisch
-    en: Hungarian
-    es: "Húngaro"
-    pl: Węgierski
-ita: 
-  label: 
-    it: Italiano
-    fr: Italien
-    de: Italienisch
-    en: Italian
-    es: "Italiano"
-    pl: Włoski
-jpn: 
-  label: 
-    it: Giapponese
-    fr: Japonais
-    de: Japanisch
-    en: Japanese
-    es: "Japonés"
-    pl: Japoński
-kor: 
-  label: 
-    it: Coreano
-    fr: "Coréen"
-    de: Koreanisch
-    en: Korean
-    es: "Coreano"
-    pl: Koreański
-lat: 
-  label: 
-    it: Latino
-    fr: Latin
-    de: Lateinisch
-    en: Latin
-    es: "Latín"
-    pl: Łaciński
-pol: 
-  label: 
-    it: Polacco
-    fr: Polonais
-    de: Polnisch
-    en: Polish
-    es: Polaco
-    pl: Polski
-por: 
-  label: 
-    it: Portoghese
-    fr: Portugais
-    de: Portugisisch
-    en: Portuguese
-    es: "Portugués"
-    pl: Portugalski
-rus: 
-  label: 
-    it: Russo
-    fr: Russe
-    de: Russisch
-    en: Russian
-    es: Ruso
-    pl: Rosyjski
-slo: 
-  label: 
-    it: Slovacco
-    fr: Slovaque
-    de: Slowakisch
-    en: Slovak
-    es: Eslovaco
-    pl: Słowacki
-slv: 
-  label: 
-    it: Sloveno
-    fr: "Slovène"
-    de: Slowenisch
-    en: Slovenian
-    es: Eslovenio
-    pl: Słoweński
-spa: 
-  label: 
-    it: Spagnolo
-    fr: Espanol
-    de: Spanisch
-    en: Spanish
-    es: "Español"
-    pl: Hiszpański
-srp: 
-  label: 
-    it: Serbo
-    fr: Serbe
-    de: Serbisch
-    en: Serbian
-    es: Serbio
-    pl: Serbski
-swe: 
-  label: 
-    it: Svedese
-    fr: "Suédois"
-    de: Schwedisch
-    en: Swedish
-    es: Sueco
-    pl: Szwedzki
+    a:
+      label: records.isbn
+  label: records.isbn
+'022':
+  fields:
+    a:
+      label: records.issn
+  label: records.issn
+'024':
+  fields:
+    a:
+      label: records.ismn
+  label: records.ismn
+02_codes_performing:
+  label: records.performance
+03_codes_technical:
+  label: records.technical_production
+'041':
+  fields:
+    a:
+      label: records.language_code
+  label: records.language_code
+'044':
+  fields:
+    a:
+      label: records.country_of_publication
+  label: records.country_of_publication
+04_codes_other:
+  label: records.other
+'100':
+  fields:
+    a:
+      label: records.author
+    d:
+      label: records.life_dates
+  label: records.author
+'210':
+  fields:
+    a:
+      label: records.short_title
+  label: records.short_title
+'240':
+  fields:
+    a:
+      label: records.title
+    g:
+      label: records.category
+    h:
+      label: records.type_publication
+  label: records.title
+'250':
+  fields:
+    a:
+      label: records.edition_statement
+  label: records.edition_statement
+'260':
+  fields:
+    a:
+      label: records.place_publication
+    b:
+      label: records.publisher
+    c:
+      label: records.year
+  label: records.imprint
+'264':
+  fields:
+    c:
+      label: records.production
+  label: records.production
+'300':
+  fields:
+    a:
+      label: records.extent
+  label: records.physical_description
+'337':
+  fields:
+    a:
+      label: records.media_type
+  label: records.media_type
+'500':
+  fields:
+    a:
+      label: records.general_note
+  label: records.general_note
+'502':
+  fields:
+    a:
+      label: records.dissertation_note
+  label: records.dissertation_note
+'520':
+  fields:
+    a:
+      label: records.contents_note
+  label: records.contents_note
+'599':
+  fields:
+    a:
+      label: records.internal_note
+  label: records.internal_note
+'650':
+  fields:
+    a:
+      label: records.subject_heading
+    v:
+      label: records.form_subdivision
+    x:
+      label: records.subheading_general
+    y:
+      label: records.chronological_subdivision
+    z:
+      label: records.geographic_subdivision
+  label: records.subject_heading
+'651':
+  fields:
+    a:
+      label: records.place
+  label: records.related_place
+'700':
+  fields:
+    '4':
+      label: records.function
+    a:
+      label: records.person
+  label: records.additional_personal_name_lit
+'710':
+  fields:
+    '4':
+      label: records.function
+    '8':
+      label: records.set
+    a:
+      label: records.institution
+    b:
+      label: records.department
+    g:
+      label: records.attribution_qualifier
+  label: records.additional_institution
+'730':
+  fields:
+    a:
+      label: records.additional_title_lit
+  label: records.additional_title_lit
+'760':
+  fields:
+    g:
+      label: records.volume_year_page
+    t:
+      label: records.title_periodical_book_series
+  label: records.item_part_of
+'780':
+  fields:
+    t:
+      label: records.preceding_entry
+  label: records.preceding_entry
+'785':
+  fields:
+    t:
+      label: records.succeeding_entry
+  label: records.succeeding_entry
+'856':
+  fields:
+    u:
+      label: records.external_resource_url
+    z:
+      label: records.note_external_resource
+  label: records.external_resource
+H:
+  label: records.editor
+XA-AD:
+  label: places.andorra
+XA-AT:
+  label: places.austria
+XA-BE:
+  label: places.belgium
+XA-BG:
+  label: places.bulgaria
+XA-CH:
+  label: places.switzerland
+XA-CH-VD:
+  label: places.switzerland_vaud
+XA-CZ:
+  label: places.czech_republic
+XA-DE:
+  label: places.germany
+XA-DK:
+  label: places.denmark
+XA-EE:
+  label: places.estonia
+XA-ES:
+  label: places.spain
+XA-FI:
+  label: places.finland
+XA-FR:
+  label: places.france
+XA-GB:
+  label: places.uk
+XA-GR:
+  label: places.greece
+XA-HR:
+  label: places.croatia
+XA-HU:
+  label: places.hungary
+XA-IE:
+  label: places.ireland
+XA-IS:
+  label: places.iceland
+XA-IT:
+  label: places.italy
+XA-LT:
+  label: places.lithuania
+XA-LU:
+  label: places.luxembourg
+XA-LV:
+  label: places.latvia
+XA-ME:
+  label: places.montenegro
+XA-MT:
+  label: places.malta
+XA-NL:
+  label: places.netherlands
+XA-NO:
+  label: places.norway
+XA-PL:
+  label: places.poland
+XA-PT:
+  label: places.portugal
+XA-RO:
+  label: places.romania
+XA-RS:
+  label: places.serbia
+XA-RU:
+  label: places.russian_federation
+XA-SE:
+  label: places.sweden
+XA-SI:
+  label: places.slovenia
+XA-SK:
+  label: places.slovakia
+XA-UA:
+  label: places.ukraine
+XA-VA:
+  label: places.holy_see
+XB-AM:
+  label: places.armenia
+XB-CN:
+  label: places.china
+XB-IL:
+  label: places.israel
+XB-IN:
+  label: places.india
+XB-IR:
+  label: places.iran
+XB-JP:
+  label: places.japan
+XB-KH:
+  label: places.cambodia
+XB-KR:
+  label: places.korea
+XB-SY:
+  label: places.syrian_arab_republic
+XB-TR:
+  label: places.turkey
+XB-TW:
+  label: places.taiwan
+XC-BJ:
+  label: languages.benin
+XC-DZ:
+  label: places.algeria
+XC-EG:
+  label: places.egypt
+XC-ZA:
+  label: places.south_africa
+XD-AR:
+  label: places.argentina
+XD-BR:
+  label: places.brazil
+XD-CA:
+  label: places.canada
+XD-CL:
+  label: places.chile
+XD-CO:
+  label: places.colombia
+XD-CU:
+  label: places.cuba
+XD-EC:
+  label: places.ecuador
+XD-HN:
+  label: places.honduras
+XD-MX:
+  label: places.mexico
+XD-PR:
+  label: places.puerto_rico
+XD-PY:
+  label: places.paraguay
+XD-TT:
+  label: places.trinidad_tobego
+XD-US:
+  label: places.usa
+XD-UY:
+  label: places.uruguay
+XD-VE:
+  label: places.venezuela
+XE-AU:
+  label: places.australia
+XE-NZ:
+  label: places.new_zealand
+added_series:
+  label: records.series_added_entry
+administration:
+  label: records.administration
+arr:
+  label: records.arranger
+art:
+  label: records.artist
+asn:
+  label: records.associated_name_lit
+aut:
+  label: records.additional_author
+bibliographical_reference:
+  label: records.references
+bnd:
+  label: records.binder
+bsl:
+  label: records.bookseller
+cat:
+  label: languages.catalan
+ccp:
+  label: records.conceptor
+chr:
+  label: records.choreographer
+clb:
+  label: records.collaborator
+cmp:
+  label: records.composer
+cnd:
+  label: records.conductor
+cns:
+  label: records.censor
+codes:
+  label: records.numbers_code_fields
+com:
+  label: records.compiler
+content:
+  label: records.content_description
+control:
+  label: records.control_fields
+cst:
+  label: records.costume_designer
+cze:
+  label: languages.czech
+dan:
+  label: languages.danish
+date:
+  label: records.dates
+description:
+  label: records.physical_description_fields
+diplomatic_title:
+  label: records.diplomatic_title
+dnc:
+  label: records.dancer
+dnr:
+  label: records.donor
+doc_abbreviations:
+  label: records.abbreviations
+doc_aid:
+  label: records.aide
+doc_cataloguing_collections:
+  label: records.cataloging_collection_convoluta
+doc_edit_functions:
+  label: records.basic_functions
+doc_introduction:
+  label: records.introduction
+doc_masks:
+  label: records.cataloging_forms
+doc_tag_index:
+  label: general.marc_tag_index
+doc_templates:
+  label: records.templates
+dte:
+  label: records.dedicatee
+dub:
+  label: records.dubious
+dut:
+  label: languages.dutch
+ed:
+  label: records.edition
+edition:
+  label: records.edition_imprint_fields
+edt:
+  label: records.editor
+egr:
+  label: records.engraver
+eng:
+  label: languages.english
+fmo:
+  label: records.former_owner
+fre:
+  label: languages.french
+ger:
+  label: languages.german
+grc:
+  label: languages.greek_ancient
+gre:
+  label: languages.greek_modern
+gsw:
+  label: languages.swiss_german
+heb:
+  label: languages.hebrew
+holding:
+  label: records.holdings_location
+hrv:
+  label: languages.croatian
+hun:
+  label: languages.hungarian
+ill:
+  label: records.illustrator
+incipit:
+  label: records.incipits
+ita:
+  label: languages.italian
+itr:
+  label: records.instrumentalist
+jpn:
+  label: records.japanese
+kor:
+  label: languages.korean
+lat:
+  label: languages.latin
+lbt:
+  label: records.librettist
+library:
+  label: records.library_information
+linkage:
+  label: records.linkage
+linking:
+  label: records.linking_entry_fields
+ltg:
+  label: records.lithograph
+lyr:
+  label: records.lyricist
+main:
+  label: records.main_entry_fields
+notes:
+  label: records.note_fields
+oth:
+  label: records.other_function
+other:
+  label: records.miscellaneous
+otm:
+  label: records.event_organizer
+pat:
+  label: records.patron
+pbl:
+  label: records.publisher
+performance:
+  label: records.performances
+physical_description:
+  label: records.physical_description
+pol:
+  label: languages.polish
+por:
+  label: languages.portugese
+ppm:
+  label: records.paper_maker
+prd:
+  label: records.production_personnel
+prf:
+  label: records.performer
+provenance:
+  label: records.provenance
+prt:
+  label: records.printer
+rus:
+  label: languages.russian
+scr:
+  label: records.scribe
+series:
+  label: records.series_statement
+show_admin:
+  label: records.administration
+show_content:
+  label: records.content
+show_details:
+  label: records.source_details
+show_distribution:
+  label: records.distribution
+show_information:
+  label: records.further_information
+show_library:
+  label: records.library_information
+show_links:
+  label: records.related_titles
+show_references:
+  label: records.references
+show_resources:
+  label: records.related_resources
+show_summary:
+  label: records.summary
+show_terms:
+  label: records.index_terms
+slo:
+  label: languages.slovak
+slv:
+  label: languages.slovenian
+spa:
+  label: languages.spanish
+srp:
+  label: languages.serbian
+subject:
+  label: records.subject_access_fields
+swe:
+  label: languages.swedish
+title:
+  label: records.title_related_fields
+trl:
+  label: records.translator
+voc:
+  label: records.vocalist
 zho:
-  label:
-    it: Cinese
-    fr: Chinois
-    de: Chinesisch
-    en: Chinese
-    es: Chino
-    pl: Chiński
-zxx: 
-  label: 
-    it: Nessun contesto linguistico
-    fr: Sans contenu linguistique
-    de: ohne Sprache
-    en: No linguistic content
-    es: "Sin contenido lingüístico"
-    pl: Brak zawartości językowej
-#Country Codes
-"XC-DZ":
-  label:
-    it: "Algeria"
-    fr: "Algeria"
-    de: "Algeria"
-    en: "Algeria"
-    es: "Argelia"
-    pl: Algieria
-"XA-AD":
-  label:
-    it: "ANDORRA"
-    fr: "ANDORRA"
-    de: "Andorra"
-    en: "Andorra"
-    es: "ANDORRA"
-    pl: Andora
-"XD-AR":
-  label:
-    it: "Argentina"
-    fr: "Argentina"
-    de: "Argentina"
-    en: "Argentina"
-    es: "Argentina"
-    pl: Argentyna
-"XB-AM":
-  label:
-    it: "Armenia"
-    fr: "Armenia"
-    de: "Armenia"
-    en: "Armenia"
-    es: "Armenia"
-    pl: Armenia
-"XE-AU":
-  label:
-    it: "Australia"
-    fr: "Australia"
-    de: "Australia"
-    en: "Australia"
-    es: "Australia"
-    pl: Australia
-"XA-AT":
-  label:
-    it: "Austria"
-    fr: "Austria"
-    de: "Austria"
-    en: "Austria"
-    es: "Austria"
-    pl: Austria
-"XA-BE":
-  label:
-    it: "Belgio"
-    fr: "Belgium"
-    de: "Belgium"
-    en: "Belgium"
-    es: "Bélgica"
-    pl: Belgia
-"XC-BJ":
-  label:
-    it: "Benin"
-    fr: "Benin"
-    de: "Benin"
-    en: "Benin"
-    es: "Benín"
-    pl: Benin
-"XD-BR":
-  label:
-    it: "Brasile"
-    fr: "Brazil"
-    de: "Brazil"
-    en: "Brazil"
-    es: "Brasil"
-    pl: Brazylia
-"XA-BG":
-  label:
-    it: "Bulgaria"
-    fr: "Bulgaria"
-    de: "Bulgaria"
-    en: "Bulgaria"
-    es: "Bulgaria"
-    pl: Bułgaria
-"XB-KH":
-  label:
-    it: "Cambogia"
-    fr: "Cambodia"
-    de: "Cambodia"
-    en: "Cambodia"
-    es: "Camboya"
-    pl: Kambodża
-"XD-CA":
-  label:
-    it: "Canada"
-    fr: "Canada"
-    de: "Canada"
-    en: "Canada"
-    es: "Canadá"
-    pl: Kanada
-"XD-CL":
-  label:
-    it: "Chile"
-    fr: "Chile"
-    de: "Chile"
-    en: "Chile"
-    es: "Chile"
-    pl: Chile
-"XB-CN":
-  label:
-    it: "Cina"
-    fr: "China"
-    de: "China"
-    en: "China"
-    es: "China"
-    pl: Chiny
-"XD-CO":
-  label:
-    it: "Colombia"
-    fr: "Colombia"
-    de: "Colombia"
-    en: "Colombia"
-    es: "Colombia"
-    pl: Kolumbia
-"XA-HR":
-  label:
-    it: "Croazia"
-    fr: "Croatia"
-    de: "Croatia"
-    en: "Croatia"
-    es: "Croacia"
-    pl: Chorwacja
-
-"XD-CU":
-  label:
-    it: "Cuba"
-    fr: "Cuba"
-    de: "Cuba"
-    en: "Cuba"
-    es: "Cuba"
-    pl: Kuba
-"XA-CZ":
-  label:
-    it: "Repubblica ceca"
-    fr: "Czech Republic"
-    de: "Czech Republic"
-    en: "Czech Republic"
-    es: "República Checa"
-    pl: Czechy
-"XA-DK":
-  label:
-    it: "Danimarca"
-    fr: "Denmark"
-    de: "Denmark"
-    en: "Denmark"
-    es: "Dinamarca"
-    pl: Dania
-"XC-EG":
-  label:
-    it: "Egitto"
-    fr: "Egypt"
-    de: "Egypt"
-    en: "Egypt"
-    es: "Egipto"
-    pl: Egipt
-"XA-EE":
-  label:
-    it: "Estonia"
-    fr: "Estonia"
-    de: "Estonia"
-    en: "Estonia"
-    es: "Estonia"
-    pl: Estonia
-"XA-FI":
-  label:
-    it: "Finlandia"
-    fr: "Finland"
-    de: "Finland"
-    en: "Finland"
-    es: "Finlandia"
-    pl: Finlandia
-"XA-FR":
-  label:
-    it: "Francia"
-    fr: "France"
-    de: "France"
-    en: "France"
-    es: "Francia"
-    pl: Francja
-"XA-DE":
-  label:
-    it: "Germania"
-    fr: "Germany"
-    de: "Germany"
-    en: "Germany"
-    es: "Alemania"
-    pl: Niemcy
-"XA-GR":
-  label:
-    it: "Grecia"
-    fr: "Greece"
-    de: "Greece"
-    en: "Greece"
-    es: "Grecia"
-    pl: Grecja
-"XA-VA":
-  label:
-    it: "Santa Sede"
-    fr: "Holy See"
-    de: "Holy See"
-    en: "Holy See"
-    es: "Santa Sede"
-    pl: Watykan
-"XD-HN":
-  label:
-    it: "Honduras"
-    fr: "Honduras"
-    de: "Honduras"
-    en: "Honduras"
-    es: "Honduras"
-    pl: Honduras
-"XA-HU":
-  label:
-    it: "Ungheria"
-    fr: "Hungary"
-    de: "Hungary"
-    en: "Hungary"
-    es: "Hungría"
-    pl: Węgry
-"XA-IS":
-  label:
-    it: "Islanda"
-    fr: "Iceland"
-    de: "Iceland"
-    en: "Iceland"
-    es: "Islandia"
-    pl: Islandia
-"XB-IN":
-  label:
-    it: "India"
-    fr: "India"
-    de: "India"
-    en: "India"
-    es: "India"
-    pl: Indie
-"XB-IR":
-  label:
-    it: "Iran, Repubblica Islamica dell'"
-    fr: "Iran, Islamic Republic of"
-    de: "Iran, Islamic Republic of"
-    en: "Iran, Islamic Republic of"
-    es: "Irán, República Islámica de"
-    pl: Iran, Republika Islamska
-"XA-IE":
-  label:
-    it: "Irlanda"
-    fr: "Ireland"
-    de: "Ireland"
-    en: "Ireland"
-    es: "Irlanda"
-    pl: Irlandia
-"XB-IL":
-  label:
-    it: "Israele"
-    fr: "Israel"
-    de: "Israel"
-    en: "Israel"
-    es: "Israel"
-    pl: Izrael
-"XA-IT":
-  label:
-    it: "Italia"
-    fr: "Italy"
-    de: "Italy"
-    en: "Italy"
-    es: "Italia"
-    pl: Włochy
-"XB-JP":
-  label:
-    it: "Giappone"
-    fr: "Japan"
-    de: "Japan"
-    en: "Japan"
-    es: "Japón"
-    pl: Japonia
-"XB-KR":
-  label:
-    it: "Corea, Repubblica di"
-    fr: "Korea, Republic of"
-    de: "Korea, Republic of"
-    en: "Korea, Republic of"
-    es: "Corea, República de"
-    pl: Korea, Republika
-"XA-LV":
-  label:
-    it: "Lettonia"
-    fr: "Latvia"
-    de: "Latvia"
-    en: "Latvia"
-    es: "Letonia"
-    pl: Łotwa
-"XA-LT":
-  label:
-    it: "Lituania"
-    fr: "Lithuania"
-    de: "Lithuania"
-    en: "Lithuania"
-    es: "Lituania"
-    pl: Litwa
-"XA-LU":
-  label:
-    it: "Lussemburgo"
-    fr: "Luxembourg"
-    de: "Luxembourg"
-    en: "Luxembourg"
-    es: "Luxemburgo"
-    pl: Luksemburg
-"XA-MT":
-  label:
-    it: "Malta"
-    fr: "Malta"
-    de: "Malta"
-    en: "Malta"
-    es: "Malta"
-    pl: Malta
-"XD-MX":
-  label:
-    it: "Messico"
-    fr: "Mexico"
-    de: "Mexico"
-    en: "Mexico"
-    es: "México"
-    pl: Meksyk
-"XA-ME":
-  label:
-    it: "Montenegro"
-    fr: "Montenegro"
-    de: "Montenegro"
-    en: "Montenegro"
-    es: "Montenegro"
-    pl: Czarnogóra
-"XA-NL":
-  label:
-    it: "Paesi Bassi"
-    fr: "Netherlands"
-    de: "Netherlands"
-    en: "Netherlands"
-    es: "Países Bajos"
-    pl: Niderlandy
-"XE-NZ":
-  label:
-    it: "Nuova Zelanda"
-    fr: "New Zealand"
-    de: "New Zealand"
-    en: "New Zealand"
-    es: "Nueva Zelanda"
-    pl: Nowa Zelandia
-"XA-NO":
-  label:
-    it: "Norvegia"
-    fr: "Norway"
-    de: "Norway"
-    en: "Norway"
-    es: "Noruega"
-    pl: Norwegia
-"XD-PY":
-  label:
-    it: "Paraguay"
-    fr: "Paraguay"
-    de: "Paraguay"
-    en: "Paraguay"
-    es: "Paraguay"
-    pl: Paragwaj
-"XA-PL":
-  label:
-    it: "Polonia"
-    fr: "Poland"
-    de: "Poland"
-    en: "Poland"
-    es: "Polonia"
-    pl: Polska
-"XA-PT":
-  label:
-    it: "Portogallo"
-    fr: "Portugal"
-    de: "Portugal"
-    en: "Portugal"
-    es: "Portugal"
-    pl: Portugalia
-"XD-PR":
-  label:
-    it: "Puerto Rico"
-    fr: "Puerto Rico"
-    de: "Puerto Rico"
-    en: "Puerto Rico"
-    es: "Puerto Rico"
-    pl: Portoryko
-"XA-RO":
-  label:
-    it: "Romania"
-    fr: "Romania"
-    de: "Romania"
-    en: "Romania"
-    es: "Rumania"
-    pl: Rumunia
-"XA-RU":
-  label:
-    it: "Federazione Russa"
-    fr: "Russian Federation"
-    de: "Russian Federation"
-    en: "Russian Federation"
-    es: "Federación Rusa"
-    pl: Federacja Rosyjska
-"XA-RS":
-  label:
-    it: "Serbia"
-    fr: "Serbia"
-    de: "Serbia"
-    en: "Serbia"
-    es: "Serbia"
-    pl: Serbia
-"XA-SK":
-  label:
-    it: "Slovacchia"
-    fr: "Slovakia"
-    de: "Slovakia"
-    en: "Slovakia"
-    es: "Eslovaquia"
-    pl: Słowacja
-"XA-SI":
-  label:
-    it: "Slovenia"
-    fr: "Slovenia"
-    de: "Slovenia"
-    en: "Slovenia"
-    es: "Eslovenia"
-    pl: Słowenia
-"XC-ZA":
-  label:
-    it: "Sudafrica"
-    fr: "South Africa"
-    de: "South Africa"
-    en: "South Africa"
-    es: "Sudáfrica"
-    pl: Republika Południowej Afryki
-"XA-ES":
-  label:
-    it: "Spagna"
-    fr: "Spain"
-    de: "Spain"
-    en: "Spain"
-    es: "España"
-    pl: Hiszpania
-"XA-SE":
-  label:
-    it: "Svezia"
-    fr: "Sweden"
-    de: "Sweden"
-    en: "Sweden"
-    es: "Suecia"
-    pl: Szwecja
-"XA-CH-VD":
-  label:
-    it: "Svizzera: Vaud"
-    fr: "Switzerland: Vaud"
-    de: "Switzerland: Vaud"
-    en: "Switzerland: Vaud"
-    es: "Suiza: cantón de Vaud"
-    pl: "Szwajcaria: kanton Vaud"
-"XA-CH":
-  label:
-    it: "Svizzera"
-    fr: "Switzerland"
-    de: "Switzerland"
-    en: "Switzerland"
-    es: "Suiza"
-    pl: Szwajcaria
-"XB-SY":
-  label:
-    it: "Repubblica Araba Siriana"
-    fr: "Syrian Arab Republic"
-    de: "Syrian Arab Republic"
-    en: "Syrian Arab Republic"
-    es: "República Árabe Siria"
-    pl: Syryjska Republika Arabska
-"XB-TW":
-  label:
-    it: "Taiwan (provincia della Ciina)"
-    fr: "Taiwan (Province of China)"
-    de: "Taiwan (Province of China)"
-    en: "Taiwan (Province of China)"
-    es: "Taiwán (Provincia de China)"
-    pl: Tajwan (prowincja Chin)
-"XD-TT":
-  label:
-    it: "Trinidad e Tobago"
-    fr: "Trinidad and Tobago"
-    de: "Trinidad and Tobago"
-    en: "Trinidad and Tobago"
-    es: "Trinidad y Tobago"
-    pl: Trynidad i Tobago
-"XB-TR":
-  label:
-    it: "Turchia"
-    fr: "Turkey"
-    de: "Turkey"
-    en: "Turkey"
-    es: "Turquía"
-    pl: Turcja
-"XA-UA":
-  label:
-    it: "Ucraina"
-    fr: "Ukraine"
-    de: "Ukraine"
-    en: "Ukraine"
-    es: "Ucrania"
-    pl: Ukraina
-"XA-GB":
-  label:
-    it: "Regno Unito"
-    fr: "United Kingdom"
-    de: "United Kingdom"
-    en: "United Kingdom"
-    es: "Reino Unido"
-    pl: Zjednoczone Królestwo
-"XD-US":
-  label:
-    it: "Stati Uniti d'America"
-    fr: "United States of America"
-    de: "United States of America"
-    en: "United States of America"
-    es: "Estados Unidos de América"
-    pl: Stany Zjednoczone AP
-"XD-UY":
-  label:
-    it: "Uruguay"
-    fr: "Uruguay"
-    de: "Uruguay"
-    en: "Uruguay"
-    es: "Uruguay"
-    pl: Urugwaj
-"XD-VE":
-  label:
-    it: "Venezuela, Repubblica Bolivariana del"
-    fr: "Venezuela, Bolivarian Republic of"
-    de: "Venezuela, Bolivarian Republic of"
-    en: "Venezuela, Bolivarian Republic of"
-    es: "Venezuela, República Bolivariana de"
-    pl: Wenezuela, Republika Boliwariańska
-"XD-EC":
-  label:
-    it: "Ecuador"
-    fr: "Ecuador"
-    de: "Ecuador"
-    en: "Ecuador"
-    es: "Ecuador"
-    pl: Ekwador
+  label: languages.chinese
+zxx:
+  label: records.no_linguistic_content

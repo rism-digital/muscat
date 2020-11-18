@@ -1,0 +1,789 @@
+en:
+  general:
+    e_mail: E-mail
+    editor_help: Editor help
+    faq: Frequently asked questions
+    female: Female
+    how_do_i: How do I ... Tips & Tricks
+    index_marc_fields: Index of MARC fields
+    male: Male
+    marc_tag_index: MARC tag index
+    'no': 'No'
+    rism: RISM
+    rism_best_practices: RISM best practices
+    rism_instrument_abbreviations: RISM instrument abbreviations (continued)
+    rism_series: RISM Series
+    rism_series_a_b_references: RISM Series A/I and B reference
+    rism_series_number: RISM series number
+    rule_type: Rule type
+    scope_printed_music_rism: Scope of printed music in RISM
+    searching: Searching
+    status: Status
+    undetermined: Undetermined
+    ungrouped_fields: Ungrouped fields
+    unknown_fields: Unknown fields
+    unused: UNUSED - WILL BE REMOVED
+    uri: URI
+    url: URL
+    using_muscat: Using Muscat
+    validity: Validity
+    verified: Verified
+    when_to_input_new_record: When to input a new record (printed music)
+    workflow: Workflow
+    'yes': 'Yes'
+  languages:
+    afrikaans: Afrikaans
+    arabic: Arabic
+    aragonese: Aragonese
+    armenian: Armenian
+    basque: Basque
+    bosnian: Bosnian
+    bulgarian: Bulgarian
+    catalan: Catalan
+    celtic_other: Celtic (Other)
+    chinese: Chinese
+    creoles_pidgins_other: Creoles and Pidgins (Other)
+    croatian: Croatian
+    czech: Czech
+    danish: Danish
+    dutch: Dutch
+    english: English
+    estonian: Estonian
+    ethiopic: Ethiopic
+    finnish: Finnish
+    french: French
+    french_middle: French, Middle (ca. 1300-1600)
+    french_old: French, Old (ca. 842-1300)
+    gallician: Galician
+    german: German
+    german_old_high: German, Old High (ca. 750-1050)
+    germanic: Germanic
+    greek_ancient: Greek, Ancient (to 1453)
+    greek_modern: Greek, Modern (1453-)
+    hebrew: Hebrew
+    hungarian: Hungarian
+    icelandic: Icelandic
+    insari_sami: Inari Sami
+    irish: Irish
+    italian: Italian
+    korean: Korean
+    latin: Latin
+    latvian: Latvian
+    lithuanian: Lithuanian
+    low_german: Low German
+    lower_sorbian: Sorbian, Lower Sorbian
+    luxembourgish: Luxembourgish
+    macedonian: Macedonian
+    maori: Maori
+    middle_english: Middle English
+    middle_high_german: Middle High German
+    mongolian: Mongolian
+    neapolitan: Neapolitan
+    north_frisian: North Frisian
+    norwegian: Norwegian
+    occitan: Occitan
+    oirat: Oirat
+    old_church_slavonic: Old Church Slavonic
+    persian: Persian
+    polish: Polish
+    portugese: Portuguese
+    romani: Romani
+    romanian: Romanian
+    romansh: Romansh
+    russian: Russian
+    sanskrit: Sanskrit
+    scots: Scots
+    serbian: Serbian
+    sichuan_yi: Sichuan Yi
+    sicilian: Sicilian
+    slavic: Slavic
+    slovak: Slovak
+    slovenian: Slovenian
+    sorbian: Sorbian
+    spanish: Spanish
+    swedish: Swedish
+    swiss_german: Swiss German
+    tagalog: Tagalog
+    tartar: Tatar
+    thai: Thai
+    tibetan: Tibetan
+    tsimshian: Tsimshian
+    turkish: Turkish
+    ukrainian: Ukrainian
+    upper_sorbian: Sorbian, Upper Sorbian
+    vietnamese: Vietnamese
+    welsh: Welsh
+    west_frisian: West Frisian
+    yiddish: Yiddish
+  places:
+    algeria: Algeria
+    andorra: Andorra
+    argentina: Argentina
+    armenia: Armenia
+    australia: Australia
+    austria: Austria
+    austria_carinthia: 'Austria: Carinthia'
+    austria_lower_austria: 'Austria: Lower Austria'
+    austria_salzburg: 'Austria: Salzburg'
+    austria_styria: 'Austria: Styria'
+    austria_tyrol: 'Austria: Tyrol'
+    austria_upper_austria: 'Austria: Upper Austria'
+    austria_vienna: 'Austria: Vienna'
+    belgium: Belgium
+    benin: Benin
+    brazil: Brazil
+    bulgaria: Bulgaria
+    cambodia: Cambodia
+    canada: Canada
+    chile: Chile
+    china: China
+    colombia: Colombia
+    croatia: Croatia
+    cuba: Cuba
+    czech_republic: Czech Republic
+    denmark: Denmark
+    ecuador: Ecuador
+    egypt: Egypt
+    estonia: Estonia
+    finland: Finland
+    france: France
+    georgia: Georgia
+    germany: Germany
+    germany_bavaria: 'Germany: Bavaria'
+    germany_saxony: 'Germany: Saxony'
+    greece: Greece
+    guatemala: Guatemala
+    guinea: Guinea
+    holy_see: Holy See
+    honduras: Honduras
+    hong_kong: Hong Kong
+    hungary: Hungary
+    iceland: Iceland
+    india: India
+    indonesia: Indonesia
+    iran: Iran, Islamic Republic of
+    iraq: Iraq
+    ireland: Ireland
+    israel: Israel
+    italy: Italy
+    italy_trentino_alto_adige: 'Italy: Trentino-Alto Adige'
+    japan: Japan
+    korea: Korea, Republic of
+    latvia: Latvia
+    lithuania: Lithuania
+    luxembourg: Luxembourg
+    malta: Malta
+    mexico: Mexico
+    moldavia: Moldavia
+    monaco: Monaco
+    montenegro: Montenegro
+    netherlands: Netherlands
+    new_zealand: New Zealand
+    northern_ireland: Northern Ireland
+    norway: Norway
+    papua_new_guinea: Papua New Guinea
+    paraguay: Paraguay
+    peru: Peru
+    philippines: Philippines
+    poland: Poland
+    portugal: Portugal
+    puerto_rico: Puerto Rico
+    romania: Romania
+    russian_federation: Russian Federation
+    saudi_arabia: Saudi Arabia
+    serbia: Serbia
+    slovakia: Slovakia
+    slovenia: Slovenia
+    south_africa: South Africa
+    spain: Spain
+    sweden: Sweden
+    switzerland: Switzerland
+    switzerland_vaud: 'Switzerland: Vaud'
+    syrian_arab_republic: Syrian Arab Republic
+    taiwan: Taiwan (Province of China)
+    trinidad_tobego: Trinidad and Tobago
+    turkey: Turkey
+    uk: United Kingdom
+    ukraine: Ukraine
+    uruguay: Uruguay
+    usa: United States of America
+    venezuela: Venezuela, Bolivarian Republic of
+    vietnam: Vietnam
+  records:
+    a_major: A major
+    a_minor: A minor
+    abbreviations: Abbreviations
+    abbreviations_terminology: Abbreviations and terminology
+    access_restrictions: Access restrictions
+    accession_number: Accession number
+    added_entry_name: Added entry name
+    additional_author: Additional author
+    additional_bibliographic_information: Additional bibliographic information
+    additional_biographical_information: Additional biographical information
+    additional_choir_voice: Additional choir voice
+    additional_institution: Additional institution
+    additional_personal_name: Additional personal name
+    additional_personal_name_lit: Additional personal name
+    additional_solo_voice: Additional solo voice
+    additional_title: Additional title
+    additional_title_lit: Additional title
+    administration: Administration
+    af_major: A♭ major
+    af_minor: A♭ minor
+    aide: Aide
+    aids: Aids
+    alleged: Alleged
+    alternate_spelling: Alternate spelling
+    archive: Archive
+    arrangement: Arrangement
+    arrangement_statement: Arrangement statement
+    arranger: Arranger
+    artist: Artist
+    artistic_production: Artistic production
+    as_major: A♯ major
+    as_minor: A♯ minor
+    ascertained: Ascertained
+    assignee: Assignee
+    associated_institution: Associated institution
+    associated_name: Associated name
+    associated_name_lit: Associated name
+    associated_place: Associated Place
+    attribution_qualifier: Attribution qualifier
+    authentication_code: Authentication code
+    author: Author
+    author_editor: Author/Editor
+    authorities: Authorities
+    authority_agency: Authority agency
+    authority_reference: Authority reference
+    autography: Autography
+    b_major: B major
+    b_minor: B minor
+    baptismal_name: Baptismal name
+    basic_functions: Basic functions
+    basso_continuo: Basso continuo
+    bf_major: B♭ major
+    bf_minor: B♭ minor
+    bibliographic_reference: Bibliographic reference
+    binder: Binder
+    binding_note: Binding note
+    birth_name: Birth name
+    book_format: Book format
+    bookseller: Bookseller
+    bound_with: Bound with
+    brass_instruments: Brass instruments
+    brief: Brief
+    brother_of: Brother of
+    byname: Byname
+    c_major: C major
+    c_minor: C minor
+    c_minus_1: C-1
+    c_minus_2: C-2
+    c_minus_3: C-3
+    c_minus_4: C-4
+    c_minus_5: C-5
+    c_plus_1: C+1
+    c_plus_2: C+2
+    c_plus_3: C+3
+    c_plus_4: C+4
+    c_plus_5: C+5
+    catalog_opus_number: Catalog number/Opus number
+    catalog_works: Catalog of works
+    cataloging_agency: Cataloging agency
+    cataloging_collection_convoluta: Cataloging collection and convoluta
+    cataloging_collections: Cataloging collections
+    cataloging_forms: Cataloging forms
+    cataloging_language: Cataloging language
+    cataloging_level: Cataloging level
+    cataloging_musical_sources: Cataloging musical sources
+    cataloging_source: Cataloging source
+    category: Category
+    censor: Censor
+    cf_major: C♭ major
+    cf_minor: C♭ minor
+    child_of: Child of
+    choir_voice: Choir voice
+    choreographer: Choreographer
+    chronological_subdivision: Chronological subdivision
+    chronological_term: Chronological term
+    city: City
+    clef: Clef
+    co-composer: Co-composer
+    coded_date: Coded date
+    coded_instrumentation: Coded instrumentation
+    collaborator: Collaborator
+    colophon: Colophon
+    common_clefs: Common clefs
+    compiler: Compiler
+    composer: Composer
+    composer_author: Composer/Author
+    composer_cross_reference: Composer cross-reference
+    computer_printout: Computer printout
+    conceptor: Conceptor
+    conductor: Conductor
+    confused_with: Confused with
+    conjectural: Conjectural
+    contact: Contact
+    contact_area: Contact area
+    content: Content
+    content_description: Content description
+    contents_note: Contents note
+    contributor: Contributor
+    control_fields: Control fields
+    control_number_identifier: Control number identifier
+    copy_examined: Copy examined for cataloging
+    copyist: Copyist
+    copyright_holder: Copyright holder
+    costume_designer: Costume designer
+    countries_places: Countries and Places
+    country: Country
+    country_active: Country active
+    country_activity: Country of activity
+    country_code: Country code
+    country_of_publication: Country of publication
+    county_province: County or province
+    creation_production_note: Creation/production note
+    cs_major: C♯ major
+    cs_minor: C♯ minor
+    d_major: D major
+    d_minor: D minor
+    dancer: Dancer
+    date: Date
+    date_of_acquisition: Date of acquisition
+    date_of_creation: Date of creation
+    date_time_last_transaction: Date and time of last transaction
+    date_type: Date type
+    dates: Dates
+    dedicatee: Dedicatee
+    department: Department
+    depositor: Depositor
+    description: Description
+    description_area: Description area
+    description_summary: Description summary
+    designer: Designer
+    df_major: D♭ major
+    df_minor: D♭ minor
+    digitized_music: Digitized music
+    digitized_source: Digitized source
+    dimensions: Dimensions
+    diplomatic_title: Diplomatic title
+    dissertation_note: Dissertation note
+    distribution: Distribution
+    distributor: Distributor
+    documentation_center: Documentation center
+    donor: Donor
+    doubtful: Doubtful
+    dramatic_roles_original: Dramatic role named, original spelling
+    dramatic_roles_standardized: Dramatic role named, standardized
+    ds_major: D♯ major
+    ds_minor: D♯ minor
+    dubious: Dubious
+    e_major: E major
+    e_minor: E minor
+    ecclesiastical_modes: Ecclesiastical modes
+    edition: Edition
+    edition_imprint_fields: Edition, imprint, etc. fields
+    edition_statement: Edition statement
+    editor: Editor
+    ef_major: E♭ major
+    ef_minor: E♭ minor
+    engraver: Engraver
+    engraving: Engraving
+    event_organizer: Event organizer
+    event_place: Event place
+    excerpts: Excerpts
+    extent: Extent
+    extent_parts: Extent (parts)
+    external_resource: External resource
+    external_resource_uri: External resource URI
+    external_resource_url: External resource URL
+    f_major: F major
+    f_minor: F minor
+    f_minus_1: F-1
+    f_minus_2: F-2
+    f_minus_3: F-3
+    f_minus_4_bass: F-4 (bass clef)
+    f_minus_5: F-5
+    f_plus_1: F+1
+    f_plus_2: F+2
+    f_plus_3: F+3
+    f_plus_4: F+4
+    f_plus_5: F+5
+    facsimile: Facsimile
+    family_name: Family Name
+    father_of: Father of
+    figured_bass_scores: Figured bass in scores and/or other parts
+    fijian: Fijian
+    fingerprint_identifier: Fingerprint identifier
+    first_second_group: First/second group
+    form_subdivision: Form subdivision
+    format_extent: Format, extent
+    former_owner: Former owner
+    fragments: Fragments
+    friulano: Friulano
+    fs_major: F♯ major
+    fs_minor: F♯ minor
+    full: Full
+    function: Function
+    further_information: Further information
+    g_major: G major
+    g_minor: G minor
+    g_minus_1: G-1
+    g_minus_2_octave: g-2 (octave treble clef)
+    g_minus_2_treble: G-2 (treble clef)
+    g_minus_3: G-3
+    g_minus_4: G-4
+    g_minus_5: G-5
+    g_plus_1: G+1
+    g_plus_2: G+2
+    g_plus_3: G+3
+    g_plus_4: G+4
+    g_plus_5: G+5
+    gender: Gender
+    general_abbreviations: General abbreviations and terms
+    general_cataloguing_guidelines: General cataloging guidelines
+    general_note: General note
+    general_note_incipits: General note for music incipit
+    general_note_institution: General note
+    general_note_personal: General note
+    geographic_name: Geographic name
+    geographic_subdivision: Geographic subdivision
+    gf_major: G♭ major
+    gf_minor: G♭ minor
+    gs_major: G♯ major
+    gs_minor: G♯ minor
+    heading: Heading
+    heading_composer_name: Heading - composer name
+    heading_personal_name: Heading - Personal name
+    heading_personal_name1: Heading-Personal name
+    help_transposing_instruments: Help for transposing instruments
+    history_institution: History of institution
+    holdings_location: Holdings, location, etc. fields
+    identity: Identity
+    identity_area: Identity area
+    iiif_manifest: IIIF manifest
+    illustrator: Illustrator
+    images: Images
+    import: Import
+    imprint: Imprint
+    incipit: Incipit
+    incipit_number: Incipit number
+    incipits: Incipits
+    index_terms: Index terms
+    information_found: Information found
+    initial: Initial
+    initial_entry: Initial entry
+    initials: Initials
+    insertions: Insertions
+    inserts: Inserts
+    institution: Institution
+    institutions: Institutions
+    instrumentalist: Instrumentalist
+    internal_note: Internal note
+    introduction: Introduction
+    isbn: ISBN
+    ismn: ISMN
+    issn: ISSN
+    item_in_collection: Item in this collection
+    item_part_of: Item part of
+    items_in_source: Items in this source
+    japanese: Japanese
+    key: Key
+    key_or_mode: Key or mode
+    key_signature: Key signature
+    keyboards: Keyboards
+    keys: Keys
+    language_code: Language code
+    language_codes: Language codes
+    language_libretto: Language of libretto
+    language_note: Language note
+    language_of_cataloging: Language of cataloging
+    language_original_text: Language of original text
+    language_text: Language of text
+    latitude: Latitude
+    leader: Leader
+    library: Library
+    library_information: Library information
+    library_information_relations: Library information and relations
+    library_siglum: Library siglum
+    librettist: Librettist
+    licensee: Licensee
+    life_dates: Life dates
+    link_type: Link type
+    linkage: Linkage
+    linking_entry_fields: Linking entry fields
+    literature: Literature
+    lithograph: Lithograph
+    lithographer: Lithographer
+    lithography: Lithography
+    liturgical_festival: Liturgical festival
+    liturgical_festivals: Liturgical festivals
+    local_id_number: Local ID no.
+    local_note_field: Local note field
+    local_notes_field: Local notes field
+    local_number: Local number
+    location: Location
+    location_and_address: Location and address
+    location_insertion: Location of insertion
+    location_on_source: Locations on the source
+    location_performance: Location of performance
+    location_printer: Location of printer
+    longitude: Longitude
+    lyricist: Lyricist
+    main_entry_fields: Main entry fields
+    married_name: Married name
+    married_to: Married to
+    married_with: Married with
+    material_description: Material description
+    material_examined: Material examined
+    material_held: Material held
+    material_not_examined: Material not examined
+    media_type: Media type
+    mensural_clefs: Mensural clefs
+    method_of_acquisition: Method of acquisition
+    misattributed: Misattributed
+    miscellaneous: Miscellaneous
+    mode_10t: 'Mode: 10t – Hypoaeolian'
+    mode_10tt: 'Mode: 10tt – Hypoaeolian, transposed'
+    mode_11t: 'Mode: 11t – Ionian'
+    mode_11tt: 'Mode: 11tt – Ionian, transposed'
+    mode_12t: 'Mode: 12t – Hypoionian'
+    mode_12tt: 'Mode: 12tt – Hypoionian, transposed'
+    mode_1t: 'Mode:  1t – Dorian'
+    mode_1tt: 'Mode:  1tt – Dorian, transposed'
+    mode_2t: 'Mode:  2t – Hypodorian'
+    mode_2tt: 'Mode:  2tt – Hypodorian, transposed'
+    mode_3t: 'Mode:  3t – Phrygian'
+    mode_3tt: 'Mode:  3tt – Phrygian, transposed'
+    mode_4t: 'Mode:  4t – Hypophrygian'
+    mode_4tt: 'Mode:  4tt – Hypophrygian, transposed'
+    mode_5t: 'Mode:  5t – Lydian'
+    mode_5tt: 'Mode:  5tt – Lydian, transposed'
+    mode_6t: 'Mode:  6t – Hypolydian'
+    mode_6tt: 'Mode:  6tt – Hypolydian, transposed'
+    mode_7t: 'Mode:  7t – Mixolydian'
+    mode_7tt: 'Mode:  7tt – Mixolydian, transposed'
+    mode_8t: 'Mode:  8t – Hypomixolydian'
+    mode_8tt: 'Mode:  8tt – Hypomixolydian, transposed'
+    mode_9t: 'Mode:  9t – Aeolian'
+    mode_9tt: 'Mode:  9tt – Aeolian, transposed'
+    modifying_agency: Modifying agency
+    monogram: Monogram
+    mother_of: Mother of
+    movement_number: Movement number
+    multiple: Multiple
+    multiple_copies: Multiple copies
+    multiple_single_dates: Multiple single dates
+    museum: Museum
+    music_incipit: Music incipit
+    name: Name
+    name_family: Name of family
+    name_printer: Name of printer
+    name_variant: Name variant
+    name_variants: Name variants
+    named_dramatic_roles: Named dramatic role
+    nationality: Nationality
+    nickname: Nickname
+    no_linguistic_content: No linguistic content
+    non_migrated_bound: Non-migrated bound with value from 563
+    note_external_resource: Note about external resource
+    note_fields: Note fields
+    note_on_performance: Note on performance
+    now_in: Now in
+    number: Number
+    number_page: Number/page
+    number_part_section: Number of part/section of a work
+    number_volume_part: Number of volume/part
+    numbers_code_fields: Numbers and code fields
+    octoechos1: 'Octoechos 1: Ēchos prōtos (First mode of Byzantine music)'
+    octoechos2: 'Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)'
+    octoechos3: 'Octoechos 3: Ēchos tritos (Third mode of Byzantine music)'
+    octoechos4: 'Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)'
+    octoechos5: 'Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine
+      music)'
+    octoechos6: 'Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine
+      music)'
+    octoechos7: 'Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)'
+    octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine
+      music)'
+    online_finding_aids: Online finding aids
+    opera_houses_concert_halls: Opera houses and concert halls
+    opus_number: Opus number
+    opus_thematic_index_number: Opus/Thematic index number
+    order_name: Order Name
+    origin: Origin
+    original_cataloging_agency: Original cataloging agency
+    other: Other
+    other_form: Other form
+    other_form_of_name: Other form of name
+    other_function: Other function
+    other_help: Other help
+    other_instruments: Other instruments
+    other_life_dates: Other life dates
+    other_physical_details: Other physical details
+    other_searchform: Other Searchform
+    other_shelfmark: Other shelfmark
+    other_standard_identifier: Other standard identifier
+    other_variant: Other variant
+    paper_maker: Paper maker
+    papermaker: Papermaker
+    parallel_form: Paralell form of name
+    parent_record: Parent record
+    parts_held: Parts held
+    parts_held_extent: Parts held and extent
+    patron: Patron
+    people_institutions: People and institutions
+    percussion: Percussion
+    performance: Performance
+    performances: Performances
+    performer: Performer
+    performer_note: Performer note
+    person: Person
+    person_name: Person Name
+    personal_name: Personal name
+    personal_names: Personal names
+    photoreproductive_process: Photoreproductive process (bluprint)
+    physical_description: Physical description
+    physical_description_fields: Physical description, etc. fields
+    place: Place
+    place_active: Place active
+    place_activity: Place of activity
+    place_birth: Place of birth
+    place_death: Place of death
+    place_origin: Place of origin
+    place_publication: Place of publication
+    places: Places
+    plate_number: Plate number
+    plucked_instruments: Plucked instruments
+    postal_code: Postal code
+    postal_place: Postal place
+    preceding_entry: Preceding entry
+    printer: Printer
+    printing_technique: Printing technique
+    production: Production
+    production_personnel: Production personnel
+    profession_or_function: Profession or function
+    provenance: Provenance
+    provenance_notes: Provenance notes
+    pseudonym: Pseudonym
+    public_note: Public note
+    publisher: Publisher
+    publisher_copyist: Publisher, copyist
+    publishing_printing_production: Publishing, printing and production information
+    range_dates: Range of dates
+    record_actions: Record actions
+    record_audit: RECORD AUDIT
+    record_origin: Record origin
+    record_status: Record status
+    reference_record_id: REFERENCE RECORD ID
+    references: References
+    references_and_notes: References and notes
+    region_active: Region active
+    region_of_activity: Region of activity
+    related_institution: Related institution
+    related_personal_name: Related personal name
+    related_place: Related place
+    related_resources: Related resources
+    related_titles: Related Titles
+    related_to: Related to
+    related_work: Related work
+    relation: Relation
+    relations: Relations
+    religious_name: Religious name
+    religious_order: Religious order
+    reproduction: Reproduction
+    research_institute: Research institute
+    retrospective_conversion: Retrospective conversion
+    rism_id_number: RISM ID number
+    role: Role
+    scoring_in_movement: Scoring in movement
+    scoring_summary: Scoring summary
+    scribe: Scribe
+    secondary_literature: Secondary literature
+    series: Series
+    series_added_entry: Series added entry fields
+    series_statement: Series statement fields
+    set: Set
+    shelfmark: Shelfmark
+    shelfmark_olim: Shelfmark (olim)
+    short_title: Short title
+    sigla: Sigla
+    siglum: Siglum
+    single_date: Single date
+    sister_of: Sister of
+    sketches: Sketches
+    solo_voice: Solo voice
+    soloist_instrument: Soloist intrument
+    source_data_found: Source data found
+    source_data_not_found: Source data not found
+    source_description: Source of description note
+    source_details: Source details
+    source_number_code: Source of number or code
+    source_of_acquisition_note: Source of acquisition note
+    source_type: Source type
+    special_production_technique: Special production technique
+    standard: Standard
+    standard_musical_terms: Standard music terms
+    standard_number_code: Standard number or code
+    standard_texts_sacred_works: Standard texts of sacred works
+    standard_watermarks: Standard watermarks
+    standardized_title: Standardized title
+    standardized_titles_printed_music: Standardized titles for printed music
+    standardized_titles_subject_headings: Standardized titles - Subject headings
+    street_address: Street address
+    strings: Strings
+    subheading: Subheading
+    subheading_general: Subheading General subdivision
+    subject_access_fields: Subject access fields
+    subject_heading: Subject heading
+    subject_headings: Subject headings
+    subordinate_unit: Subordinate unit
+    succeeding_entry: Succeeding entry
+    summary: Summary
+    supplementary_material: Supplementary material
+    technical_errors: Technical errors
+    technical_production: Technical production
+    temp_val: Temp val
+    templates: Templates
+    terms_voices_instruments: RISM Instrument abbreviations
+    text_author: Text author
+    text_incipit: Text incipit
+    third_fourth_group: Third/fourth group
+    time_signature: Time signature
+    title: Title
+    title_content_description: Title and content description
+    title_item: Title of item
+    title_movement_tempo: Title of movement, tempo
+    title_of_work: Title of work
+    title_on_source: Title on source
+    title_periodical_book_series: Title of periodical, book, or series
+    title_related_fields: Title and title-related fields
+    title_section_part: Title of section or part
+    title_variants: Title variants
+    titles_text_incipits: Titles/text incipits
+    topical_term: Topical Term
+    total_scoring: Total scoring
+    transcribing_agency: Transcribing agency
+    translation: Translation
+    translator: Translator
+    transparency: Transparency
+    type: Type
+    type_institution: Type of institution
+    type_name_variant: Type of name variant
+    type_publication: Type of publication
+    type_relationship: Type of relationship
+    typescript: Typescript
+    typography: Typography
+    unknown: Unknown
+    unparsed_fingerprint: Unparsed fingerprint
+    variant_ms_title: Variant title on manuscript
+    variant_source_title: Variant title on source
+    variations: Variations
+    vocalist: Vocalist
+    voice_instrument: Voice/instrument
+    volume_year_page: Volume, year, page
+    watermark_description: Watermark description
+    woodwinds: Woodwinds
+    work: Work
+    work_number: Work number
+    year: Year
+    years_birth_death: Years of birth and death
