@@ -12,16 +12,14 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 # |  |  |  |  |
 # *  *  *  *  * user-name command to be executed
 
-20 15    * * *   www-data /data/rails/muscat/bin/muscat_execute_job MuscatCheckupReportJob production
-
-08  00  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job ModificationDigestJob production
-20  00  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job ModificationDigestJob production
+00  08  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job ModificationDigestJob production
+00  20  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job ModificationDigestJob production
 
 # Cleanup jobs
-01  00  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job PurgeSearchesJob production
-03  00  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job PurgeFolderItemsJob production
-05  00  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job ExportCleanupJob production
+00  01  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job PurgeSearchesJob production
+00  03  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job PurgeFolderItemsJob production
+00  05  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job ExportCleanupJob production
 
 # Maintenance and weekly report
-04  00  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job MuscatMaintenanceJob production
-07  00  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job MuscatCheckupReportJob production
+00  04  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job MuscatMaintenanceJob production
+00  07  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job MuscatCheckupReportJob production
