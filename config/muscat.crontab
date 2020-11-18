@@ -1,0 +1,27 @@
+# Crontab for Muscat
+# Please copy in /etc/cron.d/
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+
+20 15    * * *   www-data /data/rails/muscat/bin/muscat_execute_job MuscatCheckupReportJob production
+
+08  00  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job ModificationDigestJob production
+20  00  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job ModificationDigestJob production
+
+# Cleanup jobs
+01  00  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job PurgeSearchesJob production
+03  00  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job PurgeFolderItemsJob production
+05  00  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job ExportCleanupJob production
+
+# Maintenance and weekly report
+04  00  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job MuscatMaintenanceJob production
+07  00  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job MuscatCheckupReportJob production

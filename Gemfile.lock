@@ -5,14 +5,6 @@ GIT
     cql-ruby (0.9.1)
 
 GIT
-  remote: https://github.com/plashchynski/crono
-  revision: 9b9193e1c8cbac70fdd095e4722b5417eac7d84c
-  specs:
-    crono (1.1.2)
-      activerecord (>= 4.0)
-      activesupport (>= 4.0)
-
-GIT
   remote: https://github.com/rism-ch/blacklight
   revision: 998f36d68c5b67ac3927449f7bf12796adac40ee
   branch: release-6.x
@@ -178,7 +170,6 @@ GEM
     colorize (0.8.1)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
-    daemons (1.3.1)
     database_cleaner (1.8.5)
     delayed_job_active_record (4.1.4)
       activerecord (>= 3.0, < 6.1)
@@ -461,8 +452,6 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   colorize
   cql-ruby (= 0.9.1)!
-  crono (= 1.1.2)!
-  daemons
   database_cleaner
   delayed_job (~> 4.1)!
   delayed_job_active_record (= 4.1.4)
