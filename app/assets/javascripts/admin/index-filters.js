@@ -5,10 +5,10 @@
 indexFiltersOnLoad = function() {
  
   // Modify the clear-filters button to clear saved filters by adding a parameter
-  $('.clear_filters_btn').click(() => window.location.search = 'clear_filters=true');
+  $('.clear_filters_btn').click({window.location.search = 'clear_filters=true'});
 
   // Do the same but for searching in embedded lists
-  $('.embedded_search_btn').click(() => window.location.search = 'clear_embedded_filters=true');
+  $('.embedded_search_btn').click({window.location.search = 'clear_embedded_filters=true'});
 
 };
 	  
