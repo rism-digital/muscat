@@ -18,9 +18,6 @@ gem 'uglifier', '~> 4.2'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 5.0'
 
-# In rails 5.2 used as default to speed up startup
-gem 'bootsnap'
-
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
