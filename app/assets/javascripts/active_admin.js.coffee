@@ -1,5 +1,5 @@
 #= require active_admin/base
-#= require admin/index-filters.coffee
+#= require admin/index-filters
 #= require jquery3
 #= require jquery-ui
 #= require jquery-ui/widgets/autocomplete
