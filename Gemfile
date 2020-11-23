@@ -10,16 +10,16 @@ gem 'rails', '5.2.4.4'
 gem 'mysql2'
 
 # Use SCSS for stylesheets
-gem 'sassc-rails'
+gem 'sassc-rails'#, '~> 6.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '~> 4.2'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 5.0'
 
 # In rails 5.2 used as default to speed up startup
-#gem 'bootsnap'
+gem 'bootsnap'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
