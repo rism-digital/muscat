@@ -154,11 +154,6 @@
     z:
       label: records.note_external_resource
   label: records.external_resource_uri
-'963':
-  fields:
-    u:
-      label: records.temp_val
-  label: records.non_migrated_bound
 '973':
   fields:
     u:

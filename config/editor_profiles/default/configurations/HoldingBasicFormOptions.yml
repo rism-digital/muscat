@@ -182,12 +182,6 @@
       - "IIIF"
       - "Digitalization"
       - "Other"
-"963": 
-  tag_params: 
-    read_only: true
-  layout: 
-    fields: 
-      - - u
 "973":
   new_window: sources
   record_type_helper: get_allowed_record_type_holding
