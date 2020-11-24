@@ -170,7 +170,7 @@ Computer printout:
 Conjectural:
   label: records.conjectural
 Digitalization:
-  label: records.digitized_music
+  label: records.digitized_source
 Doubtful:
   label: records.doubtful
 Engraving:
