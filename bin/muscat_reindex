@@ -34,6 +34,7 @@ bundle exec rake sunspot:reindex[,Person]
 bundle exec rake sunspot:reindex[,Place]
 bundle exec rake sunspot:reindex[,StandardTerm]
 bundle exec rake sunspot:reindex[,StandardTitle]
+bundle exec rake sunspot:reindex[,Work]
 
 echo "Remember to re-run Standard title by hand to get correct source count"
 echo "bundle exec rake RAILS_ENV=$RAILS_ENV sunspot:reindex[,StandardTitle]"
