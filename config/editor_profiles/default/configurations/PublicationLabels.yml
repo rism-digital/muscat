@@ -394,8 +394,6 @@ dte:
   label: records.dedicatee
 dub:
   label: records.dubious
-dut:
-  label: languages.dutch
 ed:
   label: records.edition
 edition:
@@ -404,42 +402,18 @@ edt:
   label: records.editor
 egr:
   label: records.engraver
-eng:
-  label: languages.english
 fmo:
   label: records.former_owner
-fre:
-  label: languages.french
-ger:
-  label: languages.german
-grc:
-  label: languages.greek_ancient
-gre:
-  label: languages.greek_modern
-gsw:
-  label: languages.swiss_german
-heb:
-  label: languages.hebrew
 holding:
   label: records.holdings_location
-hrv:
-  label: languages.croatian
-hun:
-  label: languages.hungarian
 ill:
   label: records.illustrator
 incipit:
   label: records.incipits
-ita:
-  label: languages.italian
 itr:
   label: records.instrumentalist
 jpn:
   label: records.japanese
-kor:
-  label: languages.korean
-lat:
-  label: languages.latin
 lbt:
   label: records.librettist
 library:
@@ -470,10 +444,6 @@ performance:
   label: records.performances
 physical_description:
   label: records.physical_description
-pol:
-  label: languages.polish
-por:
-  label: languages.portugese
 ppm:
   label: records.paper_maker
 prd:
@@ -484,8 +454,6 @@ provenance:
   label: records.provenance
 prt:
   label: records.printer
-rus:
-  label: languages.russian
 scr:
   label: records.scribe
 series:
@@ -512,25 +480,11 @@ show_summary:
   label: records.summary
 show_terms:
   label: records.index_terms
-slo:
-  label: languages.slovak
-slv:
-  label: languages.slovenian
-spa:
-  label: languages.spanish
-srp:
-  label: languages.serbian
 subject:
   label: records.subject_access_fields
-swe:
-  label: languages.swedish
 title:
   label: records.title_related_fields
 trl:
   label: records.translator
 voc:
   label: records.vocalist
-zho:
-  label: languages.chinese
-zxx:
-  label: records.no_linguistic_content

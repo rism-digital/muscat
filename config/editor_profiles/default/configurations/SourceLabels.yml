@@ -702,8 +702,6 @@ Verified:
   label: general.verified
 a:
   label: records.a_minor
-afr:
-  label: languages.afrikaans
 aid_best:
   label: general.rism_best_practices
 aid_dates:
@@ -738,12 +736,6 @@ aid_tt:
   label: general.how_do_i
 aid_watermarks:
   label: records.standard_watermarks
-ara:
-  label: languages.arabic
-arg:
-  label: languages.aragonese
-arm:
-  label: languages.armenian
 arr:
   label: records.arranger
 art:
@@ -762,34 +754,20 @@ a|x:
   label: records.as_minor
 b:
   label: records.b_minor
-baq:
-  label: languages.basque
 bnd:
   label: records.binder
-bos:
-  label: languages.bosnian
 brief:
   label: records.brief
 bsl:
   label: records.bookseller
-bul:
-  label: languages.bulgarian
 b|b:
   label: records.bf_minor
 c:
   label: records.c_minor
-cat:
-  label: languages.catalan
 ccp:
   label: records.conceptor
-cel:
-  label: languages.celtic_other
-chi:
-  label: languages.chinese
 chr:
   label: records.choreographer
-chu:
-  label: languages.old_church_slavonic
 clb:
   label: records.contributor
 cmp:
@@ -802,22 +780,16 @@ com:
   label: records.compiler
 cph:
   label: records.copyright_holder
-crp:
-  label: languages.creoles_pidgins_other
 cst:
   label: records.costume_designer
 ctb:
   label: records.co-composer
-cze:
-  label: languages.czech
 c|b:
   label: records.cf_minor
 c|x:
   label: records.cs_minor
 d:
   label: records.d_minor
-dan:
-  label: languages.danish
 dnc:
   label: records.dancer
 dnr:
@@ -946,16 +918,12 @@ doc_when_new_record:
   label: general.when_to_input_new_record
 dpt:
   label: records.depositor
-dsb:
-  label: languages.lower_sorbian
 dsr:
   label: records.designer
 dst:
   label: records.distributor
 dte:
   label: records.dedicatee
-dut:
-  label: languages.dutch
 d|b:
   label: records.df_minor
 d|x:
@@ -982,12 +950,6 @@ edt:
   label: records.editor
 egr:
   label: records.engraver
-eng:
-  label: languages.english
-enm:
-  label: languages.middle_english
-est:
-  label: languages.estonian
 evp:
   label: records.event_place
 examined:
@@ -996,24 +958,10 @@ e|b:
   label: records.ef_minor
 f:
   label: records.f_minor
-fas:
-  label: languages.persian
 fij:
   label: records.fijian
-fin:
-  label: languages.finnish
 fmo:
   label: records.former_owner
-fre:
-  label: languages.french
-frm:
-  label: languages.french_middle
-fro:
-  label: languages.french_old
-frr:
-  label: languages.north_frisian
-fry:
-  label: languages.west_frisian
 full:
   label: records.full
 fur:
@@ -1024,42 +972,10 @@ g:
   label: records.g_minor
 g-2:
   label: records.g_minus_2_octave
-gem:
-  label: languages.germanic
-ger:
-  label: languages.german
-gez:
-  label: languages.ethiopic
-gle:
-  label: languages.irish
-glg:
-  label: languages.gallician
-gmh:
-  label: languages.middle_high_german
-goh:
-  label: languages.german_old_high
-grc:
-  label: languages.greek_ancient
-gre:
-  label: languages.greek_modern
-gsw:
-  label: languages.swiss_german
 g|b:
   label: records.gf_minor
 g|x:
   label: records.gs_minor
-heb:
-  label: languages.hebrew
-hrv:
-  label: languages.croatian
-hsb:
-  label: languages.upper_sorbian
-hun:
-  label: languages.hungarian
-ice:
-  label: languages.icelandic
-iii:
-  label: languages.sichuan_yi
 ill:
   label: records.illustrator
 import:
@@ -1112,18 +1028,10 @@ in_710:
   label: records.related_institution
 in_856:
   label: records.online_finding_aids
-ita:
-  label: languages.italian
 itr:
   label: records.instrumentalist
 jpn:
   label: records.japanese
-kor:
-  label: languages.korean
-lat:
-  label: languages.latin
-lav:
-  label: languages.latvian
 lbt:
   label: records.librettist
 level:
@@ -1194,34 +1102,16 @@ li_note:
   label: records.note_fields
 li_subject:
   label: records.subject_access_fields
-lit:
-  label: languages.lithuanian
 lse:
   label: records.licensee
 ltg:
   label: records.lithographer
-ltz:
-  label: languages.luxembourgish
 lyr:
   label: records.text_author
-mac:
-  label: languages.macedonian
-mao:
-  label: languages.maori
-mon:
-  label: languages.mongolian
 mul:
   label: records.multiple
-nap:
-  label: languages.neapolitan
-nds:
-  label: languages.low_german
-nor:
-  label: languages.norwegian
 not_examined:
   label: records.material_not_examined
-oci:
-  label: languages.occitan
 origin:
   label: records.origin
 oth:
@@ -1276,12 +1166,6 @@ pe_references:
   label: records.references_and_notes
 pe_relations:
   label: records.relations
-per:
-  label: languages.persian
-pol:
-  label: languages.polish
-por:
-  label: languages.portugese
 ppm:
   label: records.papermaker
 prd:
@@ -1294,20 +1178,6 @@ pub:
   label: records.publisher
 retro:
   label: records.retrospective_conversion
-roh:
-  label: languages.romansh
-rom:
-  label: languages.romani
-rum:
-  label: languages.romanian
-rus:
-  label: languages.russian
-san:
-  label: languages.sanskrit
-scn:
-  label: languages.sicilian
-sco:
-  label: languages.scots
 scr:
   label: records.copyist
 show_admin:
@@ -1332,55 +1202,15 @@ show_summary:
   label: records.summary
 show_terms:
   label: records.index_terms
-sla:
-  label: languages.slavic
-slo:
-  label: languages.slovak
-slv:
-  label: languages.slovenian
-smn:
-  label: languages.insari_sami
-spa:
-  label: languages.spanish
-srp:
-  label: languages.serbian
 standard:
   label: records.standard
-swe:
-  label: languages.swedish
-tat:
-  label: languages.tartar
-tgl:
-  label: languages.tagalog
-tha:
-  label: languages.thai
-tib:
-  label: languages.tibetan
 trl:
   label: records.translator
-tsi:
-  label: languages.tsimshian
-tur:
-  label: languages.turkish
-ukr:
-  label: languages.ukrainian
 und:
   label: general.undetermined
 ungrouped:
   label: general.ungrouped_fields
 unmatched:
   label: general.unknown_fields
-vie:
-  label: languages.vietnamese
 voc:
   label: records.vocalist
-wel:
-  label: languages.welsh
-wen:
-  label: languages.sorbian
-xal:
-  label: languages.oirat
-yid:
-  label: languages.yiddish
-zxx:
-  label: records.no_linguistic_content

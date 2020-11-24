@@ -57,6 +57,12 @@ class EditorConfiguration
     @squeezed_labels_config = squeeze(conf[:labels])
     @squeezed_options_config = squeeze(conf[:options])
     @squeezed_layout_config = squeeze(conf[:layout])
+
+    # Superimpose shared labels
+    file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/shared/SharedLanguageLabels.yml")
+    if File.exists?(file)
+      @squeezed_labels_config.squeeze(Settings.new(IO.read(file)))
+    end
   end
   
   # Get the defined name from this EditorConfiguration, defined in :name
