@@ -199,14 +199,7 @@ ActiveAdmin.register Holding do
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
   end
- 
-  
-begin  
-  sidebar I18n.t(:search_sources), :only => :show do
-    render("activeadmin/src_search") # Calls a partial
-  end
 
-end
   
   ##########
   ## Edit ##

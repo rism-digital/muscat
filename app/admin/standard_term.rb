@@ -175,10 +175,6 @@ ActiveAdmin.register StandardTerm do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => standard_term }
   end
   
-  sidebar I18n.t(:search_sources), :only => :show do
-    render("activeadmin/src_search") # Calls a partial
-  end
-  
   ##########
   ## Edit ##
   ##########
