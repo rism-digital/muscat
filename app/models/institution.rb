@@ -49,13 +49,15 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many(:institutions,
     :class_name => "Institution",
     :foreign_key => "institution_a_id",
-    :association_foreign_key => "institution_b_id")
+    :association_foreign_key => "institution_b_id",
+    join_table: "institutions_to_institutions")
   
   # This is the backward link
   has_and_belongs_to_many(:referring_institutions,
     :class_name => "Institution",
     :foreign_key => "institution_b_id",
-    :association_foreign_key => "institution_a_id")
+    :association_foreign_key => "institution_a_id",
+    join_table: "institutions_to_institutions")
   
   #validates_presence_of :siglum    
   
