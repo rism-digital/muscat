@@ -8,8 +8,12 @@ arg:
   label: languages.aragonese
 arm:
   label: languages.armenian
+aus:
+  label: languages.australian
 baq:
   label: languages.basque
+ben:
+  label: languages.bengali
 bos:
   label: languages.bosnian
 bul:
@@ -124,6 +128,8 @@ rum:
   label: languages.romanian
 rus:
   label: languages.russian
+sai:
+  label: languages.south_american
 san:
   label: languages.sanskrit
 scn:
