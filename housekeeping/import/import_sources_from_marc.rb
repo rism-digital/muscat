@@ -80,8 +80,7 @@ class Marc21Import
         #source.suppress_create_incipit
         #source.suppress_reindex
         #source.suppress_recreate
-        source.save #rescue $stderr.puts "Failed to save SOURCE #{sou
-        rce.to_yaml}"
+        source.save #rescue $stderr.puts "Failed to save SOURCE #{source.to_yaml}"
 
         puts "Last offset: #{@total_records}, Last RISM ID: #{source.id}" #"#{marc.first_occurance('001').content}"
       else
