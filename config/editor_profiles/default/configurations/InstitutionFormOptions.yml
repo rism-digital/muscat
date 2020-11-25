@@ -236,7 +236,7 @@
   tag_params:
     codes:
       - "a" 
-      - "b center"
+      - "b"
       - "d"
       - "f"
       - "g"
