@@ -496,3 +496,23 @@ trl:
   label: records.translator
 voc:
   label: records.vocalist
+a:
+  label: records.earlier_heading
+b:
+  label: records.later_heading
+d:
+  label: records.acronym
+f:
+  label: records.musical_composition
+g:
+  label: records.broader_term
+h:
+  label: records.narrower_term
+i:
+  label: records.reference_instruction_phrase
+n:
+  label: records.not_applicable
+r:
+  label: records.relationship_designation
+t:
+  label: records.immediate_parent_body

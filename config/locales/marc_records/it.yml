@@ -220,6 +220,7 @@ it:
     abbreviations_terminology: Abbreviazioni e terminologia
     access_restrictions: Restrizioni all'accesso
     accession_number: Numero di acquisizione
+    acronym: Acronimo
     added_entry_name: Nomi aggiuntivi
     additional_author: Autore aggiuntivo
     additional_bibliographic_information: Informazioni bibliografiche addizionali
@@ -279,6 +280,7 @@ it:
     bound_with: Rilegato con
     brass_instruments: Ottoni
     brief: Breve
+    broader_term: Termine più ampio
     brother_of: Fratello di
     byname: Soprannome
     c_major: Do maggiore
@@ -387,6 +389,7 @@ it:
     dubious: Dubbio
     e_major: Mi maggiore
     e_minor: Mi minore
+    earlier_heading: Titolo precedente
     ecclesiastical_modes: Modi ecclesiastici
     edition: Edizione
     edition_imprint_fields: Campi per i dati editoriali
@@ -474,6 +477,7 @@ it:
     iiif_manifest: Manifesto IIIF
     illustrator: Disegnatore
     images: immagini
+    immediate_parent_body: Campo immediatamente superiore
     import: Dati importati
     imprint: Dati editoriali
     incipit: Incipit musicale
@@ -511,6 +515,7 @@ it:
     language_of_cataloging: Lingua della catalogazione
     language_original_text: Lingua del testo originale
     language_text: Lingua del testo cantato
+    later_heading: Titolo antecedente
     latitude: Latitudine
     leader: Leader
     library: Biblioteca
@@ -587,16 +592,19 @@ it:
     multiple_single_dates: Date singole multiple
     museum: Museo
     music_incipit: Incipit musicale
+    musical_composition: Composizione musicale
     name: Nome
     name_family: Nome di famiglia
     name_printer: Stampatore, stamperia
     name_variant: Varianti del nome
     name_variants: Varianti del nome
     named_dramatic_roles: Personaggi menzionati
+    narrower_term: Termine più stretto
     nationality: Codice del Paese
     nickname: Soprannome
     no_linguistic_content: Senza contesto linguistico
     non_migrated_bound: Non-migrated bound with value from 563
+    not_applicable: Non applicabile
     note_external_resource: Nota sulla risorsa esterna
     note_fields: Campi note
     note_on_performance: Nota sull'esecuzione
@@ -691,6 +699,7 @@ it:
     record_audit: RECORD AUDIT
     record_origin: Origine della scheda
     record_status: Stato della scheda
+    reference_instruction_phrase: Frase di istruzioni di riferimento nel sottocampo $i
     reference_record_id: Numero identificativo della scheda di riferimento
     references: Bibliografia
     references_and_notes: Bibliografia e note
@@ -705,6 +714,7 @@ it:
     related_work: Opera correlata
     relation: Relazione
     relations: Relazioni
+    relationship_designation: Designazione della relazione in $i o $4
     relationship_information: Informazioni sul rapporto
     religious_name: Nome di religione
     religious_order: Ordine religioso

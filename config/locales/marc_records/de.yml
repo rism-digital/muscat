@@ -219,6 +219,7 @@ de:
     abbreviations_terminology: Abkürzungen und Bezeichnungen
     access_restrictions: Zugangsbeschränkungen
     accession_number: Akzessionsnumer
+    acronym: Akronym
     added_entry_name: Nebeneintragungen
     additional_author: Zusätzlicher Autor
     additional_bibliographic_information: Weitere bibliographische Angaben
@@ -278,6 +279,7 @@ de:
     bound_with: Zusammengebunden mit
     brass_instruments: Blechblasinstrumente
     brief: Kurzkatalogisat
+    broader_term: Erweiterter Begriff
     brother_of: Bruder von
     byname: Beiname
     c_major: C-Dur
@@ -386,6 +388,7 @@ de:
     dubious: Zweifelhaft
     e_major: E-Dur
     e_minor: e-Moll
+    earlier_heading: Frühere Überschrift
     ecclesiastical_modes: Kirchentonarten
     edition: Edition
     edition_imprint_fields: Ausgabe- und Impressumsfelder
@@ -473,6 +476,7 @@ de:
     iiif_manifest: IIIF manifest
     illustrator: Illustrator
     images: Bilder
+    immediate_parent_body: Unmittelbarer Elternteil
     import: Fremddateneinspielung
     imprint: Imprint
     incipit: Musikincipit
@@ -510,6 +514,7 @@ de:
     language_of_cataloging: Katalogisierungssprache
     language_original_text: Sprachcode des Originaltextes
     language_text: Sprachcode
+    later_heading: Spätere Überschrift
     latitude: Breitengrad
     leader: Leader
     library: Bibliothek
@@ -586,16 +591,19 @@ de:
     multiple_single_dates: Mehrere Einzeldaten
     museum: Museum
     music_incipit: Musikincipit
+    musical_composition: Musikalische Komposition
     name: Personenname
     name_family: Familienname
     name_printer: Drucker, Druckerei
     name_variant: Namensvarianten
     name_variants: Namensvarianten
     named_dramatic_roles: 'Rollennamen: Schreibweise'
+    narrower_term: Verkürzter Begriff
     nationality: Länder-Code
     nickname: Beiname
     no_linguistic_content: ohne Sprache
     non_migrated_bound: Non-migrated bound with value from 563
+    not_applicable: Nicht zutreffend
     note_external_resource: Für das Publikum bestimmte Fussnote
     note_fields: Bemerkungen
     note_on_performance: Bemerkungen zu den Aufführungen
@@ -690,6 +698,7 @@ de:
     record_audit: RECORD AUDIT
     record_origin: Herkunft
     record_status: RECORD STATUS
+    reference_instruction_phrase: Referenzanweisungsphrase im Unterfeld $i
     reference_record_id: REFERENCE RECORD ID
     references: Literatur
     references_and_notes: Literatur und Bemerkungen
@@ -704,6 +713,7 @@ de:
     related_work: zugehörige Werke
     relation: Bedeutung
     relations: Beziehungen
+    relationship_designation: Beziehungsbezeichnung in $i oder $4
     relationship_information: Informationen zur Beziehung
     religious_name: Ordensname
     religious_order: Orden/Titel

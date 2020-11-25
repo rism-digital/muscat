@@ -219,6 +219,7 @@ pt:
     abbreviations_terminology: Abreviaturas e terminologia
     access_restrictions: Restrições de acesso
     accession_number: Número de aquisição
+    acronym: Acrónimo
     added_entry_name: ''
     additional_author: ''
     additional_bibliographic_information: ''
@@ -278,6 +279,7 @@ pt:
     bound_with: ''
     brass_instruments: Metais
     brief: Breve
+    broader_term: Termo mais amplo
     brother_of: ''
     byname: ''
     c_major: Dó maior
@@ -386,6 +388,7 @@ pt:
     dubious: ''
     e_major: Mi maior
     e_minor: Mi menor
+    earlier_heading: Título anterior
     ecclesiastical_modes: Modos eclesiásticos ocidentais
     edition: ''
     edition_imprint_fields: ''
@@ -473,6 +476,7 @@ pt:
     iiif_manifest: Manifesto IIIF
     illustrator: Ilustrador [ill]
     images: Imagens
+    immediate_parent_body: Progenitor imediato
     import: Importação
     imprint: Carimbo/marca
     incipit: Incipit
@@ -510,6 +514,7 @@ pt:
     language_of_cataloging: Idioma de catalogação
     language_original_text: Idioma do texto original
     language_text: Idioma do texto
+    later_heading: Título posterior
     latitude: ''
     leader: Líder
     library: Instituição
@@ -586,16 +591,19 @@ pt:
     multiple_single_dates: Datas múltiplas
     museum: ''
     music_incipit: Incipit musical
+    musical_composition: Composição musical
     name: Nome
     name_family: ''
     name_printer: Nome do impressor
     name_variant: Variante de nome
     name_variants: Variantes de nome
     named_dramatic_roles: Papéis dramáticos identificados
+    narrower_term: Termo mais estreito
     nationality: Nacionalidade
     nickname: ''
     no_linguistic_content: ''
     non_migrated_bound: ''
+    not_applicable: Não aplicável
     note_external_resource: Nota sobre recurso externo
     note_fields: Campos de notas
     note_on_performance: Nota sobre performance
@@ -687,6 +695,7 @@ pt:
     record_audit: RECORD AUDIT
     record_origin: Origem do registro
     record_status: Estado do registro
+    reference_instruction_phrase: Frase de instrução de referência no subcampo $i
     reference_record_id: REFERENCE RECORD ID
     references: Referências
     references_and_notes: Notas e referências
@@ -701,6 +710,7 @@ pt:
     related_work: ''
     relation: ''
     relations: Relacionamentos
+    relationship_designation: Designação da relação em $i ou $4
     relationship_information: Informação sobre a relação
     religious_name: ''
     religious_order: ''

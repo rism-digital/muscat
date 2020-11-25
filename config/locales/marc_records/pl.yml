@@ -219,6 +219,7 @@ pl:
     abbreviations_terminology: Skróty i pojęcia
     access_restrictions: Ograniczenia dostępu
     accession_number: Numer akcesji
+    acronym: Akronim
     added_entry_name: Dodana nazwa wpisu
     additional_author: Dodatkowy autor
     additional_bibliographic_information: Dodatkowe informacje bibliograficzne
@@ -278,6 +279,7 @@ pl:
     bound_with: Współoprawne z
     brass_instruments: Instrumenty dęte blaszane
     brief: Streszczenie
+    broader_term: Szerszy termin
     brother_of: Brat …
     byname: Przydomek
     c_major: C-dur
@@ -386,6 +388,7 @@ pl:
     dubious: Wątpliwe
     e_major: E-dur
     e_minor: e-moll
+    earlier_heading: Wcześniejsza pozycja
     ecclesiastical_modes: Skale kościelne
     edition: Edycja
     edition_imprint_fields: Edycja, stopka wydawnicza itp. pola
@@ -473,6 +476,7 @@ pl:
     iiif_manifest: Manifest IIIF
     illustrator: Ilustrator
     images: Obrazy
+    immediate_parent_body: Natychmiastowy rodzic
     import: Import
     imprint: Stopka wydawnicza
     incipit: Incipit
@@ -510,6 +514,7 @@ pl:
     language_of_cataloging: Język katalogowania
     language_original_text: Język tekstu oryginalnego
     language_text: Język tekstu
+    later_heading: Późniejsza pozycja
     latitude: Szerokość geograficzna
     leader: Leader
     library: Biblioteka
@@ -586,16 +591,19 @@ pl:
     multiple_single_dates: Wiele pojedynczych dat
     museum: Muzeum
     music_incipit: Incipit muzyczny
+    musical_composition: Kompozycja muzyczna
     name: Imię i nazwisko
     name_family: Nazwa rodziny
     name_printer: Nazwa drukarni
     name_variant: Alternatywna nazwa osoby
     name_variants: Alternatywne nazwy osoby
     named_dramatic_roles: Postaci
+    narrower_term: Węższy termin
     nationality: Narodowość
     nickname: Przezwisko
     no_linguistic_content: Brak zawartości językowej
     non_migrated_bound: Non-migrated bound with value from 563
+    not_applicable: Nie dotyczy
     note_external_resource: Uwaga o zasobie zewnętrznym
     note_fields: Pola uwag
     note_on_performance: Uwaga o wykonaniu
@@ -690,6 +698,7 @@ pl:
     record_audit: RECORD AUDIT
     record_origin: Pochodzenie rekordu
     record_status: Status rekordu
+    reference_instruction_phrase: Referencyjna fraza instrukcji w podpolu $i
     reference_record_id: Referncyjny identyfikator RISM
     references: Odniesienia
     references_and_notes: Odniesienia i uwagi
@@ -704,6 +713,7 @@ pl:
     related_work: Powiązane dzieło
     relation: Relacja
     relations: Relacje
+    relationship_designation: Oznaczenie relacji w $i lub $4
     relationship_information: Informacje o relacjach
     religious_name: Imię z wyznania
     religious_order: Zgromadzenie zakonne

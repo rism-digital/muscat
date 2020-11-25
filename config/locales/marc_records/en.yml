@@ -219,6 +219,7 @@ en:
     abbreviations_terminology: Abbreviations and terminology
     access_restrictions: Access restrictions
     accession_number: Accession number
+    acronym: Acronym
     added_entry_name: Added entry name
     additional_author: Additional author
     additional_bibliographic_information: Additional bibliographic information
@@ -278,6 +279,7 @@ en:
     bound_with: Bound with
     brass_instruments: Brass instruments
     brief: Brief
+    broader_term: Broader term
     brother_of: Brother of
     byname: Byname
     c_major: C major
@@ -386,6 +388,7 @@ en:
     dubious: Dubious
     e_major: E major
     e_minor: E minor
+    earlier_heading: Earlier heading
     ecclesiastical_modes: Ecclesiastical modes
     edition: Edition
     edition_imprint_fields: Edition, imprint, etc. fields
@@ -473,6 +476,7 @@ en:
     iiif_manifest: IIIF manifest
     illustrator: Illustrator
     images: Images
+    immediate_parent_body: Immediate parent body
     import: Import
     imprint: Imprint
     incipit: Incipit
@@ -510,6 +514,7 @@ en:
     language_of_cataloging: Language of cataloging
     language_original_text: Language of original text
     language_text: Language of text
+    later_heading: Later heading
     latitude: Latitude
     leader: Leader
     library: Library
@@ -586,16 +591,19 @@ en:
     multiple_single_dates: Multiple single dates
     museum: Museum
     music_incipit: Music incipit
+    musical_composition: Musical composition
     name: Name
     name_family: Name of family
     name_printer: Name of printer
     name_variant: Name variant
     name_variants: Name variants
     named_dramatic_roles: Named dramatic role
+    narrower_term: Narrower term
     nationality: Nationality
     nickname: Nickname
     no_linguistic_content: No linguistic content
     non_migrated_bound: Non-migrated bound with value from 563
+    not_applicable: Not applicable
     note_external_resource: Note about external resource
     note_fields: Note fields
     note_on_performance: Note on performance
@@ -690,6 +698,7 @@ en:
     record_audit: RECORD AUDIT
     record_origin: Record origin
     record_status: Record status
+    reference_instruction_phrase: Reference instruction phrase in subfield $i
     reference_record_id: REFERENCE RECORD ID
     references: References
     references_and_notes: References and notes
@@ -704,6 +713,7 @@ en:
     related_work: Related work
     relation: Relation
     relations: Relations
+    relationship_designation: Relationship designation in $i or $4
     relationship_information: Relationship information
     religious_name: Religious name
     religious_order: Religious order

@@ -220,6 +220,7 @@ fr:
     abbreviations_terminology: Abbréviations et terminologie
     access_restrictions: Restriction d'accès
     accession_number: Numéro d'acquisition
+    acronym: Acronyme
     added_entry_name: Nom additionnel
     additional_author: Auteur supplémentaire
     additional_bibliographic_information: Référence bibliographique additionnelle
@@ -279,6 +280,7 @@ fr:
     bound_with: Relié en
     brass_instruments: Cuivres
     brief: Bref
+    broader_term: Terme plus large
     brother_of: Frère de
     byname: Surnom
     c_major: Do majeur
@@ -387,6 +389,7 @@ fr:
     dubious: Douteux
     e_major: Mi majeur
     e_minor: Mi mineur
+    earlier_heading: Rubrique précédente
     ecclesiastical_modes: Modes ecclésiastiques
     edition: Edition
     edition_imprint_fields: Champs pour les données d'édition
@@ -474,6 +477,7 @@ fr:
     iiif_manifest: Manifeste IIIF
     illustrator: Illustrateur
     images: Images
+    immediate_parent_body: Corps du parent immédiat
     import: Dates importés
     imprint: Données d'édition
     incipit: Incipit musical
@@ -511,6 +515,7 @@ fr:
     language_of_cataloging: Langue de catalogage
     language_original_text: Langue du texte original
     language_text: Langue du texte chanté
+    later_heading: Rubrique ultérieure
     latitude: Latitude
     leader: Guide
     library: Bibliothèque
@@ -587,16 +592,19 @@ fr:
     multiple_single_dates: Dates uniques multiples
     museum: Musée
     music_incipit: Incipit musical
+    musical_composition: Composition musicale
     name: Nom
     name_family: Nom de famille
     name_printer: Imprimeur, imprimerie
     name_variant: Variantes du nom
     name_variants: Variantes du nom
     named_dramatic_roles: Personnages nommés
+    narrower_term: Terme plus étroit
     nationality: Code du pays
     nickname: Surnom
     no_linguistic_content: Sans contenu linguistique
     non_migrated_bound: Non-migrated bound with value from 563
+    not_applicable: Non applicable
     note_external_resource: Remarque sur la ressource externe
     note_fields: Champs de note
     note_on_performance: Remarque sur les interprètes
@@ -691,6 +699,7 @@ fr:
     record_audit: RECORD AUDIT
     record_origin: Origine de la notice
     record_status: Etat de la notice
+    reference_instruction_phrase: Phrase d'instruction de référence dans la sous-field $i
     reference_record_id: Numéro d'identification de la notice de référence
     references: Références
     references_and_notes: Références et notes
@@ -705,6 +714,7 @@ fr:
     related_work: Ouvrage lié
     relation: Relation
     relations: Relations
+    relationship_designation: Désignation de la relation en $i ou 4
     relationship_information: Informations sur les relations
     religious_name: Nom d'ordre
     religious_order: Ordre/titre

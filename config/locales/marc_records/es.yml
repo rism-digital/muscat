@@ -219,6 +219,7 @@ es:
     abbreviations_terminology: Abreviaturas y terminología
     access_restrictions: Restricciones de acceso
     accession_number: Número de accesión
+    acronym: Acrónimo
     added_entry_name: ''
     additional_author: Autor adicional
     additional_bibliographic_information: Información bibliográfica adicional
@@ -278,6 +279,7 @@ es:
     bound_with: Encuadernado con
     brass_instruments: Vientos-metal
     brief: ''
+    broader_term: Un término más amplio
     brother_of: Hermano de
     byname: Apodo
     c_major: Do Mayor
@@ -386,6 +388,7 @@ es:
     dubious: Dudoso
     e_major: Mi Mayor
     e_minor: Mi menor
+    earlier_heading: El encabezamiento anterior
     ecclesiastical_modes: Modos eclesiásticos
     edition: Edición
     edition_imprint_fields: Campos para los datos editoriales
@@ -473,6 +476,7 @@ es:
     iiif_manifest: Manifiesto IIIF
     illustrator: Ilustrador
     images: Imágenes
+    immediate_parent_body: Padre inmediato
     import: Importación
     imprint: Datos editoriales
     incipit: Íncipit
@@ -510,6 +514,7 @@ es:
     language_of_cataloging: Idioma de catalogación
     language_original_text: Idioma del texto original
     language_text: Idioma del texto
+    later_heading: El encabezamiento posterios
     latitude: Latitud
     leader: Líder
     library: Repositorio
@@ -586,16 +591,19 @@ es:
     multiple_single_dates: Fechas múltiples
     museum: ''
     music_incipit: Íncipit musical
+    musical_composition: Composición musical
     name: Nombre
     name_family: Apellido
     name_printer: Nombre del impresor
     name_variant: Variantes del nombre
     name_variants: Variantes del nombre
     named_dramatic_roles: Nombres de personajes
+    narrower_term: Término más estrecho
     nationality: Nacionalidad
     nickname: Apodo
     no_linguistic_content: Sin contenido lingüístico
     non_migrated_bound: Non-migrated bound with value from 563
+    not_applicable: No se aplica
     note_external_resource: Nota sobre el recurso externo
     note_fields: Campos de notas
     note_on_performance: Nota sobre ocasión de interpretación
@@ -687,6 +695,7 @@ es:
     record_audit: RECORD AUDIT
     record_origin: Origen del registro
     record_status: Estado del registro
+    reference_instruction_phrase: Frase de instrucción de referencia en el subcampo $i
     reference_record_id: ID del Registro de Referencia
     references: Bibliografía
     references_and_notes: Referencias y notas
@@ -701,6 +710,7 @@ es:
     related_work: Obra relacionada
     relation: Relación
     relations: Relaciones
+    relationship_designation: Designación de la relación en $i o $4
     relationship_information: Información de la relación
     religious_name: Nombre religioso
     religious_order: Orden religiosa
