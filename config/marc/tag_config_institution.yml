@@ -52,8 +52,24 @@
     :fields:
     - - a
       - :occurrences: "1"
+    - - c
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "?"
+    - - q
+      - :occurrences: "*"
+    - - z
+      - :occurrences: "*"
+    - - "0"
+      - :occurrences: "?"
+    - - "1"
+      - :occurrences: "1"
     - - "2"
       - :occurrences: "1"
+    - - "6"
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "*"
   "034": 
     :master: d
     :indicator: "1#"
@@ -104,6 +120,25 @@
     :fields: 
     - - a
       - :occurrences: "*"
+    - - b
+      - :occurrences: "*"
+    - - c
+      - :occurrences: "*"
+    - - "2"
+      - :occurrences: "?"
+  "370": 
+    :master: c
+    :indicator: "##"
+    :occurrences: "*"
+    :fields: 
+    - - c
+      - :occurrences: "*"
+    - - e
+      - :occurrences: "*"
+    - - f
+      - :occurrences: "*"
+    - - "2"
+      - :occurrences: "?"
   "371": 
     :master: a
     :indicator: "##"
@@ -121,10 +156,25 @@
       - :occurrences: "*"
     - - m
       - :occurrences: "*"
+    - - s
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
     - - u
+      - :occurrences: "*"
+    - - v
       - :occurrences: "*"
     - - z
       - :occurrences: "*"
+  "372": 
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields: 
+    - - a
+      - :occurrences: "*"
+    - - "2"
+      - :occurrences: "?"
   "410": 
     :master: a
     :indicator: "##"
@@ -136,13 +186,15 @@
       - :occurrences: "*"
   "510": 
     :master: a
-    :indicator: "1#"
+    :indicator: "2#"
     :occurrences: "*"
     :fields: 
     - - a
       - :occurrences: "1"
-    - - b
+    - - i
       - :occurrences: "*"
+    - - w
+      - :occurrences: "?"
   "551": 
     :master: "0"
     :indicator: "1#"
@@ -194,6 +246,8 @@
         :foreign_field: name
     - - b
       - :occurrences: "?"
+    - - u
+      - :occurrences: "*"
   "678": 
     :master: a
     :indicator: "1#"
@@ -201,7 +255,6 @@
     :fields: 
     - - a
       - :occurrences: "?"
-
   "680": 
     :master: a
     :indicator: "1#"
