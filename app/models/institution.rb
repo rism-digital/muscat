@@ -36,7 +36,7 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many :places, join_table: "institutions_to_places"
   has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
   
-  has_and_belongs_to_many :holdings
+  has_and_belongs_to_many :referring_holdings, class_name: "Holding", join_table: "holdings_to_institutions"
   #has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   has_and_belongs_to_many :workgroups
@@ -238,7 +238,7 @@ class Institution < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
     
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      referring_sources.size + holdings.size
+      referring_sources.size + referring_holdings.size
     end
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
@@ -284,4 +284,9 @@ class Institution < ApplicationRecord
     end
   end
  
+  def holdings
+    ActiveSupport::Deprecation.warn('Please use referring_holdings from institution')
+    referring_holdings
+  end
+
 end
