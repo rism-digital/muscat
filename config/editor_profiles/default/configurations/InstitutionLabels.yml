@@ -14,10 +14,26 @@
   label: records.artistic_production
 '024':
   fields:
+    '0':
+      label: records.authority_record_control_number
+    '1':
+      label: records.real_world_object_uri
     '2':
       label: records.authority_agency
+    '6':
+      label: records.linkage
+    '8':
+      label: records.field_link
     a:
       label: records.authority_reference
+    c:
+      label: records.terms_of_availability
+    d:
+      label: records.additional_codes
+    q:
+      label: records.qualifying_information
+    z:
+      label: records.invalid_standard_number
   label: records.authority_reference
 02_codes_performing:
   label: records.performance
@@ -63,7 +79,24 @@
   fields:
     a:
       label: records.type_institution
+    b:
+      label: records.type_of_jurisdiction
+    c:
+      label: records.other_designation
+    "2":
+      label: records.source
   label: records.type_institution
+'370':
+  fields:
+    c:
+      label: records.associated_country
+    e:
+      label: records.place_of_residence
+    f:
+      label: records.other_associated_place
+    "2":
+      label: records.source_of_term
+  label: records.associated_place
 '371':
   fields:
     a:
@@ -80,9 +113,22 @@
       label: general.e_mail
     u:
       label: general.url
+    s:
+      label: general.start_period
+    t:
+      label: general.end_period
+    v:
+      label: general.source_of_information
     z:
       label: records.public_note
   label: records.location_and_address
+'372':
+  fields:
+    a:
+      label: records.field_of_activity
+    "2":
+      label: records.source_of_term
+  label: records.field_of_activity
 '410':
   fields:
     a:
@@ -92,6 +138,10 @@
   fields:
     a:
       label: records.parallel_form
+    i:
+      label: records.relationship_information
+    w:
+      label: records.control_subfield
   label: records.parallel_form
 '551':
   fields:
@@ -114,6 +164,8 @@
       label: records.literature
     b:
       label: records.information_found
+    u:
+      label: general.uri
   label: records.literature
 '678':
   fields:
