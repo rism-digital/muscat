@@ -37,7 +37,9 @@ fr:
     arabic: Arabe
     aragonese: Aragonais
     armenian: Arménien
+    australian: Langues australiennes
     basque: Basque
+    bengali: Bengali
     bosnian: Bosnien
     bulgarian: Bulgare
     catalan: Catalan
@@ -101,6 +103,7 @@ fr:
     slovak: Slovaque
     slovenian: Slovène
     sorbian: Sorabe
+    south_american: Indien d'Amérique du Sud (Autres)
     spanish: Espagnol
     swedish: Suédois
     swiss_german: Suisse allemand
@@ -222,6 +225,7 @@ fr:
     additional_bibliographic_information: Référence bibliographique additionnelle
     additional_biographical_information: Référence biographique additionnelle
     additional_choir_voice: Voix de choeur additionnelles
+    additional_codes: Codes supplémentaires suivant le numéro ou le code standard
     additional_institution: Nom supplémentaire de la collectivité
     additional_personal_name: Nom supplémentaire de la personne
     additional_personal_name_lit: Nom supplémentaire de la personne
@@ -245,6 +249,7 @@ fr:
     as_minor: La♯ mineur
     ascertained: Authentifié
     assignee: Cessionnaire
+    associated_country: Pays associé
     associated_institution: Institutions liées
     associated_name: Nom associé
     associated_name_lit: Nom associé
@@ -255,6 +260,7 @@ fr:
     author_editor: Auteur / directeur
     authorities: Liste d'autorités
     authority_agency: Agence d'authorité
+    authority_record_control_number: Numéro de contrôle du registre de l'autorité ou de la norme numérique
     authority_reference: Référence d'authorité
     autography: Autographie
     b_major: Si majeur
@@ -331,6 +337,7 @@ fr:
     contributor: Collaborateur
     control_fields: Champs de contrôle
     control_number_identifier: Identité du numéro de contrôle
+    control_subfield: Sous-zone de contrôle
     copy_examined: Copie consultée pour le catalogage
     copyist: Copiste / Scribe
     copyright_holder: Titulaire du droit d'auteur
@@ -387,6 +394,7 @@ fr:
     editor: Editeur
     ef_major: Mi♭ majeur
     ef_minor: Mi♭ mineur
+    end_period: Fin de la période
     engraver: Graveur
     engraving: Gravure
     event_organizer: Organisateur
@@ -412,6 +420,8 @@ fr:
     facsimile: Facsimilé
     family_name: Nom de famille
     father_of: Père de
+    field_link: Lien de champ et numéro de séquence
+    field_of_activity: Domaine d'activité
     figured_bass_scores: Basse chiffrée
     fijian: Fidjien
     fingerprint_identifier: Indentificateur d'empreintes
@@ -481,6 +491,7 @@ fr:
     instrumentalist: Instrumentiste
     internal_note: Note non publique
     introduction: Introduction
+    invalid_standard_number: Numéro ou code standard annulé/invalide
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -614,6 +625,8 @@ fr:
     origin: Origine
     original_cataloging_agency: Organisme du catalogage original
     other: Autre function
+    other_associated_place: Autre lieu associé
+    other_designation: Autre désignation
     other_form: Autres formes
     other_form_of_name: Autre forme de nom
     other_function: Autre fonction
@@ -650,6 +663,7 @@ fr:
     place_activity: Lieu d'activité
     place_birth: Lieu de naissance
     place_death: Lieu de décès
+    place_of_residence: Lieu de résidence/siège
     place_origin: Lieu d'origine
     place_publication: Endroit
     places: Lieux
@@ -670,7 +684,9 @@ fr:
     publisher: Editeur
     publisher_copyist: Copiste ou maison d'édition
     publishing_printing_production: Copie ou données d'édition
+    qualifying_information: Informations requises
     range_dates: Intervalle de dates
+    real_world_object_uri: Objet du monde réel URI
     record_actions: Actions pour la notice
     record_audit: RECORD AUDIT
     record_origin: Origine de la notice
@@ -689,6 +705,7 @@ fr:
     related_work: Ouvrage lié
     relation: Relation
     relations: Relations
+    relationship_information: Informations sur les relations
     religious_name: Nom d'ordre
     religious_order: Ordre/titre
     reproduction: Reproduction
@@ -714,12 +731,15 @@ fr:
     sketches: Esquisses
     solo_voice: Voix seule
     soloist_instrument: Instrument soliste
+    source: Source
     source_data_found: Source des données
     source_data_not_found: Source consultée sans résultat
     source_description: Copie consultée pour le catalogage
     source_details: Détail de la source
     source_number_code: Agence d'authorité
     source_of_acquisition_note: Source d'acquisition
+    source_of_information: Source d'information
+    source_of_term: Source du terme
     source_type: Type de source
     special_production_technique: Technique de production spéciale
     standard: Standard
@@ -730,6 +750,7 @@ fr:
     standardized_title: Titre uniforme
     standardized_titles_printed_music: Titre uniforme pour imprimés musicales
     standardized_titles_subject_headings: Titre uniforme - Descripteurs
+    start_period: Période de démarrage
     street_address: Adresse
     strings: Cordes
     subheading: Sous-vedette de forme
@@ -745,6 +766,7 @@ fr:
     technical_production: Production
     temp_val: Temp val
     templates: Modèles
+    terms_of_availability: Conditions de disponibilité
     terms_voices_instruments: Abréviations RISM pour les instruments
     text_author: Parolier
     text_incipit: Incipit du texte
@@ -770,6 +792,7 @@ fr:
     type: Type
     type_institution: Type d'institution
     type_name_variant: Description de la variante du nom
+    type_of_jurisdiction: Type de juridiction
     type_publication: Type de publication
     type_relationship: Relation
     typescript: Tapuscrit

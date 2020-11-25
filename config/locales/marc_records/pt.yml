@@ -36,7 +36,9 @@ pt:
     arabic: Árabe
     aragonese: Aragonês
     armenian: Arménio
+    australian: Línguas australianas
     basque: Basco
+    bengali: Bengali
     bosnian: Bósnio
     bulgarian: Búlgaro
     catalan: Catalão
@@ -100,6 +102,7 @@ pt:
     slovak: Eslovaco
     slovenian: Esloveno
     sorbian: Sorábio
+    south_american: Índio sul-americano (Outros)
     spanish: Castelhano
     swedish: Sueco
     swiss_german: Suíço-alemão
@@ -221,6 +224,7 @@ pt:
     additional_bibliographic_information: ''
     additional_biographical_information: Informação biográfica adicional
     additional_choir_voice: ''
+    additional_codes: Códigos adicionais seguindo o número ou código padrão
     additional_institution: Instituição adicional
     additional_personal_name: Nome de pessoa adicional
     additional_personal_name_lit: Nome de pessoa adicional
@@ -244,6 +248,7 @@ pt:
     as_minor: Lá sustenido menor
     ascertained: Certificada
     assignee: Cessionário [asg]
+    associated_country: País associado
     associated_institution: Instituição associada
     associated_name: Nome associado [asn]
     associated_name_lit: Nome associado [asn]
@@ -254,6 +259,7 @@ pt:
     author_editor: Autor/editor
     authorities: Autoridades
     authority_agency: ''
+    authority_record_control_number: Códigos adicionais seguindo o número ou código padrão
     authority_reference: Referência de autoridade
     autography: Autografia
     b_major: Si maior
@@ -330,6 +336,7 @@ pt:
     contributor: ''
     control_fields: Campos de controle
     control_number_identifier: Identificador de número de controle
+    control_subfield: Subcampo de controlo
     copy_examined: Exemplar examinado para catalogação
     copyist: Copista [scr]
     copyright_holder: Detentor dos direitos de cópia/reprodução [cph]
@@ -386,6 +393,7 @@ pt:
     editor: Editor [edt]
     ef_major: Mi bemol maior
     ef_minor: Mi bemol menor
+    end_period: Período final
     engraver: Gravador [egr]
     engraving: Gravação
     event_organizer: ''
@@ -411,6 +419,8 @@ pt:
     facsimile: Fac-símile
     family_name: ''
     father_of: ''
+    field_link: Ligação de campo e número de sequência
+    field_of_activity: Campo de actividade
     figured_bass_scores: Baixo cifrado
     fijian: Fijianas
     fingerprint_identifier: Identificador de impressão
@@ -480,6 +490,7 @@ pt:
     instrumentalist: ''
     internal_note: Nota interna
     introduction: Introdução
+    invalid_standard_number: Número ou código padrão cancelado/invalido
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -509,7 +520,7 @@ pt:
     licensee: Titular [lse]
     life_dates: Datas de nascimento e morte
     link_type: Tipo de Link
-    linkage: ''
+    linkage: Ligação
     linking_entry_fields: ''
     literature: Literatura
     lithograph: ''
@@ -610,6 +621,8 @@ pt:
     origin: Origem
     original_cataloging_agency: ''
     other: Outro(a) [oth]
+    other_associated_place: Outro local associado
+    other_designation: Outra designação
     other_form: ''
     other_form_of_name: Outra forma do nome
     other_function: ''
@@ -646,6 +659,7 @@ pt:
     place_activity: ''
     place_birth: ''
     place_death: ''
+    place_of_residence: Local de residência/sede
     place_origin: ''
     place_publication: ''
     places: Locais
@@ -666,7 +680,9 @@ pt:
     publisher: Casa editora [pbl]
     publisher_copyist: Editor, copista
     publishing_printing_production: Informação de publicação, impressão e produção
+    qualifying_information: Informação sobre qualificação
     range_dates: Faixa de datas
+    real_world_object_uri: Objecto do Mundo Real URI
     record_actions: Ações do registro
     record_audit: RECORD AUDIT
     record_origin: Origem do registro
@@ -685,6 +701,7 @@ pt:
     related_work: ''
     relation: ''
     relations: Relacionamentos
+    relationship_information: Informação sobre a relação
     religious_name: ''
     religious_order: ''
     reproduction: Reprodução
@@ -710,12 +727,15 @@ pt:
     sketches: Esboços
     solo_voice: Voz solista
     soloist_instrument: ''
+    source: Fonte
     source_data_found: Fonte dos dados encontrados
     source_data_not_found: ''
     source_description: Exemplar examinado para catalogação
     source_details: ''
     source_number_code: ''
     source_of_acquisition_note: Nota de origem da aquisição
+    source_of_information: Fonte de informação
+    source_of_term: Fonte do termo
     source_type: Tipo de fonte
     special_production_technique: Técnica de produção especial
     standard: Normalizado
@@ -726,6 +746,7 @@ pt:
     standardized_title: Título uniforme
     standardized_titles_printed_music: Títulos uniformes para música impressa
     standardized_titles_subject_headings: Títulos uniformes – Cabeçalhos de assunto
+    start_period: Período de início
     street_address: ''
     strings: Cordas
     subheading: Subdivisão de forma
@@ -741,6 +762,7 @@ pt:
     technical_production: ''
     temp_val: ''
     templates: Modelos
+    terms_of_availability: Termos de disponibilidade
     terms_voices_instruments: Termos para vozes e instrumentos
     text_author: Autor literário [lyr]
     text_incipit: Incipit literário
@@ -766,6 +788,7 @@ pt:
     type: Tipo
     type_institution: Tipo de instituição
     type_name_variant: ''
+    type_of_jurisdiction: Tipo de jurisdição
     type_publication: ''
     type_relationship: ''
     typescript: Datilografia

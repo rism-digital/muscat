@@ -37,7 +37,9 @@ it:
     arabic: Arabo
     aragonese: Aragonese
     armenian: Armeno
+    australian: Lingue australiane
     basque: Basco
+    bengali: Bengalese
     bosnian: Bosniaco
     bulgarian: Bulgaro
     catalan: Catalano
@@ -101,6 +103,7 @@ it:
     slovak: Slovacco
     slovenian: Sloveno
     sorbian: Sorabo
+    south_american: Indiano sudamericano (Altro)
     spanish: Spagnolo
     swedish: Svedese
     swiss_german: Svizzero tedesco
@@ -222,6 +225,7 @@ it:
     additional_bibliographic_information: Informazioni bibliografiche addizionali
     additional_biographical_information: Informazioni biografiche addizionali
     additional_choir_voice: Voci di coro aggiuntive
+    additional_codes: Codici addizionali che seguono il numero o il codice standard
     additional_institution: Nome di ente aggiuntivo
     additional_personal_name: Nome aggiuntivo di persona
     additional_personal_name_lit: Nome aggiuntivo di persona
@@ -245,6 +249,7 @@ it:
     as_minor: La♯ minore
     ascertained: Accertata
     assignee: Concessionario
+    associated_country: Paese associato
     associated_institution: Istituzioni correlate
     associated_name: Nome associato
     associated_name_lit: Nome associato
@@ -255,6 +260,7 @@ it:
     author_editor: Autore / curatore
     authorities: Voci di autorità
     authority_agency: Agenzia autorità
+    authority_record_control_number: Numero di controllo del registro dell'autorità o numero standard
     authority_reference: Riferimento all'autorità
     autography: Autografia
     b_major: Si maggiore
@@ -331,6 +337,7 @@ it:
     contributor: Collaboratore
     control_fields: Campi di controllo
     control_number_identifier: Identificatore del numero di controllo
+    control_subfield: Sottocampo di controllo
     copy_examined: Copa esaminata per la catalogazione
     copyist: Copista
     copyright_holder: Titolare dei diritti d'autore
@@ -387,6 +394,7 @@ it:
     editor: Curatore
     ef_major: Mi♭ maggiore
     ef_minor: Mi♭ minore
+    end_period: Periodo finale
     engraver: Incisore
     engraving: Incisione
     event_organizer: Organizzatore
@@ -412,6 +420,8 @@ it:
     facsimile: Facsimile
     family_name: Nome di famiglia
     father_of: Padre di
+    field_link: Link di campo e numero di sequenza
+    field_of_activity: Settore di attività
     figured_bass_scores: Basso cifrato
     fijian: Figi
     fingerprint_identifier: Impronta
@@ -481,6 +491,7 @@ it:
     instrumentalist: Strumentista
     internal_note: Nota interna
     introduction: Introduzione
+    invalid_standard_number: Numero standard o codice standard annullato/non valido
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -510,7 +521,7 @@ it:
     licensee: Licenziatario
     life_dates: Data di nascita e di morte
     link_type: Tipo di collegamento
-    linkage: Collegamento
+    linkage: Collegamenti
     linking_entry_fields: Note su collegamenti
     literature: Bibliografia
     lithograph: Litografo
@@ -614,6 +625,8 @@ it:
     origin: Origine
     original_cataloging_agency: Agenzia catalografica originale
     other: Altra funzione
+    other_associated_place: Altro luogo associato
+    other_designation: Altra designazione
     other_form: Ortografia alternativa
     other_form_of_name: Altre forme del nome
     other_function: Altra funzione
@@ -650,6 +663,7 @@ it:
     place_activity: Luogo di attività
     place_birth: Luogo di nascita
     place_death: Luogo di morte
+    place_of_residence: Luogo di residenza/sede centrale
     place_origin: Luogo di origine
     place_publication: Luogo
     places: Luoghi
@@ -670,7 +684,9 @@ it:
     publisher: Editore
     publisher_copyist: Copista, editore, casa editrice
     publishing_printing_production: Copia o dati editoriali
+    qualifying_information: Informazioni qualificanti
     range_dates: Ambito di datazione
+    real_world_object_uri: Oggetto URI
     record_actions: Azioni per la scheda
     record_audit: RECORD AUDIT
     record_origin: Origine della scheda
@@ -689,6 +705,7 @@ it:
     related_work: Opera correlata
     relation: Relazione
     relations: Relazioni
+    relationship_information: Informazioni sul rapporto
     religious_name: Nome di religione
     religious_order: Ordine religioso
     reproduction: Riproduzione
@@ -714,12 +731,15 @@ it:
     sketches: Schizzi
     solo_voice: Voce solista
     soloist_instrument: Strumento solista
+    source: Fonte
     source_data_found: Fonte dei dati
     source_data_not_found: Fonte consultata senza esito
     source_description: Copa esaminata per la catalogazione
     source_details: Descrizione fisica
     source_number_code: Agenzia autorità
     source_of_acquisition_note: Nota sulla fonte d'acquisto
+    source_of_information: Fonte dell'informazione
+    source_of_term: Fonte del termine
     source_type: Categoria di fonte
     special_production_technique: Tecnica di produzione speciale
     standard: Standard
@@ -730,6 +750,7 @@ it:
     standardized_title: Titolo uniforme
     standardized_titles_printed_music: Titolo uniforme di edizioni musicali a stampa
     standardized_titles_subject_headings: Titolo uniforme - Soggetto
+    start_period: Periodo iniziale
     street_address: Via e numero civico
     strings: Archi
     subheading: Suddivisione formale
@@ -745,6 +766,7 @@ it:
     technical_production: Produttore
     temp_val: Temp val
     templates: Modelli
+    terms_of_availability: Condizioni di disponibilità
     terms_voices_instruments: Abbreviazioni RISM per gli strumenti
     text_author: Poeta
     text_incipit: Incipit testuale
@@ -770,6 +792,7 @@ it:
     type: Tipo
     type_institution: Tipo di istituzione
     type_name_variant: Descrizione della variante del nome
+    type_of_jurisdiction: Tipo di giurisdizione
     type_publication: Tipo di pubblicazione
     type_relationship: Relazione
     typescript: Dattiloscritto

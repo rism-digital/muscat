@@ -36,7 +36,9 @@ pl:
     arabic: Arabski
     aragonese: Aragoński
     armenian: Armeński
+    australian: Języki australijskie
     basque: Baskijski
+    bengali: Bengali
     bosnian: Bośniacki
     bulgarian: Bułgarski
     catalan: Kataloński
@@ -100,6 +102,7 @@ pl:
     slovak: Słowacki
     slovenian: Słoweński
     sorbian: Łużycki
+    south_american: Indie Południowoamerykańskie (inne)
     spanish: Hiszpański
     swedish: Szwedzki
     swiss_german: Niemiecki szwajcarski
@@ -221,6 +224,7 @@ pl:
     additional_bibliographic_information: Dodatkowe informacje bibliograficzne
     additional_biographical_information: Dodatkowe informacje biograficzne
     additional_choir_voice: Dodatkowy głos chóralny
+    additional_codes: Dodatkowe kody zgodne ze standardowym numerem lub kodem
     additional_institution: Dodatkowa instytucja
     additional_personal_name: Dodatkowa osoba
     additional_personal_name_lit: Dodatkowa osoba
@@ -244,6 +248,7 @@ pl:
     as_minor: ais-moll
     ascertained: Stwierdzone
     assignee: Cesjonariusz
+    associated_country: Państwo stowarzyszone
     associated_institution: Powiązana instytucja
     associated_name: Powiązana nazwa
     associated_name_lit: Powiązana nazwa
@@ -254,6 +259,7 @@ pl:
     author_editor: Autor / edytor
     authorities: Hasła wzorcowe
     authority_agency: Baza haseł wzorcowych
+    authority_record_control_number: Dodatkowe kody zgodne ze standardowym numerem lub kodem
     authority_reference: Odniesienie do bazy haseł wzorcowych
     autography: Autografia
     b_major: H-dur
@@ -330,6 +336,7 @@ pl:
     contributor: Kontrybutor
     control_fields: Pola kontrolne
     control_number_identifier: Identyfikator numeru kontrolnego
+    control_subfield: Podpole sterowania
     copy_examined: Katalogowany egzemplarz
     copyist: Kopista
     copyright_holder: Posiadacz praw autorskich
@@ -386,6 +393,7 @@ pl:
     editor: Edytor
     ef_major: Es-dur
     ef_minor: es-moll
+    end_period: Okres końcowy
     engraver: Rytownik
     engraving: Sztych
     event_organizer: Organizator wydarzenia
@@ -411,6 +419,8 @@ pl:
     facsimile: Faksymile
     family_name: Nazwisko rodowe
     father_of: Ojciec …
+    field_link: Link do pola i numer kolejny
+    field_of_activity: Obszar działalności
     figured_bass_scores: Bas cyfrowany w partyturze i / lub w innych częściach
     fijian: Fidżyjski
     fingerprint_identifier: Identyfikator odcisku palca
@@ -480,6 +490,7 @@ pl:
     instrumentalist: Instrumentalista
     internal_note: Uwaga wewnętrzna
     introduction: Wprowadzenie
+    invalid_standard_number: Anulowany/nieważny standardowy numer lub kod
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -613,6 +624,8 @@ pl:
     origin: Pochodzenie
     original_cataloging_agency: Jednostka katalogująca pierwotny rekord
     other: Pozostałe
+    other_associated_place: Inne powiązane miejsce
+    other_designation: Inne oznaczenie
     other_form: Inna forma
     other_form_of_name: Wariant nazwy instytucji
     other_function: Inna funkcja
@@ -649,6 +662,7 @@ pl:
     place_activity: Miejsce aktywności artystycznej
     place_birth: Miejsce urodzenia
     place_death: Miejsce śmierci
+    place_of_residence: Miejsce zamieszkania/siedziba główna
     place_origin: Miejsce pochodzenia
     place_publication: Miejsce publikacji
     places: Miejsca
@@ -669,7 +683,9 @@ pl:
     publisher: Wydawca
     publisher_copyist: Wydawca, kopista
     publishing_printing_production: Informacje o publikacji, druku i produkcji
+    qualifying_information: Informacje kwalifikacyjne
     range_dates: Zakres dat
+    real_world_object_uri: Rezonans magnetyczny obiektu świata rzeczywistego
     record_actions: Działania na rekordzie
     record_audit: RECORD AUDIT
     record_origin: Pochodzenie rekordu
@@ -688,6 +704,7 @@ pl:
     related_work: Powiązane dzieło
     relation: Relacja
     relations: Relacje
+    relationship_information: Informacje o relacjach
     religious_name: Imię z wyznania
     religious_order: Zgromadzenie zakonne
     reproduction: Reprodukcja
@@ -713,12 +730,15 @@ pl:
     sketches: Szkice
     solo_voice: Głos solowy
     soloist_instrument: Instrument solowy
+    source: Źródło
     source_data_found: Odnalezione źródło danych
     source_data_not_found: Brak źródła danych
     source_description: Uwaga o źródle opisu
     source_details: Dane źródła
     source_number_code: Źródło numeru lub kodu
     source_of_acquisition_note: Uwaga o źródle nabycia
+    source_of_information: Źródło informacji
+    source_of_term: Źródło terminu
     source_type: Rodzaj źródła
     special_production_technique: Specjalna technika produkcji
     standard: Standardowy
@@ -729,6 +749,7 @@ pl:
     standardized_title: Znormalizowany tytuł
     standardized_titles_printed_music: Znormalizowane tytuły dla druków muzycznych
     standardized_titles_subject_headings: Znormalizowane tytuły – słowa kluczowe
+    start_period: Okres startowy
     street_address: Ulica, numer, numer lokalu
     strings: Instrumenty strunowe
     subheading: Pod-nagłówek
@@ -744,6 +765,7 @@ pl:
     technical_production: Produkcja techniczna
     temp_val: Temp val
     templates: Szablony
+    terms_of_availability: Warunki dostępności
     terms_voices_instruments: Określenia głosów i instrumentów
     text_author: Autor tekstu
     text_incipit: Incipit tekstowy
@@ -769,6 +791,7 @@ pl:
     type: Rodzaj
     type_institution: Rodzaj instytucji
     type_name_variant: Typ alternatywnej nazwy osoby
+    type_of_jurisdiction: Rodzaj jurysdykcji
     type_publication: Rodzaj publikacji
     type_relationship: Rodzaj relacji
     typescript: Maszynopis

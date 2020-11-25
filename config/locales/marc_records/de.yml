@@ -36,7 +36,9 @@ de:
     arabic: Arabisch
     aragonese: Aragonesisch
     armenian: Armenische
+    australian: Australische Sprachen
     basque: Baskisch
+    bengali: Bengalisch
     bosnian: Bosnisch
     bulgarian: Bulgarisch
     catalan: Katalanisch
@@ -100,6 +102,7 @@ de:
     slovak: Slowakisch
     slovenian: Slowenisch
     sorbian: Sorbisch
+    south_american: Südamerikanische Indianer (andere)
     spanish: Spanisch
     swedish: Schwedisch
     swiss_german: Schweizerdeutsch
@@ -221,6 +224,7 @@ de:
     additional_bibliographic_information: Weitere bibliographische Angaben
     additional_biographical_information: Weitere biographische Angaben
     additional_choir_voice: Zusätzliche Chorstimmen
+    additional_codes: Zusätzliche Codes nach der Standardnummer oder dem Standardcode
     additional_institution: Nebeneintragung Körperschaften
     additional_personal_name: Nebeneintragung Personen
     additional_personal_name_lit: Sonstige Person
@@ -244,6 +248,7 @@ de:
     as_minor: ais-Moll
     ascertained: Ermittelt
     assignee: Lizenznehmer
+    associated_country: Assoziiertes Land
     associated_institution: Beziehung Körperschaft
     associated_name: Zugehöriger Name
     associated_name_lit: Behandelte Person
@@ -254,6 +259,7 @@ de:
     author_editor: Autor / Herausgeber
     authorities: Normdaten
     authority_agency: Normdatenagentur
+    authority_record_control_number: Zusätzliche Codes nach der Standardnummer oder dem Standardcode
     authority_reference: Normdatenverweise
     autography: Autographie
     b_major: H-Dur
@@ -330,6 +336,7 @@ de:
     contributor: Mitverfasser
     control_fields: Kontrollfelder
     control_number_identifier: Kontrollnummer-Bezeichnung
+    control_subfield: Unterfeld Steuerung
     copy_examined: Vorlageexemplar
     copyist: Schreiber
     copyright_holder: Rechteinhaber
@@ -386,6 +393,7 @@ de:
     editor: Herausgeber
     ef_major: Es-Dur
     ef_minor: es-Moll
+    end_period: Periode beenden
     engraver: Stecher
     engraving: Stich
     event_organizer: Veranstalter
@@ -411,6 +419,8 @@ de:
     facsimile: Faksimile
     family_name: Familienname
     father_of: Vater von
+    field_link: Feldverknüpfung und Sequenznummer
+    field_of_activity: Tätigkeitsfeld
     figured_bass_scores: Generalbass
     fijian: Fidschianisch
     fingerprint_identifier: Fingerprint-Erkennung
@@ -480,6 +490,7 @@ de:
     instrumentalist: Instrumentalist
     internal_note: Interne Bemerkungen
     introduction: Einleitung
+    invalid_standard_number: Stornierte/ungültige Standardnummer oder -code
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -509,7 +520,7 @@ de:
     licensee: Lizenzinhaber
     life_dates: Geburts- und Todesdaten
     link_type: Linktyp
-    linkage: Verlinkung
+    linkage: Verknüpfung
     linking_entry_fields: Verknüpfungseintragungen
     literature: Literatur
     lithograph: Lithograph
@@ -613,6 +624,8 @@ de:
     origin: Herkunft
     original_cataloging_agency: Original-Katalogisierungsstelle
     other: Sonstige Funktion
+    other_associated_place: Anderer zugehöriger Ort
+    other_designation: Andere Bezeichnung
     other_form: Andere Schreibweise
     other_form_of_name: Andere Namensformen
     other_function: Sonstige Funktion
@@ -649,6 +662,7 @@ de:
     place_activity: Wirkungsort
     place_birth: Geburtsort
     place_death: Sterbeort
+    place_of_residence: Wohnort/Hauptsitz
     place_origin: Herkunftsangabe
     place_publication: Verlagsort
     places: Orte
@@ -669,7 +683,9 @@ de:
     publisher: Verleger
     publisher_copyist: Schreiber, Verleger, Verlag
     publishing_printing_production: Abschrift oder Impressum
+    qualifying_information: Qualifizierende Informationen
     range_dates: Datierungsbereich
+    real_world_object_uri: Real-World-Objekt-URI
     record_actions: Titel veröffentlichen
     record_audit: RECORD AUDIT
     record_origin: Herkunft
@@ -688,6 +704,7 @@ de:
     related_work: zugehörige Werke
     relation: Bedeutung
     relations: Beziehungen
+    relationship_information: Informationen zur Beziehung
     religious_name: Ordensname
     religious_order: Orden/Titel
     reproduction: Reproduktion
@@ -713,12 +730,15 @@ de:
     sketches: Skizzen
     solo_voice: Solostimme
     soloist_instrument: Solistisches Instrument
+    source: Quelle
     source_data_found: Literaturnachweis
     source_data_not_found: Quelle ohne Ergebnis konsultiert
     source_description: Vorlageexemplar
     source_details: Physische Beschreibung
     source_number_code: Normdatenagentur
     source_of_acquisition_note: Beschaffungsquelle
+    source_of_information: Quelle der Informationen
+    source_of_term: Quelle des Begriffs
     source_type: Quellentyp
     special_production_technique: Spezielle Fertigungstechnik
     standard: Standard
@@ -729,6 +749,7 @@ de:
     standardized_title: Einordnungstitel
     standardized_titles_printed_music: Einordnungstitel für Musikdrucke
     standardized_titles_subject_headings: Einordnungstitel - Schlagworte
+    start_period: Beginn der Periode
     street_address: Strasse
     strings: Streichinstrumente
     subheading: Unterteilung nach der Form
@@ -744,6 +765,7 @@ de:
     technical_production: Hersteller
     temp_val: Temp val
     templates: Templates
+    terms_of_availability: Bedingungen der Verfügbarkeit
     terms_voices_instruments: Stimmen- und Instrumentenbezeichnungen
     text_author: Textdichter
     text_incipit: Textincipit
@@ -769,6 +791,7 @@ de:
     type: Typ
     type_institution: Typ der Körperschaft
     type_name_variant: Art der Namensvariante
+    type_of_jurisdiction: Art der Gerichtsbarkeit
     type_publication: Ausgabeform
     type_relationship: Beziehung
     typescript: Typescript

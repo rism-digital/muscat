@@ -114,11 +114,11 @@
     u:
       label: general.url
     s:
-      label: general.start_period
+      label: records.start_period
     t:
-      label: general.end_period
+      label: records.end_period
     v:
-      label: general.source_of_information
+      label: records.source_of_information
     z:
       label: records.public_note
   label: records.location_and_address
