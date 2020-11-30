@@ -103,6 +103,9 @@ class MuscatCheckup
           
           s.marc.load_source true
           
+          errors[sid.id] = new_stdout.string
+          @debug_logger.error(new_stdout.string) if @debug_logger && !new_stdout.string.strip.empty?
+
           # Set back to original
           $stdout = old_stdout
           $stderr = old_stderr
@@ -115,7 +118,7 @@ class MuscatCheckup
           $stderr = old_stderr
           
           errors[sid.id] = new_stdout.string
-          @debug_logger.err(new_stdout.string) if @debug_logger
+          @debug_logger.error(new_stdout.string) if @debug_logger
           new_stdout.rewind
         end
         
