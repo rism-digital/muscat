@@ -119,7 +119,7 @@ class MuscatCheckup
       $stdout = old_stdout
       $stderr = old_stderr
       
-      errors[sid.id] = new_stdout.string
+      errors[s.id] = new_stdout.string
       @debug_logger.error(new_stdout.string) if @debug_logger
       new_stdout.rewind
     end
@@ -135,7 +135,7 @@ class MuscatCheckup
       Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
         s = Source.find(sid.id)
         
-        e, v = load_and_validate_source(s)
+        e, v = load_and_validate_source(sid)
         errors.merge!(e)
         validations.merge!(v)
         
