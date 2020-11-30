@@ -1,12 +1,13 @@
 class MarcValidator
 include ApplicationHelper
+  
+  DEBUG = false
 
-	DEBUG = false
-	
-  def initialize(object, user = nil, warnings = false)
+  def initialize(object, user = nil, warnings = false, logger = nil)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
     @user = user
+    @logger = logger
     @server_rules = @validation.server_rules
     @editor_profile = EditorConfiguration.get_default_layout(object)
     #ap @rules
@@ -297,6 +298,7 @@ include ApplicationHelper
     
     @errors[tag][subtag] << message
     
+    @logger.info("#{@object.id} #{tag} #{subtag} #{message}")
   end
   
   def is_subtag_excluded(tag, subtag)

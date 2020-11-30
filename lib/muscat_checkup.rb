@@ -3,20 +3,21 @@ require 'set'
 
 class MuscatCheckup  
 
-    def initialize(options = {})
-        @parallel_jobs = options.include?(:jobs) ? options[:jobs] : 10
-        @all_src = options.include?(:limit) ? options[:limit] : Source.all.count
-        @limit = @all_src / @parallel_jobs
-        @folder = options.include?(:folder) ? options[:folder] : nil
+  def initialize(options = {})
+      @parallel_jobs = options.include?(:jobs) ? options[:jobs] : 10
+      @all_src = 5000 #options.include?(:limit) ? options[:limit] : Source.all.count
+      @limit = @all_src / @parallel_jobs
+      @folder = options.include?(:folder) ? options[:folder] : nil
 
-        @limit_unknown_tags = true
+      @limit_unknown_tags = true
 
-        @skip_validation = (options.include?(:skip_validation) && options[:skip_validation] == true)
-        @skip_dates = (options.include?(:skip_dates) && options[:skip_dates] == true)
-        @skip_links = (options.include?(:skip_links) && options[:skip_links] == true)
-        @skip_unknown_tags = (options.include?(:skip_unknown_tags) && options[:skip_unknown_tags] == true)
-        @skip_holdings = (options.include?(:skip_holdings) && options[:skip_holdings] == true)
-    end
+      @skip_validation = (options.include?(:skip_validation) && options[:skip_validation] == true)
+      @skip_dates = (options.include?(:skip_dates) && options[:skip_dates] == true)
+      @skip_links = (options.include?(:skip_links) && options[:skip_links] == true)
+      @skip_unknown_tags = (options.include?(:skip_unknown_tags) && options[:skip_unknown_tags] == true)
+      @skip_holdings = (options.include?(:skip_holdings) && options[:skip_holdings] == true)
+      @debug_logger = options.include?(:logger) ? options[:logger] : nil
+  end
 
   def run_parallel()
     begin_time = Time.now
@@ -90,7 +91,7 @@ class MuscatCheckup
     results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
       errors = {}
       validations = {}
-      offset = @limit * jobid
+      offset = @limit * jobid * 10
 
       Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
         s = Source.find(sid.id)
@@ -114,6 +115,7 @@ class MuscatCheckup
           $stderr = old_stderr
           
           errors[sid.id] = new_stdout.string
+          @debug_logger.err(new_stdout.string) if @debug_logger
           new_stdout.rewind
         end
         
@@ -157,6 +159,7 @@ class MuscatCheckup
         $stderr = old_stderr
         
         errors[s.id] = new_stdout.string
+        @debug_logger.info(new_stdout.string)
         new_stdout.rewind
       end
       
@@ -169,7 +172,7 @@ class MuscatCheckup
   def validate_record(record)
 
     begin
-      validator = MarcValidator.new(record)
+      validator = MarcValidator.new(record, nil, false, @debug_logger)
       validator.validate_tags if !@skip_validation
       validator.validate_dates if !@skip_dates
       validator.validate_links if !@skip_links
@@ -178,6 +181,7 @@ class MuscatCheckup
       return validator.get_errors
     rescue Exception => e
       puts e.message
+      @debug_logger.err(e.message) if @debug_logger
     end
     
   end
