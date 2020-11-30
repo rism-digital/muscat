@@ -104,11 +104,16 @@ class MuscatCheckup
           s.marc.load_source true
           
           errors[sid.id] = new_stdout.string
-          @debug_logger.error(new_stdout.string) if @debug_logger && !new_stdout.string.strip.empty?
+          if !new_stdout.string.strip.empty? && @debug_logger
+            new_stdout.string.each_line do |line|
+              @debug_logger.error "#{s.id} marc_error #{line.strip}"
+            end
+          end
 
           # Set back to original
           $stdout = old_stdout
           $stderr = old_stderr
+          new_stdout.rewind
           
           res = validate_record(s)
           validations[sid.id] = res if res && !res.empty?
