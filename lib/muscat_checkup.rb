@@ -135,7 +135,7 @@ class MuscatCheckup
       Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
         s = Source.find(sid.id)
         
-        e, v = load_and_validate_source(sid)
+        e, v = load_and_validate_source(s)
         errors.merge!(e)
         validations.merge!(v)
         
