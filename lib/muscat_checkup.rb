@@ -82,11 +82,51 @@ class MuscatCheckup
   
   private
 
-  def validate_sources
+  def load_and_validate_source(s)
     # Capture all the puts from the inner classes
     old_stdout = $stdout
     old_stderr = $stderr
 
+    errors = {}
+    validations = {}
+
+    begin
+      ## Capture STDOUT and STDERR
+      ## Only for the marc loading!
+      new_stdout = StringIO.new
+      $stdout = new_stdout
+      $stderr = new_stdout
+      
+      s.marc.load_source true
+      
+      errors[s.id] = new_stdout.string
+      if !new_stdout.string.strip.empty? && @debug_logger
+        new_stdout.string.each_line do |line|
+          next if line.strip.empty?
+          @debug_logger.error "#{s.id} marc_error #{line.strip}"
+        end
+      end
+
+      # Set back to original
+      $stdout = old_stdout
+      $stderr = old_stderr
+      new_stdout.rewind
+      
+      res = validate_record(s)
+      validations[s.id] = res if res && !res.empty?
+    rescue
+      ## Exit the capture
+      $stdout = old_stdout
+      $stderr = old_stderr
+      
+      errors[sid.id] = new_stdout.string
+      @debug_logger.error(new_stdout.string) if @debug_logger
+      new_stdout.rewind
+    end
+    return errors, validations
+  end
+
+  def validate_sources
     results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
       errors = {}
       validations = {}
@@ -94,39 +134,10 @@ class MuscatCheckup
 
       Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
         s = Source.find(sid.id)
-        begin
-          ## Capture STDOUT and STDERR
-          ## Only for the marc loading!
-          new_stdout = StringIO.new
-          $stdout = new_stdout
-          $stderr = new_stdout
-          
-          s.marc.load_source true
-          
-          errors[sid.id] = new_stdout.string
-          if !new_stdout.string.strip.empty? && @debug_logger
-            new_stdout.string.each_line do |line|
-              next if line.strip.empty?
-              @debug_logger.error "#{s.id} marc_error #{line.strip}"
-            end
-          end
-
-          # Set back to original
-          $stdout = old_stdout
-          $stderr = old_stderr
-          new_stdout.rewind
-          
-          res = validate_record(s)
-          validations[sid.id] = res if res && !res.empty?
-        rescue
-          ## Exit the capture
-          $stdout = old_stdout
-          $stderr = old_stderr
-          
-          errors[sid.id] = new_stdout.string
-          @debug_logger.error(new_stdout.string) if @debug_logger
-          new_stdout.rewind
-        end
+        
+        e, v = load_and_validate_source(s)
+        errors.merge!(e)
+        validations.merge!(v)
         
         s = nil
       end
@@ -136,11 +147,6 @@ class MuscatCheckup
   end
 
   def validate_folder
-    # Capture all the puts from the inner classes
-    new_stdout = StringIO.new
-    old_stdout = $stdout
-    old_stderr = $stderr
-
     errors = {}
     validations = {}
 
@@ -148,29 +154,9 @@ class MuscatCheckup
       next if !fi.item
       s = fi.item
 
-      begin
-        ## Capture STDOUT and STDERR
-        ## Only for the marc loading!
-        $stdout = new_stdout
-        $stderr = new_stdout
-        
-        s.marc.load_source true
-        
-        # Set back to original
-        $stdout = old_stdout
-        $stderr = old_stderr
-        
-        res = validate_record(s)
-        validations[s.id] = res if res && !res.empty?
-      rescue
-        ## Exit the capture
-        $stdout = old_stdout
-        $stderr = old_stderr
-        
-        errors[s.id] = new_stdout.string
-        @debug_logger.info(new_stdout.string)
-        new_stdout.rewind
-      end
+      e, v = load_and_validate_source(s)
+      errors.merge!(e)
+      validations.merge!(v)
       
       s = nil
     end
