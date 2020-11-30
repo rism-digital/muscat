@@ -5,7 +5,7 @@ class MuscatCheckup
 
   def initialize(options = {})
       @parallel_jobs = options.include?(:jobs) ? options[:jobs] : 10
-      @all_src = 5000 #options.include?(:limit) ? options[:limit] : Source.all.count
+      @all_src = options.include?(:limit) ? options[:limit] : Source.all.count
       @limit = @all_src / @parallel_jobs
       @folder = options.include?(:folder) ? options[:folder] : nil
 
@@ -91,7 +91,7 @@ class MuscatCheckup
     results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
       errors = {}
       validations = {}
-      offset = @limit * jobid * 10
+      offset = @limit * jobid
 
       Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
         s = Source.find(sid.id)
