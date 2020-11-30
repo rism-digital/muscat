@@ -120,7 +120,15 @@ class MuscatCheckup
       $stderr = old_stderr
       
       errors[s.id] = new_stdout.string
-      @debug_logger.error(new_stdout.string) if @debug_logger
+      #@debug_logger.error(new_stdout.string) if @debug_logger
+
+      if !new_stdout.string.strip.empty? && @debug_logger
+        new_stdout.string.each_line do |line|
+          next if line.strip.empty?
+          @debug_logger.error "#{s.id} record_error #{line.strip}"
+        end
+      end
+
       new_stdout.rewind
     end
     return errors, validations
