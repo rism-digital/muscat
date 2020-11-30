@@ -298,7 +298,7 @@ include ApplicationHelper
     
     @errors[tag][subtag] << message
     
-    @logger.error("#{@object.id} #{tag} #{subtag} #{message}")
+    @logger.error("#{@object.id} #{@object.get_record_type.to_s} #{tag} #{subtag} #{message}")
   end
   
   def is_subtag_excluded(tag, subtag)
