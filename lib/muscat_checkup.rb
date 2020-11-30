@@ -84,7 +84,6 @@ class MuscatCheckup
 
   def validate_sources
     # Capture all the puts from the inner classes
-    new_stdout = StringIO.new
     old_stdout = $stdout
     old_stderr = $stderr
 
@@ -98,6 +97,7 @@ class MuscatCheckup
         begin
           ## Capture STDOUT and STDERR
           ## Only for the marc loading!
+          new_stdout = StringIO.new
           $stdout = new_stdout
           $stderr = new_stdout
           
@@ -106,6 +106,7 @@ class MuscatCheckup
           errors[sid.id] = new_stdout.string
           if !new_stdout.string.strip.empty? && @debug_logger
             new_stdout.string.each_line do |line|
+              next if line.strip.empty?
               @debug_logger.error "#{s.id} marc_error #{line.strip}"
             end
           end
