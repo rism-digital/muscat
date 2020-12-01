@@ -130,10 +130,20 @@ include ApplicationHelper
   def validate_links
     @marc.all_tags.each do |marctag|
       
+      if !marctag
+        add_error("missing-tag", nil, "foreign-tag: Master tag is absent in configuration")
+        next
+      end
+
       foreigns = marctag.get_foreign_subfields
       next if foreigns.empty?
       
       master = marctag.get_master_foreign_subfield
+      if !master
+        add_error(marctag.tag, "missing_master", "foreign-tag: Master tag is absent in configuration")
+        next
+      end
+
       unresolved_tags = @unresolved_marc.by_tags_with_subtag([marctag.tag], master.tag, master.content.to_s)
 
       if unresolved_tags.empty?
@@ -151,7 +161,10 @@ include ApplicationHelper
       foreigns.each do |foreign_subtag|
         next if foreign_subtag.tag == master.tag #we already got the master
 
-        puts "more than one foreign subtag" if unresolved_tag.fetch_all_by_tag(foreign_subtag.tag).count > 1
+        if unresolved_tag.fetch_all_by_tag(foreign_subtag.tag).count > 1
+          add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: more than one foreign subtag")
+        end
+
         subtag = unresolved_tag.fetch_first_by_tag(foreign_subtag.tag) # get the first
         if subtag && subtag.content
           if subtag.content != foreign_subtag.content

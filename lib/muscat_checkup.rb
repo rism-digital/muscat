@@ -103,7 +103,8 @@ class MuscatCheckup
       if !new_stdout.string.strip.empty? && @debug_logger
         new_stdout.string.each_line do |line|
           next if line.strip.empty?
-          @debug_logger.error "#{s.id} marc_error #{line.strip}"
+          @debug_logger.error("#{s.id} #{s.get_record_type.to_s} marc_error no_tag #{line.strip}") if @debug_logger
+
         end
       end
 
@@ -125,7 +126,8 @@ class MuscatCheckup
       if !new_stdout.string.strip.empty? && @debug_logger
         new_stdout.string.each_line do |line|
           next if line.strip.empty?
-          @debug_logger.error "#{s.id} record_error #{line.strip}"
+          @debug_logger.error("#{s.id} #{s.get_record_type.to_s} marc_exception no_tag #{line.strip}") if @debug_logger
+
         end
       end
 
@@ -184,7 +186,7 @@ class MuscatCheckup
       return validator.get_errors
     rescue Exception => e
       puts e.message
-      @debug_logger.err(e.message) if @debug_logger
+      @debug_logger.error("#{record} #{record.get_record_type.to_s} validation_exception no_tag #{e.message}") if @debug_logger
     end
     
   end
