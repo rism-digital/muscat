@@ -102,7 +102,7 @@ es:
     slovak: Eslovaco
     slovenian: Esloveno
     sorbian: Sorbio
-    south_american: Indio sudamericano (Otro)
+    south_american: Nativo sudamericano (Otro)
     spanish: Español
     swedish: Sueco
     swiss_german: Suizo-alemán
@@ -396,7 +396,7 @@ es:
     editor: Editor (curador)/Editorial
     ef_major: Mi bemol Mayor
     ef_minor: Mi bemol menor
-    end_period: El período final
+    end_period: Periodo final
     engraver: Grabador
     engraving: Grabado
     event_organizer: Organizador del evento
@@ -406,7 +406,7 @@ es:
     extent_parts: Extensión (particellas)
     external_resource: Recurso externo
     external_resource_uri: URI del recurso externo
-    external_resource_url: URL del recurso externo
+    external_resource_url: Recurso externo
     f_major: Fa Mayor
     f_minor: Fa menor
     f_minus_1: F-1
@@ -667,7 +667,7 @@ es:
     place_activity: Lugar de actividad
     place_birth: Lugar de nacimiento
     place_death: Lugar de fallecimiento
-    place_of_residence: Lugar de residencia/sede principal
+    place_of_residence: Lugar de residencia/sede
     place_origin: Lugar de origen
     place_publication: Lugar de publicación
     places: Lugares
@@ -690,7 +690,7 @@ es:
     publishing_printing_production: Información de publicación, impresión y producción
     qualifying_information: Información calificada
     range_dates: Rango de fechas
-    real_world_object_uri: Objeto del mundo real URI
+    real_world_object_uri: URI de Objeto del mundo real
     record_actions: Acciones del registro
     record_audit: RECORD AUDIT
     record_origin: Origen del registro
@@ -756,7 +756,7 @@ es:
     standardized_title: Título uniforme
     standardized_titles_printed_music: Títulos uniformes para música impresa
     standardized_titles_subject_headings: Títulos uniformes – Descriptores
-    start_period: Período de inicio
+    start_period: Periodo inicial
     street_address: Calle y número
     strings: Cuerdas
     subheading: Tipo especial de fuente
