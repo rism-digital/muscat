@@ -140,7 +140,7 @@ include ApplicationHelper
       
       master = marctag.get_master_foreign_subfield
       if !master
-        add_error(marctag.tag, "missing_master", "foreign-tag: Master tag is absent in configuration")
+        add_error(marctag.tag, "missing_master", "foreign-tag: Master tag is absent in data")
         next
       end
 
@@ -311,7 +311,7 @@ include ApplicationHelper
     
     @errors[tag][subtag] << message
     
-    @logger.error("#{@object.id} #{@object.get_record_type.to_s} #{tag} #{subtag} #{message}")
+    @logger.error("#{@object.id} #{@object.get_record_type.to_s} #{tag} #{subtag} #{message}") if @logger
   end
   
   def is_subtag_excluded(tag, subtag)
