@@ -77,7 +77,7 @@ class MarcInstitution < Marc
   end
  
   def marc_helper_get_country(value)
-    return @@labels[value]["label"].values rescue nil
+    return [ :en, :fr, :de, :it ].map{|i| I18n.t(@@labels[value]["label"], locale: i)} rescue nil
   end
  
 end
