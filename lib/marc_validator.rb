@@ -131,7 +131,7 @@ include ApplicationHelper
     @marc.all_tags.each do |marctag|
       
       if !marctag
-        add_error("missing-tag", nil, "foreign-tag: Master tag is absent in configuration")
+        add_error("missing-tag", nil, "foreign-tag: Master tag is absent in configuration", "link_error")
         next
       end
 
@@ -140,21 +140,21 @@ include ApplicationHelper
       
       master = marctag.get_master_foreign_subfield
       if !master
-        add_error(marctag.tag, nil, "foreign-tag: missing_master")
+        add_error(marctag.tag, nil, "foreign-tag: missing_master", "link_error")
         next
       end
 
       unresolved_tags = @unresolved_marc.by_tags_with_subtag([marctag.tag], master.tag, master.content.to_s)
 
       if unresolved_tags.empty?
-        add_error(marctag.tag, master.tag, "foreign-tag: Searching resolved master value in unresolved marc yields no results")
+        add_error(marctag.tag, master.tag, "foreign-tag: Searching resolved master value in unresolved marc yields no results", "link_error")
         next
       end
       
       unresolved_tag = match_tags(marctag, unresolved_tags, foreigns)
       
       if !unresolved_tag
-        add_error(marctag.tag, master.tag, "foreign-tag: Unable to find exach match in tags with multiple same master tags")
+        add_error(marctag.tag, master.tag, "foreign-tag: Unable to find exach match in tags with multiple same master tags", "link_error")
         next
       end
 
@@ -162,16 +162,16 @@ include ApplicationHelper
         next if foreign_subtag.tag == master.tag #we already got the master
 
         if unresolved_tag.fetch_all_by_tag(foreign_subtag.tag).count > 1
-          add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: more than one foreign subtag")
+          add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: more than one foreign subtag", "link_error")
         end
 
         subtag = unresolved_tag.fetch_first_by_tag(foreign_subtag.tag) # get the first
         if subtag && subtag.content
           if subtag.content != foreign_subtag.content
-            add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content} from: ##{foreign_subtag.foreign_object.class}:#{foreign_subtag.foreign_object.id}")
+            add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content} from: ##{foreign_subtag.foreign_object.class}:#{foreign_subtag.foreign_object.id}", "link_error")
           end
         else
-          add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: tag not present in unresolved marc, from: ##{foreign_subtag.foreign_object.class}:#{foreign_subtag.foreign_object.id}")
+          add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: tag not present in unresolved marc, from: ##{foreign_subtag.foreign_object.class}:#{foreign_subtag.foreign_object.id}", "link_error")
         end
       end
       
@@ -199,13 +199,13 @@ include ApplicationHelper
         # Make a warning for a year n the future
         # I can be legitimate, like a forthcoming publication
         if max > Date.today.year
-          add_error("260", "c", "Date in the future: #{max} (#{marcsubtag.content})")
+          add_error("260", "c", "Date in the future: #{max} (#{marcsubtag.content})", , "date_error")
         end
         
         # Make a warning if it is before the 11th century
         # we have sources in the 11th century
         if min < 1000
-          add_error("260", "c", "Date too far in the past: #{min} (#{marcsubtag.content})")
+          add_error("260", "c", "Date too far in the past: #{min} (#{marcsubtag.content})", "date_error")
         end
       end
     end
@@ -222,7 +222,7 @@ include ApplicationHelper
   def validate_unknown_tags
     @unknown_tags = []
       @editor_profile.each_tag_not_in_layout(@object) do |t|
-        add_error(t, "unknown-tag", "Unknown tag in layout")
+        add_error(t, "unknown-tag", "Unknown tag in layout", "unknown_tag_error")
       end
   end
 
@@ -230,12 +230,12 @@ include ApplicationHelper
     return if !@object.is_a? Source
 
     if @object.record_type == MarcSource::RECORD_TYPES[:edition]
-      add_error("record", "holdings", "No holding records") if @object.holdings.empty?
+      add_error("record", "holdings", "No holding records", "holding_error") if @object.holdings.empty?
     elsif @object.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
       @object.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content] ||
       @object.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content]
-      add_error("record", "holdings", "#{@object.get_record_type} should not have holding records") if !@object.holdings.empty?
-      add_error("record", "holdings", "#{@object.get_record_type} must have a parent") if !@object.parent_source
+      add_error("record", "holdings", "#{@object.get_record_type} should not have holding records", "holding_error") if !@object.holdings.empty?
+      add_error("record", "holdings", "#{@object.get_record_type} must have a parent", "holding_error") if !@object.parent_source
     end
   end
 
@@ -304,14 +304,16 @@ include ApplicationHelper
     nil
   end
   
-  def add_error(tag, subtag, message)
+  def add_error(tag, subtag, message, log_tag = nil)
+    tag = "no_tag" if !tag
     subtag = "no_subtag" if !subtag
     @errors[tag] = {} if !@errors.has_key?(tag)
     @errors[tag][subtag] = [] if !@errors[tag].has_key?(subtag)
     
     @errors[tag][subtag] << message
     
-    @logger.error("validation_error #{@object.id} #{@object.get_record_type.to_s} #{tag} #{subtag} #{message}") if @logger
+    log_tag = "validation_error" if !log_tag
+    @logger.error("#{log_tag} #{@object.id} #{@object.get_record_type.to_s} #{tag} #{subtag} #{message}") if @logger
   end
   
   def is_subtag_excluded(tag, subtag)
