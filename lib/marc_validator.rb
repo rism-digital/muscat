@@ -199,7 +199,7 @@ include ApplicationHelper
         # Make a warning for a year n the future
         # I can be legitimate, like a forthcoming publication
         if max > Date.today.year
-          add_error("260", "c", "Date in the future: #{max} (#{marcsubtag.content})", , "date_error")
+          add_error("260", "c", "Date in the future: #{max} (#{marcsubtag.content})", "date_error")
         end
         
         # Make a warning if it is before the 11th century
