@@ -18,6 +18,7 @@ it:
     rule_type: Regole di cat.
     scope_printed_music_rism: Copertura delle edizioni musicali a stampa in RISM
     searching: Ricerca
+    source_citation: Citazione della fonte
     status: Status
     undetermined: Indeterminato
     ungrouped_fields: Campi non raggruppati

@@ -18,6 +18,7 @@ pt:
     rule_type: Regras de catalogação
     scope_printed_music_rism: Âmbito da música impressa no RISM
     searching: ''
+    source_citation: Citação da fonte
     status: ''
     undetermined: Indeterminado
     ungrouped_fields: ''

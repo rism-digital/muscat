@@ -133,6 +133,7 @@ v 7.0
 * Refine Italian
 * Make links work, order language menu
 * Change the priorities for the language menu
+* Fix #992 add all the labels
 
 v 6.3.1
 * Fix #963 "frozen string literal"

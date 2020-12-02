@@ -18,6 +18,7 @@ es:
     rule_type: Tipo de regla
     scope_printed_music_rism: Cobertura de la música impresa en RISM
     searching: Búsqueda
+    source_citation: Citación de la fuente
     status: Estado
     undetermined: Indeterminado
     ungrouped_fields: Campos no agrupados

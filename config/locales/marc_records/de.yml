@@ -18,6 +18,7 @@ de:
     rule_type: Regelwerk
     scope_printed_music_rism: Umfang der Dokumentation von Musikdrucke in RISM
     searching: Suche
+    source_citation: Quellenangabe
     status: Status
     undetermined: Unbestimmt
     ungrouped_fields: Nicht zugeteilte Felder
