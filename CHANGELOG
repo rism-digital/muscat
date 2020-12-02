@@ -94,7 +94,7 @@ v 7.0
 * Also clean up the unused crono table
 * Add works to reindex script....
 * Fix #1009, remove "search sources" unused boxes (but leave the partial if we can use it in the future)
-* Fix ##1016, also move language codes to dedicated file
+* Fix #1016, also move language codes to dedicated file
 * #1014 and #1016, add missing language codes
 * #971 remove 963 from Holding
 * Fix #1008, remove new_window
@@ -134,6 +134,7 @@ v 7.0
 * Make links work, order language menu
 * Change the priorities for the language menu
 * Fix #992 add all the labels
+* Fix #975, rename catalogues to publications
 
 v 6.3.1
 * Fix #963 "frozen string literal"
