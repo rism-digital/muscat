@@ -238,7 +238,7 @@ pl:
     af_minor: as-moll
     aide: Asystent
     aids: Pomoce
-    alleged: Domniemane
+    alleged: Rzekomy
     alternate_spelling: Alternatywna pisownia
     archive: Archiwum
     arrangement: Aranżacja
@@ -248,7 +248,7 @@ pl:
     artistic_production: Autor produkcji artystycznej
     as_major: Ais-dur
     as_minor: ais-moll
-    ascertained: Stwierdzone
+    ascertained: Ustalony
     assignee: Cesjonariusz
     associated_country: Państwo stowarzyszone
     associated_institution: Powiązana instytucja
@@ -296,7 +296,7 @@ pl:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog_opus_number: Numer katalogu / numer opus
-    catalog_works: Katalog dzieł
+    catalog_works: Katalog utworów
     cataloging_agency: Jednostka katalogująca
     cataloging_collection_convoluta: Katalogowanie kolekcji i klocka introligatorskiego
     cataloging_collections: Katalogowanie kolekcji
@@ -330,7 +330,7 @@ pl:
     conceptor: Autor koncepcji
     conductor: Dyrygent
     confused_with: Mylon(y/a) z …
-    conjectural: Spekulatywne
+    conjectural: Domyślny
     contact: Kontakt
     contact_area: Obszar kontaktu
     content: Zawartość
@@ -381,7 +381,7 @@ pl:
     distributor: Dystrybutor
     documentation_center: Centrum dokumentacji
     donor: Donator
-    doubtful: Wątpliwe
+    doubtful: Wątpliwy
     dramatic_roles_original: Postaci w oryginalnej pisowni
     dramatic_roles_standardized: Znormalizowane nazwy postaci
     ds_major: Dis-dur
@@ -557,7 +557,7 @@ pl:
     media_type: Rodzaj nośnika
     mensural_clefs: Klucze menzuralne
     method_of_acquisition: Sposób nabycia
-    misattributed: Błędnie przypisane
+    misattributed: Błędnie przypisany
     miscellaneous: Pozostałe
     mode_10t: 'Skala: 10t – hypoeolska'
     mode_10tt: 'Skala: 10tt – hypoeolska, transponowana'
@@ -759,15 +759,15 @@ pl:
     standard_watermarks: Standardowe znaki wodne
     standardized_title: Znormalizowany tytuł
     standardized_titles_printed_music: Znormalizowane tytuły dla druków muzycznych
-    standardized_titles_subject_headings: Znormalizowane tytuły – słowa kluczowe
+    standardized_titles_subject_headings: Znormalizowane tytuły – hasła przedmiotowe
     start_period: Okres startowy
     street_address: Ulica, numer, numer lokalu
     strings: Instrumenty strunowe
     subheading: Pod-nagłówek
     subheading_general: Ogólny dalszy podział podnagłówków
     subject_access_fields: Pola haseł tematycznych
-    subject_heading: Słowo kluczowe
-    subject_headings: Słowa kluczowe
+    subject_heading: Hasło przedmiotowe
+    subject_headings: Hasła przedmiotowe
     subordinate_unit: Jednostka podporządkowana
     succeeding_entry: Kolejny wpis
     summary: Podsumowanie
@@ -820,4 +820,4 @@ pl:
     work: Dzieło
     work_number: Numer dzieła
     year: Rok
-    years_birth_death: Lata urodzenia i śmierci
+    years_birth_death: Rok urodzenia i śmierci
