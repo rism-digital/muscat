@@ -166,6 +166,8 @@
       label: records.information_found
     u:
       label: general.uri
+    "9":
+      label: general.source_citation
   label: records.literature
 '678':
   fields:
