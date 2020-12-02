@@ -228,9 +228,8 @@ config/blacklight.yml
 
 == Production Installation and daemons
  
-Muscat has three running daemons that should be started:
+Muscat has two running daemons that should be started. Note that *CRONO* is deprecated and no longer used!:
  
-  sudo RAILS_ENV=production bundle exec crono start
   # Make sure solr is not running as root!
   sudo -u www-data bundle exec rake RAILS_ENV=production sunspot:solr:start
   
@@ -248,7 +247,7 @@ Other ways to start delayed_job:
   RAILS_ENV=production bundle exec rake jobs:<xxx>
 
 Depending on the env, remove sudo if necessary. RAILS_ENV is needed only on production, and has to come *after* sudo.
-  
+
 It is also good to block access to Solr:
 
   sudo iptables -A INPUT -p tcp -s localhost --dport 8983 -j ACCEPT
@@ -259,10 +258,22 @@ Also make sure that if there is a proxy, it is configured in `config/initializer
  config.proxy = 'http://myproxy.com.au:8080'
 
 
-== Add clean up in crontab for blacklight
+=== Crontab installation
+
+In version 7.0 the crono scheduler was removed and a normal crontab plus a script is provided. The default crontab file should be linked in /etc/conn.d. Edit the muscat_crontab to set PATH_TO to the correct muscat installation, you will need to do it by hand.
+
+On debian/ubuntu this should work:
+
+ ln -s config/muscat_crontab /etc/cron.d
+ chmod +x /etc/cron/muscat_crontab
+ sudo service cron restart
+
+If your crontab still has this line:
 
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
 
+It is save to delete it as it is now taken care but the global muscat crontab.
+*NOTE* If you ever change the cron file name, it CANNOT contains dots! Or it will silently fail.
 
 == Some MySQL optimizations
 

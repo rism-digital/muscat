@@ -6,6 +6,9 @@
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
+# NOTE
+# PLEASE SET THE CORRECT PATH_TO
+
 # Example of job definition:
 # .---------------- minute (0 - 59)
 # |  .------------- hour (0 - 23)
@@ -15,14 +18,14 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 # |  |  |  |  |
 # *  *  *  *  * user-name command to be executed
 
-00  08  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job ModificationDigestJob production
-00  20  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job ModificationDigestJob production
+00  08  *  *  sun www-data PATH_TO/muscat/bin/muscat_execute_job ModificationDigestJob production
+00  20  *  *  *   www-data PATH_TO/muscat/bin/muscat_execute_job ModificationDigestJob production
 
 # Cleanup jobs
-00  01  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job PurgeSearchesJob production
-00  03  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job PurgeFolderItemsJob production
-00  05  *  *  *   www-data /data/rails/muscat/bin/muscat_execute_job ExportCleanupJob production
+00  01  *  *  *   www-data PATH_TO/muscat/bin/muscat_execute_job PurgeSearchesJob production
+00  03  *  *  *   www-data PATH_TO/muscat/bin/muscat_execute_job PurgeFolderItemsJob production
+00  05  *  *  *   www-data PATH_TO/muscat/bin/muscat_execute_job ExportCleanupJob production
 
 # Maintenance and weekly report
-00  04  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job MuscatMaintenanceJob production
-00  07  *  *  sun www-data /data/rails/muscat/bin/muscat_execute_job MuscatCheckupReportJob production
+00  04  *  *  sun www-data PATH_TO/muscat/bin/muscat_execute_job MuscatMaintenanceJob production
+00  07  *  *  sun www-data PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production
