@@ -18,8 +18,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 # |  |  |  |  |
 # *  *  *  *  * user-name command to be executed
 
-00  08  *  *  sun www-data PATH_TO/muscat/bin/muscat_execute_job ModificationDigestJob production
-00  20  *  *  *   www-data PATH_TO/muscat/bin/muscat_execute_job ModificationDigestJob production
+00  08  *  *  sun www-data PATH_TO/muscat/bin/muscat_execute_job ModificationDigestJob production :weekly
+00  20  *  *  *   www-data PATH_TO/muscat/bin/muscat_execute_job ModificationDigestJob production :daily
 
 # Cleanup jobs
 00  01  *  *  *   www-data PATH_TO/muscat/bin/muscat_execute_job PurgeSearchesJob production
