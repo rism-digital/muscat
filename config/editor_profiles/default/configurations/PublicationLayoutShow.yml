@@ -33,7 +33,6 @@ groups:
     all_tag_templates:
       "650": marc_show/show_subject
       "710": marc_show/show_institution
-      "760": marc_show/show_publication
       "780": marc_show/show_related_publication
       "785": marc_show/show_related_publication
   other:
