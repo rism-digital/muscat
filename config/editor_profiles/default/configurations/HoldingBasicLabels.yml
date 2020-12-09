@@ -287,8 +287,8 @@ doc_edit_workflow:
   label: general.workflow
 doc_editor:
   label: general.using_muscat
-doc_images:
-  label: records.images
+doc_digital_objects:
+  label: records.digital_objects
 doc_incipit:
   label: records.incipits
 doc_institutions:

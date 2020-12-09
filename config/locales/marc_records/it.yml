@@ -373,6 +373,7 @@ it:
     designer: Progettista
     df_major: Re♭ maggiore
     df_minor: Re♭ minore
+    digital_objects: Oggetti Digitali
     digitized_music: Fonte digitalizzata
     digitized_source: Fonte digitalizzata
     dimensions: Dimensioni
@@ -477,7 +478,6 @@ it:
     identity_area: Identità
     iiif_manifest: Manifesto IIIF
     illustrator: Disegnatore
-    images: immagini
     immediate_parent_body: Campo immediatamente superiore
     import: Dati importati
     imprint: Dati editoriali

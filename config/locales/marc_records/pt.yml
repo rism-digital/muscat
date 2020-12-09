@@ -372,6 +372,7 @@ pt:
     designer: ''
     df_major: Ré bemol maior
     df_minor: Ré bemol menor
+    digital_objects: Objetos Digitais
     digitized_music: ''
     digitized_source: Fonte digitalizada
     dimensions: Dimensões
@@ -476,7 +477,6 @@ pt:
     identity_area: Identidade
     iiif_manifest: Manifesto IIIF
     illustrator: Ilustrador [ill]
-    images: Imagens
     immediate_parent_body: Progenitor imediato
     import: Importação
     imprint: Carimbo/marca

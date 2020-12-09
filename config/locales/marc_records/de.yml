@@ -372,6 +372,7 @@ de:
     designer: Designer
     df_major: Des-Dur
     df_minor: des-Moll
+    digital_objects: Digitale Objekte
     digitized_music: Notendigitalisat
     digitized_source: Quellendigitalisat
     dimensions: Format
@@ -476,7 +477,6 @@ de:
     identity_area: IDENTITY AREA
     iiif_manifest: IIIF manifest
     illustrator: Illustrator
-    images: Bilder
     immediate_parent_body: Unmittelbarer Elternteil
     import: Fremddateneinspielung
     imprint: Imprint

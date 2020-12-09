@@ -373,6 +373,7 @@ fr:
     designer: Décorateur
     df_major: Ré♭ majeur
     df_minor: Ré♭ mineur
+    digital_objects: Objet numériques
     digitized_music: Source numérisée
     digitized_source: Source numérisée
     dimensions: Dimension
@@ -477,7 +478,6 @@ fr:
     identity_area: Identité
     iiif_manifest: Manifeste IIIF
     illustrator: Illustrateur
-    images: Images
     immediate_parent_body: Corps du parent immédiat
     import: Dates importés
     imprint: Données d'édition
