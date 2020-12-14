@@ -739,7 +739,7 @@ aid_watermarks:
 arr:
   label: records.arranger
 art:
-  label: records.artist
+  label: languages.artificial
 asg:
   label: records.assignee
 asn:
