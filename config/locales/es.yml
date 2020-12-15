@@ -247,6 +247,9 @@ es:
     individual_entry_threatise_printed: "Entrada individual en una colección de tratados impresos"
     single_threatise_printed: "Tratado impreso individual"
         
+    legacy_templates: "Plantillas antiguas, de compatibilidad"
+    legacy_publication: "Plantilla unificada para la literatura secundaria"
+
   #################### MENUS
   menu_home: "Página principal"
   menu_sources: "Fuentes"

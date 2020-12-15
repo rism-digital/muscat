@@ -248,6 +248,9 @@ it:
     individual_entry_threatise_printed: "Singolo elemento in una collezione di trattati a stampa"
     single_threatise_printed: "Trattato a stampa singolo"
 
+    legacy_templates: "LEGACY TEMPLATES"
+    legacy_publication: "SECONDARY LITERATURE UNIFIED TEMPLATE"
+
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Fonti"

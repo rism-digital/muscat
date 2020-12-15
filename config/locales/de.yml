@@ -246,6 +246,9 @@ de:
     individual_entry_threatise_printed: "Theoreticum, gedruckt - Teileintrag der Sammlung"
     single_threatise_printed: "Theoreticum, gedruckt - Individualeintrag"
   
+    legacy_templates: "LEGACY TEMPLATES"
+    legacy_publication: "SECONDARY LITERATURE UNIFIED TEMPLATE"
+
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Quellen"

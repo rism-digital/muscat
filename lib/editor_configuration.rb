@@ -462,4 +462,16 @@ class EditorConfiguration
     conf["default_mapping"][record_type.to_s]
   end
   
+  def self.get_publication_templates
+    conf = YAML::load(IO.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/template_configuration.yml")))
+    return {} if !conf.has_key? "display"
+    conf["display"]
+  end
+
+  def self.get_publication_default_file(record_type)
+    conf = YAML::load(IO.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/template_configuration.yml")))
+    return nil if !conf.has_key? "default_mapping"
+    conf["default_mapping"][record_type.to_s]
+  end
+
 end

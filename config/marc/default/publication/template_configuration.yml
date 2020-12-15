@@ -1,0 +1,7 @@
+display:
+  legacy_templates:
+    legacy_publication:
+       record_type: default_publication
+
+default_mapping:
+  legacy_publication: "default"

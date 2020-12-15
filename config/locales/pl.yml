@@ -247,6 +247,9 @@ pl:
     individual_entry_threatise_printed: Indywidualny wpis w kolekcji traktatów drukowanych
     single_threatise_printed: Pojedynczy traktat drukowany 
         
+    legacy_templates: "LEGACY TEMPLATES"
+    legacy_publication: "SECONDARY LITERATURE UNIFIED TEMPLATE"
+
   #################### MENUS
   menu_home: Strona główna
   menu_sources: Źródła

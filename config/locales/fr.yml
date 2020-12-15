@@ -244,7 +244,10 @@ fr:
     threatise_printed: "Traités imprimés"
     collection_record_threatise_printed: "Collection de traités imprimés"
     individual_entry_threatise_printed: "Entrée dans une collection de traités imprimés"
-    single_threatise_printed: Traité imprimé individuel"
+    single_threatise_printed: "Traité imprimé individuel"
+
+    legacy_templates: "LEGACY TEMPLATES"
+    legacy_publication: "SECONDARY LITERATURE UNIFIED TEMPLATE"
 
   #################### MENUS
   menu_home: "Home"
