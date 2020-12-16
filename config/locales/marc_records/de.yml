@@ -37,15 +37,16 @@ de:
     arabic: Arabisch
     aragonese: Aragonesisch
     armenian: Armenisch
+    artificial: Kunstsprache (andere)
     australian: Australische Sprachen
     basque: Baskisch
     bengali: Bengalisch
     bosnian: Bosnisch
     bulgarian: Bulgarisch
     catalan: Katalanisch
-    celtic_other: Celtic (Other)
+    celtic_other: Keltisch (andere)
     chinese: Chinesisch
-    creoles_pidgins_other: Creoles and Pidgins (Other)
+    creoles_pidgins_other: Kreolisch und Kauderwelsch
     croatian: Kroatisch
     czech: Tschechisch
     danish: Dänisch
@@ -85,7 +86,7 @@ de:
     north_frisian: Nordfriesisch
     norwegian: Norwegisch
     occitan: Okzitanisch
-    oirat: Oiratische
+    oirat: Oiratisch
     old_church_slavonic: Altkirchenslawisch
     persian: Persisch
     polish: Polnisch
@@ -108,7 +109,7 @@ de:
     swedish: Schwedisch
     swiss_german: Schweizerdeutsch
     tagalog: Tagalog
-    tartar: Tatarische
+    tartar: Tartarisch
     thai: Thailändisch
     tibetan: Tibetanisch
     tsimshian: Tsimshian
