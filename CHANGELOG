@@ -1,6 +1,22 @@
 Muscat Changelog
 ================
 
+v 7.0.1
+* Fix a bug where the validation could be skipped
+* Permit parameters in the cron job
+* Fix #1038, add generalized method to show linked fields so we don't need many partials that do the same thing
+* Fix #1037, reorder fields
+* Fix #1036, Make 588 open and with validation in the required templates
+* Fix #1030, make sure export and validation are there only for Source fodlers.
+* Update translations, rename doc_images to doc_digital_objects
+* Fix #1041, show MEI incipit ony in SOurces
+* Properly format sender email address
+* `art` relator code is Artificial and not Artist
+* Fix #1048 (related to #1047), add English fallback for empty translations. Also make [unspecified] more specific: [cdt unspecified] and removed unused :edit_label.
+* Fix #1047, fix translations
+* Fix #961, add artificial
+* Remove MARC awesome print plugin, it causes problems in some cases by duplicating data
+
 v 7.0
 * Init i18n for polish version
 * Fix missing titles of subentries
