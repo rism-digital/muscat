@@ -5,7 +5,7 @@ LOGFILE=$MUSCAT_ROOT/log/muscat_execute_job.log
 
 
 if [ $# -eq 0 ]; then
-    echo "muscat_execute_job <job> <env>"
+    echo "muscat_execute_job <job> <env> <param>"
 fi
 
 if [ -z "$1" ]; then
@@ -32,7 +32,12 @@ start=$SECONDS
 
 echo "Running $JOB_NAME in $RAILS_ENV mode at $DATE" >> $LOGFILE 2>&1
 
-echo "$JOB_NAME.new.perform" | bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
+if [ -z "$3" ]; then
+    echo "$JOB_NAME.new.perform" | bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
+else
+    PARAMETER=$3
+    echo "$JOB_NAME.new($PARAMETER).perform" | bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
+fi
 
 end=$SECONDS
 duration=$(( end - start ))

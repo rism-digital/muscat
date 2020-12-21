@@ -39,8 +39,6 @@ groups:
     - "675"
     - "680"
     - "667"
-    all_tag_templates:
-      "670": people/show_publication
   relations:
     all_tags:
     - "700"

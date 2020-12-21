@@ -37,6 +37,7 @@ en:
     arabic: Arabic
     aragonese: Aragonese
     armenian: Armenian
+    artificial: Artificial (Other)
     australian: Australian languages
     basque: Basque
     bengali: Bengali
@@ -372,6 +373,7 @@ en:
     designer: Designer
     df_major: D♭ major
     df_minor: D♭ minor
+    digital_objects: Digital objects
     digitized_music: Digitized music
     digitized_source: Digitized source
     dimensions: Dimensions
@@ -476,7 +478,6 @@ en:
     identity_area: Identity area
     iiif_manifest: IIIF manifest
     illustrator: Illustrator
-    images: Images
     immediate_parent_body: Immediate parent body
     import: Import
     imprint: Imprint

@@ -37,15 +37,16 @@ pt:
     arabic: Árabe
     aragonese: Aragonês
     armenian: Arménio
+    artificial: Artificial (outro)
     australian: Línguas australianas
     basque: Basco
     bengali: Bengali
     bosnian: Bósnio
     bulgarian: Búlgaro
     catalan: Catalão
-    celtic_other: Celtic (Other)
+    celtic_other: Celtic (outro)
     chinese: Chinês
-    creoles_pidgins_other: Creoles and Pidgins (Other)
+    creoles_pidgins_other: ''
     croatian: Croata
     czech: Tcheco
     danish: Dinamarquês
@@ -372,6 +373,7 @@ pt:
     designer: ''
     df_major: Ré bemol maior
     df_minor: Ré bemol menor
+    digital_objects: Objetos Digitais
     digitized_music: ''
     digitized_source: Fonte digitalizada
     dimensions: Dimensões
@@ -476,7 +478,6 @@ pt:
     identity_area: Identidade
     iiif_manifest: Manifesto IIIF
     illustrator: Ilustrador [ill]
-    images: Imagens
     immediate_parent_body: Progenitor imediato
     import: Importação
     imprint: Carimbo/marca

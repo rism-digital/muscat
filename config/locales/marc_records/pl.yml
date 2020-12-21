@@ -11,7 +11,7 @@ pl:
     'no': Nie
     rism: RISM
     rism_best_practices: Dobre praktyki RISM
-    rism_instrument_abbreviations: Skróty instrumentów wg RISM
+    rism_instrument_abbreviations: Określenia głosów i instrumentów (kontynuacja)
     rism_series: Seria RISM
     rism_series_a_b_references: Odniesienia do serii RISM A/I i B
     rism_series_number: Nr seryjny RISM
@@ -37,6 +37,7 @@ pl:
     arabic: Arabski
     aragonese: Aragoński
     armenian: Armeński
+    artificial: Sztuczny (inne)
     australian: Języki australijskie
     basque: Baskijski
     bengali: Bengali
@@ -103,7 +104,7 @@ pl:
     slovak: Słowacki
     slovenian: Słoweński
     sorbian: Łużycki
-    south_american: Indie Południowoamerykańskie (inne)
+    south_american: Południowoamerykański (inne)
     spanish: Hiszpański
     swedish: Szwedzki
     swiss_german: Niemiecki szwajcarski
@@ -250,7 +251,7 @@ pl:
     as_minor: ais-moll
     ascertained: Ustalony
     assignee: Cesjonariusz
-    associated_country: Państwo stowarzyszone
+    associated_country: Kraj stowarzyszony
     associated_institution: Powiązana instytucja
     associated_name: Powiązana nazwa
     associated_name_lit: Powiązana nazwa
@@ -372,6 +373,7 @@ pl:
     designer: Projektant
     df_major: Des-dur
     df_minor: des-moll
+    digital_objects: Obiekty cyfrowe
     digitized_music: Cyfrowa reprodukcja źródła
     digitized_source: Cyfrowa reprodukcja źródła
     dimensions: Wymiary
@@ -423,7 +425,7 @@ pl:
     facsimile: Faksymile
     family_name: Nazwisko rodowe
     father_of: Ojciec …
-    field_link: Link do pola i numer kolejny
+    field_link: Link do pola i kolejny numer
     field_of_activity: Obszar działalności
     figured_bass_scores: Bas cyfrowany w partyturze i / lub w innych częściach
     fijian: Fidżyjski
@@ -476,7 +478,6 @@ pl:
     identity_area: Obszar tożsamości
     iiif_manifest: Manifest IIIF
     illustrator: Ilustrator
-    images: Obrazy
     immediate_parent_body: Natychmiastowy rodzic
     import: Import
     imprint: Stopka wydawnicza
@@ -495,7 +496,7 @@ pl:
     instrumentalist: Instrumentalista
     internal_note: Uwaga wewnętrzna
     introduction: Wprowadzenie
-    invalid_standard_number: Anulowany/nieważny standardowy numer lub kod
+    invalid_standard_number: Anulowany/nieważny numer standardowy lub kod
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -671,7 +672,7 @@ pl:
     place_activity: Miejsce aktywności artystycznej
     place_birth: Miejsce urodzenia
     place_death: Miejsce śmierci
-    place_of_residence: Miejsce zamieszkania/siedziba główna
+    place_of_residence: Miejsce zamieszkania/siedziba
     place_origin: Miejsce pochodzenia
     place_publication: Miejsce publikacji
     places: Miejsca
@@ -694,7 +695,7 @@ pl:
     publishing_printing_production: Informacje o publikacji, druku i produkcji
     qualifying_information: Informacje kwalifikacyjne
     range_dates: Zakres dat
-    real_world_object_uri: Rezonans magnetyczny obiektu świata rzeczywistego
+    real_world_object_uri: Identyfikator URI obiektu świata rzeczywistego
     record_actions: Działania na rekordzie
     record_audit: RECORD AUDIT
     record_origin: Pochodzenie rekordu
@@ -760,7 +761,7 @@ pl:
     standardized_title: Znormalizowany tytuł
     standardized_titles_printed_music: Znormalizowane tytuły dla druków muzycznych
     standardized_titles_subject_headings: Znormalizowane tytuły – hasła przedmiotowe
-    start_period: Okres startowy
+    start_period: Okres początkowy
     street_address: Ulica, numer, numer lokalu
     strings: Instrumenty strunowe
     subheading: Pod-nagłówek

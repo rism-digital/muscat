@@ -37,6 +37,7 @@ es:
     arabic: Árabe
     aragonese: Aragonés
     armenian: Armenio
+    artificial: Artificial (otros)
     australian: Idiomas australianos
     basque: Vasco
     bengali: Bengalí
@@ -372,6 +373,7 @@ es:
     designer: Diseñador
     df_major: Re bemol Mayor
     df_minor: Re bemol menor
+    digital_objects: Objetos digitales
     digitized_music: Música digitalizada
     digitized_source: Fuente digitalizada
     dimensions: Dimensiones
@@ -476,7 +478,6 @@ es:
     identity_area: Identidad
     iiif_manifest: Manifiesto IIIF
     illustrator: Ilustrador
-    images: Imágenes
     immediate_parent_body: Padre inmediato
     import: Importación
     imprint: Datos editoriales

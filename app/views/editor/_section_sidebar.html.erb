@@ -106,7 +106,7 @@
 			:class => "muscat_icon_link muscat_icon_link_picture") %>
 	</li>
 
-	<% if @current_user.has_role?(:editor) || @current_user.has_role?(:admin) %>
+	<% if @item.is_a?(Source) && (@current_user.has_role?(:editor) || @current_user.has_role?(:admin)) %>
 		<li class="muscat_icon_link">
 		<%= link_to("#{I18n.t :new_digital_object_incipit}", new_admin_digital_object_path(digital_object: {new_object_link_id:  @item.id, new_object_link_type: @item.class}, attachment_type: :incipit),
 			:class => "muscat_icon_link muscat_icon_link_note") %>

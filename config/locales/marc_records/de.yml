@@ -36,16 +36,17 @@ de:
     afrikaans: Afrikaans
     arabic: Arabisch
     aragonese: Aragonesisch
-    armenian: Armenische
+    armenian: Armenisch
+    artificial: Kunstsprache (andere)
     australian: Australische Sprachen
     basque: Baskisch
     bengali: Bengalisch
     bosnian: Bosnisch
     bulgarian: Bulgarisch
     catalan: Katalanisch
-    celtic_other: Celtic (Other)
+    celtic_other: Keltisch (andere)
     chinese: Chinesisch
-    creoles_pidgins_other: Creoles and Pidgins (Other)
+    creoles_pidgins_other: Kreolisch und Kauderwelsch (andere)
     croatian: Kroatisch
     czech: Tschechisch
     danish: Dänisch
@@ -59,7 +60,7 @@ de:
     french_old: Französisch, alt (ca. 842-1300)
     gallician: Galizisch
     german: Deutsch
-    german_old_high: German, Old High (ca. 750-1050)
+    german_old_high: Althochdeutsch (ca. 750-1050)
     germanic: Germanisch
     greek_ancient: Altgriechisch (bis 1453)
     greek_modern: Neugriechisch (1453-)
@@ -85,7 +86,7 @@ de:
     north_frisian: Nordfriesisch
     norwegian: Norwegisch
     occitan: Okzitanisch
-    oirat: Oiratische
+    oirat: Oiratisch
     old_church_slavonic: Altkirchenslawisch
     persian: Persisch
     polish: Polnisch
@@ -108,7 +109,7 @@ de:
     swedish: Schwedisch
     swiss_german: Schweizerdeutsch
     tagalog: Tagalog
-    tartar: Tatarische
+    tartar: Tartarisch
     thai: Thailändisch
     tibetan: Tibetanisch
     tsimshian: Tsimshian
@@ -126,39 +127,39 @@ de:
     armenia: Armenien
     australia: Australien
     austria: Österreich
-    austria_carinthia: 'Austria: Carinthia'
-    austria_lower_austria: 'Austria: Lower Austria'
-    austria_salzburg: 'Austria: Salzburg'
-    austria_styria: 'Austria: Styria'
-    austria_tyrol: 'Austria: Tyrol'
-    austria_upper_austria: 'Austria: Upper Austria'
-    austria_vienna: 'Austria: Vienna'
+    austria_carinthia: 'Österreich: Kärnten'
+    austria_lower_austria: 'Österreich: Niederösterreich'
+    austria_salzburg: 'Österreich: Salzburg'
+    austria_styria: 'Österreich: Steiermark'
+    austria_tyrol: 'Österreich: Tirol'
+    austria_upper_austria: 'Österreich: Oberösterreich'
+    austria_vienna: 'Österreich: Wien'
     belgium: Belgien
     benin: Benin
     brazil: Brasilien
     bulgaria: Bulgarien
-    cambodia: Cambodia
+    cambodia: Kambodscha
     canada: Kanada
     chile: Chile
     china: China
     colombia: Kolombien
     croatia: Kroatien
     cuba: Kuba
-    czech_republic: Czech Republic
+    czech_republic: Tschechische Republik
     denmark: Dänemark
     ecuador: Ecuador
     egypt: Ägypten
-    estonia: Estonia
-    finland: Finland
+    estonia: Estland
+    finland: Finnland
     france: Frankreich
-    georgia: Georgia
+    georgia: Georgien
     germany: Deutschland
-    germany_bavaria: 'Germany: Bavaria'
-    germany_saxony: 'Germany: Saxony'
+    germany_bavaria: 'Deutschland: Bayern'
+    germany_saxony: 'Deutschland: Sachsen'
     greece: Griechenland
     guatemala: Guatemala
     guinea: Guinea
-    holy_see: Holy See
+    holy_see: Heilige Stuhl
     honduras: Honduras
     hong_kong: Hongkong
     hungary: Ungarn
@@ -170,11 +171,11 @@ de:
     ireland: Irland
     israel: Israel
     italy: Italien
-    italy_trentino_alto_adige: 'Italy: Trentino-Alto Adige'
+    italy_trentino_alto_adige: 'Italien: Trentino-Alto Adige'
     japan: Japan
     korea: Korea, Republic of
-    latvia: Latvia
-    lithuania: Lithuania
+    latvia: Lettland
+    lithuania: Litauen
     luxembourg: Luxemburg
     malta: Malta
     mexico: Mexiko
@@ -182,7 +183,7 @@ de:
     monaco: Monaco
     montenegro: Montenegro
     netherlands: Niederlande
-    new_zealand: New Zealand
+    new_zealand: Neuseeland
     northern_ireland: Nordirland
     norway: Norwegen
     papua_new_guinea: Papua Neu-Guinea
@@ -193,21 +194,21 @@ de:
     portugal: Portugal
     puerto_rico: Puerto Rico
     romania: Rumänien
-    russian_federation: Russian Federation
+    russian_federation: Russische Föderation
     saudi_arabia: Saudi-Arabien
     serbia: Serbien
-    slovakia: Slovakia
-    slovenia: Slovenien
-    south_africa: South Africa
+    slovakia: Slowakei
+    slovenia: Slowenien
+    south_africa: Südafrika
     spain: Spanien
     sweden: Schweden
     switzerland: Schweiz
-    switzerland_vaud: 'Switzerland: Vaud'
+    switzerland_vaud: 'Schweiz: Vaud'
     syrian_arab_republic: Syrian Arab Republic
     taiwan: Taiwan (Provinz von China)
     trinidad_tobego: Trinidad and Tobago
     turkey: Türkei
-    uk: United Kingdom
+    uk: Vereinigtes Königreich
     ukraine: Ukraine
     uruguay: Uruguay
     usa: Vereinigte Staaten von Amerika (USA)
@@ -219,7 +220,7 @@ de:
     abbreviations: Abkürzungen
     abbreviations_terminology: Abkürzungen und Bezeichnungen
     access_restrictions: Zugangsbeschränkungen
-    accession_number: Akzessionsnumer
+    accession_number: Akzessionsnummer
     acronym: Akronym
     added_entry_name: Nebeneintragungen
     additional_author: Zusätzlicher Autor
@@ -254,7 +255,7 @@ de:
     associated_institution: Beziehung Körperschaft
     associated_name: Zugehöriger Name
     associated_name_lit: Behandelte Person
-    associated_place: Associated Place
+    associated_place: Zugehöriger Ort
     attribution_qualifier: Zuschreibungsvermerk
     authentication_code: Individualsierung
     author: Autor
@@ -372,6 +373,7 @@ de:
     designer: Designer
     df_major: Des-Dur
     df_minor: des-Moll
+    digital_objects: Digitale Objekte
     digitized_music: Notendigitalisat
     digitized_source: Quellendigitalisat
     dimensions: Format
@@ -476,7 +478,6 @@ de:
     identity_area: IDENTITY AREA
     iiif_manifest: IIIF manifest
     illustrator: Illustrator
-    images: Bilder
     immediate_parent_body: Unmittelbarer Elternteil
     import: Fremddateneinspielung
     imprint: Imprint
@@ -555,34 +556,34 @@ de:
     material_held: Erhaltenes Material
     material_not_examined: Keine Autopsie
     media_type: Physisches Medium
-    mensural_clefs: Mensural clefs
+    mensural_clefs: Mensural-Notenschlüssel
     method_of_acquisition: Beschaffungsart
     misattributed: Fälschlich
     miscellaneous: Verschiedenes
-    mode_10t: 'Mode: 10t – Hypoaeolian'
-    mode_10tt: 'Mode: 10tt – Hypoaeolian, transposed'
-    mode_11t: 'Mode: 11t – Ionian'
-    mode_11tt: 'Mode: 11tt – Ionian, transposed'
-    mode_12t: 'Mode: 12t – Hypoionian'
-    mode_12tt: 'Mode: 12tt – Hypoionian, transposed'
-    mode_1t: 'Mode:  1t – Dorian'
-    mode_1tt: 'Mode:  1tt – Dorian, transposed'
-    mode_2t: 'Mode:  2t – Hypodorian'
-    mode_2tt: 'Mode:  2tt – Hypodorian, transposed'
-    mode_3t: 'Mode:  3t – Phrygian'
-    mode_3tt: 'Mode:  3tt – Phrygian, transposed'
-    mode_4t: 'Mode:  4t – Hypophrygian'
-    mode_4tt: 'Mode:  4tt – Hypophrygian, transposed'
-    mode_5t: 'Mode:  5t – Lydian'
-    mode_5tt: 'Mode:  5tt – Lydian, transposed'
-    mode_6t: 'Mode:  6t – Hypolydian'
-    mode_6tt: 'Mode:  6tt – Hypolydian, transposed'
-    mode_7t: 'Mode:  7t – Mixolydian'
-    mode_7tt: 'Mode:  7tt – Mixolydian, transposed'
-    mode_8t: 'Mode:  8t – Hypomixolydian'
-    mode_8tt: 'Mode:  8tt – Hypomixolydian, transposed'
-    mode_9t: 'Mode:  9t – Aeolian'
-    mode_9tt: 'Mode:  9tt – Aeolian, transposed'
+    mode_10t: 'Mode: 10t – Hypoaeolisch'
+    mode_10tt: 'Mode: 10tt – Hypoaeolisch, transponiert'
+    mode_11t: 'Mode: 11t – Ionisch'
+    mode_11tt: 'Mode: 11tt – Ionisch, transponiert'
+    mode_12t: 'Mode: 12t – Hypoionisch'
+    mode_12tt: 'Mode: 12tt – Hypoionisch, transponiert'
+    mode_1t: 'Mode:  1t – Dorisch'
+    mode_1tt: 'Mode:  1tt – Dorisch, transponiert'
+    mode_2t: 'Mode:  2t – Hypodorisch'
+    mode_2tt: 'Mode:  2tt – Hypodorisch, transponiert'
+    mode_3t: 'Mode:  3t – Phrygisch'
+    mode_3tt: 'Mode:  3tt – Phrygisch, transponiert'
+    mode_4t: 'Mode:  4t – Hypophrygisch'
+    mode_4tt: 'Mode:  4tt – Hypophrygisch, transponiert'
+    mode_5t: 'Mode:  5t – Lydisch'
+    mode_5tt: 'Mode:  5tt – Lydisch, transponiert'
+    mode_6t: 'Mode:  6t – Hypolydisch'
+    mode_6tt: 'Mode:  6tt – Hypolydisch, transponiert'
+    mode_7t: 'Mode:  7t – Mixolydisch'
+    mode_7tt: 'Mode:  7tt – Mixolydisch, transponiert'
+    mode_8t: 'Mode:  8t – Hypomixolydisch'
+    mode_8tt: 'Mode:  8tt – Hypomixolydisch, transponiert'
+    mode_9t: 'Mode:  9t – Aeolisch'
+    mode_9tt: 'Mode:  9tt – Aeolisch, transponiert'
     modifying_agency: Modifizierende Katalogisierungsstelle
     monogram: Monogramm
     mother_of: Mutter von
@@ -792,7 +793,7 @@ de:
     title_related_fields: Titel- und damit verbundene Felder
     title_section_part: ''
     title_variants: Namensvarianten
-    titles_text_incipits: Titel und  Texte
+    titles_text_incipits: Titel und Texte
     topical_term: Sachbegriff
     total_scoring: Besetzung
     transcribing_agency: Übertragende Katalogisierungsstelle
@@ -805,7 +806,7 @@ de:
     type_of_jurisdiction: Art der Gerichtsbarkeit
     type_publication: Ausgabeform
     type_relationship: Beziehung
-    typescript: Typescript
+    typescript: Maschinenschrift
     typography: Typendruck
     unknown: Unbekannt
     unparsed_fingerprint: Zusammenhängender Fingerprint
