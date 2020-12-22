@@ -99,7 +99,7 @@ class MuscatCheckup
       
       s.marc.load_source true
       
-      errors[s.id] = new_stdout.string
+      errors[s.id] = new_stdout.string if !new_stdout.string.strip.empty?
       if !new_stdout.string.strip.empty? && @debug_logger
         new_stdout.string.each_line do |line|
           next if line.strip.empty?
@@ -120,7 +120,7 @@ class MuscatCheckup
       $stdout = old_stdout
       $stderr = old_stderr
       
-      errors[s.id] = new_stdout.string
+      errors[s.id] = new_stdout.string if !new_stdout.string.strip.empty?
       #@debug_logger.error(new_stdout.string) if @debug_logger
 
       if !new_stdout.string.strip.empty? && @debug_logger
