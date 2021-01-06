@@ -9,14 +9,31 @@ Bundler.require(:default, Rails.env)
 
 
 module RISM
+  # Installation id (e.g., uk, ch, mysite). For evaluation purposes
+  # just leave the default value.
+  #
+  # This variable is used for picking up your institution logos:
+  # * public/images/logo-large-*.png (larger 130x100 logo for public pages)
+  # * app/assets/images/logo3-*.png (smaller 50x40 logo for internal pages)
+  # * app/assets/images/favicon.ico (you can symlink it to another name)
+  # Remember to perform `rails assets:precompile` after your
+  # modifications, so rails creates an optimized asset file.
+  #
+  # You can also use it for local customisations.  As this
+  # application.rb file is plain Ruby, it may also be used to have a
+  # single configuration file for different Muscat instances, where
+  # the SITE_ID is used to assign the other variables in a conditional
+  # (if or case) statement.
+  SITE_ID = "default"
+
   # Site name (title, first line)
-  PROJECTLINE = "Répertoire International des Sources Musicales"
+  SITE_TITLE = "Répertoire International des Sources Musicales"
 
   # Site additional info (subtitle, second line)
-  STRAPLINE = "Schweiz - Suisse - Svizzera - Switzerland"
+  SITE_SUBTITLE = "Schweiz - Suisse - Svizzera - Switzerland"
 
   # Footer left text (raw html)
-  FOOTER = "<a href=\"http://www.rism.info/en/service/disclaimer.html\">Impressum</a> &ndash; &copy; 2020 &ndash; The Association <em>Internationales Quellenlexikon der Musik</em><br>Johann Wolfgang Goethe-Universität &ndash; Senckenberganlage 31-33 &ndash; D-60325 Frankfurt am Main"
+  SITE_FOOTER = "<a href=\"http://www.rism.info/en/service/disclaimer.html\">Impressum</a> &ndash; &copy; 2020 &ndash; The Association <em>Internationales Quellenlexikon der Musik</em><br>Johann Wolfgang Goethe-Universität &ndash; Senckenberganlage 31-33 &ndash; D-60325 Frankfurt am Main"
 
   # Top right menu urls
   MENUS = {
@@ -31,10 +48,6 @@ module RISM
     :fr => "Français",
     :it => "Italiano"
   }
-
-  # Installation id (e.g., uk, ch).  Affects the choice of
-  # public/images/logo-large-*.png image
-  BASE = "default"
 
   # Marc tag and subfield definition list for all record types, available
   # templates for new records, and default tags for each new record.
