@@ -176,7 +176,7 @@ class MarcSource < Marc
   # For bibliographic records, set the ms_title and ms_title_d field fromMARC 245 or 246
   def get_source_title
     ms_title = "[unset]"  
-    ms_title_field = (RISM::BASE == "in") ? "246" : "245" # one day the ms_title field (and std_title field) should be put in the environmnent.rb file
+    ms_title_field = (RISM::SITE_ID == "in") ? "246" : "245" # one day the ms_title field (and std_title field) should be put in the environmnent.rb file
     if node = first_occurance(ms_title_field, "a")
       ms_title = node.content
     end
