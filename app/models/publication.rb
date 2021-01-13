@@ -24,7 +24,7 @@ class Publication < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
 
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   include ForeignLinks
   include MarcIndex
@@ -196,6 +196,10 @@ class Publication < ApplicationRecord
 
     sunspot_dsl.text :pages
 
+    sunspot_dsl.string :wf_stage
+    sunspot_dsl.time :updated_at
+    sunspot_dsl.time :created_at
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
 
@@ -204,9 +208,6 @@ class Publication < ApplicationRecord
       Publication.count_by_sql("select count(*) from institutions_to_publications where publication_id = #{self[:id]}") +
       Publication.count_by_sql("select count(*) from people_to_publications where publication_id = #{self[:id]}"))
     end
-    sunspot_dsl.time :updated_at
-    sunspot_dsl.time :created_at
-
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
 
