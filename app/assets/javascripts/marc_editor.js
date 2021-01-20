@@ -125,7 +125,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	var backend_validation = marc_editor_validate();
 
 	if (!form_valid || !backend_validation.responseJSON["status"].endsWith("[200]")) {
-		var superuser = $('#user_skip_validation').val();
+		var superuser = ($('#user_skip_validation').val() == "True");
 		var skip = false;
 
 		// Admins and editors can skip the validation
