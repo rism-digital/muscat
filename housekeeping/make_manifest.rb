@@ -68,11 +68,19 @@ dirs.keys.each do |dir|
     id = toks[0] if toks != [dir]
     source = Source.find(dir)
     title = source.title
+    country = "" # TODO: Figure out country code from siglum
   end
-  
+
+  manifest_id = "#{IIIF_PATH}/manifest/#{country}/#{dir}.json"
+
   # Create the base manifest file
+  related = {
+    "@id" => "https://www.rism-ch.org/catalog/#{dir}",
+    "format" => "text/html",
+    "label" => "RISM Catalogue Record"
+  }
   seed = {
-      '@id' => "https://iiif.rism-ch.org/manifest/#{dir}.json",
+      '@id' => manifest_id,
       'label' => title,
       'related' => "http://www.rism-ch.org/catalog/#{dir}"
   }
@@ -83,16 +91,22 @@ dirs.keys.each do |dir|
   
   images.each do |image_name|
     canvas = IIIF::Presentation::Canvas.new()
-    canvas['@id'] = "#{dir}/#{image_name}"
-    canvas.label = image_name
+    canvas['@id'] = "#{IIIF_PATH}/canvas/#{country}/#{dir}/#{image_name.chomp(".tif")}"
+    canvas.label = "[Image #{idx + 1}]"
     
-    image_url = IIF_PATH + dir + "/" + image_name
+    image_url = "#{IIIF_PATH}/image/#{country}/#{dir}/#{image_name}"
     
     image = IIIF::Presentation::Annotation.new
     image["on"] = canvas['@id']
+    image["@id"] = "#{IIIF_PATH}/annotation/#{country}/#{dir}/#{image_name.chomp(".tif")}"
     ## Uncomment these two prints to see the progress of the HTTP reqs.
-    #print "-"
-    image_resource = IIIF::Presentation::ImageResource.create_image_api_image_resource(service_id: image_url)
+
+    begin
+      image_resource = IIIF::Presentation::ImageResource.create_image_api_image_resource(service_id: image_url, resource_id:"#{image_url}/full/full/0/default.jpg")
+    rescue
+      puts "Not found #{image_url}"
+    end
+
     #print "."
     image.resource = image_resource
     
@@ -109,8 +123,8 @@ dirs.keys.each do |dir|
   end
   
   #puts manifest.to_json(pretty: true)
-  File.write(dir + '.json', manifest.to_json(pretty: true))
-  puts "Wrote #{dir}.json"
+  File.write(country + "/" + dir + '.json', manifest.to_json(pretty: true))
+  puts "Wrote #{country}/#{dir}.json"
   
   if source
     marc = source.marc
@@ -121,7 +135,7 @@ dirs.keys.each do |dir|
     # -01 -02 etc
     new_tag = MarcNode.new("source", "856", "", "##")
     new_tag.add_at(MarcNode.new("source", "x", "IIIF", nil), 0)
-    new_tag.add_at(MarcNode.new("source", "u", "https://iiif.rism-ch.org/manifest/#{dir}.json", nil), 0)
+    new_tag.add_at(MarcNode.new("source", "u", manifest_id, nil), 0)
 
     pi = marc.get_insert_position("856")
     marc.root.children.insert(pi, new_tag)
