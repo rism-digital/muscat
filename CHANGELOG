@@ -1,6 +1,13 @@
 Muscat Changelog
 ================
 
+v 7.0.2
+* Fix asset compilation in 7.0.2: Merge pull request #1062 from rism-ch/fix-asset-precompile-7.0.2
+* Fix links in catalog so they go to catalog searches
+* Compress data in health report
+* Make Edit link in Catalog point to SOurce 
+* Make sure NULL users don't crash the email
+
 v 7.0.1
 * Fix a bug where the validation could be skipped
 * Permit parameters in the cron job
