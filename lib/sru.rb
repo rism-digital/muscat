@@ -89,7 +89,7 @@ module Sru
       if self.maximumRecords == 0
         return {:code => 6, :message => "unsupported parameter value"}
       end
-      if self.offset.to_i > 999999
+      if self.offset.to_i > 1999999
         return {:code => 61, :message => "first record out of range"}
       end
       unless self.model

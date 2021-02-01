@@ -36,7 +36,8 @@ module Faraday
 end
 
 #IIF_PATH="http://d-lib.rism-ch.org/cgi-bin/iipsrv.fcgi?IIIF=/usr/local/images/ch/"
-IIF_PATH="https://iiif.rism-ch.org/iiif/"
+# Should not have a trailing slash!
+IIIF_PATH="https://iiif.rism.digital"
 
 if ARGV[0].include?("yml")
   dirs  = YAML.load_file(ARGV[0])
@@ -82,14 +83,14 @@ dirs.keys.each do |dir|
   seed = {
       '@id' => manifest_id,
       'label' => title,
-      'related' => "http://www.rism-ch.org/catalog/#{dir}"
+      'related' => related
   }
   # Any options you add are added to the object
   manifest = IIIF::Presentation::Manifest.new(seed)
   sequence = IIIF::Presentation::Sequence.new
   manifest.sequences << sequence
   
-  images.each do |image_name|
+  images.each_with_index do |image_name, idx|
     canvas = IIIF::Presentation::Canvas.new()
     canvas['@id'] = "#{IIIF_PATH}/canvas/#{country}/#{dir}/#{image_name.chomp(".tif")}"
     canvas.label = "[Image #{idx + 1}]"

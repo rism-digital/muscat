@@ -10,7 +10,11 @@
 		if @item.marc.config.is_foreign?(tag.tag, subfield.tag)
 			content = subfield.looked_up_content.to_s.html_safe if subfield && subfield.looked_up_content
 			if subfield.foreign_object
-				content = link_to(content, [:admin, subfield.foreign_object]).html_safe
+				if opac
+					content = link_to(content,  search_catalog_path(:search_field => "any_field", :q => content))
+				else
+					content = link_to(content, [:admin, subfield.foreign_object]).html_safe
+				end
 			end
 		else
 			content = subfield.content.html_safe if subfield && subfield.content
