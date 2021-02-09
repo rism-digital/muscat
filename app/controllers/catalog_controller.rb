@@ -198,13 +198,10 @@ class CatalogController < ApplicationController
     ## parameters included in the Blacklight-jetty document requestHandler.
     #
     config.default_document_solr_params = {
-      :qt => 'document',
       ## These are hard-coded in the blacklight 'document' requestHandler
        :fl => '*',
        :rows => 1,
        :q => '{!raw f=id v=$id}' ,
-      # Added by RZ
-      :defType => 'edismax',
     }
 
     # solr field configuration for search results/index views
