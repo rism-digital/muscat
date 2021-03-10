@@ -1,6 +1,9 @@
 Muscat Changelog
 ================
 
+v 7.0.3
+* Temporarily hide 787 tag
+
 v 7.0.2
 * Fix asset compilation in 7.0.2: Merge pull request #1062 from rism-ch/fix-asset-precompile-7.0.2
 * Fix links in catalog so they go to catalog searches
