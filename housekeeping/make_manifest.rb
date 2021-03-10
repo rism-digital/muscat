@@ -46,6 +46,9 @@ else
 end
 
 dirs.keys.each do |dir|
+
+  #next if !dir.include? "400008043"
+
   source = nil
   title = "Images for #{dir}"
   
@@ -57,6 +60,7 @@ dirs.keys.each do |dir|
   
   if images.length == 0
     puts "no images in #{dir}"
+    next
   end
   
   print "Attempting #{dir}... "
@@ -67,9 +71,19 @@ dirs.keys.each do |dir|
     toks = dir.split("-")
     ## if it contains the -xxx just get the ID
     id = toks[0] if toks != [dir]
-    source = Source.find(dir)
+    begin
+      source = Source.find(dir)
+    rescue ActiveRecord::RecordNotFound
+      puts "SOURCE #{dir} not found".red
+      next
+    end
     title = source.title
-    country = "" # TODO: Figure out country code from siglum
+    country = "ch" # TODO: Figure out country code from siglum
+  end
+
+  if File.exist?(country + "/" + dir + '.json')
+    puts "already exists, skip"
+    next
   end
 
   manifest_id = "#{IIIF_PATH}/manifest/#{country}/#{dir}.json"
@@ -102,13 +116,13 @@ dirs.keys.each do |dir|
     image["@id"] = "#{IIIF_PATH}/annotation/#{country}/#{dir}/#{image_name.chomp(".tif")}"
     ## Uncomment these two prints to see the progress of the HTTP reqs.
 
-    begin
+    #begin
       image_resource = IIIF::Presentation::ImageResource.create_image_api_image_resource(service_id: image_url, resource_id:"#{image_url}/full/full/0/default.jpg")
-    rescue
-      puts "Not found #{image_url}"
-    end
+    #rescue
+    #  puts "Not found #{image_url}"
+    #end
 
-    #print "."
+    print "."
     image.resource = image_resource
     
     canvas.width = image.resource['width']
@@ -120,13 +134,13 @@ dirs.keys.each do |dir|
     # Some obnoxious servers block you after some requests
     # may also be a server/firewall combination
     # comment this if you are positive your server works
-    sleep 0.1
+    #sleep 0.1
   end
   
   #puts manifest.to_json(pretty: true)
   File.write(country + "/" + dir + '.json', manifest.to_json(pretty: true))
   puts "Wrote #{country}/#{dir}.json"
-  
+  next
   if source
     marc = source.marc
     marc.load_source true
