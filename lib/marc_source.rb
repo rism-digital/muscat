@@ -176,7 +176,7 @@ class MarcSource < Marc
   # For bibliographic records, set the ms_title and ms_title_d field fromMARC 245 or 246
   def get_source_title
     ms_title = "[unset]"  
-    ms_title_field = (RISM::BASE == "in") ? "246" : "245" # one day the ms_title field (and std_title field) should be put in the environmnent.rb file
+    ms_title_field = (RISM::SITE_ID == "in") ? "246" : "245" # one day the ms_title field (and std_title field) should be put in the environmnent.rb file
     if node = first_occurance(ms_title_field, "a")
       ms_title = node.content
     end
@@ -412,9 +412,31 @@ class MarcSource < Marc
     end
     
     # Put back $2pe in 031, see #194
+    # If there is a digital object, 
     each_by_tag("031") do |t|
+
+      # Export the MEI incipit link
+      if parent_object.digital_objects.incipits
+        vals = {}
+        [:a, :b, :c].each do |st|
+          v = t.fetch_first_by_tag(st)
+          vals[st] = v && v.content ? v.content : "x"
+        end
+        pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
+
+        # Try to match it in the digital objects
+        parent_object.digital_objects.incipits.each do |incipit|
+          if incipit.match_pae_nr?(pae_nr)
+            t.add_at(MarcNode.new("source", "u", incipit.attachment.url, nil), 0)
+          end
+        end
+      end
+
       t.add_at(MarcNode.new("source", "2", "pe", nil), 0)
       t.sort_alphabetically
+    end
+
+    parent_object.digital_objects.incipits.each do |incipit|
     end
 
     # copy 691$n to 035 to have the local B/I id with collections
@@ -483,8 +505,8 @@ class MarcSource < Marc
 
     # Adding digital object links to 500 with new records
     #TODO whe should drop the dublet entries in 500 with Digital Object Link prefix for older records
-    if !parent_object.digital_objects.empty?# && parent_object.id >= 1001000000
-      parent_object.digital_objects.each do |image|
+    if !parent_object.digital_objects.images.empty?# && parent_object.id >= 1001000000
+      parent_object.digital_objects.images.each do |image|
         # FIXME we should use the domain name from application.rb instead
         next if !image || !image.attachment || !image.attachment.path #in come cases the image was reoved
         path = image.attachment.path.gsub("/path/to/the/digital/objects/directory/", "http://muscat.rism.info/")

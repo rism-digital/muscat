@@ -5,10 +5,17 @@
 		<%- end %>
 	</th>
 	<td>
-	<% 		
+	<%
 		content = ""
 		if @item.marc.config.is_foreign?(tag.tag, subfield.tag)
 			content = subfield.looked_up_content.to_s.html_safe if subfield && subfield.looked_up_content
+			if subfield.foreign_object
+				if opac
+					content = link_to(content,  search_catalog_path(:search_field => "any_field", :q => content))
+				else
+					content = link_to(content, [:admin, subfield.foreign_object]).html_safe
+				end
+			end
 		else
 			content = subfield.content.html_safe if subfield && subfield.content
 		end
@@ -18,12 +25,16 @@
 	<% if browse_helper -%>
 	   <%= raw method(browse_helper).call( content, subfield, opac ) %>
 	<% else -%>
-		<% content_lines = content.split("{{brk}}")%>
-		<% content_lines.each do |line|%>
-			<%=h line%>
-			<%unless line.equal?(content_lines.last) %>
-				<br>
+		<% if content.include?("{{brk}}")%>
+			<% content_lines = content.split("{{brk}}")%>
+			<% content_lines.each do |line|%>
+				<%=h line%>
+				<%unless line.equal?(content_lines.last) %>
+					<br>
+				<%end%>
 			<%end%>
+		<%else%>
+			<%=content.html_safe%>
 		<%end%>
 	<%- end %>
 </td>

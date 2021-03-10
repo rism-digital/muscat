@@ -1,0 +1,22 @@
+<%
+  t_tag = tag.fetch_first_by_tag(:w)
+	publication = (t_tag ? t_tag.looked_up_content : "")
+  external_title = "#{Publication.find(t_tag.content).description rescue publication}"
+
+-%>
+<tr class="row">
+	<th>
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) %>
+		<%- end %>
+	</th>
+	<td>
+		<% if opac %>
+			<%= link_to publication, search_catalog_path(:search_field => "any_field", :q => publication)%>
+		<% elsif is_selection_mode?%>
+			<%= "#{external_title}"%>
+		<% else %>
+      <%= link_to "#{external_title}", admin_publication_path(publication) -%>
+		<% end %>
+	</td>
+</tr>

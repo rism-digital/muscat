@@ -51,7 +51,7 @@ Person.all.each do |s|
 
         reference=a.content.split(": ")[0]
         finding=a.content.split(": ")[1]  
-        catalog=Catalogue.where(name: reference).take
+        catalog=Publication.where(name: reference).take
         if catalog
           #t.destroy_child(a)
           t.add(MarcNode.new(Person, "b", finding, nil)) if !t.fetch_first_by_tag("b")

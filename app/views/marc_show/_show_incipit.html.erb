@@ -34,54 +34,75 @@
 	}.join(", ")
 %>
 
-<%	if (pae_subfield && pae_subfield.content ) %>
-<tr class="row">
-	<td></td>
-	<td>
-		<a onclick="javascript:show_hide_pae('<%=random_string%>');">PAE Code</a>
-		<span id="<%= random_string %>"  style="display:none">&nbsp;<%= label.html_safe %></span>
-		<div id="<%= image_render_div %>" />
-	</td>
-<tr>
-<%-
-   tag_g = tag.fetch_first_by_tag(:g)
-   clef = (tag_g && tag_g.content) ? tag_g.content.html_safe : ""
-   
-   tag_r = tag.fetch_first_by_tag(:r)
-   key_or_mode = (tag_r && tag_r.content) ? tag_r.content.html_safe : ""
-
-   tag_n = tag.fetch_first_by_tag(:n)
-   key = (tag_n && tag_n.content) ? tag_n.content.html_safe : ""
-
-   tag_o = tag.fetch_first_by_tag(:o)
-   time = (tag_o && tag_o.content) ? tag_o.content.html_safe : ""
-
-   tag_p = tag.fetch_first_by_tag(:p)
-   notation = (tag_p && tag_p.content) ? tag_p.content.html_safe : ""
-
+<%
+	# Loop through the digital objects to see if we have a MEI incipit
+	# MEI incipits have the priority over normal ones 
+	mei_incipit = nil
+	@item.digital_objects.incipits.each do |obj|
+		mei_incipit = obj.attachment.url if obj.match_pae_nr?(incipit_number)
+	end
 %>
 
-<script>
-
-	pae = "@start:pae-file\n";
-	pae = pae + "@clef:<%= clef %>\n";
-	pae = pae + "@keysig:<%= key %>\n";
-	pae = pae + "@key:<%= key_or_mode %>\n";
-	pae = pae + "@timesig:<%= time %>\n";
-	pae = pae + "@data: <%= notation %>\n";
-	pae = pae + "@end:pae-file\n"
-	render_music(pae, 'pae', $("#" + "<%=image_render_div%>"));
-
-	function show_hide_pae(id) {
-		row = $("#" + id)
-		if (row.is(":hidden")) {
-			row.show();
-		} else {
-			row.hide();
-		}
-	}
-
-</script>
+<% if mei_incipit %>
+	<tr class="row">
+	<td></td>
+		<td>
+			<%= link_to "Download MEI File", mei_incipit.html_safe%>
+			<div id="<%= image_render_div %>">Loading... <img src="/images/spinner_small.gif" /></div>
+		</td>
+	<tr>
+	<script type="text/javascript">
+		render_music("<%=mei_incipit%>", "mei", $("#" + "<%=image_render_div%>"), 600);
+	</script>
+<% else %>
+	<%	if (pae_subfield && pae_subfield.content ) %>
+	<tr class="row">
+		<td></td>
+		<td>
+			<a onclick="javascript:show_hide_pae('<%=random_string%>');">PAE Code</a>
+			<span id="<%= random_string %>"  style="display:none">&nbsp;<%= label.html_safe %></span>
+			<div id="<%= image_render_div %>" />
+		</td>
+	<tr>
+	<%-
+	tag_g = tag.fetch_first_by_tag(:g)
+	clef = (tag_g && tag_g.content) ? tag_g.content.html_safe : ""
 	
-<% end -%>
+	tag_r = tag.fetch_first_by_tag(:r)
+	key_or_mode = (tag_r && tag_r.content) ? tag_r.content.html_safe : ""
 
+	tag_n = tag.fetch_first_by_tag(:n)
+	key = (tag_n && tag_n.content) ? tag_n.content.html_safe : ""
+
+	tag_o = tag.fetch_first_by_tag(:o)
+	time = (tag_o && tag_o.content) ? tag_o.content.html_safe : ""
+
+	tag_p = tag.fetch_first_by_tag(:p)
+	notation = (tag_p && tag_p.content) ? tag_p.content.html_safe : ""
+
+	%>
+
+	<script type="text/javascript">
+
+		pae = "@start:pae-file\n";
+		pae = pae + "@clef:<%= clef %>\n";
+		pae = pae + "@keysig:<%= key %>\n";
+		pae = pae + "@key:<%= key_or_mode %>\n";
+		pae = pae + "@timesig:<%= time %>\n";
+		pae = pae + "@data: <%= notation %>\n";
+		pae = pae + "@end:pae-file\n"
+		render_music(pae, 'pae', $("#" + "<%=image_render_div%>"));
+
+		function show_hide_pae(id) {
+			row = $("#" + id)
+			if (row.is(":hidden")) {
+				row.show();
+			} else {
+				row.hide();
+			}
+		}
+
+	</script>
+		
+	<% end -%>
+<% end %>

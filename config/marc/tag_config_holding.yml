@@ -162,7 +162,7 @@
     :fields:
     - - "0"
       - :occurrences: "?"
-        :foreign_class: Catalogue
+        :foreign_class: Publication
         :foreign_field: id
         :no_show: true
     - - a
@@ -272,13 +272,6 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
-  "963":
-    :master: u
-    :indicator: "##"
-    :occurrences: "?"
-    :fields:
-    - - u
-      - :occurrences: "?"
   "973":
     :master: "u"
     :indicator: "##"

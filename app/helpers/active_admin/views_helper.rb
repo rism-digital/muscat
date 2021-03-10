@@ -167,7 +167,7 @@ module ActiveAdmin::ViewsHelper
     return "#{val1} : #{val2} - [#{id}]"
   end
  
-  def active_admin_catalogue_show_title( author, description, id )
+  def active_admin_publication_show_title( author, description, id )
     return "[#{id}]" if author.empty? and description.empty?
     return "#{description} [#{id}]" if author.empty? and !description.empty?
     return "#{author} [#{id}]" if (description.nil? or description.empty?)
@@ -194,9 +194,9 @@ module ActiveAdmin::ViewsHelper
   end
   
   def active_admin_digital_object( context, item )   
-    if item.digital_objects.size > 0 
+    if item.digital_objects.images.size > 0 
       context.panel (I18n.t :digital_objects) do
-        item.digital_objects.each do |obj| 
+        item.digital_objects.images.each do |obj| 
           context.attributes_table_for obj do 
             context.row (I18n.t :filter_description) { |r| r.description } 
             context.row (I18n.t :filter_image) { |obj| 

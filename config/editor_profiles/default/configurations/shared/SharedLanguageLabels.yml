@@ -1,0 +1,180 @@
+--- !map:ActiveSupport::HashWithIndifferentAccess
+
+afr:
+  label: languages.afrikaans
+ara:
+  label: languages.arabic
+arg:
+  label: languages.aragonese
+arm:
+  label: languages.armenian
+aus:
+  label: languages.australian
+baq:
+  label: languages.basque
+ben:
+  label: languages.bengali
+bos:
+  label: languages.bosnian
+bul:
+  label: languages.bulgarian
+cat:
+  label: languages.catalan
+cel:
+  label: languages.celtic_other
+chi:
+  label: languages.chinese
+chu:
+  label: languages.old_church_slavonic
+crp:
+  label: languages.creoles_pidgins_other
+cze:
+  label: languages.czech
+dan:
+  label: languages.danish
+dsb:
+  label: languages.lower_sorbian
+dut:
+  label: languages.dutch
+eng:
+  label: languages.english
+enm:
+  label: languages.middle_english
+est:
+  label: languages.estonian
+fas:
+  label: languages.persian
+fin:
+  label: languages.finnish
+fre:
+  label: languages.french
+frm:
+  label: languages.french_middle
+fro:
+  label: languages.french_old
+frr:
+  label: languages.north_frisian
+fry:
+  label: languages.west_frisian
+gem:
+  label: languages.germanic
+ger:
+  label: languages.german
+gez:
+  label: languages.ethiopic
+gle:
+  label: languages.irish
+glg:
+  label: languages.gallician
+gmh:
+  label: languages.middle_high_german
+goh:
+  label: languages.german_old_high
+grc:
+  label: languages.greek_ancient
+gre:
+  label: languages.greek_modern
+gsw:
+  label: languages.swiss_german
+heb:
+  label: languages.hebrew
+hrv:
+  label: languages.croatian
+hsb:
+  label: languages.upper_sorbian
+hun:
+  label: languages.hungarian
+ice:
+  label: languages.icelandic
+iii:
+  label: languages.sichuan_yi
+ita:
+  label: languages.italian
+kor:
+  label: languages.korean
+lat:
+  label: languages.latin
+lav:
+  label: languages.latvian
+lit:
+  label: languages.lithuanian
+ltz:
+  label: languages.luxembourgish
+mac:
+  label: languages.macedonian
+mao:
+  label: languages.maori
+mon:
+  label: languages.mongolian
+nap:
+  label: languages.neapolitan
+nds:
+  label: languages.low_german
+nor:
+  label: languages.norwegian
+oci:
+  label: languages.occitan
+per:
+  label: languages.persian
+pol:
+  label: languages.polish
+por:
+  label: languages.portugese
+roh:
+  label: languages.romansh
+rom:
+  label: languages.romani
+rum:
+  label: languages.romanian
+rus:
+  label: languages.russian
+sai:
+  label: languages.south_american
+san:
+  label: languages.sanskrit
+scn:
+  label: languages.sicilian
+sco:
+  label: languages.scots
+sla:
+  label: languages.slavic
+slo:
+  label: languages.slovak
+slv:
+  label: languages.slovenian
+smn:
+  label: languages.insari_sami
+spa:
+  label: languages.spanish
+srp:
+  label: languages.serbian
+swe:
+  label: languages.swedish
+tat:
+  label: languages.tartar
+tgl:
+  label: languages.tagalog
+tha:
+  label: languages.thai
+tib:
+  label: languages.tibetan
+tsi:
+  label: languages.tsimshian
+tur:
+  label: languages.turkish
+ukr:
+  label: languages.ukrainian
+vie:
+  label: languages.vietnamese
+wel:
+  label: languages.welsh
+wen:
+  label: languages.sorbian
+xal:
+  label: languages.oirat
+yid:
+  label: languages.yiddish
+zho:
+  label: languages.chinese
+zxx:
+  label: records.no_linguistic_content

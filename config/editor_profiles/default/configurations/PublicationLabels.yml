@@ -1,0 +1,490 @@
+--- !map:ActiveSupport::HashWithIndifferentAccess
+
+'000':
+  label: records.leader
+'001':
+  label: records.rism_id_number
+'003':
+  label: records.control_number_identifier
+'005':
+  label: records.date_time_last_transaction
+01_codes_artistic:
+  label: records.artistic_production
+'020':
+  fields:
+    a:
+      label: records.isbn
+  label: records.isbn
+'022':
+  fields:
+    a:
+      label: records.issn
+  label: records.issn
+'024':
+  fields:
+    a:
+      label: records.ismn
+  label: records.ismn
+02_codes_performing:
+  label: records.performance
+03_codes_technical:
+  label: records.technical_production
+'041':
+  fields:
+    a:
+      label: records.language_code
+  label: records.language_code
+'044':
+  fields:
+    a:
+      label: records.country_of_publication
+  label: records.country_of_publication
+04_codes_other:
+  label: records.other
+'100':
+  fields:
+    a:
+      label: records.author
+    d:
+      label: records.life_dates
+  label: records.author
+'210':
+  fields:
+    a:
+      label: records.short_title
+  label: records.short_title
+'240':
+  fields:
+    a:
+      label: records.title
+    g:
+      label: records.category
+    h:
+      label: records.type_publication
+  label: records.title
+'250':
+  fields:
+    a:
+      label: records.edition_statement
+  label: records.edition_statement
+'260':
+  fields:
+    a:
+      label: records.place_publication
+    b:
+      label: records.publisher
+    c:
+      label: records.year
+  label: records.imprint
+'264':
+  fields:
+    c:
+      label: records.production
+  label: records.production
+'300':
+  fields:
+    a:
+      label: records.extent
+  label: records.physical_description
+'337':
+  fields:
+    a:
+      label: records.media_type
+  label: records.media_type
+'500':
+  fields:
+    a:
+      label: records.general_note
+  label: records.general_note
+'502':
+  fields:
+    a:
+      label: records.dissertation_note
+  label: records.dissertation_note
+'520':
+  fields:
+    a:
+      label: records.contents_note
+  label: records.contents_note
+'599':
+  fields:
+    a:
+      label: records.internal_note
+  label: records.internal_note
+'650':
+  fields:
+    a:
+      label: records.subject_heading
+    v:
+      label: records.form_subdivision
+    x:
+      label: records.subheading_general
+    y:
+      label: records.chronological_subdivision
+    z:
+      label: records.geographic_subdivision
+  label: records.subject_heading
+'651':
+  fields:
+    a:
+      label: records.place
+  label: records.related_place
+'700':
+  fields:
+    '4':
+      label: records.function
+    a:
+      label: records.person
+  label: records.additional_personal_name_lit
+'710':
+  fields:
+    '4':
+      label: records.function
+    '8':
+      label: records.set
+    a:
+      label: records.institution
+    b:
+      label: records.department
+    g:
+      label: records.attribution_qualifier
+  label: records.additional_institution
+'730':
+  fields:
+    a:
+      label: records.additional_title_lit
+  label: records.additional_title_lit
+'760':
+  fields:
+    g:
+      label: records.volume_year_page
+    t:
+      label: records.title_periodical_book_series
+  label: records.item_part_of
+'780':
+  fields:
+    t:
+      label: records.preceding_entry
+  label: records.preceding_entry
+'785':
+  fields:
+    t:
+      label: records.succeeding_entry
+  label: records.succeeding_entry
+'856':
+  fields:
+    u:
+      label: records.external_resource_url
+    z:
+      label: records.note_external_resource
+  label: records.external_resource
+H:
+  label: records.editor
+XA-AD:
+  label: places.andorra
+XA-AT:
+  label: places.austria
+XA-BE:
+  label: places.belgium
+XA-BG:
+  label: places.bulgaria
+XA-CH:
+  label: places.switzerland
+XA-CH-VD:
+  label: places.switzerland_vaud
+XA-CZ:
+  label: places.czech_republic
+XA-DE:
+  label: places.germany
+XA-DK:
+  label: places.denmark
+XA-EE:
+  label: places.estonia
+XA-ES:
+  label: places.spain
+XA-FI:
+  label: places.finland
+XA-FR:
+  label: places.france
+XA-GB:
+  label: places.uk
+XA-GR:
+  label: places.greece
+XA-HR:
+  label: places.croatia
+XA-HU:
+  label: places.hungary
+XA-IE:
+  label: places.ireland
+XA-IS:
+  label: places.iceland
+XA-IT:
+  label: places.italy
+XA-LT:
+  label: places.lithuania
+XA-LU:
+  label: places.luxembourg
+XA-LV:
+  label: places.latvia
+XA-ME:
+  label: places.montenegro
+XA-MT:
+  label: places.malta
+XA-NL:
+  label: places.netherlands
+XA-NO:
+  label: places.norway
+XA-PL:
+  label: places.poland
+XA-PT:
+  label: places.portugal
+XA-RO:
+  label: places.romania
+XA-RS:
+  label: places.serbia
+XA-RU:
+  label: places.russian_federation
+XA-SE:
+  label: places.sweden
+XA-SI:
+  label: places.slovenia
+XA-SK:
+  label: places.slovakia
+XA-UA:
+  label: places.ukraine
+XA-VA:
+  label: places.holy_see
+XB-AM:
+  label: places.armenia
+XB-CN:
+  label: places.china
+XB-IL:
+  label: places.israel
+XB-IN:
+  label: places.india
+XB-IR:
+  label: places.iran
+XB-JP:
+  label: places.japan
+XB-KH:
+  label: places.cambodia
+XB-KR:
+  label: places.korea
+XB-SY:
+  label: places.syrian_arab_republic
+XB-TR:
+  label: places.turkey
+XB-TW:
+  label: places.taiwan
+XC-BJ:
+  label: languages.benin
+XC-DZ:
+  label: places.algeria
+XC-EG:
+  label: places.egypt
+XC-ZA:
+  label: places.south_africa
+XD-AR:
+  label: places.argentina
+XD-BR:
+  label: places.brazil
+XD-CA:
+  label: places.canada
+XD-CL:
+  label: places.chile
+XD-CO:
+  label: places.colombia
+XD-CU:
+  label: places.cuba
+XD-EC:
+  label: places.ecuador
+XD-HN:
+  label: places.honduras
+XD-MX:
+  label: places.mexico
+XD-PR:
+  label: places.puerto_rico
+XD-PY:
+  label: places.paraguay
+XD-TT:
+  label: places.trinidad_tobego
+XD-US:
+  label: places.usa
+XD-UY:
+  label: places.uruguay
+XD-VE:
+  label: places.venezuela
+XE-AU:
+  label: places.australia
+XE-NZ:
+  label: places.new_zealand
+added_series:
+  label: records.series_added_entry
+administration:
+  label: records.administration
+arr:
+  label: records.arranger
+art:
+  label: records.artist
+asn:
+  label: records.associated_name_lit
+aut:
+  label: records.additional_author
+bibliographical_reference:
+  label: records.references
+bnd:
+  label: records.binder
+bsl:
+  label: records.bookseller
+cat:
+  label: languages.catalan
+ccp:
+  label: records.conceptor
+chr:
+  label: records.choreographer
+clb:
+  label: records.collaborator
+cmp:
+  label: records.composer
+cnd:
+  label: records.conductor
+cns:
+  label: records.censor
+codes:
+  label: records.numbers_code_fields
+com:
+  label: records.compiler
+content:
+  label: records.content_description
+control:
+  label: records.control_fields
+cst:
+  label: records.costume_designer
+cze:
+  label: languages.czech
+dan:
+  label: languages.danish
+date:
+  label: records.dates
+description:
+  label: records.physical_description_fields
+diplomatic_title:
+  label: records.diplomatic_title
+dnc:
+  label: records.dancer
+dnr:
+  label: records.donor
+doc_abbreviations:
+  label: records.abbreviations
+doc_aid:
+  label: records.aide
+doc_cataloguing_collections:
+  label: records.cataloging_collection_convoluta
+doc_edit_functions:
+  label: records.basic_functions
+doc_introduction:
+  label: records.introduction
+doc_masks:
+  label: records.cataloging_forms
+doc_tag_index:
+  label: general.marc_tag_index
+doc_templates:
+  label: records.templates
+dte:
+  label: records.dedicatee
+dub:
+  label: records.dubious
+ed:
+  label: records.edition
+edition:
+  label: records.edition_imprint_fields
+edt:
+  label: records.editor
+egr:
+  label: records.engraver
+fmo:
+  label: records.former_owner
+holding:
+  label: records.holdings_location
+ill:
+  label: records.illustrator
+incipit:
+  label: records.incipits
+itr:
+  label: records.instrumentalist
+jpn:
+  label: records.japanese
+lbt:
+  label: records.librettist
+library:
+  label: records.library_information
+linkage:
+  label: records.linkage
+linking:
+  label: records.linking_entry_fields
+ltg:
+  label: records.lithograph
+lyr:
+  label: records.lyricist
+main:
+  label: records.main_entry_fields
+notes:
+  label: records.note_fields
+oth:
+  label: records.other_function
+other:
+  label: records.miscellaneous
+otm:
+  label: records.event_organizer
+pat:
+  label: records.patron
+pbl:
+  label: records.publisher
+performance:
+  label: records.performances
+physical_description:
+  label: records.physical_description
+ppm:
+  label: records.paper_maker
+prd:
+  label: records.production_personnel
+prf:
+  label: records.performer
+provenance:
+  label: records.provenance
+prt:
+  label: records.printer
+scr:
+  label: records.scribe
+series:
+  label: records.series_statement
+show_admin:
+  label: records.administration
+show_content:
+  label: records.content
+show_details:
+  label: records.source_details
+show_distribution:
+  label: records.distribution
+show_information:
+  label: records.further_information
+show_library:
+  label: records.library_information
+show_links:
+  label: records.related_titles
+show_references:
+  label: records.references
+show_resources:
+  label: records.related_resources
+show_summary:
+  label: records.summary
+show_terms:
+  label: records.index_terms
+subject:
+  label: records.subject_access_fields
+title:
+  label: records.title_related_fields
+trl:
+  label: records.translator
+voc:
+  label: records.vocalist

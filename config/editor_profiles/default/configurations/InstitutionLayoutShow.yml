@@ -11,8 +11,6 @@ groups:
     - "024"
     - "040"
     - "043"
-    all_tag_templates:
-      "024": marc_show/show_dnb_link
   identity:
     all_tags:
     - "110"
@@ -20,11 +18,11 @@ groups:
     - "410"
     - "368"
     - "580"
-    all_tag_templates:
-      "580": institutions/show_580
   contact:
     all_tags:
+    - "370"
     - "371"
+    - "372"
     - "034"
     all_tag_templates:
       "034": marc_show/show_map
@@ -38,7 +36,6 @@ groups:
     - "710"
     - "700"
     all_tag_templates:
-      "670": people/show_catalogue
       "856": marc_show/show_link
   control: 
     all_tags: 

@@ -217,7 +217,9 @@
       - "arg"
       - "arm"
       - "art"
+      - "aus"
       - "baq"
+      - "ben"
       - "bos"
       - "bul"
       - "cat"
@@ -278,6 +280,7 @@
       - "rom"
       - "rum"
       - "rus"
+      - "sai"
       - "san"
       - "scn"
       - "sco"
@@ -549,7 +552,6 @@
     - - d
     - - e
 "563": 
-  new_window: sources
   layout: 
     fields: 
     - - a
@@ -613,7 +615,7 @@
         - "B/I"
         - "B/II"
         - "B/III"
-        - "B/IV"
+        - "B/VI"
         - "B/VIII"
         - "B/IX/1"
         - "B/IX/2"
@@ -682,22 +684,22 @@
         editor_partial: subfield_secondary
         allow_new: true
 "690": 
-  new_window: catalogues
+  new_window: publications
   new_window_field: name_equals
   layout: 
     fields: 
     - - a
-      - type: catalogue
+      - type: publication
         editor_partial: subfield_secondary
         allow_new: false
     - - n
 "691":
-  new_window: catalogues
+  new_window: publications
   new_window_field: name_equals
   layout: 
     fields: 
     - - a
-      - type: catalogue
+      - type: publication
         editor_partial: subfield_secondary
         allow_new: false
     - - n

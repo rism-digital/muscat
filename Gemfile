@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.4.3'
+gem 'rails', '5.2.4.4'
 
 # Use mysql2 as the database for Active Record
 # USE THIS VERSION for 4.1
@@ -10,19 +10,16 @@ gem 'rails', '5.2.4.3'
 gem 'mysql2'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 6.0'
+gem 'sassc-rails'#, '~> 6.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '~> 4.2'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-
-# In rails 5.2 used as default to speed up startup
-##gem 'bootsnap'
+gem 'coffee-rails', '~> 5.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-#gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', "~> 4.3.5"
@@ -116,7 +113,7 @@ gem 'delayed_job_active_record', '4.1.4'
 gem 'progress_job', '0.0.4', git: "https://github.com/rism-ch/progress_job"
 
 # Scheduled tasks cron style
-gem 'crono', '1.1.2', git: 'https://github.com/plashchynski/crono'
+#gem 'crono', '1.1.2', git: 'https://github.com/plashchynski/crono'
 gem 'daemons'
 
 # Add I18n in js
@@ -168,3 +165,5 @@ group :test do
   # Use sqlite3 for testing db
   gem 'sqlite3'
 end
+
+#gem 'i18n-tasks', '~> 0.9.31'

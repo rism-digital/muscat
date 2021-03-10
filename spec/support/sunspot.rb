@@ -1,4 +1,4 @@
-models = [ Source, Person, Catalogue, Institution ]
+models = [ Source, Person, Publication, Institution ]
 
 RSpec.configure do |config|
   config.before(:each, solr: true) do

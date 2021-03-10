@@ -10,7 +10,7 @@
 # * <tt>src_count</tt> - The number of manuscript that reference this lib.
 #
 # the other standard wf_* fields are not shown.
-# The class provides the same functionality as similar models, see Catalogue
+# The class provides the same functionality as similar models, see Publication
 
 class Institution < ApplicationRecord
   include ForeignLinks
@@ -30,13 +30,13 @@ class Institution < ApplicationRecord
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
-  has_and_belongs_to_many(:referring_catalogues, class_name: "Catalogue", join_table: "catalogues_to_institutions")
+  has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
   has_and_belongs_to_many :people, join_table: "institutions_to_people"
-  has_and_belongs_to_many :catalogues, join_table: "institutions_to_catalogues"
+  has_and_belongs_to_many :publications, join_table: "institutions_to_publications"
   has_and_belongs_to_many :places, join_table: "institutions_to_places"
   has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
   
-  has_and_belongs_to_many :holdings
+  has_and_belongs_to_many :referring_holdings, class_name: "Holding", join_table: "holdings_to_institutions"
   #has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   has_and_belongs_to_many :workgroups
@@ -49,13 +49,15 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many(:institutions,
     :class_name => "Institution",
     :foreign_key => "institution_a_id",
-    :association_foreign_key => "institution_b_id")
+    :association_foreign_key => "institution_b_id",
+    join_table: "institutions_to_institutions")
   
   # This is the backward link
   has_and_belongs_to_many(:referring_institutions,
     :class_name => "Institution",
     :foreign_key => "institution_b_id",
-    :association_foreign_key => "institution_a_id")
+    :association_foreign_key => "institution_a_id",
+    join_table: "institutions_to_institutions")
   
   #validates_presence_of :siglum    
   
@@ -128,7 +130,7 @@ class Institution < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["institutions", "people", "places", "catalogues", "standard_terms"]
+    allowed_relations = ["institutions", "people", "places", "publications", "standard_terms"]
     recreate_links(marc, allowed_relations)
   end
 
@@ -236,7 +238,7 @@ class Institution < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
     
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      referring_sources.size + holdings.size
+      referring_sources.size + referring_holdings.size
     end
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
@@ -282,4 +284,9 @@ class Institution < ApplicationRecord
     end
   end
  
+  def holdings
+    ActiveSupport::Deprecation.warn('Please use referring_holdings from institution')
+    referring_holdings
+  end
+
 end

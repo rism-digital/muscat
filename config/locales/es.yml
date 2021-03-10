@@ -157,9 +157,9 @@ es:
   activerecord:
     models:
       digital_object:
-        one: "Imagen"
-        other: "Imágenes"
-      catalogue:
+        one: "objeto digital"
+        other: "objetos digitales"
+      publication:
         one: "Bibliografía secundaria"
         other: "Ítems de bibliografía secundaria"
       folder:
@@ -258,7 +258,7 @@ es:
   menu_titles: "Títulos/íncipits literarios"
   menu_subjects: "Descriptores"
   menu_library_sigla: "Siglas de repositorios"
-  menu_catalogues: "Bibliografía secundaria"
+  menu_publications: "Bibliografía secundaria"
   menu_liturgical_feasts: "Festividades litúrgicas"
   menu_latin: "Texto en latín"
   menu_places: "Lugares"
@@ -312,7 +312,8 @@ es:
   holding_no_siglum: "EJEMPLAR SIN SIGLA"
   new_holding: "Crear nuevo registro de ejemplar"
   new_holding_page: "Nuevo registro de ejemplar"
-  new_digital_object: "Añadir una nueva imagen"
+  new_digital_object_image: "Añadir una nueva imagen"
+  new_digital_object_incipit: "Añadir un nuevo incipit MEI"
   record_actions: "Acciones del registro"
   record_status: "Estado del registro"
   record_owner: "Propietario del registro"
@@ -408,8 +409,8 @@ es:
     reindex_job: "El Job de reindexación comenzó (id: %{id})"
 
   ### Digital objects
-  digital_objects: "Imágenes"
-  digital_object_new: "Añadir una nueva imagen"
+  digital_objects: "Objetos digitales"
+  digital_object_new: "Añadir un nuevo objecto digitale"
   digital_object_add: "Añadir"
   
   ############ filters
@@ -419,6 +420,7 @@ es:
   filter_alternate_terms: "Términos alternativos"
   filter_alternates: "Nombres alternativos"
   filter_any_field: "Cualquier campo"
+  filter_attachment_type: "Tipo de objeto digital"
   filter_author: "Autor"
   filter_author_or_editor: "Autor/Editor"
   filter_autograph_of: "Autógrafo de"
@@ -443,7 +445,9 @@ es:
   filter_full_name: "Nombre"
   filter_gender: "Género"
   filter_id: "ID"
-  filter_incipits: "Íncipits"
+  filter_incipit: "Incipit"
+  filter_incipit_number: "Número del Incipit"
+  filter_incipits: "Incipits"
   filter_incipits_ng: "Íncipits (ngrams)"
   filter_incipits_tf: "Íncipits (descubridor tema)"
   filter_incipit_key: "Tonalidad del íncipit"
@@ -573,7 +577,7 @@ es:
   digital_object:
     one: "objeto digital"
     other: "objetos digitales"
-  catalogue:
+  publication:
     one: "catálogo"
     other: "catálogos"
   institution: 

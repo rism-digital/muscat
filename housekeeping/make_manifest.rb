@@ -36,7 +36,8 @@ module Faraday
 end
 
 #IIF_PATH="http://d-lib.rism-ch.org/cgi-bin/iipsrv.fcgi?IIIF=/usr/local/images/ch/"
-IIF_PATH="https://iiif.rism-ch.org/iiif/"
+# Should not have a trailing slash!
+IIIF_PATH="https://iiif.rism.digital"
 
 if ARGV[0].include?("yml")
   dirs  = YAML.load_file(ARGV[0])
@@ -45,6 +46,9 @@ else
 end
 
 dirs.keys.each do |dir|
+
+  #next if !dir.include? "400008043"
+
   source = nil
   title = "Images for #{dir}"
   
@@ -56,6 +60,7 @@ dirs.keys.each do |dir|
   
   if images.length == 0
     puts "no images in #{dir}"
+    next
   end
   
   print "Attempting #{dir}... "
@@ -66,34 +71,58 @@ dirs.keys.each do |dir|
     toks = dir.split("-")
     ## if it contains the -xxx just get the ID
     id = toks[0] if toks != [dir]
-    source = Source.find(dir)
+    begin
+      source = Source.find(dir)
+    rescue ActiveRecord::RecordNotFound
+      puts "SOURCE #{dir} not found".red
+      next
+    end
     title = source.title
+    country = "ch" # TODO: Figure out country code from siglum
   end
-  
+
+  if File.exist?(country + "/" + dir + '.json')
+    puts "already exists, skip"
+    next
+  end
+
+  manifest_id = "#{IIIF_PATH}/manifest/#{country}/#{dir}.json"
+
   # Create the base manifest file
+  related = {
+    "@id" => "https://www.rism-ch.org/catalog/#{dir}",
+    "format" => "text/html",
+    "label" => "RISM Catalogue Record"
+  }
   seed = {
-      '@id' => "https://iiif.rism-ch.org/manifest/#{dir}.json",
+      '@id' => manifest_id,
       'label' => title,
-      'related' => "http://www.rism-ch.org/catalog/#{dir}"
+      'related' => related
   }
   # Any options you add are added to the object
   manifest = IIIF::Presentation::Manifest.new(seed)
   sequence = IIIF::Presentation::Sequence.new
   manifest.sequences << sequence
   
-  images.each do |image_name|
+  images.each_with_index do |image_name, idx|
     canvas = IIIF::Presentation::Canvas.new()
-    canvas['@id'] = "#{dir}/#{image_name}"
-    canvas.label = image_name
+    canvas['@id'] = "#{IIIF_PATH}/canvas/#{country}/#{dir}/#{image_name.chomp(".tif")}"
+    canvas.label = "[Image #{idx + 1}]"
     
-    image_url = IIF_PATH + dir + "/" + image_name
+    image_url = "#{IIIF_PATH}/image/#{country}/#{dir}/#{image_name}"
     
     image = IIIF::Presentation::Annotation.new
     image["on"] = canvas['@id']
+    image["@id"] = "#{IIIF_PATH}/annotation/#{country}/#{dir}/#{image_name.chomp(".tif")}"
     ## Uncomment these two prints to see the progress of the HTTP reqs.
-    #print "-"
-    image_resource = IIIF::Presentation::ImageResource.create_image_api_image_resource(service_id: image_url)
-    #print "."
+
+    #begin
+      image_resource = IIIF::Presentation::ImageResource.create_image_api_image_resource(service_id: image_url, resource_id:"#{image_url}/full/full/0/default.jpg")
+    #rescue
+    #  puts "Not found #{image_url}"
+    #end
+
+    print "."
     image.resource = image_resource
     
     canvas.width = image.resource['width']
@@ -105,13 +134,13 @@ dirs.keys.each do |dir|
     # Some obnoxious servers block you after some requests
     # may also be a server/firewall combination
     # comment this if you are positive your server works
-    sleep 0.1
+    #sleep 0.1
   end
   
   #puts manifest.to_json(pretty: true)
-  File.write(dir + '.json', manifest.to_json(pretty: true))
-  puts "Wrote #{dir}.json"
-  
+  File.write(country + "/" + dir + '.json', manifest.to_json(pretty: true))
+  puts "Wrote #{country}/#{dir}.json"
+  next
   if source
     marc = source.marc
     marc.load_source true
@@ -121,7 +150,7 @@ dirs.keys.each do |dir|
     # -01 -02 etc
     new_tag = MarcNode.new("source", "856", "", "##")
     new_tag.add_at(MarcNode.new("source", "x", "IIIF", nil), 0)
-    new_tag.add_at(MarcNode.new("source", "u", "https://iiif.rism-ch.org/manifest/#{dir}.json", nil), 0)
+    new_tag.add_at(MarcNode.new("source", "u", manifest_id, nil), 0)
 
     pi = marc.get_insert_position("856")
     marc.root.children.insert(pi, new_tag)

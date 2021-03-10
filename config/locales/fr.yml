@@ -156,9 +156,9 @@ fr:
   activerecord:
     models:
       digital_object:
-        one: "Image"
-        other: "Images"
-      catalogue:
+        one: "Objet numérique"
+        other: "Objet numériques"
+      publication:
         one: "Catalogue"
         other: "Catalogues"
       folder:
@@ -257,7 +257,7 @@ fr:
   menu_titles: "Titres / Incipits de texte"
   menu_subjects: "Sujets"
   menu_library_sigla: "Sigles de bibliothèque"
-  menu_catalogues: "Catalogues"
+  menu_publications: "Catalogues"
   menu_liturgical_feasts: "Fêtes liturgiques"
   menu_latin: "Textes latins"
   menu_places: "Lieux"
@@ -311,7 +311,8 @@ fr:
   holding_no_siglum: "Copie sans cote"
   new_holding: "Ajouter une copie"
   new_holding_page: "Copie non enregistré"
-  new_digital_object: "Attacher une nouvelle image"
+  new_digital_object_image: "Attacher une nouvelle image"
+  new_digital_object_incipit: "Attacher un nouveau MEI incipit"
   record_actions: "Actions"
   record_status: "Status"
   record_owner: "Propriétaire"
@@ -408,8 +409,8 @@ fr:
     reindex_job: "Réindexation Job commencé (id: %{id})"
   
   ### Digital objects
-  digital_objects: "Images"
-  digital_object_new: "Ajouter une nouvelle image"
+  digital_objects: "Objet numériques"
+  digital_object_new: "Ajouter une nouvelle objet numérique"
   digital_object_add: "Ajouter"
   
   ############ filters
@@ -419,6 +420,7 @@ fr:
   filter_alternate_terms: "Variantes"
   filter_alternates: "Autres noms"
   filter_any_field: "N'importe quel champ"
+  filter_attachment_type: "Type d'objet numérique"
   filter_author: "Auteur"
   filter_author_or_editor: "Auteur/Éditeur"
   filter_autograph_of: "Autographe de"
@@ -436,13 +438,15 @@ fr:
   filter_date_of_publication: "Année de publication"
   filter_date_to: "Jusqu'à la date"
   filter_description: "Description"
-  filter_digital_objects: "Digital Objects"
+  filter_digital_objects: "Objet numériques"
   filter_district: "District / Canton"
   filter_email: "E-mail"
   filter_folder_type: "Type de dossier"
   filter_full_name: "Nom"
   filter_gender: "Genre"
   filter_id: "ID"
+  filter_incipit: "Incipit"
+  filter_incipit_number: "Incipit numéro"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
@@ -571,9 +575,9 @@ fr:
     one: "entrée"
     other: "entrées"
   digital_object:
-    one: "objet digital"
-    other: "objets digitaux"
-  catalogue:
+    one: "Objet numérique"
+    other: "Objet numériques"
+  publication:
     one: "catalogue"
     other: "catalogues"
   institution: 

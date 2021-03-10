@@ -156,9 +156,9 @@ en:
   activerecord:
     models:
       digital_object:
-        one: "Image"
-        other: "Images"
-      catalogue:
+        one: "Digital Object"
+        other: "Digital Objects"
+      publication:
         one: "Secondary literature"
         other: "Secondary literature"
       folder:
@@ -257,7 +257,7 @@ en:
   menu_titles: "Titles / text incipits"
   menu_subjects: "Subject headings"
   menu_library_sigla: "Library siglum"
-  menu_catalogues: "Secondary literature"
+  menu_publications: "Secondary literature"
   menu_liturgical_feasts: "Liturgical festivals"
   menu_latin: "Latin text"
   menu_places: "Places"
@@ -311,7 +311,8 @@ en:
   holding_no_siglum: "Holding without silgum"
   new_holding: "Add holdings"
   new_holding_page: "New holdings information"
-  new_digital_object: "Attach a new image"
+  new_digital_object_image: "Attach a new image"
+  new_digital_object_incipit: "Attach a new MEI incipit"
   record_actions: "Record Actions"
   record_status: "Record Status"
   record_owner: "Record Owner"
@@ -410,8 +411,8 @@ en:
     folder_not_source: "Only folders containing Sources can be validated"
 
   ### Digital objects
-  digital_objects: "Images"
-  digital_object_new: "Add a new image"
+  digital_objects: "Digital Objects"
+  digital_object_new: "Add a new digital object"
   digital_object_add: "Add"
   
   ############ filters
@@ -421,6 +422,7 @@ en:
   filter_alternate_terms: "Alternate terms"
   filter_alternates: "Alternate names"
   filter_any_field: "Any field"
+  filter_attachment_type: "Digital Object type"
   filter_author: "Author"
   filter_author_or_editor: "Author/Editor"
   filter_autograph_of: "Autograph of"
@@ -445,6 +447,8 @@ en:
   filter_full_name: "Name"
   filter_gender: "Gender"
   filter_id: "ID"
+  filter_incipit: "Incipit"
+  filter_incipit_number: "Incipit number"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
@@ -460,6 +464,7 @@ en:
   filter_liturgical_feast: "Liturgical feast"
   filter_location_and_name: "Name and location"
   filter_manuscript_no: "Manuscript No."
+  filter_mei: "MEI file"
   filter_male: "Male"
   filter_female: "Female"
   filter_unknown: "Unknown"
@@ -516,7 +521,7 @@ en:
   filter_image: "Image"
   filter_file_name: "File name"
   filter_file_size: "File size"
-  filter_content_type: "Type"
+  filter_content_type: "Content Type"
   filter_wf: "WF"
   filter_wf_audit: "Audit"
   filter_wf_stage: "Status"
@@ -575,7 +580,7 @@ en:
   digital_object:
     one: "digital object"
     other: "digital objects"
-  catalogue:
+  publication:
     one: "catalogue"
     other: "catalogues"
   institution: 

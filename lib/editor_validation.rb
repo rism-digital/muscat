@@ -11,9 +11,8 @@ class EditorValidation
   def squeeze(config)
     settings = Settings.new(Hash.new())
     
-    profile_name = RISM::EDITOR_PROFILE != "" ? RISM::EDITOR_PROFILE : "default"
-    file = "#{Rails.root}/config/editor_profiles/#{profile_name}/configurations/#{config}.yml"
-    settings.squeeze(Settings.new(IO.read(ConfigFilePath.get_marc_editor_profile_path(file))))
+    file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml")
+    settings.squeeze(Settings.new(IO.read(file)))
 
     return settings
   end
@@ -113,16 +112,8 @@ class EditorValidation
       # load global configurations
       @squeezed_profiles = Array.new
     
-      profile_name = RISM::EDITOR_PROFILE != "" ? RISM::EDITOR_PROFILE : "default"
-    
       # Load local configurations
-      file = "#{Rails.root}/config/editor_profiles/#{profile_name}/profiles.yml"
-
-      # Fallback to default if no specific profile exist
-      unless File.exists?(file)
-        profile_name = "default"
-        file = "#{Rails.root}/config/editor_profiles/#{profile_name}/profiles.yml"
-      end
+      file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/profiles.yml")
 
       configurations = YAML::load(IO.read(file))
       configurations.each do |conf|

@@ -1,6 +1,164 @@
 Muscat Changelog
 ================
 
+v 7.0.2
+* Fix asset compilation in 7.0.2: Merge pull request #1062 from rism-ch/fix-asset-precompile-7.0.2
+* Fix links in catalog so they go to catalog searches
+* Compress data in health report
+* Make Edit link in Catalog point to SOurce 
+* Make sure NULL users don't crash the email
+
+v 7.0.1
+* Fix a bug where the validation could be skipped
+* Permit parameters in the cron job
+* Fix #1038, add generalized method to show linked fields so we don't need many partials that do the same thing
+* Fix #1037, reorder fields
+* Fix #1036, Make 588 open and with validation in the required templates
+* Fix #1030, make sure export and validation are there only for Source fodlers.
+* Update translations, rename doc_images to doc_digital_objects
+* Fix #1041, show MEI incipit ony in SOurces
+* Properly format sender email address
+* `art` relator code is Artificial and not Artist
+* Fix #1048 (related to #1047), add English fallback for empty translations. Also make [unspecified] more specific: [cdt unspecified] and removed unused :edit_label.
+* Fix #1047, fix translations
+* Fix #961, add artificial
+* Remove MARC awesome print plugin, it causes problems in some cases by duplicating data
+
+v 7.0
+* Init i18n for polish version
+* Fix missing titles of subentries
+* Avoid TypeError: superclass mismatch for class Command error
+* Added status to std_title form
+* Documentation cleanup and update Debian 10 requisites
+* Add some missing languages
+* Merge pull request #974 from fjorba/add-missing-languages
+* Merge pull request #973 from fjorba/documentation-updates-including-debian-10
+* Merge pull request #972 from fjorba/pin-thor-version
+* Add always an agency at 040
+* Allow edit other bibliographic records from Blacklight
+* Add make in the deps
+* Add more packages
+* Merge pull request #976 from jacekiwaszko1/develop
+* Fix actions menu translation
+* Add some gems
+* Document the Apache-itk option
+* Polish translation added to polish-branch
+* Updating sru index for institution
+* Deprecate empty RISM::EDITOR_PROFILE
+* Reorder catalogue.rb code like source.rb
+* Allow $b in institution authority records
+* Merge pull request #981 from jacekiwaszko1/polish-version
+* Merge pull request #980 from fjorba/apache-itk-documentation
+* Update tag_config_institution.yml
+* Update 2- INSTALL.rdoc
+* Restrict SRU to siglum
+* Merge branch 'develop' into polish-version
+* Institution index reconf and labels
+* Fixed a lot of pl yaml invalides
+* Fixed: conflicting language keys in SourceLabels
+* Show size of related sources in institution export
+* Merge pull request #977 from fjorba/allow-edit-other-record-types-from-blacklight
+* Merge pull request #986 from fjorba/deprecate-empty-editor-profile
+* Merge pull request #987 from fjorba/reorder-catalogue-code-like-source
+* Merge pull request #997 from rism-ch/fixed-996-translations
+* Fixed: Quote 'No' values
+* Merge pull request #1012 from rism-ch/fixed-1011-quoted-values
+* Merge pull request #988 from fjorba/institutions-allow-X10b
+* Fix last issues with Polish, add it to the menu
+* Initial test to attach XML files
+* Fixed: Default to warning in production
+* Fix default blacklight settings
+* Document sample_application.rb variables
+* Action to properly select incipits
+* Initial implementation of MEI incipit display inline with the Incipit list
+* Fix toolkit link
+* Remove link files
+* Remove the images box when there are only incipits
+* Make the edit page work, show incipit preview
+* Initial replacement for very annoying crono daemon
+* Add 780 partial for catalogue
+* Use the new configuration files for translations
+* Update the sample_application to point to the new locale dire
+* Merge branch 'develop' into develop-xml-incipit
+* Add image, better translations and $u exporting in 031
+* Add the css for the new image
+* Add translations referring to digital objs
+* Rename label to something more appropriate, new_digital_object_image
+* Merge pull request #1021 from fjorba/sample-application-cleanup
+* Merge pull request #1023 from rism-ch/catalogue_partial
+* Merge pull request #1019 from rism-ch/default-production-loglevel
+* Merge pull request #1020 from rism-ch/blacklight-solr-core
+* Rename Catalog to Publication
+* Change Catalogue to Publications in the views
+* Rename catalogues to publications
+* New: Move to standard Rails translation mechanism
+* Merge branch 'develop-translations' into fixed-1004-languages
+* Merge pull request #1026 from rism-ch/fixed-1004-languages
+* Add --- !map:ActiveSupport::HashWithIndifferentAccess to make YAML load correctly
+* Merge branch 'develop-xml-incipit' into develop-7.0
+* Merge branch 'develop-rename-catalogue' into develop-7.0
+* Merge branch 'develop-translations' into develop-7.0
+* Remove crono, add real crontab for muscat
+* Add missing gem
+* Properly format the crontab file!
+* Files in cron.d cannot contain spaces!
+* Fix #983, add folder created_at
+* Update to rails 5.2.4.4, enable therubyracer
+* Decaffeinate a coffee script
+* Remove ES6 synthax
+* Make uglifier happy
+* Update configuraition for debug mode
+* Try to deprecate sass-rails
+* Update rails coffee
+* Push Gemfile.lock
+* Fix line break
+* Make marc_source in publications mediumtext, #972 and #1028
+* Normalize some table names
+* Also clean up the unused crono table
+* Add works to reindex script....
+* Fix #1009, remove "search sources" unused boxes (but leave the partial if we can use it in the future)
+* Fix #1016, also move language codes to dedicated file
+* #1014 and #1016, add missing language codes
+* #971 remove 963 from Holding
+* Fix #1008, remove new_window
+* Fix #968, add 690 to theoretica
+* Fix #960, B/VI
+* Fix #959
+* Fix #962, add 563 in Theoretica and Libretto source
+* Fix #992 add items to institutions, translations are missing
+* Tag config for #992
+* Fix #984
+* properly name referring_holdings
+* Sync up translations with https://github.com/rism-digital/translations
+* #992 add popup menu items
+* Fix 510 "b' term
+* Add logging capabilities to checkup report
+* Properly name the report and remove limits
+* Try to actually capture errors
+* Better marc tag error reporting
+* Avoid repeated messages
+* Refine log srting
+* Condense duplicate code
+* Rollback formatting
+* Use a more significant name for the logfile, add the record_type information in the log
+* Incipit images are only for admin and editor, update translations
+* Properly rename variables
+* Fix again the variable
+* Add error reporting in catch statement
+* Fix country index for institutions
+* Make all the debug messages consistent
+* Fix the error message
+* Add simple tags to error logs
+* In #992 add $9
+* Add initial dashboard messages
+* Correct french version
+* Update landing page translations
+* Refine Italian
+* Make links work, order language menu
+* Change the priorities for the language menu
+* Fix #992 add all the labels
+* Fix #975, rename catalogues to publications
+
 v 6.3.1
 * Fix #963 "frozen string literal"
 * Remove 856 $x from Catalogue validation

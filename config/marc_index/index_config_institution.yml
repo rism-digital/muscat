@@ -10,9 +10,18 @@ fields:
     "008":
     "024a":
     "043c":
+    "043c_filter":
+      :from_tag: "043"
+      :from_subtag: "c"
+      :index_helper: marc_helper_get_country
     "110a":
+    "110b":
     "110c":
     "110g":
+    "110g_filter":
+      :store: true
+      :type: string
+      :as: "110g_text"
     "110g_facet":
       :type: text
       :from_tag: "110"

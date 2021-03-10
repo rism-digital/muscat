@@ -156,9 +156,9 @@ it:
   activerecord:
     models:
       digital_object:
-        one: "Immagine"
-        other: "Immagini"
-      catalogue:
+        one: "Oggetto Digitale"
+        other: "Oggetti Digitali"
+      publication:
         one: "Riferimento"
         other: "Riferimenti"
       folder:
@@ -259,7 +259,7 @@ it:
   menu_titles: "Titolo / Incipit testuale"
   menu_subjects: "Parola chiave"
   menu_library_sigla: "Sigla della biblioteca"
-  menu_catalogues: "Cataloghi tematici"
+  menu_publications: "Cataloghi tematici"
   menu_liturgical_feasts: "Feste liturgiche"
   menu_latin: "Testi latini"
   menu_places: "Luoghi"
@@ -313,7 +313,8 @@ it:
   holding_no_siglum: "Esemplare senza sigla di biblioteca"
   new_holding: "Nuovo Esemplare"
   new_holding_page: "Esemplare non salvato"
-  new_digital_object: "Aggiungi una nuova immagine"
+  new_digital_object_image: "Aggiungi una nuova immagine"
+  new_digital_object_incipit: "Aggiungi un nuovo incipit MEI"
   record_actions: "Impostazioni scheda"
   record_status: "Stato di pubblicazione"
   record_owner: "Proprietario"
@@ -411,8 +412,8 @@ it:
     reindex_job: "Job di reindicizzazione iniziato (id: %{id})"
     
   ### Digital objects
-  digital_objects: "Immagini"
-  digital_object_new: "Aggiungi una nuova immagine"
+  digital_objects: "Oggetti Digitali"
+  digital_object_new: "Aggiungi un nuovo Oggetto Digitale"
   digital_object_add: "Aggiungi"
     
   ############ filters
@@ -422,6 +423,7 @@ it:
   filter_alternate_terms: "Termini alternativi"
   filter_alternates: "Nomi alternativi"
   filter_any_field: "Qualsiasi campo"
+  filter_attachment_type: "Tipo di Oggetto Digitale"
   filter_author: "Autore"
   filter_author_or_editor: "Autore/Editore"
   filter_autograph_of: "Autografo di"
@@ -446,7 +448,9 @@ it:
   filter_full_name: "Nome"
   filter_gender: "Sesso"
   filter_id: "Id"
-  filter_incipits: "Incipit"
+  filter_incipit: "Incipit"
+  filter_incipit_number: "Numero incipit"
+  filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
   filter_incipit_key: "Tonalità dell'incipit"
@@ -576,7 +580,7 @@ it:
   digital_object:
       one: "Oggetto digitale"
       other: "Oggetti digitali"
-  catalogue:
+  publication:
     one: "catalogo"
     other: "cataloghi"
   institution: 

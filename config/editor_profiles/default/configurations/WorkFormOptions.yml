@@ -333,11 +333,11 @@
     columns: 2
 "670": 
   allow_new: true
-  new_window: catalogues
+  new_window: publications
   layout: 
     fields: 
     - - "a"
-      - type: catalogue
+      - type: publication
         editor_partial: subfield_secondary
       - cols: 4
     - - "b"
@@ -345,11 +345,11 @@
     columns: 4
 "675": 
   allow_new: true
-  new_window: catalogues
+  new_window: publications
   layout: 
     fields: 
     - - "a"
-      - type: catalogue
+      - type: publication
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4

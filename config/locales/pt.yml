@@ -155,9 +155,9 @@ pt:
   activerecord:
     models:
       digital_object:
-        one: "Imagem"
-        other: "Imagens"
-      catalogue:
+        one: "objeto digital"
+        other: "objetos digitais"
+      publication:
         one: "Literatura secundária"
         other: "Literatura secundária"
       folder:
@@ -254,7 +254,7 @@ pt:
   menu_titles: "Títulos / incipits literários"
   menu_subjects: "Títulos de assunto"
   menu_library_sigla: "Sigla da Instituição"
-  menu_catalogues: "Literatura Secundária"
+  menu_publications: "Literatura Secundária"
   menu_liturgical_feasts: "Festas litúrgicas"
   menu_latin: "Texto latino"
   menu_places: "Locais"
@@ -308,7 +308,8 @@ pt:
   holding_no_siglum: "Materia sem sigla"
   new_holding: "Adicionar material"
   new_holding_page: "Informação de novo material"
-  new_digital_object: "Adicionar uma nova imagem"
+  new_digital_object_image: "Adicionar uma nova imagem"
+  new_digital_object_incipit: "Adicionar um novo incipit MEI"
   record_actions: "Ações do Registro"
   record_status: "Estado do Registro"
   record_owner: "Proprietário do Registro"
@@ -404,8 +405,8 @@ pt:
     reindex_job: "Início do trabalho de reindexação (id: %{id})"
 
   ### Digital objects
-  digital_objects: "Imagens"
-  digital_object_new: "Adicionar uma nova imagem"
+  digital_objects: "Objetos Digitais"
+  digital_object_new: "Adicionar um novo objecto digital"
   digital_object_add: "Adicionar"
   
   ############ filters
@@ -415,6 +416,7 @@ pt:
   filter_alternate_terms: "Termos alternativos"
   filter_alternates: "Nomes alternativos"
   filter_any_field: "Qualquer campo"
+  filter_attachment_type: "Tipo de objecto digital"
   filter_author: "Autor"
   filter_author_or_editor: "Autor/Editor"
   filter_autograph_of: "Autógrafo de"
@@ -439,6 +441,8 @@ pt:
   filter_full_name: "Nome"
   filter_gender: "Gênero"
   filter_id: "ID"
+  filter_incipit: "Incipit"
+  filter_incipit_number: "Número do Incipit"
   filter_incipits: "Incipits"
   filter_incipits_ng: "Incipits (ngrams)"
   filter_incipits_tf: "Incipits (themefinder)"
@@ -569,7 +573,7 @@ pt:
   digital_object:
     one: "objeto digital"
     other: "objetos digitais"
-  catalogue:
+  publication:
     one: "catálogo"
     other: "catálogos"
   institution: 

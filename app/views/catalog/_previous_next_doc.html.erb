@@ -16,7 +16,11 @@
 
       <%=link_to t('blacklight.search.start_over'), start_over_path(current_search_session.try(:query_params) || {}), id: 'startOverLink', class: 'btn' %>
 
-      <%=link_to t('active_admin.edit'), "/admin/sources/#{@document.id.split(" ")[1]}/edit", class: 'btn' %>
+      <% if @document.id.start_with? "Source" %>
+          <%=link_to t('active_admin.edit'), "/admin/sources/#{@document.id.split(" ")[1]}/edit", class: 'btn' %>
+      <% else %>
+          <%=link_to t('active_admin.edit'), "/admin/publications/#{@document.id.split(" ")[1]}/edit", class: 'btn' %>
+      <% end %>
     </div>
   <% end %>
 </div>

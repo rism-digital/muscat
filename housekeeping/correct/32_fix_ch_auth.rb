@@ -1,12 +1,12 @@
 require 'progress_bar'
 =begin
-pb = ProgressBar.new(Catalogue.all.count)
+pb = ProgressBar.new(Publication.all.count)
 
-Catalogue.all.each do |c|
+Publication.all.each do |c|
 
   pb.increment!
 
-  m = MarcCatalogue.new(c.marc_source)
+  m = MarcPublication.new(c.marc_source)
   m.load_source(false)
   m.import
   c.marc = m

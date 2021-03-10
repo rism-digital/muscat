@@ -46,7 +46,7 @@ module ForeignLinks
     reindex_items = Array.new
     
     # All the allowed relation types *must* be in this array or they will be dropped
-    #allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "catalogues", "liturgical_feasts", "places"]
+    #allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "publications", "liturgical_feasts", "places"]
     
     # Group all the foreign associations by class, get_all_foreign_associations will just return
     # a flat list of objects

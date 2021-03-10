@@ -125,7 +125,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	var backend_validation = marc_editor_validate();
 
 	if (!form_valid || !backend_validation.responseJSON["status"].endsWith("[200]")) {
-		var superuser = $('#user_skip_validation').val();
+		var superuser = ($('#user_skip_validation').val() == "True");
 		var skip = false;
 
 		// Admins and editors can skip the validation
@@ -551,6 +551,19 @@ function marc_editor_add_subfield(id) {
 		$(this).val("");
 	});
 	
+	// This is a special case for the light-weight "t" tag
+	// in 031, as it is a select_subfield which normally is
+	// never repeatable, but in this case, since it does not
+	// make a $0 link in MARC, it can be repeatable. The
+	// caveat is that the text box will not have .serialize_marc
+	// as that is assigned to the hidden item (and cleared
+	// with the code above), so we need a special cleanup
+	// only for this. It is used only in 031 $t
+	$(".autocomplete_new_window", new_li).each(function() {
+		$(this).val("");
+		console.log("emptied .autocomplete_new_window in marc_editor_add_subfield");
+	});
+
 	ul.append(new_li);
 	new_li.fadeIn('fast');
 

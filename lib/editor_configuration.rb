@@ -38,23 +38,11 @@ class EditorConfiguration
     configs = list #YAML::load(yaml_list)
 
     settings = Settings.new(Hash.new())
-    
-    if RISM::EDITOR_PROFILE != ""
-      configs.each do |config|
-        file = "#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml"
-        unless File.exists?(file)
-	  file = "#{Rails.root}/config/editor_profiles/default/configurations/#{config}.yml"
-	end
-        if File.exists?(file)
-          settings.squeeze(Settings.new(IO.read(file)))
-        end
-      end
-    else
-      configs.each do |config|
-        default_conf = "#{Rails.root}/config/editor_profiles/default/configurations/#{config}.yml"
-        if File.exists?(default_conf)
-          settings.squeeze(Settings.new(IO.read(default_conf)))
-        end
+
+    configs.each do |config|
+      file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml")
+      if File.exists?(file)
+        settings.squeeze(Settings.new(IO.read(file)))
       end
     end
     
@@ -69,6 +57,12 @@ class EditorConfiguration
     @squeezed_labels_config = squeeze(conf[:labels])
     @squeezed_options_config = squeeze(conf[:options])
     @squeezed_layout_config = squeeze(conf[:layout])
+
+    # Superimpose shared labels
+    file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/shared/SharedLanguageLabels.yml")
+    if File.exists?(file)
+      @squeezed_labels_config.squeeze(Settings.new(IO.read(file)))
+    end
   end
   
   # Get the defined name from this EditorConfiguration, defined in :name
@@ -118,26 +112,25 @@ class EditorConfiguration
   #        en: Plate number
   # </tt>      
   def get_sub_label(id, sub_id, edit = false)
-    # return :edit_label value only if edit and if existing
-    if edit && labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id]&& labels_config[id][:fields][sub_id][:edit_label]
-      return labels_config[id][:fields][sub_id][:edit_label][I18n.locale.to_s] if labels_config[id][:fields][sub_id][:edit_label][I18n.locale.to_s]
-      return labels_config[id][:fields][sub_id][:edit_label][:en] if labels_config[id][:fields][sub_id][:edit_label][:en]
-    end
-    # else return :label
-    if labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id] && labels_config[id][:fields][sub_id][:label] 
-      return labels_config[id][:fields][sub_id][:label][I18n.locale.to_s] if labels_config[id][:fields][sub_id][:label][I18n.locale.to_s]
-      return labels_config[id][:fields][sub_id][:label][:en] if labels_config[id][:fields][sub_id][:label][:en]
+    if labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id] && labels_config[id][:fields][sub_id][:label]
+      label =  I18n.t(labels_config[id][:fields][sub_id][:label])
+
+      # This is the same problem as get_label
+      # If the label is translated to an empty string, try to get the english one
+      if !label || label.empty?
+        label = I18n.t(labels_config[id][:fields][sub_id][:label], :locale => :en)  + " [translation missing]"
+      end
+
+      return label
     end
     # if nothing found
-    return "[unspecified]" 
+    return "[#{id}-#{sub_id} unspecified]" 
   end
   
   # Returns if this label has a sublabel
   def has_sub_label?(id, sub_id)
-    # we don't care about :edit_label here because we assume that we have an edit_label only if we also have :label
     if labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id] && labels_config[id][:fields][sub_id][:label]
-      return true if labels_config[id][:fields][sub_id][:label][I18n.locale.to_s]
-      return true if labels_config[id][:fields][sub_id][:label][:en]
+      return true
     end
     return false
   end
@@ -161,24 +154,29 @@ class EditorConfiguration
   #    en: Printer
   # </tt>
   def get_label(id, edit = false)
-    # return :edit_label value only if edit and if existing
-    if edit && labels_config[id] && labels_config[id][:edit_label]
-      return labels_config[id][:edit_label][I18n.locale.to_s] if labels_config[id][:edit_label][I18n.locale.to_s]
-      return labels_config[id][:edit_label][:en] if labels_config[id][:edit_label][:en]
-    end
-    # puts I18n.locale
+    
+    # Get the label in the specified locale
     if labels_config[id] && labels_config[id][:label]
-      return labels_config[id][:label][I18n.locale.to_s] if labels_config[id][:label][I18n.locale.to_s]
-      return labels_config[id][:label][:en] if labels_config[id][:label][:en]
+      label = I18n.t(labels_config[id][:label])
+ 
+      # Sometimes the label is empty ('') in the translation file
+      # Get the default EN one and add a missing translation note (in english)
+      if !label || label.empty?
+        label = I18n.t(labels_config[id][:label], :locale => :en)  + " [translation missing]"
+      end
+
+      return label
+    else
+      # This is the case when a key is not found int he
+      # map file, and no translation lookup is possible
+      return "[#{id} unspecified]"
     end
-    return "[unspecified]"
   end
   
   # Returns if the specified field has a label attached.
   def has_label?(id)
     if labels_config[id] && labels_config[id][:label]
-      return true if labels_config[id][:label][I18n.locale.to_s]
-      return true if labels_config[id][:label][:en]
+      return true
     end
     return false
   end

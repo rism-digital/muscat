@@ -159,6 +159,7 @@ ActiveAdmin.register Folder do
     
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
+      row (I18n.t :created_at) {|folder| folder.created_at}
       row (I18n.t :filter_folder_type) { |r| r.folder_type }
       row (I18n.t :filter_owner) {|folder| folder.user.name}
     end

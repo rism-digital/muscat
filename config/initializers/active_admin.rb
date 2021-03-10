@@ -1,3 +1,4 @@
+# coding: utf-8
 # Customize the ActiveAdmin header to add our own item. NOTE: This class
 # must be registered as the view factory for the header. See below, in the
 # setup block.
@@ -40,7 +41,7 @@ ActiveAdmin.setup do |config|
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  config.site_title_image = "logo3.png"
+  config.site_title_image = "logo3-#{RISM::SITE_ID}.png"
 
   # == Default Namespace
   #
@@ -247,12 +248,13 @@ ActiveAdmin.setup do |config|
     admin.build_menu :default do |menu|
       menu.add :label => proc {I18n.t(:menu_administration)}, id: 'admin_menu', :priority => 1
       menu.add  :label => proc {I18n.t(:menu_languages)}, id: 'lang_menu', :priority => 2 do |lang|
-        lang.add :label => "EN", :url => proc { url_for(:locale => 'en') }, id: 'i18n-en', :priority => 1, :html_options   => {:style => 'float:left;'}
-        lang.add :label => "DE", :url => proc { url_for(:locale => 'de') }, id: 'i18n-de', :priority => 2, :html_options   => {:style => 'float:left;'}
-        lang.add :label => "FR", :url => proc { url_for(:locale => 'fr') }, id: 'i18n-fr', :priority => 3, :html_options   => {:style => 'float:left;'}
-        lang.add :label => "IT", :url => proc { url_for(:locale => 'it') }, id: 'i18n-it', :priority => 4, :html_options   => {:style => 'float:left;'}
-        lang.add :label => "PT", :url => proc { url_for(:locale => 'pt') }, id: 'i18n-pt', :priority => 5, :html_options   => {:style => 'float:left;'}
-        lang.add :label => "ES", :url => proc { url_for(:locale => 'es') }, id: 'i18n-es', :priority => 6, :html_options   => {:style => 'float:left;'}
+        lang.add :label => "DE", :url => proc { url_for(:locale => 'de') }, id: 'i18n-de', :priority => 1, :html_options   => {:style => 'float:left;'}
+        lang.add :label => "EN", :url => proc { url_for(:locale => 'en') }, id: 'i18n-en', :priority => 2, :html_options   => {:style => 'float:left;'}
+        lang.add :label => "ES", :url => proc { url_for(:locale => 'es') }, id: 'i18n-es', :priority => 3, :html_options   => {:style => 'float:left;'}
+        lang.add :label => "FR", :url => proc { url_for(:locale => 'fr') }, id: 'i18n-fr', :priority => 4, :html_options   => {:style => 'float:left;'}
+        lang.add :label => "IT", :url => proc { url_for(:locale => 'it') }, id: 'i18n-it', :priority => 5, :html_options   => {:style => 'float:left;'}
+        lang.add :label => "PL", :url => proc { url_for(:locale => 'pl') }, id: 'i18n-pl', :priority => 6, :html_options   => {:style => 'float:left;'}
+        lang.add :label => "PT", :url => proc { url_for(:locale => 'pt') }, id: 'i18n-pt', :priority => 7, :html_options   => {:style => 'float:left;'}
       end
       # Add the menu by hand because otherwise it is not getting translated
       menu.add :label => proc {I18n.t(:menu_comments)}, id: 'comments_menu', :priority => 4, :url => "/admin/comments"

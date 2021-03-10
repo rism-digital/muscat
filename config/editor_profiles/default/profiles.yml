@@ -91,32 +91,32 @@
     show: true
   :validation: "InstitutionValidation"
 
-# Configuration for catalogue
-- :id: DefaultCatalogue
-  :name: Catalogue
-  :model: catalogue
+# Configuration for publication
+- :id: DefaultPublication
+  :name: Publication
+  :model: publication
   :labels: 
-  - CatalogueLabels
+  - PublicationLabels
   :options: 
-  - CatalogueFormOptions
+  - PublicationFormOptions
   :layout: 
-  - CatalogueLayoutDefault
+  - PublicationLayoutDefault
   :filter:
     default: true 
 ###
-- :id: ShowCatalogue
-  :name: Catalogue
-  :model: catalogue
+- :id: ShowPublication
+  :name: Publication
+  :model: publication
   :labels: 
-  - CatalogueLabels
+  - PublicationLabels
   :options: 
-  - CatalogueFormOptions
+  - PublicationFormOptions
   :layout: 
-  - CatalogueLayoutShow
+  - PublicationLayoutShow
   :filter:
     show_all: false
     show: true
-  :validation: "CatalogueValidation"
+  :validation: "PublicationValidation"
 ## Holding Record
 - :id: DefaultHolding
   :name: Holding
