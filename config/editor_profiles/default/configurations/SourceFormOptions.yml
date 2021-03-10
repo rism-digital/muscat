@@ -915,13 +915,13 @@
     - - w
       - type: source
         editor_partial: subfield_secondary
-"787": 
-  layout: 
-    fields: 
-    - - g
-    - - n
-    - - s
-    - - w
+#"787": 
+#  layout: 
+#    fields: 
+#    - - g
+#    - - n
+#    - - s
+#    - - w
 "852": 
   new_window: institutions
   layout: 
