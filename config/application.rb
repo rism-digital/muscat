@@ -40,7 +40,8 @@ module RISM
   # - othervise will not save a version for a save of the same user unless the last
   #   is older than the XXX seconds - (3600 = 1 hour, 43200 = half a day)
   VERSION_TIMEOUT = 43200
-  
+  COOKIE_PRIVACY_LINK = "http://www.example.com/privacy.html?lang="
+  COOKIE_PRIVACY_I18N = true
   # The project line in the header
   PROJECTLINE = "The Canons Database"
   # The strap line in the header 
@@ -50,6 +51,7 @@ module RISM
   # Header menu
   MENUS = {
     :menu_admin      => :admin_root,
+    :works => "/works",
     :menu_help       => "https://art-of-canon.blog/the-canons-database-help/",
     :menu_home       => :root
   }
@@ -77,7 +79,7 @@ module RISM
 	NOTIFICATION_EMAIL = "sample@email.com"
 
   # Google Analytics Tracking ID
-  GOOGLE_ANALYTICS_ID = "UA-7219229-28"
+  # GOOGLE_ANALYTICS_ID = "UA-7219229-28"
 
   DEFAULT_EMAIL_NAME = "The Canons Database"
   DEFAULT_NOREPLY_EMAIL = "noreply@canons.org.au"
@@ -105,7 +107,7 @@ module Muscat
     config.autoload_paths << "#{Rails.root}/lib"
     config.active_job.queue_adapter = :delayed_job
     
-    config.active_record.raise_in_transactional_callbacks = true
+    # config.active_record.raise_in_transactional_callbacks = true
     
   end
 end

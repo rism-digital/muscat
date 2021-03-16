@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200911034521) do
+ActiveRecord::Schema.define(version: 20210106035056) do
 
   create_table "active_admin_comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "namespace"
@@ -35,28 +35,6 @@ ActiveRecord::Schema.define(version: 20200911034521) do
     t.datetime "updated_at"
     t.string "document_type"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
-  end
-
-  create_table "canonic_imitations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "interval"
-    t.string "interval_direction"
-    t.string "temporal_offset"
-    t.string "offset_units"
-    t.string "mensurations"
-    t.integer "canonic_technique_id"
-    t.integer "wf_audit", default: 0
-    t.integer "wf_stage", default: 0
-    t.string "wf_notes"
-    t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "lock_version", default: 0, null: false
-    t.index ["interval"], name: "index_canonic_imitations_on_interval"
-    t.index ["interval_direction"], name: "index_canonic_imitations_on_interval_direction"
-    t.index ["offset_units"], name: "index_canonic_imitations_on_offset_units"
-    t.index ["temporal_offset"], name: "index_canonic_imitations_on_temporal_offset"
-    t.index ["wf_stage"], name: "index_canonic_imitations_on_wf_stage"
   end
 
   create_table "canonic_techniques", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -251,21 +229,21 @@ ActiveRecord::Schema.define(version: 20200911034521) do
     t.index ["institution_id"], name: "index_holdings_institutions_on_institution_id"
   end
 
-  create_table "holdings_to_catalogues", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "holdings_to_catalogues", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.integer "catalogue_id"
     t.integer "holding_id"
     t.index ["catalogue_id"], name: "index_holdings_to_catalogues_on_catalogue_id"
     t.index ["holding_id"], name: "index_holdings_to_catalogues_on_holding_id"
   end
 
-  create_table "holdings_to_people", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "holdings_to_people", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.integer "person_id"
     t.integer "holding_id"
     t.index ["holding_id"], name: "index_holdings_to_people_on_holding_id"
     t.index ["person_id"], name: "index_holdings_to_people_on_person_id"
   end
 
-  create_table "holdings_to_places", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "holdings_to_places", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.integer "place_id"
     t.integer "holding_id"
     t.index ["holding_id"], name: "index_holdings_to_places_on_holding_id"
@@ -699,49 +677,49 @@ ActiveRecord::Schema.define(version: 20200911034521) do
     t.index ["wf_stage"], name: "index_works_on_wf_stage"
   end
 
-  create_table "works_to_catalogues", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "works_to_catalogues", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.integer "work_id"
     t.integer "catalogue_id"
     t.index ["catalogue_id"], name: "index_works_to_catalogues_on_catalogue_id"
     t.index ["work_id"], name: "index_works_to_catalogues_on_work_id"
   end
 
-  create_table "works_to_institutions", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "works_to_institutions", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.integer "work_id"
     t.integer "institution_id"
     t.index ["institution_id"], name: "index_works_to_institutions_on_institution_id"
     t.index ["work_id"], name: "index_works_to_institutions_on_work_id"
   end
 
-  create_table "works_to_liturgical_feasts", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "works_to_liturgical_feasts", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.integer "work_id"
     t.integer "liturgical_feast_id"
     t.index ["liturgical_feast_id"], name: "index_works_to_liturgical_feasts_on_liturgical_feast_id"
     t.index ["work_id"], name: "index_works_to_liturgical_feasts_on_work_id"
   end
 
-  create_table "works_to_people", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "works_to_people", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.integer "work_id"
     t.integer "person_id"
     t.index ["person_id"], name: "index_works_to_people_on_person_id"
     t.index ["work_id"], name: "index_works_to_people_on_work_id"
   end
 
-  create_table "works_to_standard_terms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "works_to_standard_terms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.integer "work_id"
     t.integer "standard_term_id"
     t.index ["standard_term_id"], name: "index_works_to_standard_terms_on_standard_term_id"
     t.index ["work_id"], name: "index_works_to_standard_terms_on_work_id"
   end
 
-  create_table "works_to_standard_titles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "works_to_standard_titles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.integer "work_id"
     t.integer "standard_title_id"
     t.index ["standard_title_id"], name: "index_works_to_standard_titles_on_standard_title_id"
     t.index ["work_id"], name: "index_works_to_standard_titles_on_work_id"
   end
 
-  create_table "works_to_works", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "works_to_works", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.integer "work_a_id"
     t.integer "work_b_id"
     t.index ["work_a_id"], name: "index_works_to_works_on_work_a_id"

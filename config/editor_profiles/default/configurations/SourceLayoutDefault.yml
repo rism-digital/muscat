@@ -228,11 +228,6 @@ groups:
   edit_canonic_techniques:
     all_tags:
     - "695"
-    - "901"
-#  edit_canonic_imitation:
-#    all_tags:
-#    - "901"
-
   edit_administration:
     all_tags:
     - '001'

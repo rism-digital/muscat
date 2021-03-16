@@ -2393,28 +2393,6 @@ doc_record_status:
         en: Link type
         pt: Tipo de Link
         es: Tipo de enlace
-"901":
-  label:
-    en: Canonic Technique Imitations
-  fields:
-    a:
-      label:
-      en: Interval of imitation
-    b:
-      label:
-        en: Above or below
-    c:
-      label:
-        en: Temporal offset
-    d:
-      label:
-        en: Temporal offset unit
-    e:
-      label:
-        en: Mensurations/time signatures
-
-
-
 "930":
   label:
     it: Composizione
@@ -2570,9 +2548,6 @@ edit_administration:
 edit_canonic_techniques:
   label:
     en: Canonic techniques
-edit_canonic_imitation:
-  label:
-    en: Canonic Imitation
 edit_content:
   label:
     it: Titolo e descrizione del contenuto

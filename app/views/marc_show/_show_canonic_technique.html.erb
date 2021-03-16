@@ -4,11 +4,20 @@
   b_tag = tag.fetch_first_by_tag(:b)
   c_tag = tag.fetch_first_by_tag(:c)
   d_tag = tag.fetch_first_by_tag(:d)
-  e_tag = tag.fetch_first_by_tag(:e)
-  f_tag = tag.fetch_first_by_tag(:f)
-  g_tag = tag.fetch_first_by_tag(:g)
-  h_tag = tag.fetch_first_by_tag(:h)
-  o_tag = tag.fetch_first_by_tag(:o)
+
+  # Repeated Fields
+  # e_tag = tag.fetch_first_by_tag(:e)
+  # f_tag = tag.fetch_first_by_tag(:f)
+  # g_tag = tag.fetch_first_by_tag(:g)
+  # h_tag = tag.fetch_first_by_tag(:h)
+  # o_tag = tag.fetch_first_by_tag(:o)
+
+  ee_tag = tag.fetch_all_by_tag(:e)
+  ff_tag = tag.fetch_all_by_tag(:f)
+  gg_tag = tag.fetch_all_by_tag(:g)
+  hh_tag = tag.fetch_all_by_tag(:h)
+  oo_tag = tag.fetch_all_by_tag(:o)
+
 
   type = nil
   if a_tag && a_tag.content
@@ -18,24 +27,48 @@
     end
   end
 
-  interval = nil
-  if e_tag && e_tag.content
-    interval = e_tag.content
-    if f_tag && f_tag.content
-      interval = interval + ' ' + f_tag.content
+  interval = []
+  temporal_offset = []
+  ee_tag.each_with_index do | tag_e, e_index|
+    ff_tag.each_with_index do | tag_f, f_index|
+     if e_index == f_index
+       e_and_f_tag = tag_e.content + ' ' + tag_f.content
+       puts "Each val"
+       puts tag_e.content + ' ' + tag_f.content
+       interval.push(e_and_f_tag)
+     end
+
     end
   end
 
-  temporal_offset = nil
-  if g_tag && g_tag.content
-    temporal_offset = g_tag.content
-    if h_tag && h_tag.content
-      temporal_offset = temporal_offset + ' ' + h_tag.content
-    end
-    if o_tag && o_tag.content
-      temporal_offset = temporal_offset + ' in ' + o_tag.content
+  gg_tag.each_with_index do |tag_g, g_index|
+    hh_tag.each_with_index do |tag_h, h_index|
+      oo_tag.each_with_index do |tag_o, o_index|
+        if g_index == h_index and g_index == o_index
+            g_tag_and_h_tag_and_o_tag = tag_g.content + ' ' + tag_h.content + ' in ' + tag_o.content
+            temporal_offset.push(g_tag_and_h_tag_and_o_tag)
+      end
+      end
     end
   end
+
+  # if e_tag && e_tag.content
+  #   interval = e_tag.content
+  #   if f_tag && f_tag.content
+  #     interval = interval + ' ' + f_tag.content
+  #   end
+  # end
+
+  # if g_tag && g_tag.content
+  #   temporal_offset = g_tag.content
+  #   if h_tag && h_tag.content
+  #     temporal_offset = temporal_offset + ' ' + h_tag.content
+  #   end
+  #
+  #   if o_tag && o_tag.content
+  #     temporal_offset = temporal_offset + ' in ' + o_tag.content
+  #   end
+  # end
 -%>
 
 <% unless type.nil? && interval.nil? && temporal_offset.nil? %>
@@ -49,26 +82,77 @@
         </td>
       </tr>
   <% end %>
-  <% unless interval.nil? %>
-      <tr class="row">
-        <th>
-          <%= I18n.t(:display_interval) %>
-        </th>
-        <td>
-          <%= interval %>
-        </td>
-      </tr>
+
+  <%interval.each_with_index do |interval, interval_index| %>
+    <%temporal_offset.each_with_index  do |t_o, t_o_index| %>
+      <%if interval_index == t_o_index %>
+      <% unless interval.nil? %>
+          <tr class="row">
+            <th>
+              <%= I18n.t(:display_interval) %>
+            </th>
+            <td>
+              <%= interval %>
+            </td>
+          </tr>
+        <% end %>
+
+      <% unless t_o.nil? %>
+        <tr class="row">
+          <th>
+            <%= I18n.t(:display_temporal_offset) %>
+          </th>
+          <td>
+            <%= t_o %>
+          </td>
+        </tr>
+
+          <%end %>
+      <% end %>
+    <% end %>
   <% end %>
-  <% unless temporal_offset.nil? %>
-      <tr class="row">
-        <th>
-          <%= I18n.t(:display_temporal_offset) %>
-        </th>
-        <td>
-          <%= temporal_offset %>
-        </td>
-      </tr>
-  <% end %>
+
+
+<!-- Code that prints only first item of each MARC tag (previous design) -->
+
+  <%#interval.each_with_index do |interval, interval_index| %>
+    <%# unless interval.nil? %>
+<!--      <tr class="row">-->
+<!--        <th>-->
+          <%#= I18n.t(:display_interval) %>
+<!--        </th>-->
+<!--        <td>-->
+          <%#= interval %>
+<!--        </td>-->
+<!--      </tr>-->
+    <%# end %>
+  <%# end %>
+
+  <%#temporal_offset.each_with_index  do |t_o, t_o_index| %>
+    <%# unless t_o.nil? %>
+<!--      <tr class="row">-->
+<!--        <th>-->
+          <%#= I18n.t(:display_temporal_offset) %>
+<!--        </th>-->
+<!--        <td>-->
+          <%#= t_o %>
+<!--        </td>-->
+<!--      </tr>-->
+    <%# end %>
+  <%# end %>
+
+  <%# unless temporal_offset.nil? %>
+<!--      <tr class="row">-->
+<!--        <th>-->
+          <%#= I18n.t(:display_temporal_offset) %>
+<!--        </th>-->
+<!--        <td>-->
+          <%#= temporal_offset %>
+<!--        </td>-->
+
+<!--      </tr>-->
+  <%# end %>
+
 
   <% unless last_canonic_technique_for_source %>
     <tr class="row">
