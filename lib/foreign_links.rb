@@ -1,6 +1,6 @@
 module ForeignLinks
   
-  def can_source_to_source?(marc, object_id, object)
+  def can_source_to_source?(marc, object)
     # If one of the two objects is not a source just return true
     # The relation is managed by foreign_links
     return true if !object.is_a?(Source) || !self.is_a?(Source)
@@ -12,7 +12,7 @@ module ForeignLinks
     marc.each_by_tag("773") do |t|
       a = t.fetch_first_by_tag("w")
       if a && a.content
-        if a.content.to_i == object_id.to_i
+        if a.content.to_i == object.id
           # This source is referenced by a 773
           # skip it - it is updated in marc.update_77x
           #puts "Skip 773 relation".purple
@@ -25,7 +25,7 @@ module ForeignLinks
     marc.each_by_tag("775") do |t|
       a = t.fetch_first_by_tag("w")
       if a && a.content
-        if a.content.to_i == object_id.to_i
+        if a.content.to_i == object.id
           #puts "Manage 775 relation".green
           can_manage = true
         end
@@ -50,10 +50,10 @@ module ForeignLinks
     
     # Group all the foreign associations by class, get_all_foreign_associations will just return
     # a flat list of objects
-    marc.get_all_foreign_associations.each do |object_id, object|
+    marc.each_foreign_association do |object, tag, relator_code|
       # Manage source to source relations
-      next if !can_source_to_source?(marc, object_id, object)
-      
+      next if !can_source_to_source?(marc, object)
+    
       foreign_class = object.class.name.pluralize.underscore
       marc_foreign_objects[foreign_class] = [] if !marc_foreign_objects.include? (foreign_class)
       

@@ -212,6 +212,11 @@ class MarcConfig
     return false
   end
 
+  def get_relator_code(tag)
+    return false if !@tag_config[tag].include?(:relator_code)
+    return @tag_config[tag][:relator_code]
+  end
+
   def get_master(tag)
     @tag_config[tag][:master]
   end

@@ -7,7 +7,7 @@ class Marc
   include ApplicationHelper
   include Comparable
   
-  attr_reader :all_foreign_associations
+##  attr_reader :all_foreign_associations
   attr_accessor :root, :results, :suppress_scaffold_links_trigger
 
   LANGUAGES = {
@@ -31,7 +31,7 @@ class Marc
     @marc21 = Regexp.new('^[\=]([\d]{3,3})[\s]+(.*)$')
     @loaded = false
     @resolved = false
-    @all_foreign_associations = Hash.new
+##    @all_foreign_associations = Hash.new
     @tag = nil
     @source = source
     @results = Array.new
@@ -57,7 +57,7 @@ class Marc
   # After a Marc file is loaded an parsed, read all the foreign references
   # and link them. In case they do not exist they will be created (upon saving the manuscript). 
   def import(reindex = false, user = nil)
-    @all_foreign_associations = @root.import(false, reindex, user)
+    @root.import(false, reindex, user)
   end
   
   # Creates a Marc object from the <tt>source</tt> field in the Source record
@@ -235,6 +235,7 @@ class Marc
 		end
 	end
 
+=begin
   # Get all the foreign fields for this Marc object. Foreign fields are the one referred by ext_id ($0) in the marc record
   def get_all_foreign_associations
     if @all_foreign_associations.empty?
@@ -248,6 +249,19 @@ class Marc
       end
     end
     @all_foreign_associations
+  end
+=end
+
+  def each_foreign_association(&block)
+    for child in @root.children
+      if @marc_configuration.has_foreign_subfields(child.tag)
+        if master = child.get_master_foreign_subfield
+          master.set_foreign_object
+          #@all_foreign_associations[master.foreign_object.id] = master.foreign_object
+          yield master.foreign_object, child.tag, child.get_relator_code
+        end
+      end
+    end
   end
 
   def get_all_foreign_classes
