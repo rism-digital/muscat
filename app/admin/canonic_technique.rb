@@ -161,12 +161,14 @@ ActiveAdmin.register CanonicTechnique do
     f.object.relation_operator = "ex" unless f.object.persisted?
     f.inputs do
       f.input :canon_type, :label => (I18n.t :filter_canon_type), :as => :select,
-              :collection => ["unison canon", "double canon", "triple canon", "retrograde motion canon (cancrizans or crab canon)",
-                              "contrary motion canon (inversion canon)", "proportional canon", "mensuration canon",
-                              "continuous canon", "riddle canon", "puzzle canon", "enigmatic canon", "resolved canon",
-                              "invertible canon", "stacked canon", "octave transposition (parallel)", "canon per tonos",
-                              "interval canon", "precusor canon", "retrograde contrary motion canon", "verbal canon",
-                              "quadruple canon", "parallel canon", "perpetual canon", "permutation canon", "polymorphous canon"]
+              :collection => ["canon per tonos", "contrary motion canon (inversion canon)", "continuous canon",
+                              "double canon", "enigmatic canon", "interval canon", "invertible canon",
+                              "mensuration canon", "octave transposition (parallel)", "parallel canon",
+                              "permutation canon", "perpetual canon", "polymorphous canon", "precusor canon",
+                              "proportional canon", "puzzle canon", "quadruple canon",
+                              "retrograde contrary motion canon", "retrograde motion canon (cancrizans or crab canon)",
+                              "resolved canon", "riddle canon", "stacked canon", "triple canon", "unison canon",
+                              "verbal canon"]
       f.input :relation_numerator, :label => (I18n.t :filter_relation_numerator), :as => :number
       f.input :relation_operator, :label => (I18n.t :filter_relation_operator), :as => :select,
               :collection => ["ex", "to"]
