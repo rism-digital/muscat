@@ -77,6 +77,9 @@ class Source < ApplicationRecord
   has_many :referring_source_relations, class_name: "SourceRelation", foreign_key: "source_b_id"
   has_many :referring_sources, through: :referring_source_relations, source: :source_a
 
+  accepts_nested_attributes_for :source_relations
+  accepts_nested_attributes_for :referring_source_relations
+
   composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
   alias_attribute :id_for_fulltext, :id
   

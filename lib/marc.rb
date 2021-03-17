@@ -252,9 +252,10 @@ class Marc
   end
 =end
 
-  def each_foreign_association(&block)
+  def each_foreign_association(options = {}, &block)
     for child in @root.children
       if @marc_configuration.has_foreign_subfields(child.tag)
+        next if options.include?(:foreign_links_only) && options[:foreign_links_only] && @marc_configuration.use_foreign_links?(child.tag) == false
         if master = child.get_master_foreign_subfield
           master.set_foreign_object
           #@all_foreign_associations[master.foreign_object.id] = master.foreign_object

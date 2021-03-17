@@ -1,46 +1,5 @@
 module ForeignLinks
-  
-  def can_source_to_source?(marc, object)
-    # If one of the two objects is not a source just return true
-    # The relation is managed by foreign_links
-    return true if !object.is_a?(Source) || !self.is_a?(Source)
     
-    # Is this a 773 or 775?
-    # 773 is a special case
-    # and not managed in foreign_links
-    # NOTE the TAG VALUE 'w' is HARDCODED here
-    marc.each_by_tag("773") do |t|
-      a = t.fetch_first_by_tag("w")
-      if a && a.content
-        if a.content.to_i == object.id
-          # This source is referenced by a 773
-          # skip it - it is updated in marc.update_77x
-          #puts "Skip 773 relation".purple
-          return false
-        end
-      end
-    end
-
-    can_manage = false
-    marc.each_by_tag("775") do |t|
-      a = t.fetch_first_by_tag("w")
-      if a && a.content
-        if a.content.to_i == object.id
-          #puts "Manage 775 relation".green
-          can_manage = true
-        end
-      end
-    end
-    
-    if !can_manage
-      $stderr.puts "Error in source to source relation".red
-      $stderr.puts "#{self.id} relation with #{object_id.to_s}".yellow
-      $stderr.puts "No 773 or 775 containing that relation is found".red
-    end
-    
-    return can_manage #if it is found we can go on
-  end
-  
   def recreate_links(marc, allowed_relations)
     marc_foreign_objects = Hash.new
     reindex_items = Array.new
@@ -50,9 +9,8 @@ module ForeignLinks
     
     # Group all the foreign associations by class, get_all_foreign_associations will just return
     # a flat list of objects
-    marc.each_foreign_association do |object, tag, relator_code|
-      # Manage source to source relations
-      next if !can_source_to_source?(marc, object)
+    # foreign_links_only: true checks the Marc configuration, some tags (i.e. 773) are managed separately 
+    marc.each_foreign_association(foreign_links_only: true) do |object, tag, relator_code|
     
       foreign_class = object.class.name.pluralize.underscore
       marc_foreign_objects[foreign_class] = [] if !marc_foreign_objects.include? (foreign_class)
@@ -91,6 +49,7 @@ module ForeignLinks
       # Delete or add to the DB relation
       relation.delete(remove_items)
       new_items.each do |ni|
+        ap ni
        # begin
           relation << ni
 					#rescue => e

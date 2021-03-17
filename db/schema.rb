@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_090059) do
+ActiveRecord::Schema.define(version: 2021_03_17_115753) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -470,6 +470,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_090059) do
   create_table "sources_to_sources", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "source_a_id"
     t.integer "source_b_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["source_a_id"], name: "index_sources_to_sources_on_source_a_id"
     t.index ["source_b_id"], name: "index_sources_to_sources_on_source_b_id"
   end

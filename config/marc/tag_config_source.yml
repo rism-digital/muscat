@@ -698,6 +698,7 @@
     :master: w
     :indicator: "18"
     :occurrences: "?"
+    :foreign_links: false
     :fields:
     - - w
       - :occurrences: "1"

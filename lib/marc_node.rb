@@ -353,7 +353,7 @@ class MarcNode
   end
 
   def get_relator_code
-    subtag =  @marc_configuration.get_relator_code(self.tag)
+    subtag =  @marc_configuration.get_relator_code_tag(self.tag)
     if subtag
       val = fetch_first_by_tag(subtag)
       return val.content if val.content
