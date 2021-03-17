@@ -8,7 +8,7 @@ gem 'rails', '>= 5.1', '< 5.2'
 # http://stackoverflow.com/questions/32457657/rails-4-gemloaderror-specified-mysql2-for-database-adapter-but-the-gem-i
 # https://github.com/rails/rails/issues/21544
 gem 'mysql2'
-gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate', '~> 3.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'#, '~> 4.0.0'
@@ -38,12 +38,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development do
-  gem 'web-console', '~> 2.0'
-  gem 'rb-readline'
-  gem 'execjs'
-  gem 'therubyracer'
-end
+#group :development do
+#  gem 'web-console', '~> 2.0'
+	#gem 'rb-readline'
+#end
 
 # For generating both digest and no digest assets
 gem 'non-stupid-digest-assets'
