@@ -165,7 +165,7 @@ class MarcConfig
       end
     end
     
-    foreign_classes
+    foreign_classes.uniq
   end
 
   def has_links_to(tag)
