@@ -104,7 +104,7 @@ module ForeignLinks
     self.class.reflect_on_association(foreign_class).through_reflection?
   end
 
-  def get_through_through_table(foreign_class)
+  def get_through_table_name(foreign_class)
     self.class.reflect_on_association(foreign_class).through_reflection.klass
   end
 
@@ -146,7 +146,7 @@ module ForeignLinks
     new_items = []
 
     # Get the through_table
-    through_table = get_through_through_table(foreign_class)
+    through_table = get_through_table_name(foreign_class)
 
     # We need to manipulate directly the items in the Link table
     through_relation_items = self.send(through_table.name.pluralize.underscore)
