@@ -143,7 +143,6 @@ module ForeignLinks
   # So for example Source to Person uses source_id and person_id (singular form).
   def update_has_many_through(foreign_objects, foreign_class)
     reindex_items = []
-    new_items = []
 
     # Get the through_table
     through_table = get_through_table_name(foreign_class)
