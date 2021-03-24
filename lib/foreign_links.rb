@@ -36,11 +36,15 @@ module ForeignLinks
     end
 
     related_classes.each do |foreign_class|
-
-      if through_relation?(foreign_class)
-        reindex_items += update_has_many_through(marc_foreign_objects[foreign_class], foreign_class)
+      if marc_foreign_objects[foreign_class]
+        if through_relation?(foreign_class)
+          reindex_items += update_has_many_through(marc_foreign_objects[foreign_class], foreign_class)
+        else
+          reindex_items += update_has_many_belong_to_many_links(marc_foreign_objects[foreign_class], foreign_class)
+        end
       else
-        reindex_items += update_has_many_belong_to_many_links(marc_foreign_objects[foreign_class], foreign_class)
+        # If we have an empty relation set, make sure no relations of this type are still on the DB
+        purge_foreign_items(foreign_class)
       end
     end
     
@@ -100,7 +104,7 @@ module ForeignLinks
     self.class.reflect_on_association(foreign_class).through_reflection?
   end
 
-  def get_through_link_table(foreign_class)
+  def get_through_through_table(foreign_class)
     self.class.reflect_on_association(foreign_class).through_reflection.klass
   end
 
@@ -110,13 +114,8 @@ module ForeignLinks
     # The foreign class array holds the correct number of object
     # We want to delete or add only the difference betweend
     # what is in marc and what is in the DB relations
-    if foreign_objects
-      new_items = foreign_objects - relation.to_a
-      remove_items = relation.to_a - foreign_objects
-    else
-      new_items = []
-      remove_items = relation.to_a
-    end
+    new_items = foreign_objects - relation.to_a
+    remove_items = relation.to_a - foreign_objects
 
     reindex_items += new_items
     reindex_items += remove_items
@@ -130,51 +129,80 @@ module ForeignLinks
     return reindex_items
   end
 
+  # This function is able to infer the :through table name in a relation
+  # declared like this:
+  # has_many :source_relations, foreign_key: "source_a_id"
+  # has_many :sources, through: :source_relations, source: :source_b
+  # (which in this case is SourceRelation). As a convention, the link table
+  # MUST have tree additional columns: id, marc_tag, relator_code. All the
+  # relations managed by this class must have them. For the actual foreign keys
+  # there are two ways it is done. If the relation is to the same class
+  # i.e. Source to Source, the columns bust be source_a_id and source_b_id. For
+  # example if this is a Person to Person, it must be person_a_id and person_b_id.
+  # If the relation is between two different models, the RAILS naming style is used.
+  # So for example Source to Person uses source_id and person_id (singular form).
   def update_has_many_through(foreign_objects, foreign_class)
     reindex_items = []
     new_items = []
-    link_table = get_through_link_table(foreign_class)
 
-    if !foreign_objects
-      relation = self.send(foreign_class)
-      reindex_items = relation.to_a
-      relation.delete(relation.to_a)
-      return reindex_items
-    end
+    # Get the through_table
+    through_table = get_through_through_table(foreign_class)
 
-    relation_links = self.send(link_table.name.pluralize.underscore)
+    # We need to manipulate directly the items in the Link table
+    through_relation_items = self.send(through_table.name.pluralize.underscore)
 
     # Get the relations names
+    # First case: same model, hardcode _a and _b
     if self.class.name.pluralize.underscore == foreign_class
       link_name_from = foreign_class.singularize + "_a"
       link_name_to = foreign_class.singularize + "_b"
     else
+      # Second case, different model, rails-style singular form
       link_name_from = self.class.name.underscore
       link_name_to = foreign_class.singularize
     end
 
-    relation_links.each do |r|
+    # Go through all the relation items and delete the ones
+    # that have no correspondence to the ones in the MARC data
+    through_relation_items.each do |r|
       found = false
       foreign_objects.each do |obj|
         found = true if obj[:object].id == r[link_name_to + "_id"] && obj[:tag] == r.marc_tag && obj[:relator_code] == r.relator_code
       end
+
       if !found
         reindex_items << r
-        link_table.destroy(r.id) 
+        through_table.destroy(r.id) 
       end
     end
-
+  
+    # Now traverse the links in MARC and create just the missing ones
     foreign_objects.each do |obj_and_metadata|
-      #link_element = link_table.find_or_create_by(source_a: self, source_b: obj_and_metadata[:object], marc_tag: obj_and_metadata[:tag], relator_code: obj_and_metadata[:relator_code])
+      # We use fin_or_create_by with a block so the item is automatically cread
+      # The options are as hash so we can pass the calculated foreign keys
       options = {}
       options[link_name_from] = self
       options[link_name_to] = obj_and_metadata[:object]
       options[:marc_tag] = obj_and_metadata[:tag]
       options[:relator_code] = obj_and_metadata[:relator_code]
-      link_element = link_table.find_or_create_by(options)
-      reindex_items << obj_and_metadata[:object]
+      # This is eqivalent to this call:
+      #link_element = through_table.find_or_create_by(source_a: self, source_b: obj_and_metadata[:object], marc_tag: obj_and_metadata[:tag], relator_code: obj_and_metadata[:relator_code])
+
+
+      # The block is passed only to .create, so the code is executed only
+      # When the link is created. We do not want to rendex stuff if not necessary
+      link_element = through_table.find_or_create_by(options) do |new_object|
+        reindex_items << obj_and_metadata[:object]
+      end
     end
 
+    return reindex_items
+  end
+
+  def purge_foreign_items(foreign_class)
+    relation = self.send(foreign_class)
+    reindex_items = relation.to_a
+    relation.delete(relation.to_a)
     return reindex_items
   end
 
