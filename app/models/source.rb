@@ -55,7 +55,10 @@ class Source < ApplicationRecord
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
-  has_and_belongs_to_many :people, join_table: "sources_to_people"
+  #has_and_belongs_to_many :people, join_table: "sources_to_people"
+  has_many :source_person_relations
+  has_many :people, through: :source_person_relations
+
   has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
   has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
   has_and_belongs_to_many :publications, join_table: "sources_to_publications"
@@ -76,9 +79,6 @@ class Source < ApplicationRecord
   # And this is the one coming back, i.e. sources pointing to this one from 775
   has_many :referring_source_relations, class_name: "SourceRelation", foreign_key: "source_b_id"
   has_many :referring_sources, through: :referring_source_relations, source: :source_a
-
-  accepts_nested_attributes_for :source_relations
-  accepts_nested_attributes_for :referring_source_relations
 
   composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
   alias_attribute :id_for_fulltext, :id

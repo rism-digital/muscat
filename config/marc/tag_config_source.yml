@@ -617,6 +617,7 @@
       - :occurrences: "?"
   "700":
     :master: "0"
+    :relator_code: "4"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
