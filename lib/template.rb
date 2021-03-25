@@ -23,7 +23,9 @@ module Template
 
   # return difference between existing tags and tags of the new template
   def template_difference(rt)
-    return marc.all_tags.map{|e| e.tag}.uniq - template_tags(rt).uniq
+    new_marc = MarcSource.new
+    new_marc.load_source false
+    return new_marc.all_tags.map{|e| e.tag}.uniq - template_tags(rt).uniq
   end
 
   # creates a holding record if the new template has no 852
@@ -52,6 +54,7 @@ module Template
   end
 
   # Move a holding record back to the parent with 852
+  # TODO move other fields to parent if a holding has more than 852
   def move_holding_to_852
     holdings.each do |holding|
       new_852 = holding.marc.first_occurance("852").deep_copy
