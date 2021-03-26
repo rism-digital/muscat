@@ -1,8 +1,6 @@
 # Basic module to change the template of a record
 module Template
-
-  # should return a hash with all allowed changes between templates 
-  # TODO
+  # returning a list with all allowed changes between templates 
   def allowed_changes
     # MSR
     allowed = [2,4,5,6,7,8]
@@ -46,10 +44,14 @@ module Template
         new_marc.root.children.insert(new_marc.get_insert_position(tag.tag), tag)
       end
     end
+    # add 588 node
     new_marc.suppress_scaffold_links
     new_marc.import
     holding.marc = new_marc
     holding.source = self
+    n588 = MarcNode.new("source", "588", "", "##")
+    n588.add_at(MarcNode.new("source", "a", holding.marc.get_siglum_and_shelf_mark.join(" "), nil), 0)
+    marc.root.children.insert(marc.get_insert_position("588"), n588)
     holding.suppress_reindex
     begin
       holding.save
@@ -76,7 +78,8 @@ module Template
         end
       end
       holding.destroy
-     end
+    end
+    marc.each_by_tag("588") do |tag| tag.destroy_yourself end
   end
 
   # Restore tags from previous template in versions

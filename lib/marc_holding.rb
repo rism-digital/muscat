@@ -14,6 +14,19 @@ class MarcHolding < Marc
     title
   end
 
+  def get_siglum_and_shelf_mark
+    siglum = "" 
+    ms_no = ""
+    if node = first_occurance("852", "a")
+      siglum = node.foreign_object.siglum rescue siglum = ""
+      siglum = "" if !siglum
+    end
+    if node = first_occurance("852", "c")
+      ms_no = node.content if node.content
+    end
+    return [siglum.truncate(255), ms_no.truncate(255)]
+  end
+
   def description
     res = {}
     node = first_occurance("852")
