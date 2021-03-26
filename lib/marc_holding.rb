@@ -39,9 +39,13 @@ class MarcHolding < Marc
     res = []
     all_tags.each do |tag|
       next unless source_tags.include?(tag.tag)
-      if material_tags.include?(tag.tag)
-        tag.add(MarcNode.new(Holding, "8", ("%02d" % group), nil))
-        res << tag.deep_copy
+      if material_tags.include?(tag.tag) 
+        if !tag.fetch_first_by_tag('8')
+          tag.add(MarcNode.new(Holding, "8", ("%02d" % group), nil))
+          res << tag.deep_copy
+        else
+          res << tag.deep_copy
+        end
       else
         res << tag.deep_copy
       end
