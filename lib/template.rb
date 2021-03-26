@@ -3,8 +3,15 @@ module Template
 
   # should return a hash with all allowed changes between templates 
   # TODO
-  def allowed_templates
-    puts "should be in editor configration"
+  def allowed_changes
+    # MSR
+    allowed = [2,4,5,6,7,8]
+    if allowed.delete(self.record_type)
+      return allowed
+    else
+      return []
+    end
+    #"should be in editor configration"
   end
 
   # returns a list with all tags of a specific template
@@ -22,48 +29,55 @@ module Template
   end
 
   # return difference between existing tags and tags of the new template
-  def template_difference(rt)
-    new_marc = MarcSource.new
-    new_marc.load_source false
-    return new_marc.all_tags.map{|e| e.tag}.uniq - template_tags(rt).uniq
+  def template_difference(rt)    
+    tags = marc.all_tags.collect.to_a.uniq
+    return tags - template_tags(rt).uniq
   end
 
   # creates a holding record if the new template has no 852
-  def create_holding
-    marc.by_tags("852").each do |t|
-      holding = Holding.new
-      new_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
-      new_marc.load_source false
-      new_marc.each_by_tag("852") {|t2| t2.destroy_yourself}
-      new_852 = t.deep_copy
-      new_marc.root.children.insert(new_marc.get_insert_position("852"), new_852)
-      new_marc.suppress_scaffold_links
-      new_marc.import
-      holding.marc = new_marc
-      holding.source = self
-      holding.suppress_reindex
-      begin
-        holding.save
-      rescue => e
-        $stderr.puts"SplitHoldingRecords could not save holding record for #{source.id}"
-        $stderr.puts e.message.blue
-        next
-      end
-      t.destroy_yourself
+  def create_holding(group)
+    holding = Holding.new
+    new_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
+    new_marc.load_source false
+    marc.to_holding(group).each do |tag|
+      marc.each_by_tag(tag.tag) {|t| t.destroy_yourself}
+      new_marc.root.children.insert(new_marc.get_insert_position(tag.tag), tag)
+    end
+    new_marc.suppress_scaffold_links
+    new_marc.import
+    holding.marc = new_marc
+    holding.source = self
+    holding.suppress_reindex
+    begin
+      holding.save
+    rescue => e
+      $stderr.puts"SplitHoldingRecords could not save holding record for #{source.id}"
+      $stderr.puts e.message.blue
     end
   end
 
-  # Move a holding record back to the parent with 852
-  # TODO move other fields to parent if a holding has more than 852
-  def move_holding_to_852
+  def holdings_to_material
+    # get count of material
+    last_material_group = marc.all_values_for_tags_with_subtag("300", "8").sort.last.to_i
     holdings.each do |holding|
-      new_852 = holding.marc.first_occurance("852").deep_copy
-      marc.root.add_at(new_852, marc.get_insert_position("852") )
+      tags = holding.marc.to_source_tags(last_material_group + 1)
+      tags.each do |tag|
+        if tag.tag == "852"
+          if !marc.has_tag?("852")
+            marc.root.add_at(tag, marc.get_insert_position(tag.tag) )
+          else
+            next
+          end
+        else
+          marc.root.add_at(tag, marc.get_insert_position(tag.tag) )
+        end
+      end
       holding.destroy
-    end
+     end
   end
 
   # Restore tags from previous template in versions
+  # DEPRECATED
   def restore_tags(rt)
     restore_version = nil
     latest_versions = self.versions.order(created_at: :desc)
@@ -86,25 +100,19 @@ module Template
         end
       end
     end
-    if !marc.has_tag?("852") && holdings.first && template_tags(rt).include?("852")
-      move_holding_to_852
-    end
+    holdings_to_material
   end
 
   # Change source template to new record_type
   def change_template_to(rt)
     return if rt == self.record_type
+    return unless allowed_changes.include?(rt)
     self.paper_trail.save_with_version if versions.empty?
-    template_difference(rt).each do |e|
-      if e == '852'
-        create_holding
-      else
-        marc.by_tags(e).each do |t|
-          t.destroy_yourself
-        end
-      end
+    if holdings.empty? && MarcSource.is_edition?(rt)
+      create_holding(1)
+    elsif !holdings.empty? && !MarcSource.is_edition?(rt)
+      holdings_to_material
     end
-    restore_tags(rt)
     self.record_type = rt
     self.save
   end

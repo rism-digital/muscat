@@ -31,4 +31,22 @@ class MarcHolding < Marc
     end
   end
 
+  # returning a list with 
+  def to_source_tags(group)
+    config = MarcConfigCache.get_configuration("source")
+    source_tags = config.each_data_tag {|e| e}
+    material_tags = config.tags_with_subtag("8").collect.to_a
+    res = []
+    all_tags.each do |tag|
+      next unless source_tags.include?(tag.tag)
+      if material_tags.include?(tag.tag)
+        tag.add(MarcNode.new(Holding, "8", ("%02d" % group), nil))
+        res << tag.deep_copy
+      else
+        res << tag.deep_copy
+      end
+    end
+    return res
+  end
+
 end

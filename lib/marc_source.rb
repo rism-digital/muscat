@@ -574,4 +574,24 @@ class MarcSource < Marc
     end
   end
 
+  def to_holding(group)
+    res = []
+    group = ("%02d" % group)
+    config = MarcConfigCache.get_configuration("source")
+    #source_tags = config.each_data_tag {|e| e}
+    material_tags = config.tags_with_subtag("8").collect.to_a
+    tags = all_tags.collect.to_a
+    tags.each do |tag|
+      if material_tags.include?(tag.tag)
+        if tag.fetch_first_by_tag("8") && tag.fetch_first_by_tag("8").content == group
+          res << tag.deep_copy
+        end
+      end
+      if tag.tag == "852"
+        res << tag.deep_copy
+      end
+    end
+    return res
+  end
+
 end
