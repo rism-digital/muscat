@@ -40,8 +40,11 @@ module Template
     new_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
     new_marc.load_source false
     marc.to_holding(group).each do |tag|
-      marc.each_by_tag(tag.tag) {|t| t.destroy_yourself}
-      new_marc.root.children.insert(new_marc.get_insert_position(tag.tag), tag)
+      # FIXME should 593 really be mandatory with prints?
+      unless tag.tag == "593"
+        marc.each_by_tag(tag.tag) {|t| t.destroy_yourself}
+        new_marc.root.children.insert(new_marc.get_insert_position(tag.tag), tag)
+      end
     end
     new_marc.suppress_scaffold_links
     new_marc.import
