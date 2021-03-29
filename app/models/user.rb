@@ -44,7 +44,7 @@ class User < ApplicationRecord
           libs<<l
         end
       end
-      (libs & (self.workgroups.map {|ins| ins.get_institutions}).flatten).any?
+      ((libs + source.institutions) & (self.workgroups.map {|ins| ins.get_institutions}).flatten).any?
     else
       (source.institutions & (self.workgroups.map {|ins| ins.get_institutions}).flatten).any?
     end
