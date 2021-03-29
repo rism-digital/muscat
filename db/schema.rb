@@ -446,12 +446,11 @@ ActiveRecord::Schema.define(version: 2021_03_24_123135) do
     t.index ["source_id"], name: "index_sources_to_liturgical_feasts_on_source_id"
   end
 
-  create_table "sources_to_people", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "sources_to_people", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "person_id"
     t.integer "source_id"
     t.string "marc_tag"
     t.string "relator_code"
-    t.index ["id"], name: "id", unique: true
     t.index ["marc_tag", "relator_code", "source_id", "person_id"], name: "unique_records", unique: true
     t.index ["person_id"], name: "index_sources_to_people_on_person_id"
     t.index ["source_id"], name: "index_sources_to_people_on_source_id"
@@ -471,12 +470,11 @@ ActiveRecord::Schema.define(version: 2021_03_24_123135) do
     t.index ["source_id"], name: "index_sources_to_publications_on_source_id"
   end
 
-  create_table "sources_to_sources", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "sources_to_sources", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "source_a_id"
     t.integer "source_b_id"
     t.string "marc_tag"
     t.string "relator_code"
-    t.index ["id"], name: "id", unique: true
     t.index ["marc_tag", "relator_code", "source_a_id", "source_b_id"], name: "unique_records", unique: true
     t.index ["source_a_id"], name: "index_sources_to_sources_on_source_a_id"
     t.index ["source_b_id"], name: "index_sources_to_sources_on_source_b_id"
