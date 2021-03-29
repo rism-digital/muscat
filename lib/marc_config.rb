@@ -165,7 +165,7 @@ class MarcConfig
       end
     end
     
-    foreign_classes
+    foreign_classes.uniq
   end
 
   def has_links_to(tag)
@@ -210,6 +210,17 @@ class MarcConfig
     end
     return true if (occurrences == '*' or occurrences == '+') && !disable_multiple
     return false
+  end
+
+  def get_relator_code_tag(tag)
+    return nil if !@tag_config[tag].include?(:relator_code)
+    return @tag_config[tag][:relator_code]
+  end
+
+  def use_foreign_links?(tag)
+    # By default. all relationships go through foreign_links
+    return true if !@tag_config[tag].include?(:foreign_links)
+    return @tag_config[tag][:foreign_links]
   end
 
   def get_master(tag)

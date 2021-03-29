@@ -617,6 +617,7 @@
       - :occurrences: "?"
   "700":
     :master: "0"
+    :relator_code: "4"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
@@ -698,6 +699,7 @@
     :master: w
     :indicator: "18"
     :occurrences: "?"
+    :foreign_links: false
     :fields:
     - - w
       - :occurrences: "1"
@@ -727,21 +729,19 @@
         :zero_padding: "14"
         :browse_helper: application_helper_link_source_id
   "787":
-    :master: a
-    :indicator: "18"
+    :master: "w"
+    :relator_code: "i"
+    :indicator: "0#"
     :occurrences: "*"
     :fields:
-    - - g
-      - :occurrences: "*"
-        :no_browse: true
-    - - n
-      - :occurrences: "*"
-        :no_browse: true
-    - - s
+    - - i
       - :occurrences: "?"
-        :no_browse: true
+    - - n
+      - :occurrences: "?"
     - - w
-      - :occurrences: "*"
+      - :occurrences: "1"
+        :foreign_class: Source
+        :foreign_field: id
         :browse_helper: application_helper_link_source_id
   "852":
     :master: "x"

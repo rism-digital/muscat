@@ -38,7 +38,10 @@ class Person < ApplicationRecord
   has_many :works
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
+  has_many :source_person_relations, class_name: "SourcePersonRelation"
+  has_many :referring_sources, through: :source_person_relations, source: :source
+
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_people")
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_people")
   has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_people")

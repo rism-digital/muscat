@@ -915,13 +915,24 @@
     - - w
       - type: source
         editor_partial: subfield_secondary
-"787": 
+"787":
+  new_window: sources
   layout: 
     fields: 
-    - - g
+    - - i
+      - editor_partial: subfield_select_codes
+        codes_reference: "relator_codes"
     - - n
-    - - s
     - - w
+      - type: source
+        editor_partial: subfield_secondary
+  tag_params:
+      relator_codes: 
+      - ts1
+      - ts2
+      - ts3
+      - ts4
+      - ts5
 "852": 
   new_window: institutions
   layout: 

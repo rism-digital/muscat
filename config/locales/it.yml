@@ -168,8 +168,8 @@ it:
         one: "Gruppo"
         other: "Gruppi"
       holding:
-        one: "Informazione di possesso"
-        other: "Informazioni di possesso"
+        one: "Esemplare"
+        other: "Esemplari"
       institution:
         one: "Istituzione"
         other: "Istituzioni"
@@ -309,7 +309,7 @@ it:
   running: "In esecuzione"
   finished: "Completato"
   lib_siglum: "Sigla della biblioteca"
-  holding_records: "Informazioni di possesso"
+  holding_records: "Esemplari"
   holding_no_siglum: "Esemplare senza sigla di biblioteca"
   new_holding: "Nuovo Esemplare"
   new_holding_page: "Esemplare non salvato"

@@ -44,7 +44,6 @@ class Source < ApplicationRecord
 
   # include the override for group_values
   require 'solr_search.rb'
-#  include MarcIndex
   include ForeignLinks
   include MarcIndex
   include Template
@@ -55,7 +54,10 @@ class Source < ApplicationRecord
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
-  has_and_belongs_to_many :people, join_table: "sources_to_people"
+  #has_and_belongs_to_many :people, join_table: "sources_to_people"
+  has_many :source_person_relations
+  has_many :people, through: :source_person_relations
+
   has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
   has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
   has_and_belongs_to_many :publications, join_table: "sources_to_publications"
@@ -67,20 +69,15 @@ class Source < ApplicationRecord
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
-
-  # This is the forward link
-  has_and_belongs_to_many(:sources,
-    :class_name => "Source",
-    :foreign_key => "source_a_id",
-    :association_foreign_key => "source_b_id",
-    join_table: "sources_to_sources")
-
-  # This is the backward link
-  has_and_belongs_to_many(:referring_sources,
-    :class_name => "Source",
-    :foreign_key => "source_b_id",
-    :association_foreign_key => "source_a_id",
-    join_table: "sources_to_sources")
+  
+  # source-to-source many-to-many relation
+  # We need to switch to has_many to use an intermediate model
+  # This is the forward relationship
+  has_many :source_relations, foreign_key: "source_a_id"
+  has_many :sources, through: :source_relations, source: :source_b
+  # And this is the one coming back, i.e. sources pointing to this one from 775
+  has_many :referring_source_relations, class_name: "SourceRelation", foreign_key: "source_b_id"
+  has_many :referring_sources, through: :referring_source_relations, source: :source_a
 
   composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
   alias_attribute :id_for_fulltext, :id

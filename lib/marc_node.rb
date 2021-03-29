@@ -352,6 +352,15 @@ class MarcNode
     self.foreign_object = parent.foreign_object
   end
 
+  def get_relator_code
+    subtag =  @marc_configuration.get_relator_code_tag(self.tag)
+    if subtag
+      val = fetch_first_by_tag(subtag)
+      return val.content if val && val.content
+    end
+    return nil
+  end
+
   # Return the content of this tag.
   def content
     if @foreign_object and @foreign_host
