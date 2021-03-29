@@ -5,8 +5,11 @@ require 'resource_dsl_extensions.rb'
 module TemplateControllerActions
   
   def self.included(dsl)
-    dsl.batch_action :change_template, if: proc{ current_user.has_any_role?(:editor, :admin) }, form: {
-      target_template: MarcSource::RECORD_TYPES.to_a.select{|k,v| k if v!=0}.map{|k,v| ["#{I18n.t('record_types.' + k.to_s)}",v]}.sort,
+    dsl.batch_action :change_template, 
+      if: proc{ current_user.has_any_role?(:editor, :admin) }, 
+      form: {
+          target_template: 
+            Template.allowed,
     } do |ids, inputs|
         sources = Source.where(id: ids)
         target_template = inputs[:target_template].to_i
@@ -15,7 +18,7 @@ module TemplateControllerActions
         end
         redirect_to collection_path
     end
-     
+    
   end
   
   

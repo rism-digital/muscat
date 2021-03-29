@@ -1,15 +1,21 @@
-# Basic module to change the template of a record
+# Module to change the template of a record
 module Template
+
+  # returning a list with general accepted changes
+  def self.allowed
+    templates = MarcSource::RECORD_TYPES.to_a.select{|k,v| k if v!=0}.map{|k,v| ["#{I18n.t('record_types.' + k.to_s)}",v]}.sort
+    allowed_templates = [1,2,4,5,6,7,8]
+    return templates.filter{|e| allowed_templates.include?e[1]}
+  end
+
   # returning a list with all allowed changes between templates 
   def allowed_changes
-    # MSR
     allowed = [2,4,5,6,7,8]
     if allowed.delete(self.record_type)
       return allowed
     else
       return []
     end
-    #"should be in editor configration"
   end
 
   # returns a list with all tags of a specific template
@@ -22,17 +28,20 @@ module Template
   end
 
   # returns a list with differences between two templates
+  # TODO deprecated?
   def difference(rt1, rt2)
     return template_tags(rt1) - template_tags(rt2)
   end
 
   # return difference between existing tags and tags of the new template
+  # TODO use for checks
   def template_difference(rt)    
     tags = marc.all_tags.collect.to_a.uniq
     return tags - template_tags(rt).uniq
   end
 
   # creates a holding record if the new template has no 852
+  # TODO only if ther is 1 holding?
   def create_holding(group)
     holding = Holding.new
     new_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
@@ -61,6 +70,8 @@ module Template
     end
   end
 
+  # create holdings from material
+  # TODO only for material group 1?
   def holdings_to_material
     # get count of material
     last_material_group = marc.all_values_for_tags_with_subtag("300", "8").sort.last.to_i
