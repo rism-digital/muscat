@@ -639,7 +639,7 @@
     - - j
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
+      - :occurrences: "?"
         :browse_inline: true
     - - "8"
       - :occurrences: "?"
@@ -665,7 +665,7 @@
     - - g
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
