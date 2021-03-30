@@ -166,4 +166,10 @@ group :test do
   gem 'sqlite3'
 end
 
+# This gem is used in subfield_select_codes
+# for a crude sorting of unicode chars
+# See views_helper.rb for the actual call
+# in local_sort()
+gem 'sort_alphabetical'
+
 #gem 'i18n-tasks', '~> 0.9.31'
