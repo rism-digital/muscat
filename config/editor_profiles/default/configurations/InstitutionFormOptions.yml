@@ -59,7 +59,7 @@
         - "VIAF"
         - "WKP"
         - "MOC"
-        default: "ISIL"
+        default: "VIAF"
         editor_partial: subfield_select
       - cols: 2
     - - "6"
