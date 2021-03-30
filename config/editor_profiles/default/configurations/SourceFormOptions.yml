@@ -471,6 +471,9 @@
         - "18°"
         - "20°"
         - "24°"
+        - "obl. 2°"
+        - "obl. 4°"
+        - "obl. 8°"
         editor_partial: subfield_select
 "383": 
   layout: 
