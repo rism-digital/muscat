@@ -110,6 +110,7 @@ ActiveAdmin.register Institution do
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"110g_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
   filter :place_contains, :label => proc {I18n.t(:filter_place)}, :as => :string
+  filter :"667a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
 

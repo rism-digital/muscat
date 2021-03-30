@@ -288,6 +288,7 @@ it:
   std_title_contains: "Titolo standard contiene"
   composer_contains: "Compositore contiene"
   library_sigla_contains: "La sigla contiene"
+  internal_note_contains: "La nota interna contiene"
   is_in_folder: "È nella cartella"
   workgroups: "Gruppi"
   roles: "Ruoli"

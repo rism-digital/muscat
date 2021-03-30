@@ -197,9 +197,10 @@ ActiveAdmin.register Source do
   # see See lib/active_admin_record_type_filter.rb
   # The same as above, but when the lib siglum is forced and cannot be changes
   filter :lib_siglum_with_integer,
-  if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)},
-  :as => :lib_siglum
+    if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)}, :as => :lib_siglum
   
+  filter :"599a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
+
   # This filter is the "any field" one
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
@@ -218,7 +219,7 @@ ActiveAdmin.register Source do
              [[current_user.name, "wf_owner:#{current_user.id}"]]
            end
          }
-  
+
   filter :"593a_filter_with_integer", :label => proc{I18n.t(:filter_source_type)}, as: :select, 
   collection: proc{@source_types.sort.collect {|k| [k.camelize, "593a_filter:#{k}"]}}
   

@@ -299,6 +299,7 @@ class Person < ApplicationRecord
   ransacker :"100d_deathdate", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"043c", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"551a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
 	ransacker :"full_name_or_400a", proc{ |v| } do |parent| parent.table[:id] end
 
   def self.get_viaf(str)

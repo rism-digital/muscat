@@ -154,6 +154,7 @@ ActiveAdmin.register Person do
   filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
+  filter :"667a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
   filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc {I18n.t(:updated_at)}, :as => :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range

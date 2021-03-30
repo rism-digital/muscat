@@ -286,6 +286,7 @@ de:
   std_title_contains: "Einordnungstitel enthält"
   composer_contains: "Komponist enthält"
   library_sigla_contains: "Sigel enthält"
+  internal_note_contains: "Interner Hinweis enthält"
   is_in_folder: "Ist im Ordner"
   workgroups: "Benutzergruppen"
   roles: "Rollen"

@@ -286,6 +286,7 @@ en:
   std_title_contains: "Standardized title contains"
   composer_contains: "Composer contains"
   library_sigla_contains: "Siglum contains"
+  internal_note_contains: "Internal note contains"
   is_in_folder: "Is in folder"
   workgroups: "Workgroups"
   roles: "Roles"

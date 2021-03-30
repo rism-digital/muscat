@@ -283,6 +283,7 @@ pt:
   std_title_contains: "Título uniforme contém"
   composer_contains: "Compositor contém"
   library_sigla_contains: "Sigla contém"
+  internal_note_contains: "Nota interna contém"
   is_in_folder: "Está na pasta"
   workgroups: "Grupos de trabalho"
   roles: "Papéis"

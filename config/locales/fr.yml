@@ -286,6 +286,7 @@ fr:
   std_title_contains: "Le titre standardisé contient"
   composer_contains: "Le compositeur contient"
   library_sigla_contains: "La cote contient"
+  internal_note_contains: "La note interne contient"
   is_in_folder: "Est dans le dossier"
   workgroups: "Groupes"
   roles: "Rôles"
