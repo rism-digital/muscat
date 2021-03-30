@@ -207,10 +207,14 @@
   tag_params:
     codes:
       - "Archive" 
+      - "Bookseller"
+      - "Copyist"
       - "Documentation center"
       - "Institution"
       - "Library"
       - "Museum"
+      - "Papermaker"
+      - "Performer"
       - "Publisher"
       - "Other"
       - "Printer"

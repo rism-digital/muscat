@@ -644,8 +644,7 @@ pt:
     other_shelfmark: Outro código
     other_standard_identifier: Outro identificador padronizado
     other_variant: ''
-    paper_maker: ''
-    papermaker: Fabricante de papel [ppm]
+    papermaker: Fabricante de papel
     parallel_form: Forma paralela do nome
     parent_record: Registro principal
     parts_held: Partes existentes

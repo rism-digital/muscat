@@ -198,6 +198,10 @@
   label: records.online_finding_aids
 Archive:
   label: records.archive
+Bookseller:
+  label: records.bookseller
+Copyist:
+  label: records.copyist
 Documentation center:
   label: records.documentation_center
 H:
@@ -210,6 +214,10 @@ Museum:
   label: records.museum
 Other:
   label: records.other
+Papermaker:
+  label: records.papermaker
+Performer:
+  label: records.performer
 Printer:
   label: records.printer
 Publisher:
@@ -483,7 +491,7 @@ pat:
 pbl:
   label: records.publisher
 ppm:
-  label: records.paper_maker
+  label: records.papermaker
 prd:
   label: records.production_personnel
 prf:

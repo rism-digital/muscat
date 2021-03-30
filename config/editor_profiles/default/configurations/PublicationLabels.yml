@@ -445,7 +445,7 @@ performance:
 physical_description:
   label: records.physical_description
 ppm:
-  label: records.paper_maker
+  label: records.papermaker
 prd:
   label: records.production_personnel
 prf:
