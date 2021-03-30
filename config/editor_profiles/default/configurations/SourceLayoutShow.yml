@@ -23,6 +23,7 @@ groups:
     - "246"
     - "657"
     - "730"
+    - "597"
     - "930"
     - "001"
     all_tag_templates: 
@@ -70,7 +71,6 @@ groups:
     - "710"
     - "500"
     - "563"
-    - "597"
     - "856"
     subfield_grouping: 8
     all_tag_templates: 
