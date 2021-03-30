@@ -853,6 +853,28 @@ class Marc
     return out.sort.uniq
   end
   
+  def marc_index_774_field(conf_tag, conf_properties, marc, model)
+    out = []
+
+    marc.each_by_tag("774") do |marctag|
+      id_tag = marctag.fetch_first_by_tag("w")
+      next if !id_tag || !id_tag.content
+
+      id = id_tag.content
+
+      code = marctag.fetch_first_by_tag("4")
+      if code && code.content && code.content == "holding"
+        hodl = marctag.fetch_first_by_tag("a")
+        holding = model.get_collection_holding(id.to_i)
+        out << holding.source.id.to_s if holding && holding.source
+      else
+        out << id
+      end
+    end
+    
+    return out
+  end
+
   # Get the birth date from MARC 100$d
   def marc_helper_get_birthdate(value)
     if value.include?('-')
