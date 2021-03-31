@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_123135) do
+ActiveRecord::Schema.define(version: 2021_03_31_084618) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -116,8 +116,8 @@ ActiveRecord::Schema.define(version: 2021_03_24_123135) do
     t.string "lib_siglum"
     t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
-    t.string "wf_audit", limit: 16, default: "unapproved"
-    t.string "wf_stage", limit: 16, default: "published"
+    t.integer "wf_audit"
+    t.integer "wf_stage"
     t.string "wf_notes"
     t.integer "wf_owner", default: 0
     t.integer "wf_version", default: 0
