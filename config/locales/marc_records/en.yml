@@ -28,7 +28,6 @@ en:
     url: URL
     using_muscat: Using Muscat
     validity: Validity
-    verified: Verified
     when_to_input_new_record: When to input a new record (printed music)
     workflow: Workflow
     'yes': 'Yes'
@@ -405,6 +404,7 @@ en:
     event_organizer: Event organizer
     event_place: Event place
     excerpts: Excerpts
+    exemplars: Exemplars
     extent: Extent
     extent_parts: Extent (parts)
     external_resource: External resource
@@ -647,7 +647,6 @@ en:
     other_shelfmark: Other shelfmark
     other_standard_identifier: Other standard identifier
     other_variant: Other variant
-    paper_maker: Paper maker
     papermaker: Papermaker
     parallel_form: Paralell form of name
     parent_record: Parent record
@@ -801,6 +800,7 @@ en:
     translator: Translator
     transparency: Transparency
     type: Type
+    type_designer: Type designer
     type_institution: Type of institution
     type_name_variant: Type of name variant
     type_of_jurisdiction: Type of jurisdiction
@@ -813,6 +813,7 @@ en:
     variant_ms_title: Variant title on manuscript
     variant_source_title: Variant title on source
     variations: Variations
+    verified: Verified
     vocalist: Vocalist
     voice_instrument: Voice/instrument
     volume_year_page: Volume, year, page

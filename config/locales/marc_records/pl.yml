@@ -28,7 +28,6 @@ pl:
     url: URL
     using_muscat: Korzystanie z Muscatu
     validity: Ważność
-    verified: Zweryfikowane
     when_to_input_new_record: Kiedy wprowadzić nowy rekord (dla druków muzycznych)
     workflow: Przepływ pracy
     'yes': Tak
@@ -405,6 +404,7 @@ pl:
     event_organizer: Organizator wydarzenia
     event_place: Miejsce wydarzenia
     excerpts: Wyjątki
+    exemplars: Egzemplarzu
     extent: Zakres
     extent_parts: Objętność
     external_resource: Zasób zewnętrzny
@@ -800,6 +800,7 @@ pl:
     translator: Tłumacz
     transparency: Przezrocze
     type: Rodzaj
+    type_designer: Typograf
     type_institution: Rodzaj instytucji
     type_name_variant: Typ alternatywnej nazwy osoby
     type_of_jurisdiction: Rodzaj jurysdykcji
@@ -812,6 +813,7 @@ pl:
     variant_ms_title: Alternatywny tytuł w rękopisie
     variant_source_title: Alternatywny tytuł w źródle
     variations: Wariacje
+    verified: Zweryfikowane
     vocalist: Wokalista
     voice_instrument: Głos/instrument
     volume_year_page: Wolumen, rok, strona

@@ -28,7 +28,6 @@ it:
     url: URL
     using_muscat: Guida a Muscat
     validity: Validità
-    verified: Verificata
     when_to_input_new_record: Quando inserire una nuova scheda (edizioni musicali
       a stampa)
     workflow: Workflow
@@ -406,6 +405,7 @@ it:
     event_organizer: Organizzatore
     event_place: Luogo dell’evento
     excerpts: Estratti
+    exemplars: Esemplari
     extent: Estensione
     extent_parts: Estensione (parti)
     external_resource: Localizzazione e accesso elettronico
@@ -801,6 +801,7 @@ it:
     translator: Traduttore
     transparency: Trasparente
     type: Tipo
+    type_designer: Fonditore
     type_institution: Tipo di istituzione
     type_name_variant: Descrizione della variante del nome
     type_of_jurisdiction: Tipo di giurisdizione
@@ -813,6 +814,7 @@ it:
     variant_ms_title: Varianti del titolo diplomatico
     variant_source_title: Varianti del titolo diplomatico
     variations: Variazioni
+    verified: Verificata
     vocalist: Cantante
     voice_instrument: Voce/strumento
     volume_year_page: Volume, anno, pagina

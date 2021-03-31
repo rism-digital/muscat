@@ -29,7 +29,6 @@ fr:
     url: URL
     using_muscat: Aide de Muscat
     validity: Validité
-    verified: Vérifié
     when_to_input_new_record: Quand saisir une nouvelle notice (musique imprimée)
     workflow: Flux de travail
     'yes': Oui
@@ -406,6 +405,7 @@ fr:
     event_organizer: Organisateur
     event_place: Lieu de l'événement
     excerpts: Extraits
+    exemplars: Exemplaires
     extent: Extension
     extent_parts: Extension (parties)
     external_resource: Ressource électronique externe
@@ -801,6 +801,7 @@ fr:
     translator: Traducteur
     transparency: Transparent
     type: Type
+    type_designer: Créateur de caractères
     type_institution: Type d'institution
     type_name_variant: Description de la variante du nom
     type_of_jurisdiction: Type de juridiction
@@ -813,6 +814,7 @@ fr:
     variant_ms_title: Variante du titre diplomatique
     variant_source_title: Variante du titre diplomatique
     variations: Variations
+    verified: Vérifié
     vocalist: Vocaliste
     voice_instrument: Voix/instrument
     volume_year_page: Volume, année, page

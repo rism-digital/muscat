@@ -28,7 +28,6 @@ de:
     url: URL
     using_muscat: Editor Hilfe
     validity: Gültigkeit
-    verified: Gesichert
     when_to_input_new_record: Wann soll einen neuen Eintrag erstellt werden (Musikdrucke)
     workflow: Workflow
     'yes': Ja
@@ -405,6 +404,7 @@ de:
     event_organizer: Veranstalter
     event_place: Veranstaltungsort
     excerpts: Ausschnitte
+    exemplars: Exemplars
     extent: Umfang
     extent_parts: Umfang Stimmenmaterial
     external_resource: Elektronische Lokalisierung und Zugriff
@@ -800,6 +800,7 @@ de:
     translator: Übersetzer
     transparency: Transparentfolie
     type: Typ
+    type_designer: Schriftentwerfer
     type_institution: Typ der Körperschaft
     type_name_variant: Art der Namensvariante
     type_of_jurisdiction: Art der Gerichtsbarkeit
@@ -812,6 +813,7 @@ de:
     variant_ms_title: Weiterer diplomatischer Titel
     variant_source_title: Weiterer diplomatischer Titel
     variations: Variationen
+    verified: Gesichert
     vocalist: Sänger
     voice_instrument: Besetzung
     volume_year_page: Jahrgang, Seite

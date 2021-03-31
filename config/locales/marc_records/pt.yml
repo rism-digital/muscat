@@ -28,7 +28,6 @@ pt:
     url: ''
     using_muscat: Catalogando fontes
     validity: Validade
-    verified: Verificada
     when_to_input_new_record: Quando criar um novo registro (música impressa)
     workflow: ''
     'yes': Sim
@@ -405,6 +404,7 @@ pt:
     event_organizer: ''
     event_place: Local do evento [evp]
     excerpts: Excertos
+    exemplars: Materiais
     extent: ''
     extent_parts: Extensão das partes
     external_resource: Recurso externo
@@ -797,6 +797,7 @@ pt:
     translator: Tradutor [trl]
     transparency: Transparência
     type: Tipo
+    type_designer: Tipógrafo
     type_institution: Tipo de instituição
     type_name_variant: ''
     type_of_jurisdiction: Tipo de jurisdição
@@ -809,6 +810,7 @@ pt:
     variant_ms_title: Variante de título na fonte
     variant_source_title: Título variante na fonte
     variations: ''
+    verified: Verificada
     vocalist: ''
     voice_instrument: Voz/instrumento
     volume_year_page: ''
