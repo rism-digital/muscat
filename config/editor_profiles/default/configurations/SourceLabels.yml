@@ -1206,6 +1206,8 @@ standard:
   label: records.standard
 trl:
   label: records.translator
+tyd:
+  label: records.type_designer
 und:
   label: general.undetermined
 ungrouped:

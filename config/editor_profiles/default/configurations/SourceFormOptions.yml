@@ -758,6 +758,7 @@
       - cph
       - lse
       - ppm
+      - tyd
 "710":
   new_window: institutions
   new_window_field: name_equals
@@ -800,6 +801,7 @@
       - lse
       - ppm
       - asn
+      - tyd
 "730":
   new_window: standard_titles
   new_window_field: title_equals
