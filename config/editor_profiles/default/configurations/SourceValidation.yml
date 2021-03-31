@@ -73,11 +73,13 @@ client:
       "0": mandatory
   "700": 
     tags:
+      "0": required
       "4":
         required_if:
           "700": "0"
   "710": 
     tags:
+      "0": required
       "4":
         required_if:
           "710": "0"
