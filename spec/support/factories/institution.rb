@@ -11,7 +11,6 @@ FactoryBot.define do
     email        { nil }
     wf_audit     { "full" }
     wf_stage     { "published" }
-    wf_notes     { nil }
     wf_owner     { 1 }
     place        { "Berlin" }
     places { [association(:place)] }

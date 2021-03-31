@@ -13,7 +13,6 @@ FactoryBot.define do
     people { [FactoryBot.create(:person)] }
     #people { [association(:person)]  }
     #referring_sources { [association(:manuscript_source)]  }
-    wf_notes { nil }
     marc_source {  <<STRING
 =001  1536
 =041  0\#$ager

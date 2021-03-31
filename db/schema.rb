@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_084618) do
+ActiveRecord::Schema.define(version: 2021_03_31_130648) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -79,9 +79,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.string "description"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.integer "lock_version", default: 0, null: false
     t.string "attachment_file_name"
     t.string "attachment_content_type"
@@ -118,9 +116,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.integer "lock_version", default: 0, null: false
     t.integer "wf_audit"
     t.integer "wf_stage"
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "collection_id"
@@ -166,9 +162,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.string "email"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "place"
@@ -235,9 +229,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.text "notes"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "lock_version", default: 0, null: false
@@ -263,9 +255,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.text "marc_source"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "lock_version", default: 0, null: false
@@ -308,9 +298,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.text "notes"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "lock_version", default: 0, null: false
@@ -334,9 +322,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.string "pages"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.integer "src_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -417,9 +403,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.text "marc_source"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "lock_version", default: 0, null: false
@@ -507,9 +491,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.text "notes"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "lock_version", default: 0, null: false
@@ -526,9 +508,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.text "notes"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "lock_version", default: 0, null: false
@@ -608,9 +588,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.string "incipit_human"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -630,9 +608,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_084618) do
     t.text "notes"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
-    t.string "wf_notes"
     t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text "marc_source"
