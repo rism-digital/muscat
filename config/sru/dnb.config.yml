@@ -1,0 +1,5 @@
+server: "https://devel.dnb.de/sru_ru/"
+
+extract:
+  - 100
+  - 700

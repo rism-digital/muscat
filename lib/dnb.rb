@@ -3,16 +3,24 @@
 module DNB
 
   class Marc
-    attr_accessor :marc, :response_body
+    attr_accessor :marc, :response_body, :config, :muscat, :dnb
+    NAMESPACE = {'xmlns:marc' => "http://www.loc.gov/MARC21/slim"}
 
     def initialize(record)
       @marc = record.marc
       @response_body = nil
+      @config = YAML.load_file("#{Rails.root}/config/sru/dnb.config.yml")
+      @muscat = Nokogiri::XML(@marc.to_xml,nil, 'UTF-8')
+      @dnb = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') { |xml|
+           xml['marc'].record(NAMESPACE) do
+           end
+      }.doc
+ 
     end
 
     def post
       request_body = _envelope(:create)
-      uri = URI.parse('https://devel.dnb.de/sru_ru/')
+      uri = URI.parse(config["server"])
       post = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'text/xml')
       server = Net::HTTP.new(uri.host, uri.port)
       server.use_ssl = true
@@ -23,13 +31,56 @@ module DNB
       }
     end
 
+    def _datafield(tag)
+      df = Nokogiri::XML::Node.new "datafield", dnb
+      df['tag'], df['ind1'], df['ind2'] = tag, ' ', ' '
+      return df
+    end
+
+    def _subfield(code, content)      
+      sf = Nokogiri::XML::Node.new "subfield", dnb
+      sf['code'] = code
+      sf.content = content
+      return sf
+    end
+
+    def muscat_to_dnb
+      leader = Nokogiri::XML::Node.new "leader", dnb
+      leader.content = "00000nz  a2200000oc 4500"
+      cf = Nokogiri::XML::Node.new "controlfield", dnb
+      cf['tag'] = '008'
+      cf.content = "160812n||aznnnaabn           | ana    |c"
+      dnb.root << leader
+      dnb.root << cf
+
+      df = _datafield('075') 
+      [_subfield('b', 'wim'), _subfield('2', 'gndspec')].each {|sf| df << sf}
+      dnb.root << df
+      
+      df = _datafield('075') 
+      [_subfield('b', 'u'), _subfield('2', 'gndgen')].each {|sf| df << sf}
+      dnb.root << df
+      
+      df = _datafield('079') 
+      [_subfield('a', 'g'), _subfield('q', 'm'), _subfield('q', 'f')].each {|sf| df << sf}
+      dnb.root << df
+
+      config['extract'].each do |tag|
+        muscat.xpath("//marc:datafield[@tag='#{tag}']", NAMESPACE).each do |df|
+          dnb.root << df
+        end
+      end
+      dnb.xpath("//marc:subfield[@code='0']").remove
+      return dnb
+    end
+
     def put
 
     end
 
     def _envelope(action)
       if action == :create
-        data = _prepare_post
+        data = muscat_to_dnb
       else
         data = ""
       end
@@ -43,7 +94,7 @@ module DNB
             <srw:recordPacking>xml</srw:recordPacking>
             <srw:recordSchema>MARC21-xml</srw:recordSchema>
               <srw:recordData>
-                #{data}
+      #{dnb.root.to_s}
               </srw:recordData>
             </srw:record>
             <srw:extraRequestData>
