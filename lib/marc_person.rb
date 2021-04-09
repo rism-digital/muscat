@@ -76,6 +76,16 @@ class MarcPerson < Marc
     
     [gender, birth_place, source, comments]
   end
+ 
+  def gnd_ids
+    ids = []
+    each_by_tag("024") do |t|
+      if t.fetch_first_by_tag("2").content == "DNB"
+        ids << t.fetch_first_by_tag("a").content
+      end
+    end
+    return ids
+  end
   
   def to_external(updated_at = nil, versions = nil, holdings = false)
     # cataloguing agency

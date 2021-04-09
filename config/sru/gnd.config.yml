@@ -1,5 +1,10 @@
 server: "https://devel.dnb.de/sru_ru/"
 
-extract:
+gnd:
   - 100
+  - 380
+  - 400
   - 700
+  - 667
+  - 670
+
