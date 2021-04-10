@@ -4,14 +4,14 @@ class MarcPerson < Marc
   end
 
   def get_full_name_and_dates
-    composer = ""
-    composer_d = ""
+    full_name = ""
+    full_name_d = ""
     dates = nil
 
     if node = first_occurance("100", "a")
       if node.content
-        composer = node.content.truncate(128)
-        composer_d = node.content.downcase.truncate(128)
+        full_name = node.content.truncate(128)
+        full_name_d = node.content.downcase.truncate(128)
       end
     end
     
@@ -21,7 +21,7 @@ class MarcPerson < Marc
       end
     end
     
-    [composer, composer_d, dates]
+    [full_name, full_name_d, dates]
   end
   
   def get_alternate_names_and_dates
