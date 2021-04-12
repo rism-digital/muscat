@@ -1,4 +1,5 @@
 server: "https://devel.dnb.de/sru_ru/"
+search_server: "https://services.dnb.de/sru/"
 
 gnd:
   - 100
