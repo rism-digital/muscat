@@ -28,7 +28,7 @@ ActiveAdmin.register Publication do
     before_create do |item|
       item.user = current_user
     end
-    autocomplete :publication, [:name, :author, :description], :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
+    autocomplete :publication, [:short_name, :author, :description], :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
     
 
     def check_model_errors(object)
@@ -151,7 +151,7 @@ ActiveAdmin.register Publication do
     column (I18n.t :filter_wf_stage) {|cat| status_tag(cat.wf_stage,
       label: I18n.t('status_codes.' + (cat.wf_stage != nil ? cat.wf_stage : ""), locale: :en))}  
     column (I18n.t :filter_id), :id    
-    column (I18n.t :filter_title_short), :name
+    column (I18n.t :filter_title_short), :short_name
     column (I18n.t :filter_title), :description
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|

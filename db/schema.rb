@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_130648) do
+ActiveRecord::Schema.define(version: 2021_04_13_114601) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -312,7 +312,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_130648) do
   end
 
   create_table "publications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
+    t.string "short_name"
     t.string "author"
     t.string "description"
     t.string "revue_title"
@@ -328,7 +328,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_130648) do
     t.datetime "updated_at"
     t.text "marc_source", limit: 16777215
     t.integer "lock_version", default: 0, null: false
-    t.index ["name"], name: "index_publications_on_name"
+    t.index ["short_name"], name: "index_publications_on_short_name"
     t.index ["wf_stage"], name: "index_publications_on_wf_stage"
   end
 
@@ -400,7 +400,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_130648) do
     t.integer "date_from"
     t.integer "date_to"
     t.string "lib_siglum"
-    t.text "marc_source"
+    t.text "marc_source", limit: 16777215
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
     t.integer "wf_owner", default: 0

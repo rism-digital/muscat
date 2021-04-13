@@ -133,8 +133,8 @@ ActiveAdmin.register_page "Dashboard" do
               column (I18n.t :filter_wf_stage) {|publication| status_tag(publication.wf_stage,
                 label: I18n.t('status_codes.' + (publication.wf_stage != nil ? publication.wf_stage : ""), locale: :en))}  
               column (I18n.t :filter_id) {|publication| link_to(publication.id, admin_publication_path(publication)) }
-              column (I18n.t :filter_name), :name do |publication| 
-                publication.name.truncate(30) if publication.name
+              column (I18n.t :filter_title_short), :name do |publication| 
+                publication.short_name.truncate(30) if publication.short_name
               end
               column (I18n.t :filter_description), :description do |publication| 
                 publication.description.truncate(60) if publication.description

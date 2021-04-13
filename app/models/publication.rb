@@ -72,6 +72,7 @@ class Publication < ApplicationRecord
   attr_accessor :suppress_scaffold_marc_trigger
 
   alias_attribute :id_for_fulltext, :id
+  alias_attribute :name, :short_name
 
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
@@ -111,9 +112,9 @@ class Publication < ApplicationRecord
     #new_marc.root.children.insert(new_marc.get_insert_position("100"), new_100)
 
     # save name
-    if self.name
+    if self.short_name
       node = MarcNode.new("publication", "210", "", "##")
-      node.add_at(MarcNode.new("publication", "a", self.name, nil), 0)
+      node.add_at(MarcNode.new("publication", "a", self.short_name, nil), 0)
 
       new_marc.root.children.insert(new_marc.get_insert_position("210"), node)
     end
@@ -170,7 +171,7 @@ class Publication < ApplicationRecord
     sunspot_dsl.string :name_order do
       name
     end
-    sunspot_dsl.text :name
+    sunspot_dsl.text :short_name
 
     sunspot_dsl.string :author_order do
       author
@@ -237,7 +238,7 @@ class Publication < ApplicationRecord
 
     # std_title
     self.place, self.date = marc.get_place_and_date
-    self.name = marc.get_name
+    self.short_name = marc.get_name
     self.description = marc.get_description
     self.author = marc.get_author
     self.revue_title = marc.get_revue_title
@@ -272,7 +273,7 @@ class Publication < ApplicationRecord
 
     infos = [aut, dat, des].join(", ")
 
-    "#{name}: #{infos}"
+    "#{self.short_name}: #{infos}"
   end
 
   def get_items
