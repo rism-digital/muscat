@@ -28,13 +28,13 @@ groups:
       "400": people/show_indicator
   relations:
     all_tags:
-    - "500"
+    - "700"
     - "510"
     - "550" 
     - "551"
     - "667"
     all_tag_templates:
-      "500": people/show_related_person
+      "700": people/show_related_person
       "510": marc_show/show_institution
       "551": people/show_subfield_concat
   references:

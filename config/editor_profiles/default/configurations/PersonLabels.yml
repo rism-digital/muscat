@@ -68,13 +68,6 @@
     j:
       label: records.type_name_variant
   label: records.name_variant
-'500':
-  fields:
-    a:
-      label: records.related_personal_name
-    y:
-      label: records.type_relationship
-  label: records.related_personal_name
 '510':
   fields:
     a:
@@ -116,6 +109,13 @@
     a:
       label: records.general_note_personal
   label: records.general_note_personal
+'700':
+  fields:
+    a:
+      label: records.related_personal_name
+    y:
+      label: records.type_relationship
+  label: records.related_personal_name
 '856':
   fields:
     u:

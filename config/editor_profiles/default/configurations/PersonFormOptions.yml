@@ -222,31 +222,6 @@
       - "ub"
       - "z"
     columns: 4
-"500": 
-  allow_new: true
-  new_window: people
-  layout: 
-    fields: 
-    - - "a"
-      - type: person
-        editor_partial: subfield_secondary
-      - cols: 4
-    - - "i"
-      - cols: 2
-        editor_partial: subfield_select_codes
-        select_label: "Relationship"
-    columns: 4
-  tag_params:
-    codes:
-      - brother of
-      - child of
-      - mother of
-      - confused with
-      - sister of
-      - married to
-      - father of
-      - related to
-      - other
 "510": 
   allow_new: true
   new_window: institutions
@@ -327,6 +302,31 @@
     - - a
       - cols: 2
     columns: 4
+"700": 
+  allow_new: true
+  new_window: people
+  layout: 
+    fields: 
+    - - "a"
+      - type: person
+        editor_partial: subfield_secondary
+      - cols: 4
+    - - "i"
+      - cols: 2
+        editor_partial: subfield_select_codes
+        select_label: "Relationship"
+    columns: 4
+  tag_params:
+    codes:
+      - brother of
+      - child of
+      - mother of
+      - confused with
+      - sister of
+      - married to
+      - father of
+      - related to
+      - other
 "856": 
   layout: 
     fields: 
