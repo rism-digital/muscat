@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_13_114601) do
+ActiveRecord::Schema.define(version: 2021_04_19_114225) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -35,13 +35,6 @@ ActiveRecord::Schema.define(version: 2021_04_13_114601) do
     t.datetime "updated_at"
     t.string "document_type"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
-  end
-
-  create_table "catalogues_catalogues", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "catalogue_a_id"
-    t.integer "catalogue_b_id"
-    t.index ["catalogue_a_id"], name: "index_catalogues_catalogues_on_catalogue_a_id"
-    t.index ["catalogue_b_id"], name: "index_catalogues_catalogues_on_catalogue_b_id"
   end
 
   create_table "delayed_jobs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
