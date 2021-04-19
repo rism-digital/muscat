@@ -1,0 +1,32 @@
+#! /bin/bash
+
+### BEGIN INIT INFO
+# Provides:          muscat
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start Muscat Jobs Service
+# Description:       Start Muscat Jobs Service
+### END INIT INFO
+
+BIN_DIR=`dirname "$(readlink -f "$0")"`
+MUSCAT_DIR=`dirname $BIN_DIR`
+
+case "$1" in
+  start)
+    echo "Starting Muscat Jobs Service..."
+    sudo -u www-data bash -c "cd $MUSCAT_DIR && RAILS_ENV=production bin/delayed_job start --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave --pool=export"
+    ;;
+  stop)
+    echo "Stopping Muscat Jobs Service..."
+    sudo -u www-data bash -c "cd $MUSCAT_DIR && RAILS_ENV=production bin/delayed_job stop --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave --pool=export"
+    sleep 2
+    ;;
+  *)
+    echo "Usage: /etc/init.d/muscat_jobs {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0

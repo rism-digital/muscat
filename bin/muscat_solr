@@ -6,8 +6,8 @@
 # Required-Stop:     $local_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Start Muscat Services
-# Description:       Start Muscat Services
+# Short-Description: Start Muscat Solr Server
+# Description:       Start Muscat Solr Server
 ### END INIT INFO
 
 BIN_DIR=`dirname "$(readlink -f "$0")"`
@@ -15,18 +15,16 @@ MUSCAT_DIR=`dirname $BIN_DIR`
 
 case "$1" in
   start)
-    echo "Starting Muscat Services..."
-    sudo -u www-data bash -c "cd $MUSCAT_DIR && RAILS_ENV=production bin/delayed_job start --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave --pool=export"
+    echo "Starting Muscat Solr Server..."
     sudo -u www-data bash -c "cd $MUSCAT_DIR && bundle exec rake RAILS_ENV=production sunspot:solr:start"
     ;;
   stop)
-    echo "Stopping Muscat Services..."
-    sudo -u www-data bash -c "cd $MUSCAT_DIR && RAILS_ENV=production bin/delayed_job stop --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave --pool=export"
+    echo "Stopping Muscat Solr Server..."
     sudo -u www-data bash -c "cd $MUSCAT_DIR && bundle exec rake RAILS_ENV=production sunspot:solr:stop"
     sleep 2
     ;;
   *)
-    echo "Usage: /etc/init.d/muscat_services {start|stop}"
+    echo "Usage: /etc/init.d/muscat_solr {start|stop}"
     exit 1
     ;;
 esac
