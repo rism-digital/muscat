@@ -117,6 +117,22 @@
     - - j
       - :occurrences: "?"
 # This is a linked field
+  "500":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Person
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
+    - - "i"
+      - :occurrences: "?"
   "510":
     :master: "0"
     :indicator: "1#"
@@ -221,22 +237,6 @@
     - - i
       - :occurrences: "?"
     - - "5"
-      - :occurrences: "?"
-  "700":
-    :master: "0"
-    :indicator: "1#"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Person
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: full_name
-    - - "i"
       - :occurrences: "?"
   "710":
     :master: "0"
