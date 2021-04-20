@@ -101,6 +101,8 @@ module ForeignLinks
   end
 
   def through_relation?(foreign_class)
+    # Skip "belong to" relations
+    return false if !self.class.reflect_on_association(foreign_class)
     self.class.reflect_on_association(foreign_class).through_reflection?
   end
 
