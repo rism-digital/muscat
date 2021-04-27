@@ -124,7 +124,7 @@ module RISM
   COOKIE_PRIVACY_I18N = true
 
   # Allow anonymous users (not signed in) to browse and search the site
-  ANONYMOUS_NAVIGATION = true
+  ANONYMOUS_NAVIGATION = false
 end
 
 
