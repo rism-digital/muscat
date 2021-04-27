@@ -122,6 +122,9 @@ module RISM
 
   # Append locale to privacy information page link?
   COOKIE_PRIVACY_I18N = true
+
+  # Allow anonymous users (not signed in) to browse and search the site
+  ANONYMOUS_NAVIGATION = true
 end
 
 

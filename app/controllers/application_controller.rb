@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def auth_user
-    redirect_to "/admin/login" unless (request.path == "/admin/login" or user_signed_in?)
+    redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login")
   end
   
   def test_version_warning
