@@ -17,8 +17,6 @@
   gg_tag = tag.fetch_all_by_tag(:g)
   hh_tag = tag.fetch_all_by_tag(:h)
   oo_tag = tag.fetch_all_by_tag(:o)
-
-
   type = nil
   if a_tag && a_tag.content
     type = a_tag.content
@@ -29,46 +27,95 @@
 
   interval = []
   temporal_offset = []
-  ee_tag.each_with_index do | tag_e, e_index|
+  if ee_tag.length == 0 && ff_tag.length == 0
     ff_tag.each_with_index do | tag_f, f_index|
-     if e_index == f_index
-       e_and_f_tag = tag_e.content + ' ' + tag_f.content
-       puts "Each val"
-       puts tag_e.content + ' ' + tag_f.content
-       interval.push(e_and_f_tag)
+      e_and_f_tag = ' ' + ' ' + ' '
+      interval.push(e_and_f_tag)
+    end
+  end
+  if ee_tag.length == 0 && ff_tag.length == 1
+    ff_tag.each_with_index do | tag_f, f_index|
+        e_and_f_tag = ' ' + ' ' + tag_f.content
+        interval.push(e_and_f_tag)
+      end
+   end
+  if ee_tag.length == 1 && ff_tag.length == 0
+    ee_tag.each_with_index do | tag_e, e_index|
+      e_and_f_tag = ' ' + ' ' + tag_e.content
+      interval.push(e_and_f_tag)
+    end
+  end
+
+   ee_tag.each_with_index do | tag_e, e_index|
+     ff_tag.each_with_index do | tag_f, f_index|
+      if e_index == f_index
+        e_and_f_tag = tag_e.content + ' ' + tag_f.content
+        interval.push(e_and_f_tag)
+      end
      end
+   end
 
-    end
+  if gg_tag.length == 0 && hh_tag.length == 0 && oo_tag.length ==0
+      g_tag_and_h_tag_and_o_tag = ' ' + ' ' + ' ' + ' in ' + ' '
+      temporal_offset.push(g_tag_and_h_tag_and_o_tag)
+  elsif gg_tag.length == 1 && hh_tag.length == 0 && oo_tag.length ==0
+    tag_g = tag.fetch_first_by_tag(:g)
+    g_tag_and_h_tag_and_o_tag = tag_g.content + ' ' + ' ' + ' in ' + ' '
+    temporal_offset.push(g_tag_and_h_tag_and_o_tag)
+  elsif gg_tag.length == 0 && hh_tag.length == 1 && oo_tag.length ==0
+    tag_h = tag.fetch_first_by_tag(:h)
+    g_tag_and_h_tag_and_o_tag = ' ' + ' ' + tag_h.content + ' in ' + ' '
+    temporal_offset.push(g_tag_and_h_tag_and_o_tag)
+  elsif gg_tag.length == 0 && hh_tag.length == 0 && oo_tag.length ==1
+    tag_o = tag.fetch_first_by_tag(:o)
+    g_tag_and_h_tag_and_o_tag = ' ' + ' ' + ' ' + ' in ' + tag_o.content
+    temporal_offset.push(g_tag_and_h_tag_and_o_tag)
+  elsif gg_tag.length == 1 && hh_tag.length == 1 && oo_tag.length ==0
+    g_tag = tag.fetch_first_by_tag(:g)
+    h_tag = tag.fetch_first_by_tag(:h)
+    g_tag_and_h_tag_and_o_tag = g_tag.content + ' ' + h_tag.content + ' in ' + ' '
+    temporal_offset.push(g_tag_and_h_tag_and_o_tag)
+  elsif gg_tag.length == 1 && hh_tag.length == 0 && oo_tag.length ==1
+    tag_g = tag.fetch_first_by_tag(:g)
+    tag_o = tag.fetch_first_by_tag(:o)
+    g_tag_and_h_tag_and_o_tag = tag_g.content + ' ' + ' ' + ' in ' + tag_o.content
+    temporal_offset.push(g_tag_and_h_tag_and_o_tag)
+  elsif gg_tag.length == 0 && hh_tag.length == 1 && oo_tag.length ==1
+    tag_h = tag.fetch_first_by_tag(:h)
+    tag_o = tag.fetch_first_by_tag(:o)
+    g_tag_and_h_tag_and_o_tag = ' ' + ' ' + tag_h.content + ' in ' + tag_o.content
+    temporal_offset.push(g_tag_and_h_tag_and_o_tag)
   end
+  if gg_tag.length > 0 && hh_tag.length > 0 && oo_tag.length >0
+   gg_tag.each_with_index do |tag_g, g_index|
+     hh_tag.each_with_index do |tag_h, h_index|
+       oo_tag.each_with_index do |tag_o, o_index|
+         if g_index == h_index and g_index == o_index
+             g_tag_and_h_tag_and_o_tag = tag_g.content + ' ' + tag_h.content + ' in ' + tag_o.content
+             temporal_offset.push(g_tag_and_h_tag_and_o_tag)
+       end
+       end
+     end
+     end
+   end
+  # Printing single tags on the view - code used before updating to multiple tags
+   # if e_tag && e_tag.content
+   #   interval = e_tag.content
+   #   if f_tag && f_tag.content
+   #     interval = interval + ' ' + f_tag.content
+   #   end
+   # end
 
-  gg_tag.each_with_index do |tag_g, g_index|
-    hh_tag.each_with_index do |tag_h, h_index|
-      oo_tag.each_with_index do |tag_o, o_index|
-        if g_index == h_index and g_index == o_index
-            g_tag_and_h_tag_and_o_tag = tag_g.content + ' ' + tag_h.content + ' in ' + tag_o.content
-            temporal_offset.push(g_tag_and_h_tag_and_o_tag)
-      end
-      end
-    end
-  end
-
-  # if e_tag && e_tag.content
-  #   interval = e_tag.content
-  #   if f_tag && f_tag.content
-  #     interval = interval + ' ' + f_tag.content
-  #   end
-  # end
-
-  # if g_tag && g_tag.content
-  #   temporal_offset = g_tag.content
-  #   if h_tag && h_tag.content
-  #     temporal_offset = temporal_offset + ' ' + h_tag.content
-  #   end
-  #
-  #   if o_tag && o_tag.content
-  #     temporal_offset = temporal_offset + ' in ' + o_tag.content
-  #   end
-  # end
+   # if g_tag && g_tag.content
+   #   temporal_offset = g_tag.content
+   #   if h_tag && h_tag.content
+   #     temporal_offset = temporal_offset + ' ' + h_tag.content
+   #   end
+   #
+   #   if o_tag && o_tag.content
+   #     temporal_offset = temporal_offset + ' in ' + o_tag.content
+   #   end
+   # end
 -%>
 
 <% unless type.nil? && interval.nil? && temporal_offset.nil? %>

@@ -132,6 +132,7 @@ ActiveAdmin.register CanonicTechnique do
       row (I18n.t :filter_relation_numerator) { |r| r.relation_numerator }
       row (I18n.t :filter_relation_operator) { |r| r.relation_operator }
       row (I18n.t :filter_relation_denominator) { |r| r.relation_denominator }
+      # Leaving the fields here as comments as there might be potential updates to the following code.
       # row (I18n.t :filter_interval) { |r| r.interval }
       # row (I18n.t :filter_interval_direction) { |r| r.interval_direction }
       # row (I18n.t :filter_temporal_offset) { |r| r.temporal_offset }
@@ -173,6 +174,7 @@ ActiveAdmin.register CanonicTechnique do
       f.input :relation_operator, :label => (I18n.t :filter_relation_operator), :as => :select,
               :collection => ["ex", "to"]
       f.input :relation_denominator, :label => (I18n.t :filter_relation_denominator), :as => :number
+      # Leaving the fields here as comments as there might be potential updates to the following code.
       # f.input :interval, :label => (I18n.t :filter_interval), :as => :select,
       #         :collection => ["unison", "2nd", "3rd", "4th", "5th", "6th", "7th", "8ve", "9th", "10th", "11th", "12th",
       #                         "13th", "14th", "15th", "8ve and 4th", "8ve and 5th", "other"]
