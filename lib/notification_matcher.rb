@@ -14,13 +14,17 @@ class NotificationMatcher
 
       patterns.each do |pattern|
 
-        if @object.respond_to?(field_name)
-          object_value = @object.send(field_name)
-          if object_value
-            @matches << "#{field_name} #{pattern}" if wildcard_match(object_value, pattern)
+        if field_name == "lib_siglum" && @object.respond_to?(:siglum_matches?)
+          @matches << "#{field_name} #{pattern}" if @object.siglum_matches?(pattern.gsub("*", ""))
+        else
+          if @object.respond_to?(field_name)
+            object_value = @object.send(field_name)
+            if object_value
+              @matches << "#{field_name} #{pattern}" if wildcard_match(object_value, pattern)
+            end
           end
         end
-        
+
       end
       
     end

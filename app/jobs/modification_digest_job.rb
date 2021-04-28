@@ -7,7 +7,7 @@ class ModificationDigestJob < ApplicationJob
   end
   
   def perform(*args)
-    results_by_criteria = {}
+    
     ## For compatibility between crono and delayed job
     set_period(args[0]) if !args.empty?
     
@@ -15,6 +15,7 @@ class ModificationDigestJob < ApplicationJob
       # get the last modified sources
       
       results = {}
+      results_by_criteria = {}
       
       Source.where(("updated_at" + "> ?"), @days.days.ago).order("updated_at DESC").each do |s|
       
