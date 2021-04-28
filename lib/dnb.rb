@@ -8,8 +8,32 @@ module DNB
     }
     CONFIG  = YAML.load_file("#{Rails.root}/config/sru/gnd.config.yml")
 
+    attr_accessor :gnd, :muscat, :interface
+    def initialize(record)
+      @muscat = Muscat.new(record)
+      @gnd = GND.new()
+      @gnd.ids = record.marc.gnd_ids
+      if @gnd.ids
+        @gnd.query
+      end
+      @interface = Interface.new
+    end
+
+    # create a new gnd record if there is no gnd.id, else update the existing record
+    def synchronize
+      # TODO add the gnd.id to muscat.marc 024
+      unless gnd.ids
+        gnd.xml = muscat.to_gnd.root
+        interface.post(:create, gnd.xml)
+        gnd.ids << interface.status.split("PPN: ").last
+      else
+        gnd.xml = muscat.to_gnd(gnd.ids.first, gnd.timestamp).root
+        interface.post(:replace, gnd.xml, gnd.ids.first)
+      end
+    end
+
     class GND
-      attr_accessor :xml, :ids
+      attr_accessor :xml, :ids, :timestamp
       def initialize
         @xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') { |xml|
            xml['marc'].record(NAMESPACE) do
@@ -17,10 +41,11 @@ module DNB
           }.doc
         @xml.root['type']="Authority"
         @ids = nil
+        @timestamp = nil
       end
 
       def query
-        return nil unless ids
+        return nil if ids.empty?
         id = ids.first
         uri = URI.parse("#{CONFIG["search_server"]}authorities?version=1.1&operation=searchRetrieve&query=NID=#{id}&recordSchema=MARC21-xml")
         get = Net::HTTP::Get.new(uri)
@@ -29,6 +54,7 @@ module DNB
         server.start {|http|
           http.request(get) {|response|
             @xml = Nokogiri::XML(response.body).xpath("//marc:record", NAMESPACE)
+            @timestamp = @xml.xpath("marc:controlfield[@tag='005']", NAMESPACE).text
             puts response.body
           }
         }
@@ -44,7 +70,7 @@ module DNB
 
       # create a gnd marc from muscat xml
       # TODO gnd drops 100$m and 100$n
-      def to_gnd        
+      def to_gnd(id=nil, timestamp=nil)        
         gnd = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') { |xml|
            xml['marc'].record(NAMESPACE) do
            end
@@ -54,10 +80,22 @@ module DNB
  
         leader = Nokogiri::XML::Node.new "leader", gnd
         leader.content = "00000nz  a2200000oc 4500"
+        gnd.root << leader
+
+        if id && timestamp
+          c1 = Nokogiri::XML::Node.new "controlfield", gnd
+          c1['tag'] = '001'
+          c1.content = "#{id}"
+          gnd.root << c1
+          c5 =  Nokogiri::XML::Node.new "controlfield", gnd
+          c5['tag'] = '005'
+          c5.content = "#{timestamp}"
+          gnd.root << c5
+        end
+
         cf = Nokogiri::XML::Node.new "controlfield", gnd
         cf['tag'] = '008'
         cf.content = "160812n||aznnnaabn           | ana    |c"
-        gnd.root << leader
         gnd.root << cf
         # adding some required administration fields
         df = node.datafield('042') 
@@ -100,9 +138,10 @@ module DNB
         n.xpath("marc:subfield[@code='t']", NAMESPACE).remove
         gnd.root << n
         # prettifing
-        @gnd = Nokogiri.XML(gnd.to_s) do |config|
+        gnd = Nokogiri.XML(gnd.to_s) do |config|
           config.default_xml.noblanks
         end
+        return gnd
       end
     end
 
@@ -114,8 +153,8 @@ module DNB
       end
 
       # post xml to gnd
-      def post(xml)
-        request_body = _envelope(:create, xml)
+      def post(action, xml, id=nil)
+        request_body = _envelope(action, xml.to_s, id)
         uri = URI.parse(CONFIG["server"])
         post = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'text/xml')
         server = Net::HTTP.new(uri.host, uri.port)
@@ -125,16 +164,19 @@ module DNB
             puts response.body
             @response_body = Nokogiri::XML(response.body)
             @status = @response_body.xpath("//diag:message", NAMESPACE).map{|e| e.content}.join("; ") rescue nil
+            puts response_body
+            #gnd.xml =  @response_body.xpath("//record")
           }
         }
       end
 
-      def _envelope(action,data)
+      def _envelope(action,data, id=nil)
         xml = <<-TEXT
       <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
         <soap:Body>
           <ucp:updateRequest xmlns:ucp="http://www.loc.gov/zing/srw/update/" xmlns:srw="http://www.loc.gov/zing/srw/"  xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/">
             <srw:version>1.0</srw:version>
+            #{"<ucp:recordIdentifier>gnd:gnd" + id + "</ucp:recordIdentifier>" if id}
             <ucp:action>info:srw/action/1/#{action}</ucp:action>
             <srw:record>
             <srw:recordPacking>xml</srw:recordPacking>
@@ -155,18 +197,7 @@ module DNB
       end
     end
 
-    attr_accessor :gnd, :muscat, :interface
-    def initialize(record)
-      @muscat = Muscat.new(record)
-      @gnd = GND.new()
-      @gnd.ids = record.marc.gnd_ids
-      if @gnd.ids
-        @gnd.query
-      end
-      @interface = Interface.new
-    end
-
-  
+ 
     class XMLTools
       attr_accessor :node
       def initialize(node)
