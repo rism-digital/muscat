@@ -28,6 +28,7 @@ module DNB
         server.use_ssl = true
         server.start {|http|
           http.request(get) {|response|
+            @xml = Nokogiri::XML(response.body).xpath("//marc:record", NAMESPACE)
             puts response.body
           }
         }
@@ -159,6 +160,9 @@ module DNB
       @muscat = Muscat.new(record)
       @gnd = GND.new()
       @gnd.ids = record.marc.gnd_ids
+      if @gnd.ids
+        @gnd.query
+      end
       @interface = Interface.new
     end
 
