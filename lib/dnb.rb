@@ -12,8 +12,8 @@ module DNB
     def initialize(record)
       @muscat = Muscat.new(record)
       @gnd = GND.new()
-      @gnd.ids = record.marc.gnd_ids
-      if @gnd.ids
+      @gnd.id = record.marc.gnd_ids.empty? ? nil : record.marc.gnd_ids.first
+      if @gnd.id
         @gnd.query
       end
       @interface = Interface.new
@@ -21,32 +21,38 @@ module DNB
 
     # create a new gnd record if there is no gnd.id, else update the existing record
     def synchronize
-      # TODO add the gnd.id to muscat.marc 024
-      unless gnd.ids
+      unless gnd.id
         gnd.xml = muscat.to_gnd.root
         interface.post(:create, gnd.xml)
-        gnd.ids << interface.status.split("PPN: ").last
+        gnd.id = interface.status.split("PPN: ").last
+        marc = muscat.record.marc
+        new_024 = MarcNode.new(Work, "024", "", "##")
+        ip = marc.get_insert_position("024")
+        new_024.add(MarcNode.new(Work, "a", gnd.id, nil))
+        new_024.add(MarcNode.new(Work, "2", "DNB", nil))
+        marc.root.children.insert(ip, new_024)
+        muscat.record.marc = marc
+        muscat.record.save
       else
-        gnd.xml = muscat.to_gnd(gnd.ids.first, gnd.timestamp).root
-        interface.post(:replace, gnd.xml, gnd.ids.first)
+        gnd.xml = muscat.to_gnd(gnd.id, gnd.timestamp).root
+        interface.post(:replace, gnd.xml, gnd.id)
       end
     end
 
     class GND
-      attr_accessor :xml, :ids, :timestamp
+      attr_accessor :xml, :id, :timestamp
       def initialize
         @xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') { |xml|
            xml['marc'].record(NAMESPACE) do
            end
           }.doc
         @xml.root['type']="Authority"
-        @ids = nil
+        @id = nil
         @timestamp = nil
       end
 
       def query
-        return nil if ids.empty?
-        id = ids.first
+        return nil unless id
         uri = URI.parse("#{CONFIG["search_server"]}authorities?version=1.1&operation=searchRetrieve&query=NID=#{id}&recordSchema=MARC21-xml")
         get = Net::HTTP::Get.new(uri)
         server = Net::HTTP.new(uri.host, uri.port)
@@ -59,13 +65,21 @@ module DNB
           }
         }
       end
+
+      def to_s
+        xml.to_s if id
+      end
     end
 
     class Muscat
       attr_accessor :record, :xml
       def initialize(record)
         @record = record
-        @xml = Nokogiri::XML(@record.marc.to_xml,nil, 'UTF-8')
+        xml = Nokogiri::XML(@record.marc.to_xml,nil, 'UTF-8')
+        @xml = Nokogiri.XML(xml.to_s) do |config|
+          config.default_xml.noblanks
+        end
+ 
       end
 
       # create a gnd marc from muscat xml
@@ -97,6 +111,11 @@ module DNB
         cf['tag'] = '008'
         cf.content = "160812n||aznnnaabn           | ana    |c"
         gnd.root << cf
+
+        df = node.datafield('035') 
+        [node.subfield('a', "(DE-633)#{record.id}")].each {|sf| df << sf}
+        gnd.root << df
+
         # adding some required administration fields
         df = node.datafield('042') 
         [node.subfield('a', 'gnd3')].each {|sf| df << sf}
@@ -143,6 +162,11 @@ module DNB
         end
         return gnd
       end
+      
+      def to_s
+        xml.to_s
+      end
+ 
     end
 
     class Interface
@@ -155,6 +179,7 @@ module DNB
       # post xml to gnd
       def post(action, xml, id=nil)
         request_body = _envelope(action, xml.to_s, id)
+        puts request_body
         uri = URI.parse(CONFIG["server"])
         post = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'text/xml')
         server = Net::HTTP.new(uri.host, uri.port)
@@ -164,25 +189,25 @@ module DNB
             puts response.body
             @response_body = Nokogiri::XML(response.body)
             @status = @response_body.xpath("//diag:message", NAMESPACE).map{|e| e.content}.join("; ") rescue nil
-            puts response_body
             #gnd.xml =  @response_body.xpath("//record")
           }
         }
       end
 
       def _envelope(action,data, id=nil)
+        recordId = id ? "<ucp:recordIdentifier>gnd:gnd#{id}</ucp:recordIdentifier>" : ""
         xml = <<-TEXT
       <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
         <soap:Body>
           <ucp:updateRequest xmlns:ucp="http://www.loc.gov/zing/srw/update/" xmlns:srw="http://www.loc.gov/zing/srw/"  xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/">
             <srw:version>1.0</srw:version>
-            #{"<ucp:recordIdentifier>gnd:gnd" + id + "</ucp:recordIdentifier>" if id}
+            #{recordId}
             <ucp:action>info:srw/action/1/#{action}</ucp:action>
             <srw:record>
             <srw:recordPacking>xml</srw:recordPacking>
             <srw:recordSchema>MARC21-xml</srw:recordSchema>
               <srw:recordData>
-        #{data}
+              #{data}
               </srw:recordData>
             </srw:record>
             <srw:extraRequestData>

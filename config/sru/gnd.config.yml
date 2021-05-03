@@ -2,10 +2,11 @@ server: "https://devel.dnb.de/sru_ru/"
 search_server: "https://services.dnb.de/sru/"
 
 gnd:
+  - "031"
   - 100
   - 380
   - 400
   - 700
   - 667
-  - 670
+  #- 670
 
