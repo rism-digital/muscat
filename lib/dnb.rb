@@ -1,7 +1,7 @@
 # This module provides an Interface to the GND for marc records 
-
 module DNB
 
+  # Top class to manage gnd <-> muscat communiction with three nested classes and one helper class
   class Service
     NAMESPACE = {'xmlns:marc' => "http://www.loc.gov/MARC21/slim", 'xmlns:soap' => "http://schemas.xmlsoap.org/soap/envelope/",
                  'xmlns:ucp'=> "http://www.loc.gov/zing/srw/update/", 'xmlns:diag'=> "http://www.loc.gov/zing/srw/diagnostic/"
@@ -9,6 +9,8 @@ module DNB
     CONFIG  = YAML.load_file("#{Rails.root}/config/sru/gnd.config.yml")
 
     attr_accessor :gnd, :muscat, :interface
+
+    # Building the muscat xml, the gnd xml if linked and the interface
     def initialize(record)
       @muscat = Muscat.new(record)
       @gnd = GND.new()
@@ -26,6 +28,7 @@ module DNB
         interface.post(:create, gnd.xml)
         gnd.id = interface.status.split("PPN: ").last
         marc = muscat.record.marc
+        # Adding the gnd id to the muscat record
         new_024 = MarcNode.new(Work, "024", "", "##")
         ip = marc.get_insert_position("024")
         new_024.add(MarcNode.new(Work, "a", gnd.id, nil))
@@ -39,6 +42,7 @@ module DNB
       end
     end
 
+    # Container for the GND xml
     class GND
       attr_accessor :xml, :id, :timestamp
       def initialize
@@ -71,6 +75,7 @@ module DNB
       end
     end
 
+    # Container for the Muscat xml
     class Muscat
       attr_accessor :record, :xml
       def initialize(record)
@@ -194,6 +199,7 @@ module DNB
         }
       end
 
+      # Private method to wrap the xml into the envelope
       def _envelope(action,data, id=nil)
         recordId = id ? "<ucp:recordIdentifier>gnd:gnd#{id}</ucp:recordIdentifier>" : ""
         xml = <<-TEXT
@@ -222,7 +228,7 @@ module DNB
       end
     end
 
- 
+    # Helper class for easy building xml nodes 
     class XMLTools
       attr_accessor :node
       def initialize(node)
