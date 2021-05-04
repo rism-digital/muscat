@@ -17,14 +17,18 @@ class ModificationDigestJob < ApplicationJob
       results = {}
       results_by_criteria = {}
       
-      Source.where(("updated_at" + "> ?"), @days.days.ago).order("updated_at DESC").each do |s|
-      
-        matcher = NotificationMatcher.new(s, user)
-        if matcher.matches?
-          results[s] = matcher.get_matches
+      [Source, Work].each do |model|
+        model.where(("updated_at" + "> ?"), @days.days.ago).order("updated_at DESC").each do |s|
+        
+          matcher = NotificationMatcher.new(s, user)
+          if matcher.matches?
+            results[s] = matcher.get_matches
+          end
         end
       end
       
+ap results
+
       if !results.empty?
         # Flip them from source -> criteria to criterias-> source
         results.map { |source_id, criterias| criterias.map { |criteria| results_by_criteria.include?(criteria) ? results_by_criteria[criteria] << source_id : results_by_criteria[criteria] = [source_id]} }

@@ -10,7 +10,20 @@ class NotificationMatcher
     user_notifications = @user.get_notifications
     return false if !user_notifications
 
-    user_notifications.each do |field_name, patterns|
+    user_notifications.each do |composite_field_name, patterns|
+
+      # If the field name includes a -, threat it as
+      # model-field, such as source-lib_siglum or
+      # work-title
+      fields = composite_field_name.split("-")
+      if fields.count == 2
+        model = fields[0]
+        field_name = fields[1]
+
+        next if @object.class.to_s.downcase != model.downcase
+      else
+        field_name = composite_field_name
+      end
 
       patterns.each do |pattern|
 
