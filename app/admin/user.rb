@@ -7,7 +7,6 @@ ActiveAdmin.register User do
   config.clear_action_items!
 	
 
-=begin #515 postponed to 3.7
 	controller do
 	  def update
 	    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
@@ -17,7 +16,6 @@ ActiveAdmin.register User do
 	    super
 	  end
 	end
-=end
 
   collection_action :list, method: :post do
     params.permit!
@@ -103,24 +101,22 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs I18n.t(:user_details) do
-
-      #515 postponed to 3.7
-      if can? :manage, User
+      if can? :update, User
         f.input :name
         f.input :email
-      elsif can? :update, User
-        f.input :name, :input_html => {:disabled => true}
-        f.input :email, :input_html => {:disabled => true}
+      #elsif can? :update, User
+      #  f.input :name, :input_html => {:disabled => true}
+      #  f.input :email, :input_html => {:disabled => true}
       end
       
       if can? :update, User
+        f.input :password
+        f.input :password_confirmation
         ## size does not work unless there is a dummy class. Hooray!
         f.input :notifications, :input_html => { :class => 'placeholder', :rows => 2, :style => 'width:50%'}
         f.input :notification_type, as: :select, multiple: false, collection: [:every, :daily, :weekly]
       end
       if can? :manage, User
-        f.input :password
-        f.input :password_confirmation
         f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all.sort_by {|w| w.name} 
         f.input :roles, as: :select, multiple: false, collection: Role.all
         f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published, :deleted]

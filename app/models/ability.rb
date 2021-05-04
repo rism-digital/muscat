@@ -38,8 +38,6 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "doc"
       can :read, ActiveAdmin::Page, :name => "Statistics"
 
-      #515 postponed to 3.7, add :update
-      # NOTE password is in :manage
       can [:read, :update], User, :id => user.id
     
     ##############
