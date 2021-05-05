@@ -1,20 +1,24 @@
-<h3>Modification report for <%=@results.count%> items(s)</h3>
+<h3>Modification report for <%=@total_results%> items(s)</h3>
 <p>
 
-<% @results_by_criteria.each do |criteria, sources| %>
-<b><%=sources.count%> items(s) matched the pattern:</b> <code><%=criteria%></code><br>
-<br>
-<ul>
-<% sources.each do |source| %>
-	<%if source.is_a? Source %>
-		<%composer = !source.composer.empty? ? source.composer : "n.a."%>
-		<%title = !source.std_title.empty? ? source.std_title : "none"%>
-		<li><a href="https://muscat.rism.info/admin/sources/<%=source.id%>"><%=source.id%></a>, <%=composer%>: <%=title%> [created: <%=source.created_at%>, modified: <%=source.updated_at%>]</li>
-	<%else%>
-		<li><a href="https://muscat.rism.info/admin/works/<%=source.id%>"><%=source.id%></a>, <%=source.title%> [created: <%=source.created_at%>, modified: <%=source.updated_at%>]</li>
+<% @results.each do |model, criterias| %>
+	<% criterias.each do |criteria, items| %>
 
+		<b><%=items.count%> <%=model%>(s) matched the pattern:</b> <code><%=criteria%></code><br>
+		<br>
+		<ul>
+
+		<% items.each do |item| %>
+			<%if item.is_a? Source %>
+				<%composer = !item.composer.empty? ? item.composer : "n.a."%>
+				<%title = !item.std_title.empty? ? item.std_title : "none"%>
+				<li><a href="https://muscat.rism.info/admin/sources/<%=item.id%>"><%=item.id%></a>, <%=composer%>: <%=title%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]</li>
+			<%else%>
+				<li><a href="https://muscat.rism.info/admin/works/<%=item.id%>"><%=item.id%></a>, <%=item.title%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]</li>
+			<%end%>
+		<% end %>
+		</ul>
+		<p>
 	<%end%>
-<% end %>
-</ul>
-<p>
 <%end%>
+

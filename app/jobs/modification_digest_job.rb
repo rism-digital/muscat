@@ -15,24 +15,27 @@ class ModificationDigestJob < ApplicationJob
       # get the last modified sources
       
       results = {}
-      results_by_criteria = {}
+      total_results = 0
       
       [Source, Work].each do |model|
         model.where(("updated_at" + "> ?"), @days.days.ago).order("updated_at DESC").each do |s|
         
           matcher = NotificationMatcher.new(s, user)
-          if matcher.matches?
-            results[s] = matcher.get_matches
+          matcher.matches?
+
+          matcher.get_matches.each do |match|
+            results[model.to_s.downcase] = {} if !results[model.to_s.downcase]
+            results[model.to_s.downcase][match] = [] if !results[model.to_s.downcase][match]
+
+            results[model.to_s.downcase][match] << s
+            total_results += 1
           end
+
         end
       end
-      
-ap results
 
       if !results.empty?
-        # Flip them from source -> criteria to criterias-> source
-        results.map { |source_id, criterias| criterias.map { |criteria| results_by_criteria.include?(criteria) ? results_by_criteria[criteria] << source_id : results_by_criteria[criteria] = [source_id]} }
-        ModificationNotification.notify(user, results, results_by_criteria).deliver_now
+        ModificationNotification.notify(user, total_results, results).deliver_now
       end
     end
   end

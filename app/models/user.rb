@@ -125,6 +125,7 @@ class User < ApplicationRecord
   end
 
   def get_notifications
+    default_model = "source"
     return false if !notifications || notifications.empty?
     
     elements = {}
@@ -132,9 +133,26 @@ class User < ApplicationRecord
     notifications.each_line do |line|
       parts = line.strip.split(":")
       next if parts.count < 2
-      next if parts[0].empty? # :xxx case
-      elements[parts[0]] = [] if !elements.include?(parts[0])
-      elements[parts[0]] << parts[1]
+
+      if parts.count == 2
+        next if parts[0].empty? # :xxx case
+
+        model = default_model
+        property = parts[0]
+        pattern = parts[1]
+
+      elsif parts.count == 3
+        next if parts[0].empty? || parts[1].empty? # ::xxx case
+
+        model = parts[0]
+        property = parts[1]
+        pattern = parts[2]
+      end
+
+      elements[model] = {} if !elements.include?(model)
+
+      elements[model][property] = [] if !elements[model][property]
+      elements[model][property] << pattern
     end
     
     return elements
