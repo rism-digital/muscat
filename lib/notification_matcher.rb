@@ -12,29 +12,30 @@ class NotificationMatcher
 
     rules = parse_rules(user_notifications)
 
-    rules.each do |model, property_patterns|
+    rules.each do |model, rule_groups|
       next if @object.class.to_s.downcase != model.downcase
 
-      partial_match = []
-      property_patterns.each do |rule|
+      rule_groups.each do |property_patterns|
+        partial_match = []
+        property_patterns.each do |rule|
 
-        if rule[:property] == "lib_siglum" && @object.respond_to?(:siglum_matches?)
-          partial_match << "#{rule[:property]} #{rule[:pattern]}" if @object.siglum_matches?(rule[:pattern].gsub("*", ""))
-        else
-          if @object.respond_to?(rule[:property])
-            object_value = @object.send(rule[:property])
-            if object_value
-              partial_match << "#{rule[:property]} #{rule[:pattern]}" if wildcard_match(object_value, rule[:pattern])
+          if rule[:property] == "lib_siglum" && @object.respond_to?(:siglum_matches?)
+            partial_match << "#{rule[:property]} #{rule[:pattern]}" if @object.siglum_matches?(rule[:pattern].gsub("*", ""))
+          else
+            if @object.respond_to?(rule[:property])
+              object_value = @object.send(rule[:property])
+              if object_value
+                partial_match << "#{rule[:property]} #{rule[:pattern]}" if wildcard_match(object_value, rule[:pattern])
+              end
             end
           end
-        end
 
-        if partial_match.count == property_patterns.count
-          matches << partial_match.join(" AND ")
-        end
+          if partial_match.count == property_patterns.count
+            matches << partial_match.join(" AND ")
+          end
 
+        end
       end
-      
     end
 
     matches
@@ -64,7 +65,7 @@ class NotificationMatcher
     rules = {}
     rule_queries.each do |l|
       line = l.strip
-  
+ 
       model = "source"
       property = ""
       pattern = ""
@@ -73,6 +74,7 @@ class NotificationMatcher
         parts = line.split(" ")
   
         current = 0
+        rule_group = []
         parts.each do |part|
           # The first one can be the model 
           if current == 0 && ["source", "work"].include?(part.downcase)
@@ -81,16 +83,19 @@ class NotificationMatcher
             property, pattern = split_line(part)
             next if !property
   
-            rules[model] = [] if !rules[model]
-            rules[model] << {property: property, pattern: pattern}
-  
+            rule_group << {property: property, pattern: pattern}
           end
         end
+
+        rules[model] = [] if !rules[model]
+        rules[model] << rule_group
+
       else
         property, pattern = split_line(line)
         next if !property
         rules[model] = [] if !rules[model]
-        rules[model] << {property: property, pattern: pattern}
+        ## Here we have only one rule in the group
+        rules[model] << [{property: property, pattern: pattern}]
       end
     end
     return rules
