@@ -12,7 +12,7 @@
 			<%if item.is_a? Source %>
 				<%composer = !item.composer.empty? ? item.composer : "n.a."%>
 				<%title = !item.std_title.empty? ? item.std_title : "none"%>
-				<li><a href="https://muscat.rism.info/admin/sources/<%=item.id%>"><%=item.id%></a>, <%=composer%>: <%=title%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]</li>
+				<li><a href="https://muscat.rism.info/admin/sources/<%=item.id%>"><%=item.id%></a> (<%= I18n.t('record_types_codes.' + (item.record_type != nil ? item.record_type.to_s : ""))%>), <%=composer%>: <%=title%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]</li>
 			<%else%>
 				<li><a href="https://muscat.rism.info/admin/works/<%=item.id%>"><%=item.id%></a>, <%=item.title%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]</li>
 			<%end%>
