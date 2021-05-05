@@ -21,7 +21,6 @@ class ModificationDigestJob < ApplicationJob
         model.where(("updated_at" + "> ?"), @days.days.ago).order("updated_at DESC").each do |s|
         
           matcher = NotificationMatcher.new(s, user)
-          matcher.matches?
 
           matcher.get_matches.each do |match|
             results[model.to_s.downcase] = {} if !results[model.to_s.downcase]
