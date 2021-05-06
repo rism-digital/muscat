@@ -23,7 +23,7 @@ end
     <div class=" <%= document_actions.present? ? "col-sm-9 col-lg-10" : "col-md-12" %>">
         <table>
     	     <tr>
-    		     <td>
+    		     <td class="seriel_number">
     		         <% if counter = document_counter_with_offset(document_counter) %>
     			     <h5 class="index_title document-title-heading">
     		             <span class="document-counter">
@@ -33,7 +33,7 @@ end
     		         <% end %>
     		      </td>
     		      <td>
-    			      <h5 class="index_title document-title-heading">
+    			      <h5 class="index_title document-title-heading left_padding">
     			          <%= presenter(document).field_value("source_composer_field") %>
     		          </h5>
     		      </td>
