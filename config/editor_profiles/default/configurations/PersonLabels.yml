@@ -396,6 +396,6 @@ wo:
 wr:
   label: records.region_active
 xx:
-  label: records.unknown
+  label: records.uncategorized
 z:
   label: records.alternate_spelling
