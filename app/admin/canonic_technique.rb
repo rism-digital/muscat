@@ -97,17 +97,17 @@ ActiveAdmin.register CanonicTechnique do
     column (I18n.t :display_canon_type) do |canonic_technique|
       "#{canonic_technique.canon_type}: #{canonic_technique.relation_denominator} #{canonic_technique.relation_operator} #{canonic_technique.relation_numerator}"
     end
-    column (I18n.t :display_interval) do |canonic_technique|
-      "#{canonic_technique.interval} #{canonic_technique.interval_direction}"
-    end
-    column (I18n.t :display_temporal_offset) do |canonic_technique|
-      offset = "#{canonic_technique.temporal_offset} #{canonic_technique.offset_units}"
-      if canonic_technique.mensurations.blank?
-        offset
-      else
-        "#{offset} in #{canonic_technique.mensurations}"
-      end
-    end
+    # column (I18n.t :display_interval) do |canonic_technique|
+    #   "#{canonic_technique.interval} #{canonic_technique.interval_direction}"
+    # end
+    # column (I18n.t :display_temporal_offset) do |canonic_technique|
+    #   offset = "#{canonic_technique.temporal_offset} #{canonic_technique.offset_units}"
+    #   if canonic_technique.mensurations.blank?
+    #     offset
+    #   else
+    #     "#{offset} in #{canonic_technique.mensurations}"
+    #   end
+    # end
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
       all_hits = @arbre_context.assigns[:hits]
       active_admin_stored_from_hits(all_hits, element, :src_count_order)
