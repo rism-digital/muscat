@@ -488,11 +488,15 @@ class Source < ApplicationRecord
   end
 
   def siglum_matches?(siglum)
-    if self.record_type == MarcSource::RECORD_TYPES[:edition]
+    if self.record_type == MarcSource::RECORD_TYPES[:edition] ||
+      self.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
+      self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition]
       holdings.each do |h|
         return true if h.lib_siglum.downcase.start_with? siglum.downcase
       end
-    elsif self.record_type == MarcSource::RECORD_TYPES[:edition_content]
+    elsif self.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
+          self.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
+          self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]
       puts "Edition content #{self.id} has no parent" if !self.parent_source
       return false if !self.parent_source
       self.parent_source.holdings.each do |h|

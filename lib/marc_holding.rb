@@ -14,6 +14,17 @@ class MarcHolding < Marc
     title
   end
 
+  def get_shelf_mark
+    m = ""
+
+    if node = first_occurance("852", "c")
+      if node.content
+        m = node.content
+      end
+    end
+    m
+  end
+
   def description
     res = {}
     node = first_occurance("852")
