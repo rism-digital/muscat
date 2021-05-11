@@ -1,10 +1,11 @@
 class NotificationMatcher
 
-  ALLOWED_MODELS = ["source", "work"]
+  ALLOWED_MODELS = ["source", "work", "institution"]
 
   ALLOWED_PROPERTIES = {
     source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum],
-    work: [:title, :form, :notes, :composer]
+    work: [:title, :form, :notes, :composer],
+    institution: [:siglum, :name, :address, :place, :comments, :alternates, :notes]
   }
 
   SPECIAL_RULES = {
@@ -13,7 +14,7 @@ class NotificationMatcher
   }
 
   def initialize(object, user)
-    if !object.is_a?(Source) && !object.is_a?(Work)
+    if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) 
       raise(ArgumentError, "NotificationMatcher can be applied only for Works and Sources" )
     end
 
@@ -25,7 +26,7 @@ class NotificationMatcher
     matches = []
     user_notifications = @user.get_notifications
     return false if !user_notifications
-    return false if !@object.is_a?(Source) && !@object.is_a?(Work) # This should not happen! 
+##    return false if !@object.is_a?(Source) && !@object.is_a?(Work) # This should not happen! 
 
     rules = parse_rules(user_notifications)
 
@@ -226,6 +227,7 @@ class NotificationMatcher
   end
 
   def special_case?(field)
+    return false if !SPECIAL_RULES.include? @object.class.to_s.downcase.to_sym
     return SPECIAL_RULES[@object.class.to_s.downcase.to_sym].include? field.downcase.to_sym
 
   end
