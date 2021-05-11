@@ -1,5 +1,7 @@
 class NotificationMatcher
 
+  ALLOWED_MODELS = ["source", "work"]
+
   ALLOWED_PROPERTIES = {
     source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum],
     work: [:title, :form, :notes, :composer]
@@ -109,46 +111,112 @@ class NotificationMatcher
     return false if parts[0].empty? # :xxx case
   
     property = parts[0]
-    pattern = parts[1]
+    pattern = parts[1].gsub('"', '')
     return property, pattern
   end
   
+  def parse_unquoted(line)
+    rule_group = []
+    ungrouped = []
+
+    # multipart string, such as
+    # model property:pattern property2:pattern2
+    # we split it in the spaces, and the by :
+    # words that are not grouped by : (like the initial
+    # model specifier), end ungrouped, and if not a valid
+    # model name then discarted. Everyting else is discarded.
+    if line.include?(" ")
+      parts = line.split(" ")
+
+      parts.each do |part|
+        if part.include?(":")
+          property, pattern = split_line(part)
+          next if !property
+          rule_group << {property: property, pattern: pattern}
+        else
+          ungrouped << part
+        end
+      end
+      
+    else
+      # There is just one rule in the line
+      # is this a valid rule? form xxx:yyy
+      if line.include?(":")
+        property, pattern = split_line(line)
+        # If we cannot parse it, return
+        return false if !property
+        rule_group << {property: property, pattern: pattern}
+      else
+        # if we only have one word, return it as ungrouped
+        # as it may be in the beginning of the line
+        # model property:"pattern" is this case
+        ungrouped << line
+      end
+    end
+
+    # rule_group can be empty if there is only one word
+    # in the line
+    return rule_group, ungrouped
+  end
+
+  def parse_line(rule_query)
+    rules = []
+    single_tokens = []
+
+    # If we have quoted strings, it means there can be spaces
+    # inside. So the string is matched with a regex that
+    # extracts the whole property:"pattern" as one token
+    # Non-matched parts are still included in the array and
+    # are parsed separately
+    if rule_query.include?('"')
+      parts = rule_query.split(/([^:\s]+:"[^:]+)"/)
+      parts.reject! { |c| c.blank? }
+    else
+      # No quotes - consider the query just one-part
+      parts = [rule_query]
+    end
+
+    parts.each do |part|
+      # property:"pattern" - each element will contain only
+      # one of these, so we can safely split it
+      if part.include?('"')
+        property, pattern = split_line(part)
+        next if !property
+        rules << {property: property, pattern: pattern}
+      else
+        # In this case we can have a mixture of model specifiers
+        # and rules, such as model property:patter or just model
+        # or just property:patter. We parse each one of these
+        # (or a whole line if there are no quoted rules)
+        # to get a list of property:patter and "ungrouped" words
+        # By default, the first of these "ungrouped" or single token
+        # words is the model. The others are ignored.
+        rule_group, ungrouped = parse_unquoted(part)
+        next if !rule_group
+
+        rules += rule_group if !rule_group.empty?
+        single_tokens += ungrouped
+      end
+    end
+
+    if !single_tokens.empty? && ALLOWED_MODELS.include?(single_tokens[0]) 
+      model = single_tokens[0]
+    else
+      model = "source"
+    end
+    return model, rules
+  end
+
   def parse_rules(rule_queries)
     rules = {}
     rule_queries.each do |l|
+
       line = l.strip
- 
-      model = "source"
-      property = ""
-      pattern = ""
-  
-      if line.include?(" ")
-        parts = line.split(" ")
-  
-        current = 0
-        rule_group = []
-        parts.each do |part|
-          # The first one can be the model 
-          if current == 0 && ["source", "work"].include?(part.downcase)
-            model = part
-          else
-            property, pattern = split_line(part)
-            next if !property
-  
-            rule_group << {property: property, pattern: pattern}
-          end
-        end
+      model, rules_line = parse_line(line)
 
-        rules[model] = [] if !rules[model]
-        rules[model] << rule_group
+      rules[model] = [] if !rules[model]
+      rules[model] << rules_line
 
-      else
-        property, pattern = split_line(line)
-        next if !property
-        rules[model] = [] if !rules[model]
-        ## Here we have only one rule in the group
-        rules[model] << [{property: property, pattern: pattern}]
-      end
     end
     return rules
   end
