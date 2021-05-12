@@ -20,7 +20,7 @@ development:
 test:
   solr:
     hostname: localhost
-    port: 8982
+    port: 8983
     log_level: WARNING
     path: /solr/test
     bind_address: 127.0.0.1
