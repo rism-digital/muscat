@@ -245,6 +245,10 @@ class Publication < ApplicationRecord
     self.marc_source = self.marc.to_marc
   end
 
+  def get_record_type
+    # TODO
+  end
+
   def fix_ids
     #generate_new_id
     # If there is no marc, do not add the id
