@@ -136,8 +136,8 @@ ActiveAdmin.register_page "Dashboard" do
               column (I18n.t :filter_title_short), :name do |publication| 
                 publication.short_name.truncate(30) if publication.short_name
               end
-              column (I18n.t :filter_description), :description do |publication| 
-                publication.description.truncate(60) if publication.description
+              column (I18n.t :filter_title), :title do |publication|
+                publication.title.truncate(60) if publication.title
               end
               column (I18n.t :filter_author), :author
             end

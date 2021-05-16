@@ -224,7 +224,7 @@ ActiveAdmin.register Person do
         context.column "id", :id
         context.column (I18n.t :filter_title_short), :short_name
         context.column (I18n.t :filter_author), :author
-        context.column (I18n.t :filter_description), :description
+        context.column (I18n.t :filter_title), :title
         if !is_selection_mode?
           context.column "" do |publication|
             link_to "View", controller: :publications, action: :show, id: publication.id

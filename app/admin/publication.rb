@@ -28,8 +28,8 @@ ActiveAdmin.register Publication do
     before_create do |item|
       item.user = current_user
     end
-    autocomplete :publication, [:short_name, :author, :description], :display_value => :autocomplete_label , :extra_data => [:author, :date, :description]
-    
+    autocomplete :publication, [:short_name, :author, :title], :display_value => :autocomplete_label , :extra_data => [:author, :date, :title]
+
 
     def check_model_errors(object)
       return unless object.errors.any?
@@ -131,7 +131,7 @@ ActiveAdmin.register Publication do
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"100a_or_700a_contains", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
-  filter :description_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
+  filter :title_contains, :label => proc {I18n.t(:filter_title)}, :as => :string
   filter :"240g_contains", :label => proc {I18n.t(:filter_category_type)}, :as => :select,
     collection: proc{["Bibliography", "Catalog", "Collective catalogue", "Encyclopedia", "Music edition", "Other",
       "Thematic catalog", "Work catalog"] }
@@ -152,7 +152,7 @@ ActiveAdmin.register Publication do
       label: I18n.t('status_codes.' + (cat.wf_stage != nil ? cat.wf_stage : ""), locale: :en))}  
     column (I18n.t :filter_id), :id    
     column (I18n.t :filter_title_short), :short_name
-    column (I18n.t :filter_title), :description
+    column (I18n.t :filter_title), :title
     column (I18n.t :filter_author), :author
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			all_hits = @arbre_context.assigns[:hits]
@@ -173,7 +173,7 @@ ActiveAdmin.register Publication do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_publication_show_title( @item.author, @item.description.truncate(60), @item.id) } do
+  show :title => proc{ active_admin_publication_show_title( @item.author, @item.title.truncate(60), @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     render('jobs/jobs_monitor')
@@ -228,7 +228,7 @@ ActiveAdmin.register Publication do
           table_for(collection, sortable: true) do
             column :id do |p| link_to p.id, controller: :publications, action: :show, id: p.id end
             column :author
-            column :description
+            column :title
             column :date
           end
         end

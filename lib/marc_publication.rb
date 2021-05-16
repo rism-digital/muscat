@@ -24,7 +24,7 @@ class MarcPublication < Marc
     title
   end
   
-  def get_description
+  def get_title
     title = ""
 
     if node = first_occurance("240", "a")
