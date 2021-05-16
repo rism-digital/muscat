@@ -399,7 +399,7 @@
     - - t
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: description
+        :foreign_field: title
     - - g
       - :occurrences: "*"
     - - o
@@ -418,7 +418,7 @@
     - - t
       - :occurrences: "?"
         :foreign_class: ^w
-        :foreign_field: description
+        :foreign_field: title
   "785":
     :master: "w"
     :indicator: "##"
@@ -432,7 +432,7 @@
     - - t
       - :occurrences: "?"
         :foreign_class: ^w
-        :foreign_field: description
+        :foreign_field: title
   "856":
     :master: u
     :indicator: "##"
