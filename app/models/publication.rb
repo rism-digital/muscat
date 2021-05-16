@@ -268,10 +268,10 @@ class Publication < ApplicationRecord
 
   def autocomplete_label
     aut = (author and !author.empty? ? author : nil)
-    des = (title and !title.empty? ? title.truncate(45) : nil)
+    tit = (title and !title.empty? ? title.truncate(45) : nil)
     dat = (date and !date.empty? ? date : nil)
 
-    infos = [aut, dat, des].join(", ")
+    infos = [aut, dat, tit].join(", ")
 
     "#{self.short_name}: #{infos}"
   end
