@@ -1,9 +1,9 @@
     class MuscatMaintenanceReport < ApplicationMailer
 
-    def notify(message, saved_source_ids, models, unsavable_sources)
+    def notify(message, saved_source_count, models, unsavable_sources)
         
         @message = message
-        @saved_source_ids = saved_source_ids
+        @saved_source_count = saved_source_count
         @models = models
         @unsavable_sources = unsavable_sources
         
