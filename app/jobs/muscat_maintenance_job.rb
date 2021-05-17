@@ -13,7 +13,7 @@
         begin_time = Time.now
 
         # Run the checkup function
-        checkup = MuscatCheckup.new({jobs: 10, skip_validation: true, skip_dates: true, skip_unknown_tags: true})
+        checkup = MuscatCheckup.new({jobs: 10, skip_validation: true, skip_dates: true, skip_unknown_tags: true, folder: Folder.find(2)})
         total_errors, total_validations, foreign_tag_errors, unknown_tags = checkup.run_parallel
 
         # Force a reconnect
@@ -29,8 +29,8 @@
                 models[model] = {}
             end
 
-            if !models[model].keys.include?(id)
-                models[model][id] = []
+            if !models[model].keys.include?(error)
+                models[model][error] = []
             end
 
             object = model.constantize.send("find", id)
@@ -40,7 +40,7 @@
                     PaperTrail.request(enabled: false) do
                         s.save
                     end
-                    models[model][id] << s.id
+                    models[model][error] << s.id
                     saved_source_count += 1
                 rescue
                     unsavable_sources << s.id
