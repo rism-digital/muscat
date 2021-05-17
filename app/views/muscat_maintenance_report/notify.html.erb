@@ -1,8 +1,8 @@
 <h3>Muscat Maintainance Report<h3>
         <p>
 
-            <b>Authority files that triggered resave: </b><%=@auth_file_count%><br>
-            <b>Saved sources: </b><%=@saved_sources%><br>
+            <b>Authority files that triggered resave: </b><%=ap(models).html_safe%><br>
+            <b>Saved sources: </b><%=@saved_source_ids.count%><br>
             <% if @unsavable_sources.count > 0 %>
             <b>Could not save these sources: <b><%=@unsavable_sources.join(" ")%><br>
                     <%end%>
