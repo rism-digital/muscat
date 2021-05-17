@@ -13,7 +13,7 @@
         begin_time = Time.now
 
         # Run the checkup function
-        checkup = MuscatCheckup.new({jobs: 10, skip_validation: true, skip_dates: true, skip_unknown_tags: true, folder: Folder.find(2)})
+        checkup = MuscatCheckup.new({jobs: 10, skip_validation: true, skip_dates: true, skip_unknown_tags: true})
         total_errors, total_validations, foreign_tag_errors, unknown_tags = checkup.run_parallel
 
         # Force a reconnect
