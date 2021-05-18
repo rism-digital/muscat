@@ -1,7 +1,15 @@
 <h3>Muscat Maintainance Report</h3>
-<i>Note</i> the includes all authority files that had at least one souce with non-matching values, and it triggers a resave of all the sources of the authority.
+<strong>Note</strong> the includes all authority files that had at least one souce with non-matching values, and it triggers a resave of all the sources of the authority.
         <p>
-            <b>Authority files that triggered resave: </b><%=ap(@models).html_safe%><br>
+            <h4>Authority files that triggered resave:</h4>
+            <% @models.each do |model, errors|%>
+            <p><b><%=model%></b><br>
+                <% errors.each do |message, ids|%>
+                Error message: <i><%=message%></i><br>
+                Source IDs: <%=ids.join(", ")%>
+                <%end%>
+            <%end%>
+            </p>
             <b>Saved sources: </b><%=@saved_source_count%><br>
             <% if @unsavable_sources.count > 0 %>
             <b>Could not save these sources: <b><%=@unsavable_sources.join(" ")%><br>
