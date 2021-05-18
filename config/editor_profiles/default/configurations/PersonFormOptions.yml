@@ -180,6 +180,9 @@
       - cols: 2
     - - d
       - cols: 2
+        trigger:
+        - save:
+          - referring_sources
     - - w
       - cols: 2
     - - y
