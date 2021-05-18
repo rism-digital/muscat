@@ -73,9 +73,21 @@ module RISM
   # search pages (served by Blacklight, that is, /catalog)
   ROOT_REDIRECT = "/catalog"
 
+  # Muscat has two bibliographic record types: Source and Publication.
+  # Source is for unique copies found in libraries, archives or
+  # museums, and strongly tied to musical manuscripts (ex., 100 tag is
+  # named Composer); Publication can describe any bibliographic work,
+  # and the default templates are oriented to describe academic,
+  # research or secondary literature works.  If you will to use Muscat
+  # as originally intended, keep "Source".  If you want to use it as
+  # institutional or research repository, choose "Publication".
+  # Please note that that this second choice is an ongoing work and is
+  # not finished yet.
+  MAIN_BIBLIOGRAPHIC_RECORD_TYPE = "Source"
+
   # Record ids for each records type
   BASE_NEW_IDS = {
-    :publication        => 0,
+    :publication      => 0,
     :holding          => 0,
     :institution      => 0,
     :liturgical_feast => 0,
