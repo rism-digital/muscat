@@ -2,11 +2,18 @@ server: "https://devel.dnb.de/sru_ru/"
 search_server: "https://services.dnb.de/sru/"
 
 gnd:
-  - "031"
-  - 100
-  - 380
-  - 400
-  - 700
-  - 667
-  #- 670
+  #- "024" other standard identifier
+  - "031" #incipit
+    #- "040" #cataloging source
+  - "100"
+  - "380" #subject heading
+  - "400" #alternative heading
+  - "548" #chronological term
+  #- 667 internal note (not exported)
+  - "670" #related publication
+  #- 675 source data not found
+  - "680" #general note
+  - "700" #additional personal name
+  #- "747" #liturgical festival
+  #- 930 related work
 

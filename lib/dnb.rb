@@ -141,10 +141,43 @@ module DNB
         # copy muscat nodes to gnd
         CONFIG['gnd'].each do |tag|
           xml.xpath("//marc:datafield[@tag='#{tag}']", NAMESPACE).each do |df|
+            df.xpath("marc:subfield[@code='0']").remove
+            if tag == "100"
+              no = df.xpath("marc:subfield[@code='n']").first.content rescue nil
+              if no
+                df383 = node.datafield('383')
+                [node.subfield('b', no)].each {|sf| df383 << sf}
+                gnd.root << df383
+              end
+              no = df.xpath("marc:subfield[@code='r']").first.content rescue nil
+              if no
+                df384 = node.datafield('384')
+                [node.subfield('a', no)].each {|sf| df384 << sf}
+                gnd.root << df384
+              end
+            end
+
+            if tag == "548"
+              [node.subfield('4', 'dats')].each {|sf| df << sf}
+              [node.subfield('4', 'https://d-nb.info/standards/elementset/gnd#dateOfProduction')].each {|sf| df << sf}
+              [node.subfield('5', 'DE-633')].each {|sf| df << sf}
+              [node.subfield('w', 'r')].each {|sf| df << sf}
+              [node.subfield('i', 'Erstellungszeit')].each {|sf| df << sf}
+            end
+
+            if tag == "670"
+              no = df.xpath("marc:subfield[@code='b']").first.content rescue nil
+              if no
+                [node.subfield('u', no)].each {|sf| df << sf}
+                df.xpath("marc:subfield[@code='w']").remove
+                df.xpath("marc:subfield[@code='b']").remove
+                df.xpath("marc:subfield[@code='u']").remove
+              end
+            end
             gnd.root << df.dup
           end
         end
-        gnd.xpath("//marc:subfield[@code='0']").remove
+        #gnd.xpath("//marc:subfield[@code='0']").remove
 
         # required 500 datafield related composer node by GND
         n = gnd.xpath("//marc:datafield[@tag='100']", NAMESPACE)[0].dup
