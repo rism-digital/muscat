@@ -27,3 +27,8 @@ config/secrets.yml.key
 /config/credentials.yml.enc
 
 db/test.sqlite3
+
+# SAML related config files
+config/attribute-map.yml
+config/initializers/devise_saml_authenticatable.rb
+app/views/active_admin/devise/sessions/new.html.erb
