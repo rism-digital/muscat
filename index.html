@@ -42,20 +42,6 @@ layout: default
         {% endfor %}  
         </div>
         
-        <p class="muscat-news text-center">Latest news</p>
-        
-        <div>
-        {% for post in site.posts %}
-            <div class="news">
-                <h5>
-                    <div>{{ post.title }}</div>
-                </h5>
-                {{ post.excerpt }}
-                {% if (post.more-news) %}<p class="more-news"><a href="{{ post.url }}">Read more ...</a></p>{% endif %}
-            </div>
-        {% endfor %}
-        </div>
-        
         <div class="muscat-sponsors">
             <div class="row align-items-center">
                 <div class="col-lg-2 col-md-3 col-xs-12 mb-2">
