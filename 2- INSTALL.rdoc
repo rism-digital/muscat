@@ -260,20 +260,26 @@ Also make sure that if there is a proxy, it is configured in `config/initializer
 
 === Crontab installation
 
-In version 7.0 the crono scheduler was removed and a normal crontab plus a script is provided. The default crontab file should be linked in /etc/conn.d. Edit the muscat_crontab to set PATH_TO to the correct muscat installation, you will need to do it by hand.
+In version 7.0 the crono scheduler was removed and a normal crontab plus a script is provided.
 
-On debian/ubuntu this should work:
+To edit your crontab table, become the user where you execute Muscat (via sudo or su www-data, or normal user if you prefer the apache-itk option), and from the shell, execute:
 
- ln -s config/muscat_crontab /etc/cron.d
- chmod +x /etc/cron/muscat_crontab
- sudo service cron restart
+ crontab -e
+
+That will open your $EDITOR and then paste the contents of the sample crontab file provided as config/muscat_crontab.  After saving the file, crontab will check your syntax and give you hints if it finds errors.
 
 If your crontab still has this line:
 
  0 2 * * * cd $PATH_TO && $PATH_TO/bin/rake blacklight:delete_old_searches[7] RAILS_ENV=production
 
-It is save to delete it as it is now taken care but the global muscat crontab.
-*NOTE* If you ever change the cron file name, it CANNOT contains dots! Or it will silently fail.
+It is safe to delete it, as it is now taken care but the global muscat crontab.  To review your table, execute:
+
+ crontab -l
+
+Please take extra care not to execute crontab without any parameter, because then it expects input from the terminal and removes previous contents.
+
+If you execute multiple instances of Muscat in the same server, being real or virtual, via apache-itk or virtual machine, please take care of not executing them at the same hour or day of the week.
+
 
 == Some MySQL optimizations
 
