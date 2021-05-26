@@ -808,6 +808,7 @@ de:
     type_relationship: Beziehung
     typescript: Maschinenschrift
     typography: Typendruck
+    uncategorized: Nicht kategorisiert
     unknown: Unbekannt
     unparsed_fingerprint: Zusammenhängender Fingerprint
     variant_ms_title: Weiterer diplomatischer Titel
@@ -823,3 +824,13 @@ de:
     work_number: Incipitnummer
     year: Jahr
     years_birth_death: Geburts- und Todesdaten
+  relations:
+    P60191: "Korrelierte Quelle"
+    P60198: "Zusätzliches Material"
+    P60311: "Kopiert von"
+    P60312: "Kopiert in"
+    P60195: "Publiziert in"
+    P60242: "Bearbeitung von"
+    P60274: "Bearbeitung als"
+    P60194: "Einfügen in"
+    P60183: "Einfügen"

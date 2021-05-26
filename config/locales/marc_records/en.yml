@@ -808,6 +808,7 @@ en:
     type_relationship: Type of relationship
     typescript: Typescript
     typography: Typography
+    uncategorized: Uncategorized
     unknown: Unknown
     unparsed_fingerprint: Unparsed fingerprint
     variant_ms_title: Variant title on manuscript
@@ -823,3 +824,13 @@ en:
     work_number: Work number
     year: Year
     years_birth_death: Years of birth and death
+  relations:
+    P60191: "Correlated source"
+    P60198: "Additional material"
+    P60311: "Copied from"
+    P60312: "Copied in"
+    P60195: "Published in"
+    P60242: "Arrangement of"
+    P60274: "Arranged as"
+    P60194: "Insert in"
+    P60183: "Insert"

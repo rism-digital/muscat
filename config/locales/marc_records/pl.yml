@@ -808,6 +808,7 @@ pl:
     type_relationship: Rodzaj relacji
     typescript: Maszynopis
     typography: Typografia
+    uncategorized: Bez kategorii
     unknown: Nieznane
     unparsed_fingerprint: Nieprzeanalizowany odcisk palca
     variant_ms_title: Alternatywny tytuł w rękopisie
@@ -823,3 +824,13 @@ pl:
     work_number: Numer dzieła
     year: Rok
     years_birth_death: Rok urodzenia i śmierci
+  relations:
+    P60191: "Źródło powiązane"
+    P60198: "Materiał dodatkowy"
+    P60311: "Skopiowane z"
+    P60312: "Skopiowano w"
+    P60195: "Opublikowany w"
+    P60242: "Rozmieszczenie"
+    P60274: "Ułożone jako"
+    P60194: "Wstawić do"
+    P60183: "Wstawić"

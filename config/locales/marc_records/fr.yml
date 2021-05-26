@@ -809,6 +809,7 @@ fr:
     type_relationship: Relation
     typescript: Tapuscrit
     typography: Typographie
+    uncategorized: Non classé
     unknown: Inconnu
     unparsed_fingerprint: Empreinte non analysée
     variant_ms_title: Variante du titre diplomatique
@@ -824,3 +825,13 @@ fr:
     work_number: Numéro de l'œuvre
     year: Année
     years_birth_death: Dates de naissance et de mort
+  relations:
+    P60191: "Source corrélée"
+    P60198: "Matériel supplémentaire"
+    P60311: "Copié de"
+    P60312: "Copié dans"
+    P60195: "Publié dans"
+    P60242: "Arrangement de"
+    P60274: "Arrangement comme"
+    P60194: "Insertion dans"
+    P60183: "Insertion"

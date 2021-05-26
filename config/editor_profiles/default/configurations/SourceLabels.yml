@@ -1176,6 +1176,24 @@ prt:
   label: records.printer
 pub:
   label: records.publisher
+"rdau:P60191":
+  label: relations.P60191
+"rdau:P60198":
+  label: relations.P60198
+"rdau:P60311":
+  label: relations.P60311
+"rdau:P60312":
+  label: relations.P60312
+"rdau:P60195":
+  label: relations.P60195
+"rdau:P60242":
+  label: relations.P60242
+"rdau:P60274":
+  label: relations.P60274
+"rdau:P60194":
+  label: relations.P60194
+"rdau:P60183":
+  label: relations.P60183
 retro:
   label: records.retrospective_conversion
 scr:

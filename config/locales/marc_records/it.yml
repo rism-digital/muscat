@@ -809,6 +809,7 @@ it:
     type_relationship: Relazione
     typescript: Dattiloscritto
     typography: Stampa tipografica
+    uncategorized: Non categorizzato
     unknown: Sconosciuto
     unparsed_fingerprint: Impronta non analizzata
     variant_ms_title: Varianti del titolo diplomatico
@@ -824,3 +825,13 @@ it:
     work_number: Numero dell'opera
     year: Anno
     years_birth_death: Data di nascita e di morte
+  relations:
+    P60191: "Fonte correlata"
+    P60198: "Materiale addizionale"
+    P60311: "Copiato da"
+    P60312: "Copiato in"
+    P60195: "Pubblicato in"
+    P60242: "Arrangiamento di"
+    P60274: "Arrangiato come"
+    P60194: "Inserto in"
+    P60183: "Inserto"

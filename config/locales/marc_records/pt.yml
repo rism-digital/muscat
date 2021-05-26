@@ -302,7 +302,7 @@ pt:
     cataloging_collections: Catalogação de coletâneas
     cataloging_forms: ''
     cataloging_language: Idioma de catalogação
-    cataloging_level: Nível de catalogação
+    cataloging_level: Nível de catalogação
     cataloging_musical_sources: Catalogando fontes musicais
     cataloging_source: Agência catalogadora
     category: ''
@@ -805,6 +805,7 @@ pt:
     type_relationship: ''
     typescript: Datilografia
     typography: Tipografia
+    uncategorized: Sem categoria
     unknown: ''
     unparsed_fingerprint: Identificador de impressão não analisado
     variant_ms_title: Variante de título na fonte
@@ -820,3 +821,13 @@ pt:
     work_number: Número de obra
     year: ''
     years_birth_death: ''
+  relations:
+    P60191: "Fonte relacionada"
+    P60198: "Material adicional"
+    P60311: "Copiado de"
+    P60312: "Copiado em"
+    P60195: "Publicado em"
+    P60242: "Arranjo de"
+    P60274: "Arranjado como"
+    P60194: "Inserir em"
+    P60183: "Inserir"
