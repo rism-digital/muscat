@@ -730,11 +730,11 @@
         :browse_helper: application_helper_link_source_id
   "787":
     :master: "w"
-    :relator_code: "i"
+    :relator_code: "4"
     :indicator: "0#"
     :occurrences: "*"
     :fields:
-    - - i
+    - - "4"
       - :occurrences: "?"
     - - n
       - :occurrences: "?"
