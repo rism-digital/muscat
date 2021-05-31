@@ -1,0 +1,25 @@
+ <%= semantic_form_for [:admin, @user], builder: ActiveAdmin::FormBuilder, :html => {:id => "edit_user" } do |f| %>
+   
+     <%= f.inputs I18n.t(:user_details) do %>
+       <%if can? :update, User %>
+         <%= f.input :name %>
+         <%= f.input :email %>
+       <% end %>
+      
+       <% if can? :update, User %>
+         <%= f.input :password %>
+         <%= f.input :password_confirmation %>
+        <!-- size does not work unless there is a dummy class. Hooray! -->
+         <%= f.input :notifications, :input_html => { :class => 'placeholder', :rows => 2, :style => 'width:50%'} %>
+         <%= f.input :notification_type, as: :select, multiple: false, collection: [:every, :daily, :weekly] %>
+       <% end %>
+       <% if can? :manage, User %>
+         <%= f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all.sort_by {|w| w.name} %>
+         <%= f.input :roles, as: :select, multiple: false, collection: Role.all %>
+         <%= f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published, :deleted] %>
+       <% end %>
+     <% end %>
+<%=f.actions%>
+<% end %>
+
+<%= render 'notifications_help' %>

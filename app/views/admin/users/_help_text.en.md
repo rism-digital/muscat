@@ -75,23 +75,23 @@ If the quotation marks are missing, only the first word will be searched, and th
 
 #### Sources (default)
 
-- **lib\_siglum** _Library siglum (852 $a)_
-- **shelf\_mark** _Library shelf mark (852 $c)_
-- **composer** _Composer/author (100 $a)_
-- **std\_title** _Standardized title (240 $a)_
-- **title** _Title on source (245 $a)_
-- **record\_type** _template type_:
-    - collection (parent records for manuscripts, libretti, or treatises)
-    - source (manuscripts, excluding collection records)
-    - edition (printed music editions, excluding individual entries)
-    - edition\_content (individual entries within a printed edition)
-    - libretto\_source (handwritten libretti, excluding collection records)
-    - libretto\_edition (printed libretti, excluding individual entries)
-    - libretto\_edition\_content (individual entries in a printed libretto)
-    - theoretica\_source (handwritten treatises, excluding collection records)
-    - theoretica\_edition (printed treatises, excluding individual entries) 
-    - theoretica\_edition\_content (individual entries in a printed treatise)
-    - composite\_volume
+* **lib\_siglum** _Library siglum (852 $a)_
+* **shelf\_mark** _Library shelf mark (852 $c)_
+* **composer** _Composer/author (100 $a)_
+* **std\_title** _Standardized title (240 $a)_
+* **title** _Title on source (245 $a)_
+* **record\_type** _template type_:
+    * collection (parent records for manuscripts, libretti, or treatises)
+    * source (manuscripts, excluding collection records)
+    * edition (printed music editions, excluding individual entries)
+    * edition\_content (individual entries within a printed edition)
+    * libretto\_source (handwritten libretti, excluding collection records)
+    * libretto\_edition (printed libretti, excluding individual entries)
+    * libretto\_edition\_content (individual entries in a printed libretto)
+    * theoretica\_source (handwritten treatises, excluding collection records)
+    * theoretica\_edition (printed treatises, excluding individual entries) 
+    * theoretica\_edition\_content (individual entries in a printed treatise)
+    * composite\_volume
 
 Example:
 

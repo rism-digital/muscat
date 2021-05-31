@@ -99,6 +99,11 @@ ActiveAdmin.register User do
   ## Edit ##
   ##########
 
+  # We use a partial here so the formatting for the notifications_help is preserved
+  # The form is built in the same manner using formtastic
+  form partial: 'user_edit_form'
+
+=begin
   form do |f|
     f.inputs I18n.t(:user_details) do
       if can? :update, User
@@ -124,7 +129,8 @@ ActiveAdmin.register User do
     end
     render partial: 'notifications_help', locals: { f: f }
   end
-  
+=end
+
   sidebar :actions, :only => [:edit, :new, :update] do
     render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => user }
   end
