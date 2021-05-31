@@ -151,6 +151,9 @@ gem 'reverse_markdown'
 gem 'kramdown'
 gem 'whatlanguage'
 
+# To make links clickable in the Comments
+gem "anchored"
+
 # Avoid TypeError: superclass mismatch for class Command
 # See https://github.com/erikhuda/thor/issues/721
 gem 'thor', '~> 0.20.3'
