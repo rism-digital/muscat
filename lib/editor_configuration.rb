@@ -124,7 +124,7 @@ class EditorConfiguration
       return label
     end
     # if nothing found
-    return "[#{id}-#{sub_id} unspecified]" 
+    return "[#{id} sublabel: #{sub_id} unspecified]" 
   end
   
   # Returns if this label has a sublabel
