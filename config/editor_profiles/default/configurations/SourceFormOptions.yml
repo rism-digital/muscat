@@ -15,7 +15,9 @@
     - - e
 "028": 
   layout: 
-    fields: 
+    fields:
+    - - indicator
+      - editor_partial: subfield_indicator
     - - a
 "031": 
   new_window: standard_titles

@@ -653,6 +653,7 @@ en:
     parts_held: Parts held
     parts_held_extent: Parts held and extent
     patron: Patron
+    people: People
     people_institutions: People and institutions
     percussion: Percussion
     performance: Performance
@@ -691,6 +692,8 @@ en:
     public_note: Public note
     publisher: Publisher
     publisher_copyist: Publisher, copyist
+    publisher_number: Publisher Number
+    publisher_plate_number: Publisher or Plate number
     publishing_printing_production: Publishing, printing and production information
     qualifying_information: Qualifying information
     range_dates: Range of dates
@@ -742,6 +745,7 @@ en:
     solo_voice: Solo voice
     soloist_instrument: Soloist intrument
     source: Source
+    sources: Sources
     source_data_found: Source data found
     source_data_not_found: Source data not found
     source_description: Source of description note

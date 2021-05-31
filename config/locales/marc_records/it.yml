@@ -468,7 +468,7 @@ it:
     gf_minor: Sol♭ minore
     gs_major: Sol♯ maggiore
     gs_minor: Sol♯ minore
-    heading: Nome di persona
+    heading: Intestazione
     heading_composer_name: Compositore
     heading_personal_name: Nome di persona
     heading_personal_name1: Nome di persona
@@ -654,6 +654,7 @@ it:
     parts_held: Parti staccate esistenti
     parts_held_extent: Parti staccate, estensione
     patron: Committente
+    people: Persone
     people_institutions: Persone ed istituzioni
     percussion: Strumenti a percussione
     performance: Esecutori
@@ -692,6 +693,8 @@ it:
     public_note: Nota pubblica
     publisher: Editore
     publisher_copyist: Copista, editore, casa editrice
+    publisher_number: Numero dell'editore
+    publisher_plate_number: Numero della lastra o dell'editore
     publishing_printing_production: Copia o dati editoriali
     qualifying_information: Informazioni qualificanti
     range_dates: Ambito di datazione
@@ -743,6 +746,7 @@ it:
     solo_voice: Voce solista
     soloist_instrument: Strumento solista
     source: Fonte
+    sources: Fontes
     source_data_found: Fonte dei dati
     source_data_not_found: Fonte consultata senza esito
     source_description: Copa esaminata per la catalogazione

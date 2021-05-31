@@ -653,6 +653,7 @@ de:
     parts_held: Vorhandene Stimmen
     parts_held_extent: Stimmenmaterial
     patron: Mäzen/Auftraggeber
+    people: Personen
     people_institutions: Personen und Körperschaften
     percussion: Schlaginstrumente
     performance: Mitwirkende
@@ -691,6 +692,8 @@ de:
     public_note: Bemerkungen
     publisher: Verleger
     publisher_copyist: Schreiber, Verleger, Verlag
+    publisher_number: Verlagsnummer
+    publisher_plate_number: Verlags- oder Plattennummer
     publishing_printing_production: Abschrift oder Impressum
     qualifying_information: Qualifizierende Informationen
     range_dates: Datierungsbereich
@@ -742,6 +745,7 @@ de:
     solo_voice: Solostimme
     soloist_instrument: Solistisches Instrument
     source: Quelle
+    sources: Quellen
     source_data_found: Literaturnachweis
     source_data_not_found: Quelle ohne Ergebnis konsultiert
     source_description: Vorlageexemplar

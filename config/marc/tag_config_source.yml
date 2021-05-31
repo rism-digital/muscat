@@ -97,7 +97,7 @@
       - :occurrences: "1"
   "028":
     :master: a
-    :indicator: "20"
+    :indicator: ["20", "30"]
     :occurrences: "*"
     :fields:
     - - a

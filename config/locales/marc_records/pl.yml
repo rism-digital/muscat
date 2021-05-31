@@ -653,6 +653,7 @@ pl:
     parts_held: Głosy
     parts_held_extent: Głosy, objętość
     patron: Sponsor
+    people: Osoby
     people_institutions: Osoby i instytucje
     percussion: Perkusja
     performance: Wykonanie
@@ -691,6 +692,8 @@ pl:
     public_note: Inne informacje kontaktowe
     publisher: Wydawca
     publisher_copyist: Wydawca, kopista
+    publisher_number: Numer wydawcy
+    publisher_plate_number: Numer wydawcy lub wydawniczy
     publishing_printing_production: Informacje o publikacji, druku i produkcji
     qualifying_information: Informacje kwalifikacyjne
     range_dates: Zakres dat
@@ -742,6 +745,7 @@ pl:
     solo_voice: Głos solowy
     soloist_instrument: Instrument solowy
     source: Źródło
+    sources: Źródła
     source_data_found: Odnalezione źródło danych
     source_data_not_found: Brak źródła danych
     source_description: Uwaga o źródle opisu

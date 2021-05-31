@@ -650,6 +650,7 @@ pt:
     parts_held: Partes existentes
     parts_held_extent: Partes existentes e extensão
     patron: ''
+    people: Pessoas
     people_institutions: Pessoas e instituições
     percussion: Percussão
     performance: ''
@@ -688,6 +689,8 @@ pt:
     public_note: ''
     publisher: Casa editora [pbl]
     publisher_copyist: Editor, copista
+    publisher_number: Número da editora
+    publisher_plate_number: Número da editora ou de chapa
     publishing_printing_production: Informação de publicação, impressão e produção
     qualifying_information: Informação sobre qualificação
     range_dates: Faixa de datas
@@ -739,6 +742,7 @@ pt:
     solo_voice: Voz solista
     soloist_instrument: ''
     source: Fonte
+    sources: Fontes
     source_data_found: Fonte dos dados encontrados
     source_data_not_found: ''
     source_description: Exemplar examinado para catalogação

@@ -650,6 +650,7 @@ es:
     parts_held: Particellas conservadas
     parts_held_extent: Particellas conservadas y extensión de las mismas
     patron: Comitente
+    people: Personas
     people_institutions: Personas e instituciones
     percussion: ''
     performance: Interpretación
@@ -688,6 +689,8 @@ es:
     public_note: Nota pública
     publisher: Editor (publicador)/Editorial (publicadora)
     publisher_copyist: Editor, copista
+    publisher_number: Número de la editorial
+    publisher_plate_number: Número de la editorial o de la plancha
     publishing_printing_production: Información de publicación, impresión y producción
     qualifying_information: Información calificada
     range_dates: Rango de fechas
@@ -739,6 +742,7 @@ es:
     solo_voice: Voz solista
     soloist_instrument: Instrumento solista
     source: Fuente
+    sources: Fuentes
     source_data_found: Fuente de los datos encontrados
     source_data_not_found: Fuente de los datos no encontrados
     source_description: Copia examinada para la catalogación

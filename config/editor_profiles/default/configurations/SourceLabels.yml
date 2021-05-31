@@ -23,11 +23,17 @@
   label: records.fingerprint_identifier
 028:
   fields:
+    indicator:
+      label: records.publisher_plate_number
     '8':
       label: records.set
     a:
+      label: records.number
+    '20':
       label: records.plate_number
-  label: records.plate_number
+    '30':
+      label: records.publisher_number
+  label: records.publisher_plate_number
 02_codes_performing:
   label: records.performance
 02_mensural_clefs:
