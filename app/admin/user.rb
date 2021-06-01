@@ -83,8 +83,16 @@ ActiveAdmin.register User do
       row I18n.t(:roles) do |user|
            user.get_roles.join(", ")
       end
-      row :notifications
-      row :notification_type
+      row I18n.t('notifications.notifications') do |r|
+        r.notifications.split(/\n+|\r+/).reject(&:empty?).join("<br>").html_safe
+      end
+      row I18n.t('notifications.cadence') do |r|
+        if !r.notification_type
+          I18n.t('notifications.none')
+        else
+          I18n.t('notifications.' + current_user.notification_type) + " (#{current_user.notification_type})"
+        end
+      end
       row :sign_in_count
       row :created_at
       row :updated_at

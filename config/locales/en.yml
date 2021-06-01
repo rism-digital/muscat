@@ -193,7 +193,7 @@ en:
         other: "Users"
       work:
         one: "Work"
-        other: "Work"
+        other: "Works"
   
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Select new template"
@@ -608,7 +608,6 @@ en:
   standardtitle:
     one: "title or text incipit"
     other: "titles or text incipits" 
-
   user:
     one: "user"
     other: "users" 
@@ -697,6 +696,18 @@ en:
     download: "Download"
     more: "More"
     banner: 'Please click "Preview" to show the MEI-converted output.'
+
+  notifications:
+    cadence: Notification cadence
+    none: Notifications are disabled
+    every: Each time a matching record is saved
+    daily: Every day
+    weekly: Every week
+    rules: Rules
+    notifications: Notifications
+    edit: Edit notifications
+    empty_message: "No notifications are enabled. You can %{href} to activate them"
+    empty_message_href: edit them
 
   wf_stage:
     inprogress: "Unpublished (UNP)"

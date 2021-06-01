@@ -10,8 +10,8 @@
          <%= f.input :password %>
          <%= f.input :password_confirmation %>
         <!-- size does not work unless there is a dummy class. Hooray! -->
-         <%= f.input :notifications, :input_html => { :class => 'placeholder', :rows => 2, :style => 'width:50%'} %>
-         <%= f.input :notification_type, as: :select, multiple: false, collection: [:every, :daily, :weekly] %>
+         <%= f.input :notifications, :label => I18n.t('notifications.notifications'), :input_html => { :class => 'placeholder', :rows => 6, :style => 'width:50%'} %>
+         <%= f.input :notification_type, :label => I18n.t('notifications.cadence'), as: :select, multiple: false, :include_blank => false, collection: [:none, :every, :daily, :weekly].collect {|v| [I18n.t("notifications." + v.to_s), v == :none ? nil : v]} %>
        <% end %>
        <% if can? :manage, User %>
          <%= f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all.sort_by {|w| w.name} %>
@@ -19,7 +19,6 @@
          <%= f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published, :deleted] %>
        <% end %>
      <% end %>
-<%=f.actions%>
 <% end %>
 
 <%= render 'notifications_help' %>
