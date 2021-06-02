@@ -606,6 +606,7 @@ pt:
     no_linguistic_content: ''
     non_migrated_bound: ''
     not_applicable: Não aplicável
+    note: Nota
     note_external_resource: Nota sobre recurso externo
     note_fields: Campos de notas
     note_on_performance: Nota sobre performance
@@ -709,11 +710,13 @@ pt:
     related_personal_name: Nome de pessoa relacionado
     related_place: Local relacionado
     related_resources: ''
+    related_source: Fonte relacionada
     related_titles: ''
     related_to: ''
     related_work: ''
     relation: ''
     relations: Relacionamentos
+    relationship: Relação
     relationship_designation: Designação da relação em $i ou $4
     relationship_information: Informação sobre a relação
     religious_name: ''

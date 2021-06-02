@@ -606,6 +606,7 @@ pl:
     no_linguistic_content: Brak zawartości językowej
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Nie dotyczy
+    note: Notatka
     note_external_resource: Uwaga o zasobie zewnętrznym
     note_fields: Pola uwag
     note_on_performance: Uwaga o wykonaniu
@@ -712,11 +713,13 @@ pl:
     related_personal_name: Powiązana osoba
     related_place: Powiązane miejsce
     related_resources: Powiązane zasoby
+    related_source: Powiązane źródło
     related_titles: Powiązane tytuły
     related_to: W pokrewieństwie z …
     related_work: Powiązane dzieło
     relation: Relacja
     relations: Relacje
+    relationship: Relacja
     relationship_designation: Oznaczenie relacji w $i lub $4
     relationship_information: Informacje o relacjach
     religious_name: Imię z wyznania

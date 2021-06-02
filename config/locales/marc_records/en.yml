@@ -606,6 +606,7 @@ en:
     no_linguistic_content: No linguistic content
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Not applicable
+    note: Note
     note_external_resource: Note about external resource
     note_fields: Note fields
     note_on_performance: Note on performance
@@ -712,11 +713,13 @@ en:
     related_personal_name: Related personal name
     related_place: Related place
     related_resources: Related resources
+    related_source: Related source
     related_titles: Related Titles
     related_to: Related to
     related_work: Related work
     relation: Relation
     relations: Relations
+    relationship: Relationship
     relationship_designation: Relationship designation in $i or $4
     relationship_information: Relationship information
     religious_name: Religious name

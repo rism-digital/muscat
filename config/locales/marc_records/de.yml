@@ -606,6 +606,7 @@ de:
     no_linguistic_content: ohne Sprache
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Nicht zutreffend
+    note: Hinweis
     note_external_resource: Für das Publikum bestimmte Fussnote
     note_fields: Bemerkungen
     note_on_performance: Bemerkungen zu den Aufführungen
@@ -712,11 +713,13 @@ de:
     related_personal_name: Zugehörige Personen
     related_place: Ort
     related_resources: Links
+    related_source: Verwandte Quelle
     related_titles: Verlinkungen
     related_to: Verwandt mit
     related_work: zugehörige Werke
     relation: Bedeutung
     relations: Beziehungen
+    relationship: Beziehung
     relationship_designation: Beziehungsbezeichnung in $i oder $4
     relationship_information: Informationen zur Beziehung
     religious_name: Ordensname
