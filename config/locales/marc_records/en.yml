@@ -316,7 +316,7 @@ en:
     chronological_term: Chronological term
     city: City
     clef: Clef
-    co-composer: Co-composer
+    co_composer: Co-composer
     coded_date: Coded date
     coded_instrumentation: Coded instrumentation
     collaborator: Collaborator
