@@ -316,7 +316,7 @@ pl:
     chronological_term: Datowanie
     city: Miejscowość
     clef: Klucz
-    co-composer: Współkompozytor
+    co_composer: Współkompozytor
     coded_date: Znormalizowana data
     coded_instrumentation: Standaryzowany zapis instrumentacji
     collaborator: Współtwórca
