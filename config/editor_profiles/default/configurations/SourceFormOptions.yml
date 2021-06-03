@@ -720,6 +720,7 @@
         editor_partial: subfield_select
     - - e
       - values:
+        - " "
         - "unison"
         - "2nd"
         - "3rd"
@@ -741,12 +742,14 @@
         editor_partial: subfield_select
     - - f
       - values:
+        - " "
         - "above"
         - "below"
         editor_partial: subfield_select
     - - g
     - - h
       - values:
+        - " "
         - "semiminim(s)"
         - "minim(s)"
         - "semibreve(s)"
@@ -766,6 +769,7 @@
         - "other"
         editor_partial: subfield_select
     - - o
+
 "700":
   new_window: people
   new_window_field: full_name_equals
