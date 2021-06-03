@@ -787,7 +787,7 @@ cph:
 cst:
   label: records.costume_designer
 ctb:
-  label: records.co-composer
+  label: records.co_composer
 c|b:
   label: records.cf_minor
 c|x:
