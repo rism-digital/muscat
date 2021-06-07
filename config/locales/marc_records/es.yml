@@ -316,7 +316,7 @@ es:
     chronological_term: Término cronológico
     city: Ciudad
     clef: Clave
-    co-composer: Co-compositor
+    co_composer: Co-compositor
     coded_date: Fecha codificada
     coded_instrumentation: Intrumentación codificada
     collaborator: Colaborador

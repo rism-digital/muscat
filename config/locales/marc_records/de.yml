@@ -316,7 +316,7 @@ de:
     chronological_term: Datierungen
     city: Ort
     clef: Schlüssel
-    co-composer: Mitkomponist
+    co_composer: Mitkomponist
     coded_date: Datum und Ort eines Ereignisses (codiert)
     coded_instrumentation: Kodierte Besetzung
     collaborator: Mitverfasser

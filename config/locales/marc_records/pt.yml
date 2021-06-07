@@ -316,7 +316,7 @@ pt:
     chronological_term: ''
     city: ''
     clef: Clave
-    co-composer: Co-compositor [ctb]
+    co_composer: Co-compositor [ctb]
     coded_date: Data codificada
     coded_instrumentation: Instrumentação codificada
     collaborator: ''

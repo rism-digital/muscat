@@ -317,7 +317,7 @@ it:
     chronological_term: Date
     city: Città
     clef: Chiave
-    co-composer: Compositore secondario
+    co_composer: Compositore secondario
     coded_date: Data e luogo di un evento
     coded_instrumentation: Codice della strumentazione
     collaborator: Collaboratore
