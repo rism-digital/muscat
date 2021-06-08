@@ -183,6 +183,15 @@ to the list of lib directories at the top. This will tell Solr to load the jar f
 
   brew services restart solr
 
+==== Matching Muscat configuration to Solr
+
+By default Solr listens on port 8983 with a core named +muscat+. To change this edit the files
+
+  config/sunspot.yml
+  config/blacklight.yml
+
+To change the core name or port
+
 ==== Legacy Solr 5.5
 
   # Make sure solr is not running as root if used in production
@@ -190,6 +199,10 @@ to the list of lib directories at the top. This will tell Solr to load the jar f
   # else just do:
   bundle exec sunspot:solr:start
 
+*NOTE* +sunspot.yml+ and +blacklight.yml+ now point to the +muscat+ core as used for 8.8. To run with 5.5 and the default configuration, edit those files to use
+
+* production: port +8983+ core +production+
+* development: port +8982+ core +development+
 
 === Development Startup
 
@@ -272,13 +285,7 @@ And add the following stanza in the apache configuration file, for example just 
        AssignUserId muscat_linux_user_name muscat_linux_group
     </IfModule>
 
-where muscat_linux_user_name and muscat_linux_group are the first two fields of the output of the id shell command.
-
-If you run more than Muscat in a single server, there is another change to be done: the Solr ports, so each Muscat access its own Solr server.  This port number has to be the same in those two files:
-
-config/sunspot.yml
-config/blacklight.yml
-
+where +muscat_linux_user_name+ and +muscat_linux_group+ are the first two fields of the output of the id shell command.
 
 == Production Installation and daemons
   
