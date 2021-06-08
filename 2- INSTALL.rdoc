@@ -140,7 +140,7 @@ Remember that they key must be readable from the user running apache, so check t
 
 Muscat 7.1 now supports Solr 8.8 installed externally. This means for example that it is possible to use a Solr cluster installed on a different server.
 The internal Solr 5.5 server still works, but will not be supported anymore in the future since the bundled Solr unsupported and has problems with modern Java versions.
-The Muscat core should work with any installation of Solr, here a sample installation procedure is shown but it should be adapted for each installation./
+The Muscat core should work with any installation of Solr, here a sample installation procedure is shown but it should be adapted for each installation.
 
 ==== Installation using a "stock" solr
 
@@ -179,15 +179,22 @@ Edit +/usr/local/var/lib/solr/muscat-index/solrconfig.xml+ To point to the corre
 
   <lib dir="${solr.install.dir:../../../..}/contrib/themax" regex=".*\.jar"/> 
   
-  to the list of lib directories at the top. This will tell Solr to load the jar files in the contrib/themax directory. Restart Solr:
+to the list of lib directories at the top. This will tell Solr to load the jar files in the contrib/themax directory. Restart Solr:
 
-  brew services restart solr (edited
+  brew services restart solr
+
+==== Legacy Solr 5.5
+
+  # Make sure solr is not running as root if used in production
+  sudo -u www-data bundle exec rake RAILS_ENV=production sunspot:solr:start
+  # else just do:
+  bundle exec sunspot:solr:start
+
 
 === Development Startup
 
-Default (development) startup:
+Make sure Solr and Mysql are running. Default (development) startup:
 
- bundle exec rake sunspot:solr:start
  rails s -e development
  
 Try to open http://$IP_ADDRESS:3000/
@@ -251,7 +258,7 @@ Example Apache configuration:
 
 Double check permissions in the muscat installation. Also make sure DocumentRoot and Directory point to public/ in the muscat installation location.
 
-Start Apache, Solr and the related services in production mode (see below).
+Start Apache and the related services in production mode (see below).
 
 == Apache-itk option
 
@@ -274,11 +281,6 @@ config/blacklight.yml
 
 
 == Production Installation and daemons
- 
-Muscat has two running daemons that should be started. Note that *CRONO* is deprecated and no longer used!:
- 
-  # Make sure solr is not running as root!
-  sudo -u www-data bundle exec rake RAILS_ENV=production sunspot:solr:start
   
 +DelayedJob+ now is a bit more tricky, as different queues get different worker pools:
 
