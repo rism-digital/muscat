@@ -173,7 +173,7 @@ As above, copy the configuration and jar file:
   cp -R $MUSCAT_HOME/solr-configuration/muscat /usr/local/var/lib/solr/muscat-index
   cd /usr/local/Cellar/solr/8.8.2/contrib
   mkdir themax
-  $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar /usr/local/Cellar/solr/8.8.2/contrib/themax
+  $MUSCAT_HOME/solr-configuration/jar-8.8-mac/ThemaxQuery-1.0-SNAPSHOT.jar /usr/local/Cellar/solr/8.8.2/contrib/themax
 
 Edit +/usr/local/var/lib/solr/muscat-index/solrconfig.xml+ To point to the correct jar. Remove <lib dir="../../jar"/> and add:
 
