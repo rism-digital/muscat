@@ -136,6 +136,53 @@ Remember that they key must be readable from the user running apache, so check t
 
  chown www-data:www-data config/master.key
 
+=== Solr installation and configuration
+
+Muscat 7.1 now supports Solr 8.8 installed externally. This means for example that it is possible to use a Solr cluster installed on a different server.
+The internal Solr 5.5 server still works, but will not be supported anymore in the future since the bundled Solr unsupported and has problems with modern Java versions.
+The Muscat core should work with any installation of Solr, here a sample installation procedure is shown but it should be adapted for each installation./
+
+==== Installation using a "stock" solr
+
+Grab a copy of the official distribution (8.8.2 at the time of writing) and unpack it in a suitable place
+
+  wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.8.2/solr-8.8.2.tgz
+  tar -xvzf solr-8.8.2.tgz
+
+When using this distribution, you can copy the `muscat` core bundled with Muscat directly into the binary distibution
+
+  cp -R $MUSCAT_HOME/solr-configuration/muscat solr-8.8.2/server/solr
+  cp $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar solr-8.8.2/server/solr/lib/
+
+**NOTE** The bundled `ThemaxQuery-1.0-SNAPSHOT.jar` contains the PAE incipit indexer used in Muscat. A version for macOS 11 is provided in jar-8.8-mac, the linux version should work with any recent Ubuntu/Debian system.
+In `muscat/solrconfig.xml` the path for this jar is hardcoded `<lib dir="../../jar"/>` so it will find it in the stock Solr installation. For a different installation the path should made to point to the correct jar file path.
+Solr should run at this point:
+
+  sudo -u www-data ./bin/solr start -p 8983
+
+Or an appropriate startup script may be used
+
+==== Installation on macOS with Homebrew
+
+Install solr with brew, at the time of writing it is 8.8.2
+
+  brew install solr
+
+As above, copy the configuration and jar file:
+
+  cp -R $MUSCAT_HOME/solr-configuration/muscat /usr/local/var/lib/solr/muscat-index
+  cd /usr/local/Cellar/solr/8.8.2/contrib
+  mkdir themax
+  $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar /usr/local/Cellar/solr/8.8.2/contrib/themax
+
+Edit `/usr/local/var/lib/solr/muscat-index/solrconfig.xml` To point to the correct jar. Remove `<lib dir="../../jar"/>` and add:
+
+  <lib dir="${solr.install.dir:../../../..}/contrib/themax" regex=".*\.jar"/> 
+  
+  to the list of lib directories at the top. This will tell Solr to load the jar files in the contrib/themax directory. Restart Solr:
+
+  brew services restart solr (edited
+
 === Development Startup
 
 Default (development) startup:
