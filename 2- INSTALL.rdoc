@@ -149,13 +149,13 @@ Grab a copy of the official distribution (8.8.2 at the time of writing) and unpa
   wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.8.2/solr-8.8.2.tgz
   tar -xvzf solr-8.8.2.tgz
 
-When using this distribution, you can copy the `muscat` core bundled with Muscat directly into the binary distibution
+When using this distribution, you can copy the +muscat+ core bundled with Muscat directly into the binary distibution
 
   cp -R $MUSCAT_HOME/solr-configuration/muscat solr-8.8.2/server/solr
   cp $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar solr-8.8.2/server/solr/lib/
 
-**NOTE** The bundled `ThemaxQuery-1.0-SNAPSHOT.jar` contains the PAE incipit indexer used in Muscat. A version for macOS 11 is provided in jar-8.8-mac, the linux version should work with any recent Ubuntu/Debian system.
-In `muscat/solrconfig.xml` the path for this jar is hardcoded `<lib dir="../../jar"/>` so it will find it in the stock Solr installation. For a different installation the path should made to point to the correct jar file path.
+**NOTE** The bundled +ThemaxQuery-1.0-SNAPSHOT.jar+ contains the PAE incipit indexer used in Muscat. A version for macOS 11 is provided in jar-8.8-mac, the linux version should work with any recent Ubuntu/Debian system.
+In +muscat/solrconfig.xml+ the path for this jar is hardcoded +<lib dir="../../jar"/>+ so it will find it in the stock Solr installation. For a different installation the path should made to point to the correct jar file path.
 Solr should run at this point:
 
   sudo -u www-data ./bin/solr start -p 8983
@@ -175,7 +175,7 @@ As above, copy the configuration and jar file:
   mkdir themax
   $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar /usr/local/Cellar/solr/8.8.2/contrib/themax
 
-Edit `/usr/local/var/lib/solr/muscat-index/solrconfig.xml` To point to the correct jar. Remove `<lib dir="../../jar"/>` and add:
+Edit +/usr/local/var/lib/solr/muscat-index/solrconfig.xml+ To point to the correct jar. Remove +<lib dir="../../jar"/>+ and add:
 
   <lib dir="${solr.install.dir:../../../..}/contrib/themax" regex=".*\.jar"/> 
   
@@ -203,7 +203,7 @@ For refreshing an installation in production mode (with sudo, as root or sudo -u
 == Logging In
 
 A default administrative user has been created as part of the installation process. To log in,
-go to `http://ip:3000/admin` and log in with the following credentials:
+go to +http://ip:3000/admin+ and log in with the following credentials:
 
  username: admin@example.com
  password: password
@@ -280,7 +280,7 @@ Muscat has two running daemons that should be started. Note that *CRONO* is depr
   # Make sure solr is not running as root!
   sudo -u www-data bundle exec rake RAILS_ENV=production sunspot:solr:start
   
-`DelayedJob` now is a bit more tricky, as different queues get different worker pools:
++DelayedJob+ now is a bit more tricky, as different queues get different worker pools:
 
   sudo -u www-data RAILS_ENV=production bin/delayed_job start --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave --pool=export
 
@@ -300,7 +300,7 @@ It is also good to block access to Solr:
   sudo iptables -A INPUT -p tcp -s localhost --dport 8983 -j ACCEPT
   sudo iptables -A INPUT -p tcp --dport 8983 -j DROP
 
-Also make sure that if there is a proxy, it is configured in `config/initializers/recaptcha.rb`:
+Also make sure that if there is a proxy, it is configured in +config/initializers/recaptcha.rb+:
 
  config.proxy = 'http://myproxy.com.au:8080'
 
@@ -338,7 +338,7 @@ To speed up imports. (See here for more)[https://www.percona.com/blog/2014/01/28
 
 === Lazy's man import speedup
 
-On a full muscat DB there can be many many _old versions_ in the ```versions``` table, since version snapshots are kept for each saved item.
+On a full muscat DB there can be many many _old versions_ in the +versions+ table, since version snapshots are kept for each saved item.
 When doing development this can be quite annoying since it can take up to 30 minutes to restore a db.
 
  sed '/INSERT INTO `versions`/d' muscat_dump.sql > muscat_no_versions.sql
