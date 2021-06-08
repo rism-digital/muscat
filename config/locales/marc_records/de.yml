@@ -1,5 +1,6 @@
 de:
   general:
+    created_at: Erstellungsdatum
     e_mail: E-Mail
     editor_help: Editor Hilfe
     faq: FAQ
@@ -24,6 +25,7 @@ de:
     ungrouped_fields: Nicht zugeteilte Felder
     unknown_fields: Unbekannte Felder
     unused: UNUSED - WILL BE REMOVED
+    updated_at: Letzte Änderung
     uri: URI
     url: URL
     using_muscat: Editor Hilfe

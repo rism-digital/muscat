@@ -1,5 +1,6 @@
 it:
   general:
+    created_at: Data di creazione
     e_mail: E-mail
     editor_help: Guida all'editor
     faq: Domande frequenti
@@ -24,6 +25,7 @@ it:
     ungrouped_fields: Campi non raggruppati
     unknown_fields: Campi sconoscuti
     unused: INUTILIZZATO - VERRÀ RIMOSSO
+    updated_at: Ultima modifica
     uri: URI
     url: URL
     using_muscat: Guida a Muscat

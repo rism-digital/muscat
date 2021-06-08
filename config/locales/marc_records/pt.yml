@@ -1,5 +1,6 @@
 pt:
   general:
+    created_at: Criado em
     e_mail: ''
     editor_help: ''
     faq: Questões frequentes
@@ -24,6 +25,7 @@ pt:
     ungrouped_fields: ''
     unknown_fields: ''
     unused: UNUSED - WILL BE REMOVED
+    updated_at: Última modificação
     uri: URI
     url: ''
     using_muscat: Catalogando fontes
