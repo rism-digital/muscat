@@ -155,7 +155,7 @@ When using this distribution, you can copy the +muscat+ core bundled with Muscat
   cp $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar solr-8.8.2/server/solr/lib/
 
 **NOTE** The bundled +ThemaxQuery-1.0-SNAPSHOT.jar+ contains the PAE incipit indexer used in Muscat. A version for macOS 11 is provided in jar-8.8-mac, the linux version should work with any recent Ubuntu/Debian system.
-In +muscat/solrconfig.xml+ the path for this jar is hardcoded + <lib dir="../../jar"/> + so it will find it in the stock Solr installation. For a different installation the path should made to point to the correct jar file path.
+In +muscat/solrconfig.xml+ the path for this jar is hardcoded <lib dir="../../jar"/> so it will find it in the stock Solr installation. For a different installation the path should made to point to the correct jar file path.
 Solr should run at this point:
 
   sudo -u www-data ./bin/solr start -p 8983
@@ -175,7 +175,7 @@ As above, copy the configuration and jar file:
   mkdir themax
   $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar /usr/local/Cellar/solr/8.8.2/contrib/themax
 
-Edit +/usr/local/var/lib/solr/muscat-index/solrconfig.xml+ To point to the correct jar. Remove + <lib dir="../../jar"/> + and add:
+Edit +/usr/local/var/lib/solr/muscat-index/solrconfig.xml+ To point to the correct jar. Remove <lib dir="../../jar"/> and add:
 
   <lib dir="${solr.install.dir:../../../..}/contrib/themax" regex=".*\.jar"/> 
   
