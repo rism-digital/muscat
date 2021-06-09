@@ -286,8 +286,8 @@ GEM
       activesupport (>= 3.2.18)
       faraday (~> 0.9.0)
       json
-    paper_trail (10.3.1)
-      activerecord (>= 4.2)
+    paper_trail (11.1.0)
+      activerecord (>= 5.2)
       request_store (~> 1.1)
     parallel (1.20.1)
     parslet (2.0.0)
@@ -482,7 +482,7 @@ DEPENDENCIES
   needleman_wunsch_aligner (= 1.0.4)
   non-stupid-digest-assets (~> 1.0.9)
   osullivan
-  paper_trail (~> 10.3.1)
+  paper_trail (~> 11)
   parallel
   progress_bar (= 1.0.6)!
   progress_job (= 0.0.4)!
