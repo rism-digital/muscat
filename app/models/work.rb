@@ -178,6 +178,8 @@ class Work < ApplicationRecord
     self.person = marc.get_composer
     self.form = marc.get_form
     self.notes = marc.get_notes
+
+    self.marc_source = self.marc.to_marc
   end
  
   def self.get_viaf(str)

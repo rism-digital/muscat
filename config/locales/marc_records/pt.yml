@@ -1,5 +1,6 @@
 pt:
   general:
+    created_at: Criado em
     e_mail: ''
     editor_help: ''
     faq: Questões frequentes
@@ -24,6 +25,7 @@ pt:
     ungrouped_fields: ''
     unknown_fields: ''
     unused: UNUSED - WILL BE REMOVED
+    updated_at: Última modificação
     uri: URI
     url: ''
     using_muscat: Catalogando fontes
@@ -316,7 +318,7 @@ pt:
     chronological_term: ''
     city: ''
     clef: Clave
-    co-composer: Co-compositor [ctb]
+    co_composer: Co-compositor [ctb]
     coded_date: Data codificada
     coded_instrumentation: Instrumentação codificada
     collaborator: ''
@@ -606,6 +608,7 @@ pt:
     no_linguistic_content: ''
     non_migrated_bound: ''
     not_applicable: Não aplicável
+    note: Nota
     note_external_resource: Nota sobre recurso externo
     note_fields: Campos de notas
     note_on_performance: Nota sobre performance
@@ -709,11 +712,13 @@ pt:
     related_personal_name: Nome de pessoa relacionado
     related_place: Local relacionado
     related_resources: ''
+    related_source: Fonte relacionada
     related_titles: ''
     related_to: ''
     related_work: ''
     relation: ''
     relations: Relacionamentos
+    relationship: Relação
     relationship_designation: Designação da relação em $i ou $4
     relationship_information: Informação sobre a relação
     religious_name: ''

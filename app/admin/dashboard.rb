@@ -208,6 +208,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+=begin
     columns do
       column do
         panel I18n.t('notifications.notifications') do
@@ -228,7 +229,7 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
-	
+=end
   end # content
   
   sidebar I18n.t "dashboard.selection", :class => "sidebar_tabs", :only => [:index] do

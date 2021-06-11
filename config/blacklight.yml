@@ -12,10 +12,10 @@
 
 development:
   adapter: solr
-  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8982/solr/development" %>
+  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/muscat" %>
 test: &test
   adapter: solr
-  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:#{ENV['TEST_JETTY_PORT'] || 8983}/solr/default" %>
+  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:#{ENV['TEST_JETTY_PORT'] || 8983}/solr/muscat" %>
 production:
   adapter: solr
-  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/production" %>
+  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/muscat" %>

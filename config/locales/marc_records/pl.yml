@@ -1,5 +1,6 @@
 pl:
   general:
+    created_at: Data utworzenia
     e_mail: E-mail
     editor_help: Pomoc do edycji
     faq: Odpowiedzi na częste pytania
@@ -24,6 +25,7 @@ pl:
     ungrouped_fields: Pola niezgrupowane
     unknown_fields: Pola nieznane
     unused: NIEWYKORZYSTANE – DO USUNIĘCIA
+    updated_at: Ostatnia modyfikacja
     uri: URI
     url: URL
     using_muscat: Korzystanie z Muscatu
@@ -316,7 +318,7 @@ pl:
     chronological_term: Datowanie
     city: Miejscowość
     clef: Klucz
-    co-composer: Współkompozytor
+    co_composer: Współkompozytor
     coded_date: Znormalizowana data
     coded_instrumentation: Standaryzowany zapis instrumentacji
     collaborator: Współtwórca
@@ -606,6 +608,7 @@ pl:
     no_linguistic_content: Brak zawartości językowej
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Nie dotyczy
+    note: Notatka
     note_external_resource: Uwaga o zasobie zewnętrznym
     note_fields: Pola uwag
     note_on_performance: Uwaga o wykonaniu
@@ -712,11 +715,13 @@ pl:
     related_personal_name: Powiązana osoba
     related_place: Powiązane miejsce
     related_resources: Powiązane zasoby
+    related_source: Powiązane źródło
     related_titles: Powiązane tytuły
     related_to: W pokrewieństwie z …
     related_work: Powiązane dzieło
     relation: Relacja
     relations: Relacje
+    relationship: Relacja
     relationship_designation: Oznaczenie relacji w $i lub $4
     relationship_information: Informacje o relacjach
     religious_name: Imię z wyznania

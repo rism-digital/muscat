@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.4.6'
+gem 'rails', '5.2.6'
 
 # Use mysql2 as the database for Active Record
 # USE THIS VERSION for 4.1
@@ -46,7 +46,7 @@ end
 gem 'non-stupid-digest-assets', '~> 1.0.9'
 
 # Papertrail for old version support
-gem 'paper_trail', '~> 10.3.1'
+gem 'paper_trail', '~> 11'
 
 # for aligning marc
 gem 'needleman_wunsch_aligner', "1.0.4"

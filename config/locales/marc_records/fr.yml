@@ -1,5 +1,6 @@
 fr:
   general:
+    created_at: Date de création
     e_mail: E-mail
     editor_help: Aide pour l'editor
     faq: Foire aux questions
@@ -25,6 +26,7 @@ fr:
     ungrouped_fields: Champs non regroupés
     unknown_fields: Champs non reconnus
     unused: UNUSED - WILL BE REMOVED
+    updated_at: Dernière modification
     uri: URI
     url: URL
     using_muscat: Aide de Muscat
@@ -317,7 +319,7 @@ fr:
     chronological_term: Datation
     city: Ville
     clef: Clé
-    co-composer: Compositeur secondaire
+    co_composer: Compositeur secondaire
     coded_date: Date et lieu d'un événement
     coded_instrumentation: Instrumentation codée
     collaborator: Collaborateur
@@ -607,6 +609,7 @@ fr:
     no_linguistic_content: Sans contenu linguistique
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Non applicable
+    note: Note
     note_external_resource: Remarque sur la ressource externe
     note_fields: Champs de note
     note_on_performance: Remarque sur les interprètes
@@ -713,11 +716,13 @@ fr:
     related_personal_name: Nom de personne lié
     related_place: Lieu lié
     related_resources: Liens
+    related_source: Source connexe
     related_titles: Titres liés
     related_to: Parent de
     related_work: Ouvrage lié
     relation: Relation
     relations: Relations
+    relationship: Relation
     relationship_designation: Désignation de la relation en $i ou 4
     relationship_information: Informations sur les relations
     religious_name: Nom d'ordre

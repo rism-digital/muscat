@@ -491,15 +491,13 @@
   label: records.initial_entry
 '787':
   fields:
-    g:
-      label: records.incipit_number
+    "4":
+      label: records.relationship
     n:
-      label: records.location_insertion
-    s:
-      label: records.standardized_title
+      label: records.note
     w:
       label: records.rism_id_number
-  label: records.insertions
+  label: records.related_source
 7byz:
   label: records.octoechos7
 7t:
@@ -789,7 +787,7 @@ cph:
 cst:
   label: records.costume_designer
 ctb:
-  label: records.co-composer
+  label: records.co_composer
 c|b:
   label: records.cf_minor
 c|x:

@@ -3,7 +3,7 @@ production:
     hostname: localhost
     port: 8983
     log_level: WARNING
-    path: /solr/production
+    path: /solr/muscat
     memory: 16G
     bind_address: 127.0.0.1
     # read_timeout: 2
@@ -21,7 +21,7 @@ development:
 test:
   solr:
     hostname: localhost
-    port: 8982
+    port: 8983
     log_level: WARNING
-    path: /solr/test
+    path: /solr/muscat
     bind_address: 127.0.0.1

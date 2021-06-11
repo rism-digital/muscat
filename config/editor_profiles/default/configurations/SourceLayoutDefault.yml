@@ -53,6 +53,7 @@ tag_exclude:
   - '591'
   - '592'
   - '774'
+  - '787'
   - '852'
   libretto_source:
   - '588'
@@ -84,6 +85,7 @@ tag_exclude:
   - '561'
   - '591'
   - '774'
+  - '787'
   - '852'
   theoretica_source:
   - '588'
@@ -119,6 +121,7 @@ tag_exclude:
   - '561'
   - '591'
   - '774'
+  - '787'
   - '852'
   composite_volume:
   - '026'
