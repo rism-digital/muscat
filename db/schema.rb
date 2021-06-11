@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_05_14_043225) do
 
-  create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "namespace"
-    t.text "body"
+    t.text "body", limit: 16777215
     t.string "resource_id", null: false
     t.string "resource_type", null: false
     t.integer "author_id"
