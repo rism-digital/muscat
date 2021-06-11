@@ -367,6 +367,16 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
+  "856":
+    :master: u
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - u
+      - :occurrences: "*"
+        :browse_helper: application_helper_link_http
+    - - z
+      - :occurrences: "*"
   "930":
     :master: "0"
     :indicator: "1#"
