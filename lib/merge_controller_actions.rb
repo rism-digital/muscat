@@ -8,7 +8,7 @@ module MergeControllerActions
   
   def self.included(dsl)
     dsl.collection_action :merge, :method => :get do
-      model = self.resource_class
+      model = self.class.resource_class
       duplicate = model.find(params["duplicate"])
       target = model.find(params["target"])
 
