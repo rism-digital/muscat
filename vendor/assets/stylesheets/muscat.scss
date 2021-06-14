@@ -71,6 +71,15 @@ body.active_admin {
     .status_tag.theoretica_edition { background: #deb887; }
     .status_tag.edition { background: #808080; }
     .status_tag.composite_volume { background: #87CEFA; }
+
+/* These colors were deprecated in AA 2.0 - not realy a problem, I leave them here
+ * if we need to reconstruct a color. Only 'published' is used for wf_stage */@at-root
+/*
+    &.ok, &.published, &.complete, &.completed, &.green { background: #8daa92; }
+    &.warn, &.warning, &.orange { background: #e29b20; }
+    &.error, &.errored, &.red { background: #d45f53; }
+*/
+    .status_tag.published { background: #8daa92; }
 }
 
 .progress_bar {
