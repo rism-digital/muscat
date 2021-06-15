@@ -35,3 +35,32 @@ def delete_work(id)
     w.destroy
 end
 
+def format_opus(opus)
+    # remove [] and ?
+    opus = opus.gsub(/\[|\]|\?/,"")
+    # replace opus
+    opus = opus.gsub(/^(opus|Opus|Op.) ?/,'op. ')
+    # replace ^No and similar with opus.
+    opus = opus.gsub(/^(No|no|Nr|nr)\.? ?/,'op. ') 
+    # replace No and similar with /
+    opus = opus.gsub(/(,|.)? ?(No|no|Nr|nr)\.? ?/,'/')
+    # add space if necessary
+    opus = opus.gsub(/^op\.([^\s])/,'op. \1')
+    # remove spaces around /
+    opus = opus.gsub(/ *\/ */, '/')
+    # add spaces with WoO
+    opus = opus.gsub(/^WoO([a-zA-Z0-9]*)$/,'WoO \1')
+    # add op. for single figures
+    opus = opus.gsub(/^([a-zA-Z0-9]*(\/[A-Z0-9]+)?)$/,'op. \1')
+    # replace . with /
+    opus = opus.gsub(/(^op. [a-zA-Z0-9]*)\.|, ?([0-9A-Z])/,'\1/\2') 
+    # remove op. when WoO
+    opus = opus.gsub(/(^op. [a-zA-Z0-9]*)(WoO)/,'\2') 
+end
+
+def check_opus(opus)
+    /^((op. )|(WoO ))[0-9a-zA-Z]*(\/[0-9]+)?$/.match?(opus)
+end
+
+
+
