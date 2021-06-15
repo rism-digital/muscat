@@ -15,6 +15,7 @@ development:
     port: 8983
     log_level: INFO
     path: /solr/muscat
+    memory: 16G
     bind_address: 127.0.0.1
 
 test:
