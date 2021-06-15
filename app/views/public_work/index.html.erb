@@ -1,4 +1,4 @@
-<link type="text/css" rel="StyleSheet" href="assets/active_admin_for_public.css"/>
+<!--<link type="text/css" rel="StyleSheet" href="assets/active_admin_for_public.css"/>-->
 
 <span style="float:right; margin-top: 1.5em; margin-left: 1em;">Displaying <b><%= @starting_document_number%></b> - <b><%= @ending_document_number%></b>  entries of total: <b><%= @results_count%></b></span>
 <%= will_paginate @works, total_pages: @results_count, list_classes: %w(pagination justify-content-end)   %>
@@ -21,3 +21,16 @@
 
 <span style="float:right; margin-top: 1.5em; margin-left: 1em;">Displaying <b><%= @starting_document_number%></b> - <b><%= @ending_document_number%></b>  entries of total: <b><%= @results_count%></b></span>
 <%= will_paginate @works, total_pages: @results_count, list_classes: %w(pagination justify-content-end)   %>
+
+
+<script>
+  $(document).ready(function(){
+      $(".search-navbar-logo").find('img[src$="/images/logo-large-default.png"]').hide()
+      $(".search-query-form").hide()
+  });
+</script>
+<style>
+  #search-navbar {
+    height: 39px !important;
+  }
+</style>
