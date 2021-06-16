@@ -158,6 +158,13 @@ class Work < ApplicationRecord
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
+
+    sunspot_dsl.string :form_order, :stored => true do
+      self.form
+    end
+    sunspot_dsl.string :notes_order, :stored => true do
+      self.notes
+    end
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
