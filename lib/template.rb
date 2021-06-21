@@ -4,13 +4,13 @@ module Template
   # returning a list with general accepted changes
   def self.allowed
     templates = MarcSource::RECORD_TYPES.to_a.select{|k,v| k if v!=0}.map{|k,v| ["#{I18n.t('record_types.' + k.to_s)}",v]}.sort
-    allowed_templates = [1,2,4,5,6,7,8]
+    allowed_templates = [1,2,3,4,5,6,7,8,9,10]
     return templates.filter{|e| allowed_templates.include?e[1]}
   end
 
   # returning a list with all allowed changes between templates 
   def allowed_changes
-    allowed = [2,4,5,6,7,8]
+    allowed = [1,2,3,4,5,6,7,8,10]
     if allowed.delete(self.record_type)
       return allowed
     else
