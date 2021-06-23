@@ -82,7 +82,7 @@ module ForeignLinks
         end
       end
       if check
-        puts assoc.plural_name
+        #puts assoc.plural_name
         dependency_size = self.send(assoc.plural_name).size rescue next
         res[assoc.plural_name] = dependency_size
       end
