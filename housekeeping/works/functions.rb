@@ -17,6 +17,20 @@ def find_work(composer_id, opus, cat_a, cat_n)
     return nil
 end
 
+def delete_work_links(id)
+    w = Work.find(id)
+    modified = false
+    w.marc.each_by_tag("930") do |t|
+        wt = t.fetch_first_by_tag("0")
+        if wt && wt.content
+            #puts "Deleting work link"
+            t.destroy_yourself
+            modified = true
+        end
+    end
+    w.save! if modified
+end
+
 def delete_work(id)
     w = Work.find(id)
     w.referring_sources.each do |s|
