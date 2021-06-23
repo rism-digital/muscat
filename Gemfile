@@ -177,6 +177,4 @@ gem 'sort_alphabetical'
 
 #gem 'i18n-tasks', '~> 0.9.31'
 
-##gem 'premailer-rails'
-
 gem 'differ'

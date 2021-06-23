@@ -3,14 +3,15 @@ class NotificationMatcher
   ALLOWED_MODELS = ["source", "work", "institution"]
 
   ALLOWED_PROPERTIES = {
-    source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum],
-    work: [:title, :form, :notes, :composer],
-    institution: [:siglum, :name, :address, :place, :comments, :alternates, :notes]
+    source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum, :follow],
+    work: [:title, :form, :notes, :composer, :follow],
+    institution: [:siglum, :name, :address, :place, :comments, :alternates, :notes, :follow]
   }
 
   SPECIAL_RULES = {
-    source: [:lib_siglum, :record_type, :shelf_mark],
-    work: [:composer]
+    source: [:lib_siglum, :record_type, :shelf_mark, :follow],
+    work: [:composer, :follow],
+    institution: [:follow]
   }
 
   def initialize(object, user)
@@ -100,6 +101,14 @@ class NotificationMatcher
       return false if !@object.person
       composer = @object.person.name
       return wildcard_match(composer, pattern)
+    elsif property == "follow"
+      if @object.versions && @object.versions.last && @object.versions.last.whodunnit
+        return true if @object.versions.last.whodunnit.downcase == pattern.downcase
+      else
+        return false if !@object.user || !@object.user.name
+        user_name = @object.user.name.downcase
+        return true if user_name == pattern.downcase
+      end
     end
 
     false
