@@ -6,6 +6,26 @@ pb = ProgressBar.new(Source.all.count)
 @list = Array.new
 @op = Array.new
 @skipped = Array.new
+@cmp_gnd_ids = Hash.new
+
+def get_gnd_id(person)
+    # look in cache first
+    stored_id = @cmp_gnd_ids[person.id]
+    return stored_id if stored_id
+    # get it otherwise
+    person.marc.load_source false
+    person.marc.each_by_tag("024") do |t|
+        t2 = t.fetch_first_by_tag("2")
+        if t2 and t2.content and t2.content == "DNB"
+            ta = t.fetch_first_by_tag("a")
+            if ta and ta.content
+                @cmp_gnd_ids[person.id] = ta.content
+                return ta.content
+            end
+        end
+    end
+    nil
+end
 
 def find_work_list(composer_id, opus, cat_a, cat_n)
     w_opus = nil
@@ -185,6 +205,11 @@ Source.find_in_batches do |batch|
             w_cat_n.content = cat_n
         end 
         w.person = Person.find(id) rescue nil
+        item['cmp-name'] = w.person ? w.person.full_name : "[missing]"
+        gnd_id = w.person ? get_gnd_id(w.person) : nil
+        if (gnd_id)
+            item['cmp-gnd'] = gnd_id
+        end
         w.suppress_reindex
         w.save!
         item['w-id'] = w.id
