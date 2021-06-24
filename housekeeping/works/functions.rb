@@ -20,6 +20,16 @@ end
 def delete_work(id)
     w = Work.find(id)
 
+    modified = false
+    w.marc.by_tags("930").each do |t|
+        st = t.fetch_first_by_tag("0")
+        #puts "Deleting work link"
+        t.destroy_yourself
+        modified = true
+    end
+    w.save! if modified
+    w = Work.find(id)
+
     w.referring_works.each do |wr|
         modified = false
         #s.marc.load_source 
@@ -48,7 +58,7 @@ def delete_work(id)
         s.save! if modified
     end
     w2 = Work.find(id)
-    w2.destroy
+    w2.destroy!
 end
 
 def format_opus(opus)
