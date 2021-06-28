@@ -122,7 +122,8 @@ v 7.1
 * Also rename DE file for translation
 * Fix formattin in help file
 * Very big overhaul of the Notifications interface to include I18n
-* Fix #1107, Add Peru to Country of Publication in 044 in Secondary Literature 
+* Fix #1107, Add Peru to Country of Publication in 044 in Secondary Literature
+* Fix work objects not saving from the backend
 
 v 7.0.3
 * Temporarily hide 787 tag

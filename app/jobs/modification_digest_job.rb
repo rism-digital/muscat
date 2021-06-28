@@ -26,6 +26,15 @@ class ModificationDigestJob < ApplicationJob
             results[model.to_s.downcase] = {} if !results[model.to_s.downcase]
             results[model.to_s.downcase][match] = [] if !results[model.to_s.downcase][match]
 
+            # We display only the first 100 versions
+            if !s.versions.empty? && total_results < 100
+              version = s.versions.last
+              item = version.reify #item_type.singularize.classify.constantize.new
+              item.marc.load_from_array( VersionChecker.get_diff_with_next( version.id ) )
+              editor_profile = EditorConfiguration.get_show_layout item
+              s = item
+            end
+
             results[model.to_s.downcase][match] << s
             total_results += 1
           end

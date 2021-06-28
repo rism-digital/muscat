@@ -736,6 +736,7 @@
     :fields:
     - - "4"
       - :occurrences: "?"
+        :browse_helper: application_helper_resolve_relator_code
     - - n
       - :occurrences: "?"
     - - w

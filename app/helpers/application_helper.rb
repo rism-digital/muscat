@@ -84,6 +84,11 @@ module ApplicationHelper
 		end
   end
   
+  # Transform the relator code into its label
+  def application_helper_resolve_relator_code(value, subfield, opac)
+    return @editor_profile.get_label(value)
+  end
+
   #################
   # These methods are placed here for compatibility with muscat 2
     
