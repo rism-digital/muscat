@@ -152,19 +152,19 @@ class Work < ApplicationRecord
       title
     end
     sunspot_dsl.text :title
-    sunspot_dsl.string :opus
-    sunspot_dsl.string :catalogue
+    sunspot_dsl.text :opus
+    sunspot_dsl.text :catalogue
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
 
-    sunspot_dsl.string :opus_order, :stored => true do
-      self.opus
+    sunspot_dsl.string :opus_order, stored: true, as: "opus_shelforder_s" do |s|
+      s.opus
     end
-    sunspot_dsl.string :catalogue_order, :stored => true do
-      self.catalogue
+    sunspot_dsl.string :catalogue_order, stored: true, as: "catalogue_shelforder_s" do |s|
+      s.catalogue
     end
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
