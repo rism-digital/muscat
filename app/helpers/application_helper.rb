@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def publication_default_autocomplete
-    autocomplete_publication_name_admin_publications_path
+    autocomplete_publication_short_name_admin_publications_path
   end
   
   def institution_default_autocomplete
