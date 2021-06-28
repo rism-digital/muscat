@@ -186,6 +186,7 @@ GEM
       devise (>= 4.7.1)
     diff-lcs (1.4.4)
     differ (0.1.2)
+    diffy (3.4.0)
     erubi (1.10.0)
     exception_notification (4.4.3)
       actionmailer (>= 4.0, < 7)
@@ -455,6 +456,7 @@ DEPENDENCIES
   devise
   devise-i18n
   differ
+  diffy
   exception_notification (~> 4.4.0)
   factory_bot_rails
   gruff
