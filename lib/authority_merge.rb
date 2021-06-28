@@ -48,7 +48,7 @@ module AuthorityMerge
     #include sources and holdings at first
     #TODO probably add more asscociations
     refs = []
-    (self.class.reflect_on_all_associations.map{|e| e.name}.select{|e| e.to_s =~ /source|holding/}).each do |s|
+    (self.class.reflect_on_all_associations.map{|e| e.name}.select{|e| e.to_s =~ /source|holding/ && !(e.to_s =~ /relations/)}).each do |s|
       refs << self.send(s)
     end
     refs.flatten.each do |s|
