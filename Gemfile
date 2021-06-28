@@ -18,8 +18,11 @@ gem 'uglifier', '~> 4.2'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 5.0'
 
+# NOTE HERE: since execjs 2.8, the therubyracer is deprecated
+# Mini racer 0.4 appears to be broken.
+# A runtime can be used with node.js: apt-get install nodejs
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-#gem 'therubyracer', platforms: :ruby
+# gem 'mini_racer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', "~> 4.3.5"
