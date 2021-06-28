@@ -156,9 +156,9 @@ Extract just the installation script:
 
 And execute it:
 
-  sudo ./install_solr_service.sh solr-8.8.0.tgz -d /data/solr -p 8983
+  sudo ./install_solr_service.sh solr-8.8.2.tgz -d /data/solr -p 8983
 
-This will create the directory layout as above. It will also create a `solr` user. For the complete reference see https://solr.apache.org/guide/8_8/taking-solr-to-production.html
+This will create the directory layout as above. It will also create a +solr+ user. For the complete reference see https://solr.apache.org/guide/8_8/taking-solr-to-production.html
 Now copy over the Muscat core:
 
   cp -R $MUSCAT_HOME/solr-configuration/muscat /data/solr/data
@@ -170,7 +170,7 @@ Solr includes a startup script so
   systemctl daemon-reload
   service solr start
 
-Should start it. The logfiles in this case are found in `/data/solr/logs`.
+Should start it. The logfiles in this case are found in +/data/solr/logs+.
 
 ==== Installation using a "stock" solr
 
