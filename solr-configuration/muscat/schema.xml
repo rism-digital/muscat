@@ -189,25 +189,7 @@
             </analyzer>
         </fieldtype>
 
-        <fieldType name="text_alphanumeric_sort" class="solr.TextField" sortMissingLast="false" omitNorms="true">
-            <analyzer>
-                <tokenizer class="solr.KeywordTokenizerFactory"/>
-                <filter class="solr.LowerCaseFilterFactory"/>
-                <filter class="solr.TrimFilterFactory"/>
-                <filter class="solr.PatternReplaceFilterFactory"
-                        pattern="^(a |the |les |la |le |l'|de la |du |des )" replacement="" replace="all"
-                />
-                <filter class="solr.PatternReplaceFilterFactory"
-                        pattern="(\d+)" replacement="00000$1" replace="all"
-                />
-                <filter class="solr.PatternReplaceFilterFactory"
-                        pattern="0*([0-9]{6,})" replacement="$1" replace="all"
-                />
-                <filter class="solr.PatternReplaceFilterFactory"
-                        pattern="([^a-z0-9])" replacement="" replace="all"
-                />
-            </analyzer>
-        </fieldType>
+        <fieldType name="text_alphanumeric_sort" class="solr.ICUCollationField" locale="" numeric="true" strength="secondary" sortMissingLast="true" />
         <!-- END ADDED BY RZ FOR MUSCAT -->
     </types>
     <uniqueKey>id</uniqueKey>
@@ -215,4 +197,3 @@
     <copyField source="*_text" dest="textSpell"/>
     <copyField source="*_s" dest="textSpell"/>
 </schema>
-
