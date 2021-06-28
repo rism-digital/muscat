@@ -164,7 +164,7 @@ Now copy over the Muscat core:
   cp -R $MUSCAT_HOME/solr-configuration/muscat /data/solr/data
   cp $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar /data/solr/data/lib/
 
-Where `/data/solr/` in the directory specified above with -d.
+Where +/data/solr/+ in the directory specified above with -d.
 Solr includes a startup script so 
 
   systemctl daemon-reload
