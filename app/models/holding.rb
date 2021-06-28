@@ -36,7 +36,7 @@ class Holding < ApplicationRecord
   attr_accessor :suppress_update_77x_trigger
 
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum wf_audit: [ :unapproved, :full, :abbreviated, :retro, :imported ]
 
   def after_initialize
     @old_collection = nil

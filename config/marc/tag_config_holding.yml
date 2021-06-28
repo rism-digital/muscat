@@ -168,7 +168,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: short_name
     - - n
       - :occurrences: "?"
  
