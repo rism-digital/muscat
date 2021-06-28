@@ -8,6 +8,10 @@ config:
 fields:  
     "001":
     "008":
+    "0242_filter":
+      :type: string
+      :from_tag: "024"
+      :from_subtag: "2"
     "031t":
     "100a":
     "100d":
