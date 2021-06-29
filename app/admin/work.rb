@@ -134,6 +134,8 @@ ActiveAdmin.register Work do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
       label: I18n.t('status_codes.' + (work.wf_stage != nil ? work.wf_stage : ""), locale: :en))} 
+    column ("Links") {|work| status_tag(:work_links, 
+      label: active_admin_work_status_tag_label(work.link_status) , class: active_admin_work_status_tag_class(work.link_status) )}
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_title), :title
     column "Opus", :opus_order, sortable: :opus_order do |element| 

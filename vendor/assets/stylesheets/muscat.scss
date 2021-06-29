@@ -71,6 +71,25 @@ body.active_admin {
     .status_tag.theoretica_edition { background: #deb887; }
     .status_tag.edition { background: #808080; }
     .status_tag.composite_volume { background: #87CEFA; }
+
+    .status_tag.work_links { 
+      width: 82px;
+      display: inline-block; 
+      background: rgba(255,255,255,0.0);
+    }
+    .status_tag.work_links.links-1 {
+      background: linear-gradient(to right,
+      #87CEFA 38%,
+      rgba(255,255,255,0.0) 38%)
+    }
+    .status_tag.work_links.links-2 {
+      background: linear-gradient(to right,
+      #87CEFA 70%,
+      rgba(255,255,255,0.0) 70%)
+    }
+    .status_tag.work_links.links-3 {
+      background: #87CEFA;
+    }
 }
 
 .progress_bar {

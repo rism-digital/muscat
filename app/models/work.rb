@@ -187,6 +187,7 @@ class Work < ApplicationRecord
     #self.person = marc.get_composer
     self.opus = marc.get_opus
     self.catalogue = marc.get_catalogue
+    self.link_status = marc.get_link_status
 
     self.marc_source = self.marc.to_marc
   end

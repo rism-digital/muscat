@@ -259,4 +259,23 @@ module ActiveAdmin::ViewsHelper
     end
   end
 
+  def active_admin_work_status_tag_class value
+    return "" if !value
+    c = 0
+    while value > 0
+      value &= value - 1
+      c += 1
+    end
+    return "links-#{c}"
+  end
+
+  def active_admin_work_status_tag_label value
+    return "" if !value
+    s = []
+    s << "DNB" if (value & 1) > 0
+    s << "BNF" if (value & 2) > 0
+    s << "MBZ" if (value & 4) > 0
+    return s.join(' ')
+  end
+
 end
