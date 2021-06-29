@@ -160,11 +160,11 @@ class Work < ApplicationRecord
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
 
-    sunspot_dsl.string :opus_order, stored: true, as: "opus_shelforder_s" do |s|
-      s.opus
+    sunspot_dsl.string :opus_order, :stored => true, as: "opus_shelforder_s" do |s|
+      s.opus if !s.opus.strip.empty?
     end
-    sunspot_dsl.string :catalogue_order, stored: true, as: "catalogue_shelforder_s" do |s|
-      s.catalogue
+    sunspot_dsl.string :catalogue_order, :stored => true, as: "catalogue_shelforder_s" do |s|
+      s.catalogue if !s.catalogue.strip.empty?
     end
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
