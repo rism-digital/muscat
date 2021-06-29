@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_28_081916) do
+ActiveRecord::Schema.define(version: 2021_06_29_110748) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -608,6 +608,7 @@ ActiveRecord::Schema.define(version: 2021_06_28_081916) do
     t.datetime "updated_at"
     t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
+    t.integer "link_status"
     t.index ["title"], name: "index_works_on_title"
     t.index ["wf_stage"], name: "index_works_on_wf_stage"
   end
