@@ -1,4 +1,6 @@
- <%= semantic_form_for [:admin, @user], builder: ActiveAdmin::FormBuilder, :html => {:id => "edit_user" } do |f| %>
+ <% action = params[:action] == "new" ? "new" : "edit" %>
+ <% form_id = "#{action}_user" %>
+ <%= semantic_form_for [:admin, @user], builder: ActiveAdmin::FormBuilder, :html => {:id => form_id } do |f| %>
    
      <%= f.inputs I18n.t(:user_details) do %>
        <%if can? :update, User %>
