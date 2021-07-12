@@ -83,6 +83,9 @@ client:
       "4":
         required_if:
           "710": "0"
+  "730":
+    tags:
+      "0": required
   "787": 
     tags:
       "n": required
