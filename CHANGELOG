@@ -1,6 +1,15 @@
 Muscat Changelog
 ================
 
+v 7.1.1
+* #1124 Fix 670 autocomplete
+* #1124 Fix holdings :unapproved
+* #1124 Skip "referring_source_relations" and "source_person_relations" jump tables
+* #1124 Fix "inprogress" and "unpublished" legacy values in versions
+* Force queries to be AND as it was with solr 5.5
+* Fix user form not saving new users
+* Add validation for 730 $0
+
 v 7.1
 * Increase allowed offset on SRU endpoint
 * Add authmerge to StandardTitle
