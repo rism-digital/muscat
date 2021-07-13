@@ -84,7 +84,7 @@ ActiveAdmin.register User do
            user.get_roles.join(", ")
       end
       row I18n.t('notifications.notifications') do |r|
-        r.notifications.split(/\n+|\r+/).reject(&:empty?).join("<br>").html_safe
+        r.notifications ? r.notifications.split(/\n+|\r+/).reject(&:empty?).join("<br>").html_safe : ""
       end
       row I18n.t('notifications.cadence') do |r|
         if !r.notification_type
