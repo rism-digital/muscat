@@ -237,6 +237,9 @@ fields:
   "856u":
   "856x":
       :type: string
+  "856x":
+      :type: string
+      :holding_record: true
   "856z":
   "publisher":
     :index_processor_helper: marc_extract_publisher
