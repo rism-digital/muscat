@@ -181,3 +181,11 @@ body.active_admin {
 select[name="target_template"] { 
   width: 280px;
 }
+
+.holding_digital {
+  float: right; 
+	width: 16px;
+	height: 16px;
+  margin-right: 8px;
+  background: image-url("/images/ebook.png");
+}
