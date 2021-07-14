@@ -532,25 +532,29 @@ function marc_editor_incipit(clef, keysig, timesig, incipit, target, width) {
 	render_music(pae, 'pae', target, width);
 }
 
-// This is the last non-ujs function remaining
-// it is called when ckicking the "+" button
+// These two are the last non-ujs function remaining
+// This one is called when ckicking the "+" button
 // near a repeatable field. It makes a copy
 // of it
 function marc_editor_add_subfield(id) {
 
-	grid = id.parents("tr");
+	var grid = id.parents("tr");
 	//ul = grid.siblings(".repeating_subfield");
-	ul = $(".repeating_subfield", grid);
+	var ul = $(".repeating_subfield", grid);
 	
-	li_all = $("li", ul);
+	var li_all = $("li", ul);
 	
-	li_original = $(li_all[li_all.length - 1]);
+	var li_original = $(li_all[li_all.length - 1]);
 	
-	new_li = li_original.clone();
+	var new_li = li_original.clone();
 	$(".serialize_marc", new_li).each(function() {
 		$(this).val("");
 	});
 	
+	$(".add-button", new_li).each(function() {
+		$(this).hide();
+	});
+
 	// This is a special case for the light-weight "t" tag
 	// in 031, as it is a select_subfield which normally is
 	// never repeatable, but in this case, since it does not
@@ -567,6 +571,34 @@ function marc_editor_add_subfield(id) {
 	ul.append(new_li);
 	new_li.fadeIn('fast');
 
+}
+
+// This one removes the item
+function marc_editor_remove_subfield(id) {
+
+	var element = id.parents("li");
+
+	var button = $(".add-button", element);
+	if (button.is(":visible")) {
+		var grid = id.parents("tr");
+		var ul = $(".repeating_subfield", grid);
+
+		if ($(ul).children().length == 1) {
+			$(".serialize_marc", element).each(function() {
+				$(this).val("");
+			});
+		} else {
+			element.remove();
+			
+			var next = $(ul).children()[0]
+
+			var add_button = $(".add-button", next);
+			add_button.show();
+
+		}
+	} else {
+		element.remove();
+	}
 }
 
 // Hardcoded for marc_editor_panel
