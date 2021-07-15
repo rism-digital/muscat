@@ -168,8 +168,8 @@ class Publication < ApplicationRecord
       id_for_fulltext
     end
 
-    sunspot_dsl.string :name_order do
-      name
+    sunspot_dsl.string :short_name_order do
+      short_name
     end
     sunspot_dsl.text :short_name
 

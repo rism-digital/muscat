@@ -12,10 +12,6 @@ group_order:
 group_exclude:
   collection:
   - edit_incipits
-  theoretica_source:
-  - edit_incipits
-  theoretica_edition:
-  - edit_incipits
   composite_volume:
   - edit_incipits
   - edit_works
@@ -57,6 +53,7 @@ tag_exclude:
   - '591'
   - '592'
   - '774'
+  - '787'
   - '852'
   libretto_source:
   - '588'
@@ -88,6 +85,7 @@ tag_exclude:
   - '561'
   - '591'
   - '774'
+  - '787'
   - '852'
   theoretica_source:
   - '588'
@@ -123,6 +121,7 @@ tag_exclude:
   - '561'
   - '591'
   - '774'
+  - '787'
   - '852'
   composite_volume:
   - '026'

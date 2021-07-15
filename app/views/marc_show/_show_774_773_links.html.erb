@@ -26,6 +26,8 @@
 				<table border="0" cellpadding="0" cellspacing="0">
 				<% 
 				count = 0
+				total_items = @item.marc.by_tags("774").count
+				title = @editor_profile.get_label("774") + " (#{total_items})"
 				@item.marc.each_by_tag("774") do |link|
 					link_id = link.fetch_first_by_tag("w")
 					link_type = link.fetch_first_by_tag("4")
@@ -40,7 +42,7 @@
 					%>
 					<% if child%>
 						<tr class="row">
-							<th><%= count == 0 ? @editor_profile.get_label("774") : "&nbsp;".html_safe %></th>
+							<th><%= count == 0 ? title : "&nbsp;".html_safe %></th>
 							<td>
 								<% if opac %>
 									<%= link_to child.id.to_s, solr_document_path(child.id.to_s)%>

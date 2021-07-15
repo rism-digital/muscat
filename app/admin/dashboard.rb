@@ -207,7 +207,29 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
-	
+
+=begin
+    columns do
+      column do
+        panel I18n.t('notifications.notifications') do
+          if current_user.notification_type && !current_user.notifications.empty?
+            text_node("<b>#{I18n.t('notifications.cadence')}:</b> ".html_safe)
+            text_node(I18n.t('notifications.' + current_user.notification_type) + " (#{current_user.notification_type})")
+
+            lines = current_user.notifications.split(/\n+|\r+/).reject(&:empty?)
+            table_for lines, i18n: 'notifications' do
+              column (I18n.t 'notifications.rules') {|line| line}
+            end
+
+           text_node link_to(I18n.t('notifications.edit'), edit_admin_user_path(current_user))
+
+          else
+            text_node(I18n.t('notifications.empty_message', href: link_to(I18n.t('notifications.empty_message_href'), edit_admin_user_path(current_user)) ).html_safe)
+          end
+        end
+      end
+    end
+=end
   end # content
   
   sidebar I18n.t "dashboard.selection", :class => "sidebar_tabs", :only => [:index] do

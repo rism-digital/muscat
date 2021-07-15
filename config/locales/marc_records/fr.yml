@@ -1,5 +1,6 @@
 fr:
   general:
+    created_at: Date de création
     e_mail: E-mail
     editor_help: Aide pour l'editor
     faq: Foire aux questions
@@ -25,6 +26,7 @@ fr:
     ungrouped_fields: Champs non regroupés
     unknown_fields: Champs non reconnus
     unused: UNUSED - WILL BE REMOVED
+    updated_at: Dernière modification
     uri: URI
     url: URL
     using_muscat: Aide de Muscat
@@ -317,7 +319,7 @@ fr:
     chronological_term: Datation
     city: Ville
     clef: Clé
-    co-composer: Compositeur secondaire
+    co_composer: Compositeur secondaire
     coded_date: Date et lieu d'un événement
     coded_instrumentation: Instrumentation codée
     collaborator: Collaborateur
@@ -468,7 +470,7 @@ fr:
     gf_minor: Sol♭ mineur
     gs_major: Sol♯ majeur
     gs_minor: Sol♯ mineur
-    heading: Nom de personne
+    heading: Entrée principale
     heading_composer_name: Compositeur
     heading_personal_name: Compositeur/Auteur
     heading_personal_name1: Compositeur/Auteur
@@ -607,6 +609,7 @@ fr:
     no_linguistic_content: Sans contenu linguistique
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Non applicable
+    note: Note
     note_external_resource: Remarque sur la ressource externe
     note_fields: Champs de note
     note_on_performance: Remarque sur les interprètes
@@ -654,6 +657,7 @@ fr:
     parts_held: Parties existantes
     parts_held_extent: Parties, extension
     patron: Mécène
+    people: Personnes
     people_institutions: Personnes et institutions
     percussion: Percussions
     performance: Exécuteurs
@@ -692,6 +696,8 @@ fr:
     public_note: Note publique
     publisher: Editeur
     publisher_copyist: Copiste ou maison d'édition
+    publisher_number: Numéro de l'éditeur
+    publisher_plate_number: Numéro d'éditeur ou de plaque
     publishing_printing_production: Copie ou données d'édition
     qualifying_information: Informations requises
     range_dates: Intervalle de dates
@@ -710,11 +716,13 @@ fr:
     related_personal_name: Nom de personne lié
     related_place: Lieu lié
     related_resources: Liens
+    related_source: Source connexe
     related_titles: Titres liés
     related_to: Parent de
     related_work: Ouvrage lié
     relation: Relation
     relations: Relations
+    relationship: Relation
     relationship_designation: Désignation de la relation en $i ou 4
     relationship_information: Informations sur les relations
     religious_name: Nom d'ordre
@@ -743,6 +751,7 @@ fr:
     solo_voice: Voix seule
     soloist_instrument: Instrument soliste
     source: Source
+    sources: Sources
     source_data_found: Source des données
     source_data_not_found: Source consultée sans résultat
     source_description: Copie consultée pour le catalogage
@@ -809,6 +818,7 @@ fr:
     type_relationship: Relation
     typescript: Tapuscrit
     typography: Typographie
+    uncategorized: Non classé
     unknown: Inconnu
     unparsed_fingerprint: Empreinte non analysée
     variant_ms_title: Variante du titre diplomatique
@@ -824,3 +834,13 @@ fr:
     work_number: Numéro de l'œuvre
     year: Année
     years_birth_death: Dates de naissance et de mort
+  relations:
+    P60191: "Source corrélée"
+    P60198: "Matériel supplémentaire"
+    P60311: "Copié de"
+    P60312: "Copié dans"
+    P60195: "Publié dans"
+    P60242: "Arrangement de"
+    P60274: "Arrangement comme"
+    P60194: "Insertion dans"
+    P60183: "Insertion"

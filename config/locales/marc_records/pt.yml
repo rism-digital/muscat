@@ -1,5 +1,6 @@
 pt:
   general:
+    created_at: Criado em
     e_mail: ''
     editor_help: ''
     faq: Questões frequentes
@@ -24,6 +25,7 @@ pt:
     ungrouped_fields: ''
     unknown_fields: ''
     unused: UNUSED - WILL BE REMOVED
+    updated_at: Última modificação
     uri: URI
     url: ''
     using_muscat: Catalogando fontes
@@ -302,7 +304,7 @@ pt:
     cataloging_collections: Catalogação de coletâneas
     cataloging_forms: ''
     cataloging_language: Idioma de catalogação
-    cataloging_level: Nível de catalogação
+    cataloging_level: Nível de catalogação
     cataloging_musical_sources: Catalogando fontes musicais
     cataloging_source: Agência catalogadora
     category: ''
@@ -316,7 +318,7 @@ pt:
     chronological_term: ''
     city: ''
     clef: Clave
-    co-composer: Co-compositor [ctb]
+    co_composer: Co-compositor [ctb]
     coded_date: Data codificada
     coded_instrumentation: Instrumentação codificada
     collaborator: ''
@@ -606,6 +608,7 @@ pt:
     no_linguistic_content: ''
     non_migrated_bound: ''
     not_applicable: Não aplicável
+    note: Nota
     note_external_resource: Nota sobre recurso externo
     note_fields: Campos de notas
     note_on_performance: Nota sobre performance
@@ -650,6 +653,7 @@ pt:
     parts_held: Partes existentes
     parts_held_extent: Partes existentes e extensão
     patron: ''
+    people: Pessoas
     people_institutions: Pessoas e instituições
     percussion: Percussão
     performance: ''
@@ -688,6 +692,8 @@ pt:
     public_note: ''
     publisher: Casa editora [pbl]
     publisher_copyist: Editor, copista
+    publisher_number: Número da editora
+    publisher_plate_number: Número da editora ou de chapa
     publishing_printing_production: Informação de publicação, impressão e produção
     qualifying_information: Informação sobre qualificação
     range_dates: Faixa de datas
@@ -706,11 +712,13 @@ pt:
     related_personal_name: Nome de pessoa relacionado
     related_place: Local relacionado
     related_resources: ''
+    related_source: Fonte relacionada
     related_titles: ''
     related_to: ''
     related_work: ''
     relation: ''
     relations: Relacionamentos
+    relationship: Relação
     relationship_designation: Designação da relação em $i ou $4
     relationship_information: Informação sobre a relação
     religious_name: ''
@@ -739,6 +747,7 @@ pt:
     solo_voice: Voz solista
     soloist_instrument: ''
     source: Fonte
+    sources: Fontes
     source_data_found: Fonte dos dados encontrados
     source_data_not_found: ''
     source_description: Exemplar examinado para catalogação
@@ -805,6 +814,7 @@ pt:
     type_relationship: ''
     typescript: Datilografia
     typography: Tipografia
+    uncategorized: Sem categoria
     unknown: ''
     unparsed_fingerprint: Identificador de impressão não analisado
     variant_ms_title: Variante de título na fonte
@@ -820,3 +830,13 @@ pt:
     work_number: Número de obra
     year: ''
     years_birth_death: ''
+  relations:
+    P60191: "Fonte relacionada"
+    P60198: "Material adicional"
+    P60311: "Copiado de"
+    P60312: "Copiado em"
+    P60195: "Publicado em"
+    P60242: "Arranjo de"
+    P60274: "Arranjado como"
+    P60194: "Inserir em"
+    P60183: "Inserir"

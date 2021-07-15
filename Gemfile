@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.4.5'
+gem 'rails', '5.2.6'
 
 # Use mysql2 as the database for Active Record
 # USE THIS VERSION for 4.1
@@ -46,7 +46,7 @@ end
 gem 'non-stupid-digest-assets', '~> 1.0.9'
 
 # Papertrail for old version support
-gem 'paper_trail', '~> 10.3.1'
+gem 'paper_trail', '~> 11'
 
 # for aligning marc
 gem 'needleman_wunsch_aligner', "1.0.4"
@@ -153,6 +153,9 @@ gem 'reverse_markdown'
 gem 'kramdown'
 gem 'whatlanguage'
 
+# To make links clickable in the Comments
+gem "anchored"
+
 # Avoid TypeError: superclass mismatch for class Command
 # See https://github.com/erikhuda/thor/issues/721
 gem 'thor', '~> 0.20.3'
@@ -176,3 +179,5 @@ end
 gem 'sort_alphabetical'
 
 #gem 'i18n-tasks', '~> 0.9.31'
+
+gem 'differ'
