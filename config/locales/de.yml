@@ -695,6 +695,18 @@ de:
     more: "Mehr"
     banner: 'Bitte "Vorschau" wählen, um die MEI-Konvertierung anzuzeigen.'
 
+  notifications:
+    cadence: Kadenz der Benachrichtigung
+    none: Benachrichtigungen sind deaktiviert
+    every: Jedes Mal, wenn ein passender Datensatz gespeichert wird
+    daily: Jeden Tag
+    weekly: Jede Woche
+    rules: Regeln
+    notifications: Benachrichtigungen
+    edit: Edit notifications
+    empty_message: "Es sind keine Benachrichtigungen aktiviert. Sie können %{href}, um sie zu aktivieren"
+    empty_message_href: bearbeiten
+
   wf_stage:
     inprogress: "In Arbeit (UNP)"
     published: "Veröffentlicht (PUB)"

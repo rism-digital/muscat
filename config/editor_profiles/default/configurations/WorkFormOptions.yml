@@ -206,6 +206,8 @@
     - - m
     - - n
     - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "100r"
     - - t
     columns: 4
   tag_params:

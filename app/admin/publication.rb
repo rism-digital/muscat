@@ -2,7 +2,7 @@ ActiveAdmin.register Publication do
   
   include MergeControllerActions
   
-  collection_action :autocomplete_publication_name, :method => :get
+  collection_action :autocomplete_publication_short_name, :method => :get
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_publications)}
 

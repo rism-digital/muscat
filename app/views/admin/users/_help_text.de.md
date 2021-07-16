@@ -1,6 +1,4 @@
-<div class="panel tab_panel">
-  <div class="guidelines_panel_content">
-    <div class="guidelines">
+
       
       <h3>Wie benutze ich Benachrichtigungen?</h3>
       <p>Das Benachrichtigungsfeld ermöglicht das Einfügen einiger Suchmuster, die, wenn sie mit den gefundenen Daten übereinstimmen, eine Benachrichtigung an den Benutzer senden.<br>
@@ -32,7 +30,3 @@ composer:Bach</pre>
               <li><b>keine Auswahl</b> Benachrichtigungen sind deaktiviert</li>
             </ul>
           </p>
-          
-    </div>
-  </div>
-</div>

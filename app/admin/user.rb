@@ -83,8 +83,16 @@ ActiveAdmin.register User do
       row I18n.t(:roles) do |user|
            user.get_roles.join(", ")
       end
-      row :notifications
-      row :notification_type
+      row I18n.t('notifications.notifications') do |r|
+        r.notifications ? r.notifications.split(/\n+|\r+/).reject(&:empty?).join("<br>").html_safe : ""
+      end
+      row I18n.t('notifications.cadence') do |r|
+        if !r.notification_type
+          I18n.t('notifications.none')
+        else
+          I18n.t('notifications.' + current_user.notification_type) + " (#{current_user.notification_type})"
+        end
+      end
       row :sign_in_count
       row :created_at
       row :updated_at
@@ -99,6 +107,11 @@ ActiveAdmin.register User do
   ## Edit ##
   ##########
 
+  # We use a partial here so the formatting for the notifications_help is preserved
+  # The form is built in the same manner using formtastic
+  form partial: 'user_edit_form'
+
+=begin
   form do |f|
     f.inputs I18n.t(:user_details) do
       if can? :update, User
@@ -124,7 +137,8 @@ ActiveAdmin.register User do
     end
     render partial: 'notifications_help', locals: { f: f }
   end
-  
+=end
+
   sidebar :actions, :only => [:edit, :new, :update] do
     render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => user }
   end

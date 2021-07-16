@@ -46,14 +46,13 @@ groups:
   show_content: 
     all_tags: 
     - "031"
+    - "595"
     all_tag_templates: 
       "031": marc_show/show_incipit
-  
-  show_distribution: 
+
+  show_distribution:
     all_tags: 
     - "594"
-    - "598"
-    - "595"
     all_tag_templates: 
       "594": marc_show/show_distribution_all
       

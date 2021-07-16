@@ -697,7 +697,19 @@ it:
     download: "Download"
     more: "Altro"
     banner: 'Usare "Anteprima" per mostrare il risultato della conversione in MEI.'
-  
+
+  notifications:
+    cadence: Cadenza delle notifiche
+    none: Notifiche sono disabilitate
+    every: Ogni volta che un record viene salvato
+    daily: Ogni giorno
+    weekly: Ogni settimana
+    rules: Regole
+    notifications: Notifiche
+    edit: Moditica le notifiche
+    empty_message: "Le notifiche sono disabilitate. Devono essere %{href} per essere abilitate"
+    empty_message_href: modificate
+
   wf_stage:
     inprogress: "In elaborazione (UNP)"
     published: "Pubblicato (PUB)"

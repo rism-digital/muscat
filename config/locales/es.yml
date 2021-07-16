@@ -695,6 +695,18 @@ es:
     more: "Más"
     banner: 'Por favor haga clic en "Vista preliminar" para mostrar la salida convertida a MEI.'
 
+  notifications:
+    cadence: Cadencia de las notificaciones
+    none: Las notificaciones están desactivadas
+    every: Cada vez que se guarda un registro coincidente
+    daily: Cada día
+    weekly: Cada semana
+    rules: Reglas
+    notifications: Notificaciones
+    edit: Editar notificaciones
+    empty_message: "No hay notificaciones activadas. Puedes %{href} para activarlas"
+    empty_message_href: editarlas
+
   wf_stage:
     inprogress: "En progreso (UNP)"
     published: "Publicado (PUB)"

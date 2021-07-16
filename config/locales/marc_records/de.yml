@@ -1,5 +1,6 @@
 de:
   general:
+    created_at: Erstellungsdatum
     e_mail: E-Mail
     editor_help: Editor Hilfe
     faq: FAQ
@@ -24,6 +25,7 @@ de:
     ungrouped_fields: Nicht zugeteilte Felder
     unknown_fields: Unbekannte Felder
     unused: UNUSED - WILL BE REMOVED
+    updated_at: Letzte Änderung
     uri: URI
     url: URL
     using_muscat: Editor Hilfe
@@ -316,7 +318,7 @@ de:
     chronological_term: Datierungen
     city: Ort
     clef: Schlüssel
-    co-composer: Mitkomponist
+    co_composer: Mitkomponist
     coded_date: Datum und Ort eines Ereignisses (codiert)
     coded_instrumentation: Kodierte Besetzung
     collaborator: Mitverfasser
@@ -606,11 +608,12 @@ de:
     no_linguistic_content: ohne Sprache
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Nicht zutreffend
+    note: Hinweis
     note_external_resource: Für das Publikum bestimmte Fussnote
     note_fields: Bemerkungen
     note_on_performance: Bemerkungen zu den Aufführungen
     now_in: Heute in
-    number: Anzahl
+    number: Nummer
     number_page: Nummer/Seitenzahl
     number_part_section: Anzahl Teile oder Abschnitte eines Werks
     number_volume_part: Nummer des Bandes oder Teils
@@ -653,6 +656,7 @@ de:
     parts_held: Vorhandene Stimmen
     parts_held_extent: Stimmenmaterial
     patron: Mäzen/Auftraggeber
+    people: Personen
     people_institutions: Personen und Körperschaften
     percussion: Schlaginstrumente
     performance: Mitwirkende
@@ -691,6 +695,8 @@ de:
     public_note: Bemerkungen
     publisher: Verleger
     publisher_copyist: Schreiber, Verleger, Verlag
+    publisher_number: Verlagsnummer
+    publisher_plate_number: Verlags- oder Plattennummer
     publishing_printing_production: Abschrift oder Impressum
     qualifying_information: Qualifizierende Informationen
     range_dates: Datierungsbereich
@@ -709,11 +715,13 @@ de:
     related_personal_name: Zugehörige Personen
     related_place: Ort
     related_resources: Links
+    related_source: Verwandte Quelle
     related_titles: Verlinkungen
     related_to: Verwandt mit
     related_work: zugehörige Werke
     relation: Bedeutung
     relations: Beziehungen
+    relationship: Beziehung
     relationship_designation: Beziehungsbezeichnung in $i oder $4
     relationship_information: Informationen zur Beziehung
     religious_name: Ordensname
@@ -742,6 +750,7 @@ de:
     solo_voice: Solostimme
     soloist_instrument: Solistisches Instrument
     source: Quelle
+    sources: Quellen
     source_data_found: Literaturnachweis
     source_data_not_found: Quelle ohne Ergebnis konsultiert
     source_description: Vorlageexemplar
@@ -808,6 +817,7 @@ de:
     type_relationship: Beziehung
     typescript: Maschinenschrift
     typography: Typendruck
+    uncategorized: Nicht kategorisiert
     unknown: Unbekannt
     unparsed_fingerprint: Zusammenhängender Fingerprint
     variant_ms_title: Weiterer diplomatischer Titel
@@ -823,3 +833,13 @@ de:
     work_number: Incipitnummer
     year: Jahr
     years_birth_death: Geburts- und Todesdaten
+  relations:
+    P60191: "Korrelierte Quelle"
+    P60198: "Zusätzliches Material"
+    P60311: "Kopiert von"
+    P60312: "Kopiert in"
+    P60195: "Publiziert in"
+    P60242: "Bearbeitung von"
+    P60274: "Bearbeitung als"
+    P60194: "Einfügen in"
+    P60183: "Einfügen"

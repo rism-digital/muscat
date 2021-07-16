@@ -23,11 +23,17 @@
   label: records.fingerprint_identifier
 028:
   fields:
+    indicator:
+      label: records.publisher_plate_number
     '8':
       label: records.set
     a:
+      label: records.number
+    '20':
       label: records.plate_number
-  label: records.plate_number
+    '30':
+      label: records.publisher_number
+  label: records.publisher_plate_number
 02_codes_performing:
   label: records.performance
 02_mensural_clefs:
@@ -485,15 +491,13 @@
   label: records.initial_entry
 '787':
   fields:
-    g:
-      label: records.incipit_number
+    "4":
+      label: records.relationship
     n:
-      label: records.location_insertion
-    s:
-      label: records.standardized_title
+      label: records.note
     w:
       label: records.rism_id_number
-  label: records.insertions
+  label: records.related_source
 7byz:
   label: records.octoechos7
 7t:
@@ -783,7 +787,7 @@ cph:
 cst:
   label: records.costume_designer
 ctb:
-  label: records.co-composer
+  label: records.co_composer
 c|b:
   label: records.cf_minor
 c|x:
@@ -1176,6 +1180,24 @@ prt:
   label: records.printer
 pub:
   label: records.publisher
+"rdau:P60191":
+  label: relations.P60191
+"rdau:P60198":
+  label: relations.P60198
+"rdau:P60311":
+  label: relations.P60311
+"rdau:P60312":
+  label: relations.P60312
+"rdau:P60195":
+  label: relations.P60195
+"rdau:P60242":
+  label: relations.P60242
+"rdau:P60274":
+  label: relations.P60274
+"rdau:P60194":
+  label: relations.P60194
+"rdau:P60183":
+  label: relations.P60183
 retro:
   label: records.retrospective_conversion
 scr:

@@ -695,6 +695,18 @@ fr:
     more: "Informations supplémentaires"
     banner: 'Cliquez "Aperçu" pour voir le résultat de la conversion en MEI.'
 
+  notifications:
+    cadence: Cadence des notifications
+    none: Les notifications sont désactivées
+    every: Chaque fois qu'un enregistrement est sauvegardé
+    daily: Tous les jours
+    weekly: Chaque semaine
+    rules: Règles
+    notifications: Notifications
+    edit: Modifier les notifications
+    empty_message: "Les notifications sont désactivées. Ils doivent être %{href} pour être activés"
+    empty_message_href: modifié
+
   wf_stage:
     inprogress: "Non publié (UNP)"
     published: "Publié (PUB)"

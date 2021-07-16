@@ -15,6 +15,20 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
     # On the last job add the reminder
     limit += @reminder if jobid == @parallel_jobs - 1
 
+    current_limit = 0
+    e_count = 0
+    while current_limit < limit
+        begin
+            Sunspot.index(Source.order(:id).limit(1000).offset(offset + current_limit).select(&:force_marc_load?))
+        rescue => e
+            puts "OOPS: #{e.exception}"
+            e_count += 1
+        end
+        current_limit += 1000
+    end
+    [current_limit, e_count]
+
+=begin
     count = 0
     e_count = 0
     Source.order(:id).limit(limit).offset(offset).select(:id).each do |sid|
@@ -30,6 +44,7 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
 
     end
     [count, e_count]
+=end
 end
 
 end_time = Time.now

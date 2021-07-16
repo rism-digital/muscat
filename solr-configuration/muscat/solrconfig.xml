@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <luceneMatchVersion>8.0.0</luceneMatchVersion>
+    <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-analysis-extras-\d.*\.jar"/>
+    <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lib" regex="icu4j-\d.*\.jar"/>
+    <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs"
+         regex="lucene-analyzers-icu-\d.*\.jar"/>
+
+    <dataDir>${solr.data.dir:}</dataDir>
+
+    <directoryFactory name="DirectoryFactory"
+                      class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}"/>
+
+    <codecFactory class="solr.SchemaCodecFactory"/>
+    <schemaFactory class="ClassicIndexSchemaFactory"/>
+
+    <indexConfig>
+        <lockType>${solr.lock.type:native}</lockType>
+        <infoStream>true</infoStream>
+    </indexConfig>
+
+    <jmx/>
+
+    <updateHandler class="solr.DirectUpdateHandler2">
+        <updateLog>
+            <str name="dir">${solr.ulog.dir:}</str>
+        </updateLog>
+        <autoCommit>
+            <maxTime>${solr.autoCommit.maxTime:15000}</maxTime>
+            <openSearcher>false</openSearcher>
+        </autoCommit>
+        <autoSoftCommit>
+            <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime>
+        </autoSoftCommit>
+    </updateHandler>
+
+    <query>
+        <maxBooleanClauses>1024</maxBooleanClauses>
+        <filterCache class="solr.FastLRUCache"
+                     size="512"
+                     initialSize="512"
+                     autowarmCount="0"/>
+
+        <queryResultCache class="solr.LRUCache"
+                          size="512"
+                          initialSize="512"
+                          autowarmCount="0"/>
+
+        <documentCache class="solr.LRUCache"
+                       size="512"
+                       initialSize="512"
+                       autowarmCount="0"/>
+
+        <cache name="perSegFilter"
+               class="solr.search.LRUCache"
+               size="10"
+               initialSize="0"
+               autowarmCount="10"
+               regenerator="solr.NoOpRegenerator"/>
+
+        <enableLazyFieldLoading>true</enableLazyFieldLoading>
+        <queryResultWindowSize>20</queryResultWindowSize>
+        <queryResultMaxDocsCached>200</queryResultMaxDocsCached>
+        <useColdSearcher>false</useColdSearcher>
+        <listener event="newSearcher" class="solr.QuerySenderListener">
+            <arr name="queries" />
+        </listener>
+        <listener event="firstSearcher" class="solr.QuerySenderListener">
+            <arr name="queries"/>
+        </listener>
+    </query>
+
+    <!-- By default it is FALSE, set true by RZ for document retrive in blacklight, see:
+      https://blogs.library.ucsf.edu/ckm/2014/03/11/working-with-blacklight-part-3-linking-to-your-solr-index/
+    -->
+    <requestDispatcher handleSelect="true">
+        <requestParsers enableRemoteStreaming="true"
+                        multipartUploadLimitInKB="2048000"
+                        formdataUploadLimitInKB="2048"
+                        addHttpRequestToContext="false"/>
+        <httpCaching never304="true"/>
+    </requestDispatcher>
+
+    <requestHandler name="/select" class="solr.SearchHandler">
+        <lst name="defaults">
+            <str name="spellcheck.dictionary">default</str>
+            <str name="spellcheck.extendedResults">true</str>
+            <str name="spellcheck.collate">true</str>
+        </lst>
+        <arr name="last-components">
+            <str>spellcheck</str>
+        </arr>
+    </requestHandler>
+
+    <!-- A request handler that returns indented JSON by default -->
+    <requestHandler name="/query" class="solr.SearchHandler">
+        <lst name="defaults">
+            <str name="echoParams">explicit</str>
+            <str name="wt">json</str>
+            <str name="indent">true</str>
+            <str name="df">text</str>
+        </lst>
+        <arr name="last-components">
+            <str>spellcheck</str>
+        </arr>
+    </requestHandler>
+
+    <!-- A note on these two handlers
+    https://github.com/projectblacklight/blacklight/wiki/README_SOLR
+    https://github.com/projectblacklight/blacklight-jetty/blob/master/solr/blacklight-core/conf/solrconfig.xml
+    These two implement the qt=search and qt=document /select handlers used by Blacklight
+    to search and get the single documents. They work only if handleSelect="true" (see above)
+    BUT as always there is a caveat: they work only if /select is __NOT__ overridden and
+    guess what? it __IS__ overridden by Sunspot. So I left them here but they ARE NOT
+    USED - just fir reference. To have blacklight working I modified the default_solr_params
+    and default_document_solr_params in catalog_controller to use  :defType => 'dismax'
+    and to mimic the document handler. This way we can have searches for both Blacklight and
+    Sunspot. Hope there is a better solution in the future.
+    -->
+
+    <!-- added by RZ, used to retrieve a single doc for blacklight
+    see https://github.com/projectblacklight/blacklight/wiki/Solr-Configuration -->
+    <requestHandler name="document" class="solr.SearchHandler">
+        <lst name="defaults">
+            <str name="echoParams">all</str>
+            <str name="fl">*</str>
+            <str name="rows">1</str>
+            <bool name="facet">false</bool>
+            <str name="q">{!raw f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
+        </lst>
+    </requestHandler>
+
+    <requestHandler name="search" class="solr.SearchHandler">
+        <lst name="defaults">
+            <str name="defType">dismax</str>
+            <str name="echoParams">explicit</str>
+            <str name="df">text</str>
+            <str name="q.op">AND</str>
+            <!-- list fields to be returned in the "fl" param -->
+            <str name="fl">*,score</str>
+            <str name="facet">on</str>
+            <str name="facet.mincount">1</str>
+            <str name="facet.limit">10</str>
+
+            <!-- list fields to be displayed as facets here. -->
+            <str name="facet.field">format</str>
+            <str name="facet.field">language_facet</str>
+            <str name="q.alt">*:*</str>
+        </lst>
+    </requestHandler>
+    <!-- end added by RZ -->
+
+    <requestHandler name="/export" class="solr.SearchHandler">
+        <lst name="invariants">
+            <str name="rq">{!xport}</str>
+            <str name="wt">xsort</str>
+            <str name="distrib">false</str>
+        </lst>
+        <arr name="components">
+            <str>query</str>
+        </arr>
+    </requestHandler>
+
+    <initParams path="/update/**,/query,/select,/tvrh,/elevate,/spell">
+        <lst name="defaults">
+            <str name="df">text</str>
+        </lst>
+    </initParams>
+
+    <requestHandler name="/analysis/field"
+                    startup="lazy"
+                    class="solr.FieldAnalysisRequestHandler"/>
+
+    <requestHandler name="/analysis/document"
+                    class="solr.DocumentAnalysisRequestHandler"
+                    startup="lazy"/>
+
+    <!-- Echo the request contents back to the client -->
+    <requestHandler name="/debug/dump" class="solr.DumpRequestHandler">
+        <lst name="defaults">
+            <str name="echoParams">explicit</str>
+            <str name="echoHandler">true</str>
+        </lst>
+    </requestHandler>
+
+    <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
+        <str name="queryAnalyzerFieldType">textSpell</str>
+        <lst name="spellchecker">
+            <str name="name">default</str>
+            <!-- change field to textSpell and use copyField in schema.xml
+            to spellcheck multiple fields -->
+            <str name="field">textSpell</str>
+            <str name="buildOnCommit">false</str>
+        </lst>
+
+        <lst name="spellchecker">
+            <str name="name">example</str>
+            <str name="field">title_text</str>
+            <str name="buildOnCommit">false</str>
+            <str name="classname">solr.DirectSolrSpellChecker</str>
+            <!-- the spellcheck distance measure used, the default is the internal levenshtein -->
+            <str name="distanceMeasure">internal</str>
+            <!-- minimum accuracy needed to be considered a valid spellcheck suggestion -->
+            <float name="accuracy">0.5</float>
+            <!-- the maximum #edits we consider when enumerating terms: can be 1 or 2 -->
+            <int name="maxEdits">2</int>
+            <!-- the minimum shared prefix when enumerating terms -->
+            <int name="minPrefix">1</int>
+            <!-- maximum number of inspections per result. -->
+            <int name="maxInspections">5</int>
+            <!-- minimum length of a query term to be considered for correction -->
+            <int name="minQueryLength">4</int>
+            <!-- maximum threshold of documents a query term can appear to be considered for correction -->
+            <float name="maxQueryFrequency">0.01</float>
+            <!-- uncomment this to require suggestions to occur in 1% of the documents
+                 <float name="thresholdTokenFrequency">.01</float>
+            -->
+        </lst>
+
+        <!-- a spellchecker that can break or combine words.  See "/spell" handler below for usage -->
+        <lst name="spellchecker">
+            <str name="name">wordbreak</str>
+            <str name="classname">solr.WordBreakSolrSpellChecker</str>
+            <str name="field">name</str>
+            <str name="combineWords">true</str>
+            <str name="breakWords">true</str>
+            <int name="maxChanges">10</int>
+        </lst>
+    </searchComponent>
+
+    <searchComponent name="terms" class="solr.TermsComponent"/>
+
+    <!-- A request handler for demonstrating the terms component -->
+    <requestHandler name="/terms" class="solr.SearchHandler" startup="lazy">
+        <lst name="defaults">
+            <bool name="terms">true</bool>
+            <bool name="distrib">false</bool>
+        </lst>
+        <arr name="components">
+            <str>terms</str>
+        </arr>
+    </requestHandler>
+
+    <requestHandler class="solr.MoreLikeThisHandler" name="/mlt">
+        <lst name="defaults">
+            <str name="mlt.mintf">1</str>
+            <str name="mlt.mindf">2</str>
+        </lst>
+    </requestHandler>
+</config>
