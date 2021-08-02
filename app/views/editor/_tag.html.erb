@@ -1,13 +1,10 @@
 <table class="tag_grid" cellpadding="0" cellspacing="0">
-    <tr><th width="25%"></th><th width="25%"></th><th width="25%"></th><th width="25%"></th></tr>
+    <tr><th width="20%"></th><th width="25%"></th><th width="25%"></th><th width="25%"></th></tr>
     <%- @editor_profile.each_subfield_for(tag_name) do |subfield, field_settings|
 
     		field_label = ""
     		field_leader = ""
 			field_settings = Hash.new if !field_settings
-    		if @item.marc.config.multiples_allowed?(tag_name, subfield)
-    			extra_leader = safe_link_to_function_stub "<div class=\"add_subfield_button abutton_condensed ui-state-default  abutton-icon-solo ui-corner-all\"><span class=\"ui-icon ui-icon-plus\"></span>_</div>".html_safe, "marc_editor_add_subfield($(this))", :title => "Add another instance of this subfield"				
-    		end
 		
     		if @editor_profile.has_sub_label?(tag_name, subfield)
     			sub_label = @editor_profile.get_sub_label(tag_name, subfield, true)
@@ -20,7 +17,6 @@
         		<td>
         			<div class="grid_cell_header">
     					<%= field_label.html_safe %>
-                        <%= extra_leader -%>
                     </div>
                 </td>
         		<td colspan="3">

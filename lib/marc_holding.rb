@@ -42,4 +42,13 @@ class MarcHolding < Marc
     end
   end
 
+  def digital_object?
+    node = first_occurance("856", "x")
+
+    return false if !node || !node.content
+    return true if node.content == "IIIF" || node.content == "Digitalization"
+    false
+
+  end
+
 end

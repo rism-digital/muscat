@@ -112,6 +112,10 @@ ActiveAdmin.register Source do
 
       # Get the terms for 593a_filter, the "source type"
       @source_types = Source.get_terms("593a_filter_sm")
+      @digital_image_types = Source.get_terms("856x_sm")
+
+      # Grab a default editor profile
+      @editor_profile = EditorConfiguration.get_default_layout Source
 
       index! do |format|
        @sources = @results
@@ -231,6 +235,9 @@ ActiveAdmin.register Source do
   filter :record_type_with_integer,
   if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:record_type_with_integer)},
   :as => :record_type
+
+  filter :"856x_with_integer", :label => proc{I18n.t(:"records.external_resource")}, as: :select,
+  collection: proc{@digital_image_types.sort.collect {|k| [@editor_profile.get_label(k.to_s), "856x:#{k}"]}}
 
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}

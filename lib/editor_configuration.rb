@@ -395,9 +395,16 @@ class EditorConfiguration
   end
   
   # Gets the default layout. This is a configuration in which <tt>default</tt> in the <tt>filter</tt> is true.
+  # Model can be either an object of a Class
   def self.get_default_layout(model)
     profiles = EditorConfiguration.profiles
-    model_name = model.class.to_s.downcase
+
+    if model.is_a? Class
+      model_name = model.to_s.downcase
+    else
+      model_name = model.class.to_s.downcase
+    end
+
     profiles.each do |p|
       next if model_name != p.model
       return p if p.filter && p.filter["default"]
