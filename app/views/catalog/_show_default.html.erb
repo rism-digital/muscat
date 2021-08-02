@@ -4,12 +4,17 @@
   This is pretty hackish for now - figure out a better way to do this into the CatalogController! -%>
 
 <%
-	@item = Source.find(@document.id.split(" ")[1]) # hackady-hack! Source 1234567 -> 1234567
+	if RISM::MAIN_BIBLIOGRAPHIC_RECORD_TYPE == "Source"
+	  # hackady-hack! Source 1234567 -> 1234567
+	  @item = Source.find(@document.id.split[1])
+	else
+	  @item = Publication.find(@document.id.split[1])
+	end
 	@editor_profile = EditorConfiguration.get_show_layout @item
 %>
 <dl class="dl-horizontal  dl-invert">
 	<%= render :partial => "marc/show", :locals => { :opac => true } %>
-	<%- if @item.digital_objects.size > 0 %>
+	<%- if @item.has_attribute?(:digital_objects) && @item.digital_objects.size > 0 %>
 		<%= render :partial => "catalog/digital_objects" %>
 	<%- end %>
 </dl>

@@ -118,7 +118,7 @@ class CatalogController < ApplicationController
     if params[:id].start_with?('00000')
       params[:id] = params[:id][5, params[:id].length]
     end
-    params[:id] = "Source " + params[:id]
+    params[:id] = "#{RISM::MAIN_BIBLIOGRAPHIC_RECORD_TYPE} #{params[:id]}"
   end
 
   def mei
@@ -179,7 +179,7 @@ class CatalogController < ApplicationController
       :"q.alt" => "*:*",
       :rows => 20,
       :defType => 'edismax',
-      :fq => "+type:Source +wf_stage_s:published",
+      :fq => "+type:#{RISM::MAIN_BIBLIOGRAPHIC_RECORD_TYPE} +wf_stage_s:published",
       :hl => 'false',
       :"hl.simple.pre" => '<span class="highlight">',
       :"hl.simple.post" => "</span>",
