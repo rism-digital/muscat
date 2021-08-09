@@ -49,10 +49,10 @@ function render_music(music, format, target, width) {
 		load_verovio();
 		return;
 	}
-	
+
 	if (format === "pae") {
 		var options = {
-			inputFormat: 'pae',
+			from: 'pae',
 			pageMarginTop: 40,
 			pageMarginBottom: 60,
 			pageMarginLeft: 20,
