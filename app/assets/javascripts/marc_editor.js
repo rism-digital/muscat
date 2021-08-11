@@ -172,6 +172,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 			new_url = data.redirect;
 			window.location.href = new_url;
 		},
+		async: true,
 		data: {
 			marc: JSON.stringify(json_marc),
 			id: $('#id').val(), 
@@ -215,10 +216,10 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 }
 
 function _marc_editor_preview( source_form, destination, rails_model ) {
-	form = $('form', "#" + source_form);
-	json_marc = serialize_marc_editor_form(form);
+	var form = $('form', "#" + source_form);
+	var json_marc = serialize_marc_editor_form(form);
 	
-	url = "/admin/" + rails_model + "/marc_editor_preview";
+	var url = "/admin/" + rails_model + "/marc_editor_preview";
 	
 	$.ajax({
 		success: function(data) {
@@ -241,45 +242,44 @@ function _marc_editor_preview( source_form, destination, rails_model ) {
 	});
 }
 
-function _marc_editor_validate( source_form, destination, rails_model ) {
-	form = $('form', "#" + source_form);
-	json_marc = serialize_marc_editor_form(form);
-	url = "/admin/" + rails_model + "/marc_editor_validate";
-	return $.ajax({
-		success: function(data) {
-      var message_box = $("#marc_errors");
-      var message = data["status"];
-      if (message.endsWith("[200]")){
-        message_box.html(message).removeClass('flash_error').addClass('flash_notice').css('visibility', 'visible');
-      } 
-      else{
-        message_box.html(message.replace(/\t/g, "&nbsp;").replace(/\n/g, "<br>")).removeClass('flash_notice').addClass('flash_error').css('visibility', 'visible');
-		  }
-    },
-		data: {
-			marc: JSON.stringify(json_marc), 
-			marc_editor_dest: destination, 
-			id: $('#id').val(),
-			record_type: $('#record_type').val(),
-      current_user: $('#current_user').find('a').attr('href').split("/")[3],
-		},
-		dataType: 'json',
-		timeout: 60000,
-		type: 'post',
-		url: url,
-    // FIXME make this async
-   'async': false, 
-		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error in validation process. (" 
-					+ textStatus + " " 
-					+ errorThrown);
-		}
-	});
+function _marc_editor_validate(source_form, destination, rails_model) {
+    var form = $('form', "#" + source_form);
+    var json_marc = serialize_marc_editor_form(form);
+    var url = "/admin/" + rails_model + "/marc_editor_validate";
+    return $.ajax({
+        success: function(data) {
+            var message_box = $("#marc_errors");
+            var message = data["status"];
+            if (message.endsWith("[200]")) {
+                message_box.html(message).removeClass('flash_error').addClass('flash_notice').css('visibility', 'visible');
+            } else {
+                message_box.html(message.replace(/\t/g, "&nbsp;").replace(/\n/g, "<br>")).removeClass('flash_notice').addClass('flash_error').css('visibility', 'visible');
+            }
+        },
+        data: {
+            marc: JSON.stringify(json_marc),
+            marc_editor_dest: destination,
+            id: $('#id').val(),
+            record_type: $('#record_type').val(),
+            current_user: $('#current_user').find('a').attr('href').split("/")[3],
+        },
+        dataType: 'json',
+        timeout: 60000,
+        type: 'post',
+        url: url,
+        // FIXME make this async
+        'async': false,
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert("Error in validation process. (" +
+                textStatus + " " +
+                errorThrown);
+        }
+    });
 }
 
 function _marc_editor_help( destination, help, title, rails_model ) {
 
-	url = "/admin/" + rails_model + "/marc_editor_help";
+	var url = "/admin/" + rails_model + "/marc_editor_help";
 	
 	$.ajax({
 		success: function(data) {
@@ -373,7 +373,7 @@ function _marc_editor_summary_view(destination, rails_model, id ) {
 }
 
 function _marc_editor_version_diff( version_id, destination, rails_model ) {	
-	url = "/admin/" + rails_model + "/marc_editor_version_diff";
+	var url = "/admin/" + rails_model + "/marc_editor_version_diff";
 	$("#" + destination).block({message: ""});
 	
 	$.ajax({
@@ -429,7 +429,7 @@ function marc_editor_cleanp() {
 
 function marc_editor_cancel_form() {
     marc_editor_form_changed = true;
-    var loc=location.href.substring(location.href.lastIndexOf("/"), -1);
+    var loc = location.href.substring(location.href.lastIndexOf("/"), -1);
     window.location=loc;
 }
 
@@ -444,7 +444,6 @@ function marc_editor_show_preview() {
 
 function marc_editor_validate() {
     return _marc_editor_validate('marc_editor_panel','marc_editor', marc_editor_get_model());
-    window.scrollTo(0, 0);
 }
 	
 function marc_editor_show_help(help, title) {
@@ -520,7 +519,7 @@ function marc_editor_incipit(clef, keysig, timesig, incipit, target, width) {
 	// width is option
 	width = typeof width !== 'undefined' ? width : 720;
 	
-	pae = "@start:pae-file\n";
+	var pae = "@start:pae-file\n";
 	pae = pae + "@clef:" + clef + "\n";
 	pae = pae + "@keysig:" + keysig + "\n";
 	pae = pae + "@key:\n";
