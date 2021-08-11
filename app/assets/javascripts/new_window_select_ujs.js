@@ -27,8 +27,8 @@ function newWindowUpdateValue(id, label) {
 	var field = _nw_destination.data("field")
 	
 	// Get the autocomplete
-	toplevel_li = _nw_destination.parents("li");
-	ac = toplevel_li.find(".autocomplete_new_window");
+	var toplevel_li = _nw_destination.parents("li");
+	var ac = toplevel_li.find(".autocomplete_new_window");
 	
 	_nw_destination.addClass("serialize_marc");
 	var element_class = marc_editor_validate_className(_nw_destination.data("tag"), _nw_destination.data("subfield"));
@@ -204,8 +204,8 @@ var add_window_select_actions = function () {
 	$('a[data-marc-editor-select]').click(function(e) {
 		e.preventDefault();
 		
-		id = $(this).data("marc-editor-select");
-		label = $(this).data("marc-editor-label");
+		var id = $(this).data("marc-editor-select");
+		var label = $(this).data("marc-editor-label");
 		
 		window.opener.newWindowUpdateValue(id, label);
 		window.close();

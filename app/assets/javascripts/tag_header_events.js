@@ -88,7 +88,7 @@ used for _tag_header partial
 			// Let's waste CPU time
 			suffix = Math.random().toString(36).substring(4);
 			
-			$(this).prop("name", n + suffix);
+			$(this).prop("name", n + "-" + suffix);
 		});
 	}
 	
