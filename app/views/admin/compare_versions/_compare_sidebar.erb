@@ -1,0 +1,22 @@
+<% 
+	notifications = current_user.notifications.split(/\n+|\r+/).reject(&:empty?).collect
+%>
+<%= form_tag(admin_compare_versions_path, method: "get") do %>
+
+  <div>
+    <label class="label"><%= I18n.t("compare_versions.time_frame") %></label>
+    <%= select_tag("time_frame", options_for_select([[ "One Day", :day], ["One Week", :week]], params[:time_frame])) %>
+  </div>
+
+  <div>
+    <label class="label"><%= I18n.t("compare_versions.rule") %></label>
+    <%= select_tag("rule", options_for_select(notifications, params[:rule])) %>
+  </div>
+
+  <div>
+    <label class="label"><%= I18n.t("dashboard.quantity") %></label>
+    <%= select_tag("dashboard_quantity", options_for_select([[10, 10], [20, 20], [50, 50]], params[:dashboard_quantity])) %>
+  </div>
+  <hr style="margin-top: 1.em; margin-bottom: .4em"/>
+  <%= submit_tag(I18n.t("dashboard.update")) %>
+<% end %>

@@ -604,3 +604,17 @@ function marc_editor_remove_subfield(id) {
 function marc_editor_get_model() {
 	return $("#marc_editor_panel").data("editor-model");
 }
+
+
+jQuery(document).ready(function() {
+$('a.diff-button').on('click', function () {
+	if ($("#" + this.name).is(":visible") == false) {
+		$("#" + this.name).fadeIn();
+		$('a[name="' + this.name + '"]').text("hide");
+	} else {
+		$("#" + this.name).hide();
+		$('a[name="' + this.name + '"]').text("show");
+	}
+	
+  });
+});
