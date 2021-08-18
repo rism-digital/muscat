@@ -14,13 +14,14 @@ class NotificationMatcher
     institution: [:follow]
   }
 
-  def initialize(object, user)
+  def initialize(object, user, limit_rules = nil)
     if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) 
       raise(ArgumentError, "NotificationMatcher can be applied only for Works and Sources" )
     end
 
     @object = object
     @user = user
+    @limit_rules = limit_rules
   end
   
   def get_matches
@@ -29,7 +30,7 @@ class NotificationMatcher
     return false if !user_notifications
 ##    return false if !@object.is_a?(Source) && !@object.is_a?(Work) # This should not happen! 
 
-    rules = parse_rules(user_notifications)
+    rules = NotificationMatcher::parse_rules(user_notifications, @limit_rules)
 
     rules.each do |model, rule_groups|
       next if @object.class.to_s.downcase != model.downcase
@@ -58,10 +59,22 @@ class NotificationMatcher
         end
       end
     end
-
     matches
   end
   
+  def self.get_model_for_rule(rule_nr, user)
+    user_notifications = user.get_notifications
+    return false if !user_notifications
+    return false if rule_nr > user_notifications.count
+
+    rules = parse_rules(user_notifications, rule_nr)
+    return nil if !rules || rules.empty?
+    model = rules.keys.first
+
+    return false if !ALLOWED_MODELS.include?(model)
+
+    return model.classify.safe_constantize
+  end
   
   private
   
@@ -115,7 +128,7 @@ class NotificationMatcher
   end
 
 
-  def split_line(line)
+  def self.split_line(line)
     parts = line.strip.split(":")
     return false if parts.count != 2
     return false if parts[0].empty? # :xxx case
@@ -125,7 +138,7 @@ class NotificationMatcher
     return property, pattern
   end
   
-  def parse_unquoted(line)
+  def self.parse_unquoted(line)
     rule_group = []
     ungrouped = []
 
@@ -169,7 +182,7 @@ class NotificationMatcher
     return rule_group, ungrouped
   end
 
-  def parse_line(rule_query)
+  def self.parse_line(rule_query)
     rules = []
     single_tokens = []
 
@@ -217,7 +230,12 @@ class NotificationMatcher
     return model, rules
   end
 
-  def parse_rules(rule_queries)
+  def self.parse_rules(rule_queries, limit = nil)
+
+    return {} if limit && limit > rule_queries.count
+    
+    rule_queries = [rule_queries[limit]] if limit
+
     rules = {}
     rule_queries.each do |l|
 

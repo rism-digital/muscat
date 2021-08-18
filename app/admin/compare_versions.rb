@@ -12,7 +12,7 @@ ActiveAdmin.register_page "Compare Versions" do
     matches, model = diff_find_in_interval(Source, current_user, params[:time_frame], params[:rule])
 
     if matches.empty?
-      text_node "pao pao"
+      h3 {text_node "There are no records for the selected rule and time period."}
       next
     end
 
@@ -25,8 +25,8 @@ ActiveAdmin.register_page "Compare Versions" do
     paginated_collection(paginated.page(params[:src_list_page]).per(per_page), param_name: "src_list_page", download_links: false) do
       items = collection
 
-      panel "Rule: #{match_name}" do
-
+      panel "Modified records" do
+        # class: "index_table index"
         table do
 
           tr do
@@ -58,14 +58,17 @@ ActiveAdmin.register_page "Compare Versions" do
 
             classes = [helpers.cycle("odd", "even")]
             tr(class: classes.flatten.join(" ")) do
-              td { s.id }
+              
               if model == Source
+                td { link_to(s.id, admin_source_path(s)) }
                 td { s.composer rescue "" }
                 td { s.std_title rescue "" }
               elsif model == Institution
+                td { link_to(s.id, admin_institution_path(s)) }
                 td { s.name rescue "" }
                 td { s.siglum rescue "" }
               elsif model == Work
+                td { link_to(s.id, admin_work_path(s)) }
                 td { s.person.name rescue "" }
                 td { s.title rescue "" }
               end
@@ -73,12 +76,14 @@ ActiveAdmin.register_page "Compare Versions" do
               td { s.updated_at }
 
               td do
-                div(id: "marc_editor_history", class: "modification_bar") do
+                div(id: "marc_editor_history", style: "text-align: center") do
                   if sim == 0
                     status_tag(:published, label: "New record")
-                  else                    
-                    div(class: "modification_bar_content version_modification", style: "width: #{sim}%") do
-                      "&nbsp".html_safe
+                  else
+                    div(class: "modification_bar") do
+                      div(class: "modification_bar_content version_modification", style: "width: #{sim}%") do
+                        "&nbsp".html_safe
+                      end
                     end
                   end
                 end
