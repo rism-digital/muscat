@@ -487,6 +487,10 @@ class Source < ApplicationRecord
     nil
   end
 
+  def get_initial_entries
+    self.sources.where("sources_to_sources.marc_tag": 775)
+  end
+
   def siglum_matches?(siglum)
     if self.record_type == MarcSource::RECORD_TYPES[:edition] ||
       self.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
