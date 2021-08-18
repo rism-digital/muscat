@@ -189,3 +189,50 @@ select[name="target_template"] {
   margin-right: 8px;
   background: image-url("/images/ebook.png");
 }
+
+.diff {
+  ins {
+    text-decoration: none;
+    background-color: #d4fcbc;
+  }
+  del {
+    text-decoration: none;
+    background-color: #fbb6c2;
+    color: #555;
+  }
+}
+
+.diff_table {
+  margin: 5px
+}
+
+.diff_header {
+  text-align: left; 
+  vertical-align: top; 
+  width: 20%;
+  padding-top: 4px !important;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  border-bottom: none !important;
+  text-transform: none !important;
+}
+
+.diff_tag {
+  vertical-align: top; 
+  padding-left: .5em; 
+  width: 10%;
+  //padding-top: 0px;
+  //padding-right: 0px;
+  //padding-bottom: 0px;
+  //padding-left: 0px;
+}
+
+.diff_contents {
+  vertical-align: top; 
+  padding-left: .5em;
+  //padding-top: 0px;
+  //padding-right: 0px;
+  //padding-bottom: 0px;
+  //padding-left: 0px;
+}
