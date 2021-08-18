@@ -1,5 +1,5 @@
 <% 
-	notifications = current_user.notifications.split(/\n+|\r+/).reject(&:empty?).collect
+	notifications = current_user.notifications.split(/\n+|\r+/).reject(&:empty?).collect.with_index {|x, i| [x, i]}
 %>
 <%= form_tag(admin_compare_versions_path, method: "get") do %>
 
@@ -15,7 +15,7 @@
 
   <div>
     <label class="label"><%= I18n.t("dashboard.quantity") %></label>
-    <%= select_tag("dashboard_quantity", options_for_select([[10, 10], [20, 20], [50, 50]], params[:dashboard_quantity])) %>
+    <%= select_tag("compare_version_quantity", options_for_select([[10, 10], [20, 20], [50, 50]], params[:compare_version_quantity])) %>
   </div>
   <hr style="margin-top: 1.em; margin-bottom: .4em"/>
   <%= submit_tag(I18n.t("dashboard.update")) %>

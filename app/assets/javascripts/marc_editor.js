@@ -607,7 +607,7 @@ function marc_editor_get_model() {
 
 
 jQuery(document).ready(function() {
-$('a.diff-button').on('click', function () {
+$('a.diff-button').on('click', function (e) {
 	if ($("#" + this.name).is(":visible") == false) {
 		$("#" + this.name).fadeIn();
 		$('a[name="' + this.name + '"]').text("hide");
@@ -615,6 +615,7 @@ $('a.diff-button').on('click', function () {
 		$("#" + this.name).hide();
 		$('a[name="' + this.name + '"]').text("show");
 	}
-	
+	e.preventDefault();
+	e.stopPropagation();
   });
 });
