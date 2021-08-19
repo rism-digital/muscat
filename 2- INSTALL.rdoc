@@ -406,3 +406,27 @@ On 18.40, also enable GPG verification of Passenger:
  sudo apt-get install -y apt-transport-https ca-certificates
 
 Then install all the dependencies and setup passenger:
+
+== Muscat user authentication
+
+In Muscat's default configuration, users are created and authenticated in Muscat's own local database. This authentication method is called `:database_authenticatable`, and if it is fine to you, there is no need to modify nor configure anything further.
+
+There is an alternative Single Sign On (SSO) authentication for corporate environments, and it is implemented using SAML integration. If you are interested, please follow this steps as described:
+
+1. First, run the generator with `bin/rails g muscat:install_saml` to get the required configuration files.
+1. Add :saml_authenticatable as one of the AUTHENTICATION_METHODS in `config/application.rb` (order of methods is not important)
+1. SAML users will have the role defined by `RISM::SAML_AUTHENTICATION_CREATE_USER_ROLE` which is "guest" by default. Edit `config/application.rb` and uncomment `RISM::SAML_AUTHENTICATION_CREATE_USER_ROLE` and set the desired role if you prefer another one.
+1. If you want, customize the new devise login form that the generator created at `"app/views/active_admin/devise/sessions/new.html.erb"`
+1. Configure the SAML settings at `config/initializers/devise_saml_authenticatable.rb`
+  - To automatically parse IdP's metadata, parse the remote url just before ruby_saml's settings
+  ```
+   ...
+   idp_metadata_parser = OneLogin::RubySaml::IdpMetadataParser.new
+   config.saml_config= idp_metadata_parser.parse_remote "https://remote-sso-server.example.org/saml/idp/metadata"
+   config.saml_configure do |settings|
+   ...
+  ```
+1. Configure the mapping between SAML user attributes (keys) and application user attributes (values).
+1. Muscat must be restarted if any configuration is changed.
+
+The SSO authentication method is added as convenience to Muscat to serve some external users, but it is not supported by upstream developers. If you need support, please contact its authors: https://coditramuntana.com/en/contact .

@@ -125,6 +125,21 @@ module RISM
 
   # Allow anonymous users (not signed in) to browse and search the site
   ANONYMOUS_NAVIGATION = false
+
+  # Supported devise authentication methods are:
+  # - database_authenticatable (the default)
+  # - saml_authenticatable, with trackable (which is already defined in User.rb
+  # If :saml_authenticatable is included, then execute `bin/rails g muscat:install_saml` to get the required configuration files,
+  # and read the decidim-saml_authenticatable gem's documentation for configuration options.
+  AUTHENTICATION_METHODS = [:database_authenticatable]
+
+  SAML_AUTHENTICATION = AUTHENTICATION_METHODS.include?(:saml_authenticatable)
+
+  require 'devise_saml_authenticatable' if SAML_AUTHENTICATION
+
+  # The role for the users created via SAML sign up
+  # Uncomment if AUTHENTICATION_METHODS include :saml_authenticatable
+  # SAML_AUTHENTICATION_CREATE_USER_ROLE = 'guest'
 end
 
 

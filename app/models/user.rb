@@ -10,8 +10,10 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 	# remove :recoverable
-  devise :database_authenticatable, 
-         :rememberable, :trackable, :validatable
+  devise *([:rememberable, :trackable, :validatable] + Array(RISM::AUTHENTICATION_METHODS))
+
+  # Used by saml_authenticatable devise strategy to avoid password validation
+  attr_accessor :user_create_strategy
 
   enum notification_type: [:every, :daily, :weekly ]
   enum preference_wf_stage: [ :inprogress, :published, :deleted ]
@@ -158,4 +160,7 @@ class User < ApplicationRecord
     return true
 	end
 
+  def password_required?
+    user_create_strategy != :saml_authenticatable
+  end
 end
