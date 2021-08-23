@@ -1,18 +1,19 @@
 ActiveAdmin.register_page "Compare Versions" do
   controller do
+    def index
+      params[:compare_version_quantity] = params.include?(:compare_version_quantity) ? params[:compare_version_quantity] : 20
+    end
   end
+  menu :parent => "admin_menu", :label => proc { I18n.t("active_admin.compare_versions") }
 
-  menu priority: 3, label: proc { I18n.t("active_admin.compare_versions") }
-  #menu false
-
-  limit = 10
+  limit = 20
 
   content title: proc { I18n.t("active_admin.compare_versions") } do
 
     matches, model = diff_find_in_interval(Source, current_user, params[:time_frame], params[:rule])
 
     if matches.empty?
-      h3 {text_node "There are no records for the selected rule and time period."}
+      h3 {text_node I18n.t("compare_versions.no_records")}
       next
     end
 
@@ -25,26 +26,26 @@ ActiveAdmin.register_page "Compare Versions" do
     paginated_collection(paginated.page(params[:src_list_page]).per(per_page), param_name: "src_list_page", download_links: false) do
       items = collection
 
-      panel "Modified records" do
+      panel I18n.t("compare_versions.modified_records") do
         # class: "index_table index"
         table do
 
           tr do
-            th { text_node "id" }
+            th { text_node I18n.t(:filter_id) }
             if model == Source
-              th { text_node "composer" }
-              th { text_node "title" }
+              th { text_node I18n.t(:filter_composer) }
+              th { text_node I18n.t(:filter_title) }
             elsif model == Institution
-              th { text_node "name" }
-              th { text_node "siglum" }
+              th { text_node I18n.t(:filter_name) }
+              th { text_node I18n.t(:filter_siglum) }
             elsif model == Work
-              th { text_node "composer" }
-              th { text_node "title" }
+              th { text_node I18n.t(:filter_composer) }
+              th { text_node I18n.t(:filter_title) }
             end
-            th { text_node "created at" }
-            th { text_node "updated at" }
-            th { text_node "similarity" }
-            th { text_node "diff" }
+            th { text_node I18n.t(:created_at) }
+            th { text_node I18n.t(:updated_at) }
+            th { text_node I18n.t("compare_versions.similarity")}
+            th { text_node I18n.t("compare_versions.diff") }
           end
 
           items.each do |s|
@@ -78,7 +79,7 @@ ActiveAdmin.register_page "Compare Versions" do
               td do
                 div(id: "marc_editor_history", style: "text-align: center") do
                   if sim == 0
-                    status_tag(:published, label: "New record")
+                    status_tag(:published, label: I18n.t("compare_versions.new_record"))
                   else
                     div(class: "modification_bar") do
                       div(class: "modification_bar_content version_modification", style: "width: #{sim}%") do
@@ -91,7 +92,7 @@ ActiveAdmin.register_page "Compare Versions" do
 
               td do
                 id = s.versions.last != nil ? s.versions.last.id.to_s : "1"
-                link_to("show", "#", class: "diff-button", name: "diff-#{s.id}")
+                link_to(I18n.t("compare_versions.show"), "#", class: "diff-button", name: "diff-#{s.id}")
               end
             end
             tr do
@@ -106,7 +107,7 @@ ActiveAdmin.register_page "Compare Versions" do
 
   end # content
 
-  sidebar I18n.t "dashboard.selection", :class => "sidebar_tabs", :only => [:index] do
+  sidebar I18n.t "compare_versions.options", :class => "sidebar_tabs", :only => [:index] do
     # no idea why the I18n.locale is not set by set_locale in the ApplicationController
     I18n.locale = session[:locale]
     render("compare_sidebar") # Calls a partial

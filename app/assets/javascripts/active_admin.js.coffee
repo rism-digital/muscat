@@ -97,6 +97,7 @@
 #= require job_progress_bar
 #= require filter_workaround
 #= require merge_authority
+#= require compare_versions_actions
 
 #= require viaf_interface.js
 #= require modification_trigger_ujs.js

@@ -4,6 +4,7 @@ en:
 # Pad for italian, it has 2 missing items
 #
 #
+    compare_versions: Compare versions
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."
@@ -731,6 +732,20 @@ en:
     got_it_explanation: "Clicking on this button will silence the news until the next one is released."
     news: "Muscat News"
   
+  compare_versions:
+    time_frame: Time frame
+    rule: Rule
+    display: Display
+    options: options
+    show: Show
+    hide: Hide
+    modified_records: Modified records
+    no_records: There are no records to show with the current selected options
+    new_record: New record
+    similarity: Similarity
+    diff: Diff
+    
+
   # editor validation 
   validation:
     missing_message: "A value in this field is mandatory"
