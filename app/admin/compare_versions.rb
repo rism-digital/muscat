@@ -67,9 +67,11 @@ ActiveAdmin.register_page "Compare Versions" do
                 version = s.versions.where("created_at > ?", 7.days.ago).first
               end
               
-              s.marc.load_from_array(VersionChecker.get_diff_with_next(version.id))
-              # Sim is always set to 0-100 to indicate the difference
-              sim = 100 - VersionChecker.get_similarity_with_next(version.id)
+              if version
+                s.marc.load_from_array(VersionChecker.get_diff_with_next(version.id))
+                # Sim is always set to 0-100 to indicate the difference
+                sim = 100 - VersionChecker.get_similarity_with_next(version.id)
+              end
             end
 
             classes = [helpers.cycle("odd", "even")]
