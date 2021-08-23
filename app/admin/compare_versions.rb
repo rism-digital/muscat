@@ -22,6 +22,10 @@ ActiveAdmin.register_page "Compare Versions" do
       next
     end
 
+    h4 do
+      text_node "Showing modified records from #{7.days.ago}"
+    end
+
     # Note: we only display one match at a time, as it is always
     # limited to one rule. So the first one is the only result
     match_name, sources = matches.first
@@ -54,12 +58,18 @@ ActiveAdmin.register_page "Compare Versions" do
           end
 
           items.each do |s|
-            sim = 0
+            sim = -1 # -1 means new record
 
             if !s.versions.empty?
-              version = s.versions.last
+              if !params.include?(:time_frame ) || params[:time_frame] == "day"
+                version = s.versions.last
+              else
+                version = s.versions.where("created_at > ?", 7.days.ago).first
+              end
+              
               s.marc.load_from_array(VersionChecker.get_diff_with_next(version.id))
-              sim = VersionChecker.get_similarity_with_next(version.id)
+              # Sim is always set to 0-100 to indicate the difference
+              sim = 100 - VersionChecker.get_similarity_with_next(version.id)
             end
 
             classes = [helpers.cycle("odd", "even")]
@@ -83,7 +93,7 @@ ActiveAdmin.register_page "Compare Versions" do
 
               td do
                 div(id: "marc_editor_history", style: "text-align: center") do
-                  if sim == 0
+                  if sim == -1
                     status_tag(:published, label: I18n.t("compare_versions.new_record"))
                   else
                     div(class: "modification_bar") do

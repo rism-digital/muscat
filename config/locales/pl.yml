@@ -743,7 +743,7 @@ pl:
     modified_records: Zmodyfikowane rekordy
     no_records: Nie ma żadnych rekordów do pokazania przy aktualnie wybranych opcjach 
     new_record: Nowy rekord
-    similarity: Podobieństwo
+    similarity: Różnice
     diff: Porównaj
 
   # editor validation 

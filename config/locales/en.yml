@@ -742,7 +742,7 @@ en:
     modified_records: Modified records
     no_records: There are no records to show with the current selected options
     new_record: New record
-    similarity: Similarity
+    similarity: Difference
     diff: Diff
     
   # editor validation 

@@ -740,7 +740,7 @@ de:
     modified_records: Geänderte Datensätze
     no_records: Es gibt keine Datensätze, die mit den aktuell ausgewählten Optionen angezeigt werden können 
     new_record: Neuer Datensatz
-    similarity: Ähnlichkeit
+    similarity: Unterschiede
     diff: Vergleich
 
   # editor validation 

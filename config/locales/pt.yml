@@ -736,7 +736,7 @@ pt:
     modified_records: Records modificados
     no_records: Não há records para mostrar com as opções actualmente seleccionadas 
     new_record: Novo record
-    similarity: Semelhança
+    similarity: Diferenças
     diff: Comparar
 
   # editor validation 

@@ -743,8 +743,8 @@ it:
     modified_records: Record modificati
     no_records: Non ci sono record da mostrare con le opzioni attualmente selezionate
     new_record: Nuovo record
-    similarity: Similarità
-    diff: Differenze
+    similarity: Differenza
+    diff: Comparazione
 
   # editor validation 
   validation:

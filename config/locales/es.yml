@@ -740,7 +740,7 @@ es:
     modified_records: Records modificados
     no_records: No hay records que mostrar con las opciones seleccionadas actualmente 
     new_record: Nuevo record
-    similarity: Similitud
+    similarity: Diferencias
     diff: Comparación
 
   # editor validation 
