@@ -23,7 +23,7 @@ ActiveAdmin.register_page "Compare Versions" do
     end
 
     h4 do
-      text_node "Showing modified records from #{7.days.ago}"
+      text_node I18n.t("compare_versions.date_message", date: I18n.localize(params[:time_frame] == "week" ? 7.days.ago : 1.days.ago, format: :verbose))
     end
 
     # Note: we only display one match at a time, as it is always

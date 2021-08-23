@@ -152,6 +152,7 @@ de:
       default: "%H:%M"
       short: "%H:%M"
       long: "%Y-%m-%d %H:%M"
+      verbose: "%A, %d. %B %Y, %H:%M Uhr"
   
   #################### MODELS      
   activerecord:
@@ -742,6 +743,7 @@ de:
     new_record: Neuer Datensatz
     similarity: Unterschiede
     diff: Vergleich
+    date_message: "Geänderte Datensätze anzeigen von %{date}."
 
   # editor validation 
   validation:

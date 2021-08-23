@@ -153,6 +153,7 @@ es:
       default: "%H:%M" # dudoso
       short: "%H:%M" # dudoso
       long: "%Y-%m-%d %H:%M" # dudoso
+      verbose: "%-d de %B de %Y %H:%M"
       
   #################### MODELS      
   activerecord:
@@ -742,6 +743,7 @@ es:
     new_record: Nuevo record
     similarity: Diferencias
     diff: Comparación
+    date_message: "Mostrar los records modificados de %{date}."
 
   # editor validation 
   validation:

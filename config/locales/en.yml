@@ -152,6 +152,7 @@ en:
       default: "%H:%M"
       short: "%H:%M"
       long: "%Y-%m-%d %H:%M"
+      verbose: "%B %d, %Y %H:%M"
       
   #################### MODELS      
   activerecord:
@@ -744,6 +745,7 @@ en:
     new_record: New record
     similarity: Difference
     diff: Diff
+    date_message: "Showing modified records from %{date}."
     
   # editor validation 
   validation:

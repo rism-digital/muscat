@@ -153,6 +153,7 @@ pl:
       default: "%H:%M"
       short: "%H:%M"
       long: "%R-%m-%d %H:%M"
+      verbose: "%-d %B %Y %H:%M"
       
   #################### MODELS      
   activerecord:
@@ -745,6 +746,7 @@ pl:
     new_record: Nowy rekord
     similarity: Różnice
     diff: Porównaj
+    date_message: "Wyświetlanie zmodyfikowanych rekordów z %{date}."
 
   # editor validation 
   validation:

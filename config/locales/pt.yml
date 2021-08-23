@@ -151,6 +151,7 @@ pt:
       default: "%H:%M"
       short: "%H:%M"
       long: "%Y-%m-%d %H:%M"
+      verbose: "%A, %d de %B de %Y, %H:%Mh"
       
   #################### MODELS      
   activerecord:
@@ -738,6 +739,7 @@ pt:
     new_record: Novo record
     similarity: Diferenças
     diff: Comparar
+    date_message: "Mostrar records modificados de %{date}."
 
   # editor validation 
   validation:
