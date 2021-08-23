@@ -4,6 +4,7 @@ fr:
 # Pad for italian, it has 2 missing items
 #
 #
+    compare_versions: Comparer les versions
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
@@ -713,7 +714,6 @@ fr:
     deleted: "Supprimé"
     deprecated: "DEPRECATED"
 
-  
   dashboard:
     selection: "Sélection de l'activité récente"
     type: "Type de modifications"
@@ -730,6 +730,19 @@ fr:
     got_it_explanation: "Cliquer sur ce bouton fera taire la nouvelle jusqu'à ce que la prochaine soit publiée."
     news: "Nouvelles de Muscat"
   
+  compare_versions:
+    time_frame: Intervalle temporel
+    rule: Règle
+    display: Affichange
+    options: Options
+    show: Afficher
+    hide: Cacher
+    modified_records: Records modifiés
+    no_records: Il n'y a aucun record à afficher avec les options sélectionnés 
+    new_record: Nouvel record
+    similarity: Similarité
+    diff: Comparaison
+
   # editor validation 
   validation:
     missing_message: "Une valeur dans ce champ est nécessaire"

@@ -4,6 +4,7 @@ it:
     search_status:
       headline: "Ambito"
       current_filters: "Filtri in uso"
+    compare_versions: Compara le versioni
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
@@ -732,6 +733,19 @@ it:
     got_it_explanation: "Facendo click su questo pusante si nasconderà la news finché una nuova non sarà disponilbe."
     news: "Novità in Muscat"
   
+  compare_versions:
+    time_frame: Intervallo di tempo
+    rule: Regola
+    display: Mostra
+    options: Opzioni
+    show: Mostra
+    hide: Nascondi
+    modified_records: Record modificati
+    no_records: Non ci sono record da mostrare con le opzioni attualmente selezionate
+    new_record: Nuovo record
+    similarity: Similarità
+    diff: Differenze
+
   # editor validation 
   validation:
     missing_message: "Questo campo deve contenere un valore"

@@ -4,6 +4,7 @@ pt:
 # Pad for italian, it has 2 missing items
 #
 #
+    compare_versions: Comparar versões
     dashboard: "Painel de controle"
     dashboard_welcome:
       welcome: "Benvindo(a) ao Active Admin. Esta é a página padrão do Painel de controle."
@@ -724,6 +725,19 @@ pt:
     got_it: "Entendido!"
     got_it_explanation: "Clicando neste botão, as notícias serão silenciadas até que a próxima seja liberada.."
     news: "Muscat Notícias"
+
+  compare_versions:
+    time_frame: Período de tempo
+    rule: Regra
+    display: Mostrar
+    options: Opções
+    show: Espectáculo
+    hide: Esconder
+    modified_records: Records modificados
+    no_records: Não há records para mostrar com as opções actualmente seleccionadas 
+    new_record: Novo record
+    similarity: Semelhança
+    diff: Comparar
 
   # editor validation 
   validation:

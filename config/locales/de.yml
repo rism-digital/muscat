@@ -4,6 +4,7 @@ de:
 # Pad for italian, it has 2 missing items
 #
 #
+    compare_versions: Versionen vergleichen
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
@@ -713,7 +714,6 @@ de:
     deleted: "Gelöscht"
     deprecated: "Überholt"
 
-  
   dashboard:
     selection: "Wählen Sie Letzte Aktivität"
     type: "Typ ändern"
@@ -729,6 +729,19 @@ de:
     got_it: "Verstanden!"
     got_it_explanation: "Wenn Sie auf diese Schaltfläche klicken, wird die Nachricht nicht mehr angezeigt, bis die nächste veröffentlicht wird."
     news: "Muscat Nachrichten"
+
+  compare_versions:
+    time_frame: Zeitrahmen
+    rule: Regel
+    display: Anzeige
+    options: Optionen
+    show: Anzeigen
+    hide: Verbergen
+    modified_records: Geänderte Datensätze
+    no_records: Es gibt keine Datensätze, die mit den aktuell ausgewählten Optionen angezeigt werden können 
+    new_record: Neuer Datensatz
+    similarity: Ähnlichkeit
+    diff: Vergleich
 
   # editor validation 
   validation:

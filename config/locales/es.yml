@@ -5,6 +5,7 @@ es:
 # current labels translated and the lines number matches that of the english version. (Lucas Reccitelli from Córdoba).
 #  
 #
+    compare_versions: Comparar versiones
     dashboard: "Panel de actividad"
     dashboard_welcome:
       welcome: "¡Bienvenidos a Active Admin! Este es el panel de actividad."
@@ -728,6 +729,19 @@ es:
     got_it: "Entendido!"
     got_it_explanation: "Al hacer clic en este botón se silenciará la noticia hasta que se libere la siguiente."
     news: "Noticias de Muscat."
+
+  compare_versions:
+    time_frame: Marco temporal
+    rule: Regla
+    display: Mostrar
+    options: Opciones
+    show: Mostrar
+    hide: Ocultar
+    modified_records: Records modificados
+    no_records: No hay records que mostrar con las opciones seleccionadas actualmente 
+    new_record: Nuevo record
+    similarity: Similitud
+    diff: Comparación
 
   # editor validation 
   validation:

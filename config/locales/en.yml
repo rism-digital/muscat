@@ -745,7 +745,6 @@ en:
     similarity: Similarity
     diff: Diff
     
-
   # editor validation 
   validation:
     missing_message: "A value in this field is mandatory"

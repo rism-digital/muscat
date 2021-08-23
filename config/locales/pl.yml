@@ -4,6 +4,7 @@ pl:
 # Pad for italian, it has 2 missing items
 #
 #
+    compare_versions: Porównaj wersje
     dashboard: Strona główna
     dashboard_welcome:
       welcome: Witamy w części produkcyjnej. Domyślna strona panelu użytkownika.
@@ -732,6 +733,19 @@ pl:
     got_it_explanation: Kliknięcie tego przycisku ukryje wiadomosci do momentu pojawianie się nowych.
     news: Muscat News
   
+  compare_versions:
+    time_frame: Ramy czasowe
+    rule: Reguła
+    display: Wyświetl
+    options: Opcje
+    show: Pokaż
+    hide: ukryj
+    modified_records: Zmodyfikowane rekordy
+    no_records: Nie ma żadnych rekordów do pokazania przy aktualnie wybranych opcjach 
+    new_record: Nowy rekord
+    similarity: Podobieństwo
+    diff: Porównaj
+
   # editor validation 
   validation:
     missing_message: To pole jest obowiązkowe
