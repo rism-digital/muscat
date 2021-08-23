@@ -215,7 +215,7 @@ GEM
     htmlentities (4.3.4)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
-    i18n-js (3.8.0)
+    i18n-js (3.9.0)
       i18n (>= 0.6.6)
     inherited_resources (1.13.0)
       actionpack (>= 5.2, < 6.2)
@@ -459,7 +459,7 @@ DEPENDENCIES
   factory_bot_rails
   gruff
   htmlentities (~> 4.3.4)
-  i18n-js (>= 3.0.0.rc11)
+  i18n-js (>= 3.9)
   jbuilder (~> 2.10)
   jquery-rails (~> 4.3.5)
   jquery-ui-rails (~> 6.0)

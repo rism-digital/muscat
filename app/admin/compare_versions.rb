@@ -10,6 +10,11 @@ ActiveAdmin.register_page "Compare Versions" do
 
   content title: proc { I18n.t("active_admin.compare_versions") } do
 
+    script do
+      text_node 'I18n.defaultLocale = "'.html_safe + I18n.default_locale.to_s + '";'.html_safe
+      text_node 'I18n.locale = "'.html_safe + I18n.locale.to_s + '";'.html_safe
+    end
+
     matches, model = diff_find_in_interval(Source, current_user, params[:time_frame], params[:rule])
 
     if matches.empty?
