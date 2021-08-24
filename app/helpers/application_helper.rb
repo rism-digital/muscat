@@ -111,8 +111,10 @@ module ApplicationHelper
   def get_allowed_record_type(source)
     return nil if !source.is_a? Source
 
-    if source.record_type == MarcSource::RECORD_TYPES[:source] || source.record_type == MarcSource::RECORD_TYPES[:collection]
+    if source.record_type == MarcSource::RECORD_TYPES[:source]
       [MarcSource::RECORD_TYPES[:collection], MarcSource::RECORD_TYPES[:composite_volume]]
+    elsif source.record_type == MarcSource::RECORD_TYPES[:collection]
+      [MarcSource::RECORD_TYPES[:composite_volume]]
     elsif source.record_type == MarcSource::RECORD_TYPES[:edition_content]
       MarcSource::RECORD_TYPES[:edition]
     else
