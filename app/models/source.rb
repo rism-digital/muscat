@@ -507,7 +507,7 @@ class Source < ApplicationRecord
         return true if h.lib_siglum.downcase.start_with? siglum.downcase
       end
     else
-      return true if lib_siglum && lib_siglum.downcase.start_with? siglum.downcase
+      return true if lib_siglum && lib_siglum.downcase.start_with?(siglum.downcase)
     end
 
     false
