@@ -265,6 +265,8 @@ module ActiveAdmin::ViewsHelper
     rule_index = index != nil ? index.to_i : 0
 
     model = NotificationMatcher::get_model_for_rule(rule_index, user)
+    return {} if !model
+
 
     model.where(("updated_at" + "> ?"), sql_interval).order("updated_at DESC").each do |s|
       matcher = NotificationMatcher.new(s, user, rule_index)
