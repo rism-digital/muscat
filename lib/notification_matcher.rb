@@ -65,7 +65,7 @@ class NotificationMatcher
   def self.get_model_for_rule(rule_nr, user)
     user_notifications = user.get_notifications
     return false if !user_notifications
-    return false if rule_nr > user_notifications.count
+    return false if rule_nr >= user_notifications.count
 
     rules = parse_rules(user_notifications, rule_nr)
     return nil if !rules || rules.empty?
@@ -232,7 +232,7 @@ class NotificationMatcher
 
   def self.parse_rules(rule_queries, limit = nil)
 
-    return {} if limit && limit > rule_queries.count
+    return {} if limit && limit >= rule_queries.count
     
     rule_queries = [rule_queries[limit]] if limit
 
