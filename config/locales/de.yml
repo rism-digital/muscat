@@ -754,6 +754,7 @@ de:
     correct: "Der Eintrag enthält keine Validierungsfehler. [200]"
     begins_with_message: "Das Feld muss mit \"{0}\" beginnen"
     required_if_message: "Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}"
+    cannot_link_to_self: "Das Erstellen eines Links selbst ist nicht erlaubt (%{id})."
 
   incipit_search:
     incipit_search: "Incipit Suche"

@@ -39,10 +39,7 @@ groups:
     - "506"
     - "035"
     - "541"
-    all_tag_templates: 
-      "852": marc_show/show_852
 
- 
   show_content: 
     all_tags: 
     - "031"

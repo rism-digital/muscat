@@ -754,6 +754,7 @@ fr:
     correct: "L'enregistrement ne contient aucune erreur [200]"
     begins_with_message: "Le champ doit commencer par \"{0}\""
     required_if_message: "Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}"
+    cannot_link_to_self: "La création d'un lien en soi n'est pas autorisée (%{id})."
 
   incipit_search:
     incipit_search: "Recherche par incipit"

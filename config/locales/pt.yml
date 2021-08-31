@@ -750,6 +750,7 @@ pt:
     correct: "O registro não tem erros de validação [200]"
     begins_with_message: "O campo deve começar com \"{0}\""
     required_if_message: "Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}"
+    cannot_link_to_self: "A criação de uma ligação em si não é permitida (%{id})."
     
   incipit_search:
     incipit_search: "Busca por Incipit"

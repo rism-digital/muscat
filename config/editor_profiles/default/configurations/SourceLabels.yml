@@ -249,6 +249,8 @@
   fields:
     a:
       label: records.series
+    c:
+      label: records.number_page
   label: general.rism_series
 '518':
   fields:

@@ -25,12 +25,14 @@
         					<ul class="repeating_subfield">
         					<%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
         						subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?
-        					  	subfield_collection.each do |marc_subfield| %>
+        					  	subfield_collection.each_with_index do |marc_subfield, index| %>
         						<%= render :partial => "editor/subfield_li", 
         							:locals => { :subfield => subfield, 
 											:field_settings => field_settings, 
-        									:marc_tag => marc_tag, :tag_name => tag_name, 
-        									:marc_subfield => marc_subfield } %>
+        									:marc_tag => marc_tag, 
+											:tag_name => tag_name, 
+        									:marc_subfield => marc_subfield,
+											:index => index} %>
         					<%- end %>
         					</ul>
         				</div>
