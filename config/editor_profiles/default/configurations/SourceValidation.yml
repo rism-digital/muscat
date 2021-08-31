@@ -1,6 +1,7 @@
 --- !map:Settings
 server:
   - validate_user_abilities
+  - validate_links_to_self
 client:
   "100": 
     tags:

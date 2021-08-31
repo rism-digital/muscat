@@ -740,6 +740,7 @@ en:
     correct: "The record has no validation errors [200]"
     begins_with_message: "Must begin with \"{0}\""
     required_if_message: "Field is mandatory because {0} ${1} is not empty"
+    cannot_link_to_self: "Cannot create a link to itself (%{id})."
     
   incipit_search:
     incipit_search: "Incipit Search"

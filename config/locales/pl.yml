@@ -741,6 +741,7 @@ pl:
     correct: Brak błędów zatwierdzenia rekordu [200]
     begins_with_message: "Musi rozpoczynać się od {0}"
     required_if_message: "Pole obowiązkowe, ponieważ pole {0} ${1} nie jest puste"
+    cannot_link_to_self: "Tworzenie samego linku nie jest dozwolone (%{id})."
     
   incipit_search:
     incipit_search: Wyszukaj incipit

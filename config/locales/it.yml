@@ -741,6 +741,7 @@ it:
     correct: "Il record non contiene errori [200]"
     begins_with_message: "Il campo deve iniziare con \"{0}\""
     required_if_message: "Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}"
+    cannot_link_to_self: "Non è consentito creare un link sé stesso (%{id})."
 
   incipit_search:
     incipit_search: "Ricerca negli incipit"
