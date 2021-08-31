@@ -35,6 +35,10 @@ client:
         - composite_volume
     tags:
       a: required
+  "510":
+    tags:
+      a: required
+      c: required
   "588":
     tag_overrides:
       exclude:
@@ -64,6 +68,10 @@ client:
         - composite_volume
     tags:
       b: required
+  "596":
+    tags:
+      a: required
+      b: required
   "650":
     tag_overrides:
       exclude:
@@ -72,6 +80,15 @@ client:
         - composite_volume
     tags:
       "0": mandatory
+  "690":
+    tags:
+      "0": required
+      n:
+        required_if:
+          "690": "0"
+  "691":
+    tags:
+      "0": required
   "700": 
     tags:
       "0": required
