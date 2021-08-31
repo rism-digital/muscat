@@ -325,19 +325,49 @@ function marc_editor_init_validation(form, validation_conf) {
 		onfocusout: false,
 		onkeyup: false,
 		onclick: false,
+
 		// Skip validation in placeholders
-		// ONLY if there are shown tags
+		// When a tag is copied, the placeholder is left there
+		// So we have these cases:
+		// * placeholder for a mandatory tag:
+		//   - if a marc_editor_tag_block exists for that tag (somebody filled it in), skip the placeholder
+		//   - if no tag exist, run validation on the placeholder and expand it
+		// * placeholder for a mandatory tag in a group
+		//   in this case see if the mandatory tag in a marc_editor_tag_block exists also in other groups
+		//   and run validation on that or expand the placeholder
 		ignore: function(index, element) {
-			var placeholders = $(element).parents(".tag_placeholders");
-	
-			var toplevel = $(element).parents(".tag_group");
-			var tags = $(".marc_editor_tag_block", toplevel).children();
 			
-			// Was found in a placeholder, but regular tags
-			// are already there, skip
+			// First see if we are in a placeholder for a group
+			var group_placeholders = $(element).parents(".group_placeholders");
+			if (group_placeholders.length > 0) {
+				// the tab_panel contains all the placeholders + the active groups
+				var toplevel = $(element).parents(".tab_panel");
+				// Navigate all the groups and find a marc_editor_tag_block with our tag
+				// There can be more than one, we just need > 0
+				var tags = $(".marc_editor_tag_block[data-tag=" + $(element).data("tag") + "]", toplevel).children();
+
+				// One marc_editor_tag_block exists, so do not expand the placeholder to show an error
+				if (tags.length > 0)
+					return true;
+			}
+
+			// Now see if we are in a placeholder block
+			var placeholders = $(element).parents(".tag_placeholders");
+			// Placeholders are always after the tag we are validating
+			// so we can just jump up to the tag group
+			var toplevel = $(element).parents(".tag_group");
+			// and down to the marc_editor_tag_block as there is only one
+			var tags = $(".marc_editor_tag_block", toplevel).children();
+
+			// We are inside a placeholder, and our neigbour tag_group
+			// contains a marc_editor_tag_block, we will run validation there
+			// and we can skip this placeholder.
+			// In case there is only the placeholder if the tag is mandatory
+			// the placeholder will be expanded to show a "missing tag" error
 			if (placeholders.length > 0 && tags.length > 0) {
 				return true;
 			}
+			
 			// Other case: in tags that can be edited or new
 			// we have a duplicate entry that is not shown
 			// a .tag_containter data-function [new, edit]
