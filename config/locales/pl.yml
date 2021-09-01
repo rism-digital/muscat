@@ -311,9 +311,9 @@ pl:
   lib_siglum: Siglum
   holding_records: Informacje o egzemplarzu
   holding_no_siglum: Egzemplarz bez siglum
-  holding_missing: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\\" button on the right."
-  holding_missing_alert: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\\" button on the right after you save."
-  holding_missing_show: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editinf this record and clicking the \"%{new_holding}\\" button on the right."
+  holding_missing: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right."
+  holding_missing_alert: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right after you save."
+  holding_missing_show: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editinf this record and clicking the \"%{new_holding}\" button on the right."
   new_holding: Dodaj egzemplarz
   new_holding_page: Nowe informacje o egzemplarzu
   new_digital_object_image: Dołącz nowy obraz
