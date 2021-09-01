@@ -767,6 +767,10 @@ it:
   "Number of printed copies": "Numero di esemplari a stampa"
   publisher: "Editore"
 
+  marc_editor:
+    delete_msg: "Elimina"
+    delete_field_confirm: "Sei sicuro di voler eliminare questo campo?"
+
   cookies:
     message: "Il nostro sito web utilizza cookie per funzionare. Se utilizzate il nostro sito accettata il nostro utilizzo dei cookie."
     dimiss: "Accetta e chiudi"

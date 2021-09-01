@@ -310,6 +310,7 @@ en:
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
   holding_no_siglum: "Holding without silgum"
+  holding_missing: "This Edition record has no holding records attached yet, please don’t forget to add them."
   new_holding: "Add holdings"
   new_holding_page: "New holdings information"
   new_digital_object_image: "Attach a new image"
@@ -766,6 +767,9 @@ en:
   "Number of printed copies": "Number of printed copies"
   publisher: "Publisher"
 
+  marc_editor:
+    delete_msg: "Delete"
+    delete_field_confirm: "Are you sure you want to delete this field?"
 
   cookies:
     message: "Our website uses cookies to make your browsing experience better. By using our site you agree to our use of cookies."

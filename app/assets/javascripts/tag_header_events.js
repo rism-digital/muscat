@@ -41,9 +41,9 @@ used for _tag_header partial
 	
 	function tag_header_delete(button_id) {
 		// FIXME dialog should not be hardcoded
-		$('#dialog').html('<p>' + delete_field_confirm + '</p>');
+		$('#dialog').html('<p>' + I18n.t("marc_editor.delete_field_confirm") + '</p>');
 		$("#dialog").dialog();
-		$("#dialog").dialog( 'option', 'title', delete_msg );
+		$("#dialog").dialog( 'option', 'title', I18n.t("marc_editor.delete_msg") );
 		$("#dialog").dialog( 'option', 'width', 300);
 		$("#dialog").dialog( 'option', 'buttons', {
 			OK: function() {

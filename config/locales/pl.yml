@@ -767,6 +767,9 @@ pl:
   "Number of printed copies": "Liczba drukowanych egzemplarzy"
   publisher: Wydawca
 
+  marc_editor:
+    delete_msg: "Usuń"
+    delete_field_confirm: "Czy na pewno chcesz usunąć to pole?"
 
   cookies:
     message: "Strona wykorzystuje ciasteczka dla poprawy funkcjonalności. Korzystając z niej, zgadzasz się na to."

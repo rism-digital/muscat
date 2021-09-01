@@ -79,7 +79,6 @@
 #= require jquery.autosize.min
 #= require jquery.hotkeys
 #= require js.cookie
-#= require rism.localisation
 #= require autocomplete-rails
 #= require inline_autocomplete_ujs
 #= require tag_header_events

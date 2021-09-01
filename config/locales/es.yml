@@ -764,6 +764,10 @@ es:
   "Number of printed copies": "Número de copias impresas"
   publisher: "Publicador"
 
+  marc_editor:
+    delete_msg: "Borrar"
+    delete_field_confirm: "¿Está seguro de que desea eliminar este campo?"
+
   cookies:
     message: "Nuestro sitio web utiliza cookies para mejorar su experiencia de navegación. Al usar nuestro sitio, Ud. manifiesta su conformidad con el uso de cookies."
     dimiss: "Aceptar y cerrar"

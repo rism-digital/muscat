@@ -760,6 +760,10 @@ pt:
   "Number of printed copies": "Número de exemplares impressos"
   publisher: "Casa editora"
 
+  marc_editor:
+    delete_msg: "Eliminar"
+    delete_field_confirm: "Tem a certeza que quer apagar este campo?"
+
   cookies:
     message: "osso sítio web usa cookies para tornar sua navegação melhor. Ao utilizá-lo, o usuário está de acordo com o uso de cookies."
     dimiss: "Aceitar e Fechar"
