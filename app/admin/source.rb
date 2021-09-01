@@ -101,7 +101,7 @@ ActiveAdmin.register Source do
 
       if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
         if @item.holdings.empty?
-          flash.now[:error] = I18n.t(:holding_missing_show, new_holding: I18n.t(:new_holding))
+          flash.now[:error] = I18n.t(:holding_missing, new_holding: I18n.t(:new_holding))
         end
       end
       
