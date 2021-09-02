@@ -174,6 +174,8 @@ class Work < ApplicationRecord
     return if marc_source == nil
     self.title = marc.get_title
     self.person = marc.get_composer
+
+    self.marc_source = self.marc.to_marc
   end
  
   def self.get_viaf(str)
