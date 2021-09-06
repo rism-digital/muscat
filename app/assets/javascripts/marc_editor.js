@@ -525,13 +525,10 @@ function marc_editor_incipit(clef, keysig, timesig, incipit, target, width) {
 	// width is option
 	width = typeof width !== 'undefined' ? width : 720;
 	
-	var pae = "@start:pae-file\n";
-	pae = pae + "@clef:" + clef + "\n";
+	var pae = "@clef:" + clef + "\n";
 	pae = pae + "@keysig:" + keysig + "\n";
-	pae = pae + "@key:\n";
 	pae = pae + "@timesig:" + timesig + "\n";
-	pae = pae + "@data: " + incipit + "\n";
-	pae = pae + "@end:pae-file\n";
+	pae = pae + "@data: " + incipit;
 	
 	// Do the call to the verovio helper
 	render_music(pae, 'pae', target, width);

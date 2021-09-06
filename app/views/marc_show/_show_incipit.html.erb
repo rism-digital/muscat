@@ -84,13 +84,11 @@
 
 	<script type="text/javascript">
 
-		pae = "@start:pae-file\n";
-		pae = pae + "@clef:<%= clef %>\n";
+		var pae = "@clef:<%= clef %>\n";
 		pae = pae + "@keysig:<%= key %>\n";
 		pae = pae + "@key:<%= key_or_mode %>\n";
 		pae = pae + "@timesig:<%= time %>\n";
-		pae = pae + "@data: <%= notation %>\n";
-		pae = pae + "@end:pae-file\n"
+		pae = pae + "@data: <%= notation %>";
 		render_music(pae, 'pae', $("#" + "<%=image_render_div%>"));
 
 		function show_hide_pae(id) {

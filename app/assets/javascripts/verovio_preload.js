@@ -37,7 +37,7 @@ function load_verovio() {
 // an incipit into a target div. It will do the preloading
 // in the background
 function render_music(music, format, target, width) {	
-	width = typeof width !== 'undefined' ? width : 720;
+	var width = typeof width !== 'undefined' ? width : 720;
 	
 	if (vrvToolkit == null) {
 		deferred_render_data.push({
@@ -52,7 +52,7 @@ function render_music(music, format, target, width) {
 
 	if (format === "pae") {
 		var options = {
-			from: 'pae',
+			inputFrom: 'pae',
 			pageMarginTop: 40,
 			pageMarginBottom: 60,
 			pageMarginLeft: 20,
@@ -64,7 +64,7 @@ function render_music(music, format, target, width) {
 		};
 				
 		vrvToolkit.setOptions( options );
-		vrvToolkit.loadData(music + "\n" );
+		vrvToolkit.loadData(music);
 		var svg = vrvToolkit.renderToSVG(1, {});
 		$(target).html(svg);
 	} else {
