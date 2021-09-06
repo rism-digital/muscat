@@ -36,6 +36,7 @@ v 7.1.2
 * Update Verovio to version 3.6.0
 * Merge pull request #1139 from rism-digital/dependabot/bundler/rdoc-6.3.2
 * Fix typos in translations, fix HOLDING WITHOUT SILGUM in de
+* Update CSS for new error messages
 
 v 7.1.1
 * #1124 Fix 670 autocomplete
