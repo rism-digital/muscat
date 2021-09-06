@@ -310,9 +310,9 @@ fr:
   lib_siglum: "Sigle de bibliothèque"
   holding_records: "Copie"
   holding_no_siglum: "Copie sans cote"
-  holding_missing: "Cette source imprimée n'a pas encore des copies attachés. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations spécifiques à cet exemplaire à cette fiche en cliquant sur le bouton \"%{new_holding}\" à droite."
-  holding_missing_alert: "Cette source imprimée n'a pas encore des copies attachés. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations spécifiques à cet exemplaire à cette fiche en cliquant sur le bouton \"%{new_holding}\" à droite après avoir enregistré."
-  holding_missing_show: "Cette source imprimée n'a pas encore des copies attachés. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations sspécifiques à cet exemplaire à cette fiche en entrant en mode édition et en cliquant sur le bouton \"%{new_holding}\" à droite."
+  holding_missing: "Cette source imprimée n'a pas encore des copies attachées. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations spécifiques à cet exemplaire à cette fiche en cliquant sur le bouton \"%{new_holding}\" à droite."
+  holding_missing_alert: "Cette source imprimée n'a pas encore des copies attachées. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations spécifiques à cet exemplaire à cette fiche en cliquant sur le bouton \"%{new_holding}\" à droite après avoir enregistré."
+  holding_missing_show: "Cette source imprimée n'a pas encore des copies attachées. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations spécifiques à cet exemplaire à cette fiche en entrant en mode édition et en cliquant sur le bouton \"%{new_holding}\" à droite."
   
   new_holding: "Ajouter une copie"
   new_holding_page: "Copie non enregistré"
