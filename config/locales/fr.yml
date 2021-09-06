@@ -312,6 +312,10 @@ fr:
   lib_siglum: "Sigle de bibliothèque"
   holding_records: "Copie"
   holding_no_siglum: "Copie sans cote"
+  holding_missing: "Cette source imprimée n'a pas encore des copies attachées. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations spécifiques à cet exemplaire à cette fiche en cliquant sur le bouton \"%{new_holding}\" à droite."
+  holding_missing_alert: "Cette source imprimée n'a pas encore des copies attachées. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations spécifiques à cet exemplaire à cette fiche en cliquant sur le bouton \"%{new_holding}\" à droite après avoir enregistré."
+  holding_missing_show: "Cette source imprimée n'a pas encore des copies attachées. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations spécifiques à cet exemplaire à cette fiche en entrant en mode édition et en cliquant sur le bouton \"%{new_holding}\" à droite."
+  
   new_holding: "Ajouter une copie"
   new_holding_page: "Copie non enregistré"
   new_digital_object_image: "Attacher une nouvelle image"
@@ -779,6 +783,10 @@ fr:
   Subject: "Sujet"
   "Number of printed copies": "Nombre d'exemplaires imprimés"
   publisher: "Editeur"
+
+  marc_editor:
+    delete_msg: "Supprimer"
+    delete_field_confirm: "Êtes-vous sûr de vouloir supprimer ce champ?"
 
   cookies:
     message: "Notre site utilise des cookies pour améliorer votre expérience de navigation. En utilisant notre site, vous acceptez notre utilisation des cookies."

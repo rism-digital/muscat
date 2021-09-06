@@ -309,6 +309,9 @@ pt:
   lib_siglum: "Sigla da Instituição"
   holding_records: "Informação do exemplar"
   holding_no_siglum: "Materia sem sigla"
+  holding_missing: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right."
+  holding_missing_alert: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right after you save."
+  holding_missing_show: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editinf this record and clicking the \"%{new_holding}\" button on the right."
   new_holding: "Adicionar material"
   new_holding_page: "Informação de novo material"
   new_digital_object_image: "Adicionar uma nova imagem"
@@ -775,6 +778,10 @@ pt:
   Subject: "Sujeito"
   "Number of printed copies": "Número de exemplares impressos"
   publisher: "Casa editora"
+
+  marc_editor:
+    delete_msg: "Eliminar"
+    delete_field_confirm: "Tem a certeza que quer apagar este campo?"
 
   cookies:
     message: "osso sítio web usa cookies para tornar sua navegação melhor. Ao utilizá-lo, o usuário está de acordo com o uso de cookies."

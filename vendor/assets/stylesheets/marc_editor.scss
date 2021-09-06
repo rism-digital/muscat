@@ -138,6 +138,7 @@
 						border-color: red;
 					}
 					* label.error {
+                        display: block;
 						color: red;
 					}
 					* a.error {
@@ -150,6 +151,7 @@
 						border-color: orange;
 					}
 					* label.warning {
+                        display: block;
 						color: orange;
 					}
 					* a.warning {

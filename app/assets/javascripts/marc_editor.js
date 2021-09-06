@@ -14,7 +14,7 @@ function marc_editor_set_dirty() {
 }
 	
 function marc_editor_init_tags( id ) {
-    
+
   marc_editor_show_last_tab();
 	
 	// Set event hooks
@@ -83,6 +83,12 @@ function marc_editor_get_triggers() {
 // Ajax sends back and URL to redirect to or an error
 var savedNr = 0;
 function _marc_editor_send_form(form_name, rails_model, redirect) {
+
+	// Before saving, if this is a new edition
+	// nag the user with an alert to remember
+	// to add holding records
+	marc_editor_holding_warning();
+
 	savedNr++;
 	redirect = redirect || false;
 	form = $('form', "#" + form_name);
@@ -519,13 +525,10 @@ function marc_editor_incipit(clef, keysig, timesig, incipit, target, width) {
 	// width is option
 	width = typeof width !== 'undefined' ? width : 720;
 	
-	var pae = "@start:pae-file\n";
-	pae = pae + "@clef:" + clef + "\n";
+	var pae = "@clef:" + clef + "\n";
 	pae = pae + "@keysig:" + keysig + "\n";
-	pae = pae + "@key:\n";
 	pae = pae + "@timesig:" + timesig + "\n";
-	pae = pae + "@data: " + incipit + "\n";
-	pae = pae + "@end:pae-file\n";
+	pae = pae + "@data: " + incipit;
 	
 	// Do the call to the verovio helper
 	render_music(pae, 'pae', target, width);
@@ -598,6 +601,17 @@ function marc_editor_remove_subfield(id) {
 	} else {
 		element.remove();
 	}
+}
+
+function marc_editor_holding_warning() {
+	var record_type = $("#record_type").val()
+	var source_id = $("#id").val()
+
+	// Edition, libretto edition and theoretica edition
+	if (source_id == "" && (record_type == 8 || record_type == 5 || record_type == 7)) {
+		alert(I18n.t("holding_missing_alert", { new_holding: I18n.t("new_holding") }));
+	}
+
 }
 
 // Hardcoded for marc_editor_panel

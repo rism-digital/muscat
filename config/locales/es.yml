@@ -313,6 +313,9 @@ es:
   lib_siglum: "Sigla del repositorio"
   holding_records: "Información del ejemplar"
   holding_no_siglum: "EJEMPLAR SIN SIGLA"
+  holding_missing: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right."
+  holding_missing_alert: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right after you save."
+  holding_missing_show: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editing this record and clicking the \"%{new_holding}\" button on the right."
   new_holding: "Crear nuevo registro de ejemplar"
   new_holding_page: "Nuevo registro de ejemplar"
   new_digital_object_image: "Añadir una nueva imagen"
@@ -779,6 +782,10 @@ es:
   Subject: "Sujeto"
   "Number of printed copies": "Número de copias impresas"
   publisher: "Publicador"
+
+  marc_editor:
+    delete_msg: "Borrar"
+    delete_field_confirm: "¿Está seguro de que desea eliminar este campo?"
 
   cookies:
     message: "Nuestro sitio web utiliza cookies para mejorar su experiencia de navegación. Al usar nuestro sitio, Ud. manifiesta su conformidad con el uso de cookies."

@@ -73,6 +73,12 @@ ActiveAdmin.register Source do
       @editor_profile = EditorConfiguration.get_show_layout @item
       @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
       
+      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
+        if @item.holdings.empty?
+          flash.now[:error] = I18n.t(:holding_missing_show, new_holding: I18n.t(:new_holding))
+        end
+      end
+
       respond_to do |format|
         format.html
         format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
@@ -81,6 +87,7 @@ ActiveAdmin.register Source do
 
     def edit
       flash.now[:error] = params[:validation_error] if params[:validation_error]
+      
       @item = Source.find(params[:id])
       @holdings = @item.holdings
       @show_history = true if params[:show_history]
@@ -91,7 +98,12 @@ ActiveAdmin.register Source do
       @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
       
       template = EditorConfiguration.get_source_default_file(@item.get_record_type) + ".marc"
-      
+
+      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
+        if @item.holdings.empty?
+          flash.now[:error] = I18n.t(:holding_missing, new_holding: I18n.t(:new_holding))
+        end
+      end
       
       # Try to load the MARC object.
       # This is the same trap as in show but here we
