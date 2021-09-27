@@ -146,12 +146,23 @@
         <!-- *** This fieldType is used by Sunspot! *** -->
         <fieldType name="rand" class="solr.RandomSortField" omitNorms="true"/>
         <!-- *** This fieldType is used by Sunspot! *** -->
-        <fieldType name="text" class="solr.TextField" omitNorms="false">
-            <analyzer>
-                <tokenizer class="solr.StandardTokenizerFactory"/>
-                <filter class="solr.ClassicFilterFactory"/>
-                <filter class="solr.LowerCaseFilterFactory"/>
-                <filter class="solr.PorterStemFilterFactory"/>
+        <fieldType name="text" class="solr.TextField" autoGeneratePhraseQueries="true" multiValued="true" termVectors="true" stored="true">
+            <analyzer type="index">
+                <tokenizer class="solr.ICUTokenizerFactory" />
+                <filter class="solr.ICUFoldingFilterFactory"/>
+                <filter class="solr.CommonGramsFilterFactory" ignoreCase="true" words="stopwords.txt" />
+                <filter class="solr.KStemFilterFactory" />
+                <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
+                <!-- synonym filters only need to be on index OR query, not both -->
+                <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
+                <filter class="solr.FlattenGraphFilterFactory"/>
+            </analyzer>
+            <analyzer type="query">
+                <tokenizer class="solr.ICUTokenizerFactory" />
+                <filter class="solr.ICUFoldingFilterFactory"/>
+                <filter class="solr.CommonGramsQueryFilterFactory" ignoreCase="true" words="stopwords.txt" />
+                <filter class="solr.KStemFilterFactory" />
+                <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
             </analyzer>
         </fieldType>
         <!-- *** This fieldType is used by Sunspot! *** -->
