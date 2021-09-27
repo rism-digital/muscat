@@ -7,13 +7,29 @@ var vrvToolkit = null;
 var deferred_render_data = []
 var verovio_loading = false;
 
+var worker = new Worker('/javascripts/verovio_worker.js');
+worker.onmessage = function(event) {
+	let messageType = event.data[0];
+
+	if (messageType == "loaded") {
+		finalize_verovio();
+	} else if (messageType == "renderMusic-ok") {
+		let target = event.data[1];
+		let svg = event.data[2];
+
+		$("#" + target).html(svg);
+	}
+};
+
 function finalize_verovio () {
 	verovio_loading = false
-	vrvToolkit = new verovio.toolkit();
+	//vrvToolkit = new verovio.toolkit();
+	vrvToolkit = "ciao";
 	
 	for (var i = 0; i < deferred_render_data.length; i++) {
 	    data = deferred_render_data[i];
 		render_music(data.music, data.format, data.target, data.width);
+		//this.worker.postMessage( ["renderToSVG", 0, [1, {}]] );
 	}
 }
 
@@ -22,15 +38,16 @@ function load_verovio() {
 		return;
 	}
 	
+
 	verovio_loading = true;
-	
+	/*
 	var element = document.createElement("script");
 	element.src = "/javascripts/verovio-toolkit.js";
 	document.body.appendChild(element);
 	
     element.onreadystagechange = finalize_verovio;
     element.onload = finalize_verovio;
-
+*/
 }
 
 // This is the helper function to call to render 
@@ -63,10 +80,18 @@ function render_music(music, format, target, width) {
 			adjustPageHeight: 1
 		};
 				
-		vrvToolkit.setOptions( options );
-		vrvToolkit.loadData(music);
-		var svg = vrvToolkit.renderToSVG(1, {});
-		$(target).html(svg);
+		//vrvToolkit.setOptions( options );
+		//vrvToolkit.loadData(music);
+		//var svg = vrvToolkit.renderToSVG(1, {});
+
+/*
+		this.worker.postMessage(["setOptions", $(target).attr("id"), [options]])
+		this.worker.postMessage(["loadData", $(target).attr("id"), [music]])
+		this.worker.postMessage(["renderToSVG", $(target).attr("id"), [1, {}]] );
+*/
+		this.worker.postMessage(["renderMusic", $(target).attr("id"), {options: options, music: music}])
+
+		//$(target).html(svg);
 	} else {
 		// We need our own instance
 		vrvToolkitMei = new verovio.toolkit();

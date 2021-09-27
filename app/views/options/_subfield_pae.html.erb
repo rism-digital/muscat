@@ -1,5 +1,6 @@
 <%
 	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
+	random_string = SecureRandom.hex
 %>
 <table width="100%">
 	<tr>
@@ -12,6 +13,6 @@
 </tr>
 </table>
 	<table class="marc_editor_pae_info"  style="display: none;" cellpadding="0" cellspacing="0"><tr>
-		<td width="100%"><div class="pae_incipit_target">Loading...&nbsp;</div></td>
+		<td width="100%"><div class="pae_incipit_target" id="<%=random_string%>">Loading...&nbsp;</div></td>
 		<td width="16"><div style="visibility:hidden;"><img src="/images/spinner_small.gif" /></div></td>	
 	</tr></table>
