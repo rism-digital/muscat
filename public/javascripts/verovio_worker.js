@@ -32,20 +32,26 @@
     let target = event.data[1];
     let params = event.data[2];
      
-
-    if (messageType != "renderMusic") {
-        return;
-    }
- 
     if (!vrvToolkit) {
         postMessage(["error", ticket, {"error": "The verovio-toolkit has not finished loading yet!"}]);
         return;
     }
- 
-    vrvToolkit.setOptions( params["options"] );
-	vrvToolkit.loadData(params["music"]);
-	let svg = vrvToolkit.renderToSVG(1, {});
 
-    postMessage([messageType + "-ok", target, svg]);
+    if (messageType == "renderMusic") {
+        vrvToolkit.setOptions( params["options"] );
+        vrvToolkit.loadData(params["music"]);
+        let svg = vrvToolkit.renderToSVG(1, {});
+    
+        postMessage([messageType + "-ok", target, svg]);
+    } else if (messageType == "renderMEI") {
+        vrvToolkit.setOptions( params["options"] );
+        let svg = vrvToolkit.renderData(params["music"], {});
+        postMessage([messageType + "-ok", target, svg]);
+    } else {
+        postMessage(["unrecognized-" + messageType]);
+    }
+
+ 
+
  
  }, false);
