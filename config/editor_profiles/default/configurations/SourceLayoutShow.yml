@@ -3,6 +3,7 @@ group_order:
 - show_summary
 - show_library
 - show_content
+- show_instrumentation
 - show_distribution
 - show_material
 - show_information
@@ -44,9 +45,12 @@ groups:
     all_tags: 
     - "031"
     - "595"
-    - "598"
     all_tag_templates: 
       "031": marc_show/show_incipit
+
+  show_instrumentation:
+    all_tags:
+    - "598"
 
   show_distribution:
     all_tags: 
