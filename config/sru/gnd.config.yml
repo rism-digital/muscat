@@ -2,7 +2,7 @@ server: "https://devel.dnb.de/sru_ru/"
 search_server: "https://services.dnb.de/sru/"
 
 gnd:
-  #- "024" other standard identifier
+  #- "024" #other standard identifier
   - "031" #incipit
     #- "040" #cataloging source
   - "100"

@@ -117,8 +117,10 @@ module DNB
         cf.content = "160812n||aznnnaabn           | ana    |c"
         gnd.root << cf
 
-        df = node.datafield('035') 
-        [node.subfield('a', "(DE-633)#{record.id}")].each {|sf| df << sf}
+
+        df = node.datafield('024') 
+        [node.subfield('a', "#{record.id}")].each {|sf| df << sf}
+        [node.subfield('2', "orcid")].each {|sf| df << sf}
         gnd.root << df
 
         # adding some required administration fields
@@ -143,6 +145,14 @@ module DNB
           xml.xpath("//marc:datafield[@tag='#{tag}']", NAMESPACE).each do |df|
             df.xpath("marc:subfield[@code='0']").remove
             if tag == "100"
+              %w( a d t m n r ).each do |code|
+                old_sf = df.xpath("marc:subfield[@code='#{code}']").first rescue nil
+                if old_sf
+                  new_sf = old_sf.dup
+                  old_sf.remove
+                  df << new_sf
+                end
+              end
               no = df.xpath("marc:subfield[@code='n']").first.content rescue nil
               if no
                 df383 = node.datafield('383')
@@ -155,8 +165,19 @@ module DNB
                 [node.subfield('a', no)].each {|sf| df384 << sf}
                 gnd.root << df384
               end
-            end
-
+              # Reordering
+=begin
+              new_100 = node.datafield('101')
+              %w( a d t m n r ).each do |code|
+                subfield = df.xpath("marc:subfield[@code='#{code}']").first.dup rescue nil
+                if subfield
+                  new_100 << subfield
+                end
+              end
+              gnd.root << new_100
+              df.remove
+=end
+            end 
             if tag == "548"
               [node.subfield('4', 'dats')].each {|sf| df << sf}
               [node.subfield('4', 'https://d-nb.info/standards/elementset/gnd#dateOfProduction')].each {|sf| df << sf}
@@ -167,6 +188,7 @@ module DNB
 
             if tag == "670"
               no = df.xpath("marc:subfield[@code='b']").first.content rescue nil
+              wv = Publication.find(df.xpath("marc:subfield[@code='a']").first.content).short_name rescue nil
               if no
                 [node.subfield('u', no)].each {|sf| df << sf}
                 df.xpath("marc:subfield[@code='w']").remove
