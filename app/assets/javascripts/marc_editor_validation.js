@@ -205,7 +205,39 @@ function marc_validate_presence(value, element) {
 // tag is empty: i.e. 650 needs *always* to be there.
 function marc_validate_mandatory(value, element) {
 	var validate_level = $(element).data("validate-level");
-	
+
+/*
+ * This disabled block of code is used to validate
+ * mandatory fields only one. Is part of a bigger
+ * task to make mandatory fields work with groups
+ */
+ /*
+	var tag = $(element).data("tag");
+	var subfield = $(element).data("subfield");
+
+	t = $(".validate_" + tag + "_" + subfield);
+
+	found = false;
+	t.each(function() {
+		var elem =  $(this);
+		console.log(elem.val());
+		var placeholders = $(elem).parents(".tag_placeholders");
+
+		if (placeholders.length == 0) {
+			if (elem.val() != "") {
+				//console.log(elem.val());
+				found = true;
+			}
+		}
+
+		if (found)
+			return false;
+	});
+
+	if (found)
+		return true;
+*/
+
 	if (value == "") {
 			if (validate_level == "warning") {
 				marc_validate_add_warnings(element);
