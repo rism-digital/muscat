@@ -1,6 +1,20 @@
 Muscat Changelog
 ================
 
+v 7.1.3
+* #1118, make sure 588 does not appear where it should not
+* Implement async verovio rendering
+* Remove the notification diff, will exist only as the controller.
+* Make uglifies happy with es6
+* Add spinner for incipit loading
+* Fix #1147, implement background Verovio rendering also for MEI files
+* Fix #1145, show 598
+* #1145 add group for coded instrumentation
+* Ignore index files
+* Added some country ISO codes to people
+* Added surinam iso-country-code
+* Remove 593 from validation until the field is refactored
+
 v 7.1.2
 * Update to rails 5.2.6
 * Fix #1120, move 595 so it is displayed
