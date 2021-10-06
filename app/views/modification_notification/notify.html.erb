@@ -24,11 +24,7 @@
 					<a href="https://muscat.rism.info/admin/works/<%=item.id%>"><%=item.id%></a>, <%=item.title%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]
 				<%end%>
 				</p>
-
-			<%if @total_results < 100 %>
-				<%= render partial: "diff_record", locals: { :item => item } %>
 			</div>
-			<%end %>
 
 			<% count += 1 %>
 		<% end %>

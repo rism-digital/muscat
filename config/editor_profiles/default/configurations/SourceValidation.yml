@@ -53,14 +53,15 @@ client:
         - theoretica_edition_content
     tags:
       "a": mandatory
-  "593":
-    tag_overrides:
-      exclude:
-        "a":
-        - collection
-        - composite_volume
-    tags:
-      "a": mandatory
+# Remove until 593 is sorted out
+#  "593":
+#    tag_overrides:
+#      exclude:
+#        "a":
+#        - collection
+#        - composite_volume
+#    tags:
+#      "a": mandatory
   "594": 
     tag_overrides:
       exclude:
