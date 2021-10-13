@@ -86,12 +86,20 @@ used for _tag_header partial
 				return;
 			
 			// Let's waste CPU time
-			suffix = Math.random().toString(36).substring(4);
+			var suffix = Math.random().toString(36).substring(4);
 			
 			$(this).prop("name", n + "-" + suffix);
 		});
 	}
 	
+	function fix_pae_reindering_ids(new_dt) {
+		new_dt.find(".pae_incipit_target").each(function() {
+			var new_id = Math.random().toString(36).substring(4);
+			var old_id = $(this).attr("id");
+			$(this).attr("id", old_id + "-" + new_id);
+		})
+	}
+
 	// Create a new element when the tag_group already contains elements
 	function tag_header_add(elem) {
 		marc_editor_set_dirty();
@@ -104,6 +112,10 @@ used for _tag_header partial
 		
 		tag_header_fix_validation(new_dt);
 		
+		// We also need to re-create the unique IDs for pae rendering
+		// as we need these as a reference for the background worker
+		fix_pae_reindering_ids(new_dt);
+
 		new_dt.fadeIn('fast');
 		return new_dt;
 	}
@@ -113,7 +125,7 @@ used for _tag_header partial
 	function tag_header_add_from_empty(elem) {
 		marc_editor_set_dirty();
         // hide help if necessary
-   elem.parents(".tag_container").children(".tag_help_collapsable").hide();
+		elem.parents(".tag_container").children(".tag_help_collapsable").hide();
 		var placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
 		var parent_dl = elem.parents(".tag_group").children(".marc_editor_tag_block");
 
@@ -122,7 +134,8 @@ used for _tag_header partial
 		parent_dl.append(new_dt);
 		
 		tag_header_fix_validation(new_dt);
-		
+		fix_pae_reindering_ids(new_dt);
+
 		new_dt.fadeIn('fast');
         update_empty_tag( elem.parents(".tag_group") );
 		return new_dt;
