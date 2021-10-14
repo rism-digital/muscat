@@ -416,7 +416,7 @@ There is an alternative Single Sign On (SSO) authentication for corporate enviro
 1. First, run the generator with `bin/rails g muscat:install_saml` to get the required configuration files.
 1. Add :saml_authenticatable as one of the AUTHENTICATION_METHODS in `config/application.rb` (order of methods is not important)
 1. SAML users will have the role defined by `RISM::SAML_AUTHENTICATION_CREATE_USER_ROLE` which is "guest" by default. Edit `config/application.rb` and uncomment `RISM::SAML_AUTHENTICATION_CREATE_USER_ROLE` and set the desired role if you prefer another one.
-1. If you want, customize the new devise login form that the generator created at `"app/views/active_admin/devise/sessions/new.html.erb"`
+1. Customize the new devise login form that the generator created at `"app/views/active_admin/devise/sessions/new.html.erb"`. At least, edit the file and remove the unused link to the IdP or define yours if it's none of the two.
 1. Configure the SAML settings at `config/initializers/devise_saml_authenticatable.rb`
   - To automatically parse IdP's metadata, parse the remote url just before ruby_saml's settings
   ```
