@@ -3,6 +3,13 @@
 
   <div style="float: inherit;margin-top: 0">
     If you are a SAML user login <%= link_to('here', new_saml_user_session_path, style: "float: inherit;margin-top: 0") %>
+    or
+    <%
+      request = OneLogin::RubySaml::Authrequest.new
+      obj= Object.new
+      obj.class.send :include, DeviseSamlAuthenticatable::SamlConfig
+      action_url = request.create(obj.saml_config(nil), {}) %>
+    <%= link_to('here', action_url, style: "float: inherit;margin-top: 0", method: :post) %>
   </div>
   <% scope = Devise::Mapping.find_scope!(resource_name) %>
   <%= active_admin_form_for(resource, as: resource_name, url: send(:"#{scope}_session_path"), html: { id: "session_new" }) do |f|

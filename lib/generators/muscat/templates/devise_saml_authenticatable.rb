@@ -71,7 +71,7 @@ Devise.setup do |config|
     settings.idp_sso_service_url                = "https://remote-sso-server.example.org/test/saml/idp/auth"
     # settings.idp_cert_fingerprint               = "9E:65:2E:03:06:8D:80:F2:86:C7:6C:77:A1:D9:14:97:0A:4D:F4:4D"
     # settings.idp_cert_fingerprint_algorithm     = "http://www.w3.org/2000/09/xmldsig#sha1"
-    settings.sp_entity_id                       = "https://local-muscat-server.example.org/admin/saml/metadata
+    settings.sp_entity_id                       = "https://local-muscat-server.example.org/admin/saml/metadata"
     # settings.compress_request                   = false
   end
 end
