@@ -740,7 +740,7 @@ pl:
     series_statement: Pola uwag do serii
     set: Zbiór
     shelfmark: Sygnatura
-    shelfmark_olim: Sygnatura (wcześniejsza)
+    shelfmark_olim: Dawna sygnatura (wcześniejsza)
     short_title: Skrócony tytuł
     sigla: Sigla
     siglum: Siglum
@@ -809,7 +809,7 @@ pl:
     translator: Tłumacz
     transparency: Przezrocze
     type: Rodzaj
-    type_designer: Typograf
+    type_designer: Projektant kroju pisma
     type_institution: Rodzaj instytucji
     type_name_variant: Typ alternatywnej nazwy osoby
     type_of_jurisdiction: Rodzaj jurysdykcji

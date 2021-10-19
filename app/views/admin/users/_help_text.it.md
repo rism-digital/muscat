@@ -101,8 +101,8 @@ record_type:edition lib_siglum:CH* composer:Bach* std_title:"6 Fugues";
 
 ### Works
 
-- **compositore** _Nome del compositore (100 $a)_
-- **titolo** _Titolo dell'opera (100 $t)_
+- **composer** _Nome del compositore (100 $a)_
+- **title** _Titolo dell'opera (100 $t)_
 
 Esempio:
 

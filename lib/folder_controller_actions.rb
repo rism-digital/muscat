@@ -15,7 +15,7 @@ module FolderControllerActions
     } do |ids, inputs|
 
       #Get the model we are working on
-      model = self.resource_class
+      model = self.class.resource_class
        
       # inputs is a hash of all the form fields you requested
       f = Folder.new(:name => inputs[:name], :folder_type => model.to_s)
@@ -55,7 +55,7 @@ module FolderControllerActions
         redirect_to collection_path, :alert => "No Folder selected."
       else
         #Get the model we are working on
-        model = self.resource_class
+        model = self.class.resource_class
         f = Folder.find(inputs[:folder])
       
         # Pagination is on as default! wahooo!
@@ -106,7 +106,7 @@ module FolderControllerActions
       end
       
       #Get the model we are working on
-      model = self.resource_class
+      model = self.class.resource_class
       
       params[:per_page] = 1000
       results, hits = model.search_as_ransack(params)
@@ -134,7 +134,7 @@ module FolderControllerActions
       end
             
       #Get the model we are working on
-      model = self.resource_class
+      model = self.class.resource_class
       
       # Pagination is on as default! wahooo!
       params[:per_page] = 1000
@@ -162,9 +162,9 @@ module FolderControllerActions
       end
       
       #Get the model we are working on
-      @model = self.resource_class
-      
-      model_downcase = self.resource_class.to_s.pluralize.underscore.downcase
+      @model = self.class.resource_class
+            
+      model_downcase = self.class.resource_class.to_s.pluralize.underscore.downcase
       link_function = "do_create_new_folder_admin_#{model_downcase}_path"
       
       # Pagination is on as default! wahooo!
@@ -177,9 +177,9 @@ module FolderControllerActions
     
     dsl.collection_action :append_to_folder, :method => :get do
       #Get the model we are working on
-      @model = self.resource_class
+      @model = self.class.resource_class
       
-      model_downcase = self.resource_class.to_s.pluralize.underscore.downcase
+      model_downcase = self.class.resource_class.to_s.pluralize.underscore.downcase
       link_function = "do_append_to_folder_admin_#{model_downcase}_path"
       
       # Pagination is on as default! wahooo!

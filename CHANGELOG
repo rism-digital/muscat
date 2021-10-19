@@ -1,6 +1,57 @@
 Muscat Changelog
 ================
 
+v 7.1.3
+* #1118, make sure 588 does not appear where it should not
+* Implement async verovio rendering
+* Remove the notification diff, will exist only as the controller.
+* Make uglifies happy with es6
+* Add spinner for incipit loading
+* Fix #1147, implement background Verovio rendering also for MEI files
+* Fix #1145, show 598
+* #1145 add group for coded instrumentation
+* Ignore index files
+* Added some country ISO codes to people
+* Added surinam iso-country-code
+* Remove 593 from validation until the field is refactored
+
+v 7.1.2
+* Update to rails 5.2.6
+* Fix #1120, move 595 so it is displayed
+* Update paper_trail
+* Fix works not saving
+* Add "follow" pattern to notifications
+* Add more solr installation notes
+* Fix #891 use better field analyzer for shelfmark
+* Bump addressable from 2.7.0 to 2.8.0
+* #1132 Add icon to holdings with digital images
+* Merge pull request #1131 from rism-digital/dependabot/bundler/addressable-2.8.0
+* Fix #1132 Add css
+* Add "external resource" filter in source list
+* Fix missing field for sunspot
+* Make 856x from holdings searchable
+* Fix #1125 and other translations
+* Add redirect after a login
+* Fix #1135, make sure 001 is preserved
+* Fix autocomplete with the new subfield layout structure
+* Cleanup javascript, avoid warning about items with the same name
+* Fix #1137, do not display 787 as initial entry
+* Fix #1136, completely remove 511
+* Fix #1133, collections go only in composite volumes, also clean up the code a bit
+* Fix #1118, add and remove tags
+* Fix #1138, implement validation to avoid 787 and 773 pointing to themselves.
+* Fix #1128 Add new validations
+* Fix #1128, properly show errors on select items
+* Show all subtags for 852, remove the partial, it was used for linking but that is done automatically now.
+* Fix #516, make sure the + sign is only in the first element
+* Properly localize the "delete tag" message in the marc editor
+* Fix #1035 Add big warning for holdings missing
+* Bump rdoc from 6.2.1 to 6.3.2
+* Update Verovio to version 3.6.0
+* Merge pull request #1139 from rism-digital/dependabot/bundler/rdoc-6.3.2
+* Fix typos in translations, fix HOLDING WITHOUT SILGUM in de
+* Update CSS for new error messages
+
 v 7.1.1
 * #1124 Fix 670 autocomplete
 * #1124 Fix holdings :unapproved

@@ -146,12 +146,23 @@
         <!-- *** This fieldType is used by Sunspot! *** -->
         <fieldType name="rand" class="solr.RandomSortField" omitNorms="true"/>
         <!-- *** This fieldType is used by Sunspot! *** -->
-        <fieldType name="text" class="solr.TextField" omitNorms="false">
-            <analyzer>
-                <tokenizer class="solr.StandardTokenizerFactory"/>
-                <filter class="solr.ClassicFilterFactory"/>
-                <filter class="solr.LowerCaseFilterFactory"/>
-                <filter class="solr.PorterStemFilterFactory"/>
+        <fieldType name="text" class="solr.TextField" autoGeneratePhraseQueries="true" multiValued="true" termVectors="true" stored="true">
+            <analyzer type="index">
+                <tokenizer class="solr.ICUTokenizerFactory" />
+                <filter class="solr.ICUFoldingFilterFactory"/>
+                <filter class="solr.CommonGramsFilterFactory" ignoreCase="true" words="stopwords.txt" />
+                <filter class="solr.KStemFilterFactory" />
+                <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
+                <!-- synonym filters only need to be on index OR query, not both -->
+                <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
+                <filter class="solr.FlattenGraphFilterFactory"/>
+            </analyzer>
+            <analyzer type="query">
+                <tokenizer class="solr.ICUTokenizerFactory" />
+                <filter class="solr.ICUFoldingFilterFactory"/>
+                <filter class="solr.CommonGramsQueryFilterFactory" ignoreCase="true" words="stopwords.txt" />
+                <filter class="solr.KStemFilterFactory" />
+                <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
             </analyzer>
         </fieldType>
         <!-- *** This fieldType is used by Sunspot! *** -->
@@ -189,25 +200,7 @@
             </analyzer>
         </fieldtype>
 
-        <fieldType name="text_alphanumeric_sort" class="solr.TextField" sortMissingLast="false" omitNorms="true">
-            <analyzer>
-                <tokenizer class="solr.KeywordTokenizerFactory"/>
-                <filter class="solr.LowerCaseFilterFactory"/>
-                <filter class="solr.TrimFilterFactory"/>
-                <filter class="solr.PatternReplaceFilterFactory"
-                        pattern="^(a |the |les |la |le |l'|de la |du |des )" replacement="" replace="all"
-                />
-                <filter class="solr.PatternReplaceFilterFactory"
-                        pattern="(\d+)" replacement="00000$1" replace="all"
-                />
-                <filter class="solr.PatternReplaceFilterFactory"
-                        pattern="0*([0-9]{6,})" replacement="$1" replace="all"
-                />
-                <filter class="solr.PatternReplaceFilterFactory"
-                        pattern="([^a-z0-9])" replacement="" replace="all"
-                />
-            </analyzer>
-        </fieldType>
+        <fieldType name="text_alphanumeric_sort" class="solr.ICUCollationField" locale="" numeric="true" strength="secondary" sortMissingLast="true" />
         <!-- END ADDED BY RZ FOR MUSCAT -->
     </types>
     <uniqueKey>id</uniqueKey>
@@ -215,4 +208,3 @@
     <copyField source="*_text" dest="textSpell"/>
     <copyField source="*_s" dest="textSpell"/>
 </schema>
-

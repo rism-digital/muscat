@@ -487,6 +487,10 @@ class Source < ApplicationRecord
     nil
   end
 
+  def get_initial_entries
+    self.sources.where("sources_to_sources.marc_tag": 775)
+  end
+
   def siglum_matches?(siglum)
     if self.record_type == MarcSource::RECORD_TYPES[:edition] ||
       self.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
@@ -503,7 +507,7 @@ class Source < ApplicationRecord
         return true if h.lib_siglum.downcase.start_with? siglum.downcase
       end
     else
-      return true if lib_siglum.downcase.start_with? siglum.downcase
+      return true if lib_siglum && lib_siglum.downcase.start_with?(siglum.downcase)
     end
 
     false
@@ -531,9 +535,15 @@ class Source < ApplicationRecord
     incipits
   end
 
+  def force_marc_load?
+    self.marc.load_source false
+    true
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"599a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"856x", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
 
 end

@@ -36,11 +36,13 @@
 	<div  class="abuttonset abuttonset-multi">
 		<%if new_window_controller && !empty_header %>
 		<!-- this is a special case, see new_window_select_ujs.js -->
-      <% if selection_record_type != nil && selection_record_type.is_a?(Array) && selection_record_type.count > 1 %>
-        <!-- For some record types, it is necessary to show two different select windows -->
-        <!-- For two different types ot document -->
-       	<a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=selection_record_type[0]%>" data-selection-lib-siglum="<%=selection_lib_siglum%>" title="Search Collection"><span class="muscat-ui-icon search-button-collection"></span>_</a>
- 	  	  <a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=selection_record_type[1]%>" data-selection-lib-siglum="<%=selection_lib_siglum%>" title="Search Composite"><span class="muscat-ui-icon search-button-composite"></span>_</a>
+      <% if selection_record_type != nil && selection_record_type.is_a?(Array) %>
+        <% if selection_record_type.include?(MarcSource::RECORD_TYPES[:collection])%>
+       	  <a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=MarcSource::RECORD_TYPES[:collection]%>" title="Search Collection"><span class="muscat-ui-icon search-button-collection"></span>_</a>
+ 	  	  <% end %>
+        <% if selection_record_type.include?(MarcSource::RECORD_TYPES[:composite_volume])%>
+         <a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=MarcSource::RECORD_TYPES[:composite_volume]%>" title="Search Composite"><span class="muscat-ui-icon search-button-composite"></span>_</a>
+        <% end %>
       <% else %>
  	  	  <a class="abutton ui-state-default abutton-icon-solo ui-corner-all new_window_select" href="#" data-controller="<%=new_window_controller%>" data-new-window-field="<%=new_window_field%>" data-selection-record-type="<%=selection_record_type%>" data-selection-lib-siglum="<%=selection_lib_siglum%>" title="Search"><span class="ui-icon ui-icon-search"></span>_</a>
       <% end %>

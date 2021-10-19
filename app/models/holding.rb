@@ -147,7 +147,7 @@ class Holding < ApplicationRecord
   def update_774
       return if self.suppress_update_77x_trigger == true
 
-    # We do NOT have a parent ms in the 773.
+    # We do NOT have a parent ms in the 973.
     # but we have it in old_parent, it means that
     # the 773 was deleted or modified. Go into the parent and
     # find the reference to the id, then delete it

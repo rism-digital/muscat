@@ -49,8 +49,11 @@ options = {
 	options[:disabled] = "disabled" if disabled || @restricted=='disabled'
 %>
 
-
-<%= autocomplete_field_tag "#{tag_name}#{subfield}", marc_subfield.looked_up_content, ac_path, options %>
+<%
+# Duplicating a tag from the editor will add its own junk to the name, it is ok since the name is not used
+# see tag_header_events.js
+%>
+<%= autocomplete_field_tag "#{tag_name}#{subfield}-#{SecureRandom.hex(5)}", marc_subfield.looked_up_content, ac_path, options %>
 
 <div class="checkbox_confirmation" style="display: none;">
 	<input class="creation_checkbox" type="checkbox" data-check="false" name="<%=check_name%>"/>

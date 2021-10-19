@@ -67,6 +67,6 @@ default_mapping:
   theoretica_source: "006_theoretica_source"
   theoretica_edition: "017_theoretica_edition"
   edition: "011_edition"
-  libretto_edition_content: "015_libretto_edition"
-  theoretica_edition_content: "017_theoretica_edition"
+  libretto_edition_content: "016_libretto_edition_content"
+  theoretica_edition_content: "018_theoretica_edition_content"
   composite_volume: "019_composite"

@@ -18,8 +18,11 @@ gem 'uglifier', '~> 4.2'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 5.0'
 
+# NOTE HERE: since execjs 2.8, the therubyracer is deprecated
+# Mini racer 0.4 appears to be broken.
+# A runtime can be used with node.js: apt-get install nodejs
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-#gem 'therubyracer', platforms: :ruby
+# gem 'mini_racer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', "~> 4.3.5"
@@ -66,7 +69,7 @@ gem 'htmlentities', '~> 4.3.4'
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', '~> 1.2' #, git: 'https://github.com/rism-ch/activeadmin'#, ref: 'a2cd960'
+gem 'activeadmin', '2.9.0' #, git: 'https://github.com/rism-ch/activeadmin'#, ref: 'a2cd960'
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
@@ -117,7 +120,7 @@ gem 'progress_job', '0.0.4', git: "https://github.com/rism-ch/progress_job"
 gem 'daemons'
 
 # Add I18n in js
-gem "i18n-js", ">= 3.0.0.rc11"
+gem "i18n-js", ">= 3.9"
 gem 'colorize'
 
 gem 'exception_notification', '~> 4.4.0'
@@ -176,3 +179,5 @@ end
 gem 'sort_alphabetical'
 
 #gem 'i18n-tasks', '~> 0.9.31'
+
+gem 'differ'

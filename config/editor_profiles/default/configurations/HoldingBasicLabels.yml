@@ -45,6 +45,11 @@
     a:
       label: records.performer_note
   label: records.note_on_performance
+'525':
+  fields:
+    a:
+      label: records.supplementary_material
+  label: records.supplementary_material
 '541':
   fields:
     a:

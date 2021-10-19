@@ -181,6 +181,8 @@ XA-IT:
   label: places.italy
 XA-IT-32:
   label: places.italy_trentino_alto_adige
+XA-LI:
+  label: places.liechtenstein
 XA-LT:
   label: places.lithuania
 XA-LU:
@@ -253,6 +255,8 @@ XC-DZ:
   label: places.algeria
 XC-EG:
   label: places.egypt
+XC-GH:
+  label: places.ghana
 XC-GN:
   label: places.guinea
 XC-ZA:
@@ -275,18 +279,24 @@ XD-HN:
   label: places.honduras
 XD-MX:
   label: places.mexico
+XD-NI:
+  label: places.nicaragua
 XD-PE:
   label: places.peru
 XD-PR:
   label: places.puerto_rico
 XD-PY:
   label: places.paraguay
+XD-SR:
+  label: places.surinam
 XD-TT:
   label: places.trinidad_tobego
 XD-US:
   label: places.usa
 XD-UY:
   label: places.uruguay
+XC-UG:
+  label: places.uganda
 XD-VE:
   label: places.venezuela
 XE-AU:

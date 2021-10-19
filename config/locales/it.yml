@@ -4,6 +4,7 @@ it:
     search_status:
       headline: "Ambito"
       current_filters: "Filtri in uso"
+    compare_versions: Compara le versioni
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
@@ -151,6 +152,7 @@ it:
       default: "%H:%M"
       short: "%H:%M"
       long: "%Y-%m-%d %H:%M"
+      verbose: "%d %B %Y %H:%M"
       
   #################### MODELS      
   activerecord:
@@ -312,6 +314,9 @@ it:
   lib_siglum: "Sigla della biblioteca"
   holding_records: "Esemplari"
   holding_no_siglum: "Esemplare senza sigla di biblioteca"
+  holding_missing: "Questa fonte stampata non ha ancora nessun esemplare allegato. Per favore, aggiungi la sigla della tua biblioteca, la segnatura e altre informazioni specifiche su questa copia in questo record cliccando il pulsante \"%{new_holding}\" sulla destra."
+  holding_missing_alert: "Questa fonte stampata non ha ancora nessun esemplare allegato. Per favore, aggiungi la sigla della tua biblioteca, la segnatura e altre informazioni specifiche su questa copia in questo record cliccando il pulsante \"%{new_holding}\" sulla destra dopo aver salvato"
+  holding_missing_show: "Questa fonte stampata non ha ancora nessun esemplare allegato. Per favore, aggiungi la sigla della tua biblioteca, la segnatura e altre informazioni specifiche su questa copia in questo record entrando nella modalità di modifica e cliccando il pulsante \"%{new_holding}\" sulla destra."
   new_holding: "Nuovo Esemplare"
   new_holding_page: "Esemplare non salvato"
   new_digital_object_image: "Aggiungi una nuova immagine"
@@ -732,6 +737,20 @@ it:
     got_it_explanation: "Facendo click su questo pusante si nasconderà la news finché una nuova non sarà disponilbe."
     news: "Novità in Muscat"
   
+  compare_versions:
+    time_frame: Intervallo di tempo
+    rule: Regola
+    display: Mostra
+    options: Opzioni
+    show: Mostra
+    hide: Nascondi
+    modified_records: Record modificati
+    no_records: Non ci sono record da mostrare con le opzioni attualmente selezionate
+    new_record: Nuovo record
+    similarity: Differenza
+    diff: Comparazione
+    date_message: "Mostra i record modificati dal %{date}."
+
   # editor validation 
   validation:
     missing_message: "Questo campo deve contenere un valore"
@@ -741,6 +760,7 @@ it:
     correct: "Il record non contiene errori [200]"
     begins_with_message: "Il campo deve iniziare con \"{0}\""
     required_if_message: "Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}"
+    cannot_link_to_self: "Non è consentito creare un link sé stesso (%{id})."
 
   incipit_search:
     incipit_search: "Ricerca negli incipit"
@@ -765,6 +785,10 @@ it:
   Subject: "Soggetto"
   "Number of printed copies": "Numero di esemplari a stampa"
   publisher: "Editore"
+
+  marc_editor:
+    delete_msg: "Elimina"
+    delete_field_confirm: "Sei sicuro di voler eliminare questo campo?"
 
   cookies:
     message: "Il nostro sito web utilizza cookie per funzionare. Se utilizzate il nostro sito accettata il nostro utilizzo dei cookie."
