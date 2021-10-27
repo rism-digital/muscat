@@ -267,7 +267,8 @@ ActiveAdmin.register Source do
     end
     column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
       if source.child_sources.count > 0
-         source.child_sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
+         siglums = [source.lib_siglum] + source.child_sources.map(&:lib_siglum)
+         siglums.sort.uniq.reject{|s| s.empty?}.join(", ").html_safe
       else
         source.lib_siglum
       end
