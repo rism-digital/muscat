@@ -56,7 +56,7 @@ Recent Ubuntu releases (from 18.4 LTS) and Debian 10 (Buster) provide come Ruby 
 
  sudo apt-get update
  sudo apt-get install mysql-server libmysqlclient-dev # If mysql was not installed separately
- sudo apt-get install apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev  openjdk-11-jdk-headless passenger make libapache2-mod-passenger libsqlite3-dev g++ default-libmysqld-dev
+ sudo apt-get install apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev  openjdk-11-jdk-headless passenger make libapache2-mod-passenger libsqlite3-dev g++ default-libmysqld-dev nodejs
  sudo a2enmod passenger
 
 Passenger also wants to compile a binary module, this is optional but will enable it
@@ -141,6 +141,36 @@ Remember that they key must be readable from the user running apache, so check t
 Muscat 7.1 now supports Solr 8.8 installed externally. This means for example that it is possible to use a Solr cluster installed on a different server.
 The internal Solr 5.5 server still works, but will not be supported anymore in the future since the bundled Solr unsupported and has problems with modern Java versions.
 The Muscat core should work with any installation of Solr, here a sample installation procedure is shown but it should be adapted for each installation.
+
+==== Installation using a "stock" solr using included setup script
+
+Grab a copy of the official distribution (8.8.2 at the time of writing) and unpack it in a suitable place
+
+  wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.8.2/solr-8.8.2.tgz
+  tar -xvzf solr-8.8.2.tgz
+
+Solr needs two directories, one for data and one for the binaries. The latter is generally /opt/solr, and the data installation for this example will be /data/solr.
+Extract just the installation script:
+
+  tar xzf solr-8.8.2.tgz solr-8.8.2/bin/install_solr_service.sh --strip-components=2
+
+And execute it:
+
+  sudo ./install_solr_service.sh solr-8.8.2.tgz -d /data/solr -p 8983
+
+This will create the directory layout as above. It will also create a +solr+ user. For the complete reference see https://solr.apache.org/guide/8_8/taking-solr-to-production.html
+Now copy over the Muscat core:
+
+  cp -R $MUSCAT_HOME/solr-configuration/muscat /data/solr/data
+  cp $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar /data/solr/data/lib/
+
+Where +/data/solr/+ in the directory specified above with -d.
+Solr includes a startup script so 
+
+  systemctl daemon-reload
+  service solr start
+
+Should start it. The logfiles in this case are found in +/data/solr/logs+.
 
 ==== Installation using a "stock" solr
 

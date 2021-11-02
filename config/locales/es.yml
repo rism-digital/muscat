@@ -5,6 +5,7 @@ es:
 # current labels translated and the lines number matches that of the english version. (Lucas Reccitelli from Córdoba).
 #  
 #
+    compare_versions: Comparar versiones
     dashboard: "Panel de actividad"
     dashboard_welcome:
       welcome: "¡Bienvenidos a Active Admin! Este es el panel de actividad."
@@ -152,6 +153,7 @@ es:
       default: "%H:%M" # dudoso
       short: "%H:%M" # dudoso
       long: "%Y-%m-%d %H:%M" # dudoso
+      verbose: "%-d de %B de %Y %H:%M"
       
   #################### MODELS      
   activerecord:
@@ -311,6 +313,9 @@ es:
   lib_siglum: "Sigla del repositorio"
   holding_records: "Información del ejemplar"
   holding_no_siglum: "EJEMPLAR SIN SIGLA"
+  holding_missing: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right."
+  holding_missing_alert: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right after you save."
+  holding_missing_show: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editing this record and clicking the \"%{new_holding}\" button on the right."
   new_holding: "Crear nuevo registro de ejemplar"
   new_holding_page: "Nuevo registro de ejemplar"
   new_digital_object_image: "Añadir una nueva imagen"
@@ -729,6 +734,20 @@ es:
     got_it_explanation: "Al hacer clic en este botón se silenciará la noticia hasta que se libere la siguiente."
     news: "Noticias de Muscat."
 
+  compare_versions:
+    time_frame: Marco temporal
+    rule: Regla
+    display: Mostrar
+    options: Opciones
+    show: Mostrar
+    hide: Ocultar
+    modified_records: Records modificados
+    no_records: No hay records que mostrar con las opciones seleccionadas actualmente 
+    new_record: Nuevo record
+    similarity: Diferencias
+    diff: Comparación
+    date_message: "Mostrar los records modificados de %{date}."
+
   # editor validation 
   validation:
     missing_message: "Este campo debe contener un valor"
@@ -738,6 +757,7 @@ es:
     correct: "El registro no presenta errores de validación [200]"
     begins_with_message: "El campo debe comenzar con \"{0}\""
     required_if_message: "Este campo debe ser rellenado ya que es obligatorio en presencia de {0} ${1}"
+    cannot_link_to_self: "No se permite crear un enlace en sí mismo (%{id})."
 
   incipit_search:
     incipit_search: "Búsqueda por íncipit"
@@ -762,6 +782,10 @@ es:
   Subject: "Sujeto"
   "Number of printed copies": "Número de copias impresas"
   publisher: "Publicador"
+
+  marc_editor:
+    delete_msg: "Borrar"
+    delete_field_confirm: "¿Está seguro de que desea eliminar este campo?"
 
   cookies:
     message: "Nuestro sitio web utiliza cookies para mejorar su experiencia de navegación. Al usar nuestro sitio, Ud. manifiesta su conformidad con el uso de cookies."

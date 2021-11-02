@@ -339,13 +339,6 @@
       - :occurrences: "?"
     - - c
       - :occurrences: "?"
-  "511":
-    :master: a
-    :indicator: "0#"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
   "518":
     :master: a
     :indicator: "##"
@@ -612,7 +605,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: short_name
     - - n
       - :occurrences: "?"
   "700":

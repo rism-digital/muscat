@@ -4,6 +4,7 @@ config/solr.yml
 development.log
 /solr/default/data
 /solr/pids
+solr/muscat
 /solr/development/data
 solr/production/data
 solr/second

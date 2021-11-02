@@ -17,7 +17,7 @@ module MarcControllerActions
     dsl.collection_action :marc_editor_save, :method => :post do
 
       #Get the model we are working on
-      model = self.resource_class
+      model = self.class.resource_class
 
       marc_hash = JSON.parse params[:marc]
         
@@ -105,7 +105,7 @@ module MarcControllerActions
       redirect = params.include?(:redirect) ? params[:redirect] : false
 
       if redirect == "true"
-        model_for_path = self.resource_class.to_s.underscore.downcase
+        model_for_path = self.class.resource_class.to_s.underscore.downcase
         if (model_for_path == "holding") && params.include?(:parent_object_id)
             path = admin_source_path(params[:parent_object_id])
         else
@@ -113,7 +113,7 @@ module MarcControllerActions
           path =  send(link_function, @item.id) #admin_sources_path
         end
       else
-        model_for_path = self.resource_class.to_s.underscore.downcase
+        model_for_path = self.class.resource_class.to_s.underscore.downcase
         link_function = "edit_admin_#{model_for_path}_path"
         path =  send(link_function, @item.id) #admin_edit_source_path(@item.id)
       end
@@ -130,7 +130,7 @@ module MarcControllerActions
     dsl.collection_action :marc_editor_preview, :method => :post do
       
       #Get the model we are working on
-      model = self.resource_class
+      model = self.class.resource_class
 
       marc_hash = JSON.parse params[:marc]
       
@@ -236,7 +236,7 @@ module MarcControllerActions
     dsl.member_action :marc_restore_version, method: :put do
       
       #Get the model we are working on
-      model = self.resource_class
+      model = self.class.resource_class
       @item = model.find(params[:id])
       
       begin
@@ -288,7 +288,7 @@ module MarcControllerActions
       # Parameter for showing history in editor
       @show_history = true
 
-      model_for_path = self.resource_class.to_s.underscore.downcase
+      model_for_path = self.class.resource_class.to_s.underscore.downcase
       link_function = "edit_admin_#{model_for_path}_path"
       redirect_to send(link_function, @item.id, {:show_history => true}), notice: "Deleted snapshot #{params[:version_id]}"
     end
@@ -299,7 +299,7 @@ module MarcControllerActions
     
     dsl.collection_action :marc_editor_validate, :method => :post do
       #Get the model we are working on
-      model = self.resource_class
+      model = self.class.resource_class
 
       marc_hash = JSON.parse params[:marc]
       current_user = User.find(params[:current_user])

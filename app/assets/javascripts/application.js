@@ -111,6 +111,7 @@
 //= require filter_workaround.js
 //= require cookieconsent.min.js
 //= require merge_authority.js
+//= require compare_versions_actions.js
 
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
 // this:

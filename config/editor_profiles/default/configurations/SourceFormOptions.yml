@@ -1001,9 +1001,9 @@
       - "retro"
       - "import"
     980b:
-      - "full"
-      - "standard"
       - "brief"
+      - "standard"
+      - "full"
     980c:
       - "examined"
       - "not_examined"

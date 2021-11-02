@@ -66,6 +66,10 @@ module Muscat
         def search_with_solr(fields = [], order = {}, with_filter = {}, page = 1, per_page = MAX_PER_PAGE)
           model = self.to_s
           solr_results = self.solr_search do
+            adjust_solr_params do |p|
+              p["q.op"] = "AND"
+            end
+
             if !order.empty?
               order_by order[:field], order[:order]
             end

@@ -249,6 +249,8 @@
   fields:
     a:
       label: records.series
+    c:
+      label: records.number_page
   label: general.rism_series
 '518':
   fields:
@@ -1210,6 +1212,8 @@ show_distribution:
   label: records.distribution
 show_information:
   label: records.further_information
+show_instrumentation:
+  label: records.coded_instrumentation
 show_library:
   label: records.library_information
 show_links:

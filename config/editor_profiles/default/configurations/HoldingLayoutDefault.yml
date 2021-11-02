@@ -35,6 +35,7 @@ groups:
   edit_references:
     all_tags: 
     - '500'
+    - '525'
     - '691'
     - '651'
     - '518'

@@ -395,9 +395,16 @@ class EditorConfiguration
   end
   
   # Gets the default layout. This is a configuration in which <tt>default</tt> in the <tt>filter</tt> is true.
+  # Model can be either an object of a Class
   def self.get_default_layout(model)
     profiles = EditorConfiguration.profiles
-    model_name = model.class.to_s.downcase
+
+    if model.is_a? Class
+      model_name = model.to_s.downcase
+    else
+      model_name = model.class.to_s.downcase
+    end
+
     profiles.each do |p|
       next if model_name != p.model
       return p if p.filter && p.filter["default"]
@@ -418,13 +425,14 @@ class EditorConfiguration
     
   # Gets the html file name.
   def self.get_help_fname(name, model = "Source")
-    model = (model == "Source") ? "" : "#{model.downcase}_"
+    model = "#{model.downcase}_"
     # translated version?
-    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html")
-    #ap fname
+    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{I18n.locale.to_s}/#{model}#{name}.md")
+    ap fname
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # english?
-    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_en.html")
+    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/en/#{model}#{name}.md")
+    ap fname
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # nope...
     return ""

@@ -15,7 +15,6 @@ class ModificationDigestJob < ApplicationJob
       # get the last modified sources
       
       results = {}
-      total_results = 0
       
       [Source, Work, Institution].each do |model|
         model.where(("updated_at" + "> ?"), @days.days.ago).order("updated_at DESC").each do |s|
@@ -27,7 +26,6 @@ class ModificationDigestJob < ApplicationJob
             results[model.to_s.downcase][match] = [] if !results[model.to_s.downcase][match]
 
             results[model.to_s.downcase][match] << s
-            total_results += 1
           end
 
         end
