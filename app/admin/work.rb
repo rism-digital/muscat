@@ -111,6 +111,14 @@ ActiveAdmin.register Work do
     job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Work, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
+
+  member_action :gnd_synchronize, method: :get do
+    work = Work.find(params[:id])
+    service = DNB::Service.new(work)
+    service.synchronize
+    redirect_to resource_path(params[:id]), notice: "#{service.interface.status}"
+  end
+ 
   
   ###########
   ## Index ##
@@ -141,7 +149,7 @@ ActiveAdmin.register Work do
     render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
-  
+ 
   # Include the folder actions
   include FolderControllerActions
   
@@ -170,6 +178,10 @@ ActiveAdmin.register Work do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work }
+  end
+  
+ sidebar "GND actions", :only => :show do
+    render :partial => "works/gnd_synchronize"
   end
   
   

@@ -144,7 +144,7 @@ module DNB
         CONFIG['gnd'].each do |tag|
           xml.xpath("//marc:datafield[@tag='#{tag}']", NAMESPACE).each do |df|
             df.xpath("marc:subfield[@code='0']").remove
-            if tag == "100"
+            if tag == "100" or tag == "400"
               %w( a d t m n r ).each do |code|
                 old_sf = df.xpath("marc:subfield[@code='#{code}']").first rescue nil
                 if old_sf
