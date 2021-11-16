@@ -5,11 +5,11 @@ require 'logger'
 
 class MarcImport
   
-  def initialize(source_file, model, from = 0)
+  def initialize(source_file, model, options)
     #@log = Logger.new(Rails.root.join('log/', 'import.log'), 'daily')
-    @from = from
     @source_file = source_file
     @model = model
+    @options = options
     @total_records = open(source_file) { |f| f.grep(/001">/) }.size
     @import_results = Array.new
     @cnt = 0
@@ -55,7 +55,7 @@ class MarcImport
     #@total_records += 1
     buffer.gsub!(/[\r\n]+/, ' ')
     buffer.gsub!(/ (=[0-9]{3,3})/, "\n\\1")
-    if @total_records >= @from
+    if @total_records >= @options[:from]
       marc = Object.const_get("Marc" + @model).new(buffer)
       # load the text source but without resolving externals
       marc.load_source(false)
@@ -119,9 +119,11 @@ class MarcImport
         # Make internal format
         marc.to_internal
 
-        # step 2. do all the lookups and change marc fields to point to external entities (where applicable) 
-        marc.suppress_scaffold_links
-        marc.import
+        # step 2. do all the lookups and change marc fields to point to external entities (where applicable)
+        if ! @options[:scaffold]
+          marc.suppress_scaffold_links
+          marc.import
+        end
         
         # step 3 resolve external values if it is a source
         #begin
@@ -174,7 +176,9 @@ class MarcImport
         
          # step 4. insert model into database
         #begin
+        if ! @options[:dry_run]
           model.save! #
+        end
 #          @log.info(@model+" record "+marc.get_id.to_s+" "+status)
 #        rescue ActiveRecord::RecordNotUnique
 #          @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
