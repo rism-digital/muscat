@@ -26,16 +26,18 @@ module DNB
       unless gnd.id
         gnd.xml = muscat.to_gnd.root
         interface.post(:create, gnd.xml)
-        gnd.id = interface.status.split("PPN: ").last
-        marc = muscat.record.marc
-        # Adding the gnd id to the muscat record
-        new_024 = MarcNode.new(Work, "024", "", "##")
-        ip = marc.get_insert_position("024")
-        new_024.add(MarcNode.new(Work, "a", gnd.id, nil))
-        new_024.add(MarcNode.new(Work, "2", "DNB", nil))
-        marc.root.children.insert(ip, new_024)
-        muscat.record.marc = marc
-        muscat.record.save
+        if interface.status.include?("PPN: ")
+          gnd.id = interface.status.split("PPN: ").last
+          marc = muscat.record.marc
+          # Adding the gnd id to the muscat record
+          new_024 = MarcNode.new(Work, "024", "", "##")
+          ip = marc.get_insert_position("024")
+          new_024.add(MarcNode.new(Work, "a", gnd.id, nil))
+          new_024.add(MarcNode.new(Work, "2", "DNB", nil))
+          marc.root.children.insert(ip, new_024)
+          muscat.record.marc = marc
+          muscat.record.save
+        end
       else
         gnd.xml = muscat.to_gnd(gnd.id, gnd.timestamp).root
         interface.post(:replace, gnd.xml, gnd.id)

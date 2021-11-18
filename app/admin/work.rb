@@ -114,9 +114,18 @@ ActiveAdmin.register Work do
 
   member_action :gnd_synchronize, method: :get do
     work = Work.find(params[:id])
-    service = DNB::Service.new(work)
-    service.synchronize
-    redirect_to resource_path(params[:id]), notice: "#{service.interface.status}"
+    if !work.marc.gnd_ids.empty?
+      redirect_to resource_path(params[:id]), alert: "GND info: Work is already in GND"
+    else
+      service = DNB::Service.new(work)
+      service.synchronize
+      if service.interface.status.include?("PPN: ")
+        redirect_to resource_path(params[:id]), notice: "GND record created: #{service.interface.status}"
+      else
+        redirect_to resource_path(params[:id])
+        flash[:error] = "Message from GND UPLOAD: #{service.interface.status}"
+      end
+    end
   end
  
   
@@ -180,7 +189,7 @@ ActiveAdmin.register Work do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work }
   end
   
- sidebar "GND actions", :only => :show do
+ sidebar "G|N|D", :only => :show do
     render :partial => "works/gnd_synchronize"
   end
   

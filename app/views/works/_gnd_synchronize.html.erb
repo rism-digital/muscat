@@ -1,3 +1,8 @@
 <ul>
-  <li> <%= link_to("Upload", gnd_synchronize_admin_work_path(id: @item.id)) %></li>
+  <li class="muscat_icon_link">
+    <%= link_to("Werktitel hochladen", gnd_synchronize_admin_work_path(id: @item.id),
+				:class => "muscat_icon_link muscat_icon_link_upload") %>
+  </li>
+  
+
 </ul>
