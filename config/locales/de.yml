@@ -495,7 +495,7 @@ de:
   filter_record_type_short: "Typ"
   filter_source_type: "Quellen Typ"
   filter_publisher: "Verlag"
-  filter_revue_title: "Zeitschriftentitel"
+  filter_journal: "Zeitschriftentitel"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
   filter_images: "Bilder"
