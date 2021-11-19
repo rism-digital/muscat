@@ -239,7 +239,7 @@ class Publication < ApplicationRecord
     # std_title
     self.place, self.date = marc.get_place_and_date
     self.short_name = marc.get_name
-    self.description = marc.get_description
+    self.title = marc.get_title
     self.author = marc.get_author
     self.revue_title = marc.get_revue_title
     self.marc_source = self.marc.to_marc
