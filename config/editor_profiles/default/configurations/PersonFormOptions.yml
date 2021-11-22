@@ -280,10 +280,14 @@
         editor_partial: subfield_secondary
         allow_new: true
 "551": 
+  new_window: places
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
-      - cols: 2
+      - type: place
+        editor_partial: subfield_secondary
+        allow_new: true
     - - i
       - cols: 2
         editor_partial: subfield_select_codes
