@@ -8,6 +8,7 @@ solr/muscat
 /solr/development/data
 solr/production/data
 solr/second
+solr/muscat
 solr/test
 solr/default
 log/sunspot-solr-development.log
