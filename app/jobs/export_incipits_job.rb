@@ -10,8 +10,10 @@ class ExportIncipitsJob < ProgressJob::Base
   def perform
     count = 0
     CSV.open(OUTFILE, "w", force_quotes: true) do |csv|
-        Source.find_in_batches.each do |group|
-            group.each do |source|
+        #Source.find_in_batches.each do |group|
+        Source.where(wf_stage: 1).each do |s|
+          source = Source.find(s.id)
+            #group.each do |source|
                 source.marc.load_source false
                 source.marc.each_by_tag("031") do |t|
                         
@@ -36,7 +38,8 @@ class ExportIncipitsJob < ProgressJob::Base
                 end
     
                 #pb.increment!
-            end
+                source = nil
+            #end
         end
     
     end
