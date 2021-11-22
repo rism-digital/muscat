@@ -1,7 +1,6 @@
 require 'rails_helper'
+
 RSpec.describe Admin::CatalogController, type: :feature do
-  before(:each) do
-  end
 
   describe "whith anonymous navigation disabled" do
     it "redirects to sign in" do
