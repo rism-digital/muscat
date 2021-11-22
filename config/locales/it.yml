@@ -498,7 +498,7 @@ it:
   filter_record_type_short: "Tipo"
   filter_source_type: "Tipologia della fonte"
   filter_publisher: "Editore"
-  filter_revue_title: "Titolo del periodico o della miscellanea"
+  filter_journal: "Titolo del periodico o della miscellanea"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
   filter_images: "Immagini"

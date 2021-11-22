@@ -498,7 +498,7 @@ pl:
   filter_record_type_short: Rodzaj
   filter_source_type: Rodzaj źródła
   filter_publisher: Wydawca
-  filter_revue_title: Tytuł periodyku
+  filter_journal: Tytuł periodyku
   filter_id: ID
   filter_id_no: RISM ID
   filter_images: Obrazy
