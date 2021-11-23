@@ -220,12 +220,20 @@ module MarcControllerActions
       end
       
       @item = version.item_type.singularize.classify.constantize.new
-      @item.marc.load_from_array( VersionChecker.get_diff_with_next( params[:version_id] ) )
+      tags, wf_stages = VersionChecker.get_diff_with_next(params[:version_id])
+      @item.marc.load_from_array(tags)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
       # Parameter for using diff partials
       @diff = true
       
+      # Did the wf_stage change? if so we have a dedicated partial
+      if wf_stages[0] != wf_stages[1]
+        @wf_stages = wf_stages
+      else
+        @wf_stages = false
+      end
+
       render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
     
