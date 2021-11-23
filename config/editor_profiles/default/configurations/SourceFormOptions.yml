@@ -734,7 +734,6 @@
       - "Doubtful"
       - "Misattributed"
     relator_codes: 
-      - fmo
       - scr
       - cmp
       - cns
@@ -751,7 +750,6 @@
       - egr
       - ill
       - aut
-      - oth
       - asn
       - ctb
       - ccp
@@ -759,7 +757,6 @@
       - asg
       - cph
       - lse
-      - ppm
       - tyd
 "710":
   new_window: institutions
@@ -787,21 +784,17 @@
       - "Misattributed"
     relator_codes: 
       - pbl
-      - fmo
-      - dpt
       - dte
       - scr
       - prf
       - prt
       - edt
-      - oth
       - evp
       - dst
       - bsl
       - asg
       - cph
       - lse
-      - ppm
       - asn
       - tyd
 "730":
