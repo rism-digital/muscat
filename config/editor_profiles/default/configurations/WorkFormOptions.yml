@@ -206,6 +206,8 @@
     - - m
     - - n
     - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "100r"
     - - t
     columns: 4
   tag_params:
@@ -288,6 +290,10 @@
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
+"383": 
+  layout: 
+    fields: 
+    - - b
 "400":
   new_window: people
   new_window_field: full_name_equals
@@ -358,6 +364,16 @@
     fields: 
     - - a
       - growfield: true
+"690": 
+  new_window: publications
+  new_window_field: name_equals
+  layout: 
+    fields: 
+    - - a
+      - type: publication
+        editor_partial: subfield_secondary
+        allow_new: false
+    - - n
 "700":
   allow_new: true
   new_window: people

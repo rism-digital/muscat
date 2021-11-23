@@ -45,6 +45,11 @@
     a:
       label: records.performer_note
   label: records.note_on_performance
+'525':
+  fields:
+    a:
+      label: records.supplementary_material
+  label: records.supplementary_material
 '541':
   fields:
     a:
@@ -226,7 +231,7 @@ com:
 cst:
   label: records.costume_designer
 ctb:
-  label: records.co-composer
+  label: records.co_composer
 dnc:
   label: records.dancer
 dnr:

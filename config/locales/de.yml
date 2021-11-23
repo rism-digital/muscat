@@ -4,6 +4,7 @@ de:
 # Pad for italian, it has 2 missing items
 #
 #
+    compare_versions: Versionen vergleichen
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
@@ -151,6 +152,7 @@ de:
       default: "%H:%M"
       short: "%H:%M"
       long: "%Y-%m-%d %H:%M"
+      verbose: "%A, %d. %B %Y, %H:%M Uhr"
   
   #################### MODELS      
   activerecord:
@@ -309,7 +311,10 @@ de:
   finished: "Beendet"
   lib_siglum: "Bibliothekssigel"
   holding_records: "Exemplarinformation"
-  holding_no_siglum: "HOLDING WITHOUT SILGUM"
+  holding_no_siglum: "Unmarkierte Kopie"
+  holding_missing: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right."
+  holding_missing_alert: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right after you save."
+  holding_missing_show: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editinf this record and clicking the \"%{new_holding}\" button on the right."
   new_holding: "Neuer Examplareintrag"
   new_holding_page: "Neuer Exemplareintrag"
   new_digital_object_image: "Neues Bild hinzufügen"
@@ -490,7 +495,7 @@ de:
   filter_record_type_short: "Typ"
   filter_source_type: "Quellen Typ"
   filter_publisher: "Verlag"
-  filter_revue_title: "Zeitschriftentitel"
+  filter_journal: "Zeitschriftentitel"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
   filter_images: "Bilder"
@@ -695,13 +700,24 @@ de:
     more: "Mehr"
     banner: 'Bitte "Vorschau" wählen, um die MEI-Konvertierung anzuzeigen.'
 
+  notifications:
+    cadence: Kadenz der Benachrichtigung
+    none: Benachrichtigungen sind deaktiviert
+    every: Jedes Mal, wenn ein passender Datensatz gespeichert wird
+    daily: Jeden Tag
+    weekly: Jede Woche
+    rules: Regeln
+    notifications: Benachrichtigungen
+    edit: Edit notifications
+    empty_message: "Es sind keine Benachrichtigungen aktiviert. Sie können %{href}, um sie zu aktivieren"
+    empty_message_href: bearbeiten
+
   wf_stage:
     inprogress: "In Arbeit (UNP)"
     published: "Veröffentlicht (PUB)"
     deleted: "Gelöscht"
     deprecated: "Überholt"
 
-  
   dashboard:
     selection: "Wählen Sie Letzte Aktivität"
     type: "Typ ändern"
@@ -718,6 +734,20 @@ de:
     got_it_explanation: "Wenn Sie auf diese Schaltfläche klicken, wird die Nachricht nicht mehr angezeigt, bis die nächste veröffentlicht wird."
     news: "Muscat Nachrichten"
 
+  compare_versions:
+    time_frame: Zeitrahmen
+    rule: Regel
+    display: Anzeige
+    options: Optionen
+    show: Anzeigen
+    hide: Verbergen
+    modified_records: Geänderte Datensätze
+    no_records: Es gibt keine Datensätze, die mit den aktuell ausgewählten Optionen angezeigt werden können 
+    new_record: Neuer Datensatz
+    similarity: Unterschiede
+    diff: Vergleich
+    date_message: "Geänderte Datensätze anzeigen von %{date}."
+
   # editor validation 
   validation:
     missing_message: "Dieses Feld muss zwingend ausgefüllt werden."
@@ -727,6 +757,7 @@ de:
     correct: "Der Eintrag enthält keine Validierungsfehler. [200]"
     begins_with_message: "Das Feld muss mit \"{0}\" beginnen"
     required_if_message: "Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}"
+    cannot_link_to_self: "Das Erstellen eines Links selbst ist nicht erlaubt (%{id})."
 
   incipit_search:
     incipit_search: "Incipit Suche"
@@ -751,6 +782,10 @@ de:
   Subject: "Schlagwörter"
   "Number of printed copies": "Anzahl der gedruckten Exemplare"
   publisher: "Verleger"
+
+  marc_editor:
+    delete_msg: "Löschen"
+    delete_field_confirm: "Sind Sie sicher, dass Sie dieses Feld löschen möchten?"
 
   cookies:
     message: "Unsere Website verwendet Cookies, um Ihre Browser-Erfahrung zu verbessern. Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu."

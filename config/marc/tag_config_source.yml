@@ -97,7 +97,7 @@
       - :occurrences: "1"
   "028":
     :master: a
-    :indicator: "20"
+    :indicator: ["20", "30"]
     :occurrences: "*"
     :fields:
     - - a
@@ -338,13 +338,6 @@
     - - a
       - :occurrences: "?"
     - - c
-      - :occurrences: "?"
-  "511":
-    :master: a
-    :indicator: "0#"
-    :occurrences: "*"
-    :fields:
-    - - a
       - :occurrences: "?"
   "518":
     :master: a
@@ -612,7 +605,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: short_name
     - - n
       - :occurrences: "?"
   "700":
@@ -730,12 +723,13 @@
         :browse_helper: application_helper_link_source_id
   "787":
     :master: "w"
-    :relator_code: "i"
+    :relator_code: "4"
     :indicator: "0#"
     :occurrences: "*"
     :fields:
-    - - i
+    - - "4"
       - :occurrences: "?"
+        :browse_helper: application_helper_resolve_relator_code
     - - n
       - :occurrences: "?"
     - - w

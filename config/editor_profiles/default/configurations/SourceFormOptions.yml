@@ -15,7 +15,9 @@
     - - e
 "028": 
   layout: 
-    fields: 
+    fields:
+    - - indicator
+      - editor_partial: subfield_indicator
     - - a
 "031": 
   new_window: standard_titles
@@ -925,7 +927,7 @@
   new_window: sources
   layout: 
     fields: 
-    - - i
+    - - "4"
       - editor_partial: subfield_select_codes
         codes_reference: "relator_codes"
     - - n
@@ -934,11 +936,12 @@
         editor_partial: subfield_secondary
   tag_params:
       relator_codes: 
-      - ts1
-      - ts2
-      - ts3
-      - ts4
-      - ts5
+      - "rdau:P60191"
+      - "rdau:P60198"
+      - "rdau:P60311"
+      - "rdau:P60195"
+      - "rdau:P60242"
+      - "rdau:P60194"
 "852": 
   new_window: institutions
   layout: 
@@ -998,9 +1001,9 @@
       - "retro"
       - "import"
     980b:
-      - "full"
-      - "standard"
       - "brief"
+      - "standard"
+      - "full"
     980c:
       - "examined"
       - "not_examined"

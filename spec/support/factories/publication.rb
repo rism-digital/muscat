@@ -5,7 +5,7 @@ FactoryBot.define do
     short_name { "NBA" }
     #initialize_with { Publication.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
     title { "Johann Sebastian Bach: Neue Ausgabe sämtlicher Werke" }
-    revue_title { "" }
+    journal { "" }
     volume { nil }
     place { "Kassel, Basel" }
     date { "1954-" }

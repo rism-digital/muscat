@@ -4,8 +4,8 @@
 # === Fields
 # * <tt>name</tt> - Abbreviated name of the publication
 # * <tt>author</tt> - Author
-# * <tt>title</tt> - Full title
-# * <tt>revue_title</tt> - if printed in a journal, the journal's title
+# * <tt>description</tt> - Full title
+# * <tt>journal</tt> - if printed in a journal, the journal's title
 # * <tt>volume</tt> - as above, the journal volume
 # * <tt>place</tt>
 # * <tt>date</tt>
@@ -136,10 +136,10 @@ class Publication < ApplicationRecord
       new_marc.root.children.insert(new_marc.get_insert_position("260"), node)
     end
 
-    # save revue_title
-    if self.revue_title
+    # save journal
+    if self.journal
       node = MarcNode.new("publication", "760", "", "0#")
-      node.add_at(MarcNode.new("publication", "t", self.revue_title, nil), 0)
+      node.add_at(MarcNode.new("publication", "t", self.journal, nil), 0)
 
       new_marc.root.children.insert(new_marc.get_insert_position("760"), node)
     end
@@ -168,8 +168,8 @@ class Publication < ApplicationRecord
       id_for_fulltext
     end
 
-    sunspot_dsl.string :name_order do
-      name
+    sunspot_dsl.string :short_name_order do
+      short_name
     end
     sunspot_dsl.text :short_name
 
@@ -183,9 +183,9 @@ class Publication < ApplicationRecord
       title
     end
 
-    sunspot_dsl.text :revue_title
-    sunspot_dsl.string :revue_title_order do
-      revue_title
+    sunspot_dsl.text :journal
+    sunspot_dsl.string :journal_order do
+      journal
     end
 
     sunspot_dsl.text :volume
@@ -241,7 +241,7 @@ class Publication < ApplicationRecord
     self.short_name = marc.get_name
     self.title = marc.get_title
     self.author = marc.get_author
-    self.revue_title = marc.get_revue_title
+    self.journal = marc.get_journal
     self.marc_source = self.marc.to_marc
   end
 

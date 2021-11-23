@@ -45,22 +45,31 @@
 			});
 			
 			function display_music(obj) {
-				grid = $(obj).parents(".tag_grid");
+				var grid = $(obj).parents(".tag_grid");
+				var placeholder = $(obj).parents(".tag_placeholders");
+				
+
+				// If the parent is a "placeholder" it means this 
+				// PAE box is not displayed.
+				if (placeholder[0] !== undefined) {
+					return;
+				}
 			
-				pae_key = $(".subfield_entry[data-subfield='n']", grid).val();
-				pae_time = $(".subfield_entry[data-subfield='o']", grid).val();
-				pae_clef = $(".subfield_entry[data-subfield='g']", grid).val();
-				pae_data = $(".subfield_entry[data-subfield='p']", grid).val(); //$(obj).val();
-				width = $(obj).width(); // Get the parent textbox with so the image is the same
+				var pae_key = $(".subfield_entry[data-subfield='n']", grid).val();
+				var pae_time = $(".subfield_entry[data-subfield='o']", grid).val();
+				var pae_clef = $(".subfield_entry[data-subfield='g']", grid).val();
+				var pae_data = $(".subfield_entry[data-subfield='p']", grid).val(); //$(obj).val();
+				var width = $(obj).width(); // Get the parent textbox with so the image is the same
 			
-				target_div = $('.pae_incipit_target', grid);
+				var target_div = $('.pae_incipit_target', grid);
 
 				marc_editor_incipit(
 					pae_clef,
 					pae_key,
 					pae_time,
 					pae_data,
-					target_div, width);
+					target_div, 
+					width);
     		
 					$(target_div).parents('table').show();
 					$(target_div).show();

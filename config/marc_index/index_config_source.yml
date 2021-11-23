@@ -110,7 +110,6 @@ fields:
   "508a":
   "510a":
   "510c":
-  "511a":
   "518a":
       :holding_record: true
   "520a":
@@ -172,7 +171,7 @@ fields:
       :type: string
       :from_tag: "650"
       :from_subtag: "a"
-  "690n":
+  "690a":
   "691a":
   "700a":
       :holding_record: true
@@ -237,6 +236,9 @@ fields:
   "856u":
   "856x":
       :type: string
+  "856x":
+      :type: string
+      :holding_record: true
   "856z":
   "publisher":
     :index_processor_helper: marc_extract_publisher

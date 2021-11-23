@@ -1,6 +1,7 @@
 --- !map:Settings
 server:
   - validate_user_abilities
+  - validate_links_to_self
 client:
   "100": 
     tags:
@@ -34,6 +35,10 @@ client:
         - composite_volume
     tags:
       a: required
+  "510":
+    tags:
+      a: required
+      c: required
   "588":
     tag_overrides:
       exclude:
@@ -48,20 +53,25 @@ client:
         - theoretica_edition_content
     tags:
       "a": mandatory
-  "593":
-    tag_overrides:
-      exclude:
-        "a":
-        - collection
-        - composite_volume
-    tags:
-      "a": mandatory
+# Remove until 593 is sorted out
+#  "593":
+#    tag_overrides:
+#      exclude:
+#        "a":
+#        - collection
+#        - composite_volume
+#    tags:
+#      "a": mandatory
   "594": 
     tag_overrides:
       exclude:
         "b":
         - composite_volume
     tags:
+      b: required
+  "596":
+    tags:
+      a: required
       b: required
   "650":
     tag_overrides:
@@ -71,6 +81,15 @@ client:
         - composite_volume
     tags:
       "0": mandatory
+  "690":
+    tags:
+      "0": required
+      n:
+        required_if:
+          "690": "0"
+  "691":
+    tags:
+      "0": required
   "700": 
     tags:
       "0": required
@@ -83,6 +102,14 @@ client:
       "4":
         required_if:
           "710": "0"
+  "730":
+    tags:
+      "0": required
+  "787": 
+    tags:
+      "n": required
+      "w": required
+      "4": required
   "852":
     tag_overrides:
       exclude:

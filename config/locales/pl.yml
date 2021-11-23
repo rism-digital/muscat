@@ -4,6 +4,7 @@ pl:
 # Pad for italian, it has 2 missing items
 #
 #
+    compare_versions: Porównaj wersje
     dashboard: Strona główna
     dashboard_welcome:
       welcome: Witamy w części produkcyjnej. Domyślna strona panelu użytkownika.
@@ -152,6 +153,7 @@ pl:
       default: "%H:%M"
       short: "%H:%M"
       long: "%R-%m-%d %H:%M"
+      verbose: "%-d %B %Y %H:%M"
       
   #################### MODELS      
   activerecord:
@@ -311,6 +313,9 @@ pl:
   lib_siglum: Siglum
   holding_records: Informacje o egzemplarzu
   holding_no_siglum: Egzemplarz bez siglum
+  holding_missing: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right."
+  holding_missing_alert: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right after you save."
+  holding_missing_show: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editinf this record and clicking the \"%{new_holding}\" button on the right."
   new_holding: Dodaj egzemplarz
   new_holding_page: Nowe informacje o egzemplarzu
   new_digital_object_image: Dołącz nowy obraz
@@ -493,7 +498,7 @@ pl:
   filter_record_type_short: Rodzaj
   filter_source_type: Rodzaj źródła
   filter_publisher: Wydawca
-  filter_revue_title: Tytuł periodyku
+  filter_journal: Tytuł periodyku
   filter_id: ID
   filter_id_no: RISM ID
   filter_images: Obrazy
@@ -698,6 +703,18 @@ pl:
     more: Więcej
     banner: "Kliknij przycisk „Podgląd”, by wyświetlić wynik konwersji na MEI.'"
 
+  notifications:
+    cadence: Kadencja powiadomień
+    none: Powiadomienia są wyłączone
+    every: Za każdym razem, gdy zostanie zapisany pasujący rekord
+    daily: Codziennie
+    weekly: Co tydzień
+    rules: Regulamin
+    notifications: Powiadomienia
+    edit: Edycja powiadomień
+    empty_message: "Nie włączono żadnych powiadomień. Możesz %{href}, aby je aktywować"
+    empty_message_href: edytuj je
+
   wf_stage:
     inprogress: Nieopublikowane (UNP)
     published: Opublikowane (PUB)
@@ -720,6 +737,20 @@ pl:
     got_it_explanation: Kliknięcie tego przycisku ukryje wiadomosci do momentu pojawianie się nowych.
     news: Muscat News
   
+  compare_versions:
+    time_frame: Ramy czasowe
+    rule: Reguła
+    display: Wyświetl
+    options: Opcje
+    show: Pokaż
+    hide: ukryj
+    modified_records: Zmodyfikowane rekordy
+    no_records: Nie ma żadnych rekordów do pokazania przy aktualnie wybranych opcjach 
+    new_record: Nowy rekord
+    similarity: Różnice
+    diff: Porównaj
+    date_message: "Wyświetlanie zmodyfikowanych rekordów z %{date}."
+
   # editor validation 
   validation:
     missing_message: To pole jest obowiązkowe
@@ -729,6 +760,7 @@ pl:
     correct: Brak błędów zatwierdzenia rekordu [200]
     begins_with_message: "Musi rozpoczynać się od {0}"
     required_if_message: "Pole obowiązkowe, ponieważ pole {0} ${1} nie jest puste"
+    cannot_link_to_self: "Tworzenie samego linku nie jest dozwolone (%{id})."
     
   incipit_search:
     incipit_search: Wyszukaj incipit
@@ -754,6 +786,9 @@ pl:
   "Number of printed copies": "Liczba drukowanych egzemplarzy"
   publisher: Wydawca
 
+  marc_editor:
+    delete_msg: "Usuń"
+    delete_field_confirm: "Czy na pewno chcesz usunąć to pole?"
 
   cookies:
     message: "Strona wykorzystuje ciasteczka dla poprawy funkcjonalności. Korzystając z niej, zgadzasz się na to."

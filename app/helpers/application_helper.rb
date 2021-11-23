@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def publication_default_autocomplete
-    autocomplete_publication_name_admin_publications_path
+    autocomplete_publication_short_name_admin_publications_path
   end
   
   def institution_default_autocomplete
@@ -84,6 +84,11 @@ module ApplicationHelper
 		end
   end
   
+  # Transform the relator code into its label
+  def application_helper_resolve_relator_code(value, subfield, opac)
+    return @editor_profile.get_label(value)
+  end
+
   #################
   # These methods are placed here for compatibility with muscat 2
     
@@ -106,8 +111,10 @@ module ApplicationHelper
   def get_allowed_record_type(source)
     return nil if !source.is_a? Source
 
-    if source.record_type == MarcSource::RECORD_TYPES[:source] || source.record_type == MarcSource::RECORD_TYPES[:collection]
+    if source.record_type == MarcSource::RECORD_TYPES[:source]
       [MarcSource::RECORD_TYPES[:collection], MarcSource::RECORD_TYPES[:composite_volume]]
+    elsif source.record_type == MarcSource::RECORD_TYPES[:collection]
+      [MarcSource::RECORD_TYPES[:composite_volume]]
     elsif source.record_type == MarcSource::RECORD_TYPES[:edition_content]
       MarcSource::RECORD_TYPES[:edition]
     else

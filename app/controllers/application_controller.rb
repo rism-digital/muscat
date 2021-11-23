@@ -15,6 +15,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_action :set_locale, :set_paper_trail_whodunnit, :auth_user, :prepare_exception_notifier, :test_version_warning, :test_muscat_reindexing
+  after_action :store_location
+
+
+  def store_location
+    # store last url - this is needed for post-login redirect to whatever the user last visited.
+    if (request.fullpath != "/admin/login" &&
+        request.fullpath != "/admin/logout" &&
+        !request.xhr?) # don't store ajax calls
+      session["user_return_to"] = request.fullpath 
+    end
+  end
 
   def prepare_exception_notifier
     if current_user
@@ -25,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def auth_user
-    redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login")
+    redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login" || saml_user_signed_in?)
   end
   
   def test_version_warning

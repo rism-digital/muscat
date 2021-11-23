@@ -73,6 +73,12 @@ ActiveAdmin.register Source do
       @editor_profile = EditorConfiguration.get_show_layout @item
       @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
       
+      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
+        if @item.holdings.empty?
+          flash.now[:error] = I18n.t(:holding_missing_show, new_holding: I18n.t(:new_holding))
+        end
+      end
+
       respond_to do |format|
         format.html
         format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
@@ -81,6 +87,7 @@ ActiveAdmin.register Source do
 
     def edit
       flash.now[:error] = params[:validation_error] if params[:validation_error]
+      
       @item = Source.find(params[:id])
       @holdings = @item.holdings
       @show_history = true if params[:show_history]
@@ -91,7 +98,12 @@ ActiveAdmin.register Source do
       @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
       
       template = EditorConfiguration.get_source_default_file(@item.get_record_type) + ".marc"
-      
+
+      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
+        if @item.holdings.empty?
+          flash.now[:error] = I18n.t(:holding_missing, new_holding: I18n.t(:new_holding))
+        end
+      end
       
       # Try to load the MARC object.
       # This is the same trap as in show but here we
@@ -112,6 +124,10 @@ ActiveAdmin.register Source do
 
       # Get the terms for 593a_filter, the "source type"
       @source_types = Source.get_terms("593a_filter_sm")
+      @digital_image_types = Source.get_terms("856x_sm")
+
+      # Grab a default editor profile
+      @editor_profile = EditorConfiguration.get_default_layout Source
 
       index! do |format|
        @sources = @results
@@ -232,6 +248,9 @@ ActiveAdmin.register Source do
   if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:record_type_with_integer)},
   :as => :record_type
 
+  filter :"856x_with_integer", :label => proc{I18n.t(:"records.external_resource")}, as: :select,
+  collection: proc{@digital_image_types.sort.collect {|k| [@editor_profile.get_label(k.to_s), "856x:#{k}"]}}
+
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
   
@@ -248,7 +267,8 @@ ActiveAdmin.register Source do
     end
     column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
       if source.child_sources.count > 0
-         source.child_sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
+         siglums = [source.lib_siglum] + source.child_sources.map(&:lib_siglum)
+         siglums.reject{|s| s.empty?}.sort.uniq.join(", ").html_safe
       else
         source.lib_siglum
       end

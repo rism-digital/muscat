@@ -22,6 +22,18 @@ ActiveAdmin.register Folder do
       item.user = current_user
     end
     
+    def scoped_collection
+      
+      #super.joins(
+      #  %(LEFT OUTER JOIN folder_items
+      #      ON folders.id = folder_items.folder_id))
+      #  .select("folders.*, COUNT(folder_items.id) AS folder_items_count")
+      #  .group("folders.id")
+
+        end_of_association_chain.includes([:user])
+    end
+
+
     def show
       begin
         @folder = Folder.find(params[:id])
@@ -136,10 +148,12 @@ ActiveAdmin.register Folder do
     column (I18n.t :filter_wf_stage) {|folder| status_tag(folder.is_published?,
       label: I18n.t('status_codes.' + (folder.is_published? ? "published" : "inprogress"), locale: :en))} 
  
-    column (I18n.t :filter_name), :name
+    column (I18n.t :filter_name), :name, sortable: :name
     column (I18n.t :filter_folder_type), :folder_type
-    column (I18n.t :filter_owner) {|folder| folder.user.name}
-    column (I18n.t "folders.items")  {|folder| folder.folder_items.count}
+    column (I18n.t :filter_owner), sortable: "users.name" do |folder|
+      folder.user.name
+    end
+    column (I18n.t "folders.items") {|folder| folder.folder_items.count}
     actions
   end
   

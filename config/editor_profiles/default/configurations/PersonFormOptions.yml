@@ -115,6 +115,7 @@
       - "XA-DE"
       - "XA-DE-BY"
       - "XA-DE-SN"
+      - "XC-GH"
       - "XA-GR"
       - "XC-GN"
       - "XA-VA"
@@ -130,6 +131,7 @@
       - "XA-IT"
       - "XB-JP"
       - "XB-KR"
+      - "XA-LI"
       - "XA-LV"
       - "XA-LT"
       - "XA-LU"
@@ -140,6 +142,7 @@
       - "XA-ME"
       - "XA-NL"
       - "XE-NZ"
+      - "XD-NI"
       - "XA-NO"
       - "XD-PE"
       - "XD-PY"
@@ -156,9 +159,11 @@
       - "XA-SE"
       - "XA-CH"
       - "XA-CH-VD"
+      - "XD-SR"
       - "XB-SY"
       - "XD-TT"
       - "XB-TR"
+      - "XC-UG"
       - "XA-UA"
       - "XA-GB"
       - "XD-US"
@@ -180,6 +185,9 @@
       - cols: 2
     - - d
       - cols: 2
+        trigger:
+        - save:
+          - referring_sources
     - - w
       - cols: 2
     - - y
@@ -272,10 +280,14 @@
         editor_partial: subfield_secondary
         allow_new: true
 "551": 
+  new_window: places
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
-      - cols: 2
+      - type: place
+        editor_partial: subfield_secondary
+        allow_new: true
     - - i
       - cols: 2
         editor_partial: subfield_select_codes

@@ -14,7 +14,7 @@ function marc_editor_set_dirty() {
 }
 	
 function marc_editor_init_tags( id ) {
-    
+
   marc_editor_show_last_tab();
 	
 	// Set event hooks
@@ -83,6 +83,12 @@ function marc_editor_get_triggers() {
 // Ajax sends back and URL to redirect to or an error
 var savedNr = 0;
 function _marc_editor_send_form(form_name, rails_model, redirect) {
+
+	// Before saving, if this is a new edition
+	// nag the user with an alert to remember
+	// to add holding records
+	marc_editor_holding_warning();
+
 	savedNr++;
 	redirect = redirect || false;
 	form = $('form', "#" + form_name);
@@ -172,6 +178,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 			new_url = data.redirect;
 			window.location.href = new_url;
 		},
+		async: true,
 		data: {
 			marc: JSON.stringify(json_marc),
 			id: $('#id').val(), 
@@ -215,10 +222,10 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 }
 
 function _marc_editor_preview( source_form, destination, rails_model ) {
-	form = $('form', "#" + source_form);
-	json_marc = serialize_marc_editor_form(form);
+	var form = $('form', "#" + source_form);
+	var json_marc = serialize_marc_editor_form(form);
 	
-	url = "/admin/" + rails_model + "/marc_editor_preview";
+	var url = "/admin/" + rails_model + "/marc_editor_preview";
 	
 	$.ajax({
 		success: function(data) {
@@ -241,45 +248,44 @@ function _marc_editor_preview( source_form, destination, rails_model ) {
 	});
 }
 
-function _marc_editor_validate( source_form, destination, rails_model ) {
-	form = $('form', "#" + source_form);
-	json_marc = serialize_marc_editor_form(form);
-	url = "/admin/" + rails_model + "/marc_editor_validate";
-	return $.ajax({
-		success: function(data) {
-      var message_box = $("#marc_errors");
-      var message = data["status"];
-      if (message.endsWith("[200]")){
-        message_box.html(message).removeClass('flash_error').addClass('flash_notice').css('visibility', 'visible');
-      } 
-      else{
-        message_box.html(message.replace(/\t/g, "&nbsp;").replace(/\n/g, "<br>")).removeClass('flash_notice').addClass('flash_error').css('visibility', 'visible');
-		  }
-    },
-		data: {
-			marc: JSON.stringify(json_marc), 
-			marc_editor_dest: destination, 
-			id: $('#id').val(),
-			record_type: $('#record_type').val(),
-      current_user: $('#current_user').find('a').attr('href').split("/")[3],
-		},
-		dataType: 'json',
-		timeout: 60000,
-		type: 'post',
-		url: url,
-    // FIXME make this async
-   'async': false, 
-		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error in validation process. (" 
-					+ textStatus + " " 
-					+ errorThrown);
-		}
-	});
+function _marc_editor_validate(source_form, destination, rails_model) {
+    var form = $('form', "#" + source_form);
+    var json_marc = serialize_marc_editor_form(form);
+    var url = "/admin/" + rails_model + "/marc_editor_validate";
+    return $.ajax({
+        success: function(data) {
+            var message_box = $("#marc_errors");
+            var message = data["status"];
+            if (message.endsWith("[200]")) {
+                message_box.html(message).removeClass('flash_error').addClass('flash_notice').css('visibility', 'visible');
+            } else {
+                message_box.html(message.replace(/\t/g, "&nbsp;").replace(/\n/g, "<br>")).removeClass('flash_notice').addClass('flash_error').css('visibility', 'visible');
+            }
+        },
+        data: {
+            marc: JSON.stringify(json_marc),
+            marc_editor_dest: destination,
+            id: $('#id').val(),
+            record_type: $('#record_type').val(),
+            current_user: $('#current_user').find('a').attr('href').split("/")[3],
+        },
+        dataType: 'json',
+        timeout: 60000,
+        type: 'post',
+        url: url,
+        // FIXME make this async
+        'async': false,
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert("Error in validation process. (" +
+                textStatus + " " +
+                errorThrown);
+        }
+    });
 }
 
 function _marc_editor_help( destination, help, title, rails_model ) {
 
-	url = "/admin/" + rails_model + "/marc_editor_help";
+	var url = "/admin/" + rails_model + "/marc_editor_help";
 	
 	$.ajax({
 		success: function(data) {
@@ -373,7 +379,7 @@ function _marc_editor_summary_view(destination, rails_model, id ) {
 }
 
 function _marc_editor_version_diff( version_id, destination, rails_model ) {	
-	url = "/admin/" + rails_model + "/marc_editor_version_diff";
+	var url = "/admin/" + rails_model + "/marc_editor_version_diff";
 	$("#" + destination).block({message: ""});
 	
 	$.ajax({
@@ -429,7 +435,7 @@ function marc_editor_cleanp() {
 
 function marc_editor_cancel_form() {
     marc_editor_form_changed = true;
-    var loc=location.href.substring(location.href.lastIndexOf("/"), -1);
+    var loc = location.href.substring(location.href.lastIndexOf("/"), -1);
     window.location=loc;
 }
 
@@ -444,7 +450,6 @@ function marc_editor_show_preview() {
 
 function marc_editor_validate() {
     return _marc_editor_validate('marc_editor_panel','marc_editor', marc_editor_get_model());
-    window.scrollTo(0, 0);
 }
 	
 function marc_editor_show_help(help, title) {
@@ -520,37 +525,38 @@ function marc_editor_incipit(clef, keysig, timesig, incipit, target, width) {
 	// width is option
 	width = typeof width !== 'undefined' ? width : 720;
 	
-	pae = "@start:pae-file\n";
-	pae = pae + "@clef:" + clef + "\n";
+	var pae = "@clef:" + clef + "\n";
 	pae = pae + "@keysig:" + keysig + "\n";
-	pae = pae + "@key:\n";
 	pae = pae + "@timesig:" + timesig + "\n";
-	pae = pae + "@data: " + incipit + "\n";
-	pae = pae + "@end:pae-file\n";
+	pae = pae + "@data: " + incipit;
 	
 	// Do the call to the verovio helper
 	render_music(pae, 'pae', target, width);
 }
 
-// This is the last non-ujs function remaining
-// it is called when ckicking the "+" button
+// These two are the last non-ujs function remaining
+// This one is called when ckicking the "+" button
 // near a repeatable field. It makes a copy
 // of it
 function marc_editor_add_subfield(id) {
 
-	grid = id.parents("tr");
+	var grid = id.parents("tr");
 	//ul = grid.siblings(".repeating_subfield");
-	ul = $(".repeating_subfield", grid);
+	var ul = $(".repeating_subfield", grid);
 	
-	li_all = $("li", ul);
+	var li_all = $("li", ul);
 	
-	li_original = $(li_all[li_all.length - 1]);
+	var li_original = $(li_all[li_all.length - 1]);
 	
-	new_li = li_original.clone();
+	var new_li = li_original.clone();
 	$(".serialize_marc", new_li).each(function() {
 		$(this).val("");
 	});
 	
+	$(".add-button", new_li).each(function() {
+		$(this).hide();
+	});
+
 	// This is a special case for the light-weight "t" tag
 	// in 031, as it is a select_subfield which normally is
 	// never repeatable, but in this case, since it does not
@@ -569,7 +575,47 @@ function marc_editor_add_subfield(id) {
 
 }
 
+// This one removes the item
+function marc_editor_remove_subfield(id) {
+
+	var element = id.parents("li");
+
+	var button = $(".add-button", element);
+	if (button.is(":visible")) {
+		var grid = id.parents("tr");
+		var ul = $(".repeating_subfield", grid);
+
+		if ($(ul).children().length == 1) {
+			$(".serialize_marc", element).each(function() {
+				$(this).val("");
+			});
+		} else {
+			element.remove();
+			
+			var next = $(ul).children()[0]
+
+			var add_button = $(".add-button", next);
+			add_button.show();
+
+		}
+	} else {
+		element.remove();
+	}
+}
+
+function marc_editor_holding_warning() {
+	var record_type = $("#record_type").val()
+	var source_id = $("#id").val()
+
+	// Edition, libretto edition and theoretica edition
+	if (source_id == "" && (record_type == 8 || record_type == 5 || record_type == 7)) {
+		alert(I18n.t("holding_missing_alert", { new_holding: I18n.t("new_holding") }));
+	}
+
+}
+
 // Hardcoded for marc_editor_panel
 function marc_editor_get_model() {
 	return $("#marc_editor_panel").data("editor-model");
 }
+

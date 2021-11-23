@@ -20,5 +20,11 @@ fields:
       :from_tag: "100"
       :from_subtag: "d"
       :index_helper: :marc_helper_get_deathdate
+    "383b":
+      :type: string
     "400a":
     "670a":
+    "690a":
+      :type: string
+    "690n":
+      :type: string

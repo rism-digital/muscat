@@ -79,7 +79,6 @@
 #= require jquery.autosize.min
 #= require jquery.hotkeys
 #= require js.cookie
-#= require rism.localisation
 #= require autocomplete-rails
 #= require inline_autocomplete_ujs
 #= require tag_header_events
@@ -97,6 +96,7 @@
 #= require job_progress_bar
 #= require filter_workaround
 #= require merge_authority
+#= require compare_versions_actions
 
 #= require viaf_interface.js
 #= require modification_trigger_ujs.js

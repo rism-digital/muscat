@@ -14,6 +14,17 @@ class MarcHolding < Marc
     title
   end
 
+  def get_shelf_mark
+    m = ""
+
+    if node = first_occurance("852", "c")
+      if node.content
+        m = node.content
+      end
+    end
+    m
+  end
+
   def description
     res = {}
     node = first_occurance("852")
@@ -29,6 +40,15 @@ class MarcHolding < Marc
     else
       I18n.t(:holding_no_siglum)
     end
+  end
+
+  def digital_object?
+    node = first_occurance("856", "x")
+
+    return false if !node || !node.content
+    return true if node.content == "IIIF" || node.content == "Digitalization"
+    false
+
   end
 
 end

@@ -16,12 +16,23 @@ class TriggerNotifyJob < ProgressJob::Base
     return if !@object
 
     User.where(notification_type: :every).each do |user|
+      results = {}
+      total_results = 0
+      model = @object.class.to_s.downcase
       matcher = NotificationMatcher.new(@object, user)
 
-      if matcher.matches?
-        ModificationNotification.notify(user, {@object => matcher.get_matches}, {matcher.get_matches.to_s => [@object]}).deliver_now
+      matcher.get_matches.each do |match|
+        results[model] = {} if !results[model]
+        results[model][match] = [] if !results[model][match]
+
+        results[model][match] << @object
+        total_results += 1
       end
       
+      if !results.empty?
+        ModificationNotification.notify(user, total_results, results).deliver_now
+      end
+
     end
     
   end

@@ -13,6 +13,8 @@ groups:
     all_tags: 
     - "100"
     - "548"
+    - "383"
+    - "690"
   codes: 
     all_tags: 
     - "024"
@@ -45,11 +47,13 @@ groups:
     - "710"
     - "747"
     - "930"
+    - "856"
     all_tag_templates:
       "700": works/show_related_person
       "710": marc_show/show_institution 
       "747": works/show_related_feast
       "930": works/show_work_link
+      "856": marc_show/show_link
   control: 
     all_tags: 
     - "040"

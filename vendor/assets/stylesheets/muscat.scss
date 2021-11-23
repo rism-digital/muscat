@@ -71,6 +71,15 @@ body.active_admin {
     .status_tag.theoretica_edition { background: #deb887; }
     .status_tag.edition { background: #808080; }
     .status_tag.composite_volume { background: #87CEFA; }
+
+/* These colors were deprecated in AA 2.0 - not realy a problem, I leave them here
+ * if we need to reconstruct a color. Only 'published' is used for wf_stage */@at-root
+/*
+    &.ok, &.published, &.complete, &.completed, &.green { background: #8daa92; }
+    &.warn, &.warning, &.orange { background: #e29b20; }
+    &.error, &.errored, &.red { background: #d45f53; }
+*/
+    .status_tag.published { background: #8daa92; }
 }
 
 .progress_bar {
@@ -171,4 +180,59 @@ body.active_admin {
 
 select[name="target_template"] { 
   width: 280px;
+}
+
+.holding_digital {
+  float: right; 
+	width: 16px;
+	height: 16px;
+  margin-right: 8px;
+  background: image-url("/images/ebook.png");
+}
+
+.diff {
+  ins {
+    text-decoration: none;
+    background-color: #d4fcbc;
+  }
+  del {
+    text-decoration: none;
+    background-color: #fbb6c2;
+    color: #555;
+  }
+}
+
+.diff_table {
+  margin: 5px
+}
+
+.diff_header {
+  text-align: left; 
+  vertical-align: top; 
+  width: 20%;
+  padding-top: 4px !important;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  border-bottom: none !important;
+  text-transform: none !important;
+}
+
+.diff_tag {
+  vertical-align: top; 
+  padding-left: .5em; 
+  width: 10%;
+  //padding-top: 0px;
+  //padding-right: 0px;
+  //padding-bottom: 0px;
+  //padding-left: 0px;
+}
+
+.diff_contents {
+  vertical-align: top; 
+  padding-left: .5em;
+  //padding-top: 0px;
+  //padding-right: 0px;
+  //padding-bottom: 0px;
+  //padding-left: 0px;
 }

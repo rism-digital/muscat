@@ -32,9 +32,7 @@ function translateIncipCode(incip, out_format) {
 			continue;
 		}
 		
-		pae = "@start:pae-file\n";
-		pae = pae + "@data: " + incipcode.textContent + "\n";
-		pae = pae + "@end:pae-file\n";
+		var pae = "@data: " + incipcode.textContent + "\n";
 		
 		globalIncipitStrings.push(pae);
 		
@@ -78,9 +76,7 @@ function typesetIncipits(incip, out_format) {
 				continue;
 			}
 			
-			pae = "@start:pae-file\n";
-			pae = pae + "@data: " + incipcode.textContent + "\n";
-			pae = pae + "@end:pae-file\n";
+			var pae = "@data: " + incipcode.textContent + "\n";
 			in_data = pae;
 		} else {
 			incipcode = incip[index].getElementsByTagName('score')[0];

@@ -1,5 +1,6 @@
 pl:
   general:
+    created_at: Data utworzenia
     e_mail: E-mail
     editor_help: Pomoc do edycji
     faq: Odpowiedzi na częste pytania
@@ -24,6 +25,7 @@ pl:
     ungrouped_fields: Pola niezgrupowane
     unknown_fields: Pola nieznane
     unused: NIEWYKORZYSTANE – DO USUNIĘCIA
+    updated_at: Ostatnia modyfikacja
     uri: URI
     url: URL
     using_muscat: Korzystanie z Muscatu
@@ -316,7 +318,7 @@ pl:
     chronological_term: Datowanie
     city: Miejscowość
     clef: Klucz
-    co-composer: Współkompozytor
+    co_composer: Współkompozytor
     coded_date: Znormalizowana data
     coded_instrumentation: Standaryzowany zapis instrumentacji
     collaborator: Współtwórca
@@ -606,6 +608,7 @@ pl:
     no_linguistic_content: Brak zawartości językowej
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Nie dotyczy
+    note: Notatka
     note_external_resource: Uwaga o zasobie zewnętrznym
     note_fields: Pola uwag
     note_on_performance: Uwaga o wykonaniu
@@ -653,6 +656,7 @@ pl:
     parts_held: Głosy
     parts_held_extent: Głosy, objętość
     patron: Sponsor
+    people: Osoby
     people_institutions: Osoby i instytucje
     percussion: Perkusja
     performance: Wykonanie
@@ -691,6 +695,8 @@ pl:
     public_note: Inne informacje kontaktowe
     publisher: Wydawca
     publisher_copyist: Wydawca, kopista
+    publisher_number: Numer wydawcy
+    publisher_plate_number: Numer wydawcy lub wydawniczy
     publishing_printing_production: Informacje o publikacji, druku i produkcji
     qualifying_information: Informacje kwalifikacyjne
     range_dates: Zakres dat
@@ -709,11 +715,13 @@ pl:
     related_personal_name: Powiązana osoba
     related_place: Powiązane miejsce
     related_resources: Powiązane zasoby
+    related_source: Powiązane źródło
     related_titles: Powiązane tytuły
     related_to: W pokrewieństwie z …
     related_work: Powiązane dzieło
     relation: Relacja
     relations: Relacje
+    relationship: Relacja
     relationship_designation: Oznaczenie relacji w $i lub $4
     relationship_information: Informacje o relacjach
     religious_name: Imię z wyznania
@@ -732,7 +740,7 @@ pl:
     series_statement: Pola uwag do serii
     set: Zbiór
     shelfmark: Sygnatura
-    shelfmark_olim: Sygnatura (wcześniejsza)
+    shelfmark_olim: Dawna sygnatura (wcześniejsza)
     short_title: Skrócony tytuł
     sigla: Sigla
     siglum: Siglum
@@ -742,6 +750,7 @@ pl:
     solo_voice: Głos solowy
     soloist_instrument: Instrument solowy
     source: Źródło
+    sources: Źródła
     source_data_found: Odnalezione źródło danych
     source_data_not_found: Brak źródła danych
     source_description: Uwaga o źródle opisu
@@ -800,7 +809,7 @@ pl:
     translator: Tłumacz
     transparency: Przezrocze
     type: Rodzaj
-    type_designer: Typograf
+    type_designer: Projektant kroju pisma
     type_institution: Rodzaj instytucji
     type_name_variant: Typ alternatywnej nazwy osoby
     type_of_jurisdiction: Rodzaj jurysdykcji
@@ -808,6 +817,7 @@ pl:
     type_relationship: Rodzaj relacji
     typescript: Maszynopis
     typography: Typografia
+    uncategorized: Bez kategorii
     unknown: Nieznane
     unparsed_fingerprint: Nieprzeanalizowany odcisk palca
     variant_ms_title: Alternatywny tytuł w rękopisie
@@ -823,3 +833,13 @@ pl:
     work_number: Numer dzieła
     year: Rok
     years_birth_death: Rok urodzenia i śmierci
+  relations:
+    P60191: "Źródło powiązane"
+    P60198: "Materiał dodatkowy"
+    P60311: "Skopiowane z"
+    P60312: "Skopiowano w"
+    P60195: "Opublikowany w"
+    P60242: "Rozmieszczenie"
+    P60274: "Ułożone jako"
+    P60194: "Wstawić do"
+    P60183: "Wstawić"

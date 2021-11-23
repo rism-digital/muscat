@@ -1,6 +1,190 @@
 Muscat Changelog
 ================
 
+v 7.1.3
+* #1118, make sure 588 does not appear where it should not
+* Implement async verovio rendering
+* Remove the notification diff, will exist only as the controller.
+* Make uglifies happy with es6
+* Add spinner for incipit loading
+* Fix #1147, implement background Verovio rendering also for MEI files
+* Fix #1145, show 598
+* #1145 add group for coded instrumentation
+* Ignore index files
+* Added some country ISO codes to people
+* Added surinam iso-country-code
+* Remove 593 from validation until the field is refactored
+
+v 7.1.2
+* Update to rails 5.2.6
+* Fix #1120, move 595 so it is displayed
+* Update paper_trail
+* Fix works not saving
+* Add "follow" pattern to notifications
+* Add more solr installation notes
+* Fix #891 use better field analyzer for shelfmark
+* Bump addressable from 2.7.0 to 2.8.0
+* #1132 Add icon to holdings with digital images
+* Merge pull request #1131 from rism-digital/dependabot/bundler/addressable-2.8.0
+* Fix #1132 Add css
+* Add "external resource" filter in source list
+* Fix missing field for sunspot
+* Make 856x from holdings searchable
+* Fix #1125 and other translations
+* Add redirect after a login
+* Fix #1135, make sure 001 is preserved
+* Fix autocomplete with the new subfield layout structure
+* Cleanup javascript, avoid warning about items with the same name
+* Fix #1137, do not display 787 as initial entry
+* Fix #1136, completely remove 511
+* Fix #1133, collections go only in composite volumes, also clean up the code a bit
+* Fix #1118, add and remove tags
+* Fix #1138, implement validation to avoid 787 and 773 pointing to themselves.
+* Fix #1128 Add new validations
+* Fix #1128, properly show errors on select items
+* Show all subtags for 852, remove the partial, it was used for linking but that is done automatically now.
+* Fix #516, make sure the + sign is only in the first element
+* Properly localize the "delete tag" message in the marc editor
+* Fix #1035 Add big warning for holdings missing
+* Bump rdoc from 6.2.1 to 6.3.2
+* Update Verovio to version 3.6.0
+* Merge pull request #1139 from rism-digital/dependabot/bundler/rdoc-6.3.2
+* Fix typos in translations, fix HOLDING WITHOUT SILGUM in de
+* Update CSS for new error messages
+
+v 7.1.1
+* #1124 Fix 670 autocomplete
+* #1124 Fix holdings :unapproved
+* #1124 Skip "referring_source_relations" and "source_person_relations" jump tables
+* #1124 Fix "inprogress" and "unpublished" legacy values in versions
+* Force queries to be AND as it was with solr 5.5
+* Fix user form not saving new users
+* Add validation for 730 $0
+
+v 7.1
+* Increase allowed offset on SRU endpoint
+* Add authmerge to StandardTitle
+* Method to get the type of StandardTitle
+* Avoid empty error messages
+* Reorder publication.rb model like source.rb
+* Indtroduced SITE_* configuration variables
+* Use RISM::SITE_ID to choose title
+* Bump redcarpet from 3.5.0 to 3.5.1
+* Merge pull request #1051 from fjorba/sync-publication-model-with-source
+* Merge pull request #1052 from fjorba/introducing-site-configuration-variables
+* Merge pull request #1055 from rism-ch/dependabot/bundler/redcarpet-3.5.1
+* Bump nokogiri from 1.10.10 to 1.11.1
+* Merge pull request #1056 from rism-ch/dependabot/bundler/nokogiri-1.11.1
+* Index :wf_stage in Publications like Source
+* Fix edit link for sources in faceted search
+* Fixed: Improved output of the IIIF manifest script
+* Merge pull request #1059 from fjorba/fix-wrong-edit-link
+* New maintaiance scripts
+* Merge pull request #1058 from fjorba/publication-index-wf-fields-like-source
+* Merge pull request #884 from miku/miku-increase-allowed-offset
+* Merge pull request #1064 from rism-ch/fixed-improve-manifests
+* Merge pull request #1068 from rism-ch/fix-manifest-generation
+* Compatibility with Solr 8.8 (it still works on 5)
+* Add Solr8 linux jar
+* Change local_params to solr_params
+* Fix fq for multiple fqs in query
+* Merge pull request #1072 from rism-ch/7.1-sru
+* Format solr_search to current formatting rules
+* Fix schema for models
+* Restrict et to admins and editors
+* Rename "informazioni di possesso" to "esemplari" for comformity to other languages.
+* Fix non foreign_link links (i.e. 773) so they are not hardcoded and come from configuration
+* Add experimental migration to add 'id' to sources_to_sources so that activerecord can have a primary key
+* Functional implementation of 787
+* Add experimental source to person "extended" relation
+* Merge branch 'develop-787' into develop
+* Fix #1079, Fix can_edit? for collections
+* Make the DB queries work on mysql 8.0.20
+* Fix #1078 Make 700 and 710 $4 not repeatable
+* Fix #1057, add oblong formats
+* Fix #1071, add 691 $a to index
+* Fix #1065, change default value for 024
+* Fix #1063, add requested items.
+* Fix #1054, add censor
+* Fix #1060, remove symlink in public
+* Fix #1053, add crude sorting method
+* Fix #1049, move 597
+* Fix #1045, add additional indexed fields
+* Bump kramdown from 2.3.0 to 2.3.1
+* FIx #1033, add search field for Source, Person and Institution
+* Fix #1039, index references passing through holding
+* Fix #1032, change the columns to ints
+* Fix #1074 add tyd
+* Fix #1074, add validation form 700 and 710 $0
+* Fix #1074, update locales
+* Fix #1091, remove unused wf_notes and wf_version
+* Add colors to some buttons
+* Change local variable name composer to full_name
+* Merge pull request #1092 from fjorba/add-colors-to-some-buttons
+* Merge pull request #1094 from fjorba/change-composer-variable-to-full-name-in-marc-person
+* Merge pull request #1085 from rism-digital/dependabot/bundler/kramdown-2.3.1
+* Fix #1027, rename name to short_name and fix controllers
+* Merge pull request #1076 from rism-digital/7.0-devel-et
+* Make job executor more clever, add better startup script
+* Fix #1076: remove unused table
+* Split the startup scripts in two appropriate ones
+* Update to rails 5.2.4.5 to fix vunlerability in activerecord
+* Fix bug when saving "belongs to" relations
+* Add configuration to enable anonymous users to browse the site
+* Test anonymous navigation config param
+* Merge pull request #1096 from CodiTramuntana/use_muscat_without_signin_in
+* Match prints in the notification digest
+* Change 'Cataloghi tematici' to 'Bibliografia'
+* Bump rexml from 3.2.4 to 3.2.5
+* Fix #515, enable users changing password
+* Implement notifications for works
+* More clever notification manager
+* Add record type to notifications
+* More clever query parser for notifications
+* Fix #77, grouped properties
+* Add more features to NotificationMatcher
+* Fix migrations that did not work anymore
+* Create one user for each role in seeds
+* Better notification rule parsing to include quoted words with spaces
+* Add institution in modification notification
+* Update EN help for notifications
+* DOC: Update snipets with rake invokations
+* Create indexes for created_at and updated_at in publications
+* Merge pull request #1098 from rism-digital/dependabot/bundler/rexml-3.2.5
+* Merge pull request #1097 from baccia/patch-1
+* Merge pull request #1103 from fjorba/publications-add-index-to-timestamps
+* Add more info to the maintainance report
+* Fix the report view
+* Use RISM::BASE_NEW_IDS[:publication] to initialize catalogues autoincrement
+* Remove db/test.sqlite3 from version control
+* Fix factory for user password
+* Bump puma from 5.0.4 to 5.3.1
+* Merge pull request #1105 from rism-digital/dependabot/bundler/puma-5.3.1
+* Bump nokogiri from 1.11.3 to 1.11.4
+* Merge pull request #1101 from CodiTramuntana/fix_installation_issues
+* Merge pull request #1108 from rism-digital/dependabot/bundler/nokogiri-1.11.4
+* Fix change API
+* Better maintainance script layout
+* Add sorting to folders
+* Commit schema adding new items
+* Add trigger for 100d in person
+* #999 Move $i to $4, add labels
+* #999 Comming tag configuration
+* Fix #1100, add 031 to threatises
+* Fix #682, add olim shelfmarks
+* Bump rails version to 5.2.4.6 to fix a security issue.
+* Fix #849, add popup
+* Fix #969, make indicator selectable
+* Fix unmodified modified string
+* Fix #750, make links in comments real <a> links on display
+* Fix #749, add source count in view
+* Transform notification help files to MD
+* Also rename DE file for translation
+* Fix formattin in help file
+* Very big overhaul of the Notifications interface to include I18n
+* Fix #1107, Add Peru to Country of Publication in 044 in Secondary Literature
+* Fix work objects not saving from the backend
+
 v 7.0.3
 * Temporarily hide 787 tag
 

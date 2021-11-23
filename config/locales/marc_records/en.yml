@@ -1,5 +1,6 @@
 en:
   general:
+    created_at: "Created on"
     e_mail: E-mail
     editor_help: Editor help
     faq: Frequently asked questions
@@ -24,6 +25,7 @@ en:
     ungrouped_fields: Ungrouped fields
     unknown_fields: Unknown fields
     unused: UNUSED - WILL BE REMOVED
+    updated_at: Last modification
     uri: URI
     url: URL
     using_muscat: Using Muscat
@@ -155,6 +157,7 @@ en:
     germany: Germany
     germany_bavaria: 'Germany: Bavaria'
     germany_saxony: 'Germany: Saxony'
+    ghana: Ghana
     greece: Greece
     guatemala: Guatemala
     guinea: Guinea
@@ -174,6 +177,7 @@ en:
     japan: Japan
     korea: Korea, Republic of
     latvia: Latvia
+    liechtenstein: Liechtenstein
     lithuania: Lithuania
     luxembourg: Luxembourg
     malta: Malta
@@ -183,6 +187,7 @@ en:
     montenegro: Montenegro
     netherlands: Netherlands
     new_zealand: New Zealand
+    nicaragua: Nicaragua
     northern_ireland: Northern Ireland
     norway: Norway
     papua_new_guinea: Papua New Guinea
@@ -200,6 +205,7 @@ en:
     slovenia: Slovenia
     south_africa: South Africa
     spain: Spain
+    surinam: Surinam
     sweden: Sweden
     switzerland: Switzerland
     switzerland_vaud: 'Switzerland: Vaud'
@@ -207,6 +213,7 @@ en:
     taiwan: Taiwan (Province of China)
     trinidad_tobego: Trinidad and Tobago
     turkey: Turkey
+    uganda: Uganda
     uk: United Kingdom
     ukraine: Ukraine
     uruguay: Uruguay
@@ -316,7 +323,7 @@ en:
     chronological_term: Chronological term
     city: City
     clef: Clef
-    co-composer: Co-composer
+    co_composer: Co-composer
     coded_date: Coded date
     coded_instrumentation: Coded instrumentation
     collaborator: Collaborator
@@ -606,6 +613,7 @@ en:
     no_linguistic_content: No linguistic content
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Not applicable
+    note: Note
     note_external_resource: Note about external resource
     note_fields: Note fields
     note_on_performance: Note on performance
@@ -653,6 +661,7 @@ en:
     parts_held: Parts held
     parts_held_extent: Parts held and extent
     patron: Patron
+    people: People
     people_institutions: People and institutions
     percussion: Percussion
     performance: Performance
@@ -691,6 +700,8 @@ en:
     public_note: Public note
     publisher: Publisher
     publisher_copyist: Publisher, copyist
+    publisher_number: Publisher Number
+    publisher_plate_number: Publisher or Plate number
     publishing_printing_production: Publishing, printing and production information
     qualifying_information: Qualifying information
     range_dates: Range of dates
@@ -709,11 +720,13 @@ en:
     related_personal_name: Related personal name
     related_place: Related place
     related_resources: Related resources
+    related_source: Related source
     related_titles: Related Titles
     related_to: Related to
     related_work: Related work
     relation: Relation
     relations: Relations
+    relationship: Relationship
     relationship_designation: Relationship designation in $i or $4
     relationship_information: Relationship information
     religious_name: Religious name
@@ -732,7 +745,7 @@ en:
     series_statement: Series statement fields
     set: Set
     shelfmark: Shelfmark
-    shelfmark_olim: Shelfmark (olim)
+    shelfmark_olim: Former shelfmark (olim)
     short_title: Short title
     sigla: Sigla
     siglum: Siglum
@@ -742,6 +755,7 @@ en:
     solo_voice: Solo voice
     soloist_instrument: Soloist intrument
     source: Source
+    sources: Sources
     source_data_found: Source data found
     source_data_not_found: Source data not found
     source_description: Source of description note
@@ -808,6 +822,7 @@ en:
     type_relationship: Type of relationship
     typescript: Typescript
     typography: Typography
+    uncategorized: Uncategorized
     unknown: Unknown
     unparsed_fingerprint: Unparsed fingerprint
     variant_ms_title: Variant title on manuscript
@@ -823,3 +838,13 @@ en:
     work_number: Work number
     year: Year
     years_birth_death: Years of birth and death
+  relations:
+    P60191: "Correlated source"
+    P60198: "Additional material"
+    P60311: "Copied from"
+    P60312: "Copied in"
+    P60195: "Published in"
+    P60242: "Arrangement of"
+    P60274: "Arranged as"
+    P60194: "Insert in"
+    P60183: "Insert"

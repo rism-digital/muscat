@@ -487,19 +487,27 @@ class Source < ApplicationRecord
     nil
   end
 
+  def get_initial_entries
+    self.sources.where("sources_to_sources.marc_tag": 775)
+  end
+
   def siglum_matches?(siglum)
-    if self.record_type == MarcSource::RECORD_TYPES[:edition]
+    if self.record_type == MarcSource::RECORD_TYPES[:edition] ||
+      self.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
+      self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition]
       holdings.each do |h|
         return true if h.lib_siglum.downcase.start_with? siglum.downcase
       end
-    elsif self.record_type == MarcSource::RECORD_TYPES[:edition_content]
+    elsif self.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
+          self.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
+          self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]
       puts "Edition content #{self.id} has no parent" if !self.parent_source
       return false if !self.parent_source
       self.parent_source.holdings.each do |h|
         return true if h.lib_siglum.downcase.start_with? siglum.downcase
       end
     else
-      return true if lib_siglum.downcase.start_with? siglum.downcase
+      return true if lib_siglum && lib_siglum.downcase.start_with?(siglum.downcase)
     end
 
     false
@@ -527,9 +535,15 @@ class Source < ApplicationRecord
     incipits
   end
 
+  def force_marc_load?
+    self.marc.load_source false
+    true
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"599a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"856x", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
 
 end
