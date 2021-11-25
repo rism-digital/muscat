@@ -31,9 +31,14 @@
 
 	jQuery.paeIncipitRender.fn.extend = jQuery.paeIncipitRender.extend = jQuery.extend;
 	jQuery.paeIncipitRender.fn.extend({
-		init: function(e) {
+		init: function(object) {
+
+			$(object).highlightWithinTextarea({
+				highlight: []
+			});
+
 			// Atach to the keyup event
-			$(e).keyup(function(e) {
+			$(object).keyup(function(e) {
 				e.preventDefault();
 				display_music(this)
 			});
@@ -76,14 +81,13 @@
 			}
 			
 			// Update on first load
-			display_music(e);
-		}
+			display_music(object);
+		},
 	});
 	
 	jQuery(document).ready(function() {
 		jQuery(".pae_input").paeIncipitRender();
 		jQuery(".pae_input").trigger('update');
-		
 		$()
 		
 	});

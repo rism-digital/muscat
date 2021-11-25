@@ -14,8 +14,12 @@ worker.onmessage = function(event) {
 	} else if (messageType == "renderMusic-ok" || messageType == "renderMEI-ok") {
 		let target = event.data[1];
 		let svg = event.data[2];
+		let messages = event.data[3];
+		let highlights = event.data[4];
 
 		$("#" + target).html(svg);
+		$("#" + target + "-textbox").highlightWithinTextarea('highlight', highlights);
+		$("#" + target + "-messages").html(messages.sort().join(" <br> "));
 	}
 };
 
