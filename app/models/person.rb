@@ -151,6 +151,7 @@ class Person < ApplicationRecord
     new_marc = MarcPerson.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc")))
     new_marc.load_source true
     
+    self.full_name.sub!(/[ ,;\.]+$/, "")
     new_100 = MarcNode.new("person", "100", "", "1#")
     new_100.add_at(MarcNode.new("person", "a", self.full_name, nil), 0)
     

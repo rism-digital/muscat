@@ -10,8 +10,9 @@ class MarcPerson < Marc
 
     if node = first_occurance("100", "a")
       if node.content
-        full_name = node.content.truncate(128)
-        full_name_d = node.content.downcase.truncate(128)
+        full_name = node.content.truncate(128).sub(/[ ,;\.]+$/, "")
+        full_name_d = I18n.transliterate(full_name.downcase)
+        full_name_d = full_name.downcase if full_name_d.include? "???"
       end
     end
     
