@@ -17,7 +17,7 @@ class MarcPerson < Marc
     
     if node = first_occurance("100", "d")
       if node.content
-        dates = node.content.truncate(24)
+        dates = node.content.truncate(24).sub(/[ ,;\.]+$/, "")
       end
     end
     

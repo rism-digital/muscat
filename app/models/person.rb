@@ -155,6 +155,7 @@ class Person < ApplicationRecord
     new_100.add_at(MarcNode.new("person", "a", self.full_name, nil), 0)
     
     if self.life_dates
+      self.life_dates.sub!(/[ ,;\.]+$/, "")
       new_100.add_at(MarcNode.new("person", "d", self.life_dates, nil), 1)
     end
     
