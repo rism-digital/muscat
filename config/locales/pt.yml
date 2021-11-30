@@ -347,6 +347,7 @@ pt:
   # Sidebar
   delete: "Apagar"
   to_the_list: "Retornar à lista"
+  go_to_top: "Voltar ao início"
   edit: "Editar"
   new: "Criar"
   duplicate: "Duplicar"

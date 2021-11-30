@@ -352,6 +352,7 @@ it:
   # Sidebar
   delete: "Cancella"
   to_the_list: "Ritorna all'indice"
+  go_to_top: "Ritorna in cima"
   edit: "Modifica"
   new: "Crea"
   duplicate: "Duplica"
