@@ -250,10 +250,12 @@ select[name="target_template"] {
 	right: -99px !important;
 	bottom: 0 !important;
 	left: 0 !important;
+  line-height: 1.15;
 	padding-right: 99px !important;
 	overflow-x: hidden !important;
 	overflow-y: auto !important;
   background: white;
+  margin: 2px, 3px;
 }
 
 .hwt-highlights {
@@ -266,7 +268,7 @@ select[name="target_template"] {
 	overflow: hidden !important;
 	padding: 4px 6px;
   //font-size: 1.1em;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   font-family: 'Courier New', monospace !important;
 }
@@ -275,11 +277,12 @@ select[name="target_template"] {
 	display: block !important;
 	position: relative !important;
 	//font: inherit;
-  font-size: 14px !important;
+  font-size: 16px !important;
   font-weight: 500 !important;
   font-family: 'Courier New', monospace;
 	overflow-x: hidden !important;
 	overflow-y: auto !important;
+  padding-right: 7px !important;
 }
 
 .hwt-content {
@@ -290,5 +293,6 @@ select[name="target_template"] {
 	padding: 0 !important;
 	color: inherit;
 	//background-color: #f5e79e ;
-  background-color: #f59ebb ;
+  background-color: #fcb2c5 ;
+  border-radius: 3px;
 }

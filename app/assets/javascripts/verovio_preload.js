@@ -17,7 +17,16 @@ worker.onmessage = function(event) {
 		let messages = event.data[3];
 		let highlights = event.data[4];
 
+		
+		//$("#" + target + "-textbox").highlightWithinTextarea('highlight', highlights);
+		//$("#" + target + "-messages").html(messages.sort().join(" <br> "));
 		$("#" + target).html(svg);
+	} else if (messageType == "validatePAE-ok") {
+		let target = event.data[1];
+		let messages = event.data[3];
+		let highlights = event.data[4];
+
+		
 		$("#" + target + "-textbox").highlightWithinTextarea('highlight', highlights);
 		$("#" + target + "-messages").html(messages.sort().join(" <br> "));
 	}
@@ -61,6 +70,7 @@ function render_music(music, format, target, width) {
 			adjustPageHeight: 1
 		};
 		
+		this.worker.postMessage(["validatePAE", $(target).attr("id"), {options: options, music: music}])
 		this.worker.postMessage(["renderMusic", $(target).attr("id"), {options: options, music: music}])
 
 	} else {

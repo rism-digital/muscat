@@ -60,8 +60,8 @@
 				//.on('scroll.' + ID, this.handleScroll.bind(this));
 
 			this.$highlights = $('<div>', { class: ID + '-highlights ' + ID + '-content' });
-
-			this.$backdrop = $('<div>', { class: ID + '-backdrop autogrow subfield_entry serialize_marc marc_editor_hotkey' })
+//autogrow subfield_entry serialize_marc marc_editor_hotkey
+			this.$backdrop = $('<div>', { class: ID + '-backdrop ' })
 				.append(this.$highlights);
 
 			this.$container = $('<div>', { class: ID + '-container' })

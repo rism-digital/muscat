@@ -39,8 +39,9 @@
 	jQuery.textareaAutogrow.fn.extend({
 		init: function(e) {
 			te = $(e);
-			te.autosize({append: false});
-			te.trigger('autosize.resize');
+			autosize(te);
+			//te.trigger('autosize.resize');
+			autosize.update(te);
 		}
 	});
 	
