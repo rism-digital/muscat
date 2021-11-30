@@ -351,6 +351,7 @@ es:
   # Sidebar
   delete: "Borrar"
   to_the_list: "Volver a la lista"
+  go_to_top: "Volver al principio"
   edit: "Editar"
   new: "Crear"
   duplicate: "Duplicar"

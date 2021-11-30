@@ -313,7 +313,7 @@ ActiveAdmin.register Source do
     active_admin_comments if !is_selection_mode?
   end
   
-  sidebar :actions, :only => :show do
+  sidebar :actions, :class => "sidebar_tabs", :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
   end
 

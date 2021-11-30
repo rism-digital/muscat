@@ -351,10 +351,11 @@ fr:
   # Sidebar
   delete: "Supprimer"
   to_the_list: "Retourner à la liste"
+  go_to_top: "Retour en haut de la page"
   edit: "Modifier"
   new: "Créer"
   duplicate: "Dupliquer"
-  merge: "MERGE"
+  merge: "Fusionner"
   no_action: "Aucune action possible"
   reindex: "Ré-indexer"
   resave: "Resauver"
