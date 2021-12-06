@@ -40,6 +40,13 @@
 		init: function(e) {
 			te = $(e);
 			autosize(te);
+
+			/*
+			if (te.hasClass("pae_input")) {
+				te.css('overflow-wrap', 'anywhere');
+				te.css('word-break', 'break-all');
+			}
+			*/
 			//te.trigger('autosize.resize');
 			autosize.update(te);
 		}

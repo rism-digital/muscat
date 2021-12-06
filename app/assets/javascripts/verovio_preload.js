@@ -14,21 +14,17 @@ worker.onmessage = function(event) {
 	} else if (messageType == "renderMusic-ok" || messageType == "renderMEI-ok") {
 		let target = event.data[1];
 		let svg = event.data[2];
-		let messages = event.data[3];
-		let highlights = event.data[4];
 
-		
-		//$("#" + target + "-textbox").highlightWithinTextarea('highlight', highlights);
-		//$("#" + target + "-messages").html(messages.sort().join(" <br> "));
 		$("#" + target).html(svg);
+
 	} else if (messageType == "validatePAE-ok") {
 		let target = event.data[1];
-		let messages = event.data[3];
-		let highlights = event.data[4];
+		let messages = event.data[2];
+		let highlights = event.data[3];
 
 		
 		$("#" + target + "-textbox").highlightWithinTextarea('highlight', highlights);
-		$("#" + target + "-messages").html(messages.sort().join(" <br> "));
+		$("#" + target + "-messages").html(messages.join(" <br> "));
 	}
 };
 
