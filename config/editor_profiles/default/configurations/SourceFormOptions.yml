@@ -560,7 +560,6 @@
     fields: 
     - - a
       - growfield: true
-    - - u
 "588": 
   layout: 
     fields: 
