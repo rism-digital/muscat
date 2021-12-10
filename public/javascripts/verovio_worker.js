@@ -3,7 +3,7 @@
  * It uses the Webassembly (WASM) version
  */
 
- const verovioServer = 'https://www.verovio.org/javascript/3.7.0';
+ const verovioServer = 'https://www.verovio.org/javascript/develop';
 
  /////////////////////////////
  // WASM
