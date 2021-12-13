@@ -44,38 +44,9 @@
     
         postMessage([messageType + "-ok", target, svg]);
     } else if (messageType == "validatePAE") {
-
-        let highlights = [];
-        let messages = []
         let validation = vrvToolkit.validatePAE(params["music"]);
-        console.log("Validate", validation);
-        if (validation.hasOwnProperty("clef")) {
-            messages.push(validation["clef"]["text"]);
-        }
-        if (validation.hasOwnProperty("keysig")) {
-            messages.push(validation["keysig"]["text"]);
-        }
-        if (validation.hasOwnProperty("timesig")) {
-            messages.push(validation["timesig"]["text"]);
-        }
-        if (validation.hasOwnProperty("data")) {
-            let data = validation["data"];
-            //console.log(data);
-            for (var i = 0; i < data.length; i++) {
-                messages.push("Position " + data[i]["column"] + ": " + data[i]["text"]);
-                let j = data[i]["column"];
-                if (j > 0) highlights.push([j - 1, j]);
-            }
-        }
 
-        let sortedMessages = messages.sort(function(a, b) {
-            return a.localeCompare(b, undefined, {
-              numeric: true,
-              sensitivity: 'base'
-            });
-          });
-
-        postMessage([messageType + "-ok", target, sortedMessages, highlights]);
+        postMessage([messageType + "-ok", target, validation]);
 
     } else if (messageType == "renderMEI") {
         vrvToolkit.setOptions( params["options"] );
