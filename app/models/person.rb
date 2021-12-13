@@ -10,8 +10,7 @@
 # * <tt>composer</tt> - 1 =  it is a composer
 # * <tt>source</tt> - Source from where the bio info comes from
 # * <tt>alternate_names</tt> - Alternate spelling of the name
-# * <tt>alternate_dates</tt> - Alternate birth/death dates if uncertain 
-# * <tt>comments</tt>
+# * <tt>alternate_dates</tt> - Alternate birth/death dates if uncertain
 # * <tt>src_count</tt> - Incremented every time a Source tied to this person
 # * <tt>hls_id</tt> - Used to match this person with the its biografy at HLS (http://www.hls-dhs-dss.ch/)
 #
@@ -194,14 +193,7 @@ class Person < ApplicationRecord
     
       new_marc.root.children.insert(new_marc.get_insert_position("670"), new_field)
     end
-    
-    if self.comments != nil and !self.comments.empty?
-      new_field = MarcNode.new("person", "680", "", "1#")
-      new_field.add_at(MarcNode.new("person", "a", self.comments, nil), 0)
-    
-      new_marc.root.children.insert(new_marc.get_insert_position("680"), new_field)
-    end    
-    
+
     self.marc_source = new_marc.to_marc
     self.save!
   end
@@ -274,8 +266,8 @@ class Person < ApplicationRecord
     self.alternate_names, self.alternate_dates = marc.get_alternate_names_and_dates
     
     # varia
-    self.gender, self.birth_place, self.source, self.comments = marc.get_gender_birth_place_source_and_comments
-    
+    self.gender, self.birth_place, self.source = marc.get_gender_birth_place_and_source
+
     self.marc_source = self.marc.to_marc
   end
   
