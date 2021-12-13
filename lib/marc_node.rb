@@ -489,7 +489,35 @@ class MarcNode
     end
     return out
   end
-  
+
+  # Convert subfields to hash, optionally as list or stripping punctuation
+  def to_h(as_list: false, strip_punctuation: false)
+    subfields = {}
+    content = looked_up_content if looked_up_content
+    if @tag =~ /^\d\d\d$/
+      if @tag >= "010"
+        @children.each do |child|
+          field = child.to_s
+          if field.start_with? "$"
+            subfield = field[1]
+            if strip_punctuation
+              value = field[2..].sub(/[ ,;\.]+$/, "")
+            else
+              value = field[2..]
+            end
+            if as_list
+              subfields[subfield] ||= []
+              subfields[subfield] << value
+            else
+              subfields[subfield] = value
+            end
+          end
+        end
+      end
+    end
+    subfields
+  end
+
   # Set the foreign object
   def foreign_object=(object)
     @foreign_object = object
