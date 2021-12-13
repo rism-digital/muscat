@@ -867,6 +867,9 @@ en:
   verovio:
     position: "Position"
     warning: "Warning"
+    clef: "Clef"
+    keysig: "Key signature"
+    timesig: "Time signature"
     ERR_001_EMPTY: "Input is empty"
     ERR_002_JSON_PARSE: "Cannot parse the JSON input"
     ERR_003_JSON_KEY: "No 'data' key in the JSON input"
