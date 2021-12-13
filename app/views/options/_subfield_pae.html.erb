@@ -2,21 +2,23 @@
 	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
 	random_string = SecureRandom.hex
 %>
-<table width="100%">
-	<tr>
+<table width="100%" class="marc_editor_pae_textbox">
+<tr>
 	<td>
 		<textarea id="<%=random_string%>-textbox" class="autogrow subfield_entry serialize_marc pae_input marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" spellcheck="false"><%=h marc_subfield.content %></textarea>
 	</td>
 	<td width="20px">
-		<a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" style="margin: 4px;" href="#" data-pae-button="refresh" title="Refresh PAE"><span class="ui-icon ui-icon-refresh"></span>_</a>
+		<a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" style="margin: 4px;" href="#" data-pae-button="refresh" data-pae-box="<%=random_string%>-textbox" title="Refresh PAE"><span class="ui-icon ui-icon-refresh"></span>_</a>
 	</td>
 </tr>
 </table>
-	<table class="marc_editor_pae_info"  style="display: none;" cellpadding="0" cellspacing="0"><tr>
-		<td width="100%"><div class="pae_incipit_target" id="<%=random_string%>"><img src="/images/spinner_small.gif" />&nbsp;Engraving incipit...&nbsp;</div></td>
-		<td width="16"><div style="visibility:hidden;"><img src="/images/spinner_small.gif" /></div></td>	
-	</tr>
-	<tr>
-		<div id="<%=random_string%>-clefKeyWarnings" class="pae-warning"></div>
-		<div id="<%=random_string%>-messages" class="pae-error"></div>
-	</table>
+
+<div id="<%=random_string%>-clefKeyWarnings" class="pae-warning"></div>
+<div id="<%=random_string%>-messages" class="pae-error"></div>
+
+<table class="marc_editor_pae_info"  style="display: none;" cellpadding="0" cellspacing="0">
+<tr>
+	<td width="100%"><div class="pae_incipit_target" id="<%=random_string%>"><img src="/images/spinner_small.gif" />&nbsp;Engraving incipit...&nbsp;</div></td>
+	<td width="16"><div style="visibility:hidden;"><img src="/images/spinner_small.gif" /></div></td>	
+</tr>
+</table>
