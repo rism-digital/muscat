@@ -133,9 +133,13 @@ worker.onmessage = function(event) {
 		let target = event.data[1];
 		let validation = event.data[2];
 
-		let [messages, clefKeyWarnings, highlights] = populateMessages(validation);
+		// So doing [messages, clefKeyWarnings, highlights] = populateMessages(validation);
+		// upsets uglifier so much
+		let msgs = populateMessages(validation);
+		let messages = msgs[0];
+		let clefKeyWarnings = msgs[1];
+		let highlights = msgs[2];
 
-		
 		$("#" + target + "-textbox").highlightWithinTextarea('highlight', highlights);
 		$("#" + target + "-clefKeyWarnings").html(clefKeyWarnings.join(" <br> "));
 		$("#" + target + "-messages").html(messages.join(" <br> "));
