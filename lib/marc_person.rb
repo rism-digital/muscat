@@ -76,7 +76,27 @@ class MarcPerson < Marc
     
     [gender, birth_place, source, comments]
   end
-  
+
+
+  def get_other_standard_identifiers
+    # Extract other standard identifiers from 024 tag and present them
+    # as a hash, indexed by $2
+    other_standard_identifiers = {}
+    each_by_tag("024") do |tag|
+      subfields = tag.to_h
+      number = subfields["a"]
+      uri = subfields["b"]
+      source = subfields["2"]
+      if number
+        other_standard_identifiers[source] = number
+      elsif uri
+        other_standard_identifiers[source] = uri
+      end
+    end
+    other_standard_identifiers
+  end
+
+
   def to_external(updated_at = nil, versions = nil, holdings = false)
     # cataloguing agency
     _003_tag = first_occurance("003")
