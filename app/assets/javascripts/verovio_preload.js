@@ -73,14 +73,16 @@ function populateMessages(validation) {
 	let highlights = [];
 	let messages = [];
 
+	let clefKeyWarnings = []
+
 	if (validation.hasOwnProperty("clef")) {
-		messages.push(validation["clef"]["text"]);
+		clefKeyWarnings.push(I18n.t("verovio.clef") + ": " + validation["clef"]["text"]);
 	}
 	if (validation.hasOwnProperty("keysig")) {
-		messages.push(validation["keysig"]["text"]);
+		clefKeyWarnings.push(I18n.t("verovio.keysig") + ": " + validation["keysig"]["text"]);
 	}
 	if (validation.hasOwnProperty("timesig")) {
-		messages.push(validation["timesig"]["text"]);
+		clefKeyWarnings.push(I18n.t("verovio.timesig") + ": " + validation["timesig"]["text"]);
 	}
 
 	if (validation.hasOwnProperty("data")) {
@@ -113,7 +115,7 @@ function populateMessages(validation) {
 		});
 	});
 
-	return [sortedMessages, highlights];
+	return [sortedMessages, clefKeyWarnings, highlights];
 }
 
 worker.onmessage = function(event) {
@@ -131,10 +133,11 @@ worker.onmessage = function(event) {
 		let target = event.data[1];
 		let validation = event.data[2];
 
-		let [messages, highlights] = populateMessages(validation);
+		let [messages, clefKeyWarnings, highlights] = populateMessages(validation);
 
 		
 		$("#" + target + "-textbox").highlightWithinTextarea('highlight', highlights);
+		$("#" + target + "-clefKeyWarnings").html(clefKeyWarnings.join(" <br> "));
 		$("#" + target + "-messages").html(messages.join(" <br> "));
 	}
 };
