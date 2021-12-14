@@ -13,7 +13,11 @@ class Place < ApplicationRecord
   include ForeignLinks
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
-  has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_places")
+  
+  #has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_places")
+  has_many :person_place_relations, class_name: "PersonPlaceRelation"
+  has_many :referring_people, through: :person_place_relations, source: :person
+
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_places")
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_places")
   has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_places")

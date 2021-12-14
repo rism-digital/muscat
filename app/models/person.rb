@@ -46,7 +46,10 @@ class Person < ApplicationRecord
   has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_people")
   has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
   has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
-  has_and_belongs_to_many :places, join_table: "people_to_places"
+  #has_and_belongs_to_many :places, join_table: "people_to_places"
+  has_many :person_place_relations
+  has_many :places, through: :person_place_relations
+
   has_and_belongs_to_many :publications, join_table: "people_to_publications"
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
