@@ -5,6 +5,10 @@
 	layout_config = @editor_profile.layout_config
 -%>	
 
+<% if @diff && @wf_stages %>
+	<%= render :partial => "marc/show_diff_wf_stage" %>
+<% end %>
+
 <% layout_config["group_order"].each do |group_name|
 	group_config = layout_config["groups"][group_name]
 	group = { 

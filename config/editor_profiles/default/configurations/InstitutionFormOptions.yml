@@ -304,48 +304,35 @@
       - type: person
         editor_partial: subfield_secondary
     - - "4"
-      - editor_partial: subfield_select_codes_grouped
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
   tag_params: 
-    groups: 
-      01_codes_artistic: 
+    relator_codes: 
+      - scr
       - cmp
-      - com
+      - cns
       - arr
-      - aut
-      - clb
+      - prf
+      - dte
       - lyr
-      - ccp
       - lbt
       - trl
-      02_codes_performing: 
-      - prf
-      - voc
-      - itr
-      - dnc
-      - cnd
-      - chr
-      - art
-      - cst
-      - prd
-      - cns
-      04_codes_other: 
-      - fmo
-      - dnr
-      - dte
-      - pat
-      - otm
-      - bsl
-      - asn
-      03_codes_technical: 
-      - scr
+      - pbl
+      - prt
+      - edt
       - ltg
       - egr
       - ill
-      - prt
-      - pbl
-      - edt
-      - bnd
-
+      - aut
+      - asn
+      - ctb
+      - ccp
+      - dst
+      - asg
+      - cph
+      - lse
+      - tyd
 "710": 
   new_window: institutions
   layout: 

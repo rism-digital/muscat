@@ -39,8 +39,16 @@
 	jQuery.textareaAutogrow.fn.extend({
 		init: function(e) {
 			te = $(e);
-			te.autosize({append: false});
-			te.trigger('autosize.resize');
+			autosize(te);
+
+			/*
+			if (te.hasClass("pae_input")) {
+				te.css('overflow-wrap', 'anywhere');
+				te.css('word-break', 'break-all');
+			}
+			*/
+			//te.trigger('autosize.resize');
+			autosize.update(te);
 		}
 	});
 	

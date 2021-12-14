@@ -31,20 +31,31 @@
 
 	jQuery.paeIncipitRender.fn.extend = jQuery.paeIncipitRender.extend = jQuery.extend;
 	jQuery.paeIncipitRender.fn.extend({
-		init: function(e) {
+		init: function(object) {
+
+			$(object).highlightWithinTextarea({
+				highlight: []
+			});
+
 			// Atach to the keyup event
-			$(e).keyup(function(e) {
+			$(object).keyup(function(e) {
 				e.preventDefault();
 				display_music(this)
 			});
 			
 			// Handle the button
-			$('a[data-pae-button]').click(function(e) {
+			$('a[data-pae-button]').off().on('click', function(e) {
 				e.preventDefault();
-				display_music(this);
+
+				// Since this is the button, we need to get
+				// the width of the actual input box
+				let box_name = $(this).data("pae-box");
+				let box = $("#" + box_name);
+
+				display_music(this, box.width());
 			});
 			
-			function display_music(obj) {
+			function display_music(obj, width = 0) {
 				var grid = $(obj).parents(".tag_grid");
 				var placeholder = $(obj).parents(".tag_placeholders");
 				
@@ -59,7 +70,8 @@
 				var pae_time = $(".subfield_entry[data-subfield='o']", grid).val();
 				var pae_clef = $(".subfield_entry[data-subfield='g']", grid).val();
 				var pae_data = $(".subfield_entry[data-subfield='p']", grid).val(); //$(obj).val();
-				var width = $(obj).width(); // Get the parent textbox with so the image is the same
+				if (width == 0)
+					width = $(obj).width(); // Get the parent textbox with so the image is the same
 			
 				var target_div = $('.pae_incipit_target', grid);
 
@@ -76,14 +88,13 @@
 			}
 			
 			// Update on first load
-			display_music(e);
-		}
+			display_music(object);
+		},
 	});
 	
 	jQuery(document).ready(function() {
 		jQuery(".pae_input").paeIncipitRender();
 		jQuery(".pae_input").trigger('update');
-		
 		$()
 		
 	});

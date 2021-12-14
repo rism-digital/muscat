@@ -1,0 +1,7 @@
+# attribute-map.yml
+# configuration file for devise_saml_authenticatable
+# "response field": "local field"
+
+# "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress": "email"
+"mail": "email"
+"givenName": "name"

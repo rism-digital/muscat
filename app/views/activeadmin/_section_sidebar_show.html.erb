@@ -16,13 +16,20 @@
 			:class => "muscat_icon_link muscat_icon_link_list") %>
 		</li>
 	
-	<%if @item && @item.id && @item.respond_to?(:allow_holding?) && @item.allow_holding? %>
-		<li class="muscat_icon_separator"></li>
-		<li class="muscat_icon_link">
-			<%= link_to("#{I18n.t :new_holding}", new_admin_holding_path(source_id: @item.id),
-				:class => "muscat_icon_link muscat_icon_link_new") %>
-		</li>
-	<%end%>
+		<% if item.is_a?(Source) %>
+			<li class="muscat_icon_link">
+			<%= link_to(I18n.t(:go_to_top), "javascript:marc_editor_go_to_top()",
+				:class => "muscat_icon_link muscat_icon_link_up") %>
+			</li>
+		<% end %>
+
+		<%if @item && @item.id && @item.respond_to?(:allow_holding?) && @item.allow_holding? %>
+			<li class="muscat_icon_separator"></li>
+			<li class="muscat_icon_link">
+				<%= link_to("#{I18n.t :new_holding}", new_admin_holding_path(source_id: @item.id),
+					:class => "muscat_icon_link muscat_icon_link_new") %>
+			</li>
+		<%end%>
 		
 		<li class="muscat_icon_separator"></li>
 	

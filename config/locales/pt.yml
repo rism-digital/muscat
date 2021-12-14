@@ -347,6 +347,7 @@ pt:
   # Sidebar
   delete: "Apagar"
   to_the_list: "Retornar à lista"
+  go_to_top: "Voltar ao início"
   edit: "Editar"
   new: "Criar"
   duplicate: "Duplicar"
@@ -491,7 +492,7 @@ pt:
   filter_record_type_short: "Tipo"
   filter_source_type: "Tipo de fonte"
   filter_publisher: "Editor"
-  filter_revue_title: "Título do Periódico"
+  filter_journal: "Título do Periódico"
   filter_id: "ID RISM"
   filter_id_no: "ID RISM"
   filter_images: "Imagens"

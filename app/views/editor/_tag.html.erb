@@ -41,7 +41,7 @@
             </tr>
     		<%- else -%>
             <tr>
-    			<td colspan="4">
+    			<td colspan="1">
     			<div style="visibility: hidden; height: 0px;">
     				<%- subfield_collection = marc_tag.fetch_all_by_tag(subfield)
     					subfield_collection << MarcNode.new(@item.marc.get_model) if subfield_collection.empty?

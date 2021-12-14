@@ -3,7 +3,7 @@
  * It uses the Webassembly (WASM) version
  */
 
- const verovioServer = 'https://www.verovio.org/javascript/3.6.0';
+ const verovioServer = 'https://www.verovio.org/javascript/develop';
 
  /////////////////////////////
  // WASM
@@ -43,6 +43,11 @@
         let svg = vrvToolkit.renderToSVG(1, {});
     
         postMessage([messageType + "-ok", target, svg]);
+    } else if (messageType == "validatePAE") {
+        let validation = vrvToolkit.validatePAE(params["music"]);
+
+        postMessage([messageType + "-ok", target, validation]);
+
     } else if (messageType == "renderMEI") {
         vrvToolkit.setOptions( params["options"] );
         let svg = vrvToolkit.renderData(params["music"], {});

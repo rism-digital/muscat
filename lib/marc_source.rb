@@ -371,10 +371,10 @@ class MarcSource < Marc
 
     if (@record_type == RECORD_TYPES[:collection])
       leader = base_leader.gsub("XX", "dc")
-      get_subentry_title
+      generate_subentry_title # Add $a to 774s
     elsif (@record_type == RECORD_TYPES[:edition])
       leader = base_leader.gsub("XX", "cc")
-      get_subentry_title
+      generate_subentry_title
     elsif @record_type == RECORD_TYPES[:composite_volume]
       leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
@@ -486,6 +486,12 @@ class MarcSource < Marc
       end
     end
 
+    # Add $a to 773
+    if node = root.fetch_first_by_tag("773")
+      source = parent_object.parent_source
+      node.add_at(MarcNode.new(@model, "a", source.name, nil), 0) if source
+    end
+
     # Feeding 240$n workcatalog number from 690$a/$n and 383$b
     n240 = root.fetch_first_by_tag("240")
     existent = n240 ? n240.fetch_all_by_tag("n").map {|sf| sf.content rescue nil} : []
@@ -562,7 +568,7 @@ class MarcSource < Marc
     @record_type = rt
   end
 
-  def get_subentry_title
+  def generate_subentry_title
     each_by_tag("774") do |t|
       w = t.fetch_first_by_tag("w")
       if w && w.content

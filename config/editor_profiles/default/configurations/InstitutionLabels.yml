@@ -404,6 +404,8 @@ arr:
   label: records.arranger
 art:
   label: records.artist
+asg:
+  label: records.assignee
 asn:
   label: records.associated_name
 aut:
@@ -428,6 +430,10 @@ codes:
   label: records.numbers_code_fields
 com:
   label: records.compiler
+cph:
+  label: records.copyright_holder
+ctb:
+  label: records.co_composer
 contact:
   label: records.contact
 control:
@@ -458,6 +464,8 @@ doc_templates:
   label: records.templates
 dte:
   label: records.dedicatee
+dst:
+  label: records.distributor
 ed:
   label: records.edition
 edt:
@@ -474,6 +482,8 @@ itr:
   label: records.instrumentalist
 lbt:
   label: records.librettist
+lse:
+  label: records.licensee
 ltg:
   label: records.lithograph
 lyr:
@@ -504,6 +514,8 @@ sigla:
   label: records.sigla
 trl:
   label: records.translator
+tyd:
+  label: records.type_designer
 voc:
   label: records.vocalist
 a:

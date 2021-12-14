@@ -126,3 +126,4 @@
 //= require tribute.min
 //= require tribute_load
 
+//= require jquery.highlight-within-textarea

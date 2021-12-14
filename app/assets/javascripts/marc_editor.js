@@ -619,3 +619,6 @@ function marc_editor_get_model() {
 	return $("#marc_editor_panel").data("editor-model");
 }
 
+function marc_editor_go_to_top() {
+	$('html, body').animate({ scrollTop: 0 }, 'fast');
+}

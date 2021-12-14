@@ -92,6 +92,7 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem "blacklight_range_limit", '6.3.3', git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3-6.3.x"
 gem 'devise'
 gem 'devise-i18n'
+gem 'devise_saml_authenticatable', require: false
 
 # paperclip for image storage
 gem "kt-paperclip", "~> 6.2.0"
@@ -133,9 +134,10 @@ gem 'osullivan'
 gem 'rails-i18n'#, github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
 
 gem 'gruff'
-group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
-end
+
+# These need to be loaded in production too
+gem 'solr_wrapper', '>= 0.3'
+gem 'ruby-saml-idp'
 
 gem 'rsolr', '>= 1.0'
 
@@ -168,6 +170,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  gem 'generator_spec'
   # Use sqlite3 for testing db
   gem 'sqlite3'
 end
