@@ -509,7 +509,7 @@ class MarcNode
               subfields[subfield] ||= []
               subfields[subfield] << value
             else
-              subfields[subfield] = value
+              subfields[subfield] ||= value
             end
           end
         end
