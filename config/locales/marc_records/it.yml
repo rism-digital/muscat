@@ -847,8 +847,8 @@ it:
     keysig: "Armatura di chiave"
     timesig: "Misura"
     ERR_001_EMPTY: Inserisci un incipit codificato.
-    ERR_002_JSON_PARSE: "Cannot parse the JSON input."
-    ERR_003_JSON_KEY: "No 'data' key in the JSON input."
+    ERR_002_JSON_PARSE: "Impossibile analizzare l'input JSON."
+    ERR_003_JSON_KEY: "Nessuna chiave 'data' nell'input JSON."
     ERR_004_KEY_SPACE: Il cambio di armatura di chiave deve essere seguito da uno spazio.
     ERR_005_CLEF_SPACE: Un cambio di chiave deve essere seguito da uno spazio.
     ERR_006_TIMESIG_SPACE: Il cambio ti tempo deve essere seguito da uno spazio.
@@ -858,8 +858,8 @@ it:
     ERR_010_REP_UNUSED: La figura indicata per la ripetizione non è stata ripetuta. Indicare la ripetizione con 'f'.
     ERR_011_REP_NO_FIGURE: La 'f' deve seguire '!' perché la figura ripeta.
     ERR_012_REP_NOT_BEGIN: Per ripetere la battuta, 'i' deve essere preceduta da una linea a barre.
-    ERR_013_REP_NO_CONTENT: "'i' is present without content to repeat."
-    ERR_014_REP_NO_BARLINE: 'To repeat the bar, ''i'' must be followed by a bar line.'
+    ERR_013_REP_NO_CONTENT: "'i' è presente senza contenuto da ripetere."
+    ERR_014_REP_NO_BARLINE: 'Per ripetere la battuta, ''i'' deve essere seguita da una linea di battuta.'
     ERR_015_MREST_INVALID: Una pausa con '=' non può essere seguita direttamente da un altro '='.
     ERR_016_MREST_NUMBER: Una pausa usando '=' deve essere seguita da una linea di battuta o da un numero maggiore di 0.
     ERR_017_TRILL_INVALID: Un trillo 't' deve seguire direttamente la nota a cui appartiene.
@@ -883,7 +883,7 @@ it:
     ERR_035_TUPLET_OPEN: Chiudere il gruppo ritmico speciale o la corona con ')' prima della fine della battuta.
     ERR_036_TUPLET_NUM_NUMBER: Un numero deve essere immesso tra la ';' e la ')' nel gruppo ritmico speciale.
     ERR_037_TIE_PITCH: Una legatura con '+' può connettere solamente due note della stessa ottava ed altezza.
-    ERR_038_TIE_OPEN: A tie using '+' must be followed by a note.
+    ERR_038_TIE_OPEN: Una legatura con '+' deve essere seguita da una nota.
     ERR_039_TIE_NO_NOTE: Una legatura con '+' deve essere preceduta da una nota.
     ERR_040_HIERARCHY_INVALID: L'ordine degli elementi non può essere interpretato (%{value}).
     ERR_041_NESTING_INVALID: "Sequenza non valida dei tag di apertura e chiusura '%{value}'"
