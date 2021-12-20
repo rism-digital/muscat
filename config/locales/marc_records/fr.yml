@@ -737,7 +737,7 @@ fr:
     series_statement: Mentions de collection
     set: Groupe de matériaux
     shelfmark: Cote
-    shelfmark_olim: Former shelfmark (olim)
+    shelfmark_olim: Ancienne cote (olim)
     short_title: Titre abrégé
     sigla: Sigle
     siglum: Sigle
@@ -842,35 +842,35 @@ fr:
     P60183: "Insertion"
   verovio:
     position: "Position"
-    warning: "Warning"
+    warning: "Avertissement"
     clef: "Clé"
     keysig: "Armure"
     timesig: "Indication de mesure"
-    ERR_001_EMPTY: Enter an encoded incipit.
-    ERR_002_JSON_PARSE: "Cannot parse the JSON input"
-    ERR_003_JSON_KEY: "No 'data' key in the JSON input"
-    ERR_004_KEY_SPACE: A key signature change must be followed by a space.
-    ERR_005_CLEF_SPACE: A clef change must be followed by a space.
-    ERR_006_TIMESIG_SPACE: A time signature change must be followed by a space.
-    ERR_007_REP_EMPTY: Enter the notes that should be repeated.
-    ERR_008_REP_MARKER: Indicate the end of the repeated figure with '!' before the 'f'.
-    ERR_009_REP_OPEN: Close the repeated figure with '!' before the end of the measure.
-    ERR_010_REP_UNUSED: The figure marked for repetition has not been repeated. Indicate the repetition with an 'f'.
-    ERR_011_REP_NO_FIGURE: The 'f' must follow '!' for the figure to repeat.
-    ERR_012_REP_NOT_BEGIN: To repeat the bar, 'i' must be preceded by a bar line.
-    ERR_013_REP_NO_CONTENT: i' is present without content to repeat.
-    ERR_014_REP_NO_BARLINE: 'To repeat the bar, ''i'' must be followed by a bar line. '
-    ERR_015_MREST_INVALID: A rest using '=' cannot be directly followed by another '='.
-    ERR_016_MREST_NUMBER: A rest using '=' must be followed by a bar line or a number greater than 0.
-    ERR_017_TRILL_INVALID: A trill using 't' must directly follow the note it belongs to.
-    ERR_018_FERMATA_NESTED: "(' cannot be directly followed by another '('."
-    ERR_019_ACCID_NO_NOTE: An accidental must be directly followed by a note.
-    ERR_020_CHORD_NOTE_BEFORE: To indicate a chord, a '^' must be preceded by a note.
-    ERR_021_CHORD_NOTE_AFTER: To indicate a chord, a '^' must be followed by a note.
-    ERR_022_BEAM_MENSURAL: Beams cannot be used with mensural notation.
-    ERR_023_BEAM_NESTED: Do not start a beam before closing the previous one.
-    ERR_024_BEAM_CLOSING: 'An extra ''}'' to close a beam is present. Delete it or indicate where the beam starts with ''{''. '
-    ERR_025_BEAM_OPEN: Close the beam with '}' before the end of the measure.
+    ERR_001_EMPTY: Saisir un incipit.
+    ERR_002_JSON_PARSE: "Les données d'entrée en JSON ne peuvent pas être traitées"
+    ERR_003_JSON_KEY: "Il n'y a pas de clé 'data dans les données d'entrée en JSON"
+    ERR_004_KEY_SPACE: Un changement d'armure doit être suivi d'un espace.
+    ERR_005_CLEF_SPACE: Un changement de clef doit être suivi d'un espace.
+    ERR_006_TIMESIG_SPACE: Un changement d'indication de mesure doit être suivi d'un espace.
+    ERR_007_REP_EMPTY: Entrez les notes qui doivent être répétées.
+    ERR_008_REP_MARKER: Indiquez la fin de la figure répétée par '!' avant le 'f'.
+    ERR_009_REP_OPEN: Fermer la figure répétée par '!' avant la fin de la mesure.
+    ERR_010_REP_UNUSED: La figure marquée pour la répétition n'a pas été répétée. Indiquez la répétition avec un "f".
+    ERR_011_REP_NO_FIGURE: Le "f" doit suivre "!" pour que la figure se répète.
+    ERR_012_REP_NOT_BEGIN: Pour répéter la mesure, le 'i' doit être précédé d'une barre de mesure.
+    ERR_013_REP_NO_CONTENT: '''i'' est présent sans contenu à répéter.'
+    ERR_014_REP_NO_BARLINE: 'Pour répéter la mesure, le ''i'' doit être suivi d''une barre de mesure. '
+    ERR_015_MREST_INVALID: Un silence utilisant le signe '=' ne peut pas être suivi directement par un autre '='.
+    ERR_016_MREST_NUMBER: Un silence utilisant le signe '=' doit être suivi d'une barre de mesure ou d'un nombre supérieur à 0.
+    ERR_017_TRILL_INVALID: Un trille utilisant 't' doit suivre directement la note à laquelle elle appartient.
+    ERR_018_FERMATA_NESTED: "(' ne peut pas être suivi directement par un autre '('."
+    ERR_019_ACCID_NO_NOTE: Un accident doit être suivi directement par une note.
+    ERR_020_CHORD_NOTE_BEFORE: Pour indiquer un accord, un '^' doit être précédé d'une note.
+    ERR_021_CHORD_NOTE_AFTER: Pour indiquer un accord, un '^' doit être suivi d'une note.
+    ERR_022_BEAM_MENSURAL: Les barres de valeur ne peuvent pas être utilisées avec une notation mensurale.
+    ERR_023_BEAM_NESTED: Ne commencez pas un groupe de barres de valeur avant de fermer le précédent.
+    ERR_024_BEAM_CLOSING: 'Un ''}'' supplémentaire pour fermer un groupe de barres de valeur est présent. Supprimez-le ou indiquez où le groupe commence par ''{''. '
+    ERR_025_BEAM_OPEN: Fermer le groupe de barres de valeur avec '}' avant la fin de la mesure.
     ERR_026_GRACE_NESTED: Close the appoggiatura with 'r' before starting a new one.
     ERR_027_GRACE_CLOSING: An 'r' is present to close an appoggiatura. Delete it or add 'qq' to indicate where it begins.
     ERR_028_GRACE_OPEN: Close the appoggiatura with 'r' before the end of the measure.
