@@ -158,6 +158,7 @@
       - :occurrences: "?"
   "551":
     :master: "0"
+    :relator_code: "i"
     :indicator: "##"
     :occurrences: "*"
     :fields:

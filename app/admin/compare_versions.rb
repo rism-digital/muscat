@@ -4,7 +4,7 @@ ActiveAdmin.register_page "Compare Versions" do
       params[:compare_version_quantity] = params.include?(:compare_version_quantity) ? params[:compare_version_quantity] : 20
     end
   end
-  menu :parent => "admin_menu", :label => proc { I18n.t("active_admin.compare_versions") }
+  menu :parent => "admin_menu", :label => proc { I18n.t("active_admin.compare_versions")}
 
   limit = 20
 
