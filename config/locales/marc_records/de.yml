@@ -1,21 +1,21 @@
 de:
   general:
-    created_at: Erstellungsdatum
+    created_at: "Erstellungsdatum"
     e_mail: E-Mail
     editor_help: Editor Hilfe
-    faq: FAQ
-    female: weiblich
+    faq: Häufig gestellte Fragen
+    female: Weiblich
     how_do_i: Wie kann ich ... Tipps & Tricks
     index_marc_fields: MARC Tag Index
-    male: männlich
+    male: Männlich
     marc_tag_index: MARC Tag Index
-    'no': Nein
+    'no': 'Nein'
     rism: RISM
     rism_best_practices: RISM BEST PRACTISES
-    rism_instrument_abbreviations: Stimmen- und Instrumentenbezeichnungen tabellarisch
-    rism_series: RISM Series
+    rism_instrument_abbreviations: Stimmen- und Instrumentenbezeichnungen tabellarisch (Fortsetzung)
+    rism_series: RISM-Serien
     rism_series_a_b_references: Querverweise zu RISM A/I und RISM B
-    rism_series_number: RISM-Nummer
+    rism_series_number: RISM-Seriennummer
     rule_type: Regelwerk
     scope_printed_music_rism: Umfang der Dokumentation von Musikdrucke in RISM
     searching: Suche
@@ -32,7 +32,7 @@ de:
     validity: Gültigkeit
     when_to_input_new_record: Wann soll einen neuen Eintrag erstellt werden (Musikdrucke)
     workflow: Workflow
-    'yes': Ja
+    'yes': 'Ja'
   languages:
     afrikaans: Afrikaans
     arabic: Arabisch
@@ -157,7 +157,6 @@ de:
     germany: Deutschland
     germany_bavaria: 'Deutschland: Bayern'
     germany_saxony: 'Deutschland: Sachsen'
-    ghana: Ghana
     greece: Griechenland
     guatemala: Guatemala
     guinea: Guinea
@@ -168,16 +167,15 @@ de:
     iceland: Island
     india: Indien
     indonesia: Indonesien
-    iran: Iran, Islamic Republic of
+    iran: Iran, Islamische Republik
     iraq: Irak
     ireland: Irland
     israel: Israel
     italy: Italien
     italy_trentino_alto_adige: 'Italien: Trentino-Alto Adige'
     japan: Japan
-    korea: Korea, Republic of
+    korea: Korea, Republik
     latvia: Lettland
-    liechtenstein: Liechtenstein
     lithuania: Litauen
     luxembourg: Luxemburg
     malta: Malta
@@ -187,7 +185,6 @@ de:
     montenegro: Montenegro
     netherlands: Niederlande
     new_zealand: Neuseeland
-    nicaragua: Nicaragua
     northern_ireland: Nordirland
     norway: Norwegen
     papua_new_guinea: Papua Neu-Guinea
@@ -208,17 +205,15 @@ de:
     sweden: Schweden
     switzerland: Schweiz
     switzerland_vaud: 'Schweiz: Vaud'
-    surinam: Surinam
-    syrian_arab_republic: Syrian Arab Republic
+    syrian_arab_republic: Syrien, Arabische Republik
     taiwan: Taiwan (Provinz von China)
-    trinidad_tobego: Trinidad and Tobago
+    trinidad_tobego: Trinidad und Tobago
     turkey: Türkei
-    uganda: Uganda
     uk: Vereinigtes Königreich
     ukraine: Ukraine
     uruguay: Uruguay
     usa: Vereinigte Staaten von Amerika (USA)
-    venezuela: Venezuela, Bolivarian Republic of
+    venezuela: Venezuela, Bolivarische Republik
     vietnam: Vietnam
   records:
     a_major: A-Dur
@@ -240,7 +235,7 @@ de:
     additional_solo_voice: Zusätzliche Solostimme
     additional_title: Alternativer Titel
     additional_title_lit: Zusätzlicher Titel
-    administration: Administration
+    administration: Verwaltung
     af_major: As-Dur
     af_minor: as-Moll
     aide: Arbeitshilfen
@@ -482,12 +477,12 @@ de:
     history_institution: Geschichte der Körperschaft
     holdings_location: Bestandsdaten
     identity: Identifizierung
-    identity_area: IDENTITY AREA
-    iiif_manifest: IIIF manifest
+    identity_area: Identity area
+    iiif_manifest: IIIF-Manifest
     illustrator: Illustrator
     immediate_parent_body: Unmittelbarer Elternteil
     import: Fremddateneinspielung
-    imprint: Imprint
+    imprint: Impressum
     incipit: Musikincipit
     incipit_number: Incipitnummer
     incipits: Incipits
@@ -627,13 +622,10 @@ de:
     octoechos2: 'Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)'
     octoechos3: 'Octoechos 3: Ēchos tritos (Third mode of Byzantine music)'
     octoechos4: 'Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)'
-    octoechos5: 'Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine
-      music)'
-    octoechos6: 'Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine
-      music)'
+    octoechos5: 'Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)'
+    octoechos6: 'Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)'
     octoechos7: 'Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)'
-    octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine
-      music)'
+    octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)'
     online_finding_aids: Archivführer und andere Publikationen
     opera_houses_concert_halls: Opernhäuser und Konzerthallen
     opus_number: Opus
@@ -740,12 +732,12 @@ de:
     scoring_summary: Besetzungshinweis
     scribe: Schreiber
     secondary_literature: Sekundärliteratur
-    series: Series
+    series: Serie
     series_added_entry: Nebeneintragungen Gesamttitel
     series_statement: Gesamttitelangaben
     set: Set
     shelfmark: Signatur
-    shelfmark_olim: Alte Signatur (olim)
+    shelfmark_olim: Former shelfmark (olim)
     short_title: Kurztitel
     sigla: Sigel
     siglum: Sigel
@@ -802,9 +794,9 @@ de:
     title_movement_tempo: Satztitel, Tempo
     title_of_work: Werktitel
     title_on_source: Diplomatischer Titel
-    title_periodical_book_series: 'In:'
+    title_periodical_book_series: Titel der Zeitschrift, des Buches oder der Serie
     title_related_fields: Titel- und damit verbundene Felder
-    title_section_part: ''
+    title_section_part: Title of section or part
     title_variants: Namensvarianten
     titles_text_incipits: Titel und Texte
     topical_term: Sachbegriff
@@ -848,3 +840,67 @@ de:
     P60274: "Bearbeitung als"
     P60194: "Einfügen in"
     P60183: "Einfügen"
+  verovio:
+    position: "Position"
+    warning: "Warning"
+    clef: "Schlüssel"
+    keysig: "Akzidentien"
+    timesig: "Metrum"
+    ERR_001_EMPTY: Enter an encoded incipit.
+    ERR_002_JSON_PARSE: "Cannot parse the JSON input"
+    ERR_003_JSON_KEY: "No 'data' key in the JSON input"
+    ERR_004_KEY_SPACE: A key signature change must be followed by a space.
+    ERR_005_CLEF_SPACE: A clef change must be followed by a space.
+    ERR_006_TIMESIG_SPACE: A time signature change must be followed by a space.
+    ERR_007_REP_EMPTY: Enter the notes that should be repeated.
+    ERR_008_REP_MARKER: Indicate the end of the repeated figure with '!' before the 'f'.
+    ERR_009_REP_OPEN: Close the repeated figure with '!' before the end of the measure.
+    ERR_010_REP_UNUSED: The figure marked for repetition has not been repeated. Indicate the repetition with an 'f'.
+    ERR_011_REP_NO_FIGURE: The 'f' must follow '!' for the figure to repeat.
+    ERR_012_REP_NOT_BEGIN: To repeat the bar, 'i' must be preceded by a bar line.
+    ERR_013_REP_NO_CONTENT: i' is present without content to repeat.
+    ERR_014_REP_NO_BARLINE: 'To repeat the bar, ''i'' must be followed by a bar line. '
+    ERR_015_MREST_INVALID: A rest using '=' cannot be directly followed by another '='.
+    ERR_016_MREST_NUMBER: A rest using '=' must be followed by a bar line or a number greater than 0.
+    ERR_017_TRILL_INVALID: A trill using 't' must directly follow the note it belongs to.
+    ERR_018_FERMATA_NESTED: "(' cannot be directly followed by another '('."
+    ERR_019_ACCID_NO_NOTE: An accidental must be directly followed by a note.
+    ERR_020_CHORD_NOTE_BEFORE: To indicate a chord, a '^' must be preceded by a note.
+    ERR_021_CHORD_NOTE_AFTER: To indicate a chord, a '^' must be followed by a note.
+    ERR_022_BEAM_MENSURAL: Beams cannot be used with mensural notation.
+    ERR_023_BEAM_NESTED: Do not start a beam before closing the previous one.
+    ERR_024_BEAM_CLOSING: 'An extra ''}'' to close a beam is present. Delete it or indicate where the beam starts with ''{''. '
+    ERR_025_BEAM_OPEN: Close the beam with '}' before the end of the measure.
+    ERR_026_GRACE_NESTED: Close the appoggiatura with 'r' before starting a new one.
+    ERR_027_GRACE_CLOSING: An 'r' is present to close an appoggiatura. Delete it or add 'qq' to indicate where it begins.
+    ERR_028_GRACE_OPEN: Close the appoggiatura with 'r' before the end of the measure.
+    ERR_029_GRACE_UNRESOLVED: Do not start an appoggiatura using 'q' before completing the previous one.
+    ERR_030_GRACE_DURATION: No rhythmic value can be entered when using an acciaccatura with 'g'.
+    ERR_031_GRACE_NO_NOTE: A grace note using 'g' or 'q' must be followed by a note.
+    ERR_032_TUPLET_NESTED: Do not start a special rhythm group with '(' before closing the previous one.
+    ERR_033_TUPLET_CLOSING: An extra ')' to close a special rhythm group is present. Delete it or indicate with '(' where the group begins.
+    ERR_034_TUPLET_NUM: A ';' is present outside of a special rhythm group.
+    ERR_035_TUPLET_OPEN: Close the special rhythm group or fermata with ')' before the end of the measure.
+    ERR_036_TUPLET_NUM_NUMBER: A number must appear between the ';' and ')' in the special rhythm group.
+    ERR_037_TIE_PITCH: A tie using '+' can only connect two notes of the same octave and pitch.
+    ERR_038_TIE_OPEN: A tie using '+' must be preceded by a note.
+    ERR_039_TIE_NO_NOTE: A tie using '+' must be preceded by a note.
+    ERR_040_HIERARCHY_INVALID: The order of elements cannot be interpreted (%{value}).
+    ERR_041_NESTING_INVALID: "Invalid nesting of opening and closing tags '%{value}'"
+    ERR_042_CLEF_INCOMPLETE: The clef is not in the correct form.
+    ERR_043_CLEF_INVALID_2ND: The second character in the clef sign must be either '+' or '-'.
+    ERR_044_CLEF_MENS: Do not mix mensural and non-mensural clefs.
+    ERR_045_CLEF_INVALID_3RD: The third character in the clef sign must be a digit.
+    ERR_046_CLEF_INVALID: The clef is not in the correct form.
+    ERR_047_TIMESIG_INCOMPLETE: The time signature is not in the correct form.
+    ERR_048_TIMESIG_INVALID: The time signature is not in the correct form.
+    ERR_049_TIMESIG_MENS: The time signature is not in the correct form.
+    ERR_050_INVALID_CHAR: 'Delete the following invalid character(s): %{value}'
+    ERR_051_BARLINE: The barline is not in the correct form.
+    ERR_052_DURATION: "Duration content cannot be parsed (Setting to quarter note if running in non-pedantic mode)"
+    ERR_053_DURATION_MENS3: The duration cannot be '3' with mensural notation.
+    ERR_054_DURATION_MENS5: The duration cannot be '5' with mensural notation.
+    ERR_055_KEYSIG_CHANGE: The key signature cannot be changed more than once in a measure.
+    ERR_056_TIMESIG_CHANGE: The time signature cannot be changed more than once in a measure.
+    ERR_057_MENSUR_CHANGE: The mensuration cannot be changed more than once in a measure.
+    ERR_058_FERMATA_MREST: "Fermata on measure rest with extraneous content '%{value}'"

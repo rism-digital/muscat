@@ -157,7 +157,6 @@ en:
     germany: Germany
     germany_bavaria: 'Germany: Bavaria'
     germany_saxony: 'Germany: Saxony'
-    ghana: Ghana
     greece: Greece
     guatemala: Guatemala
     guinea: Guinea
@@ -177,7 +176,6 @@ en:
     japan: Japan
     korea: Korea, Republic of
     latvia: Latvia
-    liechtenstein: Liechtenstein
     lithuania: Lithuania
     luxembourg: Luxembourg
     malta: Malta
@@ -187,7 +185,6 @@ en:
     montenegro: Montenegro
     netherlands: Netherlands
     new_zealand: New Zealand
-    nicaragua: Nicaragua
     northern_ireland: Northern Ireland
     norway: Norway
     papua_new_guinea: Papua New Guinea
@@ -205,7 +202,6 @@ en:
     slovenia: Slovenia
     south_africa: South Africa
     spain: Spain
-    surinam: Surinam
     sweden: Sweden
     switzerland: Switzerland
     switzerland_vaud: 'Switzerland: Vaud'
@@ -213,7 +209,6 @@ en:
     taiwan: Taiwan (Province of China)
     trinidad_tobego: Trinidad and Tobago
     turkey: Turkey
-    uganda: Uganda
     uk: United Kingdom
     ukraine: Ukraine
     uruguay: Uruguay
@@ -848,3 +843,67 @@ en:
     P60274: "Arranged as"
     P60194: "Insert in"
     P60183: "Insert"
+  verovio:
+    position: "Position"
+    warning: "Warning"
+    clef: "Clef"
+    keysig: "Key signature"
+    timesig: "Time signature"
+    ERR_001_EMPTY: Enter an encoded incipit.
+    ERR_002_JSON_PARSE: "Cannot parse the JSON input"
+    ERR_003_JSON_KEY: "No 'data' key in the JSON input"
+    ERR_004_KEY_SPACE: A key signature change must be followed by a space.
+    ERR_005_CLEF_SPACE: A clef change must be followed by a space.
+    ERR_006_TIMESIG_SPACE: A time signature change must be followed by a space.
+    ERR_007_REP_EMPTY: Enter the notes that should be repeated.
+    ERR_008_REP_MARKER: Indicate the end of the repeated figure with '!' before the 'f'.
+    ERR_009_REP_OPEN: Close the repeated figure with '!' before the end of the measure.
+    ERR_010_REP_UNUSED: The figure marked for repetition has not been repeated. Indicate the repetition with an 'f'.
+    ERR_011_REP_NO_FIGURE: The 'f' must follow '!' for the figure to repeat.
+    ERR_012_REP_NOT_BEGIN: To repeat the bar, 'i' must be preceded by a bar line.
+    ERR_013_REP_NO_CONTENT: i' is present without content to repeat.
+    ERR_014_REP_NO_BARLINE: 'To repeat the bar, ''i'' must be followed by a bar line. '
+    ERR_015_MREST_INVALID: A rest using '=' cannot be directly followed by another '='.
+    ERR_016_MREST_NUMBER: A rest using '=' must be followed by a bar line or a number greater than 0.
+    ERR_017_TRILL_INVALID: A trill using 't' must directly follow the note it belongs to.
+    ERR_018_FERMATA_NESTED: "(' cannot be directly followed by another '('."
+    ERR_019_ACCID_NO_NOTE: An accidental must be directly followed by a note.
+    ERR_020_CHORD_NOTE_BEFORE: To indicate a chord, a '^' must be preceded by a note.
+    ERR_021_CHORD_NOTE_AFTER: To indicate a chord, a '^' must be followed by a note.
+    ERR_022_BEAM_MENSURAL: Beams cannot be used with mensural notation.
+    ERR_023_BEAM_NESTED: Do not start a beam before closing the previous one.
+    ERR_024_BEAM_CLOSING: 'An extra ''}'' to close a beam is present. Delete it or indicate where the beam starts with ''{''. '
+    ERR_025_BEAM_OPEN: Close the beam with '}' before the end of the measure.
+    ERR_026_GRACE_NESTED: Close the appoggiatura with 'r' before starting a new one.
+    ERR_027_GRACE_CLOSING: An 'r' is present to close an appoggiatura. Delete it or add 'qq' to indicate where it begins.
+    ERR_028_GRACE_OPEN: Close the appoggiatura with 'r' before the end of the measure.
+    ERR_029_GRACE_UNRESOLVED: Do not start an appoggiatura using 'q' before completing the previous one.
+    ERR_030_GRACE_DURATION: No rhythmic value can be entered when using an acciaccatura with 'g'.
+    ERR_031_GRACE_NO_NOTE: A grace note using 'g' or 'q' must be followed by a note.
+    ERR_032_TUPLET_NESTED: Do not start a special rhythm group with '(' before closing the previous one.
+    ERR_033_TUPLET_CLOSING: An extra ')' to close a special rhythm group is present. Delete it or indicate with '(' where the group begins.
+    ERR_034_TUPLET_NUM: A ';' is present outside of a special rhythm group.
+    ERR_035_TUPLET_OPEN: Close the special rhythm group or fermata with ')' before the end of the measure.
+    ERR_036_TUPLET_NUM_NUMBER: A number must appear between the ';' and ')' in the special rhythm group.
+    ERR_037_TIE_PITCH: A tie using '+' can only connect two notes of the same octave and pitch.
+    ERR_038_TIE_OPEN: A tie using '+' must be preceded by a note.
+    ERR_039_TIE_NO_NOTE: A tie using '+' must be preceded by a note.
+    ERR_040_HIERARCHY_INVALID: The order of elements cannot be interpreted (%{value}).
+    ERR_041_NESTING_INVALID: "Invalid nesting of opening and closing tags '%{value}'"
+    ERR_042_CLEF_INCOMPLETE: The clef is not in the correct form.
+    ERR_043_CLEF_INVALID_2ND: The second character in the clef sign must be either '+' or '-'.
+    ERR_044_CLEF_MENS: Do not mix mensural and non-mensural clefs.
+    ERR_045_CLEF_INVALID_3RD: The third character in the clef sign must be a digit.
+    ERR_046_CLEF_INVALID: The clef is not in the correct form.
+    ERR_047_TIMESIG_INCOMPLETE: The time signature is not in the correct form.
+    ERR_048_TIMESIG_INVALID: The time signature is not in the correct form.
+    ERR_049_TIMESIG_MENS: The time signature is not in the correct form.
+    ERR_050_INVALID_CHAR: 'Delete the following invalid character(s): %{value}'
+    ERR_051_BARLINE: The barline is not in the correct form.
+    ERR_052_DURATION: "Duration content cannot be parsed (Setting to quarter note if running in non-pedantic mode)"
+    ERR_053_DURATION_MENS3: The duration cannot be '3' with mensural notation.
+    ERR_054_DURATION_MENS5: The duration cannot be '5' with mensural notation.
+    ERR_055_KEYSIG_CHANGE: The key signature cannot be changed more than once in a measure.
+    ERR_056_TIMESIG_CHANGE: The time signature cannot be changed more than once in a measure.
+    ERR_057_MENSUR_CHANGE: The mensuration cannot be changed more than once in a measure.
+    ERR_058_FERMATA_MREST: "Fermata on measure rest with extraneous content '%{value}'"
