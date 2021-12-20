@@ -847,8 +847,8 @@ de:
     keysig: "Akzidentien"
     timesig: "Metrum"
     ERR_001_EMPTY: Enter an encoded incipit.
-    ERR_002_JSON_PARSE: "Cannot parse the JSON input"
-    ERR_003_JSON_KEY: "No 'data' key in the JSON input"
+    ERR_002_JSON_PARSE: "Cannot parse the JSON input."
+    ERR_003_JSON_KEY: "No 'data' key in the JSON input."
     ERR_004_KEY_SPACE: A key signature change must be followed by a space.
     ERR_005_CLEF_SPACE: A clef change must be followed by a space.
     ERR_006_TIMESIG_SPACE: A time signature change must be followed by a space.
@@ -858,8 +858,8 @@ de:
     ERR_010_REP_UNUSED: The figure marked for repetition has not been repeated. Indicate the repetition with an 'f'.
     ERR_011_REP_NO_FIGURE: The 'f' must follow '!' for the figure to repeat.
     ERR_012_REP_NOT_BEGIN: To repeat the bar, 'i' must be preceded by a bar line.
-    ERR_013_REP_NO_CONTENT: i' is present without content to repeat.
-    ERR_014_REP_NO_BARLINE: 'To repeat the bar, ''i'' must be followed by a bar line. '
+    ERR_013_REP_NO_CONTENT: "'i' is present without content to repeat."
+    ERR_014_REP_NO_BARLINE: 'To repeat the bar, ''i'' must be followed by a bar line.'
     ERR_015_MREST_INVALID: A rest using '=' cannot be directly followed by another '='.
     ERR_016_MREST_NUMBER: A rest using '=' must be followed by a bar line or a number greater than 0.
     ERR_017_TRILL_INVALID: A trill using 't' must directly follow the note it belongs to.
@@ -883,7 +883,7 @@ de:
     ERR_035_TUPLET_OPEN: Close the special rhythm group or fermata with ')' before the end of the measure.
     ERR_036_TUPLET_NUM_NUMBER: A number must appear between the ';' and ')' in the special rhythm group.
     ERR_037_TIE_PITCH: A tie using '+' can only connect two notes of the same octave and pitch.
-    ERR_038_TIE_OPEN: A tie using '+' must be preceded by a note.
+    ERR_038_TIE_OPEN: A tie using '+' must be followed by a note.
     ERR_039_TIE_NO_NOTE: A tie using '+' must be preceded by a note.
     ERR_040_HIERARCHY_INVALID: The order of elements cannot be interpreted (%{value}).
     ERR_041_NESTING_INVALID: "Invalid nesting of opening and closing tags '%{value}'"
