@@ -135,6 +135,7 @@ de:
     austria_tyrol: 'Österreich: Tirol'
     austria_upper_austria: 'Österreich: Oberösterreich'
     austria_vienna: 'Österreich: Wien'
+    belarus: Weißrussland
     belgium: Belgien
     benin: Benin
     brazil: Brasilien
@@ -737,7 +738,7 @@ de:
     series_statement: Gesamttitelangaben
     set: Set
     shelfmark: Signatur
-    shelfmark_olim: Former shelfmark (olim)
+    shelfmark_olim: Alte Signatur (olim)
     short_title: Kurztitel
     sigla: Sigel
     siglum: Sigel

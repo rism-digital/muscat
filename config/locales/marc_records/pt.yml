@@ -2,13 +2,13 @@ pt:
   general:
     created_at: "Criado em"
     e_mail: E-mail
-    editor_help: Editor help
+    editor_help: Ajuda do editor
     faq: Questões frequentes
-    female: Female
+    female: Feminino
     how_do_i: Como faço ...dicas & truques
     index_marc_fields: Índice dos campos MARC
-    male: Male
-    marc_tag_index: MARC tag index
+    male: Masculino
+    marc_tag_index: Índice de tag MARC
     'no': 'Não'
     rism: RISM
     rism_best_practices: Boas práticas no RISM
@@ -20,10 +20,10 @@ pt:
     scope_printed_music_rism: Âmbito da música impressa no RISM
     searching: Searching
     source_citation: Citação da fonte
-    status: Status
+    status: Estado
     undetermined: Indeterminado
-    ungrouped_fields: Ungrouped fields
-    unknown_fields: Unknown fields
+    ungrouped_fields: Campos não agrupados
+    unknown_fields: Campos desconhecidos
     unused: UNUSED - WILL BE REMOVED
     updated_at: Última modificação
     uri: URI
@@ -31,7 +31,7 @@ pt:
     using_muscat: Catalogando fontes
     validity: Validade
     when_to_input_new_record: Quando criar um novo registro (música impressa)
-    workflow: Workflow
+    workflow: Fluxo de trabalho
     'yes': 'Sim'
   languages:
     afrikaans: Africânder
@@ -41,13 +41,13 @@ pt:
     artificial: Artificial (outro)
     australian: Línguas australianas
     basque: Basco
-    bengali: Bengali
+    bengali: Bengalês
     bosnian: Bósnio
     bulgarian: Búlgaro
     catalan: Catalão
     celtic_other: Celtic (outro)
     chinese: Chinês
-    creoles_pidgins_other: Creoles and Pidgins (Other)
+    creoles_pidgins_other: Crioles e Pidgins (Outro)
     croatian: Croata
     czech: Tcheco
     danish: Dinamarquês
@@ -61,8 +61,8 @@ pt:
     french_old: Francês, antigo (ca. 842-1300)
     gallician: Galego
     german: Alemão
-    german_old_high: German, Old High (ca. 750-1050)
-    germanic: Germanic
+    german_old_high: Alemão, antigo (ca. 750-1050)
+    germanic: Alemão
     greek_ancient: Grego antigo (até 1453)
     greek_modern: Grego moderno (1453-)
     hebrew: Hebraico
@@ -109,7 +109,7 @@ pt:
     spanish: Castelhano
     swedish: Sueco
     swiss_german: Suíço-alemão
-    tagalog: Tagalog
+    tagalog: Tagalo
     tartar: Tártaro
     thai: Tailandês
     tibetan: Tibetano
@@ -122,12 +122,12 @@ pt:
     west_frisian: Frisão ocidental
     yiddish: Iídiche
   places:
-    algeria: Algeria
+    algeria: Algéria
     andorra: Andorra
     argentina: Argentina
-    armenia: Armenia
-    australia: Australia
-    austria: Austria
+    armenia: Armênia
+    australia: Austrália
+    austria: Áustria
     austria_carinthia: 'Austria: Carinthia'
     austria_lower_austria: 'Austria: Lower Austria'
     austria_salzburg: 'Austria: Salzburg'
@@ -135,19 +135,20 @@ pt:
     austria_tyrol: 'Austria: Tyrol'
     austria_upper_austria: 'Austria: Upper Austria'
     austria_vienna: 'Austria: Vienna'
-    belgium: Belgium
-    benin: Benin
-    brazil: Brazil
-    bulgaria: Bulgaria
-    cambodia: Cambodia
-    canada: Canada
+    belarus: Bielorrússia
+    belgium: Bélgica
+    benin: Benim
+    brazil: Brasil
+    bulgaria: Bulgária
+    cambodia: Camboja
+    canada: Canadá
     chile: Chile
     china: China
-    colombia: Colombia
-    croatia: Croatia
+    colombia: Colômbia
+    croatia: Croácia
     cuba: Cuba
-    czech_republic: Czech Republic
-    denmark: Denmark
+    czech_republic: República Checa
+    denmark: Dinamarca
     ecuador: Ecuador
     egypt: Egypt
     estonia: Estonia
@@ -202,52 +203,52 @@ pt:
     slovenia: Slovenia
     south_africa: South Africa
     spain: Spain
-    sweden: Sweden
-    switzerland: Switzerland
-    switzerland_vaud: 'Switzerland: Vaud'
-    syrian_arab_republic: Syrian Arab Republic
-    taiwan: Taiwan (Province of China)
-    trinidad_tobego: Trinidad and Tobago
-    turkey: Turkey
-    uk: United Kingdom
-    ukraine: Ukraine
-    uruguay: Uruguay
-    usa: United States of America
-    venezuela: Venezuela, Bolivarian Republic of
-    vietnam: Vietnam
+    sweden: Suécia
+    switzerland: Suíça
+    switzerland_vaud: 'Suíça: Vaud'
+    syrian_arab_republic: República Árabe da Síria
+    taiwan: Taiwan (Província da China)
+    trinidad_tobego: Trinidad e Tobago
+    turkey: Turquia
+    uk: Reino Unido
+    ukraine: Ucrânia
+    uruguay: Uruguai
+    usa: Estados Unidos da América
+    venezuela: Venezuela, República Bolivariana de
+    vietnam: Vietnã
   records:
     a_major: Lá  maior
     a_minor: Lá menor
-    abbreviations: Abbreviations
+    abbreviations: Abreviaturas
     abbreviations_terminology: Abreviaturas e terminologia
     access_restrictions: Restrições de acesso
     accession_number: Número de aquisição
     acronym: Acrónimo
-    added_entry_name: Added entry name
-    additional_author: Additional author
-    additional_bibliographic_information: Additional bibliographic information
+    added_entry_name: Nome da entrada adicionada
+    additional_author: Autor adicional
+    additional_bibliographic_information: Informações bibliográficas adicionais
     additional_biographical_information: Informação biográfica adicional
-    additional_choir_voice: Additional choir voice
+    additional_choir_voice: Voz adicional de coro
     additional_codes: Códigos adicionais seguindo o número ou código padrão
     additional_institution: Instituição adicional
     additional_personal_name: Nome de pessoa adicional
     additional_personal_name_lit: Nome de pessoa adicional
-    additional_solo_voice: Additional solo voice
+    additional_solo_voice: Voz solo adicional
     additional_title: Título adicional
     additional_title_lit: Título adicional
     administration: Administração
     af_major: Lá bemol maior
     af_minor: Lá bemol menor
     aide: assessor
-    aids: Aids
+    aids: Ajudas
     alleged: Suposta
-    alternate_spelling: Alternate spelling
-    archive: Archive
+    alternate_spelling: Ortografia alternativa
+    archive: Arquivo
     arrangement: Arranjo
     arrangement_statement: Menção de arranjo
     arranger: Arranjador [arr]
-    artist: Artist
-    artistic_production: Artistic production
+    artist: Artista
+    artistic_production: Produção artística
     as_major: Lá sustenido maior
     as_minor: Lá sustenido menor
     ascertained: Certificada
@@ -256,34 +257,34 @@ pt:
     associated_institution: Instituição associada
     associated_name: Nome associado [asn]
     associated_name_lit: Nome associado [asn]
-    associated_place: Associated Place
+    associated_place: Lugar associado
     attribution_qualifier: Atribuição
     authentication_code: Código de autenticação
     author: Autor [aut]
     author_editor: Autor/editor
     authorities: Autoridades
-    authority_agency: Authority agency
+    authority_agency: Agência de autoridade
     authority_record_control_number: Códigos adicionais seguindo o número ou código padrão
     authority_reference: Referência de autoridade
     autography: Autografia
     b_major: Si maior
     b_minor: Si menor
-    baptismal_name: Baptismal name
+    baptismal_name: Nome baptismal
     basic_functions: Funções básicas
     basso_continuo: Contínuo
     bf_major: Si bemol maior
     bf_minor: Si bemol menor
     bibliographic_reference: Referência bibliográfica
-    binder: Binder
+    binder: Ficheiro
     binding_note: Nota de encadernação
-    birth_name: Birth name
+    birth_name: Nome de nascimento
     book_format: Formato do livro
     bookseller: Livreiro [bsl]
-    bound_with: Bound with
+    bound_with: Vinculado com
     brass_instruments: Metais
     brief: Breve
     broader_term: Termo mais amplo
-    brother_of: Brother of
+    brother_of: Irmão de
     byname: Byname
     c_major: Dó maior
     c_minor: Dó menor
