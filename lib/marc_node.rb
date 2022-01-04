@@ -501,7 +501,7 @@ class MarcNode
           if field.start_with? "$"
             subfield = field[1]
             if strip_punctuation
-              value = field[2..].sub(/[ ,;\.]+$/, "")
+              value = field[2..].sub(/[ ,;:\.]+$/, "")
             else
               value = field[2..]
             end
