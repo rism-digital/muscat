@@ -80,6 +80,23 @@ class Place < ApplicationRecord
     integer :src_count_order, :stored => true do 
       Place.count_by_sql("select count(*) from sources_to_places where place_id = #{self[:id]}")
     end
+
+    integer :person_count_order, :stored => true do 
+      Place.count_by_sql("select count(*) from people_to_places where place_id = #{self[:id]}")
+    end
+
+    integer :institution_count_order, :stored => true do 
+      Place.count_by_sql("select count(*) from institutions_to_places where place_id = #{self[:id]}")
+    end
+
+    integer :publication_count_order, :stored => true do 
+      Place.count_by_sql("select count(*) from publications_to_places where place_id = #{self[:id]}")
+    end
+
+    integer :holding_count_order, :stored => true do 
+      Place.count_by_sql("select count(*) from holdings_to_places where place_id = #{self[:id]}")
+    end
+
   end
 
 end
