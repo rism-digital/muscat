@@ -248,6 +248,60 @@ ActiveAdmin.register Person do
       end
     end
 
+    active_admin_embedded_link_list(self, person, Publication) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_title_short), :short_name
+        context.column (I18n.t :filter_author), :author
+        context.column (I18n.t :filter_description), :description
+        if !is_selection_mode?
+          context.column "" do |publication|
+            link_to "View", controller: :publications, action: :show, id: publication.id
+          end
+        end
+      end
+    end
+
+    active_admin_embedded_link_list(self, person, Holding) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :lib_siglum
+        context.column (I18n.t :filter_source_name) {|hld| hld.source.std_title}
+        context.column (I18n.t :filter_source_composer) {|hld| hld.source.composer}
+        if !is_selection_mode?
+          context.column "" do |hold|
+            link_to I18n.t(:view_source), controller: :holdings, action: :show, id: hold.id
+          end
+        end
+      end
+    end
+
+    active_admin_embedded_link_list(self, person, Work) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_title), :title
+        if !is_selection_mode?
+          context.column "" do |work|
+            link_to "View", controller: :works, action: :show, id: work.id
+          end
+        end
+      end
+    end
+
+    active_admin_embedded_link_list(self, person, Person) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_full_name), :full_name
+        context.column (I18n.t :filter_life_dates), :life_dates
+        context.column (I18n.t :filter_alternate_names), :alternate_names
+        if !is_selection_mode?
+          context.column "" do |person|
+            link_to "View", controller: :people, action: :show, id: person.id
+          end
+        end
+      end
+    end
+
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, person )
     active_admin_navigation_bar( self )
