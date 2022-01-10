@@ -122,6 +122,7 @@ fr:
     west_frisian: Frison occidental
     yiddish: Yiddish
   places:
+    afghanistan: Afghanistan
     algeria: Algeria
     andorra: Andorre
     argentina: Argentina
@@ -135,9 +136,13 @@ fr:
     austria_tyrol: 'Autriche: Tyrol'
     austria_upper_austria: 'Autriche: Haute-Autriche'
     austria_vienna: 'Autriche: Vienne'
+    azerbiajan: Azerbaïdjan
+    bangladesh: Bangladesh
     belarus: Bélarus
     belgium: Belgique
     benin: Benin
+    bolivia: Bolivie
+    bosnia_herzegovina: Bosnie-Herzégovine
     brazil: Brésil
     bulgaria: Bulgarie
     cambodia: Cambodge
@@ -145,6 +150,7 @@ fr:
     chile: Chili
     china: Chine
     colombia: Colombie
+    costa_rica: Costa Rica
     croatia: Croatie
     cuba: Cuba
     czech_republic: République Tchèque
@@ -178,6 +184,7 @@ fr:
     korea: Corée, République de
     latvia: Lettonie
     lithuania: Lituanie
+    lebanon: Liban
     luxembourg: Luxembourg
     malta: Malte
     mexico: Mexique
@@ -186,8 +193,11 @@ fr:
     montenegro: Monténégro
     netherlands: Pays-Bas
     new_zealand: Nouvelle-Zélande
+    nicaragua: Nicaragua
+    north_macedonia: Macédoine du Nord
     northern_ireland: Irlande du Nord
     norway: Norvège
+    pakistan: Pakistan
     papua_new_guinea: Papouasie Nouvelle Guinée
     paraguay: Paraguay
     peru: Pérou
@@ -208,12 +218,14 @@ fr:
     switzerland_vaud: 'Suisse: Vaud'
     syrian_arab_republic: République arabe syrienne
     taiwan: Taiwan, Province de Chine
+    tajikistan: Tadjikistan
     trinidad_tobego: Trinité-et-Tobago
     turkey: Turquie
     uk: Royaume-Uni
     ukraine: Ukraine
     uruguay: Uruguay
     usa: États-Unis d'Amérique
+    uzbekistan: Ouzbékistan
     venezuela: Venezuela, République bolivarienne du
     vietnam: Vietnam
   records:
@@ -569,24 +581,24 @@ fr:
     mode_11tt: 'Mode: 11tt – Ionien, transposé'
     mode_12t: 'Mode: 12t – Hypoionien'
     mode_12tt: 'Mode: 12tt – Hypoionien, transposé'
-    mode_1t: 'Mode:  1t – Dorien'
-    mode_1tt: 'Mode:  1tt – Dorien, transposé'
-    mode_2t: 'Mode:  2t – Hypodorien'
-    mode_2tt: 'Mode:  2tt – Hypodorien, transposé'
-    mode_3t: 'Mode:  3t – Phrygien'
-    mode_3tt: 'Mode:  3tt – Phrygien, transposé'
-    mode_4t: 'Mode:  4t – Hypophrygien'
-    mode_4tt: 'Mode:  4tt – Hypophrygien, transposé'
-    mode_5t: 'Mode:  5t – Lydien'
-    mode_5tt: 'Mode:  5tt – Lydien, transposé'
-    mode_6t: 'Mode:  6t – Hypolydien'
-    mode_6tt: 'Mode:  6tt – Hypolydien, transposé'
-    mode_7t: 'Mode:  7t – Mixolydien'
-    mode_7tt: 'Mode:  7tt – Mixolydien, transposé'
-    mode_8t: 'Mode:  8t – Hypomixolydien'
-    mode_8tt: 'Mode:  8tt – Hypomixolydien, transposé'
-    mode_9t: 'Mode:  9t – Eolien'
-    mode_9tt: 'Mode:  9tt – Eolien, transposé'
+    mode_1t: 'Mode: 1t – Dorien'
+    mode_1tt: 'Mode: 1tt – Dorien, transposé'
+    mode_2t: 'Mode: 2t – Hypodorien'
+    mode_2tt: 'Mode: 2tt – Hypodorien, transposé'
+    mode_3t: 'Mode: 3t – Phrygien'
+    mode_3tt: 'Mode: 3tt – Phrygien, transposé'
+    mode_4t: 'Mode: 4t – Hypophrygien'
+    mode_4tt: 'Mode: 4tt – Hypophrygien, transposé'
+    mode_5t: 'Mode: 5t – Lydien'
+    mode_5tt: 'Mode: 5tt – Lydien, transposé'
+    mode_6t: 'Mode: 6t – Hypolydien'
+    mode_6tt: 'Mode: 6tt – Hypolydien, transposé'
+    mode_7t: 'Mode: 7t – Mixolydien'
+    mode_7tt: 'Mode: 7tt – Mixolydien, transposé'
+    mode_8t: 'Mode: 8t – Hypomixolydien'
+    mode_8tt: 'Mode: 8tt – Hypomixolydien, transposé'
+    mode_9t: 'Mode: 9t – Eolien'
+    mode_9tt: 'Mode: 9tt – Eolien, transposé'
     modifying_agency: Organisme de la modification
     monogram: Monogramme
     mother_of: Mère de

@@ -122,6 +122,7 @@ es:
     west_frisian: Frisón occidental
     yiddish: Yidis
   places:
+    afghanistan: Afganistán
     algeria: Argelia
     andorra: Andorra
     argentina: Argentina
@@ -135,9 +136,13 @@ es:
     austria_tyrol: 'Austria: Tirol'
     austria_upper_austria: 'Austria: Alta Austria'
     austria_vienna: 'Austria: Viena'
+    azerbiajan: Azerbaiyán
+    bangladesh: Bangladesh
     belarus: Bielorrusia
     belgium: Bélgica
     benin: Benín
+    bolivia: Bolivia
+    bosnia_herzegovina: Bosnia-Herzegovina
     brazil: Brasil
     bulgaria: Bulgaria
     cambodia: Camboya
@@ -145,6 +150,7 @@ es:
     chile: Chile
     china: China
     colombia: Colombia
+    costa_rica: Costa Rica
     croatia: Croacia
     cuba: Cuba
     czech_republic: República Checa
@@ -178,6 +184,7 @@ es:
     korea: Corea, República de
     latvia: Letonia
     lithuania: Lituania
+    lebanon: Líbano
     luxembourg: Luxemburgo
     malta: Malta
     mexico: México
@@ -186,8 +193,11 @@ es:
     montenegro: Montenegro
     netherlands: Países Bajos
     new_zealand: Nueva Zelanda
+    nicaragua: Nicaragua
+    north_macedonia: Macedonia del Norte
     northern_ireland: Irlanda del Norte
     norway: Noruega
+    pakistan: Pakistán
     papua_new_guinea: Papúa Nueva Guinea
     paraguay: Paraguay
     peru: Perú
@@ -208,12 +218,14 @@ es:
     switzerland_vaud: 'Suiza: cantón de Vaud'
     syrian_arab_republic: República Árabe Siria
     taiwan: Taiwán (Provincia de China)
+    tajikistan: Tayikistán
     trinidad_tobego: Trinidad y Tobago
     turkey: Turquía
     uk: Reino Unido
     ukraine: Ucrania
     uruguay: Uruguay
     usa: Estados Unidos de América
+    uzbekistan: Uzbekistán
     venezuela: Venezuela, República Bolivariana de
     vietnam: Vietnam
   records:
@@ -571,22 +583,22 @@ es:
     mode_12tt: 'Modo:  12º tono (Hipojónico), transpuesto'
     mode_1t: 'Modo: 1º tono (Dórico)'
     mode_1tt: 'Modo: 1º tono (Dórico), transpuesto'
-    mode_2t: 'Modo:  2º tono (Hipodórico)'
-    mode_2tt: 'Modo:  2º tono (Hipodórico), transpuesto'
-    mode_3t: 'Modo:  3º tono (Frigio)'
-    mode_3tt: 'Modo:  3º tono (Frigio), transpuesto'
-    mode_4t: 'Modo:  4º tono (Hipofrigio)'
-    mode_4tt: 'Modo:  4º tono (Hipofrigio), transpuesto'
-    mode_5t: 'Modo:  5º tono (Lidio)'
-    mode_5tt: 'Modo:  5º tono (Lidio), transpuesto'
-    mode_6t: 'Modo:  6º tono (Hipolidio)'
-    mode_6tt: 'Modo:  6º tono (Hipolidio), transpuesto'
-    mode_7t: 'Modo:  7º tono (Mixolidio)'
-    mode_7tt: 'Modo:  7º tono (Mixolidio), transpuesto'
-    mode_8t: 'Modo:  8º tono (Hipomixolidio)'
-    mode_8tt: 'Modo:  8º tono (Hipomixolidio), transpuesto'
-    mode_9t: 'Modo:  9º tono (Eólico)'
-    mode_9tt: 'Modo:  9º tono (Eólico), transpuesto'
+    mode_2t: 'Modo: 2º tono (Hipodórico)'
+    mode_2tt: 'Modo: 2º tono (Hipodórico), transpuesto'
+    mode_3t: 'Modo: 3º tono (Frigio)'
+    mode_3tt: 'Modo: 3º tono (Frigio), transpuesto'
+    mode_4t: 'Modo: 4º tono (Hipofrigio)'
+    mode_4tt: 'Modo: 4º tono (Hipofrigio), transpuesto'
+    mode_5t: 'Modo: 5º tono (Lidio)'
+    mode_5tt: 'Modo: 5º tono (Lidio), transpuesto'
+    mode_6t: 'Modo: 6º tono (Hipolidio)'
+    mode_6tt: 'Modo: 6º tono (Hipolidio), transpuesto'
+    mode_7t: 'Modo: 7º tono (Mixolidio)'
+    mode_7tt: 'Modo: 7º tono (Mixolidio), transpuesto'
+    mode_8t: 'Modo: 8º tono (Hipomixolidio)'
+    mode_8tt: 'Modo: 8º tono (Hipomixolidio), transpuesto'
+    mode_9t: 'Modo: 9º tono (Eólico)'
+    mode_9tt: 'Modo: 9º tono (Eólico), transpuesto'
     modifying_agency: Agencia de la modificación
     monogram: Monograma
     mother_of: Madre de

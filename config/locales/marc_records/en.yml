@@ -141,6 +141,7 @@ en:
     belarus: Belarus
     belgium: Belgium
     benin: Benin
+    bolivia: Bolivia
     bosnia_herzegovina: Bosnia and Herzegovina
     brazil: Brazil
     bulgaria: Bulgaria
@@ -580,24 +581,24 @@ en:
     mode_11tt: 'Mode: 11tt – Ionian, transposed'
     mode_12t: 'Mode: 12t – Hypoionian'
     mode_12tt: 'Mode: 12tt – Hypoionian, transposed'
-    mode_1t: 'Mode:  1t – Dorian'
-    mode_1tt: 'Mode:  1tt – Dorian, transposed'
-    mode_2t: 'Mode:  2t – Hypodorian'
-    mode_2tt: 'Mode:  2tt – Hypodorian, transposed'
-    mode_3t: 'Mode:  3t – Phrygian'
-    mode_3tt: 'Mode:  3tt – Phrygian, transposed'
-    mode_4t: 'Mode:  4t – Hypophrygian'
-    mode_4tt: 'Mode:  4tt – Hypophrygian, transposed'
-    mode_5t: 'Mode:  5t – Lydian'
-    mode_5tt: 'Mode:  5tt – Lydian, transposed'
-    mode_6t: 'Mode:  6t – Hypolydian'
-    mode_6tt: 'Mode:  6tt – Hypolydian, transposed'
-    mode_7t: 'Mode:  7t – Mixolydian'
-    mode_7tt: 'Mode:  7tt – Mixolydian, transposed'
-    mode_8t: 'Mode:  8t – Hypomixolydian'
-    mode_8tt: 'Mode:  8tt – Hypomixolydian, transposed'
-    mode_9t: 'Mode:  9t – Aeolian'
-    mode_9tt: 'Mode:  9tt – Aeolian, transposed'
+    mode_1t: 'Mode: 1t – Dorian'
+    mode_1tt: 'Mode: 1tt – Dorian, transposed'
+    mode_2t: 'Mode: 2t – Hypodorian'
+    mode_2tt: 'Mode: 2tt – Hypodorian, transposed'
+    mode_3t: 'Mode: 3t – Phrygian'
+    mode_3tt: 'Mode: 3tt – Phrygian, transposed'
+    mode_4t: 'Mode: 4t – Hypophrygian'
+    mode_4tt: 'Mode: 4tt – Hypophrygian, transposed'
+    mode_5t: 'Mode: 5t – Lydian'
+    mode_5tt: 'Mode: 5tt – Lydian, transposed'
+    mode_6t: 'Mode: 6t – Hypolydian'
+    mode_6tt: 'Mode: 6tt – Hypolydian, transposed'
+    mode_7t: 'Mode: 7t – Mixolydian'
+    mode_7tt: 'Mode: 7tt – Mixolydian, transposed'
+    mode_8t: 'Mode: 8t – Hypomixolydian'
+    mode_8tt: 'Mode: 8tt – Hypomixolydian, transposed'
+    mode_9t: 'Mode: 9t – Aeolian'
+    mode_9tt: 'Mode: 9tt – Aeolian, transposed'
     modifying_agency: Modifying agency
     monogram: Monogram
     mother_of: Mother of

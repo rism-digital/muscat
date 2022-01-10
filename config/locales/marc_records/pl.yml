@@ -122,6 +122,7 @@ pl:
     west_frisian: Zchodniofryzyjski
     yiddish: Jidysz
   places:
+    afghanistan: Afganistan
     algeria: Algieria
     andorra: Andora
     argentina: Argentyna
@@ -135,9 +136,13 @@ pl:
     austria_tyrol: 'Austria: Tyrol'
     austria_upper_austria: 'Austria: Górna Austria'
     austria_vienna: 'Austria: Wiedeń'
+    azerbiajan: Azerbejdżan
+    bangladesh: Bangladesz
     belarus: Białoruś
     belgium: Belgia
     benin: Benin
+    bolivia: Boliwia
+    bosnia_herzegovina: Bośnia i Hercegowina
     brazil: Brazylia
     bulgaria: Bułgaria
     cambodia: Kambodża
@@ -145,6 +150,7 @@ pl:
     chile: Chile
     china: Chiny
     colombia: Kolumbia
+    costa_rica: Kostaryka
     croatia: Chorwacja
     cuba: Kuba
     czech_republic: Czechy
@@ -178,6 +184,7 @@ pl:
     korea: Korea, Republika
     latvia: Łotwa
     lithuania: Litwa
+    lebanon: Liban
     luxembourg: Luksemburg
     malta: Malta
     mexico: Meksyk
@@ -186,8 +193,11 @@ pl:
     montenegro: Czarnogóra
     netherlands: Niderlandy
     new_zealand: Nowa Zelandia
+    nicaragua: Nikaragua
+    north_macedonia: Macedonia Północna
     northern_ireland: Irlandia Północna
     norway: Norwegia
+    pakistan: Pakistan
     papua_new_guinea: Papua Nowa Gwinea
     paraguay: Paragwaj
     peru: Peru
@@ -208,12 +218,14 @@ pl:
     switzerland_vaud: 'Szwajcaria: kanton Vaud'
     syrian_arab_republic: Syryjska Republika Arabska
     taiwan: Tajwan (prowincja Chin)
+    tajikistan: Tadżykistan
     trinidad_tobego: Trynidad i Tobago
     turkey: Turcja
     uk: Zjednoczone Królestwo
     ukraine: Ukraina
     uruguay: Urugwaj
     usa: Stany Zjednoczone AP
+    uzbekistan: Uzbekistan
     venezuela: Wenezuela, Republika Boliwariańska
     vietnam: Wietnam
   records:

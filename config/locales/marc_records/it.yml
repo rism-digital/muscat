@@ -122,6 +122,7 @@ it:
     west_frisian: Frisone occidentale
     yiddish: Yiddish
   places:
+    afghanistan: Afghanistan
     algeria: Algeria
     andorra: Andorra
     argentina: Argentina
@@ -135,9 +136,13 @@ it:
     austria_tyrol: 'Austria: Tirolo'
     austria_upper_austria: 'Austria: Austria Superiore'
     austria_vienna: 'Austria: Vienna'
+    azerbiajan: Azerbaigian
+    bangladesh: Bangladesh
     belarus: Bielorussia
     belgium: Belgio
     benin: Benin
+    bolivia: Bolivia
+    bosnia_herzegovina: Bosnia ed Herzegovina
     brazil: Brasile
     bulgaria: Bulgaria
     cambodia: Cambogia
@@ -145,6 +150,7 @@ it:
     chile: Cile
     china: Cina
     colombia: Colombia
+    costa_rica: Costa Rica
     croatia: Croazia
     cuba: Cuba
     czech_republic: Repubblica Ceca
@@ -178,6 +184,7 @@ it:
     korea: Corea, Repubblica di
     latvia: Lettonia
     lithuania: Lituania
+    lebanon: Lebano
     luxembourg: Lussemburgo
     malta: Malta
     mexico: Messico
@@ -186,8 +193,11 @@ it:
     montenegro: Montenegro
     netherlands: Paesi Bassi
     new_zealand: Nuova Zelanda
+    nicaragua: Nicaragua
+    north_macedonia: Macedonia del Nord
     northern_ireland: Irlanda del Nord
     norway: Norvegia
+    pakistan: Pakistan
     papua_new_guinea: Papua Nuova Guinea
     paraguay: Paraguay
     peru: Perù
@@ -208,12 +218,14 @@ it:
     switzerland_vaud: 'Svizzera: Vaud'
     syrian_arab_republic: Repubblica Araba Siriana
     taiwan: Taiwan (provincia della Cina)
+    tajikistan: Tagikistan
     trinidad_tobego: Trinidad e Tobago
     turkey: Turchia
     uk: Regno Unito
     ukraine: Ucraina
     uruguay: Uruguay
     usa: Stati Uniti d'America
+    uzbekistan: Uzbekistan
     venezuela: Venezuela, Repubblica Bolivariana del
     vietnam: Vietnam
   records:
@@ -569,24 +581,24 @@ it:
     mode_11tt: 'Modo: 11tt – Ionico, trasposto'
     mode_12t: 'Modo: 12t – Ipoionico'
     mode_12tt: 'Modo: 12tt – Ipoionico, trasposto'
-    mode_1t: 'Modo:  1t – Dorico'
-    mode_1tt: 'Modo:  1tt – Dorico, trasposto'
-    mode_2t: 'Modo:  2t – Ipodorico'
-    mode_2tt: 'Modo:  2tt – Ipodorico, trasposto'
-    mode_3t: 'Modo:  3t – Frigio'
-    mode_3tt: 'Modo:  3tt – Frigio, trasposto'
-    mode_4t: 'Modo:  4t – Ipofrigio'
-    mode_4tt: 'Modo:  4tt – Ipofrigio, trasposto'
-    mode_5t: 'Modo:  5t – Lidio'
-    mode_5tt: 'Modo:  5tt – Lidio, trasposto'
-    mode_6t: 'Modo:  6t – Ipolidio'
-    mode_6tt: 'Modo:  6tt – Ipolidio, trasposto'
-    mode_7t: 'Modo:  7t – Misolidio'
-    mode_7tt: 'Modo:  7tt – Misolidio, trasposto'
-    mode_8t: 'Modo:  8t – Ipomisolidio'
-    mode_8tt: 'Modo:  8tt – Ipomisolidio, trasposto'
-    mode_9t: 'Modo:  9t – Eolico'
-    mode_9tt: 'Modo:  9tt – Eolico, trasposto'
+    mode_1t: 'Modo: 1t – Dorico'
+    mode_1tt: 'Modo: 1tt – Dorico, trasposto'
+    mode_2t: 'Modo: 2t – Ipodorico'
+    mode_2tt: 'Modo: 2tt – Ipodorico, trasposto'
+    mode_3t: 'Modo: 3t – Frigio'
+    mode_3tt: 'Modo: 3tt – Frigio, trasposto'
+    mode_4t: 'Modo: 4t – Ipofrigio'
+    mode_4tt: 'Modo: 4tt – Ipofrigio, trasposto'
+    mode_5t: 'Modo: 5t – Lidio'
+    mode_5tt: 'Modo: 5tt – Lidio, trasposto'
+    mode_6t: 'Modo: 6t – Ipolidio'
+    mode_6tt: 'Modo: 6tt – Ipolidio, trasposto'
+    mode_7t: 'Modo: 7t – Misolidio'
+    mode_7tt: 'Modo: 7tt – Misolidio, trasposto'
+    mode_8t: 'Modo: 8t – Ipomisolidio'
+    mode_8tt: 'Modo: 8tt – Ipomisolidio, trasposto'
+    mode_9t: 'Modo: 9t – Eolico'
+    mode_9tt: 'Modo: 9tt – Eolico, trasposto'
     modifying_agency: Agenzia della modifica
     monogram: Monogramma
     mother_of: Madre di

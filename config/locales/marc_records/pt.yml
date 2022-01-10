@@ -24,7 +24,7 @@ pt:
     undetermined: Indeterminado
     ungrouped_fields: Campos não agrupados
     unknown_fields: Campos desconhecidos
-    unused: UNUSED - WILL BE REMOVED
+    unused: NÃO USADO - SERÁ REMOVIDO
     updated_at: Última modificação
     uri: URI
     url: URL
@@ -122,6 +122,7 @@ pt:
     west_frisian: Frisão ocidental
     yiddish: Iídiche
   places:
+    afghanistan: Afeganistão
     algeria: Algéria
     andorra: Andorra
     argentina: Argentina
@@ -135,9 +136,13 @@ pt:
     austria_tyrol: 'Austria: Tyrol'
     austria_upper_austria: 'Austria: Upper Austria'
     austria_vienna: 'Austria: Vienna'
+    azerbiajan: Azerbaijão
+    bangladesh: Bangladesh
     belarus: Bielorrússia
     belgium: Bélgica
     benin: Benim
+    bolivia: Bolívia
+    bosnia_herzegovina: Bósnia Herzegovina
     brazil: Brasil
     bulgaria: Bulgária
     cambodia: Camboja
@@ -145,75 +150,82 @@ pt:
     chile: Chile
     china: China
     colombia: Colômbia
+    costa_rica: Costa Rica
     croatia: Croácia
     cuba: Cuba
     czech_republic: República Checa
     denmark: Dinamarca
-    ecuador: Ecuador
-    egypt: Egypt
-    estonia: Estonia
-    finland: Finland
-    france: France
-    georgia: Georgia
-    germany: Germany
-    germany_bavaria: 'Germany: Bavaria'
-    germany_saxony: 'Germany: Saxony'
-    greece: Greece
+    ecuador: Equador
+    egypt: Egito
+    estonia: Estónia
+    finland: Finlândia
+    france: França
+    georgia: Geórgia
+    germany: Alemanha
+    germany_bavaria: 'Alemanha: Baviera'
+    germany_saxony: 'Alemanha: Saxônia'
+    greece: Grécia
     guatemala: Guatemala
     guinea: Guinea
-    holy_see: Holy See
+    holy_see: Santa Sé
     honduras: Honduras
     hong_kong: Hong Kong
-    hungary: Hungary
-    iceland: Iceland
-    india: India
+    hungary: Hungria
+    iceland: Islândia
+    india: Índia
     indonesia: Indonésia
-    iran: Iran, Islamic Republic of
-    iraq: Iraq
-    ireland: Ireland
+    iran: Irão
+    iraq: Iraque
+    ireland: Irlanda
     israel: Israel
-    italy: Italy
-    italy_trentino_alto_adige: 'Italy: Trentino-Alto Adige'
-    japan: Japan
-    korea: Korea, Republic of
-    latvia: Latvia
-    lithuania: Lithuania
-    luxembourg: Luxembourg
+    italy: Itália
+    italy_trentino_alto_adige: 'Itália: Trentino-Alto Adige'
+    japan: Japão
+    korea: Coreia, República da
+    latvia: Letónia
+    lithuania: Lituânia
+    lebanon: Líbano
+    luxembourg: Luxemburgo
     malta: Malta
-    mexico: Mexico
-    moldavia: Moldavia
-    monaco: Monaco
+    mexico: México
+    moldavia: Moldávia
+    monaco: Mónaco
     montenegro: Montenegro
-    netherlands: Netherlands
+    netherlands: Países Baixos
     new_zealand: Nova Zelândia
+    nicaragua: Nicarágua
+    north_macedonia: Macedónia do Norte
     northern_ireland: Irlanda do Norte
-    norway: Norway
+    norway: Noruega
+    pakistan: Paquistão
     papua_new_guinea: Papua Nova Guiné
-    paraguay: Paraguay
+    paraguay: Paraguai
     peru: Peru
     philippines: Filipinas
-    poland: Poland
+    poland: Polónia
     portugal: Portugal
-    puerto_rico: Puerto Rico
-    romania: Romania
-    russian_federation: Russian Federation
+    puerto_rico: Porto Rico
+    romania: Romênia
+    russian_federation: Federação Russa
     saudi_arabia: Arábia Saudita
-    serbia: Serbia
-    slovakia: Slovakia
-    slovenia: Slovenia
-    south_africa: South Africa
-    spain: Spain
+    serbia: Sérvia
+    slovakia: Eslováquia
+    slovenia: Eslovénia
+    south_africa: África do Sul
+    spain: Espanha
     sweden: Suécia
     switzerland: Suíça
     switzerland_vaud: 'Suíça: Vaud'
     syrian_arab_republic: República Árabe da Síria
     taiwan: Taiwan (Província da China)
+    tajikistan: Tajiquistão
     trinidad_tobego: Trinidad e Tobago
     turkey: Turquia
     uk: Reino Unido
     ukraine: Ucrânia
     uruguay: Uruguai
     usa: Estados Unidos da América
+    uzbekistan: Uzbequistão
     venezuela: Venezuela, República Bolivariana de
     vietnam: Vietnã
   records:
@@ -239,28 +251,28 @@ pt:
     administration: Administração
     af_major: Lá bemol maior
     af_minor: Lá bemol menor
-    aide: assessor
+    aide: Assessor
     aids: Ajudas
     alleged: Suposta
     alternate_spelling: Ortografia alternativa
     archive: Arquivo
     arrangement: Arranjo
     arrangement_statement: Menção de arranjo
-    arranger: Arranjador [arr]
+    arranger: Arranjador
     artist: Artista
     artistic_production: Produção artística
     as_major: Lá sustenido maior
     as_minor: Lá sustenido menor
     ascertained: Certificada
-    assignee: Cessionário [asg]
+    assignee: Cessionário
     associated_country: País associado
     associated_institution: Instituição associada
-    associated_name: Nome associado [asn]
-    associated_name_lit: Nome associado [asn]
+    associated_name: Nome associado
+    associated_name_lit: Nome associado
     associated_place: Lugar associado
     attribution_qualifier: Atribuição
     authentication_code: Código de autenticação
-    author: Autor [aut]
+    author: Autor
     author_editor: Autor/editor
     authorities: Autoridades
     authority_agency: Agência de autoridade
@@ -279,7 +291,7 @@ pt:
     binding_note: Nota de encadernação
     birth_name: Nome de nascimento
     book_format: Formato do livro
-    bookseller: Livreiro [bsl]
+    bookseller: Livreiro
     bound_with: Vinculado com
     brass_instruments: Metais
     brief: Breve
@@ -309,7 +321,7 @@ pt:
     cataloging_musical_sources: Catalogando fontes musicais
     cataloging_source: Agência catalogadora
     category: Category
-    censor: Censor [cns]
+    censor: Censor
     cf_major: Dó bemol maior
     cf_minor: Dó bemol menor
     child_of: Child of
@@ -319,7 +331,7 @@ pt:
     chronological_term: Chronological term
     city: City
     clef: Clave
-    co_composer: Co-compositor [ctb]
+    co_composer: Co-compositor
     coded_date: Data codificada
     coded_instrumentation: Instrumentação codificada
     collaborator: Collaborator
@@ -328,9 +340,9 @@ pt:
     compiler: Compiler
     composer: Composer
     composer_author: Compositor/Autor
-    composer_cross_reference: Referência cruzada de compositor [cmp]
+    composer_cross_reference: Referência cruzada de compositor
     computer_printout: Impressão de computador
-    conceptor: Conceptor [ccp]
+    conceptor: Conceptor
     conductor: Conductor
     confused_with: Confused with
     conjectural: Conjetural
@@ -344,8 +356,8 @@ pt:
     control_number_identifier: Identificador de número de controle
     control_subfield: Subcampo de controlo
     copy_examined: Exemplar examinado para catalogação
-    copyist: Copista [scr]
-    copyright_holder: Detentor dos direitos de cópia/reprodução [cph]
+    copyist: Copista
+    copyright_holder: Detentor dos direitos de cópia/reprodução
     costume_designer: Costume designer
     countries_places: Countries and Places
     country: Country
@@ -366,23 +378,23 @@ pt:
     date_time_last_transaction: Data e hora da última transação
     date_type: Tipo de data
     dates: Datas
-    dedicatee: Dedicatário(a) [dte]
+    dedicatee: Dedicatário(a)
     department: Departamento
-    depositor: Depositante [dpt]
+    depositor: Depositante
     description: Description
     description_area: Descrição
     description_summary: Síntese da descrição
     designer: Designer
     df_major: Ré bemol maior
     df_minor: Ré bemol menor
-    digital_objects: Objetos Digitais
+    digital_objects: Objetos digitais
     digitized_music: Digitized music
     digitized_source: Fonte digitalizada
     dimensions: Dimensões
     diplomatic_title: Diplomatic title
     dissertation_note: Dissertation note
     distribution: Distribution
-    distributor: Distribuidor [dst]
+    distributor: Distribuidor
     documentation_center: Documentation center
     donor: Donor
     doubtful: Duvidosa
@@ -398,14 +410,14 @@ pt:
     edition: Edition
     edition_imprint_fields: Edition, imprint, etc. fields
     edition_statement: Edition statement
-    editor: Editor [edt]
+    editor: Editor
     ef_major: Mi bemol maior
     ef_minor: Mi bemol menor
     end_period: Período final
-    engraver: Gravador [egr]
+    engraver: Gravador
     engraving: Gravação
     event_organizer: Event organizer
-    event_place: Local do evento [evp]
+    event_place: Local do evento
     excerpts: Excertos
     exemplars: Materiais
     extent: Extent
@@ -425,9 +437,9 @@ pt:
     f_plus_3: F+3
     f_plus_4: F+4
     f_plus_5: F+5
-    facsimile: Fac-símile
-    family_name: Family Name
-    father_of: Father of
+    facsimile: Facsímile
+    family_name: Sobrenome
+    father_of: Pai de
     field_link: Ligação de campo e número de sequência
     field_of_activity: Campo de actividade
     figured_bass_scores: Baixo cifrado
@@ -436,14 +448,14 @@ pt:
     first_second_group: Primeiro/Segundo grupo
     form_subdivision: Form subdivision
     format_extent: Formato, extensão
-    former_owner: Proprietário anterior [fmo]
+    former_owner: Proprietário anterior
     fragments: Fragmentos
     friulano: Friulano
     fs_major: Fá sustenido maior
     fs_minor: Fá sustenido menor
     full: Completo
     function: Função
-    further_information: Further information
+    further_information: Informações adicionais
     g_major: Sol maior
     g_minor: Sol menor
     g_minus_1: G-1
@@ -457,7 +469,7 @@ pt:
     g_plus_3: G+3
     g_plus_4: G+4
     g_plus_5: G+5
-    gender: Gender
+    gender: Género
     general_abbreviations: Abreviaturas e termos gerais
     general_cataloguing_guidelines: Diretrizes gerais para catalogação
     general_note: Nota geral
@@ -470,17 +482,17 @@ pt:
     gf_minor: Sol bemol menor
     gs_major: Sol sustenido maior
     gs_minor: Sol sustenido menor
-    heading: Heading
+    heading: Cabeçalho
     heading_composer_name: Heading - composer name
     heading_personal_name: Heading - Personal name
     heading_personal_name1: Título-Nome de pessoa
     help_transposing_instruments: Ajuda para instrumentos transpositores
     history_institution: História da instituição
     holdings_location: Holdings, location, etc. fields
-    identity: Identity
+    identity: Identidade
     identity_area: Identidade
     iiif_manifest: Manifesto IIIF
-    illustrator: Ilustrador [ill]
+    illustrator: Ilustrador
     immediate_parent_body: Progenitor imediato
     import: Importação
     imprint: Carimbo/marca
@@ -489,9 +501,9 @@ pt:
     incipits: Incipit
     index_terms: Index terms
     information_found: Information found
-    initial: Initial
+    initial: Inicial
     initial_entry: Entrada inicial
-    initials: Initials
+    initials: Iniciais
     insertions: Inserções
     inserts: Inserções
     institution: Instituição
@@ -513,7 +525,7 @@ pt:
     keyboards: Teclados
     keys: Tonalidades
     language_code: Código de idioma
-    language_codes: Código de idioma
+    language_codes: Códigos de idioma
     language_libretto: Idioma do libreto
     language_note: Nota de idioma
     language_of_cataloging: Idioma de catalogação
@@ -526,15 +538,15 @@ pt:
     library_information: Informação da instituição
     library_information_relations: Informação da instituição e relações
     library_siglum: Sigla da Instituição
-    librettist: Libretista [lbt]
-    licensee: Titular [lse]
+    librettist: Libretista
+    licensee: Titular
     life_dates: Datas de nascimento e morte
     link_type: Tipo de Link
     linkage: Ligação
     linking_entry_fields: Linking entry fields
     literature: Literatura
     lithograph: Lithograph
-    lithographer: Litógrafo [ltg]
+    lithographer: Litógrafo
     lithography: Litografia
     liturgical_festival: Festa litúrgica
     liturgical_festivals: Festas litúrgicas
@@ -549,7 +561,7 @@ pt:
     location_performance: Local de performance
     location_printer: Local de impressão
     longitude: Longitude
-    lyricist: Lyricist
+    lyricist: Letrista
     main_entry_fields: Campos de entrada principal
     married_name: Married name
     married_to: Married to
@@ -562,39 +574,39 @@ pt:
     mensural_clefs: Claves mensurais
     method_of_acquisition: Método de aquisição
     misattributed: Equivocada
-    miscellaneous: Miscellaneous
+    miscellaneous: Diversos
     mode_10t: 'Modo: 10º tom (Hipoeólio)'
     mode_10tt: 'Modo: 10º tom (Hipoeólio), transposta'
-    mode_11t: 'Modo:  11º tom (Jônio)'
-    mode_11tt: 'Modo:  11º tom (Jônio), transposta'
-    mode_12t: 'Modo:  12º modo (Hipojônio)'
-    mode_12tt: 'Modo:  12º modo (Hipojônio), transposta'
-    mode_1t: 'Modo:  1º tom (Dórico)'
-    mode_1tt: 'Modo:  1º tom (Dórico), transposta'
-    mode_2t: 'Modo:  2º tom (Hipodórico)'
-    mode_2tt: 'Modo:  2º tom (Hipodórico), transposta'
-    mode_3t: 'Modo:  3º tom (Frígio)'
-    mode_3tt: 'Modo:  3º tom (Frígio), transposta'
-    mode_4t: 'Modo:  4º tom (Hipofrígio)'
-    mode_4tt: 'Modo:  4º tom (Hipofrígio), transposta'
-    mode_5t: 'Modo:  5º tom (Lídio)'
-    mode_5tt: 'Modo:  5º tom (Lídio), transposta'
-    mode_6t: 'Modo:  6º tom (Hipolídio)'
-    mode_6tt: 'Modo:  6º tom (Hipolídio), transposta'
-    mode_7t: 'Modo:  7º tom (Mixolídio)'
-    mode_7tt: 'Modo:  7º tom (Mixolídio), transposta'
-    mode_8t: 'Modo:  8º tom (Hipomixolídio)'
-    mode_8tt: 'Modo:  8º tom (Hipomixolídio), transposta'
-    mode_9t: 'Modo:  9º tom (Eólio)'
-    mode_9tt: 'Modo:  9º tom (Eólio), transposta'
-    modifying_agency: Modifying agency
+    mode_11t: 'Modo: 11º tom (Jônio)'
+    mode_11tt: 'Modo: 11º tom (Jônio), transposta'
+    mode_12t: 'Modo: 12º modo (Hipojônio)'
+    mode_12tt: 'Modo: 12º modo (Hipojônio), transposta'
+    mode_1t: 'Modo: 1º tom (Dórico)'
+    mode_1tt: 'Modo: 1º tom (Dórico), transposta'
+    mode_2t: 'Modo: 2º tom (Hipodórico)'
+    mode_2tt: 'Modo: 2º tom (Hipodórico), transposta'
+    mode_3t: 'Modo: 3º tom (Frígio)'
+    mode_3tt: 'Modo: 3º tom (Frígio), transposta'
+    mode_4t: 'Modo: 4º tom (Hipofrígio)'
+    mode_4tt: 'Modo: 4º tom (Hipofrígio), transposta'
+    mode_5t: 'Modo: 5º tom (Lídio)'
+    mode_5tt: 'Modo: 5º tom (Lídio), transposta'
+    mode_6t: 'Modo: 6º tom (Hipolídio)'
+    mode_6tt: 'Modo: 6º tom (Hipolídio), transposta'
+    mode_7t: 'Modo: 7º tom (Mixolídio)'
+    mode_7tt: 'Modo: 7º tom (Mixolídio), transposta'
+    mode_8t: 'Modo: 8º tom (Hipomixolídio)'
+    mode_8tt: 'Modo: 8º tom (Hipomixolídio), transposta'
+    mode_9t: 'Modo: 9º tom (Eólio)'
+    mode_9tt: 'Modo: 9º tom (Eólio), transposta'
+    modifying_agency: Agência de modificação
     monogram: Monogram
-    mother_of: Mother of
+    mother_of: Mãe de
     movement_number: Número de movimento
     multiple: Múltiplos
     multiple_copies: Múltiplos exemplares em uma instituição
     multiple_single_dates: Datas múltiplas
-    museum: Museum
+    museum: Museu
     music_incipit: Incipit musical
     musical_composition: Composição musical
     name: Nome
@@ -659,7 +671,7 @@ pt:
     percussion: Percussão
     performance: Performance
     performances: Performances
-    performer: Intérprete [prf]
+    performer: Intérprete
     performer_note: Performer note
     person: Pessoa
     person_name: Person Name
@@ -682,7 +694,7 @@ pt:
     postal_code: Postal code
     postal_place: Postal place
     preceding_entry: Registro precedente
-    printer: Impressor(a) [prt]
+    printer: Impressor(a)
     printing_technique: Técnica de impressão
     production: Production
     production_personnel: Production personnel
@@ -691,7 +703,7 @@ pt:
     provenance_notes: Nota de proveniência
     pseudonym: Pseudonym
     public_note: Public note
-    publisher: Casa editora [pbl]
+    publisher: Casa editora
     publisher_copyist: Editor, copista
     publisher_number: Número da editora
     publisher_plate_number: Número da editora ou de chapa
@@ -785,7 +797,7 @@ pt:
     templates: Modelos
     terms_of_availability: Termos de disponibilidade
     terms_voices_instruments: Termos para vozes e instrumentos
-    text_author: Autor literário [lyr]
+    text_author: Autor literário
     text_incipit: Incipit literário
     third_fourth_group: Terceiro/Quarto grupo
     time_signature: Compasso
@@ -804,7 +816,7 @@ pt:
     total_scoring: Formação total
     transcribing_agency: Transcribing agency
     translation: Tradução
-    translator: Tradutor [trl]
+    translator: Tradutor
     transparency: Transparência
     type: Tipo
     type_designer: Tipógrafo

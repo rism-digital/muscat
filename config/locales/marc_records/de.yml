@@ -122,6 +122,7 @@ de:
     west_frisian: Westfriesisch
     yiddish: Jiddisch
   places:
+    afghanistan: Afghanistan
     algeria: Algerien
     andorra: Andorra
     argentina: Argentinien
@@ -135,9 +136,13 @@ de:
     austria_tyrol: 'Österreich: Tirol'
     austria_upper_austria: 'Österreich: Oberösterreich'
     austria_vienna: 'Österreich: Wien'
+    azerbiajan: Aserbaidschan
+    bangladesh: Bangladesch
     belarus: Weißrussland
     belgium: Belgien
     benin: Benin
+    bolivia: Bolivien
+    bosnia_herzegovina: Bosnien und Herzegowina
     brazil: Brasilien
     bulgaria: Bulgarien
     cambodia: Kambodscha
@@ -145,6 +150,7 @@ de:
     chile: Chile
     china: China
     colombia: Kolombien
+    costa_rica: Costa Rica
     croatia: Kroatien
     cuba: Kuba
     czech_republic: Tschechische Republik
@@ -178,6 +184,7 @@ de:
     korea: Korea, Republik
     latvia: Lettland
     lithuania: Litauen
+    lebanon: Libanon
     luxembourg: Luxemburg
     malta: Malta
     mexico: Mexiko
@@ -186,8 +193,11 @@ de:
     montenegro: Montenegro
     netherlands: Niederlande
     new_zealand: Neuseeland
+    nicaragua: Nicaragua
+    north_macedonia: Nordmazedonien
     northern_ireland: Nordirland
     norway: Norwegen
+    pakistan: Pakistan
     papua_new_guinea: Papua Neu-Guinea
     paraguay: Paraguay
     peru: Peru
@@ -208,12 +218,14 @@ de:
     switzerland_vaud: 'Schweiz: Vaud'
     syrian_arab_republic: Syrien, Arabische Republik
     taiwan: Taiwan (Provinz von China)
+    tajikistan: Tadschikistan
     trinidad_tobego: Trinidad und Tobago
     turkey: Türkei
     uk: Vereinigtes Königreich
     ukraine: Ukraine
     uruguay: Uruguay
     usa: Vereinigte Staaten von Amerika (USA)
+    uzbekistan: Usbekistan
     venezuela: Venezuela, Bolivarische Republik
     vietnam: Vietnam
   records:
@@ -569,24 +581,24 @@ de:
     mode_11tt: 'Mode: 11tt – Ionisch, transponiert'
     mode_12t: 'Mode: 12t – Hypoionisch'
     mode_12tt: 'Mode: 12tt – Hypoionisch, transponiert'
-    mode_1t: 'Mode:  1t – Dorisch'
-    mode_1tt: 'Mode:  1tt – Dorisch, transponiert'
-    mode_2t: 'Mode:  2t – Hypodorisch'
-    mode_2tt: 'Mode:  2tt – Hypodorisch, transponiert'
-    mode_3t: 'Mode:  3t – Phrygisch'
-    mode_3tt: 'Mode:  3tt – Phrygisch, transponiert'
-    mode_4t: 'Mode:  4t – Hypophrygisch'
-    mode_4tt: 'Mode:  4tt – Hypophrygisch, transponiert'
-    mode_5t: 'Mode:  5t – Lydisch'
-    mode_5tt: 'Mode:  5tt – Lydisch, transponiert'
-    mode_6t: 'Mode:  6t – Hypolydisch'
-    mode_6tt: 'Mode:  6tt – Hypolydisch, transponiert'
-    mode_7t: 'Mode:  7t – Mixolydisch'
-    mode_7tt: 'Mode:  7tt – Mixolydisch, transponiert'
-    mode_8t: 'Mode:  8t – Hypomixolydisch'
-    mode_8tt: 'Mode:  8tt – Hypomixolydisch, transponiert'
-    mode_9t: 'Mode:  9t – Aeolisch'
-    mode_9tt: 'Mode:  9tt – Aeolisch, transponiert'
+    mode_1t: 'Mode: 1t – Dorisch'
+    mode_1tt: 'Mode: 1tt – Dorisch, transponiert'
+    mode_2t: 'Mode: 2t – Hypodorisch'
+    mode_2tt: 'Mode: 2tt – Hypodorisch, transponiert'
+    mode_3t: 'Mode: 3t – Phrygisch'
+    mode_3tt: 'Mode: 3tt – Phrygisch, transponiert'
+    mode_4t: 'Mode: 4t – Hypophrygisch'
+    mode_4tt: 'Mode: 4tt – Hypophrygisch, transponiert'
+    mode_5t: 'Mode: 5t – Lydisch'
+    mode_5tt: 'Mode: 5tt – Lydisch, transponiert'
+    mode_6t: 'Mode: 6t – Hypolydisch'
+    mode_6tt: 'Mode: 6tt – Hypolydisch, transponiert'
+    mode_7t: 'Mode: 7t – Mixolydisch'
+    mode_7tt: 'Mode: 7tt – Mixolydisch, transponiert'
+    mode_8t: 'Mode: 8t – Hypomixolydisch'
+    mode_8tt: 'Mode: 8tt – Hypomixolydisch, transponiert'
+    mode_9t: 'Mode: 9t – Aeolisch'
+    mode_9tt: 'Mode: 9tt – Aeolisch, transponiert'
     modifying_agency: Modifizierende Katalogisierungsstelle
     monogram: Monogramm
     mother_of: Mutter von
