@@ -126,6 +126,9 @@ module RISM
   # Allow anonymous users (not signed in) to browse and search the site
   ANONYMOUS_NAVIGATION = false
 
+  # Turn on or off collation of special chars for ordering
+  CLEVER_ORDERING = true
+
   # Supported devise authentication methods are:
   # - database_authenticatable (the default)
   # - saml_authenticatable, with trackable (which is already defined in User.rb

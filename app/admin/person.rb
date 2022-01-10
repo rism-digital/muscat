@@ -9,7 +9,13 @@ ActiveAdmin.register Person do
   config.clear_action_items!
   config.per_page = [10, 30, 50, 100]
 
-  config.sort_order = 'full_name_ans_asc'
+  # Not everybody likes cleverly ordered things
+  if defined?(RISM::CLEVER_ORDERING) && RISM::CLEVER_ORDERING == true
+    config.sort_order = 'full_name_ans_asc'
+  else
+    config.sort_order = 'full_name_asc'
+  end
+
   breadcrumb do
     active_admin_muscat_breadcrumb
   end
@@ -182,9 +188,13 @@ ActiveAdmin.register Person do
     column (I18n.t :filter_wf_stage) {|person| status_tag(person.wf_stage,
       label: I18n.t('status_codes.' + (person.wf_stage != nil ? person.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_id), :id
-    #column (I18n.t :filter_full_name), :full_name
-    column (I18n.t :filter_full_name), :full_name_ans, sortable: :full_name_ans do |element|
-      element.full_name
+
+    if defined?(RISM::CLEVER_ORDERING) && RISM::CLEVER_ORDERING == true
+      column (I18n.t :filter_full_name), :full_name_ans, sortable: :full_name_ans do |element|
+        element.full_name
+      end
+    else
+      column (I18n.t :filter_full_name), :full_name
     end
 
     column (I18n.t :filter_life_dates), :life_dates

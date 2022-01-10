@@ -216,9 +216,14 @@ class Person < ApplicationRecord
     sunspot_dsl.text :id_text do
       id_for_fulltext
     end
+    sunspot_dsl.string :full_name_order do
+      full_name
+    end
+
     sunspot_dsl.string :full_name_ans, :as => "full_name_ans_s" do
       full_name
     end
+
     sunspot_dsl.text :full_name
     sunspot_dsl.text :full_name_d
     
