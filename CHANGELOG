@@ -95,7 +95,10 @@ v 8.0
 * #901 add localization for Verovio Messages from Crowdin + new messages
 * #901 Add FR messages
 * #901 Add IT messages
-
+* Add more counters to Places
+* Add relation view to Person view
+* #978, add option to properly sort names
+* #306, 690 implement search without diacritics
 
 v 7.1.3
 * #1118, make sure 588 does not appear where it should not
