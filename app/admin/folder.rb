@@ -147,7 +147,7 @@ ActiveAdmin.register Folder do
     selectable_column
     column (I18n.t :filter_wf_stage) {|folder| status_tag(folder.is_published?,
       label: I18n.t('status_codes.' + (folder.is_published? ? "published" : "inprogress"), locale: :en))} 
- 
+    id_column
     column (I18n.t :filter_name), :name, sortable: :name
     column (I18n.t :filter_folder_type), :folder_type
     column (I18n.t :filter_owner), sortable: "users.name" do |folder|
@@ -185,6 +185,7 @@ ActiveAdmin.register Folder do
       paginated_collection(fitems.page(params[:src_list_page]).per(10), param_name: 'src_list_page',  download_links: false) do
         table_for(collection) do |cr|
           column ("Name") {|fitem| fitem.item ? fitem.item.name : "DELETED"}
+          column ("Crated at") {|fitem| fitem.item ? fitem.item.created_at : "DELETED"}
           column ("Id") {|fitem| fitem.item ? fitem.item.id : "n/a, was #{fitem.item_id}"}
           column "" do |fitem|
             if fitem.item
