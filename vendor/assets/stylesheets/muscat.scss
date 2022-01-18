@@ -80,6 +80,7 @@ body.active_admin {
     &.error, &.errored, &.red { background: #d45f53; }
 */
     .status_tag.published { background: #8daa92; }
+    .status_tag.ok { background: #8daa92; }
 }
 
 .progress_bar {
