@@ -163,7 +163,6 @@ class Work < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
 
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      self.marc.load_source false
       self.marc.root.fetch_all_by_tag("856").size
       #Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
     end
