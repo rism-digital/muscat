@@ -313,7 +313,15 @@ ActiveAdmin.register Source do
     active_admin_comments if !is_selection_mode?
   end
   
-  sidebar :actions, :class => "sidebar_tabs", :only => :show do
+  # 8.0.1 #1190, make the sidebar floating only if there are no holdings
+  sidebar :actions, :class => "sidebar_tabs" , :only => :show, if: proc{ resource.holdings.empty? } do
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+  end
+
+  # Same sidebar as above, but when holdings are present. This is quite a kludge since :class cannot
+  # be created conditiolally using a proc{ !resource.holdings.empty? }, so the whole sidebar block
+  # has to be repeated with a different if: ... do
+  sidebar :actions, :only => :show, if: proc{ !resource.holdings.empty? } do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
   end
 
