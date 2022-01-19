@@ -425,14 +425,13 @@ class EditorConfiguration
     
   # Gets the html file name.
   def self.get_help_fname(name, model = "Source")
-    model = "#{model.downcase}_"
+    model = (model == "Source") ? "" : "#{model.downcase}_"
     # translated version?
-    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{I18n.locale.to_s}/#{model}#{name}.md")
-    ap fname
+    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html")
+    #ap fname
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # english?
-    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/en/#{model}#{name}.md")
-    ap fname
+    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_en.html")
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # nope...
     return ""
