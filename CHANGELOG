@@ -1,6 +1,26 @@
 Muscat Changelog
 ================
 
+v 8.0.1
+* Update e-mail message
+* Merge pull request #1184 from rism-digital/email-message-update
+* Changing index field name
+* Merge pull request #1188 from rism-digital/8.0-fix-sru
+* #1192, fix self.resource.class
+* #1192 Fix total in modification digest
+* #1192 Fix load_saource in work, it would modify the marc data at save time and create a FrozenError
+* #1192 Add ids to folders
+* #1192 Update status_tag in comments to the new syntax
+* #1192, fix call to saml auth in production, not the prettyest way for now
+* #1192 reindex FolderItems, force a commit
+* #1192 fix work count changed in 30cb4d6
+* Fix #1190, make the sidebar static when there are holdings, we will find a better solution. Also ref in #1192
+* #1192 revert guidelines to the proper version
+* #1123 and #1192 re-add oth, fmo, dpt
+* #1192 Add new translations
+* Fix #1187 and #1192, add Belarus in MARC field 043
+* Small folder enhancemet with updated_at
+
 v 8.0
 * Change source count to 856
 * Add 383 and 690
