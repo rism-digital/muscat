@@ -35,6 +35,10 @@ bundle exec rake sunspot:reindex[,Place]
 bundle exec rake sunspot:reindex[,StandardTerm]
 bundle exec rake sunspot:reindex[,StandardTitle]
 bundle exec rake sunspot:reindex[,Work]
+bundle exec rake sunspot:reindex[,FolderItem]
 
-echo "Remember to re-run Standard title by hand to get correct source count"
+echo "Force a Solr commit"
+echo "Sunspot.commit" | bundle exec rails c
+
+echo "Remember to re-run Standard title by hand to get correct source count after the sources finish to index"
 echo "bundle exec rake RAILS_ENV=$RAILS_ENV sunspot:reindex[,StandardTitle]"
