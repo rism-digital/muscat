@@ -184,8 +184,9 @@ ActiveAdmin.register Folder do
       
       paginated_collection(fitems.page(params[:src_list_page]).per(10), param_name: 'src_list_page',  download_links: false) do
         table_for(collection) do |cr|
-          column ("Name") {|fitem| fitem.item ? fitem.item.name : "DELETED"}
-          column ("Crated at") {|fitem| fitem.item ? fitem.item.created_at : "DELETED"}
+          column ("Name") {|fitem| fitem.item ? fitem.item.name : "Item Deleted"}
+          column ("Created at") {|fitem| fitem.item ? fitem.item.created_at : "n.a."}
+          column ("Updated at") {|fitem| fitem.item ? fitem.item.updated_at : "n.a."}
           column ("Id") {|fitem| fitem.item ? fitem.item.id : "n/a, was #{fitem.item_id}"}
           column "" do |fitem|
             if fitem.item
