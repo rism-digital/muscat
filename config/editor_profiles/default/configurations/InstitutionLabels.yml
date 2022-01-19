@@ -244,6 +244,8 @@ XA-BE:
   label: places.belgium
 XA-BG:
   label: places.bulgaria
+XA-BY:
+  label: places.belarus
 XA-CH:
   label: places.switzerland
 XA-CH-VD:
