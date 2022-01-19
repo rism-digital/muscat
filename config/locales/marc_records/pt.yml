@@ -167,7 +167,6 @@ pt:
     greece: Grécia
     guatemala: Guatemala
     guinea: Guinea
-    holy_see: Santa Sé
     honduras: Honduras
     hong_kong: Hong Kong
     hungary: Hungria
@@ -226,6 +225,9 @@ pt:
     uruguay: Uruguai
     usa: Estados Unidos da América
     uzbekistan: Uzbequistão
+    #holy_see provided for backwards compatibility
+    holy_see: Cidade do Vaticano
+    vatican: Cidade do Vaticano
     venezuela: Venezuela, República Bolivariana de
     vietnam: Vietnã
   records:

@@ -167,7 +167,6 @@ pl:
     greece: Grecja
     guatemala: Gwatemala
     guinea: Gwinea
-    holy_see: Watykan
     honduras: Honduras
     hong_kong: Hongkong
     hungary: Węgry
@@ -226,6 +225,9 @@ pl:
     uruguay: Urugwaj
     usa: Stany Zjednoczone AP
     uzbekistan: Uzbekistan
+    #holy_see provided for backwards compatibility
+    holy_see: Watykan
+    vatican: Watykan
     venezuela: Wenezuela, Republika Boliwariańska
     vietnam: Wietnam
   records:
