@@ -99,6 +99,8 @@ module Viaf
           provider_doc.xpath('//marc:controlfield[@tag="001"]', NAMESPACE).first.content = record["viafid"]
           node_24 = provider_doc.xpath('//marc:datafield[@tag="100"]', NAMESPACE)
           provider_doc.xpath('//marc:datafield[@tag="024"]', NAMESPACE).remove
+          # Remove all linked nodes $0
+          provider_doc.xpath('//marc:subfield[@code="0"]', NAMESPACE).remove
           node_24.first.add_previous_sibling(build_provider_node(provider_doc.root, "VIAF", record["viafid"]))
           node_24.first.add_previous_sibling(build_provider_node(provider_doc.root, provider, provider_id))
           if links["WKP"]
