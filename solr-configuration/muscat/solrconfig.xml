@@ -3,6 +3,7 @@
     <luceneMatchVersion>8.0.0</luceneMatchVersion>
     <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-analysis-extras-\d.*\.jar"/>
     <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lib" regex="icu4j-\d.*\.jar"/>
+    <lib dir="${solr.install.dir:../../../..}/contrib/themax" regex="ThemaxQuery-\d.*\.jar"/>
     <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs"
          regex="lucene-analyzers-icu-\d.*\.jar"/>
 
