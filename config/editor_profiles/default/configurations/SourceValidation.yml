@@ -3,10 +3,17 @@ server:
   - validate_user_abilities
   - validate_links_to_self
 client:
-  "100": 
+  "100":
+    tag_overrides:
+      exclude:
+        "0":
+          - collection
+          - composite_volume
+          - edition
+          - libretto_edition
+          - theoretica_edition
     tags:
-      "0": required
-      a: required
+      "0": mandatory
   "240":
     tag_overrides:
       exclude:
