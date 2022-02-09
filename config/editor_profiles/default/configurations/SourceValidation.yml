@@ -128,7 +128,7 @@ client:
         - theoretica_edition
         - theoretica_edition_content
     tags:
-      c: required, warning
+      c: mandatory
       x: mandatory
   "856": 
     tags:
