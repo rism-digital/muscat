@@ -7,6 +7,20 @@ pb = ProgressBar.new(Source.all.count)
 @op = Array.new
 @skipped = Array.new
 @cmp_gnd_ids = Hash.new
+@restriction = Array.new
+
+def is_restricted(cmp_id, cat_id)
+    cats = @restriction.select{|r| r[1] == cat_id}
+    # not restricted if the catalogue is not in the list
+    return false if cats.empty?
+
+    cmps = @restriction.select{|r| r[0] == cmp_id}
+    # restricted if the catalogue in the list but not the composer
+    return true if cmps.empty? 
+
+    # make sure we have a match
+    return !cats.find{|r| r[0] == cmp_id}
+end
 
 def get_gnd_id(person)
     # look in cache first
@@ -62,8 +76,12 @@ end
 
 src_count = 0
 
+# load the restriction list (cmp-id, cat-id) as CSV
+@restriction = CSV.open("./housekeeping/works/002-restriction.csv").each.to_a
+
 #Source.where(composer: "Bach, Johann Sebastian").find_in_batches do |batch|
 #Source.where(composer: "Corelli, Arcangelo").find_in_batches do |batch|
+#Source.where(composer: "Graupner, Christoph").find_in_batches do |batch|
 Source.find_in_batches do |batch|
 
     batch.each do |s|
@@ -80,7 +98,8 @@ Source.find_in_batches do |batch|
             end
             break
         end
-        next if !id
+        # skip sources witout composer or by Anonymus or by Compilations
+        next if !id or id == '30004985' or id == '30009236'
 
         count690 = 0
         s.marc.each_by_tag("690") {|t| count690 += 1}
@@ -138,14 +157,33 @@ Source.find_in_batches do |batch|
             @op << opus
         end
 
+        node = s.marc.first_occurance("690", "0")
+        cat_0 = node.content if node && node.content
+        if is_restricted(id, cat_0)
+            #puts "Skipping #{id}, #{cat_0}"
+            next
+        end
+
         node = s.marc.first_occurance("690", "a")
         cat_a = node.content if node && node.content
         cat_a = cat_a.strip if cat_a
         
         node = s.marc.first_occurance("690", "n")
-        #cat_n =  node.content if node && node.content
-        cat_n = node.content.gsub(/\/.*/,"") if node && node.content
+        cat_n =  node.content if node && node.content
+        #cat_n = node.content.gsub(/\/.*/,"") if node && node.content
         cat_n = cat_n.strip if cat_n
+
+        # custom extraction
+        cat_extract_id = "cat_extract_#{id}".to_s
+
+        if respond_to?(cat_extract_id)
+            cat_n = method(cat_extract_id).call(cat_n) if cat_n
+        else
+            cat_n = cat_extract(cat_n) if cat_n
+        end
+
+        # Skip catalogue with "deest" (without opus)
+        next if !opus and cat_n and /^deest$/.match?(cat_n)
 
         src = Hash.new
         src['id'] = s.id 
@@ -234,6 +272,9 @@ puts "Sources grouped: #{src_count}"
 puts "Opus processed: #{@op.size}"
 puts "Opus skipped: #{@skipped.size}"
 
-File.open( "opus.yml" , "w") {|f| f.write(@op.uniq.sort.to_yaml) }
-File.open( "opus-skipped.yml" , "w") {|f| f.write(@skipped.to_yaml) }
-File.open( "works.yml" , "w") {|f| f.write(@list.to_yaml) }
+File.open( "002-opus.yml" , "w") {|f| f.write(@op.uniq.sort.to_yaml) }
+File.open( "002-opus-skipped.yml" , "w") {|f| f.write(@skipped.to_yaml) }
+File.open( "002-works.yml" , "w") {|f| f.write(@list.to_yaml) }
+File.open("002-gnd-ids.txt", "w+") do |f|
+    @cmp_gnd_ids.values.each { |element| f.puts(element) }
+end

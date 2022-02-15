@@ -1,0 +1,30 @@
+production:
+  solr:
+    hostname: localhost
+    port: 8983
+    log_level: WARNING
+    path: /solr/muscat
+    memory: 16G
+    bind_address: 127.0.0.1
+    # read_timeout: 2
+    # open_timeout: 0.5
+
+development:
+  solr:
+    hostname: localhost
+    port: 8983
+    log_level: INFO
+    path: /solr/muscat
+<<<<<<< HEAD
+    memory: 16G
+=======
+>>>>>>> 8f8da6a41884083e748363a245086260599c4ecf
+    bind_address: 127.0.0.1
+
+test:
+  solr:
+    hostname: localhost
+    port: 8983
+    log_level: WARNING
+    path: /solr/muscat
+    bind_address: 127.0.0.1

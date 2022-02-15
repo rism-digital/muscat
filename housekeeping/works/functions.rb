@@ -1,4 +1,74 @@
-require 'solr_search'
+#require 'solr_search'
+
+def self.cat_extract(value)
+    value.gsub(/\/.*/,"")
+end
+
+# Graupner
+# id 83288
+# gnd 118718517
+def self.cat_extract_83288(value)
+    if /1[1|2|3]\d\d\//.match?(value)
+        value.gsub(/(....\/[^ |\/]*).*/,'\1')
+    else 
+        cat_extract(value)
+    end
+end
+
+def self.cat_extract_gnd_118718517(value)
+    if /1[1|2|3]\d\d[ |,]/.match?(value)
+        value.gsub(/(\d...).(.*)/,'\1/\2')
+    else 
+        value.gsub(/,.*/,"")
+    end
+end
+
+
+def get_cat_a(cmp_id, cat_a_mapping, set, cat_a)
+    return nil if cat_a == nil
+    return cat_a if (!cat_a_mapping[cmp_id])
+    #puts cat_a_mapping[cmp_id][set][1]
+    return cat_a_mapping[cmp_id][set][1]
+end 
+
+def get_works_for_cmp(id, name, works, works_by_cmp, cmp_name_mapping)
+    if (cmp_name_mapping[name])
+        name = cmp_name_mapping[name]
+    end
+    if (works_by_cmp[name]) 
+        return works_by_cmp[name]
+    end
+    if id
+        works_for_cmp = works.select{ |w| w["cmp"] and w["cmp"].to_s == id }
+        if works_for_cmp.size > 0
+            works_by_cmp[name] = works_for_cmp
+            #puts "GND!"
+            return works_for_cmp
+        end
+    end
+    # try by name
+    works_for_cmp = works.select{ |w| w["cmp-name"] and w["cmp-name"].to_s == name }
+    #puts "#{name}\thttp://d-nb.info/mb/#{id} #{mb_works_for_cmpworks.size}"
+    works_by_cmp[name] = works_for_cmp
+    return works_for_cmp
+end 
+
+def get_name_mapping(names, cmp_name_mapping)
+    names.delete(nil)
+    pb = ProgressBar.new(names.size)
+    names.each do |c|
+        pb.increment!
+        next if /"/.match?(c)
+        p = Person.where(full_name: "#{c}")
+        if p.size == 0
+            # for some reason (encoding?) we also need to substitue - with %
+            p = Person.where("alternate_names LIKE \"%#{c.gsub(/‐/,'%')}%\"")
+            if p.size > 0
+                cmp_name_mapping[p[0].full_name] = c
+            end
+        end
+    end
+end
 
 def find_work(composer_id, opus, cat_a, cat_n)
     query = Work.solr_search do 
@@ -59,6 +129,13 @@ def delete_work(id)
     end
     w2 = Work.find(id)
     w2.destroy!
+end
+
+def delete_links_to(w, code)
+    w.marc.by_tags("024").each do |t|
+        t2 = t.fetch_first_by_tag("2")
+        t.destroy_yourself if t2 and t2.content and t2.content == code
+    end
 end
 
 def format_opus(opus)
