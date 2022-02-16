@@ -154,6 +154,12 @@ Extract just the installation script:
 
   tar xzf solr-8.11.1.tgz solr-8.11.1/bin/install_solr_service.sh --strip-components=2
 
+On MacOS do
+
+  tar xzf solr-8.11.1.tgz solr-8.11.1/bin/install_solr_service.sh
+  mv solr-8.11.1/bin/install_solr_service.sh .
+  rmdir solr-8.11.1/bin solr-8.11.1
+
 And execute it:
 
   sudo ./install_solr_service.sh solr-8.11.1.tgz -d /data/solr -p 8983
