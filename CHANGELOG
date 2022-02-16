@@ -1,6 +1,19 @@
 Muscat Changelog
 ================
 
+v 8.0.2
+* Exclude linked -zsh field from import everywhere
+* Merge pull request #1198 from rism-digital/8.0-fix-viaf
+* Fixed: Add Themax jar path
+* Merge pull request #1203 from rism-digital/add-themax-path
+* Bump puma from 5.5.1 to 5.6.2
+* Include new translations + some utility functions
+* Merge pull request #1214 from rism-digital/dependabot/bundler/puma-5.6.2
+* Disable SAML template
+* Fix #1215
+* Fix #1216, update Solr versions
+* Update to rails 5.2.6.2 for CVE-2022-23633
+
 v 8.0.1
 * Update e-mail message
 * Merge pull request #1184 from rism-digital/email-message-update

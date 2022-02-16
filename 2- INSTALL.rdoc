@@ -144,6 +144,7 @@ The Muscat core should work with any installation of Solr, here a sample install
 
 ==== Installation using a "stock" solr using included setup script
 
+*NOTE:* this was tested on Linux distributions only.
 Grab a copy of the official distribution (8.11.1 at the time of writing) and unpack it in a suitable place
 
   wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.11.1/solr-8.11.1.tgz?action=download -O solr-8.11.1.tgz
@@ -153,12 +154,6 @@ Solr needs two directories, one for data and one for the binaries. The latter is
 Extract just the installation script:
 
   tar xzf solr-8.11.1.tgz solr-8.11.1/bin/install_solr_service.sh --strip-components=2
-
-On MacOS do
-
-  tar xzf solr-8.11.1.tgz solr-8.11.1/bin/install_solr_service.sh
-  mv solr-8.11.1/bin/install_solr_service.sh .
-  rmdir solr-8.11.1/bin solr-8.11.1
 
 And execute it:
 
