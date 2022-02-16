@@ -238,4 +238,8 @@ class Holding < ApplicationRecord
     "#{lib_siglum} [#{id}]"
   end
 
+  def get_shelfmark
+    self.marc.get_shelf_mark
+  end
+
 end

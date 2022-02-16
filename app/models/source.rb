@@ -513,6 +513,21 @@ class Source < ApplicationRecord
     false
   end
 
+  def get_shelfmarks
+    if self.record_type == MarcSource::RECORD_TYPES[:edition] ||
+      self.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
+      self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition]
+      return holdings.each.collect {|h| h.get_shelfmark}
+    elsif self.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
+          self.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
+          self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]
+      puts "Edition content #{self.id} has no parent" if !self.parent_source
+      return [] if !self.parent_source
+      return self.parent_source.holdings.each.collect {|h| h.get_shelfmark}
+    end
+    return [self.shelf_mark]
+  end
+
   def self.incipits_for(id)
     s = Source.find(id)
 

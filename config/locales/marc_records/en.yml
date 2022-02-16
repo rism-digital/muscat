@@ -1,7 +1,7 @@
 en:
   general:
     created_at: "Created on"
-    e_mail: E-mail
+    e_mail: Email
     editor_help: Editor help
     faq: Frequently asked questions
     female: Female
@@ -13,8 +13,8 @@ en:
     rism: RISM
     rism_best_practices: RISM best practices
     rism_instrument_abbreviations: RISM instrument abbreviations (continued)
-    rism_series: RISM Series
-    rism_series_a_b_references: RISM Series A/I and B reference
+    rism_series: RISM series
+    rism_series_a_b_references: RISM series A/I and B reference
     rism_series_number: RISM series number
     rule_type: Rule type
     scope_printed_music_rism: Scope of printed music in RISM
@@ -38,16 +38,16 @@ en:
     arabic: Arabic
     aragonese: Aragonese
     armenian: Armenian
-    artificial: Artificial (Other)
+    artificial: Artificial (other)
     australian: Australian languages
     basque: Basque
     bengali: Bengali
     bosnian: Bosnian
     bulgarian: Bulgarian
     catalan: Catalan
-    celtic_other: Celtic (Other)
+    celtic_other: Celtic (other)
     chinese: Chinese
-    creoles_pidgins_other: Creoles and Pidgins (Other)
+    creoles_pidgins_other: Creoles and Pidgins (other)
     croatian: Croatian
     czech: Czech
     danish: Danish
@@ -76,7 +76,7 @@ en:
     latvian: Latvian
     lithuanian: Lithuanian
     low_german: Low German
-    lower_sorbian: Sorbian, Lower Sorbian
+    lower_sorbian: 'Sorbian: Lower Sorbian'
     luxembourgish: Luxembourgish
     macedonian: Macedonian
     maori: Maori
@@ -105,7 +105,7 @@ en:
     slovak: Slovak
     slovenian: Slovenian
     sorbian: Sorbian
-    south_american: South American Indian (Other)
+    south_american: South American Indian (other)
     spanish: Spanish
     swedish: Swedish
     swiss_german: Swiss German
@@ -116,7 +116,7 @@ en:
     tsimshian: Tsimshian
     turkish: Turkish
     ukrainian: Ukrainian
-    upper_sorbian: Sorbian, Upper Sorbian
+    upper_sorbian: 'Sorbian: Upper Sorbian'
     vietnamese: Vietnamese
     welsh: Welsh
     west_frisian: West Frisian
@@ -271,7 +271,7 @@ en:
     associated_institution: Associated institution
     associated_name: Associated name
     associated_name_lit: Associated name
-    associated_place: Associated Place
+    associated_place: Associated place
     attribution_qualifier: Attribution qualifier
     authentication_code: Authentication code
     author: Author
@@ -440,10 +440,10 @@ en:
     f_plus_4: F+4
     f_plus_5: F+5
     facsimile: Facsimile
-    family_name: Family Name
+    family_name: Family name
     father_of: Father of
     field_link: Field link and sequence number
-    field_of_activity: Field of Activity
+    field_of_activity: Field of activity
     figured_bass_scores: Figured bass in scores and/or other parts
     fijian: Fijian
     fingerprint_identifier: Fingerprint identifier
@@ -679,7 +679,7 @@ en:
     performer: Performer
     performer_note: Performer note
     person: Person
-    person_name: Person Name
+    person_name: Person name
     personal_name: Personal name
     personal_names: Personal names
     photoreproductive_process: Photoreproductive process (bluprint)
@@ -711,17 +711,17 @@ en:
     publisher: Publisher
     publisher_copyist: Publisher, copyist
     publisher_number: Publisher Number
-    publisher_plate_number: Publisher or Plate number
+    publisher_plate_number: Plate or publisher number
     publishing_printing_production: Publishing, printing and production information
     qualifying_information: Qualifying information
     range_dates: Range of dates
-    real_world_object_uri: Real World Object URI
+    real_world_object_uri: Real world object URI
     record_actions: Record actions
-    record_audit: RECORD AUDIT
+    record_audit: Record audit
     record_origin: Record origin
     record_status: Record status
     reference_instruction_phrase: Reference instruction phrase in subfield $i
-    reference_record_id: REFERENCE RECORD ID
+    reference_record_id: Reference record ID
     references: References
     references_and_notes: References and notes
     region_active: Region active
@@ -731,7 +731,7 @@ en:
     related_place: Related place
     related_resources: Related resources
     related_source: Related source
-    related_titles: Related Titles
+    related_titles: Related titles
     related_to: Related to
     related_work: Related work
     relation: Relation
@@ -783,12 +783,12 @@ en:
     standard_watermarks: Standard watermarks
     standardized_title: Standardized title
     standardized_titles_printed_music: Standardized titles for printed music
-    standardized_titles_subject_headings: Standardized titles - Subject headings
+    standardized_titles_subject_headings: Standardized titles—Subject headings
     start_period: Start period
     street_address: Street address
     strings: Strings
     subheading: Subheading
-    subheading_general: Subheading General subdivision
+    subheading_general: Subheading general subdivision
     subject_access_fields: Subject access fields
     subject_heading: Subject heading
     subject_headings: Subject headings
@@ -865,8 +865,6 @@ en:
     keysig: "Key signature"
     timesig: "Time signature"
     ERR_001_EMPTY: Enter an encoded incipit.
-    ERR_002_JSON_PARSE: "Cannot parse the JSON input."
-    ERR_003_JSON_KEY: "No 'data' key in the JSON input."
     ERR_004_KEY_SPACE: A key signature change must be followed by a space.
     ERR_005_CLEF_SPACE: A clef change must be followed by a space.
     ERR_006_TIMESIG_SPACE: A time signature change must be followed by a space.
@@ -887,7 +885,7 @@ en:
     ERR_021_CHORD_NOTE_AFTER: To indicate a chord, a '^' must be followed by a note.
     ERR_022_BEAM_MENSURAL: Beams cannot be used with mensural notation.
     ERR_023_BEAM_NESTED: Do not start a beam before closing the previous one.
-    ERR_024_BEAM_CLOSING: 'An extra ''}'' to close a beam is present. Delete it or indicate where the beam starts with ''{''. '
+    ERR_024_BEAM_CLOSING: 'An extra ''}'' to close a beam is present. Delete it or indicate where the beam starts with ''{''.'
     ERR_025_BEAM_OPEN: Close the beam with '}' before the end of the measure.
     ERR_026_GRACE_NESTED: Close the appoggiatura with 'r' before starting a new one.
     ERR_027_GRACE_CLOSING: An 'r' is present to close an appoggiatura. Delete it or add 'qq' to indicate where it begins.
@@ -904,7 +902,6 @@ en:
     ERR_038_TIE_OPEN: A tie using '+' must be followed by a note.
     ERR_039_TIE_NO_NOTE: A tie using '+' must be preceded by a note.
     ERR_040_HIERARCHY_INVALID: The order of elements cannot be interpreted (%{value}).
-    ERR_041_NESTING_INVALID: "Invalid nesting of opening and closing tags '%{value}'"
     ERR_042_CLEF_INCOMPLETE: The clef is not in the correct form.
     ERR_043_CLEF_INVALID_2ND: The second character in the clef sign must be either '+' or '-'.
     ERR_044_CLEF_MENS: Do not mix mensural and non-mensural clefs.
@@ -915,10 +912,11 @@ en:
     ERR_049_TIMESIG_MENS: The time signature is not in the correct form.
     ERR_050_INVALID_CHAR: 'Delete the following invalid character(s): %{value}'
     ERR_051_BARLINE: The barline is not in the correct form.
-    ERR_052_DURATION: "Duration content cannot be parsed (Setting to quarter note if running in non-pedantic mode)"
+    ERR_052_DURATION: "Duration cannot be interpreted."
     ERR_053_DURATION_MENS3: The duration cannot be '3' with mensural notation.
     ERR_054_DURATION_MENS5: The duration cannot be '5' with mensural notation.
     ERR_055_KEYSIG_CHANGE: The key signature cannot be changed more than once in a measure.
     ERR_056_TIMESIG_CHANGE: The time signature cannot be changed more than once in a measure.
     ERR_057_MENSUR_CHANGE: The mensuration cannot be changed more than once in a measure.
-    ERR_058_FERMATA_MREST: "Fermata on measure rest with extraneous content '%{value}'"
+    ERR_058_FERMATA_MREST: "The parentheses of a fermata must only contain a single note or rest '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes are invalid with mensural notation."

@@ -76,7 +76,7 @@ de:
     latvian: Lettisch
     lithuanian: Litauisch
     low_german: Niederdeutsch
-    lower_sorbian: Sorbisch, Niedersorbisch
+    lower_sorbian: 'Sorbisch, Niedersorbisch'
     luxembourgish: Luxemburgisch
     macedonian: Mazedonisch
     maori: Māori
@@ -116,7 +116,7 @@ de:
     tsimshian: Tsimshian
     turkish: Türkisch
     ukrainian: Ukrainisch
-    upper_sorbian: Sorbisch, Obersorbisch
+    upper_sorbian: 'Sorbisch, Obersorbisch'
     vietnamese: Vietnamesisch
     welsh: Walisisch
     west_frisian: Westfriesisch
@@ -440,10 +440,10 @@ de:
     f_plus_4: F+4
     f_plus_5: F+5
     facsimile: Faksimile
-    family_name: Familienname
+    family_name: Nachname
     father_of: Vater von
     field_link: Feldverknüpfung und Sequenznummer
-    field_of_activity: Tätigkeitsfeld
+    field_of_activity: Tätigkeitsbereich
     figured_bass_scores: Generalbass
     fijian: Fidschianisch
     fingerprint_identifier: Fingerprint-Erkennung
@@ -714,11 +714,11 @@ de:
     range_dates: Datierungsbereich
     real_world_object_uri: Real-World-Objekt-URI
     record_actions: Titel veröffentlichen
-    record_audit: RECORD AUDIT
+    record_audit: Datensatzprüfung
     record_origin: Herkunft
     record_status: RECORD STATUS
     reference_instruction_phrase: Referenzanweisungsphrase im Unterfeld $i
-    reference_record_id: REFERENCE RECORD ID
+    reference_record_id: Referenzdatensatz ID
     references: Literatur
     references_and_notes: Literatur und Bemerkungen
     region_active: Wirkungsregion
@@ -862,8 +862,6 @@ de:
     keysig: "Akzidentien"
     timesig: "Metrum"
     ERR_001_EMPTY: Geben Sie einen verschlüsselten Incipit ein.
-    ERR_002_JSON_PARSE: "Kann die JSON-Eingabe nicht analysieren."
-    ERR_003_JSON_KEY: "Kein 'Daten' Schlüssel in der JSON-Eingabe."
     ERR_004_KEY_SPACE: Dem Wechsel der Tonart muss ein Leerzeichen folgen.
     ERR_005_CLEF_SPACE: Dem Wechsel des Notenschlüssels muss ein Leerzeichen folgen.
     ERR_006_TIMESIG_SPACE: Dem Taktartwechsel muss ein Leerzeichen folgen.
@@ -884,7 +882,7 @@ de:
     ERR_021_CHORD_NOTE_AFTER: Um einen Akkord zu kennzeichnn, muss auf ein '^' eine Note folgen.
     ERR_022_BEAM_MENSURAL: Balkungen können nicht mit Mensuralnotation verwendet werden.
     ERR_023_BEAM_NESTED: Starten Sie eine Balkung nicht, bevor Sie die vorherige geschlossen haben.
-    ERR_024_BEAM_CLOSING: 'Ein zusätzliches ''}'' zum Schließen der Balkung ist vorhanden. Löschen Sie es oder geben Sie an, wo die Balkung mit "{" beginnt. '
+    ERR_024_BEAM_CLOSING: 'Ein zusätzliches ''}'' zum Schließen der Balkung ist vorhanden. Löschen Sie es oder geben Sie an, wo die Balkung mit "{" beginnt.'
     ERR_025_BEAM_OPEN: Schließen Sie die Balkung mit "}" ab.
     ERR_026_GRACE_NESTED: Schließen Sie den Vorschlag mit "r", bevor Sie einen neuen beginnen.
     ERR_027_GRACE_CLOSING: Ein 'r' ist vorhanden. Löschen Sie es oder fügen Sie "qq" hinzu, um anzugeben, wo der Vorschlag beginnt.
@@ -901,7 +899,6 @@ de:
     ERR_038_TIE_OPEN: Einem Haltebogen '+' muss eine Note vorangestellt werden.
     ERR_039_TIE_NO_NOTE: Einem Haltebogen '+' muss eine Note vorangestellt werden.
     ERR_040_HIERARCHY_INVALID: Die Reihenfolge der Elemente kann nicht interpretiert werden (%{value}).
-    ERR_041_NESTING_INVALID: "Ungültiges Schachteln der öffnenden und schließenden Tags '%{value}'"
     ERR_042_CLEF_INCOMPLETE: Der Wechsel des Notenschlüssels ist nicht korrekt.
     ERR_043_CLEF_INVALID_2ND: Das zweite Zeichen im Notenschlüssel muss entweder '+' oder '-' sein.
     ERR_044_CLEF_MENS: Mischen Sie keine Mensural- und Nicht-Mensuralschlüssel.
@@ -912,10 +909,11 @@ de:
     ERR_049_TIMESIG_MENS: Die Taktart ist nicht korrekt.
     ERR_050_INVALID_CHAR: 'Löschen Sie das/die folgende(n) ungültige(n) Zeichen: %{value}'
     ERR_051_BARLINE: Der Taktstrich ist nicht korrekt.
-    ERR_052_DURATION: "Der Inhalt der Dauer kann nicht analysiert werden (wenn er im nicht-pedantischen Modus ausgeführt wird)"
+    ERR_052_DURATION: "Die Dauer kann nicht interpretiert werden."
     ERR_053_DURATION_MENS3: Bei der Mensuralnotation kann die Dauer nicht "3" sein.
     ERR_054_DURATION_MENS5: Bei der Mensuralnotation kann die Dauer nicht "5" sein.
     ERR_055_KEYSIG_CHANGE: Die Tonart kann in einem Takt nur einmal geändert werden.
     ERR_056_TIMESIG_CHANGE: Die Taktart kann in einem Takt nur einmal geändert werden.
     ERR_057_MENSUR_CHANGE: Die Mensur kann in einem Takt nur einmal geändert werden.
-    ERR_058_FERMATA_MREST: "Fermata auf Maß mit fremdem Inhalt '%{value} ' ausruhen"
+    ERR_058_FERMATA_MREST: "Die Klammern einer Fermate dürfen nur eine einzige Note oder Pause '%{value}' enthalten"
+    ERR_059_DOUBLE_DOTS_MENS: "Doppelpunktierte Noten sind ungültig in der Mensuralnotation."

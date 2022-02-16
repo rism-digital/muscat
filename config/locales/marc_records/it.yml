@@ -76,7 +76,7 @@ it:
     latvian: Lettone
     lithuanian: Lituano
     low_german: Basso sassone
-    lower_sorbian: Sorabo inferiore
+    lower_sorbian: 'Sorabo inferiore'
     luxembourgish: Lussemburghese
     macedonian: Macedone
     maori: Māori
@@ -116,7 +116,7 @@ it:
     tsimshian: Tsimshian
     turkish: Turco
     ukrainian: Ucraino
-    upper_sorbian: Sorabo superiore
+    upper_sorbian: 'Sorabo superiore'
     vietnamese: Vietnamita
     welsh: Gallese
     west_frisian: Frisone occidentale
@@ -440,7 +440,7 @@ it:
     f_plus_4: F+4
     f_plus_5: F+5
     facsimile: Facsimile
-    family_name: Nome di famiglia
+    family_name: Cognome
     father_of: Padre di
     field_link: Link di campo e numero di sequenza
     field_of_activity: Settore di attività
@@ -714,11 +714,11 @@ it:
     range_dates: Ambito di datazione
     real_world_object_uri: Oggetto URI
     record_actions: Azioni per la scheda
-    record_audit: RECORD AUDIT
+    record_audit: Controllo del record
     record_origin: Origine della scheda
     record_status: Stato della scheda
     reference_instruction_phrase: Frase di istruzioni di riferimento nel sottocampo $i
-    reference_record_id: Numero identificativo della scheda di riferimento
+    reference_record_id: ID di riferimento per il record
     references: Bibliografia
     references_and_notes: Bibliografia e note
     region_active: Regione di attività
@@ -862,8 +862,6 @@ it:
     keysig: "Armatura di chiave"
     timesig: "Misura"
     ERR_001_EMPTY: Inserisci un incipit codificato.
-    ERR_002_JSON_PARSE: "Impossibile analizzare l'input JSON."
-    ERR_003_JSON_KEY: "Nessuna chiave 'data' nell'input JSON."
     ERR_004_KEY_SPACE: Il cambio di armatura di chiave deve essere seguito da uno spazio.
     ERR_005_CLEF_SPACE: Un cambio di chiave deve essere seguito da uno spazio.
     ERR_006_TIMESIG_SPACE: Il cambio ti tempo deve essere seguito da uno spazio.
@@ -884,7 +882,7 @@ it:
     ERR_021_CHORD_NOTE_AFTER: Per indicare un accordo, un '^' deve essere seguito da una nota.
     ERR_022_BEAM_MENSURAL: Le travature non possono essere utilizzate con notazione mensurale.
     ERR_023_BEAM_NESTED: Non iniziare una travatura prima di aver chiuso quella precedente.
-    ERR_024_BEAM_CLOSING: 'È presente un extra ''}'' per chiudere una travatura. Eliminalo o indica dove la travatura inizia con ''{''. '
+    ERR_024_BEAM_CLOSING: 'È presente una ''}'' in eccedenza per chiudere una travatura. Eliminala oppure indica dove inizia la travatura con ''{''.'
     ERR_025_BEAM_OPEN: Chiudere la travatura con '}' prima della fine della battuta.
     ERR_026_GRACE_NESTED: Chiudere la appoggiatura con 'r' prima di iniziarne una nuova.
     ERR_027_GRACE_CLOSING: Un 'r' è presente per chiudere un'appoggiatura. Eliminalo o aggiungi 'qq' per indicare dove inizia.
@@ -901,7 +899,6 @@ it:
     ERR_038_TIE_OPEN: Una legatura con '+' deve essere seguita da una nota.
     ERR_039_TIE_NO_NOTE: Una legatura con '+' deve essere preceduta da una nota.
     ERR_040_HIERARCHY_INVALID: L'ordine degli elementi non può essere interpretato (%{value}).
-    ERR_041_NESTING_INVALID: "Sequenza non valida dei tag di apertura e chiusura '%{value}'"
     ERR_042_CLEF_INCOMPLETE: La chiave non è nel formato corretto.
     ERR_043_CLEF_INVALID_2ND: Il secondo carattere nel segno della chiave deve essere '+' o '-'.
     ERR_044_CLEF_MENS: Non mischiare chiavi mensurali e non mensurali.
@@ -912,10 +909,11 @@ it:
     ERR_049_TIMESIG_MENS: L'indicazione di tempo non è nel formato corretto.
     ERR_050_INVALID_CHAR: 'Elimina i seguenti caratteri non validi: (%{value})'
     ERR_051_BARLINE: La linea di battuta non è nel formato corretto.
-    ERR_052_DURATION: "Il contenuto di durata non può essere analizzato (la nota diventa una semiminima se si è in modalità non pedantica)"
+    ERR_052_DURATION: "La durata non può essere interpretata."
     ERR_053_DURATION_MENS3: La durata non può essere '3' in notazione mensurale.
     ERR_054_DURATION_MENS5: La durata non può essere '5' in notazione mensurale.
     ERR_055_KEYSIG_CHANGE: L'armatura di chiave non può essere cambiata più di una volta in una battuta.
     ERR_056_TIMESIG_CHANGE: Il tempo non può essere cambiato più di una volta in una battuta.
     ERR_057_MENSUR_CHANGE: La mensurazione non può essere modificata più di una volta in una battuta.
-    ERR_058_FERMATA_MREST: "Corona su una pausa di una battuta con caratteri estranei '%{value}"
+    ERR_058_FERMATA_MREST: "Le parentesi per una corona possono contenere solo una singola nota o una pausa di '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Le note con doppi punti sono invalide in notazione mensurale."

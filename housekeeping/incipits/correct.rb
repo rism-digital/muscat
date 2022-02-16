@@ -18,7 +18,12 @@ CSV.foreach(file) do |l|
 
     next if s_id == "source_id"
 
-    source = Source.find(s_id)
+    begin
+        source = Source.find(s_id)
+    rescue ActiveRecord::RecordNotFound
+        puts "Source #{s_id} was deleted".red
+        next
+    end
 
     subtags = [:a, :b, :c, :g, :n, :o, :p]
     vals = {}
@@ -35,18 +40,19 @@ CSV.foreach(file) do |l|
 
         if pae_a == vals[:a] && pae_b == vals[:b] && pae_c == vals[:c]
 
-            (puts "#{source.id} clef was changed expecting #{clef} is #{vals[:g]}"; next ) if vals[:g] != clef
-            (puts "#{source.id} key was changed expecting #{key} is #{vals[:n]}"; next ) if vals[:n] != key
-            (puts "#{source.id} time was changed expecting #{time} is #{vals[:o]}"; next ) if vals[:o] != time
-            (puts "#{source.id} pae was changed expecting #{pae} is #{vals[:p]}"; next ) if vals[:p] != pae
+            (puts "#{source.id} clef was changed expecting #{clef} is #{vals[:g]}"; next ) if vals[:g] != nil && vals[:g].strip != clef.strip
+            (puts "#{source.id} key was changed expecting #{key} is #{vals[:n]}"; next ) if vals[:n] != nil && vals[:n].strip != key.strip
+            (puts "#{source.id} time was changed expecting #{time} is #{vals[:o]}"; next ) if vals[:o] != nil && vals[:o].strip != time.strip
+            (puts "#{source.id} pae was changed expecting #{pae} is #{vals[:p]}"; next ) if vals[:p] != nil && vals[:p].strip != pae.strip
 
-            
-            tags[:g].content = clef_new
-            tags[:n].content = key_new
-            tags[:o].content = time_new
-            tags[:p].content = pae_new
+            puts "#{tags[:n].content}, #{key} to #{key_new}"
 
-            puts "#{source.id} updated correctly"
+            tags[:g].content = clef_new.strip if !clef_new.empty?
+            tags[:n].content = key_new.strip if !key_new.empty?
+            tags[:o].content = time_new.strip if !time_new.empty?
+            tags[:p].content = pae_new.strip if !pae_new.empty?
+
+            puts "#{source.id} updated correctly "
         end
 
     end

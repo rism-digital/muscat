@@ -76,7 +76,7 @@ pt:
     latvian: Letão
     lithuanian: Lituano
     low_german: Baixo alemão
-    lower_sorbian: Sorábio, Baixo Sorábio
+    lower_sorbian: 'Sorábio, Baixo Sorábio'
     luxembourgish: Luxemburguês
     macedonian: Macedônio
     maori: Maori
@@ -116,7 +116,7 @@ pt:
     tsimshian: Tsimshian
     turkish: Turco
     ukrainian: Ucraniano
-    upper_sorbian: Sorábio, Alto Sorábio
+    upper_sorbian: 'Sorábio, Alto Sorábio'
     vietnamese: Vietnamita
     welsh: Galês
     west_frisian: Frisão ocidental
@@ -331,7 +331,7 @@ pt:
     choreographer: Choreographer
     chronological_subdivision: Chronological subdivision
     chronological_term: Chronological term
-    city: City
+    city: Cidade
     clef: Clave
     co_composer: Co-compositor
     coded_date: Data codificada
@@ -676,7 +676,7 @@ pt:
     performer: Intérprete
     performer_note: Performer note
     person: Pessoa
-    person_name: Person Name
+    person_name: Person name
     personal_name: Personal name
     personal_names: Nomes de pessoas
     photoreproductive_process: Processo foto-reprodutivo
@@ -708,17 +708,17 @@ pt:
     publisher: Casa editora
     publisher_copyist: Editor, copista
     publisher_number: Número da editora
-    publisher_plate_number: Número da editora ou de chapa
+    publisher_plate_number: Plate or publisher number
     publishing_printing_production: Informação de publicação, impressão e produção
     qualifying_information: Informação sobre qualificação
     range_dates: Faixa de datas
     real_world_object_uri: Objecto do Mundo Real URI
     record_actions: Ações do registro
-    record_audit: RECORD AUDIT
+    record_audit: Record audit
     record_origin: Origem do registro
     record_status: Estado do registro
     reference_instruction_phrase: Frase de instrução de referência no subcampo $i
-    reference_record_id: REFERENCE RECORD ID
+    reference_record_id: Reference record ID
     references: Referências
     references_and_notes: Notas e referências
     region_active: Region active
@@ -728,7 +728,7 @@ pt:
     related_place: Local relacionado
     related_resources: Related resources
     related_source: Fonte relacionada
-    related_titles: Related Titles
+    related_titles: Related titles
     related_to: Related to
     related_work: Related work
     relation: Relation
@@ -785,7 +785,7 @@ pt:
     street_address: Street address
     strings: Cordas
     subheading: Subdivisão de forma
-    subheading_general: Subheading General subdivision
+    subheading_general: Subheading general subdivision
     subject_access_fields: Campos de acesso por assunto
     subject_heading: Assunto
     subject_headings: Cabeçalhos de assunto
@@ -862,8 +862,6 @@ pt:
     keysig: "Armadura de clave"
     timesig: "Compasso"
     ERR_001_EMPTY: Enter an encoded incipit.
-    ERR_002_JSON_PARSE: "Cannot parse the JSON input."
-    ERR_003_JSON_KEY: "No 'data' key in the JSON input."
     ERR_004_KEY_SPACE: A key signature change must be followed by a space.
     ERR_005_CLEF_SPACE: A clef change must be followed by a space.
     ERR_006_TIMESIG_SPACE: A time signature change must be followed by a space.
@@ -884,7 +882,7 @@ pt:
     ERR_021_CHORD_NOTE_AFTER: To indicate a chord, a '^' must be followed by a note.
     ERR_022_BEAM_MENSURAL: Beams cannot be used with mensural notation.
     ERR_023_BEAM_NESTED: Do not start a beam before closing the previous one.
-    ERR_024_BEAM_CLOSING: 'An extra ''}'' to close a beam is present. Delete it or indicate where the beam starts with ''{''. '
+    ERR_024_BEAM_CLOSING: 'An extra ''}'' to close a beam is present. Delete it or indicate where the beam starts with ''{''.'
     ERR_025_BEAM_OPEN: Close the beam with '}' before the end of the measure.
     ERR_026_GRACE_NESTED: Close the appoggiatura with 'r' before starting a new one.
     ERR_027_GRACE_CLOSING: An 'r' is present to close an appoggiatura. Delete it or add 'qq' to indicate where it begins.
@@ -901,7 +899,6 @@ pt:
     ERR_038_TIE_OPEN: A tie using '+' must be followed by a note.
     ERR_039_TIE_NO_NOTE: A tie using '+' must be preceded by a note.
     ERR_040_HIERARCHY_INVALID: The order of elements cannot be interpreted (%{value}).
-    ERR_041_NESTING_INVALID: "Invalid nesting of opening and closing tags '%{value}'"
     ERR_042_CLEF_INCOMPLETE: The clef is not in the correct form.
     ERR_043_CLEF_INVALID_2ND: The second character in the clef sign must be either '+' or '-'.
     ERR_044_CLEF_MENS: Do not mix mensural and non-mensural clefs.
@@ -912,10 +909,11 @@ pt:
     ERR_049_TIMESIG_MENS: The time signature is not in the correct form.
     ERR_050_INVALID_CHAR: 'Delete the following invalid character(s): %{value}'
     ERR_051_BARLINE: The barline is not in the correct form.
-    ERR_052_DURATION: "Duration content cannot be parsed (Setting to quarter note if running in non-pedantic mode)"
+    ERR_052_DURATION: "Duration cannot be interpreted."
     ERR_053_DURATION_MENS3: The duration cannot be '3' with mensural notation.
     ERR_054_DURATION_MENS5: The duration cannot be '5' with mensural notation.
     ERR_055_KEYSIG_CHANGE: The key signature cannot be changed more than once in a measure.
     ERR_056_TIMESIG_CHANGE: The time signature cannot be changed more than once in a measure.
     ERR_057_MENSUR_CHANGE: The mensuration cannot be changed more than once in a measure.
-    ERR_058_FERMATA_MREST: "Fermata on measure rest with extraneous content '%{value}'"
+    ERR_058_FERMATA_MREST: "The parentheses of a fermata must only contain a single note or rest '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes are invalid with mensural notation."

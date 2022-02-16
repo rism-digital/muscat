@@ -76,7 +76,7 @@ fr:
     latvian: Letton
     lithuanian: Lituanien
     low_german: Bas allemand
-    lower_sorbian: Sorabe, Sorabe inférieur
+    lower_sorbian: 'Sorabe, Sorabe inférieur'
     luxembourgish: Luxembourgeois
     macedonian: Macédonien
     maori: Maori
@@ -116,7 +116,7 @@ fr:
     tsimshian: Tsimshian
     turkish: Turque
     ukrainian: Ukrainien
-    upper_sorbian: Sorabe, Sorabe supérieur
+    upper_sorbian: 'Sorabe, Sorabe supérieur'
     vietnamese: Vietnamien
     welsh: Gallois
     west_frisian: Frison occidental
@@ -708,17 +708,17 @@ fr:
     publisher: Editeur
     publisher_copyist: Copiste ou maison d'édition
     publisher_number: Numéro de l'éditeur
-    publisher_plate_number: Numéro d'éditeur ou de plaque
+    publisher_plate_number: Numéro de la plaque ou de l'éditeur
     publishing_printing_production: Copie ou données d'édition
     qualifying_information: Informations requises
     range_dates: Intervalle de dates
     real_world_object_uri: Objet du monde réel URI
     record_actions: Actions pour la notice
-    record_audit: RECORD AUDIT
+    record_audit: Vérification des enregistrements
     record_origin: Origine de la notice
     record_status: Etat de la notice
     reference_instruction_phrase: Phrase d'instruction de référence dans la sous-field $i
-    reference_record_id: Numéro d'identification de la notice de référence
+    reference_record_id: ID de l'enregistrement de référence
     references: Références
     references_and_notes: Références et notes
     region_active: Région d'activité
@@ -862,8 +862,6 @@ fr:
     keysig: "Armure"
     timesig: "Indication de mesure"
     ERR_001_EMPTY: Saisir un incipit.
-    ERR_002_JSON_PARSE: "Les données d'entrée en JSON ne peuvent pas être traitées."
-    ERR_003_JSON_KEY: "Il n'y a pas de clé 'data dans les données d'entrée en JSON."
     ERR_004_KEY_SPACE: Un changement d'armure doit être suivi d'un espace.
     ERR_005_CLEF_SPACE: Un changement de clef doit être suivi d'un espace.
     ERR_006_TIMESIG_SPACE: Un changement d'indication de mesure doit être suivi d'un espace.
@@ -884,7 +882,7 @@ fr:
     ERR_021_CHORD_NOTE_AFTER: Pour indiquer un accord, un '^' doit être suivi d'une note.
     ERR_022_BEAM_MENSURAL: Les barres de valeur ne peuvent pas être utilisées avec une notation mensurale.
     ERR_023_BEAM_NESTED: Ne commencez pas un groupe de barres de valeur avant de fermer le précédent.
-    ERR_024_BEAM_CLOSING: 'Un ''}'' supplémentaire pour fermer un groupe de barres de valeur est présent. Supprimez-le ou indiquez où le groupe commence par ''{''. '
+    ERR_024_BEAM_CLOSING: 'Un ''}'' supplémentaire pour fermer un groupe de barres de valeur est présent. Supprimez-le ou indiquez où le groupe commence par ''{''.'
     ERR_025_BEAM_OPEN: Fermer le groupe de barres de valeur avec '}' avant la fin de la mesure.
     ERR_026_GRACE_NESTED: Fermez l'appoggiature par 'r' avant d'en commencer une nouvelle.
     ERR_027_GRACE_CLOSING: Un 'r' est présent pour fermer une appoggiature. Supprimez-le ou ajoutez 'qq' pour indiquer où elle commence.
@@ -901,7 +899,6 @@ fr:
     ERR_038_TIE_OPEN: Une liaison de prolongation codée avec '+' doit être suivie d'une note.
     ERR_039_TIE_NO_NOTE: Une liaison de prolongation codée avec '+' doit être précédée d'une note.
     ERR_040_HIERARCHY_INVALID: L'ordre des éléments ne peut pas être interprété (%{value}).
-    ERR_041_NESTING_INVALID: "Imbrication des balises d'ouverture et de fermeture n'est pas valide '%{value}'"
     ERR_042_CLEF_INCOMPLETE: La clef n'est pas codée correctement.
     ERR_043_CLEF_INVALID_2ND: Le deuxième caractère dans le signe de la clef doit être soit '+' soit '-'.
     ERR_044_CLEF_MENS: Ne mélangez pas les clefs mensurales et non mensurales.
@@ -912,10 +909,11 @@ fr:
     ERR_049_TIMESIG_MENS: L'indication de mesure n'est pas codée correctement.
     ERR_050_INVALID_CHAR: 'Supprimer le(s) caractère(s) invalide(s) suivant(s) : %{value}'
     ERR_051_BARLINE: La barre de mesure n'est pas codée correctement.
-    ERR_052_DURATION: "Le codage de la durée ne peut pas être analysé (durée de noire par défaut)"
+    ERR_052_DURATION: "La durée ne peut pas être nulle."
     ERR_053_DURATION_MENS3: La durée ne peut pas être '3' en notation mensurale.
     ERR_054_DURATION_MENS5: La durée ne peut pas être '5' en notation mensurale.
     ERR_055_KEYSIG_CHANGE: L'armure ne peut pas être modifiée plus d'une fois dans une mesure.
     ERR_056_TIMESIG_CHANGE: L'indication de mesure ne peut pas être modifiée plus d'une fois dans une mesure.
     ERR_057_MENSUR_CHANGE: L'indication de mesure ne peut pas être modifiée plus d'une fois dans une mesure.
-    ERR_058_FERMATA_MREST: "Le point d'orgue sur une mesure de pause contient des signes superflus '%{value}'"
+    ERR_058_FERMATA_MREST: "Les parenthèses d'un point d'orgue ne doivent contenir qu'une seule note ou un seul silence '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Les notes doubles pointées ne sont pas valides en notation mensurale."

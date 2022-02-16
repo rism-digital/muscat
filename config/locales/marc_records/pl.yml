@@ -1,7 +1,7 @@
 pl:
   general:
     created_at: "Data utworzenia"
-    e_mail: E-mail
+    e_mail: Email
     editor_help: Pomoc do edycji
     faq: Odpowiedzi na częste pytania
     female: Kobieta
@@ -76,7 +76,7 @@ pl:
     latvian: Łotewski
     lithuanian: Litewski
     low_german: Dolnoniemiecki
-    lower_sorbian: Dolnołużycki
+    lower_sorbian: 'Dolnołużycki'
     luxembourgish: Luksemburski
     macedonian: Macedoński
     maori: Maoryski
@@ -116,7 +116,7 @@ pl:
     tsimshian: Tsimshiański
     turkish: Turecki
     ukrainian: Ukraiński
-    upper_sorbian: Gbórnołużycki
+    upper_sorbian: 'Gbórnołużycki'
     vietnamese: Wietnamska
     welsh: Walijski
     west_frisian: Zchodniofryzyjski
@@ -714,11 +714,11 @@ pl:
     range_dates: Zakres dat
     real_world_object_uri: Identyfikator URI obiektu świata rzeczywistego
     record_actions: Działania na rekordzie
-    record_audit: RECORD AUDIT
+    record_audit: Record audit
     record_origin: Pochodzenie rekordu
     record_status: Status rekordu
     reference_instruction_phrase: Referencyjna fraza instrukcji w podpolu $i
-    reference_record_id: Referncyjny identyfikator RISM
+    reference_record_id: Referncyjny identyfikator
     references: Odniesienia
     references_and_notes: Odniesienia i uwagi
     region_active: Region aktywności artystycznej
@@ -857,65 +857,63 @@ pl:
     P60183: "Wstawić"
   verovio:
     position: "Position"
-    warning: "Warning"
+    warning: "Uwaga"
     clef: "Klucz"
     keysig: "Znaki przykluczowe"
     timesig: "Metrum"
     ERR_001_EMPTY: Enter an encoded incipit.
-    ERR_002_JSON_PARSE: "Cannot parse the JSON input."
-    ERR_003_JSON_KEY: "No 'data' key in the JSON input."
-    ERR_004_KEY_SPACE: A key signature change must be followed by a space.
-    ERR_005_CLEF_SPACE: A clef change must be followed by a space.
-    ERR_006_TIMESIG_SPACE: A time signature change must be followed by a space.
-    ERR_007_REP_EMPTY: Enter the notes that should be repeated.
-    ERR_008_REP_MARKER: Indicate the end of the repeated figure with '!' before the 'f'.
-    ERR_009_REP_OPEN: Close the repeated figure with '!' before the end of the measure.
-    ERR_010_REP_UNUSED: The figure marked for repetition has not been repeated. Indicate the repetition with an 'f'.
-    ERR_011_REP_NO_FIGURE: The 'f' must follow '!' for the figure to repeat.
-    ERR_012_REP_NOT_BEGIN: To repeat the bar, 'i' must be preceded by a bar line.
-    ERR_013_REP_NO_CONTENT: "'i' is present without content to repeat."
-    ERR_014_REP_NO_BARLINE: 'To repeat the bar, ''i'' must be followed by a bar line.'
-    ERR_015_MREST_INVALID: A rest using '=' cannot be directly followed by another '='.
-    ERR_016_MREST_NUMBER: A rest using '=' must be followed by a bar line or a number greater than 0.
-    ERR_017_TRILL_INVALID: A trill using 't' must directly follow the note it belongs to.
-    ERR_018_FERMATA_NESTED: "(' cannot be directly followed by another '('."
-    ERR_019_ACCID_NO_NOTE: An accidental must be directly followed by a note.
-    ERR_020_CHORD_NOTE_BEFORE: To indicate a chord, a '^' must be preceded by a note.
-    ERR_021_CHORD_NOTE_AFTER: To indicate a chord, a '^' must be followed by a note.
-    ERR_022_BEAM_MENSURAL: Beams cannot be used with mensural notation.
-    ERR_023_BEAM_NESTED: Do not start a beam before closing the previous one.
-    ERR_024_BEAM_CLOSING: 'An extra ''}'' to close a beam is present. Delete it or indicate where the beam starts with ''{''. '
-    ERR_025_BEAM_OPEN: Close the beam with '}' before the end of the measure.
-    ERR_026_GRACE_NESTED: Close the appoggiatura with 'r' before starting a new one.
-    ERR_027_GRACE_CLOSING: An 'r' is present to close an appoggiatura. Delete it or add 'qq' to indicate where it begins.
-    ERR_028_GRACE_OPEN: Close the appoggiatura with 'r' before the end of the measure.
-    ERR_029_GRACE_UNRESOLVED: Do not start an appoggiatura using 'q' before completing the previous one.
-    ERR_030_GRACE_DURATION: No rhythmic value can be entered when using an acciaccatura with 'g'.
-    ERR_031_GRACE_NO_NOTE: A grace note using 'g' or 'q' must be followed by a note.
-    ERR_032_TUPLET_NESTED: Do not start a special rhythm group with '(' before closing the previous one.
-    ERR_033_TUPLET_CLOSING: An extra ')' to close a special rhythm group is present. Delete it or indicate with '(' where the group begins.
-    ERR_034_TUPLET_NUM: A ';' is present outside of a special rhythm group.
-    ERR_035_TUPLET_OPEN: Close the special rhythm group or fermata with ')' before the end of the measure.
-    ERR_036_TUPLET_NUM_NUMBER: A number must appear between the ';' and ')' in the special rhythm group.
-    ERR_037_TIE_PITCH: A tie using '+' can only connect two notes of the same octave and pitch.
-    ERR_038_TIE_OPEN: A tie using '+' must be followed by a note.
-    ERR_039_TIE_NO_NOTE: A tie using '+' must be preceded by a note.
-    ERR_040_HIERARCHY_INVALID: The order of elements cannot be interpreted (%{value}).
-    ERR_041_NESTING_INVALID: "Invalid nesting of opening and closing tags '%{value}'"
-    ERR_042_CLEF_INCOMPLETE: The clef is not in the correct form.
-    ERR_043_CLEF_INVALID_2ND: The second character in the clef sign must be either '+' or '-'.
-    ERR_044_CLEF_MENS: Do not mix mensural and non-mensural clefs.
-    ERR_045_CLEF_INVALID_3RD: The third character in the clef sign must be a digit.
-    ERR_046_CLEF_INVALID: The clef is not in the correct form.
-    ERR_047_TIMESIG_INCOMPLETE: The time signature is not in the correct form.
-    ERR_048_TIMESIG_INVALID: The time signature is not in the correct form.
-    ERR_049_TIMESIG_MENS: The time signature is not in the correct form.
-    ERR_050_INVALID_CHAR: 'Delete the following invalid character(s): %{value}'
-    ERR_051_BARLINE: The barline is not in the correct form.
-    ERR_052_DURATION: "Duration content cannot be parsed (Setting to quarter note if running in non-pedantic mode)"
-    ERR_053_DURATION_MENS3: The duration cannot be '3' with mensural notation.
-    ERR_054_DURATION_MENS5: The duration cannot be '5' with mensural notation.
-    ERR_055_KEYSIG_CHANGE: The key signature cannot be changed more than once in a measure.
-    ERR_056_TIMESIG_CHANGE: The time signature cannot be changed more than once in a measure.
-    ERR_057_MENSUR_CHANGE: The mensuration cannot be changed more than once in a measure.
-    ERR_058_FERMATA_MREST: "Fermata on measure rest with extraneous content '%{value}'"
+    ERR_004_KEY_SPACE: Po zmianie znaku przykluczowego należy wprowadzić spację.
+    ERR_005_CLEF_SPACE: Po zmianie klucza należy wprowadzić spację.
+    ERR_006_TIMESIG_SPACE: Po zmianie metrum należy wprowadzić spację.
+    ERR_007_REP_EMPTY: Wprowadź nuty, które powinny zostać powtórzone.
+    ERR_008_REP_MARKER: Oznacz koniec powtarzanej figury „!” przed „f”.
+    ERR_009_REP_OPEN: Zamknij powtarzającą się figurę za pomocą „!” przed końcem taktu.
+    ERR_010_REP_UNUSED: Figura oznaczona do powtórzenia nie została powtórzona. Wskaż powtórzenie za pomocą „f”.
+    ERR_011_REP_NO_FIGURE: Aby figura została powtórzona, „f” musi następować po „!”.
+    ERR_012_REP_NOT_BEGIN: Aby powtórzyć takt, „i” musi być poprzedzone kreską taktową.
+    ERR_013_REP_NO_CONTENT: "Jest „i” bez treści do powtórzenia."
+    ERR_014_REP_NO_BARLINE: 'Aby powtórzyć takt, po „i” musi następować kreska taktowa.'
+    ERR_015_MREST_INVALID: Po pauzie „=” nie może następować kolejna „=”.
+    ERR_016_MREST_NUMBER: Po pauzie „=” musi następować kreska taktowa lub liczba większa niż 0.
+    ERR_017_TRILL_INVALID: Tryl „t” użyj natychmiast po odpowiedniej nucie.
+    ERR_018_FERMATA_NESTED: "„(” nie może następować bezpośrednio po „(”."
+    ERR_019_ACCID_NO_NOTE: Znak chromatyczny musi być bezpośrednio przed nutą.
+    ERR_020_CHORD_NOTE_BEFORE: Aby zaznaczyć akord, nutę należy poprzedzić „^”.
+    ERR_021_CHORD_NOTE_AFTER: Aby zaznaczyć akord, po „^” musi nastąpić nuta.
+    ERR_022_BEAM_MENSURAL: Belkowanie nie może być stosowane w notacji menzuralnej.
+    ERR_023_BEAM_NESTED: Nie rozpoczynaj nowego belkowania „{”, przed zamknięciem poprzedniego „}”.
+    ERR_024_BEAM_CLOSING: 'Jest dodatkowe „}” zamykające belowanie. Usuń je lub wskaż, gdzie belka zaczyna się za pomocą „{”.'
+    ERR_025_BEAM_OPEN: Zamknij belkę za pomocą „}” przed końcem taktu.
+    ERR_026_GRACE_NESTED: Zamknij appoggiaturę za pomocą „r” przed rozpoczęciem nowej.
+    ERR_027_GRACE_CLOSING: Jest „r” zamykające apoggiaturę. Usuń je lub dodaj „qq”, aby wskazać, gdzie się zaczyna.
+    ERR_028_GRACE_OPEN: Zamknij appoggiaturę za pomocą „r” przed końcem taktu.
+    ERR_029_GRACE_UNRESOLVED: Nie zaczynaj nowej appoggiatury używajac „q” dopóki nie skończysz poprzedniej.
+    ERR_030_GRACE_DURATION: Nie można wprowadzić wartości rytmicznej, gdy używasz acciaccaturę „g”.
+    ERR_031_GRACE_NO_NOTE: Po ozdobniku „g” lub „q” musi być nuta.
+    ERR_032_TUPLET_NESTED: Nie rozpoczynaj specjalnej grupy rytmicznej „(” dopóki nie skończysz poprzedniej.
+    ERR_033_TUPLET_CLOSING: Jest dodatkowe „)” zamykające specjalną grupę rytmiczną. Usuń je lub wskaż, gdzie grupa zaczyna się za pomocą „(”.
+    ERR_034_TUPLET_NUM: Jest „; ” poza specjalną grupą rytmiczną.
+    ERR_035_TUPLET_OPEN: Zamknij specjalną grupę rytmiczną lub fermatę za pomocą „)” przed końcem taktu.
+    ERR_036_TUPLET_NUM_NUMBER: Liczba musi zostać wstawiona między „; ” a „)” w specjalnej grupie rytmicznej.
+    ERR_037_TIE_PITCH: Łącznik „+” łączy jedynie nuty w tej samej oktawie i o tej samej wysokości.
+    ERR_038_TIE_OPEN: Łącznik „+” należy poprzedzić nutą.
+    ERR_039_TIE_NO_NOTE: Łącznik „+” należy poprzedzić nutą.
+    ERR_040_HIERARCHY_INVALID: Nie można zinterpretować kolejności elementów (%{value}).
+    ERR_042_CLEF_INCOMPLETE: Zmiana klucza jest nieprawidłowa.
+    ERR_043_CLEF_INVALID_2ND: Drugim znakiem w kluczu musi być „+” lub „-”.
+    ERR_044_CLEF_MENS: Nie mieszaj kluczy notacji menzuralnej z kluczami notacji współczesnej.
+    ERR_045_CLEF_INVALID_3RD: Trzeci znak w kluczu musi być cyfrą.
+    ERR_046_CLEF_INVALID: Klucz jest zapisany nieprawidłowo.
+    ERR_047_TIMESIG_INCOMPLETE: Metrum jest zapisane nieprawidłowo.
+    ERR_048_TIMESIG_INVALID: Metrum jest zapisane nieprawidłowo.
+    ERR_049_TIMESIG_MENS: Metrum jest zapisane nieprawidłowo.
+    ERR_050_INVALID_CHAR: 'Usuń następujące nieprawidłowe znaki: %{value}'
+    ERR_051_BARLINE: Kreska taktowa jest zapisana nieprawidłowo.
+    ERR_052_DURATION: "Duration cannot be interpreted."
+    ERR_053_DURATION_MENS3: Czas trwania nie może wynosić „3” w notacji menzuralnej.
+    ERR_054_DURATION_MENS5: Czas trwania nie może wynosić „5” w notacji menzuralnej.
+    ERR_055_KEYSIG_CHANGE: Tonację można zmienić tylko raz w takcie.
+    ERR_056_TIMESIG_CHANGE: Metrum można zmienić tylko raz w takcie.
+    ERR_057_MENSUR_CHANGE: Menzurę można zmienić tylko raz w takcie.
+    ERR_058_FERMATA_MREST: "The parentheses of a fermata must only contain a single note or rest '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes are invalid with mensural notation."

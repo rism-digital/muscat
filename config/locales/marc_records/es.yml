@@ -76,7 +76,7 @@ es:
     latvian: Letón
     lithuanian: Lituano
     low_german: Bajo alemán
-    lower_sorbian: Sorbio, Bajo Sorbio
+    lower_sorbian: 'Sorbio, Bajo Sorbio'
     luxembourgish: Luxemburgués
     macedonian: Macedonio
     maori: Maorí
@@ -116,7 +116,7 @@ es:
     tsimshian: Tsimshian
     turkish: Turco
     ukrainian: Ucraniano
-    upper_sorbian: Sorbio, Alto Sorbio
+    upper_sorbian: 'Sorbio, Alto Sorbio'
     vietnamese: Vietnamita
     welsh: Galés
     west_frisian: Frisón occidental
@@ -226,8 +226,8 @@ es:
     usa: Estados Unidos de América
     uzbekistan: Uzbekistán
     #holy_see provided for backwards compatibility
-    holy_see: Vatican City
-    vatican: Vatican City
+    holy_see: Ciudad del Vaticano
+    vatican: Ciudad del Vaticano
     venezuela: Venezuela, República Bolivariana de
     vietnam: Vietnam
   records:
@@ -708,17 +708,17 @@ es:
     publisher: Editor (publicador)/Editorial (publicadora)
     publisher_copyist: Editor, copista
     publisher_number: Número de la editorial
-    publisher_plate_number: Número de la editorial o de la plancha
+    publisher_plate_number: Número de placa o del editor
     publishing_printing_production: Información de publicación, impresión y producción
     qualifying_information: Información calificada
     range_dates: Rango de fechas
     real_world_object_uri: URI de Objeto del mundo real
     record_actions: Acciones del registro
-    record_audit: RECORD AUDIT
+    record_audit: Valoración de registros
     record_origin: Origen del registro
     record_status: Estado del registro
     reference_instruction_phrase: Frase de instrucción de referencia en el subcampo $i
-    reference_record_id: ID del Registro de Referencia
+    reference_record_id: Registro de referencia eliminado
     references: Bibliografía
     references_and_notes: Referencias y notas
     region_active: Región de actividad
@@ -862,8 +862,6 @@ es:
     keysig: "Armadura de clave"
     timesig: "Indicación de compás"
     ERR_001_EMPTY: Introduzca un incipit codificado.
-    ERR_002_JSON_PARSE: "No se puede analizar la entrada JSON."
-    ERR_003_JSON_KEY: "No hay clave 'data' en la entrada JSON."
     ERR_004_KEY_SPACE: Al cambio de armadura de clave debe seguirle un espacio.
     ERR_005_CLEF_SPACE: Al cambio de clave debe seguirle un espacio.
     ERR_006_TIMESIG_SPACE: Al cambio de indicacón de compás debe seguirle un espacio.
@@ -901,7 +899,6 @@ es:
     ERR_038_TIE_OPEN: El "+" de la ligadura de prolongación debe estár precedido por una nota.
     ERR_039_TIE_NO_NOTE: El "+" de la ligadura de prolongación debe estár precedido por una nota.
     ERR_040_HIERARCHY_INVALID: El orden de los elementos no se puede interpretar (%{value}).
-    ERR_041_NESTING_INVALID: "Anidación no válida de etiquetas de apertura y cierre '%{value}"
     ERR_042_CLEF_INCOMPLETE: La clave no tiene la forma correcta.
     ERR_043_CLEF_INVALID_2ND: El segundo carácter de la indicación de clave debe ser "+" o "-".
     ERR_044_CLEF_MENS: No combine claves mensurales y no mensurales.
@@ -912,10 +909,11 @@ es:
     ERR_049_TIMESIG_MENS: La indicación de compás no tiene la forma correcta.
     ERR_050_INVALID_CHAR: 'Borre los siguientes caracteres inválidos: %{value}'
     ERR_051_BARLINE: La barra de compás no tiene la forma correcta.
-    ERR_052_DURATION: "El contenido de la duración no se puede analizar (ajustar a la nota trimestre si se ejecuta en modo no pedántico)"
+    ERR_052_DURATION: "La duración no puede ser cero."
     ERR_053_DURATION_MENS3: La duración no puede ser "3" en notación mensural.
     ERR_054_DURATION_MENS5: La duración no puede ser "5" en notación mensural.
     ERR_055_KEYSIG_CHANGE: La armadura de clave no puede ser modificada más de una vez en un compás.
     ERR_056_TIMESIG_CHANGE: La armadura de clave no puede ser modificada más de una vez en un compás.
     ERR_057_MENSUR_CHANGE: La armadura de clave no puede ser modificada más de una vez en un compás.
-    ERR_058_FERMATA_MREST: "Fermata en medida reposa con contenido extraño %{value}"
+    ERR_058_FERMATA_MREST: "Los paréntesis de una fermata solo deben contener una nota o descanso '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Las notas de doble punto no son válidas con notación mensural."
