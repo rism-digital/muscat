@@ -144,19 +144,19 @@ The Muscat core should work with any installation of Solr, here a sample install
 
 ==== Installation using a "stock" solr using included setup script
 
-Grab a copy of the official distribution (8.8.2 at the time of writing) and unpack it in a suitable place
+Grab a copy of the official distribution (8.11.1 at the time of writing) and unpack it in a suitable place
 
-  wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.8.2/solr-8.8.2.tgz
-  tar -xvzf solr-8.8.2.tgz
+  wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.11.1/solr-8.11.1.tgz?action=download -O solr-8.11.1.tgz
+  tar -xvzf solr-8.11.1.tgz
 
 Solr needs two directories, one for data and one for the binaries. The latter is generally /opt/solr, and the data installation for this example will be /data/solr.
 Extract just the installation script:
 
-  tar xzf solr-8.8.2.tgz solr-8.8.2/bin/install_solr_service.sh --strip-components=2
+  tar xzf solr-8.11.1.tgz solr-8.11.1/bin/install_solr_service.sh --strip-components=2
 
 And execute it:
 
-  sudo ./install_solr_service.sh solr-8.8.2.tgz -d /data/solr -p 8983
+  sudo ./install_solr_service.sh solr-8.11.1.tgz -d /data/solr -p 8983
 
 This will create the directory layout as above. It will also create a +solr+ user. For the complete reference see https://solr.apache.org/guide/8_8/taking-solr-to-production.html
 Now copy over the Muscat core:
@@ -174,15 +174,15 @@ Should start it. The logfiles in this case are found in +/data/solr/logs+.
 
 ==== Installation using a "stock" solr
 
-Grab a copy of the official distribution (8.8.2 at the time of writing) and unpack it in a suitable place
+Grab a copy of the official distribution (8.11.1 at the time of writing) and unpack it in a suitable place
 
-  wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.8.2/solr-8.8.2.tgz
-  tar -xvzf solr-8.8.2.tgz
+  wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.11.1/solr-8.11.1.tgz?action=download -O solr-8.11.1.tgz
+  tar -xvzf solr-8.11.1.tgz
 
 When using this distribution, you can copy the +muscat+ core bundled with Muscat directly into the binary distibution
 
-  cp -R $MUSCAT_HOME/solr-configuration/muscat solr-8.8.2/server/solr
-  cp $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar solr-8.8.2/server/solr/lib/
+  cp -R $MUSCAT_HOME/solr-configuration/muscat solr-8.11.1/server/solr
+  cp $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar solr-8.11.1/server/solr/lib/
 
 **NOTE** The bundled +ThemaxQuery-1.0-SNAPSHOT.jar+ contains the PAE incipit indexer used in Muscat. A version for macOS 11 is provided in jar-8.8-mac, the linux version should work with any recent Ubuntu/Debian system.
 In +muscat/solrconfig.xml+ the path for this jar is hardcoded <lib dir="../../jar"/> so it will find it in the stock Solr installation. For a different installation the path should made to point to the correct jar file path.
@@ -194,16 +194,16 @@ Or an appropriate startup script may be used
 
 ==== Installation on macOS with Homebrew
 
-Install solr with brew, at the time of writing it is 8.8.2
+Install solr with brew, use solr-8.11.1 at least
 
   brew install solr
 
 As above, copy the configuration and jar file:
 
-  cp -R $MUSCAT_HOME/solr-configuration/muscat /usr/local/var/lib/solr/muscat-index
-  cd /usr/local/Cellar/solr/8.8.2/contrib
+  cp -R $MUSCAT_HOME/solr-configuration/muscat /usr/local/var/lib/solr/muscat
+  cd /usr/local/Cellar/solr/8.11.1/contrib
   mkdir themax
-  $MUSCAT_HOME/solr-configuration/jar-8.8-mac/ThemaxQuery-1.0-SNAPSHOT.jar /usr/local/Cellar/solr/8.8.2/contrib/themax
+  $MUSCAT_HOME/solr-configuration/jar-8.8-mac/ThemaxQuery-1.0-SNAPSHOT.jar /usr/local/Cellar/solr/8.11.1/contrib/themax
 
 Edit +/usr/local/var/lib/solr/muscat-index/solrconfig.xml+ To point to the correct jar. Remove <lib dir="../../jar"/> and add:
 
@@ -227,7 +227,7 @@ To change the core name or port
   # Make sure solr is not running as root if used in production
   sudo -u www-data bundle exec rake RAILS_ENV=production sunspot:solr:start
   # else just do:
-  bundle exec sunspot:solr:start
+  bundle exec rake sunspot:solr:start
 
 *NOTE* +sunspot.yml+ and +blacklight.yml+ now point to the +muscat+ core as used for 8.8. To run with 5.5 and the default configuration, edit those files to use
 
