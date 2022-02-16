@@ -256,7 +256,7 @@ A default administrative user has been created as part of the installation proce
 go to +http://ip:3000/admin+ and log in with the following credentials:
 
  username: admin@example.com
- password: password
+ password: Password1234
 
 It is advised that you delete this account after creating a new administrative user in the admin interface.
 
