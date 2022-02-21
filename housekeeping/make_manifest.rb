@@ -157,6 +157,8 @@ dirs.keys.each do |dir|
     country = "ch" # TODO: Figure out country code from siglum
   end
 
+  manifest_id = "#{IIIF_PATH}/manifest/#{country}/#{dir}.json"
+
   # Skip all the manifest generation stuff if we only add the 856
   if options.include?(:onlyadd) && options[:onlyadd] == true
     puts "Manifest creation skipped (-o)"
@@ -170,8 +172,6 @@ dirs.keys.each do |dir|
         next
       end
     end
-
-    manifest_id = "#{IIIF_PATH}/manifest/#{country}/#{dir}.json"
 
     # Create the base manifest file
     related = {
