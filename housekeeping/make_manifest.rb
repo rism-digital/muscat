@@ -39,17 +39,62 @@ end
 # Should not have a trailing slash!
 IIIF_PATH="https://iiif.rism.digital"
 
-if ARGV[0].include?("yml")
-  dirs  = YAML.load_file(ARGV[0])
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: make_manifest.rb [options] file"
+
+  opts.on("-z", "--banner [BANNER]", "Banner for 856 $z") do |b|
+    options[:banner] = b
+  end
+
+  opts.on("-x", "--type [TYPE]", "Document type 856 $x") do |b|
+    options[:type] = b
+  end
+
+  opts.on("-d", "--no-create", "Do not add 856 to records") do |b|
+    options[:nocreate] = b
+  end
+
+  opts.on("-f", "--force", "Force overwrite of already created manifests") do |b|
+    options[:force] = b
+  end
+
+  opts.on("-p", "--path", "Set IIIF server URL path") do |b|
+    options[:path] = b
+  end
+
+  opts.on("-h", "--help", "Prints this help") do
+    puts opts
+    exit
+  end
+
+end.parse!
+
+if ARGV.empty?
+  puts "Usage: make_manifest.rb [options] dirs.yml"
+  exit
+end
+
+options[:type] = "IIIF" if !options.include?(:type)
+options[:banner] = "Digital Object" if !options.include?(:banner)
+IIIF_PATH = options[:path] if options.include?(:path)
+
+if ARGV.first.include?("yml")
+  dirs  = YAML.load_file(ARGV.first)
 else
   dirs = ARGV
 end
 
+puts "Creating manifests for #{ARGV.first}"
+puts "Update 856 in record: #{ !(options.include?(:nocreate) && !options[:nocreate])}"
+puts "Banner 856$z: #{options[:banner]}"
+puts "Type 856$x #{options[:type]}"
+puts "URL path: #{IIIF_PATH}"
+puts "Force manifest creation: #{ options.include?(:force) && options[:force] == true}"
+
 dirs.keys.each do |dir|
 
-  #next if !dir.include? "400008043"
-
-  source = nil
+  db_element = nil
   title = "Images for #{dir}"
   
   if dirs.is_a? Array
@@ -71,19 +116,34 @@ dirs.keys.each do |dir|
     toks = dir.split("-")
     ## if it contains the -xxx just get the ID
     id = toks[0] if toks != [dir]
-    begin
-      source = Source.find(dir)
-    rescue ActiveRecord::RecordNotFound
-      puts "SOURCE #{dir} not found".red
-      next
+    if (dir.starts_with?('h'))
+      id = dir[1..-1] # strip the H
+      begin
+        db_element = Holding.find(id)
+      rescue ActiveRecord::RecordNotFound
+        puts "HOLDING #{id} not found".red
+        next
+      end
+      title = db_element.source.title
+    else
+      begin
+        db_element = Source.find(dir)
+      rescue ActiveRecord::RecordNotFound
+        puts "SOURCE #{dir} not found".red
+        next
+      end
+      title = db_element.title
     end
-    title = source.title
     country = "ch" # TODO: Figure out country code from siglum
   end
 
   if File.exist?(country + "/" + dir + '.json')
-    puts "already exists, skip"
-    next
+    if options.include?(:force) && options[:force] == true
+      puts "file exists, overwrite (-f)"
+    else
+      puts "already exists, skip"
+      next
+    end
   end
 
   manifest_id = "#{IIIF_PATH}/manifest/#{country}/#{dir}.json"
@@ -114,13 +174,13 @@ dirs.keys.each do |dir|
     image = IIIF::Presentation::Annotation.new
     image["on"] = canvas['@id']
     image["@id"] = "#{IIIF_PATH}/annotation/#{country}/#{dir}/#{image_name.chomp(".tif")}"
-    ## Uncomment these two prints to see the progress of the HTTP reqs.
-
-    #begin
+#puts image_url
+    begin
       image_resource = IIIF::Presentation::ImageResource.create_image_api_image_resource(service_id: image_url, resource_id:"#{image_url}/full/full/0/default.jpg")
-    #rescue
-    #  puts "Not found #{image_url}"
-    #end
+    rescue
+      puts "Not found #{image_url}"
+      next
+    end
 
     print "."
     image.resource = image_resource
@@ -140,22 +200,31 @@ dirs.keys.each do |dir|
   #puts manifest.to_json(pretty: true)
   File.write(country + "/" + dir + '.json', manifest.to_json(pretty: true))
   puts "Wrote #{country}/#{dir}.json"
-  next
-  if source
-    marc = source.marc
+  
+  if options.include?(:nocreate) && options[:nocreate] == false ## it sets to FLASE when set
+    puts "Do not update 856"
+    next
+  end
+
+  # db_element can be a Source or a Holding, only in Muscat records
+  if db_element
+
+    type = db_element.is_a?(Source) ? "source" : "holding"
+    marc = db_element.marc
     marc.load_source true
 
     # The source can contain more than one 856
     # as some sources have more image groups
     # -01 -02 etc
-    new_tag = MarcNode.new("source", "856", "", "##")
-    new_tag.add_at(MarcNode.new("source", "x", "IIIF", nil), 0)
-    new_tag.add_at(MarcNode.new("source", "u", manifest_id, nil), 0)
+    new_tag = MarcNode.new(type, "856", "", "##")
+    new_tag.add_at(MarcNode.new(type, "x", options[:type], nil), 0)
+    new_tag.add_at(MarcNode.new(type, "z", options[:banner], nil), 0)
+    new_tag.add_at(MarcNode.new(type, "u", manifest_id, nil), 0)
 
     pi = marc.get_insert_position("856")
     marc.root.children.insert(pi, new_tag)
   
-    source.save!
+    db_element.save!
   end
 
 end
