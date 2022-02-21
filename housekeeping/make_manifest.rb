@@ -63,6 +63,10 @@ OptionParser.new do |opts|
     options[:path] = b
   end
 
+  opts.on("-r", "--no-reindex", "Do not reindex the sources") do |b|
+    options[:noreindex] = b
+  end
+
   opts.on("-h", "--help", "Prints this help") do
     puts opts
     exit
@@ -224,6 +228,8 @@ dirs.keys.each do |dir|
     pi = marc.get_insert_position("856")
     marc.root.children.insert(pi, new_tag)
   
+    db_element.suppress_reindex_trigger if options.include?(:noreindex) && options[:noreindex] == false
+
     db_element.save!
   end
 
