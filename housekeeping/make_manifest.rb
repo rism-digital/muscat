@@ -228,7 +228,7 @@ dirs.keys.each do |dir|
     pi = marc.get_insert_position("856")
     marc.root.children.insert(pi, new_tag)
   
-    db_element.suppress_reindex_trigger if options.include?(:noreindex) && options[:noreindex] == false
+    db_element.suppress_reindex if options.include?(:noreindex) && options[:noreindex] == false
 
     db_element.save!
   end
