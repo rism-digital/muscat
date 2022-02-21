@@ -40,6 +40,7 @@ end
 IIIF_PATH="https://iiif.rism.digital"
 
 options = {}
+oparser = nil
 OptionParser.new do |opts|
   opts.banner = "Usage: make_manifest.rb [options] file"
 
@@ -67,15 +68,28 @@ OptionParser.new do |opts|
     options[:noreindex] = b
   end
 
+  opts.on("-o", "--only-add", "Do not create the manifests, only add the 856") do |b|
+    options[:onlyadd] = b
+  end
+
   opts.on("-h", "--help", "Prints this help") do
     puts opts
     exit
   end
 
+  oparser = opts
 end.parse!
 
 if ARGV.empty?
-  puts "Usage: make_manifest.rb [options] dirs.yml"
+  #puts "Usage: make_manifest.rb [options] dirs.yml"
+  puts "Please specify a direcory listing file"
+  puts oparser
+  exit
+end
+
+if options.include?(:onlyadd) && options.include?(:nocreate)
+  puts "-d and -o cannot be used together"
+  puts oparser
   exit
 end
 
@@ -95,6 +109,8 @@ puts "Banner 856$z: #{options[:banner]}"
 puts "Type 856$x #{options[:type]}"
 puts "URL path: #{IIIF_PATH}"
 puts "Force manifest creation: #{ options.include?(:force) && options[:force] == true}"
+puts "Skip manifest creation: #{ options.include?(:onlyadd) && options[:onlyadd] == true}"
+
 
 dirs.keys.each do |dir|
 
@@ -141,73 +157,79 @@ dirs.keys.each do |dir|
     country = "ch" # TODO: Figure out country code from siglum
   end
 
-  if File.exist?(country + "/" + dir + '.json')
-    if options.include?(:force) && options[:force] == true
-      puts "file exists, overwrite (-f)"
-    else
-      puts "already exists, skip"
-      next
-    end
-  end
+  # Skip all the manifest generation stuff if we only add the 856
+  if options.include?(:onlyadd) && options[:onlyadd] == true
+    puts "Manifest creation skipped (-o)"
+  else
 
-  manifest_id = "#{IIIF_PATH}/manifest/#{country}/#{dir}.json"
-
-  # Create the base manifest file
-  related = {
-    "@id" => "https://www.rism-ch.org/catalog/#{dir}",
-    "format" => "text/html",
-    "label" => "RISM Catalogue Record"
-  }
-  seed = {
-      '@id' => manifest_id,
-      'label' => title,
-      'related' => related
-  }
-  # Any options you add are added to the object
-  manifest = IIIF::Presentation::Manifest.new(seed)
-  sequence = IIIF::Presentation::Sequence.new
-  manifest.sequences << sequence
-  
-  images.each_with_index do |image_name, idx|
-    canvas = IIIF::Presentation::Canvas.new()
-    canvas['@id'] = "#{IIIF_PATH}/canvas/#{country}/#{dir}/#{image_name.chomp(".tif")}"
-    canvas.label = "[Image #{idx + 1}]"
-    
-    image_url = "#{IIIF_PATH}/image/#{country}/#{dir}/#{image_name}"
-    
-    image = IIIF::Presentation::Annotation.new
-    image["on"] = canvas['@id']
-    image["@id"] = "#{IIIF_PATH}/annotation/#{country}/#{dir}/#{image_name.chomp(".tif")}"
-#puts image_url
-    begin
-      image_resource = IIIF::Presentation::ImageResource.create_image_api_image_resource(service_id: image_url, resource_id:"#{image_url}/full/full/0/default.jpg")
-    rescue
-      puts "Not found #{image_url}"
-      next
+    if File.exist?(country + "/" + dir + '.json')
+      if options.include?(:force) && options[:force] == true
+        puts "file exists, overwrite (-f)"
+      else
+        puts "already exists, skip"
+        next
+      end
     end
 
-    print "."
-    image.resource = image_resource
+    manifest_id = "#{IIIF_PATH}/manifest/#{country}/#{dir}.json"
+
+    # Create the base manifest file
+    related = {
+      "@id" => "https://www.rism-ch.org/catalog/#{dir}",
+      "format" => "text/html",
+      "label" => "RISM Catalogue Record"
+    }
+    seed = {
+        '@id' => manifest_id,
+        'label' => title,
+        'related' => related
+    }
+    # Any options you add are added to the object
+    manifest = IIIF::Presentation::Manifest.new(seed)
+    sequence = IIIF::Presentation::Sequence.new
+    manifest.sequences << sequence
     
-    canvas.width = image.resource['width']
-    canvas.height = image.resource['height']
+    images.each_with_index do |image_name, idx|
+      canvas = IIIF::Presentation::Canvas.new()
+      canvas['@id'] = "#{IIIF_PATH}/canvas/#{country}/#{dir}/#{image_name.chomp(".tif")}"
+      canvas.label = "[Image #{idx + 1}]"
+      
+      image_url = "#{IIIF_PATH}/image/#{country}/#{dir}/#{image_name}"
+      
+      image = IIIF::Presentation::Annotation.new
+      image["on"] = canvas['@id']
+      image["@id"] = "#{IIIF_PATH}/annotation/#{country}/#{dir}/#{image_name.chomp(".tif")}"
+  #puts image_url
+      begin
+        image_resource = IIIF::Presentation::ImageResource.create_image_api_image_resource(service_id: image_url, resource_id:"#{image_url}/full/full/0/default.jpg")
+      rescue
+        puts "Not found #{image_url}"
+        next
+      end
+
+      print "."
+      image.resource = image_resource
+      
+      canvas.width = image.resource['width']
+      canvas.height = image.resource['height']
+      
+      canvas.images << image
+      sequence.canvases << canvas
+      
+      # Some obnoxious servers block you after some requests
+      # may also be a server/firewall combination
+      # comment this if you are positive your server works
+      #sleep 0.1
+    end
     
-    canvas.images << image
-    sequence.canvases << canvas
+    #puts manifest.to_json(pretty: true)
+    File.write(country + "/" + dir + '.json', manifest.to_json(pretty: true))
+    puts "Wrote #{country}/#{dir}.json"
     
-    # Some obnoxious servers block you after some requests
-    # may also be a server/firewall combination
-    # comment this if you are positive your server works
-    #sleep 0.1
-  end
-  
-  #puts manifest.to_json(pretty: true)
-  File.write(country + "/" + dir + '.json', manifest.to_json(pretty: true))
-  puts "Wrote #{country}/#{dir}.json"
-  
-  if options.include?(:nocreate) && options[:nocreate] == false ## it sets to FLASE when set
-    puts "Do not update 856"
-    next
+    if options.include?(:nocreate) && options[:nocreate] == false ## it sets to FLASE when set
+      puts "Do not update 856"
+      next
+    end
   end
 
   # db_element can be a Source or a Holding, only in Muscat records
