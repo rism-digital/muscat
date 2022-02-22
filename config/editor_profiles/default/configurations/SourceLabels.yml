@@ -678,7 +678,7 @@ G|b:
   label: records.gf_major
 G|x:
   label: records.gs_major
-IIIF:
+"IIIF Manifest (digitized source)":
   label: records.iiif_manifest
 Inserts:
   label: records.inserts
