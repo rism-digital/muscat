@@ -181,8 +181,8 @@
         codes_reference: "codes"
   tag_params: 
     codes:
-      - "IIIF Manifest (digitized source)"
-      - "IIIF Manifest (other)"
+      - "IIIF manifest (digitized source)"
+      - "IIIF manifest (other)"
       - "Digitized"
       - "Other"
 "973":

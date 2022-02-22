@@ -678,8 +678,10 @@ G|b:
   label: records.gf_major
 G|x:
   label: records.gs_major
-"IIIF Manifest (digitized source)":
+"IIIF manifest (digitized source)":
   label: records.iiif_manifest
+"IIIF manifest (other)":
+  label: records.iiif_manifest_other
 Inserts:
   label: records.inserts
 Lithography:
