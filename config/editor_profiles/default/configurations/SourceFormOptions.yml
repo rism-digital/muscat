@@ -965,8 +965,9 @@
         codes_reference: "codes"
   tag_params:
     codes:
-      - "IIIF"
-      - "Digitalization"
+      - "IIIF Manifest (digitized source)"
+      - "IIIF Manifest (other)"
+      - "Digitized"
       - "Other"
 "930":
   new_window: works
