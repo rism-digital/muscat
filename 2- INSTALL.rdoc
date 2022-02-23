@@ -144,7 +144,7 @@ The Muscat core should work with any installation of Solr, here a sample install
 
 ==== Installation using a "stock" solr using included setup script
 
-*NOTE:* this was tested on Linux distributions only.
+*NOTE* this was tested on Linux distributions only.
 Grab a copy of the official distribution (8.11.1 at the time of writing) and unpack it in a suitable place
 
   wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.11.1/solr-8.11.1.tgz?action=download -O solr-8.11.1.tgz
@@ -185,7 +185,7 @@ When using this distribution, you can copy the +muscat+ core bundled with Muscat
   cp -R $MUSCAT_HOME/solr-configuration/muscat solr-8.11.1/server/solr
   cp $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar solr-8.11.1/server/solr/lib/
 
-**NOTE** The bundled +ThemaxQuery-1.0-SNAPSHOT.jar+ contains the PAE incipit indexer used in Muscat. A version for macOS 11 is provided in jar-8.8-mac, the linux version should work with any recent Ubuntu/Debian system.
+*NOTE* The bundled +ThemaxQuery-1.0-SNAPSHOT.jar+ contains the PAE incipit indexer used in Muscat. A version for macOS 11 is provided in jar-8.8-mac, the linux version should work with any recent Ubuntu/Debian system.
 In +muscat/solrconfig.xml+ the path for this jar is hardcoded <lib dir="../../jar"/> so it will find it in the stock Solr installation. For a different installation the path should made to point to the correct jar file path.
 Solr should run at this point:
 
@@ -206,7 +206,7 @@ As above, copy the configuration and jar file:
   mkdir themax
   cp $MUSCAT_HOME/solr-configuration/jar-8.8-mac/ThemaxQuery-1.0-SNAPSHOT.jar /usr/local/Cellar/solr/8.11.1/contrib/themax
   
-Note: depending on the Homebrew version used, the path for the configuration might be `/opt/homebrew/var/lib/solr`
+*NOTE* depending on the Homebrew version used, the path for the configuration might be +/opt/homebrew/var/lib/solr+
 
 Edit +/usr/local/var/lib/solr/muscat-index/solrconfig.xml+ To point to the correct jar. Remove <lib dir="../../jar"/> and add:
 
