@@ -493,7 +493,8 @@ es:
     holdings_location: Campos de los ejemplares y su ubicación
     identity: Identidad
     identity_area: Identidad
-    iiif_manifest: Manifiesto IIIF
+    iiif_manifest: "Manifiesto IIIF (fuente digitalizada)"
+    iiif_manifest_other: "Manifiesto IIIF (otro)"
     illustrator: Ilustrador
     immediate_parent_body: Padre inmediato
     import: Importación

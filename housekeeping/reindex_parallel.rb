@@ -52,6 +52,8 @@ results = Parallel.map(0..@parallel_jobs - 1, in_threads: @parallel_jobs) do |jo
 =end
 end
 
+Sunspot.commit
+
 end_time = Time.now
 puts "Reindex started at #{begin_time.to_s}, ended at: #{end_time.to_s}"
 puts "(#{end_time - begin_time} seconds run time)"

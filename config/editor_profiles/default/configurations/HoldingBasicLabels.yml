@@ -174,7 +174,7 @@ Computer printout:
   label: records.computer_printout
 Conjectural:
   label: records.conjectural
-Digitalization:
+Digitized:
   label: records.digitized_source
 Doubtful:
   label: records.doubtful
@@ -182,8 +182,10 @@ Engraving:
   label: records.engraving
 Facsimile:
   label: records.facsimile
-IIIF:
+"IIIF manifest (digitized source)":
   label: records.iiif_manifest
+"IIIF manifest (other)":
+  label: records.iiif_manifest_other
 Lithography:
   label: records.lithography
 Misattributed:

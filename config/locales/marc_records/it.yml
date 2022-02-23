@@ -493,7 +493,8 @@ it:
     holdings_location: Informazioni sul fondo
     identity: Identità
     identity_area: Identità
-    iiif_manifest: Manifesto IIIF
+    iiif_manifest: "IIIF manifest (fonte digitale)"
+    iiif_manifest_other: "IIIF manifest (altro)"
     illustrator: Disegnatore
     immediate_parent_body: Istituzione immediatamente precedente
     import: Dati importati
