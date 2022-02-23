@@ -493,7 +493,8 @@ de:
     holdings_location: Bestandsdaten
     identity: Identifizierung
     identity_area: Identity area
-    iiif_manifest: IIIF-Manifest
+    iiif_manifest: "IIIF-Manifest (digitalisierte Quelle)"
+    iiif_manifest_other: "IIIF-Manifest (sonstige)"
     illustrator: Illustrator
     immediate_parent_body: Unmittelbarer Elternteil
     import: Fremddateneinspielung

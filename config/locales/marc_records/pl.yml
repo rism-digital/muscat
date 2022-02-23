@@ -493,7 +493,8 @@ pl:
     holdings_location: Pola egzemplarza, lokalizacji itp.
     identity: Tożsamość
     identity_area: Obszar tożsamości
-    iiif_manifest: Manifest IIIF
+    iiif_manifest: "Manifest IIIF (źródło zdigitalizowane)"
+    iiif_manifest_other: "Manifest IIIF (inne)"
     illustrator: Ilustrator
     immediate_parent_body: Natychmiastowy rodzic
     import: Import
@@ -714,7 +715,7 @@ pl:
     range_dates: Zakres dat
     real_world_object_uri: Identyfikator URI obiektu świata rzeczywistego
     record_actions: Działania na rekordzie
-    record_audit: Record audit
+    record_audit: Kontrola rekordu
     record_origin: Pochodzenie rekordu
     record_status: Status rekordu
     reference_instruction_phrase: Referencyjna fraza instrukcji w podpolu $i
@@ -752,7 +753,7 @@ pl:
     series_statement: Pola uwag do serii
     set: Zbiór
     shelfmark: Sygnatura
-    shelfmark_olim: Former shelfmark (olim)
+    shelfmark_olim: Poprzednia sygnatura (olim)
     short_title: Skrócony tytuł
     sigla: Sigla
     siglum: Siglum
@@ -861,7 +862,7 @@ pl:
     clef: "Klucz"
     keysig: "Znaki przykluczowe"
     timesig: "Metrum"
-    ERR_001_EMPTY: Enter an encoded incipit.
+    ERR_001_EMPTY: Wprowadź zakodowany incipit.
     ERR_004_KEY_SPACE: Po zmianie znaku przykluczowego należy wprowadzić spację.
     ERR_005_CLEF_SPACE: Po zmianie klucza należy wprowadzić spację.
     ERR_006_TIMESIG_SPACE: Po zmianie metrum należy wprowadzić spację.
@@ -909,11 +910,11 @@ pl:
     ERR_049_TIMESIG_MENS: Metrum jest zapisane nieprawidłowo.
     ERR_050_INVALID_CHAR: 'Usuń następujące nieprawidłowe znaki: %{value}'
     ERR_051_BARLINE: Kreska taktowa jest zapisana nieprawidłowo.
-    ERR_052_DURATION: "Duration cannot be interpreted."
+    ERR_052_DURATION: "Nie można zinterpretować czasu trwania."
     ERR_053_DURATION_MENS3: Czas trwania nie może wynosić „3” w notacji menzuralnej.
     ERR_054_DURATION_MENS5: Czas trwania nie może wynosić „5” w notacji menzuralnej.
     ERR_055_KEYSIG_CHANGE: Tonację można zmienić tylko raz w takcie.
     ERR_056_TIMESIG_CHANGE: Metrum można zmienić tylko raz w takcie.
     ERR_057_MENSUR_CHANGE: Menzurę można zmienić tylko raz w takcie.
-    ERR_058_FERMATA_MREST: "The parentheses of a fermata must only contain a single note or rest '%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes are invalid with mensural notation."
+    ERR_058_FERMATA_MREST: "Nawiasy fermaty mogą zawierać tylko jedną nutę lub pauzę'%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Nuty z podwójnymi kropkami w notacji menzuralnej są nieprawidłowe."

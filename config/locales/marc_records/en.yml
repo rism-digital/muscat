@@ -493,7 +493,8 @@ en:
     holdings_location: Holdings, location, etc. fields
     identity: Identity
     identity_area: Identity area
-    iiif_manifest: IIIF manifest
+    iiif_manifest: "IIIF manifest (digitized source)"
+    iiif_manifest_other: "IIIF manifest (other)"
     illustrator: Illustrator
     immediate_parent_body: Immediate parent body
     import: Import
