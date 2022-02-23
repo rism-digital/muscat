@@ -182,9 +182,9 @@ Engraving:
   label: records.engraving
 Facsimile:
   label: records.facsimile
-"IIIF Manifest (digitized source)":
+"IIIF manifest (digitized source)":
   label: records.iiif_manifest
-"IIIF Manifest (other)":
+"IIIF manifest (other)":
   label: records.iiif_manifest_other
 Lithography:
   label: records.lithography
