@@ -10,7 +10,7 @@ CSV.open("incipits.csv", "w", force_quotes: true) do |csv|
             source.marc.load_source false
             source.marc.each_by_tag("031") do |t|
                     
-                subtags = [:a, :b, :c, :g, :n, :o, :p]
+                subtags = [:a, :b, :c, :g, :n, :o, :p, :m]
                 vals = {}
                 
                 subtags.each do |st|
@@ -21,7 +21,7 @@ CSV.open("incipits.csv", "w", force_quotes: true) do |csv|
                 next if vals[:p] == 'nil'
 
                 #file.write("#{source.id}\t#{vals[:a]}\t#{vals[:b]}\t#{vals[:c]}\t#{vals[:g]}\t#{vals[:n]}\t#{vals[:o]}\t#{vals[:p]}\n")
-                csv << [source.id, "https://muscat.rism.info/admin/sources/#{source.id}/edit", vals[:a], vals[:b], vals[:c], vals[:g], vals[:n], vals[:o], vals[:p] ]
+                csv << [source.id, "https://muscat.rism.info/admin/sources/#{source.id}/edit", vals[:a], vals[:b], vals[:c], vals[:g], vals[:n], vals[:o], vals[:p], vals[:m] ]
 
                 count += 1
 
