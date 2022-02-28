@@ -288,6 +288,7 @@ en:
     basso_continuo: Basso continuo
     bf_major: B♭ major
     bf_minor: B♭ minor
+    bibliography: Bibliography
     bibliographic_reference: Bibliographic reference
     binder: Binder
     binding_note: Binding note
@@ -312,6 +313,7 @@ en:
     c_plus_3: C+3
     c_plus_4: C+4
     c_plus_5: C+5
+    catalog: Catalog
     catalog_opus_number: Catalog number/Opus number
     catalog_works: Catalog of works
     cataloging_agency: Cataloging agency
@@ -337,6 +339,7 @@ en:
     coded_date: Coded date
     coded_instrumentation: Coded instrumentation
     collaborator: Collaborator
+    collective_catalog: Collective catalog
     colophon: Colophon
     common_clefs: Common clefs
     compiler: Compiler
@@ -415,6 +418,7 @@ en:
     editor: Editor
     ef_major: E♭ major
     ef_minor: E♭ minor
+    encyclopedia: Encyclopedia
     end_period: End period
     engraver: Engraver
     engraving: Engraving
@@ -610,6 +614,7 @@ en:
     multiple_copies: Multiple copies
     multiple_single_dates: Multiple single dates
     museum: Museum
+    music_edition: Music edition
     music_incipit: Music incipit
     musical_composition: Musical composition
     name: Name
@@ -805,6 +810,7 @@ en:
     terms_voices_instruments: RISM Instrument abbreviations
     text_author: Text author
     text_incipit: Text incipit
+    thematic_catalog: Thematic catalog
     third_fourth_group: Third/fourth group
     time_signature: Time signature
     title: Title
@@ -921,3 +927,8 @@ en:
     ERR_057_MENSUR_CHANGE: The mensuration cannot be changed more than once in a measure.
     ERR_058_FERMATA_MREST: "The parentheses of a fermata must only contain a single note or rest '%{value}'"
     ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes are invalid with mensural notation."
+  testingForCrowdinWorkshop:
+    apple: apple
+    pear: pear
+    table: table
+    chair: chair

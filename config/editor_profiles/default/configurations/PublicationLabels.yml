@@ -488,3 +488,19 @@ trl:
   label: records.translator
 voc:
   label: records.vocalist
+Bibliography:
+  label: records.bibliography
+Catalog:
+  label: records.catalog
+"Catalog of works":
+  label: records.catalog_works
+"Collective catalog":
+  label: records.collective_catalog
+Encyclopedia:
+  label: records.encyclopedia
+"Music edition":
+  label: records.music_edition
+Other:
+  label: records.other
+"Thematic catalog":
+  label: records.music_edition
