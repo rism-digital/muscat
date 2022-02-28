@@ -2,7 +2,7 @@ Muscat Changelog
 ================
 
 v 8.0.4
-* Bump nokogiri from 1.12.5 to 1.13.3
+* REVERTED! Bump nokogiri from 1.12.5 to 1.13.3
 * Fix diva display for IIIF links
 * update changelog for 8.0.3...
 
