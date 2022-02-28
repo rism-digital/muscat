@@ -1,6 +1,18 @@
 Muscat Changelog
 ================
 
+v 8.0.4
+* Bump nokogiri from 1.12.5 to 1.13.3
+* Fix diva display for IIIF links
+* update changelog for 8.0.3...
+
+v 8.0.3
+* Removed "Digitalization" and "IIIF" from 865x in holding/source
+* Added "Digitized", "IIIF Manifest (digitized source)" and "IIIF Manifest (other)" in 856x
+* Updated Verovio to 3.9
+* Updated all translations
+
+
 v 8.0.2
 * Exclude linked -zsh field from import everywhere
 * Merge pull request #1198 from rism-digital/8.0-fix-viaf
