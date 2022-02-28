@@ -183,7 +183,7 @@ class Marc
               field['subfields'].each do | pos |
                 pos.each_pair do |code, value|
                   value.gsub!(DOLLAR_STRING, "$")
-                  tag_group << MarcNode.new(@model, code, value, nil)
+                  tag_group << MarcNode.new(@model, code, value.strip, nil)
                 end
               end
             else
