@@ -262,20 +262,6 @@ ActiveAdmin.register Person do
       end
     end
 
-    active_admin_embedded_link_list(self, person, Publication) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_title_short), :short_name
-        context.column (I18n.t :filter_author), :author
-        context.column (I18n.t :filter_description), :description
-        if !is_selection_mode?
-          context.column "" do |publication|
-            link_to "View", controller: :publications, action: :show, id: publication.id
-          end
-        end
-      end
-    end
-
     active_admin_embedded_link_list(self, person, Holding) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
