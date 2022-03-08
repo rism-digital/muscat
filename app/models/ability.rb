@@ -30,6 +30,10 @@ class Ability
         can :update, Person, :wf_owner => user.id
       end
       #can [:read], Folder
+
+      can :prepare_convert, Source
+      can :convert_manuscript, Source
+
       can :manage, Folder#, :wf_owner => user.id
       can :unpublish, [Folder]
       can [:read, :create, :destroy], ActiveAdmin::Comment
