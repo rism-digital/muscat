@@ -621,7 +621,6 @@ class Marc
     
   end
 
-
   def ==(other)
     load_source unless @loaded
     @source_id == other.get_marc_source_id

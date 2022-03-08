@@ -194,7 +194,50 @@ ActiveAdmin.register Source do
   collection_action :select_new_template, :method => :get do 
     @page_title = "#{I18n.t(:select_template)}"
   end
+
+  member_action :prepare_convert do
+    if resource.record_type != MarcSource::RECORD_TYPES[:collection] && resource.record_type != MarcSource::RECORD_TYPES[:source]
+      redirect_to action: :show
+      flash[:error] = "Source is not a manuscript or manuscript collection"
+    end
+
+    if !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin))
+      redirect_to action: :show
+      flash[:error] = "Unauthorized"
+    end
+
+    @page_title = "Convert to print template"
+
+  end
   
+  member_action :convert_manuscript, method: :post do
+    if resource.record_type != MarcSource::RECORD_TYPES[:collection] && resource.record_type != MarcSource::RECORD_TYPES[:source]
+      redirect_to action: :show
+      flash[:error] = "Source is not a manuscript or manuscript collection"
+    end
+
+    if !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin))
+      redirect_to action: :show
+      flash[:error] = "Unauthorized"
+    end
+
+    param_tags = params.permit(:tag => {})[:tag]
+
+    tags = {}
+    param_tags.each do |k, v|
+      tags[k] = [] if !tags.include?(k)
+
+      v.each do |index, x|
+        tags[k] << index.to_i
+      end
+    end
+
+    holding_id = resource.manuscript_to_print(tags)
+
+    redirect_to action: :show
+    flash[:message] = "Source coverted to print, holding #{holding_id} created."
+  end
+
   #scope :all, :default => true 
   #scope :published do |sources|
   #  sources.where(:wf_stage => 'published')

@@ -288,6 +288,7 @@ pl:
     basso_continuo: Basso continuo
     bf_major: B-dur
     bf_minor: b-moll
+    bibliography: Bibliografia
     bibliographic_reference: Odniesienie bibliograficzne
     binder: Introligator
     binding_note: Uwaga o oprawie
@@ -312,6 +313,7 @@ pl:
     c_plus_3: C+3
     c_plus_4: C+4
     c_plus_5: C+5
+    catalog: Katalog
     catalog_opus_number: Numer katalogu / numer opus
     catalog_works: Katalog utworów
     cataloging_agency: Jednostka katalogująca
@@ -337,6 +339,7 @@ pl:
     coded_date: Znormalizowana data
     coded_instrumentation: Standaryzowany zapis instrumentacji
     collaborator: Współtwórca
+    collective_catalog: Katalog zbiorczy
     colophon: Kolofon
     common_clefs: Klucze współczesne
     compiler: Kompilator
@@ -415,6 +418,7 @@ pl:
     editor: Edytor
     ef_major: Es-dur
     ef_minor: es-moll
+    encyclopedia: Encyklopedia
     end_period: Okres końcowy
     engraver: Rytownik
     engraving: Sztych
@@ -610,6 +614,7 @@ pl:
     multiple_copies: Wiele kopii
     multiple_single_dates: Wiele pojedynczych dat
     museum: Muzeum
+    music_edition: Edycja muzyczna
     music_incipit: Incipit muzyczny
     musical_composition: Kompozycja muzyczna
     name: Imię i nazwisko
@@ -802,6 +807,7 @@ pl:
     terms_voices_instruments: Określenia głosów i instrumentów
     text_author: Autor tekstu
     text_incipit: Incipit tekstowy
+    thematic_catalog: Katalog tematyczny
     third_fourth_group: Grupa trzecia / czwarta
     time_signature: Metrum
     title: Tytuł
@@ -857,7 +863,7 @@ pl:
     P60194: "Wstawić do"
     P60183: "Wstawić"
   verovio:
-    position: "Position"
+    position: "Pozycja"
     warning: "Uwaga"
     clef: "Klucz"
     keysig: "Znaki przykluczowe"

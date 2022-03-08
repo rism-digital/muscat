@@ -18,7 +18,7 @@ pt:
     rism_series_number: Número de série RISM
     rule_type: Regras de catalogação
     scope_printed_music_rism: Âmbito da música impressa no RISM
-    searching: Searching
+    searching: A procurar...
     source_citation: Citação da fonte
     status: Estado
     undetermined: Indeterminado
@@ -288,6 +288,7 @@ pt:
     basso_continuo: Contínuo
     bf_major: Si bemol maior
     bf_minor: Si bemol menor
+    bibliography: Bibliography
     bibliographic_reference: Referência bibliográfica
     binder: Ficheiro
     binding_note: Nota de encadernação
@@ -312,68 +313,70 @@ pt:
     c_plus_3: C+3
     c_plus_4: C+4
     c_plus_5: C+5
+    catalog: Catalog
     catalog_opus_number: Número de catalogo/Número de Opus
     catalog_works: Catálogo de obras
     cataloging_agency: Agência catalogadora
-    cataloging_collection_convoluta: Cataloging collection and convoluta
+    cataloging_collection_convoluta: Catalogação de colecções e convoluta
     cataloging_collections: Catalogação de coletâneas
-    cataloging_forms: Cataloging forms
+    cataloging_forms: Formas de catalogação
     cataloging_language: Idioma de catalogação
     cataloging_level: Nível de catalogação
     cataloging_musical_sources: Catalogando fontes musicais
     cataloging_source: Agência catalogadora
-    category: Category
+    category: Categoria
     censor: Censor
     cf_major: Dó bemol maior
     cf_minor: Dó bemol menor
-    child_of: Child of
-    choir_voice: Choir voice
-    choreographer: Choreographer
-    chronological_subdivision: Chronological subdivision
-    chronological_term: Chronological term
+    child_of: Filho de
+    choir_voice: Escolha a voz
+    choreographer: Choreógrafo
+    chronological_subdivision: Subdivisão cronológica
+    chronological_term: Termo cronológico
     city: Cidade
     clef: Clave
     co_composer: Co-compositor
     coded_date: Data codificada
     coded_instrumentation: Instrumentação codificada
-    collaborator: Collaborator
+    collaborator: Colaborador
+    collective_catalog: Collective catalog
     colophon: Colofão
     common_clefs: Claves comuns
-    compiler: Compiler
-    composer: Composer
+    compiler: Compilador
+    composer: Compositor
     composer_author: Compositor/Autor
     composer_cross_reference: Referência cruzada de compositor
     computer_printout: Impressão de computador
     conceptor: Conceptor
-    conductor: Conductor
-    confused_with: Confused with
+    conductor: Condutor
+    confused_with: Confundido com
     conjectural: Conjetural
-    contact: Contact
+    contact: Contato
     contact_area: Contato
-    content: Content
-    content_description: Content description
+    content: Conteúdo
+    content_description: Descrição do conteúdo
     contents_note: Nota de conteúdo
-    contributor: Contributor
+    contributor: Contribuidor
     control_fields: Campos de controle
     control_number_identifier: Identificador de número de controle
     control_subfield: Subcampo de controlo
     copy_examined: Exemplar examinado para catalogação
     copyist: Copista
     copyright_holder: Detentor dos direitos de cópia/reprodução
-    costume_designer: Costume designer
-    countries_places: Countries and Places
-    country: Country
-    country_active: Country active
-    country_activity: Country of activity
+    costume_designer: Designer Traje
+    countries_places: Países e Locais
+    country: País
+    country_active: País em que está activo
+    country_activity: País de atividade
     country_code: Código de país
-    country_of_publication: Country of publication
-    county_province: County or province
+    country_of_publication: País da publicação
+    county_province: Pais ou província
     creation_production_note: Nota de produção/criação
     cs_major: Dó sustenido maior
     cs_minor: Dó sustenido menor
     d_major: Ré maior
     d_minor: Ré menor
-    dancer: Dancer
+    dancer: Dançarino
     date: Data
     date_of_acquisition: Data de aquisição
     date_of_creation: Data de criação
@@ -386,47 +389,48 @@ pt:
     description: Description
     description_area: Descrição
     description_summary: Síntese da descrição
-    designer: Designer
+    designer: Desenhador
     df_major: Ré bemol maior
     df_minor: Ré bemol menor
     digital_objects: Objetos digitais
-    digitized_music: Digitized music
+    digitized_music: Música digitalizada
     digitized_source: Fonte digitalizada
     dimensions: Dimensões
-    diplomatic_title: Diplomatic title
-    dissertation_note: Dissertation note
-    distribution: Distribution
+    diplomatic_title: Título diplomático
+    dissertation_note: Nota de disseragem
+    distribution: Distribuição
     distributor: Distribuidor
-    documentation_center: Documentation center
-    donor: Donor
+    documentation_center: Centro de Documentação
+    donor: Doador
     doubtful: Duvidosa
     dramatic_roles_original: Papéis dramáticos mencionado, grafia original
     dramatic_roles_standardized: Papéis dramáticos identificados, normalizados
     ds_major: Ré sustenido maior
     ds_minor: Ré sustenido menor
-    dubious: Dubious
+    dubious: Duvidoso
     e_major: Mi maior
     e_minor: Mi menor
     earlier_heading: Título anterior
     ecclesiastical_modes: Modos eclesiásticos ocidentais
-    edition: Edition
-    edition_imprint_fields: Edition, imprint, etc. fields
-    edition_statement: Edition statement
+    edition: Edição
+    edition_imprint_fields: Campos edição, imprimir, etc.
+    edition_statement: Declaração da edição
     editor: Editor
     ef_major: Mi bemol maior
     ef_minor: Mi bemol menor
+    encyclopedia: Encyclopedia
     end_period: Período final
     engraver: Gravador
     engraving: Gravação
-    event_organizer: Event organizer
+    event_organizer: Organizador de eventos
     event_place: Local do evento
     excerpts: Excertos
     exemplars: Materiais
-    extent: Extent
+    extent: Extensão
     extent_parts: Extensão das partes
     external_resource: Recurso externo
-    external_resource_uri: External resource URI
-    external_resource_url: External resource URL
+    external_resource_uri: Recurso externo URI
+    external_resource_url: Recurso externo URL
     f_major: Fá maior
     f_minor: Fá menor
     f_minus_1: F-1
@@ -448,7 +452,7 @@ pt:
     fijian: Fijianas
     fingerprint_identifier: Identificador de impressão
     first_second_group: Primeiro/Segundo grupo
-    form_subdivision: Form subdivision
+    form_subdivision: Divisão da forma
     format_extent: Formato, extensão
     former_owner: Proprietário anterior
     fragments: Fragmentos
@@ -610,6 +614,7 @@ pt:
     multiple_copies: Múltiplos exemplares em uma instituição
     multiple_single_dates: Datas múltiplas
     museum: Museu
+    music_edition: Music edition
     music_incipit: Incipit musical
     musical_composition: Composição musical
     name: Nome
@@ -802,6 +807,7 @@ pt:
     terms_voices_instruments: Termos para vozes e instrumentos
     text_author: Autor literário
     text_incipit: Incipit literário
+    thematic_catalog: Thematic catalog
     third_fourth_group: Terceiro/Quarto grupo
     time_signature: Compasso
     title: Title

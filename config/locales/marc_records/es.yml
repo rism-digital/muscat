@@ -288,6 +288,7 @@ es:
     basso_continuo: Bajo continuo
     bf_major: Si bemol Mayor
     bf_minor: Si bemol menor
+    bibliography: Bibliografía
     bibliographic_reference: Referencia bibliográfica
     binder: Encuadernador
     binding_note: Nota de encuadernación
@@ -312,6 +313,7 @@ es:
     c_plus_3: C+3
     c_plus_4: C+4
     c_plus_5: C+5
+    catalog: Catálogo
     catalog_opus_number: Catalog number/Opus number
     catalog_works: Catálogo de obras
     cataloging_agency: Agencia catalogadora
@@ -337,6 +339,7 @@ es:
     coded_date: Fecha codificada
     coded_instrumentation: Intrumentación codificada
     collaborator: Colaborador
+    collective_catalog: Catálogo colectivo
     colophon: Colofón
     common_clefs: Claves comunes
     compiler: Compilador
@@ -415,6 +418,7 @@ es:
     editor: Editor (curador)/Editorial
     ef_major: Mi bemol Mayor
     ef_minor: Mi bemol menor
+    encyclopedia: Enciclopedia
     end_period: Periodo final
     engraver: Grabador
     engraving: Grabado
@@ -443,7 +447,7 @@ es:
     family_name: Apellido
     father_of: Padre de
     field_link: Enlace de campo y número de secuencia
-    field_of_activity: Campo de actividad
+    field_of_activity: Profesión
     figured_bass_scores: Bajo cifrado
     fijian: Fijiano
     fingerprint_identifier: Identificador tipográfico
@@ -610,6 +614,7 @@ es:
     multiple_copies: Múltiples ejemplares en una institución
     multiple_single_dates: Fechas múltiples
     museum: Museum
+    music_edition: Edición de música
     music_incipit: Íncipit musical
     musical_composition: Composición musical
     name: Nombre
@@ -802,6 +807,7 @@ es:
     terms_voices_instruments: Terminología para voces e instrumentos
     text_author: Autor del texto
     text_incipit: Íncipit literario
+    thematic_catalog: Catálogo temático
     third_fourth_group: Tercero/cuarto grupo
     time_signature: Indicación de compás
     title: Título

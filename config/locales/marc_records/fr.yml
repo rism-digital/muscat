@@ -288,6 +288,7 @@ fr:
     basso_continuo: Basso continuo
     bf_major: Si♭ majeur
     bf_minor: Si♭ mineur
+    bibliography: Bibliographie
     bibliographic_reference: Référence bibliographique
     binder: Relieur
     binding_note: Reliure
@@ -312,6 +313,7 @@ fr:
     c_plus_3: C+3
     c_plus_4: C+4
     c_plus_5: C+5
+    catalog: Catalogue
     catalog_opus_number: No. de catalogue thématique/Opus
     catalog_works: Catalogue des oeuvres
     cataloging_agency: Agence de catalogation
@@ -337,6 +339,7 @@ fr:
     coded_date: Date et lieu d'un événement
     coded_instrumentation: Instrumentation codée
     collaborator: Collaborateur
+    collective_catalog: Catalogue collectif
     colophon: Colophon
     common_clefs: Clés communes
     compiler: Compilateur
@@ -415,6 +418,7 @@ fr:
     editor: Editeur
     ef_major: Mi♭ majeur
     ef_minor: Mi♭ mineur
+    encyclopedia: Encyclopédie
     end_period: Fin de la période
     engraver: Graveur
     engraving: Gravure
@@ -610,6 +614,7 @@ fr:
     multiple_copies: Exemplaire multiples
     multiple_single_dates: Dates uniques multiples
     museum: Musée
+    music_edition: Édition musicale
     music_incipit: Incipit musical
     musical_composition: Composition musicale
     name: Nom
@@ -802,6 +807,7 @@ fr:
     terms_voices_instruments: Abréviations RISM pour les instruments
     text_author: Parolier
     text_incipit: Incipit du texte
+    thematic_catalog: Catalogue thématique
     third_fourth_group: Troisième/quatrième groupe de caractères
     time_signature: Indication de mesure
     title: Titre

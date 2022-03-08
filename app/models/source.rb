@@ -550,6 +550,39 @@ class Source < ApplicationRecord
     incipits
   end
 
+  def manuscript_to_print(tags)
+    holding = Holding.new
+    holding_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
+    holding_marc.load_source false
+    # Kill old 852s from the empty template
+    holding_marc.each_by_tag("852") {|t2| t2.destroy_yourself}
+
+    tags.each do |copy_tag, indexes|
+      match = marc.by_tags(copy_tag)
+
+      indexes.each do |i|
+        match[i].copy_to(holding_marc)
+        match[i].destroy_yourself
+      end
+
+    end
+
+    # Save the holding
+    holding_marc.suppress_scaffold_links
+    holding_marc.import
+    
+    holding.marc = holding_marc
+    holding.source = self
+
+    holding.save
+    
+    # Do some housekeeping here too
+    self.record_type = MarcSource::RECORD_TYPES[:edition]
+    self.save
+
+    return holding.id
+  end
+
   def force_marc_load?
     self.marc.load_source false
     true

@@ -385,6 +385,7 @@ en:
   save_and_exit: "Save and close"
   cancel: "Cancel"
   duplicate_confirm: "Are you sure you want to duplicate this record?"
+  convert_to_print: "Convert to print template"
   
   # Version history
   history_date: "Date"

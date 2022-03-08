@@ -615,6 +615,11 @@ class MarcNode
     }
   end
 
+  def copy_to(destination_marc)
+    new_tag = deep_copy
+    destination_marc.root.children.insert(destination_marc.get_insert_position(new_tag.tag), new_tag)
+  end
+
   alias length size
   alias << add
   alias to_s to_marc

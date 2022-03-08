@@ -288,6 +288,7 @@ de:
     basso_continuo: Basso continuo
     bf_major: B-Dur
     bf_minor: b-Moll
+    bibliography: Bibliographie
     bibliographic_reference: Literaturverweis
     binder: Buchbinder
     binding_note: Einband
@@ -312,6 +313,7 @@ de:
     c_plus_3: C+3
     c_plus_4: C+4
     c_plus_5: C+5
+    catalog: Katalog
     catalog_opus_number: Werkverzeichnis/Opus
     catalog_works: Werkverzeichnis
     cataloging_agency: Katalogisierungsagentur
@@ -337,6 +339,7 @@ de:
     coded_date: Datum und Ort eines Ereignisses (codiert)
     coded_instrumentation: Kodierte Besetzung
     collaborator: Mitverfasser
+    collective_catalog: Sammelkatalog
     colophon: Kolophon
     common_clefs: Common clefs
     compiler: Kompilator
@@ -415,6 +418,7 @@ de:
     editor: Herausgeber
     ef_major: Es-Dur
     ef_minor: es-Moll
+    encyclopedia: Enzyklopädie
     end_period: Periode beenden
     engraver: Stecher
     engraving: Stich
@@ -610,6 +614,7 @@ de:
     multiple_copies: Mehrere Exemplare
     multiple_single_dates: Mehrere Einzeldaten
     museum: Museum
+    music_edition: Musikedition
     music_incipit: Musikincipit
     musical_composition: Musikalische Komposition
     name: Personenname
@@ -802,6 +807,7 @@ de:
     terms_voices_instruments: Stimmen- und Instrumentenbezeichnungen
     text_author: Textdichter
     text_incipit: Textincipit
+    thematic_catalog: Thematischer Katalog
     third_fourth_group: Dritte und vierte Zeichengruppe
     time_signature: Metrum
     title: Titel
