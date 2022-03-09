@@ -557,6 +557,21 @@ class Source < ApplicationRecord
     # Kill old 852s from the empty template
     holding_marc.each_by_tag("852") {|t2| t2.destroy_yourself}
 
+    # First, insert a brand new 588 tag into the bib record
+
+    a = self.marc.first_occurance("852", "a")
+    c = self.marc.first_occurance("852", "c")
+    elems = []
+    elems << a.content if a and a.content
+    elems << c.content if c and c.content
+
+    content588 = elems.join(" ")
+
+    t588 = MarcNode.new("source", "588", "", '##')
+    t588.add_at(MarcNode.new("source", "a", content588, nil), 0 )
+    self.marc.root.add_at(t588, self.marc.get_insert_position("588") )
+
+
     tags.each do |copy_tag, indexes|
       match = marc.by_tags(copy_tag)
 

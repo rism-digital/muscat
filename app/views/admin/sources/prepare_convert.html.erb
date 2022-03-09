@@ -2,7 +2,8 @@
 <% holding_conf = MarcConfigCache.get_configuration("holding") %>
 <% tag_index = {} %>
 
-<% default_tags = ["300", "593", "852", "856"] %>
+<% default_tags = ["035", "300", "593", "852", "856"] %>
+<% default_relator_codes = {"700": ["fmo", "scr"], "710": ["fmo", "scr", "dpt"]} %>
 
 <%= form_tag(convert_manuscript_admin_source_path, {method: "post", :class => 'filter_form'}) do %>
   <%resource.marc.all_tags.each do |tag| %>
@@ -20,6 +21,11 @@
     <% checked = default_tags.include?(tag.tag) ? "checked" : "" %>
 
     <% checked = tag.fetch_first_by_tag("8") != nil ? "checked" : checked %>
+
+    <% if default_relator_codes.keys.include?(tag.tag.to_sym) %>
+      <% rel = tag.fetch_first_by_tag("4") %>
+      <% checked = "checked" if rel && rel.content && default_relator_codes[tag.tag.to_sym].include?(rel.content) %>
+    <% end %>
 
     <input type="checkbox" id='<%="tag_#{tag.tag}_#{current_index}"%>' name='<%="tag[#{tag.tag}][#{current_index}]"%>' <%=checked%> >
     <label id='<%="tag_#{tag.tag}_#{current_index}"%>'>Move this tag to the holding record</label>
