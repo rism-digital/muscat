@@ -141,7 +141,7 @@
     '4':
       label: records.function
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.institution
     b:

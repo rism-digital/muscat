@@ -924,3 +924,8 @@ es:
     ERR_057_MENSUR_CHANGE: La armadura de clave no puede ser modificada más de una vez en un compás.
     ERR_058_FERMATA_MREST: "Los paréntesis de una fermata solo deben contener una nota o descanso '%{value}'"
     ERR_059_DOUBLE_DOTS_MENS: "Las notas de doble punto no son válidas con notación mensural."
+  testingForCrowdinWorkshop:
+    apple: manzana
+    pear: pera
+    table: tabla
+    chair: presidente

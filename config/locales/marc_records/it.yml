@@ -924,3 +924,8 @@ it:
     ERR_057_MENSUR_CHANGE: La mensurazione non può essere modificata più di una volta in una battuta.
     ERR_058_FERMATA_MREST: "Le parentesi per una corona possono contenere solo una singola nota o una pausa di '%{value}'"
     ERR_059_DOUBLE_DOTS_MENS: "Le note con doppi punti sono invalide in notazione mensurale."
+  testingForCrowdinWorkshop:
+    apple: mela
+    pear: pera
+    table: tavolo
+    chair: sedia

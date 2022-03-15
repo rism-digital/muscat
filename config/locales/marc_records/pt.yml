@@ -288,7 +288,7 @@ pt:
     basso_continuo: Contínuo
     bf_major: Si bemol maior
     bf_minor: Si bemol menor
-    bibliography: Bibliography
+    bibliography: Bibliografia
     bibliographic_reference: Referência bibliográfica
     binder: Ficheiro
     binding_note: Nota de encadernação
@@ -313,7 +313,7 @@ pt:
     c_plus_3: C+3
     c_plus_4: C+4
     c_plus_5: C+5
-    catalog: Catalog
+    catalog: Catálogo
     catalog_opus_number: Número de catalogo/Número de Opus
     catalog_works: Catálogo de obras
     cataloging_agency: Agência catalogadora
@@ -339,7 +339,7 @@ pt:
     coded_date: Data codificada
     coded_instrumentation: Instrumentação codificada
     collaborator: Colaborador
-    collective_catalog: Collective catalog
+    collective_catalog: Catálogo Coletivo
     colophon: Colofão
     common_clefs: Claves comuns
     compiler: Compilador
@@ -366,7 +366,7 @@ pt:
     costume_designer: Designer Traje
     countries_places: Países e Locais
     country: País
-    country_active: País em que está activo
+    country_active: País em que está ativo
     country_activity: País de atividade
     country_code: Código de país
     country_of_publication: País da publicação
@@ -386,7 +386,7 @@ pt:
     dedicatee: Dedicatário(a)
     department: Departamento
     depositor: Depositante
-    description: Description
+    description: Descrição
     description_area: Descrição
     description_summary: Síntese da descrição
     designer: Desenhador
@@ -397,7 +397,7 @@ pt:
     digitized_source: Fonte digitalizada
     dimensions: Dimensões
     diplomatic_title: Título diplomático
-    dissertation_note: Nota de disseragem
+    dissertation_note: Nota para a dissertação
     distribution: Distribuição
     distributor: Distribuidor
     documentation_center: Centro de Documentação
@@ -418,7 +418,7 @@ pt:
     editor: Editor
     ef_major: Mi bemol maior
     ef_minor: Mi bemol menor
-    encyclopedia: Encyclopedia
+    encyclopedia: Enciclopédia
     end_period: Período final
     engraver: Gravador
     engraving: Gravação
@@ -483,18 +483,18 @@ pt:
     general_note_institution: Nota geral
     general_note_personal: Nota geral
     geographic_name: Nome geográfico
-    geographic_subdivision: Geographic subdivision
+    geographic_subdivision: Repartição geográfica
     gf_major: Sol bemol maior
     gf_minor: Sol bemol menor
     gs_major: Sol sustenido maior
     gs_minor: Sol sustenido menor
     heading: Cabeçalho
-    heading_composer_name: Heading - composer name
-    heading_personal_name: Heading - Personal name
+    heading_composer_name: Título - nome do compositor
+    heading_personal_name: Título - Nome de pessoa
     heading_personal_name1: Título-Nome de pessoa
     help_transposing_instruments: Ajuda para instrumentos transpositores
     history_institution: História da instituição
-    holdings_location: Holdings, location, etc. fields
+    holdings_location: Informação sobre o fundo
     identity: Identidade
     identity_area: Identidade
     iiif_manifest: "Manifesto IIIF (fonte digitalizada)"
@@ -506,8 +506,8 @@ pt:
     incipit: Incipit
     incipit_number: Número de incipit
     incipits: Incipit
-    index_terms: Index terms
-    information_found: Information found
+    index_terms: Indexadores
+    information_found: Informação encontrada
     initial: Inicial
     initial_entry: Entrada inicial
     initials: Iniciais
@@ -515,7 +515,7 @@ pt:
     inserts: Inserções
     institution: Instituição
     institutions: Instituições
-    instrumentalist: Instrumentalist
+    instrumentalist: Instrumentalista
     internal_note: Nota interna
     introduction: Introdução
     invalid_standard_number: Número ou código padrão cancelado/invalido
@@ -527,7 +527,7 @@ pt:
     items_in_source: Itens nesta fonte
     japanese: Japonês
     key: Tonalidade
-    key_or_mode: Key or mode
+    key_or_mode: Tonalidade, modo
     key_signature: Armadura de clave
     keyboards: Teclados
     keys: Tonalidades
@@ -550,29 +550,29 @@ pt:
     life_dates: Datas de nascimento e morte
     link_type: Tipo de Link
     linkage: Ligação
-    linking_entry_fields: Linking entry fields
+    linking_entry_fields: Notas sobre as conexões
     literature: Literatura
-    lithograph: Lithograph
+    lithograph: Litógrafo
     lithographer: Litógrafo
     lithography: Litografia
     liturgical_festival: Festa litúrgica
     liturgical_festivals: Festas litúrgicas
     local_id_number: Número local
     local_note_field: Campo de nota local
-    local_notes_field: Local notes field
+    local_notes_field: Campo de nota local
     local_number: Número local
     location: Local
     location_and_address: Local e endereço
     location_insertion: Localização da inserção
-    location_on_source: Locations on the source
+    location_on_source: Lugar sobre a la fonte
     location_performance: Local de performance
     location_printer: Local de impressão
     longitude: Longitude
     lyricist: Letrista
     main_entry_fields: Campos de entrada principal
-    married_name: Married name
-    married_to: Married to
-    married_with: Married with
+    married_name: Nome casado
+    married_to: Casado/a
+    married_with: Casado/a
     material_description: Descrição de material
     material_examined: Material examinado
     material_held: Material existente
@@ -607,27 +607,27 @@ pt:
     mode_9t: 'Modo: 9º tom (Eólio)'
     mode_9tt: 'Modo: 9º tom (Eólio), transposta'
     modifying_agency: Agência de modificação
-    monogram: Monogram
+    monogram: Monograma
     mother_of: Mãe de
     movement_number: Número de movimento
     multiple: Múltiplos
     multiple_copies: Múltiplos exemplares em uma instituição
     multiple_single_dates: Datas múltiplas
     museum: Museu
-    music_edition: Music edition
+    music_edition: Edição de música
     music_incipit: Incipit musical
     musical_composition: Composição musical
     name: Nome
-    name_family: Name of family
+    name_family: Nome da família
     name_printer: Nome do impressor
     name_variant: Variante de nome
     name_variants: Variantes de nome
     named_dramatic_roles: Papéis dramáticos identificados
     narrower_term: Termo mais estreito
     nationality: Nacionalidade
-    nickname: Nickname
-    no_linguistic_content: No linguistic content
-    non_migrated_bound: Non-migrated bound with value from 563
+    nickname: Apelido
+    no_linguistic_content: Sem conteúdo linguístico
+    non_migrated_bound: Valor não migrado do campo 563 (Encadernado com)
     not_applicable: Não aplicável
     note: Nota
     note_external_resource: Nota sobre recurso externo
@@ -636,7 +636,7 @@ pt:
     now_in: Agora em
     number: Número
     number_page: Número/página
-    number_part_section: Number of part/section of a work
+    number_part_section: Número de parte/seção de um trabalho
     number_volume_part: Número de volume/parte
     numbers_code_fields: Números e campos de código
     octoechos1: 'Octoechos 1: Ēchos prōtos (Primeiro modo bizantino)'
@@ -650,130 +650,130 @@ pt:
     online_finding_aids: Instrumentos de pesquisa on-line
     opera_houses_concert_halls: Teatros de ópera e salas de concerto
     opus_number: Número de opus
-    opus_thematic_index_number: Opus/Thematic index number
-    order_name: Order Name
+    opus_thematic_index_number: Número de índice Opus/Temático
+    order_name: Nome da Ordem
     origin: Origem
-    original_cataloging_agency: Original cataloging agency
+    original_cataloging_agency: Agência original de catálogo
     other: Outro(a) [oth]
     other_associated_place: Outro local associado
     other_designation: Outra designação
-    other_form: Other form
+    other_form: Ortografia alternativa
     other_form_of_name: Outra forma do nome
-    other_function: Other function
+    other_function: Outras funções
     other_help: Outra ajuda
     other_instruments: Outros instrumentos
-    other_life_dates: Other life dates
+    other_life_dates: Outras datas de vida
     other_physical_details: Outros detalhes físicos
-    other_searchform: Other Searchform
+    other_searchform: Outra forma de investigação
     other_shelfmark: Outro código
     other_standard_identifier: Outro identificador padronizado
-    other_variant: Other variant
+    other_variant: Outra variante
     papermaker: Fabricante de papel
     parallel_form: Forma paralela do nome
     parent_record: Registro principal
     parts_held: Partes existentes
     parts_held_extent: Partes existentes e extensão
-    patron: Patron
+    patron: Patrocinadore
     people: Pessoas
     people_institutions: Pessoas e instituições
     percussion: Percussão
-    performance: Performance
-    performances: Performances
+    performance: Executores
+    performances: Realizações
     performer: Intérprete
-    performer_note: Performer note
+    performer_note: Nota sobre a execução
     person: Pessoa
-    person_name: Person name
-    personal_name: Personal name
+    person_name: Nome da pessoa
+    personal_name: Nomes de pessoas
     personal_names: Nomes de pessoas
     photoreproductive_process: Processo foto-reprodutivo
     physical_description: Descrição física
-    physical_description_fields: Physical description, etc. fields
+    physical_description_fields: Campos de descrição física, etc
     place: Local
-    place_active: Place active
-    place_activity: Place of activity
-    place_birth: Place of birth
-    place_death: Place of death
+    place_active: Local ativo
+    place_activity: Campo de atividade
+    place_birth: Local de nascimento
+    place_death: Local de morte
     place_of_residence: Local de residência/sede
-    place_origin: Place of origin
-    place_publication: Place of publication
+    place_origin: Local de origem
+    place_publication: Local
     places: Locais
     plate_number: Número de chapa
     plucked_instruments: Cordas dedilhadas
-    postal_code: Postal code
-    postal_place: Postal place
+    postal_code: Código postal
+    postal_place: Local postal
     preceding_entry: Registro precedente
     printer: Impressor(a)
     printing_technique: Técnica de impressão
-    production: Production
-    production_personnel: Production personnel
-    profession_or_function: Profession or function
+    production: Produção
+    production_personnel: Pessoal da produção
+    profession_or_function: Profissão ou função
     provenance: Proveniência
     provenance_notes: Nota de proveniência
-    pseudonym: Pseudonym
-    public_note: Public note
+    pseudonym: Pseudónimo
+    public_note: Nota pública
     publisher: Casa editora
     publisher_copyist: Editor, copista
     publisher_number: Número da editora
-    publisher_plate_number: Plate or publisher number
+    publisher_plate_number: Número da placa ou editor
     publishing_printing_production: Informação de publicação, impressão e produção
     qualifying_information: Informação sobre qualificação
     range_dates: Faixa de datas
-    real_world_object_uri: Objecto do Mundo Real URI
+    real_world_object_uri: URI de objeto do mundo real
     record_actions: Ações do registro
-    record_audit: Record audit
+    record_audit: Verificação do registo
     record_origin: Origem do registro
     record_status: Estado do registro
     reference_instruction_phrase: Frase de instrução de referência no subcampo $i
-    reference_record_id: Reference record ID
+    reference_record_id: ID de referência para o registo
     references: Referências
     references_and_notes: Notas e referências
-    region_active: Region active
-    region_of_activity: Region of activity
+    region_active: Região ativa
+    region_of_activity: Região de atividade
     related_institution: Instituição relacionada
     related_personal_name: Nome de pessoa relacionado
     related_place: Local relacionado
-    related_resources: Related resources
+    related_resources: Recursos relacionados
     related_source: Fonte relacionada
-    related_titles: Related titles
-    related_to: Related to
-    related_work: Related work
-    relation: Relation
+    related_titles: Títulos relacionados
+    related_to: Relacionado a
+    related_work: Trabalho relacionado
+    relation: Relação
     relations: Relacionamentos
     relationship: Relação
     relationship_designation: Designação da relação em $i ou $4
     relationship_information: Informação sobre a relação
-    religious_name: Religious name
-    religious_order: Religious order
+    religious_name: Nome religioso
+    religious_order: Ordem religiosa
     reproduction: Reprodução
-    research_institute: Research institute
+    research_institute: Institutos de investigação
     retrospective_conversion: Conversão restropectiva
     rism_id_number: Número ID RISM
     role: Personagem
     scoring_in_movement: Formação instrumental no movimento
     scoring_summary: Sintese da formação instrumental
-    scribe: Scribe
+    scribe: Copista
     secondary_literature: Literatura secundária
     series: Séries
-    series_added_entry: Series added entry fields
-    series_statement: Series statement fields
-    set: Set
+    series_added_entry: Informação secundária sobre título superordenado
+    series_statement: Campos de declaração da série
+    set: Grupo de materiais
     shelfmark: Código
-    shelfmark_olim: Former shelfmark (olim)
+    shelfmark_olim: Código antiguo (olim)
     short_title: Título abreviado
     sigla: Sigla
     siglum: Siglum
     single_date: Data única
-    sister_of: Sister of
+    sister_of: Irmã de
     sketches: Esboços
     solo_voice: Voz solista
-    soloist_instrument: Soloist intrument
+    soloist_instrument: Instrumento solista
     source: Fonte
     sources: Fontes
     source_data_found: Fonte dos dados encontrados
-    source_data_not_found: Source data not found
+    source_data_not_found: Fonte consultada sem resultado
     source_description: Exemplar examinado para catalogação
-    source_details: Source details
-    source_number_code: Source of number or code
+    source_details: Descrição física
+    source_number_code: Agência de autoridade
     source_of_acquisition_note: Nota de origem da aquisição
     source_of_information: Fonte de informação
     source_of_term: Fonte do termo
@@ -781,77 +781,77 @@ pt:
     special_production_technique: Técnica de produção especial
     standard: Normalizado
     standard_musical_terms: Termos musicais normalizados
-    standard_number_code: Standard number or code
+    standard_number_code: Número ou código padrão
     standard_texts_sacred_works: Textos padronizados de obras sacras
     standard_watermarks: Marcas d'água normalizadas
     standardized_title: Título uniforme
     standardized_titles_printed_music: Títulos uniformes para música impressa
     standardized_titles_subject_headings: Títulos uniformes – Cabeçalhos de assunto
     start_period: Período de início
-    street_address: Street address
+    street_address: Rua e n.º
     strings: Cordas
     subheading: Subdivisão de forma
-    subheading_general: Subheading general subdivision
+    subheading_general: Subdivisão geral de subtítulo
     subject_access_fields: Campos de acesso por assunto
     subject_heading: Assunto
     subject_headings: Cabeçalhos de assunto
-    subordinate_unit: Subordinate unit
+    subordinate_unit: Unidade subordinada
     succeeding_entry: Registro subsequente
-    summary: Summary
+    summary: Resumo
     supplementary_material: Material suplementar
     technical_errors: Problemas técnicos
-    technical_production: Technical production
-    temp_val: Temp val
+    technical_production: Produção técnica
+    temp_val: Valor temporário
     templates: Modelos
     terms_of_availability: Termos de disponibilidade
     terms_voices_instruments: Termos para vozes e instrumentos
     text_author: Autor literário
     text_incipit: Incipit literário
-    thematic_catalog: Thematic catalog
+    thematic_catalog: Catálogo temático
     third_fourth_group: Terceiro/Quarto grupo
     time_signature: Compasso
-    title: Title
+    title: Título
     title_content_description: Título e descrição do conteúdo
     title_item: Título do item
     title_movement_tempo: Título do movimento, tempo
-    title_of_work: Title of work
+    title_of_work: Título do trabalho
     title_on_source: Título na fonte
-    title_periodical_book_series: Title of periodical, book, or series
-    title_related_fields: Title and title-related fields
-    title_section_part: Title of section or part
-    title_variants: Title variants
+    title_periodical_book_series: Título do livro, periódico, ou série
+    title_related_fields: Título e campos relacionados
+    title_section_part: Título da seção ou parte
+    title_variants: Variantes de título
     titles_text_incipits: Títulos / incipits literários
-    topical_term: Topical Term
+    topical_term: Termo temático
     total_scoring: Formação total
-    transcribing_agency: Transcribing agency
+    transcribing_agency: Agência de transcrição
     translation: Tradução
     translator: Tradutor
     transparency: Transparência
     type: Tipo
     type_designer: Tipógrafo
     type_institution: Tipo de instituição
-    type_name_variant: Type of name variant
+    type_name_variant: Tipo de variante de nome
     type_of_jurisdiction: Tipo de jurisdição
-    type_publication: Type of publication
-    type_relationship: Type of relationship
+    type_publication: Tipo de publicação
+    type_relationship: Tipo de relação
     typescript: Datilografia
     typography: Tipografia
     uncategorized: Sem categoria
-    unknown: Unknown
+    unknown: Desconhecido
     unparsed_fingerprint: Identificador de impressão não analisado
     variant_ms_title: Variante de título na fonte
     variant_source_title: Título variante na fonte
-    variations: Variations
+    variations: Variações
     verified: Verificada
-    vocalist: Vocalist
+    vocalist: Vocalista
     voice_instrument: Voz/instrumento
-    volume_year_page: Volume, year, page
+    volume_year_page: Volume, ano, página
     watermark_description: Descrição de Marca de água
     woodwinds: Madeiras
     work: Obra
     work_number: Número de obra
-    year: Year
-    years_birth_death: Years of birth and death
+    year: Ano
+    years_birth_death: Anos de nascimento e morte
   relations:
     P60191: "Fonte relacionada"
     P60198: "Material adicional"
@@ -863,64 +863,69 @@ pt:
     P60194: "Inserir em"
     P60183: "Inserir"
   verovio:
-    position: "Position"
-    warning: "Warning"
+    position: "Posição"
+    warning: "Aviso"
     clef: "Clave"
     keysig: "Armadura de clave"
     timesig: "Compasso"
-    ERR_001_EMPTY: Enter an encoded incipit.
-    ERR_004_KEY_SPACE: A key signature change must be followed by a space.
-    ERR_005_CLEF_SPACE: A clef change must be followed by a space.
-    ERR_006_TIMESIG_SPACE: A time signature change must be followed by a space.
-    ERR_007_REP_EMPTY: Enter the notes that should be repeated.
-    ERR_008_REP_MARKER: Indicate the end of the repeated figure with '!' before the 'f'.
-    ERR_009_REP_OPEN: Close the repeated figure with '!' before the end of the measure.
-    ERR_010_REP_UNUSED: The figure marked for repetition has not been repeated. Indicate the repetition with an 'f'.
-    ERR_011_REP_NO_FIGURE: The 'f' must follow '!' for the figure to repeat.
-    ERR_012_REP_NOT_BEGIN: To repeat the bar, 'i' must be preceded by a bar line.
-    ERR_013_REP_NO_CONTENT: "'i' is present without content to repeat."
-    ERR_014_REP_NO_BARLINE: 'To repeat the bar, ''i'' must be followed by a bar line.'
-    ERR_015_MREST_INVALID: A rest using '=' cannot be directly followed by another '='.
-    ERR_016_MREST_NUMBER: A rest using '=' must be followed by a bar line or a number greater than 0.
-    ERR_017_TRILL_INVALID: A trill using 't' must directly follow the note it belongs to.
-    ERR_018_FERMATA_NESTED: "(' cannot be directly followed by another '('."
-    ERR_019_ACCID_NO_NOTE: An accidental must be directly followed by a note.
-    ERR_020_CHORD_NOTE_BEFORE: To indicate a chord, a '^' must be preceded by a note.
-    ERR_021_CHORD_NOTE_AFTER: To indicate a chord, a '^' must be followed by a note.
-    ERR_022_BEAM_MENSURAL: Beams cannot be used with mensural notation.
-    ERR_023_BEAM_NESTED: Do not start a beam before closing the previous one.
-    ERR_024_BEAM_CLOSING: 'An extra ''}'' to close a beam is present. Delete it or indicate where the beam starts with ''{''.'
-    ERR_025_BEAM_OPEN: Close the beam with '}' before the end of the measure.
-    ERR_026_GRACE_NESTED: Close the appoggiatura with 'r' before starting a new one.
-    ERR_027_GRACE_CLOSING: An 'r' is present to close an appoggiatura. Delete it or add 'qq' to indicate where it begins.
-    ERR_028_GRACE_OPEN: Close the appoggiatura with 'r' before the end of the measure.
-    ERR_029_GRACE_UNRESOLVED: Do not start an appoggiatura using 'q' before completing the previous one.
-    ERR_030_GRACE_DURATION: No rhythmic value can be entered when using an acciaccatura with 'g'.
-    ERR_031_GRACE_NO_NOTE: A grace note using 'g' or 'q' must be followed by a note.
-    ERR_032_TUPLET_NESTED: Do not start a special rhythm group with '(' before closing the previous one.
-    ERR_033_TUPLET_CLOSING: An extra ')' to close a special rhythm group is present. Delete it or indicate with '(' where the group begins.
-    ERR_034_TUPLET_NUM: A ';' is present outside of a special rhythm group.
-    ERR_035_TUPLET_OPEN: Close the special rhythm group or fermata with ')' before the end of the measure.
-    ERR_036_TUPLET_NUM_NUMBER: A number must appear between the ';' and ')' in the special rhythm group.
-    ERR_037_TIE_PITCH: A tie using '+' can only connect two notes of the same octave and pitch.
-    ERR_038_TIE_OPEN: A tie using '+' must be followed by a note.
-    ERR_039_TIE_NO_NOTE: A tie using '+' must be preceded by a note.
-    ERR_040_HIERARCHY_INVALID: The order of elements cannot be interpreted (%{value}).
-    ERR_042_CLEF_INCOMPLETE: The clef is not in the correct form.
-    ERR_043_CLEF_INVALID_2ND: The second character in the clef sign must be either '+' or '-'.
-    ERR_044_CLEF_MENS: Do not mix mensural and non-mensural clefs.
-    ERR_045_CLEF_INVALID_3RD: The third character in the clef sign must be a digit.
-    ERR_046_CLEF_INVALID: The clef is not in the correct form.
-    ERR_047_TIMESIG_INCOMPLETE: The time signature is not in the correct form.
-    ERR_048_TIMESIG_INVALID: The time signature is not in the correct form.
-    ERR_049_TIMESIG_MENS: The time signature is not in the correct form.
-    ERR_050_INVALID_CHAR: 'Delete the following invalid character(s): %{value}'
-    ERR_051_BARLINE: The barline is not in the correct form.
-    ERR_052_DURATION: "Duration cannot be interpreted."
-    ERR_053_DURATION_MENS3: The duration cannot be '3' with mensural notation.
-    ERR_054_DURATION_MENS5: The duration cannot be '5' with mensural notation.
-    ERR_055_KEYSIG_CHANGE: The key signature cannot be changed more than once in a measure.
-    ERR_056_TIMESIG_CHANGE: The time signature cannot be changed more than once in a measure.
-    ERR_057_MENSUR_CHANGE: The mensuration cannot be changed more than once in a measure.
-    ERR_058_FERMATA_MREST: "The parentheses of a fermata must only contain a single note or rest '%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes are invalid with mensural notation."
+    ERR_001_EMPTY: Introduzir um incipit codificado.
+    ERR_004_KEY_SPACE: Uma alteração da chave de assinatura deve ser seguida de um espaço.
+    ERR_005_CLEF_SPACE: Uma mudança de chave deve ser seguida por um espaço.
+    ERR_006_TIMESIG_SPACE: A alteração de tempo da assinatura deve ser seguida de um espaço.
+    ERR_007_REP_EMPTY: Digite as notas que devem ser repetidas.
+    ERR_008_REP_MARKER: Indique o final da figura repetida com "!" antes do "f".
+    ERR_009_REP_OPEN: Feche a figura repetida com '!' antes do fim da medida.
+    ERR_010_REP_UNUSED: A figura marcada para repetição não foi repetida. Indique a repetição com um 'f'.
+    ERR_011_REP_NO_FIGURE: O 'f' deve seguir '!' para que a figura se repita.
+    ERR_012_REP_NOT_BEGIN: Para repetir o bar, "i" deve ser precedido de uma linha de barras.
+    ERR_013_REP_NO_CONTENT: "'i' está presente sem conteúdo para repetir."
+    ERR_014_REP_NO_BARLINE: 'Para repetir a bar, ''i'' deve ser seguido de uma linha de barras.'
+    ERR_015_MREST_INVALID: Um descanso usando '=' não pode ser seguido diretamente por outro '='.
+    ERR_016_MREST_NUMBER: Um descanso usando '=' deve ser seguido por uma linha de barra ou um número maior que 0.
+    ERR_017_TRILL_INVALID: Um trilho usando 't' deve seguir diretamente a nota a que pertence.
+    ERR_018_FERMATA_NESTED: "\"(' não pode ser seguido diretamente por outro '('."
+    ERR_019_ACCID_NO_NOTE: Um acidente deve ser seguido diretamente de uma nota.
+    ERR_020_CHORD_NOTE_BEFORE: Para indicar um acorde, um '^' deve ser precedido por uma nota.
+    ERR_021_CHORD_NOTE_AFTER: Para indicar um acorde, um '^' deve ser seguido por uma nota.
+    ERR_022_BEAM_MENSURAL: As treliças não podem ser utilizadas com notação mensal.
+    ERR_023_BEAM_NESTED: Não inicie um feixe antes de fechar o anterior.
+    ERR_024_BEAM_CLOSING: 'Há um "}" excedente para fechar uma junta. Ou eliminá-lo ou indicar onde começa a viga com ''{''.'
+    ERR_025_BEAM_OPEN: Fechar a viga com "}" antes do fim da paragem.
+    ERR_026_GRACE_NESTED: Feche a appoggiatura com 'r' antes de iniciar uma nova.
+    ERR_027_GRACE_CLOSING: Um 'r' está presente para fechar um appoggiatura. Exclua-o ou adicione 'qq' para indicar onde ele começa.
+    ERR_028_GRACE_OPEN: Fechar o appoggiatura com 'r' antes do fim da paragem.
+    ERR_029_GRACE_UNRESOLVED: Não inicie uma appoggiatura usando 'q' antes de completar a anterior.
+    ERR_030_GRACE_DURATION: Nenhum valor rítmico pode ser inserido ao usar uma acciaccatura com 'g'.
+    ERR_031_GRACE_NO_NOTE: Uma nota de graça que utiliza 'g' ou 'q' deve ser seguida de uma nota.
+    ERR_032_TUPLET_NESTED: Não inicie um grupo de ritmo especial com '(' antes de fechar o anterior.
+    ERR_033_TUPLET_CLOSING: Um extra ')' para fechar um grupo de ritmo especial está presente. Exclua ou indique com '(' onde o grupo começa.
+    ERR_034_TUPLET_NUM: Um ';' está presente fora de um grupo de ritmos especial.
+    ERR_035_TUPLET_OPEN: Feche o grupo de ritmo especial ou o fermata com ')' antes do fim da medida.
+    ERR_036_TUPLET_NUM_NUMBER: Um número deve aparecer entre o ';' e ')' no grupo de ritmo especial.
+    ERR_037_TIE_PITCH: Uma gravata que use '+' só pode conectar duas notas do mesmo polvo e tom.
+    ERR_038_TIE_OPEN: Uma ligadura com '+' deve ser seguida por uma nota.
+    ERR_039_TIE_NO_NOTE: Uma ligadura com '+' deve ser precedida por uma nota.
+    ERR_040_HIERARCHY_INVALID: A ordem dos elementos não pode ser interpretada (%{value}).
+    ERR_042_CLEF_INCOMPLETE: A chave não se encontra no formato correcto.
+    ERR_043_CLEF_INVALID_2ND: O segundo caractere no sinal de clef deve ser '+' ou '-'.
+    ERR_044_CLEF_MENS: Não misture clipes mensais e não mensais.
+    ERR_045_CLEF_INVALID_3RD: O terceiro caractere do sinal de clef deve ser um dígito.
+    ERR_046_CLEF_INVALID: A chave não se encontra no formato correcto.
+    ERR_047_TIMESIG_INCOMPLETE: A assinatura de tempo não está na forma correta.
+    ERR_048_TIMESIG_INVALID: A assinatura de tempo não está na forma correta.
+    ERR_049_TIMESIG_MENS: A assinatura de tempo não está na forma correta.
+    ERR_050_INVALID_CHAR: 'Excluir o(s) seguinte(s) caractere(s) inválido(s): %{value}'
+    ERR_051_BARLINE: A linha de barras não está na forma correta.
+    ERR_052_DURATION: "A duração não pode ser interpretada."
+    ERR_053_DURATION_MENS3: A duração não pode ser "3" com notação mensal.
+    ERR_054_DURATION_MENS5: A duração não pode ser "5" com notação mensal.
+    ERR_055_KEYSIG_CHANGE: A assinatura da chave não pode ser alterada mais de uma vez numa medida.
+    ERR_056_TIMESIG_CHANGE: A assinatura do tempo não pode ser alterada mais de uma vez numa medida.
+    ERR_057_MENSUR_CHANGE: A mensuração não pode ser alterada mais do que uma vez numa medida.
+    ERR_058_FERMATA_MREST: "Os parênteses de um fermata devem conter apenas uma nota ou outra '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Notas pontilhadas duplas são inválidas com notação mensal."
+  testingForCrowdinWorkshop:
+    apple: maçã
+    pear: pera
+    table: tabela
+    chair: cadeira

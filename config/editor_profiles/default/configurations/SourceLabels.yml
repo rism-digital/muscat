@@ -26,7 +26,7 @@
     indicator:
       label: records.publisher_plate_number
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.number
     '20':
@@ -168,7 +168,7 @@
 '260':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.place
     b:
@@ -189,7 +189,7 @@
 '300':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.format_extent
     b:
@@ -200,7 +200,7 @@
 '340':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     d:
       label: records.printing_technique
     m:
@@ -226,7 +226,7 @@
 '500':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.general_note
   label: records.general_note
@@ -303,7 +303,7 @@
 '590':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.parts_held
     b:
@@ -317,14 +317,14 @@
 '592':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.watermark_description
   label: records.watermark_description
 '593':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.type
   label: records.source_type
@@ -438,7 +438,7 @@
     '4':
       label: records.function
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.name
     d:
@@ -451,7 +451,7 @@
     '4':
       label: records.function
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.institution
     b:

@@ -924,3 +924,8 @@ pl:
     ERR_057_MENSUR_CHANGE: Menzurę można zmienić tylko raz w takcie.
     ERR_058_FERMATA_MREST: "Nawiasy fermaty mogą zawierać tylko jedną nutę lub pauzę'%{value}'"
     ERR_059_DOUBLE_DOTS_MENS: "Nuty z podwójnymi kropkami w notacji menzuralnej są nieprawidłowe."
+  testingForCrowdinWorkshop:
+    apple: jabłko
+    pear: gruszka
+    table: table
+    chair: krzesło

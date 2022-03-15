@@ -924,3 +924,8 @@ fr:
     ERR_057_MENSUR_CHANGE: L'indication de mesure ne peut pas être modifiée plus d'une fois dans une mesure.
     ERR_058_FERMATA_MREST: "Les parenthèses d'un point d'orgue ne doivent contenir qu'une seule note ou un seul silence '%{value}'"
     ERR_059_DOUBLE_DOTS_MENS: "Les notes doubles pointées ne sont pas valides en notation mensurale."
+  testingForCrowdinWorkshop:
+    apple: pomme
+    pear: poire
+    table: tableau
+    chair: chaise
