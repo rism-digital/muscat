@@ -756,7 +756,7 @@ es:
     series: Serie
     series_added_entry: Entradas adicionales de la serie
     series_statement: Información de serie
-    set: Grupo de materiales
+    material_group: Grupo de material
     shelfmark: Signatura
     shelfmark_olim: Marca antigua (olim)
     short_title: Título breve

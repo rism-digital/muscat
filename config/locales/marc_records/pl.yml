@@ -756,7 +756,7 @@ pl:
     series: Seria
     series_added_entry: Dodatkowe wpisy tytułów
     series_statement: Pola uwag do serii
-    set: Zbiór
+    material_group: Grupa materiałów
     shelfmark: Sygnatura
     shelfmark_olim: Poprzednia sygnatura (olim)
     short_title: Skrócony tytuł
@@ -927,5 +927,5 @@ pl:
   testingForCrowdinWorkshop:
     apple: jabłko
     pear: gruszka
-    table: table
+    table: tabela
     chair: krzesło

@@ -756,7 +756,7 @@ pt:
     series: Séries
     series_added_entry: Informação secundária sobre título superordenado
     series_statement: Campos de declaração da série
-    set: Grupo de materiais
+    material_group: Grupo de materiais
     shelfmark: Código
     shelfmark_olim: Código antiguo (olim)
     short_title: Título abreviado

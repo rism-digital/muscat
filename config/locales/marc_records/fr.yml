@@ -756,7 +756,7 @@ fr:
     series: Série
     series_added_entry: Champs de collection
     series_statement: Mentions de collection
-    set: Groupe de matériaux
+    material_group: Groupe de matériaux
     shelfmark: Cote
     shelfmark_olim: Ancienne cote (olim)
     short_title: Titre abrégé
