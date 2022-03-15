@@ -8,6 +8,7 @@ ActiveAdmin.register User do
 	
 
 	controller do
+
 	  def update
 	    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
 	      params[:user].delete("password")
@@ -15,6 +16,7 @@ ActiveAdmin.register User do
 	    end
 	    super
 	  end
+
 	end
 
   collection_action :list, method: :post do

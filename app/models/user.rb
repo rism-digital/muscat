@@ -162,5 +162,6 @@ class User < ApplicationRecord
 
   def password_required?
     user_create_strategy != :saml_authenticatable
+    super
   end
 end
