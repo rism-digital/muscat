@@ -578,20 +578,25 @@
   layout:
     fields:
     - - a
-      - values:
-        - Autograph manuscript
-        - Possible autograph manuscript
-        - Partial autograph
-        - Manuscript copy
-        - Manuscript copy with autograph annotations
-        - Print
-        - Print with autograph annotations
-        - Print with non-autograph annotations
-        - Libretto, handwritten
-        - Libretto, printed
-        - Treatise, handwritten
-        - Treatise, printed
-        - Other
+      - templates:
+          source:
+            - Autograph manuscript
+            - Possible autograph manuscript
+            - Partial autograph
+            - Manuscript copy
+            - Manuscript copy with autograph annotations
+            - Print
+            - Print with autograph annotations
+            - Print with non-autograph annotations
+            - Libretto, handwritten
+            - Libretto, printed
+            - Treatise, handwritten
+            - Treatise, printed
+            - Other
+          collection:
+            - Autograph manuscript
+            - Possible autograph manuscript
+            - Partial autograph
         editor_partial: subfield_select
 "594":
   layout:
