@@ -1,6 +1,11 @@
 Pathname.new(REINDEX_PIDFILE).write(Process.pid)
 
-@parallel_jobs = 8
+if ENV.include?('MUSCAT_PARALLEL_JOBS') && ENV['MUSCAT_PARALLEL_JOBS'].to_i > 0
+    @parallel_jobs = ENV['MUSCAT_PARALLEL_JOBS'].to_i
+else
+    @parallel_jobs = 8
+end
+
 @source_count = Source.all.count
 @sources_per_chunk = @source_count / @parallel_jobs
 @reminder = @source_count - (@sources_per_chunk * @parallel_jobs)
