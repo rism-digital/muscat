@@ -598,6 +598,17 @@ class Source < ApplicationRecord
     return holding.id
   end
 
+  def get_iiif_tags()
+    tags = self.marc.by_tags_with_order(["856"])
+
+    if self.holdings
+      self.holdings.each {|h| tags.concat(h.marc.by_tags_with_order(["856"]))}
+    end
+
+    tags.delete_if {|tag| subfield_x = tag.fetch_first_by_tag('x'); !subfield_x || !subfield_x.content || !subfield_x.content.include?("IIIF")}
+    return tags
+  end
+
   def force_marc_load?
     self.marc.load_source false
     true
