@@ -34,6 +34,7 @@ it:
     workflow: Workflow
     'yes': 'Sì'
   languages:
+    albanian: Albanian
     afrikaans: Afrikaans
     arabic: Arabo
     aragonese: Aragonese
@@ -50,6 +51,7 @@ it:
     creoles_pidgins_other: Lingue creole e pidgin (altre)
     croatian: Croato
     czech: Ceco
+    dakota: Dakota
     danish: Danese
     dutch: Olandese
     english: Inglese

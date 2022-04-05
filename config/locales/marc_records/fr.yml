@@ -34,6 +34,7 @@ fr:
     workflow: Flux de travail
     'yes': 'Oui'
   languages:
+    albanian: Albanian
     afrikaans: Afrikaans
     arabic: Arabe
     aragonese: Aragonais
@@ -50,6 +51,7 @@ fr:
     creoles_pidgins_other: Langues créoles et pidgins (autres)
     croatian: Croate
     czech: Tchèque
+    dakota: Dakota
     danish: Danois
     dutch: Néerlandais
     english: Anglais

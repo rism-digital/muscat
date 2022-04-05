@@ -34,6 +34,7 @@ pt:
     workflow: Fluxo de trabalho
     'yes': 'Sim'
   languages:
+    albanian: Albanian
     afrikaans: Africânder
     arabic: Árabe
     aragonese: Aragonês
@@ -50,6 +51,7 @@ pt:
     creoles_pidgins_other: Crioles e Pidgins (Outro)
     croatian: Croata
     czech: Tcheco
+    dakota: Dakota
     danish: Dinamarquês
     dutch: Holandês
     english: Inglês
