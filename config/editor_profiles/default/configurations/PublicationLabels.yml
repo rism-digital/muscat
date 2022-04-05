@@ -322,6 +322,8 @@ added_series:
   label: records.series_added_entry
 administration:
   label: records.administration
+alb:
+  label: languages.albanian
 arr:
   label: records.arranger
 art:
@@ -422,6 +424,8 @@ linkage:
   label: records.linkage
 linking:
   label: records.linking_entry_fields
+lit:
+  label: languages.lithuanian
 ltg:
   label: records.lithograph
 lyr:

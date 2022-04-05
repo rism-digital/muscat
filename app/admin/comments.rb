@@ -20,7 +20,6 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   # redirection to the comments/index
   member_action :archive, method: :get do
     if request.get? && can?(:manage, resource)
-      puts params
       value = (params[:do] && params[:do] == "false") ? :admin : :archived
       resource.update_attributes! namespace: value || {}
       resource.save!
