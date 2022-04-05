@@ -798,6 +798,8 @@ c|x:
   label: records.cs_minor
 d:
   label: records.d_minor
+dak:
+  label: languages.dakota
 dnc:
   label: records.dancer
 dnr:
