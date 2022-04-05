@@ -54,6 +54,8 @@
 
 		
 	    <%- if @item.marc.config.multiples_allowed?(tag_name) && no_add == false && !empty_header -%>
+        <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all sortable-button" href="#" title="Move"><span class="ui-icon ui-icon-arrow-4-diag"></span>_</a>
+
         <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="add" title="Add tag"><span class="ui-icon ui-icon-plus"></span>_</a>
         <%- elsif empty_header -%>
         <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="add-from-empty" title="Add tag"><span class="ui-icon ui-icon-plus"></span>_</a>
