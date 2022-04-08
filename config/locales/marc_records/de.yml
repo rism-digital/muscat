@@ -34,7 +34,7 @@ de:
     workflow: Workflow
     'yes': 'Ja'
   languages:
-    albanian: Albanian
+    albanian: Albanisch
     afrikaans: Afrikaans
     arabic: Arabisch
     aragonese: Aragonesisch
@@ -125,6 +125,7 @@ de:
     yiddish: Jiddisch
   places:
     afghanistan: Afghanistan
+    albania: Albanien
     algeria: Algerien
     andorra: Andorra
     argentina: Argentinien

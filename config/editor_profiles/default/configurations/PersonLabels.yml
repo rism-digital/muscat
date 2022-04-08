@@ -123,6 +123,8 @@
     y:
       label: records.note_external_resource
   label: records.external_resource
+XA-AL:
+  label: places.albania
 XA-AT:
   label: places.austria
 XA-AT-2:
