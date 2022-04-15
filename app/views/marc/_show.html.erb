@@ -43,7 +43,7 @@
 	<div class="panel_group_space"></div>
 <%end%>
 
-<% if !@diff && !holdings_resolved %>
+<% if !@diff && !holdings_resolved && @item.respond_to?(:get_iiif_tags)%>
 	
 	<%= render :partial => "marc_show/show_iiif", 
 		:locals => { 
