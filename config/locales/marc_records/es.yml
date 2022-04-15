@@ -34,7 +34,7 @@ es:
     workflow: Flujo de trabajo
     'yes': 'Sí'
   languages:
-    albanian: Albanian
+    albanian: Albano
     afrikaans: Afrikáans
     arabic: Árabe
     aragonese: Aragonés
@@ -57,10 +57,12 @@ es:
     english: Inglés
     estonian: Estonio
     ethiopic: Etiópico
+    fijian: Fijiano
     finnish: Finés
     french: Francés
     french_middle: Francés, Medio (ca. 1300-1600)
     french_old: Francés, antiguo (ca. 842-1300)
+    friulian: Friulano
     gallician: Galego
     german: Alemán
     german_old_high: Alemán culto antiguo (aprox. 750-1050)
@@ -73,6 +75,7 @@ es:
     insari_sami: Inari Sami
     irish: Irlandés
     italian: Italiano
+    japanese: Japonés
     korean: Coreano
     latin: Latín
     latvian: Letón
@@ -458,7 +461,6 @@ es:
     format_extent: Formato, extensión
     former_owner: Propietario anterior
     fragments: Fragmentos
-    friulano: Friulano
     fs_major: Fa sostenido Mayor
     fs_minor: Fa sostenido menor
     full: Completo
@@ -699,6 +701,7 @@ es:
     place_origin: Lugar de origen
     place_publication: Lugar de publicación
     places: Lugares
+    plaine_and_easie: Código Plaine and Easie
     plate_number: Número de plancha
     plucked_instruments: Cuerdas pulsadas
     postal_code: Código postal

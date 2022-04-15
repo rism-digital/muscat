@@ -34,7 +34,7 @@ it:
     workflow: Workflow
     'yes': 'Sì'
   languages:
-    albanian: Albanian
+    albanian: Albanese
     afrikaans: Afrikaans
     arabic: Arabo
     aragonese: Aragonese
@@ -57,10 +57,12 @@ it:
     english: Inglese
     estonian: Estone
     ethiopic: Etiope
+    fijian: Figiano
     finnish: Finlandese
     french: Francese
     french_middle: Francese, medio (ca. 1300-1600)
     french_old: Francese, antico (ca. 842-1300)
+    friulian: Friulano
     gallician: Galiziano
     german: Tedesco
     german_old_high: Tedesco, antico alto (ca. 750-1050)
@@ -73,6 +75,7 @@ it:
     insari_sami: Inari Sami
     irish: Irlandese
     italian: Italiano
+    japanese: Giapponese
     korean: Coreano
     latin: Latino
     latvian: Lettone
@@ -458,7 +461,6 @@ it:
     format_extent: Categoria di fonte, estensione
     former_owner: Proprietario precedente
     fragments: Frammenti
-    friulano: Friulano
     fs_major: Fa♯ maggiore
     fs_minor: Fa♯ minore
     full: Completo
@@ -699,6 +701,7 @@ it:
     place_origin: Luogo di origine
     place_publication: Luogo
     places: Luoghi
+    plaine_and_easie: Codice Plaine and Easie
     plate_number: Numero della lastra
     plucked_instruments: Strumenti a pizzico
     postal_code: Codice postale

@@ -322,8 +322,6 @@ added_series:
   label: records.series_added_entry
 administration:
   label: records.administration
-alb:
-  label: languages.albanian
 arr:
   label: records.arranger
 art:
@@ -338,8 +336,6 @@ bnd:
   label: records.binder
 bsl:
   label: records.bookseller
-cat:
-  label: languages.catalan
 ccp:
   label: records.conceptor
 chr:
@@ -362,10 +358,6 @@ control:
   label: records.control_fields
 cst:
   label: records.costume_designer
-cze:
-  label: languages.czech
-dan:
-  label: languages.danish
 date:
   label: records.dates
 description:
@@ -424,8 +416,6 @@ linkage:
   label: records.linkage
 linking:
   label: records.linking_entry_fields
-lit:
-  label: languages.lithuanian
 ltg:
   label: records.lithograph
 lyr:

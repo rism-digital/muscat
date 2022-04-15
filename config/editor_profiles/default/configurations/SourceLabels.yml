@@ -746,8 +746,6 @@ aid_watermarks:
   label: records.standard_watermarks
 arr:
   label: records.arranger
-art:
-  label: languages.artificial
 asg:
   label: records.assignee
 asn:
@@ -798,8 +796,6 @@ c|x:
   label: records.cs_minor
 d:
   label: records.d_minor
-dak:
-  label: languages.dakota
 dnc:
   label: records.dancer
 dnr:
@@ -974,8 +970,6 @@ fmo:
   label: records.former_owner
 full:
   label: records.full
-fur:
-  label: records.friulano
 f|x:
   label: records.fs_minor
 g:

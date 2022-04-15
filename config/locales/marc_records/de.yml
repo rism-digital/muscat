@@ -34,7 +34,7 @@ de:
     workflow: Workflow
     'yes': 'Ja'
   languages:
-    albanian: Albanian
+    albanian: Albanisch
     afrikaans: Afrikaans
     arabic: Arabisch
     aragonese: Aragonesisch
@@ -51,16 +51,18 @@ de:
     creoles_pidgins_other: Kreolisch und Kauderwelsch (andere)
     croatian: Kroatisch
     czech: Tschechisch
-    dakota: Dakota
+    dakota: Dakota-Sprache
     danish: Dänisch
     dutch: Niederländisch
     english: Englisch
     estonian: Estnisch
     ethiopic: Äthiopisch
+    fijian: Fidschianisch
     finnish: Finnisch
     french: Französisch
     french_middle: Französisch, Mitte (ca. 1300-1600)
     french_old: Französisch, alt (ca. 842-1300)
+    friulian: Friulano
     gallician: Galizisch
     german: Deutsch
     german_old_high: Althochdeutsch (ca. 750-1050)
@@ -73,6 +75,7 @@ de:
     insari_sami: Inari Sami
     irish: Irisch
     italian: Italienisch
+    japanese: Japanisch
     korean: Koreanisch
     latin: Lateinisch
     latvian: Lettisch
@@ -458,7 +461,6 @@ de:
     format_extent: Quellenart, Umfang
     former_owner: Vorbesitzer
     fragments: Fragmente
-    friulano: Friulano
     fs_major: Fis-Dur
     fs_minor: fis-Moll
     full: Vollkatalogisat
@@ -699,6 +701,7 @@ de:
     place_origin: Herkunftsangabe
     place_publication: Verlagsort
     places: Orte
+    plaine_and_easie: Plaine and Easie Code
     plate_number: Plattennummer
     plucked_instruments: Zupfinstrumente
     postal_code: Postleitzahl

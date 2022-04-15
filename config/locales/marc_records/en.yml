@@ -57,10 +57,12 @@ en:
     english: English
     estonian: Estonian
     ethiopic: Ethiopic
+    fijian: Fijian
     finnish: Finnish
     french: French
     french_middle: French, Middle (ca. 1300-1600)
     french_old: French, Old (ca. 842-1300)
+    friulian: Friulian
     gallician: Galician
     german: German
     german_old_high: German, Old High (ca. 750-1050)
@@ -73,6 +75,7 @@ en:
     insari_sami: Inari Sami
     irish: Irish
     italian: Italian
+    japanese: Japanese
     korean: Korean
     latin: Latin
     latvian: Latvian
@@ -458,7 +461,6 @@ en:
     format_extent: Format, extent
     former_owner: Former owner
     fragments: Fragments
-    friulano: Friulano
     fs_major: F♯ major
     fs_minor: F♯ minor
     full: Full
@@ -702,6 +704,7 @@ en:
     place_origin: Place of origin
     place_publication: Place of publication
     places: Places
+    plaine_and_easie: Plaine and Easie code
     plate_number: Plate number
     plucked_instruments: Plucked instruments
     postal_code: Postal code
