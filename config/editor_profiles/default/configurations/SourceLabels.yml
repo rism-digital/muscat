@@ -1112,8 +1112,6 @@ ltg:
   label: records.lithographer
 lyr:
   label: records.text_author
-mul:
-  label: records.multiple
 not_examined:
   label: records.material_not_examined
 origin:
@@ -1232,8 +1230,6 @@ trl:
   label: records.translator
 tyd:
   label: records.type_designer
-und:
-  label: general.undetermined
 ungrouped:
   label: general.ungrouped_fields
 unmatched:
