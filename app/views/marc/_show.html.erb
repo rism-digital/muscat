@@ -21,6 +21,7 @@
 
 	<% next if group_config["admin_only"] && !(current_user && current_user.has_any_role?(:editor, :admin)) %>
 	<% next if group_config["admin_only"] && opac_resolved %>
+	<% next if @diff && !group_config["all_tags"] %>
 
 	<%= render :partial => (group_config["template"] && !@diff ? group_config["template"] : "marc/show_group" ), 
 		:locals => { 
