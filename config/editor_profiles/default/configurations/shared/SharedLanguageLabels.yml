@@ -30,6 +30,8 @@ chi:
   label: languages.chinese
 chu:
   label: languages.old_church_slavonic
+cre:
+  label: languages.cree
 crp:
   label: languages.creoles_pidgins_other
 cze:
