@@ -68,13 +68,8 @@ class Folder < ApplicationRecord
       folder_items.destroy(folder_item) if folder_item
     end
     # Folder items should be always cleaned up
-    # make sure it is
-    FolderItem.clean_index_orphans
-    Sunspot.commit
+    # run a background job for that
+    Delayed::Job.enqueue(PurgeFolderItemsJob.new(self.id))
   end  
-    
-  
-  #def remove_links
-  #  FolderItem.clean_index_orphans
-  #end
+
 end
