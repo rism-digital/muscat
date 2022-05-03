@@ -6,15 +6,16 @@ CSV.foreach(file) do |l|
     pae_a = l[2].to_s.strip
     pae_b = l[3].to_s.strip
     pae_c = l[4].to_s.strip
-    clef = l[5].strip
-    key = l[6].strip
-    time = l[7].strip
-    pae = l[8].strip
+    clef = l[6].strip
+    key = l[7].strip
+    time = l[8].strip
+    pae = l[9].strip
 
-    clef_new = l[9].strip
-    key_new = l[10].strip
-    time_new = l[11].strip
-    pae_new = l[12].strip
+    clef_new = l[10].strip
+    key_new = l[11].strip
+    time_new = l[12].strip
+    pae_new = l[13].strip
+    note = l[14].strip
 
     next if s_id == "source_id"
 
@@ -40,19 +41,23 @@ CSV.foreach(file) do |l|
 
         if pae_a == vals[:a] && pae_b == vals[:b] && pae_c == vals[:c]
 
-            (puts "#{source.id} clef was changed expecting #{clef} is #{vals[:g]}"; next ) if vals[:g] != nil && vals[:g].strip != clef.strip
-            (puts "#{source.id} key was changed expecting #{key} is #{vals[:n]}"; next ) if vals[:n] != nil && vals[:n].strip != key.strip
-            (puts "#{source.id} time was changed expecting #{time} is #{vals[:o]}"; next ) if vals[:o] != nil && vals[:o].strip != time.strip
-            (puts "#{source.id} pae was changed expecting #{pae} is #{vals[:p]}"; next ) if vals[:p] != nil && vals[:p].strip != pae.strip
+            #puts "updating #{source.id} #{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
 
-            puts "#{tags[:n].content}, #{key} to #{key_new}"
+            (puts "#{source.id} #{vals[:a]}.#{vals[:b]}.#{vals[:c]} clef was changed expecting #{clef} is #{vals[:g]}"; next ) if vals[:g] != nil && vals[:g].strip != clef.strip
+            (puts "#{source.id} #{vals[:a]}.#{vals[:b]}.#{vals[:c]} key was changed expecting #{key} is #{vals[:n]}"; next ) if vals[:n] != nil && vals[:n].strip != key.strip
+            (puts "#{source.id} #{vals[:a]}.#{vals[:b]}.#{vals[:c]} time was changed expecting #{time} is #{vals[:o]}"; next ) if vals[:o] != nil && vals[:o].strip != time.strip
+            (puts "#{source.id} #{vals[:a]}.#{vals[:b]}.#{vals[:c]} pae was changed expecting #{pae} is #{vals[:p]}"; next ) if vals[:p] != nil && vals[:p].strip != pae.strip
 
             tags[:g].content = clef_new.strip if !clef_new.empty?
             tags[:n].content = key_new.strip if !key_new.empty?
-            tags[:o].content = time_new.strip if !time_new.empty?
+            tags[:o].content = time_new.strip if !time_new.empty? || time_new.strip != vals[:o].strip
             tags[:p].content = pae_new.strip if !pae_new.empty?
 
-            puts "#{source.id} updated correctly "
+            if !note.empty?
+                t.add_at(MarcNode.new("source", "q", note, nil), 0)
+                t.sort_alphabetically
+            end
+            
         end
 
     end
