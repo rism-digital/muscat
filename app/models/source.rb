@@ -245,15 +245,11 @@ class Source < ApplicationRecord
 #      date_to != nil && date_to > 0 ? date_to : nil
 #    end
 
-    sunspot_dsl.integer :wf_owner, multiple: true do |s|
-      s.holdings.map {|e| e.wf_owner} << s.wf_owner
-    end
+    sunspot_dsl.integer :wf_owner
 
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
-    sunspot_dsl.time :created_at, multiple: true do |s|
-      s.holdings.map {|e| e.created_at} << s.created_at
-    end
+    sunspot_dsl.time :created_at
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
