@@ -66,7 +66,7 @@ ActiveAdmin.register_page "Statistics" do
     div do
       tabs do
         tab "Sources per User" do
-          #render :partial => 'statistics/user_table', locals: {stats: statistic_sources}
+          render :partial => 'statistics/user_table', locals: {stats: statistic_sources}
         end
         tab "Holdings per User" do
           render :partial => 'statistics/user_table', locals: {stats: statistic_holdings}
