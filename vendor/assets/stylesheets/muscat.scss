@@ -307,3 +307,12 @@ select[name="target_template"] {
   background-color: #fcb2c5 ;
   border-radius: 3px;
 }
+
+
+.ui-tabs-nav li.ui-tabs-active a {
+  background-image: linear-gradient(180deg, #b9b7b7, #08010149) !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	cursor: pointer !important;
+}
