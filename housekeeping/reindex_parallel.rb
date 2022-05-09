@@ -9,10 +9,10 @@ end
 @source_count = Source.all.count
 @sources_per_chunk = @source_count / @parallel_jobs
 @reminder = @source_count - (@sources_per_chunk * @parallel_jobs)
-@batch_size = 5000
+@batch_size = (@sources_per_chunk.to_f / (@sources_per_chunk / 5000.0).ceil()).ceil()
 
 begin_time = Time.now
-puts "Reindexing #{@source_count} sources in #{@parallel_jobs} processes with a reminder of #{@reminder} (#{@sources_per_chunk} per chunk)"
+puts "Reindexing #{@source_count} sources in #{@parallel_jobs} processes with a reminder of #{@reminder} (#{@sources_per_chunk} per chunk), commit size #{@batch_size}"
 
 results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |jobid|
     offset = @sources_per_chunk * jobid
