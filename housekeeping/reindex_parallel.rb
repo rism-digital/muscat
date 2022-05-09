@@ -9,11 +9,12 @@ end
 @source_count = Source.all.count
 @sources_per_chunk = @source_count / @parallel_jobs
 @reminder = @source_count - (@sources_per_chunk * @parallel_jobs)
+@batch_size = 5000
 
 begin_time = Time.now
 puts "Reindexing #{@source_count} sources in #{@parallel_jobs} processes with a reminder of #{@reminder} (#{@sources_per_chunk} per chunk)"
 
-results = Parallel.map(0..@parallel_jobs - 1, in_threads: @parallel_jobs) do |jobid|
+results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |jobid|
     offset = @sources_per_chunk * jobid
 
     limit = @sources_per_chunk
@@ -25,13 +26,13 @@ results = Parallel.map(0..@parallel_jobs - 1, in_threads: @parallel_jobs) do |jo
     e_count = 0
     while current_limit < limit
         begin
-            Sunspot.index(Source.order(:id).limit(1000).offset(offset + current_limit).select(&:force_marc_load?))
+            Sunspot.index(Source.order(:id).limit(@batch_size).offset(offset + current_limit).select(&:force_marc_load?))
         rescue => e
             puts "OOPS: #{e.exception}"
             e_count += 1
         end
-        current_limit += 1000
-        puts "#{jobid} #{offset} - #{current_limit}, #{offset + current_limit}"
+        current_limit += @batch_size
+        puts "JOB #{jobid} START@#{offset} INDEXED #{current_limit}"
     end
     [current_limit, e_count]
 
@@ -41,7 +42,7 @@ results = Parallel.map(0..@parallel_jobs - 1, in_threads: @parallel_jobs) do |jo
     e_count = 0
     Source.order(:id).limit(limit).offset(offset).select(:id).each do |sid|
         s = Source.find(sid.id)
-        s.marc.load_source false
+            s.marc.load_source false
 
         begin
             Sunspot.index s
