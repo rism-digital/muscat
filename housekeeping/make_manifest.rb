@@ -20,6 +20,8 @@ require 'awesome_print'
 require 'iiif/presentation'
 require 'yaml'
 
+@tag_cache = {}
+
 module Faraday
   module NestedParamsEncoder
     def self.escape(arg)
@@ -33,6 +35,20 @@ module Faraday
       arg
     end
   end
+end
+
+def get_manifest_tag(marc, tag, subtag, manifest_id)
+  marc.each_by_tag(tag) do |t|
+    t.fetch_all_by_tag(subtag).each do |tn|
+
+      next if !(tn && tn.content)
+      if tn.content == manifest_id
+        return t
+      end
+
+    end
+  end
+  nil
 end
 
 #IIF_PATH="http://d-lib.rism-ch.org/cgi-bin/iipsrv.fcgi?IIIF=/usr/local/images/ch/"
@@ -60,7 +76,7 @@ OptionParser.new do |opts|
     options[:force] = b
   end
 
-  opts.on("-p", "--path", "Set IIIF server URL path") do |b|
+  opts.on("-p", "--path [PATH]", "Set IIIF server URL path") do |b|
     options[:path] = b
   end
 
@@ -70,6 +86,10 @@ OptionParser.new do |opts|
 
   opts.on("-o", "--only-add", "Do not create the manifests, only add the 856") do |b|
     options[:onlyadd] = b
+  end
+
+  opts.on("-m", "--match-metadata [FILE]", "Pull the metadata from a CSV file, ID,BANNER,TYPE") do |b|
+    options[:csv] = b
   end
 
   opts.on("-h", "--help", "Prints this help") do
@@ -93,9 +113,20 @@ if options.include?(:onlyadd) && options.include?(:nocreate)
   exit
 end
 
-options[:type] = "IIIF" if !options.include?(:type)
+options[:type] = "IIIF manifest (digitized source)" if !options.include?(:type)
 options[:banner] = "Digital Object" if !options.include?(:banner)
 IIIF_PATH = options[:path] if options.include?(:path)
+
+if options.include?(:csv)
+  if !File.exists?(options[:csv])
+    puts "The csv file does not exist: #{options[:csv]}"
+    exit 1
+  end
+
+  CSV::foreach(options[:csv]) do |l|
+    @tag_cache[l[0].to_s.strip] = {banner: l[1].strip, type: l[2].strip}
+  end
+end
 
 if ARGV.first.include?("yml")
   dirs  = YAML.load_file(ARGV.first)
@@ -105,8 +136,8 @@ end
 
 puts "Creating manifests for #{ARGV.first}"
 puts "Update 856 in record: #{ !(options.include?(:nocreate) && !options[:nocreate])}"
-puts "Banner 856$z: #{options[:banner]}"
-puts "Type 856$x #{options[:type]}"
+puts "Default Banner 856$z: #{options[:banner]}"
+puts "Default Type 856$x #{options[:type]}"
 puts "URL path: #{IIIF_PATH}"
 puts "Force manifest creation: #{ options.include?(:force) && options[:force] == true}"
 puts "Skip manifest creation: #{ options.include?(:onlyadd) && options[:onlyadd] == true}"
@@ -166,7 +197,7 @@ dirs.keys.each do |dir|
 
     if File.exist?(country + "/" + dir + '.json')
       if options.include?(:force) && options[:force] == true
-        puts "file exists, overwrite (-f)"
+        #puts "file exists, overwrite (-f)"
       else
         puts "already exists, skip"
         next
@@ -175,7 +206,7 @@ dirs.keys.each do |dir|
 
     # Create the base manifest file
     related = {
-      "@id" => "https://www.rism-ch.org/catalog/#{dir}",
+      "@id" => "https://rism.online/sources/#{dir}",
       "format" => "text/html",
       "label" => "RISM Catalogue Record"
     }
@@ -187,6 +218,8 @@ dirs.keys.each do |dir|
     # Any options you add are added to the object
     manifest = IIIF::Presentation::Manifest.new(seed)
     sequence = IIIF::Presentation::Sequence.new
+    sequence['@id'] = "#{IIIF_PATH}/sequence/#{country}/#{dir}"
+    sequence["label"] = "Default"
     manifest.sequences << sequence
     
     images.each_with_index do |image_name, idx|
@@ -207,7 +240,7 @@ dirs.keys.each do |dir|
         next
       end
 
-      print "."
+      #print "."
       image.resource = image_resource
       
       canvas.width = image.resource['width']
@@ -239,12 +272,26 @@ dirs.keys.each do |dir|
     marc = db_element.marc
     marc.load_source true
 
+    if get_manifest_tag(marc, "856", "u", manifest_id)
+      puts "856 EXISTS FOR #{db_element.id} #{manifest_id}".green
+      next
+    end
+
+    if @tag_cache.keys.include?(dir)
+      puts "Cache hit #{@tag_cache[dir][:type]} #{@tag_cache[dir][:banner]}"
+      type = @tag_cache[dir][:type]
+      banner = @tag_cache[dir][:banner]
+    else
+      type = options[:type]
+      banner = options[:banner]
+    end
+
     # The source can contain more than one 856
     # as some sources have more image groups
     # -01 -02 etc
     new_tag = MarcNode.new(type, "856", "", "##")
-    new_tag.add_at(MarcNode.new(type, "x", options[:type], nil), 0)
-    new_tag.add_at(MarcNode.new(type, "z", options[:banner], nil), 0)
+    new_tag.add_at(MarcNode.new(type, "x", type, nil), 0)
+    new_tag.add_at(MarcNode.new(type, "z", banner, nil), 0)
     new_tag.add_at(MarcNode.new(type, "u", manifest_id, nil), 0)
 
     pi = marc.get_insert_position("856")
