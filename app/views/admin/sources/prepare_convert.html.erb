@@ -2,7 +2,7 @@
 <% holding_conf = MarcConfigCache.get_configuration("holding") %>
 <% tag_index = {} %>
 
-<% default_tags = ["035", "300", "593", "852", "856"] %>
+<% default_tags = ["035", "300", "541", "593", "852", "856"] %>
 <% default_relator_codes = {"700": ["fmo", "scr"], "710": ["fmo", "scr", "dpt"]} %>
 
 <%= form_tag(convert_manuscript_admin_source_path, {method: "post", :class => 'filter_form'}) do %>
