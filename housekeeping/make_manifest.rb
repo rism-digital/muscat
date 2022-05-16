@@ -158,8 +158,9 @@ dirs.keys.each do |dir|
     puts "no images in #{dir}"
     next
   end
-  
-  print "Attempting #{dir}... "
+
+  #print "Attempting #{dir}... "
+  spinner = TTY::Spinner.new("Getting info for #{dir} [:spinner]",)
   
   # If running in Rails get some ms info
   if defined?(Rails)
@@ -194,6 +195,8 @@ dirs.keys.each do |dir|
   if options.include?(:onlyadd) && options[:onlyadd] == true
     puts "Manifest creation skipped (-o)"
   else
+    
+    spinner.auto_spin
 
     if File.exist?(country + "/" + dir + '.json')
       if options.include?(:force) && options[:force] == true
@@ -257,8 +260,8 @@ dirs.keys.each do |dir|
     
     #puts manifest.to_json(pretty: true)
     File.write(country + "/" + dir + '.json', manifest.to_json(pretty: true))
-    puts "Wrote #{country}/#{dir}.json"
-    
+    #puts "Wrote #{country}/#{dir}.json"
+    spinner.stop("Wrote #{country}/#{dir}.json")
     if options.include?(:nocreate) && options[:nocreate] == false ## it sets to FLASE when set
       puts "Do not update 856"
       next
