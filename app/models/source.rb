@@ -547,6 +547,7 @@ class Source < ApplicationRecord
   end
 
   def manuscript_to_print(tags)
+    is_child = self.parent_source != nil
     holding = Holding.new
     holding_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
     holding_marc.load_source false
@@ -563,10 +564,11 @@ class Source < ApplicationRecord
 
     content588 = elems.join(" ")
 
-    t588 = MarcNode.new("source", "588", "", '##')
-    t588.add_at(MarcNode.new("source", "a", content588, nil), 0 )
-    self.marc.root.add_at(t588, self.marc.get_insert_position("588") )
-
+    if !is_child
+      t588 = MarcNode.new("source", "588", "", '##')
+      t588.add_at(MarcNode.new("source", "a", content588, nil), 0 )
+      self.marc.root.add_at(t588, self.marc.get_insert_position("588") )
+    end
 
     tags.each do |copy_tag, indexes|
       match = marc.by_tags(copy_tag)
@@ -579,16 +581,22 @@ class Source < ApplicationRecord
     end
 
     # Save the holding
-    holding_marc.suppress_scaffold_links
-    holding_marc.import
-    
-    holding.marc = holding_marc
-    holding.source = self
+    if !is_child
+      holding_marc.suppress_scaffold_links
+      holding_marc.import
+      
+      holding.marc = holding_marc
+      holding.source = self
 
-    holding.save
+      holding.save
+    end
     
     # Do some housekeeping here too
-    self.record_type = MarcSource::RECORD_TYPES[:edition]
+    if !is_child
+      self.record_type = MarcSource::RECORD_TYPES[:edition]
+    else
+      self.record_type = MarcSource::RECORD_TYPES[:edition_content]
+    end
     self.save
 
     return holding.id
