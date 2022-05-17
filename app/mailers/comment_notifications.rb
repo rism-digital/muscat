@@ -1,7 +1,7 @@
 class CommentNotifications < ApplicationMailer
 
   def parse_comment(comment)
-    matches = comment.scan(/@[A-Za-z0-9_-]*/)
+    matches = comment.scan(/@[^ ]*/)
     [] if matches.empty?
     
     user_ids = matches.each.map do |name|
