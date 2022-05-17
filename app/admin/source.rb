@@ -236,9 +236,9 @@ ActiveAdmin.register Source do
 
     redirect_to action: :show
     if holding_id
-      flash[:message] = "Source coverted to print, holding #{holding_id} created."
+      flash[:message] = "Source converted to print, holding #{holding_id} created."
     else
-      flash[:message] = "Source coverted to print."
+      flash[:message] = "Source converted to print."
     end
   end
 
