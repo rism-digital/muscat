@@ -69,7 +69,12 @@
   <% end %>
 
   <div class="buttons">
-    <%= submit_tag("#{I18n.t(:convert_to_print)}") %>
+
+  <%= button_tag(:type => 'button') do %>
+    <% link_to t(:cancel), edit_admin_source_path(resource), class: "button-link" %>
+  <% end %>
+  
+    <%= submit_tag(I18n.t(:convert_to_print)) %>
   </div>
 <%end%>
 
