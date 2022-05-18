@@ -36,6 +36,7 @@ bundle exec rake sunspot:reindex[,StandardTerm]
 bundle exec rake sunspot:reindex[,StandardTitle]
 bundle exec rake sunspot:reindex[,Work]
 bundle exec rake sunspot:reindex[,FolderItem]
+bundle exec rake sunspot:reindex[,Holding]
 
 echo "Force a Solr commit"
 echo "Sunspot.commit" | bundle exec rails c
