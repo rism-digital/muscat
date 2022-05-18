@@ -235,7 +235,11 @@ ActiveAdmin.register Source do
     holding_id = resource.manuscript_to_print(tags)
 
     redirect_to action: :show
-    flash[:message] = "Source coverted to print, holding #{holding_id} created."
+    if holding_id
+      flash[:message] = "Source converted to print, holding #{holding_id} created."
+    else
+      flash[:message] = "Source converted to print."
+    end
   end
 
   #scope :all, :default => true 

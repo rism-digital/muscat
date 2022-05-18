@@ -187,3 +187,5 @@ gem 'differ'
 
 gem 'rodf' # write ODS
 gem "roo" # read ODS
+
+gem 'tty-spinner'
