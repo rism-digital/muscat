@@ -580,7 +580,8 @@ en:
   cannot_create_source: "You are not authorized to create this type of source"
   validate_name_uniqness: "Record not saved: Same short title '%{term}' already exists."
   validates_parent_id: "Record not saved: Parent record (773) cannot be same as this record"
-  
+  not_set: "[not set]"
+
   #
   entry:
     one: "entry"

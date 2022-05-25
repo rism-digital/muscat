@@ -572,7 +572,8 @@ pt:
   cannot_create_source: "O usuário não tem autorização para criar este tipo de fonte"
   validate_name_uniqness: "O registro não foi salvo: Um título abreviado igual '%{term}' já existe."
   validates_parent_id: "O registro não foi salvo: O registro principal (773) não pode ser igual a este registro"
-  
+  not_set: "[não definido]"  
+
   #
   entry:
     one: "registro"

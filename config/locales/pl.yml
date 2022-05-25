@@ -579,7 +579,9 @@ pl:
   cannot_create_source: Nie masz uprawnienia do utworzenia tego rodzaju źródła.
   validate_name_uniqness: Rekord nie zapisany. Ten skrócony tytuł (‘%{term}’) już istnieje.
   validates_parent_id: "Rekord nie zapisany. Rekord macierzysty (773) nie może być taki sam, jak ten."
-  
+  not_set: "[nie ustawiony]"
+
+
   #
   entry:
     one: Wpis

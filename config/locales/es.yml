@@ -576,7 +576,8 @@ es:
   cannot_create_source: "Ud. no está autorizado para crear este tipo de fuente"
   validate_name_uniqness: "El registro no fue guardado: el título breve '%{term}' ya existe."
   validates_parent_id: "El registro no fue guardado: el Registro Madre (773) no puede ser igual a este registro."
- 
+  not_set: "[no se ha establecido]"  
+
   #
   entry:
     one: "entrada"

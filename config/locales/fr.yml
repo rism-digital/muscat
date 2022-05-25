@@ -577,6 +577,7 @@ fr:
   cannot_create_source: "Vous n'êtes pas autorisé à créer ce type de source" 
   validate_name_uniqness: "Titre non sauvé: le titre abrégé existe déjà ('%{term}')."
   validates_parent_id: "Titre non sauvé: le titre parent (773) ne peut pas être identique."
+  not_set: "[not défini]"
 
   #
   entry:
