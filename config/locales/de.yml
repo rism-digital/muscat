@@ -676,9 +676,6 @@ de:
   btn_themefinder_reset: "Zurücksetzen"
   
   tf_acknowledgments: "Die Incipit-Suche verwendet das Tool <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a>, das vom <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a> entwickelt wurde."
-
-  hls_link_lang: "d"
-  hls_link_name: "HLS"
   
   do_link_lang: "ENG"
   do_media_files_title: "Multimedia-Dateien"

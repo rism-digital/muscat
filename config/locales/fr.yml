@@ -678,9 +678,6 @@ fr:
 
   tf_acknowledgments: "La recherche par incipit utilise l'outil <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> développé par le <a href=\"http://www.ccarh.org/\"target=\"_blank\">CCARH</a>."
 
-  hls_link_lang: "f"
-  hls_link_name: "DHS"
-  
   do_link_lang: "eng"
   do_media_files_title: "Fichiers multimedia"
   do_ext_res_link: "Ressources externes:"

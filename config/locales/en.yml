@@ -679,9 +679,6 @@ en:
   btn_themefinder_reset: "Reset"
   
   tf_acknowledgments: "Incipits search is performed with <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> developed by the <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
-
-  hls_link_lang: "e"
-  hls_link_name: "HDS"
   
   do_link_lang: "eng"
   do_media_files_title: "Multimedia files"

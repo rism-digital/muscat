@@ -680,9 +680,6 @@ it:
   
   tf_acknowledgments: "La ricerca per incipit utilizza il motore <a href=\"http://www.themfinder.org/\" target=\"_blank\">Themefinder</a> sviluppato dal <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
 
-  hls_link_lang: "i"
-  hls_link_name: "DSS"
-  
   do_link_lang: "ITA"
   do_media_files_title: "File multimediali"
   do_ext_res_link: "Collegamenti esterni:"
