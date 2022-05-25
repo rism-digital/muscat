@@ -289,7 +289,6 @@ class Source < ApplicationRecord
     end
 
     sunspot_dsl.text :text do |s|
-      s.marc.load_source false
       s.marc.to_raw_text
     end
 
