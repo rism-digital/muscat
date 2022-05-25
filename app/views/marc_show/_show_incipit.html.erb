@@ -41,11 +41,11 @@
 	<%- last_tag = tag.tag + subfield.tag %>
 <% end -%>
 
-<% label = [:g, :n, :o, :p].collect {|s|
+<% label = [:g, :r, :n, :o, :p].collect {|s|
 		subfield = tag.fetch_first_by_tag(s)
-		next unless subfield
-		"<b>#{@editor_profile.get_sub_label(tag.tag, subfield.tag)}</b>: #{subfield.content}".html_safe
-	}.join(", ")
+		value = !subfield ? I18n.t(:not_set) : subfield.content
+		"<b>#{@editor_profile.get_sub_label(tag.tag, s)}</b>: #{value}".html_safe
+	}.join("<br>".html_safe)
 %>
 
 <%
@@ -73,8 +73,8 @@
 	<tr class="row">
 		<td></td>
 		<td>
-			<a onclick="javascript:show_hide_pae('<%=random_string%>');">PAE Code</a>
-			<span id="<%= random_string %>"  style="display:none">&nbsp;<%= label.html_safe %></span>
+			<a onclick="javascript:show_hide_pae('<%=random_string%>');">PAE Code</a><p>
+			<span id="<%= random_string %>"  style="display:none"><%= label.html_safe %></span></p>
 			<div id="<%= image_render_div %>"><img src="/images/spinner_small.gif" />&nbsp;Engraving incipit...</div>
 		</td>
 	<tr>
@@ -91,7 +91,7 @@
 		pae = pae + "@timesig:<%= time %>\n";
 		pae = pae + "@data: <%= notation %>";
 		render_music(pae, 'pae', $("#" + "<%=image_render_div%>"));
-console.log("CIAOO " + pae);
+
 		function show_hide_pae(id) {
 			row = $("#" + id)
 			if (row.is(":hidden")) {

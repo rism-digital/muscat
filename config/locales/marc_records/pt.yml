@@ -913,6 +913,7 @@ pt:
     ERR_038_TIE_OPEN: Uma ligadura com '+' deve ser seguida por uma nota.
     ERR_039_TIE_NO_NOTE: Uma ligadura com '+' deve ser precedida por uma nota.
     ERR_040_HIERARCHY_INVALID: A ordem dos elementos não pode ser interpretada (%{value}).
+    ERR_041_NESTING_INVALID: The nesting of opening and closing tags for '%{value}' is invalid.
     ERR_042_CLEF_INCOMPLETE: A chave não se encontra no formato correcto.
     ERR_043_CLEF_INVALID_2ND: O segundo caractere no sinal de clef deve ser '+' ou '-'.
     ERR_044_CLEF_MENS: Não misture clipes mensais e não mensais.
@@ -931,6 +932,12 @@ pt:
     ERR_057_MENSUR_CHANGE: A mensuração não pode ser alterada mais do que uma vez numa medida.
     ERR_058_FERMATA_MREST: "Os parênteses de um fermata devem conter apenas uma nota ou outra '%{value}'"
     ERR_059_DOUBLE_DOTS_MENS: "Notas pontilhadas duplas são inválidas com notação mensal."
+    ERR_060_CLEF_MISSING: É necessária uma clave.
+    ERR_061_LIGATURE_NOTE_BEFORE: To indicate a ligature, a '+' must be preceded by a note.
+    ERR_062_LIGATURE_NOTE_AFTER: To indicate a ligature, a '+' must be followed by a note.
+    ERR_063_LIGATURE_PITCH: A ligature cannot have two consecutive notes with the same pitch.
+    ERR_064_LIGATURE_DURATION: The duration in a ligature cannot be shorter than a semibreve.
+    ERR_065_MREST_INVALID_MEASURE: A measure with a measure rest cannot include anything else.
   testingForCrowdinWorkshop:
     apple: maçã
     pear: pera

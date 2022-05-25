@@ -913,6 +913,7 @@ fr:
     ERR_038_TIE_OPEN: Une liaison de prolongation codée avec '+' doit être suivie d'une note.
     ERR_039_TIE_NO_NOTE: Une liaison de prolongation codée avec '+' doit être précédée d'une note.
     ERR_040_HIERARCHY_INVALID: L'ordre des éléments ne peut pas être interprété (%{value}).
+    ERR_041_NESTING_INVALID: L'imbrication des balises d'ouverture et de fermeture pour '%{value}' est invalide.
     ERR_042_CLEF_INCOMPLETE: La clef n'est pas codée correctement.
     ERR_043_CLEF_INVALID_2ND: Le deuxième caractère dans le signe de la clef doit être soit '+' soit '-'.
     ERR_044_CLEF_MENS: Ne mélangez pas les clefs mensurales et non mensurales.
@@ -931,6 +932,12 @@ fr:
     ERR_057_MENSUR_CHANGE: L'indication de mesure ne peut pas être modifiée plus d'une fois dans une mesure.
     ERR_058_FERMATA_MREST: "Les parenthèses d'un point d'orgue ne doivent contenir qu'une seule note ou un seul silence '%{value}'"
     ERR_059_DOUBLE_DOTS_MENS: "Les notes doubles pointées ne sont pas valides en notation mensurale."
+    ERR_060_CLEF_MISSING: Une clef est requise.
+    ERR_061_LIGATURE_NOTE_BEFORE: Pour indiquer une ligature, un '+' doit être précédé d'une note.
+    ERR_062_LIGATURE_NOTE_AFTER: Pour indiquer une ligature, un '+' doit être suivi d'une note.
+    ERR_063_LIGATURE_PITCH: Une ligature ne peut pas avoir deux notes consécutives avec la même hauteur.
+    ERR_064_LIGATURE_DURATION: La durée dans une ligature ne peut pas être plus courte qu'une semi-brève.
+    ERR_065_MREST_INVALID_MEASURE: Une mesure avec une pause ne peut pas inclure autre chose.
   testingForCrowdinWorkshop:
     apple: pomme
     pear: poire
