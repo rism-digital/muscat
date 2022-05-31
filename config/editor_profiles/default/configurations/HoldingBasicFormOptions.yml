@@ -52,8 +52,11 @@
     fields: 
     - - a
       - values: 
+        - Print
         - Print with autograph annotations
         - Print with non-autograph annotations
+        - Print proof
+        - Additional manuscript material
         editor_partial: subfield_select
 "599": 
   layout: 
