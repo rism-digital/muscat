@@ -92,6 +92,14 @@ OptionParser.new do |opts|
     options[:csv] = b
   end
 
+  opts.on("-n", "--normal", "Create generic non-muscat manifests") do |b|
+    options[:nomuscat] = b
+  end
+
+  opts.on("-c", "--country [CODE]", "Country/dir code") do |b|
+    options[:country] = b
+  end
+
   opts.on("-h", "--help", "Prints this help") do
     puts opts
     exit
@@ -115,6 +123,8 @@ end
 
 options[:type] = "IIIF manifest (digitized source)" if !options.include?(:type)
 options[:banner] = "Digital Object" if !options.include?(:banner)
+options[:country] = "ch" if !options.include?(:country)
+options[:nomuscat] = false if !options.include?(:nomuscat)
 IIIF_PATH = options[:path] if options.include?(:path)
 
 if options.include?(:csv)
@@ -136,11 +146,13 @@ end
 
 puts "Creating manifests for #{ARGV.first}"
 puts "Update 856 in record: #{ !(options.include?(:nocreate) && !options[:nocreate])}"
-puts "Default Banner 856$z: #{options[:banner]}"
-puts "Default Type 856$x #{options[:type]}"
-puts "URL path: #{IIIF_PATH}"
+puts "Default Banner 856$z: #{options[:banner].yellow}"
+puts "Default Type 856$x: #{options[:type].yellow}"
+puts "URL path: #{IIIF_PATH.yellow}"
 puts "Force manifest creation: #{ options.include?(:force) && options[:force] == true}"
 puts "Skip manifest creation: #{ options.include?(:onlyadd) && options[:onlyadd] == true}"
+puts "Directory/Country: #{options[:country]}"
+puts "Skip all Muscat operations: #{options[:nomuscat]}"
 
 
 dirs.keys.each do |dir|
@@ -163,7 +175,7 @@ dirs.keys.each do |dir|
   spinner = TTY::Spinner.new("Getting info for #{dir} [:spinner]",)
   
   # If running in Rails get some ms info
-  if defined?(Rails)
+  if defined?(Rails) && !options[:nomuscat]
     id = dir
     toks = dir.split("-")
     ## if it contains the -xxx just get the ID
@@ -186,10 +198,9 @@ dirs.keys.each do |dir|
       end
       title = db_element.title
     end
-    country = "ch" # TODO: Figure out country code from siglum
   end
 
-  manifest_id = "#{IIIF_PATH}/manifest/#{country}/#{dir}.json"
+  manifest_id = "#{IIIF_PATH}/manifest/#{options[:country]}/#{dir}.json"
 
   # Skip all the manifest generation stuff if we only add the 856
   if options.include?(:onlyadd) && options[:onlyadd] == true
@@ -198,7 +209,7 @@ dirs.keys.each do |dir|
     
     spinner.auto_spin
 
-    if File.exist?(country + "/" + dir + '.json')
+    if File.exist?(options[:country] + "/" + dir + '.json')
       if options.include?(:force) && options[:force] == true
         #puts "file exists, overwrite (-f)"
       else
@@ -221,20 +232,20 @@ dirs.keys.each do |dir|
     # Any options you add are added to the object
     manifest = IIIF::Presentation::Manifest.new(seed)
     sequence = IIIF::Presentation::Sequence.new
-    sequence['@id'] = "#{IIIF_PATH}/sequence/#{country}/#{dir}"
+    sequence['@id'] = "#{IIIF_PATH}/sequence/#{options[:country]}/#{dir}"
     sequence["label"] = "Default"
     manifest.sequences << sequence
     
     images.each_with_index do |image_name, idx|
       canvas = IIIF::Presentation::Canvas.new()
-      canvas['@id'] = "#{IIIF_PATH}/canvas/#{country}/#{dir}/#{image_name.chomp(".tif")}"
+      canvas['@id'] = "#{IIIF_PATH}/canvas/#{options[:country]}/#{dir}/#{image_name.chomp(".tif")}"
       canvas.label = "[Image #{idx + 1}]"
       
-      image_url = "#{IIIF_PATH}/image/#{country}/#{dir}/#{image_name}"
+      image_url = "#{IIIF_PATH}/image/#{options[:country]}/#{dir}/#{image_name}"
       
       image = IIIF::Presentation::Annotation.new
       image["on"] = canvas['@id']
-      image["@id"] = "#{IIIF_PATH}/annotation/#{country}/#{dir}/#{image_name.chomp(".tif")}"
+      image["@id"] = "#{IIIF_PATH}/annotation/#{options[:country]}/#{dir}/#{image_name.chomp(".tif")}"
   #puts image_url
       begin
         image_resource = IIIF::Presentation::ImageResource.create_image_api_image_resource(service_id: image_url, resource_id:"#{image_url}/full/full/0/default.jpg")
@@ -259,9 +270,9 @@ dirs.keys.each do |dir|
     end
     
     #puts manifest.to_json(pretty: true)
-    File.write(country + "/" + dir + '.json', manifest.to_json(pretty: true))
-    #puts "Wrote #{country}/#{dir}.json"
-    spinner.stop("Wrote #{country}/#{dir}.json")
+    File.write(options[:country] + "/" + dir + '.json', manifest.to_json(pretty: true))
+    #puts "Wrote #{options[:country]}/#{dir}.json"
+    spinner.stop("Wrote #{options[:country]}/#{dir}.json")
     if options.include?(:nocreate) && options[:nocreate] == false ## it sets to FLASE when set
       puts "Do not update 856"
       next
