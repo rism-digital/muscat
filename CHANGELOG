@@ -1,6 +1,14 @@
 Muscat Changelog
 ================
 
+v 8.1.2
+* Fix manifest script so non-muscat items can be created
+* Fix #1260
+* Fix crash when creating MS source
+
+v 8.1.1
+* Fix typo and update verovio to 3.10
+
 v 8.1
 * New validation for 100
 * Added mandatory 852
