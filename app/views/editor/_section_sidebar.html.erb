@@ -114,7 +114,7 @@
 	<% end %>
 <% end %>
 
-	<% if @item.is_a?(Source) && (@current_user.has_role?(:editor) || @current_user.has_role?(:admin)) && (@item.record_type == MarcSource::RECORD_TYPES[:collection] || @item.record_type == MarcSource::RECORD_TYPES[:source])%>
+	<% if @item.is_a?(Source) && @item.id != nil && (@current_user.has_role?(:editor) || @current_user.has_role?(:admin)) && (@item.record_type == MarcSource::RECORD_TYPES[:collection] || @item.record_type == MarcSource::RECORD_TYPES[:source])%>
 		<li class="muscat_icon_separator"></li>
 		<li class="muscat_icon_link">
 		<%= link_to("#{I18n.t :convert_to_print}", prepare_convert_admin_source_path,
