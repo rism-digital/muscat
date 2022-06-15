@@ -34,6 +34,7 @@ de:
     workflow: Workflow
     'yes': 'Ja'
   languages:
+    albanian: Albanisch
     afrikaans: Afrikaans
     arabic: Arabisch
     aragonese: Aragonesisch
@@ -47,18 +48,22 @@ de:
     catalan: Katalanisch
     celtic_other: Keltisch (andere)
     chinese: Chinesisch
+    cree: Cree
     creoles_pidgins_other: Kreolisch und Kauderwelsch (andere)
     croatian: Kroatisch
     czech: Tschechisch
+    dakota: Dakota-Sprache
     danish: Dänisch
     dutch: Niederländisch
     english: Englisch
     estonian: Estnisch
     ethiopic: Äthiopisch
+    fijian: Fidschianisch
     finnish: Finnisch
     french: Französisch
     french_middle: Französisch, Mitte (ca. 1300-1600)
     french_old: Französisch, alt (ca. 842-1300)
+    friulian: Friulano
     gallician: Galizisch
     german: Deutsch
     german_old_high: Althochdeutsch (ca. 750-1050)
@@ -71,6 +76,7 @@ de:
     insari_sami: Inari Sami
     irish: Irisch
     italian: Italienisch
+    japanese: Japanisch
     korean: Koreanisch
     latin: Lateinisch
     latvian: Lettisch
@@ -123,6 +129,7 @@ de:
     yiddish: Jiddisch
   places:
     afghanistan: Afghanistan
+    albania: Albanien
     algeria: Algerien
     andorra: Andorra
     argentina: Argentinien
@@ -456,7 +463,6 @@ de:
     format_extent: Quellenart, Umfang
     former_owner: Vorbesitzer
     fragments: Fragmente
-    friulano: Friulano
     fs_major: Fis-Dur
     fs_minor: fis-Moll
     full: Vollkatalogisat
@@ -697,6 +703,7 @@ de:
     place_origin: Herkunftsangabe
     place_publication: Verlagsort
     places: Orte
+    plaine_and_easie: Plaine and Easie Code
     plate_number: Plattennummer
     plucked_instruments: Zupfinstrumente
     postal_code: Postleitzahl
@@ -906,6 +913,7 @@ de:
     ERR_038_TIE_OPEN: Einem Haltebogen '+' muss eine Note vorangestellt werden.
     ERR_039_TIE_NO_NOTE: Einem Haltebogen '+' muss eine Note vorangestellt werden.
     ERR_040_HIERARCHY_INVALID: Die Reihenfolge der Elemente kann nicht interpretiert werden (%{value}).
+    ERR_041_NESTING_INVALID: Die Verschachtelung von öffnenden und schließenden Tags für '%{value}' ist ungültig.
     ERR_042_CLEF_INCOMPLETE: Der Wechsel des Notenschlüssels ist nicht korrekt.
     ERR_043_CLEF_INVALID_2ND: Das zweite Zeichen im Notenschlüssel muss entweder '+' oder '-' sein.
     ERR_044_CLEF_MENS: Mischen Sie keine Mensural- und Nicht-Mensuralschlüssel.
@@ -924,6 +932,12 @@ de:
     ERR_057_MENSUR_CHANGE: Die Mensur kann in einem Takt nur einmal geändert werden.
     ERR_058_FERMATA_MREST: "Die Klammern einer Fermate dürfen nur eine einzige Note oder Pause '%{value}' enthalten"
     ERR_059_DOUBLE_DOTS_MENS: "Doppelpunktierte Noten sind ungültig in der Mensuralnotation."
+    ERR_060_CLEF_MISSING: Ein Notenschlüssel ist notwendig.
+    ERR_061_LIGATURE_NOTE_BEFORE: Um eine Ligatur anzugeben, muss ein '+' vor der Note stehen.
+    ERR_062_LIGATURE_NOTE_AFTER: Um eine Ligatur anzugeben, muss ein '+' nach der Note stehen.
+    ERR_063_LIGATURE_PITCH: Eine Ligatur kann nicht zwei aufeinander folgende Noten mit derselben Tonhöhe haben.
+    ERR_064_LIGATURE_DURATION: Die Dauer einer Ligatur kann nicht kürzer als eine Semibrevis sein.
+    ERR_065_MREST_INVALID_MEASURE: Ein Takt Pause kann nichts anderes enthalten.
   testingForCrowdinWorkshop:
     apple: Apfel
     pear: Birne

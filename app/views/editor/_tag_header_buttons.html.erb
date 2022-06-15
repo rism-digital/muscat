@@ -48,6 +48,10 @@
       <% end %>
     <%end%>
 
+    <%- if @item.marc.config.multiples_allowed?(tag_name) -%>
+      <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all sortable-button" href="#" title="Move"><span class="ui-icon ui-icon-arrow-4"></span>_</a>
+    <% end %>
+
 		<%- if !extended_help.empty? %>
         <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="help" data-help="<%= extended_help -%>"  title="Help"><span class="ui-icon ui-icon-help"></span>_</a>
 		<%- end %>

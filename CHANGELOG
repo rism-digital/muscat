@@ -1,6 +1,76 @@
 Muscat Changelog
 ================
 
+v 8.1.2
+* Fix manifest script so non-muscat items can be created
+* Fix #1260
+* Fix crash when creating MS source
+
+v 8.1.1
+* Fix typo and update verovio to 3.10
+
+v 8.1
+* New validation for 100
+* Added mandatory 852
+* Fix #1210 strip whitespace from marc tags when loading from json
+* Fix #1223, move 510
+* Fix #1220 fix values in 240g, use the terms for the popup menu
+* Fix duplicate link to publication, fix labels
+* Add easy functionality to covert a manuscript to a print
+* New fix for redirect after login
+* Fix #1225, remove "A/II"
+* set -> material_group
+* Fix #1230, permit logged it users to change details without re-entering password + confirmation
+* Update locales
+* Fix #1208, add codes
+* Add MUSCAT_PARALLEL_JOBS
+* Show IIIF items in /admin
+* #1231 Add codes and translation
+* Fix #1231 add dak
+* Add more items to the export job
+* Fix #1222, show incipit also when there is no notation
+* Fix #1231 Update translations
+* Fix #1084 Change DnD behaivour
+* #1084 change icon and move as first button
+* Added albania codes
+* Cleanup lang files and add new translations
+* Do not show diva for non-sources
+* Add translations for Albania
+* Make lang codes mul and und available to all auth files
+* Fix #1242 add B/VIII
+* Update FR locale
+* Fix #1238, in diff view skip empty tag groups, to still allow tagless groups in marc show
+* Fix #1237, add Cree
+* Fix #1084 Properly move 774s
+* Fix #1241 Make the deletion messages all the same
+* Use CaffeineCache and async
+* Small refinements to import correct
+* Add gems for ODF import
+* Fix #965, make sure removing items from folders does not kill muscat
+* Basic implementation of holding table (requires reindex)
+* Add methods to user interface for statistics
+* Try to optimize the Muscat indexer
+* Make the tabs nicer
+* Optimize the batch size
+* Experimental light-wheigh source index
+* Make the statistic page download the right file
+* Fix #1245 add 787 to collections
+* Fix #1247 add "congress" to Institutions 368$a
+* Read tags from CSV, add id to sequence and change paths
+* Add 541 to selected tags to be copied into holding #1249
+* Make make_manifest more pretty
+* #1249 Improvements to template change
+* #1249 Add "cancel" button to page
+* Update comment_notifications.rb
+* Also index holdings!
+* Removing 599 from holdings export
+* Add missing translation
+* Improve incipit correct script
+* Fix #1249, Add excludes for 852c
+* Remove all the boilerplate full_text indexes from the index config, they are indexed now in one go
+* This line created a FrozenLitera exception, it is redundand anyways
+* Fix #1250, also remove references to HSL
+
 v 8.0.4
 * REVERTED! Bump nokogiri from 1.12.5 to 1.13.3
 * Fix diva display for IIIF links

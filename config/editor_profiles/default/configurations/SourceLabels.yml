@@ -746,8 +746,6 @@ aid_watermarks:
   label: records.standard_watermarks
 arr:
   label: records.arranger
-art:
-  label: languages.artificial
 asg:
   label: records.assignee
 asn:
@@ -972,8 +970,6 @@ fmo:
   label: records.former_owner
 full:
   label: records.full
-fur:
-  label: records.friulano
 f|x:
   label: records.fs_minor
 g:
@@ -1116,8 +1112,6 @@ ltg:
   label: records.lithographer
 lyr:
   label: records.text_author
-mul:
-  label: records.multiple
 not_examined:
   label: records.material_not_examined
 origin:
@@ -1236,8 +1230,6 @@ trl:
   label: records.translator
 tyd:
   label: records.type_designer
-und:
-  label: general.undetermined
 ungrouped:
   label: general.ungrouped_fields
 unmatched:

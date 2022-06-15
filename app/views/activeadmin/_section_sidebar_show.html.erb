@@ -48,7 +48,7 @@
 			<%= link_to("#{I18n.t :delete}", delete_path,
 				:class => "muscat_icon_link muscat_icon_link_delete",
 				:method => :delete,
-				data: { confirm: "#{I18n.t :history_delete_confirm}"}) %>
+				data: { confirm: "#{I18n.t :"active_admin.delete_confirmation"}"}) %>
 			</li>
 		<%- end %>
 		<%- if (self.controller.respond_to? :duplicate) && (can? :create, item) %>

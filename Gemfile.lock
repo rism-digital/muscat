@@ -353,7 +353,13 @@ GEM
       nokogiri
     rexml (3.2.5)
     rmagick (4.1.2)
+    rodf (1.2.0)
+      builder (>= 3.0)
+      rubyzip (>= 1.0)
     rolify (5.2.0)
+    roo (2.9.0)
+      nokogiri (~> 1)
+      rubyzip (>= 1.3.0, < 3.0.0)
     rsolr (2.3.0)
       builder (>= 2.1.2)
       faraday (>= 0.9.0)
@@ -419,6 +425,9 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    tty-cursor (0.7.1)
+    tty-spinner (0.9.3)
+      tty-cursor (~> 0.7)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -494,7 +503,9 @@ DEPENDENCIES
   recaptcha
   redcarpet
   reverse_markdown
+  rodf
   rolify (~> 5.2.0)
+  roo
   rsolr (>= 1.0)
   rspec
   rspec-rails (~> 3.5)
@@ -510,6 +521,7 @@ DEPENDENCIES
   sunspot_rails!
   sunspot_solr!
   thor (~> 0.20.3)
+  tty-spinner
   turbolinks (~> 5.2.1)
   uglifier (~> 4.2)
   whatlanguage

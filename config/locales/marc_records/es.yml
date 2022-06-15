@@ -34,6 +34,7 @@ es:
     workflow: Flujo de trabajo
     'yes': 'Sí'
   languages:
+    albanian: Albano
     afrikaans: Afrikáans
     arabic: Árabe
     aragonese: Aragonés
@@ -47,18 +48,22 @@ es:
     catalan: Catalán
     celtic_other: Céltico (otros)
     chinese: Chino
+    cree: Cree
     creoles_pidgins_other: Creoles y Pidgins (otros)
     croatian: Croata
     czech: Checo
+    dakota: Dakota
     danish: Danés
     dutch: Holandés
     english: Inglés
     estonian: Estonio
     ethiopic: Etiópico
+    fijian: Fijiano
     finnish: Finés
     french: Francés
     french_middle: Francés, Medio (ca. 1300-1600)
     french_old: Francés, antiguo (ca. 842-1300)
+    friulian: Friulano
     gallician: Galego
     german: Alemán
     german_old_high: Alemán culto antiguo (aprox. 750-1050)
@@ -71,6 +76,7 @@ es:
     insari_sami: Inari Sami
     irish: Irlandés
     italian: Italiano
+    japanese: Japonés
     korean: Coreano
     latin: Latín
     latvian: Letón
@@ -123,6 +129,7 @@ es:
     yiddish: Yidis
   places:
     afghanistan: Afganistán
+    albania: Albania
     algeria: Argelia
     andorra: Andorra
     argentina: Argentina
@@ -456,7 +463,6 @@ es:
     format_extent: Formato, extensión
     former_owner: Propietario anterior
     fragments: Fragmentos
-    friulano: Friulano
     fs_major: Fa sostenido Mayor
     fs_minor: Fa sostenido menor
     full: Completo
@@ -697,6 +703,7 @@ es:
     place_origin: Lugar de origen
     place_publication: Lugar de publicación
     places: Lugares
+    plaine_and_easie: Código Plaine and Easie
     plate_number: Número de plancha
     plucked_instruments: Cuerdas pulsadas
     postal_code: Código postal
@@ -906,6 +913,7 @@ es:
     ERR_038_TIE_OPEN: El "+" de la ligadura de prolongación debe estár precedido por una nota.
     ERR_039_TIE_NO_NOTE: El "+" de la ligadura de prolongación debe estár precedido por una nota.
     ERR_040_HIERARCHY_INVALID: El orden de los elementos no se puede interpretar (%{value}).
+    ERR_041_NESTING_INVALID: The nesting of opening and closing tags for '%{value}' is invalid.
     ERR_042_CLEF_INCOMPLETE: La clave no tiene la forma correcta.
     ERR_043_CLEF_INVALID_2ND: El segundo carácter de la indicación de clave debe ser "+" o "-".
     ERR_044_CLEF_MENS: No combine claves mensurales y no mensurales.
@@ -924,6 +932,12 @@ es:
     ERR_057_MENSUR_CHANGE: La armadura de clave no puede ser modificada más de una vez en un compás.
     ERR_058_FERMATA_MREST: "Los paréntesis de una fermata solo deben contener una nota o descanso '%{value}'"
     ERR_059_DOUBLE_DOTS_MENS: "Las notas de doble punto no son válidas con notación mensural."
+    ERR_060_CLEF_MISSING: Se necesita una clave
+    ERR_061_LIGATURE_NOTE_BEFORE: Para indicar una ligadura, el signo "+" debe preceder por una nota.
+    ERR_062_LIGATURE_NOTE_AFTER: To indicate a ligature, a '+' must be followed by a note.
+    ERR_063_LIGATURE_PITCH: Una ligadura no puede tener dos notas consecutivas en el mismo tono.
+    ERR_064_LIGATURE_DURATION: La duración de una ligadura no puede ser mas corta que una semibreve.
+    ERR_065_MREST_INVALID_MEASURE: Un compás con un compás de silencio no puede incluir algo más.
   testingForCrowdinWorkshop:
     apple: manzana
     pear: pera

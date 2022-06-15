@@ -336,8 +336,6 @@ bnd:
   label: records.binder
 bsl:
   label: records.bookseller
-cat:
-  label: languages.catalan
 ccp:
   label: records.conceptor
 chr:
@@ -360,10 +358,6 @@ control:
   label: records.control_fields
 cst:
   label: records.costume_designer
-cze:
-  label: languages.czech
-dan:
-  label: languages.danish
 date:
   label: records.dates
 description:

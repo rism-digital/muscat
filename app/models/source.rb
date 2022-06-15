@@ -245,15 +245,11 @@ class Source < ApplicationRecord
 #      date_to != nil && date_to > 0 ? date_to : nil
 #    end
 
-    sunspot_dsl.integer :wf_owner, multiple: true do |s|
-      s.holdings.map {|e| e.wf_owner} << s.wf_owner
-    end
+    sunspot_dsl.integer :wf_owner
 
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
-    sunspot_dsl.time :created_at, multiple: true do |s|
-      s.holdings.map {|e| e.created_at} << s.created_at
-    end
+    sunspot_dsl.time :created_at
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
@@ -290,6 +286,10 @@ class Source < ApplicationRecord
       else
         nil
       end
+    end
+
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
     end
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
@@ -551,6 +551,7 @@ class Source < ApplicationRecord
   end
 
   def manuscript_to_print(tags)
+    is_child = self.parent_source != nil
     holding = Holding.new
     holding_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
     holding_marc.load_source false
@@ -567,10 +568,11 @@ class Source < ApplicationRecord
 
     content588 = elems.join(" ")
 
-    t588 = MarcNode.new("source", "588", "", '##')
-    t588.add_at(MarcNode.new("source", "a", content588, nil), 0 )
-    self.marc.root.add_at(t588, self.marc.get_insert_position("588") )
-
+    if !is_child
+      t588 = MarcNode.new("source", "588", "", '##')
+      t588.add_at(MarcNode.new("source", "a", content588, nil), 0 )
+      self.marc.root.add_at(t588, self.marc.get_insert_position("588") )
+    end
 
     tags.each do |copy_tag, indexes|
       match = marc.by_tags(copy_tag)
@@ -583,19 +585,36 @@ class Source < ApplicationRecord
     end
 
     # Save the holding
-    holding_marc.suppress_scaffold_links
-    holding_marc.import
-    
-    holding.marc = holding_marc
-    holding.source = self
+    if !is_child
+      holding_marc.suppress_scaffold_links
+      holding_marc.import
+      
+      holding.marc = holding_marc
+      holding.source = self
 
-    holding.save
+      holding.save
+    end
     
     # Do some housekeeping here too
-    self.record_type = MarcSource::RECORD_TYPES[:edition]
+    if !is_child
+      self.record_type = MarcSource::RECORD_TYPES[:edition]
+    else
+      self.record_type = MarcSource::RECORD_TYPES[:edition_content]
+    end
     self.save
 
     return holding.id
+  end
+
+  def get_iiif_tags()
+    tags = self.marc.by_tags_with_order(["856"])
+
+    if self.holdings
+      self.holdings.each {|h| tags.concat(h.marc.by_tags_with_order(["856"]))}
+    end
+
+    tags.delete_if {|tag| subfield_x = tag.fetch_first_by_tag('x'); !subfield_x || !subfield_x.content || !subfield_x.content.include?("IIIF")}
+    return tags
   end
 
   def force_marc_load?

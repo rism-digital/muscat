@@ -34,6 +34,7 @@ fr:
     workflow: Flux de travail
     'yes': 'Oui'
   languages:
+    albanian: Albanais
     afrikaans: Afrikaans
     arabic: Arabe
     aragonese: Aragonais
@@ -47,18 +48,22 @@ fr:
     catalan: Catalan
     celtic_other: Celtique (autre)
     chinese: Chinois
+    cree: Cri
     creoles_pidgins_other: Langues créoles et pidgins (autres)
     croatian: Croate
     czech: Tchèque
+    dakota: Dakota
     danish: Danois
     dutch: Néerlandais
     english: Anglais
     estonian: Estonien
     ethiopic: Éthiopien
+    fijian: Fidjien
     finnish: Finlandais
     french: Français
     french_middle: Français, Moyen (env. 1300-1600)
     french_old: Français, ancien (ca. 842-1300)
+    friulian: Friulano
     gallician: Galician
     german: Allemand
     german_old_high: Allemand, ancien haut (vers 750-1050)
@@ -71,6 +76,7 @@ fr:
     insari_sami: Inari Sami
     irish: Irlandais
     italian: Italien
+    japanese: Japonais
     korean: Coréen
     latin: Latin
     latvian: Letton
@@ -123,6 +129,7 @@ fr:
     yiddish: Yiddish
   places:
     afghanistan: Afghanistan
+    albania: Albanie
     algeria: Algeria
     andorra: Andorre
     argentina: Argentina
@@ -375,7 +382,7 @@ fr:
     cs_major: Do♯ majeur
     cs_minor: Do♯ mineur
     d_major: Ré majeur
-    d_minor: Ré minor
+    d_minor: Ré mineur
     dancer: Danceur
     date: Date
     date_of_acquisition: Date d'acquisition
@@ -456,7 +463,6 @@ fr:
     format_extent: Type de source, extension
     former_owner: Propriétaire précédent
     fragments: Fragments
-    friulano: Frioulan
     fs_major: Fa♯ majeur
     fs_minor: Fa♯ mineur
     full: Complète
@@ -697,6 +703,7 @@ fr:
     place_origin: Lieu d'origine
     place_publication: Endroit
     places: Lieux
+    plaine_and_easie: Code Plaine and Easie
     plate_number: Numéro de plaque
     plucked_instruments: Instruments à cordes pincées
     postal_code: Code postal
@@ -906,6 +913,7 @@ fr:
     ERR_038_TIE_OPEN: Une liaison de prolongation codée avec '+' doit être suivie d'une note.
     ERR_039_TIE_NO_NOTE: Une liaison de prolongation codée avec '+' doit être précédée d'une note.
     ERR_040_HIERARCHY_INVALID: L'ordre des éléments ne peut pas être interprété (%{value}).
+    ERR_041_NESTING_INVALID: L'imbrication des balises d'ouverture et de fermeture pour '%{value}' est invalide.
     ERR_042_CLEF_INCOMPLETE: La clef n'est pas codée correctement.
     ERR_043_CLEF_INVALID_2ND: Le deuxième caractère dans le signe de la clef doit être soit '+' soit '-'.
     ERR_044_CLEF_MENS: Ne mélangez pas les clefs mensurales et non mensurales.
@@ -924,6 +932,12 @@ fr:
     ERR_057_MENSUR_CHANGE: L'indication de mesure ne peut pas être modifiée plus d'une fois dans une mesure.
     ERR_058_FERMATA_MREST: "Les parenthèses d'un point d'orgue ne doivent contenir qu'une seule note ou un seul silence '%{value}'"
     ERR_059_DOUBLE_DOTS_MENS: "Les notes doubles pointées ne sont pas valides en notation mensurale."
+    ERR_060_CLEF_MISSING: Une clef est requise.
+    ERR_061_LIGATURE_NOTE_BEFORE: Pour indiquer une ligature, un '+' doit être précédé d'une note.
+    ERR_062_LIGATURE_NOTE_AFTER: Pour indiquer une ligature, un '+' doit être suivi d'une note.
+    ERR_063_LIGATURE_PITCH: Une ligature ne peut pas avoir deux notes consécutives avec la même hauteur.
+    ERR_064_LIGATURE_DURATION: La durée dans une ligature ne peut pas être plus courte qu'une semi-brève.
+    ERR_065_MREST_INVALID_MEASURE: Une mesure avec une pause ne peut pas inclure autre chose.
   testingForCrowdinWorkshop:
     apple: pomme
     pear: poire

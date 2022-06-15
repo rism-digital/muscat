@@ -184,3 +184,8 @@ gem 'sort_alphabetical'
 #gem 'i18n-tasks', '~> 0.9.31'
 
 gem 'differ'
+
+gem 'rodf' # write ODS
+gem "roo" # read ODS
+
+gem 'tty-spinner'

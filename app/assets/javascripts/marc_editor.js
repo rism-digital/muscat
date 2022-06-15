@@ -23,7 +23,9 @@ function marc_editor_init_tags( id ) {
 	window.onbeforeunload = marc_editor_discard_changes_leaving;
 	window.onunload = marc_editor_cleanp;
 	
-	$(".sortable").sortable();
+	$(".sortable").sortable({
+		handle: ".sortable-button"
+	});
 
 	marc_editor_form_changed = false;
 	$(id).dirtyFields({

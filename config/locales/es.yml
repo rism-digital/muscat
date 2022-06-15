@@ -576,7 +576,8 @@ es:
   cannot_create_source: "Ud. no está autorizado para crear este tipo de fuente"
   validate_name_uniqness: "El registro no fue guardado: el título breve '%{term}' ya existe."
   validates_parent_id: "El registro no fue guardado: el Registro Madre (773) no puede ser igual a este registro."
- 
+  not_set: "[no se ha establecido]"  
+
   #
   entry:
     one: "entrada"
@@ -675,9 +676,6 @@ es:
   btn_themefinder_reset: "Reiniciar"
   
   tf_acknowledgments: "La búsqueda por íncipits se realiza con <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> desarrollado por <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
-
-  hls_link_lang: "es"
-  hls_link_name: "HDS" # dudoso
   
   do_link_lang: "es"
   do_media_files_title: "Archivos multimedia"

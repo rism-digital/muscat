@@ -34,6 +34,7 @@ pl:
     workflow: Przepływ pracy
     'yes': 'Tak'
   languages:
+    albanian: Albański
     afrikaans: Afrykanerski
     arabic: Arabski
     aragonese: Aragoński
@@ -47,18 +48,22 @@ pl:
     catalan: Kataloński
     celtic_other: Celtycki (inny)
     chinese: Chiński
+    cree: Kri
     creoles_pidgins_other: Kreolski i Pidgin (inne)
     croatian: Chorwacki
     czech: Czeski
+    dakota: Dakota
     danish: Duński
     dutch: Holenderski
     english: Angielski
     estonian: Estoński
     ethiopic: Etiopski
+    fijian: Fidżyjski
     finnish: Fiński
     french: Francuski
     french_middle: Średniofrancuski (ok. 1300-1600)
     french_old: Starofrancuski (ok. 842-1300)
+    friulian: Friulijski
     gallician: Galicyjski
     german: Niemiecki
     german_old_high: Staro-wysoko-niemiecki (ok. 750-1050)
@@ -71,6 +76,7 @@ pl:
     insari_sami: Samski inarski
     irish: Irlandzki
     italian: Włoski
+    japanese: Japoński
     korean: Koreański
     latin: Łaciński
     latvian: Łotewski
@@ -123,6 +129,7 @@ pl:
     yiddish: Jidysz
   places:
     afghanistan: Afganistan
+    albania: Albania
     algeria: Algieria
     andorra: Andora
     argentina: Argentyna
@@ -456,7 +463,6 @@ pl:
     format_extent: Rodzaj źródła, objętość
     former_owner: Poprzedni właściciel
     fragments: Fragmenty
-    friulano: Friulijski
     fs_major: Fis-dur
     fs_minor: fis-moll
     full: Pełny
@@ -697,6 +703,7 @@ pl:
     place_origin: Miejsce pochodzenia
     place_publication: Miejsce publikacji
     places: Miejsca
+    plaine_and_easie: Kod Plaine and Easie
     plate_number: Numer wydawniczy
     plucked_instruments: Instrumenty szarpane
     postal_code: Kod pocztowy
@@ -906,6 +913,7 @@ pl:
     ERR_038_TIE_OPEN: Łącznik „+” należy poprzedzić nutą.
     ERR_039_TIE_NO_NOTE: Łącznik „+” należy poprzedzić nutą.
     ERR_040_HIERARCHY_INVALID: Nie można zinterpretować kolejności elementów (%{value}).
+    ERR_041_NESTING_INVALID: Zagnieżdżenie za pomocą tagów '%{value}' jest nieprawidłowe.
     ERR_042_CLEF_INCOMPLETE: Zmiana klucza jest nieprawidłowa.
     ERR_043_CLEF_INVALID_2ND: Drugim znakiem w kluczu musi być „+” lub „-”.
     ERR_044_CLEF_MENS: Nie mieszaj kluczy notacji menzuralnej z kluczami notacji współczesnej.
@@ -924,6 +932,12 @@ pl:
     ERR_057_MENSUR_CHANGE: Menzurę można zmienić tylko raz w takcie.
     ERR_058_FERMATA_MREST: "Nawiasy fermaty mogą zawierać tylko jedną nutę lub pauzę'%{value}'"
     ERR_059_DOUBLE_DOTS_MENS: "Nuty z podwójnymi kropkami w notacji menzuralnej są nieprawidłowe."
+    ERR_060_CLEF_MISSING: Brakuje klucza.
+    ERR_061_LIGATURE_NOTE_BEFORE: To indicate a ligature, a '+' must be preceded by a note.
+    ERR_062_LIGATURE_NOTE_AFTER: Dla oznaczenia ligatury po nucie następuje znak „+”.
+    ERR_063_LIGATURE_PITCH: Ligatura nie może składać się z dwóch następujących po sobie nut o takiej samej wysokości.
+    ERR_064_LIGATURE_DURATION: Czas trwania ligatury nie może być krótszy niż semibrevis.
+    ERR_065_MREST_INVALID_MEASURE: Miara taktu pustego nie może zawierać innych znaków.
   testingForCrowdinWorkshop:
     apple: jabłko
     pear: gruszka

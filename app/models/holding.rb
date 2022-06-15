@@ -230,6 +230,11 @@ class Holding < ApplicationRecord
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
         
+
+    sunspot_dsl.integer :wf_owner
+    sunspot_dsl.time :created_at
+    sunspot_dsl.time :updated_at
+    
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
   end

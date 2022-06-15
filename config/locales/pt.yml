@@ -572,7 +572,8 @@ pt:
   cannot_create_source: "O usuário não tem autorização para criar este tipo de fonte"
   validate_name_uniqness: "O registro não foi salvo: Um título abreviado igual '%{term}' já existe."
   validates_parent_id: "O registro não foi salvo: O registro principal (773) não pode ser igual a este registro"
-  
+  not_set: "[não definido]"  
+
   #
   entry:
     one: "registro"
@@ -672,9 +673,6 @@ pt:
   
   tf_acknowledgments: "Incipits search is performed with <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> developed by the <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
 
-  hls_link_lang: "e"
-  hls_link_name: "HDS"
-  
   do_link_lang: "eng"
   do_media_files_title: "Multimedia files"
   do_ext_res_link: "External resources:"

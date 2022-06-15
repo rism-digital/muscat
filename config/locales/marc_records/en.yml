@@ -34,6 +34,7 @@ en:
     workflow: Workflow
     'yes': 'Yes'
   languages:
+    albanian: Albanian
     afrikaans: Afrikaans
     arabic: Arabic
     aragonese: Aragonese
@@ -47,18 +48,22 @@ en:
     catalan: Catalan
     celtic_other: Celtic (other)
     chinese: Chinese
+    cree: Cree
     creoles_pidgins_other: Creoles and Pidgins (other)
     croatian: Croatian
     czech: Czech
+    dakota: Dakota
     danish: Danish
     dutch: Dutch
     english: English
     estonian: Estonian
     ethiopic: Ethiopic
+    fijian: Fijian
     finnish: Finnish
     french: French
     french_middle: French, Middle (ca. 1300-1600)
     french_old: French, Old (ca. 842-1300)
+    friulian: Friulian
     gallician: Galician
     german: German
     german_old_high: German, Old High (ca. 750-1050)
@@ -71,6 +76,7 @@ en:
     insari_sami: Inari Sami
     irish: Irish
     italian: Italian
+    japanese: Japanese
     korean: Korean
     latin: Latin
     latvian: Latvian
@@ -123,6 +129,7 @@ en:
     yiddish: Yiddish
   places:
     afghanistan: Afghanistan
+    albania: Albania
     algeria: Algeria
     andorra: Andorra
     argentina: Argentina
@@ -456,7 +463,6 @@ en:
     format_extent: Format, extent
     former_owner: Former owner
     fragments: Fragments
-    friulano: Friulano
     fs_major: F♯ major
     fs_minor: F♯ minor
     full: Full
@@ -700,6 +706,7 @@ en:
     place_origin: Place of origin
     place_publication: Place of publication
     places: Places
+    plaine_and_easie: Plaine and Easie code
     plate_number: Plate number
     plucked_instruments: Plucked instruments
     postal_code: Postal code
@@ -909,6 +916,7 @@ en:
     ERR_038_TIE_OPEN: A tie using '+' must be followed by a note.
     ERR_039_TIE_NO_NOTE: A tie using '+' must be preceded by a note.
     ERR_040_HIERARCHY_INVALID: The order of elements cannot be interpreted (%{value}).
+    ERR_041_NESTING_INVALID: The nesting of opening and closing tags for '%{value}' is invalid.
     ERR_042_CLEF_INCOMPLETE: The clef is not in the correct form.
     ERR_043_CLEF_INVALID_2ND: The second character in the clef sign must be either '+' or '-'.
     ERR_044_CLEF_MENS: Do not mix mensural and non-mensural clefs.
@@ -927,6 +935,12 @@ en:
     ERR_057_MENSUR_CHANGE: The mensuration cannot be changed more than once in a measure.
     ERR_058_FERMATA_MREST: "The parentheses of a fermata must only contain a single note or rest '%{value}'"
     ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes are invalid with mensural notation."
+    ERR_060_CLEF_MISSING: A clef is required.
+    ERR_061_LIGATURE_NOTE_BEFORE: To indicate a ligature, a '+' must be preceded by a note.
+    ERR_062_LIGATURE_NOTE_AFTER: To indicate a ligature, a '+' must be followed by a note.
+    ERR_063_LIGATURE_PITCH: A ligature cannot have two consecutive notes with the same pitch.
+    ERR_064_LIGATURE_DURATION: The duration in a ligature cannot be shorter than a semibreve.
+    ERR_065_MREST_INVALID_MEASURE: A measure with a measure rest cannot include anything else.
   testingForCrowdinWorkshop:
     apple: apple
     pear: pear

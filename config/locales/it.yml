@@ -578,7 +578,8 @@ it:
   cannot_update_source: "Non sei autorizzato a modificare questo tipo di fonte"
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
   validate_name_uniqness: "Scheda non salvata: il titolo breve '%{term}' è già esistente."
-  validates_parent_id: "Scheda non salvata: una fonte non può linkare a se stessa (tag 773) "
+  validates_parent_id: "Scheda non salvata: una fonte non può linkare a se stessa (tag 773)"
+  not_set: "[vuoto]"
 
   #
   entry:
@@ -679,9 +680,6 @@ it:
   
   tf_acknowledgments: "La ricerca per incipit utilizza il motore <a href=\"http://www.themfinder.org/\" target=\"_blank\">Themefinder</a> sviluppato dal <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
 
-  hls_link_lang: "i"
-  hls_link_name: "DSS"
-  
   do_link_lang: "ITA"
   do_media_files_title: "File multimediali"
   do_ext_res_link: "Collegamenti esterni:"
