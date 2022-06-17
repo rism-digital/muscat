@@ -25,7 +25,7 @@ class WorkNode < ApplicationRecord
   has_many :delayed_jobs, -> { where parent_type: "WorkNode" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
  
-  composed_of :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
+  composed_of :marc, :class_name => "MarcWorkNode", :mapping => %w(marc_source to_marc)
 
   before_destroy :check_dependencies
   
@@ -152,7 +152,7 @@ class WorkNode < ApplicationRecord
       WorkNode.count_by_sql("select count(*) from sources_to_work_nodes where work_node_id = #{self[:id]}")
     end
     
-    MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
+    MarcIndex::attach_marc_index(sunspot_dsl, "work_node")
   end
  
 
@@ -160,8 +160,6 @@ class WorkNode < ApplicationRecord
     return if marc_source == nil
     self.title = marc.get_title
     self.person = marc.get_composer
-    self.form = marc.get_form
-    self.notes = marc.get_notes
 
     self.marc_source = self.marc.to_marc
   end

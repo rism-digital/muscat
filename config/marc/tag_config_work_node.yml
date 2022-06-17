@@ -7,7 +7,7 @@
 
 # Works auth data
 
-:model: work
+:model: work_node
 :tags:
   "000":
     :master: ""
