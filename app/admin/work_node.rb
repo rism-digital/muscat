@@ -1,8 +1,8 @@
 include Triggers
   
-ActiveAdmin.register Work do
+ActiveAdmin.register WorkNode do
 
-  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_works)}, :if => proc{ can? :edit, Work  }
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_work_nodes)}, :if => proc{ can? :edit, WorkNode  }
 
   # Remove mass-delete action
   batch_action :destroy, false
@@ -12,14 +12,14 @@ ActiveAdmin.register Work do
   config.clear_action_items!
   config.per_page = [10, 30, 50, 100]
   
+  # LP is this used?
   collection_action :autocomplete_work_title, :method => :get
 
   collection_action :viaf, method: :get do
     respond_to do |format|
-        format.json { render json: Work.get_viaf(params[:viaf_input])  }
+        format.json { render json: WorkNode.get_viaf(params[:viaf_input])  }
     end
   end
-
 
   breadcrumb do
     active_admin_muscat_breadcrumb
@@ -31,7 +31,7 @@ ActiveAdmin.register Work do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :work, :title, :extra_data => [:title], :string_boundary => true
+    autocomplete :work_node, :title, :extra_data => [:title], :string_boundary => true
     
     after_destroy :check_model_errors
     before_create do |item|
@@ -54,7 +54,7 @@ ActiveAdmin.register Work do
     end
     
     def edit
-      @item = Work.find(params[:id])
+      @item = WorkNode.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
@@ -64,15 +64,15 @@ ActiveAdmin.register Work do
     
     def show
       begin
-        @item = @work = Work.find(params[:id])
+        @item = @work_node = WorkNode.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Work #{params[:id]})" }
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (WorkNode #{params[:id]})" }
         return
       end
-      @editor_profile = EditorConfiguration.get_show_layout @work
-      @prev_item, @next_item, @prev_page, @next_page = Work.near_items_as_ransack(params, @work)
+      @editor_profile = EditorConfiguration.get_show_layout @work_node
+      @prev_item, @next_item, @prev_page, @next_page = WorkNode.near_items_as_ransack(params, @work_node)
       
-      @jobs = @work.delayed_jobs
+      @jobs = @work_node.delayed_jobs
       
       respond_to do |format|
         format.html
@@ -81,25 +81,25 @@ ActiveAdmin.register Work do
     end
     
     def index
-      @results, @hits = Work.search_as_ransack(params)
+      @results, @hits = WorkNode.search_as_ransack(params)
       index! do |format|
-        @works = @results
+        @work_nodes = @results
         format.html
       end
     end
     
     def new
-      @work = Work.new
+      @work_node = WorkNode.new
       
-      new_marc = MarcWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc")))
+      new_marc = MarcWorkNode.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work_node/default.marc")))
       new_marc.load_source false # this will need to be fixed
-      @work.marc = new_marc
+      @work_node.marc = new_marc
       
-      @editor_profile = EditorConfiguration.get_default_layout @work
+      @editor_profile = EditorConfiguration.get_default_layout @work_node
       # Since we have only one default template, no need to change the title
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
       #To transmit correctly @item we need to have @source initialized
-      @item = @work
+      @item = @work_node
     end
 
   end
@@ -108,7 +108,7 @@ ActiveAdmin.register Work do
   include MarcControllerActions
   
   member_action :reindex, method: :get do
-    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Work, :referring_sources))
+    job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], WorkNode, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
@@ -122,16 +122,14 @@ ActiveAdmin.register Work do
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
-         collection: proc{Folder.where(folder_type: "Work").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+         collection: proc{Folder.where(folder_type: "WorkNode").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
-    column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
-      label: I18n.t('status_codes.' + (work.wf_stage != nil ? work.wf_stage : ""), locale: :en))} 
+    column (I18n.t :filter_wf_stage) {|work_node| status_tag(work_node.wf_stage,
+      label: I18n.t('status_codes.' + (work_node.wf_stage != nil ? work_node.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_title), :title
-    column (I18n.t :filter_form), :form
-    column (I18n.t :filter_notes), :notes
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			all_hits = @arbre_context.assigns[:hits]
 			active_admin_stored_from_hits(all_hits, element, :src_count_order)
@@ -163,15 +161,14 @@ ActiveAdmin.register Work do
     else
       render :partial => "marc/show"
     end
-    active_admin_embedded_source_list( self, work, !is_selection_mode? )
-    active_admin_digital_object( self, @item ) if !is_selection_mode?
-    active_admin_user_wf( self, work )
+    active_admin_embedded_source_list( self, work_node, !is_selection_mode? )
+    active_admin_user_wf( self, work_node )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
   end
   
   sidebar :actions, :only => :show do
-    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work }
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work_node }
   end
   
   
