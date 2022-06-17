@@ -417,24 +417,3 @@
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
-"930": 
-  allow_new: true
-  new_window: works
-  layout: 
-    fields: 
-    - - "a"
-      - type: work
-        editor_partial: subfield_secondary
-      - cols: 4
-    - - i
-      - values:
-        - "Adaption of"
-        - "Continuation of"
-        - "Inspired by"
-        - "Other"
-        - "Part of"
-        - "Pharaphrase of"  
-        - "Variation of"  
-        editor_partial: subfield_select
-    columns: 4
-

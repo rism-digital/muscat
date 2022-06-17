@@ -44,7 +44,6 @@ groups:
     - "700"
     - "710"
     - "747"
-    - "930"
     - "856"
     all_tag_templates:
       "700": works/show_related_person
