@@ -30,7 +30,7 @@ groups:
     all_tag_templates: 
       "100": marc_show/show_person
       "246": marc_show/show_title_variant  
-      "930": marc_show/show_work
+      "930": marc_show/show_work_node
       "001": marc_show/show_rism_id
 
   show_library: 

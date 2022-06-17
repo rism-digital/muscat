@@ -12,7 +12,6 @@ ActiveAdmin.register WorkNode do
   config.clear_action_items!
   config.per_page = [10, 30, 50, 100]
   
-  # LP is this used?
   collection_action :autocomplete_work_title, :method => :get
 
   collection_action :viaf, method: :get do
