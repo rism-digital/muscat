@@ -173,3 +173,32 @@
     show_all: false
     show: true
   :validation: "WorkValidation"
+
+# Configuration for work node
+- :id: DefaultWorkNode
+  :name: WorkNode
+  :model: work_node
+  # For now re-use the work labels
+  :labels: 
+  - WorkLabels
+  :options: 
+  - WorkNodeFormOptions
+  :layout: 
+  - WorkNodeLayoutDefault
+  :filter:
+    default: true 
+###
+- :id: ShowWorkNow
+  :name: WorkNode
+  :model: work_node
+  # For now re-use the work labels
+  :labels: 
+  - WorkLabels
+  :options: 
+  - WorkNodeFormOptions
+  :layout: 
+  - WorkNodeLayoutShow
+  :filter:
+    show_all: false
+    show: true
+  :validation: "WorkNodeValidation"
