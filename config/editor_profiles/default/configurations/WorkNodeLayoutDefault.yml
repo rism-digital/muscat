@@ -1,39 +1,23 @@
 --- !map:Settings 
 group_order: 
 - main_work
-- codes
-- variants
-- references
-- incipits
-- relations
+- deprecated
 - control
 groups:   
   main_work: 
     all_tags: 
     - "100"
-    - "548"
-#  people:
-#    all_tags:
-#    - "500"
-  variants:
+    - "024"
+  deprecated:
     all_tags:
+    - "031"
+    - "380"
     - "400"
-#    - "440"
-  references:
-    all_tags:
+    - "548"
+    - "667"
     - "670"
     - "675"
     - "680"
-    - "667"
-  codes: 
-    all_tags: 
-    - "024"
-    - "380"
-  incipits:
-    all_tags:
-    - "031"
-  relations:
-    all_tags:
     - "700"
     - "710"
     - "747"
