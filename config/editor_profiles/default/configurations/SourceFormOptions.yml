@@ -626,6 +626,13 @@
           composite:
             - Composite
         editor_partial: subfield_select
+    - - b
+      - values:
+        - "Notated music"
+        - "Libretto"
+        - "Treatise"
+        - "Other"
+        editor_partial: subfield_select
 "594":
   layout:
     fields:
