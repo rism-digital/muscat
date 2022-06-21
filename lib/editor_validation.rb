@@ -91,7 +91,7 @@ class EditorValidation
 
   def self.get_default_validation(model)
     profiles = EditorValidation.profiles
-    model_name = model.class.to_s.downcase
+    model_name = model.class.to_s.underscore.downcase
     profiles.each do |p|
       next if model_name != p.model
       return p if p.validation

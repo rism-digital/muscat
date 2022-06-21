@@ -188,7 +188,7 @@
   :filter:
     default: true 
 ###
-- :id: ShowWorkNow
+- :id: ShowWorkNode
   :name: WorkNode
   :model: work_node
   # For now re-use the work labels
