@@ -380,6 +380,7 @@ es:
   hide_preview: "Ocultar vista preliminar"
   show_validate: "Validar"
   show_history: "Mostrar historial de modificaciones"
+  show_gnd: "Búsqueda GND"
   show_viaf: "Búsqueda VIAF"
   save_and_continue: "Guardar y continuar editando"
   save_and_exit: "Guardar y cerrar"

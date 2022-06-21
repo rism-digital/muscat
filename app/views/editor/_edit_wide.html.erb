@@ -1,5 +1,5 @@
 <%
-    rails_model = @item.class.to_s.pluralize.downcase
+    rails_model = @item.class.to_s.pluralize.underscore
 %>
 
 <!-- place holders -->
@@ -19,6 +19,10 @@
 
 <% if @item.class.respond_to?("get_viaf")%>
   <%= render :partial => "editor/viaf_form" %>
+<% end %>
+
+<% if @item.class.respond_to?("get_gnd")%>
+  <%= render :partial => "editor/gnd_form" %>
 <% end %>
 
 

@@ -14,9 +14,9 @@ ActiveAdmin.register WorkNode do
   
   collection_action :autocomplete_work_title, :method => :get
 
-  collection_action :viaf, method: :get do
+  collection_action :gnd, method: :get do
     respond_to do |format|
-        format.json { render json: WorkNode.get_viaf(params[:viaf_input])  }
+        format.json { render json: WorkNode.get_gnd(params[:gnd_input])  }
     end
   end
 

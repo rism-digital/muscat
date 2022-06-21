@@ -376,6 +376,7 @@ pt:
   hide_preview: "Ocultar previsualização"
   show_validate: "Validação"
   show_history: "Mostrar histórico de modificação"
+  show_gnd: "Busca no GND"
   show_viaf: "Busca no VIAF"
   save_and_continue: "Salvar e continuar editando"
   save_and_exit: "Salvar e Fechar"

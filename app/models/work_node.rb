@@ -164,9 +164,9 @@ class WorkNode < ApplicationRecord
     self.marc_source = self.marc.to_marc
   end
  
-  def self.get_viaf(str)
+  def self.get_gnd(str)
     str.gsub!("\"", "")
-    Viaf::Interface.search(str, self.to_s)
+    GND::Interface.search(str, self.to_s)
   end
  
   ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end

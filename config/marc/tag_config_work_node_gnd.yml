@@ -1,0 +1,65 @@
+
+:version:
+  :name: tag_config
+  :current: 0.1
+  :authors: ["Chad Thatcher", "Sandra Tuppen", "Laurent Pugin", "Rodolfo Zitellini"]
+
+
+# Works auth data
+
+:model: work_node_gnd
+:tags:
+  "000":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "001":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :zero_padding: "14"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "024":
+    :master: a
+    :indicator: "7#"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "1"
+    - - "2"
+      - :occurrences: "1"
+  "100":
+    :master: "a"
+    :indicator: "1#"
+    :occurrences: "?"
+    :fields:
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
+    - - m
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - r
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
+  "383":
+    :master: b
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - b
+      - :occurrences: "*"
