@@ -441,6 +441,8 @@
     :fields:
     - - a
       - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true

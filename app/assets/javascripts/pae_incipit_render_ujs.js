@@ -70,10 +70,22 @@
 				var pae_time = $(".subfield_entry[data-subfield='o']", grid).val();
 				var pae_clef = $(".subfield_entry[data-subfield='g']", grid).val();
 				var pae_data = $(".subfield_entry[data-subfield='p']", grid).val(); //$(obj).val();
+
+
 				if (width == 0)
 					width = $(obj).width(); // Get the parent textbox with so the image is the same
 			
 				var target_div = $('.pae_incipit_target', grid);
+
+				// Do nothing if the PAE field is empty
+				if (pae_data.trim() === "") {
+					$(target_div).hide();
+					var id = $(target_div).attr("id");
+					$("#" + id + "-clefKeyWarnings").html("");
+					$("#" + id + "-messages").html("");
+					$("#" + id + "-textbox").highlightWithinTextarea('highlight', [])
+					return;
+				}
 
 				marc_editor_incipit(
 					pae_clef,
