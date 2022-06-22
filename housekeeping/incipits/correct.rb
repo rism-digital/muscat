@@ -10,6 +10,23 @@ def change_or_create(tag, tag_name, subtag, value)
     end
 end
 
+def insert_note_not_duplicate(tag, note, incipit_id)
+    return if !note || note.empty?
+
+    found = false
+    tag.fetch_all_by_tag("q").each do |nt|
+        found = true if nt && nt.content && nt.content.strip == note.strip
+    end
+
+    if !found
+        puts "Add note #{incipit_id} #{note}"
+        tag.add_at(MarcNode.new("source", "q", note, nil), 0)
+    else
+       # puts "Note already in record: #{incipit_id}, #{note} "
+    end
+
+end
+
 @skip_id = []
 
 def find_duplicates(file)
@@ -105,10 +122,8 @@ CSV.foreach(file) do |l|
             #tags[:p].content = pae_new.strip if !pae_new.empty?
             change_or_create(t, "p", tags[:p], pae_new)
 
-            if !note.empty?
-                t.add_at(MarcNode.new("source", "q", note, nil), 0)
-            end
-            
+            insert_note_not_duplicate(t, note, incipit_id)
+
             t.sort_alphabetically
         end
 
