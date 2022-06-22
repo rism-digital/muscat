@@ -10,6 +10,36 @@ def change_or_create(tag, subtag, value)
     end
 end
 
+@skip_id = []
+
+def find_duplicates(file)
+    incipits_ids = {}
+
+    CSV.foreach(file) do |l|
+
+        s_id = l[0]
+        pae_a = l[2].to_s.strip
+        pae_b = l[3].to_s.strip
+        pae_c = l[4].to_s.strip
+
+        next if s_id == "source_id"
+
+        pae_nr = "#{pae_a}.#{pae_b}.#{pae_c}".strip
+        if !incipits_ids.keys.include?(s_id)
+            incipits_ids[s_id] = [pae_nr]
+        else
+            incipit_pae_nrs = incipits_ids[s_id]
+            if incipit_pae_nrs.include?(pae_nr)
+                puts "Duplicate entry for #{s_id} #{pae_nr}, skip"
+                @skip_id << "#{s_id}-#{pae_nr}"
+            end
+        end
+    end
+end
+
+# First find all dups
+find_duplicates(file)
+
 CSV.foreach(file) do |l|
 
     s_id = l[0]
@@ -28,6 +58,12 @@ CSV.foreach(file) do |l|
     note = l[14].strip
 
     next if s_id == "source_id"
+
+    incipit_id = "#{s_id}-#{pae_a}.#{pae_b}.#{pae_c}".strip
+    if @skip_id.include?(incipit_id)
+        puts "SKIP DUPLICATE #{incipit_id}"
+        next
+    end
 
     begin
         source = Source.find(s_id)
