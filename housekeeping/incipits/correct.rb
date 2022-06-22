@@ -1,10 +1,13 @@
 file = ARGV[0]
 
-def change_or_create(tag, subtag, value)
+def change_or_create(tag, tag_name, subtag, value)
     return if !value || value.empty?
 
+    ap subtag
+    ap value
+puts "-----".green
     if !subtag
-        tag.add_at(MarcNode.new("source", value.strip, "", nil), 0)
+        tag.add_at(MarcNode.new("source", tag_name, value.strip, nil), 0)
     else
         subtag.content = value.strip
     end
@@ -100,11 +103,13 @@ CSV.foreach(file) do |l|
                 tags[:g].content = clef_new.strip if !clef_new.empty?
             end
 
-            change_or_create(t, tags[:n], key_new)
+            change_or_create(t, "n", tags[:n], key_new)
             tags[:o].content = time_new.strip if !time_new.empty? || (vals[:o] && time_new.strip != vals[:o].strip)
             #tags[:p].content = pae_new.strip if !pae_new.empty?
-            change_or_create(t, tags[:p], pae_new)
-
+            change_or_create(t, "p", tags[:p], pae_new)
+ap pae_new
+ap tags[:p]
+ap t
             if !note.empty?
                 t.add_at(MarcNode.new("source", "q", note, nil), 0)
             end
@@ -114,6 +119,8 @@ CSV.foreach(file) do |l|
 
     end
 
-    source.save
+    #puts source.marc
+    break
+    #source.save
 
 end
