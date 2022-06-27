@@ -1,14 +1,47 @@
 file = ARGV[0]
 
-def change_or_create(tag, subtag, value)
+def change_or_create(tag, tag_name, subtag, value)
     return if !value || value.empty?
 
+    ap subtag
+    ap value
+puts "-----".green
     if !subtag
-        tag.add_at(MarcNode.new("source", value.strip, "", nil), 0)
+        tag.add_at(MarcNode.new("source", tag_name, value.strip, nil), 0)
     else
         subtag.content = value.strip
     end
 end
+
+@skip_id = []
+
+def find_duplicates(file)
+    incipits_ids = {}
+
+    CSV.foreach(file) do |l|
+
+        s_id = l[0]
+        pae_a = l[2].to_s.strip
+        pae_b = l[3].to_s.strip
+        pae_c = l[4].to_s.strip
+
+        next if s_id == "source_id"
+
+        pae_nr = "#{pae_a}.#{pae_b}.#{pae_c}".strip
+        if !incipits_ids.keys.include?(s_id)
+            incipits_ids[s_id] = [pae_nr]
+        else
+            incipit_pae_nrs = incipits_ids[s_id]
+            if incipit_pae_nrs.include?(pae_nr)
+                puts "Duplicate entry for #{s_id} #{pae_nr}, skip"
+                @skip_id << "#{s_id}-#{pae_nr}"
+            end
+        end
+    end
+end
+
+# First find all dups
+find_duplicates(file)
 
 CSV.foreach(file) do |l|
 
@@ -28,6 +61,12 @@ CSV.foreach(file) do |l|
     note = l[14].strip
 
     next if s_id == "source_id"
+
+    incipit_id = "#{s_id}-#{pae_a}.#{pae_b}.#{pae_c}".strip
+    if @skip_id.include?(incipit_id)
+        puts "SKIP DUPLICATE #{incipit_id}"
+        next
+    end
 
     begin
         source = Source.find(s_id)
@@ -64,11 +103,13 @@ CSV.foreach(file) do |l|
                 tags[:g].content = clef_new.strip if !clef_new.empty?
             end
 
-            change_or_create(t, tags[:n], key_new)
+            change_or_create(t, "n", tags[:n], key_new)
             tags[:o].content = time_new.strip if !time_new.empty? || (vals[:o] && time_new.strip != vals[:o].strip)
             #tags[:p].content = pae_new.strip if !pae_new.empty?
-            change_or_create(t, tags[:p], pae_new)
-
+            change_or_create(t, "p", tags[:p], pae_new)
+ap pae_new
+ap tags[:p]
+ap t
             if !note.empty?
                 t.add_at(MarcNode.new("source", "q", note, nil), 0)
             end
@@ -78,6 +119,8 @@ CSV.foreach(file) do |l|
 
     end
 
-    source.save
+    #puts source.marc
+    break
+    #source.save
 
 end
