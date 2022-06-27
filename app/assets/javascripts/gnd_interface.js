@@ -103,7 +103,7 @@ var show_gnd_actions = function () {
     var marcData = rowData["marc"];
 
     locale = $gnd_table.attr( "locale" )
-    message = {"de": "übernehmen", "en": "select", "fr": "choisir", "it": "scegliere"}[locale]
+    message = I18n.t("select")
 
     var row = $( "<tr>" );
     row.append( $( "<td><a target=\"_blank\" href=\"" + link + "\">" + label + "</a></td>" ) );

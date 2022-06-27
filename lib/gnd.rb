@@ -30,7 +30,10 @@ module GND
             # Some normalization
             doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
             marc = Object.const_get("Marc").new("work_node_gnd", doc)
-            marc.import
+
+            # Some items do not have a 100 tag
+            next if !marc.first_occurance("100", "a")
+            
             # Perform some conversion to the marc data
             convert(marc)
             id = get_id(marc)
