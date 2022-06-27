@@ -4,24 +4,35 @@ class MarcWorkNode < Marc
   end
   
   def get_title
-    composer, title, scoring, number, key = ""
-    if node = first_occurance("100", "a")
-      composer = node.content.blank? ? "" : "#{node.content}:"
+    title = "", scoring = "", number = "", key = ""
+    tag100 = first_occurance("100")
+    return "[unspecified]" if !tag100
+    # title from $t
+    if node = tag100.fetch_first_by_tag("t")
+        title = node.content.blank? ? "[without title]" : "#{node.content}"
     end
-    if node = first_occurance("100", "t")
-      title = node.content.blank? ? " [without title]" : " #{node.content}"
+    # scoring from repeated $m
+    if node = tag100.fetch_first_by_tag("m")
+        scoring = node.content.blank? ? "" : ", #{node.content}"
     end
-    if node = first_occurance("100", "n")
-      number = node.content.blank? ? "" : " #{node.content}"
+    # number from repeated $n
+    if node = tag100.fetch_first_by_tag("n")
+        number = node.content.blank? ? "" : ", #{node.content}"
     end
-    if node = first_occurance("100", "r")
-      key = node.content.blank? ? "" : " #{node.content}"
-    end
-    if node = first_occurance("100", "m")
-      scoring = node.content.blank? ? "" : "; #{node.content}"
+    # key from $r
+    if node = tag100.fetch_first_by_tag("r")
+        key = node.content.blank? ? "" : " (#{node.content})"
     end
 
-    return "#{composer}#{title}#{number}#{key}#{scoring}"
+    return "#{title}#{scoring}#{number}#{key}"
+  end
+
+  def get_composer_name
+    composer = "[unpecified]"
+    if node = first_occurance("100", "a")
+      composer = "#{node.content}" if !node.content.blank?
+    end
+    return composer
   end
 
   def get_composer
