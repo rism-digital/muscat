@@ -54,7 +54,7 @@ var show_gnd_actions = function () {
     }
   }
 
-  function search_gnd(){
+  function search_gnd() {
     $gnd_table.html("");
     var term = $("#gnd_input").val();
     var model = $("#marc_editor_panel").attr("data-editor-model");
@@ -94,24 +94,23 @@ var show_gnd_actions = function () {
     }
   }
 
-  function draw_row_gnd(rowData) {
-    locale = $gnd_table.attr("locale")
+  function draw_row_gnd( rowData )
+  {
+
+    var label = rowData["label"];
+    var link = rowData["link"];
+    var description = rowData["description"];
+    var marcData = rowData["marc"];
+
+    locale = $gnd_table.attr( "locale" )
     message = {"de": "übernehmen", "en": "select", "fr": "choisir", "it": "scegliere"}[locale]
-    var id = marc_json_get_tags(rowData, "001")[0].content;
-    var tag100 = marc_json_get_tags(rowData, "100")[0]
-    var tag24 = marc_json_get_tags(rowData, "024")[1]
-    var model = $("#marc_editor_panel").attr("data-editor-model");
-    var row = $("<tr />")
+
+    var row = $( "<tr>" );
+    row.append( $( "<td><a target=\"_blank\" href=\"" + link + "\">" + label + "</a></td>" ) );
+    for(let i = 0; i < description.length; i++) row.append($("<td>" + description[i] + "</td>"));
+    row.append( $( '<td><a class="data" id="gnd_data" href="#" data-gnd=\'' + JSON.stringify( marcData ) + '\'>' + message + '</a></td>' ) );
+    row.append( $( "<tr>" ) );
     $gnd_table.append(row); 
-    row.append($("<td><a target=\"_blank\" href=\"https://d-nb.info/gnd/" + id + "\">" + id + "</a></td>"));
-    row.append($("<td>" + tag100["a"] + "</td>"));
-    row.append($("<td>" + (tag100["t"] ? tag100["t"] : "") + "</td>"));
-    row.append( $( "<td>" + ( tag100["m"] ? tag100["m"] : "" ) + "</td>" ) );
-    row.append( $( "<td>" + ( tag100["n"] ? tag100["n"] : "" ) + "</td>" ) );
-    row.append($("<td>" + (tag100["tp"] ? tag100["p"] : "") + "</td>"));
-    row.append( $( "<td>" + ( tag100["r"] ? tag100["r"] : "" ) + "</td>" ) );
-    row.append( $( "<td>" + ( ( typeof ( tag24 ) != 'undefined' ) ? tag24["2"] : "" ) + "</td>" ) );
-    row.append($('<td><a class="data" id="gnd_data" href="#" data-gnd=\'' + JSON.stringify(rowData) + '\'>' + message  + '</a></td>'));
   }
 };
 
