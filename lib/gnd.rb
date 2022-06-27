@@ -29,6 +29,7 @@ module GND
             doc = xslt.transform(record_xml)
             # Some normalization
             doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
+            doc = doc.gsub(/\u0098/, "").gsub(/\u009C/, "")
             marc = Object.const_get("Marc").new("work_node_gnd", doc)
 
             # Some items do not have a 100 tag
