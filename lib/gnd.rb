@@ -7,21 +7,20 @@ module GND
     NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim", 'srw' => "http://www.loc.gov/zing/srw/" }
     require 'open-uri'
     require 'net/http'
-    # Make sure queries with no result (less than 10K) are not returned as StringIO by open-uri
-    OpenURI::Buffer::StringMax = 0
 
     def self.search(term, model)
         result = []
         begin
-            query = open(URI.escape(self.build_query(term, model)))
-          rescue 
+            query = URI.open(self.build_query(term, model))
+        rescue 
             return "ERROR connecting GND AutoSuggest"
         end
 
         # Load the XSLT to transform the MarcXML into Marc
         xslt  = Nokogiri::XSLT(File.read('config/gnd/' + 'work_node_dnb.xsl'))
         # Load the results
-        xml = Nokogiri::XML(open(query))
+        xml = Nokogiri::XML(query)
+
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
 
@@ -31,6 +30,7 @@ module GND
             # Some normalization
             doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
             marc = Object.const_get("Marc").new("work_node_gnd", doc)
+            marc.import
             # Perform some conversion to the marc data
             convert(marc)
             result << marc.to_json
@@ -46,7 +46,7 @@ module GND
         # Code for musical works
         query += "COD=wim"
         term.split.each do |word|
-            query += " and WOE=" + word
+            query += " and WOE=" + ERB::Util.url_encode(word)
         end
         puts query
         # Work index
