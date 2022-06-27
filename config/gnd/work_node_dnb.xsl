@@ -52,7 +52,6 @@
 			<xsl:text>  </xsl:text>
 			<xsl:value-of select="translate(@ind1, ' ', '#')"/>
 			<xsl:value-of select="translate(@ind2, ' ', '#')"/>
-			<xsl:text>  </xsl:text>
 			<xsl:apply-templates select="marc:subfield"/>
 			<xsl:text>&#xa;</xsl:text>
 		</xsl:if>
