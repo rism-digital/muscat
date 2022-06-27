@@ -33,7 +33,9 @@ module GND
             marc = Object.const_get("Marc").new("work_node_gnd", doc)
             # Perform some conversion to the marc data
             convert(marc)
-            result << marc.to_json
+            id = get_id(marc)
+            item = {marc: marc.to_json, description: get_description(marc), link: "https://d-nb.info/gnd/#{id}", label: "GND | #{id}" }
+            result << item
         end
         if result.empty?
             return "Sorry, no work results were found in GND!"
@@ -58,6 +60,39 @@ module GND
         # replace "gnd" with "DNB" in $2
         node = marc.first_occurance("024", "2")
         node.content = "DNB" if node && node.content
+        tag100 = marc.first_occurance("100")
+        # move $p to $n
+        tag100.each_by_tag("p") do |p|
+            p.tag = "n"
+        end
+        # merge all $m into one
+        m_subtags = tag100.fetch_all_by_tag("m")
+        m_subtags.drop(1).each do |m_subtag|
+            m_subtags[0].content += ", #{m_subtag.content}" if m_subtag.content
+            m_subtag.destroy_yourself
+        end
+        # merge all $n into one
+        n_subtags = tag100.fetch_all_by_tag("n")
+        n_subtags.drop(1).each do |n_subtag|
+            n_subtags[0].content += " #{n_subtag.content}" if n_subtag.content
+            n_subtag.destroy_yourself
+        end
+    end
+
+    def self.get_id(marc)
+        id = 0;
+        if node = marc.first_occurance("024", "a")
+            id = node.content.blank? ? "" : "#{node.content}"
+        end
+        return id
+    end
+
+    # returns an array with a composer and a formatted title
+    def self.get_description(marc)
+        # because the marc has been converted, we can now create a MarcWorkNode object out of it
+        marc_work_node = Object.const_get("MarcWorkNode").new(marc.to_marc)
+        # and use its methods for getting the description
+        return [marc_work_node.get_composer_name, marc_work_node.get_title]
     end
 
   end
