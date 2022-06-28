@@ -119,12 +119,18 @@ var show_gnd_actions = function () {
 function _update_marc_tag_gnd(target, data) {
   block = $(".marc_editor_tag_block[data-tag='" + target + "']")
   var model = $("#marc_editor_panel").attr("data-editor-model");
-  console.log(data, target)
+
   for (code in data){
     subfield = block.find(".subfield_entry[data-tag='" + target + "'][data-subfield='" + code + "']").first()
-    if (model == "work_nodes" && target == "100" && code == "a") {
-      subfield = block.find("input[data-field='" + target + "'][data-subfield='" + code + "']").first()
+    if (model == "work_nodes" && target == "100") {
+      // FIXME!!!! Why does 100 use data-field? this needs to be fixed in the partial
+      if (code == "a") {
+        subfield = block.find("input[data-field='" + target + "'][data-subfield='" + code + "']").first()
+      } else { // for example, tag "0"
+        subfield = block.find("input[data-tag='" + target + "'][data-subfield='" + code + "']").first()
+      }
     }
+
     subfield.val(data[code]);
     subfield.css("background-color", "#ffffb3");
   }
