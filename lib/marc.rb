@@ -896,6 +896,21 @@ class Marc
     return field
   end
 
+  def marc_index_make_024_person(conf_tag, conf_properties, marc, model)
+    out = []
+    marc.each_by_tag("024") do |marctag|
+      id_tag = marctag.fetch_first_by_tag("a")
+      next if !id_tag || !id_tag.content
+
+      type_tag = marctag.fetch_first_by_tag("2")
+      next if !type_tag || !type_tag.content
+
+      out << "#{type_tag.content}:#{id_tag.content}"
+    end
+
+    return out
+  end
+
 end
  
 
