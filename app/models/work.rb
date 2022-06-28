@@ -175,8 +175,8 @@ class Work < ApplicationRecord
     self.title = marc.get_title
     # LP commented for work experiments. Person is set by hand in the script
     #self.person = marc.get_composer
-    self.form = marc.get_form
-    self.notes = marc.get_notes
+    self.opus = marc.get_opus
+    self.catalogue = marc.get_catalogue
 
     self.marc_source = self.marc.to_marc
   end
