@@ -35,26 +35,21 @@
 	
 	<xsl:template match="marc:controlfield">
 		<!-- the list of control fields we want to keep -->
-		<xsl:if test="@tag='001'">
-			<xsl:text>=</xsl:text>
-			<xsl:value-of select="@tag"/>
-			<xsl:text>  </xsl:text>
-			<xsl:value-of select="."/>
-			<xsl:text>&#xa;</xsl:text>
-		</xsl:if>
+		<xsl:text>=</xsl:text>
+		<xsl:value-of select="@tag"/>
+		<xsl:text>  </xsl:text>
+		<xsl:value-of select="."/>
+		<xsl:text>&#xa;</xsl:text>
 	</xsl:template>
 	
 	<xsl:template match="marc:datafield">
-		<!-- the list of tags we want to keep -->
-		<xsl:if test="@tag='024' or @tag = '100'">
-			<xsl:text>=</xsl:text>
-			<xsl:value-of select="@tag"/>
-			<xsl:text>  </xsl:text>
-			<xsl:value-of select="translate(@ind1, ' ', '#')"/>
-			<xsl:value-of select="translate(@ind2, ' ', '#')"/>
-			<xsl:apply-templates select="marc:subfield"/>
-			<xsl:text>&#xa;</xsl:text>
-		</xsl:if>
+		<xsl:text>=</xsl:text>
+		<xsl:value-of select="@tag"/>
+		<xsl:text>  </xsl:text>
+		<xsl:value-of select="translate(@ind1, ' ', '#')"/>
+		<xsl:value-of select="translate(@ind2, ' ', '#')"/>
+		<xsl:apply-templates select="marc:subfield"/>
+		<xsl:text>&#xa;</xsl:text>
 	</xsl:template>
 	
 	<xsl:template match="marc:subfield">

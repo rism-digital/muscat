@@ -101,6 +101,8 @@ var show_gnd_actions = function () {
     var link = rowData["link"];
     var description = rowData["description"];
     var marcData = rowData["marc"];
+    var noSelectMsg = rowData["noSelectMsg"];
+    var selectRow = (noSelectMsg == "") ? '<a class="data" id="gnd_data" href="#" data-gnd=\'' + JSON.stringify( marcData ) + '\'>' + message + '</a>' : '[' + noSelectMsg + ']'
 
     locale = $gnd_table.attr( "locale" )
     message = I18n.t("select")
@@ -108,8 +110,8 @@ var show_gnd_actions = function () {
     var row = $( "<tr>" );
     row.append( $( "<td><a target=\"_blank\" href=\"" + link + "\">" + label + "</a></td>" ) );
     for(let i = 0; i < description.length; i++) row.append($("<td>" + description[i] + "</td>"));
-    row.append( $( '<td><a class="data" id="gnd_data" href="#" data-gnd=\'' + JSON.stringify( marcData ) + '\'>' + message + '</a></td>' ) );
-    row.append( $( "<tr>" ) );
+    row.append( $( '<td>' + selectRow + '</td>' ) );
+    row.append( $( "</tr>" ) );
     $gnd_table.append(row); 
   }
 };

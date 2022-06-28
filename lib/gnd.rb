@@ -35,10 +35,10 @@ module GND
             # Some items do not have a 100 tag
             next if !marc.first_occurance("100", "a")
             
-            # Perform some conversion to the marc data
-            convert(marc)
+            # Perform some conversion to the marc data - can return a message indicating why the record cannot be selected
+            noSelectMsg = convert(marc)
             id = get_id(marc)
-            item = {marc: marc.to_json, description: get_description(marc), link: "https://d-nb.info/gnd/#{id}", label: "GND | #{id}" }
+            item = {marc: marc.to_json, description: get_description(marc), link: "https://d-nb.info/gnd/#{id}", label: "GND | #{id}", noSelectMsg: noSelectMsg }
             result << item
         end
         if result.empty?
@@ -64,23 +64,59 @@ module GND
         # replace "gnd" with "DNB" in $2
         node = marc.first_occurance("024", "2")
         node.content = "DNB" if node && node.content
+        # adjust tag 100
         tag100 = marc.first_occurance("100")
-        # move $p to $n
-        tag100.each_by_tag("p") do |p|
-            p.tag = "n"
+        if tag100
+            # move $p to $n
+            tag100.each_by_tag("p") do |p|
+                p.tag = "n"
+            end
+            # merge all $m into one
+            m_subtags = tag100.fetch_all_by_tag("m")
+            m_subtags.drop(1).each do |m_subtag|
+                m_subtags[0].content += ", #{m_subtag.content}" if m_subtag.content
+                m_subtag.destroy_yourself
+            end
+            # merge all $n into one
+            n_subtags = tag100.fetch_all_by_tag("n")
+            n_subtags.drop(1).each do |n_subtag|
+                n_subtags[0].content += " #{n_subtag.content}" if n_subtag.content
+                n_subtag.destroy_yourself
+            end
         end
-        # merge all $m into one
-        m_subtags = tag100.fetch_all_by_tag("m")
-        m_subtags.drop(1).each do |m_subtag|
-            m_subtags[0].content += ", #{m_subtag.content}" if m_subtag.content
-            m_subtag.destroy_yourself
+        # search for the corresponding composer in Muscat and set the 100 $0 accordingly
+        person = nil
+        tag500 = nil
+        # first look for the 500 with $4 == kom1 in the GND record
+        marc.each_by_tag("500") do |tag|
+            tag.each_by_tag("4") do |t4|
+                if t4.content and t4.content == "kom1"
+                    tag500 = tag
+                    break
+                end
+            end
         end
-        # merge all $n into one
-        n_subtags = tag100.fetch_all_by_tag("n")
-        n_subtags.drop(1).each do |n_subtag|
-            n_subtags[0].content += " #{n_subtag.content}" if n_subtag.content
-            n_subtag.destroy_yourself
+        # get the $0 subfield with the gnd uri
+        if tag500
+            tag500.each_by_tag("0") do |t0|
+                if t0.content and t0.content.start_with?("https://d-nb.info/gnd/")
+                    id = t0.content.gsub(/https:\/\/d-nb.info\/gnd\//, "")
+                    id = "DNB:#{id}"
+                    # retrieve the person pointing to it in Muscat (if any)
+                    person = find_person(id)
+                    break
+                end
+            end
         end
+        # remove all the 500 because they are not preserved in the WorkNode
+        marc.by_tags("500").each {|t| t.destroy_yourself}
+        if person and tag100
+            tag100.add_at(MarcNode.new("work_node", "0", person.id, nil), 0)            
+        else
+            return "Composer not found in Muscat"
+        end
+
+        return ""
     end
 
     def self.get_id(marc)
@@ -97,6 +133,16 @@ module GND
         marc_work_node = Object.const_get("MarcWorkNode").new(marc.to_marc)
         # and use its methods for getting the description
         return [marc_work_node.get_composer_name, marc_work_node.get_title]
+    end
+
+    # returns the Muscat person with the given DNB id
+    def self.find_person(gnd_id)
+        # make a solr search through field 024a
+        query = Person.solr_search do 
+            with("024a", gnd_id) if gnd_id
+            paginate :page => 1, :per_page => Person.all.count
+        end
+        return (query.results and !query.results.empty?) ? query.results[0] : nil
     end
 
   end
