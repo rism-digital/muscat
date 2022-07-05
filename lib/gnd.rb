@@ -24,19 +24,21 @@ module GND
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
 
-            record_xml = Nokogiri.parse(record.to_s)
+            #record_xml = Nokogiri.parse(record.to_s)
             # Transform MarcXML to Marc
-            doc = xslt.transform(record_xml)
+            #doc = xslt.transform(record_xml)
             # Some normalization
-            doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
-            doc = doc.gsub(/\u0098/, "").gsub(/\u009C/, "")
-            marc = Object.const_get("Marc").new("work_node_gnd", doc)
+            #doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
+            #doc = doc.gsub(/\u0098/, "").gsub(/\u009C/, "")
+            marc = MarcWorkNode.new(nil, "work_node_gnd")
+            marc.load_from_xml(record)
 
             # Some items do not have a 100 tag
             next if !marc.first_occurance("100", "a")
             
             # Perform some conversion to the marc data - can return a message indicating why the record cannot be selected
             noSelectMsg = convert(marc)
+            puts marc
             id = get_id(marc)
             item = {marc: marc.to_json, description: get_description(marc), link: "https://d-nb.info/gnd/#{id}", label: "GND | #{id}", noSelectMsg: noSelectMsg }
             result << item
@@ -60,7 +62,19 @@ module GND
         query
     end
 
+
     def self.convert(marc)
+        marc.to_internal
+
+        person = find_person(marc.get_gnd_person_id)
+        if person
+            marc.merge_person(person)
+        else
+            return "Composer not found in Muscat"
+        end
+
+        return ""
+=begin
         # replace "gnd" with "DNB" in $2
         node = marc.first_occurance("024", "2")
         node.content = "DNB" if node && node.content
@@ -117,6 +131,7 @@ module GND
         end
 
         return ""
+=end
     end
 
     def self.get_id(marc)
@@ -130,9 +145,9 @@ module GND
     # returns an array with a composer and a formatted title
     def self.get_description(marc)
         # because the marc has been converted, we can now create a MarcWorkNode object out of it
-        marc_work_node = Object.const_get("MarcWorkNode").new(marc.to_marc)
+        #marc_work_node = Object.const_get("MarcWorkNode").new(marc.to_marc)
         # and use its methods for getting the description
-        return [marc_work_node.get_composer_name, marc_work_node.get_title]
+        return [marc.get_composer_name, marc.get_title]
     end
 
     # returns the Muscat person with the given DNB id

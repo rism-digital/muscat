@@ -92,7 +92,7 @@ ActiveAdmin.register User do
         if !r.notification_type
           I18n.t('notifications.none')
         else
-          I18n.t('notifications.' + current_user.notification_type) + " (#{current_user.notification_type})"
+          I18n.t('notifications.' + r.notification_type) + " (#{r.notification_type})"
         end
       end
       row :sign_in_count
