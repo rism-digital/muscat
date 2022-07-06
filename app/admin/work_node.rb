@@ -53,9 +53,11 @@ ActiveAdmin.register WorkNode do
     end
     
     def edit
+      flash.now[:error] = params[:validation_error] if params[:validation_error]
       @item = WorkNode.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
 
       @restricted=""
@@ -95,6 +97,7 @@ ActiveAdmin.register WorkNode do
       @work_node.marc = new_marc
       
       @editor_profile = EditorConfiguration.get_default_layout @work_node
+      @editor_validation = EditorValidation.get_default_validation(@work_node)
       # Since we have only one default template, no need to change the title
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
       #To transmit correctly @item we need to have @source initialized

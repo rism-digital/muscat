@@ -1,7 +1,6 @@
 class MarcWorkNode < Marc
   def initialize(source = nil, model = "work_node")
     super(model, source)
-    ap model
     @gnd_person_id = nil
   end
   
