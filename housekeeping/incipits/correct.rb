@@ -92,7 +92,7 @@ CSV.foreach(file) do |l|
     subtags = [:a, :b, :c, :g, :n, :o, :p]
     vals = {}
     tags = {}
-    
+
     source.marc.load_source true
     source.marc.each_by_tag("031") do |t|
 
