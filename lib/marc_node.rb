@@ -450,6 +450,8 @@ class MarcNode
           ind0 = indicator[0,1]
           ind1 = indicator[1,1]
         end
+        ind0 = " " if !ind0
+        ind1 = " " if !ind1
     		out += "\t\t<marc:datafield tag=\"#{@tag}\" ind1=\"#{ind0.gsub(/[#\\]/," ")}\" ind2=\"#{ind1.gsub(/[#\\]/," ")}\">\n"
         for_every_child_sorted { |child| out += child.to_xml }
     		out += "\t\t</marc:datafield>\n"
