@@ -916,7 +916,7 @@ en:
     ERR_038_TIE_OPEN: A tie using '+' must be followed by a note.
     ERR_039_TIE_NO_NOTE: A tie using '+' must be preceded by a note.
     ERR_040_HIERARCHY_INVALID: The order of elements cannot be interpreted (%{value}).
-    ERR_041_NESTING_INVALID: The nesting of opening and closing tags for '%{value}' is invalid.
+    ERR_041_NESTING_INVALID: "With '%{value}' the inner group must be closed before the outer group."
     ERR_042_CLEF_INCOMPLETE: The clef is not in the correct form.
     ERR_043_CLEF_INVALID_2ND: The second character in the clef sign must be either '+' or '-'.
     ERR_044_CLEF_MENS: Do not mix mensural and non-mensural clefs.
@@ -933,8 +933,8 @@ en:
     ERR_055_KEYSIG_CHANGE: The key signature cannot be changed more than once in a measure.
     ERR_056_TIMESIG_CHANGE: The time signature cannot be changed more than once in a measure.
     ERR_057_MENSUR_CHANGE: The mensuration cannot be changed more than once in a measure.
-    ERR_058_FERMATA_MREST: "The parentheses of a fermata must only contain a single note or rest '%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes are invalid with mensural notation."
+    ERR_058_FERMATA_MREST: "The parentheses of a fermata may only contain a single note or rest '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes cannot be used with mensural notation."
     ERR_060_CLEF_MISSING: A clef is required.
     ERR_061_LIGATURE_NOTE_BEFORE: To indicate a ligature, a '+' must be preceded by a note.
     ERR_062_LIGATURE_NOTE_AFTER: To indicate a ligature, a '+' must be followed by a note.

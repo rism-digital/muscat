@@ -913,7 +913,7 @@ de:
     ERR_038_TIE_OPEN: Einem Haltebogen '+' muss eine Note vorangestellt werden.
     ERR_039_TIE_NO_NOTE: Einem Haltebogen '+' muss eine Note vorangestellt werden.
     ERR_040_HIERARCHY_INVALID: Die Reihenfolge der Elemente kann nicht interpretiert werden (%{value}).
-    ERR_041_NESTING_INVALID: Die Verschachtelung von öffnenden und schließenden Tags für '%{value}' ist ungültig.
+    ERR_041_NESTING_INVALID: "Mit '%{value}' muss die innere Gruppe vor der äußeren Gruppe geschlossen werden."
     ERR_042_CLEF_INCOMPLETE: Der Wechsel des Notenschlüssels ist nicht korrekt.
     ERR_043_CLEF_INVALID_2ND: Das zweite Zeichen im Notenschlüssel muss entweder '+' oder '-' sein.
     ERR_044_CLEF_MENS: Mischen Sie keine Mensural- und Nicht-Mensuralschlüssel.
@@ -931,7 +931,7 @@ de:
     ERR_056_TIMESIG_CHANGE: Die Taktart kann in einem Takt nur einmal geändert werden.
     ERR_057_MENSUR_CHANGE: Die Mensur kann in einem Takt nur einmal geändert werden.
     ERR_058_FERMATA_MREST: "Die Klammern einer Fermate dürfen nur eine einzige Note oder Pause '%{value}' enthalten"
-    ERR_059_DOUBLE_DOTS_MENS: "Doppelpunktierte Noten sind ungültig in der Mensuralnotation."
+    ERR_059_DOUBLE_DOTS_MENS: "Doppelpunktierte Noten können in der Mensuralnotation nicht verwendet werden."
     ERR_060_CLEF_MISSING: Ein Notenschlüssel ist notwendig.
     ERR_061_LIGATURE_NOTE_BEFORE: Um eine Ligatur anzugeben, muss ein '+' vor der Note stehen.
     ERR_062_LIGATURE_NOTE_AFTER: Um eine Ligatur anzugeben, muss ein '+' nach der Note stehen.
