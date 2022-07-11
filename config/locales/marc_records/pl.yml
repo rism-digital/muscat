@@ -913,7 +913,7 @@ pl:
     ERR_038_TIE_OPEN: Łącznik „+” należy poprzedzić nutą.
     ERR_039_TIE_NO_NOTE: Łącznik „+” należy poprzedzić nutą.
     ERR_040_HIERARCHY_INVALID: Nie można zinterpretować kolejności elementów (%{value}).
-    ERR_041_NESTING_INVALID: Zagnieżdżenie za pomocą tagów '%{value}' jest nieprawidłowe.
+    ERR_041_NESTING_INVALID: "Zamknij nawias grupy wewnętrznej za pomocą '%{value}' przed zamknięciem nawiasów grupy zewnętrznej."
     ERR_042_CLEF_INCOMPLETE: Zmiana klucza jest nieprawidłowa.
     ERR_043_CLEF_INVALID_2ND: Drugim znakiem w kluczu musi być „+” lub „-”.
     ERR_044_CLEF_MENS: Nie mieszaj kluczy notacji menzuralnej z kluczami notacji współczesnej.
@@ -931,9 +931,9 @@ pl:
     ERR_056_TIMESIG_CHANGE: Metrum można zmienić tylko raz w takcie.
     ERR_057_MENSUR_CHANGE: Menzurę można zmienić tylko raz w takcie.
     ERR_058_FERMATA_MREST: "Nawiasy fermaty mogą zawierać tylko jedną nutę lub pauzę'%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Nuty z podwójnymi kropkami w notacji menzuralnej są nieprawidłowe."
+    ERR_059_DOUBLE_DOTS_MENS: "Nie można użyć nut z dwoma kropkami w notacji menzuralnej."
     ERR_060_CLEF_MISSING: Brakuje klucza.
-    ERR_061_LIGATURE_NOTE_BEFORE: To indicate a ligature, a '+' must be preceded by a note.
+    ERR_061_LIGATURE_NOTE_BEFORE: Dla oznaczenia ligatury przed nutą następuje znak „+”.
     ERR_062_LIGATURE_NOTE_AFTER: Dla oznaczenia ligatury po nucie następuje znak „+”.
     ERR_063_LIGATURE_PITCH: Ligatura nie może składać się z dwóch następujących po sobie nut o takiej samej wysokości.
     ERR_064_LIGATURE_DURATION: Czas trwania ligatury nie może być krótszy niż semibrevis.

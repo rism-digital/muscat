@@ -913,7 +913,7 @@ it:
     ERR_038_TIE_OPEN: Una legatura con '+' deve essere seguita da una nota.
     ERR_039_TIE_NO_NOTE: Una legatura con '+' deve essere preceduta da una nota.
     ERR_040_HIERARCHY_INVALID: L'ordine degli elementi non può essere interpretato (%{value}).
-    ERR_041_NESTING_INVALID: Non è valido inserire più tag di apertura e chiusura per '%{value}'.
+    ERR_041_NESTING_INVALID: "Il gruppo interno va chiuso con '%{value}' prima di chiudere il gruppo esterno."
     ERR_042_CLEF_INCOMPLETE: La chiave non è nel formato corretto.
     ERR_043_CLEF_INVALID_2ND: Il secondo carattere nel segno della chiave deve essere '+' o '-'.
     ERR_044_CLEF_MENS: Non mischiare chiavi mensurali e non mensurali.
@@ -931,7 +931,7 @@ it:
     ERR_056_TIMESIG_CHANGE: Il tempo non può essere cambiato più di una volta in una battuta.
     ERR_057_MENSUR_CHANGE: La mensurazione non può essere modificata più di una volta in una battuta.
     ERR_058_FERMATA_MREST: "Le parentesi per una corona possono contenere solo una singola nota o una pausa di '%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Le note con doppi punti sono invalide in notazione mensurale."
+    ERR_059_DOUBLE_DOTS_MENS: "Nella notazione mensurale non sono ammesse note doppiamente puntate."
     ERR_060_CLEF_MISSING: È necessario specificare la chiave.
     ERR_061_LIGATURE_NOTE_BEFORE: Per indicare una legatura, un '+' deve essere preceduto da una nota.
     ERR_062_LIGATURE_NOTE_AFTER: Per indicare una legatura, un '+' deve essere seguito da una nota.

@@ -124,6 +124,7 @@ ActiveAdmin.register Source do
 
       # Get the terms for 593a_filter, the "source type"
       @source_types = Source.get_terms("593a_filter_sm")
+      @source_types_b = Source.get_terms("593b_filter_sm")
       @digital_image_types = Source.get_terms("856x_sm")
 
       # Grab a default editor profile
@@ -286,6 +287,9 @@ ActiveAdmin.register Source do
   filter :"593a_filter_with_integer", :label => proc{I18n.t(:filter_source_type)}, as: :select, 
   collection: proc{@source_types.sort.collect {|k| [k.camelize, "593a_filter:#{k}"]}}
   
+  filter :"593b_filter_with_integer", :label => proc{I18n.t(:filter_source_content_type)}, as: :select, 
+  collection: proc{@source_types_b.sort.collect {|k| [k.camelize, "593b_filter:#{k}"]}}
+
   filter :record_type_select_with_integer, as: :select, 
   collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
 	if: proc { !is_selection_mode? }, :label => proc {I18n.t(:filter_record_type)}
