@@ -70,6 +70,10 @@ fields:
       :type: string
       :from_tag: "593"
       :from_subtag: "a"
+  "593b_filter":
+      :type: string
+      :from_tag: "593"
+      :from_subtag: "b"
   "594b":
       :store: true
       :type: string
