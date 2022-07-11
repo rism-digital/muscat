@@ -7,6 +7,7 @@ v 8.1.3
 * Cherry pick patch #1261, and fix issue
 * Fix #1256, add fallback for nil indicator
 * Initial fix for #1266, make all HTML escaped
+* Fixes to the translations
 
 v 8.1.2
 * Fix manifest script so non-muscat items can be created
