@@ -497,7 +497,6 @@ pl:
   filter_provenance: Pochodzenie
   filter_record_type: Rodzaj szablonu
   filter_record_type_short: Rodzaj
-  filter_source_type: Rodzaj źródła
   filter_publisher: Wydawca
   filter_journal: Tytuł periodyku
   filter_id: ID
@@ -509,6 +508,7 @@ pl:
   filter_source: Źródło
   filter_sources: Źródła
   filter_source_type: Rodzaj źródła
+  filter_source_content_type: "typ zawartości"
   filter_std_title: Znormalizowany tytuł
   filter_subject: Przedmiot
   filter_subsequent_entries: Kolejne wpisy
