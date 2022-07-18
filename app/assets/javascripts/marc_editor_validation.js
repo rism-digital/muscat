@@ -416,6 +416,12 @@ function marc_editor_init_validation(form, validation_conf) {
 				}
 			}
 			
+			// Lastly, skip any inputs created by DIVA
+			// which is shown in the Holdings editor
+			if ($(element).hasClass("diva-input")) {
+				return true;
+			}
+
 			return false;
 		},
 		highlight: function( element, errorClass, validClass ) {
