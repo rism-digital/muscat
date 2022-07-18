@@ -58,9 +58,17 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 3, label: proc{ I18n.t("active_admin.dashboard") }
   #menu false
   
-  limit = 10;
+
+  limit = 10
 
   content title: proc{ I18n.t("active_admin.dashboard") } do 
+
+    # Be a bit pedantic here
+    if params[:dashboard_quantity] != "10" && params[:dashboard_quantity] != "20" && params[:dashboard_quantity] != "50"
+      limit = 10
+    else
+      limit = params[:dashboard_quantity].to_i
+    end
 
     @file = @arbre_context.assigns[:file]
     if @file
@@ -72,7 +80,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     #user = current_user.has_any_role?(:editor, :admin) ? -1 : current_user.id
     user_id = (params[:dashboard_source_owner].to_s == "user") ? current_user.id : -1
-    sources = dashboard_find_recent(Source, params[:dashboard_quantity], params[:dashboard_source_type], user_id, 15)
+    sources = dashboard_find_recent(Source, limit, params[:dashboard_source_type], user_id, 15)
     columns do
       column do
         panel "#{Source.model_name.human(count: 2)}" do
@@ -103,7 +111,7 @@ ActiveAdmin.register_page "Dashboard" do
     end
     
     user_id = (params[:dashboard_person_owner].to_s == "user") ? current_user.id : -1  
-    people = dashboard_find_recent(Person, params[:dashboard_quantity], params[:dashboard_person_type], user_id, 15)
+    people = dashboard_find_recent(Person, limit, params[:dashboard_person_type], user_id, 15)
     columns do
       column do
         panel "#{Person.model_name.human(count: 2)}" do
@@ -124,7 +132,7 @@ ActiveAdmin.register_page "Dashboard" do
     end
 
     user_id = (params[:dashboard_publication_owner].to_s == "user") ? current_user.id : -1
-    publications = dashboard_find_recent(Publication, params[:dashboard_quantity], params[:dashboard_publication_type], user_id, 15)
+    publications = dashboard_find_recent(Publication, limit, params[:dashboard_publication_type], user_id, 15)
     columns do
       column do
         panel "#{Publication.model_name.human(count: 2)}" do
@@ -149,7 +157,7 @@ ActiveAdmin.register_page "Dashboard" do
     end
 
     user_id = (params[:dashboard_institution_owner].to_s == "user") ? current_user.id : -1
-    institutions = dashboard_find_recent(Institution, params[:dashboard_quantity], params[:dashboard_institution_type], user_id, 15)
+    institutions = dashboard_find_recent(Institution, limit, params[:dashboard_institution_type], user_id, 15)
     columns do
       column do
         panel "#{Institution.model_name.human(count: 2)}" do
@@ -170,7 +178,7 @@ ActiveAdmin.register_page "Dashboard" do
     end
 		
     user_id = (params[:dashboard_holding_owner].to_s == "user") ? current_user.id : -1
-    holdings = dashboard_find_recent(Holding, params[:dashboard_quantity], params[:dashboard_holding_type], user_id, 15)
+    holdings = dashboard_find_recent(Holding, limit, params[:dashboard_holding_type], user_id, 15)
     columns do
       column do
         panel "#{Holding.model_name.human(count: 2)}" do
@@ -189,7 +197,7 @@ ActiveAdmin.register_page "Dashboard" do
     end
 
     user_id = (params[:dashboard_work_owner].to_s == "user") ? current_user.id : -1
-    works = dashboard_find_recent(Work, params[:dashboard_quantity], params[:dashboard_work_type], user_id, 15)
+    works = dashboard_find_recent(Work, limit, params[:dashboard_work_type], user_id, 15)
     columns do
       column do
         panel "#{Work.model_name.human(count: 2)}" do
@@ -208,28 +216,11 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-=begin
-    columns do
-      column do
-        panel I18n.t('notifications.notifications') do
-          if current_user.notification_type && !current_user.notifications.empty?
-            text_node("<b>#{I18n.t('notifications.cadence')}:</b> ".html_safe)
-            text_node(I18n.t('notifications.' + current_user.notification_type) + " (#{current_user.notification_type})")
+    dashboard_make_comment_section(self, dashboard_get_referring_comments(limit, 150), I18n.t(:referring_comments))
+    dashboard_make_comment_section(self, dashboard_get_model_comments(limit, 150), I18n.t(:my_item_comments))
+    dashboard_make_comment_section(self, dashboard_get_my_comments(limit, 150), I18n.t(:my_own_comments))
 
-            lines = current_user.notifications.split(/\n+|\r+/).reject(&:empty?)
-            table_for lines, i18n: 'notifications' do
-              column (I18n.t 'notifications.rules') {|line| line}
-            end
 
-           text_node link_to(I18n.t('notifications.edit'), edit_admin_user_path(current_user))
-
-          else
-            text_node(I18n.t('notifications.empty_message', href: link_to(I18n.t('notifications.empty_message_href'), edit_admin_user_path(current_user)) ).html_safe)
-          end
-        end
-      end
-    end
-=end
   end # content
   
   sidebar I18n.t "dashboard.selection", :class => "sidebar_tabs", :only => [:index] do
