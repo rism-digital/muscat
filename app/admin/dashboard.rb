@@ -216,9 +216,9 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    dashboard_make_comment_section(self, dashboard_get_referring_comments(limit, 150), I18n.t(:referring_comments))
-    dashboard_make_comment_section(self, dashboard_get_model_comments(limit, 150), I18n.t(:my_item_comments))
-    dashboard_make_comment_section(self, dashboard_get_my_comments(limit, 150), I18n.t(:my_own_comments))
+    dashboard_make_comment_section(self, dashboard_get_referring_comments(limit, 15), I18n.t(:referring_comments))
+    dashboard_make_comment_section(self, dashboard_get_model_comments(limit, 15), I18n.t(:my_item_comments))
+    dashboard_make_comment_section(self, dashboard_get_my_comments(limit, 15), I18n.t(:my_own_comments))
 
 
   end # content
