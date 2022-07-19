@@ -97,6 +97,9 @@ pt:
       comments_help: "Digite @ para mencionar um usuário específico, que então receberá uma notificação por e-mail."
       author_missing: "Anônimo"
       title_content: "Comentários (%{count})"
+      referring_comments: Comentários onde sou nomeado
+      my_item_comments: Comentários sobre os meus registos
+      my_own_comments: Comentários que fiz
       errors:
         empty_text: "O comentário não foi salvo, o texto estava vazio."
     devise:
@@ -490,7 +493,6 @@ pt:
   filter_provenance: "Local de Publicação"
   filter_record_type: "Tipo de modelo"
   filter_record_type_short: "Tipo"
-  filter_source_type: "Tipo de fonte"
   filter_publisher: "Editor"
   filter_journal: "Título do Periódico"
   filter_id: "ID RISM"
@@ -502,6 +504,7 @@ pt:
   filter_source: "Fonte"
   filter_sources: "Fontes"
   filter_source_type: "Tipo de fonte"
+  filter_source_content_type: "Tipo de conteúdo"
   filter_std_title: "Título uniforme"
   filter_subject: "Assunto"
   filter_subsequent_entries: "Registros subsequentes"
@@ -728,6 +731,9 @@ pt:
     got_it: "Entendido!"
     got_it_explanation: "Clicando neste botão, as notícias serão silenciadas até que a próxima seja liberada.."
     news: "Muscat Notícias"
+    my_comments: "Os meus comentários"
+    my_records: "Os meus registos"
+    about_comments: "Sobre os comentários"
 
   compare_versions:
     time_frame: Período de tempo

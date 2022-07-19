@@ -98,6 +98,9 @@ it:
       comments_help: "Digitare @ per menzionare un utente specifico, che riceverà una notifica per email."
       author_missing: "Anonimo"
       title_content: "Commenti (%{count})"
+      referring_comments: Commenti in cui sono nominato
+      my_item_comments: Commenti nei miei record
+      my_own_comments: Commenti che ho fatto io
       errors:
         empty_text: "Il commento non può essere salvato, il testo è vuoto."
     devise:
@@ -497,7 +500,6 @@ it:
   filter_provenance: "Provenienza"
   filter_record_type: "Tipo del Template"
   filter_record_type_short: "Tipo"
-  filter_source_type: "Tipologia della fonte"
   filter_publisher: "Editore"
   filter_journal: "Titolo del periodico o della miscellanea"
   filter_id: "RISM ID"
@@ -509,6 +511,7 @@ it:
   filter_source: "Fonte"
   filter_sources: "Fonti"
   filter_source_type: "Tipo di fonte"
+  filter_source_content_type: "Tipo di contenuto"
   filter_std_title: "Titolo uniforme"
   filter_subject: "Soggetto"
   filter_subsequent_entries: "Notizie successive"
@@ -735,6 +738,9 @@ it:
     got_it: "Ok!"
     got_it_explanation: "Facendo click su questo pusante si nasconderà la news finché una nuova non sarà disponilbe."
     news: "Novità in Muscat"
+    my_comments: "I miei commenti"
+    my_records: "I miei record"
+    about_comments: "Informazioni sui commenti"
   
   compare_versions:
     time_frame: Intervallo di tempo

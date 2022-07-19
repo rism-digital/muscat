@@ -98,6 +98,9 @@ fr:
       comments_help: "Tapez @ pour mentionner un utilisateur spécifique, qui recevra alors une notification par e-mail."
       author_missing: "Anonyme"
       title_content: "Commentaires (%{count})"
+      referring_comments: Commentaires où je suis nommé
+      my_item_comments: Commentaires sur mes dossiers
+      my_own_comments: Commentaires que j'ai faits
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
     devise:
@@ -495,7 +498,6 @@ fr:
   filter_provenance: "Provenance"
   filter_record_type: "Template Type"
   filter_record_type_short: "Type"
-  filter_source_type: "Type de source"
   filter_publisher: "éditeur"
   filter_journal: "Titre de la revue"
   filter_id: "No RISM"
@@ -507,6 +509,7 @@ fr:
   filter_source: "Source"
   filter_sources: "Sources"
   filter_source_type: "Type de source"
+  filter_source_content_type: "Type de contenu"
   filter_std_title: "Titre uniforme"
   filter_subject: "Sujet"
   filter_subsequent_entries: "Entrées suivants"
@@ -733,6 +736,9 @@ fr:
     got_it: "Je l'ai !"
     got_it_explanation: "Cliquer sur ce bouton fera taire la nouvelle jusqu'à ce que la prochaine soit publiée."
     news: "Nouvelles de Muscat"
+    my_comments: "Mes commentaries"
+    my_records: "Mes dossiers"
+    about_comments: "A propos des commentaires"
   
   compare_versions:
     time_frame: Intervalle temporel

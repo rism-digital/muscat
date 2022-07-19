@@ -1,0 +1,1 @@
+Vous êtes libre de supprimer les commentaires qui ne sont plus pertinents. Le cas échéant, les commentaires peuvent être incorporés aux enregistrements sous forme de notes (soit dans une note générale 500, soit dans une note interne 599), en particulier dans les cas qui impliquent des recherches supplémentaires, pour la commodité des futurs utilisateurs.

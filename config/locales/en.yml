@@ -98,6 +98,9 @@ en:
       comments_help: "Type @ to mention a specific user, who will then receive a notification by email."
       author_missing: "Anonymous"
       title_content: "Comments (%{count})"
+      referring_comments: Comments where I am named
+      my_item_comments: Comments on my records
+      my_own_comments: Comments I made
       errors:
         empty_text: "Comment wasn't saved, text was empty."
     devise:
@@ -311,7 +314,7 @@ en:
   finished: "Finished"
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
-  holding_no_siglum: "Holding without silgum"
+  holding_no_siglum: "Holding without siglum"
   holding_missing: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right."
   holding_missing_alert: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right after you save."
   holding_missing_show: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editing this record and clicking the \"%{new_holding}\" button on the right."
@@ -498,7 +501,6 @@ en:
   filter_provenance: "Provenance"
   filter_record_type: "Template Type"
   filter_record_type_short: "Type"
-  filter_source_type: "Source Type"
   filter_publisher: "Publisher"
   filter_journal: "Revue title"
   filter_id: "RISM ID"
@@ -509,7 +511,8 @@ en:
   filter_siglum: "Siglum"
   filter_source: "Source"
   filter_sources: "Sources"
-  filter_source_type: "Source Type"
+  filter_source_type: "Source type"
+  filter_source_content_type: "Content type"
   filter_std_title: "Standardized title"
   filter_subject: "Subject"
   filter_subsequent_entries: "Subsequent Entries"
@@ -735,6 +738,10 @@ en:
     got_it: "Got it!"
     got_it_explanation: "Clicking on this button will silence the news until the next one is released."
     news: "Muscat News"
+    my_comments: "My comments"
+    my_records: "My records"
+    about_comments: "About comments"
+
   
   compare_versions:
     time_frame: Time frame
