@@ -1,6 +1,10 @@
 Muscat Changelog
 ================
 
+v 8.1.4
+* Fix #1271 skip the diva-added input
+* Update Verovio to 3.11.0
+
 v 8.1.3
 * Fix #1265, user the correct user reference
 * Fix #1267, add index
