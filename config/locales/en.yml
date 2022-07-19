@@ -98,6 +98,9 @@ en:
       comments_help: "Type @ to mention a specific user, who will then receive a notification by email."
       author_missing: "Anonymous"
       title_content: "Comments (%{count})"
+      referring_comments: Comments where I am named
+      my_item_comments: Comments on my records
+      my_own_comments: Comments I made
       errors:
         empty_text: "Comment wasn't saved, text was empty."
     devise:
@@ -736,6 +739,10 @@ en:
     got_it: "Got it!"
     got_it_explanation: "Clicking on this button will silence the news until the next one is released."
     news: "Muscat News"
+    my_comments: "My comments"
+    my_records: "My records"
+    about_comments: "About comments"
+
   
   compare_versions:
     time_frame: Time frame

@@ -309,7 +309,7 @@ module ActiveAdmin::ViewsHelper
                 link_to comment.body, admin_comment_path(comment)
               end
               context.column (I18n.t :object) do |r|
-                localized_model = I18n.t(r.resource_type.downcase + ".one") # The model kay is not underscored in the translation file
+                localized_model = I18n.t(r.resource_type.downcase + ".one").capitalize # The model kay is not underscored in the translation file
                 if dashboard_comment_record_exists(r.resource_type, r.resource_id)
                   link_to "#{localized_model} #{r.resource_id}", controller: r.resource_type.pluralize.underscore.downcase.to_sym, action: :show,  id: r.resource_id
                 else
