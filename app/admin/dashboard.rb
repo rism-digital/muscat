@@ -78,6 +78,9 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+    h3(I18n.t('dashboard.my_records'))
+    br()
+
     #user = current_user.has_any_role?(:editor, :admin) ? -1 : current_user.id
     user_id = (params[:dashboard_source_owner].to_s == "user") ? current_user.id : -1
     sources = dashboard_find_recent(Source, limit, params[:dashboard_source_type], user_id, 15)
@@ -216,9 +219,17 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    dashboard_make_comment_section(self, dashboard_get_referring_comments(limit, 15), I18n.t(:referring_comments))
-    dashboard_make_comment_section(self, dashboard_get_model_comments(limit, 15), I18n.t(:my_item_comments))
-    dashboard_make_comment_section(self, dashboard_get_my_comments(limit, 15), I18n.t(:my_own_comments))
+    h3(I18n.t('dashboard.my_comments'))
+    br()
+
+    panel I18n.t('dashboard.about_comments'), id: "notice-panel" do
+      render 'dashboard_comments_help'
+    end
+
+
+    dashboard_make_comment_section(self, dashboard_get_referring_comments(limit, 15), I18n.t("active_admin.comments.referring_comments"))
+    dashboard_make_comment_section(self, dashboard_get_model_comments(limit, 15), I18n.t("active_admin.comments.my_item_comments"))
+    dashboard_make_comment_section(self, dashboard_get_my_comments(limit, 15), I18n.t("active_admin.comments.my_own_comments"))
 
 
   end # content
