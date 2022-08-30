@@ -631,7 +631,7 @@
         - "Notated music"
         - "Libretto"
         - "Treatise"
-        - "Other"
+        - "Mixed"
         editor_partial: subfield_select
 "594":
   layout:
