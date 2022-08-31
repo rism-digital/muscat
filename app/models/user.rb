@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  attr_writer :login
-
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
 
@@ -16,6 +14,8 @@ class User < ApplicationRecord
 
   # Used by saml_authenticatable devise strategy to avoid password validation
   attr_accessor :user_create_strategy
+  # Used to permit username or email login
+  attr_writer :login
 
   enum notification_type: [:every, :daily, :weekly ]
   enum preference_wf_stage: [ :inprogress, :published, :deleted ]
@@ -25,10 +25,16 @@ class User < ApplicationRecord
   }
   
   validate :secure_password
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   
   searchable :auto_index => false do
     integer :id
     text :name
+  end
+
+  def active_for_authentication?
+    super && !self.disabled?
   end
 
   def login
