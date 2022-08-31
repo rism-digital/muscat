@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_writer :login
+
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
 
@@ -10,7 +12,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 	# remove :recoverable
-  devise *([:rememberable, :trackable, :validatable] + Array(RISM::AUTHENTICATION_METHODS))
+  devise *([:rememberable, :trackable, :validatable] + Array(RISM::AUTHENTICATION_METHODS) + [authentication_keys: [:login]])
 
   # Used by saml_authenticatable devise strategy to avoid password validation
   attr_accessor :user_create_strategy
@@ -27,6 +29,10 @@ class User < ApplicationRecord
   searchable :auto_index => false do
     integer :id
     text :name
+  end
+
+  def login
+    @login || self.username || self.email
   end
 
   def can_edit?(source)
@@ -139,6 +145,16 @@ class User < ApplicationRecord
     return res.sort_by{|_key, value| value.first}.map {|e| e[1][1] }
   end
   
+  # Find username OR email
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if (login = conditions.delete(:login))
+      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_h).first
+    end
+  end
+
   def secure_password
     return true if !password
     if (password.length < 8)
