@@ -93,7 +93,11 @@ ActiveAdmin.register Holding do
       Delayed::Job.enqueue(ReindexForeignRelationsJob.new(source, [{class: Source, id: @holding.source_id}]))
 
       @holding.destroy!
-      redirect_to edit_admin_source_path(source)
+      if can?(:edit, source)
+        redirect_to edit_admin_source_path(source)
+      else
+        redirect_to admin_source_path(source)
+      end
     end
 
     def show
