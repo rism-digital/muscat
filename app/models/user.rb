@@ -26,7 +26,8 @@ class User < ApplicationRecord
   
   validate :secure_password
   validates :username, presence: true, uniqueness: { case_sensitive: false }
-  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+  validates_format_of :username, with: /[\p{Letter}\s]+/u, :multiline => true
+  #/^[a-zA-ZÀ-ż0-9_\.]*$/, :multiline => true
   
   searchable :auto_index => false do
     integer :id

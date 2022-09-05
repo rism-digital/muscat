@@ -105,6 +105,10 @@ ActiveAdmin.register User do
           I18n.t('notifications.' + r.notification_type) + " (#{r.notification_type})"
         end
       end
+      if can? :manage, User
+        row :notification_email
+        row :disabled
+      end
       row :sign_in_count
       row :created_at
       row :updated_at
