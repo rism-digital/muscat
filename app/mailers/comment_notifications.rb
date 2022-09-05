@@ -25,7 +25,7 @@ class CommentNotifications < ApplicationMailer
     users = all_comments.map {|c| c.author_id}
     users << @resource.wf_owner
     all_comments.each {|c| users += parse_comment(c.body)}
-    users.compact.uniq! # Users can be duplicated
+    users = users.compact.sort.uniq # Users can be duplicated
     users -= [comment.author_id] # Don't send the comment to myself!
 
     addresses = users.compact.each.map do |u|
@@ -38,7 +38,7 @@ class CommentNotifications < ApplicationMailer
       else
         # if not, send the email only if the user is not disabled
         # and obviously has an email address set
-        email if !user.disabled && user.email
+        user.email if !user.disabled && user.email
       end
     end.compact
      
