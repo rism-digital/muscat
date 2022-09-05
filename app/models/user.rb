@@ -139,6 +139,10 @@ class User < ApplicationRecord
     return false
   end
 
+  def get_workgroups_emails
+    self.workgroups.map(&:email).sort.compact
+  end
+
   def get_notifications
     notifications.each_line.map {|l| l.strip}
   end

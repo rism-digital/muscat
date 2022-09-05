@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_31_101404) do
+ActiveRecord::Schema.define(version: 2022_09_05_105134) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -712,6 +712,8 @@ ActiveRecord::Schema.define(version: 2022_08_31_101404) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "libpatterns"
+    t.string "email"
+    t.index ["email"], name: "index_workgroups_on_email", unique: true
   end
 
   create_table "works", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
