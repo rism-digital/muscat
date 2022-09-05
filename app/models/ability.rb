@@ -59,7 +59,8 @@ class Ability
       end
       can :update, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, Work], :wf_owner => user.id
       can [:destroy, :update], [DigitalObject], :wf_owner => user.id
-      can [:destroy], [Holding], :wf_owner => user.id
+      # Users cannot delete their holdings anymore as of 8.2, sorry!
+      #can [:destroy], [Holding], :wf_owner => user.id
       can [:update], [Holding] do |holding|
         user.can_edit?(holding)
       end
