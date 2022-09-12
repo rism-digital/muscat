@@ -78,23 +78,24 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    panel I18n.t("folders.expiring_folders") do
-      render 'expiring_folders_help'
-      columns do
-        column do
-          folders = Folder.where(wf_owner: current_user.id).where("delete_date < ?", Time.now + 3.month).order("delete_date ASC")
-          table_for folders.map do
-            column (I18n.t :filter_name) do |folder|
-              link_to folder.name, admin_folder_path(folder)
-            end
-            column (I18n.t :updated_at), :updated_at
-            column (I18n.t :"folders.expires") do |folder|
-                label_color = folder.delete_date - Time.now <= 2.weeks ? "deleted" : "warning"
-                label_color = "ok" if folder.delete_date - Time.now - 1.day >= 1.months
-                status_tag label_color, label: folder.delete_date.to_date.to_s
-            end
-            column :pirillize do |folder|
-              link_to("#{I18n.t :"folders.reset_expiration"}", reset_expiration_admin_folder_path(folder))
+    if current_user.folders.count > 0
+      panel "#{Folder.model_name.human(count: 2)}" do
+        render 'expiring_folders_help'
+        columns do
+          column do
+            table_for current_user.folders.order(:delete_date).map do
+              column (I18n.t :filter_name) do |folder|
+                link_to folder.name, admin_folder_path(folder)
+              end
+              column (I18n.t :updated_at), :updated_at
+              column (I18n.t :"folders.expires") do |folder|
+                  label_color = folder.delete_date - Time.now <= 2.weeks ? "deleted" : "warning"
+                  label_color = "ok" if folder.delete_date - Time.now - 1.day >= 1.months
+                  status_tag label_color, label: folder.delete_date.to_date.to_s
+              end
+              column :pirillize do |folder|
+                link_to("#{I18n.t :"folders.reset_expiration"}", reset_expiration_admin_folder_path(folder))
+              end
             end
           end
         end

@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :workgroups
 
   has_many :sources, foreign_key: 'wf_owner'
+  has_many :folders, foreign_key: 'wf_owner'
 
   rolify
   # Include default devise modules. Others available are:
