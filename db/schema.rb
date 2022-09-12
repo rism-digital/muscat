@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_05_105134) do
+ActiveRecord::Schema.define(version: 2022_09_12_085138) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 2022_09_05_105134) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "wf_owner"
+    t.datetime "delete_date"
     t.index ["folder_type"], name: "index_folders_on_folder_type"
     t.index ["wf_owner"], name: "index_folders_on_wf_owner"
   end

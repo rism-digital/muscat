@@ -1,0 +1,1 @@
+Folders will expire and _automatically deleted_ after three months. To prevent this, click on the "Reset expiration link" that will prolog the expiration date to three months from today. Wou will also receive an email notification before the folders are deleted.

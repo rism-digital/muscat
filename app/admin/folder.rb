@@ -87,6 +87,24 @@ ActiveAdmin.register Folder do
     redirect_to resource_path(params[:id]), notice: I18n.t(:unpublish_job, scope: :folders, id: job.id)
   end
  
+  member_action :reset_expiration, method: :get do
+    begin
+      f = Folder.find(params[:id])
+    rescue
+      redirect_to collection_path, :flash => {error: I18n.t(:not_found, scope: :folders, id: params[:id])}
+      return
+    end
+
+    if !can?(:edit, f)
+      redirect_to collection_path, :flash => {error: I18n.t(:"active_admin.access_denied.message")}
+      return
+    end
+
+    f.save
+
+    redirect_to resource_path(params[:id]), notice: I18n.t(:"folders.resetted", date: f.delete_date.to_date.to_s)
+  end
+
   ## Shows a page so the user can select the folder name
   member_action :export_folder, :method => :get do
     begin
@@ -153,6 +171,11 @@ ActiveAdmin.register Folder do
     column (I18n.t :filter_owner), sortable: "users.name" do |folder|
       folder.user.name
     end
+
+    column (I18n.t "folders.expires"), sortable: :delete_date do |r| 
+      r.delete_date.to_date.to_s
+    end
+
     column (I18n.t "folders.items") {|folder| folder.folder_items.count}
     actions
   end
@@ -174,6 +197,7 @@ ActiveAdmin.register Folder do
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :created_at) {|folder| folder.created_at}
+      row (I18n.t "folders.expires") { |r| r.delete_date.to_date.to_s }
       row (I18n.t :filter_folder_type) { |r| r.folder_type }
       row (I18n.t :filter_owner) {|folder| folder.user.name}
     end

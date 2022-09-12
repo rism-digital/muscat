@@ -420,6 +420,10 @@ en:
     reindex_job: "Reindex job started (id: %{id})"
     validation_started: "An email will be sent to %{email} with the validation has ended (Validation job id: %{job})."
     folder_not_source: "Only folders containing Sources can be validated"
+    expiring_folders: "Expiring folders"
+    expires: "Expires on"
+    resetted: "Folder expiration date now is %{date}"
+    reset_expiration: "Reset expiration date"
 
   ### Digital objects
   digital_objects: "Digital Objects"
