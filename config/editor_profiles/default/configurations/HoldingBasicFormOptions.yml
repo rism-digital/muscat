@@ -51,8 +51,7 @@
   layout: 
     fields: 
     - - a
-      - values: 
-        - Print
+      - values:
         - Print with autograph annotations
         - Print with non-autograph annotations
         - Additional manuscript material
