@@ -52,6 +52,7 @@
     fields: 
     - - a
       - values:
+        - Print
         - Print with autograph annotations
         - Print with non-autograph annotations
         - Additional manuscript material
