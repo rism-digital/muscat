@@ -93,7 +93,7 @@ ActiveAdmin.register_page "Dashboard" do
                   label_color = "ok" if folder.delete_date - Time.now - 1.day >= 1.months
                   status_tag label_color, label: folder.delete_date.to_date.to_s
               end
-              column :pirillize do |folder|
+              column :reset do |folder|
                 link_to("#{I18n.t :"folders.reset_expiration"}", reset_expiration_admin_folder_path(folder))
               end
             end
