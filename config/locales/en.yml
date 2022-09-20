@@ -423,6 +423,11 @@ en:
     expires: "Expires on"
     resetted: "Folder expiration date now is %{date}"
     reset_expiration: "Reset expiration date"
+    delete_now: "The following folders were deleted:"
+    tomorrow: "The following folders will be deleted tomorrow %{date}"
+    one_week: "The following folders will be deleted in one week on %{date}"
+    two_weeks: "The following folders will be deleted in two weeks on %{date}"
+    one_month: "The following folders will be deleted in one month on %{date}"
 
   ### Digital objects
   digital_objects: "Digital Objects"

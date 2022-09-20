@@ -1,0 +1,8 @@
+<h3>You have expiring folders</h3>
+
+<p>
+<% @folders.each do |k, f|%>
+    <% next if f.empty? %>
+    <%= render partial: "folder_table", locals: { folder_list: f, type: k } %>
+<%end%>
+</p>
