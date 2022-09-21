@@ -14,7 +14,7 @@ class FolderCleanupMailer < ApplicationMailer
 
       mail(to: RISM::NOTIFICATION_EMAILS,
           from: "#{RISM::DEFAULT_EMAIL_NAME} Muscat Notificator <#{RISM::DEFAULT_NOREPLY_EMAIL}>",
-          subject: "Folder goes BOINK")
+          subject: I18n.t(:"folders.expiring_folders"))
     end
   
   end

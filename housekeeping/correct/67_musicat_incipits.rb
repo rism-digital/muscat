@@ -58,7 +58,11 @@ incipitrism.each do |line|
 
     pae = file_to_lines("musicat_incipits/PAE/" + file + ".pae")
 
-    node.add_at(MarcNode.new("source", "p", pae[:pae], nil), 0 )
+    begin
+        node.fetch_first_by_tag("p").content = pae[:pae]
+    rescue NoMethodError
+        node.add_at(MarcNode.new("source", "p", pae[:pae], nil), 0 )
+    end
 
     begin
         node.fetch_first_by_tag("n").content = pae[:key]
@@ -82,4 +86,7 @@ incipitrism.each do |line|
 
     source.save
 
+
+    obj = DigitalObject.create(:attachment => File.open("musicat_incipits/MEI/" + file + ".mei", 'rb'), :description => "#{source.id}:#{nr}")
+    dol = DigitalObjectLink.create(object_link_type: "Source", object_link_id: source.id, user: source.user, digital_object_id: obj.id)
 end
