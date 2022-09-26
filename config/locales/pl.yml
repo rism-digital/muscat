@@ -425,10 +425,11 @@ pl:
     resetted: "Data wygaśnięcia folderu teraz to %{data}"
     reset_expiration: "Resetuj datę wygaśnięcia"
     delete_now: "Następujące foldery zostały usunięte:"
-    tomorrow: "Następujące foldery zostaną usunięte jutro %{data}".
-    one_week: "Następujące foldery zostaną usunięte za tydzień w dniu %{data}".
-    two_weeks: "Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{data}".
-    one_month: "Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{data}".
+    tomorrow: "Następujące foldery zostaną usunięte jutro %{data}"
+    one_week: "Następujące foldery zostaną usunięte za tydzień w dniu %{data}"
+    two_weeks: "Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{data}"
+    one_month: "Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{data}"
+    
   ### Digital objects
   digital_objects: Obiekty cyfrowe
   digital_object_new: Dodaj nowy obiektu cyfrowego

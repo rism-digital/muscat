@@ -414,16 +414,16 @@ pt:
     publish_job: "Início do Job de publicação (id: %{id})"
     unpublish_job: "Início do Job de cancelamento da publicação (id: %{id})"
     reindex_job: "Início do trabalho de reindexação (id: %{id})"
-    validação_iniciada: "Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})".
-    folder_not_source: "Apenas as pastas contendo Fontes podem ser validadas".
+    validação_iniciada: "Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})"
+    folder_not_source: "Apenas as pastas contendo Fontes podem ser validadas"
     expires: "Expira em"
-    resetted: "Data de expiração da pasta agora é %{data}".
+    resetted: "Data de expiração da pasta agora é %{data}"
     reset_expiration: "Repor data de expiração"
     delete_now: "As seguintes pastas foram eliminadas:"
     tomorrow: "As seguintes pastas serão eliminadas amanhã %{data}"
-    one_week: "As seguintes pastas serão apagadas dentro de uma semana em %{data}".
-    two_weeks: "As seguintes pastas serão apagadas dentro de duas semanas em %{data}".
-    one_month: "As seguintes pastas serão apagadas dentro de um mês em %{data}".
+    one_week: "As seguintes pastas serão apagadas dentro de uma semana em %{data}"
+    two_weeks: "As seguintes pastas serão apagadas dentro de duas semanas em %{data}"
+    one_month: "As seguintes pastas serão apagadas dentro de um mês em %{data}"
 
   ### Digital objects
   digital_objects: "Objetos Digitais"
