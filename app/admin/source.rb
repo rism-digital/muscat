@@ -105,6 +105,12 @@ ActiveAdmin.register Source do
         end
       end
       
+      # We get here before ActiveAdmin::AccessDenied is thrown
+      # So we can redirect gracefully to edit
+      if cannot?(:edit, @item)
+        redirect_to admin_source_path(@item), :error => "Unauthorized"
+      end
+
       # Try to load the MARC object.
       # This is the same trap as in show but here we
       # PREVENT opening the editor. Redirect to the show page
