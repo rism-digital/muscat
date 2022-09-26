@@ -161,6 +161,7 @@ ActiveAdmin.register Folder do
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
+
   index :download_links => false do |ad|
     selectable_column
     column (I18n.t :filter_wf_stage) {|folder| status_tag(folder.is_published?,
@@ -183,6 +184,10 @@ ActiveAdmin.register Folder do
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
+  end
+
+  sidebar :help, :only => :index do
+    render :partial => "folders_help_index"
   end
   
   ##########
@@ -225,6 +230,10 @@ ActiveAdmin.register Folder do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => folder }
+  end
+
+  sidebar :help, :only => [:show, :edit, :new] do
+    render :partial => "folders_help_show"
   end
 
   ##########
