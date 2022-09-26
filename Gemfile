@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.7.1'
+gem 'rails', '5.2.8.1'
 
 # Use mysql2 as the database for Active Record
 # USE THIS VERSION for 4.1
@@ -189,3 +189,5 @@ gem 'rodf' # write ODS
 gem "roo" # read ODS
 
 gem 'tty-spinner'
+
+gem 'mailcatcher'
