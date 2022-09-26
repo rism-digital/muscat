@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_12_085138) do
+ActiveRecord::Schema.define(version: 2022_09_26_080510) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -193,6 +193,13 @@ ActiveRecord::Schema.define(version: 2022_09_12_085138) do
     t.index ["lib_siglum"], name: "index_holdings_on_lib_siglum"
     t.index ["source_id"], name: "index_holdings_on_source_id"
     t.index ["wf_stage"], name: "index_holdings_on_wf_stage"
+  end
+
+  create_table "holdings_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "holding_id"
+    t.integer "institution_id"
+    t.index ["holding_id"], name: "index_holdings_institutions_on_holding_id"
+    t.index ["institution_id"], name: "index_holdings_institutions_on_institution_id"
   end
 
   create_table "holdings_to_catalogues", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
@@ -526,10 +533,13 @@ ActiveRecord::Schema.define(version: 2022_09_12_085138) do
     t.index ["source_id"], name: "index_sources_to_catalogues_on_source_id"
   end
 
-  create_table "sources_to_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "sources_to_institutions", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "institution_id"
     t.integer "source_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["institution_id"], name: "index_sources_to_institutions_on_institution_id"
+    t.index ["marc_tag", "relator_code", "source_id", "institution_id"], name: "unique_records", unique: true
     t.index ["source_id"], name: "index_sources_to_institutions_on_source_id"
   end
 
