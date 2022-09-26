@@ -5,7 +5,7 @@ v 8.2
 * WIP: Add `xx` to accepted values for name variants
 * Fixed: Change translation key for `xx`
 * Adjust values for 593 $a in Sources and Holdings
-Bump puma from 5.6.2 to 5.6.4
+* Bump puma from 5.6.2 to 5.6.4
 * Fix missing indicators with holding template
 * Fix manifest script so non-muscat items can be created
 * Fix #1260
