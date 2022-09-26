@@ -190,4 +190,5 @@ gem "roo" # read ODS
 
 gem 'tty-spinner'
 
-gem 'mailcatcher'
+# Uncomment this if you want to test emails in development
+#gem 'mailcatcher'
