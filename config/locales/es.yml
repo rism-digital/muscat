@@ -418,7 +418,7 @@ es:
     publish_job: "El Job de publicación comenzó (id: %{id})"
     unpublish_job: "El Job de cancelación de la publicación comenzó (id: %{id})"
     reindex_job: "El Job de reindexación comenzó (id: %{id})"
-    validation_started: "Se enviará un correo electrónico a %{email} con la validación ha terminado (ID de trabajo de validación: %{job})".
+    validation_started: "Se enviará un correo electrónico a %{email} con la validación ha terminado (ID de trabajo de validación: %{job})"
     folder_not_source: "Sólo se pueden validar las carpetas que contienen Fuentes"
     expires: "Expira el"
     resetted: "La fecha de caducidad de la carpeta es ahora %{date}"
