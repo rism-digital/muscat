@@ -30,6 +30,10 @@ class Ability
         can :update, Person, :wf_owner => user.id
       end
       #can [:read], Folder
+
+      can :prepare_convert, Source
+      can :convert_manuscript, Source
+
       can :manage, Folder#, :wf_owner => user.id
       can :unpublish, [Folder]
       can [:read, :create, :destroy], ActiveAdmin::Comment
@@ -37,6 +41,7 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
       can :read, ActiveAdmin::Page, :name => "Statistics"
+      can :read, ActiveAdmin::Page, :name => "Compare Versions"
 
       can [:read, :update], User, :id => user.id
     
@@ -54,7 +59,8 @@ class Ability
       end
       can :update, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, Work], :wf_owner => user.id
       can [:destroy, :update], [DigitalObject], :wf_owner => user.id
-      can [:destroy], [Holding], :wf_owner => user.id
+      # Users cannot delete their holdings anymore as of 8.2, sorry!
+      #can [:destroy], [Holding], :wf_owner => user.id
       can [:update], [Holding] do |holding|
         user.can_edit?(holding)
       end

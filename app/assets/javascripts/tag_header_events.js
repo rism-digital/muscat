@@ -41,9 +41,9 @@ used for _tag_header partial
 	
 	function tag_header_delete(button_id) {
 		// FIXME dialog should not be hardcoded
-		$('#dialog').html('<p>' + delete_field_confirm + '</p>');
+		$('#dialog').html('<p>' + I18n.t("marc_editor.delete_field_confirm") + '</p>');
 		$("#dialog").dialog();
-		$("#dialog").dialog( 'option', 'title', delete_msg );
+		$("#dialog").dialog( 'option', 'title', I18n.t("marc_editor.delete_msg") );
 		$("#dialog").dialog( 'option', 'width', 300);
 		$("#dialog").dialog( 'option', 'buttons', {
 			OK: function() {
@@ -86,12 +86,36 @@ used for _tag_header partial
 				return;
 			
 			// Let's waste CPU time
-			suffix = Math.random().toString(36).substring(4);
+			var suffix = Math.random().toString(36).substring(4);
 			
-			$(this).prop("name", n + suffix);
+			$(this).prop("name", n + "-" + suffix);
 		});
 	}
 	
+	function fix_pae_rendering_ids(new_dt) {
+		var new_id = Math.random().toString(36).substring(4);
+
+		new_dt.find(".pae_incipit_target").each(function() {
+			var old_id = $(this).attr("id");
+			$(this).attr("id", old_id + "-" + new_id);
+		});
+
+		new_dt.find(".pae_input").each(function() {
+			var old_id = $(this).attr("id");
+			$(this).attr("id", old_id.replace('-textbox','') + "-" + new_id + "-textbox");
+		})
+
+		new_dt.find(".pae-warning").each(function() {
+			var old_id = $(this).attr("id");
+			$(this).attr("id", old_id.replace('-clefKeyWarnings','') + "-" + new_id + "-clefKeyWarnings");
+		})
+
+		new_dt.find(".pae-error").each(function() {
+			var old_id = $(this).attr("id");
+			$(this).attr("id", old_id.replace('-messages','') + "-" + new_id + "-messages");
+		})
+	}
+
 	// Create a new element when the tag_group already contains elements
 	function tag_header_add(elem) {
 		marc_editor_set_dirty();
@@ -104,6 +128,10 @@ used for _tag_header partial
 		
 		tag_header_fix_validation(new_dt);
 		
+		// We also need to re-create the unique IDs for pae rendering
+		// as we need these as a reference for the background worker
+		fix_pae_rendering_ids(new_dt);
+
 		new_dt.fadeIn('fast');
 		return new_dt;
 	}
@@ -113,7 +141,7 @@ used for _tag_header partial
 	function tag_header_add_from_empty(elem) {
 		marc_editor_set_dirty();
         // hide help if necessary
-   elem.parents(".tag_container").children(".tag_help_collapsable").hide();
+		elem.parents(".tag_container").children(".tag_help_collapsable").hide();
 		var placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
 		var parent_dl = elem.parents(".tag_group").children(".marc_editor_tag_block");
 
@@ -122,7 +150,8 @@ used for _tag_header partial
 		parent_dl.append(new_dt);
 		
 		tag_header_fix_validation(new_dt);
-		
+		fix_pae_rendering_ids(new_dt);
+
 		new_dt.fadeIn('fast');
         update_empty_tag( elem.parents(".tag_group") );
 		return new_dt;

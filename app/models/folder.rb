@@ -8,7 +8,13 @@ class Folder < ApplicationRecord
   scope :for_type,   ->(type){ where(folder_type: type) }
   
   #after_destroy :remove_links
-  	
+  
+  before_save :update_expires
+
+  def update_expires
+    self.delete_date = Time.now + 6.months
+  end
+
   # Looks to see if an item is in the current folder.
   def has_item?(item)
     return folder_items.where(item_id: item.id, item_type: item.class.to_s).count != 0
@@ -68,13 +74,8 @@ class Folder < ApplicationRecord
       folder_items.destroy(folder_item) if folder_item
     end
     # Folder items should be always cleaned up
-    # make sure it is
-    FolderItem.clean_index_orphans
-    Sunspot.commit
+    # run a background job for that
+    Delayed::Job.enqueue(PurgeFolderItemsJob.new(self.id))
   end  
-    
-  
-  #def remove_links
-  #  FolderItem.clean_index_orphans
-  #end
+
 end

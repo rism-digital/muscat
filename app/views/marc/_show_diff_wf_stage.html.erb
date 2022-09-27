@@ -1,0 +1,10 @@
+
+<div class="panel panel_group">
+    <h3><%=I18n.t(:record_status)%></h3>
+    <div class="panel_contents">
+        <span class="attributes_table subfield_diff_content version_diff">
+            <div class="diff_new"><%= @wf_stages[1] -%></div>
+			<div class="diff_old"><%= @wf_stages[0] -%></div>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+L'utente è libero di cancellare i commenti che non sono più rilevanti. Se opportuno, i commenti possono essere incorporati nei documenti come note (in una nota generale 500 o in una nota interna 599), soprattutto nei casi che comportano ricerche supplementari, per comodità degli utenti futuri.

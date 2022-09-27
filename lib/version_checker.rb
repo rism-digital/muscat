@@ -175,6 +175,9 @@ module VersionChecker
     aligner = MarcFieldAligner.new( item1.marc.all_tags(false), item2.marc.all_tags(false) )
     alignment = aligner.get_optimal_alignment
     tags = set_tag_diff(alignment[0], alignment[1])
+
+    wf_stages = [item1.wf_stage, item2.wf_stage]
+
     # sub alignment
     tags.each do |t|
       # insertion or deletion, no need to compare
@@ -188,6 +191,7 @@ module VersionChecker
       t.children.clear
       subfields.each{ |st| t.children << st }  
     end
+    return tags, wf_stages
   end
   
   private
@@ -206,7 +210,7 @@ module VersionChecker
     else
       item2 = version.next.reify
     end
-    
+
     [item1, item2]
   end
   

@@ -450,6 +450,8 @@ class MarcNode
           ind0 = indicator[0,1]
           ind1 = indicator[1,1]
         end
+        ind0 = " " if !ind0
+        ind1 = " " if !ind1
     		out += "\t\t<marc:datafield tag=\"#{@tag}\" ind1=\"#{ind0.gsub(/[#\\]/," ")}\" ind2=\"#{ind1.gsub(/[#\\]/," ")}\">\n"
         for_every_child_sorted { |child| out += child.to_xml }
     		out += "\t\t</marc:datafield>\n"
@@ -613,6 +615,11 @@ class MarcNode
       n += 1
       [(a.tag.match(/\d/) ? "z#{a.tag}" : a.tag), n]
     }
+  end
+
+  def copy_to(destination_marc)
+    new_tag = deep_copy
+    destination_marc.root.children.insert(destination_marc.get_insert_position(new_tag.tag), new_tag)
   end
 
   alias length size

@@ -1,0 +1,1 @@
+Puede eliminar los comentarios que ya no sean pertinentes. Cuando proceda, los comentarios pueden incorporarse a los registros como notas (ya sea en una nota 500 general o en una nota 599 interna), especialmente en los casos que impliquen una investigación adicional, para comodidad de los futuros usuarios.

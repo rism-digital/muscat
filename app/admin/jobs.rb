@@ -42,12 +42,12 @@ ActiveAdmin.register Delayed::Job, as: 'Job' do
     column :id
     column I18n.t(:status) do |job| 
       if job.failed_at
-        status_tag(I18n.t(:failed), :error, id: "job-banner-#{job.id}")
+        status_tag(:error, id: "job-banner-#{job.id}", label: I18n.t(:failed))
       else
         if !job.locked_at
-          status_tag(I18n.t(:waiting), :no, id: "job-banner-#{job.id}")
+          status_tag(:no, id: "job-banner-#{job.id}", label: I18n.t(:waiting))
         else
-          status_tag(I18n.t(:running), :yes, id: "job-banner-#{job.id}")
+          status_tag(:yes, id: "job-banner-#{job.id}", label: I18n.t(:running))
         end
       end
     end
