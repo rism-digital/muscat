@@ -342,7 +342,8 @@ it:
   unloadable_record: "Questa scheda ha avuto problemi nel caricamento: può essere consultata ma non modificata. Si prega di contattare un amministratore."
   validation_level_error: "Sono presenti errori, correggerli prima di continuare"
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
-  
+  muscat_reindexing: "Muscat è in fase di reindicizzazione, i risultati della ricerca potrebbero essere incompleti"
+
   jobs:
     not_set: "[Nessuno stato]"
     ok: "Processo terminato con successo"

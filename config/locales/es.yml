@@ -341,6 +341,7 @@ es:
   unloadable_record: "Este registro presenta errores de carga: puede ser leido pero no editado. Por favor, póngase en contacto con un administrador."
   validation_level_error: "El registro tiene errores. Por favor, resuélvalos antes de guardar."
   validation_level_warning: "El registro presenta advertencias. Si desea ignorarlas, pulse nuevamente en guardar."
+  muscat_reindexing: "Muscat está reindexando, los resultados de la búsqueda pueden estar incompletos"
   
   jobs:
     not_set: "[Estado aún no disponible]"

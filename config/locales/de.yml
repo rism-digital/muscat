@@ -340,6 +340,7 @@ de:
   unloadable_record: "Fehler beim Laden des Eintrags: Änderung nicht möglich, bitte einen Administrator kontaktieren."
   validation_level_error: "Die Fehler müssen vor dem Speichern behoben werden."
   validation_level_warning: "Erneut speichern, um die Warnung(en) zu ignorieren."
+  muscat_reindexing: "Muscat wird neu indiziert, Suchergebnisse können unvollständig sein"
   
   jobs:
     not_set: "[Kein Status gesetzt]"
