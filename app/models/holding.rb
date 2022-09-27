@@ -147,7 +147,7 @@ class Holding < ApplicationRecord
   def update_774
       return if self.suppress_update_77x_trigger == true
 
-    # We do NOT have a parent ms in the 773.
+    # We do NOT have a parent ms in the 973.
     # but we have it in old_parent, it means that
     # the 773 was deleted or modified. Go into the parent and
     # find the reference to the id, then delete it
@@ -230,12 +230,21 @@ class Holding < ApplicationRecord
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
         
+
+    sunspot_dsl.integer :wf_owner
+    sunspot_dsl.time :created_at
+    sunspot_dsl.time :updated_at
+    
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
   end
 
   def display_name
     "#{lib_siglum} [#{id}]"
+  end
+
+  def get_shelfmark
+    self.marc.get_shelf_mark
   end
 
 end

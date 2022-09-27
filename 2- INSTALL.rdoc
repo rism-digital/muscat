@@ -56,7 +56,7 @@ Recent Ubuntu releases (from 18.4 LTS) and Debian 10 (Buster) provide come Ruby 
 
  sudo apt-get update
  sudo apt-get install mysql-server libmysqlclient-dev # If mysql was not installed separately
- sudo apt-get install apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev  openjdk-11-jdk-headless passenger make libapache2-mod-passenger libsqlite3-dev g++ default-libmysqld-dev
+ sudo apt-get install apache2 git ruby ruby-dev gcc zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev  openjdk-11-jdk-headless passenger make libapache2-mod-passenger libsqlite3-dev g++ default-libmysqld-dev nodejs
  sudo a2enmod passenger
 
 Passenger also wants to compile a binary module, this is optional but will enable it
@@ -142,19 +142,50 @@ Muscat 7.1 now supports Solr 8.8 installed externally. This means for example th
 The internal Solr 5.5 server still works, but will not be supported anymore in the future since the bundled Solr unsupported and has problems with modern Java versions.
 The Muscat core should work with any installation of Solr, here a sample installation procedure is shown but it should be adapted for each installation.
 
+==== Installation using a "stock" solr using included setup script
+
+*NOTE* this was tested on Linux distributions only.
+Grab a copy of the official distribution (8.11.1 at the time of writing) and unpack it in a suitable place
+
+  wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.11.1/solr-8.11.1.tgz?action=download -O solr-8.11.1.tgz
+  tar -xvzf solr-8.11.1.tgz
+
+Solr needs two directories, one for data and one for the binaries. The latter is generally /opt/solr, and the data installation for this example will be /data/solr.
+Extract just the installation script:
+
+  tar xzf solr-8.11.1.tgz solr-8.11.1/bin/install_solr_service.sh --strip-components=2
+
+And execute it:
+
+  sudo ./install_solr_service.sh solr-8.11.1.tgz -d /data/solr -p 8983
+
+This will create the directory layout as above. It will also create a +solr+ user. For the complete reference see https://solr.apache.org/guide/8_8/taking-solr-to-production.html
+Now copy over the Muscat core:
+
+  cp -R $MUSCAT_HOME/solr-configuration/muscat /data/solr/data
+  cp $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar /data/solr/data/lib/
+
+Where +/data/solr/+ in the directory specified above with -d.
+Solr includes a startup script so 
+
+  systemctl daemon-reload
+  service solr start
+
+Should start it. The logfiles in this case are found in +/data/solr/logs+.
+
 ==== Installation using a "stock" solr
 
-Grab a copy of the official distribution (8.8.2 at the time of writing) and unpack it in a suitable place
+Grab a copy of the official distribution (8.11.1 at the time of writing) and unpack it in a suitable place
 
-  wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.8.2/solr-8.8.2.tgz
-  tar -xvzf solr-8.8.2.tgz
+  wget https://www.apache.org/dyn/closer.lua/lucene/solr/8.11.1/solr-8.11.1.tgz?action=download -O solr-8.11.1.tgz
+  tar -xvzf solr-8.11.1.tgz
 
 When using this distribution, you can copy the +muscat+ core bundled with Muscat directly into the binary distibution
 
-  cp -R $MUSCAT_HOME/solr-configuration/muscat solr-8.8.2/server/solr
-  cp $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar solr-8.8.2/server/solr/lib/
+  cp -R $MUSCAT_HOME/solr-configuration/muscat solr-8.11.1/server/solr
+  cp $MUSCAT_HOME/solr-configuration/jar-8.8-linux/ThemaxQuery-1.0-SNAPSHOT.jar solr-8.11.1/server/solr/lib/
 
-**NOTE** The bundled +ThemaxQuery-1.0-SNAPSHOT.jar+ contains the PAE incipit indexer used in Muscat. A version for macOS 11 is provided in jar-8.8-mac, the linux version should work with any recent Ubuntu/Debian system.
+*NOTE* The bundled +ThemaxQuery-1.0-SNAPSHOT.jar+ contains the PAE incipit indexer used in Muscat. A version for macOS 11 is provided in jar-8.8-mac, the linux version should work with any recent Ubuntu/Debian system.
 In +muscat/solrconfig.xml+ the path for this jar is hardcoded <lib dir="../../jar"/> so it will find it in the stock Solr installation. For a different installation the path should made to point to the correct jar file path.
 Solr should run at this point:
 
@@ -164,16 +195,18 @@ Or an appropriate startup script may be used
 
 ==== Installation on macOS with Homebrew
 
-Install solr with brew, at the time of writing it is 8.8.2
+Install solr with brew, use solr-8.11.1 at least
 
   brew install solr
 
 As above, copy the configuration and jar file:
 
-  cp -R $MUSCAT_HOME/solr-configuration/muscat /usr/local/var/lib/solr/muscat-index
-  cd /usr/local/Cellar/solr/8.8.2/contrib
+  cp -R $MUSCAT_HOME/solr-configuration/muscat /usr/local/var/lib/solr
+  cd /usr/local/Cellar/solr/8.11.1/contrib
   mkdir themax
-  $MUSCAT_HOME/solr-configuration/jar-8.8-mac/ThemaxQuery-1.0-SNAPSHOT.jar /usr/local/Cellar/solr/8.8.2/contrib/themax
+  cp $MUSCAT_HOME/solr-configuration/jar-8.8-mac/ThemaxQuery-1.0-SNAPSHOT.jar /usr/local/Cellar/solr/8.11.1/contrib/themax
+  
+*NOTE* depending on the Homebrew version used, the path for the configuration might be +/opt/homebrew/var/lib/solr+
 
 Edit +/usr/local/var/lib/solr/muscat-index/solrconfig.xml+ To point to the correct jar. Remove <lib dir="../../jar"/> and add:
 
@@ -197,7 +230,7 @@ To change the core name or port
   # Make sure solr is not running as root if used in production
   sudo -u www-data bundle exec rake RAILS_ENV=production sunspot:solr:start
   # else just do:
-  bundle exec sunspot:solr:start
+  bundle exec rake sunspot:solr:start
 
 *NOTE* +sunspot.yml+ and +blacklight.yml+ now point to the +muscat+ core as used for 8.8. To run with 5.5 and the default configuration, edit those files to use
 
@@ -226,7 +259,7 @@ A default administrative user has been created as part of the installation proce
 go to +http://ip:3000/admin+ and log in with the following credentials:
 
  username: admin@example.com
- password: password
+ password: Password1234
 
 It is advised that you delete this account after creating a new administrative user in the admin interface.
 
@@ -376,3 +409,27 @@ On 18.40, also enable GPG verification of Passenger:
  sudo apt-get install -y apt-transport-https ca-certificates
 
 Then install all the dependencies and setup passenger:
+
+== Muscat user authentication
+
+In Muscat's default configuration, users are created and authenticated in Muscat's own local database. This authentication method is called `:database_authenticatable`, and if it is fine to you, there is no need to modify nor configure anything further.
+
+There is an alternative Single Sign On (SSO) authentication for corporate environments, and it is implemented using SAML integration. If you are interested, please follow this steps as described:
+
+1. First, run the generator with `bin/rails g muscat:install_saml` to get the required configuration files.
+1. Add :saml_authenticatable as one of the AUTHENTICATION_METHODS in `config/application.rb` (order of methods is not important)
+1. SAML users will have the role defined by `RISM::SAML_AUTHENTICATION_CREATE_USER_ROLE` which is "guest" by default. Edit `config/application.rb` and uncomment `RISM::SAML_AUTHENTICATION_CREATE_USER_ROLE` and set the desired role if you prefer another one.
+1. Customize the new devise login form that the generator created at `"app/views/active_admin/devise/sessions/new.html.erb"`. At least, edit the file and remove the unused link to the IdP or define yours if it's none of the two.
+1. Configure the SAML settings at `config/initializers/devise_saml_authenticatable.rb`
+  - To automatically parse IdP's metadata, parse the remote url just before ruby_saml's settings
+  ```
+   ...
+   idp_metadata_parser = OneLogin::RubySaml::IdpMetadataParser.new
+   config.saml_config= idp_metadata_parser.parse_remote "https://remote-sso-server.example.org/saml/idp/metadata"
+   config.saml_configure do |settings|
+   ...
+  ```
+1. Configure the mapping between SAML user attributes (keys) and application user attributes (values).
+1. Muscat must be restarted if any configuration is changed.
+
+The SSO authentication method is added as convenience to Muscat to serve some external users, but it is not supported by upstream developers. If you need support, please contact its authors: https://coditramuntana.com/en/contact .

@@ -80,7 +80,11 @@ $(document).ready(function() {
     $(".csv_export").on('click', function(event) {
     // CSV
     var datatable = this.getAttribute('datatable');
-    var args = [$('#'+datatable+'>table'), datatable+'.csv'];
+    var title = this.getAttribute('title');
+    if (!title) {
+      title = datatable;
+    }
+    var args = [$('#'+datatable+'>table'), title + '.csv'];
 
     exportTableToCSV.apply(this, args);
 

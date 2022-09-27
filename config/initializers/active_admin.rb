@@ -210,6 +210,7 @@ ActiveAdmin.setup do |config|
   #config.register_javascript 'jquery.validate.js'
 
   config.register_stylesheet 'muscat-print.css', :media => :print
+  config.register_stylesheet 'diva.min.css'
 
   # == CSV options
   #

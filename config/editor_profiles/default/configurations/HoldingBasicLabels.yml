@@ -20,7 +20,7 @@
 '300':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.format_extent
     b:
@@ -31,7 +31,7 @@
 '500':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.general_note_institution
   label: records.general_note_institution
@@ -45,6 +45,11 @@
     a:
       label: records.performer_note
   label: records.note_on_performance
+'525':
+  fields:
+    a:
+      label: records.supplementary_material
+  label: records.supplementary_material
 '541':
   fields:
     a:
@@ -74,14 +79,16 @@
 '592':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.watermark_description
   label: records.watermark_description
 '593':
   fields:
     a:
-      label: records.type
+      label: filter_source_type
+    b:
+      label: filter_source_content_type
   label: records.source_type
 '599':
   fields:
@@ -105,7 +112,7 @@
     '4':
       label: records.function
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.name
     d:
@@ -118,7 +125,7 @@
     '4':
       label: records.function
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.institution
     b:
@@ -169,7 +176,7 @@ Computer printout:
   label: records.computer_printout
 Conjectural:
   label: records.conjectural
-Digitalization:
+Digitized:
   label: records.digitized_source
 Doubtful:
   label: records.doubtful
@@ -177,8 +184,10 @@ Engraving:
   label: records.engraving
 Facsimile:
   label: records.facsimile
-IIIF:
+"IIIF manifest (digitized source)":
   label: records.iiif_manifest
+"IIIF manifest (other)":
+  label: records.iiif_manifest_other
 Lithography:
   label: records.lithography
 Misattributed:

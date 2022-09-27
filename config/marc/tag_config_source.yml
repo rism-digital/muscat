@@ -339,13 +339,6 @@
       - :occurrences: "?"
     - - c
       - :occurrences: "?"
-  "511":
-    :master: a
-    :indicator: "0#"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
   "518":
     :master: a
     :indicator: "##"
@@ -401,8 +394,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - u
-      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
@@ -449,6 +440,8 @@
     :disable_multiple: true
     :fields:
     - - a
+      - :occurrences: "?"
+    - - b
       - :occurrences: "?"
     - - "8"
       - :occurrences: "?"

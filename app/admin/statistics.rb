@@ -42,20 +42,22 @@ ActiveAdmin.register_page "Statistics" do
         @att = :name
         users = User.where.not(:id => 1).joins(:workgroups).where('workgroups.id' => @workgroup).order('workgroups.name', :name)
       end
-      stats = Statistics::User.sources_by_month(@from_date.beginning_of_month, @to_date, users)
-      @statistic = Statistics::Spreadsheet.new(stats)
+      stats_source = Statistics::User.sources_by_month(@from_date.beginning_of_month, @to_date, users)
+      @statistic_sources = Statistics::Spreadsheet.new(stats_source)
+      stats_holdings = Statistics::User.holdings_by_month(@from_date.beginning_of_month, @to_date, users)
+      @statistic_holdings = Statistics::Spreadsheet.new(stats_holdings)
     end
   end
 
   content do
     columns do 
       column do 
-        panel "Chart", style: "width: 130%; margin-bottom: 20px" do
+        panel "Sources per month", style: "width: 130%; margin-bottom: 20px" do
           render :partial => 'statistics/chart'
         end
       end
       column do
-        panel "Most active", style: "margin-left: auto; width: 60%" do
+        panel "Workgroups Most active (sources)", style: "margin-left: auto; width: 60%" do
            render :partial => 'statistics/workgroups_pie'
         end
       end
@@ -63,13 +65,11 @@ ActiveAdmin.register_page "Statistics" do
 
     div do
       tabs do
-        tab "User table" do
-          render :partial => 'statistics/user_table'
+        tab "Sources per User" do
+          render :partial => 'statistics/user_table', locals: {stats: statistic_sources, title: "UserSources"}
         end
-        unless workgroup
-          tab "Workgroup table" do
-            render :partial => 'statistics/workgroup_table', :locals => {:from_date => from_date, :to_date => to_date }
-          end
+        tab "Holdings per User" do
+          render :partial => 'statistics/user_table', locals: {stats: statistic_holdings, title: "UserHoldings"}
         end
       end
     end

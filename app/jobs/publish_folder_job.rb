@@ -1,4 +1,4 @@
-class PublishFolderJob < ProgressJob::Base
+ class PublishFolderJob < ProgressJob::Base
   
   def initialize(parent_id, options = {})
     @parent_id = parent_id
@@ -25,17 +25,18 @@ class PublishFolderJob < ProgressJob::Base
     
     new_wf_stage = @options.include?(:unpublish) && @options[:unpublish] == true ? :inprogress : :published
     
+    action = new_wf_stage == :published ? "Publish" : "Unpublish"
+
     count = 0
     f2.folder_items.each do |fi|
       fi.item.wf_stage = new_wf_stage
       
       if  PaperTrail.request.enabled_for_model?(fi.item.class) 
-        PaperTrail.request(enabled: false) do
-          fi.item.save
-        end
-      else
-        fi.item.save
+        fi.item.paper_trail_event = "#{action} folder #{@parent_id}"
       end
+      
+      fi.item.save
+      
       update_stage_progress("Updating records #{count}/#{f2.folder_items.count}", step: 1)
       count += 1
     end

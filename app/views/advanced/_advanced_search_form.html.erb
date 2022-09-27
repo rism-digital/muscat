@@ -176,13 +176,10 @@ link = send(search_function)
                 pae_incipit = "1-"
             }
 
-            pae = "@start:pae-file\n";
-            pae = pae + "@clef:" + pae_clef + "\n";
+            var pae = "@clef:" + pae_clef + "\n";
             pae = pae + "@keysig:" + pae_keysig + "\n";
-            pae = pae + "@key:\n";
             pae = pae + "@timesig:" + pae_timesig + "\n";
-            pae = pae + "@data: " + pae_incipit + "\n";
-            pae = pae + "@end:pae-file\n"
+            pae = pae + "@data: " + pae_incipit;
             render_music(pae, 'pae');
 
         }

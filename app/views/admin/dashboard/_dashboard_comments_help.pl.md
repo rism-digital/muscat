@@ -1,0 +1,1 @@
+Można swobodnie usuwać komentarze, które nie są już istotne. W stosownych przypadkach komentarze mogą być włączone do zapisów jako notatki (w notatce 500 ogólnej lub 599 wewnętrznej), zwłaszcza w przypadkach wymagających dodatkowych badań, dla wygody przyszłych użytkowników.

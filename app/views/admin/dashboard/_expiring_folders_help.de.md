@@ -1,0 +1,1 @@
+Ordner laufen nach sechs Monaten ab und werden automatisch gelöscht. Um einen Ordner zu verlängern, klicken Sie auf den Link "Ablaufdatum zurücksetzen", wodurch das Ablaufdatum um weitere sechs Monate verlängert wird. Sie erhalten außerdem eine E-Mail-Benachrichtigung, bevor die Ordner gelöscht werden. 

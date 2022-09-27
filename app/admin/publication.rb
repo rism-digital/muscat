@@ -72,10 +72,18 @@ ActiveAdmin.register Publication do
       @editor_profile = EditorConfiguration.get_default_layout @item
       @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+
+      if cannot?(:edit, @item)
+        redirect_to admin_publication_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
+      end
+
     end
 
     def index
       @results, @hits = Publication.search_as_ransack(params)
+      @categories = Source.get_terms("240g_sm")
+
+      @editor_profile = EditorConfiguration.get_default_layout Publication
 
       index! do |format|
         @publications = @results
@@ -132,9 +140,14 @@ ActiveAdmin.register Publication do
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"100a_or_700a_contains", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
   filter :description_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
-  filter :"240g_contains", :label => proc {I18n.t(:filter_category_type)}, :as => :select,
-    collection: proc{["Bibliography", "Catalog", "Collective catalogue", "Encyclopedia", "Music edition", "Other",
-      "Thematic catalog", "Work catalog"] }
+  
+  #filter :"240g_contains", :label => proc {I18n.t(:filter_category_type)}, :as => :select,
+  #  collection: proc{["Bibliography", "Catalog", "Collective catalogue", "Encyclopedia", "Music edition", "Other",
+  #    "Thematic catalog", "Work catalog"] }
+
+  filter :"240g_with_integer", :label => proc{I18n.t(:"filter_category_type")}, as: :select,
+    collection: proc{@categories.sort.collect {|k| [@editor_profile.get_label(k.to_s), "240g:#{k}"]}}
+
   filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
   filter :"place_contains", :label => proc {I18n.t(:filter_place_of_publication)}, :as => :string
   filter :"date_contains", :label => proc {I18n.t(:filter_date_of_publication)}, :as => :string

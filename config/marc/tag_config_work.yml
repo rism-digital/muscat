@@ -151,6 +151,13 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: term
+  "383":
+    :master: b
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - b
+      - :occurrences: "*"
   "400":
     :master: "0"
     :indicator: "1#"
@@ -270,6 +277,22 @@
       - :occurrences: "?"
     - - "5"
       - :occurrences: "?"
+  "690":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Publication
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - n
+      - :occurrences: "?"  
   "700":
     :master: "0"
     :indicator: "1#"
@@ -344,6 +367,16 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
+  "856":
+    :master: u
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - u
+      - :occurrences: "*"
+        :browse_helper: application_helper_link_http
+    - - z
+      - :occurrences: "*"
   "930":
     :master: "0"
     :indicator: "1#"
