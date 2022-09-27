@@ -107,7 +107,7 @@
 		<%- if (can? :edit, item)  && item.is_a?(Folder) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :"folders.reset_expiration"}", send("reset_expiration_admin_#{model}_path", item),
-				:class => "muscat_icon_link muscat_icon_link_check") %>
+				:class => "muscat_icon_link muscat_icon_link_expiration") %>
 			</li>
 		<%- end %>
 	<%- else %>
