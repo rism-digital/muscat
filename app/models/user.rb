@@ -145,6 +145,7 @@ class User < ApplicationRecord
   end
 
   def get_notifications
+    return nil if notifications == nil
     notifications.each_line.map {|l| l.strip}
   end
 
