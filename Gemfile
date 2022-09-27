@@ -84,12 +84,6 @@ group :development do
     gem 'puma'
 end
 
-gem 'blacklight', '6.14.1', git: 'https://github.com/rism-ch/blacklight', branch: "release-6.x"
-gem "blacklight_advanced_search", '6.4.1'
-gem 'bootstrap-sass', '~> 3.4.1'
-# For nice date ranges
-#https://github.com/projectblacklight/blacklight_range_limit
-gem "blacklight_range_limit", '6.3.3', git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3-6.3.x"
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise_saml_authenticatable', require: false

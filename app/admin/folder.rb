@@ -29,8 +29,7 @@ ActiveAdmin.register Folder do
       #      ON folders.id = folder_items.folder_id))
       #  .select("folders.*, COUNT(folder_items.id) AS folder_items_count")
       #  .group("folders.id")
-
-        end_of_association_chain.includes([:user])
+      end_of_association_chain.includes([:user])
     end
 
 
@@ -159,9 +158,17 @@ ActiveAdmin.register Folder do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  
+  filter :name_equals, :label => proc {I18n.t(:filter_full_name)}, :as => :string
 
+  filter :wf_owner, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+         collection: proc {
+           if current_user.has_any_role?(:editor, :admin)
+             User.sort_all_by_last_name.map{|u| [u.name, "#{u.id}"]}
+           else
+             [[current_user.name, "#{current_user.id}"]]
+           end
+         } 
+  
   index :download_links => false do |ad|
     selectable_column
     column (I18n.t :filter_wf_stage) {|folder| status_tag(folder.is_published?,
@@ -173,11 +180,16 @@ ActiveAdmin.register Folder do
       folder.user.name
     end
 
+    column (I18n.t "created_at"), sortable: :created_at do |r| 
+      r.created_at
+    end
+
     column (I18n.t "folders.expires"), sortable: :delete_date do |r| 
       r.delete_date.to_date.to_s
     end
 
     column (I18n.t "folders.items") {|folder| folder.folder_items.count}
+
     actions
   end
   

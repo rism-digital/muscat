@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-  # Connects this user object to Blacklights Bookmarks.
-  include Blacklight::User
-
   has_and_belongs_to_many :workgroups
 
   has_many :sources, foreign_key: 'wf_owner'

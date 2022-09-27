@@ -1,71 +1,5 @@
 Rails.application.routes.draw do
-
-  concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   root :to => redirect(RISM::ROOT_REDIRECT)
-
-  ## TO BE REVISED!
-  get 'catalog/:id/mei' => 'catalog#mei'
-  get 'catalog/geosearch/:id' => 'catalog#geosearch'
-  post 'catalog/holding' => 'catalog#holding'
-  post 'catalog_ch/holding' => 'catalog#holding'
-  post 'catalog_uk/holding' => 'catalog#holding'
-  get "catalog/download_xslt" => 'catalog#download_xslt'
-  get 'catalog/download' => 'catalog#download'
-  get 'catalog_uk/download' => 'catalog_uk#download'
-  get 'catalog_ch/download' => 'catalog#download'
-
-  ##############################
-  ### Blacklight 6 configuration
-
-  mount Blacklight::Engine => '/'
-  mount BlacklightAdvancedSearch::Engine => '/'
-
-  get 'catalog_ch/:id/facet' => 'catalog_ch#facet'
-  get 'catalog_ch/suggest' => 'catalog_ch#suggest'
-  get 'catalog_uk/:id/facet' => 'catalog_uk#facet'
-  get 'catalog_uk/suggest' => 'catalog_uk#suggest'
-
-  concern :searchable, Blacklight::Routes::Searchable.new
-  concern :exportable, Blacklight::Routes::Exportable.new
-
-  resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
-    concerns :searchable
-    concerns :range_searchable
-    concerns :exportable
-  end
-
-  resource :catalog_ch, only: [:index], as: 'catalog_ch', path: '/catalog_ch', controller: 'catalog_ch' do
-    concerns :searchable
-    concerns :range_searchable
-    concerns :exportable
-  end
-
-  resources :catalog_ch, only: [:show], as: 'catalog_ch', path: '/catalog_ch', controller: 'catalog_ch' do
-    concerns :exportable
-  end
-
-  resource :catalog_uk, only: [:index], as: 'catalog_uk', path: '/catalog_uk', controller: 'catalog_uk' do
-    concerns :searchable
-    concerns :range_searchable
-    concerns :exportable
-  end
-
-  resources :catalog_uk, only: [:show], as: 'catalog_uk', path: '/catalog_uk', controller: 'catalog_uk' do
-    concerns :exportable
-  end
-
-
-  resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
-    concerns :exportable
-  end
-
-  resources :bookmarks do
-    concerns :exportable
-
-    collection do
-      delete 'clear'
-    end
-  end
 	
   ##############################
   
@@ -84,8 +18,8 @@ Rails.application.routes.draw do
   get "/manuscripts", to: redirect('/sources')
   get "/manuscripts/:name", to: redirect('/sources/%{name}')
 
-  get "/sources", to: redirect('/catalog')
-  get "/sources/:name", to: redirect('/catalog/%{name}')
+  get "/sources", to: redirect('/admin/sources')
+  get "/sources/:name", to: redirect('/admin/sources/%{name}')
 
   ## Set up routes to redirect legacy /pages from muscat2
   ## to the new site URL
