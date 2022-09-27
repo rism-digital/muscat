@@ -108,7 +108,7 @@ ActiveAdmin.register Source do
       # We get here before ActiveAdmin::AccessDenied is thrown
       # So we can redirect gracefully to edit
       if cannot?(:edit, @item)
-        redirect_to admin_source_path(@item), :flash => { :error => "ERROR" }
+        redirect_to admin_source_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
       end
 
       # Try to load the MARC object.

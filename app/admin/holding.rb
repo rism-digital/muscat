@@ -61,6 +61,10 @@ ActiveAdmin.register Holding do
       @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = format_holding(@item)
       
+      if cannot?(:edit, @item)
+        redirect_to admin_holding_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
+      end
+
       # Force marc to load
       begin
         @item.marc.load_source(true)
