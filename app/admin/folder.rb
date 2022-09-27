@@ -232,7 +232,7 @@ ActiveAdmin.register Folder do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => folder }
   end
 
-  sidebar :help, :only => [:show, :edit, :new] do
+  sidebar :help, :only => [:show] do
     render :partial => "folders_help_show"
   end
 
