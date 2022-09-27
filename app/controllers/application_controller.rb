@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def test_muscat_reindexing
-    flash[:notice] = "Muscat in reindexing, search results may be incomplete" if ::MuscatProcess.is_reindexing?
+    flash[:notice] = I18n.t(:test_muscat_reindexing) if ::MuscatProcess.is_reindexing?
   end
 
   # Code for rescueing lock conflicts errors
