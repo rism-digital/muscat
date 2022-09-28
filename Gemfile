@@ -46,7 +46,7 @@ end
 gem 'non-stupid-digest-assets', '~> 1.0.9'
 
 # Papertrail for old version support
-gem 'paper_trail', '~> 11'
+gem 'paper_trail'#, '~> 11'
 
 # for aligning marc
 gem 'needleman_wunsch_aligner', "1.0.4"
@@ -152,7 +152,7 @@ gem "anchored"
 
 # Avoid TypeError: superclass mismatch for class Command
 # See https://github.com/erikhuda/thor/issues/721
-gem 'thor', '~> 0.20.3'
+gem 'thor'#, '~> 0.20.3'
 
 group :test do
   gem "rspec"
