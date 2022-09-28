@@ -1,12 +1,9 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.8.1'
+gem 'rails', '6.0'
 
 # Use mysql2 as the database for Active Record
-# USE THIS VERSION for 4.1
-# http://stackoverflow.com/questions/32457657/rails-4-gemloaderror-specified-mysql2-for-database-adapter-but-the-gem-i
-# https://github.com/rails/rails/issues/21544
 gem 'mysql2'
 
 # Use SCSS for stylesheets
@@ -69,17 +66,17 @@ gem 'htmlentities', '~> 4.3.4'
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', '2.9.0' #, git: 'https://github.com/rism-ch/activeadmin'#, ref: 'a2cd960'
+gem 'activeadmin' #, git: 'https://github.com/rism-ch/activeadmin'#, ref: 'a2cd960'
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails', git: 'https://github.com/rism-ch/sunspot', branch: "java9-stack"
-gem 'sunspot_solr', git: 'https://github.com/rism-ch/sunspot', branch: "java9-stack"
+gem 'sunspot_rails'#, git: 'https://github.com/rism-ch/sunspot', branch: "java9-stack"
+gem 'sunspot_solr'#, git: 'https://github.com/rism-ch/sunspot', branch: "java9-stack"
 gem 'awesome_print'
 gem 'progress_bar', '1.0.6', git: 'https://github.com/rism-ch/progress_bar'
 gem "rails3-jquery-autocomplete", '~> 1.0.21', git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
-gem "cancan", '~> 1.6.10'
-gem "rolify", '~> 5.2.0'
+gem "cancan"#, '~> 1.6.10'
+gem "rolify"#, '~> 5.2.0'
 group :development do
     gem 'puma'
 end
@@ -89,11 +86,11 @@ gem 'devise-i18n'
 gem 'devise_saml_authenticatable', require: false
 
 # paperclip for image storage
-gem "kt-paperclip", "~> 6.2.0"
+gem "kt-paperclip"#, "~> 6.2.0"
 
 # https://github.com/zdennis/activerecord-import/wiki
 # For bulk import SQL data
-gem 'activerecord-import', ">= 0.4.0"
+gem 'activerecord-import'#, ">= 0.4.0"
 
 # Uncomment this to test the webpage saving
 # in housekeeping/selenium_webdriver
@@ -115,10 +112,10 @@ gem 'progress_job', '0.0.4', git: "https://github.com/rism-ch/progress_job"
 gem 'daemons'
 
 # Add I18n in js
-gem "i18n-js", ">= 3.9"
+gem "i18n-js"
 gem 'colorize'
 
-gem 'exception_notification', '~> 4.4.0'
+gem 'exception_notification'
 gem 'cql-ruby', '0.9.1', :git => 'https://github.com/jrochkind/cql-ruby'
 gem 'chart-js-rails'
 
@@ -130,10 +127,10 @@ gem 'rails-i18n'#, github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
 gem 'gruff'
 
 # These need to be loaded in production too
-gem 'solr_wrapper', '>= 0.3'
+gem 'solr_wrapper'#, '>= 0.3'
 gem 'ruby-saml-idp'
 
-gem 'rsolr', '>= 1.0'
+gem 'rsolr'#, '>= 1.0'
 
 ## For better parallel processing
 gem 'parallel'
@@ -183,6 +180,8 @@ gem 'rodf' # write ODS
 gem "roo" # read ODS
 
 gem 'tty-spinner'
+
+gem 'listen'
 
 # Uncomment this if you want to test emails in development
 #gem 'mailcatcher'

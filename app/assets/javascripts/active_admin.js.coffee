@@ -62,9 +62,6 @@
 #= require jquery-ui/widgets/tabs
 #= require jquery-ui/widgets/tooltip
 
-#= require i18n
-# This is a must
-#= require i18n/translations
 
 #= require autocomplete_events
 #= require marc_editor

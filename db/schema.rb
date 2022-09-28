@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_26_080510) do
+ActiveRecord::Schema.define(version: 2022_09_28_091920) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 2022_09_26_080510) do
     t.string "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text "progress_stage", limit: 4294967295
+    t.text "progress_stage", size: :long
     t.integer "progress_current", default: 0
     t.integer "progress_max", default: 0
     t.string "parent_type"
@@ -433,7 +433,7 @@ ActiveRecord::Schema.define(version: 2022_09_26_080510) do
     t.integer "src_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text "marc_source", limit: 16777215
+    t.text "marc_source", size: :medium
     t.integer "lock_version", default: 0, null: false
     t.index ["created_at"], name: "index_publications_on_created_at"
     t.index ["short_name"], name: "index_publications_on_short_name"
@@ -509,7 +509,7 @@ ActiveRecord::Schema.define(version: 2022_09_26_080510) do
     t.integer "date_from"
     t.integer "date_to"
     t.string "lib_siglum"
-    t.text "marc_source", limit: 16777215
+    t.text "marc_source", size: :medium
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
     t.integer "wf_owner", default: 0
@@ -685,7 +685,7 @@ ActiveRecord::Schema.define(version: 2022_09_26_080510) do
     t.integer "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object", limit: 4294967295
+    t.text "object", size: :long
     t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
