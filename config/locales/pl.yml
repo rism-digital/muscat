@@ -341,6 +341,7 @@ pl:
   unloadable_record: "Błędy wczytania rekordu: można go odczytywać, lecz nie edytować. Skontaktuj się z administratorem."
   validation_level_error: Wystąpiły błędy. Napraw je przed zapisaniem.
   validation_level_warning: "Wystąpiły ostrzeżenia. Zapisz ponownie, by je skasować."
+  muscat_reindexing: "Muscat reindeksuje, wyniki wyszukiwania mogą być niekompletne"
   
   jobs:
     not_set: [Nie ustawiono statusu.]
@@ -390,6 +391,7 @@ pl:
   save_and_exit: Zapisz i zamknij
   cancel: Anuluj
   duplicate_confirm: Czy na pewno powielić ten rekord?
+  convert_to_print: Konwersja do szablonu wydruku
   
   # Version history
   history_date: Data
@@ -421,7 +423,15 @@ pl:
     reindex_job: "Zreindeksuj rozpoczęte zadanie (id: %{id})"
     validation_started: "Na adres %{e-mail} zostanie wysłana wiadomość z informacją o zatwierdzeniu (Validation job id: %{job})."
     folder_not_source: Można zatwierdzać tylko foldery zawierające źródła.
-
+    expires: "Expires on"
+    resetted: "Data wygaśnięcia folderu teraz to %{data}"
+    reset_expiration: "Resetuj datę wygaśnięcia"
+    delete_now: "Następujące foldery zostały usunięte:"
+    tomorrow: "Następujące foldery zostaną usunięte jutro %{data}"
+    one_week: "Następujące foldery zostaną usunięte za tydzień w dniu %{data}"
+    two_weeks: "Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{data}"
+    one_month: "Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{data}"
+    
   ### Digital objects
   digital_objects: Obiekty cyfrowe
   digital_object_new: Dodaj nowy obiektu cyfrowego

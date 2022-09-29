@@ -342,7 +342,8 @@ it:
   unloadable_record: "Questa scheda ha avuto problemi nel caricamento: può essere consultata ma non modificata. Si prega di contattare un amministratore."
   validation_level_error: "Sono presenti errori, correggerli prima di continuare"
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
-  
+  muscat_reindexing: "Muscat è in fase di reindicizzazione, i risultati della ricerca potrebbero essere incompleti"
+
   jobs:
     not_set: "[Nessuno stato]"
     ok: "Processo terminato con successo"
@@ -391,7 +392,8 @@ it:
   save_and_continue: "Salva e continua"
   save_and_exit: "Salva ed esci"
   cancel: "Annulla"
-  duplicate_confirm: "Sei sicuro di voler duplicare questo record?"  
+  duplicate_confirm: "Sei sicuro di voler duplicare questo record?"
+  convert_to_print : "Convertire in template stampa"
 
   # Version history
   history_date: "Data"
@@ -421,6 +423,16 @@ it:
     publish_job: "Job di pubblicazione iniziato (id: %{id})"
     unpublish_job: "Job di annullamento pubblicazione iniziato (id: %{id})"
     reindex_job: "Job di reindicizzazione iniziato (id: %{id})"
+    validation_started: "Verrà inviata un'e-mail a %{email} con l'indicazione che la convalida è terminata (ID lavoro di convalida: %{job})."
+    folder_not_source: "Solo le cartelle contenenti Fonti possono essere convalidate."
+    expires: "Scade il"
+    resetted: "La data di scadenza della cartella è ora %{date}"
+    reset_expiration: "Ripristinare la data di scadenza"
+    delete_now: "Le seguenti cartelle sono state eliminate:"
+    tomorrow: "Le seguenti cartelle saranno eliminate domani %{date}"
+    one_week: "Le seguenti cartelle saranno eliminate tra una settimana, il %{date}"
+    two_weeks: "Le seguenti cartelle saranno eliminate tra due settimane il %{date}"
+    one_month: "Le seguenti cartelle saranno eliminate tra un mese, il %{date}"
     
   ### Digital objects
   digital_objects: "Oggetti Digitali"

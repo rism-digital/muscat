@@ -72,6 +72,11 @@ ActiveAdmin.register Publication do
       @editor_profile = EditorConfiguration.get_default_layout @item
       @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+
+      if cannot?(:edit, @item)
+        redirect_to admin_publication_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
+      end
+
     end
 
     def index

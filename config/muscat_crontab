@@ -23,6 +23,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 # Cleanup jobs
 00  01  *  *  *   www-data PATH_TO/muscat/bin/muscat_execute_job PurgeSearchesJob production
+00  02  *  *  *   www-data PATH_TO/muscat/bin/muscat_execute_job FolderExpirationJob production
 00  03  *  *  *   www-data PATH_TO/muscat/bin/muscat_execute_job PurgeFolderItemsJob production
 00  05  *  *  *   www-data PATH_TO/muscat/bin/muscat_execute_job ExportCleanupJob production
 

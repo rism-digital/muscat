@@ -86,7 +86,9 @@
 '593':
   fields:
     a:
-      label: records.type
+      label: filter_source_type
+    b:
+      label: filter_source_content_type
   label: records.source_type
 '599':
   fields:

@@ -105,6 +105,12 @@ ActiveAdmin.register Source do
         end
       end
       
+      # We get here before ActiveAdmin::AccessDenied is thrown
+      # So we can redirect gracefully to edit
+      if cannot?(:edit, @item)
+        redirect_to admin_source_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
+      end
+
       # Try to load the MARC object.
       # This is the same trap as in show but here we
       # PREVENT opening the editor. Redirect to the show page
@@ -263,6 +269,7 @@ ActiveAdmin.register Source do
   filter :lib_siglum_with_integer,
     if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)}, :as => :lib_siglum
   
+  filter :"852c_contains", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
   filter :"599a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
 
   # This filter is the "any field" one
