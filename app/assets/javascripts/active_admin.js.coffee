@@ -62,6 +62,9 @@
 #= require jquery-ui/widgets/tabs
 #= require jquery-ui/widgets/tooltip
 
+#= require i18n
+# This is a must
+#= require i18n/translations
 
 #= require autocomplete_events
 #= require marc_editor
@@ -84,7 +87,6 @@
 #= require textarea_autogrow_ujs
 #= require marc_versioning_ujs
 #= require marc_messages_ujs.js
-#### require blacklight_range_limit
 #= require editor_hotkeys
 #= require verovio_preload
 #= require new_window_select_ujs

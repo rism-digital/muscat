@@ -112,7 +112,7 @@ gem 'progress_job', '0.0.4', git: "https://github.com/rism-ch/progress_job"
 gem 'daemons'
 
 # Add I18n in js
-gem "i18n-js"
+gem "i18n-js", '~> 3.9.2'
 gem 'colorize'
 
 gem 'exception_notification'
