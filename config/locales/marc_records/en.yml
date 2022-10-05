@@ -362,6 +362,7 @@ en:
     contact_area: Contact area
     content: Content
     content_description: Content description
+    content_type: Content type
     contents_note: Contents note
     contributor: Contributor
     control_fields: Control fields

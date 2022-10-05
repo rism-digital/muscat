@@ -362,6 +362,7 @@ fr:
     contact_area: Contact
     content: Contenu
     content_description: Description du contenu
+    content_type: Type de contenu
     contents_note: Note sur le contenu
     contributor: Collaborateur
     control_fields: Champs de contrôle

@@ -362,6 +362,7 @@ pl:
     contact_area: Obszar kontaktu
     content: Zawartość
     content_description: Opis źródła
+    content_type: Typ zawartości
     contents_note: Uwaga do zawartości
     contributor: Kontrybutor
     control_fields: Pola kontrolne

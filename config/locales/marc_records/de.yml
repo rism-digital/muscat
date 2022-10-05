@@ -362,6 +362,7 @@ de:
     contact_area: Kontakt
     content: Inhalt
     content_description: Inhaltsangaben
+    content_type: Inhaltstyp
     contents_note: Bemerkungen zu Inhaltsangaben
     contributor: Mitverfasser
     control_fields: Kontrollfelder
