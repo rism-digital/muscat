@@ -52,8 +52,8 @@ var show_viaf_actions = function () {
   }
 
   function drawRow(rowData) {
-    locale = $viaf_table.attr("locale")
-    message = {"de": "übernehmen", "en": "select", "fr": "choisir", "it": "scegliere"}[locale]
+    var locale = $viaf_table.attr("locale")
+    var message = {"de": "übernehmen", "en": "select", "fr": "choisir", "it": "scegliere"}[locale]
     var id = marc_json_get_tags(rowData, "001")[0].content;
     var tag100 = marc_json_get_tags(rowData, "100")[0]
     var tag24 = marc_json_get_tags(rowData, "024")[1]

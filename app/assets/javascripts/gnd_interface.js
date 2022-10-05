@@ -52,6 +52,8 @@ var show_gnd_actions = function () {
   }
 
   function draw_row_gnd( rowData ) {
+    var message = I18n.t("select")
+
     var label = rowData["label"];
     var link = rowData["link"];
     var description = rowData["description"];
@@ -59,8 +61,6 @@ var show_gnd_actions = function () {
     var noSelectMsg = rowData["noSelectMsg"];
     var selectRow = (noSelectMsg == "") ? '<a class="data" id="gnd_data" href="#" data-gnd=\'' + JSON.stringify( marcData ) + '\'>' + message + '</a>' : '[' + noSelectMsg + ']'
 
-    locale = $gnd_table.attr( "locale" )
-    message = I18n.t("select")
 
     var row = $( "<tr>" );
     row.append( $( "<td><a target=\"_blank\" href=\"" + link + "\">" + label + "</a></td>" ) );

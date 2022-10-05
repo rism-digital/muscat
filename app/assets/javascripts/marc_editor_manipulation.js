@@ -25,21 +25,14 @@
       // only when creating a record (i.e 100)
       if (!($.inArray(datafield.tag, protected_fields))) {
         if (/\/new#$/.test(self.location.href)) {
-          _marc_editor_update_empty_tag(datafield.tag, current_json_tag)
+          _marc_editor_overwrite_tag(datafield.tag, current_json_tag)
         }
       // All the other fields. Is the tag collapsed (no instances of a tag)?
       } else if (_marc_editor_count_tag(datafield.tag) == 0) {
         // Create a new tag from the placeholders
         _marc_editor_create_new_tag(datafield.tag, current_json_tag)
       } else {
-        // Tag exists, but has all empty subtags, update those
-        if (_marc_editor_tag_is_empty(datafield.tag)) {
-          _marc_editor_update_empty_tag(datafield.tag, current_json_tag)
-        } else {
-          // Tag exists, with already filled stuff, so create a new copy
-          // and fill that
-          _marc_editor_append_tag(datafield.tag, current_json_tag)
-        }
+        _marc_editor_overwrite_tag(datafield.tag, current_json_tag)
       }
     }
   }
@@ -55,7 +48,7 @@
     return block.find(filters).first();
   }
   
-  function _marc_editor_update_empty_tag(target, data) {
+  function _marc_editor_overwrite_tag(target, data) {
     block = $(".marc_editor_tag_block[data-tag='" + target + "']")
     var model = $("#marc_editor_panel").attr("data-editor-model");
   
