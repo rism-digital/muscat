@@ -62,19 +62,9 @@ module GND
         query
     end
 
+    def self.migrate_marc(marc)
+        gnd_person_id = nil
 
-    def self.convert(marc)
-        marc.to_internal
-
-        person = find_person(marc.get_gnd_person_id)
-        if person
-            marc.merge_person(person)
-        else
-            return "Composer not found in Muscat"
-        end
-
-        return ""
-=begin
         # replace "gnd" with "DNB" in $2
         node = marc.first_occurance("024", "2")
         node.content = "DNB" if node && node.content
@@ -98,6 +88,7 @@ module GND
                 n_subtag.destroy_yourself
             end
         end
+
         # search for the corresponding composer in Muscat and set the 100 $0 accordingly
         person = nil
         tag500 = nil
@@ -117,21 +108,29 @@ module GND
                     id = t0.content.gsub(/https:\/\/d-nb.info\/gnd\//, "")
                     id = "DNB:#{id}"
                     # retrieve the person pointing to it in Muscat (if any)
-                    person = find_person(id)
+                    gnd_person_id = id
                     break
                 end
             end
         end
+
         # remove all the 500 because they are not preserved in the WorkNode
         marc.by_tags("500").each {|t| t.destroy_yourself}
-        if person and tag100
-            tag100.add_at(MarcNode.new("work_node", "0", person.id, nil), 0)            
+
+        return gnd_person_id
+    end
+
+    def self.convert(marc)
+        person_id = migrate_marc(marc)
+
+        person = find_person(person_id)
+        if person
+            marc.merge_person(person)
         else
             return "Composer not found in Muscat"
         end
 
         return ""
-=end
     end
 
     def self.get_id(marc)
