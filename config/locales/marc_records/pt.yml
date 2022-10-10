@@ -939,6 +939,43 @@ pt:
     ERR_063_LIGATURE_PITCH: A ligature cannot have two consecutive notes with the same pitch.
     ERR_064_LIGATURE_DURATION: The duration in a ligature cannot be shorter than a semibreve.
     ERR_065_MREST_INVALID_MEASURE: A measure with a measure rest cannot include anything else.
+  rism_online:
+    manuscript: "Manuscript"
+    printed: "Printed"
+    composite: "Composite Volume"
+    apply_filters: "Apply filters"
+    error_loading_results: "Error loading results"
+    global_collection: "Global Collection"
+    home: "Home"
+    keyword_query: "Keyword query"
+    first: "First"
+    last: "Last"
+    next: "Next"
+    previous: "Previous"
+    no_results_body: "Adjust your query options, or reset all filters, to see results."
+    no_results_header: "No results were found for your search"
+    no_results_to_find: "No results would be found with this search"
+    page: "Page"
+    words_anywhere: "Words anywhere"
+    record_preview: "Record preview"
+    record_uri: "Record URI (Permalink)"
+    reset_all: "Reset all"
+    number_results: "Number of results"
+    search: "Search"
+    show_all_results: "Show all results"
+    show_results: "Show results"
+    source_contents: "Source contents"
+    update_results: "Update search results"
+    page_not_found: "The page was not found"
+    bad_query: "There was a problem with the query"
+    result_types: "Result Types"
+    source_relationships: "Source relationships"
+    holding_institutions: "Holding institutions"
+    digital_facsimiles: "Digital facsimiles"
+    publication_details: "Publication details"
+    biographical_details: "Biographical details"
+    role_and_profession: "Role and profession"
+    composer_composition: "Composer and composition"
   testingForCrowdinWorkshop:
     apple: maçã
     pear: pera
