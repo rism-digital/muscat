@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0'
+gem 'rails', '~> 6.1'
 
 # Use mysql2 as the database for Active Record
 gem 'mysql2'
@@ -101,7 +101,7 @@ end
 # Background tasks
 # https://github.com/collectiveidea/delayed_job/issues/776
 gem 'delayed_job', '~> 4.1', git: 'https://github.com/rism-ch/delayed_job'
-gem 'delayed_job_active_record', '4.1.4'
+gem 'delayed_job_active_record'#, '4.1.4'
 gem 'progress_job', '0.0.4', git: "https://github.com/rism-ch/progress_job"
 
 # Scheduled tasks cron style
