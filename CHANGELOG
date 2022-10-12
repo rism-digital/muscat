@@ -51,6 +51,23 @@ v 8.2
 * Merge pull request #1273 from rism-digital/dependabot/bundler/tzinfo-1.2.10
 * Add scraps to the scrapbook
 * Add some utility scripts
+* #1240 add help to folders
+* Mailcatcher should be commented out
+* Add FolderExpirationJob to crontab, remove unused cronotab
+* Update all the locales
+* Merge pull request #1281 from rism-digital/jenniferward-patch-1
+* Merge pull request #1282 from rism-digital/jenniferward-patch-1
+* Add "access denied" message to varions models
+* Add italian translation for folder help
+* Make the "reindexing" message localized
+* Fix #1278, handle case where notifications is NULL
+* Add expiration icon
+* Add workaround to blacklight crash
+* Add "shelfmark" filter in sources as it is il BL
+* Properly set relator_code for sources_to_institutions
+* Add installation instructions for nginx, make error message more clear
+* Re-add the logo3
+* Merge pull request #1285 from rism-digital/jenniferward-patch-2
 
 v 8.1.4
 * Fix #1271 skip the diva-added input
