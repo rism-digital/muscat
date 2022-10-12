@@ -421,7 +421,7 @@ de:
     reindex_job: "Neuindizierung begonnen (id: %{id})"
     validation_started: "Es wird eine E-Mail an %{email} gesendet, wenn die Validierung beendet ist (Validierungsjob-ID: %{job})."
     folder_not_source: "Nur Ordner, die Quellen enthalten, können validiert werden"
-    expires: "Läuft aus am"
+    expires: "Läuft ab am"
     resetted: "Das Ablaufdatum des Ordners ist jetzt %{date}"
     reset_expiration: "Verfallsdatum zurücksetzen"
     delete_now: "Die folgenden Ordner wurden gelöscht:"
@@ -748,7 +748,7 @@ de:
     got_it_explanation: "Wenn Sie auf diese Schaltfläche klicken, wird die Nachricht nicht mehr angezeigt, bis die nächste veröffentlicht wird."
     news: "Muscat Nachrichten"
     my_comments: "Meine Kommentare"
-    my_records: "Meine Aufzeichnungen"
+    my_records: "Meine Einträge"
     about_comments: "Über Kommentare"
 
   compare_versions:
