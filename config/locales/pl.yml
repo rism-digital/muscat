@@ -99,9 +99,9 @@ pl:
       comments_help: "Wpisz @, by wspomnieć określonego użytkownika, który zostanie następnie powiadomiony e-mailem."
       author_missing: Anonimowy
       title_content: "Liczba komentarzy: (%{count})"
-      referring_comments: Komentarze, w których wymienia się moje nazwisko
-      my_item_comments: Komentarze do moich zapisów
-      my_own_comments: Komentarze, które poczyniłem
+      referring_comments: Komentarze, w których mnie wspomniano
+      my_item_comments: Komentarze do moich rekordów
+      my_own_comments: Komentarze dodane przeze mnie
       errors:
         empty_text: Komentarz nie został zapisany z powodu braku tekstu.
     devise:
@@ -423,7 +423,7 @@ pl:
     reindex_job: "Zreindeksuj rozpoczęte zadanie (id: %{id})"
     validation_started: "Na adres %{e-mail} zostanie wysłana wiadomość z informacją o zatwierdzeniu (Validation job id: %{job})."
     folder_not_source: Można zatwierdzać tylko foldery zawierające źródła.
-    expires: "Expires on"
+    expires: "Wygasa"
     resetted: "Data wygaśnięcia folderu teraz to %{data}"
     reset_expiration: "Resetuj datę wygaśnięcia"
     delete_now: "Następujące foldery zostały usunięte:"
@@ -751,7 +751,7 @@ pl:
     got_it_explanation: Kliknięcie tego przycisku ukryje wiadomosci do momentu pojawianie się nowych.
     news: Muscat News
     my_comments: "Moje komentarze"
-    my_records: "Moje zapiski"
+    my_records: "Moje rekordy"
     about_comments: "O komentarzach"
   
   compare_versions:

@@ -320,7 +320,7 @@ class MarcNode
   # get the master subfield for a tag
   def get_master_foreign_subfield 
     masters = @children.reverse.select { |c| @marc_configuration.is_foreign?(self.tag, c.tag) and !@marc_configuration.get_foreign_class(self.tag, c.tag).match(/^\^/) }
-    raise "only one master subfield is allowed" if masters.size > 1
+    raise "only one master subfield is allowed: #{self.tag} #{masters.to_s}" if masters.size > 1
     return masters.size > 0 ? masters[0] : nil
   end
   
