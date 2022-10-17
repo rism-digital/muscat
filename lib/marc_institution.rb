@@ -10,7 +10,11 @@ class MarcInstitution < Marc
 
     if node = first_occurance("110", "a")
       if node.content
-        name = node.content.truncate(128)
+        name = node.content
+        if node = first_occurance("110", "b")
+          name += " #{node.content}" if node.content
+        end
+        name = name.truncate(255)
       end
     end
     
@@ -21,6 +25,21 @@ class MarcInstitution < Marc
     end
     [name, place]
   end
+
+  def get_corporate_name_and_subordinate_unit
+    corporate_name = ""
+    subordinate_unit = ""
+
+    if node = first_occurance("110", "a")
+      corporate_name = node.content.truncate(255) if node.content
+    end
+
+    if node = first_occurance("110", "b")
+      subordinate_unit = node.content.truncate(255) if node.content
+    end
+    [corporate_name, subordinate_unit]
+  end
+
   def get_address_and_url
     address = ""
     url = ""

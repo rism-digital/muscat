@@ -657,9 +657,11 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: corporate_name
     - - b
-      - :occurrences: "*"
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: subordinate_unit
     - - c
       - :occurrences: "*"
     - - g

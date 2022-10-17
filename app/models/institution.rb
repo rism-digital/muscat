@@ -196,6 +196,7 @@ class Institution < ApplicationRecord
 
     # std_title
     self.name, self.place = marc.get_name_and_place
+    self.corporate_name, self.subordinate_unit = marc.get_corporate_name_and_subordinate_unit
     self.address, self.url = marc.get_address_and_url
     self.siglum = marc.get_siglum
     self.marc_source = self.marc.to_marc

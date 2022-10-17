@@ -144,9 +144,13 @@
         :foreign_field: id
         :no_show: true
     - - a
-      - :occurrences: "1"
+      - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: corporate_name
+    - - b
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: subordinate_unit
   "550":
     :master: a
     :indicator: "##"

@@ -164,6 +164,8 @@ ActiveRecord::Schema.define(version: 2021_05_14_043225) do
     t.text "alternates"
     t.text "notes"
     t.integer "lock_version", default: 0, null: false
+    t.string "corporate_name"
+    t.string "subordinate_unit"
     t.index ["siglum"], name: "index_institutions_on_siglum"
     t.index ["wf_stage"], name: "index_institutions_on_wf_stage"
   end
