@@ -180,6 +180,9 @@ class MarcSource < Marc
     if node = first_occurance(ms_title_field, "a")
       ms_title = node.content
     end
+    if node = first_occurance(ms_title_field, "b")
+      ms_title += " #{node.content}" if node.content
+    end
 
     ms_title_d = DictionaryOrder::normalize(ms_title)
    
