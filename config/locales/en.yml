@@ -340,7 +340,8 @@ en:
   unloadable_record: "This record experienced loading errors: it can be viewed but not edited. Please contact an administrator."
   validation_level_error: "There are errors, please solve before saving"
   validation_level_warning: "There are warnings, save again to override"
-  
+  muscat_reindexing: "Muscat is reindexing, search results may be incomplete"
+
   jobs:
     not_set: "[No status set]"
     ok: "Job ended successfully"
@@ -420,6 +421,14 @@ en:
     reindex_job: "Reindex job started (id: %{id})"
     validation_started: "An email will be sent to %{email} with the validation has ended (Validation job id: %{job})."
     folder_not_source: "Only folders containing Sources can be validated"
+    expires: "Expires on"
+    resetted: "Folder expiration date now is %{date}"
+    reset_expiration: "Reset expiration date"
+    delete_now: "The following folders were deleted:"
+    tomorrow: "The following folders will be deleted tomorrow %{date}"
+    one_week: "The following folders will be deleted in one week on %{date}"
+    two_weeks: "The following folders will be deleted in two weeks on %{date}"
+    one_month: "The following folders will be deleted in one month on %{date}"
 
   ### Digital objects
   digital_objects: "Digital Objects"
@@ -742,7 +751,6 @@ en:
     my_records: "My records"
     about_comments: "About comments"
 
-  
   compare_versions:
     time_frame: Time frame
     rule: Rule

@@ -1,0 +1,11 @@
+<p>
+<b><%= I18n.t("folders." + type.to_s, date: @dates[type]) %></b>
+<table>
+    <% folder_list.each do |f, fid| %>
+    <tr>
+        <td><%= f %> </td>
+        <td><%=link_to("#{I18n.t :"folders.reset_expiration"}", reset_expiration_admin_folder_url(fid))%></td>
+    </tr>
+    <%end%>
+</table>
+</p>

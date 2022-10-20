@@ -1,0 +1,1 @@
+MuscatCheckupReportJob.new.perform

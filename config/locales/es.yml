@@ -341,6 +341,7 @@ es:
   unloadable_record: "Este registro presenta errores de carga: puede ser leido pero no editado. Por favor, póngase en contacto con un administrador."
   validation_level_error: "El registro tiene errores. Por favor, resuélvalos antes de guardar."
   validation_level_warning: "El registro presenta advertencias. Si desea ignorarlas, pulse nuevamente en guardar."
+  muscat_reindexing: "Muscat está reindexando, los resultados de la búsqueda pueden estar incompletos"
   
   jobs:
     not_set: "[Estado aún no disponible]"
@@ -388,6 +389,7 @@ es:
   save_and_exit: "Guardar y cerrar"
   cancel: "Cancelar"
   duplicate_confirm: "¿Está seguro de que desea duplicar este registro?"
+  convert_to_print: "Convertir en plantilla de impresión"
   
   # Version history
   history_date: "Fecha"
@@ -417,6 +419,16 @@ es:
     publish_job: "El Job de publicación comenzó (id: %{id})"
     unpublish_job: "El Job de cancelación de la publicación comenzó (id: %{id})"
     reindex_job: "El Job de reindexación comenzó (id: %{id})"
+    validation_started: "Se enviará un correo electrónico a %{email} con la validación ha terminado (ID de trabajo de validación: %{job})"
+    folder_not_source: "Sólo se pueden validar las carpetas que contienen Fuentes"
+    expires: "Expira el"
+    resetted: "La fecha de caducidad de la carpeta es ahora %{date}"
+    reset_expiration: "Restablecer la fecha de caducidad"
+    delete_now: "Se han eliminado las siguientes carpetas:"
+    tomorrow: "Las siguientes carpetas se borrarán mañana %{date}"
+    one_week: "Las siguientes carpetas se borrarán dentro de una semana en %{date}"
+    two_weeks: "Las siguientes carpetas se borrarán dentro de dos semanas en %{date}"
+    one_month: "Las siguientes carpetas se eliminarán en un mes en %{date}"
 
   ### Digital objects
   digital_objects: "Objetos digitales"

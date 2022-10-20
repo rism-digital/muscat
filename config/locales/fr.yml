@@ -341,7 +341,8 @@ fr:
   unloadable_record: "Ce titre présente un problème: il peut être visualisé mais pas édité. Merci de contacter l'administrateur."
   validation_level_error: "Il y a des erreurs à corriger avant d'enregistrer."
   validation_level_warning: "Il y a des avertissements. Enregistrer à nouveau pour ignorer."
-  
+  muscat_reindexing: "Muscat réindexe, les résultats de recherche peuvent être incomplets."
+
   jobs:
     not_set: "[sans statut]"
     ok: "Tâche accomplie"
@@ -388,7 +389,8 @@ fr:
   save_and_continue: "Enregistrer et continuer"
   save_and_exit: "Enregistrer et terminer"
   cancel: "Annuler"
-  duplicate_confirm: "Est-vous certain de vouloir dupliquer ce titre?"  
+  duplicate_confirm: "Est-vous certain de vouloir dupliquer ce titre?"
+  convert_to_print: "Convertir en modèle d'impression"
 
   # Version history
   history_date: "Date"
@@ -418,7 +420,17 @@ fr:
     publish_job: "Début du Job de publication (id: %{id})"
     unpublish_job: "Début du Job d'annulation de la publication (id: %{id})"
     reindex_job: "Réindexation Job commencé (id: %{id})"
-  
+    validation_started: "Un courriel sera envoyé à %{email} avec la fin de la validation (Validation job id : %{job})."
+    folder_not_source: "Seuls les dossiers contenant des Sources peuvent être validés"
+    expires: "Expire le"
+    resetted: "La date d'expiration du dossier est désormais fixée à %{date}"
+    reset_expiration: "Réinitialiser la date d'expiration"
+    delete_now: "Les dossiers suivants ont été supprimés :"
+    tomorrow: "Les dossiers suivants seront supprimés demain %{date}"
+    one_week: "Les dossiers suivants seront supprimés dans une semaine, le %{date}"
+    two_weeks: "Les dossiers suivants seront supprimés dans deux semaines à la date du %{date}"
+    one_month: "Les dossiers suivants seront supprimés dans un mois, le %{date}"
+
   ### Digital objects
   digital_objects: "Objet numériques"
   digital_object_new: "Ajouter une nouvelle objet numérique"

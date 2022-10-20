@@ -279,46 +279,161 @@ Do reindex in 1 record batches, useful if reindex crashes to see in which one (v
 
  rake sunspot:reindex[1]
 
-==== To install on Mac OS X Lion
+== Passenger standalone and Nginx
 
-With MySQL 64 bit binaries, add:
+It is possible to run muscat with rvm/rbenv, passanger standalone and nginx as a fronted.
 
- export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
+First, create a dedicated user for Muscat:
 
+  sudo adduser muscat
 
-== Basic Apache configuration
+Make then sure the user can not login via ssh. Add it temporarly to sudoers for the next step.
 
-Example Apache configuration:
+Install rvm following the instructions here: https://rvm.io/rvm/install. If you are behind a proxy you need to edit .curlrc for muscat user and add:
 
- # create /usr/local/etc/apache/Includes/default.conf
- # and add default site:
- <VirtualHost *:80>
-         # ServerName www..org
-         DocumentRoot /var/rails/rism-ch/public
-         <Directory "/var/rails/rism-ch/public">
-                 Options All -Indexes +ExecCGI -Includes +MultiViewsny
-                 Require all granted
-         </Directory>
-         RailsEnv production
- </VirtualHost>
+  proxy = the-proxy.com:1234
 
-Double check permissions in the muscat installation. Also make sure DocumentRoot and Directory point to public/ in the muscat installation location.
+Then proceed with the installation and add the needed ruby version (here 2.7.5)
 
-Start Apache and the related services in production mode (see below).
+  rvm install 2.7.5
+  rvm gemset create rails
+  rvm use 2.7.5
+  rvm --default use 2.7.5@rails
 
-== Apache-itk option
+You can disable muscat from sudoers after this step.
+Make sure the gem form passenger is in the Gemfile:
+  
+  gem 'passenger'
 
-Alternatively, you can take advantatge of the Apache itk module, that simplifies not only having more than one Muscat in a single server using virtual hosts, but also the whole file permissions and ownership altogether.  This Apache module (http://mpm-itk.sesse.net/) makes the Apache web server to run as a plain user, so it is the owner of the files, and it is no longer necessary file ownership via chown or users via sudo.  Apache-itk is an official Debian and Ubuntu package, so:
+Edit `/etc/systemd/system/muscat.service` for the application startup
 
- apt install libapache2-mpm-itk
+  [Unit]
+  Description=Muscat
+  After=network-online.target
 
-And add the following stanza in the apache configuration file, for example just before the DocumentRoot declaration:
+  [Service]
+  Restart=always
+  RestartSec=5
+  TimeoutSec=5
+  User=muscat
+  Group=muscat
+  WorkingDirectory=/INSTALLATION/DIR/muscat
+  ExecStart=/home/muscat/.rvm/bin/rvm 2.7.5@rails do bundle exec passenger start
 
-    <IfModule mpm_itk_module>
-       AssignUserId muscat_linux_user_name muscat_linux_group
-    </IfModule>
+  [Install]
+  WantedBy=multi-user.target
 
-where +muscat_linux_user_name+ and +muscat_linux_group+ are the first two fields of the output of the id shell command.
+Change `/INSTALLATION/DIR/` to the actual installation dir.
+Then Edit `Passengerfile.json` for the basic configuration
+
+  {
+    "environment": "production",
+    "port": 8081,
+    // Passenger is managed by systemd
+    "daemonize": false,
+  }
+
+here is a sample nginx configuration:
+
+  # These are some "magic" Nginx configuration options that aid in making
+  # WebSockets work properly with Passenger Standalone. Please learn more
+  # at http://nginx.org/en/docs/http/websocket.html
+  map $http_upgrade $connection_upgrade {
+      default upgrade;
+      ''      close;
+  }
+
+  // Same as Passenger.json
+  upstream muscat {
+      server localhost:8081;
+  }
+
+  # Virtual host configuration for muscat.
+  server {
+      server_name         www.muscat.com;
+      root                /var/www/muscat-dir-for-nginx;
+
+      listen 443 ssl http2;
+      listen [::]:443 ssl http2;
+
+      keepalive_timeout 70;
+
+      ssl_certificate		    /CERTS/fullchain.pem;
+      ssl_certificate_key		/CERTS/privkey.pem;
+      include               ssl_include;
+
+      # ignore all location requests that start with a dot.
+      # Return 404 to make it look like it's not found (otherwise
+      # a 403 would say it is there, you just can't access it)
+      location ~ /\. {
+          deny all;
+          access_log off;
+          return 404;
+      }
+
+      if (-f /etc/nginx/muscat-test.unavailable) {
+          return 503;
+      }
+
+      error_page 503 @custom503;
+      location @custom503 {
+          root    /var/www/muscat-dir-for-nginx/www;
+          rewrite ^(.*)$ /nginx_errors/503.html break;
+          internal;
+      }
+
+      location / {
+          proxy_pass http://muscat;
+
+          proxy_http_version 1.1;
+          proxy_set_header        Host                $http_host;
+          proxy_set_header        Upgrade             $http_upgrade;
+          proxy_set_header        Connection          $connection_upgrade;
+          proxy_set_header        X-Real-IP           $remote_addr;
+          proxy_set_header        X-Forwarded-For     $proxy_add_x_forwarded_for;
+          proxy_set_header        X-Forwarded-Proto   $scheme;
+          proxy_set_header        X-Scheme            $scheme;
+
+          proxy_buffering off;
+      }
+  }
+
+  server {
+      server_name         muscat.com;
+      listen              80;
+      listen              [::]:80;
+
+      # Since we're just redirecting from this configuration, we don't need to count it in the
+      # access logs.
+      access_log off;
+
+      # Ensure any challenges from Let's Encrypt are served.
+      # directory on the server for this.
+      location ~ /\.well-known/acme-challenge {
+          root /var/www/muscat-dir-for-nginx/www;
+      }
+
+      # Redirect all other traffic to the muscat instance.
+      location / {
+          return      301 https://muscat.com/$request_uri;
+      }
+  }
+
+Change `muscat.com` to the actual address, and create muscat-dir-for-nginx and muscat-dir-for-nginx/www
+Create the file `/etc/nginx/ssl_include` for the SSL configuration:
+
+  add_header Strict-Transport-Security "max-age=63072000";
+  ssl_stapling                on;
+  ssl_stapling_verify         on;
+  ssl_session_tickets         on;
+  ssl_session_timeout         24h;
+  ssl_session_cache           shared:SSL:100m;
+  ssl_session_ticket_key      /etc/nginx/ssl/ticket.key;
+  ssl_dhparam                 /etc/nginx/ssl/dhparam.pem;
+  ssl_prefer_server_ciphers   on;
+  ssl_protocols               TLSv1.2 TLSv1.3;
+  ssl_ciphers                 ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+  resolver                    8.8.8.8 [2001:4860:4860::8888] 1.1.1.1 [2606:4700:4700::1111] 8.8.4.4 1.0.0.1;
 
 == Production Installation and daemons
   
@@ -345,7 +460,6 @@ It is also good to block access to Solr:
 Also make sure that if there is a proxy, it is configured in +config/initializers/recaptcha.rb+:
 
  config.proxy = 'http://myproxy.com.au:8080'
-
 
 === Crontab installation
 
@@ -433,3 +547,37 @@ There is an alternative Single Sign On (SSO) authentication for corporate enviro
 1. Muscat must be restarted if any configuration is changed.
 
 The SSO authentication method is added as convenience to Muscat to serve some external users, but it is not supported by upstream developers. If you need support, please contact its authors: https://coditramuntana.com/en/contact .
+
+== Basic Apache configuration (deprecated)
+
+Example Apache configuration:
+
+ # create /usr/local/etc/apache/Includes/default.conf
+ # and add default site:
+ <VirtualHost *:80>
+         # ServerName www..org
+         DocumentRoot /var/rails/rism-ch/public
+         <Directory "/var/rails/rism-ch/public">
+                 Options All -Indexes +ExecCGI -Includes +MultiViewsny
+                 Require all granted
+         </Directory>
+         RailsEnv production
+ </VirtualHost>
+
+Double check permissions in the muscat installation. Also make sure DocumentRoot and Directory point to public/ in the muscat installation location.
+
+Start Apache and the related services in production mode (see below).
+
+== Apache-itk option
+
+Alternatively, you can take advantatge of the Apache itk module, that simplifies not only having more than one Muscat in a single server using virtual hosts, but also the whole file permissions and ownership altogether.  This Apache module (http://mpm-itk.sesse.net/) makes the Apache web server to run as a plain user, so it is the owner of the files, and it is no longer necessary file ownership via chown or users via sudo.  Apache-itk is an official Debian and Ubuntu package, so:
+
+ apt install libapache2-mpm-itk
+
+And add the following stanza in the apache configuration file, for example just before the DocumentRoot declaration:
+
+    <IfModule mpm_itk_module>
+       AssignUserId muscat_linux_user_name muscat_linux_group
+    </IfModule>
+
+where +muscat_linux_user_name+ and +muscat_linux_group+ are the first two fields of the output of the id shell command.

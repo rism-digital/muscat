@@ -10,9 +10,15 @@
 		validate_class = ""
 	end
 
-  if params.include?("templates") && @item.respond_to?(:get_record_type)
+  values = []
 
-    values = params["templates"].keys.include?(@item.get_record_type.to_s) ? params["templates"][@item.get_record_type.to_s] : []
+  if params.include?("templates") && @item.respond_to?(:get_record_type)
+    if params["templates"].keys.include?(@item.get_record_type.to_s) 
+      values = params["templates"][@item.get_record_type.to_s]
+    else
+      # try to get the defaults here
+      values = params["values"] if params.include?("values")
+    end
   else
     values = params["values"]
   end

@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :store_user_location!, if: :storable_location?
   before_action :set_locale, :set_paper_trail_whodunnit, :auth_user, :prepare_exception_notifier, :test_version_warning, :test_muscat_reindexing
 
@@ -51,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def test_muscat_reindexing
-    flash[:notice] = "Muscat in reindexing, search results may be incomplete" if ::MuscatProcess.is_reindexing?
+    flash[:notice] = I18n.t(:muscat_reindexing) if ::MuscatProcess.is_reindexing?
   end
 
   # Code for rescueing lock conflicts errors
@@ -118,6 +119,13 @@ class ApplicationController < ActionController::Base
     I18n.locale = session[:locale]
   end 
   
+  def configure_permitted_parameters
+    added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit :sign_in, keys: [:login, :password]
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+  end
+
   def restore_search_filters  
   end
   

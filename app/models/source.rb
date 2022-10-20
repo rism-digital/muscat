@@ -53,7 +53,10 @@ class Source < ApplicationRecord
   has_many :child_sources, {class_name: "Source"}
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
-  has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
+  #has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
+  has_many :source_institution_relations
+  has_many :institutions, through: :source_institution_relations
+
   #has_and_belongs_to_many :people, join_table: "sources_to_people"
   has_many :source_person_relations
   has_many :people, through: :source_person_relations
@@ -623,6 +626,7 @@ class Source < ApplicationRecord
   end
 
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"852c", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593b_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"599a", proc{ |v| } do |parent| parent.table[:id] end
