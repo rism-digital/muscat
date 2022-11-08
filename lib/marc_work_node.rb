@@ -1,6 +1,6 @@
 class MarcWorkNode < Marc
-  def initialize(source = nil)
-    super("work_node", source)
+  def initialize(source = nil, model = "work_node")
+    super(model, source)
   end
   
   def get_title
@@ -42,24 +42,14 @@ class MarcWorkNode < Marc
     return person
   end
 
+  def merge_person(person)
+    tag100 = first_occurance("100")
+    tag100.add_at(MarcNode.new("work_node", "0", person.id, nil), 0)
+  end
+
   def to_external(updated_at = nil, versions = nil, holdings = false)
-    # cataloguing agency
-    _003_tag = first_occurance("003")
-    if !_003_tag
-      agency = MarcNode.new(@model, "003", RISM::AGENCY, "")
-      @root.children.insert(get_insert_position("003"), agency)
-    end
-  
-    if updated_at
-      last_transcation = updated_at.strftime("%Y%m%d%H%M%S") + ".0"
-      # 005 should not be there, if it is avoid duplicates
-      _005_tag = first_occurance("005")
-      if !_005_tag
-        @root.children.insert(get_insert_position("003"),
-            MarcNode.new(@model, "005", last_transcation, nil))
-      end
-    end
-    by_tags("667").each {|t| t.destroy_yourself}
+    super(updated_at, nil, holdings)
+    # nothing specific to do - this is used ony for deprecating works
   end
 
 end

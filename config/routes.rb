@@ -101,7 +101,6 @@ Rails.application.routes.draw do
   get 'sru/publications' => 'sru#service'
   get 'sru/catalogues' => 'sru#service'
   get 'sru/works' => 'sru#service'
-  get 'sru/work_nodes' => 'sru#service'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
