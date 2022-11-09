@@ -623,7 +623,7 @@
             - Print
           theoretica_edition_content:
             - Print
-          composite:
+          composite_volume:
             - Composite
         editor_partial: subfield_select
     - - b
@@ -633,6 +633,20 @@
         - "Treatise"
         - "Other"
         editor_partial: subfield_select
+        templates:
+          composite_volume:
+          - "Notated music"
+          - "Libretto"
+          - "Treatise"
+          - "Mixed"
+          edition:
+          - "Notated music"
+          - "Libretto"
+          - "Treatise"
+          edition_content:
+          - "Notated music"
+          - "Libretto"
+          - "Treatise"
 "594":
   layout:
     fields:

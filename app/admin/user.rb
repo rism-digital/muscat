@@ -1,7 +1,9 @@
 ActiveAdmin.register User do
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ can? :manage, User }
   
-  permit_params :preference_wf_stage, :email, :password, :password_confirmation, :name, :notifications, :notification_type, workgroup_ids: [], role_ids: []
+  permit_params :preference_wf_stage, :email, :password, :password_confirmation, 
+                :username, :name, :notifications, :notification_type, :notification_email, 
+                :disabled, workgroup_ids: [], role_ids: []
 
   # Remove all action items
   config.clear_action_items!
@@ -35,6 +37,7 @@ ActiveAdmin.register User do
   ## Index ##
   ###########
 
+  filter :username
   filter :name
   filter :email
   filter :current_sign_in_at
@@ -44,6 +47,7 @@ ActiveAdmin.register User do
   index :download_links => false do
     selectable_column
     id_column
+    column :username
     column :name
     column :email
     column I18n.t(:workgroups) do |user|
@@ -60,6 +64,11 @@ ActiveAdmin.register User do
     column :active do |user|
       user.active?
     end
+
+    column :disabled do |user|
+      user.disabled?
+    end
+
     actions
   end
   
@@ -77,6 +86,7 @@ ActiveAdmin.register User do
 
   show do
     attributes_table do
+      row :username
       row :name
       row :email
       row I18n.t(:workgroups) do |n|
@@ -92,8 +102,12 @@ ActiveAdmin.register User do
         if !r.notification_type
           I18n.t('notifications.none')
         else
-          I18n.t('notifications.' + current_user.notification_type) + " (#{current_user.notification_type})"
+          I18n.t('notifications.' + r.notification_type) + " (#{r.notification_type})"
         end
+      end
+      if can? :manage, User
+        row :notification_email
+        row :disabled
       end
       row :sign_in_count
       row :created_at

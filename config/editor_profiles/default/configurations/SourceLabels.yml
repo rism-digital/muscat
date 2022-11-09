@@ -326,7 +326,9 @@
     '8':
       label: records.material_group
     a:
-      label: records.type
+      label: records.source_type
+    b:
+      label: records.content_type
   label: records.source_type
 '594':
   fields:

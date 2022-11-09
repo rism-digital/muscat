@@ -105,6 +105,12 @@ ActiveAdmin.register Source do
         end
       end
       
+      # We get here before ActiveAdmin::AccessDenied is thrown
+      # So we can redirect gracefully to edit
+      if cannot?(:edit, @item)
+        redirect_to admin_source_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
+      end
+
       # Try to load the MARC object.
       # This is the same trap as in show but here we
       # PREVENT opening the editor. Redirect to the show page
@@ -124,6 +130,7 @@ ActiveAdmin.register Source do
 
       # Get the terms for 593a_filter, the "source type"
       @source_types = Source.get_terms("593a_filter_sm")
+      @source_types_b = Source.get_terms("593b_filter_sm")
       @digital_image_types = Source.get_terms("856x_sm")
 
       # Grab a default editor profile
@@ -262,6 +269,7 @@ ActiveAdmin.register Source do
   filter :lib_siglum_with_integer,
     if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)}, :as => :lib_siglum
   
+  filter :"852c_contains", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
   filter :"599a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
 
   # This filter is the "any field" one
@@ -286,6 +294,9 @@ ActiveAdmin.register Source do
   filter :"593a_filter_with_integer", :label => proc{I18n.t(:filter_source_type)}, as: :select, 
   collection: proc{@source_types.sort.collect {|k| [k.camelize, "593a_filter:#{k}"]}}
   
+  filter :"593b_filter_with_integer", :label => proc{I18n.t(:filter_source_content_type)}, as: :select, 
+  collection: proc{@source_types_b.sort.collect {|k| [k.camelize, "593b_filter:#{k}"]}}
+
   filter :record_type_select_with_integer, as: :select, 
   collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
 	if: proc { !is_selection_mode? }, :label => proc {I18n.t(:filter_record_type)}

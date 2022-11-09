@@ -362,6 +362,7 @@ pl:
     contact_area: Obszar kontaktu
     content: Zawartość
     content_description: Opis źródła
+    content_type: Typ zawartości
     contents_note: Uwaga do zawartości
     contributor: Kontrybutor
     control_fields: Pola kontrolne
@@ -913,7 +914,7 @@ pl:
     ERR_038_TIE_OPEN: Łącznik „+” należy poprzedzić nutą.
     ERR_039_TIE_NO_NOTE: Łącznik „+” należy poprzedzić nutą.
     ERR_040_HIERARCHY_INVALID: Nie można zinterpretować kolejności elementów (%{value}).
-    ERR_041_NESTING_INVALID: Zagnieżdżenie za pomocą tagów '%{value}' jest nieprawidłowe.
+    ERR_041_NESTING_INVALID: "Zamknij nawias grupy wewnętrznej za pomocą '%{value}' przed zamknięciem nawiasów grupy zewnętrznej."
     ERR_042_CLEF_INCOMPLETE: Zmiana klucza jest nieprawidłowa.
     ERR_043_CLEF_INVALID_2ND: Drugim znakiem w kluczu musi być „+” lub „-”.
     ERR_044_CLEF_MENS: Nie mieszaj kluczy notacji menzuralnej z kluczami notacji współczesnej.
@@ -931,13 +932,50 @@ pl:
     ERR_056_TIMESIG_CHANGE: Metrum można zmienić tylko raz w takcie.
     ERR_057_MENSUR_CHANGE: Menzurę można zmienić tylko raz w takcie.
     ERR_058_FERMATA_MREST: "Nawiasy fermaty mogą zawierać tylko jedną nutę lub pauzę'%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Nuty z podwójnymi kropkami w notacji menzuralnej są nieprawidłowe."
+    ERR_059_DOUBLE_DOTS_MENS: "Nie można użyć nut z dwoma kropkami w notacji menzuralnej."
     ERR_060_CLEF_MISSING: Brakuje klucza.
-    ERR_061_LIGATURE_NOTE_BEFORE: To indicate a ligature, a '+' must be preceded by a note.
+    ERR_061_LIGATURE_NOTE_BEFORE: Dla oznaczenia ligatury przed nutą następuje znak „+”.
     ERR_062_LIGATURE_NOTE_AFTER: Dla oznaczenia ligatury po nucie następuje znak „+”.
     ERR_063_LIGATURE_PITCH: Ligatura nie może składać się z dwóch następujących po sobie nut o takiej samej wysokości.
     ERR_064_LIGATURE_DURATION: Czas trwania ligatury nie może być krótszy niż semibrevis.
     ERR_065_MREST_INVALID_MEASURE: Miara taktu pustego nie może zawierać innych znaków.
+  rism_online:
+    manuscript: "Manuscript"
+    printed: "Printed"
+    composite: "Composite Volume"
+    apply_filters: "Apply filters"
+    error_loading_results: "Error loading results"
+    global_collection: "Global Collection"
+    home: "Home"
+    keyword_query: "Keyword query"
+    first: "First"
+    last: "Last"
+    next: "Next"
+    previous: "Previous"
+    no_results_body: "Adjust your query options, or reset all filters, to see results."
+    no_results_header: "No results were found for your search"
+    no_results_to_find: "No results would be found with this search"
+    page: "Page"
+    words_anywhere: "Words anywhere"
+    record_preview: "Record preview"
+    record_uri: "Record URI (Permalink)"
+    reset_all: "Reset all"
+    number_results: "Number of results"
+    search: "Search"
+    show_all_results: "Show all results"
+    show_results: "Show results"
+    source_contents: "Source contents"
+    update_results: "Update search results"
+    page_not_found: "The page was not found"
+    bad_query: "There was a problem with the query"
+    result_types: "Result Types"
+    source_relationships: "Source relationships"
+    holding_institutions: "Holding institutions"
+    digital_facsimiles: "Digital facsimiles"
+    publication_details: "Publication details"
+    biographical_details: "Biographical details"
+    role_and_profession: "Role and profession"
+    composer_composition: "Composer and composition"
   testingForCrowdinWorkshop:
     apple: jabłko
     pear: gruszka

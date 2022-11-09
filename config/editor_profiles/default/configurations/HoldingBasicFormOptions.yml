@@ -51,7 +51,7 @@
   layout: 
     fields: 
     - - a
-      - values: 
+      - values:
         - Print
         - Print with autograph annotations
         - Print with non-autograph annotations

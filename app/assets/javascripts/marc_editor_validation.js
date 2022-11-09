@@ -132,7 +132,7 @@ function _marc_validate_unhighlight( element, errorClass, validClass ) {
 	// class from the sidebar group
 	var panel = $(element).parents(".tab_panel");
 	var item_name = panel.attr("name");
-	var menu_item = $("a[data-scroll-target=" + item_name+ "]");
+	var menu_item = $("a[data-scroll-target='" + item_name+ "']");
 	var errors = menu_item.data("error-counter");
 	if (errors != undefined) {
 		
@@ -416,6 +416,12 @@ function marc_editor_init_validation(form, validation_conf) {
 				}
 			}
 			
+			// Lastly, skip any inputs created by DIVA
+			// which is shown in the Holdings editor
+			if ($(element).hasClass("diva-input")) {
+				return true;
+			}
+
 			return false;
 		},
 		highlight: function( element, errorClass, validClass ) {

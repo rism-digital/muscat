@@ -97,6 +97,9 @@ pt:
       comments_help: "Digite @ para mencionar um usuário específico, que então receberá uma notificação por e-mail."
       author_missing: "Anônimo"
       title_content: "Comentários (%{count})"
+      referring_comments: Comentários onde sou nomeado
+      my_item_comments: Comentários sobre os meus registos
+      my_own_comments: Comentários que fiz
       errors:
         empty_text: "O comentário não foi salvo, o texto estava vazio."
     devise:
@@ -334,6 +337,7 @@ pt:
   unloadable_record: "Este registro teve problemas de carregamento: pode ser visto, mas não editado. Por favor, entre em contato com um administrador."
   validation_level_error: "Há erros, por favor resolva antes de salvar."
   validation_level_warning: "Estes são avisos, salve novamente para ignorar."
+  muscat_reindexing: "Muscat está a reindexar, os resultados da pesquisa podem estar incompletos"
   
   jobs:
     not_set: "[Nenhum estado determinado]"
@@ -382,6 +386,7 @@ pt:
   save_and_exit: "Salvar e Fechar"
   cancel: "Cancelar"
   duplicate_confirm: "Tem certeza de que quer duplicar este registro?"
+  convert_to_print: "Converter para modelo de impressão"
   
   # Version history
   history_date: "Data"
@@ -411,6 +416,16 @@ pt:
     publish_job: "Início do Job de publicação (id: %{id})"
     unpublish_job: "Início do Job de cancelamento da publicação (id: %{id})"
     reindex_job: "Início do trabalho de reindexação (id: %{id})"
+    validação_iniciada: "Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})"
+    folder_not_source: "Apenas as pastas contendo Fontes podem ser validadas"
+    expires: "Expira em"
+    resetted: "Data de expiração da pasta agora é %{data}"
+    reset_expiration: "Repor data de expiração"
+    delete_now: "As seguintes pastas foram eliminadas:"
+    tomorrow: "As seguintes pastas serão eliminadas amanhã %{data}"
+    one_week: "As seguintes pastas serão apagadas dentro de uma semana em %{data}"
+    two_weeks: "As seguintes pastas serão apagadas dentro de duas semanas em %{data}"
+    one_month: "As seguintes pastas serão apagadas dentro de um mês em %{data}"
 
   ### Digital objects
   digital_objects: "Objetos Digitais"
@@ -491,7 +506,6 @@ pt:
   filter_provenance: "Local de Publicação"
   filter_record_type: "Tipo de modelo"
   filter_record_type_short: "Tipo"
-  filter_source_type: "Tipo de fonte"
   filter_publisher: "Editor"
   filter_journal: "Título do Periódico"
   filter_id: "ID RISM"
@@ -503,6 +517,7 @@ pt:
   filter_source: "Fonte"
   filter_sources: "Fontes"
   filter_source_type: "Tipo de fonte"
+  filter_source_content_type: "Tipo de conteúdo"
   filter_std_title: "Título uniforme"
   filter_subject: "Assunto"
   filter_subsequent_entries: "Registros subsequentes"
@@ -729,6 +744,9 @@ pt:
     got_it: "Entendido!"
     got_it_explanation: "Clicando neste botão, as notícias serão silenciadas até que a próxima seja liberada.."
     news: "Muscat Notícias"
+    my_comments: "Os meus comentários"
+    my_records: "Os meus registos"
+    about_comments: "Sobre os comentários"
 
   compare_versions:
     time_frame: Período de tempo

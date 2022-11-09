@@ -261,6 +261,7 @@ class MarcNode
             # If this is a marc auth file suppress scaffolding
             # Removed for now, it seems it does not degrade performance too much
             #self.foreign_object.suppress_scaffold_marc if self.foreign_object.respond_to?(:suppress_scaffold_marc)
+
             unless self.foreign_object.save!
               puts "Foreign object could not be saved, possible duplicate?" # Try again not using master field lookup"
               # NOTE: THe code above is commented to allow duplicate entries in people/institutions for RISM A/I
@@ -319,7 +320,7 @@ class MarcNode
   # get the master subfield for a tag
   def get_master_foreign_subfield 
     masters = @children.reverse.select { |c| @marc_configuration.is_foreign?(self.tag, c.tag) and !@marc_configuration.get_foreign_class(self.tag, c.tag).match(/^\^/) }
-    raise "only one master subfield is allowed" if masters.size > 1
+    raise "only one master subfield is allowed: #{self.tag} #{masters.to_s}" if masters.size > 1
     return masters.size > 0 ? masters[0] : nil
   end
   
@@ -450,6 +451,8 @@ class MarcNode
           ind0 = indicator[0,1]
           ind1 = indicator[1,1]
         end
+        ind0 = " " if !ind0
+        ind1 = " " if !ind1
     		out += "\t\t<marc:datafield tag=\"#{@tag}\" ind1=\"#{ind0.gsub(/[#\\]/," ")}\" ind2=\"#{ind1.gsub(/[#\\]/," ")}\">\n"
         for_every_child_sorted { |child| out += child.to_xml }
     		out += "\t\t</marc:datafield>\n"

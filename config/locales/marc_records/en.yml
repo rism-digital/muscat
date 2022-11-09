@@ -362,6 +362,7 @@ en:
     contact_area: Contact area
     content: Content
     content_description: Content description
+    content_type: Content type
     contents_note: Contents note
     contributor: Contributor
     control_fields: Control fields
@@ -916,7 +917,7 @@ en:
     ERR_038_TIE_OPEN: A tie using '+' must be followed by a note.
     ERR_039_TIE_NO_NOTE: A tie using '+' must be preceded by a note.
     ERR_040_HIERARCHY_INVALID: The order of elements cannot be interpreted (%{value}).
-    ERR_041_NESTING_INVALID: The nesting of opening and closing tags for '%{value}' is invalid.
+    ERR_041_NESTING_INVALID: "With '%{value}' the inner group must be closed before the outer group."
     ERR_042_CLEF_INCOMPLETE: The clef is not in the correct form.
     ERR_043_CLEF_INVALID_2ND: The second character in the clef sign must be either '+' or '-'.
     ERR_044_CLEF_MENS: Do not mix mensural and non-mensural clefs.
@@ -933,14 +934,51 @@ en:
     ERR_055_KEYSIG_CHANGE: The key signature cannot be changed more than once in a measure.
     ERR_056_TIMESIG_CHANGE: The time signature cannot be changed more than once in a measure.
     ERR_057_MENSUR_CHANGE: The mensuration cannot be changed more than once in a measure.
-    ERR_058_FERMATA_MREST: "The parentheses of a fermata must only contain a single note or rest '%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes are invalid with mensural notation."
+    ERR_058_FERMATA_MREST: "The parentheses of a fermata may only contain a single note or rest '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes cannot be used with mensural notation."
     ERR_060_CLEF_MISSING: A clef is required.
     ERR_061_LIGATURE_NOTE_BEFORE: To indicate a ligature, a '+' must be preceded by a note.
     ERR_062_LIGATURE_NOTE_AFTER: To indicate a ligature, a '+' must be followed by a note.
     ERR_063_LIGATURE_PITCH: A ligature cannot have two consecutive notes with the same pitch.
     ERR_064_LIGATURE_DURATION: The duration in a ligature cannot be shorter than a semibreve.
     ERR_065_MREST_INVALID_MEASURE: A measure with a measure rest cannot include anything else.
+  rism_online:
+    manuscript: "Manuscript"
+    printed: "Printed"
+    composite: "Composite Volume"
+    apply_filters: "Apply filters"
+    error_loading_results: "Error loading results"
+    global_collection: "Global Collection"
+    home: "Home"
+    keyword_query: "Keyword query"
+    first: "First"
+    last: "Last"
+    next: "Next"
+    previous: "Previous"
+    no_results_body: "Adjust your query options, or reset all filters, to see results."
+    no_results_header: "No results were found for your search"
+    no_results_to_find: "No results would be found with this search"
+    page: "Page"
+    words_anywhere: "Words anywhere"
+    record_preview: "Record preview"
+    record_uri: "Record URI (Permalink)"
+    reset_all: "Reset all"
+    number_results: "Number of results"
+    search: "Search"
+    show_all_results: "Show all results"
+    show_results: "Show results"
+    source_contents: "Source contents"
+    update_results: "Update search results"
+    page_not_found: "The page was not found"
+    bad_query: "There was a problem with the query"
+    result_types: "Result Types"
+    source_relationships: "Source relationships"
+    holding_institutions: "Holding institutions"
+    digital_facsimiles: "Digital facsimiles"
+    publication_details: "Publication details"
+    biographical_details: "Biographical details"
+    role_and_profession: "Role and profession"
+    composer_composition: "Composer and composition"
   testingForCrowdinWorkshop:
     apple: apple
     pear: pear

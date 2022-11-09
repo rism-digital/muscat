@@ -51,5 +51,5 @@ class MarcWorkNode < Marc
     super(updated_at, nil, holdings)
     # nothing specific to do - this is used ony for deprecating works
   end
-
+  
 end

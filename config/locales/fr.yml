@@ -98,6 +98,9 @@ fr:
       comments_help: "Tapez @ pour mentionner un utilisateur spécifique, qui recevra alors une notification par e-mail."
       author_missing: "Anonyme"
       title_content: "Commentaires (%{count})"
+      referring_comments: Commentaires où je suis nommé
+      my_item_comments: Commentaires sur mes dossiers
+      my_own_comments: Commentaires que j'ai faits
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
     devise:
@@ -338,7 +341,8 @@ fr:
   unloadable_record: "Ce titre présente un problème: il peut être visualisé mais pas édité. Merci de contacter l'administrateur."
   validation_level_error: "Il y a des erreurs à corriger avant d'enregistrer."
   validation_level_warning: "Il y a des avertissements. Enregistrer à nouveau pour ignorer."
-  
+  muscat_reindexing: "Muscat réindexe, les résultats de recherche peuvent être incomplets."
+
   jobs:
     not_set: "[sans statut]"
     ok: "Tâche accomplie"
@@ -386,7 +390,8 @@ fr:
   save_and_continue: "Enregistrer et continuer"
   save_and_exit: "Enregistrer et terminer"
   cancel: "Annuler"
-  duplicate_confirm: "Est-vous certain de vouloir dupliquer ce titre?"  
+  duplicate_confirm: "Est-vous certain de vouloir dupliquer ce titre?"
+  convert_to_print: "Convertir en modèle d'impression"
 
   # Version history
   history_date: "Date"
@@ -416,7 +421,17 @@ fr:
     publish_job: "Début du Job de publication (id: %{id})"
     unpublish_job: "Début du Job d'annulation de la publication (id: %{id})"
     reindex_job: "Réindexation Job commencé (id: %{id})"
-  
+    validation_started: "Un courriel sera envoyé à %{email} avec la fin de la validation (Validation job id : %{job})."
+    folder_not_source: "Seuls les dossiers contenant des Sources peuvent être validés"
+    expires: "Expire le"
+    resetted: "La date d'expiration du dossier est désormais fixée à %{date}"
+    reset_expiration: "Réinitialiser la date d'expiration"
+    delete_now: "Les dossiers suivants ont été supprimés :"
+    tomorrow: "Les dossiers suivants seront supprimés demain %{date}"
+    one_week: "Les dossiers suivants seront supprimés dans une semaine, le %{date}"
+    two_weeks: "Les dossiers suivants seront supprimés dans deux semaines à la date du %{date}"
+    one_month: "Les dossiers suivants seront supprimés dans un mois, le %{date}"
+
   ### Digital objects
   digital_objects: "Objet numériques"
   digital_object_new: "Ajouter une nouvelle objet numérique"
@@ -496,7 +511,6 @@ fr:
   filter_provenance: "Provenance"
   filter_record_type: "Template Type"
   filter_record_type_short: "Type"
-  filter_source_type: "Type de source"
   filter_publisher: "éditeur"
   filter_journal: "Titre de la revue"
   filter_id: "No RISM"
@@ -508,6 +522,7 @@ fr:
   filter_source: "Source"
   filter_sources: "Sources"
   filter_source_type: "Type de source"
+  filter_source_content_type: "Type de contenu"
   filter_std_title: "Titre uniforme"
   filter_subject: "Sujet"
   filter_subsequent_entries: "Entrées suivants"
@@ -734,6 +749,9 @@ fr:
     got_it: "Je l'ai !"
     got_it_explanation: "Cliquer sur ce bouton fera taire la nouvelle jusqu'à ce que la prochaine soit publiée."
     news: "Nouvelles de Muscat"
+    my_comments: "Mes commentaries"
+    my_records: "Mes dossiers"
+    about_comments: "A propos des commentaires"
   
   compare_versions:
     time_frame: Intervalle temporel

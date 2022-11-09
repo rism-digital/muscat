@@ -106,6 +106,7 @@
 //= new_window_select_non_marc.js
 //= require jsdiff.js
 //= require marc_editor_validation
+//= require marc_editor_manipulation
 //= require job_progress_bar
 //= require modification_trigger_ujs.js
 //= require filter_workaround.js

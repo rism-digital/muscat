@@ -362,6 +362,7 @@ de:
     contact_area: Kontakt
     content: Inhalt
     content_description: Inhaltsangaben
+    content_type: Inhaltstyp
     contents_note: Bemerkungen zu Inhaltsangaben
     contributor: Mitverfasser
     control_fields: Kontrollfelder
@@ -913,7 +914,7 @@ de:
     ERR_038_TIE_OPEN: Einem Haltebogen '+' muss eine Note vorangestellt werden.
     ERR_039_TIE_NO_NOTE: Einem Haltebogen '+' muss eine Note vorangestellt werden.
     ERR_040_HIERARCHY_INVALID: Die Reihenfolge der Elemente kann nicht interpretiert werden (%{value}).
-    ERR_041_NESTING_INVALID: Die Verschachtelung von öffnenden und schließenden Tags für '%{value}' ist ungültig.
+    ERR_041_NESTING_INVALID: "Mit '%{value}' muss die innere Gruppe vor der äußeren Gruppe geschlossen werden."
     ERR_042_CLEF_INCOMPLETE: Der Wechsel des Notenschlüssels ist nicht korrekt.
     ERR_043_CLEF_INVALID_2ND: Das zweite Zeichen im Notenschlüssel muss entweder '+' oder '-' sein.
     ERR_044_CLEF_MENS: Mischen Sie keine Mensural- und Nicht-Mensuralschlüssel.
@@ -931,13 +932,50 @@ de:
     ERR_056_TIMESIG_CHANGE: Die Taktart kann in einem Takt nur einmal geändert werden.
     ERR_057_MENSUR_CHANGE: Die Mensur kann in einem Takt nur einmal geändert werden.
     ERR_058_FERMATA_MREST: "Die Klammern einer Fermate dürfen nur eine einzige Note oder Pause '%{value}' enthalten"
-    ERR_059_DOUBLE_DOTS_MENS: "Doppelpunktierte Noten sind ungültig in der Mensuralnotation."
+    ERR_059_DOUBLE_DOTS_MENS: "Doppelpunktierte Noten können in der Mensuralnotation nicht verwendet werden."
     ERR_060_CLEF_MISSING: Ein Notenschlüssel ist notwendig.
     ERR_061_LIGATURE_NOTE_BEFORE: Um eine Ligatur anzugeben, muss ein '+' vor der Note stehen.
     ERR_062_LIGATURE_NOTE_AFTER: Um eine Ligatur anzugeben, muss ein '+' nach der Note stehen.
     ERR_063_LIGATURE_PITCH: Eine Ligatur kann nicht zwei aufeinander folgende Noten mit derselben Tonhöhe haben.
     ERR_064_LIGATURE_DURATION: Die Dauer einer Ligatur kann nicht kürzer als eine Semibrevis sein.
     ERR_065_MREST_INVALID_MEASURE: Ein Takt Pause kann nichts anderes enthalten.
+  rism_online:
+    manuscript: "Manuscript"
+    printed: "Printed"
+    composite: "Composite Volume"
+    apply_filters: "Apply filters"
+    error_loading_results: "Error loading results"
+    global_collection: "Global Collection"
+    home: "Home"
+    keyword_query: "Keyword query"
+    first: "First"
+    last: "Last"
+    next: "Next"
+    previous: "Previous"
+    no_results_body: "Adjust your query options, or reset all filters, to see results."
+    no_results_header: "No results were found for your search"
+    no_results_to_find: "No results would be found with this search"
+    page: "Page"
+    words_anywhere: "Words anywhere"
+    record_preview: "Record preview"
+    record_uri: "Record URI (Permalink)"
+    reset_all: "Reset all"
+    number_results: "Number of results"
+    search: "Search"
+    show_all_results: "Show all results"
+    show_results: "Show results"
+    source_contents: "Source contents"
+    update_results: "Update search results"
+    page_not_found: "The page was not found"
+    bad_query: "There was a problem with the query"
+    result_types: "Result Types"
+    source_relationships: "Source relationships"
+    holding_institutions: "Holding institutions"
+    digital_facsimiles: "Digital facsimiles"
+    publication_details: "Publication details"
+    biographical_details: "Biographical details"
+    role_and_profession: "Role and profession"
+    composer_composition: "Composer and composition"
   testingForCrowdinWorkshop:
     apple: Apfel
     pear: Birne

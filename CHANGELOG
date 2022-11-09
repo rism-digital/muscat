@@ -1,6 +1,86 @@
 Muscat Changelog
 ================
 
+v 8.2
+* WIP: Add `xx` to accepted values for name variants
+* Fixed: Change translation key for `xx`
+* Adjust values for 593 $a in Sources and Holdings
+* Bump puma from 5.6.2 to 5.6.4
+* Fix missing indicators with holding template
+* Fix manifest script so non-muscat items can be created
+* Fix #1260
+* Fix crash when creating MS source
+* Fix #1261 do not print an empty line if there is no PAE input
+* Fixed: Siglum misspelling
+* Merge pull request #1263 from rism-digital/siglum-misspelled
+* Merge pull request #1264 from rism-digital/fixed-1099-name-variants
+* Skip duplicates in incipit correction script
+* Fix creation of new tags
+* Bump rails-html-sanitizer from 1.4.2 to 1.4.3
+* Merge pull request #1268 from rism-digital/dependabot/bundler/rails-html-sanitizer-1.4.3
+* Bump rack from 2.2.3 to 2.2.4
+* Merge pull request #1232 from rism-digital/dependabot/bundler/puma-5.6.4
+* Merge pull request #1269 from rism-digital/dependabot/bundler/rack-2.2.4
+* Update rails to 5.2.8.1
+* Add filter for 593b
+* Fix #1248 add "composite" for $b
+* Add localization for content type
+* Fix #1254 implement comments in dashboard
+* Capitalize the model name
+* #1272 add more constraints for Libretti and Theoretica
+* Bump tzinfo from 1.2.9 to 1.2.10
+* Remove "Composite" from the values in 593 $b
+* Merge pull request #1277 from rism-digital/lpugin-patch-config-593b
+* Fix #1270 sync $b values
+* Initial implementation of username logins
+* Add disabling, automatic create script, add to index and list
+* Fix "default email" in mailer
+* Validation should not fail on unicode chars, make the script work in all cases
+* Add emails to workgroups
+* Make sure users properly redirect when deleting their holding records
+* Fix #1280, adieu! delete ability for holdings
+* Initial implementation if Folder expirations
+* Add CSS for status_tag
+* Add "folder" relationship to users, some refinements to the dashboard, job sleleton
+* Fix #1229 adjust the default files
+* Fix #1228 Adjust the values to the latest consensus
+* Add default values for holdings
+* Make folder expiration date 6 months, musicat import script
+* Add a real message to the folder mailer, add MEI import to musicat
+* Fix #1185 extend sources_to_institutions
+* Merge pull request #1273 from rism-digital/dependabot/bundler/tzinfo-1.2.10
+* Add scraps to the scrapbook
+* Add some utility scripts
+* #1240 add help to folders
+* Mailcatcher should be commented out
+* Add FolderExpirationJob to crontab, remove unused cronotab
+* Update all the locales
+* Merge pull request #1281 from rism-digital/jenniferward-patch-1
+* Merge pull request #1282 from rism-digital/jenniferward-patch-1
+* Add "access denied" message to varions models
+* Add italian translation for folder help
+* Make the "reindexing" message localized
+* Fix #1278, handle case where notifications is NULL
+* Add expiration icon
+* Add workaround to blacklight crash
+* Add "shelfmark" filter in sources as it is il BL
+* Properly set relator_code for sources_to_institutions
+* Add installation instructions for nginx, make error message more clear
+* Re-add the logo3
+* Merge pull request #1285 from rism-digital/jenniferward-patch-2
+
+v 8.1.4
+* Fix #1271 skip the diva-added input
+* Update Verovio to 3.11.0
+
+v 8.1.3
+* Fix #1265, user the correct user reference
+* Fix #1267, add index
+* Cherry pick patch #1261, and fix issue
+* Fix #1256, add fallback for nil indicator
+* Initial fix for #1266, make all HTML escaped
+* Fixes to the translations
+
 v 8.1.2
 * Fix manifest script so non-muscat items can be created
 * Fix #1260

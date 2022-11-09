@@ -98,6 +98,9 @@ it:
       comments_help: "Digitare @ per menzionare un utente specifico, che riceverà una notifica per email."
       author_missing: "Anonimo"
       title_content: "Commenti (%{count})"
+      referring_comments: Commenti in cui sono nominato
+      my_item_comments: Commenti nei miei record
+      my_own_comments: Commenti che ho fatto io
       errors:
         empty_text: "Il commento non può essere salvato, il testo è vuoto."
     devise:
@@ -339,7 +342,8 @@ it:
   unloadable_record: "Questa scheda ha avuto problemi nel caricamento: può essere consultata ma non modificata. Si prega di contattare un amministratore."
   validation_level_error: "Sono presenti errori, correggerli prima di continuare"
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
-  
+  muscat_reindexing: "Muscat è in fase di reindicizzazione, i risultati della ricerca potrebbero essere incompleti"
+
   jobs:
     not_set: "[Nessuno stato]"
     ok: "Processo terminato con successo"
@@ -388,7 +392,8 @@ it:
   save_and_continue: "Salva e continua"
   save_and_exit: "Salva ed esci"
   cancel: "Annulla"
-  duplicate_confirm: "Sei sicuro di voler duplicare questo record?"  
+  duplicate_confirm: "Sei sicuro di voler duplicare questo record?"
+  convert_to_print : "Convertire in template stampa"
 
   # Version history
   history_date: "Data"
@@ -418,6 +423,16 @@ it:
     publish_job: "Job di pubblicazione iniziato (id: %{id})"
     unpublish_job: "Job di annullamento pubblicazione iniziato (id: %{id})"
     reindex_job: "Job di reindicizzazione iniziato (id: %{id})"
+    validation_started: "Verrà inviata un'e-mail a %{email} con l'indicazione che la convalida è terminata (ID lavoro di convalida: %{job})."
+    folder_not_source: "Solo le cartelle contenenti Fonti possono essere convalidate."
+    expires: "Scade il"
+    resetted: "La data di scadenza della cartella è ora %{date}"
+    reset_expiration: "Ripristinare la data di scadenza"
+    delete_now: "Le seguenti cartelle sono state eliminate:"
+    tomorrow: "Le seguenti cartelle saranno eliminate domani %{date}"
+    one_week: "Le seguenti cartelle saranno eliminate tra una settimana, il %{date}"
+    two_weeks: "Le seguenti cartelle saranno eliminate tra due settimane il %{date}"
+    one_month: "Le seguenti cartelle saranno eliminate tra un mese, il %{date}"
     
   ### Digital objects
   digital_objects: "Oggetti Digitali"
@@ -498,7 +513,6 @@ it:
   filter_provenance: "Provenienza"
   filter_record_type: "Tipo del Template"
   filter_record_type_short: "Tipo"
-  filter_source_type: "Tipologia della fonte"
   filter_publisher: "Editore"
   filter_journal: "Titolo del periodico o della miscellanea"
   filter_id: "RISM ID"
@@ -510,6 +524,7 @@ it:
   filter_source: "Fonte"
   filter_sources: "Fonti"
   filter_source_type: "Tipo di fonte"
+  filter_source_content_type: "Tipo di contenuto"
   filter_std_title: "Titolo uniforme"
   filter_subject: "Soggetto"
   filter_subsequent_entries: "Notizie successive"
@@ -736,6 +751,9 @@ it:
     got_it: "Ok!"
     got_it_explanation: "Facendo click su questo pusante si nasconderà la news finché una nuova non sarà disponilbe."
     news: "Novità in Muscat"
+    my_comments: "I miei commenti"
+    my_records: "I miei record"
+    about_comments: "Informazioni sui commenti"
   
   compare_versions:
     time_frame: Intervallo di tempo
