@@ -385,6 +385,7 @@ pl:
   hide_preview: Ukryj podgląd
   show_validate: Zatwierdź
   show_history: Pokaż historię modyfikacji
+  show_gnd: "Wyszukiwanie w Search"
   show_viaf: Wyszukiwanie w VIAF
   save_and_continue: Zapisz i kontynuuj edycję
   save_and_exit: Zapisz i zamknij

@@ -19,6 +19,10 @@ module Sru
     attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code, :schema, :scan, :version
 
     def initialize(model, params = {})
+
+      # deprecation of works sru - we need to load work_nodes content
+      model = "work_nodes" if model == "works"
+
       @version=params.fetch(:version, '1.1')
       unless (params.keys - PARAMS).empty?
         @error_code = {:code => 8 , :message => "Unsupported parameter"}

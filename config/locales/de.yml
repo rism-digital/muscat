@@ -384,6 +384,7 @@ de:
   hide_preview: "Vorschau verbergen"
   show_validate: "Validierung"
   show_history: "Änderungsgeschichte"
+  show_gnd: "GND Suche"
   show_viaf: "VIAF Suche"
   save_and_continue: "Speichern und weiter bearbeiten"
   save_and_exit: "Speichern und verlassen"

@@ -27,6 +27,8 @@
 	 incipit_number = "#{(number_a ? number_a.content : "x")}.#{(number_b ? number_b.content : "x")}.#{(number_c ? number_c.content : "x")}"
 	 	 incipit_number_for_id = "#{(number_a ? number_a.content : "x")}#{(number_b ? number_b.content : "x")}#{(number_c ? number_c.content : "x")}"
 	 image_render_div = "incipit_#{incipit_number_for_id}#{@item.id}"
+
+	 mei_incipit = nil
 %>
 
 <tr class="row">
@@ -48,14 +50,14 @@
 	}.join("<br>".html_safe)
 %>
 
-<%
+<% if @item.respond_to? :digital_objects %>
 	# Loop through the digital objects to see if we have a MEI incipit
 	# MEI incipits have the priority over normal ones 
 	mei_incipit = nil
 	@item.digital_objects.incipits.each do |obj|
 		mei_incipit = obj.attachment.url if obj.match_pae_nr?(incipit_number)
 	end
-%>
+<% end %>
 
 <% if mei_incipit %>
 	<tr class="row">

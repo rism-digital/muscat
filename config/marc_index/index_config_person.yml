@@ -8,6 +8,9 @@ config:
 fields:  
     "001":
     "008":
+    "024a":
+      :index_processor_helper: marc_index_make_024_person
+      :type: string
     "035a":
     "040a":
     "040b":

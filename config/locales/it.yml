@@ -387,6 +387,7 @@ it:
   hide_preview: "Nascondi anteprima"
   show_validate: "Valida Record"
   show_history: "Mostra lo storico"
+  show_gnd: "Ricerca GND" 
   show_viaf: "Ricerca VIAF"
   save_and_continue: "Salva e continua"
   save_and_exit: "Salva ed esci"

@@ -1,4 +1,4 @@
-class Work < ApplicationRecord
+class WorkNode < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
@@ -14,32 +14,18 @@ class Work < ApplicationRecord
 
   resourcify
   belongs_to :person
-  has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
-  has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
-  has_and_belongs_to_many :publications, join_table: "works_to_publications"
-  has_and_belongs_to_many :standard_terms, join_table: "works_to_standard_terms"
-  has_and_belongs_to_many :standard_titles, join_table: "works_to_standard_titles"
-  has_and_belongs_to_many :liturgical_feasts, join_table: "works_to_liturgical_feasts"
-  has_and_belongs_to_many :institutions, join_table: "works_to_institutions"
-  has_and_belongs_to_many :people, join_table: "works_to_people"
+  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_work_nodes")
+  has_and_belongs_to_many :publications, join_table: "work_nodes_to_publications"
+  has_and_belongs_to_many :standard_terms, join_table: "work_nodes_to_standard_terms"
+  has_and_belongs_to_many :standard_titles, join_table: "work_nodes_to_standard_titles"
+  has_and_belongs_to_many :liturgical_feasts, join_table: "work_nodes_to_liturgical_feasts"
+  has_and_belongs_to_many :institutions, join_table: "work_nodes_to_institutions"
+  has_and_belongs_to_many :people, join_table: "work_nodes_to_people"
   has_many :folder_items, as: :item, dependent: :destroy
-  has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
+  has_many :delayed_jobs, -> { where parent_type: "WorkNode" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
-  has_and_belongs_to_many(:works,
-    :class_name => "Work",
-    :foreign_key => "work_a_id",
-    :association_foreign_key => "work_b_id",
-    join_table: "works_to_works")
-  
-  # This is the backward link
-  has_and_belongs_to_many(:referring_works,
-    :class_name => "Work",
-    :foreign_key => "work_b_id",
-    :association_foreign_key => "work_a_id",
-    join_table: "works_to_works")
  
-  composed_of :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
+  composed_of :marc, :class_name => "MarcWorkNode", :mapping => %w(marc_source to_marc)
 
   before_destroy :check_dependencies
   
@@ -106,7 +92,7 @@ class Work < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["person", "publications", "standard_terms", "standard_titles", "liturgical_feasts", "institutions", "people", "works"]
+    allowed_relations = ["person", "publications", "standard_terms", "standard_titles", "liturgical_feasts", "institutions", "people"]
     recreate_links(marc, allowed_relations)
   end
 
@@ -116,11 +102,11 @@ class Work < ApplicationRecord
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
   
-    new_marc = MarcWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc")))
+    new_marc = MarcWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work_node/default.marc")))
     new_marc.load_source true
     
-    new_100 = MarcNode.new("work", "100", "", "1#")
-    new_100.add_at(MarcNode.new("work", "t", self.title, nil), 0)
+    new_100 = MarcNode.new("work_node", "100", "", "1#")
+    new_100.add_at(MarcNode.new("work_node", "t", self.title, nil), 0)
         
     pi = new_marc.get_insert_position("100")
     new_marc.root.children.insert(pi, new_100)
@@ -163,27 +149,24 @@ class Work < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
 
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
+      WorkNode.count_by_sql("select count(*) from sources_to_work_nodes where work_node_id = #{self[:id]}")
     end
     
-    MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
+    MarcIndex::attach_marc_index(sunspot_dsl, "work_node")
   end
  
 
   def set_object_fields
     return if marc_source == nil
     self.title = marc.get_title
-    # LP commented for work experiments. Person is set by hand in the script
-    #self.person = marc.get_composer
-    self.opus = marc.get_opus
-    self.catalogue = marc.get_catalogue
+    self.person = marc.get_composer
 
     self.marc_source = self.marc.to_marc
   end
  
-  def self.get_viaf(str)
+  def self.get_gnd(str)
     str.gsub!("\"", "")
-    Viaf::Interface.search(str, self.to_s)
+    GND::Interface.search(str, self.to_s)
   end
  
   ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end

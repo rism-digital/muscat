@@ -155,7 +155,7 @@ class Marc
   # This function by default uses marc_node.import to
   # create the relations with the foreign object and create
   # them in the DB. It will also call a reindex on them
-  def load_from_hash(hash, user = nil, resolve = true)
+  def load_from_hash(hash, user: nil, resolve: true, dry_run: false)
     @root << MarcNode.new(@model, "000", hash['leader'], nil) if hash['leader']
     
     if hash['fields']
@@ -196,7 +196,7 @@ class Marc
     end # if hash['fields']
     
     @loaded = true
-    import(true, user) # Import
+    import(true, user) if !dry_run # Import the data, ONLY when necessary
     @source = to_marc
     @source_id = first_occurance("001").content || nil rescue @source_id = nil
     # When importing externals are not resolved, do it here
@@ -210,6 +210,48 @@ class Marc
       @root << t
     end 
     @loaded = true
+  end
+
+  def load_from_xml(record)
+    namespace = {'marc': "http://www.loc.gov/MARC21/slim"}
+    leader = record.xpath("//marc:leader", namespace).first
+
+    @root << MarcNode.new(@model, "000", leader.text, nil) if leader
+
+    record.xpath("marc:controlfield", namespace).each do |control|
+      tag = control[:tag]
+      content = control.text
+      @root << MarcNode.new(@model, tag, content, nil)
+    end
+
+    record.xpath("marc:datafield", namespace).each do |datafield|
+      tag = datafield[:tag]
+
+      # We need to emulate "normal" tag loading
+      if !@marc_configuration.has_tag? tag
+        puts"Tag #{tag} missing in the marc configuration"
+        next
+      end
+
+      ind = datafield[:ind1] + datafield[:ind2]
+      ind.gsub!(" ", "#")
+
+      tag_group = @root << MarcNode.new(@model, tag, nil, ind)
+      datafield.xpath("marc:subfield", namespace).each do |subfield|
+        code = subfield[:code]
+        value = subfield.text.gsub(DOLLAR_STRING, "$").gsub(/'/, "&apos;").unicode_normalize.gsub(/\u0098/, "").gsub(/\u009C/, "")
+
+          #doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
+          #doc = doc.gsub(/\u0098/, "").gsub(/\u009C/, "")
+
+        tag_group << MarcNode.new(@model, code, value.strip, nil)
+      end
+    end
+
+    @loaded = true
+    @source = to_marc
+    @source_id = first_occurance("001").content || nil rescue @source_id = nil
+
   end
 
   def get_model
@@ -437,7 +479,7 @@ class Marc
   def to_xml(updated_at = nil, versions = nil, holdings = true)
     out = Array.new
     out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-    out << "<!-- Exported from RISM CH (http://www.rism-ch.org/) Date: #{Time.now.utc} -->\n"
+    out << "<!-- Exported from RISM Digital (https://rism.digital/) Date: #{Time.now.utc} -->\n"
     out << "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
     out << to_xml_record(updated_at, versions, holdings)
     out << "</marc:collection>" 
@@ -894,6 +936,21 @@ class Marc
       field = field.to_i
     end
     return field
+  end
+
+  def marc_index_make_024_person(conf_tag, conf_properties, marc, model)
+    out = []
+    marc.each_by_tag("024") do |marctag|
+      id_tag = marctag.fetch_first_by_tag("a")
+      next if !id_tag || !id_tag.content
+
+      type_tag = marctag.fetch_first_by_tag("2")
+      next if !type_tag || !type_tag.content
+
+      out << "#{type_tag.content}:#{id_tag.content}"
+    end
+
+    return out
   end
 
 end

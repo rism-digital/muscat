@@ -69,6 +69,7 @@ class Source < ApplicationRecord
   has_many :holdings
 	has_many :collection_holdings, {class_name: "Holding", foreign_key: "collection_id"}
   has_and_belongs_to_many :works, join_table: "sources_to_works"
+  has_and_belongs_to_many :work_nodes, join_table: "sources_to_work_nodes"
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -142,7 +143,7 @@ class Source < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "publications", "liturgical_feasts", "places", "holdings", "sources", "works"]
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "publications", "liturgical_feasts", "places", "holdings", "sources", "works", "work_nodes"]
     recreate_links(marc, allowed_relations)
 
     # update the parent manuscript when having 773/774 relationships

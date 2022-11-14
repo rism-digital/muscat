@@ -1,6 +1,6 @@
 <%
   a_tag = tag.fetch_first_by_tag(:a)
-	work = (a_tag ? a_tag.looked_up_content : "")
+	work_node = (a_tag ? a_tag.looked_up_content : "")
 	master_tag = @item.marc.config.get_master(tag.tag) rescue master_tag = ""
 	db_id = tag.fetch_first_by_tag(master_tag).content rescue db_id = ""
 -%>
@@ -12,11 +12,11 @@
 	</th>
 	<td>
 		<% if opac %>
-			<%= link_to work,  solr_document_path(:search_field => "any_field", :q => work)%>
+			<%= link_to work_node,  solr_document_path(:search_field => "any_field", :q => work_node)%>
 		<% elsif is_selection_mode?%>
-			<%= work%>
+			<%= work_node %>
 		<% else %>
-			<%= link_to work, admin_work_path(db_id) -%>
+			<%= link_to work_node, admin_work_node_path(db_id) -%>
 		<% end %>
 	</td>
 </tr>

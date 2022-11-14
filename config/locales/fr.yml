@@ -385,6 +385,7 @@ fr:
   hide_preview: "Masquer l'aperçu"
   show_validate: "Valider"
   show_history: "Afficher l'historique"
+  show_gnd: "Recherche GND"
   show_viaf: "Recherche VIAF"
   save_and_continue: "Enregistrer et continuer"
   save_and_exit: "Enregistrer et terminer"
