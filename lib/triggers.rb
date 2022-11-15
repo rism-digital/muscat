@@ -25,7 +25,8 @@ module Triggers
     return if !conf.get_triggers
     
     if object.respond_to?(:last_updated_at)
-      return if object.updated_at - object.last_updated_at < RISM::VERSION_TIMEOUT
+      # Skip object if modified in the grace period, except new objs
+      return if object.updated_at - object.last_updated_at < RISM::VERSION_TIMEOUT && object.updated_at != object.created_at
     end
     
     if !conf.get_triggers.is_a?(Array)
