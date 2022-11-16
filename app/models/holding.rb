@@ -22,7 +22,7 @@ class Holding < ApplicationRecord
 	
   composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
   
-  before_destroy :check_collection_id
+  before_destroy :check_collection_id, prepend: true
 
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
@@ -243,9 +243,10 @@ class Holding < ApplicationRecord
 
   def check_collection_id
     if collection_id
-      errors.add :base, "This #{self.class} #{self.id} is part of a composite volume, plese delete 973"
-      raise ActiveRecord::RecordNotDestroyed, "#{self.class} #{self.id} is part of a composite volume, plese delete 973"
+      throw :abort
+      false
     end 
+    true
   end
 
   def display_name
