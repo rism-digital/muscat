@@ -89,7 +89,7 @@ class Source < ApplicationRecord
   scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
 
   # FIXME id generation
-  before_destroy :check_dependencies, :check_parent
+  before_destroy :check_dependencies, :check_parent, prepend: true
 
   before_save :set_object_fields, :save_updated_at
   after_create :fix_ids
@@ -629,8 +629,10 @@ class Source < ApplicationRecord
   def check_parent
     if source_id
       errors.add :base, "This #{self.class} #{self.id} is part of a collection, plese delete 773"
-      raise ActiveRecord::RecordNotDestroyed, "#{self.class} #{self.id} is part of a collection, plese delete 773"
+      throw :abort
+      false
     end 
+    true
   end
 
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
