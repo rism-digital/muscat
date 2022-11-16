@@ -22,6 +22,8 @@ class Holding < ApplicationRecord
 	
   composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
   
+  before_destroy :check_collection_id
+
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :update_774, :reindex
@@ -237,6 +239,13 @@ class Holding < ApplicationRecord
     
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
+  end
+
+  def check_collection_id
+    if collection_id
+      errors.add :base, "This #{self.class} #{self.id} is part of a composite volume, plese delete 973"
+      raise ActiveRecord::RecordNotDestroyed, "#{self.class} #{self.id} is part of a composite volume, plese delete 973"
+    end 
   end
 
   def display_name
