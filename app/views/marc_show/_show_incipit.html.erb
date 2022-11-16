@@ -50,14 +50,16 @@
 	}.join("<br>".html_safe)
 %>
 
-<% if @item.respond_to? :digital_objects %>
-	# Loop through the digital objects to see if we have a MEI incipit
-	# MEI incipits have the priority over normal ones 
-	mei_incipit = nil
-	@item.digital_objects.incipits.each do |obj|
-		mei_incipit = obj.attachment.url if obj.match_pae_nr?(incipit_number)
-	end
-<% end %>
+<% 
+	if @item.respond_to? :digital_objects
+		# Loop through the digital objects to see if we have a MEI incipit
+		# MEI incipits have the priority over normal ones 
+		mei_incipit = nil
+		@item.digital_objects.incipits.each do |obj|
+			mei_incipit = obj.attachment.url if obj.match_pae_nr?(incipit_number)
+		end
+	end 
+%>
 
 <% if mei_incipit %>
 	<tr class="row">
