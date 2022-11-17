@@ -1,8 +1,8 @@
 <%- 
 	groups = Array.new
-  @editor_profile.each_group_in_layout @item do |group|
+  	@editor_profile.each_group_in_layout @item do |group|
 		groups << group
-  end
+  	end
 -%>
 <div id="<%= render_panel -%>" class="panel-hidable" data-editor-model="<%= model %>" style="display: <%= @show_history ? "none" : "block" -%>;">
 	<%# we don't want the form to be submitted directly (with enter for example), so the 'onSubmit return false %>
