@@ -38,10 +38,36 @@ module GND
             
             # Perform some conversion to the marc data - can return a message indicating why the record cannot be selected
             noSelectMsg = convert(marc)
-            puts marc
+            #puts marc
             id = get_id(marc)
-            item = {marc: marc.to_json, description: get_description(marc), link: "https://d-nb.info/gnd/#{id}", label: "GND | #{id}", noSelectMsg: noSelectMsg }
+            item = {marc: marc.to_json, description: get_description(marc), link: "https://d-nb.info/gnd/#{id}", label: "GND | #{id}", noSelectMsg: noSelectMsg, id: id} 
             result << item
+        end
+        if result.empty?
+            return "Sorry, no work results were found in GND!"
+        end
+        return result
+    end
+
+    def self.retrieve(id)
+        result = []
+        begin
+            query = URI.open(self.build_query_id(id))
+        rescue 
+            return "ERROR connecting GND AutoSuggest"
+        end
+        
+        # Load the results
+        xml = Nokogiri::XML(query)
+
+        # Loop on each record in the result list
+        xml.xpath("//marc:record", NAMESPACE).each do |record|
+
+            marc = GndWork.new(nil, "gnd_work")
+            marc.load_from_xml(record)
+
+            puts marc
+            result << marc
         end
         if result.empty?
             return "Sorry, no work results were found in GND!"
@@ -60,6 +86,10 @@ module GND
         # Work index
         query += " and BBG=Tu*"
         query
+    end
+
+    def self.build_query_id(id)
+        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=idn%3D#{id}"
     end
 
     def self.migrate_marc(marc)
