@@ -14,6 +14,13 @@ Rails.application.routes.draw do
   get 'catalog_uk/download' => 'catalog_uk#download'
   get 'catalog_ch/download' => 'catalog#download'
 
+
+  get 'admin/gnd_works/new' => 'admin/gnd_works#new'
+  get 'admin/gnd_works/edit' => 'admin/gnd_works#edit'
+  get 'admin/gnd_works/search' => 'admin/gnd_works#search'
+  post 'admin/gnd_works/marc_editor_validate' => 'admin/gnd_works#marc_editor_validate'
+  post 'admin/gnd_works/marc_editor_save' => 'admin/gnd_works#marc_editor_save'
+
   ##############################
   ### Blacklight 6 configuration
 
