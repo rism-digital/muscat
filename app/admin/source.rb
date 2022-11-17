@@ -188,6 +188,12 @@ ActiveAdmin.register Source do
       @item = @source
     end
 
+    def destroy
+      destroy! do |success, failure|
+        failure.html { redirect_to admin_source_url(resource) }
+      end
+    end
+
   end
     
   # Include the MARC extensions

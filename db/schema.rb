@@ -195,13 +195,6 @@ ActiveRecord::Schema.define(version: 2022_09_26_080510) do
     t.index ["wf_stage"], name: "index_holdings_on_wf_stage"
   end
 
-  create_table "holdings_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "holding_id"
-    t.integer "institution_id"
-    t.index ["holding_id"], name: "index_holdings_institutions_on_holding_id"
-    t.index ["institution_id"], name: "index_holdings_institutions_on_institution_id"
-  end
-
   create_table "holdings_to_catalogues", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "catalogue_id"
     t.integer "holding_id"
@@ -598,6 +591,13 @@ ActiveRecord::Schema.define(version: 2022_09_26_080510) do
     t.index ["standard_title_id"], name: "index_sources_to_standard_titles_on_standard_title_id"
   end
 
+  create_table "sources_to_work_nodes", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "source_id"
+    t.integer "work_node_id"
+    t.index ["source_id"], name: "index_sources_to_works_on_source_id"
+    t.index ["work_node_id"], name: "index_sources_to_works_on_work_id"
+  end
+
   create_table "sources_to_works", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "source_id"
     t.integer "work_id"
@@ -717,6 +717,71 @@ ActiveRecord::Schema.define(version: 2022_09_26_080510) do
     t.datetime "updated_at"
   end
 
+  create_table "work_nodes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "person_id"
+    t.string "title"
+    t.string "form"
+    t.text "notes"
+    t.integer "wf_audit", default: 0
+    t.integer "wf_stage", default: 0
+    t.integer "wf_owner", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text "marc_source"
+    t.integer "lock_version", default: 0, null: false
+    t.index ["title"], name: "index_works_on_title"
+    t.index ["wf_stage"], name: "index_works_on_wf_stage"
+  end
+
+  create_table "work_nodes_to_catalogues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "work_node_id"
+    t.integer "catalogue_id"
+    t.index ["catalogue_id"], name: "index_works_to_catalogues_on_catalogue_id"
+    t.index ["work_node_id"], name: "index_works_to_catalogues_on_work_id"
+  end
+
+  create_table "work_nodes_to_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "work_node_id"
+    t.integer "institution_id"
+    t.index ["institution_id"], name: "index_works_to_institutions_on_institution_id"
+    t.index ["work_node_id"], name: "index_works_to_institutions_on_work_id"
+  end
+
+  create_table "work_nodes_to_liturgical_feasts", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "work_node_id"
+    t.integer "liturgical_feast_id"
+    t.index ["liturgical_feast_id"], name: "index_works_to_liturgical_feasts_on_liturgical_feast_id"
+    t.index ["work_node_id"], name: "index_works_to_liturgical_feasts_on_work_id"
+  end
+
+  create_table "work_nodes_to_people", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "work_node_id"
+    t.integer "person_id"
+    t.index ["person_id"], name: "index_works_to_people_on_person_id"
+    t.index ["work_node_id"], name: "index_works_to_people_on_work_id"
+  end
+
+  create_table "work_nodes_to_publications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "work_node_id"
+    t.integer "publication_id"
+    t.index ["publication_id"], name: "index_works_to_publications_on_publication_id"
+    t.index ["work_node_id"], name: "index_works_to_publications_on_work_id"
+  end
+
+  create_table "work_nodes_to_standard_terms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "work_node_id"
+    t.integer "standard_term_id"
+    t.index ["standard_term_id"], name: "index_works_to_standard_terms_on_standard_term_id"
+    t.index ["work_node_id"], name: "index_works_to_standard_terms_on_work_id"
+  end
+
+  create_table "work_nodes_to_standard_titles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "work_node_id"
+    t.integer "standard_title_id"
+    t.index ["standard_title_id"], name: "index_works_to_standard_titles_on_standard_title_id"
+    t.index ["work_node_id"], name: "index_works_to_standard_titles_on_work_id"
+  end
+
   create_table "workgroups", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -730,8 +795,8 @@ ActiveRecord::Schema.define(version: 2022_09_26_080510) do
   create_table "works", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "person_id"
     t.string "title"
-    t.string "form"
-    t.text "notes"
+    t.string "opus"
+    t.string "catalogue"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
     t.integer "wf_owner", default: 0

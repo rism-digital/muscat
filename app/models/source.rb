@@ -89,7 +89,7 @@ class Source < ApplicationRecord
   scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
 
   # FIXME id generation
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :check_parent, prepend: true
 
   before_save :set_object_fields, :save_updated_at
   after_create :fix_ids
@@ -623,6 +623,15 @@ class Source < ApplicationRecord
 
   def force_marc_load?
     self.marc.load_source false
+    true
+  end
+
+  def check_parent
+    if source_id
+      errors.add :base, "This #{self.class} #{self.id} is part of a collection, please delete 773"
+      throw :abort
+      false
+    end 
     true
   end
 
