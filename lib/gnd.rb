@@ -16,20 +16,12 @@ module GND
             return "ERROR connecting GND AutoSuggest"
         end
 
-        # Load the XSLT to transform the MarcXML into Marc
-        xslt  = Nokogiri::XSLT(File.read('config/gnd/' + 'work_node_dnb.xsl'))
         # Load the results
         xml = Nokogiri::XML(query)
 
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
 
-            #record_xml = Nokogiri.parse(record.to_s)
-            # Transform MarcXML to Marc
-            #doc = xslt.transform(record_xml)
-            # Some normalization
-            #doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
-            #doc = doc.gsub(/\u0098/, "").gsub(/\u009C/, "")
             marc = MarcWorkNode.new(nil, "work_node_gnd")
             marc.load_from_xml(record)
 
