@@ -202,3 +202,31 @@
     show_all: false
     show: true
   :validation: "WorkNodeValidation"
+
+# Configuration for gnd work
+- :id: DefaultGndWork
+  :name: GndWork
+  :model: gnd_work
+  # For now re-use the work labels
+  :labels: 
+  - WorkLabels
+  :options: 
+  - GndWorkFormOptions
+  :layout: 
+  - GndWorkLayoutDefault
+  :filter:
+    default: true
+    ###
+- :id: ShowGndWork
+  :name: GndWork
+  :model: gnd_work
+  :labels: 
+  - WorkLabels
+  :options: 
+  - GndWorkFormOptions
+  :layout: 
+  - WorkLayoutShow
+  :filter:
+    show_all: false
+    show: true
+  :validation: "WorkValidation"
