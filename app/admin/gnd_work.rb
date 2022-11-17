@@ -16,9 +16,8 @@ ActiveAdmin.register_page "gnd_works" do
 
     def edit
       @item = GndWork.new
-      new_marc = MarcGndWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/gnd_work/default.marc")))
-      new_marc.load_source false
-      @item.marc = new_marc
+      marc = GND::Interface.retrieve(params[:id])
+      @item.marc = marc
       @editor_profile = EditorConfiguration.get_default_layout @item
       render 'edit', layout: "active_admin" 
     end

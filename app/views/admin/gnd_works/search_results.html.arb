@@ -6,7 +6,7 @@ columns do
           column ("GND ID") {|row| link_to(row[:label], row[:link], { target: "_blank" })}
           column ("Composer") {|row| row[:description][0] }
           column ("Description") {|row| row[:description][1] }
-          column ("") {|row| link_to("Edit", "edit?#{row[:id]}")}
+          column ("") {|row| link_to("Edit", "edit?id=#{row[:id]}")}
         end
       else
         text_node(results)

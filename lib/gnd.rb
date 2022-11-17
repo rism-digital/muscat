@@ -42,7 +42,7 @@ module GND
     end
 
     def self.retrieve(id)
-        result = []
+        result = nil
         begin
             query = URI.open(self.build_query_id(id))
         rescue 
@@ -57,12 +57,7 @@ module GND
 
             marc = GndWork.new(nil, "gnd_work")
             marc.load_from_xml(record)
-
-            puts marc
-            result << marc
-        end
-        if result.empty?
-            return "Sorry, no work results were found in GND!"
+            result = marc
         end
         return result
     end
