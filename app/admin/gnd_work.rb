@@ -28,6 +28,13 @@ ActiveAdmin.register_page "gnd_works" do
       render 'search_results', layout: "active_admin", locals: { results: @results }
     end
 
+    #########################
+    ## Marc editor actions ##
+    #########################
+
+    # For normal use of the Marc editor, these action are implemented in the MarcControllerActions module
+    # Because we have no underlying model here the action needed are implemented separately
+
     def marc_editor_validate
       marc_hash = JSON.parse params[:marc]
       current_user = User.find(params[:current_user])
@@ -61,12 +68,18 @@ ActiveAdmin.register_page "gnd_works" do
     def marc_editor_save
       marc_hash = JSON.parse params[:marc]
 
+      # TODO - Save to the GND server
+
       path = admin_gnd_works_path
       respond_to do |format|
         format.js { render :json => { :redirect => path }.to_json }
       end
     end
   end
+
+  ##############
+  ## Sidebars ##
+  ##############
 
   sidebar :toc, :class => "sidebar_tabs", :only => [:new, :edit] do
     render("sidebar_edit")

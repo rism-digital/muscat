@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   get 'catalog_uk/download' => 'catalog_uk#download'
   get 'catalog_ch/download' => 'catalog#download'
 
-
+  ##############################
+  ### Routes for the GND editor implemented in the /admin/gnd_works page
   get 'admin/gnd_works/new' => 'admin/gnd_works#new'
   get 'admin/gnd_works/edit' => 'admin/gnd_works#edit'
   get 'admin/gnd_works/search' => 'admin/gnd_works#search'
