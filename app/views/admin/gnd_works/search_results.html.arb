@@ -1,0 +1,16 @@
+columns do
+  column do
+    panel "Works" do
+      if results.is_a? Array and results.size > 0
+        table_for results.map do
+          column ("GND ID") {|row| link_to(row[:label], row[:link], { target: "_blank" })}
+          column ("Composer") {|row| row[:description][0] }
+          column ("Description") {|row| row[:description][1] }
+          column ("") {|row| link_to("Edit", "edit?#{row[:id]}")}
+        end
+      else
+        text_node(results)
+      end
+    end
+  end
+end

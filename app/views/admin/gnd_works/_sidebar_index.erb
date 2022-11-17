@@ -1,0 +1,17 @@
+<%= form_tag("/admin/gnd_works/search", method: "get") do %>
+  <div class="filter_form">
+    <div class="filter_form">
+      <%= label_tag(:q, "Search for:") %>
+      <%= text_field_tag(:q) %>
+    </div>
+    <div class="buttons">
+      <%= submit_tag("Search") %>
+    </div>
+  </div>
+<% end %>
+<ul>
+  <li class="muscat_icon_separator"></li>
+  <li class="muscat_icon_link">
+    <a href="/admin/gnd_works/new" class="muscat_icon_link muscat_icon_link_new"><%=(I18n.t :new)%></a>
+  </li>
+</ul>
