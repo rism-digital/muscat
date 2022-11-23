@@ -596,6 +596,7 @@ class Marc
     rewrite_tags.each do |rewrite_tag|
       master = @marc_configuration.get_master(rewrite_tag)
       
+      changed_tags = []
       each_by_tag(rewrite_tag) do |t|
         # Get the ID in the tag, print a warning if it is not there!
         marc_auth_id = t.fetch_first_by_tag(master)
@@ -615,10 +616,29 @@ class Marc
         t.add(MarcNode.new(auth_model.downcase, master, new_auth.id, nil))
         t.sort_alphabetically
         
+        changed_tags << t.tag
+
       end
       
     end
     
+    return changed_tags
+  end
+
+  def deduplicate_tags(tags_array)
+    tags_array.each do |tag|
+      tags = by_tags(tag)
+      dups = tags.sort.chunk_while {|i,j| i === j}.select { |e| e.size > 1 }.map
+      # the various duplicate tags get grouped together
+      dups.each do |grp|
+        # iterate over each tag except the first that we will preserve
+        grp.drop(1).each do |marc_tag|
+          # drop the others
+          marc_tag.destroy_yourself
+        end
+      end
+    end
+
   end
 
   def ==(other)

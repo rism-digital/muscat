@@ -640,7 +640,24 @@ class MarcNode
     if (!other.children || other.children.empty?) && (!children || children.empty?)
       return true if other.tag == tag && other.content == content
     end
+
     false
+  end
+
+  def <=>(other)
+    return nil if !other.is_a? MarcNode
+    # same object
+    return 0 if self == other
+    # same identical contents
+    return 0 if self === other
+
+    # if the tag is the same but not the contents, do a bare comparison
+    return -1 if tag == other.tag && to_s.length <= other.to_s.length
+    return 1 if tag == other.tag && to_s.length > other.to_s.length
+
+    # different tags, order by tag
+    return -1 if tag < other.tag
+    return 1 if tag > other.tag
   end
 
   alias length size
