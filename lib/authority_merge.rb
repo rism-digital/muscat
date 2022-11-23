@@ -38,7 +38,7 @@ module AuthorityMerge
   end
 
   def migrate_to_id(new_id)
-
+    
     begin
       new_model = self.class.find(new_id)
     rescue ActiveRecord::RecordNotFound
@@ -54,11 +54,12 @@ module AuthorityMerge
     refs.flatten.each do |s|
       record_type = s.has_attribute?(:record_type) ? s.record_type : nil
       klass = s.marc.class
-      s.marc.change_authority_links(self, new_model)
+      affected_tags = s.marc.change_authority_links(self, new_model)
 
       new_marc = klass.new(s.marc.to_marc)
       new_marc.load_source(true)
       new_marc.import
+      new_marc.deduplicate_tags!(affected_tags)
 
       # set marc and save
       s.marc = new_marc

@@ -627,14 +627,15 @@ class Marc
   end
 
   def change_authority_links(old_auth, new_auth)
-    return if old_auth.class != new_auth.class
+    return [] if old_auth.class != new_auth.class
     
     auth_model = old_auth.class.to_s
     
     # Get the tags to update
     rewrite_tags = @marc_configuration.get_remote_tags_for(auth_model)
-    return if rewrite_tags.empty?
+    return [] if rewrite_tags.empty?
     
+    changed_tags = []
     rewrite_tags.each do |rewrite_tag|
       master = @marc_configuration.get_master(rewrite_tag)
       
@@ -657,10 +658,56 @@ class Marc
         t.add(MarcNode.new(auth_model.downcase, master, new_auth.id, nil))
         t.sort_alphabetically
         
+        changed_tags << t.tag
+
       end
       
     end
     
+    return changed_tags
+  end
+
+  def find_duplicates(tags = nil)
+    tags_array = []
+
+    if tags.is_a? String or tags.is_a? Integer
+      tags_array = [tags.to_s]
+    elsif tags.is_a? Array
+      tags_array = tags
+    else
+      tags_array = each_data_tags_present(false){}.map
+    end
+
+    out_h = {}
+
+    tags_array.sort.each do |t|
+      tags = by_tags(t)
+      dups = tags.sort.chunk_while {|i,j| i === j}.select { |e| e.size > 1 }
+      next if dups.empty?
+      out_h[t] = dups
+    end
+
+    return out_h
+  end
+
+  def deduplicate_tags!(tags_array = nil)
+    output = {}
+    dups_by_tag = find_duplicates(tags_array)
+
+    dups_by_tag.each do |tag, dups|
+      # the various duplicate tags get grouped together
+      output[tag] = 0
+      dups.each do |grp|
+        # iterate over each tag except the first that we will preserve
+        grp.drop(1).each do |marc_tag|
+          # drop the others
+          marc_tag.destroy_yourself
+          output[tag] += 1
+        end
+      end
+    end
+
+    return output
   end
 
   def ==(other)
