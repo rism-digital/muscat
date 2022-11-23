@@ -585,18 +585,18 @@ class Marc
   end
 
   def change_authority_links(old_auth, new_auth)
-    return if old_auth.class != new_auth.class
+    return [] if old_auth.class != new_auth.class
     
     auth_model = old_auth.class.to_s
     
     # Get the tags to update
     rewrite_tags = @marc_configuration.get_remote_tags_for(auth_model)
-    return if rewrite_tags.empty?
+    return [] if rewrite_tags.empty?
     
+    changed_tags = []
     rewrite_tags.each do |rewrite_tag|
       master = @marc_configuration.get_master(rewrite_tag)
       
-      changed_tags = []
       each_by_tag(rewrite_tag) do |t|
         # Get the ID in the tag, print a warning if it is not there!
         marc_auth_id = t.fetch_first_by_tag(master)
