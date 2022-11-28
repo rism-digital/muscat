@@ -51,7 +51,8 @@ module AuthorityMerge
     (self.class.reflect_on_all_associations.map{|e| e.name}.select{|e| e.to_s =~ /source|holding/ && !(e.to_s =~ /relations/)}).each do |s|
       refs << self.send(s)
     end
-    refs.flatten.each do |s|
+
+    refs.flatten.sort.uniq.each do |s|
       record_type = s.has_attribute?(:record_type) ? s.record_type : nil
       klass = s.marc.class
       affected_tags = s.marc.change_authority_links(self, new_model)
