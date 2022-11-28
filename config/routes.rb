@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get 'admin/gnd_works/search' => 'admin/gnd_works#search'
   post 'admin/gnd_works/marc_editor_validate' => 'admin/gnd_works#marc_editor_validate'
   post 'admin/gnd_works/marc_editor_save' => 'admin/gnd_works#marc_editor_save'
+  get 'admin/gnd_works/autocomplete_gnd_works_person' => 'admin/gnd_works#autocomplete_gnd_works_person'
+  get 'admin/gnd_works/autocomplete_gnd_works_instrument' => 'admin/gnd_works#autocomplete_gnd_works_instrument'
+
 
   ##############################
   ### Blacklight 6 configuration

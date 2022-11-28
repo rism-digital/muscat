@@ -55,7 +55,15 @@ module ApplicationHelper
   def work_node_default_autocomplete
     autocomplete_work_title_admin_work_nodes_path
   end
+
+  def gnd_work_person_default_autocomplete
+    admin_gnd_works_autocomplete_gnd_works_person_path
+  end
   
+  def gnd_work_instrument_default_autocomplete
+    admin_gnd_works_autocomplete_gnd_works_instrument_path
+  end
+
   # Create a link for a page in a new window
   def application_helper_link_http(value, node, opac)
     result = []

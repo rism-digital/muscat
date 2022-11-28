@@ -1,6 +1,10 @@
 ActiveAdmin.register_page "gnd_works" do
-  
   controller do
+
+    autocomplete :gnd_works, "person", :gnd => true, :extra_data => [:life_dates]
+    autocomplete :gnd_works, "instrument", :gnd => true
+
+
     def index
       render 'index', layout: "active_admin" 
     end

@@ -56,9 +56,11 @@
   layout: 
     fields: 
     - - a
-      - type: person
+      - type: gnd_work_person
+        field: value
         editor_partial: subfield_secondary
         allow_new: true
+        has_links_to: true
     - - d
       - autocomplete_extra: life_dates
     - - m
@@ -144,7 +146,7 @@
   layout: 
     fields: 
     - - "a"
-      - type: standard_term
+      - type: gnd_work_instrument
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4

@@ -59,13 +59,17 @@
     - - d
       - :occurrences: "?"
   "100":  
+    :master: "0"
     :indicator: "1#"
     :occurrences: "?"
     :fields:
     - - "0"
       - :occurrences: "?"  
+        :foreign_field: id
     - - a
       - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
     - - d
       - :occurrences: "?"
     - - m
