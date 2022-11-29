@@ -51,16 +51,13 @@
       - cols: 2
     columns: 4
 "100":
-  new_window: people
-  new_window_field: full_name_equals
   layout: 
     fields: 
     - - a
       - type: gnd_work_person
-        field: value
+        preserve_foreign_value: true
         editor_partial: subfield_secondary
         allow_new: true
-        has_links_to: true
     - - d
       - autocomplete_extra: life_dates
     - - m

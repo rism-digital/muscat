@@ -15,6 +15,7 @@ ActiveAdmin.register_page "gnd_works" do
       new_marc.load_source false
       @item.marc = new_marc
       @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       render 'edit', layout: "active_admin" 
     end
 
@@ -23,6 +24,7 @@ ActiveAdmin.register_page "gnd_works" do
       marc = GND::Interface.retrieve(params[:id])
       @item.marc = marc
       @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       render 'edit', layout: "active_admin" 
     end
 

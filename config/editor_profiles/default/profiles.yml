@@ -229,4 +229,4 @@
   :filter:
     show_all: false
     show: true
-  :validation: "WorkValidation"
+  :validation: "GndWorkValidation"

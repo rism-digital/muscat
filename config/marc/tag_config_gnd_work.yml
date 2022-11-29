@@ -65,11 +65,12 @@
     :fields:
     - - "0"
       - :occurrences: "?"  
-        :foreign_field: id
+        #:foreign_class: GndWork
+        #:foreign_field: id
     - - a
       - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: full_name
+        #:foreign_class: ^0
+        #:foreign_field: full_name
     - - d
       - :occurrences: "?"
     - - m
