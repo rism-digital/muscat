@@ -3,7 +3,7 @@ ActiveAdmin.register_page "gnd_works" do
 
     # The display_value label is included in the hash returned by the GND::Interface and is not a method of the model
     autocomplete :gnd_works, "person", :gnd => true, :display_value => :label, :extra_data => [:life_dates]
-    autocomplete :gnd_works, "instrument", :gnd => true
+    autocomplete :gnd_works, "instrument", :gnd => true, :display_value => :label
 
 
     def index
