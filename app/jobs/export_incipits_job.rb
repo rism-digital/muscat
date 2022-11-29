@@ -1,4 +1,4 @@
-equire 'digest/sha1'
+require 'digest/sha1'
 
 class ExportIncipitsJob < ProgressJob::Base
   
