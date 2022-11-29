@@ -175,6 +175,56 @@ module GND
         end
         return (query.results and !query.results.empty?) ? query.results[0] : nil
     end
+    
+    ##########################
+    ## Autocomplete queries ##
+    ##########################
+    
+    def self.autocomplete(term, method, limit, options)
+        if method == "person" 
+            return autocomplete_person(term, limit, options)
+        elsif method == "instrument" 
+            return autocomplete_instrument(term, limit, options)
+        end
+        {}
+    end
+
+    def self.autocomplete_person(term, limit, options)
+        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=PER%3D%22#{term}%22+AND+bbg%3DTp*"
+        puts query
+        begin
+            query_result = URI.open(query)
+        rescue
+            return {}
+        end
+
+        # Load the results
+        xml = Nokogiri::XML(query_result)
+
+        result = []
+        # Loop on each record in the result list
+        xml.xpath("//marc:record", NAMESPACE).each do |record|
+            item = {}
+            node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
+            next if !node_001
+            item[:id] = node_001.text
+            node_100a_val = record.xpath("./marc:datafield[@tag='100']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
+            item["person"] = node_100a_val
+            node_100d_val = record.xpath("./marc:datafield[@tag='100']/marc:subfield[@code='d']", NAMESPACE).first.text rescue ""
+            item["life_dates"] = node_100d_val
+            item[:label] = "#{node_100a_val}"
+            item[:label] += " (#{node_100d_val})" if !node_100d_val.empty?
+            result << item
+        end
+        result
+    end
+
+    def self.autocomplete_instrument(term, limit, options)
+        h = {}
+        h[:id] = 12345
+        h["instrument"] = "Viola"
+        [h]
+    end
 
   end
 end

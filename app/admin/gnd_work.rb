@@ -1,7 +1,8 @@
 ActiveAdmin.register_page "gnd_works" do
   controller do
 
-    autocomplete :gnd_works, "person", :gnd => true, :extra_data => [:life_dates]
+    # The display_value label is included in the hash returned by the GND::Interface and is not a method of the model
+    autocomplete :gnd_works, "person", :gnd => true, :display_value => :label, :extra_data => [:life_dates]
     autocomplete :gnd_works, "instrument", :gnd => true
 
 
