@@ -8,23 +8,13 @@ module GND
     require 'open-uri'
     require 'net/http'
 
-    def self.search(term, model)
+    def self.search(term, index, auth, code = "", limit = 10)
         result = []
-        begin
-            query = URI.open(self.build_query(term, model))
-        rescue 
-            return "ERROR connecting GND AutoSuggest"
-        end
-
-        # Load the results
-        xml = Nokogiri::XML(query)
-
+        xml = self.query(term, index, auth, code, limit)
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
-
             marc = MarcWorkNode.new(nil, "work_node_gnd")
             marc.load_from_xml(record)
-
             # Some items do not have a 100 tag
             next if !marc.first_occurance("100", "a")
             
@@ -41,20 +31,15 @@ module GND
         return result
     end
 
+    # Retrieve a single GND record using the GND Id
     def self.retrieve(id)
         result = nil
-        begin
-            query = URI.open(self.build_query_id(id))
-        rescue 
-            return "ERROR connecting GND AutoSuggest"
-        end
-        
+        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=idn%3D#{id}"
+        query_result = URI.open(query) rescue nil
         # Load the results
-        xml = Nokogiri::XML(query)
-
+        xml = Nokogiri::XML(query_result)
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
-
             marc = GndWork.new(nil, "gnd_work")
             marc.load_from_xml(record)
             result = marc
@@ -62,22 +47,25 @@ module GND
         return result
     end
 
-    def self.build_query(term, model)
-        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query="
-        # Code for musical works
-        query += "COD=wim"
+    # Query the GND with the query parameters and return an XML document with the results
+    def self.query(term, index, auth, code = "", limit = 10)
+        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query="
+        # Code
+        query += "BBG=#{auth}*" 
         term.split.each do |word|
-            query += " and WOE=" + ERB::Util.url_encode(word)
+            query += " and #{index}=" + ERB::Util.url_encode(word)
         end
+        # Code - See https://wiki.dnb.de/download/attachments/90411323/entitaetenCodes.pdf
+        query += " and COD=#{code}" if !code.empty?
         puts query
-        # Work index
-        query += " and BBG=Tu*"
-        query
+        query_result = URI.open(query) rescue nil
+        # Load the results
+        xml = Nokogiri::XML(query_result)
     end
 
-    def self.build_query_id(id)
-        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=idn%3D#{id}"
-    end
+    #####################################################
+    ## Methods for converting a GND work to a WorkNode ##
+    #####################################################
 
     def self.migrate_marc(marc)
         gnd_person_id = nil
@@ -190,18 +178,8 @@ module GND
     end
 
     def self.autocomplete_person(term, limit, options)
-        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query=PER%3D%22#{term}%22+AND+bbg%3DTp*"
-        puts query
-        begin
-            query_result = URI.open(query)
-        rescue
-            return {}
-        end
-
-        # Load the results
-        xml = Nokogiri::XML(query_result)
-
         result = []
+        xml = self.query(term, "PER", "Tp", "piz", limit)
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
             item = {}
@@ -221,10 +199,21 @@ module GND
     end
 
     def self.autocomplete_instrument(term, limit, options)
-        h = {}
-        h[:id] = 12345
-        h["instrument"] = "Viola"
-        [h]
+        result = []
+        xml = self.query(term, "WOE", "Ts", "sab", limit)
+        # Loop on each record in the result list
+        xml.xpath("//marc:record", NAMESPACE).each do |record|
+            item = {}
+            node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
+            next if !node_001
+            item[:id] = node_001.text
+            node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
+            item["instrument"] = node_150a_val
+            item[:label] = "#{node_150a_val}"
+            item[:label] += " – #{item[:id]}"
+            result << item
+        end
+        result
     end
 
   end

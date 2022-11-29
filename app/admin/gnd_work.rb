@@ -30,7 +30,7 @@ ActiveAdmin.register_page "gnd_works" do
     end
 
     def search
-      @results = GND::Interface.search(params[:q], "gnd_works")
+      @results = GND::Interface.search(params[:q], "WOE", "Tu", "wim", 20)
       render 'search_results', layout: "active_admin", locals: { results: @results }
     end
 
