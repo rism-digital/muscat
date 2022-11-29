@@ -138,12 +138,11 @@
       - "7byz"
       - "8byz"
 "380": 
-  allow_new: true
-  new_window: standard_terms
   layout: 
     fields: 
     - - "a"
       - type: gnd_work_instrument
+        preserve_foreign_value: true
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
