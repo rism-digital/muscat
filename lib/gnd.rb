@@ -25,9 +25,6 @@ module GND
             item = {marc: marc.to_json, description: get_description(marc), link: "https://d-nb.info/gnd/#{id}", label: "GND | #{id}", noSelectMsg: noSelectMsg, id: id} 
             result << item
         end
-        if result.empty?
-            return "Sorry, no work results were found in GND!"
-        end
         return result
     end
 
