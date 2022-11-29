@@ -190,7 +190,7 @@ module GND
     end
 
     def self.autocomplete_person(term, limit, options)
-        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=PER%3D%22#{term}%22+AND+bbg%3DTp*"
+        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query=PER%3D%22#{term}%22+AND+bbg%3DTp*"
         puts query
         begin
             query_result = URI.open(query)
@@ -214,6 +214,7 @@ module GND
             item["life_dates"] = node_100d_val
             item[:label] = "#{node_100a_val}"
             item[:label] += " (#{node_100d_val})" if !node_100d_val.empty?
+            item[:label] += " – #{item[:id]}"
             result << item
         end
         result
