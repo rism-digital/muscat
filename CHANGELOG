@@ -1,6 +1,65 @@
 Muscat Changelog
 ================
 
+v 9.0
+* Add tag configuration for work nodes
+* Remove 383 and 690 from marc node config
+* Add work node model as a plain copy of work
+* Add marc work node as plain copy of marc work
+* Add migration to add the work nodes tables and to migrate the data
+* Add index configuration for work nodes copied for works
+* Plain copy of admin work as work node
+* Add form, layout, show and validation configuration for work nodes
+* Add profiles for work nodes
+* Change EditorConfiguration to handle compound class name
+* Remove 930 from work node configuration
+* Adjust sources to refer to work nodes
+* Adjust the source form / show configuration to use work nodes
+* Make sure incipit show works even with no digital object
+* Basic GND search for work nodes
+* Move xsl from viaf/ to gnd/
+* Add missing .underscore in editor validation configuration
+* Tidying up JS gnd interface
+* Fix creation of new tags
+* Remove spaces added before the indicators
+* Modify raw drawing based on a JSON object with
+* Adjust the GND import to return a JSON with the description and the link and label
+* Add get_composer_name to MarcWorkNode
+* Add I18n for select button, skip records with no 100
+* Strip unicode &#152; and &#156; quotes from GND MARC data
+* Add migration to rename columns in works
+* Rename work fields form and notes in the application
+* Index 024 in Person to get GND ids in Solr
+* Resolve Person $0 through gnd id
+* PATCH to pass 100$0 correctly, TODO find a better fix
+* Initial steps to refactor marc editor "editor" code
+* Refactoy away marc editor tree manipulation functions
+* Remove some stale code
+* Initial direct XML load implementation
+* Activate form validation
+* Add route for work_nodes through sru
+* Add to_external for work_nodes
+* Fix duplicate marc tags when doing multiple searches, fix a missing "var" which caused a crash if the first element of the first search was selectable
+* Move marc conversion code to GND module
+* Use work_nodes when accessing works SRU interface
+* Add additional $0 to 930 work nodes export
+* Merge pull request #1295 from rism-digital/develop-work-nodes-experiments-sru
+* Move osullivan
+* Initial 930 removal script
+* Add validation for work_nodes
+* Make sure the notification trigger gets executed also for new records
+* Send trigger notifications for new records
+* Show the proper error when deleting holdings with 973
+* Make the destroy errors redirect to the show page instead of the index
+* Fix #1299, add arr
+* #1297 add === to marc nodes to compare contents
+* Make deduplication work
+* Add method to find duplicates
+* Integrate the deduplicator into auth_merge. Maybe auth_merge should be run as a background job?
+* Try a different icon for move tags
+* Avoid lock conflicts when re-saving authorities
+* Add hashes to incipits
+
 v 8.2
 * WIP: Add `xx` to accepted values for name variants
 * Fixed: Change translation key for `xx`
