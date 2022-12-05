@@ -59,6 +59,7 @@ v 9.0
 * Try a different icon for move tags
 * Avoid lock conflicts when re-saving authorities
 * Add hashes to incipits
+* Fix #1298, remove uniqueness in workgroup email
 
 v 8.2
 * WIP: Add `xx` to accepted values for name variants
