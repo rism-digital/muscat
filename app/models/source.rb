@@ -628,7 +628,7 @@ class Source < ApplicationRecord
 
   def check_parent
     if source_id
-      errors.add :base, "This #{self.class} #{self.id} is part of a collection, please delete 773"
+      errors.add :base, I18n.t(:is_part_of_collection, class: self.class.model_name.human, id: self.id)
       throw :abort
       false
     end 

@@ -595,6 +595,7 @@ it:
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
   validate_name_uniqness: "Scheda non salvata: il titolo breve '%{term}' è già esistente."
   validates_parent_id: "Scheda non salvata: una fonte non può linkare a se stessa (tag 773)"
+  is_part_of_collection: "Questa %{class} %{id} è parte di una collezione, è necessario rimuovere il 773 prima di poterla cancellare"
   not_set: "[vuoto]"
 
   #
