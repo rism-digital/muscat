@@ -284,6 +284,7 @@ pl:
   menu_jobs: Zadania
   menu_holdings: Egzemplarz
   menu_works: Dzieła
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: Ostatnie modyfikacje

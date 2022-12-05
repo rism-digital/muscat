@@ -283,6 +283,7 @@ fr:
   menu_jobs: "Tâches"
   menu_holdings: "Exemplaires"
   menu_works: "Oeuvres"
+  menu_work_nodes: "Références d'oeuvres (Work Nodes)"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Dernières modifications"

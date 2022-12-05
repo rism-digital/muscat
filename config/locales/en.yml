@@ -283,6 +283,7 @@ en:
   menu_jobs: "Jobs"
   menu_holdings: "Holdings"
   menu_works: "Works"
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
@@ -639,6 +640,9 @@ en:
   folder:
     one: "folder"
     other: "folders"
+  worknode:
+    one: "work node"
+    other: "work nodes"
 
   will_paginate:
     page_entries_info:

@@ -199,6 +199,9 @@ it:
       work:
         one: "Opera"
         other: "Opere"
+      work_node: 
+        one: "Riferimento alle opere"
+        other: "Riferimenti alle opere"
       
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Seleziona un nuovo template"
@@ -285,6 +288,7 @@ it:
   menu_jobs: "Processi in Background"
   menu_holdings: "Esemplari"
   menu_works: "Composizioni"
+  menu_work_nodes: "Riferimenti alle opere (Work Nodes)"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"

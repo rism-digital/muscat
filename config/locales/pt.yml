@@ -280,6 +280,7 @@ pt:
   menu_jobs: "Trabalhos"
   menu_holdings: "Materiais"
   menu_works: "Materiais"
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Últimas modificações"

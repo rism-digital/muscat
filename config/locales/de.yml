@@ -283,6 +283,7 @@ de:
   menu_jobs: "Jobs"
   menu_holdings: "Examplare"
   menu_works: "Werktitel"
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Letzte Änderungen"

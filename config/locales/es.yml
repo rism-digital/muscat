@@ -284,6 +284,7 @@ es:
   menu_jobs: "Tareas" # dudoso, tal vez empleos
   menu_holdings: "Registros de ejemplares"
   menu_works: "Obras" 
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Modificaciones recientes"
