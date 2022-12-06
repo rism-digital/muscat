@@ -394,6 +394,7 @@ en:
     dedicatee: Dedicatee
     department: Department
     depositor: Depositor
+    deprecated_fields: Obsolete fields (do not use)
     description: Description
     description_area: Description area
     description_summary: Description summary
@@ -763,6 +764,7 @@ en:
     scoring_in_movement: Scoring in movement
     scoring_summary: Scoring summary
     scribe: Scribe
+    secondary_catalog_works: Secondary catalog of works
     secondary_literature: Secondary literature
     series: Series
     series_added_entry: Series added entry fields
