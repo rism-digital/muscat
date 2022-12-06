@@ -280,6 +280,7 @@ pt:
   menu_jobs: "Trabalhos"
   menu_holdings: "Materiais"
   menu_works: "Materiais"
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Últimas modificações"
@@ -380,6 +381,7 @@ pt:
   hide_preview: "Ocultar previsualização"
   show_validate: "Validação"
   show_history: "Mostrar histórico de modificação"
+  show_gnd: "Busca no GND"
   show_viaf: "Busca no VIAF"
   save_and_continue: "Salvar e continuar editando"
   save_and_exit: "Salvar e Fechar"
@@ -587,6 +589,7 @@ pt:
   cannot_create_source: "O usuário não tem autorização para criar este tipo de fonte"
   validate_name_uniqness: "O registro não foi salvo: Um título abreviado igual '%{term}' já existe."
   validates_parent_id: "O registro não foi salvo: O registro principal (773) não pode ser igual a este registro"
+  is_part_of_collection: "Esta %{class} %{id} faz parte de uma colecção, deve remover o 773 antes de o poder apagar"
   not_set: "[não definido]"  
 
   #

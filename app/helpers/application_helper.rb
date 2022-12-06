@@ -51,6 +51,10 @@ module ApplicationHelper
   def work_default_autocomplete
     autocomplete_work_title_admin_works_path
   end
+
+  def work_node_default_autocomplete
+    autocomplete_work_title_admin_work_nodes_path
+  end
   
   # Create a link for a page in a new window
   def application_helper_link_http(value, node, opac)

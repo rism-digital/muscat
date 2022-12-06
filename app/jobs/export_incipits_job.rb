@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 class ExportIncipitsJob < ProgressJob::Base
   
   OUTFILE="#{Rails.root}/tmp/incipits.csv"
@@ -27,8 +29,10 @@ class ExportIncipitsJob < ProgressJob::Base
                     
                     next if vals[:p] == 'nil'
     
+                    sha1 = Digest::SHA1.hexdigest(t.to_s + source.id.to_s)
+
                     #file.write("#{source.id}\t#{vals[:a]}\t#{vals[:b]}\t#{vals[:c]}\t#{vals[:g]}\t#{vals[:n]}\t#{vals[:o]}\t#{vals[:p]}\n")
-                    csv << [source.id, "https://muscat.rism.info/admin/sources/#{source.id}/edit", vals[:a], vals[:b], vals[:c], vals[:g], vals[:n], vals[:o], vals[:p], vals[:m], vals[:r], vals[:q], source.lib_siglum ]
+                    csv << [source.id, "https://muscat.rism.info/admin/sources/#{source.id}/edit", vals[:a], vals[:b], vals[:c], vals[:g], vals[:n], vals[:o], vals[:p], vals[:m], vals[:r], vals[:q], source.lib_siglum, sha1 ]
     
                     count += 1
     

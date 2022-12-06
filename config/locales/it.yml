@@ -199,6 +199,9 @@ it:
       work:
         one: "Opera"
         other: "Opere"
+      work_node: 
+        one: "Riferimento alle opere"
+        other: "Riferimenti alle opere"
       
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Seleziona un nuovo template"
@@ -285,6 +288,7 @@ it:
   menu_jobs: "Processi in Background"
   menu_holdings: "Esemplari"
   menu_works: "Composizioni"
+  menu_work_nodes: "Riferimenti alle opere (Work Nodes)"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"
@@ -387,6 +391,7 @@ it:
   hide_preview: "Nascondi anteprima"
   show_validate: "Valida Record"
   show_history: "Mostra lo storico"
+  show_gnd: "Ricerca GND" 
   show_viaf: "Ricerca VIAF"
   save_and_continue: "Salva e continua"
   save_and_exit: "Salva ed esci"
@@ -594,6 +599,7 @@ it:
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
   validate_name_uniqness: "Scheda non salvata: il titolo breve '%{term}' è già esistente."
   validates_parent_id: "Scheda non salvata: una fonte non può linkare a se stessa (tag 773)"
+  is_part_of_collection: "Questa %{class} %{id} è parte di una collezione, è necessario rimuovere il 773 prima di poterla cancellare"
   not_set: "[vuoto]"
 
   #

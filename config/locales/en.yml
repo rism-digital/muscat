@@ -283,6 +283,7 @@ en:
   menu_jobs: "Jobs"
   menu_holdings: "Holdings"
   menu_works: "Works"
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
@@ -384,6 +385,7 @@ en:
   hide_preview: "Hide preview"
   show_validate: "Validate"
   show_history: "Show modification history"
+  show_gnd: "GND Search"
   show_viaf: "VIAF Search"
   save_and_continue: "Save and continue editing"
   save_and_exit: "Save and close"
@@ -592,6 +594,7 @@ en:
   cannot_create_source: "You are not authorized to create this type of source"
   validate_name_uniqness: "Record not saved: Same short title '%{term}' already exists."
   validates_parent_id: "Record not saved: Parent record (773) cannot be same as this record"
+  is_part_of_collection: "This %{class} %{id} is part of a collection, please delete 773"
   not_set: "[not set]"
 
   #
@@ -637,6 +640,9 @@ en:
   folder:
     one: "folder"
     other: "folders"
+  worknode:
+    one: "work node"
+    other: "work nodes"
 
   will_paginate:
     page_entries_info:

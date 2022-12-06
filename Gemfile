@@ -116,7 +116,7 @@ gem 'exception_notification'
 gem 'cql-ruby', '0.9.1', :git => 'https://github.com/jrochkind/cql-ruby'
 gem 'chart-js-rails'
 
-gem 'osullivan'
+gem 'iiif-presentation'#, :git => 'https://github.com/iiif-prezi/osullivan', branch: "development"
 
 ## Add translations for activerecord and co
 gem 'rails-i18n'#, github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x

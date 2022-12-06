@@ -306,5 +306,14 @@ class Person < ApplicationRecord
     str.gsub!("\"", "")
     Viaf::Interface.search(str, self.to_s)
   end
+
+  # rake sunspot:reindex calls indexable? to make sure this is an idexable record
+  # We intercept this call to make a load_source false so it is faster to reindex
+  # And we can harcdoce back the true since this model is solr indexable
+  def indexable?
+    self.marc.load_source false
+    true
+  end
+
 end
 
