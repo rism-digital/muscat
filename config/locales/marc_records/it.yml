@@ -394,6 +394,7 @@ it:
     dedicatee: Dedicatario
     department: Dipartimento
     depositor: Depositante
+    deprecated_fields: Campi obsoleti (non usare)
     description: Descrizione
     description_area: Descrizione
     description_summary: Descrizione sommaria
@@ -760,6 +761,7 @@ it:
     scoring_in_movement: Organico del movimento
     scoring_summary: Organico sintetico
     scribe: Copista
+    secondary_catalog_works: Catalogo secondario delle opere
     secondary_literature: Bibliografia
     series: Serie
     series_added_entry: Notizia secondaria sul titolo sovraordinato
@@ -932,7 +934,7 @@ it:
     ERR_056_TIMESIG_CHANGE: Il tempo non può essere cambiato più di una volta in una battuta.
     ERR_057_MENSUR_CHANGE: La mensurazione non può essere modificata più di una volta in una battuta.
     ERR_058_FERMATA_MREST: "Le parentesi per una corona possono contenere solo una singola nota o una pausa di '%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Nella notazione mensurale non sono ammesse note doppiamente puntate."
+    ERR_059_DOUBLE_DOTS_MENS: "Nella notazione mensurale non sono ammesse note con doppi punti."
     ERR_060_CLEF_MISSING: È necessario specificare la chiave.
     ERR_061_LIGATURE_NOTE_BEFORE: Per indicare una legatura, un '+' deve essere preceduto da una nota.
     ERR_062_LIGATURE_NOTE_AFTER: Per indicare una legatura, un '+' deve essere seguito da una nota.

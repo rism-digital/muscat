@@ -394,6 +394,7 @@ pl:
     dedicatee: Adresat dedykacji
     department: Wydział
     depositor: Deponent
+    deprecated_fields: Nieaktualne pola (nie używane)
     description: Opis
     description_area: Obszar opisu
     description_summary: Podsumowanie
@@ -760,6 +761,7 @@ pl:
     scoring_in_movement: Obsada w części
     scoring_summary: Podsumowanie obsady
     scribe: Kopista
+    secondary_catalog_works: Drugi katalog dzieł
     secondary_literature: Literatura pomocnicza
     series: Seria
     series_added_entry: Dodatkowe wpisy tytułów

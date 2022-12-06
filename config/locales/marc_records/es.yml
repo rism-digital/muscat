@@ -394,6 +394,7 @@ es:
     dedicatee: Dedicatario(a)
     department: Departamento
     depositor: Depositante
+    deprecated_fields: Campos obsoletos (no usar)
     description: Decripción
     description_area: Descripción
     description_summary: Descripción sumaria
@@ -760,6 +761,7 @@ es:
     scoring_in_movement: Plantilla/orgánico del movimiento
     scoring_summary: Resumen de Plantilla/Orgánico
     scribe: Copista
+    secondary_catalog_works: Catálogo secundario de obras
     secondary_literature: Bibliografía secundaria
     series: Serie
     series_added_entry: Entradas adicionales de la serie
@@ -935,7 +937,7 @@ es:
     ERR_059_DOUBLE_DOTS_MENS: "Las notas de doble punto no pueden ser usadas con notación mensural."
     ERR_060_CLEF_MISSING: Se necesita una clave.
     ERR_061_LIGATURE_NOTE_BEFORE: Para indicar una ligadura, el signo "+" debe preceder por una nota.
-    ERR_062_LIGATURE_NOTE_AFTER: To indicate a ligature, a '+' must be followed by a note.
+    ERR_062_LIGATURE_NOTE_AFTER: Para indicar una ligadura, el signo "+" debe preceder por una nota.
     ERR_063_LIGATURE_PITCH: Una ligadura no puede tener dos notas consecutivas en el mismo tono.
     ERR_064_LIGATURE_DURATION: La duración de una ligadura no puede ser mas corta que una semibreve.
     ERR_065_MREST_INVALID_MEASURE: Un compás con un compás de silencio no puede incluir algo más.

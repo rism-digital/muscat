@@ -394,6 +394,7 @@ fr:
     dedicatee: Dédicataire
     department: Section
     depositor: Dépositeur
+    deprecated_fields: Champs obsolètes (ne pas utiliser)
     description: Description
     description_area: Description
     description_summary: Description brève
@@ -760,6 +761,7 @@ fr:
     scoring_in_movement: Instrumentation du mouvement
     scoring_summary: Instrumentation
     scribe: Copiste / scribe
+    secondary_catalog_works: Catalogue secondaire des oeuvres
     secondary_literature: Références
     series: Série
     series_added_entry: Champs de collection
@@ -914,7 +916,7 @@ fr:
     ERR_038_TIE_OPEN: Une liaison de prolongation codée avec '+' doit être suivie d'une note.
     ERR_039_TIE_NO_NOTE: Une liaison de prolongation codée avec '+' doit être précédée d'une note.
     ERR_040_HIERARCHY_INVALID: L'ordre des éléments ne peut pas être interprété (%{value}).
-    ERR_041_NESTING_INVALID: "With '%{value}' the inner group must be closed before the outer group."
+    ERR_041_NESTING_INVALID: "Avec '%{value}' le groupe intérieur doit être fermé avant le groupe extérieur."
     ERR_042_CLEF_INCOMPLETE: La clef n'est pas codée correctement.
     ERR_043_CLEF_INVALID_2ND: Le deuxième caractère dans le signe de la clef doit être soit '+' soit '-'.
     ERR_044_CLEF_MENS: Ne mélangez pas les clefs mensurales et non mensurales.
@@ -931,8 +933,8 @@ fr:
     ERR_055_KEYSIG_CHANGE: L'armure ne peut pas être modifiée plus d'une fois dans une mesure.
     ERR_056_TIMESIG_CHANGE: L'indication de mesure ne peut pas être modifiée plus d'une fois dans une mesure.
     ERR_057_MENSUR_CHANGE: L'indication de mesure ne peut pas être modifiée plus d'une fois dans une mesure.
-    ERR_058_FERMATA_MREST: "The parentheses of a fermata may only contain a single note or rest '%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes cannot be used with mensural notation."
+    ERR_058_FERMATA_MREST: "Les parenthèses d'un point d'orgue ne doivent contenir qu'une seule note ou un seul silence '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Les notes doubles pointées ne sont pas valides en notation mensurale."
     ERR_060_CLEF_MISSING: Une clef est requise.
     ERR_061_LIGATURE_NOTE_BEFORE: Pour indiquer une ligature, un '+' doit être précédé d'une note.
     ERR_062_LIGATURE_NOTE_AFTER: Pour indiquer une ligature, un '+' doit être suivi d'une note.
@@ -940,43 +942,43 @@ fr:
     ERR_064_LIGATURE_DURATION: La durée dans une ligature ne peut pas être plus courte qu'une semi-brève.
     ERR_065_MREST_INVALID_MEASURE: Une mesure avec une pause ne peut pas inclure autre chose.
   rism_online:
-    manuscript: "Manuscript"
-    printed: "Printed"
-    composite: "Composite Volume"
-    apply_filters: "Apply filters"
-    error_loading_results: "Error loading results"
-    global_collection: "Global Collection"
-    home: "Home"
-    keyword_query: "Keyword query"
-    first: "First"
-    last: "Last"
-    next: "Next"
-    previous: "Previous"
-    no_results_body: "Adjust your query options, or reset all filters, to see results."
-    no_results_header: "No results were found for your search"
-    no_results_to_find: "No results would be found with this search"
+    manuscript: "Manuscrit"
+    printed: "Imprimé"
+    composite: "Volume composite"
+    apply_filters: "Appliquer les filtres"
+    error_loading_results: "Erreur lors du chargement des résultats"
+    global_collection: "Collection globale"
+    home: "Accueil"
+    keyword_query: "Recherche par mot-clé"
+    first: "Premier"
+    last: "Dernier"
+    next: "Suivant"
+    previous: "Précédent"
+    no_results_body: "Ajustez vos options de requête, ou réinitialisez tous les filtres, pour voir les résultats."
+    no_results_header: "Aucun résultat trouvé"
+    no_results_to_find: "Aucun résultat pour cette recherche"
     page: "Page"
-    words_anywhere: "Words anywhere"
-    record_preview: "Record preview"
+    words_anywhere: "Mots, partout"
+    record_preview: "Prévisualisation"
     record_uri: "Record URI (Permalink)"
-    reset_all: "Reset all"
-    number_results: "Number of results"
-    search: "Search"
-    show_all_results: "Show all results"
-    show_results: "Show results"
-    source_contents: "Source contents"
-    update_results: "Update search results"
-    page_not_found: "The page was not found"
-    bad_query: "There was a problem with the query"
-    result_types: "Result Types"
-    source_relationships: "Source relationships"
-    holding_institutions: "Holding institutions"
-    digital_facsimiles: "Digital facsimiles"
-    publication_details: "Publication details"
-    biographical_details: "Biographical details"
-    role_and_profession: "Role and profession"
-    composer_composition: "Composer and composition"
-    full_record: "Full Record"
+    reset_all: "Tout réinitialiser"
+    number_results: "Nombre de résultats"
+    search: "Recherche"
+    show_all_results: "Afficher tous les résultats"
+    show_results: "Afficher les résultats"
+    source_contents: "Contenu de la source"
+    update_results: "Mettre à jour les résultats de recherche"
+    page_not_found: "Page non trouvée"
+    bad_query: "Il y a eu un problème avec la requête"
+    result_types: "Type du résultat"
+    source_relationships: "Relation"
+    holding_institutions: "Institution"
+    digital_facsimiles: "Fac-similés numériques"
+    publication_details: "Détails de publication"
+    biographical_details: "Détails biographiques"
+    role_and_profession: "Rôle et profession"
+    composer_composition: "Compositeur et composition"
+    full_record: "Enregistrement complet"
   testingForCrowdinWorkshop:
     apple: pomme
     pear: poire

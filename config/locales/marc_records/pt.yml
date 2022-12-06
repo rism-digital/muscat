@@ -394,6 +394,7 @@ pt:
     dedicatee: Dedicatário(a)
     department: Departamento
     depositor: Depositante
+    deprecated_fields: Campos obsoletos (não usam)
     description: Descrição
     description_area: Descrição
     description_summary: Síntese da descrição
@@ -760,6 +761,7 @@ pt:
     scoring_in_movement: Formação instrumental no movimento
     scoring_summary: Sintese da formação instrumental
     scribe: Copista
+    secondary_catalog_works: Catálogo secundário de obras
     secondary_literature: Literatura secundária
     series: Séries
     series_added_entry: Informação secundária sobre título superordenado
@@ -914,7 +916,7 @@ pt:
     ERR_038_TIE_OPEN: Uma ligadura com '+' deve ser seguida por uma nota.
     ERR_039_TIE_NO_NOTE: Uma ligadura com '+' deve ser precedida por uma nota.
     ERR_040_HIERARCHY_INVALID: A ordem dos elementos não pode ser interpretada (%{value}).
-    ERR_041_NESTING_INVALID: "With '%{value}' the inner group must be closed before the outer group."
+    ERR_041_NESTING_INVALID: "Com '%{value}' o grupo interno deve ser fechado antes do grupo externo."
     ERR_042_CLEF_INCOMPLETE: A chave não se encontra no formato correcto.
     ERR_043_CLEF_INVALID_2ND: O segundo caractere no sinal de clef deve ser '+' ou '-'.
     ERR_044_CLEF_MENS: Não misture clipes mensais e não mensais.
@@ -931,18 +933,18 @@ pt:
     ERR_055_KEYSIG_CHANGE: A assinatura da chave não pode ser alterada mais de uma vez numa medida.
     ERR_056_TIMESIG_CHANGE: A assinatura do tempo não pode ser alterada mais de uma vez numa medida.
     ERR_057_MENSUR_CHANGE: A mensuração não pode ser alterada mais do que uma vez numa medida.
-    ERR_058_FERMATA_MREST: "The parentheses of a fermata may only contain a single note or rest '%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes cannot be used with mensural notation."
+    ERR_058_FERMATA_MREST: "Os parênteses de um fermata devem conter apenas uma nota ou outra '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Notas pontilhadas duplas são inválidas com notação mensal."
     ERR_060_CLEF_MISSING: É necessária uma clave.
-    ERR_061_LIGATURE_NOTE_BEFORE: To indicate a ligature, a '+' must be preceded by a note.
-    ERR_062_LIGATURE_NOTE_AFTER: To indicate a ligature, a '+' must be followed by a note.
-    ERR_063_LIGATURE_PITCH: A ligature cannot have two consecutive notes with the same pitch.
-    ERR_064_LIGATURE_DURATION: The duration in a ligature cannot be shorter than a semibreve.
-    ERR_065_MREST_INVALID_MEASURE: A measure with a measure rest cannot include anything else.
+    ERR_061_LIGATURE_NOTE_BEFORE: Para indicar uma ligatura, um '+' deve ser precedido de uma nota.
+    ERR_062_LIGATURE_NOTE_AFTER: Para indicar uma ligatura, um '+' deve ser seguido por uma nota.
+    ERR_063_LIGATURE_PITCH: Uma ligadura não pode ter duas notas consecutivas com o mesmo tom.
+    ERR_064_LIGATURE_DURATION: A duração de uma ligatura não pode ser menor que um ponto e meio.
+    ERR_065_MREST_INVALID_MEASURE: Uma medida com um repouso não pode incluir mais nada.
   rism_online:
     manuscript: "Manuscrito"
     printed: "Impresso"
-    composite: "Composite Volume"
+    composite: "Volume composto"
     apply_filters: "Aplicar filtros"
     error_loading_results: "Erro ao carregar os resultados"
     global_collection: "Coleção global"
@@ -956,27 +958,27 @@ pt:
     no_results_header: "Não foram encontrados resultados para a sua pesquisa"
     no_results_to_find: "Nenhum resultado será encontrado para esta pesquisa"
     page: "Página"
-    words_anywhere: "Words anywhere"
-    record_preview: "Record preview"
+    words_anywhere: "Palavras em qualquer lugar"
+    record_preview: "Visualização do registro"
     record_uri: "Record URI (Permalink)"
     reset_all: "Resetar tudo"
     number_results: "Número de resultados"
     search: "Busca"
     show_all_results: "Mostrar todos os resultados"
     show_results: "Mostrar resultados"
-    source_contents: "Source contents"
+    source_contents: "Conteúdo da fonte"
     update_results: "Atualizar resultados"
     page_not_found: "A página não foi encontrada"
     bad_query: "Houve um problema com a consulta"
     result_types: "Tipos de resultado"
-    source_relationships: "Source relationships"
-    holding_institutions: "Holding institutions"
+    source_relationships: "Relações da fonte"
+    holding_institutions: "Responsabilidade das Instituições"
     digital_facsimiles: "Facsimiles digitais"
     publication_details: "Detalhes de Publicação"
     biographical_details: "Detalhes biográficos"
     role_and_profession: "Cargo e profissão"
     composer_composition: "Compositor e composição"
-    full_record: "Full Record"
+    full_record: "Registro completo"
   testingForCrowdinWorkshop:
     apple: maçã
     pear: pera
