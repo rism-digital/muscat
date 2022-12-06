@@ -394,6 +394,7 @@ en:
     dedicatee: Dedicatee
     department: Department
     depositor: Depositor
+    deprecated_fields: Obsolete fields (do not use)
     description: Description
     description_area: Description area
     description_summary: Description summary
