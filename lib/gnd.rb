@@ -49,17 +49,17 @@ module GND
         return result
     end
 
-    def self.build_query(term, model)
-        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query="
+    def self.build_query(term, model, numRecords = 30)
+        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{numRecords}&query="
         # Code for musical works
         query += "COD=wim"
         term.split.each do |word|
             query += " and WOE=" + ERB::Util.url_encode(word)
         end
-        puts query
+        
         # Work index
         query += " and BBG=Tu*"
-        query
+        return query
     end
 
     def self.migrate_marc(marc)
