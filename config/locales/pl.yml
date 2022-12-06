@@ -284,6 +284,7 @@ pl:
   menu_jobs: Zadania
   menu_holdings: Egzemplarz
   menu_works: Dzieła
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: Ostatnie modyfikacje
@@ -593,6 +594,7 @@ pl:
   cannot_create_source: Nie masz uprawnienia do utworzenia tego rodzaju źródła.
   validate_name_uniqness: Rekord nie zapisany. Ten skrócony tytuł (‘%{term}’) już istnieje.
   validates_parent_id: "Rekord nie zapisany. Rekord macierzysty (773) nie może być taki sam, jak ten."
+  is_part_of_collection: "Ta %{class} %{id} jest częścią kolekcji, musisz usunąć 773 przed jej usunięciem"
   not_set: "[nie ustawiony]"
 
 

@@ -452,3 +452,5 @@
         editor_partial: subfield_select
     columns: 4
 
+triggers:
+  - notify_changes

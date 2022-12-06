@@ -35,6 +35,7 @@ bundle exec rake sunspot:reindex[,Place]
 bundle exec rake sunspot:reindex[,StandardTerm]
 bundle exec rake sunspot:reindex[,StandardTitle]
 bundle exec rake sunspot:reindex[,Work]
+bundle exec rake sunspot:reindex[,WorkNode]
 bundle exec rake sunspot:reindex[,FolderItem]
 bundle exec rake sunspot:reindex[,Holding]
 

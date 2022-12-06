@@ -283,6 +283,7 @@ de:
   menu_jobs: "Jobs"
   menu_holdings: "Examplare"
   menu_works: "Werktitel"
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Letzte Änderungen"
@@ -592,6 +593,7 @@ de:
   cannot_create_source: "Sie sind nicht berechtigt, diese Art von Quellen zu erstellen"
   validate_name_uniqness: "Eintrag nicht gespeichert: Das Kürzel '%{term}' existiert bereits."
   validates_parent_id: "Eintrag nicht gespeichert: Übergeordneter Eintrag (773) kann nicht mit diesem Eintrag identisch sein."
+  is_part_of_collection: "Diese %{class} %{id} ist Teil einer Sammlung, Sie müssen die 773 entfernen, bevor Sie sie löschen können"
   not_set: "[nicht fest]"
 
   #
