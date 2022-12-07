@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 file = ARGV[0]
 commit = ARGV.count >= 1 ? ARGV[1] : ""
 
@@ -126,10 +128,10 @@ CSV layout:
     next if s_id == "source_id"
 
     incipit_id = "#{s_id}-#{pae_a}.#{pae_b}.#{pae_c}".strip
-    if @skip_id.include?(incipit_id)
-        puts "SKIP DUPLICATE #{incipit_id}"
-        next
-    end
+    #if @skip_id.include?(incipit_id)
+    #    puts "SKIP DUPLICATE #{incipit_id}"
+    #    next
+    #end
 
     begin
         source = Source.find(s_id)
@@ -151,7 +153,9 @@ CSV layout:
             tags[st] = v
         end
 
-        if pae_a == vals[:a] && pae_b == vals[:b] && pae_c == vals[:c]
+        sha1 = Digest::SHA1.hexdigest(t.to_s + source.id.to_s)
+
+        if hash == sha1 #pae_a == vals[:a] && pae_b == vals[:b] && pae_c == vals[:c]
 
             #puts "updating #{source.id} #{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
 
