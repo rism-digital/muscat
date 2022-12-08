@@ -72,7 +72,7 @@ def find_duplicates(file)
 end
 
 # First find all dups
-find_duplicates(file)
+#find_duplicates(file)
 
 CSV.foreach(file) do |l|
 
@@ -156,7 +156,6 @@ CSV layout:
         sha1 = Digest::SHA1.hexdigest(t.to_s + source.id.to_s)
 
         if hash == sha1 #pae_a == vals[:a] && pae_b == vals[:b] && pae_c == vals[:c]
-
             #puts "updating #{source.id} #{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
 
             (puts "#{source.id} #{vals[:a]}.#{vals[:b]}.#{vals[:c]} clef was changed expecting #{clef} is #{vals[:g]}"; next ) if vals[:g] != nil && vals[:g].strip != clef.strip
@@ -168,12 +167,7 @@ CSV layout:
             (puts "#{source.id} #{vals[:a]}.#{vals[:b]}.#{vals[:c]} b was changed expecting #{pae_b} is #{vals[:b]}"; next ) if vals[:b] != nil && vals[:b].strip != pae_b.strip
             (puts "#{source.id} #{vals[:a]}.#{vals[:b]}.#{vals[:c]} v was changed expecting #{pae_c} is #{vals[:c]}"; next ) if vals[:c] != nil && vals[:c].strip != pae_c.strip
 
-
-            if !tags[:g]
-                t.add_at(MarcNode.new("source", clef_new.strip, "", nil), 0)
-            else
-                tags[:g].content = clef_new.strip if !clef_new.empty?
-            end
+            change_or_create(t, "g", tags[:g], clef_new)
 
             change_or_create(t, "n", tags[:n], key_new)
             #tags[:o].content = time_new.strip if !time_new.empty? || (vals[:o] && time_new.strip != vals[:o].strip)
@@ -187,12 +181,11 @@ CSV layout:
             change_or_create(t, "c", tags[:c], pae_c_new)
 
             insert_note_not_duplicate(t, note, incipit_id)
-
+                    
             t.sort_alphabetically
         end
 
     end
 
     source.save if do_save
-
-end
+soend
