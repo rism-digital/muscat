@@ -97,7 +97,7 @@
       - :occurrences: "1"
   "028":
     :master: a
-    :indicator: "20"
+    :indicator: ["20", "30"]
     :occurrences: "*"
     :fields:
     - - a
@@ -339,13 +339,6 @@
       - :occurrences: "?"
     - - c
       - :occurrences: "?"
-  "511":
-    :master: a
-    :indicator: "0#"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
   "518":
     :master: a
     :indicator: "##"
@@ -401,8 +394,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - u
-      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
@@ -449,6 +440,8 @@
     :disable_multiple: true
     :fields:
     - - a
+      - :occurrences: "?"
+    - - b
       - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
@@ -612,11 +605,12 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: short_name
     - - n
       - :occurrences: "?"
   "700":
     :master: "0"
+    :relator_code: "4"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
@@ -638,7 +632,7 @@
     - - j
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
+      - :occurrences: "?"
         :browse_inline: true
     - - "8"
       - :occurrences: "?"
@@ -646,6 +640,7 @@
   "710":
     :master: "0"
     :indicator: "2#"
+    :relator_code: "4"
     :occurrences: "*"
     :fields:
     - - "0"
@@ -664,7 +659,7 @@
     - - g
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
@@ -698,6 +693,7 @@
     :master: w
     :indicator: "18"
     :occurrences: "?"
+    :foreign_links: false
     :fields:
     - - w
       - :occurrences: "1"
@@ -727,21 +723,20 @@
         :zero_padding: "14"
         :browse_helper: application_helper_link_source_id
   "787":
-    :master: a
-    :indicator: "18"
+    :master: "w"
+    :relator_code: "4"
+    :indicator: "0#"
     :occurrences: "*"
     :fields:
-    - - g
-      - :occurrences: "*"
-        :no_browse: true
-    - - n
-      - :occurrences: "*"
-        :no_browse: true
-    - - s
+    - - "4"
       - :occurrences: "?"
-        :no_browse: true
+        :browse_helper: application_helper_resolve_relator_code
+    - - n
+      - :occurrences: "?"
     - - w
-      - :occurrences: "*"
+      - :occurrences: "1"
+        :foreign_class: Source
+        :foreign_field: id
         :browse_helper: application_helper_link_source_id
   "852":
     :master: "x"
@@ -795,7 +790,7 @@
     :fields:
     - - "0"
       - :occurrences: "?"
-        :foreign_class: Work
+        :foreign_class: WorkNode
         :foreign_field: id
         :no_show: true
     - - a

@@ -198,6 +198,10 @@
   label: records.online_finding_aids
 Archive:
   label: records.archive
+Bookseller:
+  label: records.bookseller
+Copyist:
+  label: records.copyist
 Documentation center:
   label: records.documentation_center
 H:
@@ -210,6 +214,10 @@ Museum:
   label: records.museum
 Other:
   label: records.other
+Papermaker:
+  label: records.papermaker
+Performer:
+  label: records.performer
 Printer:
   label: records.printer
 Publisher:
@@ -236,6 +244,8 @@ XA-BE:
   label: places.belgium
 XA-BG:
   label: places.bulgaria
+XA-BY:
+  label: places.belarus
 XA-CH:
   label: places.switzerland
 XA-CH-VD:
@@ -396,6 +406,8 @@ arr:
   label: records.arranger
 art:
   label: records.artist
+asg:
+  label: records.assignee
 asn:
   label: records.associated_name
 aut:
@@ -420,6 +432,10 @@ codes:
   label: records.numbers_code_fields
 com:
   label: records.compiler
+cph:
+  label: records.copyright_holder
+ctb:
+  label: records.co_composer
 contact:
   label: records.contact
 control:
@@ -450,6 +466,8 @@ doc_templates:
   label: records.templates
 dte:
   label: records.dedicatee
+dst:
+  label: records.distributor
 ed:
   label: records.edition
 edt:
@@ -466,6 +484,8 @@ itr:
   label: records.instrumentalist
 lbt:
   label: records.librettist
+lse:
+  label: records.licensee
 ltg:
   label: records.lithograph
 lyr:
@@ -483,7 +503,7 @@ pat:
 pbl:
   label: records.publisher
 ppm:
-  label: records.paper_maker
+  label: records.papermaker
 prd:
   label: records.production_personnel
 prf:
@@ -496,6 +516,8 @@ sigla:
   label: records.sigla
 trl:
   label: records.translator
+tyd:
+  label: records.type_designer
 voc:
   label: records.vocalist
 a:

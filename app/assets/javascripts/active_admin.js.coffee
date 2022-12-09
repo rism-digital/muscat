@@ -69,6 +69,7 @@
 #= require autocomplete_events
 #= require marc_editor
 #= require marc_editor_validation
+#= require marc_editor_manipulation
 #= require marc_json
 #= require jquery.blockUI
 #= require jquery.cascade
@@ -79,7 +80,6 @@
 #= require jquery.autosize.min
 #= require jquery.hotkeys
 #= require js.cookie
-#= require rism.localisation
 #= require autocomplete-rails
 #= require inline_autocomplete_ujs
 #= require tag_header_events
@@ -97,7 +97,9 @@
 #= require job_progress_bar
 #= require filter_workaround
 #= require merge_authority
+#= require compare_versions_actions
 
+#= require gnd_interface.js
 #= require viaf_interface.js
 #= require modification_trigger_ujs.js
 
@@ -107,3 +109,5 @@
 
 #=require tribute.min
 #=require tribute_load
+
+#= require jquery.highlight-within-textarea

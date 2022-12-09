@@ -4,14 +4,14 @@ class MarcPerson < Marc
   end
 
   def get_full_name_and_dates
-    composer = ""
-    composer_d = ""
+    full_name = ""
+    full_name_d = ""
     dates = nil
 
     if node = first_occurance("100", "a")
       if node.content
-        composer = node.content.truncate(128)
-        composer_d = node.content.downcase.truncate(128)
+        full_name = node.content.truncate(128)
+        full_name_d = node.content.downcase.truncate(128)
       end
     end
     
@@ -21,7 +21,7 @@ class MarcPerson < Marc
       end
     end
     
-    [composer, composer_d, dates]
+    [full_name, full_name_d, dates]
   end
   
   def get_alternate_names_and_dates
@@ -40,15 +40,14 @@ class MarcPerson < Marc
         dates = node.content
       end
     end
-    
+
     [names.join("\n"), dates]
   end
-    
-  def get_gender_birth_place_source_and_comments
+
+  def get_gender_birth_place_and_source
     gender = 0
     birth_place = nil
     source = nil
-    comments = nil
 
     if node = first_occurance("370", "a")
       if node.content
@@ -67,15 +66,10 @@ class MarcPerson < Marc
         source = node.content.truncate(255)
       end
     end
-    
-    if node = first_occurance("680", "i")
-      if node.content
-        comments = node.content
-      end
-    end
-    
-    [gender, birth_place, source, comments]
+
+    [gender, birth_place, source]
   end
+
   
   def to_external(updated_at = nil, versions = nil, holdings = false)
     # cataloguing agency

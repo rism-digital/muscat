@@ -7,7 +7,8 @@
     end
 
     def perform(*args)
-        source_count = 0
+        saved_source_count = 0
+        models = {}
         unsavable_sources = []
         begin_time = Time.now
 
@@ -24,6 +25,14 @@
             model = model_id.first
             id = model_id.last
 
+            if !models.keys.include?(model)
+                models[model] = {}
+            end
+
+            if !models[model].keys.include?(error)
+                models[model][error] = []
+            end
+
             object = model.constantize.send("find", id)
             object.referring_sources.each do |s|
                 begin
@@ -31,7 +40,8 @@
                     PaperTrail.request(enabled: false) do
                         s.save
                     end
-                    source_count += 1
+                    models[model][error] << s.id
+                    saved_source_count += 1
                 rescue
                     unsavable_sources << s.id
                 end
@@ -41,7 +51,7 @@
         end_time = Time.now
         message = "Source report started at #{begin_time.to_s}, (#{end_time - begin_time} seconds run time)"
         
-        MuscatMaintenanceReport.notify(message, source_count, foreign_tag_errors.count, unsavable_sources).deliver_now
+        MuscatMaintenanceReport.notify(message, saved_source_count, models, unsavable_sources).deliver_now
     end
 
     end

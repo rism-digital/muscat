@@ -1,0 +1,1 @@
+É livre de eliminar comentários que já não sejam relevantes. Quando apropriado, os comentários podem ser incorporados nos registos como notas (quer numa nota geral de 500 ou numa nota interna de 599), especialmente em casos que envolvam investigação extra, para conveniência dos futuros utilizadores.

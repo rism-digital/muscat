@@ -3,6 +3,7 @@ group_order:
 - show_summary
 - show_library
 - show_content
+- show_instrumentation
 - show_distribution
 - show_material
 - show_information
@@ -23,12 +24,13 @@ groups:
     - "246"
     - "657"
     - "730"
+    - "597"
     - "930"
     - "001"
     all_tag_templates: 
       "100": marc_show/show_person
       "246": marc_show/show_title_variant  
-      "930": marc_show/show_work
+      "930": marc_show/show_work_node
       "001": marc_show/show_rism_id
 
   show_library: 
@@ -38,21 +40,21 @@ groups:
     - "506"
     - "035"
     - "541"
-    all_tag_templates: 
-      "852": marc_show/show_852
 
- 
   show_content: 
     all_tags: 
     - "031"
+    - "595"
     all_tag_templates: 
       "031": marc_show/show_incipit
-  
-  show_distribution: 
+
+  show_instrumentation:
+    all_tags:
+    - "598"
+
+  show_distribution:
     all_tags: 
     - "594"
-    - "598"
-    - "595"
     all_tag_templates: 
       "594": marc_show/show_distribution_all
       
@@ -70,7 +72,6 @@ groups:
     - "710"
     - "500"
     - "563"
-    - "597"
     - "856"
     subfield_grouping: 8
     all_tag_templates: 
@@ -99,9 +100,7 @@ groups:
     - "690"
     - "383"
     - "691"
-    - "510"
     all_tag_templates: 
-      "510": marc_show/show_subfield_concat
       "690": marc_show/show_69x_url
       "691": marc_show/show_69x_url
 
@@ -136,6 +135,10 @@ groups:
     all_tags: 
     - "040"
     - "599"
+    - "980"
+    - "510"
+    all_tag_templates: 
+      "510": marc_show/show_subfield_concat
     admin_only: true
     
   show_links: 

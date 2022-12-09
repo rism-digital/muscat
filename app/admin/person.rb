@@ -9,7 +9,13 @@ ActiveAdmin.register Person do
   config.clear_action_items!
   config.per_page = [10, 30, 50, 100]
 
-  config.sort_order = 'full_name_asc'
+  # Not everybody likes cleverly ordered things
+  if defined?(RISM::CLEVER_ORDERING) && RISM::CLEVER_ORDERING == true
+    config.sort_order = 'full_name_ans_asc'
+  else
+    config.sort_order = 'full_name_asc'
+  end
+
   breadcrumb do
     active_admin_muscat_breadcrumb
   end
@@ -57,6 +63,11 @@ ActiveAdmin.register Person do
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+
+      if cannot?(:edit, @item)
+        redirect_to admin_person_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
+      end
+
       if current_user.restricted?("person") 
         if @item.wf_owner==current_user.id
           @restricted=""
@@ -154,6 +165,7 @@ ActiveAdmin.register Person do
   filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
   filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
+  filter :"667a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
   filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc {I18n.t(:updated_at)}, :as => :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
@@ -181,7 +193,15 @@ ActiveAdmin.register Person do
     column (I18n.t :filter_wf_stage) {|person| status_tag(person.wf_stage,
       label: I18n.t('status_codes.' + (person.wf_stage != nil ? person.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_id), :id
-    column (I18n.t :filter_full_name), :full_name
+
+    if defined?(RISM::CLEVER_ORDERING) && RISM::CLEVER_ORDERING == true
+      column (I18n.t :filter_full_name), :full_name_ans, sortable: :full_name_ans do |element|
+        element.full_name
+      end
+    else
+      column (I18n.t :filter_full_name), :full_name
+    end
+
     column (I18n.t :filter_life_dates), :life_dates
     column (I18n.t :filter_owner) {|person| User.find(person.wf_owner).name rescue 0} if current_user.has_any_role?(:editor, :admin)
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
@@ -221,7 +241,7 @@ ActiveAdmin.register Person do
     active_admin_embedded_link_list(self, person, Publication) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
-        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_title_short), :short_name
         context.column (I18n.t :filter_author), :author
         context.column (I18n.t :filter_description), :description
         if !is_selection_mode?
@@ -242,6 +262,46 @@ ActiveAdmin.register Person do
         if !is_selection_mode?
           context.column "" do |ins|
             link_to "View", controller: :institutions, action: :show, id: ins.id
+          end
+        end
+      end
+    end
+
+    active_admin_embedded_link_list(self, person, Holding) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :lib_siglum
+        context.column (I18n.t :filter_source_name) {|hld| hld.source.std_title}
+        context.column (I18n.t :filter_source_composer) {|hld| hld.source.composer}
+        if !is_selection_mode?
+          context.column "" do |hold|
+            link_to I18n.t(:view_source), controller: :holdings, action: :show, id: hold.id
+          end
+        end
+      end
+    end
+
+    active_admin_embedded_link_list(self, person, Work) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_title), :title
+        if !is_selection_mode?
+          context.column "" do |work|
+            link_to "View", controller: :works, action: :show, id: work.id
+          end
+        end
+      end
+    end
+
+    active_admin_embedded_link_list(self, person, Person) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_full_name), :full_name
+        context.column (I18n.t :filter_life_dates), :life_dates
+        context.column (I18n.t :filter_alternate_names), :alternate_names
+        if !is_selection_mode?
+          context.column "" do |person|
+            link_to "View", controller: :people, action: :show, id: person.id
           end
         end
       end

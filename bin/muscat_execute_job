@@ -1,6 +1,8 @@
 #!/bin/bash
 
-MUSCAT_ROOT=/var/muscat
+#MUSCAT_ROOT=/var/muscat
+BIN_DIR=`dirname "$(readlink -f "$0")"`
+MUSCAT_ROOT=`dirname $BIN_DIR`
 LOGFILE=$MUSCAT_ROOT/log/muscat_execute_job.log
 
 

@@ -1,3 +1,5 @@
+include Triggers
+
 ActiveAdmin.register StandardTerm do
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_subjects)}
@@ -71,6 +73,9 @@ ActiveAdmin.register StandardTerm do
         success.html { redirect_to collection_path }
         failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
+
+      # Run the eventual triggers
+      execute_triggers_from_params(params, @standard_term)
     end
     
     # redirect create failure for preserving sidebars
@@ -140,7 +145,7 @@ ActiveAdmin.register StandardTerm do
     active_admin_embedded_link_list(self, standard_term, Publication) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
-        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_title_short), :short_name
         context.column (I18n.t :filter_author), :author
         context.column (I18n.t :filter_description), :description
         if !is_selection_mode?
@@ -181,7 +186,7 @@ ActiveAdmin.register StandardTerm do
   
   form do |f|
     f.inputs do
-      f.input :term, :label => (I18n.t :filter_term)
+      f.input :term, :label => (I18n.t :filter_term), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources"]}) }}
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms), :input_html => { :rows => 8 }
       f.input :notes, :label => (I18n.t :filter_notes)
       f.input :wf_stage, :label => (I18n.t :filter_wf_stage)

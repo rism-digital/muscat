@@ -74,7 +74,12 @@ Rails.application.routes.draw do
   
   #scope ':locale', locale: I18n.locale do
   #  ActiveAdmin.routes(self)
-  #end 
+  #end
+
+  if RISM::SAML_AUTHENTICATION && %(development test).include?(Rails.env)
+    get 'test/saml/idp/auth' => 'test/saml_idp#new'
+    post 'test/saml/idp/auth' => 'test/saml_idp#create'
+  end
   
   get "/manuscripts", to: redirect('/sources')
   get "/manuscripts/:name", to: redirect('/sources/%{name}')
@@ -95,6 +100,7 @@ Rails.application.routes.draw do
   get 'sru/institutions' => 'sru#service'
   get 'sru/publications' => 'sru#service'
   get 'sru/catalogues' => 'sru#service'
+  get 'sru/works' => 'sru#service'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

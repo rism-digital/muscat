@@ -1,10 +1,11 @@
+# coding: utf-8
 FactoryBot.define do
   factory :publication do
     id { 1536 }
     name { "NBA" }
     #initialize_with { Publication.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
     description { "Johann Sebastian Bach: Neue Ausgabe sämtlicher Werke" }
-    revue_title { "" }
+    journal { "" }
     volume { nil }
     place { "Kassel, Basel" }
     date { "1954-" }
@@ -13,7 +14,6 @@ FactoryBot.define do
     people { [FactoryBot.create(:person)] }
     #people { [association(:person)]  }
     #referring_sources { [association(:manuscript_source)]  }
-    wf_notes { nil }
     marc_source {  <<STRING
 =001  1536
 =041  0\#$ager

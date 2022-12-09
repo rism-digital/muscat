@@ -353,5 +353,16 @@ include ApplicationHelper
     end
   end
 
+  def validate_links_to_self
+    ["773", "787"].each do |t|
+      val = @marc.first_occurance(t, "w")
+      next if (!val || !val.content)
+      next if !@marc.get_id
+
+      if @marc.get_id.to_i == val.content.to_i
+        add_error(t, "w", I18n.t('validation.cannot_link_to_self', id: @marc.get_id)) 
+      end
+    end
+  end
 
 end

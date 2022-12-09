@@ -7,7 +7,7 @@ class ModificationDigestJob < ApplicationJob
   end
   
   def perform(*args)
-    results_by_criteria = {}
+    
     ## For compatibility between crono and delayed job
     set_period(args[0]) if !args.empty?
     
@@ -15,19 +15,26 @@ class ModificationDigestJob < ApplicationJob
       # get the last modified sources
       
       results = {}
+      total_results = 0
       
-      Source.where(("updated_at" + "> ?"), @days.days.ago).order("updated_at DESC").each do |s|
-      
-        matcher = NotificationMatcher.new(s, user)
-        if matcher.matches?
-          results[s] = matcher.get_matches
+      [Source, Work, Institution].each do |model|
+        model.where(("updated_at" + "> ?"), @days.days.ago).order("updated_at DESC").each do |s|
+        
+          matcher = NotificationMatcher.new(s, user)
+
+          matcher.get_matches.each do |match|
+            results[model.to_s.downcase] = {} if !results[model.to_s.downcase]
+            results[model.to_s.downcase][match] = [] if !results[model.to_s.downcase][match]
+
+            results[model.to_s.downcase][match] << s
+            total_results += 1
+          end
+
         end
       end
-      
+
       if !results.empty?
-        # Flip them from source -> criteria to criterias-> source
-        results.map { |source_id, criterias| criterias.map { |criteria| results_by_criteria.include?(criteria) ? results_by_criteria[criteria] << source_id : results_by_criteria[criteria] = [source_id]} }
-        ModificationNotification.notify(user, results, results_by_criteria).deliver_now
+        ModificationNotification.notify(user, total_results, results).deliver_now
       end
     end
   end

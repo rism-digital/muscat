@@ -23,11 +23,17 @@
   label: records.fingerprint_identifier
 028:
   fields:
+    indicator:
+      label: records.publisher_plate_number
     '8':
-      label: records.set
+      label: records.material_group
     a:
+      label: records.number
+    '20':
       label: records.plate_number
-  label: records.plate_number
+    '30':
+      label: records.publisher_number
+  label: records.publisher_plate_number
 02_codes_performing:
   label: records.performance
 02_mensural_clefs:
@@ -162,7 +168,7 @@
 '260':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.place
     b:
@@ -183,7 +189,7 @@
 '300':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.format_extent
     b:
@@ -194,7 +200,7 @@
 '340':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     d:
       label: records.printing_technique
     m:
@@ -220,7 +226,7 @@
 '500':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.general_note
   label: records.general_note
@@ -243,6 +249,8 @@
   fields:
     a:
       label: records.series
+    c:
+      label: records.number_page
   label: general.rism_series
 '518':
   fields:
@@ -295,7 +303,7 @@
 '590':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.parts_held
     b:
@@ -309,16 +317,18 @@
 '592':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.watermark_description
   label: records.watermark_description
 '593':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
-      label: records.type
+      label: records.source_type
+    b:
+      label: records.content_type
   label: records.source_type
 '594':
   fields:
@@ -430,7 +440,7 @@
     '4':
       label: records.function
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.name
     d:
@@ -443,7 +453,7 @@
     '4':
       label: records.function
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.institution
     b:
@@ -485,15 +495,13 @@
   label: records.initial_entry
 '787':
   fields:
-    g:
-      label: records.incipit_number
+    "4":
+      label: records.relationship
     n:
-      label: records.location_insertion
-    s:
-      label: records.standardized_title
+      label: records.note
     w:
       label: records.rism_id_number
-  label: records.insertions
+  label: records.related_source
 7byz:
   label: records.octoechos7
 7t:
@@ -602,7 +610,7 @@ C|x:
   label: records.cs_major
 D:
   label: records.d_major
-Digitalization:
+Digitized:
   label: records.digitized_source
 Doubtful:
   label: records.doubtful
@@ -672,8 +680,10 @@ G|b:
   label: records.gf_major
 G|x:
   label: records.gs_major
-IIIF:
+"IIIF manifest (digitized source)":
   label: records.iiif_manifest
+"IIIF manifest (other)":
+  label: records.iiif_manifest_other
 Inserts:
   label: records.inserts
 Lithography:
@@ -738,8 +748,6 @@ aid_watermarks:
   label: records.standard_watermarks
 arr:
   label: records.arranger
-art:
-  label: records.artist
 asg:
   label: records.assignee
 asn:
@@ -783,7 +791,7 @@ cph:
 cst:
   label: records.costume_designer
 ctb:
-  label: records.co-composer
+  label: records.co_composer
 c|b:
   label: records.cf_minor
 c|x:
@@ -852,8 +860,8 @@ doc_edit_workflow:
   label: general.workflow
 doc_editor:
   label: general.using_muscat
-doc_images:
-  label: records.images
+doc_digital_objects:
+  label: records.digital_objects
 doc_in_contact:
   label: records.contact_area
 doc_in_control:
@@ -964,8 +972,6 @@ fmo:
   label: records.former_owner
 full:
   label: records.full
-fur:
-  label: records.friulano
 f|x:
   label: records.fs_minor
 g:
@@ -1108,8 +1114,6 @@ ltg:
   label: records.lithographer
 lyr:
   label: records.text_author
-mul:
-  label: records.multiple
 not_examined:
   label: records.material_not_examined
 origin:
@@ -1176,6 +1180,24 @@ prt:
   label: records.printer
 pub:
   label: records.publisher
+"rdau:P60191":
+  label: relations.P60191
+"rdau:P60198":
+  label: relations.P60198
+"rdau:P60311":
+  label: relations.P60311
+"rdau:P60312":
+  label: relations.P60312
+"rdau:P60195":
+  label: relations.P60195
+"rdau:P60242":
+  label: relations.P60242
+"rdau:P60274":
+  label: relations.P60274
+"rdau:P60194":
+  label: relations.P60194
+"rdau:P60183":
+  label: relations.P60183
 retro:
   label: records.retrospective_conversion
 scr:
@@ -1188,6 +1210,8 @@ show_distribution:
   label: records.distribution
 show_information:
   label: records.further_information
+show_instrumentation:
+  label: records.coded_instrumentation
 show_library:
   label: records.library_information
 show_links:
@@ -1206,8 +1230,8 @@ standard:
   label: records.standard
 trl:
   label: records.translator
-und:
-  label: general.undetermined
+tyd:
+  label: records.type_designer
 ungrouped:
   label: general.ungrouped_fields
 unmatched:

@@ -10,11 +10,11 @@
             <div class="slogan">
                 <a href="/">
                     <div class="hidden-sm hidden-xs">
-                        <span class="slogan-top"><%= RISM::PROJECTLINE.html_safe %></span><br />
-                        <span class="slogan-bottom"><%= RISM::STRAPLINE.html_safe %></span>
+                        <span class="slogan-top"><%= RISM::SITE_TITLE.html_safe %></span><br />
+                        <span class="slogan-bottom"><%= RISM::SITE_SUBTITLE.html_safe %></span>
                     </div>
                     <div class="hidden-md hidden-lg">
-                        <img src="/images/logo3.png">
+                        <img src="/images/logo3-<%= RISM::SITE_ID %>.png">
                     </div>
                 </a>
             </div>
@@ -40,7 +40,7 @@
 <div id="search-navbar" class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
         <div class="col-md-3 hidden-sm hidden-xs search-navbar-logo">
-            <img src="/images/logo-large-<%= RISM::BASE %>.png">
+            <img src="/images/logo-large-<%= RISM::SITE_ID %>.png">
         </div>
         <div class="col-md-9 search-navbar-right">
             <div class="search-navbar-locale pull-right">

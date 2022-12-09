@@ -4,6 +4,7 @@ de:
 # Pad for italian, it has 2 missing items
 #
 #
+    compare_versions: Versionen vergleichen
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
@@ -97,6 +98,9 @@ de:
       comments_help: "Geben Sie @ ein, um einen bestimmten Benutzer zu nennen, der dann eine Benachrichtigung per E-Mail erhält."
       author_missing: "Unbekannt"
       title_content: "Kommentare (%{count})"
+      referring_comments: Kommentare, in denen ich genannt werde
+      my_item_comments: Kommentare zu meinen Einträgen
+      my_own_comments: Kommentare, die ich gemacht habe
       errors:
         empty_text: "Der Kommentar wurde nicht gespeichert, da der Text fehlt."
     devise:
@@ -151,6 +155,7 @@ de:
       default: "%H:%M"
       short: "%H:%M"
       long: "%Y-%m-%d %H:%M"
+      verbose: "%A, %d. %B %Y, %H:%M Uhr"
   
   #################### MODELS      
   activerecord:
@@ -281,6 +286,7 @@ de:
   menu_jobs: "Jobs"
   menu_holdings: "Examplare"
   menu_works: "Werktitel"
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Letzte Änderungen"
@@ -289,6 +295,7 @@ de:
   std_title_contains: "Einordnungstitel enthält"
   composer_contains: "Komponist enthält"
   library_sigla_contains: "Sigel enthält"
+  internal_note_contains: "Interner Hinweis enthält"
   is_in_folder: "Ist im Ordner"
   workgroups: "Benutzergruppen"
   roles: "Rollen"
@@ -311,7 +318,10 @@ de:
   finished: "Beendet"
   lib_siglum: "Bibliothekssigel"
   holding_records: "Exemplarinformation"
-  holding_no_siglum: "HOLDING WITHOUT SILGUM"
+  holding_no_siglum: "Unmarkierte Kopie"
+  holding_missing: "Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie auf die Schaltfläche \"%{new_holding}\" auf der rechten Seite klicken."
+  holding_missing_alert: "Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie auf die Schaltfläche \"%{new_holding}\" auf der rechten Seite klicken."
+  holding_missing_show: "Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie diesen Datensatz bearbeiten und auf die Schaltfläche \"%{new_holding}\" auf der rechten Seite klicken."
   new_holding: "Neuer Examplareintrag"
   new_holding_page: "Neuer Exemplareintrag"
   new_digital_object_image: "Neues Bild hinzufügen"
@@ -334,6 +344,7 @@ de:
   unloadable_record: "Fehler beim Laden des Eintrags: Änderung nicht möglich, bitte einen Administrator kontaktieren."
   validation_level_error: "Die Fehler müssen vor dem Speichern behoben werden."
   validation_level_warning: "Erneut speichern, um die Warnung(en) zu ignorieren."
+  muscat_reindexing: "Muscat wird neu indiziert, Suchergebnisse können unvollständig sein"
   
   jobs:
     not_set: "[Kein Status gesetzt]"
@@ -347,6 +358,7 @@ de:
   # Sidebar
   delete: "Löschen"
   to_the_list: "Zurück zur Liste"
+  go_to_top:  "Zurück zum Anfang"
   edit: "Bearbeiten"
   new: "Erstellen"
   duplicate: "Kopieren"
@@ -376,11 +388,13 @@ de:
   hide_preview: "Vorschau verbergen"
   show_validate: "Validierung"
   show_history: "Änderungsgeschichte"
+  show_gnd: "GND Suche"
   show_viaf: "VIAF Suche"
   save_and_continue: "Speichern und weiter bearbeiten"
   save_and_exit: "Speichern und verlassen"
   cancel: "Abbrechen"
   duplicate_confirm: "Wollen Sie diesen Titel wirklich duplizieren?"
+  convert_to_print: "In Druckvorlage umwandeln"
   
   # Version history
   history_date: "Datum"
@@ -410,7 +424,17 @@ de:
     publish_job: "Job der Veröffentlichung gestartet (id: %{id})"
     unpublish_job: "Job der Unveröffentlichung gestartet (id: %{id})"
     reindex_job: "Neuindizierung begonnen (id: %{id})"
-
+    validation_started: "Es wird eine E-Mail an %{email} gesendet, wenn die Validierung beendet ist (Validierungsjob-ID: %{job})."
+    folder_not_source: "Nur Ordner, die Quellen enthalten, können validiert werden"
+    expires: "Läuft ab am"
+    resetted: "Das Ablaufdatum des Ordners ist jetzt %{date}"
+    reset_expiration: "Verfallsdatum zurücksetzen"
+    delete_now: "Die folgenden Ordner wurden gelöscht:"
+    tomorrow: "Die folgenden Ordner werden morgen %{date} gelöscht"
+    one_week: "Die folgenden Ordner werden in einer Woche am %{date} gelöscht"
+    two_weeks: "Die folgenden Ordner werden in zwei Wochen am %{date} gelöscht"
+    ein_monat: "Die folgenden Ordner werden in einem Monat am %{date} gelöscht"
+    
   ### Digital objects
   digital_objects: "Digitale Objekte"
   digital_object_new: "Neues Digitales Objekt hinzufügen"
@@ -490,9 +514,8 @@ de:
   filter_provenance: "Herkunft"
   filter_record_type: "Template Typ"
   filter_record_type_short: "Typ"
-  filter_source_type: "Quellen Typ"
   filter_publisher: "Verlag"
-  filter_revue_title: "Zeitschriftentitel"
+  filter_journal: "Zeitschriftentitel"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
   filter_images: "Bilder"
@@ -502,6 +525,7 @@ de:
   filter_source: "Quelle"
   filter_sources: "Quellen"
   filter_source_type: "Quellentyp"
+  filter_source_content_type: "Inhaltstyp"
   filter_std_title: "Standardtitel"
   filter_subject: "Schlagwörter"
   filter_subsequent_entries: "Späteren Eintrag"
@@ -572,6 +596,8 @@ de:
   cannot_create_source: "Sie sind nicht berechtigt, diese Art von Quellen zu erstellen"
   validate_name_uniqness: "Eintrag nicht gespeichert: Das Kürzel '%{term}' existiert bereits."
   validates_parent_id: "Eintrag nicht gespeichert: Übergeordneter Eintrag (773) kann nicht mit diesem Eintrag identisch sein."
+  is_part_of_collection: "Diese %{class} %{id} ist Teil einer Sammlung, Sie müssen die 773 entfernen, bevor Sie sie löschen können"
+  not_set: "[nicht fest]"
 
   #
   entry:
@@ -671,9 +697,6 @@ de:
   btn_themefinder_reset: "Zurücksetzen"
   
   tf_acknowledgments: "Die Incipit-Suche verwendet das Tool <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a>, das vom <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a> entwickelt wurde."
-
-  hls_link_lang: "d"
-  hls_link_name: "HLS"
   
   do_link_lang: "ENG"
   do_media_files_title: "Multimedia-Dateien"
@@ -697,13 +720,24 @@ de:
     more: "Mehr"
     banner: 'Bitte "Vorschau" wählen, um die MEI-Konvertierung anzuzeigen.'
 
+  notifications:
+    cadence: Kadenz der Benachrichtigung
+    none: Benachrichtigungen sind deaktiviert
+    every: Jedes Mal, wenn ein passender Datensatz gespeichert wird
+    daily: Jeden Tag
+    weekly: Jede Woche
+    rules: Regeln
+    notifications: Benachrichtigungen
+    edit: Edit notifications
+    empty_message: "Es sind keine Benachrichtigungen aktiviert. Sie können %{href}, um sie zu aktivieren"
+    empty_message_href: bearbeiten
+
   wf_stage:
     inprogress: "In Arbeit (UNP)"
     published: "Veröffentlicht (PUB)"
     deleted: "Gelöscht"
     deprecated: "Überholt"
 
-  
   dashboard:
     selection: "Wählen Sie Letzte Aktivität"
     type: "Typ ändern"
@@ -719,6 +753,23 @@ de:
     got_it: "Verstanden!"
     got_it_explanation: "Wenn Sie auf diese Schaltfläche klicken, wird die Nachricht nicht mehr angezeigt, bis die nächste veröffentlicht wird."
     news: "Muscat Nachrichten"
+    my_comments: "Meine Kommentare"
+    my_records: "Meine Einträge"
+    about_comments: "Über Kommentare"
+
+  compare_versions:
+    time_frame: Zeitrahmen
+    rule: Regel
+    display: Anzeige
+    options: Optionen
+    show: Anzeigen
+    hide: Verbergen
+    modified_records: Geänderte Datensätze
+    no_records: Es gibt keine Datensätze, die mit den aktuell ausgewählten Optionen angezeigt werden können 
+    new_record: Neuer Datensatz
+    similarity: Unterschiede
+    diff: Vergleich
+    date_message: "Geänderte Datensätze anzeigen von %{date}."
 
   # editor validation 
   validation:
@@ -729,6 +780,7 @@ de:
     correct: "Der Eintrag enthält keine Validierungsfehler. [200]"
     begins_with_message: "Das Feld muss mit \"{0}\" beginnen"
     required_if_message: "Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}"
+    cannot_link_to_self: "Das Erstellen eines Links selbst ist nicht erlaubt (%{id})."
 
   incipit_search:
     incipit_search: "Incipit Suche"
@@ -753,6 +805,10 @@ de:
   Subject: "Schlagwörter"
   "Number of printed copies": "Anzahl der gedruckten Exemplare"
   publisher: "Verleger"
+
+  marc_editor:
+    delete_msg: "Löschen"
+    delete_field_confirm: "Sind Sie sicher, dass Sie dieses Feld löschen möchten?"
 
   cookies:
     message: "Unsere Website verwendet Cookies, um Ihre Browser-Erfahrung zu verbessern. Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu."

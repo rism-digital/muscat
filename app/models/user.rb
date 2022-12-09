@@ -5,13 +5,18 @@ class User < ApplicationRecord
   has_and_belongs_to_many :workgroups
 
   has_many :sources, foreign_key: 'wf_owner'
+  has_many :folders, foreign_key: 'wf_owner'
 
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 	# remove :recoverable
-  devise :database_authenticatable, 
-         :rememberable, :trackable, :validatable
+  devise *([:rememberable, :trackable, :validatable] + Array(RISM::AUTHENTICATION_METHODS) + [authentication_keys: [:login]])
+
+  # Used by saml_authenticatable devise strategy to avoid password validation
+  attr_accessor :user_create_strategy
+  # Used to permit username or email login
+  attr_writer :login
 
   enum notification_type: [:every, :daily, :weekly ]
   enum preference_wf_stage: [ :inprogress, :published, :deleted ]
@@ -20,12 +25,22 @@ class User < ApplicationRecord
           
   }
   
-  #515 postponed to 3.7
-  #validate :secure_password
+  validate :secure_password
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validates_format_of :username, with: /[\p{Letter}\s]+/u, :multiline => true
+  #/^[a-zA-ZÀ-ż0-9_\.]*$/, :multiline => true
   
   searchable :auto_index => false do
     integer :id
     text :name
+  end
+
+  def active_for_authentication?
+    super && !self.disabled?
+  end
+
+  def login
+    @login || self.username || self.email
   end
 
   def can_edit?(source)
@@ -44,7 +59,7 @@ class User < ApplicationRecord
           libs<<l
         end
       end
-      (libs & (self.workgroups.map {|ins| ins.get_institutions}).flatten).any?
+      ((libs + source.institutions) & (self.workgroups.map {|ins| ins.get_institutions}).flatten).any?
     else
       (source.institutions & (self.workgroups.map {|ins| ins.get_institutions}).flatten).any?
     end
@@ -125,20 +140,13 @@ class User < ApplicationRecord
     return false
   end
 
+  def get_workgroups_emails
+    self.workgroups.map(&:email).sort.compact
+  end
+
   def get_notifications
-    return false if !notifications || notifications.empty?
-    
-    elements = {}
-    
-    notifications.each_line do |line|
-      parts = line.strip.split(":")
-      next if parts.count < 2
-      next if parts[0].empty? # :xxx case
-      elements[parts[0]] = [] if !elements.include?(parts[0])
-      elements[parts[0]] << parts[1]
-    end
-    
-    return elements
+    return nil if notifications == nil
+    notifications.each_line.map {|l| l.strip}
   end
 
   # returns a list of users sorted by lastname with admin at first place; utf-8 chars included
@@ -150,7 +158,16 @@ class User < ApplicationRecord
     return res.sort_by{|_key, value| value.first}.map {|e| e[1][1] }
   end
   
-=begin #515 postponed to 3.7
+  # Find username OR email
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if (login = conditions.delete(:login))
+      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_h).first
+    end
+  end
+
   def secure_password
     return true if !password
     if (password.length < 8)
@@ -171,6 +188,9 @@ class User < ApplicationRecord
     end
     return true
 	end
-=end
 
+  def password_required?
+    user_create_strategy != :saml_authenticatable
+    super
+  end
 end

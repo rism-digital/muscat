@@ -7,7 +7,7 @@ class Marc
   include ApplicationHelper
   include Comparable
   
-  attr_reader :all_foreign_associations
+##  attr_reader :all_foreign_associations
   attr_accessor :root, :results, :suppress_scaffold_links_trigger
 
   LANGUAGES = {
@@ -31,7 +31,7 @@ class Marc
     @marc21 = Regexp.new('^[\=]([\d]{3,3})[\s]+(.*)$')
     @loaded = false
     @resolved = false
-    @all_foreign_associations = Hash.new
+##    @all_foreign_associations = Hash.new
     @tag = nil
     @source = source
     @results = Array.new
@@ -57,7 +57,7 @@ class Marc
   # After a Marc file is loaded an parsed, read all the foreign references
   # and link them. In case they do not exist they will be created (upon saving the manuscript). 
   def import(reindex = false, user = nil)
-    @all_foreign_associations = @root.import(false, reindex, user)
+    @root.import(false, reindex, user)
   end
   
   # Creates a Marc object from the <tt>source</tt> field in the Source record
@@ -155,7 +155,7 @@ class Marc
   # This function by default uses marc_node.import to
   # create the relations with the foreign object and create
   # them in the DB. It will also call a reindex on them
-  def load_from_hash(hash, user = nil, resolve = true)
+  def load_from_hash(hash, user: nil, resolve: true, dry_run: false)
     @root << MarcNode.new(@model, "000", hash['leader'], nil) if hash['leader']
     
     if hash['fields']
@@ -183,7 +183,7 @@ class Marc
               field['subfields'].each do | pos |
                 pos.each_pair do |code, value|
                   value.gsub!(DOLLAR_STRING, "$")
-                  tag_group << MarcNode.new(@model, code, value, nil)
+                  tag_group << MarcNode.new(@model, code, value.strip, nil)
                 end
               end
             else
@@ -196,7 +196,7 @@ class Marc
     end # if hash['fields']
     
     @loaded = true
-    import(true, user) # Import
+    import(true, user) if !dry_run # Import the data, ONLY when necessary
     @source = to_marc
     @source_id = first_occurance("001").content || nil rescue @source_id = nil
     # When importing externals are not resolved, do it here
@@ -210,6 +210,48 @@ class Marc
       @root << t
     end 
     @loaded = true
+  end
+
+  def load_from_xml(record)
+    namespace = {'marc': "http://www.loc.gov/MARC21/slim"}
+    leader = record.xpath("//marc:leader", namespace).first
+
+    @root << MarcNode.new(@model, "000", leader.text, nil) if leader
+
+    record.xpath("marc:controlfield", namespace).each do |control|
+      tag = control[:tag]
+      content = control.text
+      @root << MarcNode.new(@model, tag, content, nil)
+    end
+
+    record.xpath("marc:datafield", namespace).each do |datafield|
+      tag = datafield[:tag]
+
+      # We need to emulate "normal" tag loading
+      if !@marc_configuration.has_tag? tag
+        puts"Tag #{tag} missing in the marc configuration"
+        next
+      end
+
+      ind = datafield[:ind1] + datafield[:ind2]
+      ind.gsub!(" ", "#")
+
+      tag_group = @root << MarcNode.new(@model, tag, nil, ind)
+      datafield.xpath("marc:subfield", namespace).each do |subfield|
+        code = subfield[:code]
+        value = subfield.text.gsub(DOLLAR_STRING, "$").gsub(/'/, "&apos;").unicode_normalize.gsub(/\u0098/, "").gsub(/\u009C/, "")
+
+          #doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
+          #doc = doc.gsub(/\u0098/, "").gsub(/\u009C/, "")
+
+        tag_group << MarcNode.new(@model, code, value.strip, nil)
+      end
+    end
+
+    @loaded = true
+    @source = to_marc
+    @source_id = first_occurance("001").content || nil rescue @source_id = nil
+
   end
 
   def get_model
@@ -235,6 +277,7 @@ class Marc
 		end
 	end
 
+=begin
   # Get all the foreign fields for this Marc object. Foreign fields are the one referred by ext_id ($0) in the marc record
   def get_all_foreign_associations
     if @all_foreign_associations.empty?
@@ -248,6 +291,20 @@ class Marc
       end
     end
     @all_foreign_associations
+  end
+=end
+
+  def each_foreign_association(options = {}, &block)
+    for child in @root.children
+      if @marc_configuration.has_foreign_subfields(child.tag)
+        next if options.include?(:foreign_links_only) && options[:foreign_links_only] && @marc_configuration.use_foreign_links?(child.tag) == false
+        if master = child.get_master_foreign_subfield
+          master.set_foreign_object
+          #@all_foreign_associations[master.foreign_object.id] = master.foreign_object
+          yield master.foreign_object, child.tag, child.get_relator_code
+        end
+      end
+    end
   end
 
   def get_all_foreign_classes
@@ -422,7 +479,7 @@ class Marc
   def to_xml(updated_at = nil, versions = nil, holdings = true)
     out = Array.new
     out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-    out << "<!-- Exported from RISM CH (http://www.rism-ch.org/) Date: #{Time.now.utc} -->\n"
+    out << "<!-- Exported from RISM Digital (https://rism.digital/) Date: #{Time.now.utc} -->\n"
     out << "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
     out << to_xml_record(updated_at, versions, holdings)
     out << "</marc:collection>" 
@@ -570,14 +627,15 @@ class Marc
   end
 
   def change_authority_links(old_auth, new_auth)
-    return if old_auth.class != new_auth.class
+    return [] if old_auth.class != new_auth.class
     
     auth_model = old_auth.class.to_s
     
     # Get the tags to update
     rewrite_tags = @marc_configuration.get_remote_tags_for(auth_model)
-    return if rewrite_tags.empty?
+    return [] if rewrite_tags.empty?
     
+    changed_tags = []
     rewrite_tags.each do |rewrite_tag|
       master = @marc_configuration.get_master(rewrite_tag)
       
@@ -600,12 +658,57 @@ class Marc
         t.add(MarcNode.new(auth_model.downcase, master, new_auth.id, nil))
         t.sort_alphabetically
         
+        changed_tags << t.tag
+
       end
       
     end
     
+    return changed_tags
   end
 
+  def find_duplicates(tags = nil)
+    tags_array = []
+
+    if tags.is_a? String or tags.is_a? Integer
+      tags_array = [tags.to_s]
+    elsif tags.is_a? Array
+      tags_array = tags
+    else
+      tags_array = each_data_tags_present(false){}.map
+    end
+
+    out_h = {}
+
+    tags_array.sort.each do |t|
+      tags = by_tags(t)
+      dups = tags.sort.chunk_while {|i,j| i === j}.select { |e| e.size > 1 }
+      next if dups.empty?
+      out_h[t] = dups
+    end
+
+    return out_h
+  end
+
+  def deduplicate_tags!(tags_array = nil)
+    output = {}
+    dups_by_tag = find_duplicates(tags_array)
+
+    dups_by_tag.each do |tag, dups|
+      # the various duplicate tags get grouped together
+      output[tag] = 0
+      dups.each do |grp|
+        # iterate over each tag except the first that we will preserve
+        grp.drop(1).each do |marc_tag|
+          # drop the others
+          marc_tag.destroy_yourself
+          output[tag] += 1
+        end
+      end
+    end
+
+    return output
+  end
 
   def ==(other)
     load_source unless @loaded
@@ -838,6 +941,28 @@ class Marc
     return out.sort.uniq
   end
   
+  def marc_index_774_field(conf_tag, conf_properties, marc, model)
+    out = []
+
+    marc.each_by_tag("774") do |marctag|
+      id_tag = marctag.fetch_first_by_tag("w")
+      next if !id_tag || !id_tag.content
+
+      id = id_tag.content
+
+      code = marctag.fetch_first_by_tag("4")
+      if code && code.content && code.content == "holding"
+        hodl = marctag.fetch_first_by_tag("a")
+        holding = model.get_collection_holding(id.to_i)
+        out << holding.source.id.to_s if holding && holding.source
+      else
+        out << id
+      end
+    end
+    
+    return out
+  end
+
   # Get the birth date from MARC 100$d
   def marc_helper_get_birthdate(value)
     if value.include?('-')
@@ -858,6 +983,21 @@ class Marc
       field = field.to_i
     end
     return field
+  end
+
+  def marc_index_make_024_person(conf_tag, conf_properties, marc, model)
+    out = []
+    marc.each_by_tag("024") do |marctag|
+      id_tag = marctag.fetch_first_by_tag("a")
+      next if !id_tag || !id_tag.content
+
+      type_tag = marctag.fetch_first_by_tag("2")
+      next if !type_tag || !type_tag.content
+
+      out << "#{type_tag.content}:#{id_tag.content}"
+    end
+
+    return out
   end
 
 end

@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def publication_default_autocomplete
-    autocomplete_publication_name_admin_publications_path
+    autocomplete_publication_short_name_admin_publications_path
   end
   
   def institution_default_autocomplete
@@ -51,6 +51,10 @@ module ApplicationHelper
   def work_default_autocomplete
     autocomplete_work_title_admin_works_path
   end
+
+  def work_node_default_autocomplete
+    autocomplete_work_title_admin_work_nodes_path
+  end
   
   # Create a link for a page in a new window
   def application_helper_link_http(value, node, opac)
@@ -84,6 +88,11 @@ module ApplicationHelper
 		end
   end
   
+  # Transform the relator code into its label
+  def application_helper_resolve_relator_code(value, subfield, opac)
+    return @editor_profile.get_label(value)
+  end
+
   #################
   # These methods are placed here for compatibility with muscat 2
     
@@ -106,10 +115,18 @@ module ApplicationHelper
   def get_allowed_record_type(source)
     return nil if !source.is_a? Source
 
-    if source.record_type == MarcSource::RECORD_TYPES[:source] || source.record_type == MarcSource::RECORD_TYPES[:collection]
+    if source.record_type == MarcSource::RECORD_TYPES[:source]
       [MarcSource::RECORD_TYPES[:collection], MarcSource::RECORD_TYPES[:composite_volume]]
+    elsif source.record_type == MarcSource::RECORD_TYPES[:collection]
+      [MarcSource::RECORD_TYPES[:composite_volume]]
     elsif source.record_type == MarcSource::RECORD_TYPES[:edition_content]
       MarcSource::RECORD_TYPES[:edition]
+    elsif source.record_type == MarcSource::RECORD_TYPES[:libretto_source] || source.record_type == MarcSource::RECORD_TYPES[:theoretica_source]
+      MarcSource::RECORD_TYPES[:collection]
+    elsif source.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content]
+      MarcSource::RECORD_TYPES[:libretto_edition]
+    elsif source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]
+      MarcSource::RECORD_TYPES[:theoretica_edition]
     else
       nil
     end

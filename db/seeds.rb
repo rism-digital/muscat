@@ -10,4 +10,7 @@ Role.create :name => "editor"
 Role.create :name => "cataloger"
 Role.create :name => "guest"
 Role.create :name => "junior_editor"
-User.create!(:name => "Admin", :email => 'admin@example.com', :roles => [Role.first], :password => 'password', :password_confirmation => 'password')
+
+Role.all.each do |role|
+  User.create!(:name => role.name.camelize, :email => "#{role.name}@example.com", :roles => [role], :password => 'Password1234', :password_confirmation => 'Password1234')
+end

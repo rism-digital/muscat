@@ -51,6 +51,11 @@ ActiveAdmin.register Institution do
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+
+      if cannot?(:edit, @item)
+        redirect_to admin_institution_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
+      end
+
     end
     
     def show
@@ -110,6 +115,7 @@ ActiveAdmin.register Institution do
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"110g_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
   filter :place_contains, :label => proc {I18n.t(:filter_place)}, :as => :string
+  filter :"667a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
 
@@ -200,7 +206,7 @@ ActiveAdmin.register Institution do
     active_admin_embedded_link_list(self, institution, Publication) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
-        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_title_short), :short_name
         context.column (I18n.t :filter_author), :author
         context.column (I18n.t :filter_description), :description
         if !is_selection_mode?

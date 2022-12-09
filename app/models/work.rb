@@ -173,7 +173,12 @@ class Work < ApplicationRecord
   def set_object_fields
     return if marc_source == nil
     self.title = marc.get_title
-    self.person = marc.get_composer
+    # LP commented for work experiments. Person is set by hand in the script
+    #self.person = marc.get_composer
+    self.opus = marc.get_opus
+    self.catalogue = marc.get_catalogue
+
+    self.marc_source = self.marc.to_marc
   end
  
   def self.get_viaf(str)

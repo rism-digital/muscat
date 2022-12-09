@@ -1,12 +1,13 @@
 it:
   general:
+    created_at: "Data di creazione"
     e_mail: E-mail
     editor_help: Guida all'editor
     faq: Domande frequenti
-    female: femmina
+    female: Femmina
     how_do_i: Come faccio ... Suggerimenti e trucchi
     index_marc_fields: Indice dei campi MARC
-    male: maschio
+    male: Maschio
     marc_tag_index: Indice dei codici MARC
     'no': 'No'
     rism: RISM
@@ -24,20 +25,21 @@ it:
     ungrouped_fields: Campi non raggruppati
     unknown_fields: Campi sconoscuti
     unused: INUTILIZZATO - VERRÀ RIMOSSO
+    updated_at: Ultima modifica
     uri: URI
     url: URL
     using_muscat: Guida a Muscat
     validity: Validità
-    verified: Verificata
-    when_to_input_new_record: Quando inserire una nuova scheda (edizioni musicali
-      a stampa)
+    when_to_input_new_record: Quando inserire una nuova scheda (edizioni musicali a stampa)
     workflow: Workflow
-    'yes': Sì
+    'yes': 'Sì'
   languages:
+    albanian: Albanese
     afrikaans: Afrikaans
     arabic: Arabo
     aragonese: Aragonese
     armenian: Armeno
+    artificial: Artificiale (altro)
     australian: Lingue australiane
     basque: Basco
     bengali: Bengalese
@@ -46,18 +48,22 @@ it:
     catalan: Catalano
     celtic_other: Celtico (altro)
     chinese: Cinese
+    cree: Cree
     creoles_pidgins_other: Lingue creole e pidgin (altre)
     croatian: Croato
     czech: Ceco
+    dakota: Dakota
     danish: Danese
     dutch: Olandese
     english: Inglese
     estonian: Estone
     ethiopic: Etiope
+    fijian: Figiano
     finnish: Finlandese
     french: Francese
     french_middle: Francese, medio (ca. 1300-1600)
     french_old: Francese, antico (ca. 842-1300)
+    friulian: Friulano
     gallician: Galiziano
     german: Tedesco
     german_old_high: Tedesco, antico alto (ca. 750-1050)
@@ -70,24 +76,25 @@ it:
     insari_sami: Inari Sami
     irish: Irlandese
     italian: Italiano
+    japanese: Giapponese
     korean: Coreano
     latin: Latino
     latvian: Lettone
     lithuanian: Lituano
     low_german: Basso sassone
-    lower_sorbian: Sorabo inferiore
+    lower_sorbian: 'Sorabo inferiore'
     luxembourgish: Lussemburghese
     macedonian: Macedone
     maori: Māori
-    middle_english: Lingua inglese medievale
+    middle_english: Inglese medievale
     middle_high_german: Tedesco medievale
     mongolian: Mongolo
     neapolitan: Napoletano
-    north_frisian: Dialetto frisone settentrionale
+    north_frisian: Frisone settentrionale
     norwegian: Norvegese
     occitan: Occitano
     oirat: Oirato
-    old_church_slavonic: Lingua slava ecclesiastica antica
+    old_church_slavonic: Slavo ecclesiastico antico
     persian: Persiano
     polish: Polacco
     portugese: Portoghese
@@ -100,7 +107,7 @@ it:
     serbian: Serbo
     sichuan_yi: Sichuan Yi
     sicilian: Siciliano
-    slavic: Slavico
+    slavic: Slavo
     slovak: Slovacco
     slovenian: Sloveno
     sorbian: Sorabo
@@ -115,12 +122,14 @@ it:
     tsimshian: Tsimshian
     turkish: Turco
     ukrainian: Ucraino
-    upper_sorbian: Sorabo superiore
+    upper_sorbian: 'Sorabo superiore'
     vietnamese: Vietnamita
     welsh: Gallese
-    west_frisian: Dialetto frisone occidentale
+    west_frisian: Frisone occidentale
     yiddish: Yiddish
   places:
+    afghanistan: Afghanistan
+    albania: Albania
     algeria: Algeria
     andorra: Andorra
     argentina: Argentina
@@ -134,15 +143,21 @@ it:
     austria_tyrol: 'Austria: Tirolo'
     austria_upper_austria: 'Austria: Austria Superiore'
     austria_vienna: 'Austria: Vienna'
+    azerbiajan: Azerbaigian
+    bangladesh: Bangladesh
+    belarus: Bielorussia
     belgium: Belgio
     benin: Benin
+    bolivia: Bolivia
+    bosnia_herzegovina: Bosnia ed Herzegovina
     brazil: Brasile
     bulgaria: Bulgaria
     cambodia: Cambogia
     canada: Canada
-    chile: Chile
+    chile: Cile
     china: Cina
     colombia: Colombia
+    costa_rica: Costa Rica
     croatia: Croazia
     cuba: Cuba
     czech_republic: Repubblica Ceca
@@ -159,7 +174,6 @@ it:
     greece: Grecia
     guatemala: Guatemala
     guinea: Guinea
-    holy_see: Santa Sede
     honduras: Honduras
     hong_kong: Hong Kong
     hungary: Ungheria
@@ -176,6 +190,7 @@ it:
     korea: Corea, Repubblica di
     latvia: Lettonia
     lithuania: Lituania
+    lebanon: Lebano
     luxembourg: Lussemburgo
     malta: Malta
     mexico: Messico
@@ -184,15 +199,18 @@ it:
     montenegro: Montenegro
     netherlands: Paesi Bassi
     new_zealand: Nuova Zelanda
+    nicaragua: Nicaragua
+    north_macedonia: Macedonia del Nord
     northern_ireland: Irlanda del Nord
     norway: Norvegia
+    pakistan: Pakistan
     papua_new_guinea: Papua Nuova Guinea
     paraguay: Paraguay
     peru: Perù
     philippines: Filippine
     poland: Polonia
     portugal: Portogallo
-    puerto_rico: Puerto Rico
+    puerto_rico: Portorico
     romania: Romania
     russian_federation: Federazione Russa
     saudi_arabia: Arabia Saudita
@@ -206,12 +224,17 @@ it:
     switzerland_vaud: 'Svizzera: Vaud'
     syrian_arab_republic: Repubblica Araba Siriana
     taiwan: Taiwan (provincia della Cina)
+    tajikistan: Tagikistan
     trinidad_tobego: Trinidad e Tobago
     turkey: Turchia
     uk: Regno Unito
     ukraine: Ucraina
     uruguay: Uruguay
     usa: Stati Uniti d'America
+    uzbekistan: Uzbekistan
+    #holy_see provided for backwards compatibility
+    holy_see: Città del Vaticano
+    vatican: Città del Vaticano
     venezuela: Venezuela, Repubblica Bolivariana del
     vietnam: Vietnam
   records:
@@ -228,7 +251,7 @@ it:
     additional_biographical_information: Informazioni biografiche addizionali
     additional_choir_voice: Voci di coro aggiuntive
     additional_codes: Codici addizionali che seguono il numero o il codice standard
-    additional_institution: Nome di ente aggiuntivo
+    additional_institution: Nome aggiuntivo di ente
     additional_personal_name: Nome aggiuntivo di persona
     additional_personal_name_lit: Nome aggiuntivo di persona
     additional_solo_voice: Voce solista aggiuntiva
@@ -272,6 +295,7 @@ it:
     basso_continuo: Basso continuo
     bf_major: Si♭ maggiore
     bf_minor: Si♭ minore
+    bibliography: Bibliografia
     bibliographic_reference: Riferimenti bibliografici
     binder: Rilegatore
     binding_note: Rilegatura
@@ -296,11 +320,12 @@ it:
     c_plus_3: C+3
     c_plus_4: C+4
     c_plus_5: C+5
+    catalog: Catalogo
     catalog_opus_number: Catalogo/Numero d'opera
     catalog_works: Catalogo delle opere
     cataloging_agency: Agenzia di catalogazione
     cataloging_collection_convoluta: Catalogazione di raccolte e volumi compositi
-    cataloging_collections: Catalogazione delle raccolte
+    cataloging_collections: Catalogazione di raccolte
     cataloging_forms: Formulari di catalogazione
     cataloging_language: Lingua di catalogazione
     cataloging_level: Livello di catalogazione
@@ -317,10 +342,11 @@ it:
     chronological_term: Date
     city: Città
     clef: Chiave
-    co-composer: Compositore secondario
+    co_composer: Compositore secondario
     coded_date: Data e luogo di un evento
     coded_instrumentation: Codice della strumentazione
     collaborator: Collaboratore
+    collective_catalog: Catalogo collettivo
     colophon: Colofone
     common_clefs: Chiavi comuni
     compiler: Compilatore
@@ -336,12 +362,13 @@ it:
     contact_area: Contatto
     content: Contenuto
     content_description: Descrizione del contenuto
+    content_type: Tipo di contenuto
     contents_note: Nota di contenuto
     contributor: Collaboratore
     control_fields: Campi di controllo
     control_number_identifier: Identificatore del numero di controllo
     control_subfield: Sottocampo di controllo
-    copy_examined: Copa esaminata per la catalogazione
+    copy_examined: Copia esaminata per la catalogazione
     copyist: Copista
     copyright_holder: Titolare dei diritti d'autore
     costume_designer: Costumista
@@ -351,7 +378,7 @@ it:
     country_activity: Paese di attività
     country_code: Codice del Paese
     country_of_publication: Paese
-    county_province: Cantone o provincia
+    county_province: Contea o provincia
     creation_production_note: Nota sulle responsabilità di creazione/produzione
     cs_major: Do♯ maggiore
     cs_minor: Do♯ minore
@@ -367,12 +394,14 @@ it:
     dedicatee: Dedicatario
     department: Dipartimento
     depositor: Depositante
+    deprecated_fields: Campi obsoleti (non usare)
     description: Descrizione
     description_area: Descrizione
     description_summary: Descrizione sommaria
     designer: Progettista
     df_major: Re♭ maggiore
     df_minor: Re♭ minore
+    digital_objects: Oggetti digitali
     digitized_music: Fonte digitalizzata
     digitized_source: Fonte digitalizzata
     dimensions: Dimensioni
@@ -390,7 +419,7 @@ it:
     dubious: Dubbio
     e_major: Mi maggiore
     e_minor: Mi minore
-    earlier_heading: Titolo precedente
+    earlier_heading: Intestazione precedente
     ecclesiastical_modes: Modi ecclesiastici
     edition: Edizione
     edition_imprint_fields: Campi per i dati editoriali
@@ -398,12 +427,14 @@ it:
     editor: Curatore
     ef_major: Mi♭ maggiore
     ef_minor: Mi♭ minore
-    end_period: Periodo finale
+    encyclopedia: Enciclopedia
+    end_period: Fine del periodo
     engraver: Incisore
     engraving: Incisione
     event_organizer: Organizzatore
     event_place: Luogo dell’evento
     excerpts: Estratti
+    exemplars: Esemplari
     extent: Estensione
     extent_parts: Estensione (parti)
     external_resource: Localizzazione e accesso elettronico
@@ -422,19 +453,18 @@ it:
     f_plus_4: F+4
     f_plus_5: F+5
     facsimile: Facsimile
-    family_name: Nome di famiglia
+    family_name: Cognome
     father_of: Padre di
     field_link: Link di campo e numero di sequenza
     field_of_activity: Settore di attività
     figured_bass_scores: Basso cifrato
-    fijian: Figi
+    fijian: Figiano
     fingerprint_identifier: Impronta
     first_second_group: Primo/Secondo gruppo
     form_subdivision: Suddivisione formale
     format_extent: Categoria di fonte, estensione
     former_owner: Proprietario precedente
     fragments: Frammenti
-    friulano: Friulano
     fs_major: Fa♯ maggiore
     fs_minor: Fa♯ minore
     full: Completo
@@ -443,7 +473,7 @@ it:
     g_major: Sol maggiore
     g_minor: Sol minore
     g_minus_1: G-1
-    g_minus_2_octave: g-2 (Chiave di violino ottavizzata)
+    g_minus_2_octave: g-2 (chiave di violino ottavizzata)
     g_minus_2_treble: G-2 (chiave di violino)
     g_minus_3: G-3
     g_minus_4: G-4
@@ -457,7 +487,7 @@ it:
     general_abbreviations: Abbreviazioni generali e terminologia
     general_cataloguing_guidelines: Regole generali di catalogazione
     general_note: Nota generale
-    general_note_incipits: Commento all'incipit mus.
+    general_note_incipits: Commento all'incipit musicale
     general_note_institution: Nota generale
     general_note_personal: Nota generale
     geographic_name: Nome geografico
@@ -466,7 +496,7 @@ it:
     gf_minor: Sol♭ minore
     gs_major: Sol♯ maggiore
     gs_minor: Sol♯ minore
-    heading: Nome di persona
+    heading: Intestazione
     heading_composer_name: Compositore
     heading_personal_name: Nome di persona
     heading_personal_name1: Nome di persona
@@ -475,10 +505,10 @@ it:
     holdings_location: Informazioni sul fondo
     identity: Identità
     identity_area: Identità
-    iiif_manifest: Manifesto IIIF
+    iiif_manifest: "IIIF manifest (fonte digitale)"
+    iiif_manifest_other: "IIIF manifest (altro)"
     illustrator: Disegnatore
-    images: immagini
-    immediate_parent_body: Campo immediatamente superiore
+    immediate_parent_body: Istituzione immediatamente precedente
     import: Dati importati
     imprint: Dati editoriali
     incipit: Incipit musicale
@@ -492,7 +522,7 @@ it:
     insertions: Inserimenti
     inserts: Inserimenti
     institution: Istituzione
-    institutions: Istituzione
+    institutions: Istituzioni
     instrumentalist: Strumentista
     internal_note: Nota interna
     introduction: Introduzione
@@ -516,7 +546,7 @@ it:
     language_of_cataloging: Lingua della catalogazione
     language_original_text: Lingua del testo originale
     language_text: Lingua del testo cantato
-    later_heading: Titolo antecedente
+    later_heading: Intestazione successiva
     latitude: Latitudine
     leader: Leader
     library: Biblioteca
@@ -535,10 +565,10 @@ it:
     lithography: Litografia
     liturgical_festival: Festa liturgica
     liturgical_festivals: Feste liturgiche
-    local_id_number: Num. locale
+    local_id_number: Numero locale
     local_note_field: Nota locale
     local_notes_field: Nota interna
-    local_number: Num. locale
+    local_number: Numero locale
     location: Luogo
     location_and_address: Luogo ed indirizzo
     location_insertion: Collocazione dell'inserimento nell'opera principale
@@ -566,32 +596,33 @@ it:
     mode_11tt: 'Modo: 11tt – Ionico, trasposto'
     mode_12t: 'Modo: 12t – Ipoionico'
     mode_12tt: 'Modo: 12tt – Ipoionico, trasposto'
-    mode_1t: 'Modo:  1t – Dorico'
-    mode_1tt: 'Modo:  1tt – Dorico, trasposto'
-    mode_2t: 'Modo:  2t – Ipodorico'
-    mode_2tt: 'Modo:  2tt – Ipodorico, trasposto'
-    mode_3t: 'Modo:  3t – Frigio'
-    mode_3tt: 'Modo:  3tt – Frigio, trasposto'
-    mode_4t: 'Modo:  4t – Ipofrigio'
-    mode_4tt: 'Modo:  4tt – Ipofrigio, trasposto'
-    mode_5t: 'Modo:  5t – Lidio'
-    mode_5tt: 'Modo:  5tt – Lidio, trasposto'
-    mode_6t: 'Modo:  6t – Ipolidio'
-    mode_6tt: 'Modo:  6tt – Ipolidio, trasposto'
-    mode_7t: 'Modo:  7t – Misolidio'
-    mode_7tt: 'Modo:  7tt – Misolidio, trasposto'
-    mode_8t: 'Modo:  8t – Ipomisolidio'
-    mode_8tt: 'Modo:  8tt – Ipomisolidio, trasposto'
-    mode_9t: 'Modo:  9t – Eolico'
-    mode_9tt: 'Modo:  9tt – Eolico, trasposto'
+    mode_1t: 'Modo: 1t – Dorico'
+    mode_1tt: 'Modo: 1tt – Dorico, trasposto'
+    mode_2t: 'Modo: 2t – Ipodorico'
+    mode_2tt: 'Modo: 2tt – Ipodorico, trasposto'
+    mode_3t: 'Modo: 3t – Frigio'
+    mode_3tt: 'Modo: 3tt – Frigio, trasposto'
+    mode_4t: 'Modo: 4t – Ipofrigio'
+    mode_4tt: 'Modo: 4tt – Ipofrigio, trasposto'
+    mode_5t: 'Modo: 5t – Lidio'
+    mode_5tt: 'Modo: 5tt – Lidio, trasposto'
+    mode_6t: 'Modo: 6t – Ipolidio'
+    mode_6tt: 'Modo: 6tt – Ipolidio, trasposto'
+    mode_7t: 'Modo: 7t – Misolidio'
+    mode_7tt: 'Modo: 7tt – Misolidio, trasposto'
+    mode_8t: 'Modo: 8t – Ipomisolidio'
+    mode_8tt: 'Modo: 8tt – Ipomisolidio, trasposto'
+    mode_9t: 'Modo: 9t – Eolico'
+    mode_9tt: 'Modo: 9tt – Eolico, trasposto'
     modifying_agency: Agenzia della modifica
     monogram: Monogramma
     mother_of: Madre di
     movement_number: N.o del movimento
-    multiple: Multiple
-    multiple_copies: Exemplari multipli
+    multiple: Multiplo
+    multiple_copies: Esemplari multipli
     multiple_single_dates: Date singole multiple
     museum: Museo
+    music_edition: Edizione musicale
     music_incipit: Incipit musicale
     musical_composition: Composizione musicale
     name: Nome
@@ -604,8 +635,9 @@ it:
     nationality: Codice del Paese
     nickname: Soprannome
     no_linguistic_content: Senza contesto linguistico
-    non_migrated_bound: Non-migrated bound with value from 563
+    non_migrated_bound: Valore non migrato dal campo 563 (Rilegato con)
     not_applicable: Non applicabile
+    note: Nota
     note_external_resource: Nota sulla risorsa esterna
     note_fields: Campi note
     note_on_performance: Nota sull'esecuzione
@@ -619,18 +651,15 @@ it:
     octoechos2: 'Octoechos 2: Ēchos deuteros (secondo modo nella musica bizantina)'
     octoechos3: 'Octoechos 3: Ēchos tritos (terzo modo nella musica bizantina)'
     octoechos4: 'Octoechos 4: Ēchos tetartos (quarto modo nella musica bizantina)'
-    octoechos5: 'Octoechos 5: Ēchos plagios prōtos (primo modo plagale nella musica
-      bizantina)'
-    octoechos6: 'Octoechos 6: Ēchos plagios deuteros (secondo modo plagale nella musica
-      bizantina)'
+    octoechos5: 'Octoechos 5: Ēchos plagios prōtos (primo modo plagale nella musica bizantina)'
+    octoechos6: 'Octoechos 6: Ēchos plagios deuteros (secondo modo plagale nella musica bizantina)'
     octoechos7: 'Octoechos 7: Ēchos barys (terzo modo plagale nella musica bizantina)'
-    octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quarto modo plagale nella musica
-      bizantina)'
+    octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quarto modo plagale nella musica bizantina)'
     online_finding_aids: Strumenti di supporto alla ricerca online
     opera_houses_concert_halls: Teatri e sale da concerto
     opus_number: N.o d'opera
     opus_thematic_index_number: Numero d'opera / del catalogo delle opere
-    order_name: Nome di religione
+    order_name: Nome dell'ordine religioso
     origin: Origine
     original_cataloging_agency: Agenzia catalografica originale
     other: Altra funzione
@@ -647,13 +676,13 @@ it:
     other_shelfmark: Altra segnatura
     other_standard_identifier: Riferimento autorità
     other_variant: Altra forma di ricerca
-    paper_maker: Fabbricante di carta
     papermaker: Fabbricante di carta
     parallel_form: Forma parallela del nome
     parent_record: Notizia principale
     parts_held: Parti staccate esistenti
     parts_held_extent: Parti staccate, estensione
     patron: Committente
+    people: Persone
     people_institutions: Persone ed istituzioni
     percussion: Strumenti a percussione
     performance: Esecutori
@@ -676,6 +705,7 @@ it:
     place_origin: Luogo di origine
     place_publication: Luogo
     places: Luoghi
+    plaine_and_easie: Codice Plaine and Easie
     plate_number: Numero della lastra
     plucked_instruments: Strumenti a pizzico
     postal_code: Codice postale
@@ -692,16 +722,18 @@ it:
     public_note: Nota pubblica
     publisher: Editore
     publisher_copyist: Copista, editore, casa editrice
+    publisher_number: Numero dell'editore
+    publisher_plate_number: Numero della lastra o dell'editore
     publishing_printing_production: Copia o dati editoriali
     qualifying_information: Informazioni qualificanti
     range_dates: Ambito di datazione
     real_world_object_uri: Oggetto URI
     record_actions: Azioni per la scheda
-    record_audit: RECORD AUDIT
+    record_audit: Controllo del record
     record_origin: Origine della scheda
     record_status: Stato della scheda
     reference_instruction_phrase: Frase di istruzioni di riferimento nel sottocampo $i
-    reference_record_id: Numero identificativo della scheda di riferimento
+    reference_record_id: ID di riferimento per il record
     references: Bibliografia
     references_and_notes: Bibliografia e note
     region_active: Regione di attività
@@ -710,11 +742,13 @@ it:
     related_personal_name: Nome di persona collegato
     related_place: Luogo correlato
     related_resources: Collegamenti
-    related_titles: Titoli connessi
+    related_source: Fonte correlata
+    related_titles: Titoli correlati
     related_to: Parente di
     related_work: Opera correlata
     relation: Relazione
     relations: Relazioni
+    relationship: Tipo di relazione
     relationship_designation: Designazione della relazione in $i o $4
     relationship_information: Informazioni sul rapporto
     religious_name: Nome di religione
@@ -727,11 +761,12 @@ it:
     scoring_in_movement: Organico del movimento
     scoring_summary: Organico sintetico
     scribe: Copista
+    secondary_catalog_works: Catalogo secondario delle opere
     secondary_literature: Bibliografia
     series: Serie
     series_added_entry: Notizia secondaria sul titolo sovraordinato
     series_statement: Informazioni sul titolo sovraordinato
-    set: Gruppo di materiale
+    material_group: Gruppo di materiale
     shelfmark: Segnatura
     shelfmark_olim: Segnatura antica (olim)
     short_title: Titolo breve
@@ -743,9 +778,10 @@ it:
     solo_voice: Voce solista
     soloist_instrument: Strumento solista
     source: Fonte
+    sources: Fonti
     source_data_found: Fonte dei dati
     source_data_not_found: Fonte consultata senza esito
-    source_description: Copa esaminata per la catalogazione
+    source_description: Copia esaminata per la catalogazione
     source_details: Descrizione fisica
     source_number_code: Agenzia autorità
     source_of_acquisition_note: Nota sulla fonte d'acquisto
@@ -761,7 +797,7 @@ it:
     standardized_title: Titolo uniforme
     standardized_titles_printed_music: Titolo uniforme di edizioni musicali a stampa
     standardized_titles_subject_headings: Titolo uniforme - Soggetto
-    start_period: Periodo iniziale
+    start_period: Inizio del periodo
     street_address: Via e numero civico
     strings: Archi
     subheading: Suddivisione formale
@@ -775,12 +811,13 @@ it:
     supplementary_material: Materiali allegati
     technical_errors: Errori tecnici
     technical_production: Produttore
-    temp_val: Temp val
+    temp_val: Valore temporaneo
     templates: Modelli
     terms_of_availability: Condizioni di disponibilità
     terms_voices_instruments: Abbreviazioni RISM per gli strumenti
     text_author: Poeta
     text_incipit: Incipit testuale
+    thematic_catalog: Catalogo tematico
     third_fourth_group: Terzo/Quarto gruppo
     time_signature: Misura
     title: Titolo
@@ -801,6 +838,7 @@ it:
     translator: Traduttore
     transparency: Trasparente
     type: Tipo
+    type_designer: Fonditore
     type_institution: Tipo di istituzione
     type_name_variant: Descrizione della variante del nome
     type_of_jurisdiction: Tipo di giurisdizione
@@ -808,11 +846,13 @@ it:
     type_relationship: Relazione
     typescript: Dattiloscritto
     typography: Stampa tipografica
+    uncategorized: Non categorizzato
     unknown: Sconosciuto
     unparsed_fingerprint: Impronta non analizzata
     variant_ms_title: Varianti del titolo diplomatico
     variant_source_title: Varianti del titolo diplomatico
     variations: Variazioni
+    verified: Verificata
     vocalist: Cantante
     voice_instrument: Voce/strumento
     volume_year_page: Volume, anno, pagina
@@ -822,3 +862,125 @@ it:
     work_number: Numero dell'opera
     year: Anno
     years_birth_death: Data di nascita e di morte
+  relations:
+    P60191: "Fonte correlata"
+    P60198: "Materiale addizionale"
+    P60311: "Copiato da"
+    P60312: "Copiato in"
+    P60195: "Pubblicato in"
+    P60242: "Arrangiamento di"
+    P60274: "Arrangiato come"
+    P60194: "Inserto in"
+    P60183: "Inserto"
+  verovio:
+    position: "Posizione"
+    warning: "Attenzione"
+    clef: "Chiave"
+    keysig: "Armatura di chiave"
+    timesig: "Misura"
+    ERR_001_EMPTY: Inserisci un incipit codificato.
+    ERR_004_KEY_SPACE: Il cambio di armatura di chiave deve essere seguito da uno spazio.
+    ERR_005_CLEF_SPACE: Un cambio di chiave deve essere seguito da uno spazio.
+    ERR_006_TIMESIG_SPACE: Il cambio ti tempo deve essere seguito da uno spazio.
+    ERR_007_REP_EMPTY: Inserisci le note che devono essere ripetute.
+    ERR_008_REP_MARKER: Indicare la fine della figura ripetuta con '!' prima della 'f'.
+    ERR_009_REP_OPEN: Chiudere la figura ripetuta con '!' prima della fine della misura.
+    ERR_010_REP_UNUSED: La figura indicata per la ripetizione non è stata ripetuta. Indicare la ripetizione con 'f'.
+    ERR_011_REP_NO_FIGURE: La 'f' deve seguire '!' perché la figura ripeta.
+    ERR_012_REP_NOT_BEGIN: Per ripetere la battuta, 'i' deve essere preceduta da una linea a barre.
+    ERR_013_REP_NO_CONTENT: "'i' è presente senza contenuto da ripetere."
+    ERR_014_REP_NO_BARLINE: 'Per ripetere la battuta, ''i'' deve essere seguita da una linea di battuta.'
+    ERR_015_MREST_INVALID: Una pausa con '=' non può essere seguita direttamente da un altro '='.
+    ERR_016_MREST_NUMBER: Una pausa usando '=' deve essere seguita da una linea di battuta o da un numero maggiore di 0.
+    ERR_017_TRILL_INVALID: Un trillo 't' deve seguire direttamente la nota a cui appartiene.
+    ERR_018_FERMATA_NESTED: "'(' non può essere seguito direttamente da un altro '('."
+    ERR_019_ACCID_NO_NOTE: Un accidente deve essere seguito direttamente da una nota.
+    ERR_020_CHORD_NOTE_BEFORE: Per indicare un accordo, un '^' deve essere preceduto da una nota.
+    ERR_021_CHORD_NOTE_AFTER: Per indicare un accordo, un '^' deve essere seguito da una nota.
+    ERR_022_BEAM_MENSURAL: Le travature non possono essere utilizzate con notazione mensurale.
+    ERR_023_BEAM_NESTED: Non iniziare una travatura prima di aver chiuso quella precedente.
+    ERR_024_BEAM_CLOSING: 'È presente una ''}'' in eccedenza per chiudere una travatura. Eliminala oppure indica dove inizia la travatura con ''{''.'
+    ERR_025_BEAM_OPEN: Chiudere la travatura con '}' prima della fine della battuta.
+    ERR_026_GRACE_NESTED: Chiudere la appoggiatura con 'r' prima di iniziarne una nuova.
+    ERR_027_GRACE_CLOSING: Un 'r' è presente per chiudere un'appoggiatura. Eliminalo o aggiungi 'qq' per indicare dove inizia.
+    ERR_028_GRACE_OPEN: Chiudere l'appoggiatura con 'r' prima della fine della battuta.
+    ERR_029_GRACE_UNRESOLVED: Non iniziare una appoggiatura usando 'q' prima di aver completato quella precedente.
+    ERR_030_GRACE_DURATION: Nessun valore ritmico può essere inserito quando si utilizza un acciaccatura con 'g'.
+    ERR_031_GRACE_NO_NOTE: Una appoggiatura che utilizza 'g' o 'q' deve essere seguita da una nota.
+    ERR_032_TUPLET_NESTED: Non avviare un gruppo ritmico speciale con '(' prima di chiudere quello precedente.
+    ERR_033_TUPLET_CLOSING: È presente un extra ')' per chiudere un gruppo di ritmi speciali. Eliminalo o indica con '(' dove inizia il gruppo.
+    ERR_034_TUPLET_NUM: Un ';' è presente al di fuori di un gruppo di ritmi speciali.
+    ERR_035_TUPLET_OPEN: Chiudere il gruppo ritmico speciale o la corona con ')' prima della fine della battuta.
+    ERR_036_TUPLET_NUM_NUMBER: Un numero deve essere immesso tra la ';' e la ')' nel gruppo ritmico speciale.
+    ERR_037_TIE_PITCH: Una legatura con '+' può connettere solamente due note della stessa ottava ed altezza.
+    ERR_038_TIE_OPEN: Una legatura con '+' deve essere seguita da una nota.
+    ERR_039_TIE_NO_NOTE: Una legatura con '+' deve essere preceduta da una nota.
+    ERR_040_HIERARCHY_INVALID: L'ordine degli elementi non può essere interpretato (%{value}).
+    ERR_041_NESTING_INVALID: "Il gruppo interno va chiuso con '%{value}' prima di chiudere il gruppo esterno."
+    ERR_042_CLEF_INCOMPLETE: La chiave non è nel formato corretto.
+    ERR_043_CLEF_INVALID_2ND: Il secondo carattere nel segno della chiave deve essere '+' o '-'.
+    ERR_044_CLEF_MENS: Non mischiare chiavi mensurali e non mensurali.
+    ERR_045_CLEF_INVALID_3RD: Il terzo carattere della chiave deve essere un numero.
+    ERR_046_CLEF_INVALID: La chiave non è nel formato corretto.
+    ERR_047_TIMESIG_INCOMPLETE: L'indicazione di tempo non è nel formato corretto.
+    ERR_048_TIMESIG_INVALID: L'indicazione di tempo non è nel formato corretto.
+    ERR_049_TIMESIG_MENS: L'indicazione di tempo non è nel formato corretto.
+    ERR_050_INVALID_CHAR: 'Elimina i seguenti caratteri non validi: (%{value})'
+    ERR_051_BARLINE: La linea di battuta non è nel formato corretto.
+    ERR_052_DURATION: "La durata non può essere interpretata."
+    ERR_053_DURATION_MENS3: La durata non può essere '3' in notazione mensurale.
+    ERR_054_DURATION_MENS5: La durata non può essere '5' in notazione mensurale.
+    ERR_055_KEYSIG_CHANGE: L'armatura di chiave non può essere cambiata più di una volta in una battuta.
+    ERR_056_TIMESIG_CHANGE: Il tempo non può essere cambiato più di una volta in una battuta.
+    ERR_057_MENSUR_CHANGE: La mensurazione non può essere modificata più di una volta in una battuta.
+    ERR_058_FERMATA_MREST: "Le parentesi per una corona possono contenere solo una singola nota o una pausa di '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Nella notazione mensurale non sono ammesse note con doppi punti."
+    ERR_060_CLEF_MISSING: È necessario specificare la chiave.
+    ERR_061_LIGATURE_NOTE_BEFORE: Per indicare una legatura, un '+' deve essere preceduto da una nota.
+    ERR_062_LIGATURE_NOTE_AFTER: Per indicare una legatura, un '+' deve essere seguito da una nota.
+    ERR_063_LIGATURE_PITCH: Una legatura non può avere due note consecutive con la stessa altezza.
+    ERR_064_LIGATURE_DURATION: La durata di una legatura non può essere inferiore a una semibreve.
+    ERR_065_MREST_INVALID_MEASURE: Una battuta con una pausa per l'intera battuta non può includere altro.
+  rism_online:
+    manuscript: "Manoscritto"
+    printed: "A stampa"
+    composite: "Volume composito"
+    apply_filters: "Applica i filtri"
+    error_loading_results: "Errore nel caricamento dei risultati"
+    global_collection: "Collezione mondiale"
+    home: "Pagina iniziale"
+    keyword_query: "Ricerca per parola chiave"
+    first: "Inizio"
+    last: "Fine"
+    next: "Avanti"
+    previous: "Indietro"
+    no_results_body: "Modifica le opzioni di ricerca o ripristina tutti i filtri per visualizzare nuovi risultati."
+    no_results_header: "La ricerca non ha prodotto alcun risultato"
+    no_results_to_find: "Questa ricerca non produce alcun risultato"
+    page: "Pagina"
+    words_anywhere: "Testo in qualsiasi campo"
+    record_preview: "Anteprima della scheda"
+    record_uri: "Link alla scheda (permalink)"
+    reset_all: "Ripristina tutto"
+    number_results: "Numero di risultati"
+    search: "Cerca"
+    show_all_results: "Mostra tutti i risultati"
+    show_results: "Mostra i risultati"
+    source_contents: "Contenuto delle fonti"
+    update_results: "Aggiorna i risultati della ricerca"
+    page_not_found: "Pagina non trovata"
+    bad_query: "C'è stato un problema nella ricerca"
+    result_types: "Tipo di risultato"
+    source_relationships: "Relazioni tra fonti"
+    holding_institutions: "Dove trovarlo"
+    digital_facsimiles: "Facsimili digitali"
+    publication_details: "Pubblicazione"
+    biographical_details: "Dati biografici"
+    role_and_profession: "Ruolo e professione"
+    composer_composition: "Compositore e composizione"
+    full_record: "Scheda completa"
+  testingForCrowdinWorkshop:
+    apple: mela
+    pear: pera
+    table: tavolo
+    chair: sedia

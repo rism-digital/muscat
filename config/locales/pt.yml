@@ -4,6 +4,7 @@ pt:
 # Pad for italian, it has 2 missing items
 #
 #
+    compare_versions: Comparar versões
     dashboard: "Painel de controle"
     dashboard_welcome:
       welcome: "Benvindo(a) ao Active Admin. Esta é a página padrão do Painel de controle."
@@ -96,6 +97,9 @@ pt:
       comments_help: "Digite @ para mencionar um usuário específico, que então receberá uma notificação por e-mail."
       author_missing: "Anônimo"
       title_content: "Comentários (%{count})"
+      referring_comments: Comentários onde sou nomeado
+      my_item_comments: Comentários sobre os meus registos
+      my_own_comments: Comentários que fiz
       errors:
         empty_text: "O comentário não foi salvo, o texto estava vazio."
     devise:
@@ -150,6 +154,7 @@ pt:
       default: "%H:%M"
       short: "%H:%M"
       long: "%Y-%m-%d %H:%M"
+      verbose: "%A, %d de %B de %Y, %H:%Mh"
       
   #################### MODELS      
   activerecord:
@@ -278,6 +283,7 @@ pt:
   menu_jobs: "Trabalhos"
   menu_holdings: "Materiais"
   menu_works: "Materiais"
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Últimas modificações"
@@ -286,6 +292,7 @@ pt:
   std_title_contains: "Título uniforme contém"
   composer_contains: "Compositor contém"
   library_sigla_contains: "Sigla contém"
+  internal_note_contains: "Nota interna contém"
   is_in_folder: "Está na pasta"
   workgroups: "Grupos de trabalho"
   roles: "Papéis"
@@ -309,6 +316,9 @@ pt:
   lib_siglum: "Sigla da Instituição"
   holding_records: "Informação do exemplar"
   holding_no_siglum: "Materia sem sigla"
+  holding_missing: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right."
+  holding_missing_alert: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right after you save."
+  holding_missing_show: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editinf this record and clicking the \"%{new_holding}\" button on the right."
   new_holding: "Adicionar material"
   new_holding_page: "Informação de novo material"
   new_digital_object_image: "Adicionar uma nova imagem"
@@ -331,6 +341,7 @@ pt:
   unloadable_record: "Este registro teve problemas de carregamento: pode ser visto, mas não editado. Por favor, entre em contato com um administrador."
   validation_level_error: "Há erros, por favor resolva antes de salvar."
   validation_level_warning: "Estes são avisos, salve novamente para ignorar."
+  muscat_reindexing: "Muscat está a reindexar, os resultados da pesquisa podem estar incompletos"
   
   jobs:
     not_set: "[Nenhum estado determinado]"
@@ -344,6 +355,7 @@ pt:
   # Sidebar
   delete: "Apagar"
   to_the_list: "Retornar à lista"
+  go_to_top: "Voltar ao início"
   edit: "Editar"
   new: "Criar"
   duplicate: "Duplicar"
@@ -372,11 +384,13 @@ pt:
   hide_preview: "Ocultar previsualização"
   show_validate: "Validação"
   show_history: "Mostrar histórico de modificação"
+  show_gnd: "Busca no GND"
   show_viaf: "Busca no VIAF"
   save_and_continue: "Salvar e continuar editando"
   save_and_exit: "Salvar e Fechar"
   cancel: "Cancelar"
   duplicate_confirm: "Tem certeza de que quer duplicar este registro?"
+  convert_to_print: "Converter para modelo de impressão"
   
   # Version history
   history_date: "Data"
@@ -406,6 +420,16 @@ pt:
     publish_job: "Início do Job de publicação (id: %{id})"
     unpublish_job: "Início do Job de cancelamento da publicação (id: %{id})"
     reindex_job: "Início do trabalho de reindexação (id: %{id})"
+    validação_iniciada: "Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})"
+    folder_not_source: "Apenas as pastas contendo Fontes podem ser validadas"
+    expires: "Expira em"
+    resetted: "Data de expiração da pasta agora é %{data}"
+    reset_expiration: "Repor data de expiração"
+    delete_now: "As seguintes pastas foram eliminadas:"
+    tomorrow: "As seguintes pastas serão eliminadas amanhã %{data}"
+    one_week: "As seguintes pastas serão apagadas dentro de uma semana em %{data}"
+    two_weeks: "As seguintes pastas serão apagadas dentro de duas semanas em %{data}"
+    one_month: "As seguintes pastas serão apagadas dentro de um mês em %{data}"
 
   ### Digital objects
   digital_objects: "Objetos Digitais"
@@ -486,9 +510,8 @@ pt:
   filter_provenance: "Local de Publicação"
   filter_record_type: "Tipo de modelo"
   filter_record_type_short: "Tipo"
-  filter_source_type: "Tipo de fonte"
   filter_publisher: "Editor"
-  filter_revue_title: "Título do Periódico"
+  filter_journal: "Título do Periódico"
   filter_id: "ID RISM"
   filter_id_no: "ID RISM"
   filter_images: "Imagens"
@@ -498,6 +521,7 @@ pt:
   filter_source: "Fonte"
   filter_sources: "Fontes"
   filter_source_type: "Tipo de fonte"
+  filter_source_content_type: "Tipo de conteúdo"
   filter_std_title: "Título uniforme"
   filter_subject: "Assunto"
   filter_subsequent_entries: "Registros subsequentes"
@@ -568,7 +592,9 @@ pt:
   cannot_create_source: "O usuário não tem autorização para criar este tipo de fonte"
   validate_name_uniqness: "O registro não foi salvo: Um título abreviado igual '%{term}' já existe."
   validates_parent_id: "O registro não foi salvo: O registro principal (773) não pode ser igual a este registro"
-  
+  is_part_of_collection: "Esta %{class} %{id} faz parte de uma colecção, deve remover o 773 antes de o poder apagar"
+  not_set: "[não definido]"  
+
   #
   entry:
     one: "registro"
@@ -668,9 +694,6 @@ pt:
   
   tf_acknowledgments: "Incipits search is performed with <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> developed by the <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
 
-  hls_link_lang: "e"
-  hls_link_name: "HDS"
-  
   do_link_lang: "eng"
   do_media_files_title: "Multimedia files"
   do_ext_res_link: "External resources:"
@@ -693,6 +716,18 @@ pt:
     more: "More"
     banner: 'Please click "Preview" to show the MEI-converted output.'
 
+  notifications:
+    cadence: Cadência de notificação
+    none: Notificações estão desactivadas
+    every: Cada vez que um registo correspondente é guardado
+    daily: Todos os dias
+    weekly: Todas as semanas
+    rules: Regras
+    notifications: Notificações
+    edit: Editar notificações
+    empty_message: "Nenhuma notificação está activada. Pode %{href} pode activá-las"
+    empty_message_href: editá-las
+
   wf_stage:
     inprogress: "Não publicado (UNP)"
     published: "Publicado (PUB)"
@@ -714,6 +749,23 @@ pt:
     got_it: "Entendido!"
     got_it_explanation: "Clicando neste botão, as notícias serão silenciadas até que a próxima seja liberada.."
     news: "Muscat Notícias"
+    my_comments: "Os meus comentários"
+    my_records: "Os meus registos"
+    about_comments: "Sobre os comentários"
+
+  compare_versions:
+    time_frame: Período de tempo
+    rule: Regra
+    display: Mostrar
+    options: Opções
+    show: Espectáculo
+    hide: Esconder
+    modified_records: Records modificados
+    no_records: Não há records para mostrar com as opções actualmente seleccionadas 
+    new_record: Novo record
+    similarity: Diferenças
+    diff: Comparar
+    date_message: "Mostrar records modificados de %{date}."
 
   # editor validation 
   validation:
@@ -724,6 +776,7 @@ pt:
     correct: "O registro não tem erros de validação [200]"
     begins_with_message: "O campo deve começar com \"{0}\""
     required_if_message: "Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}"
+    cannot_link_to_self: "A criação de uma ligação em si não é permitida (%{id})."
     
   incipit_search:
     incipit_search: "Busca por Incipit"
@@ -748,6 +801,10 @@ pt:
   Subject: "Sujeito"
   "Number of printed copies": "Número de exemplares impressos"
   publisher: "Casa editora"
+
+  marc_editor:
+    delete_msg: "Eliminar"
+    delete_field_confirm: "Tem a certeza que quer apagar este campo?"
 
   cookies:
     message: "osso sítio web usa cookies para tornar sua navegação melhor. Ao utilizá-lo, o usuário está de acordo com o uso de cookies."

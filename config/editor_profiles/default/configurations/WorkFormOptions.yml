@@ -195,21 +195,41 @@
 "100":
   new_window: people
   new_window_field: full_name_equals
-  layout: 
-    fields: 
+  layout:
+    fields:
     - - a
       - type: person
         editor_partial: subfield_secondary
         allow_new: true
     - - d
       - autocomplete_extra: life_dates
-    - - m
-    - - n
-    - - r
-    - - t
-    columns: 4
+    - - j
+      - cols: 2
+        editor_partial: subfield_select_codes
+        codes_reference: "codes"
+    columns: 2
   tag_params:
-      100r:
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Doubtful"
+      - "Misattributed"
+"130":
+  new_window: standard_titles
+  new_window_field: title_equals
+  layout:
+    fields:
+    - - a
+      - type: standard_title
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "130r"
+    - - m
+  tag_params:
+    130r:
       - "A"
       - "a"
       - "A|x"
@@ -288,22 +308,10 @@
         editor_partial: subfield_secondary
       - cols: 4
     columns: 4
-"400":
-  new_window: people
-  new_window_field: full_name_equals
+"383": 
   layout: 
     fields: 
-    - - a
-      - type: person
-        editor_partial: subfield_secondary
-        allow_new: true
-    - - d
-      - autocomplete_extra: life_dates
-    - - m
-    - - n
-    - - r
-    - - t
-    columns: 4
+    - - b
 "500": 
   allow_new: true
   new_window: people
@@ -358,6 +366,26 @@
     fields: 
     - - a
       - growfield: true
+"690": 
+  new_window: publications
+  new_window_field: name_equals
+  layout: 
+    fields: 
+    - - a
+      - type: publication
+        editor_partial: subfield_secondary
+        allow_new: false
+    - - n
+"691": 
+  new_window: publications
+  new_window_field: name_equals
+  layout: 
+    fields: 
+    - - a
+      - type: publication
+        editor_partial: subfield_secondary
+        allow_new: false
+    - - n
 "700":
   allow_new: true
   new_window: people
@@ -436,3 +464,5 @@
         editor_partial: subfield_select
     columns: 4
 
+triggers:
+  - notify_changes

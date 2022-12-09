@@ -112,21 +112,23 @@ class EditorConfiguration
   #        en: Plate number
   # </tt>      
   def get_sub_label(id, sub_id, edit = false)
-    # return :edit_label value only if edit and if existing
-    if edit && labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id]&& labels_config[id][:fields][sub_id][:edit_label]
-      return I18n.t(labels_config[id][:fields][sub_id][:edit_label])
-    end
-
     if labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id] && labels_config[id][:fields][sub_id][:label]
-      return I18n.t(labels_config[id][:fields][sub_id][:label])
+      label =  I18n.t(labels_config[id][:fields][sub_id][:label])
+
+      # This is the same problem as get_label
+      # If the label is translated to an empty string, try to get the english one
+      if !label || label.empty?
+        label = I18n.t(labels_config[id][:fields][sub_id][:label], :locale => :en)  + " [translation missing]"
+      end
+
+      return label
     end
     # if nothing found
-    return "[unspecified]" 
+    return "[#{id} sublabel: #{sub_id} unspecified]" 
   end
   
   # Returns if this label has a sublabel
   def has_sub_label?(id, sub_id)
-    # we don't care about :edit_label here because we assume that we have an edit_label only if we also have :label
     if labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id] && labels_config[id][:fields][sub_id][:label]
       return true
     end
@@ -152,15 +154,23 @@ class EditorConfiguration
   #    en: Printer
   # </tt>
   def get_label(id, edit = false)
-    # return :edit_label value only if edit and if existing
-    if edit && labels_config[id] && labels_config[id][:edit_label]
-      return I18n.t(labels_config[id][:edit_label])
-    end
-    # puts I18n.locale
+    
+    # Get the label in the specified locale
     if labels_config[id] && labels_config[id][:label]
-      return I18n.t(labels_config[id][:label])
+      label = I18n.t(labels_config[id][:label])
+ 
+      # Sometimes the label is empty ('') in the translation file
+      # Get the default EN one and add a missing translation note (in english)
+      if !label || label.empty?
+        label = I18n.t(labels_config[id][:label], :locale => :en)  + " [translation missing]"
+      end
+
+      return label
+    else
+      # This is the case when a key is not found int he
+      # map file, and no translation lookup is possible
+      return "[#{id} unspecified]"
     end
-    return "[unspecified]"
   end
   
   # Returns if the specified field has a label attached.
@@ -385,9 +395,16 @@ class EditorConfiguration
   end
   
   # Gets the default layout. This is a configuration in which <tt>default</tt> in the <tt>filter</tt> is true.
+  # Model can be either an object of a Class
   def self.get_default_layout(model)
     profiles = EditorConfiguration.profiles
-    model_name = model.class.to_s.downcase
+
+    if model.is_a? Class
+      model_name = model.to_s.underscore
+    else
+      model_name = model.class.to_s.underscore
+    end
+
     profiles.each do |p|
       next if model_name != p.model
       return p if p.filter && p.filter["default"]
@@ -398,7 +415,7 @@ class EditorConfiguration
   # Gets the show layout. This is a configuration in which <tt>show</tt> in the <tt>filter</tt> is true.
   def self.get_show_layout(model)
     profiles = EditorConfiguration.profiles
-    model_name = model.class.to_s.downcase
+    model_name = model.class.to_s.underscore
     profiles.each do |p|
       next if model_name != p.model
       return p if p.filter && p.filter["show"]
@@ -408,7 +425,7 @@ class EditorConfiguration
     
   # Gets the html file name.
   def self.get_help_fname(name, model = "Source")
-    model = (model == "Source") ? "" : "#{model.downcase}_"
+    model = (model == "Source") ? "" : "#{model.underscore}_"
     # translated version?
     fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html")
     #ap fname

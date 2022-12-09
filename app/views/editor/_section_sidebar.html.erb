@@ -66,6 +66,13 @@
 	</li>
 <% end %>
 
+<% if @item.class.respond_to?("get_gnd") %>
+	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link">
+		<a id="gnd-sidebar" href="#" class="muscat_icon_link muscat_icon_link_gnd"><%= (I18n.t :show_gnd)%></a>
+	</li>
+<% end %>
+
 <%if @item.id && @item.respond_to?(:allow_holding?) && @item.allow_holding? %>
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
@@ -106,13 +113,21 @@
 			:class => "muscat_icon_link muscat_icon_link_picture") %>
 	</li>
 
-	<% if @current_user.has_role?(:editor) || @current_user.has_role?(:admin) %>
+	<% if @item.is_a?(Source) && (@current_user.has_role?(:editor) || @current_user.has_role?(:admin)) %>
 		<li class="muscat_icon_link">
 		<%= link_to("#{I18n.t :new_digital_object_incipit}", new_admin_digital_object_path(digital_object: {new_object_link_id:  @item.id, new_object_link_type: @item.class}, attachment_type: :incipit),
 			:class => "muscat_icon_link muscat_icon_link_note") %>
 		</li>
 	<% end %>
 <% end %>
+
+	<% if @item.is_a?(Source) && @item.id != nil && (@current_user.has_role?(:editor) || @current_user.has_role?(:admin)) && (@item.record_type == MarcSource::RECORD_TYPES[:collection] || @item.record_type == MarcSource::RECORD_TYPES[:source])%>
+		<li class="muscat_icon_separator"></li>
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :convert_to_print}", prepare_convert_admin_source_path,
+			:class => "muscat_icon_link muscat_icon_link_shuffle") %>
+		</li>
+	<% end %>
 
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">

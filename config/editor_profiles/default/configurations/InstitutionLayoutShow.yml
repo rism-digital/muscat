@@ -20,8 +20,6 @@ groups:
     - "410"
     - "368"
     - "580"
-    all_tag_templates:
-      "580": institutions/show_580
   contact:
     all_tags:
     - "370"
@@ -40,7 +38,6 @@ groups:
     - "710"
     - "700"
     all_tag_templates:
-      "670": people/show_publication
       "856": marc_show/show_link
   control: 
     all_tags: 

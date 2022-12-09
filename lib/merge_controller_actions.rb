@@ -8,11 +8,11 @@ module MergeControllerActions
   
   def self.included(dsl)
     dsl.collection_action :merge, :method => :get do
-      model = self.resource_class
+      model = self.class.resource_class
       duplicate = model.find(params["duplicate"])
       target = model.find(params["target"])
 
-      associations = model.reflect_on_all_associations.map{|e| e.name}.select{|e| e.to_s =~ /source|holding/}
+      associations = model.reflect_on_all_associations.map{|e| e.name}.select{|e| e.to_s =~ /source|holding/ && !(e.to_s =~ /relations/)}
       duplicate.migrate_to_id(target.id)
 
       associations.each do |association|

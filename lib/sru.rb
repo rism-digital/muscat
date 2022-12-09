@@ -19,6 +19,10 @@ module Sru
     attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code, :schema, :scan, :version
 
     def initialize(model, params = {})
+
+      # deprecation of works sru - we need to load work_nodes content
+      model = "work_nodes" if model == "works"
+
       @version=params.fetch(:version, '1.1')
       unless (params.keys - PARAMS).empty?
         @error_code = {:code => 8 , :message => "Unsupported parameter"}
@@ -89,7 +93,7 @@ module Sru
       if self.maximumRecords == 0
         return {:code => 6, :message => "unsupported parameter value"}
       end
-      if self.offset.to_i > 999999
+      if self.offset.to_i > 1999999
         return {:code => 61, :message => "first record out of range"}
       end
       unless self.model

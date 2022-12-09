@@ -22,6 +22,18 @@ ActiveAdmin.register Folder do
       item.user = current_user
     end
     
+    def scoped_collection
+      
+      #super.joins(
+      #  %(LEFT OUTER JOIN folder_items
+      #      ON folders.id = folder_items.folder_id))
+      #  .select("folders.*, COUNT(folder_items.id) AS folder_items_count")
+      #  .group("folders.id")
+
+        end_of_association_chain.includes([:user])
+    end
+
+
     def show
       begin
         @folder = Folder.find(params[:id])
@@ -75,6 +87,24 @@ ActiveAdmin.register Folder do
     redirect_to resource_path(params[:id]), notice: I18n.t(:unpublish_job, scope: :folders, id: job.id)
   end
  
+  member_action :reset_expiration, method: :get do
+    begin
+      f = Folder.find(params[:id])
+    rescue
+      redirect_to collection_path, :flash => {error: I18n.t(:not_found, scope: :folders, id: params[:id])}
+      return
+    end
+
+    if !can?(:edit, f)
+      redirect_to collection_path, :flash => {error: I18n.t(:"active_admin.access_denied.message")}
+      return
+    end
+
+    f.save
+
+    redirect_to resource_path(params[:id]), notice: I18n.t(:"folders.resetted", date: f.delete_date.to_date.to_s)
+  end
+
   ## Shows a page so the user can select the folder name
   member_action :export_folder, :method => :get do
     begin
@@ -131,21 +161,33 @@ ActiveAdmin.register Folder do
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
+
   index :download_links => false do |ad|
     selectable_column
     column (I18n.t :filter_wf_stage) {|folder| status_tag(folder.is_published?,
       label: I18n.t('status_codes.' + (folder.is_published? ? "published" : "inprogress"), locale: :en))} 
- 
-    column (I18n.t :filter_name), :name
+    id_column
+    column (I18n.t :filter_name), :name, sortable: :name
     column (I18n.t :filter_folder_type), :folder_type
-    column (I18n.t :filter_owner) {|folder| folder.user.name}
-    column (I18n.t "folders.items")  {|folder| folder.folder_items.count}
+    column (I18n.t :filter_owner), sortable: "users.name" do |folder|
+      folder.user.name
+    end
+
+    column (I18n.t "folders.expires"), sortable: :delete_date do |r| 
+      r.delete_date.to_date.to_s
+    end
+
+    column (I18n.t "folders.items") {|folder| folder.folder_items.count}
     actions
   end
   
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
+  end
+
+  sidebar :help, :only => :index do
+    render :partial => "folders_help_index"
   end
   
   ##########
@@ -160,6 +202,7 @@ ActiveAdmin.register Folder do
     attributes_table do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :created_at) {|folder| folder.created_at}
+      row (I18n.t "folders.expires") { |r| r.delete_date.to_date.to_s }
       row (I18n.t :filter_folder_type) { |r| r.folder_type }
       row (I18n.t :filter_owner) {|folder| folder.user.name}
     end
@@ -170,7 +213,9 @@ ActiveAdmin.register Folder do
       
       paginated_collection(fitems.page(params[:src_list_page]).per(10), param_name: 'src_list_page',  download_links: false) do
         table_for(collection) do |cr|
-          column ("Name") {|fitem| fitem.item ? fitem.item.name : "DELETED"}
+          column ("Name") {|fitem| fitem.item ? fitem.item.name : "Item Deleted"}
+          column ("Created at") {|fitem| fitem.item ? fitem.item.created_at : "n.a."}
+          column ("Updated at") {|fitem| fitem.item ? fitem.item.updated_at : "n.a."}
           column ("Id") {|fitem| fitem.item ? fitem.item.id : "n/a, was #{fitem.item_id}"}
           column "" do |fitem|
             if fitem.item
@@ -185,6 +230,10 @@ ActiveAdmin.register Folder do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => folder }
+  end
+
+  sidebar :help, :only => [:show] do
+    render :partial => "folders_help_show"
   end
 
   ##########

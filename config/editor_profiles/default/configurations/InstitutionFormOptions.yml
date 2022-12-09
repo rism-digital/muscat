@@ -59,7 +59,7 @@
         - "VIAF"
         - "WKP"
         - "MOC"
-        default: "ISIL"
+        default: "VIAF"
         editor_partial: subfield_select
       - cols: 2
     - - "6"
@@ -107,6 +107,7 @@
       - "XC-BJ"
       - "XD-BR"
       - "XA-BG"
+      - "XA-BY"
       - "XB-KH"
       - "XD-CA"
       - "XD-CL"
@@ -146,6 +147,7 @@
       - "XA-NL"
       - "XE-NZ"
       - "XA-NO"
+      - "XD-PE"
       - "XD-PY"
       - "XA-PL"
       - "XA-PT"
@@ -207,10 +209,15 @@
   tag_params:
     codes:
       - "Archive" 
+      - "Bookseller"
+      - "Congress"
+      - "Copyist"
       - "Documentation center"
       - "Institution"
       - "Library"
       - "Museum"
+      - "Papermaker"
+      - "Performer"
       - "Publisher"
       - "Other"
       - "Printer"
@@ -277,11 +284,11 @@
       - type: publication
         editor_partial: subfield_secondary
       - cols: 4
+    - - "9"
+      - cols: 2
     - - "b"
       - cols: 2
     - - "u"
-      - cols: 2
-    - - "9"
       - cols: 2
     columns: 4
 "680": 
@@ -299,48 +306,37 @@
       - type: person
         editor_partial: subfield_secondary
     - - "4"
-      - editor_partial: subfield_select_codes_grouped
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
   tag_params: 
-    groups: 
-      01_codes_artistic: 
+    relator_codes: 
+      - scr
       - cmp
-      - com
+      - cns
       - arr
-      - aut
-      - clb
+      - prf
+      - dte
       - lyr
-      - ccp
       - lbt
       - trl
-      02_codes_performing: 
-      - prf
-      - voc
-      - itr
-      - dnc
-      - cnd
-      - chr
-      - art
-      - cst
-      - prd
-      - cns
-      04_codes_other: 
-      - fmo
-      - dnr
-      - dte
-      - pat
-      - otm
-      - bsl
-      - asn
-      03_codes_technical: 
-      - scr
+      - pbl
+      - prt
+      - edt
       - ltg
       - egr
       - ill
-      - prt
-      - pbl
-      - edt
-      - bnd
-
+      - aut
+      - asn
+      - ctb
+      - ccp
+      - dst
+      - asg
+      - cph
+      - lse
+      - tyd
+      - bsl
+      - ppm
 "710": 
   new_window: institutions
   layout: 

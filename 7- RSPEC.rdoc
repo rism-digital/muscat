@@ -5,7 +5,7 @@ This software has a suite of spec tests in the 'spec' folder.
 
 ==Requirements
 Update the schema with:
-  rake db:migrate RAILS_ENV=test
+  bin/rake db:migrate RAILS_ENV=test
 
 Please prepare the correct folder structure for the test environment:  
 
@@ -36,7 +36,7 @@ This connects to the following sunspot-solr instance (see config/solr.yml):
 Before starting the suite solr server should be initialized in the test environment
 (In case the server is running in another environment, stop it first!):
 
-  RAILS_ENV=test rake sunspot:solr:start
+  RAILS_ENV=test bin/rake sunspot:solr:start
 
 To execute the full suite call:
   
@@ -44,7 +44,7 @@ To execute the full suite call:
 
 After finishing the sunspot session could be stopped with:
 
-  RAILS_ENV=test rake sunspot:solr:stop
+  RAILS_ENV=test bin/rake sunspot:solr:stop
 
 ==Sunspot
 
