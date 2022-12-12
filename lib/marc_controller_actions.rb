@@ -320,7 +320,7 @@ module MarcControllerActions
       
       new_marc = dyna_marc_class.new()
       # Load marc, do not resolve externals
-      new_marc.load_from_hash(marc_hash, user: current_user, dry_run: true)
+      new_marc.load_from_hash(marc_hash, user: current_user) # -> revert to old behaviour, dry_run: true)
 
       @item = model.new
       @item.marc = new_marc
