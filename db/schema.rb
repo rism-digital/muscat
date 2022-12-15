@@ -195,14 +195,14 @@ ActiveRecord::Schema.define(version: 2022_09_26_080510) do
     t.index ["wf_stage"], name: "index_holdings_on_wf_stage"
   end
 
-  create_table "holdings_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "holdings_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "holding_id"
     t.integer "institution_id"
     t.index ["holding_id"], name: "index_holdings_institutions_on_holding_id"
     t.index ["institution_id"], name: "index_holdings_institutions_on_institution_id"
   end
 
-  create_table "holdings_to_catalogues", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "holdings_to_catalogues", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "catalogue_id"
     t.integer "holding_id"
     t.index ["catalogue_id"], name: "index_holdings_to_catalogues_on_catalogue_id"
@@ -533,7 +533,7 @@ ActiveRecord::Schema.define(version: 2022_09_26_080510) do
     t.index ["source_id"], name: "index_sources_to_catalogues_on_source_id"
   end
 
-  create_table "sources_to_institutions", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "sources_to_institutions", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "institution_id"
     t.integer "source_id"
     t.string "marc_tag"
