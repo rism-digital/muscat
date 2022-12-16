@@ -261,6 +261,7 @@ class MarcNode
             # If this is a marc auth file suppress scaffolding
             # Removed for now, it seems it does not degrade performance too much
             #self.foreign_object.suppress_scaffold_marc if self.foreign_object.respond_to?(:suppress_scaffold_marc)
+
             unless self.foreign_object.save!
               puts "Foreign object could not be saved, possible duplicate?" # Try again not using master field lookup"
               # NOTE: THe code above is commented to allow duplicate entries in people/institutions for RISM A/I
@@ -620,6 +621,44 @@ class MarcNode
   def copy_to(destination_marc)
     new_tag = deep_copy
     destination_marc.root.children.insert(destination_marc.get_insert_position(new_tag.tag), new_tag)
+  end
+
+  # Are these two object identical also in the contents?
+  def ===(other)
+    return false if !other.is_a? MarcNode
+    return false if tag != other.tag
+    return false if children.count != other.children.count
+
+    diff = other.children - children
+    return false if !diff.empty?
+
+    true
+  end
+
+  # eql? is used in difference() for arrays
+  # so we can do a.children - b.children and see if they are all equal
+  def eql?(other)
+    if (!other.children || other.children.empty?) && (!children || children.empty?)
+      return true if other.tag == tag && other.content == content
+    end
+
+    false
+  end
+
+  def <=>(other)
+    return nil if !other.is_a? MarcNode
+    # same object
+    return 0 if self == other
+    # same identical contents
+    return 0 if self === other
+
+    # if the tag is the same but not the contents, do a bare comparison
+    return -1 if tag == other.tag && to_s.length <= other.to_s.length
+    return 1 if tag == other.tag && to_s.length > other.to_s.length
+
+    # different tags, order by tag
+    return -1 if tag < other.tag
+    return 1 if tag > other.tag
   end
 
   alias length size

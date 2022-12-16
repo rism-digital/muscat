@@ -66,6 +66,13 @@
 	</li>
 <% end %>
 
+<% if @item.class.respond_to?("get_gnd") %>
+	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link">
+		<a id="gnd-sidebar" href="#" class="muscat_icon_link muscat_icon_link_gnd"><%= (I18n.t :show_gnd)%></a>
+	</li>
+<% end %>
+
 <%if @item.id && @item.respond_to?(:allow_holding?) && @item.allow_holding? %>
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">

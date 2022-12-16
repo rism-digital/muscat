@@ -24,13 +24,13 @@ class MarcWork < Marc
     return "#{composer}#{title}#{key}"
   end
 
-  def get_form
+  def get_opus
     node = first_occurance("383", "b")
     opus = node.content.truncate(50) if node && node.content
     opus = opus ? opus.strip : ""
   end
 
-  def get_notes
+  def get_catalogue
     node = first_occurance("690", "a")
     cat_a = node.content.truncate(50) if node && node.content
     cat_a = cat_a.strip if cat_a

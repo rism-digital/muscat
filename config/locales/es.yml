@@ -284,6 +284,7 @@ es:
   menu_jobs: "Tareas" # dudoso, tal vez empleos
   menu_holdings: "Registros de ejemplares"
   menu_works: "Obras" 
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Modificaciones recientes"
@@ -384,6 +385,7 @@ es:
   hide_preview: "Ocultar vista preliminar"
   show_validate: "Validar"
   show_history: "Mostrar historial de modificaciones"
+  show_gnd: "Búsqueda GND"
   show_viaf: "Búsqueda VIAF"
   save_and_continue: "Guardar y continuar editando"
   save_and_exit: "Guardar y cerrar"
@@ -591,6 +593,7 @@ es:
   cannot_create_source: "Ud. no está autorizado para crear este tipo de fuente"
   validate_name_uniqness: "El registro no fue guardado: el título breve '%{term}' ya existe."
   validates_parent_id: "El registro no fue guardado: el Registro Madre (773) no puede ser igual a este registro."
+  is_part_of_collection: "Esta %{class} %{id} forma parte de una colección, debe eliminar la 773 antes de poder borrarla"
   not_set: "[no se ha establecido]"  
 
   #

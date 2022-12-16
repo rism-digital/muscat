@@ -180,6 +180,9 @@ class MarcSource < Marc
     if node = first_occurance(ms_title_field, "a")
       ms_title = node.content
     end
+    if node = first_occurance(ms_title_field, "b")
+      ms_title += " #{node.content}" if node.content
+    end
 
     ms_title_d = DictionaryOrder::normalize(ms_title)
    
@@ -507,6 +510,20 @@ class MarcSource < Marc
       content = "#{wvno.content rescue nil}"
       next if existent.include?(content)
       n240.add_at(MarcNode.new(@model, "n", content, nil), 0) rescue nil
+    end
+
+    # Add a 930 $0 referering to the work node 024
+    each_by_tag("930") do |t|
+      if t.foreign_object and t.foreign_object.marc
+        # Look for each 024 in the work node
+        t.foreign_object.marc.each_by_tag("024") do |ft|
+          s2 = ft.fetch_first_by_tag("2")
+          a = ft.fetch_first_by_tag("a")
+          next if (!s2 || !a || !s2.content || !a.content)
+          t.add_at(MarcNode.new(@model, "0", "(#{s2.content})#{a.content}", nil), 0) rescue nil
+        end
+      end
+      # Eventually we want to remove the $0 pointing to the work_node ID but left for 9.0
     end
 
     # Adding digital object links to 500 with new records

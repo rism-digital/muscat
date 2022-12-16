@@ -96,7 +96,12 @@ ActiveAdmin.register Holding do
       # Trigger a reindex of the parent source so this holding gets de-indexed
       Delayed::Job.enqueue(ReindexForeignRelationsJob.new(source, [{class: Source, id: @holding.source_id}]))
 
-      @holding.destroy!
+      begin 
+        @holding.destroy!
+      rescue ActiveRecord::RecordNotDestroyed
+        flash[:error] = "This Holding #{@holding.id} is part of a composite volume, please delete 973 in the Holding"
+      end
+
       if can?(:edit, source)
         redirect_to edit_admin_source_path(source)
       else
