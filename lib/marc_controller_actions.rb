@@ -28,7 +28,7 @@ module MarcControllerActions
       dyna_marc_class = Kernel.const_get(classname)
       
       new_marc = dyna_marc_class.new()
-      new_marc.load_from_hash(marc_hash, current_user)
+      new_marc.load_from_hash(marc_hash, user: current_user)
 
       # @item is used in the Marc Editor
       @item = nil
@@ -220,12 +220,20 @@ module MarcControllerActions
       end
       
       @item = version.item_type.singularize.classify.constantize.new
-      @item.marc.load_from_array( VersionChecker.get_diff_with_next( params[:version_id] ) )
+      tags, wf_stages = VersionChecker.get_diff_with_next(params[:version_id])
+      @item.marc.load_from_array(tags)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
       # Parameter for using diff partials
       @diff = true
       
+      # Did the wf_stage change? if so we have a dedicated partial
+      if wf_stages[0] != wf_stages[1]
+        @wf_stages = wf_stages
+      else
+        @wf_stages = false
+      end
+
       render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
     
@@ -312,7 +320,7 @@ module MarcControllerActions
       
       new_marc = dyna_marc_class.new()
       # Load marc, do not resolve externals
-      new_marc.load_from_hash(marc_hash, current_user)
+      new_marc.load_from_hash(marc_hash, user: current_user) # -> revert to old behaviour, dry_run: true)
 
       @item = model.new
       @item.marc = new_marc

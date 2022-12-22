@@ -1,0 +1,1 @@
+Le cartelle scadono dopo sei mesi e vengono eliminate automaticamente. Per rinnovare una cartella, fare clic sul link "Ripristina la data di scadenza" che prolungherà la data di scadenza per altri sei mesi. Si riceveranno inoltre notifiche via e-mail prima che le cartelle vengano eliminate. 

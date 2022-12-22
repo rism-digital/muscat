@@ -51,6 +51,11 @@ ActiveAdmin.register Institution do
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+
+      if cannot?(:edit, @item)
+        redirect_to admin_institution_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
+      end
+
     end
     
     def show

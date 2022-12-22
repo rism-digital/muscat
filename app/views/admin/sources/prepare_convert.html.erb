@@ -1,0 +1,81 @@
+<% editor_profile = EditorConfiguration.get_show_layout resource %>
+<% holding_conf = MarcConfigCache.get_configuration("holding") %>
+<% tag_index = {} %>
+<% is_child = resource.parent_source != nil %>
+
+<% default_tags = ["035", "506", "541", "561", "591", "852", "856"] %>
+<% default_relator_codes = {"700": ["fmo", "scr"], "710": ["fmo", "scr", "dpt"]} %>
+
+<h2>
+<% if !is_child %>
+  Convert Manuscript to Print Template
+<% else %>
+  Convert Manuscript Child Record to Print Template Child Record
+<% end %>
+</h2>
+
+<%= form_tag(convert_manuscript_admin_source_path, {method: "post", :class => 'filter_form'}) do %>
+  <%resource.marc.all_tags.each do |tag| %>
+    <% if !tag_index.include?(tag.tag.to_s) %>
+      <% tag_index[tag.tag.to_s] = 0 %>
+    <% else %>
+      <% tag_index[tag.tag.to_s] += 1 %>
+    <% end %>
+
+    <% current_index = tag_index[tag.tag.to_s] %>
+
+    <% next if tag.tag == "001" %>
+    <% next if !holding_conf.has_tag? tag.tag%>
+
+    <% checked = default_tags.include?(tag.tag) ? "checked" : "" %>
+
+    <% # not selected by request
+    #checked = tag.fetch_first_by_tag("8") != nil ? "checked" : checked 
+    %>
+
+    <% if default_relator_codes.keys.include?(tag.tag.to_sym) %>
+      <% rel = tag.fetch_first_by_tag("4") %>
+      <% checked = "checked" if rel && rel.content && default_relator_codes[tag.tag.to_sym].include?(rel.content) %>
+    <% end %>
+
+    <input type="checkbox" id='<%="tag_#{tag.tag}_#{current_index}"%>' name='<%="tag[#{tag.tag}][#{current_index}]"%>' <%=checked%> >
+    <label id='<%="tag_#{tag.tag}_#{current_index}"%>'><%= is_child ? "Delete this tag" : "Move this tag to the holding record"%></label>
+
+
+    <div class="panel">
+      <h3><%=editor_profile.get_label(tag.tag)%></h3>
+
+      <div class="panel_contents">
+
+        <div class="attributes_table">
+          <table border="0" cellpadding="0" cellspacing="0">
+
+            <% tag.each do |subfield| %>
+              <% next if subfield.has_children? %>
+
+              <% label = editor_profile.get_sub_label(tag.tag, subfield.tag).include?("unspecified") ? "" : editor_profile.get_sub_label(tag.tag, subfield.tag) %>
+
+              <tr class="row" >
+                  <th><%= label %></th>
+                  <td style="width: 10%;"><%= "#{tag.tag}&nbsp;$#{subfield.tag}".html_safe%></td>
+                  <td><%=subfield.content%></td>
+              </tr>
+            <% end %>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="buttons">
+
+  <%= button_tag(:type => 'button') do %>
+    <% link_to t(:cancel), edit_admin_source_path(resource), class: "button-link" %>
+  <% end %>
+  
+    <%= submit_tag(I18n.t(:convert_to_print)) %>
+  </div>
+<%end%>
+
+

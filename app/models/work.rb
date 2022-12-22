@@ -163,9 +163,7 @@ class Work < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
 
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      self.marc.load_source false
-      self.marc.root.fetch_all_by_tag("856").size
-      #Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
+      Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
     end
     
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
@@ -177,8 +175,8 @@ class Work < ApplicationRecord
     self.title = marc.get_title
     # LP commented for work experiments. Person is set by hand in the script
     #self.person = marc.get_composer
-    self.form = marc.get_form
-    self.notes = marc.get_notes
+    self.opus = marc.get_opus
+    self.catalogue = marc.get_catalogue
 
     self.marc_source = self.marc.to_marc
   end

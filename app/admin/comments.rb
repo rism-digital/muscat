@@ -20,7 +20,6 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   # redirection to the comments/index
   member_action :archive, method: :get do
     if request.get? && can?(:manage, resource)
-      puts params
       value = (params[:do] && params[:do] == "false") ? :admin : :archived
       resource.update_attributes! namespace: value || {}
       resource.save!
@@ -57,7 +56,7 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
       column (I18n.t :filter_comment), :body do |comment|
         link_to truncate(comment.body, omision: "...", length: 80), admin_comment_path(comment)
       end
-      column (I18n.t :filter_wf_stage) {|comment| status_tag(comment.namespace, (comment.namespace == "admin" ? :ok : ""))} 
+      column (I18n.t :filter_wf_stage) {|comment| status_tag(comment.namespace == "admin" ? :ok : "", label: comment.namespace)} 
       column "" do |comment|
         if comment.namespace == "archived"
           link_to (I18n.t :unarchive), archive_admin_comment_path(comment, :do => false)

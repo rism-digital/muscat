@@ -17,8 +17,6 @@ class Guidelines
     @sidebar = Array.new
     @version = @tree[:version]
     
-    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
-
     # numbering
     @chapterNb = 1
     @sectionNb = 1
@@ -86,8 +84,7 @@ class Guidelines
   end
   
   def cat helpfile
-    md = IO.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/public/help/#{RISM::MARC}/#{@lang}/#{helpfile}.md")) rescue "#{@lang}/#{helpfile} file missing in this language"
-    text = @markdown.render(md)
+    text = IO.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/public/help/#{RISM::MARC}/#{helpfile}_#{@lang}.html")) rescue "HELP WILL FOLLOW"
     @output += text
   end
 end

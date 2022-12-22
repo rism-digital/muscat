@@ -180,6 +180,9 @@ class MarcSource < Marc
     if node = first_occurance(ms_title_field, "a")
       ms_title = node.content
     end
+    if node = first_occurance(ms_title_field, "b")
+      ms_title += " #{node.content}" if node.content
+    end
 
     ms_title_d = DictionaryOrder::normalize(ms_title)
    
@@ -371,10 +374,10 @@ class MarcSource < Marc
 
     if (@record_type == RECORD_TYPES[:collection])
       leader = base_leader.gsub("XX", "dc")
-      get_subentry_title
+      generate_subentry_title # Add $a to 774s
     elsif (@record_type == RECORD_TYPES[:edition])
       leader = base_leader.gsub("XX", "cc")
-      get_subentry_title
+      generate_subentry_title
     elsif @record_type == RECORD_TYPES[:composite_volume]
       leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
@@ -486,6 +489,12 @@ class MarcSource < Marc
       end
     end
 
+    # Add $a to 773
+    if node = root.fetch_first_by_tag("773")
+      source = parent_object.parent_source
+      node.add_at(MarcNode.new(@model, "a", source.name, nil), 0) if source
+    end
+
     # Feeding 240$n workcatalog number from 690$a/$n and 383$b
     n240 = root.fetch_first_by_tag("240")
     existent = n240 ? n240.fetch_all_by_tag("n").map {|sf| sf.content rescue nil} : []
@@ -501,6 +510,20 @@ class MarcSource < Marc
       content = "#{wvno.content rescue nil}"
       next if existent.include?(content)
       n240.add_at(MarcNode.new(@model, "n", content, nil), 0) rescue nil
+    end
+
+    # Add a 930 $0 referering to the work node 024
+    each_by_tag("930") do |t|
+      if t.foreign_object and t.foreign_object.marc
+        # Look for each 024 in the work node
+        t.foreign_object.marc.each_by_tag("024") do |ft|
+          s2 = ft.fetch_first_by_tag("2")
+          a = ft.fetch_first_by_tag("a")
+          next if (!s2 || !a || !s2.content || !a.content)
+          t.add_at(MarcNode.new(@model, "0", "(#{s2.content})#{a.content}", nil), 0) rescue nil
+        end
+      end
+      # Eventually we want to remove the $0 pointing to the work_node ID but left for 9.0
     end
 
     # Adding digital object links to 500 with new records
@@ -548,6 +571,7 @@ class MarcSource < Marc
         parent_object = Source.find(parent_object.source_id)
       end
       parent_object.holdings.order(:lib_siglum).each do |holding|
+        holding.marc.by_tags("599").each {|t| t.destroy_yourself} 
         id = holding.id
         holding.marc.all_tags.each do |tag|
           tag.add_at(MarcNode.new(@model, "3", id, nil), 0)
@@ -562,7 +586,7 @@ class MarcSource < Marc
     @record_type = rt
   end
 
-  def get_subentry_title
+  def generate_subentry_title
     each_by_tag("774") do |t|
       w = t.fetch_first_by_tag("w")
       if w && w.content

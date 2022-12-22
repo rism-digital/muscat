@@ -73,6 +73,8 @@ ActiveAdmin.register Workgroup do
              wg.show_libs.html_safe
        end
 
+    column (I18n.t :email), :email
+
     #column (I18n.t :filter_sources), :src_count
     actions
   end
@@ -92,12 +94,11 @@ ActiveAdmin.register Workgroup do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_pattern) { |r| r.libpatterns }
       row I18n.t(:connected_libraries) do |n|
-             workgroup.show_libs.html_safe
-               end
-     # row (I18n.t :filter_alternates) { |r| r.alternates }
-     # row (I18n.t :filter_notes) { |r| r.notes }  
+        workgroup.show_libs.html_safe
+      end
+      
+     row :email  
     end
-    #active_admin_embedded_source_list( self, workgroup, params[:qe], params[:src_list_page] )
   end
   
   sidebar :actions, :only => :show do
@@ -112,8 +113,7 @@ ActiveAdmin.register Workgroup do
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name) 
       f.input :libpatterns, :label => (I18n.t :filter_pattern)
-      #f.input :alternates, :label => (I18n.t :filter_alternates), :input_html => { :rows => 3 }
-      #f.input :notes, :label => (I18n.t :filter_notes) 
+      f.input :email
     end
   end
   

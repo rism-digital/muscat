@@ -84,6 +84,7 @@
   tag_params:
     codes:
       - "XC-DZ"
+      - "XA-AL"
       - "XD-AR"
       - "XB-AM"
       - "XE-AU"
@@ -228,6 +229,7 @@
       - "in"
       - "tn"
       - "ub"
+      - "xx"
       - "z"
     columns: 4
 "500": 

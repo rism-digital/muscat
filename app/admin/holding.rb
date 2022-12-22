@@ -61,6 +61,10 @@ ActiveAdmin.register Holding do
       @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = format_holding(@item)
       
+      if cannot?(:edit, @item)
+        redirect_to admin_holding_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
+      end
+
       # Force marc to load
       begin
         @item.marc.load_source(true)
@@ -92,8 +96,17 @@ ActiveAdmin.register Holding do
       # Trigger a reindex of the parent source so this holding gets de-indexed
       Delayed::Job.enqueue(ReindexForeignRelationsJob.new(source, [{class: Source, id: @holding.source_id}]))
 
-      @holding.destroy!
-      redirect_to edit_admin_source_path(source)
+      begin 
+        @holding.destroy!
+      rescue ActiveRecord::RecordNotDestroyed
+        flash[:error] = "This Holding #{@holding.id} is part of a composite volume, please delete 973 in the Holding"
+      end
+
+      if can?(:edit, source)
+        redirect_to edit_admin_source_path(source)
+      else
+        redirect_to admin_source_path(source)
+      end
     end
 
     def show

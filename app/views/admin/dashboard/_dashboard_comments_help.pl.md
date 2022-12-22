@@ -1,0 +1,1 @@
+Możesz swobodnie usuwać komentarze, które nie są już istotne. W niektórych przypadkach komentarze mogą być włączone do rekordów jako notatki (albo w polu 500 - Uwaga ogólna albo w 599 - Pole uwag miejscowych), zwłaszcza w przypadkach wymagających dodatkowych badań, dla wygody przyszłych użytkowników.

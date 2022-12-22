@@ -23,7 +23,9 @@ function marc_editor_init_tags( id ) {
 	window.onbeforeunload = marc_editor_discard_changes_leaving;
 	window.onunload = marc_editor_cleanp;
 	
-	$(".sortable").sortable();
+	$(".sortable").sortable({
+		handle: ".sortable-button"
+	});
 
 	marc_editor_form_changed = false;
 	$(id).dirtyFields({
@@ -619,3 +621,6 @@ function marc_editor_get_model() {
 	return $("#marc_editor_panel").data("editor-model");
 }
 
+function marc_editor_go_to_top() {
+	$('html, body').animate({ scrollTop: 0 }, 'fast');
+}

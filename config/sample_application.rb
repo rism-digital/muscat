@@ -126,6 +126,9 @@ module RISM
   # Allow anonymous users (not signed in) to browse and search the site
   ANONYMOUS_NAVIGATION = false
 
+  # Turn on or off collation of special chars for ordering
+  CLEVER_ORDERING = true
+
   # Supported devise authentication methods are:
   # - database_authenticatable (the default)
   # - saml_authenticatable, with trackable (which is already defined in User.rb
@@ -167,6 +170,8 @@ module Muscat
     config.autoload_paths << "#{Rails.root}/lib"
     config.eager_load_paths << Rails.root.join("lib")
     config.active_job.queue_adapter = :delayed_job
+    # For 5.2: permit the loading of ActiveSupport::HashWithIndifferentAccess
+    config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess]
   end
 end
 

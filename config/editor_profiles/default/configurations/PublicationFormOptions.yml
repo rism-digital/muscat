@@ -42,6 +42,7 @@
     columns: 2
   tag_params:
     codes:
+      - "alb"
       - "cat"
       - "cze"
       - "dan"
@@ -59,11 +60,14 @@
       - "heb"
       - "hrv"
       - "hun"
+      - "ice"
       - "ita"
       - "jpn"
       - "kor"
       - "lat"
       - "lav"
+      - "lit"
+      - "nor"
       - "pol"
       - "por"
       - "rum"

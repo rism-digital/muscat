@@ -88,6 +88,15 @@
     t:
       label: records.title_of_work
   label: records.heading
+'130':
+  fields:
+    a:
+      label: records.standardized_title
+    m:
+      label: records.scoring_summary
+    r:
+      label: records.key_or_mode
+  label: records.standardized_title
 10t:
   label: records.mode_10t
 10tt:
@@ -122,6 +131,11 @@
     a:
       label: records.subject_heading
   label: records.subject_heading
+'383':
+  fields:
+    b:
+      label: records.opus_number
+  label: records.opus_number
 3byz:
   label: records.octoechos3
 3t:
@@ -215,6 +229,20 @@
     a:
       label: records.general_note
   label: records.general_note
+'690':
+  fields:
+    a:
+      label: records.catalog_works
+    n:
+      label: records.number_page
+  label: records.catalog_works
+'691':
+  fields:
+    a:
+      label: records.secondary_catalog_works
+    n:
+      label: records.number_page
+  label: records.secondary_catalog_works
 6byz:
   label: records.octoechos6
 6t:
@@ -237,7 +265,7 @@
     '4':
       label: records.function
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.institution
     b:
@@ -578,6 +606,8 @@ d:
   label: records.d_minor
 da:
   label: records.pseudonym
+deprecated:
+  label: records.deprecated_fields
 do:
   label: records.order_name
 doc_abbreviations:

@@ -1,4 +1,5 @@
-
+# Uncomment this file when using SAML after copying it in the appropriate location
+=begin
 Devise::SamlSessionsController.class_eval do
   after_action :store_winning_strategy, only: :create
 
@@ -75,3 +76,4 @@ Devise.setup do |config|
     # settings.compress_request                   = false
   end
 end
+=end

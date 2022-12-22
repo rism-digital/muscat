@@ -3,6 +3,7 @@
     <luceneMatchVersion>8.0.0</luceneMatchVersion>
     <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-analysis-extras-\d.*\.jar"/>
     <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lib" regex="icu4j-\d.*\.jar"/>
+    <lib dir="${solr.install.dir:../../../..}/contrib/themax" regex="ThemaxQuery-\d.*\.jar"/>
     <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs"
          regex="lucene-analyzers-icu-\d.*\.jar"/>
 
@@ -36,17 +37,20 @@
 
     <query>
         <maxBooleanClauses>1024</maxBooleanClauses>
-        <filterCache class="solr.FastLRUCache"
+        <filterCache class="solr.CaffeineCache"
+                     async="true"
                      size="512"
                      initialSize="512"
                      autowarmCount="0"/>
 
-        <queryResultCache class="solr.LRUCache"
+        <queryResultCache class="solr.CaffeineCache"
+                          async="true"
                           size="512"
                           initialSize="512"
                           autowarmCount="0"/>
 
-        <documentCache class="solr.LRUCache"
+        <documentCache class="solr.CaffeineCache"
+                       async="true"
                        size="512"
                        initialSize="512"
                        autowarmCount="0"/>

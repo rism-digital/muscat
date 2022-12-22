@@ -10,6 +10,19 @@
 		validate_class = ""
 	end
 
+  values = []
+
+  if params.include?("templates") && @item.respond_to?(:get_record_type)
+    if params["templates"].keys.include?(@item.get_record_type.to_s) 
+      values = params["templates"][@item.get_record_type.to_s]
+    else
+      # try to get the defaults here
+      values = params["values"] if params.include?("values")
+    end
+  else
+    values = params["values"]
+  end
+
 %>
 
   <% if params["unrestricted"] && !(params["unrestricted"] & current_user.roles.pluck(:name)).empty?
@@ -21,10 +34,10 @@
 
   <select class="subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%> " width="100" <%=restricted %> <%=name_tag%> data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-validate-level="<%=validate_level%>">
 		<option value="">--- Select ---</option>
-    <%if !params['values'].include?( marc_subfield.content ) && marc_subfield.content %>
+    <%if !values.include?( marc_subfield.content ) && marc_subfield.content %>
       	<option value="<%= marc_subfield.content %>" selected><%= marc_subfield.content%></option>
     <%end%>
-      <%- params["values"].each do |value| %>
+      <%- values.each do |value| %>
         <%- if val.empty? && params["default"] %>
           <option value="<%= value -%>"<%= (value == params["default"]) ? "selected=\"selected\"".html_safe : "" -%>><%= value -%></option>	
         <%- else %>

@@ -129,13 +129,25 @@
         :foreign_class: ^0
         :foreign_field: life_dates
         :foreign_alternates: alternate_dates
+    - - j
+      - :occurrences: "?"
+  "130":
+    :master: "0"
+    :indicator: "10"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
     - - m
-      - :occurrences: "?"
-    - - n
-      - :occurrences: "?"
+      - :occurrences: "*"
     - - r
-      - :occurrences: "?"
-    - - t
       - :occurrences: "?"
   "380":
     :master: "0"
@@ -158,49 +170,6 @@
     :fields:
     - - b
       - :occurrences: "*"
-  "400":
-    :master: "0"
-    :indicator: "1#"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Person
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: full_name
-    - - d
-      - :occurrences: "?"
-        :browse_inline: true
-        :foreign_class: ^0
-        :foreign_field: life_dates
-        :foreign_alternates: alternate_dates
-    - - m
-      - :occurrences: "?"
-    - - n
-      - :occurrences: "?"
-    - - r
-      - :occurrences: "?"
-    - - t
-      - :occurrences: "?"
-  "440":
-    :master: a
-    :indicator: "1#"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - b
-      - :occurrences: "?"
-    - - f
-      - :occurrences: "?"
-    - - t
-      - :occurrences: "?"
-    - - l
-      - :occurrences: "?"
 # This is a linked field
   "500":
     :master: "0"
@@ -278,6 +247,22 @@
     - - "5"
       - :occurrences: "?"
   "690":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Publication
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - n
+      - :occurrences: "?"
+  "691":
     :master: "0"
     :indicator: "#7"
     :occurrences: "*"
