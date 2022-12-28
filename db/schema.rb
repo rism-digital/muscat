@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_05_093913) do
+ActiveRecord::Schema.define(version: 2022_12_28_101703) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -35,71 +35,6 @@ ActiveRecord::Schema.define(version: 2022_12_05_093913) do
     t.datetime "updated_at"
     t.string "document_type"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
-  end
-
-  create_table "catalogues", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.string "name"
-    t.string "author"
-    t.string "description"
-    t.string "revue_title"
-    t.string "volume"
-    t.string "place"
-    t.string "date"
-    t.string "pages"
-    t.integer "wf_audit", default: 0
-    t.integer "wf_stage", default: 0
-    t.string "wf_notes"
-    t.integer "wf_owner", default: 0
-    t.integer "wf_version", default: 0
-    t.integer "src_count", default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text "marc_source"
-    t.integer "lock_version", default: 0, null: false
-    t.index ["name"], name: "index_catalogues_on_name"
-    t.index ["wf_stage"], name: "index_catalogues_on_wf_stage"
-  end
-
-  create_table "catalogues_catalogues", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "catalogue_a_id"
-    t.integer "catalogue_b_id"
-    t.index ["catalogue_a_id"], name: "index_catalogues_catalogues_on_catalogue_a_id"
-    t.index ["catalogue_b_id"], name: "index_catalogues_catalogues_on_catalogue_b_id"
-  end
-
-  create_table "catalogues_to_catalogues", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "catalogue_a_id"
-    t.integer "catalogue_b_id"
-    t.index ["catalogue_a_id"], name: "index_catalogues_to_catalogues_on_catalogue_a_id"
-    t.index ["catalogue_b_id"], name: "index_catalogues_to_catalogues_on_catalogue_b_id"
-  end
-
-  create_table "catalogues_to_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "catalogue_id"
-    t.integer "institution_id"
-    t.index ["catalogue_id"], name: "index_catalogues_to_institutions_on_catalogue_id"
-    t.index ["institution_id"], name: "index_catalogues_to_institutions_on_institution_id"
-  end
-
-  create_table "catalogues_to_people", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "catalogue_id"
-    t.integer "person_id"
-    t.index ["catalogue_id"], name: "index_catalogues_to_people_on_catalogue_id"
-    t.index ["person_id"], name: "index_catalogues_to_people_on_person_id"
-  end
-
-  create_table "catalogues_to_places", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "place_id"
-    t.integer "catalogue_id"
-    t.index ["catalogue_id"], name: "index_catalogues_to_places_on_catalogue_id"
-    t.index ["place_id"], name: "index_catalogues_to_places_on_place_id"
-  end
-
-  create_table "catalogues_to_standard_terms", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "standard_term_id"
-    t.integer "catalogue_id"
-    t.index ["catalogue_id"], name: "index_catalogues_to_standard_terms_on_catalogue_id"
-    t.index ["standard_term_id"], name: "index_catalogues_to_standard_terms_on_standard_term_id"
   end
 
   create_table "crono_jobs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
@@ -414,7 +349,7 @@ ActiveRecord::Schema.define(version: 2022_12_05_093913) do
   create_table "publications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "short_name"
     t.string "author"
-    t.string "description"
+    t.string "title"
     t.string "journal"
     t.string "volume"
     t.string "place"
