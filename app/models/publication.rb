@@ -120,9 +120,9 @@ class Publication < ApplicationRecord
     end
 
     # save decription
-    if self.description
+    if self.title
       node = MarcNode.new("publication", "240", "", "##")
-      node.add_at(MarcNode.new("publication", "a", self.description, nil), 0)
+      node.add_at(MarcNode.new("publication", "a", self.title, nil), 0)
 
       new_marc.root.children.insert(new_marc.get_insert_position("240"), node)
     end
@@ -178,9 +178,9 @@ class Publication < ApplicationRecord
     end
     sunspot_dsl.text :author
 
-    sunspot_dsl.text :description
-    sunspot_dsl.string :description_order do
-      description
+    sunspot_dsl.text :title
+    sunspot_dsl.string :title_order do
+      title
     end
 
     sunspot_dsl.text :journal
@@ -239,7 +239,7 @@ class Publication < ApplicationRecord
     # std_title
     self.place, self.date = marc.get_place_and_date
     self.short_name = marc.get_name
-    self.description = marc.get_description
+    self.title = marc.get_title
     self.author = marc.get_author
     self.journal = marc.get_journal
     self.marc_source = self.marc.to_marc
@@ -268,10 +268,10 @@ class Publication < ApplicationRecord
 
   def autocomplete_label
     aut = (author and !author.empty? ? author : nil)
-    des = (description and !description.empty? ? description.truncate(45) : nil)
+    tit = (title and !title.empty? ? title.truncate(45) : nil)
     dat = (date and !date.empty? ? date : nil)
 
-    infos = [aut, dat, des].join(", ")
+    infos = [aut, dat, tit].join(", ")
 
     "#{self.short_name}: #{infos}"
   end
