@@ -95,9 +95,21 @@ module RISM
   #   43200 = half a day)
   VERSION_TIMEOUT = 43200
 
-  # Set the path for the digital object storage
-  # You also need to symlink ./public/system to a system directory in it
-  DIGITAL_OBJECT_PATH = "/path/to/the/digital/objects/directory"
+  # Set the path for the digital object storage.
+  #
+  # First, set DIGITAL_OBJECT_PATH to "public/", without the leading
+  # slash.  This way the files and thumbnails will be accessible via
+  # Rails standard static files public/ directory. Under this public/
+  # directory, you should create another one called system/. If your
+  # set your digital object storage path ~/var/lib/digital_objects/
+  # (for example), then, under public/system/, symlink to it, so you
+  # have an existing public/system/digital_objects/ path pointing
+  # where Muscat will keep your files. Step by step:
+  #
+  # $ mkdir -v public/system/
+  # $ cd public/system/
+  # $ ln -s ~/var/lib/digital_objects .
+  DIGITAL_OBJECT_PATH = "public/"
 
   # Test server warning. Set to true to raise a flash notice waring when saving
   TEST_SERVER = false
