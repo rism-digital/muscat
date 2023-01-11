@@ -244,8 +244,10 @@ class MarcSource < Marc
       rt = RECORD_TYPES[:collection]
     elsif leader.match(/......d[dm].............../)
       rt = RECORD_TYPES[:source]
-    elsif leader.match(/......c[dm].............../)
+    elsif leader.match(/......cd.............../)
       rt = RECORD_TYPES[:edition_content]
+    elsif leader.match(/......cm.............../)
+      rt = RECORD_TYPES[:edition]
     elsif leader.match(/......tm.............../)
       rt = RECORD_TYPES[:libretto_source]
     elsif leader.match(/......am.............../)
