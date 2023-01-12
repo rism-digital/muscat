@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_28_101703) do
+ActiveRecord::Schema.define(version: 2023_01_12_123943) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -363,6 +363,7 @@ ActiveRecord::Schema.define(version: 2022_12_28_101703) do
     t.datetime "updated_at"
     t.text "marc_source", limit: 16777215
     t.integer "lock_version", default: 0, null: false
+    t.boolean "work_catalogue", default: false, null: false
     t.index ["created_at"], name: "index_publications_on_created_at"
     t.index ["short_name"], name: "index_publications_on_short_name"
     t.index ["updated_at"], name: "index_publications_on_updated_at"
