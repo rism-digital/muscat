@@ -1,8 +1,6 @@
 require 'progress_bar'
 require './housekeeping/works/functions'
 
-pb = ProgressBar.new(Source.all.count)
-
 @list = Array.new
 @op = Array.new
 @skipped = Array.new
@@ -40,155 +38,177 @@ def add_link_to_work(source, work, work_item)
     work.marc.root.children.insert(work.marc.get_insert_position("856"), node)
 end
 
-src_count = 0
+if ARGV.length < 1
+    puts "Too few arguments"
+    exit
+end
 
-#Source.where(composer: "Bach, Johann Sebastian").find_in_batches do |batch|
-#Source.where(composer: "Corelli, Arcangelo").find_in_batches do |batch|
-Source.find_in_batches do |batch|
+@src_count = 0
 
-    batch.each do |s|
+catalogue_file = ARGV[0]
+catalogues = YAML.load(File.read(catalogue_file))
+puts catalogues
 
-        pb.increment!
 
-        s.marc.load_source false
+def extract_works_for(item)
+    puts "Extract works for: #{item[:composer_name]} (#{item[:composer_id]})"
+    pb = ProgressBar.new(SourcePersonRelation.where(person_id: item[:composer_id], marc_tag: "100").count)
 
-        id = nil
-        s.marc.each_by_tag("100") do |t|
-            t0 = t.fetch_first_by_tag("0")
-            if t0 and t0.content
-                id = t0.content
+    SourcePersonRelation.where(person_id: item[:composer_id], marc_tag: "100").find_in_batches do |batch|
+        batch.each do |spr|
+            pb.increment!
+            
+            s = spr.source
+            s.marc.load_source false
+
+            id = nil
+            s.marc.each_by_tag("100") do |t|
+                t0 = t.fetch_first_by_tag("0")
+                if t0 and t0.content
+                    id = t0.content
+                end
+                break
             end
-            break
-        end
-        next if !id
-
-        count690 = 0
-        s.marc.each_by_tag("690") {|t| count690 += 1}
-        count383 = 0
-        s.marc.each_by_tag("383") {|t| count383 += 1}
-
-        if count690 > 1
-            next
-            #puts "ts690 https://muscat.rism.info/admin/sources/#{s.id} #{ts690.size}"
-        end
-        if count383 > 1 
-            next
-            #puts "ts383 https://muscat.rism.info/admin/sources/#{s.id} #{ts383.size}"
-        end
-        if count690 == 0 && count383 == 0
-            next
-        end
-
-        title = nil
-        scoring = nil
-        extract = nil
-        arr = nil
-        
-        # try to get the title (240)
-        # Quartets
-        node = s.marc.first_occurance("240", "a")
-        title = node.content if node && node.content
-        title = title.strip if title
-        
-        node = s.marc.first_occurance("240", "m")
-        scoring = node.content if node && node.content
-        scoring = scoring.strip if scoring
+            next if !id
     
-        node = s.marc.first_occurance("240", "k")
-        extract = node.content if node && node.content
-        extract = extract.strip if extract
-        
-        node = s.marc.first_occurance("240", "o")
-        arr = node.content if node && node.content
-        arr = arr.strip if arr
+            count690 = 0
+            s.marc.each_by_tag("690") {|t| count690 += 1}
+            count383 = 0
+            s.marc.each_by_tag("383") {|t| count383 += 1}
     
-        node = s.marc.first_occurance("383", "b")
-        opus = node.content if node && node.content
-        opus = opus.strip if opus
-
-        #puts "#{s.id} #{opus}"
-        if opus
-            opus_orig = opus
-            opus = format_opus(opus)
-            if (!check_opus(opus))
-                #puts "#{s.id} #{opus}"
-                @skipped << {s.id => [opus_orig, opus]}
+            if count690 > 1
+                next
+                #puts "ts690 https://muscat.rism.info/admin/sources/#{s.id} #{ts690.size}"
+            end
+            if count383 > 1 
+                next
+                #puts "ts383 https://muscat.rism.info/admin/sources/#{s.id} #{ts383.size}"
+            end
+            if count690 == 0 && count383 == 0
                 next
             end
-            @op << opus
-        end
 
-        node = s.marc.first_occurance("690", "a")
-        cat_a = node.content if node && node.content
-        cat_a = cat_a.strip if cat_a
+            node = s.marc.first_occurance("690", "0")
+            if (node && node.content && node.content.to_i != item[:catalogue_id])
+                #puts "#{node.content} | #{item[:catalogue_id]}"
+                next
+            end
+    
+            title = nil
+            scoring = nil
+            extract = nil
+            arr = nil
+            
+            # try to get the title (240)
+            # Quartets
+            node = s.marc.first_occurance("240", "a")
+            title = node.content if node && node.content
+            title = title.strip if title
+            
+            node = s.marc.first_occurance("240", "m")
+            scoring = node.content if node && node.content
+            scoring = scoring.strip if scoring
         
-        node = s.marc.first_occurance("690", "n")
-        #cat_n =  node.content if node && node.content
-        cat_n = node.content.gsub(/\/.*/,"") if node && node.content
-        cat_n = cat_n.strip if cat_n
-
-        src = Hash.new
-        src['id'] = s.id 
-        src['cmp'] = s.composer
-        src['std_title'] = s.std_title
-
-        item = Hash.new
-        item['sources'] = Array.new
-        item['cmp-id'] = id
-        item['title'] = title if title
-        #item['scoring'] = scoring if scoring
-        #item['extract'] = extract if extract
-        #item['arr'] = arr if arr
-        item['opus'] = opus if opus
-        item['cat_a'] = cat_a if cat_a
-        item['cat_n'] = cat_n if cat_n  
-
-        src_count += 1
-
-        work_item = find_work_list(id, opus, cat_a, cat_n)
-        if work_item
-            work_item['sources'].append(src)
-            next
+            node = s.marc.first_occurance("240", "k")
+            extract = node.content if node && node.content
+            extract = extract.strip if extract
+            
+            node = s.marc.first_occurance("240", "o")
+            arr = node.content if node && node.content
+            arr = arr.strip if arr
+        
+            node = s.marc.first_occurance("383", "b")
+            opus = node.content if node && node.content
+            opus = opus.strip if opus
+    
+            #puts "#{s.id} #{opus}"
+            if opus
+                opus_orig = opus
+                opus = format_opus(opus)
+                if (!check_opus(opus))
+                    #puts "#{s.id} #{opus}"
+                    @skipped << {s.id => [opus_orig, opus]}
+                    next
+                end
+                @op << opus
+            end
+    
+            node = s.marc.first_occurance("690", "a")
+            cat_a = node.content if node && node.content
+            cat_a = cat_a.strip if cat_a
+            
+            node = s.marc.first_occurance("690", "n")
+            #cat_n =  node.content if node && node.content
+            cat_n = node.content.gsub(/\/.*/,"") if node && node.content
+            cat_n = cat_n.strip if cat_n
+    
+            src = Hash.new
+            src['id'] = s.id 
+            src['cmp'] = s.composer
+            src['std_title'] = s.std_title
+    
+            new_item = Hash.new
+            new_item['sources'] = Array.new
+            new_item['cmp-id'] = id
+            new_item['title'] = title if title
+            #new_item['scoring'] = scoring if scoring
+            #new_item['extract'] = extract if extract
+            #new_item['arr'] = arr if arr
+            new_item['opus'] = opus if opus
+            new_item['cat_a'] = cat_a if cat_a
+            new_item['cat_n'] = cat_n if cat_n  
+    
+            @src_count += 1
+    
+            work_item = find_work_list(id, opus, cat_a, cat_n)
+            if work_item
+                work_item['sources'].append(src)
+                next
+            end
+    
+            new_item['sources'].append(src)
+            @list.append(new_item)  
+    
+            w = Work.new
+            new_marc = MarcWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc")))
+            new_marc.load_source false # this will need to be fixed
+            w.marc = new_marc
+    
+            w_100 = w.marc.first_occurance("100")
+            w_100.destroy_yourself if w_100
+            w_100 = s.marc.first_occurance("100").deep_copy
+            if title
+                w_100.add_at(MarcNode.new("work", "t", title, nil), 0)
+            end
+            w_100j = w_100.fetch_first_by_tag("j")
+            w_100j.destroy_yourself if w_100j
+            w_100.sort_alphabetically
+            w.marc.root.add_at(w_100, w.marc.get_insert_position("100"))
+    
+            if opus
+                w_opus = s.marc.first_occurance("383").deep_copy
+                w.marc.root.add_at(w_opus, w.marc.get_insert_position("383"))
+                # replace the $b with the cleaned-up version 
+                w_opus_b = w_opus.fetch_first_by_tag("b")
+                w_opus_b.content = opus
+            end
+            if cat_n and cat_a
+                w_cat = s.marc.first_occurance("690").deep_copy
+                w.marc.root.add_at(w_cat, w.marc.get_insert_position("690"))
+                # replace $n with the cleaned-up version
+                w_cat_n = w_cat.fetch_first_by_tag("n")
+                w_cat_n.content = cat_n
+            end 
+            w.person = Person.find(id) rescue nil
+            w.suppress_reindex
+            w.save!
+            new_item['w-id'] = w.id
         end
-
-        item['sources'].append(src)
-        @list.append(item)  
-
-        w = Work.new
-        new_marc = MarcWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc")))
-        new_marc.load_source false # this will need to be fixed
-        w.marc = new_marc
-
-        w_100 = w.marc.first_occurance("100")
-        w_100.destroy_yourself if w_100
-        w_100 = s.marc.first_occurance("100").deep_copy
-        if title
-            w_100.add_at(MarcNode.new("work", "t", title, nil), 0)
-        end
-        w_100j = w_100.fetch_first_by_tag("j")
-        w_100j.destroy_yourself if w_100j
-        w_100.sort_alphabetically
-        w.marc.root.add_at(w_100, w.marc.get_insert_position("100"))
-
-        if opus
-            w_opus = s.marc.first_occurance("383").deep_copy
-            w.marc.root.add_at(w_opus, w.marc.get_insert_position("383"))
-            # replace the $b with the cleaned-up version 
-            w_opus_b = w_opus.fetch_first_by_tag("b")
-            w_opus_b.content = opus
-        end
-        if cat_n and cat_a
-            w_cat = s.marc.first_occurance("690").deep_copy
-            w.marc.root.add_at(w_cat, w.marc.get_insert_position("690"))
-            # replace $n with the cleaned-up version
-            w_cat_n = w_cat.fetch_first_by_tag("n")
-            w_cat_n.content = cat_n
-        end 
-        w.person = Person.find(id) rescue nil
-        w.suppress_reindex
-        w.save!
-        item['w-id'] = w.id
     end
+end
+
+catalogues.each do |catalogue|
+    extract_works_for(catalogue.transform_keys(&:to_sym))
 end
 
 @list.each do |item|
