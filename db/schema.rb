@@ -705,6 +705,7 @@ ActiveRecord::Schema.define(version: 2023_01_13_112502) do
     t.datetime "updated_at"
     t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
+    t.integer "link_status"
     t.index ["title"], name: "index_works_on_title"
     t.index ["wf_stage"], name: "index_works_on_wf_stage"
   end

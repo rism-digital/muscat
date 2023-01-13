@@ -1,0 +1,1 @@
+UPDATE works w1 SET w1.wf_stage = 3 where w1.id in (SELECT id from (SELECT * FROM works) as w2 where w2.notes in (SELECT w3.notes FROM (Select count(*) AS C, notes from works w4 where w4.notes <> "" group by w4.person_id, w4.notes HAVING C > 1) AS w3))

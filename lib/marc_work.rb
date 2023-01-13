@@ -50,6 +50,23 @@ class MarcWork < Marc
     return person
   end
 
-
+  def get_link_status
+    status = 0
+    each_by_tag("024") do |t|
+      t.each_by_tag("2") do |t2|
+        if t2 and t2.content
+          case t2.content
+          when "DNB"
+            status |= 1
+          when "BNF"
+            status |= 2
+          when "MBZ"
+            status |= 4
+          end
+        end
+      end
+    end
+    return status
+  end
 
 end

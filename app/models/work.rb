@@ -152,18 +152,28 @@ class Work < ApplicationRecord
       title
     end
     sunspot_dsl.text :title
-    sunspot_dsl.text :title
+    sunspot_dsl.text :opus
+    sunspot_dsl.text :catalogue
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
+
+    sunspot_dsl.string :opus_order, :stored => true, as: "opus_shelforder_s" do |s|
+      s.opus if !s.opus.strip.empty?
+    end
+    sunspot_dsl.string :catalogue_order, :stored => true, as: "catalogue_shelforder_s" do |s|
+      s.catalogue if !s.catalogue.strip.empty?
+    end
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
+      self.marc.load_source false
+      self.marc.root.fetch_all_by_tag("856").size
+      #Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
     end
     
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
@@ -177,6 +187,7 @@ class Work < ApplicationRecord
     #self.person = marc.get_composer
     self.opus = marc.get_opus
     self.catalogue = marc.get_catalogue
+    self.link_status = marc.get_link_status
 
     self.marc_source = self.marc.to_marc
   end
@@ -187,5 +198,6 @@ class Work < ApplicationRecord
   end
  
   ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"0242_filter", proc{ |v| } do |parent| parent.table[:id] end
 
 end
