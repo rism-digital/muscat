@@ -8,13 +8,13 @@ class MarcWork < Marc
     if node = first_occurance("100", "a")
       composer = node.content.blank? ? "" : "#{node.content}:"
     end
-    if node = first_occurance("100", "t")
+    if node = first_occurance("130", "a")
       title = node.content.blank? ? " [without title]" : " #{node.content}"
     end
     #if node = first_occurance("100", "n")
     #  number = node.content.blank? ? "" : " #{node.content}"
     #end
-    if node = first_occurance("100", "r")
+    if node = first_occurance("130", "r")
       key = node.content.blank? ? "" : " #{node.content}"
     end
     #if node = first_occurance("100", "m")
