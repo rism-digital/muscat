@@ -5,9 +5,8 @@ def self.cat_extract(value)
 end
 
 # Graupner
-# id 83288
-# gnd 118718517
-def self.cat_extract_83288(value)
+# Number can be GWV x or GWV x/x
+def self.cat_extract_graupner_83288(value)
     if /1[1|2|3]\d\d\//.match?(value)
         value.gsub(/(....\/[^ |\/]*).*/,'\1')
     else 
@@ -15,6 +14,7 @@ def self.cat_extract_83288(value)
     end
 end
 
+# Graupner
 def self.cat_extract_gnd_118718517(value)
     if /1[1|2|3]\d\d[ |,]/.match?(value)
         value.gsub(/(\d...).(.*)/,'\1/\2')

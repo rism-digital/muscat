@@ -105,10 +105,6 @@ def extract_works_for(item)
             node = s.marc.first_occurance("240", "a")
             title = node.content if node && node.content
             title = title.strip if title
-            
-            node = s.marc.first_occurance("240", "m")
-            scoring = node.content if node && node.content
-            scoring = scoring.strip if scoring
         
             node = s.marc.first_occurance("240", "k")
             extract = node.content if node && node.content
@@ -139,9 +135,16 @@ def extract_works_for(item)
             cat_a = cat_a.strip if cat_a
             
             node = s.marc.first_occurance("690", "n")
-            #cat_n =  node.content if node && node.content
-            cat_n = node.content.gsub(/\/.*/,"") if node && node.content
+            cat_n =  node.content if node && node.content
+            #cat_n = node.content.gsub(/\/.*/,"") if node && node.content
             cat_n = cat_n.strip if cat_n
+
+            # custom extraction method
+            if item[:catalogue_extraction] 
+                cat_n = method(item[:catalogue_extraction]).call(cat_n) if cat_n
+            else
+                cat_n = cat_extract(cat_n) if cat_n
+            end
     
             src = Hash.new
             src['id'] = s.id 
@@ -184,7 +187,7 @@ def extract_works_for(item)
             w_130.destroy_yourself if w_130
             w_130 = s.marc.first_occurance("240").deep_copy
             w_130.tag = "130"
-
+            # we keep only $a $m (scoring) and $m (key) - remove $k and $o
             w_130k = w_130.fetch_first_by_tag("k")
             w_130k.destroy_yourself if w_130k
             w_130o = w_130.fetch_first_by_tag("o")
@@ -207,7 +210,11 @@ def extract_works_for(item)
                 w_cat_n = w_cat.fetch_first_by_tag("n")
                 w_cat_n.content = cat_n
             end 
-            
+
+            w_667 = MarcNode.new("work", "667", "", "##")
+            w_667.add_at(MarcNode.new("work", "a", "Title imported from #{s.id}", nil), 0)
+            w.marc.root.add_at(w_667, w.marc.get_insert_position("667"))
+
             w.person = Person.find(id) rescue nil
             w.suppress_reindex
             w.save!
