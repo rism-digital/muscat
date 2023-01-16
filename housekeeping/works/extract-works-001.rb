@@ -145,6 +145,9 @@ def extract_works_for(item)
             else
                 cat_n = cat_extract(cat_n) if cat_n
             end
+
+            # Skip catalogue with "deest" (without opus)
+            next if !opus and cat_n and /^deest$/.match?(cat_n)
     
             src = Hash.new
             src['id'] = s.id 
