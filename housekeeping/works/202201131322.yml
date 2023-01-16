@@ -6,3 +6,115 @@
     composer_name: "Mozart, Wolfgang Amadeus"
     catalogue_id: 50
     catalogue_short_name: "KV"
+-   composer_id: 2539
+    composer_name: "Bach, Johann Sebastian"
+    catalogue_id: 11
+    catalogue_short_name: "BWV"
+-   composer_id: 36552
+    composer_name: "Händel, Georg Friedrich"
+    catalogue_id: 225
+    catalogue_short_name: "HWV"
+-   composer_id: 55810
+    composer_name: "Haydn, Michael"
+    catalogue_id: 343
+    catalogue_short_name: "MH"
+-   composer_id: 24761
+    composer_name: "Pleyel, Ignace"
+    catalogue_id: 6
+    catalogue_short_name: "BenP"
+-   composer_id: 132446
+    composer_name: "Lully, Jean-Baptiste"
+    catalogue_id: 237
+    catalogue_short_name: "LWV"
+-   composer_id: 126287
+    composer_name: "Telemann, Georg Philipp"
+    catalogue_id: 251
+    catalogue_short_name: "TVWV"
+-   composer_id: 126287
+    composer_name: "Telemann, Georg Philipp"
+    catalogue_id: 320
+    catalogue_short_name: "TWV"
+-   composer_id: 506
+    composer_name: "Lasso, Orlando di"
+    catalogue_id: 3075
+    catalogue_short_name: "LV"
+-   composer_id: 88790
+    composer_name: "Mendelssohn Bartholdy, Felix"
+    catalogue_id: 30025296
+    catalogue_short_name: "MWV"
+-   composer_id: 33668
+    composer_name: "Purcell, Henry"
+    catalogue_id: 123
+    catalogue_short_name: "ZimP"
+-   composer_id: 30000391
+    composer_name: "Boccherini, Luigi"
+    catalogue_id: 29
+    catalogue_short_name: "GerB"
+-   composer_id: 331271
+    composer_name: "Krebs, Johann Ludwig"
+    catalogue_id: 30025777
+    catalogue_short_name: "Krebs-WV"
+-   composer_id: 107007
+    composer_name: "Hummel, Johann Nepomuk"
+    catalogue_id: 272
+    catalogue_short_name: "ZimH"
+-   composer_id: 30003267
+    composer_name: "Vivaldi, Antonio"
+    catalogue_id: 30020110
+    catalogue_short_name: "RV"
+-   composer_id: 114557
+    composer_name: "Vanhal, Johann Baptist"
+    catalogue_id: 338
+    catalogue_short_name: "WeiV"
+-   composer_id: 30002849
+    composer_name: "Scarlatti, Domenico"
+    catalogue_id: 54
+    catalogue_short_name: "KirS"
+-   composer_id: 83288
+    composer_name: "Graupner, Christoph"
+    catalogue_id: 30000114
+    catalogue_short_name: "GWV"
+-   composer_id: 20000365
+    composer_name: "Senfl, Ludwig"
+    catalogue_id: 41002205
+    catalogue_short_name: "SC"
+-   composer_id: 20503
+    composer_name: "Pitoni, Giuseppe Ottavio"
+    catalogue_id: 292
+    catalogue_short_name: "GmeP"
+-   composer_id: 111603
+    composer_name: "Schubert, Franz"
+    catalogue_id: 30000089
+    catalogue_short_name: "D|2"
+-   composer_id: 72637
+    composer_name: "Hensel, Fanny"
+    catalogue_id: 2896
+    catalogue_short_name: "HelH"
+-   composer_id: 30002070
+    composer_name: "Marcello, Benedetto"
+    catalogue_id: 353
+    catalogue_short_name: "SelM"
+-   composer_id: 1678967
+    composer_name: "Vallotti, Francesco Antonio"
+    catalogue_id: 346
+    catalogue_short_name: "MasV"
+-   composer_id: 350674
+    composer_name: "Molter, Johann Melchior"
+    catalogue_id: 3396
+    catalogue_short_name: "BrinzingMWV"
+-   composer_id: 3324
+    composer_name: "Kalliwoda, Johann Wenzel"
+    catalogue_id: 30000321
+    catalogue_short_name: "StrK"
+-   composer_id: 30001209
+    composer_name: "Gallus, Iacobus"
+    catalogue_id: 30026871
+    catalogue_short_name: "HK"
+-   composer_id: 114903
+    composer_name: "Schütz, Heinrich"
+    catalogue_id: 263
+    catalogue_short_name: "SWV"
+-   composer_id: 20000269
+    composer_name: "Homilius, Gottfried August"
+    catalogue_id: 30027882
+    catalogue_short_name: "HoWV"
