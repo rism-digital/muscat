@@ -164,6 +164,8 @@ spa:
   label: languages.spanish
 srp:
   label: languages.serbian
+swa:
+  label: languages.swahili
 swe:
   label: languages.swedish
 tat:
