@@ -16,7 +16,10 @@ class Work < ApplicationRecord
   belongs_to :person
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
+  has_many :source_work_relations, class_name: "SourceWorkRelation"
+  has_many :referring_sources, through: :source_work_relations, source: :source
+  
   has_and_belongs_to_many :publications, join_table: "works_to_publications"
   has_and_belongs_to_many :standard_terms, join_table: "works_to_standard_terms"
   has_and_belongs_to_many :standard_titles, join_table: "works_to_standard_titles"
@@ -171,9 +174,9 @@ class Work < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
 
     sunspot_dsl.integer :src_count_order, :stored => true do 
-      self.marc.load_source false
-      self.marc.root.fetch_all_by_tag("856").size
-      #Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
+      #self.marc.load_source false
+      #self.marc.root.fetch_all_by_tag("856").size
+      Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
     end
     
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)

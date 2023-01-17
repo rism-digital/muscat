@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_13_112502) do
+ActiveRecord::Schema.define(version: 2023_01_17_085541) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -506,9 +506,12 @@ ActiveRecord::Schema.define(version: 2023_01_13_112502) do
     t.index ["work_node_id"], name: "index_sources_to_works_on_work_id"
   end
 
-  create_table "sources_to_works", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "sources_to_works", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "source_id"
     t.integer "work_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "source_id", "work_id"], name: "unique_records", unique: true
     t.index ["source_id"], name: "index_sources_to_works_on_source_id"
     t.index ["work_id"], name: "index_sources_to_works_on_work_id"
   end
