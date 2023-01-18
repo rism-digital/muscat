@@ -34,3 +34,4 @@ db/test.sqlite3
 config/attribute-map.yml
 config/initializers/devise_saml_authenticatable.rb
 app/views/active_admin/devise/sessions/new.html.erb
+.ruby-version

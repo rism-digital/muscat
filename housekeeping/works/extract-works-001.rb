@@ -4,6 +4,11 @@ require './housekeeping/works/functions'
 @list = Array.new
 @op = Array.new
 @skipped = Array.new
+@subheading_err = Array.new
+@arrangement_err = Array.new
+
+#################################################################################
+# check if work is already in the work list @list
 
 def find_work_list(composer_id, opus, cat_a, cat_n)
     w_opus = nil
@@ -30,6 +35,9 @@ def find_work_list(composer_id, opus, cat_a, cat_n)
     return w_cat ? w_cat : w_opus
 end
 
+#################################################################################
+# add a link 930 link to a work (not used)
+
 def add_link_to_work(source, work, work_item)
     node = MarcNode.new("work", "856", "", "##")
     node.add_at(MarcNode.new("work", "u", "/admin/sources/#{work_item['id']}", nil), 0)
@@ -38,17 +46,13 @@ def add_link_to_work(source, work, work_item)
     work.marc.root.children.insert(work.marc.get_insert_position("856"), node)
 end
 
-if ARGV.length < 1
-    puts "Too few arguments"
-    exit
-end
-
-@src_count = 0
-
-catalogue_file = ARGV[0]
-catalogues = YAML.load(File.read(catalogue_file))
-puts catalogues
-
+#################################################################################
+# function that extract the work for a item with
+# - composer_id
+# - composer_name
+# - catalogue_id
+# - catalogue_short_name
+# - catalogue_extraction (optional)
 
 def extract_works_for(item)
     puts "Extract works for: #{item[:composer_name]} (#{item[:composer_id]})"
@@ -61,6 +65,7 @@ def extract_works_for(item)
             s = spr.source
             s.marc.load_source false
 
+            # Get the composer id
             id = nil
             s.marc.each_by_tag("100") do |t|
                 t0 = t.fetch_first_by_tag("0")
@@ -90,15 +95,17 @@ def extract_works_for(item)
             end
 
             node = s.marc.first_occurance("690", "0")
-            if (node && node.content && node.content.to_i != item[:catalogue_id])
+            next if (!node || !node.content)
+            # not the desired catalogue
+            if (node.content.to_i != item[:catalogue_id])
                 #puts "#{node.content} | #{item[:catalogue_id]}"
                 next
             end
     
             title = nil
             scoring = nil
-            extract = nil
-            arr = nil
+            subheading = nil
+            arrangement = nil
             
             # try to get the title (240)
             # Quartets
@@ -107,12 +114,12 @@ def extract_works_for(item)
             title = title.strip if title
         
             node = s.marc.first_occurance("240", "k")
-            extract = node.content if node && node.content
-            extract = extract.strip if extract
+            subheading = node.content if node && node.content
+            subheading = subheading.strip if subheading
             
             node = s.marc.first_occurance("240", "o")
-            arr = node.content if node && node.content
-            arr = arr.strip if arr
+            arrangement = node.content if node && node.content
+            arrangement = arrangement.strip if arrangement
         
             node = s.marc.first_occurance("383", "b")
             opus = node.content if node && node.content
@@ -153,14 +160,23 @@ def extract_works_for(item)
             src['id'] = s.id 
             src['cmp'] = s.composer
             src['std_title'] = s.std_title
-    
+            src['relator_codes'] = Array.new
+            if (check_arr(arrangement))
+                src['relator_codes'].append(arrangement)
+            else
+                @arrangement_err.append("https://muscat.rism.info/admin/sources/#{s.id}") if arrangement
+            end
+            if (check_subheading(subheading))
+                src['relator_codes'].append(subheading)
+            else
+                @subheading_err.append("https://muscat.rism.info/admin/sources/#{s.id}") if subheading
+            end
+            src['relator_codes'].append('') if src['relator_codes'].empty?
+
             new_item = Hash.new
             new_item['sources'] = Array.new
             new_item['cmp-id'] = id
             new_item['title'] = title if title
-            #new_item['scoring'] = scoring if scoring
-            #new_item['extract'] = extract if extract
-            #new_item['arr'] = arr if arr
             new_item['opus'] = opus if opus
             new_item['cat_a'] = cat_a if cat_a
             new_item['cat_n'] = cat_n if cat_n  
@@ -226,28 +242,42 @@ def extract_works_for(item)
     end
 end
 
+#################################################################################
+# Main
+
+if ARGV.length < 1
+    puts "Too few arguments"
+    exit
+end
+
+@src_count = 0
+
+catalogue_file = ARGV[0]
+catalogues = YAML.load(File.read("#{catalogue_file}.yml"))
+puts catalogues
+
 catalogues.each do |catalogue|
     extract_works_for(catalogue.transform_keys(&:to_sym))
 end
 
 @list.each do |item|
-    work = Work.find(item['w-id'])
-    work.marc.load_source false
     item['sources'].each do |s|
-        node = MarcNode.new("work", "856", "", "##")
-        node.add_at(MarcNode.new("work", "u", "/admin/sources/#{s['id']}", nil), 0)
-        node.add_at(MarcNode.new("work", "z", "#{s['cmp']}: #{s['std_title']}", nil), 0)
-        node.sort_alphabetically
-        work.marc.root.add_at(node, work.marc.get_insert_position("856"))
+        s['relator_codes'].each do |code|
+            r = SourceWorkRelation.new(source_id: s['id'], work_id: item['w-id'])
+            r.relator_code = code.downcase if !code.empty?
+            r.save
+        end
     end
-    work.suppress_reindex
-    work.save!
 end
 
 puts "Sources grouped: #{@src_count}"
 puts "Opus processed: #{@op.size}"
 puts "Opus skipped: #{@skipped.size}"
+puts "Invalid arrangements: #{@arrangement_err.size}"
+puts "Invalid subheadings: #{@subheading_err.size}"
 
-File.open( "opus.yml" , "w") {|f| f.write(@op.uniq.sort.to_yaml) }
-File.open( "opus-skipped.yml" , "w") {|f| f.write(@skipped.to_yaml) }
-File.open( "works.yml" , "w") {|f| f.write(@list.to_yaml) }
+File.open( "#{catalogue_file}-opus.yml" , "w") {|f| f.write(@op.uniq.sort.to_yaml) }
+File.open( "#{catalogue_file}-opus-skipped.yml" , "w") {|f| f.write(@skipped.to_yaml) }
+File.open( "#{catalogue_file}-arrangement-err.yml" , "w") {|f| f.write(@arrangement_err.to_yaml) }
+File.open( "#{catalogue_file}-subheading-err.yml" , "w") {|f| f.write(@subheading_err.to_yaml) }
+#File.open( "#{catalogue_file}_works.yml" , "w") {|f| f.write(@list.to_yaml) }

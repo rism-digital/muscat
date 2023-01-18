@@ -161,6 +161,17 @@ def format_opus(opus)
     opus = opus.gsub(/(^op. [a-zA-Z0-9]*)(WoO)/,'\2') 
 end
 
+def check_arr(arrangement)
+    return (arrangement == "Arr") ? true : false
+end
+
+def check_subheading(subheading)
+    return true if subheading == "Excerpts"
+    return true if subheading == "Fragments"
+    return true if subheading == "Sketches"
+    return false
+end
+
 def check_opus(opus)
     /^((op. )|(WoO ))[0-9a-zA-Z]*(\/[0-9]+)?$/.match?(opus)
 end
