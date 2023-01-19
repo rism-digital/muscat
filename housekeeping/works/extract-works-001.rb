@@ -63,19 +63,23 @@ def extract_works_for(item)
             pb.increment!
             
             s = spr.source
+
+            # Check if the source has been extracted already
+            next if (SourceWorkRelation.find_by_source_id(s.id))
+
             s.marc.load_source false
 
-            # Get the composer id
-            id = nil
+            # Get the composer composer_id
+            composer_id = nil
             s.marc.each_by_tag("100") do |t|
                 t0 = t.fetch_first_by_tag("0")
                 if t0 and t0.content
-                    id = t0.content
+                    composer_id = t0.content
                 end
                 break
             end
             # skip sources witout composer or by Anonymus or by Compilations
-            next if !id or id == '30004985' or id == '30009236'
+            next if !composer_id or composer_id == '30004985' or composer_id == '30009236'
     
             count690 = 0
             s.marc.each_by_tag("690") {|t| count690 += 1}
@@ -175,7 +179,7 @@ def extract_works_for(item)
 
             new_item = Hash.new
             new_item['sources'] = Array.new
-            new_item['cmp-id'] = id
+            new_item['cmp-id'] = composer_id
             new_item['title'] = title if title
             new_item['opus'] = opus if opus
             new_item['cat_a'] = cat_a if cat_a
@@ -183,7 +187,7 @@ def extract_works_for(item)
     
             @src_count += 1
     
-            work_item = find_work_list(id, opus, cat_a, cat_n)
+            work_item = find_work_list(composer_id, opus, cat_a, cat_n)
             if work_item
                 work_item['sources'].append(src)
                 next
@@ -234,7 +238,7 @@ def extract_works_for(item)
             w_667.add_at(MarcNode.new("work", "a", "Title imported from #{s.id}", nil), 0)
             w.marc.root.add_at(w_667, w.marc.get_insert_position("667"))
 
-            w.person = Person.find(id) rescue nil
+            w.person = Person.find(composer_id) rescue nil
             w.suppress_reindex
             w.save!
             new_item['w-id'] = w.id
