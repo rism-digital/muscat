@@ -12,6 +12,19 @@ def add_link_to_work(source, work, work_item)
     work.marc.root.children.insert(work.marc.get_insert_position("856"), node)
 end
 
+def add_standard_term(work, src)
+    added = 0
+    src.marc.each_by_tag("650") do |tag|
+        w_380 = tag.deep_copy
+        w_380.tag = "380"
+        work.marc.root.add_at(w_380, work.marc.get_insert_position("380"))
+        added += 1
+        #puts work.marc.find_duplicates(["380"])
+    end
+    return if added == 0
+    work.save
+end
+
 #################################################################################
 # create a work from a source record
 
@@ -64,7 +77,7 @@ def create_work(src, composer_id, opus, cat_a, cat_n)
     w.person = Person.find(composer_id) rescue nil
     w.suppress_reindex
     w.save!
-    w.id
+    w
 end
 
 def extract_work_for(item, src)
@@ -177,8 +190,13 @@ def extract_work_for(item, src)
     src_ref['relator_codes'].append('') if src_ref['relator_codes'].empty?
 
     work_item = find_work_list_db(composer_id, opus, cat_a, cat_n)
-    work_id = (work_item) ? work_item.id : create_work(src, composer_id, opus, cat_a, cat_n)
+    work_item =  create_work(src, composer_id, opus, cat_a, cat_n) if !work_item
 
+    if (!arrangement && !subheading)
+        #add_standard_term(work_item, src)
+    end
+
+    work_id = work_item.id
     @work_sources[work_id] = Array.new if !@work_sources[work_id]
 
     new_item = Hash.new
