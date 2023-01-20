@@ -48,11 +48,8 @@ class FolderExpirationJob < ApplicationJob
                 puts "Deleting folders #{delete_items.to_s}"
                 Folder.destroy(delete_items)
             end
-
-            #ap folder_grouping
             
             if !folder_grouping.map {|k,v| v}.flatten.empty?
-                ap folder_grouping
                 FolderCleanupMailer.notify(folder_grouping).deliver_now
             end
 

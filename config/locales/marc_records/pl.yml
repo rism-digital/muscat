@@ -113,6 +113,7 @@ pl:
     sorbian: Łużycki
     south_american: Południowoamerykański (inne)
     spanish: Hiszpański
+    swahili: Swahili
     swedish: Szwedzki
     swiss_german: Niemiecki szwajcarski
     tagalog: Tagalski
@@ -394,7 +395,7 @@ pl:
     dedicatee: Adresat dedykacji
     department: Wydział
     depositor: Deponent
-    deprecated_fields: Nieaktualne pola (nie używane)
+    deprecated_fields: Nieaktualne pola (nie uzupełniaj)
     description: Opis
     description_area: Obszar opisu
     description_summary: Podsumowanie
@@ -958,7 +959,7 @@ pl:
     no_results_header: "Nie znaleziono wyników dla Twojego wyszukiwania"
     no_results_to_find: "Nie znaleziono żadnych wyników dla tego wyszukiwania"
     page: "Strona"
-    words_anywhere: "Words anywhere"
+    words_anywhere: "Wprowadź zapytanie"
     record_preview: "Podgląd rekordu"
     record_uri: "URI rekordu (Odnośnik bezpośredni)"
     reset_all: "Zresetuj wszystko"
@@ -978,7 +979,7 @@ pl:
     biographical_details: "Szczegóły bibliograficzne"
     role_and_profession: "Funkcja i zawód"
     composer_composition: "Kompozytor i kompozycja"
-    full_record: "Full Record"
+    full_record: "Pełny widok rekordu"
   testingForCrowdinWorkshop:
     apple: jabłko
     pear: gruszka
