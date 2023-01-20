@@ -87,55 +87,55 @@ def find_work(composer_id, opus, cat_a, cat_n)
     return nil
 end
 
-def delete_work(id)
-    w = Work.find(id)
+#################################################################################
+# function that extract the work for a item with
+# - composer_id
+# - composer_name
+# - catalogue_id
+# - catalogue_short_name
+# - catalogue_extraction (optional)
 
-    modified = false
-    w.marc.by_tags("930").each do |t|
-        st = t.fetch_first_by_tag("0")
-        #puts "Deleting work link"
-        t.destroy_yourself
-        modified = true
-    end
-    w.save! if modified
-    w = Work.find(id)
+def process_works_for(item, function)
+    puts "Extract works for: #{item[:composer_name]} (#{item[:composer_id]})"
+    pb = ProgressBar.new(SourcePersonRelation.where(person_id: item[:composer_id], marc_tag: "100").count)
 
-    w.referring_works.each do |wr|
-        modified = false
-        #s.marc.load_source 
-        wr.marc.each_by_tag("930") do |t|
-            st = t.fetch_first_by_tag("0")
-            if st && st.content && st.content == id
-                #puts "Deleting work link"
-                t.destroy_yourself
-                modified = true
-            end
+    SourcePersonRelation.where(person_id: item[:composer_id], marc_tag: "100").find_in_batches do |batch|
+        batch.each do |spr|
+            pb.increment!
+            send(function, item, spr.source)
         end
-        wr.save! if modified
     end
-
-    w.referring_sources.each do |s|
-        modified = false
-        #s.marc.load_source 
-        s.marc.each_by_tag("930") do |t|
-            st = t.fetch_first_by_tag("0")
-            if st && st.content && st.content == id
-                #puts "Deleting work link"
-                t.destroy_yourself
-                modified = true
-            end
-        end
-        s.save! if modified
-    end
-    w2 = Work.find(id)
-    w2.destroy!
 end
 
-def delete_links_to(w, code)
-    w.marc.by_tags("024").each do |t|
-        t2 = t.fetch_first_by_tag("2")
-        t.destroy_yourself if t2 and t2.content and t2.content == code
+#################################################################################
+# check if work is already in the db
+
+def find_work_list_db(composer_id, opus, cat_a, cat_n)
+    w_opus = nil
+    w_cat = nil
+    w_both = nil
+    # we have both an opus and a catalogue number
+    if opus and cat_a and cat_n
+        w_both = Work.find_by(person_id: composer_id, opus: "op. #{opus}", catalogue: "#{cat_a} #{cat_n}")
+        #@list.find{|w| w["opus"] == opus and w["cat_a"] == cat_a and w["cat_n"] == cat_n and w["cmp-id"] == composer_id}
     end
+    # return the one matching both if any
+    return w_both if w_both
+
+    if opus
+        w_opus = Work.find_by(person_id: composer_id, opus: "op. #{opus}")
+        #w_opus = @list.find{|w| w["opus"] == opus and w["cmp-id"] == composer_id}
+    end
+    if cat_a and cat_n
+        w_cat = Work.find_by(person_id: composer_id, catalogue: "#{cat_a} #{cat_n}")
+        #w_cat = @list.find{|w| w["cat_a"] == cat_a and w["cat_n"] == cat_n and w["cmp-id"] == composer_id}
+    end
+    # maybe we need to log cases where opus and catalogue mis-match
+    #if w_opus and w_cat and w_opus['w-id'] != w_cat['w-id']
+    #    #puts "Discrepancy #{w_opus['cmp']}: #{w_opus['title']} #{w_opus['opus']} #{w_opus['cat_n']} | #{w_cat['opus']} | #{w_cat['cat_n']}"
+    #end
+    # give prececence to catalogue number
+    return w_cat ? w_cat : w_opus
 end
 
 def format_opus(opus)
