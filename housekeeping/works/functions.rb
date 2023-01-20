@@ -70,25 +70,28 @@ def get_name_mapping(names, cmp_name_mapping)
     end
 end
 
-def find_work(composer_id, opus, cat_a, cat_n)
-    query = Work.solr_search do 
-        with("383b", opus) if opus
-        with("690a", cat_a) if cat_a and cat_n
-        with("690n", cat_n) if cat_a and cat_n
-        paginate :page => 1, :per_page => Work.all.count
-    end
-    query.results.each do |w|
-        w.marc.load_source false
-        w.marc.each_by_tag("100") do |t|
-            t0 = t.fetch_first_by_tag("0")
-            return w if t0 and t0.content and t0.content == composer_id
+#################################################################################
+# process all the sources for a composer and a catalogue
+# - composer_id
+# - composer_name
+# - catalogue_id
+# - catalogue_short_name
+# - catalogue_extraction (optional)
+
+def process_sources_for(item, function)
+    puts "Process sources for: #{item[:composer_name]} (#{item[:composer_id]})"
+    pb = ProgressBar.new(SourcePersonRelation.where(person_id: item[:composer_id], marc_tag: "100").count)
+
+    SourcePersonRelation.where(person_id: item[:composer_id], marc_tag: "100").find_in_batches do |batch|
+        batch.each do |spr|
+            pb.increment!
+            send(function, item, spr.source)
         end
     end
-    return nil
 end
 
 #################################################################################
-# function that extract the work for a item with
+# process all the works for a composer and a catalogue
 # - composer_id
 # - composer_name
 # - catalogue_id
@@ -96,13 +99,13 @@ end
 # - catalogue_extraction (optional)
 
 def process_works_for(item, function)
-    puts "Extract works for: #{item[:composer_name]} (#{item[:composer_id]})"
-    pb = ProgressBar.new(SourcePersonRelation.where(person_id: item[:composer_id], marc_tag: "100").count)
+    puts "Process works for: #{item[:composer_name]} (#{item[:composer_id]})"
+    pb = ProgressBar.new(Work.where(person_id: item[:composer_id]).count)
 
-    SourcePersonRelation.where(person_id: item[:composer_id], marc_tag: "100").find_in_batches do |batch|
-        batch.each do |spr|
+    Work.where(person_id: item[:composer_id]).find_in_batches do |batch|
+        batch.each do |work|
             pb.increment!
-            send(function, item, spr.source)
+            send(function, item, work)
         end
     end
 end

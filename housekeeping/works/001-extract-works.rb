@@ -232,7 +232,7 @@ catalogues = YAML.load(File.read("#{catalogue_file}.yml"))
 puts catalogues
 
 catalogues.each do |catalogue|
-    process_works_for(catalogue.transform_keys(&:to_sym), "extract_work_for")
+    process_sources_for(catalogue.transform_keys(&:to_sym), "extract_work_for")
 end
 
 @work_sources.each do |work_id, sources|
