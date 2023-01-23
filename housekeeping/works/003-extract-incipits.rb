@@ -2,23 +2,7 @@ require 'progress_bar'
 require './housekeeping/works/functions'
 
 #################################################################################
-# add an incipit
-
-def add_standard_term(work, src)
-    added = 0
-    src.marc.each_by_tag("650") do |tag|
-        w_380 = tag.deep_copy
-        w_380.tag = "380"
-        work.marc.root.add_at(w_380, work.marc.get_insert_position("380"))
-        added += 1
-        #puts work.marc.find_duplicates(["380"])
-    end
-    return if added == 0
-    work.save
-end
-
-#################################################################################
-# create a work from a source record
+# extract the incipit for a work
 
 def extract_incipits_for(item, work)
 
@@ -26,11 +10,18 @@ def extract_incipits_for(item, work)
     avg_len = 0
     source_id = 0
 
+    # Make sure inicpits are not added twice
+    return if work.marc.has_tag?("031") 
+
+    # Loop over source work relations
     SourceWorkRelation.where(work_id: work.id, relator_code: nil).find_all.each do |swr|
         src = swr.source
         src.marc.load_source false
         src_incipits = Array.new
         src_avg_len = 0
+
+        # Because we can have more than one relation the source can have been selected already
+        next if src.id == source_id
         
         src.marc.each_by_tag("031") do |tag|
             #puts tag
