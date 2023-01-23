@@ -19,7 +19,8 @@ def add_standard_term(work, src)
         w_380.tag = "380"
         work.marc.root.add_at(w_380, work.marc.get_insert_position("380"))
         added += 1
-        #puts work.marc.find_duplicates(["380"])
+        work.marc.deduplicate_tags!(["380"])
+
     end
     return if added == 0
     work.save
@@ -193,7 +194,7 @@ def extract_work_for(item, src)
     work_item =  create_work(src, composer_id, opus, cat_a, cat_n) if !work_item
 
     if (!arrangement && !subheading)
-        #add_standard_term(work_item, src)
+        add_standard_term(work_item, src)
     end
 
     work_id = work_item.id
