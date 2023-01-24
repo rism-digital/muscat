@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_20_072927) do
+ActiveRecord::Schema.define(version: 2023_01_24_101722) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -35,16 +35,6 @@ ActiveRecord::Schema.define(version: 2023_01_20_072927) do
     t.datetime "updated_at"
     t.string "document_type"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
-  end
-
-  create_table "crono_jobs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.string "job_id", null: false
-    t.text "log"
-    t.datetime "last_performed_at"
-    t.boolean "healthy"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["job_id"], name: "index_crono_jobs_on_job_id", unique: true
   end
 
   create_table "delayed_jobs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
@@ -178,13 +168,6 @@ ActiveRecord::Schema.define(version: 2023_01_20_072927) do
     t.integer "lock_version", default: 0, null: false
     t.index ["siglum"], name: "index_institutions_on_siglum"
     t.index ["wf_stage"], name: "index_institutions_on_wf_stage"
-  end
-
-  create_table "institutions_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "institution_a_id"
-    t.integer "institution_b_id"
-    t.index ["institution_a_id"], name: "index_institutions_institutions_on_institution_a_id"
-    t.index ["institution_b_id"], name: "index_institutions_institutions_on_institution_b_id"
   end
 
   create_table "institutions_to_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
