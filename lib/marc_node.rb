@@ -639,7 +639,7 @@ class MarcNode
   # so we can do a.children - b.children and see if they are all equal
   def eql?(other)
     if (!other.children || other.children.empty?) && (!children || children.empty?)
-      return true if other.tag == tag && other.content == content
+      return true if other.tag.to_s.strip == tag.to_s.strip && other.content.to_s.strip == content.to_s.strip
     end
 
     false

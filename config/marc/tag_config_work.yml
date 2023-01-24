@@ -129,8 +129,6 @@
         :foreign_class: ^0
         :foreign_field: life_dates
         :foreign_alternates: alternate_dates
-    - - j
-      - :occurrences: "?"
   "130":
     :master: "0"
     :indicator: "10"

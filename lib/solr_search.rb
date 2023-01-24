@@ -167,6 +167,7 @@ module Muscat
                 # The field to filter with is
                 # in the value
                 field, id = options[k].split(":")
+                id = ActiveModel::Type::Boolean.new.cast(id) if id.to_s.downcase.strip == "true" || id.to_s.downcase.strip == "false"
                 with[field] = id
               elsif k.to_s.match("gteq") # :Greather than time range
                 field = k.to_s.gsub("_gteq_datetime", "")

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_28_101703) do
+ActiveRecord::Schema.define(version: 2023_01_20_072927) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -130,13 +130,6 @@ ActiveRecord::Schema.define(version: 2022_12_28_101703) do
     t.index ["wf_stage"], name: "index_holdings_on_wf_stage"
   end
 
-  create_table "holdings_to_catalogues", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "catalogue_id"
-    t.integer "holding_id"
-    t.index ["catalogue_id"], name: "index_holdings_to_catalogues_on_catalogue_id"
-    t.index ["holding_id"], name: "index_holdings_to_catalogues_on_holding_id"
-  end
-
   create_table "holdings_to_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "holding_id"
     t.integer "institution_id"
@@ -192,13 +185,6 @@ ActiveRecord::Schema.define(version: 2022_12_28_101703) do
     t.integer "institution_b_id"
     t.index ["institution_a_id"], name: "index_institutions_institutions_on_institution_a_id"
     t.index ["institution_b_id"], name: "index_institutions_institutions_on_institution_b_id"
-  end
-
-  create_table "institutions_to_catalogues", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "catalogue_id"
-    t.integer "institution_id"
-    t.index ["catalogue_id"], name: "index_institutions_to_catalogues_on_catalogue_id"
-    t.index ["institution_id"], name: "index_institutions_to_catalogues_on_institution_id"
   end
 
   create_table "institutions_to_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
@@ -288,13 +274,6 @@ ActiveRecord::Schema.define(version: 2022_12_28_101703) do
     t.index ["wf_stage"], name: "index_people_on_wf_stage"
   end
 
-  create_table "people_to_catalogues", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "person_id"
-    t.integer "catalogue_id"
-    t.index ["catalogue_id"], name: "index_people_to_catalogues_on_catalogue_id"
-    t.index ["person_id"], name: "index_people_to_catalogues_on_person_id"
-  end
-
   create_table "people_to_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "institution_id"
     t.integer "person_id"
@@ -363,6 +342,7 @@ ActiveRecord::Schema.define(version: 2022_12_28_101703) do
     t.datetime "updated_at"
     t.text "marc_source", limit: 16777215
     t.integer "lock_version", default: 0, null: false
+    t.boolean "work_catalogue", default: false, null: false
     t.index ["created_at"], name: "index_publications_on_created_at"
     t.index ["short_name"], name: "index_publications_on_short_name"
     t.index ["updated_at"], name: "index_publications_on_updated_at"
@@ -454,13 +434,6 @@ ActiveRecord::Schema.define(version: 2022_12_28_101703) do
     t.index ["wf_stage"], name: "index_sources_on_wf_stage"
   end
 
-  create_table "sources_to_catalogues", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "catalogue_id"
-    t.integer "source_id"
-    t.index ["catalogue_id"], name: "index_sources_to_catalogues_on_catalogue_id"
-    t.index ["source_id"], name: "index_sources_to_catalogues_on_source_id"
-  end
-
   create_table "sources_to_institutions", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "institution_id"
     t.integer "source_id"
@@ -533,9 +506,12 @@ ActiveRecord::Schema.define(version: 2022_12_28_101703) do
     t.index ["work_node_id"], name: "index_sources_to_works_on_work_id"
   end
 
-  create_table "sources_to_works", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "sources_to_works", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "source_id"
     t.integer "work_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "source_id", "work_id"], name: "unique_records", unique: true
     t.index ["source_id"], name: "index_sources_to_works_on_source_id"
     t.index ["work_id"], name: "index_sources_to_works_on_work_id"
   end
@@ -668,13 +644,6 @@ ActiveRecord::Schema.define(version: 2022_12_28_101703) do
     t.index ["wf_stage"], name: "index_works_on_wf_stage"
   end
 
-  create_table "work_nodes_to_catalogues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "work_node_id"
-    t.integer "catalogue_id"
-    t.index ["catalogue_id"], name: "index_works_to_catalogues_on_catalogue_id"
-    t.index ["work_node_id"], name: "index_works_to_catalogues_on_work_id"
-  end
-
   create_table "work_nodes_to_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "work_node_id"
     t.integer "institution_id"
@@ -737,17 +706,16 @@ ActiveRecord::Schema.define(version: 2022_12_28_101703) do
     t.integer "wf_owner", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text "marc_source"
+    t.text "marc_source", limit: 16777215
     t.integer "lock_version", default: 0, null: false
+    t.integer "link_status"
+    t.index ["catalogue"], name: "index_works_on_catalogue"
+    t.index ["created_at"], name: "index_works_on_created_at"
+    t.index ["opus"], name: "index_works_on_opus"
+    t.index ["person_id"], name: "index_works_on_person_id"
     t.index ["title"], name: "index_works_on_title"
+    t.index ["updated_at"], name: "index_works_on_updated_at"
     t.index ["wf_stage"], name: "index_works_on_wf_stage"
-  end
-
-  create_table "works_to_catalogues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.integer "work_id"
-    t.integer "catalogue_id"
-    t.index ["catalogue_id"], name: "index_works_to_catalogues_on_catalogue_id"
-    t.index ["work_id"], name: "index_works_to_catalogues_on_work_id"
   end
 
   create_table "works_to_institutions", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|

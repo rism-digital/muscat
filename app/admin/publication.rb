@@ -158,6 +158,10 @@ ActiveAdmin.register Publication do
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Publication").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+  # work catalogue filter
+  filter :work_catalogue_with_integer, :label => proc{I18n.t(:work_catalogue)}, as: :select, 
+  collection: [["Yes", "work_catalogue:true"],["No", "work_catalogue:false"]], :if => proc{ current_user.has_any_role?(:admin) }
+
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
@@ -167,6 +171,7 @@ ActiveAdmin.register Publication do
     column (I18n.t :filter_title_short), :short_name
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_author), :author
+    column (I18n.t :work_catalogue), :work_catalogue if current_user.has_any_role?(:admin)
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			all_hits = @arbre_context.assigns[:hits]
 			active_admin_stored_from_hits(all_hits, element, :src_count_order)
