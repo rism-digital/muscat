@@ -221,6 +221,21 @@ ActiveAdmin.register Institution do
       end
     end
 
+    # Box for institutions referring to this institution
+    active_admin_embedded_link_list(self, institution, Institution) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_siglum), :siglum
+        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_place), :place
+        if !is_selection_mode?
+          context.column "" do |publication|
+            link_to "View", controller: :institutions, action: :show, id: institution.id
+          end
+        end
+      end
+    end
+
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, institution )
     active_admin_navigation_bar( self )
