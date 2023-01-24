@@ -168,6 +168,21 @@
     :fields:
     - - b
       - :occurrences: "*"
+  "430":
+    :master: "0"
+    :indicator: "#0"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "*"
+    - - r
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "*"
+    - - s
+      - :occurrences: "*"
 # This is a linked field
   "500":
     :master: "0"

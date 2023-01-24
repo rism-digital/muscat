@@ -14,7 +14,6 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - "2"
       - values: 
         - "BNE"
@@ -30,8 +29,6 @@
         - "WKP"
         default: "VIAF"
         editor_partial: subfield_select
-      - cols: 2
-    columns: 4
 "031": 
   new_window: standard_titles
   new_window_field: title_equals
@@ -184,14 +181,9 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - c
-      - cols: 2
     - - d
-      - cols: 2
     - - b
-      - cols: 2
-    columns: 4
 "100":
   new_window: people
   new_window_field: full_name_equals
@@ -294,12 +286,18 @@
     - - "a"
       - type: standard_term
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "383": 
   layout: 
     fields: 
     - - b
+"430": 
+  layout: 
+    fields: 
+    - - a
+    - - m
+    - - r
+    - - p
+    - - s
 "500": 
   allow_new: true
   new_window: people
@@ -308,10 +306,8 @@
     - - "a"
       - type: person
         editor_partial: subfield_secondary
-      - cols: 4
     - - d
     - - e
-    columns: 4
 "548": 
   layout: 
     fields: 
@@ -325,8 +321,6 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 2
 "670": 
   allow_new: true
   new_window: publications
@@ -335,10 +329,7 @@
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
-      - cols: 4
     - - "b"
-      - cols: 2
-    columns: 4
 "675": 
   allow_new: true
   new_window: publications
@@ -347,8 +338,6 @@
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "680": 
   layout: 
     fields: 
@@ -429,8 +418,6 @@
     - - "a"
       - type: liturgical_feast
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "930": 
   allow_new: true
   new_window: works
@@ -439,7 +426,6 @@
     - - "a"
       - type: work
         editor_partial: subfield_secondary
-      - cols: 4
     - - i
       - values:
         - "Adaption of"
@@ -450,7 +436,6 @@
         - "Pharaphrase of"  
         - "Variation of"  
         editor_partial: subfield_select
-    columns: 4
 
 triggers:
   - notify_changes

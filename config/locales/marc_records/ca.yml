@@ -1,317 +1,316 @@
-en:
+ca:
   general:
-    created_at: "Created on"
+    created_at: "Creat el"
     e_mail: Email
-    editor_help: Editor help
-    faq: Frequently asked questions
-    female: Female
-    how_do_i: How do I ... Tips & Tricks
-    index_marc_fields: Index of MARC fields
-    male: Male
-    marc_tag_index: MARC tag index
+    editor_help: Ajuda per l'editor
+    faq: Preguntes freqüents
+    female: Dona
+    how_do_i: Com podria? Suggeriments i pistes
+    index_marc_fields: Índex dels camps MARC
+    male: Home
+    marc_tag_index: Índex de les etiquetes MARC
     'no': 'No'
     rism: RISM
-    rism_best_practices: RISM best practices
-    rism_instrument_abbreviations: RISM instrument abbreviations (continued)
+    rism_best_practices: Bones pràctiques al RISM
+    rism_instrument_abbreviations: Abreviatures d'instruments usades al RISM (continuació)
     rism_series: RISM series
-    rism_series_a_b_references: RISM series A/I and B reference
-    rism_series_number: RISM series number
-    rule_type: Rule type
-    scope_printed_music_rism: Scope of printed music in RISM
-    searching: Searching
-    source_citation: Source citation
+    rism_series_a_b_references: Referències a les Sèries RISM A/I i B
+    rism_series_number: Número RISM
+    rule_type: Tipus de regla
+    scope_printed_music_rism: Abast de la música impresa al RISM
+    searching: Cerca
+    source_citation: Citació de la font
     status: Status
-    undetermined: Undetermined
-    ungrouped_fields: Ungrouped fields
-    unknown_fields: Unknown fields
-    unused: UNUSED - WILL BE REMOVED
-    updated_at: Last modification
+    undetermined: Indeterminat
+    ungrouped_fields: Camps no agrupats
+    unknown_fields: Camps desconeguts
+    unused: EN DESÚS - SERÀ ELIMINAT
+    updated_at: Darrera modificació
     uri: URI
     url: URL
-    using_muscat: Using Muscat
-    validity: Validity
-    when_to_input_new_record: When to input a new record (printed music)
-    workflow: Workflow
-    'yes': 'Yes'
+    using_muscat: Guia de Muscat
+    validity: Validesa
+    when_to_input_new_record: Quan crear un nou registro (música impresa)
+    workflow: Fluxe de treball
+    'yes': 'Sí'
   languages:
     albanian: Albanian
     afrikaans: Afrikaans
-    arabic: Arabic
-    aragonese: Aragonese
-    armenian: Armenian
+    arabic: Àrab
+    aragonese: Aragonès
+    armenian: Armeni
     artificial: Artificial (other)
-    australian: Australian languages
-    basque: Basque
-    bengali: Bengali
-    bosnian: Bosnian
-    bulgarian: Bulgarian
-    catalan: Catalan
+    australian: Llengües australianes
+    basque: Basc
+    bengali: Bengalí
+    bosnian: Bosnià
+    bulgarian: Búlgar
+    catalan: Català
     celtic_other: Celtic (other)
-    chinese: Chinese
+    chinese: Xinès
     cree: Cree
     creoles_pidgins_other: Creoles and Pidgins (other)
-    croatian: Croatian
-    czech: Czech
+    croatian: Croat
+    czech: Txec
     dakota: Dakota
-    danish: Danish
-    dutch: Dutch
-    english: English
-    estonian: Estonian
-    ethiopic: Ethiopic
-    fijian: Fijian
-    finnish: Finnish
-    french: French
-    french_middle: French, Middle (ca. 1300-1600)
-    french_old: French, Old (ca. 842-1300)
+    danish: Danès
+    dutch: Holandès
+    english: Anglès
+    estonian: Estonià
+    ethiopic: Etiòpic
+    fijian: Fijià
+    finnish: Finès
+    french: Francès
+    french_middle: Francès mitjà (ca. 1300-1600)
+    french_old: Francès antic (ca. 842-1300)
     friulian: Friulian
-    gallician: Galician
-    german: German
-    german_old_high: German, Old High (ca. 750-1050)
-    germanic: Germanic
-    greek_ancient: Greek, Ancient (to 1453)
-    greek_modern: Greek, Modern (1453-)
-    hebrew: Hebrew
-    hungarian: Hungarian
-    icelandic: Icelandic
+    gallician: Gallec
+    german: Alemany
+    german_old_high: Alemany culte antic (aprox. 750-1050)
+    germanic: Germànic
+    greek_ancient: Grec antic (fins el 1453)
+    greek_modern: Grec modern (1453-)
+    hebrew: Hebreu
+    hungarian: Hongarès
+    icelandic: Islandès
     insari_sami: Inari Sami
-    irish: Irish
-    italian: Italian
-    japanese: Japanese
-    korean: Korean
-    latin: Latin
-    latvian: Latvian
-    lithuanian: Lithuanian
-    low_german: Low German
+    irish: Irlandès
+    italian: Italià
+    japanese: Japonès
+    korean: Coreà
+    latin: Llatí
+    latvian: Letó
+    lithuanian: Lituà
+    low_german: Baix alemany
     lower_sorbian: 'Sorbian: Lower Sorbian'
-    luxembourgish: Luxembourgish
-    macedonian: Macedonian
+    luxembourgish: Luxemburguès
+    macedonian: Macedònic
     maori: Maori
-    middle_english: Middle English
-    middle_high_german: Middle High German
-    mongolian: Mongolian
-    neapolitan: Neapolitan
-    north_frisian: North Frisian
-    norwegian: Norwegian
-    occitan: Occitan
+    middle_english: Anglès mitjà
+    middle_high_german: Alemany culte medieval
+    mongolian: Mongol
+    neapolitan: Napolità
+    north_frisian: Frisó septentrional
+    norwegian: Noruec
+    occitan: Occità
     oirat: Oirat
-    old_church_slavonic: Old Church Slavonic
-    persian: Persian
-    polish: Polish
-    portugese: Portuguese
-    romani: Romani
-    romanian: Romanian
-    romansh: Romansh
-    russian: Russian
-    sanskrit: Sanskrit
+    old_church_slavonic: Eslau eclesiàstic antic
+    persian: Persa
+    polish: Polonès
+    portugese: Portuguès
+    romani: Romaní
+    romanian: Romanès
+    romansh: Romanx
+    russian: Rus
+    sanskrit: Sànscrit
     scots: Scots
-    serbian: Serbian
-    sichuan_yi: Sichuan Yi
-    sicilian: Sicilian
-    slavic: Slavic
-    slovak: Slovak
-    slovenian: Slovenian
-    sorbian: Sorbian
+    serbian: Serbi
+    sichuan_yi: Sichuanès (mandarí)
+    sicilian: Sicilià
+    slavic: Eslau
+    slovak: Eslovac
+    slovenian: Eslovè
+    sorbian: Sòrab
     south_american: South American Indian (other)
-    spanish: Spanish
+    spanish: Castellà
     swahili: Swahili
-    swedish: Swedish
-    swiss_german: Swiss German
-    tagalog: Tagalog
-    tartar: Tatar
-    thai: Thai
-    tibetan: Tibetan
+    swedish: Suec
+    swiss_german: Alemany suís
+    tagalog: Tagal
+    tartar: Tàtar
+    thai: Tailandès
+    tibetan: Tibetà
     tsimshian: Tsimshian
-    turkish: Turkish
-    ukrainian: Ukrainian
+    turkish: Turc
+    ukrainian: Ucraïnès
     upper_sorbian: 'Sorbian: Upper Sorbian'
-    vietnamese: Vietnamese
-    welsh: Welsh
-    west_frisian: West Frisian
-    yiddish: Yiddish
+    vietnamese: Vietnamita
+    welsh: Gal·lès
+    west_frisian: Frisó occidental
+    yiddish: Ídix
   places:
     afghanistan: Afghanistan
-    albania: Albania
-    algeria: Algeria
+    albania: Albània
+    algeria: Algèria
     andorra: Andorra
     argentina: Argentina
-    armenia: Armenia
-    australia: Australia
-    austria: Austria
-    austria_carinthia: 'Austria: Carinthia'
-    austria_lower_austria: 'Austria: Lower Austria'
-    austria_salzburg: 'Austria: Salzburg'
-    austria_styria: 'Austria: Styria'
-    austria_tyrol: 'Austria: Tyrol'
-    austria_upper_austria: 'Austria: Upper Austria'
-    austria_vienna: 'Austria: Vienna'
+    armenia: Armènia
+    australia: Austràlia
+    austria: Àustria
+    austria_carinthia: 'Àustria: Caríntia'
+    austria_lower_austria: 'Àustria: Baixa Àustria'
+    austria_salzburg: 'Àustria: Salzburg'
+    austria_styria: 'Àustria: Estíria'
+    austria_tyrol: 'Àustria: Tirol'
+    austria_upper_austria: 'Àustria: Alta Àustria'
+    austria_vienna: 'Àustria: Viena'
     azerbiajan: Azerbaijan
     bangladesh: Bangladesh
     belarus: Belarus
-    belgium: Belgium
-    benin: Benin
-    bolivia: Bolivia
+    belgium: Bèlgica
+    benin: Benín
+    bolivia: Bolívia
     bosnia_herzegovina: Bosnia and Herzegovina
-    brazil: Brazil
-    bulgaria: Bulgaria
-    cambodia: Cambodia
-    canada: Canada
-    chile: Chile
-    china: China
-    colombia: Colombia
+    brazil: Brasil
+    bulgaria: Bulgària
+    cambodia: Cambodja
+    canada: Canadà
+    chile: Xile
+    china: Xina
+    colombia: Colòmbia
     costa_rica: Costa Rica
-    croatia: Croatia
+    croatia: Croàcia
     cuba: Cuba
-    czech_republic: Czech Republic
-    denmark: Denmark
-    ecuador: Ecuador
-    egypt: Egypt
-    estonia: Estonia
-    finland: Finland
-    france: France
-    georgia: Georgia
-    germany: Germany
-    germany_bavaria: 'Germany: Bavaria'
-    germany_saxony: 'Germany: Saxony'
-    greece: Greece
+    czech_republic: República Txeca
+    denmark: Dinamarca
+    ecuador: Equador
+    egypt: Egipte
+    estonia: Estònia
+    finland: Finlàndia
+    france: França
+    georgia: Geòrgia
+    germany: Alemanya
+    germany_bavaria: 'Alemanya: Baviera'
+    germany_saxony: 'Alemanya: Saxònia'
+    greece: Grècia
     guatemala: Guatemala
     guinea: Guinea
-    honduras: Honduras
+    honduras: Hondures
     hong_kong: Hong Kong
-    hungary: Hungary
-    iceland: Iceland
-    india: India
-    indonesia: Indonesia
-    iran: Iran, Islamic Republic of
+    hungary: Hongria
+    iceland: Islàndia
+    india: Índia
+    indonesia: Indonèsia
+    iran: Iran, República Islàmica de
     iraq: Iraq
-    ireland: Ireland
+    ireland: Irlanda
     israel: Israel
-    italy: Italy
-    italy_trentino_alto_adige: 'Italy: Trentino-Alto Adige'
-    japan: Japan
-    korea: Korea, Republic of
-    latvia: Latvia
-    lithuania: Lithuania
+    italy: Itàlia
+    italy_trentino_alto_adige: 'Itàlia: Trentino-Alto Adige'
+    japan: Japó
+    korea: Corea del Sud
+    latvia: Letònia
+    lithuania: Lituània
     lebanon: Lebanon
-    luxembourg: Luxembourg
+    luxembourg: Luxemburg
     malta: Malta
-    mexico: Mexico
-    moldavia: Moldavia
-    monaco: Monaco
+    mexico: Mèxic
+    moldavia: Moldàvia
+    monaco: Mònaco
     montenegro: Montenegro
-    netherlands: Netherlands
-    new_zealand: New Zealand
+    netherlands: Països Baixos
+    new_zealand: Nova Zelanda
     nicaragua: Nicaragua
     north_macedonia: North Macedonia
-    northern_ireland: Northern Ireland
-    norway: Norway
+    northern_ireland: Irlanda del Nord
+    norway: Noruega
     pakistan: Pakistan
-    papua_new_guinea: Papua New Guinea
-    paraguay: Paraguay
-    peru: Peru
-    philippines: Philippines
-    poland: Poland
+    papua_new_guinea: Papua Nova Guinea
+    paraguay: Paraguai
+    peru: Perú
+    philippines: Filipines
+    poland: Polònia
     portugal: Portugal
     puerto_rico: Puerto Rico
     romania: Romania
-    russian_federation: Russian Federation
-    saudi_arabia: Saudi Arabia
-    serbia: Serbia
-    slovakia: Slovakia
-    slovenia: Slovenia
-    south_africa: South Africa
-    spain: Spain
-    sweden: Sweden
-    switzerland: Switzerland
-    switzerland_vaud: 'Switzerland: Vaud'
-    syrian_arab_republic: Syrian Arab Republic
-    taiwan: Taiwan (Province of China)
+    russian_federation: Federació Russa
+    saudi_arabia: Aràbia Saudita
+    serbia: Sèrbia
+    slovakia: Eslovàquia
+    slovenia: Eslovènia
+    south_africa: Sud-àfrica
+    spain: Espanya
+    sweden: Suècia
+    switzerland: Suïssa
+    switzerland_vaud: 'Suïssa: cantó de Vaud'
+    syrian_arab_republic: Síria
+    taiwan: Taiwan (província de Xina)
     tajikistan: Tajikistan
-    trinidad_tobego: Trinidad and Tobago
-    turkey: Turkey
-    uk: United Kingdom
-    ukraine: Ukraine
-    uruguay: Uruguay
-    usa: United States of America
+    trinidad_tobego: Trinitat i Tobago
+    turkey: Turquia
+    uk: Regne Unit
+    ukraine: Ucraïna
+    uruguay: Uruguai
+    usa: Estats Units d'Amèrica
     uzbekistan: Uzbekistan
-    # holy_see provided for backwards compatibility
+    #holy_see provided for backwards compatibility
     holy_see: Vatican City
     vatican: Vatican City
-    venezuela: Venezuela, Bolivarian Republic of
+    venezuela: Veneçuela
     vietnam: Vietnam
   records:
-    a_major: A major
-    a_minor: A minor
-    abbreviations: Abbreviations
-    abbreviations_terminology: Abbreviations and terminology
-    access_restrictions: Access restrictions
-    accession_number: Accession number
-    acronym: Acronym
-    added_entry_name: Added entry name
-    additional_author: Additional author
-    additional_bibliographic_information: Additional bibliographic information
-    additional_biographical_information: Additional biographical information
-    additional_choir_voice: Additional choir voice
-    additional_codes: Additional codes following the standard number or code
-    additional_institution: Additional institution
-    additional_personal_name: Additional personal name
-    additional_personal_name_lit: Additional personal name
-    additional_solo_voice: Additional solo voice
-    additional_title: Additional title
-    additional_title_lit: Additional title
-    administration: Administration
-    af_major: A♭ major
-    af_minor: A♭ minor
-    aide: Aide
-    aids: Aids
-    alleged: Alleged
-    alternate_spelling: Alternate spelling
-    alternative_work_title: Alternative work title
-    archive: Archive
-    arrangement: Arrangement
-    arrangement_statement: Arrangement statement
-    arranger: Arranger
-    artist: Artist
-    artistic_production: Artistic production
-    as_major: A♯ major
-    as_minor: A♯ minor
-    ascertained: Ascertained
-    assignee: Assignee
-    associated_country: Associated country
-    associated_institution: Associated institution
-    associated_name: Associated name
-    associated_name_lit: Associated name
+    a_major: La major
+    a_minor: La menor
+    abbreviations: Abreviatures
+    abbreviations_terminology: Abreviatures i terminologia
+    access_restrictions: Restriccions d'accés
+    accession_number: Número d'accés
+    acronym: Acrònim
+    added_entry_name: Entrada addicional pel nom
+    additional_author: Autor addicional
+    additional_bibliographic_information: Informació bibliogràfica addicional
+    additional_biographical_information: Informació biogràfica addicional
+    additional_choir_voice: Veu de cor addicional
+    additional_codes: Codis addicionals a partir del número o codi estàndard
+    additional_institution: Institució addicional
+    additional_personal_name: Nom personal addicional
+    additional_personal_name_lit: Nom personal addicional
+    additional_solo_voice: Veu solista addicional
+    additional_title: Títol addicional
+    additional_title_lit: Títol addicional
+    administration: Adminstració
+    af_major: La bemoll major
+    af_minor: La bemoll menor
+    aide: Ajuda
+    aids: Assistència
+    alleged: Suposat
+    alternate_spelling: Ortografia alternativa
+    archive: Arxiu
+    arrangement: Arranjament
+    arrangement_statement: Menció d'arranjament
+    arranger: Arranjador
+    artist: Artista
+    artistic_production: Producció artística
+    as_major: La♯ major
+    as_minor: La♯ menor
+    ascertained: Certificada
+    assignee: Assignatari
+    associated_country: País associat
+    associated_institution: Institució associada
+    associated_name: Nom associat
+    associated_name_lit: Nom associat
     associated_place: Associated place
-    attribution_qualifier: Attribution qualifier
-    authentication_code: Authentication code
-    author: Author
-    author_editor: Author/Editor
-    authorities: Authorities
-    authority_agency: Authority agency
-    authority_record_control_number: Authority record control number or standard number
-    authority_reference: Authority reference
-    autography: Autography
-    b_major: B major
-    b_minor: B minor
-    baptismal_name: Baptismal name
-    basic_functions: Basic functions
-    basso_continuo: Basso continuo
-    bf_major: B♭ major
-    bf_minor: B♭ minor
+    attribution_qualifier: Qualificador d'atribució
+    authentication_code: Codi d'autenticació
+    author: Autor
+    author_editor: Autor/editor
+    authorities: Autoritats
+    authority_agency: Agència d'autoritat
+    authority_record_control_number: Codi del registre d'autoritat o identificador estàndard
+    authority_reference: Referència d'autoritat
+    autography: Autografia
+    b_major: Si major
+    b_minor: Si menor
+    baptismal_name: Nom baptismal
+    basic_functions: Funcions bàsiques
+    basso_continuo: Baix continu
+    bf_major: Si♭ major
+    bf_minor: Si♭ minor
     bibliography: Bibliography
-    bibliographic_reference: Bibliographic reference
-    binder: Binder
-    binding_note: Binding note
-    birth_name: Birth name
-    book_format: Book format
-    bookseller: Bookseller
-    bound_with: Bound with
-    brass_instruments: Brass instruments
-    brief: Brief
-    broader_term: Broader term
-    brother_of: Brother of
-    byname: Byname
-    c_major: C major
-    c_minor: C minor
+    bibliographic_reference: Referència bibliogràfica
+    binder: Enquadernador
+    binding_note: Nota d'enquadernació
+    birth_name: Data de naixement
+    book_format: Format de llibre
+    bookseller: Llibreter
+    bound_with: Enquadernat amb
+    brass_instruments: Vent-metall
+    brief: Breu
+    broader_term: Terme genèric
+    brother_of: Germà de
+    byname: Renom
+    c_major: Do major
+    c_minor: Do menor
     c_minus_1: C-1
     c_minus_2: C-2
     c_minus_3: C-3
@@ -323,160 +322,160 @@ en:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Catalog
-    catalog_opus_number: Catalog number/Opus number
-    catalog_works: Catalog of works
-    cataloging_agency: Cataloging agency
-    cataloging_collection_convoluta: Cataloging collection and convoluta
-    cataloging_collections: Cataloging collections
-    cataloging_forms: Cataloging forms
-    cataloging_language: Cataloging language
-    cataloging_level: Cataloging level
-    cataloging_musical_sources: Cataloging musical sources
-    cataloging_source: Cataloging source
-    category: Category
+    catalog_opus_number: Número de catàleg/Número d'opus
+    catalog_works: Catàleg d'obres
+    cataloging_agency: Agència catalogadora
+    cataloging_collection_convoluta: Catalogació de reculls i volums compostos
+    cataloging_collections: Catalogació de reculls
+    cataloging_forms: Formularis de catalogació
+    cataloging_language: Llengua de catalogació
+    cataloging_level: Nivell de catalogació
+    cataloging_musical_sources: Catalogació de fonts musicals
+    cataloging_source: Font de la catalogació
+    category: Categoria
     censor: Censor
-    cf_major: C♭ major
-    cf_minor: C♭ minor
-    child_of: Child of
-    choir_voice: Choir voice
-    choreographer: Choreographer
-    chronological_subdivision: Chronological subdivision
-    chronological_term: Chronological term
-    city: City
-    clef: Clef
-    co_composer: Co-composer
-    coded_date: Coded date
-    coded_instrumentation: Coded instrumentation
-    collaborator: Collaborator
+    cf_major: Do♭ major
+    cf_minor: Do♭ menor
+    child_of: Fill(a) de
+    choir_voice: Veu de cor
+    choreographer: Coreògraf
+    chronological_subdivision: Subdivisió cronològica
+    chronological_term: Terme cronològic
+    city: Ciutat
+    clef: Clau
+    co_composer: Co-compositor
+    coded_date: Data codificada
+    coded_instrumentation: Intrumentació codificada
+    collaborator: Col·laborador
     collective_catalog: Collective catalog
-    colophon: Colophon
-    common_clefs: Common clefs
-    compiler: Compiler
-    composer: Composer
-    composer_author: Composer/Author
-    composer_cross_reference: Composer cross-reference
-    computer_printout: Computer printout
-    conceptor: Conceptor
-    conductor: Conductor
-    confused_with: Confused with
-    conjectural: Conjectural
-    contact: Contact
-    contact_area: Contact area
-    content: Content
-    content_description: Content description
+    colophon: Colofó
+    common_clefs: Claus comunes
+    compiler: Compilador
+    composer: Compositor
+    composer_author: Compositor/Autor
+    composer_cross_reference: Refèrencia a un altre compositor
+    computer_printout: Sortida d'impressora
+    conceptor: Autor del concepte
+    conductor: Director
+    confused_with: Confós amb
+    conjectural: Conjetural
+    contact: Contacte
+    contact_area: Contacte
+    content: Contingut
+    content_description: Descripció del contingut
     content_type: Content type
-    contents_note: Contents note
-    contributor: Contributor
-    control_fields: Control fields
-    control_number_identifier: Control number identifier
-    control_subfield: Control subfield
-    copy_examined: Copy examined for cataloging
-    copyist: Copyist
-    copyright_holder: Copyright holder
-    costume_designer: Costume designer
-    countries_places: Countries and Places
-    country: Country
-    country_active: Country active
-    country_activity: Country of activity
-    country_code: Country code
-    country_of_publication: Country of publication
-    county_province: County or province
-    creation_production_note: Creation/production note
-    cs_major: C♯ major
-    cs_minor: C♯ minor
-    d_major: D major
-    d_minor: D minor
-    dancer: Dancer
-    date: Date
-    date_of_acquisition: Date of acquisition
-    date_of_creation: Date of creation
-    date_time_last_transaction: Date and time of last transaction
-    date_type: Date type
+    contents_note: Nota de contingut
+    contributor: Col·laborador
+    control_fields: Camps de control
+    control_number_identifier: Identificador de número de control
+    control_subfield: Subcamp de control
+    copy_examined: Còpia examinada per a la catalogació
+    copyist: Copista
+    copyright_holder: Propietari dels drets d'autor
+    costume_designer: Dissenyador de vestuari
+    countries_places: Països i llocs
+    country: País
+    country_active: País d'activitat
+    country_activity: País d'activitat
+    country_code: Codi de país
+    country_of_publication: País de publicació
+    county_province: Estat o província
+    creation_production_note: Nota sobre la creació/produció
+    cs_major: Do♯ major
+    cs_minor: Do♯ menor
+    d_major: Re major
+    d_minor: Re menor
+    dancer: Ballarí
+    date: Data
+    date_of_acquisition: Data d'adquisició
+    date_of_creation: Data de creació
+    date_time_last_transaction: Data i hora de l'última transacció
+    date_type: Tipus de data
     dates: Dates
-    dedicatee: Dedicatee
-    department: Department
-    depositor: Depositor
-    deprecated_fields: Obsolete fields (do not use)
-    description: Description
-    description_area: Description area
-    description_summary: Description summary
-    designer: Designer
-    df_major: D♭ major
-    df_minor: D♭ minor
-    digital_objects: Digital objects
-    digitized_music: Digitized music
-    digitized_source: Digitized source
+    dedicatee: Dedicatario
+    department: Departament
+    depositor: Dipositant
+    deprecated_fields: Camps obsolets (no els utilitzeu)
+    description: Descripció
+    description_area: Descripció
+    description_summary: Breu descripció
+    designer: Dissenyador
+    df_major: Re♭ major
+    df_minor: Re♭ menor
+    digital_objects: Objectes digitals
+    digitized_music: Música digitalitzada
+    digitized_source: Font digitalitzada
     dimensions: Dimensions
-    diplomatic_title: Diplomatic title
-    dissertation_note: Dissertation note
-    distribution: Distribution
-    distributor: Distributor
-    documentation_center: Documentation center
-    donor: Donor
-    doubtful: Doubtful
-    dramatic_roles_original: Dramatic role named, original spelling
-    dramatic_roles_standardized: Dramatic role named, standardized
-    ds_major: D♯ major
-    ds_minor: D♯ minor
-    dubious: Dubious
-    e_major: E major
-    e_minor: E minor
-    earlier_heading: Earlier heading
-    ecclesiastical_modes: Ecclesiastical modes
-    edition: Edition
-    edition_imprint_fields: Edition, imprint, etc. fields
-    edition_statement: Edition statement
+    diplomatic_title: Títol diplomàtic
+    dissertation_note: Nota de tesi
+    distribution: Distribució
+    distributor: Distribuïdor
+    documentation_center: Centre de documentació
+    donor: Donant
+    doubtful: Dubtós
+    dramatic_roles_original: Noms originals dels personatges
+    dramatic_roles_standardized: Noms normalitzats dels personatges
+    ds_major: Re♯ major
+    ds_minor: Re♯ menor
+    dubious: Dubtós
+    e_major: Mi major
+    e_minor: Mi menor
+    earlier_heading: Encapçalament anterior
+    ecclesiastical_modes: Modes eclesiàstics
+    edition: Edició
+    edition_imprint_fields: Peu d'impremta
+    edition_statement: Edició
     editor: Editor
-    ef_major: E♭ major
-    ef_minor: E♭ minor
+    ef_major: Mi♭ major
+    ef_minor: Mi♭ menor
     encyclopedia: Encyclopedia
-    end_period: End period
-    engraver: Engraver
-    engraving: Engraving
-    event_organizer: Event organizer
-    event_place: Event place
-    excerpts: Excerpts
+    end_period: Període final
+    engraver: Gravador
+    engraving: Gravat
+    event_organizer: Organitzador
+    event_place: Lloc de l'esdeveniment
+    excerpts: Extractes
     exemplars: Exemplars
-    extent: Extent
-    extent_parts: Extent (parts)
-    external_resource: External resource
-    external_resource_uri: External resource URI
-    external_resource_url: External resource URL
-    f_major: F major
-    f_minor: F minor
+    extent: Extensió
+    extent_parts: Extensió (particel·les)
+    external_resource: Recurs extern
+    external_resource_uri: URI del recurs extern
+    external_resource_url: URL del recurs extern
+    f_major: Fa major
+    f_minor: Fa menor
     f_minus_1: F-1
     f_minus_2: F-2
     f_minus_3: F-3
-    f_minus_4_bass: F-4 (bass clef)
+    f_minus_4_bass: F-4 (clau de baix)
     f_minus_5: F-5
     f_plus_1: F+1
     f_plus_2: F+2
     f_plus_3: F+3
     f_plus_4: F+4
     f_plus_5: F+5
-    facsimile: Facsimile
+    facsimile: Facsímil
     family_name: Family name
-    father_of: Father of
-    field_link: Field link and sequence number
+    father_of: Pare de
+    field_link: Enllaç de camp i número de seqüència
     field_of_activity: Field of activity
-    figured_bass_scores: Figured bass in scores and/or other parts
-    fijian: Fijian
-    fingerprint_identifier: Fingerprint identifier
-    first_second_group: First/second group
-    form_subdivision: Form subdivision
-    format_extent: Format, extent
-    former_owner: Former owner
+    figured_bass_scores: Baix xifrat
+    fijian: Fijià
+    fingerprint_identifier: Identificador de l'empremta
+    first_second_group: Primer/segon grup
+    form_subdivision: Subdivisió de forma
+    format_extent: Format, extensió
+    former_owner: Propietari anterior
     fragments: Fragments
-    fs_major: F♯ major
-    fs_minor: F♯ minor
-    full: Full
-    function: Function
-    further_information: Further information
-    g_major: G major
-    g_minor: G minor
+    fs_major: Fa♯ major
+    fs_minor: Fa♯ menor
+    full: Complet
+    function: Funció
+    further_information: Informació suplementària
+    g_major: Sol major
+    g_minor: Sol menor
     g_minus_1: G-1
-    g_minus_2_octave: g-2 (octave treble clef)
-    g_minus_2_treble: G-2 (treble clef)
+    g_minus_2_octave: g-2 (clau de sol octava baixa)
+    g_minus_2_treble: G-2 (clau aguda estàndard)
     g_minus_3: G-3
     g_minus_4: G-4
     g_minus_5: G-5
@@ -485,99 +484,99 @@ en:
     g_plus_3: G+3
     g_plus_4: G+4
     g_plus_5: G+5
-    gender: Gender
-    general_abbreviations: General abbreviations and terms
-    general_cataloguing_guidelines: General cataloging guidelines
-    general_note: General note
-    general_note_incipits: General note for music incipit
-    general_note_institution: General note
-    general_note_personal: General note
-    geographic_name: Geographic name
-    geographic_subdivision: Geographic subdivision
-    gf_major: G♭ major
-    gf_minor: G♭ minor
-    gs_major: G♯ major
-    gs_minor: G♯ minor
-    heading: Heading
-    heading_composer_name: Heading - composer name
-    heading_personal_name: Heading - Personal name
-    heading_personal_name1: Heading-Personal name
-    help_transposing_instruments: Help for transposing instruments
-    history_institution: History of institution
-    holdings_location: Holdings, location, etc. fields
-    identity: Identity
-    identity_area: Identity area
+    gender: Sexe
+    general_abbreviations: Abreviatures i terminologia general
+    general_cataloguing_guidelines: Regles generals de catalogació
+    general_note: Nota general
+    general_note_incipits: Nota general per als incípits musicals
+    general_note_institution: Nota general
+    general_note_personal: Nota general
+    geographic_name: Nom geogràfic
+    geographic_subdivision: Subdivisió geogràfica
+    gf_major: Sol♭ major
+    gf_minor: Sol♭ menor
+    gs_major: Sol♯ major
+    gs_minor: Sol♯ menor
+    heading: Encapçalament
+    heading_composer_name: Compositor
+    heading_personal_name: Nom personal
+    heading_personal_name1: Nom personal
+    help_transposing_instruments: Ajuda pels instruments transpositors
+    history_institution: Història de la institució
+    holdings_location: Camps d'exemplars i fons
+    identity: Identitat
+    identity_area: Identitat
     iiif_manifest: "IIIF manifest (digitized source)"
     iiif_manifest_other: "IIIF manifest (other)"
-    illustrator: Illustrator
-    immediate_parent_body: Immediate parent body
-    import: Import
-    imprint: Imprint
-    incipit: Incipit
-    incipit_number: Incipit number
-    incipits: Incipits
-    index_terms: Index terms
-    information_found: Information found
-    initial: Initial
-    initial_entry: Initial entry
-    initials: Initials
-    insertions: Insertions
-    inserts: Inserts
-    institution: Institution
-    institutions: Institutions
-    instrumentalist: Instrumentalist
-    internal_note: Internal note
-    introduction: Introduction
-    invalid_standard_number: Canceled/invalid standard number or code
+    illustrator: Il·lustrador
+    immediate_parent_body: Institució immediatament superior
+    import: Importar
+    imprint: Peu d'impremta
+    incipit: Incípit musical
+    incipit_number: Número d'incípit
+    incipits: Incípits
+    index_terms: Termes d'indexació
+    information_found: Informació trobada
+    initial: Inicial
+    initial_entry: Entrada inicial
+    initials: Inicials
+    insertions: Insercions
+    inserts: Insercions
+    institution: Institució
+    institutions: Institucions
+    instrumentalist: Instrumentista
+    internal_note: Nota interna
+    introduction: Introducció
+    invalid_standard_number: Número o codi estàndard cancel·lat/invàlid
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
-    item_in_collection: Item in this collection
-    item_part_of: Item part of
-    items_in_source: Items in this source
-    japanese: Japanese
-    key: Key
-    key_or_mode: Key or mode
-    key_signature: Key signature
-    keyboards: Keyboards
-    keys: Keys
-    language_code: Language code
-    language_codes: Language codes
-    language_libretto: Language of libretto
-    language_note: Language note
-    language_of_cataloging: Language of cataloging
-    language_original_text: Language of original text
-    language_text: Language of text
-    later_heading: Later heading
-    latitude: Latitude
+    item_in_collection: Contingut de la col·lecció
+    item_part_of: Forma part de
+    items_in_source: Contingut de la col·lecció
+    japanese: Japonès
+    key: Tonalitat
+    key_or_mode: Tonalitat o mode
+    key_signature: Armadura de clau
+    keyboards: Teclats
+    keys: Tonalitats
+    language_code: Codi d'idioma
+    language_codes: Codis d'idioma
+    language_libretto: Llengua del llibret
+    language_note: Nota de llengua
+    language_of_cataloging: Idioma de catalogació
+    language_original_text: Idioma del text original
+    language_text: Llengua del text
+    later_heading: Encapçalament posterior
+    latitude: Latitud
     leader: Leader
-    library: Library
-    library_information: Library information
-    library_information_relations: Library information and relations
-    library_siglum: Library siglum
-    librettist: Librettist
-    licensee: Licensee
-    life_dates: Life dates
-    link_type: Link type
-    linkage: Linkage
-    linking_entry_fields: Linking entry fields
-    literature: Literature
-    lithograph: Lithograph
-    lithographer: Lithographer
-    lithography: Lithography
-    liturgical_festival: Liturgical festival
-    liturgical_festivals: Liturgical festivals
-    local_id_number: Local ID no.
-    local_note_field: Local note field
-    local_notes_field: Local notes field
-    local_number: Local number
-    location: Location
-    location_and_address: Location and address
+    library: Biblioteca
+    library_information: Informació de la biblioteca
+    library_information_relations: Informació de la biblioteca i relacions
+    library_siglum: Sigla de la biblioteca
+    librettist: Llibretista
+    licensee: Titular de la llicència
+    life_dates: Anys
+    link_type: Tipus d'enllaç
+    linkage: Enllaços
+    linking_entry_fields: Camps d'enllaços a les entrades
+    literature: Literatura
+    lithograph: Litografia
+    lithographer: Litògraf
+    lithography: Litografia
+    liturgical_festival: Festivitat litúrgica
+    liturgical_festivals: Festivitats litúrgiques
+    local_id_number: Número local
+    local_note_field: Nota local
+    local_notes_field: Notes locals
+    local_number: Número local
+    location: Lloc
+    location_and_address: Lloc i adreça
     location_insertion: Location of insertion
     location_on_source: Locations on the source
     location_performance: Location of performance
     location_printer: Location of printer
-    longitude: Longitude
+    longitude: Longitud
     lyricist: Lyricist
     main_entry_fields: Main entry fields
     married_name: Married name
@@ -616,32 +615,31 @@ en:
     mode_8tt: 'Mode: 8tt – Hypomixolydian, transposed'
     mode_9t: 'Mode: 9t – Aeolian'
     mode_9tt: 'Mode: 9tt – Aeolian, transposed'
-    modifying_agency: Modifying agency
-    monogram: Monogram
-    mother_of: Mother of
-    movement_number: Movement number
-    multiple: Multiple
-    multiple_copies: Multiple copies
-    multiple_single_dates: Multiple single dates
-    museum: Museum
+    modifying_agency: Organisme de la modificació
+    monogram: Monograma
+    mother_of: Mare de
+    movement_number: Número de moviment
+    multiple: Múltiple
+    multiple_copies: Múltiples còpies
+    multiple_single_dates: Dates múltiples
+    museum: Museu
     music_edition: Music edition
-    music_incipit: Music incipit
-    musical_composition: Musical composition
-    name: Name
-    name_family: Name of family
-    name_of_part: Name of part/section of a work
-    name_printer: Name of printer
-    name_variant: Name variant
-    name_variants: Name variants
-    named_dramatic_roles: Named dramatic role
-    narrower_term: Narrower term
-    nationality: Nationality
-    nickname: Nickname
+    music_incipit: Incípit musical
+    musical_composition: Composició musical
+    name: Nom
+    name_family: Cognom
+    name_printer: Impressor
+    name_variant: Variant del nom
+    name_variants: Variants del nom
+    named_dramatic_roles: Noms dels personatges
+    narrower_term: Terme específic
+    nationality: Nacionalitat
+    nickname: Pseudònim
     no_linguistic_content: No linguistic content
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Not applicable
-    note: Note
-    note_external_resource: Note about external resource
+    note: Nota
+    note_external_resource: Nota sobre el recurs extern
     note_fields: Note fields
     note_on_performance: Note on performance
     now_in: Now in
@@ -654,13 +652,10 @@ en:
     octoechos2: 'Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)'
     octoechos3: 'Octoechos 3: Ēchos tritos (Third mode of Byzantine music)'
     octoechos4: 'Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)'
-    octoechos5: 'Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine
-      music)'
-    octoechos6: 'Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine
-      music)'
+    octoechos5: 'Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)'
+    octoechos6: 'Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)'
     octoechos7: 'Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)'
-    octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine
-      music)'
+    octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)'
     online_finding_aids: Online finding aids
     opera_houses_concert_halls: Opera houses and concert halls
     opus_number: Opus number
@@ -767,7 +762,7 @@ en:
     scoring_in_movement: Scoring in movement
     scoring_summary: Scoring summary
     scribe: Scribe
-    secondary_catalog_works: Secondary catalog of works
+    secondary_catalog_works: Catàleg secundari d'obres
     secondary_literature: Secondary literature
     series: Series
     series_added_entry: Series added entry fields
@@ -859,7 +854,6 @@ en:
     variant_source_title: Variant title on source
     variations: Variations
     verified: Verified
-    version_information: Version, edition, etc., information
     vocalist: Vocalist
     voice_instrument: Voice/instrument
     volume_year_page: Volume, year, page

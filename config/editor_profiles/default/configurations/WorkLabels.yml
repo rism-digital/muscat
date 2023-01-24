@@ -163,6 +163,19 @@
   label: records.mode_4t
 4tt:
   label: records.mode_4tt
+'430':
+  fields:
+    a:
+      label: records.alternative_work_title
+    m:
+      label: records.scoring_summary
+    r:
+      label: records.key_or_mode
+    s:
+      label: records.name_of_part
+    p:
+      label: records.version_information
+  label: records.alternative_work_title
 '500':
   fields:
     a:
