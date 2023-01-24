@@ -170,6 +170,15 @@ class Work < ApplicationRecord
       s.catalogue if !s.catalogue.strip.empty?
     end
     
+    sunspot_dsl.string :catalogue_name_order, :multiple => true, :stored => true do |s|
+      #s.publication.name if s.publication && s.publication.name && !s.publication.name.strip.empty?
+      if !s.publications.empty?
+        s.publications.collect {|p| p.name}
+      else
+        []
+      end
+    end
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
@@ -202,5 +211,6 @@ class Work < ApplicationRecord
  
   ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"0242_filter", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :catalogue_name_order, proc{ |v| } do |parent| parent.table[:id] end
 
 end

@@ -83,6 +83,8 @@ ActiveAdmin.register Work do
     def index
       # Get the terms for 0242_filter, the "link type"
       @link_types = Source.get_terms("0242_filter_sm")
+      @catalogues = Work.get_terms("catalogue_name_order_sms")
+
       @results, @hits = Work.search_as_ransack(params)
       index! do |format|
         @works = @results
@@ -130,6 +132,9 @@ ActiveAdmin.register Work do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Work").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
+  filter :"catalogue_name_order_with_integer", :label => "Catalogue", as: :select, 
+  collection: proc{@catalogues.sort.collect {|k| [k.camelize, "catalogue_name_order:#{k}"]}}
+
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
@@ -196,5 +201,5 @@ ActiveAdmin.register Work do
   sidebar :sections, :only => [:edit, :new, :update] do
     render("editor/section_sidebar") # Calls a partial
 	end
-  
+
 end

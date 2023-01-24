@@ -21,6 +21,8 @@ class Ability
 
     elsif user.has_role?(:editor)
       if user.has_role?(:person_editor)
+        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, WorkNode, Holding]
+      elsif user.has_role?(:work_editor)
         can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, WorkNode, Holding]
       elsif user.has_role?(:junior_editor)
         can [:read, :create, :update], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, WorkNode, Holding]
