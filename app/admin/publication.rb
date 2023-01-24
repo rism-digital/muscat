@@ -159,7 +159,8 @@ ActiveAdmin.register Publication do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Publication").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   # work catalogue filter
-  filter :work_catalogue, :label => proc{I18n.t(:work_catalogue)}, as: :select, collection: [["Yes", "true"]], :if => proc{ current_user.has_any_role?(:admin) }
+  filter :work_catalogue_with_integer, :label => proc{I18n.t(:work_catalogue)}, as: :select, 
+  collection: [["Yes", "work_catalogue:true"],["No", "work_catalogue:false"]], :if => proc{ current_user.has_any_role?(:admin) }
 
   
   index :download_links => false do

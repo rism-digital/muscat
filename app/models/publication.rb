@@ -201,7 +201,7 @@ class Publication < ApplicationRecord
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
 
-    sunspot_dsl.integer :work_catalogue
+    sunspot_dsl.boolean :work_catalogue
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
