@@ -173,8 +173,15 @@
     :indicator: "#0"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
     - - m
       - :occurrences: "*"
     - - r
