@@ -50,6 +50,8 @@ enm:
   label: languages.middle_english
 est:
   label: languages.estonian
+fao:
+  label: languages.faroese
 fas:
   label: languages.persian
 fij:
