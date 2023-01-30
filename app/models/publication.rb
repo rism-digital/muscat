@@ -4,7 +4,7 @@
 # === Fields
 # * <tt>name</tt> - Abbreviated name of the publication
 # * <tt>author</tt> - Author
-# * <tt>description</tt> - Full title
+# * <tt>title</tt> - Full title
 # * <tt>journal</tt> - if printed in a journal, the journal's title
 # * <tt>volume</tt> - as above, the journal volume
 # * <tt>place</tt>
