@@ -58,6 +58,7 @@ it:
     english: Inglese
     estonian: Estone
     ethiopic: Etiope
+    faroese: Faroense
     fijian: Figiano
     finnish: Finlandese
     french: Francese
@@ -265,6 +266,7 @@ it:
     aids: Assistenza
     alleged: Presunta
     alternate_spelling: Ortografia alternativa
+    alternative_work_title: Titolo alternativo dell'opera
     archive: Archivio
     arrangement: Arrangiamento
     arrangement_statement: Arrangiamento
@@ -628,6 +630,7 @@ it:
     musical_composition: Composizione musicale
     name: Nome
     name_family: Nome di famiglia
+    name_of_part: Nome della parte o sezione di un'opera
     name_printer: Stampatore, stamperia
     name_variant: Varianti del nome
     name_variants: Varianti del nome
@@ -854,6 +857,7 @@ it:
     variant_source_title: Varianti del titolo diplomatico
     variations: Variazioni
     verified: Verificata
+    version_information: Informazioni sulla versione o edizione
     vocalist: Cantante
     voice_instrument: Voce/strumento
     volume_year_page: Volume, anno, pagina

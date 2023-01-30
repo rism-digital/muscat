@@ -1,7 +1,7 @@
 pl:
   general:
     created_at: "Data utworzenia"
-    e_mail: Email
+    e_mail: E-mail
     editor_help: Pomoc do edycji
     faq: Odpowiedzi na częste pytania
     female: Kobieta
@@ -58,12 +58,13 @@ pl:
     english: Angielski
     estonian: Estoński
     ethiopic: Etiopski
+    faroese: Farerski
     fijian: Fidżyjski
     finnish: Fiński
     french: Francuski
     french_middle: Średniofrancuski (ok. 1300-1600)
     french_old: Starofrancuski (ok. 842-1300)
-    friulian: Friulijski
+    friulian: Friulski
     gallician: Galicyjski
     german: Niemiecki
     german_old_high: Staro-wysoko-niemiecki (ok. 750-1050)
@@ -113,7 +114,7 @@ pl:
     sorbian: Łużycki
     south_american: Południowoamerykański (inne)
     spanish: Hiszpański
-    swahili: Swahili
+    swahili: Suahili
     swedish: Szwedzki
     swiss_german: Niemiecki szwajcarski
     tagalog: Tagalski
@@ -265,6 +266,7 @@ pl:
     aids: Pomoce
     alleged: Rzekomy
     alternate_spelling: Alternatywna pisownia
+    alternative_work_title: Alternative work title
     archive: Archiwum
     arrangement: Aranżacja
     arrangement_statement: Uwaga do aranżacji
@@ -628,6 +630,7 @@ pl:
     musical_composition: Kompozycja muzyczna
     name: Imię i nazwisko
     name_family: Nazwa rodziny
+    name_of_part: Name of part/section of a work
     name_printer: Nazwa drukarni
     name_variant: Alternatywna nazwa osoby
     name_variants: Alternatywne nazwy osoby
@@ -854,6 +857,7 @@ pl:
     variant_source_title: Alternatywny tytuł w źródle
     variations: Wariacje
     verified: Zweryfikowane
+    version_information: Version, edition, etc., information
     vocalist: Wokalista
     voice_instrument: Głos/instrument
     volume_year_page: Wolumen, rok, strona

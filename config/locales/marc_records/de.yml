@@ -58,12 +58,13 @@ de:
     english: Englisch
     estonian: Estnisch
     ethiopic: Äthiopisch
+    faroese: Färöisch
     fijian: Fidschianisch
     finnish: Finnisch
     french: Französisch
     french_middle: Französisch, Mitte (ca. 1300-1600)
     french_old: Französisch, alt (ca. 842-1300)
-    friulian: Friulano
+    friulian: Furlanisch
     gallician: Galizisch
     german: Deutsch
     german_old_high: Althochdeutsch (ca. 750-1050)
@@ -113,7 +114,7 @@ de:
     sorbian: Sorbisch
     south_american: Südamerikanische Indianer (andere)
     spanish: Spanisch
-    swahili: Swahili
+    swahili: Suahelisch
     swedish: Schwedisch
     swiss_german: Schweizerdeutsch
     tagalog: Tagalog
@@ -265,6 +266,7 @@ de:
     aids: Arbeitshilfen
     alleged: Angeblich
     alternate_spelling: Andere Schreibweise
+    alternative_work_title: Alternativer Werktitel
     archive: Archiv
     arrangement: Bearbeitung
     arrangement_statement: Bearbeitung
@@ -516,7 +518,7 @@ de:
     incipit_number: Incipitnummer
     incipits: Incipits
     index_terms: Deskriptoren
-    information_found: Ansetzung laut Literaturnachweis
+    information_found: Fundstelle
     initial: Initiale
     initial_entry: Ersteintrag
     initials: Initiale
@@ -628,6 +630,7 @@ de:
     musical_composition: Musikalische Komposition
     name: Personenname
     name_family: Familienname
+    name_of_part: Anzahl Teile oder Abschnitte eines Werks
     name_printer: Drucker, Druckerei
     name_variant: Namensvarianten
     name_variants: Namensvarianten
@@ -854,6 +857,7 @@ de:
     variant_source_title: Weiterer diplomatischer Titel
     variations: Variationen
     verified: Gesichert
+    version_information: Version, Ausgabe etc., Informationen
     vocalist: Sänger
     voice_instrument: Besetzung
     volume_year_page: Jahrgang, Seite

@@ -58,6 +58,7 @@ fr:
     english: Anglais
     estonian: Estonien
     ethiopic: Éthiopien
+    faroese: Faroese
     fijian: Fidjien
     finnish: Finlandais
     french: Français
@@ -265,6 +266,7 @@ fr:
     aids: Aide
     alleged: Présumé
     alternate_spelling: Autres formes
+    alternative_work_title: Alternative work title
     archive: Archives
     arrangement: Arrangement
     arrangement_statement: Mention d'arrangement
@@ -628,6 +630,7 @@ fr:
     musical_composition: Composition musicale
     name: Nom
     name_family: Nom de famille
+    name_of_part: Name of part/section of a work
     name_printer: Imprimeur, imprimerie
     name_variant: Variantes du nom
     name_variants: Variantes du nom
@@ -854,6 +857,7 @@ fr:
     variant_source_title: Variante du titre diplomatique
     variations: Variations
     verified: Vérifié
+    version_information: Version, edition, etc., information
     vocalist: Vocaliste
     voice_instrument: Voix/instrument
     volume_year_page: Volume, année, page

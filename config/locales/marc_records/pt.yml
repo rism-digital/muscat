@@ -58,6 +58,7 @@ pt:
     english: Inglês
     estonian: Estoniano
     ethiopic: Etíope
+    faroese: Faroese
     fijian: Fijianas
     finnish: Finlandês
     french: Francês
@@ -113,7 +114,7 @@ pt:
     sorbian: Sorábio
     south_american: Índio sul-americano (Outros)
     spanish: Castelhano
-    swahili: Swahili
+    swahili: Suaíle
     swedish: Sueco
     swiss_german: Suíço-alemão
     tagalog: Tagalo
@@ -265,6 +266,7 @@ pt:
     aids: Ajudas
     alleged: Suposta
     alternate_spelling: Ortografia alternativa
+    alternative_work_title: Título alternativo da obra
     archive: Arquivo
     arrangement: Arranjo
     arrangement_statement: Menção de arranjo
@@ -628,6 +630,7 @@ pt:
     musical_composition: Composição musical
     name: Nome
     name_family: Nome da família
+    name_of_part: Nome da parte/seção da obra
     name_printer: Nome do impressor
     name_variant: Variante de nome
     name_variants: Variantes de nome
@@ -854,6 +857,7 @@ pt:
     variant_source_title: Título variante na fonte
     variations: Variações
     verified: Verificada
+    version_information: Informações sobre a versão, edição, etc.
     vocalist: Vocalista
     voice_instrument: Voz/instrumento
     volume_year_page: Volume, ano, página

@@ -58,6 +58,7 @@ ca:
     english: Anglès
     estonian: Estonià
     ethiopic: Etiòpic
+    faroese: Faroese
     fijian: Fijià
     finnish: Finès
     french: Francès
@@ -265,6 +266,7 @@ ca:
     aids: Assistència
     alleged: Suposat
     alternate_spelling: Ortografia alternativa
+    alternative_work_title: Alternative work title
     archive: Arxiu
     arrangement: Arranjament
     arrangement_statement: Menció d'arranjament
@@ -628,6 +630,7 @@ ca:
     musical_composition: Composició musical
     name: Nom
     name_family: Cognom
+    name_of_part: Name of part/section of a work
     name_printer: Impressor
     name_variant: Variant del nom
     name_variants: Variants del nom
@@ -854,6 +857,7 @@ ca:
     variant_source_title: Variant title on source
     variations: Variations
     verified: Verified
+    version_information: Version, edition, etc., information
     vocalist: Vocalist
     voice_instrument: Voice/instrument
     volume_year_page: Volume, year, page
