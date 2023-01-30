@@ -347,6 +347,7 @@ it:
   validation_level_error: "Sono presenti errori, correggerli prima di continuare"
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
   muscat_reindexing: "Muscat è in fase di reindicizzazione, i risultati della ricerca potrebbero essere incompleti"
+  work_catalogue: "Catalogo di opere"
 
   jobs:
     not_set: "[Nessuno stato]"

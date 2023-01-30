@@ -339,7 +339,8 @@ pt:
   validation_level_error: "Há erros, por favor resolva antes de salvar."
   validation_level_warning: "Estes são avisos, salve novamente para ignorar."
   muscat_reindexing: "Muscat está a reindexar, os resultados da pesquisa podem estar incompletos"
-  
+  work_catalogue: "Catálogo de obras"  
+
   jobs:
     not_set: "[Nenhum estado determinado]"
     ok: "Trabalho realizada com sucesso"

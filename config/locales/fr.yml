@@ -343,6 +343,7 @@ fr:
   validation_level_error: "Il y a des erreurs à corriger avant d'enregistrer."
   validation_level_warning: "Il y a des avertissements. Enregistrer à nouveau pour ignorer."
   muscat_reindexing: "Muscat réindexe, les résultats de recherche peuvent être incomplets."
+  work_catalogue: "Catalogue d'œuvres"
 
   jobs:
     not_set: "[sans statut]"

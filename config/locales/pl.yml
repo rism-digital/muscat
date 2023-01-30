@@ -343,7 +343,8 @@ pl:
   validation_level_error: Wystąpiły błędy. Napraw je przed zapisaniem.
   validation_level_warning: "Wystąpiły ostrzeżenia. Zapisz ponownie, by je skasować."
   muscat_reindexing: "Muscat reindeksuje, wyniki wyszukiwania mogą być niekompletne"
-  
+  work_catalogue: "Katalog dzieł"
+
   jobs:
     not_set: [Nie ustawiono statusu.]
     ok: Zadanie ukończone pomyślnie

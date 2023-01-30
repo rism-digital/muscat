@@ -342,7 +342,8 @@ de:
   validation_level_error: "Die Fehler müssen vor dem Speichern behoben werden."
   validation_level_warning: "Erneut speichern, um die Warnung(en) zu ignorieren."
   muscat_reindexing: "Muscat wird neu indiziert, Suchergebnisse können unvollständig sein"
-  
+  work_catalogue: "Katalog der Werke"
+
   jobs:
     not_set: "[Kein Status gesetzt]"
     ok: "Prozess erfolgreich abgeschlossen"

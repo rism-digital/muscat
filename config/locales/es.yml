@@ -343,7 +343,9 @@ es:
   validation_level_error: "El registro tiene errores. Por favor, resuélvalos antes de guardar."
   validation_level_warning: "El registro presenta advertencias. Si desea ignorarlas, pulse nuevamente en guardar."
   muscat_reindexing: "Muscat está reindexando, los resultados de la búsqueda pueden estar incompletos"
-  
+  work_catalogue: "Catálogo de obras"  
+
+
   jobs:
     not_set: "[Estado aún no disponible]"
     ok: "Tarea completada con éxito"
