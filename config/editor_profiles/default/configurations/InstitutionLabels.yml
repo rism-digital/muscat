@@ -188,6 +188,8 @@
   fields:
     a:
       label: records.related_institution
+    b:
+      label: records.subordinate_unit
   label: records.related_institution
 '856':
   fields:

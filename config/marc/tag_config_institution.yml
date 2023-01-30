@@ -107,7 +107,7 @@
     - - a
       - :occurrences: "1"
     - - b
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - c
       - :occurrences: "?"
     - - g
