@@ -1,0 +1,1 @@
+You are free to delete comments that are no longer relevant. When appropriate, comments can be incorporated into the records as notes (either in a 500 General note or a 599 Internal note), especially in cases that involve extra research, for the convenience of future users.

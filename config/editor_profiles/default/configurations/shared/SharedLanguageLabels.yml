@@ -2,6 +2,10 @@
 
 afr:
   label: languages.afrikaans
+alb:
+  label: languages.albanian
+art:
+  label: languages.artificial
 ara:
   label: languages.arabic
 arg:
@@ -26,10 +30,14 @@ chi:
   label: languages.chinese
 chu:
   label: languages.old_church_slavonic
+cre:
+  label: languages.cree
 crp:
   label: languages.creoles_pidgins_other
 cze:
   label: languages.czech
+dak:
+  label: languages.dakota
 dan:
   label: languages.danish
 dsb:
@@ -42,8 +50,12 @@ enm:
   label: languages.middle_english
 est:
   label: languages.estonian
+fao:
+  label: languages.faroese
 fas:
   label: languages.persian
+fij:
+  label: languages.fijian
 fin:
   label: languages.finnish
 fre:
@@ -56,6 +68,8 @@ frr:
   label: languages.north_frisian
 fry:
   label: languages.west_frisian
+fur:
+  label: languages.friulian
 gem:
   label: languages.germanic
 ger:
@@ -90,6 +104,8 @@ iii:
   label: languages.sichuan_yi
 ita:
   label: languages.italian
+jpn:
+  label: languages.japanese
 kor:
   label: languages.korean
 lat:
@@ -106,6 +122,8 @@ mao:
   label: languages.maori
 mon:
   label: languages.mongolian
+mul:
+  label: records.multiple
 nap:
   label: languages.neapolitan
 nds:
@@ -148,6 +166,8 @@ spa:
   label: languages.spanish
 srp:
   label: languages.serbian
+swa:
+  label: languages.swahili
 swe:
   label: languages.swedish
 tat:
@@ -164,6 +184,8 @@ tur:
   label: languages.turkish
 ukr:
   label: languages.ukrainian
+und:
+  label: general.undetermined
 vie:
   label: languages.vietnamese
 wel:

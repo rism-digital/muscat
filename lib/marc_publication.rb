@@ -24,7 +24,7 @@ class MarcPublication < Marc
     title
   end
   
-  def get_description
+  def get_title
     title = ""
 
     if node = first_occurance("240", "a")
@@ -54,7 +54,7 @@ class MarcPublication < Marc
 
   end
 
-  def get_revue_title
+  def get_journal
     title = ""
 
     if node = first_occurance("760", "t")

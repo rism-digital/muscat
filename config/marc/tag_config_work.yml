@@ -129,13 +129,23 @@
         :foreign_class: ^0
         :foreign_field: life_dates
         :foreign_alternates: alternate_dates
+  "130":
+    :master: "0"
+    :indicator: "10"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
     - - m
-      - :occurrences: "?"
-    - - n
-      - :occurrences: "?"
+      - :occurrences: "*"
     - - r
-      - :occurrences: "?"
-    - - t
       - :occurrences: "?"
   "380":
     :master: "0"
@@ -151,49 +161,35 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: term
-  "400":
+  "383":
+    :master: b
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - b
+      - :occurrences: "*"
+  "430":
     :master: "0"
-    :indicator: "1#"
+    :indicator: "#0"
     :occurrences: "*"
     :fields:
     - - "0"
       - :occurrences: "?"
-        :foreign_class: Person
+        :foreign_class: StandardTitle
         :foreign_field: id
         :no_show: true
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: full_name
-    - - d
-      - :occurrences: "?"
-        :browse_inline: true
-        :foreign_class: ^0
-        :foreign_field: life_dates
-        :foreign_alternates: alternate_dates
+        :foreign_field: title
     - - m
-      - :occurrences: "?"
-    - - n
-      - :occurrences: "?"
+      - :occurrences: "*"
     - - r
       - :occurrences: "?"
-    - - t
-      - :occurrences: "?"
-  "440":
-    :master: a
-    :indicator: "1#"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - b
-      - :occurrences: "?"
-    - - f
-      - :occurrences: "?"
-    - - t
-      - :occurrences: "?"
-    - - l
-      - :occurrences: "?"
+    - - p
+      - :occurrences: "*"
+    - - s
+      - :occurrences: "*"
 # This is a linked field
   "500":
     :master: "0"
@@ -270,6 +266,38 @@
       - :occurrences: "?"
     - - "5"
       - :occurrences: "?"
+  "690":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Publication
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - n
+      - :occurrences: "?"
+  "691":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Publication
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - n
+      - :occurrences: "?"  
   "700":
     :master: "0"
     :indicator: "1#"
@@ -344,6 +372,16 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
+  "856":
+    :master: u
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - u
+      - :occurrences: "*"
+        :browse_helper: application_helper_link_http
+    - - z
+      - :occurrences: "*"
   "930":
     :master: "0"
     :indicator: "1#"

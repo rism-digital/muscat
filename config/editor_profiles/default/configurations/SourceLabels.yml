@@ -26,7 +26,7 @@
     indicator:
       label: records.publisher_plate_number
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.number
     '20':
@@ -168,7 +168,7 @@
 '260':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.place
     b:
@@ -189,7 +189,7 @@
 '300':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.format_extent
     b:
@@ -200,7 +200,7 @@
 '340':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     d:
       label: records.printing_technique
     m:
@@ -226,7 +226,7 @@
 '500':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.general_note
   label: records.general_note
@@ -249,6 +249,8 @@
   fields:
     a:
       label: records.series
+    c:
+      label: records.number_page
   label: general.rism_series
 '518':
   fields:
@@ -301,7 +303,7 @@
 '590':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.parts_held
     b:
@@ -315,16 +317,18 @@
 '592':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.watermark_description
   label: records.watermark_description
 '593':
   fields:
     '8':
-      label: records.set
+      label: records.material_group
     a:
-      label: records.type
+      label: records.source_type
+    b:
+      label: records.content_type
   label: records.source_type
 '594':
   fields:
@@ -436,7 +440,7 @@
     '4':
       label: records.function
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.name
     d:
@@ -449,7 +453,7 @@
     '4':
       label: records.function
     '8':
-      label: records.set
+      label: records.material_group
     a:
       label: records.institution
     b:
@@ -606,7 +610,7 @@ C|x:
   label: records.cs_major
 D:
   label: records.d_major
-Digitalization:
+Digitized:
   label: records.digitized_source
 Doubtful:
   label: records.doubtful
@@ -676,8 +680,10 @@ G|b:
   label: records.gf_major
 G|x:
   label: records.gs_major
-IIIF:
+"IIIF manifest (digitized source)":
   label: records.iiif_manifest
+"IIIF manifest (other)":
+  label: records.iiif_manifest_other
 Inserts:
   label: records.inserts
 Lithography:
@@ -742,8 +748,6 @@ aid_watermarks:
   label: records.standard_watermarks
 arr:
   label: records.arranger
-art:
-  label: languages.artificial
 asg:
   label: records.assignee
 asn:
@@ -968,8 +972,6 @@ fmo:
   label: records.former_owner
 full:
   label: records.full
-fur:
-  label: records.friulano
 f|x:
   label: records.fs_minor
 g:
@@ -1112,8 +1114,6 @@ ltg:
   label: records.lithographer
 lyr:
   label: records.text_author
-mul:
-  label: records.multiple
 not_examined:
   label: records.material_not_examined
 origin:
@@ -1210,6 +1210,8 @@ show_distribution:
   label: records.distribution
 show_information:
   label: records.further_information
+show_instrumentation:
+  label: records.coded_instrumentation
 show_library:
   label: records.library_information
 show_links:
@@ -1230,8 +1232,6 @@ trl:
   label: records.translator
 tyd:
   label: records.type_designer
-und:
-  label: general.undetermined
 ungrouped:
   label: general.ungrouped_fields
 unmatched:

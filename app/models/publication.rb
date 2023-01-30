@@ -4,8 +4,8 @@
 # === Fields
 # * <tt>name</tt> - Abbreviated name of the publication
 # * <tt>author</tt> - Author
-# * <tt>description</tt> - Full title
-# * <tt>revue_title</tt> - if printed in a journal, the journal's title
+# * <tt>title</tt> - Full title
+# * <tt>journal</tt> - if printed in a journal, the journal's title
 # * <tt>volume</tt> - as above, the journal volume
 # * <tt>place</tt>
 # * <tt>date</tt>
@@ -120,9 +120,9 @@ class Publication < ApplicationRecord
     end
 
     # save decription
-    if self.description
+    if self.title
       node = MarcNode.new("publication", "240", "", "##")
-      node.add_at(MarcNode.new("publication", "a", self.description, nil), 0)
+      node.add_at(MarcNode.new("publication", "a", self.title, nil), 0)
 
       new_marc.root.children.insert(new_marc.get_insert_position("240"), node)
     end
@@ -136,10 +136,10 @@ class Publication < ApplicationRecord
       new_marc.root.children.insert(new_marc.get_insert_position("260"), node)
     end
 
-    # save revue_title
-    if self.revue_title
+    # save journal
+    if self.journal
       node = MarcNode.new("publication", "760", "", "0#")
-      node.add_at(MarcNode.new("publication", "t", self.revue_title, nil), 0)
+      node.add_at(MarcNode.new("publication", "t", self.journal, nil), 0)
 
       new_marc.root.children.insert(new_marc.get_insert_position("760"), node)
     end
@@ -168,8 +168,8 @@ class Publication < ApplicationRecord
       id_for_fulltext
     end
 
-    sunspot_dsl.string :name_order do
-      name
+    sunspot_dsl.string :short_name_order do
+      short_name
     end
     sunspot_dsl.text :short_name
 
@@ -178,14 +178,14 @@ class Publication < ApplicationRecord
     end
     sunspot_dsl.text :author
 
-    sunspot_dsl.text :description
-    sunspot_dsl.string :description_order do
-      description
+    sunspot_dsl.text :title
+    sunspot_dsl.string :title_order do
+      title
     end
 
-    sunspot_dsl.text :revue_title
-    sunspot_dsl.string :revue_title_order do
-      revue_title
+    sunspot_dsl.text :journal
+    sunspot_dsl.string :journal_order do
+      journal
     end
 
     sunspot_dsl.text :volume
@@ -200,6 +200,8 @@ class Publication < ApplicationRecord
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
+
+    sunspot_dsl.boolean :work_catalogue
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
@@ -239,9 +241,9 @@ class Publication < ApplicationRecord
     # std_title
     self.place, self.date = marc.get_place_and_date
     self.short_name = marc.get_name
-    self.description = marc.get_description
+    self.title = marc.get_title
     self.author = marc.get_author
-    self.revue_title = marc.get_revue_title
+    self.journal = marc.get_journal
     self.marc_source = self.marc.to_marc
   end
 
@@ -268,10 +270,10 @@ class Publication < ApplicationRecord
 
   def autocomplete_label
     aut = (author and !author.empty? ? author : nil)
-    des = (description and !description.empty? ? description.truncate(45) : nil)
+    tit = (title and !title.empty? ? title.truncate(45) : nil)
     dat = (date and !date.empty? ? date : nil)
 
-    infos = [aut, dat, des].join(", ")
+    infos = [aut, dat, tit].join(", ")
 
     "#{self.short_name}: #{infos}"
   end

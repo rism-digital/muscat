@@ -13,7 +13,7 @@
 		<%- end %>
 	</th>
 	<td>
-		<% if subfield_x && subfield_x.content && subfield_x.content == "IIIF"%>
+		<% if subfield_x && subfield_x.content && subfield_x.include?("IIIF")%>
 			<%
 			link = make_iiif_anchor(link)
 			%>

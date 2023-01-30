@@ -4,8 +4,8 @@ function autocomplete_selct(event, data)	{
 		
   // havigate up to the <li> and down to the hidden elem
   var toplevel_li = input.parents("li");
-  var hidden = toplevel_li.children(".autocomplete_target")
-		
+  var hidden = $(".autocomplete_target", toplevel_li);
+
   // the data-field in the hidden tells us which
   // field write in the input value. Default is id
   var field = hidden.data("field")
@@ -58,8 +58,8 @@ function bind_autocomplete_events() {
   $("#marc_editor_panel").on('autocompleteopen', function(event, data) {
     var input = $(event.target); // Get the autocomplete id
     var toplevel_li = input.parents("li");
-    var hidden = toplevel_li.children(".autocomplete_target")
-		
+		var hidden = $(".autocomplete_target", toplevel_li);
+
     // undefined means it is the first time ever we open this AC
     // closed menans at some point is was... closed
     if (hidden.data("status") === "undefinded" || hidden.data("closed")) {
@@ -94,7 +94,7 @@ function bind_autocomplete_events() {
   $("#marc_editor_panel").on('autocompleteresponse', function(event, data) {
     var input = $(event.target); // Get the autocomplete id
     var toplevel_li = input.parents("li");
-    var hidden = toplevel_li.children(".autocomplete_target")
+    var hidden = $(".autocomplete_target", toplevel_li);
 		
     if (data.content.length == 0) {
       hidden.data("status", "nomatch");
@@ -125,7 +125,7 @@ function bind_autocomplete_events() {
 		
     // havigate up to the <li> and down to the hidden elem
     var toplevel_li = input.parents("li");
-    var hidden = toplevel_li.children(".autocomplete_target")
+    var hidden = $(".autocomplete_target", toplevel_li);
 
     if (hidden.data("status") != "selected") {
 

@@ -1,0 +1,1 @@
+Foldery wygasają po sześciu miesiącach i są następnie automatycznie usuwane. Aby odnowić folder, kliknij link „Przedłuż datę ważności”, co przedłuży datę wygaśnięcia o kolejne sześć miesięcy. Otrzymasz również powiadomienia e-mail przed automatycznym usunięciem folderów.

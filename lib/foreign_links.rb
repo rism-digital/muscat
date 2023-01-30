@@ -82,7 +82,6 @@ module ForeignLinks
         end
       end
       if check
-        puts assoc.plural_name
         dependency_size = self.send(assoc.plural_name).size rescue next
         res[assoc.plural_name] = dependency_size
       end
@@ -96,8 +95,11 @@ module ForeignLinks
       linked_objects = "#{msg.map{|k,v| "#{v} #{k.to_s.sub("_", " ")}"}.to_sentence}"
       errors.add :base, %{The #{self.class} could not be deleted because it is used by 
       #{linked_objects}  }
-      raise ActiveRecord::RecordNotDestroyed, "Record #{self.class} #{self.id} has active dependencies [#{msg.keys.join}]"
+      #raise ActiveRecord::RecordNotDestroyed, "Record #{self.class} #{self.id} has active dependencies [#{msg.keys.join}]"
+      throw :abort
+      false
     end
+    true
   end
 
   def through_relation?(foreign_class)

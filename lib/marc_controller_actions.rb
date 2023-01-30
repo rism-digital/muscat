@@ -17,7 +17,7 @@ module MarcControllerActions
     dsl.collection_action :marc_editor_save, :method => :post do
 
       #Get the model we are working on
-      model = self.resource_class
+      model = self.class.resource_class
 
       marc_hash = JSON.parse params[:marc]
         
@@ -28,7 +28,7 @@ module MarcControllerActions
       dyna_marc_class = Kernel.const_get(classname)
       
       new_marc = dyna_marc_class.new()
-      new_marc.load_from_hash(marc_hash, current_user)
+      new_marc.load_from_hash(marc_hash, user: current_user)
 
       # @item is used in the Marc Editor
       @item = nil
@@ -64,7 +64,7 @@ module MarcControllerActions
       
       # Some housekeeping, change owner and status
       if params.has_key?(:record_status) &&
-          (current_user.has_role?(:cataloger) || current_user.has_role?(:cataloger_prints) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
+          (current_user.has_role?(:cataloger) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
         @item.wf_stage = params[:record_status]
       end
       
@@ -105,7 +105,7 @@ module MarcControllerActions
       redirect = params.include?(:redirect) ? params[:redirect] : false
 
       if redirect == "true"
-        model_for_path = self.resource_class.to_s.underscore.downcase
+        model_for_path = self.class.resource_class.to_s.underscore.downcase
         if (model_for_path == "holding") && params.include?(:parent_object_id)
             path = admin_source_path(params[:parent_object_id])
         else
@@ -113,7 +113,7 @@ module MarcControllerActions
           path =  send(link_function, @item.id) #admin_sources_path
         end
       else
-        model_for_path = self.resource_class.to_s.underscore.downcase
+        model_for_path = self.class.resource_class.to_s.underscore.downcase
         link_function = "edit_admin_#{model_for_path}_path"
         path =  send(link_function, @item.id) #admin_edit_source_path(@item.id)
       end
@@ -130,7 +130,7 @@ module MarcControllerActions
     dsl.collection_action :marc_editor_preview, :method => :post do
       
       #Get the model we are working on
-      model = self.resource_class
+      model = self.class.resource_class
 
       marc_hash = JSON.parse params[:marc]
       
@@ -220,12 +220,20 @@ module MarcControllerActions
       end
       
       @item = version.item_type.singularize.classify.constantize.new
-      @item.marc.load_from_array( VersionChecker.get_diff_with_next( params[:version_id] ) )
+      tags, wf_stages = VersionChecker.get_diff_with_next(params[:version_id])
+      @item.marc.load_from_array(tags)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
       # Parameter for using diff partials
       @diff = true
       
+      # Did the wf_stage change? if so we have a dedicated partial
+      if wf_stages[0] != wf_stages[1]
+        @wf_stages = wf_stages
+      else
+        @wf_stages = false
+      end
+
       render :template => 'marc_show/show_preview', :locals => { :opac => false }
     end
     
@@ -236,7 +244,7 @@ module MarcControllerActions
     dsl.member_action :marc_restore_version, method: :put do
       
       #Get the model we are working on
-      model = self.resource_class
+      model = self.class.resource_class
       @item = model.find(params[:id])
       
       begin
@@ -288,7 +296,7 @@ module MarcControllerActions
       # Parameter for showing history in editor
       @show_history = true
 
-      model_for_path = self.resource_class.to_s.underscore.downcase
+      model_for_path = self.class.resource_class.to_s.underscore.downcase
       link_function = "edit_admin_#{model_for_path}_path"
       redirect_to send(link_function, @item.id, {:show_history => true}), notice: "Deleted snapshot #{params[:version_id]}"
     end
@@ -299,7 +307,7 @@ module MarcControllerActions
     
     dsl.collection_action :marc_editor_validate, :method => :post do
       #Get the model we are working on
-      model = self.resource_class
+      model = self.class.resource_class
 
       marc_hash = JSON.parse params[:marc]
       current_user = User.find(params[:current_user])
@@ -312,7 +320,7 @@ module MarcControllerActions
       
       new_marc = dyna_marc_class.new()
       # Load marc, do not resolve externals
-      new_marc.load_from_hash(marc_hash, current_user)
+      new_marc.load_from_hash(marc_hash, user: current_user) # -> revert to old behaviour, dry_run: true)
 
       @item = model.new
       @item.marc = new_marc

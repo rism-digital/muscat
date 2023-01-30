@@ -33,7 +33,11 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
   has_and_belongs_to_many :people, join_table: "institutions_to_people"
   has_and_belongs_to_many :publications, join_table: "institutions_to_publications"
-  has_and_belongs_to_many :places, join_table: "institutions_to_places"
+  
+  #has_and_belongs_to_many :places, join_table: "institutions_to_places"
+  has_many :institution_place_relations
+  has_many :places, through: :institution_place_relations
+
   has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
   
   has_and_belongs_to_many :referring_holdings, class_name: "Holding", join_table: "holdings_to_institutions"

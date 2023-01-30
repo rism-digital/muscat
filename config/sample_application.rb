@@ -95,9 +95,21 @@ module RISM
   #   43200 = half a day)
   VERSION_TIMEOUT = 43200
 
-  # Set the path for the digital object storage
-  # You also need to symlink ./public/system to a system directory in it
-  DIGITAL_OBJECT_PATH = "/path/to/the/digital/objects/directory"
+  # Set the path for the digital object storage.
+  #
+  # First, set DIGITAL_OBJECT_PATH to "public/", without the leading
+  # slash.  This way the files and thumbnails will be accessible via
+  # Rails standard static files public/ directory. Under this public/
+  # directory, you should create another one called system/. If your
+  # set your digital object storage path ~/var/lib/digital_objects/
+  # (for example), then, under public/system/, symlink to it, so you
+  # have an existing public/system/digital_objects/ path pointing
+  # where Muscat will keep your files. Step by step:
+  #
+  # $ mkdir -v public/system/
+  # $ cd public/system/
+  # $ ln -s ~/var/lib/digital_objects .
+  DIGITAL_OBJECT_PATH = "public/"
 
   # Test server warning. Set to true to raise a flash notice waring when saving
   TEST_SERVER = false
@@ -125,6 +137,24 @@ module RISM
 
   # Allow anonymous users (not signed in) to browse and search the site
   ANONYMOUS_NAVIGATION = false
+
+  # Turn on or off collation of special chars for ordering
+  CLEVER_ORDERING = true
+
+  # Supported devise authentication methods are:
+  # - database_authenticatable (the default)
+  # - saml_authenticatable, with trackable (which is already defined in User.rb
+  # If :saml_authenticatable is included, then execute `bin/rails g muscat:install_saml` to get the required configuration files,
+  # and read the decidim-saml_authenticatable gem's documentation for configuration options.
+  AUTHENTICATION_METHODS = [:database_authenticatable]
+
+  SAML_AUTHENTICATION = AUTHENTICATION_METHODS.include?(:saml_authenticatable)
+
+  require 'devise_saml_authenticatable' if SAML_AUTHENTICATION
+
+  # The role for the users created via SAML sign up
+  # Uncomment if AUTHENTICATION_METHODS include :saml_authenticatable
+  # SAML_AUTHENTICATION_CREATE_USER_ROLE = 'guest'
 end
 
 
@@ -152,6 +182,8 @@ module Muscat
     config.autoload_paths << "#{Rails.root}/lib"
     config.eager_load_paths << Rails.root.join("lib")
     config.active_job.queue_adapter = :delayed_job
+    # For 5.2: permit the loading of ActiveSupport::HashWithIndifferentAccess
+    config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess]
   end
 end
 

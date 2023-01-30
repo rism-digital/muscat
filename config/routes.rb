@@ -74,7 +74,12 @@ Rails.application.routes.draw do
   
   #scope ':locale', locale: I18n.locale do
   #  ActiveAdmin.routes(self)
-  #end 
+  #end
+
+  if RISM::SAML_AUTHENTICATION && %(development test).include?(Rails.env)
+    get 'test/saml/idp/auth' => 'test/saml_idp#new'
+    post 'test/saml/idp/auth' => 'test/saml_idp#create'
+  end
   
   get "/manuscripts", to: redirect('/sources')
   get "/manuscripts/:name", to: redirect('/sources/%{name}')

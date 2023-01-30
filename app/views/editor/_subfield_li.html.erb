@@ -1,8 +1,26 @@
 <li>
+<table>
+<tr>
+<td width="40px" style="text-align: center; vertical-align: middle;">
+	<%if @item.marc.config.multiples_allowed?(tag_name, subfield) %>
+    	<%= safe_link_to_function_stub "<div class=\"add_subfield_button abutton_condensed ui-state-default abutton-icon-solo ui-corner-all remove-button\"><span class=\"ui-icon ui-icon-minus\"></span>_</div>".html_safe, "marc_editor_remove_subfield($(this))", :title => "Remove this subfield" %>				
+		
+		<% display = "" %>
+		<% if index > 0 %>
+			<% display = "style=\"display: none;\"".html_safe %>
+		<% end %>
+
+		<%= safe_link_to_function_stub "<div class=\"add_subfield_button abutton_condensed ui-state-default abutton-icon-solo ui-corner-all add-button\"".html_safe + display.html_safe + "><span class=\"ui-icon ui-icon-plus\"></span>_</div>".html_safe, "marc_editor_add_subfield($(this))", :title => "Add another instance of this subfield"	%>			
+	<%end%>
+</td>	
+<td>
 	<%= render :partial => (field_settings.has_key?('editor_partial') ? "options/#{field_settings['editor_partial']}" : "editor/subfield"), 
 		:locals => { :marc_tag => marc_tag,
 			:tag_name => tag_name,
 			:marc_subfield => marc_subfield,
 			:subfield => subfield,
 			:params => field_settings } %>
+</td>
+</tr>
+</table>
 </li>

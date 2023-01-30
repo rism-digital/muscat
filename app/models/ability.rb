@@ -21,15 +21,23 @@ class Ability
 
     elsif user.has_role?(:editor)
       if user.has_role?(:person_editor)
-        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, WorkNode, Holding]
       elsif user.has_role?(:junior_editor)
-        can [:read, :create, :update], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+        can [:read, :create, :update], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, WorkNode, Holding]
       else
-        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, Holding]
+        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, WorkNode, Holding]
         can [:read, :create], Person
         can :update, Person, :wf_owner => user.id
       end
       #can [:read], Folder
+
+      if user.has_role?(:work_editor)
+        can [:read, :create, :update, :destroy], Work
+      end
+
+      can :prepare_convert, Source
+      can :convert_manuscript, Source
+
       can :manage, Folder#, :wf_owner => user.id
       can :unpublish, [Folder]
       can [:read, :create, :destroy], ActiveAdmin::Comment
@@ -37,6 +45,7 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
       can :read, ActiveAdmin::Page, :name => "Statistics"
+      can :read, ActiveAdmin::Page, :name => "Compare Versions"
 
       can [:read, :update], User, :id => user.id
     
@@ -46,15 +55,16 @@ class Ability
 
     elsif user.has_role?(:cataloger)
       # A cataloguer can create new items but modify only the ones ho made
-      can [:read, :create], [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Work, Holding]
+      can [:read, :create], [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, WorkNode, Holding]
       if user.has_role?(:person_restricted)
         # catalogers can get restriced access to the persons form
         # the general design of the role allows extensions alike for e.g. institudions
         can :update, Person
       end
-      can :update, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, Work], :wf_owner => user.id
+      can :update, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, WorkNode], :wf_owner => user.id
       can [:destroy, :update], [DigitalObject], :wf_owner => user.id
-      can [:destroy], [Holding], :wf_owner => user.id
+      # Users cannot delete their holdings anymore as of 8.2, sorry!
+      #can [:destroy], [Holding], :wf_owner => user.id
       can [:update], [Holding] do |holding|
         user.can_edit?(holding)
       end

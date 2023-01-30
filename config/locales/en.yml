@@ -4,6 +4,7 @@ en:
 # Pad for italian, it has 2 missing items
 #
 #
+    compare_versions: Compare versions
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."
@@ -97,6 +98,9 @@ en:
       comments_help: "Type @ to mention a specific user, who will then receive a notification by email."
       author_missing: "Anonymous"
       title_content: "Comments (%{count})"
+      referring_comments: Comments where I am named
+      my_item_comments: Comments on my records
+      my_own_comments: Comments I made
       errors:
         empty_text: "Comment wasn't saved, text was empty."
     devise:
@@ -151,6 +155,7 @@ en:
       default: "%H:%M"
       short: "%H:%M"
       long: "%Y-%m-%d %H:%M"
+      verbose: "%B %d, %Y %H:%M"
       
   #################### MODELS      
   activerecord:
@@ -278,6 +283,7 @@ en:
   menu_jobs: "Jobs"
   menu_holdings: "Holdings"
   menu_works: "Works"
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
@@ -309,7 +315,10 @@ en:
   finished: "Finished"
   lib_siglum: "Library Siglum"
   holding_records: "Exemplar Information"
-  holding_no_siglum: "Holding without silgum"
+  holding_no_siglum: "Holding without siglum"
+  holding_missing: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right."
+  holding_missing_alert: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right after you save."
+  holding_missing_show: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editing this record and clicking the \"%{new_holding}\" button on the right."
   new_holding: "Add holdings"
   new_holding_page: "New holdings information"
   new_digital_object_image: "Attach a new image"
@@ -332,7 +341,9 @@ en:
   unloadable_record: "This record experienced loading errors: it can be viewed but not edited. Please contact an administrator."
   validation_level_error: "There are errors, please solve before saving"
   validation_level_warning: "There are warnings, save again to override"
-  
+  muscat_reindexing: "Muscat is reindexing, search results may be incomplete"
+  work_catalogue: "Is work catalogue"
+
   jobs:
     not_set: "[No status set]"
     ok: "Job ended successfully"
@@ -345,6 +356,7 @@ en:
   # Sidebar
   delete: "Delete"
   to_the_list: "Return to the list"
+  go_to_top: "Back to the top"
   edit: "Edit"
   new: "Create"
   duplicate: "Duplicate"
@@ -374,11 +386,13 @@ en:
   hide_preview: "Hide preview"
   show_validate: "Validate"
   show_history: "Show modification history"
+  show_gnd: "GND Search"
   show_viaf: "VIAF Search"
   save_and_continue: "Save and continue editing"
   save_and_exit: "Save and close"
   cancel: "Cancel"
   duplicate_confirm: "Are you sure you want to duplicate this record?"
+  convert_to_print: "Convert to print template"
   
   # Version history
   history_date: "Date"
@@ -410,6 +424,15 @@ en:
     reindex_job: "Reindex job started (id: %{id})"
     validation_started: "An email will be sent to %{email} with the validation has ended (Validation job id: %{job})."
     folder_not_source: "Only folders containing Sources can be validated"
+    expires: "Expires on"
+    resetted: "Folder expiration date now is %{date}"
+    reset_expiration: "Reset expiration date"
+    delete_now: "The following folders were deleted:"
+    tomorrow: "The following folders will be deleted tomorrow %{date}"
+    one_week: "The following folders will be deleted in one week on %{date}"
+    two_weeks: "The following folders will be deleted in two weeks on %{date}"
+    one_month: "The following folders will be deleted in one month on %{date}"
+    make_catalogue: "Flag items as work catalogues"
 
   ### Digital objects
   digital_objects: "Digital Objects"
@@ -491,18 +514,19 @@ en:
   filter_provenance: "Provenance"
   filter_record_type: "Template Type"
   filter_record_type_short: "Type"
-  filter_source_type: "Source Type"
   filter_publisher: "Publisher"
-  filter_revue_title: "Revue title"
+  filter_journal: "Revue title"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
   filter_images: "Images"
+  filter_opus: "Opus"
   filter_scoring: "Scoring"
   filter_series_items: "Series items"
   filter_siglum: "Siglum"
   filter_source: "Source"
   filter_sources: "Sources"
-  filter_source_type: "Source Type"
+  filter_source_type: "Source type"
+  filter_source_content_type: "Content type"
   filter_std_title: "Standardized title"
   filter_subject: "Subject"
   filter_subsequent_entries: "Subsequent Entries"
@@ -573,7 +597,9 @@ en:
   cannot_create_source: "You are not authorized to create this type of source"
   validate_name_uniqness: "Record not saved: Same short title '%{term}' already exists."
   validates_parent_id: "Record not saved: Parent record (773) cannot be same as this record"
-  
+  is_part_of_collection: "This %{class} %{id} is part of a collection, please delete 773"
+  not_set: "[not set]"
+
   #
   entry:
     one: "entry"
@@ -617,6 +643,9 @@ en:
   folder:
     one: "folder"
     other: "folders"
+  worknode:
+    one: "work node"
+    other: "work nodes"
 
   will_paginate:
     page_entries_info:
@@ -671,9 +700,6 @@ en:
   btn_themefinder_reset: "Reset"
   
   tf_acknowledgments: "Incipits search is performed with <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> developed by the <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
-
-  hls_link_lang: "e"
-  hls_link_name: "HDS"
   
   do_link_lang: "eng"
   do_media_files_title: "Multimedia files"
@@ -730,7 +756,24 @@ en:
     got_it: "Got it!"
     got_it_explanation: "Clicking on this button will silence the news until the next one is released."
     news: "Muscat News"
-  
+    my_comments: "My comments"
+    my_records: "My records"
+    about_comments: "About comments"
+
+  compare_versions:
+    time_frame: Time frame
+    rule: Rule
+    display: Display
+    options: options
+    show: Show
+    hide: Hide
+    modified_records: Modified records
+    no_records: There are no records to show with the current selected options
+    new_record: New record
+    similarity: Difference
+    diff: Diff
+    date_message: "Showing modified records from %{date}."
+    
   # editor validation 
   validation:
     missing_message: "A value in this field is mandatory"
@@ -740,6 +783,7 @@ en:
     correct: "The record has no validation errors [200]"
     begins_with_message: "Must begin with \"{0}\""
     required_if_message: "Field is mandatory because {0} ${1} is not empty"
+    cannot_link_to_self: "The record cannot link to itself (%{id})."
     
   incipit_search:
     incipit_search: "Incipit Search"
@@ -765,6 +809,9 @@ en:
   "Number of printed copies": "Number of printed copies"
   publisher: "Publisher"
 
+  marc_editor:
+    delete_msg: "Delete"
+    delete_field_confirm: "Are you sure you want to delete this field?"
 
   cookies:
     message: "Our website uses cookies to make your browsing experience better. By using our site you agree to our use of cookies."
@@ -839,4 +886,3 @@ en:
     published: "PUB"
     inprogress: "UNP"
     deprecated: "DEP"
-

@@ -1,6 +1,411 @@
 Muscat Changelog
 ================
 
+v 9.0
+* Add tag configuration for work nodes
+* Remove 383 and 690 from marc node config
+* Add work node model as a plain copy of work
+* Add marc work node as plain copy of marc work
+* Add migration to add the work nodes tables and to migrate the data
+* Add index configuration for work nodes copied for works
+* Plain copy of admin work as work node
+* Add form, layout, show and validation configuration for work nodes
+* Add profiles for work nodes
+* Change EditorConfiguration to handle compound class name
+* Remove 930 from work node configuration
+* Adjust sources to refer to work nodes
+* Adjust the source form / show configuration to use work nodes
+* Make sure incipit show works even with no digital object
+* Basic GND search for work nodes
+* Move xsl from viaf/ to gnd/
+* Add missing .underscore in editor validation configuration
+* Tidying up JS gnd interface
+* Fix creation of new tags
+* Remove spaces added before the indicators
+* Modify raw drawing based on a JSON object with
+* Adjust the GND import to return a JSON with the description and the link and label
+* Add get_composer_name to MarcWorkNode
+* Add I18n for select button, skip records with no 100
+* Strip unicode &#152; and &#156; quotes from GND MARC data
+* Add migration to rename columns in works
+* Rename work fields form and notes in the application
+* Index 024 in Person to get GND ids in Solr
+* Resolve Person $0 through gnd id
+* PATCH to pass 100$0 correctly, TODO find a better fix
+* Initial steps to refactor marc editor "editor" code
+* Refactoy away marc editor tree manipulation functions
+* Remove some stale code
+* Initial direct XML load implementation
+* Activate form validation
+* Add route for work_nodes through sru
+* Add to_external for work_nodes
+* Fix duplicate marc tags when doing multiple searches, fix a missing "var" which caused a crash if the first element of the first search was selectable
+* Move marc conversion code to GND module
+* Use work_nodes when accessing works SRU interface
+* Add additional $0 to 930 work nodes export
+* Merge pull request #1295 from rism-digital/develop-work-nodes-experiments-sru
+* Move osullivan
+* Initial 930 removal script
+* Add validation for work_nodes
+* Make sure the notification trigger gets executed also for new records
+* Send trigger notifications for new records
+* Show the proper error when deleting holdings with 973
+* Make the destroy errors redirect to the show page instead of the index
+* Fix #1299, add arr
+* #1297 add === to marc nodes to compare contents
+* Make deduplication work
+* Add method to find duplicates
+* Integrate the deduplicator into auth_merge. Maybe auth_merge should be run as a background job?
+* Try a different icon for move tags
+* Avoid lock conflicts when re-saving authorities
+* Add hashes to incipits
+* Fix #1298, remove uniqueness in workgroup email
+
+v 8.2
+* WIP: Add `xx` to accepted values for name variants
+* Fixed: Change translation key for `xx`
+* Adjust values for 593 $a in Sources and Holdings
+* Bump puma from 5.6.2 to 5.6.4
+* Fix missing indicators with holding template
+* Fix manifest script so non-muscat items can be created
+* Fix #1260
+* Fix crash when creating MS source
+* Fix #1261 do not print an empty line if there is no PAE input
+* Fixed: Siglum misspelling
+* Merge pull request #1263 from rism-digital/siglum-misspelled
+* Merge pull request #1264 from rism-digital/fixed-1099-name-variants
+* Skip duplicates in incipit correction script
+* Fix creation of new tags
+* Bump rails-html-sanitizer from 1.4.2 to 1.4.3
+* Merge pull request #1268 from rism-digital/dependabot/bundler/rails-html-sanitizer-1.4.3
+* Bump rack from 2.2.3 to 2.2.4
+* Merge pull request #1232 from rism-digital/dependabot/bundler/puma-5.6.4
+* Merge pull request #1269 from rism-digital/dependabot/bundler/rack-2.2.4
+* Update rails to 5.2.8.1
+* Add filter for 593b
+* Fix #1248 add "composite" for $b
+* Add localization for content type
+* Fix #1254 implement comments in dashboard
+* Capitalize the model name
+* #1272 add more constraints for Libretti and Theoretica
+* Bump tzinfo from 1.2.9 to 1.2.10
+* Remove "Composite" from the values in 593 $b
+* Merge pull request #1277 from rism-digital/lpugin-patch-config-593b
+* Fix #1270 sync $b values
+* Initial implementation of username logins
+* Add disabling, automatic create script, add to index and list
+* Fix "default email" in mailer
+* Validation should not fail on unicode chars, make the script work in all cases
+* Add emails to workgroups
+* Make sure users properly redirect when deleting their holding records
+* Fix #1280, adieu! delete ability for holdings
+* Initial implementation if Folder expirations
+* Add CSS for status_tag
+* Add "folder" relationship to users, some refinements to the dashboard, job sleleton
+* Fix #1229 adjust the default files
+* Fix #1228 Adjust the values to the latest consensus
+* Add default values for holdings
+* Make folder expiration date 6 months, musicat import script
+* Add a real message to the folder mailer, add MEI import to musicat
+* Fix #1185 extend sources_to_institutions
+* Merge pull request #1273 from rism-digital/dependabot/bundler/tzinfo-1.2.10
+* Add scraps to the scrapbook
+* Add some utility scripts
+* #1240 add help to folders
+* Mailcatcher should be commented out
+* Add FolderExpirationJob to crontab, remove unused cronotab
+* Update all the locales
+* Merge pull request #1281 from rism-digital/jenniferward-patch-1
+* Merge pull request #1282 from rism-digital/jenniferward-patch-1
+* Add "access denied" message to varions models
+* Add italian translation for folder help
+* Make the "reindexing" message localized
+* Fix #1278, handle case where notifications is NULL
+* Add expiration icon
+* Add workaround to blacklight crash
+* Add "shelfmark" filter in sources as it is il BL
+* Properly set relator_code for sources_to_institutions
+* Add installation instructions for nginx, make error message more clear
+* Re-add the logo3
+* Merge pull request #1285 from rism-digital/jenniferward-patch-2
+
+v 8.1.4
+* Fix #1271 skip the diva-added input
+* Update Verovio to 3.11.0
+
+v 8.1.3
+* Fix #1265, user the correct user reference
+* Fix #1267, add index
+* Cherry pick patch #1261, and fix issue
+* Fix #1256, add fallback for nil indicator
+* Initial fix for #1266, make all HTML escaped
+* Fixes to the translations
+
+v 8.1.2
+* Fix manifest script so non-muscat items can be created
+* Fix #1260
+* Fix crash when creating MS source
+
+v 8.1.1
+* Fix typo and update verovio to 3.10
+
+v 8.1
+* New validation for 100
+* Added mandatory 852
+* Fix #1210 strip whitespace from marc tags when loading from json
+* Fix #1223, move 510
+* Fix #1220 fix values in 240g, use the terms for the popup menu
+* Fix duplicate link to publication, fix labels
+* Add easy functionality to covert a manuscript to a print
+* New fix for redirect after login
+* Fix #1225, remove "A/II"
+* set -> material_group
+* Fix #1230, permit logged it users to change details without re-entering password + confirmation
+* Update locales
+* Fix #1208, add codes
+* Add MUSCAT_PARALLEL_JOBS
+* Show IIIF items in /admin
+* #1231 Add codes and translation
+* Fix #1231 add dak
+* Add more items to the export job
+* Fix #1222, show incipit also when there is no notation
+* Fix #1231 Update translations
+* Fix #1084 Change DnD behaivour
+* #1084 change icon and move as first button
+* Added albania codes
+* Cleanup lang files and add new translations
+* Do not show diva for non-sources
+* Add translations for Albania
+* Make lang codes mul and und available to all auth files
+* Fix #1242 add B/VIII
+* Update FR locale
+* Fix #1238, in diff view skip empty tag groups, to still allow tagless groups in marc show
+* Fix #1237, add Cree
+* Fix #1084 Properly move 774s
+* Fix #1241 Make the deletion messages all the same
+* Use CaffeineCache and async
+* Small refinements to import correct
+* Add gems for ODF import
+* Fix #965, make sure removing items from folders does not kill muscat
+* Basic implementation of holding table (requires reindex)
+* Add methods to user interface for statistics
+* Try to optimize the Muscat indexer
+* Make the tabs nicer
+* Optimize the batch size
+* Experimental light-wheigh source index
+* Make the statistic page download the right file
+* Fix #1245 add 787 to collections
+* Fix #1247 add "congress" to Institutions 368$a
+* Read tags from CSV, add id to sequence and change paths
+* Add 541 to selected tags to be copied into holding #1249
+* Make make_manifest more pretty
+* #1249 Improvements to template change
+* #1249 Add "cancel" button to page
+* Update comment_notifications.rb
+* Also index holdings!
+* Removing 599 from holdings export
+* Add missing translation
+* Improve incipit correct script
+* Fix #1249, Add excludes for 852c
+* Remove all the boilerplate full_text indexes from the index config, they are indexed now in one go
+* This line created a FrozenLitera exception, it is redundand anyways
+* Fix #1250, also remove references to HSL
+
+v 8.0.4
+* REVERTED! Bump nokogiri from 1.12.5 to 1.13.3
+* Fix diva display for IIIF links
+* update changelog for 8.0.3...
+
+v 8.0.3
+* Removed "Digitalization" and "IIIF" from 865x in holding/source
+* Added "Digitized", "IIIF Manifest (digitized source)" and "IIIF Manifest (other)" in 856x
+* Updated Verovio to 3.9
+* Updated all translations
+
+
+v 8.0.2
+* Exclude linked -zsh field from import everywhere
+* Merge pull request #1198 from rism-digital/8.0-fix-viaf
+* Fixed: Add Themax jar path
+* Merge pull request #1203 from rism-digital/add-themax-path
+* Bump puma from 5.5.1 to 5.6.2
+* Include new translations + some utility functions
+* Merge pull request #1214 from rism-digital/dependabot/bundler/puma-5.6.2
+* Disable SAML template
+* Fix #1215
+* Fix #1216, update Solr versions
+* Update to rails 5.2.6.2 for CVE-2022-23633
+
+v 8.0.1
+* Update e-mail message
+* Merge pull request #1184 from rism-digital/email-message-update
+* Changing index field name
+* Merge pull request #1188 from rism-digital/8.0-fix-sru
+* #1192, fix self.resource.class
+* #1192 Fix total in modification digest
+* #1192 Fix load_saource in work, it would modify the marc data at save time and create a FrozenError
+* #1192 Add ids to folders
+* #1192 Update status_tag in comments to the new syntax
+* #1192, fix call to saml auth in production, not the prettyest way for now
+* #1192 reindex FolderItems, force a commit
+* #1192 fix work count changed in 30cb4d6
+* Fix #1190, make the sidebar static when there are holdings, we will find a better solution. Also ref in #1192
+* #1192 revert guidelines to the proper version
+* #1123 and #1192 re-add oth, fmo, dpt
+* #1192 Add new translations
+* Fix #1187 and #1192, add Belarus in MARC field 043
+* Small folder enhancemet with updated_at
+
+v 8.0
+* Change source count to 856
+* Add 383 and 690
+* Add 856 to work
+* local sunspot config
+* AA 2.0: Controllers should use class.resource_class
+* Ad back "published" status tag
+* Add script to deleted all works
+* Make our clear_filter patch work with the new implementation in AA 2.0
+* Add extraction script
+* Set AA version to 2.9
+* Merge branch 'devel-work-experiments' of https://github.com/rism-digital/muscat into devel-activeadmin-2.0
+* Automate non installation of therubyracer
+* Revert "Automate non installation of therubyracer"
+* Fix execjs
+* Add sign in specs for devise's :database_authenticatable
+* Merge branch 'develop' into feat/configurable_single_sign_on
+* Doc: update sp_entity_id value in generator template
+* Merge branch 'feat/configurable_single_sign_on' of ssh://github.com/CodiTramuntana/muscat into feat/configurable_single_sign_on
+* Very initial commit
+* More refinements to the change view
+* Add css
+* Merge branch 'develop' into devel-compare
+* Refinements to the interface
+* Add I18n and set javascript in a proper file
+* Make translations work in JS
+* Invert similarity and make the diff to the first available version
+* Add proper date localization
+* take in account empty versions
+* Make sure the siglum exists
+* Fix status tags for jobs, do not crash on rule not found in compare versions
+* Fix rule overflow
+* Merge remote-tracking branch 'upstream/master' into develop
+* EXPERIMENTAL add markdown to guidelines
+* Fix #728, 980$b order
+* Reindex tests, Solr modifications
+* Bump nokogiri from 1.11.7 to 1.12.5
+* Merge pull request #1146 from rism-digital/dependabot/bundler/nokogiri-1.12.5
+* Merge branch 'master' into develop
+* Bump puma from 5.3.1 to 5.5.1
+* Fix index rendering when a new incipit is added
+* Add another option to login to the remote SAML IdP
+* Doc: add doc on link to IdP's
+* Merge remote-tracking branch 'upstream/develop' into develop
+* Allow work Marc records to be imported
+* Merge pull request #1149 from rism-digital/dependabot/bundler/puma-5.5.1
+* Rename duplicated unique_records index
+* Merge pull request #1152 from fjorba/allow-importing-work-records
+* Merge pull request #1154 from fjorba/rename-duplicate-index-name
+* Remove an extra comma in rename_index migration
+* Merge pull request #1155 from fjorba/remove-comma-in-index-rename-migration
+* Fix #1156, display of lib siglum for collections
+* Add export incipit job
+* Changed sru index
+* Merge branch 'develop' of https://github.com/rism-digital/muscat into develop
+* Rename revue_title to journal in Publications
+* Properly order siglums
+* Export only pub incipits
+* Add link to 551
+* Merge branch 'develop' of https://github.com/rism-digital/muscat into develop
+* Merge branch 'feat/configurable_single_sign_on' of https://github.com/CodiTramuntana/muscat into CodiTramuntana-feat/configurable_single_sign_on
+* Merge branch 'CodiTramuntana-feat/configurable_single_sign_on' into develop
+* Merge pull request #1162 from fjorba/publications-rename-revue-title-to-journal
+* Fix #1123, remove relator codes
+* Fix #1158, add code
+* Fix #1148, add code
+* Fix #1141, remove facsimile
+* Fix #1161, add $a to 773, minor refactoring
+* Fix #1159, show wf_stage in diff and save it from folders
+* Fix #1002, make the relator codes identical to source
+* #1080 add the link to 551
+* #1080 Add small script to resave People
+* Make the 552 a bit more clever
+* SAML needs to be present in production for eager_load to woek
+* #901, initial and crude implementation of error display, CSS need fixing
+* #901 first functional implementation
+* #901 also push the worker
+* Fix #732, make the sidebar floating ad add a "go to top" button
+* Fix #1166 add Norwegian to 041
+* Make the verovio worker a tad faster
+* Add incipit scripts
+* Fix #971, remove 563 $u
+* Fix #1173, add triggers to StandardTerm
+* Remove comments attribute from Person model and db
+* #901, Add I18N to verovio
+* Add some formatting to the error messages
+* #901 fix typo, show errors on new 031s, avoid "width out of bounds" message
+* Merge pull request #1177 from fjorba/remove-obsolete-comments-attribute-from-person-model
+* Fix #1088 add relator code and marc tag to people_to_places
+* Fix #1067, show links to external auth in 024 institutions
+* Make CompareVersions only for editors
+* #901 add localization for Verovio Messages from Crowdin + new messages
+* #901 Add FR messages
+* #901 Add IT messages
+* Add more counters to Places
+* Add relation view to Person view
+* #978, add option to properly sort names
+* #306, 690 implement search without diacritics
+
+v 7.1.3
+* #1118, make sure 588 does not appear where it should not
+* Implement async verovio rendering
+* Remove the notification diff, will exist only as the controller.
+* Make uglifies happy with es6
+* Add spinner for incipit loading
+* Fix #1147, implement background Verovio rendering also for MEI files
+* Fix #1145, show 598
+* #1145 add group for coded instrumentation
+* Ignore index files
+* Added some country ISO codes to people
+* Added surinam iso-country-code
+* Remove 593 from validation until the field is refactored
+
+v 7.1.2
+* Update to rails 5.2.6
+* Fix #1120, move 595 so it is displayed
+* Update paper_trail
+* Fix works not saving
+* Add "follow" pattern to notifications
+* Add more solr installation notes
+* Fix #891 use better field analyzer for shelfmark
+* Bump addressable from 2.7.0 to 2.8.0
+* #1132 Add icon to holdings with digital images
+* Merge pull request #1131 from rism-digital/dependabot/bundler/addressable-2.8.0
+* Fix #1132 Add css
+* Add "external resource" filter in source list
+* Fix missing field for sunspot
+* Make 856x from holdings searchable
+* Fix #1125 and other translations
+* Add redirect after a login
+* Fix #1135, make sure 001 is preserved
+* Fix autocomplete with the new subfield layout structure
+* Cleanup javascript, avoid warning about items with the same name
+* Fix #1137, do not display 787 as initial entry
+* Fix #1136, completely remove 511
+* Fix #1133, collections go only in composite volumes, also clean up the code a bit
+* Fix #1118, add and remove tags
+* Fix #1138, implement validation to avoid 787 and 773 pointing to themselves.
+* Fix #1128 Add new validations
+* Fix #1128, properly show errors on select items
+* Show all subtags for 852, remove the partial, it was used for linking but that is done automatically now.
+* Fix #516, make sure the + sign is only in the first element
+* Properly localize the "delete tag" message in the marc editor
+* Fix #1035 Add big warning for holdings missing
+* Bump rdoc from 6.2.1 to 6.3.2
+* Update Verovio to version 3.6.0
+* Merge pull request #1139 from rism-digital/dependabot/bundler/rdoc-6.3.2
+* Fix typos in translations, fix HOLDING WITHOUT SILGUM in de
+* Update CSS for new error messages
+
 v 7.1.1
 * #1124 Fix 670 autocomplete
 * #1124 Fix holdings :unapproved
