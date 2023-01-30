@@ -14,7 +14,7 @@
                   <%e.marc.each_by_tag("785") do |tag| %>
                     <% external_id = tag.fetch_first_by_tag("w").content rescue nil %>
                     <% if external_id == @item.id %>
-                      <%= link_to e.description, admin_publication_path(e.id)%>
+                      <%= link_to e.title, admin_publication_path(e.id)%>
                     <% end %>
                   <% end %>
                 <% end %>
