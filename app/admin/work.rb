@@ -121,7 +121,7 @@ ActiveAdmin.register Work do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :title_contains, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :opus_contains, :label => "Opus", :as => :string
   filter :catalogue_contains, :label => "Catalogue", :as => :string
   filter :"0242_filter_with_integer", :label => "Link", as: :select, 
