@@ -438,6 +438,7 @@ it:
     one_week: "Le seguenti cartelle saranno eliminate tra una settimana, il %{date}"
     two_weeks: "Le seguenti cartelle saranno eliminate tra due settimane il %{date}"
     one_month: "Le seguenti cartelle saranno eliminate tra un mese, il %{date}"
+    make_catalogue: "Contrassegnare gli elementi come cataloghi di opere"
     
   ### Digital objects
   digital_objects: "Oggetti Digitali"

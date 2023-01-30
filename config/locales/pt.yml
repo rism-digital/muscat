@@ -428,6 +428,7 @@ pt:
     one_week: "As seguintes pastas serão apagadas dentro de uma semana em %{data}"
     two_weeks: "As seguintes pastas serão apagadas dentro de duas semanas em %{data}"
     one_month: "As seguintes pastas serão apagadas dentro de um mês em %{data}"
+    make_catalogue: "Marcar artigos como catálogos de obras"
 
   ### Digital objects
   digital_objects: "Objetos Digitais"

@@ -433,6 +433,7 @@ fr:
     one_week: "Les dossiers suivants seront supprimés dans une semaine, le %{date}"
     two_weeks: "Les dossiers suivants seront supprimés dans deux semaines à la date du %{date}"
     one_month: "Les dossiers suivants seront supprimés dans un mois, le %{date}"
+    make_catalogue: "Marquer les éléments comme des catalogues de oeuvres"
 
   ### Digital objects
   digital_objects: "Objet numériques"

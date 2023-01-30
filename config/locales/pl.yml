@@ -433,6 +433,7 @@ pl:
     one_week: "Następujące foldery zostaną usunięte za tydzień w dniu %{data}"
     two_weeks: "Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{data}"
     one_month: "Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{data}"
+    make_catalogue: "Oznacz pozycje jako katalogi robocze"
     
   ### Digital objects
   digital_objects: Obiekty cyfrowe
