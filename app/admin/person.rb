@@ -258,7 +258,7 @@ ActiveAdmin.register Person do
       context.table_for(context.collection) do |cr|
         context.column "id", :id
         context.column (I18n.t :filter_siglum), :siglum
-        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_name), :full_name
         context.column (I18n.t :filter_place), :place
         if !is_selection_mode?
           context.column "" do |ins|

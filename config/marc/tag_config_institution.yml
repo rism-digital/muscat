@@ -107,7 +107,7 @@
     - - a
       - :occurrences: "1"
     - - b
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - c
       - :occurrences: "?"
     - - g
@@ -308,7 +308,11 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: corporate_name
+    - - b
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: subordinate_unit
   "856": 
     :master: u
     :indicator: "1#"

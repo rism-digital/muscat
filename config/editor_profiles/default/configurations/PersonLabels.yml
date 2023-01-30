@@ -79,6 +79,8 @@
   fields:
     a:
       label: records.associated_institution
+    b:
+      label: records.subordinate_unit
   label: records.associated_institution
 '550':
   fields:
