@@ -256,6 +256,7 @@ ca:
     additional_institution: Institució addicional
     additional_personal_name: Nom personal addicional
     additional_personal_name_lit: Nom personal addicional
+    additional_printed_material: Additional printed material
     additional_solo_voice: Veu solista addicional
     additional_title: Títol addicional
     additional_title_lit: Títol addicional
@@ -290,6 +291,7 @@ ca:
     authority_agency: Agència d'autoritat
     authority_record_control_number: Codi del registre d'autoritat o identificador estàndard
     authority_reference: Referència d'autoritat
+    autograph_manuscript: Autograph manuscript
     autography: Autografia
     b_major: Si major
     b_minor: Si menor
@@ -557,6 +559,7 @@ ca:
     library_information_relations: Informació de la biblioteca i relacions
     library_siglum: Sigla de la biblioteca
     librettist: Llibretista
+    libretto: Libretto
     licensee: Titular de la llicència
     life_dates: Anys
     link_type: Tipus d'enllaç
@@ -581,6 +584,8 @@ ca:
     longitude: Longitud
     lyricist: Lyricist
     main_entry_fields: Main entry fields
+    manuscript_copy: Manuscript copy
+    manuscript_copy_with_autograph_annotations: Manuscript copy with autograph annotations
     married_name: Married name
     married_to: Married to
     married_with: Married with
@@ -593,6 +598,7 @@ ca:
     method_of_acquisition: Method of acquisition
     misattributed: Misattributed
     miscellaneous: Miscellaneous
+    mixed: Mixed
     mode_10t: 'Mode: 10t – Hypoaeolian'
     mode_10tt: 'Mode: 10tt – Hypoaeolian, transposed'
     mode_11t: 'Mode: 11t – Ionian'
@@ -641,6 +647,7 @@ ca:
     no_linguistic_content: No linguistic content
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Not applicable
+    notated_music: Notated music
     note: Nota
     note_external_resource: Nota sobre el recurs extern
     note_fields: Note fields
@@ -683,6 +690,7 @@ ca:
     papermaker: Papermaker
     parallel_form: Paralell form of name
     parent_record: Parent record
+    partial_autograph: Partial autograph
     parts_held: Parts held
     parts_held_extent: Parts held and extent
     patron: Patron
@@ -712,6 +720,7 @@ ca:
     plaine_and_easie: Plaine and Easie code
     plate_number: Plate number
     plucked_instruments: Plucked instruments
+    possible_autograph_manuscript: Possible autograph manuscript
     postal_code: Postal code
     postal_place: Postal place
     preceding_entry: Preceding entry
@@ -841,6 +850,7 @@ ca:
     translation: Translation
     translator: Translator
     transparency: Transparency
+    treatise: Treatise
     type: Type
     type_designer: Type designer
     type_institution: Type of institution

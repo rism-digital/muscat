@@ -58,7 +58,7 @@ pt:
     english: Inglês
     estonian: Estoniano
     ethiopic: Etíope
-    faroese: Faroese
+    faroese: Feroês
     fijian: Fijianas
     finnish: Finlandês
     french: Francês
@@ -256,6 +256,7 @@ pt:
     additional_institution: Instituição adicional
     additional_personal_name: Nome de pessoa adicional
     additional_personal_name_lit: Nome de pessoa adicional
+    additional_printed_material: Material impresso adicional
     additional_solo_voice: Voz solo adicional
     additional_title: Título adicional
     additional_title_lit: Título adicional
@@ -290,6 +291,7 @@ pt:
     authority_agency: Agência de autoridade
     authority_record_control_number: Códigos adicionais seguindo o número ou código padrão
     authority_reference: Referência de autoridade
+    autograph_manuscript: Manuscrito autógrafo
     autography: Autografia
     b_major: Si maior
     b_minor: Si menor
@@ -557,6 +559,7 @@ pt:
     library_information_relations: Informação da instituição e relações
     library_siglum: Sigla da Instituição
     librettist: Libretista
+    libretto: Libretto
     licensee: Titular
     life_dates: Datas de nascimento e morte
     link_type: Tipo de Link
@@ -581,6 +584,8 @@ pt:
     longitude: Longitude
     lyricist: Letrista
     main_entry_fields: Campos de entrada principal
+    manuscript_copy: Cópia manuscrita
+    manuscript_copy_with_autograph_annotations: Cópia mansucrita com anotações autógrafas
     married_name: Nome casado
     married_to: Casado/a
     married_with: Casado/a
@@ -593,6 +598,7 @@ pt:
     method_of_acquisition: Método de aquisição
     misattributed: Equivocada
     miscellaneous: Diversos
+    mixed: Misto
     mode_10t: 'Modo: 10º tom (Hipoeólio)'
     mode_10tt: 'Modo: 10º tom (Hipoeólio), transposta'
     mode_11t: 'Modo: 11º tom (Jônio)'
@@ -641,6 +647,7 @@ pt:
     no_linguistic_content: Sem conteúdo linguístico
     non_migrated_bound: Valor não migrado do campo 563 (Encadernado com)
     not_applicable: Não aplicável
+    notated_music: Escrita musical
     note: Nota
     note_external_resource: Nota sobre recurso externo
     note_fields: Campos de notas
@@ -683,6 +690,7 @@ pt:
     papermaker: Fabricante de papel
     parallel_form: Forma paralela do nome
     parent_record: Registro principal
+    partial_autograph: Autógrafo parcial
     parts_held: Partes existentes
     parts_held_extent: Partes existentes e extensão
     patron: Patrocinadore
@@ -712,6 +720,7 @@ pt:
     plaine_and_easie: Código Plaine and Easie
     plate_number: Número de chapa
     plucked_instruments: Cordas dedilhadas
+    possible_autograph_manuscript: Possível manuscrito autógrafo
     postal_code: Código postal
     postal_place: Local postal
     preceding_entry: Registro precedente
@@ -841,6 +850,7 @@ pt:
     translation: Tradução
     translator: Tradutor
     transparency: Transparência
+    treatise: Tratado
     type: Tipo
     type_designer: Tipógrafo
     type_institution: Tipo de instituição

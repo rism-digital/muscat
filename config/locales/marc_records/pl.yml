@@ -256,6 +256,7 @@ pl:
     additional_institution: Dodatkowa instytucja
     additional_personal_name: Dodatkowa osoba
     additional_personal_name_lit: Dodatkowa osoba
+    additional_printed_material: Additional printed material
     additional_solo_voice: Dodatkowy głos solowy
     additional_title: Dodatkowy tytuł
     additional_title_lit: Dodatkowy tytuł
@@ -266,7 +267,7 @@ pl:
     aids: Pomoce
     alleged: Rzekomy
     alternate_spelling: Alternatywna pisownia
-    alternative_work_title: Alternative work title
+    alternative_work_title: Alternatywny tytuł pracy
     archive: Archiwum
     arrangement: Aranżacja
     arrangement_statement: Uwaga do aranżacji
@@ -290,6 +291,7 @@ pl:
     authority_agency: Baza haseł wzorcowych
     authority_record_control_number: Dodatkowe kody zgodne ze standardowym numerem lub kodem
     authority_reference: Odniesienie do bazy haseł wzorcowych
+    autograph_manuscript: Autograph manuscript
     autography: Autografia
     b_major: H-dur
     b_minor: h-moll
@@ -557,6 +559,7 @@ pl:
     library_information_relations: Informacje o bibliotece i powiązaniach
     library_siglum: Siglum
     librettist: Autor libretta
+    libretto: Libretto
     licensee: Licencjobiorca
     life_dates: Daty urodzenia i śmierci
     link_type: Typ odsyłacza
@@ -581,6 +584,8 @@ pl:
     longitude: Długość geograficzna
     lyricist: Autor słów
     main_entry_fields: Główne pola edycji
+    manuscript_copy: Manuscript copy
+    manuscript_copy_with_autograph_annotations: Manuscript copy with autograph annotations
     married_name: Nazwisko po mężu
     married_to: W małżeństwie z …
     married_with: W małżeństwie z …
@@ -593,6 +598,7 @@ pl:
     method_of_acquisition: Sposób nabycia
     misattributed: Błędnie przypisany
     miscellaneous: Pozostałe
+    mixed: Mixed
     mode_10t: 'Skala: 10t – hypoeolska'
     mode_10tt: 'Skala: 10tt – hypoeolska, transponowana'
     mode_11t: 'Skala: 11t – jońska'
@@ -630,7 +636,7 @@ pl:
     musical_composition: Kompozycja muzyczna
     name: Imię i nazwisko
     name_family: Nazwa rodziny
-    name_of_part: Name of part/section of a work
+    name_of_part: Nazwa części/sekcji utworu
     name_printer: Nazwa drukarni
     name_variant: Alternatywna nazwa osoby
     name_variants: Alternatywne nazwy osoby
@@ -641,6 +647,7 @@ pl:
     no_linguistic_content: Brak zawartości językowej
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Nie dotyczy
+    notated_music: Notated music
     note: Notatka
     note_external_resource: Uwaga o zasobie zewnętrznym
     note_fields: Pola uwag
@@ -683,6 +690,7 @@ pl:
     papermaker: Producent papieru
     parallel_form: Współistniejąca forma nazwy
     parent_record: Rekord macierzysty
+    partial_autograph: Partial autograph
     parts_held: Głosy
     parts_held_extent: Głosy, objętość
     patron: Sponsor
@@ -712,6 +720,7 @@ pl:
     plaine_and_easie: Kod Plaine and Easie
     plate_number: Numer wydawniczy
     plucked_instruments: Instrumenty szarpane
+    possible_autograph_manuscript: Possible autograph manuscript
     postal_code: Kod pocztowy
     postal_place: Rejon pocztowy
     preceding_entry: Poprzedzający wpis
@@ -841,6 +850,7 @@ pl:
     translation: Tłumaczenie
     translator: Tłumacz
     transparency: Przezrocze
+    treatise: Treatise
     type: Rodzaj
     type_designer: Projektant kroju pisma
     type_institution: Rodzaj instytucji
@@ -857,7 +867,7 @@ pl:
     variant_source_title: Alternatywny tytuł w źródle
     variations: Wariacje
     verified: Zweryfikowane
-    version_information: Version, edition, etc., information
+    version_information: Wersja, edycja itp., informacje
     vocalist: Wokalista
     voice_instrument: Głos/instrument
     volume_year_page: Wolumen, rok, strona

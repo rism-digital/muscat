@@ -256,6 +256,7 @@ en:
     additional_institution: Additional institution
     additional_personal_name: Additional personal name
     additional_personal_name_lit: Additional personal name
+    additional_printed_material: Additional printed material
     additional_solo_voice: Additional solo voice
     additional_title: Additional title
     additional_title_lit: Additional title
@@ -290,6 +291,7 @@ en:
     authority_agency: Authority agency
     authority_record_control_number: Authority record control number or standard number
     authority_reference: Authority reference
+    autograph_manuscript: Autograph manuscript
     autography: Autography
     b_major: B major
     b_minor: B minor
@@ -557,6 +559,7 @@ en:
     library_information_relations: Library information and relations
     library_siglum: Library siglum
     librettist: Librettist
+    libretto: Libretto
     licensee: Licensee
     life_dates: Life dates
     link_type: Link type
@@ -581,6 +584,8 @@ en:
     longitude: Longitude
     lyricist: Lyricist
     main_entry_fields: Main entry fields
+    manuscript_copy: Manuscript copy
+    manuscript_copy_with_autograph_annotations: Manuscript copy with autograph annotations
     married_name: Married name
     married_to: Married to
     married_with: Married with
@@ -593,6 +598,7 @@ en:
     method_of_acquisition: Method of acquisition
     misattributed: Misattributed
     miscellaneous: Miscellaneous
+    mixed: Mixed
     mode_10t: 'Mode: 10t – Hypoaeolian'
     mode_10tt: 'Mode: 10tt – Hypoaeolian, transposed'
     mode_11t: 'Mode: 11t – Ionian'
@@ -641,6 +647,7 @@ en:
     no_linguistic_content: No linguistic content
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Not applicable
+    notated_music: Notated music
     note: Note
     note_external_resource: Note about external resource
     note_fields: Note fields
@@ -686,6 +693,7 @@ en:
     papermaker: Papermaker
     parallel_form: Paralell form of name
     parent_record: Parent record
+    partial_autograph: Partial autograph
     parts_held: Parts held
     parts_held_extent: Parts held and extent
     patron: Patron
@@ -715,6 +723,7 @@ en:
     plaine_and_easie: Plaine and Easie code
     plate_number: Plate number
     plucked_instruments: Plucked instruments
+    possible_autograph_manuscript: Possible autograph manuscript
     postal_code: Postal code
     postal_place: Postal place
     preceding_entry: Preceding entry
@@ -844,6 +853,7 @@ en:
     translation: Translation
     translator: Translator
     transparency: Transparency
+    treatise: Treatise
     type: Type
     type_designer: Type designer
     type_institution: Type of institution
