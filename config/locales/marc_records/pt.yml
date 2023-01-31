@@ -359,6 +359,7 @@ pt:
     composer_author: Compositor/Autor
     composer_cross_reference: Referência cruzada de compositor
     computer_printout: Impressão de computador
+    composite: Composto
     conceptor: Conceptor
     conductor: Condutor
     confused_with: Confundido com
@@ -708,6 +709,7 @@ pt:
     photoreproductive_process: Processo foto-reprodutivo
     physical_description: Descrição física
     physical_description_fields: Campos de descrição física, etc
+    print: Imprimir
     place: Local
     place_active: Local ativo
     place_activity: Campo de atividade

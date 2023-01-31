@@ -359,6 +359,7 @@ es:
     composer_author: Compositor/Autor
     composer_cross_reference: Referencia cruzada de compositor
     computer_printout: Impreso de computadora
+    composite: Volumen compuesto
     conceptor: Autor del concepto
     conductor: Director musical
     confused_with: Confundido/a con
@@ -708,6 +709,7 @@ es:
     photoreproductive_process: Proceso fotoreproductivo
     physical_description: Descripción física
     physical_description_fields: Campos para la descripción Material
+    print: Impresión
     place: Lugar
     place_active: Lugar de actividad
     place_activity: Lugar de actividad

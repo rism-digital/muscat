@@ -359,6 +359,7 @@ ca:
     composer_author: Compositor/Autor
     composer_cross_reference: Refèrencia a un altre compositor
     computer_printout: Sortida d'impressora
+    composite: Composite
     conceptor: Autor del concepte
     conductor: Director
     confused_with: Confós amb
@@ -708,6 +709,7 @@ ca:
     photoreproductive_process: Photoreproductive process (bluprint)
     physical_description: Physical description
     physical_description_fields: Physical description, etc. fields
+    print: Print
     place: Place
     place_active: Place active
     place_activity: Place of activity

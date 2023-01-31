@@ -1258,3 +1258,7 @@ Treatise:
   label: records.treatise
 Mixed:
   label: records.mixed
+Print:
+  label: records.print
+Composite:
+  label: records.composite

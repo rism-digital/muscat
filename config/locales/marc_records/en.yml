@@ -359,6 +359,7 @@ en:
     composer_author: Composer/Author
     composer_cross_reference: Composer cross-reference
     computer_printout: Computer printout
+    composite: Composite
     conceptor: Conceptor
     conductor: Conductor
     confused_with: Confused with
@@ -711,6 +712,7 @@ en:
     photoreproductive_process: Photoreproductive process (bluprint)
     physical_description: Physical description
     physical_description_fields: Physical description, etc. fields
+    print: Print
     place: Place
     place_active: Place active
     place_activity: Place of activity

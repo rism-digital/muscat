@@ -359,6 +359,7 @@ pl:
     composer_author: Kompozytor / Autor
     composer_cross_reference: Odniesienie do innego kompozytora
     computer_printout: Wydruk komputerowy
+    composite: Composite
     conceptor: Autor koncepcji
     conductor: Dyrygent
     confused_with: Mylon(y/a) z …
@@ -708,6 +709,7 @@ pl:
     photoreproductive_process: Proces optyczny (światłokopia)
     physical_description: Opis fizyczny
     physical_description_fields: Opis fizyczny itp. pola
+    print: Print
     place: Miejsce
     place_active: Miejsce aktywności artystycznej
     place_activity: Miejsce aktywności artystycznej

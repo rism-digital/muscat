@@ -359,6 +359,7 @@ fr:
     composer_author: Compositeur/Auteur
     composer_cross_reference: Renvoi à un autre compositeur
     computer_printout: Impression informatique
+    composite: Volume composite
     conceptor: Concepteur
     conductor: Chef d'orchestre
     confused_with: Confondu avec
@@ -708,6 +709,7 @@ fr:
     photoreproductive_process: Reproduction photo (blueprint)
     physical_description: Description matérielle
     physical_description_fields: Champs pour la description matérielle
+    print: Edition imprimé
     place: Lieu
     place_active: Lieu d'activité
     place_activity: Lieu d'activité

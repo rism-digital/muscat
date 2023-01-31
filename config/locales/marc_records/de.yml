@@ -359,6 +359,7 @@ de:
     composer_author: Komponist/Autor
     composer_cross_reference: Komponistenquerverweis
     computer_printout: Computerausdruck
+    composite: Konvolut
     conceptor: Autor der Textvorlage
     conductor: Dirigent
     confused_with: Verwechselt mit
@@ -708,6 +709,7 @@ de:
     photoreproductive_process: Blaupause
     physical_description: Material
     physical_description_fields: Felder für die physische Beschreibung
+    print: Druck
     place: Ort
     place_active: Wirkungsort
     place_activity: Wirkungsort
