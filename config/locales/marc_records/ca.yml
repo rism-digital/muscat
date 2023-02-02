@@ -254,6 +254,7 @@ ca:
     additional_choir_voice: Veu de cor addicional
     additional_codes: Codis addicionals a partir del número o codi estàndard
     additional_institution: Institució addicional
+    additional_manuscript_material: Additional manuscript material
     additional_personal_name: Nom personal addicional
     additional_personal_name_lit: Nom personal addicional
     additional_printed_material: Additional printed material
@@ -709,7 +710,6 @@ ca:
     photoreproductive_process: Photoreproductive process (bluprint)
     physical_description: Physical description
     physical_description_fields: Physical description, etc. fields
-    print: Print
     place: Place
     place_active: Place active
     place_activity: Place of activity
@@ -726,6 +726,9 @@ ca:
     postal_code: Postal code
     postal_place: Postal place
     preceding_entry: Preceding entry
+    print: Print
+    print_with_autograph_annotations: Print with autograph annotations
+    print_with_non_autograph_annotations: Print with non-autograph annotations
     printer: Printer
     printing_technique: Printing technique
     production: Production

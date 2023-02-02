@@ -254,6 +254,7 @@ it:
     additional_choir_voice: Voci di coro aggiuntive
     additional_codes: Codici addizionali che seguono il numero o il codice standard
     additional_institution: Nome aggiuntivo di ente
+    additional_manuscript_material: Materiale manoscritto aggiuntivo
     additional_personal_name: Nome aggiuntivo di persona
     additional_personal_name_lit: Nome aggiuntivo di persona
     additional_printed_material: Materiale stampato aggiuntivo
@@ -674,7 +675,7 @@ it:
     order_name: Nome dell'ordine religioso
     origin: Origine
     original_cataloging_agency: Agenzia catalografica originale
-    other: Altra funzione
+    other: Altro
     other_associated_place: Altro luogo associato
     other_designation: Altra designazione
     other_form: Ortografia alternativa
@@ -709,7 +710,6 @@ it:
     photoreproductive_process: Cianografia
     physical_description: Descrizione fisica
     physical_description_fields: Campi per la descrizione fisica
-    print: Stampa
     place: Luogo
     place_active: Luogo di attività
     place_activity: Luogo di attività
@@ -726,6 +726,9 @@ it:
     postal_code: Codice postale
     postal_place: Luogo postale
     preceding_entry: Notizia precedente
+    print: Stampa
+    print_with_autograph_annotations: Stampa con annotazioni autografe
+    print_with_non_autograph_annotations: Stampa con annotazioni non autografe
     printer: Stampatore
     printing_technique: Tecnica di stampa
     production: Produzione

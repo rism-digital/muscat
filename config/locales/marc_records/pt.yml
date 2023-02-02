@@ -254,6 +254,7 @@ pt:
     additional_choir_voice: Voz adicional de coro
     additional_codes: Códigos adicionais seguindo o número ou código padrão
     additional_institution: Instituição adicional
+    additional_manuscript_material: Additional manuscript material
     additional_personal_name: Nome de pessoa adicional
     additional_personal_name_lit: Nome de pessoa adicional
     additional_printed_material: Material impresso adicional
@@ -709,7 +710,6 @@ pt:
     photoreproductive_process: Processo foto-reprodutivo
     physical_description: Descrição física
     physical_description_fields: Campos de descrição física, etc
-    print: Imprimir
     place: Local
     place_active: Local ativo
     place_activity: Campo de atividade
@@ -726,6 +726,9 @@ pt:
     postal_code: Código postal
     postal_place: Local postal
     preceding_entry: Registro precedente
+    print: Imprimir
+    print_with_autograph_annotations: Print with autograph annotations
+    print_with_non_autograph_annotations: Print with non-autograph annotations
     printer: Impressor(a)
     printing_technique: Técnica de impressão
     production: Produção
