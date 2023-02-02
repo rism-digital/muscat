@@ -1250,15 +1250,3 @@ voc:
   label: records.manuscript_copy_with_autograph_annotations
 "Additional printed material":
   label: records.additional_printed_material
-"Notated music":
-  label: records.notated_music
-Libretto:
-  label: records.libretto
-Treatise:
-  label: records.treatise
-Mixed:
-  label: records.mixed
-Print:
-  label: records.print
-Composite:
-  label: records.composite

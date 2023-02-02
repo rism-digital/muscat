@@ -124,7 +124,7 @@ pl:
     tsimshian: Tsimshiański
     turkish: Turecki
     ukrainian: Ukraiński
-    upper_sorbian: 'Gbórnołużycki'
+    upper_sorbian: 'Górnołużycki'
     vietnamese: Wietnamska
     welsh: Walijski
     west_frisian: Zchodniofryzyjski
@@ -256,7 +256,7 @@ pl:
     additional_institution: Dodatkowa instytucja
     additional_personal_name: Dodatkowa osoba
     additional_personal_name_lit: Dodatkowa osoba
-    additional_printed_material: Additional printed material
+    additional_printed_material: Dodatkowe źródło drukowane
     additional_solo_voice: Dodatkowy głos solowy
     additional_title: Dodatkowy tytuł
     additional_title_lit: Dodatkowy tytuł
@@ -267,7 +267,7 @@ pl:
     aids: Pomoce
     alleged: Rzekomy
     alternate_spelling: Alternatywna pisownia
-    alternative_work_title: Alternatywny tytuł pracy
+    alternative_work_title: Alternatywny tytuł dzieła
     archive: Archiwum
     arrangement: Aranżacja
     arrangement_statement: Uwaga do aranżacji
@@ -291,7 +291,7 @@ pl:
     authority_agency: Baza haseł wzorcowych
     authority_record_control_number: Dodatkowe kody zgodne ze standardowym numerem lub kodem
     authority_reference: Odniesienie do bazy haseł wzorcowych
-    autograph_manuscript: Autograph manuscript
+    autograph_manuscript: Autograf
     autography: Autografia
     b_major: H-dur
     b_minor: h-moll
@@ -359,7 +359,7 @@ pl:
     composer_author: Kompozytor / Autor
     composer_cross_reference: Odniesienie do innego kompozytora
     computer_printout: Wydruk komputerowy
-    composite: Composite
+    composite: Klocek introligatorski
     conceptor: Autor koncepcji
     conductor: Dyrygent
     confused_with: Mylon(y/a) z …
@@ -585,8 +585,8 @@ pl:
     longitude: Długość geograficzna
     lyricist: Autor słów
     main_entry_fields: Główne pola edycji
-    manuscript_copy: Manuscript copy
-    manuscript_copy_with_autograph_annotations: Manuscript copy with autograph annotations
+    manuscript_copy: Kopia rękopisu
+    manuscript_copy_with_autograph_annotations: Kopia rękopisu z własnoręcznymi adnotacjami autorskimi
     married_name: Nazwisko po mężu
     married_to: W małżeństwie z …
     married_with: W małżeństwie z …
@@ -599,7 +599,7 @@ pl:
     method_of_acquisition: Sposób nabycia
     misattributed: Błędnie przypisany
     miscellaneous: Pozostałe
-    mixed: Mixed
+    mixed: Mieszany
     mode_10t: 'Skala: 10t – hypoeolska'
     mode_10tt: 'Skala: 10tt – hypoeolska, transponowana'
     mode_11t: 'Skala: 11t – jońska'
@@ -648,7 +648,7 @@ pl:
     no_linguistic_content: Brak zawartości językowej
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Nie dotyczy
-    notated_music: Notated music
+    notated_music: Notacja muzyczna
     note: Notatka
     note_external_resource: Uwaga o zasobie zewnętrznym
     note_fields: Pola uwag
@@ -691,7 +691,7 @@ pl:
     papermaker: Producent papieru
     parallel_form: Współistniejąca forma nazwy
     parent_record: Rekord macierzysty
-    partial_autograph: Partial autograph
+    partial_autograph: Częściowy autograf
     parts_held: Głosy
     parts_held_extent: Głosy, objętość
     patron: Sponsor
@@ -709,7 +709,7 @@ pl:
     photoreproductive_process: Proces optyczny (światłokopia)
     physical_description: Opis fizyczny
     physical_description_fields: Opis fizyczny itp. pola
-    print: Print
+    print: Druk
     place: Miejsce
     place_active: Miejsce aktywności artystycznej
     place_activity: Miejsce aktywności artystycznej
@@ -722,7 +722,7 @@ pl:
     plaine_and_easie: Kod Plaine and Easie
     plate_number: Numer wydawniczy
     plucked_instruments: Instrumenty szarpane
-    possible_autograph_manuscript: Possible autograph manuscript
+    possible_autograph_manuscript: Prawdopodobnie autograf
     postal_code: Kod pocztowy
     postal_place: Rejon pocztowy
     preceding_entry: Poprzedzający wpis
@@ -776,7 +776,7 @@ pl:
     scoring_in_movement: Obsada w części
     scoring_summary: Podsumowanie obsady
     scribe: Kopista
-    secondary_catalog_works: Drugi katalog dzieł
+    secondary_catalog_works: Dodatkowy katalog utworów
     secondary_literature: Literatura pomocnicza
     series: Seria
     series_added_entry: Dodatkowe wpisy tytułów
@@ -852,7 +852,7 @@ pl:
     translation: Tłumaczenie
     translator: Tłumacz
     transparency: Przezrocze
-    treatise: Treatise
+    treatise: Traktat
     type: Rodzaj
     type_designer: Projektant kroju pisma
     type_institution: Rodzaj instytucji

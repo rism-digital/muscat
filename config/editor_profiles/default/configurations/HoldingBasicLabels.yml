@@ -416,3 +416,9 @@ unmatched:
   label: general.unknown_fields
 voc:
   label: records.vocalist
+"Print with autograph annotations":
+  label: records.print_with_autograph_annotations
+"Print with non-autograph annotations":
+  label: records.print_with_non_autograph_annotations
+"Additional manuscript material":
+  label: records.additional_manuscript_material
