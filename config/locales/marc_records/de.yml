@@ -254,7 +254,7 @@ de:
     additional_choir_voice: Zusätzliche Chorstimmen
     additional_codes: Zusätzliche Codes nach der Standardnummer oder dem Standardcode
     additional_institution: Nebeneintragung Körperschaften
-    additional_manuscript_material: Zusätzliches Manuskriptmaterial
+    additional_manuscript_material: Zusätzliches handschriftliches Material
     additional_personal_name: Nebeneintragung Personen
     additional_personal_name_lit: Sonstige Person
     additional_printed_material: Zusätzliches gedrucktes Material
@@ -727,8 +727,8 @@ de:
     postal_place: postalischer Ort
     preceding_entry: Früherer Eintrag
     print: Druck
-    print_with_autograph_annotations: Drucken mit Autogramm-Anmerkungen
-    print_with_non_autograph_annotations: Drucken mit nicht autographischen Anmerkungen
+    print_with_autograph_annotations: Druck mit autographen Eintragungen
+    print_with_non_autograph_annotations: Druck mit nicht-autographen Eintragungen
     printer: Drucker
     printing_technique: Drucktechnik
     production: Verlauf

@@ -254,7 +254,7 @@ pl:
     additional_choir_voice: Dodatkowy głos chóralny
     additional_codes: Dodatkowe kody zgodne ze standardowym numerem lub kodem
     additional_institution: Dodatkowa instytucja
-    additional_manuscript_material: Additional manuscript material
+    additional_manuscript_material: Dodatkowe źródło rękopiśmienne
     additional_personal_name: Dodatkowa osoba
     additional_personal_name_lit: Dodatkowa osoba
     additional_printed_material: Dodatkowe źródło drukowane
@@ -727,8 +727,8 @@ pl:
     postal_place: Rejon pocztowy
     preceding_entry: Poprzedzający wpis
     print: Druk
-    print_with_autograph_annotations: Print with autograph annotations
-    print_with_non_autograph_annotations: Print with non-autograph annotations
+    print_with_autograph_annotations: Druk z własnoręcznymi adnotacjami autorskimi
+    print_with_non_autograph_annotations: Druk z adnotacjami nieautorskimi
     printer: Drukarnia
     printing_technique: Technika druku
     production: Produkcja
@@ -745,7 +745,7 @@ pl:
     publishing_printing_production: Informacje o publikacji, druku i produkcji
     qualifying_information: Informacje kwalifikacyjne
     range_dates: Zakres dat
-    real_world_object_uri: Identyfikator URI obiektu świata rzeczywistego
+    real_world_object_uri: Identyfikator URI
     record_actions: Działania na rekordzie
     record_audit: Kontrola rekordu
     record_origin: Pochodzenie rekordu
@@ -819,7 +819,7 @@ pl:
     street_address: Ulica, numer, numer lokalu
     strings: Instrumenty strunowe
     subheading: Pod-nagłówek
-    subheading_general: Ogólny dalszy podział podnagłówków
+    subheading_general: Ogólny dalszy podział określnika hasła przedmiotowego
     subject_access_fields: Pola haseł tematycznych
     subject_heading: Hasło przedmiotowe
     subject_headings: Hasła przedmiotowe
@@ -919,7 +919,7 @@ pl:
     ERR_021_CHORD_NOTE_AFTER: Aby zaznaczyć akord, po „^” musi nastąpić nuta.
     ERR_022_BEAM_MENSURAL: Belkowanie nie może być stosowane w notacji menzuralnej.
     ERR_023_BEAM_NESTED: Nie rozpoczynaj nowego belkowania „{”, przed zamknięciem poprzedniego „}”.
-    ERR_024_BEAM_CLOSING: 'Jest dodatkowe „}” zamykające belowanie. Usuń je lub wskaż, gdzie belka zaczyna się za pomocą „{”.'
+    ERR_024_BEAM_CLOSING: 'Jest dodatkowe „}” zamykające belkowanie. Usuń je lub wskaż, gdzie belka zaczyna się za pomocą „{”.'
     ERR_025_BEAM_OPEN: Zamknij belkę za pomocą „}” przed końcem taktu.
     ERR_026_GRACE_NESTED: Zamknij appoggiaturę za pomocą „r” przed rozpoczęciem nowej.
     ERR_027_GRACE_CLOSING: Jest „r” zamykające apoggiaturę. Usuń je lub dodaj „qq”, aby wskazać, gdzie się zaczyna.
