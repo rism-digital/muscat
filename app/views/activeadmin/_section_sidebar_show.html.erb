@@ -104,6 +104,12 @@
 				:class => "muscat_icon_link muscat_icon_link_validate") %>
 			</li>
 		<%- end %>
+		<%- if (self.controller.respond_to? :make_catalogue) && (can? :edit, Work) && item.is_a?(Folder) && item.folder_type == "Publication" %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :"folders.make_catalogue"}", send("make_catalogue_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_make_catalogue") %>
+			</li>
+		<%- end %>
 		<%- if (can? :edit, item)  && item.is_a?(Folder) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :"folders.reset_expiration"}", send("reset_expiration_admin_#{model}_path", item),

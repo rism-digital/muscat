@@ -239,6 +239,7 @@
       - "eng"
       - "enm"
       - "est"
+      - "fao"
       - "fas"
       - "fij"
       - "fin"
@@ -295,6 +296,7 @@
       - "smn"
       - "spa"
       - "srp"
+      - "swa"
       - "swe"
       - "tat"
       - "tgl"
@@ -538,6 +540,7 @@
         - "B/II"
         - "B/IV"
         - "B/VI"
+        - "B/VII"
         - "B/VIII"
         editor_partial: subfield_select
     - - c
@@ -812,6 +815,7 @@
       - ppm
       - oth
       - fmo
+      - chr
 "710":
   new_window: institutions
   new_window_field: name_equals
@@ -1035,18 +1039,14 @@
   layout:
     fields:
     - - a
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         codes_reference: "980a"
     - - b
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         codes_reference: "980b"
     - - c
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         codes_reference: "980c"
-    columns: 2
   tag_params:
     980a:
       - "RISM"

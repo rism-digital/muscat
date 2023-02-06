@@ -15,8 +15,8 @@ class NotificationMatcher
   }
 
   def initialize(object, user, limit_rules = nil)
-    if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) 
-      raise(ArgumentError, "NotificationMatcher can be applied only for Works and Sources" )
+    if !object.is_a?(Source) && !object.is_a?(WorkNode) && !object.is_a?(Institution) 
+      raise(ArgumentError, "NotificationMatcher can be applied only to Works Nodes, Sources and Institutions" )
     end
 
     @object = object

@@ -2,7 +2,6 @@
 group_order: 
 - main
 - subject
-- other
 - notes
 - control
 groups: 
@@ -16,9 +15,13 @@ groups:
     - "300"     
     - "337" 
     - "210"
+    - "780"
+    - "785"
     all_tag_templates:
       "100": marc_show/show_person
       "700": marc_show/show_person
+      "780": marc_show/show_related_publication
+      "785": marc_show/show_related_publication
   subject:
     all_tags:
     - "020"
@@ -28,15 +31,10 @@ groups:
     - "650"
     - "651" 
     - "250"
-    - "780"
-    - "785"
+
     all_tag_templates:
       "650": marc_show/show_subject
       "710": marc_show/show_institution
-      "780": marc_show/show_related_publication
-      "785": marc_show/show_related_publication
-  other:
-    template: marc_show/show_preceding_publication
   control: 
     all_tags: 
     - "000"

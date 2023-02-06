@@ -81,6 +81,10 @@ ActiveAdmin.register Work do
     end
     
     def index
+      # Get the terms for 0242_filter, the "link type"
+      @link_types = Source.get_terms("0242_filter_sm")
+      @catalogues = Work.get_terms("catalogue_name_order_sms")
+
       @results, @hits = Work.search_as_ransack(params)
       index! do |format|
         @works = @results
@@ -118,20 +122,33 @@ ActiveAdmin.register Work do
   
   # Solr search all fields: "_equal"
   filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :opus_contains, :label => "Opus", :as => :string
+  filter :catalogue_contains, :label => "Catalogue", :as => :string
+  filter :"0242_filter_with_integer", :label => "Link", as: :select, 
+  collection: proc{@link_types.sort.collect {|k| [k.camelize, "0242_filter:#{k}"]}}
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Work").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
+  filter :"catalogue_name_order_with_integer", :label => "Catalogue", as: :select, 
+  collection: proc{@catalogues.sort.collect {|k| [k.camelize, "catalogue_name_order:#{k}"]}}
+
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
       label: I18n.t('status_codes.' + (work.wf_stage != nil ? work.wf_stage : ""), locale: :en))} 
+    column ("Links") {|work| status_tag(:work_links, 
+      label: active_admin_work_status_tag_label(work.link_status) , class: active_admin_work_status_tag_class(work.link_status) )}
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_title), :title
-    column (I18n.t :filter_opus), :opus
-    column (I18n.t :filter_catalogue), :catalogue
+    column "Opus", :opus_order, sortable: :opus_order do |element| 
+      element.opus
+    end
+    column "Catalogue", :catalogue_order, sortable: :catalogue_order do |element| 
+      element.catalogue
+    end
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			all_hits = @arbre_context.assigns[:hits]
 			active_admin_stored_from_hits(all_hits, element, :src_count_order)
@@ -184,5 +201,5 @@ ActiveAdmin.register Work do
   sidebar :sections, :only => [:edit, :new, :update] do
     render("editor/section_sidebar") # Calls a partial
 	end
-  
+
 end

@@ -297,7 +297,7 @@
     :occurrences: "*"
     :fields:
     - - b
-      - :occurrences: "*"
+      - :occurrences: "?"
   "500":
     :master: a
     :indicator: "##"

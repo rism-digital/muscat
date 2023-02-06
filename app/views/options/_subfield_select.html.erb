@@ -38,10 +38,11 @@
       	<option value="<%= marc_subfield.content %>" selected><%= marc_subfield.content%></option>
     <%end%>
       <%- values.each do |value| %>
+        <% label = @editor_profile.has_label?(value) ? @editor_profile.get_label(value) : value%>
         <%- if val.empty? && params["default"] %>
-          <option value="<%= value -%>"<%= (value == params["default"]) ? "selected=\"selected\"".html_safe : "" -%>><%= value -%></option>	
+          <option value="<%= value -%>"<%= (value == params["default"]) ? "selected=\"selected\"".html_safe : "" -%>><%= label -%></option>	
         <%- else %>
-          <option value="<%= value -%>"<%= (value == marc_subfield.content) ? "selected=\"selected\"".html_safe : "" -%>><%= value -%></option>	
+          <option value="<%= value -%>"<%= (value == marc_subfield.content) ? "selected=\"selected\"".html_safe : "" -%>><%= label -%></option>	
         <%- end %>
 		<%- end %>
 	</select>

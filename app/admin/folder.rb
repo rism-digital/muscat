@@ -87,6 +87,17 @@ ActiveAdmin.register Folder do
     redirect_to resource_path(params[:id]), notice: I18n.t(:unpublish_job, scope: :folders, id: job.id)
   end
  
+  member_action :make_catalogue, method: :get do
+    # A bit contorted here: only work_editors can make a Publication into catalogs
+    if !can?(:edit, Work)
+      redirect_to collection_path, :flash => {error: I18n.t(:"active_admin.access_denied.message")}
+      return
+    end
+
+    job = Delayed::Job.enqueue(MakePublicationsCataloguesFromFolder.new(params[:id]))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:make_catalogue, scope: :folders, id: job.id)
+  end
+
   member_action :reset_expiration, method: :get do
     begin
       f = Folder.find(params[:id])
