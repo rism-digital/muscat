@@ -77,7 +77,7 @@ gem 'sunspot_rails', git: 'https://github.com/rism-ch/sunspot', branch: "java9-s
 gem 'sunspot_solr', git: 'https://github.com/rism-ch/sunspot', branch: "java9-stack"
 gem 'awesome_print'
 gem 'progress_bar', '1.0.6', git: 'https://github.com/rism-ch/progress_bar'
-gem "rails3-jquery-autocomplete", '~> 1.0.21', git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
+gem "rails3-jquery-autocomplete", '~> 1.0.26', git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
 gem "cancan", '~> 1.6.10'
 gem "rolify", '~> 5.2.0'
 group :development do
