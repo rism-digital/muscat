@@ -9,7 +9,7 @@ columns do
           column ("") {|row| link_to("Edit", "edit?id=#{row[:id]}")}
         end
       else
-        text_node(results)
+        text_node("The selected query returned no results")
       end
     end
   end

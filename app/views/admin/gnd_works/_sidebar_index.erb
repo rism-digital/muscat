@@ -1,8 +1,10 @@
 <%= form_tag("/admin/gnd_works/search", method: "get") do %>
   <div class="filter_form">
     <div class="filter_form">
-      <%= label_tag(:q, "Search for:") %>
-      <%= text_field_tag(:q) %>
+      <%= label_tag("q[composer]", "Composer:") %>
+      <%= text_field_tag("q[composer]", @composer) %>
+      <%= label_tag("q[title]", "Title:") %>
+      <%= text_field_tag("q[title]", @title) %>
     </div>
     <div class="buttons">
       <%= submit_tag("Search") %>

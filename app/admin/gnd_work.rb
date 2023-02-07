@@ -30,7 +30,16 @@ ActiveAdmin.register_page "gnd_works" do
     end
 
     def search
-      @results = GND::Interface.search(params[:q], "WOE", "Tu", "wim", 20)
+      begin
+        params.require(:q).permit(:composer, :title)
+
+        @composer = params[:q][:composer]
+        @title = params[:q][:title]
+
+        @results = GND::Interface.search(params[:q], 30)
+      rescue ActionController::ParameterMissing
+        @results = nil
+      end
       render 'search_results', layout: "active_admin", locals: { results: @results }
     end
 

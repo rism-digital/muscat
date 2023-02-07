@@ -8,9 +8,12 @@ module GND
     require 'open-uri'
     require 'net/http'
 
-    def self.search(term, index, auth, code = "", limit = 10)
+    def self.search(params, limit = 10)
         result = []
-        xml = self.query(term, index, auth, code, limit)
+        #xml = self.query(term, index, auth, code, limit)
+
+        xml = self.person_and_title_query(params, limit)
+
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
             marc = MarcWorkNode.new(nil, "work_node_gnd")
@@ -48,13 +51,37 @@ module GND
     def self.query(term, index, auth, code = "", limit = 10)
         query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query="
         # Code
-        query += "BBG=#{auth}*" 
+        query += "BBG=#{auth}*"
         term.split.each do |word|
             query += " and #{index}=" + ERB::Util.url_encode(word)
         end
         # Code - See https://wiki.dnb.de/download/attachments/90411323/entitaetenCodes.pdf
         query += " and COD=#{code}" if !code.empty?
-        puts query
+        query_result = URI.open(query) rescue nil
+        # Load the results
+        xml = Nokogiri::XML(query_result)
+    end
+
+    # Query the GND with the query parameters and return an XML document with the results
+    def self.person_and_title_query(params, limit = 30)
+        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query="
+        # We are searching the Work index
+        query += "BBG=Tu*"
+
+        # Add each token for the Person field
+        params[:composer].split.each do |word|
+            query += " and PER=" + ERB::Util.url_encode(word)
+        end
+
+        # And then each token for the Work title field
+        params[:title].split.each do |word|
+            query += " and WOE=" + ERB::Util.url_encode(word)
+        end
+
+        # Code - See https://wiki.dnb.de/download/attachments/90411323/entitaetenCodes.pdf
+        # We are searching the works
+        query += " and COD=wim"
+        
         query_result = URI.open(query) rescue nil
         # Load the results
         xml = Nokogiri::XML(query_result)
