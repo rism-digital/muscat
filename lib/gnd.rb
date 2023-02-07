@@ -74,8 +74,10 @@ module GND
         end
 
         # And then each token for the Work title field
-        params[:title].split.each do |word|
-            query += " and WOE=" + ERB::Util.url_encode(word)
+        if params[:title]
+            params[:title].split.each do |word|
+                query += " and WOE=" + ERB::Util.url_encode(word)
+            end
         end
 
         # Code - See https://wiki.dnb.de/download/attachments/90411323/entitaetenCodes.pdf
