@@ -10,8 +10,6 @@ module GND
 
     def self.search(params, limit = 10)
         result = []
-        #xml = self.query(term, index, auth, code, limit)
-
         xml = self.person_and_title_query(params, limit)
 
         # Loop on each record in the result list
@@ -69,8 +67,10 @@ module GND
         query += "BBG=Tu*"
 
         # Add each token for the Person field
-        params[:composer].split.each do |word|
-            query += " and PER=" + ERB::Util.url_encode(word)
+        if params[:composer]
+            params[:composer].split.each do |word|
+                query += " and PER=" + ERB::Util.url_encode(word)
+            end
         end
 
         # And then each token for the Work title field
@@ -81,7 +81,7 @@ module GND
         # Code - See https://wiki.dnb.de/download/attachments/90411323/entitaetenCodes.pdf
         # We are searching the works
         query += " and COD=wim"
-        
+
         query_result = URI.open(query) rescue nil
         # Load the results
         xml = Nokogiri::XML(query_result)

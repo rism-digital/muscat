@@ -166,7 +166,7 @@ class WorkNode < ApplicationRecord
  
   def self.get_gnd(str)
     str.gsub!("\"", "")
-    GND::Interface.search(str, "WOE", "Tu", "wim", 20)
+    GND::Interface.search({title: str}, 20)
   end
  
   ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end
