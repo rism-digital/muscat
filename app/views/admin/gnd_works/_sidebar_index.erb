@@ -1,11 +1,13 @@
-<%= form_tag("/admin/gnd_works/search", method: "get") do %>
+<%= form_tag("/admin/gnd_works/search", method: "get", class: "filter_form") do %>
   <div class="filter_form">
-    <div class="filter_form">
-      <%= label_tag("q[composer]", "Composer:") %>
-      <%= text_field_tag("q[composer]", @composer) %>
-      <%= label_tag("q[title]", "Title:") %>
-      <%= text_field_tag("q[title]", @title) %>
-    </div>
+      <div class="string input optional stringish filter_form_field filter_string">
+        <%= label_tag("q[composer]", "Composer") %>
+        <%= text_field_tag("q[composer]", @composer) %>
+      </div>
+      <div class="string input optional stringish filter_form_field filter_string">
+        <%= label_tag("q[title]", "Title") %>
+        <%= text_field_tag("q[title]", @title) %>
+      </div>
     <div class="buttons">
       <%= submit_tag("Search") %>
     </div>
