@@ -180,6 +180,7 @@ module GND
 
     # returns the Muscat person with the given DNB id
     def self.find_person(gnd_id)
+        return nil if !gnd_id
         # make a solr search through field 024a
         query = Person.solr_search do 
             with("024a", gnd_id) if gnd_id
