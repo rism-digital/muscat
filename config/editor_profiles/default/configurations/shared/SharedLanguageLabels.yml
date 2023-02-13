@@ -50,6 +50,8 @@ enm:
   label: languages.middle_english
 est:
   label: languages.estonian
+fao:
+  label: languages.faroese
 fas:
   label: languages.persian
 fij:
@@ -198,3 +200,15 @@ zho:
   label: languages.chinese
 zxx:
   label: records.no_linguistic_content
+"Notated music":
+  label: records.notated_music
+Libretto:
+  label: records.libretto
+Treatise:
+  label: records.treatise
+Mixed:
+  label: records.mixed
+Print:
+  label: records.print
+Composite:
+  label: records.composite

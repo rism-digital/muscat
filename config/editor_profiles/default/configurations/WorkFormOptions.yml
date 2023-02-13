@@ -14,7 +14,6 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - "2"
       - values: 
         - "BNE"
@@ -30,8 +29,6 @@
         - "WKP"
         default: "VIAF"
         editor_partial: subfield_select
-      - cols: 2
-    columns: 4
 "031": 
   new_window: standard_titles
   new_window_field: title_equals
@@ -184,14 +181,9 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - c
-      - cols: 2
     - - d
-      - cols: 2
     - - b
-      - cols: 2
-    columns: 4
 "100":
   new_window: people
   new_window_field: full_name_equals
@@ -203,18 +195,6 @@
         allow_new: true
     - - d
       - autocomplete_extra: life_dates
-    - - j
-      - cols: 2
-        editor_partial: subfield_select_codes
-        codes_reference: "codes"
-    columns: 2
-  tag_params:
-    codes:
-      - "Ascertained"
-      - "Alleged"
-      - "Conjectural"
-      - "Doubtful"
-      - "Misattributed"
 "130":
   new_window: standard_titles
   new_window_field: title_equals
@@ -306,12 +286,95 @@
     - - "a"
       - type: standard_term
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "383": 
   layout: 
     fields: 
     - - b
+"430": 
+  new_window: standard_titles
+  new_window_field: title_equals
+  layout:
+    fields:
+    - - a
+      - type: standard_title
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "430r"
+    - - m
+    - - p
+    - - s
+  tag_params:
+    430r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
+      - "1tt"
+      - "2tt"
+      - "3tt"
+      - "4tt"
+      - "5tt"
+      - "6tt"
+      - "7tt"
+      - "8tt"
+      - "9tt"
+      - "10tt"
+      - "11tt"
+      - "12tt"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
 "500": 
   allow_new: true
   new_window: people
@@ -320,10 +383,8 @@
     - - "a"
       - type: person
         editor_partial: subfield_secondary
-      - cols: 4
     - - d
     - - e
-    columns: 4
 "548": 
   layout: 
     fields: 
@@ -337,8 +398,6 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 2
 "670": 
   allow_new: true
   new_window: publications
@@ -347,10 +406,7 @@
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
-      - cols: 4
     - - "b"
-      - cols: 2
-    columns: 4
 "675": 
   allow_new: true
   new_window: publications
@@ -359,8 +415,6 @@
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "680": 
   layout: 
     fields: 
@@ -441,8 +495,6 @@
     - - "a"
       - type: liturgical_feast
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "930": 
   allow_new: true
   new_window: works
@@ -451,7 +503,6 @@
     - - "a"
       - type: work
         editor_partial: subfield_secondary
-      - cols: 4
     - - i
       - values:
         - "Adaption of"
@@ -462,7 +513,3 @@
         - "Pharaphrase of"  
         - "Variation of"  
         editor_partial: subfield_select
-    columns: 4
-
-triggers:
-  - notify_changes

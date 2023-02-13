@@ -13,6 +13,7 @@ groups:
     - "130"
     - "548"
     - "383"
+    - "430"
     - "690"
     all_tag_templates: 
       "690": marc_show/show_69x_url

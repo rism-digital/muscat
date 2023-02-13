@@ -129,8 +129,6 @@
         :foreign_class: ^0
         :foreign_field: life_dates
         :foreign_alternates: alternate_dates
-    - - j
-      - :occurrences: "?"
   "130":
     :master: "0"
     :indicator: "10"
@@ -169,6 +167,28 @@
     :occurrences: "*"
     :fields:
     - - b
+      - :occurrences: "*"
+  "430":
+    :master: "0"
+    :indicator: "#0"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+    - - m
+      - :occurrences: "*"
+    - - r
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "*"
+    - - s
       - :occurrences: "*"
 # This is a linked field
   "500":

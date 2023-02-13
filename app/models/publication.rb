@@ -4,7 +4,7 @@
 # === Fields
 # * <tt>name</tt> - Abbreviated name of the publication
 # * <tt>author</tt> - Author
-# * <tt>description</tt> - Full title
+# * <tt>title</tt> - Full title
 # * <tt>journal</tt> - if printed in a journal, the journal's title
 # * <tt>volume</tt> - as above, the journal volume
 # * <tt>place</tt>
@@ -200,6 +200,8 @@ class Publication < ApplicationRecord
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
+
+    sunspot_dsl.boolean :work_catalogue
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })

@@ -58,6 +58,7 @@ es:
     english: Inglés
     estonian: Estonio
     ethiopic: Etiópico
+    faroese: Feroés
     fijian: Fijiano
     finnish: Finés
     french: Francés
@@ -253,8 +254,10 @@ es:
     additional_choir_voice: Voz en coro adicional
     additional_codes: Códigos adicionales a continuación del número o código estándar
     additional_institution: Institución adicional
+    additional_manuscript_material: Material manuscrito adicional
     additional_personal_name: Nombre personal adicional
     additional_personal_name_lit: Nombre personal adicional
+    additional_printed_material: Material impreso adicional
     additional_solo_voice: Voz solista adicional
     additional_title: Título adicional
     additional_title_lit: Título adicional
@@ -265,6 +268,7 @@ es:
     aids: Asistencia
     alleged: Supuesta
     alternate_spelling: Ortografía alternativa
+    alternative_work_title: Título alternativo
     archive: Archivo
     arrangement: Arreglo
     arrangement_statement: Declaración de arreglo
@@ -288,6 +292,7 @@ es:
     authority_agency: Agencia de autoridad
     authority_record_control_number: Códigos adicionales a continuación del número o código estándar
     authority_reference: Referencia de autoridad
+    autograph_manuscript: Manuscrito autográfico
     autography: Autografía
     b_major: Si Mayor
     b_minor: Si menor
@@ -355,6 +360,7 @@ es:
     composer_author: Compositor/Autor
     composer_cross_reference: Referencia cruzada de compositor
     computer_printout: Impreso de computadora
+    composite: Volumen compuesto
     conceptor: Autor del concepto
     conductor: Director musical
     confused_with: Confundido/a con
@@ -555,6 +561,7 @@ es:
     library_information_relations: Información del repositorio y sus relaciones
     library_siglum: Sigla del repositorio
     librettist: Libretista
+    libretto: Libretto
     licensee: Licenciatario
     life_dates: Fechas de nacimiento y muerte
     link_type: Tipo de enlace
@@ -579,6 +586,8 @@ es:
     longitude: Longitud
     lyricist: Letrista
     main_entry_fields: Campos principales
+    manuscript_copy: Copia manuscrita
+    manuscript_copy_with_autograph_annotations: Copia manuscrita con anotaciones autográficas
     married_name: Apellido de casada/o
     married_to: casado/a con
     married_with: Casado/a con
@@ -591,6 +600,7 @@ es:
     method_of_acquisition: Método de adquisición
     misattributed: Mal atribuida
     miscellaneous: Varios
+    mixed: Mixto
     mode_10t: 'Modo: 10º tono (Hipoeólico)'
     mode_10tt: 'Modo: 10º tono (Hipoeólico), transpuesto'
     mode_11t: 'Modo:  11º tono (Jónico)'
@@ -628,6 +638,7 @@ es:
     musical_composition: Composición musical
     name: Nombre
     name_family: Apellido
+    name_of_part: Nombre de la parte/sección de una obra
     name_printer: Nombre del impresor
     name_variant: Variantes del nombre
     name_variants: Variantes del nombre
@@ -638,6 +649,7 @@ es:
     no_linguistic_content: Sin contenido lingüístico
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: No se aplica
+    notated_music: Música notada
     note: Nota
     note_external_resource: Nota sobre el recurso externo
     note_fields: Campos de notas
@@ -680,6 +692,7 @@ es:
     papermaker: Fabricante de papel
     parallel_form: Forma paralela de nombre
     parent_record: Registro madre
+    partial_autograph: Autográfico parcial
     parts_held: Particellas conservadas
     parts_held_extent: Particellas conservadas y extensión de las mismas
     patron: Comitente
@@ -709,9 +722,13 @@ es:
     plaine_and_easie: Código Plaine and Easie
     plate_number: Número de plancha
     plucked_instruments: Cuerdas pulsadas
+    possible_autograph_manuscript: Posible manuscrito autográfico
     postal_code: Código postal
     postal_place: Dirección postal
     preceding_entry: Registro precedente
+    print: Impresión
+    print_with_autograph_annotations: Impresión con anotaciones autógrafas
+    print_with_non_autograph_annotations: Impresión con anotaciones non autógrafas
     printer: Impresor
     printing_technique: Técnica de impresión
     production: Producción
@@ -838,6 +855,7 @@ es:
     translation: Traducción
     translator: Traductor
     transparency: Transparencia
+    treatise: Tratado
     type: Tipo
     type_designer: Fundidor
     type_institution: Tipo de institución
@@ -854,6 +872,7 @@ es:
     variant_source_title: Variante de título en fuente
     variations: Variaciones
     verified: Verificada
+    version_information: Versión, edición, etc., información
     vocalist: Cantante
     voice_instrument: Voz/instrumento
     volume_year_page: Volumen, año, página

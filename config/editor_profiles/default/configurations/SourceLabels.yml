@@ -1238,3 +1238,15 @@ unmatched:
   label: general.unknown_fields
 voc:
   label: records.vocalist
+"Autograph manuscript":
+  label: records.autograph_manuscript
+"Possible autograph manuscript":
+  label: records.possible_autograph_manuscript
+"Partial autograph":
+  label: records.partial_autograph
+"Manuscript copy":
+  label: records.manuscript_copy
+"Manuscript copy with autograph annotations":
+  label: records.manuscript_copy_with_autograph_annotations
+"Additional printed material":
+  label: records.additional_printed_material

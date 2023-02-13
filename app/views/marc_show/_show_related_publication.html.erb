@@ -1,9 +1,10 @@
 <%
-  t_tag = tag.fetch_first_by_tag(:w)
-	publication = (t_tag ? t_tag.looked_up_content : "")
-  external_title = "#{Publication.find(t_tag.content).description rescue publication}"
-
+ 	t_tag = tag.fetch_first_by_tag(:t)
+	w_tag = tag.fetch_first_by_tag(:w)
+	publication = (w_tag ? t_tag.looked_up_content : "")
+	external_title = (t_tag.looked_up_content ? t_tag.looked_up_content : t_tag.content)
 -%>
+
 <tr class="row">
 	<th>
 		<% if (no_label == false) -%>

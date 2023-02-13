@@ -58,6 +58,7 @@ it:
     english: Inglese
     estonian: Estone
     ethiopic: Etiope
+    faroese: Faroense
     fijian: Figiano
     finnish: Finlandese
     french: Francese
@@ -253,8 +254,10 @@ it:
     additional_choir_voice: Voci di coro aggiuntive
     additional_codes: Codici addizionali che seguono il numero o il codice standard
     additional_institution: Nome aggiuntivo di ente
+    additional_manuscript_material: Materiale manoscritto aggiuntivo
     additional_personal_name: Nome aggiuntivo di persona
     additional_personal_name_lit: Nome aggiuntivo di persona
+    additional_printed_material: Materiale stampato aggiuntivo
     additional_solo_voice: Voce solista aggiuntiva
     additional_title: Titolo uniforme alternativo
     additional_title_lit: Titolo uniforme alternativo
@@ -265,6 +268,7 @@ it:
     aids: Assistenza
     alleged: Presunta
     alternate_spelling: Ortografia alternativa
+    alternative_work_title: Titolo alternativo dell'opera
     archive: Archivio
     arrangement: Arrangiamento
     arrangement_statement: Arrangiamento
@@ -288,6 +292,7 @@ it:
     authority_agency: Agenzia autorità
     authority_record_control_number: Numero di controllo del registro dell'autorità o numero standard
     authority_reference: Riferimento all'autorità
+    autograph_manuscript: Manoscritto autografo
     autography: Autografia
     b_major: Si maggiore
     b_minor: Si minore
@@ -355,6 +360,7 @@ it:
     composer_author: Compositore/Autore
     composer_cross_reference: Rimando ad altro compositore
     computer_printout: Stampata da computer
+    composite: Volume composito
     conceptor: Autore della fonte letteraria
     conductor: Direttore d'orchestra
     confused_with: Confuso/confusa con
@@ -555,6 +561,7 @@ it:
     library_information_relations: Biblioteca e relazione
     library_siglum: Sigla della biblioteca
     librettist: Librettista
+    libretto: Libretto
     licensee: Licenziatario
     life_dates: Data di nascita e di morte
     link_type: Tipo di collegamento
@@ -579,6 +586,8 @@ it:
     longitude: Longitudine
     lyricist: Poeta
     main_entry_fields: Campi principali
+    manuscript_copy: Copia manoscritta
+    manuscript_copy_with_autograph_annotations: Copia manoscritta con annotazioni autografe
     married_name: Nome da sposato
     married_to: Sposato/sposata con
     married_with: Sposato/sposata con
@@ -591,6 +600,7 @@ it:
     method_of_acquisition: Metodo d'acquisto
     misattributed: Erronea
     miscellaneous: Varia
+    mixed: Misto
     mode_10t: 'Modo: 10t – Ipoeolio'
     mode_10tt: 'Modo: 10tt – Ipoeolio, trasposto'
     mode_11t: 'Modo: 11t – Ionico'
@@ -628,6 +638,7 @@ it:
     musical_composition: Composizione musicale
     name: Nome
     name_family: Nome di famiglia
+    name_of_part: Nome della parte o sezione di un'opera
     name_printer: Stampatore, stamperia
     name_variant: Varianti del nome
     name_variants: Varianti del nome
@@ -638,6 +649,7 @@ it:
     no_linguistic_content: Senza contesto linguistico
     non_migrated_bound: Valore non migrato dal campo 563 (Rilegato con)
     not_applicable: Non applicabile
+    notated_music: Musica notata
     note: Nota
     note_external_resource: Nota sulla risorsa esterna
     note_fields: Campi note
@@ -663,7 +675,7 @@ it:
     order_name: Nome dell'ordine religioso
     origin: Origine
     original_cataloging_agency: Agenzia catalografica originale
-    other: Altra funzione
+    other: Altro
     other_associated_place: Altro luogo associato
     other_designation: Altra designazione
     other_form: Ortografia alternativa
@@ -680,6 +692,7 @@ it:
     papermaker: Fabbricante di carta
     parallel_form: Forma parallela del nome
     parent_record: Notizia principale
+    partial_autograph: Autografo parziale
     parts_held: Parti staccate esistenti
     parts_held_extent: Parti staccate, estensione
     patron: Committente
@@ -709,9 +722,13 @@ it:
     plaine_and_easie: Codice Plaine and Easie
     plate_number: Numero della lastra
     plucked_instruments: Strumenti a pizzico
+    possible_autograph_manuscript: Possibile manoscritto autografo
     postal_code: Codice postale
     postal_place: Luogo postale
     preceding_entry: Notizia precedente
+    print: Stampa
+    print_with_autograph_annotations: Stampa con annotazioni autografe
+    print_with_non_autograph_annotations: Stampa con annotazioni non autografe
     printer: Stampatore
     printing_technique: Tecnica di stampa
     production: Produzione
@@ -838,6 +855,7 @@ it:
     translation: Traduzione
     translator: Traduttore
     transparency: Trasparente
+    treatise: Trattato
     type: Tipo
     type_designer: Fonditore
     type_institution: Tipo di istituzione
@@ -854,6 +872,7 @@ it:
     variant_source_title: Varianti del titolo diplomatico
     variations: Variazioni
     verified: Verificata
+    version_information: Informazioni sulla versione o edizione
     vocalist: Cantante
     voice_instrument: Voce/strumento
     volume_year_page: Volume, anno, pagina

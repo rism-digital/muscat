@@ -85,6 +85,25 @@ body.active_admin {
     .status_tag.ok { background: #8daa92; }
     .status_tag.warning { background: #e29b20; }
     .status_tag.deleted { background: #d45f53; }
+
+    .status_tag.work_links { 
+      width: 82px;
+      display: inline-block; 
+      background: rgba(255,255,255,0.0);
+    }
+    .status_tag.work_links.links-1 {
+      background: linear-gradient(to right,
+      #87CEFA 38%,
+      rgba(255,255,255,0.0) 38%)
+    }
+    .status_tag.work_links.links-2 {
+      background: linear-gradient(to right,
+      #87CEFA 70%,
+      rgba(255,255,255,0.0) 70%)
+    }
+    .status_tag.work_links.links-3 {
+      background: #87CEFA;
+    }
 }
 
 .progress_bar {

@@ -298,10 +298,10 @@ ActiveAdmin.register Source do
          }
 
   filter :"593a_filter_with_integer", :label => proc{I18n.t(:filter_source_type)}, as: :select, 
-  collection: proc{@source_types.sort.collect {|k| [k.camelize, "593a_filter:#{k}"]}}
+  collection: proc{@source_types.sort.collect {|k| [@editor_profile.get_label(k.camelize), "593a_filter:#{k}"]}}
   
   filter :"593b_filter_with_integer", :label => proc{I18n.t(:filter_source_content_type)}, as: :select, 
-  collection: proc{@source_types_b.sort.collect {|k| [k.camelize, "593b_filter:#{k}"]}}
+  collection: proc{@source_types_b.sort.collect {|k| [@editor_profile.get_label(k.camelize), "593b_filter:#{k}"]}}
 
   filter :record_type_select_with_integer, as: :select, 
   collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
