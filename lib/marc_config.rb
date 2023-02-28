@@ -53,8 +53,33 @@ class MarcConfig
       end
       @tag_config[tag][:tagless] = tagless
     end
-
+    
+    # This is used to import unkown marc in muscat
+    # we basically add an overlay of each tag from 000 to 999
+    add_fake_config if @whole_config.keys.include?(:add_fake_tags) && @whole_config[:add_fake_tags] == true
+    
     return @whole_config[:model]
+  end
+
+  # Used to import unknown marc into muscat
+  def add_fake_config
+    for i in 0..999 do
+      tag_str = "%03d" % i
+      if has_tag?(tag_str)
+        tag = @tag_config[tag_str]
+      else
+        tag = {master: "a", indicator: "##", occurrences: "?", fields: [], tagless: false}
+      end
+
+      range = ("0".."9").to_a + ("a".."z").to_a
+
+      range.each do |subtag|
+        next if has_tag?(tag_str) && has_subfield?(tag_str, subtag)
+        tag[:fields] << [subtag, {occurrences: "?"}]
+      end
+
+      @tag_config[tag_str] = tag
+    end
   end
 
   public
@@ -235,7 +260,7 @@ class MarcConfig
     return @tag_config.include?(tag)
   end
 
-  def has_subfield?(tag, subtag )
+  def has_subfield?(tag, subtag)
     return true if @tag_config[tag][:fields].assoc(subtag)
     return false
   end

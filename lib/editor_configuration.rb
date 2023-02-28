@@ -266,6 +266,52 @@ class EditorConfiguration
     return options_config.include?("triggers") ? options_config["triggers"] : nil
   end
 
+  # Used to import unknown marc into muscat
+  def add_fake_config(incoming_marc)
+
+    # Make sure the overlays are loaded
+    options_config
+
+    for i in 0..999 do
+      tag_str = "%03d" % i
+      if @squeezed_options_config.include?(tag_str)
+        tag = @squeezed_options_config[tag_str]
+      else
+        tag = {"layout" => {"fields" => []}}
+      end
+    
+      next if tag.keys.include?("tag") && tag["tag"] == "tag_no_subfield"
+
+      range = ("0".."9").to_a + ("a".."z").to_a
+
+      range.each do |subtag|
+        # Is the subtag already configured?
+        found = false
+        has_secondary = false
+        each_subfield_for(tag_str) do |configured_field, configuration|
+          # foreign field, it will automatically add the master field to the editor but it is not configured explicitally!
+          has_secondary = true if configuration && configuration.include?("editor_partial") && configuration["editor_partial"] == "subfield_secondary"
+          # the subtag is on element 0 of the array, elem 1 is the configuration
+          found = true if configured_field[0] == subtag
+        end
+        next if found
+
+        # is this a master field?
+        # In this case we do not need to add it as it is added automatically by subfield_secondary
+        next if has_secondary && subtag == incoming_marc.config.get_master(tag_str)
+
+        # No need to add the tag if it is not there
+        next if !incoming_marc.first_occurance(tag_str, subtag)
+
+        tag["layout"]["fields"] << [subtag, {"read_only" => true}]
+      end
+
+      @squeezed_options_config[tag_str] = tag
+
+    end
+
+  end
+
   #################################
 
   # Gets the layout for the current configuration. As labels_config.
