@@ -180,7 +180,7 @@
   :model: work_node
   # For now re-use the work labels
   :labels: 
-  - WorkLabels
+  - WorkNodeLabels
   :options: 
   - WorkNodeFormOptions
   :layout: 
@@ -191,9 +191,8 @@
 - :id: ShowWorkNode
   :name: WorkNode
   :model: work_node
-  # For now re-use the work labels
   :labels: 
-  - WorkLabels
+  - WorkNodeLabels
   :options: 
   - WorkNodeFormOptions
   :layout: 
@@ -207,7 +206,6 @@
 - :id: DefaultGndWork
   :name: GndWork
   :model: gnd_work
-  # For now re-use the work labels
   :labels: 
   - GndWorkLabels
   :options: 
