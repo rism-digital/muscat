@@ -172,7 +172,7 @@ group :test do
   gem 'database_cleaner'
   gem 'generator_spec'
   # Use sqlite3 for testing db
-  gem 'sqlite3'
+  # gem 'sqlite3'
 end
 
 # This gem is used in subfield_select_codes

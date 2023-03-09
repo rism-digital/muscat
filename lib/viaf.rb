@@ -15,7 +15,7 @@ module Viaf
       result = []
       if model.to_s == 'Person'
         begin 
-          query = JSON.load(open(URI.escape("http://viaf.org/viaf/AutoSuggest?query="+term)))
+          query = JSON.load(open(URI::Parser.new.escape("http://viaf.org/viaf/AutoSuggest?query="+term)))
         rescue 
           return "ERROR connecting VIAF AutoSuggest"
         end
@@ -30,7 +30,7 @@ module Viaf
       #this needs another approach because autosuggest is not well supported
       elsif model.to_s == "Work"
         r = []
-        uri = URI("http://viaf.org/viaf/search?query=local.uniformTitleWorks=#{URI.escape(term)}&sortKeys=holdingscount&httpAccept=application/json")
+        uri = URI("http://viaf.org/viaf/search?query=local.uniformTitleWorks=#{URI::Parser.new.escape(term)}&sortKeys=holdingscount&httpAccept=application/json")
         json = Net::HTTP.get(uri)
         res = JSON(json)
         return "Sorry, no work results were found in VIAF!" unless res["searchRetrieveResponse"]["records"]
@@ -70,9 +70,9 @@ module Viaf
           else
             next
           end
-          provider_url="http://viaf.org/processed/#{provider}%7C#{URI.escape(provider_id)}?httpAccept=application/xml"
+          provider_url="http://viaf.org/processed/#{provider}%7C#{URI::Parser.new.escape(provider_id)}?httpAccept=application/xml"
           begin
-            links = JSON.load(open(URI.escape("http://viaf.org/viaf/#{record["viafid"]}/justlinks.json")))
+            links = JSON.load(open(URI::Parser.new.escape("http://viaf.org/viaf/#{record["viafid"]}/justlinks.json")))
           rescue
             return "ERROR connecting VIAF Justlinks"
           end
