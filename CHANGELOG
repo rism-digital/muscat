@@ -1,6 +1,9 @@
 Muscat Changelog
 ================
 
+v 9.1.1
+* Add $d for 500 in people
+
 v 9.1
 * Rename description to title in publications
 * Rename a minor variable related to description to title
