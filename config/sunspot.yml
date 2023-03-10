@@ -23,5 +23,5 @@ test:
     hostname: localhost
     port: 8983
     log_level: WARNING
-    path: /solr/muscat
+    path: /solr/test
     bind_address: 127.0.0.1
