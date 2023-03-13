@@ -14,21 +14,19 @@ control:
   label: gnd.control
 unmatched:
   label: gnd.ungrouped
-'000':
-  label: records.leader
 '001':
-  label: records.rism_id_number
+  label: gnd.rism_id_number
 '003':
-  label: records.control_number_identifier
+  label: gnd.control_number_identifier
 '005':
-  label: records.date_time_last_transaction
+  label: gnd.date_time_last_transaction
 '024':
   fields:
     '2':
       label: gnd.source_number_code
     a:
       label: gnd.standard_number_code
-  label: records.other_standard_identifier
+  label: gnd.other_standard_identifier
 '100':
   fields:
     a:
