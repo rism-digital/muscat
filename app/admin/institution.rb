@@ -23,8 +23,8 @@ ActiveAdmin.register Institution do
   # temporarily allow all parameters
   controller do
 
-    autocomplete :institution, [:siglum, :name], :display_value => :autocomplete_label_siglum, :extra_data => [:siglum, :name], :required => :siglum
-    autocomplete :institution, :name, :display_value => :autocomplete_label_name, :extra_data => [:siglum, :name]
+    autocomplete :institution, [:siglum, :full_name], :display_value => :autocomplete_label_siglum, :extra_data => [:siglum, :full_name], :required => :siglum
+    autocomplete :institution, :full_name, :display_value => :autocomplete_label_name, :extra_data => [:siglum, :full_name]
 
     after_destroy :check_model_errors
     before_create do |item|
@@ -113,7 +113,7 @@ ActiveAdmin.register Institution do
   ###########
 
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"110g_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
   filter :place_contains, :label => proc {I18n.t(:filter_place)}, :as => :string
   filter :"667a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
@@ -144,7 +144,7 @@ ActiveAdmin.register Institution do
     column (I18n.t :filter_id), :id
 
     column (I18n.t :filter_siglum), :siglum
-    column (I18n.t :filter_location_and_name), :name
+    column (I18n.t :filter_location_and_full_name), :full_name
     column (I18n.t :filter_place), :place
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
       all_hits = @arbre_context.assigns[:hits]
@@ -165,7 +165,7 @@ ActiveAdmin.register Institution do
   ## Show ##
   ##########
 
-  show :title => proc{ active_admin_auth_show_title( @item.name, @item.siglum, @item.id) } do
+  show :title => proc{ active_admin_auth_show_title( @item.full_name, @item.siglum, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
 
@@ -183,7 +183,7 @@ ActiveAdmin.register Institution do
           table_for(collection, sortable: true) do
             column :id do |p| link_to p.id, controller: :institutions, action: :show, id: p.id end
             column :siglum
-            column :name
+            column :full_name
             column :place
           end
         end
@@ -226,7 +226,7 @@ ActiveAdmin.register Institution do
       context.table_for(context.collection) do |cr|
         context.column "id", :id
         context.column (I18n.t :filter_siglum), :siglum
-        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_full_name), :full_name
         context.column (I18n.t :filter_place), :place
         if !is_selection_mode?
           context.column "" do |publication|

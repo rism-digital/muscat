@@ -5,7 +5,7 @@ class NotificationMatcher
   ALLOWED_PROPERTIES = {
     source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum, :follow],
     work: [:title, :form, :notes, :composer, :follow],
-    institution: [:siglum, :name, :address, :place, :comments, :alternates, :notes, :follow]
+    institution: [:siglum, :full_name, :address, :place, :comments, :alternates, :notes, :follow]
   }
 
   SPECIAL_RULES = {
