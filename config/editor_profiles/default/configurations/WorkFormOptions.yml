@@ -513,6 +513,3 @@
         - "Pharaphrase of"  
         - "Variation of"  
         editor_partial: subfield_select
-
-triggers:
-  - notify_changes
