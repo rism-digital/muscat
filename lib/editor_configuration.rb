@@ -124,7 +124,7 @@ class EditorConfiguration
       return label
     end
     # if nothing found
-    return "[#{id} sublabel: #{sub_id} unspecified]" 
+    return "[#{sub_id}]" #"[#{id} sublabel: #{sub_id} unspecified]" 
   end
   
   # Returns if this label has a sublabel
@@ -144,15 +144,6 @@ class EditorConfiguration
   end
   
   # Gets the localized label for the speficied field. Ex:<p>
-  # <tt>
-  # Label example
-  # prt: !map:HashWithIndifferentAccess 
-  #  label: !map:HashWithIndifferentAccess 
-  #    it: Stampatore
-  #    fr: Imprimeur
-  #    de: Drucker
-  #    en: Printer
-  # </tt>
   def get_label(id, edit = false)
     
     # Get the label in the specified locale
@@ -169,7 +160,7 @@ class EditorConfiguration
     else
       # This is the case when a key is not found int he
       # map file, and no translation lookup is possible
-      return "[#{id} unspecified]"
+      return ""#"[#{id} unspecified]"
     end
   end
   
