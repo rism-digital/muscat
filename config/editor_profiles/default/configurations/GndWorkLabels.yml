@@ -1,7 +1,19 @@
 --- !map:ActiveSupport::HashWithIndifferentAccess
-
+_default_unknown_labels: true
 main_work:
-  label: "ciao"
+  label: gnd.main_work
+variants:
+  label: gnd.variants
+references:
+  label: gnd.references
+codes:
+  label: gnd.codes
+relations:
+  label: gnd.relations
+control:
+  label: gnd.control
+unmatched:
+  label: gnd.ungrouped
 '000':
   label: records.leader
 '001':

@@ -93,24 +93,13 @@ class EditorConfiguration
     @squeezed_labels_config
   end
   
+  def default_unknown_labels?
+   return true if labels_config.include?("_default_unknown_labels") && labels_config["_default_unknown_labels"] == true
+   false
+  end
+
   # Get the sublabel. Generally used in Marc records for subrecords. For example, the YAML code
-  # to set the name of $a for marc 028 (with localization):<p>
-  # <tt>
-  # Sublabel example
-  # 028: !map:HashWithIndifferentAccess 
-  #  label: !map:HashWithIndifferentAccess 
-  #    it: Numero dell'editore
-  #    fr: "Numéro d'éditeur"
-  #    de: Verlagsnummer
-  #    en: Publisher Number
-  #  fields: !map:HashWithIndifferentAccess 
-  #    a: !map:HashWithIndifferentAccess 
-  #      label: !map:HashWithIndifferentAccess 
-  #        it: Numero di lastra
-  #        fr: "Numéro de plaque"
-  #        de: Plattennummer
-  #        en: Plate number
-  # </tt>      
+  # to set the name of $a for marc 028 (with localization):<p>    
   def get_sub_label(id, sub_id, edit = false)
     if labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id] && labels_config[id][:fields][sub_id][:label]
       label =  I18n.t(labels_config[id][:fields][sub_id][:label])
@@ -124,7 +113,11 @@ class EditorConfiguration
       return label
     end
     # if nothing found
-    return "[#{sub_id}]" #"[#{id} sublabel: #{sub_id} unspecified]" 
+    if default_unknown_labels?
+      return "[#{sub_id}]"
+    else
+      return "[#{id} sublabel: #{sub_id} has no label configuration]"
+    end
   end
   
   # Returns if this label has a sublabel
@@ -160,7 +153,11 @@ class EditorConfiguration
     else
       # This is the case when a key is not found int he
       # map file, and no translation lookup is possible
-      return ""#"[#{id} unspecified]"
+      if default_unknown_labels?
+        return ""
+      else
+        return "[#{id} has no label configuration]"
+      end
     end
   end
   
