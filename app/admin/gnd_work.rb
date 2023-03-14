@@ -54,12 +54,8 @@ ActiveAdmin.register_page "gnd_works" do
     def marc_editor_validate
       marc_hash = JSON.parse params[:marc]
       current_user = User.find(params[:current_user])
-      # hard coded here
-      classname = "MarcGndWork"
-      # Let it crash is the class is not fond
-      dyna_marc_class = Kernel.const_get(classname)
       
-      new_marc = dyna_marc_class.new()
+      new_marc = MarcGndWork.new()
       # Load marc, do not resolve externals
       new_marc.load_from_hash(marc_hash, user: current_user, dry_run: true)
 
@@ -70,9 +66,6 @@ ActiveAdmin.register_page "gnd_works" do
       
       validator = MarcValidator.new(@item, current_user)
       validator.validate_tags
-      validator.validate_links
-      validator.validate_unknown_tags
-      validator.validate_server_side
 
       if validator.has_errors
         render json: {status: validator.to_s}

@@ -2,5 +2,4 @@
 client:
   "100":
     tags:
-      "0": mandatory
       t: mandatory
