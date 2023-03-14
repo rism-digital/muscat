@@ -102,10 +102,6 @@ module GND
         # adjust tag 100
         tag100 = marc.first_occurance("100")
         if tag100
-            # move $p to $n
-            tag100.each_by_tag("p") do |p|
-                p.tag = "n"
-            end
             # merge all $m into one
             m_subtags = tag100.fetch_all_by_tag("m")
             m_subtags.drop(1).each do |m_subtag|
@@ -117,6 +113,12 @@ module GND
             n_subtags.drop(1).each do |n_subtag|
                 n_subtags[0].content += " #{n_subtag.content}" if n_subtag.content
                 n_subtag.destroy_yourself
+            end
+            # merge all $p into one
+            p_subtags = tag100.fetch_all_by_tag("p")
+            p_subtags.drop(1).each do |p_subtag|
+                p_subtags[0].content += " #{p_subtag.content}" if p_subtag.content
+                p_subtag.destroy_yourself
             end
         end
 
