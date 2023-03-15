@@ -3,4 +3,6 @@ client:
   "110":
     tags:
       a: mandatory
-
+  "368":
+    tags:
+      a: mandatory
