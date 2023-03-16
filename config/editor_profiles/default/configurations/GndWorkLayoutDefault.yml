@@ -1,43 +1,29 @@
 --- !map:Settings 
 group_order: 
 - main_work
-- codes
-- variants
-- references
-- relations
-- control
 groups:   
   main_work: 
     all_tags: 
+    - "001"
+    - "003"
+    - "024"
+    - "035"
+    - "040"
+    - "043"
+    - "056"
+    - "079"
     - "100"
-    - "548"
+    - "380"
+    - "382"
     - "383"
-    - "690"
-#  people:
-#    all_tags:
-#    - "500"
-  variants:
-    all_tags:
+    - "384"
     - "400"
-#    - "440"
-  references:
-    all_tags:
+    - "500"
+    - "530"
+    - "548"
+    - "550"
+    - "667"
     - "670"
     - "675"
-    - "680"
-    - "667"
-  codes: 
-    all_tags: 
-    - "024"
-    - "380"
-  relations:
-    all_tags:
-    - "700"
-    - "710"
-    - "747"
-    - "930"
-  control: 
-    all_tags: 
-    - "040"
-    - "000"
-    - "001"
+    - "678"
+    - "912"
