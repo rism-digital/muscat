@@ -742,9 +742,9 @@ ca:
 
   dashboard:
     selection: "Seleccioneu l'activitat recent"
-    type: "Tipus de canvi"
-    type_created: "Creats fa poc"
-    type_updated: "Actualitzats fa poc"
+    type: "Tipus"
+    type_created: "Nous"
+    type_updated: "Actualitzats"
     owner: "Propietari"
     owner_user: "Jo mateix"
     owner_any: "Qualsevol"
