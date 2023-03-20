@@ -583,6 +583,10 @@ class Source < ApplicationRecord
     end
 
     tags.each do |copy_tag, indexes|
+
+      # Purge 593 only if we are copying over a new one
+      holding_marc.each_by_tag("593") {|t2| t2.destroy_yourself} if copy_tag == "593"
+
       match = marc.by_tags(copy_tag)
 
       indexes.each do |i|
