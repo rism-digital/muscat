@@ -62,6 +62,7 @@ module Template
 
   # Restore tags from previous template in versions
   def restore_tags(rt)
+=begin
     restore_version = nil
     latest_versions = self.versions.order(created_at: :desc)
     latest_versions.each do |v|
@@ -71,6 +72,7 @@ module Template
         break
       end
     end
+
     if restore_version
       restore_version.template_difference(self.record_type).each do |tag|
         next if self.marc.has_tag?(tag)
@@ -83,6 +85,7 @@ module Template
         end
       end
     end
+=end
     if !marc.has_tag?("852") && holdings.first && template_tags(rt).include?("852")
       move_holding_to_852
     end
