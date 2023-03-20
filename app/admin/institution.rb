@@ -231,8 +231,8 @@ ActiveAdmin.register Institution do
         context.column (I18n.t :filter_name), :name
         context.column (I18n.t :filter_place), :place
         if !is_selection_mode?
-          context.column "" do |publication|
-            link_to "View", controller: :institutions, action: :show, id: institution.id
+          context.column "" do |inst|
+            link_to "View", controller: :institutions, action: :show, id: inst.id
           end
         end
       end
