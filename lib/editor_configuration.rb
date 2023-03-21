@@ -31,6 +31,17 @@
 #
 class EditorConfiguration
   
+  def read_file(file)
+    begin
+      data = Settings.new(IO.read(file))
+    rescue Psych::SyntaxError => e
+      puts e.message
+      puts "File: #{file}"
+      raise "Error parsing YML conf file: " + file + "\n" + e.message
+    end
+    data
+  end
+
   # Load all the configurations, first in config/editor_profiles/default/configurations/ then in
   # config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/. If two files share the same name
   # in the two directories, they will be merged together.
@@ -42,7 +53,7 @@ class EditorConfiguration
     configs.each do |config|
       file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml")
       if File.exists?(file)
-        settings.squeeze(Settings.new(IO.read(file)))
+        settings.squeeze(read_file(file))
       end
     end
     
@@ -65,7 +76,7 @@ class EditorConfiguration
   def superimpose_shared_file(name)
     file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/shared/#{name}")
     if File.exists?(file)
-      @squeezed_labels_config.squeeze(Settings.new(IO.read(file)))
+      @squeezed_labels_config.squeeze(read_file(file))
     end
   end
 
