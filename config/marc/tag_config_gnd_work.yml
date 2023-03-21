@@ -27,6 +27,18 @@
     :fields:
     - - ""
       - :no_browse: true
+  "005":  
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "008":  
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
   "024":  
     :indicator: "##"
     :occurrences: "*"

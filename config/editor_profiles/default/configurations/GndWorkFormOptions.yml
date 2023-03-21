@@ -16,6 +16,18 @@
     read_only: true
     no_delete: true
   tag_header: none
+"005": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+    no_delete: true
+  tag_header: none
+"008": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+    no_delete: true
+  tag_header: none
 "024": 
   layout: 
     fields: 
@@ -153,14 +165,12 @@
     fields: 
     - - a
 "400":
-  new_window: people
-  new_window_field: full_name_equals
   layout: 
     fields: 
     - - a
-      - type: person
+      - type: gnd_work_person
+        preserve_foreign_value: true
         editor_partial: subfield_secondary
-        allow_new: true
     - - d
       - autocomplete_extra: life_dates
     - - m
@@ -173,9 +183,9 @@
   layout: 
     fields: 
     - - "a"
-      - type: person
+      - type: gnd_work_person
+        preserve_foreign_value: true
         editor_partial: subfield_secondary
-      - cols: 4
     - - d
     - - e
 "530": 
