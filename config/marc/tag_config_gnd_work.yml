@@ -76,15 +76,35 @@
     - - v
       - :occurrences: "?"
   "100":  
-    :indicator: "##"
-    :occurrences: "*"
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "?"
     :fields:
+    - - "0"
+      - :occurrences: "?"  
+        #:foreign_class: GndWork
+        #:foreign_field: id
+    - - a
+      - :occurrences: "?"
+        #:foreign_class: ^0
+        #:foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - r
+      - :occurrences: "?"
     - - t
       - :occurrences: "?"
   "380":  
+    :master: "0"
     :indicator: "##"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"  
     - - a
       - :occurrences: "?"
   "382":  
@@ -110,16 +130,34 @@
     - - a
       - :occurrences: "?"
   "400":  
-    :indicator: "##"
+    :indicator: "1#"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"  
+    - - a
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - r
+      - :occurrences: "?"
     - - t
       - :occurrences: "?"
   "500":  
-    :indicator: "##"
+    :indicator: "1#"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"  
     - - a
+      - :occurrences: "?"
+    - - "d"
+      - :occurrences: "?"
+    - - "e"
       - :occurrences: "?"
   "530":  
     :indicator: "##"
