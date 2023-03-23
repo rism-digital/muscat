@@ -29,6 +29,65 @@ module GND
         return result
     end
 
+    def self.push(marc_hash)
+        m = MarcGndWork.new
+        m.load_from_hash(marc_hash)
+
+        ap m.get_id
+
+        send_to_gnd(:create, m.to_xml_record(nil, nil, nil), m.get_id)
+    end
+
+    # post xml to gnd
+    def self.send_to_gnd(action, xml, id=nil)
+        server = "https://devel.dnb.de/sru_ru/"
+        request_body = _envelope(action, xml.to_s, id)
+        puts request_body
+        uri = URI.parse(server)
+        post = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'text/xml')
+        server = Net::HTTP.new(uri.host, uri.port)
+        server.use_ssl = true
+        server.start {|http|
+            http.request(post, request_body) {|response|
+                ap response.code
+                puts response.body
+                @response_body = Nokogiri::XML(response.body)
+                @status = @response_body.xpath("//diag:message", NAMESPACE).map{|e| e.content}.join("; ") rescue nil
+                #gnd.xml =  @response_body.xpath("//record")
+            }
+        }
+    end
+
+    # Private method to wrap the xml into the envelope
+    def self._envelope(action, data, id=nil)
+        login = "sru_2021-13/0O4y"
+        #login = "cirillo/pipino"
+        recordId = id ? "<ucp:recordIdentifier>gnd:gnd#{id}</ucp:recordIdentifier>" : ""
+        xml = <<-TEXT
+    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+        <soap:Body>
+        <ucp:updateRequest xmlns:ucp="http://www.loc.gov/zing/srw/update/" xmlns:srw="http://www.loc.gov/zing/srw/"  xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/">
+            <srw:version>1.0</srw:version>
+            #{recordId}
+            <ucp:action>info:srw/action/1/#{action}</ucp:action>
+            <srw:record>
+            <srw:recordPacking>xml</srw:recordPacking>
+            <srw:recordSchema>MARC21-xml</srw:recordSchema>
+            <srw:recordData>
+            #{data}
+            </srw:recordData>
+            </srw:record>
+            <srw:extraRequestData>
+            <authenticationToken>#{login}</authenticationToken>
+            </srw:extraRequestData>
+        </ucp:updateRequest>
+        </soap:Body>
+    </soap:Envelope> 
+        TEXT
+        doc = Nokogiri::XML(xml,nil, 'UTF-8')
+        return doc.to_xml
+    end
+
     # Retrieve a single GND record using the GND Id
     def self.retrieve(id)
         result = nil

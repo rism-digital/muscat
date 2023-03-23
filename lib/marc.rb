@@ -495,11 +495,12 @@ class Marc
     
     out = String.new
     
-    out += "\t<marc:record>\n"
+    #out += "\t<marc:record>\n"
+    out += '<marc:record xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ucp="http://www.loc.gov/zing/srw/update/" xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/" type="Authority">'
+    out += "<marc:leader>00000nz  a2200000oc 4500</marc:leader>\n"
     for child in safe_marc.root.children
       out += child.to_xml
     end
-
     out += "\t</marc:record>\n"
     
     return out

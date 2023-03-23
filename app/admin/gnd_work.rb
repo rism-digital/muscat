@@ -77,7 +77,9 @@ ActiveAdmin.register_page "gnd_works" do
     def marc_editor_save
       marc_hash = JSON.parse params[:marc]
 
-      # TODO - Save to the GND server
+      ap params[:id]
+
+      GND::Interface.push(marc_hash)
 
       path = admin_gnd_works_path
       respond_to do |format|

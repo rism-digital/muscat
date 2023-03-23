@@ -19,7 +19,6 @@ class GndWork < MarcGndWork
     self.id = marc_source_id if marc_source_id and marc_source_id != "__TEMP__"
 
     self.marc_source = self.marc.to_marc
-    puts self.marc_source
   end
 
 end
