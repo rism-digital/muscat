@@ -69,6 +69,19 @@ class StandardTitle < ApplicationRecord
 		
     text :typus
     
+
+    boolean :is_standard do |st|
+      (Source.solr_search do with("240a_filter", st.title) end).total > 0
+    end
+
+    boolean :is_additional do |st|
+      (Source.solr_search do with("730a_filter", st.title) end).total > 0
+    end
+
+    boolean :is_text do |st|
+      (Source.solr_search do with("031t_filter", st.title) end).total > 0
+    end
+
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
@@ -109,5 +122,9 @@ class StandardTitle < ApplicationRecord
   def name
     return title
   end
+
+  ransacker :"is_text", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"is_standard", proc{ |v| } do |parent| parent.table[:id] end
+
 
 end

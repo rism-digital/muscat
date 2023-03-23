@@ -106,6 +106,12 @@ ActiveAdmin.register StandardTitle do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "StandardTitle").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
+  filter :is_text_with_integer, :label => proc{I18n.t(:is_text)}, as: :select, 
+         collection: [["Yes", "is_text:true"],["No", "is_text:false"]]
+  
+  filter :is_standard_with_integer, :label => proc{I18n.t(:is_standard)}, as: :select, 
+         collection: [["Yes", "is_standard:true"],["No", "is_standard:false"]]
+
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|et| status_tag(et.wf_stage,
