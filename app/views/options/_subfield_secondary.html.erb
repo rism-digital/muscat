@@ -1,10 +1,19 @@
 <%- has_links_to = params.has_key?("has_links_to") ? params['has_links_to'] : false %>
+<%- preserve_foreign_value = params.has_key?("preserve_foreign_value") ? params['preserve_foreign_value'] : false %>
 <%- master = has_links_to ? subfield : @item.marc.config.get_master(tag_name) %>
-<% if has_links_to == true
-	marc_subfield_m = marc_subfield || MarcNode.new(@item.marc.get_model)
-else
-	marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new(@item.marc.get_model)
-end %>
+<% 
+	if has_links_to == true
+		marc_subfield_m = marc_subfield || MarcNode.new(@item.marc.get_model)
+	else
+		marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new(@item.marc.get_model)
+	end 
+
+	triggers = nil
+	if params.include?("trigger") && params["trigger"].is_a?(Array)
+		triggers = params["trigger"].to_json.html_safe
+	end
+
+%>
 
 <%- no_new = params.include?("no_new") ? params["no_new"] : false %>
 <%- ac_path = send(params['type'] + "_default_autocomplete")%>
@@ -37,7 +46,7 @@ end
 name_tag_subfield = "#{tag_name}#{subfield}"
 %>
 
-<input type="hidden" class="autocomplete_target serialize_marc <%=validate_class_master%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%=marc_subfield_m.content %>" <%=name_tag_master%> data-allow-new="<%=allow_new%>" data-has-links-to="<%=has_links_to%>">
+<input type="hidden" class="autocomplete_target serialize_marc <%=validate_class_master%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%=marc_subfield_m.content %>" <%=name_tag_master%> data-allow-new="<%=allow_new%>" data-has-links-to="<%=has_links_to%>" data-preserve-foreign-value="<%=preserve_foreign_value%>">
 
 <%
 options = {
@@ -46,6 +55,7 @@ options = {
 	:"data-field"=>"#{tag_name}",
 	:"min-length" => 1
 }
+	options[:"data-trigger"] = triggers if triggers
 	options[:disabled] = "disabled" if disabled || @restricted=='disabled'
 %>
 
