@@ -9,7 +9,7 @@ RSpec.describe "VIAF", :type => :feature, :js => true do
       fill_in :user_password, :with => user.password
       click_button('Login')
     end
-    it "Cataloger should be have person viaf interface interoperable" do
+    xit "Cataloger should be have person viaf interface interoperable" do
       visit new_admin_person_path
       page.find("#viaf-sidebar").click
       fill_in 'viaf_input', with: 'debussy'

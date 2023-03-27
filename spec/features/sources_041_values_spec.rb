@@ -12,7 +12,8 @@ RSpec.describe Admin::SourcesController, :type => :feature, :js => :true do
   
   describe "sources edit form" do
     it "should contain value 'West Frisian'" do
-      visit "/admin/sources/new?new_type=002_source"
+      #visit "/admin/sources/new?new_type=002_source"
+      visit "/admin/sources/new?new_record_type=source"
       expect(page.find("select[data-tag='041'][data-subfield='a']")).to have_css("option", text: 'West Frisian')
     end
   end

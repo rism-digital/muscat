@@ -18,8 +18,8 @@ RSpec.describe Admin::PublicationsController, type: :controller do
   end
 
   describe "CREATE" do
-    xit "creating #{model}" do
-      pending("results in marc nil ??")
+    it "creating #{model}" do
+      #pending("results in marc nil ??")
       #fail
       expect { post :create, :params => FactoryBot.attributes_for(model)   }.to change(model.to_s.capitalize.constantize, :count).by(1)
     end
