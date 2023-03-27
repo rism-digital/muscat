@@ -112,7 +112,7 @@ ActiveAdmin.register StandardTitle do
   filter :is_standard_with_integer, :label => proc{I18n.t(:is_standard)}, as: :select, 
          collection: [["Yes", "is_standard:true"],["No", "is_standard:false"]]
 
-  filter :is_standard_with_integer, :label => proc{I18n.t(:is_additional)}, as: :select, 
+  filter :is_additional_with_integer, :label => proc{I18n.t(:is_additional)}, as: :select, 
          collection: [["Yes", "is_additional:true"],["No", "is_additional:false"]]
 
   index :download_links => false do
