@@ -70,15 +70,15 @@ class StandardTitle < ApplicationRecord
     text :typus
     
 
-    boolean :is_standard do |st|
+    boolean :is_standard, :stored => true do |st|
       (Source.solr_search do with("240a_filter", st.title) end).total > 0
     end
 
-    boolean :is_additional do |st|
+    boolean :is_additional, :stored => true do |st|
       (Source.solr_search do with("730a_filter", st.title) end).total > 0
     end
 
-    boolean :is_text do |st|
+    boolean :is_text, :stored => true do |st|
       (Source.solr_search do with("031t_filter", st.title) end).total > 0
     end
 
@@ -125,6 +125,7 @@ class StandardTitle < ApplicationRecord
 
   ransacker :"is_text", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"is_standard", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"is_additional", proc{ |v| } do |parent| parent.table[:id] end  
 
 
 end
