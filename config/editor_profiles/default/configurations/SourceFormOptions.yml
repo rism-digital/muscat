@@ -27,6 +27,8 @@
     - - u
       - hidden: true
     - - a
+      - editor_partial: subfield_hardcoded
+        value: "1"
     - - b
     - - c
     - - d
