@@ -60,8 +60,8 @@ module GND
 
     # Private method to wrap the xml into the envelope
     def self._envelope(action, data, id=nil)
-        login = "sru_2021-13/0O4y"
-        #login = "cirillo/pipino"
+        login = ""
+        #login = ""
         recordId = id ? "<ucp:recordIdentifier>gnd:gnd#{id}</ucp:recordIdentifier>" : ""
         xml = <<-TEXT
     <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">

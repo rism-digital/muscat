@@ -8,6 +8,9 @@ client:
       "b":
         required_if:
           "031": "a"
+      "c":
+        required_if:
+          "031": "a"
   "100":
     tag_overrides:
       exclude:
