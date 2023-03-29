@@ -3,6 +3,11 @@ server:
   - validate_user_abilities
   - validate_links_to_self
 client:
+  "031":
+    tags:
+      "b":
+        required_if:
+          "031": "a"
   "100":
     tag_overrides:
       exclude:
