@@ -13,7 +13,7 @@ class MuscatCheckupReportJob < ApplicationJob
     logger = Logger.new(File.new("#{Rails.root}/log/validation.log", 'w'))
     logger.datetime_format = 
     logger.formatter = proc do |severity, datetime, progname, msg|
-      time = datetime.strftime('%Y-%m-%d %H:%M:%S')
+      time = datetime.utc.strftime('%Y-%m-%d %H:%M:%SZ')
       "[#{time}] [#{'%8s' % severity}] #{msg}\n"
     end
 
