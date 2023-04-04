@@ -125,6 +125,20 @@ client:
       "n": required
       "w": required
       "4": required
+  "773":
+    tag_overrides:
+      exclude:
+        "0":
+        - collection
+        - source
+        - libretto_source
+        - libretto_edition
+        - theoretica_source
+        - theoretica_edition
+        - edition
+        - composite_volume
+    tags:
+      'w': mandatory
   "852":
     tag_overrides:
       exclude:
