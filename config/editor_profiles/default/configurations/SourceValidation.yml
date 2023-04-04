@@ -128,7 +128,7 @@ client:
   "773":
     tag_overrides:
       exclude:
-        "0":
+        "w":
         - collection
         - source
         - libretto_source
