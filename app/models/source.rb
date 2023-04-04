@@ -330,12 +330,16 @@ class Source < ApplicationRecord
     # FIXME how do we generate ids?
     #self.marc.set_id self.id
 
-    # parent source
-    parent = marc.get_parent
-    # If the 773 link is removed, clear the source_id
-    # But before save it so we can update the parent
-    # source.
-    @old_parent = source_id if !parent
+    # parent source, can be nil
+    parent = marc.get_parent ? marc.get_parent : nil
+    # We need to save the parent (from 773) into source_id
+    # before doing that, we make a backup to update_77x known
+    # it has to modify the old parent. @old_parent wil be either
+    # nil or different than the current parent, in that case
+    # the record in @old_parent will have the 774 removed, if
+    # it had one
+    @old_parent = source_id
+    # Update source_id on the DB only after we make a backup copy
     self.source_id = parent ? parent.id : nil
 
     # std_title
@@ -362,19 +366,37 @@ class Source < ApplicationRecord
     self.marc_source = self.marc.to_marc
   end
 
-  # If this manuscript is linked with another via 774/773, update if it is our parent
-  def update_77x
-    # do we have a parent manuscript?
-    parent_manuscript_id = marc.first_occurance("773", "w")
+  # Remove the 774 link from our parent if we are deleting
+  # or changing the 773. Note that this function expects
+  # @old_parent to contain the ID of the parent
+  def delete_parent_774
+    parent_manuscript = Source.find_by_id(@old_parent)
+    return if !parent_manuscript
+    modified = false
 
-    # NOTE we evaluate the strings prefixed by 00000
-    # as the field may contain legacy values
+    parent_manuscript.paper_trail_event = "Remove 774 link #{id.to_s}"
 
-    if parent_manuscript_id
-      # We have a parent manuscript in the 773
-      # Open it and add, if necessary, the 774 link
+    # check if the 774 tag already exists
+    parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
+      subfield = tag.fetch_first_by_tag("w")
+      next if !subfield || !subfield.content
+      if subfield.content.to_i == id
+        puts "Deleting 774 $w#{subfield.content} for #{@old_parent}, from #{id}"
+        tag.destroy_yourself
+        modified = true
+      end
 
-      parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
+    end
+
+    if modified
+      parent_manuscript.suppress_update_77x
+      parent_manuscript.save
+      @old_parent = nil
+    end
+  end
+
+  def add_parent_774(parent_manuscript_id)
+      parent_manuscript = Source.find_by_id(parent_manuscript_id)
       return if !parent_manuscript
 
       parent_manuscript.paper_trail_event = "Add 774 link #{id.to_s}"
@@ -395,36 +417,35 @@ class Source < ApplicationRecord
 
       parent_manuscript.suppress_update_77x
       parent_manuscript.save
+  end
+
+  # If this manuscript is linked with another via 774/773, update if it is our parent
+  def update_77x
+    # do we have a parent manuscript?
+    parent_manuscript_id = marc.first_occurance("773", "w")
+
+    # NOTE we evaluate the strings prefixed by 00000
+    # as the field may contain legacy values
+
+    # We have a parent manuscript in the 773
+    # Open it and add, if necessary, the 774 link
+    if parent_manuscript_id && parent_manuscript_id.content
+      parent_id = parent_manuscript_id.content.to_i
+      # If we have @old_parent set, and it is different from the current
+      # parent, it means the user switched 773, so we need to delete
+      # the link in the old one.
+      if @old_parent && @old_parent.to_i != parent_id
+        delete_parent_774()
+      end
+      # Ok add the new link if necessary
+      add_parent_774(parent_id)
     else
       # We do NOT have a parent ms in the 773.
       # but we have it in old_parent, it means that
       # the 773 was deleted. Go into the parent and
       # find the reference to the id, then delete it
       if @old_parent
-        parent_manuscript = Source.find_by_id(@old_parent)
-        return if !parent_manuscript
-        modified = false
-
-        parent_manuscript.paper_trail_event = "Remove 774 link #{id.to_s}"
-
-        # check if the 774 tag already exists
-        parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
-          subfield = tag.fetch_first_by_tag("w")
-          next if !subfield || !subfield.content
-          if subfield.content.to_i == id
-            puts "Deleting 774 $w#{subfield.content} for #{@old_parent}, from #{id}"
-            tag.destroy_yourself
-            modified = true
-          end
-
-        end
-
-        if modified
-          parent_manuscript.suppress_update_77x
-          parent_manuscript.save
-          @old_parent = nil
-        end
-
+        delete_parent_774()
       end
 
     end
