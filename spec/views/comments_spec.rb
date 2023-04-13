@@ -10,14 +10,13 @@ RSpec.describe "Comments",  :type => :feature, js: true do
   end
 
   describe "Index page" do
-    xit "should contain the sidebar panel" do
+    it "should contain the sidebar panel" do
       visit admin_comments_path
       expect(page).to have_css("#sidebar")
     end
-    xit "should have current set to pagetitle" do
-      pending("this is a known issue with AA")
+    it "should have current set to pagetitle" do
       visit admin_comments_path
-      expect(page.title).to match(Regexp.new(page.find(".current").text))
+      expect(page.title.split(" ").first).to match(Regexp.new(page.find("#page_title").text))
     end
   end
 end

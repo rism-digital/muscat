@@ -10,11 +10,11 @@ RSpec.describe "Sources",  :type => :feature, js: true do
   end
 
   describe "Index page" do
-    xit "should contain the sidebar panel" do
+    it "should contain the sidebar panel" do
       visit admin_sources_path
       expect(page).to have_css("#sidebar")
     end
-    xit "should current set to sources" do
+    it "should current set to sources" do
       visit admin_sources_path
       expect(page.title).to match(Regexp.new(page.find(".current").text))
     end

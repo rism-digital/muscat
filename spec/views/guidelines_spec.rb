@@ -10,7 +10,7 @@ RSpec.describe "Guidelines",  :type => :feature, js: true do
   end
 
   describe "Index page" do
-    xit "should have current set to pagetitle" do
+    it "should have current set to pagetitle" do
       visit admin_guidelines_path
       expect(page.title).to match(/#{Regexp.escape(page.find(".current").text)}/i)
     end

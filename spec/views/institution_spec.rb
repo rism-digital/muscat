@@ -9,7 +9,7 @@ RSpec.describe "Institutions",  :type => :feature, js: true do
     click_button('Login')
   end
   describe "BSB page" do
-    xit "should contain a map" do
+    it "should contain a map" do
       visit "admin/institutions/30000655"
       expect(page).to have_css("#map")
     end

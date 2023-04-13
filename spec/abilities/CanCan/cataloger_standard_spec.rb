@@ -7,23 +7,23 @@ RSpec.describe User do
     let(:cataloger) { FactoryBot.create(:cataloger)  }
     let(:person) { FactoryBot.create(:person)  }
     subject(:ability) { Ability.new(cataloger)  }
-    xit { expect(ability).to be_able_to(:show, person) }
-    xit { expect(ability).not_to be_able_to(:update, person) }
-    xit { expect(ability).to be_able_to(:update, Person.new(:wf_owner => cataloger.id)) }
-    xit { expect(ability).not_to be_able_to(:destroy, person) }
-    xit { expect(ability).to be_able_to(:create, person) }
+    it { expect(ability).to be_able_to(:show, person) }
+    it { expect(ability).not_to be_able_to(:update, person) }
+    it { expect(ability).to be_able_to(:update, Person.new(:wf_owner => cataloger.id)) }
+    it { expect(ability).not_to be_able_to(:destroy, person) }
+    it { expect(ability).to be_able_to(:create, person) }
   end
 
   context 'with cataloger abilities for sources' do
     let(:cataloger) { FactoryBot.create(:cataloger)  }
     let(:source) { FactoryBot.create(:manuscript_source)  }
     subject(:ability) { Ability.new(cataloger)  }
-    xit { expect(ability).to be_able_to(:show, source) }
+    it { expect(ability).to be_able_to(:show, source) }
        #TODO test with foreign sources
        #expect(ability).not_to be_able_to(:update, source)
-    xit { expect(ability).to be_able_to(:update, Source.new(:wf_owner => cataloger.id)) }
-    xit { expect(ability).not_to be_able_to(:destroy, source) }
-    xit { expect(ability).to be_able_to(:create, source) }
+    it { expect(ability).to be_able_to(:update, Source.new(:wf_owner => cataloger.id)) }
+    it { expect(ability).not_to be_able_to(:destroy, source) }
+    it { expect(ability).to be_able_to(:create, source) }
   end
 
   context 'with cataloger abilities for works' do

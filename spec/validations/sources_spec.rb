@@ -9,7 +9,7 @@ RSpec.describe Admin::SourcesController, type: :controller do
   end
 
   context "when user creates a record from foreign library" do
-    xit "there should be a validation error notice" do
+    it "there should be a validation error notice" do
       marc_params = FactoryBot.attributes_for(:foreign_marc_source)[:marc] 
       post :marc_editor_validate, :params => {marc: marc_params, current_user: user.id} 
       hash = JSON.parse(response.body)
@@ -18,7 +18,7 @@ RSpec.describe Admin::SourcesController, type: :controller do
   end
 
   context "when user creates a record from his library" do
-    xit "there should be no validation error notice" do
+    it "there should be no validation error notice" do
       marc_params = FactoryBot.attributes_for(:marc_source)[:marc] 
       post :marc_editor_validate, :params => {marc: marc_params, current_user: user.id} 
       hash = JSON.parse(response.body)

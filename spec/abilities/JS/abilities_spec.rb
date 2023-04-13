@@ -12,7 +12,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       fill_in :user_password, :with => user.password
       click_button('Login')
     end
-    xit "Person_editor should have the 'edit' link in the index table" do
+    it "Person_editor should have the 'edit' link in the index table" do
       visit admin_people_path
       expect(page).to have_css("a.edit_link") 
     end
@@ -29,10 +29,10 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       click_button('Login')
       visit admin_people_path
     end
-    xit "Editors should not have the 'edit' link in the index table" do
+    it "Editors should not have the 'edit' link in the index table" do
       expect(page).to have_no_css("a.edit_link") 
     end
-    xit "Editors should have the 'create' action" do
+    it "Editors should have the 'create' action" do
       expect(page).to have_xpath("//a[@class='muscat_icon_link muscat_icon_link_new']") 
     end
   end
@@ -48,10 +48,10 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       click_button('Login')
       visit admin_people_path
     end
-    xit "Catalogers should not have the 'edit' link in the index table" do
+    it "Catalogers should not have the 'edit' link in the index table" do
       expect(page).to have_no_css("a.edit_link") 
     end
-    xit "Catalogers should have the 'create' action" do
+    it "Catalogers should have the 'create' action" do
       expect(page).to have_xpath("//a[@class='muscat_icon_link muscat_icon_link_new']") 
     end
   end
@@ -67,10 +67,10 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       click_button('Login')
       visit admin_people_path
     end
-    xit "Guests should not have the 'edit' link in the index table" do
+    it "Guests should not have the 'edit' link in the index table" do
       expect(page).to have_no_css("a.edit_link") 
     end
-    xit "Guests should not have the 'create' action" do
+    it "Guests should not have the 'create' action" do
       expect(page).to have_no_xpath("//a[@class='muscat_icon_link muscat_icon_link_new']") 
     end
   end
