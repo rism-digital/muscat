@@ -540,3 +540,5 @@ r:
   label: records.relationship_designation
 t:
   label: records.immediate_parent_body
+Congress:
+  label: records.congress

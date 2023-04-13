@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_01_083757) do
+ActiveRecord::Schema.define(version: 2023_04_05_120816) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 2023_02_01_083757) do
   end
 
   create_table "institutions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.string "siglum", limit: 32
+    t.string "siglum", limit: 32, collation: "utf8mb4_0900_as_cs"
     t.string "name"
     t.string "address"
     t.string "url"
