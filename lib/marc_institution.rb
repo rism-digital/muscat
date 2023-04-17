@@ -3,24 +3,43 @@ class MarcInstitution < Marc
   def initialize(source = nil)
     super("institution", source)
   end
-  
-  def get_name_and_place
-    name = ""
+
+  def get_full_name_and_place
+    full_name = ""
     place = ""
 
     if node = first_occurance("110", "a")
       if node.content
-        name = node.content.truncate(128)
+        full_name = node.content
+        if node = first_occurance("110", "b")
+          full_name += " #{node.content}" if node.content
+        end
+        full_name = full_name.truncate(255)
       end
     end
-    
+
     if node = first_occurance("110", "c")
       if node.content
         place = node.content.truncate(24)
       end
     end
-    [name, place]
+    [full_name, place]
   end
+
+  def get_corporate_name_and_subordinate_unit
+    corporate_name = ""
+    subordinate_unit = ""
+
+    if node = first_occurance("110", "a")
+      corporate_name = node.content.truncate(255) if node.content
+    end
+
+    if node = first_occurance("110", "b")
+      subordinate_unit = node.content.truncate(255) if node.content
+    end
+    [corporate_name, subordinate_unit]
+  end
+
   def get_address_and_url
     address = ""
     url = ""
@@ -30,7 +49,7 @@ class MarcInstitution < Marc
         address = node.content.truncate(128)
       end
     end
-    
+
     if node = first_occurance("371", "u")
       if node.content
         url = node.content.truncate(24)
@@ -38,7 +57,7 @@ class MarcInstitution < Marc
     end
     [address, url]
   end
- 
+
   def get_siglum
     if node = first_occurance("110", "g")
       if node.content
@@ -54,7 +73,7 @@ class MarcInstitution < Marc
       agency = MarcNode.new(@model, "003", RISM::AGENCY, "")
       @root.children.insert(get_insert_position("003"), agency)
     end
-  
+
     if updated_at
       last_transcation = updated_at.strftime("%Y%m%d%H%M%S") + ".0"
       # 005 should not be there, if it is avoid duplicates
@@ -66,7 +85,7 @@ class MarcInstitution < Marc
     end
 
     by_tags("667").each {|t| t.destroy_yourself}
-    
+
     source_size = parent_object.referring_sources.where(wf_stage: 1).size + parent_object.holdings.size rescue 0
     if source_size > 0
       n667 = MarcNode.new(@model, "667", "", "##")
@@ -75,9 +94,9 @@ class MarcInstitution < Marc
     end
 
   end
- 
+
   def marc_helper_get_country(value)
     return [ :en, :fr, :de, :it ].map{|i| I18n.t(@@labels[value]["label"], locale: i)} rescue nil
   end
- 
+
 end
