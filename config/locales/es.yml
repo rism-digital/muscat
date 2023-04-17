@@ -566,7 +566,10 @@ es:
   filter_source_name: "Nombre de la fuente"
   filter_source_composer: "Compositor de la fuente"
   filter_printed_exemplars: "Número de ejemplares impresos"
- 
+  filter_is_text: "\"Text\", en 031 $t"
+  filter_is_standard: "\"Standard\", en 240 $a"
+  filter_is_additional: "\"Additional\", en 730 $a"
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} refiere a este %{model_to}"
 

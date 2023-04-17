@@ -1,6 +1,40 @@
 Muscat Changelog
 ================
 
+v 9.2
+* Add migration for utf8mb4_0900_as_cs
+* Collapse 031
+* Add validation for 031 $a
+* Add more tags in 031 validation
+* Fix #1197 add validation for 773
+* #1350, Refactor 774 saving so when a 773 in a source is changed both old and new parent are updated.
+* Make the validation logger create a new file
+* set UTC timezione
+
+v 9.1.2
+* Add Catalan translation
+* Add WorkNode $p
+* Validate stale 774 links
+* Make the missing master error include the object id
+* Make validation work for institutions
+* Fix #1337, add 592 to tags that go in holdings
+* Fix emails for expiring folders
+* Add missing label for expiring folders
+* Fix #1333, link to institution goes to the actual linked institution
+* Fix #1338, make $0 required when there is $4 in 700 and 710
+* Fix #1336, remove 593 if we are moving an existing one
+* Allow multiple shared confs
+* Prevent template switch from restoring old versions
+* Better folder expiration email formatting and message
+* Throw file name in excpetion when loading yml configuration for editor
+* Add trigger to subfield secondary
+* Optiona puts patch showing file name
+* Merge pull request #1339 from fjorba/catalan-translation
+* Fix #1330 add hardcoded field and assign it to 031 $a
+* Fix #1345, add standard title filtering
+* Add properly translated filters for Standard Titles
+* Update verovio to 3.15
+
 v 9.1.1
 * Add $d for 500 in people
 

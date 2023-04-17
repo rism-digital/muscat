@@ -27,6 +27,8 @@
     - - u
       - hidden: true
     - - a
+      - editor_partial: subfield_hardcoded
+        value: "1"
     - - b
     - - c
     - - d
@@ -34,11 +36,11 @@
     - - e
     - - t
       - growfield: true
-        type: standard_title
-        field: title
+        type: source_031t_solr
+        field: value
         editor_partial: subfield_secondary
         allow_new: true
-        has_links_to: true
+        #has_links_to: true
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "031r"

@@ -50,7 +50,7 @@ class FolderExpirationJob < ApplicationJob
             end
             
             if !folder_grouping.map {|k,v| v}.flatten.empty?
-                FolderCleanupMailer.notify(folder_grouping).deliver_now
+                FolderCleanupMailer.notify(user.email, folder_grouping).deliver_now
             end
 
         end

@@ -50,6 +50,7 @@ ActiveAdmin.register Institution do
       @item = Institution.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
 
       if cannot?(:edit, @item)
@@ -92,6 +93,7 @@ ActiveAdmin.register Institution do
       @institution.marc = new_marc
 
       @editor_profile = EditorConfiguration.get_default_layout @institution
+      @editor_validation = EditorValidation.get_default_validation(@institution)
       # Since we have only one default template, no need to change the title
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
       #To transmit correctly @item we need to have @source initialized
@@ -229,8 +231,8 @@ ActiveAdmin.register Institution do
         context.column (I18n.t :filter_full_name), :full_name
         context.column (I18n.t :filter_place), :place
         if !is_selection_mode?
-          context.column "" do |publication|
-            link_to "View", controller: :institutions, action: :show, id: institution.id
+          context.column "" do |inst|
+            link_to "View", controller: :institutions, action: :show, id: inst.id
           end
         end
       end
