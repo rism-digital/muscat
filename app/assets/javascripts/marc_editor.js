@@ -175,10 +175,28 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	$.ajax({
 		success: function(data) {
 			
+			if (data.stayhere) {
+				var flash_class = 'flash flash_notice'
+
+				if (data.error) {
+					flash_class = 'flash flash_error'
+				}
+
+				$('<div/>', {
+					"class": flash_class,
+					text: data.messages
+				}).appendTo('.flashes');
+
+				// We stop here!
+				$('#main_content').unblock();
+				$('#sections_sidebar_section').unblock();
+				return;
+			}
+
 			window.onbeforeunload = false;
 			// just reload the edit page
 			new_url = data.redirect;
-			window.location.href = new_url;
+			window.location.replace(new_url);
 		},
 		async: true,
 		data: {

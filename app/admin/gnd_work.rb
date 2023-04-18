@@ -7,6 +7,7 @@ ActiveAdmin.register_page "gnd_works" do
 
 
     def index
+      flash.keep
       render 'index', layout: "active_admin" 
     end
 
@@ -77,13 +78,13 @@ ActiveAdmin.register_page "gnd_works" do
     def marc_editor_save
       marc_hash = JSON.parse params[:marc]
 
-      ap params[:id]
-
-      GND::Interface.push(marc_hash)
-
+      result, messages = GND::Interface.push(marc_hash)
       path = admin_gnd_works_path
+
+      is_error = result == nil ? true : false
+
       respond_to do |format|
-        format.js { render :json => { :redirect => path }.to_json }
+        format.js { render json: { redirect: path, stayhere: true, error: is_error, messages: "GND Response: " + messages}.to_json }
       end
     end
   end

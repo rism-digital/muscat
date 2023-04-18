@@ -4,7 +4,7 @@ module GND
 
   # This class provides the main search functionality
   class Interface
-    NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim", 'srw' => "http://www.loc.gov/zing/srw/" }
+    NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim", 'srw' => "http://www.loc.gov/zing/srw/", 'diag' => "http://www.loc.gov/zing/srw/diagnostic/", 'ucp' => "http://www.loc.gov/zing/srw/update/"}
     require 'open-uri'
     require 'net/http'
 
@@ -33,35 +33,49 @@ module GND
         m = MarcGndWork.new
         m.load_from_hash(marc_hash)
 
-        ap m.get_id
-
-        send_to_gnd(:create, m.to_xml_record(nil, nil, nil), m.get_id)
+        return send_to_gnd(:replace, m.to_xml_record(nil, nil, nil), m.get_id)
     end
 
     # post xml to gnd
     def self.send_to_gnd(action, xml, id=nil)
         server = "https://devel.dnb.de/sru_ru/"
-        request_body = _envelope(action, xml.to_s, id)
-        puts request_body
+        request_body = make_gnd_envelope(action, xml.to_s, id)
+        call_result = nil
+        diagnostic_messages = ""
+
         uri = URI.parse(server)
         post = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'text/xml')
         server = Net::HTTP.new(uri.host, uri.port)
         server.use_ssl = true
         server.start {|http|
             http.request(post, request_body) {|response|
-                ap response.code
-                puts response.body
-                @response_body = Nokogiri::XML(response.body)
-                @status = @response_body.xpath("//diag:message", NAMESPACE).map{|e| e.content}.join("; ") rescue nil
-                #gnd.xml =  @response_body.xpath("//record")
+                if response.code == "200"
+                    response_body = Nokogiri::XML(response.body)
+
+                    # Get all the messages if any
+                    # Skip the TRACE message and collapse identical ones
+                    diagnostic_messages = response_body.xpath("//diag:message", NAMESPACE).map{|e| e.content}.reject{|e| e.include?("TRACE")}.sort.uniq.join("; ")
+
+                    # <ucp:operationStatus>success</ucp:operationStatus>
+                    # should be "success" or "fail"
+                    status = response_body.xpath("//ucp:operationStatus", NAMESPACE).first.content
+                    # <ucp:recordIdentifier>ppn:XXX</ucp:recordIdentifier>
+                    id = response_body.xpath("//ucp:recordIdentifier", NAMESPACE).first.content
+
+                    # if all was ok, we return the ID from GND
+                    if status == "success"
+                        call_result = id
+                    end
+                end
             }
         }
+
+        return call_result, diagnostic_messages
     end
 
     # Private method to wrap the xml into the envelope
-    def self._envelope(action, data, id=nil)
-        login = ""
-        #login = ""
+    def self.make_gnd_envelope(action, data, id=nil)
+        login = "#{Rails.application.credentials.gnd[:user]}/#{Rails.application.credentials.gnd[:password]}"
         recordId = id ? "<ucp:recordIdentifier>gnd:gnd#{id}</ucp:recordIdentifier>" : ""
         xml = <<-TEXT
     <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
