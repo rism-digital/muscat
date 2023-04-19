@@ -65,6 +65,7 @@
       - type: gnd_work_person
         preserve_foreign_value: true
         editor_partial: subfield_secondary
+        has_links_to: true
     - - d
       - autocomplete_extra: life_dates
     - - m

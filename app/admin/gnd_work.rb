@@ -1,13 +1,22 @@
 ActiveAdmin.register_page "gnd_works" do
   controller do
-
     # The display_value label is included in the hash returned by the GND::Interface and is not a method of the model
     autocomplete :gnd_works, "person", :gnd => true, :display_value => :label, :extra_data => [:life_dates]
     autocomplete :gnd_works, "instrument", :gnd => true, :display_value => :label
 
 
     def index
-      flash.keep
+
+      if session.include?(:gnd_message)
+        if session.include?(:gnd_error) && session[:gnd_error]
+          flash[:error] = session[:gnd_message]
+        else
+          flash[:notice] = session[:gnd_message]
+        end
+        session.delete(:gnd_message)
+        session.delete(:gnd_error) if session.include?(:gnd_error)
+      end
+
       render 'index', layout: "active_admin" 
     end
 
@@ -81,10 +90,12 @@ ActiveAdmin.register_page "gnd_works" do
       result, messages = GND::Interface.push(marc_hash)
       path = admin_gnd_works_path
 
-      is_error = result == nil ? true : false
+      session[:gnd_error] = (result == nil)
+      session[:gnd_message] = "GND Response: " + messages
 
       respond_to do |format|
-        format.js { render json: { redirect: path, stayhere: true, error: is_error, messages: "GND Response: " + messages}.to_json }
+        format.js { render json: { redirect: path }.to_json }
+
       end
     end
   end

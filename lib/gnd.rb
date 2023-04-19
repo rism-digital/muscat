@@ -8,6 +8,11 @@ module GND
     require 'open-uri'
     require 'net/http'
 
+    SRU_PUSH_URL = "https://devel.dnb.de/sru_ru/"
+    SRU_READ_URL_AUTH = "https://services.dnb.de/sru/authorities"
+    SRU_READ_URL = "https://services.dnb.de/sru/cbs-appr"
+
+
     def self.search(params, limit = 10)
         result = []
         xml = self.person_and_title_query(params, limit)
@@ -33,12 +38,14 @@ module GND
         m = MarcGndWork.new
         m.load_from_hash(marc_hash)
 
-        return send_to_gnd(:replace, m.to_xml_record(nil, nil, nil), m.get_id)
+        action = m.get_id == "__TEMP__" ? :create : :replace
+
+        return send_to_gnd(action, m.to_xml_record(nil, nil, nil), m.get_id)
     end
 
     # post xml to gnd
     def self.send_to_gnd(action, xml, id=nil)
-        server = "https://devel.dnb.de/sru_ru/"
+        server = SRU_PUSH_URL
         request_body = make_gnd_envelope(action, xml.to_s, id)
         call_result = nil
         diagnostic_messages = ""
@@ -105,7 +112,7 @@ module GND
     # Retrieve a single GND record using the GND Id
     def self.retrieve(id)
         result = nil
-        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=idn%3D#{id}"
+        query = SRU_READ_URL + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=idn%3D#{id}"
         query_result = URI.open(query) rescue nil
         # Load the results
         xml = Nokogiri::XML(query_result)
@@ -120,7 +127,7 @@ module GND
 
     # Query the GND with the query parameters and return an XML document with the results
     def self.query(term, index, auth, code = "", limit = 10)
-        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query="
+        query = SRU_READ_URL_AUTH + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query="
         # Code
         query += "BBG=#{auth}*"
         term.split.each do |word|
@@ -128,6 +135,7 @@ module GND
         end
         # Code - See https://wiki.dnb.de/download/attachments/90411323/entitaetenCodes.pdf
         query += " and COD=#{code}" if !code.empty?
+        
         query_result = URI.open(query) rescue nil
         # Load the results
         xml = Nokogiri::XML(query_result)
@@ -135,7 +143,7 @@ module GND
 
     # Query the GND with the query parameters and return an XML document with the results
     def self.person_and_title_query(params, limit = 30)
-        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query="
+        query = SRU_READ_URL_AUTH + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query="
         # We are searching the Work index
         query += "BBG=Tu*"
 
@@ -156,7 +164,7 @@ module GND
         # Code - See https://wiki.dnb.de/download/attachments/90411323/entitaetenCodes.pdf
         # We are searching the works
         query += " and COD=wim"
-
+        
         query_result = URI.open(query) rescue nil
         # Load the results
         xml = Nokogiri::XML(query_result)
