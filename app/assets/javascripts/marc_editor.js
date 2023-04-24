@@ -199,6 +199,23 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
+				// FIXME clean this code up, it is ok now for testing
+				if (jqXHR.responseJSON) {
+					if (jqXHR.responseJSON.gnd_error) {
+						alert ("There was an error saving to GND (" + jqXHR.responseJSON.gnd_message + ")");
+					
+						$('.flashes').empty();
+						$('<div/>', {
+							"class": 'flash flash_error',
+							text: "GND Response: " + jqXHR.responseJSON.gnd_message
+						}).appendTo('.flashes');
+						
+						$('#main_content').unblock();
+						$('#sections_sidebar_section').unblock();
+						return;
+					}
+				}
+
 				if (errorThrown == "Conflict") {
 					alert ("Error saving page: this is a stale version");
 					

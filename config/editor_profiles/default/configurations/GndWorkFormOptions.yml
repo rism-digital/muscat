@@ -51,9 +51,15 @@
   layout: 
     fields: 
     - - a
+"075": 
+  layout: 
+    fields: 
+    - - b
+    - - "2"
 "079": 
   layout: 
     fields: 
+    - - a
     - - b
     - - q
     - - u

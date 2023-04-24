@@ -8,13 +8,8 @@ ActiveAdmin.register_page "gnd_works" do
     def index
 
       if session.include?(:gnd_message)
-        if session.include?(:gnd_error) && session[:gnd_error]
-          flash[:error] = session[:gnd_message]
-        else
-          flash[:notice] = session[:gnd_message]
-        end
+        flash[:notice] = session[:gnd_message]
         session.delete(:gnd_message)
-        session.delete(:gnd_error) if session.include?(:gnd_error)
       end
 
       render 'index', layout: "active_admin" 
@@ -90,12 +85,12 @@ ActiveAdmin.register_page "gnd_works" do
       result, messages = GND::Interface.push(marc_hash)
       path = admin_gnd_works_path
 
-      session[:gnd_error] = (result == nil)
       session[:gnd_message] = "GND Response: " + messages
 
-      respond_to do |format|
-        format.js { render json: { redirect: path }.to_json }
-
+      if result == nil
+        render json: {gnd_message: messages, gnd_error: true }, status: 500
+      else
+        render json: { redirect: path }
       end
     end
   end

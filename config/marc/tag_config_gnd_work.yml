@@ -75,10 +75,20 @@
     :fields:
     - - a
       - :occurrences: "?"
+  "075":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - b
+      - :occurrences: "?"
+    - - "2"
+      - :occurrences: "?"
   "079":  
     :indicator: "##"
     :occurrences: "*"
     :fields:
+    - - a
+      - :occurrences: "?"
     - - b
       - :occurrences: "?"
     - - q

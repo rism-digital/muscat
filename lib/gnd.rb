@@ -116,6 +116,7 @@ module GND
         query_result = URI.open(query) rescue nil
         # Load the results
         xml = Nokogiri::XML(query_result)
+       
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
             marc = GndWork.new(nil, "gnd_work")
