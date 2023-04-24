@@ -1,9 +1,9 @@
 
 ca:
   active_admin:
-# Pad for italian, it has 2 missing items
-#
-#
+    search_status:
+      headline: "Abast de la cerca"
+      current_filters: "Filtres actius"
     compare_versions: "Compara versions"
     dashboard: "Tauler d'activitat"
     dashboard_welcome:
@@ -54,23 +54,23 @@ ca:
       actions: "Accions"
       toc: "Taula de continguts"
     pagination:
-      empty: "No s'ha trobat cap %{model}"
-      one: "Mostrant <b>1</b> %{model}"
-      one_page: "Se'n mostren <b>tots %{n}</b> els %{model}"
-      multiple: "Se'n mostren %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> d'un total de <b>%{total}</b>"
-      multiple_without_total: "Se'n mostren %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: "No se n'ha trobat cap"
+      one: "Mostra <b>1</b> %{model}"
+      one_page: "%{model}, <b>tots %{n}</b>"
+      multiple: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b> d'un total de <b>%{total}</b>"
+      multiple_without_total: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       per_page: "Elements per pàgina:"
       entry:
         one: "entrada"
         other: "entrades"
     any: "Qualsevol"
     blank_slate:
-      content: "No hi ha cap %{resource_name}."
-      link: "Creeu-ne"
+      content: "No n'hi ha cap."
+      link: "En podeu crear"
     dropdown_actions:
       button_label: "Accions"
     batch_actions:
-      button_label: "Accions en grup"
+      button_label: "Accions per lots"
       default_confirmation: "Segur que voleu fer això?"
       delete_confirmation: "Segur que voleu eliminar aquests %{plural_model}?"
       succesfully_destroyed:
@@ -83,7 +83,7 @@ ca:
         destroy: "Eliminar"
         folder: "Crea una carpeta amb els elements seleccionats"
         add_to_folder: "Afegeix els elements a una carpeta ja existent"
-        merge: "Fusiona registres d'atoritat"
+        merge: "Fusiona registres d'autoritat"
         change_template: "Canvia la plantilla"
 
     comments:
@@ -121,7 +121,7 @@ ca:
         submit: "Inicia-la"
       reset_password:
         title: "Heu oblidat la contrasenya?"
-        submit: "Reinicia la contrasenya"
+        submit: "Restableix la contrasenya"
       change_password:
         title: "Canvieu la contrasenya"
         submit: "Canvia-me-la"
@@ -138,7 +138,7 @@ ca:
         resend_unlock_instructions: "Reenvieu les instruccions per reestablir-la"
     unsupported_browser:
       headline: "Muscat ja no funciona amb la versió 8 o inferior de Internet Explorer."
-      recommendation: "Us recomaneu que us actualitzeu a les darreres versions de <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, or <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      recommendation: "Us recomanem que us actualitzeu a les darreres versions de <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, or <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
       turn_off_compatibility_view: "Si esteu utilizant IE 9 o posterior, assegureu-vos de desactivar la <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Compatibility View\"</a>."
     access_denied:
       message: "No teniu permisos per fer aquesta operació."
@@ -287,12 +287,12 @@ ca:
 
   ### VARIOUS ELEMENTS
   recent_changes: "Modifications recents"
-  any_field_contains: "Qualsevol camp conté"
-  title_contains: "Títol diplomàtic conté"
-  std_title_contains: "Títol uniforme conté"
-  composer_contains: "Compositor conté"
-  library_sigla_contains: "Sigla conté"
-  internal_note_contains: "Nota interna conté"
+  any_field_contains: "Conté a qualsevol camp"
+  title_contains: "Conté al títol diplomàtic"
+  std_title_contains: "Conté al títol uniforme"
+  composer_contains: "Conté com a compositor"
+  library_sigla_contains: "Conté a la sigla"
+  internal_note_contains: "Conté en una nota interna"
   is_in_folder: "És a la carpeta"
   workgroups: "Grups de treball"
   roles: "Rols"
@@ -358,9 +358,9 @@ ca:
   to_the_list: "Torna a la llista"
   go_to_top: "Torna a dalt"
   edit: "Edita"
-  new: "Crea"
+  new: "Crea'n"
   duplicate: "Duplica"
-  merge: "Fusiona"
+  merge: "Fusiona'n"
   no_action: "Sense accions disponibles"
   reindex: "Reindexa les fonts"
   resave: "Torna a desar les fonts"
@@ -377,7 +377,7 @@ ca:
   unarchive: "Desarxiva"
   export_folder: "Exporta la carpeta en format MARCXML"
   export_folder_csv: "Exporta la carpeta en format CSV"
-  validate_folder: "Valida els ítems"
+  validate_folder: "Valida els elements"
 
 
   # Editor sidebar
@@ -409,14 +409,14 @@ ca:
   #### FOLDER MESSAGES
   folders:
     save: "Desa els resultats a una carpeta"
-    success: "Carpeta %{name} creada amb %{count} ítems."
-    too_many: "No es poden afegir més de %{max} ítems (%{count} seleccionats)."
-    added: "S'han afegit %{count} ítems a la carpeta %{name}."
-    added_bg: "Ítems afegits a la carpeta, tasca %{job} pendent."
+    success: "Carpeta %{name} creada amb %{count} elements."
+    too_many: "No es poden afegir més de %{max} elements (%{count} seleccionats)."
+    added: "S'han afegit %{count} elements a la carpeta %{name}."
+    added_bg: "Elements afegits a la carpeta, tasca %{job} pendent."
     success_bg: "Carpeta %{name} creada, tasca %{job} pendent."
-    items: "Ítems"
+    items: "Elements"
     export_started: "Rebreu un correu a %{email} amb l'enllaç de la descàrrega (tasca d'exportació %{job})."
-    export_limit: "El límit per exportar ítems és de %{max}, i aquesta carpeta en té %{count}."
+    export_limit: "El límit per exportar elements és de %{max}, i aquesta carpeta en té %{count}."
     folder_empty: "La carpeta està buida"
     not_found: "La carpeta %{id} no existeix"
     publish_job: "Ha començat la tasca de publicació (id: %{id})"
@@ -426,12 +426,13 @@ ca:
     folder_not_source: "Només es poden validar carpetes amb fonts"
     expires: "Expira el"
     resetted: "La data de caducitat ha passat a ser %{date}"
-    reset_expiration: "Reinicialitzar la data d'expiració"
+    reset_expiration: "Reestablir la data d'expiració"
     delete_now: "S'han esborrat aquestes carpetes:"
     tomorrow: "Carpetes que s'esborraran demà %{date}"
     one_week: "Carpetes que s'esborraran la setmana que ve, el %{date}"
-    two_weeks: "Carpetes que s'esborraran dintre de dues setmanes, el %{date}"
+    two_weeks: "Carpetes que s'esborraran d'aquí a dues setmanes, el %{date}"
     one_month: "Carpetes que s'esborraran el mes que ve, el %{date}"
+    make_catalogue: "Marcar els elements per fer-ne un catàleg"
 
   ### Digital objects
   digital_objects: "Objectes digitals"
@@ -461,7 +462,7 @@ ca:
   filter_date: "Data"
   filter_date_from: "Des de data"
   filter_date_of_publication: "Any de publicació"
-  filter_date_to: "Fis a data"
+  filter_date_to: "Fins a data"
   filter_description: "Descripció"
   filter_digital_objects: "Objectes digitals"
   filter_district: "Districte"
@@ -544,7 +545,7 @@ ca:
   filter_volume: "Volum"
   filter_image: "Imatge"
   filter_file_name: "Nom del fitxer"
-  filter_file_size: "Tamany del size"
+  filter_file_size: "Mida del fitxer"
   filter_content_type: "Tipus de contingu"
   filter_wf: "WF"
   filter_wf_audit: "Revisió"
@@ -580,18 +581,18 @@ ca:
   rism_b_flat: "Si bemoll major/menor"
   rism_b: "Si major/menor"
   rism_c: "Do major/menor"
-  rism_c_sharp: "Do sostingut major/menor"
+  rism_c_sharp: "Do diesi major/menor"
   rism_d_flat: "Re bemoll major/menor"
   rism_d: "Re major/menor"
   rism_e_flat: "Mi bemoll major/menor"
   rism_e: "Mi major/menor"
   rism_f: "Fa major/menor"
-  rism_f_sharp: "Fa sostingut major/menor"
+  rism_f_sharp: "Fa diesi major/menor"
   rism_g: "Sol major/menor"
-  rism_g_sharp: "Sol sostingut major/minor"
+  rism_g_sharp: "Sol diesi major/minor"
 
   # Assorted error messages
-  error_not_found: "El recurs al que estei intentant d'accedir no existeix o ha estat esborrat."
+  error_not_found: "El recurs al que esteu intentant d'accedir no existeix o ha estat esborrat."
   error_saving: "El recurs no està complet o genera un duplicat"
   unknown_tags: "En aquestre hi ha camps desconeguts"
   ungrouped_tags: "En aquest registres hi ha camps no agrupats"
@@ -652,10 +653,10 @@ ca:
   will_paginate:
     page_entries_info:
       single_page_html:
-        zero: "No s'ha trobat cap %{model}"
+        zero: "No se n'ha trobat cap"
         one: "Mostra <b>1</b> %{model}"
-        other: "Mostra un <b>total de %{count}</b> %{model}"
-      multi_page_html: "Mostra %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> d'un total de <b>%{count}</b>"
+        other: "%{model}, un <b>total de %{count}</b>"
+      multi_page_html: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b> d'un total de <b>%{count}</b>"
 
     models:
       person:
@@ -663,15 +664,15 @@ ca:
         other: "Persones"
 
   manuscript_links:
-     one: "1 font"
-     other: "%{count} fonts"
+    one: "1 font"
+    other: "%{count} fonts"
 
   # themefinder
   themefinder_c: "precisió melòdica alta"
   themefinder_C: "precisió melòdica baixa"
   themefinder_d: "grau de l'escala diatònica"
-  themefinder_i: "intèrval cromàtic"
-  themefinder_I: "intèrval diatònic"
+  themefinder_i: "interval cromàtic"
+  themefinder_I: "interval diatònic"
   themefinder_p: "altura diatònica"
   themefinder_P: "altura cromàtica"
   themefinder_p0: "sense cerca per altura"
@@ -791,7 +792,7 @@ ca:
     incipit_search: "Cerca per íncipit"
     query_type: "Tipus de cerca:"
     exact_pitch: "Nota exacta (cerca més precisa)"
-    interval: "Intèrval"
+    interval: "Interval"
     refined_pitch: "Precisió de nota alta"
     gross_pitch: "Precisió de nota baixa"
     anchor: "Cercar només al principi"

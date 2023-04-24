@@ -74,6 +74,7 @@ module ActiveAdmin::ViewsHelper
     
     name = "[Model does not have a label]"
     name = item.name if item.respond_to?(:name)
+    name = item.full_name if item.respond_to?(:full_name)
     name = item.title if item.respond_to?(:title)
     name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
     
