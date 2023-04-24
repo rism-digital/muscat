@@ -5,6 +5,7 @@ en:
 #
 #
     compare_versions: Compare versions
+    gnd_works: GND Work Editor
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."

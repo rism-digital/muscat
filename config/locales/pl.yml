@@ -5,6 +5,7 @@ pl:
 #
 #
     compare_versions: Porównaj wersje
+    gnd_works: GND redaktor prac
     dashboard: Strona główna
     dashboard_welcome:
       welcome: Witamy w części produkcyjnej. Domyślna strona panelu użytkownika.

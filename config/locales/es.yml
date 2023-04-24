@@ -6,6 +6,7 @@ es:
 #  
 #
     compare_versions: Comparar versiones
+    gnd_works: Editor de obras GND
     dashboard: "Panel de actividad"
     dashboard_welcome:
       welcome: "¡Bienvenidos a Active Admin! Este es el panel de actividad."

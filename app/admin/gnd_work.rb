@@ -95,6 +95,8 @@ ActiveAdmin.register_page "gnd_works" do
     end
   end
 
+  menu priority: 24, label: proc{ I18n.t("active_admin.gnd_works") }
+
   ##############
   ## Sidebars ##
   ##############

@@ -5,6 +5,7 @@ pt:
 #
 #
     compare_versions: Comparar versões
+    gnd_works: Editor das obras GND
     dashboard: "Painel de controle"
     dashboard_welcome:
       welcome: "Benvindo(a) ao Active Admin. Esta é a página padrão do Painel de controle."

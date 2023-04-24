@@ -5,6 +5,7 @@ it:
       headline: "Ambito"
       current_filters: "Filtri in uso"
     compare_versions: Compara le versioni
+    gnd_works: Editor per le opere GND
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
