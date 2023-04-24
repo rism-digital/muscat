@@ -297,7 +297,16 @@
         :foreign_class: ^0
         :foreign_field: name
     - - n
-      - :occurrences: "?"  
+      - :occurrences: "?"
+  "699":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
   "700":
     :master: "0"
     :indicator: "1#"
