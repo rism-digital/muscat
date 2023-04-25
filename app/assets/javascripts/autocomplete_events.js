@@ -107,6 +107,12 @@ function bind_autocomplete_events() {
   // in the hidden to "selected".
   $("#marc_editor_panel").on('autocompleteresponse', function(event, data) {
     var input = $(event.target); // Get the autocomplete id
+
+    // Wrong autocomplete! The inline-autocompletes do their own thing
+    if (input.hasClass("inline-autocomplete")) {
+      return;
+    }
+
     var toplevel_li = input.parents("li");
     var hidden = $(".autocomplete_target", toplevel_li);
 		
@@ -137,6 +143,11 @@ function bind_autocomplete_events() {
   $("#marc_editor_panel").on('autocompletechange', function(event, data) {
     var input = $(event.target); // Get the autocomplete id
 		
+    if (input.hasClass("inline-autocomplete")) {
+      return;
+    }
+
+
     // havigate up to the <li> and down to the hidden elem
     var toplevel_li = input.parents("li");
     var hidden = $(".autocomplete_target", toplevel_li);

@@ -20,7 +20,7 @@ class MarcInstitution < Marc
 
     if node = first_occurance("110", "c")
       if node.content
-        place = node.content.truncate(24)
+        place = node.content
       end
     end
     [full_name, place]
