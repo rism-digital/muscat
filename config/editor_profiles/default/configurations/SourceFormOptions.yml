@@ -38,7 +38,7 @@
       - growfield: true
         type: source_031t_solr
         field: value
-        editor_partial: subfield_secondary
+        editor_partial: subfield_autocomplete
         allow_new: true
         #has_links_to: true
     - - r
@@ -820,7 +820,7 @@
       - chr
 "710":
   new_window: institutions
-  new_window_field: name_equals
+  new_window_field: corporate_name_equals
   layout:
     fields:
     - - a

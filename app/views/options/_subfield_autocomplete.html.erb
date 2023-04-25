@@ -1,10 +1,16 @@
 <%-	
 
-data = []
+autocomplete_data_or_path = []
 
-params['values'].each do |val|
-	data << {label: val, value: val}
-end 
+if params.include?("values")
+	params['values'].each do |val|
+		autocomplete_data_or_path << {label: val, value: val}
+	end 
+end
+
+if params.include?("type")
+	autocomplete_data_or_path = send(params['type'] + "_default_autocomplete")
+end
 
 validate_class = ""
 if @editor_validation && @editor_validation.validate_subtag?(tag_name, subfield, @item)
@@ -16,7 +22,7 @@ end
 
 %>
 
-<div data-autocomplete-values="<%= data.to_json %>"></div>
+<div data-autocomplete-values="<%= autocomplete_data_or_path.is_a?(String) ? autocomplete_data_or_path : autocomplete_data_or_path.to_json %>"></div>
 
 <%- if (params['width']==100 || params['growfield'])  %>
 	<textarea rows="1" cols="100" class="subfield_entry serialize_marc inline-autocomplete marc_editor_hotkey <%=validate_class%> <%=validate_marker%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" data-validate-level="<%=validate_level%>" rows="1" <%=name_tag%> ><%= h marc_subfield.content %></textarea>
