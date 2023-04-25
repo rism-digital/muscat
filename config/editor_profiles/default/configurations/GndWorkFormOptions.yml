@@ -70,8 +70,7 @@
     - - a
       - type: gnd_work_person
         preserve_foreign_value: true
-        editor_partial: subfield_secondary
-        has_links_to: true
+        editor_partial: subfield_autocomplete
     - - d
       - autocomplete_extra: life_dates
     - - m
@@ -156,7 +155,7 @@
     - - "a"
       - type: gnd_work_instrument
         preserve_foreign_value: true
-        editor_partial: subfield_secondary
+        editor_partial: subfield_autocomplete
 "382": 
   layout: 
     fields: 
@@ -177,7 +176,7 @@
     - - a
       - type: gnd_work_person
         preserve_foreign_value: true
-        editor_partial: subfield_secondary
+        editor_partial: subfield_autocomplete
     - - d
       - autocomplete_extra: life_dates
     - - m
@@ -192,7 +191,7 @@
     - - "a"
       - type: gnd_work_person
         preserve_foreign_value: true
-        editor_partial: subfield_secondary
+        editor_partial: subfield_autocomplete
     - - d
     - - e
 "530": 
