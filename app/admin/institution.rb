@@ -15,7 +15,7 @@ ActiveAdmin.register Institution do
   end
 
   collection_action :autocomplete_institution_siglum, :method => :get
-  collection_action :autocomplete_institution_full_name, :method => :get
+  collection_action :autocomplete_institution_corporate_name, :method => :get
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -24,7 +24,7 @@ ActiveAdmin.register Institution do
   controller do
 
     autocomplete :institution, [:siglum, :full_name], :display_value => :autocomplete_label_siglum, :extra_data => [:siglum, :full_name], :required => :siglum
-    autocomplete :institution, :full_name, :display_value => :autocomplete_label_name, :extra_data => [:siglum, :full_name, :place]
+    autocomplete :institution, :corporate_name, :display_value => :autocomplete_label_name, :extra_data => [:siglum, :full_name, :place]
 
     after_destroy :check_model_errors
     before_create do |item|

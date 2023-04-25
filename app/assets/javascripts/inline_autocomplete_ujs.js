@@ -55,7 +55,7 @@
 						minChars:0,
 						matchSubset:0,
 						autoFill:true,
-						maxItemsToShow:10
+						maxItemsToShow:10,
 					}
 				);
 			

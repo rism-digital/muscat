@@ -37,10 +37,7 @@
     - - t
       - growfield: true
         type: source_031t_solr
-        field: value
         editor_partial: subfield_autocomplete
-        allow_new: true
-        #has_links_to: true
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "031r"
@@ -828,6 +825,10 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - b
+    - - c
+      - type: place
+        editor_partial: subfield_autocomplete
+        autocomplete_extra: place
     - - g
       - editor_partial: subfield_select_codes
         codes_reference: "codes"

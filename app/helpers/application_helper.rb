@@ -5,7 +5,7 @@ module ApplicationHelper
   end
   
   def institution_default_autocomplete
-    autocomplete_institution_full_name_admin_institutions_path
+    autocomplete_institution_corporate_name_admin_institutions_path
   end
   
   def library_default_autocomplete
