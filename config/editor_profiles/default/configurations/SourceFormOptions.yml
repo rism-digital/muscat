@@ -20,8 +20,6 @@
       - editor_partial: subfield_indicator
     - - a
 "031":
-  new_window: standard_titles
-  new_window_field: title_equals
   layout:
     fields:
     - - u
