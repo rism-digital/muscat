@@ -454,6 +454,7 @@
     codes:
       - "needs-revision" 
       - "incipit-needs-revision"
+      - "incipit-replace"
 "700":
   allow_new: true
   new_window: people
