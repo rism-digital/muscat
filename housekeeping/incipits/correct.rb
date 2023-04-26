@@ -84,7 +84,7 @@ def find_duplicates(file)
         else
             incipit_pae_nrs = incipits_ids[s_id]
             if incipit_pae_nrs.include?(pae_nr)
-                #puts "Duplicate entry for #{s_id} #{pae_nr}, skip"
+                puts "Duplicate entry for #{s_id} #{pae_nr}, skip"
                 @skip_id << "#{s_id}-#{pae_nr}"
             end
         end
