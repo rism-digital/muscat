@@ -256,6 +256,13 @@
     n:
       label: records.number_page
   label: records.secondary_catalog_works
+'699':
+  fields:
+    a:
+      label: records.work_tag_note
+    b:
+      label: records.work_tag_type
+  label: records.work_tag
 6byz:
   label: records.octoechos6
 6t:

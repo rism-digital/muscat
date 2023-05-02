@@ -440,6 +440,21 @@
         editor_partial: subfield_secondary
         allow_new: false
     - - n
+"699": 
+  layout: 
+    fields:
+    - - a
+      - cols: 2
+        editor_partial: subfield_select_codes
+        select_label: "Type"
+    - - b
+      - cols: 2
+    columns: 2
+  tag_params:
+    codes:
+      - "needs-revision" 
+      - "incipit-needs-revision"
+      - "incipit-replace"
 "700":
   allow_new: true
   new_window: people
