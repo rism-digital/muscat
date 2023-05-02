@@ -69,4 +69,8 @@ class MarcWork < Marc
     return status
   end
 
+  def reset_to_new
+    first_occurance("001").content = "__TEMP__"
+  end
+
 end
