@@ -881,6 +881,12 @@ pl:
     woodwinds: Instrumenty dęte drewniane
     work: Dzieło
     work_number: Numer dzieła
+    work_tag: Work revision tag
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Tag note
+    work_tag_type: Tag type
     year: Rok
     years_birth_death: Rok urodzenia i śmierci
   relations:

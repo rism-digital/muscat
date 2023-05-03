@@ -84,6 +84,7 @@ ActiveAdmin.register Work do
       # Get the terms for 0242_filter, the "link type"
       @link_types = Source.get_terms("0242_filter_sm")
       @catalogues = Work.get_terms("catalogue_name_order_sms")
+      @work_tags = Source.get_terms("699a_sms")
 
       @results, @hits = Work.search_as_ransack(params)
       index! do |format|
@@ -155,6 +156,9 @@ ActiveAdmin.register Work do
   
   filter :"catalogue_name_order_with_integer", :label => "Catalogue", as: :select, 
   collection: proc{@catalogues.sort.collect {|k| [k.camelize, "catalogue_name_order:#{k}"]}}
+
+  filter :"699a_tag", :label => proc{I18n.t(:work_tag)}, as: :select, 
+  collection: proc{@work_tags.sort.collect {|k| [@editor_profile.get_label(k.camelize), "699a_filter:#{k}"]}}
 
   index :download_links => false do
     selectable_column if !is_selection_mode?
