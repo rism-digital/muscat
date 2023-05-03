@@ -159,7 +159,7 @@ ActiveAdmin.register Work do
   filter :"catalogue_name_order_with_integer", :label => "Catalogue", as: :select, 
   collection: proc{@catalogues.sort.collect {|k| [k.camelize, "catalogue_name_order:#{k}"]}}
 
-  filter :"699a_with_integer", :label => proc{I18n.t(:work_tag)}, as: :select, 
+  filter :"699a_with_integer", :label => proc{I18n.t(:"records.work_tag")}, as: :select, 
   collection: proc{@work_tags.sort.collect {|k| [@editor_profile.get_label(k), "699a:#{k}"]}}
 
   index :download_links => false do
