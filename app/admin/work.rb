@@ -84,6 +84,9 @@ ActiveAdmin.register Work do
       # Get the terms for 0242_filter, the "link type"
       @link_types = Source.get_terms("0242_filter_sm")
       @catalogues = Work.get_terms("catalogue_name_order_sms")
+      @work_tags = Source.get_terms("699a_sm")
+
+      @editor_profile = EditorConfiguration.get_default_layout Work
 
       @results, @hits = Work.search_as_ransack(params)
       index! do |format|
@@ -94,10 +97,26 @@ ActiveAdmin.register Work do
     
     def new
       @work = Work.new
-      
-      new_marc = MarcWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc")))
-      new_marc.load_source false # this will need to be fixed
-      @work.marc = new_marc
+
+      if params[:existing_title] and !params[:existing_title].empty?
+        # Check that the record does exist...
+        begin
+          base_item = Work.find(params[:existing_title])
+        rescue ActiveRecord::RecordNotFound
+          redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Work #{params[:id]})" }
+          return
+        end
+        
+        new_marc = MarcWork.new(base_item.marc.marc_source)
+        # Reset the basic fields to default values
+        new_marc.reset_to_new
+        # copy the record type
+        @work.marc = new_marc
+      else         
+        new_marc = MarcWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc")))
+        new_marc.load_source false # this will need to be fixed
+        @work.marc = new_marc
+      end
       
       @editor_profile = EditorConfiguration.get_default_layout @work
       # Since we have only one default template, no need to change the title
@@ -110,6 +129,11 @@ ActiveAdmin.register Work do
   
   # Include the MARC extensions
   include MarcControllerActions
+
+  member_action :duplicate, method: :get do
+    redirect_to action: :new, :existing_title => params[:id]
+    return
+  end
   
   member_action :reindex, method: :get do
     job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Work, :referring_sources))
@@ -134,6 +158,9 @@ ActiveAdmin.register Work do
   
   filter :"catalogue_name_order_with_integer", :label => "Catalogue", as: :select, 
   collection: proc{@catalogues.sort.collect {|k| [k.camelize, "catalogue_name_order:#{k}"]}}
+
+  filter :"699a_with_integer", :label => proc{I18n.t(:work_tag)}, as: :select, 
+  collection: proc{@work_tags.sort.collect {|k| [@editor_profile.get_label(k), "699a:#{k}"]}}
 
   index :download_links => false do
     selectable_column if !is_selection_mode?

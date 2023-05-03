@@ -256,6 +256,13 @@
     n:
       label: records.number_page
   label: records.secondary_catalog_works
+'699':
+  fields:
+    a:
+      label: records.work_tag_type
+    b:
+      label: records.work_tag_note
+  label: records.work_tag
 6byz:
   label: records.octoechos6
 6t:
@@ -741,3 +748,9 @@ xx:
   label: records.unknown
 z:
   label: records.other_form
+"needs-revision":
+  label: records.work_tag_needs_revision
+"incipit-needs-revision":
+  label: records.work_tag_incipit_needs_revision
+"incipit-replace":
+  label: records.work_tag_incipit_replace

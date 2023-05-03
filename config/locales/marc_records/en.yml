@@ -694,7 +694,7 @@ en:
     other_standard_identifier: Other standard identifier
     other_variant: Other variant
     papermaker: Papermaker
-    parallel_form: Paralell form of name
+    parallel_form: Parallel form of name
     parent_record: Parent record
     partial_autograph: Partial autograph
     parts_held: Parts held
@@ -884,6 +884,12 @@ en:
     woodwinds: Woodwinds
     work: Work
     work_number: Work number
+    work_tag: Work revision tag
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Tag note
+    work_tag_type: Tag type
     year: Year
     years_birth_death: Years of birth and death
   relations:
