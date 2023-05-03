@@ -94,10 +94,26 @@ ActiveAdmin.register Work do
     
     def new
       @work = Work.new
-      
-      new_marc = MarcWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc")))
-      new_marc.load_source false # this will need to be fixed
-      @work.marc = new_marc
+
+      if params[:existing_title] and !params[:existing_title].empty?
+        # Check that the record does exist...
+        begin
+          base_item = Work.find(params[:existing_title])
+        rescue ActiveRecord::RecordNotFound
+          redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Work #{params[:id]})" }
+          return
+        end
+        
+        new_marc = MarcWork.new(base_item.marc.marc_source)
+        # Reset the basic fields to default values
+        new_marc.reset_to_new
+        # copy the record type
+        @work.marc = new_marc
+      else         
+        new_marc = MarcWork.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/work/default.marc")))
+        new_marc.load_source false # this will need to be fixed
+        @work.marc = new_marc
+      end
       
       @editor_profile = EditorConfiguration.get_default_layout @work
       # Since we have only one default template, no need to change the title
@@ -110,6 +126,11 @@ ActiveAdmin.register Work do
   
   # Include the MARC extensions
   include MarcControllerActions
+
+  member_action :duplicate, method: :get do
+    redirect_to action: :new, :existing_title => params[:id]
+    return
+  end
   
   member_action :reindex, method: :get do
     job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Work, :referring_sources))
