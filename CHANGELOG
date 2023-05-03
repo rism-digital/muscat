@@ -1,6 +1,9 @@
 Muscat Changelog
 ================
 
+v 9.2.1
+* Merge #1378 to add duplication to works
+
 v 9.2
 * Add migration for utf8mb4_0900_as_cs
 * Collapse 031
