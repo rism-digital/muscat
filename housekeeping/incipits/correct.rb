@@ -118,7 +118,7 @@ CSV.foreach(file) do |l|
     pae_new = l[16].strip
     note = l[17].strip
     hash = l[18].strip
-    global_note = l[19].strip
+    global_note = l[19].strip rescue global_note = ""
 
 =begin
 CSV layout:
