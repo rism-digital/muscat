@@ -59,11 +59,10 @@ module MarcIndex
           # Get configured fields for holding records. It checks for a
           # configuration item :holding_record in the index config
           # Only for sources with holdings
-          # TODO since this block is called with every configured field we have some considerable overhead
           if obj.is_a? Source
-            holdings = []
+            holdings = false # setting this a FalseClass avoids many SQL queries from holdings.empty?
 
-            # For cild prints, we index the holdings from the parent
+            # For child prints, we index the holdings from the parent
             if obj.record_type == MarcSource::RECORD_TYPES[:edition_content]
               if obj.parent_source
                 holdings = obj.parent_source.holdings
@@ -76,7 +75,7 @@ module MarcIndex
               holdings = obj.holdings
             end
 
-            if !holdings.empty? && properties && properties.has_key?(:holding_record)
+            if !holdings.is_a?(FalseClass) && properties && properties.has_key?(:holding_record)
               holdings.each do |holding|
                 begin
                   holding_marc = holding.marc

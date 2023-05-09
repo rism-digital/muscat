@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.6'
+gem 'rails', '5.2.8.1'
 
 # Use mysql2 as the database for Active Record
 # USE THIS VERSION for 4.1
@@ -92,6 +92,7 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem "blacklight_range_limit", '6.3.3', git: 'https://github.com/rism-ch/blacklight_range_limit', branch: "jquery3-6.3.x"
 gem 'devise'
 gem 'devise-i18n'
+gem 'devise_saml_authenticatable', require: false
 
 # paperclip for image storage
 gem "kt-paperclip", "~> 6.2.0"
@@ -127,15 +128,16 @@ gem 'exception_notification', '~> 4.4.0'
 gem 'cql-ruby', '0.9.1', :git => 'https://github.com/jrochkind/cql-ruby'
 gem 'chart-js-rails'
 
-gem 'osullivan'
+gem 'iiif-presentation'#, :git => 'https://github.com/iiif-prezi/osullivan', branch: "development"
 
 ## Add translations for activerecord and co
 gem 'rails-i18n'#, github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
 
 gem 'gruff'
-group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
-end
+
+# These need to be loaded in production too
+gem 'solr_wrapper', '>= 0.3'
+gem 'ruby-saml-idp'
 
 gem 'rsolr', '>= 1.0'
 
@@ -168,6 +170,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  gem 'generator_spec'
   # Use sqlite3 for testing db
   gem 'sqlite3'
 end
@@ -181,3 +184,11 @@ gem 'sort_alphabetical'
 #gem 'i18n-tasks', '~> 0.9.31'
 
 gem 'differ'
+
+gem 'rodf' # write ODS
+gem "roo" # read ODS
+
+gem 'tty-spinner'
+
+# Uncomment this if you want to test emails in development
+#gem 'mailcatcher'

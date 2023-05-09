@@ -46,7 +46,8 @@ module FolderControllerActions
     
     # This action adds to an existing folder, from the menu
     dsl.batch_action :add_to_folder, if: proc{ Folder.where(folder_type: self.resource_class.to_s).count > 0 }, form: -> {
-      folders = Folder.where(folder_type: self.resource_class.to_s)
+      model = controller_name.classify
+      folders = Folder.where(folder_type: model)
       ids = folders.map {|f| [f.name, f.id]}.collect
       {folder: ids}
     } do |ids, inputs|

@@ -46,7 +46,7 @@ class MarcHolding < Marc
     node = first_occurance("856", "x")
 
     return false if !node || !node.content
-    return true if node.content == "IIIF" || node.content == "Digitalization"
+    return true if node.content.start_with?("IIIF") || node.content.start_with?("Digitized")
     false
 
   end

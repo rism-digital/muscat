@@ -297,7 +297,7 @@
     :occurrences: "*"
     :fields:
     - - b
-      - :occurrences: "*"
+      - :occurrences: "?"
   "500":
     :master: a
     :indicator: "##"
@@ -394,8 +394,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - u
-      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
@@ -442,6 +440,8 @@
     :disable_multiple: true
     :fields:
     - - a
+      - :occurrences: "?"
+    - - b
       - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
@@ -640,6 +640,7 @@
   "710":
     :master: "0"
     :indicator: "2#"
+    :relator_code: "4"
     :occurrences: "*"
     :fields:
     - - "0"
@@ -650,11 +651,13 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: corporate_name
     - - b
       - :occurrences: "*"
     - - c
-      - :occurrences: "*"
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: place
     - - g
       - :occurrences: "?"
     - - "4"
@@ -761,7 +764,7 @@
     - - e
       - :occurrences: "?"
         :foreign_class: ^x
-        :foreign_field: name
+        :foreign_field: corporate_name
         :disable_create_lookup: true
     - - u
       - :occurrences: "?"
@@ -789,7 +792,7 @@
     :fields:
     - - "0"
       - :occurrences: "?"
-        :foreign_class: Work
+        :foreign_class: WorkNode
         :foreign_field: id
         :no_show: true
     - - a

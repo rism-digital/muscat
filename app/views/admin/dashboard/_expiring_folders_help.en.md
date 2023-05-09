@@ -1,0 +1,1 @@
+Folders expire after six months and are automatically deleted. To renew a folder, click on the "Reset expiration date" link which will extend the expiration date for another six months. You will also receive email notifications before folders are deleted. 

@@ -3,10 +3,25 @@ server:
   - validate_user_abilities
   - validate_links_to_self
 client:
-  "100": 
+  "031":
     tags:
-      "0": required
-      a: required
+      "b":
+        required_if:
+          "031": "a"
+      "c":
+        required_if:
+          "031": "a"
+  "100":
+    tag_overrides:
+      exclude:
+        "0":
+          - collection
+          - composite_volume
+          - edition
+          - libretto_edition
+          - theoretica_edition
+    tags:
+      "0": mandatory
   "240":
     tag_overrides:
       exclude:
@@ -110,6 +125,20 @@ client:
       "n": required
       "w": required
       "4": required
+  "773":
+    tag_overrides:
+      exclude:
+        "w":
+        - collection
+        - source
+        - libretto_source
+        - libretto_edition
+        - theoretica_source
+        - theoretica_edition
+        - edition
+        - composite_volume
+    tags:
+      'w': mandatory
   "852":
     tag_overrides:
       exclude:
@@ -120,8 +149,15 @@ client:
         - libretto_edition_content
         - theoretica_edition
         - theoretica_edition_content
+        "c":
+        - edition
+        - edition_content
+        - libretto_edition
+        - libretto_edition_content
+        - theoretica_edition
+        - theoretica_edition_content
     tags:
-      c: required, warning
+      c: mandatory
       x: mandatory
   "856": 
     tags:

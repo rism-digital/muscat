@@ -1,0 +1,9 @@
+<h3>Some of your Muscat folders will expire soon. </h3>
+<p>
+Folders in Muscat expire after six months and are automatically deleted. To renew a folder, click on the "Reset expiration date" link which will extend the expiration date for another six months.
+<p>
+<% @folders.each do |k, f|%>
+    <% next if f.empty? %>
+    <%= render partial: "folder_table", locals: { folder_list: f, type: k } %>
+<%end%>
+</p>

@@ -31,6 +31,17 @@
 #
 class EditorConfiguration
   
+  def read_file(file)
+    begin
+      data = Settings.new(IO.read(file))
+    rescue Psych::SyntaxError => e
+      puts e.message
+      puts "File: #{file}"
+      raise "Error parsing YML conf file: " + file + "\n" + e.message
+    end
+    data
+  end
+
   # Load all the configurations, first in config/editor_profiles/default/configurations/ then in
   # config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/. If two files share the same name
   # in the two directories, they will be merged together.
@@ -42,7 +53,7 @@ class EditorConfiguration
     configs.each do |config|
       file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml")
       if File.exists?(file)
-        settings.squeeze(Settings.new(IO.read(file)))
+        settings.squeeze(read_file(file))
       end
     end
     
@@ -58,13 +69,17 @@ class EditorConfiguration
     @squeezed_options_config = squeeze(conf[:options])
     @squeezed_layout_config = squeeze(conf[:layout])
 
-    # Superimpose shared labels
-    file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/shared/SharedLanguageLabels.yml")
-    if File.exists?(file)
-      @squeezed_labels_config.squeeze(Settings.new(IO.read(file)))
-    end
+    superimpose_shared_file("SharedLanguageLabels.yml")
+    superimpose_shared_file("SharedContentLabels.yml")
   end
   
+  def superimpose_shared_file(name)
+    file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/shared/#{name}")
+    if File.exists?(file)
+      @squeezed_labels_config.squeeze(read_file(file))
+    end
+  end
+
   # Get the defined name from this EditorConfiguration, defined in :name
   def name
     @name
@@ -400,9 +415,9 @@ class EditorConfiguration
     profiles = EditorConfiguration.profiles
 
     if model.is_a? Class
-      model_name = model.to_s.downcase
+      model_name = model.to_s.underscore
     else
-      model_name = model.class.to_s.downcase
+      model_name = model.class.to_s.underscore
     end
 
     profiles.each do |p|
@@ -415,7 +430,7 @@ class EditorConfiguration
   # Gets the show layout. This is a configuration in which <tt>show</tt> in the <tt>filter</tt> is true.
   def self.get_show_layout(model)
     profiles = EditorConfiguration.profiles
-    model_name = model.class.to_s.downcase
+    model_name = model.class.to_s.underscore
     profiles.each do |p|
       next if model_name != p.model
       return p if p.filter && p.filter["show"]
@@ -425,14 +440,13 @@ class EditorConfiguration
     
   # Gets the html file name.
   def self.get_help_fname(name, model = "Source")
-    model = "#{model.downcase}_"
+    model = (model == "Source") ? "" : "#{model.underscore}_"
     # translated version?
-    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{I18n.locale.to_s}/#{model}#{name}.md")
-    ap fname
+    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html")
+    #ap fname
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # english?
-    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/en/#{model}#{name}.md")
-    ap fname
+    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_en.html")
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # nope...
     return ""

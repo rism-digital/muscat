@@ -92,11 +92,27 @@ used for _tag_header partial
 		});
 	}
 	
-	function fix_pae_reindering_ids(new_dt) {
+	function fix_pae_rendering_ids(new_dt) {
+		var new_id = Math.random().toString(36).substring(4);
+
 		new_dt.find(".pae_incipit_target").each(function() {
-			var new_id = Math.random().toString(36).substring(4);
 			var old_id = $(this).attr("id");
 			$(this).attr("id", old_id + "-" + new_id);
+		});
+
+		new_dt.find(".pae_input").each(function() {
+			var old_id = $(this).attr("id");
+			$(this).attr("id", old_id.replace('-textbox','') + "-" + new_id + "-textbox");
+		})
+
+		new_dt.find(".pae-warning").each(function() {
+			var old_id = $(this).attr("id");
+			$(this).attr("id", old_id.replace('-clefKeyWarnings','') + "-" + new_id + "-clefKeyWarnings");
+		})
+
+		new_dt.find(".pae-error").each(function() {
+			var old_id = $(this).attr("id");
+			$(this).attr("id", old_id.replace('-messages','') + "-" + new_id + "-messages");
 		})
 	}
 
@@ -114,7 +130,7 @@ used for _tag_header partial
 		
 		// We also need to re-create the unique IDs for pae rendering
 		// as we need these as a reference for the background worker
-		fix_pae_reindering_ids(new_dt);
+		fix_pae_rendering_ids(new_dt);
 
 		new_dt.fadeIn('fast');
 		return new_dt;
@@ -134,7 +150,7 @@ used for _tag_header partial
 		parent_dl.append(new_dt);
 		
 		tag_header_fix_validation(new_dt);
-		fix_pae_reindering_ids(new_dt);
+		fix_pae_rendering_ids(new_dt);
 
 		new_dt.fadeIn('fast');
         update_empty_tag( elem.parents(".tag_group") );

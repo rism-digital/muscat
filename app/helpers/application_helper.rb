@@ -5,7 +5,7 @@ module ApplicationHelper
   end
   
   def institution_default_autocomplete
-    autocomplete_institution_name_admin_institutions_path
+    autocomplete_institution_corporate_name_admin_institutions_path
   end
   
   def library_default_autocomplete
@@ -51,7 +51,15 @@ module ApplicationHelper
   def work_default_autocomplete
     autocomplete_work_title_admin_works_path
   end
+
+  def work_node_default_autocomplete
+    autocomplete_work_title_admin_work_nodes_path
+  end
   
+  def source_031t_solr_default_autocomplete
+    autocomplete_source_031t_filter_sms_admin_sources_path
+  end
+
   # Create a link for a page in a new window
   def application_helper_link_http(value, node, opac)
     result = []
@@ -117,6 +125,12 @@ module ApplicationHelper
       [MarcSource::RECORD_TYPES[:composite_volume]]
     elsif source.record_type == MarcSource::RECORD_TYPES[:edition_content]
       MarcSource::RECORD_TYPES[:edition]
+    elsif source.record_type == MarcSource::RECORD_TYPES[:libretto_source] || source.record_type == MarcSource::RECORD_TYPES[:theoretica_source]
+      MarcSource::RECORD_TYPES[:collection]
+    elsif source.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content]
+      MarcSource::RECORD_TYPES[:libretto_edition]
+    elsif source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]
+      MarcSource::RECORD_TYPES[:theoretica_edition]
     else
       nil
     end

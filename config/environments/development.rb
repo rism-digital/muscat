@@ -1,3 +1,16 @@
+
+
+## Uncomment this to see the location of puts calls
+=begin
+module Kernel
+  alias :oldputs :puts
+  def puts (s)
+    # Do whatever you want here, including nothing
+    oldputs(caller_locations.first.to_s + ": " + s)
+  end
+end
+=end
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -31,9 +44,15 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
+
+  # For use with the mailcatcher gem, very handy to test emails sent by muscat  
+   config.action_mailer.delivery_method = :smtp
+   config.action_mailer.perform_deliveries = true
+   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

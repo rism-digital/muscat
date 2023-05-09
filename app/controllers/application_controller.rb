@@ -13,18 +13,23 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :store_user_location!, if: :storable_location?
   before_action :set_locale, :set_paper_trail_whodunnit, :auth_user, :prepare_exception_notifier, :test_version_warning, :test_muscat_reindexing
-  after_action :store_location
 
+  # see https://github.com/heartcombo/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
+  def storable_location?
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
+  end
 
-  def store_location
-    # store last url - this is needed for post-login redirect to whatever the user last visited.
-    if (request.fullpath != "/admin/login" &&
-        request.fullpath != "/admin/logout" &&
-        !request.xhr?) # don't store ajax calls
-      session["user_return_to"] = request.fullpath 
-    end
+  def store_user_location!
+    # :user is the scope we are authenticating
+    store_location_for(:user, request.fullpath)
+  end
+
+  def after_sign_in_path_for(resource_or_scope)
+    stored_location_for(resource_or_scope) || super
   end
 
   def prepare_exception_notifier
@@ -36,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def auth_user
-    redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login")
+    redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login" || (defined?(saml_user_signed_in?) && saml_user_signed_in?))
   end
   
   def test_version_warning
@@ -47,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def test_muscat_reindexing
-    flash[:notice] = "Muscat in reindexing, search results may be incomplete" if ::MuscatProcess.is_reindexing?
+    flash[:notice] = I18n.t(:muscat_reindexing) if ::MuscatProcess.is_reindexing?
   end
 
   # Code for rescueing lock conflicts errors
@@ -114,6 +119,13 @@ class ApplicationController < ActionController::Base
     I18n.locale = session[:locale]
   end 
   
+  def configure_permitted_parameters
+    added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit :sign_in, keys: [:login, :password]
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+  end
+
   def restore_search_filters  
   end
   

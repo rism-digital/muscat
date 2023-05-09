@@ -30,7 +30,7 @@ groups:
     all_tag_templates: 
       "100": marc_show/show_person
       "246": marc_show/show_title_variant  
-      "930": marc_show/show_work
+      "930": marc_show/show_work_node
       "001": marc_show/show_rism_id
 
   show_library: 
@@ -100,9 +100,7 @@ groups:
     - "690"
     - "383"
     - "691"
-    - "510"
     all_tag_templates: 
-      "510": marc_show/show_subfield_concat
       "690": marc_show/show_69x_url
       "691": marc_show/show_69x_url
 
@@ -137,6 +135,10 @@ groups:
     all_tags: 
     - "040"
     - "599"
+    - "980"
+    - "510"
+    all_tag_templates: 
+      "510": marc_show/show_subfield_concat
     admin_only: true
     
   show_links: 

@@ -71,7 +71,12 @@ module Muscat
             end
 
             if !order.empty?
-              order_by order[:field], order[:order]
+              begin
+                order_by order[:field], order[:order]
+              rescue Sunspot::UnrecognizedFieldError => e
+                puts "Possible stale order_by field: #{order[:field]}"
+                puts e.message
+              end
             end
 
             fields.each do |f|
@@ -117,21 +122,13 @@ module Muscat
           if params.has_key?(:order)
             order = params[:order].include?("_asc") ? "asc" : "desc"
             field = params[:order].gsub("_#{order}", "")
-
+            
             # Fields used for order by convention always end with _order
             # In some cases it is a duplicate field stored in the DB
             # So in that case we append the _order here
             if field != "id"
-              field = field + "_order" if !field.ends_with?("_order") && !field.ends_with?("_shelforder")
+              field = field + "_order" if !field.ends_with?("_order") && !field.ends_with?("_shelforder") && !field.ends_with?("_ans")
             end
-
-            ## HARDCODED! Shelfmarks need a particular way of indexing
-            # using a custom tokenizer. If we encounter that field
-            # translate it to the "special" one. The solr dynamic field
-            # terminates with "*_shelforder_s"
-            #if field.include
-            #field = "shelf_mark_shelforder" if field == "shelf_mark_order"
-            #field = "std_title_shelforder" if field == "std_title_order"
 
             order = { :field => field.underscore.to_sym, :order => order.to_sym }
           end
@@ -170,6 +167,7 @@ module Muscat
                 # The field to filter with is
                 # in the value
                 field, id = options[k].split(":")
+                id = ActiveModel::Type::Boolean.new.cast(id) if id.to_s.downcase.strip == "true" || id.to_s.downcase.strip == "false"
                 with[field] = id
               elsif k.to_s.match("gteq") # :Greather than time range
                 field = k.to_s.gsub("_gteq_datetime", "")

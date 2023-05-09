@@ -396,6 +396,21 @@ h3 {
         a.muscat_icon_link_viaf {
             background: image-url("/images/marc-icons/viaf.png") no-repeat;
         }
+        a.muscat_icon_link_gnd {
+            background: image-url("/images/marc-icons/gnd.png") no-repeat;
+        }
+        a.muscat_icon_link_up {
+            background: image-url("/images/marc-icons/up_arrow.png") no-repeat;
+        }
+        a.muscat_icon_link_shuffle {
+            background: image-url("/images/marc-icons/shuffle.png") no-repeat;
+        }
+        a.muscat_icon_link_expiration {
+            background: image-url("/images/marc-icons/expired.png") no-repeat;
+        }
+        a.muscat_icon_link_make_catalogue {
+            background: image-url("/images/marc-icons/make_catalogue.png") no-repeat;
+        }
     }
     li.muscat_icon_separator {
          border-bottom: 3px solid #dfe1e2;
@@ -488,6 +503,13 @@ button.abutton-icon-solo .ui-icon {left: 0;}
 	background-position: center right;
 }
 
+.inline-autocomplete {
+	background-image:url('/images/textfield_key.png');
+	background-repeat: no-repeat;
+	background-position: center right;
+}
+
+
 // Form Validation
 a.error {
   color: red;
@@ -517,4 +539,8 @@ a.warning {
 }
 .search-button-composite {
     background: image-url("/images/marc-icons/search_composite.png") no-repeat
+  }
+
+  .sortable-button {
+    cursor: move;
   }

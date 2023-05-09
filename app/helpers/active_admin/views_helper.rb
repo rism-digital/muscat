@@ -74,6 +74,7 @@ module ActiveAdmin::ViewsHelper
     
     name = "[Model does not have a label]"
     name = item.name if item.respond_to?(:name)
+    name = item.full_name if item.respond_to?(:full_name)
     name = item.title if item.respond_to?(:title)
     name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
     
@@ -167,11 +168,11 @@ module ActiveAdmin::ViewsHelper
     return "#{val1} : #{val2} - [#{id}]"
   end
  
-  def active_admin_publication_show_title( author, description, id )
-    return "[#{id}]" if author.empty? and description.empty?
-    return "#{description} [#{id}]" if author.empty? and !description.empty?
-    return "#{author} [#{id}]" if (description.nil? or description.empty?)
-    return "#{author} : #{description} [#{id}]"
+  def active_admin_publication_show_title( author, title, id )
+    return "[#{id}]" if author.empty? and title.empty?
+    return "#{title} [#{id}]" if author.empty? and !title.empty?
+    return "#{author} [#{id}]" if (title.nil? or title.empty?)
+    return "#{author} : #{title} [#{id}]"
   end
   
   def active_admin_digital_object_show_title( description, id )
@@ -250,13 +251,81 @@ module ActiveAdmin::ViewsHelper
     text.mb_chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
   end
 
+  def dashboard_comment_record_exists(resource_type, resource_id)
+    begin
+      item = resource_type.constantize.find(resource_id)
+      return item
+    rescue ActiveRecord::RecordNotFound
+      nil
+    end
+  end
+
   def dashboard_find_recent(model, limit, modification, user, days = 7) 
-    modif_at = modification.to_s + "_at"
+    if modification == :updated
+      modif_at = "updated_at"
+    else
+      modif_at = "created_at"
+    end
+
     if user != -1
       model.where((modif_at + " > ?"), days.days.ago).where("wf_owner = ?", user).limit(limit).order(modif_at + " DESC")
     else
       model.where((modif_at + "> ?"), days.days.ago).limit(limit).order(modif_at + " DESC") 
     end
+  end
+
+  def dashboard_get_model_comments(limit, days = 7)
+    comments =  ActiveAdmin::Comment.where(("updated_at > ? AND namespace = 'admin'"), days.days.ago)
+    return comments.collect {|c|
+      item = dashboard_comment_record_exists(c.resource_type, c.resource_id)
+      if item
+        c if item.wf_owner == current_user.id
+      else
+        c ## Oops! The item was deleted! Still send the comment so we can mark it...
+      end
+    }.compact.first(limit)
+  end
+
+  def dashboard_get_referring_comments(limit, days = 7)
+    sanitized_name = current_user.name.gsub(" ", "_")
+    user_name = "@#{sanitized_name}"
+
+    ActiveAdmin::Comment.where(("updated_at > ? AND namespace = 'admin'"), days.days.ago).where("body LIKE '%#{user_name}%'").limit(limit)
+  end
+
+  def dashboard_get_my_comments(limit, days = 7)
+    ActiveAdmin::Comment.where(("updated_at > ? AND namespace = 'admin'"), days.days.ago).where(author_id: current_user.id).limit(limit)
+  end
+
+  def dashboard_make_comment_section(context, items, title)
+
+    context.columns do
+      context.column do
+        context.panel title do
+          if items.count > 0
+            context.table_for items.map do
+              context.column (I18n.t :filter_date), :created_at
+              context.column (I18n.t :filter_author), :author
+              context.column (I18n.t :filter_comment), :body do |comment|
+                link_to comment.body, admin_comment_path(comment)
+              end
+              context.column (I18n.t :object) do |r|
+                localized_model = I18n.t(r.resource_type.downcase + ".one").capitalize # The model kay is not underscored in the translation file
+                if dashboard_comment_record_exists(r.resource_type, r.resource_id)
+                  link_to "#{localized_model} #{r.resource_id}", controller: r.resource_type.pluralize.underscore.downcase.to_sym, action: :show,  id: r.resource_id
+                else
+                  context.status_tag(:deleted, label: I18n.t("wf_stage.deleted"))
+                  context.text_node("#{localized_model} #{r.resource_id}")
+                end
+              end
+            end
+          else
+            context.text_node(I18n.t('dashboard.no_items'))
+          end
+        end
+      end
+    end
+
   end
 
   def diff_find_in_interval(model, user, interval, index)
@@ -277,6 +346,25 @@ module ActiveAdmin::ViewsHelper
       end
     end
     return results, model
+  end
+
+  def active_admin_work_status_tag_class value
+    return "" if !value
+    c = 0
+    while value > 0
+      value &= value - 1
+      c += 1
+    end
+    return "links-#{c}"
+  end
+
+  def active_admin_work_status_tag_label value
+    return "" if !value
+    s = []
+    s << "DNB" if (value & 1) > 0
+    s << "BNF" if (value & 2) > 0
+    s << "MBZ" if (value & 4) > 0
+    return s.join(' ')
   end
 
 end

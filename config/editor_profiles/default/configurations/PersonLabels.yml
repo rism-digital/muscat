@@ -123,6 +123,8 @@
     y:
       label: records.note_external_resource
   label: records.external_resource
+XA-AL:
+  label: places.albania
 XA-AT:
   label: places.austria
 XA-AT-2:
@@ -406,6 +408,6 @@ wo:
 wr:
   label: records.region_active
 xx:
-  label: records.unknown
+  label: records.uncategorized
 z:
   label: records.alternate_spelling

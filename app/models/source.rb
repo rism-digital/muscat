@@ -53,7 +53,10 @@ class Source < ApplicationRecord
   has_many :child_sources, {class_name: "Source"}
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
-  has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
+  #has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
+  has_many :source_institution_relations
+  has_many :institutions, through: :source_institution_relations
+
   #has_and_belongs_to_many :people, join_table: "sources_to_people"
   has_many :source_person_relations
   has_many :people, through: :source_person_relations
@@ -65,7 +68,12 @@ class Source < ApplicationRecord
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
 	has_many :collection_holdings, {class_name: "Holding", foreign_key: "collection_id"}
-  has_and_belongs_to_many :works, join_table: "sources_to_works"
+  
+  #has_and_belongs_to_many :works, join_table: "sources_to_works"
+  has_many :source_work_relations
+  has_many :works, through: :source_work_relations
+
+  has_and_belongs_to_many :work_nodes, join_table: "sources_to_work_nodes"
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -85,7 +93,7 @@ class Source < ApplicationRecord
   scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
 
   # FIXME id generation
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :check_parent, prepend: true
 
   before_save :set_object_fields, :save_updated_at
   after_create :fix_ids
@@ -139,7 +147,7 @@ class Source < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "publications", "liturgical_feasts", "places", "holdings", "sources", "works"]
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "publications", "liturgical_feasts", "places", "holdings", "sources", "work_nodes"]
     recreate_links(marc, allowed_relations)
 
     # update the parent manuscript when having 773/774 relationships
@@ -245,15 +253,11 @@ class Source < ApplicationRecord
 #      date_to != nil && date_to > 0 ? date_to : nil
 #    end
 
-    sunspot_dsl.integer :wf_owner, multiple: true do |s|
-      s.holdings.map {|e| e.wf_owner} << s.wf_owner
-    end
+    sunspot_dsl.integer :wf_owner
 
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
-    sunspot_dsl.time :created_at, multiple: true do |s|
-      s.holdings.map {|e| e.created_at} << s.created_at
-    end
+    sunspot_dsl.time :created_at
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
@@ -292,6 +296,10 @@ class Source < ApplicationRecord
       end
     end
 
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
 
@@ -322,12 +330,16 @@ class Source < ApplicationRecord
     # FIXME how do we generate ids?
     #self.marc.set_id self.id
 
-    # parent source
-    parent = marc.get_parent
-    # If the 773 link is removed, clear the source_id
-    # But before save it so we can update the parent
-    # source.
-    @old_parent = source_id if !parent
+    # parent source, can be nil
+    parent = marc.get_parent ? marc.get_parent : nil
+    # We need to save the parent (from 773) into source_id
+    # before doing that, we make a backup to update_77x known
+    # it has to modify the old parent. @old_parent wil be either
+    # nil or different than the current parent, in that case
+    # the record in @old_parent will have the 774 removed, if
+    # it had one
+    @old_parent = source_id
+    # Update source_id on the DB only after we make a backup copy
     self.source_id = parent ? parent.id : nil
 
     # std_title
@@ -354,19 +366,37 @@ class Source < ApplicationRecord
     self.marc_source = self.marc.to_marc
   end
 
-  # If this manuscript is linked with another via 774/773, update if it is our parent
-  def update_77x
-    # do we have a parent manuscript?
-    parent_manuscript_id = marc.first_occurance("773", "w")
+  # Remove the 774 link from our parent if we are deleting
+  # or changing the 773. Note that this function expects
+  # @old_parent to contain the ID of the parent
+  def delete_parent_774
+    parent_manuscript = Source.find_by_id(@old_parent)
+    return if !parent_manuscript
+    modified = false
 
-    # NOTE we evaluate the strings prefixed by 00000
-    # as the field may contain legacy values
+    parent_manuscript.paper_trail_event = "Remove 774 link #{id.to_s}"
 
-    if parent_manuscript_id
-      # We have a parent manuscript in the 773
-      # Open it and add, if necessary, the 774 link
+    # check if the 774 tag already exists
+    parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
+      subfield = tag.fetch_first_by_tag("w")
+      next if !subfield || !subfield.content
+      if subfield.content.to_i == id
+        puts "Deleting 774 $w#{subfield.content} for #{@old_parent}, from #{id}"
+        tag.destroy_yourself
+        modified = true
+      end
 
-      parent_manuscript = Source.find_by_id(parent_manuscript_id.content)
+    end
+
+    if modified
+      parent_manuscript.suppress_update_77x
+      parent_manuscript.save
+      @old_parent = nil
+    end
+  end
+
+  def add_parent_774(parent_manuscript_id)
+      parent_manuscript = Source.find_by_id(parent_manuscript_id)
       return if !parent_manuscript
 
       parent_manuscript.paper_trail_event = "Add 774 link #{id.to_s}"
@@ -387,36 +417,35 @@ class Source < ApplicationRecord
 
       parent_manuscript.suppress_update_77x
       parent_manuscript.save
+  end
+
+  # If this manuscript is linked with another via 774/773, update if it is our parent
+  def update_77x
+    # do we have a parent manuscript?
+    parent_manuscript_id = marc.first_occurance("773", "w")
+
+    # NOTE we evaluate the strings prefixed by 00000
+    # as the field may contain legacy values
+
+    # We have a parent manuscript in the 773
+    # Open it and add, if necessary, the 774 link
+    if parent_manuscript_id && parent_manuscript_id.content
+      parent_id = parent_manuscript_id.content.to_i
+      # If we have @old_parent set, and it is different from the current
+      # parent, it means the user switched 773, so we need to delete
+      # the link in the old one.
+      if @old_parent && @old_parent.to_i != parent_id
+        delete_parent_774()
+      end
+      # Ok add the new link if necessary
+      add_parent_774(parent_id)
     else
       # We do NOT have a parent ms in the 773.
       # but we have it in old_parent, it means that
       # the 773 was deleted. Go into the parent and
       # find the reference to the id, then delete it
       if @old_parent
-        parent_manuscript = Source.find_by_id(@old_parent)
-        return if !parent_manuscript
-        modified = false
-
-        parent_manuscript.paper_trail_event = "Remove 774 link #{id.to_s}"
-
-        # check if the 774 tag already exists
-        parent_manuscript.marc.each_data_tag_from_tag("774") do |tag|
-          subfield = tag.fetch_first_by_tag("w")
-          next if !subfield || !subfield.content
-          if subfield.content.to_i == id
-            puts "Deleting 774 $w#{subfield.content} for #{@old_parent}, from #{id}"
-            tag.destroy_yourself
-            modified = true
-          end
-
-        end
-
-        if modified
-          parent_manuscript.suppress_update_77x
-          parent_manuscript.save
-          @old_parent = nil
-        end
-
+        delete_parent_774()
       end
 
     end
@@ -513,6 +542,21 @@ class Source < ApplicationRecord
     false
   end
 
+  def get_shelfmarks
+    if self.record_type == MarcSource::RECORD_TYPES[:edition] ||
+      self.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
+      self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition]
+      return holdings.each.collect {|h| h.get_shelfmark}
+    elsif self.record_type == MarcSource::RECORD_TYPES[:edition_content] ||
+          self.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] ||
+          self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]
+      puts "Edition content #{self.id} has no parent" if !self.parent_source
+      return [] if !self.parent_source
+      return self.parent_source.holdings.each.collect {|h| h.get_shelfmark}
+    end
+    return [self.shelf_mark]
+  end
+
   def self.incipits_for(id)
     s = Source.find(id)
 
@@ -535,13 +579,95 @@ class Source < ApplicationRecord
     incipits
   end
 
+  def manuscript_to_print(tags)
+    is_child = self.parent_source != nil
+    holding = Holding.new
+    holding_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
+    holding_marc.load_source false
+    # Kill old 852s from the empty template
+    holding_marc.each_by_tag("852") {|t2| t2.destroy_yourself}
+
+    # First, insert a brand new 588 tag into the bib record
+
+    a = self.marc.first_occurance("852", "a")
+    c = self.marc.first_occurance("852", "c")
+    elems = []
+    elems << a.content if a and a.content
+    elems << c.content if c and c.content
+
+    content588 = elems.join(" ")
+
+    if !is_child
+      t588 = MarcNode.new("source", "588", "", '##')
+      t588.add_at(MarcNode.new("source", "a", content588, nil), 0 )
+      self.marc.root.add_at(t588, self.marc.get_insert_position("588") )
+    end
+
+    tags.each do |copy_tag, indexes|
+
+      # Purge 593 only if we are copying over a new one
+      holding_marc.each_by_tag("593") {|t2| t2.destroy_yourself} if copy_tag == "593"
+
+      match = marc.by_tags(copy_tag)
+
+      indexes.each do |i|
+        match[i].copy_to(holding_marc)
+        match[i].destroy_yourself
+      end
+
+    end
+
+    # Save the holding
+    if !is_child
+      holding_marc.suppress_scaffold_links
+      holding_marc.import
+      
+      holding.marc = holding_marc
+      holding.source = self
+
+      holding.save
+    end
+    
+    # Do some housekeeping here too
+    if !is_child
+      self.record_type = MarcSource::RECORD_TYPES[:edition]
+    else
+      self.record_type = MarcSource::RECORD_TYPES[:edition_content]
+    end
+    self.save
+
+    return holding.id
+  end
+
+  def get_iiif_tags()
+    tags = self.marc.by_tags_with_order(["856"])
+
+    if self.holdings
+      self.holdings.each {|h| tags.concat(h.marc.by_tags_with_order(["856"]))}
+    end
+
+    tags.delete_if {|tag| subfield_x = tag.fetch_first_by_tag('x'); !subfield_x || !subfield_x.content || !subfield_x.content.include?("IIIF")}
+    return tags
+  end
+
   def force_marc_load?
     self.marc.load_source false
     true
   end
 
+  def check_parent
+    if source_id
+      errors.add :base, I18n.t(:is_part_of_collection, class: self.class.model_name.human, id: self.id)
+      throw :abort
+      false
+    end 
+    true
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"852c", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"593b_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"599a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"856x", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end

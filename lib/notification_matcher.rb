@@ -5,7 +5,7 @@ class NotificationMatcher
   ALLOWED_PROPERTIES = {
     source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum, :follow],
     work: [:title, :form, :notes, :composer, :follow],
-    institution: [:siglum, :name, :address, :place, :comments, :alternates, :notes, :follow]
+    institution: [:siglum, :full_name, :address, :place, :comments, :alternates, :notes, :follow]
   }
 
   SPECIAL_RULES = {
@@ -16,7 +16,7 @@ class NotificationMatcher
 
   def initialize(object, user, limit_rules = nil)
     if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) 
-      raise(ArgumentError, "NotificationMatcher can be applied only for Works and Sources" )
+      raise(ArgumentError, "NotificationMatcher can be applied only to Works Nodes, Sources and Institutions" )
     end
 
     @object = object
@@ -115,7 +115,7 @@ class NotificationMatcher
       composer = @object.person.name
       return wildcard_match(composer, pattern)
     elsif property == "follow"
-      if @object.versions && @object.versions.last && @object.versions.last.whodunnit
+      if !@object.versions.empty? && @object.versions.last && @object.versions.last.whodunnit
         return true if @object.versions.last.whodunnit.downcase == pattern.downcase
       else
         return false if !@object.user || !@object.user.name

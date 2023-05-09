@@ -16,13 +16,20 @@
 			:class => "muscat_icon_link muscat_icon_link_list") %>
 		</li>
 	
-	<%if @item && @item.id && @item.respond_to?(:allow_holding?) && @item.allow_holding? %>
-		<li class="muscat_icon_separator"></li>
-		<li class="muscat_icon_link">
-			<%= link_to("#{I18n.t :new_holding}", new_admin_holding_path(source_id: @item.id),
-				:class => "muscat_icon_link muscat_icon_link_new") %>
-		</li>
-	<%end%>
+		<% if item.is_a?(Source) %>
+			<li class="muscat_icon_link">
+			<%= link_to(I18n.t(:go_to_top), "javascript:marc_editor_go_to_top()",
+				:class => "muscat_icon_link muscat_icon_link_up") %>
+			</li>
+		<% end %>
+
+		<%if @item && @item.id && @item.respond_to?(:allow_holding?) && @item.allow_holding? %>
+			<li class="muscat_icon_separator"></li>
+			<li class="muscat_icon_link">
+				<%= link_to("#{I18n.t :new_holding}", new_admin_holding_path(source_id: @item.id),
+					:class => "muscat_icon_link muscat_icon_link_new") %>
+			</li>
+		<%end%>
 		
 		<li class="muscat_icon_separator"></li>
 	
@@ -41,7 +48,7 @@
 			<%= link_to("#{I18n.t :delete}", delete_path,
 				:class => "muscat_icon_link muscat_icon_link_delete",
 				:method => :delete,
-				data: { confirm: "#{I18n.t :history_delete_confirm}"}) %>
+				data: { confirm: "#{I18n.t :"active_admin.delete_confirmation"}"}) %>
 			</li>
 		<%- end %>
 		<%- if (self.controller.respond_to? :duplicate) && (can? :create, item) %>
@@ -95,6 +102,18 @@
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :validate_folder}", send("validate_folder_admin_#{model}_path", item),
 				:class => "muscat_icon_link muscat_icon_link_validate") %>
+			</li>
+		<%- end %>
+		<%- if (self.controller.respond_to? :make_catalogue) && (can? :edit, Work) && item.is_a?(Folder) && item.folder_type == "Publication" %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :"folders.make_catalogue"}", send("make_catalogue_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_make_catalogue") %>
+			</li>
+		<%- end %>
+		<%- if (can? :edit, item)  && item.is_a?(Folder) %>
+			<li class="muscat_icon_link">
+			<%= link_to("#{I18n.t :"folders.reset_expiration"}", send("reset_expiration_admin_#{model}_path", item),
+				:class => "muscat_icon_link muscat_icon_link_expiration") %>
 			</li>
 		<%- end %>
 	<%- else %>

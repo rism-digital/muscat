@@ -97,6 +97,9 @@ pt:
       comments_help: "Digite @ para mencionar um usuário específico, que então receberá uma notificação por e-mail."
       author_missing: "Anônimo"
       title_content: "Comentários (%{count})"
+      referring_comments: Comentários onde sou nomeado
+      my_item_comments: Comentários sobre os meus registos
+      my_own_comments: Comentários que fiz
       errors:
         empty_text: "O comentário não foi salvo, o texto estava vazio."
     devise:
@@ -277,6 +280,7 @@ pt:
   menu_jobs: "Trabalhos"
   menu_holdings: "Materiais"
   menu_works: "Materiais"
+  menu_work_nodes: "Work Nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Últimas modificações"
@@ -334,7 +338,9 @@ pt:
   unloadable_record: "Este registro teve problemas de carregamento: pode ser visto, mas não editado. Por favor, entre em contato com um administrador."
   validation_level_error: "Há erros, por favor resolva antes de salvar."
   validation_level_warning: "Estes são avisos, salve novamente para ignorar."
-  
+  muscat_reindexing: "Muscat está a reindexar, os resultados da pesquisa podem estar incompletos"
+  work_catalogue: "Catálogo de obras"  
+
   jobs:
     not_set: "[Nenhum estado determinado]"
     ok: "Trabalho realizada com sucesso"
@@ -347,6 +353,7 @@ pt:
   # Sidebar
   delete: "Apagar"
   to_the_list: "Retornar à lista"
+  go_to_top: "Voltar ao início"
   edit: "Editar"
   new: "Criar"
   duplicate: "Duplicar"
@@ -375,11 +382,13 @@ pt:
   hide_preview: "Ocultar previsualização"
   show_validate: "Validação"
   show_history: "Mostrar histórico de modificação"
+  show_gnd: "Busca no GND"
   show_viaf: "Busca no VIAF"
   save_and_continue: "Salvar e continuar editando"
   save_and_exit: "Salvar e Fechar"
   cancel: "Cancelar"
   duplicate_confirm: "Tem certeza de que quer duplicar este registro?"
+  convert_to_print: "Converter para modelo de impressão"
   
   # Version history
   history_date: "Data"
@@ -409,6 +418,17 @@ pt:
     publish_job: "Início do Job de publicação (id: %{id})"
     unpublish_job: "Início do Job de cancelamento da publicação (id: %{id})"
     reindex_job: "Início do trabalho de reindexação (id: %{id})"
+    validação_iniciada: "Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})"
+    folder_not_source: "Apenas as pastas contendo Fontes podem ser validadas"
+    expires: "Expira em"
+    resetted: "Data de expiração da pasta agora é %{data}"
+    reset_expiration: "Repor data de expiração"
+    delete_now: "As seguintes pastas foram eliminadas:"
+    tomorrow: "As seguintes pastas serão eliminadas amanhã %{data}"
+    one_week: "As seguintes pastas serão apagadas dentro de uma semana em %{data}"
+    two_weeks: "As seguintes pastas serão apagadas dentro de duas semanas em %{data}"
+    one_month: "As seguintes pastas serão apagadas dentro de um mês em %{data}"
+    make_catalogue: "Marcar artigos como catálogos de obras"
 
   ### Digital objects
   digital_objects: "Objetos Digitais"
@@ -489,9 +509,8 @@ pt:
   filter_provenance: "Local de Publicação"
   filter_record_type: "Tipo de modelo"
   filter_record_type_short: "Tipo"
-  filter_source_type: "Tipo de fonte"
   filter_publisher: "Editor"
-  filter_revue_title: "Título do Periódico"
+  filter_journal: "Título do Periódico"
   filter_id: "ID RISM"
   filter_id_no: "ID RISM"
   filter_images: "Imagens"
@@ -501,6 +520,7 @@ pt:
   filter_source: "Fonte"
   filter_sources: "Fontes"
   filter_source_type: "Tipo de fonte"
+  filter_source_content_type: "Tipo de conteúdo"
   filter_std_title: "Título uniforme"
   filter_subject: "Assunto"
   filter_subsequent_entries: "Registros subsequentes"
@@ -542,7 +562,10 @@ pt:
   filter_source_name: "Nome da fonte"
   filter_source_composer: "Compositor da fonte"
   filter_printed_exemplars: "Número de exemplares impressos"
- 
+  filter_is_text: "\"Text\", in 031 $t"
+  filter_is_standard: "\"Standard\", in 240 $a"
+  filter_is_additional: "\"Additional\", in 730 $a"
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} se refere a este %{model_to}"
  
@@ -571,7 +594,9 @@ pt:
   cannot_create_source: "O usuário não tem autorização para criar este tipo de fonte"
   validate_name_uniqness: "O registro não foi salvo: Um título abreviado igual '%{term}' já existe."
   validates_parent_id: "O registro não foi salvo: O registro principal (773) não pode ser igual a este registro"
-  
+  is_part_of_collection: "Esta %{class} %{id} faz parte de uma colecção, deve remover o 773 antes de o poder apagar"
+  not_set: "[não definido]"  
+
   #
   entry:
     one: "registro"
@@ -671,9 +696,6 @@ pt:
   
   tf_acknowledgments: "Incipits search is performed with <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> developed by the <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
 
-  hls_link_lang: "e"
-  hls_link_name: "HDS"
-  
   do_link_lang: "eng"
   do_media_files_title: "Multimedia files"
   do_ext_res_link: "External resources:"
@@ -729,6 +751,9 @@ pt:
     got_it: "Entendido!"
     got_it_explanation: "Clicando neste botão, as notícias serão silenciadas até que a próxima seja liberada.."
     news: "Muscat Notícias"
+    my_comments: "Os meus comentários"
+    my_records: "Os meus registos"
+    about_comments: "Sobre os comentários"
 
   compare_versions:
     time_frame: Período de tempo

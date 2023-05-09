@@ -51,9 +51,18 @@
   layout: 
     fields: 
     - - a
-      - values: 
+      - values:
+        - Print
         - Print with autograph annotations
         - Print with non-autograph annotations
+        - Additional manuscript material
+        editor_partial: subfield_select
+    - - b
+      - values:
+        - "Notated music"
+        - "Libretto"
+        - "Treatise"
+        - "Other"
         editor_partial: subfield_select
 "599": 
   layout: 
@@ -119,8 +128,10 @@
       - egr
       - ill
       - prt
+      - ppm
       - oth
       - asn
+      - arr
 "710":
   new_window: institutions
   new_window_field: name_equals
@@ -153,6 +164,7 @@
       - bsl
       - evp
       - oth
+      - ppm
       - prt
       - asn
 "852": 
@@ -179,8 +191,9 @@
         codes_reference: "codes"
   tag_params: 
     codes:
-      - "IIIF"
-      - "Digitalization"
+      - "IIIF manifest (digitized source)"
+      - "IIIF manifest (other)"
+      - "Digitized"
       - "Other"
 "973":
   new_window: sources

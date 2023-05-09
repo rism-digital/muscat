@@ -1,0 +1,1 @@
+Es steht Ihnen frei, Kommentare, die nicht mehr relevant sind, zu löschen. Gegebenenfalls können die Kommentare als Bemerkungen in die Datensätze aufgenommen werden (entweder als 500 Allgemeine Notiz oder als 599 Interne Notiz), insbesondere in Fällen, die zusätzliche Nachforschungen erfordern, um künftigen Benutzern die Arbeit zu erleichtern.

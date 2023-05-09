@@ -1,0 +1,1 @@
+Les dossiers expirent après six mois et sont automatiquement supprimés. Pour renouveler un dossier, cliquez sur le lien "Réinitialiser la date d'expiration" qui prolongera la date d'expiration de six mois supplémentaires. Vous recevrez également des notifications par courriel avant que les dossiers ne soient supprimés. 

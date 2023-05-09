@@ -1,11 +1,12 @@
 module Statistics
   class User
     # Returns hash of person => {:month => size}
-    def self.sources_by_month(from_date, to_date, users)
+    def self.by_month(from_date, to_date, users, klass = "Source")
       result = ActiveSupport::OrderedHash.new
       time_range = ApplicationHelper.month_distance(from_date, to_date)
       users.each do |user|
-        s = Sunspot.search(::Source) do
+        #s = Sunspot.search(klass) do
+        s = klass.constantize.solr_search() do
           with(:created_at, from_date..to_date)
           with(:wf_owner, user.id)
           facet(:created_at, :zeros => true) do
@@ -25,5 +26,14 @@ module Statistics
       end
       return result
     end
+
+    def self.sources_by_month(from_date, to_date, users)
+      self.by_month(from_date, to_date, users, "Source")
+    end
+
+    def self.holdings_by_month(from_date, to_date, users)
+      self.by_month(from_date, to_date, users, "Holding")
+    end
+
   end
 end

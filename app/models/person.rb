@@ -10,8 +10,7 @@
 # * <tt>composer</tt> - 1 =  it is a composer
 # * <tt>source</tt> - Source from where the bio info comes from
 # * <tt>alternate_names</tt> - Alternate spelling of the name
-# * <tt>alternate_dates</tt> - Alternate birth/death dates if uncertain 
-# * <tt>comments</tt>
+# * <tt>alternate_dates</tt> - Alternate birth/death dates if uncertain
 # * <tt>src_count</tt> - Incremented every time a Source tied to this person
 # * <tt>hls_id</tt> - Used to match this person with the its biografy at HLS (http://www.hls-dhs-dss.ch/)
 #
@@ -47,7 +46,10 @@ class Person < ApplicationRecord
   has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_people")
   has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
   has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
-  has_and_belongs_to_many :places, join_table: "people_to_places"
+  #has_and_belongs_to_many :places, join_table: "people_to_places"
+  has_many :person_place_relations
+  has_many :places, through: :person_place_relations
+
   has_and_belongs_to_many :publications, join_table: "people_to_publications"
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
@@ -194,14 +196,7 @@ class Person < ApplicationRecord
     
       new_marc.root.children.insert(new_marc.get_insert_position("670"), new_field)
     end
-    
-    if self.comments != nil and !self.comments.empty?
-      new_field = MarcNode.new("person", "680", "", "1#")
-      new_field.add_at(MarcNode.new("person", "a", self.comments, nil), 0)
-    
-      new_marc.root.children.insert(new_marc.get_insert_position("680"), new_field)
-    end    
-    
+
     self.marc_source = new_marc.to_marc
     self.save!
   end
@@ -224,6 +219,11 @@ class Person < ApplicationRecord
     sunspot_dsl.string :full_name_order do
       full_name
     end
+
+    sunspot_dsl.string :full_name_ans, :as => "full_name_ans_s" do
+      full_name
+    end
+
     sunspot_dsl.text :full_name
     sunspot_dsl.text :full_name_d
     
@@ -274,8 +274,8 @@ class Person < ApplicationRecord
     self.alternate_names, self.alternate_dates = marc.get_alternate_names_and_dates
     
     # varia
-    self.gender, self.birth_place, self.source, self.comments = marc.get_gender_birth_place_source_and_comments
-    
+    self.gender, self.birth_place, self.source = marc.get_gender_birth_place_and_source
+
     self.marc_source = self.marc.to_marc
   end
   
@@ -306,5 +306,14 @@ class Person < ApplicationRecord
     str.gsub!("\"", "")
     Viaf::Interface.search(str, self.to_s)
   end
+
+  # rake sunspot:reindex calls indexable? to make sure this is an idexable record
+  # We intercept this call to make a load_source false so it is faster to reindex
+  # And we can harcdoce back the true since this model is solr indexable
+  def indexable?
+    self.marc.load_source false
+    true
+  end
+
 end
 

@@ -178,6 +178,18 @@ include ApplicationHelper
     end
   end
   
+  def validate_dead_774_links
+    @marc.each_by_tag("774") do |link|
+      link_id = link.fetch_first_by_tag("w")
+      link_type = link.fetch_first_by_tag("4")
+      
+      next if link_type && link_type.content && link_type.content == "holding"
+
+      child = @object.get_child_source(link_id.content.to_i)
+      add_error("stale-774", nil, "774_link: no db link to #{link_id.content}", "774_error") if !child
+    end
+  end
+
   def validate_dates
     
     @marc.each_by_tag("260") do |marctag|
@@ -245,6 +257,7 @@ include ApplicationHelper
     validate_links
     validate_holdings
     validate_unknown_tags
+    validate_dead_774_links
     return @errors
   end
 

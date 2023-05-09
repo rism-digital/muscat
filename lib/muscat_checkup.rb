@@ -16,6 +16,7 @@ class MuscatCheckup
       @skip_links = (options.include?(:skip_links) && options[:skip_links] == true)
       @skip_unknown_tags = (options.include?(:skip_unknown_tags) && options[:skip_unknown_tags] == true)
       @skip_holdings = (options.include?(:skip_holdings) && options[:skip_holdings] == true)
+      @skip_dead_774 = (options.include?(:skip_dead_774) && options[:skip_dead_774] == true)
       @debug_logger = options.include?(:logger) ? options[:logger] : nil
   end
 
@@ -183,6 +184,7 @@ class MuscatCheckup
       validator.validate_links if !@skip_links
       validator.validate_unknown_tags if !@skip_unknown_tags
       validator.validate_holdings if !@skip_holdings
+      validator.validate_dead_774_links if !@skip_dead_774
       return validator.get_errors
     rescue Exception => e
       puts e.message

@@ -1,6 +1,6 @@
 fr:
   general:
-    created_at: Date de création
+    created_at: "Date de création"
     e_mail: E-mail
     editor_help: Aide pour l'editor
     faq: Foire aux questions
@@ -9,7 +9,7 @@ fr:
     index_marc_fields: Index des champs MARC
     male: homme
     marc_tag_index: Index des codes MARC
-    'no': Non
+    'no': 'Non'
     rism: RISM
     rism_best_practices: Meilleures pratiques RISM
     rism_instrument_abbreviations: Abréviations RISM pour les instruments (suite)
@@ -17,8 +17,7 @@ fr:
     rism_series_a_b_references: Référence au RISM A/I et B
     rism_series_number: Numéro RISM
     rule_type: Règle de cat.
-    scope_printed_music_rism: Portée de la documentation des impressions musicales
-      dans RISM
+    scope_printed_music_rism: Portée de la documentation des impressions musicales dans RISM
     searching: Recherche
     source_citation: Citation de la source
     status: Status
@@ -33,8 +32,9 @@ fr:
     validity: Validité
     when_to_input_new_record: Quand saisir une nouvelle notice (musique imprimée)
     workflow: Flux de travail
-    'yes': Oui
+    'yes': 'Oui'
   languages:
+    albanian: Albanais
     afrikaans: Afrikaans
     arabic: Arabe
     aragonese: Aragonais
@@ -48,18 +48,23 @@ fr:
     catalan: Catalan
     celtic_other: Celtique (autre)
     chinese: Chinois
+    cree: Cri
     creoles_pidgins_other: Langues créoles et pidgins (autres)
     croatian: Croate
     czech: Tchèque
+    dakota: Dakota
     danish: Danois
     dutch: Néerlandais
     english: Anglais
     estonian: Estonien
     ethiopic: Éthiopien
+    faroese: Féroïen
+    fijian: Fidjien
     finnish: Finlandais
     french: Français
     french_middle: Français, Moyen (env. 1300-1600)
     french_old: Français, ancien (ca. 842-1300)
+    friulian: Friulano
     gallician: Galician
     german: Allemand
     german_old_high: Allemand, ancien haut (vers 750-1050)
@@ -72,12 +77,13 @@ fr:
     insari_sami: Inari Sami
     irish: Irlandais
     italian: Italien
+    japanese: Japonais
     korean: Coréen
     latin: Latin
     latvian: Letton
     lithuanian: Lituanien
     low_german: Bas allemand
-    lower_sorbian: Sorabe, Sorabe inférieur
+    lower_sorbian: 'Sorabe, Sorabe inférieur'
     luxembourgish: Luxembourgeois
     macedonian: Macédonien
     maori: Maori
@@ -108,6 +114,7 @@ fr:
     sorbian: Sorabe
     south_american: Indien d'Amérique du Sud (Autres)
     spanish: Espagnol
+    swahili: Swahili
     swedish: Suédois
     swiss_german: Suisse allemand
     tagalog: Tagalog
@@ -117,12 +124,14 @@ fr:
     tsimshian: Tsimshian
     turkish: Turque
     ukrainian: Ukrainien
-    upper_sorbian: Sorabe, Sorabe supérieur
+    upper_sorbian: 'Sorabe, Sorabe supérieur'
     vietnamese: Vietnamien
     welsh: Gallois
     west_frisian: Frison occidental
     yiddish: Yiddish
   places:
+    afghanistan: Afghanistan
+    albania: Albanie
     algeria: Algeria
     andorra: Andorre
     argentina: Argentina
@@ -136,20 +145,26 @@ fr:
     austria_tyrol: 'Autriche: Tyrol'
     austria_upper_austria: 'Autriche: Haute-Autriche'
     austria_vienna: 'Autriche: Vienne'
+    azerbiajan: Azerbaïdjan
+    bangladesh: Bangladesh
+    belarus: Bélarus
     belgium: Belgique
     benin: Benin
+    bolivia: Bolivie
+    bosnia_herzegovina: Bosnie-Herzégovine
     brazil: Brésil
     bulgaria: Bulgarie
     cambodia: Cambodge
     canada: Canada
     chile: Chili
     china: Chine
-    colombia: Colombia
+    colombia: Colombie
+    costa_rica: Costa Rica
     croatia: Croatie
     cuba: Cuba
     czech_republic: République Tchèque
     denmark: Danemark
-    ecuador: Ecuador
+    ecuador: Équateur
     egypt: Egypte
     estonia: Estonie
     finland: Finlande
@@ -157,11 +172,10 @@ fr:
     georgia: Géorgie
     germany: Allemagne
     germany_bavaria: 'Allemagne: Bavière'
-    germany_saxony: 'Germany: Saxony'
+    germany_saxony: 'Allemagne: Saxe'
     greece: Grèce
-    guatemala: Guatemala
+    guatemala: Guatémala
     guinea: Guinée
-    holy_see: Saint-Siège
     honduras: Honduras
     hong_kong: Hong Kong
     hungary: Hongrie
@@ -178,6 +192,7 @@ fr:
     korea: Corée, République de
     latvia: Lettonie
     lithuania: Lituanie
+    lebanon: Liban
     luxembourg: Luxembourg
     malta: Malte
     mexico: Mexique
@@ -186,8 +201,11 @@ fr:
     montenegro: Monténégro
     netherlands: Pays-Bas
     new_zealand: Nouvelle-Zélande
+    nicaragua: Nicaragua
+    north_macedonia: Macédoine du Nord
     northern_ireland: Irlande du Nord
     norway: Norvège
+    pakistan: Pakistan
     papua_new_guinea: Papouasie Nouvelle Guinée
     paraguay: Paraguay
     peru: Pérou
@@ -208,12 +226,17 @@ fr:
     switzerland_vaud: 'Suisse: Vaud'
     syrian_arab_republic: République arabe syrienne
     taiwan: Taiwan, Province de Chine
+    tajikistan: Tadjikistan
     trinidad_tobego: Trinité-et-Tobago
     turkey: Turquie
     uk: Royaume-Uni
     ukraine: Ukraine
     uruguay: Uruguay
     usa: États-Unis d'Amérique
+    uzbekistan: Ouzbékistan
+    #holy_see provided for backwards compatibility
+    holy_see: Cité du Vatican
+    vatican: Cité du Vatican
     venezuela: Venezuela, République bolivarienne du
     vietnam: Vietnam
   records:
@@ -231,8 +254,10 @@ fr:
     additional_choir_voice: Voix de choeur additionnelles
     additional_codes: Codes supplémentaires suivant le numéro ou le code standard
     additional_institution: Nom supplémentaire de la collectivité
+    additional_manuscript_material: Matériel manuscrit supplémentaire
     additional_personal_name: Nom supplémentaire de la personne
     additional_personal_name_lit: Nom supplémentaire de la personne
+    additional_printed_material: Matériel supplémentaire imprimé
     additional_solo_voice: Voix seule additionnelle
     additional_title: Titres uniformes additionnels
     additional_title_lit: Titres uniformes additionnels
@@ -243,6 +268,7 @@ fr:
     aids: Aide
     alleged: Présumé
     alternate_spelling: Autres formes
+    alternative_work_title: Titre alternatif
     archive: Archives
     arrangement: Arrangement
     arrangement_statement: Mention d'arrangement
@@ -266,6 +292,7 @@ fr:
     authority_agency: Agence d'authorité
     authority_record_control_number: Numéro de contrôle du registre de l'autorité ou de la norme numérique
     authority_reference: Référence d'authorité
+    autograph_manuscript: Manuscrit autographe
     autography: Autographie
     b_major: Si majeur
     b_minor: Si mineur
@@ -274,6 +301,7 @@ fr:
     basso_continuo: Basso continuo
     bf_major: Si♭ majeur
     bf_minor: Si♭ mineur
+    bibliography: Bibliographie
     bibliographic_reference: Référence bibliographique
     binder: Relieur
     binding_note: Reliure
@@ -298,6 +326,7 @@ fr:
     c_plus_3: C+3
     c_plus_4: C+4
     c_plus_5: C+5
+    catalog: Catalogue
     catalog_opus_number: No. de catalogue thématique/Opus
     catalog_works: Catalogue des oeuvres
     cataloging_agency: Agence de catalogation
@@ -323,6 +352,7 @@ fr:
     coded_date: Date et lieu d'un événement
     coded_instrumentation: Instrumentation codée
     collaborator: Collaborateur
+    collective_catalog: Catalogue collectif
     colophon: Colophon
     common_clefs: Clés communes
     compiler: Compilateur
@@ -330,14 +360,17 @@ fr:
     composer_author: Compositeur/Auteur
     composer_cross_reference: Renvoi à un autre compositeur
     computer_printout: Impression informatique
+    composite: Volume composite
     conceptor: Concepteur
     conductor: Chef d'orchestre
     confused_with: Confondu avec
-    conjectural: Conjectural
+    congress: Congrès
+    conjectural: Conjecturale
     contact: Contact
     contact_area: Contact
     content: Contenu
     content_description: Description du contenu
+    content_type: Type de contenu
     contents_note: Note sur le contenu
     contributor: Collaborateur
     control_fields: Champs de contrôle
@@ -351,14 +384,14 @@ fr:
     country: Pays
     country_active: Pays d'activité
     country_activity: Pays d'activité
-    country_code: Country code
+    country_code: Code Pays
     country_of_publication: Pays
     county_province: Canton ou province
     creation_production_note: Note sur la création/production
     cs_major: Do♯ majeur
     cs_minor: Do♯ mineur
     d_major: Ré majeur
-    d_minor: Ré minor
+    d_minor: Ré mineur
     dancer: Danceur
     date: Date
     date_of_acquisition: Date d'acquisition
@@ -369,6 +402,7 @@ fr:
     dedicatee: Dédicataire
     department: Section
     depositor: Dépositeur
+    deprecated_fields: Champs obsolètes (ne pas utiliser)
     description: Description
     description_area: Description
     description_summary: Description brève
@@ -401,6 +435,7 @@ fr:
     editor: Editeur
     ef_major: Mi♭ majeur
     ef_minor: Mi♭ mineur
+    encyclopedia: Encyclopédie
     end_period: Fin de la période
     engraver: Graveur
     engraving: Gravure
@@ -438,7 +473,6 @@ fr:
     format_extent: Type de source, extension
     former_owner: Propriétaire précédent
     fragments: Fragments
-    friulano: Frioulan
     fs_major: Fa♯ majeur
     fs_minor: Fa♯ mineur
     full: Complète
@@ -479,7 +513,8 @@ fr:
     holdings_location: Données sur la collection, le fonds, etc.
     identity: Identité
     identity_area: Identité
-    iiif_manifest: Manifeste IIIF
+    iiif_manifest: "IIIF manifest (source numérisée)"
+    iiif_manifest_other: "IIIF manifest (autre)"
     illustrator: Illustrateur
     immediate_parent_body: Corps du parent immédiat
     import: Dates importés
@@ -527,6 +562,7 @@ fr:
     library_information_relations: Bibliothèque et relations
     library_siglum: Sigle de bibliothèque
     librettist: Librettiste
+    libretto: Libretto
     licensee: Licencié
     life_dates: Dates de vie
     link_type: Type de lien
@@ -551,6 +587,8 @@ fr:
     longitude: Longitude
     lyricist: Parolier
     main_entry_fields: Champs principales
+    manuscript_copy: Copie manuscrite
+    manuscript_copy_with_autograph_annotations: Copie manuscrite avec annotations autographes
     married_name: Nom de mariage
     married_to: Marié/e avec
     married_with: Marié/e avec
@@ -563,30 +601,31 @@ fr:
     method_of_acquisition: Méthode d'acquisition
     misattributed: Erroné
     miscellaneous: Divers
+    mixed: Mixte
     mode_10t: 'Mode: 10t – Hypoéolien'
     mode_10tt: 'Mode: 10tt – Hypoéolien, transposé'
     mode_11t: 'Mode: 11t – Ionien'
     mode_11tt: 'Mode: 11tt – Ionien, transposé'
     mode_12t: 'Mode: 12t – Hypoionien'
     mode_12tt: 'Mode: 12tt – Hypoionien, transposé'
-    mode_1t: 'Mode:  1t – Dorien'
-    mode_1tt: 'Mode:  1tt – Dorien, transposé'
-    mode_2t: 'Mode:  2t – Hypodorien'
-    mode_2tt: 'Mode:  2tt – Hypodorien, transposé'
-    mode_3t: 'Mode:  3t – Phrygien'
-    mode_3tt: 'Mode:  3tt – Phrygien, transposé'
-    mode_4t: 'Mode:  4t – Hypophrygien'
-    mode_4tt: 'Mode:  4tt – Hypophrygien, transposé'
-    mode_5t: 'Mode:  5t – Lydien'
-    mode_5tt: 'Mode:  5tt – Lydien, transposé'
-    mode_6t: 'Mode:  6t – Hypolydien'
-    mode_6tt: 'Mode:  6tt – Hypolydien, transposé'
-    mode_7t: 'Mode:  7t – Mixolydien'
-    mode_7tt: 'Mode:  7tt – Mixolydien, transposé'
-    mode_8t: 'Mode:  8t – Hypomixolydien'
-    mode_8tt: 'Mode:  8tt – Hypomixolydien, transposé'
-    mode_9t: 'Mode:  9t – Eolien'
-    mode_9tt: 'Mode:  9tt – Eolien, transposé'
+    mode_1t: 'Mode: 1t – Dorien'
+    mode_1tt: 'Mode: 1tt – Dorien, transposé'
+    mode_2t: 'Mode: 2t – Hypodorien'
+    mode_2tt: 'Mode: 2tt – Hypodorien, transposé'
+    mode_3t: 'Mode: 3t – Phrygien'
+    mode_3tt: 'Mode: 3tt – Phrygien, transposé'
+    mode_4t: 'Mode: 4t – Hypophrygien'
+    mode_4tt: 'Mode: 4tt – Hypophrygien, transposé'
+    mode_5t: 'Mode: 5t – Lydien'
+    mode_5tt: 'Mode: 5tt – Lydien, transposé'
+    mode_6t: 'Mode: 6t – Hypolydien'
+    mode_6tt: 'Mode: 6tt – Hypolydien, transposé'
+    mode_7t: 'Mode: 7t – Mixolydien'
+    mode_7tt: 'Mode: 7tt – Mixolydien, transposé'
+    mode_8t: 'Mode: 8t – Hypomixolydien'
+    mode_8tt: 'Mode: 8tt – Hypomixolydien, transposé'
+    mode_9t: 'Mode: 9t – Eolien'
+    mode_9tt: 'Mode: 9tt – Eolien, transposé'
     modifying_agency: Organisme de la modification
     monogram: Monogramme
     mother_of: Mère de
@@ -595,10 +634,12 @@ fr:
     multiple_copies: Exemplaire multiples
     multiple_single_dates: Dates uniques multiples
     museum: Musée
+    music_edition: Édition musicale
     music_incipit: Incipit musical
     musical_composition: Composition musicale
     name: Nom
     name_family: Nom de famille
+    name_of_part: Numéro de partie / section d'une œuvre
     name_printer: Imprimeur, imprimerie
     name_variant: Variantes du nom
     name_variants: Variantes du nom
@@ -609,6 +650,7 @@ fr:
     no_linguistic_content: Sans contenu linguistique
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Non applicable
+    notated_music: Musique notée
     note: Note
     note_external_resource: Remarque sur la ressource externe
     note_fields: Champs de note
@@ -623,13 +665,10 @@ fr:
     octoechos2: 'Octoechos 2: Ēchos deuteros (deuxième mode dans la musique byzantine)'
     octoechos3: 'Octoechos 3: Ēchos tritos (troisième mode dans la musique byzantine)'
     octoechos4: 'Octoechos 4: Ēchos tetartos (quatrième mode dans la musique byzantine)'
-    octoechos5: 'Octoechos 5: Ēchos plagios prōtos (premier mode plagal dans la musique
-      byzantine)'
-    octoechos6: 'Octoechos 6: Ēchos plagios deuteros (deuxième mode plagal dans la
-      musique byzantine)'
+    octoechos5: 'Octoechos 5: Ēchos plagios prōtos (premier mode plagal dans la musique byzantine)'
+    octoechos6: 'Octoechos 6: Ēchos plagios deuteros (deuxième mode plagal dans la musique byzantine)'
     octoechos7: 'Octoechos 7: Ēchos barys (troisième mode plagal dans la musique byzantine)'
-    octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quatrième mode plagal dans la
-      musique byzantine)'
+    octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quatrième mode plagal dans la musique byzantine)'
     online_finding_aids: Instruments de recherche online
     opera_houses_concert_halls: Théâtres et salles de concert
     opus_number: No. de Opus
@@ -654,6 +693,7 @@ fr:
     papermaker: Papetier
     parallel_form: Forme de nom parallèle
     parent_record: Notice principale
+    partial_autograph: Autographe partiel
     parts_held: Parties existantes
     parts_held_extent: Parties, extension
     patron: Mécène
@@ -680,11 +720,16 @@ fr:
     place_origin: Lieu d'origine
     place_publication: Endroit
     places: Lieux
+    plaine_and_easie: Code Plaine and Easie
     plate_number: Numéro de plaque
     plucked_instruments: Instruments à cordes pincées
+    possible_autograph_manuscript: Possible manuscrit autographe
     postal_code: Code postal
     postal_place: Endroit postal
     preceding_entry: Notice précédente
+    print: Edition imprimé
+    print_with_autograph_annotations: Impression avec annotations autographes
+    print_with_non_autograph_annotations: Impression avec annotations pas autographes
     printer: Imprimeur
     printing_technique: Technique d'impression
     production: Production
@@ -697,17 +742,17 @@ fr:
     publisher: Editeur
     publisher_copyist: Copiste ou maison d'édition
     publisher_number: Numéro de l'éditeur
-    publisher_plate_number: Numéro d'éditeur ou de plaque
+    publisher_plate_number: Numéro de la plaque ou de l'éditeur
     publishing_printing_production: Copie ou données d'édition
     qualifying_information: Informations requises
     range_dates: Intervalle de dates
     real_world_object_uri: Objet du monde réel URI
     record_actions: Actions pour la notice
-    record_audit: RECORD AUDIT
+    record_audit: Vérification des enregistrements
     record_origin: Origine de la notice
     record_status: Etat de la notice
     reference_instruction_phrase: Phrase d'instruction de référence dans la sous-field $i
-    reference_record_id: Numéro d'identification de la notice de référence
+    reference_record_id: ID de l'enregistrement de référence
     references: Références
     references_and_notes: Références et notes
     region_active: Région d'activité
@@ -735,11 +780,12 @@ fr:
     scoring_in_movement: Instrumentation du mouvement
     scoring_summary: Instrumentation
     scribe: Copiste / scribe
+    secondary_catalog_works: Catalogue secondaire des oeuvres
     secondary_literature: Références
     series: Série
     series_added_entry: Champs de collection
     series_statement: Mentions de collection
-    set: Groupe de matériaux
+    material_group: Groupe de matériaux
     shelfmark: Cote
     shelfmark_olim: Ancienne cote (olim)
     short_title: Titre abrégé
@@ -790,6 +836,7 @@ fr:
     terms_voices_instruments: Abréviations RISM pour les instruments
     text_author: Parolier
     text_incipit: Incipit du texte
+    thematic_catalog: Catalogue thématique
     third_fourth_group: Troisième/quatrième groupe de caractères
     time_signature: Indication de mesure
     title: Titre
@@ -809,6 +856,7 @@ fr:
     translation: Traduction
     translator: Traducteur
     transparency: Transparent
+    treatise: Traité
     type: Type
     type_designer: Créateur de caractères
     type_institution: Type d'institution
@@ -825,6 +873,7 @@ fr:
     variant_source_title: Variante du titre diplomatique
     variations: Variations
     verified: Vérifié
+    version_information: Informations sur la version, l'édition etc.
     vocalist: Vocaliste
     voice_instrument: Voix/instrument
     volume_year_page: Volume, année, page
@@ -832,6 +881,12 @@ fr:
     woodwinds: Bois
     work: Oeuvre
     work_number: Numéro de l'œuvre
+    work_tag: Work revision tag
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Tag note
+    work_tag_type: Tag type
     year: Année
     years_birth_death: Dates de naissance et de mort
   relations:
@@ -844,3 +899,115 @@ fr:
     P60274: "Arrangement comme"
     P60194: "Insertion dans"
     P60183: "Insertion"
+  verovio:
+    position: "Position"
+    warning: "Avertissement"
+    clef: "Clé"
+    keysig: "Armure"
+    timesig: "Indication de mesure"
+    ERR_001_EMPTY: Saisir un incipit.
+    ERR_004_KEY_SPACE: Un changement d'armure doit être suivi d'un espace.
+    ERR_005_CLEF_SPACE: Un changement de clef doit être suivi d'un espace.
+    ERR_006_TIMESIG_SPACE: Un changement d'indication de mesure doit être suivi d'un espace.
+    ERR_007_REP_EMPTY: Entrez les notes qui doivent être répétées.
+    ERR_008_REP_MARKER: Indiquez la fin de la figure répétée par '!' avant le 'f'.
+    ERR_009_REP_OPEN: Fermer la figure répétée par '!' avant la fin de la mesure.
+    ERR_010_REP_UNUSED: La figure marquée pour la répétition n'a pas été répétée. Indiquez la répétition avec un "f".
+    ERR_011_REP_NO_FIGURE: Le "f" doit suivre "!" pour que la figure se répète.
+    ERR_012_REP_NOT_BEGIN: Pour répéter la mesure, le 'i' doit être précédé d'une barre de mesure.
+    ERR_013_REP_NO_CONTENT: "'i' est présent sans contenu à répéter."
+    ERR_014_REP_NO_BARLINE: 'Pour répéter la mesure, le ''i'' doit être suivi d''une barre de mesure.'
+    ERR_015_MREST_INVALID: Un silence utilisant le signe '=' ne peut pas être suivi directement par un autre '='.
+    ERR_016_MREST_NUMBER: Un silence utilisant le signe '=' doit être suivi d'une barre de mesure ou d'un nombre supérieur à 0.
+    ERR_017_TRILL_INVALID: Un trille utilisant 't' doit suivre directement la note à laquelle elle appartient.
+    ERR_018_FERMATA_NESTED: "(' ne peut pas être suivi directement par un autre '('."
+    ERR_019_ACCID_NO_NOTE: Un accident doit être suivi directement par une note.
+    ERR_020_CHORD_NOTE_BEFORE: Pour indiquer un accord, un '^' doit être précédé d'une note.
+    ERR_021_CHORD_NOTE_AFTER: Pour indiquer un accord, un '^' doit être suivi d'une note.
+    ERR_022_BEAM_MENSURAL: Les barres de valeur ne peuvent pas être utilisées avec une notation mensurale.
+    ERR_023_BEAM_NESTED: Ne commencez pas un groupe de barres de valeur avant de fermer le précédent.
+    ERR_024_BEAM_CLOSING: 'Un ''}'' supplémentaire pour fermer un groupe de barres de valeur est présent. Supprimez-le ou indiquez où le groupe commence par ''{''.'
+    ERR_025_BEAM_OPEN: Fermer le groupe de barres de valeur avec '}' avant la fin de la mesure.
+    ERR_026_GRACE_NESTED: Fermez l'appoggiature par 'r' avant d'en commencer une nouvelle.
+    ERR_027_GRACE_CLOSING: Un 'r' est présent pour fermer une appoggiature. Supprimez-le ou ajoutez 'qq' pour indiquer où elle commence.
+    ERR_028_GRACE_OPEN: Fermez l'appoggiature par 'r' avant d'en commencer une nouvelle.
+    ERR_029_GRACE_UNRESOLVED: Ne démarrez pas une appoggiature en utilisant 'q' avant de compléter la précédente.
+    ERR_030_GRACE_DURATION: Aucune valeur rythmique ne peut être saisie lorsque vous coder une appogiature brève avec 'g'.
+    ERR_031_GRACE_NO_NOTE: Une appogiature codée avec 'g' ou 'q' doit être suivie d'une note.
+    ERR_032_TUPLET_NESTED: Ne commencez pas un groupe de rythmes spécial avec '(' avant de fermer le précédent.
+    ERR_033_TUPLET_CLOSING: Un ')' supplémentaire pour fermer un groupe de rythmes spécial est présent. Supprimez-le ou indiquez avec '(' où le groupe commence.
+    ERR_034_TUPLET_NUM: Un ';' est présent en dehors d'un groupe rythmique spécial.
+    ERR_035_TUPLET_OPEN: Fermer le groupe rythmique spécial ou point d'orgue par ')' avant la fin de la mesure.
+    ERR_036_TUPLET_NUM_NUMBER: Un nombre doit apparaître entre ';' et ')' dans le groupe rythmique spécial.
+    ERR_037_TIE_PITCH: Une liaison de prolongation codée avec '+' ne peut relier que deux notes de même octave et de même hauteur.
+    ERR_038_TIE_OPEN: Une liaison de prolongation codée avec '+' doit être suivie d'une note.
+    ERR_039_TIE_NO_NOTE: Une liaison de prolongation codée avec '+' doit être précédée d'une note.
+    ERR_040_HIERARCHY_INVALID: L'ordre des éléments ne peut pas être interprété (%{value}).
+    ERR_041_NESTING_INVALID: "Avec '%{value}' le groupe intérieur doit être fermé avant le groupe extérieur."
+    ERR_042_CLEF_INCOMPLETE: La clef n'est pas codée correctement.
+    ERR_043_CLEF_INVALID_2ND: Le deuxième caractère dans le signe de la clef doit être soit '+' soit '-'.
+    ERR_044_CLEF_MENS: Ne mélangez pas les clefs mensurales et non mensurales.
+    ERR_045_CLEF_INVALID_3RD: Le troisième caractère du signe de la clef doit être un chiffre.
+    ERR_046_CLEF_INVALID: La clef n'est pas codée correctement.
+    ERR_047_TIMESIG_INCOMPLETE: L'indication de mesure n'est pas codée correctement.
+    ERR_048_TIMESIG_INVALID: L'indication de mesure n'est pas codée correctement.
+    ERR_049_TIMESIG_MENS: L'indication de mesure n'est pas codée correctement.
+    ERR_050_INVALID_CHAR: 'Supprimer le(s) caractère(s) invalide(s) suivant(s) : %{value}'
+    ERR_051_BARLINE: La barre de mesure n'est pas codée correctement.
+    ERR_052_DURATION: "La durée ne peut pas être nulle."
+    ERR_053_DURATION_MENS3: La durée ne peut pas être '3' en notation mensurale.
+    ERR_054_DURATION_MENS5: La durée ne peut pas être '5' en notation mensurale.
+    ERR_055_KEYSIG_CHANGE: L'armure ne peut pas être modifiée plus d'une fois dans une mesure.
+    ERR_056_TIMESIG_CHANGE: L'indication de mesure ne peut pas être modifiée plus d'une fois dans une mesure.
+    ERR_057_MENSUR_CHANGE: L'indication de mesure ne peut pas être modifiée plus d'une fois dans une mesure.
+    ERR_058_FERMATA_MREST: "Les parenthèses d'un point d'orgue ne doivent contenir qu'une seule note ou un seul silence '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Les notes doubles pointées ne sont pas valides en notation mensurale."
+    ERR_060_CLEF_MISSING: Une clef est requise.
+    ERR_061_LIGATURE_NOTE_BEFORE: Pour indiquer une ligature, un '+' doit être précédé d'une note.
+    ERR_062_LIGATURE_NOTE_AFTER: Pour indiquer une ligature, un '+' doit être suivi d'une note.
+    ERR_063_LIGATURE_PITCH: Une ligature ne peut pas avoir deux notes consécutives avec la même hauteur.
+    ERR_064_LIGATURE_DURATION: La durée dans une ligature ne peut pas être plus courte qu'une semi-brève.
+    ERR_065_MREST_INVALID_MEASURE: Une mesure avec une pause ne peut pas inclure autre chose.
+  rism_online:
+    manuscript: "Manuscrit"
+    printed: "Imprimé"
+    composite: "Volume composite"
+    apply_filters: "Appliquer les filtres"
+    error_loading_results: "Erreur lors du chargement des résultats"
+    global_collection: "Collection globale"
+    home: "Accueil"
+    keyword_query: "Recherche par mot-clé"
+    first: "Premier"
+    last: "Dernier"
+    next: "Suivant"
+    previous: "Précédent"
+    no_results_body: "Ajustez vos options de requête, ou réinitialisez tous les filtres, pour voir les résultats."
+    no_results_header: "Aucun résultat trouvé"
+    no_results_to_find: "Aucun résultat pour cette recherche"
+    page: "Page"
+    words_anywhere: "Mots, partout"
+    record_preview: "Prévisualisation"
+    record_uri: "Record URI (Permalink)"
+    reset_all: "Tout réinitialiser"
+    number_results: "Nombre de résultats"
+    search: "Recherche"
+    show_all_results: "Afficher tous les résultats"
+    show_results: "Afficher les résultats"
+    source_contents: "Contenu de la source"
+    update_results: "Mettre à jour les résultats de recherche"
+    page_not_found: "Page non trouvée"
+    bad_query: "Il y a eu un problème avec la requête"
+    result_types: "Type du résultat"
+    source_relationships: "Relation"
+    holding_institutions: "Institution"
+    digital_facsimiles: "Fac-similés numériques"
+    publication_details: "Détails de publication"
+    biographical_details: "Détails biographiques"
+    role_and_profession: "Rôle et profession"
+    composer_composition: "Compositeur et composition"
+    full_record: "Enregistrement complet"
+  testingForCrowdinWorkshop:
+    apple: pomme
+    pear: poire
+    table: tableau
+    chair: chaise

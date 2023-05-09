@@ -27,6 +27,15 @@ if [ -e $DB_FILE ]; then rm $DB_FILE; fi
 curl --user $FILE_USER:$FILE_PASSWORD https://muscat.rism.info/mp.tar.gz -o $DB_FILE
 if [ $? -ne 0 ]; then echo "Could not get DB dump, exit"; exit 1; fi
 
+# Make sure the file is a valid gzip file
+if gzip -v -t $DB_FILE; then
+        echo "$DB_FILE is OK"
+else
+        echo "$DB_FILE is invalid, exit."
+        mv $DB_FILE "/tmp/$DATE-error-db.gz"
+        exit 1
+fi
+
 # Get the current DB name
 CURRENT_DB=`ruby housekeeping/automatic_update/get_db.rb`
 if [ $? -ne 0 ]; then echo "Could not get current DB name, exit"; exit 1; fi

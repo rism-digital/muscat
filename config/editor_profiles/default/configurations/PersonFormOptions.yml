@@ -84,6 +84,7 @@
   tag_params:
     codes:
       - "XC-DZ"
+      - "XA-AL"
       - "XD-AR"
       - "XB-AM"
       - "XE-AU"
@@ -228,6 +229,7 @@
       - "in"
       - "tn"
       - "ub"
+      - "xx"
       - "z"
     columns: 4
 "500": 
@@ -238,10 +240,10 @@
     - - "a"
       - type: person
         editor_partial: subfield_secondary
-      - cols: 4
+    - - d
+      - autocomplete_extra: life_dates
     - - "i"
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Relationship"
     columns: 4
   tag_params:
@@ -280,10 +282,14 @@
         editor_partial: subfield_secondary
         allow_new: true
 "551": 
+  new_window: places
+  new_window_field: name_equals
   layout: 
     fields: 
     - - a
-      - cols: 2
+      - type: place
+        editor_partial: subfield_secondary
+        allow_new: true
     - - i
       - cols: 2
         editor_partial: subfield_select_codes

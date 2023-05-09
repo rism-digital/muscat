@@ -98,6 +98,9 @@ it:
       comments_help: "Digitare @ per menzionare un utente specifico, che riceverà una notifica per email."
       author_missing: "Anonimo"
       title_content: "Commenti (%{count})"
+      referring_comments: Commenti in cui sono nominato
+      my_item_comments: Commenti nei miei record
+      my_own_comments: Commenti che ho fatto io
       errors:
         empty_text: "Il commento non può essere salvato, il testo è vuoto."
     devise:
@@ -196,6 +199,9 @@ it:
       work:
         one: "Opera"
         other: "Opere"
+      work_node: 
+        one: "Riferimento alle opere"
+        other: "Riferimenti alle opere"
       
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Seleziona un nuovo template"
@@ -282,6 +288,7 @@ it:
   menu_jobs: "Processi in Background"
   menu_holdings: "Esemplari"
   menu_works: "Composizioni"
+  menu_work_nodes: "Riferimenti alle opere (Work Nodes)"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"
@@ -339,7 +346,9 @@ it:
   unloadable_record: "Questa scheda ha avuto problemi nel caricamento: può essere consultata ma non modificata. Si prega di contattare un amministratore."
   validation_level_error: "Sono presenti errori, correggerli prima di continuare"
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
-  
+  muscat_reindexing: "Muscat è in fase di reindicizzazione, i risultati della ricerca potrebbero essere incompleti"
+  work_catalogue: "Catalogo di opere"
+
   jobs:
     not_set: "[Nessuno stato]"
     ok: "Processo terminato con successo"
@@ -352,6 +361,7 @@ it:
   # Sidebar
   delete: "Cancella"
   to_the_list: "Ritorna all'indice"
+  go_to_top: "Ritorna in cima"
   edit: "Modifica"
   new: "Crea"
   duplicate: "Duplica"
@@ -382,11 +392,13 @@ it:
   hide_preview: "Nascondi anteprima"
   show_validate: "Valida Record"
   show_history: "Mostra lo storico"
+  show_gnd: "Ricerca GND" 
   show_viaf: "Ricerca VIAF"
   save_and_continue: "Salva e continua"
   save_and_exit: "Salva ed esci"
   cancel: "Annulla"
-  duplicate_confirm: "Sei sicuro di voler duplicare questo record?"  
+  duplicate_confirm: "Sei sicuro di voler duplicare questo record?"
+  convert_to_print : "Convertire in template stampa"
 
   # Version history
   history_date: "Data"
@@ -416,6 +428,17 @@ it:
     publish_job: "Job di pubblicazione iniziato (id: %{id})"
     unpublish_job: "Job di annullamento pubblicazione iniziato (id: %{id})"
     reindex_job: "Job di reindicizzazione iniziato (id: %{id})"
+    validation_started: "Verrà inviata un'e-mail a %{email} con l'indicazione che la convalida è terminata (ID lavoro di convalida: %{job})."
+    folder_not_source: "Solo le cartelle contenenti Fonti possono essere convalidate."
+    expires: "Scade il"
+    resetted: "La data di scadenza della cartella è ora %{date}"
+    reset_expiration: "Ripristinare la data di scadenza"
+    delete_now: "Le seguenti cartelle sono state eliminate:"
+    tomorrow: "Le seguenti cartelle saranno eliminate domani %{date}"
+    one_week: "Le seguenti cartelle saranno eliminate tra una settimana, il %{date}"
+    two_weeks: "Le seguenti cartelle saranno eliminate tra due settimane il %{date}"
+    one_month: "Le seguenti cartelle saranno eliminate tra un mese, il %{date}"
+    make_catalogue: "Contrassegnare gli elementi come cataloghi di opere"
     
   ### Digital objects
   digital_objects: "Oggetti Digitali"
@@ -496,9 +519,8 @@ it:
   filter_provenance: "Provenienza"
   filter_record_type: "Tipo del Template"
   filter_record_type_short: "Tipo"
-  filter_source_type: "Tipologia della fonte"
   filter_publisher: "Editore"
-  filter_revue_title: "Titolo del periodico o della miscellanea"
+  filter_journal: "Titolo del periodico o della miscellanea"
   filter_id: "RISM ID"
   filter_id_no: "RISM ID"
   filter_images: "Immagini"
@@ -508,6 +530,7 @@ it:
   filter_source: "Fonte"
   filter_sources: "Fonti"
   filter_source_type: "Tipo di fonte"
+  filter_source_content_type: "Tipo di contenuto"
   filter_std_title: "Titolo uniforme"
   filter_subject: "Soggetto"
   filter_subsequent_entries: "Notizie successive"
@@ -549,6 +572,9 @@ it:
   filter_source_name: "Nome della fonte"
   filter_source_composer: "Compositore della fonte"
   filter_printed_exemplars: "Numero di esemplari a stampa"
+  filter_is_text: "\"Text\", usato in 031 $t"
+  filter_is_standard: "\"Standard\", usato in 240 $a"
+  filter_is_additional: "\"Additional\", usato in 730 $a"
 
   ## Referring lists for auth files
   refers_to_this: "%{model_from} che fanno riferimento a questo %{model_to}"
@@ -577,7 +603,9 @@ it:
   cannot_update_source: "Non sei autorizzato a modificare questo tipo di fonte"
   cannot_create_source: "Non sei autorizzato a creare questo tipo di fonte"
   validate_name_uniqness: "Scheda non salvata: il titolo breve '%{term}' è già esistente."
-  validates_parent_id: "Scheda non salvata: una fonte non può linkare a se stessa (tag 773) "
+  validates_parent_id: "Scheda non salvata: una fonte non può linkare a se stessa (tag 773)"
+  is_part_of_collection: "Questa %{class} %{id} è parte di una collezione, è necessario rimuovere il 773 prima di poterla cancellare"
+  not_set: "[vuoto]"
 
   #
   entry:
@@ -678,9 +706,6 @@ it:
   
   tf_acknowledgments: "La ricerca per incipit utilizza il motore <a href=\"http://www.themfinder.org/\" target=\"_blank\">Themefinder</a> sviluppato dal <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
 
-  hls_link_lang: "i"
-  hls_link_name: "DSS"
-  
   do_link_lang: "ITA"
   do_media_files_title: "File multimediali"
   do_ext_res_link: "Collegamenti esterni:"
@@ -736,6 +761,9 @@ it:
     got_it: "Ok!"
     got_it_explanation: "Facendo click su questo pusante si nasconderà la news finché una nuova non sarà disponilbe."
     news: "Novità in Muscat"
+    my_comments: "I miei commenti"
+    my_records: "I miei record"
+    about_comments: "Informazioni sui commenti"
   
   compare_versions:
     time_frame: Intervallo di tempo

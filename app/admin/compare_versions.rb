@@ -4,7 +4,7 @@ ActiveAdmin.register_page "Compare Versions" do
       params[:compare_version_quantity] = params.include?(:compare_version_quantity) ? params[:compare_version_quantity] : 20
     end
   end
-  menu :parent => "admin_menu", :label => proc { I18n.t("active_admin.compare_versions") }
+  menu :parent => "admin_menu", :label => proc { I18n.t("active_admin.compare_versions")}
 
   limit = 20
 
@@ -68,7 +68,8 @@ ActiveAdmin.register_page "Compare Versions" do
               end
               
               if version
-                s.marc.load_from_array(VersionChecker.get_diff_with_next(version.id))
+                tags, wf_stages = VersionChecker.get_diff_with_next(version.id)
+                s.marc.load_from_array(tags)
                 # Sim is always set to 0-100 to indicate the difference
                 sim = 100 - VersionChecker.get_similarity_with_next(version.id)
               end

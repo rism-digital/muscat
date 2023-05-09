@@ -1,0 +1,1 @@
+Podeu esborrar els comentaris que trobeu que ja no són rellevants. Quan calgui, els comentaris es poden incorporar als registres com a notes (ja sigui una nota general 500 o una interna 599), especialment quan requereixi una dedicació extra, per a comoditat de futurs usuaris.
