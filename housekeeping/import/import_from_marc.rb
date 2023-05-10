@@ -1,7 +1,7 @@
 # Import Marcxml records into Muscat database
 # Run as bin/rails runner housekeeping/import/import_from_marc.rb
 
-VALID_MODELS = ["Source", "Publication", "Person", "Institution"]
+VALID_MODELS = ["Source", "Publication", "Person", "Institution", "Holding", "Work"]
 
 def display_help
   script = "bin/rails runner #{$0}"
