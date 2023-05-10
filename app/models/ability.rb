@@ -46,7 +46,7 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "doc"
       can :read, ActiveAdmin::Page, :name => "Statistics"
       can :read, ActiveAdmin::Page, :name => "Compare Versions"
-      can :read, ActiveAdmin::Page, :name => "gnd_works"
+      can :manage, ActiveAdmin::Page, :name => "gnd_works"
 
       can [:read, :update], User, :id => user.id
     
@@ -97,7 +97,7 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
-      can :read, ActiveAdmin::Page, :name => "gnd_works"
+      can :manage, ActiveAdmin::Page, :name => "gnd_works"
       can [:read, :update], User, :id => user.id
     
     #########
