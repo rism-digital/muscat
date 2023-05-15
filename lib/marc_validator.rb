@@ -3,7 +3,7 @@ include ApplicationHelper
   
   DEBUG = false
 
-  def initialize(object, user = nil, warnings = false, logger = nil)
+  def initialize(object, user = nil, warnings = false, logger = nil, exclusions = nil)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
     @user = user
@@ -14,6 +14,8 @@ include ApplicationHelper
     @errors = {}
     @object = object
     
+    @exclusions = exclusions
+
     ## The marc could be already resolved
     ## Make a new safe internal version
     classname = "Marc" + object.class.to_s
@@ -40,7 +42,10 @@ include ApplicationHelper
       # Some tags have to be there for some templates.
       # Extract all the pertinent mandatory tags, exluding the ones
       # not for this template
-      mandatory = tag_rules["tags"].map {|st, v| st if v == "mandatory" && !is_subtag_excluded(tag, st)}.compact
+      mandatory = tag_rules["tags"].map {|st, v| 
+        next if @exclusions && @exclusions.exclude_from_tag?(tag, st, @object)
+        st if v == "mandatory" && !is_subtag_excluded(tag, st)
+      }.compact
       
       marc_tags = @marc.by_tags(tag)
       
@@ -56,6 +61,11 @@ include ApplicationHelper
       
       tag_rules["tags"].each do |subtag, rule|
         
+        if @exclusions && @exclusions.exclude_from_tag?(tag, subtag, @object)
+          puts "Skip #{tag} #{subtag} because of static exclusions" if DEBUG
+          next
+        end
+
         # The validation is per subtag basis
         # THis means that a whole tag, i.e. 856
         # can be missing and validation will pass

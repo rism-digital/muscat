@@ -18,6 +18,9 @@ class MuscatCheckup
       @skip_holdings = (options.include?(:skip_holdings) && options[:skip_holdings] == true)
       @skip_dead_774 = (options.include?(:skip_dead_774) && options[:skip_dead_774] == true)
       @debug_logger = options.include?(:logger) ? options[:logger] : nil
+
+      # Generate the exclusion matcher
+      @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(Source) : nil
   end
 
   def run_parallel()
@@ -178,7 +181,7 @@ class MuscatCheckup
   def validate_record(record)
 
     begin
-      validator = MarcValidator.new(record, nil, false, @debug_logger)
+      validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions)
       validator.validate_tags if !@skip_validation
       validator.validate_dates if !@skip_dates
       validator.validate_links if !@skip_links
