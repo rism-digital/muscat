@@ -3,6 +3,9 @@ include ApplicationHelper
   
   DEBUG = false
 
+  # test example:
+  # MarcValidator.new(Source.first, nil, nil, nil, ValidationExclusion.new(Source)).validate_tags
+
   def initialize(object, user = nil, warnings = false, logger = nil, exclusions = nil)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
@@ -43,7 +46,10 @@ include ApplicationHelper
       # Extract all the pertinent mandatory tags, exluding the ones
       # not for this template
       mandatory = tag_rules["tags"].map {|st, v| 
-        next if @exclusions && @exclusions.exclude_from_tag?(tag, st, @object)
+        if @exclusions && @exclusions.exclude_from_tag?(tag, st, @object)
+          puts "Downgrate #{tag} #{st} to non mandatory because of static exclusions" if DEBUG
+          next
+        end
         st if v == "mandatory" && !is_subtag_excluded(tag, st)
       }.compact
       

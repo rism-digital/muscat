@@ -27,43 +27,7 @@ class MuscatCheckup
     begin_time = Time.now
     
     String.disable_colorization true
-=begin
-    results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
-      errors = {}
-      validations = {}
-      offset = @limit * jobid
-
-      Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
-        s = Source.find(sid.id)
-        begin
-          ## Capture STDOUT and STDERR
-          ## Only for the marc loading!
-          $stdout = new_stdout
-          $stderr = new_stdout
-          
-          s.marc.load_source true
-          
-          # Set back to original
-          $stdout = old_stdout
-          $stderr = old_stderr
-          
-          res = validate_record(s)
-          validations[sid.id] = res if res && !res.empty?
-        rescue
-          ## Exit the capture
-          $stdout = old_stdout
-          $stderr = old_stderr
-          
-          errors[sid.id] = new_stdout.string
-          new_stdout.rewind
-        end
-        
-        s = nil
-      end
-      {errors: errors, validations: validations}
-    end
-=end
-
+    
     if @folder
       @limit_unknown_tags = false
       results = validate_folder
