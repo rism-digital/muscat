@@ -881,12 +881,12 @@ it:
     woodwinds: Legni
     work: Opera
     work_number: Numero dell'opera
-    work_tag: Work revision tag
-    work_tag_incipit_needs_revision: incipit-needs-revision
-    work_tag_incipit_replace: incipit-replace
-    work_tag_needs_revision: needs-revision
-    work_tag_note: Tag note
-    work_tag_type: Tag type
+    work_tag: Opera da rivedere
+    work_tag_incipit_needs_revision: Incipit da rivedere
+    work_tag_incipit_replace: Incipit da sostituire
+    work_tag_needs_revision: Da rivedere
+    work_tag_note: Nota alla marcatura
+    work_tag_type: Tipo di marcatura
     year: Anno
     years_birth_death: Data di nascita e di morte
   relations:
