@@ -13,6 +13,33 @@ class ValidationExclusion
 
     end
 
+    def process_and_rule(item, rule_name, rule_val)
+        if !rule_val.is_a? Hash
+            raise TypeError.new "Nested rule #{rule_name} must be a Hash"
+        end
+
+        value = true
+        rule_val.each do |sub_rule_name, sub_rule_value|
+            value &= parse_rule(item, sub_rule_name, sub_rule_value, true)
+        end
+        return value
+    end
+
+    def parse_rule(item, rule_name, rule_val, skip_and = false)
+        if rule_name == "id_prefix"
+            return true if item.id.to_s.start_with?(rule_val)
+        elsif rule_name == "exclude_ids"
+            return true if rule_val.include?(item.id.to_s)
+        elsif rule_name == "creation_date"
+            return true if item.created_at.to_date == DateTime.parse(rule_val).to_date
+        elsif rule_name == "and_rules" && skip_and == false
+            return true if process_and_rule(item, rule_name, rule_val)
+        else
+            "Unknown rule #{rule_name}"
+        end
+        return false
+    end
+
     def exclude_from_tag?(tag, subtag, item)
         if !item.is_a? @model_object
             raise TypeError.new "Item validated is not a @#{model}"
@@ -29,11 +56,7 @@ class ValidationExclusion
         rules = @configuration["exclude"][tag.to_s]["tags"][subtag.to_s]
 
         rules.each do |rule_name, rule_val|
-            if rule_name == "id_prefix"
-                return true if item.id.to_s.start_with?(rule_val)
-            elsif rule_name == "exclude_ids"
-                return true if rule_val.include?(item.id.to_s)
-            end
+            return true if parse_rule(item, rule_name, rule_val)
         end
 
         return false
