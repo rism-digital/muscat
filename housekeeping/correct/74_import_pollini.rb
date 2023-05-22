@@ -29,8 +29,19 @@ def append_to_tag(marc, tag, subtags = {})
     t.sort_alphabetically
 end
 
+@yet_another_name_map = {
+    "Giulia Bertoglio Roero di Settime" => "Bertoglio Roero di Settime, Giulia",
+"Giulia Roero di Settime nata Bertoglio" => "Bertoglio Roero di Settime, Giulia",
+"Julius Klengel after James Macpherson" => "Klengel, Julius",
+"King Christian VIII of Denmark" => "Christian VIII., konge til Danmark"
+}
+
 def magic_name(name)
     return name if name.include?(",")
+
+    if @yet_another_name_map.keys.include?(name.strip)
+        return @yet_another_name_map[name.strip]
+    end
 
     parts = name.strip.split(" ")
 
@@ -244,9 +255,9 @@ end
 DIR = ARGV[0]
 
 Dir.glob("#{DIR}/*.xml").each do |file|
-    puts "Process #{file}".green
+    #puts "Process #{file}".green
     marc = process_one_file(file)
-    ap marc
+    #ap marc
 
     marc.import
 
