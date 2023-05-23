@@ -12,11 +12,17 @@ def add_tag(marc, tag, subtags = {})
 
     the_t.sort_alphabetically
     marc.root.add_at(the_t, marc.get_insert_position(tag))
+    return the_t
 end
 
-def append_to_tag(marc, tag, subtags = {})
+def append_to_tag(marc, tag, subtags = {}, the_t = nil)
 
-    t = marc.first_occurance("130")
+    if the_t
+        t = the_t
+    else
+        t = marc.first_occurance(tag)
+    end
+
     if !t #oops!
         add_tag(marc, tag, subtags)
         return
@@ -151,16 +157,46 @@ def process_one_file(file_name)
     # BEGIN INCIPIT STUFF
     ################################################################################################
 
+    incipits = []
+
+    XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/incip/incipCode") do |data|
+        incipits << add_tag(new_marc, "031", {p: data.text}) if data.text && !data.text.empty?
+    end
+
+    def fill_incipit(paths, doc, new_marc, incipits)
+        paths.each do |path, subtag|
+            count = 0
+            XPath.each(doc, path.to_s) do |data|
+                append_to_tag(new_marc, "031", {subtag => data.text.strip}, incipits[count]) if data.text && !data.text.strip.empty?
+                count +=1 if count < incipits.count - 1
+            end
+        end
+    end
+
+    map = {
+    "/mei/meiHead/workList/work/expressionList/expression/perfMedium/perfResList" => "m",
+    "/mei/meiHead/workList/work/expressionList/expression/perfMedium/castList/castItem/role/name" => "e",
+    "/mei/meiHead/workList/work/expressionList/expression/incip/tempo" => "d",
+    "/mei/meiHead/workList/work/expressionList/expression/incip/meter" => "o",
+    "/mei/meiHead/workList/work/expressionList/expression/incip/key" => "n",
+    #"/mei/meiHead/workList/work/expressionList/expression/extent" => "m",
+    "/mei/meiHead/workList/work/expressionList/expression/incip/incipText" => "t",
+    "/mei/meiHead/workList/work/expressionList/expression/componentList" => "q"
+    }
+
+    fill_incipit(map, doc, new_marc, incipits)
+
+=begin
     XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/perfMedium/perfResList") do |data|
-        #ap data
+        append_to_tag(new_marc, "031", {m: data.text}) if data.text && !data.text.empty?
     end
 
     XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/perfMedium/castList/castItem/role/name") do |data|
-        #ap data
+        append_to_tag(new_marc, "130", {e: data.text}) if data.text && !data.text.empty?
     end
 
     XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/incip/tempo") do |data|
-        #ap data
+        append_to_tag(new_marc, "130", {d: data.text}) if data.text && !data.text.empty?
     end
 
     XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/incip/meter") do |data|
@@ -179,13 +215,11 @@ def process_one_file(file_name)
         #ap data
     end
 
-    XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/incip/incipCode") do |data|
-        #ap data
-    end
 
     XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/componentList") do |data|
         #ap data
     end
+=end
 
     ################################################################################################
     # END INCIPIT STUFF
@@ -268,3 +302,5 @@ Dir.glob("#{DIR}/*.xml").each do |file|
     work.save
 
 end
+
+Sunspot.commit
