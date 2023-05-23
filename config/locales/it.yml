@@ -350,6 +350,7 @@ it:
   validation_level_error: "Sono presenti errori, correggerli prima di continuare"
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
   muscat_reindexing: "Muscat è in fase di reindicizzazione, i risultati della ricerca potrebbero essere incompleti"
+  work_catalogue: "Catalogo di opere"
 
   jobs:
     not_set: "[Nessuno stato]"
@@ -440,6 +441,7 @@ it:
     one_week: "Le seguenti cartelle saranno eliminate tra una settimana, il %{date}"
     two_weeks: "Le seguenti cartelle saranno eliminate tra due settimane il %{date}"
     one_month: "Le seguenti cartelle saranno eliminate tra un mese, il %{date}"
+    make_catalogue: "Contrassegnare gli elementi come cataloghi di opere"
     
   ### Digital objects
   digital_objects: "Oggetti Digitali"
@@ -573,6 +575,9 @@ it:
   filter_source_name: "Nome della fonte"
   filter_source_composer: "Compositore della fonte"
   filter_printed_exemplars: "Numero di esemplari a stampa"
+  filter_is_text: "\"Text\", usato in 031 $t"
+  filter_is_standard: "\"Standard\", usato in 240 $a"
+  filter_is_additional: "\"Additional\", usato in 730 $a"
 
   ## Referring lists for auth files
   refers_to_this: "%{model_from} che fanno riferimento a questo %{model_to}"

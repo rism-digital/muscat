@@ -3,7 +3,10 @@ include ApplicationHelper
   
   DEBUG = false
 
-  def initialize(object, user = nil, warnings = false, logger = nil)
+  # test example:
+  # MarcValidator.new(Source.first, nil, nil, nil, ValidationExclusion.new(Source)).validate_tags
+
+  def initialize(object, user = nil, warnings = false, logger = nil, exclusions = nil)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
     @user = user
@@ -14,6 +17,8 @@ include ApplicationHelper
     @errors = {}
     @object = object
     
+    @exclusions = exclusions
+
     ## The marc could be already resolved
     ## Make a new safe internal version
     classname = "Marc" + object.class.to_s
@@ -40,7 +45,13 @@ include ApplicationHelper
       # Some tags have to be there for some templates.
       # Extract all the pertinent mandatory tags, exluding the ones
       # not for this template
-      mandatory = tag_rules["tags"].map {|st, v| st if v == "mandatory" && !is_subtag_excluded(tag, st)}.compact
+      mandatory = tag_rules["tags"].map {|st, v| 
+        if @exclusions && @exclusions.exclude_from_tag?(tag, st, @object)
+          puts "Downgrate #{tag} #{st} to non mandatory because of static exclusions" if DEBUG
+          next
+        end
+        st if v == "mandatory" && !is_subtag_excluded(tag, st)
+      }.compact
       
       marc_tags = @marc.by_tags(tag)
       
@@ -56,6 +67,11 @@ include ApplicationHelper
       
       tag_rules["tags"].each do |subtag, rule|
         
+        if @exclusions && @exclusions.exclude_from_tag?(tag, subtag, @object)
+          puts "Skip #{tag} #{subtag} because of static exclusions" if DEBUG
+          next
+        end
+
         # The validation is per subtag basis
         # THis means that a whole tag, i.e. 856
         # can be missing and validation will pass
@@ -178,6 +194,18 @@ include ApplicationHelper
     end
   end
   
+  def validate_dead_774_links
+    @marc.each_by_tag("774") do |link|
+      link_id = link.fetch_first_by_tag("w")
+      link_type = link.fetch_first_by_tag("4")
+      
+      next if link_type && link_type.content && link_type.content == "holding"
+
+      child = @object.get_child_source(link_id.content.to_i)
+      add_error("stale-774", nil, "774_link: no db link to #{link_id.content}", "774_error") if !child
+    end
+  end
+
   def validate_dates
     
     @marc.each_by_tag("260") do |marctag|
@@ -245,6 +273,7 @@ include ApplicationHelper
     validate_links
     validate_holdings
     validate_unknown_tags
+    validate_dead_774_links
     return @errors
   end
 

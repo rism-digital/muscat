@@ -54,9 +54,9 @@ GIT
 
 GIT
   remote: https://github.com/rism-ch/rails3-jquery-autocomplete
-  revision: 89c2a5e9656e86a403cadfb4de6b5e0337e609bc
+  revision: f70cfbd2ef302d3423e58b3ab733452320991772
   specs:
-    rails3-jquery-autocomplete (1.0.22)
+    rails3-jquery-autocomplete (1.0.27)
       rails (>= 5.1)
 
 GIT
@@ -167,10 +167,11 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     colorize (0.8.1)
-    concurrent-ruby (1.1.10)
+    concurrent-ruby (1.2.2)
     crass (1.0.6)
     daemons (1.3.1)
     database_cleaner (1.8.5)
+    date (3.3.3)
     delayed_job_active_record (4.1.4)
       activerecord (>= 3.0, < 6.1)
       delayed_job (>= 3.0, < 5)
@@ -189,7 +190,7 @@ GEM
       ruby-saml (~> 1.7)
     diff-lcs (1.4.4)
     differ (0.1.2)
-    erubi (1.11.0)
+    erubi (1.12.0)
     exception_notification (4.4.3)
       actionmailer (>= 4.0, < 7)
       activesupport (>= 4.0, < 7)
@@ -208,7 +209,7 @@ GEM
     generator_spec (0.9.4)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
-    globalid (1.0.0)
+    globalid (1.1.0)
       activesupport (>= 5.0)
     gruff (0.12.1)
       histogram
@@ -219,7 +220,7 @@ GEM
     highline (1.7.10)
     histogram (0.2.4.1)
     htmlentities (4.3.4)
-    i18n (1.12.0)
+    i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     i18n-js (3.9.0)
       i18n (>= 0.6.6)
@@ -263,11 +264,14 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
-    loofah (2.19.0)
+    loofah (2.21.3)
       crass (~> 1.0.2)
-      nokogiri (>= 1.5.9)
-    mail (2.7.1)
+      nokogiri (>= 1.12.0)
+    mail (2.8.1)
       mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
     marcel (1.0.2)
     method_source (1.0.0)
     mime-types (3.3.1)
@@ -277,14 +281,23 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
-    minitest (5.16.3)
+    mini_portile2 (2.8.2)
+    minitest (5.18.0)
     multipart-post (2.1.1)
     mysql2 (0.5.3)
     needleman_wunsch_aligner (1.0.4)
-    nio4r (2.5.8)
-    nokogiri (1.13.8)
-      mini_portile2 (~> 2.8.0)
+    net-imap (0.3.4)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.1)
+      timeout
+    net-smtp (0.3.3)
+      net-protocol
+    nio4r (2.5.9)
+    nokogiri (1.15.1)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
@@ -302,9 +315,9 @@ GEM
     public_suffix (4.0.6)
     puma (5.6.4)
       nio4r (~> 2.0)
-    racc (1.6.0)
-    rack (2.2.4)
-    rack-test (2.0.2)
+    racc (1.6.2)
+    rack (2.2.7)
+    rack-test (2.1.0)
       rack (>= 1.3)
     rails (5.2.8.1)
       actioncable (= 5.2.8.1)
@@ -322,8 +335,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.3)
-      loofah (~> 2.3)
+    rails-html-sanitizer (1.5.0)
+      loofah (~> 2.19, >= 2.19.1)
     rails-i18n (5.1.3)
       i18n (>= 0.7, < 2)
       railties (>= 5.0, < 6)
@@ -412,9 +425,9 @@ GEM
       rubyzip
     sort_alphabetical (1.1.0)
       unicode_utils (>= 1.2.2)
-    sprockets (4.1.1)
+    sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
-      rack (> 1, < 3)
+      rack (>= 2.2.4, < 4)
     sprockets-rails (3.4.2)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
@@ -425,6 +438,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timeout (0.3.2)
     tty-cursor (0.7.1)
     tty-spinner (0.9.3)
       tty-cursor (~> 0.7)
@@ -435,7 +449,7 @@ GEM
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
-    tzinfo (1.2.10)
+    tzinfo (1.2.11)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)

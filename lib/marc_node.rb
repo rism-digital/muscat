@@ -54,8 +54,18 @@ class MarcNode
         master = get_master_foreign_subfield
         
         if !master
+
+          # Try to fetch the 001 value for this element
+          object_id = "Unknown"
+          if @parent
+            n = @parent.fetch_first_by_tag("001")
+            if n && n.content
+              object_id = n.content
+            end
+          end
+              
           #raise NoMethodError, "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
-          $stderr.puts "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
+          $stderr.puts "[#{@model} #{object_id}] Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
           #self.destroy_yourself
           return
         end
@@ -639,7 +649,7 @@ class MarcNode
   # so we can do a.children - b.children and see if they are all equal
   def eql?(other)
     if (!other.children || other.children.empty?) && (!children || children.empty?)
-      return true if other.tag == tag && other.content == content
+      return true if other.tag.to_s.strip == tag.to_s.strip && other.content.to_s.strip == content.to_s.strip
     end
 
     false

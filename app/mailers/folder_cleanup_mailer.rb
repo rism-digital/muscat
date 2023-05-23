@@ -1,6 +1,6 @@
 class FolderCleanupMailer < ApplicationMailer
 
-    def notify(folders)
+    def notify(email, folders)
 
       @folders = folders
 
@@ -12,8 +12,8 @@ class FolderCleanupMailer < ApplicationMailer
         one_month: Date.today + 1.month
       }
 
-      mail(to: RISM::NOTIFICATION_EMAILS,
-          from: "#{RISM::DEFAULT_EMAIL_NAME} Muscat Notificator <#{RISM::DEFAULT_NOREPLY_EMAIL}>",
+      mail(to: email,
+          from: "#{RISM::DEFAULT_EMAIL_NAME} Folder Notificator <#{RISM::DEFAULT_NOREPLY_EMAIL}>",
           subject: I18n.t(:"folders.expiring_folders"))
     end
   

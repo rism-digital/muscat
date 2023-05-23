@@ -44,16 +44,18 @@
 			elem = $(e);
 			
 			data_div = elem.parent().children("[data-autocomplete-values]");
-			var valuesArray = data_div.data("autocomplete-values");
+			// if it is an array it is the values to autocomplete
+			// or it can be an URL to be used from the backend
+			var valuesArrayOrURL = data_div.data("autocomplete-values");
 			
 			$(elem).autocomplete(
 					{
-						source: valuesArray,
+						source: valuesArrayOrURL,
 						delay:10,
 						minChars:0,
 						matchSubset:0,
 						autoFill:true,
-						maxItemsToShow:10
+						maxItemsToShow:10,
 					}
 				);
 			

@@ -346,7 +346,8 @@ pl:
   validation_level_error: Wystąpiły błędy. Napraw je przed zapisaniem.
   validation_level_warning: "Wystąpiły ostrzeżenia. Zapisz ponownie, by je skasować."
   muscat_reindexing: "Muscat reindeksuje, wyniki wyszukiwania mogą być niekompletne"
-  
+  work_catalogue: "Katalog dzieł"
+
   jobs:
     not_set: [Nie ustawiono statusu.]
     ok: Zadanie ukończone pomyślnie
@@ -435,6 +436,7 @@ pl:
     one_week: "Następujące foldery zostaną usunięte za tydzień w dniu %{data}"
     two_weeks: "Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{data}"
     one_month: "Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{data}"
+    make_catalogue: "Oznacz pozycje jako katalogi robocze"
     
   ### Digital objects
   digital_objects: Obiekty cyfrowe
@@ -568,7 +570,10 @@ pl:
   filter_source_name: Nazwa źródła
   filter_source_composer: Kompozytor źródła
   filter_printed_exemplars: Liczba drukowanych egzemplarzy
- 
+  filter_is_text: "\"Text\", w 031 $t"
+  filter_is_standard: "\"Standard\", w 240 $a"
+  filter_is_additional: "\"Additional\", w 730 $a"
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} odnosi się do %{model_to}"
  

@@ -4,7 +4,7 @@
   * else: add other tags (new and append)
   * never update fields if not new
   */
-   function _marc_editor_update_from_json(data, protected_fields) {
+   function _marc_editor_update_from_json(data, protected_fields, allow_multiple = false) {
     let tags = data["fields"];
     let Last_tag = "";
     let index = 0;
@@ -28,12 +28,15 @@
           _marc_editor_overwrite_tag(datafield.tag, current_json_tag)
         }
       // All the other fields. Is the tag collapsed (no instances of a tag)?
-      } else if (_marc_editor_count_tag(datafield.tag) == 0) {
-        // Create a new tag from the placeholders
-        _marc_editor_create_new_tag(datafield.tag, current_json_tag)
-      } else {
+      // If there is already a field overwrite it
+      } else if (_marc_editor_count_tag(datafield.tag) != 0 && allow_multiple == false) {
         _marc_editor_overwrite_tag(datafield.tag, current_json_tag)
+      } else {
+        // if we allow multiples, then we can append the fields
+        _marc_editor_create_new_tag(datafield.tag, current_json_tag)
       }
+
+
     }
   }
 

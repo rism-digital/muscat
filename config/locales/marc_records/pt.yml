@@ -58,6 +58,7 @@ pt:
     english: Inglês
     estonian: Estoniano
     ethiopic: Etíope
+    faroese: Feroês
     fijian: Fijianas
     finnish: Finlandês
     french: Francês
@@ -113,6 +114,7 @@ pt:
     sorbian: Sorábio
     south_american: Índio sul-americano (Outros)
     spanish: Castelhano
+    swahili: Suaíle
     swedish: Sueco
     swiss_german: Suíço-alemão
     tagalog: Tagalo
@@ -252,8 +254,10 @@ pt:
     additional_choir_voice: Voz adicional de coro
     additional_codes: Códigos adicionais seguindo o número ou código padrão
     additional_institution: Instituição adicional
+    additional_manuscript_material: Material manuscrito adicional
     additional_personal_name: Nome de pessoa adicional
     additional_personal_name_lit: Nome de pessoa adicional
+    additional_printed_material: Material impresso adicional
     additional_solo_voice: Voz solo adicional
     additional_title: Título adicional
     additional_title_lit: Título adicional
@@ -264,6 +268,7 @@ pt:
     aids: Ajudas
     alleged: Suposta
     alternate_spelling: Ortografia alternativa
+    alternative_work_title: Título alternativo da obra
     archive: Arquivo
     arrangement: Arranjo
     arrangement_statement: Menção de arranjo
@@ -287,6 +292,7 @@ pt:
     authority_agency: Agência de autoridade
     authority_record_control_number: Códigos adicionais seguindo o número ou código padrão
     authority_reference: Referência de autoridade
+    autograph_manuscript: Manuscrito autógrafo
     autography: Autografia
     b_major: Si maior
     b_minor: Si menor
@@ -354,9 +360,11 @@ pt:
     composer_author: Compositor/Autor
     composer_cross_reference: Referência cruzada de compositor
     computer_printout: Impressão de computador
+    composite: Composto
     conceptor: Conceptor
     conductor: Condutor
     confused_with: Confundido com
+    congress: Congresso
     conjectural: Conjetural
     contact: Contato
     contact_area: Contato
@@ -554,6 +562,7 @@ pt:
     library_information_relations: Informação da instituição e relações
     library_siglum: Sigla da Instituição
     librettist: Libretista
+    libretto: Libretto
     licensee: Titular
     life_dates: Datas de nascimento e morte
     link_type: Tipo de Link
@@ -578,6 +587,8 @@ pt:
     longitude: Longitude
     lyricist: Letrista
     main_entry_fields: Campos de entrada principal
+    manuscript_copy: Cópia manuscrita
+    manuscript_copy_with_autograph_annotations: Cópia mansucrita com anotações autógrafas
     married_name: Nome casado
     married_to: Casado/a
     married_with: Casado/a
@@ -590,6 +601,7 @@ pt:
     method_of_acquisition: Método de aquisição
     misattributed: Equivocada
     miscellaneous: Diversos
+    mixed: Misto
     mode_10t: 'Modo: 10º tom (Hipoeólio)'
     mode_10tt: 'Modo: 10º tom (Hipoeólio), transposta'
     mode_11t: 'Modo: 11º tom (Jônio)'
@@ -627,6 +639,7 @@ pt:
     musical_composition: Composição musical
     name: Nome
     name_family: Nome da família
+    name_of_part: Nome da parte/seção da obra
     name_printer: Nome do impressor
     name_variant: Variante de nome
     name_variants: Variantes de nome
@@ -637,6 +650,7 @@ pt:
     no_linguistic_content: Sem conteúdo linguístico
     non_migrated_bound: Valor não migrado do campo 563 (Encadernado com)
     not_applicable: Não aplicável
+    notated_music: Escrita musical
     note: Nota
     note_external_resource: Nota sobre recurso externo
     note_fields: Campos de notas
@@ -679,6 +693,7 @@ pt:
     papermaker: Fabricante de papel
     parallel_form: Forma paralela do nome
     parent_record: Registro principal
+    partial_autograph: Autógrafo parcial
     parts_held: Partes existentes
     parts_held_extent: Partes existentes e extensão
     patron: Patrocinadore
@@ -708,9 +723,13 @@ pt:
     plaine_and_easie: Código Plaine and Easie
     plate_number: Número de chapa
     plucked_instruments: Cordas dedilhadas
+    possible_autograph_manuscript: Possível manuscrito autógrafo
     postal_code: Código postal
     postal_place: Local postal
     preceding_entry: Registro precedente
+    print: Imprimir
+    print_with_autograph_annotations: Imprimir com anotações de autógrafo
+    print_with_non_autograph_annotations: Imprimir com anotações não autógrafos
     printer: Impressor(a)
     printing_technique: Técnica de impressão
     production: Produção
@@ -837,6 +856,7 @@ pt:
     translation: Tradução
     translator: Tradutor
     transparency: Transparência
+    treatise: Tratado
     type: Tipo
     type_designer: Tipógrafo
     type_institution: Tipo de instituição
@@ -853,6 +873,7 @@ pt:
     variant_source_title: Título variante na fonte
     variations: Variações
     verified: Verificada
+    version_information: Informações sobre a versão, edição, etc.
     vocalist: Vocalista
     voice_instrument: Voz/instrumento
     volume_year_page: Volume, ano, página
@@ -860,6 +881,12 @@ pt:
     woodwinds: Madeiras
     work: Obra
     work_number: Número de obra
+    work_tag: Work revision tag
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Tag note
+    work_tag_type: Tag type
     year: Ano
     years_birth_death: Anos de nascimento e morte
   relations:

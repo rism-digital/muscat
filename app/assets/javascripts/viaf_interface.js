@@ -7,7 +7,7 @@ var show_viaf_actions = function () {
   });
 
   $viaf_table.on('click', '.data', function() {
-    _marc_editor_update_from_json($(this).data("viaf"),["100"]);
+    _marc_editor_update_from_json($(this).data("viaf"),["100"], true);
     marc_editor_show_panel("marc_editor_panel");
   });
 

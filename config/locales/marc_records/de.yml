@@ -58,12 +58,13 @@ de:
     english: Englisch
     estonian: Estnisch
     ethiopic: Äthiopisch
+    faroese: Färöisch
     fijian: Fidschianisch
     finnish: Finnisch
     french: Französisch
     french_middle: Französisch, Mitte (ca. 1300-1600)
     french_old: Französisch, alt (ca. 842-1300)
-    friulian: Friulano
+    friulian: Furlanisch
     gallician: Galizisch
     german: Deutsch
     german_old_high: Althochdeutsch (ca. 750-1050)
@@ -113,6 +114,7 @@ de:
     sorbian: Sorbisch
     south_american: Südamerikanische Indianer (andere)
     spanish: Spanisch
+    swahili: Suahelisch
     swedish: Schwedisch
     swiss_german: Schweizerdeutsch
     tagalog: Tagalog
@@ -252,8 +254,10 @@ de:
     additional_choir_voice: Zusätzliche Chorstimmen
     additional_codes: Zusätzliche Codes nach der Standardnummer oder dem Standardcode
     additional_institution: Nebeneintragung Körperschaften
+    additional_manuscript_material: Zusätzliches handschriftliches Material
     additional_personal_name: Nebeneintragung Personen
     additional_personal_name_lit: Sonstige Person
+    additional_printed_material: Zusätzliches gedrucktes Material
     additional_solo_voice: Zusätzliche Solostimme
     additional_title: Alternativer Titel
     additional_title_lit: Zusätzlicher Titel
@@ -264,6 +268,7 @@ de:
     aids: Arbeitshilfen
     alleged: Angeblich
     alternate_spelling: Andere Schreibweise
+    alternative_work_title: Alternativer Werktitel
     archive: Archiv
     arrangement: Bearbeitung
     arrangement_statement: Bearbeitung
@@ -287,6 +292,7 @@ de:
     authority_agency: Normdatenagentur
     authority_record_control_number: Zusätzliche Codes nach der Standardnummer oder dem Standardcode
     authority_reference: Normdatenverweise
+    autograph_manuscript: Autograph
     autography: Autographie
     b_major: H-Dur
     b_minor: h-Moll
@@ -354,9 +360,11 @@ de:
     composer_author: Komponist/Autor
     composer_cross_reference: Komponistenquerverweis
     computer_printout: Computerausdruck
+    composite: Konvolut
     conceptor: Autor der Textvorlage
     conductor: Dirigent
     confused_with: Verwechselt mit
+    congress: Kongresse
     conjectural: Mutmaßlich
     contact: Kontakt
     contact_area: Kontakt
@@ -515,7 +523,7 @@ de:
     incipit_number: Incipitnummer
     incipits: Incipits
     index_terms: Deskriptoren
-    information_found: Ansetzung laut Literaturnachweis
+    information_found: Fundstelle
     initial: Initiale
     initial_entry: Ersteintrag
     initials: Initiale
@@ -554,6 +562,7 @@ de:
     library_information_relations: Besitzerangaben und Verlinkung
     library_siglum: Bibliothekssigel
     librettist: Librettist
+    libretto: Libretto
     licensee: Lizenzinhaber
     life_dates: Geburts- und Todesdaten
     link_type: Linktyp
@@ -578,6 +587,8 @@ de:
     longitude: Längengrad
     lyricist: Textdichter
     main_entry_fields: Haupteintragungen
+    manuscript_copy: Abschrift
+    manuscript_copy_with_autograph_annotations: Abschrift mit autographen Eintragungen
     married_name: Ehename
     married_to: Verheiratet mit
     married_with: Verheiratet mit
@@ -590,6 +601,7 @@ de:
     method_of_acquisition: Beschaffungsart
     misattributed: Fälschlich
     miscellaneous: Verschiedenes
+    mixed: Gemischte Materialien
     mode_10t: 'Mode: 10t – Hypoaeolisch'
     mode_10tt: 'Mode: 10tt – Hypoaeolisch, transponiert'
     mode_11t: 'Mode: 11t – Ionisch'
@@ -627,6 +639,7 @@ de:
     musical_composition: Musikalische Komposition
     name: Personenname
     name_family: Familienname
+    name_of_part: Anzahl Teile oder Abschnitte eines Werks
     name_printer: Drucker, Druckerei
     name_variant: Namensvarianten
     name_variants: Namensvarianten
@@ -637,6 +650,7 @@ de:
     no_linguistic_content: ohne Sprache
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Nicht zutreffend
+    notated_music: Notenmaterial
     note: Hinweis
     note_external_resource: Für das Publikum bestimmte Fussnote
     note_fields: Bemerkungen
@@ -679,6 +693,7 @@ de:
     papermaker: Papierhersteller
     parallel_form: Parallele Namensformen
     parent_record: Übergeordneter Eintrag
+    partial_autograph: Teilautograph
     parts_held: Vorhandene Stimmen
     parts_held_extent: Stimmenmaterial
     patron: Mäzen/Auftraggeber
@@ -708,9 +723,13 @@ de:
     plaine_and_easie: Plaine and Easie Code
     plate_number: Plattennummer
     plucked_instruments: Zupfinstrumente
+    possible_autograph_manuscript: Fragliches Autograph
     postal_code: Postleitzahl
     postal_place: postalischer Ort
     preceding_entry: Früherer Eintrag
+    print: Druck
+    print_with_autograph_annotations: Druck mit autographen Eintragungen
+    print_with_non_autograph_annotations: Druck mit nicht-autographen Eintragungen
     printer: Drucker
     printing_technique: Drucktechnik
     production: Verlauf
@@ -837,6 +856,7 @@ de:
     translation: Übersetzung
     translator: Übersetzer
     transparency: Transparentfolie
+    treatise: Traktat
     type: Typ
     type_designer: Schriftentwerfer
     type_institution: Typ der Körperschaft
@@ -853,13 +873,20 @@ de:
     variant_source_title: Weiterer diplomatischer Titel
     variations: Variationen
     verified: Gesichert
+    version_information: Version, Ausgabe etc., Informationen
     vocalist: Sänger
     voice_instrument: Besetzung
     volume_year_page: Jahrgang, Seite
     watermark_description: Wasserzeichen
     woodwinds: Holzblasinstrumente
     work: Werktitel
-    work_number: Incipitnummer
+    work_number: Werknummer
+    work_tag: Markierung der Werk-Revision
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Markierungshinweis
+    work_tag_type: Markierungstyp
     year: Jahr
     years_birth_death: Geburts- und Todesdaten
   relations:

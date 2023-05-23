@@ -222,7 +222,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: corporate_name
     - - b
       - :occurrences: "*"
     - - c
@@ -260,7 +260,7 @@
     - - e
       - :occurrences: "?"
         :foreign_class: ^x
-        :foreign_field: name
+        :foreign_field: corporate_name
         :disable_create_lookup: true
     - - q
       - :occurrences: "*"

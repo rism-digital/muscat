@@ -20,13 +20,13 @@
       - editor_partial: subfield_indicator
     - - a
 "031":
-  new_window: standard_titles
-  new_window_field: title_equals
   layout:
     fields:
     - - u
       - hidden: true
     - - a
+      - editor_partial: subfield_hardcoded
+        value: "1"
     - - b
     - - c
     - - d
@@ -34,11 +34,8 @@
     - - e
     - - t
       - growfield: true
-        type: standard_title
-        field: title
-        editor_partial: subfield_secondary
-        allow_new: true
-        has_links_to: true
+        type: source_031t_solr
+        editor_partial: subfield_autocomplete
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "031r"
@@ -239,6 +236,7 @@
       - "eng"
       - "enm"
       - "est"
+      - "fao"
       - "fas"
       - "fij"
       - "fin"
@@ -295,6 +293,7 @@
       - "smn"
       - "spa"
       - "srp"
+      - "swa"
       - "swe"
       - "tat"
       - "tgl"
@@ -538,6 +537,7 @@
         - "B/II"
         - "B/IV"
         - "B/VI"
+        - "B/VII"
         - "B/VIII"
         editor_partial: subfield_select
     - - c
@@ -812,9 +812,10 @@
       - ppm
       - oth
       - fmo
+      - chr
 "710":
   new_window: institutions
-  new_window_field: name_equals
+  new_window_field: corporate_name_equals
   layout:
     fields:
     - - a
@@ -822,6 +823,10 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - b
+    - - c
+      - type: place
+        editor_partial: subfield_autocomplete
+        autocomplete_extra: place
     - - g
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
@@ -1035,18 +1040,14 @@
   layout:
     fields:
     - - a
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         codes_reference: "980a"
     - - b
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         codes_reference: "980b"
     - - c
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         codes_reference: "980c"
-    columns: 2
   tag_params:
     980a:
       - "RISM"

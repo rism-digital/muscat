@@ -345,7 +345,8 @@ de:
   validation_level_error: "Die Fehler müssen vor dem Speichern behoben werden."
   validation_level_warning: "Erneut speichern, um die Warnung(en) zu ignorieren."
   muscat_reindexing: "Muscat wird neu indiziert, Suchergebnisse können unvollständig sein"
-  
+  work_catalogue: "Katalog der Werke"
+
   jobs:
     not_set: "[Kein Status gesetzt]"
     ok: "Prozess erfolgreich abgeschlossen"
@@ -433,8 +434,9 @@ de:
     tomorrow: "Die folgenden Ordner werden morgen %{date} gelöscht"
     one_week: "Die folgenden Ordner werden in einer Woche am %{date} gelöscht"
     two_weeks: "Die folgenden Ordner werden in zwei Wochen am %{date} gelöscht"
-    ein_monat: "Die folgenden Ordner werden in einem Monat am %{date} gelöscht"
-    
+    one_month: "Die folgenden Ordner werden in einem Monat am %{date} gelöscht"
+    make_catalogue: "Artikel als Arbeitskataloge kennzeichnen"
+
   ### Digital objects
   digital_objects: "Digitale Objekte"
   digital_object_new: "Neues Digitales Objekt hinzufügen"
@@ -567,7 +569,10 @@ de:
   filter_source_name: "Name der Quelle"
   filter_source_composer: "Komponist der Quelle"
   filter_printed_exemplars: "Anzahl der gedruckten Exemplare"
-  
+  filter_is_text: "\"Text\", benutz in 031 $t"
+  filter_is_standard: "\"Standard\", benutz in 240 $a"
+  filter_is_additional: "\"Additional\", benutz in 730 $a"
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} die sich auf diesen %{model_to} beziehen"
 

@@ -2,9 +2,9 @@
 FactoryBot.define do
   factory :publication do
     id { 1536 }
-    name { "NBA" }
+    short_name { "NBA" }
     #initialize_with { Publication.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
-    description { "Johann Sebastian Bach: Neue Ausgabe sämtlicher Werke" }
+    title { "Johann Sebastian Bach: Neue Ausgabe sämtlicher Werke" }
     journal { "" }
     volume { nil }
     place { "Kassel, Basel" }
