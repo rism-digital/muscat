@@ -147,6 +147,10 @@ ActiveAdmin.register LiturgicalFeast do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => liturgical_feast }
   end
   
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => liturgical_feast }
+  end
+
   ##########
   ## Edit ##
   ##########

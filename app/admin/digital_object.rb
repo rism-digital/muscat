@@ -236,6 +236,10 @@ ActiveAdmin.register DigitalObject do
     end
   end
   
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => digital_object }
+  end
+
   ##########
   ## Edit ##
   ##########

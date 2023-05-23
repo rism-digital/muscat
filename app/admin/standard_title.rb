@@ -163,6 +163,10 @@ ActiveAdmin.register StandardTitle do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => standard_title }
   end
   
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => standard_title }
+  end
+
   ##########
   ## Edit ##
   ##########

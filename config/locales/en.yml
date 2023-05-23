@@ -378,8 +378,10 @@ en:
   export_folder: "Export Folder as MARCXML"
   export_folder_csv: "Export Folder as CSV"
   validate_folder: "Validate items"
+  choose_folder: "(Please choose one)"
+  add_item_to_folder: "Add to folder"
+  remove_item_from_folder: "Delete from folder"
 
-  
   # Editor sidebar
   show_all_groups: "Show all sections"
   show_preview: "Show preview"
