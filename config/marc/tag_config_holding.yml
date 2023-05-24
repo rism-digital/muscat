@@ -204,8 +204,7 @@
     - - j
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
-        :browse_inline: true
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
@@ -230,7 +229,7 @@
     - - g
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
