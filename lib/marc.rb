@@ -329,7 +329,7 @@ class Marc
     return false
   end
   
-  # Fin the insert position of a tag. For march fields they should be ascending
+  # Find the insert position of a tag. For marc fields they should be ascending
   def get_insert_position(tag)
     load_source unless @loaded
     insert_at = 0
