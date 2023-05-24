@@ -880,13 +880,13 @@ de:
     watermark_description: Wasserzeichen
     woodwinds: Holzblasinstrumente
     work: Werktitel
-    work_number: Incipitnummer
-    work_tag: Work revision tag
+    work_number: Werknummer
+    work_tag: Markierung der Werk-Revision
     work_tag_incipit_needs_revision: incipit-needs-revision
     work_tag_incipit_replace: incipit-replace
     work_tag_needs_revision: needs-revision
-    work_tag_note: Tag note
-    work_tag_type: Tag type
+    work_tag_note: Markierungshinweis
+    work_tag_type: Markierungstyp
     year: Jahr
     years_birth_death: Geburts- und Todesdaten
   relations:

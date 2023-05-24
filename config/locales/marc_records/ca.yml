@@ -882,9 +882,9 @@ ca:
     work: Obra
     work_number: Número d'obra
     work_tag: Work revision tag
-    work_tag_incipit_needs_revision: incipit-needs-revision
-    work_tag_incipit_replace: incipit-replace
-    work_tag_needs_revision: needs-revision
+    work_tag_incipit_needs_revision: Íncipit a revisar
+    work_tag_incipit_replace: Íncipit a substituir
+    work_tag_needs_revision: Cal revisar-ho
     work_tag_note: Tag note
     work_tag_type: Tag type
     year: Any
