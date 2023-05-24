@@ -47,7 +47,7 @@ def duplicate_7x0(marc, tag_nr, model)
 end
 
 all = []
-=begin
+
 pb = ProgressBar.new(Source.all.count)
 Source.find_in_batches do |batch|
 
@@ -65,9 +65,9 @@ Source.find_in_batches do |batch|
   end
 
 end
-=end
 
-#pb = ProgressBar.new(Holding.all.count)
+
+pb = ProgressBar.new(Holding.all.count)
 Holding.find_in_batches do |batch|
 
   batch.each do |s|
