@@ -379,7 +379,9 @@ fr:
   export_folder: "Exporter le dossier en MARCXML"
   export_folder_csv: "Exporter le dossier en CSV"
   validate_folder: "Valider le dossier"
-
+  choose_folder: "(PLEASE CHOOSE ONE)"
+  add_item_to_folder: "ADD TO FOLDER"
+  remove_item_from_folder: "DELETE FROM FOLDER"
   
   # Editor sidebar
   show_all_groups: "Afficher tous les groupes"
