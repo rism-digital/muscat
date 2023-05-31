@@ -255,7 +255,7 @@ include ApplicationHelper
   end
 
   def validate_holdings
-    return if !@object.is_a? Source
+    return if !@object.is_a?(Source)
 
     if @object.record_type == MarcSource::RECORD_TYPES[:edition]
       add_error("record", "holdings", "No holding records", "holding_error") if @object.holdings.empty?
@@ -267,6 +267,26 @@ include ApplicationHelper
     end
   end
 
+  # This works only for sources
+  def validate_parent_institution
+    return if !@object.is_a?(Source)
+    return if !@object.parent_source
+
+    # The two libraries must match, so report if one is missing
+    parent_id = nil
+    source_id = nil
+
+    parent_relations = SourceInstitutionRelation.where(source_id: @object.parent_source, marc_tag: "852")
+    parent_id = parent_relations.first.institution_id if !parent_relations.empty?
+
+    source_relations = SourceInstitutionRelation.where(source_id: @object.id, marc_tag: "852")
+    source_id = source_relations.first.institution_id if !source_relations.empty?
+
+    if parent_id != source_id
+      add_error("record", "institution", "Child institution differes from parent (c=#{source_id} p=#{parent_id})", "parent_institution_error")
+    end
+  end
+
   def validate
     validate_tags
     validate_dates
@@ -274,6 +294,7 @@ include ApplicationHelper
     validate_holdings
     validate_unknown_tags
     validate_dead_774_links
+    validate_parent_institution
     return @errors
   end
 
