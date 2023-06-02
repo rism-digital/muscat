@@ -246,6 +246,11 @@ class Institution < ApplicationRecord
     sunspot_dsl.integer :src_count_order, :stored => true do 
       referring_sources.size + referring_holdings.size
     end
+
+    sunspot_dsl.integer :publications_count_order, :stored => true do
+      referring_publications.size
+    end
+
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
