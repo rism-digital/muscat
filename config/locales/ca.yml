@@ -451,7 +451,7 @@ ca:
   filter_author_or_editor: "Autor/editor"
   filter_autograph_of: "Autògraf de"
   filter_birth_place: "Lloc de naixement"
-  filter_catalog: "Catàleg"
+  filter_publications: "Publicacions"
   filter_category_type: "Categoria"
   filter_collection: "Col·lecció"
   filter_comment: "Comentari"

@@ -452,7 +452,7 @@ pl:
   filter_author_or_editor: Autor / Edytor
   filter_autograph_of: Autograf autorstwa
   filter_birth_place: Miejsce urodzenia
-  filter_catalog: Katalog
+  filter_publications: Publikacje
   filter_category_type: Kategoria
   filter_collection: Kolekcja
   filter_comment: Komentarz
