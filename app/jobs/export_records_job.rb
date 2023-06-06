@@ -65,7 +65,7 @@ class ExportRecordsJob < ProgressJob::Base
     File.unlink(EXPORT_PATH.join(filename + @extension))
 
     # Send the user a notification
-    ExportReadyNotification.notify(@job_options[:email], filename + ".zip").deliver_now
+    ExportReadyNotification.notify(@job_options[:email], filename + ".zip", @getter.get_name).deliver_now
 
   end
     
@@ -191,8 +191,9 @@ private
   end
 
   def create_filename
-    time = Time.now.strftime('%Y-%m-%d-%H%M')
-    filename = "export-#{time}-" + SecureRandom.hex(4)
+    time = Time.now.strftime('%Y-%m-%d')
+    name = @getter.get_name.gsub(/([^\p{L}\s\d\-_~,;:\[\]\(\).'])/, '').gsub(' ', '')
+    filename = "export-#{name}-#{time}-" + SecureRandom.hex(2)
   end
 
   def xml_preamble
@@ -336,6 +337,11 @@ private
     def get_items
       return @folder.folder_items.collect {|fi| fi.item.id}
     end
+
+    def get_name
+      return "Unnamed Folder" if !@folder.name
+      return @folder.name
+    end
   end
 
   class CatalogGetter
@@ -354,6 +360,10 @@ private
 
     def get_items
       return @results
+    end
+
+    def get_name
+      return "Untitled Search"
     end
   end
 
