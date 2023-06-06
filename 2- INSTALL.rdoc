@@ -478,7 +478,7 @@ If your crontab still has this line:
 It is save to delete it as it is now taken care but the global muscat crontab.
 *NOTE* If you ever change the cron file name, it CANNOT contains dots! Or it will silently fail.
 
-== Some MySQL optimizations
+=== Some MySQL optimizations
 
 Add to /etc/mysql.cnf
 
