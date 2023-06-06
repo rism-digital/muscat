@@ -36,7 +36,7 @@ v 9.3
 * Add validation exclusion support
 * Add exclusions to validation job
 * Update 710c label and translations
-* EXPERIMENTAL switch to using Facets instead of Terms to get terms in a document
+* Switch to using Facets instead of Terms to get terms in a document
 * Fix #1369 add Place also to 710 Publication
 * Fix #1078 add script to dup 700 and 710
 * Add the Pollini importer
@@ -44,6 +44,11 @@ v 9.3
 * #1078 fix 7x0 also on holding
 * #1078 push the complete version
 * #1078 Make the scrpt more clever not tu dup empty $4 and to preserve the position
+* Merge pull request #1379 from rism-digital/dependabot/bundler/jquery-rails-4.4.0
+* Add actual validation to 593!!
+* Validate institution between child and parent
+* Fix #1384, add Folder name in name and mail
+* Add docs for ValidationExclusions
 
 v 9.2.1
 * Merge #1378 to add duplication to works
