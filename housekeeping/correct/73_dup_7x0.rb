@@ -92,6 +92,7 @@ Source.find_in_batches do |batch|
 
     if f or f2
         file.puts("Source\t#{s.id}")
+        s.paper_trail_event = "Split 700/710"
         s.save
     end
 
@@ -114,6 +115,7 @@ Holding.find_in_batches do |batch|
 
     if f or f2
         file.puts("Holding\t#{s.id}")
+        s.paper_trail_event = "Split 700/710"
         s.save
     end
 
