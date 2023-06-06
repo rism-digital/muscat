@@ -520,8 +520,8 @@ is the configuration file for sources. This is a sample configuration
       tags:
         "a":
           and_rules: 
-            id_prefix: "99"
-            creation_date: "2016-11-11"
+            id_prefix: "234"
+            creation_date: "2023-06-06"
 
 Every tag specifies some rules for the subtags to be excluded:
 
