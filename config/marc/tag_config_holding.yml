@@ -204,8 +204,7 @@
     - - j
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
-        :browse_inline: true
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
@@ -222,7 +221,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: corporate_name
     - - b
       - :occurrences: "*"
     - - c
@@ -230,7 +229,7 @@
     - - g
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
@@ -260,7 +259,7 @@
     - - e
       - :occurrences: "?"
         :foreign_class: ^x
-        :foreign_field: name
+        :foreign_field: corporate_name
         :disable_create_lookup: true
     - - q
       - :occurrences: "*"

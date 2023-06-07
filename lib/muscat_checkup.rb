@@ -16,50 +16,19 @@ class MuscatCheckup
       @skip_links = (options.include?(:skip_links) && options[:skip_links] == true)
       @skip_unknown_tags = (options.include?(:skip_unknown_tags) && options[:skip_unknown_tags] == true)
       @skip_holdings = (options.include?(:skip_holdings) && options[:skip_holdings] == true)
+      @skip_dead_774 = (options.include?(:skip_dead_774) && options[:skip_dead_774] == true)
+      @skip_parent_institution = (options.include?(:skip_parent_institution) && options[:skip_parent_institution] == true)
       @debug_logger = options.include?(:logger) ? options[:logger] : nil
+
+      # Generate the exclusion matcher
+      @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(Source) : nil
   end
 
   def run_parallel()
     begin_time = Time.now
     
     String.disable_colorization true
-=begin
-    results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
-      errors = {}
-      validations = {}
-      offset = @limit * jobid
-
-      Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
-        s = Source.find(sid.id)
-        begin
-          ## Capture STDOUT and STDERR
-          ## Only for the marc loading!
-          $stdout = new_stdout
-          $stderr = new_stdout
-          
-          s.marc.load_source true
-          
-          # Set back to original
-          $stdout = old_stdout
-          $stderr = old_stderr
-          
-          res = validate_record(s)
-          validations[sid.id] = res if res && !res.empty?
-        rescue
-          ## Exit the capture
-          $stdout = old_stdout
-          $stderr = old_stderr
-          
-          errors[sid.id] = new_stdout.string
-          new_stdout.rewind
-        end
-        
-        s = nil
-      end
-      {errors: errors, validations: validations}
-    end
-=end
-
+    
     if @folder
       @limit_unknown_tags = false
       results = validate_folder
@@ -177,12 +146,14 @@ class MuscatCheckup
   def validate_record(record)
 
     begin
-      validator = MarcValidator.new(record, nil, false, @debug_logger)
+      validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions)
       validator.validate_tags if !@skip_validation
       validator.validate_dates if !@skip_dates
       validator.validate_links if !@skip_links
       validator.validate_unknown_tags if !@skip_unknown_tags
       validator.validate_holdings if !@skip_holdings
+      validator.validate_dead_774_links if !@skip_dead_774
+      validator.validate_parent_institution if !@skip_parent_institution
       return validator.get_errors
     rescue Exception => e
       puts e.message

@@ -58,12 +58,13 @@ de:
     english: Englisch
     estonian: Estnisch
     ethiopic: Äthiopisch
+    faroese: Färöisch
     fijian: Fidschianisch
     finnish: Finnisch
     french: Französisch
     french_middle: Französisch, Mitte (ca. 1300-1600)
     french_old: Französisch, alt (ca. 842-1300)
-    friulian: Friulano
+    friulian: Furlanisch
     gallician: Galizisch
     german: Deutsch
     german_old_high: Althochdeutsch (ca. 750-1050)
@@ -113,6 +114,7 @@ de:
     sorbian: Sorbisch
     south_american: Südamerikanische Indianer (andere)
     spanish: Spanisch
+    swahili: Suahelisch
     swedish: Schwedisch
     swiss_german: Schweizerdeutsch
     tagalog: Tagalog
@@ -252,8 +254,10 @@ de:
     additional_choir_voice: Zusätzliche Chorstimmen
     additional_codes: Zusätzliche Codes nach der Standardnummer oder dem Standardcode
     additional_institution: Nebeneintragung Körperschaften
+    additional_manuscript_material: Zusätzliches handschriftliches Material
     additional_personal_name: Nebeneintragung Personen
     additional_personal_name_lit: Sonstige Person
+    additional_printed_material: Zusätzliches gedrucktes Material
     additional_solo_voice: Zusätzliche Solostimme
     additional_title: Alternativer Titel
     additional_title_lit: Zusätzlicher Titel
@@ -264,6 +268,7 @@ de:
     aids: Arbeitshilfen
     alleged: Angeblich
     alternate_spelling: Andere Schreibweise
+    alternative_work_title: Alternativer Werktitel
     archive: Archiv
     arrangement: Bearbeitung
     arrangement_statement: Bearbeitung
@@ -287,6 +292,7 @@ de:
     authority_agency: Normdatenagentur
     authority_record_control_number: Zusätzliche Codes nach der Standardnummer oder dem Standardcode
     authority_reference: Normdatenverweise
+    autograph_manuscript: Autograph
     autography: Autographie
     b_major: H-Dur
     b_minor: h-Moll
@@ -354,9 +360,11 @@ de:
     composer_author: Komponist/Autor
     composer_cross_reference: Komponistenquerverweis
     computer_printout: Computerausdruck
+    composite: Konvolut
     conceptor: Autor der Textvorlage
     conductor: Dirigent
     confused_with: Verwechselt mit
+    congress: Kongresse
     conjectural: Mutmaßlich
     contact: Kontakt
     contact_area: Kontakt
@@ -394,6 +402,7 @@ de:
     dedicatee: Widmungsträger
     department: Abteilung
     depositor: Depositor
+    deprecated_fields: Veraltete Felder (nicht verwenden)
     description: Beschreibung
     description_area: Beschreibung
     description_summary: Zusammenfassende Beschreibung
@@ -514,7 +523,7 @@ de:
     incipit_number: Incipitnummer
     incipits: Incipits
     index_terms: Deskriptoren
-    information_found: Ansetzung laut Literaturnachweis
+    information_found: Fundstelle
     initial: Initiale
     initial_entry: Ersteintrag
     initials: Initiale
@@ -553,6 +562,7 @@ de:
     library_information_relations: Besitzerangaben und Verlinkung
     library_siglum: Bibliothekssigel
     librettist: Librettist
+    libretto: Libretto
     licensee: Lizenzinhaber
     life_dates: Geburts- und Todesdaten
     link_type: Linktyp
@@ -577,6 +587,8 @@ de:
     longitude: Längengrad
     lyricist: Textdichter
     main_entry_fields: Haupteintragungen
+    manuscript_copy: Abschrift
+    manuscript_copy_with_autograph_annotations: Abschrift mit autographen Eintragungen
     married_name: Ehename
     married_to: Verheiratet mit
     married_with: Verheiratet mit
@@ -589,6 +601,7 @@ de:
     method_of_acquisition: Beschaffungsart
     misattributed: Fälschlich
     miscellaneous: Verschiedenes
+    mixed: Gemischte Materialien
     mode_10t: 'Mode: 10t – Hypoaeolisch'
     mode_10tt: 'Mode: 10tt – Hypoaeolisch, transponiert'
     mode_11t: 'Mode: 11t – Ionisch'
@@ -626,6 +639,7 @@ de:
     musical_composition: Musikalische Komposition
     name: Personenname
     name_family: Familienname
+    name_of_part: Anzahl Teile oder Abschnitte eines Werks
     name_printer: Drucker, Druckerei
     name_variant: Namensvarianten
     name_variants: Namensvarianten
@@ -636,6 +650,7 @@ de:
     no_linguistic_content: ohne Sprache
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Nicht zutreffend
+    notated_music: Notenmaterial
     note: Hinweis
     note_external_resource: Für das Publikum bestimmte Fussnote
     note_fields: Bemerkungen
@@ -678,6 +693,7 @@ de:
     papermaker: Papierhersteller
     parallel_form: Parallele Namensformen
     parent_record: Übergeordneter Eintrag
+    partial_autograph: Teilautograph
     parts_held: Vorhandene Stimmen
     parts_held_extent: Stimmenmaterial
     patron: Mäzen/Auftraggeber
@@ -707,9 +723,13 @@ de:
     plaine_and_easie: Plaine and Easie Code
     plate_number: Plattennummer
     plucked_instruments: Zupfinstrumente
+    possible_autograph_manuscript: Fragliches Autograph
     postal_code: Postleitzahl
     postal_place: postalischer Ort
     preceding_entry: Früherer Eintrag
+    print: Druck
+    print_with_autograph_annotations: Druck mit autographen Eintragungen
+    print_with_non_autograph_annotations: Druck mit nicht-autographen Eintragungen
     printer: Drucker
     printing_technique: Drucktechnik
     production: Verlauf
@@ -760,6 +780,7 @@ de:
     scoring_in_movement: Besetzung Satz
     scoring_summary: Besetzungshinweis
     scribe: Schreiber
+    secondary_catalog_works: Sekundärer Katalog der Werke
     secondary_literature: Sekundärliteratur
     series: Serie
     series_added_entry: Nebeneintragungen Gesamttitel
@@ -835,6 +856,7 @@ de:
     translation: Übersetzung
     translator: Übersetzer
     transparency: Transparentfolie
+    treatise: Traktat
     type: Typ
     type_designer: Schriftentwerfer
     type_institution: Typ der Körperschaft
@@ -851,13 +873,20 @@ de:
     variant_source_title: Weiterer diplomatischer Titel
     variations: Variationen
     verified: Gesichert
+    version_information: Version, Ausgabe etc., Informationen
     vocalist: Sänger
     voice_instrument: Besetzung
     volume_year_page: Jahrgang, Seite
     watermark_description: Wasserzeichen
     woodwinds: Holzblasinstrumente
     work: Werktitel
-    work_number: Incipitnummer
+    work_number: Werknummer
+    work_tag: Markierung der Werk-Revision
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Markierungshinweis
+    work_tag_type: Markierungstyp
     year: Jahr
     years_birth_death: Geburts- und Todesdaten
   relations:
@@ -940,42 +969,43 @@ de:
     ERR_064_LIGATURE_DURATION: Die Dauer einer Ligatur kann nicht kürzer als eine Semibrevis sein.
     ERR_065_MREST_INVALID_MEASURE: Ein Takt Pause kann nichts anderes enthalten.
   rism_online:
-    manuscript: "Manuscript"
-    printed: "Printed"
-    composite: "Composite Volume"
-    apply_filters: "Apply filters"
-    error_loading_results: "Error loading results"
-    global_collection: "Global Collection"
-    home: "Home"
-    keyword_query: "Keyword query"
-    first: "First"
-    last: "Last"
-    next: "Next"
-    previous: "Previous"
-    no_results_body: "Adjust your query options, or reset all filters, to see results."
-    no_results_header: "No results were found for your search"
-    no_results_to_find: "No results would be found with this search"
-    page: "Page"
-    words_anywhere: "Words anywhere"
-    record_preview: "Record preview"
-    record_uri: "Record URI (Permalink)"
-    reset_all: "Reset all"
-    number_results: "Number of results"
-    search: "Search"
-    show_all_results: "Show all results"
-    show_results: "Show results"
-    source_contents: "Source contents"
-    update_results: "Update search results"
-    page_not_found: "The page was not found"
-    bad_query: "There was a problem with the query"
-    result_types: "Result Types"
-    source_relationships: "Source relationships"
-    holding_institutions: "Holding institutions"
-    digital_facsimiles: "Digital facsimiles"
-    publication_details: "Publication details"
-    biographical_details: "Biographical details"
-    role_and_profession: "Role and profession"
-    composer_composition: "Composer and composition"
+    manuscript: "Handschrift"
+    printed: "Gedruckt"
+    composite: "Konvolut"
+    apply_filters: "Filter anwenden"
+    error_loading_results: "Fehler beim Laden der Ergebnisse"
+    global_collection: "Globale Sammlung"
+    home: "Startseite"
+    keyword_query: "Stichwortsuche"
+    first: "Erster"
+    last: "Letzter"
+    next: "Weiter"
+    previous: "Zurück"
+    no_results_body: "Passen Sie Ihre Abfrageoptionen an oder setzen Sie alle Filter zurück, um Ergebnisse zu sehen."
+    no_results_header: "Keine Suchergebnisse gefunden"
+    no_results_to_find: "Diese Suche brachte keine Ergebnisse"
+    page: "Seite"
+    words_anywhere: "Wörter überall"
+    record_preview: "Datensatzvorschau"
+    record_uri: "URL des Datensatzes (Permalink)"
+    reset_all: "Alles zurücksetzen"
+    number_results: "Anzahl der Ergebnisse"
+    search: "Suche"
+    show_all_results: "Alle Ergebnisse anzeigen"
+    show_results: "Treffer anzeigen"
+    source_contents: "Inhalt der Quelle"
+    update_results: "Suchergebnisse aktualisieren"
+    page_not_found: "Diese Seite wurde nicht gefunden"
+    bad_query: "Es gibt ein Problem mit der Abfrage"
+    result_types: "Ergebnisarten"
+    source_relationships: "Quellen-Beziehungen"
+    holding_institutions: "Besitzende Institution"
+    digital_facsimiles: "Digitale Faksimiles"
+    publication_details: "Veröffentlichungsinformationen"
+    biographical_details: "Biografische Details"
+    role_and_profession: "Funktion und Beruf"
+    composer_composition: "Komponist und Komposition"
+    full_record: "Vollanzeige"
   testingForCrowdinWorkshop:
     apple: Apfel
     pear: Birne

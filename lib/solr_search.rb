@@ -6,8 +6,10 @@ module Muscat
 
         def get_terms(field)
           solr = Sunspot.session.get_connection
-          response = solr.get "terms", :params => { :"terms.fl" => field, :"terms.limit" => -1, :"terms.mincount" => 1 }
-          Hash[*response["terms"][field]].keys
+          #response = solr.get "terms", :params => { :"terms.fl" => field, :"terms.limit" => -1, :"terms.mincount" => 1 }
+          #Hash[*response["terms"][field]].keys
+          response = solr.get 'select', :params => {:"facet.field" => field, :"facet" => true, :"q" => "*:*", :"facet.mincount" => "1", :"fl" => "id", :rows => "0"}        
+          Hash[*response["facet_counts"]["facet_fields"][field]].keys
         end
 
         def search_as_ransack(params)
@@ -167,6 +169,7 @@ module Muscat
                 # The field to filter with is
                 # in the value
                 field, id = options[k].split(":")
+                id = ActiveModel::Type::Boolean.new.cast(id) if id.to_s.downcase.strip == "true" || id.to_s.downcase.strip == "false"
                 with[field] = id
               elsif k.to_s.match("gteq") # :Greather than time range
                 field = k.to_s.gsub("_gteq_datetime", "")

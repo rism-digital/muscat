@@ -58,6 +58,7 @@ en:
     english: English
     estonian: Estonian
     ethiopic: Ethiopic
+    faroese: Faroese
     fijian: Fijian
     finnish: Finnish
     french: French
@@ -113,6 +114,7 @@ en:
     sorbian: Sorbian
     south_american: South American Indian (other)
     spanish: Spanish
+    swahili: Swahili
     swedish: Swedish
     swiss_german: Swiss German
     tagalog: Tagalog
@@ -252,8 +254,10 @@ en:
     additional_choir_voice: Additional choir voice
     additional_codes: Additional codes following the standard number or code
     additional_institution: Additional institution
+    additional_manuscript_material: Additional manuscript material
     additional_personal_name: Additional personal name
     additional_personal_name_lit: Additional personal name
+    additional_printed_material: Additional printed material
     additional_solo_voice: Additional solo voice
     additional_title: Additional title
     additional_title_lit: Additional title
@@ -264,6 +268,7 @@ en:
     aids: Aids
     alleged: Alleged
     alternate_spelling: Alternate spelling
+    alternative_work_title: Alternative work title
     archive: Archive
     arrangement: Arrangement
     arrangement_statement: Arrangement statement
@@ -287,6 +292,7 @@ en:
     authority_agency: Authority agency
     authority_record_control_number: Authority record control number or standard number
     authority_reference: Authority reference
+    autograph_manuscript: Autograph manuscript
     autography: Autography
     b_major: B major
     b_minor: B minor
@@ -354,9 +360,11 @@ en:
     composer_author: Composer/Author
     composer_cross_reference: Composer cross-reference
     computer_printout: Computer printout
+    composite: Composite
     conceptor: Conceptor
     conductor: Conductor
     confused_with: Confused with
+    congress: Congress
     conjectural: Conjectural
     contact: Contact
     contact_area: Contact area
@@ -394,6 +402,7 @@ en:
     dedicatee: Dedicatee
     department: Department
     depositor: Depositor
+    deprecated_fields: Obsolete fields (do not use)
     description: Description
     description_area: Description area
     description_summary: Description summary
@@ -553,6 +562,7 @@ en:
     library_information_relations: Library information and relations
     library_siglum: Library siglum
     librettist: Librettist
+    libretto: Libretto
     licensee: Licensee
     life_dates: Life dates
     link_type: Link type
@@ -577,6 +587,8 @@ en:
     longitude: Longitude
     lyricist: Lyricist
     main_entry_fields: Main entry fields
+    manuscript_copy: Manuscript copy
+    manuscript_copy_with_autograph_annotations: Manuscript copy with autograph annotations
     married_name: Married name
     married_to: Married to
     married_with: Married with
@@ -589,6 +601,7 @@ en:
     method_of_acquisition: Method of acquisition
     misattributed: Misattributed
     miscellaneous: Miscellaneous
+    mixed: Mixed
     mode_10t: 'Mode: 10t – Hypoaeolian'
     mode_10tt: 'Mode: 10tt – Hypoaeolian, transposed'
     mode_11t: 'Mode: 11t – Ionian'
@@ -626,6 +639,7 @@ en:
     musical_composition: Musical composition
     name: Name
     name_family: Name of family
+    name_of_part: Name of part/section of a work
     name_printer: Name of printer
     name_variant: Name variant
     name_variants: Name variants
@@ -636,6 +650,7 @@ en:
     no_linguistic_content: No linguistic content
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Not applicable
+    notated_music: Notated music
     note: Note
     note_external_resource: Note about external resource
     note_fields: Note fields
@@ -679,8 +694,9 @@ en:
     other_standard_identifier: Other standard identifier
     other_variant: Other variant
     papermaker: Papermaker
-    parallel_form: Paralell form of name
+    parallel_form: Parallel form of name
     parent_record: Parent record
+    partial_autograph: Partial autograph
     parts_held: Parts held
     parts_held_extent: Parts held and extent
     patron: Patron
@@ -710,9 +726,13 @@ en:
     plaine_and_easie: Plaine and Easie code
     plate_number: Plate number
     plucked_instruments: Plucked instruments
+    possible_autograph_manuscript: Possible autograph manuscript
     postal_code: Postal code
     postal_place: Postal place
     preceding_entry: Preceding entry
+    print: Print
+    print_with_autograph_annotations: Print with autograph annotations
+    print_with_non_autograph_annotations: Print with non-autograph annotations
     printer: Printer
     printing_technique: Printing technique
     production: Production
@@ -763,6 +783,7 @@ en:
     scoring_in_movement: Scoring in movement
     scoring_summary: Scoring summary
     scribe: Scribe
+    secondary_catalog_works: Secondary catalog of works
     secondary_literature: Secondary literature
     series: Series
     series_added_entry: Series added entry fields
@@ -838,6 +859,7 @@ en:
     translation: Translation
     translator: Translator
     transparency: Transparency
+    treatise: Treatise
     type: Type
     type_designer: Type designer
     type_institution: Type of institution
@@ -854,6 +876,7 @@ en:
     variant_source_title: Variant title on source
     variations: Variations
     verified: Verified
+    version_information: Version, edition, etc., information
     vocalist: Vocalist
     voice_instrument: Voice/instrument
     volume_year_page: Volume, year, page
@@ -861,6 +884,12 @@ en:
     woodwinds: Woodwinds
     work: Work
     work_number: Work number
+    work_tag: Work revision tag
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Tag note
+    work_tag_type: Tag type
     year: Year
     years_birth_death: Years of birth and death
   relations:
@@ -979,6 +1008,7 @@ en:
     biographical_details: "Biographical details"
     role_and_profession: "Role and profession"
     composer_composition: "Composer and composition"
+    full_record: "Full Record"
   testingForCrowdinWorkshop:
     apple: apple
     pear: pear

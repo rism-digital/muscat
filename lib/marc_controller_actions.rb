@@ -64,7 +64,7 @@ module MarcControllerActions
       
       # Some housekeeping, change owner and status
       if params.has_key?(:record_status) &&
-          (current_user.has_role?(:cataloger) || current_user.has_role?(:cataloger_prints) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
+          (current_user.has_role?(:cataloger) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
         @item.wf_stage = params[:record_status]
       end
       
@@ -320,7 +320,7 @@ module MarcControllerActions
       
       new_marc = dyna_marc_class.new()
       # Load marc, do not resolve externals
-      new_marc.load_from_hash(marc_hash, user: current_user, dry_run: true)
+      new_marc.load_from_hash(marc_hash, user: current_user) # -> revert to old behaviour, dry_run: true)
 
       @item = model.new
       @item.marc = new_marc

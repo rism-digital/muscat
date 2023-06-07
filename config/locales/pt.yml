@@ -339,7 +339,8 @@ pt:
   validation_level_error: "Há erros, por favor resolva antes de salvar."
   validation_level_warning: "Estes são avisos, salve novamente para ignorar."
   muscat_reindexing: "Muscat está a reindexar, os resultados da pesquisa podem estar incompletos"
-  
+  work_catalogue: "Catálogo de obras"  
+
   jobs:
     not_set: "[Nenhum estado determinado]"
     ok: "Trabalho realizada com sucesso"
@@ -427,6 +428,7 @@ pt:
     one_week: "As seguintes pastas serão apagadas dentro de uma semana em %{data}"
     two_weeks: "As seguintes pastas serão apagadas dentro de duas semanas em %{data}"
     one_month: "As seguintes pastas serão apagadas dentro de um mês em %{data}"
+    make_catalogue: "Marcar artigos como catálogos de obras"
 
   ### Digital objects
   digital_objects: "Objetos Digitais"
@@ -560,7 +562,10 @@ pt:
   filter_source_name: "Nome da fonte"
   filter_source_composer: "Compositor da fonte"
   filter_printed_exemplars: "Número de exemplares impressos"
- 
+  filter_is_text: "\"Text\", in 031 $t"
+  filter_is_standard: "\"Standard\", in 240 $a"
+  filter_is_additional: "\"Additional\", in 730 $a"
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} se refere a este %{model_to}"
  

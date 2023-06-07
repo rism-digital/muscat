@@ -3,6 +3,14 @@ server:
   - validate_user_abilities
   - validate_links_to_self
 client:
+  "031":
+    tags:
+      "b":
+        required_if:
+          "031": "a"
+      "c":
+        required_if:
+          "031": "a"
   "100":
     tag_overrides:
       exclude:
@@ -61,14 +69,12 @@ client:
     tags:
       "a": mandatory
 # Remove until 593 is sorted out
-#  "593":
-#    tag_overrides:
-#      exclude:
-#        "a":
-#        - collection
-#        - composite_volume
-#    tags:
-#      "a": mandatory
+# I guess we have not sorted this out yet
+  "593":
+    tag_overrides:
+    tags:
+      "a": mandatory
+      "b": mandatory
   "594": 
     tag_overrides:
       exclude:
@@ -117,6 +123,20 @@ client:
       "n": required
       "w": required
       "4": required
+  "773":
+    tag_overrides:
+      exclude:
+        "w":
+        - collection
+        - source
+        - libretto_source
+        - libretto_edition
+        - theoretica_source
+        - theoretica_edition
+        - edition
+        - composite_volume
+    tags:
+      'w': mandatory
   "852":
     tag_overrides:
       exclude:

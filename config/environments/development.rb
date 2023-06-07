@@ -1,5 +1,16 @@
 require "active_support/core_ext/integer/time"
 
+## Uncomment this to see the location of puts calls
+=begin
+module Kernel
+  alias :oldputs :puts
+  def puts (s)
+    # Do whatever you want here, including nothing
+    oldputs(caller_locations.first.to_s + ": " + s)
+  end
+end
+=end
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

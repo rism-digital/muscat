@@ -21,6 +21,7 @@
 		end
 
 		browse_helper = @item.marc.config.get_browse_helper(tag.tag, subfield.tag)
+		content = Anchored::Linker.auto_link(content).html_safe if content.match("(http|https)://")
 	-%>
 	<% if browse_helper -%>
 	   <%= raw method(browse_helper).call( content, subfield, opac ) %>

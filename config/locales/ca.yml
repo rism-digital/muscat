@@ -1,0 +1,891 @@
+
+ca:
+  active_admin:
+    search_status:
+      headline: "Abast de la cerca"
+      current_filters: "Filtres actius"
+    compare_versions: "Compara versions"
+    dashboard: "Tauler d'activitat"
+    dashboard_welcome:
+      welcome: "Benvinguts a l'Active Admin. Aquesta és el tauler d'activitat per defecte."
+      call_to_action: "Per a afegir-hi seccions, vegueu el fitxer 'app/admin/dashboard.rb'"
+    view: "Mostra"
+    edit: "Edita"
+    delete: "Elimina"
+    delete_confirmation: "Segur que voleu eliminar-lo?"
+    new_model: "Crea %{model}"
+    create_model: "Crea %{model}"
+    edit_model: "Edita %{model}"
+    update_model: "Edita %{model}"
+    delete_model: "Elimina %{model}"
+    save_model: "Desa"
+    details: "Detalls de %{model}"
+    cancel: "Cancel·lar"
+    empty: "Buit"
+    previous: "Anterior"
+    next: "Següent"
+    download: "Descarregueu:"
+    has_many_new: "Afegeix-li un %{model}"
+    has_many_delete: "Elimina'ls"
+    has_many_remove: "Elimina'ls"
+    filters:
+      buttons:
+        filter: "Filtra"
+        clear: "Elimina els filtres"
+      predicates:
+        contains: "Conté"
+        equals: "És igual a"
+        starts_with: "Comença per"
+        ends_with: "Acaba amb"
+        greater_than: "Més gran que"
+        less_than: "Més petit que"
+        with_integer: "Amb el nombre"
+        from: "Des de"
+        to: "Fins a"
+    status_tag:
+      "yes": "Sí"
+      "no": "No"
+    main_content: "Implementeu %{model}#main_content per mostrar el contingut."
+    logout: "Tanca la sessió"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Filtres"
+      sections: "Seccions i accions"
+      actions: "Accions"
+      toc: "Taula de continguts"
+    pagination:
+      empty: "No se n'ha trobat cap"
+      one: "Mostra <b>1</b> %{model}"
+      one_page: "%{model}, <b>tots %{n}</b>"
+      multiple: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b> d'un total de <b>%{total}</b>"
+      multiple_without_total: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Elements per pàgina:"
+      entry:
+        one: "entrada"
+        other: "entrades"
+    any: "Qualsevol"
+    blank_slate:
+      content: "No n'hi ha cap."
+      link: "En podeu crear"
+    dropdown_actions:
+      button_label: "Accions"
+    batch_actions:
+      button_label: "Accions per lots"
+      default_confirmation: "Segur que voleu fer això?"
+      delete_confirmation: "Segur que voleu eliminar aquests %{plural_model}?"
+      succesfully_destroyed:
+        one: "1 %{model} eliminat"
+        other: "%{count} %{plural_model} eliminats"
+      selection_toggle_explanation: "(Invertir la selecció)"
+      link: "Creeu-ne un"
+      action_label: "%{title}"
+      labels:
+        destroy: "Eliminar"
+        folder: "Crea una carpeta amb els elements seleccionats"
+        add_to_folder: "Afegeix els elements a una carpeta ja existent"
+        merge: "Fusiona registres d'autoritat"
+        change_template: "Canvia la plantilla"
+
+    comments:
+      resource_type: "Tipus de recurs"
+      author_type: "Tipus d'autor"
+      body: "Text"
+      author: "Autor"
+      title: "Comentari"
+      add: "Afegeix comentari"
+      resource: "Recurs"
+      no_comments_yet: "Sense comentaris."
+      comments_help: "Teclegeu @ per esmentar un usuari específic, que rebrà la notificació per correu electrònic."
+      author_missing: "Anònim"
+      title_content: "Comentaris (%{count})"
+      referring_comments: "Comentaris on se m'esmenta"
+      my_item_comments: "Comentaris als meus registres"
+      my_own_comments: "Comentaris que he fet"
+      errors:
+        empty_text: "No s'ha desat el comentari perquè no hi havia text."
+    devise:
+      username:
+        title: "Usuari"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Subdomini"
+      password:
+        title: "Contrasenya"
+      sign_up:
+        title: "Registreu-vos"
+        submit: "Registreu-vos"
+      login:
+        title: "Inicia la sessió"
+        remember_me: "Recorda'm"
+        submit: "Inicia-la"
+      reset_password:
+        title: "Heu oblidat la contrasenya?"
+        submit: "Restableix la contrasenya"
+      change_password:
+        title: "Canvieu la contrasenya"
+        submit: "Canvia-me-la"
+      unlock:
+        title: "Reenvieu les instruccions per reestablir-la"
+        submit: "Reenvia-les"
+      resend_confirmation_instructions:
+        title: "Reenvieu les instruccions per reestablir-la"
+        submit: "Reenvia-les"
+      links:
+        sign_in: "Identificació"
+        forgot_your_password: "Heu oblicat la contrasenya?"
+        sign_in_with_omniauth_provider: "Identifica'm via %{provider}"
+        resend_unlock_instructions: "Reenvieu les instruccions per reestablir-la"
+    unsupported_browser:
+      headline: "Muscat ja no funciona amb la versió 8 o inferior de Internet Explorer."
+      recommendation: "Us recomanem que us actualitzeu a les darreres versions de <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, or <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Si esteu utilizant IE 9 o posterior, assegureu-vos de desactivar la <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Compatibility View\"</a>."
+    access_denied:
+      message: "No teniu permisos per fer aquesta operació."
+    index_list:
+      table: "Taula"
+      block: "Llista"
+      grid: "Graella"
+      blog: "Blog"
+  switch_language: "Canvi d'idioma"
+  this_file_language: "Català"
+
+  time:
+    formats:
+      default: "%H:%M"
+      short: "%H:%M"
+      long: "%d-%m-%Y %H:%M"
+      verbose: "%B %d, %Y %H:%M"
+
+  #################### MODELS
+  activerecord:
+    models:
+      digital_object:
+        one: "Objecte digital"
+        other: "Objectes digitals"
+      publication:
+        one: "Literatura secundària"
+        other: "Literatura secundària"
+      folder:
+        one: "Carpeta"
+        other: "Carpetes"
+      workgroup:
+        one: "Grup"
+        other: "Grups"
+      holding:
+        one: "Exemplar"
+        other: "Exemplars"
+      institution:
+        one: "Institució"
+        other: "Institucions"
+      liturgical_feast:
+        one: "Festivitat litúrgica"
+        other: "Festivitats litúrgiques"
+      person:
+        one: "Nom personal"
+        other: "Noms personals"
+      source:
+        one: "Font"
+        other: "Fonts"
+      standard_term:
+        one: "Matèria"
+        other: "Matèries"
+      standard_title:
+        one: "Títol uniforme"
+        other: "Títols uniformes"
+      user:
+        one: "Usuari"
+        other: "Usuaris"
+      work:
+        one: "Obra"
+        other: "Obres"
+
+  #################### RECORD TYPES (TEMPLATES)
+  select_template: "Seleccioneu una plantilla"
+  available_templates: "Platilles disponibles"
+  from_existing_source: "Crea-la a partir d'una font ja existent"
+  create_from_existing: "Crea-la"
+  record_types:
+    unspecified: "[Plantilla desconeguda]"
+    collection: "Manuscrit musical, registre mare d'una col·lecció"
+    source: "Manuscrit musical"
+    edition_content: "Edició musical impresa, part d'una col·lecció"
+    libretto_source: "Llibret manuscrit"
+    libretto_edition: "Llibret imprès"
+    libretto_edition_content: "Llibret imprès, part d'una col·lecció"
+    theoretica_source: "Tractat manuscrit"
+    theoretica_edition: "Tractat imprès"
+    theoretica_edition_content: "Tractat imprès, part d'una col·lecció"
+    edition: "Edició musical impresa, registre mare d'una col·lecció o ítem individual"
+
+    composite_volumes: "Volums compostos"
+    composite_volume: "Registre d'un volum compost"
+
+    music_manuscripts: "Manuscrits musicals"
+    collection_record: "Col·lecció de registres musicals"
+    individual_entry: "Registre individual dins d'una col·lecció manuscrits musicals"
+    single_manuscript: "Manuscrit musical individual"
+
+    printed_music: "Música impresa"
+    collection_record_edition: "Registre de col·lecció pera a una edició musical impresa"
+    individual_entry_edition: "Registre individual en una col·lecció musical impersa"
+    single_edition: "Edició musical impresa individual"
+
+    libretti_handwritten: "Llibrets manuscrits"
+    collection_record_libretti: "Registre de col·lecció per a llibrets manuscrits"
+    individual_entry_libretti: "Entrada individual en uina col·lecció de llibrets manuscrits"
+    single_libretto: "Llibret manuscrit individual"
+
+    libretti_printed: "Llibrets impresos"
+    collection_record_libretti_printed: "Registre de collecció per a llibrets impresos"
+    individual_entry_libretti_printed: "Entrada individual en una col·lecció de llibrets impresos"
+    single_libretto_printed: "Llibret imprès individual"
+
+    threatise_handwritten: "Tractats manuscrits"
+    collection_record_threatise: "Registre de col·lecció de tractats manuscrits"
+    individual_entry_threatise: "Entrada individual en una col·lecció de tractats manuscrits"
+    single_threatise: "Tractat manuscrit individual"
+
+    threatise_printed: "Tractats impresos"
+    collection_record_threatise_printed: "Registre de col·lecció de tractats impresos"
+    individual_entry_threatise_printed: "Entrada individual en una col·lecció de tractats impresos"
+    single_threatise_printed: "Tractat imprès individual"
+
+  #################### MENUS
+  menu_home: "Pagina d'inici"
+  menu_sources: "Fonts"
+  menu_simple_search: "Cerca bàsica"
+  menu_advanced_search: "Cerca avançada"
+  menu_indexes: "Autoritats"
+  menu_people: "Persones"
+  menu_institutions: "Institucions"
+  menu_titles: "Títols / íncipits literaris"
+  menu_subjects: "Matèries"
+  menu_library_sigla: "Sigles de biblioteca"
+  menu_publications: "Literatura secundària"
+  menu_liturgical_feasts: "Festivitats litúrgiques"
+  menu_latin: "Text en llatí"
+  menu_places: "Llocs"
+  menu_help: "Ajuda"
+  menu_folders: "Carpetes"
+  menu_users: "Usuaris"
+  menu_workgroups: "Grups de treball"
+  menu_administration: "Administració"
+  menu_comments: "Comentaris"
+  menu_catalog: "Cerca per facetes"
+  menu_languages: "Idioma"
+  menu_contact: "Contacte"
+  menu_search_history: "Històric de cerques"
+  menu_guidelines: "Guies de catalogació"
+  menu_marc_documentation: "Configuració MARC"
+  menu_guidelines_top: "Concrecions"
+  menu_cataloging: "Catalogació"
+  menu_jobs: "Processos"
+  menu_holdings: "Exemplars"
+  menu_works: "Obres"
+  menu_work_nodes: "Referències d'obres (Work Nodes)"
+
+  ### VARIOUS ELEMENTS
+  recent_changes: "Modifications recents"
+  any_field_contains: "Conté a qualsevol camp"
+  title_contains: "Conté al títol diplomàtic"
+  std_title_contains: "Conté al títol uniforme"
+  composer_contains: "Conté com a compositor"
+  library_sigla_contains: "Conté a la sigla"
+  internal_note_contains: "Conté en una nota interna"
+  is_in_folder: "És a la carpeta"
+  workgroups: "Grups de treball"
+  roles: "Rols"
+  user_details: "Detalls de l'usuari"
+  sections: "Seccions"
+  edit: "Editar"
+  search_sources: "Cercar fonts"
+  created_at: "Creat el"
+  updated_at: "Darrera actualització"
+  status: "Estat"
+  progress_stage: "Fase"
+  object: "Objecte"
+  queue: "Cua"
+  failed_at: "Error a"
+  run_at: "Executat a"
+  progress: "Progrés"
+  failed: "Error"
+  waiting: "Esperant"
+  running: "Executant-se"
+  finished: "Acabat"
+  lib_siglum: "Sigla de biblioteca"
+  holding_records: "Exemplars"
+  holding_no_siglum: "Exemplars sense sigla de biblioteca"
+  holding_missing: "Aquesta edició impresa encara no té exemplars adjunts. Afegiu-hi la sigla de la vostra biblioteca, el topogràfic, i la resta de la informació de la còpia fent clic al botó \"%{new_holding}\" de la dreta."
+  holding_missing_alert: "Aquesta edició impresa encara no té exemplars ajdunts. Afegiu-hi la sigla de la vostra biblioteca, el topogràfic, i la resta de la informació de la còpia fent clic al botó \"%{new_holding}\" de la dreta després de desar-la."
+  holding_missing_show: "Aquesta edició impresa encara no té exemplars ajdunts. Afegiu-hi la sigla de la vostra biblioteca, el topogràfic, i la resta de la informació de la còpia fent clic al botó \"%{new_holding}\" de la dreta després de desar-la."
+  new_holding: "Afegir-hi un exemplar"
+  new_holding_page: "Nou registre d'exemplar"
+  new_digital_object_image: "Adjuntar-hi una imatge"
+  new_digital_object_incipit: "Afegir-hi un altre ínciput MEI"
+  record_actions: "Accions sobre el registre"
+  record_status: "Estat del registre"
+  record_owner: "Propietari del registre"
+  record_audit: "Origen del registre"
+  basic_level: "Registre bàsic"
+  full_level: "Registre complet"
+  #full_level: "Full record, material examined"
+  abbreviated_level: "Registre breu, material examinat"
+  retro_level: "Catalogació retrospectiva"
+  imported_level: "Registre importat"
+  link_type: "Tipus d'objecte vinculat"
+  linked_object: "Objecte vinculat"
+  links: "Enllaços"
+  link_remove: "Eliminar enllaç"
+  link_remove_confirm: "Esteu segurs que voleu elimiar aquest enllaç?"
+  unloadable_record: "Aquest registre no es pot carregar bé: es pot consultar però no editar. Poseu-vos en contacte amb l'administrador."
+  validation_level_error: "Hi ha errors. Resoleu-vos abans de desar-lo"
+  validation_level_warning: "Hi ha advertiments. Els podeu ignorar tornant a desar-lo"
+  muscat_reindexing: "Muscat està reindexant. Els resultats poden ser incomplets"
+  work_catalogue: "Catàleg d'obres"
+
+  jobs:
+    not_set: "[Sense estat]"
+    ok: "Tasca finalitzada"
+    no_status: "Error mentre es llegia l'estat de la tasca"
+    error: "ERROR: "
+    running_jobs: "No es poden eliminar les tasques que s'estan executant."
+    auto_delete: "No es pot eliminar perquè s'havia esborrat automàticament en acabar."
+    no_view: "No es pot consultar perquè s'havia esborrat automàticament en acabar."
+
+  # Sidebar
+  delete: "Elimina"
+  to_the_list: "Torna a la llista"
+  go_to_top: "Torna a dalt"
+  edit: "Edita"
+  new: "Crea'n"
+  duplicate: "Duplica"
+  merge: "Fusiona'n"
+  no_action: "Sense accions disponibles"
+  reindex: "Reindexa les fonts"
+  resave: "Torna a desar les fonts"
+  publish: "Publica"
+  unpublish: "Despublica"
+  select: "Selecciona"
+  create_folder: "Afegeix-los tots a una carpeta nova"
+  append_folder: "Afegeix-los tots a una carpeta existent"
+  add_institution: "Vincula-hi una institució"
+  add_source: "Vincula-hi una font"
+  add_person: "Vincula-hi una persona"
+  archive_unarchive: "Arxiva / Desarxiva"
+  archive: "Arxiva"
+  unarchive: "Desarxiva"
+  export_folder: "Exporta la carpeta en format MARCXML"
+  export_folder_csv: "Exporta la carpeta en format CSV"
+  validate_folder: "Valida els elements"
+
+
+  # Editor sidebar
+  show_all_groups: "Mostra totes les seccions"
+  show_preview: "Vista preliminar"
+  hide_preview: "Oculta la vista prelimiar"
+  show_validate: "Valida"
+  show_history: "Historial de modificacions"
+  show_gnd: "Cerca al GND"
+  show_viaf: "Cerca al VIAF"
+  save_and_continue: "Desa i continua editant"
+  save_and_exit: "Desa i tanca"
+  cancel: "Cancel·la"
+  duplicate_confirm: "Segur que voleu duplicar aquest registre?"
+  convert_to_print: "Converteix-lo a plantilla d'obra impresa"
+
+  # Version history
+  history_date: "Data"
+  history_author: "Autor"
+  history_event: "Esdeveniment"
+  history_modification: "Modificació"
+  history_view: "Consulta"
+  history_diff: "Diferència"
+  history_restore: "Restaura"
+  history_delete: "Elimina"
+  history_restore_confirm: "Voleu restaurar aquesta versió?"
+  history_delete_confirm: "Voleu eliminar aquesta versió?"
+
+  #### FOLDER MESSAGES
+  folders:
+    save: "Desa els resultats a una carpeta"
+    success: "Carpeta %{name} creada amb %{count} elements."
+    too_many: "No es poden afegir més de %{max} elements (%{count} seleccionats)."
+    added: "S'han afegit %{count} elements a la carpeta %{name}."
+    added_bg: "Elements afegits a la carpeta, tasca %{job} pendent."
+    success_bg: "Carpeta %{name} creada, tasca %{job} pendent."
+    items: "Elements"
+    export_started: "Rebreu un correu a %{email} amb l'enllaç de la descàrrega (tasca d'exportació %{job})."
+    export_limit: "El límit per exportar elements és de %{max}, i aquesta carpeta en té %{count}."
+    folder_empty: "La carpeta està buida"
+    not_found: "La carpeta %{id} no existeix"
+    publish_job: "Ha començat la tasca de publicació (id: %{id})"
+    unpublish_job: "Ha començat la tasca de despublicació (id: %{id})"
+    reindex_job: "Ha començat la tasca de reindexació (id: %{id})"
+    validation_started: "Rebreu un correu a %{email} quan hagi acabat la validació (tasca de validació: %{job})."
+    folder_not_source: "Només es poden validar carpetes amb fonts"
+    expires: "Expira el"
+    resetted: "La data de caducitat ha passat a ser %{date}"
+    reset_expiration: "Reestablir la data d'expiració"
+    delete_now: "S'han esborrat aquestes carpetes:"
+    tomorrow: "Carpetes que s'esborraran demà %{date}"
+    one_week: "Carpetes que s'esborraran la setmana que ve, el %{date}"
+    two_weeks: "Carpetes que s'esborraran d'aquí a dues setmanes, el %{date}"
+    one_month: "Carpetes que s'esborraran el mes que ve, el %{date}"
+    make_catalogue: "Marcar els elements per fer-ne un catàleg"
+
+  ### Digital objects
+  digital_objects: "Objectes digitals"
+  digital_object_new: "Afegir-hi un objecte digital"
+  digital_object_add: "Afegir-lo"
+
+  ############ filters
+  filter_address: "Adreça"
+  filter_alternate_dates: "Dates alternatative"
+  filter_alternate_names: "Noms alternatius"
+  filter_alternate_terms: "Termes alternatius"
+  filter_alternates: "Noms alternatius"
+  filter_any_field: "Qualsevol camp"
+  filter_attachment_type: "Tipus d'objecte digital"
+  filter_author: "Autor"
+  filter_author_or_editor: "Autor/editor"
+  filter_autograph_of: "Autògraf de"
+  filter_birth_place: "Lloc de naixement"
+  filter_catalog: "Catàleg"
+  filter_category_type: "Categoria"
+  filter_collection: "Col·lecció"
+  filter_comment: "Comentari"
+  filter_composer: "Compositor"
+  filter_connected_libraries: "Biblioteques"
+  filter_country: "País"
+  filter_creation_date: "Data de creació"
+  filter_date: "Data"
+  filter_date_from: "Des de data"
+  filter_date_of_publication: "Any de publicació"
+  filter_date_to: "Fins a data"
+  filter_description: "Descripció"
+  filter_digital_objects: "Objectes digitals"
+  filter_district: "Districte"
+  filter_email: "Correu electrònic"
+  filter_folder_type: "Tipus de carpeta"
+  filter_full_name: "Nom"
+  filter_gender: "Gènere"
+  filter_id: "Id"
+  filter_incipit: "Íncipit"
+  filter_incipit_number: "Número d'íncipit"
+  filter_incipits: "Íncipits"
+  filter_incipits_ng: "Íncipits (ngrams)"
+  filter_incipits_tf: "Íncipits (cercador de tema)"
+  filter_incipit_key: "Tonalitat de l'íncipit"
+  filter_institution: "Institució"
+  filter_institutions: "Institucions"
+  filter_key: "Tonalitat"
+  filter_language: "Idioma"
+  filter_last_updated: "Darrera actualització"
+  filter_lib_siglum: "Sigla de la biblioteca"
+  filter_life_dates: "Dates"
+  filter_links: "Enllaços"
+  filter_liturgical_feast: "Festivitats litúrgiques"
+  filter_location_and_name: "Nom i lloc"
+  filter_manuscript_no: "Manuscrit número"
+  filter_mei: "Fitxer MEI"
+  filter_male: "Masculí"
+  filter_female: "Femení"
+  filter_unknown: "Desconegut"
+  filter_shelf_mark: "Topogràfic"
+  filter_name: "Nom"
+  filter_notes: "Notes"
+  filter_old_versions: "Versions anteriors"
+  filter_owner: "Propietari"
+  filter_pages: "Pàgines"
+  filter_pattern: "Patrons de sigla"
+  filter_people: "Persones"
+  filter_person_100d: "Dates biogràfiques"
+  filter_person_550a: "Professió"
+  filter_person_375a: "Gènere"
+  filter_person_043c: "Nacionalitat"
+  filter_person_551a: "Llocs"
+  filter_person_100d_birthdate: "Any de naixement"
+  filter_person_100d_deathdate: "Any de mort"
+  filter_phone: "Telèfon"
+  filter_place: "Lloc"
+  filter_place_of_publication: "Lloc de publicació"
+  filter_plate_no: "Número de planxa"
+  filter_provenance: "Custòdia"
+  filter_record_type: "Tipus de plantilla"
+  filter_record_type_short: "Tipus"
+  filter_publisher: "Editor"
+  filter_journal: "Revista"
+  filter_id: "RISM ID"
+  filter_id_no: "RISM ID"
+  filter_images: "Imatges"
+  filter_opus: "Opus"
+  filter_scoring: "Repartiment"
+  filter_series_items: "Element de la sèrie"
+  filter_siglum: "Sigla"
+  filter_source: "Font"
+  filter_sources: "Fonts"
+  filter_source_type: "Tipus de font"
+  filter_source_content_type: "Tipus de contingut"
+  filter_std_title: "Títol uniforme"
+  filter_subject: "Matèria"
+  filter_subsequent_entries: "Entrada posterior"
+  filter_term: "Terme"
+  filter_textincipit: "Íncipit literari"
+  filter_thematic_opus: "Catàleg temàtic / Número d'opus"
+  filter_title: "Títol"
+  filter_titles: "Títols"
+  filter_title_on_ms: "Títol a la font"
+  filter_title_short: "Títol abreujat"
+  filter_topic: "Tema"
+  filter_sub_topic: "Subtema"
+  filter_url: "Adreça d'Internet"
+  filter_variants: "Variants"
+  filter_versions: "Versions"
+  filter_volume: "Volum"
+  filter_image: "Imatge"
+  filter_file_name: "Nom del fitxer"
+  filter_file_size: "Mida del fitxer"
+  filter_content_type: "Tipus de contingu"
+  filter_wf: "WF"
+  filter_wf_audit: "Revisió"
+  filter_wf_stage: "Estat"
+  filter_distribution: "Repartiment"
+  filter_dist_exclude: "Excloure"
+  filter_dist_594a: "Parts vocals (solistes)"
+  filter_dist_594b: "Altres parts vocals (solistes)"
+  filter_dist_594c: "Parts vocals (cor)"
+  filter_dist_594d: "Altres parts vocalss (cor)"
+  filter_dist_594e: "Instruments solistes"
+  filter_dist_594f: "Instruments de corda"
+  filter_dist_594g: "Instruments de vent-fusta"
+  filter_dist_594h: "Instruments de vent-metall"
+  filter_dist_594i: "Instruments de corda pinçada"
+  filter_dist_594k: "Instruments de perscussió"
+  filter_dist_594l: "Instrumentsde tecla"
+  filter_dist_594m: "Altres Instruments"
+  filter_dist_594n: "Instruments de baix continu"
+  filter_source_name: "Nom de la font"
+  filter_source_composer: "Compostor de la font"
+  filter_printed_exemplars: "Nombre d'exemplars impresos"
+  filter_is_text: "\"Text\", en 031 $t"
+  filter_is_standard: "\"Standard\", en 240 $a"
+  filter_is_additional: "\"Additional\", en 730 $a"
+
+  ## Referring lists for auth files
+  refers_to_this: "%{model_from} que fan referència a aquest(a) %{model_to}"
+
+  rism_any_key: "Qualsevol tonalitat"
+  rism_a_flat: "La bemoll major/menor"
+  rism_a: "La major/menor"
+  rism_b_flat: "Si bemoll major/menor"
+  rism_b: "Si major/menor"
+  rism_c: "Do major/menor"
+  rism_c_sharp: "Do diesi major/menor"
+  rism_d_flat: "Re bemoll major/menor"
+  rism_d: "Re major/menor"
+  rism_e_flat: "Mi bemoll major/menor"
+  rism_e: "Mi major/menor"
+  rism_f: "Fa major/menor"
+  rism_f_sharp: "Fa diesi major/menor"
+  rism_g: "Sol major/menor"
+  rism_g_sharp: "Sol diesi major/minor"
+
+  # Assorted error messages
+  error_not_found: "El recurs al que esteu intentant d'accedir no existeix o ha estat esborrat."
+  error_saving: "El recurs no està complet o genera un duplicat"
+  unknown_tags: "En aquestre hi ha camps desconeguts"
+  ungrouped_tags: "En aquest registres hi ha camps no agrupats"
+  cannot_update_source: "No esteu autoritzats a editar aquest tipus de font"
+  cannot_create_source: "No esteu autoritzats a crear aquest tipus de font"
+  validate_name_uniqness: "No s'ha desat el registre: el títol abreujat '%{term}' ja existeix."
+  validates_parent_id: "No s'ha desat el registre: el registre mare (773) no pot ser el mateix que el d'aquest registre"
+  is_part_of_collection: "Aquest %{class} %{id} forma part d'una col·lecció, cal eliminar la 773"
+  not_set: "[not set]"
+
+  #
+  entry:
+    one: "entada"
+    other: "entrades"
+  digital_object:
+    one: "objecte digital"
+    other: "objectes digitals"
+  publication:
+    one: "publicació"
+    other: "publicacions"
+  institution:
+    one: "institució"
+    other: "institucions"
+  library:
+    one: "biblioteca"
+    other: "biblioteques"
+  liturgicalfeast:
+    one: "festivitat litúrgica"
+    other: "festivitats litúrguqyes"
+  source:
+    one: "font"
+    other: "fonts"
+  place:
+    one: "lloc"
+    other: "llocs"
+  person:
+    one: "persona"
+    other: "persones"
+  standardterm:
+    one: "matèria"
+    other: "matèries"
+  standardtitle:
+    one: "títol o text de l'íncipit"
+    other: "títols o textos dels íncipits"
+  user:
+    one: "usuari"
+    other: "usuaris"
+  job:
+    one: "tasca"
+    other: "tasques"
+  folder:
+    one: "carpeta"
+    other: "carpetes"
+  worknode:
+    one: "work node"
+    other: "work nodes"
+
+  will_paginate:
+    page_entries_info:
+      single_page_html:
+        zero: "No se n'ha trobat cap"
+        one: "Mostra <b>1</b> %{model}"
+        other: "%{model}, un <b>total de %{count}</b>"
+      multi_page_html: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b> d'un total de <b>%{count}</b>"
+
+    models:
+      person:
+        one: "Persona"
+        other: "Persones"
+
+  manuscript_links:
+    one: "1 font"
+    other: "%{count} fonts"
+
+  # themefinder
+  themefinder_c: "precisió melòdica alta"
+  themefinder_C: "precisió melòdica baixa"
+  themefinder_d: "grau de l'escala diatònica"
+  themefinder_i: "interval cromàtic"
+  themefinder_I: "interval diatònic"
+  themefinder_p: "altura diatònica"
+  themefinder_P: "altura cromàtica"
+  themefinder_p0: "sense cerca per altura"
+
+  themefinder_u: "durada exacta"
+  themefinder_r: "precisió de la durada alta"
+  themefinder_R: "precisió de la durada baixa"
+  themefinder_d0: "sense cercar-ne la durada"
+
+  themefinder_L: "nivell mètric"
+  themefinder_l: "posició mètrica"
+  themefinder_e: "precisió mètrica alta"
+  themefinder_E: "precisió mètrica baixa"
+  themefinder_b: "nivell de la pulsació"
+  themefinder_m0: "sense cercar-ne la mètrica"
+
+  tf_pitch_search: "Altura"
+  tf_duration_search: "Durada"
+  tf_metric_search: "Mètrica"
+  tf_meter: "Tempo"
+  tf_anchor: "Cercar només al començament de l'íncipit"
+
+  tf_pitch_help: "Suggeriments per a la cerca melòdica"
+  tf_duration_help: "Suggeriments per a la cerca per durada"
+  tf_metric_help: "Suggeriments per a la cerca per mètrica"
+  tf_anchor_help: "Suggeriments per a la cerca per clau"
+  tf_timesig_help: "Ajuda per a la cerca per compàs"
+  btn_themefinder_reset: "Restableix"
+
+  tf_acknowledgments: "La cerca per íncipits es fa gràcies al <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> desenvolupat pel <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
+
+  do_link_lang: "cat"
+  do_media_files_title: "Fitxer multimèdia"
+  do_ext_res_link: "Recursos externs:"
+  do_ext_link_not_avail: "(Fitxers d'àudio no accessibles des d'aquesta ubicació)"
+  do_images_title: "Imatges"
+  connected_libraries: "Biblioteques"
+  view_source: "Mostra font"
+
+  mei:
+    title: "Exportació MEI de la font %{source}"
+    parameters: "Paràmetres"
+    format: "Format de sortida de l'íncipit:"
+    format_mei: "MEI"
+    format_pae: "PAE (sense conversió)"
+    stylesheet: "Full d'estil"
+    default_stylesheet: "Full d'estil per defecte:"
+    custom_stylesheet: "Full d'estil personalitzat:"
+    preview: "Vista prelimiar"
+    download: "Descarregar"
+    more: "Més"
+    banner: 'Feu clic a "Vista preliminat" per veure la sortida en MEI.'
+
+  notifications:
+    cadence: "Freqüència de les notificacions"
+    none: "Les notifications estan desactivades"
+    every: "Cada cop que es desi un fitxer que hi coincideixi"
+    daily: "Cada dia"
+    weekly: "Cada setmana"
+    rules: "Regles"
+    notifications: "Notificacions"
+    edit: "Editar les notificacions"
+    empty_message: "No hi ha notificacions activades. Podeu %{href} per activar-les"
+    empty_message_href: "editar-les"
+
+  wf_stage:
+    inprogress: "No publicat (UNP)"
+    published: "Publicat (PUB)"
+    deleted: "Eliminat"
+    deprecated: "Descartat"
+
+  dashboard:
+    selection: "Seleccioneu l'activitat recent"
+    type: "Tipus"
+    type_created: "Nous"
+    type_updated: "Actualitzats"
+    owner: "Propietari"
+    owner_user: "Jo mateix"
+    owner_any: "Qualsevol"
+    quantity: "Mostra"
+    update: "Actualtiza"
+    no_items: "Amb aquests filtres ho hi surt cap element"
+    message_silenced: "Heu silenciat el missatge de les novetats."
+    got_it: "Entesos!"
+    got_it_explanation: "Si premeu aquest botó no tornareu a veure les novetats fins a la propera actualització."
+    news: "Notícies de Muscat"
+    my_comments: "Els meus comentaris"
+    my_records: "Els meus registres"
+    about_comments: "Sobre els comentaris"
+
+  compare_versions:
+    time_frame: "Període"
+    rule: "Regla"
+    display: "Mostra"
+    options: "Opcions"
+    show: "Mostra"
+    hide: "Amaga"
+    modified_records: "Registres modificats"
+    no_records: "Amb aquestes opcions seleccionades no hi surt cap registre"
+    new_record: "Nou registre"
+    similarity: "Diferències"
+    diff: "Comparació"
+    date_message: "Registres modificats des de %{date}."
+
+  # editor validation
+  validation:
+    missing_message: "Aquest camp ha de tenir un valor"
+    warning_message: "Caldria que aquest camp tingués un valor"
+    insufficient_rights: "L'usuari no té els drets necessaris per crear o actualtizar un registre d'aquesta biblioteca"
+    name_uniqueness: "Aquest nom abreujat ja s'utilitza"
+    correct: "El registre no té cap error de validació [200]"
+    begins_with_message: "El camp ha de començar per \"{0}\""
+    required_if_message: "El camp és obligatori en presència de {0} ${1}"
+    cannot_link_to_self: "No podeu crear un enllaça al mateix registre (%{id})."
+
+  incipit_search:
+    incipit_search: "Cerca per íncipit"
+    query_type: "Tipus de cerca:"
+    exact_pitch: "Nota exacta (cerca més precisa)"
+    interval: "Interval"
+    refined_pitch: "Precisió de nota alta"
+    gross_pitch: "Precisió de nota baixa"
+    anchor: "Cercar només al principi"
+    erase: "Eliminar una nota"
+
+  # This is used for the "incipit" seach in the search history in BL
+  # Note the capital 'I'
+  Incipit: "Íncipit"
+  Images: "Imatges"
+  "Standardized title": "Títol uniforme"
+  Composer: "Compositor"
+  "Source Type": "Tipus de font"
+  Scoring: "Repartiment"
+  Date: "Data"
+  "Library siglum": "Sigla de biblioteca"
+  Subject: "Matèria"
+  "Number of printed copies": "Nombre de còpies impreses"
+  publisher: "Editor"
+
+  marc_editor:
+    delete_msg: "Eliminar"
+    delete_field_confirm: "Esteu segur que voleu eliminar aquest camp?"
+
+  cookies:
+    message: "La nostra web utilitza cookies per a facilitar la navegació. Navegant-hi, accepteu l'ús dels nostres cookies."
+    dimiss: "Acceptar and tancar"
+    link: "Saber-ne més"
+
+  # date:
+  # Empty lines for matching line numbers with other translation files
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+  #
+
+
+######################################################################################################
+# End of translation in all languages - make sure all the file have the same line number for this line
+
+
+######################################################################################################
+# Blacklights overriden translations - the list can vary from one language to another
+
+  blacklight:
+    application_name: 'Muscat'
+    header_links:
+      logout: 'Tanca la sessió'
+    search:
+      start_over: "Torna a l'inici"
+      facets:
+        title: "Limiteu la vostra cerca"
+    range_limit:
+      submit_limit: "Limita-la"
+  blacklight_advanced_search:
+    form:
+      start_over: "Torna a l'inici"
+
+
+######################################################################################################
+# Record types, English only
+
+  record_types_codes:
+    "0": "UNK"
+    "1": "COL"
+    "2": "MSR"
+    "3": "SUB"
+    "4": "LSR"
+    "5": "LED"
+    "6": "TSR"
+    "7": "TED"
+    "8": "EDT"
+    "9": "LEC"
+    "10": "TEC"
+    "11": "CMP"
+
+  status_codes:
+    published: "PUB"
+    inprogress: "UNP"
+    deprecated: "DEP"

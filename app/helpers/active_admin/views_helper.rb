@@ -74,6 +74,7 @@ module ActiveAdmin::ViewsHelper
     
     name = "[Model does not have a label]"
     name = item.name if item.respond_to?(:name)
+    name = item.full_name if item.respond_to?(:full_name)
     name = item.title if item.respond_to?(:title)
     name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
     
@@ -167,11 +168,11 @@ module ActiveAdmin::ViewsHelper
     return "#{val1} : #{val2} - [#{id}]"
   end
  
-  def active_admin_publication_show_title( author, description, id )
-    return "[#{id}]" if author.empty? and description.empty?
-    return "#{description} [#{id}]" if author.empty? and !description.empty?
-    return "#{author} [#{id}]" if (description.nil? or description.empty?)
-    return "#{author} : #{description} [#{id}]"
+  def active_admin_publication_show_title( author, title, id )
+    return "[#{id}]" if author.empty? and title.empty?
+    return "#{title} [#{id}]" if author.empty? and !title.empty?
+    return "#{author} [#{id}]" if (title.nil? or title.empty?)
+    return "#{author} : #{title} [#{id}]"
   end
   
   def active_admin_digital_object_show_title( description, id )
@@ -345,6 +346,25 @@ module ActiveAdmin::ViewsHelper
       end
     end
     return results, model
+  end
+
+  def active_admin_work_status_tag_class value
+    return "" if !value
+    c = 0
+    while value > 0
+      value &= value - 1
+      c += 1
+    end
+    return "links-#{c}"
+  end
+
+  def active_admin_work_status_tag_label value
+    return "" if !value
+    s = []
+    s << "DNB" if (value & 1) > 0
+    s << "BNF" if (value & 2) > 0
+    s << "MBZ" if (value & 4) > 0
+    return s.join(' ')
   end
 
 end

@@ -137,6 +137,8 @@
       - :occurrences: "?"
     - - t
       - :occurrences: "?"
+    - - p
+      - :occurrences: "?"
   "380":
     :master: "0"
     :indicator: "##"
@@ -315,7 +317,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: corporate_name
     - - b
       - :occurrences: "*"
     - - c

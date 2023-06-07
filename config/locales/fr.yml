@@ -343,6 +343,7 @@ fr:
   validation_level_error: "Il y a des erreurs à corriger avant d'enregistrer."
   validation_level_warning: "Il y a des avertissements. Enregistrer à nouveau pour ignorer."
   muscat_reindexing: "Muscat réindexe, les résultats de recherche peuvent être incomplets."
+  work_catalogue: "Catalogue d'œuvres"
 
   jobs:
     not_set: "[sans statut]"
@@ -432,6 +433,7 @@ fr:
     one_week: "Les dossiers suivants seront supprimés dans une semaine, le %{date}"
     two_weeks: "Les dossiers suivants seront supprimés dans deux semaines à la date du %{date}"
     one_month: "Les dossiers suivants seront supprimés dans un mois, le %{date}"
+    make_catalogue: "Marquer les éléments comme des catalogues de oeuvres"
 
   ### Digital objects
   digital_objects: "Objet numériques"
@@ -565,6 +567,9 @@ fr:
   filter_source_name: "Nom de la source"
   filter_source_composer: "Compositeur de la source"
   filter_printed_exemplars: "Nombre d'exemplaires imprimés"
+  filter_is_text: "\"Text\", en 031 $t"
+  filter_is_standard: "\"Standard\", en 240 $a"
+  filter_is_additional: "\"Additional\", en 730 $a"
 
   ## Referring lists for auth files
   refers_to_this: "%{model_from} se référant à cet(te) %{model_to}"

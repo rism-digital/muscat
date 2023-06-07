@@ -2,9 +2,7 @@
 group_order: 
 - main_work
 - codes
-#- people
 - incipits
-- variants
 - references
 - relations
 - control
@@ -12,9 +10,13 @@ groups:
   main_work: 
     all_tags: 
     - "100"
+    - "130"
     - "548"
     - "383"
+    - "430"
     - "690"
+    all_tag_templates: 
+      "690": marc_show/show_69x_url
   codes: 
     all_tags: 
     - "024"
@@ -26,21 +28,16 @@ groups:
     - "031"
     all_tag_templates: 
       "031": marc_show/show_incipit
-#  people:
-#    all_tags:
-#    - "500"
-  variants:
-    all_tags:
-    - "400"
-    all_tag_templates:
-      "400": works/show_variants
-#    - "440"
   references:
     all_tags:
     - "670"
     - "675"
     - "680"
     - "667"
+    - "691"
+    - "699"
+    all_tag_templates: 
+      "691": marc_show/show_69x_url
   relations:
     all_tags:
     - "700"

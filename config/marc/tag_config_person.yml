@@ -131,6 +131,12 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
     - - "i"
       - :occurrences: "?"
   "510":
@@ -146,7 +152,10 @@
     - - a
       - :occurrences: "1"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: corporate_name
+    - - b
+      - :occurrences: "?"
+        :foreign_field: subordinate_unit
   "550":
     :master: a
     :indicator: "##"
@@ -257,9 +266,12 @@
         :foreign_field: id
         :no_show: true
     - - a
-      - :occurrences: "?"
+      - :occurrences: "1"
         :foreign_class: ^0
-        :foreign_field: siglum
+        :foreign_field: corporate_name
+    - - b
+      - :occurrences: "?"
+        :foreign_field: subordinate_unit
   "856":
     :master: u
     :indicator: "##"

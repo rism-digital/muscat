@@ -58,6 +58,7 @@ es:
     english: Inglés
     estonian: Estonio
     ethiopic: Etiópico
+    faroese: Feroés
     fijian: Fijiano
     finnish: Finés
     french: Francés
@@ -113,6 +114,7 @@ es:
     sorbian: Sorbio
     south_american: Nativo sudamericano (Otro)
     spanish: Español
+    swahili: Swahili
     swedish: Sueco
     swiss_german: Suizo-alemán
     tagalog: Tagalog
@@ -252,8 +254,10 @@ es:
     additional_choir_voice: Voz en coro adicional
     additional_codes: Códigos adicionales a continuación del número o código estándar
     additional_institution: Institución adicional
+    additional_manuscript_material: Material manuscrito adicional
     additional_personal_name: Nombre personal adicional
     additional_personal_name_lit: Nombre personal adicional
+    additional_printed_material: Material impreso adicional
     additional_solo_voice: Voz solista adicional
     additional_title: Título adicional
     additional_title_lit: Título adicional
@@ -264,6 +268,7 @@ es:
     aids: Asistencia
     alleged: Supuesta
     alternate_spelling: Ortografía alternativa
+    alternative_work_title: Título alternativo
     archive: Archivo
     arrangement: Arreglo
     arrangement_statement: Declaración de arreglo
@@ -287,6 +292,7 @@ es:
     authority_agency: Agencia de autoridad
     authority_record_control_number: Códigos adicionales a continuación del número o código estándar
     authority_reference: Referencia de autoridad
+    autograph_manuscript: Manuscrito autográfico
     autography: Autografía
     b_major: Si Mayor
     b_minor: Si menor
@@ -354,9 +360,11 @@ es:
     composer_author: Compositor/Autor
     composer_cross_reference: Referencia cruzada de compositor
     computer_printout: Impreso de computadora
+    composite: Volumen compuesto
     conceptor: Autor del concepto
     conductor: Director musical
     confused_with: Confundido/a con
+    congress: Congreso
     conjectural: Conjetural
     contact: Contacto
     contact_area: Contacto
@@ -394,6 +402,7 @@ es:
     dedicatee: Dedicatario(a)
     department: Departamento
     depositor: Depositante
+    deprecated_fields: Campos obsoletos (no usar)
     description: Decripción
     description_area: Descripción
     description_summary: Descripción sumaria
@@ -553,6 +562,7 @@ es:
     library_information_relations: Información del repositorio y sus relaciones
     library_siglum: Sigla del repositorio
     librettist: Libretista
+    libretto: Libretto
     licensee: Licenciatario
     life_dates: Fechas de nacimiento y muerte
     link_type: Tipo de enlace
@@ -577,6 +587,8 @@ es:
     longitude: Longitud
     lyricist: Letrista
     main_entry_fields: Campos principales
+    manuscript_copy: Copia manuscrita
+    manuscript_copy_with_autograph_annotations: Copia manuscrita con anotaciones autográficas
     married_name: Apellido de casada/o
     married_to: casado/a con
     married_with: Casado/a con
@@ -589,6 +601,7 @@ es:
     method_of_acquisition: Método de adquisición
     misattributed: Mal atribuida
     miscellaneous: Varios
+    mixed: Mixto
     mode_10t: 'Modo: 10º tono (Hipoeólico)'
     mode_10tt: 'Modo: 10º tono (Hipoeólico), transpuesto'
     mode_11t: 'Modo:  11º tono (Jónico)'
@@ -626,6 +639,7 @@ es:
     musical_composition: Composición musical
     name: Nombre
     name_family: Apellido
+    name_of_part: Nombre de la parte/sección de una obra
     name_printer: Nombre del impresor
     name_variant: Variantes del nombre
     name_variants: Variantes del nombre
@@ -636,6 +650,7 @@ es:
     no_linguistic_content: Sin contenido lingüístico
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: No se aplica
+    notated_music: Música notada
     note: Nota
     note_external_resource: Nota sobre el recurso externo
     note_fields: Campos de notas
@@ -678,6 +693,7 @@ es:
     papermaker: Fabricante de papel
     parallel_form: Forma paralela de nombre
     parent_record: Registro madre
+    partial_autograph: Autográfico parcial
     parts_held: Particellas conservadas
     parts_held_extent: Particellas conservadas y extensión de las mismas
     patron: Comitente
@@ -707,9 +723,13 @@ es:
     plaine_and_easie: Código Plaine and Easie
     plate_number: Número de plancha
     plucked_instruments: Cuerdas pulsadas
+    possible_autograph_manuscript: Posible manuscrito autográfico
     postal_code: Código postal
     postal_place: Dirección postal
     preceding_entry: Registro precedente
+    print: Impresión
+    print_with_autograph_annotations: Impresión con anotaciones autógrafas
+    print_with_non_autograph_annotations: Impresión con anotaciones non autógrafas
     printer: Impresor
     printing_technique: Técnica de impresión
     production: Producción
@@ -760,6 +780,7 @@ es:
     scoring_in_movement: Plantilla/orgánico del movimiento
     scoring_summary: Resumen de Plantilla/Orgánico
     scribe: Copista
+    secondary_catalog_works: Catálogo secundario de obras
     secondary_literature: Bibliografía secundaria
     series: Serie
     series_added_entry: Entradas adicionales de la serie
@@ -835,6 +856,7 @@ es:
     translation: Traducción
     translator: Traductor
     transparency: Transparencia
+    treatise: Tratado
     type: Tipo
     type_designer: Fundidor
     type_institution: Tipo de institución
@@ -851,6 +873,7 @@ es:
     variant_source_title: Variante de título en fuente
     variations: Variaciones
     verified: Verificada
+    version_information: Versión, edición, etc., información
     vocalist: Cantante
     voice_instrument: Voz/instrumento
     volume_year_page: Volumen, año, página
@@ -858,6 +881,12 @@ es:
     woodwinds: Vientos-madera
     work: Obra
     work_number: Número de obra
+    work_tag: Work revision tag
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Tag note
+    work_tag_type: Tag type
     year: Año
     years_birth_death: Años de nacimiento y muerte
   relations:
@@ -935,47 +964,48 @@ es:
     ERR_059_DOUBLE_DOTS_MENS: "Las notas de doble punto no pueden ser usadas con notación mensural."
     ERR_060_CLEF_MISSING: Se necesita una clave.
     ERR_061_LIGATURE_NOTE_BEFORE: Para indicar una ligadura, el signo "+" debe preceder por una nota.
-    ERR_062_LIGATURE_NOTE_AFTER: To indicate a ligature, a '+' must be followed by a note.
+    ERR_062_LIGATURE_NOTE_AFTER: Para indicar una ligadura, el signo "+" debe preceder por una nota.
     ERR_063_LIGATURE_PITCH: Una ligadura no puede tener dos notas consecutivas en el mismo tono.
     ERR_064_LIGATURE_DURATION: La duración de una ligadura no puede ser mas corta que una semibreve.
     ERR_065_MREST_INVALID_MEASURE: Un compás con un compás de silencio no puede incluir algo más.
   rism_online:
-    manuscript: "Manuscript"
-    printed: "Printed"
-    composite: "Composite Volume"
-    apply_filters: "Apply filters"
-    error_loading_results: "Error loading results"
-    global_collection: "Global Collection"
-    home: "Home"
-    keyword_query: "Keyword query"
-    first: "First"
-    last: "Last"
-    next: "Next"
-    previous: "Previous"
-    no_results_body: "Adjust your query options, or reset all filters, to see results."
-    no_results_header: "No results were found for your search"
-    no_results_to_find: "No results would be found with this search"
-    page: "Page"
-    words_anywhere: "Words anywhere"
-    record_preview: "Record preview"
+    manuscript: "Manuscrito"
+    printed: "Impreso"
+    composite: "Volumen compuesto"
+    apply_filters: "Aplicar filtros"
+    error_loading_results: "Error al cargar resultados"
+    global_collection: "Colección global"
+    home: "Inicio"
+    keyword_query: "Consulta de palabra clave"
+    first: "Primero"
+    last: "Último"
+    next: "Siguiente"
+    previous: "Anterior"
+    no_results_body: "Ajuste las opciones de consulta, o reinicie todos los filtros, para ver resultados."
+    no_results_header: "No se encontraron resultados para su búsqueda"
+    no_results_to_find: "No se encontraron resultados con esta búsqueda"
+    page: "Página"
+    words_anywhere: "Palabras en cualquier sitio"
+    record_preview: "Registro previo"
     record_uri: "Record URI (Permalink)"
-    reset_all: "Reset all"
-    number_results: "Number of results"
-    search: "Search"
-    show_all_results: "Show all results"
-    show_results: "Show results"
-    source_contents: "Source contents"
-    update_results: "Update search results"
-    page_not_found: "The page was not found"
-    bad_query: "There was a problem with the query"
-    result_types: "Result Types"
-    source_relationships: "Source relationships"
-    holding_institutions: "Holding institutions"
-    digital_facsimiles: "Digital facsimiles"
-    publication_details: "Publication details"
-    biographical_details: "Biographical details"
-    role_and_profession: "Role and profession"
-    composer_composition: "Composer and composition"
+    reset_all: "Reiniciar todo"
+    number_results: "Número de resultados"
+    search: "Búsqueda"
+    show_all_results: "Mostrar todos los resultados"
+    show_results: "Mostrar resultados"
+    source_contents: "Contenido de la fuente"
+    update_results: "Actualizar resultados de la búsqueda"
+    page_not_found: "¡Ups! No encontramos esta página"
+    bad_query: "Ha habido un problema con la búsqueda"
+    result_types: "Tipo de resultado"
+    source_relationships: "Relaciones de resultado"
+    holding_institutions: "Instituciones participantes"
+    digital_facsimiles: "Facsímiles digitales"
+    publication_details: "Detalles de publicación"
+    biographical_details: "Detalles biográficos"
+    role_and_profession: "Función y profesión"
+    composer_composition: "Compositor y composición"
+    full_record: "Registro completo"
   testingForCrowdinWorkshop:
     apple: manzana
     pear: pera

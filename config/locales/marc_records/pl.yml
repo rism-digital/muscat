@@ -1,7 +1,7 @@
 pl:
   general:
     created_at: "Data utworzenia"
-    e_mail: Email
+    e_mail: E-mail
     editor_help: Pomoc do edycji
     faq: Odpowiedzi na częste pytania
     female: Kobieta
@@ -58,12 +58,13 @@ pl:
     english: Angielski
     estonian: Estoński
     ethiopic: Etiopski
+    faroese: Farerski
     fijian: Fidżyjski
     finnish: Fiński
     french: Francuski
     french_middle: Średniofrancuski (ok. 1300-1600)
     french_old: Starofrancuski (ok. 842-1300)
-    friulian: Friulijski
+    friulian: Friulski
     gallician: Galicyjski
     german: Niemiecki
     german_old_high: Staro-wysoko-niemiecki (ok. 750-1050)
@@ -113,6 +114,7 @@ pl:
     sorbian: Łużycki
     south_american: Południowoamerykański (inne)
     spanish: Hiszpański
+    swahili: Suahili
     swedish: Szwedzki
     swiss_german: Niemiecki szwajcarski
     tagalog: Tagalski
@@ -122,7 +124,7 @@ pl:
     tsimshian: Tsimshiański
     turkish: Turecki
     ukrainian: Ukraiński
-    upper_sorbian: 'Gbórnołużycki'
+    upper_sorbian: 'Górnołużycki'
     vietnamese: Wietnamska
     welsh: Walijski
     west_frisian: Zchodniofryzyjski
@@ -252,8 +254,10 @@ pl:
     additional_choir_voice: Dodatkowy głos chóralny
     additional_codes: Dodatkowe kody zgodne ze standardowym numerem lub kodem
     additional_institution: Dodatkowa instytucja
+    additional_manuscript_material: Dodatkowe źródło rękopiśmienne
     additional_personal_name: Dodatkowa osoba
     additional_personal_name_lit: Dodatkowa osoba
+    additional_printed_material: Dodatkowe źródło drukowane
     additional_solo_voice: Dodatkowy głos solowy
     additional_title: Dodatkowy tytuł
     additional_title_lit: Dodatkowy tytuł
@@ -264,6 +268,7 @@ pl:
     aids: Pomoce
     alleged: Rzekomy
     alternate_spelling: Alternatywna pisownia
+    alternative_work_title: Alternatywny tytuł dzieła
     archive: Archiwum
     arrangement: Aranżacja
     arrangement_statement: Uwaga do aranżacji
@@ -287,6 +292,7 @@ pl:
     authority_agency: Baza haseł wzorcowych
     authority_record_control_number: Dodatkowe kody zgodne ze standardowym numerem lub kodem
     authority_reference: Odniesienie do bazy haseł wzorcowych
+    autograph_manuscript: Autograf
     autography: Autografia
     b_major: H-dur
     b_minor: h-moll
@@ -354,9 +360,11 @@ pl:
     composer_author: Kompozytor / Autor
     composer_cross_reference: Odniesienie do innego kompozytora
     computer_printout: Wydruk komputerowy
+    composite: Klocek introligatorski
     conceptor: Autor koncepcji
     conductor: Dyrygent
     confused_with: Mylon(y/a) z …
+    congress: Kongres
     conjectural: Domyślny
     contact: Kontakt
     contact_area: Obszar kontaktu
@@ -394,6 +402,7 @@ pl:
     dedicatee: Adresat dedykacji
     department: Wydział
     depositor: Deponent
+    deprecated_fields: Nieaktualne pola (nie uzupełniaj)
     description: Opis
     description_area: Obszar opisu
     description_summary: Podsumowanie
@@ -553,6 +562,7 @@ pl:
     library_information_relations: Informacje o bibliotece i powiązaniach
     library_siglum: Siglum
     librettist: Autor libretta
+    libretto: Libretto
     licensee: Licencjobiorca
     life_dates: Daty urodzenia i śmierci
     link_type: Typ odsyłacza
@@ -577,6 +587,8 @@ pl:
     longitude: Długość geograficzna
     lyricist: Autor słów
     main_entry_fields: Główne pola edycji
+    manuscript_copy: Kopia rękopisu
+    manuscript_copy_with_autograph_annotations: Kopia rękopisu z własnoręcznymi adnotacjami autorskimi
     married_name: Nazwisko po mężu
     married_to: W małżeństwie z …
     married_with: W małżeństwie z …
@@ -589,6 +601,7 @@ pl:
     method_of_acquisition: Sposób nabycia
     misattributed: Błędnie przypisany
     miscellaneous: Pozostałe
+    mixed: Mieszany
     mode_10t: 'Skala: 10t – hypoeolska'
     mode_10tt: 'Skala: 10tt – hypoeolska, transponowana'
     mode_11t: 'Skala: 11t – jońska'
@@ -626,6 +639,7 @@ pl:
     musical_composition: Kompozycja muzyczna
     name: Imię i nazwisko
     name_family: Nazwa rodziny
+    name_of_part: Nazwa części/sekcji utworu
     name_printer: Nazwa drukarni
     name_variant: Alternatywna nazwa osoby
     name_variants: Alternatywne nazwy osoby
@@ -636,6 +650,7 @@ pl:
     no_linguistic_content: Brak zawartości językowej
     non_migrated_bound: Non-migrated bound with value from 563
     not_applicable: Nie dotyczy
+    notated_music: Notacja muzyczna
     note: Notatka
     note_external_resource: Uwaga o zasobie zewnętrznym
     note_fields: Pola uwag
@@ -678,6 +693,7 @@ pl:
     papermaker: Producent papieru
     parallel_form: Współistniejąca forma nazwy
     parent_record: Rekord macierzysty
+    partial_autograph: Częściowy autograf
     parts_held: Głosy
     parts_held_extent: Głosy, objętość
     patron: Sponsor
@@ -707,9 +723,13 @@ pl:
     plaine_and_easie: Kod Plaine and Easie
     plate_number: Numer wydawniczy
     plucked_instruments: Instrumenty szarpane
+    possible_autograph_manuscript: Prawdopodobnie autograf
     postal_code: Kod pocztowy
     postal_place: Rejon pocztowy
     preceding_entry: Poprzedzający wpis
+    print: Druk
+    print_with_autograph_annotations: Druk z własnoręcznymi adnotacjami autorskimi
+    print_with_non_autograph_annotations: Druk z adnotacjami nieautorskimi
     printer: Drukarnia
     printing_technique: Technika druku
     production: Produkcja
@@ -726,7 +746,7 @@ pl:
     publishing_printing_production: Informacje o publikacji, druku i produkcji
     qualifying_information: Informacje kwalifikacyjne
     range_dates: Zakres dat
-    real_world_object_uri: Identyfikator URI obiektu świata rzeczywistego
+    real_world_object_uri: Identyfikator URI
     record_actions: Działania na rekordzie
     record_audit: Kontrola rekordu
     record_origin: Pochodzenie rekordu
@@ -760,6 +780,7 @@ pl:
     scoring_in_movement: Obsada w części
     scoring_summary: Podsumowanie obsady
     scribe: Kopista
+    secondary_catalog_works: Dodatkowy katalog utworów
     secondary_literature: Literatura pomocnicza
     series: Seria
     series_added_entry: Dodatkowe wpisy tytułów
@@ -799,7 +820,7 @@ pl:
     street_address: Ulica, numer, numer lokalu
     strings: Instrumenty strunowe
     subheading: Pod-nagłówek
-    subheading_general: Ogólny dalszy podział podnagłówków
+    subheading_general: Ogólny dalszy podział określnika hasła przedmiotowego
     subject_access_fields: Pola haseł tematycznych
     subject_heading: Hasło przedmiotowe
     subject_headings: Hasła przedmiotowe
@@ -835,6 +856,7 @@ pl:
     translation: Tłumaczenie
     translator: Tłumacz
     transparency: Przezrocze
+    treatise: Traktat
     type: Rodzaj
     type_designer: Projektant kroju pisma
     type_institution: Rodzaj instytucji
@@ -851,6 +873,7 @@ pl:
     variant_source_title: Alternatywny tytuł w źródle
     variations: Wariacje
     verified: Zweryfikowane
+    version_information: Wersja, edycja itp., informacje
     vocalist: Wokalista
     voice_instrument: Głos/instrument
     volume_year_page: Wolumen, rok, strona
@@ -858,6 +881,12 @@ pl:
     woodwinds: Instrumenty dęte drewniane
     work: Dzieło
     work_number: Numer dzieła
+    work_tag: Work revision tag
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Tag note
+    work_tag_type: Tag type
     year: Rok
     years_birth_death: Rok urodzenia i śmierci
   relations:
@@ -897,7 +926,7 @@ pl:
     ERR_021_CHORD_NOTE_AFTER: Aby zaznaczyć akord, po „^” musi nastąpić nuta.
     ERR_022_BEAM_MENSURAL: Belkowanie nie może być stosowane w notacji menzuralnej.
     ERR_023_BEAM_NESTED: Nie rozpoczynaj nowego belkowania „{”, przed zamknięciem poprzedniego „}”.
-    ERR_024_BEAM_CLOSING: 'Jest dodatkowe „}” zamykające belowanie. Usuń je lub wskaż, gdzie belka zaczyna się za pomocą „{”.'
+    ERR_024_BEAM_CLOSING: 'Jest dodatkowe „}” zamykające belkowanie. Usuń je lub wskaż, gdzie belka zaczyna się za pomocą „{”.'
     ERR_025_BEAM_OPEN: Zamknij belkę za pomocą „}” przed końcem taktu.
     ERR_026_GRACE_NESTED: Zamknij appoggiaturę za pomocą „r” przed rozpoczęciem nowej.
     ERR_027_GRACE_CLOSING: Jest „r” zamykające apoggiaturę. Usuń je lub dodaj „qq”, aby wskazać, gdzie się zaczyna.
@@ -940,42 +969,43 @@ pl:
     ERR_064_LIGATURE_DURATION: Czas trwania ligatury nie może być krótszy niż semibrevis.
     ERR_065_MREST_INVALID_MEASURE: Miara taktu pustego nie może zawierać innych znaków.
   rism_online:
-    manuscript: "Manuscript"
-    printed: "Printed"
-    composite: "Composite Volume"
-    apply_filters: "Apply filters"
-    error_loading_results: "Error loading results"
-    global_collection: "Global Collection"
-    home: "Home"
-    keyword_query: "Keyword query"
-    first: "First"
-    last: "Last"
-    next: "Next"
-    previous: "Previous"
-    no_results_body: "Adjust your query options, or reset all filters, to see results."
-    no_results_header: "No results were found for your search"
-    no_results_to_find: "No results would be found with this search"
-    page: "Page"
-    words_anywhere: "Words anywhere"
-    record_preview: "Record preview"
-    record_uri: "Record URI (Permalink)"
-    reset_all: "Reset all"
-    number_results: "Number of results"
-    search: "Search"
-    show_all_results: "Show all results"
-    show_results: "Show results"
-    source_contents: "Source contents"
-    update_results: "Update search results"
-    page_not_found: "The page was not found"
-    bad_query: "There was a problem with the query"
-    result_types: "Result Types"
-    source_relationships: "Source relationships"
-    holding_institutions: "Holding institutions"
-    digital_facsimiles: "Digital facsimiles"
-    publication_details: "Publication details"
-    biographical_details: "Biographical details"
-    role_and_profession: "Role and profession"
-    composer_composition: "Composer and composition"
+    manuscript: "Rękopis"
+    printed: "Druk"
+    composite: "Klocek introligatorski"
+    apply_filters: "Zastosuj filtry"
+    error_loading_results: "Błąd podczas ładowania wyników"
+    global_collection: "Źródła z całego świata"
+    home: "Strona Główna"
+    keyword_query: "Zapytanie o słowo kluczowe"
+    first: "Pierwsza"
+    last: "Ostatnia"
+    next: "Następna"
+    previous: "Poprzedni"
+    no_results_body: "Dostosuj opcje zapytania lub zresetuj wszystkie filtry, aby zobaczyć wyniki."
+    no_results_header: "Nie znaleziono wyników dla Twojego wyszukiwania"
+    no_results_to_find: "Nie znaleziono żadnych wyników dla tego wyszukiwania"
+    page: "Strona"
+    words_anywhere: "Wprowadź zapytanie"
+    record_preview: "Podgląd rekordu"
+    record_uri: "URI rekordu (Odnośnik bezpośredni)"
+    reset_all: "Zresetuj wszystko"
+    number_results: "Liczba wyników"
+    search: "Wyszukaj"
+    show_all_results: "Wyświetl wszystkie wyniki"
+    show_results: "Wyświetl wyniki"
+    source_contents: "Treść źródła"
+    update_results: "Zaktualizuj wyniki wyszukiwania"
+    page_not_found: "Strona nie została znaleziona"
+    bad_query: "Wystąpił problem z zapytaniem"
+    result_types: "Rodzaje wyników wyszukiwania"
+    source_relationships: "Relacje do źródła"
+    holding_institutions: "Instytucje przechowujące"
+    digital_facsimiles: "Cyfrowe faksymile"
+    publication_details: "Szczegóły publikacji"
+    biographical_details: "Szczegóły bibliograficzne"
+    role_and_profession: "Funkcja i zawód"
+    composer_composition: "Kompozytor i kompozycja"
+    full_record: "Pełny widok rekordu"
   testingForCrowdinWorkshop:
     apple: jabłko
     pear: gruszka

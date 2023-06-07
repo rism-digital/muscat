@@ -58,6 +58,7 @@ it:
     english: Inglese
     estonian: Estone
     ethiopic: Etiope
+    faroese: Faroense
     fijian: Figiano
     finnish: Finlandese
     french: Francese
@@ -113,6 +114,7 @@ it:
     sorbian: Sorabo
     south_american: Indiano sudamericano (Altro)
     spanish: Spagnolo
+    swahili: Swahili
     swedish: Svedese
     swiss_german: Svizzero tedesco
     tagalog: Tagalog
@@ -252,8 +254,10 @@ it:
     additional_choir_voice: Voci di coro aggiuntive
     additional_codes: Codici addizionali che seguono il numero o il codice standard
     additional_institution: Nome aggiuntivo di ente
+    additional_manuscript_material: Materiale manoscritto aggiuntivo
     additional_personal_name: Nome aggiuntivo di persona
     additional_personal_name_lit: Nome aggiuntivo di persona
+    additional_printed_material: Materiale stampato aggiuntivo
     additional_solo_voice: Voce solista aggiuntiva
     additional_title: Titolo uniforme alternativo
     additional_title_lit: Titolo uniforme alternativo
@@ -264,6 +268,7 @@ it:
     aids: Assistenza
     alleged: Presunta
     alternate_spelling: Ortografia alternativa
+    alternative_work_title: Titolo alternativo dell'opera
     archive: Archivio
     arrangement: Arrangiamento
     arrangement_statement: Arrangiamento
@@ -287,6 +292,7 @@ it:
     authority_agency: Agenzia autorità
     authority_record_control_number: Numero di controllo del registro dell'autorità o numero standard
     authority_reference: Riferimento all'autorità
+    autograph_manuscript: Manoscritto autografo
     autography: Autografia
     b_major: Si maggiore
     b_minor: Si minore
@@ -354,9 +360,11 @@ it:
     composer_author: Compositore/Autore
     composer_cross_reference: Rimando ad altro compositore
     computer_printout: Stampata da computer
+    composite: Volume composito
     conceptor: Autore della fonte letteraria
     conductor: Direttore d'orchestra
     confused_with: Confuso/confusa con
+    congress: Congresso
     conjectural: Congetturale
     contact: Contatto
     contact_area: Contatto
@@ -394,6 +402,7 @@ it:
     dedicatee: Dedicatario
     department: Dipartimento
     depositor: Depositante
+    deprecated_fields: Campi obsoleti (non usare)
     description: Descrizione
     description_area: Descrizione
     description_summary: Descrizione sommaria
@@ -553,6 +562,7 @@ it:
     library_information_relations: Biblioteca e relazione
     library_siglum: Sigla della biblioteca
     librettist: Librettista
+    libretto: Libretto
     licensee: Licenziatario
     life_dates: Data di nascita e di morte
     link_type: Tipo di collegamento
@@ -577,6 +587,8 @@ it:
     longitude: Longitudine
     lyricist: Poeta
     main_entry_fields: Campi principali
+    manuscript_copy: Copia manoscritta
+    manuscript_copy_with_autograph_annotations: Copia manoscritta con annotazioni autografe
     married_name: Nome da sposato
     married_to: Sposato/sposata con
     married_with: Sposato/sposata con
@@ -589,6 +601,7 @@ it:
     method_of_acquisition: Metodo d'acquisto
     misattributed: Erronea
     miscellaneous: Varia
+    mixed: Misto
     mode_10t: 'Modo: 10t – Ipoeolio'
     mode_10tt: 'Modo: 10tt – Ipoeolio, trasposto'
     mode_11t: 'Modo: 11t – Ionico'
@@ -626,6 +639,7 @@ it:
     musical_composition: Composizione musicale
     name: Nome
     name_family: Nome di famiglia
+    name_of_part: Nome della parte o sezione di un'opera
     name_printer: Stampatore, stamperia
     name_variant: Varianti del nome
     name_variants: Varianti del nome
@@ -636,6 +650,7 @@ it:
     no_linguistic_content: Senza contesto linguistico
     non_migrated_bound: Valore non migrato dal campo 563 (Rilegato con)
     not_applicable: Non applicabile
+    notated_music: Musica notata
     note: Nota
     note_external_resource: Nota sulla risorsa esterna
     note_fields: Campi note
@@ -661,7 +676,7 @@ it:
     order_name: Nome dell'ordine religioso
     origin: Origine
     original_cataloging_agency: Agenzia catalografica originale
-    other: Altra funzione
+    other: Altro
     other_associated_place: Altro luogo associato
     other_designation: Altra designazione
     other_form: Ortografia alternativa
@@ -678,6 +693,7 @@ it:
     papermaker: Fabbricante di carta
     parallel_form: Forma parallela del nome
     parent_record: Notizia principale
+    partial_autograph: Autografo parziale
     parts_held: Parti staccate esistenti
     parts_held_extent: Parti staccate, estensione
     patron: Committente
@@ -707,9 +723,13 @@ it:
     plaine_and_easie: Codice Plaine and Easie
     plate_number: Numero della lastra
     plucked_instruments: Strumenti a pizzico
+    possible_autograph_manuscript: Possibile manoscritto autografo
     postal_code: Codice postale
     postal_place: Luogo postale
     preceding_entry: Notizia precedente
+    print: Stampa
+    print_with_autograph_annotations: Stampa con annotazioni autografe
+    print_with_non_autograph_annotations: Stampa con annotazioni non autografe
     printer: Stampatore
     printing_technique: Tecnica di stampa
     production: Produzione
@@ -760,6 +780,7 @@ it:
     scoring_in_movement: Organico del movimento
     scoring_summary: Organico sintetico
     scribe: Copista
+    secondary_catalog_works: Catalogo secondario delle opere
     secondary_literature: Bibliografia
     series: Serie
     series_added_entry: Notizia secondaria sul titolo sovraordinato
@@ -835,6 +856,7 @@ it:
     translation: Traduzione
     translator: Traduttore
     transparency: Trasparente
+    treatise: Trattato
     type: Tipo
     type_designer: Fonditore
     type_institution: Tipo di istituzione
@@ -851,6 +873,7 @@ it:
     variant_source_title: Varianti del titolo diplomatico
     variations: Variazioni
     verified: Verificata
+    version_information: Informazioni sulla versione o edizione
     vocalist: Cantante
     voice_instrument: Voce/strumento
     volume_year_page: Volume, anno, pagina
@@ -858,6 +881,12 @@ it:
     woodwinds: Legni
     work: Opera
     work_number: Numero dell'opera
+    work_tag: Opera da rivedere
+    work_tag_incipit_needs_revision: Incipit da rivedere
+    work_tag_incipit_replace: Incipit da sostituire
+    work_tag_needs_revision: Da rivedere
+    work_tag_note: Nota alla marcatura
+    work_tag_type: Tipo di marcatura
     year: Anno
     years_birth_death: Data di nascita e di morte
   relations:
@@ -932,7 +961,7 @@ it:
     ERR_056_TIMESIG_CHANGE: Il tempo non può essere cambiato più di una volta in una battuta.
     ERR_057_MENSUR_CHANGE: La mensurazione non può essere modificata più di una volta in una battuta.
     ERR_058_FERMATA_MREST: "Le parentesi per una corona possono contenere solo una singola nota o una pausa di '%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Nella notazione mensurale non sono ammesse note doppiamente puntate."
+    ERR_059_DOUBLE_DOTS_MENS: "Nella notazione mensurale non sono ammesse note con doppi punti."
     ERR_060_CLEF_MISSING: È necessario specificare la chiave.
     ERR_061_LIGATURE_NOTE_BEFORE: Per indicare una legatura, un '+' deve essere preceduto da una nota.
     ERR_062_LIGATURE_NOTE_AFTER: Per indicare una legatura, un '+' deve essere seguito da una nota.
@@ -940,42 +969,43 @@ it:
     ERR_064_LIGATURE_DURATION: La durata di una legatura non può essere inferiore a una semibreve.
     ERR_065_MREST_INVALID_MEASURE: Una battuta con una pausa per l'intera battuta non può includere altro.
   rism_online:
-    manuscript: "Manuscript"
-    printed: "Printed"
-    composite: "Composite Volume"
-    apply_filters: "Apply filters"
-    error_loading_results: "Error loading results"
-    global_collection: "Global Collection"
-    home: "Home"
-    keyword_query: "Keyword query"
-    first: "First"
-    last: "Last"
-    next: "Next"
-    previous: "Previous"
-    no_results_body: "Adjust your query options, or reset all filters, to see results."
-    no_results_header: "No results were found for your search"
-    no_results_to_find: "No results would be found with this search"
-    page: "Page"
-    words_anywhere: "Words anywhere"
-    record_preview: "Record preview"
-    record_uri: "Record URI (Permalink)"
-    reset_all: "Reset all"
-    number_results: "Number of results"
-    search: "Search"
-    show_all_results: "Show all results"
-    show_results: "Show results"
-    source_contents: "Source contents"
-    update_results: "Update search results"
-    page_not_found: "The page was not found"
-    bad_query: "There was a problem with the query"
-    result_types: "Result Types"
-    source_relationships: "Source relationships"
-    holding_institutions: "Holding institutions"
-    digital_facsimiles: "Digital facsimiles"
-    publication_details: "Publication details"
-    biographical_details: "Biographical details"
-    role_and_profession: "Role and profession"
-    composer_composition: "Composer and composition"
+    manuscript: "Manoscritto"
+    printed: "A stampa"
+    composite: "Volume composito"
+    apply_filters: "Applica i filtri"
+    error_loading_results: "Errore nel caricamento dei risultati"
+    global_collection: "Collezione mondiale"
+    home: "Pagina iniziale"
+    keyword_query: "Ricerca per parola chiave"
+    first: "Inizio"
+    last: "Fine"
+    next: "Avanti"
+    previous: "Indietro"
+    no_results_body: "Modifica le opzioni di ricerca o ripristina tutti i filtri per visualizzare nuovi risultati."
+    no_results_header: "La ricerca non ha prodotto alcun risultato"
+    no_results_to_find: "Questa ricerca non produce alcun risultato"
+    page: "Pagina"
+    words_anywhere: "Testo in qualsiasi campo"
+    record_preview: "Anteprima della scheda"
+    record_uri: "Link alla scheda (permalink)"
+    reset_all: "Ripristina tutto"
+    number_results: "Numero di risultati"
+    search: "Cerca"
+    show_all_results: "Mostra tutti i risultati"
+    show_results: "Mostra i risultati"
+    source_contents: "Contenuto delle fonti"
+    update_results: "Aggiorna i risultati della ricerca"
+    page_not_found: "Pagina non trovata"
+    bad_query: "C'è stato un problema nella ricerca"
+    result_types: "Tipo di risultato"
+    source_relationships: "Relazioni tra fonti"
+    holding_institutions: "Dove trovarlo"
+    digital_facsimiles: "Facsimili digitali"
+    publication_details: "Pubblicazione"
+    biographical_details: "Dati biografici"
+    role_and_profession: "Ruolo e professione"
+    composer_composition: "Compositore e composizione"
+    full_record: "Scheda completa"
   testingForCrowdinWorkshop:
     apple: mela
     pear: pera

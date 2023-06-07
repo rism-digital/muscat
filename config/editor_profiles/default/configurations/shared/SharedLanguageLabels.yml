@@ -50,6 +50,8 @@ enm:
   label: languages.middle_english
 est:
   label: languages.estonian
+fao:
+  label: languages.faroese
 fas:
   label: languages.persian
 fij:
@@ -164,6 +166,8 @@ spa:
   label: languages.spanish
 srp:
   label: languages.serbian
+swa:
+  label: languages.swahili
 swe:
   label: languages.swedish
 tat:

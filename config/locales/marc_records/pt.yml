@@ -58,6 +58,7 @@ pt:
     english: Inglês
     estonian: Estoniano
     ethiopic: Etíope
+    faroese: Feroês
     fijian: Fijianas
     finnish: Finlandês
     french: Francês
@@ -113,6 +114,7 @@ pt:
     sorbian: Sorábio
     south_american: Índio sul-americano (Outros)
     spanish: Castelhano
+    swahili: Suaíle
     swedish: Sueco
     swiss_german: Suíço-alemão
     tagalog: Tagalo
@@ -252,8 +254,10 @@ pt:
     additional_choir_voice: Voz adicional de coro
     additional_codes: Códigos adicionais seguindo o número ou código padrão
     additional_institution: Instituição adicional
+    additional_manuscript_material: Material manuscrito adicional
     additional_personal_name: Nome de pessoa adicional
     additional_personal_name_lit: Nome de pessoa adicional
+    additional_printed_material: Material impresso adicional
     additional_solo_voice: Voz solo adicional
     additional_title: Título adicional
     additional_title_lit: Título adicional
@@ -264,6 +268,7 @@ pt:
     aids: Ajudas
     alleged: Suposta
     alternate_spelling: Ortografia alternativa
+    alternative_work_title: Título alternativo da obra
     archive: Arquivo
     arrangement: Arranjo
     arrangement_statement: Menção de arranjo
@@ -287,6 +292,7 @@ pt:
     authority_agency: Agência de autoridade
     authority_record_control_number: Códigos adicionais seguindo o número ou código padrão
     authority_reference: Referência de autoridade
+    autograph_manuscript: Manuscrito autógrafo
     autography: Autografia
     b_major: Si maior
     b_minor: Si menor
@@ -354,9 +360,11 @@ pt:
     composer_author: Compositor/Autor
     composer_cross_reference: Referência cruzada de compositor
     computer_printout: Impressão de computador
+    composite: Composto
     conceptor: Conceptor
     conductor: Condutor
     confused_with: Confundido com
+    congress: Congresso
     conjectural: Conjetural
     contact: Contato
     contact_area: Contato
@@ -394,6 +402,7 @@ pt:
     dedicatee: Dedicatário(a)
     department: Departamento
     depositor: Depositante
+    deprecated_fields: Campos obsoletos (não usam)
     description: Descrição
     description_area: Descrição
     description_summary: Síntese da descrição
@@ -553,6 +562,7 @@ pt:
     library_information_relations: Informação da instituição e relações
     library_siglum: Sigla da Instituição
     librettist: Libretista
+    libretto: Libretto
     licensee: Titular
     life_dates: Datas de nascimento e morte
     link_type: Tipo de Link
@@ -577,6 +587,8 @@ pt:
     longitude: Longitude
     lyricist: Letrista
     main_entry_fields: Campos de entrada principal
+    manuscript_copy: Cópia manuscrita
+    manuscript_copy_with_autograph_annotations: Cópia mansucrita com anotações autógrafas
     married_name: Nome casado
     married_to: Casado/a
     married_with: Casado/a
@@ -589,6 +601,7 @@ pt:
     method_of_acquisition: Método de aquisição
     misattributed: Equivocada
     miscellaneous: Diversos
+    mixed: Misto
     mode_10t: 'Modo: 10º tom (Hipoeólio)'
     mode_10tt: 'Modo: 10º tom (Hipoeólio), transposta'
     mode_11t: 'Modo: 11º tom (Jônio)'
@@ -626,6 +639,7 @@ pt:
     musical_composition: Composição musical
     name: Nome
     name_family: Nome da família
+    name_of_part: Nome da parte/seção da obra
     name_printer: Nome do impressor
     name_variant: Variante de nome
     name_variants: Variantes de nome
@@ -636,6 +650,7 @@ pt:
     no_linguistic_content: Sem conteúdo linguístico
     non_migrated_bound: Valor não migrado do campo 563 (Encadernado com)
     not_applicable: Não aplicável
+    notated_music: Escrita musical
     note: Nota
     note_external_resource: Nota sobre recurso externo
     note_fields: Campos de notas
@@ -678,6 +693,7 @@ pt:
     papermaker: Fabricante de papel
     parallel_form: Forma paralela do nome
     parent_record: Registro principal
+    partial_autograph: Autógrafo parcial
     parts_held: Partes existentes
     parts_held_extent: Partes existentes e extensão
     patron: Patrocinadore
@@ -707,9 +723,13 @@ pt:
     plaine_and_easie: Código Plaine and Easie
     plate_number: Número de chapa
     plucked_instruments: Cordas dedilhadas
+    possible_autograph_manuscript: Possível manuscrito autógrafo
     postal_code: Código postal
     postal_place: Local postal
     preceding_entry: Registro precedente
+    print: Imprimir
+    print_with_autograph_annotations: Imprimir com anotações de autógrafo
+    print_with_non_autograph_annotations: Imprimir com anotações não autógrafos
     printer: Impressor(a)
     printing_technique: Técnica de impressão
     production: Produção
@@ -760,6 +780,7 @@ pt:
     scoring_in_movement: Formação instrumental no movimento
     scoring_summary: Sintese da formação instrumental
     scribe: Copista
+    secondary_catalog_works: Catálogo secundário de obras
     secondary_literature: Literatura secundária
     series: Séries
     series_added_entry: Informação secundária sobre título superordenado
@@ -835,6 +856,7 @@ pt:
     translation: Tradução
     translator: Tradutor
     transparency: Transparência
+    treatise: Tratado
     type: Tipo
     type_designer: Tipógrafo
     type_institution: Tipo de instituição
@@ -851,6 +873,7 @@ pt:
     variant_source_title: Título variante na fonte
     variations: Variações
     verified: Verificada
+    version_information: Informações sobre a versão, edição, etc.
     vocalist: Vocalista
     voice_instrument: Voz/instrumento
     volume_year_page: Volume, ano, página
@@ -858,6 +881,12 @@ pt:
     woodwinds: Madeiras
     work: Obra
     work_number: Número de obra
+    work_tag: Work revision tag
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Tag note
+    work_tag_type: Tag type
     year: Ano
     years_birth_death: Anos de nascimento e morte
   relations:
@@ -914,7 +943,7 @@ pt:
     ERR_038_TIE_OPEN: Uma ligadura com '+' deve ser seguida por uma nota.
     ERR_039_TIE_NO_NOTE: Uma ligadura com '+' deve ser precedida por uma nota.
     ERR_040_HIERARCHY_INVALID: A ordem dos elementos não pode ser interpretada (%{value}).
-    ERR_041_NESTING_INVALID: "With '%{value}' the inner group must be closed before the outer group."
+    ERR_041_NESTING_INVALID: "Com '%{value}' o grupo interno deve ser fechado antes do grupo externo."
     ERR_042_CLEF_INCOMPLETE: A chave não se encontra no formato correcto.
     ERR_043_CLEF_INVALID_2ND: O segundo caractere no sinal de clef deve ser '+' ou '-'.
     ERR_044_CLEF_MENS: Não misture clipes mensais e não mensais.
@@ -931,51 +960,52 @@ pt:
     ERR_055_KEYSIG_CHANGE: A assinatura da chave não pode ser alterada mais de uma vez numa medida.
     ERR_056_TIMESIG_CHANGE: A assinatura do tempo não pode ser alterada mais de uma vez numa medida.
     ERR_057_MENSUR_CHANGE: A mensuração não pode ser alterada mais do que uma vez numa medida.
-    ERR_058_FERMATA_MREST: "The parentheses of a fermata may only contain a single note or rest '%{value}'"
-    ERR_059_DOUBLE_DOTS_MENS: "Double-dotted notes cannot be used with mensural notation."
+    ERR_058_FERMATA_MREST: "Os parênteses de um fermata devem conter apenas uma nota ou outra '%{value}'"
+    ERR_059_DOUBLE_DOTS_MENS: "Notas pontilhadas duplas são inválidas com notação mensal."
     ERR_060_CLEF_MISSING: É necessária uma clave.
-    ERR_061_LIGATURE_NOTE_BEFORE: To indicate a ligature, a '+' must be preceded by a note.
-    ERR_062_LIGATURE_NOTE_AFTER: To indicate a ligature, a '+' must be followed by a note.
-    ERR_063_LIGATURE_PITCH: A ligature cannot have two consecutive notes with the same pitch.
-    ERR_064_LIGATURE_DURATION: The duration in a ligature cannot be shorter than a semibreve.
-    ERR_065_MREST_INVALID_MEASURE: A measure with a measure rest cannot include anything else.
+    ERR_061_LIGATURE_NOTE_BEFORE: Para indicar uma ligatura, um '+' deve ser precedido de uma nota.
+    ERR_062_LIGATURE_NOTE_AFTER: Para indicar uma ligatura, um '+' deve ser seguido por uma nota.
+    ERR_063_LIGATURE_PITCH: Uma ligadura não pode ter duas notas consecutivas com o mesmo tom.
+    ERR_064_LIGATURE_DURATION: A duração de uma ligatura não pode ser menor que um ponto e meio.
+    ERR_065_MREST_INVALID_MEASURE: Uma medida com um repouso não pode incluir mais nada.
   rism_online:
-    manuscript: "Manuscript"
-    printed: "Printed"
-    composite: "Composite Volume"
-    apply_filters: "Apply filters"
-    error_loading_results: "Error loading results"
-    global_collection: "Global Collection"
-    home: "Home"
-    keyword_query: "Keyword query"
-    first: "First"
-    last: "Last"
-    next: "Next"
-    previous: "Previous"
-    no_results_body: "Adjust your query options, or reset all filters, to see results."
-    no_results_header: "No results were found for your search"
-    no_results_to_find: "No results would be found with this search"
-    page: "Page"
-    words_anywhere: "Words anywhere"
-    record_preview: "Record preview"
+    manuscript: "Manuscrito"
+    printed: "Impresso"
+    composite: "Volume composto"
+    apply_filters: "Aplicar filtros"
+    error_loading_results: "Erro ao carregar os resultados"
+    global_collection: "Coleção global"
+    home: "Página inicial"
+    keyword_query: "Consulta por palavra-chave"
+    first: "Primeiro"
+    last: "Último"
+    next: "Próximo"
+    previous: "Anterior"
+    no_results_body: "Ajuste as opções de sua consulta ou redefina todos os filtros para ver os resultados."
+    no_results_header: "Não foram encontrados resultados para a sua pesquisa"
+    no_results_to_find: "Nenhum resultado será encontrado para esta pesquisa"
+    page: "Página"
+    words_anywhere: "Palavras em qualquer lugar"
+    record_preview: "Visualização do registro"
     record_uri: "Record URI (Permalink)"
-    reset_all: "Reset all"
-    number_results: "Number of results"
-    search: "Search"
-    show_all_results: "Show all results"
-    show_results: "Show results"
-    source_contents: "Source contents"
-    update_results: "Update search results"
-    page_not_found: "The page was not found"
-    bad_query: "There was a problem with the query"
-    result_types: "Result Types"
-    source_relationships: "Source relationships"
-    holding_institutions: "Holding institutions"
-    digital_facsimiles: "Digital facsimiles"
-    publication_details: "Publication details"
-    biographical_details: "Biographical details"
-    role_and_profession: "Role and profession"
-    composer_composition: "Composer and composition"
+    reset_all: "Resetar tudo"
+    number_results: "Número de resultados"
+    search: "Busca"
+    show_all_results: "Mostrar todos os resultados"
+    show_results: "Mostrar resultados"
+    source_contents: "Conteúdo da fonte"
+    update_results: "Atualizar resultados"
+    page_not_found: "A página não foi encontrada"
+    bad_query: "Houve um problema com a consulta"
+    result_types: "Tipos de resultado"
+    source_relationships: "Relações da fonte"
+    holding_institutions: "Responsabilidade das Instituições"
+    digital_facsimiles: "Facsimiles digitais"
+    publication_details: "Detalhes de Publicação"
+    biographical_details: "Detalhes biográficos"
+    role_and_profession: "Cargo e profissão"
+    composer_composition: "Compositor e composição"
+    full_record: "Registro completo"
   testingForCrowdinWorkshop:
     apple: maçã
     pear: pera

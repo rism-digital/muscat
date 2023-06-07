@@ -65,7 +65,7 @@ class ExportRecordsJob < ProgressJob::Base
     File.unlink(EXPORT_PATH.join(filename + @extension))
 
     # Send the user a notification
-    ExportReadyNotification.notify(@job_options[:email], filename + ".zip").deliver_now
+    ExportReadyNotification.notify(@job_options[:email], filename + ".zip", @getter.get_name).deliver_now
 
   end
     
@@ -191,8 +191,9 @@ private
   end
 
   def create_filename
-    time = Time.now.strftime('%Y-%m-%d-%H%M')
-    filename = "export-#{time}-" + SecureRandom.hex(4)
+    time = Time.now.strftime('%Y-%m-%d')
+    name = @getter.get_name.gsub(/([^\p{L}\s\d\-_~,;:\[\]\(\).'])/, '').gsub(' ', '')
+    filename = "export-#{name}-#{time}-" + SecureRandom.hex(2)
   end
 
   def xml_preamble
@@ -219,11 +220,13 @@ private
       signature: "LIBRARY INFO (852)",
       in: "PART OF (773)",
       composer: "COMPOSER (100)",
-      title: "TITLE (240)",
+      title: "TITLE (245)",
       standard_title: "STANDARD TITLE (240)",
+      scoring: "SCORING (240m)",
       literature: "WORK CATALOG (690)",
       keywords: "SUBJECT HEADING (650)",
-      source_type: "SOURCE TYPE (593)",
+      source_type: "SOURCE TYPE (593a)",
+      content_type: "SOURCE TYPE (593b)",
       date_to: "DATE TO (260)",
       date_from: "DATE FROM (260)",
       material: "MATERIAL (300)",
@@ -261,6 +264,13 @@ private
     csv_line[csv_headers[:title]] = source.title
     csv_line[csv_headers[:standard_title]] = source.std_title
 
+    t = source.marc.first_occurance("240")
+    if t
+      tm = t.fetch_first_by_tag("m").content rescue tm = ""
+      csv_line[csv_headers[:scoring]] = tm
+    end
+
+
     literature = []
     source.marc.each_by_tag("690") do |t|
         ta = t.fetch_first_by_tag("a").content rescue ta = ""
@@ -282,7 +292,9 @@ private
     t = source.marc.first_occurance("593")
     if t
       ta = t.fetch_first_by_tag("a").content rescue ta = ""
+      tb = t.fetch_first_by_tag("b").content rescue tb = ""
       csv_line[csv_headers[:source_type]] = ta
+      csv_line[csv_headers[:content_type]] = tb
     end
 
     csv_line[csv_headers[:date_to]] = source.date_to
@@ -325,6 +337,11 @@ private
     def get_items
       return @folder.folder_items.collect {|fi| fi.item.id}
     end
+
+    def get_name
+      return "Unnamed Folder" if !@folder.name
+      return @folder.name
+    end
   end
 
   class CatalogGetter
@@ -343,6 +360,10 @@ private
 
     def get_items
       return @results
+    end
+
+    def get_name
+      return "Untitled Search"
     end
   end
 

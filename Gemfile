@@ -22,7 +22,7 @@ gem 'coffee-rails', '~> 5.0'
 # gem 'mini_racer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', "~> 4.3.5"
+gem 'jquery-rails', "~> 4.4.0"
 gem 'jquery-ui-rails', '~> 6.0'
 gem 'js_cookie_rails', '~> 2.2.0'
 
