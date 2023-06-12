@@ -52,7 +52,7 @@ class EditorConfiguration
 
     configs.each do |config|
       file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml")
-      if File.exists?(file)
+      if File.exist?(file)
         settings.squeeze(read_file(file))
       end
     end
@@ -75,7 +75,7 @@ class EditorConfiguration
   
   def superimpose_shared_file(name)
     file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/shared/#{name}")
-    if File.exists?(file)
+    if File.exist?(file)
       @squeezed_labels_config.squeeze(read_file(file))
     end
   end

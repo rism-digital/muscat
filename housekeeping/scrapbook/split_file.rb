@@ -17,7 +17,7 @@ if ARGV.length >= 2
   start = 0
   ofile=File.open("#{Rails.root}/public/#{"%06d" % start}.xml", "w")
   ofile.write("<collection>")
-  if File.exists?(source_file)
+  if File.exist?(source_file)
     import = MarcImport.new(source_file, model, start.to_i)
 
     import.each_record(source_file) { |record|

@@ -18,7 +18,7 @@ class MarcConfig
 
     config_file = File.basename(tag_config_file_path)
     overlay_file = overlay_path #File.join(Rails.root, 'config', 'marc', RISM::MARC, 'local_' + config_file)
-    if File.exists?(overlay_file)
+    if File.exist?(overlay_file)
       @whole_config.squeeze(Settings.new(YAML::load(File.open(overlay_file))))
     end
     

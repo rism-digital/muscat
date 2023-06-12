@@ -128,7 +128,7 @@ options[:nomuscat] = false if !options.include?(:nomuscat)
 IIIF_PATH = options[:path] if options.include?(:path)
 
 if options.include?(:csv)
-  if !File.exists?(options[:csv])
+  if !File.exist?(options[:csv])
     puts "The csv file does not exist: #{options[:csv]}"
     exit 1
   end

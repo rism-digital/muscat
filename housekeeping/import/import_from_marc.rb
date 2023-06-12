@@ -15,7 +15,7 @@ if ARGV.length >= 2
   from = ARGV[2] if ARGV[2]
   if ! valid_models.include? model
     $stderr.puts "Invalid record type. Valid models are: " + valid_models.join(', ')
-  elsif File.exists?(source_file)
+  elsif File.exist?(source_file)
     import = MarcImport.new(source_file, model, from.to_i)
     import.import
     $stderr.puts "\nCompleted: "  +Time.new.strftime("%Y-%m-%d %H:%M:%S")
