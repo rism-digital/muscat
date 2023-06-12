@@ -77,9 +77,6 @@ ActiveAdmin.register User do
     render :partial => "activeadmin/section_sidebar_index"
   end
  
-  # Include the folder actions
-  include FolderControllerActions
-  
   ##########
   ## Show ##
   ##########
