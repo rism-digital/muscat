@@ -21,7 +21,7 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   member_action :archive, method: :get do
     if request.get? && can?(:manage, resource)
       value = (params[:do] && params[:do] == "false") ? :admin : :archived
-      resource.update_attributes! namespace: value || {}
+      resource.update namespace: value || {}
       resource.save!
       redirect_to collection_path, notice: "Item successfully (un-)archived"
     else
