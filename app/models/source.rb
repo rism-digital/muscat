@@ -43,7 +43,7 @@ class Source < ApplicationRecord
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   # include the override for group_values
-  require 'solr_search.rb'
+  require 'muscat/adapters/active_record/base.rb'
   include ForeignLinks
   include MarcIndex
   include Template

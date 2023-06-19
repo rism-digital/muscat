@@ -1,7 +1,8 @@
 module ActiveAdmin
 
-  class ResourceDSL
-    def collection_action(name, options = {}, &block)
+  class ResourceDSL < DSL
+    
+    def rod_collection_action(name, options = {}, &block)
       action config.collection_actions, name, options, &block
     end
     

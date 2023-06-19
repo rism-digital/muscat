@@ -1,4 +1,4 @@
-  module Sunspot
+  module SunspotExtensions
     module Search
 
       class PaginatedCollection

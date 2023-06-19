@@ -20,8 +20,8 @@ class MuscatAdminHeader < ActiveAdmin::Views::Header
   end
 end
 
-require 'active_admin_record_type_filter'
-require 'active_admin_lib_siglum_filter'
+require 'active_admin/inputs/filters/record_type_input.rb'
+require 'active_admin/inputs/filters/lib_siglum_input.rb'
 
 ActiveAdmin.setup do |config|
 
@@ -324,7 +324,7 @@ require 'active_admin/filter_label'
 ## RZ Let the download links disappear BUT have the .xml download for a single item
 require 'active_admin/download_links'
 ## RZ Add some text to the comments box, for help
-require 'active_admin/active_admin_comments'
+require 'active_admin/comments/views/comments.rb'
 
 ActiveAdmin.before_load do |app|
   # Add our Extensions

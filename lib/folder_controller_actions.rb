@@ -1,8 +1,23 @@
 # Override collection_action so it is public
 # from activeadmin lib/active_admin/resource_dsl.rb
-require 'resource_dsl_extensions.rb'
+require 'active_admin/resource_dsl.rb'
 
 MAX_FOLDER_ITEMS = 200000
+
+module ActiveAdmin
+
+  class ResourceDSL
+    
+    def collection_action(name, options = {}, &block)
+      action config.collection_actions, name, options, &block
+    end
+    
+    def member_action(name, options = {}, &block)
+      action config.member_actions, name, options, &block
+    end
+  end
+
+end
 
 # Extension module, see
 # https://github.com/gregbell/active_admin/wiki/Content-rendering-API

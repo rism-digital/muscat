@@ -11,9 +11,9 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => comment }
   end
   
-  scope :admin
-  scope("Archived") { |scope| scope.where(namespace: :archived) }
-  scope :all
+  #scope :admin
+  #scope("Archived") { |scope| scope.where(namespace: :archived) }
+  #scope :all
   
   # Custom action for archiving comments - done with namespace attribute (for now)
   # param[:do] true/false for archive or unarchive a comment

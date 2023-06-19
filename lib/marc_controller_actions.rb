@@ -1,6 +1,6 @@
 # Override collection_action so it is public
 # from activeadmin lib/active_admin/resource_dsl.rb
-require 'resource_dsl_extensions.rb'
+require 'active_admin/resource_dsl.rb'
 include Triggers
 
 # Extension module, see

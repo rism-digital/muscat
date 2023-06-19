@@ -5,6 +5,7 @@
 
 # This overrides restrict_format_access! so that if the controller action
 # is not show it will call the original version (and fail). This way we
+=begin
 # can have the overridden .xml download for a single item without the whole list
 module ActiveAdmin
   class ResourceController
@@ -19,3 +20,4 @@ module ActiveAdmin
     end
   end
 end
+=end
