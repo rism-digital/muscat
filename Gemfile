@@ -80,7 +80,7 @@ end
 
 gem 'devise'
 gem 'devise-i18n'
-gem 'devise_saml_authenticatable', require: false
+#gem 'devise_saml_authenticatable', require: false
 
 # paperclip for image storage
 gem "kt-paperclip"#, "~> 6.2.0"
@@ -125,7 +125,7 @@ gem 'gruff'
 
 # These need to be loaded in production too
 gem 'solr_wrapper'#, '>= 0.3'
-gem 'ruby-saml-idp'
+#gem 'ruby-saml-idp'
 
 gem 'rsolr'#, '>= 1.0'
 
