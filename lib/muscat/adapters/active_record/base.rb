@@ -1,3 +1,25 @@
+require 'patches/sunspot/session_ext.rb'
+require 'patches/sunspot/session_proxy/thread_local_session_proxy_ext.rb'
+
+
+=begin
+module Sunspot
+  class Session
+    def get_connection
+      connection
+    end
+  end
+end
+
+module Sunspot    
+  module SessionProxy
+    class ThreadLocalSessionProxy < AbstractSessionProxy #< Sunspot::SessionProxy::AbstractSessionProxy
+      delegate :get_connection, :to => :session
+    end
+  end
+end
+=end
+
 module Muscat
   module Adapters
     module ActiveRecord

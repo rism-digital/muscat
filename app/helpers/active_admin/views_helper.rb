@@ -1,5 +1,6 @@
 # include the override for group_values
-require 'sunspot_extensions.rb'
+# FIXME on rails 7.0, do we still need this?
+#require 'patches/sunspot/search/paginated_collection.rb'
 
 module ActiveAdmin::ViewsHelper
   
