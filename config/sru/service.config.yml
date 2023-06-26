@@ -49,8 +49,8 @@ index:
     solr: composer_order
     type: s
   dc.author:
-    solr: 100a
-    type: text
+    solr: composer
+    type: texts
   dc.publisher:
     solr: 260b
     type: text
