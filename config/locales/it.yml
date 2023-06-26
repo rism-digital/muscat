@@ -457,7 +457,7 @@ it:
   filter_author_or_editor: "Autore/Editore"
   filter_autograph_of: "Autografo di"
   filter_birth_place: "Luogo di nascita"
-  filter_catalog: "Catalogo"
+  filter_publications: "Pubblicazioni"
   filter_category_type: "Categoria"
   filter_collection: "Collezione"
   filter_comment: "Commento"

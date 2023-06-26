@@ -92,7 +92,7 @@ include ApplicationHelper
           
           if rule.is_a? String
             
-            if rule == "required" || rule == "required, warning"
+            if rule == "required" || rule == "required, warning" || rule == "mandatory"
               if !marc_subtag || !marc_subtag.content
                 #@errors["#{tag}#{subtag}"] = rule
                 add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
