@@ -299,6 +299,7 @@ de:
     baptismal_name: Taufname
     basic_functions: Grundsätzliche Funktionen
     basso_continuo: Basso continuo
+    beginning_or_single_date: Beginning or single date
     bf_major: B-Dur
     bf_minor: b-Moll
     bibliography: Bibliographie
@@ -436,6 +437,7 @@ de:
     ef_major: Es-Dur
     ef_minor: es-Moll
     encyclopedia: Enzyklopädie
+    end: End
     end_period: Periode beenden
     engraver: Stecher
     engraving: Stich
@@ -716,6 +718,7 @@ de:
     place_activity: Wirkungsort
     place_birth: Geburtsort
     place_death: Sterbeort
+    place_of_creation: Place of creation
     place_of_residence: Wohnort/Hauptsitz
     place_origin: Herkunftsangabe
     place_publication: Verlagsort

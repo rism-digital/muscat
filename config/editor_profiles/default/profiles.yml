@@ -159,6 +159,8 @@
   - WorkLayoutDefault
   :filter:
     default: true 
+  :validation: "WorkValidation"
+  
 ###
 - :id: ShowWork
   :name: Work
