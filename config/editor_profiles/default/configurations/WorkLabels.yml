@@ -184,6 +184,13 @@
     y:
       label: records.type_relationship
   label: records.related_personal_name
+'530':
+  fields:
+    a:
+      label: records.related_work
+    i:
+      label: records.relationship_information
+  label: records.related_work
 '510':
   fields:
     a:

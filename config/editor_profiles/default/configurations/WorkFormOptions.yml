@@ -398,6 +398,14 @@
         editor_partial: subfield_secondary
     - - d
     - - e
+"530": 
+  allow_new: true
+  layout: 
+    fields: 
+    - - "a"
+      - type: work
+        editor_partial: subfield_secondary
+    - - i
 "667": 
   layout: 
     fields: 

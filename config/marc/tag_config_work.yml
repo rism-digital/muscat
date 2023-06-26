@@ -216,7 +216,6 @@
       - :occurrences: "*"
     - - s
       - :occurrences: "*"
-# This is a linked field
   "500":
     :master: "0"
     :indicator: "1#"
@@ -234,6 +233,22 @@
     - - "d"
       - :occurrences: "?"
     - - "e"
+      - :occurrences: "?"
+  "530":
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Work
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+    - - "i"
       - :occurrences: "?"
   "667":
     :master: a
