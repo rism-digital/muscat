@@ -176,7 +176,6 @@
     - - indicator
       - editor_partial: subfield_indicator
     - - a
-
 "040": 
   layout: 
     fields: 
@@ -184,6 +183,12 @@
     - - c
     - - d
     - - b
+"046": 
+  layout: 
+    fields: 
+    - - k
+    - - l
+    - - z
 "100":
   new_window: people
   new_window_field: full_name_equals
@@ -385,15 +390,6 @@
         editor_partial: subfield_secondary
     - - d
     - - e
-"548": 
-  layout: 
-    fields: 
-    - - a
-      - growfield: true
-    - - i
-      - values:
-        - "Date of origin"  
-        editor_partial: subfield_select
 "667": 
   layout: 
     fields: 
@@ -510,21 +506,3 @@
     - - "a"
       - type: liturgical_feast
         editor_partial: subfield_secondary
-"930": 
-  allow_new: true
-  new_window: works
-  layout: 
-    fields: 
-    - - "a"
-      - type: work
-        editor_partial: subfield_secondary
-    - - i
-      - values:
-        - "Adaption of"
-        - "Continuation of"
-        - "Inspired by"
-        - "Other"
-        - "Part of"
-        - "Pharaphrase of"  
-        - "Variation of"  
-        editor_partial: subfield_select

@@ -11,10 +11,10 @@ groups:
     all_tags: 
     - "100"
     - "130"
-    - "548"
     - "383"
     - "430"
     - "690"
+    - "046"
     all_tag_templates: 
       "690": marc_show/show_69x_url
   codes: 
@@ -49,7 +49,6 @@ groups:
       "700": works/show_related_person
       "710": marc_show/show_institution 
       "747": works/show_related_feast
-      "930": works/show_work_link
       "856": marc_show/show_link
   control: 
     all_tags: 

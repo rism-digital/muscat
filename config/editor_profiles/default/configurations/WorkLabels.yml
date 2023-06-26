@@ -63,16 +63,15 @@
     d:
       label: records.modifying_agency
   label: records.cataloging_source
-'042':
+'046':
   fields:
-    a:
-      label: records.authentication_code
-  label: records.authentication_code
-'043':
-  fields:
-    c:
-      label: records.nationality
-  label: records.nationality
+    k:
+      label: records.beginning_or_single_date
+    l:
+      label: records.end
+    z:
+      label: records.public_note
+  label: records.date_of_creation
 '100':
   fields:
     a:
