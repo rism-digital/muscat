@@ -54,9 +54,9 @@ GIT
 
 GIT
   remote: https://github.com/rism-ch/rails3-jquery-autocomplete
-  revision: f70cfbd2ef302d3423e58b3ab733452320991772
+  revision: 9a0cbfa9282c225aacf063d9ba65c96f1c8ccb0f
   specs:
-    rails3-jquery-autocomplete (1.0.27)
+    rails3-jquery-autocomplete (1.0.28)
       rails (>= 5.1)
 
 GIT
@@ -220,7 +220,7 @@ GEM
     highline (1.7.10)
     histogram (0.2.4.1)
     htmlentities (4.3.4)
-    i18n (1.13.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     i18n-js (3.9.0)
       i18n (>= 0.6.6)
@@ -282,11 +282,11 @@ GEM
       rake
     mini_mime (1.1.2)
     mini_portile2 (2.8.2)
-    minitest (5.18.0)
+    minitest (5.18.1)
     multipart-post (2.1.1)
     mysql2 (0.5.3)
     needleman_wunsch_aligner (1.0.4)
-    net-imap (0.3.4)
+    net-imap (0.3.6)
       date
       net-protocol
     net-pop (0.1.2)
@@ -296,7 +296,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.1)
+    nokogiri (1.15.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     non-stupid-digest-assets (1.0.9)
@@ -315,7 +315,7 @@ GEM
     public_suffix (4.0.6)
     puma (5.6.4)
       nio4r (~> 2.0)
-    racc (1.6.2)
+    racc (1.7.1)
     rack (2.2.7)
     rack-test (2.1.0)
       rack (>= 1.3)
@@ -335,8 +335,9 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.5.0)
-      loofah (~> 2.19, >= 2.19.1)
+    rails-html-sanitizer (1.6.0)
+      loofah (~> 2.21)
+      nokogiri (~> 1.14)
     rails-i18n (5.1.3)
       i18n (>= 0.7, < 2)
       railties (>= 5.0, < 6)
@@ -438,7 +439,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    timeout (0.3.2)
+    timeout (0.4.0)
     tty-cursor (0.7.1)
     tty-spinner (0.9.3)
       tty-cursor (~> 0.7)
