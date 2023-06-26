@@ -283,6 +283,14 @@
       - "6byz"
       - "7byz"
       - "8byz"
+"370": 
+  allow_new: true
+  layout: 
+    fields: 
+    - - "g"
+      - type: place
+        editor_partial: subfield_secondary
+    - - i
 "380": 
   allow_new: true
   new_window: standard_terms

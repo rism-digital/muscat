@@ -178,6 +178,22 @@
     :fields:
     - - b
       - :occurrences: "*"
+  "370":
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Place
+        :foreign_field: id
+        :no_show: true
+    - - g
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - i
+      - :occurrences: "?"
   "430":
     :master: "0"
     :indicator: "#0"

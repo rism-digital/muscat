@@ -122,9 +122,11 @@
   label: records.mode_2tt
 '370':
   fields:
-    a:
-      label: records.place_birth
-  label: records.associated_place
+    g:
+      label: records.place_origin
+    i:
+      label: records.relationship_information
+  label: records.place_of_creation
 '380':
   fields:
     a:
