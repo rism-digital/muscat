@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_26_124737) do
+ActiveRecord::Schema.define(version: 2023_06_26_131605) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2023_06_26_124737) do
 
   create_table "holdings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "source_id"
-    t.string "lib_siglum"
+    t.string "lib_siglum", limit: 32, collation: "utf8mb4_0900_as_cs"
     t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
     t.integer "wf_audit"
@@ -404,7 +404,7 @@ ActiveRecord::Schema.define(version: 2023_06_26_124737) do
     t.string "language", limit: 16
     t.integer "date_from"
     t.integer "date_to"
-    t.string "lib_siglum"
+    t.string "lib_siglum", limit: 32, collation: "utf8mb4_0900_as_cs"
     t.text "marc_source", limit: 16777215
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
