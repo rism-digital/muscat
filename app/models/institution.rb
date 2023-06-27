@@ -31,6 +31,7 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
+  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_institutions")
   has_and_belongs_to_many :people, join_table: "institutions_to_people"
   has_and_belongs_to_many :publications, join_table: "institutions_to_publications"
   
