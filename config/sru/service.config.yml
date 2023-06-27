@@ -48,6 +48,7 @@ index:
   dc.creator:
     solr: composer_order
     type: s
+# changed to new index
   dc.author:
     solr: composer
     type: texts
