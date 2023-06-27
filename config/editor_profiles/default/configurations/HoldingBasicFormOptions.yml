@@ -142,6 +142,10 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - b
+    - - c
+      - type: place
+        editor_partial: subfield_autocomplete
+        autocomplete_extra: place
     - - g
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
