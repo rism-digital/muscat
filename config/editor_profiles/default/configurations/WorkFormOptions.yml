@@ -400,6 +400,7 @@
     - - e
 "530": 
   allow_new: true
+  new_window: works
   layout: 
     fields: 
     - - "a"
