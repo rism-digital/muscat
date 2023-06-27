@@ -718,7 +718,7 @@ pl:
     place_activity: Miejsce aktywności artystycznej
     place_birth: Miejsce urodzenia
     place_death: Miejsce śmierci
-    place_of_creation: Place of creation
+    place_of_creation: Miejsce utworzenia
     place_of_residence: Miejsce zamieszkania/siedziba
     place_origin: Miejsce pochodzenia
     place_publication: Miejsce publikacji
@@ -885,9 +885,9 @@ pl:
     work: Dzieło
     work_number: Numer dzieła
     work_tag: Work revision tag
-    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_needs_revision: Incipit wymaga ponownego sprawdzenia
     work_tag_incipit_replace: incipit-replace
-    work_tag_needs_revision: needs-revision
+    work_tag_needs_revision: wymaga ponownego sprawdzenia
     work_tag_note: Tag note
     work_tag_type: Tag type
     year: Rok
