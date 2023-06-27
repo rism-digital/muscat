@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_05_120816) do
+ActiveRecord::Schema.define(version: 2023_06_26_131605) do
 
   create_table "active_admin_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 2023_04_05_120816) do
 
   create_table "holdings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "source_id"
-    t.string "lib_siglum"
+    t.string "lib_siglum", limit: 32, collation: "utf8mb4_0900_as_cs"
     t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
     t.integer "wf_audit"
@@ -449,7 +449,7 @@ ActiveRecord::Schema.define(version: 2023_04_05_120816) do
     t.string "language", limit: 16
     t.integer "date_from"
     t.integer "date_to"
-    t.string "lib_siglum"
+    t.string "lib_siglum", limit: 32, collation: "utf8mb4_0900_as_cs"
     t.text "marc_source", limit: 16777215
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
@@ -791,6 +791,13 @@ ActiveRecord::Schema.define(version: 2023_04_05_120816) do
     t.integer "person_id"
     t.index ["person_id"], name: "index_works_to_people_on_person_id"
     t.index ["work_id"], name: "index_works_to_people_on_work_id"
+  end
+
+  create_table "works_to_places", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "work_id"
+    t.integer "place_id"
+    t.index ["place_id"], name: "index_works_to_places_on_place_id"
+    t.index ["work_id"], name: "index_works_to_places_on_work_id"
   end
 
   create_table "works_to_publications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
