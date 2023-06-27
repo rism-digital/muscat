@@ -14,13 +14,14 @@ class ValidationExclusion
     end
 
     def process_and_rule(item, rule_name, rule_val)
-        if !rule_val.is_a? Hash
-            raise TypeError.new "Nested rule #{rule_name} must be a Hash"
+        if !rule_val.is_a? Array
+            raise TypeError.new "Nested rule #{rule_name} must be an Array"
         end
 
         value = true
-        rule_val.each do |sub_rule_name, sub_rule_value|
-            value &= parse_rule(item, sub_rule_name, sub_rule_value, true)
+        rule_val.each do |rule|
+            rule_arr = rule.first
+            value &= parse_rule(item, rule_arr[0], rule_arr[1], true)
         end
         return value
     end
@@ -42,7 +43,7 @@ class ValidationExclusion
 
     def exclude_from_tag?(tag, subtag, item)
         if !item.is_a? @model_object
-            raise TypeError.new "Item validated is not a @#{model}"
+            raise TypeError.new "Item validated is not a #{model}"
         end
 
         # No config present
@@ -55,8 +56,10 @@ class ValidationExclusion
 
         rules = @configuration["exclude"][tag.to_s]["tags"][subtag.to_s]
 
-        rules.each do |rule_name, rule_val|
-            return true if parse_rule(item, rule_name, rule_val)
+        rules.each do |rule|
+            # split the key/val pair of the hash
+            rule_arr = rule.first
+            return true if parse_rule(item, rule_arr[0], rule_arr[1])
         end
 
         return false
@@ -64,8 +67,7 @@ class ValidationExclusion
 
     private
 
-    def load_exclusion_file(conf)
-        file_name = conf["from_file_list"]
+    def load_exclusion_file(file_name)
         file_path = "#{@config_base}/#{file_name}"
 
         if !File.exist?(file_path)
@@ -80,17 +82,18 @@ class ValidationExclusion
 
     def load_configuration
         @configuration = YAML::load(File.read(@config_file))
+        @configuration[:calculated_excluded_ids] = {}
 
         @configuration["exclude"].each do |tag, tag_configuration|
             tag_configuration["tags"].each do |subtag, conf|
-                if conf.keys.include?("from_file_list")
-                    # All the excluded ids get merged here
-                    if !tag_configuration["tags"][subtag].include?("exclude_ids")
-                        tag_configuration["tags"][subtag]["exclude_ids"] = []
+                conf.each do |config_element|
+                    if config_element.include?("from_file_list")
+                        list = []
+                        # Load them from a file?
+                        list.concat(load_exclusion_file(config_element["from_file_list"]))
+                        list.sort!.uniq!
+                        conf << {"exclude_ids" => list}
                     end
-                    # Load them from a file?
-                    tag_configuration["tags"][subtag]["exclude_ids"].concat(load_exclusion_file(conf))
-                    tag_configuration["tags"][subtag]["exclude_ids"].sort!.uniq!
                 end
             end
         end

@@ -299,6 +299,7 @@ ca:
     baptismal_name: Nom baptismal
     basic_functions: Funcions bàsiques
     basso_continuo: Baix continu
+    beginning_or_single_date: Beginning or single date
     bf_major: Si♭ major
     bf_minor: Si♭ minor
     bibliography: Bibliografia
@@ -436,6 +437,7 @@ ca:
     ef_major: Mi♭ major
     ef_minor: Mi♭ menor
     encyclopedia: Enciclopèdia
+    end: End
     end_period: Període final
     engraver: Gravador
     engraving: Gravat
@@ -716,6 +718,7 @@ ca:
     place_activity: Lloc d'activitat
     place_birth: Lloc de naixement
     place_death: Lloc de mort
+    place_of_creation: Place of creation
     place_of_residence: Lloc de residència/seu
     place_origin: Lloc d'origen
     place_publication: Lloc de publicació
