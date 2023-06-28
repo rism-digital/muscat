@@ -44,6 +44,7 @@ class MarcWork < Marc
   end 
 
   def get_composer
+    person = nil
     if node = first_occurance("100", "a")
       person = node.foreign_object
     end
