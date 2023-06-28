@@ -13,7 +13,7 @@ class Work < ApplicationRecord
 
 
   resourcify
-  belongs_to :person
+  belongs_to :composer, {class_name: "Person", foreign_key: "person_id"}
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
@@ -197,7 +197,7 @@ class Work < ApplicationRecord
     return if marc_source == nil
     self.title = marc.get_title
     # LP commented for work experiments. Person is set by hand in the script
-    #self.person = marc.get_composer
+    self.composer = marc.get_composer
     self.opus = marc.get_opus
     self.catalogue = marc.get_catalogue
     self.link_status = marc.get_link_status
