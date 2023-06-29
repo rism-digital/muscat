@@ -451,7 +451,7 @@ de:
   filter_author_or_editor: "Autor/Herausgeber"
   filter_autograph_of: "Autograph von"
   filter_birth_place: "Geburtsort"
-  filter_catalog: "WV / Katalog"
+  filter_publications: "Publikationen"
   filter_collection: "Sammlung"
   filter_category_type: "Kategorie"
   filter_comment: "Kommentar"
@@ -566,7 +566,10 @@ de:
   filter_source_name: "Name der Quelle"
   filter_source_composer: "Komponist der Quelle"
   filter_printed_exemplars: "Anzahl der gedruckten Exemplare"
-  
+  filter_is_text: "\"Text\", benutz in 031 $t"
+  filter_is_standard: "\"Standard\", benutz in 240 $a"
+  filter_is_additional: "\"Additional\", benutz in 730 $a"
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} die sich auf diesen %{model_to} beziehen"
 

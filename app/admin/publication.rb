@@ -235,6 +235,20 @@ ActiveAdmin.register Publication do
       end
     end
     
+    active_admin_embedded_link_list(self, publication, Work) do |context|
+      context.table_for(context.collection) do |cr|
+        column (I18n.t :filter_id), :id  
+        column (I18n.t :filter_title), :title
+        column "Opus", :opus
+        column "Catalogue", :catalogue
+        if !is_selection_mode?
+          context.column "" do |work|
+            link_to "View", controller: :works, action: :show, id: work.id
+          end
+        end
+      end
+    end
+
     if !resource.get_items.empty?
       panel I18n.t :filter_series_items do
         search=Publication.solr_search do 

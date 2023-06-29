@@ -44,6 +44,7 @@ class MarcWork < Marc
   end 
 
   def get_composer
+    person = nil
     if node = first_occurance("100", "a")
       person = node.foreign_object
     end
@@ -67,6 +68,10 @@ class MarcWork < Marc
       end
     end
     return status
+  end
+
+  def reset_to_new
+    first_occurance("001").content = "__TEMP__"
   end
 
 end

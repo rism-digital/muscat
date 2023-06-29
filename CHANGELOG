@@ -1,6 +1,123 @@
 Muscat Changelog
 ================
 
+v 9.3.1
+* Make id in html view clickable
+* Added 240m to sru
+* Fix #1356 Allow editors to view users
+* Fix current folder filder behaviour and create a couple more
+* In the folder filters, select only users with folders
+* Do not allow the creation of folders of users
+* Rename obsolete catalogues filter text to publications
+* Merge pull request #1398 from fjorba/filter-catalog-should-be-filter-publication
+* Merge pull request #1393 from fjorba/remove-folder-actions-for-users
+* Merge pull request #1395 from rism-digital/develop_abilities
+* Merge pull request #1390 from fjorba/add-new-folder-filters
+* Fix #1412 make the server validation correctly validate mandatory tags
+* Implement the exclusions as array to allow for duplicate keys
+* Fix #1246, make sure the focus is returned on the 031 $p textarea
+* Update gems to use new version of rails autocomplete
+* #1411 add 046, remove obsolete fields, make validation really work
+* #1411 add 370
+* #1411 add 530
+* Add translations for new work fields
+* Fix #1410, add proper collation
+* Fix #1369, add place in 710 $c for holdings too
+* Fix #1386 make 024 required in institutions
+* Fix #1418, properly link works
+* Microfix for the offended works
+* Add new window selection for 530 work
+* Updated sru index
+* Merge pull request #1421 from rism-digital/develop_sru_index2
+* #1422 make person_id work
+* Fix #1422 make the fix script better
+
+v 9.3
+* Implement $a and $b in institutions, v3 (thanks to fjorba!)
+* Fill in corporate name in institutions table
+* Bump rack from 2.2.6.2 to 2.2.6.4
+* Experimental: Pick 031t from the indexed values in Source and not anymore in Standard Tile
+* Fix #1354, Added some fields to CSV 
+* Catalan translation fixes and improvements
+* Merge pull request #1335 from fjorba/institutions-consider-subordinate-unit-v3
+* Merge pull request #1359 from fjorba/catalan-fixes-1
+* Escape data-scroll-target editor validation javascript element
+* Merge pull request #1361 from fjorba/escape-marc-editor-data-scroll-target
+* Merge pull request #1358 from rism-digital/develop_csv
+* Merge pull request #1343 from rism-digital/dependabot/bundler/rack-2.2.6.4
+* Bump nokogiri from 1.13.10 to 1.14.3
+* Merge pull request #1355 from rism-digital/dependabot/bundler/nokogiri-1.14.3
+* Remove unused pae field
+* Add 699 (local) tag for work tags
+* Adjust configuration for work tags
+* Add "incipit-replace" tag type
+* Make the "inline autocomplete" work with data from the backend, f.ex. data from 031t
+* Make the inline_autocomplete work as a target for autocomplete_extra
+* Remove new window search in incipits
+* Add 599 internal notes from the incipit correct script
+* Get notifications for Works, not WorkNodes
+* Fix link to BNF catalogue
+* Add support for duplicating a work
+* Merge pull request #1378 from rism-digital/develop-works-duplicate
+* Merge pull request #1364 from rism-digital/develop-works-add-tags
+* Merge pull request #1377 from rism-digital/fix-bnf-uri
+* Basic work tag filtering on Works
+* Aviod crash when the global note is not there
+* Add dome 650 scripts
+* Add validation exclusion support
+* Add exclusions to validation job
+* Update 710c label and translations
+* Switch to using Facets instead of Terms to get terms in a document
+* Fix #1369 add Place also to 710 Publication
+* Fix #1078 add script to dup 700 and 710
+* Add the Pollini importer
+* Update autocomplete gem and othe minor gems
+* #1078 fix 7x0 also on holding
+* #1078 push the complete version
+* #1078 Make the scrpt more clever not tu dup empty $4 and to preserve the position
+* Merge pull request #1379 from rism-digital/dependabot/bundler/jquery-rails-4.4.0
+* Add actual validation to 593!!
+* Validate institution between child and parent
+* Fix #1384, add Folder name in name and mail
+* Add docs for ValidationExclusions
+
+v 9.2.1
+* Merge #1378 to add duplication to works
+
+v 9.2
+* Add migration for utf8mb4_0900_as_cs
+* Collapse 031
+* Add validation for 031 $a
+* Add more tags in 031 validation
+* Fix #1197 add validation for 773
+* #1350, Refactor 774 saving so when a 773 in a source is changed both old and new parent are updated.
+* Make the validation logger create a new file
+* set UTC timezione
+
+v 9.1.2
+* Add Catalan translation
+* Add WorkNode $p
+* Validate stale 774 links
+* Make the missing master error include the object id
+* Make validation work for institutions
+* Fix #1337, add 592 to tags that go in holdings
+* Fix emails for expiring folders
+* Add missing label for expiring folders
+* Fix #1333, link to institution goes to the actual linked institution
+* Fix #1338, make $0 required when there is $4 in 700 and 710
+* Fix #1336, remove 593 if we are moving an existing one
+* Allow multiple shared confs
+* Prevent template switch from restoring old versions
+* Better folder expiration email formatting and message
+* Throw file name in excpetion when loading yml configuration for editor
+* Add trigger to subfield secondary
+* Optiona puts patch showing file name
+* Merge pull request #1339 from fjorba/catalan-translation
+* Fix #1330 add hardcoded field and assign it to 031 $a
+* Fix #1345, add standard title filtering
+* Add properly translated filters for Standard Titles
+* Update verovio to 3.15
+
 v 9.1.1
 * Add $d for 500 in people
 

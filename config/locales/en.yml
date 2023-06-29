@@ -433,6 +433,7 @@ en:
     two_weeks: "The following folders will be deleted in two weeks on %{date}"
     one_month: "The following folders will be deleted in one month on %{date}"
     make_catalogue: "Flag items as work catalogues"
+    expiring_folders: "Your Muscat folders will expire soon"
 
   ### Digital objects
   digital_objects: "Digital Objects"
@@ -451,7 +452,7 @@ en:
   filter_author_or_editor: "Author/Editor"
   filter_autograph_of: "Autograph of"
   filter_birth_place: "Birth place"
-  filter_catalog: "Catalogue"
+  filter_publications: "Publications"
   filter_category_type: "Category"
   filter_collection: "Collection"
   filter_comment: "Comment"
@@ -568,7 +569,10 @@ en:
   filter_source_name: "Source Name"
   filter_source_composer: "Source Composer"
   filter_printed_exemplars: "Number of printed copies"
- 
+  filter_is_text: "\"Text\", used in 031 $t"
+  filter_is_standard: "\"Standard\", used in 240 $a"
+  filter_is_additional: "\"Additional\", used in 730 $a"
+
   ## Referring lists for auth files
   refers_to_this: "%{model_from} referring to this %{model_to}"
  

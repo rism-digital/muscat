@@ -299,6 +299,7 @@ de:
     baptismal_name: Taufname
     basic_functions: Grundsätzliche Funktionen
     basso_continuo: Basso continuo
+    beginning_or_single_date: Anfangs- oder Einzeldatum
     bf_major: B-Dur
     bf_minor: b-Moll
     bibliography: Bibliographie
@@ -364,6 +365,7 @@ de:
     conceptor: Autor der Textvorlage
     conductor: Dirigent
     confused_with: Verwechselt mit
+    congress: Kongresse
     conjectural: Mutmaßlich
     contact: Kontakt
     contact_area: Kontakt
@@ -435,6 +437,7 @@ de:
     ef_major: Es-Dur
     ef_minor: es-Moll
     encyclopedia: Enzyklopädie
+    end: Ende
     end_period: Periode beenden
     engraver: Stecher
     engraving: Stich
@@ -715,6 +718,7 @@ de:
     place_activity: Wirkungsort
     place_birth: Geburtsort
     place_death: Sterbeort
+    place_of_creation: Ort der Erschaffung
     place_of_residence: Wohnort/Hauptsitz
     place_origin: Herkunftsangabe
     place_publication: Verlagsort
@@ -879,7 +883,13 @@ de:
     watermark_description: Wasserzeichen
     woodwinds: Holzblasinstrumente
     work: Werktitel
-    work_number: Incipitnummer
+    work_number: Werknummer
+    work_tag: Markierung der Werk-Revision
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Markierungshinweis
+    work_tag_type: Markierungstyp
     year: Jahr
     years_birth_death: Geburts- und Todesdaten
   relations:

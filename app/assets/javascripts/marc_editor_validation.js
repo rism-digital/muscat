@@ -83,7 +83,7 @@ function _marc_validate_highlight( element, errorClass, validClass ) {
 	// Highlight the group in the sidebar
 	var panel = $(element).parents(".tab_panel");
 	var item_name = panel.attr("name");
-	var menu_item = $("a[data-scroll-target=" + item_name+ "]");
+	var menu_item = $('a[data-scroll-target="' + item_name+ '"]');
 	menu_item.addClass(errorClass);
 	
 	// Keep a reference of the error'd items
@@ -132,7 +132,7 @@ function _marc_validate_unhighlight( element, errorClass, validClass ) {
 	// class from the sidebar group
 	var panel = $(element).parents(".tab_panel");
 	var item_name = panel.attr("name");
-	var menu_item = $("a[data-scroll-target='" + item_name+ "']");
+	var menu_item = $('a[data-scroll-target="' + item_name+ '"]');
 	var errors = menu_item.data("error-counter");
 	if (errors != undefined) {
 		

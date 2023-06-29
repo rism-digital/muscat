@@ -297,14 +297,19 @@
     - asn
     - oth
 "710":
-  allow_new: true
   new_window: institutions
+  new_window_field: corporate_name_equals
   layout: 
-    fields: 
+    fields:
     - - a
       - type: institution
         editor_partial: subfield_secondary
+        allow_new: true
     - - b
+    - - c
+      - type: place
+        editor_partial: subfield_autocomplete
+        autocomplete_extra: place
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"

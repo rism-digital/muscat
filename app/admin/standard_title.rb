@@ -106,6 +106,15 @@ ActiveAdmin.register StandardTitle do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "StandardTitle").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
+  filter :is_text_with_integer, :label => proc{I18n.t(:filter_is_text)}, as: :select, 
+         collection: [["Yes", "is_text:true"],["No", "is_text:false"]]
+  
+  filter :is_standard_with_integer, :label => proc{I18n.t(:filter_is_standard)}, as: :select, 
+         collection: [["Yes", "is_standard:true"],["No", "is_standard:false"]]
+
+  filter :is_additional_with_integer, :label => proc{I18n.t(:filter_is_additional)}, as: :select, 
+         collection: [["Yes", "is_additional:true"],["No", "is_additional:false"]]
+
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|et| status_tag(et.wf_stage,
@@ -145,6 +154,21 @@ ActiveAdmin.register StandardTitle do
       row (I18n.t :filter_notes) { |r| r.notes }  
     end
     active_admin_embedded_source_list( self, standard_title, !is_selection_mode? )
+
+    active_admin_embedded_link_list(self, standard_title, Work) do |context|
+      context.table_for(context.collection) do |cr|
+        column (I18n.t :filter_id), :id  
+        column (I18n.t :filter_title), :title
+        column "Opus", :opus
+        column "Catalogue", :catalogue
+        if !is_selection_mode?
+          context.column "" do |work|
+            link_to "View", controller: :works, action: :show, id: work.id
+          end
+        end
+      end
+    end
+
     active_admin_user_wf( self, standard_title )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?

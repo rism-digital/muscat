@@ -168,10 +168,24 @@ ActiveAdmin.register Folder do
   ###########
   ## Index ##
   ###########
-  
-  # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  
+
+  # Solr search substring: "_cont"
+  filter :name_cont, :label => proc { I18n.t(:any_field_contains) },
+         as: :string
+  # Filter by the wf_owner
+  filter :wf_owner_equals, :label => proc { I18n.t(:filter_owner) },
+         as: :select,
+         collection: proc {
+    if current_user.has_any_role?(:editor, :admin)
+      User.find(Folder.distinct.pluck(:wf_owner)).pluck(:name, :id).sort
+    else
+      [[current_user.name, "wf_owner:#{current_user.id}"]]
+    end
+  }
+  # Filter by folder type
+  filter :folder_type, :label => proc { I18n.t(:filter_folder_type) },
+         as: :select,
+         collection: proc { Folder.distinct.pluck(:folder_type) }
 
   index :download_links => false do |ad|
     selectable_column

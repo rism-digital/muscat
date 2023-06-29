@@ -299,6 +299,7 @@ en:
     baptismal_name: Baptismal name
     basic_functions: Basic functions
     basso_continuo: Basso continuo
+    beginning_or_single_date: Beginning or single date
     bf_major: B♭ major
     bf_minor: B♭ minor
     bibliography: Bibliography
@@ -364,6 +365,7 @@ en:
     conceptor: Conceptor
     conductor: Conductor
     confused_with: Confused with
+    congress: Congress
     conjectural: Conjectural
     contact: Contact
     contact_area: Contact area
@@ -435,6 +437,7 @@ en:
     ef_major: E♭ major
     ef_minor: E♭ minor
     encyclopedia: Encyclopedia
+    end: End
     end_period: End period
     engraver: Engraver
     engraving: Engraving
@@ -693,7 +696,7 @@ en:
     other_standard_identifier: Other standard identifier
     other_variant: Other variant
     papermaker: Papermaker
-    parallel_form: Paralell form of name
+    parallel_form: Parallel form of name
     parent_record: Parent record
     partial_autograph: Partial autograph
     parts_held: Parts held
@@ -718,6 +721,7 @@ en:
     place_activity: Place of activity
     place_birth: Place of birth
     place_death: Place of death
+    place_of_creation: Place of creation
     place_of_residence: Place of residence/headquarters
     place_origin: Place of origin
     place_publication: Place of publication
@@ -883,6 +887,12 @@ en:
     woodwinds: Woodwinds
     work: Work
     work_number: Work number
+    work_tag: Work revision tag
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Tag note
+    work_tag_type: Tag type
     year: Year
     years_birth_death: Years of birth and death
   relations:

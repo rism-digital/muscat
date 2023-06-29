@@ -5,7 +5,7 @@ module ApplicationHelper
   end
   
   def institution_default_autocomplete
-    autocomplete_institution_name_admin_institutions_path
+    autocomplete_institution_corporate_name_admin_institutions_path
   end
   
   def library_default_autocomplete
@@ -56,6 +56,10 @@ module ApplicationHelper
     autocomplete_work_title_admin_work_nodes_path
   end
   
+  def source_031t_solr_default_autocomplete
+    autocomplete_source_031t_filter_sms_admin_sources_path
+  end
+
   # Create a link for a page in a new window
   def application_helper_link_http(value, node, opac)
     result = []

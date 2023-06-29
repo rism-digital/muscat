@@ -13,7 +13,7 @@
         begin_time = Time.now
 
         # Run the checkup function
-        checkup = MuscatCheckup.new({jobs: 10, skip_validation: true, skip_dates: true, skip_unknown_tags: true})
+        checkup = MuscatCheckup.new({jobs: 10, skip_validation: true, skip_dates: true, skip_unknown_tags: true, skip_dead_774: true})
         total_errors, total_validations, foreign_tag_errors, unknown_tags = checkup.run_parallel
 
         # Force a reconnect
@@ -54,4 +54,4 @@
         MuscatMaintenanceReport.notify(message, saved_source_count, models, unsavable_sources).deliver_now
     end
 
-    end
+end

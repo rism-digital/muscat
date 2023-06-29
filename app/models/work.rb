@@ -13,7 +13,7 @@ class Work < ApplicationRecord
 
 
   resourcify
-  belongs_to :person
+  belongs_to :composer, {class_name: "Person", foreign_key: "person_id"}
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
@@ -26,6 +26,7 @@ class Work < ApplicationRecord
   has_and_belongs_to_many :liturgical_feasts, join_table: "works_to_liturgical_feasts"
   has_and_belongs_to_many :institutions, join_table: "works_to_institutions"
   has_and_belongs_to_many :people, join_table: "works_to_people"
+  has_and_belongs_to_many :places, join_table: "works_to_places"
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -109,7 +110,7 @@ class Work < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["person", "publications", "standard_terms", "standard_titles", "liturgical_feasts", "institutions", "people", "works"]
+    allowed_relations = ["person", "publications", "standard_terms", "standard_titles", "liturgical_feasts", "institutions", "people", "works", "places"]
     recreate_links(marc, allowed_relations)
   end
 
@@ -196,7 +197,7 @@ class Work < ApplicationRecord
     return if marc_source == nil
     self.title = marc.get_title
     # LP commented for work experiments. Person is set by hand in the script
-    #self.person = marc.get_composer
+    self.composer = marc.get_composer
     self.opus = marc.get_opus
     self.catalogue = marc.get_catalogue
     self.link_status = marc.get_link_status
@@ -212,5 +213,6 @@ class Work < ApplicationRecord
   ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"0242_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :catalogue_name_order, proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"699a", proc{ |v| } do |parent| parent.table[:id] end
 
 end

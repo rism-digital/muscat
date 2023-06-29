@@ -63,16 +63,15 @@
     d:
       label: records.modifying_agency
   label: records.cataloging_source
-'042':
+'046':
   fields:
-    a:
-      label: records.authentication_code
-  label: records.authentication_code
-'043':
-  fields:
-    c:
-      label: records.nationality
-  label: records.nationality
+    k:
+      label: records.beginning_or_single_date
+    l:
+      label: records.end
+    z:
+      label: records.public_note
+  label: records.date_of_creation
 '100':
   fields:
     a:
@@ -123,9 +122,11 @@
   label: records.mode_2tt
 '370':
   fields:
-    a:
-      label: records.place_birth
-  label: records.associated_place
+    g:
+      label: records.place_origin
+    i:
+      label: records.relationship_information
+  label: records.place_of_creation
 '380':
   fields:
     a:
@@ -183,6 +184,13 @@
     y:
       label: records.type_relationship
   label: records.related_personal_name
+'530':
+  fields:
+    a:
+      label: records.related_work
+    i:
+      label: records.relationship_information
+  label: records.related_work
 '510':
   fields:
     a:
@@ -256,6 +264,13 @@
     n:
       label: records.number_page
   label: records.secondary_catalog_works
+'699':
+  fields:
+    a:
+      label: records.work_tag_type
+    b:
+      label: records.work_tag_note
+  label: records.work_tag
 6byz:
   label: records.octoechos6
 6t:
@@ -741,3 +756,9 @@ xx:
   label: records.unknown
 z:
   label: records.other_form
+"needs-revision":
+  label: records.work_tag_needs_revision
+"incipit-needs-revision":
+  label: records.work_tag_incipit_needs_revision
+"incipit-replace":
+  label: records.work_tag_incipit_replace

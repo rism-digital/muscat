@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ can? :manage, User }
+  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ (can? :manage, User) || current_user.has_role?(:editor)}
   
   permit_params :preference_wf_stage, :email, :password, :password_confirmation, 
                 :username, :name, :notifications, :notification_type, :notification_email, 
@@ -77,9 +77,6 @@ ActiveAdmin.register User do
     render :partial => "activeadmin/section_sidebar_index"
   end
  
-  # Include the folder actions
-  include FolderControllerActions
-  
   ##########
   ## Show ##
   ##########

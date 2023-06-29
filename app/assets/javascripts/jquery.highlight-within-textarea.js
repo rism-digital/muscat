@@ -54,6 +54,7 @@
 		},
 
 		generate: function() {
+
 			this.$el
 				.addClass(ID + '-input ' + ID + '-content');
 				//.on('input.' + ID, this.handleInput.bind(this))
@@ -63,11 +64,15 @@
 //autogrow subfield_entry serialize_marc marc_editor_hotkey
 			this.$backdrop = $('<div>', { class: ID + '-backdrop ' })
 				.append(this.$highlights);
-
+				
 			this.$container = $('<div>', { class: ID + '-container' })
 				.insertAfter(this.$el)
 				.append(this.$backdrop, this.$el) // moves $el into $container
 				.on('scroll', this.blockContainerScroll.bind(this));
+
+			// after the "append" focus goes away from the input box
+			// See #1246. Force it here
+			this.$el.focus();
 
 			this.browser = this.detectBrowser();
 			switch (this.browser) {

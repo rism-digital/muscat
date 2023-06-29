@@ -3,6 +3,7 @@ ActiveAdmin.register Source do
   collection_action :autocomplete_source_id, :method => :get
   collection_action :autocomplete_source_740_autocomplete_sms, :method => :get
   collection_action :autocomplete_source_594b_sms, :method => :get
+  collection_action :autocomplete_source_031t_filter_sms, :method => :get
 
   # Remove mass-delete action
   batch_action :destroy, false
@@ -33,7 +34,7 @@ ActiveAdmin.register Source do
     autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => true, :solr => false}
     autocomplete :source, "740_autocomplete_sms", :solr => true
     autocomplete :source, "594b_sms", :solr => true
-    
+    autocomplete :source, "031t_filter_sms", :solr => true
 
     def check_model_errors(object)
       return unless object.errors.any?

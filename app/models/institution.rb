@@ -2,7 +2,7 @@
 #
 # === Fields
 # * <tt>siglum</tt> - RISM sigla of the lib
-# * <tt>name</tt> -  Fullname of the lib
+# * <tt>full_name</tt> -  Fullname of the lib
 # * <tt>address</tt>
 # * <tt>url</tt>
 # * <tt>phone</tt> 
@@ -31,6 +31,7 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
+  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_institutions")
   has_and_belongs_to_many :people, join_table: "institutions_to_people"
   has_and_belongs_to_many :publications, join_table: "institutions_to_publications"
   
@@ -145,18 +146,19 @@ class Institution < ApplicationRecord
     new_marc = MarcInstitution.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/institution/default.marc")))
     new_marc.load_source true
     
-    new_100 = MarcNode.new("institution", "110", "", "1#")
-    new_100.add_at(MarcNode.new("institution", "c", self.place, nil), 0) if self.place != nil
-    new_100.add_at(MarcNode.new("institution", "g", self.siglum, nil), 0) if self.siglum != nil
-    new_100.add_at(MarcNode.new("institution", "a", self.name, nil), 0)
+    new_110 = MarcNode.new("institution", "110", "", "1#")
+    new_110.add_at(MarcNode.new("institution", "c", self.place, nil), 0) if self.place != nil
+    new_110.add_at(MarcNode.new("institution", "g", self.siglum, nil), 0) if self.siglum != nil
+    new_110.add_at(MarcNode.new("institution", "a", self.corporate_name, nil), 0)
+    new_110.add_at(MarcNode.new("institution", "b", self.subordinate_unit, nil), 0) if self.subordinate_unit != nil
     
-    new_marc.root.children.insert(new_marc.get_insert_position("110"), new_100)
+    new_marc.root.children.insert(new_marc.get_insert_position("110"), new_110)
     
     if self.alternates != nil and !self.alternates.empty?
-      new_400 = MarcNode.new("institution", "410", "", "1#")
-      new_400.add_at(MarcNode.new("institution", "a", self.alternates, nil), 0)
+      new_410 = MarcNode.new("institution", "410", "", "1#")
+      new_410.add_at(MarcNode.new("institution", "a", self.alternates, nil), 0)
     
-      new_marc.root.children.insert(new_marc.get_insert_position("410"), new_400)
+      new_marc.root.children.insert(new_marc.get_insert_position("410"), new_410)
     end
     
     if self.url || self.address
@@ -199,7 +201,8 @@ class Institution < ApplicationRecord
     self.id = marc_source_id if marc_source_id and marc_source_id != "__TEMP__"
 
     # std_title
-    self.name, self.place = marc.get_name_and_place
+    self.full_name, self.place = marc.get_full_name_and_place
+    self.corporate_name, self.subordinate_unit = marc.get_corporate_name_and_subordinate_unit
     self.address, self.url = marc.get_address_and_url
     self.siglum = marc.get_siglum
     self.marc_source = self.marc.to_marc
@@ -223,10 +226,10 @@ class Institution < ApplicationRecord
     end
     sunspot_dsl.text :siglum
     
-    sunspot_dsl.string :name_order do
-      name
+    sunspot_dsl.string :full_name_order do
+      full_name
     end
-    sunspot_dsl.text :name
+    sunspot_dsl.text :full_name
     
     sunspot_dsl.string :place_order do
       place
@@ -265,16 +268,16 @@ class Institution < ApplicationRecord
   
   def autocomplete_label
     sigla = siglum != nil && !siglum.empty? ? "#{siglum} " : ""
-    "#{sigla}#{name}"
+    "#{sigla}#{full_name}"
   end
   
   def autocomplete_label_siglum
-    "#{siglum} (#{name})"
+    "#{siglum} (#{full_name})"
   end
   
   def autocomplete_label_name
     sigla = siglum != nil && !siglum.empty? ? " [#{siglum}]" : ""
-    "#{name}#{sigla}"
+    "#{full_name}#{sigla}"
   end
  
   ransacker :"110g_facet", proc{ |v| } do |parent| parent.table[:id] end

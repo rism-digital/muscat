@@ -15,7 +15,7 @@ ActiveAdmin.register Institution do
   end
 
   collection_action :autocomplete_institution_siglum, :method => :get
-  collection_action :autocomplete_institution_name, :method => :get
+  collection_action :autocomplete_institution_corporate_name, :method => :get
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -23,8 +23,8 @@ ActiveAdmin.register Institution do
   # temporarily allow all parameters
   controller do
 
-    autocomplete :institution, [:siglum, :name], :display_value => :autocomplete_label_siglum, :extra_data => [:siglum, :name], :required => :siglum
-    autocomplete :institution, :name, :display_value => :autocomplete_label_name, :extra_data => [:siglum, :name]
+    autocomplete :institution, [:siglum, :full_name], :display_value => :autocomplete_label_siglum, :extra_data => [:siglum, :full_name], :required => :siglum
+    autocomplete :institution, :corporate_name, :display_value => :autocomplete_label_name, :extra_data => [:siglum, :full_name, :place]
 
     after_destroy :check_model_errors
     before_create do |item|
@@ -50,6 +50,7 @@ ActiveAdmin.register Institution do
       @item = Institution.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
 
       if cannot?(:edit, @item)
@@ -92,6 +93,7 @@ ActiveAdmin.register Institution do
       @institution.marc = new_marc
 
       @editor_profile = EditorConfiguration.get_default_layout @institution
+      @editor_validation = EditorValidation.get_default_validation(@institution)
       # Since we have only one default template, no need to change the title
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
       #To transmit correctly @item we need to have @source initialized
@@ -113,7 +115,7 @@ ActiveAdmin.register Institution do
   ###########
 
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :"110g_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
   filter :place_contains, :label => proc {I18n.t(:filter_place)}, :as => :string
   filter :"667a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
@@ -144,7 +146,7 @@ ActiveAdmin.register Institution do
     column (I18n.t :filter_id), :id
 
     column (I18n.t :filter_siglum), :siglum
-    column (I18n.t :filter_location_and_name), :name
+    column (I18n.t :filter_location_and_name), :full_name
     column (I18n.t :filter_place), :place
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
       all_hits = @arbre_context.assigns[:hits]
@@ -165,7 +167,7 @@ ActiveAdmin.register Institution do
   ## Show ##
   ##########
 
-  show :title => proc{ active_admin_auth_show_title( @item.name, @item.siglum, @item.id) } do
+  show :title => proc{ active_admin_auth_show_title( @item.full_name, @item.siglum, @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
 
@@ -183,7 +185,7 @@ ActiveAdmin.register Institution do
           table_for(collection, sortable: true) do
             column :id do |p| link_to p.id, controller: :institutions, action: :show, id: p.id end
             column :siglum
-            column :name
+            column :full_name
             column :place
           end
         end
@@ -226,11 +228,25 @@ ActiveAdmin.register Institution do
       context.table_for(context.collection) do |cr|
         context.column "id", :id
         context.column (I18n.t :filter_siglum), :siglum
-        context.column (I18n.t :filter_name), :name
+        context.column (I18n.t :filter_full_name), :full_name
         context.column (I18n.t :filter_place), :place
         if !is_selection_mode?
-          context.column "" do |publication|
-            link_to "View", controller: :institutions, action: :show, id: institution.id
+          context.column "" do |inst|
+            link_to "View", controller: :institutions, action: :show, id: inst.id
+          end
+        end
+      end
+    end
+
+    active_admin_embedded_link_list(self, institution, Work) do |context|
+      context.table_for(context.collection) do |cr|
+        column (I18n.t :filter_id), :id  
+        column (I18n.t :filter_title), :title
+        column "Opus", :opus
+        column "Catalogue", :catalogue
+        if !is_selection_mode?
+          context.column "" do |work|
+            link_to "View", controller: :works, action: :show, id: work.id
           end
         end
       end

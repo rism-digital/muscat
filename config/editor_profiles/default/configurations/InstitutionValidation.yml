@@ -1,6 +1,11 @@
 --- !map:Settings
 client:
+  "024":
+    tags:
+      a: required
   "110":
     tags:
       a: mandatory
-
+  "368":
+    tags:
+      a: mandatory

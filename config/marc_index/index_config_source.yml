@@ -23,6 +23,7 @@ fields:
   "031p":
       :store: true
   "031t_filter":
+      :store: true
       :type: string
       :from_tag: "031"
       :from_subtag: "t"

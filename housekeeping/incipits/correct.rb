@@ -27,7 +27,7 @@ def change_or_create(tag, tag_name, subtag, value)
     end
 end
 
-def insert_note_not_duplicate(tag, note, incipit_id)
+def insert_031q_note_not_duplicate(tag, note, incipit_id)
     return if !note || note.empty?
 
     found = false
@@ -41,6 +41,26 @@ def insert_note_not_duplicate(tag, note, incipit_id)
     else
        # puts "Note already in record: #{incipit_id}, #{note} "
     end
+
+end
+
+def insert_599_note_not_duplicate(marc, text)
+    return if !text || text.empty?
+
+    marc.each_by_tag("599") do |t|
+        t.fetch_all_by_tag("a").each do |tn|
+            if tn && tn.content && tn.content.strip == text.strip
+                #puts "Skip adding note #{text}"
+                return
+            end
+        end
+    end
+
+    mc = MarcConfigCache.get_configuration("source")
+    a599 = MarcNode.new("source", "599", "", mc.get_default_indicator("599"))
+    a599.add_at(MarcNode.new("source", "a", text.strip, nil), 0 )
+
+    marc.root.add_at(a599, marc.get_insert_position("559") )
 
 end
 
@@ -98,6 +118,7 @@ CSV.foreach(file) do |l|
     pae_new = l[16].strip
     note = l[17].strip
     hash = l[18].strip
+    global_note = l[19].strip rescue global_note = ""
 
 =begin
 CSV layout:
@@ -123,6 +144,7 @@ CSV layout:
     "data_af",      16
     "text_note",    17
     "hash"          18
+    "global_note"   19
 =end
 
     next if s_id == "source_id"
@@ -180,8 +202,10 @@ CSV layout:
             change_or_create(t, "b", tags[:b], pae_b_new)
             change_or_create(t, "c", tags[:c], pae_c_new)
 
-            insert_note_not_duplicate(t, note, incipit_id)
-                    
+            insert_031q_note_not_duplicate(t, note, incipit_id)
+            
+            insert_599_note_not_duplicate(source.marc, global_note)
+
             t.sort_alphabetically
         end
 

@@ -299,6 +299,7 @@ pl:
     baptismal_name: Imię z chrztu
     basic_functions: Podstawowe funkcje
     basso_continuo: Basso continuo
+    beginning_or_single_date: Beginning or single date
     bf_major: B-dur
     bf_minor: b-moll
     bibliography: Bibliografia
@@ -364,6 +365,7 @@ pl:
     conceptor: Autor koncepcji
     conductor: Dyrygent
     confused_with: Mylon(y/a) z …
+    congress: Kongres
     conjectural: Domyślny
     contact: Kontakt
     contact_area: Obszar kontaktu
@@ -435,6 +437,7 @@ pl:
     ef_major: Es-dur
     ef_minor: es-moll
     encyclopedia: Encyklopedia
+    end: End
     end_period: Okres końcowy
     engraver: Rytownik
     engraving: Sztych
@@ -715,6 +718,7 @@ pl:
     place_activity: Miejsce aktywności artystycznej
     place_birth: Miejsce urodzenia
     place_death: Miejsce śmierci
+    place_of_creation: Miejsce utworzenia
     place_of_residence: Miejsce zamieszkania/siedziba
     place_origin: Miejsce pochodzenia
     place_publication: Miejsce publikacji
@@ -880,6 +884,12 @@ pl:
     woodwinds: Instrumenty dęte drewniane
     work: Dzieło
     work_number: Numer dzieła
+    work_tag: tag edycji Dzieła
+    work_tag_incipit_needs_revision: incipit wymaga ponownego sprawdzenia
+    work_tag_incipit_replace: zamiana incipitu
+    work_tag_needs_revision: wymaga ponownego sprawdzenia
+    work_tag_note: Tag uwag
+    work_tag_type: Typ tagu
     year: Rok
     years_birth_death: Rok urodzenia i śmierci
   relations:

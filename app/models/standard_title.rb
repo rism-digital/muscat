@@ -15,6 +15,7 @@ class StandardTitle < ApplicationRecord
   include AuthorityMerge
   
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
+  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_standard_titles")
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTitle" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -69,6 +70,19 @@ class StandardTitle < ApplicationRecord
 		
     text :typus
     
+
+    boolean :is_standard, :stored => true do |st|
+      (Source.solr_search do with("240a_filter", st.title) end).total > 0
+    end
+
+    boolean :is_additional, :stored => true do |st|
+      (Source.solr_search do with("730a_filter", st.title) end).total > 0
+    end
+
+    boolean :is_text, :stored => true do |st|
+      (Source.solr_search do with("031t_filter", st.title) end).total > 0
+    end
+
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
@@ -109,5 +123,10 @@ class StandardTitle < ApplicationRecord
   def name
     return title
   end
+
+  ransacker :"is_text", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"is_standard", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"is_additional", proc{ |v| } do |parent| parent.table[:id] end  
+
 
 end
