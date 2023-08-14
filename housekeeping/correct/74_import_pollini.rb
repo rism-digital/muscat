@@ -64,6 +64,9 @@ end
 
 def process_one_file(file_name)
 
+    created_at = Date.today
+    referring_source = nil
+
     new_marc = MarcWork.new("=001 __TEMP__\n")
     doc = REXML::Document.new(File.open(file_name))
 
@@ -88,13 +91,23 @@ def process_one_file(file_name)
 
     XPath.each(doc, "/mei/meiHead/workList/work/title") do |data|
         if data["type"] == "subordinate" || data["type"] == "alternative" || data["type"] == "original"
-            add_tag(new_marc, "430", {t: data.text})
+            add_tag(new_marc, "430", {a: data.text})
         else
 
             add_tag(new_marc, "130", {a: data.text}) if data["lang"] == "en"
         end
     end
 
+    # did we add a 130?
+    if !new_marc.first_occurance("130")
+        # no, do it again and try to get the italian title
+        XPath.each(doc, "/mei/meiHead/workList/work/title") do |data|
+            if data["type"] == "subordinate" || data["type"] == "alternative" || data["type"] == "original"
+            else
+                add_tag(new_marc, "130", {a: data.text}) if data["lang"] == "it"
+            end
+        end
+    end
 
     XPath.each(doc, "/mei/meiHead/workList/work/identifier") do |data|
         add_tag(new_marc, "383", {b: data.text}) if data["label"] == "Opus"
@@ -110,7 +123,6 @@ def process_one_file(file_name)
         #add_tag(new_marc, "680", {a: data.text})
     end
 
-
     XPath.each(doc, "/mei/meiHead/workList/work/notesStmt/annot/p") do |data|
         alltext = ""
         data.texts.each do |t|
@@ -120,17 +132,17 @@ def process_one_file(file_name)
     end
 
     ## These are relationships, FIXME how to translate?
-    XPath.each(doc, "/mei/meiHead/workList/work/relationList") do |data|
+    XPath.each(doc, "/mei/meiHead/workList/work/relationList/relation") do |data|
+        ###add_tag(new_marc, "530", {a: data["label"]}) if data["label"]
+        ## FIXME
     end
 
-    ## FIXME! there is no tag 370 in Muscat Work
     XPath.each(doc, "/mei/meiHead/workList/work/creation/geogName") do |data|
-        #add_tag(new_marc, "370", {a: data.text})
+        #add_tag(new_marc, "370", {g: data.text})
     end
 
-    ## FIXME! there is no tag 388 in Muscat Work
     XPath.each(doc, "/mei/meiHead/workList/work/creation/date") do |data|
-        #add_tag(new_marc, "388", {a: data.text})
+        #add_tag(new_marc, "046", {k: data.text})
     end
 
     XPath.each(doc, "/mei/meiHead/workList/work/history/p") do |data|
@@ -227,22 +239,28 @@ def process_one_file(file_name)
 
     ## FIXME database field?
     XPath.each(doc, "/mei/meiHead/manifestationList/manifestation/identifier") do |data|
-        #ap data.text
+
+        referring_source = data.text
     end
 
     ## FIXME This seems empty?
     XPath.each(doc, "/mei/meiHead/workList/work/biblList/bibl") do |data|
-        #ap data.text
+        all_lines = []
+        all_lines << data.elements["author"].text.strip if data.elements["author"] && data.elements["author"].text
+        all_lines << data.elements["editor"].text.strip if data.elements["editor"] && data.elements["editor"].text
+        all_lines << data.elements["title"].map {|t| t.to_s.strip} if data.elements["title"]
+
+        add_tag(new_marc, "667", {a: "biblList entry: " + all_lines.join(", ")})     
     end
 
     # FIXME set created-at?
     XPath.each(doc, "/mei/meiHead/revisionDesc/change") do |data|
-        #ap data
+        created_at = Date.parse(data["isodate"])
     end
 
     ## FIXME This seems empty?
     XPath.each(doc, "/mei/meiHead/fileDesc/notesStmt") do |data|
-        #ap data.texts
+        # data.texts
     end
 
     ## FIXME I don't think we have a DB entry for this
@@ -278,29 +296,28 @@ def process_one_file(file_name)
         #ap data
     end
 
-    ## Duplicate, see above
-    #XPath.each(doc, "/mei/meiHead/workList/work/classification") do |data|
-    #    #ap data
-    #end
-
-    return new_marc
+    return new_marc, created_at, referring_source
 end
 
 DIR = ARGV[0]
 
 Dir.glob("#{DIR}/*.xml").each do |file|
     #puts "Process #{file}".green
-    marc = process_one_file(file)
+    marc, created_at, referring_source = process_one_file(file)
     #ap marc
+
+    rs = Source.find(referring_source) if referring_source rescue rs = nil
 
     marc.import
 
     work = Work.new
     work.marc = marc
 
-    work.person = work.marc.get_composer
-    work.save
+    work.referring_sources << rs if rs
 
+    work.created_at = created_at
+    work.composer = work.marc.get_composer
+    work.save
 end
 
 Sunspot.commit
