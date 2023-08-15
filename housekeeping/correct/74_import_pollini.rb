@@ -131,10 +131,9 @@ def process_one_file(file_name)
         add_tag(new_marc, "680", {a: alltext}) if !alltext.empty?    
     end
 
-    ## These are relationships, FIXME how to translate?
+    ## These are relationships, set them to a note
     XPath.each(doc, "/mei/meiHead/workList/work/relationList/relation") do |data|
-        ###add_tag(new_marc, "530", {a: data["label"]}) if data["label"]
-        ## FIXME
+        add_tag(new_marc, "667", {a: "relationList entry: " + data["label"]}) if data["label"]
     end
 
     XPath.each(doc, "/mei/meiHead/workList/work/creation/geogName") do |data|
@@ -169,11 +168,14 @@ def process_one_file(file_name)
     # BEGIN INCIPIT STUFF
     ################################################################################################
 
+=begin
     incipits = []
 
     XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/incip/incipCode") do |data|
         incipits << add_tag(new_marc, "031", {p: data.text}) if data.text && !data.text.empty?
     end
+
+ap incipits.count if incipits.count > 0
 
     def fill_incipit(paths, doc, new_marc, incipits)
         paths.each do |path, subtag|
@@ -197,6 +199,49 @@ def process_one_file(file_name)
     }
 
     fill_incipit(map, doc, new_marc, incipits)
+=end
+
+    ### NEW INCIPIT STUFF, since there is always only one incipit
+
+    # There is always only one tag here
+    XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/incip/incipCode") do |data|
+        add_tag(new_marc, "031", {p: data.text}) if data.text && !data.text.empty?
+        append_to_tag(new_marc, "031", {a: "1"})
+        append_to_tag(new_marc, "031", {b: "1"})
+        append_to_tag(new_marc, "031", {c: "1"})
+    end
+
+    XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/tempo") do |data|
+        append_to_tag(new_marc, "031", {d: data.text.strip}) if data.text && !data.text.strip.empty?
+    end    
+
+    XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/meter") do |data|
+        next if !data["count"] || !data["unit"]
+        next if data["count"].empty? || data["unit"].empty?
+        meter = "#{data['count']}/#{data['unit']}"
+        append_to_tag(new_marc, "031", {o: meter})
+    end   
+
+    ## KEY DOES NOT MATCH!
+    #XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/incip/key") do |data|
+    #    append_to_tag(new_marc, "031", {n: => data.text.strip})
+    #end 
+
+    #XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/perfMedium/perfResList/perfRes") do |data|
+    #    append_to_tag(new_marc, "031", {d: => data.text.strip}) if data.text && !data.text.strip.empty?
+    #end  
+
+    {"/mei/meiHead/workList/work/expressionList/expression/perfMedium/perfResList/perfRes" => "m",
+        "/mei/meiHead/workList/work/expressionList/expression/perfMedium/castList/castItem/role/name" => "e",
+        "/mei/meiHead/workList/work/expressionList/expression/incip/incipText/p" => "t",
+        "/mei/meiHead/workList/work/expressionList/expression/componentList" => "q"
+    }.each do |string, subtag|
+        XPath.each(doc, string) do |data|
+            append_to_tag(new_marc, "031", {subtag => data.text.strip}) if data.text && !data.text.strip.empty?
+        end 
+    end
+
+  
 
 =begin
     XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/perfMedium/perfResList") do |data|
