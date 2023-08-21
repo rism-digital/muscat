@@ -23,7 +23,7 @@ class MuscatCheckupReportJob < ApplicationJob
     total_errors, total_validations, foreign_tag_errors, unknown_tags = MuscatCheckup.new(model: @model, logger: logger, process_exclusions: true).run_parallel
 
     end_time = Time.now
-    message = "Source report started at #{begin_time.to_s}, (#{end_time - begin_time} seconds run time)"
+    message = "#{@model.to_s} report started at #{begin_time.to_s}, (execution time: #{end_time - begin_time} seconds)"
     
     HealthReport.notify(@model.to_s, message, total_errors, total_validations, foreign_tag_errors, unknown_tags).deliver_now
     
