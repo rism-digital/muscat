@@ -4,8 +4,10 @@ require 'set'
 class MuscatCheckup  
 
   def initialize(options = {})
+      @model = options.include?(:model) && options[:model].is_a?(Class) ? options[:model] : Source
+
       @parallel_jobs = options.include?(:jobs) ? options[:jobs] : 10
-      @all_src = options.include?(:limit) ? options[:limit] : Source.all.count
+      @all_src = options.include?(:limit) ? options[:limit] : @model.all.count
       @limit = @all_src / @parallel_jobs
       @folder = options.include?(:folder) ? options[:folder] : nil
 
@@ -21,7 +23,7 @@ class MuscatCheckup
       @debug_logger = options.include?(:logger) ? options[:logger] : nil
 
       # Generate the exclusion matcher
-      @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(Source) : nil
+      @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(@model) : nil
   end
 
   def run_parallel()
@@ -111,8 +113,8 @@ class MuscatCheckup
       validations = {}
       offset = @limit * jobid
 
-      Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
-        s = Source.find(sid.id)
+      @model.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
+        s = @model.find(sid.id)
         
         e, v = load_and_validate_source(s)
         errors.merge!(e)
