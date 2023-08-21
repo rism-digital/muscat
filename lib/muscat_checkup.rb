@@ -22,6 +22,11 @@ class MuscatCheckup
       @skip_parent_institution = (options.include?(:skip_parent_institution) && options[:skip_parent_institution] == true)
       @debug_logger = options.include?(:logger) ? options[:logger] : nil
 
+      # These are relevant only for Sources
+      @skip_holdings = true if !@model.is_a?(Source)
+      @skip_dead_774 = true if !@model.is_a?(Source)
+      @skip_parent_institution = true if !@model.is_a?(Source)
+
       # Generate the exclusion matcher
       @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(@model) : nil
   end
@@ -74,7 +79,7 @@ class MuscatCheckup
       if !new_stdout.string.strip.empty? && @debug_logger
         new_stdout.string.each_line do |line|
           next if line.strip.empty?
-          @debug_logger.error("record_error #{s.id} #{s.get_record_type.to_s} no_tag no_subtag #{line.strip}") if @debug_logger
+          @debug_logger.error("record_error #{s.id} #{print_record_type(s)} no_tag no_subtag #{line.strip}") if @debug_logger
 
         end
       end
@@ -97,7 +102,7 @@ class MuscatCheckup
       if !new_stdout.string.strip.empty? && @debug_logger
         new_stdout.string.each_line do |line|
           next if line.strip.empty?
-          @debug_logger.error("record_exception #{s.id} #{s.get_record_type.to_s} no_tag no_subtag #{line.strip}") if @debug_logger
+          @debug_logger.error("record_exception #{s.id} #{print_record_type(s)} no_tag no_subtag #{line.strip}") if @debug_logger
 
         end
       end
@@ -159,7 +164,7 @@ class MuscatCheckup
       return validator.get_errors
     rescue Exception => e
       puts e.message
-      @debug_logger.error("validation_exception #{record} #{record.get_record_type.to_s} no_tag no_subtagtag #{e.message}") if @debug_logger
+      @debug_logger.error("validation_exception #{record.id} #{print_record_type(record)} no_tag no_subtagtag #{e.message}") if @debug_logger
     end
     
   end
@@ -198,4 +203,12 @@ class MuscatCheckup
     [foreign_tag_errors.to_a, unknown_tags]
   end
   
+  def print_record_type(item)
+    if item.respond_to?(:get_record_type)
+      return s.get_record_type.to_s
+    else
+      return "none"
+    end
+  end
+
 end
