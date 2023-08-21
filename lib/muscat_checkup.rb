@@ -7,8 +7,8 @@ class MuscatCheckup
       @model = options.include?(:model) && options[:model].is_a?(Class) ? options[:model] : Source
 
       @parallel_jobs = options.include?(:jobs) ? options[:jobs] : 10
-      @all_src = options.include?(:limit) ? options[:limit] : @model.all.count
-      @limit = @all_src / @parallel_jobs
+      @all_items = options.include?(:limit) ? options[:limit] : @model.all.count
+      @limit = @all_items / @parallel_jobs
       @folder = options.include?(:folder) ? options[:folder] : nil
 
       @limit_unknown_tags = true
@@ -35,7 +35,7 @@ class MuscatCheckup
       @limit_unknown_tags = false
       results = validate_folder
     else
-      results = validate_sources
+      results = validate_items
     end
 
     # Extract and separate the errors and validations
@@ -53,7 +53,7 @@ class MuscatCheckup
   
   private
 
-  def load_and_validate_source(s)
+  def load_and_validate_item(s)
     # Capture all the puts from the inner classes
     old_stdout = $stdout
     old_stderr = $stderr
@@ -107,7 +107,7 @@ class MuscatCheckup
     return errors, validations
   end
 
-  def validate_sources
+  def validate_items
     results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
       errors = {}
       validations = {}
@@ -116,7 +116,7 @@ class MuscatCheckup
       @model.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
         s = @model.find(sid.id)
         
-        e, v = load_and_validate_source(s)
+        e, v = load_and_validate_item(s)
         errors.merge!(e)
         validations.merge!(v)
         
@@ -135,7 +135,7 @@ class MuscatCheckup
       next if !fi.item
       s = fi.item
 
-      e, v = load_and_validate_source(s)
+      e, v = load_and_validate_item(s)
       errors.merge!(e)
       validations.merge!(v)
       
