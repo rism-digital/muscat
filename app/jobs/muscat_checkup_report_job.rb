@@ -10,6 +10,7 @@ class MuscatCheckupReportJob < ApplicationJob
   def perform()
     begin_time = Time.now
   
+    # For compatibility with older versions, validation.log is always for sources
     file_name = @model.is_a?(Source) ? "validation.log" : "#{@model.to_s.underscore.downcase}_validation.log"
 
     logger = Logger.new(File.new("#{Rails.root}/log/#{file_name}", 'w'))

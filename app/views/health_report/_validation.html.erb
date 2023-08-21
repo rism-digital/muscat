@@ -1,32 +1,40 @@
-<h3> Generic Errors </h3>
+<% mod = @model.to_s.pluralize.underscore.downcase %>
+<% if @unknown_tags.count > 0 %>
+  <h3>MARC Validation errors (i.e. missing fields) </h3>
 
-<%@unknown_tags.each do |key, value|%>
-  <%="#{key}: #{value[:count]} items, first 10: #{value[:items]}"%><br>
-<%end%>
+  <%@unknown_tags.each do |key, value|%>
+    <%="#{key}: #{value[:count]} items, first 100: "%>
+     <% value[:items].each do |item| %>
+        <a href="https://muscat.rism.info/admin/<%=mod%>/<%=item%>"><%=item%></a>&nbsp;
+     <% end %>
+     <br>
+  <%end%>
 
-<h3>Not updated foreign tags (need to re-save record)</h3>
+<% end %>
 
-<%@foreign_tag_errors.each do |ferror|%>
-  <%=ferror%><br>
-<%end%>
+<% if @foreign_tag_errors.count > 0 %>
+  <h3>Not updated foreign tags (need to re-save record)</h3>
 
-<h3>Failed validations</h3>
+  <%@foreign_tag_errors.each do |ferror|%>
+    <%=ferror%><br>
+  <%end%>
+<% end %>
 
-<%@validations.each do |id, errors|%>
-<b>Validation Result for: <a href="https://muscat.rism.info/admin/sources/<%=id%>"><%=id%></a></b>
-  <table>
-  <% errors.each do |tag, subtags| %>
-    <% subtags.each do |subtag, messages|  %>
-      <% messages.each do |message|  %>
-      <tr>
-        <td><strong><%= tag %></strong></td>
-        <td><%= subtag %></td>
-        <td><i><%= message %></i></td>
-      </tr>
+<%if @validations.count > 0 %>
+  <h3>All the other validations (missing holdings, missing child records, ...)</h3>
+
+  <%@validations.each do |id, errors|%>
+  <b>Validation Result for: <a href="https://muscat.rism.info/admin/<%=mod%>/<%=id%>"><%=id%></a></b>
+  &nbsp;
+    <% errors.each do |tag, subtags| %>
+      <% subtags.each do |subtag, messages|  %>
+        <% messages.each do |message|  %>
+          <%= tag %>, <%= subtag %>: <i><%= message %></i>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
-  </table>
+
 <% end %>
 
 <p>

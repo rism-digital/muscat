@@ -3,6 +3,9 @@ require 'set'
 
 class MuscatCheckup  
 
+  # It was 10, but now we should have exclusions
+  UNKNOWN_TAG_LIMIT = 100
+
   def initialize(options = {})
       @model = options.include?(:model) && options[:model].is_a?(Class) ? options[:model] : Source
 
@@ -186,7 +189,7 @@ class MuscatCheckup
               key = "#{tag}-#{subtag}: #{message}"
               if unknown_tags.key?(key)
                 unknown_tags[key][:count] = unknown_tags[key][:count] + 1
-                unknown_tags[key][:items] << id if unknown_tags[key][:items].count < 10 || @limit_unknown_tags == false
+                unknown_tags[key][:items] << id if unknown_tags[key][:items].count < UNKNOWN_TAG_LIMIT || @limit_unknown_tags == false
               else
                 unknown_tags[key] = {count: 1, items: [id]}
               end
