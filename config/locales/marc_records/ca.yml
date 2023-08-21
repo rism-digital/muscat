@@ -774,7 +774,7 @@ ca:
     relationship_designation: Designació de la relació al $i o $4
     relationship_information: Informació de la relació
     religious_name: Nom religiós
-    religious_order: Orde religiosa
+    religious_order: "Orde religiosa/títol"
     reproduction: Reproducció
     research_institute: Institut de recerca
     retrospective_conversion: Conversió retrospectiva

@@ -4,9 +4,11 @@ require 'set'
 class MuscatCheckup  
 
   def initialize(options = {})
+      @model = options.include?(:model) && options[:model].is_a?(Class) ? options[:model] : Source
+
       @parallel_jobs = options.include?(:jobs) ? options[:jobs] : 10
-      @all_src = options.include?(:limit) ? options[:limit] : Source.all.count
-      @limit = @all_src / @parallel_jobs
+      @all_items = options.include?(:limit) ? options[:limit] : @model.all.count
+      @limit = @all_items / @parallel_jobs
       @folder = options.include?(:folder) ? options[:folder] : nil
 
       @limit_unknown_tags = true
@@ -20,8 +22,13 @@ class MuscatCheckup
       @skip_parent_institution = (options.include?(:skip_parent_institution) && options[:skip_parent_institution] == true)
       @debug_logger = options.include?(:logger) ? options[:logger] : nil
 
+      # These are relevant only for Sources
+      @skip_holdings = true if !@model.is_a?(Source)
+      @skip_dead_774 = true if !@model.is_a?(Source)
+      @skip_parent_institution = true if !@model.is_a?(Source)
+
       # Generate the exclusion matcher
-      @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(Source) : nil
+      @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(@model) : nil
   end
 
   def run_parallel()
@@ -33,7 +40,7 @@ class MuscatCheckup
       @limit_unknown_tags = false
       results = validate_folder
     else
-      results = validate_sources
+      results = validate_items
     end
 
     # Extract and separate the errors and validations
@@ -51,7 +58,7 @@ class MuscatCheckup
   
   private
 
-  def load_and_validate_source(s)
+  def load_and_validate_item(s)
     # Capture all the puts from the inner classes
     old_stdout = $stdout
     old_stderr = $stderr
@@ -72,7 +79,7 @@ class MuscatCheckup
       if !new_stdout.string.strip.empty? && @debug_logger
         new_stdout.string.each_line do |line|
           next if line.strip.empty?
-          @debug_logger.error("record_error #{s.id} #{s.get_record_type.to_s} no_tag no_subtag #{line.strip}") if @debug_logger
+          @debug_logger.error("record_error #{s.id} #{print_record_type(s)} no_tag no_subtag #{line.strip}") if @debug_logger
 
         end
       end
@@ -95,7 +102,7 @@ class MuscatCheckup
       if !new_stdout.string.strip.empty? && @debug_logger
         new_stdout.string.each_line do |line|
           next if line.strip.empty?
-          @debug_logger.error("record_exception #{s.id} #{s.get_record_type.to_s} no_tag no_subtag #{line.strip}") if @debug_logger
+          @debug_logger.error("record_exception #{s.id} #{print_record_type(s)} no_tag no_subtag #{line.strip}") if @debug_logger
 
         end
       end
@@ -105,16 +112,16 @@ class MuscatCheckup
     return errors, validations
   end
 
-  def validate_sources
+  def validate_items
     results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
       errors = {}
       validations = {}
       offset = @limit * jobid
 
-      Source.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
-        s = Source.find(sid.id)
+      @model.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
+        s = @model.find(sid.id)
         
-        e, v = load_and_validate_source(s)
+        e, v = load_and_validate_item(s)
         errors.merge!(e)
         validations.merge!(v)
         
@@ -133,7 +140,7 @@ class MuscatCheckup
       next if !fi.item
       s = fi.item
 
-      e, v = load_and_validate_source(s)
+      e, v = load_and_validate_item(s)
       errors.merge!(e)
       validations.merge!(v)
       
@@ -157,7 +164,7 @@ class MuscatCheckup
       return validator.get_errors
     rescue Exception => e
       puts e.message
-      @debug_logger.error("validation_exception #{record} #{record.get_record_type.to_s} no_tag no_subtagtag #{e.message}") if @debug_logger
+      @debug_logger.error("validation_exception #{record.id} #{print_record_type(record)} no_tag no_subtagtag #{e.message}") if @debug_logger
     end
     
   end
@@ -196,4 +203,12 @@ class MuscatCheckup
     [foreign_tag_errors.to_a, unknown_tags]
   end
   
+  def print_record_type(item)
+    if item.respond_to?(:get_record_type)
+      return s.get_record_type.to_s
+    else
+      return "none"
+    end
+  end
+
 end
