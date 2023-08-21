@@ -418,7 +418,7 @@ include ApplicationHelper
 
   def print_record_type(item)
     if item.respond_to?(:get_record_type)
-      return s.get_record_type.to_s
+      return item.get_record_type.to_s
     else
       return "none"
     end
