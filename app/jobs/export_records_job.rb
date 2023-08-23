@@ -12,10 +12,16 @@ class ExportRecordsJob < ProgressJob::Base
 
     @format = :xml
     @extension = ".xml"
+
+    @model = @job_options.include?(:model) && @job_options[:model].is_a?(Class) ? @job_options[:model] : Source
+
     if @job_options.include?(:format)
       if @job_options[:format] == :csv
         @format = :csv
         @extension = ".csv"
+      elsif @job_options[:format] == :raw
+        @format = :raw
+        @extension = ".marc"
       end
     end
 
@@ -32,6 +38,10 @@ class ExportRecordsJob < ProgressJob::Base
       else
         throw "Cannot export folder without id"
       end
+
+      f = Folder.find(job.parent_id)
+      throw "Folder type (#{f.folder_type}) does not match model (#{@model.to_s})" if f.folder_type != @model.to_s
+
     end
 
     job.parent_type = @type.to_s
@@ -97,7 +107,7 @@ private
         if @format == :xml
           @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
             begin
-              source = Source.find(source_id)
+              source = @model.find(source_id)
             rescue ActiveRecord::RecordNotFound
               next
             end
@@ -112,13 +122,13 @@ private
             # Force a cleanup
             source = nil
           end
-        else
+        elsif @format == :csv
           headers = csv_headers
           header_mapper = lambda { |header| csv_headers[header] }
           CSV.open(tempfiles[jobid].path, "wb", headers: headers.keys, write_headers: jobid == 0 ? true : false, header_converters: header_mapper) do |csv|
             @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
               begin
-                source = Source.find(source_id)
+                source = @model.find(source_id)
               rescue ActiveRecord::RecordNotFound
                 next
               end
@@ -127,6 +137,24 @@ private
               if jobid == 0
                 count += 1
                 update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+              end
+              source = nil
+            end
+          end
+        elsif @format == :raw
+          File.open(tempfiles[jobid].path, "w") do |file|
+            @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
+              begin
+                source = @model.find(source_id)
+              rescue ActiveRecord::RecordNotFound
+                next
+              end
+
+              source = @model.find(source_id)
+              file.write(source.marc.to_marc)
+              if jobid == 0
+                count += 1
+                update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
               end
               source = nil
             end
@@ -166,7 +194,7 @@ private
         file.write(xml_preamble)
 
         @getter.get_items.each do |source_id|
-          source = Source.find(source_id)
+          source = @model.find(source_id)
           file.write(source.marc.to_xml_record(nil, nil, true))
           count += 1
           update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
@@ -174,15 +202,24 @@ private
 
         file.write(xml_conclusion)
       end
-    else
+    elsif @format == :csv
       headers = csv_headers
       header_mapper = lambda { |header| csv_headers[header] }
       CSV.open(EXPORT_PATH.join(filename + @extension), "wb", headers: headers.keys, write_headers: true, header_converters: header_mapper) do |csv|
         @getter.get_items.each do |source_id|
-          source = Source.find(source_id)
+          source = @model.find(source_id)
             csv << marc2csv(source)
             count += 1
             update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
+        end
+      end
+    elsif @format == :raw
+      File.open(EXPORT_PATH.join(filename + @extension), "w") do |file|
+        @getter.get_items.each do |source_id|
+          source = @model.find(source_id)
+          file.write(source.marc.to_marc)
+          count += 1
+          update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
         end
       end
     end

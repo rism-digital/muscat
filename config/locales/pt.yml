@@ -375,6 +375,7 @@ pt:
   unarchive: "Desarquivar"
   export_folder: "Exportar a pasta em MARCXML"
   export_folder_csv: "Exportar a pasta em CSV"
+  export_folder_raw: "Exportar a pasta em Muscat MARC"
   validate_folder: "Validar pasta"
   
   # Editor sidebar

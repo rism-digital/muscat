@@ -379,6 +379,7 @@ es:
   unarchive: "Desarchivar"
   export_folder: "Exportar la carpeta en formato MARCXML"
   export_folder_csv: "Exportar la carpeta en formato CSV"
+  export_folder_raw: "Exportar la carpeta en formato Muscat MARC"
   validate_folder: "Validar la carpeta"
   
   # Editor sidebar
