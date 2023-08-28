@@ -9,6 +9,9 @@ ActiveAdmin.register DigitalObject do
   # Remove all action items
   config.clear_action_items!
   
+  # Remove creation option (only possible from sources)
+  actions :all, :except => [:new]
+
   controller do
     def permitted_params
       params.permit! #params.permit :description, :attachment
@@ -172,6 +175,10 @@ ActiveAdmin.register DigitalObject do
     render :partial => "activeadmin/section_sidebar_index"
   end
   
+  sidebar :help, :only => [:index] do
+    render :partial => "digital_objects_help_show"
+  end
+
   ##########
   ## Show ##
   ##########
@@ -235,7 +242,7 @@ ActiveAdmin.register DigitalObject do
       render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
     end
   end
-  
+
   ##########
   ## Edit ##
   ##########
