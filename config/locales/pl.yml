@@ -54,6 +54,7 @@ pl:
       sections: Sekcje i działania
       actions: Działania
       toc: Spis zawartości
+      help: Pomoc
     pagination:
       empty: Nie znaleziono %{model}
       one: Wyświetlany <b>1</b> %{model}

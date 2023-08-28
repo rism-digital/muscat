@@ -55,6 +55,7 @@ es:
       sections: "Secciones y acciones"
       actions: "Acciones"
       toc: "Índice de contenidos"
+      help: "Ayuda"
     pagination:
       empty: "No se han encontrado %{model}"
       one: "Mostrando <b>1</b> %{model}"

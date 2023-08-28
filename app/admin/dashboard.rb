@@ -243,6 +243,43 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+    h3(I18n.t('dashboard.unpub_records'), class: "red_title")
+    br()
+
+    sources, total = dashboard_find_unpublished(Source, limit, current_user.id)
+    columns do
+      column do
+        panel (total > 0 ? I18n.t('dashboard.showing_out_of', max: limit < total ? limit : total, total: total) : I18n.t("dashboard.no_unpublished")) do
+          if total > 0
+            table_for sources.map do
+              column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
+                label: I18n.t('status_codes.' + (source.wf_stage != nil ? source.wf_stage : ""), locale: :en))} 
+              column (I18n.t :filter_record_type) {|source| status_tag(source.get_record_type.to_s, 
+                label: I18n.t('record_types_codes.' + (source.record_type != nil ? source.record_type.to_s : ""), locale: :en))} 
+              column(I18n.t :filter_id) {|source| link_to(source.id, admin_source_path(source)) }
+              column(I18n.t :filter_composer) {|source| source.composer }
+              column(I18n.t :filter_std_title) {|source| source.std_title } 
+              column (I18n.t :filter_lib_siglum), :lib_siglum do |source|
+                if source.child_sources.count > 0
+                   source.child_sources.map(&:lib_siglum).uniq.reject{|s| s.empty?}.sort.join(", ").html_safe
+                else
+                  source.lib_siglum
+                end
+              end
+              column(I18n.t :filter_shelf_mark) {|source| source.shelf_mark } 
+            end
+            if total > limit
+              a("Show all unpublished records", href: admin_sources_path(q: {wf_owner_with_integer: "wf_owner:#{current_user.id}",wf_stage_with_integer: "wf_stage:inprogress"}), target: "_blank")
+            end
+          else
+            text_node(I18n.t('dashboard.no_unpublished_long'))
+          end 
+        end  
+      end
+    end
+
+
+
     h3(I18n.t('dashboard.my_comments'))
     br()
 
