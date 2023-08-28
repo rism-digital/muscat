@@ -9,9 +9,6 @@ ActiveAdmin.register DigitalObject do
   # Remove all action items
   config.clear_action_items!
   
-  # Remove creation option (only possible from sources)
-  actions :all, :except => [:new]
-
   controller do
     def permitted_params
       params.permit! #params.permit :description, :attachment
