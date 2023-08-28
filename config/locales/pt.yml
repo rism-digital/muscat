@@ -53,6 +53,7 @@ pt:
       sections: "Seções e Ações"
       actions: "Ações"
       toc: "Tabela de Conteúdo"
+      help: "Ajuda"
     pagination:
       empty: "Nenhum(a) %{model} encontrado(a)"
       one: "Exibindo <b>1</b> %{model}"

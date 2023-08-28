@@ -53,6 +53,7 @@ en:
       sections: "Sections and actions"
       actions: "Actions"
       toc: "Table of contents"
+      help: "Help"
     pagination:
       empty: "No %{model} found"
       one: "Displaying <b>1</b> %{model}"

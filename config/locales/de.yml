@@ -53,6 +53,7 @@ de:
       sections: "Blöcke und Aktionen"
       actions: "Aktionen"
       toc: "Inhalt"
+      help: "Hilfe"
     pagination:
       empty: "Keine %{model} gefunden"
       one: "Zeige <b>1</b> %{model}"

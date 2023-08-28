@@ -53,6 +53,7 @@ fr:
       sections: "Groupes et actions"
       actions: "Actions"
       toc: "Contenu"
+      help: "Aide"
     pagination:
       empty: "Aucun %{model} trouvé"
       one: "Affichage de <b>1</b> %{model}"
