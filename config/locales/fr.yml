@@ -378,6 +378,7 @@ fr:
   unarchive: "Désarchiver"
   export_folder: "Exporter le dossier en MARCXML"
   export_folder_csv: "Exporter le dossier en CSV"
+  export_folder_raw: "Exporter le dossier en Muscat MARC"
   validate_folder: "Valider le dossier"
 
   

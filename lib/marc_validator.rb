@@ -363,7 +363,7 @@ include ApplicationHelper
     @errors[tag][subtag] << message
     
     log_tag = "validation_error" if !log_tag
-    @logger.error("#{log_tag} #{@object.id} #{@object.get_record_type.to_s} #{tag} #{subtag} #{message}") if @logger
+    @logger.error("#{log_tag} #{@object.id} #{print_record_type(@object)} #{tag} #{subtag} #{message}") if @logger
   end
   
   def is_subtag_excluded(tag, subtag)
@@ -372,6 +372,7 @@ include ApplicationHelper
     # i.e. collections have different tags
     tag_overrides = @rules[tag]["tag_overrides"]
     if tag_overrides && tag_overrides["exclude"][subtag]
+      # FIXME! This will not work for other models
       if tag_overrides["exclude"][subtag].include?(@object.get_record_type.to_s)
         return true
       end
@@ -412,6 +413,14 @@ include ApplicationHelper
       if @marc.get_id.to_i == val.content.to_i
         add_error(t, "w", I18n.t('validation.cannot_link_to_self', id: @marc.get_id)) 
       end
+    end
+  end
+
+  def print_record_type(item)
+    if item.respond_to?(:get_record_type)
+      return item.get_record_type.to_s
+    else
+      return "none"
     end
   end
 

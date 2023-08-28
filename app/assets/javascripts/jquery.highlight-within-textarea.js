@@ -54,6 +54,9 @@
 		},
 
 		generate: function() {
+			
+			// See #1246. Keep focus only if it had it in the first place
+			var had_focus = this.$el.is(":focus");
 
 			this.$el
 				.addClass(ID + '-input ' + ID + '-content');
@@ -72,7 +75,8 @@
 
 			// after the "append" focus goes away from the input box
 			// See #1246. Force it here
-			this.$el.focus();
+			if (had_focus)
+				this.$el.focus();
 
 			this.browser = this.detectBrowser();
 			switch (this.browser) {

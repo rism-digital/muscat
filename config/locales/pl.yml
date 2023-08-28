@@ -378,6 +378,7 @@ pl:
   unarchive: Cofnij archiwizację
   export_folder: Wyeksportuj folder jako MARCXML
   export_folder_csv: Wyeksportuj folder jako CSV
+  export_folder_raw: Wyeksportuj folder jako Muscat MARC
   validate_folder: Zatwierdź pozycje
 
   

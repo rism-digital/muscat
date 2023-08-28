@@ -382,6 +382,7 @@ it:
   unarchive: "Disarchivia"
   export_folder: "Esporta la cartella in MARCXML"
   export_folder_csv: "Esporta la cartella in CSV"
+  export_folder_raw: "Esporta la cartella come Muscat MARC"
   validate_folder: "Valida cartella"
 
 

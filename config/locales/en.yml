@@ -87,12 +87,12 @@ en:
         change_template: "Change template"
 
     comments:
-      resource_type: "Resource Type"
-      author_type: "Author Type"
+      resource_type: "Resource type"
+      author_type: "Author type"
       body: "Text"
       author: "Author"
       title: "Comment"
-      add: "Add Comment"
+      add: "Add comment"
       resource: "Resource"
       no_comments_yet: "No comments yet."
       comments_help: "Type @ to mention a specific user, who will then receive a notification by email."
@@ -161,8 +161,8 @@ en:
   activerecord:
     models:
       digital_object:
-        one: "Digital Object"
-        other: "Digital Objects"
+        one: "Digital object"
+        other: "Digital objects"
       publication:
         one: "Secondary literature"
         other: "Secondary literature"
@@ -283,7 +283,7 @@ en:
   menu_jobs: "Jobs"
   menu_holdings: "Holdings"
   menu_works: "Works"
-  menu_work_nodes: "Work Nodes"
+  menu_work_nodes: "Work nodes"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
@@ -336,7 +336,7 @@ en:
   link_type: "Linked object type"
   linked_object: "Linked Object"
   links: "Links"
-  link_remove: "Remove Link"
+  link_remove: "Remove link"
   link_remove_confirm: "Are you sure you want to delete this link?"
   unloadable_record: "This record experienced loading errors: it can be viewed but not edited. Please contact an administrator."
   validation_level_error: "There are errors, please solve before saving"
@@ -377,6 +377,7 @@ en:
   unarchive: "Un-archive"
   export_folder: "Export Folder as MARCXML"
   export_folder_csv: "Export Folder as CSV"
+  export_folder_raw: "Export Folder as Muscat MARC"
   validate_folder: "Validate items"
 
   
@@ -436,7 +437,7 @@ en:
     expiring_folders: "Your Muscat folders will expire soon"
 
   ### Digital objects
-  digital_objects: "Digital Objects"
+  digital_objects: "Digital objects"
   digital_object_new: "Add a new digital object"
   digital_object_add: "Add"
   
@@ -465,7 +466,7 @@ en:
   filter_date_of_publication: "Year of publication"
   filter_date_to: "Date to"
   filter_description: "Description"
-  filter_digital_objects: "Digital Objects"
+  filter_digital_objects: "Digital objects"
   filter_district: "District"
   filter_email: "E-mail"
   filter_folder_type: "Folder Type"
