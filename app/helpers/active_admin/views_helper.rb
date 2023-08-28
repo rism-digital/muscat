@@ -274,6 +274,17 @@ module ActiveAdmin::ViewsHelper
     end
   end
 
+  def dashboard_find_unpublished(model, limit, user)
+    if user != -1
+      src = model.where(wf_stage: :inprogress).where("wf_owner = ?", user).limit(limit).order("id DESC")
+      count = model.where(wf_stage: :inprogress).where("wf_owner = ?", user).count
+    else
+      src = model.where(wf_stage: :inprogress).limit(limit).order("id DESC")
+      count = model.where(wf_stage: :inprogress).count
+    end
+    return src, count
+  end
+
   def dashboard_get_model_comments(limit, days = 7)
     comments =  ActiveAdmin::Comment.where(("updated_at > ? AND namespace = 'admin'"), days.days.ago)
     return comments.collect {|c|

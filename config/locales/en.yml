@@ -765,6 +765,10 @@ en:
     my_comments: "My comments"
     my_records: "My records"
     about_comments: "About comments"
+    unpub_records: "Unpublished records"
+    showing_out_of: "Showing %{max} records out of %{total}"
+    no_unpublished: "No unpublished records"
+    no_unpublished_long: "You have no unpublished records!"
 
   compare_versions:
     time_frame: Time frame
