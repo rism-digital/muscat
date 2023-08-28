@@ -53,6 +53,7 @@ ca:
       sections: "Seccions i accions"
       actions: "Accions"
       toc: "Taula de continguts"
+      help: "Ajuda"
     pagination:
       empty: "No se n'ha trobat cap"
       one: "Mostra <b>1</b> %{model}"
@@ -377,6 +378,7 @@ ca:
   unarchive: "Desarxiva"
   export_folder: "Exporta la carpeta en format MARCXML"
   export_folder_csv: "Exporta la carpeta en format CSV"
+  export_folder_raw: "Exporta la carpeta en format Muscat MARC"
   validate_folder: "Valida els elements"
 
 

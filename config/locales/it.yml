@@ -53,6 +53,7 @@ it:
       sections: "Sezioni e azioni"
       actions: "Azioni"
       toc: "Contenuto"
+      help: "Aiuto"
     pagination:
       empty: "Nessun %{model} trovato"
       one: "Sto mostrando <b>1</b> %{model}"
@@ -382,6 +383,7 @@ it:
   unarchive: "Disarchivia"
   export_folder: "Esporta la cartella in MARCXML"
   export_folder_csv: "Esporta la cartella in CSV"
+  export_folder_raw: "Esporta la cartella come Muscat MARC"
   validate_folder: "Valida cartella"
 
 

@@ -112,9 +112,9 @@ work composer: "Bach, Albert*"
 
 ### Institutions
 
-- **name** _Authorized form of__institution name (110 $a)_
+- **name** _Authorized form of institution name (110 $a)_
 - **place** _Institution city (110 $c)_
-- **siglum** _Institution sigulm (110 $g)_
+- **siglum** _Institution siglum (110 $g)_
 - **address** _Institution address (371 $a)_
 - **alternates** _Alternate names (510 or 410)_
 - **notes** _Anything in the notes field (680 $a)_

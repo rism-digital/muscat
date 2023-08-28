@@ -172,6 +172,10 @@ ActiveAdmin.register DigitalObject do
     render :partial => "activeadmin/section_sidebar_index"
   end
   
+  sidebar :help, :only => [:index] do
+    render :partial => "digital_objects_help_show"
+  end
+
   ##########
   ## Show ##
   ##########
@@ -235,7 +239,7 @@ ActiveAdmin.register DigitalObject do
       render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
     end
   end
-  
+
   ##########
   ## Edit ##
   ##########

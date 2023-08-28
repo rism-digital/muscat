@@ -1,6 +1,37 @@
 Muscat Changelog
 ================
 
+v 9.3.1
+* Make id in html view clickable
+* Added 240m to sru
+* Fix #1356 Allow editors to view users
+* Fix current folder filder behaviour and create a couple more
+* In the folder filters, select only users with folders
+* Do not allow the creation of folders of users
+* Rename obsolete catalogues filter text to publications
+* Merge pull request #1398 from fjorba/filter-catalog-should-be-filter-publication
+* Merge pull request #1393 from fjorba/remove-folder-actions-for-users
+* Merge pull request #1395 from rism-digital/develop_abilities
+* Merge pull request #1390 from fjorba/add-new-folder-filters
+* Fix #1412 make the server validation correctly validate mandatory tags
+* Implement the exclusions as array to allow for duplicate keys
+* Fix #1246, make sure the focus is returned on the 031 $p textarea
+* Update gems to use new version of rails autocomplete
+* #1411 add 046, remove obsolete fields, make validation really work
+* #1411 add 370
+* #1411 add 530
+* Add translations for new work fields
+* Fix #1410, add proper collation
+* Fix #1369, add place in 710 $c for holdings too
+* Fix #1386 make 024 required in institutions
+* Fix #1418, properly link works
+* Microfix for the offended works
+* Add new window selection for 530 work
+* Updated sru index
+* Merge pull request #1421 from rism-digital/develop_sru_index2
+* #1422 make person_id work
+* Fix #1422 make the fix script better
+
 v 9.3
 * Implement $a and $b in institutions, v3 (thanks to fjorba!)
 * Fill in corporate name in institutions table

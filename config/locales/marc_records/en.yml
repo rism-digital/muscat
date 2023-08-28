@@ -708,7 +708,7 @@ en:
     performance: Performance
     performances: Performances
     performer: Performer
-    performer_note: Performer note
+    performer_note: Note on performance
     person: Person
     person_name: Person name
     personal_name: Personal name
@@ -777,7 +777,7 @@ en:
     relationship_designation: Relationship designation in $i or $4
     relationship_information: Relationship information
     religious_name: Religious name
-    religious_order: Religious order
+    religious_order: "Religious order/Title"
     reproduction: Reproduction
     research_institute: Research institute
     retrospective_conversion: Retrospective conversion
@@ -875,7 +875,7 @@ en:
     uncategorized: Uncategorized
     unknown: Unknown
     unparsed_fingerprint: Unparsed fingerprint
-    variant_ms_title: Variant title on manuscript
+    variant_ms_title: Variant title on source
     variant_source_title: Variant title on source
     variations: Variations
     verified: Verified
