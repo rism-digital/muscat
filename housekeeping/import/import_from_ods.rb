@@ -1,4 +1,40 @@
-@headers = [:"773w", :"100a", :"100q", :"245a", :"240a", :"240m", :"650a", :"594a", :"041a", :"593a", :date, :"300a", :"590a", :"590b", :"031m", :"031d"]
+@headers = [
+    :"773w", 
+    :"100a", 
+    :"1000", 
+    :"100j", 
+    :"700a", 
+    :"7000", 
+    :"700j", 
+    :"7004", 
+    :"245a", 
+    :"240a", 
+    :"240o",
+    :"240k",
+    :"240r",
+    :"240m", 
+    :"650a", 
+    :"690a",
+    :"690n",
+    :"594X", 
+    :"041a", 
+    :"593a", 
+    :"593b",
+    :"260c",
+    :"300a",
+    :"590a",
+    :"590b",
+    :"300c",
+    :"031a",
+    :"031b",
+    :"031c",
+    :"031d",
+    :"031m",
+    :"031t",
+    :"031q",
+    :"500a",
+    :"599c"
+]
 
 @name_cache = {}
 
@@ -29,7 +65,7 @@ def split_name(long_name)
 end
 
 def sheet2muscat(sheet)
-    sheet.drop(2).each do |r|
+    sheet.drop(1).each do |r|
         columns = Hash[@headers.zip r]
     
         source = Source.new
@@ -51,13 +87,32 @@ def sheet2muscat(sheet)
             tag = $1
             subtag = $2
     
+            #ap tag
+            #ap subtag
+
             if k == :"100a"
-                puts "Was #{v} is #{split_name(v)}"
+                #puts "Was #{v} is #{split_name(v)}"
                 v = split_name(v)
             end
-    
+            
+            # Split the 594 in b c
+            if k == :"594X"
+                tags = v.split(";")
+                tags.each do |t|
+                    b, c = t.split(":")
+
+                    marc_tag = MarcNode.new("source", "594", "", @mc.get_default_indicator("594"))
+                    marc_tag.add_at(MarcNode.new("source", "b", b.strip, nil), 0 )
+                    marc_tag.add_at(MarcNode.new("source", "c", c.strip, nil), 0 )
+                    marc_tag.sort_alphabetically
+                    new_marc.root.add_at(marc_tag, new_marc.get_insert_position("594") )
+                end
+
+                next #exit from the columns.each loop, we are done
+            end
+
             marc_tag = create_or_existing(new_marc, tag)
-            marc_tag.add_at(MarcNode.new("source", subtag, v.to_s.gsub("\n", " "), nil), 0 )
+            marc_tag.add_at(MarcNode.new("source", subtag, v.to_s.gsub("\n", " ").strip, nil), 0 )
             marc_tag.sort_alphabetically
     
         end
@@ -71,17 +126,30 @@ def sheet2muscat(sheet)
         source.marc = new_marc
         source.save
     
-        puts source.id
+        puts "Created: #{source.source_id}/#{source.id} #{source.composer} #{source.std_title}"
     
         #ap source.marc
         #puts
     end
 end
 
-data = Roo::Spreadsheet.open('import_children.ods')
+if ARGV.empty?
+    puts "usage: import_from_ods.rb <file>"
+    exit 1
+end
+
+data = Roo::Spreadsheet.open(ARGV[0])
 @mc = MarcConfigCache.get_configuration("source")
 
 data.each_with_pagename do |name, sheet|
+
+    begin
+        s = Source.find(name)
+    rescue ActiveRecord::RecordNotFound
+        puts "Source #{name} was deleted".red
+        next
+    end
+
     puts "processing #{name}"
     sheet2muscat(sheet)
 end
