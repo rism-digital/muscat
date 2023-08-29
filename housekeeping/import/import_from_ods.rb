@@ -36,6 +36,14 @@
     :"599c"
 ]
 
+@group_tags = [
+    "260",
+    "300",
+    "590",
+    "593",
+]
+
+
 @name_cache = {}
 
 def create_or_existing(marc, tag)
@@ -45,6 +53,12 @@ def create_or_existing(marc, tag)
     end
 
     marc_tag = MarcNode.new("source", tag, "", @mc.get_default_indicator(tag))
+
+    # Is this a group? group it!
+    if @group_tags.include? tag
+        marc_tag.add_at(MarcNode.new("source", "8", "1", nil), 0 )
+    end
+
     marc.root.add_at(marc_tag, marc.get_insert_position(tag) )
     return marc_tag
 end
@@ -126,6 +140,7 @@ def sheet2muscat(sheet)
         source.marc = new_marc
         source.save
     
+        source.reindex
         puts "Created: #{source.source_id}/#{source.id} #{source.composer} #{source.std_title}"
     
         #ap source.marc
@@ -153,3 +168,4 @@ data.each_with_pagename do |name, sheet|
     puts "processing #{name}"
     sheet2muscat(sheet)
 end
+Sunspot.commit
