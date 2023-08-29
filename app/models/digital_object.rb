@@ -1,5 +1,6 @@
 class DigitalObject < ApplicationRecord
   
+  include CommentsCleanup
 
   Paperclip.options[:content_type_mappings] = {
     :mei => "text/xml"
@@ -27,6 +28,8 @@ class DigitalObject < ApplicationRecord
 
     enum attachment_type: [ :images, :incipits ]
     
+    before_destroy :cleanup_comments
+
     # fake accessor for allowing to pass additional parameters when creating an object from an object
     # the params are then used to create the digital_object_link item
     attr_accessor :new_object_link_type

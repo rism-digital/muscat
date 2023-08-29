@@ -11,6 +11,7 @@
 
 class Place < ApplicationRecord
   include ForeignLinks
+  include CommentsCleanup
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
   
@@ -35,7 +36,7 @@ class Place < ApplicationRecord
 
   #include NewIds
 
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
 
   #before_create :generate_new_id
   after_save :reindex
