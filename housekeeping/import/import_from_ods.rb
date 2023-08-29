@@ -133,7 +133,12 @@ def sheet2muscat(sheet)
     end
 end
 
-data = Roo::Spreadsheet.open('gardano.ods')
+if ARGV.empty?
+    puts "usage: import_from_ods.rb <file>"
+    exit 1
+end
+
+data = Roo::Spreadsheet.open(ARGV[0])
 @mc = MarcConfigCache.get_configuration("source")
 
 data.each_with_pagename do |name, sheet|
