@@ -16,6 +16,7 @@ class Institution < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
+  include CommentsCleanup
   resourcify
   
   # class variables for storing the user name and the event from the controller
@@ -70,7 +71,7 @@ class Institution < ApplicationRecord
   
   #include NewIds
   
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
   
   #before_create :generate_new_id
   after_save :update_links, :reindex
@@ -296,5 +297,4 @@ class Institution < ApplicationRecord
     ActiveSupport::Deprecation.warn('Please use referring_holdings from institution')
     referring_holdings
   end
-
 end

@@ -1,5 +1,6 @@
 class Holding < ApplicationRecord
   include ForeignLinks
+  include CommentsCleanup
   resourcify
 
   # class variables for storing the user name and the event from the controller
@@ -28,7 +29,7 @@ class Holding < ApplicationRecord
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :update_774, :reindex
   after_initialize :after_initialize
-  before_destroy :update_links
+  before_destroy :update_links, :cleanup_comments
   
   
   attr_accessor :suppress_reindex_trigger
