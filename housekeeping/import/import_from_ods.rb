@@ -131,17 +131,32 @@ def sheet2muscat(sheet)
     
         end
     
+        # Add 980 tag
+        marc_tag = MarcNode.new("source", "980", "", @mc.get_default_indicator("980"))
+        marc_tag.add_at(MarcNode.new("source", "a", "import", nil), 0 )
+        marc_tag.add_at(MarcNode.new("source", "b", "full", nil), 0 )
+        marc_tag.add_at(MarcNode.new("source", "c", "examined", nil), 0 )
+        marc_tag.sort_alphabetically
+        new_marc.root.add_at(marc_tag, new_marc.get_insert_position("980") )
+
+        # Add the 599 note for the import
+        if @note
+            marc_tag = MarcNode.new("source", "599", "", @mc.get_default_indicator("599"))
+            marc_tag.add_at(MarcNode.new("source", "a", @note, nil), 0 )
+            marc_tag.sort_alphabetically
+            new_marc.root.add_at(marc_tag, new_marc.get_insert_position("500") )
+        end
+
         new_marc.suppress_scaffold_links
         new_marc.import
     
-    
-    
         # And save the fresh collection
         source.marc = new_marc
+        source.wf_owner = @user.id
         source.save
     
         source.reindex
-        puts "Created: #{source.source_id}/#{source.id} #{source.composer} #{source.std_title}"
+        puts "Created: #{source.source_id}: #{source.id} #{source.composer} #{source.std_title}"
     
         #ap source.marc
         #puts
@@ -149,11 +164,17 @@ def sheet2muscat(sheet)
 end
 
 if ARGV.empty?
-    puts "usage: import_from_ods.rb <file>"
+    puts "usage: import_from_ods.rb <file> <user_id> <599 note>"
     exit 1
 end
 
 data = Roo::Spreadsheet.open(ARGV[0])
+user = User.find(ARGV[1])
+@user = User.find(ARGV[1]) rescue user = User.find(1) #default is admin
+
+@note = ARGV[2] rescue @note = nil
+
+
 @mc = MarcConfigCache.get_configuration("source")
 
 data.each_with_pagename do |name, sheet|
