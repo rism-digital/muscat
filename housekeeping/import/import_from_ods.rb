@@ -33,7 +33,7 @@
     :"031t",
     :"031q",
     :"500a",
-    :"599c"
+    :"599a"
 ]
 
 @group_tags = [
@@ -144,7 +144,7 @@ def sheet2muscat(sheet)
             marc_tag = MarcNode.new("source", "599", "", @mc.get_default_indicator("599"))
             marc_tag.add_at(MarcNode.new("source", "a", @note, nil), 0 )
             marc_tag.sort_alphabetically
-            new_marc.root.add_at(marc_tag, new_marc.get_insert_position("500") )
+            new_marc.root.add_at(marc_tag, new_marc.get_insert_position("599") )
         end
 
         new_marc.suppress_scaffold_links
