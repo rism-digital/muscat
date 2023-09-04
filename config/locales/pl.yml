@@ -429,13 +429,13 @@ pl:
     validation_started: "Na adres %{e-mail} zostanie wysłana wiadomość z informacją o zatwierdzeniu (Validation job id: %{job})."
     folder_not_source: Można zatwierdzać tylko foldery zawierające źródła.
     expires: "Wygasa"
-    resetted: "Data wygaśnięcia folderu teraz to %{data}"
+    resetted: "Data wygaśnięcia folderu teraz to %{date}"
     reset_expiration: "Resetuj datę wygaśnięcia"
     delete_now: "Następujące foldery zostały usunięte:"
-    tomorrow: "Następujące foldery zostaną usunięte jutro %{data}"
-    one_week: "Następujące foldery zostaną usunięte za tydzień w dniu %{data}"
-    two_weeks: "Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{data}"
-    one_month: "Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{data}"
+    tomorrow: "Następujące foldery zostaną usunięte jutro %{date}"
+    one_week: "Następujące foldery zostaną usunięte za tydzień w dniu %{date}"
+    two_weeks: "Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{date}"
+    one_month: "Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{date}"
     make_catalogue: "Oznacz pozycje jako katalogi robocze"
     
   ### Digital objects
