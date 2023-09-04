@@ -8,9 +8,17 @@
 
 <!--ID-->
 <tr>
-<xsl:for-each select="marc:controlfield[@tag=001]">
-<td><xsl:value-of select="."/></td>
+  <td>
+  <xsl:for-each select="marc:controlfield[@tag=001]">
+    <xsl:element name="a">
+      <xsl:attribute name="href">
+        https://muscat.rism.info/admin/sources/<xsl:value-of select="."/>
+      </xsl:attribute>
+      <xsl:attribute name="target">blank</xsl:attribute>
+      <xsl:value-of select="."/>
+    </xsl:element>
 </xsl:for-each>
+  </td>
 <!--AUTHOR-->
 <td>
 

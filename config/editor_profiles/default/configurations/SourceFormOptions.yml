@@ -237,7 +237,6 @@
       - "enm"
       - "est"
       - "fao"
-      - "fas"
       - "fij"
       - "fin"
       - "fre"
@@ -446,6 +445,7 @@
     - - a
       - growfield: true
     - - b
+      - growfield: true
     - - c
 "340":
   layout:
@@ -556,6 +556,7 @@
     - - c
       - growfield: true
     - - a
+      - growfield: true
     - - d
     - - e
 "563":
@@ -578,6 +579,7 @@
   layout:
     fields:
     - - a
+      - growfield: true
 "593":
   layout:
     fields:
@@ -689,6 +691,7 @@
   layout:
     fields:
     - - a
+      - growfield: true
 "598":
   layout:
     fields:
@@ -813,6 +816,24 @@
       - oth
       - fmo
       - chr
+    relator_codes_edition:
+      remove:
+        - fmo
+    relator_codes_libretto_edition:
+      remove:
+        - fmo
+    relator_codes_theoretica_edition:
+      remove:
+        - fmo
+    relator_codes_edition_content:
+      remove:
+        - fmo
+    relator_codes_libretto_edition_content:
+      remove:
+        - fmo
+    relator_codes_theoretica_edition_content:
+      remove:
+        - fmo
 "710":
   new_window: institutions
   new_window_field: corporate_name_equals
@@ -860,6 +881,24 @@
       - oth
       - fmo
       - dpt
+    relator_codes_edition:
+      remove:
+        - fmo
+    relator_codes_libretto_edition:
+      remove:
+        - fmo
+    relator_codes_theoretica_edition:
+      remove:
+        - fmo
+    relator_codes_edition_content:
+      remove:
+        - fmo
+    relator_codes_libretto_edition_content:
+      remove:
+        - fmo
+    relator_codes_theoretica_edition_content:
+      remove:
+        - fmo
 "730":
   new_window: standard_titles
   new_window_field: title_equals
@@ -1026,6 +1065,24 @@
       - "IIIF manifest (digitized source)"
       - "IIIF manifest (other)"
       - "Digitized"
+      - "Other"
+    codes_edition:
+      - "IIIF manifest (other)"
+      - "Other"
+    codes_libretto_edition:
+      - "IIIF manifest (other)"
+      - "Other"
+    codes_theoretica_edition:
+      - "IIIF manifest (other)"
+      - "Other"
+    codes_edition_content:
+      - "IIIF manifest (other)"
+      - "Other"
+    codes_libretto_edition_content:
+      - "IIIF manifest (other)"
+      - "Other"
+    codes_theoretica_edition_content:
+      - "IIIF manifest (other)"
       - "Other"
 "930":
   new_window: work_nodes

@@ -16,6 +16,7 @@ class Institution < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
+  include CommentsCleanup
   resourcify
   
   # class variables for storing the user name and the event from the controller
@@ -31,6 +32,7 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
+  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_institutions")
   has_and_belongs_to_many :people, join_table: "institutions_to_people"
   has_and_belongs_to_many :publications, join_table: "institutions_to_publications"
   
@@ -69,7 +71,7 @@ class Institution < ApplicationRecord
   
   #include NewIds
   
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
   
   #before_create :generate_new_id
   after_save :update_links, :reindex
@@ -296,5 +298,4 @@ class Institution < ApplicationRecord
     ActiveSupport::Deprecation.warn('Please use referring_holdings from institution')
     referring_holdings
   end
-
 end

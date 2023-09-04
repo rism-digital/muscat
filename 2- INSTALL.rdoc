@@ -6,7 +6,7 @@ This document describes how to bootstrap into the webapplication. The documentat
 
 The following other libraries and programs are needed
 
-* Ruby > 2.3
+* Ruby > 2.7
 * Apache 2.4
 * MySQL > 8.0.4 or MariaDB 10.x
 * Git
@@ -478,7 +478,7 @@ If your crontab still has this line:
 It is save to delete it as it is now taken care but the global muscat crontab.
 *NOTE* If you ever change the cron file name, it CANNOT contains dots! Or it will silently fail.
 
-== Some MySQL optimizations
+=== Some MySQL optimizations
 
 Add to /etc/mysql.cnf
 
@@ -500,6 +500,38 @@ When doing development this can be quite annoying since it can take up to 30 min
  sed '/INSERT INTO `versions`/d' muscat_dump.sql > muscat_no_versions.sql
 
 Removes all the old versions. From 30 minutes to 9.
+
+
+=== Validation Exclusions
+
+This concerns really only the internal use of the source validator job, which can validate al the sources periodically. Often it is useful to add blanket exclusions if some data will not be corrected.
+They must be placed in the folder `validation_exclusions` in config/, with subfolders containing the exclusions for each model, for example:
+
+ config/validation_exclusions/source/exclusions.yml
+
+is the configuration file for sources. This is a sample configuration
+
+  exclude:
+    "650":
+      tags:
+        "0":
+          from_file_list: 650_0_exclude
+    "588":
+      tags:
+        "a":
+          and_rules: 
+            id_prefix: "234"
+            creation_date: "2023-06-06"
+
+Every tag specifies some rules for the subtags to be excluded:
+
+* `from_file_list`: read ids to be excluded from a file, one by line
+* `id_prefix`: ignore records with the id starting with these digits
+* `creation_date`: ignore records created exactly on this date
+
+Other rules will be implemented in the future.
+
+No rules are provided by default in muscat and none should be pushed to the repo since the use depends on the user data.
 
 == Installing new ruby and passanger on legacy systems
 

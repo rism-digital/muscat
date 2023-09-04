@@ -204,8 +204,7 @@
     - - j
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
-        :browse_inline: true
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
@@ -226,11 +225,13 @@
     - - b
       - :occurrences: "*"
     - - c
-      - :occurrences: "*"
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: place
     - - g
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true

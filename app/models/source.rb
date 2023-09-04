@@ -47,6 +47,7 @@ class Source < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include Template
+  include CommentsCleanup
   resourcify
 
   belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
@@ -99,7 +100,7 @@ class Source < ApplicationRecord
   after_create :fix_ids
   after_initialize :after_initialize
   after_save :update_links, :reindex
-  before_destroy :update_links_for_destroy
+  before_destroy :update_links_for_destroy, :cleanup_comments
 
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger

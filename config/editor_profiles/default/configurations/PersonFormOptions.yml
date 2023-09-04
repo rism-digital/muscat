@@ -146,6 +146,7 @@
       - "XD-NI"
       - "XA-NO"
       - "XD-PE"
+      - "XB-PH"
       - "XD-PY"
       - "XA-PL"
       - "XA-PT"
@@ -333,14 +334,12 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 4
+      - growfield: true
 "680": 
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 4
+      - growfield: true
 "856": 
   layout: 
     fields: 
