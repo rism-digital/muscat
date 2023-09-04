@@ -15,6 +15,7 @@
     - - a
       - growfield: true
     - - b
+      - growfield: true
     - - c
 "500": 
   layout: 
@@ -36,6 +37,7 @@
     - - c
       - growfield: true
     - - a
+      - growfield: true
     - - d
     - - e
 "563": 
@@ -47,6 +49,7 @@
   layout: 
     fields: 
     - - a
+      - growfield: true
 "593": 
   layout: 
     fields: 
@@ -182,6 +185,7 @@
     - - b
     - - z
     - - q
+      - growfield: true
     - - c
       - growfield: true
     - - d
