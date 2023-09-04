@@ -377,7 +377,10 @@ pt:
   export_folder_csv: "Exportar a pasta em CSV"
   export_folder_raw: "Exportar a pasta em Muscat MARC"
   validate_folder: "Validar pasta"
-  
+  choose_folder: "(PLEASE CHOOSE ONE)"
+  add_item_to_folder: "ADD TO FOLDER"
+  remove_item_from_folder: "DELETE FROM FOLDER"
+
   # Editor sidebar
   show_all_groups: "Mostrar todas as seções"
   show_preview: "Mostrar previsualização"

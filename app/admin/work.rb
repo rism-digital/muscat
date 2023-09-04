@@ -235,7 +235,10 @@ ActiveAdmin.register Work do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work }
   end
   
-  
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => work }
+  end
+
   ##########
   ## Edit ##
   ##########
