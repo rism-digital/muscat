@@ -1,6 +1,52 @@
 Muscat Changelog
 ================
 
+v 9.4
+
+* Updated sru index
+* Merge pull request #1421 from rism-digital/develop_sru_index2
+* Fix #1422 make the fix script better
+* Test: fix for focus jumping around
+* Editors should see all users in index
+* More scripts for CH duplicates
+* Added philipinnes to people countries
+* Update HoldingBasicLabels.yml
+* Update _help_text.en.md
+* Merge pull request #1427 from rism-digital/jenniferward-patch-3
+* Update en.yml
+* Merge pull request #1428 from rism-digital/jenniferward-patch-4
+* Fix old sru configuration
+* Fix pollini import
+* Merge pull request #1426 from rism-digital/jenniferward-patch-1
+* Merge pull request #1424 from rism-digital/develop_person_conutry
+* Merge pull request #1423 from rism-digital/develop_editor_abilities
+* Merge pull request #1431 from rism-digital/develop_sru
+* Finalize pollini, make incipits work
+* Bump puma from 5.6.4 to 5.6.7
+* Update translations
+* #1374 Initial modifications for Holding report
+* Fix the validator parts for non-Source models, #1374
+* Fix hardcoded urls in validator
+* Make the health report a bit nicer
+* Fix #1415 Implement template-based items for subfield_select_codes, implement list given in ticket
+* Fix #1414, add option to remove items from subfield_select_codes and implement ticket
+* Fix #1432, add new regex
+* Fix #1429, remove "fas" to follow MARC cose which uses Persioan
+* Fix #1425, make match not case sensitive
+* Fix #1416 Swith to Noto Sans for Muscat
+* Fix #1408 and #1434, initial refactor of exporter for raw muscat data and other models
+* Fix #1408, Fix #1434, implement raw marc and multiple different exported types
+* Fix #1430, add help for DOs
+* Add I18n for "help"
+* Fix #1406, translations will come
+* Fix #1409, strip data before validation also fix "new" for digital objects
+* Fix #888, delete comments when a resource il deleted
+* Finish implementation of ods import
+* Merge pull request #1433 from rism-digital/dependabot/bundler/puma-5.6.7
+* Show the user menu for users tha can see it
+* Fix interpolation variable in PL
+* Fix #1437, remove old 518$a autocomplete, add growfields
+
 v 9.3.1
 * Make id in html view clickable
 * Added 240m to sru
