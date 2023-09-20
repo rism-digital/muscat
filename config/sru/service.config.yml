@@ -105,6 +105,9 @@ index:
     solr: 700a
     type: text
   rism.librarySiglum:
+    solr: siglum_order
+    type: s
+  rism.libSiglum:
     solr: lib_siglum_order
     type: s
   rism.libraryCountry:
