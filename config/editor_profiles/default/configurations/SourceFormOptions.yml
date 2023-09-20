@@ -812,6 +812,7 @@
       - oth
       - fmo
       - chr
+      - pat
     relator_codes_edition:
       remove:
         - fmo
@@ -877,6 +878,7 @@
       - oth
       - fmo
       - dpt
+      - pat
     relator_codes_edition:
       remove:
         - fmo
