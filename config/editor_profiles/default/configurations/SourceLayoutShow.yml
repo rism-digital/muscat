@@ -139,7 +139,6 @@ groups:
     - "510"
     all_tag_templates: 
       "510": marc_show/show_subfield_concat
-    admin_only: true
     
   show_links: 
     all_tags: 

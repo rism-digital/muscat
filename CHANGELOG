@@ -8,6 +8,7 @@ v 9.4.1
 * Merge pull request #1446 from rism-digital/fix_sru
 * Add Holding report to crontab, fix locales
 * Make Noto Sans 100% back everywhere
+* Make internal note 599 and 510 shown to everybody
 
 v 9.4
 * Updated sru index
