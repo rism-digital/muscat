@@ -705,7 +705,7 @@ pt:
     performance: Executores
     performances: Realizações
     performer: Intérprete
-    performer_note: Nota sobre a execução
+    performer_note: Nota sobre performance
     person: Pessoa
     person_name: Nome da pessoa
     personal_name: Nomes de pessoas
@@ -872,7 +872,7 @@ pt:
     uncategorized: Sem categoria
     unknown: Desconhecido
     unparsed_fingerprint: Identificador de impressão não analisado
-    variant_ms_title: Variante de título na fonte
+    variant_ms_title: Título variante na fonte
     variant_source_title: Título variante na fonte
     variations: Variações
     verified: Verificada
@@ -884,12 +884,12 @@ pt:
     woodwinds: Madeiras
     work: Obra
     work_number: Número de obra
-    work_tag: Work revision tag
+    work_tag: Etiqueta de revisão de trabalho
     work_tag_incipit_needs_revision: incipit-needs-revision
     work_tag_incipit_replace: incipit-replace
     work_tag_needs_revision: needs-revision
-    work_tag_note: Tag note
-    work_tag_type: Tag type
+    work_tag_note: Etiqueta de nota
+    work_tag_type: Tipo de etiqueta
     year: Ano
     years_birth_death: Anos de nascimento e morte
   relations:
