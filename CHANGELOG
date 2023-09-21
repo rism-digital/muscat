@@ -7,7 +7,7 @@ v 9.4.1
 * Fix #1444 add pat to relator codes
 * Merge pull request #1446 from rism-digital/fix_sru
 * Add Holding report to crontab, fix locales
-* Change font to Noto Sans Display and make it black everywhere
+* Make Noto Sans 100% back everywhere
 
 v 9.4
 * Updated sru index
