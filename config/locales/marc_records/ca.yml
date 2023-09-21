@@ -705,7 +705,7 @@ ca:
     performance: Interpretació
     performances: Interpretacions
     performer: Intèrpret
-    performer_note: Nota sobre l'intèrpret
+    performer_note: Nota sobre la interpretació
     person: Persona
     person_name: Nom personal
     personal_name: Nom personal
@@ -872,7 +872,7 @@ ca:
     uncategorized: Sense classificar
     unknown: Desconegut
     unparsed_fingerprint: Empremta sense analitzar
-    variant_ms_title: Variant de títol al manuscrit
+    variant_ms_title: Variant de títol a la font
     variant_source_title: Variant de títol a la font
     variations: Variacions
     verified: Verificat

@@ -233,7 +233,7 @@ ActiveAdmin.register_page "Dashboard" do
               column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
                 label: I18n.t('status_codes.' + (work.wf_stage != nil ? work.wf_stage : ""), locale: :en))}  
               column (I18n.t :filter_id) {|work| link_to(work.id, admin_work_path(work)) } 
-              column(I18n.t :filter_composer) {|work| work.person }
+              column(I18n.t :filter_composer) {|work| work.composer }
               column (I18n.t :filter_title), :title
             end
           else

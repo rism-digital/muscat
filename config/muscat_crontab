@@ -30,3 +30,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 # Maintenance and weekly report
 00  04  *  *  sun www-data PATH_TO/muscat/bin/muscat_execute_job MuscatMaintenanceJob production
 00  07  *  *  sun www-data PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production
+00  08  *  *  sun www-data PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production Holding
