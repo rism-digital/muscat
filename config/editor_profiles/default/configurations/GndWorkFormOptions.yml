@@ -30,8 +30,10 @@
   tag_header: none
 "024": 
   layout: 
-    fields: 
+    fields:
+    - - "0" 
     - - a
+    - - "2"
 "035": 
   layout: 
     fields: 
@@ -43,10 +45,19 @@
     fields: 
     - - b
     - - e
+    - - "9"
+    - - a
+    - - c
+    - - d
+"042": 
+  layout: 
+    fields: 
+    - - a
 "043": 
   layout: 
     fields: 
     - - a
+    - - c
 "056": 
   layout: 
     fields: 
@@ -159,7 +170,16 @@
 "382": 
   layout: 
     fields: 
+    - - "a"
+      - type: gnd_work_instrument
+        preserve_foreign_value: true
+        editor_partial: subfield_autocomplete
     - - "9"
+    - - "0"
+    - - "2"
+    - - v
+    - - n
+    - - s
 "383": 
   layout: 
     fields: 
@@ -183,6 +203,7 @@
     - - n
     - - r
     - - t
+    - - p
 "500": 
   allow_new: true
   new_window: people
@@ -194,10 +215,23 @@
         editor_partial: subfield_autocomplete
     - - d
     - - e
+    - - "0"
+    - - "4"
+    - - i
+    - - w
+    - - "9"
+    - - t
+    - - n
+    - - p
+    - - r
 "530": 
   layout: 
     fields: 
     - - a
+    - - "0"
+    - - "4"
+    - - i
+    - - w
 "540": 
   layout: 
     fields: 
@@ -206,6 +240,10 @@
   layout: 
     fields: 
     - - a
+    - - "4"
+    - - i
+    - - w
+    - - "9"
 "550": 
   layout: 
     fields: 
@@ -214,10 +252,13 @@
   layout: 
     fields: 
     - - "5"
+    - - a
 "670": 
   layout: 
     fields: 
     - - a
+    - - b
+    - - u
 "675": 
   layout: 
     fields: 
