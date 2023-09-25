@@ -62,6 +62,11 @@
   layout: 
     fields: 
     - - a
+"065": 
+  layout: 
+    fields:
+    - - "2"
+    - - a
 "075": 
   layout: 
     fields: 
@@ -160,6 +165,11 @@
       - "6byz"
       - "7byz"
       - "8byz"
+"377": 
+  layout: 
+    fields: 
+    - - a
+    - - "2"
 "380": 
   layout: 
     fields: 
@@ -167,6 +177,8 @@
       - type: gnd_work_instrument
         preserve_foreign_value: true
         editor_partial: subfield_autocomplete
+    - - "0"
+    - - "2"
 "382": 
   layout: 
     fields: 
@@ -271,3 +283,9 @@
   layout: 
     fields: 
     - - a
+"913": 
+  layout: 
+    fields: 
+    - - a
+    - - "0"
+    - - i
