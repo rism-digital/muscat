@@ -340,7 +340,7 @@ module GND
             next if !node_001
             item[:id] = node_001.text
             node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
-            item["instrument"] = node_150a_val
+            item["form"] = node_150a_val
             item[:label] = "#{node_150a_val}"
             item[:label] += " – #{item[:id]}"
             result << item
