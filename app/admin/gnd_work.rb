@@ -1,9 +1,10 @@
 ActiveAdmin.register_page "gnd_works" do
   controller do
+    # These need to be manually added to the routes
     # The display_value label is included in the hash returned by the GND::Interface and is not a method of the model
     autocomplete :gnd_works, "person", :gnd => true, :display_value => :label, :extra_data => [:life_dates]
     autocomplete :gnd_works, "instrument", :gnd => true, :display_value => :label
-
+    autocomplete :gnd_works, "form", :gnd => true, :display_value => :label
 
     def index
 

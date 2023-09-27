@@ -178,7 +178,7 @@
   layout: 
     fields: 
     - - "a"
-      - type: gnd_work_instrument
+      - type: gnd_work_form
         preserve_foreign_value: true
         editor_partial: subfield_autocomplete
     - - "0"

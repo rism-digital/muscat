@@ -64,6 +64,10 @@ module ApplicationHelper
     admin_gnd_works_autocomplete_gnd_works_instrument_path
   end
 
+  def gnd_work_form_default_autocomplete
+    admin_gnd_works_autocomplete_gnd_works_form_path
+  end
+
   def source_031t_solr_default_autocomplete
     autocomplete_source_031t_filter_sms_admin_sources_path
   end

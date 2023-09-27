@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post 'admin/gnd_works/marc_editor_save' => 'admin/gnd_works#marc_editor_save'
   get 'admin/gnd_works/autocomplete_gnd_works_person' => 'admin/gnd_works#autocomplete_gnd_works_person'
   get 'admin/gnd_works/autocomplete_gnd_works_instrument' => 'admin/gnd_works#autocomplete_gnd_works_instrument'
+  get 'admin/gnd_works/autocomplete_gnd_works_form' => 'admin/gnd_works#autocomplete_gnd_works_form'
 
 
   ##############################
