@@ -558,28 +558,6 @@ class Source < ApplicationRecord
     return [self.shelf_mark]
   end
 
-  def self.incipits_for(id)
-    s = Source.find(id)
-
-    incipits = {}
-
-    s.marc.each_by_tag("031") do |t|
-      subtags = [:a, :b, :c, :t]
-      vals = {}
-
-      subtags.each do |st|
-        v = t.fetch_first_by_tag(st)
-        vals[st] = v && v.content ? v.content : "x"
-      end
-
-      pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
-      text = vals[:t] == "x" ? "" : " #{vals[:t]}"
-      incipits["#{pae_nr}#{text}"] = "#{s.id}:#{pae_nr}"
-    end
-
-    incipits
-  end
-
   def manuscript_to_print(tags)
     is_child = self.parent_source != nil
     holding = Holding.new
