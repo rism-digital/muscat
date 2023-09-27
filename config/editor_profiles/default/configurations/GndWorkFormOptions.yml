@@ -165,6 +165,10 @@
       - "6byz"
       - "7byz"
       - "8byz"
+"130":
+  layout:
+    fields:
+    - - "a"
 "377": 
   layout: 
     fields: 
