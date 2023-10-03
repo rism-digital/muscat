@@ -91,6 +91,7 @@
       - autocomplete_extra: life_dates
     - - m
     - - n
+    - - p
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "100r"
